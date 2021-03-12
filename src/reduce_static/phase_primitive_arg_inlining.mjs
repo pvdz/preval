@@ -3,8 +3,7 @@
 
 import crypto from 'crypto';
 
-import { VERBOSE_TRACING } from '../constants.mjs';
-import { log, group, groupEnd, ASSERT, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 
@@ -63,7 +62,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
 
-    if (VERBOSE_TRACING) log(' - `' + name + '`', meta.writes.length, meta.reads.length, meta.constValueRef?.type);
+    vlog(' - `' + name + '`', meta.writes.length, meta.reads.length, meta.constValueRef?.type);
     if (
       meta.writes.length === 1 &&
       meta.constValueRef &&
@@ -123,7 +122,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                     name: hashCloneName(name),
                     inlined: staticArgs,
                   };
-              if (VERBOSE_TRACING) log('The cloneDetails:', cloneDetails);
+              vlog('The cloneDetails:', cloneDetails);
               cloneDetails.inlined.forEach((obj) => {
                 if (obj.type === undefined) {
                   console.log('input name:', [name]);
@@ -166,7 +165,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                 // TODO: limit the size of strings here. At some point it should be either a digest or skipped entirely.
                 const count = (cloneCounts.get(cloneDetails.name) ?? 1) + 1;
                 if (meta.reads.length === 1) {
-                  if (VERBOSE_TRACING) log('The function is only called once so we do not need to clone it');
+                  vlog('The function is only called once so we do not need to clone it');
                   staticArgs.forEach(({ index: paramIndex, type, value: paramValue }) => {
                     if (paramIndex >= funcNode.params.length) return; // Argument without param, we ignore.
                     log('- Replacing param `' + funcNode.params[paramIndex].name + '` with', paramValue);
@@ -183,10 +182,9 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                     read.parentNode['arguments'][index] = AST.identifier('$');
                   });
                 } else if (cloneLimit && count > cloneLimit) {
-                  if (VERBOSE_TRACING)
-                    log('Reached max of', cloneLimit, 'clones for function `' + cloneDetails.name + '`. Not cloning it again.');
+                  vlog('Reached max of', cloneLimit, 'clones for function `' + cloneDetails.name + '`. Not cloning it again.');
                 } else {
-                  if (VERBOSE_TRACING) log('Cloning...');
+                  vlog('Cloning...');
                   cloneMap.set(cloneCacheKey, cloneCacheKey);
                   cloneCounts.set(cloneDetails.name, count);
                   const newFunc = cloneFunctionNode(funcNode, cloneCacheKey, staticArgs, fdata);
@@ -229,7 +227,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
   });
   log('End of primitive arg inlining. Cloned', newFuncs.length, 'functions, checked', truncableCallArgs.length, 'funcs for excessive args');
 
-  if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   groupEnd();
 }
 
@@ -276,7 +274,7 @@ function hashCloneName(name) {
   return name.replace(/_/g, '__').replace(/\$/g, '_');
 }
 function toClonedFuncCacheKey({ name, inlined /*:Array<{index, type, node}>*/ }) {
-  if (VERBOSE_TRACING) log('toClonedFuncCacheKey');
+  vlog('toClonedFuncCacheKey');
   const hashedName = hashCloneName(name);
   return `$clone$${hashedName}$${inlined
     .map(({ index, type, value }) => {
@@ -291,7 +289,7 @@ function toClonedFuncCacheKey({ name, inlined /*:Array<{index, type, node}>*/ })
     .join('$')}`;
 }
 function fromClonedFuncCacheKey(key, withAdditionalInlines = []) {
-  if (VERBOSE_TRACING) log('fromClonedFuncCacheKey', [key]);
+  vlog('fromClonedFuncCacheKey', [key]);
   ASSERT(key.startsWith('$clone$'));
   const [empty, clone, originalName, ...params] = key.split('$');
 

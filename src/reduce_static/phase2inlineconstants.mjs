@@ -1,5 +1,5 @@
-import { VERBOSE_TRACING, ALIAS_PREFIX } from '../constants.mjs';
-import { log, group, groupEnd, ASSERT, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import { ALIAS_PREFIX } from '../constants.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createReadRef } from '../bindings.mjs';
 
@@ -24,7 +24,7 @@ function _inlineConstants(fdata) {
     //       If any such parent/ancestor is to be removed, put it in the toEliminate queue.
     fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
       if (meta.isBuiltin) return;
-      if (VERBOSE_TRACING) group('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
+      vgroup('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
 
       if (!name.startsWith(ALIAS_PREFIX)) {
         if (meta.writes.length === 1 && !meta.isConstant) {
@@ -58,7 +58,7 @@ function _inlineConstants(fdata) {
         if (meta.isConstant) {
           ASSERT(meta.name === name);
           if (attemptConstantInlining(meta, fdata)) {
-            if (VERBOSE_TRACING) groupEnd();
+            vgroupEnd();
             inlined = true;
             return;
           }
@@ -67,7 +67,7 @@ function _inlineConstants(fdata) {
 
       if (meta.reads.length === 0 && meta.writes[0].decl) {
         ASSERT(meta.writes.length);
-        if (VERBOSE_TRACING) group('Binding `' + name + '` only has writes, zero reads and could be eliminated.');
+        vgroup('Binding `' + name + '` only has writes, zero reads and could be eliminated.');
         // For now, only eliminate actual var decls and assigns. Catch clause is possible. Can't change params for now.
         // If any writes are eliminated this way, drop them from the books and queue them up
 
@@ -121,19 +121,19 @@ function _inlineConstants(fdata) {
           fdata.globallyUniqueNamingRegistry.delete(name);
         }
 
-        if (VERBOSE_TRACING) groupEnd();
+        vgroupEnd();
 
         if (inlined) {
-          if (VERBOSE_TRACING) groupEnd();
+          vgroupEnd();
           return;
         }
       }
 
-      if (VERBOSE_TRACING) groupEnd();
+      vgroupEnd();
     });
     log('End of iteration', inlineLoops, ' of constant inlining. Did we inline anything?', inlined ? 'yes' : 'no');
 
-    if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+    vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
     groupEnd();
     if (inlined) {
@@ -173,7 +173,7 @@ function _inlineConstants(fdata) {
               !init.object.computed &&
               init.property.name === 'length'))
         ) {
-          if (VERBOSE_TRACING) log('Dropping the init because it is `this`, `arguments`, or `arguments.length`');
+          vlog('Dropping the init because it is `this`, `arguments`, or `arguments.length`');
           if (index >= 0) {
             parent[prop][index] = AST.emptyStatement();
           } else {

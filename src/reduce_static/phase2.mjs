@@ -1,5 +1,4 @@
-import { log, group, groupEnd, ASSERT, tmat, fmat } from '../utils.mjs';
-import { VERBOSE_TRACING } from '../constants.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from '../utils.mjs';
 import { pruneEmptyFunctions } from './phase2emptyfunc.mjs';
 import { pruneTrampolineFunctions } from './phase2trampoline.mjs';
 import { pruneExcessiveParams } from './phase2exparam.mjs';
@@ -47,7 +46,7 @@ export function phase2(program, fdata, resolve, req) {
 
   // The read/write data should still be in tact
 
-  if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   groupEnd();
 }

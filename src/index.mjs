@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 import { setVerboseTracing, VERBOSE_TRACING, MARK_NONE, MARK_TEMP, MARK_PERM } from './constants.mjs';
-import { clearStdio, setStdio, log, tmat, fmat, group, groupEnd } from './utils.mjs';
+import { clearStdio, setStdio, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from './utils.mjs';
 import globals from './globals.mjs';
 
 import { parseCode } from './normalize/parse.mjs';
@@ -157,35 +157,35 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
   const evalOrder = [];
   [...modules.keys()].forEach(function visit(n) {
     const mod = modules.get(n);
-    if (VERBOSE_TRACING) group('- visiting "' + n + '", mark = ' + mod.mark);
+    vgroup('- visiting "' + n + '", mark = ' + mod.mark);
     if (mod.mark !== MARK_NONE) {
-      if (VERBOSE_TRACING) log('  - Already marked, skipping');
-      if (VERBOSE_TRACING) groupEnd();
+      vlog('  - Already marked, skipping');
+      vgroupEnd();
       return;
     }
     if (mod.mark === MARK_TEMP) {
-      if (VERBOSE_TRACING) log('  - marked temp');
-      if (VERBOSE_TRACING) groupEnd();
+      vlog('  - marked temp');
+      vgroupEnd();
       return;
     }
     if (mod.mark === MARK_PERM) {
       console.log('dependency cycle detected');
       console.log('module:');
       console.log({ ...mod, fdata: '<supressed>' });
-      if (VERBOSE_TRACING) groupEnd();
+      vgroupEnd();
       throw new Error('Preval: dependency cycle detected');
     }
     mod.mark = MARK_TEMP;
-    if (VERBOSE_TRACING) log(' - imports from', mod.children.size);
+    vlog(' - imports from', mod.children.size);
     mod.children.forEach(visit);
     mod.mark = MARK_PERM;
     evalOrder.push(n);
-    if (VERBOSE_TRACING) groupEnd();
+    vgroupEnd();
   });
   if (VERBOSE_TRACING) {
-    log();
-    log('Proper eval order is:');
-    log(evalOrder.map((fname) => ' - ' + fname).join('\n'));
+    vlog();
+    vlog('Proper eval order is:');
+    vlog(evalOrder.map((fname) => ' - ' + fname).join('\n'));
   }
   program.evalOrder = evalOrder;
   groupEnd('Order resolved...');

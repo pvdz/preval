@@ -1,7 +1,6 @@
 import { printer } from '../../lib/printer.mjs';
 
-import { log, group, groupEnd, ASSERT, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
-import { VERBOSE_TRACING } from '../constants.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { phase0 } from '../reduce_static/phase0.mjs';
 import { uniqify_idents } from './uniqify_idents.mjs';
@@ -44,7 +43,7 @@ export function cloneFunctionNode(node, clonedName = 'noname', staticArgs, fdata
   });
   const newFdata = phase0('(' + str + ')', '<function duplicator>', true);
 
-  if (VERBOSE_TRACING) log('\n\nNow processing\n\n');
+  vlog('\n\nNow processing\n\n');
 
   // Note: This AST should contain one element in Program: the function declaration
   //       which means we can ignore certain edge cases for scope tracking like imports/exports
@@ -62,7 +61,7 @@ export function cloneFunctionNode(node, clonedName = 'noname', staticArgs, fdata
 
   if (clonedName) clonedFunc.id = AST.identifier(clonedName);
 
-  if (VERBOSE_TRACING) log('\nCloned function:\n--------------\n' + fmat(tmat(clonedFunc)) + '\n--------------\n');
+  vlog('\nCloned function:\n--------------\n' + fmat(tmat(clonedFunc)) + '\n--------------\n');
 
   if (clonedName) clonedFunc.id = null;
 

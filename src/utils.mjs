@@ -116,6 +116,16 @@ export function dir(...args) {
   if (VERBOSE) return Console.dir(...args);
 }
 
+export function vlog(...args) {
+  if (VERBOSE_TRACING) log(...args);
+}
+export function vgroup(...args) {
+  if (VERBOSE_TRACING) group(...args);
+}
+export function vgroupEnd(...args) {
+  if (VERBOSE_TRACING) groupEnd(...args);
+}
+
 // Debugging
 export function tmat(ast, shouldPrint = VERBOSE) {
   if (shouldPrint) return printer(ast);

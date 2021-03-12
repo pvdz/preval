@@ -2,8 +2,8 @@
 
 import walk from '../../lib/walk.mjs';
 
-import { VERBOSE_TRACING, RED, BLUE, RESET } from '../constants.mjs';
-import { log, group, groupEnd, ASSERT } from '../utils.mjs';
+import { RED, BLUE, RESET } from '../constants.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd } from '../utils.mjs';
 import { $p } from '../$p.mjs';
 import {
   getIdentUsageKind,
@@ -28,12 +28,12 @@ export function uniqify_idents(funcAst, fdata) {
       node.$p = $p();
     }
 
-    if (VERBOSE_TRACING) group(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET);
+    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET);
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
 
     if (before && node.$scope) {
-      if (VERBOSE_TRACING) log('Has scope');
+      vlog('Has scope');
       lexScopeStack.push(node);
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         funcScopeStack.push(node);
@@ -43,13 +43,13 @@ export function uniqify_idents(funcAst, fdata) {
 
     switch (key) {
       case 'Identifier:before': {
-        if (VERBOSE_TRACING) log('Ident:', node.name);
+        vlog('Ident:', node.name);
         const parentNode = path.nodes[path.nodes.length - 2];
         const parentProp = path.props[path.props.length - 1];
         const kind = getIdentUsageKind(parentNode, parentProp);
-        if (VERBOSE_TRACING) log('- Ident kind:', kind);
+        vlog('- Ident kind:', kind);
 
-        if (VERBOSE_TRACING) log('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
+        vlog('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
         if (kind !== 'none' && kind !== 'label' && node.name !== 'arguments') {
           ASSERT(!node.$p.uniqueName, 'dont do this twice');
           const uniqueName = findUniqueNameForBindingIdent(
@@ -59,7 +59,7 @@ export function uniqify_idents(funcAst, fdata) {
             lexScopeStack,
             true,
           );
-          if (VERBOSE_TRACING) log('- initial name:', node.name, ', unique name:', uniqueName);
+          vlog('- initial name:', node.name, ', unique name:', uniqueName);
           node.$p.uniqueName = uniqueName;
           node.$p.debug_originalName = node.name;
           node.$p.debug_uniqueName = uniqueName; // Cant use this reliably due to new nodes being injected
@@ -70,7 +70,7 @@ export function uniqify_idents(funcAst, fdata) {
           //if (kind === 'read' || kind === 'readwrite') meta.reads.push(node);
           //if (kind === 'write' || kind === 'readwrite') meta.writes.push(node);
         } else {
-          if (VERBOSE_TRACING) log(RED + '- skipping; not a binding' + RESET);
+          vlog(RED + '- skipping; not a binding' + RESET);
         }
 
         break;
@@ -84,23 +84,23 @@ export function uniqify_idents(funcAst, fdata) {
         // Find the first label ancestor where the original name matches the label of this node
         if (node.label) {
           const name = node.label.name;
-          if (VERBOSE_TRACING) log('Label:', name, ', now searching for definition... Label stack depth:', labelStack.length);
+          vlog('Label:', name, ', now searching for definition... Label stack depth:', labelStack.length);
           let i = labelStack.length;
           while (--i >= 0) {
-            if (VERBOSE_TRACING) log('->', labelStack[i].$p.originalLabelName);
+            vlog('->', labelStack[i].$p.originalLabelName);
             if (labelStack[i].$p.originalLabelName === name) {
               const newName = labelStack[i].label.name;
               if (newName !== name) {
-                if (VERBOSE_TRACING) log('- Label was renamed to', newName);
+                vlog('- Label was renamed to', newName);
                 node.label.name = newName;
                 break;
               } else {
-                if (VERBOSE_TRACING) log('- Label not renamed');
+                vlog('- Label not renamed');
               }
             }
           }
         } else {
-          if (VERBOSE_TRACING) log('No label');
+          vlog('No label');
         }
         break;
       }
@@ -109,15 +109,15 @@ export function uniqify_idents(funcAst, fdata) {
         // TODO: fixme
         break;
         labelStack.push(node);
-        if (VERBOSE_TRACING) log('Label:', node.label.name);
+        vlog('Label:', node.label.name);
         node.$p.originalLabelName = node.label.name;
         const uniqueName = createUniqueGlobalLabel(node.label.name, fdata.globallyUniqueLabelRegistry);
         registerGlobalLabel(fdata, uniqueName, node.label.name, node);
         if (node.label.name !== uniqueName) {
-          if (VERBOSE_TRACING) log('- Unique label name:', uniqueName);
+          vlog('- Unique label name:', uniqueName);
           node.label.name = uniqueName;
         } else {
-          if (VERBOSE_TRACING) log('- Label is now registered and unique');
+          vlog('- Label is now registered and unique');
         }
         break;
       }
@@ -135,8 +135,8 @@ export function uniqify_idents(funcAst, fdata) {
       }
     }
 
-    if (VERBOSE_TRACING) groupEnd();
+    vgroupEnd();
   }
 
-  if (VERBOSE_TRACING) groupEnd();
+  vgroupEnd();
 }

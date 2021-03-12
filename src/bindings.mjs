@@ -1,5 +1,5 @@
 import { VERBOSE_TRACING, BLUE, RESET } from './constants.mjs';
-import { ASSERT, group, groupEnd, log } from './utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd } from './utils.mjs';
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 
@@ -494,16 +494,16 @@ export function createWriteRef(obj) {
 export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata, lexScopeStack, ignoreGlobals = false) {
   const globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
   ASSERT(node && node.type === 'Identifier', 'need ident node for this', node);
-  if (VERBOSE_TRACING) log('Finding unique name for `' + node.name + '`. Lex stack size:', lexScopeStack.length);
+  vlog('Finding unique name for `' + node.name + '`. Lex stack size:', lexScopeStack.length);
   let index = lexScopeStack.length;
   if (isFuncDeclId) {
     // The func decl id has to be looked up outside its own inner scope
-    if (VERBOSE_TRACING) log('- Starting at parent because func decl id');
+    vlog('- Starting at parent because func decl id');
     --index;
   }
   while (--index >= 0) {
     if (VERBOSE_TRACING) {
-      log(
+      vlog(
         '- Checking lex level',
         index,
         ' (' + lexScopeStack[index].type + '): lex id:',
@@ -521,11 +521,11 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
     if (ignoreGlobals) return node.name; // Ignore the globals. Assume they are already handled (function cloning)
     log('- The ident `' + node.name + '` could not be resolved and is an implicit global');
     // Register one...
-    if (VERBOSE_TRACING) log('Creating implicit global binding for `' + node.name + '` now');
+    vlog('Creating implicit global binding for `' + node.name + '` now');
     const uniqueName = generateUniqueGlobalName(node.name, globallyUniqueNamingRegistry);
     const meta = registerGlobalIdent(fdata, uniqueName, node.name, { isImplicitGlobal: true });
     if (VERBOSE_TRACING) {
-      log('- Meta:', {
+      vlog('- Meta:', {
         ...meta,
         reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
         writes: meta.writes.length <= 10 ? meta.writes : '<snip>',
@@ -537,10 +537,10 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
 
   const uniqueName = lexScopeStack[index].$p.nameMapping.get(node.name);
   ASSERT(uniqueName !== undefined, 'should exist');
-  if (VERBOSE_TRACING) log('- Should be bound in scope index', index, 'mapping to `' + uniqueName + '`');
+  vlog('- Should be bound in scope index', index, 'mapping to `' + uniqueName + '`');
   const meta = globallyUniqueNamingRegistry.get(uniqueName);
   if (VERBOSE_TRACING) {
-    log('- Meta:', {
+    vlog('- Meta:', {
       ...meta,
       reads: meta.reads.length <= 10 ? meta.reads : '<snip>',
       writes: meta.writes.length <= 10 ? meta.writes : '<snip>',
@@ -591,7 +591,7 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
   node.$p.lexScopeId = lexScopeCounter;
   node.$scope.$sid = lexScopeCounter;
 
-  if (VERBOSE_TRACING) group(BLUE + 'Scope tracking' + RESET, 'scope id=', lexScopeCounter);
+  vgroup(BLUE + 'Scope tracking' + RESET, 'scope id=', lexScopeCounter);
 
   // Assign unique names to bindings to work around lex scope shadowing `let x = 1; { let x = 'x'; }`
   // This allows us to connect identifier binding references that belong together, indeed together, and distinct a
@@ -617,60 +617,60 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
   );
 
   do {
-    if (VERBOSE_TRACING) group('Checking scope... (sid=', s.$sid, ')');
-    if (VERBOSE_TRACING) log('- type:', s.type, ', bindings?', s.names === Tenko.HAS_NO_BINDINGS ? 'no' : 'yes, ' + s.names.size);
+    vgroup('Checking scope... (sid=', s.$sid, ')');
+    vlog('- type:', s.type, ', bindings?', s.names === Tenko.HAS_NO_BINDINGS ? 'no' : 'yes, ' + s.names.size);
     if (node.type === 'BlockStatement' && s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS) {
-      if (VERBOSE_TRACING) log('Breaking for function header scopes in Block');
-      if (VERBOSE_TRACING) groupEnd();
+      vlog('Breaking for function header scopes in Block');
+      vgroupEnd();
       break;
     }
 
     if (s.names === Tenko.HAS_NO_BINDINGS) {
-      if (VERBOSE_TRACING) log('- no bindings in this scope, parent:', s.parent && s.parent.type);
+      vlog('- no bindings in this scope, parent:', s.parent && s.parent.type);
     } else if (
       ['FunctionExpression', 'FunctionDeclaration', 'ArrowFunctionExpression'].includes(node.type) &&
       s.type === Tenko.SCOPE_LAYER_FUNC_BODY
     ) {
-      if (VERBOSE_TRACING) log('- ignoring scope body in function node');
+      vlog('- ignoring scope body in function node');
     } else if (node.type === 'CatchClause' && s.type !== Tenko.SCOPE_LAYER_CATCH_HEAD && s.type !== Tenko.SCOPE_LAYER_CATCH_BODY) {
-      if (VERBOSE_TRACING) log('- in catch clause we only care about the two catch scopes');
-      if (VERBOSE_TRACING) groupEnd();
+      vlog('- in catch clause we only care about the two catch scopes');
+      vgroupEnd();
       break;
     } else if (node.type === 'BlockStatement' && s.type === Tenko.SCOPE_LAYER_GLOBAL) {
-      if (VERBOSE_TRACING) log('- do not process global scope in block');
-      if (VERBOSE_TRACING) groupEnd();
+      vlog('- do not process global scope in block');
+      vgroupEnd();
       break;
     } else if (
       node.type === 'BlockStatement' &&
       s.type === Tenko.SCOPE_LAYER_FUNC_BODY &&
       !['FunctionExpression', 'FunctionDeclaration', 'ArrowFunctionExpression'].includes(parentNode.type)
     ) {
-      if (VERBOSE_TRACING) log('- do not process func scope in a block that is not child of a function');
-      if (VERBOSE_TRACING) groupEnd();
+      vlog('- do not process func scope in a block that is not child of a function');
+      vgroupEnd();
       break;
     } else {
       s.names.forEach((v, name) => {
-        if (VERBOSE_TRACING) log('-', name, ':', v);
+        vlog('-', name, ':', v);
 
         if (v === Tenko.BINDING_TYPE_VAR && funcNode !== node) {
           // only process `var` bindings in the scope root
-          if (VERBOSE_TRACING) log('  - skipping var because not scope root');
+          vlog('  - skipping var because not scope root');
           return;
         }
 
         if (v === Tenko.BINDING_TYPE_FUNC_VAR && s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS) {
-          if (VERBOSE_TRACING) log('  - skipping func var in param layer or global layer');
+          vlog('  - skipping func var in param layer or global layer');
           return;
         }
 
         const uniqueName = generateUniqueGlobalName(name, fdata.globallyUniqueNamingRegistry);
-        if (VERBOSE_TRACING) log('Adding', name, 'to globallyUniqueNamingRegistry -->', uniqueName);
+        vlog('Adding', name, 'to globallyUniqueNamingRegistry -->', uniqueName);
         registerGlobalIdent(fdata, uniqueName, name);
         node.$p.nameMapping.set(name, uniqueName);
       });
     }
 
-    if (VERBOSE_TRACING) groupEnd();
+    vgroupEnd();
 
     // Only certain nodes have hidden scopes to process. For any other node do not process the parent.
     if (
@@ -683,12 +683,12 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
   } while (s.type !== Tenko.SCOPE_LAYER_GLOBAL && (s = s.parent));
 
   if (VERBOSE_TRACING) {
-    groupEnd();
+    vgroupEnd();
 
     // Each node should now be able to search through the lexScopeStack, and if any of them .has() the name, it will
     // be able to .get() the unique name, which can be used in either the root scope or by the compiler in phase2.
-    log('Scope', lexScopeCounter, '; ' + node.type + '.$p.nameMapping:');
-    log(
+    vlog('Scope', lexScopeCounter, '; ' + node.type + '.$p.nameMapping:');
+    vlog(
       new Map(
         [...node.$p.nameMapping.entries()].filter(([tid]) =>
           node.type === 'Program' ? !globals.has(tid) : !['this', 'arguments'].includes(tid),

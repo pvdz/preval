@@ -10,8 +10,8 @@
 
 import walk from '../../lib/walk.mjs';
 
-import { VERBOSE_TRACING, BLUE, RESET } from '../constants.mjs';
-import { ASSERT, group, groupEnd, log, tmat, fmat, rule, example, before, after } from '../utils.mjs';
+import { BLUE, RESET } from '../constants.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, createUniqueGlobalLabel, findBoundNamesInVarDeclaration, findBoundNamesInVarDeclarator } from '../bindings.mjs';
 
@@ -126,7 +126,7 @@ export function phaseNormalOnce(fdata) {
     }
   }
 
-  if (VERBOSE_TRACING) log('\nState after export normalization\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  vlog('\nState after export normalization\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   // All other transforms in this file can be wrapped in a block, so they shouldn't need to change the parent child count/order.
 
@@ -139,7 +139,7 @@ export function phaseNormalOnce(fdata) {
     const parentProp = path.props[path.props.length - 1];
     const parentIndex = path.indexes[path.indexes.length - 1];
 
-    if (VERBOSE_TRACING) group(BLUE + nodeType + ':' + (beforeNode ? 'before' : 'after'), RESET);
+    vgroup(BLUE + nodeType + ':' + (beforeNode ? 'before' : 'after'), RESET);
 
     const key = nodeType + ':' + (beforeNode ? 'before' : 'after');
     switch (key) {
@@ -163,7 +163,7 @@ export function phaseNormalOnce(fdata) {
       }
       case 'BlockStatement:before': {
         if (node.$p.hasFuncDecl) {
-          if (VERBOSE_TRACING) log('Should find at least one func decl in this block...');
+          vlog('Should find at least one func decl in this block...');
         }
         const varDeclsToHoist = []; // Note: these are block scoped var decls.
         for (let i = 0; i < node.body.length; ++i) {
@@ -171,7 +171,7 @@ export function phaseNormalOnce(fdata) {
           if (enode.type === 'FunctionDeclaration') {
             if (enode.$p.isBlockFuncDecl) {
               ASSERT(node.$p.hasFuncDecl, 'parent block should be marked as having a func decl', node);
-              if (VERBOSE_TRACING) log('- Found a func decl');
+              vlog('- Found a func decl');
               // Hoist it to the top of the block as a var statement...
               varDeclsToHoist.push(enode);
               node.body.splice(i, 1);
@@ -367,7 +367,7 @@ export function phaseNormalOnce(fdata) {
               if (snode.type === 'VariableDeclaration') {
                 const names = [];
                 snode.declarations.forEach((n) => findBoundNamesInVarDeclarator(n, names));
-                if (VERBOSE_TRACING) log('- Var decl binds these names:', names);
+                vlog('- Var decl binds these names:', names);
                 // Declare these names before the switch and "drop" the `var/let/const` keyword to have it be an assignment
 
                 if (snode.kind === 'var') vars.push(...names);
@@ -485,10 +485,10 @@ export function phaseNormalOnce(fdata) {
       }
     }
 
-    if (VERBOSE_TRACING) groupEnd();
+    vgroupEnd();
   }
 
-  if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 }
 function hoistingOnce(hoistingRoot, from) {
   ASSERT(
@@ -498,7 +498,7 @@ function hoistingOnce(hoistingRoot, from) {
   );
 
   ASSERT(hoistingRoot.$p.hoistedVars, 'the hoistedVars should exist on anything that can hoist', hoistingRoot);
-  if (VERBOSE_TRACING) log('Hoisting', hoistingRoot.$p.hoistedVars.length, 'elements');
+  vlog('Hoisting', hoistingRoot.$p.hoistedVars.length, 'elements');
 
   // There are two things in three contexts that we hoist
   // - functions and variables
@@ -578,16 +578,12 @@ function hoistingOnce(hoistingRoot, from) {
         case 'FunctionDeclaration':
         case 'BlockStatement': {
           if (hoistNode.type === 'FunctionDeclaration') {
-            if (VERBOSE_TRACING) {
-              log('Queueing function node to be moved');
-            }
+            vlog('Queueing function node to be moved');
             funcs.push([hoistNode, parentNode, parentProp, parentIndex, exportIndex]);
             // We will inject this node at the top
             parentNode[parentProp][parentIndex] = AST.emptyStatement();
           } else {
-            if (VERBOSE_TRACING) {
-              log('Queueing bindings to be moved');
-            }
+            vlog('Queueing bindings to be moved');
             before(hoistNode);
             const newNodes = [];
 
@@ -824,9 +820,7 @@ function hoistingOnce(hoistingRoot, from) {
     });
 
     const set = new Set(names);
-    if (VERBOSE_TRACING) {
-      log('Removing any func decl names and param names from the hoisted var decl set (' + set.size + ' names before)');
-    }
+    vlog('Removing any func decl names and param names from the hoisted var decl set (' + set.size + ' names before)');
     // Drop func names from the list of hoisted var names (anon func decl export should not end up in this list)
     const dupeFunc = new Map();
     funcs.forEach(([hoistNode, rootIndex, rootChild, exportProp]) => {
@@ -841,26 +835,22 @@ function hoistingOnce(hoistingRoot, from) {
       set.forEach((name) => {
         if (hoistingRoot.params.some((pnode) => pnode.type === 'Identifier' && pnode.name === name)) {
           set.delete(name);
-          if (VERBOSE_TRACING) {
-            log('- The binding name `' + name + '` was also a parameter so not adding the var decl for it (' + set.size + ' names left)');
-          }
+          vlog('- The binding name `' + name + '` was also a parameter so not adding the var decl for it (' + set.size + ' names left)');
         }
       });
     }
 
-    if (VERBOSE_TRACING) {
-      log(
-        'Queued',
-        funcs.length,
-        'functions and',
-        names.length,
-        'var names and',
-        exportedNames.size,
-        'exports for hoisting (actually adding',
-        set.size,
-        'var names after filtering)',
-      );
-    }
+    vlog(
+      'Queued',
+      funcs.length,
+      'functions and',
+      names.length,
+      'var names and',
+      exportedNames.size,
+      'exports for hoisting (actually adding',
+      set.size,
+      'var names after filtering)',
+    );
 
     // This will invalidate all cached indexes moving forward!
 
@@ -893,11 +883,11 @@ function hoistingOnce(hoistingRoot, from) {
     hoistedVars.length = 0; // Clear it. We don't need it anymore.
 
     groupEnd();
-    if (VERBOSE_TRACING) log('/Hoisting true');
+    vlog('/Hoisting true');
     return true;
   }
 
-  if (VERBOSE_TRACING) log('/Hoisting false');
+  vlog('/Hoisting false');
 
   return false;
 }

@@ -1,7 +1,7 @@
 import walk from '../../lib/walk.mjs';
 
 import { VERBOSE_TRACING, RED, BLUE, RESET } from '../constants.mjs';
-import { log, group, groupEnd, ASSERT, tmat, fmat } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from '../utils.mjs';
 import { $p } from '../$p.mjs';
 import * as AST from '../ast.mjs';
 import { getIdentUsageKind, createReadRef, createWriteRef } from '../bindings.mjs';
@@ -14,7 +14,7 @@ import globals from '../globals.mjs';
 export function phase1(fdata, resolve, req) {
   const ast = fdata.tenkoOutput.ast;
 
-  if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   const funcStack = [];
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments.
@@ -57,7 +57,7 @@ export function phase1(fdata, resolve, req) {
       node.$p = $p();
     }
 
-    if (VERBOSE_TRACING) group(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET);
+    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET);
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
 
@@ -82,7 +82,7 @@ export function phase1(fdata, resolve, req) {
             ? -node.$p.pid
             : node.$p.pid,
         );
-        if (VERBOSE_TRACING) log('This block has depth', blockStack.length, 'and pid', node.$p.pid);
+        vlog('This block has depth', blockStack.length, 'and pid', node.$p.pid);
         break;
       }
       case 'BlockStatement:after': {
@@ -188,17 +188,15 @@ export function phase1(fdata, resolve, req) {
       case 'Identifier:before': {
         const currentScope = funcStack[funcStack.length - 1];
         const name = node.name;
-        if (VERBOSE_TRACING) log('Ident:', name);
+        vlog('Ident:', name);
         ASSERT(name, 'idents must have valid non-empty names...', node);
         const kind = getIdentUsageKind(parentNode, parentProp);
-        if (VERBOSE_TRACING) log('- Ident kind:', kind);
+        vlog('- Ident kind:', kind);
 
-        if (VERBOSE_TRACING) {
-          log(
-            '- Parent: `' + parentNode.type + '.' + parentProp + '`',
-            parentNode.type === 'MemberExpression' && node.computed ? 'computed' : 'regular',
-          );
-        }
+        vlog(
+          '- Parent: `' + parentNode.type + '.' + parentProp + '`',
+          parentNode.type === 'MemberExpression' && node.computed ? 'computed' : 'regular',
+        );
         if (name === 'arguments') {
           ASSERT(kind !== 'write', 'arguments cannot be written to in strict mode, right?');
           if (kind === 'read') {
@@ -214,34 +212,34 @@ export function phase1(fdata, resolve, req) {
                 parentNode.property.name === 'length'
               ) {
                 // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
-                if (VERBOSE_TRACING) log('Marking function as accessing `arguments.length`');
+                vlog('Marking function as accessing `arguments.length`');
                 thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
               } else {
                 if (parentNode.type === 'ExpressionStatement') {
-                  if (VERBOSE_TRACING) log('Ignoring `arguments` as an expression statement');
+                  vlog('Ignoring `arguments` as an expression statement');
                   //} else if (
                   //  parentNode.type === 'VariableDeclaration' &&
                   //  parentNode.declarations[0].id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)
                   //) {
-                  //  if (VERBOSE_TRACING) log('Ignoring our own arguments alias');
+                  //  vlog('Ignoring our own arguments alias');
                 } else {
                   // This disables a few tricks because of observable side effects
-                  if (VERBOSE_TRACING) log('Marking function as accessing `arguments` in "any" way');
+                  vlog('Marking function as accessing `arguments` in "any" way');
                   thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
                 }
               }
             } else {
               // TODO: do we want to act on this?
-              if (VERBOSE_TRACING) log('Attempting to access `arguments` in global space? Probably crashes at runtime.');
+              vlog('Attempting to access `arguments` in global space? Probably crashes at runtime.');
             }
           }
         } else if (kind !== 'none' && kind !== 'label') {
           ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment and we eliminated those? prove me wrong', node);
           ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);
-          if (VERBOSE_TRACING) log('- Binding referenced in $p.pid:', currentScope.$p.pid);
+          vlog('- Binding referenced in $p.pid:', currentScope.$p.pid);
           let meta = globallyUniqueNamingRegistry.get(name);
           if (!meta) {
-            if (VERBOSE_TRACING) log('- Creating meta for `' + name + '`');
+            vlog('- Creating meta for `' + name + '`');
             meta = {
               name,
               isConstant: false, // Either declared as const or a builtin global that we can assume to be a constant
@@ -320,14 +318,14 @@ export function phase1(fdata, resolve, req) {
               --pathIndex;
             } while (true);
             const blockBody = blockNode.body;
-            if (VERBOSE_TRACING) log('- Parent block:', blockNode.type, blockNode.$p.pid);
+            vlog('- Parent block:', blockNode.type, blockNode.$p.pid);
 
             if (parentNode.type === 'VariableDeclarator') {
               ASSERT(parentProp === 'id', 'the read check above should cover the prop=init case');
               const declParent = path.nodes[path.nodes.length - 4];
               const declProp = path.props[path.props.length - 3];
               const declIndex = path.indexes[path.indexes.length - 3];
-              if (VERBOSE_TRACING) log('- Adding decl write');
+              vlog('- Adding decl write');
 
               meta.writes.push(
                 createWriteRef({
@@ -347,10 +345,10 @@ export function phase1(fdata, resolve, req) {
 
               const grandParentNode = path.nodes[path.nodes.length - 3];
               ASSERT(grandParentNode.type === 'VariableDeclaration');
-              if (VERBOSE_TRACING) log('- Binding kind is', grandParentNode.kind);
+              vlog('- Binding kind is', grandParentNode.kind);
 
               if (grandParentNode.kind === 'const') {
-                if (VERBOSE_TRACING) log('- Setting constValueRef to a', parentNode.init.type);
+                vlog('- Setting constValueRef to a', parentNode.init.type);
                 meta.constValueRef = {
                   node: parentNode.init,
                   containerNode: declParent,
@@ -364,7 +362,7 @@ export function phase1(fdata, resolve, req) {
               const assignParent = path.nodes[path.nodes.length - 4];
               const assignProp = path.props[path.props.length - 3];
               const assignIndex = path.indexes[path.indexes.length - 3];
-              if (VERBOSE_TRACING) log('Adding assign write');
+              vlog('Adding assign write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,
@@ -389,7 +387,7 @@ export function phase1(fdata, resolve, req) {
               const paramParent = path.nodes[path.nodes.length - 3];
               const paramProp = path.props[path.props.length - 2];
               const paramIndex = path.indexes[path.indexes.length - 2];
-              if (VERBOSE_TRACING) log('Adding param write');
+              vlog('Adding param write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,
@@ -407,7 +405,7 @@ export function phase1(fdata, resolve, req) {
               );
             } else {
               // for-x lhs, param, etc
-              if (VERBOSE_TRACING) log('Adding "other" write');
+              vlog('Adding "other" write');
               meta.writes.push(
                 createWriteRef({
                   parentNode,
@@ -431,11 +429,11 @@ export function phase1(fdata, resolve, req) {
           // TODO: local vs exported. also: exports are neither read nor write. well, pseudo read maybe?
           const grandParent = path.nodes[path.nodes.length - 3];
           if (grandParent.type === 'ExportNamedDeclaration') {
-            if (VERBOSE_TRACING) log('Marking `' + name + '` as being an export');
+            vlog('Marking `' + name + '` as being an export');
             meta.isExport = true;
           }
         } else {
-          if (VERBOSE_TRACING) log(RED + '- skipping; not a binding' + RESET);
+          vlog(RED + '- skipping; not a binding' + RESET);
         }
 
         break;
@@ -449,7 +447,7 @@ export function phase1(fdata, resolve, req) {
 
         ASSERT(node.source && typeof node.source.value === 'string', 'fixme if else', node);
         const source = node.source.value;
-        if (VERBOSE_TRACING) log('Importing symbols from "' + source + '"');
+        vlog('Importing symbols from "' + source + '"');
         ASSERT(typeof resolve === 'function', 'resolve must be a function here', resolve);
         const resolvedSource = resolve(source, fdata.fname);
 
@@ -494,7 +492,7 @@ export function phase1(fdata, resolve, req) {
 
       case 'ThisExpression:after': {
         if (thisStack.length) {
-          if (VERBOSE_TRACING) log('Marking func as having `this` access');
+          vlog('Marking func as having `this` access');
           thisStack[thisStack.length - 1].$p.thisAccess = true;
         }
         break;
@@ -516,19 +514,19 @@ export function phase1(fdata, resolve, req) {
       }
     }
 
-    if (VERBOSE_TRACING) groupEnd();
+    vgroupEnd();
   }
 
   if (VERBOSE_TRACING) {
-    log();
-    log('Imports from:');
-    log(
+    vlog();
+    vlog('Imports from:');
+    vlog(
       [...imports.values()]
         .sort()
         .map((s) => '- "' + s + '"')
         .join('\n'),
     );
-    log(
+    vlog(
       '\ngloballyUniqueNamingRegistry (sans builtins):\n',
       globallyUniqueNamingRegistry.size > 50
         ? '<too many>'
@@ -537,7 +535,7 @@ export function phase1(fdata, resolve, req) {
         : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
     );
 
-    if (VERBOSE_TRACING) log('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+    vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   }
 
   log('End of phase 1');

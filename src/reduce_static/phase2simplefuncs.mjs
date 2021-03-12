@@ -1,4 +1,4 @@
-import { log, group, groupEnd, ASSERT, rule, example, before, source, after } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function inlineSimpleFuncCalls(fdata) {

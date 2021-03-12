@@ -1,7 +1,7 @@
 import walk from '../../lib/walk.mjs';
 
 import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, BUILTIN_REST_HANDLER_NAME, FRESH, OLD, RED, BLUE, RESET } from '../constants.mjs';
-import { ASSERT, group, groupEnd, log, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, findBoundNamesInVarDeclaration } from '../bindings.mjs';
 import globals from '../globals.mjs';
@@ -334,9 +334,7 @@ export function phaseNormalize(fdata, fname) {
     fdata.globallyUniqueNamingRegistry.forEach((meta) => ((meta.writes = []), (meta.reads = [])));
     transformProgram(ast);
     //stmt(null, 'ast', -1, ast, false, false);
-    if (VERBOSE_TRACING) {
-      log('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
-    }
+    vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
     if (changed) {
       somethingChanged = true;
       log('Something changed. Running another normalization pass (' + ++passes + ')\n');
@@ -346,8 +344,8 @@ export function phaseNormalize(fdata, fname) {
   } while (changed);
 
   if (VERBOSE_TRACING) {
-    log('After normalization:');
-    log(
+    vlog('After normalization:');
+    vlog(
       '\ngloballyUniqueNamingRegistry (sans builtins):\n',
       fdata.globallyUniqueNamingRegistry.size > 50
         ? '<too many>'
@@ -355,7 +353,7 @@ export function phaseNormalize(fdata, fname) {
         ? '<none>'
         : [...fdata.globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
     );
-    log(
+    vlog(
       '\ngloballyUniqueLabelRegistry:\n',
       fdata.globallyUniqueLabelRegistry.size > 50
         ? '<too many>'
@@ -363,7 +361,7 @@ export function phaseNormalize(fdata, fname) {
         ? '<none>'
         : [...fdata.globallyUniqueLabelRegistry.keys()].join(', '),
     );
-    log();
+    vlog();
   }
 
   log('End of phaseNormalize');
@@ -644,10 +642,10 @@ export function phaseNormalize(fdata, fname) {
   }
 
   function jumpTable(node, body, i, parent, funcNode) {
-    if (VERBOSE_TRACING) group('jumpTable', node.type);
+    vgroup('jumpTable', node.type);
     ASSERT(node.type, 'nodes have types oye?', node);
     const r = _jumpTable(node, body, i, parent, funcNode);
-    if (VERBOSE_TRACING) groupEnd();
+    vgroupEnd();
     return r;
   }
 
@@ -746,13 +744,11 @@ export function phaseNormalize(fdata, fname) {
 
     body.length = i + 1;
     if (toKeep.length > 0) {
-      if (VERBOSE_TRACING) {
-        log(
-          'Restoring',
-          toKeep.length,
-          'nodes because they define a binding. We will need another way to eliminate them. Or replace them with an empty var decl...',
-        );
-      }
+      vlog(
+        'Restoring',
+        toKeep.length,
+        'nodes because they define a binding. We will need another way to eliminate them. Or replace them with an empty var decl...',
+      );
       body.push(
         ...toKeep.map((node) => {
           if (node.type === 'VariableDeclaration') {
@@ -820,12 +816,10 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (VERBOSE_TRACING) {
-      log(
-        BLUE + 'block;returnBreakContinueThrow?' + RESET,
-        node.$p.returnBreakContinueThrow ? 'yes; ' + node.$p.returnBreakContinueThrow : 'no',
-      );
-    }
+    vlog(
+      BLUE + 'block;returnBreakContinueThrow?' + RESET,
+      node.$p.returnBreakContinueThrow ? 'yes; ' + node.$p.returnBreakContinueThrow : 'no',
+    );
     parent.$p.returnBreakContinueThrow = node.$p.returnBreakContinueThrow;
     if (isNested) {
       if (node.$p.returnBreakContinueThrow && body.length > i + 1) {
@@ -844,7 +838,7 @@ export function phaseNormalize(fdata, fname) {
       fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push(node);
     }
 
-    if (VERBOSE_TRACING) log(BLUE + 'Marking parent (' + parent.type + ') as breaking early' + RESET);
+    vlog(BLUE + 'Marking parent (' + parent.type + ') as breaking early' + RESET);
     parent.$p.returnBreakContinueThrow = 'break';
     if (body.length > i + 1) {
       if (dce(body, i, 'after break')) {
@@ -860,7 +854,7 @@ export function phaseNormalize(fdata, fname) {
       fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push(node);
     }
 
-    if (VERBOSE_TRACING) log(BLUE + 'Marking parent (' + parent.type + ') as continuing early' + RESET);
+    vlog(BLUE + 'Marking parent (' + parent.type + ') as continuing early' + RESET);
     parent.$p.returnBreakContinueThrow = 'continue';
     if (body.length > i + 1) {
       if (dce(body, i, 'after block')) {
@@ -896,7 +890,7 @@ export function phaseNormalize(fdata, fname) {
     specs.forEach((spec) => {
       const local = spec.local;
       ASSERT(local && local.type === 'Identifier', 'specifier locals are idents right?', node);
-      if (VERBOSE_TRACING) log('Marking `' + local.name + '` as being used by this export');
+      vlog('Marking `' + local.name + '` as being used by this export');
     });
 
     return false;
@@ -964,12 +958,12 @@ export function phaseNormalize(fdata, fname) {
     // variables. This becomes either a variable declaration or an expression statement.
     // This means all expressions should normalize to an atomic state by recursively transforming the decl init and expression statement
 
-    if (VERBOSE_TRACING) log('transformExpression:', node.type);
+    vlog('transformExpression:', node.type);
     ASSERT(parentNode, 'parent node?', parentNode);
 
     switch (node.type) {
       case 'Identifier':
-        if (VERBOSE_TRACING) log('- name: `' + node.name + '`');
+        vlog('- name: `' + node.name + '`');
 
         if (wrapKind === 'statement') {
           // TODO: what about implicit globals or TDZ? This prevents a crash.
@@ -988,7 +982,7 @@ export function phaseNormalize(fdata, fname) {
             return true;
           } else {
             // The idea is that we don't want to eliminate an implicit global that might trigger a runtime exception
-            if (VERBOSE_TRACING) log('Not eliminating this identifier statement because it is an implicit global');
+            vlog('Not eliminating this identifier statement because it is an implicit global');
           }
         }
 
@@ -1548,7 +1542,7 @@ export function phaseNormalize(fdata, fname) {
             body[i + 1].argument.type === 'Literal' &&
             body[i + 1].argument.value === DCE_ERROR_MSG
           ) {
-            if (VERBOSE_TRACING) log('Already has throw following it');
+            vlog('Already has throw following it');
           } else {
             // Any property on this object results in a throw... What do we want to do with that? DCE the rest?
             // We can compile an explicit throw after this line so the DCE check cleans up any remains...
@@ -1607,7 +1601,7 @@ export function phaseNormalize(fdata, fname) {
         if (node.computed && AST.isProperIdent(node.property)) {
           rule('Computed property that is valid ident must be member expression; prop');
           example('a["foo"]', 'a.foo');
-          if (VERBOSE_TRACING) log('- Name: `' + node.property.value + '`');
+          vlog('- Name: `' + node.property.value + '`');
           before(node, parentNode);
 
           node.computed = false;
@@ -1640,7 +1634,7 @@ export function phaseNormalize(fdata, fname) {
       case 'AssignmentExpression': {
         const lhs = node.left;
         const rhs = node.right;
-        if (VERBOSE_TRACING) log('-', lhs.type, node.operator, rhs.type);
+        vlog('-', lhs.type, node.operator, rhs.type);
 
         if (lhs.type === 'ObjectPattern') {
           const tmpNameRhs = createFreshVar('tmpAssignObjPatternRhs', fdata);
@@ -1751,7 +1745,7 @@ export function phaseNormalize(fdata, fname) {
           if (mem.computed && AST.isProperIdent(mem.property)) {
             rule('Computed property that is valid ident must be member expression; assign rhs');
             example('a["foo"]', 'a.foo');
-            if (VERBOSE_TRACING) log('- Name: `' + mem.property.value + '`');
+            vlog('- Name: `' + mem.property.value + '`');
             before(mem, parentNode);
 
             mem.computed = false;
@@ -2338,7 +2332,7 @@ export function phaseNormalize(fdata, fname) {
           if (rhs.computed && AST.isProperIdent(rhs.property)) {
             rule('Computed property that is valid ident must be member expression; assign rhs');
             example('a["foo"]', 'a.foo');
-            if (VERBOSE_TRACING) log('- Name: `' + rhs.property.value + '`');
+            vlog('- Name: `' + rhs.property.value + '`');
             before(rhs, parentNode);
 
             rhs.computed = false;
@@ -2393,7 +2387,7 @@ export function phaseNormalize(fdata, fname) {
       case 'BinaryExpression': {
         // ** * / % + - << >> >>> < > <= >= in instanceof == != === !== & ^ |
         // Must be careful not to eliminate coercion! (triggers valueOf / toString)
-        if (VERBOSE_TRACING) log('Operator:', node.operator);
+        vlog('Operator:', node.operator);
 
         if (wrapKind === 'statement') {
           if (['===', '!=='].includes(node.operator)) {
@@ -2557,7 +2551,7 @@ export function phaseNormalize(fdata, fname) {
                   return ASSERT(false, 'new op?', node);
               }
 
-              if (VERBOSE_TRACING) log('lhs:', [lhs], ', rhs:', [rhs], ', op:', [node.operator], '->', [result]);
+              vlog('lhs:', [lhs], ', rhs:', [rhs], ', op:', [node.operator], '->', [result]);
 
               const finalNode =
                 typeof result === 'string' || typeof result === 'boolean'
@@ -2582,7 +2576,7 @@ export function phaseNormalize(fdata, fname) {
       case 'UnaryExpression': {
         // Certain operators need special more care
         // - typeof, delete, -, +, ~, void, !
-        if (VERBOSE_TRACING) log('operator:', node.operator);
+        vlog('operator:', node.operator);
 
         if (node.operator === 'delete') {
           // This one is tricky because the result can not be "just an identifier". Unfortunately, it can be pretty
@@ -2684,7 +2678,7 @@ export function phaseNormalize(fdata, fname) {
               if (AST.isProperIdent(arg.property)) {
                 rule('Computed property that is valid ident must be member expression; delete');
                 example('a["foo"]', 'a.foo');
-                if (VERBOSE_TRACING) log('- Name: `' + arg.property.value + '`');
+                vlog('- Name: `' + arg.property.value + '`');
                 before(arg, parentNode);
 
                 arg.computed = false;
@@ -3948,7 +3942,7 @@ export function phaseNormalize(fdata, fname) {
             node.elements[0].type === 'SpreadElement' &&
             !AST.isComplexNode(node.elements[0].argument)
           ) {
-            if (VERBOSE_TRACING) log('This is an array with only a spread with simple arg. Base case that we keep as is.');
+            vlog('This is an array with only a spread with simple arg. Base case that we keep as is.');
             return false;
           }
 
@@ -4150,10 +4144,10 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (VERBOSE_TRACING) log('- Processing methods');
+          vlog('- Processing methods');
           node.properties.forEach((pnode, i) => {
             if (pnode.method || pnode.kind === 'get' || pnode.kind === 'set') {
-              if (VERBOSE_TRACING) log(i, 'is a method, getter, or setter');
+              vlog(i, 'is a method, getter, or setter');
               // We're going to visit it without wrapping it into a block first. And we're probably going to regret that.
               // But right now I don't see a reason why a function expression would want to mess with the parent :shrug:
 
@@ -4403,13 +4397,13 @@ export function phaseNormalize(fdata, fname) {
         // a.b.c.d() -> tmp = a.b.c; tmp2 = tmp.d; if (tmp2) { tmp2.call(tmp, ...)
 
         function r(node) {
-          if (VERBOSE_TRACING) log('-> r:', node.type, node.property ? node.property.name : node.callee.type);
+          vlog('-> r:', node.type, node.property ? node.property.name : node.callee.type);
           if (node.type === 'MemberExpression') {
             if (node.object.type === 'MemberExpression' || node.object.type === 'CallExpression') {
               r(node.object);
             } else {
               const tmpName = createFreshVar('tmpChainRootProp', fdata);
-              if (VERBOSE_TRACING) log('  - Left most object will be stored in', tmpName);
+              vlog('  - Left most object will be stored in', tmpName);
               lastObj = prevObj;
               prevObj = tmpName;
               prevComputed = node.computed;
@@ -4433,7 +4427,7 @@ export function phaseNormalize(fdata, fname) {
             }
 
             const tmpName = createFreshVar('tmpChainElementObject', fdata);
-            if (VERBOSE_TRACING) log('Storing next property', node.property.name, 'in', tmpName);
+            vlog('Storing next property', node.property.name, 'in', tmpName);
             nodes.push(AST.variableDeclaration(tmpName, AST.memberExpression(prevObj, node.property, node.computed), 'const'));
             lastObj = prevObj;
             prevObj = tmpName;
@@ -4443,7 +4437,7 @@ export function phaseNormalize(fdata, fname) {
               r(node.callee);
             } else {
               const tmpName = createFreshVar('tmpChainRootCall', fdata);
-              if (VERBOSE_TRACING) log('  - Left most callee will be stored in', tmpName);
+              vlog('  - Left most callee will be stored in', tmpName);
               lastObj = prevObj;
               prevObj = tmpName;
               prevComputed = false;
@@ -4460,7 +4454,7 @@ export function phaseNormalize(fdata, fname) {
             }
 
             const tmpName = createFreshVar('tmpChainElementCall', fdata);
-            if (VERBOSE_TRACING) log('Storing next callee', node.callee.name, 'in', tmpName);
+            vlog('Storing next callee', node.callee.name, 'in', tmpName);
             // We always need to compile to .call because we need to read the member expression before the call, which
             // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
             nodes.push(
@@ -4482,7 +4476,7 @@ export function phaseNormalize(fdata, fname) {
           }
         }
 
-        if (VERBOSE_TRACING) log('Now processing the chain...');
+        vlog('Now processing the chain...');
         r(node.expression);
         if (wrapKind === 'statement') {
           // No further action necessary
@@ -4524,7 +4518,7 @@ export function phaseNormalize(fdata, fname) {
 
         body.splice(i, 1, ...newNodes);
 
-        if (VERBOSE_TRACING) log('Chain processing done. Result:');
+        vlog('Chain processing done. Result:');
         after(newNodes);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
@@ -4616,7 +4610,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (VERBOSE_TRACING) log('Processing class body..');
+        vlog('Processing class body..');
         anyBlock(node.body);
 
         // After processing, if this is a statement, drop what's left of the class
@@ -4751,7 +4745,7 @@ export function phaseNormalize(fdata, fname) {
       const tmpNameRhs = createFreshVar(forin ? 'tmpForInPatDeclRhs' : 'tmpForOfPatDeclRhs', fdata);
       const tmpNameLhs = createFreshVar(forin ? 'tmpForInPatDeclLhs' : 'tmpForOfPatDeclLhs', fdata);
       const boundNames = findBoundNamesInVarDeclaration(node.left);
-      if (VERBOSE_TRACING) log('- Pattern bound these names:', boundNames);
+      vlog('- Pattern bound these names:', boundNames);
       const newNode = AST.blockStatement(
         AST.variableDeclaration(tmpNameRhs, node.right, 'const'),
         AST.variableDeclaration(tmpNameLhs),
@@ -4898,16 +4892,14 @@ export function phaseNormalize(fdata, fname) {
     transformBlock(node.body, undefined, -1, node, false);
     ifelseStack.pop();
 
-    if (VERBOSE_TRACING) {
-      log(
-        BLUE + 'forx;returnBreakContinueThrow?' + RESET,
-        node.body.$p.returnBreakContinueThrow ? 'yes; ' + node.body.$p.returnBreakContinueThrow : 'no',
+    vlog(
+      BLUE + 'forx;returnBreakContinueThrow?' + RESET,
+      node.body.$p.returnBreakContinueThrow ? 'yes; ' + node.body.$p.returnBreakContinueThrow : 'no',
+    );
+    if (node.body.$p.returnBreakContinueThrow) {
+      vlog(
+        'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
       );
-      if (node.body.$p.returnBreakContinueThrow) {
-        log(
-          'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
-        );
-      }
     }
 
     // TODO: there is a possibility to eliminate this loop if it has an empty body but there are still two
@@ -5171,12 +5163,12 @@ export function phaseNormalize(fdata, fname) {
           //  console.log('declaredBindings:', declaredBindings)
           //  ASSERT(false, 'should have all names', apNames);
           //}
-          if (VERBOSE_TRACING) log('Local bindings found:', apNames);
+          vlog('Local bindings found:', apNames);
           // The remainder of the function after the if-else.
           const bodyRest = parentNode.body.slice(index + 1);
           parentNode.body.length = index + 1; // ehhh
 
-          if (VERBOSE_TRACING) log('Creating two functions for the if-else branch');
+          vlog('Creating two functions for the if-else branch');
           const tmpNameA = createFreshVar('tmpBranchingA', fdata);
           const tmpNameB = createFreshVar('tmpBranchingB', fdata);
           const tmpNameC = createFreshVar('tmpBranchingC', fdata);
@@ -5257,10 +5249,10 @@ export function phaseNormalize(fdata, fname) {
           );
 
           if (VERBOSE_TRACING) {
-            log('\nComplete AST after applying "Nested if-else" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+            vlog('\nComplete AST after applying "Nested if-else" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
           }
 
-          if (VERBOSE_TRACING) log(); // newline
+          vlog(); // newline
           after(newIf, funcNode);
           assertNoDupeNodes(AST.blockStatement(funcNode), 'body');
           return true;
@@ -5299,14 +5291,12 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (VERBOSE_TRACING) {
-      log(
-        BLUE + 'if;returnBreakContinueThrow?' + RESET,
-        node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow
-          ? 'yes; ' + node.consequent.$p.returnBreakContinueThrow + ' and ' + node.alternate.$p.returnBreakContinueThrow
-          : 'no',
-      );
-    }
+    vlog(
+      BLUE + 'if;returnBreakContinueThrow?' + RESET,
+      node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow
+        ? 'yes; ' + node.consequent.$p.returnBreakContinueThrow + ' and ' + node.alternate.$p.returnBreakContinueThrow
+        : 'no',
+    );
     if (node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow) {
       // Both branches broke flow early so any statements that follow this statement are effectively dead
       node.$p.returnBreakContinueThrow = node.consequent.$p.returnBreakContinueThrow + '+' + node.alternate.$p.returnBreakContinueThrow;
@@ -5402,7 +5392,7 @@ export function phaseNormalize(fdata, fname) {
   }
 
   function transformLabeledStatement(node, body, i, parent) {
-    if (VERBOSE_TRACING) log('Label: `' + node.label.name + '`');
+    vlog('Label: `' + node.label.name + '`');
 
     // Note: if the parent changes and triggers a revisit, then the label would already have been registered
     //ASSERT(
@@ -5412,14 +5402,12 @@ export function phaseNormalize(fdata, fname) {
     //);
 
     if (fdata.globallyUniqueLabelRegistry.has(node.label.name)) {
-      if (VERBOSE_TRACING) {
-        log(
-          'Label was already registered. Probably artifact of re-traversal. Overwriting registry with fresh object since it ought to be scoped.',
-        );
-      }
+      vlog(
+        'Label was already registered. Probably artifact of re-traversal. Overwriting registry with fresh object since it ought to be scoped.',
+      );
     }
 
-    if (VERBOSE_TRACING) log('Registering label `' + node.label.name + '`');
+    vlog('Registering label `' + node.label.name + '`');
     const labelMeta = {
       // ident meta data
       name: node.label.name,
@@ -5460,7 +5448,7 @@ export function phaseNormalize(fdata, fname) {
           after('Label body did not change at all');
 
           if (labelMeta.usages.length === 0) {
-            if (VERBOSE_TRACING) log('Label was not used in any of its children. Should be safe to eliminate.');
+            vlog('Label was not used in any of its children. Should be safe to eliminate.');
             rule('Unused labels must be dropped; unchanged loop body');
             example('foo: {}', '{}');
             before(node);
@@ -5475,13 +5463,13 @@ export function phaseNormalize(fdata, fname) {
         }
 
         after(AST.labeledStatement(node.label, fakeWrapper));
-        if (VERBOSE_TRACING) log('Now determining whether the label body changed...');
+        vlog('Now determining whether the label body changed...');
 
         if (fakeWrapper.body.length === 1 && fakeWrapper.body[0] === node.body) {
-          if (VERBOSE_TRACING) log('Something changed but the node stays put');
+          vlog('Something changed but the node stays put');
 
           if (labelMeta.usages.length === 0) {
-            if (VERBOSE_TRACING) log('Label was not used in any of its children. Should be safe to eliminate.');
+            vlog('Label was not used in any of its children. Should be safe to eliminate.');
             rule('Unused labels must be dropped; changed loop body');
             example('foo: {}', '{}');
             before(node);
@@ -5495,13 +5483,12 @@ export function phaseNormalize(fdata, fname) {
           return false; // No need to change anything in this body
         }
 
-        if (VERBOSE_TRACING)
-          log('Unregistering label `' + node.label.name + '` (a) because something changed. This declaration will be visited again.');
+        vlog('Unregistering label `' + node.label.name + '` (a) because something changed. This declaration will be visited again.');
         fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
         assertNoDupeNodes(fakeWrapper, 'body');
 
         if (fakeWrapper.body.length === 0) {
-          if (VERBOSE_TRACING) log('The label.body node was eliminated. We can drop the label too.');
+          vlog('The label.body node was eliminated. We can drop the label too.');
           rule('Label with empty body should be dropped');
           example('foo: {}', ';');
           before(node);
@@ -5515,7 +5502,7 @@ export function phaseNormalize(fdata, fname) {
 
         if (fakeWrapper.body[fakeWrapper.body.length - 1] === node.body) {
           // Only outline the elements preceding the last one. We throw away the wrapper.
-          if (VERBOSE_TRACING) log('Last statement is still original node. Outlining new nodes and keeping original labeled statement');
+          vlog('Last statement is still original node. Outlining new nodes and keeping original labeled statement');
           body.splice(i, 0, ...fakeWrapper.body.slice(0, -1));
 
           after(fakeWrapper.body.slice(0, -1));
@@ -5523,7 +5510,7 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (VERBOSE_TRACING) log('Labeled statement changed. Replacing the whole deal.');
+        vlog('Labeled statement changed. Replacing the whole deal.');
         before(node, parent);
         // Outline every element but the last and put them in front of the label. Replace the label
         // with a new label that has the last element as a body. It's a different node now.
@@ -5545,9 +5532,7 @@ export function phaseNormalize(fdata, fname) {
       const newNode = AST.labeledStatement(node.label, AST.blockStatement(node.body));
       body.splice(i, 1, newNode);
 
-      if (VERBOSE_TRACING) {
-        log('Unregistering label `' + node.label.name + '` because we added a block. This declaration will be visited again.');
-      }
+      vlog('Unregistering label `' + node.label.name + '` because we added a block. This declaration will be visited again.');
       fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
 
       after(newNode);
@@ -5555,15 +5540,14 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (VERBOSE_TRACING) log('label has block, noop');
+    vlog('label has block, noop');
     ASSERT(node.body.type === 'BlockStatement');
     ifelseStack.push(node);
     const anyChange = transformBlock(node.body, undefined, -1, node, false);
     ifelseStack.pop();
-    if (VERBOSE_TRACING) log('Changes?', anyChange);
+    vlog('Changes?', anyChange);
     if (anyChange) {
-      if (VERBOSE_TRACING)
-        log('Unregistering label `' + node.label.name + '` (b) because something changed. This declaration will be visited again.');
+      vlog('Unregistering label `' + node.label.name + '` (b) because something changed. This declaration will be visited again.');
       fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
     }
 
@@ -5580,7 +5564,7 @@ export function phaseNormalize(fdata, fname) {
     }
 
     if (!anyChange && labelMeta.usages.length === 0) {
-      if (VERBOSE_TRACING) log('Label was not used in any of its children. Should be safe to eliminate.');
+      vlog('Label was not used in any of its children. Should be safe to eliminate.');
       rule('Unused labels must be dropped; non-loop body');
       example('foo: {}', '{}');
       before(node);
@@ -5689,7 +5673,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (VERBOSE_TRACING) log(BLUE + 'Marking parent (' + parent.type + ') as returning early' + RESET);
+    vlog(BLUE + 'Marking parent (' + parent.type + ') as returning early' + RESET);
     parent.$p.returnBreakContinueThrow = 'return';
     if (body.length > i + 1) {
       if (dce(body, i, 'after return')) {
@@ -5726,7 +5710,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (VERBOSE_TRACING) log(BLUE + 'Marking parent (' + parent.type + ') as throwing early' + RESET);
+    vlog(BLUE + 'Marking parent (' + parent.type + ') as throwing early' + RESET);
     parent.$p.returnBreakContinueThrow = 'throw';
 
     if (body.length > i + 1) {
@@ -5770,7 +5754,7 @@ export function phaseNormalize(fdata, fname) {
 
     const dnode = node.declarations[0];
 
-    if (VERBOSE_TRACING) log('Id:', dnode.id.type === 'Identifier' ? '`' + dnode.id.name + '`' : '<pattern>');
+    vlog('Id:', dnode.id.type === 'Identifier' ? '`' + dnode.id.name + '`' : '<pattern>');
 
     if (dnode.id.type === 'ArrayPattern') {
       rule('Binding array patterns not allowed');
@@ -5783,9 +5767,7 @@ export function phaseNormalize(fdata, fname) {
       funcArgsWalkArrayPattern(dnode.id, nameStack, newBindings, 'var');
 
       if (newBindings.length) {
-        if (VERBOSE_TRACING) {
-          log('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
-        }
+        vlog('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
         node.declarations = [
           AST.variableDeclarator(bindingPatternRootName, dnode.init),
           ...newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init)),
@@ -5798,7 +5780,7 @@ export function phaseNormalize(fdata, fname) {
 
       ASSERT(dnode.init, 'binding patterns are required to have an init');
 
-      if (VERBOSE_TRACING) log('There were no bindings so replacing the var declaration with its init');
+      vlog('There were no bindings so replacing the var declaration with its init');
       const newNode = AST.expressionStatement(dnode.init);
       body[i] = newNode;
 
@@ -5818,9 +5800,7 @@ export function phaseNormalize(fdata, fname) {
       funcArgsWalkObjectPattern(dnode.id, nameStack, newBindings, 'var', true);
 
       if (newBindings.length) {
-        if (VERBOSE_TRACING) {
-          log('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
-        }
+        vlog('Assigning init to `' + bindingPatternRootName + '` and normalizing pattern into', newBindings.length, 'parts');
         node.declarations = [
           AST.variableDeclarator(bindingPatternRootName, dnode.init),
           ...newBindings.map(([name, _fresh, init]) => AST.variableDeclarator(name, init)),
@@ -5833,7 +5813,7 @@ export function phaseNormalize(fdata, fname) {
 
       ASSERT(dnode.init, 'binding patterns are required to have an init');
 
-      if (VERBOSE_TRACING) log('There were no bindings so replacing the var declaration with its init');
+      vlog('There were no bindings so replacing the var declaration with its init');
       const newNode = AST.expressionStatement(dnode.init);
       body[i] = newNode;
 
@@ -5856,7 +5836,7 @@ export function phaseNormalize(fdata, fname) {
     ASSERT(node.kind !== 'var');
 
     if (dnode.init) {
-      if (VERBOSE_TRACING) log('Init:', dnode.init.type);
+      vlog('Init:', dnode.init.type);
 
       if (dnode.init.type === 'AssignmentExpression') {
         // Must first outline the assignment because otherwise recursive calls will assume the assignment
@@ -6031,7 +6011,7 @@ export function phaseNormalize(fdata, fname) {
         dnode.init.type === 'TemplateLiteral'
       ) {
         // false: returns true for simple unary as well
-        if (VERBOSE_TRACING) log('- init is complex, transforming expression');
+        vlog('- init is complex, transforming expression');
         if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
@@ -6163,16 +6143,14 @@ export function phaseNormalize(fdata, fname) {
       }
     }
 
-    if (VERBOSE_TRACING) {
-      log(
-        BLUE + 'while;returnBreakContinueThrow?' + RESET,
-        node.body.$p.returnBreakContinueThrow ? 'yes; ' + node.body.$p.returnBreakContinueThrow : 'no',
+    vlog(
+      BLUE + 'while;returnBreakContinueThrow?' + RESET,
+      node.body.$p.returnBreakContinueThrow ? 'yes; ' + node.body.$p.returnBreakContinueThrow : 'no',
+    );
+    if (node.body.$p.returnBreakContinueThrow) {
+      vlog(
+        'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
       );
-      if (node.body.$p.returnBreakContinueThrow) {
-        log(
-          'The body of this loop may always return but it may never be executed so we cannot safely DCE the sibling statements that follow it, nor mark the parent as such',
-        );
-      }
     }
 
     return false;

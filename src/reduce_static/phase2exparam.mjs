@@ -1,5 +1,4 @@
-import { VERBOSE_TRACING } from '../constants.mjs';
-import { log, group, groupEnd, ASSERT, rule, example, before, source, after } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function pruneExcessiveParams(fdata) {
@@ -15,29 +14,27 @@ function _pruneExcessiveParams(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
 
-    if (VERBOSE_TRACING) {
-      log(
-        '- `' + name + '`, has constValueRef?',
-        !!meta.constValueRef,
-        meta.constValueRef?.node?.type,
-        'reads args?',
-        meta.constValueRef?.node?.$p?.readsArgumentsLen,
-        meta.constValueRef?.node?.$p?.readsArgumentsAny,
-      );
-    }
+    vlog(
+      '- `' + name + '`, has constValueRef?',
+      !!meta.constValueRef,
+      meta.constValueRef?.node?.type,
+      'reads args?',
+      meta.constValueRef?.node?.$p?.readsArgumentsLen,
+      meta.constValueRef?.node?.$p?.readsArgumentsAny,
+    );
 
     const funcNode = meta.constValueRef?.node;
     if (!['FunctionExpression', 'ArrowFunctionExpression'].includes(funcNode?.type)) {
-      if (VERBOSE_TRACING) log('  - not a function');
+      vlog('  - not a function');
       return;
     }
     if (funcNode.$p.readsArgumentsLen || funcNode.$p.readsArgumentsAny) {
       // If the function reads `arguments` then we won't bother messing with unused parameters at all.
-      if (VERBOSE_TRACING) log('  - reads `arguments` so we ignore it');
+      vlog('  - reads `arguments` so we ignore it');
       return;
     }
 
-    if (VERBOSE_TRACING) log('  - is a function that does not read `arguments`');
+    vlog('  - is a function that does not read `arguments`');
     // Okay, this was a constant that was a function. Assert that all usages are actually calls.
     // If there's a read that is not a call then the function may "go rogue" and we ignore it here.
     // If any call uses spread then we cannot analyze any param in that index or later safely.
@@ -46,9 +43,9 @@ function _pruneExcessiveParams(fdata) {
     if (
       meta.reads.every((read) => {
         const callNode = read.parentNode;
-        if (VERBOSE_TRACING) log('    - read:', callNode.type);
+        vlog('    - read:', callNode.type);
         if (callNode.type !== 'CallExpression') return false;
-        if (VERBOSE_TRACING) log('    - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
+        vlog('    - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
         if (callNode.callee.type !== 'Identifier') return false;
         if (callNode.callee.name !== name) return false;
         if (callNode['arguments'].some((pnode) => pnode.type === 'SpreadElement')) return false; // TODO: we could analyze params up to this index...
@@ -56,7 +53,7 @@ function _pruneExcessiveParams(fdata) {
         return true;
       })
     ) {
-      if (VERBOSE_TRACING) log('  - passes usage tests');
+      vlog('  - passes usage tests');
       // So this is a constant function that is only called, never passed through or read props on etc
       // We already checked that `arguments` is not accessed
       // - func.length is not accessed so we could drop a bunch of parameters, however
@@ -67,39 +64,37 @@ function _pruneExcessiveParams(fdata) {
       //   - We cannot process args from a RestElement onward
       //   - We cannot do this if the func accesses `arguments` (it does not)
       const params = funcNode.params;
-      const restAt = params.findIndex((n) => n.type === 'RestElement');
+      //const restAt = params.findIndex((n) => n.type === 'RestElement');
       ASSERT(params);
       params.some((pnode, pi) => {
-        if (VERBOSE_TRACING) log('    - checking param', pi, ': `' + (pnode.name ?? pnode.argument.name) + '`');
+        vlog('    - checking param', pi, ': `' + (pnode.name ?? pnode.argument.name) + '`');
         ASSERT(pnode.type === 'Identifier' || (pnode.type === 'RestElement' && pnode.argument.type === 'Identifier'));
         // If this param has no reads then for all calls to the function, eliminate that index
         // Stop at rest parameters
         if (pnode.type === 'RestElement') {
-          if (VERBOSE_TRACING) log('      - is rest param');
+          vlog('      - is rest param');
           // Stop.
           return true;
         }
-        if (VERBOSE_TRACING) log('      - not rest param');
+        vlog('      - not rest param');
 
         ASSERT(pnode.type === 'Identifier');
         const pmeta = fdata.globallyUniqueNamingRegistry.get(pnode.name);
-        if (VERBOSE_TRACING) log('      - This param has', pmeta.reads.length, 'reads and', pmeta.writes.length, 'writes');
+        vlog('      - This param has', pmeta.reads.length, 'reads and', pmeta.writes.length, 'writes');
         if (pmeta.reads.length === 0) {
           // If the parameter value is not actually used...
-          if (VERBOSE_TRACING) {
-            log(
-              '      - Parameter',
-              pi,
-              'of function',
-              name,
-              'is unused and all usages of the function are calls. Now queueing this index to be dropped from all call args.',
-            );
-          }
+          vlog(
+            '      - Parameter',
+            pi,
+            'of function',
+            name,
+            'is unused and all usages of the function are calls. Now queueing this index to be dropped from all call args.',
+          );
 
           indexDeleteQueue.push([params, pi]);
 
           if (pmeta.writes.length > 1) {
-            if (VERBOSE_TRACING) log('      - parameter has multiple writes. Queuing them for deletion.');
+            vlog('      - parameter has multiple writes. Queuing them for deletion.');
             // Replace other assignments with expression statements of the .right
             // This should not have the potential to break references relevant to this sub-step
             for (let i = 1; i < pmeta.writes.length; ++i) {
@@ -110,9 +105,9 @@ function _pruneExcessiveParams(fdata) {
           }
 
           // We asserted above that all these nodes are calls
-          if (VERBOSE_TRACING) log('      - Walking the param reads');
+          vlog('      - Walking the param reads');
           meta.reads.forEach((read) => {
-            if (VERBOSE_TRACING) log('      - dropping call arg from read');
+            vlog('      - dropping call arg from read');
             const callNode = read.parentNode;
             // Since we're normalized, all args should already be simple nodes. We should be
             // able to drop them without the need to outline them first. Does ruin the meta registry.
@@ -134,7 +129,7 @@ function _pruneExcessiveParams(fdata) {
   });
   // Delete the unused params/args now. The index queue should be unwound in reverse order. Doesn't matter otherwise.
   if (indexDeleteQueue.length || assignFoldQueue.length) {
-    if (VERBOSE_TRACING) log('Dropping', indexDeleteQueue.length, 'params and args and', assignFoldQueue.length, 'redundant writes');
+    vlog('Dropping', indexDeleteQueue.length, 'params and args and', assignFoldQueue.length, 'redundant writes');
     assignFoldQueue.forEach(({ assignParent, assignProp, assignIndex, ...rest }) => {
       if (assignIndex >= 0) {
         before(assignParent[assignProp][assignIndex]);

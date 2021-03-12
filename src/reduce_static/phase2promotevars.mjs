@@ -1,5 +1,4 @@
-import { VERBOSE_TRACING } from '../constants.mjs';
-import { log, group, groupEnd, ASSERT, rule, example, before, source, after } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, createWriteRef } from '../bindings.mjs';
 
@@ -11,7 +10,7 @@ export function promoteVars(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
 
-    if (VERBOSE_TRACING) group('- `' + name + '`');
+    vgroup('- `' + name + '`');
 
     // Check if all usages of the binding is consolidated to one scope
     const writeScopes = new Set();
@@ -24,7 +23,7 @@ export function promoteVars(fdata) {
 
     // "Does the binding have two writes, of which the first was a decl and the second a regular assignment?"
     if (meta.writes.length === 2 && meta.writes[0].decl && meta.writes[1].assign) {
-      if (VERBOSE_TRACING) group('Found `' + name + '` which has two writes, first a decl without init and second an assignment');
+      vgroup('Found `' + name + '` which has two writes, first a decl without init and second an assignment');
       const decl =
         declData.declIndex >= 0 ? declData.declParent[declData.declProp][declData.declIndex] : declData.declParent[declData.declProp];
       const decr = decl.declarations[0];
@@ -134,8 +133,8 @@ export function promoteVars(fdata) {
         }
       }
 
-      if (VERBOSE_TRACING) log('- Var decl not immediately followed by assignment');
-      if (VERBOSE_TRACING) groupEnd();
+      vlog('- Var decl not immediately followed by assignment');
+      vgroupEnd();
     }
 
     // If a binding start with a var decl as first write (prevents func decl closure problem) and the next
@@ -160,7 +159,7 @@ export function promoteVars(fdata) {
 
     // Note regarding SSA on param names; there exists a secret live binding in `arguments` that this transform breaks. Not sure I car.e
 
-    if (VERBOSE_TRACING) log('Starts with decl or param?', !!declData, !!meta.writes[0].param);
+    vlog('Starts with decl or param?', !!declData, !!meta.writes[0].param);
 
     // "Is this binding defined through a var decl or param name?" -- prevents forx, func decl closures, implicit globals, and TDZ cases.
     if (declData || meta.writes[0].param) {
@@ -319,7 +318,7 @@ export function promoteVars(fdata) {
       }
     }
 
-    if (VERBOSE_TRACING) groupEnd();
+    vgroupEnd();
   });
   groupEnd();
   log('\nPromoted', promoted, 'bindings to constant');

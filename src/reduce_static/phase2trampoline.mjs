@@ -1,5 +1,4 @@
-import { VERBOSE_TRACING } from '../constants.mjs';
-import { log, group, groupEnd, ASSERT, rule, example, before, source, after } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function pruneTrampolineFunctions(fdata) {
@@ -18,40 +17,38 @@ function _pruneTrampolineFunctions(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
 
-    if (VERBOSE_TRACING) {
-      log(
-        '- `' + name + '`, has constValueRef?',
-        !!meta.constValueRef,
-        meta.constValueRef?.node?.type,
-        'reads args?',
-        meta.constValueRef?.node?.$p?.readsArgumentsLen,
-        meta.constValueRef?.node?.$p?.readsArgumentsAny,
-      );
-    }
+    vlog(
+      '- `' + name + '`, has constValueRef?',
+      !!meta.constValueRef,
+      meta.constValueRef?.node?.type,
+      'reads args?',
+      meta.constValueRef?.node?.$p?.readsArgumentsLen,
+      meta.constValueRef?.node?.$p?.readsArgumentsAny,
+    );
 
     if (meta.writes.length !== 1) {
-      if (VERBOSE_TRACING) log('    - Binding has more than one write. Bailing');
+      vlog('    - Binding has more than one write. Bailing');
       return;
     }
 
     const funcNode = meta.constValueRef?.node;
     if (!['FunctionExpression', 'ArrowFunctionExpression'].includes(funcNode?.type)) {
-      if (VERBOSE_TRACING) log('  - not a function');
+      vlog('  - not a function');
       return;
     }
 
     if (funcNode.body.body.length === 1) {
-      if (VERBOSE_TRACING) log('    - this function is has one statements. Trying to figure out easy inline cases.');
+      vlog('    - this function is has one statements. Trying to figure out easy inline cases.');
 
       // Ignore this step if the function has a rest arg. It'll be too difficult to map for now.
       const hasRest = funcNode.params.some((pnode) => pnode.type === 'RestElement');
-      if (VERBOSE_TRACING) log('    - hasRest?', hasRest);
+      vlog('    - hasRest?', hasRest);
 
       const firstNode = funcNode.body.body[0];
-      if (VERBOSE_TRACING) log('    - 1st node;', firstNode.type);
+      vlog('    - 1st node;', firstNode.type);
       if (!hasRest && firstNode.type === 'ExpressionStatement' && firstNode.expression.type === 'CallExpression') {
         // We should probably protect against recursive functions? Although if this is one then it's an infinite loop anyways.
-        if (VERBOSE_TRACING) log('        - all the function does is call a function and return undefined');
+        vlog('        - all the function does is call a function and return undefined');
 
         // Replace all calls to this function with undefined. Add a clone to the inner call before the line of the outer call.
         // Make sure to properly map the params to the new outer call.
@@ -63,7 +60,7 @@ function _pruneTrampolineFunctions(fdata) {
 
         const hasSpread = innerCallNode['arguments'].some((anode) => anode.type === 'SpreadElement');
         if (hasSpread) {
-          if (VERBOSE_TRACING) log('        - the inner call contained spread so bailing');
+          vlog('        - the inner call contained spread so bailing');
         } else {
           const paramArgMapping = new Map();
           innerCallNode['arguments'].forEach((anode, ai) => {
@@ -84,13 +81,13 @@ function _pruneTrampolineFunctions(fdata) {
           // Now find all calls to the funcNode and replace them with the innerCall, applying the mapping
           meta.reads.forEach((read, ri) => {
             const callNode = read.parentNode;
-            if (VERBOSE_TRACING) log('          - read [' + ri + ']:', callNode.type);
+            vlog('          - read [' + ri + ']:', callNode.type);
             if (callNode.type !== 'CallExpression') return;
-            if (VERBOSE_TRACING) log('          - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
+            vlog('          - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
             if (callNode.callee.type !== 'Identifier') return false;
             if (callNode.callee.name !== name) return false;
             // This is a call to funcNode. Queue to replace it with the call, replacing param-args with original args
-            if (VERBOSE_TRACING) log('          - queuing into toOutlineCall to eliminating call to trampoline function');
+            vlog('          - queuing into toOutlineCall to eliminating call to trampoline function');
             toOutlineCall.push([read, innerCallNode, paramArgMapping]);
           });
         }
@@ -98,18 +95,18 @@ function _pruneTrampolineFunctions(fdata) {
         log('TODO: the statement is returning a call. we can probably still inline it');
       }
     } else if (funcNode.body.body.length === 2) {
-      if (VERBOSE_TRACING) log('    - this function is has two statements. Trying to figure out easy inline cases.');
+      vlog('    - this function is has two statements. Trying to figure out easy inline cases.');
 
       const funcParams = funcNode.params;
 
       // Ignore this step if the function has a rest arg. It'll be too difficult to map for now.
       const hasRest = funcParams.some((pnode) => pnode.type === 'RestElement');
-      if (VERBOSE_TRACING) log('    - hasRest?', hasRest);
+      vlog('    - hasRest?', hasRest);
 
       const varNode = funcNode.body.body[0];
       const returnNode = funcNode.body.body[1];
-      if (VERBOSE_TRACING) log('    - 1st node;', varNode.type);
-      if (VERBOSE_TRACING) log('    - 2nd node;', returnNode.type);
+      vlog('    - 1st node;', varNode.type);
+      vlog('    - 2nd node;', returnNode.type);
       if (
         !hasRest &&
         varNode.type === 'VariableDeclaration' &&
@@ -119,7 +116,7 @@ function _pruneTrampolineFunctions(fdata) {
         returnNode.argument.name === varNode.declarations[0].id.name
       ) {
         // We should probably protect against recursive functions? Although if this is one then it's an infinite loop anyways.
-        if (VERBOSE_TRACING) log('        - all the function does is call a function and return its result');
+        vlog('        - all the function does is call a function and return its result');
 
         // Copy-move the call inside this function to all calls to the function
         // Make sure to properly map the params to the call.
@@ -132,7 +129,7 @@ function _pruneTrampolineFunctions(fdata) {
         // If the call has a spread then bail for now. There are some sub-cases we can still convert.
         const hasSpread = innerArgs.some((anode) => anode.type === 'SpreadElement');
         if (hasSpread) {
-          if (VERBOSE_TRACING) log('        - the inner call contained spread so bailing');
+          vlog('        - the inner call contained spread so bailing');
         } else {
           // If the callee is a param, or as a member expression, uses a param, then bail for now.
           // We may still be able to do something explicit in the future but for now just bail.
@@ -141,41 +138,39 @@ function _pruneTrampolineFunctions(fdata) {
           let calleePropIndex = -1;
           if (innerCallee.type === 'Identifier') {
             const calleeName = innerCallee.name;
-            if (VERBOSE_TRACING)
-              log(
-                '        - Checking if the callee `' +
-                  calleeName +
-                  '` is a param [' +
-                  funcParams.map((n) => '`' + n.name + '`').join(', ') +
-                  ']',
-              );
+            vlog(
+              '        - Checking if the callee `' +
+                calleeName +
+                '` is a param [' +
+                funcParams.map((n) => '`' + n.name + '`').join(', ') +
+                ']',
+            );
             funcParams.some((anode, ai) => {
               if (anode.name === calleeName) {
                 calleeIdentIndex = ai;
-                if (VERBOSE_TRACING) log('          - yes; replacing the callee ident with argument at index', ai);
+                vlog('          - yes; replacing the callee ident with argument at index', ai);
                 return true;
               }
             });
           } else {
             const calleeNameObj = innerCallee.object.name;
             const calleeNameProp = innerCallee.property.name;
-            if (VERBOSE_TRACING)
-              log(
-                '        - Checking if the callee.object `' +
-                  (innerCallee.object.type === 'Identifier' ? calleeNameObj : '<??>') +
-                  '` or property `' +
-                  (innerCallee.computed && innerCallee.property.type === 'Identifier' ? innerCallee.property.name : '<??>') +
-                  '` is a param [' +
-                  funcParams.map((n) => '`' + n.name + '`').join(', ') +
-                  ']',
-              );
+            vlog(
+              '        - Checking if the callee.object `' +
+                (innerCallee.object.type === 'Identifier' ? calleeNameObj : '<??>') +
+                '` or property `' +
+                (innerCallee.computed && innerCallee.property.type === 'Identifier' ? innerCallee.property.name : '<??>') +
+                '` is a param [' +
+                funcParams.map((n) => '`' + n.name + '`').join(', ') +
+                ']',
+            );
             ASSERT(innerCallee.type === 'MemberExpression', 'All other cases are eliminated, yes?', innerCallNode);
             // For now, reject both object and property. Later we may support property in a special case.
             if (innerCallee.object.type === 'Identifier') {
               funcParams.some((anode, ai) => {
                 if (anode.name === calleeNameObj) {
                   calleeObjectIndex = ai;
-                  if (VERBOSE_TRACING) log('          - yes; replacing the callee object ident with argument at index', ai);
+                  vlog('          - yes; replacing the callee object ident with argument at index', ai);
                   return true;
                 }
               });
@@ -184,7 +179,7 @@ function _pruneTrampolineFunctions(fdata) {
               funcParams.some((anode, ai) => {
                 if (anode.name === calleeNameProp) {
                   calleePropIndex = ai;
-                  if (VERBOSE_TRACING) log('          - yes; replacing the callee prop ident with argument at index', ai);
+                  vlog('          - yes; replacing the callee prop ident with argument at index', ai);
                   return true;
                 }
               });
@@ -211,13 +206,13 @@ function _pruneTrampolineFunctions(fdata) {
           // Now find all calls to the funcNode and replace them with the innerCall, applying the mapping
           meta.reads.forEach((read, ri) => {
             const callNode = read.parentNode;
-            if (VERBOSE_TRACING) log('          - read [' + ri + ']:', callNode.type);
+            vlog('          - read [' + ri + ']:', callNode.type);
             if (callNode.type !== 'CallExpression') return;
-            if (VERBOSE_TRACING) log('          - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
+            vlog('          - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
             if (callNode.callee.type !== 'Identifier') return false;
             if (callNode.callee.name !== name) return false;
             // This is a call to funcNode. Queue to replace it with the call, replacing param-args with original args
-            if (VERBOSE_TRACING) log('          - queuing into toReplaceWith to eliminating call to trampoline function2');
+            vlog('          - queuing into toReplaceWith to eliminating call to trampoline function2');
             toReplaceWith.push([read, innerCallNode, paramArgMapping, calleeIdentIndex, calleeObjectIndex, calleePropIndex]);
           });
         }

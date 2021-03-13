@@ -175,7 +175,7 @@ function _pruneEmptyFunctions(fdata) {
       before(parentNode, grandNode);
 
       // Note: we want to replace the entire call expression, not just the identifier (otherwise you end up with `undefined()`)
-      const newNode = AST.expressionStatement(parentNode.arguments[pi]);
+      const newNode = AST.expressionStatement(parentNode.arguments[pi] || AST.identifier('undefined'));
       if (grandIndex >= 0) grandNode[grandProp][grandIndex] = newNode;
       else grandNode[grandProp] = newNode;
 

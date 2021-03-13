@@ -105,6 +105,12 @@ export function promoteVars(fdata) {
 
               // Mark it as a constant for other reasons
               meta.isConstant = true;
+              meta.constValueRef = {
+                node: newNode.declarations[0].init,
+                containerNode: newNode,
+                containerProp: 'declarations',
+                containerIndex: 0,
+              };
 
               // Push a new write record for the const decl which replaces the old one for the assignment
               meta.writes[0] = createWriteRef({

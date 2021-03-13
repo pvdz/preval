@@ -1,0 +1,65 @@
+# Preval test case
+
+# return_var_param.md
+
+> Function inlining > Return var param
+>
+> A function that is a variable decl with simple init and a return of this value should be inlined
+
+The constant should be eliminated anyways but that's a different matter.
+
+#TODO
+
+## Input
+
+`````js filename=intro
+function f(a) {
+  const x = a;
+  return x;
+}
+$(f(1));
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let f = function (a) {
+  const x = a;
+  return x;
+};
+$(f(1));
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = function (a) {
+  const x = a;
+  return x;
+};
+const tmpCallCallee = $;
+const tmpCalleeParam = f(1);
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+$(1);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 1
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

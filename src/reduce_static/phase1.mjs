@@ -136,6 +136,7 @@ export function phase1(fdata, resolve, req) {
 
         const body = node.body.body;
         if (body.length === 1) {
+          vlog('This function has one statement. Trying to see if we can inline calls to it.');
           const stmt = body[0];
           if (stmt.type === 'ReturnStatement') {
             // All usages can be inlined with the arg, provided the arg is reachable from the call sites (relevant for closures)
@@ -149,9 +150,11 @@ export function phase1(fdata, resolve, req) {
             node.$p.inlineMe = 'single expression statement';
           }
         } else if (body.length === 2) {
+          vlog('This function has two statements. Trying to see if we can inline calls to it.');
           const one = body[0];
           const two = body[1];
-          if (two.type === 'ReturnStatement' && one.type === 'VariableDeclaration') {
+          if (one.type === 'VariableDeclaration' && two.type === 'ReturnStatement') {
+            vlog('Has var and return. Checking if it just returns the fresh var.');
             const decl = body[0];
             const decr = decl.declarations[0];
             const ret = body[1];
@@ -161,14 +164,24 @@ export function phase1(fdata, resolve, req) {
 
               ASSERT(decr.init, 'normalized var decls have an init, right');
               if (AST.isPrimitive(decr.init)) {
+                vlog('- Yes. Basically returning a primitive');
                 // I think this shouldn't be the case as I expect these to be normalized away
                 node.$p.inlineMe = 'double with primitive';
               } else if (decr.init.type === 'ArrayExpression') {
+                vlog('- Yes. Basically returning an array literal');
                 // `function f() { const x = [...]; return x; }`
                 // Let's start with arrays that only contain primitives
                 if (decr.init.elements.every((enode) => AST.isPrimitive(enode))) {
+                  vlog('And it does contain only primitives');
                   node.$p.inlineMe = 'double with array with primitives';
+                } else {
+                  vlog('No, it contained other things');
                 }
+              } else if (decr.init.type === 'Identifier' && decr.init.name !== 'arguments') {
+                // (Cannot easily mimic arguments). The `this` is not an identifier.
+                node.$p.inlineMe = 'double with identifier';
+              } else {
+                vlog('No, skipping this one.');
               }
             }
           }
@@ -500,13 +513,21 @@ export function phase1(fdata, resolve, req) {
       }
 
       case 'VariableDeclaration:after': {
+        vlog('- Id: `' + node.declarations[0].id.name + '`');
         ASSERT(node.declarations.length === 1, 'all decls should be normalized to one binding');
         ASSERT(node.declarations[0].id.type === 'Identifier', 'all patterns should be normalized away');
         const meta = globallyUniqueNamingRegistry.get(node.declarations[0].id.name);
         meta.isImplicitGlobal = false;
         if (node.kind === 'const') {
+          vlog('- marking', meta.name, 'as constant, ref set to', node.declarations[0].init.type);
           ASSERT(meta);
           meta.isConstant = true;
+          meta.constValueRef = {
+            node: node.declarations[0].init,
+            containerNode: node,
+            containerProp: 'declarations',
+            containerIndex: 0,
+          };
         }
       }
     }

@@ -53,12 +53,7 @@ $(100, a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  a = 3;
-};
-let a = 1;
-f();
-$(100, a);
+$(100, 3);
 `````
 
 ## Globals

@@ -1,68 +1,55 @@
 # Preval test case
 
-# ssa_problem.md
+# expr_assign_to_param_lit.md
 
-> Closures > Ssa problem
+> Function inlining > Expr assign to param lit
 >
-> Trying to come up wtih ssa problem cases regarding closures
+> A function that does a simple thing may need to be inlined in trivial cases.
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-//f();
-let a = 1;
-$(a);
-f();
-a = 3;
-$(a);
 function f() {
-  a = 2;
+  function g(a) {
+    a = 10;
+  }
+  g();
 }
-f();
-$(a);
-a = 4;
+$(f());
 `````
 
 ## Pre Normal
 
 `````js filename=intro
 let f = function () {
-  a = 2;
+  let g = function (a) {
+    a = 10;
+  };
+  g();
 };
-let a = 1;
-$(a);
-f();
-a = 3;
-$(a);
-f();
-$(a);
-a = 4;
+$(f());
 `````
 
 ## Normalized
 
 `````js filename=intro
 let f = function () {
-  a = 2;
+  let g = function (a) {
+    a = 10;
+  };
+  g();
 };
-let a = 1;
-$(a);
-f();
-a = 3;
-$(a);
-f();
-$(a);
-a = 4;
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(1);
-$(3);
-$(2);
+$(undefined);
 `````
 
 ## Globals
@@ -72,9 +59,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1
- - 2: 3
- - 3: 2
+ - 1: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

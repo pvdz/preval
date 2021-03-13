@@ -46,6 +46,12 @@ function _inlineConstants(fdata) {
               before(meta.writes[0].decl.declParent);
 
               varDecl.kind = 'const';
+              meta.constValueRef = {
+                node: varDecl.declarations[0].init,
+                containerNode: varDecl,
+                containerProp: 'declarations',
+                containerIndex: 0,
+              };
 
               after(meta.writes[0].decl.declParent);
             } else {

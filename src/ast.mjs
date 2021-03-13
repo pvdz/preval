@@ -698,6 +698,7 @@ export function isSimpleNodeOrSimpleMember(node) {
 }
 
 export function isComplexNode(node, incNested = true) {
+  ASSERT(typeof node !== 'string', 'dont pass .type');
   ASSERT([1, 2].includes(arguments.length), 'arg count');
   // A node is simple if it is
   // - an identifier

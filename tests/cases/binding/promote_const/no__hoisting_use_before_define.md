@@ -58,17 +58,12 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = undefined;
-const g = function () {
-  x = 20;
-};
-x = 100;
-g();
+let SSA_x$1 = 20;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  x = 10;
+  SSA_x$1 = 10;
 }
-$(x);
+$(SSA_x$1);
 `````
 
 ## Globals

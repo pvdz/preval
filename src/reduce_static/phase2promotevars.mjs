@@ -11,6 +11,7 @@ export function promoteVars(fdata) {
     if (meta.isImplicitGlobal) return;
 
     vgroup('- `' + name + '`');
+    vlog('-', meta.reads.length, 'reads and', meta.writes.length, 'writes', meta.isConstant ? '(a constant)' : '(not a constant)', meta.constValueRef?.node?.type ?? '');
 
     // Check if all usages of the binding is consolidated to one scope
     const writeScopes = new Set();
@@ -159,7 +160,7 @@ export function promoteVars(fdata) {
 
     // Note regarding SSA on param names; there exists a secret live binding in `arguments` that this transform breaks. Not sure I car.e
 
-    vlog('Starts with decl or param?', !!declData, !!meta.writes[0].param);
+    vlog('Starts with decl',!!declData,'or param?', !!meta.writes[0].param);
 
     // "Is this binding defined through a var decl or param name?" -- prevents forx, func decl closures, implicit globals, and TDZ cases.
     if (declData || meta.writes[0].param) {

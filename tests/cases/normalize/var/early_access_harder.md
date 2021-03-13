@@ -51,13 +51,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = undefined;
-const f = function () {
-  x = 10;
-};
-$(x);
-f();
-$(x);
+$(undefined);
+$(10);
 `````
 
 ## Globals

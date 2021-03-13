@@ -142,6 +142,11 @@ export function phase1(fdata, resolve, req) {
             if (AST.isPrimitive(body[0].argument)) {
               node.$p.inlineMe = 'single return with primitive';
             }
+          } else if (stmt.type === 'ExpressionStatement') {
+            // Considering this must be a normalized expression statement it should
+            // be no problem to inline it into any call site. Like, it should not lead
+            // to more complex situations? Maybe bindings now get referenced multiple times...?
+            node.$p.inlineMe = 'single expression statement';
           }
         } else if (body.length === 2) {
           const one = body[0];

@@ -943,6 +943,6 @@ function transformFunctionParams(node, fdata) {
 
   if (toInline) {
     node.body.body.unshift(...toInline);
-    after(AST.functionExpression(node.params, [], { id: node.id, generator: node.generator, async: node.async }));
+    after(AST.functionExpression(node.params, toInline, { id: node.id, generator: node.generator, async: node.async }));
   }
 }

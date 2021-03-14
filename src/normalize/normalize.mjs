@@ -5102,7 +5102,7 @@ export function phaseNormalize(fdata, fname) {
     // YOYO
     if (false) {
       const funcNode = ifelseStack[ifelseStack.length - 1];
-      if (funcNode.type === 'FunctionExpression' || funcNode.type === 'FunctionExpression') {
+      if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
         if (funcNode.generator) {
           // Currently not seeing a solid way to support function abstraction inside a generator
           // Sure, we can do it for all the bits that don't contain `yield`, but the thing does taint

@@ -223,7 +223,7 @@ export function toEvaluationResult(evalled, files, implicitGlobals, skipFinal) {
   );
 }
 
-export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError }) {
+export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError }, CONFIG) {
   if (lastError) {
     return mdHead + '\n\n' + mdChunks.join('\n\n').trim() + '\n\n## Output\n\nThrew expected error:' + '\n\n' + lastError.message + '\n';
   }
@@ -246,11 +246,9 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
         .join(' > '),
   );
 
-  return (
-    '' +
-    mdHead +
-    '\n\n' +
-    mdChunks.join('\n\n').trim() +
+  const mdInput = mdChunks.join('\n\n').trim();
+
+  let mdBody =
     toPreResult(output.pre) +
     toNormalizedResult(output.normalized) +
     // TODO: use this kind of approach to detect whether code is left that still needs to be normalized
@@ -279,8 +277,11 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
     //      '\n`````',
     //  )
     //  .join('\n\n') +
-    toEvaluationResult(evalled, output.files, output.implicitGlobals, false)
-  );
+    toEvaluationResult(evalled, output.files, output.implicitGlobals, false);
+
+  if (CONFIG.trimDollar) mdBody = mdBody.replace(/\$\d+/g, '');
+
+  return '' + mdHead + '\n\n' + mdInput + mdBody;
 }
 
 async function question(msg) {

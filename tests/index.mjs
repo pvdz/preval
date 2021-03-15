@@ -401,7 +401,7 @@ function runTestCase(
       console.log(toEvaluationResult(evalled, output.files, output.implicitGlobals, true));
     }
   } else {
-    const md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError });
+    let md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError }, CONFIG);
 
     let snapshotChanged = md2 !== md;
     let normalizationDesync = md2.includes('BAD?!');

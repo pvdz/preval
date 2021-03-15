@@ -21,6 +21,7 @@ export function parseTestArgs() {
     threadIndex: 0, // ... and this will be that thread
     cloneLimit: undefined, // How many times can a function be cloned for primitive inlining before it's considered recursion?
     maxPass: undefined,
+    trimDollar: false, // Remove trailing $12 from outputs? Reduces noise when diffing when new vars shuffle the incremental suffix
   };
 
   while (argv.length) {
@@ -63,7 +64,7 @@ export function parseTestArgs() {
 
       case '-t': {
         // Thread count
-        config.threads = (argv.shift()|0) || 1;
+        config.threads = argv.shift() | 0 || 1;
         break;
       }
 
@@ -93,6 +94,11 @@ export function parseTestArgs() {
 
       case '--clone-limit': {
         config.cloneLimit = +argv.shift();
+        break;
+      }
+
+      case '--trim-dollar': {
+        config.trimDollar = true;
         break;
       }
 

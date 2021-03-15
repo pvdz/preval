@@ -25,6 +25,7 @@ PARAM_MAXPASS=''
 PARAM_MAXPASS_COUNT=''
 PARAM_CLONELIMIT=''
 PARAM_CLONELIMIT_COUNT=''
+PARAM_TRIM_DOLLAR=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -65,6 +66,7 @@ Preval CLI Toolkit help:
  --max-pass <n>  Stop processing after n passes.
  --clone-limit n How often can a function be cloned before it's considered recursion?
  --node-bin=path Use this node binary to run stuff
+ --trim          Remove the trailing \$123 tail from vars in test outputs (helps with diffing, do not commit)
  -C              Do not print colors
  -n              Only show normalized output
  -t <count>      Run tests in this many threads (default=1; no threads)
@@ -134,6 +136,9 @@ Preval CLI Toolkit help:
       NODE_BIN=$1
       echo "Using '${NODE_BIN}' as node binary"
       ;;
+    --trim)
+      PARAM_TRIM_DOLLAR='--trim-dollar'
+      ;;
     -C)
       shift
       PARAM_NO_COLOR="-C"
@@ -180,7 +185,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}"
     ;;
 esac
 set +x

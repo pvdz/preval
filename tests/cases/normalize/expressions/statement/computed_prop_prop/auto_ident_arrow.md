@@ -32,7 +32,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-const tmpCompProp = () => {};
+const tmpCompProp = function () {};
 tmpCompObj[tmpCompProp];
 $(a);
 `````
@@ -42,7 +42,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const obj = {};
-const tmpCompProp = () => {};
+const tmpCompProp = function () {};
 obj[tmpCompProp];
 $(a);
 `````

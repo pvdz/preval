@@ -234,7 +234,7 @@ node.elements.forEach((anode, i) => {
 `````js filename=intro
 const tmpCallObj = node.elements;
 const tmpCallVal = tmpCallObj.forEach;
-const tmpCalleeParam = (anode, i) => {
+const tmpCalleeParam = function (anode, i) {
   if (anode) {
     let valueNode = anode;
     const tmpBinLhs = anode.type;
@@ -282,7 +282,7 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 `````js filename=intro
 const tmpCallObj = node.elements;
 const tmpCallVal = tmpCallObj.forEach;
-const tmpCalleeParam = (anode, i) => {
+const tmpCalleeParam = function (anode, i) {
   if (anode) {
     let valueNode = anode;
     const tmpBinLhs = anode.type;

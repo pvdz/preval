@@ -28,7 +28,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = () => {};
+a = function () {};
 let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
@@ -36,7 +36,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const SSA_a = () => {};
+const SSA_a = function () {};
 throw SSA_a;
 `````
 
@@ -51,6 +51,8 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD?!
+ - eval returned: ('<crash[ function() {} ]>')
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ('<crash[ function() {} ]>')

@@ -43,7 +43,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
-  a = () => {};
+  a = function () {};
 }
 $(a);
 `````
@@ -52,7 +52,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const SSA_a = () => {};
+const SSA_a = function () {};
 $(SSA_a);
 `````
 

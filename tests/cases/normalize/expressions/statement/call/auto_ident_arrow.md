@@ -29,7 +29,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = () => {};
+const tmpCalleeParam = function () {};
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -38,7 +38,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = () => {};
+const tmpCalleeParam = function () {};
 $(tmpCalleeParam);
 $(a);
 `````

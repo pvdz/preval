@@ -69,7 +69,7 @@ const tmpCallObj$2 = new tmpNewCallee$1(tmpCalleeParam$3);
 const tmpArrSpread = tmpCallObj$2.keys();
 const tmpCallObj$1 = [...tmpArrSpread, 'module'];
 const tmpCallVal = tmpCallObj$1.map;
-const tmpCalleeParam$2 = (k) => {
+const tmpCalleeParam$2 = function (k) {
   const tmpReturnArg = [k, k];
   return tmpReturnArg;
 };
@@ -93,7 +93,7 @@ const tmpCallObj$2 = new Map(tmpCalleeParam$3);
 const tmpArrSpread = tmpCallObj$2.keys();
 const tmpCallObj$1 = [...tmpArrSpread, 'module'];
 const tmpCallVal = tmpCallObj$1.map;
-const tmpCalleeParam$2 = (k) => {
+const tmpCalleeParam$2 = function (k) {
   const tmpReturnArg = [k, k];
   return tmpReturnArg;
 };

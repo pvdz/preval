@@ -30,7 +30,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-a = () => {};
+a = function () {};
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
@@ -45,7 +45,7 @@ $(a);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const SSA_a = () => {};
+const SSA_a = function () {};
 if (SSA_a) {
   tmpCalleeParam = $(100);
 } else {

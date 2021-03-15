@@ -29,7 +29,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = () => {};
+a = function () {};
 let tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -38,7 +38,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = () => {};
+const SSA_a = function () {};
 const tmpAnonDefaultExport = SSA_a;
 export { tmpAnonDefaultExport as default };
 $(SSA_a);

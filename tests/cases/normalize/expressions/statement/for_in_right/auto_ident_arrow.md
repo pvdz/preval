@@ -28,7 +28,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpForInDeclRhs = () => {};
+const tmpForInDeclRhs = function () {};
 let x;
 for (x in tmpForInDeclRhs) {
 }
@@ -39,7 +39,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpForInDeclRhs = () => {};
+const tmpForInDeclRhs = function () {};
 let x;
 for (x in tmpForInDeclRhs) {
 }

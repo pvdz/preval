@@ -31,7 +31,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-const f = (a$1) => {
+const f = function (a$1) {
   a$1 = $(10);
   return a$1;
 };

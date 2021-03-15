@@ -48,7 +48,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  a = () => {};
+  a = function () {};
   $(a);
 }
 `````
@@ -56,7 +56,7 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const a = () => {};
+const a = function () {};
 $(a);
 `````
 

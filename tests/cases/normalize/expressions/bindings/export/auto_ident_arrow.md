@@ -26,7 +26,7 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let a = () => {};
+let a = function () {};
 export { a };
 $(a);
 `````
@@ -34,7 +34,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = () => {};
+const a = function () {};
 export { a };
 $(a);
 `````

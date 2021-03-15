@@ -29,7 +29,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = () => {};
+a = function () {};
 let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 tmpCallCallee(tmpCalleeParam);
@@ -39,7 +39,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = () => {};
+const SSA_a = function () {};
 const tmpCalleeParam = { ...SSA_a };
 $(tmpCalleeParam);
 $(SSA_a);

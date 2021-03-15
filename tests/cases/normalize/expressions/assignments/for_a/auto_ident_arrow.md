@@ -33,7 +33,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = () => {};
+a = function () {};
 while (true) {
   $(1);
 }
@@ -43,7 +43,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = () => {};
+const SSA_a = function () {};
 while (true) {
   $(1);
 }

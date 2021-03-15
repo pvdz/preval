@@ -34,7 +34,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let xyz = () => {};
+let xyz = function () {};
 while (true) {
   $(xyz);
   $(1);
@@ -46,7 +46,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const xyz = () => {};
+const xyz = function () {};
 while (true) {
   $(xyz);
   $(1);

@@ -32,7 +32,7 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-const f = (a$1) => {
+const f = function (a$1) {
   let b$1 = undefined;
   a$1 = $(10);
   b$1 = $(20);
@@ -47,7 +47,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = () => {
+const f = function () {
   const SSA_a$1 = $(10);
   const SSA_b$1 = $(20);
   const tmpReturnArg = [SSA_a$1, SSA_b$1];

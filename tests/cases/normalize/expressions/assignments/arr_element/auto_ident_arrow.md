@@ -29,9 +29,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = () => {};
+a = function () {};
 let tmpBinBothLhs = a;
-a = () => {};
+a = function () {};
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
@@ -41,8 +41,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = () => {};
-const SSA_a$1 = () => {};
+const SSA_a = function () {};
+const SSA_a$1 = function () {};
 const tmpCalleeParam = SSA_a + SSA_a$1;
 $(tmpCalleeParam);
 $(SSA_a$1);
@@ -61,6 +61,12 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD?!
+ - 1: 'function() {}function() {}'
+ - 2: '<function>'
+ - eval returned: undefined
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: 'function() {}function() {}'
+ - 2: '<function>'
+ - eval returned: undefined

@@ -23,7 +23,7 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-const tmpIfTest = () => {};
+const tmpIfTest = function () {};
 if (tmpIfTest) {
   $(1);
 } else {
@@ -34,7 +34,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = () => {};
+const tmpIfTest = function () {};
 if (tmpIfTest) {
   $(1);
 } else {

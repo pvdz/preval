@@ -33,7 +33,7 @@ const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
 let tmpForInLhsNode;
 for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpAssignMemLhsObj = () => {};
+  const tmpAssignMemLhsObj = function () {};
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);
@@ -47,7 +47,7 @@ const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode;
 for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpAssignMemLhsObj = () => {};
+  const tmpAssignMemLhsObj = function () {};
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);

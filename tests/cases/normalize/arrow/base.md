@@ -27,7 +27,7 @@ f();
 ## Normalized
 
 `````js filename=intro
-const f = () => {
+const f = function () {
   const tmpReturnArg = $(1);
   return tmpReturnArg;
 };

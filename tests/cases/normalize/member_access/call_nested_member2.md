@@ -31,7 +31,7 @@ obj.a.b();
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal$1 = () => {
+const tmpObjLitVal$1 = function () {
   const tmpReturnArg = $(1);
   return tmpReturnArg;
 };
@@ -44,7 +44,7 @@ tmpCallObj.b();
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = () => {
+const tmpObjLitVal$1 = function () {
   const tmpReturnArg = $(1);
   return tmpReturnArg;
 };

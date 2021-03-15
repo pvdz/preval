@@ -35,7 +35,7 @@ let f = function (tmpParamDefault) {
   let p = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = () => {};
+    const tmpNestedComplexRhs = function () {};
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
@@ -55,7 +55,7 @@ $(a);
 const f = function (tmpParamDefault) {
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = () => {};
+    const tmpNestedComplexRhs = function () {};
     a = tmpNestedComplexRhs;
   }
 };

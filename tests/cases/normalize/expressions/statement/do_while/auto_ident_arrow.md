@@ -43,7 +43,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = () => {};
+    tmpIfTest = function () {};
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -64,7 +64,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = () => {};
+    tmpIfTest = function () {};
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

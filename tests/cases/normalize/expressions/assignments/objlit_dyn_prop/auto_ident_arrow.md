@@ -29,7 +29,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = () => {};
+a = function () {};
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
@@ -40,7 +40,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = () => {};
+const SSA_a = function () {};
 const tmpCalleeParam = { [SSA_a]: 10 };
 $(tmpCalleeParam);
 $(SSA_a);
@@ -59,6 +59,12 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD?!
+ - 1: { 'function() {}': '10' }
+ - 2: '<function>'
+ - eval returned: undefined
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: { 'function() {}': '10' }
+ - 2: '<function>'
+ - eval returned: undefined

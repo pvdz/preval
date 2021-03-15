@@ -43,7 +43,7 @@ let x = $(1);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   x = $(2, 'branch');
-  const f = () => {
+  const f = function () {
     const tmpReturnArg = $(x, 'arrow');
     return tmpReturnArg;
   };

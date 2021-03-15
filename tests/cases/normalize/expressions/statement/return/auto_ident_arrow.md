@@ -34,7 +34,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  const tmpReturnArg = () => {};
+  const tmpReturnArg = function () {};
   return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
@@ -48,7 +48,7 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  const tmpReturnArg = () => {};
+  const tmpReturnArg = function () {};
   return tmpReturnArg;
 };
 const a = { a: 999, b: 1000 };

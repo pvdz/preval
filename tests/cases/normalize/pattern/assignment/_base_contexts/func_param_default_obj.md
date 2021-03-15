@@ -26,7 +26,7 @@ const f = (tmpParamDefault) => {
 ## Normalized
 
 `````js filename=intro
-const f = (tmpParamDefault) => {
+const f = function (tmpParamDefault) {
   let a = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {

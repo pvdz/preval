@@ -49,7 +49,7 @@ $(f(100));
 `````js filename=intro
 let f = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
-  const g = () => {
+  const g = function () {
     const tmpReturnArg = tmpPrevalAliasArgumentsAny[0];
     return tmpReturnArg;
   };
@@ -66,7 +66,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
-  const g = () => {
+  const g = function () {
     const tmpReturnArg = tmpPrevalAliasArgumentsAny[0];
     return tmpReturnArg;
   };

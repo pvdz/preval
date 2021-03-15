@@ -33,7 +33,7 @@ g();
 ## Normalized
 
 `````js filename=intro
-const g = () => {
+const g = function () {
   let f$2 = function () {};
   $(1);
   const tmpCallCallee = $;
@@ -46,7 +46,7 @@ g();
 ## Output
 
 `````js filename=intro
-const g = () => {
+const g = function () {
   $(1);
   $(undefined);
 };

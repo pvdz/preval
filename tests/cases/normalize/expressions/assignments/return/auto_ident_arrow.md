@@ -34,7 +34,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  a = () => {};
+  a = function () {};
   let tmpReturnArg = a;
   return tmpReturnArg;
 };
@@ -49,7 +49,7 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  a = () => {};
+  a = function () {};
   const tmpReturnArg = a;
   return tmpReturnArg;
 };

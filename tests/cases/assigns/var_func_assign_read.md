@@ -39,7 +39,7 @@ $(x);
 let f = undefined;
 let x = undefined;
 x = 20;
-f = () => {
+f = function () {
   x = 10;
   let tmpReturnArg = x;
   return tmpReturnArg;
@@ -55,7 +55,7 @@ $(x);
 
 `````js filename=intro
 let SSA_x = 20;
-const SSA_f = () => {
+const SSA_f = function () {
   SSA_x = 10;
   const tmpReturnArg = SSA_x;
   return tmpReturnArg;

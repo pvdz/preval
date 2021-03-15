@@ -35,7 +35,7 @@ let f = function (tmpParamDefault) {
   let p = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    p = () => {};
+    p = function () {};
   } else {
     p = tmpParamDefault;
   }

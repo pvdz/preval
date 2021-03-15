@@ -29,7 +29,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  a = () => {};
+  a = function () {};
   let tmpIfTest = a;
   if (tmpIfTest) {
     $(100);
@@ -45,7 +45,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  a = () => {};
+  a = function () {};
   const tmpIfTest = a;
   if (tmpIfTest) {
     $(100);

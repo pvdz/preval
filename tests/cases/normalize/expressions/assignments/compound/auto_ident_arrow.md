@@ -30,7 +30,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = a;
-const tmpBinBothRhs = () => {};
+const tmpBinBothRhs = function () {};
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
@@ -41,7 +41,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpBinBothRhs = () => {};
+const tmpBinBothRhs = function () {};
 const SSA_a = a * tmpBinBothRhs;
 $(SSA_a);
 $(SSA_a);

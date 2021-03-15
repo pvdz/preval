@@ -4194,7 +4194,17 @@ export function phaseNormalize(fdata, fname) {
         ifelseStack.pop();
         funcStack.pop();
 
-        return false;
+        rule('Arrows should be function expressions after this/arguments are transformed');
+        example('const x = () => {};', 'const x = function(){}');
+        before(node, parentNode);
+
+        const finalNode = AST.functionExpression(node.params, node.body, {async: node.async});
+        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+        body[i] = finalParent;
+
+        after(finalParent);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
       }
 
       case 'TaggedTemplateExpression': {

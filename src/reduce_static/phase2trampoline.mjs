@@ -21,7 +21,7 @@ function _pruneTrampolineFunctions(fdata) {
       '- `' + name + '`, has constValueRef?',
       !!meta.constValueRef,
       meta.constValueRef?.node?.type,
-      'reads args?',
+      'reads `arguments` len/any?',
       meta.constValueRef?.node?.$p?.readsArgumentsLen,
       meta.constValueRef?.node?.$p?.readsArgumentsAny,
     );
@@ -32,7 +32,7 @@ function _pruneTrampolineFunctions(fdata) {
     }
 
     const funcNode = meta.constValueRef?.node;
-    if (!['FunctionExpression', 'ArrowFunctionExpression'].includes(funcNode?.type)) {
+    if (funcNode?.type !== 'FunctionExpression') {
       vlog('  - not a function');
       return;
     }
@@ -111,7 +111,7 @@ function _pruneTrampolineFunctions(fdata) {
         !hasRest &&
         varNode.type === 'VariableDeclaration' &&
         varNode.declarations[0].init.type === 'CallExpression' &&
-        returnNode.type === 'ReturnStatement' &&
+        returnNode.type === 'ReturnStatement' && // While `throw` is very similar, the transform is different because the call site may require injecting a new statement
         returnNode.argument.type === 'Identifier' &&
         returnNode.argument.name === varNode.declarations[0].id.name
       ) {

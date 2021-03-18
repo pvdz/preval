@@ -509,6 +509,28 @@ export function phase1(fdata, resolve, req) {
       }
 
       case 'ReturnStatement:before': {
+        const funcNode = funcStack[funcStack.length - 1];
+        vlog('Parent func:', funcNode.type, ', last node same?', funcNode.body.body[funcNode.body.body.length - 1] === node);
+        if (funcNode.type === 'FunctionExpression') {
+          const lastNode = funcNode.body.body[funcNode.body.body.length - 1];
+          if (lastNode === node) {
+            vlog('Found explicit return but it was the last statement of the function');
+          } else if (lastNode?.type === 'IfStatement') {
+            if (
+              lastNode.consequent.body[lastNode.consequent.body.length - 1] === node ||
+              lastNode.alternate?.body[lastNode.alternate.body.length - 1] === node
+            ) {
+              vlog('Return node is last element of if or else branch that is at the end of a function. Not an early return.');
+            } else {
+              vlog('Last element is ifelse and but neither branch ended with this node, this function is returning early');
+              funcNode.$p.earlyReturn = true;
+            }
+          } else {
+            vlog('Last node was not an ifelse and not this return so marking this function as returning early');
+            funcNode.$p.earlyReturn = true;
+          }
+        }
+
         break;
       }
 

@@ -55,6 +55,7 @@ export function phase1(fdata, resolve, req) {
 
     if (before) {
       node.$p = $p();
+      node.$p.funcDepth = funcStack.length;
     }
 
     vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET);

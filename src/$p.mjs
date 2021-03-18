@@ -35,5 +35,6 @@ export function $p() {
     // unqualifiedLabelUsages // Array<node>. Should contain loop and/or switch nodes. When finding an unqualified break/continue, this tells you where it jumps to.
     // earlyReturn // bool. Does this function contain a return statement that is not its last statement?
     // hasBranch // bool. Does this function contain an `if`, `while`, or `for-x` statement?
+    // funcDepth // number. How many nested scopes does this node appear in
   };
 }

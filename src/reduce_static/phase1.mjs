@@ -91,17 +91,24 @@ export function phase1(fdata, resolve, req) {
         break;
       }
 
-      case 'FunctionExpression:before':
-      case 'ArrowFunctionExpression:before': {
+      case 'ForInStatement:before': {
+        funcStack[funcStack.length - 1].$p.hasBranch = true;
+        break;
+      }
+
+      case 'ForOfStatement:before': {
+        funcStack[funcStack.length - 1].$p.hasBranch = true;
+        break;
+      }
+
+      case 'FunctionExpression:before': {
         funcStack.push(node);
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           thisStack.push(node);
         }
         break;
       }
-
-      case 'FunctionExpression:after':
-      case 'ArrowFunctionExpression:after': {
+      case 'FunctionExpression:after': {
         funcStack.pop();
 
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
@@ -390,10 +397,7 @@ export function phase1(fdata, resolve, req) {
               );
             } else if (parentNode.type === 'FunctionDeclaration') {
               ASSERT(false, 'all function declarations should have been eliminated during hoisting');
-            } else if (
-              parentProp === 'params' &&
-              (parentNode.type === 'FunctionExpression' || parentNode.type === 'ArrowFunctionExpression')
-            ) {
+            } else if (parentProp === 'params' && parentNode.type === 'FunctionExpression') {
               const paramParent = path.nodes[path.nodes.length - 3];
               const paramProp = path.props[path.props.length - 2];
               const paramIndex = path.indexes[path.indexes.length - 2];
@@ -449,6 +453,11 @@ export function phase1(fdata, resolve, req) {
         break;
       }
 
+      case 'IfStatement:before': {
+        funcStack[funcStack.length - 1].$p.hasBranch = true;
+        break;
+      }
+
       case 'ImportDeclaration:before': {
         // Note: after normalization there should only be two kinds of imports;
         // - named imports, one imported symbol per decl, possibly with alias
@@ -485,6 +494,7 @@ export function phase1(fdata, resolve, req) {
 
         break;
       }
+
       case 'ImportDefaultSpecifier: after': {
         // This must be an anonymous function
         ASSERT(node.source && typeof node.source.value === 'string', 'fixme if else', node);
@@ -551,6 +561,12 @@ export function phase1(fdata, resolve, req) {
             containerIndex: 0,
           };
         }
+        break;
+      }
+
+      case 'WhileStatement:before': {
+        funcStack[funcStack.length - 1].$p.hasBranch = true;
+        break;
       }
     }
 

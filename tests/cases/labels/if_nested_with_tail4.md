@@ -65,16 +65,20 @@ f();
 
 `````js filename=intro
 let f = function () {
-  $(100);
-  label1: {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
+  const tmpBranchingC = function () {
+    $('tail1');
+    $('end');
+  };
+  const tmpLabeledBlockFunc = function () {
+    $(100);
+    const tmpIfTest$3 = $(0);
+    if (tmpIfTest$3) {
       label2: {
-        const tmpIfTest$1 = $(0);
-        if (tmpIfTest$1) {
+        const tmpIfTest$4 = $(0);
+        if (tmpIfTest$4) {
           label3: {
-            const tmpIfTest$2 = $(0);
-            if (tmpIfTest$2) {
+            const tmpIfTest$5 = $(0);
+            if (tmpIfTest$5) {
               break label2;
             } else {
               break label3;
@@ -82,14 +86,17 @@ let f = function () {
           }
           $('tail3');
         } else {
-          break label1;
+          const tmpReturnArg = tmpBranchingC();
+          return tmpReturnArg;
         }
       }
       $('tail2');
     }
-  }
-  $('tail1');
-  $('end');
+    const tmpReturnArg$1 = tmpBranchingC();
+    return tmpReturnArg$1;
+  };
+  const tmpReturnArg$2 = tmpLabeledBlockFunc();
+  return tmpReturnArg$2;
 };
 f();
 `````
@@ -97,16 +104,20 @@ f();
 ## Output
 
 `````js filename=intro
-$(100);
-label1: {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
+const tmpBranchingC = function () {
+  $('tail1');
+  $('end');
+};
+const tmpLabeledBlockFunc = function () {
+  $(100);
+  const tmpIfTest$3 = $(0);
+  if (tmpIfTest$3) {
     label2: {
-      const tmpIfTest$1 = $(0);
-      if (tmpIfTest$1) {
+      const tmpIfTest$4 = $(0);
+      if (tmpIfTest$4) {
         label3: {
-          const tmpIfTest$2 = $(0);
-          if (tmpIfTest$2) {
+          const tmpIfTest$5 = $(0);
+          if (tmpIfTest$5) {
             break label2;
           } else {
             break label3;
@@ -114,14 +125,16 @@ label1: {
         }
         $('tail3');
       } else {
-        break label1;
+        const tmpReturnArg = tmpBranchingC();
+        return tmpReturnArg;
       }
     }
     $('tail2');
   }
-}
-$('tail1');
-$('end');
+  const tmpReturnArg$1 = tmpBranchingC();
+  return tmpReturnArg$1;
+};
+tmpLabeledBlockFunc();
 `````
 
 ## Globals

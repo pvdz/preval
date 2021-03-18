@@ -58,35 +58,6 @@ f();
 `````js filename=intro
 let f = function () {
   $(0);
-  label1: {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      label2: {
-        const tmpIfTest$1 = $(2);
-        if (tmpIfTest$1) {
-          label3: {
-            const tmpIfTest$2 = $(3);
-            if (tmpIfTest$2) {
-              break label2;
-            } else {
-              break label3;
-            }
-          }
-        } else {
-          break label1;
-        }
-      }
-    }
-  }
-};
-f();
-`````
-
-## Output
-
-`````js filename=intro
-$(0);
-label1: {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     label2: {
@@ -101,11 +72,39 @@ label1: {
           }
         }
       } else {
-        break label1;
+        return undefined;
       }
     }
   }
-}
+};
+f();
+`````
+
+## Output
+
+`````js filename=intro
+const f = function () {
+  $(0);
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    label2: {
+      const tmpIfTest$1 = $(2);
+      if (tmpIfTest$1) {
+        label3: {
+          const tmpIfTest$2 = $(3);
+          if (tmpIfTest$2) {
+            break label2;
+          } else {
+            break label3;
+          }
+        }
+      } else {
+        return undefined;
+      }
+    }
+  }
+};
+f();
 `````
 
 ## Globals

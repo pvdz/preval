@@ -72,39 +72,47 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  const tmpSwitchValue = $(1, 'disc');
-  let tmpSwitchCaseToStart = 2;
-  const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpBinLhs$1 = $(1);
-    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
-    }
-  }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
-    $('keep, do not eval');
-    return undefined;
-  } else {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      $('keep, eval');
-      return undefined;
+  const tmpBranchingC = function () {
+    $('eliminate after switch');
+  };
+  const tmpLabeledBlockFunc = function () {
+    const tmpSwitchValue$1 = $(1, 'disc');
+    let tmpSwitchCaseToStart$1 = 2;
+    const tmpBinLhs$2 = $(0);
+    const tmpIfTest$5 = tmpBinLhs$2 === tmpSwitchValue$1;
+    if (tmpIfTest$5) {
+      tmpSwitchCaseToStart$1 = 0;
     } else {
-      const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-      if (tmpIfTest$4) {
-        $('keep, do not eval');
-        const tmpReturnArg = $(2, 'ret');
-        return tmpReturnArg;
-      } else {
-        $('eliminate after switch');
+      const tmpBinLhs$3 = $(1);
+      const tmpIfTest$7 = tmpBinLhs$3 === tmpSwitchValue$1;
+      if (tmpIfTest$7) {
+        tmpSwitchCaseToStart$1 = 1;
       }
     }
-  }
+    const tmpIfTest$6 = tmpSwitchCaseToStart$1 <= 0;
+    if (tmpIfTest$6) {
+      $('keep, do not eval');
+      return undefined;
+    } else {
+      const tmpIfTest$8 = tmpSwitchCaseToStart$1 <= 1;
+      if (tmpIfTest$8) {
+        $('keep, eval');
+        return undefined;
+      } else {
+        const tmpIfTest$9 = tmpSwitchCaseToStart$1 <= 2;
+        if (tmpIfTest$9) {
+          $('keep, do not eval');
+          const tmpReturnArg$1 = $(2, 'ret');
+          return tmpReturnArg$1;
+        } else {
+          const tmpReturnArg$2 = tmpBranchingC();
+          return tmpReturnArg$2;
+        }
+      }
+    }
+  };
+  const tmpReturnArg$3 = tmpLabeledBlockFunc();
+  return tmpReturnArg$3;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -114,43 +122,44 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpSwitchValue = $(1, 'disc');
-  let tmpSwitchCaseToStart = 2;
-  const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
+const tmpLabeledBlockFunc = function () {
+  const tmpSwitchValue$1 = $(1, 'disc');
+  let tmpSwitchCaseToStart$1 = 2;
+  const tmpBinLhs$2 = $(0);
+  const tmpIfTest$5 = tmpBinLhs$2 === tmpSwitchValue$1;
+  if (tmpIfTest$5) {
+    tmpSwitchCaseToStart$1 = 0;
   } else {
-    const tmpBinLhs$1 = $(1);
-    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 1;
+    const tmpBinLhs$3 = $(1);
+    const tmpIfTest$7 = tmpBinLhs$3 === tmpSwitchValue$1;
+    if (tmpIfTest$7) {
+      tmpSwitchCaseToStart$1 = 1;
     }
   }
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
+  const tmpIfTest$6 = tmpSwitchCaseToStart$1 <= 0;
+  if (tmpIfTest$6) {
     $('keep, do not eval');
     return undefined;
   } else {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
+    const tmpIfTest$8 = tmpSwitchCaseToStart$1 <= 1;
+    if (tmpIfTest$8) {
       $('keep, eval');
       return undefined;
     } else {
-      const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-      if (tmpIfTest$4) {
+      const tmpIfTest$9 = tmpSwitchCaseToStart$1 <= 2;
+      if (tmpIfTest$9) {
         $('keep, do not eval');
-        const tmpReturnArg = $(2, 'ret');
-        return tmpReturnArg;
+        const tmpReturnArg$1 = $(2, 'ret');
+        return tmpReturnArg$1;
       } else {
         $('eliminate after switch');
+        return undefined;
       }
     }
   }
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpReturnArg$3 = tmpLabeledBlockFunc();
+$(tmpReturnArg$3);
 `````
 
 ## Globals

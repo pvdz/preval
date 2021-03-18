@@ -47,20 +47,28 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  const tmpSwitchValue = $(1, 'disc');
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(1, 'case');
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpReturnArg = $(2, 'ret');
-    return tmpReturnArg;
-  } else {
+  const tmpBranchingC = function () {
     $('keep, do not eval');
-  }
+  };
+  const tmpLabeledBlockFunc = function () {
+    const tmpSwitchValue$1 = $(1, 'disc');
+    let tmpSwitchCaseToStart$1 = 1;
+    const tmpBinLhs$1 = $(1, 'case');
+    const tmpIfTest$2 = tmpBinLhs$1 === tmpSwitchValue$1;
+    if (tmpIfTest$2) {
+      tmpSwitchCaseToStart$1 = 0;
+    }
+    const tmpIfTest$3 = tmpSwitchCaseToStart$1 <= 0;
+    if (tmpIfTest$3) {
+      const tmpReturnArg$1 = $(2, 'ret');
+      return tmpReturnArg$1;
+    } else {
+      const tmpReturnArg$2 = tmpBranchingC();
+      return tmpReturnArg$2;
+    }
+  };
+  const tmpReturnArg$3 = tmpLabeledBlockFunc();
+  return tmpReturnArg$3;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -70,24 +78,25 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpSwitchValue = $(1, 'disc');
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(1, 'case');
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
+const tmpLabeledBlockFunc = function () {
+  const tmpSwitchValue$1 = $(1, 'disc');
+  let tmpSwitchCaseToStart$1 = 1;
+  const tmpBinLhs$1 = $(1, 'case');
+  const tmpIfTest$2 = tmpBinLhs$1 === tmpSwitchValue$1;
+  if (tmpIfTest$2) {
+    tmpSwitchCaseToStart$1 = 0;
   }
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpReturnArg = $(2, 'ret');
-    return tmpReturnArg;
+  const tmpIfTest$3 = tmpSwitchCaseToStart$1 <= 0;
+  if (tmpIfTest$3) {
+    const tmpReturnArg$1 = $(2, 'ret');
+    return tmpReturnArg$1;
   } else {
     $('keep, do not eval');
+    return undefined;
   }
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpReturnArg$3 = tmpLabeledBlockFunc();
+$(tmpReturnArg$3);
 `````
 
 ## Globals

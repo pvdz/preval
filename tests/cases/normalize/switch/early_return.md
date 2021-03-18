@@ -89,26 +89,24 @@ let f = function () {
       }
     }
   }
-  tmpSwitchBreak: {
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$4) {
-      $(2);
-      break tmpSwitchBreak;
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$4) {
+    $(2);
+    return undefined;
+  } else {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      $(3);
+    }
+    const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$6) {
+      $(5);
+      const tmpReturnArg = $(6);
+      return tmpReturnArg;
     } else {
-      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$5) {
-        $(3);
-      }
-      const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
-      if (tmpIfTest$6) {
-        $(5);
-        const tmpReturnArg = $(6);
-        return tmpReturnArg;
-      } else {
-        const tmpIfTest$7 = tmpSwitchCaseToStart <= 3;
-        if (tmpIfTest$7) {
-          break tmpSwitchBreak;
-        }
+      const tmpIfTest$7 = tmpSwitchCaseToStart <= 3;
+      if (tmpIfTest$7) {
+        return undefined;
       }
     }
   }
@@ -146,26 +144,24 @@ const f = function () {
       }
     }
   }
-  tmpSwitchBreak: {
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$4) {
-      $(2);
-      break tmpSwitchBreak;
+  const tmpIfTest$4 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$4) {
+    $(2);
+    return undefined;
+  } else {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      $(3);
+    }
+    const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$6) {
+      $(5);
+      const tmpReturnArg = $(6);
+      return tmpReturnArg;
     } else {
-      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$5) {
-        $(3);
-      }
-      const tmpIfTest$6 = tmpSwitchCaseToStart <= 2;
-      if (tmpIfTest$6) {
-        $(5);
-        const tmpReturnArg = $(6);
-        return tmpReturnArg;
-      } else {
-        const tmpIfTest$7 = tmpSwitchCaseToStart <= 3;
-        if (tmpIfTest$7) {
-          break tmpSwitchBreak;
-        }
+      const tmpIfTest$7 = tmpSwitchCaseToStart <= 3;
+      if (tmpIfTest$7) {
+        return undefined;
       }
     }
   }

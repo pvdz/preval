@@ -328,8 +328,6 @@ export function phaseNormalize(fdata, fname) {
   let passes = 0;
   do {
     changed = false;
-    // Create a new map for labels every time. Populated as we go. Label references always appear after the definition anyways.
-    fdata.globallyUniqueLabelRegistry = new Map();
     // Clear usage/update lists because mutations may have affected them
     fdata.globallyUniqueNamingRegistry.forEach((meta) => ((meta.writes = []), (meta.reads = [])));
     transformProgram(ast);
@@ -835,13 +833,15 @@ export function phaseNormalize(fdata, fname) {
   }
 
   function transformBreakStatement(node, body, i, parent) {
-    if (node.label) {
-      ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name));
-      fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push(node);
-    }
-
     vlog(BLUE + 'Marking parent (' + parent.type + ') as breaking early' + RESET);
     parent.$p.returnBreakContinueThrow = 'break';
+    if (node.label) {
+      fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap.set(node.$p.pid, {
+        node,
+        body,
+        index: i,
+      });
+    }
     if (body.length > i + 1) {
       if (dce(body, i, 'after break')) {
         return true;
@@ -851,13 +851,15 @@ export function phaseNormalize(fdata, fname) {
   }
 
   function transformContinueStatement(node, body, i, parent) {
-    if (node.label) {
-      ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name));
-      fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push(node);
-    }
-
     vlog(BLUE + 'Marking parent (' + parent.type + ') as continuing early' + RESET);
     parent.$p.returnBreakContinueThrow = 'continue';
+    if (node.label) {
+      fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap.set(node.$p.pid, {
+        node,
+        body,
+        index: i,
+      });
+    }
     if (body.length > i + 1) {
       if (dce(body, i, 'after block')) {
         return true;
@@ -4200,7 +4202,7 @@ export function phaseNormalize(fdata, fname) {
         example('const x = () => {};', 'const x = function(){}');
         before(node, parentNode);
 
-        const finalNode = AST.functionExpression(node.params, node.body, {async: node.async});
+        const finalNode = AST.functionExpression(node.params, node.body, { async: node.async });
         const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
         body[i] = finalParent;
 
@@ -5111,7 +5113,7 @@ export function phaseNormalize(fdata, fname) {
     // Must do this "on the way back up" because we need to first re-map `arguments` and `this`
     // Requiring the function as the "floor" allows us to build bottom up, at the expense of some useless re-traversals...
     // This normalization is currently not applied to generators or async functions. Not sure what the ramification is.
-    // YOYO
+    // YOYO, if-else
     if (false) {
       const funcNode = ifelseStack[ifelseStack.length - 1];
       if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
@@ -5403,34 +5405,11 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
 
-  function transformLabeledStatement(node, body, i, parent) {
+  function transformLabeledStatement(node, body, i, parentNode) {
     vlog('Label: `' + node.label.name + '`');
 
-    // Note: if the parent changes and triggers a revisit, then the label would already have been registered
-    //ASSERT(
-    //  !fdata.globallyUniqueLabelRegistry.has(node.label.name),
-    //  'js syntax governs that a label is unique in its own hierarchy and phase1 should make existing labels unique',
-    //  node,
-    //);
-
-    if (fdata.globallyUniqueLabelRegistry.has(node.label.name)) {
-      vlog(
-        'Label was already registered. Probably artifact of re-traversal. Overwriting registry with fresh object since it ought to be scoped.',
-      );
-    }
-
-    vlog('Registering label `' + node.label.name + '`');
-    const labelMeta = {
-      // ident meta data
-      name: node.label.name,
-      uniqueName: node.label.name,
-      labelNode: {
-        body,
-        index: i, // Make sure to update below if the index changes
-      },
-      usages: [], // {parent, prop, index} of the break/continue statement referring to the label
-    };
-    fdata.globallyUniqueLabelRegistry.set(node.label.name, labelMeta);
+    ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'labels registry should be populated in prepare');
+    const labelMeta = fdata.globallyUniqueLabelRegistry.get(node.label.name);
 
     // foo: bar
     // foo: {bar}
@@ -5459,7 +5438,7 @@ export function phaseNormalize(fdata, fname) {
         if (!changed) {
           after('Label body did not change at all');
 
-          if (labelMeta.usages.length === 0) {
+          if (labelMeta.labelUsageMap.size === 0) {
             vlog('Label was not used in any of its children. Should be safe to eliminate.');
             rule('Unused labels must be dropped; unchanged loop body');
             example('foo: {}', '{}');
@@ -5480,7 +5459,7 @@ export function phaseNormalize(fdata, fname) {
         if (fakeWrapper.body.length === 1 && fakeWrapper.body[0] === node.body) {
           vlog('Something changed but the node stays put');
 
-          if (labelMeta.usages.length === 0) {
+          if (labelMeta.labelUsageMap.size === 0) {
             vlog('Label was not used in any of its children. Should be safe to eliminate.');
             rule('Unused labels must be dropped; changed loop body');
             example('foo: {}', '{}');
@@ -5495,8 +5474,6 @@ export function phaseNormalize(fdata, fname) {
           return false; // No need to change anything in this body
         }
 
-        vlog('Unregistering label `' + node.label.name + '` (a) because something changed. This declaration will be visited again.');
-        fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
         assertNoDupeNodes(fakeWrapper, 'body');
 
         if (fakeWrapper.body.length === 0) {
@@ -5523,7 +5500,7 @@ export function phaseNormalize(fdata, fname) {
         }
 
         vlog('Labeled statement changed. Replacing the whole deal.');
-        before(node, parent);
+        before(node, parentNode);
         // Outline every element but the last and put them in front of the label. Replace the label
         // with a new label that has the last element as a body. It's a different node now.
         const newNodes = [
@@ -5544,9 +5521,6 @@ export function phaseNormalize(fdata, fname) {
       const newNode = AST.labeledStatement(node.label, AST.blockStatement(node.body));
       body.splice(i, 1, newNode);
 
-      vlog('Unregistering label `' + node.label.name + '` because we added a block. This declaration will be visited again.');
-      fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
-
       after(newNode);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
@@ -5558,10 +5532,6 @@ export function phaseNormalize(fdata, fname) {
     const anyChange = transformBlock(node.body, undefined, -1, node, false);
     ifelseStack.pop();
     vlog('Changes?', anyChange);
-    if (anyChange) {
-      vlog('Unregistering label `' + node.label.name + '` (b) because something changed. This declaration will be visited again.');
-      fdata.globallyUniqueLabelRegistry.delete(node.label.name); // This node will be revisited so remove it for now
-    }
 
     if (node.body.type === 'BlockStatement' && node.body.body.length === 0) {
       rule('Labeled statement with empty sub statement should be dropped');
@@ -5575,7 +5545,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (!anyChange && labelMeta.usages.length === 0) {
+    if (!anyChange && labelMeta.labelUsageMap.size === 0) {
       vlog('Label was not used in any of its children. Should be safe to eliminate.');
       rule('Unused labels must be dropped; non-loop body');
       example('foo: {}', '{}');
@@ -5586,6 +5556,168 @@ export function phaseNormalize(fdata, fname) {
       after(body[i]);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
+    }
+
+    const funcNode = ifelseStack[ifelseStack.length - 1];
+    if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
+      // This is a labeled statement that is the direct child of a function
+      // If not, the body is a loop and we'll deal with that later.
+      if (node.body.type === 'BlockStatement') {
+        // This is an artifact of the switch statement (and just valid code, although you'll hardly ever find it in the wild)
+        rule('Labeled block as direct child of function. Eliminate it.');
+        example(
+          'function f() { before(); foo: { inside(); break foo; } after(); } f();',
+          'function f(){ function c() { after(); } before(); foo: { inside(); return c(); } return c(); } f();',
+        );
+        before(node);
+
+        // Find all references to this label. They must be breaks (because continues can only target loop labels and this wasnt one).
+        // Round up all statements after the label into function c. Replace all breaks to the label with a `return c()`. Replace
+        // the statements after the label (which were put in `c`) with a `return c()` as well.
+        // Algo is same as for if-else. The only danger is `this` and `arguments` references but we have already covered those.
+
+        // - Collect all bindings created before the binding
+        // - Abstract all other nodes after the label `node` into a fresh function (c)
+        // - Every `break` to the current label should be replaced with a return of calling the new function
+        // - The label should be followed by a return of the new function, replacing the other statements
+        // - If there were other `return` statements (or other abrubt completions) then DCE will take care of it
+
+        // We are on the way down the transform so the body should be normalized, meaning all decls should
+        // be let or const variable declarations now. Collect them up to the label and pass them in all calls to c.
+
+        const declaredBindings = [];
+        //for (let j = 0; j < i; ++j) {
+        //  const snode = parentNode.body[j];
+        //  if (snode.type === 'VariableDeclaration') {
+        //    ASSERT(snode.kind === 'let' || snode.kind === 'const');
+        //    ASSERT(snode.declarations.length === 1);
+        //    ASSERT(snode.declarations[0].id.type === 'Identifier');
+        //    declaredBindings.push(snode.declarations[0].id.name);
+        //  }
+        //}
+
+        // Argument/parameter names to use for all functions and all calls. Let other rules eliminate them.
+        const apNames = funcNode.params.map((n) => (n.type === 'RestElement' ? n.argument.name : n.name)).concat(declaredBindings);
+        vlog('Local bindings found:', apNames);
+        // The remainder of the function after the if-else.
+        const bodyRest = parentNode.body.slice(i + 1);
+        body.length = i + 1; // Drop everything after this node
+
+        if (bodyRest.length === 0) {
+          vlog('No code follows the labeled body so no need for a temp function to hold it');
+
+          body.splice(i, 1, node.body);
+
+          // Replace all `break foo` cases pointing to this label with a return statement with `undefined`
+          ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node);
+          const labelUsageMap = fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap;
+          labelUsageMap.forEach(({ node, body, index }, pid) => {
+            const finalNode = AST.returnStatement(AST.identifier('undefined'));
+            ASSERT(body[index] === node, 'should not be stale', parentNode);
+            body[index] = finalNode;
+
+            labelUsageMap.delete(pid);
+          });
+
+          if (VERBOSE_TRACING) {
+            vlog(
+              '\nComplete AST after applying "Eliminated labeled statement" rule\n--------------\n' +
+                fmat(tmat(ast)) +
+                '\n--------------\n',
+            );
+          }
+        } else {
+          // If we took the same approach as nested if-else then the fresh function ends up being a local binding
+          // which would be passed on to if-else abstractions and currently we would not be able tp eliminate it.
+          // (Hopefully that changes in the future but for the time being, that's not going to change, I guess)
+          // To get around this we could define the function outside of the current scope. The function may still
+          // contain closure access to any of the scopes above so we would need access to the parent node in order
+          // to put the fresh function there. If that's possible then that's probably the most ideal way.
+          // Alternatively we can wrap the tail (code after the labeled statement) and the rest of the function
+          // and then compile a call to the fresh function at the end of the "rest" function. This way the
+          // labeled block transform would be able to use the more efficient version (which does not add a function)
+          // and it can still all be eliminated. Downside is what happens if the function can't be inlined
+          // after all... I think we should be okay once we implement the rule that a function that is called
+          // once should be inlined. The function covering everything uptoandincluding the label would always
+          // be called exactly once so it would be a way around causing the temporary function being passed on as
+          // a local binding at the cost of some extra cycles (it requires a full pass to get back around).
+
+          // Create a function for the code that follows the label. It is automatically called at the end of the block
+          // and all occurrences of `break` with node.label as target are replaced with a return of calling that func
+          const tmpNameC = createFreshVar('tmpBranchingC', fdata);
+          const primeC = AST.functionExpression(
+            apNames.map((s) => AST.identifier(s)),
+            bodyRest,
+            { id: createFreshVar('tmpUnusedPrimeFuncNameC', fdata) },
+          );
+          const primeCcloned = cloneFunctionNode(primeC, undefined, [], fdata).expression;
+          {
+            primeCcloned.id = AST.identifier(tmpNameC);
+            source(primeCcloned);
+            primeCcloned.id = null;
+          }
+
+          // Replace all `break foo` cases pointing to this label with a return statement calling the new function
+          // Other rules will normalize this back and away if it's a noop but this way we can safely eliminate the label.
+          ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node);
+          const labelUsageMap = fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap;
+          labelUsageMap.forEach(({ node, body, index }, pid) => {
+            const finalNode = AST.returnStatement(
+              AST.callExpression(
+                tmpNameC,
+                apNames.map((s) => AST.identifier(s)),
+              ),
+            );
+            ASSERT(body[index] === node, 'should not be stale', parentNode);
+            body[index] = finalNode;
+
+            labelUsageMap.delete(pid);
+          });
+
+          const tmpNameB = createFreshVar('tmpLabeledBlockFunc', fdata);
+          const primeB = AST.functionExpression(
+            apNames.map((s) => AST.identifier(s)),
+            body.slice(0, i).concat(node.body.body, [
+              AST.returnStatement(
+                AST.callExpression(
+                  tmpNameC,
+                  apNames.map((s) => AST.identifier(s)),
+                ),
+              ),
+            ]),
+            { id: createFreshVar('tmpUnusedPrimeFuncNameB', fdata) },
+          );
+          const primeBcloned = cloneFunctionNode(primeB, undefined, [], fdata).expression;
+          {
+            primeBcloned.id = AST.identifier(tmpNameB);
+            source(primeBcloned);
+            primeBcloned.id = null;
+          }
+
+          body.length = 0; // The whole body has been split up between B and C so clear it before we inject them
+          body.push(
+            AST.variableDeclaration(tmpNameC, primeCcloned, 'const'),
+            AST.variableDeclaration(tmpNameB, primeBcloned, 'const'),
+            AST.returnStatement(
+              AST.callExpression(
+                tmpNameB,
+                apNames.map((s) => AST.identifier(s)),
+              ),
+            ),
+          );
+
+          if (VERBOSE_TRACING) {
+            vlog(
+              '\nComplete AST after applying "Eliminated labeled statement" rule\n--------------\n' +
+                fmat(tmat(ast)) +
+                '\n--------------\n',
+            );
+          }
+        }
+
+        after(parentNode);
+        return true;
+      }
     }
 
     return anyChange;

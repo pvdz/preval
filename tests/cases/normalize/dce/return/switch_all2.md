@@ -41,7 +41,12 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  const tmpSwitchValue = 1;
+  const tmpBranchingC = function () {};
+  const tmpLabeledBlockFunc = function () {
+    const tmpSwitchValue$1 = 1;
+  };
+  const tmpReturnArg = tmpLabeledBlockFunc();
+  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

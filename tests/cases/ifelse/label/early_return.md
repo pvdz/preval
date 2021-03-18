@@ -45,13 +45,21 @@ f();
 
 `````js filename=intro
 let f = function () {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(100);
-    return 20;
-  } else {
+  const tmpBranchingC = function () {
     $('after');
-  }
+  };
+  const tmpLabeledBlockFunc = function () {
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+      $(100);
+      return 20;
+    } else {
+      const tmpReturnArg = tmpBranchingC();
+      return tmpReturnArg;
+    }
+  };
+  const tmpReturnArg$1 = tmpLabeledBlockFunc();
+  return tmpReturnArg$1;
 };
 f();
 `````
@@ -59,8 +67,8 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(true);
-if (tmpIfTest) {
+const tmpIfTest$1 = $(true);
+if (tmpIfTest$1) {
   $(100);
 } else {
   $('after');

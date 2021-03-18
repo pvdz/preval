@@ -479,6 +479,17 @@ export function prepareNormalization(fdata, resolve, req) {
               }
             }
           }
+
+          const parentNode = path.nodes[path.nodes.length - 2];
+          const parentProp = path.props[path.props.length - 1];
+          const parentIndex = path.indexes[path.indexes.length - 1];
+          ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node, fdata.globallyUniqueLabelRegistry);
+          fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push({
+            node,
+            parentNode,
+            parentProp,
+            parentIndex,
+          });
         } else {
           vlog('No label');
           let index = fenceStack.length - 1;

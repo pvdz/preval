@@ -412,6 +412,7 @@ export function registerGlobalLabel(fdata, name, originalName, labelNode) {
     uniqueName: name,
     labelNode, // All referenced labels must exist (syntax error), labels must appear before their usage when traversing
     usages: [], // {parent, prop, index} of the break/continue statement referring to the label
+    labelUsageMap: new Map, // Map<labelName, {node, body, index}>. References to a label
   });
 }
 

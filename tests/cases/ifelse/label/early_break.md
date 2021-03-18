@@ -45,14 +45,22 @@ f();
 
 `````js filename=intro
 let f = function () {
-  foo: {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
+  const tmpBranchingC = function () {
+    $('after');
+  };
+  const tmpLabeledBlockFunc = function () {
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
       $(100);
-      break foo;
+      const tmpReturnArg = tmpBranchingC();
+      return tmpReturnArg;
+    } else {
+      const tmpReturnArg$1 = tmpBranchingC();
+      return tmpReturnArg$1;
     }
-  }
-  $('after');
+  };
+  const tmpReturnArg$2 = tmpLabeledBlockFunc();
+  return tmpReturnArg$2;
 };
 f();
 `````
@@ -60,14 +68,13 @@ f();
 ## Output
 
 `````js filename=intro
-foo: {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(100);
-    break foo;
-  }
+const tmpIfTest$1 = $(true);
+if (tmpIfTest$1) {
+  $(100);
+  $('after');
+} else {
+  $('after');
 }
-$('after');
 `````
 
 ## Globals

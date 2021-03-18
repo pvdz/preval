@@ -41,12 +41,10 @@ f();
 
 `````js filename=intro
 let f = function () {
-  foo: {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(100);
-      break foo;
-    }
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(100);
+    return undefined;
   }
 };
 f();
@@ -55,12 +53,9 @@ f();
 ## Output
 
 `````js filename=intro
-foo: {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(100);
-    break foo;
-  }
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  $(100);
 }
 `````
 

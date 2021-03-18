@@ -752,7 +752,9 @@ export function phaseNormalize(fdata, fname) {
       body.push(
         ...toKeep.map((node) => {
           if (node.type === 'VariableDeclaration') {
-            return AST.variableDeclaration(node.declarations[0].id.name, AST.literal(0), 'const');
+            // Note: we're keeping the kind because even if we could force it to be a constant, that would
+            //       throw off certain assertions about how many writes a constant may have. whatever.
+            return AST.variableDeclaration(node.declarations[0].id.name, AST.literal(0), node.kind);
           } else {
             if (node.type === 'FunctionDeclaration' || node.type === 'ClassDeclaration') {
               throw ASSERT(false, 'these should be eliminated while hoisting');

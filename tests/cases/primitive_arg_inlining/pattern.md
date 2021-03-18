@@ -71,21 +71,9 @@ $(out);
 ## Output
 
 `````js filename=intro
-const f = function (op) {
-  let ap = undefined;
-  const useDef = op === undefined;
-  if (useDef) {
-    const p = { a: 'fail' };
-    ap = $(p);
-  } else {
-    ap = op;
-  }
-  const tmpCalleeParam$2 = [];
-  const x = objPatternRest(ap, tmpCalleeParam$2, undefined);
-  return x;
-};
-const out = f('abc');
-$(out);
+const tmpCalleeParam$2 = [];
+const x = objPatternRest('abc', tmpCalleeParam$2, undefined);
+$(x);
 `````
 
 ## Globals

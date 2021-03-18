@@ -86,29 +86,25 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = function () {
-  const a$1 = {
-    a() {
-      return a$1;
-    },
-    b() {
-      return a$1;
-    },
-    c() {
-      return a$1;
-    },
-    d() {
-      return a$1;
-    },
-  };
-  return a$1;
-};
 let tmpCalleeParam = undefined;
-const tmpChainElementCall = a();
-const tmpChainElementObject = tmpChainElementCall.b;
+const a$1 = {
+  a() {
+    return a$1;
+  },
+  b() {
+    return a$1;
+  },
+  c() {
+    return a$1;
+  },
+  d() {
+    return a$1;
+  },
+};
+const tmpChainElementObject = a$1.b;
 const tmpIfTest = tmpChainElementObject != null;
 if (tmpIfTest) {
-  const tmpChainElementCall$1 = tmpChainElementObject.call(tmpChainElementCall);
+  const tmpChainElementCall$1 = tmpChainElementObject.call(a$1);
   const tmpChainElementObject$1 = tmpChainElementCall$1.c;
   const tmpChainElementCall$2 = tmpChainElementObject$1.call(tmpChainElementCall$1);
   const tmpChainElementObject$2 = tmpChainElementCall$2.d;

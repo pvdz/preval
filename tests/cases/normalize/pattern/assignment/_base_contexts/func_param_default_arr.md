@@ -48,21 +48,10 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  let a = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
-  if (tmpIfTest) {
-    const tmpNestedAssignArrPatternRhs = [100];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    a = tmpNestedAssignArrPatternRhs;
-  } else {
-    a = tmpParamDefault;
-  }
-  const tmpReturnArg = $(a);
-  return tmpReturnArg;
-};
-f();
+const tmpNestedAssignArrPatternRhs = [100];
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+x = arrPatternSplat[0];
+$(tmpNestedAssignArrPatternRhs);
 `````
 
 ## Globals

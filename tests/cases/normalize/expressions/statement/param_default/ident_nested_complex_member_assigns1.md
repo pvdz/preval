@@ -53,14 +53,11 @@ $(100);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpAssignMemLhsObj = $(b);
-  const varInitAssignLhsComputedObj = $(b);
-  varInitAssignLhsComputedObj.x = 3;
-  tmpAssignMemLhsObj.x = 3;
-};
 const b = { x: 1 };
-f();
+const tmpAssignMemLhsObj = $(b);
+const varInitAssignLhsComputedObj = $(b);
+varInitAssignLhsComputedObj.x = 3;
+tmpAssignMemLhsObj.x = 3;
 $(100);
 `````
 

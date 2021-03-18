@@ -43,14 +43,10 @@ tmpCallCallee$1(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCallCallee = $(parseInt);
-  const y = tmpCallCallee();
-  const tmpReturnArg = $(y);
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpCallCallee = $(parseInt);
+const y = tmpCallCallee();
+const tmpReturnArg = $(y);
+$(tmpReturnArg);
 `````
 
 ## Globals

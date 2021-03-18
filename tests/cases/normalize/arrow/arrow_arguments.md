@@ -66,12 +66,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   const tmpPrevalAliasArgumentsAny = arguments;
-  const g = function () {
-    const tmpReturnArg = tmpPrevalAliasArgumentsAny[0];
-    return tmpReturnArg;
-  };
-  const tmpReturnArg$1 = g();
-  return tmpReturnArg$1;
+  const tmpReturnArg = tmpPrevalAliasArgumentsAny[0];
+  return tmpReturnArg;
 };
 const tmpCalleeParam = f(100);
 $(tmpCalleeParam);

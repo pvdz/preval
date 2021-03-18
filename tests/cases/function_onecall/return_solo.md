@@ -57,17 +57,10 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const g = function () {
-    $('a');
-    $('b');
-    const tmpReturnArg = $('ab');
-    return tmpReturnArg;
-  };
-  g();
-  $('c');
-};
-f();
+$('a');
+$('b');
+$('ab');
+$('c');
 `````
 
 ## Globals

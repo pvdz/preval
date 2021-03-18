@@ -50,14 +50,8 @@ tmpCallCallee$1(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const objPatternNoDefault = tmpParamPattern.x;
-  const tmpCalleeParam$1 = [];
-  objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
-  return 'bad';
-};
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
+undefined.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

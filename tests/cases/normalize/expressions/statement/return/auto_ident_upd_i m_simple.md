@@ -53,16 +53,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpPostUpdArgIdent = b;
-  b = b - 1;
-  return tmpPostUpdArgIdent;
-};
-let b = 1;
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, b);
+$(1);
+$(a, 0);
 `````
 
 ## Globals

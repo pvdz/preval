@@ -60,17 +60,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const b = { x: 1 };
-  const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  $(tmpNestedPropCompoundComplexRhs, b);
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const b = { x: 1 };
+const tmpCalleeParam = $(b);
+const tmpNestedAssignObj = $(tmpCalleeParam);
+const tmpBinLhs = tmpNestedAssignObj.x;
+const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+$(tmpNestedPropCompoundComplexRhs, b);
+$(undefined);
 `````
 
 ## Globals

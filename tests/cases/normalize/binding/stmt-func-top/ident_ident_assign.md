@@ -55,14 +55,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpNestedAssignObj = $(3);
-  const tmpNestedAssignPropRhs = $(4);
-  tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-  $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpNestedAssignObj = $(3);
+const tmpNestedAssignPropRhs = $(4);
+tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
+$(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
+$(undefined);
 `````
 
 ## Globals

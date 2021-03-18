@@ -59,22 +59,19 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = $(0);
-  let SSA_a = $(tmpCalleeParam);
+const tmpCalleeParam = $(0);
+let SSA_a = $(tmpCalleeParam);
+if (SSA_a) {
+} else {
+  const tmpCalleeParam$1 = $(1);
+  SSA_a = $(tmpCalleeParam$1);
   if (SSA_a) {
-  } else {
-    const tmpCalleeParam$1 = $(1);
-    SSA_a = $(tmpCalleeParam$1);
-    if (SSA_a) {
-      const tmpCalleeParam$2 = $(2);
-      SSA_a = $(tmpCalleeParam$2);
-    }
+    const tmpCalleeParam$2 = $(2);
+    SSA_a = $(tmpCalleeParam$2);
   }
-  $(SSA_a);
-};
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
+}
+$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

@@ -55,22 +55,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const objPatternNoDefault = tmpParamPattern.x;
-  let objPatternCrashTest = objPatternNoDefault === undefined;
-  if (objPatternCrashTest) {
-  } else {
-    objPatternCrashTest = objPatternNoDefault === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternNoDefault.cannotDestructureThis;
-    return 'ok';
-  } else {
-    return 'ok';
-  }
-};
 const tmpCalleeParam = { x: undefined };
-f(tmpCalleeParam);
+const objPatternNoDefault = tmpCalleeParam.x;
+let objPatternCrashTest = objPatternNoDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternNoDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternNoDefault.cannotDestructureThis;
+}
 `````
 
 ## Globals

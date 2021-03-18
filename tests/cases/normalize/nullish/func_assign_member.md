@@ -51,17 +51,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  let SSA_y = $();
-  const tmpIfTest = SSA_y == null;
-  if (tmpIfTest) {
-    SSA_y = foo;
-  }
-  const tmpReturnArg = $(SSA_y);
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+let SSA_y = $();
+const tmpIfTest = SSA_y == null;
+if (tmpIfTest) {
+  SSA_y = foo;
+}
+const tmpReturnArg = $(SSA_y);
+$(tmpReturnArg);
 `````
 
 ## Globals

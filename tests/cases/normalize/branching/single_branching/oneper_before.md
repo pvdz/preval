@@ -126,38 +126,29 @@ X('a', 'b', 'c', 'd', 'e');
 ## Output
 
 `````js filename=intro
-const X = function (a, b, c, d, e) {
-  const f = a.length;
-  const g = 0 === f;
-  if (g) {
-    return -1;
+let c = 'c';
+let d = 'd';
+const h = typeof c;
+const i = 'string' == h;
+if (i) {
+  d = c;
+  c = 'no';
+} else {
+  const j = 2147483647 < c;
+  if (j) {
+    c = 2147483647;
   } else {
-    const h = typeof c;
-    const i = 'string' == h;
-    if (i) {
-      d = c;
-      c = 'no';
-    } else {
-      const j = 2147483647 < c;
-      if (j) {
-        c = 2147483647;
-      } else {
-        const k = -2147483648 > c;
-        if (k) {
-          c = -2147483648;
-        }
-      }
-    }
-    const l = +c;
-    const m = isNaN(l);
-    if (m) {
-      const n = a.length;
-      const SSA_l = n - 1;
-      $(a, b, c, d, e, f, g, h, i, SSA_l, m);
+    const k = -2147483648 > c;
+    if (k) {
+      c = -2147483648;
     }
   }
-};
-X('a', 'b', 'c', 'd', 'e');
+}
+const l = +c;
+const m = isNaN(l);
+if (m) {
+  $('a', 'b', c, d, 'e', 1, false, h, i, 0, m);
+}
 `````
 
 ## Globals

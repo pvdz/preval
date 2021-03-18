@@ -62,14 +62,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = [1, 2, 3];
-  $(tmpCalleeParam);
-  x = 'number';
-};
-let x = 0;
-f();
-$(x);
+const tmpCalleeParam = [1, 2, 3];
+$(tmpCalleeParam);
+$('number');
 `````
 
 ## Globals

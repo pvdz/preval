@@ -54,16 +54,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpIfTest = $(false);
-  if (tmpIfTest) {
-    x = $('fail too');
-  }
-  throw 'exit';
-  let x = $('fail');
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpIfTest = $(false);
+if (tmpIfTest) {
+  x = $('fail too');
+}
+throw 'exit';
+let x = 0;
 `````
 
 ## Globals

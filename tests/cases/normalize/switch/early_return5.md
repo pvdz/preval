@@ -76,12 +76,9 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  $('b');
-  $('after inner');
-  $('after outer');
-};
-f();
+$('b');
+$('after inner');
+$('after outer');
 `````
 
 ## Globals

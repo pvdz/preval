@@ -49,16 +49,13 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  let x = undefined;
-  $(x);
-  const tmpForOfRhs = [100];
-  for (x of tmpForOfRhs) {
-    $(x, 'for');
-  }
-  $(x);
-};
-f();
+let x = undefined;
+$(x);
+const tmpForOfRhs = [100];
+for (x of tmpForOfRhs) {
+  $(x, 'for');
+}
+$(x);
 `````
 
 ## Globals

@@ -45,10 +45,8 @@ x();
 ## Output
 
 `````js filename=intro
-const x = function (tmpParamPattern) {
-  tmpParamPattern.x$1;
-};
-x();
+undefined.x$1;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

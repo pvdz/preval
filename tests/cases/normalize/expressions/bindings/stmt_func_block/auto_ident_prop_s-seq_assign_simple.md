@@ -54,13 +54,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const b = { c: 1 };
-  b.c = 2;
-  $(2, b);
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const b = { c: 1 };
+b.c = 2;
+$(2, b);
+$(undefined);
 `````
 
 ## Globals

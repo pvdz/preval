@@ -47,8 +47,8 @@ tmpCallCompVal.call(tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);
 `````js filename=intro
 const a = { b: $ };
 const tmpCallCompObj = $(a);
-const tmpCallCompProp = $('b');
-const tmpCallCompVal = tmpCallCompObj[tmpCallCompProp];
+const tmpReturnArg = $('b');
+const tmpCallCompVal = tmpCallCompObj[tmpReturnArg];
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 tmpCallCompVal.call(tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);

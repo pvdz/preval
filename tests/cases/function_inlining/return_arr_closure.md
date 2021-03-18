@@ -58,18 +58,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const g = function () {
-  const f = function () {
-    const tmpReturnArg = [10, y, z];
-    return tmpReturnArg;
-  };
-  const y = $(20);
-  const z = $(30);
-  const tmpCalleeParam = f();
-  $(tmpCalleeParam);
-};
-const tmpCalleeParam$1 = g();
-$(tmpCalleeParam$1);
+const y = $(20);
+const z = $(30);
+const tmpReturnArg = [10, y, z];
+$(tmpReturnArg);
+$(undefined);
 `````
 
 ## Globals

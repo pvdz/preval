@@ -55,19 +55,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = [1, 2];
-  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  a = arrPatternSplat[0];
-  return tmpNestedAssignArrPatternRhs;
-};
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat$1 = [...bindingPatternArrRoot];
-let a = arrPatternSplat$1[0];
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-$(a);
+arrPatternSplat$1[0];
+const tmpCalleeParam = [1, 2];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const SSA_a = arrPatternSplat[0];
+$(tmpNestedAssignArrPatternRhs);
+$(SSA_a);
 `````
 
 ## Globals

@@ -64,22 +64,19 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const obj = {
-    get x() {
-      const tmpReturnArg = $(10);
-      return tmpReturnArg;
-    },
-    set x(_) {
-      $(20);
-    },
-  };
-  const tmpAssignComMemLhsObj = $(obj);
-  const tmpAssignComMemLhsProp = $('x');
-  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
+const obj = {
+  get x() {
+    const tmpReturnArg = $(10);
+    return tmpReturnArg;
+  },
+  set x(_) {
+    $(20);
+  },
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpAssignComMemLhsObj = $(obj);
+const tmpAssignComMemLhsProp = $('x');
+tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
+$(undefined);
 `````
 
 ## Globals

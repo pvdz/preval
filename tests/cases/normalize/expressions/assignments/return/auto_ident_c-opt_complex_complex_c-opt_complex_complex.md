@@ -66,29 +66,24 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  a = undefined;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainRootComputed = $('x');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject != null;
-    if (tmpIfTest$1) {
-      const tmpChainRootComputed$1 = $('y');
-      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-      a = tmpChainElementObject$1;
-    }
-  }
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+let SSA_a = undefined;
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpChainRootComputed = $('x');
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
+    const tmpChainRootComputed$1 = $('y');
+    const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+    SSA_a = tmpChainElementObject$1;
+  }
+}
+const tmpReturnArg = SSA_a;
+$(tmpReturnArg);
+$(SSA_a);
 `````
 
 ## Globals

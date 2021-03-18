@@ -54,22 +54,18 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = ['pass'];
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  const arrPatternSplat = [...objPatternAfterDefault];
-  const y = arrPatternSplat.slice(0);
-  return y;
-};
-const tmpCalleeParam$1 = f('', 10);
-$(tmpCalleeParam$1);
+const objPatternBeforeDefault = ''.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam = ['pass'];
+  objPatternAfterDefault = $(tmpCalleeParam);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const arrPatternSplat = [...objPatternAfterDefault];
+const y = arrPatternSplat.slice(0);
+$(y);
 `````
 
 ## Globals

@@ -58,18 +58,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-  tmpPostUpdArgObj.x = tmpAssignMemRhs;
-  return tmpPostUpdArgVal;
-};
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpCalleeParam = $(b);
+const tmpPostUpdArgObj = $(tmpCalleeParam);
+const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+tmpPostUpdArgObj.x = tmpAssignMemRhs;
+$(tmpPostUpdArgVal);
 $(a, b);
 `````
 

@@ -65,21 +65,17 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $('x');
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedProp$1 = $('y');
-  const varInitAssignLhsComputedRhs$1 = $(3);
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-  return varInitAssignLhsComputedRhs$1;
-};
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $('y');
+const varInitAssignLhsComputedRhs$1 = $(3);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+$(varInitAssignLhsComputedRhs$1);
 $(a, b, c, 3);
 `````
 

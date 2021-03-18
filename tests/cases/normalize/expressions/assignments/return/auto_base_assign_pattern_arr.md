@@ -58,21 +58,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  b = arrPatternSplat[0];
-  a = tmpNestedAssignArrPatternRhs;
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let b = [];
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-$(a, b);
+const tmpArrElement = $(2);
+const tmpCalleeParam = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const SSA_b = arrPatternSplat[0];
+$(tmpNestedAssignArrPatternRhs);
+$(tmpNestedAssignArrPatternRhs, SSA_b);
 `````
 
 ## Globals

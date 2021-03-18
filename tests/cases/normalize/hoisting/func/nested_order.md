@@ -67,14 +67,11 @@ tmpCallCallee$1(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = $();
-  const tmpCalleeParam$1 = $();
-  const tmpCalleeParam$2 = $();
-  $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
-};
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
+const tmpCalleeParam = $();
+const tmpCalleeParam$1 = $();
+const tmpCalleeParam$2 = $();
+$(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+$(undefined);
 `````
 
 ## Globals

@@ -55,18 +55,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpNewCallee = $($);
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
-  a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$2 = f();
-$(tmpCalleeParam$2);
-$(a);
+const tmpNewCallee = $($);
+const tmpCalleeParam = $(1);
+const tmpCalleeParam$1 = $(2);
+const SSA_a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(SSA_a);
+$(SSA_a);
 `````
 
 ## Globals

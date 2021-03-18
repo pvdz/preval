@@ -55,16 +55,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = $(1);
-  let SSA_a = $(tmpCalleeParam);
-  if (SSA_a) {
-    SSA_a = 2;
-  }
-  $(SSA_a);
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpCalleeParam = $(1);
+let SSA_a = $(tmpCalleeParam);
+if (SSA_a) {
+  SSA_a = 2;
+}
+$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

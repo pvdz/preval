@@ -132,33 +132,30 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  $('-------- start');
-  const b = {
-    get foo() {
-      const tmpReturnArg = $(2);
-      return tmpReturnArg;
-    },
-    set foo(x) {
-      const tmpReturnArg$1 = $(3);
-      return tmpReturnArg$1;
-    },
-  };
-  $('-------- bound');
-  $('-------- let 1');
-  b.foo = 5;
-  $(5);
-  $('-------- test case');
-  $(5);
-  $('-------- a');
-  const tmpCalleeParam$1 = b.foo;
-  $(tmpCalleeParam$1);
-  $('-------- a.foo');
-  b.foo = 4;
-  $(4);
-  $('-------- a.foo = 4');
+$('-------- start');
+const b = {
+  get foo() {
+    const tmpReturnArg = $(2);
+    return tmpReturnArg;
+  },
+  set foo(x) {
+    const tmpReturnArg$1 = $(3);
+    return tmpReturnArg$1;
+  },
 };
-f();
+$('-------- bound');
+$('-------- let 1');
+b.foo = 5;
+$(5);
+$('-------- test case');
+$(5);
+$('-------- a');
+const tmpCalleeParam$1 = b.foo;
+$(tmpCalleeParam$1);
+$('-------- a.foo');
+b.foo = 4;
+$(4);
+$('-------- a.foo = 4');
 `````
 
 ## Globals

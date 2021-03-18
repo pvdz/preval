@@ -55,14 +55,11 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  $(undefined);
-  const arrAssignPatternRhs = [10];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  const SSA_x = arrPatternSplat[0];
-  $(SSA_x);
-};
-f();
+$(undefined);
+const arrAssignPatternRhs = [10];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const SSA_x = arrPatternSplat[0];
+$(SSA_x);
 `````
 
 ## Globals

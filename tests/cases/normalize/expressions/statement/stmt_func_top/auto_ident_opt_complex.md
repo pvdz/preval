@@ -55,18 +55,15 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const b = { x: 1 };
-  const a = { a: 999, b: 1000 };
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    tmpChainElementCall.x;
-  }
-  $(a);
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const b = { x: 1 };
+const a = { a: 999, b: 1000 };
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  tmpChainElementCall.x;
+}
+$(a);
+$(undefined);
 `````
 
 ## Globals

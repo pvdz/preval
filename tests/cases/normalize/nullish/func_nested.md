@@ -54,24 +54,20 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpObjLitVal$1 = $();
-  const tmpObjLitVal = { b: tmpObjLitVal$1 };
-  const obj = { a: tmpObjLitVal };
-  let tmpCalleeParam = obj;
-  const tmpIfTest = tmpCalleeParam == null;
-  if (tmpIfTest) {
-    tmpCalleeParam = a;
-  }
-  const tmpIfTest$1 = tmpCalleeParam == null;
-  if (tmpIfTest$1) {
-    tmpCalleeParam = b;
-  }
-  const tmpReturnArg = $(tmpCalleeParam);
-  return tmpReturnArg;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpObjLitVal$1 = $();
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+let tmpCalleeParam = obj;
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = a;
+}
+const tmpIfTest$1 = tmpCalleeParam == null;
+if (tmpIfTest$1) {
+  tmpCalleeParam = b;
+}
+const tmpReturnArg = $(tmpCalleeParam);
+$(tmpReturnArg);
 `````
 
 ## Globals

@@ -51,17 +51,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  $(10);
-  $(20);
-  const tmpReturnArg = [1, 2];
-  return tmpReturnArg;
-};
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(10);
+$(20);
+const tmpReturnArg = [1, 2];
+$(tmpReturnArg);
 $(a);
 `````
 

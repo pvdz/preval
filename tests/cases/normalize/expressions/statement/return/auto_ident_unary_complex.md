@@ -52,14 +52,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpUnaryArg = $(1);
-  const tmpReturnArg = typeof tmpUnaryArg;
-  return tmpReturnArg;
-};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpUnaryArg = $(1);
+const tmpReturnArg = typeof tmpUnaryArg;
+$(tmpReturnArg);
 $(a, 1);
 `````
 

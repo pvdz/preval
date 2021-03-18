@@ -78,25 +78,21 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = function () {
-  const a$1 = {
-    a() {
-      return a$1;
-    },
-    b() {
-      return a$1;
-    },
-    c() {
-      return a$1;
-    },
-    d() {
-      return a$1;
-    },
-  };
-  return a$1;
+const a$1 = {
+  a() {
+    return a$1;
+  },
+  b() {
+    return a$1;
+  },
+  c() {
+    return a$1;
+  },
+  d() {
+    return a$1;
+  },
 };
-const tmpCallObj$1 = a();
-const tmpCallObj = tmpCallObj$1.b();
+const tmpCallObj = a$1.b();
 const tmpCompObj = tmpCallObj.c();
 const tmpCalleeParam = tmpCompObj.d;
 $(tmpCalleeParam);

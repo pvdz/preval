@@ -59,29 +59,19 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
-  if (tmpIfTest) {
-    bindingPatternArrRoot = $('pass2');
-  } else {
-    bindingPatternArrRoot = tmpParamDefault;
-  }
-  const arrPatternSplat = [...bindingPatternArrRoot];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    arrPatternStep = $('fail');
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
-  const arrPatternSplat$1 = [...arrPatternStep];
-  const x = arrPatternSplat$1.slice(0);
-  return x;
-};
-const tmpCalleeParam = f(undefined, 200);
-$(tmpCalleeParam);
+const SSA_bindingPatternArrRoot = $('pass2');
+const arrPatternSplat = [...SSA_bindingPatternArrRoot];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  arrPatternStep = $('fail');
+} else {
+  arrPatternStep = arrPatternBeforeDefault;
+}
+const arrPatternSplat$1 = [...arrPatternStep];
+const x = arrPatternSplat$1.slice(0);
+$(x);
 `````
 
 ## Globals

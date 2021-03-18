@@ -59,23 +59,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  a = undefined;
-  const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpCallVal = tmpChainElementCall.call;
-    const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
-    a = tmpChainElementCall$1;
-  }
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$2 = f();
-$(tmpCalleeParam$2);
-$(a);
+let SSA_a = undefined;
+const tmpChainElementCall = $($);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpCallVal = tmpChainElementCall.call;
+  const tmpCalleeParam$1 = $(1);
+  const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
+  SSA_a = tmpChainElementCall$1;
+}
+const tmpReturnArg = SSA_a;
+$(tmpReturnArg);
+$(SSA_a);
 `````
 
 ## Globals

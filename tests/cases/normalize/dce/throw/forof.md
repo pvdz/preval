@@ -53,16 +53,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpForOfDeclRhs = [10, 20];
-  let x;
-  for (x of tmpForOfDeclRhs) {
-    const tmpThrowArg = $(1, 'throw');
-    throw tmpThrowArg;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpForOfDeclRhs = [10, 20];
+let x;
+for (x of tmpForOfDeclRhs) {
+  const tmpThrowArg = $(1, 'throw');
+  throw tmpThrowArg;
+}
+$(undefined);
 `````
 
 ## Globals

@@ -239,63 +239,13 @@ X();
 ## Output
 
 `````js filename=intro
-const X = function (a, b, c, d, e) {
-  const f = a.length;
-  const g = 0 === f;
-  if (g) {
-    return -1;
-  } else {
-    const tmpReturnArg = X_B(a, b, c, d, e, f, g);
-    return tmpReturnArg;
-  }
-};
-const X_B = function (a$1, b$1, c$1, d$1, e$1, f$1, g$1) {
-  const h = typeof c$1;
-  const i = 'string' == h;
-  if (i) {
-    const tmpReturnArg$1 = X_C(a$1, b$1, 0, c$1, e$1, f$1, g$1, h, true);
-    return tmpReturnArg$1;
-  } else {
-    const tmpReturnArg$2 = X_BB(a$1, b$1, c$1, d$1, e$1, f$1, g$1, h, false);
-    return tmpReturnArg$2;
-  }
-};
-const X_BB = function (a$3, b$3, c$3, d$3, e$3, f$3, g$3, h$2) {
-  const j = 2147483647 < c$3;
-  if (j) {
-    const tmpReturnArg$4 = X_C(a$3, b$3, 2147483647, d$3, e$3, f$3, g$3, h$2, false);
-    return tmpReturnArg$4;
-  } else {
-    const tmpReturnArg$5 = X_BBB(a$3, b$3, c$3, d$3, e$3, f$3, g$3, h$2);
-    return tmpReturnArg$5;
-  }
-};
-const X_BBB = function (a$5, b$5, c$5, d$5, e$5, f$5, g$5, h$4) {
-  const k = -2147483648 > c$5;
-  if (k) {
-    c$5 = -2147483648;
-  }
-  const tmpReturnArg$7 = X_C(a$5, b$5, c$5, d$5, e$5, f$5, g$5, h$4, false);
-  return tmpReturnArg$7;
-};
-const X_C = function (a$7, b$7, c$7, d$7, e$7, f$7, g$7, h$6, i$1) {
-  const l = +c$7;
-  const m = isNaN(l);
-  if (m) {
-    const n = a$7.length;
-    const SSA_l = n - false;
-    const tmpReturnArg$9 = $(a$7, b$7, c$7, d$7, e$7, f$7, g$7, h$6, i$1, SSA_l, m);
-    return tmpReturnArg$9;
-  }
-};
-X();
+undefined.length;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-isNaN
+None
 
 ## Result
 

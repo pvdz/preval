@@ -53,16 +53,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  $(undefined);
-  const arrAssignPatternRhs = [10];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  const SSA_x = arrPatternSplat[0];
-  $(SSA_x);
-  return SSA_x;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(undefined);
+const arrAssignPatternRhs = [10];
+const arrPatternSplat = [...arrAssignPatternRhs];
+const SSA_x = arrPatternSplat[0];
+$(SSA_x);
+$(SSA_x);
 `````
 
 ## Globals

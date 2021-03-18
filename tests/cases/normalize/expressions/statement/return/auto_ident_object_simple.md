@@ -47,13 +47,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpReturnArg = { x: 1, y: 2, z: 3 };
-  return tmpReturnArg;
-};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpReturnArg = { x: 1, y: 2, z: 3 };
+$(tmpReturnArg);
 $(a);
 `````
 

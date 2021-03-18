@@ -60,27 +60,23 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpObjLitVal$1 = $();
-  const tmpObjLitVal = { b: tmpObjLitVal$1 };
-  const obj = { a: tmpObjLitVal };
-  const tmpAssignMemLhsObj = obj.a;
-  tmpAssignMemLhsObj.b = 15;
-  let tmpCalleeParam = undefined;
-  const tmpIfTest = obj != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = obj.a;
-    const tmpIfTest$1 = tmpChainElementObject != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject$1 = tmpChainElementObject.b;
-      tmpCalleeParam = tmpChainElementObject$1;
-    }
+const tmpObjLitVal$1 = $();
+const tmpObjLitVal = { b: tmpObjLitVal$1 };
+const obj = { a: tmpObjLitVal };
+const tmpAssignMemLhsObj = obj.a;
+tmpAssignMemLhsObj.b = 15;
+let tmpCalleeParam = undefined;
+const tmpIfTest = obj != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = obj.a;
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject$1 = tmpChainElementObject.b;
+    tmpCalleeParam = tmpChainElementObject$1;
   }
-  const tmpReturnArg = $(tmpCalleeParam);
-  return tmpReturnArg;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+}
+const tmpReturnArg = $(tmpCalleeParam);
+$(tmpReturnArg);
 `````
 
 ## Globals

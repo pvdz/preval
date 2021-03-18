@@ -52,15 +52,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpDeleteObj = $(arg);
-  const tmpReturnArg = delete tmpDeleteObj.y;
-  return tmpReturnArg;
-};
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpDeleteObj = $(arg);
+const tmpReturnArg = delete tmpDeleteObj.y;
+$(tmpReturnArg);
 $(a, arg);
 `````
 

@@ -63,16 +63,13 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $('a');
-    $('c');
-  } else {
-    $('b');
-  }
-};
-f();
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  $('a');
+  $('c');
+} else {
+  $('b');
+}
 `````
 
 ## Globals

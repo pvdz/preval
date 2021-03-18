@@ -60,16 +60,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpArrElement = $(2);
-  const tmpCalleeParam = [tmpArrElement];
-  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  const SSA_b = arrPatternSplat[0];
-  $(tmpNestedAssignArrPatternRhs, SSA_b);
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpArrElement = $(2);
+const tmpCalleeParam = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const SSA_b = arrPatternSplat[0];
+$(tmpNestedAssignArrPatternRhs, SSA_b);
+$(undefined);
 `````
 
 ## Globals

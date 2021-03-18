@@ -49,16 +49,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const bindingPatternArrRoot = { a: 999, b: 1000 };
-  const arrPatternSplat = [...bindingPatternArrRoot];
-  const a = arrPatternSplat[0];
-  $(10);
-  $(20);
-  $(a);
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const bindingPatternArrRoot = { a: 999, b: 1000 };
+const arrPatternSplat = [...bindingPatternArrRoot];
+const a = arrPatternSplat[0];
+$(10);
+$(20);
+$(a);
+$(undefined);
 `````
 
 ## Globals

@@ -53,22 +53,18 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const arrPatternSplat = [...tmpParamPattern];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    arrPatternStep = $('fail');
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
-  const arrPatternSplat$1 = [...arrPatternStep];
-  arrPatternSplat$1.slice(0);
-  return 'bad';
-};
-const tmpCalleeParam = f(null, 200);
-$(tmpCalleeParam);
+const arrPatternSplat = [...null];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('fail');
+} else {
+  arrPatternStep = arrPatternBeforeDefault;
+}
+const arrPatternSplat$1 = [...arrPatternStep];
+arrPatternSplat$1.slice(0);
+$('bad');
 `````
 
 ## Globals

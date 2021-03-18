@@ -50,14 +50,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$2 = $(3);
-  const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-  $(a);
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$2 = $(3);
+const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+$(a);
+$(undefined);
 `````
 
 ## Globals

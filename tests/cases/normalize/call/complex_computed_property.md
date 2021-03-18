@@ -44,8 +44,8 @@ tmpCallCompObj[tmpCallCompProp](1);
 `````js filename=intro
 const a = { b: $ };
 const tmpCallCompObj = $(a);
-const tmpCallCompProp = $('b');
-tmpCallCompObj[tmpCallCompProp](1);
+const tmpReturnArg = $('b');
+tmpCallCompObj[tmpReturnArg](1);
 `````
 
 ## Globals

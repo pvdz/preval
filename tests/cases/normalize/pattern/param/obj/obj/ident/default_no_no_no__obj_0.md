@@ -49,14 +49,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const objPatternNoDefault = tmpParamPattern.x;
-  const y = objPatternNoDefault.y;
-  return y;
-};
 const tmpCalleeParam$1 = { x: 0, b: 11, c: 12 };
-const tmpCalleeParam = f(tmpCalleeParam$1, 10);
-$(tmpCalleeParam);
+const objPatternNoDefault = tmpCalleeParam$1.x;
+const y = objPatternNoDefault.y;
+$(y);
 `````
 
 ## Globals

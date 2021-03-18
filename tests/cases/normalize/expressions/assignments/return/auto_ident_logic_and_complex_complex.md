@@ -55,20 +55,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = $(1);
-  a = $(tmpCalleeParam);
-  if (a) {
-    const tmpCalleeParam$1 = $(2);
-    a = $(tmpCalleeParam$1);
-  }
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$2 = f();
-$(tmpCalleeParam$2);
-$(a);
+const tmpCalleeParam = $(1);
+let SSA_a = $(tmpCalleeParam);
+if (SSA_a) {
+  const tmpCalleeParam$1 = $(2);
+  SSA_a = $(tmpCalleeParam$1);
+}
+const tmpReturnArg = SSA_a;
+$(tmpReturnArg);
+$(SSA_a);
 `````
 
 ## Globals

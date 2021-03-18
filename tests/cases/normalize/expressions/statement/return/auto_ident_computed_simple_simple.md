@@ -51,14 +51,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpReturnArg = b.c;
-  return tmpReturnArg;
-};
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpReturnArg = b.c;
+$(tmpReturnArg);
 $(a, b);
 `````
 

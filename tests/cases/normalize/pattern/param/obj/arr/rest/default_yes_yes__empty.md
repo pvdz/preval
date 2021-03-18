@@ -63,31 +63,21 @@ tmpCallCallee$2(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
-  if (tmpIfTest) {
-    const tmpObjLitVal = ['pass2'];
-    const tmpCalleeParam = { x: tmpObjLitVal };
-    bindingPatternObjRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternObjRoot = tmpParamDefault;
-  }
-  const objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = ['fail'];
-    objPatternAfterDefault = $(tmpCalleeParam$1);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  const arrPatternSplat = [...objPatternAfterDefault];
-  const y = arrPatternSplat.slice(0);
-  return y;
-};
-const tmpCalleeParam$2 = f();
-$(tmpCalleeParam$2);
+const tmpObjLitVal = ['pass2'];
+const tmpCalleeParam = { x: tmpObjLitVal };
+const SSA_bindingPatternObjRoot = $(tmpCalleeParam);
+const objPatternBeforeDefault = SSA_bindingPatternObjRoot.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpCalleeParam$1 = ['fail'];
+  objPatternAfterDefault = $(tmpCalleeParam$1);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const arrPatternSplat = [...objPatternAfterDefault];
+const y = arrPatternSplat.slice(0);
+$(y);
 `````
 
 ## Globals

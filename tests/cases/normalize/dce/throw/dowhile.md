@@ -66,25 +66,22 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  let tmpDoWhileFlag = true;
-  while (true) {
-    let tmpIfTest = tmpDoWhileFlag;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = $(true);
-    }
-    if (tmpIfTest) {
-      tmpDoWhileFlag = false;
-      const tmpThrowArg = $(1, 'throw');
-      throw tmpThrowArg;
-    } else {
-      break;
-    }
+let tmpDoWhileFlag = true;
+while (true) {
+  let tmpIfTest = tmpDoWhileFlag;
+  if (tmpIfTest) {
+  } else {
+    tmpIfTest = $(true);
   }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+  if (tmpIfTest) {
+    tmpDoWhileFlag = false;
+    const tmpThrowArg = $(1, 'throw');
+    throw tmpThrowArg;
+  } else {
+    break;
+  }
+}
+$(undefined);
 `````
 
 ## Globals

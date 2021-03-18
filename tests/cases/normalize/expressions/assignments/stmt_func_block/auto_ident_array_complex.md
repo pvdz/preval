@@ -53,14 +53,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpArrElement = $(1);
-  const tmpArrElement$2 = $(3);
-  const SSA_a = [tmpArrElement, 2, tmpArrElement$2];
-  $(SSA_a);
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpArrElement = $(1);
+const tmpArrElement$2 = $(3);
+const SSA_a = [tmpArrElement, 2, tmpArrElement$2];
+$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

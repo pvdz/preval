@@ -56,18 +56,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const varInitAssignLhsComputedObj = $(b);
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
-  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-  return varInitAssignLhsComputedRhs;
-};
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const varInitAssignLhsComputedObj = $(b);
+const tmpCompObj = $(b);
+const tmpCompProp = $('d');
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
+$(varInitAssignLhsComputedRhs);
 $(a, b);
 `````
 

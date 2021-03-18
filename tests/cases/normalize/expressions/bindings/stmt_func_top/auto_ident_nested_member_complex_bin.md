@@ -64,19 +64,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const b = { x: 1 };
-  const c = { y: 2 };
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $('x');
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedProp$1 = $('y');
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-  $(7, b, c, 3, 4);
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const b = { x: 1 };
+const c = { y: 2 };
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $('y');
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+$(7, b, c, 3, 4);
+$(undefined);
 `````
 
 ## Globals

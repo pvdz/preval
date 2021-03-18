@@ -97,34 +97,31 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  $(100);
-  label1: {
-    const tmpIfTest = $(0);
-    if (tmpIfTest) {
-      label2: {
-        const tmpIfTest$1 = $(0);
-        if (tmpIfTest$1) {
-          label3: {
-            const tmpIfTest$2 = $(0);
-            if (tmpIfTest$2) {
-              break label2;
-            } else {
-              break label3;
-            }
+$(100);
+label1: {
+  const tmpIfTest = $(0);
+  if (tmpIfTest) {
+    label2: {
+      const tmpIfTest$1 = $(0);
+      if (tmpIfTest$1) {
+        label3: {
+          const tmpIfTest$2 = $(0);
+          if (tmpIfTest$2) {
+            break label2;
+          } else {
+            break label3;
           }
-          $('tail3');
-        } else {
-          break label1;
         }
+        $('tail3');
+      } else {
+        break label1;
       }
-      $('tail2');
     }
+    $('tail2');
   }
-  $('tail1');
-  $('end');
-};
-f();
+}
+$('tail1');
+$('end');
 `````
 
 ## Globals

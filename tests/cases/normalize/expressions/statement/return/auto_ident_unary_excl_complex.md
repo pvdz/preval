@@ -48,14 +48,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpUnaryArg = $(100);
-  const tmpReturnArg = !tmpUnaryArg;
-  return tmpReturnArg;
-};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpUnaryArg = $(100);
+const tmpReturnArg = !tmpUnaryArg;
+$(tmpReturnArg);
 $(a);
 `````
 

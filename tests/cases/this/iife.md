@@ -55,13 +55,10 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const t = $(1);
-  if (t) {
-    $(2);
-  }
-};
-f();
+const t = $(1);
+if (t) {
+  $(2);
+}
 `````
 
 ## Globals

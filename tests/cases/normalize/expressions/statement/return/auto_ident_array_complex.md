@@ -50,15 +50,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpArrElement = $(1);
-  const tmpArrElement$2 = $(3);
-  const tmpReturnArg = [tmpArrElement, 2, tmpArrElement$2];
-  return tmpReturnArg;
-};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpArrElement = $(1);
+const tmpArrElement$2 = $(3);
+const tmpReturnArg = [tmpArrElement, 2, tmpArrElement$2];
+$(tmpReturnArg);
 $(a);
 `````
 

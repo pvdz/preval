@@ -53,16 +53,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpUnaryArg = $(1);
-  a = typeof tmpUnaryArg;
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, 1);
+const tmpUnaryArg = $(1);
+const SSA_a = typeof tmpUnaryArg;
+$(SSA_a);
+$(SSA_a, 1);
 `````
 
 ## Globals

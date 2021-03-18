@@ -67,33 +67,23 @@ tmpCallCallee$3(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
-  if (tmpIfTest) {
-    const tmpArrElement = { a: 'pass2' };
-    const tmpCalleeParam = [tmpArrElement];
-    bindingPatternArrRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternArrRoot = tmpParamDefault;
-  }
-  const arrPatternSplat = [...bindingPatternArrRoot];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = { a: 'fail' };
-    arrPatternStep = $(tmpCalleeParam$1);
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
-  const tmpCalleeParam$2 = arrPatternStep;
-  const tmpCalleeParam$3 = [];
-  const x = objPatternRest(tmpCalleeParam$2, tmpCalleeParam$3, undefined);
-  return x;
-};
-const tmpCalleeParam$5 = f(undefined, 200);
-$(tmpCalleeParam$5);
+const tmpArrElement = { a: 'pass2' };
+const tmpCalleeParam = [tmpArrElement];
+const SSA_bindingPatternArrRoot = $(tmpCalleeParam);
+const arrPatternSplat = [...SSA_bindingPatternArrRoot];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpCalleeParam$1 = { a: 'fail' };
+  arrPatternStep = $(tmpCalleeParam$1);
+} else {
+  arrPatternStep = arrPatternBeforeDefault;
+}
+const tmpCalleeParam$2 = arrPatternStep;
+const tmpCalleeParam$3 = [];
+const x = objPatternRest(tmpCalleeParam$2, tmpCalleeParam$3, undefined);
+$(x);
 `````
 
 ## Globals

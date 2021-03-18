@@ -55,21 +55,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  a = undefined;
-  const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-    a = tmpChainElementCall$1;
-  }
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+let SSA_a = undefined;
+const tmpChainElementCall = $($);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
+  SSA_a = tmpChainElementCall$1;
+}
+const tmpReturnArg = SSA_a;
+$(tmpReturnArg);
+$(SSA_a);
 `````
 
 ## Globals

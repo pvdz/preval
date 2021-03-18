@@ -52,21 +52,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = ['fail'];
-    bindingPatternArrRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternArrRoot = tmpParamDefault;
-  }
-  const arrPatternSplat = [...bindingPatternArrRoot];
-  arrPatternSplat.slice(0);
-  return 'bad';
-};
-const tmpCalleeParam$1 = f(null, 200);
-$(tmpCalleeParam$1);
+const arrPatternSplat = [...null];
+arrPatternSplat.slice(0);
+$('bad');
 `````
 
 ## Globals

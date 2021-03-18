@@ -48,14 +48,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpBinBothLhs = $(1);
-  const tmpBinBothRhs = $(2);
-  const SSA_a = tmpBinBothLhs + tmpBinBothRhs;
-  $(SSA_a);
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpBinBothLhs = $(1);
+const tmpBinBothRhs = $(2);
+const SSA_a = tmpBinBothLhs + tmpBinBothRhs;
+$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

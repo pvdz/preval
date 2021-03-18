@@ -57,18 +57,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  return tmpNestedAssignObjPatternRhs;
-};
-let b = {};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-$(a, b);
+const tmpObjLitVal = $(2);
+const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+const SSA_b = tmpNestedAssignObjPatternRhs.b;
+$(tmpNestedAssignObjPatternRhs);
+$(a, SSA_b);
 `````
 
 ## Globals

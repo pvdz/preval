@@ -49,12 +49,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpThrowArg = $(1, 'throw');
-  throw tmpThrowArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpThrowArg = $(1, 'throw');
+throw tmpThrowArg;
 `````
 
 ## Globals

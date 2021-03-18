@@ -55,20 +55,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpIfTest = $(30);
-  if (tmpIfTest) {
-    a = 60;
-  } else {
-    const tmpCalleeParam = $(100);
-    a = $(tmpCalleeParam);
-  }
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpIfTest = $(30);
+if (tmpIfTest) {
+  a = 60;
+} else {
+  const tmpCalleeParam = $(100);
+  a = $(tmpCalleeParam);
+}
+const tmpReturnArg = a;
+$(tmpReturnArg);
 $(a);
 `````
 

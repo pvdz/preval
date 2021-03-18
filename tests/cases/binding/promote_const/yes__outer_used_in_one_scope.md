@@ -70,18 +70,12 @@ f();
 ## Output
 
 `````js filename=intro
-let x = undefined;
-const f = function () {
-  $('something');
-  x = 100;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(x);
-  }
-  $(x);
-  return x;
-};
-f();
+$('something');
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  $(100);
+}
+$(100);
 `````
 
 ## Globals

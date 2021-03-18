@@ -62,14 +62,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = [1, 2];
-  const arr = $(tmpCalleeParam);
-  x = [...arr, 20, 30, 40, 50, 60];
-};
-let x = 0;
-f();
-$(x);
+const tmpCalleeParam = [1, 2];
+const arr = $(tmpCalleeParam);
+const SSA_x = [...arr, 20, 30, 40, 50, 60];
+$(SSA_x);
 `````
 
 ## Globals

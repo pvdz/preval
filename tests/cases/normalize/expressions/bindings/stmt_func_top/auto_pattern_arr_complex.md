@@ -47,15 +47,12 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = [1, 2];
-  const bindingPatternArrRoot = $(tmpCalleeParam);
-  const arrPatternSplat = [...bindingPatternArrRoot];
-  const a = arrPatternSplat[0];
-  $(a);
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpCalleeParam = [1, 2];
+const bindingPatternArrRoot = $(tmpCalleeParam);
+const arrPatternSplat = [...bindingPatternArrRoot];
+const a = arrPatternSplat[0];
+$(a);
+$(undefined);
 `````
 
 ## Globals

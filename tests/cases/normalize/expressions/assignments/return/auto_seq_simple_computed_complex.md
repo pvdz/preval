@@ -58,21 +58,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpObjLitVal = $(1);
-  a = { b: tmpObjLitVal };
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpObjLitVal = $(1);
+const SSA_a = { b: tmpObjLitVal };
+$(SSA_a);
 $(1);
-const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $('b');
 const tmpAssignComputedRhs = $(2);
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-$(a);
+SSA_a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+$(SSA_a);
 `````
 
 ## Globals

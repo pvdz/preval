@@ -53,17 +53,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpDeleteObj = $(arg);
-  a = delete tmpDeleteObj.y;
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, arg);
+const tmpDeleteObj = $(arg);
+const SSA_a = delete tmpDeleteObj.y;
+$(SSA_a);
+$(SSA_a, arg);
 `````
 
 ## Globals

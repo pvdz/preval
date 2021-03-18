@@ -45,17 +45,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  let tmpCalleeParam = parseInt(15);
-  const tmpIfTest = tmpCalleeParam == null;
-  if (tmpIfTest) {
-    tmpCalleeParam = foo;
-  }
-  const tmpReturnArg = $(tmpCalleeParam);
-  return tmpReturnArg;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+let tmpCalleeParam = parseInt(15);
+const tmpIfTest = tmpCalleeParam == null;
+if (tmpIfTest) {
+  tmpCalleeParam = foo;
+}
+const tmpReturnArg = $(tmpCalleeParam);
+$(tmpReturnArg);
 `````
 
 ## Globals

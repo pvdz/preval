@@ -49,19 +49,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
-  if (tmpIfTest) {
-    bindingPatternArrRoot = $('fail');
-  } else {
-    bindingPatternArrRoot = tmpParamDefault;
-  }
-  [...bindingPatternArrRoot];
-  return 'bad';
-};
-const tmpCalleeParam = f(0, 200);
-$(tmpCalleeParam);
+[...0];
+$('bad');
 `````
 
 ## Globals

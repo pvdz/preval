@@ -58,22 +58,18 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  let b = $(2);
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-    b = toString;
-  }
-  let c = b;
-  const tmpIfTest$1 = c == null;
-  if (tmpIfTest$1) {
-    c = length;
-  }
-  const tmpReturnArg = $(c);
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+let b = $(2);
+const tmpIfTest = b == null;
+if (tmpIfTest) {
+  b = toString;
+}
+let c = b;
+const tmpIfTest$1 = c == null;
+if (tmpIfTest$1) {
+  c = length;
+}
+const tmpReturnArg = $(c);
+$(tmpReturnArg);
 `````
 
 ## Globals

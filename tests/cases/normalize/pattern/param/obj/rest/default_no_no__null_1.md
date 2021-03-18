@@ -45,12 +45,8 @@ f(null);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const tmpCalleeParam$1 = [];
-  objPatternRest(tmpParamPattern, tmpCalleeParam$1, 'x');
-  return 'bad';
-};
-f(null);
+const tmpCalleeParam$1 = [];
+objPatternRest(null, tmpCalleeParam$1, 'x');
 `````
 
 ## Globals

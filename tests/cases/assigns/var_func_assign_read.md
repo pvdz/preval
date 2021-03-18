@@ -54,16 +54,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-let SSA_x = 20;
-const SSA_f = function () {
-  SSA_x = 10;
-  const tmpReturnArg = SSA_x;
-  return tmpReturnArg;
-};
-SSA_x = 30;
-const tmpCalleeParam = SSA_f();
-$(tmpCalleeParam);
-$(SSA_x);
+$(10);
+$(10);
 `````
 
 ## Globals

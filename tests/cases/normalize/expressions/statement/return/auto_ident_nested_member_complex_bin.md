@@ -68,20 +68,16 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $('x');
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedProp$1 = $('y');
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-  return 7;
-};
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $('y');
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+$(7);
 $(a, b, c, 3, 4);
 `````
 

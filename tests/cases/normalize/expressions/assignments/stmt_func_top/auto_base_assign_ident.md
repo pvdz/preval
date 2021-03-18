@@ -52,12 +52,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpNestedComplexRhs = $(2);
-  $(tmpNestedComplexRhs, tmpNestedComplexRhs);
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpNestedComplexRhs = $(2);
+$(tmpNestedComplexRhs, tmpNestedComplexRhs);
+$(undefined);
 `````
 
 ## Globals

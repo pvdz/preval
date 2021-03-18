@@ -56,19 +56,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      const tmpThrowArg = $(1, 'return');
-      throw tmpThrowArg;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    const tmpThrowArg = $(1, 'return');
+    throw tmpThrowArg;
+  } else {
+    break;
   }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+}
+$(undefined);
 `````
 
 ## Globals

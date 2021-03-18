@@ -50,13 +50,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpChainElementObject = (3).foo;
-  const tmpReturnArg = $(tmpChainElementObject);
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpChainElementObject = (3).foo;
+const tmpReturnArg = $(tmpChainElementObject);
+$(tmpReturnArg);
 `````
 
 ## Globals

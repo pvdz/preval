@@ -69,33 +69,29 @@ tmpCallCallee$3(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
-  if (tmpIfTest) {
-    const tmpObjLitVal = { a: 'fail2' };
-    const tmpCalleeParam = { x: tmpObjLitVal };
-    bindingPatternObjRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternObjRoot = tmpParamDefault;
-  }
-  const objPatternBeforeDefault = bindingPatternObjRoot.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = { a: 'fail' };
-    objPatternAfterDefault = $(tmpCalleeParam$1);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  const tmpCalleeParam$2 = objPatternAfterDefault;
-  const tmpCalleeParam$3 = [];
-  objPatternRest(tmpCalleeParam$2, tmpCalleeParam$3, undefined);
-  return 'bad';
-};
 const tmpCalleeParam$6 = { x: null, b: 11, c: 12 };
-const tmpCalleeParam$5 = f(tmpCalleeParam$6, 10);
-$(tmpCalleeParam$5);
+let bindingPatternObjRoot = undefined;
+const tmpIfTest = tmpCalleeParam$6 === undefined;
+if (tmpIfTest) {
+  const tmpObjLitVal = { a: 'fail2' };
+  const tmpCalleeParam = { x: tmpObjLitVal };
+  bindingPatternObjRoot = $(tmpCalleeParam);
+} else {
+  bindingPatternObjRoot = tmpCalleeParam$6;
+}
+const objPatternBeforeDefault = bindingPatternObjRoot.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpCalleeParam$1 = { a: 'fail' };
+  objPatternAfterDefault = $(tmpCalleeParam$1);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const tmpCalleeParam$2 = objPatternAfterDefault;
+const tmpCalleeParam$3 = [];
+objPatternRest(tmpCalleeParam$2, tmpCalleeParam$3, undefined);
+$('bad');
 `````
 
 ## Globals

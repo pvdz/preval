@@ -54,14 +54,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = $(1);
-  const SSA_tmpReturnArg = $(tmpCalleeParam);
-  return SSA_tmpReturnArg;
-};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpCalleeParam = $(1);
+const SSA_tmpReturnArg = $(tmpCalleeParam);
+$(SSA_tmpReturnArg);
 $(a);
 `````
 

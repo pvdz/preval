@@ -47,14 +47,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const objPatternNoDefault = tmpParamPattern.x;
-  const arrPatternSplat = [...objPatternNoDefault];
-  arrPatternSplat.slice(0);
-  return 'bad';
-};
-const tmpCalleeParam = f('abc', 10);
-$(tmpCalleeParam);
+const objPatternNoDefault = 'abc'.x;
+const arrPatternSplat = [...objPatternNoDefault];
+arrPatternSplat.slice(0);
+$('bad');
 `````
 
 ## Globals

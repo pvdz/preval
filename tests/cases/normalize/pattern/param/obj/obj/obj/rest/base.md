@@ -63,18 +63,14 @@ tmpCallCallee$1(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const objPatternNoDefault = tmpParamPattern.x;
-  const objPatternNoDefault$1 = objPatternNoDefault.y;
-  const tmpCalleeParam$1 = [];
-  const z = objPatternRest(objPatternNoDefault$1, tmpCalleeParam$1, undefined);
-  return z;
-};
 const tmpObjLitVal$2 = { z: 1, a: 2, b: 3 };
 const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
 const tmpCalleeParam$4 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpCalleeParam$3 = f(tmpCalleeParam$4, 10);
-$(tmpCalleeParam$3);
+const objPatternNoDefault = tmpCalleeParam$4.x;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const tmpCalleeParam$1 = [];
+const z = objPatternRest(objPatternNoDefault$1, tmpCalleeParam$1, undefined);
+$(z);
 `````
 
 ## Globals

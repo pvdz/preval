@@ -62,16 +62,13 @@ $(x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const g = function (a, b) {
-    x = b;
-  };
-  const tmpCalleeParam = [1, 2, 3];
-  const arr = $(tmpCalleeParam);
-  g(10, ...arr, 20, 30, 40, 50, 60);
-};
 let x = 0;
-f();
+const g = function (a, b) {
+  x = b;
+};
+const tmpCalleeParam = [1, 2, 3];
+const arr = $(tmpCalleeParam);
+g(10, ...arr, 20, 30, 40, 50, 60);
 $(x);
 `````
 

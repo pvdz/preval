@@ -53,15 +53,12 @@ tmpCallCallee$1(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCallCallee = $($);
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
-  const SSA_a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  $(SSA_a);
-};
-const tmpCalleeParam$2 = f();
-$(tmpCalleeParam$2);
+const tmpCallCallee = $($);
+const tmpCalleeParam = $(1);
+const tmpCalleeParam$1 = $(2);
+const SSA_a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

@@ -5,6 +5,7 @@ import { pruneExcessiveParams } from './phase2exparam.mjs';
 import { inlineConstants } from './phase2inlineconstants.mjs';
 import { promoteVars } from './phase2promotevars.mjs';
 import { inlineSimpleFuncCalls } from './phase2simplefuncs.mjs';
+import { inlineOneTimeFunctions } from './phase2onetimers.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -40,6 +41,9 @@ export function phase2(program, fdata, resolve, req) {
 
   const promoted = promoteVars(fdata);
   if (promoted) return promoted;
+
+  const singled = inlineOneTimeFunctions(fdata);
+  if (singled) return singled;
 
   const simpled = inlineSimpleFuncCalls(fdata);
   if (simpled) return simpled;

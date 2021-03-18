@@ -100,35 +100,32 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $('loop');
-      const tmpForInDeclRhs = { a: 1, b: 2 };
-      let x;
-      for (x in tmpForInDeclRhs) {
-        $('loop', x);
-        const tmpIfTest$1 = $(1, 'if');
-        if (tmpIfTest$1) {
-          $('pass');
-          const tmpThrowArg = $(7, 'throw');
-          throw tmpThrowArg;
-        } else {
-          $('do not visit');
-          const tmpThrowArg$1 = $(8, 'throw');
-          throw tmpThrowArg$1;
-        }
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $('loop');
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    let x;
+    for (x in tmpForInDeclRhs) {
+      $('loop', x);
+      const tmpIfTest$1 = $(1, 'if');
+      if (tmpIfTest$1) {
+        $('pass');
+        const tmpThrowArg = $(7, 'throw');
+        throw tmpThrowArg;
+      } else {
+        $('do not visit');
+        const tmpThrowArg$1 = $(8, 'throw');
+        throw tmpThrowArg$1;
       }
-      $('after (not invoked but should not be eliminated)');
-    } else {
-      break;
     }
+    $('after (not invoked but should not be eliminated)');
+  } else {
+    break;
   }
-  $('after (not invoked)');
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+}
+$('after (not invoked)');
+$(undefined);
 `````
 
 ## Globals

@@ -53,15 +53,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpDeleteCompProp = $('y');
-  const tmpReturnArg = delete arg[tmpDeleteCompProp];
-  return tmpReturnArg;
-};
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpDeleteCompProp = $('y');
+const tmpReturnArg = delete arg[tmpDeleteCompProp];
+$(tmpReturnArg);
 $(a, arg);
 `````
 

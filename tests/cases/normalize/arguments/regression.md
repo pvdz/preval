@@ -63,16 +63,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const g = function () {
-    const tmpPrevalAliasArgumentsLen = arguments.length;
-    $(tmpPrevalAliasArgumentsLen);
-  };
-  const tmpReturnArg = g();
-  return tmpReturnArg;
+const g = function () {
+  const tmpPrevalAliasArgumentsLen = arguments.length;
+  $(tmpPrevalAliasArgumentsLen);
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpReturnArg = g();
+$(tmpReturnArg);
 `````
 
 ## Globals

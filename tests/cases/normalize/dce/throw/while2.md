@@ -59,20 +59,17 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      const tmpThrowArg = $(1, 'throw');
-      throw tmpThrowArg;
-    } else {
-      break;
-    }
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    const tmpThrowArg = $(1, 'throw');
+    throw tmpThrowArg;
+  } else {
+    break;
   }
-  $('keep, do not eval');
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+}
+$('keep, do not eval');
+$(undefined);
 `````
 
 ## Globals

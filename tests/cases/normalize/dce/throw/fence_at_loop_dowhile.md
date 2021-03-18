@@ -91,36 +91,33 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $('loop');
-      let tmpDoWhileFlag = true;
-      while (true) {
-        let tmpIfTest$1 = tmpDoWhileFlag;
-        if (tmpIfTest$1) {
-        } else {
-          tmpIfTest$1 = $(true);
-        }
-        if (tmpIfTest$1) {
-          tmpDoWhileFlag = false;
-          $('loop');
-          const tmpThrowArg = $(7, 'throw');
-          throw tmpThrowArg;
-        } else {
-          break;
-        }
+while (true) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $('loop');
+    let tmpDoWhileFlag = true;
+    while (true) {
+      let tmpIfTest$1 = tmpDoWhileFlag;
+      if (tmpIfTest$1) {
+      } else {
+        tmpIfTest$1 = $(true);
       }
-      $('do not visit, do not eliminate');
-    } else {
-      break;
+      if (tmpIfTest$1) {
+        tmpDoWhileFlag = false;
+        $('loop');
+        const tmpThrowArg = $(7, 'throw');
+        throw tmpThrowArg;
+      } else {
+        break;
+      }
     }
+    $('do not visit, do not eliminate');
+  } else {
+    break;
   }
-  $('after (not invoked)');
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+}
+$('after (not invoked)');
+$(undefined);
 `````
 
 ## Globals

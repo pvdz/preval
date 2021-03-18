@@ -65,20 +65,17 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const g = function () {
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      return 'xyz';
-    } else {
-      return 'xyz';
-    }
-  };
-  const tmpCalleeParam = g();
-  $(tmpCalleeParam);
-  $('c');
+const g = function () {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    return 'xyz';
+  } else {
+    return 'xyz';
+  }
 };
-f();
+const tmpCalleeParam = g();
+$(tmpCalleeParam);
+$('c');
 `````
 
 ## Globals

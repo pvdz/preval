@@ -44,13 +44,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = { x: 1 };
-  const tmpReturnArg = $(tmpCalleeParam);
-  return tmpReturnArg;
-};
-const tmpObjSpread = f();
-const tmpCalleeParam$1 = { ...tmpObjSpread };
+const tmpCalleeParam = { x: 1 };
+const tmpReturnArg = $(tmpCalleeParam);
+const tmpCalleeParam$1 = { ...tmpReturnArg };
 $(tmpCalleeParam$1);
 `````
 

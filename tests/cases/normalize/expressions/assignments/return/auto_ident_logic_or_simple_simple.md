@@ -52,19 +52,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  a = 0;
-  if (a) {
-  } else {
-    a = 2;
-  }
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+let SSA_a = 0;
+if (SSA_a) {
+} else {
+  SSA_a = 2;
+}
+const tmpReturnArg = SSA_a;
+$(tmpReturnArg);
+$(SSA_a);
 `````
 
 ## Globals

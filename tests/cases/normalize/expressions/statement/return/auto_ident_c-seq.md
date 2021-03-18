@@ -53,15 +53,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  $(1);
-  $(2);
-  const tmpReturnArg = $(1);
-  return tmpReturnArg;
-};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(1);
+$(2);
+const tmpReturnArg = $(1);
+$(tmpReturnArg);
 $(a, 1);
 `````
 

@@ -51,19 +51,15 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const a = { x: 1 };
-  let y = undefined;
-  const tmpIfTest = a != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = a.x;
-    y = tmpChainElementObject;
-  }
-  const tmpReturnArg = $(y);
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const a = { x: 1 };
+let y = undefined;
+const tmpIfTest = a != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = a.x;
+  y = tmpChainElementObject;
+}
+const tmpReturnArg = $(y);
+$(tmpReturnArg);
 `````
 
 ## Globals

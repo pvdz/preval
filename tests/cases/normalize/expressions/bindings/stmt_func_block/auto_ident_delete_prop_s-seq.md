@@ -54,15 +54,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const arg = { y: 1 };
-  $(1);
-  $(2);
-  const a = delete arg.y;
-  $(a, arg);
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const arg = { y: 1 };
+$(1);
+$(2);
+const a = delete arg.y;
+$(a, arg);
+$(undefined);
 `````
 
 ## Globals

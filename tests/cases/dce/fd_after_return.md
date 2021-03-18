@@ -53,8 +53,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = $();
-$(tmpCalleeParam);
+const tmpReturnArg$1 = $();
+$(tmpReturnArg$1);
 `````
 
 ## Globals

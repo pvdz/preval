@@ -1,0 +1,117 @@
+# Preval test case
+
+# same_func_noisy.md
+
+> Function onecall > Statement > Same func noisy
+>
+> What happens when the algo has to inline a call into the same func? Index staleness check.
+
+#TODO
+
+## Input
+
+`````js filename=intro
+$(1);
+function f() {
+  $(3);
+  function a() { $('a'); }
+  $(4);
+  a();
+  $(5);
+  function b() { $('b'); }
+  $(6);
+  b();
+  $(7);
+}
+$(2);
+f();
+$(8);
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  let a = function () {
+    $('a');
+  };
+  let b = function () {
+    $('b');
+  };
+  $(3);
+  $(4);
+  a();
+  $(5);
+  $(6);
+  b();
+  $(7);
+};
+$(1);
+$(2);
+f();
+$(8);
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = function () {
+  let a = function () {
+    $('a');
+  };
+  let b = function () {
+    $('b');
+  };
+  $(3);
+  $(4);
+  a();
+  $(5);
+  $(6);
+  b();
+  $(7);
+};
+$(1);
+$(2);
+f();
+$(8);
+`````
+
+## Output
+
+`````js filename=intro
+$(1);
+$(2);
+$(3);
+$(4);
+$('a');
+$(5);
+$(6);
+$('b');
+$(7);
+$(8);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 1
+ - 2: 2
+ - 3: 3
+ - 4: 4
+ - 5: 'a'
+ - 6: 5
+ - 7: 6
+ - 8: 'b'
+ - 9: 7
+ - 10: 8
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

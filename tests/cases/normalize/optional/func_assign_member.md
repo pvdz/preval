@@ -53,19 +53,15 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  let SSA_y = undefined;
-  const tmpChainRootProp = $();
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.foo;
-    SSA_y = tmpChainElementObject;
-  }
-  const tmpReturnArg = $(SSA_y);
-  return tmpReturnArg;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+let SSA_y = undefined;
+const tmpChainRootProp = $();
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = tmpChainRootProp.foo;
+  SSA_y = tmpChainElementObject;
+}
+const tmpReturnArg = $(SSA_y);
+$(tmpReturnArg);
 `````
 
 ## Globals

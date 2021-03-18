@@ -53,17 +53,13 @@ tmpCallCallee$1(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const arrPatternSplat = [...tmpParamPattern];
-  const arrPatternStep = arrPatternSplat[0];
-  const tmpCalleeParam$1 = [];
-  const x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
-  return x;
-};
 const tmpArrElement = { x: 1, y: 2, z: 3 };
 const tmpCalleeParam$4 = [tmpArrElement, 20, 30];
-const tmpCalleeParam$3 = f(tmpCalleeParam$4, 200);
-$(tmpCalleeParam$3);
+const arrPatternSplat = [...tmpCalleeParam$4];
+const arrPatternStep = arrPatternSplat[0];
+const tmpCalleeParam$1 = [];
+const x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
+$(x);
 `````
 
 ## Globals

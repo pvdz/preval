@@ -58,23 +58,19 @@ tmpCallCallee$2(tmpCalleeParam$4);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { a: 'fail' };
-    bindingPatternObjRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternObjRoot = tmpParamDefault;
-  }
-  const tmpCalleeParam$1 = bindingPatternObjRoot;
-  const tmpCalleeParam$2 = [];
-  const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, 'x');
-  return x;
-};
 const tmpCalleeParam$5 = { x: 1, b: 2, c: 3 };
-const tmpCalleeParam$4 = f(tmpCalleeParam$5, 10);
-$(tmpCalleeParam$4);
+let bindingPatternObjRoot = undefined;
+const tmpIfTest = tmpCalleeParam$5 === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam = { a: 'fail' };
+  bindingPatternObjRoot = $(tmpCalleeParam);
+} else {
+  bindingPatternObjRoot = tmpCalleeParam$5;
+}
+const tmpCalleeParam$1 = bindingPatternObjRoot;
+const tmpCalleeParam$2 = [];
+const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, 'x');
+$(x);
 `````
 
 ## Globals

@@ -55,16 +55,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const b = { c: 10, d: 20 };
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
-  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  b.c = varInitAssignLhsComputedRhs;
-  $(varInitAssignLhsComputedRhs, b);
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const b = { c: 10, d: 20 };
+const tmpCompObj = $(b);
+const tmpCompProp = $('d');
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+$(varInitAssignLhsComputedRhs, b);
+$(undefined);
 `````
 
 ## Globals

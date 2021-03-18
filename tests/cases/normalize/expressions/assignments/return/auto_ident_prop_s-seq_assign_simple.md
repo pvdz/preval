@@ -55,17 +55,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  b.c = 2;
-  a = 2;
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
 const b = { c: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, b);
+b.c = 2;
+$(2);
+$(2, b);
 `````
 
 ## Globals

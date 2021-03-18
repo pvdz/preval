@@ -61,25 +61,21 @@ tmpCallCallee$2(tmpCalleeParam$4);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const objPatternBeforeDefault = tmpParamPattern.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { a: 'fail' };
-    objPatternAfterDefault = $(tmpCalleeParam);
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-  }
-  const tmpCalleeParam$1 = objPatternAfterDefault;
-  const tmpCalleeParam$2 = [];
-  const y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
-  return y;
-};
 const tmpObjLitVal = { x: 1, y: 2, z: 3 };
 const tmpCalleeParam$5 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpCalleeParam$4 = f(tmpCalleeParam$5, 10);
-$(tmpCalleeParam$4);
+const objPatternBeforeDefault = tmpCalleeParam$5.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam = { a: 'fail' };
+  objPatternAfterDefault = $(tmpCalleeParam);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const tmpCalleeParam$1 = objPatternAfterDefault;
+const tmpCalleeParam$2 = [];
+const y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
+$(y);
 `````
 
 ## Globals

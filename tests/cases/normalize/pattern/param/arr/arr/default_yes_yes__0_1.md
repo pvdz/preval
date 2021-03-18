@@ -42,11 +42,7 @@ f(true);
 ## Output
 
 `````js filename=intro
-const f = function (tmp) {
-  [...tmp];
-  return 'bad';
-};
-f(true);
+[...true];
 `````
 
 ## Globals

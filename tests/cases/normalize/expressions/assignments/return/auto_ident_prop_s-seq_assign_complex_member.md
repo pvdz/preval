@@ -58,20 +58,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  b.c = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
 const b = { c: 10, d: 20 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, b);
+const tmpCompObj = $(b);
+const tmpCompProp = $('d');
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+b.c = tmpNestedAssignPropRhs;
+$(tmpNestedAssignPropRhs);
+$(tmpNestedAssignPropRhs, b);
 `````
 
 ## Globals

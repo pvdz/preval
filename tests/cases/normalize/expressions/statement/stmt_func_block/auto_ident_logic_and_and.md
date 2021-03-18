@@ -62,22 +62,19 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const a = { a: 999, b: 1000 };
-  const tmpCalleeParam = $(1);
-  const tmpIfTest = $(tmpCalleeParam);
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = $(1);
-    const SSA_tmpIfTest = $(tmpCalleeParam$1);
-    if (SSA_tmpIfTest) {
-      const tmpCalleeParam$2 = $(2);
-      $(tmpCalleeParam$2);
-    }
+const a = { a: 999, b: 1000 };
+const tmpCalleeParam = $(1);
+const tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
+  const tmpCalleeParam$1 = $(1);
+  const SSA_tmpIfTest = $(tmpCalleeParam$1);
+  if (SSA_tmpIfTest) {
+    const tmpCalleeParam$2 = $(2);
+    $(tmpCalleeParam$2);
   }
-  $(a);
-};
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
+}
+$(a);
+$(undefined);
 `````
 
 ## Globals

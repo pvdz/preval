@@ -51,19 +51,16 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  let a = undefined;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    a = 2;
-  } else {
-    const tmpCalleeParam = $(100);
-    a = $(tmpCalleeParam);
-  }
-  $(a);
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+let a = undefined;
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  a = 2;
+} else {
+  const tmpCalleeParam = $(100);
+  a = $(tmpCalleeParam);
+}
+$(a);
+$(undefined);
 `````
 
 ## Globals

@@ -49,16 +49,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpUnaryArg = $(100);
-  a = !tmpUnaryArg;
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+const tmpUnaryArg = $(100);
+const SSA_a = !tmpUnaryArg;
+$(SSA_a);
+$(SSA_a);
 `````
 
 ## Globals

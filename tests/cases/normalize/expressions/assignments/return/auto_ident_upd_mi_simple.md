@@ -55,19 +55,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let b = 1;
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, b);
+$(0);
+$(0, 0);
 `````
 
 ## Globals

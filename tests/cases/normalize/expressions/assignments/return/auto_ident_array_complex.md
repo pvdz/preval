@@ -51,17 +51,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpArrElement = $(1);
-  const tmpArrElement$2 = $(3);
-  a = [tmpArrElement, 2, tmpArrElement$2];
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+const tmpArrElement = $(1);
+const tmpArrElement$2 = $(3);
+const SSA_a = [tmpArrElement, 2, tmpArrElement$2];
+$(SSA_a);
+$(SSA_a);
 `````
 
 ## Globals

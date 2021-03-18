@@ -61,25 +61,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpCalleeParam = $(0);
-  a = $(tmpCalleeParam);
-  if (a) {
-  } else {
-    const tmpCalleeParam$1 = $(1);
-    a = $(tmpCalleeParam$1);
-    if (a) {
-      const tmpCalleeParam$2 = $(2);
-      a = $(tmpCalleeParam$2);
-    }
+const tmpCalleeParam = $(0);
+let SSA_a = $(tmpCalleeParam);
+if (SSA_a) {
+} else {
+  const tmpCalleeParam$1 = $(1);
+  SSA_a = $(tmpCalleeParam$1);
+  if (SSA_a) {
+    const tmpCalleeParam$2 = $(2);
+    SSA_a = $(tmpCalleeParam$2);
   }
-  const tmpReturnArg = a;
-  return tmpReturnArg;
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
-$(a);
+}
+const tmpReturnArg = SSA_a;
+$(tmpReturnArg);
+$(SSA_a);
 `````
 
 ## Globals

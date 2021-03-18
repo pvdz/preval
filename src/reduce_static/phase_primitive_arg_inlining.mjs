@@ -63,11 +63,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
     if (meta.isImplicitGlobal) return;
 
     vlog(' - `' + name + '`', meta.writes.length, meta.reads.length, meta.constValueRef?.type);
-    if (
-      meta.writes.length === 1 &&
-      meta.constValueRef &&
-      (meta.constValueRef.node.type === 'FunctionExpression' || meta.constValueRef.node.type === 'ArrowFunctionExpression')
-    ) {
+    if (meta.writes.length === 1 && meta.constValueRef?.node.type === 'FunctionExpression') {
       const write = meta.writes[0];
 
       const funcNode = meta.constValueRef.node;

@@ -178,7 +178,7 @@ export function promoteVars(fdata) {
       //       the first source ref. This is not a concern for params since they must go first in their scope (defaults are gone).
       if (rwOrder[0].action === 'write') {
         log('The initial binding:');
-        source(rwOrder[0].parentNode);
+        //source(rwOrder[0].parentNode);
 
         ASSERT(rwOrder[0].decl || rwOrder[0].param, 'the first write should be a decl or param, otherwise maybe this is TDZ');
         ASSERT(
@@ -198,7 +198,7 @@ export function promoteVars(fdata) {
           const b = rwOrder[i];
 
           log('- rwOrder[' + i + '] =', b.action);
-          source(b.parentNode);
+          //source(b.parentNode);
 
           if (b.scope !== bindingScope) {
             // TODO: I think there are situations where we can still safely support this case

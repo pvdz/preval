@@ -27,7 +27,7 @@ function _inlineSimpleFuncCalls(fdata) {
     if (meta.isConstant && meta.constValueRef) {
       ASSERT(meta.writes.length === 1);
       const funcNode = meta.constValueRef.node;
-      if ((funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrowFunctionExpression') && funcNode.$p.inlineMe) {
+      if (funcNode.type === 'FunctionExpression' && funcNode.$p.inlineMe) {
         vgroup('- Searching for all calls to `' + meta.name + '`');
         meta.reads.forEach((read, ri) => {
           vlog('- Read', ri, ':', read.parentNode.type);
@@ -300,7 +300,7 @@ function resolveNodeAgainstParams(node, callNode, funcNode) {
 
   if (node.type === 'Identifier') {
     ASSERT(callNode.type === 'CallExpression');
-    ASSERT(funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrowFunctionExpression');
+    ASSERT(funcNode.type === 'FunctionExpression');
 
     const name = node.name;
     let paramIndex = -1;

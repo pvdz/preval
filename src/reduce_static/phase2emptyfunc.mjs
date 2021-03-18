@@ -30,7 +30,7 @@ function _pruneEmptyFunctions(fdata) {
     }
 
     const funcNode = meta.constValueRef?.node;
-    if (!['FunctionExpression', 'ArrowFunctionExpression'].includes(funcNode?.type)) {
+    if (funcNode?.type !== 'FunctionExpression') {
       vlog('  - not a function');
       return;
     }

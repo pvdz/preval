@@ -95,10 +95,11 @@ function _inlineConstants(fdata) {
 
             ASSERT(node.type === 'VariableDeclaration', 'if not then indexes changed?', node);
             //const init = node.declarations[0].init; // It may be empty. Most likely case is a hoisted var decl.
-            log('Var decl queued for actual deletion');
+            log('Var decl queued for actual deletion (scroll down)');
             toEliminate.push({ parent: declParent, prop: declProp, index: declIndex });
             meta.writes.splice(i, 1);
 
+            after(AST.emptyStatement());
             inlined = true;
             --i;
           } else if (write.assign) {
@@ -114,7 +115,7 @@ function _inlineConstants(fdata) {
               'if not then indexes changed?',
               node,
             );
-            log('Assignment queued for actual deletion');
+            log('Assignment queued for actual deletion (scroll down)');
             toEliminate.push({ parent: assignParent, prop: assignProp, index: assignIndex });
             meta.writes.splice(i, 1);
 

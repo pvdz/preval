@@ -38,7 +38,8 @@ function _inlineSimpleFuncCalls(fdata) {
               case 'single return with primitive': {
                 rule('Function that only returns primitive must be inlined');
                 example('function f() { return 5; } f();', '5;');
-                before(read.node, read.parentNode);
+                before(funcNode);
+                before(read.node, read.blockBody[read.blockIndex]);
 
                 if (read.grandIndex >= 0) {
                   read.grandNode[read.grandProp][read.grandIndex] = AST.cloneSimple(funcNode.body.body[0].argument);
@@ -47,7 +48,7 @@ function _inlineSimpleFuncCalls(fdata) {
                 }
                 ++inlinedFuncCount;
 
-                after(read.parentNode);
+                after(read.parentNode, read.blockBody[read.blockIndex]);
                 break;
               }
               case 'single expression statement': {
@@ -113,7 +114,7 @@ function _inlineSimpleFuncCalls(fdata) {
                         }
                         ++inlinedFuncCount;
 
-                        after(finalNode);
+                        after(finalNode, read.blockBody[read.blockIndex]);
                       }
                       break;
                     } else if (right.type === 'UnaryExpression') {
@@ -162,7 +163,7 @@ function _inlineSimpleFuncCalls(fdata) {
                           }
                           ++inlinedFuncCount;
 
-                          after(finalNode);
+                          after(finalNode, read.blockBody[read.blockIndex]);
                         }
                         break;
                       }
@@ -183,7 +184,7 @@ function _inlineSimpleFuncCalls(fdata) {
                           );
                         } else {
                           const op = right.operator;
-                          rule('Inlining function that consists of a simple assignment of a unary expression');
+                          rule('Inlining function that consists of a simple assignment of a binary expression');
                           example(
                             'let x = 1; function f(a, b) { x = a ' + op + ' 2; } f(1, 2, 3, 4, 5);',
                             'let x = 1; x = 1 ' + op + ' 2;',
@@ -201,7 +202,7 @@ function _inlineSimpleFuncCalls(fdata) {
                           }
                           ++inlinedFuncCount;
 
-                          after(finalNode);
+                          after(finalNode, read.blockBody[read.blockIndex]);
                         }
                         break;
                       }
@@ -219,7 +220,8 @@ function _inlineSimpleFuncCalls(fdata) {
               case 'double with primitive': {
                 rule('Function that returns local primitive should be inlined');
                 example('function f() { const x = undefined; return x; } f();', 'undefined;');
-                before(read.node, read.parentNode);
+                before(funcNode);
+                before(read.node, read.blockBody[read.blockIndex]);
 
                 if (read.grandIndex >= 0) {
                   read.grandNode[read.grandProp][read.grandIndex] = funcNode.body.body[0].declarations[0].init;
@@ -228,13 +230,14 @@ function _inlineSimpleFuncCalls(fdata) {
                 }
                 ++inlinedFuncCount;
 
-                after(read.parentNode);
+                after(read.parentNode, read.blockBody[read.blockIndex]);
                 break;
               }
               case 'double with array with primitives': {
                 rule('Function that returns array literal with only primitives should be inlined');
                 example('function f() { const arr = [1, 2]; return arr; } f();', '[1, 2];');
-                before(read.node, read.parentNode);
+                before(funcNode);
+                before(read.node, read.blockBody[read.blockIndex]);
 
                 if (read.grandIndex >= 0) {
                   read.grandNode[read.grandProp][read.grandIndex] = funcNode.body.body[0].declarations[0].init;
@@ -243,7 +246,7 @@ function _inlineSimpleFuncCalls(fdata) {
                 }
                 ++inlinedFuncCount;
 
-                after(read.parentNode);
+                after(read.parentNode, read.blockBody[read.blockIndex]);
                 break;
               }
               case 'double with identifier': {
@@ -261,7 +264,8 @@ function _inlineSimpleFuncCalls(fdata) {
                   // and if so, replace all call sites with the argument at that position. If not param, just keep it.
                   rule('Function that returns local binding set to an identifier should be inlined');
                   example('function f(a) { const x = a; return x; } f(1);', '1;');
-                  before(read.node, read.parentNode);
+                  before(funcNode);
+                  before(read.node, read.blockBody[read.blockIndex]);
 
                   if (read.grandIndex >= 0) {
                     read.grandNode[read.grandProp][read.grandIndex] = resolvedLeft;
@@ -270,7 +274,7 @@ function _inlineSimpleFuncCalls(fdata) {
                   }
                   ++inlinedFuncCount;
 
-                  after(read.parentNode);
+                  after(read.parentNode, read.blockBody[read.blockIndex]);
                   break;
                 }
               }

@@ -17,6 +17,7 @@ export function cloneFunctionNode(node, clonedName = 'noname', staticArgs, fdata
       node.id?.name +
       '\n##################################\n\n\n',
   );
+  source(node);
 
   ASSERT(
     node.type === 'FunctionExpression' || node.type === 'ArrowFunctionExpression',

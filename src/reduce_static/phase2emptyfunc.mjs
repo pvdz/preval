@@ -37,6 +37,7 @@ function _pruneEmptyFunctions(fdata) {
 
     if (funcNode.body.body.length === 0) {
       vlog('  - this function is empty. Find all calls and replace them with `undefined`');
+      if (!meta.reads.length) vlog('    - (this function is not used)');
 
       meta.reads.forEach((read) => {
         const callNode = read.parentNode;

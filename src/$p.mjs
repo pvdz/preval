@@ -36,5 +36,6 @@ export function $p() {
     // earlyReturn // bool. Does this function contain a return statement that is not its last statement?
     // hasBranch // bool. Does this function contain an `if`, `while`, or `for-x` statement?
     // funcDepth // number. How many nested scopes does this node appear in
+    // oneTimerDirty // bool. Mark a function as having something inlined into it. This invalidates references and requires another phase1 pass before being able to inline the function itself safely.
   };
 }

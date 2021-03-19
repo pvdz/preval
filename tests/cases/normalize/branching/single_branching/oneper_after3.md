@@ -98,14 +98,12 @@ A();
 `````js filename=intro
 const B = function () {
   $();
-  const tmp$2 = C();
-  return tmp$2;
-};
-const C = function () {
   const x$1 = $();
   if (x$1) {
     const tmp$3 = $();
     return tmp$3;
+  } else {
+    return undefined;
   }
 };
 const x = $();

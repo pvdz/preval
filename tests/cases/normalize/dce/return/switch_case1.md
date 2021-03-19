@@ -76,7 +76,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpLabeledBlockFunc = function () {
+const f = function () {
   const tmpSwitchValue$1 = $(1, 'disc');
   let tmpSwitchCaseToStart$1 = 1;
   const tmpBinLhs$1 = $(1, 'case');
@@ -93,8 +93,8 @@ const tmpLabeledBlockFunc = function () {
     return undefined;
   }
 };
-const tmpReturnArg$3 = tmpLabeledBlockFunc();
-$(tmpReturnArg$3);
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

@@ -73,16 +73,12 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const g = function (n$1) {
   const tmpCalleeParam = n$1 + 1;
-  const tmpReturnArg$1 = h(tmpCalleeParam);
-  return tmpReturnArg$1;
-};
-const h = function (n$2) {
-  const tmpBinLhs = $(n$2);
+  const tmpBinLhs = $(tmpCalleeParam);
   const tmpIfTest = tmpBinLhs > 1000;
   if (tmpIfTest) {
-    return n$2;
+    return tmpCalleeParam;
   } else {
-    const tmpReturnArg$2 = g(n$2);
+    const tmpReturnArg$2 = g(tmpCalleeParam);
     return tmpReturnArg$2;
   }
 };

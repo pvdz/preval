@@ -2,6 +2,7 @@
 
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { createFreshVar } from '../bindings.mjs';
 
 export function inlineOneTimeFunctions(fdata) {
   group('\n\n\nChecking for functions that are called once');
@@ -117,18 +118,33 @@ function _inlineOneTimeFunctions(fdata) {
       return;
     }
 
-    if (funcNode.body.body[funcNode.body.body.length - 1]?.type === 'IfStatement' && read.grandNode.type === 'VariableDeclarator') {
+    if (
+      funcNode.body.body[funcNode.body.body.length - 1]?.type === 'IfStatement' && read.grandNode.type === 'VariableDeclarator'
+    ) {
       // In this case the call site is a var decl and the function ends with an if-else branch.
       // If we were to inline this then we would end up with potentially two var decls and an unknown tail.
       // While this would be normalized just fine, it would lead to two identifiers being declared with the
       // same name. Additionally it would mean the code after the original call site would not have access
       // when it did before. As such we need to exclude this transform with var decls and if-else for now.
-      vlog('This function ends with an if-else and the call site was a var decl so bailing for now');
-      vgroupEnd();
-      return;
+
+      // What if the var decl was immediately followed by a return of this identifier? In that case it's a
+      // var decl that purely exists to trampoline a return value to satisfy normalization rules. We can
+      // clone that and create a fresh name for the alternate branch. We wouldn't need to find all other
+      // cases and wouldn't need to worry about requiring a new branch or whatever.
+      if (
+        read.blockBody[read.blockIndex + 1]?.type === 'ReturnStatement' &&
+        read.blockBody[read.blockIndex + 1].argument?.type === 'Identifier' &&
+        read.blockBody[read.blockIndex + 1].argument.name === read.grandNode.id.name
+      ) {
+        vlog('This var decl is used to trampoline a return value. We can support this.');
+      } else {
+        vlog('This function ends with an if-else and the call site was a var decl so bailing for now');
+        vgroupEnd();
+        return;
+      }
     }
 
-    if (funcNode.$p.hasBranch && read.grandNode.hasBranch) {
+    if (funcNode.$p.hasBranch && read.funcNode.$p.hasBranch) {
       // We strive for a max of one branch per function so do not merge functions that both have one
       // A branch is an if or a loop (while, for-x). Other types (do-while, for, switch, logic operators,
       // conditional operators, ternary operator) are all gone at this point.
@@ -144,7 +160,8 @@ function _inlineOneTimeFunctions(fdata) {
     // This is a little annoying but we should have all references to all bindings and should be able to
     // loop through them and replace them with a clone of the argument in the same position.
 
-    vlog('Function is called and referenced exactly once and meets all other conditions; queued to be inlined');
+    vlog('Function is called and referenced exactly once and meets all other conditions');
+    vlog(' - queued to be inlined, pid=', read.node.$p.pid, ', depth:', read.node.$p.funcDepth);
     queue.push({
       pid: +read.node.$p.pid,
       depth: read.node.$p.funcDepth,
@@ -158,31 +175,48 @@ function _inlineOneTimeFunctions(fdata) {
 
   log('Inlined', queue.length, 'function calls.');
   if (queue.length > 0) {
+    vlog('There are', queue.length, 'functions queued for inlining');
     // We want to apply the splices back to front, or reverse source code order
     // There's currently no guarantee about the order of the queue so we can't just reverse it.
     // The pid is guaranteed fresh and incremental in traversal order so we use that to sort.
     queue.sort(({ pid: A, depth: X }, { pid: B, depth: Y }) => (X < Y ? 1 : X > Y ? -1 : A < B ? 1 : A > B ? -1 : 0));
     vlog('The inline queue pid and depth order:', queue.map(({ pid, depth }) => '<' + pid + ':' + depth + '>').join(', '));
 
+    let inlined = 0;
+
     // Inline functions. Start with the lowest nesting to the least nested, last to first source code order.
     // By starting at the most nested, we prevent less indented inlines from missing indentations from more inlined calls.
     // By going last to first we can freely inject any number of elements into a body without affecting earlier indexes.
     // The call is leading for this order, not the function decl. The call is where arbitrary statements are injected.
     // The function decls are set to an empty statement and do not change any indexes.
+    vlog('');
     queue.forEach(({ funcNode, read, write }, i) => {
+      vlog('-', i, '; Starting to inline next one-time called function in the queue')
+
+      if (funcNode.$p.oneTimerDirty) {
+        ASSERT(inlined > 0, 'must have inlined one already for this state to be set');
+        // This prevents problems with returns being collapsed into a parent function which invalidates certain flags
+        vlog('This function had at least one function flattened into it in this pass so it will need another phase1 pass first');
+        return;
+      }
+
       const funcBody = funcNode.body.body;
       vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
-      vlog('Queue', i, funcBody);
 
       const params = funcNode.params;
       const args = read.parentNode['arguments'];
 
+      ++inlined;
       rule('Function that is only used in a call once should be inlined');
       example('function f(a){ g(a); } f(100);', 'g(100);');
       vlog('Write:');
       before(write.parentNode);
       vlog('Read:');
       before(read.grandNode);
+
+      // Mark the function containing the read as no longer being safe to be inlined itself. Nested
+      // functions can still be flattened into it. It will require a phase1 pass to be inlined itself.
+      read.funcNode.$p.oneTimerDirty = true;
 
       // - inject const for each param, the init being the arg in the same position
       // - replace call with return argument, or undefined if there isn't any
@@ -222,16 +256,65 @@ function _inlineOneTimeFunctions(fdata) {
         const retNode = funcBody.pop(); // This changes the function node (!) but we're dropping it so that's ok??
         read.grandNode[read.grandProp] = retNode.argument; // Should not need to clone this...
       } else if (lastNode?.type === 'IfStatement') {
+        if (!lastNode.alternate) {
+          // If this else ends up not being used at all then some other rule will eliminate it. There should not
+          // be a risk of infinite looping here since this block is only added if a reduction happens at all.
+          vlog('Forcing the `else` to a block because it had none');
+          lastNode.alternate = AST.blockStatement();
+        }
+
         const ifLast = lastNode.consequent.body[lastNode.consequent.body.length - 1];
-        const elseLast = lastNode.alternate?.body[lastNode.alternate.body.length - 1];
+        const elseLast = lastNode.alternate.body[lastNode.alternate.body.length - 1];
 
         // The last node of the body is an if-else.
-        // The read is a call that is either a statement or an assignment.
-        // In both branches, copy the assignment, replacing the call with the return value in that branch.
-        // If there was no return then substitute undefined. For the statement we can drop this.
-        // The var decl should not get down here because then we'd have two var decls with the same name.
-        ASSERT(read.grandNode.type !== 'VariableDeclarator', 'this should have been checked above');
-        if (read.grandNode.type === 'ExpressionStatement') {
+        // The read is a call that is either a statement or an assignment, or a var decl that is immediately returned.
+        if (read.grandNode.type === 'VariableDeclarator') {
+          // The var decl is special because it requires one of the branches to clone the decl into a fresh var.
+          // Since we don't loop back to normalization, we need to guarantee that all binding names are unique.
+          // Additionally, we need to make sure that we don't introduce new bindings that might need to be
+          // accessed after the branch when the call completes.
+          const varNode = read.blockBody[read.blockIndex];
+          const oldName = varNode.declarations[0].id.name; // Very likely an artifact name but whatever
+          const returnNode = read.blockBody[read.blockIndex + 1];
+          ASSERT(
+            varNode.type === 'VariableDeclaration' &&
+            returnNode.type === 'ReturnStatement' &&
+            returnNode.argument.name === oldName,
+            'right now this is the only edge case for var decls so if that changes, the branching logic needs to be checked into as well',
+            varNode, returnNode, returnNode.argument.name , oldName,
+          );
+          vlog('The call is init to a const binding that is returned immediately. Special handling required.');
+          // Note: This is `const r = f(); return r; function f() { if (x) return 10; else return 20; }`
+          //       We must make sure to prevent `if (x) { const r = 10; return r; } else { const r = 20; return r; }`
+          //       because it introduces two bindings in the AST with the same name, and normalization rules
+          //       do not allow this. To this end, we create a new name for the `else` branch.
+
+          const ifRetArg = ifLast?.type === 'ReturnStatement' ? ifLast.argument : AST.identifier('undefined');
+          const elseRetArg = elseLast?.type === 'ReturnStatement' ? elseLast.argument : AST.identifier('undefined');
+
+          if (ifLast?.type === 'ReturnStatement') {
+            lastNode.consequent.body.pop();
+          }
+          if (elseLast?.type === 'ReturnStatement') {
+            lastNode.alternate.body.pop();
+          }
+
+          const tmpNameA = createFreshVar(oldName, fdata);
+          const tmpNameB = createFreshVar(oldName, fdata);
+          // Make sure the injected code is still normalized and that the binding names are unique
+          lastNode.consequent.body.push(
+            AST.variableDeclaration(tmpNameA, ifRetArg, 'const'),
+            AST.returnStatement(tmpNameA)
+          )
+          lastNode.alternate.body.push(
+            AST.variableDeclaration(tmpNameB, elseRetArg, 'const'),
+            AST.returnStatement(tmpNameB)
+          )
+
+          // Remove the var decl and return statement
+          read.blockBody[read.blockIndex] = AST.emptyStatement();
+          read.blockBody[read.blockIndex + 1] = AST.emptyStatement();
+        } else if (read.grandNode.type === 'ExpressionStatement') {
           vlog('The read was a statement so we should be able to drop the return statements care free');
 
           // Drop the call
@@ -250,6 +333,8 @@ function _inlineOneTimeFunctions(fdata) {
           source(lastNode);
         } else {
           ASSERT(read.grandNode.type === 'AssignmentExpression');
+          // In both branches, copy the assignment, replacing the call with the return value in that branch.
+          // If there was no return then substitute undefined.
           vlog(
             'The read was the rhs of an assignment. In each branch, add the same assignment replacing the rhs with the return arg for that branch, or undefined if return is absent',
           );
@@ -269,12 +354,8 @@ function _inlineOneTimeFunctions(fdata) {
             ),
           );
 
-          if (lastNode.alternate) {
-            if (elseLast?.type === 'ReturnStatement') {
-              lastNode.alternate.body.pop();
-            }
-          } else {
-            lastNode.alternate = AST.blockStatement();
+          if (elseLast?.type === 'ReturnStatement') {
+            lastNode.alternate.body.pop();
           }
           lastNode.alternate.body.push(
             AST.expressionStatement(

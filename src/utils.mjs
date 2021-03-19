@@ -172,10 +172,13 @@ export function before(node, parent) {
   if (VERBOSE_TRACING) {
     if (Array.isArray(node)) node.forEach((n) => before(n, parent));
     else {
+      const anon = node.type.includes('Function') && 'id' in node && !node.id;
+      if (anon) node.id = {type: 'Identifier', name: 'anon'};
       const parentCode = parent && (typeof node === 'string' ? node : tmat(parent).replace(/\n/g, ' '));
       const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
       if (parent && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
       log(YELLOW + 'Before:' + RESET, nodeCode);
+      if (anon) node.id = null;
     }
   }
 }
@@ -204,10 +207,13 @@ export function after(node, parentNode) {
   if (VERBOSE_TRACING) {
     if (Array.isArray(node)) node.forEach((n) => after(n, parentNode));
     else {
+      const anon = node.type?.includes('Function') && 'id' in node && !node.id;
+      if (anon) node.id = {type: 'Identifier', name: 'anon'};
       const parentCode = parentNode && (typeof node === 'string' ? node : tmat(parentNode).replace(/\n/g, ' '));
       const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
       log(YELLOW + 'After :' + RESET, nodeCode);
       if (parentNode && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
+      if (anon) node.id = null;
     }
   }
 }

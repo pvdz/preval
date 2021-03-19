@@ -293,6 +293,7 @@ function attemptConstantInlining(meta, fdata) {
             grandIndex,
             blockBody: oldRead.blockBody,
             blockIndex: oldRead.blockIndex,
+            funcNode: oldRead.funcNode,
             node: clone,
             rwCounter: oldRead.rwCounter,
             scope: oldRead.scope,

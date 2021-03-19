@@ -103,6 +103,7 @@ export function phase1(fdata, resolve, req) {
       }
 
       case 'FunctionExpression:before': {
+        node.$p.parentFunc = funcStack[funcStack.length - 1];
         funcStack.push(node);
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           thisStack.push(node);
@@ -306,6 +307,7 @@ export function phase1(fdata, resolve, req) {
                 grandIndex,
                 blockBody,
                 blockIndex,
+                funcNode: funcStack[funcStack.length - 1],
                 node,
                 rwCounter: ++readWriteCounter,
                 scope: currentScope.$p.pid,
@@ -352,6 +354,7 @@ export function phase1(fdata, resolve, req) {
                   parentIndex,
                   blockBody,
                   blockIndex,
+                  funcNode: funcStack[funcStack.length - 1],
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
@@ -376,7 +379,7 @@ export function phase1(fdata, resolve, req) {
               }
             } else if (parentNode.type === 'AssignmentExpression') {
               ASSERT(parentProp === 'left', 'the read check above should cover the prop=right case');
-              ASSERT(path.nodes[path.nodes.length - 3].type === 'ExpressionStatement', 'assignments must be normalized to statements');
+              ASSERT(path.nodes[path.nodes.length - 3].type === 'ExpressionStatement', 'assignments must be normalized to statements', path.nodes[path.nodes.length - 3]);
               const assignParent = path.nodes[path.nodes.length - 4];
               const assignProp = path.props[path.props.length - 3];
               const assignIndex = path.indexes[path.indexes.length - 3];
@@ -388,6 +391,7 @@ export function phase1(fdata, resolve, req) {
                   parentIndex,
                   blockBody,
                   blockIndex,
+                  funcNode: funcStack[funcStack.length - 1],
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
@@ -410,6 +414,7 @@ export function phase1(fdata, resolve, req) {
                   parentIndex,
                   blockBody,
                   blockIndex,
+                  funcNode: funcStack[funcStack.length - 1],
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
@@ -428,6 +433,7 @@ export function phase1(fdata, resolve, req) {
                   parentIndex,
                   blockBody,
                   blockIndex,
+                  funcNode: funcStack[funcStack.length - 1],
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
@@ -521,6 +527,7 @@ export function phase1(fdata, resolve, req) {
 
       case 'ReturnStatement:before': {
         const funcNode = funcStack[funcStack.length - 1];
+        ASSERT(funcNode?.body?.body, 'eh, func node?', funcStack.length, funcNode)
         vlog('Parent func:', funcNode.type, ', last node same?', funcNode.body.body[funcNode.body.body.length - 1] === node);
         if (funcNode.type === 'FunctionExpression') {
           const lastNode = funcNode.body.body[funcNode.body.body.length - 1];

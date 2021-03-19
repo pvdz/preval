@@ -426,6 +426,7 @@ export function createReadRef(obj) {
     grandIndex,
     blockBody, // nearest ancestor block to the node
     blockIndex,
+    funcNode, // Function/Program that is the nearest to this ref
     node,
     rwCounter,
     scope,
@@ -445,6 +446,7 @@ export function createReadRef(obj) {
     grandIndex,
     blockBody, // nearest ancestor block to the node
     blockIndex,
+    funcNode, // Function/Program that is the nearest to this ref
     node,
     rwCounter,
     scope,
@@ -459,6 +461,7 @@ export function createWriteRef(obj) {
     parentIndex,
     blockBody, // nearest ancestor block to the node
     blockIndex,
+    funcNode, // Function/Program that is the nearest to this ref
     node,
     rwCounter,
     scope,
@@ -480,6 +483,7 @@ export function createWriteRef(obj) {
     parentIndex,
     blockBody,
     blockIndex,
+    funcNode, // Function/Program that is the nearest to this ref
     node,
     rwCounter,
     scope,

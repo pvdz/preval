@@ -119,6 +119,7 @@ export function promoteVars(fdata) {
                 parentIndex: -1,
                 blockBody: assign.blockBody,
                 blockIndex: assign.blockIndex,
+                funcNode: assign.funcNode,
                 node: newNode.declarations[0].id,
                 rwCounter: assign.rwCounter,
                 scope: assign.scope,

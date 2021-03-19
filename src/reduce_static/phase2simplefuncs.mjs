@@ -53,7 +53,7 @@ function _inlineSimpleFuncCalls(fdata) {
               }
               case 'single expression statement': {
                 // This is an arbitrary expression that we want to inline
-                // The expression should be normalized and can be one of a few cases
+                // The expression should be in a normalized state and can be one of a few cases
                 // However, this is still a large set and we need to convert every ident that is a
                 // parameter into the argument in the same position of that param in this call.
                 // An expression can be a simple node, a simple member expression, a unary, a binary,
@@ -61,6 +61,11 @@ function _inlineSimpleFuncCalls(fdata) {
                 // Member expressions must be in simple form but can be computed
                 // An assignment can have an ident or member expression as the lhs
                 // An assignment can have a non-assignment expression of the above kind as the rhs
+
+                // Transforms should respect the normal form so inlining complex expressions will require
+                // creating a block and replacing the whole statement containing the function call with a
+                // block where the first statement is the expression being inlined and the second statement
+                // the thing containing the original call, potentially with the actual call replaced.
 
                 ASSERT(
                   funcNode.body.body.length === 1 && funcNode.body.body[0].type === 'ExpressionStatement',
@@ -71,6 +76,11 @@ function _inlineSimpleFuncCalls(fdata) {
                 vlog('Expression type:', expr.type, expr.left?.type, expr.right?.type);
                 if (expr.type === 'AssignmentExpression') {
                   // TODO: member expressions. can probably do that more efficiently than a clone of the ident branch.
+
+                  // All cases of assignment become a block with the assignment and the statement containing the
+                  // original call, with the actual call replaced by undefined. In most cases the original
+                  // statement (with the call) ends up being eliminated by other rules.
+
                   if (expr.left.type === 'Identifier') {
                     const left = expr.left;
                     ASSERT(
@@ -104,17 +114,35 @@ function _inlineSimpleFuncCalls(fdata) {
                           () => right.type === 'Identifier' && paramIndex < 0,
                         );
                         example('let x = 1; function f() { x = 2; } f();', 'let x = 1; x = 2;', () => right.type !== 'Identifier');
-                        before(read.node);
+                        example(
+                          'let x = 1; function f(a, b, ...c) { x = c; } y = f(1, 2, 3, 4, 5);',
+                          'let x = 1; { x = [3, 4, 5]; y = undefined; }',
+                          () => isRest,
+                        );
+                        example(
+                          'let x = 1; function f(a, b, ...c) { x = c; } const y = f(1, 2, 3, 4, 5);',
+                          'let x = 1; { x = [3, 4, 5]; const y = undefined; }',
+                          () => isRest,
+                        );
+                        before(funcNode);
+                        before(read.node, read.blockBody[read.blockIndex]);
 
+                        // The assignment becomes its own statement and the original call is replaced with
+                        // undefined. We must wrap that in a block to prevent indexes from being shifted.
+                        // While this could lead to temporary scoping issues, technically, we will be fine
+                        // because at this point we only use unique global identifiers as a guide and the
+                        // redundant block will be eliminated later.
                         const finalNode = AST.assignmentExpression(AST.cloneSimple(left), resolvedLeft);
+                        const finalParent = AST.blockStatement(AST.expressionStatement(finalNode), read.blockBody[read.blockIndex]);
+                        read.blockBody[read.blockIndex] = finalParent;
                         if (read.grandIndex >= 0) {
-                          read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+                          read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
                         } else {
-                          read.grandNode[read.grandProp] = finalNode;
+                          read.grandNode[read.grandProp] = AST.identifier('undefined');
                         }
                         ++inlinedFuncCount;
 
-                        after(finalNode, read.blockBody[read.blockIndex]);
+                        after(finalNode, finalParent);
                       }
                       break;
                     } else if (right.type === 'UnaryExpression') {
@@ -135,35 +163,53 @@ function _inlineSimpleFuncCalls(fdata) {
                           rule('Inlining function that consists of a simple assignment of a unary expression');
                           example(
                             'let x = 1; function f(a, b, ...c) { x = ' + op + ' c; } f(1, 2, 3, 4, 5);',
-                            'let x = 1; x = ' + op + ' [3, 4, 5];',
+                            'let x = 1; { x = ' + op + ' [3, 4, 5]; undefined; }',
                             () => isRest,
                           );
                           example(
                             'let x = 1; function f(a, b, ...c) { x = ' + op + ' b; } f(1, 2, 3, 4, 5);',
-                            'let x = 1; x = ' + op + ' 3;',
+                            'let x = 1; { x = ' + op + ' 3; undefined; }',
                             () => !isRest && paramIndex >= 0,
                           );
                           example(
                             'let x = 1; let y = 2; function f() { x = ' + op + ' y; } f();',
-                            'let x = 1; let y = 2; x = ' + op + ' y;',
+                            'let x = 1; let y = 2; { x = ' + op + ' y; undefined; }',
                             () => right.type === 'Identifier' && paramIndex < 0,
                           );
                           example(
                             'let x = 1; function f() { x = ' + op + ' 2; } f();',
-                            'let x = 1; x = ' + op + ' 2;',
+                            'let x = 1; { x = ' + op + ' 2; undefined; }',
                             () => right.type !== 'Identifier',
                           );
-                          before(read.node);
+                          example(
+                            'let x = 1; function f(a, b, ...c) { x = ' + op + ' c; } y = f(1, 2, 3, 4, 5);',
+                            'let x = 1; { x = ' + op + ' [3, 4, 5]; y = undefined; }',
+                            () => isRest,
+                          );
+                          example(
+                            'let x = 1; function f(a, b, ...c) { x = ' + op + ' c; } const y = f(1, 2, 3, 4, 5);',
+                            'let x = 1; { x = ' + op + ' [3, 4, 5]; const y = undefined; }',
+                            () => isRest,
+                          );
+                          before(funcNode);
+                          before(read.node, read.blockBody[read.blockIndex]);
 
+                          // The assignment becomes its own statement and the original call is replaced with
+                          // undefined. We must wrap that in a block to prevent indexes from being shifted.
+                          // While this could lead to temporary scoping issues, technically, we will be fine
+                          // because at this point we only use unique global identifiers as a guide and the
+                          // redundant block will be eliminated later.
                           const finalNode = AST.assignmentExpression(AST.cloneSimple(left), AST.unaryExpression(op, resolvedLeft));
+                          const finalParent = AST.blockStatement(AST.expressionStatement(finalNode), read.blockBody[read.blockIndex]);
+                          read.blockBody[read.blockIndex] = finalParent;
                           if (read.grandIndex >= 0) {
-                            read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+                            read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
                           } else {
-                            read.grandNode[read.grandProp] = finalNode;
+                            read.grandNode[read.grandProp] = AST.identifier('undefined');
                           }
                           ++inlinedFuncCount;
 
-                          after(finalNode, read.blockBody[read.blockIndex]);
+                          after(finalNode, finalParent);
                         }
                         break;
                       }
@@ -187,22 +233,38 @@ function _inlineSimpleFuncCalls(fdata) {
                           rule('Inlining function that consists of a simple assignment of a binary expression');
                           example(
                             'let x = 1; function f(a, b) { x = a ' + op + ' 2; } f(1, 2, 3, 4, 5);',
-                            'let x = 1; x = 1 ' + op + ' 2;',
+                            'let x = 1; { x = 1 ' + op + ' 2; undefined; }',
                           );
-                          before(read.node);
+                          example(
+                            'let x = 1; function f(a, b) { x = a ' + op + ' 2; } y = f(1, 2, 3, 4, 5);',
+                            'let x = 1; { x = 1 ' + op + ' 2; y = undefined; }',
+                          );
+                          example(
+                            'let x = 1; function f(a, b) { x = a ' + op + ' 2; } const y = f(1, 2, 3, 4, 5);',
+                            'let x = 1; { x = 1 ' + op + ' 2; const y = undefined; }',
+                          );
+                          before(funcNode);
+                          before(read.node, read.blockBody[read.blockIndex]);
 
+                          // The assignment becomes its own statement and the original call is replaced with
+                          // undefined. We must wrap that in a block to prevent indexes from being shifted.
+                          // While this could lead to temporary scoping issues, technically, we will be fine
+                          // because at this point we only use unique global identifiers as a guide and the
+                          // redundant block will be eliminated later.
                           const finalNode = AST.assignmentExpression(
                             AST.cloneSimple(left),
                             AST.binaryExpression(op, resolvedLeft, resolvedLeft2),
                           );
+                          const finalParent = AST.blockStatement(AST.expressionStatement(finalNode), read.blockBody[read.blockIndex]);
+                          read.blockBody[read.blockIndex] = finalParent;
                           if (read.grandIndex >= 0) {
-                            read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+                            read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
                           } else {
-                            read.grandNode[read.grandProp] = finalNode;
+                            read.grandNode[read.grandProp] = AST.identifier('undefined');
                           }
                           ++inlinedFuncCount;
 
-                          after(finalNode, read.blockBody[read.blockIndex]);
+                          after(finalNode, finalParent);
                         }
                         break;
                       }

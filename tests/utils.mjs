@@ -249,8 +249,8 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
   const mdInput = mdChunks.join('\n\n').trim();
 
   let mdBody =
-    toPreResult(output.pre) +
-    toNormalizedResult(output.normalized) +
+    (CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +
+    (CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
     // TODO: use this kind of approach to detect whether code is left that still needs to be normalized
     //'\n\n## Uniformed\n\n' +
     //Object.keys(output.files)

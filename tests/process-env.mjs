@@ -22,6 +22,7 @@ export function parseTestArgs() {
     cloneLimit: undefined, // How many times can a function be cloned for primitive inlining before it's considered recursion?
     maxPass: undefined,
     trimDollar: false, // Remove trailing $12 from outputs? Reduces noise when diffing when new vars shuffle the incremental suffix
+    onlyOutput: false, // When generating test cases, only add the `## Output` block (for diffing)
   };
 
   while (argv.length) {
@@ -99,6 +100,11 @@ export function parseTestArgs() {
 
       case '--trim-dollar': {
         config.trimDollar = true;
+        break;
+      }
+
+      case '--only-output': {
+        config.onlyOutput = true;
         break;
       }
 

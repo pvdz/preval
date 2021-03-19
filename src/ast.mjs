@@ -75,6 +75,7 @@ export function blockStatement(...body) {
   // An array is not a valid element for the AST node so if it is an array it's
   // safe to assume that we want to use the first arg as the body array verbatim
   if (Array.isArray(body[0])) body = body[0];
+  body.forEach(n => ASSERT(n?.type && (!n.type.includes('Expression') || n.type === 'ExpressionStatement' || n.type === 'FunctionExpression'), 'body should receive statements and declarations, not expressions', n));
 
   return {
     type: 'BlockStatement',

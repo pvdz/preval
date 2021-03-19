@@ -48,11 +48,23 @@ $(x);
 let f = function () {
   let g = function () {
     const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      const tmpReturnArg = $('a');
-      return tmpReturnArg;
-    } else {
+    const tmpBranchingA = function (tmpIfTest$1) {
+      const tmpReturnArg$1 = $('a');
+      return tmpReturnArg$1;
+    };
+    const tmpBranchingB = function (tmpIfTest$2) {
+      const tmpReturnArg$2 = tmpBranchingC(tmpIfTest$2);
+      return tmpReturnArg$2;
+    };
+    const tmpBranchingC = function (tmpIfTest$3) {
       $('b');
+    };
+    if (tmpIfTest) {
+      const tmpReturnArg$3 = tmpBranchingA(tmpIfTest);
+      return tmpReturnArg$3;
+    } else {
+      const tmpReturnArg$4 = tmpBranchingB(tmpIfTest);
+      return tmpReturnArg$4;
     }
   };
   g();

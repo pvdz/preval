@@ -36,11 +36,25 @@ $(f());
 let f = function () {
   let a = { a: 999, b: 1000 };
   a = 0;
+  const tmpBranchingA = function (a$1) {
+    const tmpReturnArg = tmpBranchingC(a$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (a$2) {
+    a$2 = 2;
+    const tmpReturnArg$1 = tmpBranchingC(a$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (a$3) {
+    $(a$3);
+  };
   if (a) {
+    const tmpReturnArg$2 = tmpBranchingA(a);
+    return tmpReturnArg$2;
   } else {
-    a = 2;
+    const tmpReturnArg$3 = tmpBranchingB(a);
+    return tmpReturnArg$3;
   }
-  $(a);
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -50,12 +64,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let SSA_a = 0;
-if (SSA_a) {
-} else {
-  SSA_a = 2;
-}
-$(SSA_a);
+$(2);
 $(undefined);
 `````
 

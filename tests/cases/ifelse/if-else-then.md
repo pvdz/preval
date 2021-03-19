@@ -44,12 +44,26 @@ $(f());
 let f = function () {
   $('A');
   const tmpIfTest = $(1);
-  if (tmpIfTest) {
+  const tmpBranchingA = function (tmpIfTest$1) {
     $('B');
-  } else {
+    const tmpReturnArg = tmpBranchingC(tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpIfTest$2) {
     $('C');
+    const tmpReturnArg$1 = tmpBranchingC(tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpIfTest$3) {
+    $('D');
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$2 = tmpBranchingA(tmpIfTest);
+    return tmpReturnArg$2;
+  } else {
+    const tmpReturnArg$3 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$3;
   }
-  $('D');
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -59,15 +73,21 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('A');
-const tmpIfTest = $(1);
-if (tmpIfTest) {
-  $('B');
-} else {
-  $('C');
-}
-$('D');
-$(undefined);
+const f = function () {
+  $('A');
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    $('B');
+    $('D');
+    return undefined;
+  } else {
+    $('C');
+    $('D');
+    return undefined;
+  }
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

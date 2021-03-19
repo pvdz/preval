@@ -31,15 +31,29 @@ let i = function (tmpParamDefault) {
 let i = function (tmpParamDefault) {
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
+  const tmpBranchingA = function (tmpParamDefault$1, bindingPatternObjRoot$1, tmpIfTest$1) {
+    bindingPatternObjRoot$1 = d;
+    const tmpReturnArg = tmpBranchingC(tmpParamDefault$1, bindingPatternObjRoot$1, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpParamDefault$2, bindingPatternObjRoot$2, tmpIfTest$2) {
+    bindingPatternObjRoot$2 = tmpParamDefault$2;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamDefault$2, bindingPatternObjRoot$2, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpParamDefault$3, bindingPatternObjRoot$3, tmpIfTest$3) {
+    let objPatternNoDefault$2 = bindingPatternObjRoot$3.x;
+    let objPatternNoDefault$3 = objPatternNoDefault$2.y;
+    let z$1 = objPatternNoDefault$3.z;
+    return z$1;
+  };
   if (tmpIfTest) {
-    bindingPatternObjRoot = d;
+    const tmpReturnArg$2 = tmpBranchingA(tmpParamDefault, bindingPatternObjRoot, tmpIfTest);
+    return tmpReturnArg$2;
   } else {
-    bindingPatternObjRoot = tmpParamDefault;
+    const tmpReturnArg$3 = tmpBranchingB(tmpParamDefault, bindingPatternObjRoot, tmpIfTest);
+    return tmpReturnArg$3;
   }
-  let objPatternNoDefault = bindingPatternObjRoot.x;
-  let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let z = objPatternNoDefault$1.z;
-  return z;
 };
 `````
 

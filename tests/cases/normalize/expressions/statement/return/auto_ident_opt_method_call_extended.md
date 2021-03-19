@@ -40,15 +40,28 @@ let f = function () {
   let tmpReturnArg = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
+  const tmpBranchingA = function (tmpReturnArg$1, tmpChainRootProp$1, tmpIfTest$1) {
+    const tmpChainElementObject$3 = tmpChainRootProp$1.c;
+    const tmpChainElementObject$4 = tmpChainElementObject$3.d;
+    const tmpChainElementObject$5 = tmpChainElementObject$4.e;
+    const tmpChainElementCall$1 = tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
+    tmpReturnArg$1 = tmpChainElementCall$1;
+    const tmpReturnArg$4 = tmpBranchingC(tmpReturnArg$1, tmpChainRootProp$1, tmpIfTest$1);
+    return tmpReturnArg$4;
+  };
+  const tmpBranchingB = function (tmpReturnArg$2, tmpChainRootProp$2, tmpIfTest$2) {
+    const tmpReturnArg$5 = tmpBranchingC(tmpReturnArg$2, tmpChainRootProp$2, tmpIfTest$2);
+    return tmpReturnArg$5;
+  };
+  const tmpBranchingC = function (tmpReturnArg$3, tmpChainRootProp$3, tmpIfTest$3) {
+    return tmpReturnArg$3;
+  };
   if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-    const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-    tmpReturnArg = tmpChainElementCall;
-    return tmpReturnArg;
+    const tmpReturnArg$6 = tmpBranchingA(tmpReturnArg, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$6;
   } else {
-    return tmpReturnArg;
+    const tmpReturnArg$7 = tmpBranchingB(tmpReturnArg, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$7;
   }
 };
 const tmpObjLitVal$1 = { e: $ };
@@ -65,17 +78,15 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  let tmpReturnArg = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-    const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
-    tmpReturnArg = tmpChainElementCall;
-    return tmpReturnArg;
+    const tmpChainElementObject$3 = b.c;
+    const tmpChainElementObject$4 = tmpChainElementObject$3.d;
+    const tmpChainElementObject$5 = tmpChainElementObject$4.e;
+    const tmpChainElementCall$1 = tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
+    return tmpChainElementCall$1;
   } else {
-    return tmpReturnArg;
+    return undefined;
   }
 };
 const tmpObjLitVal$1 = { e: $ };

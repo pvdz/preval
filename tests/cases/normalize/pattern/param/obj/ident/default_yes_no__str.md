@@ -35,12 +35,25 @@ let f = function (tmpParamPattern) {
   let objPatternBeforeDefault = bindingPatternObjRoot.x;
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
+  const tmpBranchingA = function (tmpParamPattern$1, bindingPatternObjRoot$1, objPatternBeforeDefault$1, x$1, tmpIfTest$1) {
+    x$1 = $('pass');
+    const tmpReturnArg = tmpBranchingC(tmpParamPattern$1, bindingPatternObjRoot$1, objPatternBeforeDefault$1, x$1, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpParamPattern$2, bindingPatternObjRoot$2, objPatternBeforeDefault$2, x$2, tmpIfTest$2) {
+    x$2 = objPatternBeforeDefault$2;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamPattern$2, bindingPatternObjRoot$2, objPatternBeforeDefault$2, x$2, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpParamPattern$3, bindingPatternObjRoot$3, objPatternBeforeDefault$3, x$3, tmpIfTest$3) {
+    return x$3;
+  };
   if (tmpIfTest) {
-    x = $('pass');
-    return x;
+    const tmpReturnArg$2 = tmpBranchingA(tmpParamPattern, bindingPatternObjRoot, objPatternBeforeDefault, x, tmpIfTest);
+    return tmpReturnArg$2;
   } else {
-    x = objPatternBeforeDefault;
-    return x;
+    const tmpReturnArg$3 = tmpBranchingB(tmpParamPattern, bindingPatternObjRoot, objPatternBeforeDefault, x, tmpIfTest);
+    return tmpReturnArg$3;
   }
 };
 const tmpCallCallee = $;
@@ -55,8 +68,8 @@ const f = function (tmpParamPattern) {
   const objPatternBeforeDefault = tmpParamPattern.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const SSA_x = $('pass');
-    return SSA_x;
+    const SSA_x$1 = $('pass');
+    return SSA_x$1;
   } else {
     return objPatternBeforeDefault;
   }

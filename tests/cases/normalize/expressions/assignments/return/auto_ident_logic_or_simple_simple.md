@@ -35,12 +35,26 @@ $(a);
 `````js filename=intro
 let f = function () {
   a = 0;
-  if (a) {
-  } else {
+  const tmpBranchingA = function () {
+    const tmpReturnArg$2 = tmpBranchingC();
+    return tmpReturnArg$2;
+  };
+  const tmpBranchingB = function () {
     a = 2;
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
+  };
+  const tmpBranchingC = function () {
+    let tmpReturnArg$1 = a;
+    return tmpReturnArg$1;
+  };
+  if (a) {
+    const tmpReturnArg$4 = tmpBranchingA();
+    return tmpReturnArg$4;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB();
+    return tmpReturnArg$5;
   }
-  let tmpReturnArg = a;
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
@@ -52,14 +66,25 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = 0;
-if (SSA_a) {
-} else {
-  SSA_a = 2;
-}
-const tmpReturnArg = SSA_a;
-$(tmpReturnArg);
-$(SSA_a);
+const f = function () {
+  a = 0;
+  const tmpBranchingC = function () {
+    const tmpReturnArg$1 = a;
+    return tmpReturnArg$1;
+  };
+  if (a) {
+    const tmpReturnArg$4 = tmpBranchingC();
+    return tmpReturnArg$4;
+  } else {
+    a = 2;
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
+  }
+};
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
+$(a);
 `````
 
 ## Globals

@@ -56,17 +56,29 @@ let f = function () {
   };
   const tmpLabeledBlockFunc = function () {
     const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
+    const tmpBranchingA = function (tmpIfTest$2) {
       $(100);
       return 20;
-    } else {
+    };
+    const tmpBranchingB = function (tmpIfTest$3) {
       $(101);
-      const tmpReturnArg = tmpBranchingC();
-      return tmpReturnArg;
+      const tmpReturnArg$1 = tmpBranchingC();
+      return tmpReturnArg$1;
+    };
+    const tmpBranchingC$1 = function (tmpIfTest$4) {
+      const tmpReturnArg$2 = tmpBranchingC();
+      return tmpReturnArg$2;
+    };
+    if (tmpIfTest$1) {
+      const tmpReturnArg$3 = tmpBranchingA(tmpIfTest$1);
+      return tmpReturnArg$3;
+    } else {
+      const tmpReturnArg$4 = tmpBranchingB(tmpIfTest$1);
+      return tmpReturnArg$4;
     }
   };
-  const tmpReturnArg$1 = tmpLabeledBlockFunc();
-  return tmpReturnArg$1;
+  const tmpReturnArg$5 = tmpLabeledBlockFunc();
+  return tmpReturnArg$5;
 };
 f();
 `````

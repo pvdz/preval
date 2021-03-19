@@ -37,18 +37,46 @@ $(a);
 let f = function (tmpParamDefault) {
   let p = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
-  if (tmpIfTest) {
-    p = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.x;
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-      p = tmpChainElementObject$2;
+  const tmpBranchingA = function (tmpParamDefault$1, p$1, tmpIfTest$2) {
+    p$1 = undefined;
+    const tmpChainRootProp$1 = b;
+    const tmpIfTest$3 = tmpChainRootProp$1 != null;
+    const tmpBranchingA$1 = function (tmpParamDefault$4, p$4, tmpIfTest$6, tmpChainRootProp$2, tmpIfTest$7) {
+      const tmpChainElementObject$6 = tmpChainRootProp$2.x;
+      const tmpChainElementObject$7 = tmpChainElementObject$6.y;
+      const tmpChainElementObject$8 = tmpChainElementObject$7.z;
+      p$4 = tmpChainElementObject$8;
+      const tmpReturnArg = tmpBranchingC$1(tmpParamDefault$4, p$4, tmpIfTest$6, tmpChainRootProp$2, tmpIfTest$7);
+      return tmpReturnArg;
+    };
+    const tmpBranchingB$1 = function (tmpParamDefault$5, p$5, tmpIfTest$8, tmpChainRootProp$3, tmpIfTest$9) {
+      const tmpReturnArg$1 = tmpBranchingC$1(tmpParamDefault$5, p$5, tmpIfTest$8, tmpChainRootProp$3, tmpIfTest$9);
+      return tmpReturnArg$1;
+    };
+    const tmpBranchingC$1 = function (tmpParamDefault$6, p$6, tmpIfTest$10, tmpChainRootProp$4, tmpIfTest$11) {
+      const tmpReturnArg$2 = tmpBranchingC(tmpParamDefault$6, p$6, tmpIfTest$10);
+      return tmpReturnArg$2;
+    };
+    if (tmpIfTest$3) {
+      const tmpReturnArg$3 = tmpBranchingA$1(tmpParamDefault$1, p$1, tmpIfTest$2, tmpChainRootProp$1, tmpIfTest$3);
+      return tmpReturnArg$3;
+    } else {
+      const tmpReturnArg$4 = tmpBranchingB$1(tmpParamDefault$1, p$1, tmpIfTest$2, tmpChainRootProp$1, tmpIfTest$3);
+      return tmpReturnArg$4;
     }
+  };
+  const tmpBranchingB = function (tmpParamDefault$2, p$2, tmpIfTest$4) {
+    p$2 = tmpParamDefault$2;
+    const tmpReturnArg$5 = tmpBranchingC(tmpParamDefault$2, p$2, tmpIfTest$4);
+    return tmpReturnArg$5;
+  };
+  const tmpBranchingC = function (tmpParamDefault$3, p$3, tmpIfTest$5) {};
+  if (tmpIfTest) {
+    const tmpReturnArg$6 = tmpBranchingA(tmpParamDefault, p, tmpIfTest);
+    return tmpReturnArg$6;
   } else {
-    p = tmpParamDefault;
+    const tmpReturnArg$7 = tmpBranchingB(tmpParamDefault, p, tmpIfTest);
+    return tmpReturnArg$7;
   }
 };
 const tmpObjLitVal$1 = { z: 100 };
@@ -66,13 +94,22 @@ $(a);
 `````js filename=intro
 const f = function (tmpParamDefault) {
   const tmpIfTest = tmpParamDefault === undefined;
-  if (tmpIfTest) {
-    const tmpIfTest$1 = b != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject = b.x;
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      tmpChainElementObject$1.z;
+  const tmpBranchingA = function () {
+    const tmpIfTest$3 = b != null;
+    if (tmpIfTest$3) {
+      const tmpChainElementObject$6 = b.x;
+      const tmpChainElementObject$7 = tmpChainElementObject$6.y;
+      tmpChainElementObject$7.z;
+      return undefined;
+    } else {
+      return undefined;
     }
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$6 = tmpBranchingA();
+    return tmpReturnArg$6;
+  } else {
+    return undefined;
   }
 };
 const tmpObjLitVal$1 = { z: 100 };

@@ -40,14 +40,27 @@ let f = function () {
   let tmpReturnArg = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
+  const tmpBranchingA = function (tmpReturnArg$1, tmpChainRootProp$1, tmpIfTest$1) {
+    const tmpChainElementObject$3 = tmpChainRootProp$1.x;
+    const tmpChainElementObject$4 = tmpChainElementObject$3.y;
+    const tmpChainElementObject$5 = tmpChainElementObject$4.z;
+    tmpReturnArg$1 = tmpChainElementObject$5;
+    const tmpReturnArg$4 = tmpBranchingC(tmpReturnArg$1, tmpChainRootProp$1, tmpIfTest$1);
+    return tmpReturnArg$4;
+  };
+  const tmpBranchingB = function (tmpReturnArg$2, tmpChainRootProp$2, tmpIfTest$2) {
+    const tmpReturnArg$5 = tmpBranchingC(tmpReturnArg$2, tmpChainRootProp$2, tmpIfTest$2);
+    return tmpReturnArg$5;
+  };
+  const tmpBranchingC = function (tmpReturnArg$3, tmpChainRootProp$3, tmpIfTest$3) {
+    return tmpReturnArg$3;
+  };
   if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    tmpReturnArg = tmpChainElementObject$2;
-    return tmpReturnArg;
+    const tmpReturnArg$6 = tmpBranchingA(tmpReturnArg, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$6;
   } else {
-    return tmpReturnArg;
+    const tmpReturnArg$7 = tmpBranchingB(tmpReturnArg, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$7;
   }
 };
 const tmpObjLitVal$1 = { z: 100 };
@@ -64,16 +77,14 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  let tmpReturnArg = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
-    const tmpChainElementObject = b.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    tmpReturnArg = tmpChainElementObject$2;
-    return tmpReturnArg;
+    const tmpChainElementObject$3 = b.x;
+    const tmpChainElementObject$4 = tmpChainElementObject$3.y;
+    const tmpChainElementObject$5 = tmpChainElementObject$4.z;
+    return tmpChainElementObject$5;
   } else {
-    return tmpReturnArg;
+    return undefined;
   }
 };
 const tmpObjLitVal$1 = { z: 100 };

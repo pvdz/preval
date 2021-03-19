@@ -45,15 +45,30 @@ $(f());
 `````js filename=intro
 const f = function (x1) {
   let x = undefined;
-  if ($) {
-    x = {};
-  }
-  const g = function () {
-    const tmpPrevalAliasArgumentsLen = arguments.length;
-    $(tmpPrevalAliasArgumentsLen);
+  const tmpBranchingA = function (x1$1, x$1) {
+    x$1 = {};
+    const tmpReturnArg = tmpBranchingC(x1$1, x$1);
+    return tmpReturnArg;
   };
-  const tmpReturnArg = g();
-  return tmpReturnArg;
+  const tmpBranchingB = function (x1$2, x$2) {
+    const tmpReturnArg$1 = tmpBranchingC(x1$2, x$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (x1$3, x$3) {
+    const g$1 = function () {
+      const tmpPrevalAliasArgumentsLen$1 = arguments.length;
+      $(tmpPrevalAliasArgumentsLen$1);
+    };
+    const tmpReturnArg$2 = g$1();
+    return tmpReturnArg$2;
+  };
+  if ($) {
+    const tmpReturnArg$3 = tmpBranchingA(x1, x);
+    return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$4 = tmpBranchingB(x1, x);
+    return tmpReturnArg$4;
+  }
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -63,12 +78,25 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const g = function () {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  $(tmpPrevalAliasArgumentsLen);
+const f = function () {
+  const tmpBranchingC = function () {
+    const g$1 = function () {
+      const tmpPrevalAliasArgumentsLen$1 = arguments.length;
+      $(tmpPrevalAliasArgumentsLen$1);
+    };
+    const tmpReturnArg$2 = g$1();
+    return tmpReturnArg$2;
+  };
+  if ($) {
+    const tmpReturnArg = tmpBranchingC();
+    return tmpReturnArg;
+  } else {
+    const tmpReturnArg$4 = tmpBranchingC();
+    return tmpReturnArg$4;
+  }
 };
-const tmpReturnArg = g();
-$(tmpReturnArg);
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

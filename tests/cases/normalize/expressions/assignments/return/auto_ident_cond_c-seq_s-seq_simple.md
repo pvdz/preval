@@ -35,36 +35,60 @@ $(a);
 `````js filename=intro
 let f = function () {
   const tmpIfTest = $(30);
-  if (tmpIfTest) {
+  const tmpBranchingA = function (tmpIfTest$1) {
     a = 60;
+    const tmpReturnArg$2 = tmpBranchingC(tmpIfTest$1);
+    return tmpReturnArg$2;
+  };
+  const tmpBranchingB = function (tmpIfTest$2) {
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(100);
+    a = tmpCallCallee$1(tmpCalleeParam$1);
+    const tmpReturnArg$3 = tmpBranchingC(tmpIfTest$2);
+    return tmpReturnArg$3;
+  };
+  const tmpBranchingC = function (tmpIfTest$3) {
+    let tmpReturnArg$1 = a;
+    return tmpReturnArg$1;
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$4 = tmpBranchingA(tmpIfTest);
+    return tmpReturnArg$4;
   } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    a = tmpCallCallee(tmpCalleeParam);
+    const tmpReturnArg$5 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$5;
   }
-  let tmpReturnArg = a;
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$2 = $;
+const tmpCalleeParam$2 = f();
+tmpCallCallee$2(tmpCalleeParam$2);
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
+const f = function () {
+  const tmpIfTest = $(30);
+  const tmpBranchingC = function () {
+    const tmpReturnArg$1 = a;
+    return tmpReturnArg$1;
+  };
+  if (tmpIfTest) {
+    a = 60;
+    const tmpReturnArg$2 = tmpBranchingC();
+    return tmpReturnArg$2;
+  } else {
+    const tmpCalleeParam$1 = $(100);
+    a = $(tmpCalleeParam$1);
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
+  }
+};
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(30);
-if (tmpIfTest) {
-  a = 60;
-} else {
-  const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
-}
-const tmpReturnArg = a;
-$(tmpReturnArg);
+const tmpCalleeParam$2 = f();
+$(tmpCalleeParam$2);
 $(a);
 `````
 

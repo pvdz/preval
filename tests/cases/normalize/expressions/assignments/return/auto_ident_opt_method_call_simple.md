@@ -40,13 +40,28 @@ let f = function () {
   a = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
+  const tmpBranchingA = function (tmpChainRootProp$1, tmpIfTest$1) {
+    const tmpChainElementObject$1 = tmpChainRootProp$1.c;
+    const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainRootProp$1, 1);
+    a = tmpChainElementCall$1;
+    const tmpReturnArg$2 = tmpBranchingC(tmpChainRootProp$1, tmpIfTest$1);
+    return tmpReturnArg$2;
+  };
+  const tmpBranchingB = function (tmpChainRootProp$2, tmpIfTest$2) {
+    const tmpReturnArg$3 = tmpBranchingC(tmpChainRootProp$2, tmpIfTest$2);
+    return tmpReturnArg$3;
+  };
+  const tmpBranchingC = function (tmpChainRootProp$3, tmpIfTest$3) {
+    let tmpReturnArg$1 = a;
+    return tmpReturnArg$1;
+  };
   if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
-    a = tmpChainElementCall;
+    const tmpReturnArg$4 = tmpBranchingA(tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$4;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$5;
   }
-  let tmpReturnArg = a;
-  return tmpReturnArg;
 };
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
@@ -59,17 +74,29 @@ $(a);
 ## Output
 
 `````js filename=intro
+const f = function () {
+  a = undefined;
+  const tmpIfTest = b != null;
+  const tmpBranchingC = function () {
+    const tmpReturnArg$1 = a;
+    return tmpReturnArg$1;
+  };
+  if (tmpIfTest) {
+    const tmpChainElementObject$1 = b.c;
+    const tmpChainElementCall$1 = tmpChainElementObject$1.call(b, 1);
+    a = tmpChainElementCall$1;
+    const tmpReturnArg$2 = tmpBranchingC();
+    return tmpReturnArg$2;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingC();
+    return tmpReturnArg$5;
+  }
+};
 const b = { c: $ };
-let SSA_a = undefined;
-const tmpIfTest = b != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = tmpChainElementObject.call(b, 1);
-  SSA_a = tmpChainElementCall;
-}
-const tmpReturnArg = SSA_a;
-$(tmpReturnArg);
-$(SSA_a);
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
+$(a);
 `````
 
 ## Globals

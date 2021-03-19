@@ -42,12 +42,27 @@ let f = function () {
   a = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
+  const tmpBranchingA = function (b$1, a$1, tmpChainRootProp$1, tmpIfTest$1) {
+    const tmpChainRootComputed$1 = 'x';
+    const tmpChainElementObject$1 = tmpChainRootProp$1[tmpChainRootComputed$1];
+    a$1 = tmpChainElementObject$1;
+    const tmpReturnArg = tmpBranchingC(b$1, a$1, tmpChainRootProp$1, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (b$2, a$2, tmpChainRootProp$2, tmpIfTest$2) {
+    const tmpReturnArg$1 = tmpBranchingC(b$2, a$2, tmpChainRootProp$2, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (b$3, a$3, tmpChainRootProp$3, tmpIfTest$3) {
+    $(a$3);
+  };
   if (tmpIfTest) {
-    const tmpChainRootComputed = 'x';
-    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-    a = tmpChainElementObject;
+    const tmpReturnArg$2 = tmpBranchingA(b, a, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$2;
+  } else {
+    const tmpReturnArg$3 = tmpBranchingB(b, a, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$3;
   }
-  $(a);
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -57,15 +72,20 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-let SSA_a = undefined;
-const tmpIfTest = b != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = b.x;
-  SSA_a = tmpChainElementObject;
-}
-$(SSA_a);
-$(undefined);
+const f = function () {
+  const b = { x: 1 };
+  const tmpIfTest = b != null;
+  if (tmpIfTest) {
+    const tmpChainElementObject$1 = b.x;
+    $(tmpChainElementObject$1);
+    return undefined;
+  } else {
+    $(undefined);
+    return undefined;
+  }
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

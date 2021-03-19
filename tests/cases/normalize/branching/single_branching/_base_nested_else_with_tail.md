@@ -51,19 +51,45 @@ $(f(), 'final');
 `````js filename=intro
 let f = function () {
   const tmpIfTest = $(0);
-  if (tmpIfTest) {
+  const tmpBranchingA = function (tmpIfTest$2) {
     $(2);
-    const tmpReturnArg$1 = $(7);
-    return tmpReturnArg$1;
-  } else {
-    const tmpIfTest$1 = $(3);
-    if (tmpIfTest$1) {
+    const tmpReturnArg$2 = tmpBranchingC(tmpIfTest$2);
+    return tmpReturnArg$2;
+  };
+  const tmpBranchingB = function (tmpIfTest$3) {
+    const tmpIfTest$4 = $(3);
+    const tmpBranchingA$1 = function (tmpIfTest$6, tmpIfTest$7) {
       $(4);
-    } else {
+      const tmpReturnArg$4 = tmpBranchingC$1(tmpIfTest$6, tmpIfTest$7);
+      return tmpReturnArg$4;
+    };
+    const tmpBranchingB$1 = function (tmpIfTest$8, tmpIfTest$9) {
       $(5);
+      const tmpReturnArg$5 = tmpBranchingC$1(tmpIfTest$8, tmpIfTest$9);
+      return tmpReturnArg$5;
+    };
+    const tmpBranchingC$1 = function (tmpIfTest$10, tmpIfTest$11) {
+      const tmpReturnArg$3 = $(6);
+      return tmpReturnArg$3;
+    };
+    if (tmpIfTest$4) {
+      const tmpReturnArg$6 = tmpBranchingA$1(tmpIfTest$3, tmpIfTest$4);
+      return tmpReturnArg$6;
+    } else {
+      const tmpReturnArg$7 = tmpBranchingB$1(tmpIfTest$3, tmpIfTest$4);
+      return tmpReturnArg$7;
     }
-    const tmpReturnArg = $(6);
-    return tmpReturnArg;
+  };
+  const tmpBranchingC = function (tmpIfTest$5) {
+    const tmpReturnArg$8 = $(7);
+    return tmpReturnArg$8;
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$9 = tmpBranchingA(tmpIfTest);
+    return tmpReturnArg$9;
+  } else {
+    const tmpReturnArg$10 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$10;
   }
 };
 const tmpCallCallee = $;
@@ -77,19 +103,25 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   const tmpIfTest = $(0);
-  if (tmpIfTest) {
-    $(2);
-    const tmpReturnArg$1 = $(7);
-    return tmpReturnArg$1;
-  } else {
-    const tmpIfTest$1 = $(3);
-    if (tmpIfTest$1) {
+  const tmpBranchingB = function () {
+    const tmpIfTest$4 = $(3);
+    if (tmpIfTest$4) {
       $(4);
+      const tmpReturnArg$4 = $(6);
+      return tmpReturnArg$4;
     } else {
       $(5);
+      const tmpReturnArg$5 = $(6);
+      return tmpReturnArg$5;
     }
-    const tmpReturnArg = $(6);
-    return tmpReturnArg;
+  };
+  if (tmpIfTest) {
+    $(2);
+    const tmpReturnArg$2 = $(7);
+    return tmpReturnArg$2;
+  } else {
+    const tmpReturnArg$10 = tmpBranchingB();
+    return tmpReturnArg$10;
   }
 };
 const tmpCalleeParam = f();

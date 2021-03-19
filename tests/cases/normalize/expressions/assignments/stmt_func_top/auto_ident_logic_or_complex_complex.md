@@ -38,31 +38,51 @@ let f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
   a = tmpCallCallee(tmpCalleeParam);
+  const tmpBranchingA = function (a$1, tmpCallCallee$2, tmpCalleeParam$2) {
+    const tmpReturnArg = tmpBranchingC(a$1, tmpCallCallee$2, tmpCalleeParam$2);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (a$2, tmpCallCallee$3, tmpCalleeParam$3) {
+    const tmpCallCallee$4 = $;
+    const tmpCalleeParam$4 = $(2);
+    a$2 = tmpCallCallee$4(tmpCalleeParam$4);
+    const tmpReturnArg$1 = tmpBranchingC(a$2, tmpCallCallee$3, tmpCalleeParam$3);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (a$3, tmpCallCallee$5, tmpCalleeParam$5) {
+    $(a$3);
+  };
   if (a) {
+    const tmpReturnArg$2 = tmpBranchingA(a, tmpCallCallee, tmpCalleeParam);
+    return tmpReturnArg$2;
   } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(2);
-    a = tmpCallCallee$1(tmpCalleeParam$1);
+    const tmpReturnArg$3 = tmpBranchingB(a, tmpCallCallee, tmpCalleeParam);
+    return tmpReturnArg$3;
   }
-  $(a);
 };
-const tmpCallCallee$2 = $;
-const tmpCalleeParam$2 = f();
-tmpCallCallee$2(tmpCalleeParam$2);
+const tmpCallCallee$6 = $;
+const tmpCalleeParam$6 = f();
+tmpCallCallee$6(tmpCalleeParam$6);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let SSA_a = $(tmpCalleeParam);
-if (SSA_a) {
-} else {
-  const tmpCalleeParam$1 = $(2);
-  SSA_a = $(tmpCalleeParam$1);
-}
-$(SSA_a);
-$(undefined);
+const f = function () {
+  const tmpCalleeParam = $(0);
+  const SSA_a = $(tmpCalleeParam);
+  if (SSA_a) {
+    $(SSA_a);
+    return undefined;
+  } else {
+    const tmpCalleeParam$4 = $(2);
+    const SSA_a$2 = $(tmpCalleeParam$4);
+    $(SSA_a$2);
+    return undefined;
+  }
+};
+const tmpCalleeParam$6 = f();
+$(tmpCalleeParam$6);
 `````
 
 ## Globals

@@ -33,12 +33,81 @@ let i = function (tmpParamPattern) {
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let y = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
+  const tmpBranchingA = function (
+    tmpParamPattern$1,
+    bindingPatternObjRoot$1,
+    objPatternNoDefault$1,
+    arrPatternSplat$1,
+    arrPatternBeforeDefault$1,
+    y$1,
+    tmpIfTest$1,
+  ) {
+    y$1 = a;
+    const tmpReturnArg = tmpBranchingC(
+      tmpParamPattern$1,
+      bindingPatternObjRoot$1,
+      objPatternNoDefault$1,
+      arrPatternSplat$1,
+      arrPatternBeforeDefault$1,
+      y$1,
+      tmpIfTest$1,
+    );
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (
+    tmpParamPattern$2,
+    bindingPatternObjRoot$2,
+    objPatternNoDefault$2,
+    arrPatternSplat$2,
+    arrPatternBeforeDefault$2,
+    y$2,
+    tmpIfTest$2,
+  ) {
+    y$2 = arrPatternBeforeDefault$2;
+    const tmpReturnArg$1 = tmpBranchingC(
+      tmpParamPattern$2,
+      bindingPatternObjRoot$2,
+      objPatternNoDefault$2,
+      arrPatternSplat$2,
+      arrPatternBeforeDefault$2,
+      y$2,
+      tmpIfTest$2,
+    );
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (
+    tmpParamPattern$3,
+    bindingPatternObjRoot$3,
+    objPatternNoDefault$3,
+    arrPatternSplat$3,
+    arrPatternBeforeDefault$3,
+    y$3,
+    tmpIfTest$3,
+  ) {
+    return y$3;
+  };
   if (tmpIfTest) {
-    y = a;
-    return y;
+    const tmpReturnArg$2 = tmpBranchingA(
+      tmpParamPattern,
+      bindingPatternObjRoot,
+      objPatternNoDefault,
+      arrPatternSplat,
+      arrPatternBeforeDefault,
+      y,
+      tmpIfTest,
+    );
+    return tmpReturnArg$2;
   } else {
-    y = arrPatternBeforeDefault;
-    return y;
+    const tmpReturnArg$3 = tmpBranchingB(
+      tmpParamPattern,
+      bindingPatternObjRoot,
+      objPatternNoDefault,
+      arrPatternSplat,
+      arrPatternBeforeDefault,
+      y,
+      tmpIfTest,
+    );
+    return tmpReturnArg$3;
   }
 };
 `````

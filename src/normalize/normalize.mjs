@@ -5113,169 +5113,167 @@ export function phaseNormalize(fdata, fname) {
     // Must do this "on the way back up" because we need to first re-map `arguments` and `this`
     // Requiring the function as the "floor" allows us to build bottom up, at the expense of some useless re-traversals...
     // This normalization is currently not applied to generators or async functions. Not sure what the ramification is.
-    // YOYO, if-else
-    if (false) {
-      vlog('Start of single-branch-per-function algo');
-      const funcNode = ifelseStack[ifelseStack.length - 1];
-      if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
-        if (funcNode.generator) {
-          // Currently not seeing a solid way to support function abstraction inside a generator
-          // Sure, we can do it for all the bits that don't contain `yield`, but the thing does taint
-          // so if there's one after the if-else then the whole thing collapses. I dunno yet.
-          vlog(RED + 'Can not apply the branch reduction rule to generators...' + RESET);
-        } else if (funcNode.async) {
-          // Async functions need more research. Unlike generators we may be able to deal with these but I'm not sure yet.
-          // The simplest safe way would be to await the calls of all abstractions. Less invasive would be to filter that
-          // based on whether the abstraction actually contained the keyword `await`. Though it does taint the whole chain.
-          vlog(RED + 'Can not apply the branch reduction rule to async functions yet...' + RESET);
-        } else if (
-          // If this `if` is the last node of the body
-          i >= body.length - 1 &&
-          // or the if or else has no nested `if`
-          !node.consequent.body.some((snode) => snode.type === 'IfStatement') &&
-          !node.alternate?.body.some((snode) => snode.type === 'IfStatement')
-        ) {
-          vlog('There is no more code after this if and there are no nested if-elses inside the if or the else. Bailing');
-        } else {
-          vlog('i=', i, 'body has', body.length, 'elements');
-          // TODO: do we want this step before or after the abrubt completion inlining?
-          // This is an if-else directly nested inside another if-else, nested directly in a function/arrow
-          // Note: this may be a method. We'll have to figure out how to outline functions or whatever, or maybe we don't at all.
-          rule('Nested if-else in function must be abstracted');
-          example(
-            'function f(){ if (x) { if (y) { g(); } else { h(); } }',
-            'function f(){ const A() { return g(); }; const B() { return h(); } if (x) { return A(); } else { return B(); } }',
-          );
-          before(node, funcNode);
+    vgroup('Start of single-branch-per-function algo');
+    const funcNode = ifelseStack[ifelseStack.length - 1];
+    if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
+      if (funcNode.generator) {
+        // Currently not seeing a solid way to support function abstraction inside a generator
+        // Sure, we can do it for all the bits that don't contain `yield`, but the thing does taint
+        // so if there's one after the if-else then the whole thing collapses. I dunno yet.
+        vlog(RED + 'Can not apply the branch reduction rule to generators...' + RESET);
+      } else if (funcNode.async) {
+        // Async functions need more research. Unlike generators we may be able to deal with these but I'm not sure yet.
+        // The simplest safe way would be to await the calls of all abstractions. Less invasive would be to filter that
+        // based on whether the abstraction actually contained the keyword `await`. Though it does taint the whole chain.
+        vlog(RED + 'Can not apply the branch reduction rule to async functions yet...' + RESET);
+      } else if (
+        // If this `if` is the last node of the body
+        i >= body.length - 1 &&
+        // or the if or else has no nested `if`
+        !node.consequent.body.some((snode) => snode.type === 'IfStatement') &&
+        !node.alternate?.body.some((snode) => snode.type === 'IfStatement')
+      ) {
+        vlog('There is no more code after this if and there are no nested if-elses inside the if or the else. Bailing');
+      } else {
+        vlog('i=', i, 'body has', body.length, 'elements');
+        // TODO: do we want this step before or after the abrubt completion inlining?
+        // This is an if-else directly nested inside another if-else, nested directly in a function/arrow
+        // Note: this may be a method. We'll have to figure out how to outline functions or whatever, or maybe we don't at all.
+        rule('Nested if-else in function must be abstracted');
+        example(
+          'function f(){ if (x) { if (y) { g(); } else { h(); } }',
+          'function f(){ const A() { return g(); }; const B() { return h(); } if (x) { return A(); } else { return B(); } }',
+        );
+        before(node, funcNode);
 
-          // - Collect all bindings created before the binding
-          // - Abstract the if, the else, and all other nodes after the if-else `node` into separate functions
-          // - The if and else abstractions should call-return the "other" abstraction (regardless, let DCE do its magic later)
+        // - Collect all bindings created before the binding
+        // - Abstract the if, the else, and all other nodes after the if-else `node` into separate functions
+        // - The if and else abstractions should call-return the "other" abstraction (regardless, let DCE do its magic later)
 
-          // We are on the way down the to transform so the body should be normalized, meaning all decls should
-          // be let or const variable declarations now. Collect them up to the if. Also gets us the index.
+        // We are on the way down the to transform so the body should be normalized, meaning all decls should
+        // be let or const variable declarations now. Collect them up to the if. Also gets us the index.
 
-          let index = -1;
-          const declaredBindings = [];
-          for (let i = 0; i < parentNode.body.length; ++i) {
-            const snode = parentNode.body[i];
-            if (snode === node) {
-              index = i;
-              break;
-            }
-            if (snode.type === 'VariableDeclaration') {
-              ASSERT(snode.kind === 'let' || snode.kind === 'const');
-              ASSERT(snode.declarations.length === 1);
-              ASSERT(snode.declarations[0].id.type === 'Identifier');
-              declaredBindings.push(snode.declarations[0].id.name);
-            }
+        let index = -1;
+        const declaredBindings = [];
+        for (let i = 0; i < parentNode.body.length; ++i) {
+          const snode = parentNode.body[i];
+          if (snode === node) {
+            index = i;
+            break;
           }
-          ASSERT(index >= 0, 'the if ought to be found? otherwise i think the ifelseStack needs some attention', index);
-
-          // Argument/parameter names to use for all functions and all calls. Let other rules eliminate them.
-          const apNames = funcNode.params.map((n) => (n.type === 'RestElement' ? n.argument.name : n.name)).concat(declaredBindings);
-          //if (!apNames.every(n => typeof n === 'string' && !!n)) {
-          //  console.log('wtf?');
-          //  source(funcNode, true);
-          //  console.log('declaredBindings:', declaredBindings)
-          //  ASSERT(false, 'should have all names', apNames);
-          //}
-          vlog('Local bindings found:', apNames);
-          // The remainder of the function after the if-else.
-          const bodyRest = parentNode.body.slice(index + 1);
-          parentNode.body.length = index + 1; // ehhh
-
-          vlog('Creating two functions for the if-else branch');
-          const tmpNameA = createFreshVar('tmpBranchingA', fdata);
-          const tmpNameB = createFreshVar('tmpBranchingB', fdata);
-          const tmpNameC = createFreshVar('tmpBranchingC', fdata);
-          const primeA = AST.functionExpression(
-            apNames.map((s) => AST.identifier(s)),
-            node.consequent.body.concat(
-              AST.returnStatement(
-                AST.callExpression(
-                  tmpNameC,
-                  apNames.map((s) => AST.identifier(s)),
-                ),
-              ),
-            ),
-            { id: createFreshVar('tmpUnusedPrimeFuncNameA', fdata) },
-          );
-          const primeAcloned = cloneFunctionNode(primeA, undefined, [], fdata).expression;
-          {
-            primeAcloned.id = AST.identifier(tmpNameA);
-            source(primeAcloned);
-            primeAcloned.id = null;
+          if (snode.type === 'VariableDeclaration') {
+            ASSERT(snode.kind === 'let' || snode.kind === 'const');
+            ASSERT(snode.declarations.length === 1);
+            ASSERT(snode.declarations[0].id.type === 'Identifier');
+            declaredBindings.push(snode.declarations[0].id.name);
           }
-          const primeB = AST.functionExpression(
-            apNames.map((s) => AST.identifier(s)),
-            (node.alternate ? node.alternate.body : []).concat([
-              AST.returnStatement(
-                AST.callExpression(
-                  tmpNameC,
-                  apNames.map((s) => AST.identifier(s)),
-                ),
-              ),
-            ]),
-            { id: createFreshVar('tmpUnusedPrimeFuncNameB', fdata) },
-          );
-          const primeBcloned = cloneFunctionNode(primeB, undefined, [], fdata).expression;
-          {
-            primeBcloned.id = AST.identifier(tmpNameB);
-            source(primeBcloned);
-            primeBcloned.id = null;
-          }
-          const primeC = AST.functionExpression(
-            apNames.map((s) => AST.identifier(s)),
-            bodyRest,
-            { id: createFreshVar('tmpUnusedPrimeFuncNameC', fdata) },
-          );
-          const primeCcloned = cloneFunctionNode(primeC, undefined, [], fdata).expression;
-          {
-            primeCcloned.id = AST.identifier(tmpNameC);
-            source(primeCcloned);
-            primeCcloned.id = null;
-          }
-          const newIf = AST.ifStatement(
-            node.test,
-            AST.blockStatement(
-              AST.returnStatement(
-                AST.callExpression(
-                  tmpNameA,
-                  apNames.map((s) => AST.identifier(s)),
-                ),
-              ),
-            ),
-            AST.blockStatement(
-              AST.returnStatement(
-                AST.callExpression(
-                  tmpNameB,
-                  apNames.map((s) => AST.identifier(s)),
-                ),
-              ),
-            ),
-          );
-          body.splice(
-            i,
-            1,
-            //AST.expressionStatement(AST.identifier('WTFYO'))
-            AST.variableDeclaration(tmpNameA, primeAcloned, 'const'),
-            AST.variableDeclaration(tmpNameB, primeBcloned, 'const'),
-            AST.variableDeclaration(tmpNameC, primeCcloned, 'const'),
-            newIf,
-          );
-
-          if (VERBOSE_TRACING) {
-            vlog('\nComplete AST after applying "Nested if-else" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
-          }
-
-          vlog(); // newline
-          after(newIf, funcNode);
-          assertNoDupeNodes(AST.blockStatement(funcNode), 'body');
-          return true;
         }
+        ASSERT(index >= 0, 'the if ought to be found? otherwise i think the ifelseStack needs some attention', index);
+
+        // Argument/parameter names to use for all functions and all calls. Let other rules eliminate them.
+        const apNames = funcNode.params.map((n) => (n.type === 'RestElement' ? n.argument.name : n.name)).concat(declaredBindings);
+        //if (!apNames.every(n => typeof n === 'string' && !!n)) {
+        //  console.log('wtf?');
+        //  source(funcNode, true);
+        //  console.log('declaredBindings:', declaredBindings)
+        //  ASSERT(false, 'should have all names', apNames);
+        //}
+        vlog('Local bindings found:', apNames);
+        // The remainder of the function after the if-else.
+        const bodyRest = parentNode.body.slice(index + 1);
+        parentNode.body.length = index + 1; // ehhh
+
+        vlog('Creating two functions for the if-else branch');
+        const tmpNameA = createFreshVar('tmpBranchingA', fdata);
+        const tmpNameB = createFreshVar('tmpBranchingB', fdata);
+        const tmpNameC = createFreshVar('tmpBranchingC', fdata);
+        const primeA = AST.functionExpression(
+          apNames.map((s) => AST.identifier(s)),
+          node.consequent.body.concat(
+            AST.returnStatement(
+              AST.callExpression(
+                tmpNameC,
+                apNames.map((s) => AST.identifier(s)),
+              ),
+            ),
+          ),
+          { id: createFreshVar('tmpUnusedPrimeFuncNameA', fdata) },
+        );
+        const primeAcloned = cloneFunctionNode(primeA, undefined, [], fdata).expression;
+        {
+          primeAcloned.id = AST.identifier(tmpNameA);
+          source(primeAcloned);
+          primeAcloned.id = null;
+        }
+        const primeB = AST.functionExpression(
+          apNames.map((s) => AST.identifier(s)),
+          (node.alternate ? node.alternate.body : []).concat([
+            AST.returnStatement(
+              AST.callExpression(
+                tmpNameC,
+                apNames.map((s) => AST.identifier(s)),
+              ),
+            ),
+          ]),
+          { id: createFreshVar('tmpUnusedPrimeFuncNameB', fdata) },
+        );
+        const primeBcloned = cloneFunctionNode(primeB, undefined, [], fdata).expression;
+        {
+          primeBcloned.id = AST.identifier(tmpNameB);
+          source(primeBcloned);
+          primeBcloned.id = null;
+        }
+        const primeC = AST.functionExpression(
+          apNames.map((s) => AST.identifier(s)),
+          bodyRest,
+          { id: createFreshVar('tmpUnusedPrimeFuncNameC', fdata) },
+        );
+        const primeCcloned = cloneFunctionNode(primeC, undefined, [], fdata).expression;
+        {
+          primeCcloned.id = AST.identifier(tmpNameC);
+          source(primeCcloned);
+          primeCcloned.id = null;
+        }
+        const newIf = AST.ifStatement(
+          node.test,
+          AST.blockStatement(
+            AST.returnStatement(
+              AST.callExpression(
+                tmpNameA,
+                apNames.map((s) => AST.identifier(s)),
+              ),
+            ),
+          ),
+          AST.blockStatement(
+            AST.returnStatement(
+              AST.callExpression(
+                tmpNameB,
+                apNames.map((s) => AST.identifier(s)),
+              ),
+            ),
+          ),
+        );
+        body.splice(
+          i,
+          1,
+          //AST.expressionStatement(AST.identifier('WTFYO'))
+          AST.variableDeclaration(tmpNameA, primeAcloned, 'const'),
+          AST.variableDeclaration(tmpNameB, primeBcloned, 'const'),
+          AST.variableDeclaration(tmpNameC, primeCcloned, 'const'),
+          newIf,
+        );
+
+        if (VERBOSE_TRACING) {
+          vlog('\nComplete AST after applying "Nested if-else" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+        }
+
+        vlog(); // newline
+        after(newIf, funcNode);
+        assertNoDupeNodes(AST.blockStatement(funcNode), 'body');
+        return true;
       }
     }
+    vgroupEnd();
 
     if (node.consequent.$p.returnBreakContinueThrow && i < body.length - 1) {
       // Doesn't matter what kind of abrupt completion it was

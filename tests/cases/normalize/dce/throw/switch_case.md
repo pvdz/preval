@@ -49,13 +49,28 @@ let f = function () {
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(1, 'case');
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpBranchingA = function (tmpSwitchValue$1, tmpSwitchCaseToStart$1, tmpBinLhs$1, tmpIfTest$1) {
+    tmpSwitchCaseToStart$1 = 0;
+    const tmpReturnArg = tmpBranchingC(tmpSwitchValue$1, tmpSwitchCaseToStart$1, tmpBinLhs$1, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpSwitchValue$2, tmpSwitchCaseToStart$2, tmpBinLhs$2, tmpIfTest$2) {
+    const tmpReturnArg$1 = tmpBranchingC(tmpSwitchValue$2, tmpSwitchCaseToStart$2, tmpBinLhs$2, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$3) {
+    const tmpIfTest$4 = tmpSwitchCaseToStart$3 <= 0;
+    if (tmpIfTest$4) {
+      const tmpThrowArg = $(2, 'ret');
+      throw tmpThrowArg;
+    }
+  };
   if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpThrowArg = $(2, 'ret');
-    throw tmpThrowArg;
+    const tmpReturnArg$2 = tmpBranchingA(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
+    return tmpReturnArg$2;
+  } else {
+    const tmpReturnArg$3 = tmpBranchingB(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
+    return tmpReturnArg$3;
   }
 };
 const tmpCallCallee = $;
@@ -68,16 +83,21 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   const tmpSwitchValue = $(1, 'disc');
-  let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(1, 'case');
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpBranchingC = function (tmpSwitchCaseToStart$3) {
+    const tmpIfTest$4 = tmpSwitchCaseToStart$3 <= 0;
+    if (tmpIfTest$4) {
+      const tmpThrowArg = $(2, 'ret');
+      throw tmpThrowArg;
+    }
+  };
   if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  }
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpThrowArg = $(2, 'ret');
-    throw tmpThrowArg;
+    const tmpReturnArg = tmpBranchingC(0);
+    return tmpReturnArg;
+  } else {
+    const tmpReturnArg$3 = tmpBranchingC(1);
+    return tmpReturnArg$3;
   }
 };
 const tmpCalleeParam = f();

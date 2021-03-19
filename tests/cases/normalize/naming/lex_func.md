@@ -45,12 +45,24 @@ let f = function () {
   let a$1 = $(1);
   $(a$1);
   const tmpIfTest = $();
+  const tmpBranchingA = function (a$2, tmpIfTest$1) {
+    return a$2;
+  };
+  const tmpBranchingB = function (a$3, tmpIfTest$2) {
+    const tmpReturnArg = tmpBranchingC(a$3, tmpIfTest$2);
+    return tmpReturnArg;
+  };
+  const tmpBranchingC = function (a$4, tmpIfTest$3) {
+    let a$5 = $(1);
+    $(a$5);
+    return a$5;
+  };
   if (tmpIfTest) {
-    return a$1;
+    const tmpReturnArg$1 = tmpBranchingA(a$1, tmpIfTest);
+    return tmpReturnArg$1;
   } else {
-    let a = $(1);
-    $(a);
-    return a;
+    const tmpReturnArg$2 = tmpBranchingB(a$1, tmpIfTest);
+    return tmpReturnArg$2;
   }
 };
 const tmpCallCallee = $;
@@ -68,9 +80,9 @@ const f = function () {
   if (tmpIfTest) {
     return a$1;
   } else {
-    const a = $(1);
-    $(a);
-    return a;
+    const a$5 = $(1);
+    $(a$5);
+    return a$5;
   }
 };
 const tmpCalleeParam = f();

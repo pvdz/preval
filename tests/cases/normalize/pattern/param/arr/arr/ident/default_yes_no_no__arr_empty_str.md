@@ -38,12 +38,88 @@ let f = function (tmpParamPattern) {
   let arrPatternBeforeDefault = arrPatternSplat$1[0];
   let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
+  const tmpBranchingA = function (
+    tmpParamPattern$1,
+    bindingPatternArrRoot$1,
+    arrPatternSplat$2,
+    arrPatternStep$1,
+    arrPatternSplat$3,
+    arrPatternBeforeDefault$1,
+    x$1,
+    tmpIfTest$1,
+  ) {
+    x$1 = $('pass');
+    const tmpReturnArg = tmpBranchingC(
+      tmpParamPattern$1,
+      bindingPatternArrRoot$1,
+      arrPatternSplat$2,
+      arrPatternStep$1,
+      arrPatternSplat$3,
+      arrPatternBeforeDefault$1,
+      x$1,
+      tmpIfTest$1,
+    );
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (
+    tmpParamPattern$2,
+    bindingPatternArrRoot$2,
+    arrPatternSplat$4,
+    arrPatternStep$2,
+    arrPatternSplat$5,
+    arrPatternBeforeDefault$2,
+    x$2,
+    tmpIfTest$2,
+  ) {
+    x$2 = arrPatternBeforeDefault$2;
+    const tmpReturnArg$1 = tmpBranchingC(
+      tmpParamPattern$2,
+      bindingPatternArrRoot$2,
+      arrPatternSplat$4,
+      arrPatternStep$2,
+      arrPatternSplat$5,
+      arrPatternBeforeDefault$2,
+      x$2,
+      tmpIfTest$2,
+    );
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (
+    tmpParamPattern$3,
+    bindingPatternArrRoot$3,
+    arrPatternSplat$6,
+    arrPatternStep$3,
+    arrPatternSplat$7,
+    arrPatternBeforeDefault$3,
+    x$3,
+    tmpIfTest$3,
+  ) {
+    return x$3;
+  };
   if (tmpIfTest) {
-    x = $('pass');
-    return x;
+    const tmpReturnArg$2 = tmpBranchingA(
+      tmpParamPattern,
+      bindingPatternArrRoot,
+      arrPatternSplat,
+      arrPatternStep,
+      arrPatternSplat$1,
+      arrPatternBeforeDefault,
+      x,
+      tmpIfTest,
+    );
+    return tmpReturnArg$2;
   } else {
-    x = arrPatternBeforeDefault;
-    return x;
+    const tmpReturnArg$3 = tmpBranchingB(
+      tmpParamPattern,
+      bindingPatternArrRoot,
+      arrPatternSplat,
+      arrPatternStep,
+      arrPatternSplat$1,
+      arrPatternBeforeDefault,
+      x,
+      tmpIfTest,
+    );
+    return tmpReturnArg$3;
   }
 };
 const tmpCallCallee = $;
@@ -64,8 +140,8 @@ const f = function (tmpParamPattern) {
   const arrPatternBeforeDefault = arrPatternSplat$1[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const SSA_x = $('pass');
-    return SSA_x;
+    const SSA_x$1 = $('pass');
+    return SSA_x$1;
   } else {
     return arrPatternBeforeDefault;
   }

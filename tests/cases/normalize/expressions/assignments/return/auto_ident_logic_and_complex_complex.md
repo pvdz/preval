@@ -37,33 +37,60 @@ let f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   a = tmpCallCallee(tmpCalleeParam);
+  const tmpBranchingA = function (tmpCallCallee$2, tmpCalleeParam$2) {
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    a = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpReturnArg$2 = tmpBranchingC(tmpCallCallee$2, tmpCalleeParam$2);
+    return tmpReturnArg$2;
+  };
+  const tmpBranchingB = function (tmpCallCallee$4, tmpCalleeParam$4) {
+    const tmpReturnArg$3 = tmpBranchingC(tmpCallCallee$4, tmpCalleeParam$4);
+    return tmpReturnArg$3;
+  };
+  const tmpBranchingC = function (tmpCallCallee$5, tmpCalleeParam$5) {
+    let tmpReturnArg$1 = a;
+    return tmpReturnArg$1;
+  };
   if (a) {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(2);
-    a = tmpCallCallee$1(tmpCalleeParam$1);
+    const tmpReturnArg$4 = tmpBranchingA(tmpCallCallee, tmpCalleeParam);
+    return tmpReturnArg$4;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(tmpCallCallee, tmpCalleeParam);
+    return tmpReturnArg$5;
   }
-  let tmpReturnArg = a;
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$2 = $;
-const tmpCalleeParam$2 = f();
-tmpCallCallee$2(tmpCalleeParam$2);
+const tmpCallCallee$6 = $;
+const tmpCalleeParam$6 = f();
+tmpCallCallee$6(tmpCalleeParam$6);
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = $(1);
-let SSA_a = $(tmpCalleeParam);
-if (SSA_a) {
-  const tmpCalleeParam$1 = $(2);
-  SSA_a = $(tmpCalleeParam$1);
-}
-const tmpReturnArg = SSA_a;
-$(tmpReturnArg);
-$(SSA_a);
+const f = function () {
+  const tmpCalleeParam = $(1);
+  a = $(tmpCalleeParam);
+  const tmpBranchingC = function () {
+    const tmpReturnArg$1 = a;
+    return tmpReturnArg$1;
+  };
+  if (a) {
+    const tmpCalleeParam$3 = $(2);
+    a = $(tmpCalleeParam$3);
+    const tmpReturnArg$2 = tmpBranchingC();
+    return tmpReturnArg$2;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingC();
+    return tmpReturnArg$5;
+  }
+};
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam$6 = f();
+$(tmpCalleeParam$6);
+$(a);
 `````
 
 ## Globals

@@ -43,11 +43,26 @@ let f = function () {
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall($);
   const tmpIfTest = tmpChainElementCall != null;
+  const tmpBranchingA = function (a$1, tmpChainRootCall$1, tmpChainElementCall$2, tmpIfTest$1) {
+    const tmpChainElementCall$3 = tmpChainElementCall$2.call(tmpChainRootCall$1, 1);
+    a$1 = tmpChainElementCall$3;
+    const tmpReturnArg = tmpBranchingC(a$1, tmpChainRootCall$1, tmpChainElementCall$2, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (a$2, tmpChainRootCall$2, tmpChainElementCall$4, tmpIfTest$2) {
+    const tmpReturnArg$1 = tmpBranchingC(a$2, tmpChainRootCall$2, tmpChainElementCall$4, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (a$3, tmpChainRootCall$3, tmpChainElementCall$5, tmpIfTest$3) {
+    $(a$3);
+  };
   if (tmpIfTest) {
-    const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
-    a = tmpChainElementCall$1;
+    const tmpReturnArg$2 = tmpBranchingA(a, tmpChainRootCall, tmpChainElementCall, tmpIfTest);
+    return tmpReturnArg$2;
+  } else {
+    const tmpReturnArg$3 = tmpBranchingB(a, tmpChainRootCall, tmpChainElementCall, tmpIfTest);
+    return tmpReturnArg$3;
   }
-  $(a);
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -57,15 +72,20 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let SSA_a = undefined;
-const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
-if (tmpIfTest) {
-  const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-  SSA_a = tmpChainElementCall$1;
-}
-$(SSA_a);
-$(undefined);
+const f = function () {
+  const tmpChainElementCall = $($);
+  const tmpIfTest = tmpChainElementCall != null;
+  if (tmpIfTest) {
+    const tmpChainElementCall$3 = tmpChainElementCall.call($, 1);
+    $(tmpChainElementCall$3);
+    return undefined;
+  } else {
+    $(undefined);
+    return undefined;
+  }
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

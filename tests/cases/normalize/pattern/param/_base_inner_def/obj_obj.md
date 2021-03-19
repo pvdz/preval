@@ -35,12 +35,81 @@ let i = function (tmpParamPattern) {
   let objPatternBeforeDefault = objPatternNoDefault$1.z;
   let z = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
+  const tmpBranchingA = function (
+    tmpParamPattern$1,
+    bindingPatternObjRoot$1,
+    objPatternNoDefault$2,
+    objPatternNoDefault$3,
+    objPatternBeforeDefault$1,
+    z$1,
+    tmpIfTest$1,
+  ) {
+    z$1 = a;
+    const tmpReturnArg = tmpBranchingC(
+      tmpParamPattern$1,
+      bindingPatternObjRoot$1,
+      objPatternNoDefault$2,
+      objPatternNoDefault$3,
+      objPatternBeforeDefault$1,
+      z$1,
+      tmpIfTest$1,
+    );
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (
+    tmpParamPattern$2,
+    bindingPatternObjRoot$2,
+    objPatternNoDefault$4,
+    objPatternNoDefault$5,
+    objPatternBeforeDefault$2,
+    z$2,
+    tmpIfTest$2,
+  ) {
+    z$2 = objPatternBeforeDefault$2;
+    const tmpReturnArg$1 = tmpBranchingC(
+      tmpParamPattern$2,
+      bindingPatternObjRoot$2,
+      objPatternNoDefault$4,
+      objPatternNoDefault$5,
+      objPatternBeforeDefault$2,
+      z$2,
+      tmpIfTest$2,
+    );
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (
+    tmpParamPattern$3,
+    bindingPatternObjRoot$3,
+    objPatternNoDefault$6,
+    objPatternNoDefault$7,
+    objPatternBeforeDefault$3,
+    z$3,
+    tmpIfTest$3,
+  ) {
+    return z$3;
+  };
   if (tmpIfTest) {
-    z = a;
-    return z;
+    const tmpReturnArg$2 = tmpBranchingA(
+      tmpParamPattern,
+      bindingPatternObjRoot,
+      objPatternNoDefault,
+      objPatternNoDefault$1,
+      objPatternBeforeDefault,
+      z,
+      tmpIfTest,
+    );
+    return tmpReturnArg$2;
   } else {
-    z = objPatternBeforeDefault;
-    return z;
+    const tmpReturnArg$3 = tmpBranchingB(
+      tmpParamPattern,
+      bindingPatternObjRoot,
+      objPatternNoDefault,
+      objPatternNoDefault$1,
+      objPatternBeforeDefault,
+      z,
+      tmpIfTest,
+    );
+    return tmpReturnArg$3;
   }
 };
 `````

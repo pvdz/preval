@@ -100,8 +100,8 @@ const B = function () {
   $();
   const x$1 = $();
   if (x$1) {
-    const tmp$3 = $();
-    return tmp$3;
+    const tmpReturnArg = $();
+    return tmpReturnArg;
   } else {
     return undefined;
   }

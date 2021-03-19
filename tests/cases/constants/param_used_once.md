@@ -2147,16 +2147,35 @@ let TP$cloneX2$cloneX1 = function (fNeX1786, mNeX765, hNeX475, gNeX352, yNeX272)
                         DNeX65 = SSA_SNeX76[1];
                         const tmpReturnArgX5613 = function (nCeX411) {
                           let rCeX219 = undefined;
+                          const tmpBranchingA = function (nCeX411$1, rCeX219$1) {
+                            rCeX219$1 = TU;
+                            const tmpReturnArg = tmpBranchingC(nCeX411$1, rCeX219$1);
+                            return tmpReturnArg;
+                          };
+                          const tmpBranchingB = function (nCeX411$2, rCeX219$2) {
+                            rCeX219$2 = _U;
+                            const tmpReturnArg$1 = tmpBranchingC(nCeX411$2, rCeX219$2);
+                            return tmpReturnArg$1;
+                          };
+                          const tmpBranchingC = function (nCeX411$3, rCeX219$3) {
+                            const tmpCalleeParamX11309$1 = SSA_bNeX94;
+                            const tmpCalleeParamX11310$1 = [4, SSA_xNeX108, rCeX219$3];
+                            const tmpCalleeParamX11311$1 = DNeX65;
+                            const tmpReturnArgX5614$1 = RP$cloneX5(
+                              tmpCalleeParamX11309$1,
+                              $,
+                              tmpCalleeParamX11310$1,
+                              tmpCalleeParamX11311$1,
+                            );
+                            return tmpReturnArgX5614$1;
+                          };
                           if (nCeX411) {
-                            rCeX219 = TU;
+                            const tmpReturnArg$2 = tmpBranchingA(nCeX411, rCeX219);
+                            return tmpReturnArg$2;
                           } else {
-                            rCeX219 = _U;
+                            const tmpReturnArg$3 = tmpBranchingB(nCeX411, rCeX219);
+                            return tmpReturnArg$3;
                           }
-                          const tmpCalleeParamX11309 = SSA_bNeX94;
-                          const tmpCalleeParamX11310 = [4, SSA_xNeX108, rCeX219];
-                          const tmpCalleeParamX11311 = DNeX65;
-                          const tmpReturnArgX5614 = RP$cloneX5(tmpCalleeParamX11309, $, tmpCalleeParamX11310, tmpCalleeParamX11311);
-                          return tmpReturnArgX5614;
                         };
                         return tmpReturnArgX5613;
                       } else {
@@ -2210,21 +2229,87 @@ let TP$cloneX2$cloneX1 = function (fNeX1786, mNeX765, hNeX475, gNeX352, yNeX272)
                                     const tmpUnaryArgX395 = sCeX130[2];
                                     const tmpBinBothRhsX4246 = typeof tmpUnaryArgX395;
                                     const tmpIfTestX13192 = 'number' == tmpBinBothRhsX4246;
-                                    if (tmpIfTestX13192) {
-                                      const tmpCalleeParamX11317 = SSA_bNeX94;
-                                      const tmpCalleeParamX11318 = SSA_xNeX108;
-                                      const tmpCalleeParamX11319 = sCeX130[1];
-                                      const tmpCalleeParamX11320 = VNeX53;
-                                      const tmpCalleeParamX11321 = ZE(tmpCalleeParamX11319, tmpCalleeParamX11320);
-                                      const tmpReturnArgX5618 = RP$cloneX5(
-                                        tmpCalleeParamX11317,
+                                    const tmpBranchingA$1 = function (
+                                      nCeX412$1,
+                                      rCeX220$1,
+                                      tmpCalleeParamX11315$1,
+                                      tmpCalleeParamX11316$1,
+                                      sCeX130$1,
+                                      tmpUnaryArgX395$1,
+                                      tmpBinBothRhsX4246$1,
+                                      tmpIfTestX13192$1,
+                                    ) {
+                                      const tmpCalleeParamX11317$1 = SSA_bNeX94;
+                                      const tmpCalleeParamX11318$1 = SSA_xNeX108;
+                                      const tmpCalleeParamX11319$1 = sCeX130$1[1];
+                                      const tmpCalleeParamX11320$1 = VNeX53;
+                                      const tmpCalleeParamX11321$1 = ZE(tmpCalleeParamX11319$1, tmpCalleeParamX11320$1);
+                                      const tmpReturnArgX5618$1 = RP$cloneX5(
+                                        tmpCalleeParamX11317$1,
                                         $,
-                                        tmpCalleeParamX11318,
-                                        tmpCalleeParamX11321,
+                                        tmpCalleeParamX11318$1,
+                                        tmpCalleeParamX11321$1,
                                       );
-                                      return tmpReturnArgX5618;
-                                    } else {
+                                      return tmpReturnArgX5618$1;
+                                    };
+                                    const tmpBranchingB$1 = function (
+                                      nCeX412$2,
+                                      rCeX220$2,
+                                      tmpCalleeParamX11315$2,
+                                      tmpCalleeParamX11316$2,
+                                      sCeX130$2,
+                                      tmpUnaryArgX395$2,
+                                      tmpBinBothRhsX4246$2,
+                                      tmpIfTestX13192$2,
+                                    ) {
+                                      const tmpReturnArg$4 = tmpBranchingC$1(
+                                        nCeX412$2,
+                                        rCeX220$2,
+                                        tmpCalleeParamX11315$2,
+                                        tmpCalleeParamX11316$2,
+                                        sCeX130$2,
+                                        tmpUnaryArgX395$2,
+                                        tmpBinBothRhsX4246$2,
+                                        tmpIfTestX13192$2,
+                                      );
+                                      return tmpReturnArg$4;
+                                    };
+                                    const tmpBranchingC$1 = function (
+                                      nCeX412$3,
+                                      rCeX220$3,
+                                      tmpCalleeParamX11315$3,
+                                      tmpCalleeParamX11316$3,
+                                      sCeX130$3,
+                                      tmpUnaryArgX395$3,
+                                      tmpBinBothRhsX4246$3,
+                                      tmpIfTestX13192$3,
+                                    ) {
                                       throw JAe;
+                                    };
+                                    if (tmpIfTestX13192) {
+                                      const tmpReturnArg$5 = tmpBranchingA$1(
+                                        nCeX412,
+                                        rCeX220,
+                                        tmpCalleeParamX11315,
+                                        tmpCalleeParamX11316,
+                                        sCeX130,
+                                        tmpUnaryArgX395,
+                                        tmpBinBothRhsX4246,
+                                        tmpIfTestX13192,
+                                      );
+                                      return tmpReturnArg$5;
+                                    } else {
+                                      const tmpReturnArg$6 = tmpBranchingB$1(
+                                        nCeX412,
+                                        rCeX220,
+                                        tmpCalleeParamX11315,
+                                        tmpCalleeParamX11316,
+                                        sCeX130,
+                                        tmpUnaryArgX395,
+                                        tmpBinBothRhsX4246,
+                                        tmpIfTestX13192,
+                                      );
+                                      return tmpReturnArg$6;
                                     }
                                   };
                                   return tmpReturnArgX5617;

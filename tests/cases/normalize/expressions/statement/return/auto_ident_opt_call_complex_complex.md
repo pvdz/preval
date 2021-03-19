@@ -38,22 +38,35 @@ let f = function () {
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall($);
   const tmpIfTest = tmpChainElementCall != null;
+  const tmpBranchingA = function (tmpReturnArg$1, tmpChainRootCall$1, tmpChainElementCall$2, tmpIfTest$1) {
+    const tmpCallObj$1 = tmpChainElementCall$2;
+    const tmpCallVal$1 = tmpCallObj$1.call;
+    const tmpCalleeParam$2 = tmpChainRootCall$1;
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$3 = tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$2, tmpCalleeParam$3);
+    tmpReturnArg$1 = tmpChainElementCall$3;
+    const tmpReturnArg$4 = tmpBranchingC(tmpReturnArg$1, tmpChainRootCall$1, tmpChainElementCall$2, tmpIfTest$1);
+    return tmpReturnArg$4;
+  };
+  const tmpBranchingB = function (tmpReturnArg$2, tmpChainRootCall$2, tmpChainElementCall$4, tmpIfTest$2) {
+    const tmpReturnArg$5 = tmpBranchingC(tmpReturnArg$2, tmpChainRootCall$2, tmpChainElementCall$4, tmpIfTest$2);
+    return tmpReturnArg$5;
+  };
+  const tmpBranchingC = function (tmpReturnArg$3, tmpChainRootCall$3, tmpChainElementCall$5, tmpIfTest$3) {
+    return tmpReturnArg$3;
+  };
   if (tmpIfTest) {
-    const tmpCallObj = tmpChainElementCall;
-    const tmpCallVal = tmpCallObj.call;
-    const tmpCalleeParam = tmpChainRootCall;
-    const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
-    tmpReturnArg = tmpChainElementCall$1;
-    return tmpReturnArg;
+    const tmpReturnArg$6 = tmpBranchingA(tmpReturnArg, tmpChainRootCall, tmpChainElementCall, tmpIfTest);
+    return tmpReturnArg$6;
   } else {
-    return tmpReturnArg;
+    const tmpReturnArg$7 = tmpBranchingB(tmpReturnArg, tmpChainRootCall, tmpChainElementCall, tmpIfTest);
+    return tmpReturnArg$7;
   }
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam$2 = f();
-tmpCallCallee(tmpCalleeParam$2);
+const tmpCalleeParam$4 = f();
+tmpCallCallee(tmpCalleeParam$4);
 $(a);
 `````
 
@@ -61,22 +74,20 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  let tmpReturnArg = undefined;
   const tmpChainElementCall = $($);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
-    const tmpCallVal = tmpChainElementCall.call;
-    const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
-    tmpReturnArg = tmpChainElementCall$1;
-    return tmpReturnArg;
+    const tmpCallVal$1 = tmpChainElementCall.call;
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementCall, $, tmpCalleeParam$3);
+    return tmpChainElementCall$3;
   } else {
-    return tmpReturnArg;
+    return undefined;
   }
 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$2 = f();
-$(tmpCalleeParam$2);
+const tmpCalleeParam$4 = f();
+$(tmpCalleeParam$4);
 $(a);
 `````
 

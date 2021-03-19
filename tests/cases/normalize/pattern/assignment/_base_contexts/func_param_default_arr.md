@@ -31,16 +31,30 @@ f();
 const f = function (tmpParamDefault) {
   let a = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
+  const tmpBranchingA = function (tmpParamDefault$1, a$1, tmpIfTest$1) {
+    const tmpNestedAssignArrPatternRhs$1 = [100];
+    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
+    x = arrPatternSplat$1[0];
+    a$1 = tmpNestedAssignArrPatternRhs$1;
+    const tmpReturnArg$2 = tmpBranchingC(tmpParamDefault$1, a$1, tmpIfTest$1);
+    return tmpReturnArg$2;
+  };
+  const tmpBranchingB = function (tmpParamDefault$2, a$2, tmpIfTest$2) {
+    a$2 = tmpParamDefault$2;
+    const tmpReturnArg$3 = tmpBranchingC(tmpParamDefault$2, a$2, tmpIfTest$2);
+    return tmpReturnArg$3;
+  };
+  const tmpBranchingC = function (tmpParamDefault$3, a$3, tmpIfTest$3) {
+    const tmpReturnArg$1 = $(a$3);
+    return tmpReturnArg$1;
+  };
   if (tmpIfTest) {
-    const tmpNestedAssignArrPatternRhs = [100];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    a = tmpNestedAssignArrPatternRhs;
+    const tmpReturnArg$4 = tmpBranchingA(tmpParamDefault, a, tmpIfTest);
+    return tmpReturnArg$4;
   } else {
-    a = tmpParamDefault;
+    const tmpReturnArg$5 = tmpBranchingB(tmpParamDefault, a, tmpIfTest);
+    return tmpReturnArg$5;
   }
-  const tmpReturnArg = $(a);
-  return tmpReturnArg;
 };
 f();
 `````
@@ -48,10 +62,10 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpNestedAssignArrPatternRhs = [100];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-x = arrPatternSplat[0];
-$(tmpNestedAssignArrPatternRhs);
+const tmpNestedAssignArrPatternRhs$1 = [100];
+const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
+x = arrPatternSplat$1[0];
+$(tmpNestedAssignArrPatternRhs$1);
 `````
 
 ## Globals

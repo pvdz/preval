@@ -38,12 +38,25 @@ let f = function () {
   let b = 2;
   let c = 3;
   let tmpReturnArg = undefined;
+  const tmpBranchingA = function (a$1, b$1, c$1, tmpReturnArg$1) {
+    tmpReturnArg$1 = b$1;
+    const tmpReturnArg$4 = tmpBranchingC(a$1, b$1, c$1, tmpReturnArg$1);
+    return tmpReturnArg$4;
+  };
+  const tmpBranchingB = function (a$2, b$2, c$2, tmpReturnArg$2) {
+    tmpReturnArg$2 = c$2;
+    const tmpReturnArg$5 = tmpBranchingC(a$2, b$2, c$2, tmpReturnArg$2);
+    return tmpReturnArg$5;
+  };
+  const tmpBranchingC = function (a$3, b$3, c$3, tmpReturnArg$3) {
+    return tmpReturnArg$3;
+  };
   if (a) {
-    tmpReturnArg = b;
-    return tmpReturnArg;
+    const tmpReturnArg$6 = tmpBranchingA(a, b, c, tmpReturnArg);
+    return tmpReturnArg$6;
   } else {
-    tmpReturnArg = c;
-    return tmpReturnArg;
+    const tmpReturnArg$7 = tmpBranchingB(a, b, c, tmpReturnArg);
+    return tmpReturnArg$7;
   }
 };
 const tmpCallCallee = $;

@@ -35,11 +35,24 @@ $(a);
 `````js filename=intro
 let f = function () {
   let tmpReturnArg = 0;
+  const tmpBranchingA = function (tmpReturnArg$1) {
+    const tmpReturnArg$4 = tmpBranchingC(tmpReturnArg$1);
+    return tmpReturnArg$4;
+  };
+  const tmpBranchingB = function (tmpReturnArg$2) {
+    tmpReturnArg$2 = 2;
+    const tmpReturnArg$5 = tmpBranchingC(tmpReturnArg$2);
+    return tmpReturnArg$5;
+  };
+  const tmpBranchingC = function (tmpReturnArg$3) {
+    return tmpReturnArg$3;
+  };
   if (tmpReturnArg) {
-    return tmpReturnArg;
+    const tmpReturnArg$6 = tmpBranchingA(tmpReturnArg);
+    return tmpReturnArg$6;
   } else {
-    tmpReturnArg = 2;
-    return tmpReturnArg;
+    const tmpReturnArg$7 = tmpBranchingB(tmpReturnArg);
+    return tmpReturnArg$7;
   }
 };
 let a = { a: 999, b: 1000 };

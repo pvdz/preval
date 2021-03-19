@@ -31,13 +31,27 @@ x();
 let x = function (tmpParamDefault, tmpParamPattern) {
   let foo = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
+  const tmpBranchingA = function (tmpParamDefault$1, tmpParamPattern$1, foo$1, tmpIfTest$1) {
+    foo$1 = x$1;
+    const tmpReturnArg = tmpBranchingC(tmpParamDefault$1, tmpParamPattern$1, foo$1, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpParamDefault$2, tmpParamPattern$2, foo$2, tmpIfTest$2) {
+    foo$2 = tmpParamDefault$2;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamDefault$2, tmpParamPattern$2, foo$2, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpParamDefault$3, tmpParamPattern$3, foo$3, tmpIfTest$3) {
+    let bindingPatternObjRoot = tmpParamPattern$3;
+    let x$2 = bindingPatternObjRoot.x$1;
+  };
   if (tmpIfTest) {
-    foo = x$1;
+    const tmpReturnArg$2 = tmpBranchingA(tmpParamDefault, tmpParamPattern, foo, tmpIfTest);
+    return tmpReturnArg$2;
   } else {
-    foo = tmpParamDefault;
+    const tmpReturnArg$3 = tmpBranchingB(tmpParamDefault, tmpParamPattern, foo, tmpIfTest);
+    return tmpReturnArg$3;
   }
-  let bindingPatternObjRoot = tmpParamPattern;
-  let x$1 = bindingPatternObjRoot.x$1;
 };
 x();
 `````
@@ -45,13 +59,16 @@ x();
 ## Output
 
 `````js filename=intro
+x$1;
 undefined.x$1;
 throw '[Preval]: Can not reach here';
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x$1
 
 ## Result
 
@@ -60,7 +77,8 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD?!
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Final output calls: BAD!!
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+ - eval returned: ('<crash[ <ref> is not defined ]>')

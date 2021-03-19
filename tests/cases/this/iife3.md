@@ -35,8 +35,22 @@ f();
 `````js filename=intro
 const f = function () {
   let tmpIfTest = $(1);
+  const tmpBranchingA = function (tmpIfTest$1) {
+    tmpIfTest$1 = $(2);
+    const tmpReturnArg = tmpBranchingC(tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpIfTest$2) {
+    const tmpReturnArg$1 = tmpBranchingC(tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpIfTest$3) {};
   if (tmpIfTest) {
-    tmpIfTest = $(2);
+    const tmpReturnArg$2 = tmpBranchingA(tmpIfTest);
+    return tmpReturnArg$2;
+  } else {
+    const tmpReturnArg$3 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$3;
   }
 };
 f();

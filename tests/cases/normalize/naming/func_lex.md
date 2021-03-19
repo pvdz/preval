@@ -47,10 +47,22 @@ let f = function () {
   let a$1 = $(1);
   $(a$1);
   const tmpIfTest = $();
+  const tmpBranchingA = function (a$2, a$3, tmpIfTest$1) {
+    return a$3;
+  };
+  const tmpBranchingB = function (a$4, a$5, tmpIfTest$2) {
+    const tmpReturnArg = tmpBranchingC(a$4, a$5, tmpIfTest$2);
+    return tmpReturnArg;
+  };
+  const tmpBranchingC = function (a$6, a$7, tmpIfTest$3) {
+    return a$6;
+  };
   if (tmpIfTest) {
-    return a$1;
+    const tmpReturnArg$1 = tmpBranchingA(a, a$1, tmpIfTest);
+    return tmpReturnArg$1;
   } else {
-    return a;
+    const tmpReturnArg$2 = tmpBranchingB(a, a$1, tmpIfTest);
+    return tmpReturnArg$2;
   }
 };
 const tmpCallCallee = $;

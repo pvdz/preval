@@ -41,13 +41,26 @@ let f = function () {
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest = tmpChainElementCall != null;
+  const tmpBranchingA = function (tmpReturnArg$1, tmpChainRootCall$1, tmpChainElementCall$1, tmpIfTest$1) {
+    const tmpChainRootComputed$1 = $('x');
+    const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
+    tmpReturnArg$1 = tmpChainElementObject$1;
+    const tmpReturnArg$4 = tmpBranchingC(tmpReturnArg$1, tmpChainRootCall$1, tmpChainElementCall$1, tmpIfTest$1);
+    return tmpReturnArg$4;
+  };
+  const tmpBranchingB = function (tmpReturnArg$2, tmpChainRootCall$2, tmpChainElementCall$2, tmpIfTest$2) {
+    const tmpReturnArg$5 = tmpBranchingC(tmpReturnArg$2, tmpChainRootCall$2, tmpChainElementCall$2, tmpIfTest$2);
+    return tmpReturnArg$5;
+  };
+  const tmpBranchingC = function (tmpReturnArg$3, tmpChainRootCall$3, tmpChainElementCall$3, tmpIfTest$3) {
+    return tmpReturnArg$3;
+  };
   if (tmpIfTest) {
-    const tmpChainRootComputed = $('x');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    tmpReturnArg = tmpChainElementObject;
-    return tmpReturnArg;
+    const tmpReturnArg$6 = tmpBranchingA(tmpReturnArg, tmpChainRootCall, tmpChainElementCall, tmpIfTest);
+    return tmpReturnArg$6;
   } else {
-    return tmpReturnArg;
+    const tmpReturnArg$7 = tmpBranchingB(tmpReturnArg, tmpChainRootCall, tmpChainElementCall, tmpIfTest);
+    return tmpReturnArg$7;
   }
 };
 let b = { x: 1 };
@@ -62,16 +75,14 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  let tmpReturnArg = undefined;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
-    const tmpChainRootComputed = $('x');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    tmpReturnArg = tmpChainElementObject;
-    return tmpReturnArg;
+    const tmpChainRootComputed$1 = $('x');
+    const tmpChainElementObject$1 = tmpChainElementCall[tmpChainRootComputed$1];
+    return tmpChainElementObject$1;
   } else {
-    return tmpReturnArg;
+    return undefined;
   }
 };
 const b = { x: 1 };

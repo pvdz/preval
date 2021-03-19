@@ -56,11 +56,23 @@ let g = function (n$1) {
 let h = function (n$2) {
   const tmpBinLhs = $(n$2);
   const tmpIfTest = tmpBinLhs > 1000;
-  if (tmpIfTest) {
-    return n$2;
-  } else {
-    const tmpReturnArg$2 = f(n$2);
+  const tmpBranchingA = function (n$3, tmpBinLhs$1, tmpIfTest$1) {
+    return n$3;
+  };
+  const tmpBranchingB = function (n$4, tmpBinLhs$2, tmpIfTest$2) {
+    const tmpReturnArg$2 = tmpBranchingC(n$4, tmpBinLhs$2, tmpIfTest$2);
     return tmpReturnArg$2;
+  };
+  const tmpBranchingC = function (n$5, tmpBinLhs$3, tmpIfTest$3) {
+    const tmpReturnArg$3 = f(n$5);
+    return tmpReturnArg$3;
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$4 = tmpBranchingA(n$2, tmpBinLhs, tmpIfTest);
+    return tmpReturnArg$4;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(n$2, tmpBinLhs, tmpIfTest);
+    return tmpReturnArg$5;
   }
 };
 const tmpCallCallee$1 = $;
@@ -78,8 +90,8 @@ const g = function (n$1) {
   if (tmpIfTest) {
     return tmpCalleeParam;
   } else {
-    const tmpReturnArg$2 = g(tmpCalleeParam);
-    return tmpReturnArg$2;
+    const tmpReturnArg$8 = g(tmpCalleeParam);
+    return tmpReturnArg$8;
   }
 };
 const tmpCalleeParam$1 = g(0);

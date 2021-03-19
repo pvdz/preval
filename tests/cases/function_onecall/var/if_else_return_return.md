@@ -43,13 +43,25 @@ $(x);
 `````js filename=intro
 let f = function () {
   const tmpIfTest = $();
-  if (tmpIfTest) {
+  const tmpBranchingA = function (tmpIfTest$1) {
     $(0);
-    const tmpReturnArg$1 = $(2);
+    const tmpReturnArg$2 = tmpBranchingC(tmpIfTest$1);
+    return tmpReturnArg$2;
+  };
+  const tmpBranchingB = function (tmpIfTest$2) {
+    const tmpReturnArg$1 = $(1);
     return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpIfTest$3) {
+    const tmpReturnArg$3 = $(2);
+    return tmpReturnArg$3;
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$4 = tmpBranchingA(tmpIfTest);
+    return tmpReturnArg$4;
   } else {
-    const tmpReturnArg = $(1);
-    return tmpReturnArg;
+    const tmpReturnArg$5 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$5;
   }
 };
 const x = f();
@@ -63,11 +75,11 @@ const f = function () {
   const tmpIfTest = $();
   if (tmpIfTest) {
     $(0);
-    const tmpReturnArg$1 = $(2);
-    return tmpReturnArg$1;
+    const tmpReturnArg$2 = $(2);
+    return tmpReturnArg$2;
   } else {
-    const tmpReturnArg = $(1);
-    return tmpReturnArg;
+    const tmpReturnArg$5 = $(1);
+    return tmpReturnArg$5;
   }
 };
 const x = f();

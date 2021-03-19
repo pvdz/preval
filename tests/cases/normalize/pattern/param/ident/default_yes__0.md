@@ -33,12 +33,25 @@ $(f(0, 200));
 let f = function (tmpParamDefault) {
   let x = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
+  const tmpBranchingA = function (tmpParamDefault$1, x$1, tmpIfTest$1) {
+    x$1 = 'fail';
+    const tmpReturnArg = tmpBranchingC(tmpParamDefault$1, x$1, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpParamDefault$2, x$2, tmpIfTest$2) {
+    x$2 = tmpParamDefault$2;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamDefault$2, x$2, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpParamDefault$3, x$3, tmpIfTest$3) {
+    return x$3;
+  };
   if (tmpIfTest) {
-    x = 'fail';
-    return x;
+    const tmpReturnArg$2 = tmpBranchingA(tmpParamDefault, x, tmpIfTest);
+    return tmpReturnArg$2;
   } else {
-    x = tmpParamDefault;
-    return x;
+    const tmpReturnArg$3 = tmpBranchingB(tmpParamDefault, x, tmpIfTest);
+    return tmpReturnArg$3;
   }
 };
 const tmpCallCallee = $;

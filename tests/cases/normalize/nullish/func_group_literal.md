@@ -34,11 +34,26 @@ $(f());
 let f = function () {
   let y = 3;
   const tmpIfTest = y == null;
+  const tmpBranchingA = function (y$1, tmpIfTest$1) {
+    y$1 = foo;
+    const tmpReturnArg = tmpBranchingC(y$1, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (y$2, tmpIfTest$2) {
+    const tmpReturnArg$1 = tmpBranchingC(y$2, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (y$3, tmpIfTest$3) {
+    const tmpReturnArg$2 = $(y$3);
+    return tmpReturnArg$2;
+  };
   if (tmpIfTest) {
-    y = foo;
+    const tmpReturnArg$3 = tmpBranchingA(y, tmpIfTest);
+    return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$4 = tmpBranchingB(y, tmpIfTest);
+    return tmpReturnArg$4;
   }
-  const tmpReturnArg = $(y);
-  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -48,20 +63,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let y = 3;
-const tmpIfTest = y == null;
-if (tmpIfTest) {
-  y = foo;
-}
-const tmpReturnArg = $(y);
-$(tmpReturnArg);
+const tmpCalleeParam = $(3);
+$(tmpCalleeParam);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-foo
+None
 
 ## Result
 

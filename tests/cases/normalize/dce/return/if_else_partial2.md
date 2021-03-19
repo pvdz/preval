@@ -41,10 +41,22 @@ $(f());
 `````js filename=intro
 let f = function () {
   const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $('keep, do not eval');
-  } else {
+  const tmpBranchingA = function (tmpIfTest$1) {
+    const tmpReturnArg = tmpBranchingC(tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpIfTest$2) {
     return 2;
+  };
+  const tmpBranchingC = function (tmpIfTest$3) {
+    $('keep, do not eval');
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$1 = tmpBranchingA(tmpIfTest);
+    return tmpReturnArg$1;
+  } else {
+    const tmpReturnArg$2 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$2;
   }
 };
 const tmpCallCallee = $;
@@ -59,6 +71,7 @@ const f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $('keep, do not eval');
+    return undefined;
   } else {
     return 2;
   }

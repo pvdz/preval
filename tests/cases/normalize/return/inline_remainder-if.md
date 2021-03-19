@@ -39,12 +39,24 @@ $(f());
 `````js filename=intro
 let f = function () {
   const tmpIfTest = $(1);
-  if (tmpIfTest) {
+  const tmpBranchingA = function (tmpIfTest$1) {
     $(2);
-    const tmpReturnArg = $(3);
-    return tmpReturnArg;
-  } else {
+    const tmpReturnArg$1 = $(3);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingB = function (tmpIfTest$2) {
+    const tmpReturnArg$2 = tmpBranchingC(tmpIfTest$2);
+    return tmpReturnArg$2;
+  };
+  const tmpBranchingC = function (tmpIfTest$3) {
     $(4);
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$3 = tmpBranchingA(tmpIfTest);
+    return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$4 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$4;
   }
 };
 const tmpCallCallee = $;
@@ -59,10 +71,11 @@ const f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $(2);
-    const tmpReturnArg = $(3);
-    return tmpReturnArg;
+    const tmpReturnArg$1 = $(3);
+    return tmpReturnArg$1;
   } else {
     $(4);
+    return undefined;
   }
 };
 const tmpCalleeParam = f();

@@ -44,12 +44,25 @@ $(f(), 'result');
 let f = function () {
   let x = undefined;
   const tmpIfTest = $(1);
-  if (tmpIfTest) {
+  const tmpBranchingA = function (x$1, tmpIfTest$1) {
     $(100);
-    return x;
+    const tmpReturnArg = tmpBranchingC(x$1, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (x$2, tmpIfTest$2) {
+    x$2 = $(2, 'b');
+    const tmpReturnArg$1 = tmpBranchingC(x$2, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (x$3, tmpIfTest$3) {
+    return x$3;
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$2 = tmpBranchingA(x, tmpIfTest);
+    return tmpReturnArg$2;
   } else {
-    x = $(2, 'b');
-    return x;
+    const tmpReturnArg$3 = tmpBranchingB(x, tmpIfTest);
+    return tmpReturnArg$3;
   }
 };
 const tmpCallCallee = $;
@@ -67,8 +80,8 @@ const f = function () {
     $(100);
     return undefined;
   } else {
-    const SSA_x = $(2, 'b');
-    return SSA_x;
+    const SSA_x$2 = $(2, 'b');
+    return SSA_x$2;
   }
 };
 const tmpCalleeParam = f();

@@ -37,10 +37,25 @@ f();
 `````js filename=intro
 let f = function () {
   const tmpIfTest = $();
-  if (tmpIfTest) {
+  const tmpBranchingA = function (tmpIfTest$1) {
     $(1);
+    const tmpReturnArg = tmpBranchingC(tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpIfTest$2) {
+    const tmpReturnArg$1 = tmpBranchingC(tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpIfTest$3) {
+    $(2);
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$2 = tmpBranchingA(tmpIfTest);
+    return tmpReturnArg$2;
+  } else {
+    const tmpReturnArg$3 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$3;
   }
-  $(2);
 };
 f();
 `````
@@ -51,8 +66,10 @@ f();
 const tmpIfTest = $();
 if (tmpIfTest) {
   $(1);
+  $(2);
+} else {
+  $(2);
 }
-$(2);
 `````
 
 ## Globals

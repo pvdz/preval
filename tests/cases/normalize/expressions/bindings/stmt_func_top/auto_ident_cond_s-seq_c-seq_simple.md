@@ -34,25 +34,39 @@ $(f());
 let f = function () {
   let a = undefined;
   const tmpIfTest = 30;
+  const tmpBranchingA = function (a$1, tmpIfTest$1) {
+    a$1 = $(60);
+    const tmpReturnArg = tmpBranchingC(a$1, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (a$2, tmpIfTest$2) {
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(100);
+    a$2 = tmpCallCallee$1(tmpCalleeParam$1);
+    const tmpReturnArg$1 = tmpBranchingC(a$2, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (a$3, tmpIfTest$3) {
+    $(a$3);
+  };
   if (tmpIfTest) {
-    a = $(60);
+    const tmpReturnArg$2 = tmpBranchingA(a, tmpIfTest);
+    return tmpReturnArg$2;
   } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    a = tmpCallCallee(tmpCalleeParam);
+    const tmpReturnArg$3 = tmpBranchingB(a, tmpIfTest);
+    return tmpReturnArg$3;
   }
-  $(a);
 };
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$2 = $;
+const tmpCalleeParam$2 = f();
+tmpCallCallee$2(tmpCalleeParam$2);
 `````
 
 ## Output
 
 `````js filename=intro
-const SSA_a = $(60);
-$(SSA_a);
+const SSA_a$1 = $(60);
+$(SSA_a$1);
 $(undefined);
 `````
 

@@ -36,15 +36,42 @@ let f = function (tmpParamPattern) {
   let bindingPatternObjRoot = tmpParamPattern;
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let objPatternCrashTest = objPatternNoDefault === undefined;
+  const tmpBranchingA = function (tmpParamPattern$1, bindingPatternObjRoot$1, objPatternNoDefault$1, objPatternCrashTest$1) {
+    const tmpReturnArg = tmpBranchingC(tmpParamPattern$1, bindingPatternObjRoot$1, objPatternNoDefault$1, objPatternCrashTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpParamPattern$2, bindingPatternObjRoot$2, objPatternNoDefault$2, objPatternCrashTest$2) {
+    objPatternCrashTest$2 = objPatternNoDefault$2 === null;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamPattern$2, bindingPatternObjRoot$2, objPatternNoDefault$2, objPatternCrashTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpParamPattern$3, bindingPatternObjRoot$3, objPatternNoDefault$3, objPatternCrashTest$3) {
+    const tmpBranchingA$1 = function (tmpParamPattern$4, bindingPatternObjRoot$4, objPatternNoDefault$4, objPatternCrashTest$4) {
+      objPatternCrashTest$4 = objPatternNoDefault$4.cannotDestructureThis;
+      const tmpReturnArg$2 = tmpBranchingC$1(tmpParamPattern$4, bindingPatternObjRoot$4, objPatternNoDefault$4, objPatternCrashTest$4);
+      return tmpReturnArg$2;
+    };
+    const tmpBranchingB$1 = function (tmpParamPattern$5, bindingPatternObjRoot$5, objPatternNoDefault$5, objPatternCrashTest$5) {
+      const tmpReturnArg$3 = tmpBranchingC$1(tmpParamPattern$5, bindingPatternObjRoot$5, objPatternNoDefault$5, objPatternCrashTest$5);
+      return tmpReturnArg$3;
+    };
+    const tmpBranchingC$1 = function (tmpParamPattern$6, bindingPatternObjRoot$6, objPatternNoDefault$6, objPatternCrashTest$6) {
+      return 'ok';
+    };
+    if (objPatternCrashTest$3) {
+      const tmpReturnArg$4 = tmpBranchingA$1(tmpParamPattern$3, bindingPatternObjRoot$3, objPatternNoDefault$3, objPatternCrashTest$3);
+      return tmpReturnArg$4;
+    } else {
+      const tmpReturnArg$5 = tmpBranchingB$1(tmpParamPattern$3, bindingPatternObjRoot$3, objPatternNoDefault$3, objPatternCrashTest$3);
+      return tmpReturnArg$5;
+    }
+  };
   if (objPatternCrashTest) {
+    const tmpReturnArg$6 = tmpBranchingA(tmpParamPattern, bindingPatternObjRoot, objPatternNoDefault, objPatternCrashTest);
+    return tmpReturnArg$6;
   } else {
-    objPatternCrashTest = objPatternNoDefault === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-    return 'ok';
-  } else {
-    return 'ok';
+    const tmpReturnArg$7 = tmpBranchingB(tmpParamPattern, bindingPatternObjRoot, objPatternNoDefault, objPatternCrashTest);
+    return tmpReturnArg$7;
   }
 };
 const tmpCallCallee = $;
@@ -60,16 +87,22 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function (tmpParamPattern) {
   const objPatternNoDefault = tmpParamPattern.x;
-  let objPatternCrashTest = objPatternNoDefault === undefined;
+  const objPatternCrashTest = objPatternNoDefault === undefined;
+  const tmpBranchingC = function (objPatternNoDefault$3, objPatternCrashTest$3) {
+    if (objPatternCrashTest$3) {
+      objPatternNoDefault$3.cannotDestructureThis;
+      return 'ok';
+    } else {
+      return 'ok';
+    }
+  };
   if (objPatternCrashTest) {
+    const tmpReturnArg$6 = tmpBranchingC(objPatternNoDefault, objPatternCrashTest);
+    return tmpReturnArg$6;
   } else {
-    objPatternCrashTest = objPatternNoDefault === null;
-  }
-  if (objPatternCrashTest) {
-    objPatternNoDefault.cannotDestructureThis;
-    return 'ok';
-  } else {
-    return 'ok';
+    const SSA_objPatternCrashTest$2 = objPatternNoDefault === null;
+    const tmpReturnArg$1 = tmpBranchingC(objPatternNoDefault, SSA_objPatternCrashTest$2);
+    return tmpReturnArg$1;
   }
 };
 const tmpCalleeParam$1 = { x: '', b: 11, c: 12 };

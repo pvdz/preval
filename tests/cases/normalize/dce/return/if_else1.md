@@ -46,10 +46,21 @@ $(f());
 `````js filename=intro
 let f = function () {
   const tmpIfTest = $(1);
-  if (tmpIfTest) {
+  const tmpBranchingA = function (tmpIfTest$1) {
     return 2;
-  } else {
+  };
+  const tmpBranchingB = function (tmpIfTest$2) {
     return 3;
+  };
+  const tmpBranchingC = function (tmpIfTest$3) {
+    $('fail');
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg = tmpBranchingA(tmpIfTest);
+    return tmpReturnArg;
+  } else {
+    const tmpReturnArg$1 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$1;
   }
 };
 const tmpCallCallee = $;

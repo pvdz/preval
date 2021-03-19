@@ -40,11 +40,26 @@ $(f());
 `````js filename=intro
 let f = function () {
   const tmpIfTest = $(false);
-  if (tmpIfTest) {
+  const tmpBranchingA = function (tmpIfTest$1) {
     x = $('fail too');
+    const tmpReturnArg = tmpBranchingC(tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpIfTest$2) {
+    const tmpReturnArg$1 = tmpBranchingC(tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpIfTest$3) {
+    throw 'exit';
+    let x$1 = $('fail');
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$2 = tmpBranchingA(tmpIfTest);
+    return tmpReturnArg$2;
+  } else {
+    const tmpReturnArg$3 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$3;
   }
-  throw 'exit';
-  let x = $('fail');
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -54,17 +69,29 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(false);
-if (tmpIfTest) {
-  x = $('fail too');
-}
-throw 'exit';
-let x = 0;
+const f = function () {
+  const tmpIfTest = $(false);
+  const tmpBranchingC = function () {
+    throw 'exit';
+  };
+  if (tmpIfTest) {
+    x = $('fail too');
+    const tmpReturnArg = tmpBranchingC();
+    return tmpReturnArg;
+  } else {
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
+  }
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x
 
 ## Result
 

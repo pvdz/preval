@@ -27,14 +27,28 @@ let f = function (tmpParamDefault) {
 let f = function (tmpParamDefault) {
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
+  const tmpBranchingA = function (tmpParamDefault$1, bindingPatternArrRoot$1, tmpIfTest$1) {
+    bindingPatternArrRoot$1 = b;
+    const tmpReturnArg = tmpBranchingC(tmpParamDefault$1, bindingPatternArrRoot$1, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpParamDefault$2, bindingPatternArrRoot$2, tmpIfTest$2) {
+    bindingPatternArrRoot$2 = tmpParamDefault$2;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamDefault$2, bindingPatternArrRoot$2, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpParamDefault$3, bindingPatternArrRoot$3, tmpIfTest$3) {
+    let arrPatternSplat$1 = [...bindingPatternArrRoot$3];
+    let x$1 = arrPatternSplat$1[0];
+    return x$1;
+  };
   if (tmpIfTest) {
-    bindingPatternArrRoot = b;
+    const tmpReturnArg$2 = tmpBranchingA(tmpParamDefault, bindingPatternArrRoot, tmpIfTest);
+    return tmpReturnArg$2;
   } else {
-    bindingPatternArrRoot = tmpParamDefault;
+    const tmpReturnArg$3 = tmpBranchingB(tmpParamDefault, bindingPatternArrRoot, tmpIfTest);
+    return tmpReturnArg$3;
   }
-  let arrPatternSplat = [...bindingPatternArrRoot];
-  let x = arrPatternSplat[0];
-  return x;
 };
 `````
 

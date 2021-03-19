@@ -55,15 +55,42 @@ $(tmpReturnArg$11);
 `````js filename=intro
 const tmpBranchingB = function (v) {
   const x = 1 === v;
-  if (x) {
+  const tmpBranchingA = function (v$1, x$1) {
     $(0);
-  } else {
-    const y = 2 === v;
-    if (y) {
+    const tmpReturnArg = tmpBranchingC(v$1, x$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB$1 = function (v$2, x$2) {
+    const y$1 = 2 === v$2;
+    const tmpBranchingA$1 = function (v$4, x$4, y$2) {
       $(1);
-    } else {
+      const tmpReturnArg$1 = tmpBranchingC$1(v$4, x$4, y$2);
+      return tmpReturnArg$1;
+    };
+    const tmpBranchingB$2 = function (v$5, x$5, y$3) {
       $(2);
+      const tmpReturnArg$2 = tmpBranchingC$1(v$5, x$5, y$3);
+      return tmpReturnArg$2;
+    };
+    const tmpBranchingC$1 = function (v$6, x$6, y$4) {
+      const tmpReturnArg$3 = tmpBranchingC(v$6, x$6);
+      return tmpReturnArg$3;
+    };
+    if (y$1) {
+      const tmpReturnArg$4 = tmpBranchingA$1(v$2, x$2, y$1);
+      return tmpReturnArg$4;
+    } else {
+      const tmpReturnArg$5 = tmpBranchingB$2(v$2, x$2, y$1);
+      return tmpReturnArg$5;
     }
+  };
+  const tmpBranchingC = function (v$3, x$3) {};
+  if (x) {
+    const tmpReturnArg$6 = tmpBranchingA(v, x);
+    return tmpReturnArg$6;
+  } else {
+    const tmpReturnArg$7 = tmpBranchingB$1(v, x);
+    return tmpReturnArg$7;
   }
 };
 const tmpReturnArg$11 = tmpBranchingB(1);
@@ -75,15 +102,22 @@ $(tmpReturnArg$11);
 `````js filename=intro
 const tmpBranchingB = function (v) {
   const x = 1 === v;
-  if (x) {
-    $(0);
-  } else {
-    const y = 2 === v;
-    if (y) {
+  const tmpBranchingB$1 = function (v$2) {
+    const y$1 = 2 === v$2;
+    if (y$1) {
       $(1);
+      return undefined;
     } else {
       $(2);
+      return undefined;
     }
+  };
+  if (x) {
+    $(0);
+    return undefined;
+  } else {
+    const tmpReturnArg$7 = tmpBranchingB$1(v);
+    return tmpReturnArg$7;
   }
 };
 const tmpReturnArg$11 = tmpBranchingB(1);

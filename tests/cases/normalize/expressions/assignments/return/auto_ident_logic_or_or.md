@@ -37,46 +37,91 @@ let f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
   a = tmpCallCallee(tmpCalleeParam);
-  if (a) {
-  } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(1);
-    a = tmpCallCallee$1(tmpCalleeParam$1);
+  const tmpBranchingA = function (tmpCallCallee$2, tmpCalleeParam$2) {
+    const tmpReturnArg$2 = tmpBranchingC(tmpCallCallee$2, tmpCalleeParam$2);
+    return tmpReturnArg$2;
+  };
+  const tmpBranchingB = function (tmpCallCallee$3, tmpCalleeParam$3) {
+    const tmpCallCallee$4 = $;
+    const tmpCalleeParam$4 = $(1);
+    a = tmpCallCallee$4(tmpCalleeParam$4);
+    const tmpReturnArg$3 = tmpBranchingC(tmpCallCallee$3, tmpCalleeParam$3);
+    return tmpReturnArg$3;
+  };
+  const tmpBranchingC = function (tmpCallCallee$5, tmpCalleeParam$5) {
+    const tmpBranchingA$1 = function (tmpCallCallee$7, tmpCalleeParam$7) {
+      const tmpReturnArg$5 = tmpBranchingC$1(tmpCallCallee$7, tmpCalleeParam$7);
+      return tmpReturnArg$5;
+    };
+    const tmpBranchingB$1 = function (tmpCallCallee$8, tmpCalleeParam$8) {
+      const tmpCallCallee$9 = $;
+      const tmpCalleeParam$9 = $(2);
+      a = tmpCallCallee$9(tmpCalleeParam$9);
+      const tmpReturnArg$6 = tmpBranchingC$1(tmpCallCallee$8, tmpCalleeParam$8);
+      return tmpReturnArg$6;
+    };
+    const tmpBranchingC$1 = function (tmpCallCallee$10, tmpCalleeParam$10) {
+      let tmpReturnArg$4 = a;
+      return tmpReturnArg$4;
+    };
     if (a) {
+      const tmpReturnArg$7 = tmpBranchingA$1(tmpCallCallee$5, tmpCalleeParam$5);
+      return tmpReturnArg$7;
     } else {
-      const tmpCallCallee$2 = $;
-      const tmpCalleeParam$2 = $(2);
-      a = tmpCallCallee$2(tmpCalleeParam$2);
+      const tmpReturnArg$8 = tmpBranchingB$1(tmpCallCallee$5, tmpCalleeParam$5);
+      return tmpReturnArg$8;
     }
+  };
+  if (a) {
+    const tmpReturnArg$9 = tmpBranchingA(tmpCallCallee, tmpCalleeParam);
+    return tmpReturnArg$9;
+  } else {
+    const tmpReturnArg$10 = tmpBranchingB(tmpCallCallee, tmpCalleeParam);
+    return tmpReturnArg$10;
   }
-  let tmpReturnArg = a;
-  return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f();
-tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCallCallee$11 = $;
+const tmpCalleeParam$11 = f();
+tmpCallCallee$11(tmpCalleeParam$11);
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = $(0);
-let SSA_a = $(tmpCalleeParam);
-if (SSA_a) {
-} else {
-  const tmpCalleeParam$1 = $(1);
-  SSA_a = $(tmpCalleeParam$1);
-  if (SSA_a) {
+const f = function () {
+  const tmpCalleeParam = $(0);
+  a = $(tmpCalleeParam);
+  const tmpBranchingC = function () {
+    const tmpBranchingC$1 = function () {
+      const tmpReturnArg$4 = a;
+      return tmpReturnArg$4;
+    };
+    if (a) {
+      const tmpReturnArg$7 = tmpBranchingC$1();
+      return tmpReturnArg$7;
+    } else {
+      const tmpCalleeParam$9 = $(2);
+      a = $(tmpCalleeParam$9);
+      const tmpReturnArg$6 = tmpBranchingC$1();
+      return tmpReturnArg$6;
+    }
+  };
+  if (a) {
+    const tmpReturnArg$9 = tmpBranchingC();
+    return tmpReturnArg$9;
   } else {
-    const tmpCalleeParam$2 = $(2);
-    SSA_a = $(tmpCalleeParam$2);
+    const tmpCalleeParam$4 = $(1);
+    a = $(tmpCalleeParam$4);
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
   }
-}
-const tmpReturnArg = SSA_a;
-$(tmpReturnArg);
-$(SSA_a);
+};
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam$11 = f();
+$(tmpCalleeParam$11);
+$(a);
 `````
 
 ## Globals

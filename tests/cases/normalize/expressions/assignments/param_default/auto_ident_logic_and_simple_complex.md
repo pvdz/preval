@@ -34,23 +34,51 @@ $(a);
 let f = function (tmpParamDefault) {
   let p = undefined;
   const tmpIfTest = tmpParamDefault === undefined;
-  if (tmpIfTest) {
-    let tmpNestedComplexRhs = 1;
-    if (tmpNestedComplexRhs) {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(1);
-      tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  const tmpBranchingA = function (tmpParamDefault$1, p$1, tmpIfTest$1) {
+    let tmpNestedComplexRhs$1 = 1;
+    const tmpBranchingA$1 = function (tmpParamDefault$4, p$4, tmpIfTest$4, tmpNestedComplexRhs$2) {
+      const tmpCallCallee$2 = $;
+      const tmpCalleeParam$2 = $(1);
+      tmpNestedComplexRhs$2 = tmpCallCallee$2(tmpCalleeParam$2);
+      const tmpReturnArg = tmpBranchingC$1(tmpParamDefault$4, p$4, tmpIfTest$4, tmpNestedComplexRhs$2);
+      return tmpReturnArg;
+    };
+    const tmpBranchingB$1 = function (tmpParamDefault$5, p$5, tmpIfTest$5, tmpNestedComplexRhs$3) {
+      const tmpReturnArg$1 = tmpBranchingC$1(tmpParamDefault$5, p$5, tmpIfTest$5, tmpNestedComplexRhs$3);
+      return tmpReturnArg$1;
+    };
+    const tmpBranchingC$1 = function (tmpParamDefault$6, p$6, tmpIfTest$6, tmpNestedComplexRhs$4) {
+      a = tmpNestedComplexRhs$4;
+      p$6 = tmpNestedComplexRhs$4;
+      const tmpReturnArg$2 = tmpBranchingC(tmpParamDefault$6, p$6, tmpIfTest$6);
+      return tmpReturnArg$2;
+    };
+    if (tmpNestedComplexRhs$1) {
+      const tmpReturnArg$3 = tmpBranchingA$1(tmpParamDefault$1, p$1, tmpIfTest$1, tmpNestedComplexRhs$1);
+      return tmpReturnArg$3;
+    } else {
+      const tmpReturnArg$4 = tmpBranchingB$1(tmpParamDefault$1, p$1, tmpIfTest$1, tmpNestedComplexRhs$1);
+      return tmpReturnArg$4;
     }
-    a = tmpNestedComplexRhs;
-    p = tmpNestedComplexRhs;
+  };
+  const tmpBranchingB = function (tmpParamDefault$2, p$2, tmpIfTest$2) {
+    p$2 = tmpParamDefault$2;
+    const tmpReturnArg$5 = tmpBranchingC(tmpParamDefault$2, p$2, tmpIfTest$2);
+    return tmpReturnArg$5;
+  };
+  const tmpBranchingC = function (tmpParamDefault$3, p$3, tmpIfTest$3) {};
+  if (tmpIfTest) {
+    const tmpReturnArg$6 = tmpBranchingA(tmpParamDefault, p, tmpIfTest);
+    return tmpReturnArg$6;
   } else {
-    p = tmpParamDefault;
+    const tmpReturnArg$7 = tmpBranchingB(tmpParamDefault, p, tmpIfTest);
+    return tmpReturnArg$7;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$3 = $;
+const tmpCalleeParam$3 = f();
+tmpCallCallee$3(tmpCalleeParam$3);
 $(a);
 `````
 
@@ -60,17 +88,17 @@ $(a);
 const f = function (tmpParamDefault) {
   const tmpIfTest = tmpParamDefault === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs = 1;
-    if (tmpNestedComplexRhs) {
-      const tmpCalleeParam = $(1);
-      tmpNestedComplexRhs = $(tmpCalleeParam);
-    }
-    a = tmpNestedComplexRhs;
+    const tmpCalleeParam$2 = $(1);
+    const SSA_tmpNestedComplexRhs$2 = $(tmpCalleeParam$2);
+    a = SSA_tmpNestedComplexRhs$2;
+    return undefined;
+  } else {
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpCalleeParam$3 = f();
+$(tmpCalleeParam$3);
 $(a);
 `````
 

@@ -48,17 +48,29 @@ let f = function () {
   };
   const tmpLabeledBlockFunc = function () {
     const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
+    const tmpBranchingA = function (tmpIfTest$2) {
       $(100);
-      const tmpReturnArg = tmpBranchingC();
-      return tmpReturnArg;
-    } else {
       const tmpReturnArg$1 = tmpBranchingC();
       return tmpReturnArg$1;
+    };
+    const tmpBranchingB = function (tmpIfTest$3) {
+      const tmpReturnArg$2 = tmpBranchingC$1(tmpIfTest$3);
+      return tmpReturnArg$2;
+    };
+    const tmpBranchingC$1 = function (tmpIfTest$4) {
+      const tmpReturnArg$3 = tmpBranchingC();
+      return tmpReturnArg$3;
+    };
+    if (tmpIfTest$1) {
+      const tmpReturnArg$4 = tmpBranchingA(tmpIfTest$1);
+      return tmpReturnArg$4;
+    } else {
+      const tmpReturnArg$5 = tmpBranchingB(tmpIfTest$1);
+      return tmpReturnArg$5;
     }
   };
-  const tmpReturnArg$2 = tmpLabeledBlockFunc();
-  return tmpReturnArg$2;
+  const tmpReturnArg$6 = tmpLabeledBlockFunc();
+  return tmpReturnArg$6;
 };
 f();
 `````

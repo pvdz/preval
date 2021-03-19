@@ -35,11 +35,24 @@ $(a);
 `````js filename=intro
 let f = function () {
   let tmpReturnArg = 1;
+  const tmpBranchingA = function (tmpReturnArg$1) {
+    tmpReturnArg$1 = 2;
+    const tmpReturnArg$4 = tmpBranchingC(tmpReturnArg$1);
+    return tmpReturnArg$4;
+  };
+  const tmpBranchingB = function (tmpReturnArg$2) {
+    const tmpReturnArg$5 = tmpBranchingC(tmpReturnArg$2);
+    return tmpReturnArg$5;
+  };
+  const tmpBranchingC = function (tmpReturnArg$3) {
+    return tmpReturnArg$3;
+  };
   if (tmpReturnArg) {
-    tmpReturnArg = 2;
-    return tmpReturnArg;
+    const tmpReturnArg$6 = tmpBranchingA(tmpReturnArg);
+    return tmpReturnArg$6;
   } else {
-    return tmpReturnArg;
+    const tmpReturnArg$7 = tmpBranchingB(tmpReturnArg);
+    return tmpReturnArg$7;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -52,18 +65,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  let tmpReturnArg = 1;
-  if (tmpReturnArg) {
-    tmpReturnArg = 2;
-    return tmpReturnArg;
-  } else {
-    return tmpReturnArg;
-  }
-};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(2);
 $(a);
 `````
 

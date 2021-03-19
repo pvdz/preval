@@ -45,13 +45,28 @@ let f = function () {
   let a = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
+  const tmpBranchingA = function (tmpObjLitVal$2, tmpObjLitVal$3, b$1, a$1, tmpChainRootProp$1, tmpIfTest$1) {
+    const tmpChainElementObject$3 = tmpChainRootProp$1.x;
+    const tmpChainElementObject$4 = tmpChainElementObject$3.y;
+    const tmpChainElementObject$5 = tmpChainElementObject$4.z;
+    a$1 = tmpChainElementObject$5;
+    const tmpReturnArg = tmpBranchingC(tmpObjLitVal$2, tmpObjLitVal$3, b$1, a$1, tmpChainRootProp$1, tmpIfTest$1);
+    return tmpReturnArg;
+  };
+  const tmpBranchingB = function (tmpObjLitVal$4, tmpObjLitVal$5, b$2, a$2, tmpChainRootProp$2, tmpIfTest$2) {
+    const tmpReturnArg$1 = tmpBranchingC(tmpObjLitVal$4, tmpObjLitVal$5, b$2, a$2, tmpChainRootProp$2, tmpIfTest$2);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function (tmpObjLitVal$6, tmpObjLitVal$7, b$3, a$3, tmpChainRootProp$3, tmpIfTest$3) {
+    $(a$3);
+  };
   if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    a = tmpChainElementObject$2;
+    const tmpReturnArg$2 = tmpBranchingA(tmpObjLitVal$1, tmpObjLitVal, b, a, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$2;
+  } else {
+    const tmpReturnArg$3 = tmpBranchingB(tmpObjLitVal$1, tmpObjLitVal, b, a, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$3;
   }
-  $(a);
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -61,19 +76,24 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
-let a = undefined;
-const tmpIfTest = b != null;
-if (tmpIfTest) {
-  const tmpChainElementObject = b.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  a = tmpChainElementObject$2;
-}
-$(a);
-$(undefined);
+const f = function () {
+  const tmpObjLitVal$1 = { z: 100 };
+  const tmpObjLitVal = { y: tmpObjLitVal$1 };
+  const b = { x: tmpObjLitVal };
+  const tmpIfTest = b != null;
+  if (tmpIfTest) {
+    const tmpChainElementObject$3 = b.x;
+    const tmpChainElementObject$4 = tmpChainElementObject$3.y;
+    const tmpChainElementObject$5 = tmpChainElementObject$4.z;
+    $(tmpChainElementObject$5);
+    return undefined;
+  } else {
+    $(undefined);
+    return undefined;
+  }
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

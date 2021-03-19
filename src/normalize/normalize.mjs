@@ -5115,26 +5115,29 @@ export function phaseNormalize(fdata, fname) {
     // This normalization is currently not applied to generators or async functions. Not sure what the ramification is.
     // YOYO, if-else
     if (false) {
+      vlog('Start of single-branch-per-function algo');
       const funcNode = ifelseStack[ifelseStack.length - 1];
       if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
         if (funcNode.generator) {
           // Currently not seeing a solid way to support function abstraction inside a generator
           // Sure, we can do it for all the bits that don't contain `yield`, but the thing does taint
           // so if there's one after the if-else then the whole thing collapses. I dunno yet.
-          log(RED + 'Can not apply the branch reduction rule to generators...' + RESET);
+          vlog(RED + 'Can not apply the branch reduction rule to generators...' + RESET);
         } else if (funcNode.async) {
           // Async functions need more research. Unlike generators we may be able to deal with these but I'm not sure yet.
           // The simplest safe way would be to await the calls of all abstractions. Less invasive would be to filter that
           // based on whether the abstraction actually contained the keyword `await`. Though it does taint the whole chain.
-          log(RED + 'Can not apply the branch reduction rule to async functions yet...' + RESET);
+          vlog(RED + 'Can not apply the branch reduction rule to async functions yet...' + RESET);
         } else if (
-          i <
-          body.length - 1
-          //|| // If there's more code after the current `if` (-> node), or the if has a nested if
-          //node.consequent.body.some((snode) => snode.type === 'IfStatement') ||
-          //node.alternate?.body.some((snode) => snode.type === 'IfStatement')
+          // If this `if` is the last node of the body
+          i >= body.length - 1 &&
+          // or the if or else has no nested `if`
+          !node.consequent.body.some((snode) => snode.type === 'IfStatement') &&
+          !node.alternate?.body.some((snode) => snode.type === 'IfStatement')
         ) {
-          log('i=', i, 'body has', body.length, 'elements');
+          vlog('There is no more code after this if and there are no nested if-elses inside the if or the else. Bailing');
+        } else {
+          vlog('i=', i, 'body has', body.length, 'elements');
           // TODO: do we want this step before or after the abrubt completion inlining?
           // This is an if-else directly nested inside another if-else, nested directly in a function/arrow
           // Note: this may be a method. We'll have to figure out how to outline functions or whatever, or maybe we don't at all.

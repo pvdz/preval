@@ -103,7 +103,11 @@ export function phase1(fdata, resolve, req) {
       }
 
       case 'FunctionExpression:before': {
-        if (parentNode.type === 'ExpressionStatement') return true; // Do not traverse. I don't care what's inside.
+        if (parentNode.type === 'ExpressionStatement') {
+          vlog('Do not traverse. I dont care whats inside.');
+          vgroupEnd();
+          return true;
+        }
         ASSERT(
           ['VariableDeclarator', 'AssignmentExpression', 'Property', 'MethodDefinition'].includes(parentNode.type),
           'normalized code should not other cases, right?',

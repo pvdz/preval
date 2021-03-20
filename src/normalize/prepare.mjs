@@ -102,6 +102,7 @@ export function prepareNormalization(fdata, resolve, req) {
         const parentNode = path.nodes[path.nodes.length - 2];
         if (['FunctionExpression', 'ArrowFunctionExpression'].includes(node.type) && parentNode.type === 'ExpressionStatement') {
           vlog('Do not traverse. I dont care whats inside.');
+          vgroupEnd();
           return true;
         }
         vlog('Name:', node.id?.name ?? '<anon>');

@@ -7,9 +7,6 @@ import { createFreshVar, findBoundNamesInVarDeclaration } from '../bindings.mjs'
 import globals from '../globals.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 
-// http://compileroptimizations.com/category/if_optimization.htm
-// https://en.wikipedia.org/wiki/Loop-invariant_code_motion
-
 /*
   Normalization steps that happen:
   - Parameter defaults are rewritten to ES5 equivalent code
@@ -93,6 +90,9 @@ import { cloneFunctionNode } from '../utils/serialize_func.mjs';
   - Vars and function decls are replaced by lets and let assignments after applying hoisting rules
     - Duplicate declarations are dropped (last func wins, func wins over var)
     - Often func decls become constants, but since that's not a guarantee we leave that up to the next phase
+  - Eliminate labels when possible
+  - Enforce a max of one if-else per function
+    - Currently loops are exempted from this, although in due time they will get a similar treatment
  */
 
 // low hanging fruit: async, iterators
@@ -100,94 +100,6 @@ import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 
 // http://compileroptimizations.com/category/if_optimization.htm
 // https://en.wikipedia.org/wiki/Loop-invariant_code_motion
-
-/*
-  Normalization steps that happen:
-  - Parameter defaults are rewritten to ES5 equivalent code
-  - All binding names are unique in a file
-    - No shadowing on any level or even between scopes. Lexical scoping becomes irrelevant.
-  - Hoists var statements and function declarations to the top of their scope
-    - Currently adds complexity because a variable can have two values. But the final system must be able to cope with this so I'm ok with this for now.
-    - Duplicate names are eliminated, preferring functions over vars
-    - Duplicate functions are reduced to one function
-    - Vars and funcs are ordered (within each group)
-  - All sub-statements are forced to be blocks
-    - We'll let the final formatting undo this step.
-    - It makes transforms easier by being able to assume that any statement/decl already lives in a block and needs no extra wrapper
-  - Flatten nested blocks
-    - Other transforming phases still need to do this because when a single statement is replaced with multiple statements and the parent block is still being iterated, we can't mutate the child-count of the block in-place so a block wrapper is added anyways. This is fine. :fire:
-    - Since we normalize binding names to be unique, we don't need to worry about block scoping issues that would otherwise arise here.
-  - Eliminate "use strict"
-    - We assume module goal. worst case this prevents a parse-time error and even that is a mighty edge case so who cares.
-    - Note: this happens naturally by eliminating expression statements that are literals. If an AST uses Directive nodes, this will need extra work.
-    - Note: if we ever get more directives than "use strict", we'll need to make sure they work (they might currently break)
-  - Member expressions only access idents, literals, or groups that end with an ident or literal
-    - This transforms into a group. Other normalization should make sure that this will normalize to separate lines where possible
-  - Sequence expressions (groups) nested directly in another sequence expression are flattened
-  - Sequence expressions that are expression statements are rewritten to a set of expression statements
-  - Sequence expression appearing in certain constructs are rewritten to statements when possible
-    - (`return (a,b)` -> `a; return b;`)
-    - Sequence expressions in a return statement or variable declaration, or inside a member expression, are normalized
-    - Work in progress to catch more cases as I find them
-  - One binding declared per decl
-    - Will make certain things easier to reason about. Can always assume `node.declarations[0]`.
-  - All call args are only identifiers or literals. Everything is first assigned to a tmp var.
-    - `f($())` -> `(tmp=$(), f(tmp))` etc. For all call args.
-  - Complex callee and arguments for `new` expressions (similar to regular calls)
-  - Array elements are normalized if they are not simple
-  - Object property shorthands into regular properties
-    - Simplifies some edge case code checks
-  - Computed property access for complex keys is normalized to ident keys
-  - Computed property access with literals that are valid idents become regular property access
-  - Normalize conditional / ternary expression parts
-    - Becomes `if-else` when possible
-  - All patterns are transformed to body code
-    - Parameter, binding, and assignment patterns
-    - Further minification may in some cases prevent runtime errors to happen for nullable values... (like `function f([]){} f()`)
-    - Including spread and defaults for all object/array patterns on any level
-  - arrows with expression body are converted to arrows with block body that explicitly return their previous expression body
-  - Assignments (any complex nodes, even &&|| for now) inside statement tests (if, while) to be moved outside
-  - Nested assignments into sequence (`a = b = c` -> `(b = c, a = b)`)
-  - Return statements without argument get an explicit `undefined` (this way all return statements have non-null nodes)
-  - Var binding inits that are assignments are outlined
-  - Outline complex `throw` or `return` arguments
-  - Outline complex spread arguments for object and array literals
-  - Tagged templates are decomposed into the runtime equivalent of a regular func call
-  - Templates that have no expressions are converted to regular strings
-  - All expressions inside templates are outlined to be simple nodes only.
-  - Binary expressions are normalized to always have simple left and right nodes
-  - Update expressions (++x) are transformed to regular binary expression assignments
-  - Normalize spread args in call/new expressions
-  - Normalize optional chaining / call away
-  - Normalize nullish coalescing away
-  - Regular for-loops are transformed to while loops
-  - If-else with empty blocks are eliminated
-  - Logical expressions with `??` are transformed away entirely, end up as ternaries
-  - Logical expressions with `&&` or `||` are decompiled to `if-else` statements where possible
-  - Decompose compound assignments (x+=y -> x=x+y)
-  - for-in and for-of lhs expressions are normalized to an identifier
-  - For headers with var decl are normalized to not contain the var decl
-  - While headers are normalized
-  - Switches are transformed to if-else with labeled break
-  - Label names are made unique globally (relative to the module)
-  - Unreferenced labels are dropped
-  - Each import statement has exactly one specifier
-  - Default imports become named imports (because default exports simply export 'default')
-  - Class declarations become class expressions
-  - Assignment of an ident to itself is eliminated
-  - Statements that only have an identifier will be eliminated unless that identifier is an implicit global
-  - DCE
-  - If the test of an `if` statement is a negative number, or a number with a `+` prefix, then still fold it.
-  - Remove `+` unary from number literals
-  - Remove double `-` unary from number literals
-  - Inlines various cases of unary `+`, `-`, and `!`
-  - Vars and function decls are replaced by lets and let assignments after applying hoisting rules
-    - Duplicate declarations are dropped (last func wins, func wins over var)
-    - Often func decls become constants, but since that's not a guarantee we leave that up to the next phase
- */
-
-// low hanging fruit: async, iterators
-// next level: assignment analysis and first pass of ssa
 
 /*
   Ideas for normalization;
@@ -264,8 +176,10 @@ import { cloneFunctionNode } from '../utils/serialize_func.mjs';
   - params that are builtins or implicit or explicit globals can be inlined as well
   - `const tmpBranchingC = function (tmpNestedComplexRhs$4) { a = tmpNestedComplexRhs$4;};` inline at call sites tests/cases/normalize/expressions/assignments/param_default/auto_ident_c-opt_complex_complex.md
   - what's up with `const $clone$f$0_Iundefined = function () { const tmpNestedComplexRhs$1 = () => {}; a = tmpNestedComplexRhs$1; };` tests/cases/normalize/expressions/assignments/param_default/auto_ident_arrow.md
-
-
+  - if both branches of an if-else return undefined and the if-else is the last of a function then drop them both?
+  - Any call to a function without explicit return (or where all returns are undefined) can be split-replaced with undefined
+  - When passing on a global const, drop the argument in favor of using the global directly
+  - TODO: norm_once must use registerGlobalLabel to prevent collisions reliably
   - TODO: if an optional chain starts with a literal null or undefined, the rest of the chain can be dropped
   - TODO: what's up with the array in /home/ptr/proj/preval/tests/cases/normalize/pattern/param/obj/rest/default_no_no__str.md ???
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
@@ -280,6 +194,7 @@ import { cloneFunctionNode } from '../utils/serialize_func.mjs';
   - TODO: if a function has arguments access then we shouldnt pad calls to it with undefined /home/ptr/proj/preval/tests/cases/normalize/arguments/param_default_len.md
   - TODO: `$(null[$('keep me')]);` should still invoke the computed prop
   - TODO: fix property in /home/ptr/proj/preval/tests/cases/normalize/pattern/param/_base_unique/arr_obj.md
+  - TODO: should normalize to only have imports and exports as global code and an IIFE as the only other kind of toplevel code that contains all other code. This way there is no global code and everything is scoped to a function.
   -> if-else normalization;
     break
     continue should not be a problem

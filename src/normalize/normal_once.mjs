@@ -144,6 +144,18 @@ export function phaseNormalOnce(fdata) {
     const key = nodeType + ':' + (beforeNode ? 'before' : 'after');
     switch (key) {
       case 'ArrowFunctionExpression:before': {
+        if (parentNode.type === 'ExpressionStatement') {
+          // Edge case. Not very likely to appear in real code
+          rule('Arrow as statement should be eliminated');
+          example('() => {};', ';');
+          before(node, parentNode);
+
+          parentNode.expression = AST.identifier('undefined');
+
+          after(parentNode);
+          return true; // Stops traversal of the arrow
+        }
+
         // Must make sure the body is a block
         if (node.expression) {
           ASSERT(node.body.type !== 'BlockStatement');
@@ -334,6 +346,18 @@ export function phaseNormalOnce(fdata) {
         break;
       }
       case 'FunctionExpression:before': {
+        if (parentNode.type === 'ExpressionStatement') {
+          // Edge case. Not very likely to appear in real code
+          rule('Function expression as statement should be eliminated');
+          example('(function(){});', ';');
+          before(node, parentNode);
+
+          parentNode.expression = AST.identifier('undefined');
+
+          after(parentNode);
+          return true; // Stops traversal of the arrow
+        }
+
         hoistingOnce(node, 'funcexpr');
         transformFunctionParams(node, fdata);
         break;

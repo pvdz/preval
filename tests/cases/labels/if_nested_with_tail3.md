@@ -161,34 +161,34 @@ const tmpBranchingC = function () {
 };
 $(0);
 const tmpIfTest$3 = $(1);
-const tmpBranchingA = function () {
+if (tmpIfTest$3) {
   const tmpBranchingC$2 = function () {
     $('tail2');
     const tmpReturnArg$3 = tmpBranchingC();
     return tmpReturnArg$3;
   };
-  const tmpIfTest$13 = $(0);
-  const tmpBranchingA$1 = function () {
-    const tmpIfTest$26 = $(0);
-    if (tmpIfTest$26) {
-      const tmpReturnArg = tmpBranchingC$2();
-      return tmpReturnArg;
+  const tmpLabeledBlockFunc$1 = function () {
+    const tmpIfTest$13 = $(0);
+    if (tmpIfTest$13) {
+      const tmpLabeledBlockFunc$2 = function () {
+        const tmpIfTest$26 = $(0);
+        if (tmpIfTest$26) {
+          const tmpReturnArg$13 = tmpBranchingC$2();
+          return tmpReturnArg$13;
+        } else {
+          $('tail3');
+          const tmpReturnArg$8 = tmpBranchingC$2();
+          return tmpReturnArg$8;
+        }
+      };
+      const tmpReturnArg$15 = tmpLabeledBlockFunc$2();
+      return tmpReturnArg$15;
     } else {
-      $('tail3');
-      const tmpReturnArg$8 = tmpBranchingC$2();
-      return tmpReturnArg$8;
+      const tmpReturnArg$18 = tmpBranchingC();
+      return tmpReturnArg$18;
     }
   };
-  if (tmpIfTest$13) {
-    const tmpReturnArg$9 = tmpBranchingA$1();
-    return tmpReturnArg$9;
-  } else {
-    const tmpReturnArg$15 = tmpBranchingC();
-    return tmpReturnArg$15;
-  }
-};
-if (tmpIfTest$3) {
-  tmpBranchingA();
+  tmpLabeledBlockFunc$1();
 } else {
   tmpBranchingC();
 }

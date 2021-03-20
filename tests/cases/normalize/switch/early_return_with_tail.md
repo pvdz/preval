@@ -532,8 +532,8 @@ const f = function () {
       $('after');
       return undefined;
     } else {
-      const tmpReturnArg$12 = tmpBranchingB$4(tmpSwitchCaseToStart$3);
-      return tmpReturnArg$12;
+      const tmpReturnArg$6 = tmpBranchingB$4(tmpSwitchCaseToStart$3);
+      return tmpReturnArg$6;
     }
   };
   if (tmpIfTest) {

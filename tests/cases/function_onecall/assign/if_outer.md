@@ -91,21 +91,20 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-let x = $(100);
-const tmpCalleeParam = x;
-$(tmpCalleeParam);
-const tmpIfTest = $(1);
-if (tmpIfTest) {
-  $('a');
-  $('c');
-  x = undefined;
-} else {
-  $('b');
-  x = undefined;
-}
+const f = function () {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    $('a');
+    $('c');
+  } else {
+    $('b');
+  }
+};
+const x = $(100);
 $(x);
-const tmpCalleeParam$1 = x;
-$(tmpCalleeParam$1);
+const SSA_x = f();
+$(SSA_x);
+$(SSA_x);
 `````
 
 ## Globals

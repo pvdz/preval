@@ -90,8 +90,8 @@ const g = function (n$1) {
   if (tmpIfTest) {
     return tmpCalleeParam;
   } else {
-    const tmpReturnArg$8 = g(tmpCalleeParam);
-    return tmpReturnArg$8;
+    const tmpReturnArg$3 = g(tmpCalleeParam);
+    return tmpReturnArg$3;
   }
 };
 const tmpCalleeParam$1 = g(0);

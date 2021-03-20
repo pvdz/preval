@@ -103,6 +103,12 @@ export function phase1(fdata, resolve, req) {
       }
 
       case 'FunctionExpression:before': {
+        if (parentNode.type === 'ExpressionStatement') return true; // Do not traverse. I don't care what's inside.
+        ASSERT(
+          ['VariableDeclarator', 'AssignmentExpression', 'Property', 'MethodDefinition'].includes(parentNode.type),
+          'normalized code should not other cases, right?',
+          parentNode,
+        );
         node.$p.parentFunc = funcStack[funcStack.length - 1];
         funcStack.push(node);
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {

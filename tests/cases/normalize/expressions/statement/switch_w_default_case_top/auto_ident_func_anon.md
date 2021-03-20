@@ -36,7 +36,7 @@ let a = { a: 999, b: 1000 };
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      (function () {});
+      undefined;
       break tmpSwitchBreak;
     }
     if (tmpSwitchCaseToStart <= 1) {

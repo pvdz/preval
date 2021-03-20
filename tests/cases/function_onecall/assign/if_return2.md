@@ -66,16 +66,16 @@ closure();
 ## Output
 
 `````js filename=intro
-let x = $(100, 'init');
+const f = function () {
+  if ($) {
+    $(1, 'f');
+  }
+};
+const x = $(100, 'init');
 $(x, 'closure');
-if ($) {
-  $(1, 'f');
-  x = undefined;
-} else {
-  x = undefined;
-}
-$(x, 'x');
-$(x, 'closure');
+const SSA_x = f();
+$(SSA_x, 'x');
+$(SSA_x, 'closure');
 `````
 
 ## Globals

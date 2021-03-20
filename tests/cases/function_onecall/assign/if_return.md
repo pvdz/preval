@@ -77,18 +77,19 @@ tmpCallCallee$1(tmpCalleeParam$2, tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-let x = $(100, 'init');
+const f = function () {
+  const tmpIfTest = $();
+  if (tmpIfTest) {
+    const tmpReturnArg$1 = $(1, 'f-return');
+    return tmpReturnArg$1;
+  }
+};
+const x = $(100, 'init');
 const tmpCalleeParam = $(x, 'closure-return');
 $(tmpCalleeParam, 'closure-global1');
-const tmpIfTest = $();
-if (tmpIfTest) {
-  const tmpReturnArg$1 = $(1, 'f-return');
-  x = tmpReturnArg$1;
-} else {
-  x = undefined;
-}
-$(x, 'x-global');
-const tmpCalleeParam$2 = $(x, 'closure-return');
+const SSA_x = f();
+$(SSA_x, 'x-global');
+const tmpCalleeParam$2 = $(SSA_x, 'closure-return');
 $(tmpCalleeParam$2, 'closure-global2');
 `````
 

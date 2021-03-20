@@ -99,6 +99,11 @@ export function prepareNormalization(fdata, resolve, req) {
       case 'FunctionDeclaration:before':
       case 'FunctionExpression:before':
       case 'ArrowFunctionExpression:before': {
+        const parentNode = path.nodes[path.nodes.length - 2];
+        if (['FunctionExpression', 'ArrowFunctionExpression'].includes(node.type) && parentNode.type === 'ExpressionStatement') {
+          vlog('Do not traverse. I dont care whats inside.');
+          return true;
+        }
         vlog('Name:', node.id?.name ?? '<anon>');
         funcStack.push(node);
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {

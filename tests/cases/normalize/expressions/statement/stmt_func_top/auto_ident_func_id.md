@@ -24,7 +24,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   let a = { a: 999, b: 1000 };
-  (function f$1() {});
+  undefined;
   $(a);
 };
 $(f());

@@ -185,8 +185,8 @@ const f = function () {
       $('keep, do not eval');
       throw 'wrong exit';
     } else {
-      const tmpReturnArg$4 = tmpBranchingB$1(tmpSwitchCaseToStart$3);
-      return tmpReturnArg$4;
+      const tmpReturnArg$3 = tmpBranchingB$1(tmpSwitchCaseToStart$3);
+      return tmpReturnArg$3;
     }
   };
   if (tmpIfTest) {

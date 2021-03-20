@@ -317,8 +317,8 @@ const f = function () {
       $('keep, do not eval');
       return undefined;
     } else {
-      const tmpReturnArg$7 = tmpBranchingB$2(tmpSwitchCaseToStart$3);
-      return tmpReturnArg$7;
+      const tmpReturnArg$4 = tmpBranchingB$2(tmpSwitchCaseToStart$3);
+      return tmpReturnArg$4;
     }
   };
   if (tmpIfTest) {

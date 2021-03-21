@@ -158,29 +158,22 @@ function _inlineConstants(fdata) {
         ASSERT(node.expression.type === 'AssignmentExpression');
         node.expression = node.expression.right;
         after(node);
-      } else if (node.type === 'FunctionDeclaration') {
-        ASSERT(node.id);
-        log('Eliminating `' + node.id.name + '`');
-        if (index >= 0) {
-          parent[prop][index] = AST.emptyStatement();
-        } else {
-          parent[prop] = AST.emptyStatement();
-        }
       } else {
         ASSERT(node.type === 'VariableDeclaration', 'if eliminating a new node support it above', node);
         const init = node.declarations[0].init;
         // If the init is `this`, `arguments`, or `arguments.length`, we can and should immediately drop it
         if (
           init &&
-          (init.type === 'ThisExpression' ||
-            (init.type === 'Identifier' && init.name === 'arguments') ||
+          (init.type === 'FunctionExpression' ||
+            init.type === 'ThisExpression' ||
+            !AST.isComplexNode(init) ||
             (init.type === 'MemberExpression' &&
               init.object.type === 'Identifier' &&
               init.object.name === 'arguments' &&
               !init.object.computed &&
               init.property.name === 'length'))
         ) {
-          vlog('Dropping the init because it is `this`, `arguments`, or `arguments.length`');
+          vlog('Dropping the init too because it is not complex, a function, `this`, or `arguments.length`');
           if (index >= 0) {
             parent[prop][index] = AST.emptyStatement();
           } else {

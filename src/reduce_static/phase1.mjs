@@ -357,7 +357,7 @@ export function phase1(fdata, resolve, req) {
               const declIndex = path.indexes[path.indexes.length - 3];
               vlog('- Adding decl write');
 
-              meta.writes.push(
+              meta.writes.unshift(
                 createWriteRef({
                   parentNode,
                   parentProp,
@@ -417,7 +417,7 @@ export function phase1(fdata, resolve, req) {
               const paramProp = path.props[path.props.length - 2];
               const paramIndex = path.indexes[path.indexes.length - 2];
               vlog('Adding param write');
-              meta.writes.push(
+              meta.writes.unshift(
                 createWriteRef({
                   parentNode,
                   parentProp,

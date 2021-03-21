@@ -380,7 +380,7 @@ export function registerGlobalIdent(fdata, name, originalName, { isExport = fals
     // - [x] function declarations
     // - [ ] update expressions, pre or postifx, inc or dec
     // - [ ] for-loop lhs
-    writes: [], // {parent, prop, index} indirect reference ot the node being assigned
+    writes: [], // {parent, prop, index} indirect reference ot the node being assigned. If not implicit/builtin then the first write should be the decl. Note that reads and writes can legally appear in source/ast before decl.
     reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
   };
   ASSERT(name);

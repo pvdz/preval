@@ -144,7 +144,7 @@ function _inlineOneTimeFunctions(fdata) {
       }
     }
 
-    if (funcNode.$p.hasBranch && read.funcNode.$p.hasBranch) {
+    if (funcNode.$p.hasBranch && read.pfuncNode.$p.hasBranch) {
       // We strive for a max of one branch per function so do not merge functions that both have one
       // A branch is an if or a loop (while, for-x). Other types (do-while, for, switch, logic operators,
       // conditional operators, ternary operator) are all gone at this point.
@@ -216,7 +216,7 @@ function _inlineOneTimeFunctions(fdata) {
 
       // Mark the function containing the read as no longer being safe to be inlined itself. Nested
       // functions can still be flattened into it. It will require a phase1 pass to be inlined itself.
-      read.funcNode.$p.oneTimerDirty = true;
+      read.pfuncNode.$p.oneTimerDirty = true;
 
       // - inject const for each param, the init being the arg in the same position
       // - replace call with return argument, or undefined if there isn't any

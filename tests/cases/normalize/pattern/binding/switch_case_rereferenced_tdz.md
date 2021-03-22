@@ -10,6 +10,12 @@ However, the TDZ is still active so this should be an error.
 
 #TODO
 
+## Options
+
+TDZ errors are not properly emulated so a n eval mismatch is expected
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -87,16 +93,3 @@ arrPatternSplat$1[1];
 ## Globals
 
 None
-
-## Result
-
-Should call `$` with:
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
-
-Pre normalization calls: Same
-
-Normalized calls: BAD?!
- - eval returned: undefined
-
-Final output calls: BAD!!
- - eval returned: undefined

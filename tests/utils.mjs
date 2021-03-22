@@ -79,7 +79,7 @@ export function fromMarkdownCase(md, fname, config) {
   } else if (md[0] === '#') {
     const [mdHead, ...chunks] = md.split('\n## ').filter((s) => !s.startsWith('Eval\n'));
     const mdInput = chunks.filter((s) => s.startsWith('Input\n'))[0];
-    const mdOptions = [...(chunks.filter((s) => s.startsWith('Options\n'))?.[0] ?? '').trim().matchAll(/^- (\w+)=(.+)$/gm)].reduce(
+    const mdOptions = [...(chunks.filter((s) => s.startsWith('Options\n'))?.[0] ?? '').trim().matchAll(/^- (\w+)(?:=(.+))?$/gm)].reduce(
       (options, match) => {
         let [, name, value] = match;
         name = name.trim();
@@ -88,6 +88,13 @@ export function fromMarkdownCase(md, fname, config) {
           case 'cloneLimit':
             value = parseInt(value.trim());
             if (isNaN(value)) throw new Error('Test case contained invalid value for `' + name + '` (' + value + ')');
+            break;
+          case 'skipEval':
+          case 'skipEvalInput':
+          case 'skipEvalPre':
+          case 'skipEvalNormalized':
+          case 'skipEvalOutput':
+            value = true;
             break;
           default:
             throw new Error('Test case contained unsupported option: `' + name + '` (with value `' + value + '`)');

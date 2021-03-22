@@ -248,7 +248,15 @@ function runTestCase(
         }
 
         if (typeof a === 'string') {
-          return JSON.stringify(a.replace(/\n/g, '').replace(/  +/g, ' ')).replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {');
+          return (
+            JSON.stringify(a.replace(/\n/g, '').replace(/  +/g, ' '))
+              // All arrows are transformed to function expressions
+              .replace(/\(\) => \{\}/g, 'function() {}')
+              // Drop function ids
+              .replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {')
+              // We inject debugger statements into all functions
+              .replace(/debugger;/g, '')
+          );
         }
 
         if (a === undefined) {
@@ -282,10 +290,28 @@ function runTestCase(
             }
           });
 
-          return (JSON.stringify(clone) ?? '"' + typeof a + '"').replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {');
+          return (
+            (JSON.stringify(clone) ?? '"' + typeof a + '"')
+              // All arrows are transformed to function expressions
+              .replace(/\(\) => \{\}/g, 'function() {}')
+              // Drop function ids
+              .replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {')
+              // We inject debugger statements into all functions
+              .replace(/\{\\ndebugger;\\n\}/g, '{}')
+          );
         }
 
-        return (JSON.stringify(a) ?? '"' + typeof a + '"').replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {');
+        return (
+          (JSON.stringify(a) ?? '"' + typeof a + '"')
+            // All arrows are transformed to function expressions
+            .replace(/\(\) => \{\}/g, 'function() {}')
+            // Drop function ids
+            .replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {')
+            // We inject debugger statements into all functions
+            .replace(/\n?debugger;\n?/g, '')
+        );
+
+        //.replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {');
       }
       function $(...a) {
         if (stack.length > (before ? 25 : 10000)) throw new Error('Loop aborted by Preval test runner');
@@ -333,7 +359,15 @@ function runTestCase(
         .replace(/.*Cannot read property 'call' of .*/, '<ref> is not function/iterable') // We transform member calls to .call() so the test should be okay to assume they are the same error
         .replace(/function ?\(\) ?\{/g, 'function() {')
         .replace(/Cannot read property .*? of .*/g, 'Cannot read property <ref> of <ref2>')
-        .replace(/Cannot access '[\w$]+' before initialization/, "Cannot access '<ref>' before initialization");
+        .replace(/Cannot access '[\w$]+' before initialization/, "Cannot access '<ref>' before initialization")
+
+        // All arrows are transformed to function expressions
+        .replace(/\(\) => \{\}/g, 'function() {}')
+        // Drop function ids
+        .replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {')
+        // We inject debugger statements into all functions
+        .replace(/\n?debugger;\n?/g, '');
+
       stack.push('"<crash[ ' + msg.replace(/"/g, '\\"').replace(/\n/g, '') + ' ]>"');
 
       if (withOutput) {
@@ -345,11 +379,12 @@ function runTestCase(
     // To prevent these changes, we shallow copy and store the current state.
     return stack.slice(0);
   }
-  evalled.$in = ev('input', fin, evalled.$in);
-  evalled.$pre = ev('pre normalization', fin, evalled.$pre);
-  evalled.$norm = ev('normalized', output?.normalized, evalled.$norm);
+  const SKIPPED = '"<skipped by option>"';
+  evalled.$in = mdOptions.skipEval || mdOptions.skipEvalInput ? [SKIPPED] : ev('input', fin, evalled.$in);
+  evalled.$pre = mdOptions.skipEval || mdOptions.skipEvalPre ? [SKIPPED] : ev('pre normalization', fin, evalled.$pre);
+  evalled.$norm = mdOptions.skipEval || mdOptions.skipEvalNormalized ? [SKIPPED] : ev('normalized', output?.normalized, evalled.$norm);
   if (!CONFIG.onlyNormalized) {
-    evalled.$out = ev('output', output?.files, evalled.$out);
+    evalled.$out = mdOptions.skipEval || mdOptions.skipEvalOutput ? [SKIPPED] : ev('output', output?.files, evalled.$out);
   }
 
   if (withOutput) {

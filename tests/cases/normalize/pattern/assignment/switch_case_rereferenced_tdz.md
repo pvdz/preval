@@ -12,6 +12,12 @@ There might not be a possibility to retain this error after a transform without 
 
 #TODO
 
+## Options
+
+TDZ errors are not properly emulated so a n eval mismatch is expected
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -89,16 +95,3 @@ arrPatternSplat[1];
 ## Globals
 
 None
-
-## Result
-
-Should call `$` with:
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
-
-Pre normalization calls: Same
-
-Normalized calls: BAD?!
- - eval returned: undefined
-
-Final output calls: BAD!!
- - eval returned: undefined

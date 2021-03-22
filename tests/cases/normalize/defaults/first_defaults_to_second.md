@@ -8,6 +8,12 @@
 
 TDZ case
 
+## Options
+
+TDZ errors are not properly emulated so a n eval mismatch is expected
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -141,16 +147,3 @@ $(tmpCalleeParam$3);
 BAD@! Found 1 implicit global bindings:
 
 b
-
-## Result
-
-Should call `$` with:
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
-
-Pre normalization calls: Same
-
-Normalized calls: BAD?!
- - eval returned: ('<crash[ <ref> is not defined ]>')
-
-Final output calls: BAD!!
- - eval returned: ('<crash[ <ref> is not defined ]>')

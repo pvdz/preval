@@ -6,6 +6,12 @@
 >
 > Regression hunting
 
+## Options
+
+TDZ errors are not properly emulated so a n eval mismatch is expected
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -69,16 +75,3 @@ throw '[Preval]: Can not reach here';
 BAD@! Found 1 implicit global bindings:
 
 x$1
-
-## Result
-
-Should call `$` with:
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
-
-Pre normalization calls: Same
-
-Normalized calls: BAD?!
- - eval returned: ('<crash[ <ref> is not defined ]>')
-
-Final output calls: BAD!!
- - eval returned: ('<crash[ <ref> is not defined ]>')

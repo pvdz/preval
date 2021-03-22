@@ -8,6 +8,12 @@
 
 #TODO
 
+## Options
+
+Skipping function serialization problems (test artifact)
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -51,22 +57,3 @@ $(SSA_a$1);
 ## Globals
 
 None
-
-## Result
-
-Should call `$` with:
- - 1: '() => {}() => {}'
- - 2: '<function>'
- - eval returned: undefined
-
-Pre normalization calls: Same
-
-Normalized calls: BAD?!
- - 1: 'function() {}function() {}'
- - 2: '<function>'
- - eval returned: undefined
-
-Final output calls: BAD!!
- - 1: 'function() {}function() {}'
- - 2: '<function>'
- - eval returned: undefined

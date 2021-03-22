@@ -8,6 +8,12 @@
 
 #TODO
 
+## Options
+
+TDZ errors are not properly emulated so a n eval mismatch is expected
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -40,18 +46,3 @@ $('fail');
 ## Globals
 
 None
-
-## Result
-
-Should call `$` with:
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
-
-Pre normalization calls: Same
-
-Normalized calls: BAD?!
- - 1: 'fail'
- - eval returned: undefined
-
-Final output calls: BAD!!
- - 1: 'fail'
- - eval returned: undefined

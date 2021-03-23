@@ -111,8 +111,8 @@ const f = function ($$0) {
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const SSA_x$1 = $('pass');
-    return SSA_x$1;
+    const tmpReturnArg$2 = $('pass');
+    return tmpReturnArg$2;
   } else {
     return arrPatternBeforeDefault;
   }

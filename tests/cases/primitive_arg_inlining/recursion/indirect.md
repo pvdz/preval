@@ -116,8 +116,8 @@ const g = function ($$0) {
   if (tmpIfTest) {
     return tmpCalleeParam;
   } else {
-    const tmpReturnArg$3 = g(tmpCalleeParam);
-    return tmpReturnArg$3;
+    const tmpReturnArg$2 = g(tmpCalleeParam);
+    return tmpReturnArg$2;
   }
 };
 const tmpCalleeParam$1 = g(0);

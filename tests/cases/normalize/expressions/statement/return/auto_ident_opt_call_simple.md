@@ -86,8 +86,8 @@ const f = function () {
   debugger;
   const tmpIfTest = $ != null;
   if (tmpIfTest) {
-    const tmpChainElementCall$1 = $(1);
-    return tmpChainElementCall$1;
+    const tmpReturnArg$6 = $(1);
+    return tmpReturnArg$6;
   } else {
     return undefined;
   }

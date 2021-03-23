@@ -92,8 +92,8 @@ const f = function () {
     $(100);
     return undefined;
   } else {
-    const SSA_x$2 = $(2, 'b');
-    return SSA_x$2;
+    const tmpReturnArg$3 = $(2, 'b');
+    return tmpReturnArg$3;
   }
 };
 const tmpCalleeParam = f();

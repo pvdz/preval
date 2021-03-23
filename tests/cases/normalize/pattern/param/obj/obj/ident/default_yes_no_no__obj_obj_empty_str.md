@@ -117,8 +117,8 @@ const f = function ($$0) {
   const objPatternBeforeDefault = objPatternNoDefault.y;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const SSA_y$1 = $('fail');
-    return SSA_y$1;
+    const tmpReturnArg$2 = $('fail');
+    return tmpReturnArg$2;
   } else {
     return objPatternBeforeDefault;
   }

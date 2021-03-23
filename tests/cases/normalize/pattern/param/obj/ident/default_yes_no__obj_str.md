@@ -95,8 +95,8 @@ const f = function ($$0) {
   const objPatternBeforeDefault = tmpParamBare.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const SSA_x$1 = $('fail');
-    return SSA_x$1;
+    const tmpReturnArg$2 = $('fail');
+    return tmpReturnArg$2;
   } else {
     return objPatternBeforeDefault;
   }

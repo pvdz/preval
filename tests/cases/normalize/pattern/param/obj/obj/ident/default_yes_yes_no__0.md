@@ -196,8 +196,8 @@ const f = function ($$0) {
     const objPatternBeforeDefault$5 = objPatternAfterDefault$3.y;
     const tmpIfTest$4 = objPatternBeforeDefault$5 === undefined;
     if (tmpIfTest$4) {
-      const SSA_y$2 = $('fail');
-      return SSA_y$2;
+      const tmpReturnArg$4 = $('fail');
+      return tmpReturnArg$4;
     } else {
       return objPatternBeforeDefault$5;
     }

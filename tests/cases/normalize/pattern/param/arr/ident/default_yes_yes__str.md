@@ -168,8 +168,8 @@ const f = function ($$0) {
     const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
     const tmpIfTest$4 = arrPatternBeforeDefault$1 === undefined;
     if (tmpIfTest$4) {
-      const SSA_x$2 = $('fail');
-      return SSA_x$2;
+      const tmpReturnArg$4 = $('fail');
+      return tmpReturnArg$4;
     } else {
       return arrPatternBeforeDefault$1;
     }

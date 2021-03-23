@@ -84,8 +84,8 @@ const f = function () {
   debugger;
   const tmpIfTest = $(30);
   if (tmpIfTest) {
-    const SSA_tmpReturnArg$1 = $(2);
-    return SSA_tmpReturnArg$1;
+    const tmpReturnArg$6 = $(2);
+    return tmpReturnArg$6;
   } else {
     const tmpCalleeParam$1 = $(100);
     const SSA_tmpReturnArg$2 = $(tmpCalleeParam$1);

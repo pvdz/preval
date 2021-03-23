@@ -281,8 +281,8 @@ const f = function ($$0) {
       const objPatternBeforeDefault$2 = arrPatternStep$4.x;
       const tmpIfTest$11 = objPatternBeforeDefault$2 === undefined;
       if (tmpIfTest$11) {
-        const SSA_x$3 = $('fail');
-        return SSA_x$3;
+        const tmpReturnArg$6 = $('fail');
+        return tmpReturnArg$6;
       } else {
         return objPatternBeforeDefault$2;
       }

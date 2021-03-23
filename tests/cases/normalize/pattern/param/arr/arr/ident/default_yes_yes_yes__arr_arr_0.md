@@ -289,8 +289,8 @@ const f = function ($$0) {
       const arrPatternBeforeDefault$7 = arrPatternSplat$7[0];
       const tmpIfTest$11 = arrPatternBeforeDefault$7 === undefined;
       if (tmpIfTest$11) {
-        const SSA_x$3 = $('fail');
-        return SSA_x$3;
+        const tmpReturnArg$6 = $('fail');
+        return tmpReturnArg$6;
       } else {
         return arrPatternBeforeDefault$7;
       }

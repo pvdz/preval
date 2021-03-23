@@ -399,6 +399,7 @@ function runTestCase(
         {
           md,
           mdHead,
+          mdOptions,
           mdChunks,
           fname,
           sname,

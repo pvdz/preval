@@ -117,23 +117,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam$2 = $(1);
-    const SSA_tmpNestedComplexRhs$2 = $(tmpCalleeParam$2);
-    a = SSA_tmpNestedComplexRhs$2;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
-$(a);
+const tmpCalleeParam$2 = $(1);
+const SSA_tmpNestedComplexRhs$2 = $(tmpCalleeParam$2);
+$(undefined);
+$(SSA_tmpNestedComplexRhs$2);
 `````
 
 ## Globals

@@ -96,15 +96,8 @@ rule('You have to listen to me');
 ## Output
 
 `````js filename=intro
-const rule = function ($$0) {
-  const desc = $$0;
-  debugger;
-  const d = 'purpleRule:reset "' + desc;
-  const e = d + '"';
-  $(e);
-};
-rule('I want it my way');
-rule('You have to listen to me');
+$('purpleRule:reset "I want it my way"');
+$('purpleRule:reset "You have to listen to me"');
 `````
 
 ## Globals

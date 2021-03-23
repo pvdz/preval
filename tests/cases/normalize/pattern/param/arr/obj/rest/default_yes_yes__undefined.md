@@ -167,45 +167,32 @@ tmpCallCallee$5(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternArrRoot$3 = $$0;
+  const tmpArrElement$1 = { a: 'pass2' };
+  const tmpCalleeParam$1 = [tmpArrElement$1];
+  const SSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
+  const arrPatternSplat$1 = [...SSA_bindingPatternArrRoot$1];
+  const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+  const tmpIfTest$4 = arrPatternBeforeDefault$1 === undefined;
+  const tmpBranchingC$1 = function ($$0) {
+    const arrPatternStep$4 = $$0;
     debugger;
-    const arrPatternSplat$1 = [...bindingPatternArrRoot$3];
-    const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-    const tmpIfTest$4 = arrPatternBeforeDefault$1 === undefined;
-    const tmpBranchingC$1 = function ($$0) {
-      const arrPatternStep$4 = $$0;
-      debugger;
-      const tmpCalleeParam$5 = [];
-      const x$2 = objPatternRest(arrPatternStep$4, tmpCalleeParam$5, undefined);
-      return x$2;
-    };
-    if (tmpIfTest$4) {
-      const tmpCalleeParam$3 = { a: 'fail' };
-      const SSA_arrPatternStep$2 = $(tmpCalleeParam$3);
-      const tmpReturnArg$2 = tmpBranchingC$1(SSA_arrPatternStep$2);
-      return tmpReturnArg$2;
-    } else {
-      const tmpReturnArg$5 = tmpBranchingC$1(arrPatternBeforeDefault$1);
-      return tmpReturnArg$5;
-    }
+    const tmpCalleeParam$5 = [];
+    const x$2 = objPatternRest(arrPatternStep$4, tmpCalleeParam$5, undefined);
+    return x$2;
   };
-  if (tmpIfTest) {
-    const tmpArrElement$1 = { a: 'pass2' };
-    const tmpCalleeParam$1 = [tmpArrElement$1];
-    const SSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternArrRoot$1);
-    return tmpReturnArg;
+  if (tmpIfTest$4) {
+    const tmpCalleeParam$4 = { a: 'fail' };
+    const SSA_arrPatternStep$1 = $(tmpCalleeParam$4);
+    const tmpReturnArg$1 = tmpBranchingC$1(SSA_arrPatternStep$1);
+    return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$7;
+    const tmpReturnArg$4 = tmpBranchingC$1(arrPatternBeforeDefault$1);
+    return tmpReturnArg$4;
   }
 };
-const tmpCalleeParam$7 = f(undefined, 200);
+const tmpCalleeParam$7 = f();
 $(tmpCalleeParam$7);
 `````
 

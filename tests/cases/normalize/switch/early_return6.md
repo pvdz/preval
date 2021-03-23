@@ -126,32 +126,8 @@ $(tmpReturnArg$11);
 ## Output
 
 `````js filename=intro
-const tmpBranchingB = function ($$0) {
-  const v = $$0;
-  debugger;
-  const x = 1 === v;
-  const tmpBranchingB$1 = function ($$0) {
-    const v$2 = $$0;
-    debugger;
-    const y$1 = 2 === v$2;
-    if (y$1) {
-      $(1);
-      return undefined;
-    } else {
-      $(2);
-      return undefined;
-    }
-  };
-  if (x) {
-    $(0);
-    return undefined;
-  } else {
-    const tmpReturnArg$7 = tmpBranchingB$1(v);
-    return tmpReturnArg$7;
-  }
-};
-const tmpReturnArg$11 = tmpBranchingB(1);
-$(tmpReturnArg$11);
+$(0);
+$(undefined);
 `````
 
 ## Globals

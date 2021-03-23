@@ -101,29 +101,8 @@ tmpCallCallee$2(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const objPatternBeforeDefault = tmpParamBare.x;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingC = function ($$0) {
-    const objPatternAfterDefault$3 = $$0;
-    debugger;
-    [...objPatternAfterDefault$3];
-    return 'bad';
-  };
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = ['fail'];
-    const SSA_objPatternAfterDefault$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_objPatternAfterDefault$1);
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingC(objPatternBeforeDefault);
-    return tmpReturnArg$3;
-  }
-};
-const tmpCalleeParam$2 = f(undefined, 10);
-$(tmpCalleeParam$2);
+undefined.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

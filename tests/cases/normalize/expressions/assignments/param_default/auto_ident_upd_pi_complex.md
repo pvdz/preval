@@ -66,24 +66,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = $(b);
-    const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-    const tmpBinLhs = varInitAssignLhsComputedObj.x;
-    const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    a = varInitAssignLhsComputedRhs;
-  }
-};
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-$(a, b);
+const tmpCalleeParam = $(b);
+const varInitAssignLhsComputedObj = $(tmpCalleeParam);
+const tmpBinLhs = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+$(undefined);
+$(varInitAssignLhsComputedRhs, b);
 `````
 
 ## Globals

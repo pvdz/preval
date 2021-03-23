@@ -125,28 +125,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCalleeParam$2 = $(1);
-    const tmpNestedComplexRhs$1 = $(tmpCalleeParam$2);
-    if (tmpNestedComplexRhs$1) {
-      const tmpCalleeParam$5 = $(2);
-      const SSA_tmpNestedComplexRhs$2 = $(tmpCalleeParam$5);
-      a = SSA_tmpNestedComplexRhs$2;
-      return undefined;
-    } else {
-      a = tmpNestedComplexRhs$1;
-      return undefined;
-    }
-  };
-  if (tmpIfTest) {
-    const tmpReturnArg$6 = tmpBranchingA();
-    return tmpReturnArg$6;
+  const tmpCalleeParam$2 = $(1);
+  const tmpNestedComplexRhs$1 = $(tmpCalleeParam$2);
+  if (tmpNestedComplexRhs$1) {
+    const tmpCalleeParam$3 = $(2);
+    const SSA_tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
+    a = SSA_tmpNestedComplexRhs$1;
+    return undefined;
   } else {
+    a = tmpNestedComplexRhs$1;
     return undefined;
   }
 };

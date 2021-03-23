@@ -300,7 +300,7 @@ const f = function ($$0) {
   }
 };
 const tmpCalleeParam$5 = { x: '', a: 11, b: 12 };
-const tmpCalleeParam$4 = f(tmpCalleeParam$5, 10);
+const tmpCalleeParam$4 = f(tmpCalleeParam$5);
 $(tmpCalleeParam$4);
 `````
 

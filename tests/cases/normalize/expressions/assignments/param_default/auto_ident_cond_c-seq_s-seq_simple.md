@@ -122,27 +122,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpIfTest$3 = $(30);
-    if (tmpIfTest$3) {
-      a = 60;
-      return undefined;
-    } else {
-      const tmpCalleeParam$2 = $(100);
-      const SSA_tmpNestedComplexRhs$3 = $(tmpCalleeParam$2);
-      a = SSA_tmpNestedComplexRhs$3;
-      return undefined;
-    }
-  };
-  if (tmpIfTest) {
-    const tmpReturnArg$6 = tmpBranchingA();
-    return tmpReturnArg$6;
+  const tmpIfTest$3 = $(30);
+  if (tmpIfTest$3) {
+    a = 60;
+    return undefined;
   } else {
+    const tmpCalleeParam$1 = $(100);
+    const SSA_tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
+    a = SSA_tmpNestedComplexRhs$1;
     return undefined;
   }
 };

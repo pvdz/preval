@@ -60,22 +60,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    $(10);
-    $(20);
-    const tmpCalleeParam = [1, 2];
-    $(tmpCalleeParam);
-  }
-};
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+$(10);
+$(20);
+const tmpCalleeParam = [1, 2];
+$(tmpCalleeParam);
+$(undefined);
 $(a);
 `````
 

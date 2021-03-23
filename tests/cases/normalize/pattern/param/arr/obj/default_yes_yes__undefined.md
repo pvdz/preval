@@ -322,60 +322,45 @@ tmpCallCallee$2(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternArrRoot$3 = $$0;
+  const arrPatternSplat$1 = [...1];
+  const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+  const tmpIfTest$4 = arrPatternBeforeDefault$1 === undefined;
+  const tmpBranchingC$1 = function ($$0) {
+    const arrPatternStep$4 = $$0;
     debugger;
-    const arrPatternSplat$1 = [...bindingPatternArrRoot$3];
-    const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-    const tmpIfTest$4 = arrPatternBeforeDefault$1 === undefined;
-    const tmpBranchingC$1 = function ($$0) {
-      const arrPatternStep$4 = $$0;
+    const objPatternCrashTest$2 = arrPatternStep$4 === undefined;
+    const tmpBranchingC$2 = function ($$0, $$1) {
+      const arrPatternStep$7 = $$0;
+      const objPatternCrashTest$5 = $$1;
       debugger;
-      const objPatternCrashTest$2 = arrPatternStep$4 === undefined;
-      const tmpBranchingC$2 = function ($$0, $$1) {
-        const arrPatternStep$7 = $$0;
-        const objPatternCrashTest$5 = $$1;
-        debugger;
-        if (objPatternCrashTest$5) {
-          arrPatternStep$7.cannotDestructureThis;
-          return 'bad';
-        } else {
-          return 'bad';
-        }
-      };
-      if (objPatternCrashTest$2) {
-        const tmpReturnArg$10 = tmpBranchingC$2(arrPatternStep$4, objPatternCrashTest$2);
-        return tmpReturnArg$10;
+      if (objPatternCrashTest$5) {
+        arrPatternStep$7.cannotDestructureThis;
+        return 'bad';
       } else {
-        const SSA_objPatternCrashTest$4 = arrPatternStep$4 === null;
-        const tmpReturnArg$5 = tmpBranchingC$2(arrPatternStep$4, SSA_objPatternCrashTest$4);
-        return tmpReturnArg$5;
+        return 'bad';
       }
     };
-    if (tmpIfTest$4) {
-      const SSA_arrPatternStep$2 = $('fail');
-      const tmpReturnArg$2 = tmpBranchingC$1(SSA_arrPatternStep$2);
-      return tmpReturnArg$2;
+    if (objPatternCrashTest$2) {
+      const tmpReturnArg$10 = tmpBranchingC$2(arrPatternStep$4, objPatternCrashTest$2);
+      return tmpReturnArg$10;
     } else {
-      const tmpReturnArg$13 = tmpBranchingC$1(arrPatternBeforeDefault$1);
-      return tmpReturnArg$13;
+      const SSA_objPatternCrashTest$4 = arrPatternStep$4 === null;
+      const tmpReturnArg$5 = tmpBranchingC$2(arrPatternStep$4, SSA_objPatternCrashTest$4);
+      return tmpReturnArg$5;
     }
   };
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = ['fail2'];
-    const SSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternArrRoot$1);
-    return tmpReturnArg;
+  if (tmpIfTest$4) {
+    const SSA_arrPatternStep$1 = $('fail');
+    const tmpReturnArg$1 = tmpBranchingC$1(SSA_arrPatternStep$1);
+    return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$15 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$15;
+    const tmpReturnArg$4 = tmpBranchingC$1(arrPatternBeforeDefault$1);
+    return tmpReturnArg$4;
   }
 };
-const tmpCalleeParam$2 = f(1, 2, 3, 100);
+const tmpCalleeParam$2 = f();
 $(tmpCalleeParam$2);
 `````
 

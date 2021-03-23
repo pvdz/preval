@@ -59,21 +59,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { a: 1, b: 2 };
-    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-    a = tmpNestedAssignObjPatternRhs.a;
-  }
-};
 const bindingPatternObjRoot = { a: 999, b: 1000 };
-let a = bindingPatternObjRoot.a;
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-$(a);
+bindingPatternObjRoot.a;
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+const SSA_a = tmpNestedAssignObjPatternRhs.a;
+$(undefined);
+$(SSA_a);
 `````
 
 ## Globals

@@ -152,7 +152,7 @@ const f = function ($$0) {
   }
 };
 const tmpCalleeParam$6 = [undefined, 20, 30];
-const tmpCalleeParam$5 = f(tmpCalleeParam$6, 200);
+const tmpCalleeParam$5 = f(tmpCalleeParam$6);
 $(tmpCalleeParam$5);
 `````
 

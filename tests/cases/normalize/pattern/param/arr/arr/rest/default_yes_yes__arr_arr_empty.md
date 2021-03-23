@@ -200,7 +200,7 @@ const f = function ($$0) {
 };
 const tmpArrElement = [];
 const tmpCalleeParam$1 = [tmpArrElement, 4, 5];
-const tmpCalleeParam = f(tmpCalleeParam$1, 200);
+const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

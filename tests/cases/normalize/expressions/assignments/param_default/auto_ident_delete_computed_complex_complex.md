@@ -62,22 +62,12 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = $('y');
-    const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-    a = tmpNestedComplexRhs;
-  }
-};
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, arg);
+const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompProp = $('y');
+const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+$(undefined);
+$(tmpNestedComplexRhs, arg);
 `````
 
 ## Globals

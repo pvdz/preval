@@ -82,29 +82,9 @@ tmpCallCallee$2(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternArrRoot$3 = $$0;
-    debugger;
-    const arrPatternSplat$1 = [...bindingPatternArrRoot$3];
-    const x$1 = arrPatternSplat$1.slice(0);
-    return x$1;
-  };
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = ['fail'];
-    const SSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternArrRoot$1);
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$3;
-  }
-};
-const tmpCalleeParam$2 = f('', 200);
-$(tmpCalleeParam$2);
+const arrPatternSplat$2 = [];
+const x$2 = arrPatternSplat$2.slice(0);
+$(x$2);
 `````
 
 ## Globals

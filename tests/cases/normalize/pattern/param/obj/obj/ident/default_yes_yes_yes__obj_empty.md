@@ -292,7 +292,7 @@ const f = function ($$0) {
   }
 };
 const tmpCalleeParam$5 = {};
-const tmpCalleeParam$4 = f(tmpCalleeParam$5, 10);
+const tmpCalleeParam$4 = f(tmpCalleeParam$5);
 $(tmpCalleeParam$4);
 `````
 

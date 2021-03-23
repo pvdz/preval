@@ -157,33 +157,19 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternArrRoot$3 = $$0;
-    debugger;
-    const arrPatternSplat$1 = [...bindingPatternArrRoot$3];
-    const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-    const tmpIfTest$4 = arrPatternBeforeDefault$1 === undefined;
-    if (tmpIfTest$4) {
-      $('fail');
-      return 'bad';
-    } else {
-      return 'bad';
-    }
-  };
-  if (tmpIfTest) {
-    const SSA_bindingPatternArrRoot$1 = $('fail2');
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternArrRoot$1);
-    return tmpReturnArg;
+  const arrPatternSplat$2 = [...null];
+  const arrPatternBeforeDefault$2 = arrPatternSplat$2[0];
+  const tmpIfTest$1 = arrPatternBeforeDefault$2 === undefined;
+  if (tmpIfTest$1) {
+    $('fail');
+    return 'bad';
   } else {
-    const tmpReturnArg$7 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$7;
+    return 'bad';
   }
 };
-const tmpCalleeParam = f(null, 200);
+const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 

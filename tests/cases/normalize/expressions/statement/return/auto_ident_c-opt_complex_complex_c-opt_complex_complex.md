@@ -172,9 +172,8 @@ const f = function () {
   debugger;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
-  const tmpBranchingA = function ($$0, $$1) {
-    const tmpReturnArg$1 = $$0;
-    const tmpChainElementCall$1 = $$1;
+  const tmpBranchingA = function ($$0) {
+    const tmpChainElementCall$1 = $$0;
     debugger;
     const tmpChainRootComputed$2 = $('x');
     const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
@@ -184,11 +183,11 @@ const f = function () {
       const tmpChainElementObject$5 = tmpChainElementObject$2[tmpChainRootComputed$5];
       return tmpChainElementObject$5;
     } else {
-      return tmpReturnArg$1;
+      return undefined;
     }
   };
   if (tmpIfTest) {
-    const tmpReturnArg$13 = tmpBranchingA(undefined, tmpChainElementCall);
+    const tmpReturnArg$13 = tmpBranchingA(tmpChainElementCall);
     return tmpReturnArg$13;
   } else {
     return undefined;

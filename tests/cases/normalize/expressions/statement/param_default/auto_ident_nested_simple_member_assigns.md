@@ -74,23 +74,15 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-  }
-};
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+b.x = 3;
+$(undefined);
 $(a, b, 3);
 `````
 

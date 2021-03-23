@@ -303,58 +303,45 @@ tmpCallCallee$4(tmpCalleeParam$4);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternObjRoot$3 = $$0;
+  const tmpObjLitVal$1 = { y: 'pass2' };
+  const tmpCalleeParam$1 = { x: tmpObjLitVal$1 };
+  const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
+  const objPatternBeforeDefault$1 = SSA_bindingPatternObjRoot$1.x;
+  const tmpIfTest$4 = objPatternBeforeDefault$1 === undefined;
+  const tmpBranchingC$1 = function ($$0) {
+    const objPatternAfterDefault$4 = $$0;
     debugger;
-    const objPatternBeforeDefault$1 = bindingPatternObjRoot$3.x;
-    const tmpIfTest$4 = objPatternBeforeDefault$1 === undefined;
-    const tmpBranchingC$1 = function ($$0) {
-      const objPatternAfterDefault$4 = $$0;
+    const objPatternCrashTest$2 = objPatternAfterDefault$4 === undefined;
+    const tmpBranchingC$2 = function ($$0, $$1) {
+      const objPatternAfterDefault$7 = $$0;
+      const objPatternCrashTest$5 = $$1;
       debugger;
-      const objPatternCrashTest$2 = objPatternAfterDefault$4 === undefined;
-      const tmpBranchingC$2 = function ($$0, $$1) {
-        const objPatternAfterDefault$7 = $$0;
-        const objPatternCrashTest$5 = $$1;
-        debugger;
-        if (objPatternCrashTest$5) {
-          objPatternAfterDefault$7.cannotDestructureThis;
-          return 'ok';
-        } else {
-          return 'ok';
-        }
-      };
-      if (objPatternCrashTest$2) {
-        const tmpReturnArg$10 = tmpBranchingC$2(objPatternAfterDefault$4, objPatternCrashTest$2);
-        return tmpReturnArg$10;
+      if (objPatternCrashTest$5) {
+        objPatternAfterDefault$7.cannotDestructureThis;
+        return 'ok';
       } else {
-        const SSA_objPatternCrashTest$4 = objPatternAfterDefault$4 === null;
-        const tmpReturnArg$5 = tmpBranchingC$2(objPatternAfterDefault$4, SSA_objPatternCrashTest$4);
-        return tmpReturnArg$5;
+        return 'ok';
       }
     };
-    if (tmpIfTest$4) {
-      const tmpCalleeParam$3 = { x: 'fail' };
-      const SSA_objPatternAfterDefault$2 = $(tmpCalleeParam$3);
-      const tmpReturnArg$2 = tmpBranchingC$1(SSA_objPatternAfterDefault$2);
-      return tmpReturnArg$2;
+    if (objPatternCrashTest$2) {
+      const tmpReturnArg$10 = tmpBranchingC$2(objPatternAfterDefault$4, objPatternCrashTest$2);
+      return tmpReturnArg$10;
     } else {
-      const tmpReturnArg$13 = tmpBranchingC$1(objPatternBeforeDefault$1);
-      return tmpReturnArg$13;
+      const SSA_objPatternCrashTest$4 = objPatternAfterDefault$4 === null;
+      const tmpReturnArg$5 = tmpBranchingC$2(objPatternAfterDefault$4, SSA_objPatternCrashTest$4);
+      return tmpReturnArg$5;
     }
   };
-  if (tmpIfTest) {
-    const tmpObjLitVal$1 = { y: 'pass2' };
-    const tmpCalleeParam$1 = { x: tmpObjLitVal$1 };
-    const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternObjRoot$1);
-    return tmpReturnArg;
+  if (tmpIfTest$4) {
+    const tmpCalleeParam$5 = { x: 'fail' };
+    const SSA_objPatternAfterDefault$1 = $(tmpCalleeParam$5);
+    const tmpReturnArg$1 = tmpBranchingC$1(SSA_objPatternAfterDefault$1);
+    return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$15 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$15;
+    const tmpReturnArg$4 = tmpBranchingC$1(objPatternBeforeDefault$1);
+    return tmpReturnArg$4;
   }
 };
 const tmpCalleeParam$4 = f();

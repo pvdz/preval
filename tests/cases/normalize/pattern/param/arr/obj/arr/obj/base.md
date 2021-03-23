@@ -261,7 +261,7 @@ const tmpArrElement$1 = { a: 1, b: 2, c: 3 };
 const tmpObjLitVal = [tmpArrElement$1, 12];
 const tmpArrElement = { x: tmpObjLitVal, y: 11 };
 const tmpCalleeParam$1 = [tmpArrElement, 10];
-const tmpCalleeParam = f(tmpCalleeParam$1, 100);
+const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

@@ -61,20 +61,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpUnaryArg = $(1);
-    const tmpNestedComplexRhs = typeof tmpUnaryArg;
-    a = tmpNestedComplexRhs;
-  }
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, 1);
+const tmpUnaryArg = $(1);
+const tmpNestedComplexRhs = typeof tmpUnaryArg;
+$(undefined);
+$(tmpNestedComplexRhs, 1);
 `````
 
 ## Globals

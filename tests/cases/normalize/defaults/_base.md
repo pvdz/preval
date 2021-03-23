@@ -82,20 +82,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    return 'foo';
-  } else {
-    return tmpParamBare;
-  }
-};
-const tmpCalleeParam = f('x');
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f('y');
-$(tmpCalleeParam$1);
+$('x');
+$('y');
 `````
 
 ## Globals

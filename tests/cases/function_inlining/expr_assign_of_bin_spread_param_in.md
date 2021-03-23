@@ -78,14 +78,13 @@ $(x);
 `````js filename=intro
 let x = 0;
 const g = function ($$0, $$1, $$2, $$3, $$4) {
-  const a = $$0;
   const d = $$3;
   debugger;
-  x = a + d;
+  x = 10 + d;
 };
 const tmpCalleeParam = [1, 2];
 const arr = $(tmpCalleeParam);
-g(10, 20, ...arr, 30, 40, 50, 60);
+g(null, null, ...arr, 30, 40);
 $(x);
 `````
 

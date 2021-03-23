@@ -123,26 +123,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCalleeParam$1 = $(0);
-    const tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
-    if (tmpNestedComplexRhs$1) {
-      a = tmpNestedComplexRhs$1;
-      return undefined;
-    } else {
-      a = 2;
-      return undefined;
-    }
-  };
-  if (tmpIfTest) {
-    const tmpReturnArg$6 = tmpBranchingA();
-    return tmpReturnArg$6;
+  const tmpCalleeParam$1 = $(0);
+  const tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
+  if (tmpNestedComplexRhs$1) {
+    a = tmpNestedComplexRhs$1;
+    return undefined;
   } else {
+    a = 2;
     return undefined;
   }
 };

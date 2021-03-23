@@ -47,7 +47,7 @@ const f = function () {
   debugger;
   $(tmpArgumentsLen);
 };
-f(1, 2, 3);
+f(null, null, null);
 `````
 
 ## Globals

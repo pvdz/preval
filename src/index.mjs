@@ -233,8 +233,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
           firstAfterParse = false;
 
           changed = phase2(program, fdata, resolve, req);
-          // YOYO, param inlining
-          //if (!changed) changed = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);
+          if (!changed) changed = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);
         } while (changed === 'phase1');
 
         mod.fdata = fdata;

@@ -119,23 +119,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpIfTest$3 = $ != null;
-    if (tmpIfTest$3) {
-      $(1);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  if (tmpIfTest) {
-    const tmpReturnArg$6 = tmpBranchingA();
-    return tmpReturnArg$6;
+  const tmpIfTest$3 = $ != null;
+  if (tmpIfTest$3) {
+    $(1);
+    return undefined;
   } else {
     return undefined;
   }

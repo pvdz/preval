@@ -250,7 +250,7 @@ const tmpObjLitVal$2 = { a: 1, b: 2, c: 3 };
 const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 31 };
 const tmpArrElement = { x: tmpObjLitVal, y: 11 };
 const tmpCalleeParam$1 = [tmpArrElement, 10];
-const tmpCalleeParam = f(tmpCalleeParam$1, 100);
+const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

@@ -367,10 +367,10 @@ X('a', 'b', 'c', 'd', 'e');
 ## Output
 
 `````js filename=intro
-const l$2 = +'no';
-const m$2 = isNaN(l$2);
-if (m$2) {
-  $('a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, m$2);
+const l$4 = +'no';
+const m$4 = isNaN(l$4);
+if (m$4) {
+  $('a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, m$4);
 }
 `````
 

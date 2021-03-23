@@ -147,7 +147,7 @@ const f = function ($$0) {
 };
 const tmpObjLitVal = [''];
 const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
-const tmpCalleeParam = f(tmpCalleeParam$1, 10);
+const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

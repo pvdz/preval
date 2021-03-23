@@ -121,7 +121,7 @@ const f = function ($$0) {
   }
 };
 const tmpCalleeParam$1 = [, , 1];
-const tmpCalleeParam = f(tmpCalleeParam$1, 200);
+const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

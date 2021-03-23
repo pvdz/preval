@@ -126,10 +126,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const arrPatternSplat = [...tmpParamBare];
+  const arrPatternSplat = [...undefined];
   const arrPatternStep = arrPatternSplat[0];
   const objPatternBeforeDefault = arrPatternStep.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;

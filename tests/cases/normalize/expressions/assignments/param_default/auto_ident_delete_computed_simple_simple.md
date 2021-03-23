@@ -60,20 +60,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpNestedComplexRhs = delete arg.y;
-    a = tmpNestedComplexRhs;
-  }
-};
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, arg);
+const tmpNestedComplexRhs = delete arg.y;
+$(undefined);
+$(tmpNestedComplexRhs, arg);
 `````
 
 ## Globals

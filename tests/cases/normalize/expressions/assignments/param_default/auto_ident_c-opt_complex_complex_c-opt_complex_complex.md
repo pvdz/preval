@@ -263,43 +263,31 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
+  const tmpChainElementCall$1 = $(b);
+  const tmpIfTest$4 = tmpChainElementCall$1 != null;
+  const tmpBranchingA$1 = function ($$0) {
+    const tmpChainElementCall$2 = $$0;
     debugger;
-    const tmpChainElementCall$1 = $(b);
-    const tmpIfTest$4 = tmpChainElementCall$1 != null;
-    const tmpBranchingA$1 = function ($$0, $$1) {
-      const tmpNestedComplexRhs$2 = $$0;
-      const tmpChainElementCall$2 = $$1;
-      debugger;
-      const tmpChainRootComputed$4 = $('x');
-      const tmpChainElementObject$4 = tmpChainElementCall$2[tmpChainRootComputed$4];
-      const tmpIfTest$10 = tmpChainElementObject$4 != null;
-      if (tmpIfTest$10) {
-        const tmpChainRootComputed$7 = $('y');
-        const tmpChainElementObject$7 = tmpChainElementObject$4[tmpChainRootComputed$7];
-        a = tmpChainElementObject$7;
-        return undefined;
-      } else {
-        a = tmpNestedComplexRhs$2;
-        return undefined;
-      }
-    };
-    if (tmpIfTest$4) {
-      const tmpReturnArg$7 = tmpBranchingA$1(undefined, tmpChainElementCall$1);
-      return tmpReturnArg$7;
+    const tmpChainRootComputed$4 = $('x');
+    const tmpChainElementObject$4 = tmpChainElementCall$2[tmpChainRootComputed$4];
+    const tmpIfTest$10 = tmpChainElementObject$4 != null;
+    if (tmpIfTest$10) {
+      const tmpChainRootComputed$7 = $('y');
+      const tmpChainElementObject$7 = tmpChainElementObject$4[tmpChainRootComputed$7];
+      a = tmpChainElementObject$7;
+      return undefined;
     } else {
       a = undefined;
       return undefined;
     }
   };
-  if (tmpIfTest) {
-    const tmpReturnArg$10 = tmpBranchingA();
-    return tmpReturnArg$10;
+  if (tmpIfTest$4) {
+    const tmpReturnArg = tmpBranchingA$1(tmpChainElementCall$1);
+    return tmpReturnArg;
   } else {
+    a = undefined;
     return undefined;
   }
 };

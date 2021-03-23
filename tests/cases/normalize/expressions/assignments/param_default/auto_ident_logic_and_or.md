@@ -180,42 +180,31 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
+  const tmpCalleeParam$3 = $(1);
+  const tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
+  const tmpBranchingC$1 = function ($$0) {
+    const tmpNestedComplexRhs$4 = $$0;
     debugger;
-    const tmpCalleeParam$3 = $(1);
-    const tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
-    const tmpBranchingC$1 = function ($$0) {
-      const tmpNestedComplexRhs$4 = $$0;
-      debugger;
-      if (tmpNestedComplexRhs$4) {
-        a = tmpNestedComplexRhs$4;
-        return undefined;
-      } else {
-        const tmpCalleeParam$13 = $(2);
-        const SSA_tmpNestedComplexRhs$6 = $(tmpCalleeParam$13);
-        a = SSA_tmpNestedComplexRhs$6;
-        return undefined;
-      }
-    };
-    if (tmpNestedComplexRhs$1) {
-      const tmpCalleeParam$7 = $(1);
-      const SSA_tmpNestedComplexRhs$2 = $(tmpCalleeParam$7);
-      const tmpReturnArg = tmpBranchingC$1(SSA_tmpNestedComplexRhs$2);
-      return tmpReturnArg;
+    if (tmpNestedComplexRhs$4) {
+      a = tmpNestedComplexRhs$4;
+      return undefined;
     } else {
-      const tmpReturnArg$8 = tmpBranchingC$1(tmpNestedComplexRhs$1);
-      return tmpReturnArg$8;
+      const tmpCalleeParam$13 = $(2);
+      const SSA_tmpNestedComplexRhs$6 = $(tmpCalleeParam$13);
+      a = SSA_tmpNestedComplexRhs$6;
+      return undefined;
     }
   };
-  if (tmpIfTest) {
-    const tmpReturnArg$10 = tmpBranchingA();
-    return tmpReturnArg$10;
+  if (tmpNestedComplexRhs$1) {
+    const tmpCalleeParam$2 = $(1);
+    const SSA_tmpNestedComplexRhs$1 = $(tmpCalleeParam$2);
+    const tmpReturnArg$1 = tmpBranchingC$1(SSA_tmpNestedComplexRhs$1);
+    return tmpReturnArg$1;
   } else {
-    return undefined;
+    const tmpReturnArg$4 = tmpBranchingC$1(tmpNestedComplexRhs$1);
+    return tmpReturnArg$4;
   }
 };
 let a = { a: 999, b: 1000 };

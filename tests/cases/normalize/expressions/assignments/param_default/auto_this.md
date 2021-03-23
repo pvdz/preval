@@ -59,24 +59,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpthis = this;
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    a = tmpthis;
-  }
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+const SSA_a = tmpthis;
+$(undefined);
+$(SSA_a);
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+tmpthis
 
 ## Result
 
@@ -89,4 +81,5 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: Same
+Final output calls: BAD!!
+ - eval returned: ('<crash[ <ref> is not defined ]>')

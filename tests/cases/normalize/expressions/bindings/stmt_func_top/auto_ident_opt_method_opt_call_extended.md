@@ -197,9 +197,8 @@ const f = function () {
   const tmpObjLitVal = { d: tmpObjLitVal$1 };
   const b = { c: tmpObjLitVal };
   const tmpIfTest = b != null;
-  const tmpBranchingA = function ($$0, $$1) {
-    const a$1 = $$0;
-    const tmpChainRootProp$1 = $$1;
+  const tmpBranchingA = function ($$0) {
+    const tmpChainRootProp$1 = $$0;
     debugger;
     const tmpChainElementObject$3 = tmpChainRootProp$1.c;
     const tmpChainElementObject$4 = tmpChainElementObject$3.d;
@@ -210,12 +209,12 @@ const f = function () {
       $(tmpChainElementCall$2);
       return undefined;
     } else {
-      $(a$1);
+      $(undefined);
       return undefined;
     }
   };
   if (tmpIfTest) {
-    const tmpReturnArg$6 = tmpBranchingA(undefined, b);
+    const tmpReturnArg$6 = tmpBranchingA(b);
     return tmpReturnArg$6;
   } else {
     $(undefined);

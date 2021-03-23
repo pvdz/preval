@@ -61,24 +61,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    $(10);
-    $(20);
-    const tmpNestedAssignArrPatternRhs = [1, 2];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    a = arrPatternSplat[0];
-  }
-};
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat$1 = [...bindingPatternArrRoot];
-let a = arrPatternSplat$1[0];
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+arrPatternSplat$1[0];
+$(10);
+$(20);
+const tmpNestedAssignArrPatternRhs = [1, 2];
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const SSA_a = arrPatternSplat[0];
+$(undefined);
+$(SSA_a);
 `````
 
 ## Globals

@@ -102,7 +102,7 @@ const f = function ($$0) {
   }
 };
 const tmpCalleeParam$1 = { b: 2, c: 3 };
-const tmpCalleeParam = f(tmpCalleeParam$1, 10);
+const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

@@ -254,50 +254,8 @@ tmpCallCallee$4(tmpCalleeParam$4);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternObjRoot$3 = $$0;
-    debugger;
-    const objPatternBeforeDefault$1 = bindingPatternObjRoot$3.x;
-    const tmpIfTest$4 = objPatternBeforeDefault$1 === undefined;
-    const tmpBranchingC$1 = function ($$0) {
-      const objPatternAfterDefault$4 = $$0;
-      debugger;
-      const arrPatternSplat$2 = [...objPatternAfterDefault$4];
-      const arrPatternBeforeDefault$2 = arrPatternSplat$2[0];
-      const tmpIfTest$11 = arrPatternBeforeDefault$2 === undefined;
-      if (tmpIfTest$11) {
-        return 'bad';
-      } else {
-        return 'bad';
-      }
-    };
-    if (tmpIfTest$4) {
-      const tmpCalleeParam$3 = ['fail2'];
-      const SSA_objPatternAfterDefault$2 = $(tmpCalleeParam$3);
-      const tmpReturnArg$2 = tmpBranchingC$1(SSA_objPatternAfterDefault$2);
-      return tmpReturnArg$2;
-    } else {
-      const tmpReturnArg$9 = tmpBranchingC$1(objPatternBeforeDefault$1);
-      return tmpReturnArg$9;
-    }
-  };
-  if (tmpIfTest) {
-    const tmpObjLitVal$1 = ['fail3'];
-    const tmpCalleeParam$1 = { x: tmpObjLitVal$1 };
-    const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternObjRoot$1);
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$11 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$11;
-  }
-};
-const tmpCalleeParam$4 = f(null, 10);
-$(tmpCalleeParam$4);
+null.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

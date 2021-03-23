@@ -85,29 +85,11 @@ tmpCallCallee$3(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternObjRoot$3 = $$0;
-    debugger;
-    const tmpCalleeParam$3 = [];
-    const x$1 = objPatternRest(bindingPatternObjRoot$3, tmpCalleeParam$3, 'x');
-    return x$1;
-  };
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = { a: 'pass' };
-    const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternObjRoot$1);
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$3;
-  }
-};
-const tmpCalleeParam$5 = f();
-$(tmpCalleeParam$5);
+const tmpCalleeParam$1 = { a: 'pass' };
+const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
+const tmpCalleeParam$3 = [];
+const x$1 = objPatternRest(SSA_bindingPatternObjRoot$1, tmpCalleeParam$3, 'x');
+$(x$1);
 `````
 
 ## Globals

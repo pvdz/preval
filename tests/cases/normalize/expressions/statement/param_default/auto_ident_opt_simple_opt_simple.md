@@ -199,35 +199,24 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
+  const tmpIfTest$4 = b != null;
+  const tmpBranchingA$1 = function ($$0) {
+    const tmpChainRootProp$2 = $$0;
     debugger;
-    const tmpIfTest$4 = b != null;
-    const tmpBranchingA$1 = function ($$0) {
-      const tmpChainRootProp$2 = $$0;
-      debugger;
-      const tmpChainElementObject$4 = tmpChainRootProp$2.x;
-      const tmpIfTest$10 = tmpChainElementObject$4 != null;
-      if (tmpIfTest$10) {
-        tmpChainElementObject$4.y;
-        return undefined;
-      } else {
-        return undefined;
-      }
-    };
-    if (tmpIfTest$4) {
-      const tmpReturnArg$7 = tmpBranchingA$1(b);
-      return tmpReturnArg$7;
+    const tmpChainElementObject$4 = tmpChainRootProp$2.x;
+    const tmpIfTest$10 = tmpChainElementObject$4 != null;
+    if (tmpIfTest$10) {
+      tmpChainElementObject$4.y;
+      return undefined;
     } else {
       return undefined;
     }
   };
-  if (tmpIfTest) {
-    const tmpReturnArg$10 = tmpBranchingA();
-    return tmpReturnArg$10;
+  if (tmpIfTest$4) {
+    const tmpReturnArg = tmpBranchingA$1(b);
+    return tmpReturnArg;
   } else {
     return undefined;
   }

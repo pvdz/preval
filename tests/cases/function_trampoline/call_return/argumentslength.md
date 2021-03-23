@@ -64,7 +64,7 @@ const f = function ($$0, $$1, $$2, $$3, $$4) {
   const r = $(tmpArgumentsLen);
   return r;
 };
-const q = f(1, 2, 3, 4, 5);
+const q = f(null, null, null, null, null);
 $(q);
 `````
 

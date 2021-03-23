@@ -59,21 +59,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpObjLitVal = $(1);
-    const tmpObjLitVal$2 = $(3);
-    const tmpNestedComplexRhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
-    a = tmpNestedComplexRhs;
-  }
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$2 = $(3);
+const tmpNestedComplexRhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+$(undefined);
+$(tmpNestedComplexRhs);
 `````
 
 ## Globals

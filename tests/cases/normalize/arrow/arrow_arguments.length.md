@@ -73,7 +73,7 @@ const f = function () {
   debugger;
   return tmpArgumentsLen;
 };
-const tmpCalleeParam = f(1, 2, 3, 4);
+const tmpCalleeParam = f(null, null, null, null);
 $(tmpCalleeParam);
 `````
 

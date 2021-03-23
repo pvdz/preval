@@ -127,26 +127,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementCall$2 = $($);
-    const tmpIfTest$3 = tmpChainElementCall$2 != null;
-    if (tmpIfTest$3) {
-      const tmpCallVal$2 = tmpChainElementCall$2.call;
-      const tmpCalleeParam$5 = $(1);
-      tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  if (tmpIfTest) {
-    const tmpReturnArg$6 = tmpBranchingA();
-    return tmpReturnArg$6;
+  const tmpChainElementCall$2 = $($);
+  const tmpIfTest$3 = tmpChainElementCall$2 != null;
+  if (tmpIfTest$3) {
+    const tmpCallVal$1 = tmpChainElementCall$2.call;
+    const tmpCalleeParam$1 = $(1);
+    tmpCallVal$1.call(tmpChainElementCall$2, $, tmpCalleeParam$1);
+    return undefined;
   } else {
     return undefined;
   }

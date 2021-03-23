@@ -64,10 +64,10 @@ const f = function ($$0) {
   return a;
 };
 const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam$2 = $(2);
-const tmpCalleeParam$3 = $(3);
-const tmpCalleeParam$4 = $(4);
-const tmpCalleeParam = f(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3, tmpCalleeParam$4);
+$(2);
+$(3);
+$(4);
+const tmpCalleeParam = f(tmpCalleeParam$1, null, null, null);
 $(tmpCalleeParam);
 `````
 

@@ -234,7 +234,7 @@ const tmpObjLitVal$3 = { a: 1, b: 2, c: 3 };
 const tmpObjLitVal$2 = { z: tmpObjLitVal$3, a: 15, b: 16 };
 const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpCalleeParam = f(tmpCalleeParam$1, 10);
+const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

@@ -60,20 +60,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCompObj = $(b);
-    const tmpNewCallee = tmpCompObj.$;
-    new tmpNewCallee(1);
-  }
-};
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpCompObj = $(b);
+const tmpNewCallee = tmpCompObj.$;
+new tmpNewCallee(1);
+$(undefined);
 $(a);
 `````
 

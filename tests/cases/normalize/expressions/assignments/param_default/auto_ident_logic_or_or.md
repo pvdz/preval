@@ -215,41 +215,30 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
+  const tmpCalleeParam$3 = $(0);
+  const tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
+  const tmpBranchingB$1 = function () {
     debugger;
-    const tmpCalleeParam$3 = $(0);
-    const tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpCalleeParam$8 = $(1);
-      const SSA_tmpNestedComplexRhs$3 = $(tmpCalleeParam$8);
-      if (SSA_tmpNestedComplexRhs$3) {
-        a = SSA_tmpNestedComplexRhs$3;
-        return undefined;
-      } else {
-        const tmpCalleeParam$15 = $(2);
-        const SSA_tmpNestedComplexRhs$6 = $(tmpCalleeParam$15);
-        a = SSA_tmpNestedComplexRhs$6;
-        return undefined;
-      }
-    };
-    if (tmpNestedComplexRhs$1) {
-      a = tmpNestedComplexRhs$1;
+    const tmpCalleeParam$8 = $(1);
+    const SSA_tmpNestedComplexRhs$3 = $(tmpCalleeParam$8);
+    if (SSA_tmpNestedComplexRhs$3) {
+      a = SSA_tmpNestedComplexRhs$3;
       return undefined;
     } else {
-      const tmpReturnArg$8 = tmpBranchingB$1();
-      return tmpReturnArg$8;
+      const tmpCalleeParam$15 = $(2);
+      const SSA_tmpNestedComplexRhs$6 = $(tmpCalleeParam$15);
+      a = SSA_tmpNestedComplexRhs$6;
+      return undefined;
     }
   };
-  if (tmpIfTest) {
-    const tmpReturnArg$10 = tmpBranchingA();
-    return tmpReturnArg$10;
-  } else {
+  if (tmpNestedComplexRhs$1) {
+    a = tmpNestedComplexRhs$1;
     return undefined;
+  } else {
+    const tmpReturnArg$2 = tmpBranchingB$1();
+    return tmpReturnArg$2;
   }
 };
 let a = { a: 999, b: 1000 };

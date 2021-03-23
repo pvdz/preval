@@ -3,7 +3,23 @@
 
 import crypto from 'crypto';
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import {
+  ASSERT,
+  log,
+  group,
+  groupEnd,
+  vlog,
+  vgroup,
+  vgroupEnd,
+  tmat,
+  fmat,
+  rule,
+  example,
+  before,
+  source,
+  after,
+  findBodyOffset,
+} from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 
@@ -58,18 +74,19 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
   const truncableCallArgs = []; // <args, func>
   const cloneCounts = program.cloneCounts; // How often did we clone a particular function? (dumb recursion protection)
   const cloneMap = program.cloneMap; // Retained between passes
-  fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+  fdata.globallyUniqueNamingRegistry.forEach((meta, metaName) => {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
 
-    vlog(' - `' + name + '`', meta.writes.length, meta.reads.length, meta.constValueRef?.type);
+    vlog(' - `' + metaName + '`', meta.writes.length, meta.reads.length, meta.constValueRef?.type);
     if (meta.writes.length === 1 && meta.constValueRef?.node.type === 'FunctionExpression') {
       const write = meta.writes[0];
 
       const funcNode = meta.constValueRef.node;
-      const hasRest = funcNode.params.length > 0 && funcNode.params[funcNode.params.length - 1].type === 'RestElement';
+      const bodyOffset = findBodyOffset(funcNode);
+      const hasRest = !!funcNode.params[funcNode.params.length - 1]?.rest;
 
-      // If the function contains another function, it is not eligible for cloning unless it only referenced once.
+      // If the function contains another function, it is not eligible for cloning unless there is only one call to it. This prevents infinite recursion loops.
       // If the function reads arguments then skip it for now. Inlining may either repeat endlessly or change semantics
       if ((!funcNode.$p.containsFunctions || meta.reads.length === 1) && !funcNode.$p.readsArgumentsAny) {
         meta.reads.forEach((read) => {
@@ -88,11 +105,13 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
             //       - excess arguments are ignored. if the function does not access `arguments`, we should DCE them (but that's an edge case)
             //       - excess params get set to `undefined`. less of an edge case as it triggers param defaults (still do after we normalized them away)
             funcNode.params.some((pnode, pi) => {
-              if (pnode.type === 'RestElement') {
-                return true; // Stop processing
+              ASSERT(pnode.type === 'Param');
+              if (pnode.rest) {
+                // Do not change the rest param of the function.
+                return true;
               }
               if (pi >= args.length) {
-                // Fill the unused parameter with undefined
+                // There are more params than arguments for this call. Set the unused parameter to undefined
                 staticArgs.push(hashArg(pi, AST.identifier('undefined')));
                 return;
               }
@@ -102,46 +121,51 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
               }
               if (AST.isPrimitive(anode)) {
                 staticArgs.push(hashArg(pi, anode));
-                return;
               }
+              // Otherwise just keep this param as is (we can probably refine this later)
             });
-            if (staticArgs.length) {
-              // There's at least one argument that we might inline. TODO: Make sure it hits an actual param
-              // Clone the function, give it a different name, make sure all bindings created inside are updated accordingly as well
 
-              ASSERT(callee.type === 'Identifier' && callee.name === name);
-              const cloneDetails = name.startsWith('$clone$')
+            if (staticArgs.length) {
+              // There's at least one argument that we might inline
+              // Clone the function, give it a different name, make sure all bindings created inside have a
+              // unique name (since the cloning will make them dupes).
+
+              ASSERT(
+                callee.type === 'Identifier' && callee.name === metaName,
+                'we are walking metas and checked that hte parent is CallExpression.callee so this must be an identifier',
+              );
+              const cloneDetails = metaName.startsWith('$clone$')
                 ? // This should be a function that we previously cloned
-                  fromClonedFuncCacheKey(name, staticArgs)
+                  fromClonedFuncCacheKey(metaName, staticArgs)
                 : // This should be the original function, not one we cloned before
                   {
-                    name: hashCloneName(name),
+                    name: hashCloneName(metaName),
                     inlined: staticArgs,
                   };
               vlog('The cloneDetails:', cloneDetails);
               cloneDetails.inlined.forEach((obj) => {
                 if (obj.type === undefined) {
-                  console.log('input name:', [name]);
+                  console.log('input name:', [metaName]);
                   console.log('fromClonedFuncCacheKey(name, staticArgs):');
-                  console.log(fromClonedFuncCacheKey(name, staticArgs), { depth: null });
+                  console.log(fromClonedFuncCacheKey(metaName, staticArgs), { depth: null });
                   console.log(staticArgs, { depth: null });
                   console.log('otehrwise');
                   console.log(
                     {
-                      name,
+                      name: metaName,
                       inlined: staticArgs,
                     },
                     { depth: null },
                   );
-                  endnow;
+                  ASSERT(false, 'wat?');
                 }
               });
               const cloneCacheKey = toClonedFuncCacheKey(cloneDetails);
               log(
                 'Cloning func the hard way. Original func name: `' +
-                  name +
+                  metaName +
                   '` (hashed: `' +
-                  hashCloneName(name) +
+                  hashCloneName(metaName) +
                   '`). Cloned name: `' +
                   cloneCacheKey +
                   '`',
@@ -152,30 +176,64 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                 //read.node.name = cloneCacheKey;
                 callee.name = cloneCacheKey; // Eh, redundant?
                 staticArgs.forEach(({ index }) => {
-                  args[index] = AST.identifier('$');
+                  if (args[index]) args[index] = AST.nul();
                 });
               } else {
                 // Memoize the function being cloned. If the same function is called multiple times with the same primitive
                 // then we can reuse that result. This should not be a scoping problem (it was able to reach the original func)
                 // Cache key should be param index and primitive value
                 // TODO: limit the size of strings here. At some point it should be either a digest or skipped entirely.
-                const count = (cloneCounts.get(cloneDetails.name) ?? 1) + 1;
+                const count = (cloneCounts.get(cloneDetails.name) ?? 0) + 1;
+
                 if (meta.reads.length === 1) {
                   vlog('The function is only called once so we do not need to clone it');
+                  const funcBody = funcNode.body.body;
                   staticArgs.forEach(({ index: paramIndex, type, value: paramValue }) => {
                     if (paramIndex >= funcNode.params.length) return; // Argument without param, we ignore.
-                    log('- Replacing param `' + funcNode.params[paramIndex].name + '` with', paramValue);
-                    funcNode.body.body.unshift(
-                      AST.expressionStatement(
-                        AST.assignmentExpression(
-                          funcNode.params[paramIndex].name,
-                          type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.literal(null, true) : AST.literal(paramValue),
+                    if (funcNode.params[paramIndex].$p.ref) {
+                      log('- Replacing param `' + funcNode.params[paramIndex].$p.ref?.name + '` with', paramValue);
+                    } else {
+                      log('- Want to replace param', paramIndex, 'with', paramValue, 'but it looks like it is not used');
+                    }
+
+                    const targetParamName = '$$' + paramIndex;
+                    let found = false;
+                    for (let i = 0, l = bodyOffset - 1; i < l; ++i) {
+                      const n = funcBody[i];
+                      ASSERT(
+                        n.type === 'VariableDeclaration' || n.type === 'EmptyStatement',
+                        'rn the header only contains var decls. not very relevant, just assuming this when doing checks. if this changes, update the logic here accordingly',
+                        n,
+                      );
+                      if (
+                        n.type === 'VariableDeclaration' &&
+                        n.declarations[0].init.type === 'Param' &&
+                        n.declarations[0].init.name === targetParamName
+                      ) {
+                        funcBody[i] = AST.emptyStatement();
+                        found = true;
+                        break;
+                      }
+                    }
+                    ASSERT(!!found === !!funcNode.params[paramIndex].$p.ref, 'iif found then the param should have a ref to it');
+                    if (found) {
+                      funcBody.splice(
+                        bodyOffset,
+                        0,
+                        AST.variableDeclaration(
+                          funcNode.params[paramIndex].$p.ref.name,
+                          type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.nul() : AST.literal(paramValue),
+                          'const',
                         ),
-                      ),
-                    );
+                      );
+                    } else {
+                      vlog(
+                        'It appears that the param is unused. As such we can not find the original param name for this index. Nothing to do here.',
+                      );
+                    }
                   });
                   staticArgs.forEach(({ index }) => {
-                    read.parentNode['arguments'][index] = AST.identifier('$');
+                    if (read.parentNode['arguments'][index]) read.parentNode['arguments'][index] = AST.nul();
                   });
                 } else if (cloneLimit && count > cloneLimit) {
                   vlog('Reached max of', cloneLimit, 'clones for function `' + cloneDetails.name + '`. Not cloning it again.');
@@ -186,7 +244,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                   const newFunc = cloneFunctionNode(funcNode, cloneCacheKey, staticArgs, fdata);
                   newFuncs.push([meta, AST.variableDeclaration(cloneCacheKey, newFunc, 'const')]);
                   staticArgs.forEach(({ index }) => {
-                    read.parentNode['arguments'][index] = AST.identifier('$');
+                    if (read.parentNode['arguments'][index]) read.parentNode['arguments'][index] = AST.nul();
                   });
                   newFunc.name = null;
                   read.node.name = cloneCacheKey;
@@ -209,7 +267,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
       if (funcNode.$p.readsArgumentsLen) {
         // The function reads `arguments.length` so replace the args with a placeholder
         for (let i = params.length; i < args.length; ++i) {
-          args[i] = AST.identifier('$');
+          if (args[i]) args[i] = AST.nul();
         }
       } else {
         // The function does not read `arguments` so we should be fine to remove them
@@ -218,8 +276,8 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
     }
   });
   newFuncs.forEach(([meta, node]) => {
-    ASSERT(meta.constValueRef.containerNode.body && meta.constValueRef.containerIndex >= 0, 'fixme if other');
-    meta.constValueRef.containerNode.body.splice(meta.constValueRef.containerIndex + 1, 0, node);
+    ASSERT(meta.writes.length === 1);
+    meta.writes[0].blockBody.splice(meta.writes[0].blockIndex, 0, node);
   });
   log('End of primitive arg inlining. Cloned', newFuncs.length, 'functions, checked', truncableCallArgs.length, 'funcs for excessive args');
 

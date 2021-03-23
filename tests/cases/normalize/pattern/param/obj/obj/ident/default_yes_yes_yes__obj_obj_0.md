@@ -294,7 +294,7 @@ const f = function ($$0) {
 };
 const tmpObjLitVal$2 = { x: 1, y: 0, z: 3 };
 const tmpCalleeParam$5 = { x: tmpObjLitVal$2, b: 11, c: 12 };
-const tmpCalleeParam$4 = f(tmpCalleeParam$5, 10);
+const tmpCalleeParam$4 = f(tmpCalleeParam$5);
 $(tmpCalleeParam$4);
 `````
 

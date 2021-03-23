@@ -77,26 +77,16 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $('x');
-    const varInitAssignLhsComputedObj$1 = $(c);
-    const varInitAssignLhsComputedProp$1 = $('y');
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-    a = 7;
-  }
-};
 const b = { x: 1 };
 const c = { y: 2 };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a, b, c, 3, 4);
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $('y');
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
+$(undefined);
+$(7, b, c, 3, 4);
 `````
 
 ## Globals

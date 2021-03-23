@@ -103,21 +103,11 @@ const f = function () {
   const tmpSwitchValue = $(1, 'disc');
   const tmpBinLhs = $(1, 'case');
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingC = function ($$0) {
-    const tmpSwitchCaseToStart$3 = $$0;
-    debugger;
-    const tmpIfTest$4 = tmpSwitchCaseToStart$3 <= 0;
-    if (tmpIfTest$4) {
-      const tmpReturnArg$2 = $(2, 'ret');
-      return tmpReturnArg$2;
-    }
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingC(0);
+    const tmpReturnArg$3 = $(2, 'ret');
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$4 = tmpBranchingC(1);
-    return tmpReturnArg$4;
+    return undefined;
   }
 };
 const tmpCalleeParam = f();

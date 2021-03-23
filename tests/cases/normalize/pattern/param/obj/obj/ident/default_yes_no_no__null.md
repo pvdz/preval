@@ -106,21 +106,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const objPatternNoDefault = tmpParamBare.x;
-  const objPatternBeforeDefault = objPatternNoDefault.y;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  if (tmpIfTest) {
-    $('fail');
-    return 'bad';
-  } else {
-    return 'bad';
-  }
-};
-const tmpCalleeParam = f(null, 10);
-$(tmpCalleeParam);
+null.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

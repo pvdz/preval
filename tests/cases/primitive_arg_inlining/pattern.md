@@ -101,29 +101,9 @@ $(out);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const op = $$0;
-  debugger;
-  const useDef = op === undefined;
-  const tmpBranchingC = function ($$0) {
-    const ap$3 = $$0;
-    debugger;
-    const tmpCalleeParam$1 = [];
-    const x$1 = objPatternRest(ap$3, tmpCalleeParam$1, undefined);
-    return x$1;
-  };
-  if (useDef) {
-    const p$1 = { a: 'fail' };
-    const SSA_ap$1 = $(p$1);
-    const tmpReturnArg = tmpBranchingC(SSA_ap$1);
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingC(op);
-    return tmpReturnArg$3;
-  }
-};
-const out = f('abc');
-$(out);
+const tmpCalleeParam$2 = [];
+const x$2 = objPatternRest('abc', tmpCalleeParam$2, undefined);
+$(x$2);
 `````
 
 ## Globals

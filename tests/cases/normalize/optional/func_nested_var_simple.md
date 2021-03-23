@@ -198,7 +198,7 @@ const f = function () {
     const tmpReturnArg = tmpBranchingC(tmpChainElementObject$1);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$8 = tmpBranchingC(undefined);
+    const tmpReturnArg$8 = $(undefined);
     return tmpReturnArg$8;
   }
 };

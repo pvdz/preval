@@ -120,25 +120,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCalleeParam$2 = $(1);
-    const SSA_p$1 = $(tmpCalleeParam$2);
-    if (SSA_p$1) {
-      const tmpCalleeParam$5 = $(2);
-      $(tmpCalleeParam$5);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  if (tmpIfTest) {
-    const tmpReturnArg$6 = tmpBranchingA();
-    return tmpReturnArg$6;
+  const tmpCalleeParam$2 = $(1);
+  const SSA_p$1 = $(tmpCalleeParam$2);
+  if (SSA_p$1) {
+    const tmpCalleeParam$3 = $(2);
+    $(tmpCalleeParam$3);
+    return undefined;
   } else {
     return undefined;
   }

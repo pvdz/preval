@@ -73,25 +73,17 @@ $(a, b, c, d);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $('x');
-    const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $('y');
-    const varInitAssignLhsComputedRhs = $(3);
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-  }
-};
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpNestedAssignComMemberObj = $(b);
+const tmpNestedAssignComMemberProp = $('x');
+const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedRhs = $(3);
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+$(undefined);
 $(a, b, c, 3);
 `````
 

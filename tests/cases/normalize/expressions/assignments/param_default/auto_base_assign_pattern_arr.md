@@ -67,24 +67,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpArrElement = $(2);
-    const tmpCalleeParam = [tmpArrElement];
-    const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    b = arrPatternSplat[0];
-    a = tmpNestedAssignArrPatternRhs;
-  }
-};
-let b = [];
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-$(a, b);
+const tmpArrElement = $(2);
+const tmpCalleeParam = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+const SSA_b = arrPatternSplat[0];
+$(undefined);
+$(tmpNestedAssignArrPatternRhs, SSA_b);
 `````
 
 ## Globals

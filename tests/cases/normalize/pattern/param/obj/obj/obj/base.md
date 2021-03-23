@@ -212,7 +212,7 @@ const f = function ($$0) {
 const tmpObjLitVal$2 = { z: 1, a: 2, b: 3 };
 const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpCalleeParam = f(tmpCalleeParam$1, 10);
+const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

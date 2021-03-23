@@ -122,21 +122,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    a = 60;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
-$(a);
+$(undefined);
+$(60);
 `````
 
 ## Globals

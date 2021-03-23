@@ -146,28 +146,33 @@ const f = function ($$0, $$1) {
   const tmpParamBare$1 = $$1;
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
+  const $clone$tmpBranchingC$1_Sfoo = function ($$0) {
+    const tmpParamBare$2 = $$0;
+    debugger;
+    const tmpIfTest$1 = tmpParamBare$2 === undefined;
+    if (tmpIfTest$1) {
+      const tmpReturnArg$2 = ['foo', 'bar'];
+      return tmpReturnArg$2;
+    } else {
+      const tmpReturnArg$3 = ['foo', tmpParamBare$2];
+      return tmpReturnArg$3;
+    }
+  };
   const tmpBranchingC = function ($$0, $$1) {
     const tmpParamBare$7 = $$0;
     const a$3 = $$1;
     debugger;
     const tmpIfTest$4 = tmpParamBare$7 === undefined;
-    const tmpBranchingC$1 = function ($$0, $$1) {
-      const a$6 = $$0;
-      const b$4 = $$1;
-      debugger;
-      const tmpReturnArg$4 = [a$6, b$4];
-      return tmpReturnArg$4;
-    };
     if (tmpIfTest$4) {
-      const tmpReturnArg$5 = tmpBranchingC$1(a$3, 'bar');
-      return tmpReturnArg$5;
+      const tmpReturnArg$1 = [a$3, 'bar'];
+      return tmpReturnArg$1;
     } else {
-      const tmpReturnArg$6 = tmpBranchingC$1(a$3, tmpParamBare$7);
-      return tmpReturnArg$6;
+      const tmpReturnArg$4 = [a$3, tmpParamBare$7];
+      return tmpReturnArg$4;
     }
   };
   if (tmpIfTest) {
-    const tmpReturnArg$7 = tmpBranchingC(tmpParamBare$1, 'foo');
+    const tmpReturnArg$7 = $clone$tmpBranchingC$1_Sfoo(tmpParamBare$1);
     return tmpReturnArg$7;
   } else {
     const tmpReturnArg$8 = tmpBranchingC(tmpParamBare$1, tmpParamBare);

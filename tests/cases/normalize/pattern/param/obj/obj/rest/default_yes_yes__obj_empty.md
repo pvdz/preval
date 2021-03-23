@@ -200,7 +200,7 @@ const f = function ($$0) {
   }
 };
 const tmpCalleeParam$8 = {};
-const tmpCalleeParam$7 = f(tmpCalleeParam$8, 10);
+const tmpCalleeParam$7 = f(tmpCalleeParam$8);
 $(tmpCalleeParam$7);
 `````
 

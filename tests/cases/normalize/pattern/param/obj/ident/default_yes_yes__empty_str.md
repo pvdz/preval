@@ -151,33 +151,18 @@ tmpCallCallee$2(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternObjRoot$3 = $$0;
-    debugger;
-    const objPatternBeforeDefault$1 = bindingPatternObjRoot$3.x;
-    const tmpIfTest$4 = objPatternBeforeDefault$1 === undefined;
-    if (tmpIfTest$4) {
-      const tmpReturnArg$4 = $('pass');
-      return tmpReturnArg$4;
-    } else {
-      return objPatternBeforeDefault$1;
-    }
-  };
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = { x: 'fail2' };
-    const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternObjRoot$1);
+  const objPatternBeforeDefault$2 = ''.x;
+  const tmpIfTest$1 = objPatternBeforeDefault$2 === undefined;
+  if (tmpIfTest$1) {
+    const tmpReturnArg = $('pass');
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$7;
+    return objPatternBeforeDefault$2;
   }
 };
-const tmpCalleeParam$2 = f('', 10);
+const tmpCalleeParam$2 = f();
 $(tmpCalleeParam$2);
 `````
 

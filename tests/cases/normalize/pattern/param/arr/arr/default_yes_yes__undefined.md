@@ -162,43 +162,30 @@ tmpCallCallee$4(tmpCalleeParam$4);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternArrRoot$3 = $$0;
+  const tmpCalleeParam$1 = ['pass3'];
+  const SSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
+  const arrPatternSplat$2 = [...SSA_bindingPatternArrRoot$1];
+  const arrPatternBeforeDefault$1 = arrPatternSplat$2[0];
+  const tmpIfTest$4 = arrPatternBeforeDefault$1 === undefined;
+  const tmpBranchingC$1 = function ($$0) {
+    const arrPatternStep$4 = $$0;
     debugger;
-    const arrPatternSplat$2 = [...bindingPatternArrRoot$3];
-    const arrPatternBeforeDefault$1 = arrPatternSplat$2[0];
-    const tmpIfTest$4 = arrPatternBeforeDefault$1 === undefined;
-    const tmpBranchingC$1 = function ($$0) {
-      const arrPatternStep$4 = $$0;
-      debugger;
-      [...arrPatternStep$4];
-      return 'ok';
-    };
-    if (tmpIfTest$4) {
-      const tmpCalleeParam$3 = ['fail2'];
-      const SSA_arrPatternStep$2 = $(tmpCalleeParam$3);
-      const tmpReturnArg$2 = tmpBranchingC$1(SSA_arrPatternStep$2);
-      return tmpReturnArg$2;
-    } else {
-      const tmpReturnArg$5 = tmpBranchingC$1(arrPatternBeforeDefault$1);
-      return tmpReturnArg$5;
-    }
+    [...arrPatternStep$4];
+    return 'ok';
   };
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = ['pass3'];
-    const SSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternArrRoot$1);
-    return tmpReturnArg;
+  if (tmpIfTest$4) {
+    const tmpCalleeParam$5 = ['fail2'];
+    const SSA_arrPatternStep$1 = $(tmpCalleeParam$5);
+    const tmpReturnArg$1 = tmpBranchingC$1(SSA_arrPatternStep$1);
+    return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$7;
+    const tmpReturnArg$4 = tmpBranchingC$1(arrPatternBeforeDefault$1);
+    return tmpReturnArg$4;
   }
 };
-const tmpCalleeParam$4 = f(undefined, 200);
+const tmpCalleeParam$4 = f();
 $(tmpCalleeParam$4);
 `````
 

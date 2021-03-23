@@ -57,7 +57,7 @@ const f = function ($$0, $$1, $$2, $$3, $$4) {
   debugger;
   $(tmpArgumentsLen);
 };
-f(1, 2, 3, 4, 5);
+f(null, null, null, null, null);
 `````
 
 ## Globals

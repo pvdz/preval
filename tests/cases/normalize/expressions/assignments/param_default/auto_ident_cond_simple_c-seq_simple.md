@@ -57,19 +57,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const SSA_tmpNestedComplexRhs = $(60);
-    a = SSA_tmpNestedComplexRhs;
-  }
-};
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
-$(a);
+const SSA_tmpNestedComplexRhs = $(60);
+$(undefined);
+$(SSA_tmpNestedComplexRhs);
 `````
 
 ## Globals

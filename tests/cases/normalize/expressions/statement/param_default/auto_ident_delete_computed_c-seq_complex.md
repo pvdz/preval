@@ -62,22 +62,14 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    $(1);
-    $(2);
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = $('y');
-    delete tmpDeleteCompObj[tmpDeleteCompProp];
-  }
-};
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(1);
+$(2);
+const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompProp = $('y');
+delete tmpDeleteCompObj[tmpDeleteCompProp];
+$(undefined);
 $(a, arg);
 `````
 

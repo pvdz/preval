@@ -125,10 +125,9 @@ tmpCallCallee$3(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const arrPatternSplat = [...tmpParamBare];
+  const arrPatternSplat = [...0];
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   const tmpBranchingC = function ($$0) {
@@ -148,7 +147,7 @@ const f = function ($$0) {
     return tmpReturnArg$3;
   }
 };
-const tmpCalleeParam$5 = f(0, 200);
+const tmpCalleeParam$5 = f();
 $(tmpCalleeParam$5);
 `````
 

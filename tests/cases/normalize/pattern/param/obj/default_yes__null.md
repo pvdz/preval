@@ -145,45 +145,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternObjRoot$3 = $$0;
-    debugger;
-    const objPatternCrashTest$1 = bindingPatternObjRoot$3 === undefined;
-    const tmpBranchingC$1 = function ($$0, $$1) {
-      const bindingPatternObjRoot$6 = $$0;
-      const objPatternCrashTest$4 = $$1;
-      debugger;
-      if (objPatternCrashTest$4) {
-        bindingPatternObjRoot$6.cannotDestructureThis;
-        return 'bad';
-      } else {
-        return 'bad';
-      }
-    };
-    if (objPatternCrashTest$1) {
-      const tmpReturnArg$8 = tmpBranchingC$1(bindingPatternObjRoot$3, objPatternCrashTest$1);
-      return tmpReturnArg$8;
-    } else {
-      const SSA_objPatternCrashTest$3 = bindingPatternObjRoot$3 === null;
-      const tmpReturnArg$3 = tmpBranchingC$1(bindingPatternObjRoot$3, SSA_objPatternCrashTest$3);
-      return tmpReturnArg$3;
-    }
-  };
-  if (tmpIfTest) {
-    const SSA_bindingPatternObjRoot$1 = $('fail');
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternObjRoot$1);
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$11 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$11;
-  }
-};
-const tmpCalleeParam = f(null, 10);
-$(tmpCalleeParam);
+null.cannotDestructureThis;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

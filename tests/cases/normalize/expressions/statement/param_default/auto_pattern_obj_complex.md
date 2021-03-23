@@ -57,19 +57,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { a: 1, b: 2 };
-    $(tmpCalleeParam);
-  }
-};
 const bindingPatternObjRoot = { a: 999, b: 1000 };
 const a = bindingPatternObjRoot.a;
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+const tmpCalleeParam = { a: 1, b: 2 };
+$(tmpCalleeParam);
+$(undefined);
 $(a);
 `````
 

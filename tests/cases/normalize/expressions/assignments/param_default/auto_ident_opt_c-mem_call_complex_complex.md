@@ -265,44 +265,32 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
+  const tmpChainElementCall$2 = $(b);
+  const tmpIfTest$4 = tmpChainElementCall$2 != null;
+  const tmpBranchingA$1 = function ($$0) {
+    const tmpChainElementCall$4 = $$0;
     debugger;
-    const tmpChainElementCall$2 = $(b);
-    const tmpIfTest$4 = tmpChainElementCall$2 != null;
-    const tmpBranchingA$1 = function ($$0, $$1) {
-      const tmpNestedComplexRhs$2 = $$0;
-      const tmpChainElementCall$4 = $$1;
-      debugger;
-      const tmpChainRootComputed$2 = $('$');
-      const tmpChainElementObject$2 = tmpChainElementCall$4[tmpChainRootComputed$2];
-      const tmpIfTest$10 = tmpChainElementObject$2 != null;
-      if (tmpIfTest$10) {
-        const tmpCallVal$3 = tmpChainElementObject$2.call;
-        const tmpCalleeParam$7 = $(1);
-        const tmpChainElementCall$9 = tmpCallVal$3.call(tmpChainElementObject$2, tmpChainElementCall$4, tmpCalleeParam$7);
-        a = tmpChainElementCall$9;
-        return undefined;
-      } else {
-        a = tmpNestedComplexRhs$2;
-        return undefined;
-      }
-    };
-    if (tmpIfTest$4) {
-      const tmpReturnArg$7 = tmpBranchingA$1(undefined, tmpChainElementCall$2);
-      return tmpReturnArg$7;
+    const tmpChainRootComputed$2 = $('$');
+    const tmpChainElementObject$2 = tmpChainElementCall$4[tmpChainRootComputed$2];
+    const tmpIfTest$10 = tmpChainElementObject$2 != null;
+    if (tmpIfTest$10) {
+      const tmpCallVal$3 = tmpChainElementObject$2.call;
+      const tmpCalleeParam$7 = $(1);
+      const tmpChainElementCall$9 = tmpCallVal$3.call(tmpChainElementObject$2, tmpChainElementCall$4, tmpCalleeParam$7);
+      a = tmpChainElementCall$9;
+      return undefined;
     } else {
       a = undefined;
       return undefined;
     }
   };
-  if (tmpIfTest) {
-    const tmpReturnArg$10 = tmpBranchingA();
-    return tmpReturnArg$10;
+  if (tmpIfTest$4) {
+    const tmpReturnArg = tmpBranchingA$1(tmpChainElementCall$2);
+    return tmpReturnArg;
   } else {
+    a = undefined;
     return undefined;
   }
 };

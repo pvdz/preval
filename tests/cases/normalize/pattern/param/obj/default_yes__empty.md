@@ -145,41 +145,28 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternObjRoot$3 = $$0;
+  const SSA_bindingPatternObjRoot$1 = $('pass');
+  const objPatternCrashTest$1 = SSA_bindingPatternObjRoot$1 === undefined;
+  const tmpBranchingC$1 = function ($$0, $$1) {
+    const bindingPatternObjRoot$6 = $$0;
+    const objPatternCrashTest$4 = $$1;
     debugger;
-    const objPatternCrashTest$1 = bindingPatternObjRoot$3 === undefined;
-    const tmpBranchingC$1 = function ($$0, $$1) {
-      const bindingPatternObjRoot$6 = $$0;
-      const objPatternCrashTest$4 = $$1;
-      debugger;
-      if (objPatternCrashTest$4) {
-        bindingPatternObjRoot$6.cannotDestructureThis;
-        return 'ok';
-      } else {
-        return 'ok';
-      }
-    };
-    if (objPatternCrashTest$1) {
-      const tmpReturnArg$8 = tmpBranchingC$1(bindingPatternObjRoot$3, objPatternCrashTest$1);
-      return tmpReturnArg$8;
+    if (objPatternCrashTest$4) {
+      bindingPatternObjRoot$6.cannotDestructureThis;
+      return 'ok';
     } else {
-      const SSA_objPatternCrashTest$3 = bindingPatternObjRoot$3 === null;
-      const tmpReturnArg$3 = tmpBranchingC$1(bindingPatternObjRoot$3, SSA_objPatternCrashTest$3);
-      return tmpReturnArg$3;
+      return 'ok';
     }
   };
-  if (tmpIfTest) {
-    const SSA_bindingPatternObjRoot$1 = $('pass');
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternObjRoot$1);
+  if (objPatternCrashTest$1) {
+    const tmpReturnArg = tmpBranchingC$1(SSA_bindingPatternObjRoot$1, objPatternCrashTest$1);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$11 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$11;
+    const SSA_objPatternCrashTest$1 = SSA_bindingPatternObjRoot$1 === null;
+    const tmpReturnArg$2 = tmpBranchingC$1(SSA_bindingPatternObjRoot$1, SSA_objPatternCrashTest$1);
+    return tmpReturnArg$2;
   }
 };
 const tmpCalleeParam = f();

@@ -51,10 +51,8 @@ f();
 `````js filename=intro
 const f = function ($$0, $$1, $$2) {
   const tmpArgumentsLen = arguments.length;
-  const x = $$0;
-  const z = $$2;
   debugger;
-  const tmpReturnArg = $(tmpArgumentsLen, x, z);
+  const tmpReturnArg = $(tmpArgumentsLen, undefined, undefined);
   return tmpReturnArg;
 };
 f();

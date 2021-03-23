@@ -317,7 +317,7 @@ const f = function ($$0) {
 };
 const tmpArrElement = ['abc', 201];
 const tmpCalleeParam$5 = [tmpArrElement, 4, 5];
-const tmpCalleeParam$4 = f(tmpCalleeParam$5, 200);
+const tmpCalleeParam$4 = f(tmpCalleeParam$5);
 $(tmpCalleeParam$4);
 `````
 

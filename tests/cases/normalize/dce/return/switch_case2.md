@@ -155,24 +155,12 @@ const f = function () {
   const tmpSwitchValue = $(1, 'disc');
   const tmpBinLhs = $(1, 'case');
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingC = function ($$0) {
-    const tmpSwitchCaseToStart$3 = $$0;
-    debugger;
-    const tmpIfTest$7 = tmpSwitchCaseToStart$3 <= 0;
-    if (tmpIfTest$7) {
-      const tmpReturnArg = $(2, 'ret');
-      return tmpReturnArg;
-    } else {
-      $('keep, do not eval');
-      return undefined;
-    }
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$10 = tmpBranchingC(0);
+    const tmpReturnArg$10 = $(2, 'ret');
     return tmpReturnArg$10;
   } else {
-    const tmpReturnArg$11 = tmpBranchingC(1);
-    return tmpReturnArg$11;
+    $('keep, do not eval');
+    return undefined;
   }
 };
 const tmpCalleeParam = f();

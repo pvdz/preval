@@ -21,6 +21,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return ($(1), $(2)).foo;
 };
 $(f());
@@ -30,6 +31,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $(1);
   const tmpCompObj = $(2);
   const tmpReturnArg = tmpCompObj.foo;

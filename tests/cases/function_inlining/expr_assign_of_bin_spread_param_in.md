@@ -31,7 +31,14 @@ $(x);
 
 `````js filename=intro
 let f = function () {
-  let g = function (a, b, c, d, e) {
+  debugger;
+  let g = function ($$0, $$1, $$2, $$3, $$4) {
+    let a = $$0;
+    let b = $$1;
+    let c = $$2;
+    let d = $$3;
+    let e = $$4;
+    debugger;
     x = a + d;
   };
   const arr = $([1, 2]);
@@ -46,7 +53,14 @@ $(x);
 
 `````js filename=intro
 let f = function () {
-  let g = function (a, b, c, d, e) {
+  debugger;
+  let g = function ($$0, $$1, $$2, $$3, $$4) {
+    let a = $$0;
+    let b = $$1;
+    let c = $$2;
+    let d = $$3;
+    let e = $$4;
+    debugger;
     x = a + d;
   };
   const tmpCallCallee = $;
@@ -63,7 +77,10 @@ $(x);
 
 `````js filename=intro
 let x = 0;
-const g = function (a, b, c, d, e) {
+const g = function ($$0, $$1, $$2, $$3, $$4) {
+  const a = $$0;
+  const d = $$3;
+  debugger;
   x = a + d;
 };
 const tmpCalleeParam = [1, 2];

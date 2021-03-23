@@ -24,7 +24,9 @@ $(f(0));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (n) {
+let f = function ($$0) {
+  let n = $$0;
+  debugger;
   return f(n + 1);
 };
 $(f(0));
@@ -33,7 +35,9 @@ $(f(0));
 ## Normalized
 
 `````js filename=intro
-let f = function (n) {
+let f = function ($$0) {
+  let n = $$0;
+  debugger;
   const tmpCallCallee = f;
   const tmpCalleeParam = n + 1;
   const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
@@ -47,7 +51,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function (n) {
+const f = function ($$0) {
+  const n = $$0;
+  debugger;
   const tmpCalleeParam = n + 1;
   const tmpReturnArg = f(tmpCalleeParam);
   return tmpReturnArg;

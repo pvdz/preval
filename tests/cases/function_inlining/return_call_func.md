@@ -24,9 +24,12 @@ $(f(), 'outer');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return g(10);
 };
-let g = function (a) {
+let g = function ($$0) {
+  let a = $$0;
+  debugger;
   return $(a, 'g');
 };
 $(f(), 'outer');
@@ -36,10 +39,13 @@ $(f(), 'outer');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpReturnArg = g(10);
   return tmpReturnArg;
 };
-let g = function (a) {
+let g = function ($$0) {
+  let a = $$0;
+  debugger;
   const tmpReturnArg$1 = $(a, 'g');
   return tmpReturnArg$1;
 };

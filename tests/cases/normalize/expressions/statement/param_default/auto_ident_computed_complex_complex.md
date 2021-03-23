@@ -22,8 +22,10 @@ $(a, b);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let p = tmpParamDefault === undefined ? $(b)[$('c')] : tmpParamDefault;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let p = tmpParamBare === undefined ? $(b)[$('c')] : tmpParamBare;
 };
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
@@ -34,15 +36,17 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let p = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpAssignRhsCompObj = $(b);
     const tmpAssignRhsCompProp = $('c');
     p = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   } else {
-    p = tmpParamDefault;
+    p = tmpParamBare;
   }
 };
 let b = { c: 1 };
@@ -56,8 +60,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  const tmpIfTest = tmpParamDefault === undefined;
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpAssignRhsCompObj = $(b);
     const tmpAssignRhsCompProp = $('c');

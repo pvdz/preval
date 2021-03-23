@@ -26,6 +26,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let b = [];
     let a = ([b] = $([$(2)]));
@@ -39,6 +40,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = [];
   let a;
   const tmpCallCallee = $;

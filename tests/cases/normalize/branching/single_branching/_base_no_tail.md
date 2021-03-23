@@ -25,6 +25,7 @@ $(f(), 'final');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if ($(1)) {
     return $(2);
   } else {
@@ -38,6 +39,7 @@ $(f(), 'final');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpReturnArg = $(2);
@@ -57,6 +59,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpReturnArg = $(2);

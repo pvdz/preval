@@ -24,6 +24,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let a = [$(1), 2, $(3)];
     $(a);
@@ -36,6 +37,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpArrElement = $(1);
   const tmpArrElement$1 = 2;
   const tmpArrElement$2 = $(3);

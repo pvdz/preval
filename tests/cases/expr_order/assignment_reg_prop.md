@@ -24,9 +24,12 @@ $(b).c = $(2);
 `````js filename=intro
 let b = {
   get c() {
+    debugger;
     $('get');
   },
-  set c(x) {
+  set c($$0) {
+    let x = $$0;
+    debugger;
     $('set');
   },
 };
@@ -38,9 +41,12 @@ $(b).c = $(2);
 `````js filename=intro
 let b = {
   get c() {
+    debugger;
     $('get');
   },
-  set c(x) {
+  set c($$0) {
+    let x = $$0;
+    debugger;
     $('set');
   },
 };
@@ -55,9 +61,11 @@ tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
 `````js filename=intro
 const b = {
   get c() {
+    debugger;
     $('get');
   },
-  set c(x) {
+  set c($$0) {
+    debugger;
     $('set');
   },
 };

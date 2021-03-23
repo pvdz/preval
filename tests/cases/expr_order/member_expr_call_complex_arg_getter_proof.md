@@ -37,12 +37,14 @@ let a = undefined;
 let x = undefined;
 a = {
   get b() {
+    debugger;
     $('b.get');
     return 100;
   },
 };
 x = {
   get y() {
+    debugger;
     $('y.get');
     return $;
   },
@@ -57,12 +59,14 @@ let a = undefined;
 let x = undefined;
 a = {
   get b() {
+    debugger;
     $('b.get');
     return 100;
   },
 };
 x = {
   get y() {
+    debugger;
     $('y.get');
     return $;
   },
@@ -78,12 +82,14 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 `````js filename=intro
 const SSA_a = {
   get b() {
+    debugger;
     $('b.get');
     return 100;
   },
 };
 const SSA_x = {
   get y() {
+    debugger;
     $('y.get');
     return $;
   },

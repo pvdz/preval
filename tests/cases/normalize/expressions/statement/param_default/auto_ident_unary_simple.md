@@ -22,8 +22,10 @@ $(a, x);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let arg = tmpParamDefault === undefined ? typeof x : tmpParamDefault;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let arg = tmpParamBare === undefined ? typeof x : tmpParamBare;
 };
 let x = 1;
 let a = { a: 999, b: 1000 };
@@ -34,13 +36,15 @@ $(a, x);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let arg = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     arg = typeof x;
   } else {
-    arg = tmpParamDefault;
+    arg = tmpParamBare;
   }
 };
 let x = 1;

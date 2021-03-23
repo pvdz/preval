@@ -19,10 +19,12 @@ function i({x: [ y ]}) {
 ## Pre Normal
 
 `````js filename=intro
-let i = function (tmpParamPattern) {
+let i = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let {
     x: [y$1],
-  } = tmpParamPattern;
+  } = tmpParamBare;
   {
     let y$2 = 2;
   }
@@ -34,8 +36,10 @@ let y = 1;
 ## Normalized
 
 `````js filename=intro
-let i = function (tmpParamPattern) {
-  let bindingPatternObjRoot = tmpParamPattern;
+let i = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternObjRoot = tmpParamBare;
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let y$1 = arrPatternSplat[0];

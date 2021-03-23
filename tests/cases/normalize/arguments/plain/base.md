@@ -20,8 +20,11 @@ f();
 ## Pre Normal
 
 `````js filename=intro
-let f = function (a) {
-  $(arguments[0]);
+let f = function ($$0) {
+  const tmpArgumentsAny = arguments;
+  let a = $$0;
+  debugger;
+  $(tmpArgumentsAny[0]);
 };
 f();
 `````
@@ -29,10 +32,12 @@ f();
 ## Normalized
 
 `````js filename=intro
-let f = function (a) {
-  const tmpPrevalAliasArgumentsAny = arguments;
+let f = function ($$0) {
+  const tmpArgumentsAny = arguments;
+  let a = $$0;
+  debugger;
   const tmpCallCallee = $;
-  const tmpCalleeParam = tmpPrevalAliasArgumentsAny[0];
+  const tmpCalleeParam = tmpArgumentsAny[0];
   tmpCallCallee(tmpCalleeParam);
 };
 f();
@@ -41,9 +46,10 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function (a) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  const tmpCalleeParam = tmpPrevalAliasArgumentsAny[0];
+const f = function ($$0) {
+  const tmpArgumentsAny = arguments;
+  debugger;
+  const tmpCalleeParam = tmpArgumentsAny[0];
   $(tmpCalleeParam);
 };
 f();

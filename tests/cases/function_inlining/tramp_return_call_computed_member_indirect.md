@@ -28,11 +28,17 @@ $(r);
 
 `````js filename=intro
 const toString = $('toString');
-const g = function (o, p) {
+const g = function ($$0, $$1) {
+  let o = $$0;
+  let p = $$1;
+  debugger;
   const y = o[p]();
   return y;
 };
-const f = function (m, n) {
+const f = function ($$0, $$1) {
+  let m = $$0;
+  let n = $$1;
+  debugger;
   const x = g(m, n);
   return x;
 };
@@ -44,11 +50,17 @@ $(r);
 
 `````js filename=intro
 const toString = $('toString');
-const g = function (o, p) {
+const g = function ($$0, $$1) {
+  let o = $$0;
+  let p = $$1;
+  debugger;
   const y = o[p]();
   return y;
 };
-const f = function (m, n) {
+const f = function ($$0, $$1) {
+  let m = $$0;
+  let n = $$1;
+  debugger;
   const x = g(m, n);
   return x;
 };

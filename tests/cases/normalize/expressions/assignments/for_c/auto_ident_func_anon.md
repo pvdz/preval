@@ -22,7 +22,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   while ($(1)) {
-    a = function () {};
+    a = function () {
+      debugger;
+    };
   }
 }
 $(a);
@@ -35,7 +37,9 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    a = function () {};
+    a = function () {
+      debugger;
+    };
   } else {
     break;
   }
@@ -50,7 +54,9 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    a = function () {};
+    a = function () {
+      debugger;
+    };
   } else {
     break;
   }

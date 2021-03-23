@@ -20,7 +20,9 @@ $(f);
 
 `````js filename=intro
 $(f);
-const tmpAnonDefaultExport = function () {};
+const tmpAnonDefaultExport = function () {
+  debugger;
+};
 export { tmpAnonDefaultExport as default };
 $(f);
 `````
@@ -29,7 +31,9 @@ $(f);
 
 `````js filename=intro
 $(f);
-const tmpAnonDefaultExport = function () {};
+const tmpAnonDefaultExport = function () {
+  debugger;
+};
 export { tmpAnonDefaultExport as default };
 $(f);
 `````
@@ -38,7 +42,9 @@ $(f);
 
 `````js filename=intro
 $(f);
-const tmpAnonDefaultExport = function () {};
+const tmpAnonDefaultExport = function () {
+  debugger;
+};
 export { tmpAnonDefaultExport as default };
 $(f);
 `````

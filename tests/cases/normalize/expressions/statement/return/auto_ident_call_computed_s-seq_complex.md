@@ -25,6 +25,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (1, 2, b)[$('$')](1);
 };
 let b = { $ };
@@ -37,6 +38,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpCallCompObj = b;
   const tmpCallCompProp = $('$');
   const tmpReturnArg = tmpCallCompObj[tmpCallCompProp](1);

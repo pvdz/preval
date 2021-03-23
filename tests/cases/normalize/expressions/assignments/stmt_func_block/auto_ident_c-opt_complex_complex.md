@@ -27,6 +27,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let b = { x: 1 };
     let a = { a: 999, b: 1000 };
@@ -41,24 +42,43 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = { x: 1 };
   let a = { a: 999, b: 1000 };
   a = undefined;
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest = tmpChainElementCall != null;
-  const tmpBranchingA = function (b$1, a$1, tmpChainRootCall$1, tmpChainElementCall$1, tmpIfTest$1) {
+  const tmpBranchingA = function ($$0, $$1, $$2, $$3, $$4) {
+    let b$1 = $$0;
+    let a$1 = $$1;
+    let tmpChainRootCall$1 = $$2;
+    let tmpChainElementCall$1 = $$3;
+    let tmpIfTest$1 = $$4;
+    debugger;
     const tmpChainRootComputed$1 = $('x');
     const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
     a$1 = tmpChainElementObject$1;
     const tmpReturnArg = tmpBranchingC(b$1, a$1, tmpChainRootCall$1, tmpChainElementCall$1, tmpIfTest$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (b$2, a$2, tmpChainRootCall$2, tmpChainElementCall$2, tmpIfTest$2) {
+  const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4) {
+    let b$2 = $$0;
+    let a$2 = $$1;
+    let tmpChainRootCall$2 = $$2;
+    let tmpChainElementCall$2 = $$3;
+    let tmpIfTest$2 = $$4;
+    debugger;
     const tmpReturnArg$1 = tmpBranchingC(b$2, a$2, tmpChainRootCall$2, tmpChainElementCall$2, tmpIfTest$2);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (b$3, a$3, tmpChainRootCall$3, tmpChainElementCall$3, tmpIfTest$3) {
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4) {
+    let b$3 = $$0;
+    let a$3 = $$1;
+    let tmpChainRootCall$3 = $$2;
+    let tmpChainElementCall$3 = $$3;
+    let tmpIfTest$3 = $$4;
+    debugger;
     $(a$3);
   };
   if (tmpIfTest) {
@@ -78,6 +98,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const b = { x: 1 };
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;

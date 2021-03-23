@@ -22,6 +22,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return 100;
 };
 $(f());
@@ -32,6 +33,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return 100;
 };
 const tmpCallCallee = $;

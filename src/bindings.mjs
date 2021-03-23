@@ -316,7 +316,14 @@ export function getIdentUsageKind(parentNode, parentProp) {
   throw ASSERT(false, 'Support this new node', node);
 }
 
-export function generateUniqueGlobalName(name, globallyUniqueNamingRegistry) {
+export function generateUniqueGlobalName(name, globallyUniqueNamingRegistry, assumeDoubleDollar = false) {
+  ASSERT(!assumeDoubleDollar || name.startsWith('$$'), 'if assuming double dollar, we should receive one');
+  if (!assumeDoubleDollar && name.startsWith('$$')) {
+    ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place');
+    // TODO: assert this is the normal_once step and make sure it never happens elsewhere
+    return generateUniqueGlobalName('tmp' + name.slice(2), globallyUniqueNamingRegistry);
+  }
+
   // Create a (module) globally unique name. Then use that name for the local scope.
   let n = 0;
   if (globallyUniqueNamingRegistry.has(name)) {
@@ -329,6 +336,8 @@ export function generateUniqueGlobalName(name, globallyUniqueNamingRegistry) {
   return n ? name + '$' + n : name;
 }
 export function registerGlobalIdent(fdata, name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
+  ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place');
+
   const meta = fdata.globallyUniqueNamingRegistry.get(name);
   if (meta) return meta;
 
@@ -380,16 +389,24 @@ export function registerGlobalIdent(fdata, name, originalName, { isExport = fals
     // - [x] function declarations
     // - [ ] update expressions, pre or postifx, inc or dec
     // - [ ] for-loop lhs
-    writes: [], // {parent, prop, index} indirect reference ot the node being assigned. If not implicit/builtin then the first write should be the decl. Note that reads and writes can legally appear in source/ast before decl.
+    writes: [], // {parent, prop, index} indirect reference ot the node being assigned. In phase1 (only); If not implicit/builtin then the first write should be the decl. Note that reads and writes can legally appear in source/ast before decl.
     reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
   };
   ASSERT(name);
+  if (/^\$\$\d+$/.test(name)) fixme;
   fdata.globallyUniqueNamingRegistry.set(name, newMeta);
   return newMeta;
 }
+export function createDoubleDollar(name, fdata) {
+  ASSERT(createFreshVar.length === arguments.length, 'arg count');
+  // The main difference between createFreshVar is that tmp is not force-prefixed to the double dollar name
+  const tmpName = generateUniqueGlobalName(name, fdata.globallyUniqueNamingRegistry, true);
+  registerGlobalIdent(fdata, tmpName, tmpName);
+  return tmpName;
+}
 export function createFreshVar(name, fdata) {
   ASSERT(createFreshVar.length === arguments.length, 'arg count');
-  const tmpName = generateUniqueGlobalName(name, fdata.globallyUniqueNamingRegistry);
+  const tmpName = generateUniqueGlobalName(name, fdata.globallyUniqueNamingRegistry, false);
   registerGlobalIdent(fdata, tmpName, tmpName);
   return tmpName;
 }
@@ -412,7 +429,7 @@ export function registerGlobalLabel(fdata, name, originalName, labelNode) {
     uniqueName: name,
     labelNode, // All referenced labels must exist (syntax error), labels must appear before their usage when traversing
     usages: [], // {parent, prop, index} of the break/continue statement referring to the label
-    labelUsageMap: new Map, // Map<labelName, {node, body, index}>. References to a label
+    labelUsageMap: new Map(), // Map<labelName, {node, body, index}>. References to a label
   });
 }
 
@@ -470,7 +487,6 @@ export function createWriteRef(obj) {
     decl = null,
     assign = null,
     funcDecl = null,
-    param = null,
     ...rest
   } = obj;
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
@@ -492,7 +508,6 @@ export function createWriteRef(obj) {
     decl,
     assign,
     funcDecl,
-    param,
   };
 }
 
@@ -554,7 +569,7 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
   ASSERT(meta, 'the meta should exist for all declared variables at this point');
   return uniqueName;
 }
-export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeCounter) {
+export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeCounter, oncePass) {
   ASSERT(arguments.length === preprocessScopeNode.length, 'arg count');
   // This function attempts to find all binding names defined in this scope and create unique name mappings for them
   // (This doesn't update any read/write nodes with their new name! Only prepares their new name to be used and unique.)
@@ -665,6 +680,11 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
 
         if (v === Tenko.BINDING_TYPE_FUNC_VAR && s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS) {
           vlog('  - skipping func var in param layer or global layer');
+          return;
+        }
+
+        if (!oncePass && (s.type === Tenko.SCOPE_LAYER_FUNC_PARAMS || s.type === Tenko.SCOPE_LAYER_ARROW_PARAMS)) {
+          vlog('  - Skipping params because this is not the first pass?');
           return;
         }
 

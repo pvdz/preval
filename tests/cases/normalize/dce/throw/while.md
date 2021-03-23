@@ -26,6 +26,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   while ($(true)) {
     throw $(1, 'return');
     $('fail');
@@ -38,6 +39,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {

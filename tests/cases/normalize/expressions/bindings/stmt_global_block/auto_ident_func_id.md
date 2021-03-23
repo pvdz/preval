@@ -21,7 +21,9 @@
 
 `````js filename=intro
 {
-  let a = function f() {};
+  let a = function f() {
+    debugger;
+  };
   $(a);
 }
 `````
@@ -29,14 +31,18 @@
 ## Normalized
 
 `````js filename=intro
-let a = function f() {};
+let a = function f() {
+  debugger;
+};
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const a = function f() {};
+const a = function f() {
+  debugger;
+};
 $(a);
 `````
 

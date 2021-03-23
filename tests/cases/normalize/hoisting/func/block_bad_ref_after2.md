@@ -25,6 +25,7 @@ f(); // Fails in strict mode (would be fine otherwise)
 `````js filename=intro
 {
   let f = function () {
+    debugger;
     $(1);
   };
   f();
@@ -36,6 +37,7 @@ f$1();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $(1);
 };
 f();

@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-if ((a = this));
+if ((a = undefined));
 $(a);
 `````
 
@@ -30,7 +30,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = this;
+a = undefined;
 let tmpIfTest = a;
 $(a);
 `````
@@ -38,8 +38,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = this;
-$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

@@ -25,6 +25,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if ($(true)) {
     let x = 1,
       y = 2,
@@ -40,6 +41,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     let x = 1;
@@ -63,6 +65,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     const z = [10, 20, 30];

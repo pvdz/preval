@@ -24,7 +24,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   while ($(1)) {
-    a = this;
+    a = undefined;
   }
 }
 $(a);
@@ -37,7 +37,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    a = this;
+    a = undefined;
   } else {
     break;
   }
@@ -52,7 +52,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    a = this;
+    a = undefined;
   } else {
     break;
   }

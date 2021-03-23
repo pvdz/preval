@@ -19,7 +19,9 @@ $(f());
 ## Pre Normal
 
 `````js filename=intro
-let f = function () {};
+let f = function () {
+  debugger;
+};
 $(1);
 $(f());
 `````
@@ -27,7 +29,9 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-let f = function () {};
+let f = function () {
+  debugger;
+};
 $(1);
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

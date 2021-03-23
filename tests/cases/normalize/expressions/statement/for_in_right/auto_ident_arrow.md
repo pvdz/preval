@@ -20,7 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in () => {});
+for (let x in () => {
+  debugger;
+});
 $(a);
 `````
 
@@ -28,7 +30,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpForInDeclRhs = function () {};
+const tmpForInDeclRhs = function () {
+  debugger;
+};
 let x;
 for (x in tmpForInDeclRhs) {
 }
@@ -39,7 +43,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpForInDeclRhs = function () {};
+const tmpForInDeclRhs = function () {
+  debugger;
+};
 let x;
 for (x in tmpForInDeclRhs) {
 }

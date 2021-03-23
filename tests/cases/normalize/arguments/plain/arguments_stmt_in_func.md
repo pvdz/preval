@@ -21,7 +21,8 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  arguments;
+  debugger;
+  null;
 };
 $(f());
 `````
@@ -30,7 +31,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  arguments;
+  debugger;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -40,7 +41,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-arguments;
 $(undefined);
 `````
 

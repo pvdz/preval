@@ -25,6 +25,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = $(b)['c'] = $(b)[$('d')]);
 };
 let b = { c: 10, d: 20 };
@@ -37,6 +38,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpNestedAssignObj = $(b);
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');

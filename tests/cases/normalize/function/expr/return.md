@@ -21,6 +21,7 @@ $(f());
 
 `````js filename=intro
 const f = function g() {
+  debugger;
   return $(1);
 };
 $(f());
@@ -30,6 +31,7 @@ $(f());
 
 `````js filename=intro
 const f = function g() {
+  debugger;
   const tmpReturnArg = $(1);
   return tmpReturnArg;
 };

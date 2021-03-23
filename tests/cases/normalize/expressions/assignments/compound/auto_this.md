@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$((a *= this));
+$((a *= undefined));
 $(a);
 `````
 
@@ -31,9 +31,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpBinBothLhs = a;
-const tmpBinBothRhs = this;
-a = tmpBinBothLhs * tmpBinBothRhs;
+a = a * undefined;
 let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -43,8 +41,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpBinBothRhs = this;
-const SSA_a = a * tmpBinBothRhs;
+const SSA_a = a * undefined;
 $(SSA_a);
 $(SSA_a);
 `````

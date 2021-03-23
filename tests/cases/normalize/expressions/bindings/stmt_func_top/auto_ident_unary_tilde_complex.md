@@ -22,6 +22,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = ~$(100);
   $(a);
 };
@@ -32,6 +33,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpUnaryArg = $(100);
   let a = ~tmpUnaryArg;
   $(a);

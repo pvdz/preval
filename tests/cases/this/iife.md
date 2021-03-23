@@ -25,12 +25,14 @@ f();
 
 `````js filename=intro
 const f = function () {
+  const tmpthis = this;
+  debugger;
   let t = $(1);
   if (t) {
     t = $(2);
   }
   if (t) {
-    const g = this;
+    const g = tmpthis;
   }
 };
 f();
@@ -40,27 +42,37 @@ f();
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalAliasThis = this;
+  const tmpthis = this;
+  debugger;
   let t = $(1);
-  const tmpBranchingA = function (tmpPrevalAliasThis$1, t$1) {
+  const tmpBranchingA = function ($$0, $$1) {
+    let tmpthis$1 = $$0;
+    let t$1 = $$1;
+    debugger;
     t$1 = $(2);
-    const tmpReturnArg = tmpBranchingC(tmpPrevalAliasThis$1, t$1);
+    const tmpReturnArg = tmpBranchingC(tmpthis$1, t$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (tmpPrevalAliasThis$2, t$2) {
-    const tmpReturnArg$1 = tmpBranchingC(tmpPrevalAliasThis$2, t$2);
+  const tmpBranchingB = function ($$0, $$1) {
+    let tmpthis$2 = $$0;
+    let t$2 = $$1;
+    debugger;
+    const tmpReturnArg$1 = tmpBranchingC(tmpthis$2, t$2);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (tmpPrevalAliasThis$3, t$3) {
+  const tmpBranchingC = function ($$0, $$1) {
+    let tmpthis$3 = $$0;
+    let t$3 = $$1;
+    debugger;
     if (t$3) {
-      const g$1 = tmpPrevalAliasThis$3;
+      const g$1 = tmpthis$3;
     }
   };
   if (t) {
-    const tmpReturnArg$2 = tmpBranchingA(tmpPrevalAliasThis, t);
+    const tmpReturnArg$2 = tmpBranchingA(tmpthis, t);
     return tmpReturnArg$2;
   } else {
-    const tmpReturnArg$3 = tmpBranchingB(tmpPrevalAliasThis, t);
+    const tmpReturnArg$3 = tmpBranchingB(tmpthis, t);
     return tmpReturnArg$3;
   }
 };

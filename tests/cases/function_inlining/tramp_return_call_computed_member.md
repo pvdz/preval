@@ -29,10 +29,12 @@ $(r);
 `````js filename=intro
 const toString = $('toString');
 const g = function () {
+  debugger;
   const y = String[toString]();
   return y;
 };
 const f = function () {
+  debugger;
   const x = g();
   return x;
 };
@@ -45,10 +47,12 @@ $(r);
 `````js filename=intro
 const toString = $('toString');
 const g = function () {
+  debugger;
   const y = String[toString]();
   return y;
 };
 const f = function () {
+  debugger;
   const x = g();
   return x;
 };

@@ -43,6 +43,7 @@ let x = $(100);
 const tmpCalleeParam = x;
 $(tmpCalleeParam);
 const g = function () {
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $('a');
@@ -71,6 +72,7 @@ let x = $(100);
 const tmpCalleeParam = x;
 $(tmpCalleeParam);
 const g = function () {
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $('a');
@@ -98,6 +100,7 @@ $(tmpCalleeParam$1);
 const x = $(100);
 $(x);
 const g = function () {
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $('a');

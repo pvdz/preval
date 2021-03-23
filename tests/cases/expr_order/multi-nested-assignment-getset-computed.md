@@ -44,41 +44,52 @@ let objb = undefined;
 let objc = undefined;
 let objd = undefined;
 let obje = undefined;
-let $$ = function (...a$1) {
+let tmp = function (...$$0) {
+  let a$1 = $$0;
+  debugger;
   $(['$:', a$1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a$1]);
   return a$1[0];
 };
 obja = {
   get a() {
-    $$('a.get');
+    debugger;
+    tmp('a.get');
     return 110;
   },
-  set a(x) {
-    $$('a.set', x);
+  set a($$0) {
+    let x = $$0;
+    debugger;
+    tmp('a.set', x);
     return 1000;
   },
 };
 objb = {
   get b() {
-    $$('b.get');
+    debugger;
+    tmp('b.get');
     a = 210;
     return 100;
   },
-  set b(x$1) {
-    $$('b.set', x$1);
+  set b($$0) {
+    let x$1 = $$0;
+    debugger;
+    tmp('b.set', x$1);
     a = 2100;
     return 2000;
   },
 };
 objc = {
   get c() {
-    $$('c.get');
+    debugger;
+    tmp('c.get');
     a = 310;
     b = 320;
     return 100;
   },
-  set c(x$2) {
-    $$('c.set', x$2);
+  set c($$0) {
+    let x$2 = $$0;
+    debugger;
+    tmp('c.set', x$2);
     a = 3100;
     b = 3200;
     return 3000;
@@ -86,14 +97,17 @@ objc = {
 };
 objd = {
   get d() {
-    $$('d.get');
+    debugger;
+    tmp('d.get');
     a = 410;
     b = 420;
     c = 430;
     return 100;
   },
-  set d(x$3) {
-    $$('d.set', x$3);
+  set d($$0) {
+    let x$3 = $$0;
+    debugger;
+    tmp('d.set', x$3);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -102,15 +116,18 @@ objd = {
 };
 obje = {
   get e() {
-    $$('e.get');
+    debugger;
+    tmp('e.get');
     a = 510;
     b = 520;
     c = 530;
     d = 540;
     return 100;
   },
-  set e(x$4) {
-    $$('e.set', x$4);
+  set e($$0) {
+    let x$4 = $$0;
+    debugger;
+    tmp('e.set', x$4);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -119,38 +136,43 @@ obje = {
   },
 };
 a = function () {
-  $$('a');
+  debugger;
+  tmp('a');
   return obja;
 };
 b = function () {
-  $$('b');
+  debugger;
+  tmp('b');
   a = 21;
   return objb;
 };
 c = function () {
-  $$('c');
+  debugger;
+  tmp('c');
   a = 31;
   b = 32;
   return objc;
 };
 d = function () {
-  $$('d');
+  debugger;
+  tmp('d');
   a = 41;
   b = 42;
   c = 43;
   return objd;
 };
 e = function () {
-  $$('e');
+  debugger;
+  tmp('e');
   a = 51;
   b = 52;
   c = 53;
   d = 54;
   return obje;
 };
-$$((a()[$$('a')] = b()[$$('b')] = c()[$$('c')] = d()[$$('d')] = e()));
-$$(a, b, c, d, e);
-$$(obja, objb, objc, objd, obje);
+tmp((a()[tmp('a')] = b()[tmp('b')] = c()[tmp('c')] = d()[tmp('d')] = e()));
+tmp(a, b, c, d, e);
+tmp(obja, objb, objc, objd, obje);
 `````
 
 ## Normalized
@@ -166,7 +188,9 @@ let objb = undefined;
 let objc = undefined;
 let objd = undefined;
 let obje = undefined;
-let $$ = function (...a$1) {
+let tmp = function (...$$0) {
+  let a$1 = $$0;
+  debugger;
   const tmpCallCallee = $;
   const tmpCalleeParam = ['$:', a$1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a$1];
   tmpCallCallee(tmpCalleeParam);
@@ -175,35 +199,44 @@ let $$ = function (...a$1) {
 };
 obja = {
   get a() {
-    $$('a.get');
+    debugger;
+    tmp('a.get');
     return 110;
   },
-  set a(x) {
-    $$('a.set', x);
+  set a($$0) {
+    let x = $$0;
+    debugger;
+    tmp('a.set', x);
     return 1000;
   },
 };
 objb = {
   get b() {
-    $$('b.get');
+    debugger;
+    tmp('b.get');
     a = 210;
     return 100;
   },
-  set b(x$1) {
-    $$('b.set', x$1);
+  set b($$0) {
+    let x$1 = $$0;
+    debugger;
+    tmp('b.set', x$1);
     a = 2100;
     return 2000;
   },
 };
 objc = {
   get c() {
-    $$('c.get');
+    debugger;
+    tmp('c.get');
     a = 310;
     b = 320;
     return 100;
   },
-  set c(x$2) {
-    $$('c.set', x$2);
+  set c($$0) {
+    let x$2 = $$0;
+    debugger;
+    tmp('c.set', x$2);
     a = 3100;
     b = 3200;
     return 3000;
@@ -211,14 +244,17 @@ objc = {
 };
 objd = {
   get d() {
-    $$('d.get');
+    debugger;
+    tmp('d.get');
     a = 410;
     b = 420;
     c = 430;
     return 100;
   },
-  set d(x$3) {
-    $$('d.set', x$3);
+  set d($$0) {
+    let x$3 = $$0;
+    debugger;
+    tmp('d.set', x$3);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -227,15 +263,18 @@ objd = {
 };
 obje = {
   get e() {
-    $$('e.get');
+    debugger;
+    tmp('e.get');
     a = 510;
     b = 520;
     c = 530;
     d = 540;
     return 100;
   },
-  set e(x$4) {
-    $$('e.set', x$4);
+  set e($$0) {
+    let x$4 = $$0;
+    debugger;
+    tmp('e.set', x$4);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -244,44 +283,49 @@ obje = {
   },
 };
 a = function () {
-  $$('a');
+  debugger;
+  tmp('a');
   return obja;
 };
 b = function () {
-  $$('b');
+  debugger;
+  tmp('b');
   a = 21;
   return objb;
 };
 c = function () {
-  $$('c');
+  debugger;
+  tmp('c');
   a = 31;
   b = 32;
   return objc;
 };
 d = function () {
-  $$('d');
+  debugger;
+  tmp('d');
   a = 41;
   b = 42;
   c = 43;
   return objd;
 };
 e = function () {
-  $$('e');
+  debugger;
+  tmp('e');
   a = 51;
   b = 52;
   c = 53;
   d = 54;
   return obje;
 };
-const tmpCallCallee$1 = $$;
+const tmpCallCallee$1 = tmp;
 const varInitAssignLhsComputedObj = a();
-const varInitAssignLhsComputedProp = $$('a');
+const varInitAssignLhsComputedProp = tmp('a');
 const varInitAssignLhsComputedObj$1 = b();
-const varInitAssignLhsComputedProp$1 = $$('b');
+const varInitAssignLhsComputedProp$1 = tmp('b');
 const varInitAssignLhsComputedObj$2 = c();
-const varInitAssignLhsComputedProp$2 = $$('c');
+const varInitAssignLhsComputedProp$2 = tmp('c');
 const varInitAssignLhsComputedObj$3 = d();
-const varInitAssignLhsComputedProp$3 = $$('d');
+const varInitAssignLhsComputedProp$3 = tmp('d');
 const varInitAssignLhsComputedRhs$3 = e();
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
 const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
@@ -292,8 +336,8 @@ const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
 tmpCallCallee$1(tmpCalleeParam$1);
-$$(a, b, c, d, e);
-$$(obja, objb, objc, objd, obje);
+tmp(a, b, c, d, e);
+tmp(obja, objb, objc, objd, obje);
 `````
 
 ## Output
@@ -309,7 +353,9 @@ let objb = undefined;
 let objc = undefined;
 let objd = undefined;
 let obje = undefined;
-const $$ = function (...a$1) {
+const tmp = function (...$$0) {
+  const a$1 = $$0;
+  debugger;
   const tmpCalleeParam = ['$:', a$1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a$1];
   $(tmpCalleeParam);
   const tmpReturnArg = a$1[0];
@@ -317,35 +363,44 @@ const $$ = function (...a$1) {
 };
 obja = {
   get a() {
-    $$('a.get');
+    debugger;
+    tmp('a.get');
     return 110;
   },
-  set a(x) {
-    $$('a.set', x);
+  set a($$0) {
+    const x = $$0;
+    debugger;
+    tmp('a.set', x);
     return 1000;
   },
 };
 objb = {
   get b() {
-    $$('b.get');
+    debugger;
+    tmp('b.get');
     a = 210;
     return 100;
   },
-  set b(x$1) {
-    $$('b.set', x$1);
+  set b($$0) {
+    const x$1 = $$0;
+    debugger;
+    tmp('b.set', x$1);
     a = 2100;
     return 2000;
   },
 };
 objc = {
   get c() {
-    $$('c.get');
+    debugger;
+    tmp('c.get');
     a = 310;
     b = 320;
     return 100;
   },
-  set c(x$2) {
-    $$('c.set', x$2);
+  set c($$0) {
+    const x$2 = $$0;
+    debugger;
+    tmp('c.set', x$2);
     a = 3100;
     b = 3200;
     return 3000;
@@ -353,14 +408,17 @@ objc = {
 };
 objd = {
   get d() {
-    $$('d.get');
+    debugger;
+    tmp('d.get');
     a = 410;
     b = 420;
     c = 430;
     return 100;
   },
-  set d(x$3) {
-    $$('d.set', x$3);
+  set d($$0) {
+    const x$3 = $$0;
+    debugger;
+    tmp('d.set', x$3);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -369,15 +427,18 @@ objd = {
 };
 obje = {
   get e() {
-    $$('e.get');
+    debugger;
+    tmp('e.get');
     a = 510;
     b = 520;
     c = 530;
     d = 540;
     return 100;
   },
-  set e(x$4) {
-    $$('e.set', x$4);
+  set e($$0) {
+    const x$4 = $$0;
+    debugger;
+    tmp('e.set', x$4);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -386,29 +447,34 @@ obje = {
   },
 };
 a = function () {
-  $$('a');
+  debugger;
+  tmp('a');
   return obja;
 };
 b = function () {
-  $$('b');
+  debugger;
+  tmp('b');
   a = 21;
   return objb;
 };
 c = function () {
-  $$('c');
+  debugger;
+  tmp('c');
   a = 31;
   b = 32;
   return objc;
 };
 d = function () {
-  $$('d');
+  debugger;
+  tmp('d');
   a = 41;
   b = 42;
   c = 43;
   return objd;
 };
 e = function () {
-  $$('e');
+  debugger;
+  tmp('e');
   a = 51;
   b = 52;
   c = 53;
@@ -416,21 +482,21 @@ e = function () {
   return obje;
 };
 const varInitAssignLhsComputedObj = a();
-const varInitAssignLhsComputedProp = $$('a');
+const varInitAssignLhsComputedProp = tmp('a');
 const varInitAssignLhsComputedObj$1 = b();
-const varInitAssignLhsComputedProp$1 = $$('b');
+const varInitAssignLhsComputedProp$1 = tmp('b');
 const varInitAssignLhsComputedObj$2 = c();
-const varInitAssignLhsComputedProp$2 = $$('c');
+const varInitAssignLhsComputedProp$2 = tmp('c');
 const varInitAssignLhsComputedObj$3 = d();
-const varInitAssignLhsComputedProp$3 = $$('d');
+const varInitAssignLhsComputedProp$3 = tmp('d');
 const varInitAssignLhsComputedRhs$3 = e();
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$3;
-$$(varInitAssignLhsComputedRhs$3);
-$$(a, b, c, d, e);
-$$(obja, objb, objc, objd, obje);
+tmp(varInitAssignLhsComputedRhs$3);
+tmp(a, b, c, d, e);
+tmp(obja, objb, objc, objd, obje);
 `````
 
 ## Globals

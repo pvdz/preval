@@ -23,6 +23,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = !$(100));
 };
 let a = { a: 999, b: 1000 };
@@ -34,6 +35,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpUnaryArg = $(100);
   a = !tmpUnaryArg;
   let tmpReturnArg = a;

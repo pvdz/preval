@@ -26,7 +26,9 @@ $(g());
 
 `````js filename=intro
 let g = function () {
+  debugger;
   let f = function () {
+    debugger;
     return [10, y, z];
   };
   const y = $(20);
@@ -40,7 +42,9 @@ $(g());
 
 `````js filename=intro
 let g = function () {
+  debugger;
   let f = function () {
+    debugger;
     const tmpReturnArg = [10, y, z];
     return tmpReturnArg;
   };

@@ -24,10 +24,15 @@ $(f(1, 2)); // Should ultimately reuse the cloned func from the prev call
 ## Pre Normal
 
 `````js filename=intro
-let f = function (a, b) {
+let f = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
   return $(a, b);
 };
-let g = function (b$1) {
+let g = function ($$0) {
+  let b$1 = $$0;
+  debugger;
   return $(f(1, b$1));
 };
 $(g(2));
@@ -37,11 +42,16 @@ $(f(1, 2));
 ## Normalized
 
 `````js filename=intro
-let f = function (a, b) {
+let f = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
   const tmpReturnArg = $(a, b);
   return tmpReturnArg;
 };
-let g = function (b$1) {
+let g = function ($$0) {
+  let b$1 = $$0;
+  debugger;
   const tmpCallCallee = $;
   const tmpCalleeParam = f(1, b$1);
   const tmpReturnArg$1 = tmpCallCallee(tmpCalleeParam);

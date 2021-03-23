@@ -20,7 +20,10 @@ f();
 ## Pre Normal
 
 `````js filename=intro
-let f = function (x, y) {
+let f = function ($$0, $$1) {
+  let x = $$0;
+  let y = $$1;
+  debugger;
   return $(x);
 };
 f();
@@ -29,7 +32,10 @@ f();
 ## Normalized
 
 `````js filename=intro
-let f = function (x, y) {
+let f = function ($$0, $$1) {
+  let x = $$0;
+  let y = $$1;
+  debugger;
   const tmpReturnArg = $(x);
   return tmpReturnArg;
 };

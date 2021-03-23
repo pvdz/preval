@@ -24,7 +24,9 @@ x().y;
 `````js filename=intro
 const y = 'y';
 let x = class {
-  x() {}
+  x() {
+    debugger;
+  }
 };
 x().y;
 `````
@@ -34,7 +36,9 @@ x().y;
 `````js filename=intro
 const y = 'y';
 let x = class {
-  x() {}
+  x() {
+    debugger;
+  }
 };
 const tmpCompObj = x();
 tmpCompObj.y;
@@ -44,7 +48,9 @@ tmpCompObj.y;
 
 `````js filename=intro
 const x = class {
-  x() {}
+  x() {
+    debugger;
+  }
 };
 const tmpCompObj = x();
 tmpCompObj.y;

@@ -24,8 +24,10 @@ g();
 
 `````js filename=intro
 let g = function () {
+  debugger;
   if ($(1)) {
     let f = function () {
+      debugger;
       $(1);
     };
     f();
@@ -38,9 +40,11 @@ g();
 
 `````js filename=intro
 let g = function () {
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     let f = function () {
+      debugger;
       $(1);
     };
     f();

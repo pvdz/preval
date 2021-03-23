@@ -9,7 +9,6 @@ import { parseCode } from './normalize/parse.mjs';
 import { phaseNormalize } from './normalize/normalize.mjs';
 import { phaseNormalOnce } from './normalize/normal_once.mjs';
 import { prepareNormalization } from './normalize/prepare.mjs';
-import { aliasThisAndArguments } from './normalize/aliasing.mjs';
 import { phase0 } from './reduce_static/phase0.mjs';
 import { phase1 } from './reduce_static/phase1.mjs';
 import { phase2 } from './reduce_static/phase2.mjs';
@@ -84,13 +83,12 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
     if (inputCode.length > 10 * 1024) setVerboseTracing(false); // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
 
     const preFdata = parseCode(inputCode, nextFname);
-    prepareNormalization(preFdata, resolve, req); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+    prepareNormalization(preFdata, resolve, req, true); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalOnce(preFdata);
     const preCode = tmat(preFdata.tenkoOutput.ast, true);
 
     const fdata = parseCode(preCode, nextFname);
-    prepareNormalization(fdata, resolve, req); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-    aliasThisAndArguments(fdata, resolve, req);
+    prepareNormalization(fdata, resolve, req, false); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalize(fdata, nextFname);
 
     mod.children = new Set(fdata.imports.values());
@@ -133,17 +131,41 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
   }
 
   log();
-  log('############################################################################################################################################################################################################');
-  log('############################################################################################################################################################################################################');
-  log('############################################################################################################################################################################################################');
-  log('############################################################################################################################################################################################################');
-  log('######                                                                           ###########################################################################################################################');
-  log('######      First phase complete. Discovered', modules.size, 'imported files     ###########################################################################################################################');
-  log('######                                                                           ###########################################################################################################################');
-  log('############################################################################################################################################################################################################');
-  log('############################################################################################################################################################################################################');
-  log('############################################################################################################################################################################################################');
-  log('############################################################################################################################################################################################################');
+  log(
+    '############################################################################################################################################################################################################',
+  );
+  log(
+    '############################################################################################################################################################################################################',
+  );
+  log(
+    '############################################################################################################################################################################################################',
+  );
+  log(
+    '############################################################################################################################################################################################################',
+  );
+  log(
+    '######                                                                           ###########################################################################################################################',
+  );
+  log(
+    '######      First phase complete. Discovered',
+    modules.size,
+    'imported files     ###########################################################################################################################',
+  );
+  log(
+    '######                                                                           ###########################################################################################################################',
+  );
+  log(
+    '############################################################################################################################################################################################################',
+  );
+  log(
+    '############################################################################################################################################################################################################',
+  );
+  log(
+    '############################################################################################################################################################################################################',
+  );
+  log(
+    '############################################################################################################################################################################################################',
+  );
   log();
 
   if (options.logPasses) {
@@ -205,8 +227,10 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
       while (changed) {
         ++passes;
         const fdata = phase0(inputCode, fname);
+        let firstAfterParse = true;
         do {
-          phase1(fdata, resolve, req); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          phase1(fdata, resolve, req, firstAfterParse); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          firstAfterParse = false;
 
           changed = phase2(program, fdata, resolve, req);
           // YOYO, param inlining
@@ -234,8 +258,7 @@ export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfter
           );
 
           const fdata = parseCode(inputCode, fname);
-          prepareNormalization(fdata, resolve, req); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-          aliasThisAndArguments(fdata, resolve, req);
+          prepareNormalization(fdata, resolve, req, false); // I want a phase1 because I want the scope tracking set up for normalizing bindings
           phaseNormalize(fdata, fname);
 
           inputCode = tmat(fdata.tenkoOutput.ast, true);

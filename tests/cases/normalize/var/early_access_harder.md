@@ -29,6 +29,7 @@ $(x);
 `````js filename=intro
 let x = undefined;
 let f = function () {
+  debugger;
   x = 10;
 };
 $(x);
@@ -41,6 +42,7 @@ $(x);
 `````js filename=intro
 let x = undefined;
 let f = function () {
+  debugger;
   x = 10;
 };
 $(x);

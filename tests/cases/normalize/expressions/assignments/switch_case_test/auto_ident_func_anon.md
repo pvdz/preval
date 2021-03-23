@@ -25,7 +25,12 @@ let a = { a: 999, b: 1000 };
 {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 1;
-  if ((a = function () {}) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if (
+    (a = function () {
+      debugger;
+    }) === tmpSwitchValue
+  )
+    tmpSwitchCaseToStart = 0;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
@@ -41,7 +46,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-a = function () {};
+a = function () {
+  debugger;
+};
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -56,7 +63,9 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const SSA_a = function () {};
+const SSA_a = function () {
+  debugger;
+};
 const tmpIfTest = SSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

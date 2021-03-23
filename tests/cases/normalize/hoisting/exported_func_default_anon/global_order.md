@@ -20,13 +20,16 @@ export function g() { return $(); }
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return $();
 };
 let g = function () {
+  debugger;
   return $();
 };
 $(f(), g());
 const tmpAnonDefaultExport = function () {
+  debugger;
   return $();
 };
 export { tmpAnonDefaultExport as default };
@@ -38,10 +41,12 @@ export { g };
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpReturnArg = $();
   return tmpReturnArg;
 };
 let g = function () {
+  debugger;
   const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
 };
@@ -50,6 +55,7 @@ const tmpCalleeParam = f();
 const tmpCalleeParam$1 = g();
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 const tmpAnonDefaultExport = function () {
+  debugger;
   const tmpReturnArg$2 = $();
   return tmpReturnArg$2;
 };
@@ -62,10 +68,12 @@ export { g };
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpReturnArg = $();
   return tmpReturnArg;
 };
 const g = function () {
+  debugger;
   const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
 };
@@ -73,6 +81,7 @@ const tmpCalleeParam = $();
 const tmpCalleeParam$1 = $();
 $(tmpCalleeParam, tmpCalleeParam$1);
 const tmpAnonDefaultExport = function () {
+  debugger;
   const tmpReturnArg$2 = $();
   return tmpReturnArg$2;
 };

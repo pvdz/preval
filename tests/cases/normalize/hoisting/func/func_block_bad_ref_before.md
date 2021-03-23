@@ -26,9 +26,11 @@ g();
 
 `````js filename=intro
 let g = function () {
+  debugger;
   f();
   {
     let f$1 = function () {
+      debugger;
       $(1);
     };
   }
@@ -40,8 +42,10 @@ g();
 
 `````js filename=intro
 let g = function () {
+  debugger;
   f();
   let f$1 = function () {
+    debugger;
     $(1);
   };
 };

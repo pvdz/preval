@@ -20,8 +20,10 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let p = tmpParamDefault === undefined ? (a = new ($($))(1)) : tmpParamDefault;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let p = tmpParamBare === undefined ? (a = new ($($))(1)) : tmpParamBare;
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -31,16 +33,18 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let p = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpNewCallee = $($);
     const tmpNestedComplexRhs = new tmpNewCallee(1);
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
-    p = tmpParamDefault;
+    p = tmpParamBare;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -53,8 +57,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  const tmpIfTest = tmpParamDefault === undefined;
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpNewCallee = $($);
     const tmpNestedComplexRhs = new tmpNewCallee(1);

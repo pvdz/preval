@@ -38,7 +38,14 @@ export function uniqify_idents(funcAst, fdata) {
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         funcScopeStack.push(node);
       }
-      preprocessScopeNode(node, path.nodes[path.nodes.length - 2], fdata, funcScopeStack[funcScopeStack.length - 1], ++lexScopeCounter);
+      preprocessScopeNode(
+        node,
+        path.nodes[path.nodes.length - 2],
+        fdata,
+        funcScopeStack[funcScopeStack.length - 1],
+        ++lexScopeCounter,
+        false,
+      );
     }
 
     switch (key) {
@@ -50,7 +57,9 @@ export function uniqify_idents(funcAst, fdata) {
         vlog('- Ident kind:', kind);
 
         vlog('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
-        if (kind !== 'none' && kind !== 'label' && node.name !== 'arguments') {
+        if (/^\$\$\d+$/.test(node.name)) {
+          vlog('- Skipping param name `' + node.name + '`');
+        } else if (kind !== 'none' && kind !== 'label' && node.name !== 'arguments') {
           ASSERT(!node.$p.uniqueName, 'dont do this twice');
           const uniqueName = findUniqueNameForBindingIdent(
             node,

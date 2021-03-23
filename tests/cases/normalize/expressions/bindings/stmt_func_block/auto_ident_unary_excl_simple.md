@@ -26,6 +26,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let arg = 1;
     let a = !arg;
@@ -39,6 +40,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let arg = 1;
   let a = !arg;
   $(a, arg);

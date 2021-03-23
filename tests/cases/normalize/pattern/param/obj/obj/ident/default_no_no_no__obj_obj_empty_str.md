@@ -20,10 +20,12 @@ $(f({ x: { x: 1, y: '', z: 3 }, b: 11, c: 12 }, 10));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let {
     x: { y },
-  } = tmpParamPattern;
+  } = tmpParamBare;
   return y;
 };
 $(f({ x: { x: 1, y: '', z: 3 }, b: 11, c: 12 }, 10));
@@ -32,8 +34,10 @@ $(f({ x: { x: 1, y: '', z: 3 }, b: 11, c: 12 }, 10));
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let bindingPatternObjRoot = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternObjRoot = tmpParamBare;
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let y = objPatternNoDefault.y;
   return y;

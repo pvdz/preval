@@ -26,7 +26,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = this)) {
+  while (tmpDoWhileFlag || (a = undefined)) {
     tmpDoWhileFlag = false;
     {
       $(100);
@@ -45,9 +45,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = this;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = undefined;
+    tmpIfTest = undefined;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -68,9 +67,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = this;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = undefined;
+    tmpIfTest = undefined;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

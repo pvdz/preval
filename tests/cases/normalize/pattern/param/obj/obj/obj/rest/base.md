@@ -24,12 +24,14 @@ $(f({ x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 }, 10));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let {
     x: {
       y: { ...z },
     },
-  } = tmpParamPattern;
+  } = tmpParamBare;
   return z;
 };
 $(f({ x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 }, 10));
@@ -38,8 +40,10 @@ $(f({ x: { x: 13, y: { z: 1, a: 2, b: 3 }, z: 14 }, b: 11, c: 12 }, 10));
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let bindingPatternObjRoot = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternObjRoot = tmpParamBare;
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   const tmpCallCallee = objPatternRest;

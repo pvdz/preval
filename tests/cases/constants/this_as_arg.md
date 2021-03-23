@@ -19,22 +19,19 @@ $(this);
 ## Pre Normal
 
 `````js filename=intro
-$(this);
+$(undefined);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpCalleeParam = this;
-tmpCallCallee(tmpCalleeParam);
+$(undefined);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = this;
-$(tmpCalleeParam);
+$(undefined);
 `````
 
 ## Globals

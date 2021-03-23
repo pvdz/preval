@@ -20,7 +20,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$({ x: (a = () => {}) });
+$({
+  x: (a = () => {
+    debugger;
+  }),
+});
 $(a);
 `````
 
@@ -29,7 +33,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = function () {};
+a = function () {
+  debugger;
+};
 let tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
 tmpCallCallee(tmpCalleeParam);
@@ -39,7 +45,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {};
+const SSA_a = function () {
+  debugger;
+};
 const tmpCalleeParam = { x: SSA_a };
 $(tmpCalleeParam);
 $(SSA_a);

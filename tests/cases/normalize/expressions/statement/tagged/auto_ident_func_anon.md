@@ -20,7 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$`before ${function () {}} after`;
+$`before ${function () {
+  debugger;
+}} after`;
 $(a);
 `````
 
@@ -30,7 +32,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCalleeParam$1 = function () {};
+const tmpCalleeParam$1 = function () {
+  debugger;
+};
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
@@ -40,7 +44,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCalleeParam$1 = function () {};
+const tmpCalleeParam$1 = function () {
+  debugger;
+};
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

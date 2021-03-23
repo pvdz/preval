@@ -23,6 +23,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = 2,
     c = 3,
     d = 4;
@@ -36,6 +37,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = 2;
   let c = 3;
   let d = 4;

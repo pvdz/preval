@@ -21,8 +21,10 @@ $(f([1]));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let [a] = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let [a] = tmpParamBare;
   a = $(10);
   return a;
 };
@@ -32,8 +34,10 @@ $(f([1]));
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let bindingPatternArrRoot = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternArrRoot = tmpParamBare;
   let arrPatternSplat = [...bindingPatternArrRoot];
   let a = arrPatternSplat[0];
   a = $(10);

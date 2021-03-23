@@ -31,6 +31,7 @@ $(f(), 'final');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if ($(1)) {
     if ($(2)) {
       $(3);
@@ -50,20 +51,32 @@ $(f(), 'final');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function (tmpIfTest$2) {
+  const tmpBranchingA = function ($$0) {
+    let tmpIfTest$2 = $$0;
+    debugger;
     const tmpIfTest$3 = $(2);
-    const tmpBranchingA$1 = function (tmpIfTest$6, tmpIfTest$7) {
+    const tmpBranchingA$1 = function ($$0, $$1) {
+      let tmpIfTest$6 = $$0;
+      let tmpIfTest$7 = $$1;
+      debugger;
       $(3);
       const tmpReturnArg$3 = tmpBranchingC$1(tmpIfTest$6, tmpIfTest$7);
       return tmpReturnArg$3;
     };
-    const tmpBranchingB$1 = function (tmpIfTest$8, tmpIfTest$9) {
+    const tmpBranchingB$1 = function ($$0, $$1) {
+      let tmpIfTest$8 = $$0;
+      let tmpIfTest$9 = $$1;
+      debugger;
       $(4);
       const tmpReturnArg$4 = tmpBranchingC$1(tmpIfTest$8, tmpIfTest$9);
       return tmpReturnArg$4;
     };
-    const tmpBranchingC$1 = function (tmpIfTest$10, tmpIfTest$11) {
+    const tmpBranchingC$1 = function ($$0, $$1) {
+      let tmpIfTest$10 = $$0;
+      let tmpIfTest$11 = $$1;
+      debugger;
       const tmpReturnArg$2 = $(5);
       return tmpReturnArg$2;
     };
@@ -75,12 +88,16 @@ let f = function () {
       return tmpReturnArg$6;
     }
   };
-  const tmpBranchingB = function (tmpIfTest$4) {
+  const tmpBranchingB = function ($$0) {
+    let tmpIfTest$4 = $$0;
+    debugger;
     $(6);
     const tmpReturnArg$7 = tmpBranchingC(tmpIfTest$4);
     return tmpReturnArg$7;
   };
-  const tmpBranchingC = function (tmpIfTest$5) {
+  const tmpBranchingC = function ($$0) {
+    let tmpIfTest$5 = $$0;
+    debugger;
     const tmpReturnArg$8 = $(7);
     return tmpReturnArg$8;
   };
@@ -102,8 +119,10 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = $(1);
   const tmpBranchingA = function () {
+    debugger;
     const tmpIfTest$3 = $(2);
     if (tmpIfTest$3) {
       $(3);

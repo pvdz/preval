@@ -18,7 +18,9 @@ export const x = $(f());
 ## Pre Normal
 
 `````js filename=intro
-let g = function (x$1) {
+let g = function ($$0) {
+  let x$1 = $$0;
+  debugger;
   return x$1;
 };
 const x = $(f());
@@ -29,7 +31,9 @@ export { g };
 ## Normalized
 
 `````js filename=intro
-let g = function (x$1) {
+let g = function ($$0) {
+  let x$1 = $$0;
+  debugger;
   return x$1;
 };
 const tmpCallCallee = $;
@@ -42,7 +46,9 @@ export { g };
 ## Output
 
 `````js filename=intro
-const g = function (x$1) {
+const g = function ($$0) {
+  const x$1 = $$0;
+  debugger;
   return x$1;
 };
 const tmpCalleeParam = f();

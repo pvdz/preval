@@ -33,7 +33,9 @@ $(tmpReturnArg$11);
 ## Pre Normal
 
 `````js filename=intro
-const tmpBranchingB = function (v) {
+const tmpBranchingB = function ($$0) {
+  let v = $$0;
+  debugger;
   const x = 1 === v;
   if (x) {
     $(0);
@@ -53,26 +55,46 @@ $(tmpReturnArg$11);
 ## Normalized
 
 `````js filename=intro
-const tmpBranchingB = function (v) {
+const tmpBranchingB = function ($$0) {
+  let v = $$0;
+  debugger;
   const x = 1 === v;
-  const tmpBranchingA = function (v$1, x$1) {
+  const tmpBranchingA = function ($$0, $$1) {
+    let v$1 = $$0;
+    let x$1 = $$1;
+    debugger;
     $(0);
     const tmpReturnArg = tmpBranchingC(v$1, x$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB$1 = function (v$2, x$2) {
+  const tmpBranchingB$1 = function ($$0, $$1) {
+    let v$2 = $$0;
+    let x$2 = $$1;
+    debugger;
     const y$1 = 2 === v$2;
-    const tmpBranchingA$1 = function (v$4, x$4, y$2) {
+    const tmpBranchingA$1 = function ($$0, $$1, $$2) {
+      let v$4 = $$0;
+      let x$4 = $$1;
+      let y$2 = $$2;
+      debugger;
       $(1);
       const tmpReturnArg$1 = tmpBranchingC$1(v$4, x$4, y$2);
       return tmpReturnArg$1;
     };
-    const tmpBranchingB$2 = function (v$5, x$5, y$3) {
+    const tmpBranchingB$2 = function ($$0, $$1, $$2) {
+      let v$5 = $$0;
+      let x$5 = $$1;
+      let y$3 = $$2;
+      debugger;
       $(2);
       const tmpReturnArg$2 = tmpBranchingC$1(v$5, x$5, y$3);
       return tmpReturnArg$2;
     };
-    const tmpBranchingC$1 = function (v$6, x$6, y$4) {
+    const tmpBranchingC$1 = function ($$0, $$1, $$2) {
+      let v$6 = $$0;
+      let x$6 = $$1;
+      let y$4 = $$2;
+      debugger;
       const tmpReturnArg$3 = tmpBranchingC(v$6, x$6);
       return tmpReturnArg$3;
     };
@@ -84,7 +106,11 @@ const tmpBranchingB = function (v) {
       return tmpReturnArg$5;
     }
   };
-  const tmpBranchingC = function (v$3, x$3) {};
+  const tmpBranchingC = function ($$0, $$1) {
+    let v$3 = $$0;
+    let x$3 = $$1;
+    debugger;
+  };
   if (x) {
     const tmpReturnArg$6 = tmpBranchingA(v, x);
     return tmpReturnArg$6;
@@ -100,9 +126,13 @@ $(tmpReturnArg$11);
 ## Output
 
 `````js filename=intro
-const tmpBranchingB = function (v) {
+const tmpBranchingB = function ($$0) {
+  const v = $$0;
+  debugger;
   const x = 1 === v;
-  const tmpBranchingB$1 = function (v$2) {
+  const tmpBranchingB$1 = function ($$0) {
+    const v$2 = $$0;
+    debugger;
     const y$1 = 2 === v$2;
     if (y$1) {
       $(1);

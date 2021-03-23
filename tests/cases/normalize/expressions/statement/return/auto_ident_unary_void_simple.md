@@ -25,6 +25,7 @@ $(a, arg);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return void arg;
 };
 let arg = 1;
@@ -37,6 +38,7 @@ $(a, arg);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpReturnArg = undefined;
   return tmpReturnArg;
 };

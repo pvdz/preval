@@ -17,8 +17,10 @@ const f = (a = { x } = 1) => { return a };
 ## Pre Normal
 
 `````js filename=intro
-const f = (tmpParamDefault) => {
-  let a = tmpParamDefault === undefined ? ({ x } = 1) : tmpParamDefault;
+const f = ($$0) => {
+  const tmpParamBare = $$0;
+  debugger;
+  let a = tmpParamBare === undefined ? ({ x } = 1) : tmpParamBare;
   return a;
 };
 `````
@@ -26,16 +28,18 @@ const f = (tmpParamDefault) => {
 ## Normalized
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let a = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpNestedAssignObjPatternRhs = 1;
     x = tmpNestedAssignObjPatternRhs.x;
     a = tmpNestedAssignObjPatternRhs;
     return a;
   } else {
-    a = tmpParamDefault;
+    a = tmpParamBare;
     return a;
   }
 };

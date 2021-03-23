@@ -27,6 +27,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let b = { c: 1 };
     let a = { a: 999, b: 1000 };
@@ -41,6 +42,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = { c: 1 };
   let a = { a: 999, b: 1000 };
   const tmpCompObj = $(b);

@@ -29,12 +29,15 @@ $(a, b, d);
 let a = 1;
 let b = {
   get c() {
+    debugger;
     $('b.get');
     b = undefined;
     d = undefined;
     return 5;
   },
-  set c(x) {
+  set c($$0) {
+    let x = $$0;
+    debugger;
     $('b.set');
     b = null;
     d = null;
@@ -52,12 +55,15 @@ $(a, b, d);
 let a = 1;
 let b = {
   get c() {
+    debugger;
     $('b.get');
     b = undefined;
     d = undefined;
     return 5;
   },
-  set c(x) {
+  set c($$0) {
+    let x = $$0;
+    debugger;
     $('b.set');
     b = null;
     d = null;
@@ -76,12 +82,14 @@ $(a, b, d);
 `````js filename=intro
 let b = {
   get c() {
+    debugger;
     $('b.get');
     b = undefined;
     d = undefined;
     return 5;
   },
-  set c(x) {
+  set c($$0) {
+    debugger;
     $('b.set');
     b = null;
     d = null;

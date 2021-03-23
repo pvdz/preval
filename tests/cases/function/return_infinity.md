@@ -19,6 +19,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return Infinity;
 };
 $(f());
@@ -28,6 +29,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return Infinity;
 };
 const tmpCallCallee = $;

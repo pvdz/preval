@@ -18,6 +18,7 @@ export default function() { return $(2); }
 `````js filename=intro
 $(1);
 const tmpAnonDefaultExport = function () {
+  debugger;
   return $(2);
 };
 export { tmpAnonDefaultExport as default };
@@ -28,6 +29,7 @@ export { tmpAnonDefaultExport as default };
 `````js filename=intro
 $(1);
 const tmpAnonDefaultExport = function () {
+  debugger;
   const tmpReturnArg = $(2);
   return tmpReturnArg;
 };
@@ -39,6 +41,7 @@ export { tmpAnonDefaultExport as default };
 `````js filename=intro
 $(1);
 const tmpAnonDefaultExport = function () {
+  debugger;
   const tmpReturnArg = $(2);
   return tmpReturnArg;
 };

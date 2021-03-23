@@ -27,6 +27,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   for (let x in { a: 1, b: 2 }) {
     throw $(1, 'throw');
     $('fail');
@@ -40,6 +41,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpForInDeclRhs = { a: 1, b: 2 };
   let x;
   for (x in tmpForInDeclRhs) {

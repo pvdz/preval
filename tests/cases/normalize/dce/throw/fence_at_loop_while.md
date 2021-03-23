@@ -32,6 +32,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   while ($(true)) {
     $('loop');
     while ($(true)) {
@@ -50,6 +51,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {

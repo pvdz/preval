@@ -22,6 +22,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = 1,
     b = 2,
     c = 3;
@@ -34,21 +35,37 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = 1;
   let b = 2;
   let c = 3;
   let tmpReturnArg = undefined;
-  const tmpBranchingA = function (a$1, b$1, c$1, tmpReturnArg$1) {
+  const tmpBranchingA = function ($$0, $$1, $$2, $$3) {
+    let a$1 = $$0;
+    let b$1 = $$1;
+    let c$1 = $$2;
+    let tmpReturnArg$1 = $$3;
+    debugger;
     tmpReturnArg$1 = b$1;
     const tmpReturnArg$4 = tmpBranchingC(a$1, b$1, c$1, tmpReturnArg$1);
     return tmpReturnArg$4;
   };
-  const tmpBranchingB = function (a$2, b$2, c$2, tmpReturnArg$2) {
+  const tmpBranchingB = function ($$0, $$1, $$2, $$3) {
+    let a$2 = $$0;
+    let b$2 = $$1;
+    let c$2 = $$2;
+    let tmpReturnArg$2 = $$3;
+    debugger;
     tmpReturnArg$2 = c$2;
     const tmpReturnArg$5 = tmpBranchingC(a$2, b$2, c$2, tmpReturnArg$2);
     return tmpReturnArg$5;
   };
-  const tmpBranchingC = function (a$3, b$3, c$3, tmpReturnArg$3) {
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
+    let a$3 = $$0;
+    let b$3 = $$1;
+    let c$3 = $$2;
+    let tmpReturnArg$3 = $$3;
+    debugger;
     return tmpReturnArg$3;
   };
   if (a) {

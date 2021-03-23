@@ -30,7 +30,7 @@ let a = { a: 999, b: 1000 };
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a = this;
+      a = undefined;
     }
   }
 }
@@ -45,7 +45,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
-  a = this;
+  a = undefined;
 }
 $(a);
 `````
@@ -54,8 +54,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const SSA_a = this;
-$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

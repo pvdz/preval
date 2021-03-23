@@ -25,6 +25,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = { b } = $({ b: $(2) }));
 };
 let b = {};
@@ -37,6 +38,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpCallCallee = $;
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };

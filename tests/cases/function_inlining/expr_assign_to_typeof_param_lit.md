@@ -24,7 +24,10 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  let g = function (a) {
+  debugger;
+  let g = function ($$0) {
+    let a = $$0;
+    debugger;
     a = typeof 10;
   };
   g();
@@ -36,7 +39,10 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  let g = function (a) {
+  debugger;
+  let g = function ($$0) {
+    let a = $$0;
+    debugger;
     a = 'number';
   };
   g();

@@ -22,6 +22,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   throw $(5, 'ret');
   $('fail');
 };
@@ -32,6 +33,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpThrowArg = $(5, 'ret');
   throw tmpThrowArg;
 };

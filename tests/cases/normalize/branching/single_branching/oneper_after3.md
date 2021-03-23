@@ -41,6 +41,7 @@ A();
 
 `````js filename=intro
 const A = function () {
+  debugger;
   const x = $();
   if (x) {
     const tmp = B();
@@ -51,11 +52,13 @@ const A = function () {
   }
 };
 const B = function () {
+  debugger;
   $();
   const tmp$2 = C();
   return tmp$2;
 };
 const C = function () {
+  debugger;
   const x$1 = $();
   if (x$1) {
     const tmp$3 = $();
@@ -69,6 +72,7 @@ A();
 
 `````js filename=intro
 const A = function () {
+  debugger;
   const x = $();
   if (x) {
     const tmp = B();
@@ -79,11 +83,13 @@ const A = function () {
   }
 };
 const B = function () {
+  debugger;
   $();
   const tmp$2 = C();
   return tmp$2;
 };
 const C = function () {
+  debugger;
   const x$1 = $();
   if (x$1) {
     const tmp$3 = $();
@@ -97,6 +103,7 @@ A();
 
 `````js filename=intro
 const B = function () {
+  debugger;
   $();
   const x$1 = $();
   if (x$1) {

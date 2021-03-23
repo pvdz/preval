@@ -20,7 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-label: a = function f() {};
+label: a = function f() {
+  debugger;
+};
 $(a);
 `````
 
@@ -28,14 +30,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = function f() {};
+a = function f() {
+  debugger;
+};
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const SSA_a = function f() {};
+const SSA_a = function f() {
+  debugger;
+};
 $(SSA_a);
 `````
 

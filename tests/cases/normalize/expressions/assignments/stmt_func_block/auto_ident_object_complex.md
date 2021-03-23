@@ -25,6 +25,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let a = { a: 999, b: 1000 };
     a = { x: $(1), y: 2, z: $(3) };
@@ -38,6 +39,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = { a: 999, b: 1000 };
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$1 = 2;

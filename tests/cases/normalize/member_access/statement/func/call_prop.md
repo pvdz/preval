@@ -19,6 +19,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $('foo').length;
 };
 $(f());
@@ -28,6 +29,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpCompObj = $('foo');
   tmpCompObj.length;
 };

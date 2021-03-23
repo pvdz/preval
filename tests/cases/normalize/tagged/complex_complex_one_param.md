@@ -32,7 +32,9 @@ f`abc ${ $(10) } ${ $(20) } def`;
 ## Pre Normal
 
 `````js filename=intro
-let f = function (x) {
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
   return x;
 };
 f`abc ${$(10)} ${$(20)} def`;
@@ -41,7 +43,9 @@ f`abc ${$(10)} ${$(20)} def`;
 ## Normalized
 
 `````js filename=intro
-let f = function (x) {
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
   return x;
 };
 const tmpCallCallee = f;

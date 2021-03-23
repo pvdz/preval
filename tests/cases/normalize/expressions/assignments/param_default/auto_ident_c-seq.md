@@ -22,8 +22,10 @@ $(a, x);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let p = tmpParamDefault === undefined ? (a = ($(1), $(2), $(x))) : tmpParamDefault;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let p = tmpParamBare === undefined ? (a = ($(1), $(2), $(x))) : tmpParamBare;
 };
 let x = 1;
 let a = { a: 999, b: 1000 };
@@ -34,9 +36,11 @@ $(a, x);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let p = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     $(1);
     $(2);
@@ -44,7 +48,7 @@ let f = function (tmpParamDefault) {
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
-    p = tmpParamDefault;
+    p = tmpParamBare;
   }
 };
 let x = 1;
@@ -58,8 +62,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  const tmpIfTest = tmpParamDefault === undefined;
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     $(1);
     $(2);

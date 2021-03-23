@@ -23,7 +23,9 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  return (a = arguments);
+  const tmpArgumentsAny = arguments;
+  debugger;
+  return (a = tmpArgumentsAny);
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -34,8 +36,9 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  a = tmpPrevalAliasArgumentsAny;
+  const tmpArgumentsAny = arguments;
+  debugger;
+  a = tmpArgumentsAny;
   let tmpReturnArg = a;
   return tmpReturnArg;
 };
@@ -50,8 +53,9 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  a = tmpPrevalAliasArgumentsAny;
+  const tmpArgumentsAny = arguments;
+  debugger;
+  a = tmpArgumentsAny;
   const tmpReturnArg = a;
   return tmpReturnArg;
 };

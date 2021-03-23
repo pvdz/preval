@@ -21,7 +21,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let xyz = (a = function () {});
+  let xyz = (a = function () {
+    debugger;
+  });
   while (true) {
     $(xyz);
     $(1);
@@ -34,7 +36,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = function () {};
+a = function () {
+  debugger;
+};
 let xyz = a;
 while (true) {
   $(xyz);
@@ -46,7 +50,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {};
+const SSA_a = function () {
+  debugger;
+};
 while (true) {
   $(SSA_a);
   $(1);

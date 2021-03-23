@@ -22,7 +22,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-(function f() {}['a']);
+(function f() {
+  debugger;
+}['a']);
 $(a);
 `````
 
@@ -31,7 +33,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-const tmpCompObj = function f() {};
+const tmpCompObj = function f() {
+  debugger;
+};
 tmpCompObj.a;
 $(a);
 `````
@@ -40,7 +44,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCompObj = function f() {};
+const tmpCompObj = function f() {
+  debugger;
+};
 tmpCompObj.a;
 $(a);
 `````

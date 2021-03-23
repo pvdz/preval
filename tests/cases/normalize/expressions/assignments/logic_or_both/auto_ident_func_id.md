@@ -20,7 +20,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$((a = function f() {}) || (a = function f$1() {}));
+$(
+  (a = function f() {
+    debugger;
+  }) ||
+    (a = function f$1() {
+      debugger;
+    }),
+);
 $(a);
 `````
 
@@ -29,11 +36,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = function f() {};
+a = function f() {
+  debugger;
+};
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  const tmpNestedComplexRhs = function f$1() {};
+  const tmpNestedComplexRhs = function f$1() {
+    debugger;
+  };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -44,11 +55,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = function f() {};
+let SSA_a = function f() {
+  debugger;
+};
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
-  const tmpNestedComplexRhs = function f$1() {};
+  const tmpNestedComplexRhs = function f$1() {
+    debugger;
+  };
   SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

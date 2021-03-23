@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-obj[(a = this)];
+obj[(a = undefined)];
 $(a);
 `````
 
@@ -34,7 +34,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-a = this;
+a = undefined;
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
@@ -44,9 +44,8 @@ $(a);
 
 `````js filename=intro
 const obj = {};
-const SSA_a = this;
-obj[SSA_a];
-$(SSA_a);
+obj[undefined];
+$(undefined);
 `````
 
 ## Globals

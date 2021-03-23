@@ -20,7 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-throw (a = function () {});
+throw (a = function () {
+  debugger;
+});
 $(a);
 `````
 
@@ -28,7 +30,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = function () {};
+a = function () {
+  debugger;
+};
 let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
@@ -36,7 +40,9 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {};
+const SSA_a = function () {
+  debugger;
+};
 throw SSA_a;
 `````
 

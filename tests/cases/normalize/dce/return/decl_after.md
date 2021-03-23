@@ -28,6 +28,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if ($(false)) x = $('fail too');
   return;
   let x = $('fail');
@@ -39,17 +40,24 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $(false);
-  const tmpBranchingA = function (tmpIfTest$1) {
+  const tmpBranchingA = function ($$0) {
+    let tmpIfTest$1 = $$0;
+    debugger;
     x = $('fail too');
     const tmpReturnArg = tmpBranchingC(tmpIfTest$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (tmpIfTest$2) {
+  const tmpBranchingB = function ($$0) {
+    let tmpIfTest$2 = $$0;
+    debugger;
     const tmpReturnArg$1 = tmpBranchingC(tmpIfTest$2);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (tmpIfTest$3) {
+  const tmpBranchingC = function ($$0) {
+    let tmpIfTest$3 = $$0;
+    debugger;
     return undefined;
     let x$1 = $('fail');
   };
@@ -70,6 +78,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = $(false);
   if (tmpIfTest) {
     x = $('fail too');

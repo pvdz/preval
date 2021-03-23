@@ -25,7 +25,7 @@
 `````js filename=intro
 {
   let a = { a: 999, b: 1000 };
-  a = this;
+  a = undefined;
   $(a);
 }
 `````
@@ -34,15 +34,14 @@
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = this;
+a = undefined;
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const SSA_a = this;
-$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

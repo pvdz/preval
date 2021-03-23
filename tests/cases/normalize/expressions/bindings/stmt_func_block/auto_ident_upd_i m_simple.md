@@ -26,6 +26,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let b = 1;
     let a = b--;
@@ -39,6 +40,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = 1;
   const tmpPostUpdArgIdent = b;
   b = b - 1;

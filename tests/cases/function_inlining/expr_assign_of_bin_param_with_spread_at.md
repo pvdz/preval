@@ -31,7 +31,11 @@ $(x);
 
 `````js filename=intro
 let f = function () {
-  let g = function (a, b) {
+  debugger;
+  let g = function ($$0, $$1) {
+    let a = $$0;
+    let b = $$1;
+    debugger;
     x = a * b;
   };
   const arr = $([1, 2, 3]);
@@ -46,7 +50,11 @@ $(x);
 
 `````js filename=intro
 let f = function () {
-  let g = function (a, b) {
+  debugger;
+  let g = function ($$0, $$1) {
+    let a = $$0;
+    let b = $$1;
+    debugger;
     x = a * b;
   };
   const tmpCallCallee = $;
@@ -63,7 +71,10 @@ $(x);
 
 `````js filename=intro
 let x = 0;
-const g = function (a, b) {
+const g = function ($$0, $$1) {
+  const a = $$0;
+  const b = $$1;
+  debugger;
   x = a * b;
 };
 const tmpCalleeParam = [1, 2, 3];

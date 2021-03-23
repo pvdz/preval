@@ -20,8 +20,11 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let p = tmpParamDefault === undefined ? (a = arguments) : tmpParamDefault;
+let f = function ($$0) {
+  const tmpArgumentsAny = arguments;
+  const tmpParamBare = $$0;
+  debugger;
+  let p = tmpParamBare === undefined ? (a = tmpArgumentsAny) : tmpParamBare;
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -31,15 +34,17 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  const tmpPrevalAliasArgumentsAny = arguments;
+let f = function ($$0) {
+  const tmpArgumentsAny = arguments;
+  const tmpParamBare = $$0;
+  debugger;
   let p = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    a = tmpPrevalAliasArgumentsAny;
-    p = tmpPrevalAliasArgumentsAny;
+    a = tmpArgumentsAny;
+    p = tmpArgumentsAny;
   } else {
-    p = tmpParamDefault;
+    p = tmpParamBare;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -52,11 +57,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  const tmpIfTest = tmpParamDefault === undefined;
+const f = function ($$0) {
+  const tmpArgumentsAny = arguments;
+  const tmpParamBare = $$0;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    a = tmpPrevalAliasArgumentsAny;
+    a = tmpArgumentsAny;
   }
 };
 let a = { a: 999, b: 1000 };

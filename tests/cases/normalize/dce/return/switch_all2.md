@@ -28,6 +28,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpSwitchValue = 1;
   tmpSwitchBreak: {
     return;
@@ -41,11 +42,17 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  const tmpBranchingC = function () {};
-  const tmpLabeledBlockFunc = function () {
-    const tmpSwitchValue$1 = 1;
+  debugger;
+  const tmpSwitchValue = 1;
+  const tmpLabeledBlockFunc = function ($$0) {
+    let tmpSwitchValue$2 = $$0;
+    debugger;
   };
-  const tmpReturnArg = tmpLabeledBlockFunc();
+  const tmpAfterLabel = function ($$0) {
+    let tmpSwitchValue$1 = $$0;
+    debugger;
+  };
+  const tmpReturnArg = tmpLabeledBlockFunc(tmpSwitchValue);
   return tmpReturnArg;
 };
 const tmpCallCallee = $;

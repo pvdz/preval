@@ -1,6 +1,22 @@
 // Find functions that are only used in a call and only once and inline it if all other conditions are met
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
+import {
+  ASSERT,
+  log,
+  group,
+  groupEnd,
+  vlog,
+  vgroup,
+  vgroupEnd,
+  rule,
+  example,
+  before,
+  source,
+  after,
+  fmat,
+  tmat,
+  findBodyOffset,
+} from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
@@ -90,7 +106,7 @@ function _inlineOneTimeFunctions(fdata) {
 
     // So this function is a constant and is only used in a call
     // Is there a rest? If so let's bail for now. We can partially support that later.
-    if (params[params.length - 1]?.type === 'RestElement') {
+    if (params[params.length - 1]?.rest) {
       vlog('Param contains rest. Bailing for now');
       return;
     }
@@ -118,9 +134,7 @@ function _inlineOneTimeFunctions(fdata) {
       return;
     }
 
-    if (
-      funcNode.body.body[funcNode.body.body.length - 1]?.type === 'IfStatement' && read.grandNode.type === 'VariableDeclarator'
-    ) {
+    if (funcNode.body.body[funcNode.body.body.length - 1]?.type === 'IfStatement' && read.grandNode.type === 'VariableDeclarator') {
       // In this case the call site is a var decl and the function ends with an if-else branch.
       // If we were to inline this then we would end up with potentially two var decls and an unknown tail.
       // While this would be normalized just fine, it would lead to two identifiers being declared with the
@@ -191,7 +205,7 @@ function _inlineOneTimeFunctions(fdata) {
     // The function decls are set to an empty statement and do not change any indexes.
     vlog('');
     queue.forEach(({ funcNode, read, write }, i) => {
-      vlog('-', i, '; Starting to inline next one-time called function in the queue')
+      vlog('-', i, '; Starting to inline next one-time called function in the queue');
 
       if (funcNode.$p.oneTimerDirty) {
         ASSERT(inlined > 0, 'must have inlined one already for this state to be set');
@@ -224,7 +238,7 @@ function _inlineOneTimeFunctions(fdata) {
       // - inject all statements of the function (except the last return statement, if any) before the call
 
       vlog('Injecting let assignments for each param, initializing them to the argument value');
-      vlog('- Param names:', params.map((pnode) => pnode.name).join(', '));
+      vlog('- Param names:', params.map((pnode) => pnode.name + '>' + (pnode.$p.ref?.name ?? '<unused>')).join(', '));
 
       // Must now inject a const for each param name, with the init being the arg at the same index.
       // We can't just inline-replace them because it is possible to assign to param names and if
@@ -232,12 +246,21 @@ function _inlineOneTimeFunctions(fdata) {
       // `function f(a){$(a); a=10; $(a);} f(2)`
       // If we replace then it becomes `$(2); a=10; $(2);`, which is not the same as `const x=2; $(x); x=10; $(x);`
       // The constants will be SSA'd or eliminated entirely by other rules.
-      funcNode.body.body.unshift(
-        ...params.map((pnode, pi) => {
-          // The lets will promote to a const in most cases, followed by elimination of some kind. Not always.
-          return AST.variableDeclaration(pnode.name, args[pi], 'let');
-        }),
+
+      const bodyOffset = findBodyOffset(funcNode);
+      funcNode.body.body.splice(
+        bodyOffset,
+        0,
+        ...params
+          .map((pnode, pi) => {
+            ASSERT(pnode.type === 'Param' && !pnode.rest);
+            // The lets will promote to a const in most cases, followed by elimination of some kind. Not always.
+            if (!pnode.$p.ref) return null;
+            return AST.variableDeclaration(pnode.$p.ref?.name, args[pi] || 'undefined', 'let');
+          })
+          .filter((n) => !!n),
       );
+
       vlog('After adding the lets:');
       source(funcNode);
 
@@ -277,11 +300,12 @@ function _inlineOneTimeFunctions(fdata) {
           const oldName = varNode.declarations[0].id.name; // Very likely an artifact name but whatever
           const returnNode = read.blockBody[read.blockIndex + 1];
           ASSERT(
-            varNode.type === 'VariableDeclaration' &&
-            returnNode.type === 'ReturnStatement' &&
-            returnNode.argument.name === oldName,
+            varNode.type === 'VariableDeclaration' && returnNode.type === 'ReturnStatement' && returnNode.argument.name === oldName,
             'right now this is the only edge case for var decls so if that changes, the branching logic needs to be checked into as well',
-            varNode, returnNode, returnNode.argument.name , oldName,
+            varNode,
+            returnNode,
+            returnNode.argument.name,
+            oldName,
           );
           vlog('The call is init to a const binding that is returned immediately. Special handling required.');
           // Note: This is `const r = f(); return r; function f() { if (x) return 10; else return 20; }`
@@ -302,14 +326,8 @@ function _inlineOneTimeFunctions(fdata) {
           const tmpNameA = createFreshVar(oldName, fdata);
           const tmpNameB = createFreshVar(oldName, fdata);
           // Make sure the injected code is still normalized and that the binding names are unique
-          lastNode.consequent.body.push(
-            AST.variableDeclaration(tmpNameA, ifRetArg, 'const'),
-            AST.returnStatement(tmpNameA)
-          )
-          lastNode.alternate.body.push(
-            AST.variableDeclaration(tmpNameB, elseRetArg, 'const'),
-            AST.returnStatement(tmpNameB)
-          )
+          lastNode.consequent.body.push(AST.variableDeclaration(tmpNameA, ifRetArg, 'const'), AST.returnStatement(tmpNameA));
+          lastNode.alternate.body.push(AST.variableDeclaration(tmpNameB, elseRetArg, 'const'), AST.returnStatement(tmpNameB));
 
           // Remove the var decl and return statement
           read.blockBody[read.blockIndex] = AST.emptyStatement();
@@ -374,7 +392,7 @@ function _inlineOneTimeFunctions(fdata) {
       }
 
       write.blockBody[write.blockIndex] = AST.emptyStatement();
-      read.blockBody.splice(read.blockIndex, 0, ...funcBody);
+      read.blockBody.splice(read.blockIndex, 0, ...funcBody.slice(bodyOffset));
 
       vlog('write block body:');
       after(write.parentNode);

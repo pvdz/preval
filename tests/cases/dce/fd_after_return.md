@@ -25,8 +25,11 @@ $(f(1));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (x) {
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
   let g = function () {
+    debugger;
     return $();
   };
   return g();
@@ -37,8 +40,11 @@ $(f(1));
 ## Normalized
 
 `````js filename=intro
-let f = function (x) {
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
   let g = function () {
+    debugger;
     const tmpReturnArg = $();
     return tmpReturnArg;
   };
@@ -53,8 +59,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpReturnArg$1 = $();
-$(tmpReturnArg$1);
+const tmpCalleeParam = $();
+$(tmpCalleeParam);
 `````
 
 ## Globals

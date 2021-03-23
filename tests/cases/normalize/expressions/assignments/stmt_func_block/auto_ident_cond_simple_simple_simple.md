@@ -25,6 +25,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let a = { a: 999, b: 1000 };
     a = 1 ? 2 : $($(100));
@@ -38,6 +39,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = { a: 999, b: 1000 };
   a = 2;
   $(a);

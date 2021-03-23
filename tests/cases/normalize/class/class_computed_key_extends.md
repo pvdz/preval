@@ -41,15 +41,19 @@ let s = String;
 const y = 'y';
 let x = class extends $(s) {
   [$('f')]() {
+    debugger;
     return $(100, 'method');
   }
   g() {
+    debugger;
     return $(200, 'method');
   }
   [((s = Number), 'x')]() {
+    debugger;
     return $(300, 'method');
   }
   [y]() {
+    debugger;
     return $(400, 'method');
   }
 };
@@ -70,18 +74,22 @@ s = Number;
 const tmpClassComputedKey$1 = 'x';
 let x = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
+    debugger;
     const tmpReturnArg = $(100, 'method');
     return tmpReturnArg;
   }
   g() {
+    debugger;
     const tmpReturnArg$1 = $(200, 'method');
     return tmpReturnArg$1;
   }
   [tmpClassComputedKey$1]() {
+    debugger;
     const tmpReturnArg$2 = $(300, 'method');
     return tmpReturnArg$2;
   }
   [y]() {
+    debugger;
     const tmpReturnArg$3 = $(400, 'method');
     return tmpReturnArg$3;
   }
@@ -111,18 +119,22 @@ const tmpClassSuper = $(String);
 const tmpClassComputedKey = $('f');
 const x = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
+    debugger;
     const tmpReturnArg = $(100, 'method');
     return tmpReturnArg;
   }
   g() {
+    debugger;
     const tmpReturnArg$1 = $(200, 'method');
     return tmpReturnArg$1;
   }
   ['x']() {
+    debugger;
     const tmpReturnArg$2 = $(300, 'method');
     return tmpReturnArg$2;
   }
   ['y']() {
+    debugger;
     const tmpReturnArg$3 = $(400, 'method');
     return tmpReturnArg$3;
   }

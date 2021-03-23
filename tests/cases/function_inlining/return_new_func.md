@@ -24,9 +24,12 @@ $(f(), 'outer');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return new g(10);
 };
-let g = function (a) {
+let g = function ($$0) {
+  let a = $$0;
+  debugger;
   return $(a, 'g');
 };
 $(f(), 'outer');
@@ -36,10 +39,13 @@ $(f(), 'outer');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpReturnArg = new g(10);
   return tmpReturnArg;
 };
-let g = function (a) {
+let g = function ($$0) {
+  let a = $$0;
+  debugger;
   const tmpReturnArg$1 = $(a, 'g');
   return tmpReturnArg$1;
 };
@@ -52,7 +58,9 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const g = function (a) {
+const g = function ($$0) {
+  const a = $$0;
+  debugger;
   const tmpReturnArg$1 = $(a, 'g');
   return tmpReturnArg$1;
 };

@@ -26,14 +26,16 @@ $(f([{ x: { x: 13, y: [1, 2, 3], z: 31 }, y: 11 }, 10], 100));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let [
     {
       x: {
         y: [],
       },
     },
-  ] = tmpParamPattern;
+  ] = tmpParamBare;
   return 'ok';
 };
 $(f([{ x: { x: 13, y: [1, 2, 3], z: 31 }, y: 11 }, 10], 100));
@@ -42,8 +44,10 @@ $(f([{ x: { x: 13, y: [1, 2, 3], z: 31 }, y: 11 }, 10], 100));
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let bindingPatternArrRoot = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternArrRoot = tmpParamBare;
   let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternNoDefault = arrPatternStep.x;

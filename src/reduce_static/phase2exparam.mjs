@@ -28,6 +28,7 @@ function _pruneExcessiveParams(fdata) {
       vlog('  - not a function');
       return;
     }
+    ASSERT(meta.writes.length === 1);
     if (funcNode.$p.readsArgumentsLen || funcNode.$p.readsArgumentsAny) {
       // If the function reads `arguments` then we won't bother messing with unused parameters at all.
       vlog('  - reads `arguments` so we ignore it');
@@ -39,7 +40,6 @@ function _pruneExcessiveParams(fdata) {
     // If there's a read that is not a call then the function may "go rogue" and we ignore it here.
     // If any call uses spread then we cannot analyze any param in that index or later safely.
     // (For now let's just bail entirely?)
-    ASSERT(meta.writes.length === 1);
     if (
       meta.reads.every((read) => {
         const callNode = read.parentNode;
@@ -64,66 +64,62 @@ function _pruneExcessiveParams(fdata) {
       //   - We cannot process args from a RestElement onward
       //   - We cannot do this if the func accesses `arguments` (it does not)
       const params = funcNode.params;
-      //const restAt = params.findIndex((n) => n.type === 'RestElement');
       ASSERT(params);
       params.some((pnode, pi) => {
-        vlog('    - checking param', pi, ': `' + (pnode.name ?? pnode.argument.name) + '`');
-        ASSERT(pnode.type === 'Identifier' || (pnode.type === 'RestElement' && pnode.argument.type === 'Identifier'));
+        vlog(
+          '    - checking param',
+          pi,
+          ': `' + (pnode.name ?? pnode.argument.name) + '`' + (pnode.$p.ref ? ' (`' + pnode.$p.ref.name + '`)' : '(unused)'),
+        );
+        ASSERT(pnode.type === 'Param');
         // If this param has no reads then for all calls to the function, eliminate that index
         // Stop at rest parameters
-        if (pnode.type === 'RestElement') {
+        if (pnode.rest) {
           vlog('      - is rest param');
           // Stop.
           return true;
         }
         vlog('      - not rest param');
 
-        ASSERT(pnode.type === 'Identifier');
-        const pmeta = fdata.globallyUniqueNamingRegistry.get(pnode.name);
-        vlog('      - This param has', pmeta.reads.length, 'reads and', pmeta.writes.length, 'writes');
-        if (pmeta.reads.length === 0) {
-          // If the parameter value is not actually used...
-          vlog(
-            '      - Parameter',
-            pi,
-            'of function',
-            name,
-            'is unused and all usages of the function are calls. Now queueing this index to be dropped from all call args.',
+        if (pnode.$p.ref) {
+          vlog('Parameter has a reference so it is used');
+          ASSERT(
+            fdata.globallyUniqueNamingRegistry.get(pnode.$p.ref.name).reads.length > 0,
+            'a param that is used must have at least one read, can not have only writes (another step would eliminate that)',
           );
-
-          indexDeleteQueue.push([params, pi]);
-
-          if (pmeta.writes.length > 1) {
-            vlog('      - parameter has multiple writes. Queuing them for deletion.');
-            // Replace other assignments with expression statements of the .right
-            // This should not have the potential to break references relevant to this sub-step
-            for (let i = 1; i < pmeta.writes.length; ++i) {
-              log('Queueing a write for deletion');
-              const write = pmeta.writes[i];
-              assignFoldQueue.push(write.assign);
-            }
-          }
-
-          // We asserted above that all these nodes are calls
-          vlog('      - Walking the param reads');
-          meta.reads.forEach((read) => {
-            vlog('      - dropping call arg from read');
-            const callNode = read.parentNode;
-            // Since we're normalized, all args should already be simple nodes. We should be
-            // able to drop them without the need to outline them first. Does ruin the meta registry.
-            // Queue the deletion. By unwinding the queue in reverse order we won't screw up
-            // indexing. It should not be possible to queue deletion for the same param/arg twice.
-            indexDeleteQueue.push([callNode['arguments'], pi]);
-            //if (restAt < 0) {
-            //  if (callNode['arguments'].length > funcNode.params.length) {
-            //    callNode['arguments'].length = funcNode.params.length;
-            //  } else if (callNode['arguments'].length < funcNode.params.length) {
-            //    // Append `undefined` for each missing element. I think?
-            //    // TODO
-            //  }
-            //}
-          });
+          return;
         }
+
+        // If the parameter value is not actually used...
+        vlog(
+          '      - Parameter',
+          pi,
+          'of function `' +
+            name +
+            '` is unused and all usages of the function are calls. Now queueing this index to be dropped from all call args.',
+        );
+
+        indexDeleteQueue.push([params, pi, funcNode]);
+
+        // We asserted above that all these nodes are calls
+        vlog('      - Walking the param reads');
+        meta.reads.forEach((read) => {
+          vlog('      - dropping call arg from read');
+          const callNode = read.parentNode;
+          // Since we're normalized, all args should already be simple nodes. We should be
+          // able to drop them without the need to outline them first. Does ruin the meta registry.
+          // Queue the deletion. By unwinding the queue in reverse order we won't screw up
+          // indexing. It should not be possible to queue deletion for the same param/arg twice.
+          indexDeleteQueue.push([callNode['arguments'], pi]);
+          //if (restAt < 0) {
+          //  if (callNode['arguments'].length > funcNode.params.length) {
+          //    callNode['arguments'].length = funcNode.params.length;
+          //  } else if (callNode['arguments'].length < funcNode.params.length) {
+          //    // Append `undefined` for each missing element. I think?
+          //    // TODO
+          //  }
+          //}
+        });
       });
     }
   });
@@ -149,8 +145,36 @@ function _pruneExcessiveParams(fdata) {
         after(assignParent[assignProp]);
       }
     });
-    indexDeleteQueue.reverse().forEach(([arr, index]) => {
-      arr.splice(index, 1);
+    indexDeleteQueue.reverse().forEach(([arr, index, funcNode]) => {
+      // Note: if arr is the arguments array then there may not be as many arguments to cover the param so it may be undefined
+      if (index < arr.length) {
+        const isParam = arr[index].type === 'Param';
+        arr.splice(index, 1);
+        if (isParam) {
+          vlog('- Have to update the name of all following parameters and their ref');
+          for (let i = index; i < arr.length; ++i) {
+            arr[i].name = '$$' + i;
+            arr[i].index = i;
+            if (arr[i].$p.ref) {
+              arr[i].$p.ref.node.name = '$$' + i;
+              arr[i].$p.ref.node.index = i;
+            }
+          }
+
+          // Cleanup empty statements due to param elimination in the header.
+          // This preserves the property that the DebuggerStatement can be found at max params+2 elements from the start.
+          const body = funcNode.body.body;
+          for (let i = 0; i < body.length; ++i) {
+            const n = body[i];
+            if (n.type === 'EmptyStatement') {
+              body.splice(i, 1);
+              --i;
+            } else if (n.type === 'DebugerStatement') {
+              break;
+            }
+          }
+        }
+      }
     });
     log('Dropped', indexDeleteQueue.length, 'indexes and folded', assignFoldQueue.length, 'assigns, so restarting phase1');
     return 'phase1';

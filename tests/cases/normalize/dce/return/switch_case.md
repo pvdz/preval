@@ -25,6 +25,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     const tmpSwitchValue = $(1, 'disc');
     let tmpSwitchCaseToStart = 1;
@@ -45,20 +46,36 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpSwitchValue = $(1, 'disc');
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(1, 'case');
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingA = function (tmpSwitchValue$1, tmpSwitchCaseToStart$1, tmpBinLhs$1, tmpIfTest$1) {
+  const tmpBranchingA = function ($$0, $$1, $$2, $$3) {
+    let tmpSwitchValue$1 = $$0;
+    let tmpSwitchCaseToStart$1 = $$1;
+    let tmpBinLhs$1 = $$2;
+    let tmpIfTest$1 = $$3;
+    debugger;
     tmpSwitchCaseToStart$1 = 0;
     const tmpReturnArg = tmpBranchingC(tmpSwitchValue$1, tmpSwitchCaseToStart$1, tmpBinLhs$1, tmpIfTest$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (tmpSwitchValue$2, tmpSwitchCaseToStart$2, tmpBinLhs$2, tmpIfTest$2) {
+  const tmpBranchingB = function ($$0, $$1, $$2, $$3) {
+    let tmpSwitchValue$2 = $$0;
+    let tmpSwitchCaseToStart$2 = $$1;
+    let tmpBinLhs$2 = $$2;
+    let tmpIfTest$2 = $$3;
+    debugger;
     const tmpReturnArg$1 = tmpBranchingC(tmpSwitchValue$2, tmpSwitchCaseToStart$2, tmpBinLhs$2, tmpIfTest$2);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$3) {
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
+    let tmpSwitchValue$3 = $$0;
+    let tmpSwitchCaseToStart$3 = $$1;
+    let tmpBinLhs$3 = $$2;
+    let tmpIfTest$3 = $$3;
+    debugger;
     const tmpIfTest$4 = tmpSwitchCaseToStart$3 <= 0;
     if (tmpIfTest$4) {
       const tmpReturnArg$2 = $(2, 'ret');
@@ -82,10 +99,13 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpSwitchValue = $(1, 'disc');
   const tmpBinLhs = $(1, 'case');
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingC = function (tmpSwitchCaseToStart$3) {
+  const tmpBranchingC = function ($$0) {
+    const tmpSwitchCaseToStart$3 = $$0;
+    debugger;
     const tmpIfTest$4 = tmpSwitchCaseToStart$3 <= 0;
     if (tmpIfTest$4) {
       const tmpReturnArg$2 = $(2, 'ret');
@@ -93,8 +113,8 @@ const f = function () {
     }
   };
   if (tmpIfTest) {
-    const tmpReturnArg = tmpBranchingC(0);
-    return tmpReturnArg;
+    const tmpReturnArg$3 = tmpBranchingC(0);
+    return tmpReturnArg$3;
   } else {
     const tmpReturnArg$4 = tmpBranchingC(1);
     return tmpReturnArg$4;

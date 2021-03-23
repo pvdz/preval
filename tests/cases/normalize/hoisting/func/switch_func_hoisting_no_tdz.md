@@ -26,6 +26,7 @@ f(); // This should work
 `````js filename=intro
 {
   let f = function () {
+    debugger;
     $('pass');
   };
   const tmpSwitchValue = $(1);
@@ -49,6 +50,7 @@ f$1();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $('pass');
 };
 const tmpSwitchValue = $(1);

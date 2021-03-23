@@ -26,7 +26,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$({ [(a = () => {})]: 10 });
+$({
+  [(a = () => {
+    debugger;
+  })]: 10,
+});
 $(a);
 `````
 
@@ -35,7 +39,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = function () {};
+a = function () {
+  debugger;
+};
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
@@ -46,7 +52,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {};
+const SSA_a = function () {
+  debugger;
+};
 const tmpCalleeParam = { [SSA_a]: 10 };
 $(tmpCalleeParam);
 $(SSA_a);
@@ -55,3 +63,14 @@ $(SSA_a);
 ## Globals
 
 None
+
+## Result
+
+Should call `$` with:
+ - eval returned: ('<skipped by option>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

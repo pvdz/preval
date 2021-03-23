@@ -23,6 +23,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return 1 ? (40, 50, $(60)) : $($(100));
 };
 let a = { a: 999, b: 1000 };
@@ -34,6 +35,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let tmpReturnArg = undefined;
   tmpReturnArg = $(60);
   return tmpReturnArg;

@@ -20,10 +20,12 @@ $(f({ x: [''], a: 11, b: 12 }, 10));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let {
     x: [],
-  } = tmpParamPattern;
+  } = tmpParamBare;
   return 'ok';
 };
 $(f({ x: [''], a: 11, b: 12 }, 10));
@@ -32,8 +34,10 @@ $(f({ x: [''], a: 11, b: 12 }, 10));
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let bindingPatternObjRoot = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternObjRoot = tmpParamBare;
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let arrPatternSplat = [...objPatternNoDefault];
   return 'ok';

@@ -34,7 +34,9 @@ $(x);
 `````
 
 `````js filename=x
-let f = function () {};
+let f = function () {
+  debugger;
+};
 f = 10;
 export { f as default };
 `````
@@ -47,7 +49,9 @@ $(x);
 `````
 
 `````js filename=x
-let f = function () {};
+let f = function () {
+  debugger;
+};
 f = 10;
 export { f as default };
 `````

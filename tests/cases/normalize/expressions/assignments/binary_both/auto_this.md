@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$((a = this) + (a = this));
+$((a = undefined) + (a = undefined));
 $(a);
 `````
 
@@ -31,9 +31,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = this;
+a = undefined;
 let tmpBinBothLhs = a;
-a = this;
+a = undefined;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
@@ -43,11 +43,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = this;
-const SSA_a$1 = this;
-const tmpCalleeParam = SSA_a + SSA_a$1;
-$(tmpCalleeParam);
-$(SSA_a$1);
+$(NaN);
+$(undefined);
 `````
 
 ## Globals

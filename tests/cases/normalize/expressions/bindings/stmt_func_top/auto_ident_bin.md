@@ -22,6 +22,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = $(1) + $(2);
   $(a);
 };
@@ -32,6 +33,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
   let a = tmpBinBothLhs + tmpBinBothRhs;

@@ -48,11 +48,14 @@ $(8);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = function () {
+    debugger;
     $('a1');
     $('a2');
   };
   let b = function () {
+    debugger;
     $('b1');
     $('b2');
   };
@@ -84,11 +87,14 @@ $(8);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = function () {
+    debugger;
     $('a1');
     $('a2');
   };
   let b = function () {
+    debugger;
     $('b1');
     $('b2');
   };

@@ -25,6 +25,7 @@ $(a, x);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return typeof x;
 };
 let x = 1;
@@ -37,6 +38,7 @@ $(a, x);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpReturnArg = typeof x;
   return tmpReturnArg;
 };

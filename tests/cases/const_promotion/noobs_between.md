@@ -24,6 +24,7 @@ $(x, a, 'final');
 let a = undefined;
 let x = $(10);
 a = function () {
+  debugger;
   return x;
 };
 a = 2;
@@ -37,6 +38,7 @@ $(x, a, 'final');
 let a = undefined;
 let x = $(10);
 a = function () {
+  debugger;
   return x;
 };
 a = 2;

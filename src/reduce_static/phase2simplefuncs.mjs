@@ -1,4 +1,4 @@
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { isComplexNode } from '../ast.mjs';
 
@@ -29,6 +29,7 @@ function _inlineSimpleFuncCalls(fdata) {
       const funcNode = meta.constValueRef.node;
       if (funcNode.type === 'FunctionExpression' && funcNode.$p.inlineMe) {
         vgroup('- Searching for all calls to `' + meta.name + '`');
+        const funcBody = funcNode.body.body;
         meta.reads.forEach((read, ri) => {
           vlog('- Read', ri, ':', read.parentNode.type);
           if (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee') {
@@ -42,9 +43,9 @@ function _inlineSimpleFuncCalls(fdata) {
                 before(read.node, read.blockBody[read.blockIndex]);
 
                 if (read.grandIndex >= 0) {
-                  read.grandNode[read.grandProp][read.grandIndex] = AST.cloneSimple(funcNode.body.body[0].argument);
+                  read.grandNode[read.grandProp][read.grandIndex] = AST.cloneSimple(funcBody[funcBody.length - 1].argument);
                 } else {
-                  read.grandNode[read.grandProp] = AST.cloneSimple(funcNode.body.body[0].argument);
+                  read.grandNode[read.grandProp] = AST.cloneSimple(funcBody[funcBody.length - 1].argument);
                 }
                 ++inlinedFuncCount;
 
@@ -68,11 +69,11 @@ function _inlineSimpleFuncCalls(fdata) {
                 // the thing containing the original call, potentially with the actual call replaced.
 
                 ASSERT(
-                  funcNode.body.body.length === 1 && funcNode.body.body[0].type === 'ExpressionStatement',
+                  funcBody[funcBody.length - 1]?.type === 'ExpressionStatement',
                   'func must have only an expression statement',
                   funcNode,
                 );
-                const expr = funcNode.body.body[0].expression;
+                const expr = funcBody[funcBody.length - 1].expression;
                 vlog('Expression type:', expr.type, expr.left?.type, expr.right?.type);
                 if (expr.type === 'AssignmentExpression') {
                   // TODO: member expressions. can probably do that more efficiently than a clone of the ident branch.
@@ -84,7 +85,11 @@ function _inlineSimpleFuncCalls(fdata) {
                   if (expr.left.type === 'Identifier') {
                     const left = expr.left;
                     ASSERT(
-                      !funcNode.params.some((pnode) => left.name === (pnode.type === 'RestElement' ? pnode.argument.name : pnode.name)),
+                      funcNode.params.every((pnode) => {
+                        ASSERT(left.type === 'Identifier', 'normalized code', left);
+                        ASSERT(pnode.type === 'Param', 'all params are Params?', pnode);
+                        return left.name !== pnode.$p.ref?.name;
+                      }),
                       'assignments to params in this case should be caught and eliminated as noops',
                     );
 
@@ -285,10 +290,11 @@ function _inlineSimpleFuncCalls(fdata) {
                 before(funcNode);
                 before(read.node, read.blockBody[read.blockIndex]);
 
+                const bodyOffset = findBodyOffset(funcNode);
                 if (read.grandIndex >= 0) {
-                  read.grandNode[read.grandProp][read.grandIndex] = funcNode.body.body[0].declarations[0].init;
+                  read.grandNode[read.grandProp][read.grandIndex] = funcBody[bodyOffset].declarations[0].init;
                 } else {
-                  read.grandNode[read.grandProp] = funcNode.body.body[0].declarations[0].init;
+                  read.grandNode[read.grandProp] = funcBody[bodyOffset].declarations[0].init;
                 }
                 ++inlinedFuncCount;
 
@@ -301,10 +307,11 @@ function _inlineSimpleFuncCalls(fdata) {
                 before(funcNode);
                 before(read.node, read.blockBody[read.blockIndex]);
 
+                const bodyOffset = findBodyOffset(funcNode);
                 if (read.grandIndex >= 0) {
-                  read.grandNode[read.grandProp][read.grandIndex] = funcNode.body.body[0].declarations[0].init;
+                  read.grandNode[read.grandProp][read.grandIndex] = funcBody[bodyOffset].declarations[0].init;
                 } else {
-                  read.grandNode[read.grandProp] = funcNode.body.body[0].declarations[0].init;
+                  read.grandNode[read.grandProp] = funcBody[bodyOffset].declarations[0].init;
                 }
                 ++inlinedFuncCount;
 
@@ -312,8 +319,8 @@ function _inlineSimpleFuncCalls(fdata) {
                 break;
               }
               case 'double with identifier': {
-                // The
-                const ident = funcNode.body.body[0].declarations[0].init;
+                const bodyOffset = findBodyOffset(funcNode);
+                const ident = funcBody[bodyOffset].declarations[0].init;
                 const [resolvedLeft, blockingSpread, paramIndex, isRest] = resolveNodeAgainstParams(ident, read.parentNode, funcNode);
 
                 vlog(paramIndex >= 0 ? 'Using param index ' + paramIndex : 'Not using param');
@@ -372,25 +379,18 @@ function resolveNodeAgainstParams(node, callNode, funcNode) {
     let paramIndex = -1;
     let isRest = false; // Special care for the rest param
     funcNode.params.some((pnode, pi) => {
-      if (pnode.type === 'RestElement') {
-        if (name === pnode.argument.name) {
+      ASSERT(pnode.type === 'Param');
+      if (name === pnode.$p.ref?.name) {
+        if (pnode.rest) {
           isRest = true;
-          paramIndex = pi;
-          return true;
         }
-      }
-      if (name === pnode.name) {
+
         paramIndex = pi;
         return true;
       }
     });
 
     if (paramIndex < 0) {
-      //// In this case we don't care about rest/spread args. They are unused.
-      //rule('Assignment of param to closure as only statement in function should be outlined');
-      //example('let x = 1; let y = 2; function f() { x = y; } f();', 'let x = 1; let y = 2; x = y;');
-      //before(read.node);
-
       return [AST.cloneSimple(node), false, paramIndex, isRest];
     }
 
@@ -418,9 +418,6 @@ function resolveNodeAgainstParams(node, callNode, funcNode) {
 
     if (isRest) {
       // This ident is the rest param. We can hack something together to make this work. Pretty specific case tho.
-      //rule('Assignment of rest param to closure as only statement in function should be outlined');
-      //example('let x = 1; function f(a, b, ...c) { x = c; } f(1, 2, 3, 4, 5);', 'let x = 1; x = [3, 4, 5];');
-      //before(read.node);
 
       return [
         AST.arrayExpression(
@@ -440,9 +437,6 @@ function resolveNodeAgainstParams(node, callNode, funcNode) {
 
     // The function contained an assignment that uses a param that is not a rest
     // The call did not have a spread before or on the index of the used param
-    //rule('Assignment of param to closure as only statement in function should be outlined');
-    //example('let x = 1; function f(a, b) { x = b; } f(1, 2);', 'let x = 1; x = 2;');
-    //before(read.node);
 
     return [AST.cloneSimple(args[paramIndex] || AST.identifier('undefined')), false, paramIndex, false];
   }

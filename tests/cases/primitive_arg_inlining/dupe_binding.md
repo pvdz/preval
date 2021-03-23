@@ -40,7 +40,10 @@ $(f(100, $(200)), 'outer2');
 ## Pre Normal
 
 `````js filename=intro
-let f = function (a, b) {
+let f = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
   $(a, b);
   return a;
 };
@@ -51,7 +54,10 @@ $(f(100, $(200)), 'outer2');
 ## Normalized
 
 `````js filename=intro
-let f = function (a, b) {
+let f = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
   $(a, b);
   return a;
 };
@@ -74,7 +80,10 @@ tmpCallCallee$2(tmpCalleeParam$4, tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const f = function (a, b) {
+const f = function ($$0, $$1) {
+  const a = $$0;
+  const b = $$1;
+  debugger;
   $(a, b);
   return a;
 };

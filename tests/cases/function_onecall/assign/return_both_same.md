@@ -39,10 +39,13 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     if ($(1)) {
       return 'xyz';
     } else {
@@ -63,10 +66,13 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     const tmpIfTest = $(1);
     if (tmpIfTest) {
       return 'xyz';
@@ -96,6 +102,7 @@ tmpCallCallee$2(tmpCalleeParam$2);
 const x = $(100);
 $(x);
 const g = function () {
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     return 'xyz';

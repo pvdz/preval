@@ -23,6 +23,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return 0 || $($(1));
 };
 let a = { a: 999, b: 1000 };
@@ -34,19 +35,26 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let tmpReturnArg = 0;
-  const tmpBranchingA = function (tmpReturnArg$1) {
+  const tmpBranchingA = function ($$0) {
+    let tmpReturnArg$1 = $$0;
+    debugger;
     const tmpReturnArg$4 = tmpBranchingC(tmpReturnArg$1);
     return tmpReturnArg$4;
   };
-  const tmpBranchingB = function (tmpReturnArg$2) {
+  const tmpBranchingB = function ($$0) {
+    let tmpReturnArg$2 = $$0;
+    debugger;
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
     tmpReturnArg$2 = tmpCallCallee$1(tmpCalleeParam$1);
     const tmpReturnArg$5 = tmpBranchingC(tmpReturnArg$2);
     return tmpReturnArg$5;
   };
-  const tmpBranchingC = function (tmpReturnArg$3) {
+  const tmpBranchingC = function ($$0) {
+    let tmpReturnArg$3 = $$0;
+    debugger;
     return tmpReturnArg$3;
   };
   if (tmpReturnArg) {

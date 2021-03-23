@@ -21,7 +21,8 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  'use strict';
+  debugger;
+  ('use strict');
   return $();
 };
 ('use strict');
@@ -32,6 +33,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpReturnArg = $();
   return tmpReturnArg;
 };

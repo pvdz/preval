@@ -25,6 +25,7 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if ($()) {
     $(1);
   } else {
@@ -38,6 +39,7 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {
     $(1);

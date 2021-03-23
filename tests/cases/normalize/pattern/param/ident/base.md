@@ -20,7 +20,9 @@ $(f(1, 200));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (x) {
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
   return x;
 };
 $(f(1, 200));
@@ -29,7 +31,9 @@ $(f(1, 200));
 ## Normalized
 
 `````js filename=intro
-let f = function (x) {
+let f = function ($$0) {
+  let x = $$0;
+  debugger;
   return x;
 };
 const tmpCallCallee = $;

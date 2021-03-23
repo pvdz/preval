@@ -173,7 +173,7 @@ export function before(node, parent) {
     if (Array.isArray(node)) node.forEach((n) => before(n, parent));
     else {
       const anon = node.type.includes('Function') && 'id' in node && !node.id;
-      if (anon) node.id = {type: 'Identifier', name: 'anon'};
+      if (anon) node.id = { type: 'Identifier', name: 'anon' };
       const parentCode = parent && (typeof node === 'string' ? node : tmat(parent).replace(/\n/g, ' '));
       const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
       if (parent && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
@@ -208,7 +208,7 @@ export function after(node, parentNode) {
     if (Array.isArray(node)) node.forEach((n) => after(n, parentNode));
     else {
       const anon = node.type?.includes('Function') && 'id' in node && !node.id;
-      if (anon) node.id = {type: 'Identifier', name: 'anon'};
+      if (anon) node.id = { type: 'Identifier', name: 'anon' };
       const parentCode = parentNode && (typeof node === 'string' ? node : tmat(parentNode).replace(/\n/g, ' '));
       const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
       log(YELLOW + 'After :' + RESET, nodeCode);
@@ -242,4 +242,37 @@ export function assertNoDupeNodes(node, prop) {
     node,
     prop,
   );
+}
+
+export function findBodyOffset(funcNode) {
+  // Find the first debugger statement in a function. It serves as our header boundary.
+  // The header should contain, at most, one entry per param and two to alias `this` and `arguments`
+  // So we start from there and walk backwards
+  const body = funcNode.body.body;
+  const offset = Math.min(funcNode.params.length + 2, body.length - 1);
+  for (let i = offset; i >= 0; --i) {
+    if (body[i].type === 'DebuggerStatement') {
+      return i + 1;
+    }
+  }
+  console.log('Node:');
+  console.log(funcNode);
+  console.log('Started search at', offset, ', param count:', funcNode.params.length, ', body len:', body.length);
+  ASSERT(false, 'findBodyOffset; the debugger statement should appear exactly once and at most after param.len+2 elements');
+}
+
+export function findBodyOffsetExpensiveMaybe(body) {
+  // It's expensive because this is called when we don't have access to the params and have to scan from the start
+  // Should not be a big deal for real world code tbh, as most functions won't have that many params anyways.
+  for (let i = 0; i < body.length; ++i) {
+    if (body[i].type === 'DebuggerStatement') {
+      return i + 1;
+    }
+  }
+  return -1;
+}
+export function findBodyOffsetExpensive(body) {
+  const r = findBodyOffsetExpensiveMaybe(body);
+  if (r >= 0) return r;
+  ASSERT(false, 'findBodyOffsetExpensive the debugger statement should appear exactly once and at most after param.len+2 elements', body);
 }

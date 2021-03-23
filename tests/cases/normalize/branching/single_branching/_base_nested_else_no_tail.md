@@ -29,6 +29,7 @@ $(f(), 'final');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if ($(1)) {
     return $(2);
   } else {
@@ -46,22 +47,36 @@ $(f(), 'final');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function (tmpIfTest$2) {
+  const tmpBranchingA = function ($$0) {
+    let tmpIfTest$2 = $$0;
+    debugger;
     const tmpReturnArg$3 = $(2);
     return tmpReturnArg$3;
   };
-  const tmpBranchingB = function (tmpIfTest$3) {
+  const tmpBranchingB = function ($$0) {
+    let tmpIfTest$3 = $$0;
+    debugger;
     const tmpIfTest$4 = $(3);
-    const tmpBranchingA$1 = function (tmpIfTest$6, tmpIfTest$7) {
+    const tmpBranchingA$1 = function ($$0, $$1) {
+      let tmpIfTest$6 = $$0;
+      let tmpIfTest$7 = $$1;
+      debugger;
       const tmpReturnArg$6 = $(4);
       return tmpReturnArg$6;
     };
-    const tmpBranchingB$1 = function (tmpIfTest$8, tmpIfTest$9) {
+    const tmpBranchingB$1 = function ($$0, $$1) {
+      let tmpIfTest$8 = $$0;
+      let tmpIfTest$9 = $$1;
+      debugger;
       const tmpReturnArg$7 = $(5);
       return tmpReturnArg$7;
     };
-    const tmpBranchingC$1 = function (tmpIfTest$10, tmpIfTest$11) {
+    const tmpBranchingC$1 = function ($$0, $$1) {
+      let tmpIfTest$10 = $$0;
+      let tmpIfTest$11 = $$1;
+      debugger;
       const tmpReturnArg$8 = tmpBranchingC(tmpIfTest$10);
       return tmpReturnArg$8;
     };
@@ -73,7 +88,10 @@ let f = function () {
       return tmpReturnArg$10;
     }
   };
-  const tmpBranchingC = function (tmpIfTest$5) {};
+  const tmpBranchingC = function ($$0) {
+    let tmpIfTest$5 = $$0;
+    debugger;
+  };
   if (tmpIfTest) {
     const tmpReturnArg$11 = tmpBranchingA(tmpIfTest);
     return tmpReturnArg$11;
@@ -92,8 +110,10 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = $(1);
   const tmpBranchingB = function () {
+    debugger;
     const tmpIfTest$4 = $(3);
     if (tmpIfTest$4) {
       const tmpReturnArg$9 = $(4);

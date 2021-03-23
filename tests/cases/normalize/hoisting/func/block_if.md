@@ -22,6 +22,7 @@ if ($(1)) {
 `````js filename=intro
 if ($(1)) {
   let f = function () {
+    debugger;
     $(1);
   };
   f();
@@ -34,6 +35,7 @@ if ($(1)) {
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   let f = function () {
+    debugger;
     $(1);
   };
   f();

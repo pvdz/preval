@@ -26,6 +26,7 @@ $(a, x, y);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return ([x, y] = [$(3), $(4)]);
 };
 let x = 1,
@@ -39,6 +40,7 @@ $(a, x, y);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let tmpReturnArg;
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);

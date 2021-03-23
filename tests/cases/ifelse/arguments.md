@@ -26,9 +26,11 @@ $(obj.f());
 
 `````js filename=intro
 let f = function () {
+  const tmpArgumentsAny = arguments;
+  debugger;
   if ($(1)) {
     if ($(2)) {
-      return arguments;
+      return tmpArgumentsAny;
     }
   }
 };
@@ -40,39 +42,62 @@ $(obj.f());
 
 `````js filename=intro
 let f = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
+  const tmpArgumentsAny = arguments;
+  debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function (tmpPrevalAliasArgumentsAny$1, tmpIfTest$2) {
+  const tmpBranchingA = function ($$0, $$1) {
+    let tmpArgumentsAny$1 = $$0;
+    let tmpIfTest$2 = $$1;
+    debugger;
     const tmpIfTest$3 = $(2);
-    const tmpBranchingA$1 = function (tmpPrevalAliasArgumentsAny$4, tmpIfTest$6, tmpIfTest$7) {
-      return tmpPrevalAliasArgumentsAny$4;
+    const tmpBranchingA$1 = function ($$0, $$1, $$2) {
+      let tmpArgumentsAny$4 = $$0;
+      let tmpIfTest$6 = $$1;
+      let tmpIfTest$7 = $$2;
+      debugger;
+      return tmpArgumentsAny$4;
     };
-    const tmpBranchingB$1 = function (tmpPrevalAliasArgumentsAny$5, tmpIfTest$8, tmpIfTest$9) {
-      const tmpReturnArg = tmpBranchingC$1(tmpPrevalAliasArgumentsAny$5, tmpIfTest$8, tmpIfTest$9);
+    const tmpBranchingB$1 = function ($$0, $$1, $$2) {
+      let tmpArgumentsAny$5 = $$0;
+      let tmpIfTest$8 = $$1;
+      let tmpIfTest$9 = $$2;
+      debugger;
+      const tmpReturnArg = tmpBranchingC$1(tmpArgumentsAny$5, tmpIfTest$8, tmpIfTest$9);
       return tmpReturnArg;
     };
-    const tmpBranchingC$1 = function (tmpPrevalAliasArgumentsAny$6, tmpIfTest$10, tmpIfTest$11) {
-      const tmpReturnArg$1 = tmpBranchingC(tmpPrevalAliasArgumentsAny$6, tmpIfTest$10);
+    const tmpBranchingC$1 = function ($$0, $$1, $$2) {
+      let tmpArgumentsAny$6 = $$0;
+      let tmpIfTest$10 = $$1;
+      let tmpIfTest$11 = $$2;
+      debugger;
+      const tmpReturnArg$1 = tmpBranchingC(tmpArgumentsAny$6, tmpIfTest$10);
       return tmpReturnArg$1;
     };
     if (tmpIfTest$3) {
-      const tmpReturnArg$2 = tmpBranchingA$1(tmpPrevalAliasArgumentsAny$1, tmpIfTest$2, tmpIfTest$3);
+      const tmpReturnArg$2 = tmpBranchingA$1(tmpArgumentsAny$1, tmpIfTest$2, tmpIfTest$3);
       return tmpReturnArg$2;
     } else {
-      const tmpReturnArg$3 = tmpBranchingB$1(tmpPrevalAliasArgumentsAny$1, tmpIfTest$2, tmpIfTest$3);
+      const tmpReturnArg$3 = tmpBranchingB$1(tmpArgumentsAny$1, tmpIfTest$2, tmpIfTest$3);
       return tmpReturnArg$3;
     }
   };
-  const tmpBranchingB = function (tmpPrevalAliasArgumentsAny$2, tmpIfTest$4) {
-    const tmpReturnArg$4 = tmpBranchingC(tmpPrevalAliasArgumentsAny$2, tmpIfTest$4);
+  const tmpBranchingB = function ($$0, $$1) {
+    let tmpArgumentsAny$2 = $$0;
+    let tmpIfTest$4 = $$1;
+    debugger;
+    const tmpReturnArg$4 = tmpBranchingC(tmpArgumentsAny$2, tmpIfTest$4);
     return tmpReturnArg$4;
   };
-  const tmpBranchingC = function (tmpPrevalAliasArgumentsAny$3, tmpIfTest$5) {};
+  const tmpBranchingC = function ($$0, $$1) {
+    let tmpArgumentsAny$3 = $$0;
+    let tmpIfTest$5 = $$1;
+    debugger;
+  };
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA(tmpPrevalAliasArgumentsAny, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingA(tmpArgumentsAny, tmpIfTest);
     return tmpReturnArg$5;
   } else {
-    const tmpReturnArg$6 = tmpBranchingB(tmpPrevalAliasArgumentsAny, tmpIfTest);
+    const tmpReturnArg$6 = tmpBranchingB(tmpArgumentsAny, tmpIfTest);
     return tmpReturnArg$6;
   }
 };
@@ -86,19 +111,21 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalAliasArgumentsAny = arguments;
+  const tmpArgumentsAny = arguments;
+  debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function (tmpPrevalAliasArgumentsAny$1) {
+  const tmpBranchingA = function ($$0) {
+    const tmpArgumentsAny$1 = $$0;
+    debugger;
     const tmpIfTest$3 = $(2);
     if (tmpIfTest$3) {
-      const tmpReturnArg$2 = tmpPrevalAliasArgumentsAny$1;
-      return tmpReturnArg$2;
+      return tmpArgumentsAny$1;
     } else {
       return undefined;
     }
   };
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA(tmpPrevalAliasArgumentsAny);
+    const tmpReturnArg$5 = tmpBranchingA(tmpArgumentsAny);
     return tmpReturnArg$5;
   } else {
     return undefined;

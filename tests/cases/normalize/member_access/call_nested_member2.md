@@ -21,6 +21,7 @@ obj.a.b();
 const obj = {
   a: {
     b: () => {
+      debugger;
       return $(1);
     },
   },
@@ -32,6 +33,7 @@ obj.a.b();
 
 `````js filename=intro
 const tmpObjLitVal$1 = function () {
+  debugger;
   const tmpReturnArg = $(1);
   return tmpReturnArg;
 };
@@ -45,6 +47,7 @@ tmpCallObj.b();
 
 `````js filename=intro
 const tmpObjLitVal$1 = function () {
+  debugger;
   const tmpReturnArg = $(1);
   return tmpReturnArg;
 };

@@ -62,10 +62,9 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
-      x = $('fail too');
+      $('fail too');
     }
     continue;
-    let x = $('fail');
   } else {
     break;
   }

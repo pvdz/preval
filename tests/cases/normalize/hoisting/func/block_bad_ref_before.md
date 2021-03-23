@@ -25,6 +25,7 @@ f(); // This ought to trigger TDZ (or whatever)...
 f();
 {
   let f$1 = function () {
+    debugger;
     $(1);
   };
 }
@@ -35,6 +36,7 @@ f();
 `````js filename=intro
 f();
 let f$1 = function () {
+  debugger;
   $(1);
 };
 `````

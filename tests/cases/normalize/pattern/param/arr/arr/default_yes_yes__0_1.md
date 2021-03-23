@@ -21,7 +21,9 @@ f(true);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmp) {
+let f = function ($$0) {
+  let tmp = $$0;
+  debugger;
   [] = tmp;
   return 'bad';
 };
@@ -31,7 +33,9 @@ f(true);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmp) {
+let f = function ($$0) {
+  let tmp = $$0;
+  debugger;
   const arrAssignPatternRhs = tmp;
   const arrPatternSplat = [...arrAssignPatternRhs];
   return 'bad';

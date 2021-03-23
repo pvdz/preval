@@ -22,7 +22,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-obj[(a = () => {})];
+obj[
+  (a = () => {
+    debugger;
+  })
+];
 $(a);
 `````
 
@@ -32,7 +36,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-a = function () {};
+a = function () {
+  debugger;
+};
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
@@ -42,7 +48,9 @@ $(a);
 
 `````js filename=intro
 const obj = {};
-const SSA_a = function () {};
+const SSA_a = function () {
+  debugger;
+};
 obj[SSA_a];
 $(SSA_a);
 `````

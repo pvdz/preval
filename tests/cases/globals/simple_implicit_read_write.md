@@ -8,6 +8,12 @@
 
 #TODO
 
+## Options
+
+Shrug
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -49,12 +55,10 @@ a
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 5
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Final output calls: Same

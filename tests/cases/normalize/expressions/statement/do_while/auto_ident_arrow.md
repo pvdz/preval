@@ -24,7 +24,12 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (() => {})) {
+  while (
+    tmpDoWhileFlag ||
+    (() => {
+      debugger;
+    })
+  ) {
     tmpDoWhileFlag = false;
     {
       $(100);
@@ -43,7 +48,9 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = function () {};
+    tmpIfTest = function () {
+      debugger;
+    };
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -64,7 +71,9 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = function () {};
+    tmpIfTest = function () {
+      debugger;
+    };
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

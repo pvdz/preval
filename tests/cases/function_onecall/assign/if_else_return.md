@@ -35,9 +35,11 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   if ($()) {
     $(1);
   } else {
@@ -55,9 +57,11 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {
     $(1);
@@ -81,6 +85,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {
     $(1);

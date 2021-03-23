@@ -29,7 +29,9 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     $('c');
   };
   if ($(1)) {
@@ -46,7 +48,9 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     $('c');
   };
   const tmpIfTest = $(1);

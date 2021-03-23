@@ -20,6 +20,7 @@ $(a)[b()]($(1), $(2));
 
 `````js filename=intro
 let b = function () {
+  debugger;
   return $('b');
 };
 const a = { b: $ };
@@ -30,6 +31,7 @@ $(a)[b()]($(1), $(2));
 
 `````js filename=intro
 let b = function () {
+  debugger;
   const tmpReturnArg = $('b');
   return tmpReturnArg;
 };

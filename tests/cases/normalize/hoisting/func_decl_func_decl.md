@@ -23,7 +23,10 @@ g();
 
 `````js filename=intro
 let g = function () {
-  let f = function () {};
+  debugger;
+  let f = function () {
+    debugger;
+  };
   $(1);
   $(f());
 };
@@ -34,7 +37,10 @@ g();
 
 `````js filename=intro
 let g = function () {
-  let f = function () {};
+  debugger;
+  let f = function () {
+    debugger;
+  };
   $(1);
   const tmpCallCallee = $;
   const tmpCalleeParam = f();

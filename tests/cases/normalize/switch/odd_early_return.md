@@ -45,6 +45,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     const tmpSwitchValue = $(1);
     let tmpSwitchCaseToStart = 4;
@@ -90,34 +91,55 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 4;
   const tmpIfTest = 0 === tmpSwitchValue;
-  const tmpBranchingA = function (tmpSwitchValue$1, tmpSwitchCaseToStart$1, tmpIfTest$4) {
+  const tmpBranchingA = function ($$0, $$1, $$2) {
+    let tmpSwitchValue$1 = $$0;
+    let tmpSwitchCaseToStart$1 = $$1;
+    let tmpIfTest$4 = $$2;
+    debugger;
     tmpSwitchCaseToStart$1 = 0;
     const tmpReturnArg = tmpBranchingC(tmpSwitchValue$1, tmpSwitchCaseToStart$1, tmpIfTest$4);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (tmpSwitchValue$2, tmpSwitchCaseToStart$2, tmpIfTest$5) {
+  const tmpBranchingB = function ($$0, $$1, $$2) {
+    let tmpSwitchValue$2 = $$0;
+    let tmpSwitchCaseToStart$2 = $$1;
+    let tmpIfTest$5 = $$2;
+    debugger;
     const tmpBinLhs$3 = $(1);
     const tmpIfTest$6 = tmpBinLhs$3 === tmpSwitchValue$2;
-    const tmpBranchingA$1 = function (tmpSwitchValue$4, tmpSwitchCaseToStart$4, tmpIfTest$10, tmpBinLhs$6, tmpIfTest$11) {
+    const tmpBranchingA$1 = function ($$0, $$1, $$2, $$3, $$4) {
+      let tmpSwitchValue$4 = $$0;
+      let tmpSwitchCaseToStart$4 = $$1;
+      let tmpIfTest$10 = $$2;
+      let tmpBinLhs$6 = $$3;
+      let tmpIfTest$11 = $$4;
+      debugger;
       tmpSwitchCaseToStart$4 = 1;
       const tmpReturnArg$1 = tmpBranchingC$1(tmpSwitchValue$4, tmpSwitchCaseToStart$4, tmpIfTest$10, tmpBinLhs$6, tmpIfTest$11);
       return tmpReturnArg$1;
     };
-    const tmpBranchingB$1 = function (tmpSwitchValue$5, tmpSwitchCaseToStart$5, tmpIfTest$12, tmpBinLhs$7, tmpIfTest$13) {
+    const tmpBranchingB$1 = function ($$0, $$1, $$2, $$3, $$4) {
+      let tmpSwitchValue$5 = $$0;
+      let tmpSwitchCaseToStart$5 = $$1;
+      let tmpIfTest$12 = $$2;
+      let tmpBinLhs$7 = $$3;
+      let tmpIfTest$13 = $$4;
+      debugger;
       const tmpBinLhs$8 = $(4);
       const tmpIfTest$14 = tmpBinLhs$8 === tmpSwitchValue$5;
-      const tmpBranchingA$2 = function (
-        tmpSwitchValue$7,
-        tmpSwitchCaseToStart$7,
-        tmpIfTest$18,
-        tmpBinLhs$11,
-        tmpIfTest$19,
-        tmpBinLhs$12,
-        tmpIfTest$20,
-      ) {
+      const tmpBranchingA$2 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
+        let tmpSwitchValue$7 = $$0;
+        let tmpSwitchCaseToStart$7 = $$1;
+        let tmpIfTest$18 = $$2;
+        let tmpBinLhs$11 = $$3;
+        let tmpIfTest$19 = $$4;
+        let tmpBinLhs$12 = $$5;
+        let tmpIfTest$20 = $$6;
+        debugger;
         tmpSwitchCaseToStart$7 = 2;
         const tmpReturnArg$2 = tmpBranchingC$2(
           tmpSwitchValue$7,
@@ -130,28 +152,28 @@ let f = function () {
         );
         return tmpReturnArg$2;
       };
-      const tmpBranchingB$2 = function (
-        tmpSwitchValue$8,
-        tmpSwitchCaseToStart$8,
-        tmpIfTest$21,
-        tmpBinLhs$13,
-        tmpIfTest$22,
-        tmpBinLhs$14,
-        tmpIfTest$23,
-      ) {
+      const tmpBranchingB$2 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
+        let tmpSwitchValue$8 = $$0;
+        let tmpSwitchCaseToStart$8 = $$1;
+        let tmpIfTest$21 = $$2;
+        let tmpBinLhs$13 = $$3;
+        let tmpIfTest$22 = $$4;
+        let tmpBinLhs$14 = $$5;
+        let tmpIfTest$23 = $$6;
+        debugger;
         const tmpBinLhs$15 = $(7);
         const tmpIfTest$24 = tmpBinLhs$15 === tmpSwitchValue$8;
-        const tmpBranchingA$3 = function (
-          tmpSwitchValue$10,
-          tmpSwitchCaseToStart$10,
-          tmpIfTest$28,
-          tmpBinLhs$18,
-          tmpIfTest$29,
-          tmpBinLhs$19,
-          tmpIfTest$30,
-          tmpBinLhs$20,
-          tmpIfTest$31,
-        ) {
+        const tmpBranchingA$3 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8) {
+          let tmpSwitchValue$10 = $$0;
+          let tmpSwitchCaseToStart$10 = $$1;
+          let tmpIfTest$28 = $$2;
+          let tmpBinLhs$18 = $$3;
+          let tmpIfTest$29 = $$4;
+          let tmpBinLhs$19 = $$5;
+          let tmpIfTest$30 = $$6;
+          let tmpBinLhs$20 = $$7;
+          let tmpIfTest$31 = $$8;
+          debugger;
           tmpSwitchCaseToStart$10 = 3;
           const tmpReturnArg$3 = tmpBranchingC$3(
             tmpSwitchValue$10,
@@ -166,17 +188,17 @@ let f = function () {
           );
           return tmpReturnArg$3;
         };
-        const tmpBranchingB$3 = function (
-          tmpSwitchValue$11,
-          tmpSwitchCaseToStart$11,
-          tmpIfTest$32,
-          tmpBinLhs$21,
-          tmpIfTest$33,
-          tmpBinLhs$22,
-          tmpIfTest$34,
-          tmpBinLhs$23,
-          tmpIfTest$35,
-        ) {
+        const tmpBranchingB$3 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8) {
+          let tmpSwitchValue$11 = $$0;
+          let tmpSwitchCaseToStart$11 = $$1;
+          let tmpIfTest$32 = $$2;
+          let tmpBinLhs$21 = $$3;
+          let tmpIfTest$33 = $$4;
+          let tmpBinLhs$22 = $$5;
+          let tmpIfTest$34 = $$6;
+          let tmpBinLhs$23 = $$7;
+          let tmpIfTest$35 = $$8;
+          debugger;
           const tmpReturnArg$4 = tmpBranchingC$3(
             tmpSwitchValue$11,
             tmpSwitchCaseToStart$11,
@@ -190,17 +212,17 @@ let f = function () {
           );
           return tmpReturnArg$4;
         };
-        const tmpBranchingC$3 = function (
-          tmpSwitchValue$12,
-          tmpSwitchCaseToStart$12,
-          tmpIfTest$36,
-          tmpBinLhs$24,
-          tmpIfTest$37,
-          tmpBinLhs$25,
-          tmpIfTest$38,
-          tmpBinLhs$26,
-          tmpIfTest$39,
-        ) {
+        const tmpBranchingC$3 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8) {
+          let tmpSwitchValue$12 = $$0;
+          let tmpSwitchCaseToStart$12 = $$1;
+          let tmpIfTest$36 = $$2;
+          let tmpBinLhs$24 = $$3;
+          let tmpIfTest$37 = $$4;
+          let tmpBinLhs$25 = $$5;
+          let tmpIfTest$38 = $$6;
+          let tmpBinLhs$26 = $$7;
+          let tmpIfTest$39 = $$8;
+          debugger;
           const tmpReturnArg$5 = tmpBranchingC$2(
             tmpSwitchValue$12,
             tmpSwitchCaseToStart$12,
@@ -240,15 +262,15 @@ let f = function () {
           return tmpReturnArg$7;
         }
       };
-      const tmpBranchingC$2 = function (
-        tmpSwitchValue$9,
-        tmpSwitchCaseToStart$9,
-        tmpIfTest$25,
-        tmpBinLhs$16,
-        tmpIfTest$26,
-        tmpBinLhs$17,
-        tmpIfTest$27,
-      ) {
+      const tmpBranchingC$2 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
+        let tmpSwitchValue$9 = $$0;
+        let tmpSwitchCaseToStart$9 = $$1;
+        let tmpIfTest$25 = $$2;
+        let tmpBinLhs$16 = $$3;
+        let tmpIfTest$26 = $$4;
+        let tmpBinLhs$17 = $$5;
+        let tmpIfTest$27 = $$6;
+        debugger;
         const tmpReturnArg$8 = tmpBranchingC$1(tmpSwitchValue$9, tmpSwitchCaseToStart$9, tmpIfTest$25, tmpBinLhs$16, tmpIfTest$26);
         return tmpReturnArg$8;
       };
@@ -276,7 +298,13 @@ let f = function () {
         return tmpReturnArg$10;
       }
     };
-    const tmpBranchingC$1 = function (tmpSwitchValue$6, tmpSwitchCaseToStart$6, tmpIfTest$16, tmpBinLhs$10, tmpIfTest$17) {
+    const tmpBranchingC$1 = function ($$0, $$1, $$2, $$3, $$4) {
+      let tmpSwitchValue$6 = $$0;
+      let tmpSwitchCaseToStart$6 = $$1;
+      let tmpIfTest$16 = $$2;
+      let tmpBinLhs$10 = $$3;
+      let tmpIfTest$17 = $$4;
+      debugger;
       const tmpReturnArg$11 = tmpBranchingC(tmpSwitchValue$6, tmpSwitchCaseToStart$6, tmpIfTest$16);
       return tmpReturnArg$11;
     };
@@ -288,57 +316,77 @@ let f = function () {
       return tmpReturnArg$13;
     }
   };
-  const tmpBranchingC = function (tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpIfTest$9) {
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let tmpSwitchValue$3 = $$0;
+    let tmpSwitchCaseToStart$3 = $$1;
+    let tmpIfTest$9 = $$2;
+    debugger;
     const tmpIfTest$40 = tmpSwitchCaseToStart$3 <= 0;
-    const tmpBranchingA$4 = function (tmpSwitchValue$13, tmpSwitchCaseToStart$13, tmpIfTest$47, tmpIfTest$48) {
+    const tmpBranchingA$4 = function ($$0, $$1, $$2, $$3) {
+      let tmpSwitchValue$13 = $$0;
+      let tmpSwitchCaseToStart$13 = $$1;
+      let tmpIfTest$47 = $$2;
+      let tmpIfTest$48 = $$3;
+      debugger;
       $(2);
     };
-    const tmpBranchingB$4 = function (tmpSwitchValue$14, tmpSwitchCaseToStart$14, tmpIfTest$49, tmpIfTest$50) {
+    const tmpBranchingB$4 = function ($$0, $$1, $$2, $$3) {
+      let tmpSwitchValue$14 = $$0;
+      let tmpSwitchCaseToStart$14 = $$1;
+      let tmpIfTest$49 = $$2;
+      let tmpIfTest$50 = $$3;
+      debugger;
       const tmpIfTest$51 = tmpSwitchCaseToStart$14 <= 1;
-      const tmpBranchingA$5 = function (tmpSwitchValue$16, tmpSwitchCaseToStart$16, tmpIfTest$59, tmpIfTest$60, tmpIfTest$61) {
+      const tmpBranchingA$5 = function ($$0, $$1, $$2, $$3, $$4) {
+        let tmpSwitchValue$16 = $$0;
+        let tmpSwitchCaseToStart$16 = $$1;
+        let tmpIfTest$59 = $$2;
+        let tmpIfTest$60 = $$3;
+        let tmpIfTest$61 = $$4;
+        debugger;
         const tmpIfTest$62 = $(8);
-        const tmpBranchingA$6 = function (
-          tmpSwitchValue$19,
-          tmpSwitchCaseToStart$19,
-          tmpIfTest$73,
-          tmpIfTest$74,
-          tmpIfTest$75,
-          tmpIfTest$76,
-        ) {
+        const tmpBranchingA$6 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+          let tmpSwitchValue$19 = $$0;
+          let tmpSwitchCaseToStart$19 = $$1;
+          let tmpIfTest$73 = $$2;
+          let tmpIfTest$74 = $$3;
+          let tmpIfTest$75 = $$4;
+          let tmpIfTest$76 = $$5;
+          debugger;
           const tmpIfTest$77 = $(9);
-          const tmpBranchingA$7 = function (
-            tmpSwitchValue$22,
-            tmpSwitchCaseToStart$22,
-            tmpIfTest$87,
-            tmpIfTest$88,
-            tmpIfTest$89,
-            tmpIfTest$90,
-            tmpIfTest$91,
-          ) {
+          const tmpBranchingA$7 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
+            let tmpSwitchValue$22 = $$0;
+            let tmpSwitchCaseToStart$22 = $$1;
+            let tmpIfTest$87 = $$2;
+            let tmpIfTest$88 = $$3;
+            let tmpIfTest$89 = $$4;
+            let tmpIfTest$90 = $$5;
+            let tmpIfTest$91 = $$6;
+            debugger;
             const tmpReturnArg$25 = $(10);
             return tmpReturnArg$25;
           };
-          const tmpBranchingB$7 = function (
-            tmpSwitchValue$23,
-            tmpSwitchCaseToStart$23,
-            tmpIfTest$92,
-            tmpIfTest$93,
-            tmpIfTest$94,
-            tmpIfTest$95,
-            tmpIfTest$96,
-          ) {
+          const tmpBranchingB$7 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
+            let tmpSwitchValue$23 = $$0;
+            let tmpSwitchCaseToStart$23 = $$1;
+            let tmpIfTest$92 = $$2;
+            let tmpIfTest$93 = $$3;
+            let tmpIfTest$94 = $$4;
+            let tmpIfTest$95 = $$5;
+            let tmpIfTest$96 = $$6;
+            debugger;
             $(11);
             const tmpIfTest$97 = $(2);
-            const tmpBranchingA$8 = function (
-              tmpSwitchValue$25,
-              tmpSwitchCaseToStart$25,
-              tmpIfTest$103,
-              tmpIfTest$104,
-              tmpIfTest$105,
-              tmpIfTest$106,
-              tmpIfTest$107,
-              tmpIfTest$108,
-            ) {
+            const tmpBranchingA$8 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7) {
+              let tmpSwitchValue$25 = $$0;
+              let tmpSwitchCaseToStart$25 = $$1;
+              let tmpIfTest$103 = $$2;
+              let tmpIfTest$104 = $$3;
+              let tmpIfTest$105 = $$4;
+              let tmpIfTest$106 = $$5;
+              let tmpIfTest$107 = $$6;
+              let tmpIfTest$108 = $$7;
+              debugger;
               $(13);
               const tmpReturnArg$28 = tmpBranchingC$8(
                 tmpSwitchValue$25,
@@ -352,29 +400,29 @@ let f = function () {
               );
               return tmpReturnArg$28;
             };
-            const tmpBranchingB$8 = function (
-              tmpSwitchValue$26,
-              tmpSwitchCaseToStart$26,
-              tmpIfTest$109,
-              tmpIfTest$110,
-              tmpIfTest$111,
-              tmpIfTest$112,
-              tmpIfTest$113,
-              tmpIfTest$114,
-            ) {
+            const tmpBranchingB$8 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7) {
+              let tmpSwitchValue$26 = $$0;
+              let tmpSwitchCaseToStart$26 = $$1;
+              let tmpIfTest$109 = $$2;
+              let tmpIfTest$110 = $$3;
+              let tmpIfTest$111 = $$4;
+              let tmpIfTest$112 = $$5;
+              let tmpIfTest$113 = $$6;
+              let tmpIfTest$114 = $$7;
+              debugger;
               const tmpReturnArg$27 = $(14);
               return tmpReturnArg$27;
             };
-            const tmpBranchingC$8 = function (
-              tmpSwitchValue$27,
-              tmpSwitchCaseToStart$27,
-              tmpIfTest$115,
-              tmpIfTest$116,
-              tmpIfTest$117,
-              tmpIfTest$118,
-              tmpIfTest$119,
-              tmpIfTest$120,
-            ) {
+            const tmpBranchingC$8 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7) {
+              let tmpSwitchValue$27 = $$0;
+              let tmpSwitchCaseToStart$27 = $$1;
+              let tmpIfTest$115 = $$2;
+              let tmpIfTest$116 = $$3;
+              let tmpIfTest$117 = $$4;
+              let tmpIfTest$118 = $$5;
+              let tmpIfTest$119 = $$6;
+              let tmpIfTest$120 = $$7;
+              debugger;
               const tmpReturnArg$29 = tmpBranchingC$7(
                 tmpSwitchValue$27,
                 tmpSwitchCaseToStart$27,
@@ -412,15 +460,15 @@ let f = function () {
               return tmpReturnArg$31;
             }
           };
-          const tmpBranchingC$7 = function (
-            tmpSwitchValue$24,
-            tmpSwitchCaseToStart$24,
-            tmpIfTest$98,
-            tmpIfTest$99,
-            tmpIfTest$100,
-            tmpIfTest$101,
-            tmpIfTest$102,
-          ) {
+          const tmpBranchingC$7 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
+            let tmpSwitchValue$24 = $$0;
+            let tmpSwitchCaseToStart$24 = $$1;
+            let tmpIfTest$98 = $$2;
+            let tmpIfTest$99 = $$3;
+            let tmpIfTest$100 = $$4;
+            let tmpIfTest$101 = $$5;
+            let tmpIfTest$102 = $$6;
+            debugger;
             const tmpReturnArg$32 = tmpBranchingC$6(
               tmpSwitchValue$24,
               tmpSwitchCaseToStart$24,
@@ -455,14 +503,14 @@ let f = function () {
             return tmpReturnArg$34;
           }
         };
-        const tmpBranchingB$6 = function (
-          tmpSwitchValue$20,
-          tmpSwitchCaseToStart$20,
-          tmpIfTest$79,
-          tmpIfTest$80,
-          tmpIfTest$81,
-          tmpIfTest$82,
-        ) {
+        const tmpBranchingB$6 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+          let tmpSwitchValue$20 = $$0;
+          let tmpSwitchCaseToStart$20 = $$1;
+          let tmpIfTest$79 = $$2;
+          let tmpIfTest$80 = $$3;
+          let tmpIfTest$81 = $$4;
+          let tmpIfTest$82 = $$5;
+          debugger;
           const tmpReturnArg$35 = tmpBranchingC$6(
             tmpSwitchValue$20,
             tmpSwitchCaseToStart$20,
@@ -473,14 +521,14 @@ let f = function () {
           );
           return tmpReturnArg$35;
         };
-        const tmpBranchingC$6 = function (
-          tmpSwitchValue$21,
-          tmpSwitchCaseToStart$21,
-          tmpIfTest$83,
-          tmpIfTest$84,
-          tmpIfTest$85,
-          tmpIfTest$86,
-        ) {
+        const tmpBranchingC$6 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+          let tmpSwitchValue$21 = $$0;
+          let tmpSwitchCaseToStart$21 = $$1;
+          let tmpIfTest$83 = $$2;
+          let tmpIfTest$84 = $$3;
+          let tmpIfTest$85 = $$4;
+          let tmpIfTest$86 = $$5;
+          debugger;
           $(3);
           const tmpReturnArg$36 = tmpBranchingC$5(tmpSwitchValue$21, tmpSwitchCaseToStart$21, tmpIfTest$83, tmpIfTest$84, tmpIfTest$85);
           return tmpReturnArg$36;
@@ -507,51 +555,64 @@ let f = function () {
           return tmpReturnArg$38;
         }
       };
-      const tmpBranchingB$5 = function (tmpSwitchValue$17, tmpSwitchCaseToStart$17, tmpIfTest$65, tmpIfTest$66, tmpIfTest$67) {
+      const tmpBranchingB$5 = function ($$0, $$1, $$2, $$3, $$4) {
+        let tmpSwitchValue$17 = $$0;
+        let tmpSwitchCaseToStart$17 = $$1;
+        let tmpIfTest$65 = $$2;
+        let tmpIfTest$66 = $$3;
+        let tmpIfTest$67 = $$4;
+        debugger;
         const tmpReturnArg$39 = tmpBranchingC$5(tmpSwitchValue$17, tmpSwitchCaseToStart$17, tmpIfTest$65, tmpIfTest$66, tmpIfTest$67);
         return tmpReturnArg$39;
       };
-      const tmpBranchingC$5 = function (tmpSwitchValue$18, tmpSwitchCaseToStart$18, tmpIfTest$68, tmpIfTest$69, tmpIfTest$70) {
+      const tmpBranchingC$5 = function ($$0, $$1, $$2, $$3, $$4) {
+        let tmpSwitchValue$18 = $$0;
+        let tmpSwitchCaseToStart$18 = $$1;
+        let tmpIfTest$68 = $$2;
+        let tmpIfTest$69 = $$3;
+        let tmpIfTest$70 = $$4;
+        debugger;
         const tmpIfTest$71 = tmpSwitchCaseToStart$18 <= 2;
-        const tmpBranchingA$9 = function (
-          tmpSwitchValue$28,
-          tmpSwitchCaseToStart$28,
-          tmpIfTest$121,
-          tmpIfTest$122,
-          tmpIfTest$123,
-          tmpIfTest$124,
-        ) {
+        const tmpBranchingA$9 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+          let tmpSwitchValue$28 = $$0;
+          let tmpSwitchCaseToStart$28 = $$1;
+          let tmpIfTest$121 = $$2;
+          let tmpIfTest$122 = $$3;
+          let tmpIfTest$123 = $$4;
+          let tmpIfTest$124 = $$5;
+          debugger;
           $(5);
           const tmpReturnArg$40 = $(6);
           return tmpReturnArg$40;
         };
-        const tmpBranchingB$9 = function (
-          tmpSwitchValue$29,
-          tmpSwitchCaseToStart$29,
-          tmpIfTest$125,
-          tmpIfTest$126,
-          tmpIfTest$127,
-          tmpIfTest$128,
-        ) {
+        const tmpBranchingB$9 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+          let tmpSwitchValue$29 = $$0;
+          let tmpSwitchCaseToStart$29 = $$1;
+          let tmpIfTest$125 = $$2;
+          let tmpIfTest$126 = $$3;
+          let tmpIfTest$127 = $$4;
+          let tmpIfTest$128 = $$5;
+          debugger;
           const tmpIfTest$129 = tmpSwitchCaseToStart$29 <= 3;
-          const tmpBranchingA$10 = function (
-            tmpSwitchValue$31,
-            tmpSwitchCaseToStart$31,
-            tmpIfTest$134,
-            tmpIfTest$135,
-            tmpIfTest$136,
-            tmpIfTest$137,
-            tmpIfTest$138,
-          ) {};
-          const tmpBranchingB$10 = function (
-            tmpSwitchValue$32,
-            tmpSwitchCaseToStart$32,
-            tmpIfTest$139,
-            tmpIfTest$140,
-            tmpIfTest$141,
-            tmpIfTest$142,
-            tmpIfTest$143,
-          ) {
+          const tmpBranchingA$10 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
+            let tmpSwitchValue$31 = $$0;
+            let tmpSwitchCaseToStart$31 = $$1;
+            let tmpIfTest$134 = $$2;
+            let tmpIfTest$135 = $$3;
+            let tmpIfTest$136 = $$4;
+            let tmpIfTest$137 = $$5;
+            let tmpIfTest$138 = $$6;
+            debugger;
+          };
+          const tmpBranchingB$10 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
+            let tmpSwitchValue$32 = $$0;
+            let tmpSwitchCaseToStart$32 = $$1;
+            let tmpIfTest$139 = $$2;
+            let tmpIfTest$140 = $$3;
+            let tmpIfTest$141 = $$4;
+            let tmpIfTest$142 = $$5;
+            let tmpIfTest$143 = $$6;
+            debugger;
             const tmpReturnArg$41 = tmpBranchingC$10(
               tmpSwitchValue$32,
               tmpSwitchCaseToStart$32,
@@ -563,15 +624,15 @@ let f = function () {
             );
             return tmpReturnArg$41;
           };
-          const tmpBranchingC$10 = function (
-            tmpSwitchValue$33,
-            tmpSwitchCaseToStart$33,
-            tmpIfTest$144,
-            tmpIfTest$145,
-            tmpIfTest$146,
-            tmpIfTest$147,
-            tmpIfTest$148,
-          ) {
+          const tmpBranchingC$10 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
+            let tmpSwitchValue$33 = $$0;
+            let tmpSwitchCaseToStart$33 = $$1;
+            let tmpIfTest$144 = $$2;
+            let tmpIfTest$145 = $$3;
+            let tmpIfTest$146 = $$4;
+            let tmpIfTest$147 = $$5;
+            let tmpIfTest$148 = $$6;
+            debugger;
             const tmpReturnArg$42 = tmpBranchingC$9(
               tmpSwitchValue$33,
               tmpSwitchCaseToStart$33,
@@ -606,14 +667,14 @@ let f = function () {
             return tmpReturnArg$44;
           }
         };
-        const tmpBranchingC$9 = function (
-          tmpSwitchValue$30,
-          tmpSwitchCaseToStart$30,
-          tmpIfTest$130,
-          tmpIfTest$131,
-          tmpIfTest$132,
-          tmpIfTest$133,
-        ) {
+        const tmpBranchingC$9 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+          let tmpSwitchValue$30 = $$0;
+          let tmpSwitchCaseToStart$30 = $$1;
+          let tmpIfTest$130 = $$2;
+          let tmpIfTest$131 = $$3;
+          let tmpIfTest$132 = $$4;
+          let tmpIfTest$133 = $$5;
+          debugger;
           const tmpReturnArg$45 = tmpBranchingC$4(tmpSwitchValue$30, tmpSwitchCaseToStart$30, tmpIfTest$130, tmpIfTest$131);
           return tmpReturnArg$45;
         };
@@ -647,7 +708,13 @@ let f = function () {
         return tmpReturnArg$49;
       }
     };
-    const tmpBranchingC$4 = function (tmpSwitchValue$15, tmpSwitchCaseToStart$15, tmpIfTest$57, tmpIfTest$58) {};
+    const tmpBranchingC$4 = function ($$0, $$1, $$2, $$3) {
+      let tmpSwitchValue$15 = $$0;
+      let tmpSwitchCaseToStart$15 = $$1;
+      let tmpIfTest$57 = $$2;
+      let tmpIfTest$58 = $$3;
+      debugger;
+    };
     if (tmpIfTest$40) {
       const tmpReturnArg$50 = tmpBranchingA$4(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpIfTest$9, tmpIfTest$40);
       return tmpReturnArg$50;
@@ -673,50 +740,70 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpSwitchValue = $(1);
   const tmpIfTest = 0 === tmpSwitchValue;
-  const tmpBranchingB = function (tmpSwitchValue$2, tmpSwitchCaseToStart$2) {
+  const tmpBranchingB = function ($$0, $$1) {
+    const tmpSwitchValue$2 = $$0;
+    const tmpSwitchCaseToStart$2 = $$1;
+    debugger;
     const tmpBinLhs$3 = $(1);
     const tmpIfTest$6 = tmpBinLhs$3 === tmpSwitchValue$2;
-    const tmpBranchingB$1 = function (tmpSwitchValue$5, tmpSwitchCaseToStart$5) {
+    const tmpBranchingB$1 = function ($$0, $$1) {
+      const tmpSwitchValue$5 = $$0;
+      const tmpSwitchCaseToStart$5 = $$1;
+      debugger;
       const tmpBinLhs$8 = $(4);
       const tmpIfTest$14 = tmpBinLhs$8 === tmpSwitchValue$5;
-      const tmpBranchingB$2 = function (tmpSwitchValue$8, tmpSwitchCaseToStart$8) {
+      const tmpBranchingB$2 = function ($$0, $$1) {
+        const tmpSwitchValue$8 = $$0;
+        const tmpSwitchCaseToStart$8 = $$1;
+        debugger;
         const tmpBinLhs$15 = $(7);
         const tmpIfTest$24 = tmpBinLhs$15 === tmpSwitchValue$8;
         if (tmpIfTest$24) {
-          const tmpReturnArg$3 = tmpBranchingC(3);
-          return tmpReturnArg$3;
+          const tmpReturnArg$6 = tmpBranchingC(3);
+          return tmpReturnArg$6;
         } else {
           const tmpReturnArg$7 = tmpBranchingC(tmpSwitchCaseToStart$8);
           return tmpReturnArg$7;
         }
       };
       if (tmpIfTest$14) {
-        const tmpReturnArg$2 = tmpBranchingC(2);
-        return tmpReturnArg$2;
+        const tmpReturnArg$9 = tmpBranchingC(2);
+        return tmpReturnArg$9;
       } else {
         const tmpReturnArg$10 = tmpBranchingB$2(tmpSwitchValue$5, tmpSwitchCaseToStart$5);
         return tmpReturnArg$10;
       }
     };
     if (tmpIfTest$6) {
-      const tmpReturnArg$1 = tmpBranchingC(1);
-      return tmpReturnArg$1;
+      const tmpReturnArg$12 = tmpBranchingC(1);
+      return tmpReturnArg$12;
     } else {
       const tmpReturnArg$13 = tmpBranchingB$1(tmpSwitchValue$2, tmpSwitchCaseToStart$2);
       return tmpReturnArg$13;
     }
   };
-  const tmpBranchingC = function (tmpSwitchCaseToStart$3) {
+  const tmpBranchingC = function ($$0) {
+    const tmpSwitchCaseToStart$3 = $$0;
+    debugger;
     const tmpIfTest$40 = tmpSwitchCaseToStart$3 <= 0;
-    const tmpBranchingB$4 = function (tmpSwitchCaseToStart$14) {
+    const tmpBranchingB$4 = function ($$0) {
+      const tmpSwitchCaseToStart$14 = $$0;
+      debugger;
       const tmpIfTest$51 = tmpSwitchCaseToStart$14 <= 1;
-      const tmpBranchingA$5 = function (tmpSwitchCaseToStart$16) {
+      const tmpBranchingA$5 = function ($$0) {
+        const tmpSwitchCaseToStart$16 = $$0;
+        debugger;
         const tmpIfTest$62 = $(8);
-        const tmpBranchingA$6 = function (tmpSwitchCaseToStart$19) {
+        const tmpBranchingA$6 = function ($$0) {
+          const tmpSwitchCaseToStart$19 = $$0;
+          debugger;
           const tmpIfTest$77 = $(9);
-          const tmpBranchingB$7 = function (tmpSwitchCaseToStart$23) {
+          const tmpBranchingB$7 = function ($$0) {
+            const tmpSwitchCaseToStart$23 = $$0;
+            debugger;
             $(11);
             const tmpIfTest$97 = $(2);
             if (tmpIfTest$97) {
@@ -736,7 +823,9 @@ const f = function () {
             return tmpReturnArg$34;
           }
         };
-        const tmpBranchingC$6 = function (tmpSwitchCaseToStart$21) {
+        const tmpBranchingC$6 = function ($$0) {
+          const tmpSwitchCaseToStart$21 = $$0;
+          debugger;
           $(3);
           const tmpReturnArg$36 = tmpBranchingC$5(tmpSwitchCaseToStart$21);
           return tmpReturnArg$36;
@@ -749,9 +838,13 @@ const f = function () {
           return tmpReturnArg$38;
         }
       };
-      const tmpBranchingC$5 = function (tmpSwitchCaseToStart$18) {
+      const tmpBranchingC$5 = function ($$0) {
+        const tmpSwitchCaseToStart$18 = $$0;
+        debugger;
         const tmpIfTest$71 = tmpSwitchCaseToStart$18 <= 2;
-        const tmpBranchingB$9 = function (tmpSwitchCaseToStart$29) {
+        const tmpBranchingB$9 = function ($$0) {
+          const tmpSwitchCaseToStart$29 = $$0;
+          debugger;
           const tmpIfTest$129 = tmpSwitchCaseToStart$29 <= 3;
           if (tmpIfTest$129) {
             return undefined;
@@ -785,8 +878,8 @@ const f = function () {
     }
   };
   if (tmpIfTest) {
-    const tmpReturnArg = tmpBranchingC(0);
-    return tmpReturnArg;
+    const tmpReturnArg$52 = tmpBranchingC(0);
+    return tmpReturnArg$52;
   } else {
     const tmpReturnArg$53 = tmpBranchingB(tmpSwitchValue, 4);
     return tmpReturnArg$53;

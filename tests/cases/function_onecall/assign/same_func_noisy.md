@@ -40,13 +40,17 @@ $(8);
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   let a = function () {
+    debugger;
     $('a');
   };
   let b = function () {
+    debugger;
     $('b');
   };
   $(3);
@@ -71,13 +75,17 @@ $(8);
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   let a = function () {
+    debugger;
     $('a');
   };
   let b = function () {
+    debugger;
     $('b');
   };
   $(3);

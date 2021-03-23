@@ -25,6 +25,7 @@ let x = undefined;
 $(1);
 x = $(2);
 const f = function () {
+  debugger;
   $(x, 'f');
 };
 f();
@@ -37,6 +38,7 @@ let x = undefined;
 $(1);
 x = $(2);
 const f = function () {
+  debugger;
   $(x, 'f');
 };
 f();

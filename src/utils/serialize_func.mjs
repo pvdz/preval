@@ -1,6 +1,22 @@
 import { printer } from '../../lib/printer.mjs';
 
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import {
+  ASSERT,
+  log,
+  group,
+  groupEnd,
+  vlog,
+  vgroup,
+  vgroupEnd,
+  tmat,
+  fmat,
+  rule,
+  example,
+  before,
+  source,
+  after,
+  findBodyOffset,
+} from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { phase0 } from '../reduce_static/phase0.mjs';
 import { uniqify_idents } from './uniqify_idents.mjs';
@@ -15,8 +31,9 @@ export function cloneFunctionNode(node, clonedName = 'noname', staticArgs, fdata
   group(
     '\n\n\n##################################\n## cloning function slowly  ::  ' +
       node.id?.name +
-      '\n##################################\n\n\n',
+      '\n##################################\n\n',
   );
+  vlog('Input node:');
   source(node);
 
   ASSERT(
@@ -24,11 +41,20 @@ export function cloneFunctionNode(node, clonedName = 'noname', staticArgs, fdata
     'This function is supposed to clone a func expr',
     node,
   );
+  ASSERT(
+    node.body.body.some((n) => n.type === 'DebuggerStatement'),
+    'the function should be normalized so it should contain the function header and a debugger statement',
+  );
+
+  const bodyOffset = findBodyOffset(node);
 
   staticArgs.forEach(({ index: paramIndex, type, value: paramValue }) => {
     if (paramIndex >= node.params.length) return; // Argument without param, we ignore.
     log('- Replacing param `' + node.params[paramIndex].name + '` with', paramValue);
-    node.body.body.unshift(
+
+    node.body.body.splice(
+      bodyOffset,
+      0,
       AST.expressionStatement(
         AST.assignmentExpression(
           node.params[paramIndex].name,

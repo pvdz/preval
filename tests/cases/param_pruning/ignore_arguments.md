@@ -20,8 +20,13 @@ f();
 ## Pre Normal
 
 `````js filename=intro
-let f = function (x, y, z) {
-  return $(!!arguments, x, z);
+let f = function ($$0, $$1, $$2) {
+  const tmpArgumentsAny = arguments;
+  let x = $$0;
+  let y = $$1;
+  let z = $$2;
+  debugger;
+  return $(!!tmpArgumentsAny, x, z);
 };
 f();
 `````
@@ -29,10 +34,14 @@ f();
 ## Normalized
 
 `````js filename=intro
-let f = function (x, y, z) {
-  const tmpPrevalAliasArgumentsAny = arguments;
+let f = function ($$0, $$1, $$2) {
+  const tmpArgumentsAny = arguments;
+  let x = $$0;
+  let y = $$1;
+  let z = $$2;
+  debugger;
   const tmpCallCallee = $;
-  const tmpUnaryArg = !tmpPrevalAliasArgumentsAny;
+  const tmpUnaryArg = !tmpArgumentsAny;
   const tmpCalleeParam = !tmpUnaryArg;
   const tmpCalleeParam$1 = x;
   const tmpCalleeParam$2 = z;
@@ -45,9 +54,12 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function (x, y, z) {
-  const tmpPrevalAliasArgumentsAny = arguments;
-  const tmpUnaryArg = !tmpPrevalAliasArgumentsAny;
+const f = function ($$0, $$1, $$2) {
+  const tmpArgumentsAny = arguments;
+  const x = $$0;
+  const z = $$2;
+  debugger;
+  const tmpUnaryArg = !tmpArgumentsAny;
   const tmpCalleeParam = !tmpUnaryArg;
   const tmpReturnArg = $(tmpCalleeParam, x, z);
   return tmpReturnArg;

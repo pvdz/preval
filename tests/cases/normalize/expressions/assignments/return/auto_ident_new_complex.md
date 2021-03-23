@@ -23,6 +23,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = new ($($))(1));
 };
 let a = { a: 999, b: 1000 };
@@ -34,6 +35,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpNewCallee = $($);
   a = new tmpNewCallee(1);
   let tmpReturnArg = a;

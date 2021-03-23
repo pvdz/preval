@@ -18,6 +18,7 @@ export function $p() {
     //uniqueName // string. Globally unique name for this binding name. Phase1 will sort out scoping problems and assign each unique binding a globally unique name (its original name with possibly a suffix to distinct it)
     //originalLabelName // string. Name of a label before making it unique
     // isForAlias // bool. is this identifier used as part of the alias for this/arguments/arguments.length ?
+    // funcHeader // bool. during normalize_once, this prevents a debugger statement from being deleted if it isn't ours
 
     // phase2 (these props should exist after phase2... even on new nodes)
     // pure // boolean. For functions, whether the function does anything that might have observable side effects beyond the return value.
@@ -37,5 +38,6 @@ export function $p() {
     // hasBranch // bool. Does this function contain an `if`, `while`, or `for-x` statement?
     // funcDepth // number. How many nested scopes does this node appear in
     // oneTimerDirty // bool. Mark a function as having something inlined into it. This invalidates references and requires another phase1 pass before being able to inline the function itself safely.
+    // bodyOffset // number. First body statement after the function header (after the debugger statement). Discovered while walking a function, not maintained
   };
 }

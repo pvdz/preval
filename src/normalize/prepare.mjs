@@ -1,5 +1,5 @@
 import walk from '../../lib/walk.mjs';
-
+import * as AST from '../ast.mjs';
 import {
   VERBOSE_TRACING,
   THIS_ALIAS_BASE_NAME,
@@ -26,7 +26,7 @@ import {
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
-export function prepareNormalization(fdata, resolve, req) {
+export function prepareNormalization(fdata, resolve, req, oncePass) {
   const ast = fdata.tenkoOutput.ast;
   const fname = fdata.fname;
 
@@ -37,11 +37,6 @@ export function prepareNormalization(fdata, resolve, req) {
   const funcScopeStack = [];
   const thisStack = [];
   const fenceStack = []; // switch, loops. To determine where unqualified break/continue jumps to.
-
-  fdata.thisRefs = [];
-  fdata.argsAnyRefs = [];
-  fdata.argsLenRefs = [];
-  fdata.thisArgFuncs = new Set();
 
   fdata.globalNameCounter = 0;
   const globallyUniqueNamingRegistry = new Map();
@@ -83,7 +78,14 @@ export function prepareNormalization(fdata, resolve, req) {
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         funcScopeStack.push(node);
       }
-      preprocessScopeNode(node, path.nodes[path.nodes.length - 2], fdata, funcScopeStack[funcScopeStack.length - 1], ++lexScopeCounter);
+      preprocessScopeNode(
+        node,
+        path.nodes[path.nodes.length - 2],
+        fdata,
+        funcScopeStack[funcScopeStack.length - 1],
+        ++lexScopeCounter,
+        oncePass,
+      );
     }
 
     switch (key) {
@@ -105,10 +107,24 @@ export function prepareNormalization(fdata, resolve, req) {
           vgroupEnd();
           return true;
         }
+        // Don't use Param nodes in the first pass because there may still be patterns and defaults
+        if (!oncePass) {
+          vlog('Converting', node.params.length, 'param identifier/rest nodes to custom Param nodes');
+          node.params.forEach((pnode, pi) => {
+            ASSERT(
+              pnode.type === 'Identifier' || (pnode.type === 'RestElement' && pnode.argument.type === 'Identifier'),
+              'params should be normalized now',
+            );
+            ASSERT(typeof (pnode.type === 'RestElement' ? pnode.argument.name : pnode.name) === 'string', 'name please?', pnode);
+            node.params[pi] = AST.param('$$' + pi, pnode.type === 'RestElement');
+          });
+        }
         vlog('Name:', node.id?.name ?? '<anon>');
         funcStack.push(node);
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           node.$p.thisAccess = false;
+          node.$p.readsArgumentsLen = false;
+          node.$p.readsArgumentsAny = false;
           thisStack.push(node);
         }
         break;
@@ -283,17 +299,9 @@ export function prepareNormalization(fdata, resolve, req) {
               parentNode.property.name === 'length' &&
               !parentNode.computed
             ) {
-              // Get the parent of the member expression so we can replace it
-              const grandNode = path.nodes[path.nodes.length - 3];
-              const grandProp = path.props[path.props.length - 2];
-              const grandIndex = path.indexes[path.indexes.length - 2];
-
               // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
               vlog('- Marking function as accessing `arguments.length`');
               thisFunc.$p.readsArgumentsLen = true;
-              vlog('- Pushing node to stack for `arguments.length` alias replacement');
-              fdata.argsLenRefs.push({ parent: grandNode, prop: grandProp, index: grandIndex, func: thisFunc, node });
-              fdata.thisArgFuncs.add(thisFunc);
             } else {
               if (parentNode.type === 'ExpressionStatement') {
                 vlog('Ignoring `arguments` as an expression statement');
@@ -301,12 +309,12 @@ export function prepareNormalization(fdata, resolve, req) {
                 // This disables a few tricks because of observable side effects
                 vlog('- Marking function as accessing `arguments` in "any" way');
                 thisFunc.$p.readsArgumentsAny = true;
-                vlog('- Pushing node to stack for `arguments` alias replacement');
-                fdata.argsAnyRefs.push({ parent: parentNode, prop: parentProp, index: parentIndex, func: thisFunc, node });
-                fdata.thisArgFuncs.add(thisFunc);
               }
             }
           }
+        } else if (!oncePass && kind === 'read' && node.name.startsWith('$$')) {
+          // Ignore: Preval special parameter name
+          vlog('This is a special param "keyword" by Preval. Ignoring.');
         } else if (kind !== 'none' && kind !== 'label') {
           ASSERT(!node.$p.uniqueName, 'dont do this twice');
           const uniqueName = findUniqueNameForBindingIdent(
@@ -358,7 +366,6 @@ export function prepareNormalization(fdata, resolve, req) {
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
           const parentIndex = path.indexes[path.indexes.length - 1];
-          const grandparent = path.nodes[path.nodes.length - 3];
 
           vlog('parent =', parentNode.type, 'prop=', parentProp, 'index=', parentIndex);
 
@@ -452,12 +459,7 @@ export function prepareNormalization(fdata, resolve, req) {
           if (parentNode.type !== 'ExpressionStatement') {
             const thisFunc = thisStack[thisStack.length - 1];
             vlog('Marking func ( pid =', thisFunc.$p.pid, ') as having `this` access');
-            const parentProp = path.props[path.props.length - 1];
-            const parentIndex = path.indexes[path.indexes.length - 1];
             thisFunc.$p.thisAccess = true;
-            vlog('Pushing node to stack for `arguments` alias replacement');
-            fdata.thisRefs.push({ parent: parentNode, prop: parentProp, index: parentIndex, func: thisFunc, node });
-            fdata.thisArgFuncs.add(thisFunc);
           }
         }
         break;
@@ -489,7 +491,12 @@ export function prepareNormalization(fdata, resolve, req) {
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
           const parentIndex = path.indexes[path.indexes.length - 1];
-          ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node, fdata.globallyUniqueLabelRegistry);
+          ASSERT(
+            fdata.globallyUniqueLabelRegistry.has(node.label.name),
+            'the label should be registered',
+            node,
+            fdata.globallyUniqueLabelRegistry,
+          );
           fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push({
             node,
             parentNode,

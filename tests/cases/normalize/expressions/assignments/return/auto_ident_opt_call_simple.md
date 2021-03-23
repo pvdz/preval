@@ -23,6 +23,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = $?.(1));
 };
 let a = { a: 999, b: 1000 };
@@ -34,20 +35,30 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   a = undefined;
   const tmpChainRootCall = $;
   const tmpIfTest = tmpChainRootCall != null;
-  const tmpBranchingA = function (tmpChainRootCall$1, tmpIfTest$1) {
+  const tmpBranchingA = function ($$0, $$1) {
+    let tmpChainRootCall$1 = $$0;
+    let tmpIfTest$1 = $$1;
+    debugger;
     const tmpChainElementCall$1 = tmpChainRootCall$1(1);
     a = tmpChainElementCall$1;
     const tmpReturnArg$2 = tmpBranchingC(tmpChainRootCall$1, tmpIfTest$1);
     return tmpReturnArg$2;
   };
-  const tmpBranchingB = function (tmpChainRootCall$2, tmpIfTest$2) {
+  const tmpBranchingB = function ($$0, $$1) {
+    let tmpChainRootCall$2 = $$0;
+    let tmpIfTest$2 = $$1;
+    debugger;
     const tmpReturnArg$3 = tmpBranchingC(tmpChainRootCall$2, tmpIfTest$2);
     return tmpReturnArg$3;
   };
-  const tmpBranchingC = function (tmpChainRootCall$3, tmpIfTest$3) {
+  const tmpBranchingC = function ($$0, $$1) {
+    let tmpChainRootCall$3 = $$0;
+    let tmpIfTest$3 = $$1;
+    debugger;
     let tmpReturnArg$1 = a;
     return tmpReturnArg$1;
   };
@@ -70,9 +81,11 @@ $(a);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   a = undefined;
   const tmpIfTest = $ != null;
   const tmpBranchingC = function () {
+    debugger;
     const tmpReturnArg$1 = a;
     return tmpReturnArg$1;
   };

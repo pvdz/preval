@@ -31,7 +31,9 @@ $(x);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     if ($(1)) {
       $('a');
       g();
@@ -50,7 +52,9 @@ $(x);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     const tmpIfTest = $(1);
     if (tmpIfTest) {
       $('a');
@@ -70,6 +74,7 @@ $(x);
 
 `````js filename=intro
 const g = function () {
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $('a');

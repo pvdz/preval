@@ -20,8 +20,10 @@ f(null);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let { ...x } = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let { ...x } = tmpParamBare;
   return 'bad';
 };
 f(null);
@@ -30,8 +32,10 @@ f(null);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let bindingPatternObjRoot = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternObjRoot = tmpParamBare;
   const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = bindingPatternObjRoot;
   const tmpCalleeParam$1 = [];

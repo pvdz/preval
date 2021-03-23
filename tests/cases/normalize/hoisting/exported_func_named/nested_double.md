@@ -21,7 +21,9 @@ export function g() {
 
 `````js filename=intro
 let g = function () {
+  debugger;
   let f = function () {
+    debugger;
     return $(2);
   };
   $(f(3));
@@ -34,7 +36,9 @@ export { g };
 
 `````js filename=intro
 let g = function () {
+  debugger;
   let f = function () {
+    debugger;
     const tmpReturnArg = $(2);
     return tmpReturnArg;
   };
@@ -52,6 +56,7 @@ export { g };
 
 `````js filename=intro
 const g = function () {
+  debugger;
   const tmpCalleeParam = $(2);
   $(tmpCalleeParam);
 };

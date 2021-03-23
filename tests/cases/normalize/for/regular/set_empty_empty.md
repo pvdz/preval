@@ -23,7 +23,7 @@ let a = 1,
   c = 3,
   d = 4;
 {
-  a;
+  null;
   while (true) {
     $(d);
   }

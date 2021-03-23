@@ -33,9 +33,11 @@ $(closure(), 'closure-global2');
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return $(x, 'closure-return');
 };
 let f = function () {
+  debugger;
   if ($()) {
     return $(1, 'f-return');
   }
@@ -51,10 +53,12 @@ $(closure(), 'closure-global2');
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   const tmpReturnArg = $(x, 'closure-return');
   return tmpReturnArg;
 };
 let f = function () {
+  debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {
     const tmpReturnArg$1 = $(1, 'f-return');
@@ -78,6 +82,7 @@ tmpCallCallee$1(tmpCalleeParam$2, tmpCalleeParam$3);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {
     const tmpReturnArg$1 = $(1, 'f-return');

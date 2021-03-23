@@ -20,8 +20,10 @@ $(f([1, 2, 3, , 4, 5], 200));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let [[x = $('fail')]] = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let [[x = $('fail')]] = tmpParamBare;
   return 'bad';
 };
 $(f([1, 2, 3, , 4, 5], 200));
@@ -30,27 +32,29 @@ $(f([1, 2, 3, , 4, 5], 200));
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let bindingPatternArrRoot = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternArrRoot = tmpParamBare;
   let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
   let arrPatternBeforeDefault = arrPatternSplat$1[0];
   let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
-  const tmpBranchingA = function (
-    tmpParamPattern$1,
-    bindingPatternArrRoot$1,
-    arrPatternSplat$2,
-    arrPatternStep$1,
-    arrPatternSplat$3,
-    arrPatternBeforeDefault$1,
-    x$1,
-    tmpIfTest$1,
-  ) {
+  const tmpBranchingA = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7) {
+    let tmpParamBare$1 = $$0;
+    let bindingPatternArrRoot$1 = $$1;
+    let arrPatternSplat$2 = $$2;
+    let arrPatternStep$1 = $$3;
+    let arrPatternSplat$3 = $$4;
+    let arrPatternBeforeDefault$1 = $$5;
+    let x$1 = $$6;
+    let tmpIfTest$1 = $$7;
+    debugger;
     x$1 = $('fail');
     const tmpReturnArg = tmpBranchingC(
-      tmpParamPattern$1,
+      tmpParamBare$1,
       bindingPatternArrRoot$1,
       arrPatternSplat$2,
       arrPatternStep$1,
@@ -61,19 +65,19 @@ let f = function (tmpParamPattern) {
     );
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (
-    tmpParamPattern$2,
-    bindingPatternArrRoot$2,
-    arrPatternSplat$4,
-    arrPatternStep$2,
-    arrPatternSplat$5,
-    arrPatternBeforeDefault$2,
-    x$2,
-    tmpIfTest$2,
-  ) {
+  const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7) {
+    let tmpParamBare$2 = $$0;
+    let bindingPatternArrRoot$2 = $$1;
+    let arrPatternSplat$4 = $$2;
+    let arrPatternStep$2 = $$3;
+    let arrPatternSplat$5 = $$4;
+    let arrPatternBeforeDefault$2 = $$5;
+    let x$2 = $$6;
+    let tmpIfTest$2 = $$7;
+    debugger;
     x$2 = arrPatternBeforeDefault$2;
     const tmpReturnArg$1 = tmpBranchingC(
-      tmpParamPattern$2,
+      tmpParamBare$2,
       bindingPatternArrRoot$2,
       arrPatternSplat$4,
       arrPatternStep$2,
@@ -84,21 +88,21 @@ let f = function (tmpParamPattern) {
     );
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (
-    tmpParamPattern$3,
-    bindingPatternArrRoot$3,
-    arrPatternSplat$6,
-    arrPatternStep$3,
-    arrPatternSplat$7,
-    arrPatternBeforeDefault$3,
-    x$3,
-    tmpIfTest$3,
-  ) {
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7) {
+    let tmpParamBare$3 = $$0;
+    let bindingPatternArrRoot$3 = $$1;
+    let arrPatternSplat$6 = $$2;
+    let arrPatternStep$3 = $$3;
+    let arrPatternSplat$7 = $$4;
+    let arrPatternBeforeDefault$3 = $$5;
+    let x$3 = $$6;
+    let tmpIfTest$3 = $$7;
+    debugger;
     return 'bad';
   };
   if (tmpIfTest) {
     const tmpReturnArg$2 = tmpBranchingA(
-      tmpParamPattern,
+      tmpParamBare,
       bindingPatternArrRoot,
       arrPatternSplat,
       arrPatternStep,
@@ -110,7 +114,7 @@ let f = function (tmpParamPattern) {
     return tmpReturnArg$2;
   } else {
     const tmpReturnArg$3 = tmpBranchingB(
-      tmpParamPattern,
+      tmpParamBare,
       bindingPatternArrRoot,
       arrPatternSplat,
       arrPatternStep,
@@ -133,8 +137,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const arrPatternSplat = [...tmpParamPattern];
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const arrPatternSplat = [...tmpParamBare];
   const arrPatternStep = arrPatternSplat[0];
   const arrPatternSplat$1 = [...arrPatternStep];
   const arrPatternBeforeDefault = arrPatternSplat$1[0];

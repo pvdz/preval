@@ -25,9 +25,12 @@ $(a, b, c, d, obj);
 `````js filename=intro
 let obj = {
   get c() {
+    debugger;
     $('get');
   },
-  set c(x) {
+  set c($$0) {
+    let x = $$0;
+    debugger;
     $('set');
   },
 };
@@ -56,9 +59,12 @@ $(a, b, c, d, obj);
 `````js filename=intro
 let obj = {
   get c() {
+    debugger;
     $('get');
   },
-  set c(x) {
+  set c($$0) {
+    let x = $$0;
+    debugger;
     $('set');
   },
 };
@@ -98,9 +104,11 @@ $(a, b, c, d, obj);
 `````js filename=intro
 const obj = {
   get c() {
+    debugger;
     $('get');
   },
-  set c(x) {
+  set c($$0) {
+    debugger;
     $('set');
   },
 };

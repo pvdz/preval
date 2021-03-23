@@ -29,9 +29,11 @@ let [{ a }, b] = gen();
 
 `````js filename=intro
 let gen = function* () {
+  debugger;
   let x = 0;
   yield {
     get a() {
+      debugger;
       x = 1;
     },
   };
@@ -45,9 +47,11 @@ let [{ a }, b] = gen();
 
 `````js filename=intro
 let gen = function* () {
+  debugger;
   let x = 0;
   yield {
     get a() {
+      debugger;
       x = 1;
     },
   };
@@ -70,9 +74,11 @@ let b = arrPatternSplat[1];
 
 `````js filename=intro
 const gen = function* () {
+  debugger;
   let x = 0;
   yield {
     get a() {
+      debugger;
       x = 1;
     },
   };

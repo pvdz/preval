@@ -25,6 +25,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = { x: 1 };
   let a = { a: 999, b: 1000 };
   $($(b)).x--;
@@ -37,6 +38,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = { x: 1 };
   let a = { a: 999, b: 1000 };
   const tmpCallCallee = $;

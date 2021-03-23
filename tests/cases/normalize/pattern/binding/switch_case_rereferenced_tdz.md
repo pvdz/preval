@@ -93,3 +93,14 @@ arrPatternSplat$1[1];
 ## Globals
 
 None
+
+## Result
+
+Should call `$` with:
+ - eval returned: ('<skipped by option>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

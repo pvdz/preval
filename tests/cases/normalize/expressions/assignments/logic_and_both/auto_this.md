@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$((a = this) && (a = this));
+$((a = undefined) && (a = undefined));
 $(a);
 `````
 
@@ -31,12 +31,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = this;
+a = undefined;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = this;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = undefined;
+  tmpCalleeParam = undefined;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -45,12 +44,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = this;
+let SSA_a = undefined;
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = this;
-  SSA_a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  SSA_a = undefined;
+  tmpCalleeParam = undefined;
 }
 $(tmpCalleeParam);
 $(SSA_a);

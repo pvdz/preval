@@ -20,12 +20,15 @@ export function g() { return $(); }
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return $();
 };
 let g = function () {
+  debugger;
   return $();
 };
 let h = function () {
+  debugger;
   return $();
 };
 $(f(), g(), h());
@@ -38,14 +41,17 @@ export { g };
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpReturnArg = $();
   return tmpReturnArg;
 };
 let g = function () {
+  debugger;
   const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
 };
 let h = function () {
+  debugger;
   const tmpReturnArg$2 = $();
   return tmpReturnArg$2;
 };
@@ -63,14 +69,17 @@ export { g };
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpReturnArg = $();
   return tmpReturnArg;
 };
 const g = function () {
+  debugger;
   const tmpReturnArg$1 = $();
   return tmpReturnArg$1;
 };
 const h = function () {
+  debugger;
   const tmpReturnArg$2 = $();
   return tmpReturnArg$2;
 };

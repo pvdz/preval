@@ -4,7 +4,7 @@
 
 > Closures > Ssa problem
 >
-> Trying to come up wtih ssa problem cases regarding closures
+> Trying to come up with ssa problem cases regarding closures
 
 #TODO
 
@@ -29,6 +29,7 @@ a = 4;
 
 `````js filename=intro
 let f = function () {
+  debugger;
   a = 2;
 };
 let a = 1;
@@ -45,6 +46,7 @@ a = 4;
 
 `````js filename=intro
 let f = function () {
+  debugger;
   a = 2;
 };
 let a = 1;

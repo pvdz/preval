@@ -8,6 +8,12 @@
 
 #TODO
 
+## Options
+
+Known TDZ problem
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -57,7 +63,7 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-x$1 = arrPatternSplat[0];
+arrPatternSplat[0];
 const SSA_y = arrPatternSplat[1];
 let x$1;
 for (x$1 in tmpNestedAssignArrPatternRhs) {
@@ -72,9 +78,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 3
- - 2: 4
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 

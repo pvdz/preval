@@ -32,6 +32,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   while ($(true)) {
     $('loop');
     for (let x of [1, 2]) {
@@ -50,6 +51,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
@@ -77,6 +79,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {

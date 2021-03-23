@@ -28,6 +28,7 @@ $(a, b, c, d, e);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = $(b)[$('x')] = $(c)[$('y')] = d + e);
 };
 let b = { x: 1 },
@@ -43,6 +44,7 @@ $(a, b, c, d, e);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $('x');
   const varInitAssignLhsComputedObj = $(c);

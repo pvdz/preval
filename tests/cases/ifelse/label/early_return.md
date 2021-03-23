@@ -29,6 +29,7 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   foo: {
     if ($(true)) {
       $(100);
@@ -45,21 +46,26 @@ f();
 
 `````js filename=intro
 let f = function () {
-  const tmpBranchingC = function () {
-    $('after');
-  };
+  debugger;
   const tmpLabeledBlockFunc = function () {
+    debugger;
     const tmpIfTest$1 = $(true);
-    const tmpBranchingA = function (tmpIfTest$2) {
+    const tmpBranchingA = function ($$0) {
+      let tmpIfTest$2 = $$0;
+      debugger;
       $(100);
       return 20;
     };
-    const tmpBranchingB = function (tmpIfTest$3) {
-      const tmpReturnArg = tmpBranchingC$1(tmpIfTest$3);
+    const tmpBranchingB = function ($$0) {
+      let tmpIfTest$3 = $$0;
+      debugger;
+      const tmpReturnArg = tmpBranchingC(tmpIfTest$3);
       return tmpReturnArg;
     };
-    const tmpBranchingC$1 = function (tmpIfTest$4) {
-      const tmpReturnArg$1 = tmpBranchingC();
+    const tmpBranchingC = function ($$0) {
+      let tmpIfTest$4 = $$0;
+      debugger;
+      const tmpReturnArg$1 = tmpAfterLabel();
       return tmpReturnArg$1;
     };
     if (tmpIfTest$1) {
@@ -69,6 +75,10 @@ let f = function () {
       const tmpReturnArg$3 = tmpBranchingB(tmpIfTest$1);
       return tmpReturnArg$3;
     }
+  };
+  const tmpAfterLabel = function () {
+    debugger;
+    $('after');
   };
   const tmpReturnArg$4 = tmpLabeledBlockFunc();
   return tmpReturnArg$4;

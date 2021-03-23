@@ -20,7 +20,10 @@ function f() {
 
 `````js filename=intro
 let f = function () {
-  f.apply(this, arguments.length);
+  const tmpthis = this;
+  const tmpArgumentsLen = arguments.length;
+  debugger;
+  f.apply(tmpthis, tmpArgumentsLen);
 };
 `````
 
@@ -28,9 +31,10 @@ let f = function () {
 
 `````js filename=intro
 let f = function () {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  const tmpPrevalAliasThis = this;
-  f.apply(tmpPrevalAliasThis, tmpPrevalAliasArgumentsLen);
+  const tmpthis = this;
+  const tmpArgumentsLen = arguments.length;
+  debugger;
+  f.apply(tmpthis, tmpArgumentsLen);
 };
 `````
 
@@ -38,10 +42,10 @@ let f = function () {
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalAliasThis$1 = this;
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  const tmpPrevalAliasThis = tmpPrevalAliasThis$1;
-  f.apply(tmpPrevalAliasThis, tmpPrevalAliasArgumentsLen);
+  const tmpthis = this;
+  const tmpArgumentsLen = arguments.length;
+  debugger;
+  f.apply(tmpthis, tmpArgumentsLen);
 };
 `````
 

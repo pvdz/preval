@@ -32,7 +32,9 @@ let a = { a: 999, b: 1000 };
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       {
-        a = function f() {};
+        a = function f() {
+          debugger;
+        };
       }
     }
   }
@@ -53,7 +55,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  a = function f() {};
+  a = function f() {
+    debugger;
+  };
 }
 $(a);
 `````
@@ -71,7 +75,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  a = function f() {};
+  a = function f() {
+    debugger;
+  };
 }
 $(a);
 `````

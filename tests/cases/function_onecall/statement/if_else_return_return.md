@@ -26,6 +26,7 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if ($()) {
     $(0);
   } else {
@@ -40,17 +41,24 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $();
-  const tmpBranchingA = function (tmpIfTest$1) {
+  const tmpBranchingA = function ($$0) {
+    let tmpIfTest$1 = $$0;
+    debugger;
     $(0);
     const tmpReturnArg$2 = tmpBranchingC(tmpIfTest$1);
     return tmpReturnArg$2;
   };
-  const tmpBranchingB = function (tmpIfTest$2) {
+  const tmpBranchingB = function ($$0) {
+    let tmpIfTest$2 = $$0;
+    debugger;
     const tmpReturnArg$1 = $(1);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (tmpIfTest$3) {
+  const tmpBranchingC = function ($$0) {
+    let tmpIfTest$3 = $$0;
+    debugger;
     const tmpReturnArg$3 = $(2);
     return tmpReturnArg$3;
   };

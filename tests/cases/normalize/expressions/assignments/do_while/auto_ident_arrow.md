@@ -24,7 +24,12 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = () => {})) {
+  while (
+    tmpDoWhileFlag ||
+    (a = () => {
+      debugger;
+    })
+  ) {
     tmpDoWhileFlag = false;
     {
       $(100);
@@ -43,7 +48,9 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = function () {};
+    const tmpNestedComplexRhs = function () {
+      debugger;
+    };
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -66,7 +73,9 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = function () {};
+    const tmpNestedComplexRhs = function () {
+      debugger;
+    };
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

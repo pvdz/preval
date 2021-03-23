@@ -29,7 +29,9 @@ switch (1) {
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a = () => {};
+      a = () => {
+        debugger;
+      };
       $(a);
     }
   }
@@ -48,7 +50,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  a = function () {};
+  a = function () {
+    debugger;
+  };
   $(a);
 }
 `````
@@ -56,7 +60,9 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const a = function () {};
+const a = function () {
+  debugger;
+};
 $(a);
 `````
 

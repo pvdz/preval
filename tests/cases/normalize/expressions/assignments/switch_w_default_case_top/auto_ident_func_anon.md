@@ -35,7 +35,9 @@ let a = { a: 999, b: 1000 };
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a = function () {};
+      a = function () {
+        debugger;
+      };
     }
     if (tmpSwitchCaseToStart <= 1) {
       $('fail1');
@@ -66,7 +68,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
-  a = function () {};
+  a = function () {
+    debugger;
+  };
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$3) {
@@ -97,7 +101,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
-  a = function () {};
+  a = function () {
+    debugger;
+  };
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$3) {

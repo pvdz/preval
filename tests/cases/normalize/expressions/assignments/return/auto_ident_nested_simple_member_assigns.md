@@ -26,6 +26,7 @@ $(a, b, c);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = b.x = b.x = b.x = b.x = b.x = b.x = c);
 };
 let b = { x: 1 },
@@ -39,6 +40,7 @@ $(a, b, c);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const varInitAssignLhsComputedRhs$4 = c;
   b.x = varInitAssignLhsComputedRhs$4;
   const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;

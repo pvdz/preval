@@ -25,7 +25,9 @@ export default function() {
 `````js filename=intro
 $(1);
 const tmpAnonDefaultExport = function () {
+  debugger;
   let f = function () {
+    debugger;
     return $(2);
   };
   $(f(1));
@@ -38,7 +40,9 @@ export { tmpAnonDefaultExport as default };
 `````js filename=intro
 $(1);
 const tmpAnonDefaultExport = function () {
+  debugger;
   let f = function () {
+    debugger;
     const tmpReturnArg = $(2);
     return tmpReturnArg;
   };
@@ -54,6 +58,7 @@ export { tmpAnonDefaultExport as default };
 `````js filename=intro
 $(1);
 const tmpAnonDefaultExport = function () {
+  debugger;
   const tmpCalleeParam = $(2);
   $(tmpCalleeParam);
 };

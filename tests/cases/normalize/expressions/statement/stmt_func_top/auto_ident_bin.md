@@ -23,6 +23,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = { a: 999, b: 1000 };
   $(1) + $(2);
   $(a);
@@ -34,6 +35,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = { a: 999, b: 1000 };
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);

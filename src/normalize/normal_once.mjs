@@ -11,12 +11,34 @@
 import walk from '../../lib/walk.mjs';
 
 import { BLUE, RESET } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after } from '../utils.mjs';
+import {
+  ASSERT,
+  log,
+  group,
+  groupEnd,
+  vlog,
+  vgroup,
+  vgroupEnd,
+  tmat,
+  fmat,
+  rule,
+  example,
+  before,
+  after,
+  findBodyOffsetExpensiveMaybe,
+} from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar, createUniqueGlobalLabel, findBoundNamesInVarDeclaration, findBoundNamesInVarDeclarator } from '../bindings.mjs';
+import {
+  createFreshVar,
+  createUniqueGlobalLabel,
+  findBoundNamesInVarDeclaration,
+  findBoundNamesInVarDeclarator,
+  getIdentUsageKind,
+} from '../bindings.mjs';
 
 export function phaseNormalOnce(fdata) {
   const ast = fdata.tenkoOutput.ast;
+  const thisStack = [];
 
   group('\n\n\n##################################\n## phaseNormalOnce  ::  ' + fdata.fname + '\n##################################\n\n\n');
 
@@ -170,7 +192,16 @@ export function phaseNormalOnce(fdata) {
         }
 
         hoistingOnce(node, 'arrow');
-        transformFunctionParams(node, fdata);
+
+        const [headLogic, bodyLogic] = transformFunctionParams(node, fdata);
+        const deb = AST.debuggerStatement();
+        node.body.body.unshift(
+          // Arrows do not create `this` or `arguments` so don't add those aliases here
+          ...headLogic,
+          deb,
+          ...bodyLogic,
+        );
+        deb.$p.funcHeader = true; // Makes sure this statement won't be deleted in this normal_once step
         break;
       }
       case 'BlockStatement:before': {
@@ -211,7 +242,12 @@ export function phaseNormalOnce(fdata) {
             return decl;
           });
 
-          node.body.unshift(...newNodes);
+          // This is a block and that may still be the body of a function, or not. Try to find the debugger
+          // statement, which is our function header marker, and start after its index if it exists, zero otherwise.
+          let bodyOffset = findBodyOffsetExpensiveMaybe(node.body);
+          if (bodyOffset < 0) bodyOffset = 0;
+          node.body.splice(bodyOffset, 0, ...newNodes);
+
           node.$p.hasFuncDecl = false;
 
           after(node);
@@ -296,6 +332,20 @@ export function phaseNormalOnce(fdata) {
         // Byebye do-while
         break;
       }
+      case 'DebuggerStatement:before': {
+        if (!node.$p.funcHeader) {
+          // Maybe this isn't a problem yet but for now let's just drop these
+          rule('Drop debugger statement');
+          example('debugger;', ';');
+          before(node, parentNode);
+
+          if (parentIndex < 0) parentNode[parentProp] = AST.emptyStatement();
+          else parentNode[parentProp][parentIndex] = AST.emptyStatement();
+
+          after(parentNode);
+        }
+        break;
+      }
       case 'ForStatement:before': {
         if (parentNode.type === 'LabeledStatement') {
           // This is a labeled loop. We have to be careful here because a labeled continue is syntactically
@@ -359,7 +409,47 @@ export function phaseNormalOnce(fdata) {
         }
 
         hoistingOnce(node, 'funcexpr');
-        transformFunctionParams(node, fdata);
+
+        const [headLogic, bodyLogic] = transformFunctionParams(node, fdata);
+        const deb = AST.debuggerStatement();
+
+        const aliases = [];
+
+        if (node.$p.thisAccess) {
+          const tmpName = createFreshVar('$$this', fdata);
+          const thisNode = AST.thisExpression();
+          thisNode.$p.forAlias = true;
+          const newNode = AST.variableDeclaration(tmpName, thisNode, 'const');
+          aliases.push(newNode);
+          node.$p.thisAliasName = tmpName;
+        }
+        if (node.$p.readsArgumentsAny) {
+          const tmpName = createFreshVar('tmpArgumentsAny', fdata);
+          const argNode = AST.identifier('arguments');
+          argNode.$p.forAlias = true;
+          const newNode = AST.variableDeclaration(tmpName, argNode, 'const');
+          aliases.push(newNode);
+          node.$p.argumentsAliasName = tmpName;
+        }
+        if (node.$p.readsArgumentsLen) {
+          const tmpName = createFreshVar('tmpArgumentsLen', fdata);
+          const argNode = AST.memberExpression('arguments', 'length');
+          argNode.$p.forAlias = true;
+          argNode.object.$p.forAlias = true;
+          const newNode = AST.variableDeclaration(tmpName, argNode, 'const');
+          aliases.push(newNode);
+          node.$p.argumentsLenAliasName = tmpName;
+        }
+
+        node.body.body.unshift(...aliases, ...headLogic, deb, ...bodyLogic);
+        deb.$p.funcHeader = true; // Makes sure this statement won't be deleted in this normal_once step
+
+        thisStack.push(node);
+
+        break;
+      }
+      case 'FunctionExpression:after': {
+        thisStack.pop();
         break;
       }
       case 'LabeledStatement': {
@@ -367,6 +457,79 @@ export function phaseNormalOnce(fdata) {
         if (node.label.name !== label) {
           node.label = AST.identifier(label);
         }
+        break;
+      }
+      case 'Identifier:before': {
+        if (parentNode.type === 'ExpressionStatement') {
+          let remove = false;
+          if (node.name === 'arguments') {
+            remove = true;
+          } else {
+            const meta = fdata.globallyUniqueNamingRegistry.get(node.name);
+            ASSERT(meta, 'yeah?');
+            if (!meta.isImplicitGlobal && !meta.isBuiltin) {
+              remove = true;
+            }
+          }
+          if (remove) {
+            // Tbh this is mostly to get rid of `arguments` as a statement. An edge case. Maybe it speeds up other cases too.
+            rule('A statement that is just an identifier should be removed');
+            example('foo;', 'null;');
+            before(node, parentNode);
+
+            vlog('Eliminating expression statement that is just an identifier');
+            if (parentIndex < 0) parentNode[parentProp] = AST.nul();
+            else parentNode[parentProp][parentIndex] = AST.nul();
+
+            after(parentNode);
+            return true;
+          }
+        }
+
+        if (node.name === 'arguments' && !node.$p.forAlias) {
+          const parentNode = path.nodes[path.nodes.length - 2];
+          const parentProp = path.props[path.props.length - 1];
+          const parentIndex = path.indexes[path.indexes.length - 1];
+          const kind = getIdentUsageKind(parentNode, parentProp);
+          vlog('- Ident kind:', kind);
+
+          vlog('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
+          if (kind === 'read') {
+            // Ignore occurrences in global space (or in global nested arrows)
+            const thisFunc = thisStack[thisStack.length - 1];
+            // Do not count cases like where the arguments have no observable side effect or our own alias
+            // This makes sure the `arguments` reference does not stick around unnecessarily as an artifact
+            if (
+              parentNode.type === 'MemberExpression' &&
+              parentNode.object === node &&
+              parentNode.property.type === 'Identifier' &&
+              parentNode.property.name === 'length' &&
+              !parentNode.computed
+            ) {
+              // Leave global occurrences. They should error out (and in tests don't lead to false positives since that uses eval).
+              if (thisFunc?.$p.argumentsLenAliasName) {
+                // Get the parent of the member expression so we can replace it
+                const grandNode = path.nodes[path.nodes.length - 3];
+                const grandProp = path.props[path.props.length - 2];
+                const grandIndex = path.indexes[path.indexes.length - 2];
+
+                const newNode = AST.identifier(thisFunc?.$p.argumentsLenAliasName);
+                if (grandIndex < 0) grandNode[grandProp] = newNode;
+                else grandNode[grandProp][grandIndex] = newNode;
+                break;
+              }
+            } else {
+              // Leave global occurrences. They should error out (and in tests don't lead to false positives since that uses eval).
+              if (thisFunc?.$p.argumentsAliasName) {
+                const newNode = AST.identifier(thisFunc?.$p.argumentsAliasName);
+                if (parentIndex < 0) parentNode[parentProp] = newNode;
+                else parentNode[parentProp][parentIndex] = newNode;
+                break;
+              }
+            }
+          }
+        }
+
         break;
       }
       case 'SwitchStatement:before': {
@@ -505,6 +668,14 @@ export function phaseNormalOnce(fdata) {
         else parentNode[parentProp][parentIndex] = wrapper;
 
         after(newNodes);
+        break;
+      }
+      case 'ThisExpression:before': {
+        if (!node.$p.forAlias) {
+          const newNode = AST.identifier(thisStack[thisStack.length - 1]?.$p.thisAliasName ?? 'undefined');
+          if (parentIndex < 0) parentNode[parentProp] = newNode;
+          else parentNode[parentProp][parentIndex] = newNode;
+        }
         break;
       }
     }
@@ -916,57 +1087,78 @@ function hoistingOnce(hoistingRoot, from) {
   return false;
 }
 function transformFunctionParams(node, fdata) {
-  // Ensure that the params of a function are regular identifiers
   // This transform should move patterns and param defaults to the body of the function.
   // It should not bother to transform patterns away (we'll have to do this in the normalization step, anyways)
-  // If possible, preserve TDZ mechanics (`function(a = b, b)` may trigger tdz).
-  // Params are lets (or even vars?).
 
-  if (node.params.some((n) => n.type !== 'Identifier' && (n.type !== 'RestElement' || n.argument.type !== 'Identifier'))) {
-    rule('All function params must be simple idents');
-    example('function f(a = 10, [b]) {}', 'function f(tmp, tmp2) { let a = tmp === undefined ? 10 : tmp; let [b] = tmp2; }');
-    before(AST.functionExpression(node.params, [], { id: node.id, generator: node.generator, async: node.async }));
-  }
+  // Create local copies of all params. Treat actual params as special, not as bindings anymore.
+  // In this approach we could set the args to a fixed $$0 $$1 $$2 and assign then inside the body.
+  // That way we can treat all bindings as var bindings, eliminating the (currently) last variant
+  // of the kind a binding can have (var vs param). And all bindings would have a block as parent.
 
-  const toInline = [];
-  node.params.forEach((pnode, i) => {
-    if (pnode.type === 'RestElement') {
-      if (pnode.argument.type === 'Identifier') return;
-      // ...[x] or ...{x}
-      // Rest cannot have a default
+  const bodyLogic = []; // patterns and default logic go in here. We don't want logic in the function header
+  const headLogic = node.params
+    .map((n, i) => {
+      // Note: Preval treats $$123 as reserved keywords throughout. All occurrences in the original code get replaced.
 
-      const tmpName = createFreshVar('tmpParamRest', fdata);
-      node.params[i] = AST.identifier(tmpName);
-      toInline.push(AST.variableDeclaration(pnode.argument, tmpName, 'let'));
-      return;
-    }
+      const paramIdent = '$$' + i;
+      const isRest = n.type === 'RestElement';
+      node.params[i] = AST.param(paramIdent, isRest);
 
-    // Not a rest. Two cases to do, maybe both; non-ident param, param with default. The default subsumes the pattern case.
-    if (pnode.type === 'AssignmentPattern') {
-      // Doesn't matter whether the param is a pattern. We replace it with the same kind of conditional assignment either way.
-      const tmpName = createFreshVar('tmpParamDefault', fdata);
-      node.params[i] = AST.identifier(tmpName);
-      // `let x = param === undefined ? def : param`
-      toInline.push(
-        AST.variableDeclaration(
-          pnode.left,
-          AST.conditionalExpression(AST.binaryExpression('===', tmpName, 'undefined'), pnode.right, tmpName),
-          'let',
-        ),
-      );
-    } else if (pnode.type !== 'Identifier') {
-      // Pattern
-      ASSERT(pnode.type === 'ArrayPattern' || pnode.type === 'ObjectPattern');
-      // Next phase will take care of this. We just want it to not be a param.
-      const tmpName = createFreshVar('tmpParamPattern', fdata);
-      node.params[i] = AST.identifier(tmpName);
-      // `let [x] = param`
-      toInline.push(AST.variableDeclaration(pnode, tmpName, 'let'));
-    }
-  });
+      if (isRest) {
+        if (n.argument.type === 'Identifier') {
+          // ... rest with plain ident
+          // `let name = $$1`
+          return AST.variableDeclaration(n.argument.name, AST.param(paramIdent), 'let');
+        } else {
+          // ... rest with pattern
+          // `const tmpName = $$1; let pattern = tmpName;`
+          ASSERT(n.argument);
+          const tmpName = createFreshVar('tmpParamBare', fdata);
+          const pattern = AST.variableDeclaration(n.argument, tmpName, 'let');
+          bodyLogic.push(pattern);
+          return AST.variableDeclaration(tmpName, AST.param(paramIdent), 'const');
+        }
+      } else if (n.type === 'Identifier') {
+        // plain ident
+        // `let name = $$1`
+        return AST.variableDeclaration(n.name, AST.param(paramIdent), 'let');
+      } else if (n.type === 'AssignmentPattern') {
+        // Cannot be rest
+        const tmpName = createFreshVar('tmpParamBare', fdata);
+        if (n.left.type === 'Identifier') {
+          // ident param with default
+          // `const tmpName = $$1; let name = tmpName === undefined ? defaultValue : tmpName;`
+          ASSERT(n.left.name);
 
-  if (toInline) {
-    node.body.body.unshift(...toInline);
-    after(AST.functionExpression(node.params, toInline, { id: node.id, generator: node.generator, async: node.async }));
-  }
+          const defaultHandler = AST.variableDeclaration(
+            n.left.name,
+            AST.conditionalExpression(AST.binaryExpression('===', tmpName, 'undefined'), n.right, tmpName),
+          );
+          bodyLogic.push(defaultHandler);
+        } else {
+          // pattern with default
+          // `const tmpName = $$1; [pattern] = tmpName === undefined ? defaultValue : tmpName;`
+          ASSERT(n.left);
+          const defaultHandler = AST.variableDeclaration(
+            n.left,
+            AST.conditionalExpression(AST.binaryExpression('===', tmpName, 'undefined'), n.right, tmpName),
+            'let',
+          );
+          bodyLogic.push(defaultHandler);
+        }
+
+        return AST.variableDeclaration(tmpName, AST.param(paramIdent), 'const');
+      } else {
+        ASSERT(n.type === 'ObjectPattern' || n.type === 'ArrayPattern', 'should be a pattern', n);
+        // pattern without default
+        // `const tmpName = $$1; [pattern] = tmpName;`
+        const tmpName = createFreshVar('tmpParamBare', fdata);
+        const patternHandler = AST.variableDeclaration(n, tmpName, 'let');
+        bodyLogic.push(patternHandler);
+        return AST.variableDeclaration(tmpName, AST.param(paramIdent), 'const');
+      }
+    })
+    .filter((e) => !!e);
+
+  return [headLogic, bodyLogic];
 }

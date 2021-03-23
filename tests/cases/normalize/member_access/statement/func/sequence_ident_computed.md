@@ -23,6 +23,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = 'foo',
     c = 1;
   ($(1), b)[$('length')];
@@ -35,6 +36,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = 'foo';
   let c = 1;
   $(1);

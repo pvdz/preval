@@ -16,14 +16,21 @@ else $(2);
 ## Pre Normal
 
 `````js filename=intro
-if (function () {}) $(1);
+if (
+  function () {
+    debugger;
+  }
+)
+  $(1);
 else $(2);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpIfTest = function () {};
+const tmpIfTest = function () {
+  debugger;
+};
 if (tmpIfTest) {
   $(1);
 } else {
@@ -34,7 +41,9 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = function () {};
+const tmpIfTest = function () {
+  debugger;
+};
 if (tmpIfTest) {
   $(1);
 } else {

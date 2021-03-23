@@ -26,7 +26,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(`before  ${(a = () => {})}  after`);
+$(
+  `before  ${(a = () => {
+    debugger;
+  })}  after`,
+);
 $(a);
 `````
 
@@ -35,7 +39,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = function () {};
+a = function () {
+  debugger;
+};
 let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -45,7 +51,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {};
+const SSA_a = function () {
+  debugger;
+};
 const tmpCalleeParam = `before  ${SSA_a}  after`;
 $(tmpCalleeParam);
 $(SSA_a);
@@ -54,3 +62,14 @@ $(SSA_a);
 ## Globals
 
 None
+
+## Result
+
+Should call `$` with:
+ - eval returned: ('<skipped by option>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

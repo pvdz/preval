@@ -15,6 +15,7 @@ This should throw. There was a regression where `x.y` was read before `a.b` (but
 `````js filename=intro
 var a, x;
 a?.b(x.y);
+$(a, x);
 `````
 
 ## Pre Normal
@@ -23,6 +24,7 @@ a?.b(x.y);
 let a = undefined;
 let x = undefined;
 a?.b(x.y);
+$(a, x);
 `````
 
 ## Normalized
@@ -40,12 +42,13 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = x.y;
   const tmpChainElementCall = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
 }
+$(a, x);
 `````
 
 ## Output
 
 `````js filename=intro
-
+$(undefined, undefined);
 `````
 
 ## Globals
@@ -55,6 +58,7 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: undefined, undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

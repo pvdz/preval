@@ -28,6 +28,7 @@ function f() {
 `````js filename=intro
 let x = undefined;
 let f = function () {
+  debugger;
   return x;
 };
 $(f());
@@ -40,6 +41,7 @@ $(f());
 `````js filename=intro
 let x = undefined;
 let f = function () {
+  debugger;
   return x;
 };
 const tmpCallCallee = $;

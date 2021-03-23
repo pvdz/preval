@@ -23,6 +23,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return $(10), $(20), $([1, 2]);
 };
 let [a] = { a: 999, b: 1000 };
@@ -34,6 +35,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $(10);
   $(20);
   const tmpCallCallee = $;

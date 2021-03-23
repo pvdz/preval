@@ -26,6 +26,7 @@ $(a, x, y);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = { x, y } = { x: $(3), y: $(4) });
 };
 let x = 1,
@@ -39,6 +40,7 @@ $(a, x, y);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };

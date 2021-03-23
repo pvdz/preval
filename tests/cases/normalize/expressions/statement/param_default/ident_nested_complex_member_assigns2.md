@@ -28,6 +28,7 @@ $(100, a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   a = y;
 };
 let a = 1;
@@ -41,6 +42,7 @@ $(100, a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   a = y;
 };
 let a = 1;

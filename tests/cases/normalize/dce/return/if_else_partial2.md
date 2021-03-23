@@ -26,6 +26,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if ($(1)) {
   } else {
     return 2;
@@ -40,15 +41,22 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function (tmpIfTest$1) {
+  const tmpBranchingA = function ($$0) {
+    let tmpIfTest$1 = $$0;
+    debugger;
     const tmpReturnArg = tmpBranchingC(tmpIfTest$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (tmpIfTest$2) {
+  const tmpBranchingB = function ($$0) {
+    let tmpIfTest$2 = $$0;
+    debugger;
     return 2;
   };
-  const tmpBranchingC = function (tmpIfTest$3) {
+  const tmpBranchingC = function ($$0) {
+    let tmpIfTest$3 = $$0;
+    debugger;
     $('keep, do not eval');
   };
   if (tmpIfTest) {
@@ -68,6 +76,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $('keep, do not eval');

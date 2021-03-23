@@ -24,6 +24,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     throw $(7, 'throw');
   }
@@ -36,6 +37,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpThrowArg = $(7, 'throw');
   throw tmpThrowArg;
 };

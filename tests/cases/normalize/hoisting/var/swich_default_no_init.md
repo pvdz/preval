@@ -33,7 +33,7 @@ let x = undefined;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      undefined;
+      null;
       break tmpSwitchBreak;
     }
     if (tmpSwitchCaseToStart <= 1) {

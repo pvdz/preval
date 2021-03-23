@@ -36,6 +36,7 @@ $(x.name);
 
 `````js filename=x
 const tmpAnonDefaultExport = function () {
+  debugger;
   return 100;
 };
 export { tmpAnonDefaultExport as default };
@@ -55,6 +56,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=x
 const tmpAnonDefaultExport = function () {
+  debugger;
   return 100;
 };
 export { tmpAnonDefaultExport as default };
@@ -72,6 +74,7 @@ $(tmpCalleeParam$1);
 
 `````js filename=x
 const tmpAnonDefaultExport = function () {
+  debugger;
   return 100;
 };
 export { tmpAnonDefaultExport as default };

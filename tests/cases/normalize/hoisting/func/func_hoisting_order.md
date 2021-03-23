@@ -25,38 +25,78 @@ $(a,b,d,f,h,x);
 ## Pre Normal
 
 `````js filename=intro
-let a = function () {};
-let b = function () {};
-let d = function () {};
-let f = function () {};
-let h = function () {};
-let l = function () {};
-let x = function () {};
+let a = function () {
+  debugger;
+};
+let b = function () {
+  debugger;
+};
+let d = function () {
+  debugger;
+};
+let f = function () {
+  debugger;
+};
+let h = function () {
+  debugger;
+};
+let l = function () {
+  debugger;
+};
+let x = function () {
+  debugger;
+};
 $(a, b, d, f, h, x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let a = function () {};
-let b = function () {};
-let d = function () {};
-let f = function () {};
-let h = function () {};
-let l = function () {};
-let x = function () {};
+let a = function () {
+  debugger;
+};
+let b = function () {
+  debugger;
+};
+let d = function () {
+  debugger;
+};
+let f = function () {
+  debugger;
+};
+let h = function () {
+  debugger;
+};
+let l = function () {
+  debugger;
+};
+let x = function () {
+  debugger;
+};
 $(a, b, d, f, h, x);
 `````
 
 ## Output
 
 `````js filename=intro
-const a = function () {};
-const b = function () {};
-const d = function () {};
-const f = function () {};
-const h = function () {};
-const x = function () {};
+const a = function () {
+  debugger;
+};
+const b = function () {
+  debugger;
+};
+const d = function () {
+  debugger;
+};
+const f = function () {
+  debugger;
+};
+const h = function () {
+  debugger;
+};
+const x = function () {
+  debugger;
+};
 $(a, b, d, f, h, x);
 `````
 

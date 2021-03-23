@@ -25,6 +25,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = b['c']);
 };
 let b = { c: 1 };
@@ -37,6 +38,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   a = b.c;
   let tmpReturnArg = a;
   return tmpReturnArg;

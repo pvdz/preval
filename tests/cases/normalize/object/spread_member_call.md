@@ -20,6 +20,7 @@ $({...obj.foo()});
 `````js filename=intro
 const obj = {
   foo() {
+    debugger;
     return $({ x: 1 });
   },
 };
@@ -31,6 +32,7 @@ $({ ...obj.foo() });
 `````js filename=intro
 const obj = {
   foo() {
+    debugger;
     const tmpCallCallee = $;
     const tmpCalleeParam = { x: 1 };
     const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
@@ -48,6 +50,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const obj = {
   foo() {
+    debugger;
     const tmpCalleeParam = { x: 1 };
     const tmpReturnArg = $(tmpCalleeParam);
     return tmpReturnArg;

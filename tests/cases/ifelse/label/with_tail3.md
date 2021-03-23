@@ -29,7 +29,9 @@ B();
 
 `````js filename=intro
 const B = function () {
+  debugger;
   const C = function () {
+    debugger;
     const x = $(true);
     if (x) {
       $('inner');
@@ -45,7 +47,9 @@ B();
 
 `````js filename=intro
 const B = function () {
+  debugger;
   const C = function () {
+    debugger;
     const x = $(true);
     if (x) {
       $('inner');

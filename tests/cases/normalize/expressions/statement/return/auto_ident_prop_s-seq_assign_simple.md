@@ -25,6 +25,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return ((1, 2, b).c = 2);
 };
 let b = { c: 1 };
@@ -37,6 +38,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const varInitAssignLhsComputedObj = b;
   const varInitAssignLhsComputedRhs = 2;
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;

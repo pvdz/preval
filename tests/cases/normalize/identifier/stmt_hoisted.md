@@ -19,7 +19,7 @@ var x = 10;
 
 `````js filename=intro
 let x = undefined;
-x;
+null;
 x = 10;
 `````
 

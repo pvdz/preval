@@ -23,6 +23,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if ($(0)) return $(1);
   else return;
 };
@@ -33,6 +34,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $(0);
   if (tmpIfTest) {
     const tmpReturnArg = $(1);
@@ -50,6 +52,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = $(0);
   if (tmpIfTest) {
     const tmpReturnArg = $(1);

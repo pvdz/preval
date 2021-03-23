@@ -27,13 +27,19 @@ $(f(0));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (n) {
+let f = function ($$0) {
+  let n = $$0;
+  debugger;
   return g(n);
 };
-let g = function (n$1) {
+let g = function ($$0) {
+  let n$1 = $$0;
+  debugger;
   return h(n$1 + 1);
 };
-let h = function (n$2) {
+let h = function ($$0) {
+  let n$2 = $$0;
+  debugger;
   if ($(n$2) > 1000) return n$2;
   return f(n$2);
 };
@@ -43,27 +49,45 @@ $(f(0));
 ## Normalized
 
 `````js filename=intro
-let f = function (n) {
+let f = function ($$0) {
+  let n = $$0;
+  debugger;
   const tmpReturnArg = g(n);
   return tmpReturnArg;
 };
-let g = function (n$1) {
+let g = function ($$0) {
+  let n$1 = $$0;
+  debugger;
   const tmpCallCallee = h;
   const tmpCalleeParam = n$1 + 1;
   const tmpReturnArg$1 = tmpCallCallee(tmpCalleeParam);
   return tmpReturnArg$1;
 };
-let h = function (n$2) {
+let h = function ($$0) {
+  let n$2 = $$0;
+  debugger;
   const tmpBinLhs = $(n$2);
   const tmpIfTest = tmpBinLhs > 1000;
-  const tmpBranchingA = function (n$3, tmpBinLhs$1, tmpIfTest$1) {
+  const tmpBranchingA = function ($$0, $$1, $$2) {
+    let n$3 = $$0;
+    let tmpBinLhs$1 = $$1;
+    let tmpIfTest$1 = $$2;
+    debugger;
     return n$3;
   };
-  const tmpBranchingB = function (n$4, tmpBinLhs$2, tmpIfTest$2) {
+  const tmpBranchingB = function ($$0, $$1, $$2) {
+    let n$4 = $$0;
+    let tmpBinLhs$2 = $$1;
+    let tmpIfTest$2 = $$2;
+    debugger;
     const tmpReturnArg$2 = tmpBranchingC(n$4, tmpBinLhs$2, tmpIfTest$2);
     return tmpReturnArg$2;
   };
-  const tmpBranchingC = function (n$5, tmpBinLhs$3, tmpIfTest$3) {
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let n$5 = $$0;
+    let tmpBinLhs$3 = $$1;
+    let tmpIfTest$3 = $$2;
+    debugger;
     const tmpReturnArg$3 = f(n$5);
     return tmpReturnArg$3;
   };
@@ -83,7 +107,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const g = function (n$1) {
+const g = function ($$0) {
+  const n$1 = $$0;
+  debugger;
   const tmpCalleeParam = n$1 + 1;
   const tmpBinLhs = $(tmpCalleeParam);
   const tmpIfTest = tmpBinLhs > 1000;

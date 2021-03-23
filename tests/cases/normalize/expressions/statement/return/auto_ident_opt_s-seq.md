@@ -25,6 +25,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (1, 2, b)?.x;
 };
 let b = { x: 1 };
@@ -37,20 +38,33 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let tmpReturnArg = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function (tmpReturnArg$1, tmpChainRootProp$1, tmpIfTest$1) {
+  const tmpBranchingA = function ($$0, $$1, $$2) {
+    let tmpReturnArg$1 = $$0;
+    let tmpChainRootProp$1 = $$1;
+    let tmpIfTest$1 = $$2;
+    debugger;
     const tmpChainElementObject$1 = tmpChainRootProp$1.x;
     tmpReturnArg$1 = tmpChainElementObject$1;
     const tmpReturnArg$4 = tmpBranchingC(tmpReturnArg$1, tmpChainRootProp$1, tmpIfTest$1);
     return tmpReturnArg$4;
   };
-  const tmpBranchingB = function (tmpReturnArg$2, tmpChainRootProp$2, tmpIfTest$2) {
+  const tmpBranchingB = function ($$0, $$1, $$2) {
+    let tmpReturnArg$2 = $$0;
+    let tmpChainRootProp$2 = $$1;
+    let tmpIfTest$2 = $$2;
+    debugger;
     const tmpReturnArg$5 = tmpBranchingC(tmpReturnArg$2, tmpChainRootProp$2, tmpIfTest$2);
     return tmpReturnArg$5;
   };
-  const tmpBranchingC = function (tmpReturnArg$3, tmpChainRootProp$3, tmpIfTest$3) {
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let tmpReturnArg$3 = $$0;
+    let tmpChainRootProp$3 = $$1;
+    let tmpIfTest$3 = $$2;
+    debugger;
     return tmpReturnArg$3;
   };
   if (tmpIfTest) {
@@ -73,6 +87,7 @@ $(a);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
     const tmpChainElementObject$1 = b.x;

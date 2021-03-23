@@ -21,7 +21,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let xyz = function f() {};
+let xyz = function f() {
+  debugger;
+};
 $(xyz);
 $(a);
 `````
@@ -30,7 +32,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let xyz = function f() {};
+let xyz = function f() {
+  debugger;
+};
 $(xyz);
 $(a);
 `````
@@ -39,7 +43,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const xyz = function f() {};
+const xyz = function f() {
+  debugger;
+};
 $(xyz);
 $(a);
 `````

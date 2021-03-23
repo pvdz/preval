@@ -25,6 +25,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return $($(b)).x--;
 };
 let b = { x: 1 };
@@ -37,6 +38,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpCallCallee = $;
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);

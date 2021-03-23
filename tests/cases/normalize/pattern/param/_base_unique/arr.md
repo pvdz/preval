@@ -19,8 +19,10 @@ function f([ x ]) {
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let [x$1] = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let [x$1] = tmpParamBare;
   {
     let x$2 = 2;
   }
@@ -32,8 +34,10 @@ let x = 1;
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let bindingPatternArrRoot = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternArrRoot = tmpParamBare;
   let arrPatternSplat = [...bindingPatternArrRoot];
   let x$1 = arrPatternSplat[0];
   let x$2 = 2;

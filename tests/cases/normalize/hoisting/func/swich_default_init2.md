@@ -28,6 +28,7 @@ switch (x) {
 const x = $(1);
 {
   let f = function () {
+    debugger;
     return $('f');
   };
   const tmpSwitchValue = x;
@@ -51,6 +52,7 @@ const x = $(1);
 `````js filename=intro
 const x = $(1);
 let f = function () {
+  debugger;
   const tmpReturnArg = $('f');
   return tmpReturnArg;
 };

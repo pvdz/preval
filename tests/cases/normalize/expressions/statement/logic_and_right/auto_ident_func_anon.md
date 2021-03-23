@@ -20,7 +20,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(100) && function () {};
+$(100) &&
+  function () {
+    debugger;
+  };
 $(a);
 `````
 

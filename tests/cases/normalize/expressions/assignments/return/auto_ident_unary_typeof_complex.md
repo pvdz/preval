@@ -25,6 +25,7 @@ $(a, arg);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = typeof $(arg));
 };
 let arg = 1;
@@ -37,6 +38,7 @@ $(a, arg);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpUnaryArg = $(arg);
   a = typeof tmpUnaryArg;
   let tmpReturnArg = a;

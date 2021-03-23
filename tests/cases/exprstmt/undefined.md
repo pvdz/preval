@@ -15,7 +15,7 @@ undefined;
 ## Pre Normal
 
 `````js filename=intro
-undefined;
+null;
 `````
 
 ## Normalized

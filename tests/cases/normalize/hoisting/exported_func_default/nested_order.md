@@ -25,13 +25,17 @@ export default function f() {
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let f$1 = function () {
+    debugger;
     return $();
   };
   let g = function () {
+    debugger;
     return $();
   };
   let h = function () {
+    debugger;
     return $();
   };
   $(f$1(), g(), h());
@@ -44,15 +48,19 @@ export { f as default };
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let f$1 = function () {
+    debugger;
     const tmpReturnArg = $();
     return tmpReturnArg;
   };
   let g = function () {
+    debugger;
     const tmpReturnArg$1 = $();
     return tmpReturnArg$1;
   };
   let h = function () {
+    debugger;
     const tmpReturnArg$2 = $();
     return tmpReturnArg$2;
   };
@@ -72,6 +80,7 @@ export { f as default };
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpCalleeParam = $();
   const tmpCalleeParam$1 = $();
   const tmpCalleeParam$2 = $();

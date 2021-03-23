@@ -17,6 +17,7 @@ export default function f() { return $(2); }
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return $(2);
 };
 $(f(1));
@@ -27,6 +28,7 @@ export { f as default };
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpReturnArg = $(2);
   return tmpReturnArg;
 };
@@ -40,6 +42,7 @@ export { f as default };
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpReturnArg = $(2);
   return tmpReturnArg;
 };

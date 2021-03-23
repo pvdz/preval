@@ -20,7 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x in (a = () => {}));
+for (let x in (a = () => {
+  debugger;
+}));
 $(a);
 `````
 
@@ -28,7 +30,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = function () {};
+a = function () {
+  debugger;
+};
 let tmpForInDeclRhs = a;
 let x;
 for (x in tmpForInDeclRhs) {
@@ -39,7 +43,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {};
+const SSA_a = function () {
+  debugger;
+};
 let x;
 for (x in SSA_a) {
 }

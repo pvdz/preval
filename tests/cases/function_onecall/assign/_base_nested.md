@@ -34,10 +34,13 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     $(1);
   };
   g();
@@ -53,10 +56,13 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     $(1);
   };
   g();

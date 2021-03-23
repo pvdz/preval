@@ -20,22 +20,21 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const x = this;
+const x = undefined;
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const x = this;
+const x = undefined;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = this;
-$(x);
+$(undefined);
 `````
 
 ## Globals

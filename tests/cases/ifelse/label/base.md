@@ -27,6 +27,7 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   foo: {
     if ($(true)) {
       $(100);
@@ -41,6 +42,7 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(100);

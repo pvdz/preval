@@ -22,8 +22,10 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let p = tmpParamDefault === undefined ? new $($(1), $(2)) : tmpParamDefault;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let p = tmpParamBare === undefined ? new $($(1), $(2)) : tmpParamBare;
 };
 let b = { $ };
 let a = { a: 999, b: 1000 };
@@ -34,16 +36,18 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let p = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpNewCallee = $;
     const tmpCalleeParam = $(1);
     const tmpCalleeParam$1 = $(2);
     p = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
   } else {
-    p = tmpParamDefault;
+    p = tmpParamBare;
   }
 };
 let b = { $: $ };
@@ -57,8 +61,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  const tmpIfTest = tmpParamDefault === undefined;
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam = $(1);
     const tmpCalleeParam$1 = $(2);

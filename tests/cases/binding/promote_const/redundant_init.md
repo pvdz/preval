@@ -42,6 +42,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if (tmpIfTest$32854) {
     let tmpReturnArg$21651 = undefined;
     const tmpCalleeParam$36039 = $(1);
@@ -72,6 +73,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if (tmpIfTest$32854) {
     let tmpReturnArg$21651 = undefined;
     const tmpCalleeParam$36039 = $(1);
@@ -106,6 +108,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   if (tmpIfTest$32854) {
     const tmpCalleeParam$36039 = $(1);
     const tmpCalleeParam$36040 = $(2);

@@ -22,13 +22,21 @@ const b = {
 ## Pre Normal
 
 `````js filename=intro
-const b = { get foo() {} };
+const b = {
+  get foo() {
+    debugger;
+  },
+};
 `````
 
 ## Normalized
 
 `````js filename=intro
-const b = { get foo() {} };
+const b = {
+  get foo() {
+    debugger;
+  },
+};
 `````
 
 ## Output

@@ -19,6 +19,7 @@ f();
 
 `````js filename=intro
 const f = () => {
+  debugger;
   return $(1);
 };
 f();
@@ -28,6 +29,7 @@ f();
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpReturnArg = $(1);
   return tmpReturnArg;
 };

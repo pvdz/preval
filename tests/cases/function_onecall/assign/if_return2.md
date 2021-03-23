@@ -30,9 +30,11 @@ closure();
 
 `````js filename=intro
 const closure = function () {
+  debugger;
   return $(x, 'closure');
 };
 const f = function () {
+  debugger;
   if ($) {
     $(1, 'f');
   }
@@ -48,10 +50,12 @@ closure();
 
 `````js filename=intro
 const closure = function () {
+  debugger;
   const tmpReturnArg = $(x, 'closure');
   return tmpReturnArg;
 };
 const f = function () {
+  debugger;
   if ($) {
     $(1, 'f');
   }
@@ -67,6 +71,7 @@ closure();
 
 `````js filename=intro
 const f = function () {
+  debugger;
   if ($) {
     $(1, 'f');
   }

@@ -23,8 +23,12 @@ $(new x().b());
 
 `````js filename=intro
 let x = class {
-  a() {}
-  b() {}
+  a() {
+    debugger;
+  }
+  b() {
+    debugger;
+  }
 };
 $(new x().b());
 `````
@@ -33,8 +37,12 @@ $(new x().b());
 
 `````js filename=intro
 let x = class {
-  a() {}
-  b() {}
+  a() {
+    debugger;
+  }
+  b() {
+    debugger;
+  }
 };
 const tmpCallCallee = $;
 const tmpCallObj = new x();
@@ -46,8 +54,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const x = class {
-  a() {}
-  b() {}
+  a() {
+    debugger;
+  }
+  b() {
+    debugger;
+  }
 };
 const tmpCallObj = new x();
 const tmpCalleeParam = tmpCallObj.b();

@@ -31,7 +31,9 @@ f(tmpArg);
 let tmpArg = undefined;
 let tmpBinaryLeft = undefined;
 let tmpTernaryTest = undefined;
-let g = function () {};
+let g = function () {
+  debugger;
+};
 tmpBinaryLeft = a.x;
 tmpTernaryTest = tmpBinaryLeft === 1;
 if (tmpTernaryTest) {
@@ -48,7 +50,9 @@ f(tmpArg);
 let tmpArg = undefined;
 let tmpBinaryLeft = undefined;
 let tmpTernaryTest = undefined;
-let g = function () {};
+let g = function () {
+  debugger;
+};
 tmpBinaryLeft = a.x;
 tmpTernaryTest = tmpBinaryLeft === 1;
 if (tmpTernaryTest) {

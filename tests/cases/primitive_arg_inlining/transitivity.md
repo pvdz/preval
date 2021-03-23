@@ -27,7 +27,10 @@ $(f('a', 'b'), 'second D');
 ## Pre Normal
 
 `````js filename=intro
-let f = function (a, b) {
+let f = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
   return $(a, b);
 };
 $(f('a', $('b')), 'first A');
@@ -43,7 +46,10 @@ $(f('a', 'b'), 'second D');
 ## Normalized
 
 `````js filename=intro
-let f = function (a, b) {
+let f = function ($$0, $$1) {
+  let a = $$0;
+  let b = $$1;
+  debugger;
   const tmpReturnArg = $(a, b);
   return tmpReturnArg;
 };

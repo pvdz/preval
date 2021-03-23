@@ -27,7 +27,9 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     $('a');
     $('b');
     return $('ab');
@@ -42,7 +44,9 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     $('a');
     $('b');
     const tmpReturnArg = $('ab');

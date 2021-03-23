@@ -31,7 +31,9 @@ $(out);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (op) {
+let f = function ($$0) {
+  let op = $$0;
+  debugger;
   let ap = undefined;
   const useDef = op === undefined;
   if (useDef) {
@@ -51,21 +53,35 @@ $(out);
 ## Normalized
 
 `````js filename=intro
-let f = function (op) {
+let f = function ($$0) {
+  let op = $$0;
+  debugger;
   let ap = undefined;
   const useDef = op === undefined;
-  const tmpBranchingA = function (op$1, ap$1, useDef$1) {
+  const tmpBranchingA = function ($$0, $$1, $$2) {
+    let op$1 = $$0;
+    let ap$1 = $$1;
+    let useDef$1 = $$2;
+    debugger;
     const p$1 = { a: 'fail' };
     ap$1 = $(p$1);
     const tmpReturnArg = tmpBranchingC(op$1, ap$1, useDef$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (op$2, ap$2, useDef$2) {
+  const tmpBranchingB = function ($$0, $$1, $$2) {
+    let op$2 = $$0;
+    let ap$2 = $$1;
+    let useDef$2 = $$2;
+    debugger;
     ap$2 = op$2;
     const tmpReturnArg$1 = tmpBranchingC(op$2, ap$2, useDef$2);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (op$3, ap$3, useDef$3) {
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let op$3 = $$0;
+    let ap$3 = $$1;
+    let useDef$3 = $$2;
+    debugger;
     const tmpCalleeParam$1 = [];
     let x$1 = objPatternRest(ap$3, tmpCalleeParam$1, undefined);
     return x$1;
@@ -85,9 +101,13 @@ $(out);
 ## Output
 
 `````js filename=intro
-const f = function (op) {
+const f = function ($$0) {
+  const op = $$0;
+  debugger;
   const useDef = op === undefined;
-  const tmpBranchingC = function (ap$3) {
+  const tmpBranchingC = function ($$0) {
+    const ap$3 = $$0;
+    debugger;
     const tmpCalleeParam$1 = [];
     const x$1 = objPatternRest(ap$3, tmpCalleeParam$1, undefined);
     return x$1;
@@ -98,8 +118,8 @@ const f = function (op) {
     const tmpReturnArg = tmpBranchingC(SSA_ap$1);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$1 = tmpBranchingC(op);
-    return tmpReturnArg$1;
+    const tmpReturnArg$3 = tmpBranchingC(op);
+    return tmpReturnArg$3;
   }
 };
 const out = f('abc');

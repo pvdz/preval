@@ -1,4 +1,20 @@
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, fmat, tmat, rule, example, before, source, after } from '../utils.mjs';
+import {
+  ASSERT,
+  log,
+  group,
+  groupEnd,
+  vlog,
+  vgroup,
+  vgroupEnd,
+  fmat,
+  tmat,
+  rule,
+  example,
+  before,
+  source,
+  after,
+  findBodyOffset,
+} from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function pruneEmptyFunctions(fdata) {
@@ -35,7 +51,24 @@ function _pruneEmptyFunctions(fdata) {
       return;
     }
 
-    if (funcNode.body.body.length === 0) {
+    if (funcNode.$p.readsArgumentsAny || funcNode.$p.readsArgumentsLen) {
+      // Note: Inlining the arg count should be trivial so we can do that easily
+      //       We can probably deal with many usages of `arguments` as well, but I'm just deferring that
+      vlog('  - Accesses `arguments`, bailing on that for now');
+      return;
+    }
+
+    if (funcNode.$p.thisAccess) {
+      // Note: Most likely we can patch up many cases where `this` is accessed. But not right now.
+      vlog('  - Accesses `this`, bailing on that for now');
+      return;
+    }
+
+    const body = funcNode.body.body;
+    ASSERT(body.length > 0, 'normalized functions must always at least have a Debugger node');
+
+    const bodyStart = findBodyOffset(funcNode);
+    if (bodyStart >= body.length) {
       vlog('  - this function is empty. Find all calls and replace them with `undefined`');
       if (!meta.reads.length) vlog('    - (this function is not used)');
 
@@ -49,51 +82,59 @@ function _pruneEmptyFunctions(fdata) {
         vlog('    - queuing to eliminating call to empty function');
         toDelete.push(read);
       });
-    } else if (funcNode.body.body.length === 1) {
+    } else if (bodyStart >= body.length - 1) {
       vlog('  - this function is has one statement. Trying to figure out easy inline cases.');
 
-      const onlyNode = funcNode.body.body[0];
+      const onlyNode = body[bodyStart];
       if (onlyNode.type === 'ReturnStatement') {
         vlog('  - the function has a return statement');
 
         const arg = onlyNode.argument;
         // Outlining this may introduce multiple copies of a long string or complex literal. TBD whether I care.
-        // - if the return argument is a primitive, replace all calls with that
+        // - if the return argument is a primitive, replace all calls with that (probably won't see much of that in the wild)
         // - if the return value is an identifier
         //   - if the ident is a param name, replace all calls with the argument at that index
         //   - otherwise it is a closure, can only inline the call if the call site can reach the returned binding
+        // This will hit a lot of artifacts of the IR. Not so much for real code in the wild (although it could)
         if (AST.isPrimitive(arg)) {
           vlog('  - the function returns a primitive. Replace all calls with that primitive');
 
-          funcNode.params.some((pnode, pi) => {
-            meta.reads.forEach((read, ri) => {
-              const callNode = read.parentNode;
-              vlog('    - read [' + ri + ']:', callNode.type);
-              if (callNode.type !== 'CallExpression') return;
-              vlog('    - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
-              if (callNode.callee.type !== 'Identifier') return false;
-              if (callNode.callee.name !== name) return false;
-              vlog('    - queuing to eliminating call to noop function');
-              toReplaceWith.push([read, arg]);
-            });
+          meta.reads.forEach((read, ri) => {
+            const callNode = read.parentNode;
+            vlog('    - read [' + ri + ']:', callNode.type);
+            if (callNode.type !== 'CallExpression') return;
+            vlog('    - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
+            if (callNode.callee.type !== 'Identifier') return false;
+            if (callNode.callee.name !== name) return false;
+            vlog('    - queuing to eliminating call to noop function');
+            toReplaceWith.push(['primitive', read, arg]);
           });
         } else if (arg.type === 'Identifier') {
-          vlog('  - the function returns an identifier that is not a primitive. Checking if it is an arg');
+          vgroup('  - the function returns the identifier `' + arg.name + '` which is not a primitive. Checking if it is an arg');
 
           const argName = arg.name;
           let found = false;
           let rest = false;
           funcNode.params.forEach((pnode, pi) => {
-            if (pnode.type === 'RestElement') {
-              if (pnode.argument.name === argName) found = true; // Skip the implicit global check. We can't do this one.
+            vlog(
+              '  - pos',
+              pi,
+              ', placeholder `' + pnode.name + '`, name: ' + (pnode.$p.ref?.name ? '`' + pnode.$p.ref?.name + '`' : '<none>'),
+            );
+            ASSERT(pnode.type === 'Param');
+            if (pnode.rest) {
+              vlog('    - param at position', pi, 'is a rest param (`' + pnode.$p.ref?.name + '`)');
+              if (pnode.$p.ref?.name === argName) {
+                // Skip the implicit global check. We can't do this one.
+                vlog('    - has the same name');
+                found = true;
+              }
               rest = true;
-            } else if (pnode.name === argName) {
+            } else if (pnode.$p.ref?.name === argName) {
               vlog(
-                '  - param at position',
+                '    - param at position',
                 pi,
-                'has the same name. queueing all calls to',
-                name,
-                'for replacement,',
+                'has the same name (`' + argName + '`). queueing all calls to `' + name + '` for replacement,',
                 meta.reads.length,
                 'reads',
               );
@@ -109,28 +150,32 @@ function _pruneEmptyFunctions(fdata) {
                 vlog('      - calls:', callNode.callee.name, 'with', callNode['arguments'].length, 'args');
                 if (callNode.callee.type !== 'Identifier') {
                   vlog('      - Callee not ident');
-                  return false;
+                  return;
                 }
                 if (callNode.callee.name !== name) {
                   vlog('      - Callee different name (', callNode.callee.name, name, ')');
-                  return false;
+                  return;
                 }
                 vlog('      - queuing to eliminating call to empty function');
                 toReplaceAt.push([read, pi]);
               });
-              return true;
+            } else {
+              vlog('    - param at position', pi, 'has a different name');
             }
           });
-          if (!found) {
+
+          vgroupEnd();
+
+          if (found) {
+            vlog('  - Yes, it was a param');
+          } else {
             // The returned ident does not match any of the param names so it must be a closure, (global), or implicit global
-            const ameta = fdata.globallyUniqueNamingRegistry.get(argName);
             // Find all reads to the func. For all calls, determine whether the position of the call has access
             // to this identifier. If so, we can outline the return value and replace the call with the ident.
-            vlog('- Returned ident is not a param name. Inlining any call that has access to this ident.');
+            vlog('  - No. Returned ident is not a param name. Inlining any call that has access to this ident.');
             // We can compare the blockChain of the returned ident with the blockChain of the call. If the
             // ident blockChain is a prefix of the call blockChain then the call should have access to the ident.
 
-            // The returned value was a parameter and there was no rest parameter before it
             meta.reads.forEach((read, ri) => {
               const callNode = read.parentNode;
               vlog('    - read [' + ri + ']:', callNode.type);
@@ -148,7 +193,7 @@ function _pruneEmptyFunctions(fdata) {
                 return false;
               }
               vlog('      - queuing to eliminating call with the ident `' + argName + '`');
-              toReplaceWith.push([read, arg]);
+              toReplaceWith.push(['identifier', read, arg]);
             });
           }
         }
@@ -157,7 +202,7 @@ function _pruneEmptyFunctions(fdata) {
       }
     }
   });
-  log('Queued', toDelete.length, 'calls for deletion,', toReplaceAt.length, 'for replacement, and', toReplaceWith.length, 'for inlining');
+  log('\nQueued', toDelete.length, 'calls for deletion,', toReplaceAt.length, 'for replacement, and', toReplaceWith.length, 'for inlining');
   if (toDelete.length || toReplaceAt.length || toReplaceWith.length) {
     toDelete.forEach(({ node, parentNode, grandNode, grandProp, grandIndex, ...rest }) => {
       rule('Call to function with empty body should be replaced with `undefined`');
@@ -184,10 +229,11 @@ function _pruneEmptyFunctions(fdata) {
 
       vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
     });
-    toReplaceWith.forEach(([{ node, parentNode, grandNode, grandProp, grandIndex, ...rest }, arg]) => {
-      rule('Call to function that returns a primitive should be replaced with that primitive');
-      example('function f(){ return 15; } f(10);', '15;');
-      before(node, grandNode);
+    toReplaceWith.forEach(([what, { node, parentNode, grandNode, grandProp, grandIndex, ...rest }, arg]) => {
+      rule('Call to function that returns a [' + what + '] should be replaced with that node');
+      example('function f(){ return 15; } f(10);', '15;', () => what === 'primitive');
+      example('function f(){ return x; } f(10);', 'x;', () => what === 'identifier');
+      before(parentNode, grandNode);
 
       // Note: we want to replace the entire call expression, not just the identifier (otherwise you end up with `undefined()`)
       const newNode = AST.expressionStatement(AST.cloneSimple(arg));
@@ -197,7 +243,10 @@ function _pruneEmptyFunctions(fdata) {
       after(newNode, grandNode);
     });
 
+    vlog('\nDeleted calls:', toDelete.length + toReplaceAt.length + toReplaceWith.length, '. Restarting from phase1.');
     return 'phase1';
   }
+
+  vlog('Deleted calls: 0.');
   return false;
 }

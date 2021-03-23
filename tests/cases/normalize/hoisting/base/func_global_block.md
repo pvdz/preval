@@ -25,6 +25,7 @@
 `````js filename=intro
 {
   let f = function () {
+    debugger;
     return x;
   };
   let x = 100;
@@ -36,6 +37,7 @@
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return x;
 };
 let x = 100;

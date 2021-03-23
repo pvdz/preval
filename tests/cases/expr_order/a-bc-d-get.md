@@ -28,9 +28,12 @@ $(a, b, d);
 let a = 1;
 let b = {
   get c() {
+    debugger;
     $('should not be called');
   },
-  set c(x) {
+  set c($$0) {
+    let x = $$0;
+    debugger;
     $('set');
   },
 };
@@ -45,9 +48,12 @@ $(a, b, d);
 let a = 1;
 let b = {
   get c() {
+    debugger;
     $('should not be called');
   },
-  set c(x) {
+  set c($$0) {
+    let x = $$0;
+    debugger;
     $('set');
   },
 };
@@ -63,9 +69,11 @@ $(a, b, d);
 `````js filename=intro
 const b = {
   get c() {
+    debugger;
     $('should not be called');
   },
-  set c(x) {
+  set c($$0) {
+    debugger;
     $('set');
   },
 };

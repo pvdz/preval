@@ -26,6 +26,7 @@ $(a, x, y);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = [x, y] = [$(3), $(4)]);
 };
 let x = 1,
@@ -39,6 +40,7 @@ $(a, x, y);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];

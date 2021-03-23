@@ -1,7 +1,23 @@
 import walk from '../../lib/walk.mjs';
 
 import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, BUILTIN_REST_HANDLER_NAME, FRESH, OLD, RED, BLUE, RESET } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
+import {
+  ASSERT,
+  log,
+  group,
+  groupEnd,
+  vlog,
+  vgroup,
+  vgroupEnd,
+  tmat,
+  fmat,
+  rule,
+  example,
+  before,
+  source,
+  after,
+  findBodyOffsetExpensive,
+} from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, findBoundNamesInVarDeclaration } from '../bindings.mjs';
 import globals from '../globals.mjs';
@@ -179,6 +195,7 @@ import { cloneFunctionNode } from '../utils/serialize_func.mjs';
   - if both branches of an if-else return undefined and the if-else is the last of a function then drop them both?
   - Any call to a function without explicit return (or where all returns are undefined) can be split-replaced with undefined
   - When passing on a global const, drop the argument in favor of using the global directly
+  - Inlining simple functions with rest, like tests/cases/normalize/pattern/param/rest/base.md
   - TODO: norm_once must use registerGlobalLabel to prevent collisions reliably
   - TODO: if an optional chain starts with a literal null or undefined, the rest of the chain can be dropped
   - TODO: what's up with the array in /home/ptr/proj/preval/tests/cases/normalize/pattern/param/obj/rest/default_no_no__str.md ???
@@ -196,10 +213,7 @@ import { cloneFunctionNode } from '../utils/serialize_func.mjs';
   - TODO: fix property in /home/ptr/proj/preval/tests/cases/normalize/pattern/param/_base_unique/arr_obj.md
   - TODO: should normalize to only have imports and exports as global code and an IIFE as the only other kind of toplevel code that contains all other code. This way there is no global code and everything is scoped to a function.
   -> if-else normalization;
-    break
-    continue should not be a problem
     loops
-    switch?
     super
 */
 
@@ -887,7 +901,7 @@ export function phaseNormalize(fdata, fname) {
         if (wrapKind === 'statement') {
           // TODO: what about implicit globals or TDZ? This prevents a crash.
 
-          // The `arguments` reference is special as it implies func params can not be changed. Somethign to improve later.
+          // The `arguments` reference is special as it implies func params can not be changed. Something to improve later.
           const meta = node.name !== 'arguments' && fdata.globallyUniqueNamingRegistry.get(node.name);
           if (node.name !== 'arguments' && !meta.isImplicitGlobal) {
             rule('A statement can not just be an identifier');
@@ -910,6 +924,24 @@ export function phaseNormalize(fdata, fname) {
         }
 
         return false;
+
+      case 'Param': {
+        vlog('- name: `' + node.name + '`, rest?', node.rest);
+
+        if (wrapKind === 'statement') {
+          // Drop it
+          rule('A statement can not just be a parameter reference');
+          example('function f(a) { a; }', 'function f(a) {;}');
+          before(node, parentNode);
+
+          body[i] = AST.emptyStatement();
+
+          after(body[i]);
+          return true;
+        }
+
+        return false;
+      }
 
       case 'Literal': {
         if (wrapKind === 'statement') {
@@ -5068,10 +5100,12 @@ export function phaseNormalize(fdata, fname) {
         // We are on the way down the to transform so the body should be normalized, meaning all decls should
         // be let or const variable declarations now. Collect them up to the if. Also gets us the index.
 
+        const parentBody = parentNode.body;
+
         let index = -1;
         const declaredBindings = [];
-        for (let i = 0; i < parentNode.body.length; ++i) {
-          const snode = parentNode.body[i];
+        for (let i = 0; i < parentBody.length; ++i) {
+          const snode = parentBody[i];
           if (snode === node) {
             index = i;
             break;
@@ -5086,29 +5120,22 @@ export function phaseNormalize(fdata, fname) {
         ASSERT(index >= 0, 'the if ought to be found? otherwise i think the ifelseStack needs some attention', index);
 
         // Argument/parameter names to use for all functions and all calls. Let other rules eliminate them.
-        const apNames = funcNode.params.map((n) => (n.type === 'RestElement' ? n.argument.name : n.name)).concat(declaredBindings);
-        //if (!apNames.every(n => typeof n === 'string' && !!n)) {
-        //  console.log('wtf?');
-        //  source(funcNode, true);
-        //  console.log('declaredBindings:', declaredBindings)
-        //  ASSERT(false, 'should have all names', apNames);
-        //}
-        vlog('Local bindings found:', apNames);
+        vlog('Local bindings found:', declaredBindings);
         // The remainder of the function after the if-else.
-        const bodyRest = parentNode.body.slice(index + 1);
-        parentNode.body.length = index + 1; // ehhh
+        const bodyRest = parentBody.slice(index + 1);
+        parentBody.length = index + 1;
 
-        vlog('Creating two functions for the if-else branch');
+        vlog('Creating three functions for the if-else branch and its tail');
         const tmpNameA = createFreshVar('tmpBranchingA', fdata);
         const tmpNameB = createFreshVar('tmpBranchingB', fdata);
         const tmpNameC = createFreshVar('tmpBranchingC', fdata);
-        const primeA = AST.functionExpression(
-          apNames.map((s) => AST.identifier(s)),
+        const primeA = AST.functionExpressionNormalized(
+          declaredBindings.slice(0),
           node.consequent.body.concat(
             AST.returnStatement(
               AST.callExpression(
                 tmpNameC,
-                apNames.map((s) => AST.identifier(s)),
+                declaredBindings.map((s) => AST.identifier(s)),
               ),
             ),
           ),
@@ -5120,13 +5147,13 @@ export function phaseNormalize(fdata, fname) {
           source(primeAcloned);
           primeAcloned.id = null;
         }
-        const primeB = AST.functionExpression(
-          apNames.map((s) => AST.identifier(s)),
+        const primeB = AST.functionExpressionNormalized(
+          declaredBindings.slice(0),
           (node.alternate ? node.alternate.body : []).concat([
             AST.returnStatement(
               AST.callExpression(
                 tmpNameC,
-                apNames.map((s) => AST.identifier(s)),
+                declaredBindings.map((s) => AST.identifier(s)),
               ),
             ),
           ]),
@@ -5138,11 +5165,9 @@ export function phaseNormalize(fdata, fname) {
           source(primeBcloned);
           primeBcloned.id = null;
         }
-        const primeC = AST.functionExpression(
-          apNames.map((s) => AST.identifier(s)),
-          bodyRest,
-          { id: createFreshVar('tmpUnusedPrimeFuncNameC', fdata) },
-        );
+        const primeC = AST.functionExpressionNormalized(declaredBindings.slice(0), bodyRest, {
+          id: createFreshVar('tmpUnusedPrimeFuncNameC', fdata),
+        });
         const primeCcloned = cloneFunctionNode(primeC, undefined, [], fdata).expression;
         {
           primeCcloned.id = AST.identifier(tmpNameC);
@@ -5155,7 +5180,7 @@ export function phaseNormalize(fdata, fname) {
             AST.returnStatement(
               AST.callExpression(
                 tmpNameA,
-                apNames.map((s) => AST.identifier(s)),
+                declaredBindings.map((s) => AST.identifier(s)),
               ),
             ),
           ),
@@ -5163,7 +5188,7 @@ export function phaseNormalize(fdata, fname) {
             AST.returnStatement(
               AST.callExpression(
                 tmpNameB,
-                apNames.map((s) => AST.identifier(s)),
+                declaredBindings.map((s) => AST.identifier(s)),
               ),
             ),
           ),
@@ -5478,162 +5503,160 @@ export function phaseNormalize(fdata, fname) {
     if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
       // This is a labeled statement that is the direct child of a function
       // If not, the body is a loop and we'll deal with that later.
-      if (node.body.type === 'BlockStatement') {
-        // This is an artifact of the switch statement (and just valid code, although you'll hardly ever find it in the wild)
-        rule('Labeled block as direct child of function. Eliminate it.');
-        example(
-          'function f() { before(); foo: { inside(); break foo; } after(); } f();',
-          'function f(){ function c() { after(); } before(); foo: { inside(); return c(); } return c(); } f();',
-        );
-        before(node);
 
-        // Find all references to this label. They must be breaks (because continues can only target loop labels and this wasnt one).
-        // Round up all statements after the label into function c. Replace all breaks to the label with a `return c()`. Replace
-        // the statements after the label (which were put in `c`) with a `return c()` as well.
-        // Algo is same as for if-else. The only danger is `this` and `arguments` references but we have already covered those.
+      // This is an artifact of the switch statement (and just valid code, but it's not very common in the wild)
+      rule('Labeled block as direct child of function. Eliminate it.');
+      example(
+        'function f() { before(); foo: { inside(); break foo; } after(); } f();',
+        'function f(){ function c() { after(); } before(); foo: { inside(); return c(); } return c(); } f();',
+      );
+      before(node);
 
-        // - Collect all bindings created before the binding
-        // - Abstract all other nodes after the label `node` into a fresh function (c)
-        // - Every `break` to the current label should be replaced with a return of calling the new function
-        // - The label should be followed by a return of the new function, replacing the other statements
-        // - If there were other `return` statements (or other abrubt completions) then DCE will take care of it
+      // Find all references to this label. They must be breaks (because continues can only target loop labels and this wasnt one).
+      // Round up all statements after the label into function c. Replace all breaks to the label with a `return c()`. Replace
+      // the statements after the label (which were put in `c`) with a `return c()` as well.
+      // Algo is same as for if-else. The only danger is `this` and `arguments` references but we have already covered those.
 
-        // We are on the way down the transform so the body should be normalized, meaning all decls should
-        // be let or const variable declarations now. Collect them up to the label and pass them in all calls to c.
+      // - Collect all bindings created before the binding
+      // - Abstract all other nodes after the label `node` into a fresh function (c)
+      // - Every `break` to the current label should be replaced with a return of calling the new function
+      // - The label should be followed by a return of the new function, replacing the other statements
+      // - If there were other `return` statements (or other abrubt completions) then DCE will take care of it
 
-        const declaredBindings = [];
-        //for (let j = 0; j < i; ++j) {
-        //  const snode = parentNode.body[j];
-        //  if (snode.type === 'VariableDeclaration') {
-        //    ASSERT(snode.kind === 'let' || snode.kind === 'const');
-        //    ASSERT(snode.declarations.length === 1);
-        //    ASSERT(snode.declarations[0].id.type === 'Identifier');
-        //    declaredBindings.push(snode.declarations[0].id.name);
-        //  }
-        //}
+      // We are on the way down the transform so the body should be normalized, meaning all decls should
+      // be let or const variable declarations now. Collect them up to the label and pass them in all calls to c.
 
-        // Argument/parameter names to use for all functions and all calls. Let other rules eliminate them.
-        const apNames = funcNode.params.map((n) => (n.type === 'RestElement' ? n.argument.name : n.name)).concat(declaredBindings);
-        vlog('Local bindings found:', apNames);
-        // The remainder of the function after the if-else.
-        const bodyRest = parentNode.body.slice(i + 1);
-        body.length = i + 1; // Drop everything after this node
+      const declaredBindings = [];
+      for (let j = 0; j < i; ++j) {
+        const snode = body[j];
+        if (snode.type === 'VariableDeclaration') {
+          ASSERT(snode.kind === 'let' || snode.kind === 'const');
+          ASSERT(snode.declarations.length === 1);
+          ASSERT(snode.declarations[0].id.type === 'Identifier');
+          declaredBindings.push(snode.declarations[0].id.name);
+        }
+      }
 
-        if (bodyRest.length === 0) {
-          vlog('No code follows the labeled body so no need for a temp function to hold it');
+      vlog('Local bindings found:', declaredBindings);
+      // The remainder of the function after the if-else.
+      const bodyRest = body.slice(i + 1);
+      body.length = i + 1; // Drop everything after this label node
 
-          body.splice(i, 1, node.body);
+      if (bodyRest.length === 0) {
+        vlog('No code follows the labeled body so no need for a temp function to hold it');
 
-          // Replace all `break foo` cases pointing to this label with a return statement with `undefined`
-          ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node);
-          const labelUsageMap = fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap;
-          labelUsageMap.forEach(({ node, body, index }, pid) => {
-            const finalNode = AST.returnStatement(AST.identifier('undefined'));
-            ASSERT(body[index] === node, 'should not be stale', parentNode);
-            body[index] = finalNode;
+        body.splice(i, 1, node.body);
 
-            labelUsageMap.delete(pid);
-          });
+        // Replace all `break foo` cases pointing to this label with a return statement with `undefined`
+        ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node);
+        const labelUsageMap = fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap;
+        labelUsageMap.forEach(({ node, body, index }, pid) => {
+          const finalNode = AST.returnStatement(AST.identifier('undefined'));
+          ASSERT(body[index] === node, 'should not be stale', parentNode);
+          body[index] = finalNode;
 
-          if (VERBOSE_TRACING) {
-            vlog(
-              '\nComplete AST after applying "Eliminated labeled statement" rule\n--------------\n' +
-                fmat(tmat(ast)) +
-                '\n--------------\n',
-            );
-          }
-        } else {
-          // If we took the same approach as nested if-else then the fresh function ends up being a local binding
-          // which would be passed on to if-else abstractions and currently we would not be able tp eliminate it.
-          // (Hopefully that changes in the future but for the time being, that's not going to change, I guess)
-          // To get around this we could define the function outside of the current scope. The function may still
-          // contain closure access to any of the scopes above so we would need access to the parent node in order
-          // to put the fresh function there. If that's possible then that's probably the most ideal way.
-          // Alternatively we can wrap the tail (code after the labeled statement) and the rest of the function
-          // and then compile a call to the fresh function at the end of the "rest" function. This way the
-          // labeled block transform would be able to use the more efficient version (which does not add a function)
-          // and it can still all be eliminated. Downside is what happens if the function can't be inlined
-          // after all... I think we should be okay once we implement the rule that a function that is called
-          // once should be inlined. The function covering everything uptoandincluding the label would always
-          // be called exactly once so it would be a way around causing the temporary function being passed on as
-          // a local binding at the cost of some extra cycles (it requires a full pass to get back around).
+          labelUsageMap.delete(pid);
+        });
 
-          // Create a function for the code that follows the label. It is automatically called at the end of the block
-          // and all occurrences of `break` with node.label as target are replaced with a return of calling that func
-          const tmpNameC = createFreshVar('tmpBranchingC', fdata);
-          const primeC = AST.functionExpression(
-            apNames.map((s) => AST.identifier(s)),
-            bodyRest,
-            { id: createFreshVar('tmpUnusedPrimeFuncNameC', fdata) },
+        if (VERBOSE_TRACING) {
+          vlog(
+            '\nComplete AST after applying "Eliminated labeled statement" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n',
           );
-          const primeCcloned = cloneFunctionNode(primeC, undefined, [], fdata).expression;
-          {
-            primeCcloned.id = AST.identifier(tmpNameC);
-            source(primeCcloned);
-            primeCcloned.id = null;
-          }
+        }
+      } else {
+        // If we took the same approach as nested if-else then the fresh function ends up being a local binding
+        // which would be passed on to if-else abstractions and currently we would not be able tp eliminate it.
+        // (Hopefully that changes in the future but for the time being, that's not going to change, I guess)
+        // To get around this we could define the function outside of the current scope. The function may still
+        // contain closure access to any of the scopes above so we would need access to the parent node in order
+        // to put the fresh function there. If that's possible then that's probably the most ideal way.
+        // Alternatively we can wrap the tail (code after the labeled statement) and the rest of the function
+        // and then compile a call to the fresh function at the end of the "rest" function. This way the
+        // labeled block transform would be able to use the more efficient version (which does not add a function)
+        // and it can still all be eliminated. Downside is what happens if the function can't be inlined
+        // after all... I think we should be okay once we implement the rule that a function that is called
+        // once should be inlined. The function covering everything uptoandincluding the label would always
+        // be called exactly once so it would be a way around causing the temporary function being passed on as
+        // a local binding at the cost of some extra cycles (it requires a full pass to get back around).
 
-          // Replace all `break foo` cases pointing to this label with a return statement calling the new function
-          // Other rules will normalize this back and away if it's a noop but this way we can safely eliminate the label.
-          ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node);
-          const labelUsageMap = fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap;
-          labelUsageMap.forEach(({ node, body, index }, pid) => {
-            const finalNode = AST.returnStatement(
-              AST.callExpression(
-                tmpNameC,
-                apNames.map((s) => AST.identifier(s)),
-              ),
-            );
-            ASSERT(body[index] === node, 'should not be stale', parentNode);
-            body[index] = finalNode;
+        // Create a function for the code that follows the label. It is automatically called at the end of the block
+        // and all occurrences of `break` with node.label as target are replaced with a return of calling that func
+        const tmpNameB = createFreshVar('tmpAfterLabel', fdata);
+        const primeB = AST.functionExpressionNormalized(declaredBindings.slice(0), bodyRest, {
+          id: createFreshVar('tmpPrimeLabelC', fdata),
+        });
+        const primeCloneB = cloneFunctionNode(primeB, undefined, [], fdata).expression;
+        {
+          primeCloneB.id = AST.identifier(tmpNameB);
+          source(primeCloneB);
+          primeCloneB.id = null;
+        }
 
-            labelUsageMap.delete(pid);
-          });
-
-          const tmpNameB = createFreshVar('tmpLabeledBlockFunc', fdata);
-          const primeB = AST.functionExpression(
-            apNames.map((s) => AST.identifier(s)),
-            body.slice(0, i).concat(node.body.body, [
-              AST.returnStatement(
-                AST.callExpression(
-                  tmpNameC,
-                  apNames.map((s) => AST.identifier(s)),
-                ),
-              ),
-            ]),
-            { id: createFreshVar('tmpUnusedPrimeFuncNameB', fdata) },
+        // Replace all `break foo` cases pointing to this label with a return statement calling the new function
+        // Other rules will normalize this back and away if it's a noop but this way we can safely eliminate the label.
+        ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node);
+        const labelUsageMap = fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap;
+        labelUsageMap.forEach(({ node, body, index }, pid) => {
+          const finalNode = AST.returnStatement(
+            AST.callExpression(
+              tmpNameB,
+              declaredBindings.map((s) => AST.identifier(s)),
+            ),
           );
-          const primeBcloned = cloneFunctionNode(primeB, undefined, [], fdata).expression;
-          {
-            primeBcloned.id = AST.identifier(tmpNameB);
-            source(primeBcloned);
-            primeBcloned.id = null;
-          }
+          ASSERT(body[index] === node, 'should not be stale', parentNode);
+          body[index] = finalNode;
 
-          body.length = 0; // The whole body has been split up between B and C so clear it before we inject them
-          body.push(
-            AST.variableDeclaration(tmpNameC, primeCcloned, 'const'),
-            AST.variableDeclaration(tmpNameB, primeBcloned, 'const'),
+          labelUsageMap.delete(pid);
+        });
+
+        const funcBodyIndex = findBodyOffsetExpensive(body);
+        vlog('funcBodyIndex:', funcBodyIndex);
+
+        const tmpNameA = createFreshVar('tmpLabeledBlockFunc', fdata);
+        const primeA = AST.functionExpressionNormalized(
+          declaredBindings.slice(0),
+          [
+            // Append the label-body code
+            ...node.body.body,
+            // And a call to the function that contains the code that follows the label
             AST.returnStatement(
               AST.callExpression(
                 tmpNameB,
-                apNames.map((s) => AST.identifier(s)),
+                declaredBindings.map((s) => AST.identifier(s)),
               ),
             ),
-          );
-
-          if (VERBOSE_TRACING) {
-            vlog(
-              '\nComplete AST after applying "Eliminated labeled statement" rule\n--------------\n' +
-                fmat(tmat(ast)) +
-                '\n--------------\n',
-            );
-          }
+          ],
+          { id: createFreshVar('tmpPrimeLabelB', fdata) },
+        );
+        const primeCloneA = cloneFunctionNode(primeA, undefined, [], fdata).expression;
+        {
+          primeCloneA.id = AST.identifier(tmpNameA);
+          source(primeCloneA);
+          primeCloneA.id = null;
         }
 
-        after(parentNode);
-        return true;
+        body.length = i; // The whole body has been split up between B and C so clear it before we inject them
+        body.push(
+          AST.variableDeclaration(tmpNameA, primeCloneA, 'const'),
+          AST.variableDeclaration(tmpNameB, primeCloneB, 'const'),
+          AST.returnStatement(
+            AST.callExpression(
+              tmpNameA,
+              declaredBindings.map((s) => AST.identifier(s)),
+            ),
+          ),
+        );
+
+        if (VERBOSE_TRACING) {
+          vlog(
+            '\nComplete AST after applying "Eliminated labeled statement" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n',
+          );
+        }
       }
+
+      after(parentNode);
+
+      return true;
     }
 
     return anyChange;

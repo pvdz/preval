@@ -15,7 +15,7 @@ NaN;
 ## Pre Normal
 
 `````js filename=intro
-NaN;
+null;
 `````
 
 ## Normalized

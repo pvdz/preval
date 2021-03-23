@@ -29,17 +29,22 @@ $(a, c, rest);
 `````js filename=intro
 let obj = {
   get a() {
+    debugger;
     return $('a');
   },
   get b() {
+    debugger;
     return {
       get c() {
+        debugger;
         return $('b');
       },
       get d() {
+        debugger;
         return $('c');
       },
       get e() {
+        debugger;
         return $('d');
       },
     };
@@ -57,20 +62,25 @@ $(a, c, rest);
 `````js filename=intro
 let obj = {
   get a() {
+    debugger;
     const tmpReturnArg = $('a');
     return tmpReturnArg;
   },
   get b() {
+    debugger;
     const tmpReturnArg$1 = {
       get c() {
+        debugger;
         const tmpReturnArg$2 = $('b');
         return tmpReturnArg$2;
       },
       get d() {
+        debugger;
         const tmpReturnArg$3 = $('c');
         return tmpReturnArg$3;
       },
       get e() {
+        debugger;
         const tmpReturnArg$4 = $('d');
         return tmpReturnArg$4;
       },
@@ -95,20 +105,25 @@ $(a, c, rest);
 `````js filename=intro
 const obj = {
   get a() {
+    debugger;
     const tmpReturnArg = $('a');
     return tmpReturnArg;
   },
   get b() {
+    debugger;
     const tmpReturnArg$1 = {
       get c() {
+        debugger;
         const tmpReturnArg$2 = $('b');
         return tmpReturnArg$2;
       },
       get d() {
+        debugger;
         const tmpReturnArg$3 = $('c');
         return tmpReturnArg$3;
       },
       get e() {
+        debugger;
         const tmpReturnArg$4 = $('d');
         return tmpReturnArg$4;
       },

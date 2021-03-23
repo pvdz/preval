@@ -26,6 +26,7 @@ $(x);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if ($()) {
     return $(1);
   } else {
@@ -40,6 +41,7 @@ $(x);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {
     const tmpReturnArg = $(1);
@@ -57,6 +59,7 @@ $(x);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {
     const tmpReturnArg = $(1);

@@ -24,8 +24,10 @@ $(new x().y());
 
 `````js filename=intro
 let x = class {
-  y(tmpParamDefault) {
-    let arg = tmpParamDefault === undefined ? $(10, 'default') : tmpParamDefault;
+  y($$0) {
+    const tmpParamBare = $$0;
+    debugger;
+    let arg = tmpParamBare === undefined ? $(10, 'default') : tmpParamBare;
     return arg;
   }
 };
@@ -36,27 +38,41 @@ $(new x().y());
 
 `````js filename=intro
 let x = class {
-  y(tmpParamDefault) {
+  y($$0) {
+    const tmpParamBare = $$0;
+    debugger;
     let arg = undefined;
-    const tmpIfTest = tmpParamDefault === undefined;
-    const tmpBranchingA = function (tmpParamDefault$1, arg$1, tmpIfTest$1) {
+    const tmpIfTest = tmpParamBare === undefined;
+    const tmpBranchingA = function ($$0, $$1, $$2) {
+      let tmpParamBare$1 = $$0;
+      let arg$1 = $$1;
+      let tmpIfTest$1 = $$2;
+      debugger;
       arg$1 = $(10, 'default');
-      const tmpReturnArg = tmpBranchingC(tmpParamDefault$1, arg$1, tmpIfTest$1);
+      const tmpReturnArg = tmpBranchingC(tmpParamBare$1, arg$1, tmpIfTest$1);
       return tmpReturnArg;
     };
-    const tmpBranchingB = function (tmpParamDefault$2, arg$2, tmpIfTest$2) {
-      arg$2 = tmpParamDefault$2;
-      const tmpReturnArg$1 = tmpBranchingC(tmpParamDefault$2, arg$2, tmpIfTest$2);
+    const tmpBranchingB = function ($$0, $$1, $$2) {
+      let tmpParamBare$2 = $$0;
+      let arg$2 = $$1;
+      let tmpIfTest$2 = $$2;
+      debugger;
+      arg$2 = tmpParamBare$2;
+      const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$2, arg$2, tmpIfTest$2);
       return tmpReturnArg$1;
     };
-    const tmpBranchingC = function (tmpParamDefault$3, arg$3, tmpIfTest$3) {
+    const tmpBranchingC = function ($$0, $$1, $$2) {
+      let tmpParamBare$3 = $$0;
+      let arg$3 = $$1;
+      let tmpIfTest$3 = $$2;
+      debugger;
       return arg$3;
     };
     if (tmpIfTest) {
-      const tmpReturnArg$2 = tmpBranchingA(tmpParamDefault, arg, tmpIfTest);
+      const tmpReturnArg$2 = tmpBranchingA(tmpParamBare, arg, tmpIfTest);
       return tmpReturnArg$2;
     } else {
-      const tmpReturnArg$3 = tmpBranchingB(tmpParamDefault, arg, tmpIfTest);
+      const tmpReturnArg$3 = tmpBranchingB(tmpParamBare, arg, tmpIfTest);
       return tmpReturnArg$3;
     }
   }
@@ -71,13 +87,15 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const x = class {
-  y(tmpParamDefault) {
-    const tmpIfTest = tmpParamDefault === undefined;
+  y($$0) {
+    const tmpParamBare = $$0;
+    debugger;
+    const tmpIfTest = tmpParamBare === undefined;
     if (tmpIfTest) {
       const SSA_arg$1 = $(10, 'default');
       return SSA_arg$1;
     } else {
-      return tmpParamDefault;
+      return tmpParamBare;
     }
   }
 };

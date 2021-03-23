@@ -28,17 +28,22 @@ $(a().b().c().d);
 
 `````js filename=intro
 let a = function () {
+  debugger;
   const a$1 = {
     a() {
+      debugger;
       return a$1;
     },
     b() {
+      debugger;
       return a$1;
     },
     c() {
+      debugger;
       return a$1;
     },
     d() {
+      debugger;
       return a$1;
     },
   };
@@ -51,17 +56,22 @@ $(a().b().c().d);
 
 `````js filename=intro
 let a = function () {
+  debugger;
   const a$1 = {
     a() {
+      debugger;
       return a$1;
     },
     b() {
+      debugger;
       return a$1;
     },
     c() {
+      debugger;
       return a$1;
     },
     d() {
+      debugger;
       return a$1;
     },
   };
@@ -80,15 +90,19 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const a$1 = {
   a() {
+    debugger;
     return a$1;
   },
   b() {
+    debugger;
     return a$1;
   },
   c() {
+    debugger;
     return a$1;
   },
   d() {
+    debugger;
     return a$1;
   },
 };

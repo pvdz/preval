@@ -26,6 +26,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   for (let x in { a: 1, b: 2 }) {
     return $(1, 'return');
     $('fail');
@@ -38,6 +39,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpForInDeclRhs = { a: 1, b: 2 };
   let x;
   for (x in tmpForInDeclRhs) {
@@ -54,6 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpForInDeclRhs = { a: 1, b: 2 };
   let x;
   for (x in tmpForInDeclRhs) {

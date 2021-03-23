@@ -24,6 +24,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let tmpDoWhileFlag = true;
     while (tmpDoWhileFlag || $(true)) {
@@ -42,6 +43,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let tmpDoWhileFlag = true;
   while (true) {
     let tmpIfTest = tmpDoWhileFlag;

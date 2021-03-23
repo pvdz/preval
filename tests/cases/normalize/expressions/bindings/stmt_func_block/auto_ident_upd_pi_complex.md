@@ -26,6 +26,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let b = { x: 1 };
     let a = ++$($(b)).x;
@@ -39,6 +40,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = { x: 1 };
   const tmpCallCallee = $;
   const tmpCalleeParam = $(b);

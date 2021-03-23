@@ -75,7 +75,13 @@ export function blockStatement(...body) {
   // An array is not a valid element for the AST node so if it is an array it's
   // safe to assume that we want to use the first arg as the body array verbatim
   if (Array.isArray(body[0])) body = body[0];
-  body.forEach(n => ASSERT(n?.type && (!n.type.includes('Expression') || n.type === 'ExpressionStatement' || n.type === 'FunctionExpression'), 'body should receive statements and declarations, not expressions', n));
+  body.forEach((n) =>
+    ASSERT(
+      n?.type && (!n.type.includes('Expression') || n.type === 'ExpressionStatement' || n.type === 'FunctionExpression'),
+      'body should receive statements and declarations, not expressions',
+      n,
+    ),
+  );
 
   return {
     type: 'BlockStatement',
@@ -140,6 +146,13 @@ export function conditionalExpression(test, consequent, alternate) {
     test,
     consequent,
     alternate,
+    $p: $p(),
+  };
+}
+
+export function debuggerStatement() {
+  return {
+    type: 'DebuggerStatement',
     $p: $p(),
   };
 }
@@ -246,9 +259,40 @@ export function forOfStatement(left, right, body, async = false) {
   };
 }
 
+export function functionExpressionNormalized(paramNames, body, { id, generator, async, rest } = {}) {
+  // Take the params and the body and generate a new function with proper Preval function
+  // header (meaning all params are assigned a var decls at the top, including `this`, and
+  // `arguments` aliases, followed by a debugger statement).
+  // Then return a new function expression node.
+
+  ASSERT(
+    body.every((n) => n.type !== 'DebuggerStatement'),
+    'normalized code should not contain the debugger statement. this function should not be called with a body that includes an old function header',
+  );
+  ASSERT(
+    paramNames.every((n) => typeof n === 'string'),
+    'these should not be the $$123 kind but regular param names',
+  );
+
+  return functionExpression(
+    paramNames.map((name, pi) => param('$$' + pi, pi < paramNames.length - 1 ? false : !!rest)),
+    [
+      // Note: I don't think these functions need/want the this/arguments alias? Sorry, future self.
+      ...paramNames.map((name, pi) => variableDeclaration(name, '$$' + pi, 'let')),
+      debuggerStatement(),
+      ...body,
+    ],
+    { id, generator, async },
+  );
+}
+
 export function functionExpression(params, body, { id, generator, async } = {}) {
   if (!Array.isArray(params)) params = [params];
-  params.map((n, i) => (typeof n === 'string' ? identifier(n) : n));
+  params.map((n, i) => (typeof n === 'string' ? param(n) : n));
+  ASSERT(
+    params.every((n) => n.type === 'Param'),
+    'functions generated this way should be normalized, so should use special Param nodes',
+  );
   if (!Array.isArray(body)) body = [body];
   body = blockStatement(body);
 
@@ -441,6 +485,21 @@ export function objectExpression(...properties) {
 
 export function one() {
   return literal(1);
+}
+
+export function param(name, rest = false) {
+  // This is a custom Preval node to represent a param name
+  // The goal is to shield it away from general inspection by not being a generic Identifier
+  ASSERT(typeof name === 'string' && name, 'ident names must be valid nonempty strings', name, rest);
+  ASSERT(/^\$\$\d+$/.test(name), 'param names should have their index affixed to a double dollar and no suffix', name);
+
+  return {
+    type: 'Param',
+    name,
+    index: +name.slice(2),
+    rest,
+    $p: $p(),
+  };
 }
 
 export function property(key, value, shorthand = false, computed = false, kind = 'init', method = false) {

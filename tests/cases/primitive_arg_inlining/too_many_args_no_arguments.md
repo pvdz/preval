@@ -22,7 +22,9 @@ $(f($(1), $(2), $(3), $(4)));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (a) {
+let f = function ($$0) {
+  let a = $$0;
+  debugger;
   return a;
 };
 $(f($(1), $(2), $(3), $(4)));
@@ -31,7 +33,9 @@ $(f($(1), $(2), $(3), $(4)));
 ## Normalized
 
 `````js filename=intro
-let f = function (a) {
+let f = function ($$0) {
+  let a = $$0;
+  debugger;
   return a;
 };
 const tmpCallCallee = $;

@@ -20,8 +20,11 @@ $($(a)?.b.c(100));
 `````js filename=intro
 const a = {
   b: {
-    c: function (...a$1) {
-      $($(a$1), this);
+    c: function (...$$0) {
+      const tmpthis = this;
+      let a$1 = $$0;
+      debugger;
+      $($(a$1), tmpthis);
       return a$1[0];
     },
   },
@@ -32,11 +35,13 @@ $($(a)?.b.c(100));
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal$1 = function (...a$1) {
-  const tmpPrevalAliasThis = this;
+const tmpObjLitVal$1 = function (...$$0) {
+  const tmpthis = this;
+  let a$1 = $$0;
+  debugger;
   const tmpCallCallee = $;
   const tmpCalleeParam = $(a$1);
-  const tmpCalleeParam$1 = tmpPrevalAliasThis;
+  const tmpCalleeParam$1 = tmpthis;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
@@ -60,10 +65,12 @@ tmpCallCallee$1(tmpCalleeParam$2);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = function (...a$1) {
-  const tmpPrevalAliasThis = this;
+const tmpObjLitVal$1 = function (...$$0) {
+  const tmpthis = this;
+  const a$1 = $$0;
+  debugger;
   const tmpCalleeParam = $(a$1);
-  $(tmpCalleeParam, tmpPrevalAliasThis);
+  $(tmpCalleeParam, tmpthis);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
 };

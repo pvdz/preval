@@ -29,7 +29,9 @@ $(top());
 
 `````js filename=intro
 let top = function () {
+  debugger;
   let a = function () {
+    debugger;
     $(4);
   };
   $(3);
@@ -44,7 +46,9 @@ $(top());
 
 `````js filename=intro
 let top = function () {
+  debugger;
   let a = function () {
+    debugger;
     $(4);
   };
   $(3);

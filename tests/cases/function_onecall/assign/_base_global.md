@@ -31,9 +31,11 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   $(1);
 };
 let x = $(100);
@@ -47,9 +49,11 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   $(1);
 };
 let x = $(100);

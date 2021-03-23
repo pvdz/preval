@@ -24,6 +24,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let arg = { y: 1 };
   let a = delete ($(1), $(2), arg)[$('y')];
   $(a, arg);
@@ -35,6 +36,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let arg = { y: 1 };
   $(1);
   $(2);

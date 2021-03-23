@@ -23,6 +23,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = { a: 999, b: 1000 };
   a = [$(1), 2, $(3)];
   $(a);
@@ -34,6 +35,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = { a: 999, b: 1000 };
   const tmpArrElement = $(1);
   const tmpArrElement$1 = 2;

@@ -20,7 +20,9 @@ f();
 ## Pre Normal
 
 `````js filename=intro
-const f = function (a) {
+const f = function ($$0) {
+  let a = $$0;
+  debugger;
   a = unknown;
 };
 f();
@@ -29,7 +31,9 @@ f();
 ## Normalized
 
 `````js filename=intro
-const f = function (a) {
+const f = function ($$0) {
+  let a = $$0;
+  debugger;
   a = unknown;
 };
 f();

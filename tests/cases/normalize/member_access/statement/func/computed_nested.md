@@ -20,6 +20,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const obj = { a: { b: $() } };
   obj['a'].b;
 };
@@ -30,6 +31,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpObjLitVal$1 = $();
   const tmpObjLitVal = { b: tmpObjLitVal$1 };
   const obj = { a: tmpObjLitVal };

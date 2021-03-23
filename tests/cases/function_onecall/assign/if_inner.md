@@ -40,10 +40,13 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     if ($(1)) {
       $('a');
       g();
@@ -65,10 +68,13 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     const tmpIfTest = $(1);
     if (tmpIfTest) {
       $('a');
@@ -97,6 +103,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const x = $(100);
 $(x);
 const g = function () {
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $('a');

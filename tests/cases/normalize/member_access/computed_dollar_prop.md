@@ -20,6 +20,7 @@ a['$']();
 `````js filename=intro
 const a = {
   ['$']() {
+    debugger;
     $(1);
   },
 };
@@ -31,6 +32,7 @@ a['$']();
 `````js filename=intro
 const a = {
   $() {
+    debugger;
     $(1);
   },
 };
@@ -42,6 +44,7 @@ a.$();
 `````js filename=intro
 const a = {
   $() {
+    debugger;
     $(1);
   },
 };

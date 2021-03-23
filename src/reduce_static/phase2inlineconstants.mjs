@@ -165,6 +165,7 @@ function _inlineConstants(fdata) {
         if (
           init &&
           (init.type === 'FunctionExpression' ||
+            init.type === 'Param' ||
             init.type === 'ThisExpression' ||
             !AST.isComplexNode(init) ||
             (init.type === 'MemberExpression' &&
@@ -173,7 +174,7 @@ function _inlineConstants(fdata) {
               !init.object.computed &&
               init.property.name === 'length'))
         ) {
-          vlog('Dropping the init too because it is not complex, a function, `this`, or `arguments.length`');
+          vlog('Dropping the init too because it is not complex, a function, a param, `this`, or `arguments.length`');
           if (index >= 0) {
             parent[prop][index] = AST.emptyStatement();
           } else {
@@ -215,16 +216,22 @@ function attemptConstantInlining(meta, fdata) {
     if (!rhs) {
       // Var decl without init. Substitute undefined here.
       rhs = AST.identifier('undefined');
+    } else if (rhs.type === 'Param') {
+      vlog('Ignore param aliases');
+      return;
     }
   } else if (write.parentNode.type === 'AssignmentExpression') {
     // Must be a regular assignment
     rhs = write.parentNode.right;
+    ASSERT(rhs && rhs.type !== 'Param', 'param nodes should only be used in the func header in var decls');
   } else {
     // Tough luck. Until we support parameters and all that.
+    vlog('???');
     return;
   }
 
-  if (rhs && rhs.name === 'arguments') {
+  ASSERT(rhs);
+  if (rhs.name === 'arguments') {
     log('TODO; uncomment me to figure out what to do with `arguments`');
     return;
   }

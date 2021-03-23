@@ -11,7 +11,15 @@ export function promoteVars(fdata) {
     if (meta.isImplicitGlobal) return;
 
     vgroup('- `' + name + '`');
-    vlog('-', meta.reads.length, 'reads and', meta.writes.length, 'writes', meta.isConstant ? '(a constant)' : '(not a constant)', meta.constValueRef?.node?.type ?? '');
+    vlog(
+      '-',
+      meta.reads.length,
+      'reads and',
+      meta.writes.length,
+      'writes',
+      meta.isConstant ? '(a constant)' : '(not a constant)',
+      meta.constValueRef?.node?.type ?? '',
+    );
 
     // Check if all usages of the binding is consolidated to one scope
     const writeScopes = new Set();
@@ -41,7 +49,7 @@ export function promoteVars(fdata) {
           // last pid is that of the block that contains the read or write.
           // We need to validate here whether the read occurs in a block that is an ancestor of the block
           // containing the write. This must mean the write chain is a prefix of the read...?
-          // Note: at the moment this chek is moot because the system does not track values and would not know that
+          // Note: at the moment this check is moot because the system does not track values and would not know that
           //       a function is called if it was passed around. As such, detected closures are always accessible.
 
           const writeChain = meta.writes[1].blockChain;
@@ -158,33 +166,30 @@ export function promoteVars(fdata) {
     // in the blockChain will be negative.
 
     // A write can be SSA'd if
-    // - all future writes are assigns (not params, for-x or something else)
+    // - all future writes are assigns (not for-x or something else)
     // - all reads must reach the write
     // - all prior reads are in the same scope
     // - if the write is in a loop,
     //   - there are no prior reads in the same or an even deeper loop
     //   - all future reads are in the same scope
 
-    // Note regarding SSA on param names; there exists a secret live binding in `arguments` that this transform breaks. Not sure I car.e
+    vlog('Starts with decl?', !!declData);
 
-    vlog('Starts with decl',!!declData,'or param?', !!meta.writes[0].param);
-
-    // "Is this binding defined through a var decl or param name?" -- prevents forx, func decl closures, implicit globals, and TDZ cases.
-    if (declData || meta.writes[0].param) {
+    // "Is this binding defined through a var decl?" -- prevents forx, func decl closures, implicit globals, and TDZ cases.
+    if (declData) {
       log('The binding `' + name + '` has a var decl. Analyzing usages (', meta.reads.length, 'reads and', meta.writes.length, 'writes).');
 
       const rwOrder = [...meta.reads, ...meta.writes].sort(({ rwCounter: a }, { rwCounter: b }) => (a < b ? -1 : a > b ? 1 : 0));
       log('rwOrder:', [rwOrder.map((o) => o.action).join(', ')]);
-      // Note: We asserted that the first write is a var decl, but a closure in func decl may still put a read as
-      //       the first source ref. This is not a concern for params since they must go first in their scope (defaults are gone).
-      if (rwOrder[0].action === 'write') {
+      // Note: We asserted that the first write is a var decl, but a closure in func decl may still put a read as the first source ref.
+      if (rwOrder[0].decl) {
+        ASSERT(rwOrder[0].action === 'write', 'the .decl check subsumes this, right?');
         log('The initial binding:');
         //source(rwOrder[0].parentNode);
 
-        ASSERT(rwOrder[0].decl || rwOrder[0].param, 'the first write should be a decl or param, otherwise maybe this is TDZ');
         ASSERT(
-          rwOrder.slice(1).every((rw) => (!rw.decl && !rw.param ? true : !!void console.dir(rw, { depth: null }))),
-          'a binding should have no more than one var decl / param after normalization',
+          rwOrder.slice(1).every((rw) => (!rw.decl ? true : !!void console.dir(rw, { depth: null }))),
+          'a binding should have no more than one var decl after normalization',
           name,
           rwOrder,
         );
@@ -219,7 +224,7 @@ export function promoteVars(fdata) {
             log('Is the write an assign?', !!b.assign);
 
             // Verify that the write is an assign that happens in the same scope because we must ignore closures for now
-            ASSERT(!b.decl && !b.param, 'a decl must be the first write and a and b were both writes so b cannot be the var decl');
+            ASSERT(!b.decl, 'a decl must be the first write and a and b were both writes so b cannot be the var decl');
             if (b.assign) {
               // Must verify that all remaining usages can reach this write
 

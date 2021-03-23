@@ -26,6 +26,7 @@ $(a, b, c);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = b = 2);
 };
 let b = 1,
@@ -39,6 +40,7 @@ $(a, b, c);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   b = 2;
   a = 2;
   let tmpReturnArg = a;

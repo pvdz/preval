@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$($(0) ? $(100) : (a = this));
+$($(0) ? $(100) : (a = undefined));
 $(a);
 `````
 
@@ -36,9 +36,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpNestedComplexRhs = this;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = undefined;
+  tmpCalleeParam = undefined;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -53,9 +52,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpNestedComplexRhs = this;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = undefined;
+  tmpCalleeParam = undefined;
 }
 $(tmpCalleeParam);
 $(a);

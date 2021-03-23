@@ -26,7 +26,7 @@ let a = 1,
     tmpDoWhileFlag = false;
     {
       $(a);
-      b;
+      null;
     }
   }
 }

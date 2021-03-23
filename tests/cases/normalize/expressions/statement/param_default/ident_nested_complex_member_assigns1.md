@@ -24,6 +24,7 @@ $(100);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $(b).x = $(b).x = c;
 };
 let b = { x: 1 };
@@ -36,6 +37,7 @@ $(100);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpAssignMemLhsObj = $(b);
   const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const varInitAssignLhsComputedObj = $(b);

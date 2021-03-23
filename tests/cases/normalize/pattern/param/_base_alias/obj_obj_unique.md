@@ -26,12 +26,14 @@ $(i({x: {y: {z: {a: 10}}}}));
 ## Pre Normal
 
 `````js filename=intro
-let i = function (tmpParamPattern) {
+let i = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let {
     x: {
       y: { z: a$1 },
     },
-  } = tmpParamPattern;
+  } = tmpParamBare;
   {
     let a$2 = 2;
   }
@@ -44,8 +46,10 @@ $(i({ x: { y: { z: { a: 10 } } } }));
 ## Normalized
 
 `````js filename=intro
-let i = function (tmpParamPattern) {
-  let bindingPatternObjRoot = tmpParamPattern;
+let i = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternObjRoot = tmpParamBare;
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let a$1 = objPatternNoDefault$1.z;

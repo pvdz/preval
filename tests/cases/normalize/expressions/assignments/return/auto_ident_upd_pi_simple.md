@@ -25,6 +25,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = ++b);
 };
 let b = 1;
@@ -37,6 +38,7 @@ $(a, b);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpNestedCompoundLhs = b;
   const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
   b = tmpNestedComplexRhs;

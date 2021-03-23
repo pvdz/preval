@@ -27,6 +27,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   for (let x of [10, 20]) {
     return $(1, 'return');
     $('fail');
@@ -40,6 +41,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpForOfDeclRhs = [10, 20];
   let x;
   for (x of tmpForOfDeclRhs) {
@@ -57,6 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpForOfDeclRhs = [10, 20];
   let x;
   for (x of tmpForOfDeclRhs) {

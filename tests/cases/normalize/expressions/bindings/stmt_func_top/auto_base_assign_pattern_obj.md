@@ -24,6 +24,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = {};
   let a = ({ b } = $({ b: $(2) }));
   $(a, b);
@@ -35,6 +36,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = {};
   let a;
   const tmpCallCallee = $;

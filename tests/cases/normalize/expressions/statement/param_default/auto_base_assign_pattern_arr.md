@@ -22,8 +22,10 @@ $(a, b);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let p = tmpParamDefault === undefined ? ([b] = $([$(2)])) : tmpParamDefault;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let p = tmpParamBare === undefined ? ([b] = $([$(2)])) : tmpParamBare;
 };
 let b = [];
 let a = { a: 999, b: 1000 };
@@ -34,9 +36,11 @@ $(a, b);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let p = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
     const tmpArrElement = $(2);
@@ -46,7 +50,7 @@ let f = function (tmpParamDefault) {
     b = arrPatternSplat[0];
     p = tmpNestedAssignArrPatternRhs;
   } else {
-    p = tmpParamDefault;
+    p = tmpParamBare;
   }
 };
 let b = [];
@@ -60,8 +64,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  const tmpIfTest = tmpParamDefault === undefined;
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpArrElement = $(2);
     const tmpCalleeParam = [tmpArrElement];

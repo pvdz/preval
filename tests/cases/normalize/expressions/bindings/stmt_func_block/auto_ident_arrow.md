@@ -24,8 +24,11 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
-    let a = () => {};
+    let a = () => {
+      debugger;
+    };
     $(a);
   }
 };
@@ -36,7 +39,10 @@ $(f());
 
 `````js filename=intro
 let f = function () {
-  let a = function () {};
+  debugger;
+  let a = function () {
+    debugger;
+  };
   $(a);
 };
 const tmpCallCallee = $;
@@ -47,7 +53,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = function () {};
+const a = function () {
+  debugger;
+};
 $(a);
 $(undefined);
 `````

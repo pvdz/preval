@@ -21,7 +21,9 @@ f(1, 2, 3);
 
 `````js filename=intro
 let f = function () {
-  $(arguments.length);
+  const tmpArgumentsLen = arguments.length;
+  debugger;
+  $(tmpArgumentsLen);
 };
 f(1, 2, 3);
 `````
@@ -30,8 +32,9 @@ f(1, 2, 3);
 
 `````js filename=intro
 let f = function () {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  $(tmpPrevalAliasArgumentsLen);
+  const tmpArgumentsLen = arguments.length;
+  debugger;
+  $(tmpArgumentsLen);
 };
 f(1, 2, 3);
 `````
@@ -40,8 +43,9 @@ f(1, 2, 3);
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  $(tmpPrevalAliasArgumentsLen);
+  const tmpArgumentsLen = arguments.length;
+  debugger;
+  $(tmpArgumentsLen);
 };
 f(1, 2, 3);
 `````

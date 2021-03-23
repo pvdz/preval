@@ -23,8 +23,10 @@ $(a, x, y);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let p = tmpParamDefault === undefined ? ([x, y] = ($(x), $(y), [$(3), $(4)])) : tmpParamDefault;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let p = tmpParamBare === undefined ? ([x, y] = ($(x), $(y), [$(3), $(4)])) : tmpParamBare;
 };
 let x = 1,
   y = 2;
@@ -36,9 +38,11 @@ $(a, x, y);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let p = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     $(x);
     $(y);
@@ -50,7 +54,7 @@ let f = function (tmpParamDefault) {
     y = arrPatternSplat[1];
     p = tmpNestedAssignArrPatternRhs;
   } else {
-    p = tmpParamDefault;
+    p = tmpParamBare;
   }
 };
 let x = 1;
@@ -65,8 +69,10 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  const tmpIfTest = tmpParamDefault === undefined;
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     $(x);
     $(y);

@@ -23,6 +23,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let { a } = { a: 999, b: 1000 };
   $({ a: 1, b: 2 });
   $(a);
@@ -34,6 +35,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let bindingPatternObjRoot = { a: 999, b: 1000 };
   let a = bindingPatternObjRoot.a;
   const tmpCallCallee = $;

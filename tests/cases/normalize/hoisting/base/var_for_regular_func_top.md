@@ -23,6 +23,7 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let x = undefined;
   $(x);
   {
@@ -38,6 +39,7 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let x = undefined;
   $(x);
   x = 10;

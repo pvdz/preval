@@ -23,6 +23,7 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let x = undefined;
   $(x);
   for (x in { y: 100 }) $(x, 'for');
@@ -35,6 +36,7 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let x = undefined;
   $(x);
   const tmpForInRhs = { y: 100 };

@@ -11,7 +11,7 @@ import globals from '../globals.mjs';
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
-export function phase1(fdata, resolve, req) {
+export function phase1(fdata, resolve, req, firstAfterParse) {
   const ast = fdata.tenkoOutput.ast;
 
   vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
@@ -27,6 +27,7 @@ export function phase1(fdata, resolve, req) {
 
   globals.forEach((_, name) => {
     ASSERT(name);
+    if (/^\$\$\d+$/.test(name)) fixme;
     globallyUniqueNamingRegistry.set(name, {
       name,
       isBuiltin: true,
@@ -42,7 +43,13 @@ export function phase1(fdata, resolve, req) {
   fdata.imports = imports;
   fdata.exports = exports;
 
-  group('\n\n\n##################################\n## phase1  ::  ' + fdata.fname + '\n##################################\n\n\n');
+  group(
+    '\n\n\n##################################\n## phase1 (first=' +
+      firstAfterParse +
+      ') ::  ' +
+      fdata.fname +
+      '\n##################################\n\n\n',
+  );
 
   walk(_walker, ast, 'ast');
   function _walker(node, before, nodeType, path) {
@@ -92,6 +99,18 @@ export function phase1(fdata, resolve, req) {
         break;
       }
 
+      case 'CatchClause:before': {
+        // Note: the catch scope is set on node.handler of the try (parent node of the catch clause)
+        break;
+      }
+
+      case 'DebuggerStatement:before': {
+        // Must be the only one and must be our header/body divider
+        ASSERT(parentIndex >= 0);
+        funcStack[funcStack.length - 1].$p.bodyOffset = parentIndex + 1;
+        break;
+      }
+
       case 'ForInStatement:before': {
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         break;
@@ -103,6 +122,26 @@ export function phase1(fdata, resolve, req) {
       }
 
       case 'FunctionExpression:before': {
+        if (firstAfterParse) {
+          vlog('Converting parameter nodes to special Param nodes');
+          node.params.forEach((pnode, i) => {
+            ASSERT;
+            ASSERT(
+              pnode.type === 'Identifier' || (pnode.type === 'RestElement' && pnode.argument.type === 'Identifier'),
+              'params should be normalized now',
+              pnode,
+            );
+            ASSERT(typeof (pnode.type === 'RestElement' ? pnode.argument.name : pnode.name) === 'string', 'name please?', pnode);
+            node.params[i] = AST.param(pnode.type === 'RestElement' ? pnode.argument.name : pnode.name, pnode.type === 'RestElement');
+          });
+        } else {
+          ASSERT(
+            node.params.every((param) => param.type === 'Param'),
+            'should still be normalized to param nodes',
+            node,
+          );
+        }
+
         if (parentNode.type === 'ExpressionStatement') {
           vlog('Do not traverse. I dont care whats inside.');
           vgroupEnd();
@@ -140,26 +179,15 @@ export function phase1(fdata, resolve, req) {
           meta.isImplicitGlobal = false;
         }
 
-        node.params.forEach((pnode) => {
-          if (pnode.type === 'RestElement') {
-            const meta = globallyUniqueNamingRegistry.get(pnode.argument.name);
-            ASSERT(meta);
-            meta.isImplicitGlobal = false;
-          } else {
-            ASSERT(pnode.type === 'Identifier', 'params are spread or idents at this point', pnode);
-            const meta = globallyUniqueNamingRegistry.get(pnode.name);
-            ASSERT(meta);
-            meta.isImplicitGlobal = false;
-          }
-        });
-
+        const bodyOffset = node.$p.bodyOffset;
+        ASSERT(bodyOffset >= 0, 'normalized functions must have a debugger statement to signify the end of the header');
         const body = node.body.body;
-        if (body.length === 1) {
+        if (body.length - bodyOffset === 1) {
           vlog('This function has one statement. Trying to see if we can inline calls to it.');
-          const stmt = body[0];
+          const stmt = body[bodyOffset];
           if (stmt.type === 'ReturnStatement') {
             // All usages can be inlined with the arg, provided the arg is reachable from the call sites (relevant for closures)
-            if (AST.isPrimitive(body[0].argument)) {
+            if (AST.isPrimitive(body[bodyOffset].argument)) {
               node.$p.inlineMe = 'single return with primitive';
             }
           } else if (stmt.type === 'ExpressionStatement') {
@@ -168,15 +196,15 @@ export function phase1(fdata, resolve, req) {
             // to more complex situations? Maybe bindings now get referenced multiple times...?
             node.$p.inlineMe = 'single expression statement';
           }
-        } else if (body.length === 2) {
+        } else if (body.length - bodyOffset === 2) {
           vlog('This function has two statements. Trying to see if we can inline calls to it.');
-          const one = body[0];
-          const two = body[1];
+          const one = body[bodyOffset];
+          const two = body[bodyOffset + 1];
           if (one.type === 'VariableDeclaration' && two.type === 'ReturnStatement') {
             vlog('Has var and return. Checking if it just returns the fresh var.');
-            const decl = body[0];
+            const decl = one;
             const decr = decl.declarations[0];
-            const ret = body[1];
+            const ret = two;
             if (ret.argument?.type === 'Identifier' && decr.id.name === ret.argument.name) {
               // This is a function whose body is a variable declaration that is then returned and the func is only called.
               // `var x = unkonwn; return x`, where unknown is any normalized expression (idc)
@@ -209,11 +237,6 @@ export function phase1(fdata, resolve, req) {
         break;
       }
 
-      case 'CatchClause:before': {
-        // Note: the catch scope is set on node.handler of the try (parent node of the catch clause)
-        break;
-      }
-
       case 'Identifier:before': {
         const currentScope = funcStack[funcStack.length - 1];
         const name = node.name;
@@ -222,48 +245,51 @@ export function phase1(fdata, resolve, req) {
         const kind = getIdentUsageKind(parentNode, parentProp);
         vlog('- Ident kind:', kind);
 
+        ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment and we eliminated those? prove me wrong', node);
+
         vlog(
           '- Parent: `' + parentNode.type + '.' + parentProp + '`',
           parentNode.type === 'MemberExpression' && node.computed ? 'computed' : 'regular',
         );
-        if (name === 'arguments') {
-          ASSERT(kind !== 'write', 'arguments cannot be written to in strict mode, right?');
-          if (kind === 'read') {
-            // Make a distinction between arguments.length, arguments[], and maybe the slice paradigm?
-            // For now we only care whether the function might detect the call arg count. Without arguemnts, it cannot.
-            if (thisStack.length) {
-              // Do not count cases like where the arguments have no observable side effect or our own alias
-              // This makes sure the `arguments` reference does not stick around unnecessarily as an artifact
-              if (
-                parentNode.type === 'MemberExpression' &&
-                parentProp === 'object' &&
-                !parentNode.computed &&
-                parentNode.property.name === 'length'
-              ) {
-                // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
-                vlog('Marking function as accessing `arguments.length`');
-                thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
-              } else {
-                if (parentNode.type === 'ExpressionStatement') {
-                  vlog('Ignoring `arguments` as an expression statement');
-                  //} else if (
-                  //  parentNode.type === 'VariableDeclaration' &&
-                  //  parentNode.declarations[0].id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)
-                  //) {
-                  //  vlog('Ignoring our own arguments alias');
-                } else {
-                  // This disables a few tricks because of observable side effects
-                  vlog('Marking function as accessing `arguments` in "any" way');
-                  thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
-                }
-              }
+        if (kind === 'read' && name === 'arguments') {
+          // Make a distinction between arguments.length, arguments[], and maybe the slice paradigm?
+          // For now we only care whether the function might detect the call arg count. Without arguemnts, it cannot.
+          if (thisStack.length) {
+            // Do not count cases like where the arguments have no observable side effect or our own alias
+            // This makes sure the `arguments` reference does not stick around unnecessarily as an artifact
+            if (
+              parentNode.type === 'MemberExpression' &&
+              parentProp === 'object' &&
+              !parentNode.computed &&
+              parentNode.property.name === 'length'
+            ) {
+              // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
+              vlog('Marking function as accessing `arguments.length`');
+              thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
             } else {
-              // TODO: do we want to act on this?
-              vlog('Attempting to access `arguments` in global space? Probably crashes at runtime.');
+              if (parentNode.type === 'ExpressionStatement') {
+                vlog('Ignoring `arguments` as an expression statement');
+                //} else if (
+                //  parentNode.type === 'VariableDeclaration' &&
+                //  parentNode.declarations[0].id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)
+                //) {
+                //  vlog('Ignoring our own arguments alias');
+              } else {
+                // This disables a few tricks because of observable side effects
+                vlog('Marking function as accessing `arguments` in "any" way');
+                thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
+              }
             }
+          } else {
+            // TODO: do we want to act on this?
+            vlog('Attempting to access `arguments` in global space? Probably crashes at runtime.');
           }
+        } else if ((kind === 'read' || kind === 'write') && /^\$\$\d+$/.test(name)) {
+          const paramNode = AST.param(name, false);
+          vlog('This is a special param "keyword" by Preval. Replacing ident with param node;', paramNode);
+          if (parentIndex < 0) parentNode[parentProp] = paramNode;
+          else parentNode[parentProp][parentIndex] = paramNode;
         } else if (kind !== 'none' && kind !== 'label') {
-          ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment and we eliminated those? prove me wrong', node);
           ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);
           vlog('- Binding referenced in $p.pid:', currentScope.$p.pid);
           let meta = globallyUniqueNamingRegistry.get(name);
@@ -279,6 +305,7 @@ export function phase1(fdata, resolve, req) {
               writes: [],
             };
             ASSERT(name);
+            if (/^\$\$\d+$/.test(name)) fixme;
             globallyUniqueNamingRegistry.set(name, meta);
           }
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
@@ -389,7 +416,11 @@ export function phase1(fdata, resolve, req) {
               }
             } else if (parentNode.type === 'AssignmentExpression') {
               ASSERT(parentProp === 'left', 'the read check above should cover the prop=right case');
-              ASSERT(path.nodes[path.nodes.length - 3].type === 'ExpressionStatement', 'assignments must be normalized to statements', path.nodes[path.nodes.length - 3]);
+              ASSERT(
+                path.nodes[path.nodes.length - 3].type === 'ExpressionStatement',
+                'assignments must be normalized to statements',
+                path.nodes[path.nodes.length - 3],
+              );
               const assignParent = path.nodes[path.nodes.length - 4];
               const assignProp = path.props[path.props.length - 3];
               const assignIndex = path.indexes[path.indexes.length - 3];
@@ -413,26 +444,7 @@ export function phase1(fdata, resolve, req) {
             } else if (parentNode.type === 'FunctionDeclaration') {
               ASSERT(false, 'all function declarations should have been eliminated during hoisting');
             } else if (parentProp === 'params' && parentNode.type === 'FunctionExpression') {
-              const paramParent = path.nodes[path.nodes.length - 3];
-              const paramProp = path.props[path.props.length - 2];
-              const paramIndex = path.indexes[path.indexes.length - 2];
-              vlog('Adding param write');
-              meta.writes.unshift(
-                createWriteRef({
-                  parentNode,
-                  parentProp,
-                  parentIndex,
-                  blockBody,
-                  blockIndex,
-                  pfuncNode: funcStack[funcStack.length - 1],
-                  node,
-                  rwCounter: ++readWriteCounter,
-                  scope: currentScope.$p.pid,
-                  blockChain: blockIds.join(','),
-                  innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
-                  param: { paramParent, paramProp, paramIndex },
-                }),
-              );
+              ASSERT(false, 'actual params are special nodes now and original params are local bindings so this should not trigger');
             } else {
               // for-x lhs, param, etc
               vlog('Adding "other" write');
@@ -527,17 +539,27 @@ export function phase1(fdata, resolve, req) {
         break;
       }
 
-      case 'ThisExpression:after': {
-        if (thisStack.length) {
-          vlog('Marking func as having `this` access');
-          thisStack[thisStack.length - 1].$p.thisAccess = true;
+      case 'Param:before': {
+        ASSERT(
+          parentProp === 'params' || parentProp === 'init',
+          'this node should only be used as a placeholder for params or when binding the placeholder to the actual name',
+        );
+        ASSERT(!node.$p.ref, 'each param should be referenced at most once');
+        if (parentProp === 'init') {
+          vlog('Maps to `' + parentNode.id.name + '`');
+          const funcNode = funcStack[funcStack.length - 1];
+          const declParam = funcNode.params[node.index];
+          ASSERT(declParam.name === node.name, 'the usage of a Param should map back to the decl', node, declParam);
+          declParam.$p.ref = { parentNode, parentProp, parentIndex, node, name: parentNode.id.name };
+        } else {
+          vlog('This is the decl');
         }
         break;
       }
 
       case 'ReturnStatement:before': {
         const funcNode = funcStack[funcStack.length - 1];
-        ASSERT(funcNode?.body?.body, 'eh, func node?', funcStack.length, funcNode)
+        ASSERT(funcNode?.body?.body, 'eh, func node?', funcStack.length, funcNode);
         vlog('Parent func:', funcNode.type, ', last node same?', funcNode.body.body[funcNode.body.body.length - 1] === node);
         if (funcNode.type === 'FunctionExpression') {
           const lastNode = funcNode.body.body[funcNode.body.body.length - 1];
@@ -562,6 +584,18 @@ export function phase1(fdata, resolve, req) {
         break;
       }
 
+      case 'ThisExpression:after': {
+        if (thisStack.length) {
+          vlog('Marking func as having `this` access');
+          thisStack[thisStack.length - 1].$p.thisAccess = true;
+        }
+        break;
+      }
+
+      case 'VariableDeclaration:before': {
+        vlog(node.kind, node.declarations[0]?.id?.name, '=', node.declarations[0]?.init?.type);
+        break;
+      }
       case 'VariableDeclaration:after': {
         vlog('- Id: `' + node.declarations[0].id.name + '`');
         ASSERT(node.declarations.length === 1, 'all decls should be normalized to one binding');

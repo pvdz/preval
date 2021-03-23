@@ -27,19 +27,25 @@ let b = undefined;
 let c = undefined;
 b = {
   get x() {
+    debugger;
     $(1);
     return 10;
   },
-  set x(n) {
+  set x($$0) {
+    let n = $$0;
+    debugger;
     $(2, n);
   },
 };
 c = {
   get x() {
+    debugger;
     $(3);
     return 20;
   },
-  set x(n$1) {
+  set x($$0) {
+    let n$1 = $$0;
+    debugger;
     $(4, n$1);
   },
 };
@@ -55,19 +61,25 @@ let b = undefined;
 let c = undefined;
 b = {
   get x() {
+    debugger;
     $(1);
     return 10;
   },
-  set x(n) {
+  set x($$0) {
+    let n = $$0;
+    debugger;
     $(2, n);
   },
 };
 c = {
   get x() {
+    debugger;
     $(3);
     return 20;
   },
-  set x(n$1) {
+  set x($$0) {
+    let n$1 = $$0;
+    debugger;
     $(4, n$1);
   },
 };
@@ -83,19 +95,25 @@ $(5, a);
 `````js filename=intro
 const SSA_b = {
   get x() {
+    debugger;
     $(1);
     return 10;
   },
-  set x(n) {
+  set x($$0) {
+    const n = $$0;
+    debugger;
     $(2, n);
   },
 };
 const SSA_c = {
   get x() {
+    debugger;
     $(3);
     return 20;
   },
-  set x(n$1) {
+  set x($$0) {
+    const n$1 = $$0;
+    debugger;
     $(4, n$1);
   },
 };

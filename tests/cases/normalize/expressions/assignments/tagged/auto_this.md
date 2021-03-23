@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$`before ${(a = this)} after`;
+$`before ${(a = undefined)} after`;
 $(a);
 `````
 
@@ -32,7 +32,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-a = this;
+a = undefined;
 let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
@@ -42,9 +42,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
-const SSA_a = this;
-$(tmpCalleeParam, SSA_a);
-$(SSA_a);
+$(tmpCalleeParam, undefined);
+$(undefined);
 `````
 
 ## Globals

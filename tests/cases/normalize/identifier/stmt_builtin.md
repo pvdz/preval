@@ -17,7 +17,7 @@ Infinity;
 ## Pre Normal
 
 `````js filename=intro
-Infinity;
+null;
 `````
 
 ## Normalized

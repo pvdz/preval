@@ -19,6 +19,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return NaN;
 };
 $(f());
@@ -28,6 +29,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return NaN;
 };
 const tmpCallCallee = $;

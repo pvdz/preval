@@ -27,13 +27,17 @@ $(f());
 ## Pre Normal
 
 `````js filename=intro
-const f = function (x1) {
+const f = function ($$0) {
+  let x1 = $$0;
+  debugger;
   let x = undefined;
   if ($) {
     x = {};
   }
   const g = function () {
-    $(arguments.length);
+    const tmpArgumentsLen = arguments.length;
+    debugger;
+    $(tmpArgumentsLen);
   };
   return g();
 };
@@ -43,21 +47,33 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-const f = function (x1) {
+const f = function ($$0) {
+  let x1 = $$0;
+  debugger;
   let x = undefined;
-  const tmpBranchingA = function (x1$1, x$1) {
+  const tmpBranchingA = function ($$0, $$1) {
+    let x1$1 = $$0;
+    let x$1 = $$1;
+    debugger;
     x$1 = {};
     const tmpReturnArg = tmpBranchingC(x1$1, x$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (x1$2, x$2) {
+  const tmpBranchingB = function ($$0, $$1) {
+    let x1$2 = $$0;
+    let x$2 = $$1;
+    debugger;
     const tmpReturnArg$1 = tmpBranchingC(x1$2, x$2);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (x1$3, x$3) {
+  const tmpBranchingC = function ($$0, $$1) {
+    let x1$3 = $$0;
+    let x$3 = $$1;
+    debugger;
     const g$1 = function () {
-      const tmpPrevalAliasArgumentsLen$1 = arguments.length;
-      $(tmpPrevalAliasArgumentsLen$1);
+      const tmpArgumentsLen$1 = arguments.length;
+      debugger;
+      $(tmpArgumentsLen$1);
     };
     const tmpReturnArg$2 = g$1();
     return tmpReturnArg$2;
@@ -79,10 +95,13 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpBranchingC = function () {
+    debugger;
     const g$1 = function () {
-      const tmpPrevalAliasArgumentsLen$1 = arguments.length;
-      $(tmpPrevalAliasArgumentsLen$1);
+      const tmpArgumentsLen$1 = arguments.length;
+      debugger;
+      $(tmpArgumentsLen$1);
     };
     const tmpReturnArg$2 = g$1();
     return tmpReturnArg$2;

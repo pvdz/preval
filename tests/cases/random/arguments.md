@@ -20,7 +20,8 @@ function f() {
 
 `````js filename=intro
 let f = function () {
-  arguments;
+  debugger;
+  null;
 };
 `````
 
@@ -28,7 +29,7 @@ let f = function () {
 
 `````js filename=intro
 let f = function () {
-  arguments;
+  debugger;
 };
 `````
 

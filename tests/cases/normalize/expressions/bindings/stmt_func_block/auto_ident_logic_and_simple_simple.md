@@ -24,6 +24,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let a = 1 && 2;
     $(a);
@@ -36,17 +37,24 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = 1;
-  const tmpBranchingA = function (a$1) {
+  const tmpBranchingA = function ($$0) {
+    let a$1 = $$0;
+    debugger;
     a$1 = 2;
     const tmpReturnArg = tmpBranchingC(a$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (a$2) {
+  const tmpBranchingB = function ($$0) {
+    let a$2 = $$0;
+    debugger;
     const tmpReturnArg$1 = tmpBranchingC(a$2);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (a$3) {
+  const tmpBranchingC = function ($$0) {
+    let a$3 = $$0;
+    debugger;
     $(a$3);
   };
   if (a) {

@@ -20,8 +20,10 @@ $(f());
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let a = tmpParamDefault === undefined ? 'foo' : tmpParamDefault;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let a = tmpParamBare === undefined ? 'foo' : tmpParamBare;
   return a;
 };
 $(f('x'));
@@ -31,27 +33,41 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let a = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
-  const tmpBranchingA = function (tmpParamDefault$1, a$1, tmpIfTest$1) {
+  const tmpIfTest = tmpParamBare === undefined;
+  const tmpBranchingA = function ($$0, $$1, $$2) {
+    let tmpParamBare$1 = $$0;
+    let a$1 = $$1;
+    let tmpIfTest$1 = $$2;
+    debugger;
     a$1 = 'foo';
-    const tmpReturnArg = tmpBranchingC(tmpParamDefault$1, a$1, tmpIfTest$1);
+    const tmpReturnArg = tmpBranchingC(tmpParamBare$1, a$1, tmpIfTest$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (tmpParamDefault$2, a$2, tmpIfTest$2) {
-    a$2 = tmpParamDefault$2;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamDefault$2, a$2, tmpIfTest$2);
+  const tmpBranchingB = function ($$0, $$1, $$2) {
+    let tmpParamBare$2 = $$0;
+    let a$2 = $$1;
+    let tmpIfTest$2 = $$2;
+    debugger;
+    a$2 = tmpParamBare$2;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$2, a$2, tmpIfTest$2);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (tmpParamDefault$3, a$3, tmpIfTest$3) {
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let tmpParamBare$3 = $$0;
+    let a$3 = $$1;
+    let tmpIfTest$3 = $$2;
+    debugger;
     return a$3;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$2 = tmpBranchingA(tmpParamDefault, a, tmpIfTest);
+    const tmpReturnArg$2 = tmpBranchingA(tmpParamBare, a, tmpIfTest);
     return tmpReturnArg$2;
   } else {
-    const tmpReturnArg$3 = tmpBranchingB(tmpParamDefault, a, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingB(tmpParamBare, a, tmpIfTest);
     return tmpReturnArg$3;
   }
 };
@@ -66,12 +82,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  const tmpIfTest = tmpParamDefault === undefined;
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     return 'foo';
   } else {
-    return tmpParamDefault;
+    return tmpParamBare;
   }
 };
 const tmpCalleeParam = f('x');

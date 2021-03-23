@@ -26,6 +26,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let a$1 = $(1);
     $(a$1);
@@ -42,17 +43,27 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a$1 = $(1);
   $(a$1);
   const tmpIfTest = $();
-  const tmpBranchingA = function (a$2, tmpIfTest$1) {
+  const tmpBranchingA = function ($$0, $$1) {
+    let a$2 = $$0;
+    let tmpIfTest$1 = $$1;
+    debugger;
     return a$2;
   };
-  const tmpBranchingB = function (a$3, tmpIfTest$2) {
+  const tmpBranchingB = function ($$0, $$1) {
+    let a$3 = $$0;
+    let tmpIfTest$2 = $$1;
+    debugger;
     const tmpReturnArg = tmpBranchingC(a$3, tmpIfTest$2);
     return tmpReturnArg;
   };
-  const tmpBranchingC = function (a$4, tmpIfTest$3) {
+  const tmpBranchingC = function ($$0, $$1) {
+    let a$4 = $$0;
+    let tmpIfTest$3 = $$1;
+    debugger;
     let a$5 = $(1);
     $(a$5);
     return a$5;
@@ -74,6 +85,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const a$1 = $(1);
   $(a$1);
   const tmpIfTest = $();

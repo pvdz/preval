@@ -20,7 +20,9 @@ f(a.x === 1 ? 2 : 3);
 ## Pre Normal
 
 `````js filename=intro
-let f = function () {};
+let f = function () {
+  debugger;
+};
 const a = { x: 1 };
 f(a.x === 1 ? 2 : 3);
 `````
@@ -28,7 +30,9 @@ f(a.x === 1 ? 2 : 3);
 ## Normalized
 
 `````js filename=intro
-let f = function () {};
+let f = function () {
+  debugger;
+};
 const a = { x: 1 };
 const tmpCallCallee = f;
 let tmpCalleeParam = undefined;

@@ -20,7 +20,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-[...() => {}];
+[
+  ...() => {
+    debugger;
+  },
+];
 $(a);
 `````
 
@@ -28,7 +32,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpArrElToSpread = function () {};
+const tmpArrElToSpread = function () {
+  debugger;
+};
 [...tmpArrElToSpread];
 $(a);
 `````
@@ -37,7 +43,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpArrElToSpread = function () {};
+const tmpArrElToSpread = function () {
+  debugger;
+};
 [...tmpArrElToSpread];
 $(a);
 `````

@@ -27,6 +27,7 @@ switch ($(2)) {
 `````js filename=intro
 {
   let f = function () {
+    debugger;
     $('pass');
   };
   const tmpSwitchValue = $(2);
@@ -51,6 +52,7 @@ switch ($(2)) {
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $('pass');
 };
 const tmpSwitchValue = $(2);

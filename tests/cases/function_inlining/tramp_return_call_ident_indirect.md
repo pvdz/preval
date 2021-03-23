@@ -26,11 +26,15 @@ $(r);
 ## Pre Normal
 
 `````js filename=intro
-const g = function (a) {
+const g = function ($$0) {
+  let a = $$0;
+  debugger;
   const y = a(10);
   return y;
 };
-const f = function (b) {
+const f = function ($$0) {
+  let b = $$0;
+  debugger;
   const x = g(b);
   return x;
 };
@@ -41,11 +45,15 @@ $(r);
 ## Normalized
 
 `````js filename=intro
-const g = function (a) {
+const g = function ($$0) {
+  let a = $$0;
+  debugger;
   const y = a(10);
   return y;
 };
-const f = function (b) {
+const f = function ($$0) {
+  let b = $$0;
+  debugger;
   const x = g(b);
   return x;
 };

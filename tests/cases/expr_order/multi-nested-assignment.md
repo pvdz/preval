@@ -34,28 +34,35 @@ let d = undefined;
 let e = undefined;
 let obj = {
   get c() {
+    debugger;
     $('get');
   },
-  set c(x) {
+  set c($$0) {
+    let x = $$0;
+    debugger;
     $('set');
   },
 };
 a = function () {
+  debugger;
   $('a');
   return obj;
 };
 b = function () {
+  debugger;
   $('b');
   a = 21;
   return obj;
 };
 c = function () {
+  debugger;
   $('c');
   a = 31;
   b = 32;
   return obj;
 };
 d = function () {
+  debugger;
   $('d');
   a = 41;
   b = 42;
@@ -63,6 +70,7 @@ d = function () {
   return obj;
 };
 e = function () {
+  debugger;
   $('e');
   a = 51;
   b = 52;
@@ -84,28 +92,35 @@ let d = undefined;
 let e = undefined;
 let obj = {
   get c() {
+    debugger;
     $('get');
   },
-  set c(x) {
+  set c($$0) {
+    let x = $$0;
+    debugger;
     $('set');
   },
 };
 a = function () {
+  debugger;
   $('a');
   return obj;
 };
 b = function () {
+  debugger;
   $('b');
   a = 21;
   return obj;
 };
 c = function () {
+  debugger;
   $('c');
   a = 31;
   b = 32;
   return obj;
 };
 d = function () {
+  debugger;
   $('d');
   a = 41;
   b = 42;
@@ -113,6 +128,7 @@ d = function () {
   return obj;
 };
 e = function () {
+  debugger;
   $('e');
   a = 51;
   b = 52;
@@ -141,28 +157,34 @@ $(a, b, c, d, e);
 `````js filename=intro
 const obj = {
   get c() {
+    debugger;
     $('get');
   },
-  set c(x) {
+  set c($$0) {
+    debugger;
     $('set');
   },
 };
 let SSA_a = function () {
+  debugger;
   $('a');
   return obj;
 };
 let SSA_b = function () {
+  debugger;
   $('b');
   SSA_a = 21;
   return obj;
 };
 let SSA_c = function () {
+  debugger;
   $('c');
   SSA_a = 31;
   SSA_b = 32;
   return obj;
 };
 let SSA_d = function () {
+  debugger;
   $('d');
   SSA_a = 41;
   SSA_b = 42;
@@ -170,6 +192,7 @@ let SSA_d = function () {
   return obj;
 };
 const SSA_e = function () {
+  debugger;
   $('e');
   SSA_a = 51;
   SSA_b = 52;

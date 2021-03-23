@@ -26,6 +26,7 @@ let f = undefined;
 let x = undefined;
 x = 20;
 f = () => {
+  debugger;
   return (x = 10);
 };
 x = 30;
@@ -40,6 +41,7 @@ let f = undefined;
 let x = undefined;
 x = 20;
 f = function () {
+  debugger;
   x = 10;
   let tmpReturnArg = x;
   return tmpReturnArg;

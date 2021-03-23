@@ -27,6 +27,7 @@ $(a, b, c, d);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return ($(b)[$('x')] = $(c)[$('y')] = $(d));
 };
 let b = { x: 1 },
@@ -41,6 +42,7 @@ $(a, b, c, d);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $('x');
   const varInitAssignLhsComputedObj$1 = $(c);

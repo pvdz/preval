@@ -25,6 +25,7 @@ $(a, arg);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return delete $(arg)['y'];
 };
 let arg = { y: 1 };
@@ -37,6 +38,7 @@ $(a, arg);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpDeleteObj = $(arg);
   const tmpReturnArg = delete tmpDeleteObj.y;
   return tmpReturnArg;

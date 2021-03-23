@@ -26,7 +26,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$($(100) + (a = () => {}));
+$(
+  $(100) +
+    (a = () => {
+      debugger;
+    }),
+);
 $(a);
 `````
 
@@ -36,7 +41,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = $(100);
-a = function () {};
+a = function () {
+  debugger;
+};
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
@@ -47,7 +54,9 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const SSA_a = function () {};
+const SSA_a = function () {
+  debugger;
+};
 const tmpCalleeParam = tmpBinBothLhs + SSA_a;
 $(tmpCalleeParam);
 $(SSA_a);
@@ -56,3 +65,14 @@ $(SSA_a);
 ## Globals
 
 None
+
+## Result
+
+Should call `$` with:
+ - eval returned: ('<skipped by option>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

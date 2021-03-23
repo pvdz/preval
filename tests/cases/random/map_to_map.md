@@ -45,7 +45,9 @@ $(
         ['$', '$'],
       ]).keys(),
       'module',
-    ].map((k) => {
+    ].map(($$0) => {
+      let k = $$0;
+      debugger;
       return [k, k];
     }),
   ).get('$'),
@@ -69,7 +71,9 @@ const tmpCallObj$2 = new tmpNewCallee$1(tmpCalleeParam$3);
 const tmpArrSpread = tmpCallObj$2.keys();
 const tmpCallObj$1 = [...tmpArrSpread, 'module'];
 const tmpCallVal = tmpCallObj$1.map;
-const tmpCalleeParam$2 = function (k) {
+const tmpCalleeParam$2 = function ($$0) {
+  let k = $$0;
+  debugger;
   const tmpReturnArg = [k, k];
   return tmpReturnArg;
 };
@@ -93,7 +97,9 @@ const tmpCallObj$2 = new Map(tmpCalleeParam$3);
 const tmpArrSpread = tmpCallObj$2.keys();
 const tmpCallObj$1 = [...tmpArrSpread, 'module'];
 const tmpCallVal = tmpCallObj$1.map;
-const tmpCalleeParam$2 = function (k) {
+const tmpCalleeParam$2 = function ($$0) {
+  const k = $$0;
+  debugger;
   const tmpReturnArg = [k, k];
   return tmpReturnArg;
 };

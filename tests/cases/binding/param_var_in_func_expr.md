@@ -21,7 +21,9 @@ $(f());
 ## Pre Normal
 
 `````js filename=intro
-const f = function (a) {
+const f = function ($$0) {
+  let a = $$0;
+  debugger;
   a = $(10);
   return a;
 };
@@ -31,7 +33,9 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-const f = function (a) {
+const f = function ($$0) {
+  let a = $$0;
+  debugger;
   a = $(10);
   return a;
 };

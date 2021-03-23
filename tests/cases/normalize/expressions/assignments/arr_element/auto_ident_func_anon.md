@@ -20,7 +20,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$((a = function () {}) + (a = function () {}));
+$(
+  (a = function () {
+    debugger;
+  }) +
+    (a = function () {
+      debugger;
+    }),
+);
 $(a);
 `````
 
@@ -29,9 +36,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = function () {};
+a = function () {
+  debugger;
+};
 let tmpBinBothLhs = a;
-a = function () {};
+a = function () {
+  debugger;
+};
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
@@ -41,8 +52,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {};
-const SSA_a$1 = function () {};
+const SSA_a = function () {
+  debugger;
+};
+const SSA_a$1 = function () {
+  debugger;
+};
 const tmpCalleeParam = SSA_a + SSA_a$1;
 $(tmpCalleeParam);
 $(SSA_a$1);

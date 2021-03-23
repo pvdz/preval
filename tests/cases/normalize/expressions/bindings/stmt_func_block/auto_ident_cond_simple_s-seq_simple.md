@@ -24,6 +24,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let a = 1 ? (40, 50, 60) : $($(100));
     $(a);
@@ -36,6 +37,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = undefined;
   a = 60;
   $(a);

@@ -24,9 +24,12 @@ x();
 ## Pre Normal
 
 `````js filename=intro
-let x = function (tmpParamDefault, tmpParamPattern) {
-  let foo = tmpParamDefault === undefined ? x$1 : tmpParamDefault;
-  let { x$1 } = tmpParamPattern;
+let x = function ($$0, $$1) {
+  const tmpParamBare = $$0;
+  const tmpParamBare$1 = $$1;
+  debugger;
+  let foo = tmpParamBare === undefined ? x$1 : tmpParamBare;
+  let { x$1 } = tmpParamBare$1;
 };
 x();
 `````
@@ -34,28 +37,46 @@ x();
 ## Normalized
 
 `````js filename=intro
-let x = function (tmpParamDefault, tmpParamPattern) {
+let x = function ($$0, $$1) {
+  const tmpParamBare = $$0;
+  const tmpParamBare$1 = $$1;
+  debugger;
   let foo = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
-  const tmpBranchingA = function (tmpParamDefault$1, tmpParamPattern$1, foo$1, tmpIfTest$1) {
+  const tmpIfTest = tmpParamBare === undefined;
+  const tmpBranchingA = function ($$0, $$1, $$2, $$3) {
+    let tmpParamBare$2 = $$0;
+    let tmpParamBare$3 = $$1;
+    let foo$1 = $$2;
+    let tmpIfTest$1 = $$3;
+    debugger;
     foo$1 = x$1;
-    const tmpReturnArg = tmpBranchingC(tmpParamDefault$1, tmpParamPattern$1, foo$1, tmpIfTest$1);
+    const tmpReturnArg = tmpBranchingC(tmpParamBare$2, tmpParamBare$3, foo$1, tmpIfTest$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (tmpParamDefault$2, tmpParamPattern$2, foo$2, tmpIfTest$2) {
-    foo$2 = tmpParamDefault$2;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamDefault$2, tmpParamPattern$2, foo$2, tmpIfTest$2);
+  const tmpBranchingB = function ($$0, $$1, $$2, $$3) {
+    let tmpParamBare$4 = $$0;
+    let tmpParamBare$5 = $$1;
+    let foo$2 = $$2;
+    let tmpIfTest$2 = $$3;
+    debugger;
+    foo$2 = tmpParamBare$4;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$4, tmpParamBare$5, foo$2, tmpIfTest$2);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (tmpParamDefault$3, tmpParamPattern$3, foo$3, tmpIfTest$3) {
-    let bindingPatternObjRoot = tmpParamPattern$3;
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
+    let tmpParamBare$6 = $$0;
+    let tmpParamBare$7 = $$1;
+    let foo$3 = $$2;
+    let tmpIfTest$3 = $$3;
+    debugger;
+    let bindingPatternObjRoot = tmpParamBare$7;
     let x$2 = bindingPatternObjRoot.x$1;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$2 = tmpBranchingA(tmpParamDefault, tmpParamPattern, foo, tmpIfTest);
+    const tmpReturnArg$2 = tmpBranchingA(tmpParamBare, tmpParamBare$1, foo, tmpIfTest);
     return tmpReturnArg$2;
   } else {
-    const tmpReturnArg$3 = tmpBranchingB(tmpParamDefault, tmpParamPattern, foo, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingB(tmpParamBare, tmpParamBare$1, foo, tmpIfTest);
     return tmpReturnArg$3;
   }
 };
@@ -65,13 +86,21 @@ x();
 ## Output
 
 `````js filename=intro
-x$1;
 undefined.x$1;
 throw '[Preval]: Can not reach here';
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
+None
 
-x$1
+## Result
+
+Should call `$` with:
+ - eval returned: ('<skipped by option>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

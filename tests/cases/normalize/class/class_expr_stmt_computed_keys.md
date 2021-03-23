@@ -21,8 +21,12 @@
 
 `````js filename=intro
 (class x {
-  [$('a')]() {}
-  [$('b')]() {}
+  [$('a')]() {
+    debugger;
+  }
+  [$('b')]() {
+    debugger;
+  }
 });
 `````
 

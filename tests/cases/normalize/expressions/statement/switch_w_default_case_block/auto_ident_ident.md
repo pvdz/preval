@@ -42,7 +42,7 @@ let a = { a: 999, b: 1000 };
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       {
-        b;
+        null;
       }
       break tmpSwitchBreak;
     }

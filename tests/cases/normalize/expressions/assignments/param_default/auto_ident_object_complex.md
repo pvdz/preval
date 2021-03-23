@@ -20,8 +20,10 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let p = tmpParamDefault === undefined ? (a = { x: $(1), y: 2, z: $(3) }) : tmpParamDefault;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let p = tmpParamBare === undefined ? (a = { x: $(1), y: 2, z: $(3) }) : tmpParamBare;
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -31,9 +33,11 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let p = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpObjLitVal = $(1);
     const tmpObjLitVal$1 = 2;
@@ -42,7 +46,7 @@ let f = function (tmpParamDefault) {
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
-    p = tmpParamDefault;
+    p = tmpParamBare;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -55,8 +59,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  const tmpIfTest = tmpParamDefault === undefined;
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpObjLitVal = $(1);
     const tmpObjLitVal$2 = $(3);

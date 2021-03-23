@@ -24,6 +24,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = { c: 10, d: 20 };
   let a = ($(b).c = $(b)[$('d')]);
   $(a, b);
@@ -35,6 +36,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = { c: 10, d: 20 };
   const varInitAssignLhsComputedObj = $(b);
   const tmpCompObj = $(b);

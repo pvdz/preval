@@ -20,8 +20,13 @@ f();
 ## Pre Normal
 
 `````js filename=intro
-let f = function (x, y, z) {
-  return $(arguments.length, x, z);
+let f = function ($$0, $$1, $$2) {
+  const tmpArgumentsLen = arguments.length;
+  let x = $$0;
+  let y = $$1;
+  let z = $$2;
+  debugger;
+  return $(tmpArgumentsLen, x, z);
 };
 f();
 `````
@@ -29,9 +34,13 @@ f();
 ## Normalized
 
 `````js filename=intro
-let f = function (x, y, z) {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  const tmpReturnArg = $(tmpPrevalAliasArgumentsLen, x, z);
+let f = function ($$0, $$1, $$2) {
+  const tmpArgumentsLen = arguments.length;
+  let x = $$0;
+  let y = $$1;
+  let z = $$2;
+  debugger;
+  const tmpReturnArg = $(tmpArgumentsLen, x, z);
   return tmpReturnArg;
 };
 f();
@@ -40,9 +49,12 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function (x, y, z) {
-  const tmpPrevalAliasArgumentsLen = arguments.length;
-  const tmpReturnArg = $(tmpPrevalAliasArgumentsLen, x, z);
+const f = function ($$0, $$1, $$2) {
+  const tmpArgumentsLen = arguments.length;
+  const x = $$0;
+  const z = $$2;
+  debugger;
+  const tmpReturnArg = $(tmpArgumentsLen, x, z);
   return tmpReturnArg;
 };
 f();

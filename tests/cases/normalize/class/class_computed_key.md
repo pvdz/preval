@@ -24,6 +24,7 @@ $(new x().f());
 `````js filename=intro
 let x = class {
   [$('f')]() {
+    debugger;
     return $(100);
   }
 };
@@ -36,6 +37,7 @@ $(new x().f());
 const tmpClassComputedKey = $('f');
 let x = class {
   [tmpClassComputedKey]() {
+    debugger;
     const tmpReturnArg = $(100);
     return tmpReturnArg;
   }
@@ -52,6 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpClassComputedKey = $('f');
 const x = class {
   [tmpClassComputedKey]() {
+    debugger;
     const tmpReturnArg = $(100);
     return tmpReturnArg;
   }

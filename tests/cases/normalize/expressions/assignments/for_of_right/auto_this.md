@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x of (a = this));
+for (let x of (a = undefined));
 $(a);
 `````
 
@@ -30,7 +30,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = this;
+a = undefined;
 let tmpForOfDeclRhs = a;
 let x;
 for (x of tmpForOfDeclRhs) {
@@ -41,11 +41,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = this;
 let x;
-for (x of SSA_a) {
+for (x of undefined) {
 }
-$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

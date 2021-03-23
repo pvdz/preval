@@ -28,8 +28,10 @@ $(a.f());
 const a = {
   foo: 10,
   f: function f() {
+    const tmpthis = this;
+    debugger;
     if ($(1)) {
-      return this.foo;
+      return tmpthis.foo;
     }
   },
 };
@@ -41,10 +43,11 @@ $(a.f());
 `````js filename=intro
 const tmpObjLitVal = 10;
 const tmpObjLitVal$1 = function f() {
-  const tmpPrevalAliasThis = this;
+  const tmpthis = this;
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpReturnArg = tmpPrevalAliasThis.foo;
+    const tmpReturnArg = tmpthis.foo;
     return tmpReturnArg;
   }
 };
@@ -58,10 +61,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal$1 = function f() {
-  const tmpPrevalAliasThis = this;
+  const tmpthis = this;
+  debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpReturnArg = tmpPrevalAliasThis.foo;
+    const tmpReturnArg = tmpthis.foo;
     return tmpReturnArg;
   }
 };

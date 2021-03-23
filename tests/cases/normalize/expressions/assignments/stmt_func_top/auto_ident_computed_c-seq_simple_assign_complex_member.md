@@ -25,6 +25,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = { c: 10, d: 20 };
   let a = { a: 999, b: 1000 };
   a = (1, 2, $(b))[$('c')] = $(b)[$('d')];
@@ -37,6 +38,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = { c: 10, d: 20 };
   let a = { a: 999, b: 1000 };
   const tmpNestedAssignComMemberObj = $(b);

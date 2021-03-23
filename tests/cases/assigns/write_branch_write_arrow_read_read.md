@@ -28,6 +28,7 @@ let x = $(1);
 if ($(1)) {
   x = $(2, 'branch');
   const f = () => {
+    debugger;
     return $(x, 'arrow');
   };
   $(f(), 'result');
@@ -44,6 +45,7 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   x = $(2, 'branch');
   const f = function () {
+    debugger;
     const tmpReturnArg = $(x, 'arrow');
     return tmpReturnArg;
   };

@@ -20,7 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(function () {});
+$(function () {
+  debugger;
+});
 $(a);
 `````
 
@@ -29,7 +31,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = function () {};
+const tmpCalleeParam = function () {
+  debugger;
+};
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -38,7 +42,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = function () {};
+const tmpCalleeParam = function () {
+  debugger;
+};
 $(tmpCalleeParam);
 $(a);
 `````

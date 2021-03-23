@@ -28,9 +28,13 @@ B();
 ## Pre Normal
 
 `````js filename=intro
-const A = function () {};
+const A = function () {
+  debugger;
+};
 const B = function () {
+  debugger;
   const C = function () {
+    debugger;
     const x = $(true);
     if (x) {
       A();
@@ -45,9 +49,13 @@ B();
 ## Normalized
 
 `````js filename=intro
-const A = function () {};
+const A = function () {
+  debugger;
+};
 const B = function () {
+  debugger;
   const C = function () {
+    debugger;
     const x = $(true);
     if (x) {
       A();

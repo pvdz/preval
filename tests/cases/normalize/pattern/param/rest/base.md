@@ -11,40 +11,47 @@
 ## Input
 
 `````js filename=intro
-function f(...x) {
+const f = function(...x) {
   return x;
 }
-$(f(1, 2, 3));
+const r = f(1, 2, 3);
+$(r);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-let f = function (...x) {
+const f = function (...$$0) {
+  let x = $$0;
+  debugger;
   return x;
 };
-$(f(1, 2, 3));
+const r = f(1, 2, 3);
+$(r);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let f = function (...x) {
+const f = function (...$$0) {
+  let x = $$0;
+  debugger;
   return x;
 };
-const tmpCallCallee = $;
-const tmpCalleeParam = f(1, 2, 3);
-tmpCallCallee(tmpCalleeParam);
+const r = f(1, 2, 3);
+$(r);
 `````
 
 ## Output
 
 `````js filename=intro
-const f = function (...x) {
+const f = function (...$$0) {
+  const x = $$0;
+  debugger;
   return x;
 };
-const tmpCalleeParam = f(1, 2, 3);
-$(tmpCalleeParam);
+const r = f(1, 2, 3);
+$(r);
 `````
 
 ## Globals

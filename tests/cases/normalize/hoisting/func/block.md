@@ -24,6 +24,7 @@ At some point the block would be dropped but the function wouldn't be hoisted
 `````js filename=intro
 {
   let f = function () {
+    debugger;
     $(1);
   };
   f();
@@ -34,6 +35,7 @@ At some point the block would be dropped but the function wouldn't be hoisted
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $(1);
 };
 f();

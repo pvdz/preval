@@ -25,8 +25,10 @@ function g({ x: y }) {
 ## Pre Normal
 
 `````js filename=intro
-let g = function (tmpParamPattern) {
-  let { x: y$1 } = tmpParamPattern;
+let g = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let { x: y$1 } = tmpParamBare;
   {
     let y$2 = 2;
   }
@@ -38,8 +40,10 @@ let y = 1;
 ## Normalized
 
 `````js filename=intro
-let g = function (tmpParamPattern) {
-  let bindingPatternObjRoot = tmpParamPattern;
+let g = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternObjRoot = tmpParamBare;
   let y$1 = bindingPatternObjRoot.x;
   let y$2 = 2;
   return y$1;

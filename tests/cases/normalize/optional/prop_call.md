@@ -22,8 +22,11 @@ $(a).x?.(1, 2, 3);
 
 `````js filename=intro
 const a = {
-  x: function (...args) {
-    $(args, this.y);
+  x: function (...$$0) {
+    const tmpthis = this;
+    let args = $$0;
+    debugger;
+    $(args, tmpthis.y);
   },
   y: 100,
 };
@@ -33,11 +36,13 @@ $(a).x?.(1, 2, 3);
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal = function (...args) {
-  const tmpPrevalAliasThis = this;
+const tmpObjLitVal = function (...$$0) {
+  const tmpthis = this;
+  let args = $$0;
+  debugger;
   const tmpCallCallee = $;
   const tmpCalleeParam = args;
-  const tmpCalleeParam$1 = tmpPrevalAliasThis.y;
+  const tmpCalleeParam$1 = tmpthis.y;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 };
 const a = { x: tmpObjLitVal, y: 100 };
@@ -53,9 +58,11 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = function (...args) {
-  const tmpPrevalAliasThis = this;
-  const tmpCalleeParam$1 = tmpPrevalAliasThis.y;
+const tmpObjLitVal = function (...$$0) {
+  const tmpthis = this;
+  const args = $$0;
+  debugger;
+  const tmpCalleeParam$1 = tmpthis.y;
   $(args, tmpCalleeParam$1);
 };
 const a = { x: tmpObjLitVal, y: 100 };

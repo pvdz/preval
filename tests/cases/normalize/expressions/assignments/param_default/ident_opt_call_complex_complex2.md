@@ -46,12 +46,17 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
+const f = function ($$0) {
+  let tmpParamDefault = $$0;
+  debugger;
   const tmpIfTest = tmpParamDefault === undefined;
   const tmpBranchingA = function () {
+    debugger;
     const tmpChainElementCall$2 = $($);
     const tmpIfTest$3 = tmpChainElementCall$2 != null;
-    const tmpBranchingC$1 = function (tmpNestedComplexRhs$4) {
+    const tmpBranchingC$1 = function ($$0) {
+      let tmpNestedComplexRhs$4 = $$0;
+      debugger;
       a = tmpNestedComplexRhs$4;
     };
     if (tmpIfTest$3) {
@@ -81,12 +86,17 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
+const f = function ($$0) {
+  let tmpParamDefault = $$0;
+  debugger;
   const tmpIfTest = tmpParamDefault === undefined;
   const tmpBranchingA = function () {
+    debugger;
     const tmpChainElementCall$2 = $($);
     const tmpIfTest$3 = tmpChainElementCall$2 != null;
-    const tmpBranchingC$1 = function (tmpNestedComplexRhs$4) {
+    const tmpBranchingC$1 = function ($$0) {
+      let tmpNestedComplexRhs$4 = $$0;
+      debugger;
       a = tmpNestedComplexRhs$4;
     };
     if (tmpIfTest$3) {
@@ -118,9 +128,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
+const f = function ($$0) {
+  const tmpParamDefault = $$0;
+  debugger;
   const tmpIfTest = tmpParamDefault === undefined;
   const tmpBranchingA = function () {
+    debugger;
     const tmpChainElementCall$2 = $($);
     const tmpIfTest$3 = tmpChainElementCall$2 != null;
     if (tmpIfTest$3) {

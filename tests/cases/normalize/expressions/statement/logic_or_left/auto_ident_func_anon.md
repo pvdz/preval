@@ -20,7 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-(function () {} || $(100));
+(function () {
+  debugger;
+} || $(100));
 $(a);
 `````
 
@@ -28,7 +30,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpIfTest = function () {};
+const tmpIfTest = function () {
+  debugger;
+};
 if (tmpIfTest) {
 } else {
   $(100);
@@ -40,7 +44,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpIfTest = function () {};
+const tmpIfTest = function () {
+  debugger;
+};
 if (tmpIfTest) {
 } else {
   $(100);

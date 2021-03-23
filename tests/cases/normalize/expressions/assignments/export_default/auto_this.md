@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = this);
+const tmpAnonDefaultExport = (a = undefined);
 export { tmpAnonDefaultExport as default };
 $(a);
 `````
@@ -31,7 +31,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = this;
+a = undefined;
 let tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -40,10 +40,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = this;
-const tmpAnonDefaultExport = SSA_a;
+const tmpAnonDefaultExport = undefined;
 export { tmpAnonDefaultExport as default };
-$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

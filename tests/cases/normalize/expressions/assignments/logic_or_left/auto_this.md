@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$((a = this) || $(100));
+$((a = undefined) || $(100));
 $(a);
 `````
 
@@ -31,7 +31,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = this;
+a = undefined;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
@@ -44,14 +44,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = this;
-let tmpCalleeParam = SSA_a;
+let tmpCalleeParam = undefined;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

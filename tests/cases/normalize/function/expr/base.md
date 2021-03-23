@@ -18,21 +18,27 @@ $(f);
 ## Pre Normal
 
 `````js filename=intro
-const f = function g() {};
+const f = function g() {
+  debugger;
+};
 $(f);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const f = function g() {};
+const f = function g() {
+  debugger;
+};
 $(f);
 `````
 
 ## Output
 
 `````js filename=intro
-const f = function g() {};
+const f = function g() {
+  debugger;
+};
 $(f);
 `````
 

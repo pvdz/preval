@@ -24,6 +24,7 @@ superExpensiveFunction().x += 5;
 
 `````js filename=intro
 let superExpensiveFunction = function () {
+  debugger;
   return $();
 };
 superExpensiveFunction().x += 5;
@@ -33,6 +34,7 @@ superExpensiveFunction().x += 5;
 
 `````js filename=intro
 let superExpensiveFunction = function () {
+  debugger;
   const tmpReturnArg = $();
   return tmpReturnArg;
 };

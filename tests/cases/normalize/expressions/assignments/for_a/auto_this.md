@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  a = this;
+  a = undefined;
   while (true) {
     $(1);
   }
@@ -35,7 +35,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = this;
+a = undefined;
 while (true) {
   $(1);
 }
@@ -45,11 +45,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = this;
 while (true) {
   $(1);
 }
-$(SSA_a);
+$(undefined);
 `````
 
 ## Globals

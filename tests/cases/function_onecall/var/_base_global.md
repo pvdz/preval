@@ -22,6 +22,7 @@ $(x);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $(1);
 };
 const x = f();
@@ -32,6 +33,7 @@ $(x);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $(1);
 };
 const x = f();

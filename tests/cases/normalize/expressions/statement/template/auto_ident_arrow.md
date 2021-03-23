@@ -20,7 +20,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(`before  ${() => {}}  after`);
+$(
+  `before  ${() => {
+    debugger;
+  }}  after`,
+);
 $(a);
 `````
 
@@ -29,7 +33,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpTemplateExpr = function () {};
+const tmpTemplateExpr = function () {
+  debugger;
+};
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -39,7 +45,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpTemplateExpr = function () {};
+const tmpTemplateExpr = function () {
+  debugger;
+};
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);
@@ -52,18 +60,12 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'before () => {} after'
+ - 1: 'before function() {} after'
  - 2: { a: '999', b: '1000' }
  - eval returned: undefined
 
 Pre normalization calls: Same
 
-Normalized calls: BAD?!
- - 1: 'before function() {} after'
- - 2: { a: '999', b: '1000' }
- - eval returned: undefined
+Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 'before function() {} after'
- - 2: { a: '999', b: '1000' }
- - eval returned: undefined
+Final output calls: Same

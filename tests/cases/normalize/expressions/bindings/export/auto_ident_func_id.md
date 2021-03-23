@@ -18,7 +18,9 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let a = function f() {};
+let a = function f() {
+  debugger;
+};
 export { a };
 $(a);
 `````
@@ -26,7 +28,9 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let a = function f() {};
+let a = function f() {
+  debugger;
+};
 export { a };
 $(a);
 `````
@@ -34,7 +38,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = function f() {};
+const a = function f() {
+  debugger;
+};
 export { a };
 $(a);
 `````

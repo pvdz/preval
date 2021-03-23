@@ -27,8 +27,10 @@ g();
 
 `````js filename=intro
 let g = function () {
+  debugger;
   {
     let f = function () {
+      debugger;
       return x;
     };
     let x = 100;
@@ -42,7 +44,9 @@ g();
 
 `````js filename=intro
 let g = function () {
+  debugger;
   let f = function () {
+    debugger;
     return x;
   };
   let x = 100;

@@ -25,7 +25,9 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  return (a = this);
+  const tmpthis = this;
+  debugger;
+  return (a = tmpthis);
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -36,8 +38,9 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  const tmpPrevalAliasThis = this;
-  a = tmpPrevalAliasThis;
+  const tmpthis = this;
+  debugger;
+  a = tmpthis;
   let tmpReturnArg = a;
   return tmpReturnArg;
 };
@@ -52,8 +55,9 @@ $(a);
 
 `````js filename=intro
 const f = function () {
-  const tmpPrevalAliasThis = this;
-  a = tmpPrevalAliasThis;
+  const tmpthis = this;
+  debugger;
+  a = tmpthis;
   const tmpReturnArg = a;
   return tmpReturnArg;
 };

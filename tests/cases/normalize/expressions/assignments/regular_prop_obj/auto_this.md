@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-(a = this).a;
+(a = undefined).a;
 $(a);
 `````
 
@@ -33,7 +33,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-a = this;
+a = undefined;
 let tmpCompObj = a;
 tmpCompObj.a;
 $(a);
@@ -42,9 +42,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = this;
-SSA_a.a;
-$(SSA_a);
+undefined.a;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

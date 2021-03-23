@@ -20,8 +20,10 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let p = tmpParamDefault === undefined ? ($(10), $(20), [1, 2]) : tmpParamDefault;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let p = tmpParamBare === undefined ? ($(10), $(20), [1, 2]) : tmpParamBare;
 };
 let [a] = { a: 999, b: 1000 };
 $(f());
@@ -31,15 +33,17 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let p = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     $(10);
     $(20);
     p = [1, 2];
   } else {
-    p = tmpParamDefault;
+    p = tmpParamBare;
   }
 };
 let bindingPatternArrRoot = { a: 999, b: 1000 };
@@ -54,8 +58,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  const tmpIfTest = tmpParamDefault === undefined;
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     $(10);
     $(20);

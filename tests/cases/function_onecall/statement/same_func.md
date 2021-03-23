@@ -24,10 +24,13 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = function () {
+    debugger;
     $('a');
   };
   let b = function () {
+    debugger;
     $('b');
   };
   a();
@@ -40,10 +43,13 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let a = function () {
+    debugger;
     $('a');
   };
   let b = function () {
+    debugger;
     $('b');
   };
   a();

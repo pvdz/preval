@@ -37,10 +37,13 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     $('a');
     $('b');
     return $('ab');
@@ -59,10 +62,13 @@ $(closure());
 
 `````js filename=intro
 let closure = function () {
+  debugger;
   return x;
 };
 let f = function () {
+  debugger;
   let g = function () {
+    debugger;
     $('a');
     $('b');
     const tmpReturnArg = $('ab');

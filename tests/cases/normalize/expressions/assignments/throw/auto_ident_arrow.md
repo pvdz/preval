@@ -20,7 +20,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-throw (a = () => {});
+throw (a = () => {
+  debugger;
+});
 $(a);
 `````
 
@@ -28,7 +30,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = function () {};
+a = function () {
+  debugger;
+};
 let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
@@ -36,7 +40,9 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {};
+const SSA_a = function () {
+  debugger;
+};
 throw SSA_a;
 `````
 
@@ -47,12 +53,10 @@ None
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ () => {} ]>')
+ - eval returned: ('<crash[ function() {} ]>')
 
 Pre normalization calls: Same
 
-Normalized calls: BAD?!
- - eval returned: ('<crash[ function() {} ]>')
+Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ('<crash[ function() {} ]>')
+Final output calls: Same

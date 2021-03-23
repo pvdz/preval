@@ -27,10 +27,12 @@ $(r);
 
 `````js filename=intro
 const g = function () {
+  debugger;
   const y = $(10);
   return y;
 };
 const f = function () {
+  debugger;
   const x = g();
   return x;
 };
@@ -42,10 +44,12 @@ $(r);
 
 `````js filename=intro
 const g = function () {
+  debugger;
   const y = $(10);
   return y;
 };
 const f = function () {
+  debugger;
   const x = g();
   return x;
 };

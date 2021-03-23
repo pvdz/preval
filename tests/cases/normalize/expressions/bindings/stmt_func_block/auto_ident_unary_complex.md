@@ -26,6 +26,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let x = 1;
     let a = typeof $(x);
@@ -39,6 +40,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let x = 1;
   const tmpUnaryArg = $(x);
   let a = typeof tmpUnaryArg;

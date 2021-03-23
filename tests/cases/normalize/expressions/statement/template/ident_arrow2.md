@@ -8,6 +8,12 @@
 
 #TODO
 
+## Options
+
+Test output serialization false negative
+
+- skipEval
+
 ## Input
 
 `````js filename=intro
@@ -24,6 +30,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 $(
   `before  ${function () {
+    debugger;
     if (x) y;
   }}  after`,
 );
@@ -36,6 +43,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpTemplateExpr = function () {
+  debugger;
   if (x) {
     y;
   }
@@ -50,6 +58,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpTemplateExpr = function () {
+  debugger;
   if (x) {
     y;
   }
@@ -68,18 +77,10 @@ x, y
 ## Result
 
 Should call `$` with:
- - 1: 'before function() { if (x) y;} after'
- - 2: { a: '999', b: '1000' }
- - eval returned: undefined
+ - eval returned: ('<skipped by option>')
 
 Pre normalization calls: Same
 
-Normalized calls: BAD?!
- - 1: 'before function() {if (x) {y;}} after'
- - 2: { a: '999', b: '1000' }
- - eval returned: undefined
+Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 'before function() {if (x) {y;}} after'
- - 2: { a: '999', b: '1000' }
- - eval returned: undefined
+Final output calls: Same

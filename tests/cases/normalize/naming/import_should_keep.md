@@ -26,10 +26,13 @@ export const x = $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let x$1 = $(1);
   return x$1;
 };
-let g = function (x$2) {
+let g = function ($$0) {
+  let x$2 = $$0;
+  debugger;
   return x$2;
 };
 let c = class {};
@@ -44,10 +47,13 @@ export { g };
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let x$1 = $(1);
   return x$1;
 };
-let g = function (x$2) {
+let g = function ($$0) {
+  let x$2 = $$0;
+  debugger;
   return x$2;
 };
 let c = class {};
@@ -64,10 +70,13 @@ export { g };
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const x$1 = $(1);
   return x$1;
 };
-const g = function (x$2) {
+const g = function ($$0) {
+  const x$2 = $$0;
+  debugger;
   return x$2;
 };
 const c = class {};

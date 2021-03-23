@@ -17,7 +17,10 @@ function f(x, y) {
 ## Pre Normal
 
 `````js filename=intro
-let f = function (x, y) {
+let f = function ($$0, $$1) {
+  let x = $$0;
+  let y = $$1;
+  debugger;
   return (x = y);
 };
 `````
@@ -25,7 +28,10 @@ let f = function (x, y) {
 ## Normalized
 
 `````js filename=intro
-let f = function (x, y) {
+let f = function ($$0, $$1) {
+  let x = $$0;
+  let y = $$1;
+  debugger;
   x = y;
   let tmpReturnArg = x;
   return tmpReturnArg;

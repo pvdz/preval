@@ -27,13 +27,17 @@ let a = undefined;
 let b = undefined;
 let x = $(10);
 a = function () {
+  debugger;
   return x;
 };
 b = {
-  set x(n) {
+  set x($$0) {
+    let n = $$0;
+    debugger;
     x = $(30, 'from set');
   },
   get x() {
+    debugger;
     return $(40, 'from get');
   },
 };
@@ -50,13 +54,17 @@ let a = undefined;
 let b = undefined;
 let x = $(10);
 a = function () {
+  debugger;
   return x;
 };
 b = {
-  set x(n) {
+  set x($$0) {
+    let n = $$0;
+    debugger;
     x = $(30, 'from set');
   },
   get x() {
+    debugger;
     const tmpReturnArg = $(40, 'from get');
     return tmpReturnArg;
   },
@@ -72,10 +80,12 @@ $(x, a, b, 'final');
 `````js filename=intro
 let x = $(10);
 const SSA_b = {
-  set x(n) {
+  set x($$0) {
+    debugger;
     x = $(30, 'from set');
   },
   get x() {
+    debugger;
     const tmpReturnArg = $(40, 'from get');
     return tmpReturnArg;
   },

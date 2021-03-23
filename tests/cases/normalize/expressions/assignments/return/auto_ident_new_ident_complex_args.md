@@ -25,6 +25,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   return (a = new $($(1), $(2)));
 };
 let b = { $ };
@@ -37,6 +38,7 @@ $(a);
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpNewCallee = $;
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);

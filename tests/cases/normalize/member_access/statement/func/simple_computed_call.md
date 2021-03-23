@@ -20,6 +20,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const obj = { foo: 10 };
   obj[$('foo')];
 };
@@ -30,6 +31,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const obj = { foo: 10 };
   const tmpCompObj = obj;
   const tmpCompProp = $('foo');

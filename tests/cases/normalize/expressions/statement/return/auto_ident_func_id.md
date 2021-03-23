@@ -23,7 +23,10 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  return function f$1() {};
+  debugger;
+  return function f$1() {
+    debugger;
+  };
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -34,7 +37,10 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  const tmpReturnArg = function f$1() {};
+  debugger;
+  const tmpReturnArg = function f$1() {
+    debugger;
+  };
   return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
@@ -48,7 +54,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpReturnArg = function f$1() {};
+const tmpReturnArg = function f$1() {
+  debugger;
+};
 $(tmpReturnArg);
 $(a);
 `````

@@ -20,6 +20,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const y = (1, 2, $(parseInt))();
   return $(y);
 };
@@ -30,6 +31,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpCallCallee = $(parseInt);
   const y = tmpCallCallee();
   const tmpReturnArg = $(y);

@@ -29,6 +29,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let b = { x: 1 },
       c = 3;
@@ -43,6 +44,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = { x: 1 };
   let c = 3;
   const varInitAssignLhsComputedObj = $(b);

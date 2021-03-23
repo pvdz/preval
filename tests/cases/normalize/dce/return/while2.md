@@ -27,6 +27,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   while ($(true)) {
     return $(1, 'return');
     $('fail');
@@ -40,6 +41,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
@@ -60,6 +62,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {

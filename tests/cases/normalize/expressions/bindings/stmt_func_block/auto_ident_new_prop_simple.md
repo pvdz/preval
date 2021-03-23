@@ -26,6 +26,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let b = { $ };
     let a = new b.$(1);
@@ -39,6 +40,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   let b = { $: $ };
   const tmpNewCallee = b.$;
   let a = new tmpNewCallee(1);

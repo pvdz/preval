@@ -31,6 +31,7 @@ $(f(), 'final');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   if ($(0)) {
     $(2);
   } else {
@@ -50,25 +51,39 @@ $(f(), 'final');
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpIfTest = $(0);
-  const tmpBranchingA = function (tmpIfTest$2) {
+  const tmpBranchingA = function ($$0) {
+    let tmpIfTest$2 = $$0;
+    debugger;
     $(2);
     const tmpReturnArg$2 = tmpBranchingC(tmpIfTest$2);
     return tmpReturnArg$2;
   };
-  const tmpBranchingB = function (tmpIfTest$3) {
+  const tmpBranchingB = function ($$0) {
+    let tmpIfTest$3 = $$0;
+    debugger;
     const tmpIfTest$4 = $(3);
-    const tmpBranchingA$1 = function (tmpIfTest$6, tmpIfTest$7) {
+    const tmpBranchingA$1 = function ($$0, $$1) {
+      let tmpIfTest$6 = $$0;
+      let tmpIfTest$7 = $$1;
+      debugger;
       $(4);
       const tmpReturnArg$4 = tmpBranchingC$1(tmpIfTest$6, tmpIfTest$7);
       return tmpReturnArg$4;
     };
-    const tmpBranchingB$1 = function (tmpIfTest$8, tmpIfTest$9) {
+    const tmpBranchingB$1 = function ($$0, $$1) {
+      let tmpIfTest$8 = $$0;
+      let tmpIfTest$9 = $$1;
+      debugger;
       $(5);
       const tmpReturnArg$5 = tmpBranchingC$1(tmpIfTest$8, tmpIfTest$9);
       return tmpReturnArg$5;
     };
-    const tmpBranchingC$1 = function (tmpIfTest$10, tmpIfTest$11) {
+    const tmpBranchingC$1 = function ($$0, $$1) {
+      let tmpIfTest$10 = $$0;
+      let tmpIfTest$11 = $$1;
+      debugger;
       const tmpReturnArg$3 = $(6);
       return tmpReturnArg$3;
     };
@@ -80,7 +95,9 @@ let f = function () {
       return tmpReturnArg$7;
     }
   };
-  const tmpBranchingC = function (tmpIfTest$5) {
+  const tmpBranchingC = function ($$0) {
+    let tmpIfTest$5 = $$0;
+    debugger;
     const tmpReturnArg$8 = $(7);
     return tmpReturnArg$8;
   };
@@ -102,8 +119,10 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpIfTest = $(0);
   const tmpBranchingB = function () {
+    debugger;
     const tmpIfTest$4 = $(3);
     if (tmpIfTest$4) {
       $(4);

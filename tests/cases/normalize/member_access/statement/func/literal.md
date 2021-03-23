@@ -21,6 +21,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   'foo'.length;
 };
 $(f());
@@ -29,7 +30,9 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-let f = function () {};
+let f = function () {
+  debugger;
+};
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

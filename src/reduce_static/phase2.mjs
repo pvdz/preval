@@ -33,14 +33,14 @@ export function phase2(program, fdata, resolve, req) {
   const trampFuncs = pruneTrampolineFunctions(fdata);
   if (trampFuncs) return trampFuncs;
 
-  const prunedParams = pruneExcessiveParams(fdata);
-  if (prunedParams) return prunedParams;
-
   const inlinedConstants = inlineConstants(fdata);
   if (inlinedConstants) return inlinedConstants;
 
   const promoted = promoteVars(fdata);
   if (promoted) return promoted;
+
+  const prunedParams = pruneExcessiveParams(fdata);
+  if (prunedParams) return prunedParams;
 
   const singled = inlineOneTimeFunctions(fdata);
   if (singled) return singled;

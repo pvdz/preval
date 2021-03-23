@@ -65,12 +65,16 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $('-------- start');
   const b = {
     get foo() {
+      debugger;
       return $(2);
     },
-    set foo(x) {
+    set foo($$0) {
+      let x = $$0;
+      debugger;
       return $(3);
     },
   };
@@ -93,13 +97,17 @@ f();
 
 `````js filename=intro
 let f = function () {
+  debugger;
   $('-------- start');
   const b = {
     get foo() {
+      debugger;
       const tmpReturnArg = $(2);
       return tmpReturnArg;
     },
-    set foo(x) {
+    set foo($$0) {
+      let x = $$0;
+      debugger;
       const tmpReturnArg$1 = $(3);
       return tmpReturnArg$1;
     },
@@ -137,10 +145,12 @@ f();
 $('-------- start');
 const b = {
   get foo() {
+    debugger;
     const tmpReturnArg = $(2);
     return tmpReturnArg;
   },
-  set foo(x) {
+  set foo($$0) {
+    debugger;
     const tmpReturnArg$1 = $(3);
     return tmpReturnArg$1;
   },

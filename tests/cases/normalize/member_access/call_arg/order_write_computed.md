@@ -24,9 +24,12 @@ $($(obj)[$('x')] = 30);
 `````js filename=intro
 const obj = {
   get x() {
+    debugger;
     return $(10);
   },
-  set x(_) {
+  set x($$0) {
+    let _ = $$0;
+    debugger;
     $(20);
   },
 };
@@ -38,10 +41,13 @@ $(($(obj)[$('x')] = 30));
 `````js filename=intro
 const obj = {
   get x() {
+    debugger;
     const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
-  set x(_) {
+  set x($$0) {
+    let _ = $$0;
+    debugger;
     $(20);
   },
 };
@@ -59,10 +65,12 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const obj = {
   get x() {
+    debugger;
     const tmpReturnArg = $(10);
     return tmpReturnArg;
   },
-  set x(_) {
+  set x($$0) {
+    debugger;
     $(20);
   },
 };

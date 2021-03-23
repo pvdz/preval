@@ -22,7 +22,9 @@ class x {
 `````js filename=intro
 const y = 'y';
 let x = class {
-  [y]() {}
+  [y]() {
+    debugger;
+  }
 };
 `````
 
@@ -31,7 +33,9 @@ let x = class {
 `````js filename=intro
 const y = 'y';
 let x = class {
-  [y]() {}
+  [y]() {
+    debugger;
+  }
 };
 `````
 

@@ -17,21 +17,27 @@ export default function() {}
 ## Pre Normal
 
 `````js filename=intro
-const tmpAnonDefaultExport = function () {};
+const tmpAnonDefaultExport = function () {
+  debugger;
+};
 export { tmpAnonDefaultExport as default };
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpAnonDefaultExport = function () {};
+const tmpAnonDefaultExport = function () {
+  debugger;
+};
 export { tmpAnonDefaultExport as default };
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpAnonDefaultExport = function () {};
+const tmpAnonDefaultExport = function () {
+  debugger;
+};
 export { tmpAnonDefaultExport as default };
 `````
 

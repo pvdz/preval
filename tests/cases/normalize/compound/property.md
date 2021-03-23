@@ -36,10 +36,13 @@ let s = '';
 let a = 0;
 const obj = {
   get x() {
+    debugger;
     s += 'read;';
     return a;
   },
-  set x(v) {
+  set x($$0) {
+    let v = $$0;
+    debugger;
     s += 'write[' + v + '];';
     a += v;
     return a;
@@ -56,10 +59,13 @@ let s = '';
 let a = 0;
 const obj = {
   get x() {
+    debugger;
     s = s + 'read;';
     return a;
   },
-  set x(v) {
+  set x($$0) {
+    let v = $$0;
+    debugger;
     const tmpBinBothLhs = s;
     const tmpBinLhs = 'write[' + v;
     const tmpBinBothRhs = tmpBinLhs + '];';
@@ -82,10 +88,13 @@ let s = '';
 let a = 0;
 const obj = {
   get x() {
+    debugger;
     s = s + 'read;';
     return a;
   },
-  set x(v) {
+  set x($$0) {
+    const v = $$0;
+    debugger;
     const tmpBinBothLhs = s;
     const tmpBinLhs = 'write[' + v;
     const tmpBinBothRhs = tmpBinLhs + '];';

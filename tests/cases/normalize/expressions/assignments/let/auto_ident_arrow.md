@@ -21,7 +21,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let xyz = (a = () => {});
+let xyz = (a = () => {
+  debugger;
+});
 $(xyz);
 $(a);
 `````
@@ -30,7 +32,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = function () {};
+a = function () {
+  debugger;
+};
 let xyz = a;
 $(xyz);
 $(a);
@@ -39,7 +43,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {};
+const SSA_a = function () {
+  debugger;
+};
 $(SSA_a);
 $(SSA_a);
 `````

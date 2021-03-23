@@ -20,10 +20,12 @@ $(f({ x: [{ x: 1, y: 2, c: 3 }, 13, 14], a: 11, b: 12 }, 10));
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let {
     x: [{}],
-  } = tmpParamPattern;
+  } = tmpParamBare;
   return 'ok';
 };
 $(f({ x: [{ x: 1, y: 2, c: 3 }, 13, 14], a: 11, b: 12 }, 10));
@@ -32,22 +34,24 @@ $(f({ x: [{ x: 1, y: 2, c: 3 }, 13, 14], a: 11, b: 12 }, 10));
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamPattern) {
-  let bindingPatternObjRoot = tmpParamPattern;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternObjRoot = tmpParamBare;
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
   let objPatternCrashTest = arrPatternStep === undefined;
-  const tmpBranchingA = function (
-    tmpParamPattern$1,
-    bindingPatternObjRoot$1,
-    objPatternNoDefault$1,
-    arrPatternSplat$1,
-    arrPatternStep$1,
-    objPatternCrashTest$1,
-  ) {
+  const tmpBranchingA = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+    let tmpParamBare$1 = $$0;
+    let bindingPatternObjRoot$1 = $$1;
+    let objPatternNoDefault$1 = $$2;
+    let arrPatternSplat$1 = $$3;
+    let arrPatternStep$1 = $$4;
+    let objPatternCrashTest$1 = $$5;
+    debugger;
     const tmpReturnArg = tmpBranchingC(
-      tmpParamPattern$1,
+      tmpParamBare$1,
       bindingPatternObjRoot$1,
       objPatternNoDefault$1,
       arrPatternSplat$1,
@@ -56,17 +60,17 @@ let f = function (tmpParamPattern) {
     );
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (
-    tmpParamPattern$2,
-    bindingPatternObjRoot$2,
-    objPatternNoDefault$2,
-    arrPatternSplat$2,
-    arrPatternStep$2,
-    objPatternCrashTest$2,
-  ) {
+  const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+    let tmpParamBare$2 = $$0;
+    let bindingPatternObjRoot$2 = $$1;
+    let objPatternNoDefault$2 = $$2;
+    let arrPatternSplat$2 = $$3;
+    let arrPatternStep$2 = $$4;
+    let objPatternCrashTest$2 = $$5;
+    debugger;
     objPatternCrashTest$2 = arrPatternStep$2 === null;
     const tmpReturnArg$1 = tmpBranchingC(
-      tmpParamPattern$2,
+      tmpParamBare$2,
       bindingPatternObjRoot$2,
       objPatternNoDefault$2,
       arrPatternSplat$2,
@@ -75,25 +79,25 @@ let f = function (tmpParamPattern) {
     );
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (
-    tmpParamPattern$3,
-    bindingPatternObjRoot$3,
-    objPatternNoDefault$3,
-    arrPatternSplat$3,
-    arrPatternStep$3,
-    objPatternCrashTest$3,
-  ) {
-    const tmpBranchingA$1 = function (
-      tmpParamPattern$4,
-      bindingPatternObjRoot$4,
-      objPatternNoDefault$4,
-      arrPatternSplat$4,
-      arrPatternStep$4,
-      objPatternCrashTest$4,
-    ) {
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+    let tmpParamBare$3 = $$0;
+    let bindingPatternObjRoot$3 = $$1;
+    let objPatternNoDefault$3 = $$2;
+    let arrPatternSplat$3 = $$3;
+    let arrPatternStep$3 = $$4;
+    let objPatternCrashTest$3 = $$5;
+    debugger;
+    const tmpBranchingA$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+      let tmpParamBare$4 = $$0;
+      let bindingPatternObjRoot$4 = $$1;
+      let objPatternNoDefault$4 = $$2;
+      let arrPatternSplat$4 = $$3;
+      let arrPatternStep$4 = $$4;
+      let objPatternCrashTest$4 = $$5;
+      debugger;
       objPatternCrashTest$4 = arrPatternStep$4.cannotDestructureThis;
       const tmpReturnArg$2 = tmpBranchingC$1(
-        tmpParamPattern$4,
+        tmpParamBare$4,
         bindingPatternObjRoot$4,
         objPatternNoDefault$4,
         arrPatternSplat$4,
@@ -102,16 +106,16 @@ let f = function (tmpParamPattern) {
       );
       return tmpReturnArg$2;
     };
-    const tmpBranchingB$1 = function (
-      tmpParamPattern$5,
-      bindingPatternObjRoot$5,
-      objPatternNoDefault$5,
-      arrPatternSplat$5,
-      arrPatternStep$5,
-      objPatternCrashTest$5,
-    ) {
+    const tmpBranchingB$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+      let tmpParamBare$5 = $$0;
+      let bindingPatternObjRoot$5 = $$1;
+      let objPatternNoDefault$5 = $$2;
+      let arrPatternSplat$5 = $$3;
+      let arrPatternStep$5 = $$4;
+      let objPatternCrashTest$5 = $$5;
+      debugger;
       const tmpReturnArg$3 = tmpBranchingC$1(
-        tmpParamPattern$5,
+        tmpParamBare$5,
         bindingPatternObjRoot$5,
         objPatternNoDefault$5,
         arrPatternSplat$5,
@@ -120,19 +124,19 @@ let f = function (tmpParamPattern) {
       );
       return tmpReturnArg$3;
     };
-    const tmpBranchingC$1 = function (
-      tmpParamPattern$6,
-      bindingPatternObjRoot$6,
-      objPatternNoDefault$6,
-      arrPatternSplat$6,
-      arrPatternStep$6,
-      objPatternCrashTest$6,
-    ) {
+    const tmpBranchingC$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+      let tmpParamBare$6 = $$0;
+      let bindingPatternObjRoot$6 = $$1;
+      let objPatternNoDefault$6 = $$2;
+      let arrPatternSplat$6 = $$3;
+      let arrPatternStep$6 = $$4;
+      let objPatternCrashTest$6 = $$5;
+      debugger;
       return 'ok';
     };
     if (objPatternCrashTest$3) {
       const tmpReturnArg$4 = tmpBranchingA$1(
-        tmpParamPattern$3,
+        tmpParamBare$3,
         bindingPatternObjRoot$3,
         objPatternNoDefault$3,
         arrPatternSplat$3,
@@ -142,7 +146,7 @@ let f = function (tmpParamPattern) {
       return tmpReturnArg$4;
     } else {
       const tmpReturnArg$5 = tmpBranchingB$1(
-        tmpParamPattern$3,
+        tmpParamBare$3,
         bindingPatternObjRoot$3,
         objPatternNoDefault$3,
         arrPatternSplat$3,
@@ -154,7 +158,7 @@ let f = function (tmpParamPattern) {
   };
   if (objPatternCrashTest) {
     const tmpReturnArg$6 = tmpBranchingA(
-      tmpParamPattern,
+      tmpParamBare,
       bindingPatternObjRoot,
       objPatternNoDefault,
       arrPatternSplat,
@@ -164,7 +168,7 @@ let f = function (tmpParamPattern) {
     return tmpReturnArg$6;
   } else {
     const tmpReturnArg$7 = tmpBranchingB(
-      tmpParamPattern,
+      tmpParamBare,
       bindingPatternObjRoot,
       objPatternNoDefault,
       arrPatternSplat,
@@ -187,12 +191,17 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamPattern) {
-  const objPatternNoDefault = tmpParamPattern.x;
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const objPatternNoDefault = tmpParamBare.x;
   const arrPatternSplat = [...objPatternNoDefault];
   const arrPatternStep = arrPatternSplat[0];
   const objPatternCrashTest = arrPatternStep === undefined;
-  const tmpBranchingC = function (arrPatternStep$3, objPatternCrashTest$3) {
+  const tmpBranchingC = function ($$0, $$1) {
+    const arrPatternStep$3 = $$0;
+    const objPatternCrashTest$3 = $$1;
+    debugger;
     if (objPatternCrashTest$3) {
       arrPatternStep$3.cannotDestructureThis;
       return 'ok';

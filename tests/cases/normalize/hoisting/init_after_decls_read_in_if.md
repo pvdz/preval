@@ -26,6 +26,7 @@ $(y);
 `````js filename=intro
 let x = undefined;
 let f = function () {
+  debugger;
   return $(x, 'returned');
 };
 x = 10;
@@ -38,6 +39,7 @@ $(y);
 `````js filename=intro
 let x = undefined;
 let f = function () {
+  debugger;
   const tmpReturnArg = $(x, 'returned');
   return tmpReturnArg;
 };

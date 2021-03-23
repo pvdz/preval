@@ -22,8 +22,10 @@ $(a, arg);
 ## Pre Normal
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
-  let p = tmpParamDefault === undefined ? (a = typeof $(arg)) : tmpParamDefault;
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let p = tmpParamBare === undefined ? (a = typeof $(arg)) : tmpParamBare;
 };
 let arg = 1;
 let a = { a: 999, b: 1000 };
@@ -34,16 +36,18 @@ $(a, arg);
 ## Normalized
 
 `````js filename=intro
-let f = function (tmpParamDefault) {
+let f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
   let p = undefined;
-  const tmpIfTest = tmpParamDefault === undefined;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpUnaryArg = $(arg);
     const tmpNestedComplexRhs = typeof tmpUnaryArg;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
-    p = tmpParamDefault;
+    p = tmpParamBare;
   }
 };
 let arg = 1;
@@ -57,8 +61,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const f = function (tmpParamDefault) {
-  const tmpIfTest = tmpParamDefault === undefined;
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpUnaryArg = $(1);
     const tmpNestedComplexRhs = typeof tmpUnaryArg;

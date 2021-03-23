@@ -26,6 +26,7 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   {
     let b = { x: { y: { z: 100 } } };
     let a = b?.x.y.z;
@@ -39,13 +40,21 @@ $(f());
 
 `````js filename=intro
 let f = function () {
+  debugger;
   const tmpObjLitVal$1 = { z: 100 };
   const tmpObjLitVal = { y: tmpObjLitVal$1 };
   let b = { x: tmpObjLitVal };
   let a = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function (tmpObjLitVal$2, tmpObjLitVal$3, b$1, a$1, tmpChainRootProp$1, tmpIfTest$1) {
+  const tmpBranchingA = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+    let tmpObjLitVal$2 = $$0;
+    let tmpObjLitVal$3 = $$1;
+    let b$1 = $$2;
+    let a$1 = $$3;
+    let tmpChainRootProp$1 = $$4;
+    let tmpIfTest$1 = $$5;
+    debugger;
     const tmpChainElementObject$3 = tmpChainRootProp$1.x;
     const tmpChainElementObject$4 = tmpChainElementObject$3.y;
     const tmpChainElementObject$5 = tmpChainElementObject$4.z;
@@ -53,11 +62,25 @@ let f = function () {
     const tmpReturnArg = tmpBranchingC(tmpObjLitVal$2, tmpObjLitVal$3, b$1, a$1, tmpChainRootProp$1, tmpIfTest$1);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function (tmpObjLitVal$4, tmpObjLitVal$5, b$2, a$2, tmpChainRootProp$2, tmpIfTest$2) {
+  const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+    let tmpObjLitVal$4 = $$0;
+    let tmpObjLitVal$5 = $$1;
+    let b$2 = $$2;
+    let a$2 = $$3;
+    let tmpChainRootProp$2 = $$4;
+    let tmpIfTest$2 = $$5;
+    debugger;
     const tmpReturnArg$1 = tmpBranchingC(tmpObjLitVal$4, tmpObjLitVal$5, b$2, a$2, tmpChainRootProp$2, tmpIfTest$2);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function (tmpObjLitVal$6, tmpObjLitVal$7, b$3, a$3, tmpChainRootProp$3, tmpIfTest$3) {
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+    let tmpObjLitVal$6 = $$0;
+    let tmpObjLitVal$7 = $$1;
+    let b$3 = $$2;
+    let a$3 = $$3;
+    let tmpChainRootProp$3 = $$4;
+    let tmpIfTest$3 = $$5;
+    debugger;
     $(a$3);
   };
   if (tmpIfTest) {
@@ -77,6 +100,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
+  debugger;
   const tmpObjLitVal$1 = { z: 100 };
   const tmpObjLitVal = { y: tmpObjLitVal$1 };
   const b = { x: tmpObjLitVal };

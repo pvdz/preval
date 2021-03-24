@@ -703,6 +703,50 @@ export function isPrimitive(node) {
   return false;
 }
 
+export function getPrimitiveValue(node) {
+  ASSERT(isPrimitive(node));
+
+  if (node.type === 'Literal') {
+    if (node.raw === 'null') return null;
+    if (['number', 'string', 'boolean'].includes(typeof node.value)) return node.value;
+    ASSERT(false);
+  }
+
+  if (node.type === 'Identifier') {
+    if (node.name === 'undefined') return undefined;
+    if (node.name === 'NaN') return NaN;
+    if (node.name === 'Infinity') return Infinity;
+  }
+
+  if (node.type === 'UnaryExpression' && node.operator === '-' && node.argument.type !== 'UnaryExpression') {
+    // Negative literals. Maybe we should only consider numbers here, not -null etc?
+    return -getPrimitiveValue(node.argument);
+  }
+
+  ASSERT(false, 'probably need to support this node', node);
+}
+
+export function primitive(value) {
+  if (typeof value === 'number') {
+    // .sign does not support -0 ;(
+    if (Math.sign(1 / value) < 0) {
+      return unaryExpression('-', literal(-value));
+    }
+    return literal(value);
+  }
+  if (typeof value === 'string' || typeof value === 'boolean') {
+    return value;
+  }
+  if (value === undefined) {
+    return identifier('undefined');
+  }
+  if (value === null) {
+    return nul();
+  }
+
+  ASSERT(false);
+}
+
 export function isNoob(node, v) {
   const r = _isNoob(node, v);
   if (v) console.log('  - Node:', node.type, ', noob?', r);

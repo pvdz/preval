@@ -1242,6 +1242,52 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
+          if (ASSUME_BUILTINS) {
+            if (!callee.computed && callee.object.type === 'Identifier') {
+              const objName = callee.object.name;
+
+              if (objName === 'Math') {
+                if (node.arguments.every((n) => AST.isPrimitive(n))) {
+                  vlog(
+                    'This is a math prop with primitive values. Inline the constant expression but beware of rounding/representation errors.',
+                  );
+                  const propName = callee.property.name;
+                  switch (propName) {
+                    case 'pow': {
+                      // TODO: there are many combinations of arguments we can "safely" inline here.
+                      // For now, I think if the result is a finite number or a non-number then we should be fine to inline
+                      const arg1 = AST.getPrimitiveValue(node['arguments'][0]);
+                      const arg2 = AST.getPrimitiveValue(node['arguments'][1]);
+                      const result = Math.pow(arg1, arg2);
+                      vlog('Arg1:', [arg1], ', arg2:', [arg2], ', result:', [result]);
+                      if ((typeof result !== 'number' || Number.isInteger(result) || isNaN(result)) && result <= Number.MAX_SAFE_INTEGER) {
+                        rule('Inline Math.pow with primitive args');
+                        example('Math.pow(2, 4)', '16');
+                        before(node, parentNode);
+
+                        const finalNode = AST.primitive(result);
+                        const finalParent = wrapExpressionAs(
+                          wrapKind,
+                          varInitAssignKind,
+                          varInitAssignId,
+                          wrapLhs,
+                          varOrAssignKind,
+                          finalNode,
+                        );
+                        body.splice(i, 1, finalParent);
+
+                        after(finalNode, finalParent);
+                        assertNoDupeNodes(AST.blockStatement(body), 'body');
+                        return true;
+                      }
+                      break;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
           // Simple member expression is atomic callee. Can't break down further since the object can change the context.
           return false;
         }

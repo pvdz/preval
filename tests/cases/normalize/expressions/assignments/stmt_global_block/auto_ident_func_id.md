@@ -34,19 +34,20 @@
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = function f() {
+const f = function () {
   debugger;
 };
+a = f;
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const SSA_a = function f() {
+const f = function () {
   debugger;
 };
-$(SSA_a);
+$(f);
 `````
 
 ## Globals

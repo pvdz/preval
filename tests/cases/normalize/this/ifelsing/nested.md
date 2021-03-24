@@ -46,7 +46,7 @@ $(a.f());
 
 `````js filename=intro
 const tmpObjLitVal = 10;
-const tmpObjLitVal$1 = function f() {
+const f = function () {
   const tmpthis = this;
   debugger;
   const tmpIfTest = $(1);
@@ -107,6 +107,7 @@ const tmpObjLitVal$1 = function f() {
     return tmpReturnArg$9;
   }
 };
+const tmpObjLitVal$1 = f;
 const a = { foo: tmpObjLitVal, f: tmpObjLitVal$1 };
 const tmpCallCallee = $;
 const tmpCalleeParam = a.f();
@@ -116,7 +117,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = function f() {
+const f = function () {
   const tmpthis = this;
   debugger;
   const tmpIfTest = $(1);
@@ -138,7 +139,7 @@ const tmpObjLitVal$1 = function f() {
     return undefined;
   }
 };
-const a = { foo: 10, f: tmpObjLitVal$1 };
+const a = { foo: 10, f: f };
 const tmpCalleeParam = a.f();
 $(tmpCalleeParam);
 `````

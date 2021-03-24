@@ -50,9 +50,10 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  a = function f() {
+  const f = function () {
     debugger;
   };
+  a = f;
   $(a);
 }
 `````
@@ -60,10 +61,10 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const a = function f() {
+const f = function () {
   debugger;
 };
-$(a);
+$(f);
 `````
 
 ## Globals

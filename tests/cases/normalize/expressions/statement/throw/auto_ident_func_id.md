@@ -30,19 +30,20 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpThrowArg = function f() {
+const f = function () {
   debugger;
 };
+const tmpThrowArg = f;
 throw tmpThrowArg;
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpThrowArg = function f() {
+const f = function () {
   debugger;
 };
-throw tmpThrowArg;
+throw f;
 `````
 
 ## Globals

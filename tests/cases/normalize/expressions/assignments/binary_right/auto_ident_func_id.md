@@ -35,9 +35,10 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = $(100);
-a = function f() {
+const f = function () {
   debugger;
 };
+a = f;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
@@ -48,12 +49,12 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-const SSA_a = function f() {
+const f = function () {
   debugger;
 };
-const tmpCalleeParam = tmpBinBothLhs + SSA_a;
+const tmpCalleeParam = tmpBinBothLhs + f;
 $(tmpCalleeParam);
-$(SSA_a);
+$(f);
 `````
 
 ## Globals

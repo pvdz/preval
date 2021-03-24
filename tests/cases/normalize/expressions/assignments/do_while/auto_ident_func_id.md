@@ -48,9 +48,10 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = function f() {
+    const f = function () {
       debugger;
     };
+    const tmpNestedComplexRhs = f;
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -73,11 +74,11 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpNestedComplexRhs = function f() {
+    const f = function () {
       debugger;
     };
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = f;
+    tmpIfTest = f;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

@@ -33,12 +33,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = function f() {
+const f = function () {
   debugger;
 };
-const tmpBinBothRhs = function f$1() {
+const tmpBinBothLhs = f;
+const f$1 = function () {
   debugger;
 };
+const tmpBinBothRhs = f$1;
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
@@ -47,13 +49,13 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpBinBothLhs = function f() {
+const f = function () {
   debugger;
 };
-const tmpBinBothRhs = function f$1() {
+const f$1 = function () {
   debugger;
 };
-tmpBinBothLhs + tmpBinBothRhs;
+f + f$1;
 $(a);
 `````
 

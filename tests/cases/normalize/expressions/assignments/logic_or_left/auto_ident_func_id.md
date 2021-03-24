@@ -33,9 +33,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = function f() {
+const f = function () {
   debugger;
 };
+a = f;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
@@ -48,16 +49,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function f() {
+const f = function () {
   debugger;
 };
-let tmpCalleeParam = SSA_a;
+let tmpCalleeParam = f;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(f);
 `````
 
 ## Globals

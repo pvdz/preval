@@ -33,9 +33,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = function f() {
+const f = function () {
   debugger;
 };
+a = f;
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
@@ -46,12 +47,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function f() {
+const f = function () {
   debugger;
 };
-const tmpCalleeParam = { [SSA_a]: 10 };
+const tmpCalleeParam = { [f]: 10 };
 $(tmpCalleeParam);
-$(SSA_a);
+$(f);
 `````
 
 ## Globals

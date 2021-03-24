@@ -32,9 +32,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpIfTest = function f() {
+const f = function () {
   debugger;
 };
+const tmpIfTest = f;
 $(a);
 `````
 

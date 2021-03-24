@@ -38,9 +38,10 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  a = function f$1() {
+  const f$1 = function () {
     debugger;
   };
+  a = f$1;
   let tmpReturnArg = a;
   return tmpReturnArg;
 };
@@ -54,11 +55,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function f$1() {
+const f$1 = function () {
   debugger;
 };
-$(SSA_a);
-$(SSA_a);
+$(f$1);
+$(f$1);
 `````
 
 ## Globals

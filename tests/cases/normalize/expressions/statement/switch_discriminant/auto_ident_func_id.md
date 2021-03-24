@@ -41,9 +41,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = function f() {
+const f = function () {
   debugger;
 };
+const tmpSwitchValue = f;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

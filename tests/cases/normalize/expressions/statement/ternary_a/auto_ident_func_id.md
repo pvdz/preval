@@ -32,9 +32,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpIfTest = function f() {
+const f = function () {
   debugger;
 };
+const tmpIfTest = f;
 if (tmpIfTest) {
   $(100);
 } else {
@@ -47,10 +48,10 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpIfTest = function f() {
+const f = function () {
   debugger;
 };
-if (tmpIfTest) {
+if (f) {
   $(100);
 } else {
   $(200);

@@ -44,9 +44,10 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpNestedComplexRhs = function f$1() {
+    const f$1 = function () {
       debugger;
     };
+    const tmpNestedComplexRhs = f$1;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
   } else {
@@ -63,11 +64,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpNestedComplexRhs = function f$1() {
+const f$1 = function () {
   debugger;
 };
 $(undefined);
-$(tmpNestedComplexRhs);
+$(f$1);
 `````
 
 ## Globals

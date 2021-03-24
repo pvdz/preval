@@ -37,9 +37,10 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    a = function f() {
+    const f = function () {
       debugger;
     };
+    a = f;
   } else {
     break;
   }
@@ -54,9 +55,10 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    a = function f() {
+    const f = function () {
       debugger;
     };
+    a = f;
   } else {
     break;
   }

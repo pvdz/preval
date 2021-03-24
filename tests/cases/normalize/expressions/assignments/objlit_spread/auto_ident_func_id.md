@@ -33,9 +33,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = function f() {
+const f = function () {
   debugger;
 };
+a = f;
 let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 tmpCallCallee(tmpCalleeParam);
@@ -45,12 +46,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function f() {
+const f = function () {
   debugger;
 };
-const tmpCalleeParam = { ...SSA_a };
+const tmpCalleeParam = { ...f };
 $(tmpCalleeParam);
-$(SSA_a);
+$(f);
 `````
 
 ## Globals

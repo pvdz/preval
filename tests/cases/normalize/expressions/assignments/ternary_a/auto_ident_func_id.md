@@ -36,9 +36,10 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-a = function f() {
+const f = function () {
   debugger;
 };
+a = f;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
@@ -53,16 +54,16 @@ $(a);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const SSA_a = function f() {
+const f = function () {
   debugger;
 };
-if (SSA_a) {
+if (f) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(f);
 `````
 
 ## Globals

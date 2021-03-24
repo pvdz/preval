@@ -66,9 +66,10 @@ if (tmpIfTest) {
 }
 const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$2) {
-  a = function f() {
+  const f = function () {
     debugger;
   };
+  a = f;
   $(a);
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -84,10 +85,10 @@ if (tmpIfTest$4) {
 ## Output
 
 `````js filename=intro
-const a = function f() {
+const f = function () {
   debugger;
 };
-$(a);
+$(f);
 $('fail1');
 $('fail2');
 `````

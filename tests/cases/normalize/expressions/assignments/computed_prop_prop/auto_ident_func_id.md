@@ -36,9 +36,10 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-a = function f() {
+const f = function () {
   debugger;
 };
+a = f;
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
@@ -48,11 +49,11 @@ $(a);
 
 `````js filename=intro
 const obj = {};
-const SSA_a = function f() {
+const f = function () {
   debugger;
 };
-obj[SSA_a];
-$(SSA_a);
+obj[f];
+$(f);
 `````
 
 ## Globals

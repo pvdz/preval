@@ -36,9 +36,10 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = function f() {
+  const f = function () {
     debugger;
   };
+  const tmpNestedComplexRhs = f;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -52,11 +53,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  const tmpNestedComplexRhs = function f() {
+  const f = function () {
     debugger;
   };
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = f;
+  tmpCalleeParam = f;
 }
 $(tmpCalleeParam);
 $(a);

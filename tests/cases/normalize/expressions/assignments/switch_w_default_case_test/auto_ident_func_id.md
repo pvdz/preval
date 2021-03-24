@@ -57,9 +57,10 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-a = function f() {
+const f = function () {
   debugger;
 };
+a = f;
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -87,10 +88,10 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const SSA_a = function f() {
+const f = function () {
   debugger;
 };
-const tmpIfTest = SSA_a === tmpSwitchValue;
+const tmpIfTest = f === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -108,7 +109,7 @@ const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$4) {
   $('fail2');
 }
-$(SSA_a);
+$(f);
 `````
 
 ## Globals

@@ -2359,6 +2359,28 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
+        if (rhs.type === 'FunctionExpression' && rhs.id) {
+          // Note: this happens here (assignment) and in a var decl!
+          // The id of a function expression is kind of special.
+          // - It only exists inside the function
+          // - It is read-only, writes fail hard (only in strict mode, which we force).
+          // - It can be shadowed inside the function like by a var or a param
+
+          const funcNode = rhs;
+
+          rule('Function expressions should not have an id');
+          example('x = function f(){};', 'const f = function(); x = f;');
+          before(funcNode, node);
+
+          // Note: body should be normalized now but parent may not be
+          body.splice(i, 0, AST.variableDeclaration(funcNode.id.name, funcNode, 'const'));
+          node.right = AST.identifier(funcNode.id.name);
+          funcNode.id = null;
+
+          after(funcNode, parentNode);
+          return true;
+        }
+
         // No more special cases for the assignment form. Process the rhs as a generic expression.
         // Kind situations:
         // - statement: the assignment was a statement. This recursive call is fine.
@@ -6131,6 +6153,28 @@ export function phaseNormalize(fdata, fname) {
 
         after(newNodes);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      if (dnode.init.type === 'FunctionExpression' && dnode.init.id) {
+        // Note: this happens here (var decl) and in assignment!
+        // The id of a function expression is kind of special.
+        // - It only exists inside the function
+        // - It is read-only, writes fail hard (only in strict mode, which we force).
+        // - It can be shadowed inside the function like by a var or a param
+
+        const funcNode = dnode.init;
+
+        rule('Function expressions should not have an id');
+        example('let x = function f(){};', 'const f = function(); let x = f;');
+        before(funcNode, node);
+
+        // Note: body should be normalized now but parent may not be
+        body.splice(i, 0, AST.variableDeclaration(funcNode.id.name, funcNode, 'const'));
+        dnode.init = AST.identifier(funcNode.id.name);
+        funcNode.id = null;
+
+        after(funcNode, parentNode);
         return true;
       }
 

@@ -36,13 +36,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = function f() {
+const f = function () {
   debugger;
 };
+a = f;
 let tmpBinBothLhs = a;
-a = function f$1() {
+const f$1 = function () {
   debugger;
 };
+a = f$1;
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
@@ -52,15 +54,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function f() {
+const f = function () {
   debugger;
 };
-const SSA_a$1 = function f$1() {
+const f$1 = function () {
   debugger;
 };
-const tmpCalleeParam = SSA_a + SSA_a$1;
+const tmpCalleeParam = f + f$1;
 $(tmpCalleeParam);
-$(SSA_a$1);
+$(f$1);
 `````
 
 ## Globals

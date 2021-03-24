@@ -30,11 +30,12 @@ $(f());
 ## Normalized
 
 `````js filename=intro
-const f = function g() {
+const g = function () {
   debugger;
   const tmpReturnArg = $(1);
   return tmpReturnArg;
 };
+const f = g;
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);

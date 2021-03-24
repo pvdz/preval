@@ -33,9 +33,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParamSpread = function f() {
+const f = function () {
   debugger;
 };
+const tmpCalleeParamSpread = f;
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a);
 `````
@@ -44,10 +45,10 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParamSpread = function f() {
+const f = function () {
   debugger;
 };
-$(...tmpCalleeParamSpread);
+$(...f);
 $(a);
 `````
 

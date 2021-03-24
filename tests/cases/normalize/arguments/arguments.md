@@ -2,7 +2,7 @@
 
 # arguments.md
 
-> Random > Arguments
+> Normalize > Arguments > Arguments
 >
 > Arguments is a special global
 

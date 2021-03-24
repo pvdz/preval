@@ -48,9 +48,10 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = function f() {
+    const f = function () {
       debugger;
     };
+    tmpIfTest = f;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -71,9 +72,10 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    tmpIfTest = function f() {
+    const f = function () {
       debugger;
     };
+    tmpIfTest = f;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

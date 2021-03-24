@@ -2,7 +2,7 @@
 
 # empty_arr.md
 
-> Random > Empty arr
+> Normalize > Array > Empty arr
 >
 > Special path to leaving empty arrs at some point.
 

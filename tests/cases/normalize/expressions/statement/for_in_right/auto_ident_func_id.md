@@ -30,9 +30,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpForInDeclRhs = function f() {
+const f = function () {
   debugger;
 };
+const tmpForInDeclRhs = f;
 let x;
 for (x in tmpForInDeclRhs) {
 }
@@ -43,11 +44,11 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpForInDeclRhs = function f() {
+const f = function () {
   debugger;
 };
 let x;
-for (x in tmpForInDeclRhs) {
+for (x in f) {
 }
 $(a);
 `````

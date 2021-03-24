@@ -44,9 +44,10 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    p = function f$1() {
+    const f$1 = function () {
       debugger;
     };
+    p = f$1;
   } else {
     p = tmpParamBare;
   }

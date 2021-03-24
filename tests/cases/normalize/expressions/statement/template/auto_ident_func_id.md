@@ -33,9 +33,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpTemplateExpr = function f() {
+const f = function () {
   debugger;
 };
+const tmpTemplateExpr = f;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -45,10 +46,10 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpTemplateExpr = function f() {
+const f = function () {
   debugger;
 };
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpCalleeParam = `before  ${f}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

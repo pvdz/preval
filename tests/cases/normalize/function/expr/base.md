@@ -27,19 +27,20 @@ $(f);
 ## Normalized
 
 `````js filename=intro
-const f = function g() {
+const g = function () {
   debugger;
 };
+const f = g;
 $(f);
 `````
 
 ## Output
 
 `````js filename=intro
-const f = function g() {
+const g = function () {
   debugger;
 };
-$(f);
+$(g);
 `````
 
 ## Globals

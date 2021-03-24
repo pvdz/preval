@@ -30,9 +30,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = function f() {
+const f = function () {
   debugger;
 };
+a = f;
 let tmpForInDeclRhs = a;
 let x;
 for (x in tmpForInDeclRhs) {
@@ -43,13 +44,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function f() {
+const f = function () {
   debugger;
 };
 let x;
-for (x in SSA_a) {
+for (x in f) {
 }
-$(SSA_a);
+$(f);
 `````
 
 ## Globals

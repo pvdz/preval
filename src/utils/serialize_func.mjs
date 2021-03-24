@@ -55,11 +55,11 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
     log('- Replacing param `' + funcNode.params[paramIndex].name + '` with', paramValue);
 
     ASSERT(funcNode.params[paramIndex], 'there should be a param at this index?');
-    ASSERT(funcNode.params[paramIndex].$p.ref, 'the param should not be unused, right? so it should have the ref to its usage');
-    ASSERT(funcNode.params[paramIndex].$p.ref.parentNode.type === 'VariableDeclarator');
 
     // We have to make a choice here. Either we track the grand parent of the var decl such that we can directly manipulate
     // it here, or we search for the correct parameter manually and prune it. I think the latter is just more cost effective.
+
+    const paramDecl = funcNode.params[paramIndex];
 
     const targetParamName = '$$' + paramIndex;
     let found = false;
@@ -70,24 +70,28 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
         'rn the header only contains var decls. not very relevant, just assuming this when doing checks. if this changes, update the logic here accordingly',
         n,
       );
+
       if (n.type === 'VariableDeclaration' && n.declarations[0].init.type === 'Param' && n.declarations[0].init.name === targetParamName) {
         funcBody[i] = AST.emptyStatement();
+
+        funcBody.splice(
+          bodyOffset,
+          0,
+          AST.variableDeclaration(
+            paramDecl.$p.ref.name,
+            type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.nul() : AST.literal(paramValue),
+            'const',
+          ),
+        );
+
+        //paramDecl.$p.ref = undefined
+
         found = true;
         break;
       }
     }
-    ASSERT(!!found === !!funcNode.params[paramIndex].$p.ref, 'iif found then the param should have a ref to it');
-    if (found) {
-      funcBody.splice(
-        bodyOffset,
-        0,
-        AST.variableDeclaration(
-          funcNode.params[paramIndex].$p.ref.name,
-          type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.nul() : AST.literal(paramValue),
-          'const',
-        ),
-      );
-    } else {
+    ASSERT(!!found === !!paramDecl.$p.ref, 'iif found then the param should have a ref to it', paramDecl);
+    if (!found) {
       vlog('It appears that the param is unused. As such we can not find the original param name for this index. Nothing to do here.');
     }
   });
@@ -96,7 +100,7 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
   funcNode.body.body = bodyBak; // Restore the original body
   const newFdata = phase0('(' + str + ')', '<function duplicator>', true);
 
-  vlog('\n\nNow processing\n\n');
+  log('Now processing...');
 
   // Note: This AST should contain one element in Program: the function declaration
   //       which means we can ignore certain edge cases for scope tracking like imports/exports
@@ -110,10 +114,12 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
 
   clonedFunc.id = null;
 
+  log('  - uniqify_idents');
   uniqify_idents(clonedFunc, fdata);
 
   if (clonedName) clonedFunc.id = AST.identifier(clonedName);
 
+  log('  - printing?');
   vlog('\nCloned function:\n--------------\n' + fmat(tmat(clonedFunc)) + '\n--------------\n');
 
   if (clonedName) clonedFunc.id = null;

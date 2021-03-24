@@ -19,10 +19,14 @@ export function uniqify_idents(funcAst, fdata) {
   let lexScopeCounter = 0;
   const funcScopeStack = [];
 
+  let walked = 0;
+  log('    - before walk')
   walk(_walker, funcAst, 'ast');
+  log('    - after walk, visitor called', walked, 'times');
   function _walker(node, before, nodeType, path) {
     ASSERT(node, 'node should be truthy', node);
     ASSERT(nodeType === node.type);
+    ++walked;
 
     if (before) {
       node.$p = $p();
@@ -146,6 +150,4 @@ export function uniqify_idents(funcAst, fdata) {
 
     vgroupEnd();
   }
-
-  vgroupEnd();
 }

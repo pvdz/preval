@@ -7,7 +7,6 @@ export function pruneTrampolineFunctions(fdata) {
   group('\n\n\nPruning trampoline functions that only return the call to another function\n');
   const r = _pruneTrampolineFunctions(fdata);
   groupEnd();
-  log('yes end');
   return r;
 }
 function _pruneTrampolineFunctions(fdata) {
@@ -278,7 +277,7 @@ function _pruneTrampolineFunctions(fdata) {
             });
           }
         }
-        log('          -', calleeIdentIndex, calleeObjectIndex, calleePropIndex);
+        vlog('          -', calleeIdentIndex, calleeObjectIndex, calleePropIndex);
 
         const paramArgMapping = new Map(); // Map index of the argument of the call to be cloned to the index of the argument to replace it with
         innerCallNode['arguments'].forEach((anode, ai) => {
@@ -328,7 +327,7 @@ function _pruneTrampolineFunctions(fdata) {
         });
       }
     } else {
-      log('TODO: the statement is returning a call. we can probably still inline it');
+      vlog('TODO: the statement is returning a call. we can probably still inline it');
     }
   });
   log('Queued', toReplaceWith.length, 'calls for remapping and', toOutlineCall.length, 'calls for outlining');
@@ -422,7 +421,7 @@ function _pruneTrampolineFunctions(fdata) {
           before(parentNode, blockBody[blockIndex]);
 
           const outerCallNode = parentNode; // This is the one calling the trampoline, the one to replace with a controlled clone of innerCallNode
-          log('old call:');
+          vlog('old call:');
           source(outerCallNode);
           ASSERT(outerCallNode?.type === 'CallExpression', 'call?', outerCallNode);
           ASSERT(outerCallNode.callee.type === 'Identifier', 'name?', outerCallNode);
@@ -484,10 +483,10 @@ function _pruneTrampolineFunctions(fdata) {
       );
     groupEnd();
 
-    vlog('Trampolines inlined:', toReplaceWith.length + toOutlineCall.length, ', restarting phase1');
+    log('Trampolines inlined:', toReplaceWith.length + toOutlineCall.length, ', restarting phase1');
     return 'phase1';
   }
 
-  vlog('Trampolines inlined: 0.');
+  log('Trampolines inlined: 0.');
   return false;
 }

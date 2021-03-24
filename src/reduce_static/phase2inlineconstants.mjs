@@ -28,7 +28,7 @@ function _inlineConstants(fdata) {
 
       if (!name.startsWith(ALIAS_PREFIX)) {
         if (meta.writes.length === 1 && !meta.isConstant) {
-          log('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
+          vlog('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
           meta.isConstant = true;
           if (meta.writes[0].decl) {
             const { declParent, declProp, declIndex } = meta.writes[0].decl;
@@ -55,7 +55,7 @@ function _inlineConstants(fdata) {
 
               after(meta.writes[0].decl.declParent);
             } else {
-              log('This var has no init so it cannot be a const. Probably unused, or plain undefined.');
+              vlog('This var has no init so it cannot be a const. Probably unused, or plain undefined.');
             }
           }
         }
@@ -90,12 +90,12 @@ function _inlineConstants(fdata) {
 
             const { declParent, declProp, declIndex } = write.decl;
             const node = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
-            log('Replacing a decl with the init', declParent.type + '.' + declProp, declParent.$p.pid, node.type, node.$p.pid);
+            vlog('Replacing a decl with the init', declParent.type + '.' + declProp, declParent.$p.pid, node.type, node.$p.pid);
             before(node, declParent);
 
             ASSERT(node.type === 'VariableDeclaration', 'if not then indexes changed?', node);
             //const init = node.declarations[0].init; // It may be empty. Most likely case is a hoisted var decl.
-            log('Var decl queued for actual deletion (scroll down)');
+            vlog('Var decl queued for actual deletion (scroll down)');
             toEliminate.push({ parent: declParent, prop: declProp, index: declIndex });
             meta.writes.splice(i, 1);
 
@@ -107,7 +107,7 @@ function _inlineConstants(fdata) {
 
             const { assignParent, assignProp, assignIndex } = write.assign;
             const node = assignIndex >= 0 ? assignParent[assignProp][assignIndex] : assignParent[assignProp];
-            log('Replacing an assignment with the rhs', assignParent.type + '.' + assignProp, assignParent.$p.pid, node.type, node.$p.pid);
+            vlog('Replacing an assignment with the rhs', assignParent.type + '.' + assignProp, assignParent.$p.pid, node.type, node.$p.pid);
             before(node, assignParent);
 
             ASSERT(
@@ -115,7 +115,7 @@ function _inlineConstants(fdata) {
               'if not then indexes changed?',
               node,
             );
-            log('Assignment queued for actual deletion (scroll down)');
+            vlog('Assignment queued for actual deletion (scroll down)');
             toEliminate.push({ parent: assignParent, prop: assignProp, index: assignIndex });
             meta.writes.splice(i, 1);
 
@@ -138,7 +138,7 @@ function _inlineConstants(fdata) {
 
       vgroupEnd();
     });
-    log('End of iteration', inlineLoops, ' of constant inlining. Did we inline anything?', inlined ? 'yes' : 'no');
+    log('End of iteration', inlineLoops, ' of constant inlining. Did we inline anything?', inlined ? 'yes' : 'no', inlined);
 
     vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
@@ -204,7 +204,14 @@ function _inlineConstants(fdata) {
 
 function attemptConstantInlining(meta, fdata) {
   ASSERT(meta.isConstant);
-  ASSERT(meta.writes.length === 1, 'a constant should have one write?', meta.writes);
+
+  if (meta.writes.length !== 1) {
+    // This can happen and the non-decl writes should lead to a runtime error
+    // We should postpone inlining this constant until it indeed has one write left
+    vlog('Skipping because there are multiple writes to this constant so those need to be eliminated first');
+    return;
+  }
+
   const write = meta.writes[0];
   ASSERT(write, 'figure out whats wrong if this breaks');
 
@@ -232,7 +239,7 @@ function attemptConstantInlining(meta, fdata) {
 
   ASSERT(rhs);
   if (rhs.name === 'arguments') {
-    log('TODO; uncomment me to figure out what to do with `arguments`');
+    vlog('TODO; uncomment me to figure out what to do with `arguments`');
     return;
   }
 
@@ -245,7 +252,7 @@ function attemptConstantInlining(meta, fdata) {
     // - replace all reads with a clone of it
     // - deregister the name
 
-    group('Attempt to replace the', meta.reads.length, 'reads of `' + meta.name + '` with reads of `' + rhs.name);
+    vgroup('Attempt to replace the', meta.reads.length, 'reads of `' + meta.name + '` with reads of `' + rhs.name);
 
     rule('Declaring a constant with a constant value should eliminate the binding');
     example('const x = null; f(x);', 'f(null);', () => assigneeMeta.isBuiltin);
@@ -261,9 +268,9 @@ function attemptConstantInlining(meta, fdata) {
       const oldRead = reads[i];
       const { parentNode, parentProp, parentIndex, grandNode, grandProp, grandIndex } = oldRead;
       if (parentNode.type === 'ExportSpecifier') {
-        log('Skipping export ident');
+        vlog('Skipping export ident');
       } else {
-        log(
+        vlog(
           'Replacing a read of `' +
             meta.name +
             '` with a read from `' +
@@ -306,11 +313,11 @@ function attemptConstantInlining(meta, fdata) {
         --i;
       }
     }
-    log('Binding `' + meta.name + '` has', reads.length, 'reads left after this');
+    vlog('Binding `' + meta.name + '` has', reads.length, 'reads left after this');
 
     if (reads.length === 0 && write.decl) {
-      group('Eliminating var decl');
-      log('Zero reads left and it was a var decl. Replacing it with an empty statement.');
+      vgroup('Eliminating var decl');
+      vlog('Zero reads left and it was a var decl. Replacing it with an empty statement.');
       // Remove the declaration if it was a var decl because there are no more reads from this and it is a constant
       // Note: the init was a lone identifier (that's how we got here) so we should not need to preserve the init
       const { declParent, declProp, declIndex } = write.decl;
@@ -326,11 +333,11 @@ function attemptConstantInlining(meta, fdata) {
       inlined = true;
 
       fdata.globallyUniqueNamingRegistry.delete(meta.name);
-      groupEnd();
+      vgroupEnd();
     }
 
     after(';');
-    groupEnd();
+    vgroupEnd();
     return inlined;
   }
 
@@ -356,7 +363,7 @@ function attemptConstantInlining(meta, fdata) {
     example('const x = 100; f(x);', 'f(100);');
     before(write.parentNode);
 
-    group('Attempt to replace the', meta.reads.length, 'reads');
+    vgroup('Attempt to replace the', meta.reads.length, 'reads');
     // With the new
     const clone = AST.cloneSimple(rhs);
     const reads = meta.reads;
@@ -366,7 +373,7 @@ function attemptConstantInlining(meta, fdata) {
       if (parentNode.type === 'ExportSpecifier') {
         log('Skipping export ident');
       } else {
-        group(
+        vgroup(
           'Replacing a read with the literal...',
           parentNode.type + '.' + parentProp,
           parentNode.$p.pid,
@@ -382,13 +389,13 @@ function attemptConstantInlining(meta, fdata) {
         // No need to push a read back in. We don't need to track reads to builtin literals like `null` or `undefined` (I think)
         reads.splice(i, 1);
         --i;
-        groupEnd();
+        vgroupEnd();
       }
     }
-    log('Binding `' + meta.name + '` has', reads.length, 'reads left after this');
+    vlog('Binding `' + meta.name + '` has', reads.length, 'reads left after this');
 
     if (reads.length === 0 && write.decl) {
-      group('Deleting the var decl');
+      vgroup('Deleting the var decl');
       // Remove the declaration if it was a var decl because there are no more reads from this and it is a constant
       // Note: the init was a lone literal (that's how we got here) so we should not need to preserve the init
       const { declParent, declProp, declIndex } = write.decl;
@@ -405,11 +412,11 @@ function attemptConstantInlining(meta, fdata) {
 
       fdata.globallyUniqueNamingRegistry.delete(meta.name);
       after(AST.emptyStatement(), declParent);
-      groupEnd();
+      vgroupEnd();
     }
 
     after(';');
-    groupEnd();
+    vgroupEnd();
     return inlined;
   }
 }

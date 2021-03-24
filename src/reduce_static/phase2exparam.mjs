@@ -28,7 +28,12 @@ function _pruneExcessiveParams(fdata) {
       vlog('  - not a function');
       return;
     }
-    ASSERT(meta.writes.length === 1);
+
+    if (meta.writes.length !== 1) {
+      vlog('This constant has multiple writes. Need to eliminate those runtime errors first.');
+      return;
+    }
+
     if (funcNode.$p.readsArgumentsLen || funcNode.$p.readsArgumentsAny) {
       // If the function reads `arguments` then we won't bother messing with unused parameters at all.
       vlog('  - reads `arguments` so we ignore it');
@@ -83,10 +88,11 @@ function _pruneExcessiveParams(fdata) {
 
         if (pnode.$p.ref) {
           vlog('Parameter has a reference so it is used');
-          ASSERT(
-            fdata.globallyUniqueNamingRegistry.get(pnode.$p.ref.name).reads.length > 0,
-            'a param that is used must have at least one read, can not have only writes (another step would eliminate that)',
-          );
+          // This assert doesn't appear to hold when running the react code, at least
+          //ASSERT(
+          //  fdata.globallyUniqueNamingRegistry.get(pnode.$p.ref.name).reads.length > 0,
+          //  'a param that is used must have at least one read, can not have only writes (another step would eliminate that)',
+          //);
           return;
         }
 

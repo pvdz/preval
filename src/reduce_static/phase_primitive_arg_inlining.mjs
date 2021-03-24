@@ -80,8 +80,6 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
 
     vlog(' - `' + metaName + '`', meta.writes.length, meta.reads.length, meta.constValueRef?.type);
     if (meta.writes.length === 1 && meta.constValueRef?.node.type === 'FunctionExpression') {
-      const write = meta.writes[0];
-
       const funcNode = meta.constValueRef.node;
       const bodyOffset = findBodyOffset(funcNode);
       const hasRest = !!funcNode.params[funcNode.params.length - 1]?.rest;
@@ -276,7 +274,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
     }
   });
   newFuncs.forEach(([meta, node]) => {
-    ASSERT(meta.writes.length === 1);
+    ASSERT(meta.writes.length === 1, 'this transform should not have happened if there were multiple writes');
     meta.writes[0].blockBody.splice(meta.writes[0].blockIndex, 0, node);
   });
   log('End of primitive arg inlining. Cloned', newFuncs.length, 'functions, checked', truncableCallArgs.length, 'funcs for excessive args');

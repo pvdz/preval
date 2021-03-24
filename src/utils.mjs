@@ -2,7 +2,7 @@ import Prettier from 'prettier';
 import { printer } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
 
-import { VERBOSE_TRACING, YELLOW, PURPLE, RESET, DIM } from './constants.mjs';
+import { VERBOSE_TRACING, setVerboseTracing, YELLOW, PURPLE, RESET, DIM } from './constants.mjs';
 
 export function ASSERT(b, m = '', ...rest) {
   if (!b) {
@@ -17,6 +17,8 @@ export function ASSERT(b, m = '', ...rest) {
     groupEnd(true);
     groupEnd(true);
     groupEnd(true);
+
+    setVerboseTracing(true);
 
     error('Assertion error happened...');
     log('ASSERTION ARGS:');
@@ -127,11 +129,11 @@ export function vgroupEnd(...args) {
 }
 
 // Debugging
-export function tmat(ast, shouldPrint = VERBOSE) {
+export function tmat(ast, shouldPrint = VERBOSE_TRACING) {
   if (shouldPrint) return printer(ast);
   return '<verbose=false>';
 }
-export function fmat(code, shouldPrint = VERBOSE) {
+export function fmat(code, shouldPrint = VERBOSE_TRACING) {
   if (!shouldPrint) return code; // '<verbose=false>';
   try {
     return Prettier.format(code, {
@@ -255,10 +257,15 @@ export function findBodyOffset(funcNode) {
       return i + 1;
     }
   }
+  for (let i = offset; i < body.length; ++i) {
+    if (body[i].type === 'DebuggerStatement') {
+      return i + 1;
+    }
+  }
   console.log('Node:');
   console.log(funcNode);
   console.log('Started search at', offset, ', param count:', funcNode.params.length, ', body len:', body.length);
-  ASSERT(false, 'findBodyOffset; the debugger statement should appear exactly once and at most after param.len+2 elements');
+  ASSERT(false, 'findBodyOffset; the debugger statement should appear exactly once');
 }
 
 export function findBodyOffsetExpensiveMaybe(body) {
@@ -274,5 +281,5 @@ export function findBodyOffsetExpensiveMaybe(body) {
 export function findBodyOffsetExpensive(body) {
   const r = findBodyOffsetExpensiveMaybe(body);
   if (r >= 0) return r;
-  ASSERT(false, 'findBodyOffsetExpensive the debugger statement should appear exactly once and at most after param.len+2 elements', body);
+  ASSERT(false, 'findBodyOffset; the debugger statement should appear exactly once');
 }

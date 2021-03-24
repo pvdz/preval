@@ -320,7 +320,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             let pathIndex = path.nodes.length - 1;
             do {
               blockNode = path.nodes[pathIndex];
-              log('  - block step;', blockNode.type, blockNode.$p.pid);
+              vlog('  - block step;', blockNode.type, blockNode.$p.pid);
               if (blockNode.type === 'BlockStatement' || blockNode.type === 'Program') {
                 blockIndex = path.indexes[pathIndex + 1];
                 ASSERT(
@@ -361,7 +361,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             let pathIndex = path.nodes.length - 1;
             do {
               blockNode = path.nodes[pathIndex];
-              log('  - block step;', blockNode.type, blockNode.$p.pid);
+              vlog('  - block step;', blockNode.type, blockNode.$p.pid);
               if (blockNode.type === 'BlockStatement' || blockNode.type === 'Program') {
                 blockIndex = path.indexes[pathIndex + 1];
                 ASSERT(

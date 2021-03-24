@@ -4,7 +4,11 @@ import { createFreshVar, createWriteRef } from '../bindings.mjs';
 
 export function promoteVars(fdata) {
   group('\n\n\nChecking for promotable vars\n');
-
+  const r = _promoteVars(fdata);
+  groupEnd();
+  return r;
+}
+function _promoteVars(fdata) {
   let promoted = 0;
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;
@@ -56,7 +60,7 @@ export function promoteVars(fdata) {
           if (
             meta.reads.every((read) => {
               const pass = read.blockChain.startsWith(writeChain);
-              log('OOB check: does `' + read.blockChain + '` start with `' + writeChain + '` ?', pass);
+              vlog('OOB check: does `' + read.blockChain + '` start with `' + writeChain + '` ?', pass);
               return pass;
             })
           ) {
@@ -69,11 +73,11 @@ export function promoteVars(fdata) {
             // TODO: we can merge this step with the one above
             if (
               meta.reads.every((read) => {
-                log('Does the read appear later in source than the write?', read.rwCounter, '>', writeCounter);
+                vlog('Does the read appear later in source than the write?', read.rwCounter, '>', writeCounter);
                 return read.rwCounter > writeCounter;
               })
             ) {
-              log('The binding is a constant. Change the write to a const decl.');
+              vlog('The binding is a constant. Change the write to a const decl.');
               // Drop the decl (the first write) and promote the second write to a const decl. Make sure to update the write too.
 
               rule('Hoisted var decl that is a constant should become const');
@@ -140,11 +144,11 @@ export function promoteVars(fdata) {
               ++promoted;
               return;
             } else {
-              log('There was at least one read before the write. Binding may not be a constant (it could be).');
+              vlog('There was at least one read before the write. Binding may not be a constant (it could be).');
             }
           } else {
             // At least one read appeared on a block that was not an ancestor of the block containing the write.
-            log('At least one read was oob and might read an `undefined`. Not a constant.');
+            vlog('At least one read was oob and might read an `undefined`. Not a constant.');
           }
         }
       }
@@ -177,14 +181,14 @@ export function promoteVars(fdata) {
 
     // "Is this binding defined through a var decl?" -- prevents forx, func decl closures, implicit globals, and TDZ cases.
     if (declData) {
-      log('The binding `' + name + '` has a var decl. Analyzing usages (', meta.reads.length, 'reads and', meta.writes.length, 'writes).');
+      vlog('The binding `' + name + '` has a var decl. Analyzing usages (', meta.reads.length, 'reads and', meta.writes.length, 'writes).');
 
       const rwOrder = [...meta.reads, ...meta.writes].sort(({ rwCounter: a }, { rwCounter: b }) => (a < b ? -1 : a > b ? 1 : 0));
-      log('rwOrder:', [rwOrder.map((o) => o.action).join(', ')]);
+      vlog('rwOrder:', [rwOrder.map((o) => o.action).join(', ')]);
       // Note: We asserted that the first write is a var decl, but a closure in func decl may still put a read as the first source ref.
       if (rwOrder[0].decl) {
         ASSERT(rwOrder[0].action === 'write', 'the .decl check subsumes this, right?');
-        log('The initial binding:');
+        //vlog('The initial binding:');
         //source(rwOrder[0].parentNode);
 
         ASSERT(
@@ -203,12 +207,12 @@ export function promoteVars(fdata) {
           const a = rwOrder[i - 1];
           const b = rwOrder[i];
 
-          log('- rwOrder[' + i + '] =', b.action);
+          vlog('- rwOrder[' + i + '] =', b.action);
           //source(b.parentNode);
 
           if (b.scope !== bindingScope) {
             // TODO: I think there are situations where we can still safely support this case
-            log('Found a read/write in a different scope. Bailing as we cannot guarantee the remaining read/writes.');
+            vlog('Found a read/write in a different scope. Bailing as we cannot guarantee the remaining read/writes.');
             break;
           }
 
@@ -221,7 +225,7 @@ export function promoteVars(fdata) {
             //   - all future reads must be in the same scope
             //   - all previous reads must be before the current loop
 
-            log('Is the write an assign?', !!b.assign);
+            vlog('Is the write an assign?', !!b.assign);
 
             // Verify that the write is an assign that happens in the same scope because we must ignore closures for now
             ASSERT(!b.decl, 'a decl must be the first write and a and b were both writes so b cannot be the var decl');
@@ -229,15 +233,15 @@ export function promoteVars(fdata) {
               // Must verify that all remaining usages can reach this write
 
               let loopId = b.innerLoop;
-              log('Write inside a loop?', loopId);
+              vlog('Write inside a loop?', loopId);
               let canSSA = true;
               if (loopId) {
-                log('Checking if any previous read can reach this write (it is bad if one does)');
+                vlog('Checking if any previous read can reach this write (it is bad if one does)');
                 // All previous reads must not be able to reach this assign (because that implies they're part of the loop)
                 for (let j = 0; j < i; ++j) {
                   const c = rwOrder[j];
                   if (c.action === 'read') {
-                    log(
+                    vlog(
                       '-',
                       j,
                       ':',
@@ -248,12 +252,12 @@ export function promoteVars(fdata) {
                       c.blockChain.startsWith(b.blockChain),
                     );
                     if (loopId === c.innerLoop) {
-                      log('At least one previous ref is in the same loop so this we can not SSA');
+                      vlog('At least one previous ref is in the same loop so this we can not SSA');
                       canSSA = false;
                       break;
                     }
                     if (c.blockChain.startsWith(b.blockChain)) {
-                      log('At least one previous ref can reach this write so this we can not SSA');
+                      vlog('At least one previous ref can reach this write so this we can not SSA');
                       canSSA = false;
                       break;
                     }
@@ -261,19 +265,19 @@ export function promoteVars(fdata) {
                 }
               }
               if (canSSA) {
-                log('Checking if all future reads can reach this write (good) and that they are in the same scope (good)');
+                vlog('Checking if all future reads can reach this write (good) and that they are in the same scope (good)');
                 for (let j = i + 1; j < rwOrder.length; ++j) {
                   const c = rwOrder[j];
-                  log('-', j, ': can reach:', c.blockChain.startsWith(b.blockChain), ', same scope:', b.scope === c.scope);
+                  vlog('-', j, ': can reach:', c.blockChain.startsWith(b.blockChain), ', same scope:', b.scope === c.scope);
                   // Closure? Only relevant if assignment is in a loop.
                   if (loopId && b.scope !== c.scope) {
-                    log('At least one future read/write was in a different scope');
+                    vlog('At least one future read/write was in a different scope');
                     canSSA = false;
                     break;
                   }
                   // A usage c can reach another usage b if the blockChain of b is a prefix of the blockchain of c
                   if (!c.blockChain.startsWith(b.blockChain)) {
-                    log('At least one future read/write can not reach this assignment');
+                    vlog('At least one future read/write can not reach this assignment');
                     canSSA = false;
                     break;
                   }
@@ -281,7 +285,7 @@ export function promoteVars(fdata) {
               }
 
               if (canSSA) {
-                log('Applying SSA now');
+                vlog('Applying SSA now');
                 rule('A redundant assign where remaining usages can all reach it must be SSA-ed');
                 example('let x = 10; x = 20; f(x);', 'let x = 10; let x2 = 20; f(x2);');
                 before(b.node);
@@ -323,7 +327,7 @@ export function promoteVars(fdata) {
                 ++promoted;
                 //endit
               } else {
-                log('At least one subsequent usage can not reach this write so we can not easily SSA here');
+                vlog('At least one subsequent usage can not reach this write so we can not easily SSA here');
               }
             }
           }
@@ -333,11 +337,10 @@ export function promoteVars(fdata) {
 
     vgroupEnd();
   });
-  groupEnd();
-  log('\nPromoted', promoted, 'bindings to constant');
+
+  log('\nPromoted', promoted, 'bindings to a constant');
   if (promoted) {
     log('Restarting from phase1 to fix up read/write registry\n\n\n\n\n\n');
-    groupEnd();
     return 'phase1';
   }
 }

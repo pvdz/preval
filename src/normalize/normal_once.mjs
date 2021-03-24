@@ -450,6 +450,7 @@ export function phaseNormalOnce(fdata) {
       }
       case 'FunctionExpression:after': {
         thisStack.pop();
+
         break;
       }
       case 'LabeledStatement': {

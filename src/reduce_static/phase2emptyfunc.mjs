@@ -198,14 +198,14 @@ function _pruneEmptyFunctions(fdata) {
           }
         }
       } else {
-        log('TODO: the statement is not a return. we can probably still inline it');
+        vlog('TODO: the statement is not a return. we can probably still inline it');
       }
     }
   });
   log('\nQueued', toDelete.length, 'calls for deletion,', toReplaceAt.length, 'for replacement, and', toReplaceWith.length, 'for inlining');
   if (toDelete.length || toReplaceAt.length || toReplaceWith.length) {
-    toDelete.forEach(({ node, parentNode, grandNode, grandProp, grandIndex, ...rest }) => {
-      rule('Call to function with empty body should be replaced with `undefined`');
+    toDelete.forEach(({ node, parentNode, grandNode, grandProp, grandIndex, ...rest }, i) => {
+      rule('[' + (i+1) + '/' + toDelete.length + '] Call to function with empty body should be replaced with `undefined`');
       example('function f(){} f();', 'undefined;');
       before(node, grandNode);
 
@@ -215,8 +215,8 @@ function _pruneEmptyFunctions(fdata) {
 
       after(AST.identifier('undefined'), grandNode);
     });
-    toReplaceAt.forEach(([{ node, parentNode, grandNode, grandProp, grandIndex, ...rest }, pi]) => {
-      rule('Call to function that returns a param should be replaced with that arg');
+    toReplaceAt.forEach(([{ node, parentNode, grandNode, grandProp, grandIndex, ...rest }, pi], i) => {
+      rule('[' + (i+1) + '/' + toReplaceAt.length + '] Call to function that returns a param should be replaced with that arg');
       example('function f(a){ return a; } f(10);', '10;');
       before(parentNode, grandNode);
 
@@ -229,8 +229,8 @@ function _pruneEmptyFunctions(fdata) {
 
       vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
     });
-    toReplaceWith.forEach(([what, { node, parentNode, grandNode, grandProp, grandIndex, ...rest }, arg]) => {
-      rule('Call to function that returns a [' + what + '] should be replaced with that node');
+    toReplaceWith.forEach(([what, { node, parentNode, grandNode, grandProp, grandIndex, ...rest }, arg], i) => {
+      rule('[' + (i+1) + '/' + toReplaceWith.length + '] Call to function that returns a [' + what + '] should be replaced with that node');
       example('function f(){ return 15; } f(10);', '15;', () => what === 'primitive');
       example('function f(){ return x; } f(10);', 'x;', () => what === 'identifier');
       before(parentNode, grandNode);
@@ -243,10 +243,10 @@ function _pruneEmptyFunctions(fdata) {
       after(newNode, grandNode);
     });
 
-    vlog('\nDeleted calls:', toDelete.length + toReplaceAt.length + toReplaceWith.length, '. Restarting from phase1.');
+    log('\nDeleted calls:', toDelete.length + toReplaceAt.length + toReplaceWith.length, '. Restarting from phase1.');
     return 'phase1';
   }
 
-  vlog('Deleted calls: 0.');
+  log('Deleted calls: 0.');
   return false;
 }

@@ -24,8 +24,7 @@ function _inlineSimpleFuncCalls(fdata) {
       ', inlineme?',
       !!meta.constValueRef?.node.$p.inlineMe,
     );
-    if (meta.isConstant && meta.constValueRef) {
-      ASSERT(meta.writes.length === 1);
+    if (meta.isConstant && meta.constValueRef && meta.writes.length === 1) {
       const funcNode = meta.constValueRef.node;
       if (funcNode.type === 'FunctionExpression' && funcNode.$p.inlineMe) {
         vgroup('- Searching for all calls to `' + meta.name + '`');

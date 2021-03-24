@@ -16,16 +16,20 @@ import { inlineOneTimeFunctions } from './phase2onetimers.mjs';
 // - Unary negative/positive should look at argument
 
 export function phase2(program, fdata, resolve, req) {
+  const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
-
+  const r = _phase2(program, fdata, resolve, req);
+  vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  groupEnd();
+  return r;
+}
+function _phase2(program, fdata, resolve, req) {
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
   // Due to normalization, the assignments will be a statement. The var decl can not contain an assignment as init.
   // Elimination of var decls or assignments will be deferred. This way we can preserve parent/node
   // relationships which might otherwise break. This means a binding may have been removed from the books
   // even though it's technically still part of the AST. But since we take the books as leading in this step
   // that should not be a problem.
-
-  const ast = fdata.tenkoOutput.ast;
 
   const emptyFuncs = pruneEmptyFunctions(fdata);
   if (emptyFuncs) return emptyFuncs;
@@ -48,9 +52,5 @@ export function phase2(program, fdata, resolve, req) {
   const simpled = inlineSimpleFuncCalls(fdata);
   if (simpled) return simpled;
 
-  // The read/write data should still be in tact
-
-  vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
-
-  groupEnd();
+  // The read/write data should still be in tact at this point
 }

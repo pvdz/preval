@@ -4,10 +4,10 @@ import { log, group, groupEnd, vlog, vgroup, vgroupEnd } from '../utils.mjs';
 if (typeof window !== 'undefined') window.Tenko = Tenko; // Expose symbols for UI
 
 export function phase0(code, fname, subCall) {
-  if (subCall) group('\nParsing with Tenko  ::  ' + fname + '\n\n');
+  if (subCall) group('\nParsing with Tenko  ::  ' + fname);
   else group('\n\n\n##################################\n## phase0  ::  ' + fname + '\n##################################\n\n\n');
 
-  log('- Parsing code with Tenko...');
+  log('- Calling Tenko...');
 
   const tenkoOutput = Tenko.Tenko(code, {
     exposeScopes: true, // func cloning needs it. shouldn't add too much overhead except for debug output
@@ -19,7 +19,6 @@ export function phase0(code, fname, subCall) {
     astUids: false, // For debugging
   });
 
-  //console.dir(tenkoOutput.ast, {depth: null});
 
   log('- Finished parsing');
 

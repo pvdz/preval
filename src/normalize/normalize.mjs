@@ -4217,7 +4217,8 @@ export function phaseNormalize(fdata, fname) {
         example('const x = () => {};', 'const x = function(){}');
         before(node, parentNode);
 
-        const finalNode = AST.functionExpression(node.params, node.body, { async: node.async });
+        // May not be normalized. That's probably going to cause me some problems later eh.
+        const finalNode = AST.functionExpression(node.params, node.body, { async: node.async, normalized: false });
         const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
         body[i] = finalParent;
 

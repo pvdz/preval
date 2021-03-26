@@ -71,18 +71,18 @@ let obj = {
     const tmpReturnArg$1 = {
       get c() {
         debugger;
-        const tmpReturnArg$2 = $('b');
-        return tmpReturnArg$2;
+        const tmpReturnArg$3 = $('b');
+        return tmpReturnArg$3;
       },
       get d() {
         debugger;
-        const tmpReturnArg$3 = $('c');
-        return tmpReturnArg$3;
+        const tmpReturnArg$5 = $('c');
+        return tmpReturnArg$5;
       },
       get e() {
         debugger;
-        const tmpReturnArg$4 = $('d');
-        return tmpReturnArg$4;
+        const tmpReturnArg$7 = $('d');
+        return tmpReturnArg$7;
       },
     };
     return tmpReturnArg$1;
@@ -95,8 +95,8 @@ let c = objPatternNoDefault.c;
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = ['c'];
-const tmpCalleeParam$2 = undefined;
-let rest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = undefined;
+let rest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 $(a, c, rest);
 `````
 
@@ -114,18 +114,18 @@ const obj = {
     const tmpReturnArg$1 = {
       get c() {
         debugger;
-        const tmpReturnArg$2 = $('b');
-        return tmpReturnArg$2;
+        const tmpReturnArg$3 = $('b');
+        return tmpReturnArg$3;
       },
       get d() {
         debugger;
-        const tmpReturnArg$3 = $('c');
-        return tmpReturnArg$3;
+        const tmpReturnArg$5 = $('c');
+        return tmpReturnArg$5;
       },
       get e() {
         debugger;
-        const tmpReturnArg$4 = $('d');
-        return tmpReturnArg$4;
+        const tmpReturnArg$7 = $('d');
+        return tmpReturnArg$7;
       },
     };
     return tmpReturnArg$1;

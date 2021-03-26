@@ -23,8 +23,8 @@ $(obj ?? a ?? b ?? c);
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal$2 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $();
+const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 const tmpCallCallee = $;
@@ -37,8 +37,8 @@ const tmpIfTest$1 = tmpCalleeParam == null;
 if (tmpIfTest$1) {
   tmpCalleeParam = b;
 }
-const tmpIfTest$2 = tmpCalleeParam == null;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpCalleeParam == null;
+if (tmpIfTest$3) {
   tmpCalleeParam = c;
 }
 tmpCallCallee(tmpCalleeParam);
@@ -47,8 +47,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$2 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $();
+const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 let tmpCalleeParam = obj;
@@ -60,8 +60,8 @@ const tmpIfTest$1 = tmpCalleeParam == null;
 if (tmpIfTest$1) {
   tmpCalleeParam = b;
 }
-const tmpIfTest$2 = tmpCalleeParam == null;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpCalleeParam == null;
+if (tmpIfTest$3) {
   tmpCalleeParam = c;
 }
 $(tmpCalleeParam);

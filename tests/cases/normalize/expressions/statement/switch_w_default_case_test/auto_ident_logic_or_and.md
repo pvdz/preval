@@ -63,9 +63,9 @@ if (tmpBinLhs) {
   const tmpCalleeParam$1 = $(1);
   tmpBinLhs = tmpCallCallee$1(tmpCalleeParam$1);
   if (tmpBinLhs) {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(2);
-    tmpBinLhs = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpBinLhs = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -78,16 +78,16 @@ if (tmpIfTest) {
   }
 }
 tmpSwitchBreak: {
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
       $('fail1');
     }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$7) {
       $('fail2');
     }
   }
@@ -108,8 +108,8 @@ if (tmpBinLhs) {
   const tmpCalleeParam$1 = $(1);
   tmpBinLhs = $(tmpCalleeParam$1);
   if (tmpBinLhs) {
-    const tmpCalleeParam$2 = $(2);
-    tmpBinLhs = $(tmpCalleeParam$2);
+    const tmpCalleeParam$3 = $(2);
+    tmpBinLhs = $(tmpCalleeParam$3);
   }
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -122,16 +122,16 @@ if (tmpIfTest) {
   }
 }
 tmpSwitchBreak: {
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
       $('fail1');
     }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$7) {
       $('fail2');
     }
   }

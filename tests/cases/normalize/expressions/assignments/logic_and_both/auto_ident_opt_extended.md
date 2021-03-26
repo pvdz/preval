@@ -41,8 +41,8 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  a = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  a = tmpChainElementObject$3;
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
@@ -50,10 +50,10 @@ if (tmpCalleeParam) {
   const tmpChainRootProp$1 = b;
   const tmpIfTest$1 = tmpChainRootProp$1 != null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject$3 = tmpChainRootProp$1.x;
-    const tmpChainElementObject$4 = tmpChainElementObject$3.y;
-    const tmpChainElementObject$5 = tmpChainElementObject$4.z;
-    tmpNestedComplexRhs = tmpChainElementObject$5;
+    const tmpChainElementObject$5 = tmpChainRootProp$1.x;
+    const tmpChainElementObject$7 = tmpChainElementObject$5.y;
+    const tmpChainElementObject$9 = tmpChainElementObject$7.z;
+    tmpNestedComplexRhs = tmpChainElementObject$9;
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -73,18 +73,18 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  SSA_a = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  SSA_a = tmpChainElementObject$3;
 }
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
   const tmpIfTest$1 = b != null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject$3 = b.x;
-    const tmpChainElementObject$4 = tmpChainElementObject$3.y;
-    const tmpChainElementObject$5 = tmpChainElementObject$4.z;
-    tmpNestedComplexRhs = tmpChainElementObject$5;
+    const tmpChainElementObject$5 = b.x;
+    const tmpChainElementObject$7 = tmpChainElementObject$5.y;
+    const tmpChainElementObject$9 = tmpChainElementObject$7.z;
+    tmpNestedComplexRhs = tmpChainElementObject$9;
   }
   SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

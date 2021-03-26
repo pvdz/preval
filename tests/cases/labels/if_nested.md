@@ -66,8 +66,8 @@ let f = function () {
       const tmpIfTest$1 = $(2);
       if (tmpIfTest$1) {
         label3: {
-          const tmpIfTest$2 = $(3);
-          if (tmpIfTest$2) {
+          const tmpIfTest$3 = $(3);
+          if (tmpIfTest$3) {
             break label2;
           } else {
             break label3;
@@ -94,8 +94,8 @@ const f = function () {
       const tmpIfTest$1 = $(2);
       if (tmpIfTest$1) {
         label3: {
-          const tmpIfTest$2 = $(3);
-          if (tmpIfTest$2) {
+          const tmpIfTest$3 = $(3);
+          if (tmpIfTest$3) {
             break label2;
           } else {
             break label3;

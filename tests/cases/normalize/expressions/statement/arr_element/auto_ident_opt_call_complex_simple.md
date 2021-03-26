@@ -38,11 +38,11 @@ if (tmpIfTest) {
 }
 let tmpBinBothRhs = undefined;
 const tmpChainRootCall$1 = $;
-const tmpChainElementCall$2 = tmpChainRootCall$1($);
-const tmpIfTest$1 = tmpChainElementCall$2 != null;
+const tmpChainElementCall$3 = tmpChainRootCall$1($);
+const tmpIfTest$1 = tmpChainElementCall$3 != null;
 if (tmpIfTest$1) {
-  const tmpChainElementCall$3 = tmpChainElementCall$2.call(tmpChainRootCall$1, 1);
-  tmpBinBothRhs = tmpChainElementCall$3;
+  const tmpChainElementCall$5 = tmpChainElementCall$3.call(tmpChainRootCall$1, 1);
+  tmpBinBothRhs = tmpChainElementCall$5;
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
@@ -60,11 +60,11 @@ if (tmpIfTest) {
   tmpBinBothLhs = tmpChainElementCall$1;
 }
 let tmpBinBothRhs = undefined;
-const tmpChainElementCall$2 = $($);
-const tmpIfTest$1 = tmpChainElementCall$2 != null;
+const tmpChainElementCall$3 = $($);
+const tmpIfTest$1 = tmpChainElementCall$3 != null;
 if (tmpIfTest$1) {
-  const tmpChainElementCall$3 = tmpChainElementCall$2.call($, 1);
-  tmpBinBothRhs = tmpChainElementCall$3;
+  const tmpChainElementCall$5 = tmpChainElementCall$3.call($, 1);
+  tmpBinBothRhs = tmpChainElementCall$5;
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

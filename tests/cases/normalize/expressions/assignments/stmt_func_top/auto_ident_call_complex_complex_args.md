@@ -48,8 +48,8 @@ let f = function () {
   $(a);
 };
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$2 = f();
-tmpCallCallee$1(tmpCalleeParam$2);
+const tmpCalleeParam$3 = f();
+tmpCallCallee$1(tmpCalleeParam$3);
 `````
 
 ## Output

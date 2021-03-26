@@ -41,9 +41,9 @@ if (tmpCompProp) {
   const tmpCalleeParam$1 = $(1);
   tmpCompProp = tmpCallCallee$1(tmpCalleeParam$1);
   if (tmpCompProp) {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(2);
-    tmpCompProp = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpCompProp = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
 tmpCompObj[tmpCompProp];
@@ -62,8 +62,8 @@ if (tmpCompProp) {
   const tmpCalleeParam$1 = $(1);
   tmpCompProp = $(tmpCalleeParam$1);
   if (tmpCompProp) {
-    const tmpCalleeParam$2 = $(2);
-    tmpCompProp = $(tmpCalleeParam$2);
+    const tmpCalleeParam$3 = $(2);
+    tmpCompProp = $(tmpCalleeParam$3);
   }
 }
 obj[tmpCompProp];

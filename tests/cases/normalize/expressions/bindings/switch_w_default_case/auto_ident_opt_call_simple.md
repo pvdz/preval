@@ -62,23 +62,23 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   a = undefined;
   const tmpChainRootCall = $;
-  const tmpIfTest$3 = tmpChainRootCall != null;
-  if (tmpIfTest$3) {
+  const tmpIfTest$5 = tmpChainRootCall != null;
+  if (tmpIfTest$5) {
     const tmpChainElementCall = tmpChainRootCall(1);
     a = tmpChainElementCall;
   }
   $(a);
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$7) {
   $('fail1');
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$5) {
+const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$9) {
   $('fail2');
 }
 `````
@@ -87,8 +87,8 @@ if (tmpIfTest$5) {
 
 `````js filename=intro
 let SSA_a = undefined;
-const tmpIfTest$3 = $ != null;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = $ != null;
+if (tmpIfTest$5) {
   const tmpChainElementCall = $(1);
   SSA_a = tmpChainElementCall;
 }

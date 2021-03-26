@@ -44,9 +44,9 @@ if (xyz) {
   xyz = tmpCallCallee$1(tmpCalleeParam$1);
   if (xyz) {
   } else {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(2);
-    xyz = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    xyz = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
 while (true) {
@@ -68,8 +68,8 @@ if (xyz) {
   xyz = $(tmpCalleeParam$1);
   if (xyz) {
   } else {
-    const tmpCalleeParam$2 = $(2);
-    xyz = $(tmpCalleeParam$2);
+    const tmpCalleeParam$3 = $(2);
+    xyz = $(tmpCalleeParam$3);
   }
 }
 while (true) {

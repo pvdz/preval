@@ -41,23 +41,23 @@ let f = function ($$0) {
   const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = arrPatternStep;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$2 = undefined;
-  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  const tmpCalleeParam$3 = undefined;
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return x;
 };
 const tmpCallCallee$1 = $;
-const tmpCallCallee$2 = f;
-const tmpCalleeParam$4 = ['abc', 20, 30];
-const tmpCalleeParam$5 = 200;
-const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, tmpCalleeParam$5);
-tmpCallCallee$1(tmpCalleeParam$3);
+const tmpCallCallee$3 = f;
+const tmpCalleeParam$7 = ['abc', 20, 30];
+const tmpCalleeParam$9 = 200;
+const tmpCalleeParam$5 = tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
+tmpCallCallee$1(tmpCalleeParam$5);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$4 = ['abc', 20, 30];
-const arrPatternSplat = [...tmpCalleeParam$4];
+const tmpCalleeParam$7 = ['abc', 20, 30];
+const arrPatternSplat = [...tmpCalleeParam$7];
 const arrPatternStep = arrPatternSplat[0];
 const tmpCalleeParam$1 = [];
 const x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);

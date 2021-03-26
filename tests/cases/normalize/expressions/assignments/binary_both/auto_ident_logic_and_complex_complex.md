@@ -33,18 +33,18 @@ const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(1);
 a = tmpCallCallee$1(tmpCalleeParam$1);
 if (a) {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(2);
-  a = tmpCallCallee$2(tmpCalleeParam$2);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(2);
+  a = tmpCallCallee$3(tmpCalleeParam$3);
 }
 let tmpBinBothLhs = a;
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = $(1);
-a = tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCallCallee$5 = $;
+const tmpCalleeParam$5 = $(1);
+a = tmpCallCallee$5(tmpCalleeParam$5);
 if (a) {
-  const tmpCallCallee$4 = $;
-  const tmpCalleeParam$4 = $(2);
-  a = tmpCallCallee$4(tmpCalleeParam$4);
+  const tmpCallCallee$7 = $;
+  const tmpCalleeParam$7 = $(2);
+  a = tmpCallCallee$7(tmpCalleeParam$7);
 }
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
@@ -58,15 +58,15 @@ $(a);
 const tmpCalleeParam$1 = $(1);
 let SSA_a = $(tmpCalleeParam$1);
 if (SSA_a) {
-  const tmpCalleeParam$2 = $(2);
-  SSA_a = $(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(2);
+  SSA_a = $(tmpCalleeParam$3);
 }
 const tmpBinBothLhs = SSA_a;
-const tmpCalleeParam$3 = $(1);
-let SSA_a$1 = $(tmpCalleeParam$3);
+const tmpCalleeParam$5 = $(1);
+let SSA_a$1 = $(tmpCalleeParam$5);
 if (SSA_a$1) {
-  const tmpCalleeParam$4 = $(2);
-  SSA_a$1 = $(tmpCalleeParam$4);
+  const tmpCalleeParam$7 = $(2);
+  SSA_a$1 = $(tmpCalleeParam$7);
 }
 const tmpBinBothRhs = SSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

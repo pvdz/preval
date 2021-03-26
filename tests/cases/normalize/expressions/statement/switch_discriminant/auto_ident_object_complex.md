@@ -41,8 +41,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$1 = 2;
-const tmpObjLitVal$2 = $(3);
-const tmpSwitchValue = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(3);
+const tmpSwitchValue = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {

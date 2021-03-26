@@ -46,8 +46,8 @@ if (tmpIfTest) {
   }
 }
 while (true) {
-  const tmpIfTest$2 = $(0);
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = $(0);
+  if (tmpIfTest$3) {
   } else {
     break;
   }
@@ -70,8 +70,8 @@ if (tmpIfTest) {
   }
 }
 while (true) {
-  const tmpIfTest$2 = $(0);
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = $(0);
+  if (tmpIfTest$3) {
   } else {
     break;
   }

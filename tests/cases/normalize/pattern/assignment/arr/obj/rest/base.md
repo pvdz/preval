@@ -32,8 +32,8 @@ const arrPatternStep = arrPatternSplat[0];
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = arrPatternStep;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$2 = undefined;
-x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = undefined;
+x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 $(x);
 `````
 

@@ -32,8 +32,8 @@ let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$2 = { a: 1, b: 2 };
-const tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$2);
+const tmpCalleeParam$3 = { a: 1, b: 2 };
+const tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
@@ -44,8 +44,8 @@ $(a);
 const bindingPatternObjRoot = { a: 999, b: 1000 };
 const a = bindingPatternObjRoot.a;
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCalleeParam$2 = { a: 1, b: 2 };
-const tmpCalleeParam$1 = $(tmpCalleeParam$2);
+const tmpCalleeParam$3 = { a: 1, b: 2 };
+const tmpCalleeParam$1 = $(tmpCalleeParam$3);
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

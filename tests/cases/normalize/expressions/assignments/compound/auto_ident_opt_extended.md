@@ -42,8 +42,8 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  tmpBinBothRhs = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  tmpBinBothRhs = tmpChainElementObject$3;
 }
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
@@ -63,8 +63,8 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  tmpBinBothRhs = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  tmpBinBothRhs = tmpChainElementObject$3;
 }
 const SSA_a = a * tmpBinBothRhs;
 $(SSA_a);

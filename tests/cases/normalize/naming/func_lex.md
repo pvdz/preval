@@ -51,32 +51,32 @@ let f = function () {
   const tmpIfTest = $();
   const tmpBranchingA = function ($$0, $$1, $$2) {
     let a$2 = $$0;
-    let a$3 = $$1;
+    let a$4 = $$1;
     let tmpIfTest$1 = $$2;
     debugger;
-    return a$3;
+    return a$4;
   };
   const tmpBranchingB = function ($$0, $$1, $$2) {
-    let a$4 = $$0;
-    let a$5 = $$1;
-    let tmpIfTest$2 = $$2;
+    let a$6 = $$0;
+    let a$8 = $$1;
+    let tmpIfTest$3 = $$2;
     debugger;
-    const tmpReturnArg = tmpBranchingC(a$4, a$5, tmpIfTest$2);
+    const tmpReturnArg = tmpBranchingC(a$6, a$8, tmpIfTest$3);
     return tmpReturnArg;
   };
   const tmpBranchingC = function ($$0, $$1, $$2) {
-    let a$6 = $$0;
-    let a$7 = $$1;
-    let tmpIfTest$3 = $$2;
+    let a$10 = $$0;
+    let a$12 = $$1;
+    let tmpIfTest$5 = $$2;
     debugger;
-    return a$6;
+    return a$10;
   };
   if (tmpIfTest) {
     const tmpReturnArg$1 = tmpBranchingA(a, a$1, tmpIfTest);
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$2 = tmpBranchingB(a, a$1, tmpIfTest);
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = tmpBranchingB(a, a$1, tmpIfTest);
+    return tmpReturnArg$3;
   }
 };
 const tmpCallCallee = $;

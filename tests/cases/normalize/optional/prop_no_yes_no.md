@@ -33,8 +33,8 @@ const tmpChainElementObject = tmpChainRootProp.b;
 const tmpIfTest = tmpChainElementObject != null;
 if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.d;
-  tmpCalleeParam = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.d;
+  tmpCalleeParam = tmpChainElementObject$3;
 }
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -48,8 +48,8 @@ const tmpChainElementObject = a.b;
 const tmpIfTest = tmpChainElementObject != null;
 if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.d;
-  tmpCalleeParam = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.d;
+  tmpCalleeParam = tmpChainElementObject$3;
 }
 $(tmpCalleeParam);
 `````

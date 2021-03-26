@@ -56,8 +56,8 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
-const tmpArrElement$2 = $(3);
-const tmpBinLhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const tmpBinLhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -68,16 +68,16 @@ if (tmpIfTest) {
   }
 }
 tmpSwitchBreak: {
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
       $('fail1');
     }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$7) {
       $('fail2');
     }
   }
@@ -92,8 +92,8 @@ const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-const tmpBinLhs = [tmpArrElement, 2, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const tmpBinLhs = [tmpArrElement, 2, tmpArrElement$3];
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -104,16 +104,16 @@ if (tmpIfTest) {
   }
 }
 tmpSwitchBreak: {
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
       $('fail1');
     }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$7) {
       $('fail2');
     }
   }

@@ -57,8 +57,8 @@ while (true) {
       tmpSwitchCaseToStart = 0;
     }
     tmpSwitchBreak: {
-      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-      if (tmpIfTest$2) {
+      const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+      if (tmpIfTest$3) {
         break tmpSwitchBreak;
       }
     }
@@ -84,8 +84,8 @@ while (true) {
       tmpSwitchCaseToStart = 0;
     }
     tmpSwitchBreak: {
-      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-      if (tmpIfTest$2) {
+      const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+      if (tmpIfTest$3) {
         break tmpSwitchBreak;
       }
     }

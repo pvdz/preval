@@ -32,8 +32,8 @@ const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$1 = 2;
-const tmpObjLitVal$2 = $(3);
-const tmpCalleeParam$1 = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(3);
+const tmpCalleeParam$1 = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
@@ -44,8 +44,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 const tmpObjLitVal = $(1);
-const tmpObjLitVal$2 = $(3);
-const tmpCalleeParam$1 = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(3);
+const tmpCalleeParam$1 = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

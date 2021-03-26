@@ -49,37 +49,37 @@ let f = function ($$0) {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpParamBare$2 = $$0;
-    let bindingPatternArrRoot$2 = $$1;
-    let tmpIfTest$2 = $$2;
-    debugger;
-    bindingPatternArrRoot$2 = tmpParamBare$2;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$2, bindingPatternArrRoot$2, tmpIfTest$2);
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
     let tmpParamBare$3 = $$0;
     let bindingPatternArrRoot$3 = $$1;
     let tmpIfTest$3 = $$2;
     debugger;
-    let arrPatternSplat$1 = [...bindingPatternArrRoot$3];
+    bindingPatternArrRoot$3 = tmpParamBare$3;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$3, bindingPatternArrRoot$3, tmpIfTest$3);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let tmpParamBare$5 = $$0;
+    let bindingPatternArrRoot$5 = $$1;
+    let tmpIfTest$5 = $$2;
+    debugger;
+    let arrPatternSplat$1 = [...bindingPatternArrRoot$5];
     let x$1 = arrPatternSplat$1.slice(0);
     return x$1;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$2 = tmpBranchingA(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
-    return tmpReturnArg$2;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingB(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
     return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    return tmpReturnArg$5;
   }
 };
-const tmpCallCallee$2 = $;
-const tmpCallCallee$3 = f;
-const tmpCalleeParam$3 = [];
-const tmpCalleeParam$4 = 200;
-const tmpCalleeParam$2 = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$4);
-tmpCallCallee$2(tmpCalleeParam$2);
+const tmpCallCallee$3 = $;
+const tmpCallCallee$5 = f;
+const tmpCalleeParam$5 = [];
+const tmpCalleeParam$7 = 200;
+const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5, tmpCalleeParam$7);
+tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -90,9 +90,9 @@ const f = function ($$0) {
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
   const tmpBranchingC = function ($$0) {
-    const bindingPatternArrRoot$3 = $$0;
+    const bindingPatternArrRoot$5 = $$0;
     debugger;
-    const arrPatternSplat$1 = [...bindingPatternArrRoot$3];
+    const arrPatternSplat$1 = [...bindingPatternArrRoot$5];
     const x$1 = arrPatternSplat$1.slice(0);
     return x$1;
   };
@@ -102,13 +102,13 @@ const f = function ($$0) {
     const tmpReturnArg = tmpBranchingC(SSA_bindingPatternArrRoot$1);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$3 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = tmpBranchingC(tmpParamBare);
+    return tmpReturnArg$5;
   }
 };
-const tmpCalleeParam$3 = [];
-const tmpCalleeParam$2 = f(tmpCalleeParam$3);
-$(tmpCalleeParam$2);
+const tmpCalleeParam$5 = [];
+const tmpCalleeParam$3 = f(tmpCalleeParam$5);
+$(tmpCalleeParam$3);
 `````
 
 ## Globals

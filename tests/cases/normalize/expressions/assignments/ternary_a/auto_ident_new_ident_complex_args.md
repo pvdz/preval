@@ -36,8 +36,8 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpNewCallee = $;
 const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam$2 = $(2);
-a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(2);
+a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
@@ -53,8 +53,8 @@ $(a);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam$2 = $(2);
-const SSA_a = new $(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(2);
+const SSA_a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
 if (SSA_a) {
   tmpCalleeParam = $(100);
 } else {

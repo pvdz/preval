@@ -62,32 +62,32 @@ let f = function () {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1, $$2, $$3) {
-    let tmpSwitchValue$2 = $$0;
-    let tmpSwitchCaseToStart$2 = $$1;
-    let tmpBinLhs$2 = $$2;
-    let tmpIfTest$2 = $$3;
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC(tmpSwitchValue$2, tmpSwitchCaseToStart$2, tmpBinLhs$2, tmpIfTest$2);
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
     let tmpSwitchValue$3 = $$0;
     let tmpSwitchCaseToStart$3 = $$1;
     let tmpBinLhs$3 = $$2;
     let tmpIfTest$3 = $$3;
     debugger;
-    const tmpIfTest$4 = tmpSwitchCaseToStart$3 <= 0;
-    if (tmpIfTest$4) {
-      const tmpReturnArg$2 = $(2, 'ret');
-      return tmpReturnArg$2;
+    const tmpReturnArg$1 = tmpBranchingC(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$3);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
+    let tmpSwitchValue$5 = $$0;
+    let tmpSwitchCaseToStart$5 = $$1;
+    let tmpBinLhs$5 = $$2;
+    let tmpIfTest$5 = $$3;
+    debugger;
+    const tmpIfTest$7 = tmpSwitchCaseToStart$5 <= 0;
+    if (tmpIfTest$7) {
+      const tmpReturnArg$3 = $(2, 'ret');
+      return tmpReturnArg$3;
     }
   };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = tmpBranchingA(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
+    return tmpReturnArg$5;
   } else {
-    const tmpReturnArg$4 = tmpBranchingB(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
-    return tmpReturnArg$4;
+    const tmpReturnArg$7 = tmpBranchingB(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
+    return tmpReturnArg$7;
   }
 };
 const tmpCallCallee = $;
@@ -104,8 +104,8 @@ const f = function () {
   const tmpBinLhs = $(1, 'case');
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = $(2, 'ret');
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = $(2, 'ret');
+    return tmpReturnArg$5;
   } else {
     return undefined;
   }

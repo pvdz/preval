@@ -58,20 +58,20 @@ let f = function ($$0) {
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpObjLitVal$1 = 15;
-const tmpObjLitVal$2 = [1, 2, 3];
-const tmpArrElement = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, c: 16 };
+const tmpObjLitVal$3 = [1, 2, 3];
+const tmpArrElement = { x: tmpObjLitVal$1, y: tmpObjLitVal$3, c: 16 };
 const tmpObjLitVal = [tmpArrElement, 13, 14];
 const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
-const tmpCalleeParam$2 = 10;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = 10;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$2 = [1, 2, 3];
-const tmpArrElement = { x: 15, y: tmpObjLitVal$2, c: 16 };
+const tmpObjLitVal$3 = [1, 2, 3];
+const tmpArrElement = { x: 15, y: tmpObjLitVal$3, c: 16 };
 const tmpObjLitVal = [tmpArrElement, 13, 14];
 const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = tmpCalleeParam$1.x;

@@ -40,9 +40,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    const tmpChainRootComputed$2 = $('z');
-    const tmpChainElementObject$2 = tmpChainElementObject$1[tmpChainRootComputed$2];
-    tmpCalleeParam = tmpChainElementObject$2;
+    const tmpChainRootComputed$3 = $('z');
+    const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
+    tmpCalleeParam = tmpChainElementObject$3;
   }
 }
 tmpCallCallee(tmpCalleeParam);
@@ -64,9 +64,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    const tmpChainRootComputed$2 = $('z');
-    const tmpChainElementObject$2 = tmpChainElementObject$1[tmpChainRootComputed$2];
-    tmpCalleeParam = tmpChainElementObject$2;
+    const tmpChainRootComputed$3 = $('z');
+    const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
+    tmpCalleeParam = tmpChainElementObject$3;
   }
 }
 $(tmpCalleeParam);

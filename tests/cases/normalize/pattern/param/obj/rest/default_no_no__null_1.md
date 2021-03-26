@@ -39,8 +39,8 @@ let f = function ($$0) {
   const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = bindingPatternObjRoot;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$2 = 'x';
-  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  const tmpCalleeParam$3 = 'x';
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return 'bad';
 };
 f(null);

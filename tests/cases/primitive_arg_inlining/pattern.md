@@ -69,29 +69,29 @@ let f = function ($$0) {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1, $$2) {
-    let op$2 = $$0;
-    let ap$2 = $$1;
-    let useDef$2 = $$2;
-    debugger;
-    ap$2 = op$2;
-    const tmpReturnArg$1 = tmpBranchingC(op$2, ap$2, useDef$2);
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
     let op$3 = $$0;
     let ap$3 = $$1;
     let useDef$3 = $$2;
     debugger;
+    ap$3 = op$3;
+    const tmpReturnArg$1 = tmpBranchingC(op$3, ap$3, useDef$3);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let op$5 = $$0;
+    let ap$5 = $$1;
+    let useDef$5 = $$2;
+    debugger;
     const tmpCalleeParam$1 = [];
-    let x$1 = objPatternRest(ap$3, tmpCalleeParam$1, undefined);
+    let x$1 = objPatternRest(ap$5, tmpCalleeParam$1, undefined);
     return x$1;
   };
   if (useDef) {
-    const tmpReturnArg$2 = tmpBranchingA(op, ap, useDef);
-    return tmpReturnArg$2;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingB(op, ap, useDef);
+    const tmpReturnArg$3 = tmpBranchingA(op, ap, useDef);
     return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(op, ap, useDef);
+    return tmpReturnArg$5;
   }
 };
 const out = f('abc');

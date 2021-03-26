@@ -35,8 +35,8 @@ if (tmpIfTest) {
   a = $(2);
 } else {
   const tmpCallCallee$1 = $;
-  const tmpCalleeParam$2 = $(100);
-  a = tmpCallCallee$1(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(100);
+  a = tmpCallCallee$1(tmpCalleeParam$3);
 }
 let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);

@@ -54,8 +54,8 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$1 = 2;
-const tmpObjLitVal$2 = $(3);
-a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(3);
+a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -66,13 +66,13 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   $('fail1');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $('fail2');
 }
 $(a);
@@ -84,8 +84,8 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
-const tmpObjLitVal$2 = $(3);
-const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(3);
+const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 const tmpIfTest = SSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -96,12 +96,12 @@ if (tmpIfTest) {
   }
 }
 tmpSwitchCaseToStart <= 0;
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   $('fail1');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $('fail2');
 }
 $(SSA_a);

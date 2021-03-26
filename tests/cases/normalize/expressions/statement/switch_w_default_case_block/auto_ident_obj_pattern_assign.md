@@ -78,8 +78,8 @@ if (tmpIfTest) {
   }
 }
 tmpSwitchBreak: {
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);
     const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
@@ -87,12 +87,12 @@ tmpSwitchBreak: {
     y = tmpAssignObjPatternRhs.y;
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
       $('fail1');
     }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$7) {
       $('fail2');
     }
   }
@@ -119,8 +119,8 @@ if (tmpIfTest) {
   }
 }
 tmpSwitchBreak: {
-  const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);
     const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
@@ -128,12 +128,12 @@ tmpSwitchBreak: {
     y = tmpAssignObjPatternRhs.y;
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
       $('fail1');
     }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$7) {
       $('fail2');
     }
   }

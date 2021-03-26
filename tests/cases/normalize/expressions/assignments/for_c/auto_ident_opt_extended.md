@@ -47,8 +47,8 @@ while (true) {
     if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainRootProp.x;
       const tmpChainElementObject$1 = tmpChainElementObject.y;
-      const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-      a = tmpChainElementObject$2;
+      const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+      a = tmpChainElementObject$3;
     }
   } else {
     break;
@@ -72,8 +72,8 @@ while (true) {
     if (tmpIfTest$1) {
       const tmpChainElementObject = b.x;
       const tmpChainElementObject$1 = tmpChainElementObject.y;
-      const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-      a = tmpChainElementObject$2;
+      const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+      a = tmpChainElementObject$3;
     }
   } else {
     break;

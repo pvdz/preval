@@ -54,15 +54,15 @@ const A = function () {
 const B = function () {
   debugger;
   $();
-  const tmp$2 = C();
-  return tmp$2;
+  const tmp$3 = C();
+  return tmp$3;
 };
 const C = function () {
   debugger;
   const x$1 = $();
   if (x$1) {
-    const tmp$3 = $();
-    return tmp$3;
+    const tmp$5 = $();
+    return tmp$5;
   }
 };
 A();
@@ -85,15 +85,15 @@ const A = function () {
 const B = function () {
   debugger;
   $();
-  const tmp$2 = C();
-  return tmp$2;
+  const tmp$3 = C();
+  return tmp$3;
 };
 const C = function () {
   debugger;
   const x$1 = $();
   if (x$1) {
-    const tmp$3 = $();
-    return tmp$3;
+    const tmp$5 = $();
+    return tmp$5;
   }
 };
 A();

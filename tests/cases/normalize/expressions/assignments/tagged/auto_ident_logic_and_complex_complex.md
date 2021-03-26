@@ -31,12 +31,12 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$2 = $(1);
-a = tmpCallCallee$1(tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(1);
+a = tmpCallCallee$1(tmpCalleeParam$3);
 if (a) {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$3 = $(2);
-  a = tmpCallCallee$2(tmpCalleeParam$3);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$5 = $(2);
+  a = tmpCallCallee$3(tmpCalleeParam$5);
 }
 let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
@@ -47,11 +47,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCalleeParam$2 = $(1);
-let SSA_a = $(tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(1);
+let SSA_a = $(tmpCalleeParam$3);
 if (SSA_a) {
-  const tmpCalleeParam$3 = $(2);
-  SSA_a = $(tmpCalleeParam$3);
+  const tmpCalleeParam$5 = $(2);
+  SSA_a = $(tmpCalleeParam$5);
 }
 const tmpCalleeParam$1 = SSA_a;
 $(tmpCalleeParam, tmpCalleeParam$1);

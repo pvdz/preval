@@ -48,9 +48,9 @@ tmpIfTest = tmpNestedAssignObjPatternRhs;
 if (tmpIfTest) {
   $(x);
   $(y);
-  const tmpObjLitVal$2 = $(3);
-  const tmpObjLitVal$3 = $(4);
-  const tmpAssignObjPatternRhs = { x: tmpObjLitVal$2, y: tmpObjLitVal$3 };
+  const tmpObjLitVal$3 = $(3);
+  const tmpObjLitVal$5 = $(4);
+  const tmpAssignObjPatternRhs = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
   x = tmpAssignObjPatternRhs.x;
   y = tmpAssignObjPatternRhs.y;
 }
@@ -71,9 +71,9 @@ let SSA_y = tmpNestedAssignObjPatternRhs.y;
 if (tmpNestedAssignObjPatternRhs) {
   $(SSA_x);
   $(SSA_y);
-  const tmpObjLitVal$2 = $(3);
-  const tmpObjLitVal$3 = $(4);
-  const tmpAssignObjPatternRhs = { x: tmpObjLitVal$2, y: tmpObjLitVal$3 };
+  const tmpObjLitVal$3 = $(3);
+  const tmpObjLitVal$5 = $(4);
+  const tmpAssignObjPatternRhs = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
   SSA_x = tmpAssignObjPatternRhs.x;
   SSA_y = tmpAssignObjPatternRhs.y;
 }

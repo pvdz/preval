@@ -293,7 +293,7 @@ export function phaseNormalOnce(fdata) {
           before(node, parentNode);
 
           const labelName = parentNode.label.name;
-          const newLabel = createUniqueGlobalLabel('dropme', fdata.globallyUniqueLabelRegistry); // This label will not be used so will be eliminated
+          const newLabel = createUniqueGlobalLabel('dropme', fdata); // This label will not be used so will be eliminated
           const tmpName = createFreshVar('tmpDoWhileFlag', fdata);
           const newNodes = AST.blockStatement([
             AST.variableDeclaration(tmpName, AST.tru(), 'let'),
@@ -360,7 +360,7 @@ export function phaseNormalOnce(fdata) {
           before(node, parentNode);
 
           const labelName = parentNode.label.name;
-          const newLabel = createUniqueGlobalLabel('dropme', fdata.globallyUniqueLabelRegistry); // This label will not be used so will be eliminated
+          const newLabel = createUniqueGlobalLabel('dropme', fdata); // This label will not be used so will be eliminated
           const newNodes = AST.blockStatement(
             node.init ? (node.init.type === 'VariableDeclaration' ? node.init : AST.expressionStatement(node.init)) : AST.emptyStatement(),
             AST.labeledStatement(
@@ -454,7 +454,7 @@ export function phaseNormalOnce(fdata) {
         break;
       }
       case 'LabeledStatement': {
-        const label = createUniqueGlobalLabel(node.label.name, fdata.globallyUniqueLabelRegistry);
+        const label = createUniqueGlobalLabel(node.label.name, fdata);
         if (node.label.name !== label) {
           node.label = AST.identifier(label);
         }
@@ -628,7 +628,7 @@ export function phaseNormalOnce(fdata) {
         );
         before(node);
 
-        const tmpLabel = createUniqueGlobalLabel('tmpSwitchBreak', fdata.globallyUniqueLabelRegistry);
+        const tmpLabel = createUniqueGlobalLabel('tmpSwitchBreak', fdata);
         const tmpNameValue = createFreshVar('tmpSwitchValue', fdata);
         const tmpNameCase = createFreshVar('tmpSwitchCaseToStart', fdata);
         const defaultIndex = node.cases.findIndex((n) => !n.test);

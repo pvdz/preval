@@ -32,8 +32,8 @@ const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$1 = 2;
-const tmpObjLitVal$2 = $(3);
-a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(3);
+a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
@@ -44,8 +44,8 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
 const tmpObjLitVal = $(1);
-const tmpObjLitVal$2 = $(3);
-const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(3);
+const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 $(tmpCalleeParam, SSA_a);
 $(SSA_a);
 `````

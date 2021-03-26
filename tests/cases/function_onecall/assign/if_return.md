@@ -73,9 +73,9 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 x = f();
 $(x, 'x-global');
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$2 = closure();
-const tmpCalleeParam$3 = 'closure-global2';
-tmpCallCallee$1(tmpCalleeParam$2, tmpCalleeParam$3);
+const tmpCalleeParam$3 = closure();
+const tmpCalleeParam$5 = 'closure-global2';
+tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 `````
 
 ## Output
@@ -94,8 +94,8 @@ const tmpCalleeParam = $(x, 'closure-return');
 $(tmpCalleeParam, 'closure-global1');
 const SSA_x = f();
 $(SSA_x, 'x-global');
-const tmpCalleeParam$2 = $(SSA_x, 'closure-return');
-$(tmpCalleeParam$2, 'closure-global2');
+const tmpCalleeParam$3 = $(SSA_x, 'closure-return');
+$(tmpCalleeParam$3, 'closure-global2');
 `````
 
 ## Globals

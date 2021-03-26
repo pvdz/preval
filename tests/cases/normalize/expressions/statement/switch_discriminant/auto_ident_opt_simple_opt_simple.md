@@ -56,8 +56,8 @@ if (tmpIfTest) {
   }
 }
 let tmpSwitchCaseToStart = 0;
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   $(100);
 }
 $(a);

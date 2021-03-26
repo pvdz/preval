@@ -39,14 +39,14 @@ let f = function () {
   a = 0;
   const tmpBranchingA = function () {
     debugger;
-    const tmpReturnArg$2 = tmpBranchingC();
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
   };
   const tmpBranchingB = function () {
     debugger;
     a = 2;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = tmpBranchingC();
+    return tmpReturnArg$5;
   };
   const tmpBranchingC = function () {
     debugger;
@@ -54,11 +54,11 @@ let f = function () {
     return tmpReturnArg$1;
   };
   if (a) {
-    const tmpReturnArg$4 = tmpBranchingA();
-    return tmpReturnArg$4;
+    const tmpReturnArg$7 = tmpBranchingA();
+    return tmpReturnArg$7;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    const tmpReturnArg$9 = tmpBranchingB();
+    return tmpReturnArg$9;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -80,12 +80,12 @@ const f = function () {
     return tmpReturnArg$1;
   };
   if (a) {
-    const tmpReturnArg$4 = tmpBranchingC();
-    return tmpReturnArg$4;
+    const tmpReturnArg$7 = tmpBranchingC();
+    return tmpReturnArg$7;
   } else {
     a = 2;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = tmpBranchingC();
+    return tmpReturnArg$5;
   }
 };
 let a = { a: 999, b: 1000 };

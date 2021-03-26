@@ -45,64 +45,64 @@ let f = function ($$0) {
     debugger;
     let tmpNestedComplexRhs$1 = 0;
     const tmpBranchingA$1 = function ($$0, $$1, $$2, $$3) {
-      let tmpParamBare$4 = $$0;
-      let p$4 = $$1;
-      let tmpIfTest$4 = $$2;
-      let tmpNestedComplexRhs$2 = $$3;
+      let tmpParamBare$7 = $$0;
+      let p$7 = $$1;
+      let tmpIfTest$7 = $$2;
+      let tmpNestedComplexRhs$3 = $$3;
       debugger;
-      const tmpReturnArg = tmpBranchingC$1(tmpParamBare$4, p$4, tmpIfTest$4, tmpNestedComplexRhs$2);
+      const tmpReturnArg = tmpBranchingC$1(tmpParamBare$7, p$7, tmpIfTest$7, tmpNestedComplexRhs$3);
       return tmpReturnArg;
     };
     const tmpBranchingB$1 = function ($$0, $$1, $$2, $$3) {
-      let tmpParamBare$5 = $$0;
-      let p$5 = $$1;
-      let tmpIfTest$5 = $$2;
-      let tmpNestedComplexRhs$3 = $$3;
+      let tmpParamBare$9 = $$0;
+      let p$9 = $$1;
+      let tmpIfTest$9 = $$2;
+      let tmpNestedComplexRhs$5 = $$3;
       debugger;
-      tmpNestedComplexRhs$3 = 2;
-      const tmpReturnArg$1 = tmpBranchingC$1(tmpParamBare$5, p$5, tmpIfTest$5, tmpNestedComplexRhs$3);
+      tmpNestedComplexRhs$5 = 2;
+      const tmpReturnArg$1 = tmpBranchingC$1(tmpParamBare$9, p$9, tmpIfTest$9, tmpNestedComplexRhs$5);
       return tmpReturnArg$1;
     };
     const tmpBranchingC$1 = function ($$0, $$1, $$2, $$3) {
-      let tmpParamBare$6 = $$0;
-      let p$6 = $$1;
-      let tmpIfTest$6 = $$2;
-      let tmpNestedComplexRhs$4 = $$3;
+      let tmpParamBare$11 = $$0;
+      let p$11 = $$1;
+      let tmpIfTest$11 = $$2;
+      let tmpNestedComplexRhs$7 = $$3;
       debugger;
-      a = tmpNestedComplexRhs$4;
-      p$6 = tmpNestedComplexRhs$4;
-      const tmpReturnArg$2 = tmpBranchingC(tmpParamBare$6, p$6, tmpIfTest$6);
-      return tmpReturnArg$2;
+      a = tmpNestedComplexRhs$7;
+      p$11 = tmpNestedComplexRhs$7;
+      const tmpReturnArg$3 = tmpBranchingC(tmpParamBare$11, p$11, tmpIfTest$11);
+      return tmpReturnArg$3;
     };
     if (tmpNestedComplexRhs$1) {
-      const tmpReturnArg$3 = tmpBranchingA$1(tmpParamBare$1, p$1, tmpIfTest$1, tmpNestedComplexRhs$1);
-      return tmpReturnArg$3;
+      const tmpReturnArg$5 = tmpBranchingA$1(tmpParamBare$1, p$1, tmpIfTest$1, tmpNestedComplexRhs$1);
+      return tmpReturnArg$5;
     } else {
-      const tmpReturnArg$4 = tmpBranchingB$1(tmpParamBare$1, p$1, tmpIfTest$1, tmpNestedComplexRhs$1);
-      return tmpReturnArg$4;
+      const tmpReturnArg$7 = tmpBranchingB$1(tmpParamBare$1, p$1, tmpIfTest$1, tmpNestedComplexRhs$1);
+      return tmpReturnArg$7;
     }
   };
   const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpParamBare$2 = $$0;
-    let p$2 = $$1;
-    let tmpIfTest$2 = $$2;
-    debugger;
-    p$2 = tmpParamBare$2;
-    const tmpReturnArg$5 = tmpBranchingC(tmpParamBare$2, p$2, tmpIfTest$2);
-    return tmpReturnArg$5;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
     let tmpParamBare$3 = $$0;
     let p$3 = $$1;
     let tmpIfTest$3 = $$2;
     debugger;
+    p$3 = tmpParamBare$3;
+    const tmpReturnArg$9 = tmpBranchingC(tmpParamBare$3, p$3, tmpIfTest$3);
+    return tmpReturnArg$9;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let tmpParamBare$5 = $$0;
+    let p$5 = $$1;
+    let tmpIfTest$5 = $$2;
+    debugger;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$6 = tmpBranchingA(tmpParamBare, p, tmpIfTest);
-    return tmpReturnArg$6;
+    const tmpReturnArg$11 = tmpBranchingA(tmpParamBare, p, tmpIfTest);
+    return tmpReturnArg$11;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB(tmpParamBare, p, tmpIfTest);
-    return tmpReturnArg$7;
+    const tmpReturnArg$13 = tmpBranchingB(tmpParamBare, p, tmpIfTest);
+    return tmpReturnArg$13;
   }
 };
 let a = { a: 999, b: 1000 };

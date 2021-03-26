@@ -44,37 +44,37 @@ let f = function () {
     let tmpCalleeParam$1 = $$1;
     let tmpReturnArg$1 = $$2;
     debugger;
-    const tmpReturnArg$4 = tmpBranchingC(tmpCallCallee$1, tmpCalleeParam$1, tmpReturnArg$1);
-    return tmpReturnArg$4;
+    const tmpReturnArg$7 = tmpBranchingC(tmpCallCallee$1, tmpCalleeParam$1, tmpReturnArg$1);
+    return tmpReturnArg$7;
   };
   const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpCallCallee$2 = $$0;
-    let tmpCalleeParam$2 = $$1;
-    let tmpReturnArg$2 = $$2;
-    debugger;
-    tmpReturnArg$2 = 2;
-    const tmpReturnArg$5 = tmpBranchingC(tmpCallCallee$2, tmpCalleeParam$2, tmpReturnArg$2);
-    return tmpReturnArg$5;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
     let tmpCallCallee$3 = $$0;
     let tmpCalleeParam$3 = $$1;
     let tmpReturnArg$3 = $$2;
     debugger;
-    return tmpReturnArg$3;
+    tmpReturnArg$3 = 2;
+    const tmpReturnArg$9 = tmpBranchingC(tmpCallCallee$3, tmpCalleeParam$3, tmpReturnArg$3);
+    return tmpReturnArg$9;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let tmpCallCallee$5 = $$0;
+    let tmpCalleeParam$5 = $$1;
+    let tmpReturnArg$5 = $$2;
+    debugger;
+    return tmpReturnArg$5;
   };
   if (tmpReturnArg) {
-    const tmpReturnArg$6 = tmpBranchingA(tmpCallCallee, tmpCalleeParam, tmpReturnArg);
-    return tmpReturnArg$6;
+    const tmpReturnArg$11 = tmpBranchingA(tmpCallCallee, tmpCalleeParam, tmpReturnArg);
+    return tmpReturnArg$11;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB(tmpCallCallee, tmpCalleeParam, tmpReturnArg);
-    return tmpReturnArg$7;
+    const tmpReturnArg$13 = tmpBranchingB(tmpCallCallee, tmpCalleeParam, tmpReturnArg);
+    return tmpReturnArg$13;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$4 = $;
-const tmpCalleeParam$4 = f();
-tmpCallCallee$4(tmpCalleeParam$4);
+const tmpCallCallee$7 = $;
+const tmpCalleeParam$7 = f();
+tmpCallCallee$7(tmpCalleeParam$7);
 $(a);
 `````
 
@@ -92,8 +92,8 @@ const f = function () {
   }
 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$4 = f();
-$(tmpCalleeParam$4);
+const tmpCalleeParam$7 = f();
+$(tmpCalleeParam$7);
 $(a);
 `````
 

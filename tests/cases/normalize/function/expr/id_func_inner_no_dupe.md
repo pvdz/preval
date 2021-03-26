@@ -50,8 +50,8 @@ let out = function () {
   const f = g;
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = typeof g$1;
-  const tmpCalleeParam$2 = f();
-  tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+  const tmpCalleeParam$3 = f();
+  tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 };
 out();
 out();
@@ -68,8 +68,8 @@ const out = function () {
     $(tmpCalleeParam);
   };
   const tmpCalleeParam$1 = typeof g$1;
-  const tmpCalleeParam$2 = g();
-  $(tmpCalleeParam$1, tmpCalleeParam$2);
+  const tmpCalleeParam$3 = g();
+  $(tmpCalleeParam$1, tmpCalleeParam$3);
 };
 out();
 out();

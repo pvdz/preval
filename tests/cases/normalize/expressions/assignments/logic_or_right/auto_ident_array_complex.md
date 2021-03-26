@@ -34,8 +34,8 @@ if (tmpCalleeParam) {
 } else {
   const tmpArrElement = $(1);
   const tmpArrElement$1 = 2;
-  const tmpArrElement$2 = $(3);
-  const tmpNestedComplexRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+  const tmpArrElement$3 = $(3);
+  const tmpNestedComplexRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -51,8 +51,8 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
   const tmpArrElement = $(1);
-  const tmpArrElement$2 = $(3);
-  const tmpNestedComplexRhs = [tmpArrElement, 2, tmpArrElement$2];
+  const tmpArrElement$3 = $(3);
+  const tmpNestedComplexRhs = [tmpArrElement, 2, tmpArrElement$3];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

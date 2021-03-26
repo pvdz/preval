@@ -31,9 +31,9 @@ let f = function () {
   return x$1;
 };
 let g = function ($$0) {
-  let x$2 = $$0;
+  let x$3 = $$0;
   debugger;
-  return x$2;
+  return x$3;
 };
 let c = class {};
 export { c };
@@ -52,9 +52,9 @@ let f = function () {
   return x$1;
 };
 let g = function ($$0) {
-  let x$2 = $$0;
+  let x$3 = $$0;
   debugger;
-  return x$2;
+  return x$3;
 };
 let c = class {};
 export { c };
@@ -75,9 +75,9 @@ const f = function () {
   return x$1;
 };
 const g = function ($$0) {
-  const x$2 = $$0;
+  const x$3 = $$0;
   debugger;
-  return x$2;
+  return x$3;
 };
 const c = class {};
 export { c };

@@ -76,27 +76,27 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   } else {
-    const tmpBinLhs$2 = $(32);
-    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
-    if (tmpIfTest$2) {
+    const tmpBinLhs$3 = $(32);
+    const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
+    if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 3;
     }
   }
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$5) {
   $('a');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$7) {
   $('b');
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$5) {
+const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$9) {
   $('c');
 }
-const tmpIfTest$6 = tmpSwitchCaseToStart <= 3;
-if (tmpIfTest$6) {
+const tmpIfTest$11 = tmpSwitchCaseToStart <= 3;
+if (tmpIfTest$11) {
   $('d');
 }
 `````
@@ -116,27 +116,27 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
   } else {
-    const tmpBinLhs$2 = $(32);
-    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
-    if (tmpIfTest$2) {
+    const tmpBinLhs$3 = $(32);
+    const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
+    if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 3;
     }
   }
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$5) {
   $('a');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$7) {
   $('b');
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$5) {
+const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$9) {
   $('c');
 }
-const tmpIfTest$6 = tmpSwitchCaseToStart <= 3;
-if (tmpIfTest$6) {
+const tmpIfTest$11 = tmpSwitchCaseToStart <= 3;
+if (tmpIfTest$11) {
   $('d');
 }
 `````

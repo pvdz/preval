@@ -31,14 +31,14 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
-const tmpArrElement$2 = $(3);
-a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  const tmpArrElement$3 = $(1);
-  const tmpArrElement$4 = 2;
-  const tmpArrElement$5 = $(3);
-  const tmpNestedComplexRhs = [tmpArrElement$3, tmpArrElement$4, tmpArrElement$5];
+  const tmpArrElement$5 = $(1);
+  const tmpArrElement$7 = 2;
+  const tmpArrElement$9 = $(3);
+  const tmpNestedComplexRhs = [tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -50,13 +50,13 @@ $(a);
 
 `````js filename=intro
 const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-let SSA_a = [tmpArrElement, 2, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+let SSA_a = [tmpArrElement, 2, tmpArrElement$3];
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
-  const tmpArrElement$3 = $(1);
-  const tmpArrElement$5 = $(3);
-  const tmpNestedComplexRhs = [tmpArrElement$3, 2, tmpArrElement$5];
+  const tmpArrElement$5 = $(1);
+  const tmpArrElement$9 = $(3);
+  const tmpNestedComplexRhs = [tmpArrElement$5, 2, tmpArrElement$9];
   SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

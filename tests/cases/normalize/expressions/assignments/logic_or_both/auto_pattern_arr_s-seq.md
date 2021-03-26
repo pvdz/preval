@@ -43,8 +43,8 @@ if (tmpCalleeParam) {
   $(10);
   $(20);
   const tmpNestedAssignArrPatternRhs$1 = [1, 2];
-  const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
-  a = arrPatternSplat$2[0];
+  const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$1];
+  a = arrPatternSplat$3[0];
   tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
 }
 tmpCallCallee(tmpCalleeParam);
@@ -68,8 +68,8 @@ if (SSA_tmpCalleeParam) {
   $(10);
   $(20);
   const tmpNestedAssignArrPatternRhs$1 = [1, 2];
-  const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
-  SSA_a = arrPatternSplat$2[0];
+  const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$1];
+  SSA_a = arrPatternSplat$3[0];
   SSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
 }
 $(SSA_tmpCalleeParam);

@@ -46,13 +46,13 @@ if (tmpIfTest) {
 }
 let tmpBinBothRhs = undefined;
 const tmpChainRootProp$1 = b;
-const tmpIfTest$2 = tmpChainRootProp$1 != null;
-if (tmpIfTest$2) {
-  const tmpChainElementObject$2 = tmpChainRootProp$1.x;
-  const tmpIfTest$3 = tmpChainElementObject$2 != null;
-  if (tmpIfTest$3) {
-    const tmpChainElementObject$3 = tmpChainElementObject$2.y;
-    tmpBinBothRhs = tmpChainElementObject$3;
+const tmpIfTest$3 = tmpChainRootProp$1 != null;
+if (tmpIfTest$3) {
+  const tmpChainElementObject$3 = tmpChainRootProp$1.x;
+  const tmpIfTest$5 = tmpChainElementObject$3 != null;
+  if (tmpIfTest$5) {
+    const tmpChainElementObject$5 = tmpChainElementObject$3.y;
+    tmpBinBothRhs = tmpChainElementObject$5;
   }
 }
 tmpBinBothLhs + tmpBinBothRhs;
@@ -76,13 +76,13 @@ if (tmpIfTest) {
   }
 }
 let tmpBinBothRhs = undefined;
-const tmpIfTest$2 = b != null;
-if (tmpIfTest$2) {
-  const tmpChainElementObject$2 = b.x;
-  const tmpIfTest$3 = tmpChainElementObject$2 != null;
-  if (tmpIfTest$3) {
-    const tmpChainElementObject$3 = tmpChainElementObject$2.y;
-    tmpBinBothRhs = tmpChainElementObject$3;
+const tmpIfTest$3 = b != null;
+if (tmpIfTest$3) {
+  const tmpChainElementObject$3 = b.x;
+  const tmpIfTest$5 = tmpChainElementObject$3 != null;
+  if (tmpIfTest$5) {
+    const tmpChainElementObject$5 = tmpChainElementObject$3.y;
+    tmpBinBothRhs = tmpChainElementObject$5;
   }
 }
 tmpBinBothLhs + tmpBinBothRhs;

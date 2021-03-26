@@ -34,8 +34,8 @@
 let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
-const tmpArrElement$2 = $(3);
-a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 $(a);
 `````
 
@@ -43,8 +43,8 @@ $(a);
 
 `````js filename=intro
 const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-const SSA_a = [tmpArrElement, 2, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const SSA_a = [tmpArrElement, 2, tmpArrElement$3];
 $(SSA_a);
 `````
 

@@ -26,7 +26,7 @@ In particular, the pattern's "y" should be replaced with a different name.
 }
 ({ x: a$1 } = 1);
 {
-  let a$2 = 1;
+  let a$3 = 1;
 }
 `````
 
@@ -36,7 +36,7 @@ In particular, the pattern's "y" should be replaced with a different name.
 let a = 1;
 const tmpAssignObjPatternRhs = 1;
 a$1 = tmpAssignObjPatternRhs.x;
-let a$2 = 1;
+let a$3 = 1;
 `````
 
 ## Output

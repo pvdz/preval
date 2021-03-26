@@ -44,8 +44,8 @@ let f = function ($$0, $$1, $$2) {
   const tmpUnaryArg = !tmpArgumentsAny;
   const tmpCalleeParam = !tmpUnaryArg;
   const tmpCalleeParam$1 = x;
-  const tmpCalleeParam$2 = z;
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  const tmpCalleeParam$3 = z;
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return tmpReturnArg;
 };
 f();

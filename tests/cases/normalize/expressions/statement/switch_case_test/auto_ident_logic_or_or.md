@@ -51,9 +51,9 @@ if (tmpBinLhs) {
   tmpBinLhs = tmpCallCallee$1(tmpCalleeParam$1);
   if (tmpBinLhs) {
   } else {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(2);
-    tmpBinLhs = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpBinLhs = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -78,8 +78,8 @@ if (tmpBinLhs) {
   tmpBinLhs = $(tmpCalleeParam$1);
   if (tmpBinLhs) {
   } else {
-    const tmpCalleeParam$2 = $(2);
-    tmpBinLhs = $(tmpCalleeParam$2);
+    const tmpCalleeParam$3 = $(2);
+    tmpBinLhs = $(tmpCalleeParam$3);
   }
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;

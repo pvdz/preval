@@ -41,13 +41,13 @@ let f = function ($$0) {
   const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = arrPatternStep;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$2 = undefined;
-  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  const tmpCalleeParam$3 = undefined;
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return x;
 };
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$3 = f(null, 200);
-tmpCallCallee$1(tmpCalleeParam$3);
+const tmpCalleeParam$5 = f(null, 200);
+tmpCallCallee$1(tmpCalleeParam$5);
 `````
 
 ## Output

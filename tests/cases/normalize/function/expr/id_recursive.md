@@ -48,27 +48,27 @@ const r = function ($$0) {
     return 10;
   };
   const tmpBranchingB = function ($$0, $$1) {
-    let n$2 = $$0;
-    let tmpIfTest$2 = $$1;
-    debugger;
-    const tmpReturnArg = tmpBranchingC(n$2, tmpIfTest$2);
-    return tmpReturnArg;
-  };
-  const tmpBranchingC = function ($$0, $$1) {
     let n$3 = $$0;
     let tmpIfTest$3 = $$1;
     debugger;
+    const tmpReturnArg = tmpBranchingC(n$3, tmpIfTest$3);
+    return tmpReturnArg;
+  };
+  const tmpBranchingC = function ($$0, $$1) {
+    let n$5 = $$0;
+    let tmpIfTest$5 = $$1;
+    debugger;
     const tmpCallCallee = r;
-    const tmpCalleeParam = n$3 + 1;
+    const tmpCalleeParam = n$5 + 1;
     const tmpReturnArg$1 = tmpCallCallee(tmpCalleeParam);
     return tmpReturnArg$1;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$2 = tmpBranchingA(n, tmpIfTest);
-    return tmpReturnArg$2;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingB(n, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA(n, tmpIfTest);
     return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(n, tmpIfTest);
+    return tmpReturnArg$5;
   }
 };
 const f = r;

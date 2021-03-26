@@ -44,45 +44,45 @@ let f = function () {
     debugger;
     const tmpChainElementObject$1 = tmpChainRootProp$1.length;
     tmpCalleeParam$1 = tmpChainElementObject$1;
-    const tmpReturnArg$2 = tmpBranchingC(tmpCallCallee$1, tmpCalleeParam$1, tmpChainRootProp$1, tmpIfTest$1);
-    return tmpReturnArg$2;
-  };
-  const tmpBranchingB = function ($$0, $$1, $$2, $$3) {
-    let tmpCallCallee$2 = $$0;
-    let tmpCalleeParam$2 = $$1;
-    let tmpChainRootProp$2 = $$2;
-    let tmpIfTest$2 = $$3;
-    debugger;
-    const tmpReturnArg$3 = tmpBranchingC(tmpCallCallee$2, tmpCalleeParam$2, tmpChainRootProp$2, tmpIfTest$2);
+    const tmpReturnArg$3 = tmpBranchingC(tmpCallCallee$1, tmpCalleeParam$1, tmpChainRootProp$1, tmpIfTest$1);
     return tmpReturnArg$3;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
+  const tmpBranchingB = function ($$0, $$1, $$2, $$3) {
     let tmpCallCallee$3 = $$0;
     let tmpCalleeParam$3 = $$1;
     let tmpChainRootProp$3 = $$2;
     let tmpIfTest$3 = $$3;
     debugger;
-    const tmpReturnArg$1 = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpReturnArg$5 = tmpBranchingC(tmpCallCallee$3, tmpCalleeParam$3, tmpChainRootProp$3, tmpIfTest$3);
+    return tmpReturnArg$5;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
+    let tmpCallCallee$5 = $$0;
+    let tmpCalleeParam$5 = $$1;
+    let tmpChainRootProp$5 = $$2;
+    let tmpIfTest$5 = $$3;
+    debugger;
+    const tmpReturnArg$1 = tmpCallCallee$5(tmpCalleeParam$5);
     return tmpReturnArg$1;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$4 = tmpBranchingA(tmpCallCallee, tmpCalleeParam, tmpChainRootProp, tmpIfTest);
-    return tmpReturnArg$4;
+    const tmpReturnArg$7 = tmpBranchingA(tmpCallCallee, tmpCalleeParam, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$7;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(tmpCallCallee, tmpCalleeParam, tmpChainRootProp, tmpIfTest);
-    return tmpReturnArg$5;
+    const tmpReturnArg$9 = tmpBranchingB(tmpCallCallee, tmpCalleeParam, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$9;
   }
 };
-const tmpCallCallee$4 = $;
-const tmpCalleeParam$4 = f();
-tmpCallCallee$4(tmpCalleeParam$4);
+const tmpCallCallee$7 = $;
+const tmpCalleeParam$7 = f();
+tmpCallCallee$7(tmpCalleeParam$7);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$4 = $(3);
-$(tmpCalleeParam$4);
+const tmpCalleeParam$7 = $(3);
+$(tmpCalleeParam$7);
 `````
 
 ## Globals

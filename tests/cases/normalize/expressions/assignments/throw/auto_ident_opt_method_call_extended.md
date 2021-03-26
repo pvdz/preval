@@ -40,8 +40,8 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
 }
 let tmpThrowArg = a;
@@ -59,8 +59,8 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   SSA_a = tmpChainElementCall;
 }
 const tmpThrowArg = SSA_a;

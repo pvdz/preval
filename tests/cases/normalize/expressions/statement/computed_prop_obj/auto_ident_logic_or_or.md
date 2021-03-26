@@ -41,9 +41,9 @@ if (tmpCompObj) {
   tmpCompObj = tmpCallCallee$1(tmpCalleeParam$1);
   if (tmpCompObj) {
   } else {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(2);
-    tmpCompObj = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpCompObj = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
 tmpCompObj.a;
@@ -62,8 +62,8 @@ if (tmpCompObj) {
   tmpCompObj = $(tmpCalleeParam$1);
   if (tmpCompObj) {
   } else {
-    const tmpCalleeParam$2 = $(2);
-    tmpCompObj = $(tmpCalleeParam$2);
+    const tmpCalleeParam$3 = $(2);
+    tmpCompObj = $(tmpCalleeParam$3);
   }
 }
 tmpCompObj.a;

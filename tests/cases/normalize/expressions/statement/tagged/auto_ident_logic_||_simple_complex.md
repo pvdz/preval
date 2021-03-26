@@ -34,8 +34,8 @@ let tmpCalleeParam$1 = 0;
 if (tmpCalleeParam$1) {
 } else {
   const tmpCallCallee$1 = $;
-  const tmpCalleeParam$2 = $(1);
-  tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(1);
+  tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$3);
 }
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
@@ -49,8 +49,8 @@ const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1 = 0;
 if (tmpCalleeParam$1) {
 } else {
-  const tmpCalleeParam$2 = $(1);
-  tmpCalleeParam$1 = $(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(1);
+  tmpCalleeParam$1 = $(tmpCalleeParam$3);
 }
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);

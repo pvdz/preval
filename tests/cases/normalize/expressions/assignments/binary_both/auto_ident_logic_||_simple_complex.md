@@ -40,9 +40,9 @@ let tmpBinBothLhs = a;
 a = 0;
 if (a) {
 } else {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(1);
-  a = tmpCallCallee$2(tmpCalleeParam$2);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(1);
+  a = tmpCallCallee$3(tmpCalleeParam$3);
 }
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
@@ -63,8 +63,8 @@ const tmpBinBothLhs = SSA_a;
 let SSA_a$1 = 0;
 if (SSA_a$1) {
 } else {
-  const tmpCalleeParam$2 = $(1);
-  SSA_a$1 = $(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(1);
+  SSA_a$1 = $(tmpCalleeParam$3);
 }
 const tmpBinBothRhs = SSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

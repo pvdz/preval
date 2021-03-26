@@ -23,8 +23,8 @@ $(obj?.a?.b?.c);
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal$2 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $();
+const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 const tmpCallCallee = $;
@@ -36,10 +36,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.b;
-    const tmpIfTest$2 = tmpChainElementObject$1 != null;
-    if (tmpIfTest$2) {
-      const tmpChainElementObject$2 = tmpChainElementObject$1.c;
-      tmpCalleeParam = tmpChainElementObject$2;
+    const tmpIfTest$3 = tmpChainElementObject$1 != null;
+    if (tmpIfTest$3) {
+      const tmpChainElementObject$3 = tmpChainElementObject$1.c;
+      tmpCalleeParam = tmpChainElementObject$3;
     }
   }
 }
@@ -49,8 +49,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$2 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $();
+const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 let tmpCalleeParam = undefined;
@@ -60,10 +60,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.b;
-    const tmpIfTest$2 = tmpChainElementObject$1 != null;
-    if (tmpIfTest$2) {
-      const tmpChainElementObject$2 = tmpChainElementObject$1.c;
-      tmpCalleeParam = tmpChainElementObject$2;
+    const tmpIfTest$3 = tmpChainElementObject$1 != null;
+    if (tmpIfTest$3) {
+      const tmpChainElementObject$3 = tmpChainElementObject$1.c;
+      tmpCalleeParam = tmpChainElementObject$3;
     }
   }
 }

@@ -41,36 +41,36 @@ let f = function () {
     let tmpIfTest$1 = $$0;
     debugger;
     a = $(60);
-    const tmpReturnArg$2 = tmpBranchingC(tmpIfTest$1);
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = tmpBranchingC(tmpIfTest$1);
+    return tmpReturnArg$3;
   };
   const tmpBranchingB = function ($$0) {
-    let tmpIfTest$2 = $$0;
+    let tmpIfTest$3 = $$0;
     debugger;
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(100);
     a = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg$3 = tmpBranchingC(tmpIfTest$2);
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = tmpBranchingC(tmpIfTest$3);
+    return tmpReturnArg$5;
   };
   const tmpBranchingC = function ($$0) {
-    let tmpIfTest$3 = $$0;
+    let tmpIfTest$5 = $$0;
     debugger;
     let tmpReturnArg$1 = a;
     return tmpReturnArg$1;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$4 = tmpBranchingA(tmpIfTest);
-    return tmpReturnArg$4;
+    const tmpReturnArg$7 = tmpBranchingA(tmpIfTest);
+    return tmpReturnArg$7;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(tmpIfTest);
-    return tmpReturnArg$5;
+    const tmpReturnArg$9 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$9;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$2 = $;
-const tmpCalleeParam$2 = f();
-tmpCallCallee$2(tmpCalleeParam$2);
+const tmpCallCallee$3 = $;
+const tmpCalleeParam$3 = f();
+tmpCallCallee$3(tmpCalleeParam$3);
 $(a);
 `````
 
@@ -87,18 +87,18 @@ const f = function () {
   };
   if (tmpIfTest) {
     a = $(60);
-    const tmpReturnArg$2 = tmpBranchingC();
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
   } else {
     const tmpCalleeParam$1 = $(100);
     a = $(tmpCalleeParam$1);
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = tmpBranchingC();
+    return tmpReturnArg$5;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$2 = f();
-$(tmpCalleeParam$2);
+const tmpCalleeParam$3 = f();
+$(tmpCalleeParam$3);
 $(a);
 `````
 

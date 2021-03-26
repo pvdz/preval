@@ -50,8 +50,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpIfTest$2 = $(30);
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = $(30);
+  if (tmpIfTest$3) {
     a = $(2);
   } else {
     const tmpCallCallee = $;
@@ -75,8 +75,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpIfTest$2 = $(30);
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = $(30);
+  if (tmpIfTest$3) {
     a = $(2);
   } else {
     const tmpCalleeParam = $(100);

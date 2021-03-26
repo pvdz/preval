@@ -34,12 +34,12 @@ obj.a.b.c();
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal$2 = function () {
+const tmpObjLitVal$3 = function () {
   debugger;
   const tmpReturnArg = $(1);
   return tmpReturnArg;
 };
-const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 const tmpCompObj = obj.a;
@@ -50,12 +50,12 @@ tmpCallObj.c();
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$2 = function () {
+const tmpObjLitVal$3 = function () {
   debugger;
   const tmpReturnArg = $(1);
   return tmpReturnArg;
 };
-const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 const tmpCompObj = obj.a;

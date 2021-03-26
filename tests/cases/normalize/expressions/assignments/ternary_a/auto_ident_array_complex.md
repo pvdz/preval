@@ -32,8 +32,8 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
-const tmpArrElement$2 = $(3);
-a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
@@ -49,8 +49,8 @@ $(a);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-const SSA_a = [tmpArrElement, 2, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const SSA_a = [tmpArrElement, 2, tmpArrElement$3];
 if (SSA_a) {
   tmpCalleeParam = $(100);
 } else {

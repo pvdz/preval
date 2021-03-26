@@ -41,8 +41,8 @@ let f = function ($$0) {
   if (tmpIfTest) {
     const tmpObjLitVal = $(1);
     const tmpObjLitVal$1 = 2;
-    const tmpObjLitVal$2 = $(3);
-    p = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+    const tmpObjLitVal$3 = $(3);
+    p = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
   } else {
     p = tmpParamBare;
   }

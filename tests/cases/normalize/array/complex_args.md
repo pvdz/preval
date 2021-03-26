@@ -25,8 +25,8 @@ const tmpCallCallee = $;
 const tmpArrElement = 10;
 const tmpArrElement$1 = $();
 const tmpCompObj = Array.prototype;
-const tmpArrElement$2 = tmpCompObj.length;
-const tmpCalleeParam = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = tmpCompObj.length;
+const tmpCalleeParam = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -35,8 +35,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpArrElement$1 = $();
 const tmpCompObj = Array.prototype;
-const tmpArrElement$2 = tmpCompObj.length;
-const tmpCalleeParam = [10, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = tmpCompObj.length;
+const tmpCalleeParam = [10, tmpArrElement$1, tmpArrElement$3];
 $(tmpCalleeParam);
 `````
 

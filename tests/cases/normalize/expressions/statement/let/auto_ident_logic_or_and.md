@@ -39,9 +39,9 @@ if (xyz) {
   const tmpCalleeParam$1 = $(1);
   xyz = tmpCallCallee$1(tmpCalleeParam$1);
   if (xyz) {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(2);
-    xyz = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    xyz = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
 $(xyz);
@@ -59,8 +59,8 @@ if (xyz) {
   const tmpCalleeParam$1 = $(1);
   xyz = $(tmpCalleeParam$1);
   if (xyz) {
-    const tmpCalleeParam$2 = $(2);
-    xyz = $(tmpCalleeParam$2);
+    const tmpCalleeParam$3 = $(2);
+    xyz = $(tmpCalleeParam$3);
   }
 }
 $(xyz);

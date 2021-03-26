@@ -36,9 +36,9 @@ if (a) {
   a = 2;
 }
 let tmpBinBothLhs = a;
-const tmpCallCallee$2 = $;
-const tmpCalleeParam$2 = $(1);
-a = tmpCallCallee$2(tmpCalleeParam$2);
+const tmpCallCallee$3 = $;
+const tmpCalleeParam$3 = $(1);
+a = tmpCallCallee$3(tmpCalleeParam$3);
 if (a) {
   a = 2;
 }
@@ -57,8 +57,8 @@ if (SSA_a) {
   SSA_a = 2;
 }
 const tmpBinBothLhs = SSA_a;
-const tmpCalleeParam$2 = $(1);
-let SSA_a$1 = $(tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(1);
+let SSA_a$1 = $(tmpCalleeParam$3);
 if (SSA_a$1) {
   SSA_a$1 = 2;
 }

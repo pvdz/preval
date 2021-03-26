@@ -26,7 +26,7 @@ let i = function ($$0) {
     x: [y$1],
   } = tmpParamBare;
   {
-    let y$2 = 2;
+    let y$3 = 2;
   }
   return y$1;
 };
@@ -43,7 +43,7 @@ let i = function ($$0) {
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let y$1 = arrPatternSplat[0];
-  let y$2 = 2;
+  let y$3 = 2;
   return y$1;
 };
 let y = 1;

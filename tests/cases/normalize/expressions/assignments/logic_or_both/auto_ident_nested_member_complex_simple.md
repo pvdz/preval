@@ -56,11 +56,11 @@ if (tmpCalleeParam) {
 } else {
   const varInitAssignLhsComputedObj$1 = $(b);
   const varInitAssignLhsComputedProp$1 = $('x');
-  const varInitAssignLhsComputedObj$2 = $(c);
-  const varInitAssignLhsComputedProp$2 = $('y');
-  const varInitAssignLhsComputedRhs$2 = d;
-  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+  const varInitAssignLhsComputedObj$3 = $(c);
+  const varInitAssignLhsComputedProp$3 = $('y');
+  const varInitAssignLhsComputedRhs$3 = d;
+  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
+  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs$1;
   a = tmpNestedComplexRhs;
@@ -87,9 +87,9 @@ if (tmpCalleeParam) {
 } else {
   const varInitAssignLhsComputedObj$1 = $(b);
   const varInitAssignLhsComputedProp$1 = $('x');
-  const varInitAssignLhsComputedObj$2 = $(c);
-  const varInitAssignLhsComputedProp$2 = $('y');
-  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
+  const varInitAssignLhsComputedObj$3 = $(c);
+  const varInitAssignLhsComputedProp$3 = $('y');
+  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   SSA_a = 3;
   tmpCalleeParam = 3;

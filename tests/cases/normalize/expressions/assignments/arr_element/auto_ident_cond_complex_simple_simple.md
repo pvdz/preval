@@ -42,9 +42,9 @@ const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
   a = 2;
 } else {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(100);
-  a = tmpCallCallee$2(tmpCalleeParam$2);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(100);
+  a = tmpCallCallee$3(tmpCalleeParam$3);
 }
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
@@ -68,8 +68,8 @@ const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
   a = 2;
 } else {
-  const tmpCalleeParam$2 = $(100);
-  a = $(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(100);
+  a = $(tmpCalleeParam$3);
 }
 const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

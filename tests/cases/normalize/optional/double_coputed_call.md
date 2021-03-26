@@ -32,23 +32,23 @@ const tmpChainRootCall = $;
 const tmpCallCallee = tmpChainRootCall;
 let tmpCalleeParam = undefined;
 const tmpChainRootCall$1 = $;
-const tmpChainElementCall$2 = tmpChainRootCall$1(a);
-const tmpIfTest = tmpChainElementCall$2 != null;
+const tmpChainElementCall$3 = tmpChainRootCall$1(a);
+const tmpIfTest = tmpChainElementCall$3 != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
-  const tmpChainElementObject = tmpChainElementCall$2[tmpChainRootComputed];
+  const tmpChainElementObject = tmpChainElementCall$3[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    const tmpChainRootComputed$2 = $('z');
-    const tmpChainElementObject$2 = tmpChainElementObject$1[tmpChainRootComputed$2];
-    tmpCalleeParam = tmpChainElementObject$2;
+    const tmpChainRootComputed$3 = $('z');
+    const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
+    tmpCalleeParam = tmpChainElementObject$3;
   }
 }
 const tmpChainElementCall = tmpCallCallee(tmpCalleeParam);
-const tmpIfTest$2 = tmpChainElementCall != null;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpChainElementCall != null;
+if (tmpIfTest$3) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 100);
 }
 `````
@@ -60,23 +60,23 @@ const tmpObjLitVal$1 = { z: $ };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const a = { x: tmpObjLitVal };
 let tmpCalleeParam = undefined;
-const tmpChainElementCall$2 = $(a);
-const tmpIfTest = tmpChainElementCall$2 != null;
+const tmpChainElementCall$3 = $(a);
+const tmpIfTest = tmpChainElementCall$3 != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
-  const tmpChainElementObject = tmpChainElementCall$2[tmpChainRootComputed];
+  const tmpChainElementObject = tmpChainElementCall$3[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    const tmpChainRootComputed$2 = $('z');
-    const tmpChainElementObject$2 = tmpChainElementObject$1[tmpChainRootComputed$2];
-    tmpCalleeParam = tmpChainElementObject$2;
+    const tmpChainRootComputed$3 = $('z');
+    const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
+    tmpCalleeParam = tmpChainElementObject$3;
   }
 }
 const tmpChainElementCall = $(tmpCalleeParam);
-const tmpIfTest$2 = tmpChainElementCall != null;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpChainElementCall != null;
+if (tmpIfTest$3) {
   tmpChainElementCall.call($, 100);
 }
 `````

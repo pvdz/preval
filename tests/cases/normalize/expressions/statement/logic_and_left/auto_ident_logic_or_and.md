@@ -37,9 +37,9 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
   tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
   if (tmpIfTest) {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(2);
-    tmpIfTest = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpIfTest = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
 if (tmpIfTest) {
@@ -59,8 +59,8 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
   tmpIfTest = $(tmpCalleeParam$1);
   if (tmpIfTest) {
-    const tmpCalleeParam$2 = $(2);
-    tmpIfTest = $(tmpCalleeParam$2);
+    const tmpCalleeParam$3 = $(2);
+    tmpIfTest = $(tmpCalleeParam$3);
   }
 }
 if (tmpIfTest) {

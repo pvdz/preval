@@ -80,8 +80,8 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $('x');
   const varInitAssignLhsComputedObj = $(c);
@@ -93,12 +93,12 @@ if (tmpIfTest$2) {
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   $('fail1');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $('fail2');
 }
 $(a, b, c, d, e);
@@ -122,8 +122,8 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $('x');
   const varInitAssignLhsComputedObj = $(c);
@@ -132,12 +132,12 @@ if (tmpIfTest$2) {
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
   a = 7;
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   $('fail1');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $('fail2');
 }
 $(a, b, c, 3, 4);

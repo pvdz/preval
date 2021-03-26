@@ -40,8 +40,8 @@ const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  a = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  a = tmpChainElementObject$3;
 }
 let tmpIfTest = a;
 $(a);
@@ -58,8 +58,8 @@ const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  SSA_a = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  SSA_a = tmpChainElementObject$3;
 }
 $(SSA_a);
 `````

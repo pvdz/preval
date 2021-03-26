@@ -40,34 +40,34 @@ let f = function ($$0) {
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
   let arrPatternStep$1 = arrPatternSplat$1[0];
-  let arrPatternSplat$2 = [...arrPatternStep$1];
-  let x = arrPatternSplat$2[0];
+  let arrPatternSplat$3 = [...arrPatternStep$1];
+  let x = arrPatternSplat$3[0];
   return x;
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
-const tmpArrElement$2 = [1, 2, 3];
-const tmpArrElement$1 = [tmpArrElement$2, 4, 5];
+const tmpArrElement$3 = [1, 2, 3];
+const tmpArrElement$1 = [tmpArrElement$3, 4, 5];
 const tmpArrElement = [tmpArrElement$1, 20, 30];
 const tmpCalleeParam$1 = [tmpArrElement, 40, 50];
-const tmpCalleeParam$2 = 200;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = 200;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpArrElement$2 = [1, 2, 3];
-const tmpArrElement$1 = [tmpArrElement$2, 4, 5];
+const tmpArrElement$3 = [1, 2, 3];
+const tmpArrElement$1 = [tmpArrElement$3, 4, 5];
 const tmpArrElement = [tmpArrElement$1, 20, 30];
 const tmpCalleeParam$1 = [tmpArrElement, 40, 50];
 const arrPatternSplat = [...tmpCalleeParam$1];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternStep$1 = arrPatternSplat$1[0];
-const arrPatternSplat$2 = [...arrPatternStep$1];
-const x = arrPatternSplat$2[0];
+const arrPatternSplat$3 = [...arrPatternStep$1];
+const x = arrPatternSplat$3[0];
 $(x);
 `````
 

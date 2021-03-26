@@ -54,9 +54,9 @@ if (tmpCalleeParam) {
   let tmpNestedComplexRhs;
   $(x);
   $(y);
-  const tmpArrElement$2 = $(3);
-  const tmpArrElement$3 = $(4);
-  const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$3];
+  const tmpArrElement$3 = $(3);
+  const tmpArrElement$5 = $(4);
+  const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
   x = arrPatternSplat$1[0];
   y = arrPatternSplat$1[1];
@@ -85,9 +85,9 @@ if (tmpCalleeParam) {
 } else {
   $(SSA_x);
   $(SSA_y);
-  const tmpArrElement$2 = $(3);
-  const tmpArrElement$3 = $(4);
-  const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$3];
+  const tmpArrElement$3 = $(3);
+  const tmpArrElement$5 = $(4);
+  const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
   SSA_x = arrPatternSplat$1[0];
   SSA_y = arrPatternSplat$1[1];

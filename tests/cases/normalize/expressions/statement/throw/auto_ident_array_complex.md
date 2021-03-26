@@ -30,8 +30,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
-const tmpArrElement$2 = $(3);
-const tmpThrowArg = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const tmpThrowArg = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 throw tmpThrowArg;
 `````
 
@@ -39,8 +39,8 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-const tmpThrowArg = [tmpArrElement, 2, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const tmpThrowArg = [tmpArrElement, 2, tmpArrElement$3];
 throw tmpThrowArg;
 `````
 

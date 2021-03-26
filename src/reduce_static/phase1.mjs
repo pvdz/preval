@@ -24,6 +24,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
   const globallyUniqueNamingRegistry = new Map();
   fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
+  const identNameSuffixOffset = new Map(); // <name, int>
+  fdata.identNameSuffixOffset = identNameSuffixOffset;
 
   globals.forEach((_, name) => {
     ASSERT(name);

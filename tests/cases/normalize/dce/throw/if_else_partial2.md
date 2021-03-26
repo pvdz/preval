@@ -50,12 +50,12 @@ let f = function () {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0) {
-    let tmpIfTest$2 = $$0;
+    let tmpIfTest$3 = $$0;
     debugger;
     throw 2;
   };
   const tmpBranchingC = function ($$0) {
-    let tmpIfTest$3 = $$0;
+    let tmpIfTest$5 = $$0;
     debugger;
     $('keep, do not eval');
   };
@@ -63,8 +63,8 @@ let f = function () {
     const tmpReturnArg$1 = tmpBranchingA(tmpIfTest);
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$2 = tmpBranchingB(tmpIfTest);
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$3;
   }
 };
 const tmpCallCallee = $;

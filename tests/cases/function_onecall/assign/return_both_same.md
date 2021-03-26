@@ -91,9 +91,9 @@ const tmpCalleeParam$1 = closure();
 tmpCallCallee$1(tmpCalleeParam$1);
 x = f();
 $(x);
-const tmpCallCallee$2 = $;
-const tmpCalleeParam$2 = closure();
-tmpCallCallee$2(tmpCalleeParam$2);
+const tmpCallCallee$3 = $;
+const tmpCalleeParam$3 = closure();
+tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
 ## Output

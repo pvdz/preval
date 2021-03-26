@@ -48,8 +48,8 @@ const f = r;
 const x = f();
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = x;
-const tmpCalleeParam$2 = typeof f;
-tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = typeof f;
+tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output
@@ -61,8 +61,8 @@ const r = function () {
   return 20;
 };
 const x = r();
-const tmpCalleeParam$2 = typeof r;
-$(x, tmpCalleeParam$2);
+const tmpCalleeParam$3 = typeof r;
+$(x, tmpCalleeParam$3);
 `````
 
 ## Globals

@@ -53,8 +53,8 @@ const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$2 = tmpChainElementObject != null;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpChainElementObject != null;
+  if (tmpIfTest$3) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     a = tmpChainElementObject$1;
@@ -65,7 +65,7 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 
@@ -82,8 +82,8 @@ const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$2 = tmpChainElementObject != null;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpChainElementObject != null;
+  if (tmpIfTest$3) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     SSA_a = tmpChainElementObject$1;

@@ -43,8 +43,8 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$1 = 2;
-const tmpObjLitVal$2 = $(3);
-a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(3);
+a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -60,8 +60,8 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
-const tmpObjLitVal$2 = $(3);
-const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(3);
+const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 const tmpIfTest = SSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

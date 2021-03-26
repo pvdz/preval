@@ -47,8 +47,8 @@ const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpObjLitVal = [null];
 const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
-const tmpCalleeParam$2 = 10;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = 10;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 `````
 

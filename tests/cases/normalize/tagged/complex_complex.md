@@ -26,8 +26,8 @@ $`abc ${$(10)} ${$(20)} def`;
 const tmpCallCallee = $;
 const tmpCalleeParam = ['abc ', ' ', ' def'];
 const tmpCalleeParam$1 = $(10);
-const tmpCalleeParam$2 = $(20);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(20);
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output
@@ -35,8 +35,8 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
 `````js filename=intro
 const tmpCalleeParam = ['abc ', ' ', ' def'];
 const tmpCalleeParam$1 = $(10);
-const tmpCalleeParam$2 = $(20);
-$(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(20);
+$(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Globals

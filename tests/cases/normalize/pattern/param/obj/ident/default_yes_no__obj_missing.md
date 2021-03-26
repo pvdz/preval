@@ -51,38 +51,38 @@ let f = function ($$0) {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4) {
-    let tmpParamBare$2 = $$0;
-    let bindingPatternObjRoot$2 = $$1;
-    let objPatternBeforeDefault$2 = $$2;
-    let x$2 = $$3;
-    let tmpIfTest$2 = $$4;
-    debugger;
-    x$2 = objPatternBeforeDefault$2;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$2, bindingPatternObjRoot$2, objPatternBeforeDefault$2, x$2, tmpIfTest$2);
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4) {
     let tmpParamBare$3 = $$0;
     let bindingPatternObjRoot$3 = $$1;
     let objPatternBeforeDefault$3 = $$2;
     let x$3 = $$3;
     let tmpIfTest$3 = $$4;
     debugger;
-    return x$3;
+    x$3 = objPatternBeforeDefault$3;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$3, bindingPatternObjRoot$3, objPatternBeforeDefault$3, x$3, tmpIfTest$3);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4) {
+    let tmpParamBare$5 = $$0;
+    let bindingPatternObjRoot$5 = $$1;
+    let objPatternBeforeDefault$5 = $$2;
+    let x$5 = $$3;
+    let tmpIfTest$5 = $$4;
+    debugger;
+    return x$5;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$2 = tmpBranchingA(tmpParamBare, bindingPatternObjRoot, objPatternBeforeDefault, x, tmpIfTest);
-    return tmpReturnArg$2;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingB(tmpParamBare, bindingPatternObjRoot, objPatternBeforeDefault, x, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA(tmpParamBare, bindingPatternObjRoot, objPatternBeforeDefault, x, tmpIfTest);
     return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(tmpParamBare, bindingPatternObjRoot, objPatternBeforeDefault, x, tmpIfTest);
+    return tmpReturnArg$5;
   }
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = { b: 2, c: 3 };
-const tmpCalleeParam$2 = 10;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = 10;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -95,8 +95,8 @@ const f = function ($$0) {
   const objPatternBeforeDefault = tmpParamBare.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$2 = $('pass');
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = $('pass');
+    return tmpReturnArg$3;
   } else {
     return objPatternBeforeDefault;
   }

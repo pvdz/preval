@@ -31,8 +31,8 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$1 = 2;
-const tmpObjLitVal$2 = $(3);
-a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(3);
+a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
@@ -44,8 +44,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpObjLitVal$2 = $(3);
-const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(3);
+const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 const tmpCalleeParam = { [SSA_a]: 10 };
 $(tmpCalleeParam);
 $(SSA_a);

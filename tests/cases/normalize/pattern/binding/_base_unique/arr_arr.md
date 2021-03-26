@@ -23,7 +23,7 @@ $(x);
 }
 const [[x]] = [[100]];
 {
-  let x$2 = 1;
+  let x$3 = 1;
 }
 $(x);
 `````
@@ -38,7 +38,7 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const x = arrPatternSplat$1[0];
-let x$2 = 1;
+let x$3 = 1;
 $(x);
 `````
 

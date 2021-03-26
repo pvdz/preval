@@ -64,8 +64,8 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   a = tmpCallCallee(tmpCalleeParam);
@@ -76,17 +76,17 @@ if (tmpIfTest$2) {
   }
   if (a) {
   } else {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(2);
-    a = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    a = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   $('fail1');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $('fail2');
 }
 $(a);
@@ -108,8 +108,8 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
   if (a) {
@@ -118,16 +118,16 @@ if (tmpIfTest$2) {
   }
   if (a) {
   } else {
-    const tmpCalleeParam$2 = $(2);
-    a = $(tmpCalleeParam$2);
+    const tmpCalleeParam$3 = $(2);
+    a = $(tmpCalleeParam$3);
   }
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   $('fail1');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $('fail2');
 }
 $(a);

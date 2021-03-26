@@ -71,17 +71,17 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   const tmpUnaryArg = $(x);
   a = typeof tmpUnaryArg;
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   $('fail1');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $('fail2');
 }
 $(a, x);
@@ -103,17 +103,17 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   const tmpUnaryArg = $(1);
   a = typeof tmpUnaryArg;
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   $('fail1');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $('fail2');
 }
 $(a, 1);

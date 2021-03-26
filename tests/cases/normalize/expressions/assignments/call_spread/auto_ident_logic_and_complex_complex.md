@@ -33,9 +33,9 @@ const tmpCallCallee$1 = $;
 const tmpCalleeParam = $(1);
 a = tmpCallCallee$1(tmpCalleeParam);
 if (a) {
-  const tmpCallCallee$2 = $;
+  const tmpCallCallee$3 = $;
   const tmpCalleeParam$1 = $(2);
-  a = tmpCallCallee$2(tmpCalleeParam$1);
+  a = tmpCallCallee$3(tmpCalleeParam$1);
 }
 let tmpCalleeParamSpread = a;
 tmpCallCallee(...tmpCalleeParamSpread);

@@ -41,15 +41,15 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-  const tmpIfTest$1 = tmpChainElementObject$2 != null;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  const tmpIfTest$1 = tmpChainElementObject$3 != null;
   if (tmpIfTest$1) {
-    const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+    const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     a = tmpChainElementCall;
   }
 }
-let tmpObjLitVal$2 = a;
-const tmpCalleeParam = { x: tmpObjLitVal$2 };
+let tmpObjLitVal$3 = a;
+const tmpCalleeParam = { x: tmpObjLitVal$3 };
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -65,15 +65,15 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-  const tmpIfTest$1 = tmpChainElementObject$2 != null;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  const tmpIfTest$1 = tmpChainElementObject$3 != null;
   if (tmpIfTest$1) {
-    const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+    const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     SSA_a = tmpChainElementCall;
   }
 }
-const tmpObjLitVal$2 = SSA_a;
-const tmpCalleeParam = { x: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = SSA_a;
+const tmpCalleeParam = { x: tmpObjLitVal$3 };
 $(tmpCalleeParam);
 $(SSA_a);
 `````

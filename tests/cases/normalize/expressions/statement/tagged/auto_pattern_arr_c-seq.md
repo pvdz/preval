@@ -35,8 +35,8 @@ const tmpCalleeParam = ['before ', ' after'];
 $(10);
 $(20);
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$2 = [1, 2];
-const tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$2);
+const tmpCalleeParam$3 = [1, 2];
+const tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
@@ -50,8 +50,8 @@ const a = arrPatternSplat[0];
 const tmpCalleeParam = ['before ', ' after'];
 $(10);
 $(20);
-const tmpCalleeParam$2 = [1, 2];
-const tmpCalleeParam$1 = $(tmpCalleeParam$2);
+const tmpCalleeParam$3 = [1, 2];
+const tmpCalleeParam$1 = $(tmpCalleeParam$3);
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

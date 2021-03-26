@@ -52,15 +52,15 @@ let tmpBinBothLhs = a;
 a = undefined;
 const tmpChainRootCall$1 = $;
 const tmpChainElementCall$1 = tmpChainRootCall$1(b);
-const tmpIfTest$2 = tmpChainElementCall$1 != null;
-if (tmpIfTest$2) {
-  const tmpChainRootComputed$2 = $('x');
-  const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-  const tmpIfTest$3 = tmpChainElementObject$2 != null;
-  if (tmpIfTest$3) {
-    const tmpChainRootComputed$3 = $('y');
-    const tmpChainElementObject$3 = tmpChainElementObject$2[tmpChainRootComputed$3];
-    a = tmpChainElementObject$3;
+const tmpIfTest$3 = tmpChainElementCall$1 != null;
+if (tmpIfTest$3) {
+  const tmpChainRootComputed$3 = $('x');
+  const tmpChainElementObject$3 = tmpChainElementCall$1[tmpChainRootComputed$3];
+  const tmpIfTest$5 = tmpChainElementObject$3 != null;
+  if (tmpIfTest$5) {
+    const tmpChainRootComputed$5 = $('y');
+    const tmpChainElementObject$5 = tmpChainElementObject$3[tmpChainRootComputed$5];
+    a = tmpChainElementObject$5;
   }
 }
 let tmpBinBothRhs = a;
@@ -90,15 +90,15 @@ if (tmpIfTest) {
 const tmpBinBothLhs = SSA_a;
 let SSA_a$1 = undefined;
 const tmpChainElementCall$1 = $(b);
-const tmpIfTest$2 = tmpChainElementCall$1 != null;
-if (tmpIfTest$2) {
-  const tmpChainRootComputed$2 = $('x');
-  const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-  const tmpIfTest$3 = tmpChainElementObject$2 != null;
-  if (tmpIfTest$3) {
-    const tmpChainRootComputed$3 = $('y');
-    const tmpChainElementObject$3 = tmpChainElementObject$2[tmpChainRootComputed$3];
-    SSA_a$1 = tmpChainElementObject$3;
+const tmpIfTest$3 = tmpChainElementCall$1 != null;
+if (tmpIfTest$3) {
+  const tmpChainRootComputed$3 = $('x');
+  const tmpChainElementObject$3 = tmpChainElementCall$1[tmpChainRootComputed$3];
+  const tmpIfTest$5 = tmpChainElementObject$3 != null;
+  if (tmpIfTest$5) {
+    const tmpChainRootComputed$5 = $('y');
+    const tmpChainElementObject$5 = tmpChainElementObject$3[tmpChainRootComputed$5];
+    SSA_a$1 = tmpChainElementObject$5;
   }
 }
 const tmpBinBothRhs = SSA_a$1;

@@ -43,9 +43,9 @@ const f = function ($$0) {
   let x = $$0;
   debugger;
   const tmpLabeledBlockFunc = function ($$0) {
-    let x$2 = $$0;
+    let x$3 = $$0;
     debugger;
-    const tmpReturnArg = tmpAfterLabel(x$2);
+    const tmpReturnArg = tmpAfterLabel(x$3);
     return tmpReturnArg;
   };
   const tmpAfterLabel = function ($$0) {
@@ -54,8 +54,8 @@ const f = function ($$0) {
     const tmpReturnArg$1 = $(x$1);
     return tmpReturnArg$1;
   };
-  const tmpReturnArg$2 = tmpLabeledBlockFunc(x);
-  return tmpReturnArg$2;
+  const tmpReturnArg$3 = tmpLabeledBlockFunc(x);
+  return tmpReturnArg$3;
 };
 f(1);
 `````

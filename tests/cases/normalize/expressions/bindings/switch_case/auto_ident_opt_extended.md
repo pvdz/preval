@@ -58,12 +58,12 @@ if (tmpIfTest$1) {
   b = { x: tmpObjLitVal };
   a = undefined;
   const tmpChainRootProp = b;
-  const tmpIfTest$2 = tmpChainRootProp != null;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpChainRootProp != null;
+  if (tmpIfTest$3) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    a = tmpChainElementObject$2;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+    a = tmpChainElementObject$3;
   }
   $(a);
 }
@@ -76,12 +76,12 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 let SSA_a = undefined;
-const tmpIfTest$2 = b != null;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = b != null;
+if (tmpIfTest$3) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  SSA_a = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  SSA_a = tmpChainElementObject$3;
 }
 $(SSA_a);
 `````

@@ -38,8 +38,8 @@ const tmpChainRootProp = b;
 const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  const tmpIfTest$2 = tmpChainElementObject != null;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpChainElementObject != null;
+  if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     a = tmpChainElementObject$1;
   }
@@ -57,8 +57,8 @@ let SSA_a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = b.x;
-  const tmpIfTest$2 = tmpChainElementObject != null;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpChainElementObject != null;
+  if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     SSA_a = tmpChainElementObject$1;
   }

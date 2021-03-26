@@ -32,8 +32,8 @@ const objPatternNoDefault = bindingPatternObjRoot.x;
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$2 = undefined;
-const y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = undefined;
+const y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 $(y);
 `````
 

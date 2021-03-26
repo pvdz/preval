@@ -25,34 +25,34 @@ $('ok');
 ## Normalized
 
 `````js filename=intro
-const tmpArrElement$2 = [1, 2, 3];
-const tmpArrElement$1 = [tmpArrElement$2, 4, 5];
+const tmpArrElement$3 = [1, 2, 3];
+const tmpArrElement$1 = [tmpArrElement$3, 4, 5];
 const tmpArrElement = [tmpArrElement$1, 20, 30];
 const bindingPatternArrRoot = [tmpArrElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternStep$1 = arrPatternSplat$1[0];
-const arrPatternSplat$2 = [...arrPatternStep$1];
-const arrPatternStep$2 = arrPatternSplat$2[0];
-const arrPatternSplat$3 = [...arrPatternStep$2];
+const arrPatternSplat$3 = [...arrPatternStep$1];
+const arrPatternStep$3 = arrPatternSplat$3[0];
+const arrPatternSplat$5 = [...arrPatternStep$3];
 $('ok');
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpArrElement$2 = [1, 2, 3];
-const tmpArrElement$1 = [tmpArrElement$2, 4, 5];
+const tmpArrElement$3 = [1, 2, 3];
+const tmpArrElement$1 = [tmpArrElement$3, 4, 5];
 const tmpArrElement = [tmpArrElement$1, 20, 30];
 const bindingPatternArrRoot = [tmpArrElement, 40, 50];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternStep$1 = arrPatternSplat$1[0];
-const arrPatternSplat$2 = [...arrPatternStep$1];
-const arrPatternStep$2 = arrPatternSplat$2[0];
-[...arrPatternStep$2];
+const arrPatternSplat$3 = [...arrPatternStep$1];
+const arrPatternStep$3 = arrPatternSplat$3[0];
+[...arrPatternStep$3];
 $('ok');
 `````
 

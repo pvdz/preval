@@ -33,13 +33,13 @@ const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(1);
 let tmpTemplateExpr = tmpCallCallee$1(tmpCalleeParam$1);
 if (tmpTemplateExpr) {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(1);
-  tmpTemplateExpr = tmpCallCallee$2(tmpCalleeParam$2);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(1);
+  tmpTemplateExpr = tmpCallCallee$3(tmpCalleeParam$3);
   if (tmpTemplateExpr) {
-    const tmpCallCallee$3 = $;
-    const tmpCalleeParam$3 = $(2);
-    tmpTemplateExpr = tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpCallCallee$5 = $;
+    const tmpCalleeParam$5 = $(2);
+    tmpTemplateExpr = tmpCallCallee$5(tmpCalleeParam$5);
   }
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
@@ -54,11 +54,11 @@ const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(1);
 let tmpTemplateExpr = $(tmpCalleeParam$1);
 if (tmpTemplateExpr) {
-  const tmpCalleeParam$2 = $(1);
-  tmpTemplateExpr = $(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(1);
+  tmpTemplateExpr = $(tmpCalleeParam$3);
   if (tmpTemplateExpr) {
-    const tmpCalleeParam$3 = $(2);
-    tmpTemplateExpr = $(tmpCalleeParam$3);
+    const tmpCalleeParam$5 = $(2);
+    tmpTemplateExpr = $(tmpCalleeParam$5);
   }
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;

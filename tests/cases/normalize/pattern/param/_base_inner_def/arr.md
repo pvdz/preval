@@ -54,25 +54,6 @@ let f = function ($$0) {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4, $$5) {
-    let tmpParamBare$2 = $$0;
-    let bindingPatternArrRoot$2 = $$1;
-    let arrPatternSplat$2 = $$2;
-    let arrPatternBeforeDefault$2 = $$3;
-    let x$2 = $$4;
-    let tmpIfTest$2 = $$5;
-    debugger;
-    x$2 = arrPatternBeforeDefault$2;
-    const tmpReturnArg$1 = tmpBranchingC(
-      tmpParamBare$2,
-      bindingPatternArrRoot$2,
-      arrPatternSplat$2,
-      arrPatternBeforeDefault$2,
-      x$2,
-      tmpIfTest$2,
-    );
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4, $$5) {
     let tmpParamBare$3 = $$0;
     let bindingPatternArrRoot$3 = $$1;
     let arrPatternSplat$3 = $$2;
@@ -80,14 +61,33 @@ let f = function ($$0) {
     let x$3 = $$4;
     let tmpIfTest$3 = $$5;
     debugger;
-    return x$3;
+    x$3 = arrPatternBeforeDefault$3;
+    const tmpReturnArg$1 = tmpBranchingC(
+      tmpParamBare$3,
+      bindingPatternArrRoot$3,
+      arrPatternSplat$3,
+      arrPatternBeforeDefault$3,
+      x$3,
+      tmpIfTest$3,
+    );
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+    let tmpParamBare$5 = $$0;
+    let bindingPatternArrRoot$5 = $$1;
+    let arrPatternSplat$5 = $$2;
+    let arrPatternBeforeDefault$5 = $$3;
+    let x$5 = $$4;
+    let tmpIfTest$5 = $$5;
+    debugger;
+    return x$5;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$2 = tmpBranchingA(tmpParamBare, bindingPatternArrRoot, arrPatternSplat, arrPatternBeforeDefault, x, tmpIfTest);
-    return tmpReturnArg$2;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingB(tmpParamBare, bindingPatternArrRoot, arrPatternSplat, arrPatternBeforeDefault, x, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA(tmpParamBare, bindingPatternArrRoot, arrPatternSplat, arrPatternBeforeDefault, x, tmpIfTest);
     return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(tmpParamBare, bindingPatternArrRoot, arrPatternSplat, arrPatternBeforeDefault, x, tmpIfTest);
+    return tmpReturnArg$5;
   }
 };
 `````

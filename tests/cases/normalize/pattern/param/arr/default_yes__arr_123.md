@@ -47,35 +47,35 @@ let f = function ($$0) {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpParamBare$2 = $$0;
-    let bindingPatternArrRoot$2 = $$1;
-    let tmpIfTest$2 = $$2;
-    debugger;
-    bindingPatternArrRoot$2 = tmpParamBare$2;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$2, bindingPatternArrRoot$2, tmpIfTest$2);
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
     let tmpParamBare$3 = $$0;
     let bindingPatternArrRoot$3 = $$1;
     let tmpIfTest$3 = $$2;
     debugger;
-    let arrPatternSplat$1 = [...bindingPatternArrRoot$3];
+    bindingPatternArrRoot$3 = tmpParamBare$3;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$3, bindingPatternArrRoot$3, tmpIfTest$3);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let tmpParamBare$5 = $$0;
+    let bindingPatternArrRoot$5 = $$1;
+    let tmpIfTest$5 = $$2;
+    debugger;
+    let arrPatternSplat$1 = [...bindingPatternArrRoot$5];
     return 'ok';
   };
   if (tmpIfTest) {
-    const tmpReturnArg$2 = tmpBranchingA(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
-    return tmpReturnArg$2;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingB(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
     return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    return tmpReturnArg$5;
   }
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = [1, 2, 3];
-const tmpCalleeParam$2 = 200;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = 200;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -87,9 +87,9 @@ const f = function ($$0) {
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
   const tmpBranchingC = function ($$0) {
-    const bindingPatternArrRoot$3 = $$0;
+    const bindingPatternArrRoot$5 = $$0;
     debugger;
-    [...bindingPatternArrRoot$3];
+    [...bindingPatternArrRoot$5];
     return 'ok';
   };
   if (tmpIfTest) {
@@ -97,8 +97,8 @@ const f = function ($$0) {
     const tmpReturnArg = tmpBranchingC(SSA_bindingPatternArrRoot$1);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$3 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = tmpBranchingC(tmpParamBare);
+    return tmpReturnArg$5;
   }
 };
 const tmpCalleeParam$1 = [1, 2, 3];

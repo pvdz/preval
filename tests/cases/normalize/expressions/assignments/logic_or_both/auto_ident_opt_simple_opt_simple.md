@@ -50,13 +50,13 @@ if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp$1 = b;
-  const tmpIfTest$2 = tmpChainRootProp$1 != null;
-  if (tmpIfTest$2) {
-    const tmpChainElementObject$2 = tmpChainRootProp$1.x;
-    const tmpIfTest$3 = tmpChainElementObject$2 != null;
-    if (tmpIfTest$3) {
-      const tmpChainElementObject$3 = tmpChainElementObject$2.y;
-      tmpNestedComplexRhs = tmpChainElementObject$3;
+  const tmpIfTest$3 = tmpChainRootProp$1 != null;
+  if (tmpIfTest$3) {
+    const tmpChainElementObject$3 = tmpChainRootProp$1.x;
+    const tmpIfTest$5 = tmpChainElementObject$3 != null;
+    if (tmpIfTest$5) {
+      const tmpChainElementObject$5 = tmpChainElementObject$3.y;
+      tmpNestedComplexRhs = tmpChainElementObject$5;
     }
   }
   a = tmpNestedComplexRhs;
@@ -85,13 +85,13 @@ let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$2 = b != null;
-  if (tmpIfTest$2) {
-    const tmpChainElementObject$2 = b.x;
-    const tmpIfTest$3 = tmpChainElementObject$2 != null;
-    if (tmpIfTest$3) {
-      const tmpChainElementObject$3 = tmpChainElementObject$2.y;
-      tmpNestedComplexRhs = tmpChainElementObject$3;
+  const tmpIfTest$3 = b != null;
+  if (tmpIfTest$3) {
+    const tmpChainElementObject$3 = b.x;
+    const tmpIfTest$5 = tmpChainElementObject$3 != null;
+    if (tmpIfTest$5) {
+      const tmpChainElementObject$5 = tmpChainElementObject$3.y;
+      tmpNestedComplexRhs = tmpChainElementObject$5;
     }
   }
   SSA_a = tmpNestedComplexRhs;

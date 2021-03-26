@@ -40,76 +40,76 @@ let f = function () {
   const tmpCalleeParam = $(0);
   a = tmpCallCallee(tmpCalleeParam);
   const tmpBranchingA = function ($$0, $$1) {
-    let tmpCallCallee$3 = $$0;
-    let tmpCalleeParam$3 = $$1;
+    let tmpCallCallee$5 = $$0;
+    let tmpCalleeParam$5 = $$1;
     debugger;
-    const tmpReturnArg$2 = tmpBranchingC(tmpCallCallee$3, tmpCalleeParam$3);
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = tmpBranchingC(tmpCallCallee$5, tmpCalleeParam$5);
+    return tmpReturnArg$3;
   };
   const tmpBranchingB = function ($$0, $$1) {
-    let tmpCallCallee$4 = $$0;
-    let tmpCalleeParam$4 = $$1;
+    let tmpCallCallee$7 = $$0;
+    let tmpCalleeParam$7 = $$1;
     debugger;
-    const tmpCallCallee$5 = $;
-    const tmpCalleeParam$5 = $(1);
-    a = tmpCallCallee$5(tmpCalleeParam$5);
+    const tmpCallCallee$9 = $;
+    const tmpCalleeParam$9 = $(1);
+    a = tmpCallCallee$9(tmpCalleeParam$9);
     const tmpBranchingA$1 = function ($$0, $$1, $$2, $$3) {
-      let tmpCallCallee$8 = $$0;
-      let tmpCalleeParam$8 = $$1;
-      let tmpCallCallee$9 = $$2;
-      let tmpCalleeParam$9 = $$3;
+      let tmpCallCallee$15 = $$0;
+      let tmpCalleeParam$15 = $$1;
+      let tmpCallCallee$17 = $$2;
+      let tmpCalleeParam$17 = $$3;
       debugger;
-      const tmpCallCallee$10 = $;
-      const tmpCalleeParam$10 = $(2);
-      a = tmpCallCallee$10(tmpCalleeParam$10);
-      const tmpReturnArg$3 = tmpBranchingC$1(tmpCallCallee$8, tmpCalleeParam$8, tmpCallCallee$9, tmpCalleeParam$9);
-      return tmpReturnArg$3;
-    };
-    const tmpBranchingB$1 = function ($$0, $$1, $$2, $$3) {
-      let tmpCallCallee$11 = $$0;
-      let tmpCalleeParam$11 = $$1;
-      let tmpCallCallee$12 = $$2;
-      let tmpCalleeParam$12 = $$3;
-      debugger;
-      const tmpReturnArg$4 = tmpBranchingC$1(tmpCallCallee$11, tmpCalleeParam$11, tmpCallCallee$12, tmpCalleeParam$12);
-      return tmpReturnArg$4;
-    };
-    const tmpBranchingC$1 = function ($$0, $$1, $$2, $$3) {
-      let tmpCallCallee$13 = $$0;
-      let tmpCalleeParam$13 = $$1;
-      let tmpCallCallee$14 = $$2;
-      let tmpCalleeParam$14 = $$3;
-      debugger;
-      const tmpReturnArg$5 = tmpBranchingC(tmpCallCallee$13, tmpCalleeParam$13);
+      const tmpCallCallee$19 = $;
+      const tmpCalleeParam$19 = $(2);
+      a = tmpCallCallee$19(tmpCalleeParam$19);
+      const tmpReturnArg$5 = tmpBranchingC$1(tmpCallCallee$15, tmpCalleeParam$15, tmpCallCallee$17, tmpCalleeParam$17);
       return tmpReturnArg$5;
     };
-    if (a) {
-      const tmpReturnArg$6 = tmpBranchingA$1(tmpCallCallee$4, tmpCalleeParam$4, tmpCallCallee$5, tmpCalleeParam$5);
-      return tmpReturnArg$6;
-    } else {
-      const tmpReturnArg$7 = tmpBranchingB$1(tmpCallCallee$4, tmpCalleeParam$4, tmpCallCallee$5, tmpCalleeParam$5);
+    const tmpBranchingB$1 = function ($$0, $$1, $$2, $$3) {
+      let tmpCallCallee$21 = $$0;
+      let tmpCalleeParam$21 = $$1;
+      let tmpCallCallee$23 = $$2;
+      let tmpCalleeParam$23 = $$3;
+      debugger;
+      const tmpReturnArg$7 = tmpBranchingC$1(tmpCallCallee$21, tmpCalleeParam$21, tmpCallCallee$23, tmpCalleeParam$23);
       return tmpReturnArg$7;
+    };
+    const tmpBranchingC$1 = function ($$0, $$1, $$2, $$3) {
+      let tmpCallCallee$25 = $$0;
+      let tmpCalleeParam$25 = $$1;
+      let tmpCallCallee$27 = $$2;
+      let tmpCalleeParam$27 = $$3;
+      debugger;
+      const tmpReturnArg$9 = tmpBranchingC(tmpCallCallee$25, tmpCalleeParam$25);
+      return tmpReturnArg$9;
+    };
+    if (a) {
+      const tmpReturnArg$11 = tmpBranchingA$1(tmpCallCallee$7, tmpCalleeParam$7, tmpCallCallee$9, tmpCalleeParam$9);
+      return tmpReturnArg$11;
+    } else {
+      const tmpReturnArg$13 = tmpBranchingB$1(tmpCallCallee$7, tmpCalleeParam$7, tmpCallCallee$9, tmpCalleeParam$9);
+      return tmpReturnArg$13;
     }
   };
   const tmpBranchingC = function ($$0, $$1) {
-    let tmpCallCallee$7 = $$0;
-    let tmpCalleeParam$7 = $$1;
+    let tmpCallCallee$13 = $$0;
+    let tmpCalleeParam$13 = $$1;
     debugger;
     let tmpReturnArg$1 = a;
     return tmpReturnArg$1;
   };
   if (a) {
-    const tmpReturnArg$8 = tmpBranchingA(tmpCallCallee, tmpCalleeParam);
-    return tmpReturnArg$8;
+    const tmpReturnArg$15 = tmpBranchingA(tmpCallCallee, tmpCalleeParam);
+    return tmpReturnArg$15;
   } else {
-    const tmpReturnArg$9 = tmpBranchingB(tmpCallCallee, tmpCalleeParam);
-    return tmpReturnArg$9;
+    const tmpReturnArg$17 = tmpBranchingB(tmpCallCallee, tmpCalleeParam);
+    return tmpReturnArg$17;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$15 = $;
-const tmpCalleeParam$15 = f();
-tmpCallCallee$15(tmpCalleeParam$15);
+const tmpCallCallee$29 = $;
+const tmpCalleeParam$29 = f();
+tmpCallCallee$29(tmpCalleeParam$29);
 $(a);
 `````
 
@@ -122,16 +122,16 @@ const f = function () {
   a = $(tmpCalleeParam);
   const tmpBranchingB = function () {
     debugger;
-    const tmpCalleeParam$5 = $(1);
-    a = $(tmpCalleeParam$5);
+    const tmpCalleeParam$9 = $(1);
+    a = $(tmpCalleeParam$9);
     if (a) {
-      const tmpCalleeParam$10 = $(2);
-      a = $(tmpCalleeParam$10);
-      const tmpReturnArg$3 = tmpBranchingC();
-      return tmpReturnArg$3;
+      const tmpCalleeParam$19 = $(2);
+      a = $(tmpCalleeParam$19);
+      const tmpReturnArg$5 = tmpBranchingC();
+      return tmpReturnArg$5;
     } else {
-      const tmpReturnArg$7 = tmpBranchingC();
-      return tmpReturnArg$7;
+      const tmpReturnArg$13 = tmpBranchingC();
+      return tmpReturnArg$13;
     }
   };
   const tmpBranchingC = function () {
@@ -140,16 +140,16 @@ const f = function () {
     return tmpReturnArg$1;
   };
   if (a) {
-    const tmpReturnArg$8 = tmpBranchingC();
-    return tmpReturnArg$8;
+    const tmpReturnArg$15 = tmpBranchingC();
+    return tmpReturnArg$15;
   } else {
-    const tmpReturnArg$9 = tmpBranchingB();
-    return tmpReturnArg$9;
+    const tmpReturnArg$17 = tmpBranchingB();
+    return tmpReturnArg$17;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$15 = f();
-$(tmpCalleeParam$15);
+const tmpCalleeParam$29 = f();
+$(tmpCalleeParam$29);
 $(a);
 `````
 

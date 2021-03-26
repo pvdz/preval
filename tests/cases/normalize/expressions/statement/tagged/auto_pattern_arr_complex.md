@@ -33,8 +33,8 @@ let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$2 = [1, 2];
-const tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$2);
+const tmpCalleeParam$3 = [1, 2];
+const tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
@@ -46,8 +46,8 @@ const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCalleeParam$2 = [1, 2];
-const tmpCalleeParam$1 = $(tmpCalleeParam$2);
+const tmpCalleeParam$3 = [1, 2];
+const tmpCalleeParam$1 = $(tmpCalleeParam$3);
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

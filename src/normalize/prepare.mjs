@@ -41,10 +41,14 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
   fdata.globalNameCounter = 0;
   const globallyUniqueNamingRegistry = new Map();
   fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
+  const identNameSuffixOffset = new Map(); // <name, int>
+  fdata.identNameSuffixOffset = identNameSuffixOffset;
   globals.forEach((_, name) => registerGlobalIdent(fdata, name, name, { isImplicitGlobal: false, knownBuiltin: true }));
 
   const globallyUniqueLabelRegistry = new Map();
   fdata.globallyUniqueLabelRegistry = globallyUniqueLabelRegistry;
+  const labelNameSuffixOffset = new Map(); // <name, int>
+  fdata.labelNameSuffixOffset = identNameSuffixOffset;
 
   const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
   fdata.imports = imports;
@@ -519,10 +523,10 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
       }
 
       case 'LabeledStatement:before': {
-        labelStack.push(node);
         vlog('Label:', node.label.name);
+        labelStack.push(node);
         node.$p.originalLabelName = node.label.name;
-        const uniqueName = createUniqueGlobalLabel(node.label.name, globallyUniqueLabelRegistry);
+        const uniqueName = createUniqueGlobalLabel(node.label.name, fdata);
         registerGlobalLabel(fdata, uniqueName, node.label.name, node);
         if (node.label.name !== uniqueName) {
           vlog('- Unique label name:', uniqueName);

@@ -43,12 +43,12 @@ let f = function () {
     return 2;
   };
   const tmpBranchingB = function ($$0) {
-    let tmpIfTest$2 = $$0;
+    let tmpIfTest$3 = $$0;
     debugger;
     return 3;
   };
   const tmpBranchingC = function ($$0) {
-    let tmpIfTest$3 = $$0;
+    let tmpIfTest$5 = $$0;
     debugger;
     $('fail');
   };

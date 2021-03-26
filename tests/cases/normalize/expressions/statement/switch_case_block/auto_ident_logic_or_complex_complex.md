@@ -55,8 +55,8 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
-  const tmpIfTest$2 = tmpCallCallee(tmpCalleeParam);
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpCallCallee(tmpCalleeParam);
+  if (tmpIfTest$3) {
   } else {
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(2);
@@ -80,8 +80,8 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpCalleeParam = $(0);
-  const tmpIfTest$2 = $(tmpCalleeParam);
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = $(tmpCalleeParam);
+  if (tmpIfTest$3) {
   } else {
     const tmpCalleeParam$1 = $(2);
     $(tmpCalleeParam$1);

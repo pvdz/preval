@@ -47,9 +47,9 @@ a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs;
-  const tmpObjLitVal$2 = $(3);
-  const tmpObjLitVal$3 = $(4);
-  const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$3 };
+  const tmpObjLitVal$3 = $(3);
+  const tmpObjLitVal$5 = $(4);
+  const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
   x = tmpNestedAssignObjPatternRhs$1.x;
   y = tmpNestedAssignObjPatternRhs$1.y;
   tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs$1;
@@ -71,9 +71,9 @@ let SSA_y = tmpNestedAssignObjPatternRhs.y;
 let SSA_a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
-  const tmpObjLitVal$2 = $(3);
-  const tmpObjLitVal$3 = $(4);
-  const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$3 };
+  const tmpObjLitVal$3 = $(3);
+  const tmpObjLitVal$5 = $(4);
+  const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
   SSA_x = tmpNestedAssignObjPatternRhs$1.x;
   SSA_y = tmpNestedAssignObjPatternRhs$1.y;
   SSA_a = tmpNestedAssignObjPatternRhs$1;

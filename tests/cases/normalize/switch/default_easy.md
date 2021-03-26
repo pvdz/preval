@@ -49,8 +49,8 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   $(1);
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$3) {
   $(2);
 }
 `````

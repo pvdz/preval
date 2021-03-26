@@ -53,8 +53,8 @@ let f = function ($$0) {
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam$2 = f();
-tmpCallCallee(tmpCalleeParam$2);
+const tmpCalleeParam$3 = f();
+tmpCallCallee(tmpCalleeParam$3);
 $(a);
 `````
 

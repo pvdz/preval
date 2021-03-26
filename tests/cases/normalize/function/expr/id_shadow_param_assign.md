@@ -50,8 +50,8 @@ const f = r$1;
 const x = f(10);
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = x;
-const tmpCalleeParam$2 = typeof f;
-tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = typeof f;
+tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output
@@ -63,8 +63,8 @@ const $clone$r__1$0_D10 = function ($$0) {
   return 20;
 };
 $('number');
-const tmpCalleeParam$2 = typeof $clone$r__1$0_D10;
-$(20, tmpCalleeParam$2);
+const tmpCalleeParam$3 = typeof $clone$r__1$0_D10;
+$(20, tmpCalleeParam$3);
 `````
 
 ## Globals

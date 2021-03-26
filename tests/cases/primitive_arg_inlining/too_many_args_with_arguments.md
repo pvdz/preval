@@ -46,10 +46,10 @@ let f = function ($$0) {
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam$2 = $(2);
-const tmpCalleeParam$3 = $(3);
-const tmpCalleeParam$4 = $(4);
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3, tmpCalleeParam$4);
+const tmpCalleeParam$3 = $(2);
+const tmpCalleeParam$5 = $(3);
+const tmpCalleeParam$7 = $(4);
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
 tmpCallCallee(tmpCalleeParam);
 `````
 

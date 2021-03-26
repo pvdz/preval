@@ -30,7 +30,7 @@ In particular, the pattern's "y" should be replaced with a different name.
   },
 } = 1);
 {
-  let a$2 = 1;
+  let a$3 = 1;
 }
 `````
 
@@ -42,7 +42,7 @@ const tmpAssignObjPatternRhs = 1;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 a$1 = objPatternNoDefault$1.z;
-let a$2 = 1;
+let a$3 = 1;
 `````
 
 ## Output

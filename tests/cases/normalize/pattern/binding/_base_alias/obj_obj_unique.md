@@ -30,7 +30,7 @@ const {
   },
 } = 1;
 {
-  let a$2 = 1;
+  let a$3 = 1;
 }
 `````
 
@@ -42,7 +42,7 @@ const bindingPatternObjRoot = 1;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const a = objPatternNoDefault$1.z;
-let a$2 = 1;
+let a$3 = 1;
 `````
 
 ## Output

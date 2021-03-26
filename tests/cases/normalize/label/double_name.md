@@ -28,11 +28,11 @@ foo: {
 foo: {
   break foo;
 }
-foo_1: {
-  break foo_1;
+foo$1: {
+  break foo$1;
 }
-foo_2: {
-  break foo_2;
+foo$3: {
+  break foo$3;
 }
 `````
 
@@ -42,11 +42,11 @@ foo_2: {
 foo: {
   break foo;
 }
-foo_1: {
-  break foo_1;
+foo$1: {
+  break foo$1;
 }
-foo_2: {
-  break foo_2;
+foo$3: {
+  break foo$3;
 }
 `````
 
@@ -56,11 +56,11 @@ foo_2: {
 foo: {
   break foo;
 }
-foo_1: {
-  break foo_1;
+foo$1: {
+  break foo$1;
 }
-foo_2: {
-  break foo_2;
+foo$3: {
+  break foo$3;
 }
 `````
 

@@ -28,7 +28,7 @@ let i = function ($$0) {
     },
   } = tmpParamBare;
   {
-    let z$2 = 2;
+    let z$3 = 2;
   }
   return z$1;
 };
@@ -45,7 +45,7 @@ let i = function ($$0) {
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let z$1 = objPatternNoDefault$1.z$1;
-  let z$2 = 2;
+  let z$3 = 2;
   return z$1;
 };
 let z = 1;

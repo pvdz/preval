@@ -24,7 +24,7 @@
   x: [y$1],
 } = 1);
 {
-  let y$2 = 1;
+  let y$3 = 1;
 }
 `````
 
@@ -36,7 +36,7 @@ const tmpAssignObjPatternRhs = 1;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const arrPatternSplat = [...objPatternNoDefault];
 y$1 = arrPatternSplat[0];
-let y$2 = 1;
+let y$3 = 1;
 `````
 
 ## Output

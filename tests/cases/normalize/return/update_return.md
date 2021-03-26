@@ -51,24 +51,24 @@ let f = function () {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1) {
-    let x$2 = $$0;
-    let tmpIfTest$2 = $$1;
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC(x$2, tmpIfTest$2);
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function ($$0, $$1) {
     let x$3 = $$0;
     let tmpIfTest$3 = $$1;
     debugger;
-    return x$3;
+    const tmpReturnArg$1 = tmpBranchingC(x$3, tmpIfTest$3);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function ($$0, $$1) {
+    let x$5 = $$0;
+    let tmpIfTest$5 = $$1;
+    debugger;
+    return x$5;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$2 = tmpBranchingA(x, tmpIfTest);
-    return tmpReturnArg$2;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingB(x, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA(x, tmpIfTest);
     return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(x, tmpIfTest);
+    return tmpReturnArg$5;
   }
 };
 const tmpCallCallee = $;

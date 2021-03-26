@@ -41,8 +41,8 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  a = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  a = tmpChainElementObject$3;
 }
 let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
@@ -61,8 +61,8 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  SSA_a = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  SSA_a = tmpChainElementObject$3;
 }
 const tmpObjSpread = SSA_a;
 const tmpCalleeParam = { ...tmpObjSpread };

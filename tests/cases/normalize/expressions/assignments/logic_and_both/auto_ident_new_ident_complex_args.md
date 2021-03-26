@@ -35,14 +35,14 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpNewCallee = $;
 const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam$2 = $(2);
-a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(2);
+a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpNewCallee$1 = $;
-  const tmpCalleeParam$3 = $(1);
-  const tmpCalleeParam$4 = $(2);
-  const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$3, tmpCalleeParam$4);
+  const tmpCalleeParam$5 = $(1);
+  const tmpCalleeParam$7 = $(2);
+  const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -54,13 +54,13 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam$2 = $(2);
-let SSA_a = new $(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(2);
+let SSA_a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
-  const tmpCalleeParam$3 = $(1);
-  const tmpCalleeParam$4 = $(2);
-  const tmpNestedComplexRhs = new $(tmpCalleeParam$3, tmpCalleeParam$4);
+  const tmpCalleeParam$5 = $(1);
+  const tmpCalleeParam$7 = $(2);
+  const tmpNestedComplexRhs = new $(tmpCalleeParam$5, tmpCalleeParam$7);
   SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

@@ -40,16 +40,16 @@ const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  tmpIfTest = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  tmpIfTest = tmpChainElementObject$3;
 }
 if (tmpIfTest) {
   const tmpChainRootProp$1 = b;
-  const tmpIfTest$2 = tmpChainRootProp$1 != null;
-  if (tmpIfTest$2) {
-    const tmpChainElementObject$3 = tmpChainRootProp$1.x;
-    const tmpChainElementObject$4 = tmpChainElementObject$3.y;
-    const tmpChainElementObject$5 = tmpChainElementObject$4.z;
+  const tmpIfTest$3 = tmpChainRootProp$1 != null;
+  if (tmpIfTest$3) {
+    const tmpChainElementObject$5 = tmpChainRootProp$1.x;
+    const tmpChainElementObject$7 = tmpChainElementObject$5.y;
+    const tmpChainElementObject$9 = tmpChainElementObject$7.z;
   }
 }
 $(a);
@@ -67,15 +67,15 @@ const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-  tmpIfTest = tmpChainElementObject$2;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  tmpIfTest = tmpChainElementObject$3;
 }
 if (tmpIfTest) {
-  const tmpIfTest$2 = b != null;
-  if (tmpIfTest$2) {
-    const tmpChainElementObject$3 = b.x;
-    const tmpChainElementObject$4 = tmpChainElementObject$3.y;
-    tmpChainElementObject$4.z;
+  const tmpIfTest$3 = b != null;
+  if (tmpIfTest$3) {
+    const tmpChainElementObject$5 = b.x;
+    const tmpChainElementObject$7 = tmpChainElementObject$5.y;
+    tmpChainElementObject$7.z;
   }
 }
 $(a);

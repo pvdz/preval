@@ -55,11 +55,11 @@ if (tmpIfTest) {
   const tmpAssignComMemLhsProp = $('x');
   const tmpAssignComputedObj = tmpAssignComMemLhsObj;
   const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-  const varInitAssignLhsComputedObj$2 = $(c);
-  const varInitAssignLhsComputedProp$2 = $('y');
-  const varInitAssignLhsComputedRhs$2 = d + e;
-  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-  const tmpAssignComputedRhs = varInitAssignLhsComputedRhs$2;
+  const varInitAssignLhsComputedObj$3 = $(c);
+  const varInitAssignLhsComputedProp$3 = $('y');
+  const varInitAssignLhsComputedRhs$3 = d + e;
+  varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
+  const tmpAssignComputedRhs = varInitAssignLhsComputedRhs$3;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 }
 $(a, b, c, d, e);
@@ -79,9 +79,9 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 const tmpAssignComMemLhsObj = $(b);
 const tmpAssignComMemLhsProp = $('x');
-const varInitAssignLhsComputedObj$2 = $(c);
-const varInitAssignLhsComputedProp$2 = $('y');
-varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 7;
+const varInitAssignLhsComputedObj$3 = $(c);
+const varInitAssignLhsComputedProp$3 = $('y');
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 7;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
 $(a, b, c, 3, 4);
 `````

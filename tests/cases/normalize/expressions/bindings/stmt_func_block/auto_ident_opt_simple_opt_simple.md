@@ -51,105 +51,113 @@ let f = function () {
     let b$1 = $$1;
     let a$1 = $$2;
     let tmpChainRootProp$1 = $$3;
-    let tmpIfTest$2 = $$4;
+    let tmpIfTest$3 = $$4;
     debugger;
-    const tmpChainElementObject$2 = tmpChainRootProp$1.x;
-    const tmpIfTest$3 = tmpChainElementObject$2 != null;
+    const tmpChainElementObject$3 = tmpChainRootProp$1.x;
+    const tmpIfTest$5 = tmpChainElementObject$3 != null;
     const tmpBranchingA$1 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
-      let tmpObjLitVal$4 = $$0;
-      let b$4 = $$1;
-      let a$4 = $$2;
-      let tmpChainRootProp$4 = $$3;
-      let tmpIfTest$6 = $$4;
-      let tmpChainElementObject$4 = $$5;
-      let tmpIfTest$7 = $$6;
+      let tmpObjLitVal$7 = $$0;
+      let b$7 = $$1;
+      let a$7 = $$2;
+      let tmpChainRootProp$7 = $$3;
+      let tmpIfTest$11 = $$4;
+      let tmpChainElementObject$7 = $$5;
+      let tmpIfTest$13 = $$6;
       debugger;
-      const tmpChainElementObject$5 = tmpChainElementObject$4.y;
-      a$4 = tmpChainElementObject$5;
-      const tmpReturnArg = tmpBranchingC$1(tmpObjLitVal$4, b$4, a$4, tmpChainRootProp$4, tmpIfTest$6, tmpChainElementObject$4, tmpIfTest$7);
+      const tmpChainElementObject$9 = tmpChainElementObject$7.y;
+      a$7 = tmpChainElementObject$9;
+      const tmpReturnArg = tmpBranchingC$1(
+        tmpObjLitVal$7,
+        b$7,
+        a$7,
+        tmpChainRootProp$7,
+        tmpIfTest$11,
+        tmpChainElementObject$7,
+        tmpIfTest$13,
+      );
       return tmpReturnArg;
     };
     const tmpBranchingB$1 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
-      let tmpObjLitVal$5 = $$0;
-      let b$5 = $$1;
-      let a$5 = $$2;
-      let tmpChainRootProp$5 = $$3;
-      let tmpIfTest$8 = $$4;
-      let tmpChainElementObject$6 = $$5;
-      let tmpIfTest$9 = $$6;
+      let tmpObjLitVal$9 = $$0;
+      let b$9 = $$1;
+      let a$9 = $$2;
+      let tmpChainRootProp$9 = $$3;
+      let tmpIfTest$15 = $$4;
+      let tmpChainElementObject$11 = $$5;
+      let tmpIfTest$17 = $$6;
       debugger;
       const tmpReturnArg$1 = tmpBranchingC$1(
-        tmpObjLitVal$5,
-        b$5,
-        a$5,
-        tmpChainRootProp$5,
-        tmpIfTest$8,
-        tmpChainElementObject$6,
-        tmpIfTest$9,
+        tmpObjLitVal$9,
+        b$9,
+        a$9,
+        tmpChainRootProp$9,
+        tmpIfTest$15,
+        tmpChainElementObject$11,
+        tmpIfTest$17,
       );
       return tmpReturnArg$1;
     };
     const tmpBranchingC$1 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
-      let tmpObjLitVal$6 = $$0;
-      let b$6 = $$1;
-      let a$6 = $$2;
-      let tmpChainRootProp$6 = $$3;
-      let tmpIfTest$10 = $$4;
-      let tmpChainElementObject$7 = $$5;
-      let tmpIfTest$11 = $$6;
+      let tmpObjLitVal$11 = $$0;
+      let b$11 = $$1;
+      let a$11 = $$2;
+      let tmpChainRootProp$11 = $$3;
+      let tmpIfTest$19 = $$4;
+      let tmpChainElementObject$13 = $$5;
+      let tmpIfTest$21 = $$6;
       debugger;
-      const tmpReturnArg$2 = tmpBranchingC(tmpObjLitVal$6, b$6, a$6, tmpChainRootProp$6, tmpIfTest$10);
-      return tmpReturnArg$2;
-    };
-    if (tmpIfTest$3) {
-      const tmpReturnArg$3 = tmpBranchingA$1(
-        tmpObjLitVal$1,
-        b$1,
-        a$1,
-        tmpChainRootProp$1,
-        tmpIfTest$2,
-        tmpChainElementObject$2,
-        tmpIfTest$3,
-      );
+      const tmpReturnArg$3 = tmpBranchingC(tmpObjLitVal$11, b$11, a$11, tmpChainRootProp$11, tmpIfTest$19);
       return tmpReturnArg$3;
-    } else {
-      const tmpReturnArg$4 = tmpBranchingB$1(
+    };
+    if (tmpIfTest$5) {
+      const tmpReturnArg$5 = tmpBranchingA$1(
         tmpObjLitVal$1,
         b$1,
         a$1,
         tmpChainRootProp$1,
-        tmpIfTest$2,
-        tmpChainElementObject$2,
         tmpIfTest$3,
+        tmpChainElementObject$3,
+        tmpIfTest$5,
       );
-      return tmpReturnArg$4;
+      return tmpReturnArg$5;
+    } else {
+      const tmpReturnArg$7 = tmpBranchingB$1(
+        tmpObjLitVal$1,
+        b$1,
+        a$1,
+        tmpChainRootProp$1,
+        tmpIfTest$3,
+        tmpChainElementObject$3,
+        tmpIfTest$5,
+      );
+      return tmpReturnArg$7;
     }
   };
   const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4) {
-    let tmpObjLitVal$2 = $$0;
-    let b$2 = $$1;
-    let a$2 = $$2;
-    let tmpChainRootProp$2 = $$3;
-    let tmpIfTest$4 = $$4;
-    debugger;
-    const tmpReturnArg$5 = tmpBranchingC(tmpObjLitVal$2, b$2, a$2, tmpChainRootProp$2, tmpIfTest$4);
-    return tmpReturnArg$5;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4) {
     let tmpObjLitVal$3 = $$0;
     let b$3 = $$1;
     let a$3 = $$2;
     let tmpChainRootProp$3 = $$3;
-    let tmpIfTest$5 = $$4;
+    let tmpIfTest$7 = $$4;
     debugger;
-    $(a$3);
+    const tmpReturnArg$9 = tmpBranchingC(tmpObjLitVal$3, b$3, a$3, tmpChainRootProp$3, tmpIfTest$7);
+    return tmpReturnArg$9;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4) {
+    let tmpObjLitVal$5 = $$0;
+    let b$5 = $$1;
+    let a$5 = $$2;
+    let tmpChainRootProp$5 = $$3;
+    let tmpIfTest$9 = $$4;
+    debugger;
+    $(a$5);
   };
   if (tmpIfTest) {
-    const tmpReturnArg$6 = tmpBranchingA(tmpObjLitVal, b, a, tmpChainRootProp, tmpIfTest);
-    return tmpReturnArg$6;
+    const tmpReturnArg$11 = tmpBranchingA(tmpObjLitVal, b, a, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$11;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB(tmpObjLitVal, b, a, tmpChainRootProp, tmpIfTest);
-    return tmpReturnArg$7;
+    const tmpReturnArg$13 = tmpBranchingB(tmpObjLitVal, b, a, tmpChainRootProp, tmpIfTest);
+    return tmpReturnArg$13;
   }
 };
 const tmpCallCallee = $;
@@ -168,11 +176,11 @@ const f = function () {
   const tmpBranchingA = function ($$0) {
     const tmpChainRootProp$1 = $$0;
     debugger;
-    const tmpChainElementObject$2 = tmpChainRootProp$1.x;
-    const tmpIfTest$3 = tmpChainElementObject$2 != null;
-    if (tmpIfTest$3) {
-      const tmpChainElementObject$5 = tmpChainElementObject$2.y;
-      $(tmpChainElementObject$5);
+    const tmpChainElementObject$3 = tmpChainRootProp$1.x;
+    const tmpIfTest$5 = tmpChainElementObject$3 != null;
+    if (tmpIfTest$5) {
+      const tmpChainElementObject$9 = tmpChainElementObject$3.y;
+      $(tmpChainElementObject$9);
       return undefined;
     } else {
       $(undefined);
@@ -180,8 +188,8 @@ const f = function () {
     }
   };
   if (tmpIfTest) {
-    const tmpReturnArg$6 = tmpBranchingA(b);
-    return tmpReturnArg$6;
+    const tmpReturnArg$11 = tmpBranchingA(b);
+    return tmpReturnArg$11;
   } else {
     $(undefined);
     return undefined;

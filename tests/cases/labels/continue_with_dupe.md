@@ -26,29 +26,29 @@ a: {}
 `````js filename=intro
 a: {
 }
-a_1: while (true) {
+a$1: while (true) {
   $(1);
-  continue a_1;
+  continue a$1;
 }
-a_2: {
+a$3: {
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-a_1: while (true) {
+a$1: while (true) {
   $(1);
-  continue a_1;
+  continue a$1;
 }
 `````
 
 ## Output
 
 `````js filename=intro
-a_1: while (true) {
+a$1: while (true) {
   $(1);
-  continue a_1;
+  continue a$1;
 }
 `````
 

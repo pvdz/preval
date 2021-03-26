@@ -38,20 +38,20 @@ $('ok');
 
 `````js filename=intro
 const tmpObjLitVal$1 = 13;
-const tmpObjLitVal$3 = { a: 1, b: 2, c: 3 };
-const tmpObjLitVal$2 = { z: tmpObjLitVal$3, a: 15, b: 16 };
-const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 14 };
+const tmpObjLitVal$5 = { a: 1, b: 2, c: 3 };
+const tmpObjLitVal$3 = { z: tmpObjLitVal$5, a: 15, b: 16 };
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$3, z: 14 };
 const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-const objPatternNoDefault$2 = objPatternNoDefault$1.z;
-let objPatternCrashTest = objPatternNoDefault$2 === undefined;
+const objPatternNoDefault$3 = objPatternNoDefault$1.z;
+let objPatternCrashTest = objPatternNoDefault$3 === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = objPatternNoDefault$2 === null;
+  objPatternCrashTest = objPatternNoDefault$3 === null;
 }
 if (objPatternCrashTest) {
-  objPatternCrashTest = objPatternNoDefault$2.cannotDestructureThis;
+  objPatternCrashTest = objPatternNoDefault$3.cannotDestructureThis;
 }
 $('ok');
 `````
@@ -59,20 +59,20 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$3 = { a: 1, b: 2, c: 3 };
-const tmpObjLitVal$2 = { z: tmpObjLitVal$3, a: 15, b: 16 };
-const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
+const tmpObjLitVal$5 = { a: 1, b: 2, c: 3 };
+const tmpObjLitVal$3 = { z: tmpObjLitVal$5, a: 15, b: 16 };
+const tmpObjLitVal = { x: 13, y: tmpObjLitVal$3, z: 14 };
 const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-const objPatternNoDefault$2 = objPatternNoDefault$1.z;
-let objPatternCrashTest = objPatternNoDefault$2 === undefined;
+const objPatternNoDefault$3 = objPatternNoDefault$1.z;
+let objPatternCrashTest = objPatternNoDefault$3 === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = objPatternNoDefault$2 === null;
+  objPatternCrashTest = objPatternNoDefault$3 === null;
 }
 if (objPatternCrashTest) {
-  objPatternNoDefault$2.cannotDestructureThis;
+  objPatternNoDefault$3.cannotDestructureThis;
 }
 $('ok');
 `````

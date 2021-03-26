@@ -65,22 +65,22 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$2 = 2 === tmpSwitchValue;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = 2 === tmpSwitchValue;
+  if (tmpIfTest$3) {
     tmpSwitchCaseToStart = 2;
   }
 }
 tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$5) {
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$4) {
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$7) {
       $('fail1');
     }
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$5) {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$9) {
       $('fail2');
     }
   }
@@ -104,22 +104,22 @@ const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$2 = 2 === tmpSwitchValue;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = 2 === tmpSwitchValue;
+  if (tmpIfTest$3) {
     tmpSwitchCaseToStart = 2;
   }
 }
 tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$5) {
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$4) {
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$7) {
       $('fail1');
     }
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$5) {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$9) {
       $('fail2');
     }
   }

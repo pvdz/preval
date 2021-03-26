@@ -27,8 +27,8 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
-const tmpArrElement$2 = $(3);
-let a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+let a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 $(a);
 `````
 
@@ -36,8 +36,8 @@ $(a);
 
 `````js filename=intro
 const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-const a = [tmpArrElement, 2, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const a = [tmpArrElement, 2, tmpArrElement$3];
 $(a);
 `````
 

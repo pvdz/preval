@@ -51,8 +51,8 @@ let f = function ($$0) {
 const tmpCallCallee = f;
 const tmpCalleeParam = ['abc ', ' ', ' def'];
 const tmpCalleeParam$1 = $(10);
-const tmpCalleeParam$2 = $(20);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(20);
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output

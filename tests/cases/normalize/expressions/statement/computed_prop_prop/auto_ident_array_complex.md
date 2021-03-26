@@ -34,8 +34,8 @@ let obj = {};
 const tmpCompObj = obj;
 const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
-const tmpArrElement$2 = $(3);
-const tmpCompProp = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const tmpCompProp = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 tmpCompObj[tmpCompProp];
 $(a);
 `````
@@ -46,8 +46,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const obj = {};
 const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-const tmpCompProp = [tmpArrElement, 2, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const tmpCompProp = [tmpArrElement, 2, tmpArrElement$3];
 obj[tmpCompProp];
 $(a);
 `````

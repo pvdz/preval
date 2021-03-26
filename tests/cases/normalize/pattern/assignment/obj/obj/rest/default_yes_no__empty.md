@@ -38,9 +38,9 @@ if (tmpIfTest) {
 }
 const tmpCallCallee$1 = objPatternRest;
 const tmpCalleeParam$1 = objPatternAfterDefault;
-const tmpCalleeParam$2 = [];
-const tmpCalleeParam$3 = undefined;
-y = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
+const tmpCalleeParam$3 = [];
+const tmpCalleeParam$5 = undefined;
+y = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
 $('bad');
 `````
 
@@ -57,8 +57,8 @@ if (tmpIfTest) {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const tmpCalleeParam$1 = objPatternAfterDefault;
-const tmpCalleeParam$2 = [];
-y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
+const tmpCalleeParam$3 = [];
+y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $('bad');
 `````
 

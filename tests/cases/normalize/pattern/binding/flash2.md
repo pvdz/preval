@@ -45,39 +45,39 @@ let x = function ($$0, $$1) {
   const tmpIfTest = tmpParamBare === undefined;
   const tmpBranchingA = function ($$0, $$1, $$2, $$3) {
     let tmpParamBare$2 = $$0;
-    let tmpParamBare$3 = $$1;
+    let tmpParamBare$4 = $$1;
     let foo$1 = $$2;
     let tmpIfTest$1 = $$3;
     debugger;
     foo$1 = x$1;
-    const tmpReturnArg = tmpBranchingC(tmpParamBare$2, tmpParamBare$3, foo$1, tmpIfTest$1);
+    const tmpReturnArg = tmpBranchingC(tmpParamBare$2, tmpParamBare$4, foo$1, tmpIfTest$1);
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1, $$2, $$3) {
-    let tmpParamBare$4 = $$0;
-    let tmpParamBare$5 = $$1;
-    let foo$2 = $$2;
-    let tmpIfTest$2 = $$3;
-    debugger;
-    foo$2 = tmpParamBare$4;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$4, tmpParamBare$5, foo$2, tmpIfTest$2);
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
     let tmpParamBare$6 = $$0;
-    let tmpParamBare$7 = $$1;
+    let tmpParamBare$8 = $$1;
     let foo$3 = $$2;
     let tmpIfTest$3 = $$3;
     debugger;
-    let bindingPatternObjRoot = tmpParamBare$7;
+    foo$3 = tmpParamBare$6;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$6, tmpParamBare$8, foo$3, tmpIfTest$3);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
+    let tmpParamBare$10 = $$0;
+    let tmpParamBare$12 = $$1;
+    let foo$5 = $$2;
+    let tmpIfTest$5 = $$3;
+    debugger;
+    let bindingPatternObjRoot = tmpParamBare$12;
     let x$2 = bindingPatternObjRoot.x$1;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$2 = tmpBranchingA(tmpParamBare, tmpParamBare$1, foo, tmpIfTest);
-    return tmpReturnArg$2;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingB(tmpParamBare, tmpParamBare$1, foo, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA(tmpParamBare, tmpParamBare$1, foo, tmpIfTest);
     return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(tmpParamBare, tmpParamBare$1, foo, tmpIfTest);
+    return tmpReturnArg$5;
   }
 };
 x();

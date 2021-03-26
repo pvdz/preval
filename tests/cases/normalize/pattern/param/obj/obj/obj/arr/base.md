@@ -50,33 +50,33 @@ let f = function ($$0) {
   let bindingPatternObjRoot = tmpParamBare;
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let objPatternNoDefault$2 = objPatternNoDefault$1.z;
-  let arrPatternSplat = [...objPatternNoDefault$2];
+  let objPatternNoDefault$3 = objPatternNoDefault$1.z;
+  let arrPatternSplat = [...objPatternNoDefault$3];
   return 'ok';
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpObjLitVal$1 = 13;
-const tmpObjLitVal$3 = [1, 2, 3];
-const tmpObjLitVal$2 = { z: tmpObjLitVal$3, a: 15, b: 16 };
-const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 14 };
+const tmpObjLitVal$5 = [1, 2, 3];
+const tmpObjLitVal$3 = { z: tmpObjLitVal$5, a: 15, b: 16 };
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$3, z: 14 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpCalleeParam$2 = 10;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = 10;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$3 = [1, 2, 3];
-const tmpObjLitVal$2 = { z: tmpObjLitVal$3, a: 15, b: 16 };
-const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
+const tmpObjLitVal$5 = [1, 2, 3];
+const tmpObjLitVal$3 = { z: tmpObjLitVal$5, a: 15, b: 16 };
+const tmpObjLitVal = { x: 13, y: tmpObjLitVal$3, z: 14 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = tmpCalleeParam$1.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-const objPatternNoDefault$2 = objPatternNoDefault$1.z;
-[...objPatternNoDefault$2];
+const objPatternNoDefault$3 = objPatternNoDefault$1.z;
+[...objPatternNoDefault$3];
 $('ok');
 `````
 

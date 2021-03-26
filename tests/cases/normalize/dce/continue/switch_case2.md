@@ -56,8 +56,8 @@ while (true) {
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
     }
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$3) {
       continue;
     } else {
       $('keep');
@@ -82,8 +82,8 @@ while (true) {
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
     }
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$3) {
       continue;
     } else {
       $('keep');

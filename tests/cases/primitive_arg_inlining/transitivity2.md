@@ -60,9 +60,9 @@ let g = function ($$0) {
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(1, 2);
 tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$2 = $;
-const tmpCalleeParam$2 = g(2);
-tmpCallCallee$2(tmpCalleeParam$2);
+const tmpCallCallee$3 = $;
+const tmpCalleeParam$3 = g(2);
+tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
 ## Output

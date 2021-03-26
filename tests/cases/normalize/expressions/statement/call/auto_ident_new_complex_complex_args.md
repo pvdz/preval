@@ -35,8 +35,8 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam$2 = $(2);
-const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(2);
+const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -47,8 +47,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
-const tmpCalleeParam$2 = $(2);
-const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(2);
+const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 $(tmpCalleeParam);
 $(a);
 `````

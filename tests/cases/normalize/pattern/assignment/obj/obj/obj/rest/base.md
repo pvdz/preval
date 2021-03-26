@@ -34,24 +34,24 @@ $(z);
 
 `````js filename=intro
 const tmpObjLitVal$1 = 13;
-const tmpObjLitVal$2 = { z: 1, a: 2, b: 3 };
-const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 14 };
+const tmpObjLitVal$3 = { z: 1, a: 2, b: 3 };
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$3, z: 14 };
 const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = objPatternNoDefault$1;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$2 = undefined;
-z = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = undefined;
+z = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 $(z);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$2 = { z: 1, a: 2, b: 3 };
-const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 14 };
+const tmpObjLitVal$3 = { z: 1, a: 2, b: 3 };
+const tmpObjLitVal = { x: 13, y: tmpObjLitVal$3, z: 14 };
 const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;

@@ -30,7 +30,7 @@ let g = function ($$0) {
   debugger;
   let { x: y$1 } = tmpParamBare;
   {
-    let y$2 = 2;
+    let y$3 = 2;
   }
   return y$1;
 };
@@ -45,7 +45,7 @@ let g = function ($$0) {
   debugger;
   let bindingPatternObjRoot = tmpParamBare;
   let y$1 = bindingPatternObjRoot.x;
-  let y$2 = 2;
+  let y$3 = 2;
   return y$1;
 };
 let y = 1;

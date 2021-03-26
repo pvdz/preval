@@ -24,9 +24,9 @@ $([1, $(), , 2, , $(), ,]);
 const tmpCallCallee = $;
 const tmpArrElement = 1;
 const tmpArrElement$1 = $();
-const tmpArrElement$2 = 2;
-const tmpArrElement$3 = $();
-const tmpCalleeParam = [tmpArrElement, tmpArrElement$1, , tmpArrElement$2, , tmpArrElement$3, ,];
+const tmpArrElement$3 = 2;
+const tmpArrElement$5 = $();
+const tmpCalleeParam = [tmpArrElement, tmpArrElement$1, , tmpArrElement$3, , tmpArrElement$5, ,];
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -34,8 +34,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpArrElement$1 = $();
-const tmpArrElement$3 = $();
-const tmpCalleeParam = [1, tmpArrElement$1, , 2, , tmpArrElement$3, ,];
+const tmpArrElement$5 = $();
+const tmpCalleeParam = [1, tmpArrElement$1, , 2, , tmpArrElement$5, ,];
 $(tmpCalleeParam);
 `````
 

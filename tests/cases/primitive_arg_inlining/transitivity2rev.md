@@ -60,9 +60,9 @@ let g = function ($$0) {
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = g(2);
 tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$2 = $;
-const tmpCalleeParam$2 = f(1, 2);
-tmpCallCallee$2(tmpCalleeParam$2);
+const tmpCallCallee$3 = $;
+const tmpCalleeParam$3 = f(1, 2);
+tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -71,8 +71,8 @@ tmpCallCallee$2(tmpCalleeParam$2);
 const tmpCalleeParam = $(1, 2);
 const tmpReturnArg$1 = $(tmpCalleeParam);
 $(tmpReturnArg$1);
-const tmpCalleeParam$2 = $(1, 2);
-$(tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(1, 2);
+$(tmpCalleeParam$3);
 `````
 
 ## Globals

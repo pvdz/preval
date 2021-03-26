@@ -68,8 +68,8 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
@@ -77,12 +77,12 @@ if (tmpIfTest$2) {
   b.c = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   $('fail1');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $('fail2');
 }
 $(a, b);
@@ -105,20 +105,20 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('d');
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   b.c = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   $('fail1');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $('fail2');
 }
 $(a, b);

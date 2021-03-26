@@ -68,23 +68,23 @@ let f = function () {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0) {
-    let tmpIfTest$2 = $$0;
+    let tmpIfTest$3 = $$0;
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC(tmpIfTest$2);
+    const tmpReturnArg$1 = tmpBranchingC(tmpIfTest$3);
     return tmpReturnArg$1;
   };
   const tmpBranchingC = function ($$0) {
-    let tmpIfTest$3 = $$0;
+    let tmpIfTest$5 = $$0;
     debugger;
     $(x);
     return x;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$2 = tmpBranchingA(tmpIfTest);
-    return tmpReturnArg$2;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingB(tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA(tmpIfTest);
     return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(tmpIfTest);
+    return tmpReturnArg$5;
   }
 };
 f();

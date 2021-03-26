@@ -67,10 +67,10 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
-  const tmpIfTest$3 = 30;
-  if (tmpIfTest$3) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  const tmpIfTest$5 = 30;
+  if (tmpIfTest$5) {
     a = $(2);
   } else {
     const tmpCallCallee = $;
@@ -78,12 +78,12 @@ if (tmpIfTest$2) {
     a = tmpCallCallee(tmpCalleeParam);
   }
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$7) {
   $('fail1');
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$5) {
+const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$9) {
   $('fail2');
 }
 $(a);
@@ -105,16 +105,16 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   a = $(2);
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$7) {
   $('fail1');
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$5) {
+const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$9) {
   $('fail2');
 }
 $(a);

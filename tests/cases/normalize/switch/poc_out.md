@@ -109,14 +109,14 @@ exit: {
     $('B');
     break exit;
   } else {
-    let tmpIfTest$2 = fallthrough;
-    if (tmpIfTest$2) {
+    let tmpIfTest$3 = fallthrough;
+    if (tmpIfTest$3) {
     } else {
-      const tmpBinBothLhs$2 = x;
-      const tmpBinBothRhs$2 = $(3);
-      tmpIfTest$2 = tmpBinBothLhs$2 === tmpBinBothRhs$2;
+      const tmpBinBothLhs$3 = x;
+      const tmpBinBothRhs$3 = $(3);
+      tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
     }
-    if (tmpIfTest$2) {
+    if (tmpIfTest$3) {
       $('C');
       break exit;
     }
@@ -149,13 +149,13 @@ exit: {
     $('B');
     break exit;
   } else {
-    let tmpIfTest$2 = fallthrough;
-    if (tmpIfTest$2) {
+    let tmpIfTest$3 = fallthrough;
+    if (tmpIfTest$3) {
     } else {
-      const tmpBinBothRhs$2 = $(3);
-      tmpIfTest$2 = undefined === tmpBinBothRhs$2;
+      const tmpBinBothRhs$3 = $(3);
+      tmpIfTest$3 = undefined === tmpBinBothRhs$3;
     }
-    if (tmpIfTest$2) {
+    if (tmpIfTest$3) {
       $('C');
       break exit;
     }

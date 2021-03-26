@@ -43,7 +43,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   }
 }
 $(a);

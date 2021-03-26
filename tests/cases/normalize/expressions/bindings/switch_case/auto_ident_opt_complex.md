@@ -57,8 +57,8 @@ if (tmpIfTest$1) {
   a = undefined;
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest$2 = tmpChainElementCall != null;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpChainElementCall != null;
+  if (tmpIfTest$3) {
     const tmpChainElementObject = tmpChainElementCall.x;
     a = tmpChainElementObject;
   }
@@ -72,8 +72,8 @@ if (tmpIfTest$1) {
 const b = { x: 1 };
 let SSA_a = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest$2 = tmpChainElementCall != null;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpChainElementCall != null;
+if (tmpIfTest$3) {
   const tmpChainElementObject = tmpChainElementCall.x;
   SSA_a = tmpChainElementObject;
 }

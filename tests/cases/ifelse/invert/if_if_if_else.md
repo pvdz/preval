@@ -36,8 +36,8 @@ if (tmpIfTest) {
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
 } else {
-  const tmpIfTest$2 = $(2);
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = $(2);
+  if (tmpIfTest$3) {
     $(3);
   } else {
     $(4);
@@ -55,8 +55,8 @@ if (tmpIfTest) {
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
 } else {
-  const tmpIfTest$2 = $(2);
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = $(2);
+  if (tmpIfTest$3) {
     $(3);
   } else {
     $(4);

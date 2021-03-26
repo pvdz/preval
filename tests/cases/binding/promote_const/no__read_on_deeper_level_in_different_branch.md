@@ -54,10 +54,10 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     x = 10;
   }
-  const tmpIfTest$2 = $(3);
-  if (tmpIfTest$2) {
-    const tmpIfTest$3 = $(4);
-    if (tmpIfTest$3) {
+  const tmpIfTest$3 = $(3);
+  if (tmpIfTest$3) {
+    const tmpIfTest$5 = $(4);
+    if (tmpIfTest$5) {
       $(x);
     }
   }
@@ -74,10 +74,10 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     x = 10;
   }
-  const tmpIfTest$2 = $(3);
-  if (tmpIfTest$2) {
-    const tmpIfTest$3 = $(4);
-    if (tmpIfTest$3) {
+  const tmpIfTest$3 = $(3);
+  if (tmpIfTest$3) {
+    const tmpIfTest$5 = $(4);
+    if (tmpIfTest$5) {
       $(x);
     }
   }

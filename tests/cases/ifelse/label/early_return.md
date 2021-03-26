@@ -51,37 +51,37 @@ let f = function () {
     debugger;
     const tmpIfTest$1 = $(true);
     const tmpBranchingA = function ($$0) {
-      let tmpIfTest$2 = $$0;
+      let tmpIfTest$3 = $$0;
       debugger;
       $(100);
       return 20;
     };
     const tmpBranchingB = function ($$0) {
-      let tmpIfTest$3 = $$0;
+      let tmpIfTest$5 = $$0;
       debugger;
-      const tmpReturnArg = tmpBranchingC(tmpIfTest$3);
+      const tmpReturnArg = tmpBranchingC(tmpIfTest$5);
       return tmpReturnArg;
     };
     const tmpBranchingC = function ($$0) {
-      let tmpIfTest$4 = $$0;
+      let tmpIfTest$7 = $$0;
       debugger;
       const tmpReturnArg$1 = tmpAfterLabel();
       return tmpReturnArg$1;
     };
     if (tmpIfTest$1) {
-      const tmpReturnArg$2 = tmpBranchingA(tmpIfTest$1);
-      return tmpReturnArg$2;
-    } else {
-      const tmpReturnArg$3 = tmpBranchingB(tmpIfTest$1);
+      const tmpReturnArg$3 = tmpBranchingA(tmpIfTest$1);
       return tmpReturnArg$3;
+    } else {
+      const tmpReturnArg$5 = tmpBranchingB(tmpIfTest$1);
+      return tmpReturnArg$5;
     }
   };
   const tmpAfterLabel = function () {
     debugger;
     $('after');
   };
-  const tmpReturnArg$4 = tmpLabeledBlockFunc();
-  return tmpReturnArg$4;
+  const tmpReturnArg$7 = tmpLabeledBlockFunc();
+  return tmpReturnArg$7;
 };
 f();
 `````

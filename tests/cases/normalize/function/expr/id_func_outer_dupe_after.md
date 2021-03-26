@@ -54,15 +54,15 @@ let out = function () {
   const f = g$1;
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = g;
-  const tmpCalleeParam$2 = f();
-  tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+  const tmpCalleeParam$3 = f();
+  tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 };
 const g = 10;
 out();
 out();
-const tmpCallCallee$2 = $;
-const tmpCalleeParam$3 = typeof g;
-tmpCallCallee$2(tmpCalleeParam$3);
+const tmpCallCallee$3 = $;
+const tmpCalleeParam$5 = typeof g;
+tmpCallCallee$3(tmpCalleeParam$5);
 `````
 
 ## Output
@@ -75,8 +75,8 @@ const out = function () {
     const tmpCalleeParam = typeof g$1;
     $(tmpCalleeParam);
   };
-  const tmpCalleeParam$2 = g$1();
-  $(10, tmpCalleeParam$2);
+  const tmpCalleeParam$3 = g$1();
+  $(10, tmpCalleeParam$3);
 };
 out();
 out();

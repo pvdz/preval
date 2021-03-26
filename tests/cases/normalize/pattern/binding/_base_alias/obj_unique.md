@@ -26,7 +26,7 @@ const { x: a } = 1
 }
 const { x: a } = 1;
 {
-  let a$2 = 1;
+  let a$3 = 1;
 }
 `````
 
@@ -36,7 +36,7 @@ const { x: a } = 1;
 let a$1 = 1;
 const bindingPatternObjRoot = 1;
 const a = bindingPatternObjRoot.x;
-let a$2 = 1;
+let a$3 = 1;
 `````
 
 ## Output

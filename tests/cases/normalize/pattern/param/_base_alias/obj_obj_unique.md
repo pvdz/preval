@@ -35,7 +35,7 @@ let i = function ($$0) {
     },
   } = tmpParamBare;
   {
-    let a$2 = 2;
+    let a$3 = 2;
   }
   return a$1;
 };
@@ -53,14 +53,14 @@ let i = function ($$0) {
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
   let a$1 = objPatternNoDefault$1.z;
-  let a$2 = 2;
+  let a$3 = 2;
   return a$1;
 };
 let a = 1;
 const tmpCallCallee = $;
 const tmpCallCallee$1 = i;
-const tmpObjLitVal$2 = { a: 10 };
-const tmpObjLitVal$1 = { z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = { a: 10 };
+const tmpObjLitVal$1 = { z: tmpObjLitVal$3 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal };
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
@@ -70,8 +70,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$2 = { a: 10 };
-const tmpObjLitVal$1 = { z: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = { a: 10 };
+const tmpObjLitVal$1 = { z: tmpObjLitVal$3 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal };
 const objPatternNoDefault = tmpCalleeParam$1.x;

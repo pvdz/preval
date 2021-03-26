@@ -39,24 +39,24 @@ let f = function ($$0) {
   const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = bindingPatternObjRoot;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$2 = 'x';
-  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  const tmpCalleeParam$3 = 'x';
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return x;
 };
 const tmpCallCallee$1 = $;
-const tmpCallCallee$2 = f;
-const tmpCalleeParam$4 = { x: 1, b: 2, c: 3 };
-const tmpCalleeParam$5 = 10;
-const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, tmpCalleeParam$5);
-tmpCallCallee$1(tmpCalleeParam$3);
+const tmpCallCallee$3 = f;
+const tmpCalleeParam$7 = { x: 1, b: 2, c: 3 };
+const tmpCalleeParam$9 = 10;
+const tmpCalleeParam$5 = tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
+tmpCallCallee$1(tmpCalleeParam$5);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$4 = { x: 1, b: 2, c: 3 };
+const tmpCalleeParam$7 = { x: 1, b: 2, c: 3 };
 const tmpCalleeParam$1 = [];
-const x = objPatternRest(tmpCalleeParam$4, tmpCalleeParam$1, 'x');
+const x = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$1, 'x');
 $(x);
 `````
 

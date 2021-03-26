@@ -60,30 +60,30 @@ const f = function ($$0) {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1) {
-    let x1$2 = $$0;
-    let x$2 = $$1;
+    let x1$3 = $$0;
+    let x$3 = $$1;
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC(x1$2, x$2);
+    const tmpReturnArg$1 = tmpBranchingC(x1$3, x$3);
     return tmpReturnArg$1;
   };
   const tmpBranchingC = function ($$0, $$1) {
-    let x1$3 = $$0;
-    let x$3 = $$1;
+    let x1$5 = $$0;
+    let x$5 = $$1;
     debugger;
     const g$1 = function () {
       const tmpArgumentsLen$1 = arguments.length;
       debugger;
       $(tmpArgumentsLen$1);
     };
-    const tmpReturnArg$2 = g$1();
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = g$1();
+    return tmpReturnArg$3;
   };
   if ($) {
-    const tmpReturnArg$3 = tmpBranchingA(x1, x);
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = tmpBranchingA(x1, x);
+    return tmpReturnArg$5;
   } else {
-    const tmpReturnArg$4 = tmpBranchingB(x1, x);
-    return tmpReturnArg$4;
+    const tmpReturnArg$7 = tmpBranchingB(x1, x);
+    return tmpReturnArg$7;
   }
 };
 const tmpCallCallee = $;
@@ -103,15 +103,15 @@ const f = function () {
       debugger;
       $(tmpArgumentsLen$1);
     };
-    const tmpReturnArg$2 = g$1();
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = g$1();
+    return tmpReturnArg$3;
   };
   if ($) {
     const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$4 = tmpBranchingC();
-    return tmpReturnArg$4;
+    const tmpReturnArg$7 = tmpBranchingC();
+    return tmpReturnArg$7;
   }
 };
 const tmpCalleeParam = f();

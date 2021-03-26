@@ -44,9 +44,9 @@ x = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpIfTest = tmpNestedAssignArrPatternRhs;
 if (tmpIfTest) {
-  const tmpArrElement$2 = $(3);
-  const tmpArrElement$3 = $(4);
-  const arrAssignPatternRhs = [tmpArrElement$2, tmpArrElement$3];
+  const tmpArrElement$3 = $(3);
+  const tmpArrElement$5 = $(4);
+  const arrAssignPatternRhs = [tmpArrElement$3, tmpArrElement$5];
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   x = arrPatternSplat$1[0];
   y = arrPatternSplat$1[1];
@@ -65,9 +65,9 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 let SSA_x = arrPatternSplat[0];
 let SSA_y = arrPatternSplat[1];
 if (tmpNestedAssignArrPatternRhs) {
-  const tmpArrElement$2 = $(3);
-  const tmpArrElement$3 = $(4);
-  const arrAssignPatternRhs = [tmpArrElement$2, tmpArrElement$3];
+  const tmpArrElement$3 = $(3);
+  const tmpArrElement$5 = $(4);
+  const arrAssignPatternRhs = [tmpArrElement$3, tmpArrElement$5];
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   SSA_x = arrPatternSplat$1[0];
   SSA_y = arrPatternSplat$1[1];

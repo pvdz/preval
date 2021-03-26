@@ -39,8 +39,8 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
 } else {
-  const tmpIfTest$2 = $(30);
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = $(30);
+  if (tmpIfTest$3) {
     $(2);
   } else {
     const tmpCallCallee$1 = $;
@@ -65,8 +65,8 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
 } else {
-  const tmpIfTest$2 = $(30);
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = $(30);
+  if (tmpIfTest$3) {
     $(2);
   } else {
     const tmpCalleeParam$1 = $(100);

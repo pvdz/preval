@@ -85,13 +85,13 @@ let x = class extends tmpClassSuper {
   }
   [tmpClassComputedKey$1]() {
     debugger;
-    const tmpReturnArg$2 = $(300, 'method');
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = $(300, 'method');
+    return tmpReturnArg$3;
   }
   [y]() {
     debugger;
-    const tmpReturnArg$3 = $(400, 'method');
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = $(400, 'method');
+    return tmpReturnArg$5;
   }
 };
 const tmpCallCallee = $;
@@ -102,14 +102,14 @@ const tmpCallCallee$1 = $;
 const tmpCallObj$1 = new x();
 const tmpCalleeParam$1 = tmpCallObj$1.g();
 tmpCallCallee$1(tmpCalleeParam$1);
-const tmpCallCallee$2 = $;
-const tmpCallObj$2 = new x();
-const tmpCalleeParam$2 = tmpCallObj$2.x();
-tmpCallCallee$2(tmpCalleeParam$2);
 const tmpCallCallee$3 = $;
 const tmpCallObj$3 = new x();
-const tmpCalleeParam$3 = tmpCallObj$3.y();
+const tmpCalleeParam$3 = tmpCallObj$3.x();
 tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCallCallee$5 = $;
+const tmpCallObj$5 = new x();
+const tmpCalleeParam$5 = tmpCallObj$5.y();
+tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
 ## Output
@@ -130,13 +130,13 @@ const x = class extends tmpClassSuper {
   }
   ['x']() {
     debugger;
-    const tmpReturnArg$2 = $(300, 'method');
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = $(300, 'method');
+    return tmpReturnArg$3;
   }
   ['y']() {
     debugger;
-    const tmpReturnArg$3 = $(400, 'method');
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = $(400, 'method');
+    return tmpReturnArg$5;
   }
 };
 const tmpCallObj = new x();
@@ -145,12 +145,12 @@ $(tmpCalleeParam);
 const tmpCallObj$1 = new x();
 const tmpCalleeParam$1 = tmpCallObj$1.g();
 $(tmpCalleeParam$1);
-const tmpCallObj$2 = new x();
-const tmpCalleeParam$2 = tmpCallObj$2.x();
-$(tmpCalleeParam$2);
 const tmpCallObj$3 = new x();
-const tmpCalleeParam$3 = tmpCallObj$3.y();
+const tmpCalleeParam$3 = tmpCallObj$3.x();
 $(tmpCalleeParam$3);
+const tmpCallObj$5 = new x();
+const tmpCalleeParam$5 = tmpCallObj$5.y();
+$(tmpCalleeParam$5);
 `````
 
 ## Globals

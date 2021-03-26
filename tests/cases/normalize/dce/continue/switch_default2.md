@@ -63,13 +63,13 @@ while (true) {
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
     }
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$3) {
       $('keep, do not eval');
       continue;
     } else {
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$3) {
+      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$5) {
         continue;
       } else {
         $('eliminate');
@@ -95,13 +95,13 @@ while (true) {
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
     }
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$3) {
       $('keep, do not eval');
       continue;
     } else {
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$3) {
+      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$5) {
         continue;
       } else {
         $('eliminate');

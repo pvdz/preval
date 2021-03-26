@@ -34,8 +34,8 @@ if (tmpCalleeParam) {
 } else {
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$1 = 2;
-  const tmpObjLitVal$2 = $(3);
-  const tmpNestedComplexRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$2 };
+  const tmpObjLitVal$3 = $(3);
+  const tmpNestedComplexRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -51,8 +51,8 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
   const tmpObjLitVal = $(1);
-  const tmpObjLitVal$2 = $(3);
-  const tmpNestedComplexRhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$2 };
+  const tmpObjLitVal$3 = $(3);
+  const tmpNestedComplexRhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

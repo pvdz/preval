@@ -42,8 +42,8 @@ const f = g$1;
 const g = 10;
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = g;
-const tmpCalleeParam$2 = f();
-tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = f();
+tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
 ## Output
@@ -54,8 +54,8 @@ const g$1 = function () {
   const tmpCalleeParam = typeof g$1;
   $(tmpCalleeParam);
 };
-const tmpCalleeParam$2 = g$1();
-$(10, tmpCalleeParam$2);
+const tmpCalleeParam$3 = g$1();
+$(10, tmpCalleeParam$3);
 `````
 
 ## Globals

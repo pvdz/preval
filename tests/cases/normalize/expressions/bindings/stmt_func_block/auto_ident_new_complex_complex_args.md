@@ -49,8 +49,8 @@ let f = function () {
   $(a);
 };
 const tmpCallCallee = $;
-const tmpCalleeParam$2 = f();
-tmpCallCallee(tmpCalleeParam$2);
+const tmpCalleeParam$3 = f();
+tmpCallCallee(tmpCalleeParam$3);
 `````
 
 ## Output

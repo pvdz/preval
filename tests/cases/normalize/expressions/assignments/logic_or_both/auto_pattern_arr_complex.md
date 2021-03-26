@@ -40,11 +40,11 @@ a = arrPatternSplat$1[0];
 tmpCalleeParam = tmpNestedAssignArrPatternRhs;
 if (tmpCalleeParam) {
 } else {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = [1, 2];
-  const tmpNestedAssignArrPatternRhs$1 = tmpCallCallee$2(tmpCalleeParam$2);
-  const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
-  a = arrPatternSplat$2[0];
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = [1, 2];
+  const tmpNestedAssignArrPatternRhs$1 = tmpCallCallee$3(tmpCalleeParam$3);
+  const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$1];
+  a = arrPatternSplat$3[0];
   tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
 }
 tmpCallCallee(tmpCalleeParam);
@@ -64,10 +64,10 @@ let SSA_a = arrPatternSplat$1[0];
 let SSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs;
 if (SSA_tmpCalleeParam) {
 } else {
-  const tmpCalleeParam$2 = [1, 2];
-  const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$2);
-  const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
-  SSA_a = arrPatternSplat$2[0];
+  const tmpCalleeParam$3 = [1, 2];
+  const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$3);
+  const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$1];
+  SSA_a = arrPatternSplat$3[0];
   SSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
 }
 $(SSA_tmpCalleeParam);

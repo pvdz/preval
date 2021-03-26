@@ -42,13 +42,13 @@ let f = function ($$0) {
   const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = objPatternNoDefault;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$2 = undefined;
-  let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  const tmpCalleeParam$3 = undefined;
+  let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return 'bad';
 };
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$3 = f(null, 10);
-tmpCallCallee$1(tmpCalleeParam$3);
+const tmpCalleeParam$5 = f(null, 10);
+tmpCallCallee$1(tmpCalleeParam$5);
 `````
 
 ## Output

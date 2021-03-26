@@ -43,10 +43,10 @@ let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs;
-  const tmpCallCallee$2 = $;
+  const tmpCallCallee$3 = $;
   const tmpObjLitVal$1 = $(2);
-  const tmpCalleeParam$2 = { b: tmpObjLitVal$1 };
-  const tmpNestedAssignObjPatternRhs$1 = tmpCallCallee$2(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = { b: tmpObjLitVal$1 };
+  const tmpNestedAssignObjPatternRhs$1 = tmpCallCallee$3(tmpCalleeParam$3);
   b = tmpNestedAssignObjPatternRhs$1.b;
   tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs$1;
   a = tmpNestedComplexRhs;
@@ -68,8 +68,8 @@ let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpObjLitVal$1 = $(2);
-  const tmpCalleeParam$2 = { b: tmpObjLitVal$1 };
-  const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = { b: tmpObjLitVal$1 };
+  const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
   SSA_b = tmpNestedAssignObjPatternRhs$1.b;
   SSA_a = tmpNestedAssignObjPatternRhs$1;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;

@@ -72,11 +72,11 @@ let f = function () {
     return tmpReturnArg$1;
   };
   const tmpBranchingC = function ($$0, $$1) {
-    let x0$2 = $$0;
-    let x1$2 = $$1;
+    let x0$3 = $$0;
+    let x1$3 = $$1;
     debugger;
-    let x$3 = x0$2;
-    let tmpIfTest$3 = x1$2;
+    let x$3 = x0$3;
+    let tmpIfTest$3 = x1$3;
     return x$3;
   };
   if (tmpIfTest) {
@@ -119,11 +119,11 @@ let f = function () {
     return tmpReturnArg$1;
   };
   const tmpBranchingC = function ($$0, $$1) {
-    let x0$2 = $$0;
-    let x1$2 = $$1;
+    let x0$3 = $$0;
+    let x1$3 = $$1;
     debugger;
-    let x$3 = x0$2;
-    let tmpIfTest$3 = x1$2;
+    let x$3 = x0$3;
+    let tmpIfTest$3 = x1$3;
     return x$3;
   };
   if (tmpIfTest) {

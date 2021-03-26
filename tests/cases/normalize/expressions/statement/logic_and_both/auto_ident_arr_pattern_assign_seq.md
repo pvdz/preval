@@ -48,9 +48,9 @@ tmpIfTest = tmpNestedAssignArrPatternRhs;
 if (tmpIfTest) {
   $(x);
   $(y);
-  const tmpArrElement$2 = $(3);
-  const tmpArrElement$3 = $(4);
-  const arrAssignPatternRhs = [tmpArrElement$2, tmpArrElement$3];
+  const tmpArrElement$3 = $(3);
+  const tmpArrElement$5 = $(4);
+  const arrAssignPatternRhs = [tmpArrElement$3, tmpArrElement$5];
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   x = arrPatternSplat$1[0];
   y = arrPatternSplat$1[1];
@@ -73,9 +73,9 @@ let SSA_y = arrPatternSplat[1];
 if (tmpNestedAssignArrPatternRhs) {
   $(SSA_x);
   $(SSA_y);
-  const tmpArrElement$2 = $(3);
-  const tmpArrElement$3 = $(4);
-  const arrAssignPatternRhs = [tmpArrElement$2, tmpArrElement$3];
+  const tmpArrElement$3 = $(3);
+  const tmpArrElement$5 = $(4);
+  const arrAssignPatternRhs = [tmpArrElement$3, tmpArrElement$5];
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   SSA_x = arrPatternSplat$1[0];
   SSA_y = arrPatternSplat$1[1];

@@ -33,8 +33,8 @@ const tmpCalleeParam = ['before ', ' after'];
 a = 1;
 if (a) {
   const tmpCallCallee$1 = $;
-  const tmpCalleeParam$2 = $(1);
-  a = tmpCallCallee$1(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(1);
+  a = tmpCallCallee$1(tmpCalleeParam$3);
 }
 let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
@@ -47,8 +47,8 @@ $(a);
 const tmpCalleeParam = ['before ', ' after'];
 let SSA_a = 1;
 if (SSA_a) {
-  const tmpCalleeParam$2 = $(1);
-  SSA_a = $(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(1);
+  SSA_a = $(tmpCalleeParam$3);
 }
 const tmpCalleeParam$1 = SSA_a;
 $(tmpCalleeParam, tmpCalleeParam$1);

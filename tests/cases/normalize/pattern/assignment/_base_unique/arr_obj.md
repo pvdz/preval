@@ -23,7 +23,7 @@ $(x);
 }
 [{ x$1 }] = [{ x: 100 }];
 {
-  let x$2 = 1;
+  let x$3 = 1;
 }
 $(x$1);
 `````
@@ -37,7 +37,7 @@ const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 x$1 = arrPatternStep.x$1;
-let x$2 = 1;
+let x$3 = 1;
 $(x$1);
 `````
 

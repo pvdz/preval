@@ -50,15 +50,15 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhs
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpBinBothLhs = varInitAssignLhsComputedRhs;
-const varInitAssignLhsComputedObj$2 = $(b);
-const varInitAssignLhsComputedProp$2 = $('x');
-const varInitAssignLhsComputedObj$3 = $(c);
-const varInitAssignLhsComputedProp$3 = $('y');
-const varInitAssignLhsComputedRhs$3 = d + e;
+const varInitAssignLhsComputedObj$3 = $(b);
+const varInitAssignLhsComputedProp$3 = $('x');
+const varInitAssignLhsComputedObj$5 = $(c);
+const varInitAssignLhsComputedProp$5 = $('y');
+const varInitAssignLhsComputedRhs$5 = d + e;
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
+const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-const tmpBinBothRhs = varInitAssignLhsComputedRhs$2;
+const tmpBinBothRhs = varInitAssignLhsComputedRhs$3;
 tmpBinBothLhs + tmpBinBothRhs;
 $(a, b, c, d, e);
 `````
@@ -75,12 +75,12 @@ const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-const varInitAssignLhsComputedObj$2 = $(b);
-const varInitAssignLhsComputedProp$2 = $('x');
-const varInitAssignLhsComputedObj$3 = $(c);
-const varInitAssignLhsComputedProp$3 = $('y');
+const varInitAssignLhsComputedObj$3 = $(b);
+const varInitAssignLhsComputedProp$3 = $('x');
+const varInitAssignLhsComputedObj$5 = $(c);
+const varInitAssignLhsComputedProp$5 = $('y');
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 7;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 7;
-varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 7;
 $(a, b, c, 3, 4);
 `````
 

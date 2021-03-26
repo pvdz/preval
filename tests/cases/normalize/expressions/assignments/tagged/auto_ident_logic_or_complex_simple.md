@@ -31,8 +31,8 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$2 = $(0);
-a = tmpCallCallee$1(tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(0);
+a = tmpCallCallee$1(tmpCalleeParam$3);
 if (a) {
 } else {
   a = 2;
@@ -46,8 +46,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCalleeParam$2 = $(0);
-let SSA_a = $(tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(0);
+let SSA_a = $(tmpCalleeParam$3);
 if (SSA_a) {
 } else {
   SSA_a = 2;

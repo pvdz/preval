@@ -77,13 +77,13 @@ while (true) {
       tmpSwitchCaseToStart = 0;
     }
     tmpSwitchBreak: {
-      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-      if (tmpIfTest$2) {
+      const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+      if (tmpIfTest$3) {
         $('case');
         break tmpSwitchBreak;
       } else {
-        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-        if (tmpIfTest$3) {
+        const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$5) {
           $('do not visit, default');
           break tmpSwitchBreak;
         }
@@ -112,13 +112,13 @@ while (true) {
       tmpSwitchCaseToStart = 0;
     }
     tmpSwitchBreak: {
-      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-      if (tmpIfTest$2) {
+      const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+      if (tmpIfTest$3) {
         $('case');
         break tmpSwitchBreak;
       } else {
-        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-        if (tmpIfTest$3) {
+        const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$5) {
           $('do not visit, default');
           break tmpSwitchBreak;
         }

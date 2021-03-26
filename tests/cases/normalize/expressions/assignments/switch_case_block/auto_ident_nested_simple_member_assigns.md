@@ -60,13 +60,13 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const varInitAssignLhsComputedRhs$4 = c;
-  b.x = varInitAssignLhsComputedRhs$4;
-  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$4;
+  const varInitAssignLhsComputedRhs$7 = c;
+  b.x = varInitAssignLhsComputedRhs$7;
+  const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
+  b.x = varInitAssignLhsComputedRhs$5;
+  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
   b.x = varInitAssignLhsComputedRhs$3;
-  const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-  b.x = varInitAssignLhsComputedRhs$2;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
   b.x = varInitAssignLhsComputedRhs$1;
   const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
   b.x = varInitAssignLhsComputedRhs;

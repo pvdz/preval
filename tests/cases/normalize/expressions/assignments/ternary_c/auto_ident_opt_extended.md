@@ -46,8 +46,8 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    tmpNestedComplexRhs = tmpChainElementObject$2;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+    tmpNestedComplexRhs = tmpChainElementObject$3;
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -73,8 +73,8 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject = b.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$2 = tmpChainElementObject$1.z;
-    tmpNestedComplexRhs = tmpChainElementObject$2;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+    tmpNestedComplexRhs = tmpChainElementObject$3;
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

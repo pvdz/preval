@@ -87,9 +87,9 @@ objc = {
     return 100;
   },
   set c($$0) {
-    let x$2 = $$0;
+    let x$3 = $$0;
     debugger;
-    tmp('c.set', x$2);
+    tmp('c.set', x$3);
     a = 3100;
     b = 3200;
     return 3000;
@@ -105,9 +105,9 @@ objd = {
     return 100;
   },
   set d($$0) {
-    let x$3 = $$0;
+    let x$5 = $$0;
     debugger;
-    tmp('d.set', x$3);
+    tmp('d.set', x$5);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -125,9 +125,9 @@ obje = {
     return 100;
   },
   set e($$0) {
-    let x$4 = $$0;
+    let x$7 = $$0;
     debugger;
-    tmp('e.set', x$4);
+    tmp('e.set', x$7);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -234,9 +234,9 @@ objc = {
     return 100;
   },
   set c($$0) {
-    let x$2 = $$0;
+    let x$3 = $$0;
     debugger;
-    tmp('c.set', x$2);
+    tmp('c.set', x$3);
     a = 3100;
     b = 3200;
     return 3000;
@@ -252,9 +252,9 @@ objd = {
     return 100;
   },
   set d($$0) {
-    let x$3 = $$0;
+    let x$5 = $$0;
     debugger;
-    tmp('d.set', x$3);
+    tmp('d.set', x$5);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -272,9 +272,9 @@ obje = {
     return 100;
   },
   set e($$0) {
-    let x$4 = $$0;
+    let x$7 = $$0;
     debugger;
-    tmp('e.set', x$4);
+    tmp('e.set', x$7);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -322,15 +322,15 @@ const varInitAssignLhsComputedObj = a();
 const varInitAssignLhsComputedProp = tmp('a');
 const varInitAssignLhsComputedObj$1 = b();
 const varInitAssignLhsComputedProp$1 = tmp('b');
-const varInitAssignLhsComputedObj$2 = c();
-const varInitAssignLhsComputedProp$2 = tmp('c');
-const varInitAssignLhsComputedObj$3 = d();
-const varInitAssignLhsComputedProp$3 = tmp('d');
-const varInitAssignLhsComputedRhs$3 = e();
+const varInitAssignLhsComputedObj$3 = c();
+const varInitAssignLhsComputedProp$3 = tmp('c');
+const varInitAssignLhsComputedObj$5 = d();
+const varInitAssignLhsComputedProp$5 = tmp('d');
+const varInitAssignLhsComputedRhs$5 = e();
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
+const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
@@ -398,9 +398,9 @@ objc = {
     return 100;
   },
   set c($$0) {
-    const x$2 = $$0;
+    const x$3 = $$0;
     debugger;
-    tmp('c.set', x$2);
+    tmp('c.set', x$3);
     a = 3100;
     b = 3200;
     return 3000;
@@ -416,9 +416,9 @@ objd = {
     return 100;
   },
   set d($$0) {
-    const x$3 = $$0;
+    const x$5 = $$0;
     debugger;
-    tmp('d.set', x$3);
+    tmp('d.set', x$5);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -436,9 +436,9 @@ obje = {
     return 100;
   },
   set e($$0) {
-    const x$4 = $$0;
+    const x$7 = $$0;
     debugger;
-    tmp('e.set', x$4);
+    tmp('e.set', x$7);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -485,16 +485,16 @@ const varInitAssignLhsComputedObj = a();
 const varInitAssignLhsComputedProp = tmp('a');
 const varInitAssignLhsComputedObj$1 = b();
 const varInitAssignLhsComputedProp$1 = tmp('b');
-const varInitAssignLhsComputedObj$2 = c();
-const varInitAssignLhsComputedProp$2 = tmp('c');
-const varInitAssignLhsComputedObj$3 = d();
-const varInitAssignLhsComputedProp$3 = tmp('d');
-const varInitAssignLhsComputedRhs$3 = e();
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$3;
-tmp(varInitAssignLhsComputedRhs$3);
+const varInitAssignLhsComputedObj$3 = c();
+const varInitAssignLhsComputedProp$3 = tmp('c');
+const varInitAssignLhsComputedObj$5 = d();
+const varInitAssignLhsComputedProp$5 = tmp('d');
+const varInitAssignLhsComputedRhs$5 = e();
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$5;
+tmp(varInitAssignLhsComputedRhs$5);
 tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd, obje);
 `````

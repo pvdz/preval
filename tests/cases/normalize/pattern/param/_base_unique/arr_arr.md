@@ -24,7 +24,7 @@ let i = function ($$0) {
   debugger;
   let [[x$1]] = tmpParamBare;
   {
-    let x$2 = 2;
+    let x$3 = 2;
   }
   return x$1;
 };
@@ -42,7 +42,7 @@ let i = function ($$0) {
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
   let x$1 = arrPatternSplat$1[0];
-  let x$2 = 2;
+  let x$3 = 2;
   return x$1;
 };
 let x = 1;

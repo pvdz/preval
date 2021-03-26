@@ -87,9 +87,9 @@ objc = {
     return 100;
   },
   set c($$0) {
-    let x$2 = $$0;
+    let x$3 = $$0;
     debugger;
-    tmp('c.set', x$2);
+    tmp('c.set', x$3);
     a = 3100;
     b = 3200;
     return 3000;
@@ -105,9 +105,9 @@ objd = {
     return 100;
   },
   set d($$0) {
-    let x$3 = $$0;
+    let x$5 = $$0;
     debugger;
-    tmp('d.set', x$3);
+    tmp('d.set', x$5);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -125,9 +125,9 @@ obje = {
     return 100;
   },
   set e($$0) {
-    let x$4 = $$0;
+    let x$7 = $$0;
     debugger;
-    tmp('e.set', x$4);
+    tmp('e.set', x$7);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -235,9 +235,9 @@ objc = {
     return 100;
   },
   set c($$0) {
-    let x$2 = $$0;
+    let x$3 = $$0;
     debugger;
-    tmp('c.set', x$2);
+    tmp('c.set', x$3);
     a = 3100;
     b = 3200;
     return 3000;
@@ -253,9 +253,9 @@ objd = {
     return 100;
   },
   set d($$0) {
-    let x$3 = $$0;
+    let x$5 = $$0;
     debugger;
-    tmp('d.set', x$3);
+    tmp('d.set', x$5);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -273,9 +273,9 @@ obje = {
     return 100;
   },
   set e($$0) {
-    let x$4 = $$0;
+    let x$7 = $$0;
     debugger;
-    tmp('e.set', x$4);
+    tmp('e.set', x$7);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -321,18 +321,18 @@ e = function () {
 const tmpCallCallee$1 = tmp;
 const varInitAssignLhsComputedObj = a();
 const varInitAssignLhsComputedObj$1 = b();
-const varInitAssignLhsComputedObj$2 = c();
-const varInitAssignLhsComputedObj$3 = d();
-const varInitAssignLhsComputedRhs$3 = e();
-varInitAssignLhsComputedObj$3.d = varInitAssignLhsComputedRhs$3;
-const varInitAssignLhsComputedRhs$2 = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$2.c = varInitAssignLhsComputedRhs$2;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+const varInitAssignLhsComputedObj$3 = c();
+const varInitAssignLhsComputedObj$5 = d();
+const varInitAssignLhsComputedRhs$5 = e();
+varInitAssignLhsComputedObj$5.d = varInitAssignLhsComputedRhs$5;
+const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$3.c = varInitAssignLhsComputedRhs$3;
+const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$1.b = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj.a = varInitAssignLhsComputedRhs;
-const tmpCalleeParam$2 = varInitAssignLhsComputedRhs;
-tmpCallCallee$1(tmpCalleeParam$2);
+const tmpCalleeParam$3 = varInitAssignLhsComputedRhs;
+tmpCallCallee$1(tmpCalleeParam$3);
 tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd, obje);
 `````
@@ -396,9 +396,9 @@ objc = {
     return 100;
   },
   set c($$0) {
-    const x$2 = $$0;
+    const x$3 = $$0;
     debugger;
-    tmp('c.set', x$2);
+    tmp('c.set', x$3);
     a = 3100;
     b = 3200;
     return 3000;
@@ -414,9 +414,9 @@ objd = {
     return 100;
   },
   set d($$0) {
-    const x$3 = $$0;
+    const x$5 = $$0;
     debugger;
-    tmp('d.set', x$3);
+    tmp('d.set', x$5);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -434,9 +434,9 @@ obje = {
     return 100;
   },
   set e($$0) {
-    const x$4 = $$0;
+    const x$7 = $$0;
     debugger;
-    tmp('e.set', x$4);
+    tmp('e.set', x$7);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -481,14 +481,14 @@ e = function () {
 };
 const varInitAssignLhsComputedObj = a();
 const varInitAssignLhsComputedObj$1 = b();
-const varInitAssignLhsComputedObj$2 = c();
-const varInitAssignLhsComputedObj$3 = d();
-const varInitAssignLhsComputedRhs$3 = e();
-varInitAssignLhsComputedObj$3.d = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$2.c = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj$1.b = varInitAssignLhsComputedRhs$3;
-varInitAssignLhsComputedObj.a = varInitAssignLhsComputedRhs$3;
-tmp(varInitAssignLhsComputedRhs$3);
+const varInitAssignLhsComputedObj$3 = c();
+const varInitAssignLhsComputedObj$5 = d();
+const varInitAssignLhsComputedRhs$5 = e();
+varInitAssignLhsComputedObj$5.d = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$3.c = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj$1.b = varInitAssignLhsComputedRhs$5;
+varInitAssignLhsComputedObj.a = varInitAssignLhsComputedRhs$5;
+tmp(varInitAssignLhsComputedRhs$5);
 tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd, obje);
 `````

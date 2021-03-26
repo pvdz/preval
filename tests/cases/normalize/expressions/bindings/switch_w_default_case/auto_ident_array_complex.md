@@ -62,20 +62,20 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   const tmpArrElement = $(1);
   const tmpArrElement$1 = 2;
-  const tmpArrElement$2 = $(3);
-  a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+  const tmpArrElement$3 = $(3);
+  a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
   $(a);
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   $('fail1');
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$7) {
   $('fail2');
 }
 `````
@@ -84,8 +84,8 @@ if (tmpIfTest$4) {
 
 `````js filename=intro
 const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-const a = [tmpArrElement, 2, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const a = [tmpArrElement, 2, tmpArrElement$3];
 $(a);
 $('fail1');
 $('fail2');

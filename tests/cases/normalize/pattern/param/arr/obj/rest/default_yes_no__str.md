@@ -62,25 +62,6 @@ let f = function ($$0) {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4, $$5) {
-    let tmpParamBare$2 = $$0;
-    let bindingPatternArrRoot$2 = $$1;
-    let arrPatternSplat$2 = $$2;
-    let arrPatternBeforeDefault$2 = $$3;
-    let arrPatternStep$2 = $$4;
-    let tmpIfTest$2 = $$5;
-    debugger;
-    arrPatternStep$2 = arrPatternBeforeDefault$2;
-    const tmpReturnArg$1 = tmpBranchingC(
-      tmpParamBare$2,
-      bindingPatternArrRoot$2,
-      arrPatternSplat$2,
-      arrPatternBeforeDefault$2,
-      arrPatternStep$2,
-      tmpIfTest$2,
-    );
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4, $$5) {
     let tmpParamBare$3 = $$0;
     let bindingPatternArrRoot$3 = $$1;
     let arrPatternSplat$3 = $$2;
@@ -88,25 +69,34 @@ let f = function ($$0) {
     let arrPatternStep$3 = $$4;
     let tmpIfTest$3 = $$5;
     debugger;
-    const tmpCallCallee$2 = objPatternRest;
-    const tmpCalleeParam$2 = arrPatternStep$3;
-    const tmpCalleeParam$3 = [];
-    const tmpCalleeParam$4 = undefined;
-    let x$1 = tmpCallCallee$2(tmpCalleeParam$2, tmpCalleeParam$3, tmpCalleeParam$4);
+    arrPatternStep$3 = arrPatternBeforeDefault$3;
+    const tmpReturnArg$1 = tmpBranchingC(
+      tmpParamBare$3,
+      bindingPatternArrRoot$3,
+      arrPatternSplat$3,
+      arrPatternBeforeDefault$3,
+      arrPatternStep$3,
+      tmpIfTest$3,
+    );
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4, $$5) {
+    let tmpParamBare$5 = $$0;
+    let bindingPatternArrRoot$5 = $$1;
+    let arrPatternSplat$5 = $$2;
+    let arrPatternBeforeDefault$5 = $$3;
+    let arrPatternStep$5 = $$4;
+    let tmpIfTest$5 = $$5;
+    debugger;
+    const tmpCallCallee$3 = objPatternRest;
+    const tmpCalleeParam$3 = arrPatternStep$5;
+    const tmpCalleeParam$5 = [];
+    const tmpCalleeParam$7 = undefined;
+    let x$1 = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
     return x$1;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$2 = tmpBranchingA(
-      tmpParamBare,
-      bindingPatternArrRoot,
-      arrPatternSplat,
-      arrPatternBeforeDefault,
-      arrPatternStep,
-      tmpIfTest,
-    );
-    return tmpReturnArg$2;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingB(
+    const tmpReturnArg$3 = tmpBranchingA(
       tmpParamBare,
       bindingPatternArrRoot,
       arrPatternSplat,
@@ -115,11 +105,21 @@ let f = function ($$0) {
       tmpIfTest,
     );
     return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(
+      tmpParamBare,
+      bindingPatternArrRoot,
+      arrPatternSplat,
+      arrPatternBeforeDefault,
+      arrPatternStep,
+      tmpIfTest,
+    );
+    return tmpReturnArg$5;
   }
 };
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$5 = f('abc', 200);
-tmpCallCallee$3(tmpCalleeParam$5);
+const tmpCallCallee$5 = $;
+const tmpCalleeParam$9 = f('abc', 200);
+tmpCallCallee$5(tmpCalleeParam$9);
 `````
 
 ## Output
@@ -131,10 +131,10 @@ const f = function () {
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   const tmpBranchingC = function ($$0) {
-    const arrPatternStep$3 = $$0;
+    const arrPatternStep$5 = $$0;
     debugger;
-    const tmpCalleeParam$3 = [];
-    const x$1 = objPatternRest(arrPatternStep$3, tmpCalleeParam$3, undefined);
+    const tmpCalleeParam$5 = [];
+    const x$1 = objPatternRest(arrPatternStep$5, tmpCalleeParam$5, undefined);
     return x$1;
   };
   if (tmpIfTest) {
@@ -143,12 +143,12 @@ const f = function () {
     const tmpReturnArg = tmpBranchingC(SSA_arrPatternStep$1);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$3 = tmpBranchingC(arrPatternBeforeDefault);
-    return tmpReturnArg$3;
+    const tmpReturnArg$5 = tmpBranchingC(arrPatternBeforeDefault);
+    return tmpReturnArg$5;
   }
 };
-const tmpCalleeParam$5 = f();
-$(tmpCalleeParam$5);
+const tmpCalleeParam$9 = f();
+$(tmpCalleeParam$9);
 `````
 
 ## Globals

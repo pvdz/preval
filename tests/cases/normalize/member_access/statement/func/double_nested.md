@@ -32,8 +32,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpObjLitVal$2 = $();
-  const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+  const tmpObjLitVal$3 = $();
+  const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
   const tmpObjLitVal = { b: tmpObjLitVal$1 };
   const obj = { a: tmpObjLitVal };
   const tmpCompObj$1 = obj.a;
@@ -48,8 +48,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$2 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $();
+const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 const tmpCompObj$1 = obj.a;

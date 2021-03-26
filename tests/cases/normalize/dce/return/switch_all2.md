@@ -45,7 +45,7 @@ let f = function () {
   debugger;
   const tmpSwitchValue = 1;
   const tmpLabeledBlockFunc = function ($$0) {
-    let tmpSwitchValue$2 = $$0;
+    let tmpSwitchValue$3 = $$0;
     debugger;
   };
   const tmpAfterLabel = function ($$0) {

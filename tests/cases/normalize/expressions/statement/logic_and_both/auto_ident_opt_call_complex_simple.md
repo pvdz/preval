@@ -38,10 +38,10 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
   const tmpChainRootCall$1 = $;
-  const tmpChainElementCall$2 = tmpChainRootCall$1($);
-  const tmpIfTest$2 = tmpChainElementCall$2 != null;
-  if (tmpIfTest$2) {
-    const tmpChainElementCall$3 = tmpChainElementCall$2.call(tmpChainRootCall$1, 1);
+  const tmpChainElementCall$3 = tmpChainRootCall$1($);
+  const tmpIfTest$3 = tmpChainElementCall$3 != null;
+  if (tmpIfTest$3) {
+    const tmpChainElementCall$5 = tmpChainElementCall$3.call(tmpChainRootCall$1, 1);
   }
 }
 $(a);
@@ -59,10 +59,10 @@ if (tmpIfTest$1) {
   tmpIfTest = tmpChainElementCall$1;
 }
 if (tmpIfTest) {
-  const tmpChainElementCall$2 = $($);
-  const tmpIfTest$2 = tmpChainElementCall$2 != null;
-  if (tmpIfTest$2) {
-    tmpChainElementCall$2.call($, 1);
+  const tmpChainElementCall$3 = $($);
+  const tmpIfTest$3 = tmpChainElementCall$3 != null;
+  if (tmpIfTest$3) {
+    tmpChainElementCall$3.call($, 1);
   }
 }
 $(a);

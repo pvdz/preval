@@ -37,13 +37,13 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpCalleeParam$1 = $(1);
   a = tmpCallCallee$1(tmpCalleeParam$1);
   if (a) {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(1);
-    a = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(1);
+    a = tmpCallCallee$3(tmpCalleeParam$3);
     if (a) {
-      const tmpCallCallee$3 = $;
-      const tmpCalleeParam$3 = $(2);
-      a = tmpCallCallee$3(tmpCalleeParam$3);
+      const tmpCallCallee$5 = $;
+      const tmpCalleeParam$5 = $(2);
+      a = tmpCallCallee$5(tmpCalleeParam$5);
     }
   }
   let tmpAssignMemLhsObj = a;
@@ -63,11 +63,11 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpCalleeParam$1 = $(1);
   a = $(tmpCalleeParam$1);
   if (a) {
-    const tmpCalleeParam$2 = $(1);
-    a = $(tmpCalleeParam$2);
+    const tmpCalleeParam$3 = $(1);
+    a = $(tmpCalleeParam$3);
     if (a) {
-      const tmpCalleeParam$3 = $(2);
-      a = $(tmpCalleeParam$3);
+      const tmpCalleeParam$5 = $(2);
+      a = $(tmpCalleeParam$5);
     }
   }
   const tmpAssignMemLhsObj = a;

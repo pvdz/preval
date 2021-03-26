@@ -26,20 +26,20 @@ $(new Array(5 + 5, $(), Array.prototype.length));
 const tmpCallCallee = $;
 const tmpNewCallee = Array;
 const tmpCalleeParam$1 = 10;
-const tmpCalleeParam$2 = $();
+const tmpCalleeParam$3 = $();
 const tmpCompObj = Array.prototype;
-const tmpCalleeParam$3 = tmpCompObj.length;
-const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
+const tmpCalleeParam$5 = tmpCompObj.length;
+const tmpCalleeParam = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$2 = $();
+const tmpCalleeParam$3 = $();
 const tmpCompObj = Array.prototype;
-const tmpCalleeParam$3 = tmpCompObj.length;
-const tmpCalleeParam = new Array(10, tmpCalleeParam$2, tmpCalleeParam$3);
+const tmpCalleeParam$5 = tmpCompObj.length;
+const tmpCalleeParam = new Array(10, tmpCalleeParam$3, tmpCalleeParam$5);
 $(tmpCalleeParam);
 `````
 

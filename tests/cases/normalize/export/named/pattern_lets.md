@@ -35,8 +35,8 @@ $(a, b, d);
 const tmpArrElement = 1;
 const tmpArrElement$1 = 2;
 const tmpObjLitVal = [3];
-const tmpArrElement$2 = { c: tmpObjLitVal };
-let bindingPatternArrRoot = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = { c: tmpObjLitVal };
+let bindingPatternArrRoot = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 let b = arrPatternSplat[1];
@@ -52,8 +52,8 @@ $(a, b, d);
 
 `````js filename=intro
 const tmpObjLitVal = [3];
-const tmpArrElement$2 = { c: tmpObjLitVal };
-const bindingPatternArrRoot = [1, 2, tmpArrElement$2];
+const tmpArrElement$3 = { c: tmpObjLitVal };
+const bindingPatternArrRoot = [1, 2, tmpArrElement$3];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 const b = arrPatternSplat[1];

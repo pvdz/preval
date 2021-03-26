@@ -41,8 +41,8 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
 }
 let tmpBinBothLhs = a;
@@ -50,10 +50,10 @@ a = undefined;
 const tmpChainRootProp$1 = b;
 const tmpIfTest$1 = tmpChainRootProp$1 != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject$3 = tmpChainRootProp$1.c;
-  const tmpChainElementObject$4 = tmpChainElementObject$3.d;
-  const tmpChainElementObject$5 = tmpChainElementObject$4.e;
-  const tmpChainElementCall$1 = tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
+  const tmpChainElementObject$5 = tmpChainRootProp$1.c;
+  const tmpChainElementObject$7 = tmpChainElementObject$5.d;
+  const tmpChainElementObject$9 = tmpChainElementObject$7.e;
+  const tmpChainElementCall$1 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
   a = tmpChainElementCall$1;
 }
 let tmpBinBothRhs = a;
@@ -73,18 +73,18 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   SSA_a = tmpChainElementCall;
 }
 const tmpBinBothLhs = SSA_a;
 let SSA_a$1 = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject$3 = b.c;
-  const tmpChainElementObject$4 = tmpChainElementObject$3.d;
-  const tmpChainElementObject$5 = tmpChainElementObject$4.e;
-  const tmpChainElementCall$1 = tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
+  const tmpChainElementObject$5 = b.c;
+  const tmpChainElementObject$7 = tmpChainElementObject$5.d;
+  const tmpChainElementObject$9 = tmpChainElementObject$7.e;
+  const tmpChainElementCall$1 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
   SSA_a$1 = tmpChainElementCall$1;
 }
 const tmpBinBothRhs = SSA_a$1;

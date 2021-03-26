@@ -24,11 +24,11 @@ g();
 `````js filename=intro
 const g = () => {
   debugger;
-  let f$2 = function () {
+  let f$3 = function () {
     debugger;
   };
   $(1);
-  $(f$2());
+  $(f$3());
 };
 g();
 `````
@@ -38,12 +38,12 @@ g();
 `````js filename=intro
 const g = function () {
   debugger;
-  let f$2 = function () {
+  let f$3 = function () {
     debugger;
   };
   $(1);
   const tmpCallCallee = $;
-  const tmpCalleeParam = f$2();
+  const tmpCalleeParam = f$3();
   tmpCallCallee(tmpCalleeParam);
 };
 g();

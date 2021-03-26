@@ -38,10 +38,10 @@ let g = function ($$0) {
   return h(n$1 + 1);
 };
 let h = function ($$0) {
-  let n$2 = $$0;
+  let n$3 = $$0;
   debugger;
-  if ($(n$2) > 1000) return n$2;
-  return f(n$2);
+  if ($(n$3) > 1000) return n$3;
+  return f(n$3);
 };
 $(f(0));
 `````
@@ -64,39 +64,39 @@ let g = function ($$0) {
   return tmpReturnArg$1;
 };
 let h = function ($$0) {
-  let n$2 = $$0;
+  let n$3 = $$0;
   debugger;
-  const tmpBinLhs = $(n$2);
+  const tmpBinLhs = $(n$3);
   const tmpIfTest = tmpBinLhs > 1000;
   const tmpBranchingA = function ($$0, $$1, $$2) {
-    let n$3 = $$0;
+    let n$2 = $$0;
     let tmpBinLhs$1 = $$1;
     let tmpIfTest$1 = $$2;
     debugger;
-    return n$3;
+    return n$2;
   };
   const tmpBranchingB = function ($$0, $$1, $$2) {
     let n$4 = $$0;
-    let tmpBinLhs$2 = $$1;
-    let tmpIfTest$2 = $$2;
-    debugger;
-    const tmpReturnArg$2 = tmpBranchingC(n$4, tmpBinLhs$2, tmpIfTest$2);
-    return tmpReturnArg$2;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let n$5 = $$0;
     let tmpBinLhs$3 = $$1;
     let tmpIfTest$3 = $$2;
     debugger;
-    const tmpReturnArg$3 = f(n$5);
+    const tmpReturnArg$3 = tmpBranchingC(n$4, tmpBinLhs$3, tmpIfTest$3);
     return tmpReturnArg$3;
   };
-  if (tmpIfTest) {
-    const tmpReturnArg$4 = tmpBranchingA(n$2, tmpBinLhs, tmpIfTest);
-    return tmpReturnArg$4;
-  } else {
-    const tmpReturnArg$5 = tmpBranchingB(n$2, tmpBinLhs, tmpIfTest);
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let n$6 = $$0;
+    let tmpBinLhs$5 = $$1;
+    let tmpIfTest$5 = $$2;
+    debugger;
+    const tmpReturnArg$5 = f(n$6);
     return tmpReturnArg$5;
+  };
+  if (tmpIfTest) {
+    const tmpReturnArg$7 = tmpBranchingA(n$3, tmpBinLhs, tmpIfTest);
+    return tmpReturnArg$7;
+  } else {
+    const tmpReturnArg$9 = tmpBranchingB(n$3, tmpBinLhs, tmpIfTest);
+    return tmpReturnArg$9;
   }
 };
 const tmpCallCallee$1 = $;
@@ -114,8 +114,8 @@ const $clone$g$0_D0 = function () {
   if (tmpIfTest$1) {
     return 1;
   } else {
-    const tmpReturnArg$3 = $clone$g$0_D1();
-    return tmpReturnArg$3;
+    const tmpReturnArg$4 = $clone$g$0_D1();
+    return tmpReturnArg$4;
   }
 };
 const $clone$g$0_D1 = function () {
@@ -147,8 +147,8 @@ const $clone$g$0_D3 = function () {
   if (tmpIfTest$4) {
     return 4;
   } else {
-    const tmpReturnArg$4 = $clone$g$0_D4();
-    return tmpReturnArg$4;
+    const tmpReturnArg$3 = $clone$g$0_D4();
+    return tmpReturnArg$3;
   }
 };
 const $clone$g$0_D4 = function () {
@@ -180,8 +180,8 @@ const $clone$g$0_D6 = function () {
   if (tmpIfTest$7) {
     return 7;
   } else {
-    const tmpReturnArg$8 = $clone$g$0_D7();
-    return tmpReturnArg$8;
+    const tmpReturnArg$7 = $clone$g$0_D7();
+    return tmpReturnArg$7;
   }
 };
 const $clone$g$0_D7 = function () {
@@ -191,8 +191,8 @@ const $clone$g$0_D7 = function () {
   if (tmpIfTest$8) {
     return 8;
   } else {
-    const tmpReturnArg$9 = $clone$g$0_D8();
-    return tmpReturnArg$9;
+    const tmpReturnArg$8 = $clone$g$0_D8();
+    return tmpReturnArg$8;
   }
 };
 const $clone$g$0_D8 = function () {
@@ -202,8 +202,8 @@ const $clone$g$0_D8 = function () {
   if (tmpIfTest$9) {
     return 9;
   } else {
-    const tmpReturnArg$10 = $clone$g$0_D9();
-    return tmpReturnArg$10;
+    const tmpReturnArg$9 = $clone$g$0_D9();
+    return tmpReturnArg$9;
   }
 };
 const $clone$g$0_D9 = function () {
@@ -226,8 +226,8 @@ const g = function ($$0) {
   if (tmpIfTest) {
     return tmpCalleeParam;
   } else {
-    const tmpReturnArg$7 = g(tmpCalleeParam);
-    return tmpReturnArg$7;
+    const tmpReturnArg$10 = g(tmpCalleeParam);
+    return tmpReturnArg$10;
   }
 };
 const tmpCalleeParam$1 = $clone$g$0_D0();

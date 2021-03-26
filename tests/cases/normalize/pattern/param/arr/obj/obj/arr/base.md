@@ -58,20 +58,20 @@ let f = function ($$0) {
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpObjLitVal$1 = 13;
-const tmpObjLitVal$2 = [1, 2, 3];
-const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$2, z: 31 };
+const tmpObjLitVal$3 = [1, 2, 3];
+const tmpObjLitVal = { x: tmpObjLitVal$1, y: tmpObjLitVal$3, z: 31 };
 const tmpArrElement = { x: tmpObjLitVal, y: 11 };
 const tmpCalleeParam$1 = [tmpArrElement, 10];
-const tmpCalleeParam$2 = 100;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = 100;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$2 = [1, 2, 3];
-const tmpObjLitVal = { x: 13, y: tmpObjLitVal$2, z: 31 };
+const tmpObjLitVal$3 = [1, 2, 3];
+const tmpObjLitVal = { x: 13, y: tmpObjLitVal$3, z: 31 };
 const tmpArrElement = { x: tmpObjLitVal, y: 11 };
 const tmpCalleeParam$1 = [tmpArrElement, 10];
 const arrPatternSplat = [...tmpCalleeParam$1];

@@ -39,9 +39,9 @@ if (tmpIfTest) {
 }
 const tmpCallCallee$1 = objPatternRest;
 const tmpCalleeParam$1 = arrPatternStep;
-const tmpCalleeParam$2 = [];
-const tmpCalleeParam$3 = undefined;
-const x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2, tmpCalleeParam$3);
+const tmpCalleeParam$3 = [];
+const tmpCalleeParam$5 = undefined;
+const x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
 $(x);
 `````
 
@@ -60,8 +60,8 @@ if (tmpIfTest) {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const tmpCalleeParam$1 = arrPatternStep;
-const tmpCalleeParam$2 = [];
-const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$2, undefined);
+const tmpCalleeParam$3 = [];
+const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
 $(x);
 `````
 

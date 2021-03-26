@@ -91,8 +91,6 @@ export function uniqify_idents(funcAst, fdata) {
 
       case 'BreakStatement:before':
       case 'ContinueStatement:before': {
-        // TODO: fixme
-        break;
         // Find labeled break or continue statements and make sure that they keep pointing to the "same" label
         // Find the first label ancestor where the original name matches the label of this node
         if (node.label) {
@@ -119,12 +117,10 @@ export function uniqify_idents(funcAst, fdata) {
       }
 
       case 'LabeledStatement:before': {
-        // TODO: fixme
-        break;
         labelStack.push(node);
         vlog('Label:', node.label.name);
         node.$p.originalLabelName = node.label.name;
-        const uniqueName = createUniqueGlobalLabel(node.label.name, fdata.globallyUniqueLabelRegistry);
+        const uniqueName = createUniqueGlobalLabel(node.label.name, fdata);
         registerGlobalLabel(fdata, uniqueName, node.label.name, node);
         if (node.label.name !== uniqueName) {
           vlog('- Unique label name:', uniqueName);
@@ -135,7 +131,6 @@ export function uniqify_idents(funcAst, fdata) {
         break;
       }
       case 'LabeledStatement:after': {
-        break;
         labelStack.pop();
         break;
       }

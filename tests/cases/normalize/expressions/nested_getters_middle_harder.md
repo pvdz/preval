@@ -129,11 +129,11 @@ let f = function () {
   const tmpCalleeParam$1 = b.foo;
   tmpCallCallee$1(tmpCalleeParam$1);
   $('-------- a.foo');
-  const tmpCallCallee$2 = $;
+  const tmpCallCallee$3 = $;
   const varInitAssignLhsComputedRhs = 4;
   b.foo = varInitAssignLhsComputedRhs;
-  const tmpCalleeParam$2 = varInitAssignLhsComputedRhs;
-  tmpCallCallee$2(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = varInitAssignLhsComputedRhs;
+  tmpCallCallee$3(tmpCalleeParam$3);
   $('-------- a.foo = 4');
 };
 f();

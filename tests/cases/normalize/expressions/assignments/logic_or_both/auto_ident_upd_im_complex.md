@@ -44,9 +44,9 @@ a = tmpPostUpdArgVal;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(b);
-  const tmpPostUpdArgObj$1 = tmpCallCallee$2(tmpCalleeParam$2);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(b);
+  const tmpPostUpdArgObj$1 = tmpCallCallee$3(tmpCalleeParam$3);
   const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
   const tmpAssignMemLhsObj$1 = tmpPostUpdArgObj$1;
   const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 - 1;
@@ -72,8 +72,8 @@ let SSA_a = tmpPostUpdArgVal;
 let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
-  const tmpCalleeParam$2 = $(b);
-  const tmpPostUpdArgObj$1 = $(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(b);
+  const tmpPostUpdArgObj$1 = $(tmpCalleeParam$3);
   const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
   const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 - 1;
   tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;

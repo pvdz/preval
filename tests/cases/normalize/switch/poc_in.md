@@ -93,25 +93,25 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {
-    const tmpBinLhs$2 = $(3);
-    const tmpIfTest$2 = tmpBinLhs$2 === tmpSwitchValue;
-    if (tmpIfTest$2) {
+    const tmpBinLhs$3 = $(3);
+    const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
+    if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 2;
     }
   }
 }
 tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$5) {
     $('A');
   }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$7) {
     $('B');
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$5) {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$9) {
       $('C');
       break tmpSwitchBreak;
     }
@@ -133,25 +133,25 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {
-    const tmpBinLhs$2 = $(3);
-    const tmpIfTest$2 = tmpBinLhs$2 === 1;
-    if (tmpIfTest$2) {
+    const tmpBinLhs$3 = $(3);
+    const tmpIfTest$3 = tmpBinLhs$3 === 1;
+    if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 2;
     }
   }
 }
 tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$5) {
     $('A');
   }
-  const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$7) {
     $('B');
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$5) {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$9) {
       $('C');
       break tmpSwitchBreak;
     }

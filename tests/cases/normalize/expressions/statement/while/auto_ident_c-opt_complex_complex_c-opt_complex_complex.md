@@ -41,8 +41,8 @@ while (true) {
   if (tmpIfTest$1) {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$2 = tmpChainElementObject != null;
-    if (tmpIfTest$2) {
+    const tmpIfTest$3 = tmpChainElementObject != null;
+    if (tmpIfTest$3) {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpIfTest = tmpChainElementObject$1;
@@ -70,8 +70,8 @@ while (true) {
   if (tmpIfTest$1) {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$2 = tmpChainElementObject != null;
-    if (tmpIfTest$2) {
+    const tmpIfTest$3 = tmpChainElementObject != null;
+    if (tmpIfTest$3) {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpIfTest = tmpChainElementObject$1;

@@ -22,7 +22,7 @@ const { x } = 1;
 }
 const { x } = 1;
 {
-  let x$2 = 1;
+  let x$3 = 1;
 }
 `````
 
@@ -32,7 +32,7 @@ const { x } = 1;
 let x$1 = 1;
 const bindingPatternObjRoot = 1;
 const x = bindingPatternObjRoot.x;
-let x$2 = 1;
+let x$3 = 1;
 `````
 
 ## Output

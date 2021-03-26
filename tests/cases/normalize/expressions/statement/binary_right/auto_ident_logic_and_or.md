@@ -39,9 +39,9 @@ if (tmpBinBothRhs) {
 }
 if (tmpBinBothRhs) {
 } else {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(2);
-  tmpBinBothRhs = tmpCallCallee$2(tmpCalleeParam$2);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(2);
+  tmpBinBothRhs = tmpCallCallee$3(tmpCalleeParam$3);
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
@@ -60,8 +60,8 @@ if (tmpBinBothRhs) {
 }
 if (tmpBinBothRhs) {
 } else {
-  const tmpCalleeParam$2 = $(2);
-  tmpBinBothRhs = $(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(2);
+  tmpBinBothRhs = $(tmpCalleeParam$3);
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

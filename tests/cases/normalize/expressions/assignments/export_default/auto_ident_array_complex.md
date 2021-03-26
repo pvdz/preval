@@ -31,8 +31,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
-const tmpArrElement$2 = $(3);
-a = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 let tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -42,8 +42,8 @@ $(a);
 
 `````js filename=intro
 const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-const SSA_a = [tmpArrElement, 2, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const SSA_a = [tmpArrElement, 2, tmpArrElement$3];
 const tmpAnonDefaultExport = SSA_a;
 export { tmpAnonDefaultExport as default };
 $(SSA_a);

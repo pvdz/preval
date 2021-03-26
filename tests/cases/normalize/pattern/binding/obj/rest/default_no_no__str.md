@@ -29,8 +29,8 @@ const bindingPatternObjRoot = 'abc';
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = bindingPatternObjRoot;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$2 = 'x';
-const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = 'x';
+const x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 $(x);
 `````
 

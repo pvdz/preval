@@ -43,18 +43,18 @@ let f = function ($$0) {
   const tmpCallCallee = objPatternRest;
   const tmpCalleeParam = arrPatternStep$1;
   const tmpCalleeParam$1 = [];
-  const tmpCalleeParam$2 = undefined;
-  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$2);
+  const tmpCalleeParam$3 = undefined;
+  let x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return x;
 };
 const tmpCallCallee$1 = $;
-const tmpCallCallee$2 = f;
+const tmpCallCallee$3 = f;
 const tmpArrElement$1 = { x: 1, y: 2, z: 3 };
 const tmpArrElement = [tmpArrElement$1, 20, 30];
-const tmpCalleeParam$4 = [tmpArrElement, 40, 50];
-const tmpCalleeParam$5 = 200;
-const tmpCalleeParam$3 = tmpCallCallee$2(tmpCalleeParam$4, tmpCalleeParam$5);
-tmpCallCallee$1(tmpCalleeParam$3);
+const tmpCalleeParam$7 = [tmpArrElement, 40, 50];
+const tmpCalleeParam$9 = 200;
+const tmpCalleeParam$5 = tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
+tmpCallCallee$1(tmpCalleeParam$5);
 `````
 
 ## Output
@@ -62,8 +62,8 @@ tmpCallCallee$1(tmpCalleeParam$3);
 `````js filename=intro
 const tmpArrElement$1 = { x: 1, y: 2, z: 3 };
 const tmpArrElement = [tmpArrElement$1, 20, 30];
-const tmpCalleeParam$4 = [tmpArrElement, 40, 50];
-const arrPatternSplat = [...tmpCalleeParam$4];
+const tmpCalleeParam$7 = [tmpArrElement, 40, 50];
+const arrPatternSplat = [...tmpCalleeParam$7];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternStep$1 = arrPatternSplat$1[0];

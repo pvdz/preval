@@ -37,8 +37,8 @@ let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpObjLitVal$1 = $(3);
-const tmpObjLitVal$2 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal$1, y: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal$1, y: tmpObjLitVal$3 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 a = tmpNestedAssignObjPatternRhs;
@@ -52,8 +52,8 @@ $(a, x, y);
 
 `````js filename=intro
 const tmpObjLitVal$1 = $(3);
-const tmpObjLitVal$2 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal$1, y: tmpObjLitVal$2 };
+const tmpObjLitVal$3 = $(4);
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal$1, y: tmpObjLitVal$3 };
 const SSA_x = tmpNestedAssignObjPatternRhs.x;
 const SSA_y = tmpNestedAssignObjPatternRhs.y;
 const tmpCalleeParam = { x: tmpNestedAssignObjPatternRhs };

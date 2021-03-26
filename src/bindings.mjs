@@ -316,24 +316,35 @@ export function getIdentUsageKind(parentNode, parentProp) {
   throw ASSERT(false, 'Support this new node', node);
 }
 
-export function generateUniqueGlobalName(name, globallyUniqueNamingRegistry, assumeDoubleDollar = false) {
+export function generateUniqueGlobalName(name, fdata, assumeDoubleDollar = false) {
   ASSERT(!assumeDoubleDollar || name.startsWith('$$'), 'if assuming double dollar, we should receive one');
   if (!assumeDoubleDollar && name.startsWith('$$')) {
     ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place');
     // TODO: assert this is the normal_once step and make sure it never happens elsewhere
-    return generateUniqueGlobalName('tmp' + name.slice(2), globallyUniqueNamingRegistry);
+    return generateUniqueGlobalName('tmp' + name.slice(2), fdata);
   }
 
-  // Create a (module) globally unique name. Then use that name for the local scope.
-  let n = 0;
+  const globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
+
   if (globallyUniqueNamingRegistry.has(name)) {
+    // Cache the offset otherwise large inputs will literally test every suffix 1 through n which causes perf problems
+    const identNameSuffixOffset = fdata.identNameSuffixOffset;
+
     // No point in having a `foo$1$22$1$1$1$1$1$1$1$1$1$1$1$1$1`
     if (name.includes('$')) {
       name = name.replace(/\$\d+$/, '');
     }
+
+    // Create a (module) globally unique name. Then use that name for the local scope.
+    let n = identNameSuffixOffset.get(name) ?? 0;
+
     while (globallyUniqueNamingRegistry.has(name + '$' + ++n));
+    identNameSuffixOffset.set(name, n + 1);
+
+    return n ? name + '$' + n : name;
   }
-  return n ? name + '$' + n : name;
+
+  return name;
 }
 export function registerGlobalIdent(fdata, name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
   ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place');
@@ -400,24 +411,39 @@ export function registerGlobalIdent(fdata, name, originalName, { isExport = fals
 export function createDoubleDollar(name, fdata) {
   ASSERT(createFreshVar.length === arguments.length, 'arg count');
   // The main difference between createFreshVar is that tmp is not force-prefixed to the double dollar name
-  const tmpName = generateUniqueGlobalName(name, fdata.globallyUniqueNamingRegistry, true);
+  const tmpName = generateUniqueGlobalName(name, fdata, true);
   registerGlobalIdent(fdata, tmpName, tmpName);
   return tmpName;
 }
 export function createFreshVar(name, fdata) {
   ASSERT(createFreshVar.length === arguments.length, 'arg count');
-  const tmpName = generateUniqueGlobalName(name, fdata.globallyUniqueNamingRegistry, false);
+  const tmpName = generateUniqueGlobalName(name, fdata, false);
   registerGlobalIdent(fdata, tmpName, tmpName);
   return tmpName;
 }
 
-export function createUniqueGlobalLabel(name, globallyUniqueLabelRegistry) {
-  // Create a (module) globally unique label name.
-  let n = 0;
+export function createUniqueGlobalLabel(name, fdata) {
+  const globallyUniqueLabelRegistry = fdata.globallyUniqueLabelRegistry;
+
   if (globallyUniqueLabelRegistry.has(name)) {
-    while (globallyUniqueLabelRegistry.has(name + '_' + ++n));
+    // Cache the offset otherwise large inputs will literally test every suffix 1 through n which causes perf problems
+    const labelNameSuffixOffset = fdata.labelNameSuffixOffset;
+
+    // No point in having a `foo$1$22$1$1$1$1$1$1$1$1$1$1$1$1$1`
+    if (name.includes('$')) {
+      name = name.replace(/\$\d+$/, '');
+    }
+
+    // Create a (module) globally unique name. Then use that name for the local scope.
+    let n = labelNameSuffixOffset.get(name) ?? 0;
+
+    while (globallyUniqueLabelRegistry.has(name + '$' + ++n));
+    labelNameSuffixOffset.set(name, n + 1);
+
+    return n ? name + '$' + n : name;
   }
-  return n ? name + '_' + n : name;
+
+  return name;
 }
 export function registerGlobalLabel(fdata, name, originalName, labelNode) {
   ASSERT(!fdata.globallyUniqueLabelRegistry.has(name), 'this func should be called with the unique label name');
@@ -542,7 +568,7 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
     log('- The ident `' + node.name + '` could not be resolved and is an implicit global');
     // Register one...
     vlog('Creating implicit global binding for `' + node.name + '` now');
-    const uniqueName = generateUniqueGlobalName(node.name, globallyUniqueNamingRegistry);
+    const uniqueName = generateUniqueGlobalName(node.name, fdata);
     const meta = registerGlobalIdent(fdata, uniqueName, node.name, { isImplicitGlobal: true });
     if (VERBOSE_TRACING) {
       vlog('- Meta:', {
@@ -688,7 +714,7 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
           return;
         }
 
-        const uniqueName = generateUniqueGlobalName(name, fdata.globallyUniqueNamingRegistry);
+        const uniqueName = generateUniqueGlobalName(name, fdata);
         vlog('Adding', name, 'to globallyUniqueNamingRegistry -->', uniqueName);
         registerGlobalIdent(fdata, uniqueName, name);
         node.$p.nameMapping.set(name, uniqueName);

@@ -26,7 +26,7 @@ const {
   },
 } = 1;
 {
-  let z$2 = 1;
+  let z$3 = 1;
 }
 `````
 
@@ -38,7 +38,7 @@ const bindingPatternObjRoot = 1;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const z = objPatternNoDefault$1.z;
-let z$2 = 1;
+let z$3 = 1;
 `````
 
 ## Output

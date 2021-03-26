@@ -47,108 +47,108 @@ let f = function ($$0) {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpParamBare$2 = $$0;
-    let bindingPatternArrRoot$2 = $$1;
-    let tmpIfTest$2 = $$2;
-    debugger;
-    bindingPatternArrRoot$2 = tmpParamBare$2;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$2, bindingPatternArrRoot$2, tmpIfTest$2);
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
     let tmpParamBare$3 = $$0;
     let bindingPatternArrRoot$3 = $$1;
     let tmpIfTest$3 = $$2;
     debugger;
-    let arrPatternSplat$2 = [...bindingPatternArrRoot$3];
-    let arrPatternBeforeDefault$1 = arrPatternSplat$2[0];
+    bindingPatternArrRoot$3 = tmpParamBare$3;
+    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$3, bindingPatternArrRoot$3, tmpIfTest$3);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function ($$0, $$1, $$2) {
+    let tmpParamBare$5 = $$0;
+    let bindingPatternArrRoot$5 = $$1;
+    let tmpIfTest$5 = $$2;
+    debugger;
+    let arrPatternSplat$3 = [...bindingPatternArrRoot$5];
+    let arrPatternBeforeDefault$1 = arrPatternSplat$3[0];
     let arrPatternStep$1 = undefined;
-    const tmpIfTest$4 = arrPatternBeforeDefault$1 === undefined;
+    const tmpIfTest$7 = arrPatternBeforeDefault$1 === undefined;
     const tmpBranchingA$1 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
-      let tmpParamBare$4 = $$0;
-      let bindingPatternArrRoot$4 = $$1;
-      let tmpIfTest$5 = $$2;
-      let arrPatternSplat$4 = $$3;
-      let arrPatternBeforeDefault$2 = $$4;
-      let arrPatternStep$2 = $$5;
-      let tmpIfTest$6 = $$6;
-      debugger;
-      arrPatternStep$2 = $('fail');
-      const tmpReturnArg$2 = tmpBranchingC$1(
-        tmpParamBare$4,
-        bindingPatternArrRoot$4,
-        tmpIfTest$5,
-        arrPatternSplat$4,
-        arrPatternBeforeDefault$2,
-        arrPatternStep$2,
-        tmpIfTest$6,
-      );
-      return tmpReturnArg$2;
-    };
-    const tmpBranchingB$1 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
-      let tmpParamBare$5 = $$0;
-      let bindingPatternArrRoot$5 = $$1;
-      let tmpIfTest$7 = $$2;
-      let arrPatternSplat$5 = $$3;
+      let tmpParamBare$7 = $$0;
+      let bindingPatternArrRoot$7 = $$1;
+      let tmpIfTest$9 = $$2;
+      let arrPatternSplat$7 = $$3;
       let arrPatternBeforeDefault$3 = $$4;
       let arrPatternStep$3 = $$5;
-      let tmpIfTest$8 = $$6;
+      let tmpIfTest$11 = $$6;
       debugger;
-      arrPatternStep$3 = arrPatternBeforeDefault$3;
+      arrPatternStep$3 = $('fail');
       const tmpReturnArg$3 = tmpBranchingC$1(
-        tmpParamBare$5,
-        bindingPatternArrRoot$5,
-        tmpIfTest$7,
-        arrPatternSplat$5,
+        tmpParamBare$7,
+        bindingPatternArrRoot$7,
+        tmpIfTest$9,
+        arrPatternSplat$7,
         arrPatternBeforeDefault$3,
         arrPatternStep$3,
-        tmpIfTest$8,
+        tmpIfTest$11,
       );
       return tmpReturnArg$3;
     };
-    const tmpBranchingC$1 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
-      let tmpParamBare$6 = $$0;
-      let bindingPatternArrRoot$6 = $$1;
-      let tmpIfTest$9 = $$2;
-      let arrPatternSplat$6 = $$3;
-      let arrPatternBeforeDefault$4 = $$4;
-      let arrPatternStep$4 = $$5;
-      let tmpIfTest$10 = $$6;
+    const tmpBranchingB$1 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
+      let tmpParamBare$9 = $$0;
+      let bindingPatternArrRoot$9 = $$1;
+      let tmpIfTest$13 = $$2;
+      let arrPatternSplat$9 = $$3;
+      let arrPatternBeforeDefault$5 = $$4;
+      let arrPatternStep$5 = $$5;
+      let tmpIfTest$15 = $$6;
       debugger;
-      let arrPatternSplat$7 = [...arrPatternStep$4];
-      let x$2 = arrPatternSplat$7.slice(0);
-      return 'bad';
-    };
-    if (tmpIfTest$4) {
-      const tmpReturnArg$4 = tmpBranchingA$1(
-        tmpParamBare$3,
-        bindingPatternArrRoot$3,
-        tmpIfTest$3,
-        arrPatternSplat$2,
-        arrPatternBeforeDefault$1,
-        arrPatternStep$1,
-        tmpIfTest$4,
-      );
-      return tmpReturnArg$4;
-    } else {
-      const tmpReturnArg$5 = tmpBranchingB$1(
-        tmpParamBare$3,
-        bindingPatternArrRoot$3,
-        tmpIfTest$3,
-        arrPatternSplat$2,
-        arrPatternBeforeDefault$1,
-        arrPatternStep$1,
-        tmpIfTest$4,
+      arrPatternStep$5 = arrPatternBeforeDefault$5;
+      const tmpReturnArg$5 = tmpBranchingC$1(
+        tmpParamBare$9,
+        bindingPatternArrRoot$9,
+        tmpIfTest$13,
+        arrPatternSplat$9,
+        arrPatternBeforeDefault$5,
+        arrPatternStep$5,
+        tmpIfTest$15,
       );
       return tmpReturnArg$5;
+    };
+    const tmpBranchingC$1 = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
+      let tmpParamBare$11 = $$0;
+      let bindingPatternArrRoot$11 = $$1;
+      let tmpIfTest$17 = $$2;
+      let arrPatternSplat$11 = $$3;
+      let arrPatternBeforeDefault$7 = $$4;
+      let arrPatternStep$7 = $$5;
+      let tmpIfTest$19 = $$6;
+      debugger;
+      let arrPatternSplat$13 = [...arrPatternStep$7];
+      let x$3 = arrPatternSplat$13.slice(0);
+      return 'bad';
+    };
+    if (tmpIfTest$7) {
+      const tmpReturnArg$7 = tmpBranchingA$1(
+        tmpParamBare$5,
+        bindingPatternArrRoot$5,
+        tmpIfTest$5,
+        arrPatternSplat$3,
+        arrPatternBeforeDefault$1,
+        arrPatternStep$1,
+        tmpIfTest$7,
+      );
+      return tmpReturnArg$7;
+    } else {
+      const tmpReturnArg$9 = tmpBranchingB$1(
+        tmpParamBare$5,
+        bindingPatternArrRoot$5,
+        tmpIfTest$5,
+        arrPatternSplat$3,
+        arrPatternBeforeDefault$1,
+        arrPatternStep$1,
+        tmpIfTest$7,
+      );
+      return tmpReturnArg$9;
     }
   };
   if (tmpIfTest) {
-    const tmpReturnArg$6 = tmpBranchingA(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
-    return tmpReturnArg$6;
+    const tmpReturnArg$11 = tmpBranchingA(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    return tmpReturnArg$11;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
-    return tmpReturnArg$7;
+    const tmpReturnArg$13 = tmpBranchingB(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    return tmpReturnArg$13;
   }
 };
 const tmpCallCallee = $;
@@ -161,23 +161,23 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  const arrPatternSplat$2 = [...0];
-  const arrPatternBeforeDefault$1 = arrPatternSplat$2[0];
-  const tmpIfTest$4 = arrPatternBeforeDefault$1 === undefined;
+  const arrPatternSplat$3 = [...0];
+  const arrPatternBeforeDefault$1 = arrPatternSplat$3[0];
+  const tmpIfTest$7 = arrPatternBeforeDefault$1 === undefined;
   const tmpBranchingC$1 = function ($$0) {
-    const arrPatternStep$4 = $$0;
+    const arrPatternStep$7 = $$0;
     debugger;
-    const arrPatternSplat$7 = [...arrPatternStep$4];
-    arrPatternSplat$7.slice(0);
+    const arrPatternSplat$13 = [...arrPatternStep$7];
+    arrPatternSplat$13.slice(0);
     return 'bad';
   };
-  if (tmpIfTest$4) {
+  if (tmpIfTest$7) {
     const SSA_arrPatternStep$1 = $('fail');
     const tmpReturnArg$1 = tmpBranchingC$1(SSA_arrPatternStep$1);
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$4 = tmpBranchingC$1(arrPatternBeforeDefault$1);
-    return tmpReturnArg$4;
+    const tmpReturnArg$6 = tmpBranchingC$1(arrPatternBeforeDefault$1);
+    return tmpReturnArg$6;
   }
 };
 const tmpCalleeParam = f();

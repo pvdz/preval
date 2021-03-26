@@ -24,7 +24,7 @@ let f = function ($$0) {
   debugger;
   let [x$1] = tmpParamBare;
   {
-    let x$2 = 2;
+    let x$3 = 2;
   }
   return x$1;
 };
@@ -40,7 +40,7 @@ let f = function ($$0) {
   let bindingPatternArrRoot = tmpParamBare;
   let arrPatternSplat = [...bindingPatternArrRoot];
   let x$1 = arrPatternSplat[0];
-  let x$2 = 2;
+  let x$3 = 2;
   return x$1;
 };
 let x = 1;

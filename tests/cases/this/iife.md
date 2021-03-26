@@ -54,26 +54,26 @@ const f = function () {
     return tmpReturnArg;
   };
   const tmpBranchingB = function ($$0, $$1) {
-    let tmpthis$2 = $$0;
-    let t$2 = $$1;
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC(tmpthis$2, t$2);
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function ($$0, $$1) {
     let tmpthis$3 = $$0;
     let t$3 = $$1;
     debugger;
-    if (t$3) {
-      const g$1 = tmpthis$3;
+    const tmpReturnArg$1 = tmpBranchingC(tmpthis$3, t$3);
+    return tmpReturnArg$1;
+  };
+  const tmpBranchingC = function ($$0, $$1) {
+    let tmpthis$5 = $$0;
+    let t$5 = $$1;
+    debugger;
+    if (t$5) {
+      const g$1 = tmpthis$5;
     }
   };
   if (t) {
-    const tmpReturnArg$2 = tmpBranchingA(tmpthis, t);
-    return tmpReturnArg$2;
-  } else {
-    const tmpReturnArg$3 = tmpBranchingB(tmpthis, t);
+    const tmpReturnArg$3 = tmpBranchingA(tmpthis, t);
     return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$5 = tmpBranchingB(tmpthis, t);
+    return tmpReturnArg$5;
   }
 };
 f();

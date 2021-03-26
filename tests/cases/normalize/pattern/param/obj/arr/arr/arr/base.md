@@ -43,7 +43,7 @@ let f = function ($$0) {
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
   let arrPatternStep$1 = arrPatternSplat$1[0];
-  let arrPatternSplat$2 = [...arrPatternStep$1];
+  let arrPatternSplat$3 = [...arrPatternStep$1];
   return 'ok';
 };
 const tmpCallCallee = $;
@@ -52,8 +52,8 @@ const tmpArrElement$1 = [1, 2, 3];
 const tmpArrElement = [tmpArrElement$1, 14];
 const tmpObjLitVal = [tmpArrElement, 13];
 const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
-const tmpCalleeParam$2 = 10;
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = 10;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 `````
 

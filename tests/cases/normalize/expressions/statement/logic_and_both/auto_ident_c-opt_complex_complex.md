@@ -44,8 +44,8 @@ if (tmpIfTest$1) {
 if (tmpIfTest) {
   const tmpChainRootCall$1 = $;
   const tmpChainElementCall$1 = tmpChainRootCall$1(b);
-  const tmpIfTest$2 = tmpChainElementCall$1 != null;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpChainElementCall$1 != null;
+  if (tmpIfTest$3) {
     const tmpChainRootComputed$1 = $('x');
     const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
   }
@@ -68,8 +68,8 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
   const tmpChainElementCall$1 = $(b);
-  const tmpIfTest$2 = tmpChainElementCall$1 != null;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpChainElementCall$1 != null;
+  if (tmpIfTest$3) {
     const tmpChainRootComputed$1 = $('x');
     tmpChainElementCall$1[tmpChainRootComputed$1];
   }

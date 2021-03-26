@@ -65,15 +65,15 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 1;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   const arrAssignPatternRhs = [10, 20];
   const arrPatternSplat = [...arrAssignPatternRhs];
   a = arrPatternSplat[0];
   b = arrPatternSplat[1];
 }
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$5) {
   const arrAssignPatternRhs$1 = [30, 40];
   const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
   a = arrPatternSplat$1[0];

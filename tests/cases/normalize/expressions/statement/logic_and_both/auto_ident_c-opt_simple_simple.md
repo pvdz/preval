@@ -42,8 +42,8 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
   const tmpChainRootProp$1 = b;
-  const tmpIfTest$2 = tmpChainRootProp$1 != null;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = tmpChainRootProp$1 != null;
+  if (tmpIfTest$3) {
     const tmpChainRootComputed$1 = 'x';
     const tmpChainElementObject$1 = tmpChainRootProp$1[tmpChainRootComputed$1];
   }
@@ -63,8 +63,8 @@ if (tmpIfTest$1) {
   tmpIfTest = tmpChainElementObject;
 }
 if (tmpIfTest) {
-  const tmpIfTest$2 = b != null;
-  if (tmpIfTest$2) {
+  const tmpIfTest$3 = b != null;
+  if (tmpIfTest$3) {
     b.x;
   }
 }

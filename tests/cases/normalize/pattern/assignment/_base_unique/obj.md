@@ -22,7 +22,7 @@
 }
 ({ x$1 } = 1);
 {
-  let x$2 = 1;
+  let x$3 = 1;
 }
 `````
 
@@ -32,7 +32,7 @@
 let x = 1;
 const tmpAssignObjPatternRhs = 1;
 x$1 = tmpAssignObjPatternRhs.x$1;
-let x$2 = 1;
+let x$3 = 1;
 `````
 
 ## Output

@@ -41,8 +41,8 @@ let f = function ($$0, $$1) {
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = $(10);
-const tmpCalleeParam$2 = $(20);
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(20);
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -50,8 +50,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $(10);
-const tmpCalleeParam$2 = $(20);
-$(tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(20);
+$(tmpCalleeParam$3);
 `````
 
 ## Globals

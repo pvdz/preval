@@ -140,10 +140,10 @@ const tmpAssignMemLhsObj = a();
 const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const varInitAssignLhsComputedObj = b();
 const varInitAssignLhsComputedObj$1 = c();
-const varInitAssignLhsComputedObj$2 = d();
-const varInitAssignLhsComputedRhs$2 = e();
-varInitAssignLhsComputedObj$2.x = varInitAssignLhsComputedRhs$2;
-const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$2;
+const varInitAssignLhsComputedObj$3 = d();
+const varInitAssignLhsComputedRhs$3 = e();
+varInitAssignLhsComputedObj$3.x = varInitAssignLhsComputedRhs$3;
+const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
@@ -203,12 +203,12 @@ const SSA_e = function () {
 const tmpAssignMemLhsObj = SSA_a();
 const varInitAssignLhsComputedObj = SSA_b();
 const varInitAssignLhsComputedObj$1 = SSA_c();
-const varInitAssignLhsComputedObj$2 = SSA_d();
-const varInitAssignLhsComputedRhs$2 = SSA_e();
-varInitAssignLhsComputedObj$2.x = varInitAssignLhsComputedRhs$2;
-varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$2;
-varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$2;
-tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$2;
+const varInitAssignLhsComputedObj$3 = SSA_d();
+const varInitAssignLhsComputedRhs$3 = SSA_e();
+varInitAssignLhsComputedObj$3.x = varInitAssignLhsComputedRhs$3;
+varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$3;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$3;
+tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$3;
 $(SSA_a, SSA_b, SSA_c, SSA_d, SSA_e);
 `````
 

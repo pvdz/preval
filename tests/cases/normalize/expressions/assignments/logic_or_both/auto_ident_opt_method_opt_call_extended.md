@@ -41,10 +41,10 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-  const tmpIfTest$1 = tmpChainElementObject$2 != null;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  const tmpIfTest$1 = tmpChainElementObject$3 != null;
   if (tmpIfTest$1) {
-    const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+    const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     a = tmpChainElementCall;
   }
 }
@@ -53,14 +53,14 @@ if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp$1 = b;
-  const tmpIfTest$2 = tmpChainRootProp$1 != null;
-  if (tmpIfTest$2) {
-    const tmpChainElementObject$3 = tmpChainRootProp$1.c;
-    const tmpChainElementObject$4 = tmpChainElementObject$3.d;
-    const tmpChainElementObject$5 = tmpChainElementObject$4.e;
-    const tmpIfTest$3 = tmpChainElementObject$5 != null;
-    if (tmpIfTest$3) {
-      const tmpChainElementCall$1 = tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
+  const tmpIfTest$3 = tmpChainRootProp$1 != null;
+  if (tmpIfTest$3) {
+    const tmpChainElementObject$5 = tmpChainRootProp$1.c;
+    const tmpChainElementObject$7 = tmpChainElementObject$5.d;
+    const tmpChainElementObject$9 = tmpChainElementObject$7.e;
+    const tmpIfTest$5 = tmpChainElementObject$9 != null;
+    if (tmpIfTest$5) {
+      const tmpChainElementCall$1 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
       tmpNestedComplexRhs = tmpChainElementCall$1;
     }
   }
@@ -82,10 +82,10 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$2 = tmpChainElementObject$1.e;
-  const tmpIfTest$1 = tmpChainElementObject$2 != null;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  const tmpIfTest$1 = tmpChainElementObject$3 != null;
   if (tmpIfTest$1) {
-    const tmpChainElementCall = tmpChainElementObject$2.call(tmpChainElementObject$1, 1);
+    const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     SSA_a = tmpChainElementCall;
   }
 }
@@ -93,14 +93,14 @@ let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$2 = b != null;
-  if (tmpIfTest$2) {
-    const tmpChainElementObject$3 = b.c;
-    const tmpChainElementObject$4 = tmpChainElementObject$3.d;
-    const tmpChainElementObject$5 = tmpChainElementObject$4.e;
-    const tmpIfTest$3 = tmpChainElementObject$5 != null;
-    if (tmpIfTest$3) {
-      const tmpChainElementCall$1 = tmpChainElementObject$5.call(tmpChainElementObject$4, 1);
+  const tmpIfTest$3 = b != null;
+  if (tmpIfTest$3) {
+    const tmpChainElementObject$5 = b.c;
+    const tmpChainElementObject$7 = tmpChainElementObject$5.d;
+    const tmpChainElementObject$9 = tmpChainElementObject$7.e;
+    const tmpIfTest$5 = tmpChainElementObject$9 != null;
+    if (tmpIfTest$5) {
+      const tmpChainElementCall$1 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
       tmpNestedComplexRhs = tmpChainElementCall$1;
     }
   }

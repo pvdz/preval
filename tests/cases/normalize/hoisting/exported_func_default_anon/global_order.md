@@ -56,8 +56,8 @@ const tmpCalleeParam$1 = g();
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 const tmpAnonDefaultExport = function () {
   debugger;
-  const tmpReturnArg$2 = $();
-  return tmpReturnArg$2;
+  const tmpReturnArg$3 = $();
+  return tmpReturnArg$3;
 };
 export { tmpAnonDefaultExport as default };
 export { f };
@@ -82,8 +82,8 @@ const tmpCalleeParam$1 = $();
 $(tmpCalleeParam, tmpCalleeParam$1);
 const tmpAnonDefaultExport = function () {
   debugger;
-  const tmpReturnArg$2 = $();
-  return tmpReturnArg$2;
+  const tmpReturnArg$3 = $();
+  return tmpReturnArg$3;
 };
 export { tmpAnonDefaultExport as default };
 export { f };

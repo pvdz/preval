@@ -67,13 +67,13 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   a = undefined;
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall($);
-  const tmpIfTest$3 = tmpChainElementCall != null;
-  if (tmpIfTest$3) {
+  const tmpIfTest$5 = tmpChainElementCall != null;
+  if (tmpIfTest$5) {
     const tmpCallObj = tmpChainElementCall;
     const tmpCallVal = tmpCallObj.call;
     const tmpCalleeParam = tmpChainRootCall;
@@ -82,12 +82,12 @@ if (tmpIfTest$2) {
     a = tmpChainElementCall$1;
   }
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$7) {
   $('fail1');
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$5) {
+const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$9) {
   $('fail2');
 }
 $(a);
@@ -109,24 +109,24 @@ if (tmpIfTest) {
     tmpSwitchCaseToStart = 2;
   }
 }
-const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$2) {
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
   a = undefined;
   const tmpChainElementCall = $($);
-  const tmpIfTest$3 = tmpChainElementCall != null;
-  if (tmpIfTest$3) {
+  const tmpIfTest$5 = tmpChainElementCall != null;
+  if (tmpIfTest$5) {
     const tmpCallVal = tmpChainElementCall.call;
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
     a = tmpChainElementCall$1;
   }
 }
-const tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-if (tmpIfTest$4) {
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$7) {
   $('fail1');
 }
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$5) {
+const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+if (tmpIfTest$9) {
   $('fail2');
 }
 $(a);

@@ -41,8 +41,8 @@ let f = function ($$0) {
   if (tmpIfTest) {
     const tmpArrElement = $(1);
     const tmpArrElement$1 = 2;
-    const tmpArrElement$2 = $(3);
-    p = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+    const tmpArrElement$3 = $(3);
+    p = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
   } else {
     p = tmpParamBare;
   }

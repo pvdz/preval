@@ -31,18 +31,18 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$2 = $(0);
-a = tmpCallCallee$1(tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(0);
+a = tmpCallCallee$1(tmpCalleeParam$3);
 if (a) {
 } else {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$3 = $(1);
-  a = tmpCallCallee$2(tmpCalleeParam$3);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$5 = $(1);
+  a = tmpCallCallee$3(tmpCalleeParam$5);
   if (a) {
   } else {
-    const tmpCallCallee$3 = $;
-    const tmpCalleeParam$4 = $(2);
-    a = tmpCallCallee$3(tmpCalleeParam$4);
+    const tmpCallCallee$5 = $;
+    const tmpCalleeParam$7 = $(2);
+    a = tmpCallCallee$5(tmpCalleeParam$7);
   }
 }
 let tmpCalleeParam$1 = a;
@@ -54,16 +54,16 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
-const tmpCalleeParam$2 = $(0);
-let SSA_a = $(tmpCalleeParam$2);
+const tmpCalleeParam$3 = $(0);
+let SSA_a = $(tmpCalleeParam$3);
 if (SSA_a) {
 } else {
-  const tmpCalleeParam$3 = $(1);
-  SSA_a = $(tmpCalleeParam$3);
+  const tmpCalleeParam$5 = $(1);
+  SSA_a = $(tmpCalleeParam$5);
   if (SSA_a) {
   } else {
-    const tmpCalleeParam$4 = $(2);
-    SSA_a = $(tmpCalleeParam$4);
+    const tmpCalleeParam$7 = $(2);
+    SSA_a = $(tmpCalleeParam$7);
   }
 }
 const tmpCalleeParam$1 = SSA_a;

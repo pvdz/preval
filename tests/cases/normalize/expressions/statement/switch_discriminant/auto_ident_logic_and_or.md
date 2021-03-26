@@ -49,9 +49,9 @@ if (tmpSwitchValue) {
 }
 if (tmpSwitchValue) {
 } else {
-  const tmpCallCallee$2 = $;
-  const tmpCalleeParam$2 = $(2);
-  tmpSwitchValue = tmpCallCallee$2(tmpCalleeParam$2);
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(2);
+  tmpSwitchValue = tmpCallCallee$3(tmpCalleeParam$3);
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
@@ -73,8 +73,8 @@ if (tmpSwitchValue) {
 }
 if (tmpSwitchValue) {
 } else {
-  const tmpCalleeParam$2 = $(2);
-  $(tmpCalleeParam$2);
+  const tmpCalleeParam$3 = $(2);
+  $(tmpCalleeParam$3);
 }
 $(100);
 $(a);

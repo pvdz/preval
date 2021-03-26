@@ -36,8 +36,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
-const tmpArrElement$2 = $(3);
-let xyz = [tmpArrElement, tmpArrElement$1, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+let xyz = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 while (true) {
   $(xyz);
   $(1);
@@ -50,8 +50,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
-const tmpArrElement$2 = $(3);
-const xyz = [tmpArrElement, 2, tmpArrElement$2];
+const tmpArrElement$3 = $(3);
+const xyz = [tmpArrElement, 2, tmpArrElement$3];
 while (true) {
   $(xyz);
   $(1);

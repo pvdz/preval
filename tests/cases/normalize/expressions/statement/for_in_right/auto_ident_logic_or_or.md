@@ -38,9 +38,9 @@ if (tmpForInDeclRhs) {
   tmpForInDeclRhs = tmpCallCallee$1(tmpCalleeParam$1);
   if (tmpForInDeclRhs) {
   } else {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(2);
-    tmpForInDeclRhs = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpForInDeclRhs = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
 let x;
@@ -61,8 +61,8 @@ if (tmpForInDeclRhs) {
   tmpForInDeclRhs = $(tmpCalleeParam$1);
   if (tmpForInDeclRhs) {
   } else {
-    const tmpCalleeParam$2 = $(2);
-    tmpForInDeclRhs = $(tmpCalleeParam$2);
+    const tmpCalleeParam$3 = $(2);
+    tmpForInDeclRhs = $(tmpCalleeParam$3);
   }
 }
 let x;

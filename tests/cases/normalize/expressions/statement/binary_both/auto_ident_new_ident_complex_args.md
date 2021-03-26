@@ -37,9 +37,9 @@ const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpBinBothLhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 const tmpNewCallee$1 = $;
-const tmpCalleeParam$2 = $(1);
-const tmpCalleeParam$3 = $(2);
-const tmpBinBothRhs = new tmpNewCallee$1(tmpCalleeParam$2, tmpCalleeParam$3);
+const tmpCalleeParam$3 = $(1);
+const tmpCalleeParam$5 = $(2);
+const tmpBinBothRhs = new tmpNewCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
@@ -51,9 +51,9 @@ const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpBinBothLhs = new $(tmpCalleeParam, tmpCalleeParam$1);
-const tmpCalleeParam$2 = $(1);
-const tmpCalleeParam$3 = $(2);
-const tmpBinBothRhs = new $(tmpCalleeParam$2, tmpCalleeParam$3);
+const tmpCalleeParam$3 = $(1);
+const tmpCalleeParam$5 = $(2);
+const tmpBinBothRhs = new $(tmpCalleeParam$3, tmpCalleeParam$5);
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````

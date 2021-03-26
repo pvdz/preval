@@ -31,9 +31,9 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
 const tmpBinBothLhs = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothLhs$2 = $(1);
-const tmpBinBothRhs$2 = $(2);
-const tmpBinBothRhs = tmpBinBothLhs$2 + tmpBinBothRhs$2;
+const tmpBinBothLhs$3 = $(1);
+const tmpBinBothRhs$3 = $(2);
+const tmpBinBothRhs = tmpBinBothLhs$3 + tmpBinBothRhs$3;
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
@@ -45,9 +45,9 @@ const a = { a: 999, b: 1000 };
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
 const tmpBinBothLhs = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothLhs$2 = $(1);
-const tmpBinBothRhs$2 = $(2);
-const tmpBinBothRhs = tmpBinBothLhs$2 + tmpBinBothRhs$2;
+const tmpBinBothLhs$3 = $(1);
+const tmpBinBothRhs$3 = $(2);
+const tmpBinBothRhs = tmpBinBothLhs$3 + tmpBinBothRhs$3;
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````

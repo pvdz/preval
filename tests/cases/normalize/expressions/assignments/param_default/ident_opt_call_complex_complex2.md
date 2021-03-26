@@ -141,8 +141,8 @@ const f = function () {
     return tmpReturnArg$1;
   } else {
     a = undefined;
-    const tmpReturnArg$2 = a;
-    return tmpReturnArg$2;
+    const tmpReturnArg$3 = a;
+    return tmpReturnArg$3;
   }
 };
 let a = { a: 999, b: 1000 };

@@ -39,9 +39,9 @@ let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = 1;
   if (tmpNestedComplexRhs) {
-    const tmpCallCallee$2 = $;
-    const tmpCalleeParam$2 = $(1);
-    tmpNestedComplexRhs = tmpCallCallee$2(tmpCalleeParam$2);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(1);
+    tmpNestedComplexRhs = tmpCallCallee$3(tmpCalleeParam$3);
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -62,8 +62,8 @@ let tmpCalleeParam = SSA_a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = 1;
   if (tmpNestedComplexRhs) {
-    const tmpCalleeParam$2 = $(1);
-    tmpNestedComplexRhs = $(tmpCalleeParam$2);
+    const tmpCalleeParam$3 = $(1);
+    tmpNestedComplexRhs = $(tmpCalleeParam$3);
   }
   SSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

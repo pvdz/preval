@@ -189,9 +189,11 @@ export function source(node, force) {
   if (VERBOSE_TRACING || force) {
     if (Array.isArray(node)) node.forEach((n) => source(n));
     else {
-      let code = tmat(node);
+      const anon = node.type?.includes('Function') && 'id' in node && node.id === null;
+      if (anon) node.id = { type: 'Identifier', name: '$anon$' };
+      let code = tmat(node, force);
       try {
-        code = fmat(code); // May fail.
+        code = fmat(code, force); // May fail.
       } catch {}
       if (code.includes('\n')) {
         log(YELLOW + 'Source:' + RESET);
@@ -201,6 +203,7 @@ export function source(node, force) {
       } else {
         log(YELLOW + 'Source:' + RESET, code);
       }
+      if (anon) node.id = null;
     }
   }
 }

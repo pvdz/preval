@@ -227,6 +227,7 @@ export function phaseNormalize(fdata, fname) {
   const ifelseStack = [ast];
 
   function assertNoDupeNodes(node = ast, prop = 'ast') {
+    if (!VERBOSE_TRACING) return; // Disable this for large inputs but keep it for tests
     // Assert AST contains no duplicate node objects
     const map = new Map();
     walk(

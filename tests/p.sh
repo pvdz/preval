@@ -27,6 +27,7 @@ PARAM_CLONELIMIT=''
 PARAM_CLONELIMIT_COUNT=''
 PARAM_TRIM_DOLLAR=''
 PARAM_ONLY_OUTPUT=''
+PARAM_NO_TRACE=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -69,6 +70,7 @@ Preval CLI Toolkit help:
  --node-bin=path Use this node binary to run stuff
  --trim          Remove the trailing \$123 tail from vars in test outputs (helps with diffing, do not commit)
  --oo            Only print the output section of the test case (helps with diffing, do not commit)
+ --no-trace      Do not print tracing output
  -C              Do not print colors
  -n              Only show normalized output
  -t <count>      Run tests in this many threads (default=1; no threads)
@@ -144,6 +146,9 @@ Preval CLI Toolkit help:
     --oo)
       PARAM_ONLY_OUTPUT='--only-output'
       ;;
+    --no-trace)
+      PARAM_NO_TRACE='--no-trace'
+      ;;
     -C)
       shift
       PARAM_NO_COLOR="-C"
@@ -190,7 +195,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_NO_TRACE}"
     ;;
 esac
 set +x

@@ -14,10 +14,10 @@ import { phase1 } from './reduce_static/phase1.mjs';
 import { phase2 } from './reduce_static/phase2.mjs';
 import { phasePrimitiveArgInlining } from './reduce_static/phase_primitive_arg_inlining.mjs';
 
-export function preval({ entryPointFile, stdio, verbose, resolve, req, stopAfterNormalize, options = {} }) {
+export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve, req, stopAfterNormalize, options = {} }) {
   if (stdio) setStdio(stdio, verbose);
   else clearStdio();
-  setVerboseTracing(!!verbose);
+  setVerboseTracing(!!verbose && verboseTracing !== false);
 
   {
     const { logDir, logPasses, maxPass, cloneLimit, ...rest } = options;

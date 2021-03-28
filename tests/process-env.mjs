@@ -10,19 +10,20 @@ export function parseTestArgs() {
   const argv = process.argv.slice(2).filter(Boolean);
 
   const config = {
-    updateSnapshots: false,
-    noColor: false,
-    targetFile: undefined,
-    fileVerbatim: false,
-    fastTest: false,
-    logPasses: false,
-    onlyNormalized: false,
-    threads: 1, // By default, only run one thread
-    threadIndex: 0, // ... and this will be that thread
     cloneLimit: undefined, // How many times can a function be cloned for primitive inlining before it's considered recursion?
+    fastTest: false,
+    fileVerbatim: false,
+    logPasses: false,
+    noTrace: undefined, // Force set VERBOSE_TRACING=false regardless of input size? If undefined, defaults to verbose.
     maxPass: undefined,
-    trimDollar: false, // Remove trailing $12 from outputs? Reduces noise when diffing when new vars shuffle the incremental suffix
+    onlyNormalized: false,
     onlyOutput: false, // When generating test cases, only add the `## Output` block (for diffing)
+    targetFile: undefined,
+    threadIndex: 0, // ... and this will be that thread
+    threads: 1, // By default, only run one thread
+    trimDollar: false, // Remove trailing $12 from outputs? Reduces noise when diffing when new vars shuffle the incremental suffix
+    updateSnapshots: false,
+    verboseTracing: true, // Overridden by general verbose state
   };
 
   while (argv.length) {
@@ -105,6 +106,11 @@ export function parseTestArgs() {
 
       case '--only-output': {
         config.onlyOutput = true;
+        break;
+      }
+
+      case '--no-trace': {
+        config.verboseTracing = false;
         break;
       }
 

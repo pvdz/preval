@@ -4,7 +4,7 @@ import { VERBOSE_TRACING, RED, BLUE, RESET } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from '../utils.mjs';
 import { $p } from '../$p.mjs';
 import * as AST from '../ast.mjs';
-import { getIdentUsageKind, createReadRef, createWriteRef } from '../bindings.mjs';
+import { getIdentUsageKind, createReadRef, createWriteRef, registerGlobalIdent, registerGlobalLabel } from '../bindings.mjs';
 import globals from '../globals.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
@@ -18,8 +18,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
   const funcStack = [];
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments.
-  const blockStack = []; // Since code is normalized, every statement body is a block (except labels maybe)
-  const blockIds = []; // Same as blockStack except only contains its $p.pid's. Negative if the parent was a loop of sorts.
+  const blockIds = []; // Stack of block pids. Negative if the parent was a loop of sorts.
   let readWriteCounter = 0;
 
   const globallyUniqueNamingRegistry = new Map();
@@ -27,17 +26,14 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   const identNameSuffixOffset = new Map(); // <name, int>
   fdata.identNameSuffixOffset = identNameSuffixOffset;
 
+  const globallyUniqueLabelRegistry = new Map();
+  fdata.globallyUniqueLabelRegistry = globallyUniqueLabelRegistry;
+  const labelNameSuffixOffset = new Map(); // <name, int>
+  fdata.labelNameSuffixOffset = labelNameSuffixOffset;
+
   globals.forEach((_, name) => {
     ASSERT(name);
-    if (/^\$\$\d+$/.test(name)) fixme;
-    globallyUniqueNamingRegistry.set(name, {
-      name,
-      isBuiltin: true,
-      isImplicitGlobal: false,
-      isExport: false, // Set below
-      reads: [],
-      writes: [],
-    });
+    registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: false, isBuiltin: true });
   });
 
   const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
@@ -74,37 +70,55 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
     switch (key) {
       case 'Program:before': {
         funcStack.push(node);
-        blockStack.push(node);
         blockIds.push(node.$p.pid);
         break;
       }
       case 'Program:after': {
         funcStack.pop();
-        blockStack.pop();
         blockIds.pop();
         break;
       }
 
       case 'BlockStatement:before': {
-        blockStack.push(node);
-        blockIds.push(
-          parentNode.type === 'WhileStatement' || parentNode.type === 'ForInStatement' || parentNode.type === 'ForOfStatement'
-            ? -node.$p.pid
-            : node.$p.pid,
-        );
-        vlog('This block has depth', blockStack.length, 'and pid', node.$p.pid);
+        blockIds.push(['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type) ? -node.$p.pid : node.$p.pid);
+        vlog('This block has depth', blockIds.length, 'and pid', node.$p.pid);
         break;
       }
       case 'BlockStatement:after': {
-        blockStack.pop();
         blockIds.pop();
         break;
       }
 
-      case 'CatchClause:before': {
-        // Note: the catch scope is set on node.handler of the try (parent node of the catch clause)
+      case 'BreakStatement:before':
+      case 'ContinueStatement:before': {
+        // Note: continue/break state is verified by the parser so we should be able to assume this continue/break has a valid target
+        if (node.label) {
+          const name = node.label.name;
+          vlog('Label:', name);
+
+          const parentNode = path.nodes[path.nodes.length - 2];
+          const parentProp = path.props[path.props.length - 1];
+          const parentIndex = path.indexes[path.indexes.length - 1];
+          ASSERT(
+            fdata.globallyUniqueLabelRegistry.has(node.label.name),
+            'the label should be registered',
+            node,
+            fdata.globallyUniqueLabelRegistry,
+          );
+          fdata.globallyUniqueLabelRegistry.get(node.label.name).usages.push({
+            node,
+            parentNode,
+            parentProp,
+            parentIndex,
+          });
+        }
         break;
       }
+
+      //case 'CatchClause:before': {
+      //  // Note: the catch scope is set on node.handler of the try (parent node of the catch clause)
+      //  break;
+      //}
 
       case 'DebuggerStatement:before': {
         // Must be the only one and must be our header/body divider
@@ -127,21 +141,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         if (firstAfterParse) {
           vlog('Converting parameter nodes to special Param nodes');
           node.params.forEach((pnode, i) => {
-            ASSERT;
-            ASSERT(
-              pnode.type === 'Identifier' || (pnode.type === 'RestElement' && pnode.argument.type === 'Identifier'),
-              'params should be normalized now',
-              pnode,
-            );
-            ASSERT(typeof (pnode.type === 'RestElement' ? pnode.argument.name : pnode.name) === 'string', 'name please?', pnode);
             node.params[i] = AST.param(pnode.type === 'RestElement' ? pnode.argument.name : pnode.name, pnode.type === 'RestElement');
           });
-        } else {
-          ASSERT(
-            node.params.every((param) => param.type === 'Param'),
-            'should still be normalized to param nodes',
-            node,
-          );
         }
 
         if (parentNode.type === 'ExpressionStatement') {
@@ -154,7 +155,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           'normalized code should not other cases, right?',
           parentNode,
         );
-        node.$p.parentFunc = funcStack[funcStack.length - 1];
         funcStack.push(node);
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           thisStack.push(node);
@@ -294,30 +294,13 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         } else if (kind !== 'none' && kind !== 'label') {
           ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);
           vlog('- Binding referenced in $p.pid:', currentScope.$p.pid);
-          let meta = globallyUniqueNamingRegistry.get(name);
-          if (!meta) {
-            vlog('- Creating meta for `' + name + '`');
-            meta = {
-              name,
-              isConstant: false, // Either declared as const or a builtin global that we can assume to be a constant
-              isBuiltin: false,
-              isImplicitGlobal: 'unknown', // true until its not...
-              isExport: false, // Set below
-              reads: [],
-              writes: [],
-            };
-            ASSERT(name);
-            if (/^\$\$\d+$/.test(name)) fixme;
-            globallyUniqueNamingRegistry.set(name, meta);
-          }
+          let meta = registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: 'unknown', isBuiltin: false });
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
-          if (kind === 'read') {
-            const grandNode = path.nodes[path.nodes.length - 3];
-            const grandProp = path.props[path.props.length - 2];
-            const grandIndex = path.indexes[path.indexes.length - 2];
-            // This is normalized code so there must be a block parent for any read ref
-            let blockNode;
-            let blockIndex;
+
+          // This is normalized code so there must be a block parent for any read ref
+          let blockNode;
+          let blockIndex;
+          if (kind === 'read' || kind === 'write') {
             // Start with the parent, not grandParent (!)
             let pathIndex = path.nodes.length - 1;
             do {
@@ -335,6 +318,13 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               }
               --pathIndex;
             } while (true);
+          }
+
+          if (kind === 'read') {
+            const grandNode = path.nodes[path.nodes.length - 3];
+            const grandProp = path.props[path.props.length - 2];
+            const grandIndex = path.indexes[path.indexes.length - 2];
+
             const blockBody = blockNode.body;
             meta.reads.push(
               createReadRef({
@@ -356,26 +346,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             );
           }
           if (kind === 'write') {
-            // This is normalized code so there must be a block parent for any read ref
-            let blockNode;
-            let blockIndex;
-            // Start with the parent, not grandParent (!)
-            let pathIndex = path.nodes.length - 1;
-            do {
-              blockNode = path.nodes[pathIndex];
-              vlog('  - block step;', blockNode.type, blockNode.$p.pid);
-              if (blockNode.type === 'BlockStatement' || blockNode.type === 'Program') {
-                blockIndex = path.indexes[pathIndex + 1];
-                ASSERT(
-                  blockIndex >= 0,
-                  'block index should be set right',
-                  path.nodes.map((n) => n.type),
-                  path.indexes,
-                );
-                break;
-              }
-              --pathIndex;
-            } while (true);
             const blockBody = blockNode.body;
             vlog('- Parent block:', blockNode.type, blockNode.$p.pid);
 
@@ -541,6 +511,12 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         break;
       }
 
+      case 'LabeledStatement:before': {
+        vlog('Label:', node.label.name);
+        registerGlobalLabel(fdata, node.label.name, node.label.name, node);
+        break;
+      }
+
       case 'Param:before': {
         ASSERT(
           parentProp === 'params' || parentProp === 'init',
@@ -605,7 +581,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         const meta = globallyUniqueNamingRegistry.get(node.declarations[0].id.name);
         meta.isImplicitGlobal = false;
         if (node.kind === 'const') {
-          vlog('- marking', meta.name, 'as constant, ref set to', node.declarations[0].init.type);
+          vlog('- marking', meta.uniqueName, 'as constant, ref set to', node.declarations[0].init.type);
           ASSERT(meta);
           meta.isConstant = true;
           meta.constValueRef = {

@@ -24,6 +24,7 @@ function _inlineConstants(fdata) {
     //       If any such parent/ancestor is to be removed, put it in the toEliminate queue.
     fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
       if (meta.isBuiltin) return;
+      if (meta.isImplicitGlobal) return;
       vgroup('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
 
       if (!name.startsWith(ALIAS_PREFIX)) {
@@ -62,10 +63,11 @@ function _inlineConstants(fdata) {
 
         // Attempt to fold up constants
         if (meta.isConstant) {
-          ASSERT(meta.name === name);
+          ASSERT(meta.uniqueName === name);
           if (attemptConstantInlining(meta, fdata)) {
             vgroupEnd();
             inlined = true;
+            ++inlinedSomething;
             return;
           }
         }
@@ -101,6 +103,7 @@ function _inlineConstants(fdata) {
 
             after(AST.emptyStatement());
             inlined = true;
+            ++inlinedSomething;
             --i;
           } else if (write.assign) {
             // Replace the assignment with the rhs
@@ -120,6 +123,7 @@ function _inlineConstants(fdata) {
             meta.writes.splice(i, 1);
 
             inlined = true;
+            ++inlinedSomething;
             --i;
           }
         }
@@ -145,7 +149,6 @@ function _inlineConstants(fdata) {
     groupEnd();
     if (inlined) {
       log('Folded some constants. Trying loop again...\n\n');
-      ++inlinedSomething;
     }
   } while (inlined);
   // All read node meta data (parent etc) are invalidated if the next bit eliminates anything.
@@ -195,11 +198,11 @@ function _inlineConstants(fdata) {
     groupEnd();
     // The read/write data is unreliable from here on out and requires a new phase1 step!
   }
-  log('Folded', inlinedSomething, 'constants.');
   if (inlinedSomething || toEliminate.length) {
-    log('Restarting from phase1 to fix up read/write registry\n\n\n\n\n\n');
+    log('Constants folded:', inlinedSomething, '. Restarting from phase1 to fix up read/write registry');
     return 'phase1';
   }
+  log('Constants folded:', inlinedSomething, '.');
 }
 
 function attemptConstantInlining(meta, fdata) {
@@ -252,7 +255,7 @@ function attemptConstantInlining(meta, fdata) {
     // - replace all reads with a clone of it
     // - deregister the name
 
-    vgroup('Attempt to replace the', meta.reads.length, 'reads of `' + meta.name + '` with reads of `' + rhs.name);
+    vgroup('Attempt to replace the', meta.reads.length, 'reads of `' + meta.uniqueName + '` with reads of `' + rhs.name);
 
     rule('Declaring a constant with a constant value should eliminate the binding');
     example('const x = null; f(x);', 'f(null);', () => assigneeMeta.isBuiltin);
@@ -272,7 +275,7 @@ function attemptConstantInlining(meta, fdata) {
       } else {
         vlog(
           'Replacing a read of `' +
-            meta.name +
+            meta.uniqueName +
             '` with a read from `' +
             clone.name +
             '` (on prop `' +
@@ -313,7 +316,7 @@ function attemptConstantInlining(meta, fdata) {
         --i;
       }
     }
-    vlog('Binding `' + meta.name + '` has', reads.length, 'reads left after this');
+    vlog('Binding `' + meta.uniqueName + '` has', reads.length, 'reads left after this');
 
     if (reads.length === 0 && write.decl) {
       vgroup('Eliminating var decl');
@@ -332,7 +335,7 @@ function attemptConstantInlining(meta, fdata) {
 
       inlined = true;
 
-      fdata.globallyUniqueNamingRegistry.delete(meta.name);
+      fdata.globallyUniqueNamingRegistry.delete(meta.uniqueName);
       vgroupEnd();
     }
 
@@ -392,7 +395,7 @@ function attemptConstantInlining(meta, fdata) {
         vgroupEnd();
       }
     }
-    vlog('Binding `' + meta.name + '` has', reads.length, 'reads left after this');
+    vlog('Binding `' + meta.uniqueName + '` has', reads.length, 'reads left after this');
 
     if (reads.length === 0 && write.decl) {
       vgroup('Deleting the var decl');
@@ -410,7 +413,7 @@ function attemptConstantInlining(meta, fdata) {
       else declParent[declProp] = AST.emptyStatement();
       inlined = true;
 
-      fdata.globallyUniqueNamingRegistry.delete(meta.name);
+      fdata.globallyUniqueNamingRegistry.delete(meta.uniqueName);
       after(AST.emptyStatement(), declParent);
       vgroupEnd();
     }

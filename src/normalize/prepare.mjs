@@ -14,10 +14,9 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } fro
 import { $p } from '../$p.mjs';
 import globals from '../globals.mjs';
 import {
+  createFreshLabel,
   getIdentUsageKind,
   registerGlobalIdent,
-  createUniqueGlobalLabel,
-  registerGlobalLabel,
   findUniqueNameForBindingIdent,
   preprocessScopeNode,
 } from '../bindings.mjs';
@@ -43,12 +42,15 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
   fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
   const identNameSuffixOffset = new Map(); // <name, int>
   fdata.identNameSuffixOffset = identNameSuffixOffset;
-  globals.forEach((_, name) => registerGlobalIdent(fdata, name, name, { isImplicitGlobal: false, knownBuiltin: true }));
+  globals.forEach((_, name) => {
+    ASSERT(name);
+    registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: false, isBuiltin: true });
+  });
 
   const globallyUniqueLabelRegistry = new Map();
   fdata.globallyUniqueLabelRegistry = globallyUniqueLabelRegistry;
   const labelNameSuffixOffset = new Map(); // <name, int>
-  fdata.labelNameSuffixOffset = identNameSuffixOffset;
+  fdata.labelNameSuffixOffset = labelNameSuffixOffset;
 
   const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
   fdata.imports = imports;
@@ -526,11 +528,10 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
         vlog('Label:', node.label.name);
         labelStack.push(node);
         node.$p.originalLabelName = node.label.name;
-        const uniqueName = createUniqueGlobalLabel(node.label.name, fdata);
-        registerGlobalLabel(fdata, uniqueName, node.label.name, node);
-        if (node.label.name !== uniqueName) {
-          vlog('- Unique label name:', uniqueName);
-          node.label.name = uniqueName;
+        const newLabel = createFreshLabel(node.label.name, fdata);
+        if (node.label.name !== newLabel.name) {
+          vlog('- Unique label name:', newLabel.name);
+          node.label = newLabel;
         } else {
           vlog('- Label is now registered and unique');
         }

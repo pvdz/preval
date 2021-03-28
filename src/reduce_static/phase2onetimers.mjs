@@ -53,7 +53,7 @@ function _inlineOneTimeFunctions(fdata) {
     if (meta.isImplicitGlobal) return;
     vgroup(
       '-',
-      meta.name,
+      meta.uniqueName,
       ', constant?',
       meta.isConstant,
       ', constValueRef?',
@@ -145,11 +145,8 @@ function _inlineOneTimeFunctions(fdata) {
       // var decl that purely exists to trampoline a return value to satisfy normalization rules. We can
       // clone that and create a fresh name for the alternate branch. We wouldn't need to find all other
       // cases and wouldn't need to worry about requiring a new branch or whatever.
-      if (
-        read.blockBody[read.blockIndex + 1]?.type === 'ReturnStatement' &&
-        read.blockBody[read.blockIndex + 1].argument?.type === 'Identifier' &&
-        read.blockBody[read.blockIndex + 1].argument.name === read.grandNode.id.name
-      ) {
+      const next = read.blockBody[read.blockIndex + 1];
+      if (next?.type === 'ReturnStatement' && next.argument.type === 'Identifier' && next.argument.name === read.grandNode.id.name) {
         vlog('This var decl is used to trampoline a return value. We can support this.');
       } else {
         vlog('This function ends with an if-else and the call site was a var decl so bailing for now');
@@ -299,12 +296,13 @@ function _inlineOneTimeFunctions(fdata) {
           const varNode = read.blockBody[read.blockIndex];
           const oldName = varNode.declarations[0].id.name; // Very likely an artifact name but whatever
           const returnNode = read.blockBody[read.blockIndex + 1];
+
           ASSERT(
-            varNode.type === 'VariableDeclaration' && returnNode.type === 'ReturnStatement' && returnNode.argument.name === oldName,
+            varNode.type === 'VariableDeclaration' && returnNode.type === 'ReturnStatement' && returnNode.argument?.name === oldName,
             'right now this is the only edge case for var decls so if that changes, the branching logic needs to be checked into as well',
             varNode,
             returnNode,
-            returnNode.argument.name,
+            returnNode.argument?.name,
             oldName,
           );
           vlog('The call is init to a const binding that is returned immediately. Special handling required.');

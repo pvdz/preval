@@ -29,8 +29,8 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import {
+  createFreshLabel,
   createFreshVar,
-  createUniqueGlobalLabel,
   findBoundNamesInVarDeclaration,
   findBoundNamesInVarDeclarator,
   getIdentUsageKind,
@@ -293,7 +293,7 @@ export function phaseNormalOnce(fdata) {
           before(node, parentNode);
 
           const labelName = parentNode.label.name;
-          const newLabel = createUniqueGlobalLabel('dropme', fdata); // This label will not be used so will be eliminated
+          const newLabelNode = createFreshLabel('dropme', fdata); // This label will not be used so will be eliminated
           const tmpName = createFreshVar('tmpDoWhileFlag', fdata);
           const newNodes = AST.blockStatement([
             AST.variableDeclaration(tmpName, AST.tru(), 'let'),
@@ -305,7 +305,7 @@ export function phaseNormalOnce(fdata) {
               ),
             ),
           ]);
-          parentNode.label = AST.identifier(newLabel);
+          parentNode.label = newLabelNode;
           parentNode.body = newNodes;
 
           after(newNodes, parentNode);
@@ -360,7 +360,7 @@ export function phaseNormalOnce(fdata) {
           before(node, parentNode);
 
           const labelName = parentNode.label.name;
-          const newLabel = createUniqueGlobalLabel('dropme', fdata); // This label will not be used so will be eliminated
+          const newLabelNode = createFreshLabel('dropme', fdata); // This label will not be used so will be eliminated
           const newNodes = AST.blockStatement(
             node.init ? (node.init.type === 'VariableDeclaration' ? node.init : AST.expressionStatement(node.init)) : AST.emptyStatement(),
             AST.labeledStatement(
@@ -371,7 +371,7 @@ export function phaseNormalOnce(fdata) {
               ),
             ),
           );
-          parentNode.label = AST.identifier(newLabel);
+          parentNode.label = newLabelNode;
           parentNode.body = newNodes;
 
           after(newNodes, parentNode);
@@ -454,9 +454,9 @@ export function phaseNormalOnce(fdata) {
         break;
       }
       case 'LabeledStatement': {
-        const label = createUniqueGlobalLabel(node.label.name, fdata);
-        if (node.label.name !== label) {
-          node.label = AST.identifier(label);
+        const labelNode = createFreshLabel(node.label.name, fdata);
+        if (node.label.name !== labelNode.name) {
+          node.label = labelNode;
         }
         break;
       }
@@ -628,7 +628,8 @@ export function phaseNormalOnce(fdata) {
         );
         before(node);
 
-        const tmpLabel = createUniqueGlobalLabel('tmpSwitchBreak', fdata);
+        const newLabelNode = createFreshLabel('tmpSwitchBreak', fdata);
+
         const tmpNameValue = createFreshVar('tmpSwitchValue', fdata);
         const tmpNameCase = createFreshVar('tmpSwitchCaseToStart', fdata);
         const defaultIndex = node.cases.findIndex((n) => !n.test);
@@ -636,7 +637,7 @@ export function phaseNormalOnce(fdata) {
         // All breaks without an explicit label should point to the fresh label that will be injected as the root of the switch-transform
         node.$p.unqualifiedLabelUsages.forEach((n) => {
           ASSERT(!n.label, 'prepare should collect all and only unqualified break/continues');
-          n.label = AST.identifier(tmpLabel);
+          n.label = AST.identifier(newLabelNode.name);
         });
         node.$p.unqualifiedLabelUsages.length = 0;
 
@@ -655,7 +656,7 @@ export function phaseNormalOnce(fdata) {
               );
             }, AST.emptyStatement()),
           AST.labeledStatement(
-            tmpLabel,
+            newLabelNode,
             AST.blockStatement(
               ...node.cases.map((cnode, i) => {
                 return AST.ifStatement(AST.binaryExpression('<=', tmpNameCase, AST.literal(i)), AST.blockStatement(cnode.consequent));

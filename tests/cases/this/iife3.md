@@ -25,7 +25,7 @@ f();
 const f = function () {
   debugger;
   if ($(1) && $(2)) {
-    null;
+    undefined;
   }
 };
 f();

@@ -15,7 +15,7 @@ Date;
 ## Pre Normal
 
 `````js filename=intro
-null;
+Date;
 `````
 
 ## Normalized

@@ -7,8 +7,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd } from '../utils.
 import { $p } from '../$p.mjs';
 import {
   getIdentUsageKind,
-  createUniqueGlobalLabel,
-  registerGlobalLabel,
+  createFreshLabel,
   findUniqueNameForBindingIdent,
   preprocessScopeNode,
 } from '../bindings.mjs';
@@ -120,11 +119,11 @@ export function uniqify_idents(funcAst, fdata) {
         labelStack.push(node);
         vlog('Label:', node.label.name);
         node.$p.originalLabelName = node.label.name;
-        const uniqueName = createUniqueGlobalLabel(node.label.name, fdata);
-        registerGlobalLabel(fdata, uniqueName, node.label.name, node);
-        if (node.label.name !== uniqueName) {
-          vlog('- Unique label name:', uniqueName);
-          node.label.name = uniqueName;
+
+        const newLabelNode = createFreshLabel(node.label.name, fdata);
+        if (node.label.name !== newLabelNode.name) {
+          vlog('- Unique label name:', newLabelNode.name);
+          node.label = newLabelNode;
         } else {
           vlog('- Label is now registered and unique');
         }

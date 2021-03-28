@@ -2,6 +2,7 @@ import { VERBOSE_TRACING, BLUE, RESET } from './constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd } from './utils.mjs';
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
+import * as AST from './ast.mjs';
 
 export function getIdentUsageKind(parentNode, parentProp) {
   // Returns 'read', 'write', 'readwrite', 'none', or 'label'
@@ -346,8 +347,9 @@ export function generateUniqueGlobalName(name, fdata, assumeDoubleDollar = false
 
   return name;
 }
-export function registerGlobalIdent(fdata, name, originalName, { isExport = false, isImplicitGlobal = false, knownBuiltin = false } = {}) {
+export function registerGlobalIdent(fdata, name, originalName, { isExport = false, isImplicitGlobal = false, isBuiltin = false, ...rest } = {}) {
   ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place');
+  ASSERT(Object.keys(rest).length === 0, 'invalid args');
 
   const meta = fdata.globallyUniqueNamingRegistry.get(name);
   if (meta) return meta;
@@ -359,7 +361,7 @@ export function registerGlobalIdent(fdata, name, originalName, { isExport = fals
     uniqueName: name,
     isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
     isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`
-    knownBuiltin, // Make a distinction between known builtins and unknown builtins.
+    isBuiltin, // Make a distinction between known builtins and unknown builtins.
     // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
     // Useful recent thread on binding mutations: https://twitter.com/youyuxi/status/1329221913579827200
     // var/let a;
@@ -457,6 +459,13 @@ export function registerGlobalLabel(fdata, name, originalName, labelNode) {
     usages: [], // {parent, prop, index} of the break/continue statement referring to the label
     labelUsageMap: new Map(), // Map<labelName, {node, body, index}>. References to a label
   });
+}
+export function createFreshLabel(name, fdata) {
+  ASSERT(createFreshLabel.length === arguments.length, 'arg count');
+  const tmpName = createUniqueGlobalLabel(name, fdata, false);
+  const labelNode = AST.identifier(tmpName);
+  registerGlobalLabel(fdata, tmpName, tmpName, labelNode);
+  return labelNode;
 }
 
 export function createReadRef(obj) {

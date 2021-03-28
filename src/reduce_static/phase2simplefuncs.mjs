@@ -16,7 +16,7 @@ function _inlineSimpleFuncCalls(fdata) {
 
     vgroup(
       '-',
-      meta.name,
+      meta.uniqueName,
       ', constant?',
       meta.isConstant,
       ', constValueRef?',
@@ -27,7 +27,7 @@ function _inlineSimpleFuncCalls(fdata) {
     if (meta.isConstant && meta.constValueRef && meta.writes.length === 1) {
       const funcNode = meta.constValueRef.node;
       if (funcNode.type === 'FunctionExpression' && funcNode.$p.inlineMe) {
-        vgroup('- Searching for all calls to `' + meta.name + '`');
+        vgroup('- Searching for all calls to `' + meta.uniqueName + '`');
         const funcBody = funcNode.body.body;
         meta.reads.forEach((read, ri) => {
           vlog('- Read', ri, ':', read.parentNode.type);

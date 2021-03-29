@@ -78,9 +78,10 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
   fdata.globallyUniqueNamingRegistry.forEach((meta, metaName) => {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
+    if (!meta.isConstant) return;
 
-    vlog(' - `' + metaName + '`', meta.writes.length, meta.reads.length, meta.constValueRef?.type);
-    if (meta.writes.length === 1 && meta.constValueRef?.node.type === 'FunctionExpression') {
+    vlog(' - `' + metaName + '`:', meta.constValueRef.type, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
+    if (meta.constValueRef.node.type === 'FunctionExpression') {
       const funcNode = meta.constValueRef.node;
       const bodyOffset = findBodyOffset(funcNode);
       const hasRest = !!funcNode.params[funcNode.params.length - 1]?.rest;
@@ -244,7 +245,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                   vlog('Cloning...');
                   // Make sure to register the name (and that its unique) in case of a cache-hit that was eliminated.
                   const newName = createFreshVar(cloneCacheKey, fdata);
-                  vlog('Name to use for clone: `' + cloneCacheKey + '`')
+                  vlog('Name to use for clone: `' + cloneCacheKey + '`');
                   cloneMap.set(cloneCacheKey, newName);
                   cloneCounts.set(cloneDetails.name, count);
                   const newFunc = cloneFunctionNode(funcNode, newName, staticArgs, fdata);

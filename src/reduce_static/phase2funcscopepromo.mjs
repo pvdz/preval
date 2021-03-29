@@ -36,12 +36,13 @@ function _funcScopePromo(fdata) {
     fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
       if (meta.isBuiltin) return;
       if (meta.isImplicitGlobal) return;
+      if (!meta.isConstant) return;
 
       if (meta.bfuncNode.type === 'Program') return; // Already global
 
-      vgroup('-', meta.uniqueName, ', constant?', meta.isConstant, ', constValueRef?', meta.constValueRef?.node.type);
+      vgroup('- `' + meta.uniqueName + '`:', meta.constValueRef.node.type);
 
-      const funcNode = meta.constValueRef?.node;
+      const funcNode = meta.constValueRef.node;
       if (funcNode?.type !== 'FunctionExpression') {
         vlog('Not a function');
         vgroupEnd();

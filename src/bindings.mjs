@@ -491,6 +491,7 @@ export function createReadRef(obj) {
   ASSERT(blockIndex >= 0);
   return {
     action: 'read',
+    kind: 'read', // Can we make better use of this?
     parentNode, // parent of the node
     parentProp,
     parentIndex,
@@ -509,6 +510,7 @@ export function createReadRef(obj) {
 }
 export function createWriteRef(obj) {
   const {
+    kind, // var, assign, for, ..?
     parentNode, // parent of the node
     parentProp,
     parentIndex,
@@ -530,6 +532,7 @@ export function createWriteRef(obj) {
 
   return {
     action: 'write',
+    kind,
     parentNode,
     parentProp,
     parentIndex,

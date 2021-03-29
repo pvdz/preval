@@ -15,24 +15,19 @@ function _pruneTrampolineFunctions(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
+    if (!meta.isConstant) return;
 
     vlog(
-      '- `' + name + '`, has constValueRef?',
-      !!meta.constValueRef,
-      meta.constValueRef?.node?.type,
+      '- `' + name + '`:',
+      meta.constValueRef.node.type,
       'reads `arguments` len/any?',
-      meta.constValueRef?.node?.$p?.readsArgumentsLen,
-      meta.constValueRef?.node?.$p?.readsArgumentsAny,
+      meta.constValueRef.node.$p.readsArgumentsLen,
+      meta.constValueRef.node.$p.readsArgumentsAny,
     );
 
-    if (meta.writes.length !== 1) {
-      vlog('  - Binding has more than one write. Bailing');
-      return;
-    }
-
-    const funcNode = meta.constValueRef?.node;
-    if (funcNode?.type !== 'FunctionExpression') {
-      vlog('  - Not a function or not a constant (missing meta.constValueRef)');
+    const funcNode = meta.constValueRef.node;
+    if (funcNode.type !== 'FunctionExpression') {
+      vlog('  - Not a function');
       return;
     }
 

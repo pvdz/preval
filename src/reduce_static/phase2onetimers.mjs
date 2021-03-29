@@ -53,13 +53,11 @@ function _inlineOneTimeFunctions(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
+    if (!meta.isConstant) return;
+
     vgroup(
-      '-',
-      meta.uniqueName,
-      ', constant?',
-      meta.isConstant,
-      ', constValueRef?',
-      meta.constValueRef?.node.type,
+      '- `' +meta.uniqueName+'`:',
+      meta.constValueRef.node.type,
       ', writes:',
       meta.writes.length,
       ', reads:',
@@ -68,16 +66,14 @@ function _inlineOneTimeFunctions(fdata) {
       meta.reads[0]?.node?.type,
     );
 
-    // I don't care if it's a constant (although for functions it kinda has to?)
-    if (meta.reads.length !== 1 || meta.writes.length !== 1) {
-      vlog('Not a single read or write, bailing');
+    if (meta.reads.length !== 1) {
+      vlog('Not a single read, bailing');
       vgroupEnd();
       return;
     }
 
-    const funcNode = meta.constValueRef?.node;
-
-    if (funcNode?.type !== 'FunctionExpression') {
+    const funcNode = meta.constValueRef.node;
+    if (funcNode.type !== 'FunctionExpression') {
       vlog('Constant is not a function, bailing');
       vgroupEnd();
       return;

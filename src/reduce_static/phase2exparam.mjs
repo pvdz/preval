@@ -13,17 +13,17 @@ function _pruneExcessiveParams(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
+    if (!meta.isConstant) return;
 
     vlog(
-      '- `' + name + '`, has constValueRef?',
-      !!meta.constValueRef,
-      meta.constValueRef?.node?.type,
+      '- `' + name + '`:',
+      meta.constValueRef.node.type,
       'reads args?',
-      meta.constValueRef?.node?.$p?.readsArgumentsLen,
-      meta.constValueRef?.node?.$p?.readsArgumentsAny,
+      meta.constValueRef.node.$p.readsArgumentsLen,
+      meta.constValueRef.node.$p.readsArgumentsAny,
     );
 
-    const funcNode = meta.constValueRef?.node;
+    const funcNode = meta.constValueRef.node;
     if (funcNode?.type !== 'FunctionExpression') {
       vlog('  - not a function');
       return;

@@ -365,6 +365,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
               meta.writes.unshift(
                 createWriteRef({
+                  kind: 'var',
                   parentNode,
                   parentProp,
                   parentIndex,
@@ -406,6 +407,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               vlog('Adding assign write');
               meta.writes.push(
                 createWriteRef({
+                  kind: 'assign',
                   parentNode,
                   parentProp,
                   parentIndex,
@@ -429,6 +431,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               vlog('Adding "other" write');
               meta.writes.push(
                 createWriteRef({
+                  kind: 'other',
                   parentNode,
                   parentProp,
                   parentIndex,
@@ -591,13 +594,13 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           vlog('- marking', meta.uniqueName, 'as constant, ref set to', node.declarations[0].init.type);
           ASSERT(meta);
           meta.isConstant = true;
-          meta.constValueRef = {
-            node: node.declarations[0].init,
-            containerNode: node,
-            containerProp: 'declarations',
-            containerIndex: 0,
-          };
         }
+        meta.constValueRef = {
+          node: node.declarations[0].init,
+          containerNode: node,
+          containerProp: 'declarations',
+          containerIndex: 0,
+        };
         break;
       }
 

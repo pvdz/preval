@@ -15,7 +15,7 @@ function _applySSA(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
 
-    vgroup('- `' + name + '`:', meta.constValueRef?.node?.type ?? '<no decl>', ', reads:', meta.reads.length, ', writes:', meta.writes.length);
+    vgroup('- `' + name + '`:', meta.constValueRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 
     if (meta.writes[0].kind !== 'var') {
       vlog('The first write was not a decl, bailing');

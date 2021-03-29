@@ -56,8 +56,8 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 const SSA_x = tmpNestedAssignObjPatternRhs.x;
 const SSA_y = tmpNestedAssignObjPatternRhs.y;
-const tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
-export { tmpAnonDefaultExport as default };
+const SSA_tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+export { SSA_tmpAnonDefaultExport as default };
 $(a, SSA_x, SSA_y);
 `````
 

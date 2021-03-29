@@ -92,13 +92,13 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const tmpCalleeParam = $(b);
+const SSA_b = { x: 1 };
+const tmpCalleeParam = $(SSA_b);
 const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-$(tmpNestedPropCompoundComplexRhs, b);
+$(tmpNestedPropCompoundComplexRhs, SSA_b);
 $('fail1');
 $('fail2');
 `````

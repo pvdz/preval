@@ -54,8 +54,8 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const SSA_x = arrPatternSplat[0];
 const SSA_y = arrPatternSplat[1];
-const a = tmpNestedAssignArrPatternRhs;
-export { a };
+const SSA_a = tmpNestedAssignArrPatternRhs;
+export { SSA_a as a };
 $(tmpNestedAssignArrPatternRhs, SSA_x, SSA_y);
 `````
 

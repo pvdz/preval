@@ -86,9 +86,9 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
-const a = delete arg.y;
-$(a, arg);
+const SSA_arg = { y: 1 };
+const SSA_a = delete SSA_arg.y;
+$(SSA_a, SSA_arg);
 $('fail1');
 $('fail2');
 `````

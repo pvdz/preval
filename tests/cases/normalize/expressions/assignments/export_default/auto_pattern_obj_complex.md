@@ -48,8 +48,8 @@ bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const SSA_a = tmpNestedAssignObjPatternRhs.a;
-const tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
-export { tmpAnonDefaultExport as default };
+const SSA_tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+export { SSA_tmpAnonDefaultExport as default };
 $(SSA_a);
 `````
 

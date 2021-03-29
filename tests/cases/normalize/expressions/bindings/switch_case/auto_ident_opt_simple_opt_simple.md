@@ -74,11 +74,11 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
+const SSA_b = { x: tmpObjLitVal };
 let SSA_a = undefined;
-const tmpIfTest$3 = b != null;
+const tmpIfTest$3 = SSA_b != null;
 if (tmpIfTest$3) {
-  const tmpChainElementObject = b.x;
+  const tmpChainElementObject = SSA_b.x;
   const tmpIfTest$5 = tmpChainElementObject != null;
   if (tmpIfTest$5) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;

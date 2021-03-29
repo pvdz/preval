@@ -64,8 +64,8 @@ $(10);
 $(20);
 const arrAssignPatternRhs = [1, 2];
 const arrPatternSplat = [...arrAssignPatternRhs];
-const a = arrPatternSplat[0];
-$(a);
+const SSA_a = arrPatternSplat[0];
+$(SSA_a);
 `````
 
 ## Globals

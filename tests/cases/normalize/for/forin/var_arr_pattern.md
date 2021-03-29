@@ -40,8 +40,8 @@ const tmpForInPatDeclRhs = { a: 1, b: 2 };
 let tmpForInPatDeclLhs;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const tmpAssignObjPatternRhs = tmpForInPatDeclLhs;
-  const x = tmpAssignObjPatternRhs.x;
-  $(x);
+  const SSA_x = tmpAssignObjPatternRhs.x;
+  $(SSA_x);
 }
 `````
 

@@ -58,8 +58,8 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const SSA_x = arrPatternSplat[0];
 const SSA_y = arrPatternSplat[1];
-const tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
-export { tmpAnonDefaultExport as default };
+const SSA_tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { SSA_tmpAnonDefaultExport as default };
 $(a, SSA_x, SSA_y);
 `````
 

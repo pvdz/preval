@@ -84,10 +84,10 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const a = function () {
+const SSA_a = function () {
   debugger;
 };
-$(a);
+$(SSA_a);
 $('fail1');
 $('fail2');
 `````

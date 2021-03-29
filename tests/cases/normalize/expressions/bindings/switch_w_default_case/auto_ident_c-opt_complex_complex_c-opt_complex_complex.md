@@ -101,9 +101,9 @@ if (tmpIfTest$11) {
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
+const SSA_b = { x: tmpObjLitVal };
 let SSA_a = undefined;
-const tmpChainElementCall = $(b);
+const tmpChainElementCall = $(SSA_b);
 const tmpIfTest$5 = tmpChainElementCall != null;
 if (tmpIfTest$5) {
   const tmpChainRootComputed = $('x');

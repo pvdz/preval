@@ -78,9 +78,9 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
+const SSA_b = { $: $ };
 let SSA_a = undefined;
-const tmpChainElementCall = $(b);
+const tmpChainElementCall = $(SSA_b);
 const tmpIfTest$3 = tmpChainElementCall != null;
 if (tmpIfTest$3) {
   const tmpChainRootComputed = $('$');

@@ -50,8 +50,8 @@ const z = [10, 20, 30];
 const arrPatternSplat = [...z];
 const SSA_x = arrPatternSplat[0];
 const SSA_y = arrPatternSplat[1];
-const a = z;
-export { a };
+const SSA_a = z;
+export { SSA_a as a };
 $(z, SSA_x, SSA_y, z);
 `````
 

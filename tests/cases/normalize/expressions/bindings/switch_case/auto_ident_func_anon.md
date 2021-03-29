@@ -60,10 +60,10 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const a = function () {
+const SSA_a = function () {
   debugger;
 };
-$(a);
+$(SSA_a);
 `````
 
 ## Globals

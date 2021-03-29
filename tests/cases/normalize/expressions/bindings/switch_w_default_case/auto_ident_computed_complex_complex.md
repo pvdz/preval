@@ -88,11 +88,11 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
-const tmpAssignRhsCompObj = $(b);
+const SSA_b = { c: 1 };
+const tmpAssignRhsCompObj = $(SSA_b);
 const tmpAssignRhsCompProp = $('c');
-const a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(a, b);
+const SSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(SSA_a, SSA_b);
 $('fail1');
 $('fail2');
 `````

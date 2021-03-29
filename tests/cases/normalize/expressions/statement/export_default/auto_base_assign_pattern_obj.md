@@ -52,8 +52,8 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const SSA_b = tmpNestedAssignObjPatternRhs.b;
-const tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
-export { tmpAnonDefaultExport as default };
+const SSA_tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+export { SSA_tmpAnonDefaultExport as default };
 $(a, SSA_b);
 `````
 

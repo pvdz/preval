@@ -60,8 +60,8 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const a = tmpBinBothLhs + tmpBinBothRhs;
-$(a);
+const SSA_a = tmpBinBothLhs + tmpBinBothRhs;
+$(SSA_a);
 `````
 
 ## Globals

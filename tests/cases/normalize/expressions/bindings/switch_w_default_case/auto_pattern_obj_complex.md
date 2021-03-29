@@ -85,8 +85,8 @@ if (tmpIfTest$7) {
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-const a = tmpAssignObjPatternRhs.a;
-$(a);
+const SSA_a = tmpAssignObjPatternRhs.a;
+$(SSA_a);
 $('fail1');
 $('fail2');
 `````

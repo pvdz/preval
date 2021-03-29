@@ -93,11 +93,11 @@ if (tmpIfTest$9) {
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
+const SSA_b = { x: 1 };
 let SSA_a = undefined;
-const tmpIfTest$5 = b != null;
+const tmpIfTest$5 = SSA_b != null;
 if (tmpIfTest$5) {
-  const tmpChainElementObject = b.x;
+  const tmpChainElementObject = SSA_b.x;
   SSA_a = tmpChainElementObject;
 }
 $(SSA_a);

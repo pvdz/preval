@@ -63,9 +63,9 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const arrAssignPatternRhs = [10, 20];
 const arrPatternSplat = [...arrAssignPatternRhs];
-const a = arrPatternSplat[0];
-const b = arrPatternSplat[1];
-$(a, b);
+const SSA_a = arrPatternSplat[0];
+const SSA_b = arrPatternSplat[1];
+$(SSA_a, SSA_b);
 `````
 
 ## Globals

@@ -90,13 +90,13 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
+const SSA_arg = { y: 1 };
 $(1);
 $(2);
-const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompObj = $(SSA_arg);
 const tmpDeleteCompProp = $('y');
-const a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-$(a, arg);
+const SSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+$(SSA_a, SSA_arg);
 $('fail1');
 $('fail2');
 `````

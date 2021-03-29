@@ -64,8 +64,8 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const a = typeof tmpUnaryArg;
-$(a, 1);
+const SSA_a = typeof tmpUnaryArg;
+$(SSA_a, 1);
 `````
 
 ## Globals

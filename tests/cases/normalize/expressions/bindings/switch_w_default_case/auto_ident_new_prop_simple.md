@@ -87,10 +87,10 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const tmpNewCallee = b.$;
-const a = new tmpNewCallee(1);
-$(a);
+const SSA_b = { $: $ };
+const tmpNewCallee = SSA_b.$;
+const SSA_a = new tmpNewCallee(1);
+$(SSA_a);
 $('fail1');
 $('fail2');
 `````

@@ -102,11 +102,11 @@ if (tmpIfTest$11) {
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const b = { c: tmpObjLitVal };
+const SSA_b = { c: tmpObjLitVal };
 let SSA_a = undefined;
-const tmpIfTest$5 = b != null;
+const tmpIfTest$5 = SSA_b != null;
 if (tmpIfTest$5) {
-  const tmpChainElementObject = b.c;
+  const tmpChainElementObject = SSA_b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpIfTest$7 = tmpChainElementObject$3 != null;

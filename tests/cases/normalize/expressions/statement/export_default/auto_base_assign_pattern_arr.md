@@ -54,8 +54,8 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const SSA_b = arrPatternSplat[0];
-const tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
-export { tmpAnonDefaultExport as default };
+const SSA_tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { SSA_tmpAnonDefaultExport as default };
 $(a, SSA_b);
 `````
 

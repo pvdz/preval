@@ -69,13 +69,13 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const tmpCalleeParam = $(b);
+const SSA_b = { x: 1 };
+const tmpCalleeParam = $(SSA_b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-$(tmpPostUpdArgVal, b);
+$(tmpPostUpdArgVal, SSA_b);
 `````
 
 ## Globals

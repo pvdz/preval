@@ -56,8 +56,8 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 const SSA_x = tmpNestedAssignObjPatternRhs.x;
 const SSA_y = tmpNestedAssignObjPatternRhs.y;
-const a = tmpNestedAssignObjPatternRhs;
-export { a };
+const SSA_a = tmpNestedAssignObjPatternRhs;
+export { SSA_a as a };
 $(tmpNestedAssignObjPatternRhs, SSA_x, SSA_y);
 `````
 

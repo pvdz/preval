@@ -87,8 +87,8 @@ if (tmpIfTest$7) {
 const tmpCalleeParam = [1, 2];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...arrAssignPatternRhs];
-const a = arrPatternSplat[0];
-$(a);
+const SSA_a = arrPatternSplat[0];
+$(SSA_a);
 $('fail1');
 $('fail2');
 `````

@@ -82,8 +82,8 @@ if (tmpIfTest$7) {
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = +tmpUnaryArg;
-$(a);
+const SSA_a = +tmpUnaryArg;
+$(SSA_a);
 $('fail1');
 $('fail2');
 `````

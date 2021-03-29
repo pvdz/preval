@@ -83,15 +83,15 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const c = { y: 2 };
-const tmpNestedAssignComMemberObj = $(b);
+const SSA_b = { x: 1 };
+const SSA_c = { y: 2 };
+const tmpNestedAssignComMemberObj = $(SSA_b);
 const tmpNestedAssignComMemberProp = $('x');
-const varInitAssignLhsComputedObj = $(c);
+const varInitAssignLhsComputedObj = $(SSA_c);
 const varInitAssignLhsComputedProp = $('y');
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-$(7, b, c, 3, 4);
+$(7, SSA_b, SSA_c, 3, 4);
 `````
 
 ## Globals

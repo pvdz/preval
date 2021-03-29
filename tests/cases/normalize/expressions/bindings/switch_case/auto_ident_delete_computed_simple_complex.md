@@ -64,10 +64,10 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
+const SSA_arg = { y: 1 };
 const tmpDeleteCompProp = $('y');
-const a = delete arg[tmpDeleteCompProp];
-$(a, arg);
+const SSA_a = delete SSA_arg[tmpDeleteCompProp];
+$(SSA_a, SSA_arg);
 `````
 
 ## Globals

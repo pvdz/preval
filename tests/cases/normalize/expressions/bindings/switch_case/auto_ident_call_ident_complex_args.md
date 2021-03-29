@@ -67,8 +67,8 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const a = $(tmpCalleeParam, tmpCalleeParam$1);
-$(a);
+const SSA_a = $(tmpCalleeParam, tmpCalleeParam$1);
+$(SSA_a);
 `````
 
 ## Globals

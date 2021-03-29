@@ -90,8 +90,8 @@ if (tmpIfTest$7) {
 `````js filename=intro
 $(1);
 $(2);
-const a = $(1);
-$(a, 1);
+const SSA_a = $(1);
+$(SSA_a, 1);
 $('fail1');
 $('fail2');
 `````

@@ -63,10 +63,10 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
-const tmpDeleteObj = $(arg);
-const a = delete tmpDeleteObj.y;
-$(a, arg);
+const SSA_arg = { y: 1 };
+const tmpDeleteObj = $(SSA_arg);
+const SSA_a = delete tmpDeleteObj.y;
+$(SSA_a, SSA_arg);
 `````
 
 ## Globals

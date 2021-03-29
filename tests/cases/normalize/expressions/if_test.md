@@ -42,11 +42,11 @@ $(x);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal };
-const x = tmpNestedAssignObjPatternRhs.x;
+const SSA_x = tmpNestedAssignObjPatternRhs.x;
 if (tmpNestedAssignObjPatternRhs) {
   $(2);
 }
-$(x);
+$(SSA_x);
 `````
 
 ## Globals

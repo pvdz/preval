@@ -50,8 +50,8 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const SSA_b = arrPatternSplat[0];
-const a = tmpNestedAssignArrPatternRhs;
-export { a };
+const SSA_a = tmpNestedAssignArrPatternRhs;
+export { SSA_a as a };
 $(tmpNestedAssignArrPatternRhs, SSA_b);
 `````
 

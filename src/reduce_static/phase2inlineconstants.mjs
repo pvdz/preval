@@ -11,11 +11,11 @@ export function inlineConstants(fdata) {
 }
 function _inlineConstants(fdata) {
   const toEliminate = [];
-  let inlined = false;
+  let inlined = 0;
   let inlinedSomething = 0;
   let inlineLoops = 0;
   do {
-    inlined = false;
+    inlined = 0;
 
     group('Iteration', ++inlineLoops, 'of constant inlining');
     // Note: This step may rename bindings, eliminate them (queued), introduce new ones.
@@ -66,7 +66,7 @@ function _inlineConstants(fdata) {
           ASSERT(meta.uniqueName === name);
           if (attemptConstantInlining(meta, fdata)) {
             vgroupEnd();
-            inlined = true;
+            ++inlined;
             ++inlinedSomething;
             return;
           }
@@ -82,7 +82,7 @@ function _inlineConstants(fdata) {
         // If the decl is used in a for-x, export, or catch binding (or?) then we must keep the binding decl (should only be one).
         const keepDecl = meta.writes.some((write) => !write.decl && !write.assign);
 
-        rule('Write-only bindings should be eliminated');
+        rule('[1/2] Write-only bindings should be eliminated');
         example('let a = f(); a = g();', 'f(); g();');
 
         for (let i = 0; i < meta.writes.length; ++i) {
@@ -93,16 +93,16 @@ function _inlineConstants(fdata) {
             const { declParent, declProp, declIndex } = write.decl;
             const node = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
             vlog('Replacing a decl with the init', declParent.type + '.' + declProp, declParent.$p.pid, node.type, node.$p.pid);
-            before(node, declParent);
+            source(node);
 
             ASSERT(node.type === 'VariableDeclaration', 'if not then indexes changed?', node);
             //const init = node.declarations[0].init; // It may be empty. Most likely case is a hoisted var decl.
-            vlog('Var decl queued for actual deletion (scroll down)');
+            vlog('Var decl queued for actual deletion (ast was not changed yet, scroll down)');
             toEliminate.push({ parent: declParent, prop: declProp, index: declIndex });
             meta.writes.splice(i, 1);
 
-            after(AST.emptyStatement());
-            inlined = true;
+            //after(AST.emptyStatement());
+            ++inlined;
             ++inlinedSomething;
             --i;
           } else if (write.assign) {
@@ -118,11 +118,11 @@ function _inlineConstants(fdata) {
               'if not then indexes changed?',
               node,
             );
-            vlog('Assignment queued for actual deletion (scroll down)');
+            vlog('Assignment queued for actual deletion (ast was not changed yet, scroll down)');
             toEliminate.push({ parent: assignParent, prop: assignProp, index: assignIndex });
             meta.writes.splice(i, 1);
 
-            inlined = true;
+            ++inlined;
             ++inlinedSomething;
             --i;
           }
@@ -142,21 +142,25 @@ function _inlineConstants(fdata) {
 
       vgroupEnd();
     });
-    log('End of iteration', inlineLoops, ' of constant inlining. Did we inline anything?', inlined ? 'yes' : 'no', inlined);
+    log('End of iteration', inlineLoops, 'of constant inlining. Did we inline anything?', inlined ? 'yes; ' + inlined : 'no');
 
-    vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+    vlog('\nCurrent state before removal of queued constants\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
     groupEnd();
     if (inlined) {
-      log('Folded some constants. Trying loop again...\n\n');
+      log('Queued some constants to fold. Their writes were removed. Trying loop again...\n\n');
     }
   } while (inlined);
   // All read node meta data (parent etc) are invalidated if the next bit eliminates anything.
+  vlog('toEliminate:', toEliminate.length);
   if (toEliminate.length) {
     group('Actually eliminate', toEliminate.length, 'var decls and assignments that were rendered redundant');
     toEliminate.forEach(({ parent, prop, index }) => {
       const node = index >= 0 ? parent[prop][index] : parent[prop];
+      rule('[2/2] Write-only bindings should be eliminated');
+      example('const x = 5;', ';');
       before(node, parent);
+
       if (node.type === 'ExpressionStatement') {
         ASSERT(node.expression.type === 'AssignmentExpression');
         node.expression = node.expression.right;
@@ -257,10 +261,7 @@ function attemptConstantInlining(meta, fdata) {
 
     vgroup('Attempt to replace the', meta.reads.length, 'reads of `' + meta.uniqueName + '` with reads of `' + rhs.name);
 
-    rule('Declaring a constant with a constant value should eliminate the binding');
-    example('const x = null; f(x);', 'f(null);', () => assigneeMeta.isBuiltin);
-    example('const x = f(); const y = x; g(y);', 'const x = f(); g(x);', () => !assigneeMeta.isBuiltin);
-    before(write.parentNode);
+    let first = true;
 
     // With the new
     const clone = AST.cloneSimple(rhs);
@@ -273,6 +274,14 @@ function attemptConstantInlining(meta, fdata) {
       if (parentNode.type === 'ExportSpecifier') {
         vlog('Skipping export ident');
       } else {
+        if (first) {
+          rule('Declaring a constant with a constant value should eliminate the binding');
+          example('const x = null; f(x);', 'f(null);', () => assigneeMeta.isBuiltin);
+          example('const x = f(); const y = x; g(y);', 'const x = f(); g(x);', () => !assigneeMeta.isBuiltin);
+          before(write.parentNode);
+          first = false;
+        }
+
         vlog(
           'Replacing a read of `' +
             meta.uniqueName +

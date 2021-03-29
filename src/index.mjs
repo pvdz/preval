@@ -286,9 +286,11 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           break;
         }
       }
-      log('Ran for', passes, 'passes');
+      log('Preval ran for', passes, 'passes');
     });
   }
+
+  log('Preval end');
 
   return contents;
 }

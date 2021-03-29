@@ -362,9 +362,7 @@ function attemptConstantInlining(meta, fdata) {
     // `const x = 5;`
     // Replace all reads of this name with a clone of the literal, ident, or unary
 
-    rule('Declaring a constant with a literal value should eliminate the binding');
-    example('const x = 100; f(x);', 'f(100);');
-    before(write.parentNode);
+    let first = true;
 
     vgroup('Attempt to replace the', meta.reads.length, 'reads');
     // With the new
@@ -374,8 +372,15 @@ function attemptConstantInlining(meta, fdata) {
     for (let i = 0; i < reads.length; ++i) {
       const { parentNode, parentProp, parentIndex } = reads[i];
       if (parentNode.type === 'ExportSpecifier') {
-        log('Skipping export ident');
+        vlog('Skipping export ident');
       } else {
+        if (first) {
+          rule('Const binding with constant value should replace all reads of that name with the value');
+          example('const x = 100; f(x);', 'f(100);');
+          before(write.parentNode);
+          first = false;
+        }
+
         vgroup(
           'Replacing a read with the literal...',
           parentNode.type + '.' + parentProp,
@@ -399,6 +404,9 @@ function attemptConstantInlining(meta, fdata) {
 
     if (reads.length === 0 && write.decl) {
       vgroup('Deleting the var decl');
+      rule('Var decl with constant value that is not read should be dropped');
+      example('const x = 100;', ';');
+
       // Remove the declaration if it was a var decl because there are no more reads from this and it is a constant
       // Note: the init was a lone literal (that's how we got here) so we should not need to preserve the init
       const { declParent, declProp, declIndex } = write.decl;

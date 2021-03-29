@@ -95,7 +95,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
             // This is a direct call to the function
             const staticArgs = []; // <index, valueNode> for each static arg. index should map to args and params.
 
-            log('- read; call with', args.length, 'args, func has', funcNode.params.length, 'params.');
+            vlog('- read; call with', args.length, 'args, func has', funcNode.params.length, 'params.');
 
             // Note: not straightforward;
             //       - spread args shift arg<>param mapping

@@ -4051,6 +4051,7 @@ export function phaseNormalize(fdata, fname) {
 
       case 'ObjectExpression': {
         let changes = false;
+
         node.properties.forEach((pnode) => {
           if (pnode.computed && AST.isProperIdent(pnode.key)) {
             rule('Object literal computed key that is ident must be ident');
@@ -4128,11 +4129,11 @@ export function phaseNormalize(fdata, fname) {
             example('{x: a, y: b(), z: c}', 'tmp = a, tmp2 = b(), {x: tmp, y: tmp2, z: c}');
             before(node, parentNode);
 
+            vlog('Walking through', node.properties.length, 'props,', 0, ' to ', last);
             const newNodes = [];
             const newProps = [];
             for (let i = 0; i <= last; ++i) {
               const pnode = node.properties[i];
-
               if (pnode.type === 'SpreadElement') {
                 const tmpName = createFreshVar('tmpObjSpread', fdata);
                 newNodes.push(AST.variableDeclaration(tmpName, pnode.argument, 'const'));

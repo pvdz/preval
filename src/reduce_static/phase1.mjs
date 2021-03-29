@@ -14,6 +14,7 @@ import globals from '../globals.mjs';
 export function phase1(fdata, resolve, req, firstAfterParse) {
   const ast = fdata.tenkoOutput.ast;
 
+  const start = Date.now();
   vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   const funcStack = [];
@@ -49,10 +50,13 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       '\n##################################\n\n\n',
   );
 
+  let called = 0;
   walk(_walker, ast, 'ast');
   function _walker(node, before, nodeType, path) {
     ASSERT(node, 'node should be truthy', node);
     ASSERT(nodeType === node.type);
+
+    ++called;
 
     const parentNode = path.nodes[path.nodes.length - 2];
     const parentProp = path.props[path.props.length - 1];
@@ -418,7 +422,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             } else if (parentProp === 'params' && parentNode.type === 'FunctionExpression') {
               ASSERT(false, 'actual params are special nodes now and original params are local bindings so this should not trigger');
             } else {
-              // for-x lhs, param, etc
+              // for-x lhs, not sure what else. not param.
               vlog('Adding "other" write');
               meta.writes.push(
                 createWriteRef({
@@ -624,6 +628,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
     vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   }
 
-  log('End of phase 1');
+  log('End of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');
   groupEnd();
 }

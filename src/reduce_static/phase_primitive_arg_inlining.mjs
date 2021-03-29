@@ -22,6 +22,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
+import { createFreshVar } from '../bindings.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -147,7 +148,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                   console.log('fromClonedFuncCacheKey(name, staticArgs):');
                   console.log(fromClonedFuncCacheKey(metaName, staticArgs), { depth: null });
                   console.log(staticArgs, { depth: null });
-                  console.log('otehrwise');
+                  console.log('otherwise');
                   console.log(
                     {
                       name: metaName,
@@ -163,13 +164,17 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                 'Cloning func the hard way. Original func name: `' +
                   metaName +
                   '` (hashed: `' +
-                  hashCloneName(metaName) +
+                  cloneDetails.name +
                   '`). Cloned name: `' +
                   cloneCacheKey +
                   '`',
               );
 
-              if (cloneMap.has(cloneCacheKey)) {
+              const knownClone = cloneMap.has(cloneCacheKey);
+              if (knownClone && fdata.globallyUniqueNamingRegistry.has(cloneCacheKey)) {
+                // Note: the clone may have been eliminated by other rules so we must verify that it still exists.
+                // If the clone no longer exists we must recreate it anew.
+                // Let's hope this doesn't lead to clone-eliminate-clone indirect infinite loops ;( You know it will.
                 log('Using a cached cloned function:', cloneCacheKey);
                 //read.node.name = cloneCacheKey;
                 callee.name = cloneCacheKey; // Eh, redundant?
@@ -237,15 +242,18 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                   vlog('Reached max of', cloneLimit, 'clones for function `' + cloneDetails.name + '`. Not cloning it again.');
                 } else {
                   vlog('Cloning...');
-                  cloneMap.set(cloneCacheKey, cloneCacheKey);
+                  // Make sure to register the name (and that its unique) in case of a cache-hit that was eliminated.
+                  const newName = createFreshVar(cloneCacheKey, fdata);
+                  vlog('Name to use for clone: `' + cloneCacheKey + '`')
+                  cloneMap.set(cloneCacheKey, newName);
                   cloneCounts.set(cloneDetails.name, count);
-                  const newFunc = cloneFunctionNode(funcNode, cloneCacheKey, staticArgs, fdata);
-                  newFuncs.push([meta, AST.variableDeclaration(cloneCacheKey, newFunc, 'const')]);
+                  const newFunc = cloneFunctionNode(funcNode, newName, staticArgs, fdata);
+                  newFuncs.push([meta, AST.variableDeclaration(newName, newFunc, 'const')]);
                   staticArgs.forEach(({ index }) => {
                     if (read.parentNode['arguments'][index]) read.parentNode['arguments'][index] = AST.nul();
                   });
                   newFunc.name = null;
-                  read.node.name = cloneCacheKey;
+                  read.node.name = newName;
                 }
               }
             }
@@ -323,11 +331,11 @@ function hashArg(index, valueNode) {
 }
 function hashCloneName(name) {
   // We need to eliminate $ from the name because we use that to split
-  return name.replace(/_/g, '__').replace(/\$/g, '_');
+  return name.replace(/_/g, '__').replace(/\$/g, 'd_d');
 }
-function toClonedFuncCacheKey({ name, inlined /*:Array<{index, type, node}>*/ }) {
+function toClonedFuncCacheKey({ name: hashedName, inlined /*:Array<{index, type, node}>*/ }) {
   vlog('toClonedFuncCacheKey');
-  const hashedName = hashCloneName(name);
+  ASSERT(!hashedName.includes('$'), 'name should be hashed and not include a dollar sign');
   return `$clone$${hashedName}$${inlined
     .map(({ index, type, value }) => {
       if ('TFNI'.includes(type)) return index + '_' + type + String(value);
@@ -342,11 +350,25 @@ function toClonedFuncCacheKey({ name, inlined /*:Array<{index, type, node}>*/ })
 }
 function fromClonedFuncCacheKey(key, withAdditionalInlines = []) {
   vlog('fromClonedFuncCacheKey', [key]);
-  ASSERT(key.startsWith('$clone$'));
   const [empty, clone, originalName, ...params] = key.split('$');
+  ASSERT(key.startsWith('$clone$'));
+  ASSERT(!originalName.includes('$'));
 
   const inlined = params
     .map((p) => {
+      if (/^\d+%/.test(p) && key.endsWith('$' + p)) {
+        // This is the suffix counter to make var names unique.
+        // I think this means we have to treat the whole name as a new name that we haven't seen yet
+        // I think this can happen if a function contains another function, the inner function gets cloned,
+        // then the outer function gets cloned which makes a duplicate of the inner function, with a suffix.
+        // Some steps later, it is possible that the contents of one copy gets inlined differently from
+        // the other copy. So we should not treat both functions as equal.
+        // Observe: `function f(b) { function g(a, b) { return [a, b]; } return [g(1), g(2)]; } $(f(3), f(4));`
+        // First g gets cloned with param a bound to 1 and the other clone bound to 2. Then f gets cloned, binding
+        // b to 3 and 4. This leads to a clone of g having its return value inlined to [1,3] , [2,3] , [1,4] and [2,4].
+        // If we were to treat the copies of the clones as equals then we would not have the [1,4] and [2,4] variations.
+        ASSERT(false, 'find a test case that has this problem and fix it...');
+      }
       const [paramIndex, ...valueSplit] = p.split('_');
       const typeValue = valueSplit.join('_');
       const type = typeValue[0];

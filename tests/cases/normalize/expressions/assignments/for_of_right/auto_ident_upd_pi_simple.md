@@ -37,7 +37,7 @@ const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
 b = tmpNestedComplexRhs;
 a = tmpNestedComplexRhs;
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -46,7 +46,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let x;
+let x = undefined;
 for (x of 2) {
 }
 $(2, 2);

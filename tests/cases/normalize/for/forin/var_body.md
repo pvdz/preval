@@ -26,7 +26,7 @@ for (const n in { a: 1, b: 2 }) x = n;
 `````js filename=intro
 let x = undefined;
 const tmpForInDeclRhs = { a: 1, b: 2 };
-let n;
+let n = undefined;
 for (n in tmpForInDeclRhs) {
   x = n;
 }
@@ -36,7 +36,7 @@ for (n in tmpForInDeclRhs) {
 
 `````js filename=intro
 const tmpForInDeclRhs = { a: 1, b: 2 };
-let n;
+let n = undefined;
 for (n in tmpForInDeclRhs) {
 }
 `````

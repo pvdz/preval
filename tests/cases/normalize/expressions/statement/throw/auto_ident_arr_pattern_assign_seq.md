@@ -35,7 +35,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpThrowArg;
+let tmpThrowArg = undefined;
 $(x);
 $(y);
 const tmpArrElement = $(3);

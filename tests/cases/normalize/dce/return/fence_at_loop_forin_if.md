@@ -73,7 +73,7 @@ let f = function () {
     if (tmpIfTest) {
       $('loop');
       const tmpForInDeclRhs = { a: 1, b: 2 };
-      let x;
+      let x = undefined;
       for (x in tmpForInDeclRhs) {
         $('loop', x);
         const tmpIfTest$1 = $(1, 'if');
@@ -109,7 +109,7 @@ const f = function () {
     if (tmpIfTest) {
       $('loop');
       const tmpForInDeclRhs = { a: 1, b: 2 };
-      let x;
+      let x = undefined;
       for (x in tmpForInDeclRhs) {
         $('loop', x);
         const tmpIfTest$1 = $(1, 'if');

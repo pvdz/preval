@@ -30,7 +30,7 @@ for ($(a)[$('foo')] in $(b)) $(a);
 let a = {};
 let b = { x: 1, y: 2 };
 const tmpForInRhs = $(b);
-let tmpForInLhsNode;
+let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const tmpAssignComMemLhsObj = $(a);
   const tmpAssignComMemLhsProp = $('foo');
@@ -45,7 +45,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
 const a = {};
 const b = { x: 1, y: 2 };
 const tmpForInRhs = $(b);
-let tmpForInLhsNode;
+let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const tmpAssignComMemLhsObj = $(a);
   const tmpAssignComMemLhsProp = $('foo');

@@ -36,7 +36,7 @@
 `````js filename=intro
 let x = 1;
 let y = 2;
-let a;
+let a = undefined;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];

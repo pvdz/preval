@@ -39,7 +39,7 @@ const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpForOfDeclRhs = varInitAssignLhsComputedRhs;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -55,7 +55,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let x;
+let x = undefined;
 for (x of varInitAssignLhsComputedRhs) {
 }
 $(a, b);

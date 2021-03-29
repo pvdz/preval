@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 const tmpAssignComMemLhsObj = a;
@@ -50,7 +50,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpSSA_a = { b: tmpObjLitVal };
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 const tmpAssignComMemLhsProp = $('b');

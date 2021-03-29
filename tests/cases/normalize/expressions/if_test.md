@@ -25,8 +25,8 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x;
-let tmpIfTest;
+let x = undefined;
+let tmpIfTest = undefined;
 const tmpObjLitVal = $(1);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal };
 x = tmpNestedAssignObjPatternRhs.x;

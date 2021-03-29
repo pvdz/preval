@@ -25,7 +25,7 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-let y;
+let y = undefined;
 const tmpNestedAssignObjPatternRhs = { x: 1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs;

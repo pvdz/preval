@@ -36,7 +36,7 @@ const tmpPostUpdArgIdent = b;
 b = b - 1;
 a = tmpPostUpdArgIdent;
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, b);
@@ -45,7 +45,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let x;
+let x = undefined;
 for (x in 1) {
 }
 $(1, 0);

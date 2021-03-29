@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
 const tmpCallCompProp = $('$');
 const tmpForOfDeclRhs = tmpCallCompObj[tmpCallCompProp](1);
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -48,7 +48,7 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCallCompProp = $('$');
 const tmpForOfDeclRhs = b[tmpCallCompProp](1);
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);

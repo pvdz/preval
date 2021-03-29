@@ -36,7 +36,7 @@ const tmpNewCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpForInDeclRhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -49,7 +49,7 @@ const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpForInDeclRhs = new $(tmpCalleeParam, tmpCalleeParam$1);
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);

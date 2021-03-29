@@ -34,7 +34,7 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 a = typeof x$1;
 let tmpForOfDeclRhs = a;
-let x$1;
+let x$1 = undefined;
 for (x$1 of tmpForOfDeclRhs) {
 }
 $(a, x);
@@ -44,7 +44,7 @@ $(a, x);
 
 `````js filename=intro
 const tmpSSA_a = typeof x$1;
-let x$1;
+let x$1 = undefined;
 for (x$1 of tmpSSA_a) {
 }
 $(tmpSSA_a, 1);

@@ -40,7 +40,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
   tmpForOfDeclRhs = tmpChainElementCall;
 }
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -58,7 +58,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   tmpForOfDeclRhs = tmpChainElementCall;
 }
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);

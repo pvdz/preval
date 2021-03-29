@@ -30,14 +30,14 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpForInDeclRhs;
+let tmpForInDeclRhs = undefined;
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
 tmpForInDeclRhs = tmpNestedAssignArrPatternRhs;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -54,7 +54,7 @@ $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_a = arrPatternSplat$1[0];
-let x;
+let x = undefined;
 for (x in tmpNestedAssignArrPatternRhs) {
 }
 $(tmpSSA_a);

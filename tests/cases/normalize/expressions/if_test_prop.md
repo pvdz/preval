@@ -23,8 +23,8 @@ if (({ x } = 1).foo) null;
 ## Normalized
 
 `````js filename=intro
-let y;
-let tmpCompObj;
+let y = undefined;
+let tmpCompObj = undefined;
 const tmpNestedAssignObjPatternRhs = 1;
 x = tmpNestedAssignObjPatternRhs.x;
 tmpCompObj = tmpNestedAssignObjPatternRhs;

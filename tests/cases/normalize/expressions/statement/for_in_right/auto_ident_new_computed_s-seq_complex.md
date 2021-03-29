@@ -36,7 +36,7 @@ const tmpCompObj = b;
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 const tmpForInDeclRhs = new tmpNewCallee(1);
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -50,7 +50,7 @@ const a = { a: 999, b: 1000 };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 const tmpForInDeclRhs = new tmpNewCallee(1);
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);

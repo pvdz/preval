@@ -23,10 +23,10 @@ let x, b, c;
 ## Normalized
 
 `````js filename=intro
-let x;
-let b;
-let c;
-let tmpIfTest;
+let x = undefined;
+let b = undefined;
+let c = undefined;
+let tmpIfTest = undefined;
 const tmpNestedAssignObjPatternRhs = 1;
 x = tmpNestedAssignObjPatternRhs.x;
 tmpIfTest = tmpNestedAssignObjPatternRhs;

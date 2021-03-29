@@ -43,7 +43,7 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
+let tmpBinLhs = undefined;
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];

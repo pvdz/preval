@@ -42,7 +42,7 @@ b = arrPatternSplat[0];
 a = tmpNestedAssignArrPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs;
+  let tmpNestedComplexRhs = undefined;
   const tmpCallCallee$3 = $;
   const tmpArrElement$1 = $(2);
   const tmpCalleeParam$3 = [tmpArrElement$1];

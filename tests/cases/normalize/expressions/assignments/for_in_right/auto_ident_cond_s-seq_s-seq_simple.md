@@ -37,7 +37,7 @@ if (tmpIfTest) {
   a = tmpCallCallee(tmpCalleeParam);
 }
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -46,7 +46,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let x;
+let x = undefined;
 for (x in 60) {
 }
 $(60);

@@ -31,7 +31,7 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpAnonDefaultExport;
+let tmpAnonDefaultExport = undefined;
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);

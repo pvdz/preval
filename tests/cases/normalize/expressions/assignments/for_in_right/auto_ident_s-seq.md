@@ -36,7 +36,7 @@ $(1);
 $(2);
 a = x$1;
 let tmpForInDeclRhs = a;
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpForInDeclRhs) {
 }
 $(a, x);
@@ -48,7 +48,7 @@ $(a, x);
 $(1);
 $(2);
 const tmpSSA_a = x$1;
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpSSA_a) {
 }
 $(tmpSSA_a, 1);

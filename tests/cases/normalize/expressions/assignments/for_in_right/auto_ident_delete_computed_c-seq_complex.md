@@ -38,7 +38,7 @@ const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, arg);
@@ -53,7 +53,7 @@ $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 const tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let x;
+let x = undefined;
 for (x in tmpSSA_a) {
 }
 $(tmpSSA_a, arg);

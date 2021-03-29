@@ -5989,168 +5989,50 @@ export function phaseNormalize(fdata, fname) {
 
     ASSERT(node.kind !== 'var');
 
-    if (dnode.init) {
-      vlog('Init:', dnode.init.type);
+    if (!dnode.init) {
+      rule('Var decls must have an init');
+      example('let x;', 'let x = undefined;');
+      before(node);
 
-      if (dnode.init.type === 'AssignmentExpression') {
-        // Must first outline the assignment because otherwise recursive calls will assume the assignment
-        // is an expression statement and then transforms go bad.
+      dnode.init = AST.identifier('undefined');
 
-        if (dnode.init.left.type === 'Identifier') {
-          if (dnode.init.operator !== '=') {
-            rule('Var inits can not be compound assignments to ident');
-            example('let x = y *= z()', 'let x = y = y * z();');
-            before(node, parentNode);
+      after(node);
+      return true;
+    }
 
-            dnode.init = AST.assignmentExpression(
-              dnode.init.left,
-              AST.binaryExpression(
-                dnode.init.operator.slice(0, -1), // *= becomes *
-                AST.cloneSimple(dnode.init.left),
-                dnode.init.right,
-              ),
-            );
+    vlog('Init:', dnode.init.type);
 
-            after(node);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
+    if (dnode.init.type === 'AssignmentExpression') {
+      // Must first outline the assignment because otherwise recursive calls will assume the assignment
+      // is an expression statement and then transforms go bad.
 
-          rule('Var inits can not be assignments; lhs ident');
-          example('let x = y = z()', 'y = z; let x = y;');
+      if (dnode.init.left.type === 'Identifier') {
+        if (dnode.init.operator !== '=') {
+          rule('Var inits can not be compound assignments to ident');
+          example('let x = y *= z()', 'let x = y = y * z();');
           before(node, parentNode);
 
-          const newNodes = [
-            AST.expressionStatement(dnode.init),
-            AST.variableDeclaration(AST.cloneSimple(dnode.id), AST.cloneSimple(dnode.init.left)),
-          ];
-          body.splice(i, 1, ...newNodes);
+          dnode.init = AST.assignmentExpression(
+            dnode.init.left,
+            AST.binaryExpression(
+              dnode.init.operator.slice(0, -1), // *= becomes *
+              AST.cloneSimple(dnode.init.left),
+              dnode.init.right,
+            ),
+          );
 
-          after(newNodes);
+          after(node);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
-        if (dnode.init.left.type === 'MemberExpression') {
-          if (dnode.init.left.computed && AST.isComplexNode(dnode.init.left.property)) {
-            ASSERT(dnode.id.type === 'Identifier');
-            rule('Var inits can not be assignments; lhs computed complex prop');
-            example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
-            before(node, parentNode);
-
-            const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
-            const tmpNameProp = createFreshVar('varInitAssignLhsComputedProp', fdata);
-            const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
-            const newNodes = [
-              AST.variableDeclaration(tmpNameObj, dnode.init.left.object, 'const'),
-              AST.variableDeclaration(tmpNameProp, dnode.init.left.property, 'const'),
-              AST.variableDeclaration(tmpNameRhs, dnode.init.right, 'const'),
-              AST.expressionStatement(AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), tmpNameRhs)),
-              AST.variableDeclaration(AST.cloneSimple(dnode.id), tmpNameRhs, node.kind),
-            ];
-            body.splice(i, 1, ...newNodes);
-
-            after(newNodes);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
-
-          if (AST.isComplexNode(dnode.init.left.object)) {
-            ASSERT(dnode.id.type === 'Identifier');
-            rule('Var inits can not be assignments; lhs regular complex prop');
-            example(
-              'let x = a().b = z()',
-              'tmp = a(); let x = tmp.b = z();',
-              () => dnode.init.operator === '=' && !dnode.init.left.computed,
-            );
-            example(
-              'let x = a()[b] = z()',
-              'tmp = a(); let x = tmp[b] = z();',
-              () => dnode.init.operator === '=' && dnode.init.left.computed,
-            );
-            example(
-              'let x = a().b *= z()',
-              'tmp = a(); let x = tmp.b *= z();',
-              () => dnode.init.operator !== '=' && !dnode.init.left.computed,
-            );
-            example(
-              'let x = a()[b] *= z()',
-              'tmp = a(); let x = tmp[b] *= z();',
-              () => dnode.init.operator !== '=' && dnode.init.left.computed,
-            );
-            before(node, parentNode);
-
-            const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
-            const newNodes = [
-              AST.variableDeclaration(tmpNameObj, dnode.init.left.object, 'const'),
-              AST.variableDeclaration(
-                dnode.id,
-                AST.assignmentExpression(
-                  AST.memberExpression(tmpNameObj, dnode.init.left.property, dnode.init.left.computed),
-                  dnode.init.right,
-                  dnode.init.operator,
-                ),
-                node.kind,
-              ),
-            ];
-            body.splice(i, 1, ...newNodes);
-
-            after(newNodes);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
-
-          // At this point the assignment has an lhs that is a property and the object and property are simple (maybe computed)
-
-          if (dnode.init.operator !== '=') {
-            ASSERT(dnode.id.type === 'Identifier');
-            rule('Var inits can not be compound assignments to simple member');
-            example('let x = a.b *= z()', 'let x = a.b = a.b * z();');
-            before(node);
-
-            dnode.init = AST.assignmentExpression(
-              dnode.init.left,
-              AST.binaryExpression(
-                dnode.init.operator.slice(0, -1), // *= becomes *
-                AST.cloneSimple(dnode.init.left),
-                dnode.init.right,
-              ),
-            );
-
-            after(node);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
-
-          // We should be able to stash the rhs without worrying about side effects by reading the lhs first.
-
-          ASSERT(dnode.id.type === 'Identifier');
-          rule('Var inits can not be assignments; lhs simple member');
-          example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
-          before(node, parentNode);
-
-          const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
-          const newNodes = [
-            AST.variableDeclaration(tmpNameRhs, dnode.init.right, 'const'),
-            AST.expressionStatement(AST.assignmentExpression(dnode.init.left, tmpNameRhs, dnode.init.operator)),
-            AST.variableDeclaration(dnode.id, tmpNameRhs, node.kind),
-          ];
-          body.splice(i, 1, ...newNodes);
-
-          after(newNodes);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        // TODO: clean this up nicely as well. Shouldn't ultimately be a big deal, just yields better normalized results. Like above.
-
-        rule('Var inits can not be assignments; pattern lhs');
-        example('let x = [y] = z()', 'let x, x = [y] = z()');
+        rule('Var inits can not be assignments; lhs ident');
+        example('let x = y = z()', 'y = z; let x = y;');
         before(node, parentNode);
 
         const newNodes = [
-          AST.variableDeclaration(AST.cloneSimple(dnode.id)),
-          AST.expressionStatement(AST.assignmentExpression(dnode.id, dnode.init)),
+          AST.expressionStatement(dnode.init),
+          AST.variableDeclaration(AST.cloneSimple(dnode.id), AST.cloneSimple(dnode.init.left)),
         ];
         body.splice(i, 1, ...newNodes);
 
@@ -6159,39 +6041,162 @@ export function phaseNormalize(fdata, fname) {
         return true;
       }
 
-      if (dnode.init.type === 'FunctionExpression' && dnode.init.id) {
-        // Note: this happens here (var decl) and in assignment!
-        // The id of a function expression is kind of special.
-        // - It only exists inside the function
-        // - It is read-only, writes fail hard (only in strict mode, which we force).
-        // - It can be shadowed inside the function like by a var or a param
+      if (dnode.init.left.type === 'MemberExpression') {
+        if (dnode.init.left.computed && AST.isComplexNode(dnode.init.left.property)) {
+          ASSERT(dnode.id.type === 'Identifier');
+          rule('Var inits can not be assignments; lhs computed complex prop');
+          example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
+          before(node, parentNode);
 
-        const funcNode = dnode.init;
+          const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
+          const tmpNameProp = createFreshVar('varInitAssignLhsComputedProp', fdata);
+          const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
+          const newNodes = [
+            AST.variableDeclaration(tmpNameObj, dnode.init.left.object, 'const'),
+            AST.variableDeclaration(tmpNameProp, dnode.init.left.property, 'const'),
+            AST.variableDeclaration(tmpNameRhs, dnode.init.right, 'const'),
+            AST.expressionStatement(AST.assignmentExpression(AST.memberExpression(tmpNameObj, tmpNameProp, true), tmpNameRhs)),
+            AST.variableDeclaration(AST.cloneSimple(dnode.id), tmpNameRhs, node.kind),
+          ];
+          body.splice(i, 1, ...newNodes);
 
-        rule('Function expressions should not have an id');
-        example('let x = function f(){};', 'const f = function(); let x = f;');
-        before(funcNode, node);
-
-        // Note: body should be normalized now but parent may not be
-        body.splice(i, 0, AST.variableDeclaration(funcNode.id.name, funcNode, 'const'));
-        dnode.init = AST.identifier(funcNode.id.name);
-        funcNode.id = null;
-
-        after(funcNode, parentNode);
-        return true;
-      }
-
-      if (
-        AST.isComplexNode(dnode.init, false) ||
-        (dnode.init.type === 'Identifier' && dnode.init.name === 'arguments') ||
-        dnode.init.type === 'TemplateLiteral'
-      ) {
-        // false: returns true for simple unary as well
-        vlog('- init is complex, transforming expression');
-        if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
+          after(newNodes);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
+
+        if (AST.isComplexNode(dnode.init.left.object)) {
+          ASSERT(dnode.id.type === 'Identifier');
+          rule('Var inits can not be assignments; lhs regular complex prop');
+          example('let x = a().b = z()', 'tmp = a(); let x = tmp.b = z();', () => dnode.init.operator === '=' && !dnode.init.left.computed);
+          example(
+            'let x = a()[b] = z()',
+            'tmp = a(); let x = tmp[b] = z();',
+            () => dnode.init.operator === '=' && dnode.init.left.computed,
+          );
+          example(
+            'let x = a().b *= z()',
+            'tmp = a(); let x = tmp.b *= z();',
+            () => dnode.init.operator !== '=' && !dnode.init.left.computed,
+          );
+          example(
+            'let x = a()[b] *= z()',
+            'tmp = a(); let x = tmp[b] *= z();',
+            () => dnode.init.operator !== '=' && dnode.init.left.computed,
+          );
+          before(node, parentNode);
+
+          const tmpNameObj = createFreshVar('varInitAssignLhsComputedObj', fdata);
+          const newNodes = [
+            AST.variableDeclaration(tmpNameObj, dnode.init.left.object, 'const'),
+            AST.variableDeclaration(
+              dnode.id,
+              AST.assignmentExpression(
+                AST.memberExpression(tmpNameObj, dnode.init.left.property, dnode.init.left.computed),
+                dnode.init.right,
+                dnode.init.operator,
+              ),
+              node.kind,
+            ),
+          ];
+          body.splice(i, 1, ...newNodes);
+
+          after(newNodes);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        // At this point the assignment has an lhs that is a property and the object and property are simple (maybe computed)
+
+        if (dnode.init.operator !== '=') {
+          ASSERT(dnode.id.type === 'Identifier');
+          rule('Var inits can not be compound assignments to simple member');
+          example('let x = a.b *= z()', 'let x = a.b = a.b * z();');
+          before(node);
+
+          dnode.init = AST.assignmentExpression(
+            dnode.init.left,
+            AST.binaryExpression(
+              dnode.init.operator.slice(0, -1), // *= becomes *
+              AST.cloneSimple(dnode.init.left),
+              dnode.init.right,
+            ),
+          );
+
+          after(node);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        // We should be able to stash the rhs without worrying about side effects by reading the lhs first.
+
+        ASSERT(dnode.id.type === 'Identifier');
+        rule('Var inits can not be assignments; lhs simple member');
+        example('let x = a()[b()] = z()', 'tmp = a(), tmp2 = b(), tmp3 = z(), tmp[tmp2] = tmp3; let x = tmp3;');
+        before(node, parentNode);
+
+        const tmpNameRhs = createFreshVar('varInitAssignLhsComputedRhs', fdata);
+        const newNodes = [
+          AST.variableDeclaration(tmpNameRhs, dnode.init.right, 'const'),
+          AST.expressionStatement(AST.assignmentExpression(dnode.init.left, tmpNameRhs, dnode.init.operator)),
+          AST.variableDeclaration(dnode.id, tmpNameRhs, node.kind),
+        ];
+        body.splice(i, 1, ...newNodes);
+
+        after(newNodes);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      // TODO: clean this up nicely as well. Shouldn't ultimately be a big deal, just yields better normalized results. Like above.
+
+      rule('Var inits can not be assignments; pattern lhs');
+      example('let x = [y] = z()', 'let x, x = [y] = z()');
+      before(node, parentNode);
+
+      const newNodes = [
+        AST.variableDeclaration(AST.cloneSimple(dnode.id)),
+        AST.expressionStatement(AST.assignmentExpression(dnode.id, dnode.init)),
+      ];
+      body.splice(i, 1, ...newNodes);
+
+      after(newNodes);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
+    if (dnode.init.type === 'FunctionExpression' && dnode.init.id) {
+      // Note: this happens here (var decl) and in assignment!
+      // The id of a function expression is kind of special.
+      // - It only exists inside the function
+      // - It is read-only, writes fail hard (only in strict mode, which we force).
+      // - It can be shadowed inside the function like by a var or a param
+
+      const funcNode = dnode.init;
+
+      rule('Function expressions should not have an id');
+      example('let x = function f(){};', 'const f = function(); let x = f;');
+      before(funcNode, node);
+
+      // Note: body should be normalized now but parent may not be
+      body.splice(i, 0, AST.variableDeclaration(funcNode.id.name, funcNode, 'const'));
+      dnode.init = AST.identifier(funcNode.id.name);
+      funcNode.id = null;
+
+      after(funcNode, parentNode);
+      return true;
+    }
+
+    if (
+      AST.isComplexNode(dnode.init, false) ||
+      (dnode.init.type === 'Identifier' && dnode.init.name === 'arguments') ||
+      dnode.init.type === 'TemplateLiteral'
+    ) {
+      // false: returns true for simple unary as well
+      vlog('- init is complex, transforming expression');
+      if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
       }
     }
 

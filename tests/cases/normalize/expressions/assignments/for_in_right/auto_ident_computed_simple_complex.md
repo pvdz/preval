@@ -36,7 +36,7 @@ const tmpAssignRhsCompObj = b;
 const tmpAssignRhsCompProp = $('c');
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, b);
@@ -48,7 +48,7 @@ $(a, b);
 const b = { c: 1 };
 const tmpAssignRhsCompProp = $('c');
 const tmpSSA_a = b[tmpAssignRhsCompProp];
-let x;
+let x = undefined;
 for (x in tmpSSA_a) {
 }
 $(tmpSSA_a, b);

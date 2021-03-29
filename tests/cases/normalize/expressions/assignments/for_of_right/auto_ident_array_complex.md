@@ -33,7 +33,7 @@ const tmpArrElement$1 = 2;
 const tmpArrElement$3 = $(3);
 a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -45,7 +45,7 @@ $(a);
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 const tmpSSA_a = [tmpArrElement, 2, tmpArrElement$3];
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 $(tmpSSA_a);

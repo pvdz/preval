@@ -40,7 +40,7 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
   tmpForInDeclRhs = tmpChainElementCall$1;
 }
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -59,7 +59,7 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   tmpForInDeclRhs = tmpChainElementCall$1;
 }
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);

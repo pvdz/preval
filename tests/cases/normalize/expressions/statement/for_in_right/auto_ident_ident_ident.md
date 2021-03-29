@@ -37,7 +37,7 @@ let c = 2;
 let a = { a: 999, b: 1000 };
 b = 2;
 let tmpForInDeclRhs = b;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, b, c);
@@ -47,7 +47,7 @@ $(a, b, c);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let x;
+let x = undefined;
 for (x in 2) {
 }
 $(a, 2, 2);

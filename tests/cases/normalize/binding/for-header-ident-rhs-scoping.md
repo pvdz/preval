@@ -36,7 +36,7 @@ for (let x$1 in [x$1]) {
 let x = 1;
 let y = 1;
 const tmpForInDeclRhs = [x$1];
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpForInDeclRhs) {
   let y$1 = 2;
   $(x$1);
@@ -47,7 +47,7 @@ for (x$1 in tmpForInDeclRhs) {
 
 `````js filename=intro
 const tmpForInDeclRhs = [x$1];
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpForInDeclRhs) {
   $(x$1);
 }

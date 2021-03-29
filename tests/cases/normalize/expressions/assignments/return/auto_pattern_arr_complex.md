@@ -36,7 +36,7 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpReturnArg;
+  let tmpReturnArg = undefined;
   const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
   const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);

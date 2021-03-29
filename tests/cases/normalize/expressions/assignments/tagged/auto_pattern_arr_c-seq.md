@@ -32,7 +32,7 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
+let tmpCalleeParam$1 = undefined;
 $(10);
 $(20);
 const tmpCallCallee$1 = $;

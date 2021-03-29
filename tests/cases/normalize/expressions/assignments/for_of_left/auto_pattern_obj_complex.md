@@ -32,9 +32,9 @@ let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForOfLhsNode;
+let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  let tmpAssignMemLhsObj;
+  let tmpAssignMemLhsObj = undefined;
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
@@ -52,7 +52,7 @@ const bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
-let tmpForOfLhsNode;
+let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpCalleeParam$1 = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);

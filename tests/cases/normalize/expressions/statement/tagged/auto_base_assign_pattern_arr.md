@@ -34,7 +34,7 @@ let b = [];
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
+let tmpCalleeParam$1 = undefined;
 const tmpCallCallee$1 = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam$3 = [tmpArrElement];

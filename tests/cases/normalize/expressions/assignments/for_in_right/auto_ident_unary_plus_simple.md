@@ -34,7 +34,7 @@ let arg = 1;
 let a = { a: 999, b: 1000 };
 a = +arg;
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, arg);
@@ -43,7 +43,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let x;
+let x = undefined;
 for (x in 1) {
 }
 $(1, 1);

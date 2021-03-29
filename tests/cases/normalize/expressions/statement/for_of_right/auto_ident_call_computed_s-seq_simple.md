@@ -34,7 +34,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = b;
 const tmpForOfDeclRhs = tmpCallObj.$(1);
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -46,7 +46,7 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpForOfDeclRhs = b.$(1);
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);

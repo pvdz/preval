@@ -44,7 +44,7 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs;
+    let tmpNestedComplexRhs = undefined;
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);
     const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };

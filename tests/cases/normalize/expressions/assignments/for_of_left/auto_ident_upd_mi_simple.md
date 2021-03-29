@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForOfLhsNode;
+let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpNestedCompoundLhs = b;
   const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
@@ -54,7 +54,7 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
-let tmpForOfLhsNode;
+let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpNestedCompoundLhs = b;
   const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;

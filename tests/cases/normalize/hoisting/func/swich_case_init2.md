@@ -52,7 +52,7 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
-let x;
+let x = undefined;
 let f = function () {
   debugger;
   const tmpReturnArg = $(x, 'x');

@@ -41,7 +41,7 @@ $(a, x, y);
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpReturnArg;
+  let tmpReturnArg = undefined;
   $(x);
   $(y);
   const tmpObjLitVal = $(3);

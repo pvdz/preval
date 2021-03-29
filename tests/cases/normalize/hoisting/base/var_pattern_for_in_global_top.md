@@ -31,7 +31,7 @@ $(x);
 let x = undefined;
 $(x);
 const tmpForInRhs = { y: 100 };
-let tmpForInLhsNode;
+let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const arrAssignPatternRhs = tmpForInLhsNode;
   const arrPatternSplat = [...arrAssignPatternRhs];
@@ -47,7 +47,7 @@ $(x);
 let x = undefined;
 $(x);
 const tmpForInRhs = { y: 100 };
-let tmpForInLhsNode;
+let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const arrAssignPatternRhs = tmpForInLhsNode;
   const arrPatternSplat = [...arrAssignPatternRhs];

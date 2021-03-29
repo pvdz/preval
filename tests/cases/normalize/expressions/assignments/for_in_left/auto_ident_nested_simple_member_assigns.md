@@ -38,7 +38,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForInLhsNode;
+let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const varInitAssignLhsComputedRhs$7 = c;
   b.x = varInitAssignLhsComputedRhs$7;
@@ -67,7 +67,7 @@ const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
-let tmpForInLhsNode;
+let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   b.x = 3;
   b.x = 3;

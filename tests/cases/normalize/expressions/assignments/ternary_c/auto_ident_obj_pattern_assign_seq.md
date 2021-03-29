@@ -41,7 +41,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  let tmpNestedComplexRhs;
+  let tmpNestedComplexRhs = undefined;
   $(x);
   $(y);
   const tmpObjLitVal = $(3);

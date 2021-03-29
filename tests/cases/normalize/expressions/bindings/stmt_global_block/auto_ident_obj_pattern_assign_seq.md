@@ -36,7 +36,7 @@
 `````js filename=intro
 let x = 1;
 let y = 2;
-let a;
+let a = undefined;
 $(x);
 $(y);
 const tmpObjLitVal = $(3);

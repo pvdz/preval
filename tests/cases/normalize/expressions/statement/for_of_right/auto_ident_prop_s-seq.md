@@ -34,7 +34,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
 const tmpForOfDeclRhs = tmpCompObj.c;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -46,7 +46,7 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpForOfDeclRhs = b.c;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);

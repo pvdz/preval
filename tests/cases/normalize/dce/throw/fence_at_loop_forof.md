@@ -57,7 +57,7 @@ let f = function () {
     if (tmpIfTest) {
       $('loop');
       const tmpForOfDeclRhs = [1, 2];
-      let x;
+      let x = undefined;
       for (x of tmpForOfDeclRhs) {
         $('loop', x);
         const tmpThrowArg = $(7, 'throw');
@@ -83,7 +83,7 @@ while (true) {
   if (tmpIfTest) {
     $('loop');
     const tmpForOfDeclRhs = [1, 2];
-    let x;
+    let x = undefined;
     for (x of tmpForOfDeclRhs) {
       $('loop', x);
       const tmpThrowArg = $(7, 'throw');

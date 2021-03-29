@@ -33,7 +33,7 @@ $(a, b);
 let b = [];
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpObjSpread;
+let tmpObjSpread = undefined;
 const tmpNestedAssignArrPatternRhs = b;
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];

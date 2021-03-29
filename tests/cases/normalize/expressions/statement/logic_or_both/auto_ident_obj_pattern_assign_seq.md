@@ -36,7 +36,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpIfTest;
+let tmpIfTest = undefined;
 $(x);
 $(y);
 const tmpObjLitVal = $(3);

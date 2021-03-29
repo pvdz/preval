@@ -50,7 +50,7 @@ y = arrPatternSplat[1];
 a = tmpNestedAssignArrPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs;
+  let tmpNestedComplexRhs = undefined;
   $(x);
   $(y);
   const tmpArrElement$3 = $(3);

@@ -39,7 +39,7 @@ const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, b);
@@ -55,7 +55,7 @@ const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-let x;
+let x = undefined;
 for (x in varInitAssignLhsComputedRhs) {
 }
 $(a, b);

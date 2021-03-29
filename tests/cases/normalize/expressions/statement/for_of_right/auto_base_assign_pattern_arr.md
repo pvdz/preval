@@ -32,7 +32,7 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpForOfDeclRhs;
+let tmpForOfDeclRhs = undefined;
 const tmpCallCallee = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
@@ -40,7 +40,7 @@ const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
 tmpForOfDeclRhs = tmpNestedAssignArrPatternRhs;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -55,7 +55,7 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_b = arrPatternSplat[0];
-let x;
+let x = undefined;
 for (x of tmpNestedAssignArrPatternRhs) {
 }
 $(a, tmpSSA_b);

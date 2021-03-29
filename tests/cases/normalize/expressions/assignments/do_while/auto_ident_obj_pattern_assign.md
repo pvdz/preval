@@ -50,7 +50,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
+    let tmpNestedComplexRhs = undefined;
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);
     const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };

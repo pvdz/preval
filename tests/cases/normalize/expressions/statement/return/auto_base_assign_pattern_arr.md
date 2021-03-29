@@ -39,7 +39,7 @@ $(a, b);
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpReturnArg;
+  let tmpReturnArg = undefined;
   const tmpCallCallee = $;
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];

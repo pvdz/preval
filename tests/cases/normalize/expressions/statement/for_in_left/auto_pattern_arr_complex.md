@@ -33,7 +33,7 @@ let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForInLhsNode;
+let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = [1, 2];
@@ -51,7 +51,7 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
-let tmpForInLhsNode;
+let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const tmpCalleeParam$1 = [1, 2];
   const tmpAssignMemLhsObj = $(tmpCalleeParam$1);

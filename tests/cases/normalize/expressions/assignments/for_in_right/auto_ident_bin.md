@@ -32,7 +32,7 @@ const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 a = tmpBinBothLhs + tmpBinBothRhs;
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -44,7 +44,7 @@ $(a);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
-let x;
+let x = undefined;
 for (x in tmpSSA_a) {
 }
 $(tmpSSA_a);

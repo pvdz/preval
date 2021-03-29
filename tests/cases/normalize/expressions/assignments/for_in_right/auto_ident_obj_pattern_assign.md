@@ -48,7 +48,7 @@ x$1 = tmpNestedAssignObjPatternRhs.x$1;
 y = tmpNestedAssignObjPatternRhs.y;
 a = tmpNestedAssignObjPatternRhs;
 let tmpForInDeclRhs = a;
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpForInDeclRhs) {
 }
 $(a, x, y);
@@ -62,7 +62,7 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 tmpNestedAssignObjPatternRhs.x$1;
 const tmpSSA_y = tmpNestedAssignObjPatternRhs.y;
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpNestedAssignObjPatternRhs) {
 }
 $(tmpNestedAssignObjPatternRhs, 1, tmpSSA_y);

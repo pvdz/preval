@@ -38,7 +38,7 @@ $(f());
 let f = function () {
   debugger;
   let b = {};
-  let a;
+  let a = undefined;
   const tmpCallCallee = $;
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };

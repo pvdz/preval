@@ -33,7 +33,7 @@ let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 const tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -47,7 +47,7 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 const tmpCalleeParam = [1, 2];
 const tmpForOfDeclRhs = $(tmpCalleeParam);
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);

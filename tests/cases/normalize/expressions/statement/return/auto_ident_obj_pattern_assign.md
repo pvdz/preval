@@ -41,7 +41,7 @@ $(a, x, y);
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpReturnArg;
+  let tmpReturnArg = undefined;
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };

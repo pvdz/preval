@@ -62,7 +62,7 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhs
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, b, c);
@@ -91,7 +91,7 @@ varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-let x;
+let x = undefined;
 for (x in 3) {
 }
 $(a, b, 3);

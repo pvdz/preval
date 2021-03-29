@@ -37,7 +37,7 @@ const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -48,7 +48,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 b.c = 2;
-let x;
+let x = undefined;
 for (x of 2) {
 }
 $(2, b);

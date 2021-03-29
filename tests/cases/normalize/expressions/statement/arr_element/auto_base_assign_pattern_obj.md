@@ -32,14 +32,14 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-let tmpBinBothLhs;
+let tmpBinBothLhs = undefined;
 const tmpCallCallee = $;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
 tmpBinBothLhs = tmpNestedAssignObjPatternRhs;
-let tmpBinBothRhs;
+let tmpBinBothRhs = undefined;
 const tmpCallCallee$1 = $;
 const tmpObjLitVal$1 = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };

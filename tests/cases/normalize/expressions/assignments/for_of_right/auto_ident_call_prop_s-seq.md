@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallObj = b;
 a = tmpCallObj.$(1);
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -46,7 +46,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpSSA_a = b.$(1);
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 $(tmpSSA_a);

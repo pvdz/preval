@@ -49,8 +49,8 @@ let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-let a$1;
-let b$1;
+let a$1 = undefined;
+let b$1 = undefined;
 const tmpSwitchValue = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');
@@ -61,7 +61,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    let arrAssignPatternRhs;
+    let arrAssignPatternRhs = undefined;
     const tmpNestedAssignArrPatternRhs = z;
     const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat$1[1];

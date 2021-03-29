@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b + 1;
 const tmpForOfDeclRhs = tmpPostUpdArgIdent;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -45,7 +45,7 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let x;
+let x = undefined;
 for (x of 1) {
 }
 $(a, 2);

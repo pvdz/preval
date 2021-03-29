@@ -49,7 +49,7 @@ const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b, c, d);
@@ -67,7 +67,7 @@ const varInitAssignLhsComputedProp = $('y');
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-let x;
+let x = undefined;
 for (x of varInitAssignLhsComputedRhs) {
 }
 $(varInitAssignLhsComputedRhs, b, c, 3);

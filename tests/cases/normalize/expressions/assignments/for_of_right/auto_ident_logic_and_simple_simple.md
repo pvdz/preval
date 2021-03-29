@@ -33,7 +33,7 @@ if (a) {
   a = 2;
 }
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -47,7 +47,7 @@ if (tmpSSA_a) {
   tmpSSA_a = 2;
 }
 const tmpForOfDeclRhs = tmpSSA_a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(tmpSSA_a);

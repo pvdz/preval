@@ -33,7 +33,7 @@ let a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpForOfDeclRhs = [1, 2];
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -48,7 +48,7 @@ const a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpForOfDeclRhs = [1, 2];
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);

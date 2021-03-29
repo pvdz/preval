@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpAssignRhsProp = b;
 a = tmpAssignRhsProp.c;
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -46,7 +46,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpSSA_a = b.c;
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 $(tmpSSA_a, b);

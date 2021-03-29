@@ -238,14 +238,14 @@ node.elements.forEach(($$0, $$1) => {
 ## Normalized
 
 `````js filename=intro
-let createFreshVarInCurrentRootScope;
-let assigns;
-let AST;
-let newElements;
-let crumb;
-let isComplexNode;
-let uncrumb;
-let node;
+let createFreshVarInCurrentRootScope = undefined;
+let assigns = undefined;
+let AST = undefined;
+let newElements = undefined;
+let crumb = undefined;
+let isComplexNode = undefined;
+let uncrumb = undefined;
+let node = undefined;
 const tmpCallObj = node.elements;
 const tmpCallVal = tmpCallObj.forEach;
 const tmpCalleeParam = function ($$0, $$1) {

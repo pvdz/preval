@@ -57,7 +57,7 @@ let f = function () {
     if (tmpIfTest) {
       $('loop');
       const tmpForOfDeclRhs = [1, 2];
-      let x;
+      let x = undefined;
       for (x of tmpForOfDeclRhs) {
         $('loop', x);
         const tmpReturnArg = $(100, 'return');
@@ -85,7 +85,7 @@ const f = function () {
     if (tmpIfTest) {
       $('loop');
       const tmpForOfDeclRhs = [1, 2];
-      let x;
+      let x = undefined;
       for (x of tmpForOfDeclRhs) {
         $('loop', x);
         const tmpReturnArg = $(100, 'return');

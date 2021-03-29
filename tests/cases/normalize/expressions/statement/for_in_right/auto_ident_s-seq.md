@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpForInDeclRhs = x$1;
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpForInDeclRhs) {
 }
 $(a, x);
@@ -48,7 +48,7 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpForInDeclRhs = x$1;
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpForInDeclRhs) {
 }
 $(a, 1);

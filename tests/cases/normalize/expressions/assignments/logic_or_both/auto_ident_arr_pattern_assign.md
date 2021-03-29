@@ -46,7 +46,7 @@ a = tmpNestedAssignArrPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs;
+  let tmpNestedComplexRhs = undefined;
   const tmpArrElement$3 = $(3);
   const tmpArrElement$5 = $(4);
   const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];

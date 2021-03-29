@@ -35,7 +35,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpForInDeclRhs;
+let tmpForInDeclRhs = undefined;
 $(x$1);
 $(y);
 const tmpArrElement = $(3);
@@ -45,7 +45,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x$1 = arrPatternSplat[0];
 y = arrPatternSplat[1];
 tmpForInDeclRhs = tmpNestedAssignArrPatternRhs;
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpForInDeclRhs) {
 }
 $(a, x, y);
@@ -63,7 +63,7 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x$1 = arrPatternSplat[0];
 const tmpSSA_y = arrPatternSplat[1];
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpNestedAssignArrPatternRhs) {
 }
 $(a, 1, tmpSSA_y);

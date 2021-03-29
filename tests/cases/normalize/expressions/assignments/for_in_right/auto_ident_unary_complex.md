@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x$1);
 a = typeof tmpUnaryArg;
 let tmpForInDeclRhs = a;
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpForInDeclRhs) {
 }
 $(a, x);
@@ -46,7 +46,7 @@ $(a, x);
 `````js filename=intro
 const tmpUnaryArg = $(x$1);
 const tmpSSA_a = typeof tmpUnaryArg;
-let x$1;
+let x$1 = undefined;
 for (x$1 in tmpSSA_a) {
 }
 $(tmpSSA_a, 1);

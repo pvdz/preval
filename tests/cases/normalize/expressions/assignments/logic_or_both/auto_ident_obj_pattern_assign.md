@@ -47,7 +47,7 @@ a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs;
+  let tmpNestedComplexRhs = undefined;
   const tmpObjLitVal$3 = $(3);
   const tmpObjLitVal$5 = $(4);
   const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };

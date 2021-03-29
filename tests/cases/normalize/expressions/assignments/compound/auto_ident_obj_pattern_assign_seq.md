@@ -37,7 +37,7 @@ let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = a;
-let tmpBinBothRhs;
+let tmpBinBothRhs = undefined;
 $(x);
 $(y);
 const tmpObjLitVal = $(3);

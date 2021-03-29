@@ -36,7 +36,7 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  let tmpNestedComplexRhs;
+  let tmpNestedComplexRhs = undefined;
   const tmpCallCallee$1 = $;
   const tmpArrElement = $(2);
   const tmpCalleeParam$1 = [tmpArrElement];

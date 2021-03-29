@@ -32,7 +32,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let tmpForInLhsNode;
+let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in b) {
   const tmpCompObj = $(1);
   const tmpNewCallee = tmpCompObj[2];
@@ -47,7 +47,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-let tmpForInLhsNode;
+let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in b) {
   const tmpCompObj = $(1);
   const tmpNewCallee = tmpCompObj[2];

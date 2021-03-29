@@ -31,8 +31,8 @@ for (let [x] in [y]) {
 `````js filename=intro
 let y = {};
 const tmpForInPatDeclRhs = [y];
-let tmpForInPatDeclLhs;
-let x;
+let tmpForInPatDeclLhs = undefined;
+let x = undefined;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrAssignPatternRhs = tmpForInPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];
@@ -46,7 +46,7 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 `````js filename=intro
 const y = {};
 const tmpForInPatDeclRhs = [y];
-let tmpForInPatDeclLhs;
+let tmpForInPatDeclLhs = undefined;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrAssignPatternRhs = tmpForInPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];

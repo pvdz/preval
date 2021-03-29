@@ -43,7 +43,7 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x;
+    let x = undefined;
     for (x in tmpForInDeclRhs) {
       continue;
     }
@@ -62,7 +62,7 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x;
+    let x = undefined;
     for (x in tmpForInDeclRhs) {
       continue;
     }

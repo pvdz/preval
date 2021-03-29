@@ -32,7 +32,7 @@ const tmpArrElement = $(1);
 const tmpArrElement$1 = 2;
 const tmpArrElement$3 = $(3);
 const tmpForInDeclRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -45,7 +45,7 @@ const a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 const tmpForInDeclRhs = [tmpArrElement, 2, tmpArrElement$3];
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);

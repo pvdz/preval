@@ -32,7 +32,7 @@ let tmpForOfDeclRhs = 1;
 if (tmpForOfDeclRhs) {
   tmpForOfDeclRhs = 2;
 }
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -46,7 +46,7 @@ let tmpForOfDeclRhs = 1;
 if (tmpForOfDeclRhs) {
   tmpForOfDeclRhs = 2;
 }
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);

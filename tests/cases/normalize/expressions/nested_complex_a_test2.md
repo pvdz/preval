@@ -33,7 +33,7 @@ $($(a).length);
 const tmpCallCallee = $;
 const tmpCalleeParam = [];
 let a = tmpCallCallee(tmpCalleeParam);
-let b;
+let b = undefined;
 const tmpCallCallee$1 = $;
 const tmpCompObj = $(a);
 const tmpCalleeParam$1 = tmpCompObj.length;

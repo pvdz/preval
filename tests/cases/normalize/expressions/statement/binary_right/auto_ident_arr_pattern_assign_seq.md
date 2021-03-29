@@ -36,7 +36,7 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-let tmpBinBothRhs;
+let tmpBinBothRhs = undefined;
 $(x);
 $(y);
 const tmpArrElement = $(3);

@@ -35,9 +35,9 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-let tmpForOfLhsNode;
+let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  let tmpAssignMemLhsObj;
+  let tmpAssignMemLhsObj = undefined;
   const tmpCallCallee$1 = $;
   const tmpObjLitVal = $(2);
   const tmpCalleeParam$1 = { b: tmpObjLitVal };
@@ -56,7 +56,7 @@ let b = {};
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
-let tmpForOfLhsNode;
+let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpObjLitVal = $(2);
   const tmpCalleeParam$1 = { b: tmpObjLitVal };

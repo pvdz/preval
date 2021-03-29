@@ -34,7 +34,7 @@ a = function () {
   debugger;
 };
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -46,7 +46,7 @@ $(a);
 const tmpSSA_a = function () {
   debugger;
 };
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 $(tmpSSA_a);

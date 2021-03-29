@@ -40,7 +40,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
 a = tmpNestedAssignArrPatternRhs;
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -54,7 +54,7 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_b = arrPatternSplat[0];
-let x;
+let x = undefined;
 for (x of tmpNestedAssignArrPatternRhs) {
 }
 $(tmpNestedAssignArrPatternRhs, tmpSSA_b);

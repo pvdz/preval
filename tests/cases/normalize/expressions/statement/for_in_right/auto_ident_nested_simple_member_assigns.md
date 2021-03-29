@@ -48,7 +48,7 @@ b.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
 const tmpForInDeclRhs = varInitAssignLhsComputedRhs;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, b, c);
@@ -65,7 +65,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-let x;
+let x = undefined;
 for (x in 3) {
 }
 $(a, b, 3);

@@ -37,7 +37,7 @@ let a = 1;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-let a$1;
+let a$1 = undefined;
 const tmpNestedAssignArrPatternRhs = z;
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];

@@ -30,7 +30,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = 2;
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -39,7 +39,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let x;
+let x = undefined;
 for (x in 2) {
 }
 $(2);

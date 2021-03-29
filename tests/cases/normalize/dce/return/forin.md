@@ -41,7 +41,7 @@ $(f());
 let f = function () {
   debugger;
   const tmpForInDeclRhs = { a: 1, b: 2 };
-  let x;
+  let x = undefined;
   for (x in tmpForInDeclRhs) {
     const tmpReturnArg = $(1, 'return');
     return tmpReturnArg;
@@ -58,7 +58,7 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   const tmpForInDeclRhs = { a: 1, b: 2 };
-  let x;
+  let x = undefined;
   for (x in tmpForInDeclRhs) {
     const tmpReturnArg = $(1, 'return');
     return tmpReturnArg;

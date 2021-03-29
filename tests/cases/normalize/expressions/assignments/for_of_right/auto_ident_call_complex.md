@@ -31,7 +31,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
 a = tmpCallCallee(1);
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -42,7 +42,7 @@ $(a);
 `````js filename=intro
 const tmpCallCallee = $($);
 const tmpSSA_a = tmpCallCallee(1);
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 $(tmpSSA_a);

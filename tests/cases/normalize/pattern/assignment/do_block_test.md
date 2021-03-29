@@ -42,8 +42,8 @@ let a = 1;
 let b = [10, 20];
 let x = 3;
 let y = 4;
-let p;
-let q;
+let p = undefined;
+let q = undefined;
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
@@ -68,8 +68,8 @@ $(p, q);
 
 `````js filename=intro
 const b = [10, 20];
-let p;
-let q;
+let p = undefined;
+let q = undefined;
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;

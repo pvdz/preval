@@ -29,7 +29,7 @@ for ($(a).x of b) $(a.x);
 `````js filename=intro
 let a = {};
 let b = { x: 1, y: 2 };
-let tmpForOfLhsNode;
+let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of b) {
   const tmpAssignMemLhsObj = $(a);
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
@@ -44,7 +44,7 @@ for (tmpForOfLhsNode of b) {
 `````js filename=intro
 const a = {};
 const b = { x: 1, y: 2 };
-let tmpForOfLhsNode;
+let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of b) {
   const tmpAssignMemLhsObj = $(a);
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;

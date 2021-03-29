@@ -50,7 +50,7 @@ const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, b, c);
@@ -66,7 +66,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-let x;
+let x = undefined;
 for (x in 3) {
 }
 $(3, b, 3);

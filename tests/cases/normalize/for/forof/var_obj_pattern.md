@@ -24,8 +24,8 @@ for (let [x] of { a: 1, b: 2 }) $(x);
 
 `````js filename=intro
 const tmpForOfPatDeclRhs = { a: 1, b: 2 };
-let tmpForOfPatDeclLhs;
-let x;
+let tmpForOfPatDeclLhs = undefined;
+let x = undefined;
 for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
   const arrAssignPatternRhs = tmpForOfPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];
@@ -38,7 +38,7 @@ for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
 
 `````js filename=intro
 const tmpForOfPatDeclRhs = { a: 1, b: 2 };
-let tmpForOfPatDeclLhs;
+let tmpForOfPatDeclLhs = undefined;
 for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
   const arrAssignPatternRhs = tmpForOfPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];

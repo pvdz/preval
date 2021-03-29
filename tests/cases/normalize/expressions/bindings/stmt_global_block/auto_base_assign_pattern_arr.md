@@ -33,7 +33,7 @@
 
 `````js filename=intro
 let b = [];
-let a;
+let a = undefined;
 const tmpCallCallee = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];

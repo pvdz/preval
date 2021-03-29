@@ -35,7 +35,7 @@ if (a) {
   a = tmpCallCallee(tmpCalleeParam);
 }
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -50,7 +50,7 @@ if (tmpSSA_a) {
   tmpSSA_a = $(tmpCalleeParam);
 }
 const tmpForOfDeclRhs = tmpSSA_a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(tmpSSA_a);

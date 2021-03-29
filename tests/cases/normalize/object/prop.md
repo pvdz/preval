@@ -37,8 +37,8 @@ const program = {
 `````js filename=intro
 const fdata = { name: 1 };
 let tmpElement_1 = 2;
-let tmpElement;
-let tmpArg_1;
+let tmpElement = undefined;
+let tmpArg_1 = undefined;
 tmpElement_1 = fdata.name;
 tmpElement = [tmpElement_1, fdata];
 tmpArg_1 = [tmpElement];

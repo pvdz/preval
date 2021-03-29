@@ -41,7 +41,7 @@ const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 a = tmpPostUpdArgVal;
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -56,7 +56,7 @@ const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-let x;
+let x = undefined;
 for (x of tmpPostUpdArgVal) {
 }
 $(tmpPostUpdArgVal, b);

@@ -50,7 +50,7 @@ switch (1) {
 ## Normalized
 
 `````js filename=intro
-let a;
+let a = undefined;
 const tmpSwitchValue = 1;
 let tmpSwitchCaseToStart = 1;
 const tmpIfTest = 1 === tmpSwitchValue;
@@ -87,7 +87,7 @@ if (tmpIfTest$9) {
 ## Output
 
 `````js filename=intro
-let a;
+let a = undefined;
 const tmpIfTest$5 = $(30);
 if (tmpIfTest$5) {
   a = $(60);

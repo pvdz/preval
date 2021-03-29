@@ -44,7 +44,7 @@ $(a).length = b;
 const tmpCallCallee = $;
 const tmpCalleeParam = [];
 let a = tmpCallCallee(tmpCalleeParam);
-let b;
+let b = undefined;
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.length = b;
 `````

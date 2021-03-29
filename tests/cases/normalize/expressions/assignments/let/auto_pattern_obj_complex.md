@@ -31,7 +31,7 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-let xyz;
+let xyz = undefined;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);

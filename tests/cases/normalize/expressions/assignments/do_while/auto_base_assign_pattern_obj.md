@@ -47,7 +47,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
+    let tmpNestedComplexRhs = undefined;
     const tmpCallCallee = $;
     const tmpObjLitVal = $(2);
     const tmpCalleeParam = { b: tmpObjLitVal };

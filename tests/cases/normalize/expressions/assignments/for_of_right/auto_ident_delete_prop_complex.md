@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(arg);
 a = delete tmpDeleteObj.y;
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, arg);
@@ -47,7 +47,7 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpSSA_a = delete tmpDeleteObj.y;
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 $(tmpSSA_a, arg);

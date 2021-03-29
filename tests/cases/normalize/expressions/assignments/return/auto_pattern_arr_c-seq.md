@@ -36,7 +36,7 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpReturnArg;
+  let tmpReturnArg = undefined;
   $(10);
   $(20);
   const tmpCallCallee = $;

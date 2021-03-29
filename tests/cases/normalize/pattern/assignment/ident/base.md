@@ -27,7 +27,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x;
+let x = undefined;
 x = 1;
 $(x);
 `````

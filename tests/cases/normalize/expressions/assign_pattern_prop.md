@@ -21,7 +21,7 @@
 ## Normalized
 
 `````js filename=intro
-let tmpCompObj;
+let tmpCompObj = undefined;
 const tmpNestedAssignObjPatternRhs = 1;
 x = tmpNestedAssignObjPatternRhs.x;
 tmpCompObj = tmpNestedAssignObjPatternRhs;

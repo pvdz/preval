@@ -43,7 +43,7 @@ $(f());
 let f = function () {
   debugger;
   const tmpForInDeclRhs = { a: 1, b: 2 };
-  let x;
+  let x = undefined;
   for (x in tmpForInDeclRhs) {
     const tmpThrowArg = $(1, 'throw');
     throw tmpThrowArg;
@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpForInDeclRhs = { a: 1, b: 2 };
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
   const tmpThrowArg = $(1, 'throw');
   throw tmpThrowArg;

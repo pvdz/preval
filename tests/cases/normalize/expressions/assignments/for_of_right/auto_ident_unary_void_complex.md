@@ -31,7 +31,7 @@ let a = { a: 999, b: 1000 };
 $(100);
 a = undefined;
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -41,7 +41,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-let x;
+let x = undefined;
 for (x of undefined) {
 }
 $(undefined);

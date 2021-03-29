@@ -61,7 +61,7 @@ let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
+let tmpBinLhs = undefined;
 $(x);
 $(y);
 const tmpArrElement = $(3);

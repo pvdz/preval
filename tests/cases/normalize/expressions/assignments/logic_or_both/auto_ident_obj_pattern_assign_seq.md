@@ -50,7 +50,7 @@ a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs;
+  let tmpNestedComplexRhs = undefined;
   $(x);
   $(y);
   const tmpObjLitVal$3 = $(3);

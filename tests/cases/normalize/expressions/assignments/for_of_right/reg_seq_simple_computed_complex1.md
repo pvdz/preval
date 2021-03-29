@@ -26,7 +26,7 @@ for (let x of $([]));
 const tmpCallCallee = $;
 const tmpCalleeParam = [];
 const tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 `````
@@ -36,7 +36,7 @@ for (x of tmpForOfDeclRhs) {
 `````js filename=intro
 const tmpCalleeParam = [];
 const tmpForOfDeclRhs = $(tmpCalleeParam);
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 `````

@@ -25,7 +25,7 @@ for (a in $({ x: 1, y: 2 })) $(a);
 ## Normalized
 
 `````js filename=intro
-let a;
+let a = undefined;
 const tmpCallCallee = $;
 const tmpCalleeParam = { x: 1, y: 2 };
 const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
@@ -37,7 +37,7 @@ for (a in tmpForInRhs) {
 ## Output
 
 `````js filename=intro
-let a;
+let a = undefined;
 const tmpCalleeParam = { x: 1, y: 2 };
 const tmpForInRhs = $(tmpCalleeParam);
 for (a in tmpForInRhs) {

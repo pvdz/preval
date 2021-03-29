@@ -68,7 +68,7 @@ let tmpIfTest = tmpFallthrough;
 if (tmpIfTest) {
 } else {
   const tmpBinBothLhs = tmpSwitchTest;
-  let tmpBinBothRhs;
+  let tmpBinBothRhs = undefined;
   const tmpCallCallee = $;
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];

@@ -40,7 +40,7 @@ const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 a = tmpNestedPropCompoundComplexRhs;
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, b);
@@ -55,7 +55,7 @@ const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-let x;
+let x = undefined;
 for (x in tmpNestedPropCompoundComplexRhs) {
 }
 $(tmpNestedPropCompoundComplexRhs, b);

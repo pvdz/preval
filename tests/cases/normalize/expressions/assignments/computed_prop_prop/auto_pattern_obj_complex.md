@@ -33,7 +33,7 @@ let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
+let tmpCompProp = undefined;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);

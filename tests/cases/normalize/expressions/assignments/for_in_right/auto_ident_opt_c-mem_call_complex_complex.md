@@ -50,7 +50,7 @@ if (tmpIfTest) {
   }
 }
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -75,7 +75,7 @@ if (tmpIfTest) {
   }
 }
 const tmpForInDeclRhs = tmpSSA_a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(tmpSSA_a);

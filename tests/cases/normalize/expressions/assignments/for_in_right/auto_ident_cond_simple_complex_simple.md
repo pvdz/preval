@@ -30,7 +30,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = $(2);
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -40,7 +40,7 @@ $(a);
 
 `````js filename=intro
 const tmpSSA_a = $(2);
-let x;
+let x = undefined;
 for (x in tmpSSA_a) {
 }
 $(tmpSSA_a);

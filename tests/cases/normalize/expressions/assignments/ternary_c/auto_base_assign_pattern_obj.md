@@ -38,7 +38,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  let tmpNestedComplexRhs;
+  let tmpNestedComplexRhs = undefined;
   const tmpCallCallee$1 = $;
   const tmpObjLitVal = $(2);
   const tmpCalleeParam$1 = { b: tmpObjLitVal };

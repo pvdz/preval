@@ -34,7 +34,7 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 a = delete arg.y;
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, arg);
@@ -45,7 +45,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpSSA_a = delete arg.y;
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 $(tmpSSA_a, arg);

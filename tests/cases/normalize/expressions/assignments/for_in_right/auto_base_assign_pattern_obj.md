@@ -39,7 +39,7 @@ const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
 a = tmpNestedAssignObjPatternRhs;
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, b);
@@ -52,7 +52,7 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
-let x;
+let x = undefined;
 for (x in tmpNestedAssignObjPatternRhs) {
 }
 $(tmpNestedAssignObjPatternRhs, tmpSSA_b);

@@ -29,13 +29,13 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-let tmpForOfDeclRhs;
+let tmpForOfDeclRhs = undefined;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
 tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -49,7 +49,7 @@ bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
-let x;
+let x = undefined;
 for (x of tmpNestedAssignObjPatternRhs) {
 }
 $(tmpSSA_a);

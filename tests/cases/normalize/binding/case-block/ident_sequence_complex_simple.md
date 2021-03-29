@@ -44,7 +44,7 @@ $(a, b, c);
 let a = 1;
 let b = 2;
 let c = 3;
-let a$1;
+let a$1 = undefined;
 const tmpSwitchValue = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');

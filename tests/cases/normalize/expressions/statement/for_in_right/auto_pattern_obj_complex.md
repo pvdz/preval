@@ -32,7 +32,7 @@ let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpForInDeclRhs = tmpCallCallee(tmpCalleeParam);
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -45,7 +45,7 @@ const bindingPatternObjRoot = { a: 999, b: 1000 };
 const a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpForInDeclRhs = $(tmpCalleeParam);
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);

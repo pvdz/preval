@@ -35,7 +35,7 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 while (true) {
-  let tmpIfTest;
+  let tmpIfTest = undefined;
   $(10);
   $(20);
   const tmpNestedAssignArrPatternRhs = [1, 2];

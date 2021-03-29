@@ -36,7 +36,7 @@ const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
 a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -49,7 +49,7 @@ const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
 const tmpSSA_a = tmpCallCompObj[tmpCallCompProp](1);
-let x;
+let x = undefined;
 for (x in tmpSSA_a) {
 }
 $(tmpSSA_a);

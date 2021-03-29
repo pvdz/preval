@@ -31,7 +31,7 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const tmpForOfDeclRhs = tmpBinBothLhs + tmpBinBothRhs;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -44,7 +44,7 @@ const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const tmpForOfDeclRhs = tmpBinBothLhs + tmpBinBothRhs;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);

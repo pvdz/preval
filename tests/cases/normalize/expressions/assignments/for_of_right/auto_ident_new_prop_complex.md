@@ -36,7 +36,7 @@ const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 a = new tmpNewCallee(1);
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -49,7 +49,7 @@ const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 const tmpSSA_a = new tmpNewCallee(1);
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 $(tmpSSA_a);

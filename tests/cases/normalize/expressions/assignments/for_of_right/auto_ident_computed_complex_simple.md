@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpAssignRhsProp = $(b);
 a = tmpAssignRhsProp.c;
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -47,7 +47,7 @@ $(a, b);
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
 const tmpSSA_a = tmpAssignRhsProp.c;
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 $(tmpSSA_a, b);

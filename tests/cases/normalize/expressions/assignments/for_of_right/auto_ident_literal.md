@@ -30,7 +30,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = 'foo';
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -39,7 +39,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let x;
+let x = undefined;
 for (x of 'foo') {
 }
 $('foo');

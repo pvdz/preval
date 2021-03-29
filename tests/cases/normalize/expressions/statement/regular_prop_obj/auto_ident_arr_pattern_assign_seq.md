@@ -38,7 +38,7 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
+let tmpCompObj = undefined;
 $(x);
 $(y);
 const tmpArrElement = $(3);

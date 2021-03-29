@@ -37,7 +37,7 @@ $(2);
 const tmpDeleteObj = arg;
 a = delete tmpDeleteObj.y;
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a, arg);
@@ -50,7 +50,7 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpSSA_a = delete arg.y;
-let x;
+let x = undefined;
 for (x in tmpSSA_a) {
 }
 $(tmpSSA_a, arg);

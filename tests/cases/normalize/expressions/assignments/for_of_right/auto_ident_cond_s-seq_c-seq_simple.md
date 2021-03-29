@@ -37,7 +37,7 @@ if (tmpIfTest) {
   a = tmpCallCallee(tmpCalleeParam);
 }
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -47,7 +47,7 @@ $(a);
 
 `````js filename=intro
 const tmpSSA_a = $(60);
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 $(tmpSSA_a);

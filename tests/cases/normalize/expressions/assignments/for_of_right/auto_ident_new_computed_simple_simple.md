@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
 a = new tmpNewCallee(1);
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -47,7 +47,7 @@ $(a);
 const b = { $: $ };
 const tmpNewCallee = b.$;
 const tmpSSA_a = new tmpNewCallee(1);
-let x;
+let x = undefined;
 for (x of tmpSSA_a) {
 }
 $(tmpSSA_a);

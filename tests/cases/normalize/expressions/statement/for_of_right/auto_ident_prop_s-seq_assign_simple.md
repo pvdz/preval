@@ -36,7 +36,7 @@ const varInitAssignLhsComputedObj = b;
 const varInitAssignLhsComputedRhs = 2;
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 const tmpForOfDeclRhs = varInitAssignLhsComputedRhs;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -48,7 +48,7 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 b.c = 2;
-let x;
+let x = undefined;
 for (x of 2) {
 }
 $(a, b);

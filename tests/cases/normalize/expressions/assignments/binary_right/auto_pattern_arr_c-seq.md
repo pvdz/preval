@@ -32,7 +32,7 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpBinBothLhs = $(100);
-let tmpBinBothRhs;
+let tmpBinBothRhs = undefined;
 $(10);
 $(20);
 const tmpCallCallee$1 = $;

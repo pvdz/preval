@@ -49,7 +49,7 @@ y = tmpNestedAssignObjPatternRhs.y;
 a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs;
+  let tmpNestedComplexRhs = undefined;
   $(x);
   $(y);
   const tmpObjLitVal$3 = $(3);

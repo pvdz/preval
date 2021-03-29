@@ -54,7 +54,7 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
+let tmpBinLhs = undefined;
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);

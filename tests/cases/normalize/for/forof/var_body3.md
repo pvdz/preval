@@ -28,7 +28,7 @@ $(x);
 `````js filename=intro
 let x = undefined;
 const tmpForOfDeclRhs = [1, 2, 3];
-let n;
+let n = undefined;
 for (n of tmpForOfDeclRhs) {
   x = undefined;
 }
@@ -40,7 +40,7 @@ $(x);
 `````js filename=intro
 let x = undefined;
 const tmpForOfDeclRhs = [1, 2, 3];
-let n;
+let n = undefined;
 for (n of tmpForOfDeclRhs) {
   x = undefined;
 }

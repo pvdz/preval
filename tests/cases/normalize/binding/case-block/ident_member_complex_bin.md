@@ -46,7 +46,7 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let d = 4;
-let a$1;
+let a$1 = undefined;
 const tmpSwitchValue = $('a');
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $('a');

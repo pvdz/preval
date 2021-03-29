@@ -34,7 +34,7 @@ const f = function () {
   debugger;
 };
 const tmpForInDeclRhs = f;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -47,7 +47,7 @@ const a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
 };
-let x;
+let x = undefined;
 for (x in f) {
 }
 $(a);

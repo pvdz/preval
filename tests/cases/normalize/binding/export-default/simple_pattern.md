@@ -33,7 +33,7 @@ $(a, x, y, z);
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-let a;
+let a = undefined;
 const tmpNestedAssignArrPatternRhs = z;
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];

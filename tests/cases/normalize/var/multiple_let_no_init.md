@@ -30,9 +30,9 @@ $(c);
 ## Normalized
 
 `````js filename=intro
-let a;
-let b;
-let c;
+let a = undefined;
+let b = undefined;
+let c = undefined;
 $(a);
 $(b);
 $(c);

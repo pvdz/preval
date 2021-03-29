@@ -44,7 +44,7 @@ if (tmpIfTest) {
     tmpForInDeclRhs = tmpChainElementObject$1;
   }
 }
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -66,7 +66,7 @@ if (tmpIfTest) {
     tmpForInDeclRhs = tmpChainElementObject$1;
   }
 }
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);

@@ -35,7 +35,7 @@ const f = function () {
 };
 a = f;
 let tmpForOfDeclRhs = a;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -47,7 +47,7 @@ $(a);
 const f = function () {
   debugger;
 };
-let x;
+let x = undefined;
 for (x of f) {
 }
 $(f);

@@ -47,7 +47,7 @@ let f = function () {
     let x = 1;
     let y = 2;
     let z = [10, 20, 30];
-    let bindingPatternArrRoot;
+    let bindingPatternArrRoot = undefined;
     const tmpNestedAssignArrPatternRhs = z;
     const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
     x = arrPatternSplat$1[1];

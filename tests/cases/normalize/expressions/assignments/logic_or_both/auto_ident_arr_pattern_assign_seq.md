@@ -51,7 +51,7 @@ a = tmpNestedAssignArrPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  let tmpNestedComplexRhs;
+  let tmpNestedComplexRhs = undefined;
   $(x);
   $(y);
   const tmpArrElement$3 = $(3);

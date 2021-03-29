@@ -31,7 +31,7 @@ let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 a = -tmpUnaryArg;
 let tmpForInDeclRhs = a;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -42,7 +42,7 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg = $(100);
 const tmpSSA_a = -tmpUnaryArg;
-let x;
+let x = undefined;
 for (x in tmpSSA_a) {
 }
 $(tmpSSA_a);

@@ -41,7 +41,7 @@ if (tmpForOfDeclRhs) {
     tmpForOfDeclRhs = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -61,7 +61,7 @@ if (tmpForOfDeclRhs) {
     tmpForOfDeclRhs = $(tmpCalleeParam$3);
   }
 }
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);

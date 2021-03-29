@@ -42,7 +42,7 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    let tmpNestedComplexRhs;
+    let tmpNestedComplexRhs = undefined;
     const tmpCallCallee = $;
     const tmpArrElement = $(2);
     const tmpCalleeParam = [tmpArrElement];

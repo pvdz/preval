@@ -32,7 +32,7 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpBinBothLhs;
+let tmpBinBothLhs = undefined;
 const tmpCallCallee = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
@@ -40,7 +40,7 @@ const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
 tmpBinBothLhs = tmpNestedAssignArrPatternRhs;
-let tmpBinBothRhs;
+let tmpBinBothRhs = undefined;
 const tmpCallCallee$1 = $;
 const tmpArrElement$1 = $(2);
 const tmpCalleeParam$1 = [tmpArrElement$1];

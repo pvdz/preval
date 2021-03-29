@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
 const tmpForOfDeclRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, arg);
@@ -48,7 +48,7 @@ const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
 const tmpDeleteCompProp = $('y');
 const tmpForOfDeclRhs = delete arg[tmpDeleteCompProp];
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, arg);

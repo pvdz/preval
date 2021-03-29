@@ -38,7 +38,7 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let obj = {};
-let tmpCompObj;
+let tmpCompObj = undefined;
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };

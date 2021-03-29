@@ -84,7 +84,7 @@ exit: {
 ## Normalized
 
 `````js filename=intro
-let x;
+let x = undefined;
 let fallthrough = false;
 exit: {
   let tmpIfTest = fallthrough;

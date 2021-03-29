@@ -31,7 +31,7 @@ let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1;
+let tmpCalleeParam$1 = undefined;
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$3);

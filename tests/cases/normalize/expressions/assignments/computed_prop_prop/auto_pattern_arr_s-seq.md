@@ -34,7 +34,7 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 let obj = {};
 const tmpCompObj = obj;
-let tmpCompProp;
+let tmpCompProp = undefined;
 $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];

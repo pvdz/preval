@@ -41,7 +41,7 @@ This turned out to be a Tenko bug regarding try-scope tracking.
 ## Normalized
 
 `````js filename=intro
-let AAAAAAAAAAAAAAAAAAAA;
+let AAAAAAAAAAAAAAAAAAAA = undefined;
 try {
   AAAAAAAAAAAAAAAAAAAA = false;
 } catch {

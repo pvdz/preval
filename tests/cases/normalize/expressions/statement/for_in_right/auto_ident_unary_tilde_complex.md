@@ -30,7 +30,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 const tmpForInDeclRhs = ~tmpUnaryArg;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);
@@ -42,7 +42,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 const tmpForInDeclRhs = ~tmpUnaryArg;
-let x;
+let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 $(a);

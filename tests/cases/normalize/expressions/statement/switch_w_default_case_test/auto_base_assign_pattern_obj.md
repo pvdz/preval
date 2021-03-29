@@ -58,7 +58,7 @@ let b = {};
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs;
+let tmpBinLhs = undefined;
 const tmpCallCallee = $;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };

@@ -35,7 +35,7 @@ if (tmpForOfDeclRhs) {
 } else {
   tmpForOfDeclRhs = 2;
 }
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -51,7 +51,7 @@ if (tmpForOfDeclRhs) {
 } else {
   tmpForOfDeclRhs = 2;
 }
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);

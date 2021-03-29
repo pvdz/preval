@@ -33,7 +33,7 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpForOfDeclRhs = b;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -43,7 +43,7 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let x;
+let x = undefined;
 for (x of 1) {
 }
 $(a, 1);

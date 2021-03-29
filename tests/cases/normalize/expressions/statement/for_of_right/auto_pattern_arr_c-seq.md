@@ -35,7 +35,7 @@ $(20);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 const tmpForOfDeclRhs = tmpCallCallee(tmpCalleeParam);
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -51,7 +51,7 @@ $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
 const tmpForOfDeclRhs = $(tmpCalleeParam);
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);

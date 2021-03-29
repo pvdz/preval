@@ -32,14 +32,14 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-let tmpForOfDeclRhs;
+let tmpForOfDeclRhs = undefined;
 const tmpCallCallee = $;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 b = tmpNestedAssignObjPatternRhs.b;
 tmpForOfDeclRhs = tmpNestedAssignObjPatternRhs;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a, b);
@@ -53,7 +53,7 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
-let x;
+let x = undefined;
 for (x of tmpNestedAssignObjPatternRhs) {
 }
 $(a, tmpSSA_b);

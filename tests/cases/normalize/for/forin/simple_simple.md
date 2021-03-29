@@ -27,7 +27,7 @@ for (a in b) $(a);
 ## Normalized
 
 `````js filename=intro
-let a;
+let a = undefined;
 let b = { x: 1, y: 2 };
 for (a in b) {
   $(a);
@@ -37,7 +37,7 @@ for (a in b) {
 ## Output
 
 `````js filename=intro
-let a;
+let a = undefined;
 const b = { x: 1, y: 2 };
 for (a in b) {
   $(a);

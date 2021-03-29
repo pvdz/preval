@@ -34,7 +34,7 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x$1);
 const tmpForOfDeclRhs = typeof tmpUnaryArg;
-let x$1;
+let x$1 = undefined;
 for (x$1 of tmpForOfDeclRhs) {
 }
 $(a, x);
@@ -46,7 +46,7 @@ $(a, x);
 const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x$1);
 const tmpForOfDeclRhs = typeof tmpUnaryArg;
-let x$1;
+let x$1 = undefined;
 for (x$1 of tmpForOfDeclRhs) {
 }
 $(a, 1);

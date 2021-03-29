@@ -40,8 +40,8 @@ switch (0) {
 ## Normalized
 
 `````js filename=intro
-let a;
-let b;
+let a = undefined;
+let b = undefined;
 const tmpSwitchValue = 0;
 let tmpSwitchCaseToStart = 1;
 const tmpIfTest = 0 === tmpSwitchValue;

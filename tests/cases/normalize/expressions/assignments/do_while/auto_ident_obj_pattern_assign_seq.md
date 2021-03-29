@@ -50,7 +50,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs;
+    let tmpNestedComplexRhs = undefined;
     $(x);
     $(y);
     const tmpObjLitVal = $(3);

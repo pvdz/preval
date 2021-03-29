@@ -22,7 +22,7 @@ f(({ x } = 1));
 
 `````js filename=intro
 const tmpCallCallee = f;
-let tmpCalleeParam;
+let tmpCalleeParam = undefined;
 const tmpNestedAssignObjPatternRhs = 1;
 x = tmpNestedAssignObjPatternRhs.x;
 tmpCalleeParam = tmpNestedAssignObjPatternRhs;

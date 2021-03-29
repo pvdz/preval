@@ -48,7 +48,7 @@ while (true) {
   if (tmpIfTest) {
     $('loop');
     const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x;
+    let x = undefined;
     for (x in tmpForInDeclRhs) {
       $('loop', x);
       break;
@@ -69,7 +69,7 @@ while (true) {
   if (tmpIfTest) {
     $('loop');
     const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x;
+    let x = undefined;
     for (x in tmpForInDeclRhs) {
       $('loop', x);
       break;

@@ -30,7 +30,7 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpForOfDeclRhs;
+let tmpForOfDeclRhs = undefined;
 $(10);
 $(20);
 const tmpCallCallee = $;
@@ -39,7 +39,7 @@ const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
 tmpForOfDeclRhs = tmpNestedAssignArrPatternRhs;
-let x;
+let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
 $(a);
@@ -57,7 +57,7 @@ const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_a = arrPatternSplat$1[0];
-let x;
+let x = undefined;
 for (x of tmpNestedAssignArrPatternRhs) {
 }
 $(tmpSSA_a);

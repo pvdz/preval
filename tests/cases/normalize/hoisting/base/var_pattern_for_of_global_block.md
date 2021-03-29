@@ -36,7 +36,7 @@ let x = undefined;
 $(x);
 const tmpArrElement = [100];
 const tmpForOfRhs = [tmpArrElement];
-let tmpForOfLhsNode;
+let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   const arrAssignPatternRhs = tmpForOfLhsNode;
   const arrPatternSplat = [...arrAssignPatternRhs];
@@ -53,7 +53,7 @@ let x = undefined;
 $(x);
 const tmpArrElement = [100];
 const tmpForOfRhs = [tmpArrElement];
-let tmpForOfLhsNode;
+let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   const arrAssignPatternRhs = tmpForOfLhsNode;
   const arrPatternSplat = [...arrAssignPatternRhs];

@@ -53,8 +53,8 @@ let tmpForInPatDeclLhs;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrAssignPatternRhs = tmpForInPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];
-  const SSA_x$1 = arrPatternSplat[0];
-  $(SSA_x$1);
+  const tmpSSA_x$1 = arrPatternSplat[0];
+  $(tmpSSA_x$1);
 }
 `````
 

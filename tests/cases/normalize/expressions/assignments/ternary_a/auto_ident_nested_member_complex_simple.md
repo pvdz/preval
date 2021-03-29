@@ -71,8 +71,8 @@ const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $('y');
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-const SSA_tmpCalleeParam = $(100);
-$(SSA_tmpCalleeParam);
+const tmpSSA_tmpCalleeParam = $(100);
+$(tmpSSA_tmpCalleeParam);
 $(3, b, c, 3);
 `````
 

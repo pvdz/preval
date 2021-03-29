@@ -50,10 +50,10 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-const SSA_a = delete arg[tmpDeleteCompProp];
-const tmpAnonDefaultExport = SSA_a;
+const tmpSSA_a = delete arg[tmpDeleteCompProp];
+const tmpAnonDefaultExport = tmpSSA_a;
 export { tmpAnonDefaultExport as default };
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

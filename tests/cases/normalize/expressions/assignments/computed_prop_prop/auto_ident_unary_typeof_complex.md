@@ -48,9 +48,9 @@ $(a, arg);
 `````js filename=intro
 const obj = {};
 const tmpUnaryArg = $(1);
-const SSA_a = typeof tmpUnaryArg;
-obj[SSA_a];
-$(SSA_a, 1);
+const tmpSSA_a = typeof tmpUnaryArg;
+obj[tmpSSA_a];
+$(tmpSSA_a, 1);
 `````
 
 ## Globals

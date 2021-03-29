@@ -59,7 +59,7 @@ const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...arrAssignPatternRhs];
-const SSA_b = arrPatternSplat[0];
+const tmpSSA_b = arrPatternSplat[0];
 while (true) {
   const tmpIfTest = $(0);
   if (tmpIfTest) {
@@ -67,7 +67,7 @@ while (true) {
     break;
   }
 }
-$(a, SSA_b);
+$(a, tmpSSA_b);
 `````
 
 ## Globals

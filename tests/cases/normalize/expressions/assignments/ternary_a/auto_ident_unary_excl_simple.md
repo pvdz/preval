@@ -48,8 +48,8 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const SSA_tmpCalleeParam = $(200);
-$(SSA_tmpCalleeParam);
+const tmpSSA_tmpCalleeParam = $(200);
+$(tmpSSA_tmpCalleeParam);
 $(false, 1);
 `````
 

@@ -49,14 +49,14 @@ $(a);
 let tmpCalleeParam = undefined;
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const SSA_a = tmpBinBothLhs + tmpBinBothRhs;
-if (SSA_a) {
+const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
+if (tmpSSA_a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

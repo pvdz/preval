@@ -330,8 +330,8 @@ const tmpBranchingC$1 = function ($$0) {
     const tmpReturnArg$19 = tmpBranchingC$3(arrPatternStep$7, objPatternCrashTest$3);
     return tmpReturnArg$19;
   } else {
-    const SSA_objPatternCrashTest$7 = arrPatternStep$7 === null;
-    const tmpReturnArg$9 = tmpBranchingC$3(arrPatternStep$7, SSA_objPatternCrashTest$7);
+    const tmpSSA_objPatternCrashTest$7 = arrPatternStep$7 === null;
+    const tmpReturnArg$9 = tmpBranchingC$3(arrPatternStep$7, tmpSSA_objPatternCrashTest$7);
     return tmpReturnArg$9;
   }
 };
@@ -349,13 +349,13 @@ const tmpBranchingC$3 = function ($$0, $$1) {
 const f = function () {
   debugger;
   const tmpCalleeParam$1 = ['fail2'];
-  const SSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
-  const arrPatternSplat$1 = [...SSA_bindingPatternArrRoot$1];
+  const tmpSSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
+  const arrPatternSplat$1 = [...tmpSSA_bindingPatternArrRoot$1];
   const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
   const tmpIfTest$7 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$7) {
-    const SSA_arrPatternStep$1 = $('pass');
-    const tmpReturnArg$1 = tmpBranchingC$1(SSA_arrPatternStep$1);
+    const tmpSSA_arrPatternStep$1 = $('pass');
+    const tmpReturnArg$1 = tmpBranchingC$1(tmpSSA_arrPatternStep$1);
     return tmpReturnArg$1;
   } else {
     const tmpReturnArg$6 = tmpBranchingC$1(arrPatternBeforeDefault$1);

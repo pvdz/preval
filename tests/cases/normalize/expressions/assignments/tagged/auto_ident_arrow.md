@@ -44,11 +44,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
-const SSA_a = function () {
+const tmpSSA_a = function () {
   debugger;
 };
-$(tmpCalleeParam, SSA_a);
-$(SSA_a);
+$(tmpCalleeParam, tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

@@ -64,8 +64,8 @@ $(x);
 `````
 
 `````js filename=x
-const SSA_f = 10;
-export { SSA_f as default };
+const tmpSSA_f = 10;
+export { tmpSSA_f as default };
 `````
 
 ## Globals

@@ -52,18 +52,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let SSA_b = 0;
-let SSA_a = 1;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_b = 0;
+let tmpSSA_a = 1;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
-  const tmpPostUpdArgIdent$1 = SSA_b;
-  SSA_b = SSA_b - 1;
-  SSA_a = tmpPostUpdArgIdent$1;
+  const tmpPostUpdArgIdent$1 = tmpSSA_b;
+  tmpSSA_b = tmpSSA_b - 1;
+  tmpSSA_a = tmpPostUpdArgIdent$1;
   tmpCalleeParam = tmpPostUpdArgIdent$1;
 }
 $(tmpCalleeParam);
-$(SSA_a, SSA_b);
+$(tmpSSA_a, tmpSSA_b);
 `````
 
 ## Globals

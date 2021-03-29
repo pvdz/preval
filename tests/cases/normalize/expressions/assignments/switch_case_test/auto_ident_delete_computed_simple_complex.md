@@ -64,13 +64,13 @@ const arg = { y: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpDeleteCompProp = $('y');
-const SSA_a = delete arg[tmpDeleteCompProp];
-const tmpIfTest = SSA_a === tmpSwitchValue;
+const tmpSSA_a = delete arg[tmpDeleteCompProp];
+const tmpIfTest = tmpSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchCaseToStart <= 0;
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

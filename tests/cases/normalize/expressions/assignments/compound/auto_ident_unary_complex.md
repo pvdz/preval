@@ -48,9 +48,9 @@ $(a, x);
 const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
 const tmpBinBothRhs = typeof tmpUnaryArg;
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
-$(SSA_a, 1);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
+$(tmpSSA_a, 1);
 `````
 
 ## Globals

@@ -38,8 +38,8 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const tmpCallCallee = $($);
-const SSA_a = tmpCallCallee(1);
-throw SSA_a;
+const tmpSSA_a = tmpCallCallee(1);
+throw tmpSSA_a;
 `````
 
 ## Globals

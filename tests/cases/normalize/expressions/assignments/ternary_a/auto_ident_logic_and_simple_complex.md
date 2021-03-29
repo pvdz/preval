@@ -50,19 +50,19 @@ $(a);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-let SSA_a = 1;
-if (SSA_a) {
+let tmpSSA_a = 1;
+if (tmpSSA_a) {
   const tmpCalleeParam$1 = $(1);
-  SSA_a = $(tmpCalleeParam$1);
+  tmpSSA_a = $(tmpCalleeParam$1);
 }
-const tmpIfTest = SSA_a;
+const tmpIfTest = tmpSSA_a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

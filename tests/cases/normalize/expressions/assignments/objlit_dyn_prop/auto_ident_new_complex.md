@@ -42,10 +42,10 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const SSA_a = new tmpNewCallee(1);
-const tmpCalleeParam = { [SSA_a]: 10 };
+const tmpSSA_a = new tmpNewCallee(1);
+const tmpCalleeParam = { [tmpSSA_a]: 10 };
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

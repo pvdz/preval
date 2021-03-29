@@ -47,9 +47,9 @@ const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
 const tmpBinBothRhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

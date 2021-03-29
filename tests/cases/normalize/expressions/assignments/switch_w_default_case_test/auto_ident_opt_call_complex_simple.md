@@ -87,14 +87,14 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-  SSA_a = tmpChainElementCall$1;
+  tmpSSA_a = tmpChainElementCall$1;
 }
-const tmpBinLhs = SSA_a;
+const tmpBinLhs = tmpSSA_a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -113,7 +113,7 @@ const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$9) {
   $('fail2');
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

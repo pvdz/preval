@@ -43,11 +43,11 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const SSA_a = tmpBinBothLhs + tmpBinBothRhs;
+const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
 let x;
-for (x of SSA_a) {
+for (x of tmpSSA_a) {
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

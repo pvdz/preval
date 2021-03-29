@@ -83,8 +83,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam$1 = ['pass'];
-const SSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
-const arrPatternSplat$1 = [...SSA_bindingPatternArrRoot$1];
+const tmpSSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
+const arrPatternSplat$1 = [...tmpSSA_bindingPatternArrRoot$1];
 const x$1 = arrPatternSplat$1.slice(0);
 $(x$1);
 `````

@@ -47,8 +47,8 @@ const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 const tmpCompObj = obj.a;
 const tmpAssignRhsProp = tmpCompObj.b;
-const SSA_x = tmpAssignRhsProp.c;
-$(SSA_x);
+const tmpSSA_x = tmpAssignRhsProp.c;
+$(tmpSSA_x);
 `````
 
 ## Globals

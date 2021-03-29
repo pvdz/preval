@@ -44,10 +44,10 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const SSA_a = delete arg.y;
-const tmpCalleeParam = { x: SSA_a };
+const tmpSSA_a = delete arg.y;
+const tmpCalleeParam = { x: tmpSSA_a };
 $(tmpCalleeParam);
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

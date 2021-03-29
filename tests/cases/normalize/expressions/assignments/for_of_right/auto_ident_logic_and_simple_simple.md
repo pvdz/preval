@@ -42,15 +42,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = 1;
-if (SSA_a) {
-  SSA_a = 2;
+let tmpSSA_a = 1;
+if (tmpSSA_a) {
+  tmpSSA_a = 2;
 }
-const tmpForOfDeclRhs = SSA_a;
+const tmpForOfDeclRhs = tmpSSA_a;
 let x;
 for (x of tmpForOfDeclRhs) {
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

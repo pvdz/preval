@@ -103,15 +103,15 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const SSA_b = { x: 1 };
-const SSA_c = { y: 2 };
-const tmpNestedAssignComMemberObj = $(SSA_b);
+const tmpSSA_b = { x: 1 };
+const tmpSSA_c = { y: 2 };
+const tmpNestedAssignComMemberObj = $(tmpSSA_b);
 const tmpNestedAssignComMemberProp = $('x');
-const varInitAssignLhsComputedObj = $(SSA_c);
+const varInitAssignLhsComputedObj = $(tmpSSA_c);
 const varInitAssignLhsComputedProp = $('y');
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-$(3, SSA_b, SSA_c, 3);
+$(3, tmpSSA_b, tmpSSA_c, 3);
 $('fail1');
 $('fail2');
 `````

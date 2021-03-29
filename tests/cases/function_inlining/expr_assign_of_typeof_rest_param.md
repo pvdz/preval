@@ -73,8 +73,8 @@ $(x);
 const tmpCalleeParam = [1, 2];
 $(tmpCalleeParam);
 const tmpUnaryArg = [20, 30, 40, 50, 60];
-const SSA_x = typeof tmpUnaryArg;
-$(SSA_x);
+const tmpSSA_x = typeof tmpUnaryArg;
+$(tmpSSA_x);
 `````
 
 ## Globals

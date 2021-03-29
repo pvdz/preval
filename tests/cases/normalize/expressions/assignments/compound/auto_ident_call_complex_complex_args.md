@@ -52,9 +52,9 @@ const tmpCallCallee$1 = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

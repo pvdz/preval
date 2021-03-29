@@ -69,18 +69,18 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    SSA_a = tmpChainElementObject$1;
+    tmpSSA_a = tmpChainElementObject$1;
   }
 }
 $(100);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

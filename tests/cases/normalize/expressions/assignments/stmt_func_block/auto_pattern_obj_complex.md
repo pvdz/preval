@@ -60,8 +60,8 @@ const bindingPatternObjRoot = { a: 999, b: 1000 };
 bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-const SSA_a = tmpAssignObjPatternRhs.a;
-$(SSA_a);
+const tmpSSA_a = tmpAssignObjPatternRhs.a;
+$(tmpSSA_a);
 $(undefined);
 `````
 

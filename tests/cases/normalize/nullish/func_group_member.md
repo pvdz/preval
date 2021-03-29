@@ -77,8 +77,8 @@ const f = function () {
   const y = $();
   const tmpIfTest = y == null;
   if (tmpIfTest) {
-    const SSA_y$1 = foo;
-    const tmpReturnArg = $(SSA_y$1);
+    const tmpSSA_y$1 = foo;
+    const tmpReturnArg = $(tmpSSA_y$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$7 = $(y);

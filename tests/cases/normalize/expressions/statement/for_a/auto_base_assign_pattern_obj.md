@@ -57,7 +57,7 @@ const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-const SSA_b = tmpAssignObjPatternRhs.b;
+const tmpSSA_b = tmpAssignObjPatternRhs.b;
 while (true) {
   const tmpIfTest = $(0);
   if (tmpIfTest) {
@@ -65,7 +65,7 @@ while (true) {
     break;
   }
 }
-$(a, SSA_b);
+$(a, tmpSSA_b);
 `````
 
 ## Globals

@@ -59,9 +59,9 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
-const SSA_a = tmpAssignRhsProp.c;
+const tmpSSA_a = tmpAssignRhsProp.c;
 $(100);
-$(SSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

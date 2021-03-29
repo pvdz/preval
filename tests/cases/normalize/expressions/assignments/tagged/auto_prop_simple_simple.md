@@ -45,10 +45,10 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
 const tmpObjLitVal = $(1);
-const SSA_a = { b: tmpObjLitVal };
-$(tmpCalleeParam, SSA_a);
-SSA_a.b = 2;
-$(SSA_a);
+const tmpSSA_a = { b: tmpObjLitVal };
+$(tmpCalleeParam, tmpSSA_a);
+tmpSSA_a.b = 2;
+$(tmpSSA_a);
 `````
 
 ## Globals

@@ -89,8 +89,8 @@ const f = function () {
   const a = $(tmpCalleeParam);
   if (a) {
     const tmpCalleeParam$5 = $(2);
-    const SSA_a$1 = $(tmpCalleeParam$5);
-    $(SSA_a$1);
+    const tmpSSA_a$1 = $(tmpCalleeParam$5);
+    $(tmpSSA_a$1);
     return undefined;
   } else {
     $(a);

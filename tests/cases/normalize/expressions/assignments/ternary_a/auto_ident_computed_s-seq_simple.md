@@ -53,14 +53,14 @@ $(a, b);
 const b = { c: 1 };
 let tmpCalleeParam = undefined;
 const tmpAssignRhsCompProp = $('c');
-const SSA_a = b[tmpAssignRhsCompProp];
-if (SSA_a) {
+const tmpSSA_a = b[tmpAssignRhsCompProp];
+if (tmpSSA_a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(SSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

@@ -42,11 +42,11 @@ if (tmpIfTest) {
 
 `````js filename=intro
 $(1);
-const SSA_x = $(2);
-$(SSA_x);
+const tmpSSA_x = $(2);
+$(tmpSSA_x);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
-  $(SSA_x, 'branch');
+  $(tmpSSA_x, 'branch');
 }
 `````
 

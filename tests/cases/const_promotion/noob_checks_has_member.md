@@ -79,7 +79,7 @@ $(x, a, b, 'final');
 
 `````js filename=intro
 let x = $(10);
-const SSA_b = {
+const tmpSSA_b = {
   set x($$0) {
     debugger;
     x = $(30, 'from set');
@@ -90,9 +90,9 @@ const SSA_b = {
     return tmpReturnArg;
   },
 };
-SSA_b.x = x;
+tmpSSA_b.x = x;
 x = $(20);
-$(x, 2, SSA_b, 'final');
+$(x, 2, tmpSSA_b, 'final');
 `````
 
 ## Globals

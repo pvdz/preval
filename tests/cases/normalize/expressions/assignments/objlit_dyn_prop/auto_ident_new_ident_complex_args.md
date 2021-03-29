@@ -49,10 +49,10 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const SSA_a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCalleeParam = { [SSA_a]: 10 };
+const tmpSSA_a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpCalleeParam = { [tmpSSA_a]: 10 };
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

@@ -165,51 +165,51 @@ const obj = {
     $('set');
   },
 };
-let SSA_a = function () {
+let tmpSSA_a = function () {
   debugger;
   $('a');
   return obj;
 };
-let SSA_b = function () {
+let tmpSSA_b = function () {
   debugger;
   $('b');
-  SSA_a = 21;
+  tmpSSA_a = 21;
   return obj;
 };
-let SSA_c = function () {
+let tmpSSA_c = function () {
   debugger;
   $('c');
-  SSA_a = 31;
-  SSA_b = 32;
+  tmpSSA_a = 31;
+  tmpSSA_b = 32;
   return obj;
 };
-let SSA_d = function () {
+let tmpSSA_d = function () {
   debugger;
   $('d');
-  SSA_a = 41;
-  SSA_b = 42;
-  SSA_c = 43;
+  tmpSSA_a = 41;
+  tmpSSA_b = 42;
+  tmpSSA_c = 43;
   return obj;
 };
-const SSA_e = function () {
+const tmpSSA_e = function () {
   debugger;
   $('e');
-  SSA_a = 51;
-  SSA_b = 52;
-  SSA_c = 53;
-  SSA_d = 54;
+  tmpSSA_a = 51;
+  tmpSSA_b = 52;
+  tmpSSA_c = 53;
+  tmpSSA_d = 54;
   return obj;
 };
-const tmpAssignMemLhsObj = SSA_a();
-const varInitAssignLhsComputedObj = SSA_b();
-const varInitAssignLhsComputedObj$1 = SSA_c();
-const varInitAssignLhsComputedObj$3 = SSA_d();
-const varInitAssignLhsComputedRhs$3 = SSA_e();
+const tmpAssignMemLhsObj = tmpSSA_a();
+const varInitAssignLhsComputedObj = tmpSSA_b();
+const varInitAssignLhsComputedObj$1 = tmpSSA_c();
+const varInitAssignLhsComputedObj$3 = tmpSSA_d();
+const varInitAssignLhsComputedRhs$3 = tmpSSA_e();
 varInitAssignLhsComputedObj$3.x = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$3;
 tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$3;
-$(SSA_a, SSA_b, SSA_c, SSA_d, SSA_e);
+$(tmpSSA_a, tmpSSA_b, tmpSSA_c, tmpSSA_d, tmpSSA_e);
 `````
 
 ## Globals

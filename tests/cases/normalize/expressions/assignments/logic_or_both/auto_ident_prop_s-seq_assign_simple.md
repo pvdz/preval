@@ -56,16 +56,16 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 b.c = 2;
-let SSA_a = 2;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = 2;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   b.c = 2;
-  SSA_a = 2;
+  tmpSSA_a = 2;
   tmpCalleeParam = 2;
 }
 $(tmpCalleeParam);
-$(SSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

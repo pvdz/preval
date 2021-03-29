@@ -47,14 +47,14 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b = { x: 1 };
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  SSA_a = tmpChainElementObject;
+  tmpSSA_a = tmpChainElementObject;
 }
-const tmpThrowArg = SSA_a;
+const tmpThrowArg = tmpSSA_a;
 throw tmpThrowArg;
 `````
 

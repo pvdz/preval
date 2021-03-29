@@ -55,15 +55,15 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const SSA_a = { b: tmpObjLitVal };
+const tmpSSA_a = { b: tmpObjLitVal };
 while (true) {
-  $(SSA_a);
+  $(tmpSSA_a);
   $(1);
 }
 $(1);
 const tmpAssignMemRhs = $(2);
-SSA_a.b = tmpAssignMemRhs;
-$(SSA_a);
+tmpSSA_a.b = tmpAssignMemRhs;
+$(tmpSSA_a);
 `````
 
 ## Globals

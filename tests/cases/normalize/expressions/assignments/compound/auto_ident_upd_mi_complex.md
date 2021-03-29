@@ -57,9 +57,9 @@ const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const SSA_a = a * varInitAssignLhsComputedRhs;
-$(SSA_a);
-$(SSA_a, b);
+const tmpSSA_a = a * varInitAssignLhsComputedRhs;
+$(tmpSSA_a);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

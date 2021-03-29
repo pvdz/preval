@@ -55,10 +55,10 @@ $(20);
 const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-const SSA_a = arrPatternSplat$1[0];
-const SSA_tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
-export { SSA_tmpAnonDefaultExport as default };
-$(SSA_a);
+const tmpSSA_a = arrPatternSplat$1[0];
+const tmpSSA_tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { tmpSSA_tmpAnonDefaultExport as default };
+$(tmpSSA_a);
 `````
 
 ## Globals

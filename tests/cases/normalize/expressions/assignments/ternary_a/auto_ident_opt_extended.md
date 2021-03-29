@@ -62,22 +62,22 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 let tmpCalleeParam = undefined;
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  SSA_a = tmpChainElementObject$3;
+  tmpSSA_a = tmpChainElementObject$3;
 }
-const tmpIfTest = SSA_a;
+const tmpIfTest = tmpSSA_a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

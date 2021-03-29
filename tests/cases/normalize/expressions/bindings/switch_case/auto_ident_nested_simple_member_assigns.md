@@ -79,14 +79,14 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const SSA_b = { x: 1 };
-SSA_b.x = 3;
-SSA_b.x = 3;
-SSA_b.x = 3;
-SSA_b.x = 3;
-SSA_b.x = 3;
-SSA_b.x = 3;
-$(3, SSA_b, 3);
+const tmpSSA_b = { x: 1 };
+tmpSSA_b.x = 3;
+tmpSSA_b.x = 3;
+tmpSSA_b.x = 3;
+tmpSSA_b.x = 3;
+tmpSSA_b.x = 3;
+tmpSSA_b.x = 3;
+$(3, tmpSSA_b, 3);
 `````
 
 ## Globals

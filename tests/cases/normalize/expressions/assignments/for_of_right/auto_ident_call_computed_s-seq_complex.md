@@ -47,11 +47,11 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallCompProp = $('$');
-const SSA_a = b[tmpCallCompProp](1);
+const tmpSSA_a = b[tmpCallCompProp](1);
 let x;
-for (x of SSA_a) {
+for (x of tmpSSA_a) {
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

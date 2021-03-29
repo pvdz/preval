@@ -40,10 +40,10 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const SSA_a = +tmpUnaryArg;
-const tmpAnonDefaultExport = SSA_a;
+const tmpSSA_a = +tmpUnaryArg;
+const tmpAnonDefaultExport = tmpSSA_a;
 export { tmpAnonDefaultExport as default };
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

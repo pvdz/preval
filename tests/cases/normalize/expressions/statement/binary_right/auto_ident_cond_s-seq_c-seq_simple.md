@@ -47,8 +47,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-const SSA_tmpBinBothRhs = $(60);
-tmpBinBothLhs + SSA_tmpBinBothRhs;
+const tmpSSA_tmpBinBothRhs = $(60);
+tmpBinBothLhs + tmpSSA_tmpBinBothRhs;
 $(a);
 `````
 

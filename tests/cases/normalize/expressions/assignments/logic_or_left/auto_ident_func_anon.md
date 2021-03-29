@@ -48,16 +48,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {
+const tmpSSA_a = function () {
   debugger;
 };
-let tmpCalleeParam = SSA_a;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

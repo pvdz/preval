@@ -40,9 +40,9 @@ export { x };
 
 `````js filename=intro
 $(undefined);
-const SSA_x = 10;
+const tmpSSA_x = 10;
 $(10);
-export { SSA_x as x };
+export { tmpSSA_x as x };
 `````
 
 ## Globals

@@ -43,11 +43,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const SSA_a = typeof x$1;
+const tmpSSA_a = typeof x$1;
 let x$1;
-for (x$1 of SSA_a) {
+for (x$1 of tmpSSA_a) {
 }
-$(SSA_a, 1);
+$(tmpSSA_a, 1);
 `````
 
 ## Globals

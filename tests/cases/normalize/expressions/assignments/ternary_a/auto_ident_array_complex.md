@@ -50,14 +50,14 @@ $(a);
 let tmpCalleeParam = undefined;
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const SSA_a = [tmpArrElement, 2, tmpArrElement$3];
-if (SSA_a) {
+const tmpSSA_a = [tmpArrElement, 2, tmpArrElement$3];
+if (tmpSSA_a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

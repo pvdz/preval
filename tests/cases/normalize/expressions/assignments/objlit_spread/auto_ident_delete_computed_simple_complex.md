@@ -47,10 +47,10 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteCompProp = $('y');
-const SSA_a = delete arg[tmpDeleteCompProp];
-const tmpCalleeParam = { ...SSA_a };
+const tmpSSA_a = delete arg[tmpDeleteCompProp];
+const tmpCalleeParam = { ...tmpSSA_a };
 $(tmpCalleeParam);
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

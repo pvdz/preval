@@ -51,12 +51,12 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const SSA_a = delete arg.y;
+const tmpSSA_a = delete arg.y;
 while (true) {
-  $(SSA_a);
+  $(tmpSSA_a);
   $(1);
 }
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

@@ -67,9 +67,9 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-const SSA_a = a * 3;
-$(SSA_a);
-$(SSA_a, b, 3);
+const tmpSSA_a = a * 3;
+$(tmpSSA_a);
+$(tmpSSA_a, b, 3);
 `````
 
 ## Globals

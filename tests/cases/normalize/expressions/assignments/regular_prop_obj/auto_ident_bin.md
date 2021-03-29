@@ -44,9 +44,9 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const SSA_a = tmpBinBothLhs + tmpBinBothRhs;
-SSA_a.a;
-$(SSA_a);
+const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
+tmpSSA_a.a;
+$(tmpSSA_a);
 `````
 
 ## Globals

@@ -48,8 +48,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const SSA_a = [1, 2, 3];
-$(SSA_a);
+const tmpSSA_a = [1, 2, 3];
+$(tmpSSA_a);
 $(undefined);
 `````
 

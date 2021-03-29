@@ -54,17 +54,17 @@ $(a);
 const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
-let SSA_a = tmpCallCompObj[tmpCallCompProp](1);
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   const tmpCallCompObj$1 = $(b);
   const tmpCallCompProp$1 = $('$');
   const tmpNestedComplexRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
-  SSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

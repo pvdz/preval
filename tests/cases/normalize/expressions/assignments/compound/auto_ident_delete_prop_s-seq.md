@@ -52,9 +52,9 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpBinBothRhs = delete arg.y;
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
-$(SSA_a, arg);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

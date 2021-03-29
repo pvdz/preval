@@ -83,8 +83,8 @@ const f = function () {
   const a = { x: 1 };
   const tmpIfTest = a == null;
   if (tmpIfTest) {
-    const SSA_y$1 = x;
-    const tmpReturnArg = $(SSA_y$1);
+    const tmpSSA_y$1 = x;
+    const tmpReturnArg = $(tmpSSA_y$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$7 = $(a);

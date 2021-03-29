@@ -56,12 +56,12 @@ $(a, arg);
 const arg = { y: 1 };
 $(1);
 $(2);
-const SSA_a = delete arg.y;
+const tmpSSA_a = delete arg.y;
 while (true) {
-  $(SSA_a);
+  $(tmpSSA_a);
   $(1);
 }
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

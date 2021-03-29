@@ -43,8 +43,8 @@ x = $('redundant');
 `````js filename=intro
 const x = $(1);
 $(x);
-const SSA_x = $(2);
-$(SSA_x);
+const tmpSSA_x = $(2);
+$(tmpSSA_x);
 $('redundant');
 `````
 

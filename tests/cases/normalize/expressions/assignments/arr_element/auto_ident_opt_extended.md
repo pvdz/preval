@@ -66,27 +66,27 @@ $(a);
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  SSA_a = tmpChainElementObject$3;
+  tmpSSA_a = tmpChainElementObject$3;
 }
-const tmpBinBothLhs = SSA_a;
-let SSA_a$1 = undefined;
+const tmpBinBothLhs = tmpSSA_a;
+let tmpSSA_a$1 = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject$5 = b.x;
   const tmpChainElementObject$7 = tmpChainElementObject$5.y;
   const tmpChainElementObject$9 = tmpChainElementObject$7.z;
-  SSA_a$1 = tmpChainElementObject$9;
+  tmpSSA_a$1 = tmpChainElementObject$9;
 }
-const tmpBinBothRhs = SSA_a$1;
+const tmpBinBothRhs = tmpSSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(SSA_a$1);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

@@ -38,11 +38,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let SSA_x = 1;
-if (SSA_x) {
-  SSA_x = $(2);
+let tmpSSA_x = 1;
+if (tmpSSA_x) {
+  tmpSSA_x = $(2);
 }
-const tmpCalleeParam = SSA_x;
+const tmpCalleeParam = tmpSSA_x;
 $(tmpCalleeParam);
 `````
 

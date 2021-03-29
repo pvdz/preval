@@ -68,20 +68,20 @@ $(a);
 const b = { c: $ };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
-  SSA_a = tmpChainElementCall;
+  tmpSSA_a = tmpChainElementCall;
 }
-const tmpBinLhs = SSA_a;
+const tmpBinLhs = tmpSSA_a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchCaseToStart <= 0;
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

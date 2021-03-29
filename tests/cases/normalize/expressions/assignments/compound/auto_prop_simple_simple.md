@@ -47,10 +47,10 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 const tmpBinBothRhs = { b: tmpObjLitVal };
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
-SSA_a.b = 2;
-$(SSA_a);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
+tmpSSA_a.b = 2;
+$(tmpSSA_a);
 `````
 
 ## Globals

@@ -64,8 +64,8 @@ $(1);
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-const SSA_b = tmpAssignObjPatternRhs.b;
-$(a, SSA_b);
+const tmpSSA_b = tmpAssignObjPatternRhs.b;
+$(a, tmpSSA_b);
 `````
 
 ## Globals

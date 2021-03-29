@@ -60,9 +60,9 @@ $(a, arg);
 const arg = { y: 1 };
 $(1);
 $(2);
-const SSA_a = delete arg.y;
-$(SSA_a);
-$(SSA_a, arg);
+const tmpSSA_a = delete arg.y;
+$(tmpSSA_a);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

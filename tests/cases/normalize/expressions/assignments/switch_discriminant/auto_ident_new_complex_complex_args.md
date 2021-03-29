@@ -62,9 +62,9 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const SSA_a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpSSA_a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(100);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

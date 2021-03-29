@@ -246,8 +246,8 @@ const tmpBranchingC = function ($$0) {
     const tmpReturnArg$15 = tmpBranchingC$1(objPatternAfterDefault$5, objPatternCrashTest$1);
     return tmpReturnArg$15;
   } else {
-    const SSA_objPatternCrashTest$5 = objPatternAfterDefault$5 === null;
-    const tmpReturnArg$5 = tmpBranchingC$1(objPatternAfterDefault$5, SSA_objPatternCrashTest$5);
+    const tmpSSA_objPatternCrashTest$5 = objPatternAfterDefault$5 === null;
+    const tmpReturnArg$5 = tmpBranchingC$1(objPatternAfterDefault$5, tmpSSA_objPatternCrashTest$5);
     return tmpReturnArg$5;
   }
 };
@@ -269,8 +269,8 @@ const f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = { x: 'fail' };
-    const SSA_objPatternAfterDefault$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_objPatternAfterDefault$1);
+    const tmpSSA_objPatternAfterDefault$1 = $(tmpCalleeParam$1);
+    const tmpReturnArg = tmpBranchingC(tmpSSA_objPatternAfterDefault$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$21 = tmpBranchingC(objPatternBeforeDefault);

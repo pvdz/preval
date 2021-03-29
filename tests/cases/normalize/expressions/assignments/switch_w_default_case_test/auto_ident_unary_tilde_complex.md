@@ -82,8 +82,8 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpUnaryArg = $(100);
-const SSA_a = ~tmpUnaryArg;
-const tmpIfTest = SSA_a === tmpSwitchValue;
+const tmpSSA_a = ~tmpUnaryArg;
+const tmpIfTest = tmpSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -101,7 +101,7 @@ const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
   $('fail2');
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

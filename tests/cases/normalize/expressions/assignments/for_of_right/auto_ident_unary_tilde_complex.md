@@ -41,11 +41,11 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const SSA_a = ~tmpUnaryArg;
+const tmpSSA_a = ~tmpUnaryArg;
 let x;
-for (x of SSA_a) {
+for (x of tmpSSA_a) {
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

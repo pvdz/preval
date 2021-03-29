@@ -45,15 +45,15 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let SSA_a = $(tmpCalleeParam);
-if (SSA_a) {
-  SSA_a = 2;
+let tmpSSA_a = $(tmpCalleeParam);
+if (tmpSSA_a) {
+  tmpSSA_a = 2;
 }
-const tmpForOfDeclRhs = SSA_a;
+const tmpForOfDeclRhs = tmpSSA_a;
 let x;
 for (x of tmpForOfDeclRhs) {
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

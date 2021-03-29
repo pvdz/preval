@@ -50,9 +50,9 @@ $(a, x);
 const obj = {};
 $(1);
 $(2);
-const SSA_a = $(1);
-obj[SSA_a];
-$(SSA_a, 1);
+const tmpSSA_a = $(1);
+obj[tmpSSA_a];
+$(tmpSSA_a, 1);
 `````
 
 ## Globals

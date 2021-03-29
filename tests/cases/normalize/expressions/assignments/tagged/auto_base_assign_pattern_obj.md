@@ -52,9 +52,9 @@ const tmpCalleeParam = ['before ', ' after'];
 const tmpObjLitVal = $(2);
 const tmpCalleeParam$3 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
-const SSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
 $(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
-$(tmpNestedAssignObjPatternRhs, SSA_b);
+$(tmpNestedAssignObjPatternRhs, tmpSSA_b);
 `````
 
 ## Globals

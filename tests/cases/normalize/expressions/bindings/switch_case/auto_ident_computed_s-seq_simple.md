@@ -64,10 +64,10 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const SSA_b = { c: 1 };
+const tmpSSA_b = { c: 1 };
 const tmpAssignRhsCompProp = $('c');
-const SSA_a = SSA_b[tmpAssignRhsCompProp];
-$(SSA_a, SSA_b);
+const tmpSSA_a = tmpSSA_b[tmpAssignRhsCompProp];
+$(tmpSSA_a, tmpSSA_b);
 `````
 
 ## Globals

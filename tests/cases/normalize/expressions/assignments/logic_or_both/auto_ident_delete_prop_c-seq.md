@@ -58,19 +58,19 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-let SSA_a = delete tmpDeleteObj.y;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = delete tmpDeleteObj.y;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   $(1);
   $(2);
   const tmpDeleteObj$1 = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
-  SSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

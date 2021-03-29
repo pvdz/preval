@@ -51,14 +51,14 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const SSA_a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
-let tmpCalleeParam = SSA_a;
+const tmpSSA_a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

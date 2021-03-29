@@ -59,9 +59,9 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpBinBothRhs = tmpChainElementObject;
 }
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

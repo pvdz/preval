@@ -43,14 +43,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = 0;
-if (SSA_a) {
+let tmpSSA_a = 0;
+if (tmpSSA_a) {
 } else {
-  SSA_a = 2;
+  tmpSSA_a = 2;
 }
-const xyz = SSA_a;
+const xyz = tmpSSA_a;
 $(xyz);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

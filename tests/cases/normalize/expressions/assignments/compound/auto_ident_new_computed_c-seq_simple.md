@@ -51,9 +51,9 @@ const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 const tmpBinBothRhs = new tmpNewCallee(1);
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

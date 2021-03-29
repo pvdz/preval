@@ -47,8 +47,8 @@ const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-const SSA_a = new tmpNewCallee(1);
-throw SSA_a;
+const tmpSSA_a = new tmpNewCallee(1);
+throw tmpSSA_a;
 `````
 
 ## Globals

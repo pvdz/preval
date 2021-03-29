@@ -38,8 +38,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const SSA_tmpArrElToSpread = $(60);
-[...SSA_tmpArrElToSpread];
+const tmpSSA_tmpArrElToSpread = $(60);
+[...tmpSSA_tmpArrElToSpread];
 $(a);
 `````
 

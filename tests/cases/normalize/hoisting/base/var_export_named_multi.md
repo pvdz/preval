@@ -45,11 +45,11 @@ export { y };
 
 `````js filename=intro
 $(undefined, undefined);
-const SSA_x = 10;
-const SSA_y = 20;
+const tmpSSA_x = 10;
+const tmpSSA_y = 20;
 $(10, 20);
-export { SSA_x as x };
-export { SSA_y as y };
+export { tmpSSA_x as x };
+export { tmpSSA_y as y };
 `````
 
 ## Globals

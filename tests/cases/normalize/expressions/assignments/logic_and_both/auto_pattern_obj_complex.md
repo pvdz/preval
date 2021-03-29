@@ -54,16 +54,16 @@ const bindingPatternObjRoot = { a: 999, b: 1000 };
 bindingPatternObjRoot.a;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-let SSA_a = tmpNestedAssignObjPatternRhs.a;
-let SSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs;
-if (SSA_tmpCalleeParam) {
+let tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
+let tmpSSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+if (tmpSSA_tmpCalleeParam) {
   const tmpCalleeParam$3 = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
-  SSA_a = tmpNestedAssignObjPatternRhs$1.a;
-  SSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
+  tmpSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+  tmpSSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
 }
-$(SSA_tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_tmpCalleeParam);
+$(tmpSSA_a);
 `````
 
 ## Globals

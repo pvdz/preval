@@ -59,14 +59,14 @@ const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const SSA_b = arrPatternSplat[0];
+const tmpSSA_b = arrPatternSplat[0];
 if (tmpNestedAssignArrPatternRhs) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(tmpNestedAssignArrPatternRhs, SSA_b);
+$(tmpNestedAssignArrPatternRhs, tmpSSA_b);
 `````
 
 ## Globals

@@ -76,24 +76,24 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-let SSA_x = arrPatternSplat[0];
-let SSA_y = arrPatternSplat[1];
-let SSA_a = tmpNestedAssignArrPatternRhs;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_x = arrPatternSplat[0];
+let tmpSSA_y = arrPatternSplat[1];
+let tmpSSA_a = tmpNestedAssignArrPatternRhs;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
-  $(SSA_x);
-  $(SSA_y);
+  $(tmpSSA_x);
+  $(tmpSSA_y);
   const tmpArrElement$3 = $(3);
   const tmpArrElement$5 = $(4);
   const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-  SSA_x = arrPatternSplat$1[0];
-  SSA_y = arrPatternSplat$1[1];
-  SSA_a = tmpNestedAssignArrPatternRhs$1;
+  tmpSSA_x = arrPatternSplat$1[0];
+  tmpSSA_y = arrPatternSplat$1[1];
+  tmpSSA_a = tmpNestedAssignArrPatternRhs$1;
   tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
 }
 $(tmpCalleeParam);
-$(SSA_a, SSA_x, SSA_y);
+$(tmpSSA_a, tmpSSA_x, tmpSSA_y);
 `````
 
 ## Globals

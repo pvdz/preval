@@ -47,14 +47,14 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-let tmpCalleeParam = SSA_a;
+const tmpSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

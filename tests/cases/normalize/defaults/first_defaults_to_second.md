@@ -149,13 +149,13 @@ tmpCallCallee$5(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const SSA_a$2 = b;
-const tmpReturnArg$15 = [SSA_a$2, 'bar'];
+const tmpSSA_a$2 = b;
+const tmpReturnArg$15 = [tmpSSA_a$2, 'bar'];
 $(tmpReturnArg$15);
 const tmpReturnArg$19 = ['x', 'bar'];
 $(tmpReturnArg$19);
-const SSA_a$6 = b;
-const tmpReturnArg$4 = [SSA_a$6, 'y'];
+const tmpSSA_a$6 = b;
+const tmpReturnArg$4 = [tmpSSA_a$6, 'y'];
 $(tmpReturnArg$4);
 const tmpReturnArg$9 = ['x', 'y'];
 $(tmpReturnArg$9);

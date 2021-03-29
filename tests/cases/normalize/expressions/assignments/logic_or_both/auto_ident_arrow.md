@@ -55,20 +55,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = function () {
+let tmpSSA_a = function () {
   debugger;
 };
-let tmpCalleeParam = SSA_a;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpNestedComplexRhs = function () {
     debugger;
   };
-  SSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

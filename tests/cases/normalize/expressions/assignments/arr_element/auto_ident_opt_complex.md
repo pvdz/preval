@@ -60,25 +60,25 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
-  SSA_a = tmpChainElementObject;
+  tmpSSA_a = tmpChainElementObject;
 }
-const tmpBinBothLhs = SSA_a;
-let SSA_a$1 = undefined;
+const tmpBinBothLhs = tmpSSA_a;
+let tmpSSA_a$1 = undefined;
 const tmpChainElementCall$1 = $(b);
 const tmpIfTest$1 = tmpChainElementCall$1 != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainElementCall$1.x;
-  SSA_a$1 = tmpChainElementObject$1;
+  tmpSSA_a$1 = tmpChainElementObject$1;
 }
-const tmpBinBothRhs = SSA_a$1;
+const tmpBinBothRhs = tmpSSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(SSA_a$1);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

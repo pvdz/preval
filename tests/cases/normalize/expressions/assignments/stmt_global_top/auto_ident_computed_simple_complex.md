@@ -43,8 +43,8 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsCompProp = $('c');
-const SSA_a = b[tmpAssignRhsCompProp];
-$(SSA_a, b);
+const tmpSSA_a = b[tmpAssignRhsCompProp];
+$(tmpSSA_a, b);
 `````
 
 ## Globals

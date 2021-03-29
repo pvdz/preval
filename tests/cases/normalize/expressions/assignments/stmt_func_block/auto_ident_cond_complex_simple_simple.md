@@ -90,8 +90,8 @@ const f = function () {
     return undefined;
   } else {
     const tmpCalleeParam$1 = $(100);
-    const SSA_a$3 = $(tmpCalleeParam$1);
-    $(SSA_a$3);
+    const tmpSSA_a$3 = $(tmpCalleeParam$1);
+    $(tmpSSA_a$3);
     return undefined;
   }
 };

@@ -284,14 +284,14 @@ const tmpBranchingC$1 = function ($$0) {
 const f = function () {
   debugger;
   const tmpCalleeParam$1 = ['pass3'];
-  const SSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
-  const arrPatternSplat$3 = [...SSA_bindingPatternArrRoot$1];
+  const tmpSSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
+  const arrPatternSplat$3 = [...tmpSSA_bindingPatternArrRoot$1];
   const arrPatternBeforeDefault$3 = arrPatternSplat$3[0];
   const tmpIfTest$7 = arrPatternBeforeDefault$3 === undefined;
   if (tmpIfTest$7) {
     const tmpCalleeParam$4 = ['fail2'];
-    const SSA_arrPatternStep$1 = $(tmpCalleeParam$4);
-    const tmpReturnArg$1 = tmpBranchingC$1(SSA_arrPatternStep$1);
+    const tmpSSA_arrPatternStep$1 = $(tmpCalleeParam$4);
+    const tmpReturnArg$1 = tmpBranchingC$1(tmpSSA_arrPatternStep$1);
     return tmpReturnArg$1;
   } else {
     const tmpReturnArg$6 = tmpBranchingC$1(arrPatternBeforeDefault$3);

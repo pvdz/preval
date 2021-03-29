@@ -91,8 +91,8 @@ $(20);
 const tmpCalleeParam = [1, 2];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...arrAssignPatternRhs];
-const SSA_a = arrPatternSplat[0];
-$(SSA_a);
+const tmpSSA_a = arrPatternSplat[0];
+$(tmpSSA_a);
 $('fail1');
 $('fail2');
 `````

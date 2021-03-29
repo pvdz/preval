@@ -74,7 +74,7 @@ $(a);
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
@@ -83,11 +83,11 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject$3 != null;
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
-    SSA_a = tmpChainElementCall;
+    tmpSSA_a = tmpChainElementCall;
   }
 }
-const tmpBinBothLhs = SSA_a;
-let SSA_a$1 = undefined;
+const tmpBinBothLhs = tmpSSA_a;
+let tmpSSA_a$1 = undefined;
 const tmpIfTest$3 = b != null;
 if (tmpIfTest$3) {
   const tmpChainElementObject$5 = b.c;
@@ -96,13 +96,13 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 = tmpChainElementObject$9 != null;
   if (tmpIfTest$5) {
     const tmpChainElementCall$1 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
-    SSA_a$1 = tmpChainElementCall$1;
+    tmpSSA_a$1 = tmpChainElementCall$1;
   }
 }
-const tmpBinBothRhs = SSA_a$1;
+const tmpBinBothRhs = tmpSSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(SSA_a$1);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

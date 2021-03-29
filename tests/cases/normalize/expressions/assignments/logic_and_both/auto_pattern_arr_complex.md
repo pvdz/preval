@@ -59,17 +59,17 @@ arrPatternSplat[0];
 const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-let SSA_a = arrPatternSplat$1[0];
-let SSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs;
-if (SSA_tmpCalleeParam) {
+let tmpSSA_a = arrPatternSplat$1[0];
+let tmpSSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs;
+if (tmpSSA_tmpCalleeParam) {
   const tmpCalleeParam$3 = [1, 2];
   const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$3);
   const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$1];
-  SSA_a = arrPatternSplat$3[0];
-  SSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
+  tmpSSA_a = arrPatternSplat$3[0];
+  tmpSSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
 }
-$(SSA_tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_tmpCalleeParam);
+$(tmpSSA_a);
 `````
 
 ## Globals

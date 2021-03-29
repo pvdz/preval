@@ -65,9 +65,9 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const SSA_b = { c: 1 };
-SSA_b.c = 2;
-$(2, SSA_b);
+const tmpSSA_b = { c: 1 };
+tmpSSA_b.c = 2;
+$(2, tmpSSA_b);
 `````
 
 ## Globals

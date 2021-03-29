@@ -57,8 +57,8 @@ $(a);
 $(1);
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-$(SSA_a);
+const tmpSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+$(tmpSSA_a);
 `````
 
 ## Globals

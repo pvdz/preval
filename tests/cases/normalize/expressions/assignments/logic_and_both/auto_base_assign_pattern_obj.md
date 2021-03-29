@@ -61,19 +61,19 @@ $(a, b);
 const tmpObjLitVal = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-let SSA_b = tmpNestedAssignObjPatternRhs.b;
-let SSA_a = tmpNestedAssignObjPatternRhs;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
+let tmpSSA_a = tmpNestedAssignObjPatternRhs;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   const tmpObjLitVal$1 = $(2);
   const tmpCalleeParam$3 = { b: tmpObjLitVal$1 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
-  SSA_b = tmpNestedAssignObjPatternRhs$1.b;
-  SSA_a = tmpNestedAssignObjPatternRhs$1;
+  tmpSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+  tmpSSA_a = tmpNestedAssignObjPatternRhs$1;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
 }
 $(tmpCalleeParam);
-$(SSA_a, SSA_b);
+$(tmpSSA_a, tmpSSA_b);
 `````
 
 ## Globals

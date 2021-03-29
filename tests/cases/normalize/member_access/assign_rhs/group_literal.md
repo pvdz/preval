@@ -38,8 +38,8 @@ $(x);
 
 `````js filename=intro
 $(1);
-const SSA_x = (2).foo;
-$(SSA_x);
+const tmpSSA_x = (2).foo;
+$(tmpSSA_x);
 `````
 
 ## Globals

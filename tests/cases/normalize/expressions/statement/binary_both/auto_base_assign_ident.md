@@ -44,10 +44,10 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const SSA_b = $(2);
-const SSA_b$1 = $(2);
-SSA_b + SSA_b$1;
-$(a, SSA_b$1);
+const tmpSSA_b = $(2);
+const tmpSSA_b$1 = $(2);
+tmpSSA_b + tmpSSA_b$1;
+$(a, tmpSSA_b$1);
 `````
 
 ## Globals

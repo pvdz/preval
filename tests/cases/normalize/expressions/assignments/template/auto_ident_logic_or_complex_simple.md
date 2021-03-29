@@ -46,15 +46,15 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(0);
-let SSA_a = $(tmpCalleeParam$1);
-if (SSA_a) {
+let tmpSSA_a = $(tmpCalleeParam$1);
+if (tmpSSA_a) {
 } else {
-  SSA_a = 2;
+  tmpSSA_a = 2;
 }
-const tmpTemplateExpr = SSA_a;
+const tmpTemplateExpr = tmpSSA_a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

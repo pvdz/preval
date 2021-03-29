@@ -48,8 +48,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-const SSA_tmpCalleeParam$1 = $(60);
-$(tmpCalleeParam, SSA_tmpCalleeParam$1);
+const tmpSSA_tmpCalleeParam$1 = $(60);
+$(tmpCalleeParam, tmpSSA_tmpCalleeParam$1);
 $(a);
 `````
 

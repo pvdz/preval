@@ -53,17 +53,17 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-let SSA_a = $(tmpCalleeParam);
-if (SSA_a) {
+let tmpSSA_a = $(tmpCalleeParam);
+if (tmpSSA_a) {
 } else {
-  SSA_a = 2;
+  tmpSSA_a = 2;
 }
-const xyz = SSA_a;
+const xyz = tmpSSA_a;
 while (true) {
   $(xyz);
   $(1);
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

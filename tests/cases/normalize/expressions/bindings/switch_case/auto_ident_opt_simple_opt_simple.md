@@ -74,18 +74,18 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const SSA_b = { x: tmpObjLitVal };
-let SSA_a = undefined;
-const tmpIfTest$3 = SSA_b != null;
+const tmpSSA_b = { x: tmpObjLitVal };
+let tmpSSA_a = undefined;
+const tmpIfTest$3 = tmpSSA_b != null;
 if (tmpIfTest$3) {
-  const tmpChainElementObject = SSA_b.x;
+  const tmpChainElementObject = tmpSSA_b.x;
   const tmpIfTest$5 = tmpChainElementObject != null;
   if (tmpIfTest$5) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    SSA_a = tmpChainElementObject$1;
+    tmpSSA_a = tmpChainElementObject$1;
   }
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

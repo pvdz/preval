@@ -72,8 +72,8 @@ $(x);
 `````js filename=intro
 const tmpCalleeParam = [1, 2];
 const arr = $(tmpCalleeParam);
-const SSA_x = [...arr, 20, 30, 40, 50, 60];
-$(SSA_x);
+const tmpSSA_x = [...arr, 20, 30, 40, 50, 60];
+$(tmpSSA_x);
 `````
 
 ## Globals

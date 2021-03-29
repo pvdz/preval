@@ -67,22 +67,22 @@ $(a, x, y);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-let SSA_x = tmpNestedAssignObjPatternRhs.x;
-let SSA_y = tmpNestedAssignObjPatternRhs.y;
-let SSA_a = tmpNestedAssignObjPatternRhs;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_x = tmpNestedAssignObjPatternRhs.x;
+let tmpSSA_y = tmpNestedAssignObjPatternRhs.y;
+let tmpSSA_a = tmpNestedAssignObjPatternRhs;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpObjLitVal$3 = $(3);
   const tmpObjLitVal$5 = $(4);
   const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-  SSA_x = tmpNestedAssignObjPatternRhs$1.x;
-  SSA_y = tmpNestedAssignObjPatternRhs$1.y;
-  SSA_a = tmpNestedAssignObjPatternRhs$1;
+  tmpSSA_x = tmpNestedAssignObjPatternRhs$1.x;
+  tmpSSA_y = tmpNestedAssignObjPatternRhs$1.y;
+  tmpSSA_a = tmpNestedAssignObjPatternRhs$1;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
 }
 $(tmpCalleeParam);
-$(SSA_a, SSA_x, SSA_y);
+$(tmpSSA_a, tmpSSA_x, tmpSSA_y);
 `````
 
 ## Globals

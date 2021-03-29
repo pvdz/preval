@@ -79,8 +79,8 @@ const f = function () {
   const tmpCalleeParam = parseInt(15);
   const tmpIfTest = tmpCalleeParam == null;
   if (tmpIfTest) {
-    const SSA_tmpCalleeParam$1 = foo;
-    const tmpReturnArg$3 = $(SSA_tmpCalleeParam$1);
+    const tmpSSA_tmpCalleeParam$1 = foo;
+    const tmpReturnArg$3 = $(tmpSSA_tmpCalleeParam$1);
     return tmpReturnArg$3;
   } else {
     const tmpReturnArg$9 = $(tmpCalleeParam);

@@ -70,8 +70,8 @@ const tmpSwitchValue = $(tmpCalleeParam);
 if (tmpSwitchValue) {
 } else {
   const tmpCalleeParam$1 = $(1);
-  const SSA_tmpSwitchValue = $(tmpCalleeParam$1);
-  if (SSA_tmpSwitchValue) {
+  const tmpSSA_tmpSwitchValue = $(tmpCalleeParam$1);
+  if (tmpSSA_tmpSwitchValue) {
     const tmpCalleeParam$3 = $(2);
     $(tmpCalleeParam$3);
   }

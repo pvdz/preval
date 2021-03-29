@@ -93,13 +93,13 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const SSA_b = { x: 1 };
-const tmpCalleeParam = $(SSA_b);
+const tmpSSA_b = { x: 1 };
+const tmpCalleeParam = $(tmpSSA_b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-$(tmpPostUpdArgVal, SSA_b);
+$(tmpPostUpdArgVal, tmpSSA_b);
 $('fail1');
 $('fail2');
 `````

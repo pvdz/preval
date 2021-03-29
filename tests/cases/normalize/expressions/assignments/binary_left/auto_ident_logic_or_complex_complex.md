@@ -49,17 +49,17 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(0);
-let SSA_a = $(tmpCalleeParam$1);
-if (SSA_a) {
+let tmpSSA_a = $(tmpCalleeParam$1);
+if (tmpSSA_a) {
 } else {
   const tmpCalleeParam$3 = $(2);
-  SSA_a = $(tmpCalleeParam$3);
+  tmpSSA_a = $(tmpCalleeParam$3);
 }
-const tmpBinBothLhs = SSA_a;
+const tmpBinBothLhs = tmpSSA_a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

@@ -68,8 +68,8 @@ $(20);
 const tmpCalleeParam = [1, 2];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...arrAssignPatternRhs];
-const SSA_a = arrPatternSplat$1[0];
-$(SSA_a);
+const tmpSSA_a = arrPatternSplat$1[0];
+$(tmpSSA_a);
 $(undefined);
 `````
 

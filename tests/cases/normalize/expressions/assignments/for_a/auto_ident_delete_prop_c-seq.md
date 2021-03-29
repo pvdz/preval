@@ -54,11 +54,11 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const SSA_a = delete tmpDeleteObj.y;
+const tmpSSA_a = delete tmpDeleteObj.y;
 while (true) {
   $(1);
 }
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

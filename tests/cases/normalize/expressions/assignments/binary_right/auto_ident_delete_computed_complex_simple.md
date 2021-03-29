@@ -48,10 +48,10 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpBinBothLhs = $(100);
 const tmpDeleteObj = $(arg);
-const SSA_a = delete tmpDeleteObj.y;
-const tmpCalleeParam = tmpBinBothLhs + SSA_a;
+const tmpSSA_a = delete tmpDeleteObj.y;
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

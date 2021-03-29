@@ -45,8 +45,8 @@ throw tmpThrowArg;
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
-const SSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-throw SSA_a;
+const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+throw tmpSSA_a;
 `````
 
 ## Globals

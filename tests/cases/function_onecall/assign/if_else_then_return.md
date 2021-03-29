@@ -122,9 +122,9 @@ const f = function () {
 };
 const x = $(100);
 $(x);
-const SSA_x = f();
-$(SSA_x);
-$(SSA_x);
+const tmpSSA_x = f();
+$(tmpSSA_x);
+$(tmpSSA_x);
 `````
 
 ## Globals

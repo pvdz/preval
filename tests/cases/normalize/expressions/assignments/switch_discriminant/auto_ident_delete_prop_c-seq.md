@@ -63,9 +63,9 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const SSA_a = delete tmpDeleteObj.y;
+const tmpSSA_a = delete tmpDeleteObj.y;
 $(100);
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

@@ -80,8 +80,8 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const SSA_a = {};
-$(SSA_a);
+const tmpSSA_a = {};
+$(tmpSSA_a);
 $('fail1');
 $('fail2');
 `````

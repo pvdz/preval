@@ -169,8 +169,8 @@ const tmpBranchingC = function ($$0) {
   const tmpIfTest$7 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$7) {
     const tmpCalleeParam$5 = { a: 'fail' };
-    const SSA_objPatternAfterDefault$3 = $(tmpCalleeParam$5);
-    const tmpReturnArg$3 = tmpBranchingC$1(SSA_objPatternAfterDefault$3);
+    const tmpSSA_objPatternAfterDefault$3 = $(tmpCalleeParam$5);
+    const tmpReturnArg$3 = tmpBranchingC$1(tmpSSA_objPatternAfterDefault$3);
     return tmpReturnArg$3;
   } else {
     const tmpReturnArg$9 = tmpBranchingC$1(objPatternBeforeDefault$1);
@@ -191,8 +191,8 @@ const f = function ($$0) {
   if (tmpIfTest) {
     const tmpObjLitVal$1 = { a: 'fail2' };
     const tmpCalleeParam$1 = { x: tmpObjLitVal$1 };
-    const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternObjRoot$1);
+    const tmpSSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
+    const tmpReturnArg = tmpBranchingC(tmpSSA_bindingPatternObjRoot$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$13 = tmpBranchingC(tmpParamBare);

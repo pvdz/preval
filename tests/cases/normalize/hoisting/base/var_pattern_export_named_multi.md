@@ -51,13 +51,13 @@ export { y };
 $(undefined, undefined);
 const arrAssignPatternRhs = [10];
 const arrPatternSplat = [...arrAssignPatternRhs];
-const SSA_x = arrPatternSplat[0];
+const tmpSSA_x = arrPatternSplat[0];
 const arrAssignPatternRhs$1 = [20];
 const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-const SSA_y = arrPatternSplat$1[0];
-$(SSA_x, SSA_y);
-export { SSA_x as x };
-export { SSA_y as y };
+const tmpSSA_y = arrPatternSplat$1[0];
+$(tmpSSA_x, tmpSSA_y);
+export { tmpSSA_x as x };
+export { tmpSSA_y as y };
 `````
 
 ## Globals

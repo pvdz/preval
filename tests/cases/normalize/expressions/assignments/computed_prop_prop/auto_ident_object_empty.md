@@ -42,9 +42,9 @@ $(a);
 
 `````js filename=intro
 const obj = {};
-const SSA_a = {};
-obj[SSA_a];
-$(SSA_a);
+const tmpSSA_a = {};
+obj[tmpSSA_a];
+$(tmpSSA_a);
 `````
 
 ## Globals

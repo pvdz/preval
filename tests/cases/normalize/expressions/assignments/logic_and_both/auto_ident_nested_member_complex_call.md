@@ -82,8 +82,8 @@ const varInitAssignLhsComputedProp = $('y');
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-let SSA_a = varInitAssignLhsComputedRhs;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = varInitAssignLhsComputedRhs;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   const varInitAssignLhsComputedObj$1 = $(b);
   const varInitAssignLhsComputedProp$1 = $('x');
@@ -92,11 +92,11 @@ if (tmpCalleeParam) {
   const varInitAssignLhsComputedRhs$3 = $(3);
   varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$3;
-  SSA_a = varInitAssignLhsComputedRhs$3;
+  tmpSSA_a = varInitAssignLhsComputedRhs$3;
   tmpCalleeParam = varInitAssignLhsComputedRhs$3;
 }
 $(tmpCalleeParam);
-$(SSA_a, b, c, 3);
+$(tmpSSA_a, b, c, 3);
 `````
 
 ## Globals

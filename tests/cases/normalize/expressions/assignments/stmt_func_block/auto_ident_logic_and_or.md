@@ -126,22 +126,22 @@ const tmpBranchingC = function ($$0) {
     return undefined;
   } else {
     const tmpCalleeParam$17 = $(2);
-    const SSA_a$9 = $(tmpCalleeParam$17);
-    $(SSA_a$9);
+    const tmpSSA_a$9 = $(tmpCalleeParam$17);
+    $(tmpSSA_a$9);
     return undefined;
   }
 };
 const f = function () {
   debugger;
   const tmpCalleeParam = $(1);
-  const SSA_a = $(tmpCalleeParam);
-  if (SSA_a) {
+  const tmpSSA_a = $(tmpCalleeParam);
+  if (tmpSSA_a) {
     const tmpCalleeParam$5 = $(1);
-    const SSA_a$1 = $(tmpCalleeParam$5);
-    const tmpReturnArg = tmpBranchingC(SSA_a$1);
+    const tmpSSA_a$1 = $(tmpCalleeParam$5);
+    const tmpReturnArg = tmpBranchingC(tmpSSA_a$1);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$13 = tmpBranchingC(SSA_a);
+    const tmpReturnArg$13 = tmpBranchingC(tmpSSA_a);
     return tmpReturnArg$13;
   }
 };

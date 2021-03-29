@@ -57,8 +57,8 @@ tmpCallCallee(tmpCalleeParam);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
-const SSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(SSA_a, b);
+const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(tmpSSA_a, b);
 $(undefined);
 `````
 

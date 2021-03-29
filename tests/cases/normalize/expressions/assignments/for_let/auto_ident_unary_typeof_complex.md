@@ -52,12 +52,12 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const SSA_a = typeof tmpUnaryArg;
+const tmpSSA_a = typeof tmpUnaryArg;
 while (true) {
-  $(SSA_a);
+  $(tmpSSA_a);
   $(1);
 }
-$(SSA_a, 1);
+$(tmpSSA_a, 1);
 `````
 
 ## Globals

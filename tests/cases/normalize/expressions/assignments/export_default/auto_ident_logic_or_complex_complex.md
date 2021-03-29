@@ -47,15 +47,15 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-let SSA_a = $(tmpCalleeParam);
-if (SSA_a) {
+let tmpSSA_a = $(tmpCalleeParam);
+if (tmpSSA_a) {
 } else {
   const tmpCalleeParam$1 = $(2);
-  SSA_a = $(tmpCalleeParam$1);
+  tmpSSA_a = $(tmpCalleeParam$1);
 }
-const tmpAnonDefaultExport = SSA_a;
+const tmpAnonDefaultExport = tmpSSA_a;
 export { tmpAnonDefaultExport as default };
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

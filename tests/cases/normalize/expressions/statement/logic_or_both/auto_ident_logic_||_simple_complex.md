@@ -53,8 +53,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-const SSA_tmpIfTest = $(tmpCalleeParam);
-if (SSA_tmpIfTest) {
+const tmpSSA_tmpIfTest = $(tmpCalleeParam);
+if (tmpSSA_tmpIfTest) {
 } else {
   const tmpCalleeParam$1 = $(1);
   $(tmpCalleeParam$1);

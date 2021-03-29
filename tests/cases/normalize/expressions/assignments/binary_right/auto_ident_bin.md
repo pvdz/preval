@@ -45,10 +45,10 @@ $(a);
 const tmpBinBothLhs = $(100);
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
-const SSA_a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpCalleeParam = tmpBinBothLhs + SSA_a;
+const tmpSSA_a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

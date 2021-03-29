@@ -95,9 +95,9 @@ varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-const SSA_a = a * 3;
-$(SSA_a);
-$(SSA_a, b, 3);
+const tmpSSA_a = a * 3;
+$(tmpSSA_a);
+$(tmpSSA_a, b, 3);
 `````
 
 ## Globals

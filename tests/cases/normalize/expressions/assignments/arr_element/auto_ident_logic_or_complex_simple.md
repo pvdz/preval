@@ -54,22 +54,22 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(0);
-let SSA_a = $(tmpCalleeParam$1);
-if (SSA_a) {
+let tmpSSA_a = $(tmpCalleeParam$1);
+if (tmpSSA_a) {
 } else {
-  SSA_a = 2;
+  tmpSSA_a = 2;
 }
-const tmpBinBothLhs = SSA_a;
+const tmpBinBothLhs = tmpSSA_a;
 const tmpCalleeParam$3 = $(0);
-let SSA_a$1 = $(tmpCalleeParam$3);
-if (SSA_a$1) {
+let tmpSSA_a$1 = $(tmpCalleeParam$3);
+if (tmpSSA_a$1) {
 } else {
-  SSA_a$1 = 2;
+  tmpSSA_a$1 = 2;
 }
-const tmpBinBothRhs = SSA_a$1;
+const tmpBinBothRhs = tmpSSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(SSA_a$1);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

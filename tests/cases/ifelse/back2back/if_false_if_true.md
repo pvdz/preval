@@ -53,9 +53,9 @@ if (x) {
 const x = $(false, 'a');
 if (x) {
   $(x, 'pass');
-  const SSA_x = $(true, 'b');
-  if (SSA_x) {
-    $(SSA_x, 'hit');
+  const tmpSSA_x = $(true, 'b');
+  if (tmpSSA_x) {
+    $(tmpSSA_x, 'hit');
   }
 }
 `````

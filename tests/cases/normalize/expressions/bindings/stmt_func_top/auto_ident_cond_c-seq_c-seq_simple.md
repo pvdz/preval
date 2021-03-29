@@ -80,13 +80,13 @@ const f = function () {
   debugger;
   const tmpIfTest = $(30);
   if (tmpIfTest) {
-    const SSA_a$1 = $(60);
-    $(SSA_a$1);
+    const tmpSSA_a$1 = $(60);
+    $(tmpSSA_a$1);
     return undefined;
   } else {
     const tmpCalleeParam$1 = $(100);
-    const SSA_a$3 = $(tmpCalleeParam$1);
-    $(SSA_a$3);
+    const tmpSSA_a$3 = $(tmpCalleeParam$1);
+    $(tmpSSA_a$3);
     return undefined;
   }
 };

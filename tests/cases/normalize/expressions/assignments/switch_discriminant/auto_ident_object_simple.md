@@ -52,9 +52,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = { x: 1, y: 2, z: 3 };
+const tmpSSA_a = { x: 1, y: 2, z: 3 };
 $(100);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

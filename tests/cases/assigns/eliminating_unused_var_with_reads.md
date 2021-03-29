@@ -48,8 +48,8 @@ const x = $('unknown 1');
 const z = $('unknown 2');
 $(x);
 x + z;
-const SSA_x = $('unknown 3');
-$(SSA_x);
+const tmpSSA_x = $('unknown 3');
+$(tmpSSA_x);
 `````
 
 ## Globals

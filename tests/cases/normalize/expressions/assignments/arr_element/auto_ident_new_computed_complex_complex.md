@@ -55,14 +55,14 @@ const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-const SSA_a = new tmpNewCallee(1);
+const tmpSSA_a = new tmpNewCallee(1);
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $('$');
 const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
-const SSA_a$1 = new tmpNewCallee$1(1);
-const tmpCalleeParam = SSA_a + SSA_a$1;
+const tmpSSA_a$1 = new tmpNewCallee$1(1);
+const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
 $(tmpCalleeParam);
-$(SSA_a$1);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

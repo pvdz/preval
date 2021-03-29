@@ -54,14 +54,14 @@ bindingPatternObjRoot.a;
 let tmpCalleeParam = undefined;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-const SSA_a = tmpNestedAssignObjPatternRhs.a;
+const tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

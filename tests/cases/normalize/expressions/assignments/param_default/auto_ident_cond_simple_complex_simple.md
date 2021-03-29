@@ -57,9 +57,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_tmpNestedComplexRhs = $(2);
+const tmpSSA_tmpNestedComplexRhs = $(2);
 $(undefined);
-$(SSA_tmpNestedComplexRhs);
+$(tmpSSA_tmpNestedComplexRhs);
 `````
 
 ## Globals

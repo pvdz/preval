@@ -55,11 +55,11 @@ arrPatternSplat[0];
 const tmpCalleeParam = [1, 2];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...arrAssignPatternRhs];
-const SSA_a = arrPatternSplat$1[0];
+const tmpSSA_a = arrPatternSplat$1[0];
 while (true) {
   $(1);
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

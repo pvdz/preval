@@ -44,15 +44,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = 1;
-if (SSA_a) {
+let tmpSSA_a = 1;
+if (tmpSSA_a) {
   const tmpCalleeParam$1 = $(1);
-  SSA_a = $(tmpCalleeParam$1);
+  tmpSSA_a = $(tmpCalleeParam$1);
 }
-const tmpTemplateExpr = SSA_a;
+const tmpTemplateExpr = tmpSSA_a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

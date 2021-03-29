@@ -52,19 +52,19 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  SSA_a = tmpChainElementObject;
+  tmpSSA_a = tmpChainElementObject;
 }
-const tmpForOfDeclRhs = SSA_a;
+const tmpForOfDeclRhs = tmpSSA_a;
 let x;
 for (x of tmpForOfDeclRhs) {
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

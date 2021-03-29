@@ -48,13 +48,13 @@ $(a);
 `````js filename=intro
 const obj = {};
 const tmpCalleeParam = $(1);
-let SSA_a = $(tmpCalleeParam);
-if (SSA_a) {
-  SSA_a = 2;
+let tmpSSA_a = $(tmpCalleeParam);
+if (tmpSSA_a) {
+  tmpSSA_a = 2;
 }
-const tmpCompProp = SSA_a;
+const tmpCompProp = tmpSSA_a;
 obj[tmpCompProp];
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

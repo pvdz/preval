@@ -47,13 +47,13 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs$1 = $(1);
 const tmpBinBothRhs$1 = $(2);
-const SSA_a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpSSA_a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpBinBothLhs$3 = $(1);
 const tmpBinBothRhs$3 = $(2);
-const SSA_a$1 = tmpBinBothLhs$3 + tmpBinBothRhs$3;
-const tmpCalleeParam = SSA_a + SSA_a$1;
+const tmpSSA_a$1 = tmpBinBothLhs$3 + tmpBinBothRhs$3;
+const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
 $(tmpCalleeParam);
-$(SSA_a$1);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

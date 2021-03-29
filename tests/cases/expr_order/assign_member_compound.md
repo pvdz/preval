@@ -42,8 +42,8 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````js filename=intro
 const a = {};
 const tmpCompoundAssignLhs = a.foo;
-const SSA_a = $();
-const tmpAssignMemRhs = tmpCompoundAssignLhs + SSA_a;
+const tmpSSA_a = $();
+const tmpAssignMemRhs = tmpCompoundAssignLhs + tmpSSA_a;
 a.foo = tmpAssignMemRhs;
 `````
 

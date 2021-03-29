@@ -79,8 +79,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const SSA_bindingPatternArrRoot$1 = $('pass');
-[...SSA_bindingPatternArrRoot$1];
+const tmpSSA_bindingPatternArrRoot$1 = $('pass');
+[...tmpSSA_bindingPatternArrRoot$1];
 $('ok');
 `````
 

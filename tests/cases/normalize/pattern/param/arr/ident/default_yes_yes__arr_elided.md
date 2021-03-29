@@ -178,8 +178,8 @@ const f = function ($$0) {
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const SSA_bindingPatternArrRoot$1 = $('fail2');
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternArrRoot$1);
+    const tmpSSA_bindingPatternArrRoot$1 = $('fail2');
+    const tmpReturnArg = tmpBranchingC(tmpSSA_bindingPatternArrRoot$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$13 = tmpBranchingC(tmpParamBare);

@@ -277,8 +277,8 @@ const tmpBranchingC = function ($$0) {
     const tmpReturnArg$15 = tmpBranchingC$1(arrPatternStep$5, objPatternCrashTest$1);
     return tmpReturnArg$15;
   } else {
-    const SSA_objPatternCrashTest$5 = arrPatternStep$5 === null;
-    const tmpReturnArg$5 = tmpBranchingC$1(arrPatternStep$5, SSA_objPatternCrashTest$5);
+    const tmpSSA_objPatternCrashTest$5 = arrPatternStep$5 === null;
+    const tmpReturnArg$5 = tmpBranchingC$1(arrPatternStep$5, tmpSSA_objPatternCrashTest$5);
     return tmpReturnArg$5;
   }
 };
@@ -300,8 +300,8 @@ const f = function ($$0) {
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const SSA_arrPatternStep$1 = $('pass');
-    const tmpReturnArg = tmpBranchingC(SSA_arrPatternStep$1);
+    const tmpSSA_arrPatternStep$1 = $('pass');
+    const tmpReturnArg = tmpBranchingC(tmpSSA_arrPatternStep$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$21 = tmpBranchingC(arrPatternBeforeDefault);

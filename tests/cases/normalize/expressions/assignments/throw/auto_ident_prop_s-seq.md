@@ -42,8 +42,8 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const b = { c: 1 };
-const SSA_a = b.c;
-throw SSA_a;
+const tmpSSA_a = b.c;
+throw tmpSSA_a;
 `````
 
 ## Globals

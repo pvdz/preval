@@ -50,8 +50,8 @@ const tmpCalleeParam = $(1);
 const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
   const tmpCalleeParam$1 = $(2);
-  const SSA_tmpIfTest = $(tmpCalleeParam$1);
-  if (SSA_tmpIfTest) {
+  const tmpSSA_tmpIfTest = $(tmpCalleeParam$1);
+  if (tmpSSA_tmpIfTest) {
     $(100);
   }
 }

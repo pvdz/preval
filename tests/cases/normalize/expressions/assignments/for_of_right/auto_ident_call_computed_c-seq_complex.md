@@ -48,11 +48,11 @@ $(a);
 const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
-const SSA_a = tmpCallCompObj[tmpCallCompProp](1);
+const tmpSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 let x;
-for (x of SSA_a) {
+for (x of tmpSSA_a) {
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

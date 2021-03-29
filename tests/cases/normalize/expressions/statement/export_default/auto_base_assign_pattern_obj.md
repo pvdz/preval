@@ -51,10 +51,10 @@ const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const SSA_b = tmpNestedAssignObjPatternRhs.b;
-const SSA_tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
-export { SSA_tmpAnonDefaultExport as default };
-$(a, SSA_b);
+const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpSSA_tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+export { tmpSSA_tmpAnonDefaultExport as default };
+$(a, tmpSSA_b);
 `````
 
 ## Globals

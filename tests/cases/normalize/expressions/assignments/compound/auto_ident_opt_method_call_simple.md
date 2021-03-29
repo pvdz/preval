@@ -60,9 +60,9 @@ if (tmpIfTest) {
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   tmpBinBothRhs = tmpChainElementCall;
 }
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

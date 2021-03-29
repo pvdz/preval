@@ -68,13 +68,13 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const SSA_b = { c: 10, d: 20 };
-const tmpNestedAssignObj = $(SSA_b);
-const tmpCompObj = $(SSA_b);
+const tmpSSA_b = { c: 10, d: 20 };
+const tmpNestedAssignObj = $(tmpSSA_b);
+const tmpCompObj = $(tmpSSA_b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs, SSA_b);
+$(tmpNestedAssignPropRhs, tmpSSA_b);
 `````
 
 ## Globals

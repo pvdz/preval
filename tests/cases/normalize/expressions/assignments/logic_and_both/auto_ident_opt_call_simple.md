@@ -55,13 +55,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
   const tmpChainElementCall = $(1);
-  SSA_a = tmpChainElementCall;
+  tmpSSA_a = tmpChainElementCall;
 }
-let tmpCalleeParam = SSA_a;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
   const tmpIfTest$1 = $ != null;
@@ -69,11 +69,11 @@ if (tmpCalleeParam) {
     const tmpChainElementCall$1 = $(1);
     tmpNestedComplexRhs = tmpChainElementCall$1;
   }
-  SSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

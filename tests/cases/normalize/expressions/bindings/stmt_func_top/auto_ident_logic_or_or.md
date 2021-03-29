@@ -119,8 +119,8 @@ const tmpBranchingC = function ($$0) {
     return undefined;
   } else {
     const tmpCalleeParam$17 = $(2);
-    const SSA_a$9 = $(tmpCalleeParam$17);
-    $(SSA_a$9);
+    const tmpSSA_a$9 = $(tmpCalleeParam$17);
+    $(tmpSSA_a$9);
     return undefined;
   }
 };
@@ -133,8 +133,8 @@ const f = function () {
     return tmpReturnArg$11;
   } else {
     const tmpCalleeParam$7 = $(1);
-    const SSA_a$3 = $(tmpCalleeParam$7);
-    const tmpReturnArg$1 = tmpBranchingC(SSA_a$3);
+    const tmpSSA_a$3 = $(tmpCalleeParam$7);
+    const tmpReturnArg$1 = tmpBranchingC(tmpSSA_a$3);
     return tmpReturnArg$1;
   }
 };

@@ -56,8 +56,8 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const SSA_a = { x: 1, y: 2, z: 3 };
-$(SSA_a);
+const tmpSSA_a = { x: 1, y: 2, z: 3 };
+$(tmpSSA_a);
 `````
 
 ## Globals

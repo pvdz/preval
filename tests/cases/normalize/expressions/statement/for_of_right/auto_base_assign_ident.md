@@ -44,11 +44,11 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const SSA_b = $(2);
+const tmpSSA_b = $(2);
 let x;
-for (x of SSA_b) {
+for (x of tmpSSA_b) {
 }
-$(a, SSA_b);
+$(a, tmpSSA_b);
 `````
 
 ## Globals

@@ -93,15 +93,15 @@ if (tmpIfTest$9) {
 ## Output
 
 `````js filename=intro
-const SSA_b = { c: $ };
-let SSA_a = undefined;
-const tmpIfTest$5 = SSA_b != null;
+const tmpSSA_b = { c: $ };
+let tmpSSA_a = undefined;
+const tmpIfTest$5 = tmpSSA_b != null;
 if (tmpIfTest$5) {
-  const tmpChainElementObject = SSA_b.c;
-  const tmpChainElementCall = tmpChainElementObject.call(SSA_b, 1);
-  SSA_a = tmpChainElementCall;
+  const tmpChainElementObject = tmpSSA_b.c;
+  const tmpChainElementCall = tmpChainElementObject.call(tmpSSA_b, 1);
+  tmpSSA_a = tmpChainElementCall;
 }
-$(SSA_a);
+$(tmpSSA_a);
 $('fail1');
 $('fail2');
 `````

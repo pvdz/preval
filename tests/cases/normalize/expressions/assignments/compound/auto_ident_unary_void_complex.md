@@ -43,9 +43,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 $(100);
-const SSA_a = a * undefined;
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = a * undefined;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

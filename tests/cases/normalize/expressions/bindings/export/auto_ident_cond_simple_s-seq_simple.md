@@ -35,8 +35,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = 60;
-export { SSA_a as a };
+const tmpSSA_a = 60;
+export { tmpSSA_a as a };
 $(60);
 `````
 

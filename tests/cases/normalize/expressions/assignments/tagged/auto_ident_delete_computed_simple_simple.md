@@ -45,9 +45,9 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpCalleeParam = ['before ', ' after'];
-const SSA_a = delete arg.y;
-$(tmpCalleeParam, SSA_a);
-$(SSA_a, arg);
+const tmpSSA_a = delete arg.y;
+$(tmpCalleeParam, tmpSSA_a);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

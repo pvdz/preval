@@ -48,10 +48,10 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsCompProp = $('c');
-const SSA_a = b[tmpAssignRhsCompProp];
-const tmpCalleeParam = { [SSA_a]: 10 };
+const tmpSSA_a = b[tmpAssignRhsCompProp];
+const tmpCalleeParam = { [tmpSSA_a]: 10 };
 $(tmpCalleeParam);
-$(SSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

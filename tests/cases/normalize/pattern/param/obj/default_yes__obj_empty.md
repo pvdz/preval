@@ -156,8 +156,8 @@ const tmpBranchingC = function ($$0) {
     const tmpReturnArg$15 = tmpBranchingC$1(bindingPatternObjRoot$5, objPatternCrashTest$1);
     return tmpReturnArg$15;
   } else {
-    const SSA_objPatternCrashTest$5 = bindingPatternObjRoot$5 === null;
-    const tmpReturnArg$5 = tmpBranchingC$1(bindingPatternObjRoot$5, SSA_objPatternCrashTest$5);
+    const tmpSSA_objPatternCrashTest$5 = bindingPatternObjRoot$5 === null;
+    const tmpReturnArg$5 = tmpBranchingC$1(bindingPatternObjRoot$5, tmpSSA_objPatternCrashTest$5);
     return tmpReturnArg$5;
   }
 };
@@ -177,8 +177,8 @@ const f = function ($$0) {
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const SSA_bindingPatternObjRoot$1 = $('fail');
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternObjRoot$1);
+    const tmpSSA_bindingPatternObjRoot$1 = $('fail');
+    const tmpReturnArg = tmpBranchingC(tmpSSA_bindingPatternObjRoot$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$21 = tmpBranchingC(tmpParamBare);

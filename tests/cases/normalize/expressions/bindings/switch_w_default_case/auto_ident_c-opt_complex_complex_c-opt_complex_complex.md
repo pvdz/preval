@@ -101,9 +101,9 @@ if (tmpIfTest$11) {
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const SSA_b = { x: tmpObjLitVal };
-let SSA_a = undefined;
-const tmpChainElementCall = $(SSA_b);
+const tmpSSA_b = { x: tmpObjLitVal };
+let tmpSSA_a = undefined;
+const tmpChainElementCall = $(tmpSSA_b);
 const tmpIfTest$5 = tmpChainElementCall != null;
 if (tmpIfTest$5) {
   const tmpChainRootComputed = $('x');
@@ -112,10 +112,10 @@ if (tmpIfTest$5) {
   if (tmpIfTest$7) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    SSA_a = tmpChainElementObject$1;
+    tmpSSA_a = tmpChainElementObject$1;
   }
 }
-$(SSA_a);
+$(tmpSSA_a);
 $('fail1');
 $('fail2');
 `````

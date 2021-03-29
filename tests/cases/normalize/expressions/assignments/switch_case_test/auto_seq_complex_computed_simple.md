@@ -65,17 +65,17 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
-const SSA_a = { b: tmpObjLitVal };
-const tmpIfTest = SSA_a === tmpSwitchValue;
+const tmpSSA_a = { b: tmpObjLitVal };
+const tmpIfTest = tmpSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchCaseToStart <= 0;
 $(1);
-const tmpAssignMemLhsObj = $(SSA_a);
+const tmpAssignMemLhsObj = $(tmpSSA_a);
 const tmpAssignMemRhs = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

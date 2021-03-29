@@ -262,13 +262,13 @@ const f = function () {
   debugger;
   const tmpObjLitVal$1 = { y: 'pass3' };
   const tmpCalleeParam$1 = { x: tmpObjLitVal$1 };
-  const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
-  const objPatternBeforeDefault$3 = SSA_bindingPatternObjRoot$1.x;
+  const tmpSSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
+  const objPatternBeforeDefault$3 = tmpSSA_bindingPatternObjRoot$1.x;
   const tmpIfTest$7 = objPatternBeforeDefault$3 === undefined;
   if (tmpIfTest$7) {
     const tmpCalleeParam$4 = { y: 'fail2' };
-    const SSA_objPatternAfterDefault$1 = $(tmpCalleeParam$4);
-    const tmpReturnArg$1 = tmpBranchingC$1(SSA_objPatternAfterDefault$1);
+    const tmpSSA_objPatternAfterDefault$1 = $(tmpCalleeParam$4);
+    const tmpReturnArg$1 = tmpBranchingC$1(tmpSSA_objPatternAfterDefault$1);
     return tmpReturnArg$1;
   } else {
     const tmpReturnArg$6 = tmpBranchingC$1(objPatternBeforeDefault$3);

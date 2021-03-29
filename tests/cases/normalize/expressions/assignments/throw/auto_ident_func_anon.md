@@ -40,10 +40,10 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {
+const tmpSSA_a = function () {
   debugger;
 };
-throw SSA_a;
+throw tmpSSA_a;
 `````
 
 ## Globals

@@ -55,12 +55,12 @@ $(a);
 const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
-const SSA_a = tmpCallCompObj[tmpCallCompProp](1);
+const tmpSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 while (true) {
-  $(SSA_a);
+  $(tmpSSA_a);
   $(1);
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

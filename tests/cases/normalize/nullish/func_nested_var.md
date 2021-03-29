@@ -125,8 +125,8 @@ const tmpBranchingC = function ($$0) {
   debugger;
   const tmpIfTest$7 = b$5 == null;
   if (tmpIfTest$7) {
-    const SSA_c$3 = length;
-    const tmpReturnArg$3 = $(SSA_c$3);
+    const tmpSSA_c$3 = length;
+    const tmpReturnArg$3 = $(tmpSSA_c$3);
     return tmpReturnArg$3;
   } else {
     const tmpReturnArg$11 = $(b$5);
@@ -138,8 +138,8 @@ const f = function () {
   const b = $(2);
   const tmpIfTest = b == null;
   if (tmpIfTest) {
-    const SSA_b$1 = toString;
-    const tmpReturnArg = tmpBranchingC(SSA_b$1);
+    const tmpSSA_b$1 = toString;
+    const tmpReturnArg = tmpBranchingC(tmpSSA_b$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$15 = tmpBranchingC(b);

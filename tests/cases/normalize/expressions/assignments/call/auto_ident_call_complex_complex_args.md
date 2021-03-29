@@ -48,9 +48,9 @@ $(a);
 const tmpCallCallee$1 = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const SSA_a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

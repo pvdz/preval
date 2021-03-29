@@ -101,8 +101,8 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const SSA_x = arrPatternSplat[0];
-const SSA_y = arrPatternSplat[1];
+const tmpSSA_x = arrPatternSplat[0];
+const tmpSSA_y = arrPatternSplat[1];
 const tmpIfTest = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -121,7 +121,7 @@ const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
   $('fail2');
 }
-$(tmpNestedAssignArrPatternRhs, SSA_x, SSA_y);
+$(tmpNestedAssignArrPatternRhs, tmpSSA_x, tmpSSA_y);
 `````
 
 ## Globals

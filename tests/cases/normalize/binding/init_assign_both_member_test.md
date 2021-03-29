@@ -93,7 +93,7 @@ $(5, a);
 ## Output
 
 `````js filename=intro
-const SSA_b = {
+const tmpSSA_b = {
   get x() {
     debugger;
     $(1);
@@ -105,7 +105,7 @@ const SSA_b = {
     $(2, n);
   },
 };
-const SSA_c = {
+const tmpSSA_c = {
   get x() {
     debugger;
     $(3);
@@ -117,8 +117,8 @@ const SSA_c = {
     $(4, n$1);
   },
 };
-const tmpNestedAssignPropRhs = SSA_c.x;
-SSA_b.x = tmpNestedAssignPropRhs;
+const tmpNestedAssignPropRhs = tmpSSA_c.x;
+tmpSSA_b.x = tmpNestedAssignPropRhs;
 $(5, tmpNestedAssignPropRhs);
 `````
 

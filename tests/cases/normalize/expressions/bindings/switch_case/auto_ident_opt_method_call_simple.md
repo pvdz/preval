@@ -69,15 +69,15 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const SSA_b = { c: $ };
-let SSA_a = undefined;
-const tmpIfTest$3 = SSA_b != null;
+const tmpSSA_b = { c: $ };
+let tmpSSA_a = undefined;
+const tmpIfTest$3 = tmpSSA_b != null;
 if (tmpIfTest$3) {
-  const tmpChainElementObject = SSA_b.c;
-  const tmpChainElementCall = tmpChainElementObject.call(SSA_b, 1);
-  SSA_a = tmpChainElementCall;
+  const tmpChainElementObject = tmpSSA_b.c;
+  const tmpChainElementCall = tmpChainElementObject.call(tmpSSA_b, 1);
+  tmpSSA_a = tmpChainElementCall;
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

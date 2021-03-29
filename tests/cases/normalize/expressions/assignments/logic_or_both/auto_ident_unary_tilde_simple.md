@@ -48,15 +48,15 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let SSA_a = -2;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = -2;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
-  SSA_a = -2;
+  tmpSSA_a = -2;
   tmpCalleeParam = -2;
 }
 $(tmpCalleeParam);
-$(SSA_a, 1);
+$(tmpSSA_a, 1);
 `````
 
 ## Globals

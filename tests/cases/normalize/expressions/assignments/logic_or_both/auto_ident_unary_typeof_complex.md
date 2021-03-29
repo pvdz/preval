@@ -51,17 +51,17 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-let SSA_a = typeof tmpUnaryArg;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = typeof tmpUnaryArg;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpUnaryArg$1 = $(1);
   const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
-  SSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a, 1);
+$(tmpSSA_a, 1);
 `````
 
 ## Globals

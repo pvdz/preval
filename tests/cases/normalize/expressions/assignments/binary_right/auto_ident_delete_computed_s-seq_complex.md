@@ -53,10 +53,10 @@ const tmpBinBothLhs = $(100);
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-const SSA_a = delete arg[tmpDeleteCompProp];
-const tmpCalleeParam = tmpBinBothLhs + SSA_a;
+const tmpSSA_a = delete arg[tmpDeleteCompProp];
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

@@ -148,8 +148,8 @@ const f = function () {
     return tmpReturnArg$11;
   } else {
     const tmpCalleeParam$7 = $(1);
-    const SSA_tmpIfTest$3 = $(tmpCalleeParam$7);
-    const tmpReturnArg$1 = tmpBranchingC(a, SSA_tmpIfTest$3);
+    const tmpSSA_tmpIfTest$3 = $(tmpCalleeParam$7);
+    const tmpReturnArg$1 = tmpBranchingC(a, tmpSSA_tmpIfTest$3);
     return tmpReturnArg$1;
   }
 };

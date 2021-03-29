@@ -168,13 +168,13 @@ const tmpBranchingC$1 = function ($$0) {
 };
 const f = function () {
   debugger;
-  const SSA_bindingPatternArrRoot$1 = $('pass2');
-  const arrPatternSplat$3 = [...SSA_bindingPatternArrRoot$1];
+  const tmpSSA_bindingPatternArrRoot$1 = $('pass2');
+  const arrPatternSplat$3 = [...tmpSSA_bindingPatternArrRoot$1];
   const arrPatternBeforeDefault$1 = arrPatternSplat$3[0];
   const tmpIfTest$7 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$7) {
-    const SSA_arrPatternStep$1 = $('fail');
-    const tmpReturnArg$1 = tmpBranchingC$1(SSA_arrPatternStep$1);
+    const tmpSSA_arrPatternStep$1 = $('fail');
+    const tmpReturnArg$1 = tmpBranchingC$1(tmpSSA_arrPatternStep$1);
     return tmpReturnArg$1;
   } else {
     const tmpReturnArg$6 = tmpBranchingC$1(arrPatternBeforeDefault$1);

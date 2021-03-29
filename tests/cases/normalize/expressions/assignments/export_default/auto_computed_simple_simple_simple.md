@@ -43,11 +43,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const SSA_a = { b: tmpObjLitVal };
-const tmpAnonDefaultExport = SSA_a;
+const tmpSSA_a = { b: tmpObjLitVal };
+const tmpAnonDefaultExport = tmpSSA_a;
 export { tmpAnonDefaultExport as default };
-SSA_a.b = 2;
-$(SSA_a);
+tmpSSA_a.b = 2;
+$(tmpSSA_a);
 `````
 
 ## Globals

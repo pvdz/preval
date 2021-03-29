@@ -56,8 +56,8 @@ tmpCallCallee(tmpCalleeParam);
 const tmpCalleeParam$1 = [1];
 const arrPatternSplat = [...tmpCalleeParam$1];
 arrPatternSplat[0];
-const SSA_a = $(10);
-$(SSA_a);
+const tmpSSA_a = $(10);
+$(tmpSSA_a);
 `````
 
 ## Globals

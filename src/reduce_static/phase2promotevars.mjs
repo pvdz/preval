@@ -167,7 +167,7 @@ function _promoteVars(fdata) {
                 example('let x = 10; x = 20; f(x);', 'let x = 10; let x2 = 20; f(x2);');
                 before(b.node);
 
-                const newName = createFreshVar(name.startsWith('SSA_') ? name : 'SSA_' + name, fdata);
+                const newName = createFreshVar(name.startsWith('tmpSSA_') ? name : 'tmpSSA_' + name, fdata);
                 const newMeta = fdata.globallyUniqueNamingRegistry.get(newName);
                 b.node.name = newName;
 

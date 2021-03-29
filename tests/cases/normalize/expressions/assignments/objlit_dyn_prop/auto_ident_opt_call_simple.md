@@ -46,16 +46,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
   const tmpChainElementCall = $(1);
-  SSA_a = tmpChainElementCall;
+  tmpSSA_a = tmpChainElementCall;
 }
-const tmpObjLitPropKey = SSA_a;
+const tmpObjLitPropKey = tmpSSA_a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

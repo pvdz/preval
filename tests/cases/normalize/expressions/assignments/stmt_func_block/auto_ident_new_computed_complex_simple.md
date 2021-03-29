@@ -61,8 +61,8 @@ tmpCallCallee(tmpCalleeParam);
 const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const SSA_a = new tmpNewCallee(1);
-$(SSA_a);
+const tmpSSA_a = new tmpNewCallee(1);
+$(tmpSSA_a);
 $(undefined);
 `````
 

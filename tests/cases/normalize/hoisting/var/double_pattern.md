@@ -50,14 +50,14 @@ $(x, y);
 `````js filename=intro
 const arrAssignPatternRhs = [1, 2, 3];
 const arrPatternSplat = [...arrAssignPatternRhs];
-const SSA_x = arrPatternSplat[0];
-const SSA_y = arrPatternSplat[1];
-$(SSA_x, SSA_y);
+const tmpSSA_x = arrPatternSplat[0];
+const tmpSSA_y = arrPatternSplat[1];
+$(tmpSSA_x, tmpSSA_y);
 const arrAssignPatternRhs$1 = [4, 5, 6];
 const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-const SSA_x$1 = arrPatternSplat$1[0];
-const SSA_y$1 = arrPatternSplat$1[1];
-$(SSA_x$1, SSA_y$1);
+const tmpSSA_x$1 = arrPatternSplat$1[0];
+const tmpSSA_y$1 = arrPatternSplat$1[1];
+$(tmpSSA_x$1, tmpSSA_y$1);
 `````
 
 ## Globals

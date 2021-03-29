@@ -60,8 +60,8 @@ $(a);
 const b = { $: $ };
 $(1);
 const tmpCallCompProp = $('$');
-const SSA_a = b[tmpCallCompProp](1);
-$(SSA_a);
+const tmpSSA_a = b[tmpCallCompProp](1);
+$(tmpSSA_a);
 `````
 
 ## Globals

@@ -47,14 +47,14 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let SSA_a = false;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = false;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
-  SSA_a = false;
+  tmpSSA_a = false;
   tmpCalleeParam = false;
 }
 $(tmpCalleeParam);
-$(SSA_a, 1);
+$(tmpSSA_a, 1);
 `````
 
 ## Globals

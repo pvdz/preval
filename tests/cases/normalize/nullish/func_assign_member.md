@@ -79,14 +79,14 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  const SSA_y = $();
-  const tmpIfTest = SSA_y == null;
+  const tmpSSA_y = $();
+  const tmpIfTest = tmpSSA_y == null;
   if (tmpIfTest) {
-    const SSA_y$1 = foo;
-    const tmpReturnArg = $(SSA_y$1);
+    const tmpSSA_y$1 = foo;
+    const tmpReturnArg = $(tmpSSA_y$1);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = $(SSA_y);
+    const tmpReturnArg$7 = $(tmpSSA_y);
     return tmpReturnArg$7;
   }
 };

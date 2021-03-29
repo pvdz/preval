@@ -54,17 +54,17 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-let SSA_a = 1;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = 1;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   $(1);
   $(2);
-  SSA_a = 1;
+  tmpSSA_a = 1;
   tmpCalleeParam = 1;
 }
 $(tmpCalleeParam);
-$(SSA_a, 1);
+$(tmpSSA_a, 1);
 `````
 
 ## Globals

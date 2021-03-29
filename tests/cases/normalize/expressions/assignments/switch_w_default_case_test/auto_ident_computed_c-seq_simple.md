@@ -89,8 +89,8 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
-const SSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpIfTest = SSA_a === tmpSwitchValue;
+const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpIfTest = tmpSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -108,7 +108,7 @@ const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
   $('fail2');
 }
-$(SSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

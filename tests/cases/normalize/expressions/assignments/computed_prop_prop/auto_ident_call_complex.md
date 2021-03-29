@@ -44,9 +44,9 @@ $(a);
 `````js filename=intro
 const obj = {};
 const tmpCallCallee = $($);
-const SSA_a = tmpCallCallee(1);
-obj[SSA_a];
-$(SSA_a);
+const tmpSSA_a = tmpCallCallee(1);
+obj[tmpSSA_a];
+$(tmpSSA_a);
 `````
 
 ## Globals

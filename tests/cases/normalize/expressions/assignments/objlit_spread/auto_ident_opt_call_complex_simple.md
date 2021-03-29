@@ -46,17 +46,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-  SSA_a = tmpChainElementCall$1;
+  tmpSSA_a = tmpChainElementCall$1;
 }
-const tmpObjSpread = SSA_a;
+const tmpObjSpread = tmpSSA_a;
 const tmpCalleeParam = { ...tmpObjSpread };
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

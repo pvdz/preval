@@ -76,8 +76,8 @@ const obj = {
   },
 };
 const tmpAssignRhsProp = $(obj);
-const SSA_x = tmpAssignRhsProp.x;
-$(SSA_x);
+const tmpSSA_x = tmpAssignRhsProp.x;
+$(tmpSSA_x);
 `````
 
 ## Globals

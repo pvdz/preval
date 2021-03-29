@@ -44,8 +44,8 @@ throw tmpThrowArg;
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsCompProp = $('c');
-const SSA_a = b[tmpAssignRhsCompProp];
-throw SSA_a;
+const tmpSSA_a = b[tmpAssignRhsCompProp];
+throw tmpSSA_a;
 `````
 
 ## Globals

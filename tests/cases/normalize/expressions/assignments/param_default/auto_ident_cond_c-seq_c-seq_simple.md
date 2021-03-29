@@ -126,13 +126,13 @@ const tmpBranchingA = function () {
   debugger;
   const tmpIfTest$5 = $(30);
   if (tmpIfTest$5) {
-    const SSA_tmpNestedComplexRhs$3 = $(60);
-    a = SSA_tmpNestedComplexRhs$3;
+    const tmpSSA_tmpNestedComplexRhs$3 = $(60);
+    a = tmpSSA_tmpNestedComplexRhs$3;
     return undefined;
   } else {
     const tmpCalleeParam$3 = $(100);
-    const SSA_tmpNestedComplexRhs$5 = $(tmpCalleeParam$3);
-    a = SSA_tmpNestedComplexRhs$5;
+    const tmpSSA_tmpNestedComplexRhs$5 = $(tmpCalleeParam$3);
+    a = tmpSSA_tmpNestedComplexRhs$5;
     return undefined;
   }
 };

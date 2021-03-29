@@ -140,8 +140,8 @@ const f = function ($$0) {
     const tmpReturnArg$11 = tmpBranchingC(objPatternNoDefault, objPatternCrashTest);
     return tmpReturnArg$11;
   } else {
-    const SSA_objPatternCrashTest$3 = objPatternNoDefault === null;
-    const tmpReturnArg$1 = tmpBranchingC(objPatternNoDefault, SSA_objPatternCrashTest$3);
+    const tmpSSA_objPatternCrashTest$3 = objPatternNoDefault === null;
+    const tmpReturnArg$1 = tmpBranchingC(objPatternNoDefault, tmpSSA_objPatternCrashTest$3);
     return tmpReturnArg$1;
   }
 };

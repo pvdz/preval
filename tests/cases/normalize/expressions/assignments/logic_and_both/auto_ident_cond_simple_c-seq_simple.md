@@ -46,15 +46,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = $(60);
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = $(60);
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
-  const SSA_tmpNestedComplexRhs = $(60);
-  SSA_a = SSA_tmpNestedComplexRhs;
-  tmpCalleeParam = SSA_tmpNestedComplexRhs;
+  const tmpSSA_tmpNestedComplexRhs = $(60);
+  tmpSSA_a = tmpSSA_tmpNestedComplexRhs;
+  tmpCalleeParam = tmpSSA_tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

@@ -45,11 +45,11 @@ $(a);
 
 `````js filename=intro
 const tmpCallCallee = $($);
-const SSA_a = tmpCallCallee(1);
+const tmpSSA_a = tmpCallCallee(1);
 while (true) {
   $(1);
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

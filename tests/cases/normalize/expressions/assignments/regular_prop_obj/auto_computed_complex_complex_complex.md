@@ -50,13 +50,13 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const SSA_a = { b: tmpObjLitVal };
-SSA_a.a;
-const tmpAssignComMemLhsObj = $(SSA_a);
+const tmpSSA_a = { b: tmpObjLitVal };
+tmpSSA_a.a;
+const tmpAssignComMemLhsObj = $(tmpSSA_a);
 const tmpAssignComMemLhsProp = $('b');
 const tmpAssignComputedRhs = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

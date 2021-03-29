@@ -51,20 +51,20 @@ $(a);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest$1 = $ != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall = $(1);
-  SSA_a = tmpChainElementCall;
+  tmpSSA_a = tmpChainElementCall;
 }
-const tmpIfTest = SSA_a;
+const tmpIfTest = tmpSSA_a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

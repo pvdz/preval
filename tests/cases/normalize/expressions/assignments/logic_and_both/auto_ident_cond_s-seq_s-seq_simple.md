@@ -61,14 +61,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = 60;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = 60;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
-  SSA_a = 60;
+  tmpSSA_a = 60;
   tmpCalleeParam = 60;
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

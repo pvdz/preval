@@ -40,8 +40,8 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const SSA_a = { b: tmpObjLitVal };
-throw SSA_a;
+const tmpSSA_a = { b: tmpObjLitVal };
+throw tmpSSA_a;
 `````
 
 ## Globals

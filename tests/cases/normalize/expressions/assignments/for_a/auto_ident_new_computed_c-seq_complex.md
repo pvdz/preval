@@ -54,11 +54,11 @@ const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-const SSA_a = new tmpNewCallee(1);
+const tmpSSA_a = new tmpNewCallee(1);
 while (true) {
   $(1);
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

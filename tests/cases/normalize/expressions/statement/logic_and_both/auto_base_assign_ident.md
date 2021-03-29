@@ -44,12 +44,12 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let SSA_b = $(2);
-const tmpIfTest = SSA_b;
+let tmpSSA_b = $(2);
+const tmpIfTest = tmpSSA_b;
 if (tmpIfTest) {
-  SSA_b = $(2);
+  tmpSSA_b = $(2);
 }
-$(a, SSA_b);
+$(a, tmpSSA_b);
 `````
 
 ## Globals

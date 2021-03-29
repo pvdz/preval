@@ -48,8 +48,8 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-const SSA_a = delete arg[tmpDeleteCompProp];
-throw SSA_a;
+const tmpSSA_a = delete arg[tmpDeleteCompProp];
+throw tmpSSA_a;
 `````
 
 ## Globals

@@ -56,22 +56,22 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-let SSA_a = $(tmpCalleeParam$1);
-if (SSA_a) {
+let tmpSSA_a = $(tmpCalleeParam$1);
+if (tmpSSA_a) {
   const tmpCalleeParam$3 = $(2);
-  SSA_a = $(tmpCalleeParam$3);
+  tmpSSA_a = $(tmpCalleeParam$3);
 }
-const tmpBinBothLhs = SSA_a;
+const tmpBinBothLhs = tmpSSA_a;
 const tmpCalleeParam$5 = $(1);
-let SSA_a$1 = $(tmpCalleeParam$5);
-if (SSA_a$1) {
+let tmpSSA_a$1 = $(tmpCalleeParam$5);
+if (tmpSSA_a$1) {
   const tmpCalleeParam$7 = $(2);
-  SSA_a$1 = $(tmpCalleeParam$7);
+  tmpSSA_a$1 = $(tmpCalleeParam$7);
 }
-const tmpBinBothRhs = SSA_a$1;
+const tmpBinBothRhs = tmpSSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(SSA_a$1);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

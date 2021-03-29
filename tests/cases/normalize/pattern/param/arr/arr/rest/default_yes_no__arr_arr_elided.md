@@ -138,8 +138,8 @@ const f = function ($$0) {
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const SSA_arrPatternStep$1 = $('pass');
-    const tmpReturnArg = tmpBranchingC(SSA_arrPatternStep$1);
+    const tmpSSA_arrPatternStep$1 = $('pass');
+    const tmpReturnArg = tmpBranchingC(tmpSSA_arrPatternStep$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$5 = tmpBranchingC(arrPatternBeforeDefault);

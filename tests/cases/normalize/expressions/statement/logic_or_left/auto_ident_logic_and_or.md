@@ -62,8 +62,8 @@ if (tmpIfTest) {
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$3 = $(2);
-  const SSA_tmpIfTest = $(tmpCalleeParam$3);
-  if (SSA_tmpIfTest) {
+  const tmpSSA_tmpIfTest = $(tmpCalleeParam$3);
+  if (tmpSSA_tmpIfTest) {
   } else {
     $(100);
   }

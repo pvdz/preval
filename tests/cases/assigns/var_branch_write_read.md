@@ -45,12 +45,12 @@ $(x, 'final');
 ## Output
 
 `````js filename=intro
-let SSA_x = $(1, 'before');
+let tmpSSA_x = $(1, 'before');
 const tmpIfTest = $(2, 'if');
 if (tmpIfTest) {
-  SSA_x = $(3, 'then');
+  tmpSSA_x = $(3, 'then');
 }
-$(SSA_x, 'final');
+$(tmpSSA_x, 'final');
 `````
 
 ## Globals

@@ -96,8 +96,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const SSA_tmpBinLhs = $(2);
-const tmpIfTest = SSA_tmpBinLhs === tmpSwitchValue;
+const tmpSSA_tmpBinLhs = $(2);
+const tmpIfTest = tmpSSA_tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

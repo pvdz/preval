@@ -39,9 +39,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const SSA_tmpBinBothLhs = $(2);
+const tmpSSA_tmpBinBothLhs = $(2);
 const tmpBinBothRhs = $(100);
-SSA_tmpBinBothLhs + tmpBinBothRhs;
+tmpSSA_tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

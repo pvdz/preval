@@ -60,17 +60,17 @@ const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-let SSA_x = tmpNestedAssignObjPatternRhs.x;
-let SSA_y = tmpNestedAssignObjPatternRhs.y;
+let tmpSSA_x = tmpNestedAssignObjPatternRhs.x;
+let tmpSSA_y = tmpNestedAssignObjPatternRhs.y;
 if (tmpNestedAssignObjPatternRhs) {
 } else {
   const tmpObjLitVal$3 = $(3);
   const tmpObjLitVal$5 = $(4);
   const tmpAssignObjPatternRhs = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-  SSA_x = tmpAssignObjPatternRhs.x;
-  SSA_y = tmpAssignObjPatternRhs.y;
+  tmpSSA_x = tmpAssignObjPatternRhs.x;
+  tmpSSA_y = tmpAssignObjPatternRhs.y;
 }
-$(a, SSA_x, SSA_y);
+$(a, tmpSSA_x, tmpSSA_y);
 `````
 
 ## Globals

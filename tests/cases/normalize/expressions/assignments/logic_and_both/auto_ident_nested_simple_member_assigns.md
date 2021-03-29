@@ -85,8 +85,8 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-let SSA_a = 3;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = 3;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   b.x = 3;
   b.x = 3;
@@ -94,11 +94,11 @@ if (tmpCalleeParam) {
   b.x = 3;
   b.x = 3;
   b.x = 3;
-  SSA_a = 3;
+  tmpSSA_a = 3;
   tmpCalleeParam = 3;
 }
 $(tmpCalleeParam);
-$(SSA_a, b, 3);
+$(tmpSSA_a, b, 3);
 `````
 
 ## Globals

@@ -131,8 +131,8 @@ const tmpBranchingA = function () {
   const tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
   if (tmpNestedComplexRhs$1) {
     const tmpCalleeParam$9 = $(2);
-    const SSA_tmpNestedComplexRhs$3 = $(tmpCalleeParam$9);
-    a = SSA_tmpNestedComplexRhs$3;
+    const tmpSSA_tmpNestedComplexRhs$3 = $(tmpCalleeParam$9);
+    a = tmpSSA_tmpNestedComplexRhs$3;
     return undefined;
   } else {
     a = tmpNestedComplexRhs$1;

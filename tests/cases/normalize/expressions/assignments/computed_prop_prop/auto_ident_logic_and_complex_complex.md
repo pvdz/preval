@@ -50,14 +50,14 @@ $(a);
 `````js filename=intro
 const obj = {};
 const tmpCalleeParam = $(1);
-let SSA_a = $(tmpCalleeParam);
-if (SSA_a) {
+let tmpSSA_a = $(tmpCalleeParam);
+if (tmpSSA_a) {
   const tmpCalleeParam$1 = $(2);
-  SSA_a = $(tmpCalleeParam$1);
+  tmpSSA_a = $(tmpCalleeParam$1);
 }
-const tmpCompProp = SSA_a;
+const tmpCompProp = tmpSSA_a;
 obj[tmpCompProp];
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

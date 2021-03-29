@@ -338,8 +338,8 @@ const tmpBranchingC$1 = function ($$0) {
     const tmpReturnArg$19 = tmpBranchingC$3(objPatternAfterDefault$7, objPatternCrashTest$3);
     return tmpReturnArg$19;
   } else {
-    const SSA_objPatternCrashTest$7 = objPatternAfterDefault$7 === null;
-    const tmpReturnArg$9 = tmpBranchingC$3(objPatternAfterDefault$7, SSA_objPatternCrashTest$7);
+    const tmpSSA_objPatternCrashTest$7 = objPatternAfterDefault$7 === null;
+    const tmpReturnArg$9 = tmpBranchingC$3(objPatternAfterDefault$7, tmpSSA_objPatternCrashTest$7);
     return tmpReturnArg$9;
   }
 };

@@ -46,8 +46,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const SSA_a = {};
-const varInitAssignLhsComputedObj = $(SSA_a);
+const tmpSSA_a = {};
+const varInitAssignLhsComputedObj = $(tmpSSA_a);
 varInitAssignLhsComputedObj.x = 30;
 $(30);
 `````

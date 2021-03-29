@@ -84,8 +84,8 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const SSA_a = tmpBinBothLhs + tmpBinBothRhs;
-const tmpIfTest = SSA_a === tmpSwitchValue;
+const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
+const tmpIfTest = tmpSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -103,7 +103,7 @@ const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
   $('fail2');
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

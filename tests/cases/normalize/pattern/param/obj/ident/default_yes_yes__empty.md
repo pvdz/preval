@@ -154,8 +154,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 const f = function () {
   debugger;
   const tmpCalleeParam$1 = { x: 'pass2' };
-  const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
-  const objPatternBeforeDefault$1 = SSA_bindingPatternObjRoot$1.x;
+  const tmpSSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
+  const objPatternBeforeDefault$1 = tmpSSA_bindingPatternObjRoot$1.x;
   const tmpIfTest$7 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$7) {
     const tmpReturnArg = $('fail');

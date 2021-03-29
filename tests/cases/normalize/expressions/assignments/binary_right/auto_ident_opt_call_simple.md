@@ -47,16 +47,16 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
   const tmpChainElementCall = $(1);
-  SSA_a = tmpChainElementCall;
+  tmpSSA_a = tmpChainElementCall;
 }
-const tmpBinBothRhs = SSA_a;
+const tmpBinBothRhs = tmpSSA_a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

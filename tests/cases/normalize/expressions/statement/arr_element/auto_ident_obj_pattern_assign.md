@@ -65,10 +65,10 @@ tmpNestedAssignObjPatternRhs.y;
 const tmpObjLitVal$3 = $(3);
 const tmpObjLitVal$5 = $(4);
 const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-const SSA_x$1 = tmpNestedAssignObjPatternRhs$1.x;
-const SSA_y$1 = tmpNestedAssignObjPatternRhs$1.y;
+const tmpSSA_x$1 = tmpNestedAssignObjPatternRhs$1.x;
+const tmpSSA_y$1 = tmpNestedAssignObjPatternRhs$1.y;
 tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
-$(a, SSA_x$1, SSA_y$1);
+$(a, tmpSSA_x$1, tmpSSA_y$1);
 `````
 
 ## Globals

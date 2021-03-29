@@ -45,10 +45,10 @@ if (tmpIfTest) {
 `````js filename=intro
 const x = $(1);
 $(x, 'a');
-const SSA_x = $(2);
+const tmpSSA_x = $(2);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  $(SSA_x, 'b');
+  $(tmpSSA_x, 'b');
 }
 `````
 

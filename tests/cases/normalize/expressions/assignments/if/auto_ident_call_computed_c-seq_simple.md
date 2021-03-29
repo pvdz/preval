@@ -43,8 +43,8 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-const SSA_a = tmpCallObj.$(1);
-$(SSA_a);
+const tmpSSA_a = tmpCallObj.$(1);
+$(tmpSSA_a);
 `````
 
 ## Globals

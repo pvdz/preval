@@ -54,22 +54,22 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-let SSA_a = $(tmpCalleeParam$1);
-if (SSA_a) {
-  SSA_a = 2;
+let tmpSSA_a = $(tmpCalleeParam$1);
+if (tmpSSA_a) {
+  tmpSSA_a = 2;
 }
-let tmpCalleeParam = SSA_a;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   const tmpCalleeParam$3 = $(1);
   let tmpNestedComplexRhs = $(tmpCalleeParam$3);
   if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = 2;
   }
-  SSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

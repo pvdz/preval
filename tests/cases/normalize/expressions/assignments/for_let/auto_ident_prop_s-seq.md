@@ -52,12 +52,12 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const SSA_a = b.c;
+const tmpSSA_a = b.c;
 while (true) {
-  $(SSA_a);
+  $(tmpSSA_a);
   $(1);
 }
-$(SSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

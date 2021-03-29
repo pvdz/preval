@@ -171,8 +171,8 @@ const f = function () {
     const tmpReturnArg$11 = tmpBranchingC(arrPatternStep, objPatternCrashTest);
     return tmpReturnArg$11;
   } else {
-    const SSA_objPatternCrashTest$3 = arrPatternStep === null;
-    const tmpReturnArg$1 = tmpBranchingC(arrPatternStep, SSA_objPatternCrashTest$3);
+    const tmpSSA_objPatternCrashTest$3 = arrPatternStep === null;
+    const tmpReturnArg$1 = tmpBranchingC(arrPatternStep, tmpSSA_objPatternCrashTest$3);
     return tmpReturnArg$1;
   }
 };

@@ -40,12 +40,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = 1;
-if (SSA_a) {
+let tmpSSA_a = 1;
+if (tmpSSA_a) {
   const tmpCalleeParam = $(1);
-  SSA_a = $(tmpCalleeParam);
+  tmpSSA_a = $(tmpCalleeParam);
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

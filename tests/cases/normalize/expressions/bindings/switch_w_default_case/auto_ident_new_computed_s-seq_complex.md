@@ -89,11 +89,11 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const SSA_b = { $: $ };
+const tmpSSA_b = { $: $ };
 const tmpCompProp = $('$');
-const tmpNewCallee = SSA_b[tmpCompProp];
-const SSA_a = new tmpNewCallee(1);
-$(SSA_a);
+const tmpNewCallee = tmpSSA_b[tmpCompProp];
+const tmpSSA_a = new tmpNewCallee(1);
+$(tmpSSA_a);
 $('fail1');
 $('fail2');
 `````

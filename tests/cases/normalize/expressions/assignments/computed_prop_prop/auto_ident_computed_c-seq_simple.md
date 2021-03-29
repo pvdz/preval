@@ -51,9 +51,9 @@ const b = { c: 1 };
 const obj = {};
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
-const SSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-obj[SSA_a];
-$(SSA_a, b);
+const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+obj[tmpSSA_a];
+$(tmpSSA_a, b);
 `````
 
 ## Globals

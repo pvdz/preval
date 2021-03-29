@@ -52,7 +52,7 @@ $(x);
 `````js filename=intro
 const tmpObjLitVal = { c: $ };
 const a = { b: tmpObjLitVal };
-let SSA_x = undefined;
+let tmpSSA_x = undefined;
 const tmpIfTest = a != null;
 if (tmpIfTest) {
   const tmpChainElementObject = a.b;
@@ -60,10 +60,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject$1 != null;
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);
-    SSA_x = tmpChainElementCall;
+    tmpSSA_x = tmpChainElementCall;
   }
 }
-$(SSA_x);
+$(tmpSSA_x);
 `````
 
 ## Globals

@@ -64,20 +64,20 @@ const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-let SSA_b = arrPatternSplat[0];
-let SSA_a = tmpNestedAssignArrPatternRhs;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_b = arrPatternSplat[0];
+let tmpSSA_a = tmpNestedAssignArrPatternRhs;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   const tmpArrElement$1 = $(2);
   const tmpCalleeParam$3 = [tmpArrElement$1];
   const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$3);
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-  SSA_b = arrPatternSplat$1[0];
-  SSA_a = tmpNestedAssignArrPatternRhs$1;
+  tmpSSA_b = arrPatternSplat$1[0];
+  tmpSSA_a = tmpNestedAssignArrPatternRhs$1;
   tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
 }
 $(tmpCalleeParam);
-$(SSA_a, SSA_b);
+$(tmpSSA_a, tmpSSA_b);
 `````
 
 ## Globals

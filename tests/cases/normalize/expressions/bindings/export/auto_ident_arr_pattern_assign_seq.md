@@ -56,11 +56,11 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const SSA_x = arrPatternSplat[0];
-const SSA_y = arrPatternSplat[1];
-const SSA_a = tmpNestedAssignArrPatternRhs;
-export { SSA_a as a };
-$(tmpNestedAssignArrPatternRhs, SSA_x, SSA_y);
+const tmpSSA_x = arrPatternSplat[0];
+const tmpSSA_y = arrPatternSplat[1];
+const tmpSSA_a = tmpNestedAssignArrPatternRhs;
+export { tmpSSA_a as a };
+$(tmpNestedAssignArrPatternRhs, tmpSSA_x, tmpSSA_y);
 `````
 
 ## Globals

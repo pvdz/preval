@@ -50,18 +50,18 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-let SSA_a = { b: tmpObjLitVal };
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = { b: tmpObjLitVal };
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   const tmpObjLitVal$1 = $(1);
   const tmpNestedComplexRhs = { b: tmpObjLitVal$1 };
-  SSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-const tmpAssignMemLhsObj = $(SSA_a);
+const tmpAssignMemLhsObj = $(tmpSSA_a);
 tmpAssignMemLhsObj.b = 2;
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

@@ -36,9 +36,9 @@ export { foo };
 ## Output
 
 `````js filename=intro
-const SSA_foo = 10;
+const tmpSSA_foo = 10;
 $(10);
-export { SSA_foo as foo };
+export { tmpSSA_foo as foo };
 `````
 
 ## Globals

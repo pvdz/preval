@@ -87,9 +87,9 @@ tmpCallCallee$7(tmpCalleeParam$7);
 const f = function () {
   debugger;
   const tmpCalleeParam = $(0);
-  const SSA_a = $(tmpCalleeParam);
-  if (SSA_a) {
-    $(SSA_a);
+  const tmpSSA_a = $(tmpCalleeParam);
+  if (tmpSSA_a) {
+    $(tmpSSA_a);
     return undefined;
   } else {
     $(2);

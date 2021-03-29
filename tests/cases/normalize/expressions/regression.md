@@ -45,8 +45,8 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = c;
 ## Output
 
 `````js filename=intro
-const SSA_x = {};
-SSA_x[3] = 3;
+const tmpSSA_x = {};
+tmpSSA_x[3] = 3;
 `````
 
 ## Globals

@@ -87,8 +87,8 @@ const f = function () {
     return 60;
   } else {
     const tmpCalleeParam$1 = $(100);
-    const SSA_tmpReturnArg$3 = $(tmpCalleeParam$1);
-    return SSA_tmpReturnArg$3;
+    const tmpSSA_tmpReturnArg$3 = $(tmpCalleeParam$1);
+    return tmpSSA_tmpReturnArg$3;
   }
 };
 const a = { a: 999, b: 1000 };

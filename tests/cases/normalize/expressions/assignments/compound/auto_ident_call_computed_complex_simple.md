@@ -49,9 +49,9 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
 const tmpBinBothRhs = tmpCallObj.$(1);
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

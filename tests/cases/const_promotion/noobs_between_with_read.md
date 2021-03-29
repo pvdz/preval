@@ -50,8 +50,8 @@ $(x, a, 'final');
 
 `````js filename=intro
 const x = $(10);
-const SSA_x = $(20);
-$(SSA_x, x, 'final');
+const tmpSSA_x = $(20);
+$(tmpSSA_x, x, 'final');
 `````
 
 ## Globals

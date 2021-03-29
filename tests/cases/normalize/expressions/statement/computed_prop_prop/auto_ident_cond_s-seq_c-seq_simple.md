@@ -50,8 +50,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const obj = {};
-const SSA_tmpCompProp = $(60);
-obj[SSA_tmpCompProp];
+const tmpSSA_tmpCompProp = $(60);
+obj[tmpSSA_tmpCompProp];
 $(a);
 `````
 

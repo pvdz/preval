@@ -85,14 +85,14 @@ tmpCallCallee$11(tmpCalleeParam$11);
 const f = function () {
   debugger;
   const tmpCalleeParam = $(1);
-  const SSA_a = $(tmpCalleeParam);
-  if (SSA_a) {
+  const tmpSSA_a = $(tmpCalleeParam);
+  if (tmpSSA_a) {
     const tmpCalleeParam$5 = $(2);
-    const SSA_a$1 = $(tmpCalleeParam$5);
-    $(SSA_a$1);
+    const tmpSSA_a$1 = $(tmpCalleeParam$5);
+    $(tmpSSA_a$1);
     return undefined;
   } else {
-    $(SSA_a);
+    $(tmpSSA_a);
     return undefined;
   }
 };

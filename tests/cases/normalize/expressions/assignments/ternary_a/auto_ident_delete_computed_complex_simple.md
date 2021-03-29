@@ -52,14 +52,14 @@ $(a, arg);
 const arg = { y: 1 };
 let tmpCalleeParam = undefined;
 const tmpDeleteObj = $(arg);
-const SSA_a = delete tmpDeleteObj.y;
-if (SSA_a) {
+const tmpSSA_a = delete tmpDeleteObj.y;
+if (tmpSSA_a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

@@ -43,14 +43,14 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-  SSA_a = tmpChainElementCall$1;
+  tmpSSA_a = tmpChainElementCall$1;
 }
-const tmpThrowArg = SSA_a;
+const tmpThrowArg = tmpSSA_a;
 throw tmpThrowArg;
 `````
 

@@ -70,9 +70,9 @@ const f = function () {
   if (tmpIfTest) {
     const z = [10, 20, 30];
     const arrPatternSplat = [...z];
-    const SSA_x = arrPatternSplat[0];
-    const SSA_y = arrPatternSplat[1];
-    $(z, SSA_x, SSA_y, z);
+    const tmpSSA_x = arrPatternSplat[0];
+    const tmpSSA_y = arrPatternSplat[1];
+    $(z, tmpSSA_x, tmpSSA_y, z);
   }
 };
 const tmpCalleeParam = f();

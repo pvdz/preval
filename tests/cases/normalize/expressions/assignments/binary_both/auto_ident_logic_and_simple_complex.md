@@ -51,21 +51,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-let SSA_a = 1;
-if (SSA_a) {
+let tmpSSA_a = 1;
+if (tmpSSA_a) {
   const tmpCalleeParam$1 = $(1);
-  SSA_a = $(tmpCalleeParam$1);
+  tmpSSA_a = $(tmpCalleeParam$1);
 }
-const tmpBinBothLhs = SSA_a;
-let SSA_a$1 = 1;
-if (SSA_a$1) {
+const tmpBinBothLhs = tmpSSA_a;
+let tmpSSA_a$1 = 1;
+if (tmpSSA_a$1) {
   const tmpCalleeParam$3 = $(1);
-  SSA_a$1 = $(tmpCalleeParam$3);
+  tmpSSA_a$1 = $(tmpCalleeParam$3);
 }
-const tmpBinBothRhs = SSA_a$1;
+const tmpBinBothRhs = tmpSSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(SSA_a$1);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

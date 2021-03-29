@@ -60,10 +60,10 @@ const x = $(1);
 if (x) {
 } else {
   $(x, 'pass');
-  const SSA_x = $(1);
-  if (SSA_x) {
+  const tmpSSA_x = $(1);
+  if (tmpSSA_x) {
   } else {
-    $(SSA_x, 'hit');
+    $(tmpSSA_x, 'hit');
   }
 }
 `````

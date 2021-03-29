@@ -77,8 +77,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(1);
-const SSA_tmpReturnArg$3 = $(tmpCalleeParam$1);
-$(SSA_tmpReturnArg$3);
+const tmpSSA_tmpReturnArg$3 = $(tmpCalleeParam$1);
+$(tmpSSA_tmpReturnArg$3);
 $(a);
 `````
 

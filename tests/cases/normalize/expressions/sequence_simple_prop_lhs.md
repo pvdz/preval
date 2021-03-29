@@ -47,10 +47,10 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 10 };
 const c = { x: tmpObjLitVal };
-const SSA_b = c.x;
-const tmpBinLhs = SSA_b.y;
-const SSA_a = tmpBinLhs === 'Identifier';
-$(SSA_a);
+const tmpSSA_b = c.x;
+const tmpBinLhs = tmpSSA_b.y;
+const tmpSSA_a = tmpBinLhs === 'Identifier';
+$(tmpSSA_a);
 `````
 
 ## Globals

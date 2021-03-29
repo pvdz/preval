@@ -63,15 +63,15 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const SSA_a = function () {
+const tmpSSA_a = function () {
   debugger;
 };
-const tmpIfTest = SSA_a === tmpSwitchValue;
+const tmpIfTest = tmpSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchCaseToStart <= 0;
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

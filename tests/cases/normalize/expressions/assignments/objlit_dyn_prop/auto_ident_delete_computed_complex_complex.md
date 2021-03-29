@@ -49,10 +49,10 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-const SSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpCalleeParam = { [SSA_a]: 10 };
+const tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpCalleeParam = { [tmpSSA_a]: 10 };
 $(tmpCalleeParam);
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

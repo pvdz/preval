@@ -122,8 +122,8 @@ const tmpBranchingC = function ($$0) {
     return tmpReturnArg$5;
   } else {
     const tmpCalleeParam$17 = $(2);
-    const SSA_tmpReturnArg$13 = $(tmpCalleeParam$17);
-    return SSA_tmpReturnArg$13;
+    const tmpSSA_tmpReturnArg$13 = $(tmpCalleeParam$17);
+    return tmpSSA_tmpReturnArg$13;
   }
 };
 const f = function () {
@@ -135,8 +135,8 @@ const f = function () {
     return tmpReturnArg$25;
   } else {
     const tmpCalleeParam$7 = $(1);
-    const SSA_tmpReturnArg$3 = $(tmpCalleeParam$7);
-    const tmpReturnArg$9 = tmpBranchingC(SSA_tmpReturnArg$3);
+    const tmpSSA_tmpReturnArg$3 = $(tmpCalleeParam$7);
+    const tmpReturnArg$9 = tmpBranchingC(tmpSSA_tmpReturnArg$3);
     return tmpReturnArg$9;
   }
 };

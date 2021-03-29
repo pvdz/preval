@@ -70,8 +70,8 @@ if (tmpIfTest$1) {
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const SSA_b$1 = tmpNestedAssignObjPatternRhs.b;
-$(tmpNestedAssignObjPatternRhs, SSA_b$1);
+const tmpSSA_b$1 = tmpNestedAssignObjPatternRhs.b;
+$(tmpNestedAssignObjPatternRhs, tmpSSA_b$1);
 `````
 
 ## Globals

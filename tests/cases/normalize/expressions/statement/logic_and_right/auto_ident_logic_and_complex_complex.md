@@ -49,8 +49,8 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpCalleeParam = $(1);
-  const SSA_tmpIfTest = $(tmpCalleeParam);
-  if (SSA_tmpIfTest) {
+  const tmpSSA_tmpIfTest = $(tmpCalleeParam);
+  if (tmpSSA_tmpIfTest) {
     const tmpCalleeParam$1 = $(2);
     $(tmpCalleeParam$1);
   }

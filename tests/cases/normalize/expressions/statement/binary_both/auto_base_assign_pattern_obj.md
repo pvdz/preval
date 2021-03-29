@@ -61,9 +61,9 @@ tmpNestedAssignObjPatternRhs.b;
 const tmpObjLitVal$1 = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
 const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
-const SSA_b$1 = tmpNestedAssignObjPatternRhs$1.b;
+const tmpSSA_b$1 = tmpNestedAssignObjPatternRhs$1.b;
 tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
-$(a, SSA_b$1);
+$(a, tmpSSA_b$1);
 `````
 
 ## Globals

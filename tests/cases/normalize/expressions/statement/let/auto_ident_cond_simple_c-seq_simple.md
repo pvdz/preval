@@ -40,8 +40,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const SSA_xyz = $(60);
-$(SSA_xyz);
+const tmpSSA_xyz = $(60);
+$(tmpSSA_xyz);
 $(a);
 `````
 

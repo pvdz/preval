@@ -50,9 +50,9 @@ const tmpCalleeParam = ['before ', ' after'];
 const tmpCallCallee$1 = $($);
 const tmpCalleeParam$3 = $(1);
 const tmpCalleeParam$5 = $(2);
-const SSA_a = tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
-$(tmpCalleeParam, SSA_a);
-$(SSA_a);
+const tmpSSA_a = tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
+$(tmpCalleeParam, tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

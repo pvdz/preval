@@ -43,8 +43,8 @@ while (true) {
 `````js filename=intro
 $(10);
 while (true) {
-  const SSA_x = $(20, 'set');
-  $(SSA_x, 'loop');
+  const tmpSSA_x = $(20, 'set');
+  $(tmpSSA_x, 'loop');
 }
 `````
 

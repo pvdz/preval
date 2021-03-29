@@ -42,11 +42,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const SSA_f = { x: 10 };
+const tmpSSA_f = { x: 10 };
 let tmpCalleeParam = undefined;
-const tmpIfTest = SSA_f != null;
+const tmpIfTest = tmpSSA_f != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = SSA_f.x;
+  const tmpChainElementObject = tmpSSA_f.x;
   tmpCalleeParam = tmpChainElementObject;
 }
 $(tmpCalleeParam);

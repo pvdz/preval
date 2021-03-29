@@ -216,8 +216,8 @@ const f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = ['fail2'];
-    const SSA_objPatternAfterDefault$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_objPatternAfterDefault$1);
+    const tmpSSA_objPatternAfterDefault$1 = $(tmpCalleeParam$1);
+    const tmpReturnArg = tmpBranchingC(tmpSSA_objPatternAfterDefault$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$13 = tmpBranchingC(objPatternBeforeDefault);

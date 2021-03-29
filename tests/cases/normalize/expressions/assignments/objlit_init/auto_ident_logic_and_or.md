@@ -53,20 +53,20 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-let SSA_a = $(tmpCalleeParam$1);
-if (SSA_a) {
+let tmpSSA_a = $(tmpCalleeParam$1);
+if (tmpSSA_a) {
   const tmpCalleeParam$3 = $(1);
-  SSA_a = $(tmpCalleeParam$3);
+  tmpSSA_a = $(tmpCalleeParam$3);
 }
-if (SSA_a) {
+if (tmpSSA_a) {
 } else {
   const tmpCalleeParam$5 = $(2);
-  SSA_a = $(tmpCalleeParam$5);
+  tmpSSA_a = $(tmpCalleeParam$5);
 }
-const tmpObjLitVal = SSA_a;
+const tmpObjLitVal = tmpSSA_a;
 const tmpCalleeParam = { x: tmpObjLitVal };
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

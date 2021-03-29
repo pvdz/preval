@@ -51,14 +51,14 @@ $(a, x);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 const tmpUnaryArg = $(1);
-const SSA_a = typeof tmpUnaryArg;
-if (SSA_a) {
+const tmpSSA_a = typeof tmpUnaryArg;
+if (tmpSSA_a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(SSA_a, 1);
+$(tmpSSA_a, 1);
 `````
 
 ## Globals

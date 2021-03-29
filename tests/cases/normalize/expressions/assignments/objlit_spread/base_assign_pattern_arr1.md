@@ -49,10 +49,10 @@ $(a, b);
 const b = [];
 const a = { a: 999, b: 1000 };
 const arrPatternSplat = [...b];
-const SSA_b = arrPatternSplat[0];
+const tmpSSA_b = arrPatternSplat[0];
 const tmpCalleeParam = { ...b };
 $(tmpCalleeParam);
-$(a, SSA_b);
+$(a, tmpSSA_b);
 `````
 
 ## Globals

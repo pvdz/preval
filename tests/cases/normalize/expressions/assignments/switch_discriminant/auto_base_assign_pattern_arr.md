@@ -66,9 +66,9 @@ const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const SSA_b = arrPatternSplat[0];
+const tmpSSA_b = arrPatternSplat[0];
 $(100);
-$(tmpNestedAssignArrPatternRhs, SSA_b);
+$(tmpNestedAssignArrPatternRhs, tmpSSA_b);
 `````
 
 ## Globals

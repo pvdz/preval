@@ -78,14 +78,14 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const SSA_x = arrPatternSplat[0];
-const SSA_y = arrPatternSplat[1];
+const tmpSSA_x = arrPatternSplat[0];
+const tmpSSA_y = arrPatternSplat[1];
 const tmpIfTest = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchCaseToStart <= 0;
-$(a, SSA_x, SSA_y);
+$(a, tmpSSA_x, tmpSSA_y);
 `````
 
 ## Globals

@@ -57,9 +57,9 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(100);
   tmpBinBothRhs = $(tmpCalleeParam$1);
 }
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

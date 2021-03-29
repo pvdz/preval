@@ -47,10 +47,10 @@ $(a, b);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
-const SSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpAnonDefaultExport = SSA_a;
+const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpAnonDefaultExport = tmpSSA_a;
 export { tmpAnonDefaultExport as default };
-$(SSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

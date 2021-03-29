@@ -73,8 +73,8 @@ $(x);
 const tmpCalleeParam = [1, 2];
 const arr = $(tmpCalleeParam);
 const tmpBinBothRhs = [...arr, 20, 30, 40, 50, 60];
-const SSA_x = 10 + tmpBinBothRhs;
-$(SSA_x);
+const tmpSSA_x = 10 + tmpBinBothRhs;
+$(tmpSSA_x);
 `````
 
 ## Globals

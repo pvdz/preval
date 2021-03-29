@@ -57,18 +57,18 @@ $(a);
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
-  SSA_a = tmpChainElementCall;
+  tmpSSA_a = tmpChainElementCall;
 }
-const xyz = SSA_a;
+const xyz = tmpSSA_a;
 $(xyz);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

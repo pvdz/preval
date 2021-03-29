@@ -35,8 +35,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const SSA_x = $.length;
-$(SSA_x);
+const tmpSSA_x = $.length;
+$(tmpSSA_x);
 `````
 
 ## Globals

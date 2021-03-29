@@ -41,8 +41,8 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 `````js filename=intro
 const a = {};
 const tmpBinBothRhs = $();
-const SSA_a = a + tmpBinBothRhs;
-a.foo = SSA_a;
+const tmpSSA_a = a + tmpBinBothRhs;
+a.foo = tmpSSA_a;
 `````
 
 ## Globals

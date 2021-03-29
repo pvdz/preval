@@ -49,10 +49,10 @@ const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const SSA_b = arrPatternSplat[0];
-const SSA_a = tmpNestedAssignArrPatternRhs;
-export { SSA_a as a };
-$(tmpNestedAssignArrPatternRhs, SSA_b);
+const tmpSSA_b = arrPatternSplat[0];
+const tmpSSA_a = tmpNestedAssignArrPatternRhs;
+export { tmpSSA_a as a };
+$(tmpNestedAssignArrPatternRhs, tmpSSA_b);
 `````
 
 ## Globals

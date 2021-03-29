@@ -51,14 +51,14 @@ $(a);
 const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const SSA_a = new tmpNewCallee(1);
-let tmpCalleeParam = SSA_a;
+const tmpSSA_a = new tmpNewCallee(1);
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

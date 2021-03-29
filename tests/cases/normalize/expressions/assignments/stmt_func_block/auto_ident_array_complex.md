@@ -57,8 +57,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const SSA_a = [tmpArrElement, 2, tmpArrElement$3];
-$(SSA_a);
+const tmpSSA_a = [tmpArrElement, 2, tmpArrElement$3];
+$(tmpSSA_a);
 $(undefined);
 `````
 

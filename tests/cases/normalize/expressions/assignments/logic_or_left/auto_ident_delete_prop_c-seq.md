@@ -53,14 +53,14 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const SSA_a = delete tmpDeleteObj.y;
-let tmpCalleeParam = SSA_a;
+const tmpSSA_a = delete tmpDeleteObj.y;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

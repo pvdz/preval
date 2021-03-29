@@ -40,8 +40,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const SSA_tmpTemplateExpr = $(60);
-const tmpCalleeParam = `before  ${SSA_tmpTemplateExpr}  after`;
+const tmpSSA_tmpTemplateExpr = $(60);
+const tmpCalleeParam = `before  ${tmpSSA_tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

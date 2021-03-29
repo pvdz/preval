@@ -45,8 +45,8 @@ throw tmpThrowArg;
 const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
-const SSA_a = tmpCallCompObj[tmpCallCompProp](1);
-throw SSA_a;
+const tmpSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+throw tmpSSA_a;
 `````
 
 ## Globals

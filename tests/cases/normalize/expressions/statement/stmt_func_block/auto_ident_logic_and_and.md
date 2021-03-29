@@ -145,8 +145,8 @@ const f = function () {
   const tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
     const tmpCalleeParam$5 = $(1);
-    const SSA_tmpIfTest$1 = $(tmpCalleeParam$5);
-    const tmpReturnArg = tmpBranchingC(a, SSA_tmpIfTest$1);
+    const tmpSSA_tmpIfTest$1 = $(tmpCalleeParam$5);
+    const tmpReturnArg = tmpBranchingC(a, tmpSSA_tmpIfTest$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$13 = tmpBranchingC(a, tmpIfTest);

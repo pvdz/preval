@@ -37,9 +37,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const SSA_a = $(2);
-const SSA_b = $(5);
-$(SSA_a, SSA_b);
+const tmpSSA_a = $(2);
+const tmpSSA_b = $(5);
+$(tmpSSA_a, tmpSSA_b);
 `````
 
 ## Globals

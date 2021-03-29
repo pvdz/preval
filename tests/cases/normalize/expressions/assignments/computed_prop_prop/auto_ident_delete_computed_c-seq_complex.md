@@ -55,9 +55,9 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-const SSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-obj[SSA_a];
-$(SSA_a, arg);
+const tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+obj[tmpSSA_a];
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

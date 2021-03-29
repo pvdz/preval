@@ -45,8 +45,8 @@ throw tmpThrowArg;
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-const SSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-throw SSA_a;
+const tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+throw tmpSSA_a;
 `````
 
 ## Globals

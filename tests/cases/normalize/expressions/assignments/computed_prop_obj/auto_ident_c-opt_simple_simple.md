@@ -52,15 +52,15 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
-  SSA_a = tmpChainElementObject;
+  tmpSSA_a = tmpChainElementObject;
 }
-const tmpCompObj = SSA_a;
+const tmpCompObj = tmpSSA_a;
 tmpCompObj.a;
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

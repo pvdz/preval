@@ -60,9 +60,9 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallCompProp = $('$');
-const SSA_a = b[tmpCallCompProp](1);
+const tmpSSA_a = b[tmpCallCompProp](1);
 $(100);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

@@ -102,9 +102,9 @@ if (tmpIfTest$11) {
 ## Output
 
 `````js filename=intro
-const SSA_b = { $: $ };
-let SSA_a = undefined;
-const tmpChainElementCall = $(SSA_b);
+const tmpSSA_b = { $: $ };
+let tmpSSA_a = undefined;
+const tmpChainElementCall = $(tmpSSA_b);
 const tmpIfTest$5 = tmpChainElementCall != null;
 if (tmpIfTest$5) {
   const tmpChainRootComputed = $('$');
@@ -114,10 +114,10 @@ if (tmpIfTest$5) {
     const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
-    SSA_a = tmpChainElementCall$1;
+    tmpSSA_a = tmpChainElementCall$1;
   }
 }
-$(SSA_a);
+$(tmpSSA_a);
 $('fail1');
 $('fail2');
 `````

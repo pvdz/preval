@@ -51,9 +51,9 @@ const a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
 };
-const SSA_a = a * f;
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = a * f;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

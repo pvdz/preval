@@ -159,8 +159,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  const SSA_bindingPatternArrRoot$1 = $('pass2');
-  const arrPatternSplat$1 = [...SSA_bindingPatternArrRoot$1];
+  const tmpSSA_bindingPatternArrRoot$1 = $('pass2');
+  const arrPatternSplat$1 = [...tmpSSA_bindingPatternArrRoot$1];
   const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
   const tmpIfTest$7 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$7) {

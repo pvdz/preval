@@ -113,9 +113,9 @@ const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
   $('c');
 }
-const SSA_x = f();
-$(SSA_x);
-$(SSA_x);
+const tmpSSA_x = f();
+$(tmpSSA_x);
+$(tmpSSA_x);
 `````
 
 ## Globals

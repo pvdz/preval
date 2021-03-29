@@ -92,7 +92,7 @@ let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const SSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
 const tmpIfTest = tmpNestedAssignObjPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -111,7 +111,7 @@ const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
   $('fail2');
 }
-$(tmpNestedAssignObjPatternRhs, SSA_b);
+$(tmpNestedAssignObjPatternRhs, tmpSSA_b);
 `````
 
 ## Globals

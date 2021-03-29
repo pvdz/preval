@@ -52,11 +52,11 @@ $(a);
 const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const SSA_a = new tmpNewCallee(1);
+const tmpSSA_a = new tmpNewCallee(1);
 while (true) {
   $(1);
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

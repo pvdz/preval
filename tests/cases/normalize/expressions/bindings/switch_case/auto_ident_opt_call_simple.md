@@ -62,13 +62,13 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest$3 = $ != null;
 if (tmpIfTest$3) {
   const tmpChainElementCall = $(1);
-  SSA_a = tmpChainElementCall;
+  tmpSSA_a = tmpChainElementCall;
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

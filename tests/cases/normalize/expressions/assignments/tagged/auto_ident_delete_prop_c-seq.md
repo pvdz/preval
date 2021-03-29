@@ -51,9 +51,9 @@ const tmpCalleeParam = ['before ', ' after'];
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const SSA_a = delete tmpDeleteObj.y;
-$(tmpCalleeParam, SSA_a);
-$(SSA_a, arg);
+const tmpSSA_a = delete tmpDeleteObj.y;
+$(tmpCalleeParam, tmpSSA_a);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

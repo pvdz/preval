@@ -56,8 +56,8 @@ $(a);
 $(1);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const SSA_a = tmpBinBothLhs + tmpBinBothRhs;
-$(SSA_a);
+const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
+$(tmpSSA_a);
 `````
 
 ## Globals

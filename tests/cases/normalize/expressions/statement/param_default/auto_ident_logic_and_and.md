@@ -199,8 +199,8 @@ $(a);
 const tmpBranchingA = function () {
   debugger;
   const tmpCalleeParam$5 = $(1);
-  const SSA_p$1 = $(tmpCalleeParam$5);
-  if (SSA_p$1) {
+  const tmpSSA_p$1 = $(tmpCalleeParam$5);
+  if (tmpSSA_p$1) {
     const tmpReturnArg$13 = tmpBranchingA$1();
     return tmpReturnArg$13;
   } else {
@@ -210,8 +210,8 @@ const tmpBranchingA = function () {
 const tmpBranchingA$1 = function () {
   debugger;
   const tmpCalleeParam$13 = $(1);
-  const SSA_p$7 = $(tmpCalleeParam$13);
-  if (SSA_p$7) {
+  const tmpSSA_p$7 = $(tmpCalleeParam$13);
+  if (tmpSSA_p$7) {
     const tmpCalleeParam$25 = $(2);
     $(tmpCalleeParam$25);
     return undefined;

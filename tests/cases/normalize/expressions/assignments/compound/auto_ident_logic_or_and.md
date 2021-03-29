@@ -65,9 +65,9 @@ if (tmpBinBothRhs) {
     tmpBinBothRhs = $(tmpCalleeParam$5);
   }
 }
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

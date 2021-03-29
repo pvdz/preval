@@ -61,12 +61,12 @@ const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 = $(2);
-  const SSA_tmpIfTest = $(tmpCalleeParam$1);
-  if (SSA_tmpIfTest) {
+  const tmpSSA_tmpIfTest = $(tmpCalleeParam$1);
+  if (tmpSSA_tmpIfTest) {
   } else {
     const tmpCalleeParam$3 = $(0);
-    const SSA_tmpIfTest$1 = $(tmpCalleeParam$3);
-    if (SSA_tmpIfTest$1) {
+    const tmpSSA_tmpIfTest$1 = $(tmpCalleeParam$3);
+    if (tmpSSA_tmpIfTest$1) {
     } else {
       const tmpCalleeParam$5 = $(2);
       $(tmpCalleeParam$5);

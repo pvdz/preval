@@ -61,11 +61,11 @@ $(10);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const SSA_x = $(20, 'set');
+    const tmpSSA_x = $(20, 'set');
     while (true) {
       const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
-        $(SSA_x, 'loop');
+        $(tmpSSA_x, 'loop');
       } else {
         break;
       }

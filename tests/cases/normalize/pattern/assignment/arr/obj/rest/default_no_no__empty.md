@@ -48,8 +48,8 @@ const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const tmpCalleeParam$1 = [];
-const SSA_x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
-$(SSA_x);
+const tmpSSA_x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
+$(tmpSSA_x);
 `````
 
 ## Globals

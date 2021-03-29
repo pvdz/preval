@@ -118,9 +118,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$3 = $(1);
-const SSA_tmpNestedComplexRhs$3 = $(tmpCalleeParam$3);
+const tmpSSA_tmpNestedComplexRhs$3 = $(tmpCalleeParam$3);
 $(undefined);
-$(SSA_tmpNestedComplexRhs$3);
+$(tmpSSA_tmpNestedComplexRhs$3);
 `````
 
 ## Globals

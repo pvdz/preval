@@ -45,12 +45,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = function () {
+const tmpSSA_a = function () {
   debugger;
 };
-const tmpCalleeParam = { x: SSA_a };
+const tmpCalleeParam = { x: tmpSSA_a };
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

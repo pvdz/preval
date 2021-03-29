@@ -76,7 +76,7 @@ $(a);
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
@@ -85,10 +85,10 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject$3 != null;
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
-    SSA_a = tmpChainElementCall;
+    tmpSSA_a = tmpChainElementCall;
   }
 }
-let tmpCalleeParam = SSA_a;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
   const tmpIfTest$3 = b != null;
@@ -102,11 +102,11 @@ if (tmpCalleeParam) {
       tmpNestedComplexRhs = tmpChainElementCall$1;
     }
   }
-  SSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

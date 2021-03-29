@@ -68,11 +68,11 @@ tmpNestedAssignObjPatternRhs.y;
 const tmpObjLitVal$3 = $(3);
 const tmpObjLitVal$5 = $(4);
 const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-const SSA_x$1 = tmpNestedAssignObjPatternRhs$1.x;
-const SSA_y$1 = tmpNestedAssignObjPatternRhs$1.y;
+const tmpSSA_x$1 = tmpNestedAssignObjPatternRhs$1.x;
+const tmpSSA_y$1 = tmpNestedAssignObjPatternRhs$1.y;
 const tmpCalleeParam = tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
 $(tmpCalleeParam);
-$(tmpNestedAssignObjPatternRhs$1, SSA_x$1, SSA_y$1);
+$(tmpNestedAssignObjPatternRhs$1, tmpSSA_x$1, tmpSSA_y$1);
 `````
 
 ## Globals

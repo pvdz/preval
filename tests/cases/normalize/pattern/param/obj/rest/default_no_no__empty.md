@@ -86,9 +86,9 @@ tmpCallCallee$5(tmpCalleeParam$9);
 
 `````js filename=intro
 const tmpCalleeParam$1 = { a: 'pass' };
-const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
+const tmpSSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
 const tmpCalleeParam$5 = [];
-const x$1 = objPatternRest(SSA_bindingPatternObjRoot$1, tmpCalleeParam$5, 'x');
+const x$1 = objPatternRest(tmpSSA_bindingPatternObjRoot$1, tmpCalleeParam$5, 'x');
 $(x$1);
 `````
 

@@ -158,14 +158,14 @@ const tmpBranchingC$1 = function ($$0, $$1) {
 };
 const f = function () {
   debugger;
-  const SSA_bindingPatternObjRoot$1 = $('pass');
-  const objPatternCrashTest$1 = SSA_bindingPatternObjRoot$1 === undefined;
+  const tmpSSA_bindingPatternObjRoot$1 = $('pass');
+  const objPatternCrashTest$1 = tmpSSA_bindingPatternObjRoot$1 === undefined;
   if (objPatternCrashTest$1) {
-    const tmpReturnArg = tmpBranchingC$1(SSA_bindingPatternObjRoot$1, objPatternCrashTest$1);
+    const tmpReturnArg = tmpBranchingC$1(tmpSSA_bindingPatternObjRoot$1, objPatternCrashTest$1);
     return tmpReturnArg;
   } else {
-    const SSA_objPatternCrashTest$1 = SSA_bindingPatternObjRoot$1 === null;
-    const tmpReturnArg$3 = tmpBranchingC$1(SSA_bindingPatternObjRoot$1, SSA_objPatternCrashTest$1);
+    const tmpSSA_objPatternCrashTest$1 = tmpSSA_bindingPatternObjRoot$1 === null;
+    const tmpReturnArg$3 = tmpBranchingC$1(tmpSSA_bindingPatternObjRoot$1, tmpSSA_objPatternCrashTest$1);
     return tmpReturnArg$3;
   }
 };

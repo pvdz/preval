@@ -68,8 +68,8 @@ const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-let SSA_a = tmpPostUpdArgVal;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = tmpPostUpdArgVal;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpCalleeParam$3 = $(b);
@@ -77,11 +77,11 @@ if (tmpCalleeParam) {
   const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
   const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
   tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
-  SSA_a = tmpPostUpdArgVal$1;
+  tmpSSA_a = tmpPostUpdArgVal$1;
   tmpCalleeParam = tmpPostUpdArgVal$1;
 }
 $(tmpCalleeParam);
-$(SSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

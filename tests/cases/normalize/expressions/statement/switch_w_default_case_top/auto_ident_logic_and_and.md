@@ -120,8 +120,8 @@ tmpSwitchBreak: {
     const tmpIfTest$5 = $(tmpCalleeParam);
     if (tmpIfTest$5) {
       const tmpCalleeParam$1 = $(1);
-      const SSA_tmpIfTest$5 = $(tmpCalleeParam$1);
-      if (SSA_tmpIfTest$5) {
+      const tmpSSA_tmpIfTest$5 = $(tmpCalleeParam$1);
+      if (tmpSSA_tmpIfTest$5) {
         const tmpCalleeParam$3 = $(2);
         $(tmpCalleeParam$3);
       }

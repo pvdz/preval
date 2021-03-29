@@ -60,18 +60,18 @@ $(a);
 const f = function () {
   debugger;
 };
-let SSA_a = f;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = f;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   const f$1 = function () {
     debugger;
   };
-  SSA_a = f$1;
+  tmpSSA_a = f$1;
   tmpCalleeParam = f$1;
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

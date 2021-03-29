@@ -57,9 +57,9 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const SSA_a = delete arg.y;
+const tmpSSA_a = delete arg.y;
 $(100);
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

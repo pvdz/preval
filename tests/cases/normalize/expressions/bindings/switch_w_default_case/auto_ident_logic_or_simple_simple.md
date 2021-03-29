@@ -84,12 +84,12 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-let SSA_a = 0;
-if (SSA_a) {
+let tmpSSA_a = 0;
+if (tmpSSA_a) {
 } else {
-  SSA_a = 2;
+  tmpSSA_a = 2;
 }
-$(SSA_a);
+$(tmpSSA_a);
 $('fail1');
 $('fail2');
 `````

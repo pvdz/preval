@@ -39,8 +39,8 @@ $(a);
 `````js filename=intro
 const a = $(1);
 const tmpBinBothRhs = $(2);
-const SSA_a = a + tmpBinBothRhs;
-$(SSA_a);
+const tmpSSA_a = a + tmpBinBothRhs;
+$(tmpSSA_a);
 `````
 
 ## Globals

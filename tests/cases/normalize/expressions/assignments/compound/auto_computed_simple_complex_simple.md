@@ -49,11 +49,11 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 const tmpBinBothRhs = { b: tmpObjLitVal };
-const SSA_a = a * tmpBinBothRhs;
-$(SSA_a);
+const tmpSSA_a = a * tmpBinBothRhs;
+$(tmpSSA_a);
 const tmpAssignComMemLhsProp = $('b');
-SSA_a[tmpAssignComMemLhsProp] = 2;
-$(SSA_a);
+tmpSSA_a[tmpAssignComMemLhsProp] = 2;
+$(tmpSSA_a);
 `````
 
 ## Globals

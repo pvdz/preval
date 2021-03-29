@@ -133,8 +133,8 @@ const tmpBranchingC = function ($$0, $$1) {
 if (objPatternCrashTest) {
   tmpBranchingC(objPatternNoDefault, objPatternCrashTest);
 } else {
-  const SSA_objPatternCrashTest$3 = objPatternNoDefault === null;
-  tmpBranchingC(objPatternNoDefault, SSA_objPatternCrashTest$3);
+  const tmpSSA_objPatternCrashTest$3 = objPatternNoDefault === null;
+  tmpBranchingC(objPatternNoDefault, tmpSSA_objPatternCrashTest$3);
 }
 `````
 

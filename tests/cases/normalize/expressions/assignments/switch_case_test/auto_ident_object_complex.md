@@ -61,13 +61,13 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-const tmpIfTest = SSA_a === tmpSwitchValue;
+const tmpSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const tmpIfTest = tmpSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchCaseToStart <= 0;
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

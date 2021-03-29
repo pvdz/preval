@@ -59,11 +59,11 @@ const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x$1 = tmpNestedAssignObjPatternRhs.x$1;
-const SSA_y = tmpNestedAssignObjPatternRhs.y;
+const tmpSSA_y = tmpNestedAssignObjPatternRhs.y;
 let x$1;
 for (x$1 of tmpNestedAssignObjPatternRhs) {
 }
-$(tmpNestedAssignObjPatternRhs, 1, SSA_y);
+$(tmpNestedAssignObjPatternRhs, 1, tmpSSA_y);
 `````
 
 ## Globals

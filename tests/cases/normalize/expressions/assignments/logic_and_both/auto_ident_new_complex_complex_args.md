@@ -56,18 +56,18 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-let SSA_a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   const tmpNewCallee$1 = $($);
   const tmpCalleeParam$5 = $(1);
   const tmpCalleeParam$7 = $(2);
   const tmpNestedComplexRhs = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
-  SSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

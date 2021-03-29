@@ -47,9 +47,9 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpCalleeParam = ['before ', ' after'];
 const tmpDeleteObj = $(arg);
-const SSA_a = delete tmpDeleteObj.y;
-$(tmpCalleeParam, SSA_a);
-$(SSA_a, arg);
+const tmpSSA_a = delete tmpDeleteObj.y;
+$(tmpCalleeParam, tmpSSA_a);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

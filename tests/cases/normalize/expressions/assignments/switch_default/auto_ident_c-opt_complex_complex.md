@@ -65,15 +65,15 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 $(1);
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  SSA_a = tmpChainElementObject;
+  tmpSSA_a = tmpChainElementObject;
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

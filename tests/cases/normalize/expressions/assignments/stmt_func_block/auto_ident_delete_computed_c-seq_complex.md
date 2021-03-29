@@ -65,8 +65,8 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-const SSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-$(SSA_a, arg);
+const tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+$(tmpSSA_a, arg);
 $(undefined);
 `````
 

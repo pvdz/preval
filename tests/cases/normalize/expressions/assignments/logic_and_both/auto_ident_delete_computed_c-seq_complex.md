@@ -63,19 +63,19 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-let SSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   $(1);
   $(2);
   const tmpDeleteCompObj$1 = $(arg);
   const tmpDeleteCompProp$1 = $('y');
   const tmpNestedComplexRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-  SSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

@@ -57,9 +57,9 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const SSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const tmpSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 $(100);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

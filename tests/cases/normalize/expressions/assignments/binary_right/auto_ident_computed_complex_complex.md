@@ -50,10 +50,10 @@ const b = { c: 1 };
 const tmpBinBothLhs = $(100);
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
-const SSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-const tmpCalleeParam = tmpBinBothLhs + SSA_a;
+const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
-$(SSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

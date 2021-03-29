@@ -70,9 +70,9 @@ const varInitAssignLhsComputedObj$1 = $(c);
 const varInitAssignLhsComputedProp$1 = $('y');
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
-const SSA_a = a * 7;
-$(SSA_a);
-$(SSA_a, b, c, 3, 4);
+const tmpSSA_a = a * 7;
+$(tmpSSA_a);
+$(tmpSSA_a, b, c, 3, 4);
 `````
 
 ## Globals

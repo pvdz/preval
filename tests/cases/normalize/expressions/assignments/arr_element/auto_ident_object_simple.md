@@ -41,11 +41,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = { x: 1, y: 2, z: 3 };
-const SSA_a$1 = { x: 1, y: 2, z: 3 };
-const tmpCalleeParam = SSA_a + SSA_a$1;
+const tmpSSA_a = { x: 1, y: 2, z: 3 };
+const tmpSSA_a$1 = { x: 1, y: 2, z: 3 };
+const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
 $(tmpCalleeParam);
-$(SSA_a$1);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

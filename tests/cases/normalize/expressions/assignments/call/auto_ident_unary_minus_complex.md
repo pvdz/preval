@@ -40,9 +40,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const SSA_a = -tmpUnaryArg;
-$(SSA_a);
-$(SSA_a);
+const tmpSSA_a = -tmpUnaryArg;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

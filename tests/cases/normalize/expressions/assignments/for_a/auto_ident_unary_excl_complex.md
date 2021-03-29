@@ -45,11 +45,11 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const SSA_a = !tmpUnaryArg;
+const tmpSSA_a = !tmpUnaryArg;
 while (true) {
   $(1);
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

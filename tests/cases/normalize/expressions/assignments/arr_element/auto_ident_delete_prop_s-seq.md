@@ -54,13 +54,13 @@ $(a, arg);
 const arg = { y: 1 };
 $(1);
 $(2);
-const SSA_a = delete arg.y;
+const tmpSSA_a = delete arg.y;
 $(1);
 $(2);
-const SSA_a$1 = delete arg.y;
-const tmpCalleeParam = SSA_a + SSA_a$1;
+const tmpSSA_a$1 = delete arg.y;
+const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
 $(tmpCalleeParam);
-$(SSA_a$1, arg);
+$(tmpSSA_a$1, arg);
 `````
 
 ## Globals

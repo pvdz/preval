@@ -44,9 +44,9 @@ export { x };
 $(undefined);
 const arrAssignPatternRhs = [10];
 const arrPatternSplat = [...arrAssignPatternRhs];
-const SSA_x = arrPatternSplat[0];
-$(SSA_x);
-export { SSA_x as x };
+const tmpSSA_x = arrPatternSplat[0];
+$(tmpSSA_x);
+export { tmpSSA_x as x };
 `````
 
 ## Globals

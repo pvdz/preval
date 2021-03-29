@@ -55,17 +55,17 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const obj = {};
-let SSA_a = undefined;
+let tmpSSA_a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  SSA_a = tmpChainElementObject;
+  tmpSSA_a = tmpChainElementObject;
 }
-const tmpCompProp = SSA_a;
+const tmpCompProp = tmpSSA_a;
 obj[tmpCompProp];
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

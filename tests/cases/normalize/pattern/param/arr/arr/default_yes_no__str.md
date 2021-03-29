@@ -134,8 +134,8 @@ const f = function () {
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = ['fail2'];
-    const SSA_arrPatternStep$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_arrPatternStep$1);
+    const tmpSSA_arrPatternStep$1 = $(tmpCalleeParam$1);
+    const tmpReturnArg = tmpBranchingC(tmpSSA_arrPatternStep$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$5 = tmpBranchingC(arrPatternBeforeDefault);

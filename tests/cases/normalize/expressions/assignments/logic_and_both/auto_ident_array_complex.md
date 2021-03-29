@@ -51,17 +51,17 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-let SSA_a = [tmpArrElement, 2, tmpArrElement$3];
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = [tmpArrElement, 2, tmpArrElement$3];
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   const tmpArrElement$5 = $(1);
   const tmpArrElement$9 = $(3);
   const tmpNestedComplexRhs = [tmpArrElement$5, 2, tmpArrElement$9];
-  SSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

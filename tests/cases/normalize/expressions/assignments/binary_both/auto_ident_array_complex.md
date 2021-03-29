@@ -49,13 +49,13 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const SSA_a = [tmpArrElement, 2, tmpArrElement$3];
+const tmpSSA_a = [tmpArrElement, 2, tmpArrElement$3];
 const tmpArrElement$5 = $(1);
 const tmpArrElement$9 = $(3);
-const SSA_a$1 = [tmpArrElement$5, 2, tmpArrElement$9];
-const tmpCalleeParam = SSA_a + SSA_a$1;
+const tmpSSA_a$1 = [tmpArrElement$5, 2, tmpArrElement$9];
+const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
 $(tmpCalleeParam);
-$(SSA_a$1);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

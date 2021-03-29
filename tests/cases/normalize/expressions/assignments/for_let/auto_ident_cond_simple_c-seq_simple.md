@@ -46,12 +46,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const SSA_a = $(60);
+const tmpSSA_a = $(60);
 while (true) {
-  $(SSA_a);
+  $(tmpSSA_a);
   $(1);
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

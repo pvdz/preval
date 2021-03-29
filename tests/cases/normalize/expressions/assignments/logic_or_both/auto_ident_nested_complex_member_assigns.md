@@ -129,8 +129,8 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-let SSA_a = 3;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = 3;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   const varInitAssignLhsComputedObj$9 = $(b);
@@ -151,11 +151,11 @@ if (tmpCalleeParam) {
   varInitAssignLhsComputedObj$13[varInitAssignLhsComputedProp$13] = 3;
   varInitAssignLhsComputedObj$11[varInitAssignLhsComputedProp$11] = 3;
   varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 3;
-  SSA_a = 3;
+  tmpSSA_a = 3;
   tmpCalleeParam = 3;
 }
 $(tmpCalleeParam);
-$(SSA_a, b, 3);
+$(tmpSSA_a, b, 3);
 `````
 
 ## Globals

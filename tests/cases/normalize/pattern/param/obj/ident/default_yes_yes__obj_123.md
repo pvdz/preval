@@ -172,8 +172,8 @@ const f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = { x: 'fail2' };
-    const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(SSA_bindingPatternObjRoot$1);
+    const tmpSSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
+    const tmpReturnArg = tmpBranchingC(tmpSSA_bindingPatternObjRoot$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$13 = tmpBranchingC(tmpParamBare);

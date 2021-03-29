@@ -58,9 +58,9 @@ const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const SSA_a = a * tmpPostUpdArgVal;
-$(SSA_a);
-$(SSA_a, b);
+const tmpSSA_a = a * tmpPostUpdArgVal;
+$(tmpSSA_a);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

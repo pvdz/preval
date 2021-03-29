@@ -66,13 +66,13 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
-const SSA_a = delete arg.y;
-const tmpIfTest = SSA_a === tmpSwitchValue;
+const tmpSSA_a = delete arg.y;
+const tmpIfTest = tmpSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 }
 tmpSwitchCaseToStart <= 0;
-$(SSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

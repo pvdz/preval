@@ -66,8 +66,8 @@ const tmpNestedAssignObj = $(tmpCalleeParam$1);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-let SSA_a = tmpNestedPropCompoundComplexRhs;
-let tmpCalleeParam = SSA_a;
+let tmpSSA_a = tmpNestedPropCompoundComplexRhs;
+let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
 } else {
   const tmpCalleeParam$3 = $(b);
@@ -75,11 +75,11 @@ if (tmpCalleeParam) {
   const tmpBinLhs$1 = varInitAssignLhsComputedObj.x;
   const varInitAssignLhsComputedRhs = tmpBinLhs$1 + 1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-  SSA_a = varInitAssignLhsComputedRhs;
+  tmpSSA_a = varInitAssignLhsComputedRhs;
   tmpCalleeParam = varInitAssignLhsComputedRhs;
 }
 $(tmpCalleeParam);
-$(SSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## Globals

@@ -39,10 +39,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const SSA_b = $(2);
-const a = SSA_b;
+const tmpSSA_b = $(2);
+const a = tmpSSA_b;
 export { a };
-$(SSA_b, SSA_b);
+$(tmpSSA_b, tmpSSA_b);
 `````
 
 ## Globals

@@ -52,8 +52,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 while (true) {
-  const SSA_tmpIfTest = $(60);
-  if (SSA_tmpIfTest) {
+  const tmpSSA_tmpIfTest = $(60);
+  if (tmpSSA_tmpIfTest) {
     $(100);
   } else {
     break;

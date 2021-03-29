@@ -50,12 +50,12 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const SSA_a = tmpBinBothLhs + tmpBinBothRhs;
+const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
 while (true) {
-  $(SSA_a);
+  $(tmpSSA_a);
   $(1);
 }
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

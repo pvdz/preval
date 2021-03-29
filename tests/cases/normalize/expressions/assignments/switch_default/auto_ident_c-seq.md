@@ -60,8 +60,8 @@ $(a, x);
 $(1);
 $(1);
 $(2);
-const SSA_a = $(1);
-$(SSA_a, 1);
+const tmpSSA_a = $(1);
+$(tmpSSA_a, 1);
 `````
 
 ## Globals

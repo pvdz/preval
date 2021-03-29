@@ -78,9 +78,9 @@ const f = function () {
 };
 const x = $(100, 'init');
 $(x, 'closure');
-const SSA_x = f();
-$(SSA_x, 'x');
-$(SSA_x, 'closure');
+const tmpSSA_x = f();
+$(tmpSSA_x, 'x');
+$(tmpSSA_x, 'closure');
 `````
 
 ## Globals

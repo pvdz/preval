@@ -45,11 +45,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const SSA_a = { b: tmpObjLitVal };
-$(SSA_a);
+const tmpSSA_a = { b: tmpObjLitVal };
+$(tmpSSA_a);
 const tmpAssignComMemLhsProp = $('b');
-SSA_a[tmpAssignComMemLhsProp] = 2;
-$(SSA_a);
+tmpSSA_a[tmpAssignComMemLhsProp] = 2;
+$(tmpSSA_a);
 `````
 
 ## Globals

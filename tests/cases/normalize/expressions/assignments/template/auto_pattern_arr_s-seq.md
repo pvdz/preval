@@ -53,10 +53,10 @@ $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-const SSA_a = arrPatternSplat$1[0];
+const tmpSSA_a = arrPatternSplat$1[0];
 const tmpCalleeParam = `before  ${tmpNestedAssignArrPatternRhs}  after`;
 $(tmpCalleeParam);
-$(SSA_a);
+$(tmpSSA_a);
 `````
 
 ## Globals

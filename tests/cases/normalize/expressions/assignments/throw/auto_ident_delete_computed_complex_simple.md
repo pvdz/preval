@@ -43,8 +43,8 @@ throw tmpThrowArg;
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const SSA_a = delete tmpDeleteObj.y;
-throw SSA_a;
+const tmpSSA_a = delete tmpDeleteObj.y;
+throw tmpSSA_a;
 `````
 
 ## Globals

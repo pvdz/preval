@@ -50,7 +50,7 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const SSA_b = $(2);
+const tmpSSA_b = $(2);
 while (true) {
   const tmpIfTest = $(0);
   if (tmpIfTest) {
@@ -58,7 +58,7 @@ while (true) {
     break;
   }
 }
-$(a, SSA_b);
+$(a, tmpSSA_b);
 `````
 
 ## Globals

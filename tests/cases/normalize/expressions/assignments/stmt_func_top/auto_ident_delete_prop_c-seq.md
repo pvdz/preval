@@ -59,8 +59,8 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const SSA_a = delete tmpDeleteObj.y;
-$(SSA_a, arg);
+const tmpSSA_a = delete tmpDeleteObj.y;
+$(tmpSSA_a, arg);
 $(undefined);
 `````
 

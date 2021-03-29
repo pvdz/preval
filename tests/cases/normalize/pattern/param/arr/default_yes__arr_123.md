@@ -82,16 +82,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0) {
+  const bindingPatternArrRoot$5 = $$0;
+  debugger;
+  [...bindingPatternArrRoot$5];
+  return 'ok';
+};
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternArrRoot$5 = $$0;
-    debugger;
-    [...bindingPatternArrRoot$5];
-    return 'ok';
-  };
   if (tmpIfTest) {
     const SSA_bindingPatternArrRoot$1 = $('fail');
     const tmpReturnArg = tmpBranchingC(SSA_bindingPatternArrRoot$1);

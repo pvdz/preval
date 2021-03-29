@@ -120,23 +120,23 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0) {
+  const b$5 = $$0;
+  debugger;
+  const tmpIfTest$7 = b$5 == null;
+  if (tmpIfTest$7) {
+    const SSA_c$3 = length;
+    const tmpReturnArg$3 = $(SSA_c$3);
+    return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$11 = $(b$5);
+    return tmpReturnArg$11;
+  }
+};
 const f = function () {
   debugger;
   const b = $(2);
   const tmpIfTest = b == null;
-  const tmpBranchingC = function ($$0) {
-    const b$5 = $$0;
-    debugger;
-    const tmpIfTest$7 = b$5 == null;
-    if (tmpIfTest$7) {
-      const SSA_c$3 = length;
-      const tmpReturnArg$3 = $(SSA_c$3);
-      return tmpReturnArg$3;
-    } else {
-      const tmpReturnArg$11 = $(b$5);
-      return tmpReturnArg$11;
-    }
-  };
   if (tmpIfTest) {
     const SSA_b$1 = toString;
     const tmpReturnArg = tmpBranchingC(SSA_b$1);

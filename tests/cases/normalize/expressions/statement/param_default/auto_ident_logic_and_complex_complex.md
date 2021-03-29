@@ -120,20 +120,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingA = function () {
   debugger;
   const tmpCalleeParam$3 = $(1);
   const SSA_p$1 = $(tmpCalleeParam$3);
   if (SSA_p$1) {
-    const tmpCalleeParam$4 = $(2);
-    $(tmpCalleeParam$4);
+    const tmpCalleeParam$9 = $(2);
+    $(tmpCalleeParam$9);
     return undefined;
   } else {
     return undefined;
   }
 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$15 = f();
+const tmpCalleeParam$15 = tmpBranchingA();
 $(tmpCalleeParam$15);
 $(a);
 `````

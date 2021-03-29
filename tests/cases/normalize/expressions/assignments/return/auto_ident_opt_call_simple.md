@@ -80,15 +80,15 @@ $(a);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function () {
+  debugger;
+  const tmpReturnArg$1 = a;
+  return tmpReturnArg$1;
+};
 const f = function () {
   debugger;
   a = undefined;
   const tmpIfTest = $ != null;
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpReturnArg$1 = a;
-    return tmpReturnArg$1;
-  };
   if (tmpIfTest) {
     const tmpChainElementCall$1 = $(1);
     a = tmpChainElementCall$1;

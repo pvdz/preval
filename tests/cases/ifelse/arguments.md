@@ -110,20 +110,20 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const tmpBranchingA = function ($$0) {
+  const tmpArgumentsAny$1 = $$0;
+  debugger;
+  const tmpIfTest$5 = $(2);
+  if (tmpIfTest$5) {
+    return tmpArgumentsAny$1;
+  } else {
+    return undefined;
+  }
+};
 const f = function () {
   const tmpArgumentsAny = arguments;
   debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function ($$0) {
-    const tmpArgumentsAny$1 = $$0;
-    debugger;
-    const tmpIfTest$5 = $(2);
-    if (tmpIfTest$5) {
-      return tmpArgumentsAny$1;
-    } else {
-      return undefined;
-    }
-  };
   if (tmpIfTest) {
     const tmpReturnArg$9 = tmpBranchingA(tmpArgumentsAny);
     return tmpReturnArg$9;

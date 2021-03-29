@@ -105,17 +105,17 @@ tmpCallCallee$5(tmpCalleeParam$9);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0) {
+  const objPatternAfterDefault$5 = $$0;
+  debugger;
+  const tmpCalleeParam$5 = [];
+  const y$1 = objPatternRest(objPatternAfterDefault$5, tmpCalleeParam$5, undefined);
+  return y$1;
+};
 const f = function () {
   debugger;
   const objPatternBeforeDefault = ''.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingC = function ($$0) {
-    const objPatternAfterDefault$5 = $$0;
-    debugger;
-    const tmpCalleeParam$5 = [];
-    const y$1 = objPatternRest(objPatternAfterDefault$5, tmpCalleeParam$5, undefined);
-    return y$1;
-  };
   if (tmpIfTest) {
     const tmpCalleeParam$1 = { a: 'pass' };
     const SSA_objPatternAfterDefault$1 = $(tmpCalleeParam$1);

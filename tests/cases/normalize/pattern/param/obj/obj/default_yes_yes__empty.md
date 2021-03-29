@@ -303,6 +303,30 @@ tmpCallCallee$7(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC$1 = function ($$0) {
+  const objPatternAfterDefault$7 = $$0;
+  debugger;
+  const objPatternCrashTest$3 = objPatternAfterDefault$7 === undefined;
+  if (objPatternCrashTest$3) {
+    const tmpReturnArg$19 = tmpBranchingC$3(objPatternAfterDefault$7, objPatternCrashTest$3);
+    return tmpReturnArg$19;
+  } else {
+    const SSA_objPatternCrashTest$7 = objPatternAfterDefault$7 === null;
+    const tmpReturnArg$9 = tmpBranchingC$3(objPatternAfterDefault$7, SSA_objPatternCrashTest$7);
+    return tmpReturnArg$9;
+  }
+};
+const tmpBranchingC$3 = function ($$0, $$1) {
+  const objPatternAfterDefault$13 = $$0;
+  const objPatternCrashTest$9 = $$1;
+  debugger;
+  if (objPatternCrashTest$9) {
+    objPatternAfterDefault$13.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
+  }
+};
 const f = function () {
   debugger;
   const tmpObjLitVal$1 = { y: 'pass2' };
@@ -310,30 +334,6 @@ const f = function () {
   const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
   const objPatternBeforeDefault$1 = SSA_bindingPatternObjRoot$1.x;
   const tmpIfTest$7 = objPatternBeforeDefault$1 === undefined;
-  const tmpBranchingC$1 = function ($$0) {
-    const objPatternAfterDefault$7 = $$0;
-    debugger;
-    const objPatternCrashTest$3 = objPatternAfterDefault$7 === undefined;
-    const tmpBranchingC$3 = function ($$0, $$1) {
-      const objPatternAfterDefault$13 = $$0;
-      const objPatternCrashTest$9 = $$1;
-      debugger;
-      if (objPatternCrashTest$9) {
-        objPatternAfterDefault$13.cannotDestructureThis;
-        return 'ok';
-      } else {
-        return 'ok';
-      }
-    };
-    if (objPatternCrashTest$3) {
-      const tmpReturnArg$19 = tmpBranchingC$3(objPatternAfterDefault$7, objPatternCrashTest$3);
-      return tmpReturnArg$19;
-    } else {
-      const SSA_objPatternCrashTest$7 = objPatternAfterDefault$7 === null;
-      const tmpReturnArg$9 = tmpBranchingC$3(objPatternAfterDefault$7, SSA_objPatternCrashTest$7);
-      return tmpReturnArg$9;
-    }
-  };
   if (tmpIfTest$7) {
     const tmpCalleeParam$4 = { x: 'fail' };
     const SSA_objPatternAfterDefault$1 = $(tmpCalleeParam$4);

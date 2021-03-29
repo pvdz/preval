@@ -165,23 +165,23 @@ $(a);
 ## Output
 
 `````js filename=intro
+const tmpBranchingA = function ($$0) {
+  const tmpChainRootProp$1 = $$0;
+  debugger;
+  const tmpChainElementObject$5 = tmpChainRootProp$1.c;
+  const tmpChainElementObject$7 = tmpChainElementObject$5.d;
+  const tmpChainElementObject$9 = tmpChainElementObject$7.e;
+  const tmpIfTest$5 = tmpChainElementObject$9 != null;
+  if (tmpIfTest$5) {
+    const tmpReturnArg$19 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
+    return tmpReturnArg$19;
+  } else {
+    return undefined;
+  }
+};
 const f = function () {
   debugger;
   const tmpIfTest = b != null;
-  const tmpBranchingA = function ($$0) {
-    const tmpChainRootProp$1 = $$0;
-    debugger;
-    const tmpChainElementObject$5 = tmpChainRootProp$1.c;
-    const tmpChainElementObject$7 = tmpChainElementObject$5.d;
-    const tmpChainElementObject$9 = tmpChainElementObject$7.e;
-    const tmpIfTest$5 = tmpChainElementObject$9 != null;
-    if (tmpIfTest$5) {
-      const tmpReturnArg$19 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
-      return tmpReturnArg$19;
-    } else {
-      return undefined;
-    }
-  };
   if (tmpIfTest) {
     const tmpReturnArg$25 = tmpBranchingA(b);
     return tmpReturnArg$25;

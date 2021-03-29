@@ -339,6 +339,35 @@ tmpCallCallee$19(tmpCalleeParam$19);
 ## Output
 
 `````js filename=intro
+const tmpBranchingA = function ($$0, $$1) {
+  const tmpCallCallee$1 = $$0;
+  const tmpChainRootProp$1 = $$1;
+  debugger;
+  const tmpChainElementObject$5 = tmpChainRootProp$1.a;
+  const tmpIfTest$7 = tmpChainElementObject$5 != null;
+  if (tmpIfTest$7) {
+    const tmpReturnArg$17 = tmpBranchingA$1(tmpCallCallee$1, tmpChainElementObject$5);
+    return tmpReturnArg$17;
+  } else {
+    const tmpReturnArg$19 = tmpCallCallee$1(undefined);
+    return tmpReturnArg$19;
+  }
+};
+const tmpBranchingA$1 = function ($$0, $$1) {
+  const tmpCallCallee$7 = $$0;
+  const tmpChainElementObject$11 = $$1;
+  debugger;
+  const tmpChainElementObject$13 = tmpChainElementObject$11.b;
+  const tmpIfTest$19 = tmpChainElementObject$13 != null;
+  if (tmpIfTest$19) {
+    const tmpChainElementObject$25 = tmpChainElementObject$13.c;
+    const tmpReturnArg$3 = tmpCallCallee$7(tmpChainElementObject$25);
+    return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$11 = tmpCallCallee$7(undefined);
+    return tmpReturnArg$11;
+  }
+};
 const f = function () {
   debugger;
   const tmpObjLitVal$3 = $();
@@ -346,35 +375,6 @@ const f = function () {
   const tmpObjLitVal = { b: tmpObjLitVal$1 };
   const obj = { a: tmpObjLitVal };
   const tmpIfTest = obj != null;
-  const tmpBranchingA = function ($$0, $$1) {
-    const tmpCallCallee$1 = $$0;
-    const tmpChainRootProp$1 = $$1;
-    debugger;
-    const tmpChainElementObject$5 = tmpChainRootProp$1.a;
-    const tmpIfTest$7 = tmpChainElementObject$5 != null;
-    const tmpBranchingA$1 = function ($$0, $$1) {
-      const tmpCallCallee$7 = $$0;
-      const tmpChainElementObject$11 = $$1;
-      debugger;
-      const tmpChainElementObject$13 = tmpChainElementObject$11.b;
-      const tmpIfTest$19 = tmpChainElementObject$13 != null;
-      if (tmpIfTest$19) {
-        const tmpChainElementObject$25 = tmpChainElementObject$13.c;
-        const tmpReturnArg$3 = tmpCallCallee$7(tmpChainElementObject$25);
-        return tmpReturnArg$3;
-      } else {
-        const tmpReturnArg$11 = tmpCallCallee$7(undefined);
-        return tmpReturnArg$11;
-      }
-    };
-    if (tmpIfTest$7) {
-      const tmpReturnArg$17 = tmpBranchingA$1(tmpCallCallee$1, tmpChainElementObject$5);
-      return tmpReturnArg$17;
-    } else {
-      const tmpReturnArg$19 = tmpCallCallee$1(undefined);
-      return tmpReturnArg$19;
-    }
-  };
   if (tmpIfTest) {
     const tmpReturnArg$23 = tmpBranchingA($, obj);
     return tmpReturnArg$23;

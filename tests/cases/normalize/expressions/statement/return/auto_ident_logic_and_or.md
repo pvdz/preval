@@ -115,21 +115,21 @@ $(a);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0) {
+  const tmpReturnArg$5 = $$0;
+  debugger;
+  if (tmpReturnArg$5) {
+    return tmpReturnArg$5;
+  } else {
+    const tmpCalleeParam$17 = $(2);
+    const SSA_tmpReturnArg$13 = $(tmpCalleeParam$17);
+    return SSA_tmpReturnArg$13;
+  }
+};
 const f = function () {
   debugger;
   const tmpCalleeParam = $(1);
   const tmpReturnArg = $(tmpCalleeParam);
-  const tmpBranchingC = function ($$0) {
-    const tmpReturnArg$5 = $$0;
-    debugger;
-    if (tmpReturnArg$5) {
-      return tmpReturnArg$5;
-    } else {
-      const tmpCalleeParam$17 = $(2);
-      const SSA_tmpReturnArg$13 = $(tmpCalleeParam$17);
-      return SSA_tmpReturnArg$13;
-    }
-  };
   if (tmpReturnArg) {
     const tmpCalleeParam$5 = $(1);
     const SSA_tmpReturnArg$1 = $(tmpCalleeParam$5);

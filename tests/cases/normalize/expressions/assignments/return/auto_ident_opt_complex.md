@@ -88,16 +88,16 @@ $(a);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function () {
+  debugger;
+  const tmpReturnArg$1 = a;
+  return tmpReturnArg$1;
+};
 const f = function () {
   debugger;
   a = undefined;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpReturnArg$1 = a;
-    return tmpReturnArg$1;
-  };
   if (tmpIfTest) {
     const tmpChainElementObject$1 = tmpChainElementCall.x;
     a = tmpChainElementObject$1;

@@ -157,7 +157,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const $clone$tmpBranchingC$0_D0 = function () {
   debugger;
   const arrPatternSplat$2 = [...0];
   const arrPatternBeforeDefault$2 = arrPatternSplat$2[0];
@@ -169,7 +169,7 @@ const f = function () {
     return 'bad';
   }
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam = $clone$tmpBranchingC$0_D0();
 $(tmpCalleeParam);
 `````
 

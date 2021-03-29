@@ -9,6 +9,7 @@
 ## Input
 
 `````js filename=intro
+const a = $(1), b = $(2), c = $(3);
 function f() {
   const obj = {a: {b: {c: $()}}};
   return $(obj??a??b??c);
@@ -24,6 +25,9 @@ let f = function () {
   const obj = { a: { b: { c: $() } } };
   return $(obj ?? a ?? b ?? c);
 };
+const a = $(1),
+  b = $(2),
+  c = $(3);
 $(f());
 `````
 
@@ -271,6 +275,9 @@ let f = function () {
     return tmpReturnArg$29;
   }
 };
+const a = $(1);
+const b = $(2);
+const c = $(3);
 const tmpCallCallee$19 = $;
 const tmpCalleeParam$19 = f();
 tmpCallCallee$19(tmpCalleeParam$19);
@@ -279,6 +286,32 @@ tmpCallCallee$19(tmpCalleeParam$19);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0, $$1) {
+  const tmpCallCallee$5 = $$0;
+  const tmpCalleeParam$5 = $$1;
+  debugger;
+  const tmpIfTest$7 = tmpCalleeParam$5 == null;
+  if (tmpIfTest$7) {
+    const tmpReturnArg$23 = tmpBranchingC$1(tmpCallCallee$5, b);
+    return tmpReturnArg$23;
+  } else {
+    const tmpReturnArg$25 = tmpBranchingC$1(tmpCallCallee$5, tmpCalleeParam$5);
+    return tmpReturnArg$25;
+  }
+};
+const tmpBranchingC$1 = function ($$0, $$1) {
+  const tmpCallCallee$11 = $$0;
+  const tmpCalleeParam$11 = $$1;
+  debugger;
+  const tmpIfTest$21 = tmpCalleeParam$11 == null;
+  if (tmpIfTest$21) {
+    const tmpReturnArg$19 = tmpCallCallee$11(c);
+    return tmpReturnArg$19;
+  } else {
+    const tmpReturnArg$21 = tmpCallCallee$11(tmpCalleeParam$11);
+    return tmpReturnArg$21;
+  }
+};
 const f = function () {
   debugger;
   const tmpObjLitVal$3 = $();
@@ -286,59 +319,34 @@ const f = function () {
   const tmpObjLitVal = { b: tmpObjLitVal$1 };
   const obj = { a: tmpObjLitVal };
   const tmpIfTest = obj == null;
-  const tmpBranchingC = function ($$0, $$1) {
-    const tmpCallCallee$5 = $$0;
-    const tmpCalleeParam$5 = $$1;
-    debugger;
-    const tmpIfTest$7 = tmpCalleeParam$5 == null;
-    const tmpBranchingC$1 = function ($$0, $$1) {
-      const tmpCallCallee$11 = $$0;
-      const tmpCalleeParam$11 = $$1;
-      debugger;
-      const tmpIfTest$21 = tmpCalleeParam$11 == null;
-      if (tmpIfTest$21) {
-        const SSA_tmpCalleeParam$13 = c;
-        const tmpReturnArg$15 = tmpCallCallee$11(SSA_tmpCalleeParam$13);
-        return tmpReturnArg$15;
-      } else {
-        const tmpReturnArg$21 = tmpCallCallee$11(tmpCalleeParam$11);
-        return tmpReturnArg$21;
-      }
-    };
-    if (tmpIfTest$7) {
-      const SSA_tmpCalleeParam$7 = b;
-      const tmpReturnArg$9 = tmpBranchingC$1(tmpCallCallee$5, SSA_tmpCalleeParam$7);
-      return tmpReturnArg$9;
-    } else {
-      const tmpReturnArg$25 = tmpBranchingC$1(tmpCallCallee$5, tmpCalleeParam$5);
-      return tmpReturnArg$25;
-    }
-  };
   if (tmpIfTest) {
-    const SSA_tmpCalleeParam$1 = a;
-    const tmpReturnArg$3 = tmpBranchingC($, SSA_tmpCalleeParam$1);
-    return tmpReturnArg$3;
+    const tmpReturnArg$27 = tmpBranchingC($, a);
+    return tmpReturnArg$27;
   } else {
     const tmpReturnArg$29 = tmpBranchingC($, obj);
     return tmpReturnArg$29;
   }
 };
+const a = $(1);
+const b = $(2);
+const c = $(3);
 const tmpCalleeParam$19 = f();
 $(tmpCalleeParam$19);
 `````
 
 ## Globals
 
-BAD@! Found 3 implicit global bindings:
-
-c, b, a
+None
 
 ## Result
 
 Should call `$` with:
- - 1: 
- - 2: { a: '{"b":"{\\"c\\":\\"undefined\\"}"}' }
- - 3: { a: '{"b":"{\\"c\\":\\"undefined\\"}"}' }
+ - 1: 1
+ - 2: 2
+ - 3: 3
+ - 4: 
+ - 5: { a: '{"b":"{\\"c\\":\\"undefined\\"}"}' }
+ - 6: { a: '{"b":"{\\"c\\":\\"undefined\\"}"}' }
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -116,21 +116,21 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0, $$1) {
+  const objPatternNoDefault$5 = $$0;
+  const objPatternCrashTest$5 = $$1;
+  debugger;
+  if (objPatternCrashTest$5) {
+    objPatternNoDefault$5.cannotDestructureThis;
+    return 'bad';
+  } else {
+    return 'bad';
+  }
+};
 const f = function () {
   debugger;
   const objPatternNoDefault = 'abc'.x;
   const objPatternCrashTest = objPatternNoDefault === undefined;
-  const tmpBranchingC = function ($$0, $$1) {
-    const objPatternNoDefault$5 = $$0;
-    const objPatternCrashTest$5 = $$1;
-    debugger;
-    if (objPatternCrashTest$5) {
-      objPatternNoDefault$5.cannotDestructureThis;
-      return 'bad';
-    } else {
-      return 'bad';
-    }
-  };
   if (objPatternCrashTest) {
     const tmpReturnArg$11 = tmpBranchingC(objPatternNoDefault, objPatternCrashTest);
     return tmpReturnArg$11;

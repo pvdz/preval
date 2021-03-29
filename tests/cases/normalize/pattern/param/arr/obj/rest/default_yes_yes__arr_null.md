@@ -170,33 +170,33 @@ tmpCallCallee$9(tmpCalleeParam$13);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0) {
+  const bindingPatternArrRoot$5 = $$0;
+  debugger;
+  const arrPatternSplat$1 = [...bindingPatternArrRoot$5];
+  const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+  const tmpIfTest$7 = arrPatternBeforeDefault$1 === undefined;
+  if (tmpIfTest$7) {
+    const tmpCalleeParam$5 = { a: 'fail' };
+    const SSA_arrPatternStep$3 = $(tmpCalleeParam$5);
+    const tmpReturnArg$3 = tmpBranchingC$1(SSA_arrPatternStep$3);
+    return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$9 = tmpBranchingC$1(arrPatternBeforeDefault$1);
+    return tmpReturnArg$9;
+  }
+};
+const tmpBranchingC$1 = function ($$0) {
+  const arrPatternStep$7 = $$0;
+  debugger;
+  const tmpCalleeParam$9 = [];
+  objPatternRest(arrPatternStep$7, tmpCalleeParam$9, undefined);
+  return 'bad';
+};
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternArrRoot$5 = $$0;
-    debugger;
-    const arrPatternSplat$1 = [...bindingPatternArrRoot$5];
-    const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-    const tmpIfTest$7 = arrPatternBeforeDefault$1 === undefined;
-    const tmpBranchingC$1 = function ($$0) {
-      const arrPatternStep$7 = $$0;
-      debugger;
-      const tmpCalleeParam$9 = [];
-      objPatternRest(arrPatternStep$7, tmpCalleeParam$9, undefined);
-      return 'bad';
-    };
-    if (tmpIfTest$7) {
-      const tmpCalleeParam$5 = { a: 'fail' };
-      const SSA_arrPatternStep$3 = $(tmpCalleeParam$5);
-      const tmpReturnArg$3 = tmpBranchingC$1(SSA_arrPatternStep$3);
-      return tmpReturnArg$3;
-    } else {
-      const tmpReturnArg$9 = tmpBranchingC$1(arrPatternBeforeDefault$1);
-      return tmpReturnArg$9;
-    }
-  };
   if (tmpIfTest) {
     const tmpArrElement$1 = { a: 'fail2' };
     const tmpCalleeParam$1 = [tmpArrElement$1];

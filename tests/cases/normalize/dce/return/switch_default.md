@@ -200,34 +200,11 @@ const f = function () {
   const tmpSwitchValue = $(1, 'disc');
   const tmpBinLhs = $(0);
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingC = function ($$0) {
-    const tmpSwitchCaseToStart$5 = $$0;
-    debugger;
-    const tmpIfTest$7 = tmpSwitchCaseToStart$5 <= 0;
-    const tmpBranchingB$1 = function ($$0) {
-      const tmpSwitchCaseToStart$9 = $$0;
-      debugger;
-      const tmpIfTest$19 = tmpSwitchCaseToStart$9 <= 1;
-      if (tmpIfTest$19) {
-        const tmpReturnArg$13 = $(2, 'ret');
-        return tmpReturnArg$13;
-      } else {
-        return undefined;
-      }
-    };
-    if (tmpIfTest$7) {
-      $('wrong branch');
-      return undefined;
-    } else {
-      const tmpReturnArg$19 = tmpBranchingB$1(tmpSwitchCaseToStart$5);
-      return tmpReturnArg$19;
-    }
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$21 = tmpBranchingC(0);
-    return tmpReturnArg$21;
+    $('wrong branch');
+    return undefined;
   } else {
-    const tmpReturnArg$23 = tmpBranchingC(1);
+    const tmpReturnArg$23 = $(2, 'ret');
     return tmpReturnArg$23;
   }
 };

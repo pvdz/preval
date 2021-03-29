@@ -145,21 +145,21 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC$1 = function ($$0, $$1) {
+  const bindingPatternObjRoot$11 = $$0;
+  const objPatternCrashTest$7 = $$1;
+  debugger;
+  if (objPatternCrashTest$7) {
+    bindingPatternObjRoot$11.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
+  }
+};
 const f = function () {
   debugger;
   const SSA_bindingPatternObjRoot$1 = $('pass');
   const objPatternCrashTest$1 = SSA_bindingPatternObjRoot$1 === undefined;
-  const tmpBranchingC$1 = function ($$0, $$1) {
-    const bindingPatternObjRoot$11 = $$0;
-    const objPatternCrashTest$7 = $$1;
-    debugger;
-    if (objPatternCrashTest$7) {
-      bindingPatternObjRoot$11.cannotDestructureThis;
-      return 'ok';
-    } else {
-      return 'ok';
-    }
-  };
   if (objPatternCrashTest$1) {
     const tmpReturnArg = tmpBranchingC$1(SSA_bindingPatternObjRoot$1, objPatternCrashTest$1);
     return tmpReturnArg;

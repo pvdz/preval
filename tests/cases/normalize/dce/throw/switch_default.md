@@ -201,35 +201,12 @@ const f = function () {
   const tmpSwitchValue = $(1, 'disc');
   const tmpBinLhs = $(0);
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingC = function ($$0) {
-    const tmpSwitchCaseToStart$5 = $$0;
-    debugger;
-    const tmpIfTest$7 = tmpSwitchCaseToStart$5 <= 0;
-    const tmpBranchingB$1 = function ($$0) {
-      const tmpSwitchCaseToStart$9 = $$0;
-      debugger;
-      const tmpIfTest$19 = tmpSwitchCaseToStart$9 <= 1;
-      if (tmpIfTest$19) {
-        const tmpThrowArg$3 = $(2, 'throw');
-        throw tmpThrowArg$3;
-      } else {
-        return undefined;
-      }
-    };
-    if (tmpIfTest$7) {
-      $('wrong branch');
-      throw 'wrong exit';
-    } else {
-      const tmpReturnArg$13 = tmpBranchingB$1(tmpSwitchCaseToStart$5);
-      return tmpReturnArg$13;
-    }
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$15 = tmpBranchingC(0);
-    return tmpReturnArg$15;
+    $('wrong branch');
+    throw 'wrong exit';
   } else {
-    const tmpReturnArg$17 = tmpBranchingC(1);
-    return tmpReturnArg$17;
+    const tmpThrowArg$1 = $(2, 'throw');
+    throw tmpThrowArg$1;
   }
 };
 const tmpCalleeParam = f();

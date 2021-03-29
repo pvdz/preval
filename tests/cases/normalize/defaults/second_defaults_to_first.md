@@ -141,47 +141,14 @@ tmpCallCallee$5(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const f = function ($$0, $$1) {
-  const tmpParamBare = $$0;
-  const tmpParamBare$1 = $$1;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0, $$1) {
-    const tmpParamBare$12 = $$0;
-    const a$5 = $$1;
-    debugger;
-    const tmpIfTest$7 = tmpParamBare$12 === undefined;
-    const tmpBranchingC$1 = function ($$0, $$1) {
-      const a$11 = $$0;
-      const b$7 = $$1;
-      debugger;
-      const tmpReturnArg$7 = [a$11, b$7];
-      return tmpReturnArg$7;
-    };
-    if (tmpIfTest$7) {
-      const tmpReturnArg$9 = tmpBranchingC$1(a$5, a$5);
-      return tmpReturnArg$9;
-    } else {
-      const tmpReturnArg$11 = tmpBranchingC$1(a$5, tmpParamBare$12);
-      return tmpReturnArg$11;
-    }
-  };
-  if (tmpIfTest) {
-    const tmpReturnArg$13 = tmpBranchingC(tmpParamBare$1, 'foo');
-    return tmpReturnArg$13;
-  } else {
-    const tmpReturnArg$15 = tmpBranchingC(tmpParamBare$1, tmpParamBare);
-    return tmpReturnArg$15;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f('x');
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(undefined, 'y');
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f('x', 'y');
-$(tmpCalleeParam$5);
+const tmpReturnArg$6 = ['foo', 'foo'];
+$(tmpReturnArg$6);
+const tmpReturnArg$27 = ['x', 'x'];
+$(tmpReturnArg$27);
+const tmpReturnArg$24 = ['foo', 'y'];
+$(tmpReturnArg$24);
+const tmpReturnArg$22 = ['x', 'y'];
+$(tmpReturnArg$22);
 `````
 
 ## Globals

@@ -151,18 +151,18 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const $clone$tmpBranchingC$0_Sda39a3ee5e6b4b0d3255bfef95601890afd80709 = function () {
   debugger;
   const objPatternBeforeDefault$2 = ''.x;
   const tmpIfTest$1 = objPatternBeforeDefault$2 === undefined;
   if (tmpIfTest$1) {
-    const tmpReturnArg = $('pass');
-    return tmpReturnArg;
+    const tmpReturnArg$1 = $('pass');
+    return tmpReturnArg$1;
   } else {
     return objPatternBeforeDefault$2;
   }
 };
-const tmpCalleeParam$3 = f();
+const tmpCalleeParam$3 = $clone$tmpBranchingC$0_Sda39a3ee5e6b4b0d3255bfef95601890afd80709();
 $(tmpCalleeParam$3);
 `````
 

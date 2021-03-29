@@ -77,14 +77,14 @@ $(a);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function () {
+  debugger;
+  const tmpReturnArg$1 = a;
+  return tmpReturnArg$1;
+};
 const f = function () {
   debugger;
   const tmpIfTest = $(30);
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpReturnArg$1 = a;
-    return tmpReturnArg$1;
-  };
   if (tmpIfTest) {
     a = $(2);
     const tmpReturnArg$3 = tmpBranchingC();

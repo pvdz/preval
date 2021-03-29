@@ -11,6 +11,8 @@
 ## Input
 
 `````js filename=intro
+let createFreshVarInCurrentRootScope, assigns, AST, newElements, crumb, isComplexNode, uncrumb, node
+
 node.elements.forEach((anode, i) => {
   // Elided elements are `null` here. Skip 'em
   if (!anode) return newElements.push(null);
@@ -209,6 +211,7 @@ node.elements.forEach(d);
 ## Pre Normal
 
 `````js filename=intro
+let createFreshVarInCurrentRootScope, assigns, AST, newElements, crumb, isComplexNode, uncrumb, node;
 node.elements.forEach(($$0, $$1) => {
   let anode = $$0;
   let i = $$1;
@@ -235,6 +238,14 @@ node.elements.forEach(($$0, $$1) => {
 ## Normalized
 
 `````js filename=intro
+let createFreshVarInCurrentRootScope;
+let assigns;
+let AST;
+let newElements;
+let crumb;
+let isComplexNode;
+let uncrumb;
+let node;
 const tmpCallObj = node.elements;
 const tmpCallVal = tmpCallObj.forEach;
 const tmpCalleeParam = function ($$0, $$1) {
@@ -579,108 +590,18 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallObj = node.elements;
-const tmpCallVal = tmpCallObj.forEach;
-const tmpCalleeParam = function ($$0, $$1) {
-  const anode = $$0;
-  debugger;
-  const tmpBranchingA = function ($$0) {
-    const anode$1 = $$0;
-    debugger;
-    const tmpBinLhs$5 = anode$1.type;
-    const tmpIfTest$7 = tmpBinLhs$5 === 'SpreadElement';
-    const tmpBranchingC$1 = function ($$0, $$1) {
-      const anode$11 = $$0;
-      const valueNode$7 = $$1;
-      debugger;
-      const tmpIfTest$21 = isComplexNode(valueNode$7);
-      const tmpBranchingA$3 = function ($$0, $$1) {
-        const anode$13 = $$0;
-        const valueNode$9 = $$1;
-        debugger;
-        const tmpName$5 = createFreshVarInCurrentRootScope('tmpElement', true);
-        const tmpCallObj$13 = assigns;
-        const tmpCallVal$13 = tmpCallObj$13.push;
-        const tmpCalleeParam$13 = AST.assignmentExpression(tmpName$5, valueNode$9);
-        tmpCallVal$13.call(tmpCallObj$13, tmpCalleeParam$13);
-        const tmpCallObj$15 = newElements;
-        const tmpCallVal$15 = tmpCallObj$15.push;
-        const tmpBinLhs$23 = anode$13.type;
-        const tmpIfTest$31 = tmpBinLhs$23 === 'SpreadElement';
-        const tmpBranchingC$5 = function ($$0, $$1, $$2, $$3, $$4) {
-          const anode$23 = $$0;
-          const valueNode$19 = $$1;
-          const tmpCallObj$27 = $$2;
-          const tmpCallVal$27 = $$3;
-          const tmpCalleeParam$27 = $$4;
-          debugger;
-          tmpCallVal$27.call(tmpCallObj$27, tmpCalleeParam$27);
-          const tmpReturnArg$11 = tmpBranchingC$3(anode$23, valueNode$19);
-          return tmpReturnArg$11;
-        };
-        if (tmpIfTest$31) {
-          const SSA_tmpCalleeParam$19 = AST.spreadElement(tmpName$5);
-          const tmpReturnArg$7 = tmpBranchingC$5(anode$13, valueNode$9, tmpCallObj$15, tmpCallVal$15, SSA_tmpCalleeParam$19);
-          return tmpReturnArg$7;
-        } else {
-          const SSA_tmpCalleeParam$23 = AST.identifier(tmpName$5);
-          const tmpReturnArg$9 = tmpBranchingC$5(anode$13, valueNode$9, tmpCallObj$15, tmpCallVal$15, SSA_tmpCalleeParam$23);
-          return tmpReturnArg$9;
-        }
-      };
-      const tmpBranchingC$3 = function ($$0, $$1) {
-        const anode$17 = $$0;
-        const valueNode$13 = $$1;
-        debugger;
-        const tmpBinLhs$29 = anode$17.type;
-        const tmpIfTest$41 = tmpBinLhs$29 === 'SpreadElement';
-        if (tmpIfTest$41) {
-          uncrumb(anode$17, 'argument', valueNode$13);
-          return undefined;
-        } else {
-          return undefined;
-        }
-      };
-      if (tmpIfTest$21) {
-        const tmpReturnArg$29 = tmpBranchingA$3(anode$11, valueNode$7);
-        return tmpReturnArg$29;
-      } else {
-        newElements.push(anode$11);
-        const tmpReturnArg$17 = tmpBranchingC$3(anode$11, valueNode$7);
-        return tmpReturnArg$17;
-      }
-    };
-    if (tmpIfTest$7) {
-      const SSA_valueNode$3 = anode$1.argument;
-      crumb(anode$1, 'argument', SSA_valueNode$3);
-      const tmpReturnArg$3 = tmpBranchingC$1(anode$1, SSA_valueNode$3);
-      return tmpReturnArg$3;
-    } else {
-      const tmpReturnArg$35 = tmpBranchingC$1(anode$1, anode$1);
-      return tmpReturnArg$35;
-    }
-  };
-  if (anode) {
-    const tmpReturnArg$37 = tmpBranchingA(anode);
-    return tmpReturnArg$37;
-  } else {
-    const tmpReturnArg$39 = newElements.push(null);
-    return tmpReturnArg$39;
-  }
-};
-tmpCallVal.call(tmpCallObj, tmpCalleeParam);
+undefined.elements;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals
 
-BAD@! Found 8 implicit global bindings:
-
-node, isComplexNode, createFreshVarInCurrentRootScope, assigns, AST, newElements, uncrumb, crumb
+None
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
 
 Pre normalization calls: Same
 

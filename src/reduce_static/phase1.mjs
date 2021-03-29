@@ -360,6 +360,9 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               const declIndex = path.indexes[path.indexes.length - 3];
               vlog('- Adding decl write');
 
+              // Binding "owner" func node. In which scope was this binding bound?
+              meta.bfuncNode = funcStack[funcStack.length - 1];
+
               meta.writes.unshift(
                 createWriteRef({
                   parentNode,

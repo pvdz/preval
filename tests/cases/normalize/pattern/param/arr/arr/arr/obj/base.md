@@ -266,6 +266,17 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0, $$1) {
+  const arrPatternStep$29 = $$0;
+  const objPatternCrashTest$5 = $$1;
+  debugger;
+  if (objPatternCrashTest$5) {
+    arrPatternStep$29.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
+  }
+};
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
@@ -278,17 +289,6 @@ const f = function ($$0) {
   const arrPatternSplat$5 = [...arrPatternStep$3];
   const arrPatternStep$5 = arrPatternSplat$5[0];
   const objPatternCrashTest = arrPatternStep$5 === undefined;
-  const tmpBranchingC = function ($$0, $$1) {
-    const arrPatternStep$29 = $$0;
-    const objPatternCrashTest$5 = $$1;
-    debugger;
-    if (objPatternCrashTest$5) {
-      arrPatternStep$29.cannotDestructureThis;
-      return 'ok';
-    } else {
-      return 'ok';
-    }
-  };
   if (objPatternCrashTest) {
     const tmpReturnArg$11 = tmpBranchingC(arrPatternStep$5, objPatternCrashTest);
     return tmpReturnArg$11;

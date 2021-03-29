@@ -196,6 +196,35 @@ f();
 ## Output
 
 `````js filename=intro
+const tmpLabeledBlockFunc$1 = function () {
+  debugger;
+  const tmpIfTest$25 = $(0);
+  if (tmpIfTest$25) {
+    const tmpReturnArg$27 = tmpLabeledBlockFunc$3();
+    return tmpReturnArg$27;
+  } else {
+    const tmpReturnArg$33 = tmpAfterLabel();
+    return tmpReturnArg$33;
+  }
+};
+const tmpLabeledBlockFunc$3 = function () {
+  debugger;
+  const tmpIfTest$51 = $(0);
+  if (tmpIfTest$51) {
+    const tmpReturnArg$21 = tmpAfterLabel$1();
+    return tmpReturnArg$21;
+  } else {
+    $('tail3');
+    const tmpReturnArg$25 = tmpAfterLabel$1();
+    return tmpReturnArg$25;
+  }
+};
+const tmpAfterLabel$1 = function () {
+  debugger;
+  $('tail2');
+  const tmpReturnArg$35 = tmpAfterLabel();
+  return tmpReturnArg$35;
+};
 $(100);
 const tmpAfterLabel = function () {
   debugger;
@@ -204,35 +233,6 @@ const tmpAfterLabel = function () {
 };
 const tmpIfTest$5 = $(0);
 if (tmpIfTest$5) {
-  const tmpLabeledBlockFunc$1 = function () {
-    debugger;
-    const tmpIfTest$25 = $(0);
-    if (tmpIfTest$25) {
-      const tmpLabeledBlockFunc$3 = function () {
-        debugger;
-        const tmpIfTest$51 = $(0);
-        if (tmpIfTest$51) {
-          const tmpReturnArg$21 = tmpAfterLabel$1();
-          return tmpReturnArg$21;
-        } else {
-          $('tail3');
-          const tmpReturnArg$25 = tmpAfterLabel$1();
-          return tmpReturnArg$25;
-        }
-      };
-      const tmpReturnArg$27 = tmpLabeledBlockFunc$3();
-      return tmpReturnArg$27;
-    } else {
-      const tmpReturnArg$33 = tmpAfterLabel();
-      return tmpReturnArg$33;
-    }
-  };
-  const tmpAfterLabel$1 = function () {
-    debugger;
-    $('tail2');
-    const tmpReturnArg$35 = tmpAfterLabel();
-    return tmpReturnArg$35;
-  };
   tmpLabeledBlockFunc$1();
 } else {
   tmpAfterLabel();

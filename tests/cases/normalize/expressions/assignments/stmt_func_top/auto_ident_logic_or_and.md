@@ -120,24 +120,24 @@ tmpCallCallee$29(tmpCalleeParam$29);
 ## Output
 
 `````js filename=intro
+const tmpBranchingB = function () {
+  debugger;
+  const tmpCalleeParam$9 = $(1);
+  const SSA_a$3 = $(tmpCalleeParam$9);
+  if (SSA_a$3) {
+    const tmpCalleeParam$19 = $(2);
+    const SSA_a$7 = $(tmpCalleeParam$19);
+    $(SSA_a$7);
+    return undefined;
+  } else {
+    $(SSA_a$3);
+    return undefined;
+  }
+};
 const f = function () {
   debugger;
   const tmpCalleeParam = $(0);
   const SSA_a = $(tmpCalleeParam);
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpCalleeParam$9 = $(1);
-    const SSA_a$3 = $(tmpCalleeParam$9);
-    if (SSA_a$3) {
-      const tmpCalleeParam$19 = $(2);
-      const SSA_a$7 = $(tmpCalleeParam$19);
-      $(SSA_a$7);
-      return undefined;
-    } else {
-      $(SSA_a$3);
-      return undefined;
-    }
-  };
   if (SSA_a) {
     $(SSA_a);
     return undefined;

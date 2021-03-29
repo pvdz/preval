@@ -220,24 +220,24 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0) {
+  const arrPatternStep$5 = $$0;
+  debugger;
+  const arrPatternSplat$9 = [...arrPatternStep$5];
+  const arrPatternBeforeDefault$9 = arrPatternSplat$9[0];
+  const tmpIfTest$7 = arrPatternBeforeDefault$9 === undefined;
+  if (tmpIfTest$7) {
+    $('fail');
+    return 'bad';
+  } else {
+    return 'bad';
+  }
+};
 const f = function () {
   debugger;
   const arrPatternSplat = [...null];
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
-  const tmpBranchingC = function ($$0) {
-    const arrPatternStep$5 = $$0;
-    debugger;
-    const arrPatternSplat$9 = [...arrPatternStep$5];
-    const arrPatternBeforeDefault$9 = arrPatternSplat$9[0];
-    const tmpIfTest$7 = arrPatternBeforeDefault$9 === undefined;
-    if (tmpIfTest$7) {
-      $('fail');
-      return 'bad';
-    } else {
-      return 'bad';
-    }
-  };
   if (tmpIfTest) {
     const tmpCalleeParam$1 = ['fail2'];
     const SSA_arrPatternStep$1 = $(tmpCalleeParam$1);

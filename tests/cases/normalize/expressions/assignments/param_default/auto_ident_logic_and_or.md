@@ -194,35 +194,35 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingA = function () {
   debugger;
   const tmpCalleeParam$5 = $(1);
   const tmpNestedComplexRhs$1 = $(tmpCalleeParam$5);
-  const tmpBranchingC$1 = function ($$0) {
-    const tmpNestedComplexRhs$7 = $$0;
-    debugger;
-    if (tmpNestedComplexRhs$7) {
-      a = tmpNestedComplexRhs$7;
-      return undefined;
-    } else {
-      const tmpCalleeParam$25 = $(2);
-      const SSA_tmpNestedComplexRhs$11 = $(tmpCalleeParam$25);
-      a = SSA_tmpNestedComplexRhs$11;
-      return undefined;
-    }
-  };
   if (tmpNestedComplexRhs$1) {
-    const tmpCalleeParam$3 = $(1);
-    const SSA_tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
-    const tmpReturnArg$1 = tmpBranchingC$1(SSA_tmpNestedComplexRhs$1);
-    return tmpReturnArg$1;
+    const tmpCalleeParam$13 = $(1);
+    const SSA_tmpNestedComplexRhs$3 = $(tmpCalleeParam$13);
+    const tmpReturnArg = tmpBranchingC$1(SSA_tmpNestedComplexRhs$3);
+    return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC$1(tmpNestedComplexRhs$1);
-    return tmpReturnArg$7;
+    const tmpReturnArg$15 = tmpBranchingC$1(tmpNestedComplexRhs$1);
+    return tmpReturnArg$15;
+  }
+};
+const tmpBranchingC$1 = function ($$0) {
+  const tmpNestedComplexRhs$7 = $$0;
+  debugger;
+  if (tmpNestedComplexRhs$7) {
+    a = tmpNestedComplexRhs$7;
+    return undefined;
+  } else {
+    const tmpCalleeParam$25 = $(2);
+    const SSA_tmpNestedComplexRhs$11 = $(tmpCalleeParam$25);
+    a = SSA_tmpNestedComplexRhs$11;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$29 = f();
+const tmpCalleeParam$29 = tmpBranchingA();
 $(tmpCalleeParam$29);
 $(a);
 `````

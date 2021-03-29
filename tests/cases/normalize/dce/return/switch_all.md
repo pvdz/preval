@@ -355,64 +355,28 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const tmpBranchingB = function ($$0) {
+  const tmpSwitchValue$3 = $$0;
+  debugger;
+  const tmpBinLhs$7 = $(1);
+  const tmpIfTest$7 = tmpBinLhs$7 === tmpSwitchValue$3;
+  if (tmpIfTest$7) {
+    $('keep, eval');
+    return undefined;
+  } else {
+    $('keep, do not eval');
+    const tmpReturnArg$19 = $(2, 'ret');
+    return tmpReturnArg$19;
+  }
+};
 const f = function () {
   debugger;
   const tmpSwitchValue = $(1, 'disc');
   const tmpBinLhs = $(0);
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingB = function ($$0) {
-    const tmpSwitchValue$3 = $$0;
-    debugger;
-    const tmpBinLhs$7 = $(1);
-    const tmpIfTest$7 = tmpBinLhs$7 === tmpSwitchValue$3;
-    if (tmpIfTest$7) {
-      const tmpReturnArg$7 = tmpBranchingC(1);
-      return tmpReturnArg$7;
-    } else {
-      const tmpReturnArg$9 = tmpBranchingC(2);
-      return tmpReturnArg$9;
-    }
-  };
-  const tmpBranchingC = function ($$0) {
-    const tmpSwitchCaseToStart$5 = $$0;
-    debugger;
-    const tmpIfTest$33 = tmpSwitchCaseToStart$5 <= 0;
-    const tmpBranchingB$3 = function ($$0) {
-      const tmpSwitchCaseToStart$19 = $$0;
-      debugger;
-      const tmpIfTest$47 = tmpSwitchCaseToStart$19 <= 1;
-      const tmpBranchingB$5 = function ($$0) {
-        const tmpSwitchCaseToStart$25 = $$0;
-        debugger;
-        const tmpIfTest$67 = tmpSwitchCaseToStart$25 <= 2;
-        if (tmpIfTest$67) {
-          $('keep, do not eval');
-          const tmpReturnArg$19 = $(2, 'ret');
-          return tmpReturnArg$19;
-        } else {
-          $('eliminate after switch');
-          return undefined;
-        }
-      };
-      if (tmpIfTest$47) {
-        $('keep, eval');
-        return undefined;
-      } else {
-        const tmpReturnArg$33 = tmpBranchingB$5(tmpSwitchCaseToStart$19);
-        return tmpReturnArg$33;
-      }
-    };
-    if (tmpIfTest$33) {
-      $('keep, do not eval');
-      return undefined;
-    } else {
-      const tmpReturnArg$3 = tmpBranchingB$3(tmpSwitchCaseToStart$5);
-      return tmpReturnArg$3;
-    }
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$43 = tmpBranchingC(0);
-    return tmpReturnArg$43;
+    $('keep, do not eval');
+    return undefined;
   } else {
     const tmpReturnArg$45 = tmpBranchingB(tmpSwitchValue);
     return tmpReturnArg$45;

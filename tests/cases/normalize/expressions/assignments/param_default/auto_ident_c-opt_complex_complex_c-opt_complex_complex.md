@@ -263,29 +263,29 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingA$1 = function ($$0) {
+  const tmpChainElementCall$3 = $$0;
+  debugger;
+  const tmpChainRootComputed$7 = $('x');
+  const tmpChainElementObject$7 = tmpChainElementCall$3[tmpChainRootComputed$7];
+  const tmpIfTest$19 = tmpChainElementObject$7 != null;
+  if (tmpIfTest$19) {
+    const tmpChainRootComputed$13 = $('y');
+    const tmpChainElementObject$13 = tmpChainElementObject$7[tmpChainRootComputed$13];
+    a = tmpChainElementObject$13;
+    return undefined;
+  } else {
+    a = undefined;
+    return undefined;
+  }
+};
+const tmpBranchingA = function () {
   debugger;
   const tmpChainElementCall$1 = $(b);
   const tmpIfTest$7 = tmpChainElementCall$1 != null;
-  const tmpBranchingA$1 = function ($$0) {
-    const tmpChainElementCall$3 = $$0;
-    debugger;
-    const tmpChainRootComputed$7 = $('x');
-    const tmpChainElementObject$7 = tmpChainElementCall$3[tmpChainRootComputed$7];
-    const tmpIfTest$19 = tmpChainElementObject$7 != null;
-    if (tmpIfTest$19) {
-      const tmpChainRootComputed$13 = $('y');
-      const tmpChainElementObject$13 = tmpChainElementObject$7[tmpChainRootComputed$13];
-      a = tmpChainElementObject$13;
-      return undefined;
-    } else {
-      a = undefined;
-      return undefined;
-    }
-  };
   if (tmpIfTest$7) {
-    const tmpReturnArg = tmpBranchingA$1(tmpChainElementCall$1);
-    return tmpReturnArg;
+    const tmpReturnArg$13 = tmpBranchingA$1(tmpChainElementCall$1);
+    return tmpReturnArg$13;
   } else {
     a = undefined;
     return undefined;
@@ -294,7 +294,7 @@ const f = function () {
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
+const tmpCalleeParam = tmpBranchingA();
 $(tmpCalleeParam);
 $(a);
 `````

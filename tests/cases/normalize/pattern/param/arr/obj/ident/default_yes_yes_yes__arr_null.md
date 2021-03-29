@@ -264,38 +264,38 @@ tmpCallCallee$7(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0) {
+  const bindingPatternArrRoot$5 = $$0;
+  debugger;
+  const arrPatternSplat$1 = [...bindingPatternArrRoot$5];
+  const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
+  const tmpIfTest$7 = arrPatternBeforeDefault$1 === undefined;
+  if (tmpIfTest$7) {
+    const tmpCalleeParam$5 = { x: 'fail2' };
+    const SSA_arrPatternStep$3 = $(tmpCalleeParam$5);
+    const tmpReturnArg$3 = tmpBranchingC$1(SSA_arrPatternStep$3);
+    return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$17 = tmpBranchingC$1(arrPatternBeforeDefault$1);
+    return tmpReturnArg$17;
+  }
+};
+const tmpBranchingC$1 = function ($$0) {
+  const arrPatternStep$7 = $$0;
+  debugger;
+  const objPatternBeforeDefault$3 = arrPatternStep$7.x;
+  const tmpIfTest$21 = objPatternBeforeDefault$3 === undefined;
+  if (tmpIfTest$21) {
+    $('pass');
+    return 'bad';
+  } else {
+    return 'bad';
+  }
+};
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternArrRoot$5 = $$0;
-    debugger;
-    const arrPatternSplat$1 = [...bindingPatternArrRoot$5];
-    const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-    const tmpIfTest$7 = arrPatternBeforeDefault$1 === undefined;
-    const tmpBranchingC$1 = function ($$0) {
-      const arrPatternStep$7 = $$0;
-      debugger;
-      const objPatternBeforeDefault$3 = arrPatternStep$7.x;
-      const tmpIfTest$21 = objPatternBeforeDefault$3 === undefined;
-      if (tmpIfTest$21) {
-        $('pass');
-        return 'bad';
-      } else {
-        return 'bad';
-      }
-    };
-    if (tmpIfTest$7) {
-      const tmpCalleeParam$5 = { x: 'fail2' };
-      const SSA_arrPatternStep$3 = $(tmpCalleeParam$5);
-      const tmpReturnArg$3 = tmpBranchingC$1(SSA_arrPatternStep$3);
-      return tmpReturnArg$3;
-    } else {
-      const tmpReturnArg$17 = tmpBranchingC$1(arrPatternBeforeDefault$1);
-      return tmpReturnArg$17;
-    }
-  };
   if (tmpIfTest) {
     const tmpArrElement$1 = { x: 'fail3' };
     const tmpCalleeParam$1 = [tmpArrElement$1];

@@ -124,25 +124,25 @@ tmpCallCallee$21(tmpCalleeParam$21);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0, $$1) {
+  const a$5 = $$0;
+  const tmpIfTest$5 = $$1;
+  debugger;
+  if (tmpIfTest$5) {
+    const tmpCalleeParam$15 = $(2);
+    $(tmpCalleeParam$15);
+    $(a$5);
+    return undefined;
+  } else {
+    $(a$5);
+    return undefined;
+  }
+};
 const f = function () {
   debugger;
   const a = { a: 999, b: 1000 };
   const tmpCalleeParam = $(1);
   const tmpIfTest = $(tmpCalleeParam);
-  const tmpBranchingC = function ($$0, $$1) {
-    const a$5 = $$0;
-    const tmpIfTest$5 = $$1;
-    debugger;
-    if (tmpIfTest$5) {
-      const tmpCalleeParam$15 = $(2);
-      $(tmpCalleeParam$15);
-      $(a$5);
-      return undefined;
-    } else {
-      $(a$5);
-      return undefined;
-    }
-  };
   if (tmpIfTest) {
     const tmpCalleeParam$5 = $(1);
     const SSA_tmpIfTest$1 = $(tmpCalleeParam$5);

@@ -221,35 +221,11 @@ const f = function () {
   const tmpSwitchValue = $(1, 'disc');
   const tmpBinLhs = $(0);
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingC = function ($$0) {
-    const tmpSwitchCaseToStart$5 = $$0;
-    debugger;
-    const tmpIfTest$15 = tmpSwitchCaseToStart$5 <= 0;
-    const tmpBranchingB$1 = function ($$0) {
-      const tmpSwitchCaseToStart$13 = $$0;
-      debugger;
-      const tmpIfTest$27 = tmpSwitchCaseToStart$13 <= 1;
-      if (tmpIfTest$27) {
-        const tmpReturnArg$15 = $(2, 'ret');
-        return tmpReturnArg$15;
-      } else {
-        $('fail');
-        return undefined;
-      }
-    };
-    if (tmpIfTest$15) {
-      $('keep, do not eval');
-      return undefined;
-    } else {
-      const tmpReturnArg$3 = tmpBranchingB$1(tmpSwitchCaseToStart$5);
-      return tmpReturnArg$3;
-    }
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$27 = tmpBranchingC(0);
-    return tmpReturnArg$27;
+    $('keep, do not eval');
+    return undefined;
   } else {
-    const tmpReturnArg$29 = tmpBranchingC(1);
+    const tmpReturnArg$29 = $(2, 'ret');
     return tmpReturnArg$29;
   }
 };

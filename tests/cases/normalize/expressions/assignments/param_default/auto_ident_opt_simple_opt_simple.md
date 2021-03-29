@@ -218,26 +218,26 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingA$1 = function ($$0) {
+  const tmpChainRootProp$3 = $$0;
+  debugger;
+  const tmpChainElementObject$7 = tmpChainRootProp$3.x;
+  const tmpIfTest$19 = tmpChainElementObject$7 != null;
+  if (tmpIfTest$19) {
+    const tmpChainElementObject$13 = tmpChainElementObject$7.y;
+    a = tmpChainElementObject$13;
+    return undefined;
+  } else {
+    a = undefined;
+    return undefined;
+  }
+};
+const tmpBranchingA = function () {
   debugger;
   const tmpIfTest$7 = b != null;
-  const tmpBranchingA$1 = function ($$0) {
-    const tmpChainRootProp$3 = $$0;
-    debugger;
-    const tmpChainElementObject$7 = tmpChainRootProp$3.x;
-    const tmpIfTest$19 = tmpChainElementObject$7 != null;
-    if (tmpIfTest$19) {
-      const tmpChainElementObject$13 = tmpChainElementObject$7.y;
-      a = tmpChainElementObject$13;
-      return undefined;
-    } else {
-      a = undefined;
-      return undefined;
-    }
-  };
   if (tmpIfTest$7) {
-    const tmpReturnArg = tmpBranchingA$1(b);
-    return tmpReturnArg;
+    const tmpReturnArg$13 = tmpBranchingA$1(b);
+    return tmpReturnArg$13;
   } else {
     a = undefined;
     return undefined;
@@ -246,7 +246,7 @@ const f = function () {
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
+const tmpCalleeParam = tmpBranchingA();
 $(tmpCalleeParam);
 $(a);
 `````

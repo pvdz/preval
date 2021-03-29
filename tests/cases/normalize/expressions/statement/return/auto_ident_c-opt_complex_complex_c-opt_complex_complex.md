@@ -168,24 +168,24 @@ $(a);
 ## Output
 
 `````js filename=intro
+const tmpBranchingA = function ($$0) {
+  const tmpChainElementCall$1 = $$0;
+  debugger;
+  const tmpChainRootComputed$3 = $('x');
+  const tmpChainElementObject$3 = tmpChainElementCall$1[tmpChainRootComputed$3];
+  const tmpIfTest$5 = tmpChainElementObject$3 != null;
+  if (tmpIfTest$5) {
+    const tmpChainRootComputed$9 = $('y');
+    const tmpChainElementObject$9 = tmpChainElementObject$3[tmpChainRootComputed$9];
+    return tmpChainElementObject$9;
+  } else {
+    return undefined;
+  }
+};
 const f = function () {
   debugger;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
-  const tmpBranchingA = function ($$0) {
-    const tmpChainElementCall$1 = $$0;
-    debugger;
-    const tmpChainRootComputed$3 = $('x');
-    const tmpChainElementObject$3 = tmpChainElementCall$1[tmpChainRootComputed$3];
-    const tmpIfTest$5 = tmpChainElementObject$3 != null;
-    if (tmpIfTest$5) {
-      const tmpChainRootComputed$9 = $('y');
-      const tmpChainElementObject$9 = tmpChainElementObject$3[tmpChainRootComputed$9];
-      return tmpChainElementObject$9;
-    } else {
-      return undefined;
-    }
-  };
   if (tmpIfTest) {
     const tmpReturnArg$25 = tmpBranchingA(tmpChainElementCall);
     return tmpReturnArg$25;

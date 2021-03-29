@@ -158,33 +158,33 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingA = function () {
   debugger;
   const tmpCalleeParam$5 = $(1);
   const SSA_p$1 = $(tmpCalleeParam$5);
-  const tmpBranchingC$1 = function ($$0) {
-    const p$11 = $$0;
-    debugger;
-    if (p$11) {
-      return undefined;
-    } else {
-      const tmpCalleeParam$25 = $(2);
-      $(tmpCalleeParam$25);
-      return undefined;
-    }
-  };
   if (SSA_p$1) {
-    const tmpCalleeParam$3 = $(1);
-    const SSA_p$4 = $(tmpCalleeParam$3);
-    const tmpReturnArg$1 = tmpBranchingC$1(SSA_p$4);
-    return tmpReturnArg$1;
+    const tmpCalleeParam$13 = $(1);
+    const SSA_p$7 = $(tmpCalleeParam$13);
+    const tmpReturnArg = tmpBranchingC$1(SSA_p$7);
+    return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC$1(SSA_p$1);
-    return tmpReturnArg$7;
+    const tmpReturnArg$15 = tmpBranchingC$1(SSA_p$1);
+    return tmpReturnArg$15;
+  }
+};
+const tmpBranchingC$1 = function ($$0) {
+  const p$11 = $$0;
+  debugger;
+  if (p$11) {
+    return undefined;
+  } else {
+    const tmpCalleeParam$25 = $(2);
+    $(tmpCalleeParam$25);
+    return undefined;
   }
 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$29 = f();
+const tmpCalleeParam$29 = tmpBranchingA();
 $(tmpCalleeParam$29);
 $(a);
 `````

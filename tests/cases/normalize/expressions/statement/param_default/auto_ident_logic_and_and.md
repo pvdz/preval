@@ -196,31 +196,31 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingA = function () {
   debugger;
   const tmpCalleeParam$5 = $(1);
   const SSA_p$1 = $(tmpCalleeParam$5);
-  const tmpBranchingA$1 = function () {
-    debugger;
-    const tmpCalleeParam$13 = $(1);
-    const SSA_p$7 = $(tmpCalleeParam$13);
-    if (SSA_p$7) {
-      const tmpCalleeParam$25 = $(2);
-      $(tmpCalleeParam$25);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
   if (SSA_p$1) {
-    const tmpReturnArg = tmpBranchingA$1();
-    return tmpReturnArg;
+    const tmpReturnArg$13 = tmpBranchingA$1();
+    return tmpReturnArg$13;
+  } else {
+    return undefined;
+  }
+};
+const tmpBranchingA$1 = function () {
+  debugger;
+  const tmpCalleeParam$13 = $(1);
+  const SSA_p$7 = $(tmpCalleeParam$13);
+  if (SSA_p$7) {
+    const tmpCalleeParam$25 = $(2);
+    $(tmpCalleeParam$25);
+    return undefined;
   } else {
     return undefined;
   }
 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$35 = f();
+const tmpCalleeParam$35 = tmpBranchingA();
 $(tmpCalleeParam$35);
 $(a);
 `````

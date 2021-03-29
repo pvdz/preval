@@ -6,6 +6,7 @@ import { inlineConstants } from './phase2inlineconstants.mjs';
 import { promoteVars } from './phase2promotevars.mjs';
 import { inlineSimpleFuncCalls } from './phase2simplefuncs.mjs';
 import { inlineOneTimeFunctions } from './phase2onetimers.mjs';
+import { funcScopePromo } from './phase2funcscopepromo.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -51,6 +52,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const simpled = inlineSimpleFuncCalls(fdata);
   if (simpled) return simpled;
+
+  const globaled = funcScopePromo(fdata);
+  if (globaled) return globaled;
 
   // The read/write data should still be in tact at this point
 }

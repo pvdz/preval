@@ -322,45 +322,45 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const $clone$tmpBranchingC$0_Nnull = function () {
   debugger;
-  const arrPatternSplat$1 = [...null];
-  const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-  const tmpIfTest$7 = arrPatternBeforeDefault$1 === undefined;
-  const tmpBranchingC$1 = function ($$0) {
-    const arrPatternStep$7 = $$0;
-    debugger;
-    const objPatternCrashTest$3 = arrPatternStep$7 === undefined;
-    const tmpBranchingC$3 = function ($$0, $$1) {
-      const arrPatternStep$13 = $$0;
-      const objPatternCrashTest$9 = $$1;
-      debugger;
-      if (objPatternCrashTest$9) {
-        arrPatternStep$13.cannotDestructureThis;
-        return 'bad';
-      } else {
-        return 'bad';
-      }
-    };
-    if (objPatternCrashTest$3) {
-      const tmpReturnArg$19 = tmpBranchingC$3(arrPatternStep$7, objPatternCrashTest$3);
-      return tmpReturnArg$19;
-    } else {
-      const SSA_objPatternCrashTest$7 = arrPatternStep$7 === null;
-      const tmpReturnArg$9 = tmpBranchingC$3(arrPatternStep$7, SSA_objPatternCrashTest$7);
-      return tmpReturnArg$9;
-    }
-  };
-  if (tmpIfTest$7) {
+  const arrPatternSplat$2 = [...null];
+  const arrPatternBeforeDefault$2 = arrPatternSplat$2[0];
+  const tmpIfTest$1 = arrPatternBeforeDefault$2 === undefined;
+  if (tmpIfTest$1) {
     const SSA_arrPatternStep$1 = $('fail');
     const tmpReturnArg$1 = tmpBranchingC$1(SSA_arrPatternStep$1);
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$6 = tmpBranchingC$1(arrPatternBeforeDefault$1);
-    return tmpReturnArg$6;
+    const tmpReturnArg$4 = tmpBranchingC$1(arrPatternBeforeDefault$2);
+    return tmpReturnArg$4;
   }
 };
-const tmpCalleeParam$3 = f();
+const tmpBranchingC$1 = function ($$0) {
+  const arrPatternStep$7 = $$0;
+  debugger;
+  const objPatternCrashTest$3 = arrPatternStep$7 === undefined;
+  if (objPatternCrashTest$3) {
+    const tmpReturnArg$19 = tmpBranchingC$3(arrPatternStep$7, objPatternCrashTest$3);
+    return tmpReturnArg$19;
+  } else {
+    const SSA_objPatternCrashTest$7 = arrPatternStep$7 === null;
+    const tmpReturnArg$9 = tmpBranchingC$3(arrPatternStep$7, SSA_objPatternCrashTest$7);
+    return tmpReturnArg$9;
+  }
+};
+const tmpBranchingC$3 = function ($$0, $$1) {
+  const arrPatternStep$13 = $$0;
+  const objPatternCrashTest$9 = $$1;
+  debugger;
+  if (objPatternCrashTest$9) {
+    arrPatternStep$13.cannotDestructureThis;
+    return 'bad';
+  } else {
+    return 'bad';
+  }
+};
+const tmpCalleeParam$3 = $clone$tmpBranchingC$0_Nnull();
 $(tmpCalleeParam$3);
 `````
 

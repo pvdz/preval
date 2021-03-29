@@ -362,6 +362,7 @@ export function registerGlobalIdent(fdata, name, originalName, { isExport = fals
     isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
     isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`
     isBuiltin, // Make a distinction between known builtins and unknown builtins.
+    bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits. Should be set for anything else (which is only var decls after normalization).
     // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
     // Useful recent thread on binding mutations: https://twitter.com/youyuxi/status/1329221913579827200
     // var/let a;

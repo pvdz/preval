@@ -149,41 +149,16 @@ tmpCallCallee$5(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const f = function ($$0, $$1) {
-  const tmpParamBare = $$0;
-  const tmpParamBare$1 = $$1;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0, $$1) {
-    const tmpParamBare$12 = $$0;
-    const a$5 = $$1;
-    debugger;
-    const tmpIfTest$7 = tmpParamBare$12 === undefined;
-    if (tmpIfTest$7) {
-      const tmpReturnArg$1 = [a$5, 'bar'];
-      return tmpReturnArg$1;
-    } else {
-      const tmpReturnArg$7 = [a$5, tmpParamBare$12];
-      return tmpReturnArg$7;
-    }
-  };
-  if (tmpIfTest) {
-    const SSA_a$1 = b;
-    const tmpReturnArg = tmpBranchingC(tmpParamBare$1, SSA_a$1);
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$15 = tmpBranchingC(tmpParamBare$1, tmpParamBare);
-    return tmpReturnArg$15;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f('x');
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(undefined, 'y');
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f('x', 'y');
-$(tmpCalleeParam$5);
+const SSA_a$2 = b;
+const tmpReturnArg$15 = [SSA_a$2, 'bar'];
+$(tmpReturnArg$15);
+const tmpReturnArg$19 = ['x', 'bar'];
+$(tmpReturnArg$19);
+const SSA_a$6 = b;
+const tmpReturnArg$4 = [SSA_a$6, 'y'];
+$(tmpReturnArg$4);
+const tmpReturnArg$9 = ['x', 'y'];
+$(tmpReturnArg$9);
 `````
 
 ## Globals

@@ -123,7 +123,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingA = function () {
   debugger;
   const tmpCalleeParam$1 = $(1);
   const tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
@@ -136,7 +136,7 @@ const f = function () {
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$9 = f();
+const tmpCalleeParam$9 = tmpBranchingA();
 $(tmpCalleeParam$9);
 $(a);
 `````

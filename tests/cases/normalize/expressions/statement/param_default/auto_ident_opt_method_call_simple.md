@@ -124,12 +124,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingA = function () {
   debugger;
   const tmpIfTest$5 = b != null;
   if (tmpIfTest$5) {
-    const tmpChainElementObject$1 = b.c;
-    tmpChainElementObject$1.call(b, 1);
+    const tmpChainElementObject$3 = b.c;
+    tmpChainElementObject$3.call(b, 1);
     return undefined;
   } else {
     return undefined;
@@ -137,7 +137,7 @@ const f = function () {
 };
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
+const tmpCalleeParam = tmpBranchingA();
 $(tmpCalleeParam);
 $(a);
 `````

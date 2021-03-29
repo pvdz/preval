@@ -246,6 +246,18 @@ tmpCallCallee$7(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC$1 = function ($$0) {
+  const objPatternAfterDefault$7 = $$0;
+  debugger;
+  const objPatternBeforeDefault$13 = objPatternAfterDefault$7.y;
+  const tmpIfTest$21 = objPatternBeforeDefault$13 === undefined;
+  if (tmpIfTest$21) {
+    const tmpReturnArg$11 = $('fail');
+    return tmpReturnArg$11;
+  } else {
+    return objPatternBeforeDefault$13;
+  }
+};
 const f = function () {
   debugger;
   const tmpObjLitVal$1 = { y: 'pass3' };
@@ -253,18 +265,6 @@ const f = function () {
   const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
   const objPatternBeforeDefault$3 = SSA_bindingPatternObjRoot$1.x;
   const tmpIfTest$7 = objPatternBeforeDefault$3 === undefined;
-  const tmpBranchingC$1 = function ($$0) {
-    const objPatternAfterDefault$7 = $$0;
-    debugger;
-    const objPatternBeforeDefault$13 = objPatternAfterDefault$7.y;
-    const tmpIfTest$21 = objPatternBeforeDefault$13 === undefined;
-    if (tmpIfTest$21) {
-      const tmpReturnArg$11 = $('fail');
-      return tmpReturnArg$11;
-    } else {
-      return objPatternBeforeDefault$13;
-    }
-  };
   if (tmpIfTest$7) {
     const tmpCalleeParam$4 = { y: 'fail2' };
     const SSA_objPatternAfterDefault$1 = $(tmpCalleeParam$4);

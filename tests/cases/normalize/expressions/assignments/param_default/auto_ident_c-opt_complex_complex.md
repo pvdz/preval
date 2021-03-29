@@ -165,14 +165,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingA = function () {
   debugger;
   const tmpChainElementCall$1 = $(b);
   const tmpIfTest$5 = tmpChainElementCall$1 != null;
   if (tmpIfTest$5) {
-    const tmpChainRootComputed$1 = $('x');
-    const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
-    a = tmpChainElementObject$1;
+    const tmpChainRootComputed$3 = $('x');
+    const tmpChainElementObject$3 = tmpChainElementCall$1[tmpChainRootComputed$3];
+    a = tmpChainElementObject$3;
     return undefined;
   } else {
     a = undefined;
@@ -181,7 +181,7 @@ const f = function () {
 };
 const b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
+const tmpCalleeParam = tmpBranchingA();
 $(tmpCalleeParam);
 $(a);
 `````

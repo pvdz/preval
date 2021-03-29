@@ -92,6 +92,13 @@ $(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const B = function () {
+  debugger;
+  if ($) {
+    const tmpReturnArg$3 = A();
+    return tmpReturnArg$3;
+  }
+};
 const A = function () {
   debugger;
   if ($) {
@@ -100,13 +107,6 @@ const A = function () {
 };
 const f = function () {
   debugger;
-  const B = function () {
-    debugger;
-    if ($) {
-      const tmpReturnArg$3 = A();
-      return tmpReturnArg$3;
-    }
-  };
   if ($) {
     const tmpReturnArg$53 = B();
     return tmpReturnArg$53;

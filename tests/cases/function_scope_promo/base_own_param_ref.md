@@ -167,40 +167,40 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
+const f = function () {
+  debugger;
+  if ($) {
+    $('prevent');
+    $('simple');
+    $('inlining');
+    const tmpReturnArg$7 = tmpBranchingC$1(g);
+    return tmpReturnArg$7;
+  } else {
+    const tmpReturnArg$15 = tmpBranchingC$1(g);
+    return tmpReturnArg$15;
+  }
+};
+const g = function ($$0) {
+  const x = $$0;
+  debugger;
+  if ($) {
+    $('prevent');
+    $('simple');
+    $('inlining');
+    return x;
+  } else {
+    return x;
+  }
+};
+const tmpBranchingC$1 = function ($$0) {
+  const g$5 = $$0;
+  debugger;
+  const tmpCalleeParam = $(10);
+  const tmpReturnArg$11 = g$5(tmpCalleeParam);
+  return tmpReturnArg$11;
+};
 const h = function () {
   debugger;
-  const f = function () {
-    debugger;
-    const g = function ($$0) {
-      const x = $$0;
-      debugger;
-      if ($) {
-        $('prevent');
-        $('simple');
-        $('inlining');
-        return x;
-      } else {
-        return x;
-      }
-    };
-    const tmpBranchingC$1 = function ($$0) {
-      const g$5 = $$0;
-      debugger;
-      const tmpCalleeParam = $(10);
-      const tmpReturnArg$11 = g$5(tmpCalleeParam);
-      return tmpReturnArg$11;
-    };
-    if ($) {
-      $('prevent');
-      $('simple');
-      $('inlining');
-      const tmpReturnArg$7 = tmpBranchingC$1(g);
-      return tmpReturnArg$7;
-    } else {
-      const tmpReturnArg$15 = tmpBranchingC$1(g);
-      return tmpReturnArg$15;
-    }
-  };
   if ($) {
     $('prevent');
     $('simple');

@@ -94,23 +94,18 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const g$1 = function () {
+  const tmpArgumentsLen$1 = arguments.length;
+  debugger;
+  $(tmpArgumentsLen$1);
+};
 const f = function () {
   debugger;
-  const tmpBranchingC = function () {
-    debugger;
-    const g$1 = function () {
-      const tmpArgumentsLen$1 = arguments.length;
-      debugger;
-      $(tmpArgumentsLen$1);
-    };
-    const tmpReturnArg$3 = g$1();
-    return tmpReturnArg$3;
-  };
   if ($) {
-    const tmpReturnArg = tmpBranchingC();
+    const tmpReturnArg = g$1();
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC();
+    const tmpReturnArg$7 = g$1();
     return tmpReturnArg$7;
   }
 };

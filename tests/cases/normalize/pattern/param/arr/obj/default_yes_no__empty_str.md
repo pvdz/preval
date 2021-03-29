@@ -267,35 +267,35 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0) {
+  const arrPatternStep$5 = $$0;
+  debugger;
+  const objPatternCrashTest$1 = arrPatternStep$5 === undefined;
+  if (objPatternCrashTest$1) {
+    const tmpReturnArg$15 = tmpBranchingC$1(arrPatternStep$5, objPatternCrashTest$1);
+    return tmpReturnArg$15;
+  } else {
+    const SSA_objPatternCrashTest$5 = arrPatternStep$5 === null;
+    const tmpReturnArg$5 = tmpBranchingC$1(arrPatternStep$5, SSA_objPatternCrashTest$5);
+    return tmpReturnArg$5;
+  }
+};
+const tmpBranchingC$1 = function ($$0, $$1) {
+  const arrPatternStep$11 = $$0;
+  const objPatternCrashTest$7 = $$1;
+  debugger;
+  if (objPatternCrashTest$7) {
+    arrPatternStep$11.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
+  }
+};
 const f = function () {
   debugger;
   const arrPatternSplat = [];
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
-  const tmpBranchingC = function ($$0) {
-    const arrPatternStep$5 = $$0;
-    debugger;
-    const objPatternCrashTest$1 = arrPatternStep$5 === undefined;
-    const tmpBranchingC$1 = function ($$0, $$1) {
-      const arrPatternStep$11 = $$0;
-      const objPatternCrashTest$7 = $$1;
-      debugger;
-      if (objPatternCrashTest$7) {
-        arrPatternStep$11.cannotDestructureThis;
-        return 'ok';
-      } else {
-        return 'ok';
-      }
-    };
-    if (objPatternCrashTest$1) {
-      const tmpReturnArg$15 = tmpBranchingC$1(arrPatternStep$5, objPatternCrashTest$1);
-      return tmpReturnArg$15;
-    } else {
-      const SSA_objPatternCrashTest$5 = arrPatternStep$5 === null;
-      const tmpReturnArg$5 = tmpBranchingC$1(arrPatternStep$5, SSA_objPatternCrashTest$5);
-      return tmpReturnArg$5;
-    }
-  };
   if (tmpIfTest) {
     const SSA_arrPatternStep$1 = $('pass');
     const tmpReturnArg = tmpBranchingC(SSA_arrPatternStep$1);

@@ -81,15 +81,15 @@ $(a);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function () {
+  debugger;
+  const tmpReturnArg$1 = a;
+  return tmpReturnArg$1;
+};
 const f = function () {
   debugger;
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpReturnArg$1 = a;
-    return tmpReturnArg$1;
-  };
   if (a) {
     const tmpCalleeParam$5 = $(2);
     a = $(tmpCalleeParam$5);

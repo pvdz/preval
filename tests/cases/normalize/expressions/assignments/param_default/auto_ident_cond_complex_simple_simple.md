@@ -122,21 +122,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingA = function () {
   debugger;
   const tmpIfTest$5 = $(1);
   if (tmpIfTest$5) {
     a = 2;
     return undefined;
   } else {
-    const tmpCalleeParam$1 = $(100);
-    const SSA_tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
-    a = SSA_tmpNestedComplexRhs$1;
+    const tmpCalleeParam$3 = $(100);
+    const SSA_tmpNestedComplexRhs$5 = $(tmpCalleeParam$3);
+    a = SSA_tmpNestedComplexRhs$5;
     return undefined;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$5 = f();
+const tmpCalleeParam$5 = tmpBranchingA();
 $(tmpCalleeParam$5);
 $(a);
 `````

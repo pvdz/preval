@@ -250,37 +250,37 @@ tmpCallCallee$7(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0) {
+  const bindingPatternObjRoot$5 = $$0;
+  debugger;
+  const objPatternBeforeDefault$3 = bindingPatternObjRoot$5.x;
+  const tmpIfTest$7 = objPatternBeforeDefault$3 === undefined;
+  if (tmpIfTest$7) {
+    const tmpCalleeParam$5 = { y: 'fail2' };
+    const SSA_objPatternAfterDefault$3 = $(tmpCalleeParam$5);
+    const tmpReturnArg$3 = tmpBranchingC$1(SSA_objPatternAfterDefault$3);
+    return tmpReturnArg$3;
+  } else {
+    const tmpReturnArg$17 = tmpBranchingC$1(objPatternBeforeDefault$3);
+    return tmpReturnArg$17;
+  }
+};
+const tmpBranchingC$1 = function ($$0) {
+  const objPatternAfterDefault$7 = $$0;
+  debugger;
+  const objPatternBeforeDefault$13 = objPatternAfterDefault$7.y;
+  const tmpIfTest$21 = objPatternBeforeDefault$13 === undefined;
+  if (tmpIfTest$21) {
+    const tmpReturnArg$11 = $('fail');
+    return tmpReturnArg$11;
+  } else {
+    return objPatternBeforeDefault$13;
+  }
+};
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternObjRoot$5 = $$0;
-    debugger;
-    const objPatternBeforeDefault$3 = bindingPatternObjRoot$5.x;
-    const tmpIfTest$7 = objPatternBeforeDefault$3 === undefined;
-    const tmpBranchingC$1 = function ($$0) {
-      const objPatternAfterDefault$7 = $$0;
-      debugger;
-      const objPatternBeforeDefault$13 = objPatternAfterDefault$7.y;
-      const tmpIfTest$21 = objPatternBeforeDefault$13 === undefined;
-      if (tmpIfTest$21) {
-        const tmpReturnArg$11 = $('fail');
-        return tmpReturnArg$11;
-      } else {
-        return objPatternBeforeDefault$13;
-      }
-    };
-    if (tmpIfTest$7) {
-      const tmpCalleeParam$5 = { y: 'fail2' };
-      const SSA_objPatternAfterDefault$3 = $(tmpCalleeParam$5);
-      const tmpReturnArg$3 = tmpBranchingC$1(SSA_objPatternAfterDefault$3);
-      return tmpReturnArg$3;
-    } else {
-      const tmpReturnArg$17 = tmpBranchingC$1(objPatternBeforeDefault$3);
-      return tmpReturnArg$17;
-    }
-  };
   if (tmpIfTest) {
     const tmpObjLitVal$1 = { y: 'fail3' };
     const tmpCalleeParam$1 = { x: tmpObjLitVal$1 };

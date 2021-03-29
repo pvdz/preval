@@ -152,35 +152,35 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
+const tmpBranchingA = function () {
+  debugger;
+  const tmpIfTest$7 = $(2);
+  if (tmpIfTest$7) {
+    $(3);
+    const tmpReturnArg$9 = $(5);
+    return tmpReturnArg$9;
+  } else {
+    $(4);
+    const tmpReturnArg$11 = $(5);
+    return tmpReturnArg$11;
+  }
+};
+const tmpBranchingB = function () {
+  debugger;
+  const tmpIfTest$11 = $(6);
+  if (tmpIfTest$11) {
+    $(7);
+    const tmpReturnArg$19 = $(9);
+    return tmpReturnArg$19;
+  } else {
+    $(8);
+    const tmpReturnArg$21 = $(9);
+    return tmpReturnArg$21;
+  }
+};
 const f = function () {
   debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpIfTest$7 = $(2);
-    if (tmpIfTest$7) {
-      $(3);
-      const tmpReturnArg$9 = $(5);
-      return tmpReturnArg$9;
-    } else {
-      $(4);
-      const tmpReturnArg$11 = $(5);
-      return tmpReturnArg$11;
-    }
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpIfTest$11 = $(6);
-    if (tmpIfTest$11) {
-      $(7);
-      const tmpReturnArg$19 = $(9);
-      return tmpReturnArg$19;
-    } else {
-      $(8);
-      const tmpReturnArg$21 = $(9);
-      return tmpReturnArg$21;
-    }
-  };
   if (tmpIfTest) {
     const tmpReturnArg$27 = tmpBranchingA();
     return tmpReturnArg$27;

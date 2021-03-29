@@ -77,13 +77,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function () {
+  debugger;
+  throw 'exit';
+};
 const f = function () {
   debugger;
   const tmpIfTest = $(false);
-  const tmpBranchingC = function () {
-    debugger;
-    throw 'exit';
-  };
   if (tmpIfTest) {
     x = $('fail too');
     const tmpReturnArg = tmpBranchingC();

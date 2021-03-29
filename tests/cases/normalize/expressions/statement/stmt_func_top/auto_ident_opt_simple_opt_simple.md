@@ -165,27 +165,27 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const tmpBranchingA = function ($$0, $$1) {
+  const a$1 = $$0;
+  const tmpChainRootProp$1 = $$1;
+  debugger;
+  const tmpChainElementObject$3 = tmpChainRootProp$1.x;
+  const tmpIfTest$5 = tmpChainElementObject$3 != null;
+  if (tmpIfTest$5) {
+    tmpChainElementObject$3.y;
+    $(a$1);
+    return undefined;
+  } else {
+    $(a$1);
+    return undefined;
+  }
+};
 const f = function () {
   debugger;
   const tmpObjLitVal = { y: 1 };
   const b = { x: tmpObjLitVal };
   const a = { a: 999, b: 1000 };
   const tmpIfTest = b != null;
-  const tmpBranchingA = function ($$0, $$1) {
-    const a$1 = $$0;
-    const tmpChainRootProp$1 = $$1;
-    debugger;
-    const tmpChainElementObject$3 = tmpChainRootProp$1.x;
-    const tmpIfTest$5 = tmpChainElementObject$3 != null;
-    if (tmpIfTest$5) {
-      tmpChainElementObject$3.y;
-      $(a$1);
-      return undefined;
-    } else {
-      $(a$1);
-      return undefined;
-    }
-  };
   if (tmpIfTest) {
     const tmpReturnArg$11 = tmpBranchingA(a, b);
     return tmpReturnArg$11;

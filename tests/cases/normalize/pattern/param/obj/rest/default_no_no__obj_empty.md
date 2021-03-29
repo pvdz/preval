@@ -88,17 +88,17 @@ tmpCallCallee$5(tmpCalleeParam$9);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0) {
+  const bindingPatternObjRoot$5 = $$0;
+  debugger;
+  const tmpCalleeParam$5 = [];
+  const x$1 = objPatternRest(bindingPatternObjRoot$5, tmpCalleeParam$5, 'x');
+  return x$1;
+};
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function ($$0) {
-    const bindingPatternObjRoot$5 = $$0;
-    debugger;
-    const tmpCalleeParam$5 = [];
-    const x$1 = objPatternRest(bindingPatternObjRoot$5, tmpCalleeParam$5, 'x');
-    return x$1;
-  };
   if (tmpIfTest) {
     const tmpCalleeParam$1 = { a: 'fail' };
     const SSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);

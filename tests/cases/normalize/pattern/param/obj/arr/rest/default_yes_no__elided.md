@@ -106,18 +106,18 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC = function ($$0) {
+  const objPatternAfterDefault$5 = $$0;
+  debugger;
+  const arrPatternSplat$1 = [...objPatternAfterDefault$5];
+  const y$1 = arrPatternSplat$1.slice(0);
+  return y$1;
+};
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   const objPatternBeforeDefault = tmpParamBare.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingC = function ($$0) {
-    const objPatternAfterDefault$5 = $$0;
-    debugger;
-    const arrPatternSplat$1 = [...objPatternAfterDefault$5];
-    const y$1 = arrPatternSplat$1.slice(0);
-    return y$1;
-  };
   if (tmpIfTest) {
     const tmpCalleeParam$1 = ['fail'];
     const SSA_objPatternAfterDefault$1 = $(tmpCalleeParam$1);

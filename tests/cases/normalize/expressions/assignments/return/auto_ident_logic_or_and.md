@@ -116,29 +116,29 @@ $(a);
 ## Output
 
 `````js filename=intro
+const tmpBranchingB = function () {
+  debugger;
+  const tmpCalleeParam$9 = $(1);
+  a = $(tmpCalleeParam$9);
+  if (a) {
+    const tmpCalleeParam$19 = $(2);
+    a = $(tmpCalleeParam$19);
+    const tmpReturnArg$5 = tmpBranchingC();
+    return tmpReturnArg$5;
+  } else {
+    const tmpReturnArg$13 = tmpBranchingC();
+    return tmpReturnArg$13;
+  }
+};
+const tmpBranchingC = function () {
+  debugger;
+  const tmpReturnArg$1 = a;
+  return tmpReturnArg$1;
+};
 const f = function () {
   debugger;
   const tmpCalleeParam = $(0);
   a = $(tmpCalleeParam);
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpCalleeParam$9 = $(1);
-    a = $(tmpCalleeParam$9);
-    if (a) {
-      const tmpCalleeParam$19 = $(2);
-      a = $(tmpCalleeParam$19);
-      const tmpReturnArg$5 = tmpBranchingC();
-      return tmpReturnArg$5;
-    } else {
-      const tmpReturnArg$13 = tmpBranchingC();
-      return tmpReturnArg$13;
-    }
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpReturnArg$1 = a;
-    return tmpReturnArg$1;
-  };
   if (a) {
     const tmpReturnArg$15 = tmpBranchingC();
     return tmpReturnArg$15;

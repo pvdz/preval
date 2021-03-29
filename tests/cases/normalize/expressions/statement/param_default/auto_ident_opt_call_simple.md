@@ -119,7 +119,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingA = function () {
   debugger;
   const tmpIfTest$5 = $ != null;
   if (tmpIfTest$5) {
@@ -130,7 +130,7 @@ const f = function () {
   }
 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
+const tmpCalleeParam = tmpBranchingA();
 $(tmpCalleeParam);
 $(a);
 `````

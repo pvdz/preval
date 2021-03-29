@@ -2,13 +2,13 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 import { createFreshVar, createWriteRef } from '../bindings.mjs';
 
-export function promoteVars(fdata) {
+export function applySSA(fdata) {
   group('\n\n\nChecking for vars to SSA\n');
-  const r = _promoteVars(fdata);
+  const r = _applySSA(fdata);
   groupEnd();
   return r;
 }
-function _promoteVars(fdata) {
+function _applySSA(fdata) {
   let promoted = 0;
   // Shallow clone to prevent mutations to the registry from breaking because their read/write refs did not go through phase1
   new Map(fdata.globallyUniqueNamingRegistry).forEach((meta, name) => {

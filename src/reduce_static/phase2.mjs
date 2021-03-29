@@ -3,7 +3,7 @@ import { pruneEmptyFunctions } from './phase2emptyfunc.mjs';
 import { pruneTrampolineFunctions } from './phase2trampoline.mjs';
 import { pruneExcessiveParams } from './phase2exparam.mjs';
 import { inlineConstants } from './phase2inlineconstants.mjs';
-import { promoteVars } from './phase2promotevars.mjs';
+import { applySSA } from './phase2ssa.mjs';
 import { inlineSimpleFuncCalls } from './phase2simplefuncs.mjs';
 import { inlineOneTimeFunctions } from './phase2onetimers.mjs';
 import { funcScopePromo } from './phase2funcscopepromo.mjs';
@@ -41,7 +41,7 @@ function _phase2(program, fdata, resolve, req) {
   const inlinedConstants = inlineConstants(fdata);
   if (inlinedConstants) return inlinedConstants;
 
-  const promoted = promoteVars(fdata);
+  const promoted = applySSA(fdata);
   if (promoted) return promoted;
 
   const prunedParams = pruneExcessiveParams(fdata);

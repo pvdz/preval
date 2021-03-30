@@ -22,7 +22,6 @@ $(typeof -1);
 
 `````js filename=intro
 const tmpCallCallee = $;
--1;
 const tmpCalleeParam = 'number';
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -30,7 +29,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
--1;
 $('number');
 `````
 

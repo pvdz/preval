@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_ident_unary_minus_simple.md
+# ident_unary_minus_simple2.md
 
-> Normalize > Expressions > Assignments > If > Auto ident unary minus simple
+> Normalize > Expressions > Assignments > Switch discriminant > Ident unary minus simple2
 >
 > Normalization of assignments should work the same everywhere they are
 
@@ -11,30 +11,33 @@
 ## Input
 
 `````js filename=intro
-let arg = 1;
-
-let a = { a: 999, b: 1000 };
-if ((a = -arg));
-$(a, arg);
+let a = 1;
+let b = 2;
+{
+  const ignored = b = -a;
+}
+$(b, a);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-if ((a = -arg));
-$(a, arg);
+let a = 1;
+let b = 2;
+{
+  const ignored = (b = -a);
+}
+$(b, a);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let arg = 1;
-let a = { a: 999, b: 1000 };
-a = -arg;
-let tmpIfTest = a;
-$(a, arg);
+let a = 1;
+let b = 2;
+b = -a;
+let ignored = b;
+$(b, a);
 `````
 
 ## Output

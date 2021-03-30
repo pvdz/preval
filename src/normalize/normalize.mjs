@@ -2774,6 +2774,18 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (node.operator === 'void') {
+          if (wrapKind === 'statement') {
+            rule('Void as a statement should be the arg');
+            example('void x;', 'x;');
+            before(node, parentNode);
+
+            body[i] = AST.expressionStatement(node.argument);
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
           rule('Void must be replaced by a sequence');
           example('void x', 'x, undefined');
           before(node, parentNode);
@@ -2790,6 +2802,18 @@ export function phaseNormalize(fdata, fname) {
 
         if (node.operator === '+') {
           if (node.argument.type === 'Literal') {
+            if (wrapKind === 'statement') {
+              rule('Unary plus on a literal as statement should be dropped');
+              example('+10;', ';');
+              before(node, parentNode);
+
+              body[i] = AST.emptyStatement();
+
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
             if (typeof node.argument.value === 'number') {
               rule('The `+` unary operator on a number literal is a noop');
               example('+100', '100');
@@ -2926,6 +2950,18 @@ export function phaseNormalize(fdata, fname) {
 
         if (node.operator === '-') {
           if (node.argument.type === 'Literal') {
+            if (wrapKind === 'statement') {
+              rule('Unary minus on a literal as statement should be dropped');
+              example('-10;', ';');
+              before(node, parentNode);
+
+              body[i] = AST.emptyStatement();
+
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
             if (node.argument.raw === 'null') {
               rule('The `-` unary operator on a null literal is a _negative_ zero');
               example('+null', '0');
@@ -3030,6 +3066,18 @@ export function phaseNormalize(fdata, fname) {
 
         if (node.operator === '!') {
           if (node.argument.type === 'Literal') {
+            if (wrapKind === 'statement') {
+              rule('Unary invert on a literal as statement should be dropped');
+              example('!10;', ';');
+              before(node, parentNode);
+
+              body[i] = AST.emptyStatement();
+
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
             if (typeof node.argument.value === 'number') {
               rule('Inverting a number should be replaced by a boolean');
 
@@ -3194,6 +3242,18 @@ export function phaseNormalize(fdata, fname) {
 
         if (node.operator === '~') {
           if (node.argument.type === 'Literal') {
+            if (wrapKind === 'statement') {
+              rule('Unary tilde on a literal as statement should be dropped');
+              example('~10;', ';');
+              before(node, parentNode);
+
+              body[i] = AST.emptyStatement();
+
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
             if (typeof node.argument.value === 'number') {
               // Note: this is never a negative number because then the argument would be a unary expression
               rule('The `~` unary operator on a number literal should be resolved');

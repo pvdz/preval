@@ -53,7 +53,6 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
--2;
 $(a, 1);
 $(undefined);
 `````

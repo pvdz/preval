@@ -360,7 +360,7 @@ export function registerGlobalIdent(fdata, name, originalName, { isExport = fals
     originalName,
     uniqueName: name,
     isExport, // exports should not have their name changed. we ensure this as the last step of this phase.
-    isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`
+    isImplicitGlobal, // There exists explicit declaration of this ident. These can be valid, like `process` or `window`. Currently also `catch` clause bindings.
     isBuiltin, // Make a distinction between known builtins and unknown builtins.
     bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits. Should be set for anything else (which is only var decls after normalization).
     // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
@@ -522,9 +522,6 @@ export function createWriteRef(obj) {
     scope,
     blockChain,
     innerLoop,
-    decl = null,
-    assign = null,
-    funcDecl = null,
     ...rest
   } = obj;
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
@@ -544,9 +541,6 @@ export function createWriteRef(obj) {
     scope,
     blockChain,
     innerLoop,
-    decl,
-    assign,
-    funcDecl,
   };
 }
 

@@ -9,7 +9,6 @@ export function pruneExcessiveParams(fdata) {
 }
 function _pruneExcessiveParams(fdata) {
   const indexDeleteQueue = []; // Array<array, index-to-delete>. Should be in ascending source-code order.
-  const assignFoldQueue = []; // Array<write.assign>. Expecting to replace assign.parentNode[prop][index] with its own .right
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
@@ -129,28 +128,10 @@ function _pruneExcessiveParams(fdata) {
       });
     }
   });
+
   // Delete the unused params/args now. The index queue should be unwound in reverse order. Doesn't matter otherwise.
-  if (indexDeleteQueue.length || assignFoldQueue.length) {
-    vlog('Dropping', indexDeleteQueue.length, 'params and args and', assignFoldQueue.length, 'redundant writes');
-    assignFoldQueue.forEach(({ assignParent, assignProp, assignIndex, ...rest }) => {
-      if (assignIndex >= 0) {
-        before(assignParent[assignProp][assignIndex]);
-        ASSERT(
-          assignParent[assignProp][assignIndex].type === 'ExpressionStatement',
-          'after normalization, at this point, this should all be about expression statements that are assignments',
-        );
-        assignParent[assignProp][assignIndex] = AST.expressionStatement(assignParent[assignProp][assignIndex].expression.right);
-        after(assignParent[assignProp][assignIndex]);
-      } else {
-        before(assignParent[assignProp]);
-        ASSERT(
-          assignParent[assignProp].type === 'ExpressionStatement',
-          'after normalization, at this point, this should all be about expression statements that are assignments',
-        );
-        assignParent[assignProp] = AST.expressionStatement(assignParent[assignProp].expression.right);
-        after(assignParent[assignProp]);
-      }
-    });
+  if (indexDeleteQueue.length) {
+    vlog('Dropping', indexDeleteQueue.length, 'params and args');
     indexDeleteQueue.reverse().forEach(([arr, index, funcNode]) => {
       // Note: if arr is the arguments array then there may not be as many arguments to cover the param so it may be undefined
       if (index < arr.length) {
@@ -182,7 +163,9 @@ function _pruneExcessiveParams(fdata) {
         }
       }
     });
-    log('Dropped', indexDeleteQueue.length, 'indexes and folded', assignFoldQueue.length, 'assigns, so restarting phase1');
+    log('Deleted params:', indexDeleteQueue.length, '. Restarting phase1');
     return 'phase1';
   }
+
+  log('Deleted params: 0.');
 }

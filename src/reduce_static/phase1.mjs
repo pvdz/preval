@@ -355,9 +355,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
             if (parentNode.type === 'VariableDeclarator') {
               ASSERT(parentProp === 'id', 'the read check above should cover the prop=init case');
-              const declParent = path.nodes[path.nodes.length - 4];
-              const declProp = path.props[path.props.length - 3];
-              const declIndex = path.indexes[path.indexes.length - 3];
               vlog('- Adding decl write');
 
               meta.writes.unshift(
@@ -374,7 +371,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   scope: currentScope.$p.pid,
                   blockChain: blockIds.join(','),
                   innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
-                  decl: { declParent, declProp, declIndex },
                 }),
               );
             } else if (parentNode.type === 'AssignmentExpression') {
@@ -384,9 +380,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 'assignments must be normalized to statements',
                 path.nodes[path.nodes.length - 3],
               );
-              const assignParent = path.nodes[path.nodes.length - 4];
-              const assignProp = path.props[path.props.length - 3];
-              const assignIndex = path.indexes[path.indexes.length - 3];
               vlog('Adding assign write');
               meta.writes.push(
                 createWriteRef({
@@ -402,7 +395,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   scope: currentScope.$p.pid,
                   blockChain: blockIds.join(','),
                   innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
-                  assign: { assignParent, assignProp, assignIndex },
                 }),
               );
             } else if (parentNode.type === 'FunctionDeclaration') {

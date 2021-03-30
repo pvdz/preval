@@ -99,17 +99,7 @@ const g$1 = function () {
   debugger;
   $(tmpArgumentsLen$1);
 };
-const f = function () {
-  debugger;
-  if ($) {
-    const tmpReturnArg = g$1();
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$7 = g$1();
-    return tmpReturnArg$7;
-  }
-};
-const tmpCalleeParam = f();
+const tmpCalleeParam = g$1();
 $(tmpCalleeParam);
 `````
 

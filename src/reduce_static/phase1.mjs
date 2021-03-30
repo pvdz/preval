@@ -360,9 +360,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               const declIndex = path.indexes[path.indexes.length - 3];
               vlog('- Adding decl write');
 
-              // Binding "owner" func node. In which scope was this binding bound?
-              meta.bfuncNode = funcStack[funcStack.length - 1];
-
               meta.writes.unshift(
                 createWriteRef({
                   kind: 'var',
@@ -380,20 +377,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   decl: { declParent, declProp, declIndex },
                 }),
               );
-
-              const grandParentNode = path.nodes[path.nodes.length - 3];
-              ASSERT(grandParentNode.type === 'VariableDeclaration');
-              vlog('- Binding kind is', grandParentNode.kind);
-
-              if (grandParentNode.kind === 'const') {
-                vlog('- Setting constValueRef to a', parentNode.init.type);
-                meta.constValueRef = {
-                  node: parentNode.init,
-                  containerNode: declParent,
-                  containerProp: declProp,
-                  containerIndex: declIndex,
-                };
-              }
             } else if (parentNode.type === 'AssignmentExpression') {
               ASSERT(parentProp === 'left', 'the read check above should cover the prop=right case');
               ASSERT(
@@ -589,18 +572,26 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         ASSERT(node.declarations.length === 1, 'all decls should be normalized to one binding');
         ASSERT(node.declarations[0].id.type === 'Identifier', 'all patterns should be normalized away');
         const meta = globallyUniqueNamingRegistry.get(node.declarations[0].id.name);
-        meta.isImplicitGlobal = false;
         if (node.kind === 'const') {
           vlog('- marking', meta.uniqueName, 'as constant, ref set to', node.declarations[0].init.type);
           ASSERT(meta);
           meta.isConstant = true;
         }
+        meta.isImplicitGlobal = false;
+        ASSERT(parentNode.type === 'BlockStatement' || parentNode.type === 'Program', 'all normalized var decls appear in blocks, right?', parentNode);
+        ASSERT(parentProp === 'body', 'amirite?', parentProp);
         meta.constValueRef = {
+          // This is supposed to be the ref of the binding _value_, not the variable declaration node !
+          // If the var decl is not a constant, this value has little meaning. But it is what it is.
           node: node.declarations[0].init,
-          containerNode: node,
-          containerProp: 'declarations',
-          containerIndex: 0,
+          // This refers to the block where the var decl lives that declares the binding
+          containerNode: node, // The var decl itself
+          // containerParent[containerIndex] === containerNode
+          containerParent: parentNode.body,
+          containerIndex: parentIndex,
         };
+        // Binding "owner" func node. In which scope was this binding bound?
+        meta.bfuncNode = funcStack[funcStack.length - 1];
         break;
       }
 

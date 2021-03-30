@@ -10,6 +10,8 @@
 
 TDZ errors are not properly emulated so a n eval mismatch is expected
 
+Note that the implicit global is caused by TDZ access of x. The pattern `{x}` is cleaned up because it's otherwise unused. But the TDZ access for `foo=x` is left behind.
+
 - skipEval
 
 ## Input
@@ -86,13 +88,16 @@ x();
 ## Output
 
 `````js filename=intro
+x$1;
 undefined.x;
 throw '[Preval]: Can not reach here';
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+x$1
 
 ## Result
 

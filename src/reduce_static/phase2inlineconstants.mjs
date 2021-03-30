@@ -10,7 +10,7 @@ export function inlineConstants(fdata) {
   return r;
 }
 function _inlineConstants(fdata) {
-  const toEliminate = [];
+  const toEliminate = []; // Array<write>
   let inlined = 0;
   let inlinedSomething = 0;
   let inlineLoops = 0;
@@ -28,31 +28,18 @@ function _inlineConstants(fdata) {
       vgroup('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
 
       if (!name.startsWith(ALIAS_PREFIX)) {
-        if (meta.writes.length === 1 && !meta.isConstant) {
+        if (meta.writes.length === 1 && meta.writes[0].kind === 'var' && !meta.isConstant) {
           vlog('Binding `' + name + '` has one write so should be considered a constant, even if it wasnt');
           meta.isConstant = true;
-          if (meta.writes[0].decl) {
-            const { declParent, declProp, declIndex } = meta.writes[0].decl;
-            const varDecl = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
+          const varDecl = meta.constValueRef.containerNode;
 
-            ASSERT(varDecl.type === 'VariableDeclaration', 'if not then indexes changed?');
-            ASSERT(
-              varDecl.kind === 'let',
-              'so it must be a let right now because vars are eliminated and it wasnt marked as a constant',
-              declParent,
-            );
-            if (varDecl.declarations[0].init) {
-              rule('A binding decl where the binding has one write must be a const');
-              example('let x = 10; f(x);', 'const x = 10; f(x);');
-              before(meta.writes[0].decl.declParent);
+          rule('A binding decl where the binding has one write must be a const');
+          example('let x = 10; f(x);', 'const x = 10; f(x);');
+          before(varDecl);
 
-              varDecl.kind = 'const';
+          varDecl.kind = 'const';
 
-              after(meta.writes[0].decl.declParent);
-            } else {
-              vlog('This var has no init so it cannot be a const. Probably unused, or plain undefined.');
-            }
-          }
+          after(varDecl);
         }
 
         // Attempt to fold up constants
@@ -67,53 +54,31 @@ function _inlineConstants(fdata) {
         }
       }
 
-      if (meta.reads.length === 0 && meta.writes[0].decl) {
+      if (meta.reads.length === 0 && meta.writes[0].kind === 'var') {
         ASSERT(meta.writes.length);
         vgroup('Binding `' + name + '` only has writes, zero reads and could be eliminated.');
         // For now, only eliminate actual var decls and assigns. Catch clause is possible. Can't change params for now.
         // If any writes are eliminated this way, drop them from the books and queue them up
 
-        // If the decl is used in a for-x, export, or catch binding (or?) then we must keep the binding decl (should only be one).
-        const keepDecl = meta.writes.some((write) => !write.decl && !write.assign);
+        // If the decl is used in a for-x or catch binding (or?) then we must keep the binding decl (should only be one).
+        const keepDecl = meta.writes.some((write) => write.kind !== 'var' && write.kind !== 'assign');
 
         rule('[1/2] Write-only bindings should be eliminated');
         example('let a = f(); a = g();', 'f(); g();');
 
         for (let i = 0; i < meta.writes.length; ++i) {
+          vlog('-');
           const write = meta.writes[i];
-          if (write.decl && !keepDecl) {
-            // Replace the decl with the init.
+          if (write.kind === 'assign' || (write.kind === 'var' && !keepDecl)) {
+            // Replace the var decl with its init or assignment with its rhs
+            if (write.kind === 'assign') {
+              vlog('Assignment queued for actual deletion (ast was not changed yet, scroll down)');
+            } else {
+              vlog('Var decl queued for actual deletion (ast was not changed yet, scroll down)');
+            }
+            source(write.blockBody[write.blockIndex]);
 
-            const { declParent, declProp, declIndex } = write.decl;
-            const node = declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp];
-            vlog('Replacing a decl with the init', declParent.type + '.' + declProp, declParent.$p.pid, node.type, node.$p.pid);
-            source(node);
-
-            ASSERT(node.type === 'VariableDeclaration', 'if not then indexes changed?', node);
-            //const init = node.declarations[0].init; // It may be empty. Most likely case is a hoisted var decl.
-            vlog('Var decl queued for actual deletion (ast was not changed yet, scroll down)');
-            toEliminate.push({ parent: declParent, prop: declProp, index: declIndex });
-            meta.writes.splice(i, 1);
-
-            //after(AST.emptyStatement());
-            ++inlined;
-            ++inlinedSomething;
-            --i;
-          } else if (write.assign) {
-            // Replace the assignment with the rhs
-
-            const { assignParent, assignProp, assignIndex } = write.assign;
-            const node = assignIndex >= 0 ? assignParent[assignProp][assignIndex] : assignParent[assignProp];
-            vlog('Replacing an assignment with the rhs', assignParent.type + '.' + assignProp, assignParent.$p.pid, node.type, node.$p.pid);
-            before(node, assignParent);
-
-            ASSERT(
-              node.type === 'ExpressionStatement' && node.expression.type === 'AssignmentExpression',
-              'if not then indexes changed?',
-              node,
-            );
-            vlog('Assignment queued for actual deletion (ast was not changed yet, scroll down)');
-            toEliminate.push({ parent: assignParent, prop: assignProp, index: assignIndex });
+            toEliminate.push(write);
             meta.writes.splice(i, 1);
 
             ++inlined;
@@ -145,53 +110,40 @@ function _inlineConstants(fdata) {
       log('Queued some constants to fold. Their writes were removed. Trying loop again...\n\n');
     }
   } while (inlined);
+
   // All read node meta data (parent etc) are invalidated if the next bit eliminates anything.
   vlog('toEliminate:', toEliminate.length);
   if (toEliminate.length) {
     group('Actually eliminate', toEliminate.length, 'var decls and assignments that were rendered redundant');
-    toEliminate.forEach(({ parent, prop, index }) => {
-      const node = index >= 0 ? parent[prop][index] : parent[prop];
-      rule('[2/2] Write-only bindings should be eliminated');
-      example('const x = 5;', ';');
-      before(node, parent);
+    toEliminate.forEach((write) => {
+      rule('[2/2] Write-only writes should be eliminated');
+      example('const x = 5;', ';', () => write.kind === 'var');
+      example('x = 5;', ';', () => write.kind === 'assign');
+      before(write.blockBody[write.blockIndex]);
 
-      if (node.type === 'ExpressionStatement') {
-        ASSERT(node.expression.type === 'AssignmentExpression');
-        node.expression = node.expression.right;
-        after(node);
-      } else {
-        ASSERT(node.type === 'VariableDeclaration', 'if eliminating a new node support it above', node);
-        const init = node.declarations[0].init;
-        // If the init is `this`, `arguments`, or `arguments.length`, we can and should immediately drop it
-        if (
-          init &&
-          (init.type === 'FunctionExpression' ||
-            init.type === 'Param' ||
-            init.type === 'ThisExpression' ||
-            !AST.isComplexNode(init) ||
-            (init.type === 'MemberExpression' &&
-              init.object.type === 'Identifier' &&
-              init.object.name === 'arguments' &&
-              !init.object.computed &&
-              init.property.name === 'length'))
-        ) {
+      if (write.kind === 'var') {
+        const init = write.parentNode.init;
+        // There are a few values that can have no relevant side effects and we outright drop
+        if (nodeToDrop(init)) {
           vlog('Dropping the init too because it is not complex, a function, a param, `this`, or `arguments.length`');
-          if (index >= 0) {
-            parent[prop][index] = AST.emptyStatement();
-          } else {
-            parent[prop] = AST.emptyStatement();
-          }
-          after(AST.emptyStatement(), parent);
+          write.blockBody[write.blockIndex] = AST.emptyStatement();
         } else {
-          const newNode = init ? AST.expressionStatement(init) : AST.emptyStatement();
-          if (index >= 0) {
-            parent[prop][index] = newNode;
-          } else {
-            parent[prop] = newNode;
-          }
-          after(newNode, parent);
+          write.blockBody[write.blockIndex] = AST.expressionStatement(init);
         }
+      } else if (write.kind === 'assign') {
+        const rhs = write.parentNode.right;
+        // There are a few values that can have no relevant side effects and we outright drop
+        if (nodeToDrop(rhs)) {
+          vlog('Dropping the rhs too because it is not complex, a function, a param, `this`, or `arguments.length`');
+          write.blockBody[write.blockIndex] = AST.emptyStatement();
+        } else {
+          write.blockBody[write.blockIndex] = AST.expressionStatement(rhs);
+        }
+      } else {
+        ASSERT(false, 'support me?');
       }
+
+      after(write.blockBody[write.blockIndex]);
     });
     groupEnd();
     // The read/write data is unreliable from here on out and requires a new phase1 step!
@@ -219,12 +171,9 @@ function attemptConstantInlining(meta, fdata) {
   // Figure out the assigned value. This depends on the position of the identifier (var decl, param, assign).
   // Note: any binding can be isConstant here. It is not determined by `const`, but by the number of writes.
   let rhs;
-  if (write.parentNode.type === 'VariableDeclarator') {
-    rhs = write.parentNode.init; // Must exist if the variable is a constant. We normalized for-header cases away.
-    if (!rhs) {
-      // Var decl without init. Substitute undefined here.
-      rhs = AST.identifier('undefined');
-    } else if (rhs.type === 'Param') {
+  if (write.kind === 'var') {
+    rhs = write.parentNode.init;
+    if (rhs.type === 'Param') {
       vlog('Ignore param aliases');
       return;
     }
@@ -234,43 +183,47 @@ function attemptConstantInlining(meta, fdata) {
     ASSERT(rhs && rhs.type !== 'Param', 'param nodes should only be used in the func header in var decls');
   } else {
     // Tough luck. Until we support parameters and all that.
-    vlog('???');
+    vlog('Skipping for/catch write');
     return;
   }
 
   ASSERT(rhs);
-  if (rhs.name === 'arguments') {
-    vlog('TODO; uncomment me to figure out what to do with `arguments`');
-    return;
-  }
+  if (rhs.type === 'Identifier') {
+    if (rhs.name === 'arguments') {
+      vlog('TODO; uncomment me to figure out what to do with `arguments`');
+      return;
+    }
 
-  const assigneeMeta = fdata.globallyUniqueNamingRegistry.get(rhs.name);
+    const assigneeMeta = fdata.globallyUniqueNamingRegistry.get(rhs.name);
 
-  if (rhs.type === 'Identifier' && (assigneeMeta.isBuiltin || assigneeMeta.isConstant)) {
-    // `const x = undefined;` but rhs is NOT a literal
-    // If the identifier has isConstant=true or isBuiltin=true then
+    if (!assigneeMeta.isBuiltin && !assigneeMeta.isConstant) {
+      vlog('Rhs is not a builtin or constant, bailing');
+      return;
+    }
+
+    // `const x = undefined;` but rhs is and ident, NOT a literal
     // - eliminate the decl (this will get queued)
-    // - replace all reads with a clone of it
+    // - replace all reads with a clone of this ident
     // - deregister the name
 
     vgroup('Attempt to replace the', meta.reads.length, 'reads of `' + meta.uniqueName + '` with reads of `' + rhs.name);
 
-    let first = true;
+    let first = true; // Defer printing the rule until the first actual replacement. It may do nothing.
 
     // With the new
-    const clone = AST.cloneSimple(rhs);
     const reads = meta.reads;
     let inlined = false;
     for (let i = 0; i < reads.length; ++i) {
       // Note: this parent may not be part of the AST anymore (!) (ex. if a var decl with complex init was eliminated)
       const oldRead = reads[i];
       const { parentNode, parentProp, parentIndex, grandNode, grandProp, grandIndex } = oldRead;
-      if (parentNode.type === 'ExportSpecifier') {
+      const blockNode = oldRead.blockBody[oldRead.blockIndex];
+      if (blockNode.type === 'ExportNamedDeclaration') {
         vlog('Skipping export ident');
       } else {
         if (first) {
           rule('Declaring a constant with a constant value should eliminate the binding');
-          example('const x = null; f(x);', 'f(null);', () => assigneeMeta.isBuiltin);
+          example('const x = NaN; f(x);', 'f(NaN);', () => assigneeMeta.isBuiltin);
           example('const x = f(); const y = x; g(y);', 'const x = f(); g(x);', () => !assigneeMeta.isBuiltin);
           before(write.parentNode);
           first = false;
@@ -280,7 +233,7 @@ function attemptConstantInlining(meta, fdata) {
           'Replacing a read of `' +
             meta.uniqueName +
             '` with a read from `' +
-            clone.name +
+            rhs.name +
             '` (on prop `' +
             parentNode.type +
             '.' +
@@ -289,10 +242,13 @@ function attemptConstantInlining(meta, fdata) {
             ')' +
             '`...',
         );
-        before(parentNode, parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]);
+
+        const clone = AST.cloneSimple(rhs);
+        before(parentNode, blockNode);
         if (parentIndex >= 0) parentNode[parentProp][parentIndex] = clone;
         else parentNode[parentProp] = clone;
-        after(parentNode, parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]);
+        after(parentNode, blockNode);
+
         inlined = true;
         // Remove the read. This binding is read one fewer times
         reads.splice(i, 1);
@@ -321,28 +277,23 @@ function attemptConstantInlining(meta, fdata) {
     }
     vlog('Binding `' + meta.uniqueName + '` has', reads.length, 'reads left after this');
 
-    if (reads.length === 0 && write.decl) {
-      vgroup('Eliminating var decl');
-      vlog('Zero reads left and it was a var decl. Replacing it with an empty statement.');
+    if (reads.length === 0 && write.kind === 'var') {
+      vlog('Zero reads left and it was a const var decl. Replacing it with an empty statement.');
+      rule('Constant binding with zero reads should be eliminated [1]');
       // Remove the declaration if it was a var decl because there are no more reads from this and it is a constant
       // Note: the init was a lone identifier (that's how we got here) so we should not need to preserve the init
-      const { declParent, declProp, declIndex } = write.decl;
-      ASSERT(
-        (declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).type === 'VariableDeclaration',
-        'if not then indexes changed?',
-      );
-      const decr = (declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).declarations[0];
-      ASSERT(!decr.init || decr.init.type === 'Identifier');
-      if (declIndex >= 0) declParent[declProp][declIndex] = AST.emptyStatement();
-      else declParent[declProp] = AST.emptyStatement();
+      // Any reads of the init would only have their blockBody[blockIndex] value no longer correspond. Only relevant for this file.
+
+      before(write.blockBody[write.blockIndex]);
+      write.blockBody[write.blockIndex] = AST.emptyStatement();
+      after(write.blockBody[write.blockIndex]);
+
+      // TODO: shouldnt we set this to `false` instead. Make sure the name is not taken again, potentially busting the clone cache or something
+      fdata.globallyUniqueNamingRegistry.delete(meta.uniqueName);
 
       inlined = true;
-
-      fdata.globallyUniqueNamingRegistry.delete(meta.uniqueName);
-      vgroupEnd();
     }
 
-    after(';');
     vgroupEnd();
     return inlined;
   }
@@ -358,7 +309,7 @@ function attemptConstantInlining(meta, fdata) {
     // Negative numbers, or numbers with a + before it (noop which we should eliminate anyways... but probably not here).
     // This kind of unary for other constants should be statically resolved (elsewhere), like `-null` is `-0` etc.
     (rhs.type === 'UnaryExpression' &&
-      (rhs.operator === '+' || rhs.operator === '-') && // + shouldn't appear here after normalization but okay
+      (rhs.operator === '-' || rhs.operator === '+') && // + shouldn't appear here after normalization but okay
       rhs.argument.type === 'Literal' &&
       typeof rhs.argument.value === 'number')
   ) {
@@ -367,70 +318,75 @@ function attemptConstantInlining(meta, fdata) {
 
     let first = true;
 
-    vgroup('Attempt to replace the', meta.reads.length, 'reads');
+    vgroup('Attempt to replace the', meta.reads.length, 'reads with the literal');
     // With the new
-    const clone = AST.cloneSimple(rhs);
     const reads = meta.reads;
     let inlined = false;
     for (let i = 0; i < reads.length; ++i) {
-      const { parentNode, parentProp, parentIndex } = reads[i];
+      const read = reads[i];
+      const { parentNode, parentProp, parentIndex } = read;
       if (parentNode.type === 'ExportSpecifier') {
-        vlog('Skipping export ident');
+        vlog('Not inlining export');
       } else {
         if (first) {
-          rule('Const binding with constant value should replace all reads of that name with the value');
+          rule('Const binding with literal value should replace all reads of that name with the value');
           example('const x = 100; f(x);', 'f(100);');
-          before(write.parentNode);
+          before(write.parentNode); // This is the constant decl of the reads here
           first = false;
         }
 
-        vgroup(
-          'Replacing a read with the literal...',
-          parentNode.type + '.' + parentProp,
-          parentNode.$p.pid,
-          (parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]).type,
-          (parentIndex >= 0 ? parentNode[parentProp][parentIndex] : parentNode[parentProp]).$p.pid,
-        );
+        before(parentNode, read.blockBody[read.blockIndex]);
+        if (parentIndex >= 0) parentNode[parentProp][parentIndex] = AST.cloneSimple(rhs);
+        else parentNode[parentProp] = AST.cloneSimple(rhs);
+        after(parentNode, read.blockBody[read.blockIndex]);
 
-        before(parentNode, write.assign ? write.assign.assignParent : write.decl ? write.decl.declParent : wat);
-        if (parentIndex >= 0) parentNode[parentProp][parentIndex] = clone;
-        else parentNode[parentProp] = clone;
-        after(parentNode, write.assign ? write.assign.assignParent : write.decl ? write.decl.declParent : wat);
         inlined = true;
         // No need to push a read back in. We don't need to track reads to builtin literals like `null` or `undefined` (I think)
         reads.splice(i, 1);
         --i;
-        vgroupEnd();
       }
     }
+
     vlog('Binding `' + meta.uniqueName + '` has', reads.length, 'reads left after this');
 
-    if (reads.length === 0 && write.decl) {
-      vgroup('Deleting the var decl');
-      rule('Var decl with constant value that is not read should be dropped');
-      example('const x = 100;', ';');
-
+    if (reads.length === 0 && write.kind === 'var') {
+      vlog('Zero reads left and it was a const var decl. Replacing it with an empty statement.');
+      rule('Constant binding with zero reads should be eliminated [2]');
       // Remove the declaration if it was a var decl because there are no more reads from this and it is a constant
-      // Note: the init was a lone literal (that's how we got here) so we should not need to preserve the init
-      const { declParent, declProp, declIndex } = write.decl;
-      before(declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp], declParent);
-      ASSERT(
-        (declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).type === 'VariableDeclaration',
-        'if not then indexes changed?',
-      );
-      const decr = (declIndex >= 0 ? declParent[declProp][declIndex] : declParent[declProp]).declarations[0];
-      ASSERT(!decr.init || decr.init === rhs);
-      if (declIndex >= 0) declParent[declProp][declIndex] = AST.emptyStatement();
-      else declParent[declProp] = AST.emptyStatement();
-      inlined = true;
+      // Note: the init was a lone identifier (that's how we got here) so we should not need to preserve the init
+      // Any reads of the init would only have their blockBody[blockIndex] value no longer correspond. Only relevant for this file.
 
+      before(write.blockBody[write.blockIndex]);
+      write.blockBody[write.blockIndex] = AST.emptyStatement();
+      after(write.blockBody[write.blockIndex]);
+
+      // TODO: shouldnt we set this to `false` instead. Make sure the name is not taken again, potentially busting the clone cache or something
       fdata.globallyUniqueNamingRegistry.delete(meta.uniqueName);
-      after(AST.emptyStatement(), declParent);
-      vgroupEnd();
+
+      inlined = true;
     }
 
     after(';');
     vgroupEnd();
     return inlined;
   }
+}
+
+function nodeToDrop(init) {
+  if (init.type === 'Identifier') {
+    // Can't just drop idents because it may hide implicit global access, or out of scope access, or TDZ errors.
+    // This check can be improved but I think another rule will clean up leftovers anyways.
+    return ['undefined', 'NaN', 'Infinity'].includes(init.name);
+  }
+  return (
+    init.type === 'FunctionExpression' ||
+    init.type === 'Param' ||
+    init.type === 'ThisExpression' ||
+    !AST.isComplexNode(init) ||
+    (init.type === 'MemberExpression' &&
+      init.object.type === 'Identifier' &&
+      init.object.name === 'arguments' &&
+      !init.object.computed &&
+      init.property.name === 'length')
+  );
 }

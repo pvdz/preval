@@ -26,7 +26,7 @@ const f = function ($$0) {
   debugger;
   obj$1.$(1);
 };
-const obj = { $ };
+const obj = { $: $ };
 f(obj);
 `````
 

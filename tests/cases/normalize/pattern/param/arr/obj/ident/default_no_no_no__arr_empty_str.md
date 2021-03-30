@@ -23,7 +23,7 @@ $(f(['', 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x }] = tmpParamBare;
+  let [{ x: x }] = tmpParamBare;
   return x;
 };
 $(f(['', 20, 30], 200));

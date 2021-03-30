@@ -17,7 +17,7 @@ if (({ x } = 1).foo) y;
 
 `````js filename=intro
 let y;
-if (({ x } = 1).foo) null;
+if (({ x: x } = 1).foo) null;
 `````
 
 ## Normalized

@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-({ x } = { x: 'abc' });
+({ x: x } = { x: 'abc' });
 $(x);
 `````
 

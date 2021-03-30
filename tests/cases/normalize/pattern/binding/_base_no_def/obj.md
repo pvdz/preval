@@ -15,7 +15,7 @@ const { x } = 1;
 ## Pre Normal
 
 `````js filename=intro
-const { x } = 1;
+const { x: x } = 1;
 `````
 
 ## Normalized

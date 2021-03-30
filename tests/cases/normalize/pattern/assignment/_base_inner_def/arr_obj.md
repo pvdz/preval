@@ -20,7 +20,7 @@ $(x, a);
 let a = undefined;
 let x = undefined;
 a = 100;
-[{ x = a }] = [{}];
+[{ x: x = a }] = [{}];
 $(x, a);
 `````
 

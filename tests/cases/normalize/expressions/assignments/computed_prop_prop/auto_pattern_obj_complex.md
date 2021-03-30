@@ -20,9 +20,9 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let { a } = { a: 999, b: 1000 };
+let { a: a } = { a: 999, b: 1000 };
 let obj = {};
-obj[({ a } = $({ a: 1, b: 2 }))];
+obj[({ a: a } = $({ a: 1, b: 2 }))];
 $(a);
 `````
 

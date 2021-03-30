@@ -25,7 +25,7 @@ $(a, x, y);
 let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = { x, y } = { x: $(3), y: $(4) });
+const tmpAnonDefaultExport = (a = { x: x, y: y } = { x: $(3), y: $(4) });
 export { tmpAnonDefaultExport as default };
 $(a, x, y);
 `````

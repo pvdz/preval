@@ -19,8 +19,8 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let { a } = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = ({ a } = $({ a: 1, b: 2 }));
+let { a: a } = { a: 999, b: 1000 };
+const tmpAnonDefaultExport = ({ a: a } = $({ a: 1, b: 2 }));
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

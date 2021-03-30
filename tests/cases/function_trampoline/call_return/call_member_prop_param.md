@@ -29,7 +29,7 @@ const f = function ($$0) {
   const r = obj$1.$(1);
   return r;
 };
-const obj = { $ };
+const obj = { $: $ };
 const q = f(obj);
 $(q);
 `````

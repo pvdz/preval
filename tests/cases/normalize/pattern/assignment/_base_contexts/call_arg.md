@@ -15,7 +15,7 @@ f({ x } = 1);
 ## Pre Normal
 
 `````js filename=intro
-f(({ x } = 1));
+f(({ x: x } = 1));
 `````
 
 ## Normalized

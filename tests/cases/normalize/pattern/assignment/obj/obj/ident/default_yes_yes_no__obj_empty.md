@@ -18,7 +18,7 @@ $(y);
 ## Pre Normal
 
 `````js filename=intro
-({ x: { y = $('fail') } = $({ y: 'pass2' }) } = {});
+({ x: { y: y = $('fail') } = $({ y: 'pass2' }) } = {});
 $(y);
 `````
 

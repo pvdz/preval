@@ -24,7 +24,7 @@ $(y);
 `````js filename=intro
 const [
   {
-    x: { y },
+    x: { y: y },
   },
 ] = [{ x: { x: 1, y: 2, z: 3 }, y: 11 }, 10];
 $(y);

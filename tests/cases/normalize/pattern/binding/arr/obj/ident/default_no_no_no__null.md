@@ -18,7 +18,7 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-const [{ x }] = null;
+const [{ x: x }] = null;
 $('bad');
 `````
 

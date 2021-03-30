@@ -17,7 +17,7 @@ let x = 10;
 
 `````js filename=intro
 let x = 10;
-[{ x }] = 1;
+[{ x: x }] = 1;
 `````
 
 ## Normalized

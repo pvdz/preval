@@ -23,7 +23,7 @@ $(f([1, 2, 3, 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x = $('pass') } = $({ x: 'fail2' })] = tmpParamBare;
+  let [{ x: x = $('pass') } = $({ x: 'fail2' })] = tmpParamBare;
   return x;
 };
 $(f([1, 2, 3, 20, 30], 200));

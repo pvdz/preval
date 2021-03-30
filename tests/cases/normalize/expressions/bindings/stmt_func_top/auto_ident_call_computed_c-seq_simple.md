@@ -25,7 +25,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let b = { $ };
+  let b = { $: $ };
   let a = (1, 2, $(b))['$'](1);
   $(a);
 };

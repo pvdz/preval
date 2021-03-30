@@ -30,7 +30,7 @@ const f = function ($$0, $$1) {
   const r = obj$1[str](1);
   return r;
 };
-const obj = { $ };
+const obj = { $: $ };
 const q = f(obj, '$');
 $(q);
 `````

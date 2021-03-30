@@ -23,7 +23,7 @@ $(f([undefined, 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x = $('pass') }] = tmpParamBare;
+  let [{ x: x = $('pass') }] = tmpParamBare;
   return 'bad';
 };
 $(f([undefined, 20, 30], 200));

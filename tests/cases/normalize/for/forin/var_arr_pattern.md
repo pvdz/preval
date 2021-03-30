@@ -17,7 +17,7 @@ for (let {x} in {a: 1, b: 2}) $(x);
 ## Pre Normal
 
 `````js filename=intro
-for (let { x } in { a: 1, b: 2 }) $(x);
+for (let { x: x } in { a: 1, b: 2 }) $(x);
 `````
 
 ## Normalized

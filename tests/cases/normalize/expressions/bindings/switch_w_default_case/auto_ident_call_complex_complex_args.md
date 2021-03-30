@@ -37,7 +37,7 @@ switch (1) {
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      b = { $ };
+      b = { $: $ };
       a = $($)($(1), $(2));
       $(a);
     }

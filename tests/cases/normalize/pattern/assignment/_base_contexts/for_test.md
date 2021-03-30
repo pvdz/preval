@@ -16,7 +16,7 @@ for ({ x } = 1;false;) y;
 
 `````js filename=intro
 {
-  ({ x } = 1);
+  ({ x: x } = 1);
   while (false) {
     y;
   }

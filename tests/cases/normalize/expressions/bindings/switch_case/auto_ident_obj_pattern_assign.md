@@ -35,7 +35,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       (x = 1), (y = 2);
-      a = { x, y } = { x: $(3), y: $(4) };
+      a = { x: x, y: y } = { x: $(3), y: $(4) };
       $(a, x, y);
     }
   }

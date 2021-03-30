@@ -22,7 +22,7 @@ function g({ x }) {
 let g = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x$1 } = tmpParamBare;
+  let { x: x$1 } = tmpParamBare;
   {
     let x$3 = 2;
   }
@@ -38,7 +38,7 @@ let g = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let bindingPatternObjRoot = tmpParamBare;
-  let x$1 = bindingPatternObjRoot.x$1;
+  let x$1 = bindingPatternObjRoot.x;
   let x$3 = 2;
   return x$1;
 };

@@ -29,7 +29,7 @@ let x = function ($$0, $$1) {
   const tmpParamBare$1 = $$1;
   debugger;
   let foo = tmpParamBare === undefined ? x$1 : tmpParamBare;
-  let { x$1 } = tmpParamBare$1;
+  let { x: x$1 } = tmpParamBare$1;
 };
 x();
 `````
@@ -70,7 +70,7 @@ let x = function ($$0, $$1) {
     let tmpIfTest$5 = $$3;
     debugger;
     let bindingPatternObjRoot = tmpParamBare$12;
-    let x$2 = bindingPatternObjRoot.x$1;
+    let x$2 = bindingPatternObjRoot.x;
   };
   if (tmpIfTest) {
     const tmpReturnArg$3 = tmpBranchingA(tmpParamBare, tmpParamBare$1, foo, tmpIfTest);
@@ -86,7 +86,7 @@ x();
 ## Output
 
 `````js filename=intro
-undefined.x$1;
+undefined.x;
 throw '[Preval]: Can not reach here';
 `````
 

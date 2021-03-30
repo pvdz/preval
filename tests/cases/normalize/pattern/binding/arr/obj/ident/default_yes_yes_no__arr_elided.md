@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const [{ x = $('pass') } = $({ x: 'pass2' })] = [, , , 1, 20, 30];
+const [{ x: x = $('pass') } = $({ x: 'pass2' })] = [, , , 1, 20, 30];
 $(x);
 `````
 

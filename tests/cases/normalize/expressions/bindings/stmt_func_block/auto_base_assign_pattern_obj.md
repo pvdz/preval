@@ -29,7 +29,7 @@ let f = function () {
   debugger;
   {
     let b = {};
-    let a = ({ b } = $({ b: $(2) }));
+    let a = ({ b: b } = $({ b: $(2) }));
     $(a, b);
   }
 };

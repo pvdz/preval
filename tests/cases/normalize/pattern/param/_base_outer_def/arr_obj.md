@@ -18,7 +18,7 @@ function h([{ x }] = c ) { return x}
 let h = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x }] = tmpParamBare === undefined ? c : tmpParamBare;
+  let [{ x: x }] = tmpParamBare === undefined ? c : tmpParamBare;
   return x;
 };
 `````

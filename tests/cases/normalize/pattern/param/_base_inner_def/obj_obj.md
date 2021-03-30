@@ -20,7 +20,7 @@ let i = function ($$0) {
   debugger;
   let {
     x: {
-      y: { z = a },
+      y: { z: z = a },
     },
   } = tmpParamBare;
   return z;

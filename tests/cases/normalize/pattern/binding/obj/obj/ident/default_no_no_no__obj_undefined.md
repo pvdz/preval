@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 const {
-  x: { y },
+  x: { y: y },
 } = { x: undefined, b: 11, c: 12 };
 $('bad');
 `````

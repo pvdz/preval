@@ -24,7 +24,7 @@ let i = function ($$0) {
   debugger;
   let {
     x: {
-      y: { z$1 },
+      y: { z: z$1 },
     },
   } = tmpParamBare;
   {
@@ -44,7 +44,7 @@ let i = function ($$0) {
   let bindingPatternObjRoot = tmpParamBare;
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let objPatternNoDefault$1 = objPatternNoDefault.y;
-  let z$1 = objPatternNoDefault$1.z$1;
+  let z$1 = objPatternNoDefault$1.z;
   let z$3 = 2;
   return z$1;
 };

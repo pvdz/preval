@@ -17,7 +17,7 @@ let b = { $ };
 ## Pre Normal
 
 `````js filename=intro
-let b = { $ };
+let b = { $: $ };
 `````
 
 ## Normalized

@@ -32,7 +32,7 @@ switch (1) {
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      b = { $ };
+      b = { $: $ };
       a = new b[$('$')](1);
       $(a);
     }

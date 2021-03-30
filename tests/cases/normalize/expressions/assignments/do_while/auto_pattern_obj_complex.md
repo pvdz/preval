@@ -21,10 +21,10 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let { a } = { a: 999, b: 1000 };
+let { a: a } = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ({ a } = $({ a: 1, b: 2 }))) {
+  while (tmpDoWhileFlag || ({ a: a } = $({ a: 1, b: 2 }))) {
     tmpDoWhileFlag = false;
     {
       $(100);

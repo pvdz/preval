@@ -28,7 +28,7 @@ let f = function () {
   debugger;
   return new (1, 2, $(b))['$'](1);
 };
-let b = { $ };
+let b = { $: $ };
 let a = { a: 999, b: 1000 };
 $(f());
 $(a);

@@ -23,7 +23,7 @@ $(f([{ y: 2, z: 3 }, 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x = $('pass') }] = tmpParamBare;
+  let [{ x: x = $('pass') }] = tmpParamBare;
   return x;
 };
 $(f([{ y: 2, z: 3 }, 20, 30], 200));

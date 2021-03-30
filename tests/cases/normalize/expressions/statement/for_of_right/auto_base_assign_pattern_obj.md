@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-for (let x of ({ b } = $({ b: $(2) })));
+for (let x of ({ b: b } = $({ b: $(2) })));
 $(a, b);
 `````
 

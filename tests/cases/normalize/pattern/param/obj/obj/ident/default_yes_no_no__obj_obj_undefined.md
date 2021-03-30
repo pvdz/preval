@@ -24,7 +24,7 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let {
-    x: { y = $('pass') },
+    x: { y: y = $('pass') },
   } = tmpParamBare;
   return y;
 };

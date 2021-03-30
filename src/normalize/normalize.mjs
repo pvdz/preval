@@ -4083,8 +4083,7 @@ export function phaseNormalize(fdata, fname) {
             } else if (pnode.kind !== 'init' || pnode.method) {
               // Ignore. Declaring a function has no observable side effects.
             } else if (pnode.shorthand) {
-              // I think this is redundant but it shouldn't matter much
-              finalParent.push(pnode.key);
+              ASSERT(false, 'this case should be eliminated during prepare phase');
             } else if (pnode.computed) {
               finalParent.push(pnode.key);
               finalParent.push(pnode.value);
@@ -4105,15 +4104,7 @@ export function phaseNormalize(fdata, fname) {
             // A property can be shorthand, computed, method, getter, setter
             // We can ignore the getter/setter/method props because functions have no observable side effects when being declared
             // TODO: can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
-            if (pnode.shorthand) {
-              rule('Property shorthand must be regular property');
-              example('{x}', '{x : x}');
-              before(node, parentNode);
-
-              pnode.shorthand = false; // Inline should be fine, right? Even if this node ends up being duplicated...?
-              after(parentNode);
-              // I don't think we need to mark this as changed, at least not for the sake of re-walking it.
-            }
+            ASSERT(!pnode.shorthand, 'this already has to be fixed in the prepare phase');
 
             if (pnode.type === 'SpreadElement') {
               if (AST.isComplexNode(pnode.argument)) last = i;

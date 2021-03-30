@@ -20,7 +20,7 @@ const f = (a = { x } = 1) => { return a };
 const f = ($$0) => {
   const tmpParamBare = $$0;
   debugger;
-  let a = tmpParamBare === undefined ? ({ x } = 1) : tmpParamBare;
+  let a = tmpParamBare === undefined ? ({ x: x } = 1) : tmpParamBare;
   return a;
 };
 `````

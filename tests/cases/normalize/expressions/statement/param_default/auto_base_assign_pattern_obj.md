@@ -25,7 +25,7 @@ $(a, b);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? ({ b } = $({ b: $(2) })) : tmpParamBare;
+  let p = tmpParamBare === undefined ? ({ b: b } = $({ b: $(2) })) : tmpParamBare;
 };
 let b = {};
 let a = { a: 999, b: 1000 };

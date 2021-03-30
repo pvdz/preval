@@ -29,7 +29,7 @@ let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
 {
-  const tmpSwitchValue = ({ x, y } = { x: $(3), y: $(4) });
+  const tmpSwitchValue = ({ x: x, y: y } = { x: $(3), y: $(4) });
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {

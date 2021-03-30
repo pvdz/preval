@@ -22,7 +22,7 @@ f(); // In this test, this is the call we expect to be replaced by trampoline in
 ## Pre Normal
 
 `````js filename=intro
-const obj = { $ };
+const obj = { $: $ };
 const str = '$';
 const f = function () {
   debugger;

@@ -23,7 +23,7 @@ $(f('abc'));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x }] = tmpParamBare;
+  let [{ x: x }] = tmpParamBare;
   return x;
 };
 $(f('abc'));

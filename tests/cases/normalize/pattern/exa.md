@@ -35,10 +35,10 @@ let val_1_4 = undefined;
 let val_2_1 = undefined;
 let val_3_1 = undefined;
 ({
-  val_1_1: { val_2_1, ...val_2_rest },
-  val_1_2,
-  val_1_3: [arr_1, arr_2, { val_3_1, ...val_3_rest }, arr_4],
-  val_1_4,
+  val_1_1: { val_2_1: val_2_1, ...val_2_rest },
+  val_1_2: val_1_2,
+  val_1_3: [arr_1, arr_2, { val_3_1: val_3_1, ...val_3_rest }, arr_4],
+  val_1_4: val_1_4,
 } = foo());
 `````
 

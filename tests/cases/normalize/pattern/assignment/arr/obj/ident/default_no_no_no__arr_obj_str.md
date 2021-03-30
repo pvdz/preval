@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-[{ x }] = [{ x: 'abc', y: 2, z: 3 }, 20, 30];
+[{ x: x }] = [{ x: 'abc', y: 2, z: 3 }, 20, 30];
 $(x);
 `````
 

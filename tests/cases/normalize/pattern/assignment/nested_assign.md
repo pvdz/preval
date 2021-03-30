@@ -18,7 +18,7 @@ $(y);
 
 `````js filename=intro
 let y;
-y = { x } = { x: 1 };
+y = { x: x } = { x: 1 };
 $(y);
 `````
 

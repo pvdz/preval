@@ -18,7 +18,7 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-({ x = $('fail') } = undefined);
+({ x: x = $('fail') } = undefined);
 $('bad');
 `````
 

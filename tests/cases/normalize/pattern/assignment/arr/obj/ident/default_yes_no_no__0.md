@@ -18,7 +18,7 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-[{ x = $('pass') }] = 0;
+[{ x: x = $('pass') }] = 0;
 $('bad');
 `````
 

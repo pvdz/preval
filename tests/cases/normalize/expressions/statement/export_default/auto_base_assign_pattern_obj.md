@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = ({ b } = $({ b: $(2) }));
+const tmpAnonDefaultExport = ({ b: b } = $({ b: $(2) }));
 export { tmpAnonDefaultExport as default };
 $(a, b);
 `````

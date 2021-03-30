@@ -20,7 +20,7 @@ let i = function ($$0) {
   debugger;
   let {
     x: {
-      y: { z },
+      y: { z: z },
     },
   } = tmpParamBare === undefined ? d : tmpParamBare;
   return z;

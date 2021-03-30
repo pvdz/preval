@@ -27,7 +27,7 @@ $(a, x, y);
 `````js filename=intro
 let f = function () {
   debugger;
-  return (a = { x, y } = { x: $(3), y: $(4) });
+  return (a = { x: x, y: y } = { x: $(3), y: $(4) });
 };
 let x = 1,
   y = 2;

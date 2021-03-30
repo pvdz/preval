@@ -21,7 +21,7 @@ $(a, b);
 
 `````js filename=intro
 let b = {};
-let a = ({ b } = $({ b: $(2) }));
+let a = ({ b: b } = $({ b: $(2) }));
 $(a, b);
 `````
 

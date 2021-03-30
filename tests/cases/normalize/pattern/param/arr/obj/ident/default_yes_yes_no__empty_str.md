@@ -23,7 +23,7 @@ $(f(''));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x = $('pass') } = $({ x: 'pass2' })] = tmpParamBare;
+  let [{ x: x = $('pass') } = $({ x: 'pass2' })] = tmpParamBare;
   return x;
 };
 $(f(''));

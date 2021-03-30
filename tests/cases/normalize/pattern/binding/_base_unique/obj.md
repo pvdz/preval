@@ -20,7 +20,7 @@ const { x } = 1;
 {
   let x$1 = 1;
 }
-const { x } = 1;
+const { x: x } = 1;
 {
   let x$3 = 1;
 }

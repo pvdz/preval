@@ -18,7 +18,7 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-const { x: { y = $('fail') } = $({ y: 'fail2' }) } = { x: null, b: 11, c: 12 };
+const { x: { y: y = $('fail') } = $({ y: 'fail2' }) } = { x: null, b: 11, c: 12 };
 $('bad');
 `````
 

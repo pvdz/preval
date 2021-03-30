@@ -17,7 +17,7 @@
 `````js filename=intro
 ({
   x: {
-    y: { z = a },
+    y: { z: z = a },
   },
 } = 1);
 `````

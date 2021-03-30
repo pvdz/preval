@@ -22,7 +22,7 @@ function h([{ x }]) {
 let h = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x$1 }] = tmpParamBare;
+  let [{ x: x$1 }] = tmpParamBare;
   {
     let x$3 = 2;
   }
@@ -40,7 +40,7 @@ let h = function ($$0) {
   let bindingPatternArrRoot = tmpParamBare;
   let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternStep = arrPatternSplat[0];
-  let x$1 = arrPatternStep.x$1;
+  let x$1 = arrPatternStep.x;
   let x$3 = 2;
   return x$1;
 };

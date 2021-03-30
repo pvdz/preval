@@ -26,7 +26,7 @@ $(a, b);
 `````js filename=intro
 let f = function () {
   debugger;
-  return ({ b } = $({ b: $(2) }));
+  return ({ b: b } = $({ b: $(2) }));
 };
 let b = {};
 let a = { a: 999, b: 1000 };

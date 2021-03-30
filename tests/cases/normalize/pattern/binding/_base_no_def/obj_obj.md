@@ -17,7 +17,7 @@ const {x: {y: {z}}} = 1;
 `````js filename=intro
 const {
   x: {
-    y: { z },
+    y: { z: z },
   },
 } = 1;
 `````

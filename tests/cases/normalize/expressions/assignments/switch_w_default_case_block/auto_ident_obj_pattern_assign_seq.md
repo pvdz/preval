@@ -42,7 +42,7 @@ let a = { a: 999, b: 1000 };
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       {
-        a = { x, y } = ($(x), $(y), { x: $(3), y: $(4) });
+        a = { x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) });
       }
     }
     if (tmpSwitchCaseToStart <= 1) {

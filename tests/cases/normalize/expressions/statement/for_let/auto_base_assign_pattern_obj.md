@@ -24,7 +24,7 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 {
-  let xyz = ({ b } = $({ b: $(2) }));
+  let xyz = ({ b: b } = $({ b: $(2) }));
   while (true) {
     $(xyz);
     $(1);

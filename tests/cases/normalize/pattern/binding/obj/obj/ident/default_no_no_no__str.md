@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 const {
-  x: { y },
+  x: { y: y },
 } = 'abc';
 $('bad');
 `````

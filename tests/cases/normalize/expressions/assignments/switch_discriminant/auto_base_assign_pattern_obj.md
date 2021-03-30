@@ -27,7 +27,7 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 {
-  const tmpSwitchValue = (a = { b } = $({ b: $(2) }));
+  const tmpSwitchValue = (a = { b: b } = $({ b: $(2) }));
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {

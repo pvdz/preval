@@ -18,7 +18,7 @@ function g({ x = b } ) { return x }
 let g = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x = b } = tmpParamBare;
+  let { x: x = b } = tmpParamBare;
   return x;
 };
 `````

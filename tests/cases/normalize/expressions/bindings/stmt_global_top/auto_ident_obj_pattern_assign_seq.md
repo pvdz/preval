@@ -23,7 +23,7 @@ $(a, x, y);
 `````js filename=intro
 let x = 1,
   y = 2;
-let a = ({ x, y } = ($(x), $(y), { x: $(3), y: $(4) }));
+let a = ({ x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) }));
 $(a, x, y);
 `````
 

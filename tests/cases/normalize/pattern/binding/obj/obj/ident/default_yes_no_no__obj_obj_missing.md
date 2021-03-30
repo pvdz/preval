@@ -19,7 +19,7 @@ $(y);
 
 `````js filename=intro
 const {
-  x: { y = $('pass') },
+  x: { y: y = $('pass') },
 } = { x: { x: 1, z: 3 }, b: 11, c: 12 };
 $(y);
 `````

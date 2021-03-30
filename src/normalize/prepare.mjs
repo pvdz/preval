@@ -10,7 +10,7 @@ import {
   RESET,
   DIM,
 } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after } from '../utils.mjs';
 import { $p } from '../$p.mjs';
 import globals from '../globals.mjs';
 import {
@@ -62,24 +62,24 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
   );
 
   walk(_walker, ast, 'ast');
-  function _walker(node, before, nodeType, path) {
+  function _walker(node, beforeWalk, nodeType, path) {
     ASSERT(node, 'node should be truthy', node);
     ASSERT(nodeType === node.type);
 
-    if (before) {
+    if (beforeWalk) {
       node.$p = $p();
     }
 
     vgroup(
-      BLUE + nodeType + ':' + (before ? 'before' : 'after'),
+      BLUE + nodeType + ':' + (beforeWalk ? 'before' : 'after'),
       DIM + node.$p.pid + RESET,
       // To debug lexical scopes:
       //' '.repeat(50), lexScopeStack.map(node => node.type+'<'+node.$uid+'>').join(',')
     );
 
-    const key = nodeType + ':' + (before ? 'before' : 'after');
+    const key = nodeType + ':' + (beforeWalk ? 'before' : 'after');
 
-    if (before && node.$scope) {
+    if (beforeWalk && node.$scope) {
       lexScopeStack.push(node);
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         funcScopeStack.push(node);
@@ -280,6 +280,23 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
 
       case 'ClassExpression:after':
       case 'ClassDeclaration:after': {
+        break;
+      }
+
+      case 'Property:before': {
+        // Must eliminate property shorthands because unique naming may need to change one while keeping the other
+        if (node.shorthand) {
+          // That's all :) The node already has a distinct key and value property with the same identifier.
+
+          rule('Property shorthand must be regular property');
+          example('{x}', '{x : x}');
+          before(node);
+
+          node.shorthand = false; // Inline should be fine, right? Even if this node ends up being duplicated...?
+
+          after(node);
+          // I don't think we need to mark this as changed, at least not for the sake of re-walking it.
+        }
         break;
       }
 
@@ -563,7 +580,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
       }
     }
 
-    if (!before && node.$scope) {
+    if (!beforeWalk && node.$scope) {
       lexScopeStack.pop();
       if (['Program', 'FunctionExpression', 'ArrowFunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
         funcScopeStack.pop();

@@ -20,7 +20,7 @@ $(obj);
 
 `````js filename=intro
 const x = 10;
-const obj = { x };
+const obj = { x: x };
 $(obj);
 `````
 

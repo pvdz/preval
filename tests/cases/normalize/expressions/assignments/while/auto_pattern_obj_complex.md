@@ -19,8 +19,8 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let { a } = { a: 999, b: 1000 };
-while (({ a } = $({ a: 1, b: 2 }))) $(100);
+let { a: a } = { a: 999, b: 1000 };
+while (({ a: a } = $({ a: 1, b: 2 }))) $(100);
 $(a);
 `````
 

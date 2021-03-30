@@ -57,9 +57,9 @@ let obj = {
   },
 };
 let {
-  a,
+  a: a,
   b: { ...rest },
-  c,
+  c: c,
 } = obj;
 $(a, c, rest);
 `````

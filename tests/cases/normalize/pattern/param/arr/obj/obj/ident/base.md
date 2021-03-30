@@ -29,7 +29,7 @@ let f = function ($$0) {
   debugger;
   let [
     {
-      x: { y },
+      x: { y: y },
     },
   ] = tmpParamBare;
   return y;

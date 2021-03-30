@@ -38,7 +38,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       b = {};
-      a = { b } = $({ b: $(2) });
+      a = { b: b } = $({ b: $(2) });
       $(a, b);
     }
     if (tmpSwitchCaseToStart <= 1) {

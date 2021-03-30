@@ -29,7 +29,7 @@ let x = 1,
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ({ x, y } = ($(x), $(y), { x: $(3), y: $(4) }))) {
+  while (tmpDoWhileFlag || ({ x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) }))) {
     tmpDoWhileFlag = false;
     {
       $(100);

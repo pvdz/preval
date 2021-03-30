@@ -39,7 +39,7 @@ let a = { a: 999, b: 1000 };
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      ({ b } = $({ b: $(2) }));
+      ({ b: b } = $({ b: $(2) }));
       break tmpSwitchBreak;
     }
     if (tmpSwitchCaseToStart <= 1) {

@@ -51,8 +51,8 @@ let obj = {
   },
 };
 let {
-  a,
-  b: { c, ...rest },
+  a: a,
+  b: { c: c, ...rest },
 } = obj;
 $(a, c, rest);
 `````

@@ -23,7 +23,7 @@ $(f({ x: {}, b: 11, c: 12 }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: { y = $('pass') } = $({ y: 'fail2' }) } = tmpParamBare;
+  let { x: { y: y = $('pass') } = $({ y: 'fail2' }) } = tmpParamBare;
   return y;
 };
 $(f({ x: {}, b: 11, c: 12 }, 10));

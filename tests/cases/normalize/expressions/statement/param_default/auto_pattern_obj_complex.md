@@ -25,7 +25,7 @@ let f = function ($$0) {
   debugger;
   let p = tmpParamBare === undefined ? $({ a: 1, b: 2 }) : tmpParamBare;
 };
-let { a } = { a: 999, b: 1000 };
+let { a: a } = { a: 999, b: 1000 };
 $(f());
 $(a);
 `````

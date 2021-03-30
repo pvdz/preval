@@ -15,7 +15,7 @@ a ? b : ({ x } = 1);
 ## Pre Normal
 
 `````js filename=intro
-a ? b : ({ x } = 1);
+a ? b : ({ x: x } = 1);
 `````
 
 ## Normalized

@@ -18,7 +18,7 @@ function h([{ x }]) { return x}
 let h = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x }] = tmpParamBare;
+  let [{ x: x }] = tmpParamBare;
   return x;
 };
 `````

@@ -19,8 +19,8 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let { a } = { a: 999, b: 1000 };
-for (({ a } = $({ a: 1, b: 2 })).x of $({ x: 1 }));
+let { a: a } = { a: 999, b: 1000 };
+for (({ a: a } = $({ a: 1, b: 2 })).x of $({ x: 1 }));
 $(a);
 `````
 

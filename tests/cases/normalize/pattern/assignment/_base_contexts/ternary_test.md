@@ -19,7 +19,7 @@ let x = 1, b = 2, c = 3;
 let x = 1,
   b = 2,
   c = 3;
-({ x } = 1) ? b : c;
+({ x: x } = 1) ? b : c;
 `````
 
 ## Normalized

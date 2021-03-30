@@ -30,7 +30,7 @@ let a = { a: 999, b: 1000 };
 {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 1;
-  if (({ x, y } = ($(x), $(y), { x: $(3), y: $(4) })) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if (({ x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) })) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {

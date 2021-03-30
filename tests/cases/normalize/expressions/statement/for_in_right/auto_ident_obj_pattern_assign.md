@@ -31,7 +31,7 @@ $(a, x, y);
 let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
-for (let x$1 in ({ x$1, y } = { x: $(3), y: $(4) }));
+for (let x$1 in ({ x: x$1, y: y } = { x: $(3), y: $(4) }));
 $(a, x, y);
 `````
 
@@ -45,7 +45,7 @@ let tmpForInDeclRhs = undefined;
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x$1 = tmpNestedAssignObjPatternRhs.x$1;
+x$1 = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 tmpForInDeclRhs = tmpNestedAssignObjPatternRhs;
 let x$1 = undefined;
@@ -61,7 +61,7 @@ const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-tmpNestedAssignObjPatternRhs.x$1;
+tmpNestedAssignObjPatternRhs.x;
 const tmpSSA_y = tmpNestedAssignObjPatternRhs.y;
 let x$1 = undefined;
 for (x$1 in tmpNestedAssignObjPatternRhs) {

@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      ({ x, y } = { x: $(3), y: $(4) });
+      ({ x: x, y: y } = { x: $(3), y: $(4) });
     }
   }
 }

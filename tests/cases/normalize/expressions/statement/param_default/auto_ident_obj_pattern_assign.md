@@ -26,7 +26,7 @@ $(a, x, y);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? ({ x, y } = { x: $(3), y: $(4) }) : tmpParamBare;
+  let p = tmpParamBare === undefined ? ({ x: x, y: y } = { x: $(3), y: $(4) }) : tmpParamBare;
 };
 let x = 1,
   y = 2;

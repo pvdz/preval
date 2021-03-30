@@ -23,7 +23,7 @@
 
 `````js filename=intro
 {
-  let b = { $ };
+  let b = { $: $ };
   let a = $(b)[$('$')](1);
   $(a);
 }

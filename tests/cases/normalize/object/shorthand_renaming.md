@@ -27,14 +27,14 @@ $(f(), g());
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x = 10 } = tmpParamBare;
+  let { x: x = 10 } = tmpParamBare;
   return x;
 };
 let g = function ($$0) {
   const tmpParamBare$1 = $$0;
   debugger;
-  let { x$1 = 10 } = tmpParamBare$1;
-  let y = { x$1 };
+  let { x: x$1 = 10 } = tmpParamBare$1;
+  let y = { x: x$1 };
   return [x$1, y];
 };
 $(f(), g());
@@ -93,7 +93,7 @@ let g = function ($$0) {
   const tmpParamBare$1 = $$0;
   debugger;
   let bindingPatternObjRoot$7 = tmpParamBare$1;
-  let objPatternBeforeDefault$7 = bindingPatternObjRoot$7.x$1;
+  let objPatternBeforeDefault$7 = bindingPatternObjRoot$7.x;
   let x$1 = undefined;
   const tmpIfTest$7 = objPatternBeforeDefault$7 === undefined;
   const tmpBranchingA$1 = function ($$0, $$1, $$2, $$3, $$4) {
@@ -125,7 +125,7 @@ let g = function ($$0) {
     let x$12 = $$3;
     let tmpIfTest$13 = $$4;
     debugger;
-    let y$1 = { x$1: x$12 };
+    let y$1 = { x: x$12 };
     const tmpReturnArg$11 = [x$12, y$1];
     return tmpReturnArg$11;
   };

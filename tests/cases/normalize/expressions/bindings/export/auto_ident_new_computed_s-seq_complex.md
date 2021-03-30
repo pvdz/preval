@@ -20,7 +20,7 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let b = { $ };
+let b = { $: $ };
 let a = new (1, 2, b)[$('$')](1);
 export { a };
 $(a);

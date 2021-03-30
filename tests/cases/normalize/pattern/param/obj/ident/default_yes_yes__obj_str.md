@@ -23,7 +23,7 @@ $(f({ x: 'abc' }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x = $('fail') } = tmpParamBare === undefined ? $({ x: 'fail2' }) : tmpParamBare;
+  let { x: x = $('fail') } = tmpParamBare === undefined ? $({ x: 'fail2' }) : tmpParamBare;
   return x;
 };
 $(f({ x: 'abc' }, 10));

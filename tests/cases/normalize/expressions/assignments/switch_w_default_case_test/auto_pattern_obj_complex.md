@@ -25,11 +25,11 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let { a } = { a: 999, b: 1000 };
+let { a: a } = { a: 999, b: 1000 };
 {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 1;
-  if (({ a } = $({ a: 1, b: 2 })) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if (({ a: a } = $({ a: 1, b: 2 })) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else if (2 === tmpSwitchValue) tmpSwitchCaseToStart = 2;
   else;
   tmpSwitchBreak: {

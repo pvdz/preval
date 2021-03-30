@@ -24,8 +24,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let { a } = { a: 999, b: 1000 };
-  ({ a } = $({ a: 1, b: 2 }));
+  let { a: a } = { a: 999, b: 1000 };
+  ({ a: a } = $({ a: 1, b: 2 }));
   $(a);
 };
 $(f());

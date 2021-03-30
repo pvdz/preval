@@ -28,7 +28,7 @@ $(f());
 let f = function () {
   debugger;
   {
-    let b = { $ };
+    let b = { $: $ };
     let a = new b['$'](1);
     $(a);
   }

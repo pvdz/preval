@@ -17,7 +17,7 @@ let x, b, c
 
 `````js filename=intro
 let x, b, c;
-({ x } = 1) ? b : c;
+({ x: x } = 1) ? b : c;
 `````
 
 ## Normalized

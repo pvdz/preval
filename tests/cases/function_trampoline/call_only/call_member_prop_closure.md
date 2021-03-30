@@ -26,7 +26,7 @@ f();
 `````js filename=intro
 const f = function () {
   debugger;
-  const obj = { $ };
+  const obj = { $: $ };
   const h = function () {
     debugger;
     obj.$(1);

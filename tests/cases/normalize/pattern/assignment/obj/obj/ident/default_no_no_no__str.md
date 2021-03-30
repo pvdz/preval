@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 ({
-  x: { y },
+  x: { y: y },
 } = 'abc');
 $('bad');
 `````

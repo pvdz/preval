@@ -24,7 +24,7 @@ $(q);
 ## Pre Normal
 
 `````js filename=intro
-const obj = { $ };
+const obj = { $: $ };
 const str = '$';
 const f = function () {
   debugger;

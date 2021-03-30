@@ -23,7 +23,7 @@ $(f([{ x: undefined, y: 2, z: 3 }, 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x = $('pass') } = $({ x: 'fail2' })] = tmpParamBare === undefined ? $([{ x: 'fail3' }]) : tmpParamBare;
+  let [{ x: x = $('pass') } = $({ x: 'fail2' })] = tmpParamBare === undefined ? $([{ x: 'fail3' }]) : tmpParamBare;
   return x;
 };
 $(f([{ x: undefined, y: 2, z: 3 }, 20, 30], 200));

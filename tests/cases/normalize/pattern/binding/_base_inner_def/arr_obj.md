@@ -15,7 +15,7 @@ const [{ x = a }] = [{}];
 ## Pre Normal
 
 `````js filename=intro
-const [{ x = a }] = [{}];
+const [{ x: x = a }] = [{}];
 `````
 
 ## Normalized

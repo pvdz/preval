@@ -18,7 +18,7 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-const [{ x = $('pass') }] = 1;
+const [{ x: x = $('pass') }] = 1;
 $('bad');
 `````
 

@@ -35,12 +35,15 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
+let tmpObjSpreadArg = undefined;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...arrAssignPatternRhs];
+const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
+tmpObjSpreadArg = tmpNestedAssignArrPatternRhs;
+({ ...tmpObjSpreadArg });
 $(a, x, y);
 `````
 
@@ -50,10 +53,11 @@ $(a, x, y);
 const a = { a: 999, b: 1000 };
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...arrAssignPatternRhs];
+const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_x = arrPatternSplat[0];
 const tmpSSA_y = arrPatternSplat[1];
+({ ...tmpNestedAssignArrPatternRhs });
 $(a, tmpSSA_x, tmpSSA_y);
 `````
 

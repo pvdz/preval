@@ -34,6 +34,8 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 $(1);
 $(2);
+const tmpObjSpreadArg = x;
+({ ...tmpObjSpreadArg });
 $(a, x);
 `````
 
@@ -43,6 +45,7 @@ $(a, x);
 const a = { a: 999, b: 1000 };
 $(1);
 $(2);
+({ ...1 });
 $(a, 1);
 `````
 

@@ -32,7 +32,8 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-tmpCallCallee(tmpCalleeParam);
+const tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -43,7 +44,8 @@ const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 const tmpCalleeParam = [1, 2];
-$(tmpCalleeParam);
+const tmpObjSpreadArg = $(tmpCalleeParam);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

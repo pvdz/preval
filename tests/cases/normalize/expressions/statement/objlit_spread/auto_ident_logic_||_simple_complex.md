@@ -28,9 +28,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam = $(1);
-tmpCallCallee(tmpCalleeParam);
+let tmpObjSpreadArg = 0;
+if (tmpObjSpreadArg) {
+} else {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
+}
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -38,8 +43,13 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(1);
-$(tmpCalleeParam);
+let tmpObjSpreadArg = 0;
+if (tmpObjSpreadArg) {
+} else {
+  const tmpCalleeParam = $(1);
+  tmpObjSpreadArg = $(tmpCalleeParam);
+}
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

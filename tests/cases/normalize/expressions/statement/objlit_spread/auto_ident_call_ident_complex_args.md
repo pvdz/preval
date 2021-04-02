@@ -35,7 +35,8 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -45,7 +46,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-$(tmpCalleeParam, tmpCalleeParam$1);
+const tmpObjSpreadArg = $(tmpCalleeParam, tmpCalleeParam$1);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

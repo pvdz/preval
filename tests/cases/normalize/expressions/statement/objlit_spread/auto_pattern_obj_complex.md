@@ -31,7 +31,8 @@ let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
-tmpCallCallee(tmpCalleeParam);
+const tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -41,7 +42,8 @@ $(a);
 const bindingPatternObjRoot = { a: 999, b: 1000 };
 const a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
-$(tmpCalleeParam);
+const tmpObjSpreadArg = $(tmpCalleeParam);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

@@ -30,17 +30,18 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpIfTest = tmpCallCallee(tmpCalleeParam);
-if (tmpIfTest) {
+let tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
+if (tmpObjSpreadArg) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
-  tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
-  if (tmpIfTest) {
+  tmpObjSpreadArg = tmpCallCallee$1(tmpCalleeParam$1);
+  if (tmpObjSpreadArg) {
     const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
-    tmpCallCallee$3(tmpCalleeParam$3);
+    tmpObjSpreadArg = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -49,15 +50,16 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-const tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
+let tmpObjSpreadArg = $(tmpCalleeParam);
+if (tmpObjSpreadArg) {
   const tmpCalleeParam$1 = $(1);
-  const tmpSSA_tmpIfTest = $(tmpCalleeParam$1);
-  if (tmpSSA_tmpIfTest) {
+  tmpObjSpreadArg = $(tmpCalleeParam$1);
+  if (tmpObjSpreadArg) {
     const tmpCalleeParam$3 = $(2);
-    $(tmpCalleeParam$3);
+    tmpObjSpreadArg = $(tmpCalleeParam$3);
   }
 }
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

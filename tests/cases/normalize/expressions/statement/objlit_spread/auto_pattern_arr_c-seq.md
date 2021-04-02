@@ -34,7 +34,8 @@ $(10);
 $(20);
 const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
-tmpCallCallee(tmpCalleeParam);
+const tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -47,7 +48,8 @@ const a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
-$(tmpCalleeParam);
+const tmpObjSpreadArg = $(tmpCalleeParam);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

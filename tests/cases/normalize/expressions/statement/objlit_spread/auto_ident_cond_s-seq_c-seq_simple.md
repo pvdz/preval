@@ -28,14 +28,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpObjSpreadArg = undefined;
 const tmpIfTest = 30;
 if (tmpIfTest) {
-  $(60);
+  tmpObjSpreadArg = $(60);
 } else {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpCallCallee(tmpCalleeParam);
+  tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
 }
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -43,7 +45,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(60);
+const tmpSSA_tmpObjSpreadArg = $(60);
+({ ...tmpSSA_tmpObjSpreadArg });
 $(a);
 `````
 

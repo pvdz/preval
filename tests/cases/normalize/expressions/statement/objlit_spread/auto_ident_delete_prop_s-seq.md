@@ -35,7 +35,8 @@ let a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteObj = arg;
-delete tmpDeleteObj.y;
+const tmpObjSpreadArg = delete tmpDeleteObj.y;
+({ ...tmpObjSpreadArg });
 $(a, arg);
 `````
 
@@ -46,7 +47,8 @@ const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
 $(1);
 $(2);
-delete arg.y;
+const tmpObjSpreadArg = delete arg.y;
+({ ...tmpObjSpreadArg });
 $(a, arg);
 `````
 

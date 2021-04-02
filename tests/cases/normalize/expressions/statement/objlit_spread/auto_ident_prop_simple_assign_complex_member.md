@@ -32,11 +32,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpAssignMemLhsObj = b;
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
-tmpAssignMemLhsObj.c = tmpAssignMemRhs;
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+const tmpObjSpreadArg = varInitAssignLhsComputedRhs;
+({ ...tmpObjSpreadArg });
 $(a, b);
 `````
 
@@ -47,8 +48,9 @@ const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
-const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
-b.c = tmpAssignMemRhs;
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+({ ...varInitAssignLhsComputedRhs });
 $(a, b);
 `````
 

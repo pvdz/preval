@@ -39,6 +39,8 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+const tmpObjSpreadArg = tmpPostUpdArgVal;
+({ ...tmpObjSpreadArg });
 $(a, b);
 `````
 
@@ -52,6 +54,7 @@ const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
+({ ...tmpPostUpdArgVal });
 $(a, b);
 `````
 

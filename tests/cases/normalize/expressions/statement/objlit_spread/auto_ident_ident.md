@@ -32,6 +32,7 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
+({ ...b });
 $(a, b);
 `````
 
@@ -39,6 +40,7 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
+({ ...1 });
 $(a, 1);
 `````
 

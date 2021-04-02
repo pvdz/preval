@@ -34,7 +34,8 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('c');
-tmpCompObj[tmpCompProp];
+const tmpObjSpreadArg = tmpCompObj[tmpCompProp];
+({ ...tmpObjSpreadArg });
 $(a, b);
 `````
 
@@ -45,7 +46,8 @@ const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('c');
-tmpCompObj[tmpCompProp];
+const tmpObjSpreadArg = tmpCompObj[tmpCompProp];
+({ ...tmpObjSpreadArg });
 $(a, b);
 `````
 

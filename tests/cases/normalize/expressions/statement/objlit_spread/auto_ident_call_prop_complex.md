@@ -33,7 +33,8 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-tmpCallObj.$(1);
+const tmpObjSpreadArg = tmpCallObj.$(1);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -43,7 +44,8 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-tmpCallObj.$(1);
+const tmpObjSpreadArg = tmpCallObj.$(1);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

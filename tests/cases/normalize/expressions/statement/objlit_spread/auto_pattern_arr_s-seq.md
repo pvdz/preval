@@ -32,6 +32,8 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
+const tmpObjSpreadArg = [1, 2];
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -43,6 +45,8 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
+const tmpObjSpreadArg = [1, 2];
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

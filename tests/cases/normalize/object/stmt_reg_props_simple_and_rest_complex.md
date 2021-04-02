@@ -23,13 +23,17 @@
 ## Normalized
 
 `````js filename=intro
-$(10);
+const tmpObjLitVal = $(10);
+const tmpObjSpreadArg = { a: tmpObjLitVal };
+({ ...tmpObjSpreadArg });
 `````
 
 ## Output
 
 `````js filename=intro
-$(10);
+const tmpObjLitVal = $(10);
+const tmpObjSpreadArg = { a: tmpObjLitVal };
+({ ...tmpObjSpreadArg });
 `````
 
 ## Globals

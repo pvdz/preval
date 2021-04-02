@@ -30,7 +30,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-tmpBinBothLhs + tmpBinBothRhs;
+const tmpObjSpreadArg = tmpBinBothLhs + tmpBinBothRhs;
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -40,7 +41,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-tmpBinBothLhs + tmpBinBothRhs;
+const tmpObjSpreadArg = tmpBinBothLhs + tmpBinBothRhs;
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

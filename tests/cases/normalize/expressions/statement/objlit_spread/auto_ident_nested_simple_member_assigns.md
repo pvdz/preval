@@ -35,8 +35,9 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-const tmpAssignMemLhsObj = b;
-const varInitAssignLhsComputedRhs$7 = c;
+const varInitAssignLhsComputedRhs$9 = c;
+b.x = varInitAssignLhsComputedRhs$9;
+const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$9;
 b.x = varInitAssignLhsComputedRhs$7;
 const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
 b.x = varInitAssignLhsComputedRhs$5;
@@ -46,8 +47,8 @@ const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
 b.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
-const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
-tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+const tmpObjSpreadArg = varInitAssignLhsComputedRhs;
+({ ...tmpObjSpreadArg });
 $(a, b, c);
 `````
 
@@ -62,6 +63,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
+({ ...3 });
 $(a, b, 3);
 `````
 

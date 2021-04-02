@@ -38,16 +38,16 @@ let b = { x: 1 };
 let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('x');
-const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
-const varInitAssignLhsComputedRhs = $(d);
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $('y');
+const varInitAssignLhsComputedRhs$1 = $(d);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
-tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+const tmpObjSpreadArg = varInitAssignLhsComputedRhs;
+({ ...tmpObjSpreadArg });
 $(a, b, c, d);
 `````
 
@@ -57,13 +57,14 @@ $(a, b, c, d);
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
-const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('x');
-const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
-const varInitAssignLhsComputedRhs = $(3);
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $('y');
+const varInitAssignLhsComputedRhs$1 = $(3);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+({ ...varInitAssignLhsComputedRhs$1 });
 $(a, b, c, 3);
 `````
 

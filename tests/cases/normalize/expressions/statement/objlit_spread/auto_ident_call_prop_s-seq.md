@@ -33,7 +33,8 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = b;
-tmpCallObj.$(1);
+const tmpObjSpreadArg = tmpCallObj.$(1);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -42,7 +43,8 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-b.$(1);
+const tmpObjSpreadArg = b.$(1);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

@@ -32,7 +32,8 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-typeof x;
+const tmpObjSpreadArg = typeof x;
+({ ...tmpObjSpreadArg });
 $(a, x);
 `````
 
@@ -40,6 +41,7 @@ $(a, x);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
+({ ...'number' });
 $(a, 1);
 `````
 

@@ -28,8 +28,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(1);
-$(3);
+const tmpArrElement = $(1);
+const tmpArrElement$1 = 2;
+const tmpArrElement$3 = $(3);
+const tmpObjSpreadArg = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -37,8 +40,10 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(1);
-$(3);
+const tmpArrElement = $(1);
+const tmpArrElement$3 = $(3);
+const tmpObjSpreadArg = [tmpArrElement, 2, tmpArrElement$3];
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

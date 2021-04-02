@@ -34,13 +34,16 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
+let tmpObjSpreadArg = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  tmpObjSpreadArg = tmpChainElementObject$3;
 }
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -51,12 +54,15 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
+let tmpObjSpreadArg = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
-  tmpChainElementObject$1.z;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  tmpObjSpreadArg = tmpChainElementObject$3;
 }
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

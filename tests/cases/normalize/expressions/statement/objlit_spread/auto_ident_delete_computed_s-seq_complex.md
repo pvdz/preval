@@ -36,7 +36,8 @@ $(1);
 $(2);
 const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
-delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpObjSpreadArg = delete tmpDeleteCompObj[tmpDeleteCompProp];
+({ ...tmpObjSpreadArg });
 $(a, arg);
 `````
 
@@ -48,7 +49,8 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-delete arg[tmpDeleteCompProp];
+const tmpObjSpreadArg = delete arg[tmpDeleteCompProp];
+({ ...tmpObjSpreadArg });
 $(a, arg);
 `````
 

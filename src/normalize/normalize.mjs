@@ -22,6 +22,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar, findBoundNamesInVarDeclaration } from '../bindings.mjs';
 import globals from '../globals.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
+import { isComplexNode } from '../ast.mjs';
 
 /*
   Normalization steps that happen:
@@ -4112,7 +4113,19 @@ export function phaseNormalize(fdata, fname) {
       case 'ObjectExpression': {
         let changes = false;
 
+        // TODO: edge case; primitive values that are spread can be safely unrolled here
+
+        let hasSpread = 0;
+        let spreadComplex = false;
+        let hasNonSpread = false;
         node.properties.forEach((pnode) => {
+          if (pnode.type === 'SpreadElement') {
+            ++hasSpread;
+            if (isComplexNode(pnode.argument)) spreadComplex = true;
+          } else {
+            hasNonSpread = true;
+          }
+
           if (pnode.computed && AST.isProperIdent(pnode.key)) {
             rule('Object literal computed key that is ident must be ident');
             example('{["x"]: y}', '{x: y}');
@@ -4128,8 +4141,17 @@ export function phaseNormalize(fdata, fname) {
         if (changes) return true;
 
         if (wrapKind === 'statement') {
-          rule('Object cannot be a statement');
-          example('({x: a, [y()]: b(), c, ...d()});', 'a; y(); b(); c; d();');
+          if (hasSpread === 1 && !hasNonSpread && !spreadComplex) {
+            // This should be an object literal with only one spread property whose argument is simple.
+            // This should be a normalized state so keep it.
+            vlog('This object as a statement only has a spread property and it is simple. Keeping it.');
+            return;
+          }
+
+          rule('Object cannot be a statement unless it only has a spread pattern');
+          example('({x: a, [y()]: b(), c, ...d()});', 'a; y(); b(); c; const tmp = d(); ({...tmp});', () => hasSpread);
+          example('({x: a, [y()]: b(), c});', 'a; y(); b(); c;', () => !hasSpread);
+          example('({...d()});', 'const tmp = d(); ({...tmp});', () => hasSpread && !hasNonSpread);
           before(node, parentNode);
 
           const finalParent = [];
@@ -4138,20 +4160,29 @@ export function phaseNormalize(fdata, fname) {
             // We can ignore the getter/setter/method props because functions have no observable side effects when being declared
 
             if (pnode.type === 'SpreadElement') {
-              // TODO: needs iterable check?
-              finalParent.push(pnode.argument);
+              if (AST.isComplexNode(pnode.argument)) {
+                const tmpName = createFreshVar('tmpObjSpreadArg', fdata);
+
+                finalParent.push(
+                  AST.variableDeclaration(tmpName, pnode.argument, 'const'),
+                  AST.expressionStatement(AST.objectExpression([AST.spreadElement(tmpName)])),
+                );
+              } else {
+                // Since the arg is already simple, we shouldn't need to create a temporary variable for it
+                finalParent.push(AST.expressionStatement(AST.objectExpression([AST.spreadElement(pnode.argument)])));
+              }
             } else if (pnode.kind !== 'init' || pnode.method) {
               // Ignore. Declaring a function has no observable side effects.
             } else if (pnode.shorthand) {
               ASSERT(false, 'this case should be eliminated during prepare phase');
             } else if (pnode.computed) {
-              finalParent.push(pnode.key);
-              finalParent.push(pnode.value);
+              finalParent.push(AST.expressionStatement(pnode.key));
+              finalParent.push(AST.expressionStatement(pnode.value));
             } else {
-              finalParent.push(pnode.value);
+              finalParent.push(AST.expressionStatement(pnode.value));
             }
           });
-          body.splice(i, 1, ...finalParent.map((enode) => AST.expressionStatement(enode)));
+          body.splice(i, 1, ...finalParent);
 
           after(finalParent);
           assertNoDupeNodes(AST.blockStatement(body), 'body');

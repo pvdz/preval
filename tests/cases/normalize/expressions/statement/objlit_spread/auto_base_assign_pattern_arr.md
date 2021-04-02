@@ -32,12 +32,15 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
+let tmpObjSpreadArg = undefined;
 const tmpCallCallee = $;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
-const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
-const arrPatternSplat = [...arrAssignPatternRhs];
+const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
+tmpObjSpreadArg = tmpNestedAssignArrPatternRhs;
+({ ...tmpObjSpreadArg });
 $(a, b);
 `````
 
@@ -47,9 +50,10 @@ $(a, b);
 const a = { a: 999, b: 1000 };
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
-const arrAssignPatternRhs = $(tmpCalleeParam);
-const arrPatternSplat = [...arrAssignPatternRhs];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_b = arrPatternSplat[0];
+({ ...tmpNestedAssignArrPatternRhs });
 $(a, tmpSSA_b);
 `````
 

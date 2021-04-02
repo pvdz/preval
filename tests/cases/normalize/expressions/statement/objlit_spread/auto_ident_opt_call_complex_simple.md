@@ -28,12 +28,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpObjSpreadArg = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+  tmpObjSpreadArg = tmpChainElementCall$1;
 }
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -41,11 +44,14 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
+let tmpObjSpreadArg = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  tmpChainElementCall.call($, 1);
+  const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
+  tmpObjSpreadArg = tmpChainElementCall$1;
 }
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

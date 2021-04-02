@@ -33,7 +33,8 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
-tmpCompObj.c;
+const tmpObjSpreadArg = tmpCompObj.c;
+({ ...tmpObjSpreadArg });
 $(a, b);
 `````
 
@@ -42,7 +43,8 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-b.c;
+const tmpObjSpreadArg = b.c;
+({ ...tmpObjSpreadArg });
 $(a, b);
 `````
 

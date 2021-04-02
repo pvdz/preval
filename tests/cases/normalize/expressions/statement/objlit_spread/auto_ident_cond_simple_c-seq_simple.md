@@ -28,7 +28,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(60);
+let tmpObjSpreadArg = undefined;
+tmpObjSpreadArg = $(60);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -36,7 +38,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-$(60);
+const tmpSSA_tmpObjSpreadArg = $(60);
+({ ...tmpSSA_tmpObjSpreadArg });
 $(a);
 `````
 

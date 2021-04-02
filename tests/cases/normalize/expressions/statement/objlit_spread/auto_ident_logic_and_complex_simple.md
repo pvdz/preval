@@ -30,7 +30,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-const tmpIfTest = tmpCallCallee(tmpCalleeParam);
+let tmpObjSpreadArg = tmpCallCallee(tmpCalleeParam);
+if (tmpObjSpreadArg) {
+  tmpObjSpreadArg = 2;
+}
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 
@@ -39,7 +43,11 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-$(tmpCalleeParam);
+let tmpObjSpreadArg = $(tmpCalleeParam);
+if (tmpObjSpreadArg) {
+  tmpObjSpreadArg = 2;
+}
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

@@ -318,6 +318,7 @@ export function functionExpression(params, body, { id, generator, async, normali
 
 export function identifier(name) {
   ASSERT(typeof name === 'string' && name, 'ident names must be valid nonempty strings', name);
+  ASSERT(!['true', 'false', 'null'].includes(name), 'these are literals.');
   return {
     type: 'Identifier',
     name,
@@ -384,6 +385,7 @@ export function labeledStatement(label, body) {
 
 export function literal(value, yesnull = false) {
   if (typeof value === 'number') {
+    ASSERT(isFinite(value), 'do not use this for Infinity, NaN, etc...', value);
     return {
       type: 'Literal',
       value: value,

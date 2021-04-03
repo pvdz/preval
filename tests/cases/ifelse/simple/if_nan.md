@@ -21,17 +21,13 @@ if (NaN) $();
 ## Normalized
 
 `````js filename=intro
-if (NaN) {
-  $();
-}
+
 `````
 
 ## Output
 
 `````js filename=intro
-if (NaN) {
-  $();
-}
+
 `````
 
 ## Globals

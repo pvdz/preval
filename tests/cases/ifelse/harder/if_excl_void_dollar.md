@@ -35,10 +35,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 $(1);
-if (undefined) {
-} else {
-  $(2);
-}
+$(2);
 `````
 
 ## Globals

@@ -1,0 +1,101 @@
+# Preval test case
+
+# array_spread.md
+
+> Normalize > While > Test > Array spread
+>
+> Certain test values can be statically determined to be true or false
+
+#TODO
+
+## Input
+
+`````js filename=intro
+while ([...$([1, 2, 3])]) {
+  $('loop');
+}
+$('after');
+`````
+
+## Pre Normal
+
+`````js filename=intro
+while ([...$([1, 2, 3])]) {
+  $('loop');
+}
+$('after');
+`````
+
+## Normalized
+
+`````js filename=intro
+while (true) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = [1, 2, 3];
+  const tmpArrSpread = tmpCallCallee(tmpCalleeParam);
+  const tmpIfTest = [...tmpArrSpread];
+  if (tmpIfTest) {
+    $('loop');
+  } else {
+    break;
+  }
+}
+$('after');
+`````
+
+## Output
+
+`````js filename=intro
+while (true) {
+  const tmpCalleeParam = [1, 2, 3];
+  const tmpArrSpread = $(tmpCalleeParam);
+  const tmpIfTest = [...tmpArrSpread];
+  if (tmpIfTest) {
+    $('loop');
+  } else {
+    break;
+  }
+}
+$('after');
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: [1, 2, 3]
+ - 2: 'loop'
+ - 3: [1, 2, 3]
+ - 4: 'loop'
+ - 5: [1, 2, 3]
+ - 6: 'loop'
+ - 7: [1, 2, 3]
+ - 8: 'loop'
+ - 9: [1, 2, 3]
+ - 10: 'loop'
+ - 11: [1, 2, 3]
+ - 12: 'loop'
+ - 13: [1, 2, 3]
+ - 14: 'loop'
+ - 15: [1, 2, 3]
+ - 16: 'loop'
+ - 17: [1, 2, 3]
+ - 18: 'loop'
+ - 19: [1, 2, 3]
+ - 20: 'loop'
+ - 21: [1, 2, 3]
+ - 22: 'loop'
+ - 23: [1, 2, 3]
+ - 24: 'loop'
+ - 25: [1, 2, 3]
+ - 26: 'loop'
+ - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

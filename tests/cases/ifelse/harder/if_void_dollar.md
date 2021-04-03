@@ -34,9 +34,6 @@ if (tmpIfTest) {
 
 `````js filename=intro
 $(1);
-if (undefined) {
-  $(2);
-}
 `````
 
 ## Globals

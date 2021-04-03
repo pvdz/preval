@@ -42,10 +42,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 $(100);
-if (undefined) {
-} else {
-  $(100);
-}
+$(100);
 $(a);
 `````
 

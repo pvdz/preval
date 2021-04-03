@@ -30,9 +30,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-if (undefined) {
-  $();
-}
+
 `````
 
 ## Globals

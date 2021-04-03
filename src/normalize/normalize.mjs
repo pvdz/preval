@@ -5042,37 +5042,53 @@ export function phaseNormalize(fdata, fname) {
         return true;
       }
 
-      if (
-        (node.test.operator === '+' || node.test.operator === '-') &&
-        node.test.argument.type === 'Literal' &&
-        typeof node.test.argument.value === 'number'
-      ) {
-        rule('The if test of a number should be a boolean'); // Let another rule deal with it
-        if (node.test.argument.value === 0) {
-          // Doesn't matter whether it's +0 or -0 here. This is false now.
-          example('if (-0) f();', 'if (false) f();');
-          before(node);
+      if (node.test.operator === '+' || node.test.operator === '-') {
+        if (node.test.argument.type === 'Literal') {
+          if (node.test.argument.value === 0 || node.test.argument.raw === 'null') {
+            // Doesn't matter whether it's +0 or -0 here. This is false now.
+            rule('A +/- if test of zero or null is always false');
+            example('if (-0) f();', 'if (false) f();', () => node.test.argument.value === 0);
+            example('if (-null) f();', 'if (false) f();', () => node.test.argument.value !== 0);
+            before(node);
 
-          node.test = AST.fals();
-        } else {
-          example('if (-1) f();', 'if (true) f();');
-          node.test = AST.tru();
+            node.test = AST.fals();
+
+            after(node);
+            return true;
+          } else if (typeof node.test.argument.value === 'number') {
+            rule('An if test that is a non-zero +/- number is always true');
+            example('if (-1) f();', 'if (true) f();');
+            before(node);
+
+            node.test = AST.tru();
+
+            after(node);
+            return true;
+          }
         }
 
-        after(node);
-        return true;
+        if (node.test.argument.type === 'Identifier') {
+          const name = node.test.argument.name;
+          if (['undefined', 'NaN'].includes(name)) {
+            // Doesn't matter whether it's +0 or -0 here. This is false now.
+            rule('The if test that is +/- undefined or NaN is always false');
+            example('if (-undefined) f();', 'if (false) f();', () => name === 'undefined');
+            example('if (-NaN) f();', 'if (false) f();', () => name !== 'undefined');
+            before(node);
+
+            node.test = AST.fals();
+          } else if (['Infinity'].includes(name)) {
+            rule('The if test that is +/- Infinity is always true');
+            example('if (-Infinity) f();', 'if (true) f();');
+            before(node);
+
+            node.test = AST.tru();
+
+            after(node);
+            return true;
+          }
+        }
       }
-    }
-
-    if (thisStack.length && node.test.type === 'Identifier' && node.test.name === 'arguments') {
-      rule('If test value of `arguments` should be aliased'); // And silly.
-      example('if (arguments) {}', 'if (tmpPrevalArgumentsAliasA) {}');
-      before(node);
-
-      node.test = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
-
-      after(node);
-      return true;
     }
 
     if (node.consequent.type !== 'BlockStatement') {
@@ -5181,7 +5197,7 @@ export function phaseNormalize(fdata, fname) {
     }
 
     if (node.test.type === 'Identifier') {
-      if (['undefined', 'NaN'].includes(node.name)) {
+      if (['undefined', 'NaN'].includes(node.test.name)) {
         rule('Eliminate if-else with falsy identifier');
         example('if (false) f(); else g();', 'g();', () => node.alternate);
         example('if (false) f();', ';', () => node.alternate);
@@ -5195,7 +5211,7 @@ export function phaseNormalize(fdata, fname) {
         return true;
       }
 
-      if (['Infinity'].includes(node.name)) {
+      if (['Infinity'].includes(node.test.name)) {
         rule('Eliminate if-else with truthy identifier');
         example('if (Infinity) f(); else g();', 'f();', () => node.alternate);
         example('if (Infinity) f();', 'f();', () => !node.alternate);
@@ -5208,6 +5224,24 @@ export function phaseNormalize(fdata, fname) {
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
+    }
+
+    if (
+      ['ThisExpression', 'FunctionExpression', 'ClassExpression' /*'ArrayExpression', 'ObjectExpression', 'NewExpression'*/].includes(
+        node.test.type,
+      )
+    ) {
+      // Silly conditions. Real world code is unlikely to ever trigger this.
+      // Note: Needs special support for observable side effects. Probably not worth coding out here.
+      rule('Replace truthy if test identifier with `true`');
+      example('if (class{}) f();', 'if (true) f();');
+      before(node);
+
+      node.test = AST.tru();
+
+      after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
     }
 
     // Must do this "on the way back up" because we need to first re-map `arguments` and `this`
@@ -6286,6 +6320,136 @@ export function phaseNormalize(fdata, fname) {
   }
 
   function transformWhileStatement(node, body, i) {
+    if (node.test.type === 'UnaryExpression') {
+      if (node.test.operator === '+' || node.test.operator === '-') {
+        if (node.test.argument.type === 'Literal') {
+          if (node.test.argument.value === 0 || node.test.argument.raw === 'null') {
+            // Doesn't matter whether it's +0 or -0 here. This is false now.
+            rule('A +/- while test of zero or null is always false');
+            example('while (-0) f();', 'while (false) f();', () => node.test.argument.value === 0);
+            example('while (-null) f();', 'while (false) f();', () => node.test.argument.value !== 0);
+            before(node);
+
+            node.test = AST.fals();
+
+            after(node);
+            return true;
+          } else if (typeof node.test.argument.value === 'number') {
+            rule('A while test that is a non-zero +/- number is always true');
+            example('while (-1) f();', 'while (true) f();');
+            before(node);
+
+            node.test = AST.tru();
+
+            after(node);
+            return true;
+          }
+        }
+
+        if (node.test.argument.type === 'Identifier') {
+          const name = node.test.argument.name;
+          if (['undefined', 'NaN'].includes(name)) {
+            // Doesn't matter whether it's +0 or -0 here. This is false now.
+            rule('The while test that is +/- undefined or NaN is always false');
+            example('while (-undefined) f();', 'while (false) f();', () => name === 'undefined');
+            example('while (-NaN) f();', 'while (false) f();', () => name !== 'undefined');
+            before(node);
+
+            node.test = AST.fals();
+          } else if (['Infinity'].includes(name)) {
+            rule('The while test that is +/- Infinity is always true');
+            example('while (-Infinity) f();', 'while (true) f();');
+            before(node);
+
+            node.test = AST.tru();
+
+            after(node);
+            return true;
+          }
+        }
+      }
+    }
+
+    if (node.test.type === 'Literal' && node.test.value !== true) {
+      if (node.test.value === 0 || node.test.value === '' || node.test.value === false || node.test.raw === 'null') {
+        rule('Eliminate while with falsy literal');
+        example('while (false) f();', ';');
+        before(node);
+
+        body[i] = AST.emptyStatement();
+
+        after(body[i]);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      rule('Replace truthy while test literal with `true`');
+      example('while (100) f();', 'while (true) f();');
+      before(node);
+
+      node.test = AST.tru();
+
+      after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
+    if (node.test.type === 'Identifier') {
+      if (['undefined', 'NaN'].includes(node.test.name)) {
+        rule('Eliminate while with falsy identifier');
+        example('while (false) f();', ';');
+        before(node);
+
+        body[i] = AST.emptyStatement();
+
+        after(body[i]);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      if (['Infinity'].includes(node.test.name)) {
+        rule('Replace truthy while test identifier with `true`');
+        example('while (Infinity) f();', 'while (true) f();');
+        before(node);
+
+        node.test = AST.tru();
+
+        after(node);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+    }
+
+    if (
+      ['ThisExpression', 'FunctionExpression', 'ClassExpression' /*'ArrayExpression', 'ObjectExpression', 'NewExpression'*/].includes(
+        node.test.type,
+      )
+    ) {
+      // Silly conditions. Real world code is unlikely to ever trigger this.
+      // Note: Needs special support for observable side effects. Probably not worth coding out here.
+      rule('Replace truthy while test identifier with `true`');
+      example('while (class{}) f();', 'while (true) f();');
+      before(node);
+
+      node.test = AST.tru();
+
+      after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
+    if (node.test.type === 'Literal' && node.test.value === false) {
+      rule('While test that is false means the while can be eliminated entirely');
+      example('while (false) neverCallMe();', ';');
+      before(node);
+
+      body[i] = AST.emptyStatement();
+
+      after(AST.emptyStatement());
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
     if (node.test.type !== 'Literal' || node.test.value !== true) {
       // We do this because it makes all reads that relate to the loop be inside the block.
       // There are heuristics that want to know whether a binding is used inside a loop and if
@@ -6343,67 +6507,6 @@ export function phaseNormalize(fdata, fname) {
 
       after(body[[i]]);
       return true;
-    }
-
-    if (node.test.type === 'Literal' && node.test.value !== true) {
-      if (node.test.value === 0 || node.test.value === '' || node.test.value === false || node.test.raw === 'null') {
-        rule('Eliminate while with falsy literal');
-        example('while (false) f();', ';');
-        before(node);
-
-        body[i] = AST.emptyStatement();
-
-        after(body[i]);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      rule('Replace truthy while test literal with `true`');
-      example('while (100) f();', 'while (true) f();');
-      before(node);
-
-      node.test = AST.identifier(true);
-
-      after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    if (node.test.type === 'Identifier') {
-      if (['undefined', 'NaN'].includes(node.name)) {
-        rule('Eliminate while with falsy identifier');
-        example('while (false) f();', ';');
-        before(node);
-
-        body[i] = AST.emptyStatement();
-
-        after(body[i]);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      if (['Infinity'].includes(node.name)) {
-        rule('Replace truthy while test identifier with `true`');
-        example('while (Infinity) f();', 'while (true) f();');
-        before(node);
-
-        node.test = AST.identifier(true);
-
-        after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      if (thisStack.length && node.test.name === 'arguments') {
-        rule('While test value of `arguments` should be aliased'); // And silly.
-        example('while (arguments) {}', 'while (tmpPrevalArgumentsAliasA) {}');
-        before(node);
-
-        node.test = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
-
-        after(node);
-        return true;
-      }
     }
 
     vlog(

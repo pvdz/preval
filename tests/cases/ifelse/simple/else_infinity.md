@@ -23,21 +23,13 @@ else $(2);
 ## Normalized
 
 `````js filename=intro
-if (Infinity) {
-  $(1);
-} else {
-  $(2);
-}
+$(1);
 `````
 
 ## Output
 
 `````js filename=intro
-if (Infinity) {
-  $(1);
-} else {
-  $(2);
-}
+$(1);
 `````
 
 ## Globals

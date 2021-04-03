@@ -51,13 +51,6 @@ $(a, arg);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-while (true) {
-  if (undefined) {
-    $(1);
-  } else {
-    break;
-  }
-}
 $(a, 1);
 `````
 

@@ -41,9 +41,6 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 $(100);
-if (undefined) {
-  $(100);
-}
 $(a);
 `````
 

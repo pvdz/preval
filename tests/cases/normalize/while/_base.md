@@ -32,12 +32,8 @@ $(1);
 
 `````js filename=intro
 let x = true;
-while (true) {
-  if (x) {
-    x = false;
-  } else {
-    break;
-  }
+while (x) {
+  x = false;
 }
 $(1);
 `````
@@ -46,12 +42,8 @@ $(1);
 
 `````js filename=intro
 let x = true;
-while (true) {
-  if (x) {
-    x = false;
-  } else {
-    break;
-  }
+while (x) {
+  x = false;
 }
 $(1);
 `````

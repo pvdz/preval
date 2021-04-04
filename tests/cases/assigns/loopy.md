@@ -32,13 +32,9 @@ while (run) {
 
 `````js filename=intro
 let run = true;
-while (true) {
-  if (run) {
-    $(1);
-    run = false;
-  } else {
-    break;
-  }
+while (run) {
+  $(1);
+  run = false;
 }
 `````
 
@@ -46,13 +42,9 @@ while (true) {
 
 `````js filename=intro
 let run = true;
-while (true) {
-  if (run) {
-    $(1);
-    run = false;
-  } else {
-    break;
-  }
+while (run) {
+  $(1);
+  run = false;
 }
 `````
 

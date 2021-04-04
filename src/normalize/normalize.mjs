@@ -587,7 +587,7 @@ export function phaseNormalize(fdata, fname) {
       case 'ContinueStatement':
         return transformContinueStatement(node, body, i, parent);
       case 'DebuggerStatement':
-        return false; // We could eliminate this but hwy
+        return false;
       case 'EmptyStatement': {
         rule('Drop empty statements inside a block');
         example('{;}', '{}');
@@ -619,7 +619,7 @@ export function phaseNormalize(fdata, fname) {
       case 'VariableDeclaration':
         return transformVariableDeclaration(node, body, i, parent, funcNode);
       case 'WhileStatement':
-        return transformWhileStatement(node, body, i);
+        return transformWhileStatement(node, body, i, parent);
 
       case 'Program':
         return ASSERT(false); // This should not be visited since it is the first thing to be called and the node should not occur again.
@@ -6319,7 +6319,7 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
 
-  function transformWhileStatement(node, body, i) {
+  function transformWhileStatement(node, body, i, parentNode) {
     if (node.test.type === 'UnaryExpression') {
       if (node.test.operator === '+' || node.test.operator === '-') {
         if (node.test.argument.type === 'Literal') {
@@ -6450,7 +6450,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (node.test.type !== 'Literal' || node.test.value !== true) {
+    if (node.test.type !== 'Identifier' && (node.test.type !== 'Literal' || node.test.value !== true)) {
       // We do this because it makes all reads that relate to the loop be inside the block.
       // There are heuristics that want to know whether a binding is used inside a loop and if
       // we don't do this then parts of the loop may not be inside the block. And we already

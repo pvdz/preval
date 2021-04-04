@@ -1,6 +1,6 @@
 import walk from '../../lib/walk.mjs';
 
-import { VERBOSE_TRACING, RED, BLUE, RESET } from '../constants.mjs';
+import { VERBOSE_TRACING, RED, BLUE, DIM, RESET } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from '../utils.mjs';
 import { $p } from '../$p.mjs';
 import * as AST from '../ast.mjs';
@@ -63,11 +63,12 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
     const parentIndex = path.indexes[path.indexes.length - 1];
 
     if (before) {
+      ASSERT(!parentNode || parentNode.$p)
       node.$p = $p();
       node.$p.funcDepth = funcStack.length;
     }
 
-    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET);
+    vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET, DIM, node.$p.pid, RESET);
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
 
@@ -84,7 +85,10 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       }
 
       case 'BlockStatement:before': {
-        blockIds.push(['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type) ? -node.$p.pid : node.$p.pid);
+        // Loops push their block id from the statement node, not the body node.
+        if (!['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
+          blockIds.push(+node.$p.pid);
+        }
         vlog('This block has depth', blockIds.length, 'and pid', node.$p.pid);
         break;
       }
@@ -133,10 +137,12 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
       case 'ForInStatement:before': {
         funcStack[funcStack.length - 1].$p.hasBranch = true;
+        blockIds.push(-node.$p.pid);
         break;
       }
 
       case 'ForOfStatement:before': {
+        blockIds.push(-node.$p.pid);
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         break;
       }
@@ -329,6 +335,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             const grandProp = path.props[path.props.length - 2];
             const grandIndex = path.indexes[path.indexes.length - 2];
 
+            const innerLoop = blockIds.filter((n) => n < 0).pop() ?? 0
+
             const blockBody = blockNode.body;
             meta.reads.push(
               createReadRef({
@@ -345,7 +353,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 rwCounter: ++readWriteCounter,
                 scope: currentScope.$p.pid,
                 blockChain: blockIds.join(','),
-                innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
+                innerLoop,
               }),
             );
           }
@@ -570,7 +578,11 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           meta.isConstant = true;
         }
         meta.isImplicitGlobal = false;
-        ASSERT(parentNode.type === 'BlockStatement' || parentNode.type === 'Program', 'all normalized var decls appear in blocks, right?', parentNode);
+        ASSERT(
+          parentNode.type === 'BlockStatement' || parentNode.type === 'Program',
+          'all normalized var decls appear in blocks, right?',
+          parentNode,
+        );
         ASSERT(parentProp === 'body', 'amirite?', parentProp);
         meta.constValueRef = {
           // This is supposed to be the ref of the binding _value_, not the variable declaration node !
@@ -588,6 +600,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       }
 
       case 'WhileStatement:before': {
+        blockIds.push(-node.$p.pid);
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         break;
       }

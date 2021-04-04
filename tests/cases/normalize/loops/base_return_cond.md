@@ -50,7 +50,7 @@ f();
 function f() {
   let n = 0;
   while (true) {
-    ++n;
+    $(++n);
     if (n > 10) {
       return n;
     }
@@ -68,7 +68,7 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
-    ++n;
+    $(++n);
     if (n > 10) {
       return n;
     }
@@ -86,7 +86,10 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
+    const tmpCallCallee = $;
     n = n + 1;
+    let tmpCalleeParam = n;
+    tmpCallCallee(tmpCalleeParam);
     const tmpIfTest = n > 10;
     if (tmpIfTest) {
       return n;
@@ -95,9 +98,9 @@ let f = function () {
   $('afterwards');
   return 100;
 };
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
@@ -108,6 +111,8 @@ const f = function () {
   let n = 0;
   while (true) {
     n = n + 1;
+    const tmpCalleeParam = n;
+    $(tmpCalleeParam);
     const tmpIfTest = n > 10;
     if (tmpIfTest) {
       return n;
@@ -116,8 +121,8 @@ const f = function () {
   $('afterwards');
   return 100;
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
 `````
 
 ## Globals
@@ -127,7 +132,18 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 11
+ - 1: 1
+ - 2: 2
+ - 3: 3
+ - 4: 4
+ - 5: 5
+ - 6: 6
+ - 7: 7
+ - 8: 8
+ - 9: 9
+ - 10: 10
+ - 11: 11
+ - 12: 11
  - eval returned: undefined
 
 Pre normalization calls: Same

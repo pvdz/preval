@@ -13,6 +13,7 @@
 `````js filename=intro
 let x = true;
 while (x) {
+  $('inside');
   x = false;
 }
 $(1);
@@ -23,6 +24,7 @@ $(1);
 `````js filename=intro
 let x = true;
 while (x) {
+  $('inside');
   x = false;
 }
 $(1);
@@ -33,6 +35,7 @@ $(1);
 `````js filename=intro
 let x = true;
 while (x) {
+  $('inside');
   x = false;
 }
 $(1);
@@ -43,6 +46,7 @@ $(1);
 `````js filename=intro
 let x = true;
 while (x) {
+  $('inside');
   x = false;
 }
 $(1);
@@ -55,7 +59,8 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1
+ - 1: 'inside'
+ - 2: 1
  - eval returned: undefined
 
 Pre normalization calls: Same

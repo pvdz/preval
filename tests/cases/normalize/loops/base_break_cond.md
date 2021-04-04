@@ -14,7 +14,7 @@
 function f() {
   let n = 0;
   while (true) {
-    ++n;
+    $(++n);
     if (n < 4) break;
   }
   $('afterwards');
@@ -30,7 +30,7 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
-    ++n;
+    $(++n);
     if (n < 4) break;
   }
   $('afterwards');
@@ -46,7 +46,10 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
+    const tmpCallCallee = $;
     n = n + 1;
+    let tmpCalleeParam = n;
+    tmpCallCallee(tmpCalleeParam);
     const tmpIfTest = n < 4;
     if (tmpIfTest) {
       break;
@@ -55,9 +58,9 @@ let f = function () {
   $('afterwards');
   return 100;
 };
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
@@ -66,6 +69,8 @@ tmpCallCallee(tmpCalleeParam);
 let n = 0;
 while (true) {
   n = n + 1;
+  const tmpCalleeParam = n;
+  $(tmpCalleeParam);
   const tmpIfTest = n < 4;
   if (tmpIfTest) {
     break;
@@ -82,8 +87,9 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'afterwards'
- - 2: 100
+ - 1: 1
+ - 2: 'afterwards'
+ - 3: 100
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -551,7 +551,48 @@ function f() {
   }
   return tail();
 }
+```
 
+What happens in a nested loop?
+
+```js
+function f() {
+  while (true) {
+    while (true) {
+      return 100;
+    }
+  }
+}
+$(f());
+```
+-->
+```js
+function f() {
+  let r2 = CONTINUE;
+  let v2 = undefined;
+  function f2() {
+    r = RETURN;
+    v = 100;
+    r2 = RETURN;
+    v2 = undefined;
+    return undefined;
+  }
+  let r = CONTINUE;
+  let v = undefined;
+  function f1() {
+    while (r2) {
+      f2();
+    }
+    if (r2 === RETURN) return v2;
+    else return undefined;
+  }
+  while (r) {
+    f1();
+  }
+  if (r === RETURN) return v;
+  else return undefined;
+}
+$(f());
 ```
 
 #TODO
@@ -560,7 +601,7 @@ function f() {
 
 `````js filename=intro
 function f() {
-  for (let i=0; i<10; ++i);
+  for (let i=0; i<10; ++i) $(i);
   return 100;
 }
 const r = f();
@@ -575,6 +616,7 @@ let f = function () {
   {
     let i = 0;
     while (i < 10) {
+      $(i);
       ++i;
     }
   }
@@ -593,6 +635,7 @@ let f = function () {
   while (true) {
     const tmpIfTest = i < 10;
     if (tmpIfTest) {
+      $(i);
       i = i + 1;
     } else {
       break;
@@ -611,6 +654,7 @@ let i = 0;
 while (true) {
   const tmpIfTest = i < 10;
   if (tmpIfTest) {
+    $(i);
     i = i + 1;
   } else {
     break;
@@ -626,7 +670,17 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 100
+ - 1: 0
+ - 2: 1
+ - 3: 2
+ - 4: 3
+ - 5: 4
+ - 6: 5
+ - 7: 6
+ - 8: 7
+ - 9: 8
+ - 10: 9
+ - 11: 100
  - eval returned: undefined
 
 Pre normalization calls: Same

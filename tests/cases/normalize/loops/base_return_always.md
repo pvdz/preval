@@ -44,7 +44,7 @@ f();
 function f() {
   let n = 0;
   while (true) {
-    ++n;
+    $(++n);
     return n;
   }
   $('afterwards');
@@ -60,7 +60,7 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
-    ++n;
+    $(++n);
     return n;
   }
   $('afterwards');
@@ -76,15 +76,18 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
+    const tmpCallCallee = $;
     n = n + 1;
+    let tmpCalleeParam = n;
+    tmpCallCallee(tmpCalleeParam);
     return n;
   }
   $('afterwards');
   return 100;
 };
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
@@ -95,13 +98,15 @@ const f = function () {
   let n = 0;
   while (true) {
     n = n + 1;
+    const tmpCalleeParam = n;
+    $(tmpCalleeParam);
     return n;
   }
   $('afterwards');
   return 100;
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
 `````
 
 ## Globals
@@ -112,6 +117,7 @@ None
 
 Should call `$` with:
  - 1: 1
+ - 2: 1
  - eval returned: undefined
 
 Pre normalization calls: Same

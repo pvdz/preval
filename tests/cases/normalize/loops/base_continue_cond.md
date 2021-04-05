@@ -45,18 +45,36 @@ $(f());
 let f = function () {
   debugger;
   let n = 0;
-  while (true) {
+  let tmpLoopRetCode = true;
+  let tmpLoopRetValue = undefined;
+  let tmpLoopBody = function () {
+    debugger;
     const tmpCallCallee = $;
     n = n + 1;
     let tmpCalleeParam = n;
     tmpCallCallee(tmpCalleeParam);
     const tmpIfTest = n < 8;
     if (tmpIfTest) {
-      continue;
+      return undefined;
     }
+  };
+  let tmpLoopTail = function ($$0, $$1) {
+    let tmpLoopRetCode$1 = $$0;
+    let tmpLoopRetValue$1 = $$1;
+    debugger;
+    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+    if (tmpIfTest$1) {
+      return tmpLoopRetValue$1;
+    } else {
+      $('afterwards');
+      return 100;
+    }
+  };
+  while (tmpLoopRetCode) {
+    tmpLoopBody();
   }
-  $('afterwards');
-  return 100;
+  const tmpReturnArg = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
+  return tmpReturnArg;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
@@ -67,14 +85,18 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 let n = 0;
-while (true) {
+const tmpLoopBody = function () {
+  debugger;
   n = n + 1;
   const tmpCalleeParam = n;
   $(tmpCalleeParam);
   const tmpIfTest = n < 8;
   if (tmpIfTest) {
-    continue;
+    return undefined;
   }
+};
+while (true) {
+  tmpLoopBody();
 }
 $('afterwards');
 $(100);

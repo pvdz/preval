@@ -1,12 +1,10 @@
 # Preval test case
 
-# while.md
+# base_nested_unconditional_return.md
 
-> Normalize > Dce > Return > While
+> Normalize > Loops > Base nested unconditional return
 >
-> Any statements that follow a return in the same parent should be eliminated.
-
-This loop could be dropped because all branches return/break it.
+> A nested loop with an unconditional early return
 
 #TODO
 
@@ -14,9 +12,13 @@ This loop could be dropped because all branches return/break it.
 
 `````js filename=intro
 function f() {
-  while ($(true)) {
-    return $(1, 'return');
-    $('fail');
+  $('outer');
+  while (true) {
+    $('middle');
+    while (true) {
+      $('inner');
+      return 100;
+    }  
   }
 }
 $(f());
@@ -27,9 +29,13 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while ($(true)) {
-    return $(1, 'return');
-    $('fail');
+  $('outer');
+  while (true) {
+    $('middle');
+    while (true) {
+      $('inner');
+      return 100;
+    }
   }
 };
 $(f());
@@ -40,18 +46,16 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
+  $('outer');
   let tmpLoopRetCode = true;
   let tmpLoopRetValue = undefined;
   let tmpLoopBody = function () {
     debugger;
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      const tmpReturnArg = $(1, 'return');
+    $('middle');
+    while (true) {
+      $('inner');
       tmpLoopRetCode = undefined;
-      tmpLoopRetValue = tmpReturnArg;
-      return undefined;
-    } else {
-      tmpLoopRetCode = false;
+      tmpLoopRetValue = 100;
       return undefined;
     }
   };
@@ -59,16 +63,16 @@ let f = function () {
     let tmpLoopRetCode$1 = $$0;
     let tmpLoopRetValue$1 = $$1;
     debugger;
-    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
-    if (tmpIfTest$1) {
+    const tmpIfTest = tmpLoopRetCode$1 === undefined;
+    if (tmpIfTest) {
       return tmpLoopRetValue$1;
     }
   };
   while (tmpLoopRetCode) {
     tmpLoopBody();
   }
-  const tmpReturnArg$1 = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
-  return tmpReturnArg$1;
+  const tmpReturnArg = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
+  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -78,18 +82,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+$('outer');
 let tmpLoopRetCode = true;
 let tmpLoopRetValue = undefined;
 const tmpLoopBody = function () {
   debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpReturnArg = $(1, 'return');
+  $('middle');
+  while (true) {
+    $('inner');
     tmpLoopRetCode = undefined;
-    tmpLoopRetValue = tmpReturnArg;
-    return undefined;
-  } else {
-    tmpLoopRetCode = false;
+    tmpLoopRetValue = 100;
     return undefined;
   }
 };
@@ -97,16 +99,16 @@ const tmpLoopTail = function ($$0, $$1) {
   const tmpLoopRetCode$1 = $$0;
   const tmpLoopRetValue$1 = $$1;
   debugger;
-  const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
-  if (tmpIfTest$1) {
+  const tmpIfTest = tmpLoopRetCode$1 === undefined;
+  if (tmpIfTest) {
     return tmpLoopRetValue$1;
   }
 };
 while (tmpLoopRetCode) {
   tmpLoopBody();
 }
-const tmpReturnArg$1 = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
-$(tmpReturnArg$1);
+const tmpReturnArg = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
+$(tmpReturnArg);
 `````
 
 ## Globals
@@ -116,9 +118,10 @@ None
 ## Result
 
 Should call `$` with:
- - 1: true
- - 2: 1, 'return'
- - 3: 1
+ - 1: 'outer'
+ - 2: 'middle'
+ - 3: 'inner'
+ - 4: 100
  - eval returned: undefined
 
 Pre normalization calls: Same

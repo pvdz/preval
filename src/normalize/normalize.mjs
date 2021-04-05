@@ -110,6 +110,9 @@ import { isComplexNode } from '../ast.mjs';
   - Eliminate labels when possible
   - Enforce a max of one if-else per function
     - Currently loops are exempted from this, although in due time they will get a similar treatment
+  - Try to move functions to global top if they do not reference anything else but their inner bindings
+    - This simplifies functions in some cases by having less content which may make them a more likely candidate for optimizations
+  - Normalize branching inside loops into an abstract function
  */
 
 // low hanging fruit: async, iterators
@@ -127,22 +130,9 @@ import { isComplexNode } from '../ast.mjs';
   - treeshaking?
     - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
     - we know all the relevant bits so why not
-  - all bindings have only one point of decl
-    - dedupe multiple var statements for the same name
-    - dedupe parameter shadows
-    - implement SSA
-      - I need to read up on this. IF every binding always ever only got one update, does that make our lives easier?
-  - Should func decls be changed to const blabla?
-    - Also not sure whether this helps us anything.
-  - return early stuff versus if-elsing it out?
-    - What's easier to reason about
-    - Create new functions for the remainder after an early return? Does that help?
-  - Remove unused `return` keywords
+  - Remove unused `return` keywords? Or force add them instead such that all functions end with an explicit return, even if it's just undefined?
   - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
-  - separate elimination transforms (patterns, switch) from continuous transforms that might need to be applied after other reductions
-  - unused init for variable (let x = 10; x = 20; $(x))
-  - arguments (ehh)
-  - seems like objects-as-statements aren't properly cleaned up (should leave spreads but remove the rest)
+  - Object spreads that are trivial to do should be done if we can figure them out statically
   - eliminate redundant labels (continue without crossing a loop boundary, break that does not need a label, or at the end of flow)
   - dce; if a loop body has abrupt endings that are not continue on all branches then the loop can be removed
   - we should be able to transform star imports to named imports. we know all the things here and the namespace is a constant.
@@ -197,6 +187,10 @@ import { isComplexNode } from '../ast.mjs';
   - Any call to a function without explicit return (or where all returns are undefined) can be split-replaced with undefined
   - When passing on a global const, drop the argument in favor of using the global directly
   - Inlining simple functions with rest, like tests/cases/normalize/pattern/param/rest/base.md
+  - Change writes to a constant to an explicit error of sorts (like /home/ptr/proj/preval/tests/cases/normalize/function/expr/id_write2.md )
+  - Could normalize AST, like var decl and assignment having a lhs and rhs instead of id/init and left/right (and drop the declarations bit since that'll never happen after the normalize_once step)).
+  - There are some cases of loops where we can determine that there's no way for the loop to ever break, making any code that follows it ready to DCE.
+  - TODO: unique ident algo will rename implicit globals if a binding with the same name was already found in another scope ;(
   - TODO: norm_once must use registerGlobalLabel to prevent collisions reliably
   - TODO: if an optional chain starts with a literal null or undefined, the rest of the chain can be dropped
   - TODO: what's up with the array in /home/ptr/proj/preval/tests/cases/normalize/pattern/param/obj/rest/default_no_no__str.md ???
@@ -218,12 +212,32 @@ import { isComplexNode } from '../ast.mjs';
     super
 */
 
+function RETURN() {
+  // Part of the while-normalization-logic
+  // This is basically a specially crafted enum. The value is assigned to a state var which is the test
+  // value of a normalized while loop. As long as we want to continue the while loop, the value must be
+  // truthy. Hence, CONTINUE() returns a `true` node. When the body of the loop either returns or breaks
+  // the value must be falsy. To distinguish between a return and a break, we explicitly use `false` for
+  // one case (BREAK()) and `undefined` for the other case (RETURN()). This way we do not need to use a
+  // binary expression for the while test (which would otherwise be normalized again, leading to an
+  // infinite loop).
+  return AST.identifier('undefined');
+}
+function BREAK() {
+  // Part of the while-normalization-logic. See the RETURN func.
+  return AST.fals();
+}
+function CONTINUE() {
+  // Part of the while-normalization-logic. See the RETURN func.
+  return AST.tru();
+}
+
 export function phaseNormalize(fdata, fname) {
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
   let somethingChanged = false; // Did phase2 change anything at all?
 
   const ast = fdata.tenkoOutput.ast;
-  const funcStack = [];
+  const funcStack = []; // [1] is always global (.ast)
   const thisStack = []; // Only for function expressions (no arrows or global, decls are eliminated)
   const ifelseStack = [ast];
 
@@ -5870,7 +5884,9 @@ export function phaseNormalize(fdata, fname) {
   }
 
   function transformProgram(node) {
+    funcStack.push(node);
     anyBlock(node);
+    funcStack.pop();
     return false;
   }
 
@@ -6506,6 +6522,229 @@ export function phaseNormalize(fdata, fname) {
       body[[i]] = AST.emptyStatement();
 
       after(body[[i]]);
+      return true;
+    }
+
+    // There's a lot in tests/cases/normalize/loops/base.md
+    /*
+    If a function contains a toplevel loop whose test is `true`
+    - If the loop contains no branching
+      - Move along
+    - Else
+      - Abstract the code (whole body or starting from the branch only?) into (uniquely called) `body
+      - Find all closures and greedily-yet-cautiously turn reads into params up until the point where we can no longer guarantee them to be immutable
+      - Replace tail with abstraction (uniquely) called `tail`
+      - Prepend two new `let` bindings before the loop; `r` initialized to `true` and `v` initialized to `undefined`
+        - `r` and `v` must be made unique like anything else
+      - Any occurrence of `return x` in the body must be replaced with `r = false; v = x; return;` for the entire argument `x`
+      - Any occurrence of `break` in the loop is replaced with `r = undefined; return;`
+      - Any occurrence of `continue` in the loop is replaced with `return`
+      - The body of the loop is replaced with a call to `body`, passing on any names that were detected to be read-only
+      - The test of the loop is replaced with `r`
+      - The tail (code after the loop) is replaced with `if (r === false) return v; else return tail();`
+    Notes:
+      - This should work nested as all r's and v's are unique. The inner loop constructions are just ignored.
+        - Maybe we can optimize against that?
+      - If the loop was toplevel then there can not be a labeled break or continue that wants to jump "outside" of it
+      - Other rules will take care of mangling the new functions into an unrecognizable though normalized mess
+      - There are basically three abrupt completions we need to take care of in the loop; break, return, continue.
+        - The continue case is the same as no abrupt completion
+        - The return case is the only one where the tail is never called
+     */
+
+    // A normalized loop is a loop whose test is a simple node and whose body does not contain any other branching
+
+    vlog('Trying to normalize the while statement itself now');
+    if (
+      funcStack.length > 1 && // Ignore global space, for now
+      node.body.body.some((n) => {
+        ASSERT(n.type !== 'BlockStatement', 'normalized code should not have nested blocks');
+        return ['IfStatement', 'WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(n.type);
+      })
+    ) {
+      // The body of the while contains some branching. Let's go.
+      ASSERT(
+        node.test.type !== 'Literal' || node.test.value === true,
+        'if the while test is a literal, it must at this point be true',
+        node.test,
+      );
+      if (node.test.type !== 'Literal' || node.test.value !== true) {
+        // Note: it's fine to leave a regular ident as the while condition so we don't do this unless required
+        rule('While normalization requires the while test to be `true`');
+        example('while (foo) { f(); }', 'while (true) { if (!foo) break; f(); }');
+        before(node);
+
+        node.body.body.unshift(AST.ifStatement(AST.unaryExpression('!', node.test), AST.breakStatement()));
+        node.test = AST.tru();
+
+        after(node);
+        return true;
+      }
+
+      rule('Body of a toplevel while must not have branching');
+      example(
+        'while (true) { if (x) return a; else return b; } rest',
+        'let r = true; let v = undefined; function body() { if (x) { r = false; v = a; return; } else { r = false; v = b; return; } } function tail() { if (r) return v; else { rest } } { while (r) { tmp(); }; tail();',
+      );
+      before(node, parentNode);
+
+      const tmpNameBody = createFreshVar('tmpLoopBody', fdata);
+      const tmpNameTail = createFreshVar('tmpLoopTail', fdata);
+      const tmpNameRetCode = createFreshVar('tmpLoopRetCode', fdata);
+      const tmpNameRetValue = createFreshVar('tmpLoopRetValue', fdata);
+      const tmpNameRetCode2 = createFreshVar(tmpNameRetCode, fdata);
+      const tmpNameRetValue2 = createFreshVar(tmpNameRetValue, fdata);
+
+      const newBodyFunc = AST.functionExpression([], [AST.debuggerStatement(), ...node.body.body]);
+      const newTailFunc = AST.functionExpression(
+        [AST.param('$$0'), AST.param('$$1')],
+        [
+          AST.variableDeclaration(tmpNameRetCode2, AST.param('$$0')),
+          AST.variableDeclaration(tmpNameRetValue2, AST.param('$$1')),
+          AST.debuggerStatement(),
+          // if (r === RETURN) return v;
+          // else <do whatever code followed the loop>
+          AST.ifStatement(
+            AST.binaryExpression('===', tmpNameRetCode2, RETURN()),
+            AST.blockStatement(AST.returnStatement(tmpNameRetValue2)),
+            AST.blockStatement(body.slice(i + 1)),
+          ),
+        ],
+      );
+
+      const newNodes = [
+        AST.variableDeclaration(tmpNameRetCode, CONTINUE(), 'let'),
+        AST.variableDeclaration(tmpNameRetValue, AST.identifier('undefined'), 'let'),
+        AST.variableDeclaration(tmpNameBody, newBodyFunc),
+        AST.variableDeclaration(tmpNameTail, newTailFunc),
+      ];
+      body.splice(
+        i + 1,
+        body.length,
+        AST.returnStatement(AST.callExpression(tmpNameTail, [AST.identifier(tmpNameRetCode), AST.identifier(tmpNameRetValue)])),
+      );
+      node.test = AST.identifier(tmpNameRetCode);
+      node.body.body.length = 0;
+      node.body.body.push(AST.expressionStatement(AST.callExpression(tmpNameBody, [])));
+      body.splice(i, 0, ...newNodes);
+
+      vgroup('Finding all abrupt completions');
+      // Track how many loops are nested. Unlabeled breaks/continues inside another loop should be left alone.
+      let loops = 0;
+      let stack = [];
+      const walker = (subnode, beforeVisit, type, path) => {
+        switch (subnode.type) {
+          case 'FunctionExpression': {
+            if (subnode === newBodyFunc) return; // Ignore the root
+            return true; // Do not traverse
+          }
+          case 'FunctionDeclaration':
+          case 'ArrowFunctionExpression': {
+            ASSERT(false, 'eh, no?');
+            break;
+          }
+          case 'ReturnStatement': {
+            // Always transform the return statement. This should work fine even in nested loops although
+            // part of the boilerplate is ignored for inner loops. Other rules should eliminate that tho.
+            if (beforeVisit) {
+              vlog('Found a return; adding to queue');
+              const parentNode = path.nodes[path.nodes.length - 2];
+              const parentProp = path.props[path.props.length - 1];
+              const parentIndex = path.indexes[path.indexes.length - 1];
+              stack.unshift({
+                type: 'return',
+                body: parentNode[parentProp],
+                index: parentIndex,
+                value: subnode.argument,
+                parent: parentNode,
+              });
+            }
+            break;
+          }
+          case 'BreakStatement': {
+            // We can not be interested in a labelled break here because our loop is at the function root
+            // That means it can not be the descendant of a labelled statement and so we can ignore them.
+            // If we are inside another loop, also ignore them because they would break to the inner-most loop.
+            if (beforeVisit && !subnode.label && !loops) {
+              vlog('Found a break; adding to queue');
+              const parentNode = path.nodes[path.nodes.length - 2];
+              const parentProp = path.props[path.props.length - 1];
+              const parentIndex = path.indexes[path.indexes.length - 1];
+              stack.unshift({ type: 'break', body: parentNode[parentProp], index: parentIndex, value: undefined, parent: parentNode });
+            }
+            break;
+          }
+          case 'ContinueStatement': {
+            // We can not be interested in a labelled break here because our loop is at the function root
+            // That means it can not be the descendant of a labelled statement and so we can ignore them.
+            // If we are inside another loop, also ignore them because they would break to the inner-most loop.
+            if (beforeVisit && !subnode.label && !loops) {
+              vlog('Found a continue; adding to queue');
+
+              const parentNode = path.nodes[path.nodes.length - 2];
+              const parentProp = path.props[path.props.length - 1];
+              const parentIndex = path.indexes[path.indexes.length - 1];
+              stack.unshift({ type: 'continue', body: parentNode[parentProp], index: parentIndex, value: undefined, parent: parentNode });
+            }
+            break;
+          }
+          case 'ForInStatement':
+          case 'ForOfStatement':
+          case 'WhileStatement': {
+            if (beforeVisit) ++loops;
+            else --loops;
+            break;
+          }
+        }
+      };
+      walk(walker, newBodyFunc, 'body');
+      vgroupEnd();
+
+      // We should now be traversing the discovered nodes in reverse DFS order
+      // The important property to keep in mind here is that this means that injecting new nodes
+      // into any body array should not affect the position of elements still on the stack, since
+      // they should always precede the current node.
+      vgroup('Transforming all abrupt completions in reverse order');
+      stack.forEach(({ type, body, index, value, parent }) => {
+        if (type === 'return') {
+          rule('A return should update r and v and drop its arg');
+          example('return x;', 'r = RETURN; v = x; return;');
+          before(body[index], parent);
+
+          const newNodes = [
+            AST.expressionStatement(AST.assignmentExpression(tmpNameRetCode, RETURN())),
+            AST.expressionStatement(AST.assignmentExpression(tmpNameRetValue, value)),
+            AST.returnStatement('undefined'),
+          ];
+          body.splice(index, 1, ...newNodes);
+
+          after(newNodes, parent);
+        } else if (type === 'continue') {
+          rule('A return should update r and v and drop its arg');
+          example('return x;', 'r = RETURN; v = x; return;');
+          before(body[index], parent);
+
+          // We don't need to queue this because it doesn't need to inject multiple nodes.
+          const newNode = AST.returnStatement('undefined');
+          body[index] = newNode;
+
+          after(newNode, parent);
+        } else {
+          ASSERT(type === 'break');
+          rule('A return should update r and v and drop its arg');
+          example('return x;', 'r = RETURN; v = x; return;');
+          before(body[index], parent);
+
+          const newNodes = [AST.expressionStatement(AST.assignmentExpression(tmpNameRetCode, BREAK())), AST.returnStatement('undefined')];
+          body.splice(index, 1, ...newNodes);
+
+          after(newNodes, parent);
+        }
+      });
+      vgroupEnd();
+
+      after(node, parentNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 

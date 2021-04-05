@@ -52,7 +52,10 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while (true) {
+  let tmpLoopRetCode = true;
+  let tmpLoopRetValue = undefined;
+  let tmpLoopBody = function () {
+    debugger;
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $('loop');
@@ -61,14 +64,32 @@ let f = function () {
       for (x of tmpForOfDeclRhs) {
         $('loop', x);
         const tmpReturnArg = $(100, 'return');
-        return tmpReturnArg;
+        tmpLoopRetCode = undefined;
+        tmpLoopRetValue = tmpReturnArg;
+        return undefined;
       }
       $('do not visit, do not eliminate');
     } else {
-      break;
+      tmpLoopRetCode = false;
+      return undefined;
     }
+  };
+  let tmpLoopTail = function ($$0, $$1) {
+    let tmpLoopRetCode$1 = $$0;
+    let tmpLoopRetValue$1 = $$1;
+    debugger;
+    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+    if (tmpIfTest$1) {
+      return tmpLoopRetValue$1;
+    } else {
+      $('after (not invoked)');
+    }
+  };
+  while (tmpLoopRetCode) {
+    tmpLoopBody();
   }
-  $('after (not invoked)');
+  const tmpReturnArg$1 = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
+  return tmpReturnArg$1;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -78,28 +99,44 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
+let tmpLoopRetCode = true;
+let tmpLoopRetValue = undefined;
+const tmpLoopBody = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $('loop');
-      const tmpForOfDeclRhs = [1, 2];
-      let x = undefined;
-      for (x of tmpForOfDeclRhs) {
-        $('loop', x);
-        const tmpReturnArg = $(100, 'return');
-        return tmpReturnArg;
-      }
-      $('do not visit, do not eliminate');
-    } else {
-      break;
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $('loop');
+    const tmpForOfDeclRhs = [1, 2];
+    let x = undefined;
+    for (x of tmpForOfDeclRhs) {
+      $('loop', x);
+      const tmpReturnArg = $(100, 'return');
+      tmpLoopRetCode = undefined;
+      tmpLoopRetValue = tmpReturnArg;
+      return undefined;
     }
+    $('do not visit, do not eliminate');
+  } else {
+    tmpLoopRetCode = false;
+    return undefined;
   }
-  $('after (not invoked)');
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpLoopTail = function ($$0, $$1) {
+  const tmpLoopRetCode$1 = $$0;
+  const tmpLoopRetValue$1 = $$1;
+  debugger;
+  const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+  if (tmpIfTest$1) {
+    return tmpLoopRetValue$1;
+  } else {
+    $('after (not invoked)');
+  }
+};
+while (tmpLoopRetCode) {
+  tmpLoopBody();
+}
+const tmpReturnArg$1 = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
+$(tmpReturnArg$1);
 `````
 
 ## Globals

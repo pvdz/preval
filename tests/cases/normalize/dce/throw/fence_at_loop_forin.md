@@ -52,7 +52,10 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while (true) {
+  let tmpLoopRetCode = true;
+  let tmpLoopRetValue = undefined;
+  let tmpLoopBody = function () {
+    debugger;
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $('loop');
@@ -65,10 +68,26 @@ let f = function () {
       }
       $('fail');
     } else {
-      break;
+      tmpLoopRetCode = false;
+      return undefined;
     }
+  };
+  let tmpLoopTail = function ($$0, $$1) {
+    let tmpLoopRetCode$1 = $$0;
+    let tmpLoopRetValue$1 = $$1;
+    debugger;
+    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+    if (tmpIfTest$1) {
+      return tmpLoopRetValue$1;
+    } else {
+      $('after (not invoked but should not be eliminated)');
+    }
+  };
+  while (tmpLoopRetCode) {
+    tmpLoopBody();
   }
-  $('after (not invoked but should not be eliminated)');
+  const tmpReturnArg = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
+  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -78,7 +97,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-while (true) {
+let tmpLoopRetCode = true;
+const tmpLoopBody = function () {
+  debugger;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $('loop');
@@ -91,11 +112,25 @@ while (true) {
     }
     $('fail');
   } else {
-    break;
+    tmpLoopRetCode = false;
+    return undefined;
   }
+};
+const tmpLoopTail = function ($$0) {
+  const tmpLoopRetCode$1 = $$0;
+  debugger;
+  const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+  if (tmpIfTest$1) {
+    return undefined;
+  } else {
+    $('after (not invoked but should not be eliminated)');
+  }
+};
+while (tmpLoopRetCode) {
+  tmpLoopBody();
 }
-$('after (not invoked but should not be eliminated)');
-$(undefined);
+const tmpReturnArg = tmpLoopTail(tmpLoopRetCode);
+$(tmpReturnArg);
 `````
 
 ## Globals

@@ -42,16 +42,35 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while (true) {
+  let tmpLoopRetCode = true;
+  let tmpLoopRetValue = undefined;
+  let tmpLoopBody = function () {
+    debugger;
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       const tmpThrowArg = $(1, 'throw');
       throw tmpThrowArg;
     } else {
-      break;
+      tmpLoopRetCode = false;
+      return undefined;
     }
+  };
+  let tmpLoopTail = function ($$0, $$1) {
+    let tmpLoopRetCode$1 = $$0;
+    let tmpLoopRetValue$1 = $$1;
+    debugger;
+    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+    if (tmpIfTest$1) {
+      return tmpLoopRetValue$1;
+    } else {
+      $('keep, do not eval');
+    }
+  };
+  while (tmpLoopRetCode) {
+    tmpLoopBody();
   }
-  $('keep, do not eval');
+  const tmpReturnArg = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
+  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -61,17 +80,33 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-while (true) {
+let tmpLoopRetCode = true;
+const tmpLoopBody = function () {
+  debugger;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     const tmpThrowArg = $(1, 'throw');
     throw tmpThrowArg;
   } else {
-    break;
+    tmpLoopRetCode = false;
+    return undefined;
   }
+};
+const tmpLoopTail = function ($$0) {
+  const tmpLoopRetCode$1 = $$0;
+  debugger;
+  const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+  if (tmpIfTest$1) {
+    return undefined;
+  } else {
+    $('keep, do not eval');
+  }
+};
+while (tmpLoopRetCode) {
+  tmpLoopBody();
 }
-$('keep, do not eval');
-$(undefined);
+const tmpReturnArg = tmpLoopTail(tmpLoopRetCode);
+$(tmpReturnArg);
 `````
 
 ## Globals

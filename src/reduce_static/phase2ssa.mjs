@@ -87,7 +87,7 @@ function _applySSA(fdata) {
           // Must verify that all remaining usages can reach this write
 
           let loopId = rwRef.innerLoop;
-          vlog('Write inside a loop?', loopId);
+          vlog('Write inside a loop?', loopId, loopId < 0 ? 'yes' : 'no');
           let canSSA = true;
           if (loopId) {
             vlog('Checking if any previous read can reach this write (it is bad if one does)');
@@ -100,6 +100,7 @@ function _applySSA(fdata) {
                   j,
                   ':',
                   c.action,
+                  ', innerLoop:', c.innerLoop,
                   ', same loop:',
                   loopId === c.innerLoop,
                   ', can reach:',

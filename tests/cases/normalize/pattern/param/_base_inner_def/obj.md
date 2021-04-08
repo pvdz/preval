@@ -33,42 +33,27 @@ let g = function ($$0) {
   let objPatternBeforeDefault = bindingPatternObjRoot.x;
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingA = function ($$0, $$1, $$2, $$3, $$4) {
-    let tmpParamBare$1 = $$0;
-    let bindingPatternObjRoot$1 = $$1;
-    let objPatternBeforeDefault$1 = $$2;
-    let x$1 = $$3;
-    let tmpIfTest$1 = $$4;
+  const tmpBranchingA = function () {
     debugger;
-    x$1 = b;
-    const tmpReturnArg = tmpBranchingC(tmpParamBare$1, bindingPatternObjRoot$1, objPatternBeforeDefault$1, x$1, tmpIfTest$1);
+    x = b;
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4) {
-    let tmpParamBare$3 = $$0;
-    let bindingPatternObjRoot$3 = $$1;
-    let objPatternBeforeDefault$3 = $$2;
-    let x$3 = $$3;
-    let tmpIfTest$3 = $$4;
+  const tmpBranchingB = function () {
     debugger;
-    x$3 = objPatternBeforeDefault$3;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$3, bindingPatternObjRoot$3, objPatternBeforeDefault$3, x$3, tmpIfTest$3);
+    x = objPatternBeforeDefault;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4) {
-    let tmpParamBare$5 = $$0;
-    let bindingPatternObjRoot$5 = $$1;
-    let objPatternBeforeDefault$5 = $$2;
-    let x$5 = $$3;
-    let tmpIfTest$5 = $$4;
+  const tmpBranchingC = function () {
     debugger;
-    return x$5;
+    return x;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(tmpParamBare, bindingPatternObjRoot, objPatternBeforeDefault, x, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(tmpParamBare, bindingPatternObjRoot, objPatternBeforeDefault, x, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };

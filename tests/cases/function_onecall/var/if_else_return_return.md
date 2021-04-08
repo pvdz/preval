@@ -45,30 +45,27 @@ $(x);
 let f = function () {
   debugger;
   const tmpIfTest = $();
-  const tmpBranchingA = function ($$0) {
-    let tmpIfTest$1 = $$0;
+  const tmpBranchingA = function () {
     debugger;
     $(0);
-    const tmpReturnArg$3 = tmpBranchingC(tmpIfTest$1);
+    const tmpReturnArg$3 = tmpBranchingC();
     return tmpReturnArg$3;
   };
-  const tmpBranchingB = function ($$0) {
-    let tmpIfTest$3 = $$0;
+  const tmpBranchingB = function () {
     debugger;
     const tmpReturnArg$1 = $(1);
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0) {
-    let tmpIfTest$5 = $$0;
+  const tmpBranchingC = function () {
     debugger;
     const tmpReturnArg$5 = $(2);
     return tmpReturnArg$5;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$7 = tmpBranchingA(tmpIfTest);
+    const tmpReturnArg$7 = tmpBranchingA();
     return tmpReturnArg$7;
   } else {
-    const tmpReturnArg$9 = tmpBranchingB(tmpIfTest);
+    const tmpReturnArg$9 = tmpBranchingB();
     return tmpReturnArg$9;
   }
 };

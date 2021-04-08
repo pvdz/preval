@@ -37,26 +37,23 @@ $(f());
 let f = function () {
   debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function ($$0) {
-    let tmpIfTest$1 = $$0;
+  const tmpBranchingA = function () {
     debugger;
     return 2;
   };
-  const tmpBranchingB = function ($$0) {
-    let tmpIfTest$3 = $$0;
+  const tmpBranchingB = function () {
     debugger;
     return 3;
   };
-  const tmpBranchingC = function ($$0) {
-    let tmpIfTest$5 = $$0;
+  const tmpBranchingC = function () {
     debugger;
     $('fail');
   };
   if (tmpIfTest) {
-    const tmpReturnArg = tmpBranchingA(tmpIfTest);
+    const tmpReturnArg = tmpBranchingA();
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$1 = tmpBranchingB(tmpIfTest);
+    const tmpReturnArg$1 = tmpBranchingB();
     return tmpReturnArg$1;
   }
 };

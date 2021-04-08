@@ -40,37 +40,28 @@ let f = function () {
   y = undefined;
   const tmpChainRootProp = $();
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let y$1 = $$0;
-    let tmpChainRootProp$1 = $$1;
-    let tmpIfTest$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
-    const tmpChainElementObject$1 = tmpChainRootProp$1.foo;
-    y$1 = tmpChainElementObject$1;
-    const tmpReturnArg = tmpBranchingC(y$1, tmpChainRootProp$1, tmpIfTest$1);
+    const tmpChainElementObject$1 = tmpChainRootProp.foo;
+    y = tmpChainElementObject$1;
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let y$3 = $$0;
-    let tmpChainRootProp$3 = $$1;
-    let tmpIfTest$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC(y$3, tmpChainRootProp$3, tmpIfTest$3);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let y$5 = $$0;
-    let tmpChainRootProp$5 = $$1;
-    let tmpIfTest$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    const tmpReturnArg$3 = $(y$5);
+    const tmpReturnArg$3 = $(y);
     return tmpReturnArg$3;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA(y, tmpChainRootProp, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingA();
     return tmpReturnArg$5;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB(y, tmpChainRootProp, tmpIfTest);
+    const tmpReturnArg$7 = tmpBranchingB();
     return tmpReturnArg$7;
   }
 };
@@ -84,14 +75,16 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
+  let tmpSSA_y = undefined;
   const tmpChainRootProp = $();
   const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
     const tmpChainElementObject$1 = tmpChainRootProp.foo;
-    const tmpReturnArg = $(tmpChainElementObject$1);
+    tmpSSA_y = tmpChainElementObject$1;
+    const tmpReturnArg = $(tmpSSA_y);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = $(undefined);
+    const tmpReturnArg$7 = $(tmpSSA_y);
     return tmpReturnArg$7;
   }
 };

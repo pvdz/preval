@@ -42,29 +42,26 @@ let f = function () {
   debugger;
   let a = { a: 999, b: 1000 };
   a = 0;
-  const tmpBranchingA = function ($$0) {
-    let a$1 = $$0;
+  const tmpBranchingA = function () {
     debugger;
-    const tmpReturnArg = tmpBranchingC(a$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0) {
-    let a$3 = $$0;
+  const tmpBranchingB = function () {
     debugger;
-    a$3 = 2;
-    const tmpReturnArg$1 = tmpBranchingC(a$3);
+    a = 2;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0) {
-    let a$5 = $$0;
+  const tmpBranchingC = function () {
     debugger;
-    $(a$5);
+    $(a);
   };
   if (a) {
-    const tmpReturnArg$3 = tmpBranchingA(a);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(a);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };

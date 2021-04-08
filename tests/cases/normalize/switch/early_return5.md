@@ -59,59 +59,50 @@ f();
 let f = function () {
   debugger;
   const x = 0;
-  const tmpBranchingA = function ($$0) {
-    let x$1 = $$0;
+  const tmpBranchingA = function () {
     debugger;
     $('a');
-    const tmpReturnArg = tmpBranchingC(x$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0) {
-    let x$3 = $$0;
+  const tmpBranchingB = function () {
     debugger;
     const y$1 = 1;
-    const tmpBranchingA$1 = function ($$0, $$1) {
-      let x$7 = $$0;
-      let y$3 = $$1;
+    const tmpBranchingA$1 = function () {
       debugger;
       $('b');
-      const tmpReturnArg$1 = tmpBranchingC$1(x$7, y$3);
+      const tmpReturnArg$1 = tmpBranchingC$1();
       return tmpReturnArg$1;
     };
-    const tmpBranchingB$1 = function ($$0, $$1) {
-      let x$9 = $$0;
-      let y$5 = $$1;
+    const tmpBranchingB$1 = function () {
       debugger;
       $('c');
-      const tmpReturnArg$3 = tmpBranchingC$1(x$9, y$5);
+      const tmpReturnArg$3 = tmpBranchingC$1();
       return tmpReturnArg$3;
     };
-    const tmpBranchingC$1 = function ($$0, $$1) {
-      let x$11 = $$0;
-      let y$7 = $$1;
+    const tmpBranchingC$1 = function () {
       debugger;
       $('after inner');
-      const tmpReturnArg$5 = tmpBranchingC(x$11);
+      const tmpReturnArg$5 = tmpBranchingC();
       return tmpReturnArg$5;
     };
     if (y$1) {
-      const tmpReturnArg$7 = tmpBranchingA$1(x$3, y$1);
+      const tmpReturnArg$7 = tmpBranchingA$1();
       return tmpReturnArg$7;
     } else {
-      const tmpReturnArg$9 = tmpBranchingB$1(x$3, y$1);
+      const tmpReturnArg$9 = tmpBranchingB$1();
       return tmpReturnArg$9;
     }
   };
-  const tmpBranchingC = function ($$0) {
-    let x$5 = $$0;
+  const tmpBranchingC = function () {
     debugger;
     $('after outer');
   };
   if (x) {
-    const tmpReturnArg$11 = tmpBranchingA(x);
+    const tmpReturnArg$11 = tmpBranchingA();
     return tmpReturnArg$11;
   } else {
-    const tmpReturnArg$13 = tmpBranchingB(x);
+    const tmpReturnArg$13 = tmpBranchingB();
     return tmpReturnArg$13;
   }
 };

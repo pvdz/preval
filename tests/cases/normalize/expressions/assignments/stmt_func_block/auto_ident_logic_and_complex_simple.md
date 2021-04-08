@@ -44,41 +44,32 @@ let f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   a = tmpCallCallee(tmpCalleeParam);
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let a$1 = $$0;
-    let tmpCallCallee$1 = $$1;
-    let tmpCalleeParam$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
-    a$1 = 2;
-    const tmpReturnArg = tmpBranchingC(a$1, tmpCallCallee$1, tmpCalleeParam$1);
+    a = 2;
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let a$3 = $$0;
-    let tmpCallCallee$3 = $$1;
-    let tmpCalleeParam$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC(a$3, tmpCallCallee$3, tmpCalleeParam$3);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let a$5 = $$0;
-    let tmpCallCallee$5 = $$1;
-    let tmpCalleeParam$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    $(a$5);
+    $(a);
   };
   if (a) {
-    const tmpReturnArg$3 = tmpBranchingA(a, tmpCallCallee, tmpCalleeParam);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(a, tmpCallCallee, tmpCalleeParam);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };
-const tmpCallCallee$7 = $;
-const tmpCalleeParam$7 = f();
-tmpCallCallee$7(tmpCalleeParam$7);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
@@ -87,17 +78,18 @@ tmpCallCallee$7(tmpCalleeParam$7);
 const f = function () {
   debugger;
   const tmpCalleeParam = $(1);
-  const tmpSSA_a = $(tmpCalleeParam);
+  let tmpSSA_a = $(tmpCalleeParam);
   if (tmpSSA_a) {
-    $(2);
+    tmpSSA_a = 2;
+    $(tmpSSA_a);
     return undefined;
   } else {
     $(tmpSSA_a);
     return undefined;
   }
 };
-const tmpCalleeParam$7 = f();
-$(tmpCalleeParam$7);
+const tmpCalleeParam$1 = f();
+$(tmpCalleeParam$1);
 `````
 
 ## Globals

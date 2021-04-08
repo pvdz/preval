@@ -43,36 +43,27 @@ let x = class {
     debugger;
     let arg = undefined;
     const tmpIfTest = tmpParamBare === undefined;
-    const tmpBranchingA = function ($$0, $$1, $$2) {
-      let tmpParamBare$1 = $$0;
-      let arg$1 = $$1;
-      let tmpIfTest$1 = $$2;
+    const tmpBranchingA = function () {
       debugger;
-      arg$1 = $(10, 'default');
-      const tmpReturnArg = tmpBranchingC(tmpParamBare$1, arg$1, tmpIfTest$1);
+      arg = $(10, 'default');
+      const tmpReturnArg = tmpBranchingC();
       return tmpReturnArg;
     };
-    const tmpBranchingB = function ($$0, $$1, $$2) {
-      let tmpParamBare$3 = $$0;
-      let arg$3 = $$1;
-      let tmpIfTest$3 = $$2;
+    const tmpBranchingB = function () {
       debugger;
-      arg$3 = tmpParamBare$3;
-      const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$3, arg$3, tmpIfTest$3);
+      arg = tmpParamBare;
+      const tmpReturnArg$1 = tmpBranchingC();
       return tmpReturnArg$1;
     };
-    const tmpBranchingC = function ($$0, $$1, $$2) {
-      let tmpParamBare$5 = $$0;
-      let arg$5 = $$1;
-      let tmpIfTest$5 = $$2;
+    const tmpBranchingC = function () {
       debugger;
-      return arg$5;
+      return arg;
     };
     if (tmpIfTest) {
-      const tmpReturnArg$3 = tmpBranchingA(tmpParamBare, arg, tmpIfTest);
+      const tmpReturnArg$3 = tmpBranchingA();
       return tmpReturnArg$3;
     } else {
-      const tmpReturnArg$5 = tmpBranchingB(tmpParamBare, arg, tmpIfTest);
+      const tmpReturnArg$5 = tmpBranchingB();
       return tmpReturnArg$5;
     }
   }
@@ -92,8 +83,8 @@ const x = class {
     debugger;
     const tmpIfTest = tmpParamBare === undefined;
     if (tmpIfTest) {
-      const tmpReturnArg$3 = $(10, 'default');
-      return tmpReturnArg$3;
+      const tmpSSA_arg = $(10, 'default');
+      return tmpSSA_arg;
     } else {
       return tmpParamBare;
     }

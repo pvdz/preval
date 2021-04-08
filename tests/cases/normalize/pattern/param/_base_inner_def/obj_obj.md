@@ -39,80 +39,27 @@ let i = function ($$0) {
   let objPatternBeforeDefault = objPatternNoDefault$1.z;
   let z = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingA = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
-    let tmpParamBare$1 = $$0;
-    let bindingPatternObjRoot$1 = $$1;
-    let objPatternNoDefault$3 = $$2;
-    let objPatternNoDefault$5 = $$3;
-    let objPatternBeforeDefault$1 = $$4;
-    let z$1 = $$5;
-    let tmpIfTest$1 = $$6;
+  const tmpBranchingA = function () {
     debugger;
-    z$1 = a;
-    const tmpReturnArg = tmpBranchingC(
-      tmpParamBare$1,
-      bindingPatternObjRoot$1,
-      objPatternNoDefault$3,
-      objPatternNoDefault$5,
-      objPatternBeforeDefault$1,
-      z$1,
-      tmpIfTest$1,
-    );
+    z = a;
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
-    let tmpParamBare$3 = $$0;
-    let bindingPatternObjRoot$3 = $$1;
-    let objPatternNoDefault$7 = $$2;
-    let objPatternNoDefault$9 = $$3;
-    let objPatternBeforeDefault$3 = $$4;
-    let z$3 = $$5;
-    let tmpIfTest$3 = $$6;
+  const tmpBranchingB = function () {
     debugger;
-    z$3 = objPatternBeforeDefault$3;
-    const tmpReturnArg$1 = tmpBranchingC(
-      tmpParamBare$3,
-      bindingPatternObjRoot$3,
-      objPatternNoDefault$7,
-      objPatternNoDefault$9,
-      objPatternBeforeDefault$3,
-      z$3,
-      tmpIfTest$3,
-    );
+    z = objPatternBeforeDefault;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
-    let tmpParamBare$5 = $$0;
-    let bindingPatternObjRoot$5 = $$1;
-    let objPatternNoDefault$11 = $$2;
-    let objPatternNoDefault$13 = $$3;
-    let objPatternBeforeDefault$5 = $$4;
-    let z$5 = $$5;
-    let tmpIfTest$5 = $$6;
+  const tmpBranchingC = function () {
     debugger;
-    return z$5;
+    return z;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(
-      tmpParamBare,
-      bindingPatternObjRoot,
-      objPatternNoDefault,
-      objPatternNoDefault$1,
-      objPatternBeforeDefault,
-      z,
-      tmpIfTest,
-    );
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(
-      tmpParamBare,
-      bindingPatternObjRoot,
-      objPatternNoDefault,
-      objPatternNoDefault$1,
-      objPatternBeforeDefault,
-      z,
-      tmpIfTest,
-    );
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };

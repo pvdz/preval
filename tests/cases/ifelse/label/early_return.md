@@ -50,29 +50,26 @@ let f = function () {
   const tmpLabeledBlockFunc = function () {
     debugger;
     const tmpIfTest$1 = $(true);
-    const tmpBranchingA = function ($$0) {
-      let tmpIfTest$3 = $$0;
+    const tmpBranchingA = function () {
       debugger;
       $(100);
       return 20;
     };
-    const tmpBranchingB = function ($$0) {
-      let tmpIfTest$5 = $$0;
+    const tmpBranchingB = function () {
       debugger;
-      const tmpReturnArg = tmpBranchingC(tmpIfTest$5);
+      const tmpReturnArg = tmpBranchingC();
       return tmpReturnArg;
     };
-    const tmpBranchingC = function ($$0) {
-      let tmpIfTest$7 = $$0;
+    const tmpBranchingC = function () {
       debugger;
       const tmpReturnArg$1 = tmpAfterLabel();
       return tmpReturnArg$1;
     };
     if (tmpIfTest$1) {
-      const tmpReturnArg$3 = tmpBranchingA(tmpIfTest$1);
+      const tmpReturnArg$3 = tmpBranchingA();
       return tmpReturnArg$3;
     } else {
-      const tmpReturnArg$5 = tmpBranchingB(tmpIfTest$1);
+      const tmpReturnArg$5 = tmpBranchingB();
       return tmpReturnArg$5;
     }
   };

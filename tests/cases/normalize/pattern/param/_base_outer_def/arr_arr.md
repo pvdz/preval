@@ -31,40 +31,35 @@ let i = function ($$0) {
   debugger;
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let tmpParamBare$1 = $$0;
-    let bindingPatternArrRoot$1 = $$1;
-    let tmpIfTest$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
-    bindingPatternArrRoot$1 = c;
-    const tmpReturnArg = tmpBranchingC(tmpParamBare$1, bindingPatternArrRoot$1, tmpIfTest$1);
+    bindingPatternArrRoot = c;
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpParamBare$3 = $$0;
-    let bindingPatternArrRoot$3 = $$1;
-    let tmpIfTest$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    bindingPatternArrRoot$3 = tmpParamBare$3;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$3, bindingPatternArrRoot$3, tmpIfTest$3);
+    bindingPatternArrRoot = tmpParamBare;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let tmpParamBare$5 = $$0;
-    let bindingPatternArrRoot$5 = $$1;
-    let tmpIfTest$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    let arrPatternSplat$3 = [...bindingPatternArrRoot$5];
-    let arrPatternStep$1 = arrPatternSplat$3[0];
-    let arrPatternSplat$5 = [...arrPatternStep$1];
-    let x$1 = arrPatternSplat$5[0];
-    return x$1;
+    arrPatternSplat = [...bindingPatternArrRoot];
+    arrPatternStep = arrPatternSplat[0];
+    arrPatternSplat$1 = [...arrPatternStep];
+    x = arrPatternSplat$1[0];
+    return x;
   };
+  let arrPatternSplat = undefined;
+  let arrPatternStep = undefined;
+  let arrPatternSplat$1 = undefined;
+  let x = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };

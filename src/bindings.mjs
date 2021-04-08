@@ -763,6 +763,10 @@ export function findBoundNamesInVarDeclaration(node, names = []) {
   return findBoundNamesInVarDeclarator(decl, names);
 }
 
+export function findBoundNamesInUnnormalizedVarDeclaration(node, names = []) {
+  node.declarations.forEach((decr) => findBoundNamesInVarDeclarator(decr, names));
+  return names;
+}
 export function findBoundNamesInVarDeclarator(decl, names = []) {
   if (decl.id.type === 'Identifier') {
     names.push(decl.id.name);

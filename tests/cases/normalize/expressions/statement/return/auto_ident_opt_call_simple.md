@@ -39,37 +39,28 @@ let f = function () {
   let tmpReturnArg = undefined;
   const tmpChainRootCall = $;
   const tmpIfTest = tmpChainRootCall != null;
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let tmpReturnArg$1 = $$0;
-    let tmpChainRootCall$1 = $$1;
-    let tmpIfTest$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
-    const tmpChainElementCall$1 = tmpChainRootCall$1(1);
-    tmpReturnArg$1 = tmpChainElementCall$1;
-    const tmpReturnArg$7 = tmpBranchingC(tmpReturnArg$1, tmpChainRootCall$1, tmpIfTest$1);
-    return tmpReturnArg$7;
+    const tmpChainElementCall$1 = tmpChainRootCall(1);
+    tmpReturnArg = tmpChainElementCall$1;
+    const tmpReturnArg$1 = tmpBranchingC();
+    return tmpReturnArg$1;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpReturnArg$3 = $$0;
-    let tmpChainRootCall$3 = $$1;
-    let tmpIfTest$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$9 = tmpBranchingC(tmpReturnArg$3, tmpChainRootCall$3, tmpIfTest$3);
-    return tmpReturnArg$9;
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let tmpReturnArg$5 = $$0;
-    let tmpChainRootCall$5 = $$1;
-    let tmpIfTest$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    return tmpReturnArg$5;
+    return tmpReturnArg;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$11 = tmpBranchingA(tmpReturnArg, tmpChainRootCall, tmpIfTest);
-    return tmpReturnArg$11;
+    const tmpReturnArg$5 = tmpBranchingA();
+    return tmpReturnArg$5;
   } else {
-    const tmpReturnArg$13 = tmpBranchingB(tmpReturnArg, tmpChainRootCall, tmpIfTest);
-    return tmpReturnArg$13;
+    const tmpReturnArg$7 = tmpBranchingB();
+    return tmpReturnArg$7;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -84,12 +75,16 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
+  let tmpReturnArg = undefined;
   const tmpIfTest = $ != null;
   if (tmpIfTest) {
-    const tmpReturnArg$11 = $(1);
-    return tmpReturnArg$11;
+    const tmpChainElementCall$1 = $(1);
+    tmpReturnArg = tmpChainElementCall$1;
+    const tmpReturnArg$1 = tmpReturnArg;
+    return tmpReturnArg$1;
   } else {
-    return undefined;
+    const tmpReturnArg$3 = tmpReturnArg;
+    return tmpReturnArg$3;
   }
 };
 const a = { a: 999, b: 1000 };

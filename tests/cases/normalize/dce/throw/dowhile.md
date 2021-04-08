@@ -50,23 +50,20 @@ let f = function () {
   let tmpLoopBody = function () {
     debugger;
     let tmpIfTest = tmpDoWhileFlag;
-    const tmpBranchingA = function ($$0) {
-      let tmpIfTest$1 = $$0;
+    const tmpBranchingA = function () {
       debugger;
-      const tmpReturnArg = tmpBranchingC(tmpIfTest$1);
+      const tmpReturnArg = tmpBranchingC();
       return tmpReturnArg;
     };
-    const tmpBranchingB = function ($$0) {
-      let tmpIfTest$3 = $$0;
+    const tmpBranchingB = function () {
       debugger;
-      tmpIfTest$3 = $(true);
-      const tmpReturnArg$1 = tmpBranchingC(tmpIfTest$3);
+      tmpIfTest = $(true);
+      const tmpReturnArg$1 = tmpBranchingC();
       return tmpReturnArg$1;
     };
-    const tmpBranchingC = function ($$0) {
-      let tmpIfTest$5 = $$0;
+    const tmpBranchingC = function () {
       debugger;
-      if (tmpIfTest$5) {
+      if (tmpIfTest) {
         tmpDoWhileFlag = false;
         const tmpThrowArg$1 = $(1, 'throw');
         throw tmpThrowArg$1;
@@ -76,10 +73,10 @@ let f = function () {
       }
     };
     if (tmpIfTest) {
-      const tmpReturnArg$3 = tmpBranchingA(tmpIfTest);
+      const tmpReturnArg$3 = tmpBranchingA();
       return tmpReturnArg$3;
     } else {
-      const tmpReturnArg$5 = tmpBranchingB(tmpIfTest);
+      const tmpReturnArg$5 = tmpBranchingB();
       return tmpReturnArg$5;
     }
   };
@@ -87,8 +84,8 @@ let f = function () {
     let tmpLoopRetCode$1 = $$0;
     let tmpLoopRetValue$1 = $$1;
     debugger;
-    const tmpIfTest$7 = tmpLoopRetCode$1 === undefined;
-    if (tmpIfTest$7) {
+    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+    if (tmpIfTest$1) {
       return tmpLoopRetValue$1;
     }
   };
@@ -106,37 +103,36 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpBranchingC = function ($$0) {
-  const tmpIfTest$5 = $$0;
-  debugger;
-  if (tmpIfTest$5) {
-    tmpDoWhileFlag = false;
-    const tmpThrowArg$1 = $(1, 'throw');
-    throw tmpThrowArg$1;
-  } else {
-    tmpLoopRetCode = false;
-    return undefined;
-  }
-};
 let tmpDoWhileFlag = true;
 let tmpLoopRetCode = true;
 const tmpLoopBody = function () {
   debugger;
-  const tmpIfTest = tmpDoWhileFlag;
+  let tmpIfTest = tmpDoWhileFlag;
+  const tmpBranchingC = function () {
+    debugger;
+    if (tmpIfTest) {
+      tmpDoWhileFlag = false;
+      const tmpThrowArg$1 = $(1, 'throw');
+      throw tmpThrowArg$1;
+    } else {
+      tmpLoopRetCode = false;
+      return undefined;
+    }
+  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingC(tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingC();
     return tmpReturnArg$3;
   } else {
-    const tmpSSA_tmpIfTest$3 = $(true);
-    const tmpReturnArg$1 = tmpBranchingC(tmpSSA_tmpIfTest$3);
+    tmpIfTest = $(true);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   }
 };
 const tmpLoopTail = function ($$0) {
   const tmpLoopRetCode$1 = $$0;
   debugger;
-  const tmpIfTest$7 = tmpLoopRetCode$1 === undefined;
-  if (tmpIfTest$7) {
+  const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+  if (tmpIfTest$1) {
     return undefined;
   }
 };

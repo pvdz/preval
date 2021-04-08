@@ -43,39 +43,27 @@ let f = function () {
   let a = { a: 999, b: 1000 };
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function ($$0, $$1, $$2, $$3) {
-    let b$1 = $$0;
-    let a$1 = $$1;
-    let tmpChainRootProp$1 = $$2;
-    let tmpIfTest$1 = $$3;
+  const tmpBranchingA = function () {
     debugger;
     const tmpChainRootComputed$1 = 'x';
-    const tmpChainElementObject$1 = tmpChainRootProp$1[tmpChainRootComputed$1];
-    const tmpReturnArg = tmpBranchingC(b$1, a$1, tmpChainRootProp$1, tmpIfTest$1);
+    const tmpChainElementObject$1 = tmpChainRootProp[tmpChainRootComputed$1];
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2, $$3) {
-    let b$3 = $$0;
-    let a$3 = $$1;
-    let tmpChainRootProp$3 = $$2;
-    let tmpIfTest$3 = $$3;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC(b$3, a$3, tmpChainRootProp$3, tmpIfTest$3);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
-    let b$5 = $$0;
-    let a$5 = $$1;
-    let tmpChainRootProp$5 = $$2;
-    let tmpIfTest$5 = $$3;
+  const tmpBranchingC = function () {
     debugger;
-    $(a$5);
+    $(a);
   };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(b, a, tmpChainRootProp, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(b, a, tmpChainRootProp, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };

@@ -52,23 +52,20 @@ let f = function () {
   let tmpLoopBody = function () {
     debugger;
     let tmpIfTest = tmpDoWhileFlag;
-    const tmpBranchingA = function ($$0) {
-      let tmpIfTest$1 = $$0;
+    const tmpBranchingA = function () {
       debugger;
-      const tmpReturnArg$3 = tmpBranchingC(tmpIfTest$1);
+      const tmpReturnArg$3 = tmpBranchingC();
       return tmpReturnArg$3;
     };
-    const tmpBranchingB = function ($$0) {
-      let tmpIfTest$3 = $$0;
+    const tmpBranchingB = function () {
       debugger;
-      tmpIfTest$3 = $(true);
-      const tmpReturnArg$5 = tmpBranchingC(tmpIfTest$3);
+      tmpIfTest = $(true);
+      const tmpReturnArg$5 = tmpBranchingC();
       return tmpReturnArg$5;
     };
-    const tmpBranchingC = function ($$0) {
-      let tmpIfTest$5 = $$0;
+    const tmpBranchingC = function () {
       debugger;
-      if (tmpIfTest$5) {
+      if (tmpIfTest) {
         tmpDoWhileFlag = false;
         const tmpReturnArg$1 = $(1, 'return');
         tmpLoopRetCode = undefined;
@@ -80,10 +77,10 @@ let f = function () {
       }
     };
     if (tmpIfTest) {
-      const tmpReturnArg$7 = tmpBranchingA(tmpIfTest);
+      const tmpReturnArg$7 = tmpBranchingA();
       return tmpReturnArg$7;
     } else {
-      const tmpReturnArg$9 = tmpBranchingB(tmpIfTest);
+      const tmpReturnArg$9 = tmpBranchingB();
       return tmpReturnArg$9;
     }
   };
@@ -91,8 +88,8 @@ let f = function () {
     let tmpLoopRetCode$1 = $$0;
     let tmpLoopRetValue$1 = $$1;
     debugger;
-    const tmpIfTest$7 = tmpLoopRetCode$1 === undefined;
-    if (tmpIfTest$7) {
+    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+    if (tmpIfTest$1) {
       return tmpLoopRetValue$1;
     } else {
       $('keep, do not eval');
@@ -112,32 +109,31 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpBranchingC = function ($$0) {
-  const tmpIfTest$5 = $$0;
-  debugger;
-  if (tmpIfTest$5) {
-    tmpDoWhileFlag = false;
-    const tmpReturnArg$1 = $(1, 'return');
-    tmpLoopRetCode = undefined;
-    tmpLoopRetValue = tmpReturnArg$1;
-    return undefined;
-  } else {
-    tmpLoopRetCode = false;
-    return undefined;
-  }
-};
 let tmpDoWhileFlag = true;
 let tmpLoopRetCode = true;
 let tmpLoopRetValue = undefined;
 const tmpLoopBody = function () {
   debugger;
-  const tmpIfTest = tmpDoWhileFlag;
+  let tmpIfTest = tmpDoWhileFlag;
+  const tmpBranchingC = function () {
+    debugger;
+    if (tmpIfTest) {
+      tmpDoWhileFlag = false;
+      const tmpReturnArg$1 = $(1, 'return');
+      tmpLoopRetCode = undefined;
+      tmpLoopRetValue = tmpReturnArg$1;
+      return undefined;
+    } else {
+      tmpLoopRetCode = false;
+      return undefined;
+    }
+  };
   if (tmpIfTest) {
-    const tmpReturnArg$7 = tmpBranchingC(tmpIfTest);
+    const tmpReturnArg$7 = tmpBranchingC();
     return tmpReturnArg$7;
   } else {
-    const tmpSSA_tmpIfTest$3 = $(true);
-    const tmpReturnArg$5 = tmpBranchingC(tmpSSA_tmpIfTest$3);
+    tmpIfTest = $(true);
+    const tmpReturnArg$5 = tmpBranchingC();
     return tmpReturnArg$5;
   }
 };
@@ -145,8 +141,8 @@ const tmpLoopTail = function ($$0, $$1) {
   const tmpLoopRetCode$1 = $$0;
   const tmpLoopRetValue$1 = $$1;
   debugger;
-  const tmpIfTest$7 = tmpLoopRetCode$1 === undefined;
-  if (tmpIfTest$7) {
+  const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+  if (tmpIfTest$1) {
     return tmpLoopRetValue$1;
   } else {
     $('keep, do not eval');

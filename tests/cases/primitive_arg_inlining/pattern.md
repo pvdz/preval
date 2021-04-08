@@ -58,39 +58,32 @@ let f = function ($$0) {
   debugger;
   let ap = undefined;
   const useDef = op === undefined;
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let op$1 = $$0;
-    let ap$1 = $$1;
-    let useDef$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
     const p$1 = { a: 'fail' };
-    ap$1 = $(p$1);
-    const tmpReturnArg = tmpBranchingC(op$1, ap$1, useDef$1);
+    ap = $(p$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let op$3 = $$0;
-    let ap$3 = $$1;
-    let useDef$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    ap$3 = op$3;
-    const tmpReturnArg$1 = tmpBranchingC(op$3, ap$3, useDef$3);
+    ap = op;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let op$5 = $$0;
-    let ap$5 = $$1;
-    let useDef$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    const tmpCalleeParam$1 = [];
-    let x$1 = objPatternRest(ap$5, tmpCalleeParam$1, undefined);
-    return x$1;
+    tmpCalleeParam$2 = [];
+    x = objPatternRest(ap, tmpCalleeParam$2, undefined);
+    return x;
   };
+  let tmpCalleeParam$2 = undefined;
+  let x = undefined;
   if (useDef) {
-    const tmpReturnArg$3 = tmpBranchingA(op, ap, useDef);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(op, ap, useDef);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };
@@ -101,9 +94,9 @@ $(out);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$2 = [];
-const x$2 = objPatternRest('abc', tmpCalleeParam$2, undefined);
-$(x$2);
+const tmpSSA_tmpCalleeParam$2 = [];
+const tmpSSA_x = objPatternRest('abc', tmpSSA_tmpCalleeParam$2, undefined);
+$(tmpSSA_x);
 `````
 
 ## Globals

@@ -49,33 +49,24 @@ let f = function () {
   let a$1 = $(1);
   $(a$1);
   const tmpIfTest = $();
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let a$2 = $$0;
-    let a$4 = $$1;
-    let tmpIfTest$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
-    return a$4;
+    return a$1;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let a$6 = $$0;
-    let a$8 = $$1;
-    let tmpIfTest$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg = tmpBranchingC(a$6, a$8, tmpIfTest$3);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let a$10 = $$0;
-    let a$12 = $$1;
-    let tmpIfTest$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    return a$10;
+    return a;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$1 = tmpBranchingA(a, a$1, tmpIfTest);
+    const tmpReturnArg$1 = tmpBranchingA();
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$3 = tmpBranchingB(a, a$1, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingB();
     return tmpReturnArg$3;
   }
 };

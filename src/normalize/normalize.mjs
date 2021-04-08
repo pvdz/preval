@@ -17,9 +17,10 @@ import {
   source,
   after,
   findBodyOffsetExpensive,
+  findBodyOffsetExpensiveMaybe,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar, findBoundNamesInVarDeclaration } from '../bindings.mjs';
+import { createFreshVar, findBoundNamesInVarDeclaration, findBoundNamesInUnnormalizedVarDeclaration } from '../bindings.mjs';
 import globals from '../globals.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 import { isComplexNode } from '../ast.mjs';
@@ -190,6 +191,7 @@ import { isComplexNode } from '../ast.mjs';
   - Change writes to a constant to an explicit error of sorts (like /home/ptr/proj/preval/tests/cases/normalize/function/expr/id_write2.md )
   - Could normalize AST, like var decl and assignment having a lhs and rhs instead of id/init and left/right (and drop the declarations bit since that'll never happen after the normalize_once step)).
   - There are some cases of loops where we can determine that there's no way for the loop to ever break, making any code that follows it ready to DCE.
+  - If a function is called only once but cannot be inlined because it and its caller both contain branching, then move the code into the caller branch into the function to hopefully keep things closer together? see tests/cases/normalize/pattern/param/arr/arr/obj/base.md for an example
   - TODO: unique ident algo will rename implicit globals if a binding with the same name was already found in another scope ;(
   - TODO: norm_once must use registerGlobalLabel to prevent collisions reliably
   - TODO: if an optional chain starts with a literal null or undefined, the rest of the chain can be dropped
@@ -5294,9 +5296,11 @@ export function phaseNormalize(fdata, fname) {
         );
         before(node, funcNode);
 
-        // - Collect all bindings created before the binding
+        // - Collect all bindings created before and after the binding
         // - Abstract the if, the else, and all other nodes after the if-else `node` into separate functions
         // - The if and else abstractions should call-return the "other" abstraction (regardless, let DCE do its magic later)
+        // - If there were bindings after the if, then "hoist" them as undefined lets before the loop. Replace the original bindings with tmp consts and then assign those consts to the original name. Hopefully other rules will eliminate them again, but there are cases where that's not possible and then this rule is necessary.
+        // - If there were bindings before the if, pass them on as parameters to all three new functions
 
         // We are on the way down the to transform so the body should be normalized, meaning all decls should
         // be let or const variable declarations now. Collect them up to the if. Also gets us the index.
@@ -5304,24 +5308,60 @@ export function phaseNormalize(fdata, fname) {
         const parentBody = parentNode.body;
 
         let index = -1;
-        const declaredBindings = [];
-        for (let i = 0; i < parentBody.length; ++i) {
+        let beforeTheIf = true;
+        const declaredBindingsBefore = [];
+        const declaredBindingsAfter = [];
+        const bodyOffset = findBodyOffsetExpensiveMaybe(parentBody); // parent may be a regular block!
+        for (let i = bodyOffset; i < parentBody.length; ++i) {
           const snode = parentBody[i];
           if (snode === node) {
             index = i;
-            break;
-          }
-          if (snode.type === 'VariableDeclaration') {
-            ASSERT(snode.kind === 'let' || snode.kind === 'const');
-            ASSERT(snode.declarations.length === 1);
-            ASSERT(snode.declarations[0].id.type === 'Identifier');
-            declaredBindings.push(snode.declarations[0].id.name);
+            beforeTheIf = false;
+          } else {
+            if (snode.type === 'VariableDeclaration') {
+              if (beforeTheIf) {
+                // Code up to this `if` node should be normalized so we can rely on a single binding and no patterns
+                ASSERT(snode.kind === 'let' || snode.kind === 'const');
+                ASSERT(snode.declarations.length === 1);
+                ASSERT(snode.declarations[0].id.type === 'Identifier');
+                // If a binding is not a constant and it is a closure then we cannot create a
+                // local variable for it. The problem is that the writes would not be observable in
+                // either the original closure, or the tail abstraction (or both).
+                const name = snode.declarations[0].id.name;
+                const meta = fdata.globallyUniqueNamingRegistry.get(name);
+                if (meta.isConstant) {
+                  declaredBindingsBefore.push(name);
+                }
+              } else {
+                // Note: these nodes have not been visited by normalization yet so the var decls may not be normalized
+                // This search is slower but allows for patterns and multiple bindings per node etc.
+                findBoundNamesInUnnormalizedVarDeclaration(snode, declaredBindingsAfter);
+                // Replace each existing binding with an assignment. We will declare the names above as undefined lets.
+                // The transform of a var decl to a regular (or destructuring) assignment
+                // `let [{x}] = [{x:y}]` -> `[{x} = [{x:y}]` should be safe for any assignment, for any
+                // number of such bindings declared.
+
+                // The idea is that `log(x); if (a) b(); const x = 10;` becomes
+                // `let x = undefined; log(x); if (a) b(); const tmp = 10; x = 10;`
+                // While this is a TDZ (and would no longer be that), the valid usage is a closure by a function that
+                // is declared before the if and only called after the if (and closed binding). This should work fine.
+                parentBody[i] = AST.expressionStatement(
+                  // `let a = 1, [b] = f();` -> `a = 1, [b] = f();`
+                  // For any number of decls, any kind of id, any kind of init (or `undefined` if there was none)
+                  // Everything should be replaced by a sequence of assignments as long as the binding is declared too.
+                  AST.sequenceExpression(
+                    snode.declarations.map(({ id, init = AST.identifier('undefined') }) => AST.assignmentExpression(id, init)),
+                  ),
+                );
+              }
+            }
           }
         }
+        vlog('Index of `if`:', index, ', bindings before:', declaredBindingsBefore, ', bindings after:', declaredBindingsAfter);
         ASSERT(index >= 0, 'the if ought to be found? otherwise i think the ifelseStack needs some attention', index);
 
         // Argument/parameter names to use for all functions and all calls. Let other rules eliminate them.
-        vlog('Local bindings found:', declaredBindings);
+        vlog('Local bindings found:', declaredBindingsBefore);
         // The remainder of the function after the if-else.
         const bodyRest = parentBody.slice(index + 1);
         parentBody.length = index + 1;
@@ -5331,15 +5371,16 @@ export function phaseNormalize(fdata, fname) {
         const tmpNameB = createFreshVar('tmpBranchingB', fdata);
         const tmpNameC = createFreshVar('tmpBranchingC', fdata);
         const primeA = AST.functionExpressionNormalized(
-          declaredBindings.slice(0),
-          node.consequent.body.concat(
+          declaredBindingsBefore.slice(0),
+          [
+            ...node.consequent.body,
             AST.returnStatement(
               AST.callExpression(
                 tmpNameC,
-                declaredBindings.map((s) => AST.identifier(s)),
+                declaredBindingsBefore.map((s) => AST.identifier(s)),
               ),
             ),
-          ),
+          ],
           { id: createFreshVar('tmpUnusedPrimeFuncNameA', fdata) },
         );
         const primeAcloned = cloneFunctionNode(primeA, undefined, [], fdata).expression;
@@ -5349,15 +5390,16 @@ export function phaseNormalize(fdata, fname) {
           primeAcloned.id = null;
         }
         const primeB = AST.functionExpressionNormalized(
-          declaredBindings.slice(0),
-          (node.alternate ? node.alternate.body : []).concat([
+          declaredBindingsBefore.slice(0),
+          [
+            ...(node.alternate?.body || []),
             AST.returnStatement(
               AST.callExpression(
                 tmpNameC,
-                declaredBindings.map((s) => AST.identifier(s)),
+                declaredBindingsBefore.map((s) => AST.identifier(s)),
               ),
             ),
-          ]),
+          ],
           { id: createFreshVar('tmpUnusedPrimeFuncNameB', fdata) },
         );
         const primeBcloned = cloneFunctionNode(primeB, undefined, [], fdata).expression;
@@ -5366,7 +5408,7 @@ export function phaseNormalize(fdata, fname) {
           source(primeBcloned);
           primeBcloned.id = null;
         }
-        const primeC = AST.functionExpressionNormalized(declaredBindings.slice(0), bodyRest, {
+        const primeC = AST.functionExpressionNormalized(declaredBindingsBefore.slice(0), bodyRest, {
           id: createFreshVar('tmpUnusedPrimeFuncNameC', fdata),
         });
         const primeCcloned = cloneFunctionNode(primeC, undefined, [], fdata).expression;
@@ -5381,7 +5423,7 @@ export function phaseNormalize(fdata, fname) {
             AST.returnStatement(
               AST.callExpression(
                 tmpNameA,
-                declaredBindings.map((s) => AST.identifier(s)),
+                declaredBindingsBefore.map((s) => AST.identifier(s)),
               ),
             ),
           ),
@@ -5389,7 +5431,7 @@ export function phaseNormalize(fdata, fname) {
             AST.returnStatement(
               AST.callExpression(
                 tmpNameB,
-                declaredBindings.map((s) => AST.identifier(s)),
+                declaredBindingsBefore.map((s) => AST.identifier(s)),
               ),
             ),
           ),
@@ -5397,15 +5439,17 @@ export function phaseNormalize(fdata, fname) {
         body.splice(
           i,
           1,
-          //AST.expressionStatement(AST.identifier('WTFYO'))
+          // Inject the three functions (if body, else body, tail code) to go before the new `if`
           AST.variableDeclaration(tmpNameA, primeAcloned, 'const'),
           AST.variableDeclaration(tmpNameB, primeBcloned, 'const'),
-          AST.variableDeclaration(tmpNameC, primeCcloned, 'const'),
+          AST.variableDeclaration(tmpNameC, primeCcloned, 'const'), // TODO: does it help to declare C before A/B?
+          // Inject all bindings that were defined as siblings after this `if` statement. Make them lets, init to undefined.
+          ...declaredBindingsAfter.map((name) => AST.variableDeclaration(name, 'undefined', 'let')),
           newIf,
         );
 
         if (VERBOSE_TRACING) {
-          vlog('\nComplete AST after applying "Nested if-else" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+          vlog('\nCurrent state after applying "Nested if-else" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
         }
 
         vlog(); // newline

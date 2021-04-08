@@ -37,40 +37,33 @@ let f = function ($$0) {
   debugger;
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let tmpParamBare$1 = $$0;
-    let bindingPatternArrRoot$1 = $$1;
-    let tmpIfTest$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = ['pass'];
-    bindingPatternArrRoot$1 = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(tmpParamBare$1, bindingPatternArrRoot$1, tmpIfTest$1);
+    bindingPatternArrRoot = tmpCallCallee$1(tmpCalleeParam$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpParamBare$3 = $$0;
-    let bindingPatternArrRoot$3 = $$1;
-    let tmpIfTest$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    bindingPatternArrRoot$3 = tmpParamBare$3;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$3, bindingPatternArrRoot$3, tmpIfTest$3);
+    bindingPatternArrRoot = tmpParamBare;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let tmpParamBare$5 = $$0;
-    let bindingPatternArrRoot$5 = $$1;
-    let tmpIfTest$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    let arrPatternSplat$1 = [...bindingPatternArrRoot$5];
-    let x$1 = arrPatternSplat$1.slice(0);
-    return x$1;
+    arrPatternSplat = [...bindingPatternArrRoot];
+    x = arrPatternSplat.slice(0);
+    return x;
   };
+  let arrPatternSplat = undefined;
+  let x = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };
@@ -83,10 +76,10 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam$1 = ['pass'];
-const tmpSSA_bindingPatternArrRoot$1 = $(tmpCalleeParam$1);
-const arrPatternSplat$1 = [...tmpSSA_bindingPatternArrRoot$1];
-const x$1 = arrPatternSplat$1.slice(0);
-$(x$1);
+const tmpSSA_bindingPatternArrRoot = $(tmpCalleeParam$1);
+const tmpSSA_arrPatternSplat = [...tmpSSA_bindingPatternArrRoot];
+const tmpSSA_x = tmpSSA_arrPatternSplat.slice(0);
+$(tmpSSA_x);
 `````
 
 ## Globals

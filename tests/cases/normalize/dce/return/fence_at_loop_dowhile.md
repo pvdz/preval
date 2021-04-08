@@ -71,23 +71,20 @@ let f = function () {
       let tmpLoopBody = function () {
         debugger;
         let tmpIfTest$1 = tmpDoWhileFlag;
-        const tmpBranchingA = function ($$0) {
-          let tmpIfTest$3 = $$0;
+        const tmpBranchingA = function () {
           debugger;
-          const tmpReturnArg$3 = tmpBranchingC(tmpIfTest$3);
+          const tmpReturnArg$3 = tmpBranchingC();
           return tmpReturnArg$3;
         };
-        const tmpBranchingB = function ($$0) {
-          let tmpIfTest$5 = $$0;
+        const tmpBranchingB = function () {
           debugger;
-          tmpIfTest$5 = $(true);
-          const tmpReturnArg$5 = tmpBranchingC(tmpIfTest$5);
+          tmpIfTest$1 = $(true);
+          const tmpReturnArg$5 = tmpBranchingC();
           return tmpReturnArg$5;
         };
-        const tmpBranchingC = function ($$0) {
-          let tmpIfTest$7 = $$0;
+        const tmpBranchingC = function () {
           debugger;
-          if (tmpIfTest$7) {
+          if (tmpIfTest$1) {
             tmpDoWhileFlag = false;
             $('loop');
             const tmpReturnArg$1 = $(100, 'return');
@@ -100,10 +97,10 @@ let f = function () {
           }
         };
         if (tmpIfTest$1) {
-          const tmpReturnArg$7 = tmpBranchingA(tmpIfTest$1);
+          const tmpReturnArg$7 = tmpBranchingA();
           return tmpReturnArg$7;
         } else {
-          const tmpReturnArg$9 = tmpBranchingB(tmpIfTest$1);
+          const tmpReturnArg$9 = tmpBranchingB();
           return tmpReturnArg$9;
         }
       };
@@ -111,8 +108,8 @@ let f = function () {
         let tmpLoopRetCode$1 = $$0;
         let tmpLoopRetValue$1 = $$1;
         debugger;
-        const tmpIfTest$9 = tmpLoopRetCode$1 === undefined;
-        if (tmpIfTest$9) {
+        const tmpIfTest$3 = tmpLoopRetCode$1 === undefined;
+        if (tmpIfTest$3) {
           return tmpLoopRetValue$1;
         } else {
           $('do not visit, do not eliminate');
@@ -134,8 +131,8 @@ let f = function () {
     let tmpLoopRetCode$5 = $$0;
     let tmpLoopRetValue$5 = $$1;
     debugger;
-    const tmpIfTest$11 = tmpLoopRetCode$5 === undefined;
-    if (tmpIfTest$11) {
+    const tmpIfTest$5 = tmpLoopRetCode$5 === undefined;
+    if (tmpIfTest$5) {
       return tmpLoopRetValue$5;
     } else {
       $('after (not invoked)');
@@ -159,8 +156,8 @@ const tmpLoopTail = function ($$0, $$1) {
   const tmpLoopRetCode$1 = $$0;
   const tmpLoopRetValue$1 = $$1;
   debugger;
-  const tmpIfTest$9 = tmpLoopRetCode$1 === undefined;
-  if (tmpIfTest$9) {
+  const tmpIfTest$3 = tmpLoopRetCode$1 === undefined;
+  if (tmpIfTest$3) {
     return tmpLoopRetValue$1;
   } else {
     $('do not visit, do not eliminate');
@@ -178,11 +175,10 @@ const tmpLoopBody$1 = function () {
     let tmpLoopRetValue = undefined;
     const tmpLoopBody = function () {
       debugger;
-      const tmpIfTest$1 = tmpDoWhileFlag;
-      const tmpBranchingC = function ($$0) {
-        const tmpIfTest$7 = $$0;
+      let tmpIfTest$1 = tmpDoWhileFlag;
+      const tmpBranchingC = function () {
         debugger;
-        if (tmpIfTest$7) {
+        if (tmpIfTest$1) {
           tmpDoWhileFlag = false;
           $('loop');
           const tmpReturnArg$1 = $(100, 'return');
@@ -195,11 +191,11 @@ const tmpLoopBody$1 = function () {
         }
       };
       if (tmpIfTest$1) {
-        const tmpReturnArg$7 = tmpBranchingC(tmpIfTest$1);
+        const tmpReturnArg$7 = tmpBranchingC();
         return tmpReturnArg$7;
       } else {
-        const tmpSSA_tmpIfTest$5 = $(true);
-        const tmpReturnArg$5 = tmpBranchingC(tmpSSA_tmpIfTest$5);
+        tmpIfTest$1 = $(true);
+        const tmpReturnArg$5 = tmpBranchingC();
         return tmpReturnArg$5;
       }
     };
@@ -219,8 +215,8 @@ const tmpLoopTail$1 = function ($$0, $$1) {
   const tmpLoopRetCode$5 = $$0;
   const tmpLoopRetValue$5 = $$1;
   debugger;
-  const tmpIfTest$11 = tmpLoopRetCode$5 === undefined;
-  if (tmpIfTest$11) {
+  const tmpIfTest$5 = tmpLoopRetCode$5 === undefined;
+  if (tmpIfTest$5) {
     return tmpLoopRetValue$5;
   } else {
     $('after (not invoked)');

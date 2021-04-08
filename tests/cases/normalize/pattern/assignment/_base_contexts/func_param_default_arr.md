@@ -35,41 +35,33 @@ const f = function ($$0) {
   debugger;
   let a = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let tmpParamBare$1 = $$0;
-    let a$1 = $$1;
-    let tmpIfTest$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
     const tmpNestedAssignArrPatternRhs$1 = [100];
     const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
     x = arrPatternSplat$1[0];
-    a$1 = tmpNestedAssignArrPatternRhs$1;
-    const tmpReturnArg$3 = tmpBranchingC(tmpParamBare$1, a$1, tmpIfTest$1);
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpParamBare$3 = $$0;
-    let a$3 = $$1;
-    let tmpIfTest$3 = $$2;
-    debugger;
-    a$3 = tmpParamBare$3;
-    const tmpReturnArg$5 = tmpBranchingC(tmpParamBare$3, a$3, tmpIfTest$3);
-    return tmpReturnArg$5;
-  };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let tmpParamBare$5 = $$0;
-    let a$5 = $$1;
-    let tmpIfTest$5 = $$2;
-    debugger;
-    const tmpReturnArg$1 = $(a$5);
+    a = tmpNestedAssignArrPatternRhs$1;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
+  const tmpBranchingB = function () {
+    debugger;
+    a = tmpParamBare;
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
+  };
+  const tmpBranchingC = function () {
+    debugger;
+    tmpReturnArg = $(a);
+    return tmpReturnArg;
+  };
+  let tmpReturnArg = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$7 = tmpBranchingA(tmpParamBare, a, tmpIfTest);
-    return tmpReturnArg$7;
+    const tmpReturnArg$5 = tmpBranchingA();
+    return tmpReturnArg$5;
   } else {
-    const tmpReturnArg$9 = tmpBranchingB(tmpParamBare, a, tmpIfTest);
-    return tmpReturnArg$9;
+    const tmpReturnArg$7 = tmpBranchingB();
+    return tmpReturnArg$7;
   }
 };
 f();

@@ -45,34 +45,28 @@ const f = function () {
   const tmpthis = this;
   debugger;
   let t = $(1);
-  const tmpBranchingA = function ($$0, $$1) {
-    let tmpthis$1 = $$0;
-    let t$1 = $$1;
+  const tmpBranchingA = function () {
     debugger;
-    t$1 = $(2);
-    const tmpReturnArg = tmpBranchingC(tmpthis$1, t$1);
+    t = $(2);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1) {
-    let tmpthis$3 = $$0;
-    let t$3 = $$1;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC(tmpthis$3, t$3);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1) {
-    let tmpthis$5 = $$0;
-    let t$5 = $$1;
+  const tmpBranchingC = function () {
     debugger;
-    if (t$5) {
-      const g$1 = tmpthis$5;
+    if (t) {
+      const g$1 = tmpthis;
     }
   };
   if (t) {
-    const tmpReturnArg$3 = tmpBranchingA(tmpthis, t);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(tmpthis, t);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };

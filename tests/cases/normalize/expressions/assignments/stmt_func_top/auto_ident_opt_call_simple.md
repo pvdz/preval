@@ -40,36 +40,27 @@ let f = function () {
   a = undefined;
   const tmpChainRootCall = $;
   const tmpIfTest = tmpChainRootCall != null;
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let a$1 = $$0;
-    let tmpChainRootCall$1 = $$1;
-    let tmpIfTest$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
-    const tmpChainElementCall$1 = tmpChainRootCall$1(1);
-    a$1 = tmpChainElementCall$1;
-    const tmpReturnArg = tmpBranchingC(a$1, tmpChainRootCall$1, tmpIfTest$1);
+    const tmpChainElementCall$1 = tmpChainRootCall(1);
+    a = tmpChainElementCall$1;
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let a$3 = $$0;
-    let tmpChainRootCall$3 = $$1;
-    let tmpIfTest$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC(a$3, tmpChainRootCall$3, tmpIfTest$3);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let a$5 = $$0;
-    let tmpChainRootCall$5 = $$1;
-    let tmpIfTest$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    $(a$5);
+    $(a);
   };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(a, tmpChainRootCall, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(a, tmpChainRootCall, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };
@@ -83,13 +74,15 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
+  let tmpSSA_a = undefined;
   const tmpIfTest = $ != null;
   if (tmpIfTest) {
     const tmpChainElementCall$1 = $(1);
-    $(tmpChainElementCall$1);
+    tmpSSA_a = tmpChainElementCall$1;
+    $(tmpSSA_a);
     return undefined;
   } else {
-    $(undefined);
+    $(tmpSSA_a);
     return undefined;
   }
 };

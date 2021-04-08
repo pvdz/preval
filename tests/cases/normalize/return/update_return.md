@@ -42,32 +42,26 @@ let f = function () {
   debugger;
   let x = undefined;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function ($$0, $$1) {
-    let x$1 = $$0;
-    let tmpIfTest$1 = $$1;
+  const tmpBranchingA = function () {
     debugger;
-    x$1 = 10;
-    const tmpReturnArg = tmpBranchingC(x$1, tmpIfTest$1);
+    x = 10;
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1) {
-    let x$3 = $$0;
-    let tmpIfTest$3 = $$1;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC(x$3, tmpIfTest$3);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1) {
-    let x$5 = $$0;
-    let tmpIfTest$5 = $$1;
+  const tmpBranchingC = function () {
     debugger;
-    return x$5;
+    return x;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(x, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(x, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };
@@ -81,11 +75,15 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
+  let x = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    return 10;
+    x = 10;
+    const tmpReturnArg = x;
+    return tmpReturnArg;
   } else {
-    return undefined;
+    const tmpReturnArg$1 = x;
+    return tmpReturnArg$1;
   }
 };
 const tmpCalleeParam = f();

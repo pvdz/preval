@@ -37,37 +37,29 @@ let f = function ($$0) {
   debugger;
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let tmpParamBare$1 = $$0;
-    let bindingPatternArrRoot$1 = $$1;
-    let tmpIfTest$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
-    bindingPatternArrRoot$1 = $('fail');
-    const tmpReturnArg = tmpBranchingC(tmpParamBare$1, bindingPatternArrRoot$1, tmpIfTest$1);
+    bindingPatternArrRoot = $('fail');
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpParamBare$3 = $$0;
-    let bindingPatternArrRoot$3 = $$1;
-    let tmpIfTest$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    bindingPatternArrRoot$3 = tmpParamBare$3;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$3, bindingPatternArrRoot$3, tmpIfTest$3);
+    bindingPatternArrRoot = tmpParamBare;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let tmpParamBare$5 = $$0;
-    let bindingPatternArrRoot$5 = $$1;
-    let tmpIfTest$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    let arrPatternSplat$1 = [...bindingPatternArrRoot$5];
+    arrPatternSplat = [...bindingPatternArrRoot];
     return 'ok';
   };
+  let arrPatternSplat = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(tmpParamBare, bindingPatternArrRoot, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };
@@ -82,23 +74,24 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpBranchingC = function ($$0) {
-  const bindingPatternArrRoot$5 = $$0;
-  debugger;
-  [...bindingPatternArrRoot$5];
-  return 'ok';
-};
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
+  let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
+  const tmpBranchingC = function () {
+    debugger;
+    [...bindingPatternArrRoot];
+    return 'ok';
+  };
   if (tmpIfTest) {
-    const tmpSSA_bindingPatternArrRoot$1 = $('fail');
-    const tmpReturnArg = tmpBranchingC(tmpSSA_bindingPatternArrRoot$1);
+    bindingPatternArrRoot = $('fail');
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$5 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$5;
+    bindingPatternArrRoot = tmpParamBare;
+    const tmpReturnArg$1 = tmpBranchingC();
+    return tmpReturnArg$1;
   }
 };
 const tmpCalleeParam$1 = [, , 1];

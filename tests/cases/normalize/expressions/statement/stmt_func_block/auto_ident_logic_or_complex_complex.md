@@ -44,46 +44,34 @@ let f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
   const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-  const tmpBranchingA = function ($$0, $$1, $$2, $$3) {
-    let a$1 = $$0;
-    let tmpCallCallee$3 = $$1;
-    let tmpCalleeParam$3 = $$2;
-    let tmpIfTest$1 = $$3;
+  const tmpBranchingA = function () {
     debugger;
-    const tmpReturnArg = tmpBranchingC(a$1, tmpCallCallee$3, tmpCalleeParam$3, tmpIfTest$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2, $$3) {
-    let a$3 = $$0;
-    let tmpCallCallee$5 = $$1;
-    let tmpCalleeParam$5 = $$2;
-    let tmpIfTest$3 = $$3;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpCallCallee$7 = $;
-    const tmpCalleeParam$7 = $(2);
-    tmpCallCallee$7(tmpCalleeParam$7);
-    const tmpReturnArg$1 = tmpBranchingC(a$3, tmpCallCallee$5, tmpCalleeParam$5, tmpIfTest$3);
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpCallCallee$3(tmpCalleeParam$3);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
-    let a$5 = $$0;
-    let tmpCallCallee$9 = $$1;
-    let tmpCalleeParam$9 = $$2;
-    let tmpIfTest$5 = $$3;
+  const tmpBranchingC = function () {
     debugger;
-    $(a$5);
+    $(a);
   };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(a, tmpCallCallee, tmpCalleeParam, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(a, tmpCallCallee, tmpCalleeParam, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };
-const tmpCallCallee$11 = $;
-const tmpCalleeParam$11 = f();
-tmpCallCallee$11(tmpCalleeParam$11);
+const tmpCallCallee$5 = $;
+const tmpCalleeParam$5 = f();
+tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
 ## Output
@@ -98,14 +86,14 @@ const f = function () {
     $(a);
     return undefined;
   } else {
-    const tmpCalleeParam$7 = $(2);
-    $(tmpCalleeParam$7);
+    const tmpCalleeParam$3 = $(2);
+    $(tmpCalleeParam$3);
     $(a);
     return undefined;
   }
 };
-const tmpCalleeParam$11 = f();
-$(tmpCalleeParam$11);
+const tmpCalleeParam$5 = f();
+$(tmpCalleeParam$5);
 `````
 
 ## Globals

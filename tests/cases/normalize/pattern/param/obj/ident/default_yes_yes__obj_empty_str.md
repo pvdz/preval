@@ -37,109 +37,55 @@ let f = function ($$0) {
   debugger;
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let tmpParamBare$1 = $$0;
-    let bindingPatternObjRoot$1 = $$1;
-    let tmpIfTest$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = { x: 'fail2' };
-    bindingPatternObjRoot$1 = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(tmpParamBare$1, bindingPatternObjRoot$1, tmpIfTest$1);
+    bindingPatternObjRoot = tmpCallCallee$1(tmpCalleeParam$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpParamBare$3 = $$0;
-    let bindingPatternObjRoot$3 = $$1;
-    let tmpIfTest$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    bindingPatternObjRoot$3 = tmpParamBare$3;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$3, bindingPatternObjRoot$3, tmpIfTest$3);
+    bindingPatternObjRoot = tmpParamBare;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let tmpParamBare$5 = $$0;
-    let bindingPatternObjRoot$5 = $$1;
-    let tmpIfTest$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    let objPatternBeforeDefault$1 = bindingPatternObjRoot$5.x;
-    let x$1 = undefined;
-    const tmpIfTest$7 = objPatternBeforeDefault$1 === undefined;
-    const tmpBranchingA$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
-      let tmpParamBare$7 = $$0;
-      let bindingPatternObjRoot$7 = $$1;
-      let tmpIfTest$9 = $$2;
-      let objPatternBeforeDefault$3 = $$3;
-      let x$3 = $$4;
-      let tmpIfTest$11 = $$5;
+    objPatternBeforeDefault = bindingPatternObjRoot.x;
+    const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+    const tmpBranchingA$1 = function () {
       debugger;
-      x$3 = $('fail');
-      const tmpReturnArg$3 = tmpBranchingC$1(
-        tmpParamBare$7,
-        bindingPatternObjRoot$7,
-        tmpIfTest$9,
-        objPatternBeforeDefault$3,
-        x$3,
-        tmpIfTest$11,
-      );
+      x = $('fail');
+      const tmpReturnArg$3 = tmpBranchingC$1();
       return tmpReturnArg$3;
     };
-    const tmpBranchingB$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
-      let tmpParamBare$9 = $$0;
-      let bindingPatternObjRoot$9 = $$1;
-      let tmpIfTest$13 = $$2;
-      let objPatternBeforeDefault$5 = $$3;
-      let x$5 = $$4;
-      let tmpIfTest$15 = $$5;
+    const tmpBranchingB$1 = function () {
       debugger;
-      x$5 = objPatternBeforeDefault$5;
-      const tmpReturnArg$5 = tmpBranchingC$1(
-        tmpParamBare$9,
-        bindingPatternObjRoot$9,
-        tmpIfTest$13,
-        objPatternBeforeDefault$5,
-        x$5,
-        tmpIfTest$15,
-      );
+      x = objPatternBeforeDefault;
+      const tmpReturnArg$5 = tmpBranchingC$1();
       return tmpReturnArg$5;
     };
-    const tmpBranchingC$1 = function ($$0, $$1, $$2, $$3, $$4, $$5) {
-      let tmpParamBare$11 = $$0;
-      let bindingPatternObjRoot$11 = $$1;
-      let tmpIfTest$17 = $$2;
-      let objPatternBeforeDefault$7 = $$3;
-      let x$7 = $$4;
-      let tmpIfTest$19 = $$5;
+    const tmpBranchingC$1 = function () {
       debugger;
-      return x$7;
+      return x;
     };
-    if (tmpIfTest$7) {
-      const tmpReturnArg$7 = tmpBranchingA$1(
-        tmpParamBare$5,
-        bindingPatternObjRoot$5,
-        tmpIfTest$5,
-        objPatternBeforeDefault$1,
-        x$1,
-        tmpIfTest$7,
-      );
+    if (tmpIfTest$1) {
+      const tmpReturnArg$7 = tmpBranchingA$1();
       return tmpReturnArg$7;
     } else {
-      const tmpReturnArg$9 = tmpBranchingB$1(
-        tmpParamBare$5,
-        bindingPatternObjRoot$5,
-        tmpIfTest$5,
-        objPatternBeforeDefault$1,
-        x$1,
-        tmpIfTest$7,
-      );
+      const tmpReturnArg$9 = tmpBranchingB$1();
       return tmpReturnArg$9;
     }
   };
+  let objPatternBeforeDefault = undefined;
+  let x = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$11 = tmpBranchingA(tmpParamBare, bindingPatternObjRoot, tmpIfTest);
+    const tmpReturnArg$11 = tmpBranchingA();
     return tmpReturnArg$11;
   } else {
-    const tmpReturnArg$13 = tmpBranchingB(tmpParamBare, bindingPatternObjRoot, tmpIfTest);
+    const tmpReturnArg$13 = tmpBranchingB();
     return tmpReturnArg$13;
   }
 };
@@ -154,30 +100,36 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const tmpBranchingC = function ($$0) {
-  const bindingPatternObjRoot$5 = $$0;
-  debugger;
-  const objPatternBeforeDefault$1 = bindingPatternObjRoot$5.x;
-  const tmpIfTest$7 = objPatternBeforeDefault$1 === undefined;
-  if (tmpIfTest$7) {
-    const tmpReturnArg$7 = $('fail');
-    return tmpReturnArg$7;
-  } else {
-    return objPatternBeforeDefault$1;
-  }
-};
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
+  let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
+  const tmpBranchingC = function () {
+    debugger;
+    objPatternBeforeDefault = bindingPatternObjRoot.x;
+    const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+    if (tmpIfTest$1) {
+      x = $('fail');
+      const tmpReturnArg$3 = x;
+      return tmpReturnArg$3;
+    } else {
+      x = objPatternBeforeDefault;
+      const tmpReturnArg$5 = x;
+      return tmpReturnArg$5;
+    }
+  };
+  let objPatternBeforeDefault = undefined;
+  let x = undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = { x: 'fail2' };
-    const tmpSSA_bindingPatternObjRoot$1 = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(tmpSSA_bindingPatternObjRoot$1);
+    bindingPatternObjRoot = $(tmpCalleeParam$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$13 = tmpBranchingC(tmpParamBare);
-    return tmpReturnArg$13;
+    bindingPatternObjRoot = tmpParamBare;
+    const tmpReturnArg$1 = tmpBranchingC();
+    return tmpReturnArg$1;
   }
 };
 const tmpCalleeParam$5 = { x: '' };

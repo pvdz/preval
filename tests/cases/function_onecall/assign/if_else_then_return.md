@@ -65,31 +65,28 @@ let closure = function () {
 let f = function () {
   debugger;
   const tmpIfTest = $();
-  const tmpBranchingA = function ($$0) {
-    let tmpIfTest$1 = $$0;
+  const tmpBranchingA = function () {
     debugger;
     $(1);
-    const tmpReturnArg = tmpBranchingC(tmpIfTest$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0) {
-    let tmpIfTest$3 = $$0;
+  const tmpBranchingB = function () {
     debugger;
     $(2);
-    const tmpReturnArg$1 = tmpBranchingC(tmpIfTest$3);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0) {
-    let tmpIfTest$5 = $$0;
+  const tmpBranchingC = function () {
     debugger;
     const tmpReturnArg$3 = $(3);
     return tmpReturnArg$3;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA(tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingA();
     return tmpReturnArg$5;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB(tmpIfTest);
+    const tmpReturnArg$7 = tmpBranchingB();
     return tmpReturnArg$7;
   }
 };

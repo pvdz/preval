@@ -43,27 +43,24 @@ $(f());
 let f = function () {
   debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function ($$0) {
-    let tmpIfTest$1 = $$0;
+  const tmpBranchingA = function () {
     debugger;
-    const tmpReturnArg = tmpBranchingC(tmpIfTest$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0) {
-    let tmpIfTest$3 = $$0;
+  const tmpBranchingB = function () {
     debugger;
     throw 2;
   };
-  const tmpBranchingC = function ($$0) {
-    let tmpIfTest$5 = $$0;
+  const tmpBranchingC = function () {
     debugger;
     $('keep, do not eval');
   };
   if (tmpIfTest) {
-    const tmpReturnArg$1 = tmpBranchingA(tmpIfTest);
+    const tmpReturnArg$1 = tmpBranchingA();
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$3 = tmpBranchingB(tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingB();
     return tmpReturnArg$3;
   }
 };

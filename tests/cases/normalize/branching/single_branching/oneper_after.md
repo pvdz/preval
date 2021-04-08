@@ -332,54 +332,27 @@ const X_BBB = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7) {
   let h$7 = $$7;
   debugger;
   const k = -2147483648 > c$9;
-  const tmpBranchingA = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8) {
-    let a$2 = $$0;
-    let b$2 = $$1;
-    let c$2 = $$2;
-    let d$2 = $$3;
-    let e$2 = $$4;
-    let f$2 = $$5;
-    let g$2 = $$6;
-    let h$2 = $$7;
-    let k$1 = $$8;
+  const tmpBranchingA = function () {
     debugger;
-    c$2 = -2147483648;
-    const tmpReturnArg$13 = tmpBranchingC(a$2, b$2, c$2, d$2, e$2, f$2, g$2, h$2, k$1);
+    c$9 = -2147483648;
+    const tmpReturnArg$13 = tmpBranchingC();
     return tmpReturnArg$13;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8) {
-    let a$4 = $$0;
-    let b$4 = $$1;
-    let c$4 = $$2;
-    let d$4 = $$3;
-    let e$4 = $$4;
-    let f$4 = $$5;
-    let g$4 = $$6;
-    let h$4 = $$7;
-    let k$3 = $$8;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$15 = tmpBranchingC(a$4, b$4, c$4, d$4, e$4, f$4, g$4, h$4, k$3);
+    const tmpReturnArg$15 = tmpBranchingC();
     return tmpReturnArg$15;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8) {
-    let a$6 = $$0;
-    let b$6 = $$1;
-    let c$6 = $$2;
-    let d$6 = $$3;
-    let e$6 = $$4;
-    let f$6 = $$5;
-    let g$6 = $$6;
-    let h$6 = $$7;
-    let k$5 = $$8;
+  const tmpBranchingC = function () {
     debugger;
-    const tmpReturnArg$17 = X_BBC(a$6, b$6, c$6, d$6, e$6, f$6, g$6, h$6);
+    const tmpReturnArg$17 = X_BBC(a$9, b$9, c$9, d$9, e$9, f$9, g$9, h$7);
     return tmpReturnArg$17;
   };
   if (k) {
-    const tmpReturnArg$19 = tmpBranchingA(a$9, b$9, c$9, d$9, e$9, f$9, g$9, h$7, k);
+    const tmpReturnArg$19 = tmpBranchingA();
     return tmpReturnArg$19;
   } else {
-    const tmpReturnArg$21 = tmpBranchingB(a$9, b$9, c$9, d$9, e$9, f$9, g$9, h$7, k);
+    const tmpReturnArg$21 = tmpBranchingB();
     return tmpReturnArg$21;
   }
 };

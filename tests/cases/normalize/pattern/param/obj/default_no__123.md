@@ -37,65 +37,47 @@ let f = function ($$0) {
   debugger;
   let bindingPatternObjRoot = tmpParamBare;
   let objPatternCrashTest = bindingPatternObjRoot === undefined;
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let tmpParamBare$1 = $$0;
-    let bindingPatternObjRoot$1 = $$1;
-    let objPatternCrashTest$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
-    const tmpReturnArg = tmpBranchingC(tmpParamBare$1, bindingPatternObjRoot$1, objPatternCrashTest$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpParamBare$3 = $$0;
-    let bindingPatternObjRoot$3 = $$1;
-    let objPatternCrashTest$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    objPatternCrashTest$3 = bindingPatternObjRoot$3 === null;
-    const tmpReturnArg$1 = tmpBranchingC(tmpParamBare$3, bindingPatternObjRoot$3, objPatternCrashTest$3);
+    objPatternCrashTest = bindingPatternObjRoot === null;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let tmpParamBare$5 = $$0;
-    let bindingPatternObjRoot$5 = $$1;
-    let objPatternCrashTest$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    const tmpBranchingA$1 = function ($$0, $$1, $$2) {
-      let tmpParamBare$7 = $$0;
-      let bindingPatternObjRoot$7 = $$1;
-      let objPatternCrashTest$7 = $$2;
+    const tmpBranchingA$1 = function () {
       debugger;
-      objPatternCrashTest$7 = bindingPatternObjRoot$7.cannotDestructureThis;
-      const tmpReturnArg$3 = tmpBranchingC$1(tmpParamBare$7, bindingPatternObjRoot$7, objPatternCrashTest$7);
+      objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+      const tmpReturnArg$3 = tmpBranchingC$1();
       return tmpReturnArg$3;
     };
-    const tmpBranchingB$1 = function ($$0, $$1, $$2) {
-      let tmpParamBare$9 = $$0;
-      let bindingPatternObjRoot$9 = $$1;
-      let objPatternCrashTest$9 = $$2;
+    const tmpBranchingB$1 = function () {
       debugger;
-      const tmpReturnArg$5 = tmpBranchingC$1(tmpParamBare$9, bindingPatternObjRoot$9, objPatternCrashTest$9);
+      const tmpReturnArg$5 = tmpBranchingC$1();
       return tmpReturnArg$5;
     };
-    const tmpBranchingC$1 = function ($$0, $$1, $$2) {
-      let tmpParamBare$11 = $$0;
-      let bindingPatternObjRoot$11 = $$1;
-      let objPatternCrashTest$11 = $$2;
+    const tmpBranchingC$1 = function () {
       debugger;
       return 'ok';
     };
-    if (objPatternCrashTest$5) {
-      const tmpReturnArg$7 = tmpBranchingA$1(tmpParamBare$5, bindingPatternObjRoot$5, objPatternCrashTest$5);
+    if (objPatternCrashTest) {
+      const tmpReturnArg$7 = tmpBranchingA$1();
       return tmpReturnArg$7;
     } else {
-      const tmpReturnArg$9 = tmpBranchingB$1(tmpParamBare$5, bindingPatternObjRoot$5, objPatternCrashTest$5);
+      const tmpReturnArg$9 = tmpBranchingB$1();
       return tmpReturnArg$9;
     }
   };
   if (objPatternCrashTest) {
-    const tmpReturnArg$11 = tmpBranchingA(tmpParamBare, bindingPatternObjRoot, objPatternCrashTest);
+    const tmpReturnArg$11 = tmpBranchingA();
     return tmpReturnArg$11;
   } else {
-    const tmpReturnArg$13 = tmpBranchingB(tmpParamBare, bindingPatternObjRoot, objPatternCrashTest);
+    const tmpReturnArg$13 = tmpBranchingB();
     return tmpReturnArg$13;
   }
 };
@@ -107,7 +89,29 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('ok');
+const f = function () {
+  debugger;
+  let objPatternCrashTest = false;
+  const tmpBranchingC = function () {
+    debugger;
+    if (objPatternCrashTest) {
+      objPatternCrashTest = (1).cannotDestructureThis;
+      return 'ok';
+    } else {
+      return 'ok';
+    }
+  };
+  if (objPatternCrashTest) {
+    const tmpReturnArg$11 = tmpBranchingC();
+    return tmpReturnArg$11;
+  } else {
+    objPatternCrashTest = false;
+    const tmpReturnArg$1 = tmpBranchingC();
+    return tmpReturnArg$1;
+  }
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

@@ -39,35 +39,30 @@ let f = function () {
   a = undefined;
   const tmpChainRootCall = $;
   const tmpIfTest = tmpChainRootCall != null;
-  const tmpBranchingA = function ($$0, $$1) {
-    let tmpChainRootCall$1 = $$0;
-    let tmpIfTest$1 = $$1;
+  const tmpBranchingA = function () {
     debugger;
-    const tmpChainElementCall$1 = tmpChainRootCall$1(1);
+    const tmpChainElementCall$1 = tmpChainRootCall(1);
     a = tmpChainElementCall$1;
-    const tmpReturnArg$3 = tmpBranchingC(tmpChainRootCall$1, tmpIfTest$1);
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingB = function ($$0, $$1) {
-    let tmpChainRootCall$3 = $$0;
-    let tmpIfTest$3 = $$1;
-    debugger;
-    const tmpReturnArg$5 = tmpBranchingC(tmpChainRootCall$3, tmpIfTest$3);
-    return tmpReturnArg$5;
-  };
-  const tmpBranchingC = function ($$0, $$1) {
-    let tmpChainRootCall$5 = $$0;
-    let tmpIfTest$5 = $$1;
-    debugger;
-    let tmpReturnArg$1 = a;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
+  const tmpBranchingB = function () {
+    debugger;
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
+  };
+  const tmpBranchingC = function () {
+    debugger;
+    tmpReturnArg = a;
+    return tmpReturnArg;
+  };
+  let tmpReturnArg = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$7 = tmpBranchingA(tmpChainRootCall, tmpIfTest);
-    return tmpReturnArg$7;
+    const tmpReturnArg$5 = tmpBranchingA();
+    return tmpReturnArg$5;
   } else {
-    const tmpReturnArg$9 = tmpBranchingB(tmpChainRootCall, tmpIfTest);
-    return tmpReturnArg$9;
+    const tmpReturnArg$7 = tmpBranchingB();
+    return tmpReturnArg$7;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -80,23 +75,24 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpBranchingC = function () {
-  debugger;
-  const tmpReturnArg$1 = a;
-  return tmpReturnArg$1;
-};
 const f = function () {
   debugger;
   a = undefined;
   const tmpIfTest = $ != null;
+  const tmpBranchingC = function () {
+    debugger;
+    tmpReturnArg = a;
+    return tmpReturnArg;
+  };
+  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     const tmpChainElementCall$1 = $(1);
     a = tmpChainElementCall$1;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
+    const tmpReturnArg$1 = tmpBranchingC();
+    return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$9 = tmpBranchingC();
-    return tmpReturnArg$9;
+    const tmpReturnArg$7 = tmpBranchingC();
+    return tmpReturnArg$7;
   }
 };
 let a = { a: 999, b: 1000 };

@@ -46,40 +46,29 @@ let x = function ($$0, $$1) {
   debugger;
   let foo = undefined;
   const tmpIfTest = a === undefined;
-  const tmpBranchingA = function ($$0, $$1, $$2, $$3) {
-    let a$1 = $$0;
-    let b$1 = $$1;
-    let foo$1 = $$2;
-    let tmpIfTest$1 = $$3;
+  const tmpBranchingA = function () {
     debugger;
-    foo$1 = propTDZ;
-    const tmpReturnArg = tmpBranchingC(a$1, b$1, foo$1, tmpIfTest$1);
+    foo = propTDZ;
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2, $$3) {
-    let a$3 = $$0;
-    let b$3 = $$1;
-    let foo$3 = $$2;
-    let tmpIfTest$3 = $$3;
+  const tmpBranchingB = function () {
     debugger;
-    foo$3 = a$3;
-    const tmpReturnArg$1 = tmpBranchingC(a$3, b$3, foo$3, tmpIfTest$3);
+    foo = a;
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
-    let a$5 = $$0;
-    let b$5 = $$1;
-    let foo$5 = $$2;
-    let tmpIfTest$5 = $$3;
+  const tmpBranchingC = function () {
     debugger;
-    let bindingPatternObjRoot = b$5;
-    let propTDZ$1 = bindingPatternObjRoot.x;
+    const tmpAssignObjPatternRhs = b;
+    propTDZ = tmpAssignObjPatternRhs.x;
   };
+  let propTDZ = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(a, b, foo, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(a, b, foo, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };
@@ -93,15 +82,12 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam$1 = { x: 1 };
-propTDZ;
 tmpCalleeParam$1.x;
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-propTDZ
+None
 
 ## Result
 

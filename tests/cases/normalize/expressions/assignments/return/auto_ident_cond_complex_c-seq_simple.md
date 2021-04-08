@@ -37,34 +37,32 @@ $(a);
 let f = function () {
   debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function ($$0) {
-    let tmpIfTest$1 = $$0;
+  const tmpBranchingA = function () {
     debugger;
     a = $(60);
-    const tmpReturnArg$3 = tmpBranchingC(tmpIfTest$1);
-    return tmpReturnArg$3;
+    const tmpReturnArg$1 = tmpBranchingC();
+    return tmpReturnArg$1;
   };
-  const tmpBranchingB = function ($$0) {
-    let tmpIfTest$3 = $$0;
+  const tmpBranchingB = function () {
     debugger;
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(100);
     a = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg$5 = tmpBranchingC(tmpIfTest$3);
-    return tmpReturnArg$5;
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
   };
-  const tmpBranchingC = function ($$0) {
-    let tmpIfTest$5 = $$0;
+  const tmpBranchingC = function () {
     debugger;
-    let tmpReturnArg$1 = a;
-    return tmpReturnArg$1;
+    tmpReturnArg = a;
+    return tmpReturnArg;
   };
+  let tmpReturnArg = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$7 = tmpBranchingA(tmpIfTest);
-    return tmpReturnArg$7;
+    const tmpReturnArg$5 = tmpBranchingA();
+    return tmpReturnArg$5;
   } else {
-    const tmpReturnArg$9 = tmpBranchingB(tmpIfTest);
-    return tmpReturnArg$9;
+    const tmpReturnArg$7 = tmpBranchingB();
+    return tmpReturnArg$7;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -77,23 +75,24 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpBranchingC = function () {
-  debugger;
-  const tmpReturnArg$1 = a;
-  return tmpReturnArg$1;
-};
 const f = function () {
   debugger;
   const tmpIfTest = $(1);
+  const tmpBranchingC = function () {
+    debugger;
+    tmpReturnArg = a;
+    return tmpReturnArg;
+  };
+  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     a = $(60);
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
+    const tmpReturnArg$1 = tmpBranchingC();
+    return tmpReturnArg$1;
   } else {
     const tmpCalleeParam$1 = $(100);
     a = $(tmpCalleeParam$1);
-    const tmpReturnArg$5 = tmpBranchingC();
-    return tmpReturnArg$5;
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
   }
 };
 let a = { a: 999, b: 1000 };

@@ -35,31 +35,28 @@ $(f());
 let f = function () {
   debugger;
   let a = 1;
-  const tmpBranchingA = function ($$0) {
-    let a$1 = $$0;
+  const tmpBranchingA = function () {
     debugger;
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
-    a$1 = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC(a$1);
+    a = tmpCallCallee$1(tmpCalleeParam$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0) {
-    let a$3 = $$0;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC(a$3);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0) {
-    let a$5 = $$0;
+  const tmpBranchingC = function () {
     debugger;
-    $(a$5);
+    $(a);
   };
   if (a) {
-    const tmpReturnArg$3 = tmpBranchingA(a);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(a);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };
@@ -71,10 +68,21 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(1);
-const tmpSSA_a$1 = $(tmpCalleeParam$1);
-$(tmpSSA_a$1);
-$(undefined);
+const f = function () {
+  debugger;
+  let a = 1;
+  if (a) {
+    const tmpCalleeParam$1 = $(1);
+    a = $(tmpCalleeParam$1);
+    $(a);
+    return undefined;
+  } else {
+    $(a);
+    return undefined;
+  }
+};
+const tmpCalleeParam$3 = f();
+$(tmpCalleeParam$3);
 `````
 
 ## Globals

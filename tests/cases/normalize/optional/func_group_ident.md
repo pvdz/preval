@@ -38,40 +38,28 @@ let f = function () {
   let y = undefined;
   const tmpChainRootProp = a;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function ($$0, $$1, $$2, $$3) {
-    let a$1 = $$0;
-    let y$1 = $$1;
-    let tmpChainRootProp$1 = $$2;
-    let tmpIfTest$1 = $$3;
+  const tmpBranchingA = function () {
     debugger;
-    const tmpChainElementObject$1 = tmpChainRootProp$1.x;
-    y$1 = tmpChainElementObject$1;
-    const tmpReturnArg = tmpBranchingC(a$1, y$1, tmpChainRootProp$1, tmpIfTest$1);
+    const tmpChainElementObject$1 = tmpChainRootProp.x;
+    y = tmpChainElementObject$1;
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2, $$3) {
-    let a$3 = $$0;
-    let y$3 = $$1;
-    let tmpChainRootProp$3 = $$2;
-    let tmpIfTest$3 = $$3;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC(a$3, y$3, tmpChainRootProp$3, tmpIfTest$3);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3) {
-    let a$5 = $$0;
-    let y$5 = $$1;
-    let tmpChainRootProp$5 = $$2;
-    let tmpIfTest$5 = $$3;
+  const tmpBranchingC = function () {
     debugger;
-    const tmpReturnArg$3 = $(y$5);
+    const tmpReturnArg$3 = $(y);
     return tmpReturnArg$3;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA(a, y, tmpChainRootProp, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingA();
     return tmpReturnArg$5;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB(a, y, tmpChainRootProp, tmpIfTest);
+    const tmpReturnArg$7 = tmpBranchingB();
     return tmpReturnArg$7;
   }
 };
@@ -86,13 +74,15 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   const a = { x: 1 };
+  let y = undefined;
   const tmpIfTest = a != null;
   if (tmpIfTest) {
     const tmpChainElementObject$1 = a.x;
-    const tmpReturnArg = $(tmpChainElementObject$1);
+    y = tmpChainElementObject$1;
+    const tmpReturnArg = $(y);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = $(undefined);
+    const tmpReturnArg$7 = $(y);
     return tmpReturnArg$7;
   }
 };

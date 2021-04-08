@@ -42,39 +42,30 @@ let f = function () {
   let tmpReturnArg = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function ($$0, $$1, $$2) {
-    let tmpReturnArg$1 = $$0;
-    let tmpChainRootProp$1 = $$1;
-    let tmpIfTest$1 = $$2;
+  const tmpBranchingA = function () {
     debugger;
-    const tmpChainElementObject$5 = tmpChainRootProp$1.x;
+    const tmpChainElementObject$5 = tmpChainRootProp.x;
     const tmpChainElementObject$7 = tmpChainElementObject$5.y;
     const tmpChainElementObject$9 = tmpChainElementObject$7.z;
-    tmpReturnArg$1 = tmpChainElementObject$9;
-    const tmpReturnArg$7 = tmpBranchingC(tmpReturnArg$1, tmpChainRootProp$1, tmpIfTest$1);
-    return tmpReturnArg$7;
+    tmpReturnArg = tmpChainElementObject$9;
+    const tmpReturnArg$1 = tmpBranchingC();
+    return tmpReturnArg$1;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2) {
-    let tmpReturnArg$3 = $$0;
-    let tmpChainRootProp$3 = $$1;
-    let tmpIfTest$3 = $$2;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$9 = tmpBranchingC(tmpReturnArg$3, tmpChainRootProp$3, tmpIfTest$3);
-    return tmpReturnArg$9;
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2) {
-    let tmpReturnArg$5 = $$0;
-    let tmpChainRootProp$5 = $$1;
-    let tmpIfTest$5 = $$2;
+  const tmpBranchingC = function () {
     debugger;
-    return tmpReturnArg$5;
+    return tmpReturnArg;
   };
   if (tmpIfTest) {
-    const tmpReturnArg$11 = tmpBranchingA(tmpReturnArg, tmpChainRootProp, tmpIfTest);
-    return tmpReturnArg$11;
+    const tmpReturnArg$5 = tmpBranchingA();
+    return tmpReturnArg$5;
   } else {
-    const tmpReturnArg$13 = tmpBranchingB(tmpReturnArg, tmpChainRootProp, tmpIfTest);
-    return tmpReturnArg$13;
+    const tmpReturnArg$7 = tmpBranchingB();
+    return tmpReturnArg$7;
   }
 };
 const tmpObjLitVal$1 = { z: 100 };
@@ -92,14 +83,18 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
+  let tmpReturnArg = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
     const tmpChainElementObject$5 = b.x;
     const tmpChainElementObject$7 = tmpChainElementObject$5.y;
     const tmpChainElementObject$9 = tmpChainElementObject$7.z;
-    return tmpChainElementObject$9;
+    tmpReturnArg = tmpChainElementObject$9;
+    const tmpReturnArg$1 = tmpReturnArg;
+    return tmpReturnArg$1;
   } else {
-    return undefined;
+    const tmpReturnArg$3 = tmpReturnArg;
+    return tmpReturnArg$3;
   }
 };
 const tmpObjLitVal$1 = { z: 100 };

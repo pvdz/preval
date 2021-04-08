@@ -56,31 +56,25 @@ const f = function ($$0) {
     debugger;
     let t = 1;
     const tmpIfTest = 3 === s;
-    const tmpBranchingA = function ($$0, $$1) {
-      let t$1 = $$0;
-      let tmpIfTest$1 = $$1;
+    const tmpBranchingA = function () {
       debugger;
-      t$1 = 0;
-      const tmpReturnArg = tmpBranchingC(t$1, tmpIfTest$1);
+      t = 0;
+      const tmpReturnArg = tmpBranchingC();
       return tmpReturnArg;
     };
-    const tmpBranchingB = function ($$0, $$1) {
-      let t$3 = $$0;
-      let tmpIfTest$3 = $$1;
+    const tmpBranchingB = function () {
       debugger;
-      const tmpReturnArg$1 = tmpBranchingC(t$3, tmpIfTest$3);
+      const tmpReturnArg$1 = tmpBranchingC();
       return tmpReturnArg$1;
     };
-    const tmpBranchingC = function ($$0, $$1) {
-      let t$5 = $$0;
-      let tmpIfTest$5 = $$1;
+    const tmpBranchingC = function () {
       debugger;
     };
     if (tmpIfTest) {
-      const tmpReturnArg$3 = tmpBranchingA(t, tmpIfTest);
+      const tmpReturnArg$3 = tmpBranchingA();
       return tmpReturnArg$3;
     } else {
-      const tmpReturnArg$5 = tmpBranchingB(t, tmpIfTest);
+      const tmpReturnArg$5 = tmpBranchingB();
       return tmpReturnArg$5;
     }
   };
@@ -88,8 +82,8 @@ const f = function ($$0) {
     let tmpLoopRetCode$1 = $$0;
     let tmpLoopRetValue$1 = $$1;
     debugger;
-    const tmpIfTest$7 = tmpLoopRetCode$1 === undefined;
-    if (tmpIfTest$7) {
+    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
+    if (tmpIfTest$1) {
       return tmpLoopRetValue$1;
     } else {
       x + 1;

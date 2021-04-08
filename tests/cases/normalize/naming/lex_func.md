@@ -47,32 +47,27 @@ let f = function () {
   let a$1 = $(1);
   $(a$1);
   const tmpIfTest = $();
-  const tmpBranchingA = function ($$0, $$1) {
-    let a$2 = $$0;
-    let tmpIfTest$1 = $$1;
+  const tmpBranchingA = function () {
     debugger;
-    return a$2;
+    return a$1;
   };
-  const tmpBranchingB = function ($$0, $$1) {
-    let a$4 = $$0;
-    let tmpIfTest$3 = $$1;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg = tmpBranchingC(a$4, tmpIfTest$3);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingC = function ($$0, $$1) {
-    let a$6 = $$0;
-    let tmpIfTest$5 = $$1;
+  const tmpBranchingC = function () {
     debugger;
-    let a$8 = $(1);
-    $(a$8);
-    return a$8;
+    a = $(1);
+    $(a);
+    return a;
   };
+  let a = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$1 = tmpBranchingA(a$1, tmpIfTest);
+    const tmpReturnArg$1 = tmpBranchingA();
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$3 = tmpBranchingB(a$1, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingB();
     return tmpReturnArg$3;
   }
 };
@@ -92,9 +87,9 @@ const f = function () {
   if (tmpIfTest) {
     return a$1;
   } else {
-    const a$8 = $(1);
-    $(a$8);
-    return a$8;
+    const tmpSSA_a = $(1);
+    $(tmpSSA_a);
+    return tmpSSA_a;
   }
 };
 const tmpCalleeParam = f();

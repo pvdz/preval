@@ -45,46 +45,28 @@ let f = function () {
   let a = { a: 999, b: 1000 };
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function ($$0, $$1, $$2, $$3, $$4, $$5) {
-    let tmpObjLitVal$3 = $$0;
-    let tmpObjLitVal$5 = $$1;
-    let b$1 = $$2;
-    let a$1 = $$3;
-    let tmpChainRootProp$1 = $$4;
-    let tmpIfTest$1 = $$5;
+  const tmpBranchingA = function () {
     debugger;
-    const tmpChainElementObject$5 = tmpChainRootProp$1.x;
+    const tmpChainElementObject$5 = tmpChainRootProp.x;
     const tmpChainElementObject$7 = tmpChainElementObject$5.y;
     const tmpChainElementObject$9 = tmpChainElementObject$7.z;
-    const tmpReturnArg = tmpBranchingC(tmpObjLitVal$3, tmpObjLitVal$5, b$1, a$1, tmpChainRootProp$1, tmpIfTest$1);
+    const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   };
-  const tmpBranchingB = function ($$0, $$1, $$2, $$3, $$4, $$5) {
-    let tmpObjLitVal$7 = $$0;
-    let tmpObjLitVal$9 = $$1;
-    let b$3 = $$2;
-    let a$3 = $$3;
-    let tmpChainRootProp$3 = $$4;
-    let tmpIfTest$3 = $$5;
+  const tmpBranchingB = function () {
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC(tmpObjLitVal$7, tmpObjLitVal$9, b$3, a$3, tmpChainRootProp$3, tmpIfTest$3);
+    const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   };
-  const tmpBranchingC = function ($$0, $$1, $$2, $$3, $$4, $$5) {
-    let tmpObjLitVal$11 = $$0;
-    let tmpObjLitVal$13 = $$1;
-    let b$5 = $$2;
-    let a$5 = $$3;
-    let tmpChainRootProp$5 = $$4;
-    let tmpIfTest$5 = $$5;
+  const tmpBranchingC = function () {
     debugger;
-    $(a$5);
+    $(a);
   };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA(tmpObjLitVal$1, tmpObjLitVal, b, a, tmpChainRootProp, tmpIfTest);
+    const tmpReturnArg$3 = tmpBranchingA();
     return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB(tmpObjLitVal$1, tmpObjLitVal, b, a, tmpChainRootProp, tmpIfTest);
+    const tmpReturnArg$5 = tmpBranchingB();
     return tmpReturnArg$5;
   }
 };

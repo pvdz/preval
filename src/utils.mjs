@@ -187,7 +187,7 @@ export function before(node, parent) {
 
 export function source(node, force) {
   if (VERBOSE_TRACING || force) {
-    if (Array.isArray(node)) node.forEach((n) => source(n));
+    if (Array.isArray(node)) node.forEach((n) => source(n, force));
     else {
       const anon = node.type?.includes('Function') && 'id' in node && node.id === null;
       if (anon) node.id = { type: 'Identifier', name: '$anon$' };

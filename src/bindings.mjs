@@ -780,14 +780,15 @@ export function findBoundNamesInVarDeclarator(decl, names = []) {
       node.properties.forEach((pnode) => {
         if (pnode.type !== 'RestElement') {
           let value = pnode.value;
-          if (pnode.type === 'AssignmentPattern') {
-            value = pnode.left.value;
+          if (value.type === 'AssignmentPattern') {
+            ASSERT(value.left, 'so it has a left right?', value);
+            value = value.left;
             ASSERT(value.type !== 'RestElement', 'rest not allowed to have init');
           }
           if (value.type === 'Identifier') {
             names.push(value.name);
           } else {
-            ASSERT(value.type === 'ArrayPattern' || value.type === 'ObjectPattern');
+            ASSERT(value.type === 'ArrayPattern' || value.type === 'ObjectPattern', 'arr/obj pattern or bust', pnode);
             r(value, names);
           }
         }

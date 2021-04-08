@@ -48,6 +48,7 @@ export function arrayExpression(...elements) {
 export function assignmentExpression(left, right, operator = '=') {
   if (typeof left === 'string') left = identifier(left);
   if (typeof right === 'string') right = identifier(right);
+  ASSERT(left && right, 'must have left and right operand', left, right);
 
   return {
     type: 'AssignmentExpression',

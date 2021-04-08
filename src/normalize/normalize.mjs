@@ -5350,7 +5350,9 @@ export function phaseNormalize(fdata, fname) {
                   // For any number of decls, any kind of id, any kind of init (or `undefined` if there was none)
                   // Everything should be replaced by a sequence of assignments as long as the binding is declared too.
                   AST.sequenceExpression(
-                    snode.declarations.map(({ id, init = AST.identifier('undefined') }) => AST.assignmentExpression(id, init)),
+                    snode.declarations.map(({ id, init = AST.identifier('undefined') }) =>
+                      AST.assignmentExpression(id, init || AST.identifier('undefined')),
+                    ),
                   ),
                 );
               }

@@ -340,12 +340,12 @@ function _inlineSimpleFuncCalls(fdata) {
     vgroupEnd();
   });
 
-  log('Inlined', inlinedFuncCount, 'function calls.');
   if (inlinedFuncCount > 0) {
-    log('Restarting from phase1 to fix up read/write registry\n\n\n\n\n\n');
+    log('Inlined function calls:', inlinedFuncCount, '. Restarting from phase1 to fix up read/write registry');
     return 'phase1';
   }
-  log('\n\n\n\n\n\n');
+
+  log('Inlined function calls: 0.');
 }
 
 function resolveNodeAgainstParams(node, callNode, funcNode) {

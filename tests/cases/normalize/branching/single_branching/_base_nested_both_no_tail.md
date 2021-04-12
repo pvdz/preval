@@ -129,17 +129,6 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpBranchingA = function () {
-  debugger;
-  const tmpIfTest$5 = $(2);
-  if (tmpIfTest$5) {
-    const tmpReturnArg$21 = $(3);
-    return tmpReturnArg$21;
-  } else {
-    const tmpReturnArg$23 = $(4);
-    return tmpReturnArg$23;
-  }
-};
 const tmpBranchingB = function () {
   debugger;
   const tmpIfTest$7 = $(5);
@@ -149,6 +138,17 @@ const tmpBranchingB = function () {
   } else {
     const tmpReturnArg$33 = $(7);
     return tmpReturnArg$33;
+  }
+};
+const tmpBranchingA = function () {
+  debugger;
+  const tmpIfTest$5 = $(2);
+  if (tmpIfTest$5) {
+    const tmpReturnArg$21 = $(3);
+    return tmpReturnArg$21;
+  } else {
+    const tmpReturnArg$23 = $(4);
+    return tmpReturnArg$23;
   }
 };
 const f = function () {

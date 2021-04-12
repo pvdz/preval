@@ -108,17 +108,17 @@ tmpCallCallee$7(tmpCalleeParam$7);
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    [...objPatternAfterDefault];
+    return 'ok';
+  };
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   const tmpBranchingC = function () {
     debugger;
     objPatternBeforeDefault = bindingPatternObjRoot.x;
     const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-    const tmpBranchingC$1 = function () {
-      debugger;
-      [...objPatternAfterDefault];
-      return 'ok';
-    };
     if (tmpIfTest$1) {
       const tmpCalleeParam$5 = ['fail'];
       objPatternAfterDefault = $(tmpCalleeParam$5);

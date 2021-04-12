@@ -107,6 +107,11 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    const tmpReturnArg$5 = tmpReturnArg;
+    return tmpReturnArg$5;
+  };
   let tmpReturnArg = undefined;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
@@ -115,11 +120,6 @@ const f = function () {
     const tmpChainRootComputed$1 = $('$');
     const tmpChainElementObject$1 = tmpChainElementCall[tmpChainRootComputed$1];
     const tmpIfTest$3 = tmpChainElementObject$1 != null;
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg$5 = tmpReturnArg;
-      return tmpReturnArg$5;
-    };
     if (tmpIfTest$3) {
       const tmpCallVal$3 = tmpChainElementObject$1.call;
       const tmpCalleeParam$9 = $(1);

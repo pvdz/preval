@@ -206,6 +206,29 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingB$5 = function () {
+    debugger;
+    const tmpIfTest$21 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$21) {
+      $('keep, do not eval');
+      const tmpReturnArg$19 = $(2, 'ret');
+      return tmpReturnArg$19;
+    } else {
+      $('eliminate after switch');
+      return undefined;
+    }
+  };
+  const tmpBranchingB$3 = function () {
+    debugger;
+    const tmpIfTest$17 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$17) {
+      $('keep, eval');
+      return undefined;
+    } else {
+      const tmpReturnArg$33 = tmpBranchingB$5();
+      return tmpReturnArg$33;
+    }
+  };
   const tmpSwitchValue = $(1, 'disc');
   let tmpSwitchCaseToStart = 2;
   const tmpBinLhs = $(0);
@@ -226,29 +249,6 @@ const f = function () {
   const tmpBranchingC = function () {
     debugger;
     const tmpIfTest$11 = tmpSwitchCaseToStart <= 0;
-    const tmpBranchingB$3 = function () {
-      debugger;
-      const tmpIfTest$17 = tmpSwitchCaseToStart <= 1;
-      const tmpBranchingB$5 = function () {
-        debugger;
-        const tmpIfTest$21 = tmpSwitchCaseToStart <= 2;
-        if (tmpIfTest$21) {
-          $('keep, do not eval');
-          const tmpReturnArg$19 = $(2, 'ret');
-          return tmpReturnArg$19;
-        } else {
-          $('eliminate after switch');
-          return undefined;
-        }
-      };
-      if (tmpIfTest$17) {
-        $('keep, eval');
-        return undefined;
-      } else {
-        const tmpReturnArg$33 = tmpBranchingB$5();
-        return tmpReturnArg$33;
-      }
-    };
     if (tmpIfTest$11) {
       $('keep, do not eval');
       return undefined;

@@ -99,17 +99,17 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    const tmpReturnArg$7 = tmpReturnArg;
+    return tmpReturnArg$7;
+  };
   const tmpCalleeParam = $(0);
   let tmpReturnArg = $(tmpCalleeParam);
   const tmpBranchingB = function () {
     debugger;
     const tmpCalleeParam$5 = $(1);
     tmpReturnArg = $(tmpCalleeParam$5);
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg$7 = tmpReturnArg;
-      return tmpReturnArg$7;
-    };
     if (tmpReturnArg) {
       const tmpCalleeParam$9 = $(2);
       tmpReturnArg = $(tmpCalleeParam$9);

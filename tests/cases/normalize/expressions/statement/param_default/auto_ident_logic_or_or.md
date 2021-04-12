@@ -121,21 +121,22 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpCalleeParam$5 = $(0);
-  let tmpSSA_p = $(tmpCalleeParam$5);
   const tmpBranchingB$1 = function () {
     debugger;
     const tmpCalleeParam$11 = $(1);
-    tmpSSA_p = $(tmpCalleeParam$11);
-    if (tmpSSA_p) {
+    p = $(tmpCalleeParam$11);
+    if (p) {
       return undefined;
     } else {
       const tmpCalleeParam$15 = $(2);
-      tmpSSA_p = $(tmpCalleeParam$15);
+      p = $(tmpCalleeParam$15);
       return undefined;
     }
   };
-  if (tmpSSA_p) {
+  let p = undefined;
+  const tmpCalleeParam$5 = $(0);
+  p = $(tmpCalleeParam$5);
+  if (p) {
     return undefined;
   } else {
     const tmpReturnArg$3 = tmpBranchingB$1();

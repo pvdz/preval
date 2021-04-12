@@ -161,19 +161,19 @@ tmpCallCallee(tmpCalleeParam);
 const h = function ($$0) {
   const x = $$0;
   debugger;
+  const g = function () {
+    debugger;
+    if ($) {
+      $('prevent');
+      $('simple');
+      $('inlining');
+      return x;
+    } else {
+      return x;
+    }
+  };
   const f = function () {
     debugger;
-    const g = function () {
-      debugger;
-      if ($) {
-        $('prevent');
-        $('simple');
-        $('inlining');
-        return x;
-      } else {
-        return x;
-      }
-    };
     if ($) {
       $('prevent');
       $('simple');

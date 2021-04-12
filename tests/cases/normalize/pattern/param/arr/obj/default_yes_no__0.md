@@ -118,6 +118,15 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    if (objPatternCrashTest) {
+      objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+      return 'bad';
+    } else {
+      return 'bad';
+    }
+  };
   const arrPatternSplat = [...0];
   const arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep = undefined;
@@ -125,15 +134,6 @@ const f = function () {
   const tmpBranchingC = function () {
     debugger;
     objPatternCrashTest = arrPatternStep === undefined;
-    const tmpBranchingC$1 = function () {
-      debugger;
-      if (objPatternCrashTest) {
-        objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-        return 'bad';
-      } else {
-        return 'bad';
-      }
-    };
     if (objPatternCrashTest) {
       const tmpReturnArg$15 = tmpBranchingC$1();
       return tmpReturnArg$15;

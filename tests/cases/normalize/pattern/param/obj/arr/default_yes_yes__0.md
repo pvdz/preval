@@ -104,14 +104,14 @@ tmpCallCallee$7(tmpCalleeParam$7);
 `````js filename=intro
 const f = function () {
   debugger;
-  let objPatternAfterDefault = undefined;
-  const tmpSSA_objPatternBeforeDefault = (0).x;
-  const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
   const tmpBranchingC$1 = function () {
     debugger;
     [...objPatternAfterDefault];
     return 'ok';
   };
+  let objPatternAfterDefault = undefined;
+  const tmpSSA_objPatternBeforeDefault = (0).x;
+  const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCalleeParam$1 = ['fail'];
     objPatternAfterDefault = $(tmpCalleeParam$1);

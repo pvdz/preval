@@ -19,6 +19,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
   const funcStack = [];
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments.
+  const blockStack = []; // Stack of nested blocks (functions, try/catch/finally, or statements)
   const blockIds = []; // Stack of block pids. Negative if the parent was a loop of sorts.
   let readWriteCounter = 0;
 
@@ -78,15 +79,20 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       case 'Program:before': {
         funcStack.push(node);
         blockIds.push(node.$p.pid);
+        blockStack.push(node); // Do we assign node or node.body?
+        node.$p.promoParent = null;
         break;
       }
       case 'Program:after': {
         funcStack.pop();
         blockIds.pop();
+        blockStack.pop();
         break;
       }
 
       case 'BlockStatement:before': {
+        node.$p.promoParent = blockStack[blockStack.length - 1];
+        blockStack.push(node); // Do we assign node or node.body?
         // Loops push their block id from the statement node, not the body node.
         if (!['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
           blockIds.push(+node.$p.pid);
@@ -95,6 +101,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         break;
       }
       case 'BlockStatement:after': {
+        blockStack.pop();
         blockIds.pop();
         break;
       }
@@ -573,6 +580,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         vlog('- Id: `' + node.declarations[0].id.name + '`');
         ASSERT(node.declarations.length === 1, 'all decls should be normalized to one binding');
         ASSERT(node.declarations[0].id.type === 'Identifier', 'all patterns should be normalized away');
+        node.$p.promoParent = blockStack[blockStack.length - 1];
         const meta = globallyUniqueNamingRegistry.get(node.declarations[0].id.name);
         if (node.kind === 'const') {
           vlog('- marking', meta.uniqueName, 'as constant, ref set to', node.declarations[0].init.type);

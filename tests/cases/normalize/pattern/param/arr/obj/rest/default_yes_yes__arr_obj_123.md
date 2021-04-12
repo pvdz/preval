@@ -115,6 +115,13 @@ tmpCallCallee$9(tmpCalleeParam$13);
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    const tmpCalleeParam$7 = arrPatternStep;
+    const tmpCalleeParam$9 = [];
+    x = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
+    return x;
+  };
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   const tmpBranchingC = function () {
@@ -122,13 +129,6 @@ const f = function ($$0) {
     arrPatternSplat = [...bindingPatternArrRoot];
     arrPatternBeforeDefault = arrPatternSplat[0];
     const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpCalleeParam$7 = arrPatternStep;
-      const tmpCalleeParam$9 = [];
-      x = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
-      return x;
-    };
     if (tmpIfTest$1) {
       const tmpCalleeParam$5 = { a: 'fail' };
       arrPatternStep = $(tmpCalleeParam$5);

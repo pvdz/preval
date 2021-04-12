@@ -123,21 +123,21 @@ tmpCallCallee$3(tmpCalleeParam$3);
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    if (objPatternCrashTest) {
+      objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+      return 'bad';
+    } else {
+      return 'bad';
+    }
+  };
   const objPatternBeforeDefault = tmpParamBare.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   const tmpBranchingC = function () {
     debugger;
     objPatternCrashTest = objPatternAfterDefault === undefined;
-    const tmpBranchingC$1 = function () {
-      debugger;
-      if (objPatternCrashTest) {
-        objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-        return 'bad';
-      } else {
-        return 'bad';
-      }
-    };
     if (objPatternCrashTest) {
       const tmpReturnArg$15 = tmpBranchingC$1();
       return tmpReturnArg$15;

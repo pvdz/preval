@@ -104,17 +104,17 @@ tmpCallCallee$7(tmpCalleeParam$7);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    [...objPatternAfterDefault];
+    return 'ok';
+  };
   let objPatternAfterDefault = undefined;
   const tmpObjLitVal$1 = ['fail2'];
   const tmpCalleeParam$1 = { x: tmpObjLitVal$1 };
   const tmpSSA_bindingPatternObjRoot = $(tmpCalleeParam$1);
   const tmpSSA_objPatternBeforeDefault = tmpSSA_bindingPatternObjRoot.x;
   const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    [...objPatternAfterDefault];
-    return 'ok';
-  };
   if (tmpIfTest$1) {
     const tmpCalleeParam$2 = ['fail'];
     objPatternAfterDefault = $(tmpCalleeParam$2);

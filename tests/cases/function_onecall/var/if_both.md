@@ -86,18 +86,18 @@ $(x);
 ## Output
 
 `````js filename=intro
+const g = function () {
+  debugger;
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    $('a');
+    g();
+  } else {
+    $('b');
+  }
+};
 const f = function () {
   debugger;
-  const g = function () {
-    debugger;
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      $('a');
-      g();
-    } else {
-      $('b');
-    }
-  };
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
     $('c');

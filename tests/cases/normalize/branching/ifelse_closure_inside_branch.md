@@ -87,6 +87,10 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
+  const g$1 = function () {
+    debugger;
+    $(xyz);
+  };
   const tmpBranchingC = function () {
     debugger;
     xyz = $();
@@ -94,10 +98,6 @@ const f = function () {
   };
   let xyz = undefined;
   if ($) {
-    const g$1 = function () {
-      debugger;
-      $(xyz);
-    };
     $(g$1);
     const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;

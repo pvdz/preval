@@ -105,17 +105,17 @@ tmpCallCallee$7(tmpCalleeParam$7);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    [...arrPatternStep];
+    return 'ok';
+  };
   let arrPatternStep = undefined;
   const tmpCalleeParam$1 = ['pass3'];
   const tmpSSA_bindingPatternArrRoot = $(tmpCalleeParam$1);
   const tmpSSA_arrPatternSplat = [...tmpSSA_bindingPatternArrRoot];
   const tmpSSA_arrPatternBeforeDefault = tmpSSA_arrPatternSplat[0];
   const tmpIfTest$1 = tmpSSA_arrPatternBeforeDefault === undefined;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    [...arrPatternStep];
-    return 'ok';
-  };
   if (tmpIfTest$1) {
     const tmpCalleeParam$2 = ['fail2'];
     arrPatternStep = $(tmpCalleeParam$2);

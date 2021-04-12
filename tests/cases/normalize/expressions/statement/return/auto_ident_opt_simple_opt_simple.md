@@ -102,17 +102,17 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    const tmpReturnArg$5 = tmpReturnArg;
+    return tmpReturnArg$5;
+  };
   let tmpReturnArg = undefined;
   const tmpIfTest = b != null;
   const tmpBranchingA = function () {
     debugger;
     const tmpChainElementObject$3 = b.x;
     const tmpIfTest$3 = tmpChainElementObject$3 != null;
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg$5 = tmpReturnArg;
-      return tmpReturnArg$5;
-    };
     if (tmpIfTest$3) {
       const tmpChainElementObject$7 = tmpChainElementObject$3.y;
       tmpReturnArg = tmpChainElementObject$7;

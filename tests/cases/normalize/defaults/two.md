@@ -115,16 +115,16 @@ const f = function ($$0, $$1) {
   const tmpParamBare = $$0;
   const tmpParamBare$1 = $$1;
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    const tmpReturnArg$7 = [a, b];
+    return tmpReturnArg$7;
+  };
   let a = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   const tmpBranchingC = function () {
     debugger;
     const tmpIfTest$1 = tmpParamBare$1 === undefined;
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg$7 = [a, b];
-      return tmpReturnArg$7;
-    };
     if (tmpIfTest$1) {
       b = 'bar';
       const tmpReturnArg$3 = tmpBranchingC$1();

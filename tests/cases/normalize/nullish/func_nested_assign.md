@@ -99,6 +99,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    tmpReturnArg = $(tmpCalleeParam);
+    return tmpReturnArg;
+  };
   const tmpObjLitVal$1 = $();
   const tmpObjLitVal = { b: tmpObjLitVal$1 };
   const obj = { a: tmpObjLitVal };
@@ -109,11 +114,6 @@ const f = function () {
   const tmpBranchingC = function () {
     debugger;
     const tmpIfTest$1 = tmpCalleeParam == null;
-    const tmpBranchingC$1 = function () {
-      debugger;
-      tmpReturnArg = $(tmpCalleeParam);
-      return tmpReturnArg;
-    };
     if (tmpIfTest$1) {
       tmpCalleeParam = b;
       const tmpReturnArg$5 = tmpBranchingC$1();

@@ -131,6 +131,16 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingB$1 = function () {
+    debugger;
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      const tmpReturnArg$13 = $(2, 'ret');
+      return tmpReturnArg$13;
+    } else {
+      return undefined;
+    }
+  };
   const tmpSwitchValue = $(1, 'disc');
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(0);
@@ -138,16 +148,6 @@ const f = function () {
   const tmpBranchingC = function () {
     debugger;
     const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$5) {
-        const tmpReturnArg$13 = $(2, 'ret');
-        return tmpReturnArg$13;
-      } else {
-        return undefined;
-      }
-    };
     if (tmpIfTest$1) {
       $('wrong branch');
       return undefined;

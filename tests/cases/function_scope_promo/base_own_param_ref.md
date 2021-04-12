@@ -158,6 +158,18 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
+const tmpBranchingC$1 = function () {
+  debugger;
+  const tmpCalleeParam = $(10);
+  if ($) {
+    $('prevent');
+    $('simple');
+    $('inlining');
+    return tmpCalleeParam;
+  } else {
+    return tmpCalleeParam;
+  }
+};
 const f = function () {
   debugger;
   if ($) {
@@ -169,18 +181,6 @@ const f = function () {
   } else {
     const tmpReturnArg$15 = tmpBranchingC$1();
     return tmpReturnArg$15;
-  }
-};
-const tmpBranchingC$1 = function () {
-  debugger;
-  const tmpCalleeParam = $(10);
-  if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
-    return tmpCalleeParam;
-  } else {
-    return tmpCalleeParam;
   }
 };
 const h = function () {

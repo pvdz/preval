@@ -115,21 +115,24 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpSSA_objPatternCrashTest = false;
   const tmpBranchingC$1 = function () {
     debugger;
-    if (tmpSSA_objPatternCrashTest) {
-      tmpSSA_objPatternCrashTest = (0).cannotDestructureThis;
+    if (objPatternCrashTest) {
+      objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
       return 'ok';
     } else {
       return 'ok';
     }
   };
-  if (tmpSSA_objPatternCrashTest) {
+  let bindingPatternObjRoot = undefined;
+  let objPatternCrashTest = undefined;
+  bindingPatternObjRoot = 0;
+  objPatternCrashTest = bindingPatternObjRoot === undefined;
+  if (objPatternCrashTest) {
     const tmpReturnArg = tmpBranchingC$1();
     return tmpReturnArg;
   } else {
-    tmpSSA_objPatternCrashTest = false;
+    objPatternCrashTest = bindingPatternObjRoot === null;
     const tmpReturnArg$3 = tmpBranchingC$1();
     return tmpReturnArg$3;
   }

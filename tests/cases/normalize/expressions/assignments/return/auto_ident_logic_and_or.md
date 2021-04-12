@@ -101,15 +101,15 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    tmpReturnArg = a;
+    return tmpReturnArg;
+  };
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
   const tmpBranchingC = function () {
     debugger;
-    const tmpBranchingC$1 = function () {
-      debugger;
-      tmpReturnArg = a;
-      return tmpReturnArg;
-    };
     if (a) {
       const tmpReturnArg$9 = tmpBranchingC$1();
       return tmpReturnArg$9;

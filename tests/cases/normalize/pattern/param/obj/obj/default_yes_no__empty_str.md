@@ -119,21 +119,21 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    if (objPatternCrashTest) {
+      objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+      return 'ok';
+    } else {
+      return 'ok';
+    }
+  };
   const objPatternBeforeDefault = ''.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   const tmpBranchingC = function () {
     debugger;
     objPatternCrashTest = objPatternAfterDefault === undefined;
-    const tmpBranchingC$1 = function () {
-      debugger;
-      if (objPatternCrashTest) {
-        objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-        return 'ok';
-      } else {
-        return 'ok';
-      }
-    };
     if (objPatternCrashTest) {
       const tmpReturnArg$15 = tmpBranchingC$1();
       return tmpReturnArg$15;

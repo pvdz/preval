@@ -128,11 +128,6 @@ tmpCallCallee$7(tmpCalleeParam$7);
 `````js filename=intro
 const f = function () {
   debugger;
-  let objPatternAfterDefault = undefined;
-  let objPatternBeforeDefault$1 = undefined;
-  let y = undefined;
-  const tmpSSA_objPatternBeforeDefault = ''.x;
-  const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
   const tmpBranchingC$1 = function () {
     debugger;
     objPatternBeforeDefault$1 = objPatternAfterDefault.y;
@@ -147,6 +142,11 @@ const f = function () {
       return tmpReturnArg$9;
     }
   };
+  let objPatternAfterDefault = undefined;
+  let objPatternBeforeDefault$1 = undefined;
+  let y = undefined;
+  const tmpSSA_objPatternBeforeDefault = ''.x;
+  const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCalleeParam$1 = { y: 'pass2' };
     objPatternAfterDefault = $(tmpCalleeParam$1);

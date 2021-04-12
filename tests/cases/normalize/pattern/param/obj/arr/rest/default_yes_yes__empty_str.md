@@ -106,17 +106,17 @@ tmpCallCallee$7(tmpCalleeParam$7);
 `````js filename=intro
 const f = function () {
   debugger;
-  let objPatternAfterDefault = undefined;
-  let arrPatternSplat = undefined;
-  let y = undefined;
-  const tmpSSA_objPatternBeforeDefault = ''.x;
-  const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
   const tmpBranchingC$1 = function () {
     debugger;
     arrPatternSplat = [...objPatternAfterDefault];
     y = arrPatternSplat.slice(0);
     return y;
   };
+  let objPatternAfterDefault = undefined;
+  let arrPatternSplat = undefined;
+  let y = undefined;
+  const tmpSSA_objPatternBeforeDefault = ''.x;
+  const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCalleeParam$1 = ['pass'];
     objPatternAfterDefault = $(tmpCalleeParam$1);

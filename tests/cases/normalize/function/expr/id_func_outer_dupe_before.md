@@ -63,13 +63,13 @@ out();
 ## Output
 
 `````js filename=intro
+const g$1 = function () {
+  debugger;
+  const tmpCalleeParam = typeof g$1;
+  $(tmpCalleeParam);
+};
 const out = function () {
   debugger;
-  const g$1 = function () {
-    debugger;
-    const tmpCalleeParam = typeof g$1;
-    $(tmpCalleeParam);
-  };
   const tmpCalleeParam$3 = g$1();
   $(10, tmpCalleeParam$3);
 };

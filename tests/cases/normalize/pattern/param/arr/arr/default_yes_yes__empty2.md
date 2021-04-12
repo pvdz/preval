@@ -124,12 +124,12 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  let X = undefined;
-  const A = ['pass3'];
   const d = function () {
     debugger;
     [...X];
   };
+  let X = undefined;
+  const A = ['pass3'];
   if (A) {
     X = A;
     d();

@@ -157,6 +157,18 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const g = function () {
+  debugger;
+  const x = $(10);
+  if ($) {
+    $('prevent');
+    $('simple');
+    $('inlining');
+    return x;
+  } else {
+    return x;
+  }
+};
 const f = function () {
   debugger;
   if ($) {
@@ -168,18 +180,6 @@ const f = function () {
   } else {
     const tmpReturnArg$15 = g();
     return tmpReturnArg$15;
-  }
-};
-const g = function () {
-  debugger;
-  const x = $(10);
-  if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
-    return x;
-  } else {
-    return x;
   }
 };
 const h = function () {

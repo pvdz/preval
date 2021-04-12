@@ -225,6 +225,8 @@ X('a', 'b', 'c', 'd', 'e');
 ## Output
 
 `````js filename=intro
+let c = 'c';
+let d = 'd';
 const tmpBranchingB$3 = function () {
   debugger;
   const k$5 = -2147483648 > c;
@@ -237,8 +239,6 @@ const tmpBranchingB$3 = function () {
     return tmpReturnArg$11;
   }
 };
-let c = 'c';
-let d = 'd';
 const h$1 = typeof c;
 const i$1 = 'string' == h$1;
 const tmpBranchingB$1 = function () {

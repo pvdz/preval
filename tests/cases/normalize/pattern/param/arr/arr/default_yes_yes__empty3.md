@@ -121,15 +121,15 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  let arrPatternStep = undefined;
-  const tmpAssignRhsProp$1 = ['pass3'];
-  const tmpSSA_arrPatternBeforeDefault = tmpAssignRhsProp$1[0];
-  const tmpIfTest$3 = tmpSSA_arrPatternBeforeDefault === undefined;
   const tmpBranchingC$1 = function () {
     debugger;
     [...arrPatternStep];
     return 'ok';
   };
+  let arrPatternStep = undefined;
+  const tmpAssignRhsProp$1 = ['pass3'];
+  const tmpSSA_arrPatternBeforeDefault = tmpAssignRhsProp$1[0];
+  const tmpIfTest$3 = tmpSSA_arrPatternBeforeDefault === undefined;
   if (tmpIfTest$3) {
     arrPatternStep = ['fail2'];
     const tmpReturnArg$2 = tmpBranchingC$1();

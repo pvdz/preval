@@ -115,22 +115,24 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpSSA_bindingPatternObjRoot = $('pass');
-  let tmpSSA_objPatternCrashTest = tmpSSA_bindingPatternObjRoot === undefined;
   const tmpBranchingC$1 = function () {
     debugger;
-    if (tmpSSA_objPatternCrashTest) {
-      tmpSSA_objPatternCrashTest = tmpSSA_bindingPatternObjRoot.cannotDestructureThis;
+    if (objPatternCrashTest) {
+      objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
       return 'ok';
     } else {
       return 'ok';
     }
   };
-  if (tmpSSA_objPatternCrashTest) {
+  let bindingPatternObjRoot = undefined;
+  let objPatternCrashTest = undefined;
+  bindingPatternObjRoot = $('pass');
+  objPatternCrashTest = bindingPatternObjRoot === undefined;
+  if (objPatternCrashTest) {
     const tmpReturnArg = tmpBranchingC$1();
     return tmpReturnArg;
   } else {
-    tmpSSA_objPatternCrashTest = tmpSSA_bindingPatternObjRoot === null;
+    objPatternCrashTest = bindingPatternObjRoot === null;
     const tmpReturnArg$3 = tmpBranchingC$1();
     return tmpReturnArg$3;
   }

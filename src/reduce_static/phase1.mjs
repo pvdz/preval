@@ -2,7 +2,7 @@ import walk from '../../lib/walk.mjs';
 
 import { VERBOSE_TRACING, RED, BLUE, DIM, RESET } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from '../utils.mjs';
-import { $p } from '../$p.mjs';
+import { $p, resetUid } from '../$p.mjs';
 import * as AST from '../ast.mjs';
 import { getIdentUsageKind, createReadRef, createWriteRef, registerGlobalIdent, registerGlobalLabel } from '../bindings.mjs';
 import globals from '../globals.mjs';
@@ -49,6 +49,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       fdata.fname +
       '\n##################################\n\n\n',
   );
+
+  resetUid();
 
   let called = 0;
   walk(_walker, ast, 'ast');

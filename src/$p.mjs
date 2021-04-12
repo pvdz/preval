@@ -1,6 +1,11 @@
 // Create the $p object
 
 let uid = 0;
+
+export function resetUid() {
+  uid = 0;
+}
+
 export function $p() {
   let pid = String(++uid);
 

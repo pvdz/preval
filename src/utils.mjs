@@ -274,6 +274,7 @@ export function findBodyOffset(funcNode) {
 export function findBodyOffsetExpensiveMaybe(body) {
   // It's expensive because this is called when we don't have access to the params and have to scan from the start
   // Should not be a big deal for real world code tbh, as most functions won't have that many params anyways.
+  // This can also be called on non-function body blocks. In that case it will loop through all elements and return -1.
   for (let i = 0; i < body.length; ++i) {
     if (body[i].type === 'DebuggerStatement') {
       return i + 1;

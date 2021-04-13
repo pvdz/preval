@@ -53,12 +53,8 @@ const a = { a: 999, b: 1000 };
 while (true) {
   const tmpCompObj = $(b);
   const tmpNewCallee = tmpCompObj.$;
-  const tmpIfTest = new tmpNewCallee(1);
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
+  new tmpNewCallee(1);
+  $(100);
 }
 $(a);
 `````

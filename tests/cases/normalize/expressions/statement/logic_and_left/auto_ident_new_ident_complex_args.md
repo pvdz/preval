@@ -49,11 +49,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpIfTest = new $(tmpCalleeParam, tmpCalleeParam$1);
-if (tmpIfTest) {
-  $(100);
-} else {
-}
+new $(tmpCalleeParam, tmpCalleeParam$1);
+$(100);
 $(a);
 `````
 

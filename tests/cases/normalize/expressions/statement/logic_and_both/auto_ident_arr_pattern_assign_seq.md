@@ -69,20 +69,17 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-let tmpSSA_x = arrPatternSplat[0];
-let tmpSSA_y = arrPatternSplat[1];
-if (tmpNestedAssignArrPatternRhs) {
-  $(tmpSSA_x);
-  $(tmpSSA_y);
-  const tmpArrElement$3 = $(3);
-  const tmpArrElement$5 = $(4);
-  const arrAssignPatternRhs = [tmpArrElement$3, tmpArrElement$5];
-  const arrPatternSplat$1 = [...arrAssignPatternRhs];
-  tmpSSA_x = arrPatternSplat$1[0];
-  tmpSSA_y = arrPatternSplat$1[1];
-} else {
-}
-$(a, tmpSSA_x, tmpSSA_y);
+const tmpSSA_x = arrPatternSplat[0];
+const tmpSSA_y = arrPatternSplat[1];
+$(tmpSSA_x);
+$(tmpSSA_y);
+const tmpArrElement$3 = $(3);
+const tmpArrElement$5 = $(4);
+const arrAssignPatternRhs = [tmpArrElement$3, tmpArrElement$5];
+const arrPatternSplat$1 = [...arrAssignPatternRhs];
+const tmpSSA_x$1 = arrPatternSplat$1[0];
+const tmpSSA_y$1 = arrPatternSplat$1[1];
+$(a, tmpSSA_x$1, tmpSSA_y$1);
 `````
 
 ## Globals

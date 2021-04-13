@@ -34,11 +34,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = [];
-if (tmpIfTest) {
-  $(1);
-} else {
-}
+$(1);
 `````
 
 ## Globals

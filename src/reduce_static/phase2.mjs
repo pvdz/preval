@@ -8,6 +8,7 @@ import { inlineSimpleFuncCalls } from './phase2simplefuncs.mjs';
 import { inlineOneTimeFunctions } from './phase2onetimers.mjs';
 import { funcScopePromo } from './phase2funcscopepromo.mjs';
 import { dedupeBranchedReturns } from './phase2deduperetbranch.mjs';
+import { ifReduction } from './phase2ifreduction.mjs';
 import { inlineCommonReturns } from './phase2commonreturn.mjs';
 
 // Things to do
@@ -63,6 +64,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const commoned = inlineCommonReturns(fdata);
   if (commoned) return commoned;
+
+  const deduced = ifReduction(fdata);
+  if (deduced) return deduced;
 
   // The read/write data should still be in tact at this point
 }

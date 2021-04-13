@@ -47,14 +47,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 while (true) {
-  const tmpArrElement = $(1);
-  const tmpArrElement$3 = $(3);
-  const tmpIfTest = [tmpArrElement, 2, tmpArrElement$3];
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
+  $(1);
+  $(3);
+  $(100);
 }
 $(a);
 `````

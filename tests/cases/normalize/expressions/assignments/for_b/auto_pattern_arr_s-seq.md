@@ -63,11 +63,7 @@ while (true) {
   const tmpNestedAssignArrPatternRhs = [1, 2];
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat$1[0];
-  if (tmpNestedAssignArrPatternRhs) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a);
 `````

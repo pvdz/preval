@@ -31,11 +31,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = class {};
-if (tmpIfTest) {
-  $();
-} else {
-}
+$();
 `````
 
 ## Globals

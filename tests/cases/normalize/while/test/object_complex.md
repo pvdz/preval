@@ -46,14 +46,9 @@ $('after');
 
 `````js filename=intro
 while (true) {
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$1 = $(2);
-  const tmpIfTest = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
-  if (tmpIfTest) {
-    $('loop');
-  } else {
-    break;
-  }
+  $(1);
+  $(2);
+  $('loop');
 }
 $('after');
 `````

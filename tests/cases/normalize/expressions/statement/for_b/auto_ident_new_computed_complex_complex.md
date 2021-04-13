@@ -59,12 +59,8 @@ while (true) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('$');
   const tmpNewCallee = tmpCompObj[tmpCompProp];
-  const tmpIfTest = new tmpNewCallee(1);
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
+  new tmpNewCallee(1);
+  $(1);
 }
 $(a);
 `````

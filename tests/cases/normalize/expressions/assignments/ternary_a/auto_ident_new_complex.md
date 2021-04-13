@@ -45,15 +45,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpNewCallee = $($);
 const tmpSSA_a = new tmpNewCallee(1);
-if (tmpSSA_a) {
-  tmpCalleeParam = $(100);
-} else {
-  tmpCalleeParam = $(200);
-}
-$(tmpCalleeParam);
+const tmpSSA_tmpCalleeParam = $(100);
+$(tmpSSA_tmpCalleeParam);
 $(tmpSSA_a);
 `````
 

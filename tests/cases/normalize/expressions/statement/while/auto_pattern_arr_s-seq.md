@@ -52,12 +52,7 @@ const a = arrPatternSplat[0];
 while (true) {
   $(10);
   $(20);
-  const tmpIfTest = [1, 2];
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
+  $(100);
 }
 $(a);
 `````

@@ -33,11 +33,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpIfTest = new tmpNewCallee();
-if (tmpIfTest) {
-  $(2);
-} else {
-}
+new tmpNewCallee();
+$(2);
 `````
 
 ## Globals

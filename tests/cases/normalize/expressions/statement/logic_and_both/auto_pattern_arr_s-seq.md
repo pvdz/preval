@@ -49,12 +49,8 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpIfTest = [1, 2];
-if (tmpIfTest) {
-  $(10);
-  $(20);
-} else {
-}
+$(10);
+$(20);
 $(a);
 `````
 

@@ -51,15 +51,7 @@ $('after');
 
 `````js filename=intro
 while (true) {
-  const tmpIfTest = function () {
-    debugger;
-    return undefined;
-  };
-  if (tmpIfTest) {
-    $('loop');
-  } else {
-    break;
-  }
+  $('loop');
 }
 $('after');
 `````

@@ -50,15 +50,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpObjLitVal = $(1);
 const tmpSSA_a = { b: tmpObjLitVal };
-if (tmpSSA_a) {
-  tmpCalleeParam = $(100);
-} else {
-  tmpCalleeParam = $(200);
-}
-$(tmpCalleeParam);
+const tmpSSA_tmpCalleeParam = $(100);
+$(tmpSSA_tmpCalleeParam);
 const tmpAssignComMemLhsProp = $('b');
 tmpSSA_a[tmpAssignComMemLhsProp] = 2;
 $(tmpSSA_a);

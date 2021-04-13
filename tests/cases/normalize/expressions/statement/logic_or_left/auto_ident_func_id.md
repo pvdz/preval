@@ -46,14 +46,6 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  return undefined;
-};
-if (f) {
-} else {
-  $(100);
-}
 $(a);
 `````
 

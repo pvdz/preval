@@ -51,14 +51,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 while (true) {
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$3 = $(3);
-  const tmpIfTest = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
+  $(3);
+  $(1);
 }
 $(a);
 `````

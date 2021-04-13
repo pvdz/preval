@@ -44,14 +44,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$3 = $(3);
-const tmpIfTest = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-if (tmpIfTest) {
-  $(100);
-} else {
-  $(200);
-}
+$(1);
+$(3);
+$(100);
 $(a);
 `````
 

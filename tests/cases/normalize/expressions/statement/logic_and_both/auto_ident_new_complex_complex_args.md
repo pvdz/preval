@@ -53,14 +53,11 @@ const a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpIfTest = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-if (tmpIfTest) {
-  const tmpNewCallee$1 = $($);
-  const tmpCalleeParam$3 = $(1);
-  const tmpCalleeParam$5 = $(2);
-  new tmpNewCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
-} else {
-}
+new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpNewCallee$1 = $($);
+const tmpCalleeParam$3 = $(1);
+const tmpCalleeParam$5 = $(2);
+new tmpNewCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 $(a);
 `````
 

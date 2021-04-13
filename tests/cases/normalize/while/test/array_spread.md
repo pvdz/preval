@@ -49,12 +49,8 @@ $('after');
 while (true) {
   const tmpCalleeParam = [1, 2, 3];
   const tmpArrSpread = $(tmpCalleeParam);
-  const tmpIfTest = [...tmpArrSpread];
-  if (tmpIfTest) {
-    $('loop');
-  } else {
-    break;
-  }
+  [...tmpArrSpread];
+  $('loop');
 }
 $('after');
 `````

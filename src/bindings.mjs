@@ -347,7 +347,12 @@ export function generateUniqueGlobalName(name, fdata, assumeDoubleDollar = false
 
   return name;
 }
-export function registerGlobalIdent(fdata, name, originalName, { isExport = false, isImplicitGlobal = false, isBuiltin = false, ...rest } = {}) {
+export function registerGlobalIdent(
+  fdata,
+  name,
+  originalName,
+  { isExport = false, isImplicitGlobal = false, isBuiltin = false, ...rest } = {},
+) {
   ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place');
   ASSERT(Object.keys(rest).length === 0, 'invalid args');
 
@@ -405,6 +410,23 @@ export function registerGlobalIdent(fdata, name, originalName, { isExport = fals
     // - [ ] for-loop lhs
     writes: [], // {parent, prop, index} indirect reference ot the node being assigned. In phase1 (only); If not implicit/builtin then the first write should be the decl. Note that reads and writes can legally appear in source/ast before decl.
     reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
+
+    // Phase1 collects typing information
+    typing: {
+      // string. If anything, this should then be the primitive type that this binding must be.
+      // TODO: what if there are multiple options? Or even like bool/undefined/null? "falsy/truthy"
+      mustBeType: '',
+      mustBeFalsy: false, // false, null, undefined, 0, ''
+      mustBeTruthy: false, // at least none of the falsy ones :)
+      // number. If type is a number range, these are its bounds
+      rangeStart: -Infinity,
+      rangeEnd: Infinity,
+      // For bindings where we know the value to be within a certain set of values, this is that set.
+      // For example: `const t = typeof x` has a (small) finite set of values regardless of what `x` is
+      // We do have to arbitrarily limit the max size of this set (I guess)
+      // Set. If `undefined` then none were collected. If `false` then there were too many, whatever that is.
+      valueSet: undefined,
+    },
   };
   ASSERT(name);
   if (/^\$\$\d+$/.test(name)) fixme;
@@ -816,4 +838,184 @@ export function findBoundNamesInVarDeclarator(decl, names = []) {
   r(decl.id, names);
 
   return names;
+}
+
+export function inferInitialType(meta, init) {
+  // Given a node `init`, determine the initial typing for this meta.
+
+  if (init.type === 'Literal') {
+    if (init.raw === 'null') {
+      meta.typing.mustBeType = 'null';
+      meta.typing.mustBeFalsy = true;
+      meta.typing.valueSet = new Set([null]);
+    } else if (typeof init.value === 'number') {
+      meta.typing.mustBeType = 'number';
+      meta.typing.mustBeFalsy = init.value === 0;
+      meta.typing.mustBeTruthy = init.value !== 0;
+      meta.typing.valueSet = new Set([init.value]);
+    } else if (typeof init.value === 'string') {
+      meta.typing.mustBeType = 'string';
+      meta.typing.mustBeFalsy = init.value === '';
+      meta.typing.mustBeTruthy = init.value !== '';
+      meta.typing.valueSet = new Set([init.value]);
+    } else if (typeof init.value === 'boolean') {
+      meta.typing.mustBeType = 'boolean';
+      meta.typing.mustBeFalsy = !init.value;
+      meta.typing.mustBeTruthy = init.value;
+      meta.typing.valueSet = new Set([init.value]);
+    } else if (init.raw[0] === '/') {
+      meta.typing.mustBeType = 'regex';
+      meta.typing.mustBeFalsy = false;
+      meta.typing.mustBeTruthy = true;
+      meta.typing.valueSet = new Set([init.value]);
+    } else {
+      ASSERT(false, 'support me', init);
+    }
+  } else if (init.type === 'Literal') {
+    switch (init.name) {
+      case 'undefined': {
+        meta.typing.mustBeType = 'undefined';
+        meta.typing.mustBeFalsy = true;
+        meta.typing.mustBeTruthy = false;
+        meta.typing.valueSet = new Set([undefined]);
+        break;
+      }
+      case 'NaN':
+        meta.typing.mustBeType = 'number';
+        meta.typing.mustBeFalsy = true;
+        meta.typing.mustBeTruthy = false;
+        meta.typing.valueSet = new Set([NaN]);
+        break;
+      case 'Infinity':
+        meta.typing.mustBeType = 'number';
+        meta.typing.mustBeFalsy = false;
+        meta.typing.mustBeTruthy = true;
+        meta.typing.valueSet = new Set([Infinity]);
+        break;
+    }
+  } else if (init.type === 'ThisExpression') {
+    meta.typing.mustBeType = 'object';
+    meta.typing.mustBeFalsy = false;
+    meta.typing.mustBeTruthy = true;
+    meta.typing.valueSet = false;
+  } else if (init.type === 'UnaryExpression') {
+    switch (init.operator) {
+      case 'delete':
+        meta.typing.mustBeType = 'boolean';
+        meta.typing.valueSet = new Set([true, false]);
+        break;
+      case 'void':
+        meta.typing.mustBeType = 'undefined';
+        meta.typing.mustBeFalsy = true;
+        meta.typing.mustBeTruthy = false;
+        meta.typing.valueSet = new Set([undefined]);
+        break;
+      case '+':
+        meta.typing.mustBeType = 'number';
+        break;
+      case '-':
+        meta.typing.mustBeType = 'number';
+        break;
+      case '!':
+        meta.typing.mustBeType = 'boolean';
+        meta.typing.valueSet = new Set([true, false]);
+        break;
+      case '~':
+        meta.typing.mustBeType = 'number';
+        break;
+      case 'typeof':
+        meta.typing.mustBeType = 'string';
+        meta.typing.valueSet = new Set(['undefined', 'boolean', 'number', 'string', 'object', 'function', 'bigint']);
+        break;
+      default:
+        ASSERT(false);
+    }
+  } else if (init.type === 'BinaryExpression') {
+    switch (init.operator) {
+      case '===':
+      case '==':
+      case '!==':
+      case '!=':
+      case '<':
+      case '<=':
+      case '>':
+      case '>=':
+      case 'in':
+      case 'instanceof':
+        meta.typing.mustBeType = 'boolean';
+        meta.typing.valueSet = new Set([true, false]);
+        break;
+      case '-':
+      case '*':
+      case '/':
+      case '%':
+      case '>>':
+      case '>>>':
+      case '<<':
+      case '^':
+      case '&':
+      case '|':
+      case '**':
+        meta.typing.mustBeType = 'number';
+        meta.typing.valueSet = false;
+        break;
+      case '+':
+        // TODO... If I know one side is a string or object then I'll know the result is a string...?
+        break;
+      default:
+        ASSERT(false, 'you forgot one', init);
+    }
+  } else if (init.type === 'FunctionExpression') {
+    meta.typing.mustBeType = 'function';
+    meta.typing.mustBeFalsy = false;
+    meta.typing.mustBeTruthy = true;
+    meta.typing.valueSet = false;
+  } else if (init.type === 'CallExpression') {
+    // TODO
+  } else if (init.type === 'NewExpression') {
+    meta.typing.mustBeType = 'object';
+    meta.typing.mustBeFalsy = false;
+    meta.typing.mustBeTruthy = true;
+    meta.typing.valueSet = false;
+  } else if (init.type === 'MemberExpression') {
+    // TODO
+  } else if (init.type === 'ArrayExpression') {
+    meta.typing.mustBeType = 'array';
+    meta.typing.mustBeFalsy = false;
+    meta.typing.mustBeTruthy = true;
+    meta.typing.valueSet = false;
+  } else if (init.type === 'ObjectExpression') {
+    meta.typing.mustBeType = 'object';
+    meta.typing.mustBeFalsy = false;
+    meta.typing.mustBeTruthy = true;
+    meta.typing.valueSet = false;
+  } else if (init.type === 'TaggedTemplateExpression') {
+    // TODO (this is not a string but a call)
+  } else if (init.type === 'TemplateLiteral') {
+    // Note: this must be a template with multiple parts so hard to be more specific
+    meta.typing.mustBeType = 'string';
+  } else if (init.type === 'ClassExpression') {
+    meta.typing.mustBeType = 'class';
+    meta.typing.mustBeFalsy = false;
+    meta.typing.mustBeTruthy = true;
+    meta.typing.valueSet = false;
+  } else if (init.type === 'Param') {
+    // hmmmm do nothing?
+  } else if (init.type === 'ChainExpression') {
+    ASSERT(false);
+  } else if (init.type === 'SequenceExpression') {
+    ASSERT(false);
+  } else if (init.type === 'AssignmentExpression') {
+    ASSERT(false);
+  } else if (init.type === 'LogicalExpression') {
+    ASSERT(false);
+  } else if (init.type === 'ConditionalExpression') {
+    ASSERT(false);
+  } else if (init.type === 'UpdateExpression') {
+    ASSERT(false);
+  } else if (init.type === 'ArrowFunctionExpression') {
+    ASSERT(false);
+  } else {
+    // Do I want to assert false here? At this point there can't be that many legit unchecked nodes left
+  }
 }

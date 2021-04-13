@@ -60,17 +60,14 @@ const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-let tmpSSA_x = tmpNestedAssignObjPatternRhs.x;
-let tmpSSA_y = tmpNestedAssignObjPatternRhs.y;
-if (tmpNestedAssignObjPatternRhs) {
-  const tmpObjLitVal$3 = $(3);
-  const tmpObjLitVal$5 = $(4);
-  const tmpAssignObjPatternRhs = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-  tmpSSA_x = tmpAssignObjPatternRhs.x;
-  tmpSSA_y = tmpAssignObjPatternRhs.y;
-} else {
-}
-$(a, tmpSSA_x, tmpSSA_y);
+tmpNestedAssignObjPatternRhs.x;
+tmpNestedAssignObjPatternRhs.y;
+const tmpObjLitVal$3 = $(3);
+const tmpObjLitVal$5 = $(4);
+const tmpAssignObjPatternRhs = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
+const tmpSSA_x$1 = tmpAssignObjPatternRhs.x;
+const tmpSSA_y$1 = tmpAssignObjPatternRhs.y;
+$(a, tmpSSA_x$1, tmpSSA_y$1);
 `````
 
 ## Globals

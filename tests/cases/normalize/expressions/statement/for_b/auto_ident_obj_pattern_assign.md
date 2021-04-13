@@ -68,11 +68,7 @@ while (true) {
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
-  if (tmpNestedAssignObjPatternRhs) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a, x, y);
 `````

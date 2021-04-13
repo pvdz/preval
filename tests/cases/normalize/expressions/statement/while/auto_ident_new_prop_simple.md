@@ -51,12 +51,8 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 while (true) {
   const tmpNewCallee = b.$;
-  const tmpIfTest = new tmpNewCallee(1);
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
+  new tmpNewCallee(1);
+  $(100);
 }
 $(a);
 `````

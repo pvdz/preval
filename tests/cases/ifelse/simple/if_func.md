@@ -39,14 +39,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = function () {
-  debugger;
-  return undefined;
-};
-if (tmpIfTest) {
-  $();
-} else {
-}
+$();
 `````
 
 ## Globals

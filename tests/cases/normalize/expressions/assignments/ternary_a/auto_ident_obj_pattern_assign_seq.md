@@ -58,7 +58,6 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 $(1);
 $(2);
 const tmpObjLitVal = $(3);
@@ -66,12 +65,8 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 const tmpSSA_x = tmpNestedAssignObjPatternRhs.x;
 const tmpSSA_y = tmpNestedAssignObjPatternRhs.y;
-if (tmpNestedAssignObjPatternRhs) {
-  tmpCalleeParam = $(100);
-} else {
-  tmpCalleeParam = $(200);
-}
-$(tmpCalleeParam);
+const tmpSSA_tmpCalleeParam = $(100);
+$(tmpSSA_tmpCalleeParam);
 $(tmpNestedAssignObjPatternRhs, tmpSSA_x, tmpSSA_y);
 `````
 

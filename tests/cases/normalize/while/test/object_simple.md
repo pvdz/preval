@@ -44,12 +44,7 @@ $('after');
 
 `````js filename=intro
 while (true) {
-  const tmpIfTest = { a: 1, b: 2 };
-  if (tmpIfTest) {
-    $('loop');
-  } else {
-    break;
-  }
+  $('loop');
 }
 $('after');
 `````

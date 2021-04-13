@@ -48,12 +48,9 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
-const tmpIfTest = new tmpNewCallee(1);
-if (tmpIfTest) {
-  const tmpNewCallee$1 = b.$;
-  new tmpNewCallee$1(1);
-} else {
-}
+new tmpNewCallee(1);
+const tmpNewCallee$1 = b.$;
+new tmpNewCallee$1(1);
 $(a);
 `````
 

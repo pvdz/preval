@@ -50,11 +50,8 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
-const tmpIfTest = new tmpNewCallee(1);
-if (tmpIfTest) {
-  $(100);
-} else {
-}
+new tmpNewCallee(1);
+$(100);
 $(a);
 `````
 

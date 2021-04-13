@@ -31,7 +31,11 @@ export function $p() {
     // - readsArgumentsAny // bool. Does it read the implicit `arguments` in any way?
     // - containsFunctions // bool. Does a function body contain nested functions (anywhere of any kind)?
     // - unqualifiedLabelUsages // Array<node>. Should contain loop and/or switch nodes. When finding an unqualified break/continue, this tells you where it jumps to.
-    // - earlyReturn // bool. Does this function contain a return statement that is not its last statement?
+    // - earlyComplete // bool. Not for global. Does this function contain an early completion? A return or throw that is not at the end of the function? (break/continue do not stop a function, await/yield are not yet supported)
+    // - earlyReturn // bool. Not for global. Does this function contain a return statement that is not its last statement?
+    // - earlyThrow // bool. Not for global. Does this function contain a throw statement that is not its last statement?
+    // - commonReturn // node | null | undefined. A fresh node (one!) that depicts the value being returned by all return points. This node should be simple so it's an ident or a literal. If no return has been seen yet, this value is undefined. If not all returns have the same value, this value will be null. Otherwise it'll be a fresh AST node (ident/lit).
+    // - throwsExplicitly // bool.
     // - hasBranch // bool. Does this function contain an `if`, `while`, or `for-x` statement?
     // - funcDepth // number. Debug. How many nested scopes does this node appear in
     // - oneTimerDirty // bool. Mark a function as having something inlined into it. This invalidates references and requires another phase1 pass before being able to inline the function itself safely.

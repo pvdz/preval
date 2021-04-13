@@ -4,7 +4,14 @@ import { VERBOSE_TRACING, RED, BLUE, DIM, RESET } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from '../utils.mjs';
 import { $p, resetUid } from '../$p.mjs';
 import * as AST from '../ast.mjs';
-import { getIdentUsageKind, createReadRef, createWriteRef, registerGlobalIdent, registerGlobalLabel } from '../bindings.mjs';
+import {
+  getIdentUsageKind,
+  createReadRef,
+  createWriteRef,
+  inferInitialType,
+  registerGlobalIdent,
+  registerGlobalLabel,
+} from '../bindings.mjs';
 import globals from '../globals.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
@@ -66,7 +73,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
     const parentIndex = path.indexes[path.indexes.length - 1];
 
     if (before) {
-      ASSERT(!parentNode || parentNode.$p)
+      ASSERT(!parentNode || parentNode.$p);
       node.$p = $p();
       node.$p.funcDepth = funcStack.length;
     }
@@ -108,6 +115,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
       case 'BreakStatement:before':
       case 'ContinueStatement:before': {
+        // TODO: with the new normalization rules, do we still have labels, break, and continue here?
         // Note: continue/break state is verified by the parser so we should be able to assume this continue/break has a valid target
         if (node.label) {
           const name = node.label.name;
@@ -129,6 +137,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             parentIndex,
           });
         }
+
         break;
       }
 
@@ -344,7 +353,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             const grandProp = path.props[path.props.length - 2];
             const grandIndex = path.indexes[path.indexes.length - 2];
 
-            const innerLoop = blockIds.filter((n) => n < 0).pop() ?? 0
+            const innerLoop = blockIds.filter((n) => n < 0).pop() ?? 0;
 
             const blockBody = blockNode.body;
             meta.reads.push(
@@ -514,6 +523,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       }
 
       case 'LabeledStatement:before': {
+        // TODO: with the new normalization rules, do we still have labels, break, and continue here?
         vlog('Label:', node.label.name);
         registerGlobalLabel(fdata, node.label.name, node.label.name, node);
         break;
@@ -643,16 +653,18 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           parentNode,
         );
         ASSERT(parentProp === 'body', 'amirite?', parentProp);
+        const init = node.declarations[0].init;
         meta.constValueRef = {
           // This is supposed to be the ref of the binding _value_, not the variable declaration node !
           // If the var decl is not a constant, this value has little meaning. But it is what it is.
-          node: node.declarations[0].init,
+          node: init,
           // This refers to the block where the var decl lives that declares the binding
           containerNode: node, // The var decl itself
           // containerParent[containerIndex] === containerNode
           containerParent: parentNode.body,
           containerIndex: parentIndex,
         };
+        inferInitialType(meta, init);
         // Binding "owner" func node. In which scope was this binding bound?
         meta.bfuncNode = funcStack[funcStack.length - 1];
         break;
@@ -706,7 +718,9 @@ function discoverEarlyCompletion(needleNode, funcNode, isReturn) {
         lastNode.consequent.body[lastNode.consequent.body.length - 1] === needleNode ||
         lastNode.alternate?.body[lastNode.alternate.body.length - 1] === needleNode
       ) {
-        vlog('Last func element is `if` and the Completion node is the last element of one of its branches so this is a regular completion.');
+        vlog(
+          'Last func element is `if` and the Completion node is the last element of one of its branches so this is a regular completion.',
+        );
       } else {
         vlog('Last func element is `if` and the Completion node is not the last element of either branch so this is an abrubt completion.');
         funcNode.$p.earlyComplete = true;

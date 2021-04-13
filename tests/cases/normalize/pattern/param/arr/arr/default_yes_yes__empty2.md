@@ -128,19 +128,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const d = function () {
-  debugger;
-  [...X];
-  return undefined;
-};
-let X = undefined;
 const A = ['pass3'];
-if (A) {
-  X = A;
-  d();
-} else {
-  d();
-}
+[...A];
 $(undefined);
 `````
 

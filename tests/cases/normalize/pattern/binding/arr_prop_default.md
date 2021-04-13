@@ -100,20 +100,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpSSA_a = [];
-  const arrPatternSplat = [...tmpSSA_a];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpSSA_a = [];
+const arrPatternSplat = [...tmpSSA_a];
+arrPatternSplat[0];
+$(undefined);
 `````
 
 ## Globals

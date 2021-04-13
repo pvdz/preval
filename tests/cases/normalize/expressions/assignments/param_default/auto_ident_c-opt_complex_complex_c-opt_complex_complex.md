@@ -128,45 +128,39 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpBranchingA = function () {
-  debugger;
-  let tmpNestedComplexRhs$1 = undefined;
-  const tmpChainElementCall$1 = $(b);
-  const tmpIfTest$5 = tmpChainElementCall$1 != null;
-  const tmpBranchingA$1 = function () {
-    debugger;
-    const tmpChainRootComputed$7 = $('x');
-    const tmpChainElementObject$7 = tmpChainElementCall$1[tmpChainRootComputed$7];
-    const tmpIfTest$9 = tmpChainElementObject$7 != null;
-    if (tmpIfTest$9) {
-      const tmpChainRootComputed$11 = $('y');
-      const tmpChainElementObject$11 = tmpChainElementObject$7[tmpChainRootComputed$11];
-      tmpNestedComplexRhs$1 = tmpChainElementObject$11;
-      const tmpReturnArg = tmpBranchingC$1();
-      return tmpReturnArg;
-    } else {
-      const tmpReturnArg$7 = tmpBranchingC$1();
-      return tmpReturnArg$7;
-    }
-  };
-  const tmpBranchingC$1 = function () {
-    debugger;
-    a = tmpNestedComplexRhs$1;
-    return undefined;
-  };
-  if (tmpIfTest$5) {
-    const tmpReturnArg$13 = tmpBranchingA$1();
-    return tmpReturnArg$13;
-  } else {
-    const tmpReturnArg$15 = tmpBranchingC$1();
-    return tmpReturnArg$15;
-  }
-};
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = tmpBranchingA();
-$(tmpCalleeParam);
+let tmpNestedComplexRhs$1 = undefined;
+const tmpChainElementCall$1 = $(b);
+const tmpIfTest$5 = tmpChainElementCall$1 != null;
+const tmpBranchingA$1 = function () {
+  debugger;
+  const tmpChainRootComputed$7 = $('x');
+  const tmpChainElementObject$7 = tmpChainElementCall$1[tmpChainRootComputed$7];
+  const tmpIfTest$9 = tmpChainElementObject$7 != null;
+  if (tmpIfTest$9) {
+    const tmpChainRootComputed$11 = $('y');
+    const tmpChainElementObject$11 = tmpChainElementObject$7[tmpChainRootComputed$11];
+    tmpNestedComplexRhs$1 = tmpChainElementObject$11;
+    tmpBranchingC$1();
+    return undefined;
+  } else {
+    tmpBranchingC$1();
+    return undefined;
+  }
+};
+const tmpBranchingC$1 = function () {
+  debugger;
+  a = tmpNestedComplexRhs$1;
+  return undefined;
+};
+if (tmpIfTest$5) {
+  tmpBranchingA$1();
+} else {
+  tmpBranchingC$1();
+}
+$(undefined);
 $(a);
 `````
 

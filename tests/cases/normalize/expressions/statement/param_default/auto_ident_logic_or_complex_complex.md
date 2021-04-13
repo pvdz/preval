@@ -97,21 +97,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpCalleeParam$3 = $(0);
-  const tmpSSA_p = $(tmpCalleeParam$3);
-  if (tmpSSA_p) {
-    return undefined;
-  } else {
-    const tmpCalleeParam$1 = $(2);
-    $(tmpCalleeParam$1);
-    return undefined;
-  }
-};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$9 = f();
-$(tmpCalleeParam$9);
+const tmpCalleeParam$3 = $(0);
+const tmpSSA_p = $(tmpCalleeParam$3);
+if (tmpSSA_p) {
+} else {
+  const tmpCalleeParam$7 = $(2);
+  $(tmpCalleeParam$7);
+}
+$(undefined);
 $(a);
 `````
 

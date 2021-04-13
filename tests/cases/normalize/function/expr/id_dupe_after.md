@@ -56,8 +56,8 @@ const g$1 = function () {
   $(tmpCalleeParam);
   return undefined;
 };
-const tmpCalleeParam$3 = g$1();
-$(10, tmpCalleeParam$3);
+g$1();
+$(10, undefined);
 `````
 
 ## Globals

@@ -79,30 +79,24 @@ tmpCallCallee(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
-const f = function () {
+let a = undefined;
+const tmpChainElementCall = $($);
+const tmpIfTest = tmpChainElementCall != null;
+const tmpBranchingC = function () {
   debugger;
-  let a = undefined;
-  const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall != null;
-  const tmpBranchingC = function () {
-    debugger;
-    $(a);
-    return undefined;
-  };
-  if (tmpIfTest) {
-    const tmpCallVal$1 = tmpChainElementCall.call;
-    const tmpCalleeParam$5 = $(1);
-    const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementCall, $, tmpCalleeParam$5);
-    a = tmpChainElementCall$3;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$5 = tmpBranchingC();
-    return tmpReturnArg$5;
-  }
+  $(a);
+  return undefined;
 };
-const tmpCalleeParam$7 = f();
-$(tmpCalleeParam$7);
+if (tmpIfTest) {
+  const tmpCallVal$1 = tmpChainElementCall.call;
+  const tmpCalleeParam$5 = $(1);
+  const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementCall, $, tmpCalleeParam$5);
+  a = tmpChainElementCall$3;
+  tmpBranchingC();
+} else {
+  tmpBranchingC();
+}
+$(undefined);
 `````
 
 ## Globals

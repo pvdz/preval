@@ -65,9 +65,9 @@ const r$1 = function () {
   $('number');
   return 30;
 };
-const x = r$1();
+r$1();
 const tmpCalleeParam$3 = typeof r$1;
-$(x, tmpCalleeParam$3);
+$(30, tmpCalleeParam$3);
 `````
 
 ## Globals

@@ -96,21 +96,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpBranchingA = function () {
-  debugger;
-  const tmpIfTest$3 = $(30);
-  if (tmpIfTest$3) {
-    $(2);
-    return undefined;
-  } else {
-    const tmpCalleeParam$3 = $(100);
-    $(tmpCalleeParam$3);
-    return undefined;
-  }
-};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$5 = tmpBranchingA();
-$(tmpCalleeParam$5);
+const tmpIfTest$3 = $(30);
+if (tmpIfTest$3) {
+  $(2);
+} else {
+  const tmpCalleeParam$3 = $(100);
+  $(tmpCalleeParam$3);
+}
+$(undefined);
 $(a);
 `````
 

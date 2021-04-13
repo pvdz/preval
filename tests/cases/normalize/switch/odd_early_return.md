@@ -409,8 +409,8 @@ const f = function () {
         const tmpReturnArg$79 = $(6);
         return tmpReturnArg$79;
       } else {
-        const tmpReturnArg$93 = tmpBranchingB$17();
-        return tmpReturnArg$93;
+        tmpBranchingB$17();
+        return undefined;
       }
     };
     let tmpIfTest$35 = undefined;

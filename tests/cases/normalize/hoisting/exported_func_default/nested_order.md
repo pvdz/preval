@@ -88,8 +88,8 @@ const f = function () {
   $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   return undefined;
 };
-const tmpCalleeParam$5 = f();
-$(tmpCalleeParam$5);
+f();
+$(undefined);
 export { f as default };
 `````
 

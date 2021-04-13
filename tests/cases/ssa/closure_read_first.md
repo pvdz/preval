@@ -83,7 +83,8 @@ if ($) {
 ## Output
 
 `````js filename=intro
-if ($) {
+const f = function () {
+  debugger;
   let x = 1;
   const g = function () {
     debugger;
@@ -100,6 +101,10 @@ if ($) {
   g();
   g();
   $();
+  return undefined;
+};
+if ($) {
+  f();
   $(undefined);
 } else {
 }

@@ -111,37 +111,30 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const objPatternNoDefault = tmpParamBare.x;
-  const objPatternNoDefault$1 = objPatternNoDefault.y;
-  const objPatternNoDefault$3 = objPatternNoDefault$1.z;
-  let objPatternCrashTest = objPatternNoDefault$3 === undefined;
-  const tmpBranchingC = function () {
-    debugger;
-    if (objPatternCrashTest) {
-      objPatternCrashTest = objPatternNoDefault$3.cannotDestructureThis;
-      return 'ok';
-    } else {
-      return 'ok';
-    }
-  };
-  if (objPatternCrashTest) {
-    const tmpReturnArg$11 = tmpBranchingC();
-    return tmpReturnArg$11;
-  } else {
-    objPatternCrashTest = objPatternNoDefault$3 === null;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  }
-};
 const tmpObjLitVal$5 = { a: 1, b: 2, c: 3 };
 const tmpObjLitVal$3 = { z: tmpObjLitVal$5, a: 15, b: 16 };
 const tmpObjLitVal = { x: 13, y: tmpObjLitVal$3, z: 14 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpCalleeParam = f(tmpCalleeParam$1);
-$(tmpCalleeParam);
+const objPatternNoDefault = tmpCalleeParam$1.x;
+const objPatternNoDefault$1 = objPatternNoDefault.y;
+const objPatternNoDefault$3 = objPatternNoDefault$1.z;
+let objPatternCrashTest = objPatternNoDefault$3 === undefined;
+const tmpBranchingC = function () {
+  debugger;
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternNoDefault$3.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
+  }
+};
+if (objPatternCrashTest) {
+  tmpBranchingC();
+} else {
+  objPatternCrashTest = objPatternNoDefault$3 === null;
+  tmpBranchingC();
+}
+$('ok');
 `````
 
 ## Globals

@@ -539,28 +539,77 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
       case 'ReturnStatement:before': {
         const funcNode = funcStack[funcStack.length - 1];
-        ASSERT(funcNode?.body?.body, 'eh, func node?', funcStack.length, funcNode);
-        vlog('Parent func:', funcNode.type, ', last node same?', funcNode.body.body[funcNode.body.body.length - 1] === node);
-        if (funcNode.type === 'FunctionExpression') {
-          const lastNode = funcNode.body.body[funcNode.body.body.length - 1];
-          if (lastNode === node) {
-            vlog('Found explicit return but it was the last statement of the function');
-          } else if (lastNode?.type === 'IfStatement') {
-            if (
-              lastNode.consequent.body[lastNode.consequent.body.length - 1] === node ||
-              lastNode.alternate?.body[lastNode.alternate.body.length - 1] === node
-            ) {
-              vlog('Return node is last element of if or else branch that is at the end of a function. Not an early return.');
+        discoverEarlyCompletion(node, funcNode, true);
+
+        vgroup('[commonReturn]');
+        const a = funcNode.$p.commonReturn;
+        const b = node.argument;
+        if (a === null) {
+          // noop
+          vlog('commonReturn is already null so not setting it');
+        } else if (!AST.isPrimitive(b)) {
+          vlog('the arg is not a primitive so setting commonReturn to null');
+          funcNode.$p.commonReturn = null; // No longer use this
+        } else if (a === undefined) {
+          vlog('commonReturn was not set so setting it now');
+          funcNode.$p.commonReturn = AST.cloneSimple(node.argument);
+        } else if (a.type === b.type) {
+          if (b.type === 'Identifier') {
+            if (a.name !== b.name) {
+              vlog('return value is not same as commonReturn so setting it to null');
+              funcNode.$p.commonReturn = null; // No longer use this
             } else {
-              vlog('Last element is ifelse and but neither branch ended with this node, this function is returning early');
-              funcNode.$p.earlyReturn = true;
+              vlog('- No change to commonReturn. Both have the same ident:', a.name, b.name);
             }
-          } else {
-            vlog('Last node was not an ifelse and not this return so marking this function as returning early');
-            funcNode.$p.earlyReturn = true;
+          } else if (b.type === 'Literal') {
+            if (a.value !== b.value || a.raw !== b.raw) {
+              vlog('return value is not same as commonReturn so setting it to null');
+              funcNode.$p.commonReturn = null; // No longer use this
+            } else {
+              vlog('- No change to commonReturn. Both have the same value/raw:', a.value, a.raw, b.value, b.raw);
+            }
+          } else if (b.type === 'UnaryExpression') {
+            const aa = a.argument;
+            const bb = b.argument; // We already checked isPrimitive so this should be fine
+            if (aa.type === 'Identifier') {
+              if (aa.name !== bb.name) {
+                vlog('return value is not same as commonReturn so setting it to null');
+                funcNode.$p.commonReturn = null; // No longer use this
+              } else {
+                vlog('- No change to commonReturn. Both have the same unary ident:', aa.name, bb.name);
+              }
+            } else if (aa.type === 'Literal') {
+              if (aa.value !== bb.value || aa.raw !== bb.raw) {
+                vlog('return value is not same as commonReturn so setting it to null');
+                funcNode.$p.commonReturn = null; // No longer use this
+              } else {
+                vlog('- No change to commonReturn. Both have the same unary value/raw:', aa.value, aa.raw, bb.value, bb.raw);
+              }
+            } else {
+              ASSERT(false, 'what primitive is this?', bb);
+            }
           }
+        } else {
+          vlog('- There are at least two different node types being returned. Setting commonMark to null');
+          funcNode.$p.commonReturn = null; // No longer use this
         }
 
+        vlog('Func commonReturn right now:', funcNode.$p.commonReturn);
+        vgroupEnd();
+
+        break;
+      }
+
+      case 'ThrowStatement:before': {
+        // (similar logic to ReturnStatement)
+        const funcNode = funcStack[funcStack.length - 1];
+        discoverEarlyCompletion(node, funcNode, false);
+        // TODO: unless wrapped in a try/catch. Which we don't really track right now.
+        if (funcNode.type === 'FunctionExpression') {
+          funcNode.$p.throwsExplicitly = true;
+          vlog('Setting commonMark to null because the function throws');
+          funcNode.$p.commonReturn = null;
+        }
         break;
       }
 
@@ -642,4 +691,40 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
   log('End of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');
   groupEnd();
+}
+
+function discoverEarlyCompletion(needleNode, funcNode, isReturn) {
+  // Skip this for global (for now) as we only use this for functions atm
+  if (funcNode.type === 'FunctionExpression') {
+    ASSERT(funcNode?.body?.body, 'eh, func node?', funcNode);
+    vlog('Owner func:', funcNode.type, ', last node same?', funcNode.body.body[funcNode.body.body.length - 1] === needleNode);
+    const lastNode = funcNode.body.body[funcNode.body.body.length - 1];
+    if (lastNode === needleNode) {
+      vlog('Found explicit completion and it was the last statement of the function');
+    } else if (lastNode?.type === 'IfStatement') {
+      if (
+        lastNode.consequent.body[lastNode.consequent.body.length - 1] === needleNode ||
+        lastNode.alternate?.body[lastNode.alternate.body.length - 1] === needleNode
+      ) {
+        vlog('Last func element is `if` and the Completion node is the last element of one of its branches so this is a regular completion.');
+      } else {
+        vlog('Last func element is `if` and the Completion node is not the last element of either branch so this is an abrubt completion.');
+        funcNode.$p.earlyComplete = true;
+        if (isReturn) {
+          funcNode.$p.earlyReturn = true;
+        } else {
+          funcNode.$p.earlyThrow = true;
+        }
+      }
+    } else {
+      // TODO: this is the safe approach, but we currently do not guarantee that if's or loops are not nested :/
+      vlog('Last node was neither an `if` nor the completion node so this is an abrubt completion');
+      funcNode.$p.earlyComplete = true;
+      if (isReturn) {
+        funcNode.$p.earlyReturn = true;
+      } else {
+        funcNode.$p.earlyThrow = true;
+      }
+    }
+  }
 }

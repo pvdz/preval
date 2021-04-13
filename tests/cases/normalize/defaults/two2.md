@@ -118,18 +118,12 @@ const $clone$outer$0_Iundefined = function () {
   $(r$1);
   return undefined;
 };
-const main = function () {
-  debugger;
+$clone$inner$0_Iundefined();
+if ($) {
   $clone$inner$0_Iundefined();
-  if ($) {
-    $clone$inner$0_Iundefined();
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = main();
-$(tmpCalleeParam);
+} else {
+}
+$(undefined);
 `````
 
 ## Globals

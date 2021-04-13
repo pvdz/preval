@@ -99,19 +99,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpSSA_a = {};
-  const objPatternBeforeDefault = tmpSSA_a.x;
-  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpSSA_a = {};
+tmpSSA_a.x;
+$(undefined);
 `````
 
 ## Globals

@@ -139,22 +139,16 @@ const tmpBranchingA$1 = function () {
     return undefined;
   }
 };
-const tmpBranchingA = function () {
-  debugger;
-  const tmpIfTest$5 = b != null;
-  if (tmpIfTest$5) {
-    const tmpReturnArg$13 = tmpBranchingA$1();
-    return tmpReturnArg$13;
-  } else {
-    return undefined;
-  }
-};
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = tmpBranchingA();
-$(tmpCalleeParam);
+const tmpIfTest$5 = b != null;
+if (tmpIfTest$5) {
+  tmpBranchingA$1();
+} else {
+}
+$(undefined);
 $(a);
 `````
 

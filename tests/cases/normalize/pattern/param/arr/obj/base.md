@@ -95,34 +95,27 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const arrPatternSplat = [...tmpParamBare];
-  const arrPatternStep = arrPatternSplat[0];
-  let objPatternCrashTest = arrPatternStep === undefined;
-  const tmpBranchingC = function () {
-    debugger;
-    if (objPatternCrashTest) {
-      objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-      return 'ok';
-    } else {
-      return 'ok';
-    }
-  };
-  if (objPatternCrashTest) {
-    const tmpReturnArg$11 = tmpBranchingC();
-    return tmpReturnArg$11;
-  } else {
-    objPatternCrashTest = arrPatternStep === null;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  }
-};
 const tmpArrElement = { x: 1, y: 2, z: 3 };
 const tmpCalleeParam$1 = [tmpArrElement, 20, 30];
-const tmpCalleeParam = f(tmpCalleeParam$1);
-$(tmpCalleeParam);
+const arrPatternSplat = [...tmpCalleeParam$1];
+const arrPatternStep = arrPatternSplat[0];
+let objPatternCrashTest = arrPatternStep === undefined;
+const tmpBranchingC = function () {
+  debugger;
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
+  }
+};
+if (objPatternCrashTest) {
+  tmpBranchingC();
+} else {
+  objPatternCrashTest = arrPatternStep === null;
+  tmpBranchingC();
+}
+$('ok');
 `````
 
 ## Globals

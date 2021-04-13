@@ -102,8 +102,8 @@ $(tmpCalleeParam);
 const B = function () {
   debugger;
   if ($) {
-    const tmpReturnArg$3 = A();
-    return tmpReturnArg$3;
+    A();
+    return undefined;
   } else {
     return undefined;
   }
@@ -117,17 +117,11 @@ const A = function () {
     return undefined;
   }
 };
-const f = function () {
-  debugger;
-  if ($) {
-    const tmpReturnArg$53 = B();
-    return tmpReturnArg$53;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+if ($) {
+  B();
+} else {
+}
+$(undefined);
 `````
 
 ## Globals

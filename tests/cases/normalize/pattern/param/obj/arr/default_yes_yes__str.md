@@ -102,29 +102,23 @@ tmpCallCallee$7(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingC$1 = function () {
   debugger;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    [...objPatternAfterDefault];
-    return 'ok';
-  };
-  let objPatternAfterDefault = undefined;
-  const tmpSSA_objPatternBeforeDefault = 'abc'.x;
-  const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = ['fail'];
-    objPatternAfterDefault = $(tmpCalleeParam$1);
-    const tmpReturnArg$1 = tmpBranchingC$1();
-    return tmpReturnArg$1;
-  } else {
-    objPatternAfterDefault = tmpSSA_objPatternBeforeDefault;
-    const tmpReturnArg$4 = tmpBranchingC$1();
-    return tmpReturnArg$4;
-  }
+  [...objPatternAfterDefault];
+  return 'ok';
 };
-const tmpCalleeParam$7 = f();
-$(tmpCalleeParam$7);
+let objPatternAfterDefault = undefined;
+const tmpSSA_objPatternBeforeDefault = 'abc'.x;
+const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpCalleeParam$5 = ['fail'];
+  objPatternAfterDefault = $(tmpCalleeParam$5);
+  tmpBranchingC$1();
+} else {
+  objPatternAfterDefault = tmpSSA_objPatternBeforeDefault;
+  tmpBranchingC$1();
+}
+$('ok');
 `````
 
 ## Globals

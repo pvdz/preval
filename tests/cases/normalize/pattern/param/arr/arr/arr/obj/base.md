@@ -104,43 +104,36 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const arrPatternSplat = [...tmpParamBare];
-  const arrPatternStep = arrPatternSplat[0];
-  const arrPatternSplat$1 = [...arrPatternStep];
-  const arrPatternStep$1 = arrPatternSplat$1[0];
-  const arrPatternSplat$3 = [...arrPatternStep$1];
-  const arrPatternStep$3 = arrPatternSplat$3[0];
-  const arrPatternSplat$5 = [...arrPatternStep$3];
-  const arrPatternStep$5 = arrPatternSplat$5[0];
-  let objPatternCrashTest = arrPatternStep$5 === undefined;
-  const tmpBranchingC = function () {
-    debugger;
-    if (objPatternCrashTest) {
-      objPatternCrashTest = arrPatternStep$5.cannotDestructureThis;
-      return 'ok';
-    } else {
-      return 'ok';
-    }
-  };
-  if (objPatternCrashTest) {
-    const tmpReturnArg$11 = tmpBranchingC();
-    return tmpReturnArg$11;
-  } else {
-    objPatternCrashTest = arrPatternStep$5 === null;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  }
-};
 const tmpArrElement$5 = { x: 1 };
 const tmpArrElement$3 = [tmpArrElement$5, 6, 7];
 const tmpArrElement$1 = [tmpArrElement$3, 4, 5];
 const tmpArrElement = [tmpArrElement$1, 20, 30];
 const tmpCalleeParam$1 = [tmpArrElement, 40, 50];
-const tmpCalleeParam = f(tmpCalleeParam$1);
-$(tmpCalleeParam);
+const arrPatternSplat = [...tmpCalleeParam$1];
+const arrPatternStep = arrPatternSplat[0];
+const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternStep$1 = arrPatternSplat$1[0];
+const arrPatternSplat$3 = [...arrPatternStep$1];
+const arrPatternStep$3 = arrPatternSplat$3[0];
+const arrPatternSplat$5 = [...arrPatternStep$3];
+const arrPatternStep$5 = arrPatternSplat$5[0];
+let objPatternCrashTest = arrPatternStep$5 === undefined;
+const tmpBranchingC = function () {
+  debugger;
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep$5.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
+  }
+};
+if (objPatternCrashTest) {
+  tmpBranchingC();
+} else {
+  objPatternCrashTest = arrPatternStep$5 === null;
+  tmpBranchingC();
+}
+$('ok');
 `````
 
 ## Globals

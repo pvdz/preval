@@ -71,8 +71,8 @@ const g = function () {
 const out = function () {
   debugger;
   const tmpCalleeParam$1 = typeof g$1;
-  const tmpCalleeParam$3 = g();
-  $(tmpCalleeParam$1, tmpCalleeParam$3);
+  g();
+  $(tmpCalleeParam$1, undefined);
   return undefined;
 };
 out();

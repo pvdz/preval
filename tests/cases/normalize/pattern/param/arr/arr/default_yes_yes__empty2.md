@@ -128,26 +128,20 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const d = function () {
   debugger;
-  const d = function () {
-    debugger;
-    [...X];
-    return undefined;
-  };
-  let X = undefined;
-  const A = ['pass3'];
-  if (A) {
-    X = A;
-    d();
-    return undefined;
-  } else {
-    d();
-    return undefined;
-  }
+  [...X];
+  return undefined;
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+let X = undefined;
+const A = ['pass3'];
+if (A) {
+  X = A;
+  d();
+} else {
+  d();
+}
+$(undefined);
 `````
 
 ## Globals

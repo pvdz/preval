@@ -102,22 +102,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpBranchingA = function () {
-  debugger;
-  const tmpChainElementCall$1 = $(b);
-  const tmpIfTest$3 = tmpChainElementCall$1 != null;
-  if (tmpIfTest$3) {
-    const tmpChainRootComputed$3 = $('x');
-    tmpChainElementCall$1[tmpChainRootComputed$3];
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = tmpBranchingA();
-$(tmpCalleeParam);
+const tmpChainElementCall$1 = $(b);
+const tmpIfTest$3 = tmpChainElementCall$1 != null;
+if (tmpIfTest$3) {
+  const tmpChainRootComputed$3 = $('x');
+  tmpChainElementCall$1[tmpChainRootComputed$3];
+} else {
+}
+$(undefined);
 $(a);
 `````
 

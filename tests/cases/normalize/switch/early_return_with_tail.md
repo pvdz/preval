@@ -290,8 +290,8 @@ const f = function () {
         return tmpReturnArg$49;
       } else {
         tmpSwitchCaseToStart <= 3;
-        const tmpReturnArg$59 = tmpAfterLabel();
-        return tmpReturnArg$59;
+        tmpAfterLabel();
+        return undefined;
       }
     };
     let tmpIfTest$37 = undefined;
@@ -351,11 +351,11 @@ const f = function () {
     const tmpIfTest$27 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$27) {
       $(2);
-      const tmpReturnArg$2 = tmpAfterLabel();
-      return tmpReturnArg$2;
+      tmpAfterLabel();
+      return undefined;
     } else {
-      const tmpReturnArg$8 = tmpBranchingB$7();
-      return tmpReturnArg$8;
+      const tmpReturnArg$6 = tmpBranchingB$7();
+      return tmpReturnArg$6;
     }
   };
   if (tmpIfTest) {

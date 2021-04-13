@@ -144,46 +144,40 @@ tmpCallCallee$7(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingC$3 = function () {
   debugger;
-  const tmpBranchingC$3 = function () {
-    debugger;
-    if (objPatternCrashTest) {
-      objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-      return 'ok';
-    } else {
-      return 'ok';
-    }
-  };
-  const tmpBranchingC$1 = function () {
-    debugger;
-    objPatternCrashTest = objPatternAfterDefault === undefined;
-    if (objPatternCrashTest) {
-      const tmpReturnArg$19 = tmpBranchingC$3();
-      return tmpReturnArg$19;
-    } else {
-      objPatternCrashTest = objPatternAfterDefault === null;
-      const tmpReturnArg$9 = tmpBranchingC$3();
-      return tmpReturnArg$9;
-    }
-  };
-  let objPatternAfterDefault = undefined;
-  let objPatternCrashTest = undefined;
-  const tmpSSA_objPatternBeforeDefault = 'abc'.x;
-  const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = { x: 'pass' };
-    objPatternAfterDefault = $(tmpCalleeParam$1);
-    const tmpReturnArg$1 = tmpBranchingC$1();
-    return tmpReturnArg$1;
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+    return 'ok';
   } else {
-    objPatternAfterDefault = tmpSSA_objPatternBeforeDefault;
-    const tmpReturnArg$4 = tmpBranchingC$1();
-    return tmpReturnArg$4;
+    return 'ok';
   }
 };
-const tmpCalleeParam$7 = f();
-$(tmpCalleeParam$7);
+const tmpBranchingC$1 = function () {
+  debugger;
+  objPatternCrashTest = objPatternAfterDefault === undefined;
+  if (objPatternCrashTest) {
+    tmpBranchingC$3();
+    return 'ok';
+  } else {
+    objPatternCrashTest = objPatternAfterDefault === null;
+    tmpBranchingC$3();
+    return 'ok';
+  }
+};
+let objPatternAfterDefault = undefined;
+let objPatternCrashTest = undefined;
+const tmpSSA_objPatternBeforeDefault = 'abc'.x;
+const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  const tmpCalleeParam$5 = { x: 'pass' };
+  objPatternAfterDefault = $(tmpCalleeParam$5);
+  tmpBranchingC$1();
+} else {
+  objPatternAfterDefault = tmpSSA_objPatternBeforeDefault;
+  tmpBranchingC$1();
+}
+$('ok');
 `````
 
 ## Globals

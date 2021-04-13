@@ -116,46 +116,39 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const tmpCalleeParam$1 = {};
+const tmpBranchingC$1 = function () {
   debugger;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    if (objPatternCrashTest) {
-      objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
-      return 'ok';
-    } else {
-      return 'ok';
-    }
-  };
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingC = function () {
-    debugger;
-    objPatternCrashTest = bindingPatternObjRoot === undefined;
-    if (objPatternCrashTest) {
-      const tmpReturnArg$15 = tmpBranchingC$1();
-      return tmpReturnArg$15;
-    } else {
-      objPatternCrashTest = bindingPatternObjRoot === null;
-      const tmpReturnArg$5 = tmpBranchingC$1();
-      return tmpReturnArg$5;
-    }
-  };
-  let objPatternCrashTest = undefined;
-  if (tmpIfTest) {
-    bindingPatternObjRoot = $('fail');
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
+  if (objPatternCrashTest) {
+    objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+    return 'ok';
   } else {
-    bindingPatternObjRoot = tmpParamBare;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
+    return 'ok';
   }
 };
-const tmpCalleeParam$1 = {};
-const tmpCalleeParam = f(tmpCalleeParam$1);
-$(tmpCalleeParam);
+let bindingPatternObjRoot = undefined;
+const tmpIfTest = tmpCalleeParam$1 === undefined;
+const tmpBranchingC = function () {
+  debugger;
+  objPatternCrashTest = bindingPatternObjRoot === undefined;
+  if (objPatternCrashTest) {
+    tmpBranchingC$1();
+    return 'ok';
+  } else {
+    objPatternCrashTest = bindingPatternObjRoot === null;
+    tmpBranchingC$1();
+    return 'ok';
+  }
+};
+let objPatternCrashTest = undefined;
+if (tmpIfTest) {
+  bindingPatternObjRoot = $('fail');
+  tmpBranchingC();
+} else {
+  bindingPatternObjRoot = tmpCalleeParam$1;
+  tmpBranchingC();
+}
+$('ok');
 `````
 
 ## Globals

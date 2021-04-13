@@ -117,46 +117,40 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingC$1 = function () {
   debugger;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    if (objPatternCrashTest) {
-      objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-      return 'ok';
-    } else {
-      return 'ok';
-    }
-  };
-  const objPatternBeforeDefault = 'abc'.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingC = function () {
-    debugger;
-    objPatternCrashTest = objPatternAfterDefault === undefined;
-    if (objPatternCrashTest) {
-      const tmpReturnArg$15 = tmpBranchingC$1();
-      return tmpReturnArg$15;
-    } else {
-      objPatternCrashTest = objPatternAfterDefault === null;
-      const tmpReturnArg$5 = tmpBranchingC$1();
-      return tmpReturnArg$5;
-    }
-  };
-  let objPatternCrashTest = undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = { x: 'pass' };
-    objPatternAfterDefault = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+    return 'ok';
   } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
+    return 'ok';
   }
 };
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
+const objPatternBeforeDefault = 'abc'.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpBranchingC = function () {
+  debugger;
+  objPatternCrashTest = objPatternAfterDefault === undefined;
+  if (objPatternCrashTest) {
+    tmpBranchingC$1();
+    return 'ok';
+  } else {
+    objPatternCrashTest = objPatternAfterDefault === null;
+    tmpBranchingC$1();
+    return 'ok';
+  }
+};
+let objPatternCrashTest = undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam$1 = { x: 'pass' };
+  objPatternAfterDefault = $(tmpCalleeParam$1);
+  tmpBranchingC();
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpBranchingC();
+}
+$('ok');
 `````
 
 ## Globals

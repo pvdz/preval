@@ -61,22 +61,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const z = [10, 20, 30];
-    const arrPatternSplat = [...z];
-    const x = arrPatternSplat[0];
-    const y = arrPatternSplat[1];
-    $(x, y, z);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  const z = [10, 20, 30];
+  const arrPatternSplat = [...z];
+  const x = arrPatternSplat[0];
+  const y = arrPatternSplat[1];
+  $(x, y, z);
+} else {
+}
+$(undefined);
 `````
 
 ## Globals

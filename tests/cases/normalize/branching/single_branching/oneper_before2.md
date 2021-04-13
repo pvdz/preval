@@ -199,11 +199,11 @@ const tmpBranchingB$3 = function () {
   const k$5 = -2147483648 > c;
   if (k$5) {
     c = -2147483648;
-    const tmpReturnArg$3 = tmpBranchingC$1();
-    return tmpReturnArg$3;
+    tmpBranchingC$1();
+    return undefined;
   } else {
-    const tmpReturnArg$11 = tmpBranchingC$1();
-    return tmpReturnArg$11;
+    tmpBranchingC$1();
+    return undefined;
   }
 };
 const h$1 = typeof c;
@@ -213,11 +213,11 @@ const tmpBranchingB$1 = function () {
   const j$3 = 2147483647 < c;
   if (j$3) {
     c = 2147483647;
-    const tmpReturnArg$1 = tmpBranchingC$1();
-    return tmpReturnArg$1;
+    tmpBranchingC$1();
+    return undefined;
   } else {
-    const tmpReturnArg$17 = tmpBranchingB$3();
-    return tmpReturnArg$17;
+    tmpBranchingB$3();
+    return undefined;
   }
 };
 const tmpBranchingC$1 = function () {

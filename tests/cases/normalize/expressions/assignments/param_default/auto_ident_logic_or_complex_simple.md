@@ -97,27 +97,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpBranchingA = function () {
-  debugger;
-  const tmpCalleeParam$1 = $(0);
-  let tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
-  const tmpBranchingC$1 = function () {
-    debugger;
-    a = tmpNestedComplexRhs$1;
-    return undefined;
-  };
-  if (tmpNestedComplexRhs$1) {
-    const tmpReturnArg$5 = tmpBranchingC$1();
-    return tmpReturnArg$5;
-  } else {
-    tmpNestedComplexRhs$1 = 2;
-    const tmpReturnArg$1 = tmpBranchingC$1();
-    return tmpReturnArg$1;
-  }
-};
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$3 = tmpBranchingA();
-$(tmpCalleeParam$3);
+const tmpCalleeParam$1 = $(0);
+let tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
+const tmpBranchingC$1 = function () {
+  debugger;
+  a = tmpNestedComplexRhs$1;
+  return undefined;
+};
+if (tmpNestedComplexRhs$1) {
+  tmpBranchingC$1();
+} else {
+  tmpNestedComplexRhs$1 = 2;
+  tmpBranchingC$1();
+}
+$(undefined);
 $(a);
 `````
 

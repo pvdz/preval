@@ -8,6 +8,7 @@ import { inlineSimpleFuncCalls } from './phase2simplefuncs.mjs';
 import { inlineOneTimeFunctions } from './phase2onetimers.mjs';
 import { funcScopePromo } from './phase2funcscopepromo.mjs';
 import { dedupeBranchedReturns } from './phase2deduperetbranch.mjs';
+import { inlineCommonReturns } from './phase2commonreturn.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -59,6 +60,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const deduped = dedupeBranchedReturns(fdata);
   if (deduped) return deduped;
+
+  const commoned = inlineCommonReturns(fdata);
+  if (commoned) return commoned;
 
   // The read/write data should still be in tact at this point
 }

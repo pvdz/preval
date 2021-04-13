@@ -278,8 +278,8 @@ const f = function () {
         const tmpReturnArg$37 = $(6);
         return tmpReturnArg$37;
       } else {
-        const tmpReturnArg$51 = tmpBranchingB$11();
-        return tmpReturnArg$51;
+        tmpBranchingB$11();
+        return undefined;
       }
     };
     let tmpIfTest$29 = undefined;

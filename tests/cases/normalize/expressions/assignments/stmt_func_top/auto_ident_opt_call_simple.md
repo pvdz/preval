@@ -73,27 +73,21 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
+let tmpSSA_a = undefined;
+const tmpIfTest = $ != null;
+const tmpBranchingC = function () {
   debugger;
-  let tmpSSA_a = undefined;
-  const tmpIfTest = $ != null;
-  const tmpBranchingC = function () {
-    debugger;
-    $(tmpSSA_a);
-    return undefined;
-  };
-  if (tmpIfTest) {
-    const tmpChainElementCall$1 = $(1);
-    tmpSSA_a = tmpChainElementCall$1;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$5 = tmpBranchingC();
-    return tmpReturnArg$5;
-  }
+  $(tmpSSA_a);
+  return undefined;
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+if (tmpIfTest) {
+  const tmpChainElementCall$1 = $(1);
+  tmpSSA_a = tmpChainElementCall$1;
+  tmpBranchingC();
+} else {
+  tmpBranchingC();
+}
+$(undefined);
 `````
 
 ## Globals

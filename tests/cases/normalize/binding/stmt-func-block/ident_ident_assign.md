@@ -67,21 +67,15 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpNestedAssignObj = $(3);
-    const tmpNestedAssignPropRhs = $(4);
-    tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
-    $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  const tmpNestedAssignObj = $(3);
+  const tmpNestedAssignPropRhs = $(4);
+  tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
+  $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
+} else {
+}
+$(undefined);
 `````
 
 ## Globals

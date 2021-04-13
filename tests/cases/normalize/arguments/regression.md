@@ -96,8 +96,8 @@ const tmpSSA_g = function () {
   $(tmpArgumentsLen$1);
   return undefined;
 };
-const tmpReturnArg$3 = tmpSSA_g();
-$(tmpReturnArg$3);
+tmpSSA_g();
+$(undefined);
 `````
 
 ## Globals

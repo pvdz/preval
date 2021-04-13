@@ -73,20 +73,14 @@ closure();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    $(1, 'f');
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 const x = $(100, 'init');
 $(x, 'closure');
-const tmpSSA_x = f();
-$(tmpSSA_x, 'x');
-$(tmpSSA_x, 'closure');
+if ($) {
+  $(1, 'f');
+} else {
+}
+$(undefined, 'x');
+$(undefined, 'closure');
 `````
 
 ## Globals

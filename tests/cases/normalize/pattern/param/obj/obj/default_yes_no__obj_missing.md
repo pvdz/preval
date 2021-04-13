@@ -120,48 +120,41 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const tmpCalleeParam$5 = { b: 11, c: 12 };
+const tmpBranchingC$1 = function () {
   debugger;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    if (objPatternCrashTest) {
-      objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-      return 'ok';
-    } else {
-      return 'ok';
-    }
-  };
-  const objPatternBeforeDefault = tmpParamBare.x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingC = function () {
-    debugger;
-    objPatternCrashTest = objPatternAfterDefault === undefined;
-    if (objPatternCrashTest) {
-      const tmpReturnArg$15 = tmpBranchingC$1();
-      return tmpReturnArg$15;
-    } else {
-      objPatternCrashTest = objPatternAfterDefault === null;
-      const tmpReturnArg$5 = tmpBranchingC$1();
-      return tmpReturnArg$5;
-    }
-  };
-  let objPatternCrashTest = undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = { x: 'pass' };
-    objPatternAfterDefault = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+    return 'ok';
   } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
+    return 'ok';
   }
 };
-const tmpCalleeParam$5 = { b: 11, c: 12 };
-const tmpCalleeParam$3 = f(tmpCalleeParam$5);
-$(tmpCalleeParam$3);
+const objPatternBeforeDefault = tmpCalleeParam$5.x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpBranchingC = function () {
+  debugger;
+  objPatternCrashTest = objPatternAfterDefault === undefined;
+  if (objPatternCrashTest) {
+    tmpBranchingC$1();
+    return 'ok';
+  } else {
+    objPatternCrashTest = objPatternAfterDefault === null;
+    tmpBranchingC$1();
+    return 'ok';
+  }
+};
+let objPatternCrashTest = undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam$1 = { x: 'pass' };
+  objPatternAfterDefault = $(tmpCalleeParam$1);
+  tmpBranchingC();
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+  tmpBranchingC();
+}
+$('ok');
 `````
 
 ## Globals

@@ -97,41 +97,35 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpObjLitVal = { y: 1 };
+const b = { x: tmpObjLitVal };
+let a = undefined;
+const tmpIfTest = b != null;
+const tmpBranchingA = function () {
   debugger;
-  const tmpObjLitVal = { y: 1 };
-  const b = { x: tmpObjLitVal };
-  let a = undefined;
-  const tmpIfTest = b != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementObject$3 = b.x;
-    const tmpIfTest$3 = tmpChainElementObject$3 != null;
-    if (tmpIfTest$3) {
-      const tmpChainElementObject$7 = tmpChainElementObject$3.y;
-      a = tmpChainElementObject$7;
-      const tmpReturnArg = tmpBranchingC();
-      return tmpReturnArg;
-    } else {
-      const tmpReturnArg$7 = tmpBranchingC();
-      return tmpReturnArg$7;
-    }
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $(a);
+  const tmpChainElementObject$3 = b.x;
+  const tmpIfTest$3 = tmpChainElementObject$3 != null;
+  if (tmpIfTest$3) {
+    const tmpChainElementObject$7 = tmpChainElementObject$3.y;
+    a = tmpChainElementObject$7;
+    tmpBranchingC();
     return undefined;
-  };
-  if (tmpIfTest) {
-    const tmpReturnArg$11 = tmpBranchingA();
-    return tmpReturnArg$11;
   } else {
-    const tmpReturnArg$13 = tmpBranchingC();
-    return tmpReturnArg$13;
+    tmpBranchingC();
+    return undefined;
   }
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpBranchingC = function () {
+  debugger;
+  $(a);
+  return undefined;
+};
+if (tmpIfTest) {
+  tmpBranchingA();
+} else {
+  tmpBranchingC();
+}
+$(undefined);
 `````
 
 ## Globals

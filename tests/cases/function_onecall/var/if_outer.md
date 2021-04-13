@@ -73,20 +73,14 @@ $(x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $('a');
-    $('c');
-    return undefined;
-  } else {
-    $('b');
-    return undefined;
-  }
-};
-const x = f();
-$(x);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  $('a');
+  $('c');
+} else {
+  $('b');
+}
+$(undefined);
 `````
 
 ## Globals

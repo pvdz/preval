@@ -62,8 +62,8 @@ const g = function () {
   $(tmpCalleeParam);
   return undefined;
 };
-const tmpCalleeParam$1 = g();
-$(tmpCalleeParam$1);
+g();
+$(undefined);
 export { g };
 `````
 

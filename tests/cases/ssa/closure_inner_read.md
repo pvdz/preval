@@ -109,8 +109,8 @@ if ($) {
   g();
   g();
   g();
-  const tmpReturnArg$1 = g();
-  $(tmpReturnArg$1);
+  g();
+  $(undefined);
 } else {
 }
 `````

@@ -97,20 +97,14 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpSSA_arrPatternSplat = [...null];
-  const tmpSSA_arrPatternBeforeDefault = tmpSSA_arrPatternSplat[0];
-  const tmpIfTest$1 = tmpSSA_arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    $('fail');
-    return 'bad';
-  } else {
-    return 'bad';
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpSSA_arrPatternSplat = [...null];
+const tmpSSA_arrPatternBeforeDefault = tmpSSA_arrPatternSplat[0];
+const tmpIfTest$1 = tmpSSA_arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  $('fail');
+} else {
+}
+$('bad');
 `````
 
 ## Globals

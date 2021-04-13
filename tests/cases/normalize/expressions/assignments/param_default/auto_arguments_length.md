@@ -72,8 +72,8 @@ const f = function ($$0) {
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+f();
+$(undefined);
 $(a);
 `````
 

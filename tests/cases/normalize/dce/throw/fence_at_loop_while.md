@@ -157,9 +157,9 @@ const tmpLoopBody$1 = function () {
     while (tmpLoopRetCode) {
       tmpLoopBody();
     }
-    const tmpReturnArg = tmpLoopTail(tmpLoopRetCode);
+    tmpLoopTail(tmpLoopRetCode);
     tmpLoopRetCode$3 = undefined;
-    tmpLoopRetValue$3 = tmpReturnArg;
+    tmpLoopRetValue$3 = undefined;
     return undefined;
   } else {
     tmpLoopRetCode$3 = false;

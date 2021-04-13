@@ -116,46 +116,40 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingC$1 = function () {
   debugger;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    if (objPatternCrashTest) {
-      objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-      return 'ok';
-    } else {
-      return 'ok';
-    }
-  };
-  const arrPatternSplat = ['a', 'b', 'c'];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  const tmpBranchingC = function () {
-    debugger;
-    objPatternCrashTest = arrPatternStep === undefined;
-    if (objPatternCrashTest) {
-      const tmpReturnArg$15 = tmpBranchingC$1();
-      return tmpReturnArg$15;
-    } else {
-      objPatternCrashTest = arrPatternStep === null;
-      const tmpReturnArg$5 = tmpBranchingC$1();
-      return tmpReturnArg$5;
-    }
-  };
-  let objPatternCrashTest = undefined;
-  if (tmpIfTest) {
-    arrPatternStep = $('pass');
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+    return 'ok';
   } else {
-    arrPatternStep = arrPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
+    return 'ok';
   }
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const arrPatternSplat = ['a', 'b', 'c'];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+const tmpBranchingC = function () {
+  debugger;
+  objPatternCrashTest = arrPatternStep === undefined;
+  if (objPatternCrashTest) {
+    tmpBranchingC$1();
+    return 'ok';
+  } else {
+    objPatternCrashTest = arrPatternStep === null;
+    tmpBranchingC$1();
+    return 'ok';
+  }
+};
+let objPatternCrashTest = undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('pass');
+  tmpBranchingC();
+} else {
+  arrPatternStep = arrPatternBeforeDefault;
+  tmpBranchingC();
+}
+$('ok');
 `````
 
 ## Globals

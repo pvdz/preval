@@ -120,34 +120,28 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const a = { a: 999, b: 1000 };
+const tmpBranchingC$1 = function () {
   debugger;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    if (p) {
-      return undefined;
-    } else {
-      const tmpCalleeParam$15 = $(2);
-      p = $(tmpCalleeParam$15);
-      return undefined;
-    }
-  };
-  let p = undefined;
-  const tmpCalleeParam$5 = $(1);
-  p = $(tmpCalleeParam$5);
   if (p) {
-    const tmpCalleeParam$1 = $(1);
-    p = $(tmpCalleeParam$1);
-    const tmpReturnArg$1 = tmpBranchingC$1();
-    return tmpReturnArg$1;
+    return undefined;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC$1();
-    return tmpReturnArg$7;
+    const tmpCalleeParam$15 = $(2);
+    p = $(tmpCalleeParam$15);
+    return undefined;
   }
 };
-const a = { a: 999, b: 1000 };
-const tmpCalleeParam$17 = f();
-$(tmpCalleeParam$17);
+let p = undefined;
+const tmpCalleeParam$5 = $(1);
+p = $(tmpCalleeParam$5);
+if (p) {
+  const tmpCalleeParam$11 = $(1);
+  p = $(tmpCalleeParam$11);
+  tmpBranchingC$1();
+} else {
+  tmpBranchingC$1();
+}
+$(undefined);
 $(a);
 `````
 

@@ -130,45 +130,39 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpBranchingA = function () {
-  debugger;
-  let tmpNestedComplexRhs$1 = undefined;
-  const tmpChainElementCall$3 = $(b);
-  const tmpIfTest$5 = tmpChainElementCall$3 != null;
-  const tmpBranchingA$1 = function () {
-    debugger;
-    const tmpChainRootComputed$3 = $('$');
-    const tmpChainElementObject$3 = tmpChainElementCall$3[tmpChainRootComputed$3];
-    const tmpIfTest$9 = tmpChainElementObject$3 != null;
-    if (tmpIfTest$9) {
-      const tmpCallVal$5 = tmpChainElementObject$3.call;
-      const tmpCalleeParam$13 = $(1);
-      const tmpChainElementCall$9 = tmpCallVal$5.call(tmpChainElementObject$3, tmpChainElementCall$3, tmpCalleeParam$13);
-      tmpNestedComplexRhs$1 = tmpChainElementCall$9;
-      const tmpReturnArg = tmpBranchingC$1();
-      return tmpReturnArg;
-    } else {
-      const tmpReturnArg$7 = tmpBranchingC$1();
-      return tmpReturnArg$7;
-    }
-  };
-  const tmpBranchingC$1 = function () {
-    debugger;
-    a = tmpNestedComplexRhs$1;
-    return undefined;
-  };
-  if (tmpIfTest$5) {
-    const tmpReturnArg$13 = tmpBranchingA$1();
-    return tmpReturnArg$13;
-  } else {
-    const tmpReturnArg$15 = tmpBranchingC$1();
-    return tmpReturnArg$15;
-  }
-};
 const b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$15 = tmpBranchingA();
-$(tmpCalleeParam$15);
+let tmpNestedComplexRhs$1 = undefined;
+const tmpChainElementCall$3 = $(b);
+const tmpIfTest$5 = tmpChainElementCall$3 != null;
+const tmpBranchingA$1 = function () {
+  debugger;
+  const tmpChainRootComputed$3 = $('$');
+  const tmpChainElementObject$3 = tmpChainElementCall$3[tmpChainRootComputed$3];
+  const tmpIfTest$9 = tmpChainElementObject$3 != null;
+  if (tmpIfTest$9) {
+    const tmpCallVal$5 = tmpChainElementObject$3.call;
+    const tmpCalleeParam$13 = $(1);
+    const tmpChainElementCall$9 = tmpCallVal$5.call(tmpChainElementObject$3, tmpChainElementCall$3, tmpCalleeParam$13);
+    tmpNestedComplexRhs$1 = tmpChainElementCall$9;
+    tmpBranchingC$1();
+    return undefined;
+  } else {
+    tmpBranchingC$1();
+    return undefined;
+  }
+};
+const tmpBranchingC$1 = function () {
+  debugger;
+  a = tmpNestedComplexRhs$1;
+  return undefined;
+};
+if (tmpIfTest$5) {
+  tmpBranchingA$1();
+} else {
+  tmpBranchingC$1();
+}
+$(undefined);
 $(a);
 `````
 

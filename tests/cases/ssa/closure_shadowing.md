@@ -81,8 +81,8 @@ const f = function () {
   }
 };
 if ($) {
-  const tmpCalleeParam = f();
-  $(tmpCalleeParam);
+  f();
+  $(undefined);
 } else {
 }
 `````

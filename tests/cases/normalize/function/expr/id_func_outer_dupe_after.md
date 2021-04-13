@@ -78,8 +78,8 @@ const g$1 = function () {
 };
 const out = function () {
   debugger;
-  const tmpCalleeParam$3 = g$1();
-  $(10, tmpCalleeParam$3);
+  g$1();
+  $(10, undefined);
   return undefined;
 };
 out();

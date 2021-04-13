@@ -99,29 +99,23 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpBranchingA = function () {
-  debugger;
-  let tmpNestedComplexRhs$1 = undefined;
-  const tmpChainElementCall$3 = $($);
-  const tmpIfTest$3 = tmpChainElementCall$3 != null;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    a = tmpNestedComplexRhs$1;
-    return undefined;
-  };
-  if (tmpIfTest$3) {
-    const tmpChainElementCall$7 = tmpChainElementCall$3.call($, 1);
-    tmpNestedComplexRhs$1 = tmpChainElementCall$7;
-    const tmpReturnArg = tmpBranchingC$1();
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$7 = tmpBranchingC$1();
-    return tmpReturnArg$7;
-  }
-};
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = tmpBranchingA();
-$(tmpCalleeParam);
+let tmpNestedComplexRhs$1 = undefined;
+const tmpChainElementCall$3 = $($);
+const tmpIfTest$3 = tmpChainElementCall$3 != null;
+const tmpBranchingC$1 = function () {
+  debugger;
+  a = tmpNestedComplexRhs$1;
+  return undefined;
+};
+if (tmpIfTest$3) {
+  const tmpChainElementCall$7 = tmpChainElementCall$3.call($, 1);
+  tmpNestedComplexRhs$1 = tmpChainElementCall$7;
+  tmpBranchingC$1();
+} else {
+  tmpBranchingC$1();
+}
+$(undefined);
 $(a);
 `````
 

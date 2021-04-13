@@ -79,16 +79,7 @@ $(c);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const c = f();
-$(c);
+$(undefined);
 `````
 
 ## Globals

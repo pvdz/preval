@@ -70,25 +70,19 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const b = { x: 2 };
-    const varInitAssignLhsComputedProp = $('x');
-    const varInitAssignLhsComputedObj$1 = $(3);
-    const varInitAssignLhsComputedProp$1 = $('y');
-    const varInitAssignLhsComputedRhs$1 = $(4);
-    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-    b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-    $(varInitAssignLhsComputedRhs$1, b, 3);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  const b = { x: 2 };
+  const varInitAssignLhsComputedProp = $('x');
+  const varInitAssignLhsComputedObj$1 = $(3);
+  const varInitAssignLhsComputedProp$1 = $('y');
+  const varInitAssignLhsComputedRhs$1 = $(4);
+  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+  b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+  $(varInitAssignLhsComputedRhs$1, b, 3);
+} else {
+}
+$(undefined);
 `````
 
 ## Globals

@@ -59,8 +59,8 @@ const f = function (...$$0) {
 let tmpCalleeParam = undefined;
 const tmpIfTest = f != null;
 if (tmpIfTest) {
-  const tmpChainElementCall = f(1, 2, 3);
-  tmpCalleeParam = tmpChainElementCall;
+  f(1, 2, 3);
+  tmpCalleeParam = undefined;
 } else {
 }
 $(tmpCalleeParam);

@@ -103,8 +103,8 @@ const tmpLoopTail = function ($$0) {
 while (tmpLoopRetCode) {
   tmpLoopBody();
 }
-const tmpReturnArg = tmpLoopTail(tmpLoopRetCode);
-$(tmpReturnArg);
+tmpLoopTail(tmpLoopRetCode);
+$(undefined);
 `````
 
 ## Globals

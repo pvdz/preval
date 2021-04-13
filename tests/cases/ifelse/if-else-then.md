@@ -84,22 +84,16 @@ const tmpBranchingC = function () {
   $('D');
   return undefined;
 };
-const f = function () {
-  debugger;
-  $('A');
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $('B');
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  } else {
-    $('C');
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$('A');
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  $('B');
+  tmpBranchingC();
+} else {
+  $('C');
+  tmpBranchingC();
+}
+$(undefined);
 `````
 
 ## Globals

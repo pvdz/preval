@@ -64,21 +64,15 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const b = { x: 2 };
-    const varInitAssignLhsComputedProp = $('x');
-    b[varInitAssignLhsComputedProp] = 3;
-    $(3, b, 3);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  const b = { x: 2 };
+  const varInitAssignLhsComputedProp = $('x');
+  b[varInitAssignLhsComputedProp] = 3;
+  $(3, b, 3);
+} else {
+}
+$(undefined);
 `````
 
 ## Globals

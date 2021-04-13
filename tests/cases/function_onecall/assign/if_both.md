@@ -129,23 +129,17 @@ const g = function () {
     return undefined;
   }
 };
-const f = function () {
-  debugger;
-  const tmpIfTest$1 = $(1);
-  if (tmpIfTest$1) {
-    $('c');
-    g();
-    return undefined;
-  } else {
-    $('d');
-    return undefined;
-  }
-};
 const x = $(100);
 $(x);
-const tmpSSA_x = f();
-$(tmpSSA_x);
-$(tmpSSA_x);
+const tmpIfTest$1 = $(1);
+if (tmpIfTest$1) {
+  $('c');
+  g();
+} else {
+  $('d');
+}
+$(undefined);
+$(undefined);
 `````
 
 ## Globals

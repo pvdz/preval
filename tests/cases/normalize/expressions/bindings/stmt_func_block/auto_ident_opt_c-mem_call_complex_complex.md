@@ -106,44 +106,38 @@ tmpCallCallee(tmpCalleeParam$11);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const b = { $: $ };
+let a = undefined;
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall != null;
+const tmpBranchingA = function () {
   debugger;
-  const b = { $: $ };
-  let a = undefined;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainRootComputed$1 = $('$');
-    const tmpChainElementObject$1 = tmpChainElementCall[tmpChainRootComputed$1];
-    const tmpIfTest$3 = tmpChainElementObject$1 != null;
-    if (tmpIfTest$3) {
-      const tmpCallVal$3 = tmpChainElementObject$1.call;
-      const tmpCalleeParam$9 = $(1);
-      const tmpChainElementCall$5 = tmpCallVal$3.call(tmpChainElementObject$1, tmpChainElementCall, tmpCalleeParam$9);
-      a = tmpChainElementCall$5;
-      const tmpReturnArg = tmpBranchingC();
-      return tmpReturnArg;
-    } else {
-      const tmpReturnArg$7 = tmpBranchingC();
-      return tmpReturnArg$7;
-    }
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $(a);
+  const tmpChainRootComputed$1 = $('$');
+  const tmpChainElementObject$1 = tmpChainElementCall[tmpChainRootComputed$1];
+  const tmpIfTest$3 = tmpChainElementObject$1 != null;
+  if (tmpIfTest$3) {
+    const tmpCallVal$3 = tmpChainElementObject$1.call;
+    const tmpCalleeParam$9 = $(1);
+    const tmpChainElementCall$5 = tmpCallVal$3.call(tmpChainElementObject$1, tmpChainElementCall, tmpCalleeParam$9);
+    a = tmpChainElementCall$5;
+    tmpBranchingC();
     return undefined;
-  };
-  if (tmpIfTest) {
-    const tmpReturnArg$11 = tmpBranchingA();
-    return tmpReturnArg$11;
   } else {
-    const tmpReturnArg$13 = tmpBranchingC();
-    return tmpReturnArg$13;
+    tmpBranchingC();
+    return undefined;
   }
 };
-const tmpCalleeParam$11 = f();
-$(tmpCalleeParam$11);
+const tmpBranchingC = function () {
+  debugger;
+  $(a);
+  return undefined;
+};
+if (tmpIfTest) {
+  tmpBranchingA();
+} else {
+  tmpBranchingC();
+}
+$(undefined);
 `````
 
 ## Globals

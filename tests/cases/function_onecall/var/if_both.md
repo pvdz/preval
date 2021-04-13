@@ -102,20 +102,14 @@ const g = function () {
     return undefined;
   }
 };
-const f = function () {
-  debugger;
-  const tmpIfTest$1 = $(1);
-  if (tmpIfTest$1) {
-    $('c');
-    g();
-    return undefined;
-  } else {
-    $('d');
-    return undefined;
-  }
-};
-const x = f();
-$(x);
+const tmpIfTest$1 = $(1);
+if (tmpIfTest$1) {
+  $('c');
+  g();
+} else {
+  $('d');
+}
+$(undefined);
 `````
 
 ## Globals

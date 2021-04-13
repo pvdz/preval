@@ -194,12 +194,12 @@ const tmpLoopBody$1 = function () {
         }
       };
       if (tmpIfTest$1) {
-        const tmpReturnArg$7 = tmpBranchingC();
-        return tmpReturnArg$7;
+        tmpBranchingC();
+        return undefined;
       } else {
         tmpIfTest$1 = $(true);
-        const tmpReturnArg$5 = tmpBranchingC();
-        return tmpReturnArg$5;
+        tmpBranchingC();
+        return undefined;
       }
     };
     while (tmpLoopRetCode) {

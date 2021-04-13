@@ -100,23 +100,17 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $('a');
-    $('c');
-    return undefined;
-  } else {
-    $('b');
-    return undefined;
-  }
-};
 const x = $(100);
 $(x);
-const tmpSSA_x = f();
-$(tmpSSA_x);
-$(tmpSSA_x);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  $('a');
+  $('c');
+} else {
+  $('b');
+}
+$(undefined);
+$(undefined);
 `````
 
 ## Globals

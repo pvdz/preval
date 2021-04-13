@@ -128,18 +128,23 @@ const f = function () {
     return undefined;
   };
   let x = 0;
+  const $clone$g$0_Ffalse = function () {
+    debugger;
+    tmpBranchingC();
+    return undefined;
+  };
   const $clone$g$0_Ttrue = function () {
     debugger;
     x = x + 1;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
+    tmpBranchingC();
+    return undefined;
   };
   if ($) {
     $clone$g$0_Ttrue();
-    tmpBranchingC();
+    $clone$g$0_Ffalse();
     $clone$g$0_Ttrue();
-    tmpBranchingC();
-    tmpBranchingC();
+    $clone$g$0_Ffalse();
+    $clone$g$0_Ffalse();
     $clone$g$0_Ttrue();
     $clone$g$0_Ttrue();
     return undefined;
@@ -148,8 +153,8 @@ const f = function () {
   }
 };
 if ($) {
-  const tmpCalleeParam = f();
-  $(tmpCalleeParam);
+  f();
+  $(undefined);
 } else {
 }
 `````

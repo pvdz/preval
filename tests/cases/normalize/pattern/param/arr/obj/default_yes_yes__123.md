@@ -143,48 +143,42 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpBranchingC$3 = function () {
   debugger;
-  const tmpBranchingC$3 = function () {
-    debugger;
-    if (objPatternCrashTest) {
-      objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-      return 'ok';
-    } else {
-      return 'ok';
-    }
-  };
-  const tmpBranchingC$1 = function () {
-    debugger;
-    objPatternCrashTest = arrPatternStep === undefined;
-    if (objPatternCrashTest) {
-      const tmpReturnArg$19 = tmpBranchingC$3();
-      return tmpReturnArg$19;
-    } else {
-      objPatternCrashTest = arrPatternStep === null;
-      const tmpReturnArg$9 = tmpBranchingC$3();
-      return tmpReturnArg$9;
-    }
-  };
-  let arrPatternStep = undefined;
-  let objPatternCrashTest = undefined;
-  const tmpCalleeParam$1 = ['fail2'];
-  const tmpSSA_bindingPatternArrRoot = $(tmpCalleeParam$1);
-  const tmpSSA_arrPatternSplat = [...tmpSSA_bindingPatternArrRoot];
-  const tmpSSA_arrPatternBeforeDefault = tmpSSA_arrPatternSplat[0];
-  const tmpIfTest$1 = tmpSSA_arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    arrPatternStep = $('pass');
-    const tmpReturnArg$1 = tmpBranchingC$1();
-    return tmpReturnArg$1;
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+    return 'ok';
   } else {
-    arrPatternStep = tmpSSA_arrPatternBeforeDefault;
-    const tmpReturnArg$4 = tmpBranchingC$1();
-    return tmpReturnArg$4;
+    return 'ok';
   }
 };
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
+const tmpBranchingC$1 = function () {
+  debugger;
+  objPatternCrashTest = arrPatternStep === undefined;
+  if (objPatternCrashTest) {
+    tmpBranchingC$3();
+    return 'ok';
+  } else {
+    objPatternCrashTest = arrPatternStep === null;
+    tmpBranchingC$3();
+    return 'ok';
+  }
+};
+let arrPatternStep = undefined;
+let objPatternCrashTest = undefined;
+const tmpCalleeParam$1 = ['fail2'];
+const tmpSSA_bindingPatternArrRoot = $(tmpCalleeParam$1);
+const tmpSSA_arrPatternSplat = [...tmpSSA_bindingPatternArrRoot];
+const tmpSSA_arrPatternBeforeDefault = tmpSSA_arrPatternSplat[0];
+const tmpIfTest$1 = tmpSSA_arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
+  arrPatternStep = $('pass');
+  tmpBranchingC$1();
+} else {
+  arrPatternStep = tmpSSA_arrPatternBeforeDefault;
+  tmpBranchingC$1();
+}
+$('ok');
 `````
 
 ## Globals

@@ -104,24 +104,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpBranchingA = function () {
-  debugger;
-  const tmpIfTest$3 = b != null;
-  if (tmpIfTest$3) {
-    const tmpChainElementObject$11 = b.x;
-    const tmpChainElementObject$13 = tmpChainElementObject$11.y;
-    tmpChainElementObject$13.z;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = tmpBranchingA();
-$(tmpCalleeParam);
+const tmpIfTest$3 = b != null;
+if (tmpIfTest$3) {
+  const tmpChainElementObject$11 = b.x;
+  const tmpChainElementObject$13 = tmpChainElementObject$11.y;
+  tmpChainElementObject$13.z;
+} else {
+}
+$(undefined);
 $(a);
 `````
 

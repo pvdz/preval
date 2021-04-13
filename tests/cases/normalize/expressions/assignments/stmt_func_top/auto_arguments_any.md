@@ -57,8 +57,8 @@ const f = function () {
   $(tmpArgumentsAny);
   return undefined;
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+f();
+$(undefined);
 `````
 
 ## Globals

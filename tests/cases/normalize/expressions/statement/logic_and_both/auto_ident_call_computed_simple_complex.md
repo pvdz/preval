@@ -39,6 +39,7 @@ if (tmpIfTest) {
   const tmpCallCompObj$1 = b;
   const tmpCallCompProp$1 = $('$');
   tmpCallCompObj$1[tmpCallCompProp$1](1);
+} else {
 }
 $(a);
 `````
@@ -53,6 +54,7 @@ const tmpIfTest = b[tmpCallCompProp](1);
 if (tmpIfTest) {
   const tmpCallCompProp$1 = $('$');
   b[tmpCallCompProp$1](1);
+} else {
 }
 $(a);
 `````

@@ -43,7 +43,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     a = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 let tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
@@ -65,7 +67,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpSSA_a = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 const tmpBinBothLhs = tmpSSA_a;
 const tmpBinBothRhs = $(100);

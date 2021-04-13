@@ -60,6 +60,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
+  } else {
   }
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
@@ -69,14 +70,17 @@ if (tmpIfTest$3) {
   const tmpObjLitVal$3 = $(3);
   a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
   $(a);
+} else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $('fail1');
+} else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
   $('fail2');
+} else {
 }
 `````
 

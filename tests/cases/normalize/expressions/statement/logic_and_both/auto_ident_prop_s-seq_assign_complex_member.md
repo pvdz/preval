@@ -45,6 +45,7 @@ if (tmpIfTest) {
   const tmpCompProp$1 = $('d');
   const tmpAssignMemRhs = tmpCompObj$1[tmpCompProp$1];
   tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
+} else {
 }
 $(a, b);
 `````
@@ -63,6 +64,7 @@ if (varInitAssignLhsComputedRhs) {
   const tmpCompProp$1 = $('d');
   const tmpAssignMemRhs = tmpCompObj$1[tmpCompProp$1];
   b.c = tmpAssignMemRhs;
+} else {
 }
 $(a, b);
 `````

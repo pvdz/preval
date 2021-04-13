@@ -53,13 +53,16 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     a = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -77,7 +80,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpSSA_a = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 $(100);
 $(tmpSSA_a);

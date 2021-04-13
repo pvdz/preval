@@ -31,6 +31,7 @@ let a = { a: 999, b: 1000 };
 let tmpThrowArg = 1;
 if (tmpThrowArg) {
   tmpThrowArg = 2;
+} else {
 }
 throw tmpThrowArg;
 `````
@@ -41,6 +42,7 @@ throw tmpThrowArg;
 let tmpThrowArg = 1;
 if (tmpThrowArg) {
   tmpThrowArg = 2;
+} else {
 }
 throw tmpThrowArg;
 `````

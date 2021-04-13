@@ -49,6 +49,7 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpCompObj = $(b);
   tmpCompObj.c;
+} else {
 }
 $(a, b);
 `````

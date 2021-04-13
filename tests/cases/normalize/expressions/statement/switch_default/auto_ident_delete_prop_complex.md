@@ -49,6 +49,7 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpDeleteObj = $(arg);
   delete tmpDeleteObj.y;
+} else {
 }
 $(a, arg);
 `````

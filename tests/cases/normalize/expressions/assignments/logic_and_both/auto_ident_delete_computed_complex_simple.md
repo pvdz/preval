@@ -41,6 +41,7 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, arg);
@@ -58,6 +59,7 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
   tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 $(tmpCalleeParam);
 $(tmpSSA_a, arg);

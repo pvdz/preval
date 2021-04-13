@@ -45,6 +45,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   xyz = tmpChainElementObject;
+} else {
 }
 while (true) {
   $(xyz);
@@ -64,6 +65,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   xyz = tmpChainElementObject;
+} else {
 }
 while (true) {
   $(xyz);

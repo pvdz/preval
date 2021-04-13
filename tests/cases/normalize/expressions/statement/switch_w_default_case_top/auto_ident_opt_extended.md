@@ -70,6 +70,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
+  } else {
   }
 }
 tmpSwitchBreak: {
@@ -81,16 +82,19 @@ tmpSwitchBreak: {
       const tmpChainElementObject = tmpChainRootProp.x;
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+    } else {
     }
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$7) {
       $('fail1');
+    } else {
     }
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$9) {
       $('fail2');
+    } else {
     }
   }
 }
@@ -114,6 +118,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
+  } else {
   }
 }
 tmpSwitchBreak: {
@@ -124,16 +129,19 @@ tmpSwitchBreak: {
       const tmpChainElementObject = b.x;
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       tmpChainElementObject$1.z;
+    } else {
     }
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$7) {
       $('fail1');
+    } else {
     }
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$9) {
       $('fail2');
+    } else {
     }
   }
 }

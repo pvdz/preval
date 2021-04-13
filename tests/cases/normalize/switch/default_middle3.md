@@ -80,24 +80,29 @@ if (tmpIfTest) {
     const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
     if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 3;
+    } else {
     }
   }
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$5) {
   $('a');
+} else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$7) {
   $('b');
+} else {
 }
 const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$9) {
   $('c');
+} else {
 }
 const tmpIfTest$11 = tmpSwitchCaseToStart <= 3;
 if (tmpIfTest$11) {
   $('d');
+} else {
 }
 `````
 
@@ -120,24 +125,29 @@ if (tmpIfTest) {
     const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
     if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 3;
+    } else {
     }
   }
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$5) {
   $('a');
+} else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$7) {
   $('b');
+} else {
 }
 const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$9) {
   $('c');
+} else {
 }
 const tmpIfTest$11 = tmpSwitchCaseToStart <= 3;
 if (tmpIfTest$11) {
   $('d');
+} else {
 }
 `````
 

@@ -45,6 +45,7 @@ const objPatternBeforeDefault = bindingPatternObjRoot.a;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $('default');
+} else {
 }
 `````
 

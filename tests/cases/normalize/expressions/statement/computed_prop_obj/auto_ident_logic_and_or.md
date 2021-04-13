@@ -38,6 +38,7 @@ if (tmpCompObj) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   tmpCompObj = tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 if (tmpCompObj) {
 } else {
@@ -58,6 +59,7 @@ let tmpCompObj = $(tmpCalleeParam);
 if (tmpCompObj) {
   const tmpCalleeParam$1 = $(1);
   tmpCompObj = $(tmpCalleeParam$1);
+} else {
 }
 if (tmpCompObj) {
 } else {

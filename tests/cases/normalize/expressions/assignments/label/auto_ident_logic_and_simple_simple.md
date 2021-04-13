@@ -31,6 +31,7 @@ let a = { a: 999, b: 1000 };
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 $(a);
 `````
@@ -41,6 +42,7 @@ $(a);
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 $(tmpSSA_a);
 `````

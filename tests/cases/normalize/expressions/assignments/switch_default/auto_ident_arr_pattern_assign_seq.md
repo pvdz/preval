@@ -59,6 +59,7 @@ if (tmpIfTest) {
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
+} else {
 }
 $(a, x, y);
 `````

@@ -91,6 +91,7 @@ const C = function () {
   if (x$1) {
     const tmp$5 = $();
     return tmp$5;
+  } else {
   }
 };
 A();
@@ -105,6 +106,7 @@ const C = function () {
   if (x$1) {
     const tmp$5 = $();
     return tmp$5;
+  } else {
   }
 };
 const x = $();

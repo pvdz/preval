@@ -49,6 +49,7 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpAssignRhsProp = $(b);
   a = tmpAssignRhsProp.c;
+} else {
 }
 $(a, b);
 `````

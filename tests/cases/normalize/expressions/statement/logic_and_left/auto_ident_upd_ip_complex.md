@@ -42,6 +42,7 @@ tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 const tmpIfTest = tmpPostUpdArgVal;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, b);
 `````
@@ -58,6 +59,7 @@ const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 if (tmpPostUpdArgVal) {
   $(100);
+} else {
 }
 $(a, b);
 `````

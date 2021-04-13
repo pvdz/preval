@@ -47,7 +47,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     a = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
@@ -72,7 +74,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     tmpSSA_a = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 const tmpBinBothRhs = tmpSSA_a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

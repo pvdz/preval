@@ -46,6 +46,7 @@ while (true) {
     let tmpNestedComplexRhs = 1;
     if (tmpNestedComplexRhs) {
       tmpNestedComplexRhs = 2;
+    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
@@ -72,6 +73,7 @@ while (true) {
     let tmpNestedComplexRhs = 1;
     if (tmpNestedComplexRhs) {
       tmpNestedComplexRhs = 2;
+    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;

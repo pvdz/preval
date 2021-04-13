@@ -41,10 +41,12 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
+} else {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -61,10 +63,12 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpSSA_a = tmpChainElementObject;
+} else {
 }
 let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(tmpSSA_a);

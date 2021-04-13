@@ -39,6 +39,7 @@ if (tmpIfTest) {
   const tmpCompObj$1 = $(b);
   const tmpNewCallee$1 = tmpCompObj$1.$;
   new tmpNewCallee$1(1);
+} else {
 }
 $(a);
 `````
@@ -55,6 +56,7 @@ if (tmpIfTest) {
   const tmpCompObj$1 = $(b);
   const tmpNewCallee$1 = tmpCompObj$1.$;
   new tmpNewCallee$1(1);
+} else {
 }
 $(a);
 `````

@@ -36,6 +36,7 @@ a = { b: tmpObjLitVal };
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(a);
@@ -53,6 +54,7 @@ const tmpSSA_a = { b: tmpObjLitVal };
 let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(tmpSSA_a);

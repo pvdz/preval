@@ -30,6 +30,7 @@ let y = a;
 const tmpIfTest = y == null;
 if (tmpIfTest) {
   y = x;
+} else {
 }
 $(y);
 `````
@@ -42,6 +43,7 @@ let y = a;
 const tmpIfTest = y == null;
 if (tmpIfTest) {
   y = x;
+} else {
 }
 $(y);
 `````

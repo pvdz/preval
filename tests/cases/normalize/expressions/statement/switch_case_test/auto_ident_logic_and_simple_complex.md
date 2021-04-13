@@ -46,10 +46,12 @@ if (tmpBinLhs) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   tmpBinLhs = tmpCallCallee(tmpCalleeParam);
+} else {
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a);
@@ -65,10 +67,12 @@ let tmpBinLhs = 1;
 if (tmpBinLhs) {
   const tmpCalleeParam = $(1);
   tmpBinLhs = $(tmpCalleeParam);
+} else {
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchCaseToStart <= 0;
 $(a);

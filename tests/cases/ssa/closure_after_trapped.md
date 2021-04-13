@@ -66,6 +66,7 @@ if ($) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f();
   tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 `````
 
@@ -79,6 +80,7 @@ if ($) {
   $(tmpSSA_x);
   $(tmpSSA_x);
   $(undefined);
+} else {
 }
 `````
 

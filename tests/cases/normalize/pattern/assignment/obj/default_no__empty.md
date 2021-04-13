@@ -33,6 +33,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
+} else {
 }
 $('bad');
 `````
@@ -47,6 +48,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   (1).cannotDestructureThis;
+} else {
 }
 $('bad');
 `````

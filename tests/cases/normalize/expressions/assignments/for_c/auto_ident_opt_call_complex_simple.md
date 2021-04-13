@@ -42,6 +42,7 @@ while (true) {
     if (tmpIfTest$1) {
       const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
       a = tmpChainElementCall$1;
+    } else {
     }
   } else {
     break;
@@ -63,6 +64,7 @@ while (true) {
     if (tmpIfTest$1) {
       const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
       a = tmpChainElementCall$1;
+    } else {
     }
   } else {
     break;

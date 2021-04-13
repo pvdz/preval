@@ -51,6 +51,7 @@ const tmpBinLhs = $('a');
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
@@ -61,6 +62,7 @@ tmpSwitchBreak: {
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
     a$1 = tmpNestedPropAssignRhs;
     break tmpSwitchBreak;
+  } else {
   }
 }
 $(a, b, c);
@@ -76,6 +78,7 @@ const tmpBinLhs = $('a');
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
@@ -84,6 +87,7 @@ tmpSwitchBreak: {
     const tmpNestedAssignComMemberProp = $('x');
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
     break tmpSwitchBreak;
+  } else {
   }
 }
 $(1, b, 3);

@@ -47,6 +47,7 @@ if (tmpIfTest) {
   const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
   tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+} else {
 }
 $(a, b);
 `````
@@ -67,6 +68,7 @@ if (varInitAssignLhsComputedRhs) {
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
   const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+} else {
 }
 $(a, b);
 `````

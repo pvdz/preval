@@ -41,6 +41,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainRootComputed = 'x';
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+  } else {
   }
 }
 $(a);
@@ -58,6 +59,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = b != null;
   if (tmpIfTest$1) {
     b.x;
+  } else {
   }
 }
 $(a);

@@ -51,6 +51,7 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
@@ -62,6 +63,7 @@ if (tmpIfTest$1) {
   const tmpCompProp = $('d');
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+} else {
 }
 $(a, b);
 `````
@@ -77,6 +79,7 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
@@ -86,6 +89,7 @@ if (tmpIfTest$1) {
   const tmpCompProp = $('d');
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+} else {
 }
 $(a, b);
 `````

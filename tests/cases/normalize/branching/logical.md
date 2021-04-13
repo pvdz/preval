@@ -96,6 +96,7 @@ else d;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpIfTest = b;
+} else {
 }
 if (tmpIfTest) {
   c;
@@ -110,6 +111,7 @@ if (tmpIfTest) {
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpIfTest = b;
+} else {
 }
 if (tmpIfTest) {
   c;

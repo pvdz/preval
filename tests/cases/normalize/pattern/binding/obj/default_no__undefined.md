@@ -33,6 +33,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+} else {
 }
 $('bad');
 `````

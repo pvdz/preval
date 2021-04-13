@@ -55,11 +55,13 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$3;
+} else {
 }
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 $(a);
@@ -80,11 +82,13 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   tmpSSA_a = tmpChainElementObject$3;
+} else {
 }
 const tmpBinLhs = tmpSSA_a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchCaseToStart <= 0;
 $(tmpSSA_a);

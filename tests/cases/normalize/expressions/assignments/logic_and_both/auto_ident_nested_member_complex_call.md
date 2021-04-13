@@ -65,6 +65,7 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c, d);
@@ -94,6 +95,7 @@ if (tmpCalleeParam) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$3;
   tmpSSA_a = varInitAssignLhsComputedRhs$3;
   tmpCalleeParam = varInitAssignLhsComputedRhs$3;
+} else {
 }
 $(tmpCalleeParam);
 $(tmpSSA_a, b, c, 3);

@@ -31,6 +31,7 @@ let a = { a: 999, b: 1000 };
 let tmpArrElToSpread = 1;
 if (tmpArrElToSpread) {
   tmpArrElToSpread = 2;
+} else {
 }
 [...tmpArrElToSpread];
 $(a);
@@ -43,6 +44,7 @@ const a = { a: 999, b: 1000 };
 let tmpArrElToSpread = 1;
 if (tmpArrElToSpread) {
   tmpArrElToSpread = 2;
+} else {
 }
 [...tmpArrElToSpread];
 $(a);

@@ -39,6 +39,7 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -57,6 +58,7 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````

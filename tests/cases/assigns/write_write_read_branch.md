@@ -35,6 +35,7 @@ $(x);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
   $(x, 'branch');
+} else {
 }
 `````
 
@@ -47,6 +48,7 @@ $(tmpSSA_x);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
   $(tmpSSA_x, 'branch');
+} else {
 }
 `````
 

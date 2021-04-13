@@ -42,7 +42,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     x = $(2);
     $(x);
+  } else {
   }
+} else {
 }
 `````
 
@@ -56,7 +58,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpSSA_x = $(2);
     $(tmpSSA_x);
+  } else {
   }
+} else {
 }
 `````
 

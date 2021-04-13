@@ -54,11 +54,13 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpUnaryArg = $(arg);
   a = typeof tmpUnaryArg;
+} else {
 }
 $(a, arg);
 `````
@@ -73,11 +75,13 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpUnaryArg = $(1);
   a = typeof tmpUnaryArg;
+} else {
 }
 $(a, 1);
 `````

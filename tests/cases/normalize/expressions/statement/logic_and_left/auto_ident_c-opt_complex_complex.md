@@ -40,9 +40,11 @@ if (tmpIfTest$1) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpIfTest = tmpChainElementObject;
+} else {
 }
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -59,9 +61,11 @@ if (tmpIfTest$1) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpIfTest = tmpChainElementObject;
+} else {
 }
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````

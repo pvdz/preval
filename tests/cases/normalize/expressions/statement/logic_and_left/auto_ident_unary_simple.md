@@ -35,6 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = typeof x;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, x);
 `````

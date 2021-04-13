@@ -43,6 +43,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
+} else {
 }
 while (true) {
   $(1);
@@ -60,6 +61,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpSSA_a = tmpChainElementObject;
+} else {
 }
 while (true) {
   $(1);

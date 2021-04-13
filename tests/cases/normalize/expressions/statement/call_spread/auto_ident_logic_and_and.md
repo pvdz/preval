@@ -36,11 +36,13 @@ if (tmpCalleeParamSpread) {
   const tmpCallCallee$3 = $;
   const tmpCalleeParam$1 = $(1);
   tmpCalleeParamSpread = tmpCallCallee$3(tmpCalleeParam$1);
-  if (tmpCalleeParamSpread) {
-    const tmpCallCallee$5 = $;
-    const tmpCalleeParam$3 = $(2);
-    tmpCalleeParamSpread = tmpCallCallee$5(tmpCalleeParam$3);
-  }
+} else {
+}
+if (tmpCalleeParamSpread) {
+  const tmpCallCallee$5 = $;
+  const tmpCalleeParam$3 = $(2);
+  tmpCalleeParamSpread = tmpCallCallee$5(tmpCalleeParam$3);
+} else {
 }
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a);
@@ -55,10 +57,12 @@ let tmpCalleeParamSpread = $(tmpCalleeParam);
 if (tmpCalleeParamSpread) {
   const tmpCalleeParam$1 = $(1);
   tmpCalleeParamSpread = $(tmpCalleeParam$1);
-  if (tmpCalleeParamSpread) {
-    const tmpCalleeParam$3 = $(2);
-    tmpCalleeParamSpread = $(tmpCalleeParam$3);
-  }
+} else {
+}
+if (tmpCalleeParamSpread) {
+  const tmpCalleeParam$3 = $(2);
+  tmpCalleeParamSpread = $(tmpCalleeParam$3);
+} else {
 }
 $(...tmpCalleeParamSpread);
 $(a);

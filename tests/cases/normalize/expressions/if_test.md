@@ -33,6 +33,7 @@ x = tmpNestedAssignObjPatternRhs.x;
 tmpIfTest = tmpNestedAssignObjPatternRhs;
 if (tmpIfTest) {
   $(2);
+} else {
 }
 $(x);
 `````
@@ -45,6 +46,7 @@ const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal };
 const tmpSSA_x = tmpNestedAssignObjPatternRhs.x;
 if (tmpNestedAssignObjPatternRhs) {
   $(2);
+} else {
 }
 $(tmpSSA_x);
 `````

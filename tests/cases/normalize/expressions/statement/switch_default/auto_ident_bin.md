@@ -46,6 +46,7 @@ if (tmpIfTest) {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
   tmpBinBothLhs + tmpBinBothRhs;
+} else {
 }
 $(a);
 `````

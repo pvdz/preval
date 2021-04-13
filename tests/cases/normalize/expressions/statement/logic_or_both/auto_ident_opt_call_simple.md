@@ -34,6 +34,7 @@ const tmpIfTest$1 = tmpChainRootCall != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall = tmpChainRootCall(1);
   tmpIfTest = tmpChainElementCall;
+} else {
 }
 if (tmpIfTest) {
 } else {
@@ -41,6 +42,7 @@ if (tmpIfTest) {
   const tmpIfTest$3 = tmpChainRootCall$1 != null;
   if (tmpIfTest$3) {
     const tmpChainElementCall$1 = tmpChainRootCall$1(1);
+  } else {
   }
 }
 $(a);
@@ -55,12 +57,14 @@ const tmpIfTest$1 = $ != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall = $(1);
   tmpIfTest = tmpChainElementCall;
+} else {
 }
 if (tmpIfTest) {
 } else {
   const tmpIfTest$3 = $ != null;
   if (tmpIfTest$3) {
     $(1);
+  } else {
   }
 }
 $(a);

@@ -51,6 +51,7 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
@@ -61,6 +62,7 @@ if (tmpIfTest$1) {
   const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
   tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+} else {
 }
 $(a, b);
 `````
@@ -76,6 +78,7 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
@@ -84,6 +87,7 @@ if (tmpIfTest$1) {
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
   const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+} else {
 }
 $(a, b);
 `````

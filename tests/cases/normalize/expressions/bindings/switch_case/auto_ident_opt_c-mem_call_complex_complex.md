@@ -50,6 +50,7 @@ let tmpSwitchCaseToStart = 1;
 const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
@@ -69,9 +70,12 @@ if (tmpIfTest$1) {
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
       a = tmpChainElementCall$1;
+    } else {
     }
+  } else {
   }
   $(a);
+} else {
 }
 `````
 
@@ -91,7 +95,9 @@ if (tmpIfTest$3) {
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
     tmpSSA_a = tmpChainElementCall$1;
+  } else {
   }
+} else {
 }
 $(tmpSSA_a);
 `````

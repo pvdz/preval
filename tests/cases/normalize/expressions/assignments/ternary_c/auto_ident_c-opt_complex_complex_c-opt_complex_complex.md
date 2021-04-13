@@ -51,7 +51,9 @@ if (tmpIfTest) {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpNestedComplexRhs = tmpChainElementObject$1;
+    } else {
     }
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -82,7 +84,9 @@ if (tmpIfTest) {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpNestedComplexRhs = tmpChainElementObject$1;
+    } else {
     }
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

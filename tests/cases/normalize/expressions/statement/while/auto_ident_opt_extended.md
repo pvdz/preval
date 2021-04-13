@@ -43,6 +43,7 @@ while (true) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$3 = tmpChainElementObject$1.z;
     tmpIfTest = tmpChainElementObject$3;
+  } else {
   }
   if (tmpIfTest) {
     $(100);
@@ -68,6 +69,7 @@ while (true) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$3 = tmpChainElementObject$1.z;
     tmpIfTest = tmpChainElementObject$3;
+  } else {
   }
   if (tmpIfTest) {
     $(100);

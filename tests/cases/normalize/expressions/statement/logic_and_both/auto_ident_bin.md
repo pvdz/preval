@@ -35,6 +35,7 @@ if (tmpIfTest) {
   const tmpBinBothLhs$1 = $(1);
   const tmpBinBothRhs$1 = $(2);
   tmpBinBothLhs$1 + tmpBinBothRhs$1;
+} else {
 }
 $(a);
 `````
@@ -50,6 +51,7 @@ if (tmpIfTest) {
   const tmpBinBothLhs$1 = $(1);
   const tmpBinBothRhs$1 = $(2);
   tmpBinBothLhs$1 + tmpBinBothRhs$1;
+} else {
 }
 $(a);
 `````

@@ -32,6 +32,7 @@ const tmpBinBothLhs = $(100);
 let tmpBinBothRhs = 1;
 if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
@@ -45,6 +46,7 @@ const tmpBinBothLhs = $(100);
 let tmpBinBothRhs = 1;
 if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

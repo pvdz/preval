@@ -35,6 +35,7 @@ const tmpCompObj = obj;
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
@@ -48,6 +49,7 @@ const obj = {};
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 const tmpCompProp = tmpSSA_a;
 obj[tmpCompProp];

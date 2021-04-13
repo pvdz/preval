@@ -34,6 +34,7 @@ a = undefined;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -46,6 +47,7 @@ $(100);
 let tmpCalleeParam = undefined;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(undefined);

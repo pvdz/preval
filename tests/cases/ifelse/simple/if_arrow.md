@@ -31,6 +31,7 @@ const tmpIfTest = function () {
 };
 if (tmpIfTest) {
   $();
+} else {
 }
 `````
 
@@ -42,6 +43,7 @@ const tmpIfTest = function () {
 };
 if (tmpIfTest) {
   $();
+} else {
 }
 `````
 

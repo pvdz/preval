@@ -47,6 +47,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$3 = tmpChainElementObject$1.z;
     a = tmpChainElementObject$3;
+  } else {
   }
   let tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
@@ -72,6 +73,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$3 = tmpChainElementObject$1.z;
     a = tmpChainElementObject$3;
+  } else {
   }
   const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;

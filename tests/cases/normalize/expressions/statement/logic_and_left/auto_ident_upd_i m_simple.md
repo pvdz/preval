@@ -37,6 +37,7 @@ b = b - 1;
 const tmpIfTest = tmpPostUpdArgIdent;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, b);
 `````

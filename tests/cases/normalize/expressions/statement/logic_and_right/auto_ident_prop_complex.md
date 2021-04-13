@@ -36,6 +36,7 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpCompObj = $(b);
   tmpCompObj.c;
+} else {
 }
 $(a, b);
 `````
@@ -49,6 +50,7 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpCompObj = $(b);
   tmpCompObj.c;
+} else {
 }
 $(a, b);
 `````

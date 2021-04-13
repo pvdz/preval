@@ -38,6 +38,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   let tmpAssignMemLhsObj = tmpCallCallee$1(tmpCalleeParam$1);
   if (tmpAssignMemLhsObj) {
     tmpAssignMemLhsObj = 2;
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
@@ -56,6 +57,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   let tmpAssignMemLhsObj = $(tmpCalleeParam$1);
   if (tmpAssignMemLhsObj) {
     tmpAssignMemLhsObj = 2;
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }

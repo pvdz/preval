@@ -56,6 +56,7 @@ let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a, b);
@@ -75,6 +76,7 @@ tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 const tmpIfTest = tmpNestedPropCompoundComplexRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchCaseToStart <= 0;
 $(tmpNestedPropCompoundComplexRhs, b);

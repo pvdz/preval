@@ -35,6 +35,7 @@ const tmpCalleeParam$3 = $(1);
 let tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$3);
 if (tmpCalleeParam$1) {
   tmpCalleeParam$1 = 2;
+} else {
 }
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
@@ -49,6 +50,7 @@ const tmpCalleeParam$3 = $(1);
 let tmpCalleeParam$1 = $(tmpCalleeParam$3);
 if (tmpCalleeParam$1) {
   tmpCalleeParam$1 = 2;
+} else {
 }
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);

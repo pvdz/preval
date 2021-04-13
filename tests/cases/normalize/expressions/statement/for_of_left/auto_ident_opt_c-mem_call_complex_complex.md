@@ -52,7 +52,9 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
       const tmpCalleeParam$3 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$1, tmpCalleeParam$3);
       tmpAssignMemLhsObj = tmpChainElementCall$1;
+    } else {
     }
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
@@ -80,7 +82,9 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
       const tmpCalleeParam$3 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
       tmpAssignMemLhsObj = tmpChainElementCall$1;
+    } else {
     }
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }

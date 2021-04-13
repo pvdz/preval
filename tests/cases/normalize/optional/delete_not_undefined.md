@@ -30,6 +30,7 @@ const tmpDeleteOpt = o;
 const tmpIfTest = tmpDeleteOpt != null;
 if (tmpIfTest) {
   delete tmpDeleteOpt.x;
+} else {
 }
 `````
 
@@ -40,6 +41,7 @@ const o = $(undefined);
 const tmpIfTest = o != null;
 if (tmpIfTest) {
   delete o.x;
+} else {
 }
 `````
 

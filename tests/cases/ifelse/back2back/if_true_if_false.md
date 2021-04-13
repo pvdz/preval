@@ -41,22 +41,26 @@ let x = $(true, 'a');
 if (x) {
   $(x, 'pass');
   x = $(false, 'b');
-  if (x) {
-    $(x, 'hit');
-  }
+} else {
+}
+if (x) {
+  $(x, 'hit');
+} else {
 }
 `````
 
 ## Output
 
 `````js filename=intro
-const x = $(true, 'a');
+let x = $(true, 'a');
 if (x) {
   $(x, 'pass');
-  const tmpSSA_x = $(false, 'b');
-  if (tmpSSA_x) {
-    $(tmpSSA_x, 'hit');
-  }
+  x = $(false, 'b');
+} else {
+}
+if (x) {
+  $(x, 'hit');
+} else {
 }
 `````
 

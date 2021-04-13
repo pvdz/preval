@@ -45,7 +45,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     tmpForInDeclRhs = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 let x = undefined;
 for (x in tmpForInDeclRhs) {
@@ -70,7 +72,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     tmpForInDeclRhs = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 let x = undefined;
 for (x in tmpForInDeclRhs) {

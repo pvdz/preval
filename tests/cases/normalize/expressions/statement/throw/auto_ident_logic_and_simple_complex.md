@@ -33,6 +33,7 @@ if (tmpThrowArg) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   tmpThrowArg = tmpCallCallee(tmpCalleeParam);
+} else {
 }
 throw tmpThrowArg;
 `````
@@ -44,6 +45,7 @@ let tmpThrowArg = 1;
 if (tmpThrowArg) {
   const tmpCalleeParam = $(1);
   tmpThrowArg = $(tmpCalleeParam);
+} else {
 }
 throw tmpThrowArg;
 `````

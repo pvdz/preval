@@ -50,12 +50,14 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
   tmpBinBothLhs + tmpBinBothRhs;
+} else {
 }
 $(a);
 `````
@@ -70,12 +72,14 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
   tmpBinBothLhs + tmpBinBothRhs;
+} else {
 }
 $(a);
 `````

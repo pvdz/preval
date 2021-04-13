@@ -53,6 +53,7 @@ if (tmpIfTest) {
   const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
   a = tmpNestedAssignObjPatternRhs;
+} else {
 }
 $(a, b);
 `````

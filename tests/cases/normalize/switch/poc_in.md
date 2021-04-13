@@ -97,6 +97,7 @@ if (tmpIfTest) {
     const tmpIfTest$3 = tmpBinLhs$3 === tmpSwitchValue;
     if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 2;
+    } else {
     }
   }
 }
@@ -104,6 +105,7 @@ tmpSwitchBreak: {
   const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$5) {
     $('A');
+  } else {
   }
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$7) {
@@ -114,6 +116,7 @@ tmpSwitchBreak: {
     if (tmpIfTest$9) {
       $('C');
       break tmpSwitchBreak;
+    } else {
     }
   }
 }
@@ -137,6 +140,7 @@ if (tmpIfTest) {
     const tmpIfTest$3 = tmpBinLhs$3 === 1;
     if (tmpIfTest$3) {
       tmpSwitchCaseToStart = 2;
+    } else {
     }
   }
 }
@@ -144,6 +148,7 @@ tmpSwitchBreak: {
   const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$5) {
     $('A');
+  } else {
   }
   const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$7) {
@@ -154,6 +159,7 @@ tmpSwitchBreak: {
     if (tmpIfTest$9) {
       $('C');
       break tmpSwitchBreak;
+    } else {
     }
   }
 }

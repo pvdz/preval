@@ -44,10 +44,12 @@ let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = 1;
 if (tmpBinLhs) {
   tmpBinLhs = 2;
+} else {
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a);
@@ -62,10 +64,12 @@ let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = 1;
 if (tmpBinLhs) {
   tmpBinLhs = 2;
+} else {
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchCaseToStart <= 0;
 $(a);

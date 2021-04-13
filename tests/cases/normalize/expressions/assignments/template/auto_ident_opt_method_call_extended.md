@@ -44,6 +44,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
+} else {
 }
 let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
@@ -65,6 +66,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   tmpSSA_a = tmpChainElementCall;
+} else {
 }
 const tmpTemplateExpr = tmpSSA_a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;

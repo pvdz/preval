@@ -32,10 +32,12 @@ const tmpCallCallee = $;
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -47,10 +49,12 @@ $(a);
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(tmpSSA_a);

@@ -42,6 +42,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   tmpForInDeclRhs = tmpChainElementObject$3;
+} else {
 }
 let x = undefined;
 for (x in tmpForInDeclRhs) {
@@ -63,6 +64,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   tmpForInDeclRhs = tmpChainElementObject$3;
+} else {
 }
 let x = undefined;
 for (x in tmpForInDeclRhs) {

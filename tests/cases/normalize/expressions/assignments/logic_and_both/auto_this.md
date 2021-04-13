@@ -36,6 +36,7 @@ let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   a = undefined;
   tmpCalleeParam = undefined;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -49,6 +50,7 @@ let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   tmpSSA_a = undefined;
   tmpCalleeParam = undefined;
+} else {
 }
 $(tmpCalleeParam);
 $(tmpSSA_a);

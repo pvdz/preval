@@ -49,6 +49,7 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpCallObj = $(b);
   a = tmpCallObj.$(1);
+} else {
 }
 $(a);
 `````

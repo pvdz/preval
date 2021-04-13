@@ -46,6 +46,7 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     $(3);
     break tmpSwitchBreak;
+  } else {
   }
 }
 `````

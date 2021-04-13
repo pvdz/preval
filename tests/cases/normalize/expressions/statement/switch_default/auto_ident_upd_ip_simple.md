@@ -49,6 +49,7 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpPostUpdArgIdent = b;
   b = b + 1;
+} else {
 }
 $(a, b);
 `````

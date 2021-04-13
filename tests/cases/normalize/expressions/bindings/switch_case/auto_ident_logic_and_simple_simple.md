@@ -45,14 +45,17 @@ let tmpSwitchCaseToStart = 1;
 const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   a = 1;
   if (a) {
     a = 2;
+  } else {
   }
   $(a);
+} else {
 }
 `````
 
@@ -62,6 +65,7 @@ if (tmpIfTest$1) {
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 $(tmpSSA_a);
 `````

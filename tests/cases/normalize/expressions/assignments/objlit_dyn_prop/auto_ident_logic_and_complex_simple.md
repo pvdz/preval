@@ -34,6 +34,7 @@ const tmpCalleeParam$1 = $(1);
 a = tmpCallCallee$1(tmpCalleeParam$1);
 if (a) {
   a = 2;
+} else {
 }
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
@@ -49,6 +50,7 @@ const tmpCalleeParam$1 = $(1);
 let tmpSSA_a = $(tmpCalleeParam$1);
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 const tmpObjLitPropKey = tmpSSA_a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };

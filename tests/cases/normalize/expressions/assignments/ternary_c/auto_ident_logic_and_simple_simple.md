@@ -37,6 +37,7 @@ if (tmpIfTest) {
   let tmpNestedComplexRhs = 1;
   if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = 2;
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -57,6 +58,7 @@ if (tmpIfTest) {
   let tmpNestedComplexRhs = 1;
   if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = 2;
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

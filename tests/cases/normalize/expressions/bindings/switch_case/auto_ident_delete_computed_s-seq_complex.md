@@ -50,6 +50,7 @@ let tmpSwitchCaseToStart = 1;
 const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
@@ -60,6 +61,7 @@ if (tmpIfTest$1) {
   const tmpDeleteCompProp = $('y');
   a = delete tmpDeleteCompObj[tmpDeleteCompProp];
   $(a, arg);
+} else {
 }
 `````
 

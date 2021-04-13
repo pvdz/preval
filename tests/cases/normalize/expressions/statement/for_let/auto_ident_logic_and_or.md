@@ -41,6 +41,7 @@ if (xyz) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   xyz = tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 if (xyz) {
 } else {
@@ -64,6 +65,7 @@ let xyz = $(tmpCalleeParam);
 if (xyz) {
   const tmpCalleeParam$1 = $(1);
   xyz = $(tmpCalleeParam$1);
+} else {
 }
 if (xyz) {
 } else {

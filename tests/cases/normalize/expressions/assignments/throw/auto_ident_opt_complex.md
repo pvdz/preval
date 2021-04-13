@@ -39,6 +39,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
+} else {
 }
 let tmpThrowArg = a;
 throw tmpThrowArg;
@@ -54,6 +55,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpSSA_a = tmpChainElementObject;
+} else {
 }
 const tmpThrowArg = tmpSSA_a;
 throw tmpThrowArg;

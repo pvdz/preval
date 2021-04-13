@@ -55,7 +55,9 @@ if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  } else {
   }
+} else {
 }
 $(a);
 `````
@@ -73,6 +75,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   tmpChainElementObject$1.z;
+} else {
 }
 $(a);
 `````

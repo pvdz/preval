@@ -55,6 +55,7 @@ tmpBinLhs = tmpNestedAssignArrPatternRhs;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a);
@@ -77,6 +78,7 @@ const tmpSSA_a = arrPatternSplat$1[0];
 const tmpIfTest = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchCaseToStart <= 0;
 $(tmpSSA_a);

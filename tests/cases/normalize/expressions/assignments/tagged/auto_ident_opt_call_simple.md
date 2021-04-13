@@ -36,6 +36,7 @@ const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
   a = tmpChainElementCall;
+} else {
 }
 let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
@@ -51,6 +52,7 @@ const tmpIfTest = $ != null;
 if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   tmpSSA_a = tmpChainElementCall;
+} else {
 }
 const tmpCalleeParam$1 = tmpSSA_a;
 $(tmpCalleeParam, tmpCalleeParam$1);

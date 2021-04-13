@@ -30,6 +30,7 @@ if (a) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   a = tmpCallCallee(tmpCalleeParam);
+} else {
 }
 $(a);
 `````
@@ -41,6 +42,7 @@ let a = 1;
 if (a) {
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
+} else {
 }
 $(a);
 `````

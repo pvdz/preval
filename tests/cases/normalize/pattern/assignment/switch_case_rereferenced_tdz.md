@@ -67,12 +67,14 @@ if (tmpIfTest) {
   const tmpIfTest$1 = 1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
+  } else {
   }
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   a = 10;
   b = 20;
+} else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
@@ -80,6 +82,7 @@ if (tmpIfTest$5) {
   const arrPatternSplat = [...arrAssignPatternRhs];
   a = arrPatternSplat[0];
   b = arrPatternSplat[1];
+} else {
 }
 `````
 

@@ -45,6 +45,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
+} else {
 }
 let xyz = a;
 while (true) {
@@ -64,6 +65,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpSSA_a = tmpChainElementObject;
+} else {
 }
 const xyz = tmpSSA_a;
 while (true) {

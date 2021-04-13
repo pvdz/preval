@@ -48,6 +48,7 @@ if (tmpIfTest) {
   a = function () {
     debugger;
   };
+} else {
 }
 $(a);
 `````

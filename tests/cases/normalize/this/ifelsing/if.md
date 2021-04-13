@@ -49,6 +49,7 @@ const f = function () {
   if (tmpIfTest) {
     const tmpReturnArg = tmpthis.foo;
     return tmpReturnArg;
+  } else {
   }
 };
 const tmpObjLitVal$1 = f;
@@ -68,6 +69,7 @@ const f = function () {
   if (tmpIfTest) {
     const tmpReturnArg = tmpthis.foo;
     return tmpReturnArg;
+  } else {
   }
 };
 const a = { foo: 10, f: f };

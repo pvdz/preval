@@ -39,6 +39,7 @@ if (tmpIfTest) {
   const tmpDeleteCompObj = arg;
   const tmpDeleteCompProp = $('y');
   delete tmpDeleteCompObj[tmpDeleteCompProp];
+} else {
 }
 $(a, arg);
 `````
@@ -54,6 +55,7 @@ if (tmpIfTest) {
   $(2);
   const tmpDeleteCompProp = $('y');
   delete arg[tmpDeleteCompProp];
+} else {
 }
 $(a, arg);
 `````

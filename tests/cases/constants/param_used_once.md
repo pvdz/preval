@@ -4452,6 +4452,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     const tmpIfTest = tmpLoopRetCode$1 === undefined;
     if (tmpIfTest) {
       return tmpLoopRetValue$1;
+    } else {
     }
   };
   while (tmpLoopRetCode) {

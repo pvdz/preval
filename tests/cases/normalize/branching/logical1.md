@@ -42,6 +42,7 @@ if (x) {
 let x = a;
 if (x) {
   x = b;
+} else {
 }
 if (x) {
   c;
@@ -56,6 +57,7 @@ if (x) {
 let x = a;
 if (x) {
   x = b;
+} else {
 }
 if (x) {
   c;

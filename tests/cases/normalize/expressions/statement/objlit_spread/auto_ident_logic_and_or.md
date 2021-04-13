@@ -35,6 +35,7 @@ if (tmpObjSpreadArg) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   tmpObjSpreadArg = tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 if (tmpObjSpreadArg) {
 } else {
@@ -55,6 +56,7 @@ let tmpObjSpreadArg = $(tmpCalleeParam);
 if (tmpObjSpreadArg) {
   const tmpCalleeParam$1 = $(1);
   tmpObjSpreadArg = $(tmpCalleeParam$1);
+} else {
 }
 if (tmpObjSpreadArg) {
 } else {

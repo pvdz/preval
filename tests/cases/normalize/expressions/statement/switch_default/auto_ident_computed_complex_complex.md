@@ -50,6 +50,7 @@ if (tmpIfTest) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('c');
   tmpCompObj[tmpCompProp];
+} else {
 }
 $(a, b);
 `````

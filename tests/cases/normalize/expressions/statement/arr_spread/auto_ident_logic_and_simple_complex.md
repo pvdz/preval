@@ -33,6 +33,7 @@ if (tmpArrElToSpread) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   tmpArrElToSpread = tmpCallCallee(tmpCalleeParam);
+} else {
 }
 [...tmpArrElToSpread];
 $(a);
@@ -46,6 +47,7 @@ let tmpArrElToSpread = 1;
 if (tmpArrElToSpread) {
   const tmpCalleeParam = $(1);
   tmpArrElToSpread = $(tmpCalleeParam);
+} else {
 }
 [...tmpArrElToSpread];
 $(a);

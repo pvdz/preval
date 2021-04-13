@@ -42,6 +42,7 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   let a = varInitAssignLhsComputedRhs;
   $(a, b, c);
+} else {
 }
 `````
 
@@ -55,6 +56,7 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedRhs = $(3);
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs, 2, 3);
+} else {
 }
 `````
 

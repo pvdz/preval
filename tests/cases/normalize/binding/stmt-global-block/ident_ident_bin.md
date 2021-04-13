@@ -41,6 +41,7 @@ if (tmpIfTest) {
   b = c + d;
   let a = b;
   $(a, b, c);
+} else {
 }
 `````
 
@@ -50,6 +51,7 @@ if (tmpIfTest) {
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(7, 7, 3);
+} else {
 }
 `````
 

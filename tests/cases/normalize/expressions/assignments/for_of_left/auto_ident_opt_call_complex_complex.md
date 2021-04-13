@@ -44,6 +44,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$1, tmpCalleeParam$3);
     a = tmpChainElementCall$1;
+  } else {
   }
   let tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
@@ -67,6 +68,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$3);
     a = tmpChainElementCall$1;
+  } else {
   }
   const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;

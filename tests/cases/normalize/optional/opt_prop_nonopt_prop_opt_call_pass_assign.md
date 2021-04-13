@@ -42,7 +42,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);
     x = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 $(x);
 `````
@@ -61,7 +63,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);
     tmpSSA_x = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 $(tmpSSA_x);
 `````

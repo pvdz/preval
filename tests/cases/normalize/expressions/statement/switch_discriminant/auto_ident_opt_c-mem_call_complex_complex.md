@@ -58,12 +58,15 @@ if (tmpIfTest) {
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
     tmpSwitchValue = tmpChainElementCall$1;
+  } else {
   }
+} else {
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -83,7 +86,9 @@ if (tmpIfTest) {
     const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
     tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
+  } else {
   }
+} else {
 }
 $(100);
 $(a);

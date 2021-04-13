@@ -40,6 +40,7 @@ if (tmpThrowArg) {
     const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
     tmpThrowArg = tmpCallCallee$3(tmpCalleeParam$3);
+  } else {
   }
 }
 throw tmpThrowArg;
@@ -57,6 +58,7 @@ if (tmpThrowArg) {
   if (tmpThrowArg) {
     const tmpCalleeParam$3 = $(2);
     tmpThrowArg = $(tmpCalleeParam$3);
+  } else {
   }
 }
 throw tmpThrowArg;

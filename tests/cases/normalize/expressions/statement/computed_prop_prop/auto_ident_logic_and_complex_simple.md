@@ -37,6 +37,7 @@ const tmpCalleeParam = $(1);
 let tmpCompProp = tmpCallCallee(tmpCalleeParam);
 if (tmpCompProp) {
   tmpCompProp = 2;
+} else {
 }
 tmpCompObj[tmpCompProp];
 $(a);
@@ -51,6 +52,7 @@ const tmpCalleeParam = $(1);
 let tmpCompProp = $(tmpCalleeParam);
 if (tmpCompProp) {
   tmpCompProp = 2;
+} else {
 }
 obj[tmpCompProp];
 $(a);

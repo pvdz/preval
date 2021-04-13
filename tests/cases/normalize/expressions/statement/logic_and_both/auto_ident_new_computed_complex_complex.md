@@ -41,6 +41,7 @@ if (tmpIfTest) {
   const tmpCompProp$1 = $('$');
   const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
   new tmpNewCallee$1(1);
+} else {
 }
 $(a);
 `````
@@ -59,6 +60,7 @@ if (tmpIfTest) {
   const tmpCompProp$1 = $('$');
   const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
   new tmpNewCallee$1(1);
+} else {
 }
 $(a);
 `````

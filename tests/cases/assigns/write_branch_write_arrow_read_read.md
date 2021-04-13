@@ -53,6 +53,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = f();
   const tmpCalleeParam$1 = 'result';
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+} else {
 }
 x = $(3, 'after');
 $(x, 'final');
@@ -67,6 +68,7 @@ if (tmpIfTest) {
   const tmpSSA_x$1 = $(2, 'branch');
   const tmpCalleeParam = $(tmpSSA_x$1, 'arrow');
   $(tmpCalleeParam, 'result');
+} else {
 }
 const tmpSSA_x = $(3, 'after');
 $(tmpSSA_x, 'final');

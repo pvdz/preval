@@ -39,6 +39,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
   tmpThrowArg = tmpChainElementCall$1;
+} else {
 }
 throw tmpThrowArg;
 `````
@@ -54,6 +55,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   tmpThrowArg = tmpChainElementCall$1;
+} else {
 }
 throw tmpThrowArg;
 `````

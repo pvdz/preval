@@ -62,15 +62,18 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
+  } else {
   }
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   $(11);
+} else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(22);
+} else {
 }
 `````
 
@@ -87,15 +90,18 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpBinLhs$1 === 1;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
+  } else {
   }
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   $(11);
+} else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(22);
+} else {
 }
 `````
 

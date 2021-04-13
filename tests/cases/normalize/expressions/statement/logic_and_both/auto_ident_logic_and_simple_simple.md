@@ -31,9 +31,11 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest = 1;
 if (tmpIfTest) {
   tmpIfTest = 2;
-  if (tmpIfTest) {
-    tmpIfTest = 1;
-  }
+} else {
+}
+if (tmpIfTest) {
+  tmpIfTest = 1;
+} else {
 }
 $(a);
 `````

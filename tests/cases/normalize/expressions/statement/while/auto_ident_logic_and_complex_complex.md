@@ -36,6 +36,7 @@ while (true) {
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(2);
     tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
+  } else {
   }
   if (tmpIfTest) {
     $(100);
@@ -56,6 +57,7 @@ while (true) {
   if (tmpIfTest) {
     const tmpCalleeParam$1 = $(2);
     tmpIfTest = $(tmpCalleeParam$1);
+  } else {
   }
   if (tmpIfTest) {
     $(100);

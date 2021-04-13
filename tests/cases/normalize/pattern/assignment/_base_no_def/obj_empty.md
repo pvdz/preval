@@ -29,6 +29,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
+} else {
 }
 `````
 
@@ -42,6 +43,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   (1).cannotDestructureThis;
+} else {
 }
 `````
 

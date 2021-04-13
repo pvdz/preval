@@ -48,6 +48,7 @@ if (tmpIfTest) {
   } else {
     a = 2;
   }
+} else {
 }
 $(a);
 `````

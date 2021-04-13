@@ -43,6 +43,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.x;
     a = tmpChainElementObject;
+  } else {
   }
   let tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
@@ -65,6 +66,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.x;
     a = tmpChainElementObject;
+  } else {
   }
   const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;

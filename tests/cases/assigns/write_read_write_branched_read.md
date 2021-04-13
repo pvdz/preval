@@ -37,6 +37,7 @@ x = $(2);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(x, 'b');
+} else {
 }
 `````
 
@@ -49,6 +50,7 @@ const tmpSSA_x = $(2);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(tmpSSA_x, 'b');
+} else {
 }
 `````
 

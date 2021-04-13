@@ -34,6 +34,7 @@ const tmpIfTest$1 = tmpChainRootCall != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall = tmpChainRootCall(1);
   a = tmpChainElementCall;
+} else {
 }
 let tmpIfTest = a;
 $(a);
@@ -47,6 +48,7 @@ const tmpIfTest$1 = $ != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall = $(1);
   tmpSSA_a = tmpChainElementCall;
+} else {
 }
 $(tmpSSA_a);
 `````

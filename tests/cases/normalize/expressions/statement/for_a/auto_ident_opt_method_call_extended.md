@@ -44,6 +44,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+} else {
 }
 while (true) {
   const tmpIfTest$1 = $(0);
@@ -68,6 +69,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+} else {
 }
 while (true) {
   const tmpIfTest$1 = $(0);

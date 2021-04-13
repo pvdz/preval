@@ -56,6 +56,7 @@ let f = function () {
     const tmpIfTest = n < 8;
     if (tmpIfTest) {
       return undefined;
+    } else {
     }
   };
   let tmpLoopTail = function ($$0, $$1) {
@@ -93,6 +94,7 @@ const tmpLoopBody = function () {
   const tmpIfTest = n < 8;
   if (tmpIfTest) {
     return undefined;
+  } else {
   }
 };
 while (true) {

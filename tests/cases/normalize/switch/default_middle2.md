@@ -43,6 +43,7 @@ const tmpBinLhs = $(30);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 1;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
@@ -56,6 +57,7 @@ const tmpBinLhs = $(30);
 const tmpIfTest = tmpBinLhs === 6;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 1;
+} else {
 }
 tmpSwitchCaseToStart <= 0;
 tmpSwitchCaseToStart <= 1;

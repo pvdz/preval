@@ -49,6 +49,7 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComp
 const tmpIfTest = varInitAssignLhsComputedRhs;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, b, c, d);
 `````
@@ -68,6 +69,7 @@ varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhs
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
 if (varInitAssignLhsComputedRhs$1) {
   $(100);
+} else {
 }
 $(a, b, c, 3);
 `````

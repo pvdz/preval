@@ -39,6 +39,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpObjSpreadArg = tmpChainElementObject;
+} else {
 }
 ({ ...tmpObjSpreadArg });
 $(a);
@@ -55,6 +56,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpObjSpreadArg = tmpChainElementObject;
+} else {
 }
 ({ ...tmpObjSpreadArg });
 $(a);

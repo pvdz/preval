@@ -35,6 +35,7 @@ const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
   a = tmpChainElementCall;
+} else {
 }
 let tmpObjLitVal = a;
 const tmpCalleeParam = { x: tmpObjLitVal };
@@ -50,6 +51,7 @@ const tmpIfTest = $ != null;
 if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   tmpSSA_a = tmpChainElementCall;
+} else {
 }
 const tmpObjLitVal = tmpSSA_a;
 const tmpCalleeParam = { x: tmpObjLitVal };

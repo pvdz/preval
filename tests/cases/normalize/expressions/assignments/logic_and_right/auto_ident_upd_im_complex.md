@@ -45,6 +45,7 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = tmpPostUpdArgVal;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
@@ -64,6 +65,7 @@ if (tmpCalleeParam) {
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;
   tmpCalleeParam = tmpPostUpdArgVal;
+} else {
 }
 $(tmpCalleeParam);
 $(a, b);

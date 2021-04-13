@@ -48,6 +48,7 @@ if (tmpIfTest) {
   const tmpAssignMemLhsObj$1 = tmpPostUpdArgObj$1;
   const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
   tmpAssignMemLhsObj$1.x = tmpAssignMemRhs$1;
+} else {
 }
 $(a, b);
 `````
@@ -68,6 +69,7 @@ if (tmpPostUpdArgVal) {
   const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
   const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
   tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
+} else {
 }
 $(a, b);
 `````

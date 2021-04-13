@@ -39,6 +39,7 @@ const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpIfTest = tmpChainElementObject;
+} else {
 }
 if (tmpIfTest) {
 } else {
@@ -47,6 +48,7 @@ if (tmpIfTest) {
   const tmpIfTest$3 = tmpChainElementCall$1 != null;
   if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainElementCall$1.x;
+  } else {
   }
 }
 $(a);
@@ -63,6 +65,7 @@ const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpIfTest = tmpChainElementObject;
+} else {
 }
 if (tmpIfTest) {
 } else {
@@ -70,6 +73,7 @@ if (tmpIfTest) {
   const tmpIfTest$3 = tmpChainElementCall$1 != null;
   if (tmpIfTest$3) {
     tmpChainElementCall$1.x;
+  } else {
   }
 }
 $(a);

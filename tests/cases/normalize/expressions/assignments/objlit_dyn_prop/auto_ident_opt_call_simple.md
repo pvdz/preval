@@ -35,6 +35,7 @@ const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
   a = tmpChainElementCall;
+} else {
 }
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
@@ -51,6 +52,7 @@ const tmpIfTest = $ != null;
 if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   tmpSSA_a = tmpChainElementCall;
+} else {
 }
 const tmpObjLitPropKey = tmpSSA_a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };

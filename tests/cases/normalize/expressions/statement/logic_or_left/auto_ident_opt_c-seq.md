@@ -38,6 +38,7 @@ const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpIfTest = tmpChainElementObject;
+} else {
 }
 if (tmpIfTest) {
 } else {
@@ -57,6 +58,7 @@ const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpIfTest = tmpChainElementObject;
+} else {
 }
 if (tmpIfTest) {
 } else {

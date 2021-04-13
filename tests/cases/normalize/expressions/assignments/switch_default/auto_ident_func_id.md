@@ -49,6 +49,7 @@ if (tmpIfTest) {
     debugger;
   };
   a = f;
+} else {
 }
 $(a);
 `````

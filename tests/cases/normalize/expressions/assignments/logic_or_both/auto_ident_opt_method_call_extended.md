@@ -44,6 +44,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
+} else {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
@@ -57,6 +58,7 @@ if (tmpCalleeParam) {
     const tmpChainElementObject$9 = tmpChainElementObject$7.e;
     const tmpChainElementCall$1 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
     tmpNestedComplexRhs = tmpChainElementCall$1;
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -79,6 +81,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   tmpSSA_a = tmpChainElementCall;
+} else {
 }
 let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
@@ -91,6 +94,7 @@ if (tmpCalleeParam) {
     const tmpChainElementObject$9 = tmpChainElementObject$7.e;
     const tmpChainElementCall$1 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
     tmpNestedComplexRhs = tmpChainElementCall$1;
+  } else {
   }
   tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

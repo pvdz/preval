@@ -35,10 +35,12 @@ let tmpCalleeParam = obj;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = a;
+} else {
 }
 const tmpIfTest$1 = tmpCalleeParam == null;
 if (tmpIfTest$1) {
   tmpCalleeParam = b;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -55,10 +57,12 @@ let tmpCalleeParam = obj;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = a;
+} else {
 }
 const tmpIfTest$1 = tmpCalleeParam == null;
 if (tmpIfTest$1) {
   tmpCalleeParam = b;
+} else {
 }
 $(tmpCalleeParam);
 `````

@@ -37,6 +37,7 @@ const tmpCalleeParam = $(1);
 a = tmpCallCallee(tmpCalleeParam);
 if (a) {
   a = 2;
+} else {
 }
 $(a);
 `````
@@ -48,6 +49,7 @@ const tmpCalleeParam = $(1);
 let tmpSSA_a = $(tmpCalleeParam);
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 $(tmpSSA_a);
 `````

@@ -42,6 +42,7 @@ if (a) {
     const tmpCallCallee$5 = $;
     const tmpCalleeParam$5 = $(2);
     a = tmpCallCallee$5(tmpCalleeParam$5);
+  } else {
   }
 }
 let tmpIfTest = a;
@@ -67,6 +68,7 @@ if (tmpSSA_a) {
   if (tmpSSA_a) {
     const tmpCalleeParam$5 = $(2);
     tmpSSA_a = $(tmpCalleeParam$5);
+  } else {
   }
 }
 const tmpIfTest = tmpSSA_a;

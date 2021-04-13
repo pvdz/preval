@@ -51,11 +51,13 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpSwitchValue = tmpChainElementObject;
+} else {
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -70,6 +72,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   tmpChainElementCall[tmpChainRootComputed];
+} else {
 }
 $(100);
 $(a);

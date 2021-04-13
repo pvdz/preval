@@ -45,6 +45,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
   const tmpAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
   b = tmpAssignObjPatternRhs.b;
+} else {
 }
 $(a, b);
 `````
@@ -62,6 +63,7 @@ if (tmpNestedAssignObjPatternRhs) {
   const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
   const tmpAssignObjPatternRhs = $(tmpCalleeParam$1);
   tmpSSA_b = tmpAssignObjPatternRhs.b;
+} else {
 }
 $(a, tmpSSA_b);
 `````

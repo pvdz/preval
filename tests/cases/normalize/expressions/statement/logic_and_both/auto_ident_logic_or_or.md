@@ -59,6 +59,7 @@ if (tmpIfTest) {
       tmpCallCallee$9(tmpCalleeParam$9);
     }
   }
+} else {
 }
 $(a);
 `````
@@ -92,6 +93,7 @@ if (tmpIfTest) {
       $(tmpCalleeParam$9);
     }
   }
+} else {
 }
 $(a);
 `````

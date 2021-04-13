@@ -35,6 +35,7 @@ const tmpCompObj = obj;
 let tmpCompProp = 1;
 if (tmpCompProp) {
   tmpCompProp = 2;
+} else {
 }
 tmpCompObj[tmpCompProp];
 $(a);
@@ -48,6 +49,7 @@ const obj = {};
 let tmpCompProp = 1;
 if (tmpCompProp) {
   tmpCompProp = 2;
+} else {
 }
 obj[tmpCompProp];
 $(a);

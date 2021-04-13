@@ -33,6 +33,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+} else {
 }
 $('ok');
 `````
@@ -48,6 +49,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   bindingPatternObjRoot.cannotDestructureThis;
+} else {
 }
 $('ok');
 `````

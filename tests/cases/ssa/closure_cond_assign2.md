@@ -104,6 +104,7 @@ if ($) {
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
+} else {
 }
 `````
 
@@ -131,6 +132,7 @@ if ($) {
   $clone$g$0_Ttrue();
   $clone$g$0_Ttrue();
   $(undefined);
+} else {
 }
 `````
 

@@ -33,9 +33,11 @@ if (tmpIfTest) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   tmpIfTest = tmpCallCallee(tmpCalleeParam);
-  if (tmpIfTest) {
-    $(100);
-  }
+} else {
+}
+if (tmpIfTest) {
+  $(100);
+} else {
 }
 $(a);
 `````
@@ -44,10 +46,15 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(1);
-const tmpSSA_tmpIfTest = $(tmpCalleeParam);
-if (tmpSSA_tmpIfTest) {
+let tmpIfTest = 1;
+if (tmpIfTest) {
+  const tmpCalleeParam = $(1);
+  tmpIfTest = $(tmpCalleeParam);
+} else {
+}
+if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````

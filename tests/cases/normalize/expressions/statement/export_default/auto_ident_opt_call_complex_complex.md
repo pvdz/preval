@@ -40,6 +40,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
   tmpAnonDefaultExport = tmpChainElementCall$1;
+} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -57,6 +58,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   tmpAnonDefaultExport = tmpChainElementCall$1;
+} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);

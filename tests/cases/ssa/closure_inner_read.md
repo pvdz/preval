@@ -71,6 +71,7 @@ let f = function () {
     if ($) {
       const tmpReturnArg = h();
       return tmpReturnArg;
+    } else {
     }
   };
   g();
@@ -83,6 +84,7 @@ if ($) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f();
   tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 `````
 
@@ -98,6 +100,7 @@ if ($) {
     if ($) {
       $(x);
       return undefined;
+    } else {
     }
   };
   g();
@@ -105,6 +108,7 @@ if ($) {
   g();
   const tmpReturnArg$1 = g();
   $(tmpReturnArg$1);
+} else {
 }
 `````
 

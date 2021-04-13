@@ -50,6 +50,7 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
@@ -58,7 +59,9 @@ if (tmpIfTest$1) {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
     a = tmpCallCallee(tmpCalleeParam);
+  } else {
   }
+} else {
 }
 $(a);
 `````
@@ -73,6 +76,7 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
@@ -80,7 +84,9 @@ if (tmpIfTest$1) {
   if (a) {
     const tmpCalleeParam = $(1);
     a = $(tmpCalleeParam);
+  } else {
   }
+} else {
 }
 $(a);
 `````

@@ -43,6 +43,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   tmpCalleeParamSpread = tmpChainElementObject$3;
+} else {
 }
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a);
@@ -62,6 +63,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   tmpCalleeParamSpread = tmpChainElementObject$3;
+} else {
 }
 $(...tmpCalleeParamSpread);
 $(a);

@@ -48,7 +48,9 @@ if (tmpIfTest) {
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$1, tmpCalleeParam$3);
     tmpTemplateExpr = tmpChainElementCall$1;
+  } else {
   }
+} else {
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -72,7 +74,9 @@ if (tmpIfTest) {
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
     tmpTemplateExpr = tmpChainElementCall$1;
+  } else {
   }
+} else {
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);

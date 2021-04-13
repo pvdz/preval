@@ -31,6 +31,7 @@ let a = { a: 999, b: 1000 };
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 let tmpThrowArg = a;
 throw tmpThrowArg;
@@ -42,6 +43,7 @@ throw tmpThrowArg;
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 const tmpThrowArg = tmpSSA_a;
 throw tmpThrowArg;

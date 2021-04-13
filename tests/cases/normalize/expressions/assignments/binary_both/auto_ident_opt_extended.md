@@ -43,6 +43,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$3;
+} else {
 }
 let tmpBinBothLhs = a;
 a = undefined;
@@ -53,6 +54,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$7 = tmpChainElementObject$5.y;
   const tmpChainElementObject$9 = tmpChainElementObject$7.z;
   a = tmpChainElementObject$9;
+} else {
 }
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
@@ -73,6 +75,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   tmpSSA_a = tmpChainElementObject$3;
+} else {
 }
 const tmpBinBothLhs = tmpSSA_a;
 let tmpSSA_a$1 = undefined;
@@ -82,6 +85,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$7 = tmpChainElementObject$5.y;
   const tmpChainElementObject$9 = tmpChainElementObject$7.z;
   tmpSSA_a$1 = tmpChainElementObject$9;
+} else {
 }
 const tmpBinBothRhs = tmpSSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

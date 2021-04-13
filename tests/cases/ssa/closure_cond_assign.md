@@ -102,12 +102,14 @@ let f = function () {
     g(false);
     g(true);
     g(true);
+  } else {
   }
 };
 if ($) {
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
+} else {
 }
 `````
 
@@ -136,11 +138,13 @@ const f = function () {
     tmpBranchingC();
     $clone$g$0_Ttrue();
     $clone$g$0_Ttrue();
+  } else {
   }
 };
 if ($) {
   const tmpCalleeParam = f();
   $(tmpCalleeParam);
+} else {
 }
 `````
 

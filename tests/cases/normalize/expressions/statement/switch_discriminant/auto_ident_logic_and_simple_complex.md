@@ -44,11 +44,13 @@ if (tmpSwitchValue) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   tmpSwitchValue = tmpCallCallee(tmpCalleeParam);
+} else {
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````

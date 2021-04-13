@@ -112,6 +112,7 @@ const g = function () {
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
   $('c');
+} else {
 }
 const tmpSSA_x = f();
 $(tmpSSA_x);

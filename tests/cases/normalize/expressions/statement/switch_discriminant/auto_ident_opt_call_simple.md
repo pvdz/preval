@@ -45,11 +45,13 @@ const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
   tmpSwitchValue = tmpChainElementCall;
+} else {
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -61,6 +63,7 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
   $(1);
+} else {
 }
 $(100);
 $(a);

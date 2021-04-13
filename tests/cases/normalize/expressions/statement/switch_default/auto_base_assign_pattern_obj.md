@@ -52,6 +52,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
   b = tmpAssignObjPatternRhs.b;
+} else {
 }
 $(a, b);
 `````

@@ -40,6 +40,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpBinBothRhs = tmpChainElementObject;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
@@ -57,6 +58,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpBinBothRhs = tmpChainElementObject;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

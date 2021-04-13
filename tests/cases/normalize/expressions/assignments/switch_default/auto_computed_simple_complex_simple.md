@@ -47,6 +47,7 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
+} else {
 }
 const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $('b');

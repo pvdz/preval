@@ -40,6 +40,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpThrowArg = tmpChainElementObject;
+} else {
 }
 throw tmpThrowArg;
 `````
@@ -55,6 +56,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpThrowArg = tmpChainElementObject;
+} else {
 }
 throw tmpThrowArg;
 `````

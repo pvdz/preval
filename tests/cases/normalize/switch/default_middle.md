@@ -136,6 +136,7 @@ if (tmpIfTest) {
         const tmpIfTest$7 = tmpBinLhs$7 === tmpSwitchValue;
         if (tmpIfTest$7) {
           tmpSwitchCaseToStart = 5;
+        } else {
         }
       }
     }
@@ -150,14 +151,17 @@ tmpSwitchBreak: {
     const tmpIfTest$11 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$11) {
       $(2);
+    } else {
     }
     const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$13) {
       $('d');
+    } else {
     }
     const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
     if (tmpIfTest$15) {
       $(3);
+    } else {
     }
     const tmpIfTest$17 = tmpSwitchCaseToStart <= 4;
     if (tmpIfTest$17) {
@@ -168,6 +172,7 @@ tmpSwitchBreak: {
       if (tmpIfTest$19) {
         $(5);
         break tmpSwitchBreak;
+      } else {
       }
     }
   }
@@ -202,6 +207,7 @@ if (tmpIfTest) {
         const tmpIfTest$7 = tmpBinLhs$7 === 6;
         if (tmpIfTest$7) {
           tmpSwitchCaseToStart = 5;
+        } else {
         }
       }
     }
@@ -216,14 +222,17 @@ tmpSwitchBreak: {
     const tmpIfTest$11 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$11) {
       $(2);
+    } else {
     }
     const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$13) {
       $('d');
+    } else {
     }
     const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
     if (tmpIfTest$15) {
       $(3);
+    } else {
     }
     const tmpIfTest$17 = tmpSwitchCaseToStart <= 4;
     if (tmpIfTest$17) {
@@ -234,6 +243,7 @@ tmpSwitchBreak: {
       if (tmpIfTest$19) {
         $(5);
         break tmpSwitchBreak;
+      } else {
       }
     }
   }

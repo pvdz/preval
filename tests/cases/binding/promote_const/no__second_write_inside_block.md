@@ -41,6 +41,7 @@ let x = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   x = 10;
+} else {
 }
 $(x);
 `````
@@ -52,6 +53,7 @@ let x = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   x = 10;
+} else {
 }
 $(x);
 `````

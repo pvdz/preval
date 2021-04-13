@@ -28,6 +28,7 @@ const tmpCompObj = $(2);
 const tmpIfTest = tmpCompObj.foo;
 if (tmpIfTest) {
   $(3);
+} else {
 }
 `````
 
@@ -39,6 +40,7 @@ const tmpCompObj = $(2);
 const tmpIfTest = tmpCompObj.foo;
 if (tmpIfTest) {
   $(3);
+} else {
 }
 `````
 

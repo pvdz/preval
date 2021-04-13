@@ -45,7 +45,9 @@ if (tmpIfTest) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpForOfDeclRhs = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
@@ -70,7 +72,9 @@ if (tmpIfTest) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpForOfDeclRhs = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {

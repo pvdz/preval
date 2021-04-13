@@ -37,6 +37,7 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -53,6 +54,7 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = [tmpArrElement, 2, tmpArrElement$3];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 $(tmpCalleeParam);
 $(a);

@@ -47,6 +47,7 @@ if (tmpIfTest) {
   const tmpArrElement$1 = 2;
   const tmpArrElement$3 = $(3);
   a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
+} else {
 }
 $(a);
 `````

@@ -81,11 +81,13 @@ let main = function () {
     outer();
     if ($) {
       outer(x$1);
+    } else {
     }
   };
   inner();
   if ($) {
     inner();
+  } else {
   }
 };
 const tmpCalleeParam = main();
@@ -100,6 +102,7 @@ const $clone$inner$0_Iundefined = function () {
   $clone$outer$0_Iundefined();
   if ($) {
     $clone$outer$0_Iundefined();
+  } else {
   }
 };
 const $clone$outer$0_Iundefined = function () {
@@ -112,6 +115,7 @@ const main = function () {
   $clone$inner$0_Iundefined();
   if ($) {
     $clone$inner$0_Iundefined();
+  } else {
   }
 };
 const tmpCalleeParam = main();

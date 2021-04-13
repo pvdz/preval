@@ -38,6 +38,7 @@ while (true) {
     a = 1;
     if (a) {
       a = 2;
+    } else {
     }
   } else {
     break;
@@ -56,6 +57,7 @@ while (true) {
     a = 1;
     if (a) {
       a = 2;
+    } else {
     }
   } else {
     break;

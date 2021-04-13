@@ -48,7 +48,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     tmpCompObj = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 tmpCompObj.a;
 $(a);
@@ -71,7 +73,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     tmpCompObj = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 tmpCompObj.a;
 $(a);

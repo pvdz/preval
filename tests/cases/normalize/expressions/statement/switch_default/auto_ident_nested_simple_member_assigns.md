@@ -63,6 +63,7 @@ if (tmpIfTest) {
   b.x = varInitAssignLhsComputedRhs;
   const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+} else {
 }
 $(a, b, c);
 `````

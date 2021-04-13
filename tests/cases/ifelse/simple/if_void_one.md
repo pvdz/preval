@@ -24,6 +24,7 @@ if (void 1) $();
 const tmpIfTest = undefined;
 if (tmpIfTest) {
   $();
+} else {
 }
 `````
 

@@ -39,6 +39,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed = 'x';
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpThrowArg = tmpChainElementObject;
+} else {
 }
 throw tmpThrowArg;
 `````
@@ -52,6 +53,7 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   tmpThrowArg = tmpChainElementObject;
+} else {
 }
 throw tmpThrowArg;
 `````

@@ -39,6 +39,7 @@ while (true) {
     const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
       $(x, 'branch');
+    } else {
     }
   } else {
     break;
@@ -57,6 +58,7 @@ while (true) {
     const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
       $(x, 'branch');
+    } else {
     }
   } else {
     break;

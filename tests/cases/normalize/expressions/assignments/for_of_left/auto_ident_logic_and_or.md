@@ -40,6 +40,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
     const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(1);
     a = tmpCallCallee$3(tmpCalleeParam$3);
+  } else {
   }
   if (a) {
   } else {
@@ -66,6 +67,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   if (a) {
     const tmpCalleeParam$3 = $(1);
     a = $(tmpCalleeParam$3);
+  } else {
   }
   if (a) {
   } else {

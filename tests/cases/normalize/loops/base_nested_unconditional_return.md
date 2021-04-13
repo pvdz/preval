@@ -66,6 +66,7 @@ let f = function () {
     const tmpIfTest = tmpLoopRetCode$1 === undefined;
     if (tmpIfTest) {
       return tmpLoopRetValue$1;
+    } else {
     }
   };
   while (tmpLoopRetCode) {
@@ -102,6 +103,7 @@ const tmpLoopTail = function ($$0, $$1) {
   const tmpIfTest = tmpLoopRetCode$1 === undefined;
   if (tmpIfTest) {
     return tmpLoopRetValue$1;
+  } else {
   }
 };
 while (tmpLoopRetCode) {

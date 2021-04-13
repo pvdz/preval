@@ -33,6 +33,7 @@ let tmpCalleeParam = f;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = x;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -45,6 +46,7 @@ let tmpCalleeParam = tmpSSA_f;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = x;
+} else {
 }
 $(tmpCalleeParam);
 `````

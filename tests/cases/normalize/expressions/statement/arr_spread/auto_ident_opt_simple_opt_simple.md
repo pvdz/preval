@@ -42,7 +42,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpArrElToSpread = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 [...tmpArrElToSpread];
 $(a);
@@ -62,7 +64,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpArrElToSpread = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 [...tmpArrElToSpread];
 $(a);

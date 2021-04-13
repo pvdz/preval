@@ -53,10 +53,12 @@ while (true) {
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
+    } else {
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$3) {
       continue;
+    } else {
     }
   } else {
     break;
@@ -77,10 +79,12 @@ while (true) {
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
+    } else {
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$3) {
       continue;
+    } else {
     }
   } else {
     break;

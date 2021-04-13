@@ -39,6 +39,7 @@ if (tmpIfTest$1) {
 }
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -50,6 +51,7 @@ const a = { a: 999, b: 1000 };
 const tmpSSA_tmpIfTest = $(2);
 if (tmpSSA_tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````

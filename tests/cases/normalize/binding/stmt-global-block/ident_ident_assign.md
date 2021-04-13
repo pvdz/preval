@@ -45,6 +45,7 @@ if (tmpIfTest) {
   b = tmpNestedPropAssignRhs;
   let a = b;
   $(a, b, c);
+} else {
 }
 `````
 
@@ -57,6 +58,7 @@ if (tmpIfTest) {
   const tmpNestedAssignPropRhs = $(4);
   tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
   $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
+} else {
 }
 `````
 

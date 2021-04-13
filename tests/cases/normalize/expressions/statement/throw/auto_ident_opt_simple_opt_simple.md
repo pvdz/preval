@@ -42,7 +42,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpThrowArg = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 throw tmpThrowArg;
 `````
@@ -60,7 +62,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpThrowArg = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 throw tmpThrowArg;
 `````

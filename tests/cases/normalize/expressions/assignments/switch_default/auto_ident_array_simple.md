@@ -44,6 +44,7 @@ let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   a = [1, 2, 3];
+} else {
 }
 $(a);
 `````

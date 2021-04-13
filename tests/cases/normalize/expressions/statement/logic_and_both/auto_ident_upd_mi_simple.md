@@ -36,6 +36,7 @@ b = b - 1;
 let tmpIfTest = b;
 if (tmpIfTest) {
   b = b - 1;
+} else {
 }
 $(a, b);
 `````
@@ -48,6 +49,7 @@ let tmpSSA_b = 0;
 const tmpIfTest = tmpSSA_b;
 if (tmpIfTest) {
   tmpSSA_b = tmpSSA_b - 1;
+} else {
 }
 $(a, tmpSSA_b);
 `````

@@ -34,6 +34,7 @@ while (true) {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
     a = tmpCallCallee(tmpCalleeParam);
+  } else {
   }
   let tmpIfTest = a;
   if (tmpIfTest) {
@@ -54,6 +55,7 @@ while (true) {
   if (a) {
     const tmpCalleeParam = $(1);
     a = $(tmpCalleeParam);
+  } else {
   }
   const tmpIfTest = a;
   if (tmpIfTest) {

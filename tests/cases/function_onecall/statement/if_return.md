@@ -40,6 +40,7 @@ let f = function () {
   if (tmpIfTest) {
     const tmpReturnArg = $(1);
     return tmpReturnArg;
+  } else {
   }
 };
 f();
@@ -51,6 +52,7 @@ f();
 const tmpIfTest = $();
 if (tmpIfTest) {
   $(1);
+} else {
 }
 `````
 

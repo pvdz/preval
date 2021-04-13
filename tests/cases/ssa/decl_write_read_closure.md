@@ -55,17 +55,20 @@ let f = function () {
       debugger;
       if ($) {
         x = 10;
+      } else {
       }
     };
     x = 20;
     g();
     return x;
+  } else {
   }
 };
 if ($) {
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
+} else {
 }
 `````
 
@@ -80,16 +83,19 @@ const f = function () {
       debugger;
       if ($) {
         x = 10;
+      } else {
       }
     };
     x = 20;
     g();
     return x;
+  } else {
   }
 };
 if ($) {
   const tmpCalleeParam = f();
   $(tmpCalleeParam);
+} else {
 }
 `````
 

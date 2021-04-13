@@ -24,6 +24,7 @@ if ([]) $();
 const tmpIfTest = [];
 if (tmpIfTest) {
   $();
+} else {
 }
 `````
 
@@ -33,6 +34,7 @@ if (tmpIfTest) {
 const tmpIfTest = [];
 if (tmpIfTest) {
   $();
+} else {
 }
 `````
 

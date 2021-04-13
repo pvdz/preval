@@ -27,6 +27,7 @@ $(1);
 const tmpIfTest = $(2);
 if (tmpIfTest) {
   $(3);
+} else {
 }
 `````
 
@@ -37,6 +38,7 @@ $(1);
 const tmpIfTest = $(2);
 if (tmpIfTest) {
   $(3);
+} else {
 }
 `````
 

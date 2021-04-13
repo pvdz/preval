@@ -5119,7 +5119,18 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (node.alternate && node.alternate.type !== 'BlockStatement') {
+    if (!node.alternate) {
+      rule('The else branch must exist');
+      example('if (x) y();', 'if (x) y(); else {}');
+      before(node);
+
+      node.alternate = AST.blockStatement();
+
+      after(node);
+      return true;
+    }
+
+    if (node.alternate.type !== 'BlockStatement') {
       rule('Else sub-statement must be block');
       example('if (x) {} else y;', 'if (x) {} else { y; }');
       before(node);
@@ -5152,25 +5163,11 @@ export function phaseNormalize(fdata, fname) {
     transformBlock(node.consequent, undefined, -1, node, false);
     ifelseStack.pop();
 
-    if (node.alternate) {
-      ifelseStack.push(node);
-      transformBlock(node.alternate, undefined, -1, node, false);
-      ifelseStack.pop();
+    ifelseStack.push(node);
+    transformBlock(node.alternate, undefined, -1, node, false);
+    ifelseStack.pop();
 
-      if (node.alternate.body.length === 0) {
-        rule('If-else with empty else-block should have no else');
-        example('if (x) y; else {}', 'if (x) y;');
-        before(node);
-
-        node.alternate = null;
-
-        after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-    }
-
-    if (!node.alternate && node.consequent.body.length === 0) {
+    if (node.consequent.body.length === 0 && node.alternate.body.length === 0) {
       rule('If-else without else and empty if-block should be just the test expression');
       example('if (f()) {}', 'f();');
       before(node);
@@ -5187,11 +5184,10 @@ export function phaseNormalize(fdata, fname) {
     if (node.test.type === 'Literal') {
       if (node.test.value === 0 || node.test.value === '' || node.test.value === false || node.test.raw === 'null') {
         rule('Eliminate if-else with falsy test literal');
-        example('if (0) f(); else g();', 'g();', () => node.alternate);
-        example('if (0) f();', ';', () => !node.alternate);
+        example('if (0) f(); else g();', 'g();');
         before(node);
 
-        const finalParent = node.alternate || AST.emptyStatement();
+        const finalParent = node.alternate;
         body[i] = finalParent;
 
         after(finalParent);
@@ -5200,8 +5196,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       rule('Eliminate if-else with truthy test literal');
-      example('if (100) f(); else g();', 'g();', () => node.alternate);
-      example('if (100) f();', 'g();', () => !node.alternate);
+      example('if (100) f(); else g();', 'g();');
       before(node);
 
       const finalParent = node.consequent;
@@ -5215,11 +5210,10 @@ export function phaseNormalize(fdata, fname) {
     if (node.test.type === 'Identifier') {
       if (['undefined', 'NaN'].includes(node.test.name)) {
         rule('Eliminate if-else with falsy identifier');
-        example('if (false) f(); else g();', 'g();', () => node.alternate);
-        example('if (false) f();', ';', () => node.alternate);
+        example('if (false) f(); else g();', 'g();');
         before(node);
 
-        const finalParent = node.alternate || AST.emptyStatement();
+        const finalParent = node.alternate;
         body[i] = finalParent;
 
         after(finalParent);
@@ -5229,8 +5223,7 @@ export function phaseNormalize(fdata, fname) {
 
       if (['Infinity'].includes(node.test.name)) {
         rule('Eliminate if-else with truthy identifier');
-        example('if (Infinity) f(); else g();', 'f();', () => node.alternate);
-        example('if (Infinity) f();', 'f();', () => !node.alternate);
+        example('if (Infinity) f(); else g();', 'f();');
         before(node);
 
         const finalParent = node.consequent;
@@ -5281,7 +5274,7 @@ export function phaseNormalize(fdata, fname) {
         i >= body.length - 1 &&
         // or the if or else has no nested `if`
         !node.consequent.body.some((snode) => snode.type === 'IfStatement') &&
-        !node.alternate?.body.some((snode) => snode.type === 'IfStatement')
+        !node.alternate.body.some((snode) => snode.type === 'IfStatement')
       ) {
         vlog('There is no more code after this if and there are no nested if-elses inside the if or the else. Bailing');
       } else {

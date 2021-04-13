@@ -38,6 +38,7 @@ x = $(1, 'before');
 const tmpIfTest = $(2, 'if');
 if (tmpIfTest) {
   x = $(3, 'then');
+} else {
 }
 $(x, 'final');
 `````
@@ -49,6 +50,7 @@ let tmpSSA_x = $(1, 'before');
 const tmpIfTest = $(2, 'if');
 if (tmpIfTest) {
   tmpSSA_x = $(3, 'then');
+} else {
 }
 $(tmpSSA_x, 'final');
 `````

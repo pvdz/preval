@@ -45,6 +45,7 @@ while (true) {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     tmpIfTest = tmpChainElementObject;
+  } else {
   }
   if (tmpIfTest) {
     $(1);
@@ -68,6 +69,7 @@ while (true) {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     tmpIfTest = tmpChainElementObject;
+  } else {
   }
   if (tmpIfTest) {
     $(1);

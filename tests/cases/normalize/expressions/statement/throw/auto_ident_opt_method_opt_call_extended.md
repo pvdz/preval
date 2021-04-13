@@ -45,7 +45,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     tmpThrowArg = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 throw tmpThrowArg;
 `````
@@ -66,7 +68,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     tmpThrowArg = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 throw tmpThrowArg;
 `````

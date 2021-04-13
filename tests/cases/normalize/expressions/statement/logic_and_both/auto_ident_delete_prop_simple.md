@@ -35,6 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = delete arg.y;
 if (tmpIfTest) {
   delete arg.y;
+} else {
 }
 $(a, arg);
 `````
@@ -47,6 +48,7 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = delete arg.y;
 if (tmpIfTest) {
   delete arg.y;
+} else {
 }
 $(a, arg);
 `````

@@ -46,15 +46,18 @@ let f = function () {
     debugger;
     if ($) {
       $(x);
+    } else {
     }
   };
   const x = $('x');
   if ($) {
     g();
+  } else {
   }
 };
 if ($) {
   f();
+} else {
 }
 `````
 
@@ -67,15 +70,18 @@ const f = function () {
     debugger;
     if ($) {
       $(x);
+    } else {
     }
   };
   const x = $('x');
   if ($) {
     g();
+  } else {
   }
 };
 if ($) {
   f();
+} else {
 }
 `````
 

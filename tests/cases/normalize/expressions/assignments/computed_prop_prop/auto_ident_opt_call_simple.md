@@ -38,6 +38,7 @@ const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
   a = tmpChainElementCall;
+} else {
 }
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
@@ -53,6 +54,7 @@ const tmpIfTest = $ != null;
 if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   tmpSSA_a = tmpChainElementCall;
+} else {
 }
 const tmpCompProp = tmpSSA_a;
 obj[tmpCompProp];

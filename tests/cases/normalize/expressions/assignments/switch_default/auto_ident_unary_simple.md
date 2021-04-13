@@ -48,6 +48,7 @@ let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   a = typeof x;
+} else {
 }
 $(a, x);
 `````

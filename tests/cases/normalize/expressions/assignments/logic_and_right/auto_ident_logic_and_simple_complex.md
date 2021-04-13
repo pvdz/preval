@@ -36,9 +36,11 @@ if (tmpCalleeParam) {
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$1 = $(1);
     tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -54,9 +56,11 @@ if (tmpCalleeParam) {
   if (tmpNestedComplexRhs) {
     const tmpCalleeParam$1 = $(1);
     tmpNestedComplexRhs = $(tmpCalleeParam$1);
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 $(tmpCalleeParam);
 $(a);

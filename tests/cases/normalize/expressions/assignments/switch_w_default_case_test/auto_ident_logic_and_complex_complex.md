@@ -59,6 +59,7 @@ if (a) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
   a = tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -68,16 +69,19 @@ if (tmpIfTest) {
   const tmpIfTest$1 = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
+  } else {
   }
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $('fail1');
+} else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
   $('fail2');
+} else {
 }
 $(a);
 `````
@@ -92,6 +96,7 @@ let tmpSSA_a = $(tmpCalleeParam);
 if (tmpSSA_a) {
   const tmpCalleeParam$1 = $(2);
   tmpSSA_a = $(tmpCalleeParam$1);
+} else {
 }
 const tmpBinLhs = tmpSSA_a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -101,16 +106,19 @@ if (tmpIfTest) {
   const tmpIfTest$1 = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
+  } else {
   }
 }
 tmpSwitchCaseToStart <= 0;
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $('fail1');
+} else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
   $('fail2');
+} else {
 }
 $(tmpSSA_a);
 `````

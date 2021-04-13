@@ -28,6 +28,7 @@ let x = undefined;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   x = 0;
+} else {
 }
 `````
 

@@ -38,6 +38,7 @@ if (a) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   a = tmpCallCallee(tmpCalleeParam);
+} else {
 }
 while (true) {
   $(1);
@@ -52,6 +53,7 @@ let tmpSSA_a = 1;
 if (tmpSSA_a) {
   const tmpCalleeParam = $(1);
   tmpSSA_a = $(tmpCalleeParam);
+} else {
 }
 while (true) {
   $(1);

@@ -35,6 +35,7 @@ if (tmpForOfDeclRhs) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
   tmpForOfDeclRhs = tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
@@ -51,6 +52,7 @@ let tmpForOfDeclRhs = $(tmpCalleeParam);
 if (tmpForOfDeclRhs) {
   const tmpCalleeParam$1 = $(2);
   tmpForOfDeclRhs = $(tmpCalleeParam$1);
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {

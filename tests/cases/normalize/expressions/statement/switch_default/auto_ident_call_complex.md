@@ -45,6 +45,7 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpCallCallee = $($);
   tmpCallCallee(1);
+} else {
 }
 $(a);
 `````

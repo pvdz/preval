@@ -41,6 +41,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
   a = tmpChainElementCall;
+} else {
 }
 let tmpIfTest = a;
 if (tmpIfTest) {
@@ -63,6 +64,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   tmpSSA_a = tmpChainElementCall;
+} else {
 }
 const tmpIfTest = tmpSSA_a;
 if (tmpIfTest) {

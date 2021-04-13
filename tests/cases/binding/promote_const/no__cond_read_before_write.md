@@ -47,11 +47,13 @@ let x = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(x, 'fail');
+} else {
 }
 x = 10;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
   $(x);
+} else {
 }
 `````
 
@@ -61,10 +63,12 @@ if (tmpIfTest$1) {
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(undefined, 'fail');
+} else {
 }
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
   $(10);
+} else {
 }
 `````
 

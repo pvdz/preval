@@ -25,6 +25,7 @@ const tmpChainRootCall = $;
 const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(15);
+} else {
 }
 `````
 
@@ -34,6 +35,7 @@ if (tmpIfTest) {
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
   $(15);
+} else {
 }
 `````
 

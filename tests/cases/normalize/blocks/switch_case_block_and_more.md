@@ -47,12 +47,14 @@ const tmpBinLhs = $(2);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     $(3);
     break tmpSwitchBreak;
+  } else {
   }
 }
 `````
@@ -66,12 +68,14 @@ const tmpBinLhs = $(2);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     $(3);
     break tmpSwitchBreak;
+  } else {
   }
 }
 `````

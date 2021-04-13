@@ -47,6 +47,7 @@ while (true) {
         const tmpCallCallee$3 = $;
         const tmpCalleeParam$3 = $(2);
         tmpCallCallee$3(tmpCalleeParam$3);
+      } else {
       }
     }
   } else {
@@ -72,6 +73,7 @@ while (true) {
       if (tmpIfTest$3) {
         const tmpCalleeParam$3 = $(2);
         $(tmpCalleeParam$3);
+      } else {
       }
     }
   } else {

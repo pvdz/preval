@@ -36,6 +36,7 @@ if (a) {
   const tmpCallCallee$3 = $;
   const tmpCalleeParam$3 = $(2);
   a = tmpCallCallee$3(tmpCalleeParam$3);
+} else {
 }
 let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
@@ -51,6 +52,7 @@ let tmpSSA_a = $(tmpCalleeParam$1);
 if (tmpSSA_a) {
   const tmpCalleeParam$3 = $(2);
   tmpSSA_a = $(tmpCalleeParam$3);
+} else {
 }
 const tmpObjSpread = tmpSSA_a;
 const tmpCalleeParam = { ...tmpObjSpread };

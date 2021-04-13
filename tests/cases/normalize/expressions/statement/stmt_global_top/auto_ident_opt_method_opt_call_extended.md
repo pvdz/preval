@@ -43,7 +43,9 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject$3 != null;
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+  } else {
   }
+} else {
 }
 $(a);
 `````
@@ -63,7 +65,9 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject$3 != null;
   if (tmpIfTest$1) {
     tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+  } else {
   }
+} else {
 }
 $(a);
 `````

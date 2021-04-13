@@ -38,6 +38,7 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = ~arg;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, arg);
@@ -51,6 +52,7 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   a = -2;
   tmpCalleeParam = -2;
+} else {
 }
 $(tmpCalleeParam);
 $(a, 1);

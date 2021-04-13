@@ -46,11 +46,13 @@ if (tmpSwitchValue) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
   tmpSwitchValue = tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -64,6 +66,7 @@ const tmpSwitchValue = $(tmpCalleeParam);
 if (tmpSwitchValue) {
   const tmpCalleeParam$1 = $(2);
   $(tmpCalleeParam$1);
+} else {
 }
 $(100);
 $(a);

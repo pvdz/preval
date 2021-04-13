@@ -49,11 +49,13 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpSwitchValue = tmpChainElementObject;
+} else {
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -66,6 +68,7 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   b.x;
+} else {
 }
 $(100);
 $(a);

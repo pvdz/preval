@@ -31,6 +31,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.toString;
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp);
   tmpCalleeParam = tmpChainElementCall;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 `````

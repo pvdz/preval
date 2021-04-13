@@ -48,6 +48,7 @@ const objPatternBeforeDefault = objPatternNoDefault.y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $('fail');
+} else {
 }
 $('bad');
 `````

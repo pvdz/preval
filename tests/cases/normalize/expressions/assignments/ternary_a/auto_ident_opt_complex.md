@@ -41,6 +41,7 @@ const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
+} else {
 }
 let tmpIfTest = a;
 if (tmpIfTest) {
@@ -63,6 +64,7 @@ const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpSSA_a = tmpChainElementObject;
+} else {
 }
 const tmpIfTest = tmpSSA_a;
 if (tmpIfTest) {

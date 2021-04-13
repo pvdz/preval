@@ -32,11 +32,13 @@ const tmpCallCallee = $;
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 let tmpBinBothLhs = a;
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
@@ -50,11 +52,13 @@ $(a);
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 const tmpBinBothLhs = tmpSSA_a;
 let tmpSSA_a$1 = 1;
 if (tmpSSA_a$1) {
   tmpSSA_a$1 = 2;
+} else {
 }
 const tmpBinBothRhs = tmpSSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

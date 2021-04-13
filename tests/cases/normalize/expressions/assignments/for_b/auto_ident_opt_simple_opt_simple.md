@@ -47,7 +47,9 @@ while (true) {
     if (tmpIfTest$3) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       a = tmpChainElementObject$1;
+    } else {
     }
+  } else {
   }
   let tmpIfTest = a;
   if (tmpIfTest) {
@@ -74,7 +76,9 @@ while (true) {
     if (tmpIfTest$3) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       a = tmpChainElementObject$1;
+    } else {
     }
+  } else {
   }
   const tmpIfTest = a;
   if (tmpIfTest) {

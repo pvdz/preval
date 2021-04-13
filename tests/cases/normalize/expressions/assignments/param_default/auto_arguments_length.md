@@ -64,6 +64,7 @@ const f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     a = tmpArgumentsAny;
+  } else {
   }
 };
 let a = { a: 999, b: 1000 };

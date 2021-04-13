@@ -42,6 +42,7 @@ if (tmpBinBothRhs) {
     const tmpCallCallee$5 = $;
     const tmpCalleeParam$5 = $(2);
     tmpBinBothRhs = tmpCallCallee$5(tmpCalleeParam$5);
+  } else {
   }
 }
 a = tmpBinBothLhs * tmpBinBothRhs;
@@ -63,6 +64,7 @@ if (tmpBinBothRhs) {
   if (tmpBinBothRhs) {
     const tmpCalleeParam$5 = $(2);
     tmpBinBothRhs = $(tmpCalleeParam$5);
+  } else {
   }
 }
 const tmpSSA_a = a * tmpBinBothRhs;

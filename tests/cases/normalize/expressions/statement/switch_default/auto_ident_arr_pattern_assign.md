@@ -56,6 +56,7 @@ if (tmpIfTest) {
   const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
+} else {
 }
 $(a, x, y);
 `````

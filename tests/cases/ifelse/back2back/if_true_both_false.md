@@ -45,6 +45,7 @@ let x = $(true, 'a');
 if (x) {
   $(x, 'pass');
   x = $(false, 'b');
+} else {
 }
 if (x) {
   $(x, 'one');
@@ -60,6 +61,7 @@ let x = $(true, 'a');
 if (x) {
   $(x, 'pass');
   x = $(false, 'b');
+} else {
 }
 if (x) {
   $(x, 'one');

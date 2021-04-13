@@ -47,7 +47,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     xyz = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 $(xyz);
 $(a);
@@ -70,7 +72,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     xyz = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 $(xyz);
 $(a);

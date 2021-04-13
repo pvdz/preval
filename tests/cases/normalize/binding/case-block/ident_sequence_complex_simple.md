@@ -51,6 +51,7 @@ const tmpBinLhs = $('a');
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
@@ -61,6 +62,7 @@ tmpSwitchBreak: {
     tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
     a$1 = tmpNestedPropAssignRhs;
     break tmpSwitchBreak;
+  } else {
   }
 }
 $(a, b, c);
@@ -75,6 +77,7 @@ const tmpBinLhs = $('a');
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
@@ -83,6 +86,7 @@ tmpSwitchBreak: {
     const tmpNestedAssignObj = $(3);
     tmpNestedAssignObj.x = 3;
     break tmpSwitchBreak;
+  } else {
   }
 }
 $(1, 2, 3);

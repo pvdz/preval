@@ -42,6 +42,7 @@ if (tmpCalleeParam) {
   const tmpNestedAssignObjPatternRhs$1 = tmpCallCallee$3(tmpCalleeParam$3);
   a = tmpNestedAssignObjPatternRhs$1.a;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -61,6 +62,7 @@ if (tmpSSA_tmpCalleeParam) {
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
   tmpSSA_a = tmpNestedAssignObjPatternRhs$1.a;
   tmpSSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
+} else {
 }
 $(tmpSSA_tmpCalleeParam);
 $(tmpSSA_a);

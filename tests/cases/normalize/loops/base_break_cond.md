@@ -57,6 +57,7 @@ let f = function () {
     if (tmpIfTest) {
       tmpLoopRetCode = false;
       return undefined;
+    } else {
     }
   };
   let tmpLoopTail = function ($$0, $$1) {
@@ -96,6 +97,7 @@ const tmpLoopBody = function () {
   if (tmpIfTest) {
     tmpLoopRetCode = false;
     return undefined;
+  } else {
   }
 };
 const tmpLoopTail = function ($$0) {

@@ -36,6 +36,7 @@ if (tmpCompObj) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   tmpCompObj = tmpCallCallee(tmpCalleeParam);
+} else {
 }
 tmpCompObj.a;
 $(a);
@@ -49,6 +50,7 @@ let tmpCompObj = 1;
 if (tmpCompObj) {
   const tmpCalleeParam = $(1);
   tmpCompObj = $(tmpCalleeParam);
+} else {
 }
 tmpCompObj.a;
 $(a);

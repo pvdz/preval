@@ -26,6 +26,7 @@ if ([].length) $();
 const tmpIfTest = 0;
 if (tmpIfTest) {
   $();
+} else {
 }
 `````
 

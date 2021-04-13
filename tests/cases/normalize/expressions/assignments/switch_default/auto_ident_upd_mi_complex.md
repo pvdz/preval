@@ -54,6 +54,7 @@ if (tmpIfTest) {
   const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   a = tmpNestedPropCompoundComplexRhs;
+} else {
 }
 $(a, b);
 `````

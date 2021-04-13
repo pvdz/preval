@@ -36,6 +36,7 @@ b = b - 1;
 let tmpIfTest = b;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, b);
 `````

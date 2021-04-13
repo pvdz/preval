@@ -42,11 +42,13 @@ while (true) {
       const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(1);
       tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
-      if (tmpIfTest$1) {
-        const tmpCallCallee$3 = $;
-        const tmpCalleeParam$3 = $(2);
-        tmpCallCallee$3(tmpCalleeParam$3);
-      }
+    } else {
+    }
+    if (tmpIfTest$1) {
+      const tmpCallCallee$3 = $;
+      const tmpCalleeParam$3 = $(2);
+      tmpCallCallee$3(tmpCalleeParam$3);
+    } else {
     }
   } else {
     break;
@@ -67,10 +69,12 @@ while (true) {
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 = $(1);
       tmpIfTest$1 = $(tmpCalleeParam$1);
-      if (tmpIfTest$1) {
-        const tmpCalleeParam$3 = $(2);
-        $(tmpCalleeParam$3);
-      }
+    } else {
+    }
+    if (tmpIfTest$1) {
+      const tmpCalleeParam$3 = $(2);
+      $(tmpCalleeParam$3);
+    } else {
     }
   } else {
     break;

@@ -47,6 +47,7 @@ const objPatternBeforeDefault = objPatternNoDefault$1.z;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   a;
+} else {
 }
 `````
 

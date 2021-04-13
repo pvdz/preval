@@ -47,6 +47,7 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   $(10);
   $(20);
+} else {
 }
 $(a);
 `````

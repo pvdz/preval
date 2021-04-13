@@ -40,6 +40,7 @@ while (true) {
     const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
       $(x);
+    } else {
     }
     x = $(20);
   } else {
@@ -59,6 +60,7 @@ while (true) {
     const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
       $(x);
+    } else {
     }
     x = $(20);
   } else {

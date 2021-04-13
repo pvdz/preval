@@ -48,6 +48,7 @@ const tmpBinLhs = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a);
@@ -65,6 +66,7 @@ const tmpBinLhs = [tmpArrElement, 2, tmpArrElement$3];
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchCaseToStart <= 0;
 $(a);

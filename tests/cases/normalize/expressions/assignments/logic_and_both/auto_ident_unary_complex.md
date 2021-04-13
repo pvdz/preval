@@ -41,6 +41,7 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, x);
@@ -57,6 +58,7 @@ if (tmpCalleeParam) {
   const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
   tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 $(tmpCalleeParam);
 $(tmpSSA_a, 1);

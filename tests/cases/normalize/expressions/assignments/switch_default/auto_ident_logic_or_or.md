@@ -58,6 +58,7 @@ if (tmpIfTest) {
       a = tmpCallCallee$3(tmpCalleeParam$3);
     }
   }
+} else {
 }
 $(a);
 `````

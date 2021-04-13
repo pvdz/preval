@@ -56,6 +56,7 @@ if (tmpIfTest) {
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
   a = tmpNestedAssignObjPatternRhs;
+} else {
 }
 $(a, x, y);
 `````

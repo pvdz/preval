@@ -75,6 +75,7 @@ while (run) {
     const tmpIfTest$1 = 2 === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 2;
+    } else {
     }
   }
   tmpSwitchBreak: {
@@ -91,6 +92,7 @@ while (run) {
         if (tmpIfTest$7) {
           run = false;
           break tmpSwitchBreak;
+        } else {
         }
       }
     }

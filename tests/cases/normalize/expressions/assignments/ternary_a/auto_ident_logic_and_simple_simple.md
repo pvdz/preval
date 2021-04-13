@@ -33,6 +33,7 @@ let tmpCalleeParam = undefined;
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 let tmpIfTest = a;
 if (tmpIfTest) {
@@ -51,6 +52,7 @@ let tmpCalleeParam = undefined;
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 const tmpIfTest = tmpSSA_a;
 if (tmpIfTest) {

@@ -38,6 +38,7 @@ let y = 1;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   y = o.x;
+} else {
 }
 $(y, o);
 `````
@@ -50,6 +51,7 @@ let y = 1;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   y = o.x;
+} else {
 }
 $(y, o);
 `````

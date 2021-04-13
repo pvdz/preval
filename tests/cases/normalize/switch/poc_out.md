@@ -97,6 +97,7 @@ exit: {
   if (tmpIfTest) {
     $('A');
     fallthrough = true;
+  } else {
   }
   let tmpIfTest$1 = fallthrough;
   if (tmpIfTest$1) {
@@ -119,6 +120,7 @@ exit: {
     if (tmpIfTest$3) {
       $('C');
       break exit;
+    } else {
     }
   }
 }
@@ -138,6 +140,7 @@ exit: {
   if (tmpIfTest) {
     $('A');
     fallthrough = true;
+  } else {
   }
   let tmpIfTest$1 = fallthrough;
   if (tmpIfTest$1) {
@@ -158,6 +161,7 @@ exit: {
     if (tmpIfTest$3) {
       $('C');
       break exit;
+    } else {
     }
   }
 }

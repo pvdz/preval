@@ -36,6 +36,7 @@ if (tmpAnonDefaultExport) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
   tmpAnonDefaultExport = tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -50,6 +51,7 @@ let tmpAnonDefaultExport = $(tmpCalleeParam);
 if (tmpAnonDefaultExport) {
   const tmpCalleeParam$1 = $(2);
   tmpAnonDefaultExport = $(tmpCalleeParam$1);
+} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);

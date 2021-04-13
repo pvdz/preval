@@ -40,6 +40,7 @@ while (true) {
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
     a = tmpChainElementCall$1;
+  } else {
   }
   let tmpIfTest = a;
   if (tmpIfTest) {
@@ -64,6 +65,7 @@ while (true) {
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
     a = tmpChainElementCall$1;
+  } else {
   }
   const tmpIfTest = a;
   if (tmpIfTest) {

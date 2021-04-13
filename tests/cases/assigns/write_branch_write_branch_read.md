@@ -36,6 +36,7 @@ const tmpIfTest = $(10);
 if (tmpIfTest) {
   x = $(2);
   $(x);
+} else {
 }
 `````
 
@@ -47,6 +48,7 @@ const tmpIfTest = $(10);
 if (tmpIfTest) {
   const tmpSSA_x = $(2);
   $(tmpSSA_x);
+} else {
 }
 `````
 

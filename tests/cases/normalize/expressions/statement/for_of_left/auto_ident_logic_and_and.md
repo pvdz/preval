@@ -40,11 +40,13 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
     const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(1);
     tmpAssignMemLhsObj = tmpCallCallee$3(tmpCalleeParam$3);
-    if (tmpAssignMemLhsObj) {
-      const tmpCallCallee$5 = $;
-      const tmpCalleeParam$5 = $(2);
-      tmpAssignMemLhsObj = tmpCallCallee$5(tmpCalleeParam$5);
-    }
+  } else {
+  }
+  if (tmpAssignMemLhsObj) {
+    const tmpCallCallee$5 = $;
+    const tmpCalleeParam$5 = $(2);
+    tmpAssignMemLhsObj = tmpCallCallee$5(tmpCalleeParam$5);
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
@@ -64,10 +66,12 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   if (tmpAssignMemLhsObj) {
     const tmpCalleeParam$3 = $(1);
     tmpAssignMemLhsObj = $(tmpCalleeParam$3);
-    if (tmpAssignMemLhsObj) {
-      const tmpCalleeParam$5 = $(2);
-      tmpAssignMemLhsObj = $(tmpCalleeParam$5);
-    }
+  } else {
+  }
+  if (tmpAssignMemLhsObj) {
+    const tmpCalleeParam$5 = $(2);
+    tmpAssignMemLhsObj = $(tmpCalleeParam$5);
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }

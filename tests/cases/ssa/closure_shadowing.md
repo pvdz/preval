@@ -55,12 +55,14 @@ let f = function () {
   if ($) {
     const tmpReturnArg = g();
     return tmpReturnArg;
+  } else {
   }
 };
 if ($) {
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
+} else {
 }
 `````
 
@@ -72,11 +74,13 @@ const f = function () {
   if ($) {
     $(20);
     return undefined;
+  } else {
   }
 };
 if ($) {
   const tmpCalleeParam = f();
   $(tmpCalleeParam);
+} else {
 }
 `````
 

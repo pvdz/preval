@@ -43,7 +43,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpAnonDefaultExport = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -63,7 +65,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpAnonDefaultExport = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);

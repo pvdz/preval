@@ -68,6 +68,7 @@ f();
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(2);
+} else {
 }
 `````
 

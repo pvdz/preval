@@ -37,6 +37,7 @@ const tmpCallCompProp = $('$');
 const tmpIfTest = tmpCallCompObj[tmpCallCompProp](1);
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -51,6 +52,7 @@ const tmpCallCompProp = $('$');
 const tmpIfTest = tmpCallCompObj[tmpCallCompProp](1);
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````

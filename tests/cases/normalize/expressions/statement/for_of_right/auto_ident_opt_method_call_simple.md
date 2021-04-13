@@ -39,6 +39,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
   tmpForOfDeclRhs = tmpChainElementCall;
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
@@ -57,6 +58,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   tmpForOfDeclRhs = tmpChainElementCall;
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {

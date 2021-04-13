@@ -59,6 +59,7 @@ const B = function () {
     const x = $(true);
     if (x) {
       A();
+    } else {
     }
   };
   const r = C();

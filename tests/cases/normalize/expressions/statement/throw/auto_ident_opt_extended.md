@@ -42,6 +42,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   tmpThrowArg = tmpChainElementObject$3;
+} else {
 }
 throw tmpThrowArg;
 `````
@@ -59,6 +60,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   tmpThrowArg = tmpChainElementObject$3;
+} else {
 }
 throw tmpThrowArg;
 `````

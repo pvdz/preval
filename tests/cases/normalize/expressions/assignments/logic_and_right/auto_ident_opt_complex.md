@@ -42,9 +42,11 @@ if (tmpCalleeParam) {
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainElementCall.x;
     tmpNestedComplexRhs = tmpChainElementObject;
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -63,9 +65,11 @@ if (tmpCalleeParam) {
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainElementCall.x;
     tmpNestedComplexRhs = tmpChainElementObject;
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 $(tmpCalleeParam);
 $(a);

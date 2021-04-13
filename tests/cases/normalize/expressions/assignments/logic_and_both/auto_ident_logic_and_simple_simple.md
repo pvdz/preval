@@ -32,15 +32,18 @@ const tmpCallCallee = $;
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = 1;
   if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = 2;
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -52,15 +55,18 @@ $(a);
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = 1;
   if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = 2;
+  } else {
   }
   tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 $(tmpCalleeParam);
 $(tmpSSA_a);

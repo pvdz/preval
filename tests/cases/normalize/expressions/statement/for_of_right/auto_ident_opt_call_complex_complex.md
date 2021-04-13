@@ -39,6 +39,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
   tmpForOfDeclRhs = tmpChainElementCall$1;
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
@@ -58,6 +59,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   tmpForOfDeclRhs = tmpChainElementCall$1;
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {

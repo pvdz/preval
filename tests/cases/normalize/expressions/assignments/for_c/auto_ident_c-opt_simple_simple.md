@@ -46,6 +46,7 @@ while (true) {
       const tmpChainRootComputed = 'x';
       const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
       a = tmpChainElementObject;
+    } else {
     }
   } else {
     break;
@@ -67,6 +68,7 @@ while (true) {
     if (tmpIfTest$1) {
       const tmpChainElementObject = b.x;
       a = tmpChainElementObject;
+    } else {
     }
   } else {
     break;

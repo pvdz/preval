@@ -40,6 +40,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed = 'x';
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpCalleeParamSpread = tmpChainElementObject;
+} else {
 }
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a);
@@ -55,6 +56,7 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   tmpCalleeParamSpread = tmpChainElementObject;
+} else {
 }
 $(...tmpCalleeParamSpread);
 $(a);

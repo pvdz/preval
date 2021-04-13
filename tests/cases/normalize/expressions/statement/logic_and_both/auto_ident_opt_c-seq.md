@@ -38,13 +38,16 @@ const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpIfTest = tmpChainElementObject;
+} else {
 }
 if (tmpIfTest) {
   const tmpChainRootProp$1 = $(b);
   const tmpIfTest$3 = tmpChainRootProp$1 != null;
   if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+  } else {
   }
+} else {
 }
 $(a);
 `````
@@ -60,13 +63,16 @@ const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpIfTest = tmpChainElementObject;
+} else {
 }
 if (tmpIfTest) {
   const tmpChainRootProp$1 = $(b);
   const tmpIfTest$3 = tmpChainRootProp$1 != null;
   if (tmpIfTest$3) {
     tmpChainRootProp$1.x;
+  } else {
   }
+} else {
 }
 $(a);
 `````

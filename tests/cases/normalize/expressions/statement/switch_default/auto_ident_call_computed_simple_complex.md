@@ -50,6 +50,7 @@ if (tmpIfTest) {
   const tmpCallCompObj = b;
   const tmpCallCompProp = $('$');
   tmpCallCompObj[tmpCallCompProp](1);
+} else {
 }
 $(a);
 `````

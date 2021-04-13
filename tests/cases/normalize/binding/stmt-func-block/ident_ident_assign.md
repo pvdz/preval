@@ -54,6 +54,7 @@ let f = function () {
     b = tmpNestedPropAssignRhs;
     let a = b;
     $(a, b, c);
+  } else {
   }
 };
 const tmpCallCallee = $;
@@ -72,6 +73,7 @@ const f = function () {
     const tmpNestedAssignPropRhs = $(4);
     tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
     $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
+  } else {
   }
 };
 const tmpCalleeParam = f();

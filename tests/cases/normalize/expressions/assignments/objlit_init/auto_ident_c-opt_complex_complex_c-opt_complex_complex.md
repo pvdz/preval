@@ -46,7 +46,9 @@ if (tmpIfTest) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     a = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 let tmpObjLitVal$1 = a;
 const tmpCalleeParam = { x: tmpObjLitVal$1 };
@@ -70,7 +72,9 @@ if (tmpIfTest) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpSSA_a = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 const tmpObjLitVal$1 = tmpSSA_a;
 const tmpCalleeParam = { x: tmpObjLitVal$1 };

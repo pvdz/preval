@@ -40,6 +40,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
   tmpCalleeParamSpread = tmpChainElementCall;
+} else {
 }
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a);
@@ -56,6 +57,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   tmpCalleeParamSpread = tmpChainElementCall;
+} else {
 }
 $(...tmpCalleeParamSpread);
 $(a);

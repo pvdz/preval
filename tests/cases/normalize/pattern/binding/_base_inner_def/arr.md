@@ -42,6 +42,7 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   a;
+} else {
 }
 `````
 

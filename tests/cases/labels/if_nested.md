@@ -77,6 +77,7 @@ let f = function () {
         return undefined;
       }
     }
+  } else {
   }
 };
 f();
@@ -105,6 +106,7 @@ const f = function () {
         return undefined;
       }
     }
+  } else {
   }
 };
 f();

@@ -43,7 +43,9 @@ if (tmpIfTest) {
     const tmpChainRootComputed$3 = $('z');
     const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
     tmpCalleeParam = tmpChainElementObject$3;
+  } else {
   }
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -67,7 +69,9 @@ if (tmpIfTest) {
     const tmpChainRootComputed$3 = $('z');
     const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
     tmpCalleeParam = tmpChainElementObject$3;
+  } else {
   }
+} else {
 }
 $(tmpCalleeParam);
 `````

@@ -56,6 +56,7 @@ let f = function () {
       debugger;
       if ($) {
         x$1 = 10;
+      } else {
       }
     };
     g$1();
@@ -101,6 +102,7 @@ if ($) {
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
+} else {
 }
 `````
 
@@ -114,6 +116,7 @@ const tmpBranchingA = function () {
     debugger;
     if ($) {
       x$1 = 10;
+    } else {
     }
   };
   g$1();
@@ -138,6 +141,7 @@ const f = function () {
 if ($) {
   const tmpCalleeParam = f();
   $(tmpCalleeParam);
+} else {
 }
 `````
 

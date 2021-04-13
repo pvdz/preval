@@ -45,6 +45,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed = 'x';
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   a = tmpChainElementObject;
+} else {
 }
 let xyz = a;
 while (true) {
@@ -63,6 +64,7 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   tmpSSA_a = tmpChainElementObject;
+} else {
 }
 const xyz = tmpSSA_a;
 while (true) {

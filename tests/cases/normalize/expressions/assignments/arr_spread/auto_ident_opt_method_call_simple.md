@@ -40,6 +40,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
   a = tmpChainElementCall;
+} else {
 }
 let tmpArrSpread = a;
 const tmpCalleeParam = [...tmpArrSpread];
@@ -57,6 +58,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   tmpSSA_a = tmpChainElementCall;
+} else {
 }
 const tmpArrSpread = tmpSSA_a;
 const tmpCalleeParam = [...tmpArrSpread];

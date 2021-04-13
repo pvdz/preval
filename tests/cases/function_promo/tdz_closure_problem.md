@@ -57,16 +57,19 @@ let f = function () {
     let x$1 = $('inner');
     if ($) {
       $('prevent premature elimination');
+    } else {
     }
   };
   let x = $('outer');
   g();
   if ($) {
     $('prevent premature elimination');
+  } else {
   }
 };
 if ($) {
   f();
+} else {
 }
 `````
 
@@ -79,6 +82,7 @@ const g = function () {
   const x$1 = $('inner');
   if ($) {
     $('prevent premature elimination');
+  } else {
   }
 };
 const f = function () {
@@ -87,10 +91,12 @@ const f = function () {
   g();
   if ($) {
     $('prevent premature elimination');
+  } else {
   }
 };
 if ($) {
   f();
+} else {
 }
 `````
 

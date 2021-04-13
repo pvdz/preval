@@ -37,6 +37,7 @@ const tmpChainElementCall = tmpChainRootCall($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+} else {
 }
 $(a);
 `````
@@ -49,6 +50,7 @@ const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   tmpChainElementCall.call($, 1);
+} else {
 }
 $(a);
 `````

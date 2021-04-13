@@ -40,6 +40,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
+} else {
 }
 let tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
@@ -58,6 +59,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpSSA_a = tmpChainElementObject;
+} else {
 }
 const tmpBinBothLhs = tmpSSA_a;
 const tmpBinBothRhs = $(100);

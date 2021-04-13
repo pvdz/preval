@@ -46,6 +46,7 @@ while (true) {
     tmpIfTest = 1;
     if (tmpIfTest) {
       tmpIfTest = 2;
+    } else {
     }
   }
   if (tmpIfTest) {
@@ -70,6 +71,7 @@ while (true) {
     tmpIfTest = 1;
     if (tmpIfTest) {
       tmpIfTest = 2;
+    } else {
     }
   }
   if (tmpIfTest) {

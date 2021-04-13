@@ -60,6 +60,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
   const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainElementObject, 100);
   tmpCalleeParam$3 = tmpChainElementCall$1;
+} else {
 }
 tmpCallCallee$1(tmpCalleeParam$3);
 `````
@@ -88,6 +89,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
   const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainElementObject, 100);
   tmpCalleeParam$3 = tmpChainElementCall$1;
+} else {
 }
 $(tmpCalleeParam$3);
 `````

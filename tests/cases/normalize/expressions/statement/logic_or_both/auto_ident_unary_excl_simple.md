@@ -34,6 +34,7 @@ let arg = 1;
 let a = { a: 999, b: 1000 };
 if (arg) {
   !arg;
+} else {
 }
 $(a, arg);
 `````

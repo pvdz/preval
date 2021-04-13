@@ -38,6 +38,7 @@ const tmpNewCallee = tmpCompObj[tmpCompProp];
 const tmpIfTest = new tmpNewCallee(1);
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -53,6 +54,7 @@ const tmpNewCallee = tmpCompObj[tmpCompProp];
 const tmpIfTest = new tmpNewCallee(1);
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````

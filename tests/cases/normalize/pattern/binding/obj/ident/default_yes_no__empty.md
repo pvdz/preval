@@ -44,6 +44,7 @@ const objPatternBeforeDefault = (1).x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $('fail');
+} else {
 }
 $('bad');
 `````

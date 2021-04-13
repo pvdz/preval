@@ -36,6 +36,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
   tmpAnonDefaultExport = tmpChainElementCall$1;
+} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -51,6 +52,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   tmpAnonDefaultExport = tmpChainElementCall$1;
+} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);

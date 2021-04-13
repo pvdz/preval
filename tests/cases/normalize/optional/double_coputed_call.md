@@ -44,12 +44,15 @@ if (tmpIfTest) {
     const tmpChainRootComputed$3 = $('z');
     const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
     tmpCalleeParam = tmpChainElementObject$3;
+  } else {
   }
+} else {
 }
 const tmpChainElementCall = tmpCallCallee(tmpCalleeParam);
 const tmpIfTest$3 = tmpChainElementCall != null;
 if (tmpIfTest$3) {
   const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 100);
+} else {
 }
 `````
 
@@ -72,12 +75,15 @@ if (tmpIfTest) {
     const tmpChainRootComputed$3 = $('z');
     const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
     tmpCalleeParam = tmpChainElementObject$3;
+  } else {
   }
+} else {
 }
 const tmpChainElementCall = $(tmpCalleeParam);
 const tmpIfTest$3 = tmpChainElementCall != null;
 if (tmpIfTest$3) {
   tmpChainElementCall.call($, 100);
+} else {
 }
 `````
 

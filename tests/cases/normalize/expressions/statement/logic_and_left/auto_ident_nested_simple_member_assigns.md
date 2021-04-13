@@ -50,6 +50,7 @@ b.x = varInitAssignLhsComputedRhs;
 const tmpIfTest = varInitAssignLhsComputedRhs;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, b, c);
 `````

@@ -40,6 +40,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpForOfDeclRhs = tmpChainElementObject;
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
@@ -59,6 +60,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpForOfDeclRhs = tmpChainElementObject;
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {

@@ -36,6 +36,7 @@ while (true) {
   let tmpIfTest = 1;
   if (tmpIfTest) {
     tmpIfTest = 2;
+  } else {
   }
   if (tmpIfTest) {
     $(1);
@@ -54,6 +55,7 @@ while (true) {
   let tmpIfTest = 1;
   if (tmpIfTest) {
     tmpIfTest = 2;
+  } else {
   }
   if (tmpIfTest) {
     $(1);

@@ -39,6 +39,7 @@ if (tmpIfTest) {
   b = c;
   let a = b;
   $(a, b, c);
+} else {
 }
 `````
 
@@ -48,6 +49,7 @@ if (tmpIfTest) {
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(3, 3, 3);
+} else {
 }
 `````
 

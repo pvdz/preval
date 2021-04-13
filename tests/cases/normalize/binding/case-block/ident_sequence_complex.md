@@ -51,6 +51,7 @@ const tmpBinLhs = $('a');
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
@@ -58,6 +59,7 @@ tmpSwitchBreak: {
     $(b);
     a$1 = $(c);
     break tmpSwitchBreak;
+  } else {
   }
 }
 $(a, b, c);
@@ -72,6 +74,7 @@ const tmpBinLhs = $('a');
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
@@ -79,6 +82,7 @@ tmpSwitchBreak: {
     $(2);
     $(3);
     break tmpSwitchBreak;
+  } else {
   }
 }
 $(1, 2, 3);

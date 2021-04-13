@@ -47,6 +47,7 @@ if (tmpIfTest) {
   const arrAssignPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   b = arrPatternSplat$1[0];
+} else {
 }
 $(a, b);
 `````
@@ -66,6 +67,7 @@ if (tmpNestedAssignArrPatternRhs) {
   const arrAssignPatternRhs = $(tmpCalleeParam$1);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   tmpSSA_b = arrPatternSplat$1[0];
+} else {
 }
 $(a, tmpSSA_b);
 `````

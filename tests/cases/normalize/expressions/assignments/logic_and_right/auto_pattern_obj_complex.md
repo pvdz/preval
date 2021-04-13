@@ -37,6 +37,7 @@ if (tmpCalleeParam) {
   const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
   a = tmpNestedAssignObjPatternRhs.a;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -53,6 +54,7 @@ if (tmpCalleeParam) {
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
   a = tmpNestedAssignObjPatternRhs.a;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+} else {
 }
 $(tmpCalleeParam);
 $(a);

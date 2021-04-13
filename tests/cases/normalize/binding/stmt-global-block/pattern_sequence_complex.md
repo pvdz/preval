@@ -45,6 +45,7 @@ if (tmpIfTest) {
   let a = arrPatternSplat[0];
   let b = arrPatternSplat[1];
   $(a, b, x, y, z);
+} else {
 }
 `````
 
@@ -61,6 +62,7 @@ if (tmpIfTest) {
   const a = arrPatternSplat[0];
   const b = arrPatternSplat[1];
   $(a, b, 1, 2, z);
+} else {
 }
 `````
 

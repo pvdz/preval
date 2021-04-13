@@ -40,6 +40,7 @@ if (tmpArrElToSpread) {
     const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
     tmpArrElToSpread = tmpCallCallee$3(tmpCalleeParam$3);
+  } else {
   }
 }
 [...tmpArrElToSpread];
@@ -59,6 +60,7 @@ if (tmpArrElToSpread) {
   if (tmpArrElToSpread) {
     const tmpCalleeParam$3 = $(2);
     tmpArrElToSpread = $(tmpCalleeParam$3);
+  } else {
   }
 }
 [...tmpArrElToSpread];

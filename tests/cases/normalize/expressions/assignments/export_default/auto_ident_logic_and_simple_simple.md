@@ -32,6 +32,7 @@ let a = { a: 999, b: 1000 };
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 let tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
@@ -44,6 +45,7 @@ $(a);
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 const tmpAnonDefaultExport = tmpSSA_a;
 export { tmpAnonDefaultExport as default };

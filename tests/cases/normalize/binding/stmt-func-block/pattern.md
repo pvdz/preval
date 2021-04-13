@@ -48,6 +48,7 @@ let f = function () {
     let x = arrPatternSplat[0];
     let y = arrPatternSplat[1];
     $(x, y, z);
+  } else {
   }
 };
 const tmpCallCallee = $;
@@ -67,6 +68,7 @@ const f = function () {
     const x = arrPatternSplat[0];
     const y = arrPatternSplat[1];
     $(x, y, z);
+  } else {
   }
 };
 const tmpCalleeParam = f();

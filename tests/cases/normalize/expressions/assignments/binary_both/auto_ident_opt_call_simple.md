@@ -35,6 +35,7 @@ const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
   a = tmpChainElementCall;
+} else {
 }
 let tmpBinBothLhs = a;
 a = undefined;
@@ -43,6 +44,7 @@ const tmpIfTest$1 = tmpChainRootCall$1 != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall$1 = tmpChainRootCall$1(1);
   a = tmpChainElementCall$1;
+} else {
 }
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
@@ -58,6 +60,7 @@ const tmpIfTest = $ != null;
 if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   tmpSSA_a = tmpChainElementCall;
+} else {
 }
 const tmpBinBothLhs = tmpSSA_a;
 let tmpSSA_a$1 = undefined;
@@ -65,6 +68,7 @@ const tmpIfTest$1 = $ != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall$1 = $(1);
   tmpSSA_a$1 = tmpChainElementCall$1;
+} else {
 }
 const tmpBinBothRhs = tmpSSA_a$1;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

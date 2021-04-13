@@ -36,6 +36,7 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpCallObj = b;
   tmpCallObj.$(1);
+} else {
 }
 $(a);
 `````
@@ -48,6 +49,7 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   b.$(1);
+} else {
 }
 $(a);
 `````

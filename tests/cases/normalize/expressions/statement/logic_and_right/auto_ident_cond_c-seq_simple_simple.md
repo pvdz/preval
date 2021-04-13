@@ -38,6 +38,7 @@ if (tmpIfTest) {
     const tmpCalleeParam = $(100);
     tmpCallCallee(tmpCalleeParam);
   }
+} else {
 }
 $(a);
 `````
@@ -55,6 +56,7 @@ if (tmpIfTest) {
     const tmpCalleeParam = $(100);
     $(tmpCalleeParam);
   }
+} else {
 }
 $(a);
 `````

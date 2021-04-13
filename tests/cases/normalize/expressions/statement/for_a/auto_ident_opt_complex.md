@@ -40,6 +40,7 @@ const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
+} else {
 }
 while (true) {
   const tmpIfTest$1 = $(0);
@@ -60,6 +61,7 @@ const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   tmpChainElementCall.x;
+} else {
 }
 while (true) {
   const tmpIfTest$1 = $(0);

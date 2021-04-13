@@ -32,6 +32,7 @@ const tmpCallCallee = $;
 let tmpCalleeParam = 1;
 if (tmpCalleeParam) {
   tmpCalleeParam = 2;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -44,6 +45,7 @@ const a = { a: 999, b: 1000 };
 let tmpCalleeParam = 1;
 if (tmpCalleeParam) {
   tmpCalleeParam = 2;
+} else {
 }
 $(tmpCalleeParam);
 $(a);

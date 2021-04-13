@@ -36,9 +36,11 @@ if (tmpCalleeParam) {
   let tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
   if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = 2;
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -54,9 +56,11 @@ if (tmpCalleeParam) {
   let tmpNestedComplexRhs = $(tmpCalleeParam$1);
   if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = 2;
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 $(tmpCalleeParam);
 $(a);

@@ -34,6 +34,7 @@ const tmpCalleeParam = $(1);
 a = tmpCallCallee$1(tmpCalleeParam);
 if (a) {
   a = 2;
+} else {
 }
 let tmpCalleeParamSpread = a;
 tmpCallCallee(...tmpCalleeParamSpread);
@@ -47,6 +48,7 @@ const tmpCalleeParam = $(1);
 let tmpSSA_a = $(tmpCalleeParam);
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 const tmpCalleeParamSpread = tmpSSA_a;
 $(...tmpCalleeParamSpread);

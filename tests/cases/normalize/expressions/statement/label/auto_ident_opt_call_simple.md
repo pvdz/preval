@@ -32,6 +32,7 @@ const tmpChainRootCall = $;
 const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
+} else {
 }
 $(a);
 `````
@@ -43,6 +44,7 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $ != null;
 if (tmpIfTest) {
   $(1);
+} else {
 }
 $(a);
 `````

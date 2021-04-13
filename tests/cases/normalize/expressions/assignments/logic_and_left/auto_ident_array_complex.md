@@ -36,6 +36,7 @@ a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -50,6 +51,7 @@ const tmpSSA_a = [tmpArrElement, 2, tmpArrElement$3];
 let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(tmpSSA_a);

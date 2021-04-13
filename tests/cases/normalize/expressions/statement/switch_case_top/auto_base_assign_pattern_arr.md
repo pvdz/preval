@@ -51,6 +51,7 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
@@ -60,6 +61,7 @@ if (tmpIfTest$1) {
   const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
   const arrPatternSplat = [...arrAssignPatternRhs];
   b = arrPatternSplat[0];
+} else {
 }
 $(a, b);
 `````
@@ -75,6 +77,7 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
@@ -83,6 +86,7 @@ if (tmpIfTest$1) {
   const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...arrAssignPatternRhs];
   b = arrPatternSplat[0];
+} else {
 }
 $(a, b);
 `````

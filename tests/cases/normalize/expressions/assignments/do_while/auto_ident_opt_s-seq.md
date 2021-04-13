@@ -53,6 +53,7 @@ while (true) {
     if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainRootProp.x;
       tmpNestedComplexRhs = tmpChainElementObject;
+    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
@@ -82,6 +83,7 @@ while (true) {
     if (tmpIfTest$1) {
       const tmpChainElementObject = b.x;
       tmpNestedComplexRhs = tmpChainElementObject;
+    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;

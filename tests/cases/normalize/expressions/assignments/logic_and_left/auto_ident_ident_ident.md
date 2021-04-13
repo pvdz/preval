@@ -41,6 +41,7 @@ a = 2;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c);
@@ -52,6 +53,7 @@ $(a, b, c);
 let tmpCalleeParam = 2;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(2, 2, 2);

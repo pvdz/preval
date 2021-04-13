@@ -53,6 +53,7 @@ if (tmpIfTest) {
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.c = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
+} else {
 }
 $(a, b);
 `````

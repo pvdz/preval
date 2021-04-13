@@ -38,6 +38,7 @@ const tmpIfTest = tmpPostUpdArgIdent;
 if (tmpIfTest) {
   const tmpPostUpdArgIdent$1 = b;
   b = b + 1;
+} else {
 }
 $(a, b);
 `````

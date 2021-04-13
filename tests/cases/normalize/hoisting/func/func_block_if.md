@@ -48,6 +48,7 @@ let g = function () {
       $(1);
     };
     f();
+  } else {
   }
 };
 g();
@@ -59,6 +60,7 @@ g();
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(1);
+} else {
 }
 `````
 

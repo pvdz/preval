@@ -28,6 +28,7 @@ let tmpCalleeParam = parseInt;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = length;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -39,6 +40,7 @@ let tmpCalleeParam = parseInt;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = length;
+} else {
 }
 $(tmpCalleeParam);
 `````

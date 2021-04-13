@@ -36,6 +36,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   let tmpAssignMemLhsObj = 1;
   if (tmpAssignMemLhsObj) {
     tmpAssignMemLhsObj = 2;
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
@@ -53,6 +54,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   let tmpAssignMemLhsObj = 1;
   if (tmpAssignMemLhsObj) {
     tmpAssignMemLhsObj = 2;
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }

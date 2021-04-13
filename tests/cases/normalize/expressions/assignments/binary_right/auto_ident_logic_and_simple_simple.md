@@ -33,6 +33,7 @@ const tmpBinBothLhs = $(100);
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
@@ -47,6 +48,7 @@ const tmpBinBothLhs = $(100);
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 const tmpBinBothRhs = tmpSSA_a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

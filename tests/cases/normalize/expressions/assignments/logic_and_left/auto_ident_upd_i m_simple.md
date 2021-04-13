@@ -39,6 +39,7 @@ a = tmpPostUpdArgIdent;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
@@ -50,6 +51,7 @@ $(a, b);
 let tmpCalleeParam = 1;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(1, 0);

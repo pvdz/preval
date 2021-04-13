@@ -79,6 +79,7 @@ const tmpBinLhs = varInitAssignLhsComputedRhs;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a, b, c);
@@ -112,6 +113,7 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 const tmpIfTest = 3 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchCaseToStart <= 0;
 $(a, b, 3);

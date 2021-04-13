@@ -50,6 +50,7 @@ if (tmpIfTest) {
   const tmpPostUpdArgIdent = b;
   b = b + 1;
   a = tmpPostUpdArgIdent;
+} else {
 }
 $(a, b);
 `````

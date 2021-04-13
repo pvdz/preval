@@ -34,6 +34,7 @@ const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
   tmpThrowArg = tmpChainElementCall;
+} else {
 }
 throw tmpThrowArg;
 `````
@@ -46,6 +47,7 @@ const tmpIfTest = $ != null;
 if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   tmpThrowArg = tmpChainElementCall;
+} else {
 }
 throw tmpThrowArg;
 `````

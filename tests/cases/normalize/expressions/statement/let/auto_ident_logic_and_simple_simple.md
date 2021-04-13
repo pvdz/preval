@@ -33,6 +33,7 @@ let a = { a: 999, b: 1000 };
 let xyz = 1;
 if (xyz) {
   xyz = 2;
+} else {
 }
 $(xyz);
 $(a);
@@ -45,6 +46,7 @@ const a = { a: 999, b: 1000 };
 let xyz = 1;
 if (xyz) {
   xyz = 2;
+} else {
 }
 $(xyz);
 $(a);

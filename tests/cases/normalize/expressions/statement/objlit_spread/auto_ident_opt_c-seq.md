@@ -38,6 +38,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpObjSpreadArg = tmpChainElementObject;
+} else {
 }
 ({ ...tmpObjSpreadArg });
 $(a);
@@ -54,6 +55,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpObjSpreadArg = tmpChainElementObject;
+} else {
 }
 ({ ...tmpObjSpreadArg });
 $(a);

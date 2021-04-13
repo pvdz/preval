@@ -42,6 +42,7 @@ let f = function () {
   if (tmpIfTest) {
     const tmpReturnArg = $(1);
     return tmpReturnArg;
+  } else {
   }
 };
 const x = f();
@@ -57,6 +58,7 @@ const f = function () {
   if (tmpIfTest) {
     const tmpReturnArg = $(1);
     return tmpReturnArg;
+  } else {
   }
 };
 const x = f();

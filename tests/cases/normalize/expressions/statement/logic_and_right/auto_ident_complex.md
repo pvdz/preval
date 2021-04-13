@@ -35,6 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   $(b);
+} else {
 }
 $(a, b);
 `````
@@ -46,6 +47,7 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   $(1);
+} else {
 }
 $(a, 1);
 `````

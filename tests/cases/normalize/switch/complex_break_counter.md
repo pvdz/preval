@@ -72,6 +72,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = 'no' === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
+  } else {
   }
 }
 tmpSwitchBreak: {
@@ -84,6 +85,7 @@ tmpSwitchBreak: {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$5) {
       break tmpSwitchBreak;
+    } else {
     }
   }
 }

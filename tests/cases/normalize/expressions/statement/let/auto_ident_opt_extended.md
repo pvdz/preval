@@ -44,6 +44,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   xyz = tmpChainElementObject$3;
+} else {
 }
 $(xyz);
 $(a);
@@ -63,6 +64,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   xyz = tmpChainElementObject$3;
+} else {
 }
 $(xyz);
 $(a);

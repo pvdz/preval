@@ -31,6 +31,7 @@ let a = { a: 999, b: 1000 };
 let tmpForInDeclRhs = 1;
 if (tmpForInDeclRhs) {
   tmpForInDeclRhs = 2;
+} else {
 }
 let x = undefined;
 for (x in tmpForInDeclRhs) {
@@ -45,6 +46,7 @@ const a = { a: 999, b: 1000 };
 let tmpForInDeclRhs = 1;
 if (tmpForInDeclRhs) {
   tmpForInDeclRhs = 2;
+} else {
 }
 let x = undefined;
 for (x in tmpForInDeclRhs) {

@@ -44,7 +44,9 @@ if (tmpIfTest) {
     const tmpIfTest$3 = tmpChainElementObject != null;
     if (tmpIfTest$3) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
+    } else {
     }
+  } else {
   }
 }
 $(a);
@@ -66,7 +68,9 @@ if (tmpIfTest) {
     const tmpIfTest$3 = tmpChainElementObject != null;
     if (tmpIfTest$3) {
       tmpChainElementObject.y;
+    } else {
     }
+  } else {
   }
 }
 $(a);

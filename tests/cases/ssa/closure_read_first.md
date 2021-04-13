@@ -62,6 +62,7 @@ let f = function () {
       const tmpCalleeParam = x + 1;
       x = tmpCallCallee(tmpCalleeParam);
       $(x);
+    } else {
     }
   };
   g();
@@ -72,6 +73,7 @@ if ($) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f();
   tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 `````
 
@@ -87,12 +89,14 @@ if ($) {
       const tmpCalleeParam = x + 1;
       x = $(tmpCalleeParam);
       $(x);
+    } else {
     }
   };
   g();
   g();
   $();
   $(undefined);
+} else {
 }
 `````
 

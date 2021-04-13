@@ -37,6 +37,7 @@ const tmpNewCallee = tmpCompObj.$;
 const tmpIfTest = new tmpNewCallee(1);
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -51,6 +52,7 @@ const tmpNewCallee = tmpCompObj.$;
 const tmpIfTest = new tmpNewCallee(1);
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````

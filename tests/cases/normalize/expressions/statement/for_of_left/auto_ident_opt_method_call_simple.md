@@ -44,6 +44,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
     const tmpChainElementObject = tmpChainRootProp.c;
     const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
     tmpAssignMemLhsObj = tmpChainElementCall;
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
@@ -65,6 +66,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
     const tmpChainElementObject = b.c;
     const tmpChainElementCall = tmpChainElementObject.call(b, 1);
     tmpAssignMemLhsObj = tmpChainElementCall;
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }

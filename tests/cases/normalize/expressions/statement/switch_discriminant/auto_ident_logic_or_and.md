@@ -51,12 +51,14 @@ if (tmpSwitchValue) {
     const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
     tmpSwitchValue = tmpCallCallee$3(tmpCalleeParam$3);
+  } else {
   }
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -74,6 +76,7 @@ if (tmpSwitchValue) {
   if (tmpSSA_tmpSwitchValue) {
     const tmpCalleeParam$3 = $(2);
     $(tmpCalleeParam$3);
+  } else {
   }
 }
 $(100);

@@ -32,6 +32,7 @@ let tmpCalleeParam = tmpCompObj.c;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = d;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -45,6 +46,7 @@ let tmpCalleeParam = tmpCompObj.c;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = d;
+} else {
 }
 $(tmpCalleeParam);
 `````

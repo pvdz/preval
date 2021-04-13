@@ -37,6 +37,7 @@ $(2);
 const tmpIfTest = $(x);
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, x);
 `````
@@ -50,6 +51,7 @@ $(2);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, 1);
 `````

@@ -68,6 +68,7 @@ let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a, b, c, d, e);
@@ -89,6 +90,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 const tmpIfTest = 7 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchCaseToStart <= 0;
 $(7, b, c, 3, 4);

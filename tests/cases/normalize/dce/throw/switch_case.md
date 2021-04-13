@@ -68,6 +68,7 @@ let f = function () {
     if (tmpIfTest$1) {
       const tmpThrowArg = $(2, 'ret');
       throw tmpThrowArg;
+    } else {
     }
   };
   if (tmpIfTest) {
@@ -98,6 +99,7 @@ const f = function () {
     if (tmpIfTest$1) {
       const tmpThrowArg = $(2, 'ret');
       throw tmpThrowArg;
+    } else {
     }
   };
   if (tmpIfTest) {

@@ -109,6 +109,7 @@ const tmpBranchingA = function () {
 };
 if (tmpIfTest) {
   tmpBranchingA();
+} else {
 }
 `````
 

@@ -33,6 +33,7 @@ const tmpBinBothLhs = a;
 let tmpBinBothRhs = 1;
 if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
+} else {
 }
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
@@ -47,6 +48,7 @@ const a = { a: 999, b: 1000 };
 let tmpBinBothRhs = 1;
 if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
+} else {
 }
 const tmpSSA_a = a * tmpBinBothRhs;
 $(tmpSSA_a);

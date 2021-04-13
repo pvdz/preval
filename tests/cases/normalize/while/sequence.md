@@ -38,6 +38,7 @@ while (true) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, x);
     tmpIfTest = tmpChainElementCall;
+  } else {
   }
   if (tmpIfTest) {
   } else {
@@ -62,6 +63,7 @@ while (true) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, x);
     tmpIfTest = tmpChainElementCall;
+  } else {
   }
   if (tmpIfTest) {
   } else {

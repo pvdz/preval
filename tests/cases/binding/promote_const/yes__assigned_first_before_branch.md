@@ -45,6 +45,7 @@ x = 100;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(x);
+} else {
 }
 $(x);
 `````
@@ -56,6 +57,7 @@ $('something');
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(100);
 `````

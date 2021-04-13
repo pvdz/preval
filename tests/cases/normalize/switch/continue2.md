@@ -92,6 +92,7 @@ while (run) {
     const tmpIfTest$1 = false;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 2;
+    } else {
     }
   }
   tmpSwitchBreak: {
@@ -108,6 +109,7 @@ while (run) {
         if (tmpIfTest$4) {
           let SSA_run = false;
           break tmpSwitchBreak;
+        } else {
         }
       }
     }

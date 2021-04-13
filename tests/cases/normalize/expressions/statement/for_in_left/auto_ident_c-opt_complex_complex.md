@@ -45,6 +45,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     tmpAssignMemLhsObj = tmpChainElementObject;
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
@@ -67,6 +68,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     tmpAssignMemLhsObj = tmpChainElementObject;
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }

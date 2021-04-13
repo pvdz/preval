@@ -37,6 +37,7 @@ const tmpIfTest = tmpCallObj.$(1);
 if (tmpIfTest) {
   const tmpCallObj$1 = $(b);
   tmpCallObj$1.$(1);
+} else {
 }
 $(a);
 `````
@@ -51,6 +52,7 @@ const tmpIfTest = tmpCallObj.$(1);
 if (tmpIfTest) {
   const tmpCallObj$1 = $(b);
   tmpCallObj$1.$(1);
+} else {
 }
 $(a);
 `````

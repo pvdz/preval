@@ -33,12 +33,14 @@ const tmpCalleeParam = $(1);
 let tmpBinBothLhs = tmpCallCallee(tmpCalleeParam);
 if (tmpBinBothLhs) {
   tmpBinBothLhs = 2;
+} else {
 }
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(1);
 let tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
@@ -52,11 +54,13 @@ const tmpCalleeParam = $(1);
 let tmpBinBothLhs = $(tmpCalleeParam);
 if (tmpBinBothLhs) {
   tmpBinBothLhs = 2;
+} else {
 }
 const tmpCalleeParam$1 = $(1);
 let tmpBinBothRhs = $(tmpCalleeParam$1);
 if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

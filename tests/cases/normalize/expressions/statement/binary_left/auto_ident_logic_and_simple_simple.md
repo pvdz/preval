@@ -31,6 +31,7 @@ let a = { a: 999, b: 1000 };
 let tmpBinBothLhs = 1;
 if (tmpBinBothLhs) {
   tmpBinBothLhs = 2;
+} else {
 }
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
@@ -44,6 +45,7 @@ const a = { a: 999, b: 1000 };
 let tmpBinBothLhs = 1;
 if (tmpBinBothLhs) {
   tmpBinBothLhs = 2;
+} else {
 }
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;

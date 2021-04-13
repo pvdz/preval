@@ -53,6 +53,7 @@ if (tmpIfTest) {
   const tmpAssignObjPatternRhs = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
   x = tmpAssignObjPatternRhs.x;
   y = tmpAssignObjPatternRhs.y;
+} else {
 }
 $(a, x, y);
 `````
@@ -76,6 +77,7 @@ if (tmpNestedAssignObjPatternRhs) {
   const tmpAssignObjPatternRhs = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
   tmpSSA_x = tmpAssignObjPatternRhs.x;
   tmpSSA_y = tmpAssignObjPatternRhs.y;
+} else {
 }
 $(a, tmpSSA_x, tmpSSA_y);
 `````

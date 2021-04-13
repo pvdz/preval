@@ -37,6 +37,7 @@ const tmpCompProp = $('c');
 const tmpIfTest = tmpCompObj[tmpCompProp];
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, b);
 `````
@@ -50,6 +51,7 @@ const tmpCompProp = $('c');
 const tmpIfTest = b[tmpCompProp];
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, b);
 `````

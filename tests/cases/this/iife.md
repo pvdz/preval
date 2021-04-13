@@ -60,6 +60,7 @@ const f = function () {
     debugger;
     if (t) {
       const g$1 = tmpthis;
+    } else {
     }
   };
   if (t) {
@@ -79,6 +80,7 @@ f();
 const t = $(1);
 if (t) {
   $(2);
+} else {
 }
 `````
 

@@ -42,6 +42,7 @@ b = arrPatternSplat[0];
 tmpIfTest = tmpNestedAssignArrPatternRhs;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, b);
 `````
@@ -57,6 +58,7 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_b = arrPatternSplat[0];
 if (tmpNestedAssignArrPatternRhs) {
   $(100);
+} else {
 }
 $(a, tmpSSA_b);
 `````

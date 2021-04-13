@@ -42,7 +42,9 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpIfTest = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 if (tmpIfTest) {
 } else {
@@ -53,7 +55,9 @@ if (tmpIfTest) {
     const tmpIfTest$7 = tmpChainElementObject$3 != null;
     if (tmpIfTest$7) {
       const tmpChainElementObject$5 = tmpChainElementObject$3.y;
+    } else {
     }
+  } else {
   }
 }
 $(a);
@@ -73,7 +77,9 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpIfTest = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 if (tmpIfTest) {
 } else {
@@ -83,7 +89,9 @@ if (tmpIfTest) {
     const tmpIfTest$7 = tmpChainElementObject$3 != null;
     if (tmpIfTest$7) {
       tmpChainElementObject$3.y;
+    } else {
     }
+  } else {
   }
 }
 $(a);

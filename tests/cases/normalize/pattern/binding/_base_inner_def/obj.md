@@ -39,6 +39,7 @@ const objPatternBeforeDefault = (1).x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   b;
+} else {
 }
 `````
 

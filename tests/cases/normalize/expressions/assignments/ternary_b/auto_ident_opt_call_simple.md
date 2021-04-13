@@ -38,6 +38,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainRootCall(1);
     tmpNestedComplexRhs = tmpChainElementCall;
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -60,6 +61,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = $(1);
     tmpNestedComplexRhs = tmpChainElementCall;
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

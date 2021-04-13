@@ -60,6 +60,7 @@ while (true) {
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
+    } else {
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$3) {
@@ -69,6 +70,7 @@ while (true) {
       const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
       if (tmpIfTest$5) {
         continue;
+      } else {
       }
     }
   } else {
@@ -90,6 +92,7 @@ while (true) {
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
+    } else {
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$3) {
@@ -99,6 +102,7 @@ while (true) {
       const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
       if (tmpIfTest$5) {
         continue;
+      } else {
       }
     }
   } else {

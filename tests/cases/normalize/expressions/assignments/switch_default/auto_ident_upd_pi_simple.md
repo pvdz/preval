@@ -51,6 +51,7 @@ if (tmpIfTest) {
   const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
+} else {
 }
 $(a, b);
 `````

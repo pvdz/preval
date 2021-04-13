@@ -112,6 +112,7 @@ const f = function ($$0) {
   if (N) {
     const tmpReturnArg = a();
     return tmpReturnArg;
+  } else {
   }
 };
 const tmpCallCallee = $;

@@ -94,6 +94,7 @@ let f = function () {
       tmpCalleeParam$36044,
     );
     return tmpReturnArg$21651;
+  } else {
   }
 };
 const tmpCallCallee = $;
@@ -128,6 +129,7 @@ const f = function () {
       tmpCalleeParam$36044,
     );
     return tmpSSA_tmpReturnArg$21651;
+  } else {
   }
 };
 const tmpCalleeParam = [10, 20, 30, 40];

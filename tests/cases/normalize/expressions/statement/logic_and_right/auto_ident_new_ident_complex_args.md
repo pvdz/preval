@@ -38,6 +38,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
   new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+} else {
 }
 $(a);
 `````
@@ -51,6 +52,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
   new $(tmpCalleeParam, tmpCalleeParam$1);
+} else {
 }
 $(a);
 `````

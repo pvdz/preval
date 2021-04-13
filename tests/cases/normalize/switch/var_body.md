@@ -57,6 +57,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
+  } else {
   }
 }
 tmpSwitchBreak: {
@@ -68,6 +69,7 @@ tmpSwitchBreak: {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$5) {
       $(11);
+    } else {
     }
   }
 }
@@ -87,6 +89,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
+  } else {
   }
 }
 tmpSwitchBreak: {
@@ -97,6 +100,7 @@ tmpSwitchBreak: {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$5) {
       $(11);
+    } else {
     }
   }
 }

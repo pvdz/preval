@@ -45,6 +45,7 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpNewCallee = $($);
   a = new tmpNewCallee(1);
+} else {
 }
 $(a);
 `````

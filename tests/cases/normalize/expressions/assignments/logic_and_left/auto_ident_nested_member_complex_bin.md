@@ -55,6 +55,7 @@ a = tmpNestedPropAssignRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c, d, e);
@@ -74,6 +75,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 let tmpCalleeParam = 7;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(7, b, c, 3, 4);

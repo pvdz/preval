@@ -69,6 +69,7 @@ const A = function () {
   debugger;
   if ($) {
     $(2);
+  } else {
   }
 };
 const f = function () {
@@ -78,11 +79,13 @@ const f = function () {
     if ($) {
       const tmpReturnArg$3 = A();
       return tmpReturnArg$3;
+    } else {
     }
   };
   if ($) {
     const tmpReturnArg$53 = B();
     return tmpReturnArg$53;
+  } else {
   }
 };
 const tmpCalleeParam = f();
@@ -97,12 +100,14 @@ const B = function () {
   if ($) {
     const tmpReturnArg$3 = A();
     return tmpReturnArg$3;
+  } else {
   }
 };
 const A = function () {
   debugger;
   if ($) {
     $(2);
+  } else {
   }
 };
 const f = function () {
@@ -110,6 +115,7 @@ const f = function () {
   if ($) {
     const tmpReturnArg$53 = B();
     return tmpReturnArg$53;
+  } else {
   }
 };
 const tmpCalleeParam = f();

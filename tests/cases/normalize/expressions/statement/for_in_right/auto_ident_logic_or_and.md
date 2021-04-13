@@ -40,6 +40,7 @@ if (tmpForInDeclRhs) {
     const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
     tmpForInDeclRhs = tmpCallCallee$3(tmpCalleeParam$3);
+  } else {
   }
 }
 let x = undefined;
@@ -61,6 +62,7 @@ if (tmpForInDeclRhs) {
   if (tmpForInDeclRhs) {
     const tmpCalleeParam$3 = $(2);
     tmpForInDeclRhs = $(tmpCalleeParam$3);
+  } else {
   }
 }
 let x = undefined;

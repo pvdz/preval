@@ -50,6 +50,7 @@ if (tmpIfTest) {
   const tmpNestedComplexRhs = $(2);
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
+} else {
 }
 $(a, b);
 `````

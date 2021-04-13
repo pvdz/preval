@@ -38,6 +38,7 @@ const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpIfTest = tmpChainElementObject;
+} else {
 }
 $(a);
 `````
@@ -50,6 +51,7 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   b.x;
+} else {
 }
 $(a);
 `````

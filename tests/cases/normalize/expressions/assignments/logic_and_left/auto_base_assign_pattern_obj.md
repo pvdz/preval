@@ -42,6 +42,7 @@ a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
@@ -57,6 +58,7 @@ const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
 let tmpCalleeParam = tmpNestedAssignObjPatternRhs;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(tmpNestedAssignObjPatternRhs, tmpSSA_b);

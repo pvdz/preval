@@ -54,9 +54,12 @@ if (tmpIfTest) {
     const tmpIfTest$3 = $(3);
     if (tmpIfTest$3) {
       $(x);
+    } else {
     }
+  } else {
   }
   $(x);
+} else {
 }
 `````
 
@@ -70,9 +73,12 @@ if (tmpIfTest) {
     const tmpIfTest$3 = $(3);
     if (tmpIfTest$3) {
       $(10);
+    } else {
     }
+  } else {
   }
   $(10);
+} else {
 }
 `````
 

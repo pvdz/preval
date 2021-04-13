@@ -32,6 +32,7 @@ const tmpCallCallee = $;
 let tmpCalleeParamSpread = 1;
 if (tmpCalleeParamSpread) {
   tmpCalleeParamSpread = 2;
+} else {
 }
 tmpCallCallee(...tmpCalleeParamSpread);
 $(a);
@@ -44,6 +45,7 @@ const a = { a: 999, b: 1000 };
 let tmpCalleeParamSpread = 1;
 if (tmpCalleeParamSpread) {
   tmpCalleeParamSpread = 2;
+} else {
 }
 $(...tmpCalleeParamSpread);
 $(a);

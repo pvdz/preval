@@ -43,7 +43,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     a = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
@@ -64,7 +66,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpSSA_a = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 const tmpObjSpread = tmpSSA_a;
 const tmpCalleeParam = { ...tmpObjSpread };

@@ -36,6 +36,7 @@ b = $(2);
 let tmpIfTest = b;
 if (tmpIfTest) {
   b = $(2);
+} else {
 }
 $(a, b);
 `````
@@ -48,6 +49,7 @@ let tmpSSA_b = $(2);
 const tmpIfTest = tmpSSA_b;
 if (tmpIfTest) {
   tmpSSA_b = $(2);
+} else {
 }
 $(a, tmpSSA_b);
 `````

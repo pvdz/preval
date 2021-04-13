@@ -29,6 +29,7 @@ let y = 3;
 const tmpIfTest = y == null;
 if (tmpIfTest) {
   y = foo;
+} else {
 }
 $(y);
 `````
@@ -40,6 +41,7 @@ let y = 3;
 const tmpIfTest = y == null;
 if (tmpIfTest) {
   y = foo;
+} else {
 }
 $(y);
 `````

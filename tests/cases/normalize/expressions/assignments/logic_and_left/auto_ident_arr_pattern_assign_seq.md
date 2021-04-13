@@ -48,6 +48,7 @@ a = tmpNestedAssignArrPatternRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, x, y);
@@ -67,6 +68,7 @@ const tmpSSA_y = arrPatternSplat[1];
 let tmpCalleeParam = tmpNestedAssignArrPatternRhs;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(tmpNestedAssignArrPatternRhs, tmpSSA_x, tmpSSA_y);

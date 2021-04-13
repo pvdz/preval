@@ -38,6 +38,7 @@ while (true) {
   let tmpIfTest = tmpCallCallee(tmpCalleeParam);
   if (tmpIfTest) {
     tmpIfTest = 2;
+  } else {
   }
   if (tmpIfTest) {
     $(1);
@@ -57,6 +58,7 @@ while (true) {
   let tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
     tmpIfTest = 2;
+  } else {
   }
   if (tmpIfTest) {
     $(1);

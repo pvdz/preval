@@ -44,6 +44,7 @@ if (tmpCompProp) {
     const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
     tmpCompProp = tmpCallCallee$3(tmpCalleeParam$3);
+  } else {
   }
 }
 tmpCompObj[tmpCompProp];
@@ -64,6 +65,7 @@ if (tmpCompProp) {
   if (tmpCompProp) {
     const tmpCalleeParam$3 = $(2);
     tmpCompProp = $(tmpCalleeParam$3);
+  } else {
   }
 }
 obj[tmpCompProp];

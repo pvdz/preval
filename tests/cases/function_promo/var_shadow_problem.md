@@ -72,21 +72,25 @@ let f = function () {
       const x$1 = $();
       if ($) {
         $(x$1, 'keep me inner local');
+      } else {
       }
     };
     if ($) {
       $(x, 'keep me a closure');
       h();
+    } else {
     }
   };
   let x = $(1);
   if ($) {
     g();
     $(x, 'keep me outer local');
+  } else {
   }
 };
 if ($) {
   f();
+} else {
 }
 `````
 
@@ -98,6 +102,7 @@ const h = function () {
   const x$1 = $();
   if ($) {
     $(x$1, 'keep me inner local');
+  } else {
   }
 };
 const f = function () {
@@ -107,16 +112,19 @@ const f = function () {
     if ($) {
       $(x, 'keep me a closure');
       h();
+    } else {
     }
   };
   const x = $(1);
   if ($) {
     g();
     $(x, 'keep me outer local');
+  } else {
   }
 };
 if ($) {
   f();
+} else {
 }
 `````
 

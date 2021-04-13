@@ -49,6 +49,7 @@ let f = function () {
     b.x = varInitAssignLhsComputedRhs;
     let a = varInitAssignLhsComputedRhs;
     $(a, b, c);
+  } else {
   }
 };
 const tmpCallCallee = $;
@@ -66,6 +67,7 @@ const f = function () {
     const b = { x: 2 };
     b.x = 3;
     $(3, b, 3);
+  } else {
   }
 };
 const tmpCalleeParam = f();

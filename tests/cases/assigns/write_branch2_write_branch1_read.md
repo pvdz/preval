@@ -44,8 +44,10 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     x = $(2);
     $(x);
+  } else {
   }
   $(x);
+} else {
 }
 `````
 
@@ -59,8 +61,10 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     x = $(2);
     $(x);
+  } else {
   }
   $(x);
+} else {
 }
 `````
 

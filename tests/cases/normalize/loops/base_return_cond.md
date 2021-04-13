@@ -98,6 +98,7 @@ let f = function () {
       tmpLoopRetCode = undefined;
       tmpLoopRetValue = n;
       return undefined;
+    } else {
     }
   };
   let tmpLoopTail = function ($$0, $$1) {
@@ -139,6 +140,7 @@ const tmpLoopBody = function () {
     tmpLoopRetCode = undefined;
     tmpLoopRetValue = n;
     return undefined;
+  } else {
   }
 };
 const tmpLoopTail = function ($$0, $$1) {

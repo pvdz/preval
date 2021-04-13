@@ -41,6 +41,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpAnonDefaultExport = tmpChainElementObject;
+} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -58,6 +59,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpAnonDefaultExport = tmpChainElementObject;
+} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);

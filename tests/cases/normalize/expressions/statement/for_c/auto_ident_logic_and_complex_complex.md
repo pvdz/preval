@@ -42,6 +42,7 @@ while (true) {
       const tmpCallCallee$1 = $;
       const tmpCalleeParam$1 = $(2);
       tmpCallCallee$1(tmpCalleeParam$1);
+    } else {
     }
   } else {
     break;
@@ -62,6 +63,7 @@ while (true) {
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 = $(2);
       $(tmpCalleeParam$1);
+    } else {
     }
   } else {
     break;

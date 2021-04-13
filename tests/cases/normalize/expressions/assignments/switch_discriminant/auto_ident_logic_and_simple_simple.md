@@ -42,12 +42,14 @@ let a = { a: 999, b: 1000 };
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -58,6 +60,7 @@ $(a);
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 $(100);
 $(tmpSSA_a);

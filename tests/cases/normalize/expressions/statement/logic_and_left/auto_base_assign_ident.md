@@ -36,6 +36,7 @@ b = $(2);
 let tmpIfTest = b;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a, b);
 `````
@@ -47,6 +48,7 @@ const a = { a: 999, b: 1000 };
 const tmpSSA_b = $(2);
 if (tmpSSA_b) {
   $(100);
+} else {
 }
 $(a, tmpSSA_b);
 `````

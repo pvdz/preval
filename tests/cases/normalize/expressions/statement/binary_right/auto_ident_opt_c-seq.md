@@ -39,6 +39,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpBinBothRhs = tmpChainElementObject;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
@@ -56,6 +57,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpBinBothRhs = tmpChainElementObject;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

@@ -42,7 +42,9 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     a = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 let tmpIfTest = a;
 $(a);
@@ -61,7 +63,9 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpSSA_a = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 $(tmpSSA_a);
 `````

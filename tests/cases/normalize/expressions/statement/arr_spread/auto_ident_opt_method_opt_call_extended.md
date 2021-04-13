@@ -45,7 +45,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     tmpArrElToSpread = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 [...tmpArrElToSpread];
 $(a);
@@ -68,7 +70,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     tmpArrElToSpread = tmpChainElementCall;
+  } else {
   }
+} else {
 }
 [...tmpArrElToSpread];
 $(a);

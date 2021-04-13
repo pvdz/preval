@@ -34,11 +34,13 @@ let b = $(2);
 const tmpIfTest = b == null;
 if (tmpIfTest) {
   b = toString;
+} else {
 }
 let c = b;
 const tmpIfTest$1 = c == null;
 if (tmpIfTest$1) {
   c = length;
+} else {
 }
 $(c);
 `````
@@ -50,11 +52,13 @@ let b = $(2);
 const tmpIfTest = b == null;
 if (tmpIfTest) {
   b = toString;
+} else {
 }
 let c = b;
 const tmpIfTest$1 = c == null;
 if (tmpIfTest$1) {
   c = length;
+} else {
 }
 $(c);
 `````

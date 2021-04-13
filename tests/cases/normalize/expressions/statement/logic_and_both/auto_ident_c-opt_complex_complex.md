@@ -40,6 +40,7 @@ if (tmpIfTest$1) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpIfTest = tmpChainElementObject;
+} else {
 }
 if (tmpIfTest) {
   const tmpChainRootCall$1 = $;
@@ -48,7 +49,9 @@ if (tmpIfTest) {
   if (tmpIfTest$3) {
     const tmpChainRootComputed$1 = $('x');
     const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
+  } else {
   }
+} else {
 }
 $(a);
 `````
@@ -65,6 +68,7 @@ if (tmpIfTest$1) {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpIfTest = tmpChainElementObject;
+} else {
 }
 if (tmpIfTest) {
   const tmpChainElementCall$1 = $(b);
@@ -72,7 +76,9 @@ if (tmpIfTest) {
   if (tmpIfTest$3) {
     const tmpChainRootComputed$1 = $('x');
     tmpChainElementCall$1[tmpChainRootComputed$1];
+  } else {
   }
+} else {
 }
 $(a);
 `````

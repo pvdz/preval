@@ -67,6 +67,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
+} else {
 }
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -76,16 +77,19 @@ if (tmpIfTest) {
   const tmpIfTest$3 = 2 === tmpSwitchValue;
   if (tmpIfTest$3) {
     tmpSwitchCaseToStart = 2;
+  } else {
   }
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$7) {
   $('fail1');
+} else {
 }
 const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$9) {
   $('fail2');
+} else {
 }
 $(a);
 `````
@@ -106,6 +110,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   tmpSSA_a = tmpChainElementCall;
+} else {
 }
 const tmpBinLhs = tmpSSA_a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -115,16 +120,19 @@ if (tmpIfTest) {
   const tmpIfTest$3 = 2 === tmpSwitchValue;
   if (tmpIfTest$3) {
     tmpSwitchCaseToStart = 2;
+  } else {
   }
 }
 tmpSwitchCaseToStart <= 0;
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$7) {
   $('fail1');
+} else {
 }
 const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$9) {
   $('fail2');
+} else {
 }
 $(tmpSSA_a);
 `````

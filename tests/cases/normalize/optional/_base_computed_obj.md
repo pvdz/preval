@@ -41,6 +41,7 @@ if (tmpIfTest) {
   const tmpChainRootComputed = x;
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpCalleeParam = tmpChainElementObject;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -54,6 +55,7 @@ const tmpIfTest = tmpSSA_f != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpSSA_f[10];
   tmpCalleeParam = tmpChainElementObject;
+} else {
 }
 $(tmpCalleeParam);
 `````

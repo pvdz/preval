@@ -46,6 +46,7 @@ const objPatternBeforeDefault = arrPatternStep.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   a;
+} else {
 }
 `````
 

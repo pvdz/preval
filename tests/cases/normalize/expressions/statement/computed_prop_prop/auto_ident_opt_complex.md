@@ -43,6 +43,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpCompProp = tmpChainElementObject;
+} else {
 }
 tmpCompObj[tmpCompProp];
 $(a);
@@ -60,6 +61,7 @@ const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpCompProp = tmpChainElementObject;
+} else {
 }
 obj[tmpCompProp];
 $(a);

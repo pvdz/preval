@@ -38,6 +38,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpBinBothLhs = tmpChainElementObject;
+} else {
 }
 let tmpBinBothRhs = undefined;
 const tmpChainRootProp$1 = b;
@@ -45,6 +46,7 @@ const tmpIfTest$1 = tmpChainRootProp$1 != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.x;
   tmpBinBothRhs = tmpChainElementObject$1;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
@@ -60,12 +62,14 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   tmpBinBothLhs = tmpChainElementObject;
+} else {
 }
 let tmpBinBothRhs = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject$1 = b.x;
   tmpBinBothRhs = tmpChainElementObject$1;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

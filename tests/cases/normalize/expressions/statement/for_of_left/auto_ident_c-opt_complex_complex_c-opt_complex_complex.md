@@ -50,7 +50,9 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpAssignMemLhsObj = tmpChainElementObject$1;
+    } else {
     }
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
@@ -78,7 +80,9 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpAssignMemLhsObj = tmpChainElementObject$1;
+    } else {
     }
+  } else {
   }
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }

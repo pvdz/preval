@@ -32,6 +32,7 @@ let tmpIfTest = undefined;
 tmpIfTest = 2;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````

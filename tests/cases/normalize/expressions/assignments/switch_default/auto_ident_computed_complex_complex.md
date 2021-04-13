@@ -50,6 +50,7 @@ if (tmpIfTest) {
   const tmpAssignRhsCompObj = $(b);
   const tmpAssignRhsCompProp = $('c');
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+} else {
 }
 $(a, b);
 `````

@@ -35,6 +35,7 @@ const tmpCalleeParam$1 = $(1);
 let tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
+} else {
 }
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
@@ -50,6 +51,7 @@ const tmpCalleeParam$1 = $(1);
 let tmpBinBothRhs = $(tmpCalleeParam$1);
 if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
+} else {
 }
 const tmpSSA_a = a * tmpBinBothRhs;
 $(tmpSSA_a);

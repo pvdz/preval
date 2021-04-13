@@ -40,6 +40,7 @@ a = tmpNestedComplexRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
@@ -51,6 +52,7 @@ $(a, b);
 let tmpCalleeParam = 2;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(2, 2);

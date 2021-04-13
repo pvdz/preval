@@ -65,12 +65,14 @@ let f = function () {
   if ($) {
     g();
     return x;
+  } else {
   }
 };
 if ($) {
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
+} else {
 }
 `````
 
@@ -86,11 +88,13 @@ const f = function () {
     $();
     $(tmpSSA_x);
     return tmpSSA_x;
+  } else {
   }
 };
 if ($) {
   const tmpCalleeParam = f();
   $(tmpCalleeParam);
+} else {
 }
 `````
 

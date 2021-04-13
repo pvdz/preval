@@ -48,6 +48,7 @@ while (true) {
       const tmpCallCallee = $;
       const tmpCalleeParam = $(1);
       tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
@@ -75,6 +76,7 @@ while (true) {
     if (tmpNestedComplexRhs) {
       const tmpCalleeParam = $(1);
       tmpNestedComplexRhs = $(tmpCalleeParam);
+    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;

@@ -37,6 +37,7 @@ a = typeof x;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, x);
@@ -48,6 +49,7 @@ $(a, x);
 let tmpCalleeParam = 'number';
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $('number', 1);

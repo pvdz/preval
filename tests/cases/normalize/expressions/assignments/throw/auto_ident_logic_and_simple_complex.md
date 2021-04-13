@@ -33,6 +33,7 @@ if (a) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   a = tmpCallCallee(tmpCalleeParam);
+} else {
 }
 let tmpThrowArg = a;
 throw tmpThrowArg;
@@ -45,6 +46,7 @@ let tmpSSA_a = 1;
 if (tmpSSA_a) {
   const tmpCalleeParam = $(1);
   tmpSSA_a = $(tmpCalleeParam);
+} else {
 }
 const tmpThrowArg = tmpSSA_a;
 throw tmpThrowArg;

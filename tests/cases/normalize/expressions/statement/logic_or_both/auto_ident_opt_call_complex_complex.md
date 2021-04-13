@@ -39,6 +39,7 @@ if (tmpIfTest$1) {
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
   tmpIfTest = tmpChainElementCall$1;
+} else {
 }
 if (tmpIfTest) {
 } else {
@@ -51,6 +52,7 @@ if (tmpIfTest) {
     const tmpCalleeParam$3 = tmpChainRootCall$1;
     const tmpCalleeParam$5 = $(1);
     const tmpChainElementCall$5 = tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$3, tmpCalleeParam$5);
+  } else {
   }
 }
 $(a);
@@ -68,6 +70,7 @@ if (tmpIfTest$1) {
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   tmpIfTest = tmpChainElementCall$1;
+} else {
 }
 if (tmpIfTest) {
 } else {
@@ -77,6 +80,7 @@ if (tmpIfTest) {
     const tmpCallVal$1 = tmpChainElementCall$3.call;
     const tmpCalleeParam$5 = $(1);
     tmpCallVal$1.call(tmpChainElementCall$3, $, tmpCalleeParam$5);
+  } else {
   }
 }
 $(a);

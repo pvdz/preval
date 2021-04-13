@@ -43,6 +43,7 @@ a = tmpNestedPropCompoundComplexRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
@@ -60,6 +61,7 @@ tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 let tmpCalleeParam = tmpNestedPropCompoundComplexRhs;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(tmpNestedPropCompoundComplexRhs, b);

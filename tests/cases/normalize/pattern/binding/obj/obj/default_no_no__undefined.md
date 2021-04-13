@@ -36,6 +36,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+} else {
 }
 $('bad');
 `````

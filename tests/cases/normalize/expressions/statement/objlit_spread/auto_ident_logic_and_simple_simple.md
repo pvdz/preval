@@ -31,6 +31,7 @@ let a = { a: 999, b: 1000 };
 let tmpObjSpreadArg = 1;
 if (tmpObjSpreadArg) {
   tmpObjSpreadArg = 2;
+} else {
 }
 ({ ...tmpObjSpreadArg });
 $(a);
@@ -43,6 +44,7 @@ const a = { a: 999, b: 1000 };
 let tmpObjSpreadArg = 1;
 if (tmpObjSpreadArg) {
   tmpObjSpreadArg = 2;
+} else {
 }
 ({ ...tmpObjSpreadArg });
 $(a);

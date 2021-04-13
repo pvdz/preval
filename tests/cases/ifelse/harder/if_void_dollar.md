@@ -27,6 +27,7 @@ $(1);
 const tmpIfTest = undefined;
 if (tmpIfTest) {
   $(2);
+} else {
 }
 `````
 

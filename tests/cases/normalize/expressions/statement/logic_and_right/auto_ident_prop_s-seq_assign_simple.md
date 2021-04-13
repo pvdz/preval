@@ -36,6 +36,7 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpAssignMemLhsObj = b;
   tmpAssignMemLhsObj.c = 2;
+} else {
 }
 $(a, b);
 `````
@@ -48,6 +49,7 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   b.c = 2;
+} else {
 }
 $(a, b);
 `````

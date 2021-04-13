@@ -53,6 +53,7 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+} else {
 }
 $(a, b, c, d, e);
 `````
@@ -71,6 +72,7 @@ if (tmpIfTest) {
   const varInitAssignLhsComputedProp = $('y');
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
+} else {
 }
 $(a, b, c, 3, 4);
 `````

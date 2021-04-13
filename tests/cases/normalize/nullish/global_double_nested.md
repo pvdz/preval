@@ -32,14 +32,17 @@ let tmpCalleeParam = obj;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = a;
+} else {
 }
 const tmpIfTest$1 = tmpCalleeParam == null;
 if (tmpIfTest$1) {
   tmpCalleeParam = b;
+} else {
 }
 const tmpIfTest$3 = tmpCalleeParam == null;
 if (tmpIfTest$3) {
   tmpCalleeParam = c;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -55,14 +58,17 @@ let tmpCalleeParam = obj;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = a;
+} else {
 }
 const tmpIfTest$1 = tmpCalleeParam == null;
 if (tmpIfTest$1) {
   tmpCalleeParam = b;
+} else {
 }
 const tmpIfTest$3 = tmpCalleeParam == null;
 if (tmpIfTest$3) {
   tmpCalleeParam = c;
+} else {
 }
 $(tmpCalleeParam);
 `````

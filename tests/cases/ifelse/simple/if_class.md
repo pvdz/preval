@@ -24,6 +24,7 @@ if (class {}) $();
 const tmpIfTest = class {};
 if (tmpIfTest) {
   $();
+} else {
 }
 `````
 
@@ -33,6 +34,7 @@ if (tmpIfTest) {
 const tmpIfTest = class {};
 if (tmpIfTest) {
   $();
+} else {
 }
 `````
 

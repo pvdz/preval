@@ -44,14 +44,17 @@ let tmpSwitchCaseToStart = 1;
 const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   $(1);
+} else {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$3) {
   $(2);
+} else {
 }
 `````
 

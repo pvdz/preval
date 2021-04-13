@@ -53,6 +53,7 @@ const B = function () {
     const x = $(true);
     if (x) {
       $('inner');
+    } else {
     }
   };
   const r = C();
@@ -67,6 +68,7 @@ B();
 const x = $(true);
 if (x) {
   $('inner');
+} else {
 }
 `````
 

@@ -44,6 +44,7 @@ a = tmpPostUpdArgVal;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
@@ -61,6 +62,7 @@ tmpPostUpdArgObj.x = tmpAssignMemRhs;
 let tmpCalleeParam = tmpPostUpdArgVal;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(tmpPostUpdArgVal, b);

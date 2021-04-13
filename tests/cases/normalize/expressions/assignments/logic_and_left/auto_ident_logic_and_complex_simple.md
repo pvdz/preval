@@ -34,10 +34,12 @@ const tmpCalleeParam$1 = $(1);
 a = tmpCallCallee$1(tmpCalleeParam$1);
 if (a) {
   a = 2;
+} else {
 }
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -50,10 +52,12 @@ const tmpCalleeParam$1 = $(1);
 let tmpSSA_a = $(tmpCalleeParam$1);
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(tmpSSA_a);

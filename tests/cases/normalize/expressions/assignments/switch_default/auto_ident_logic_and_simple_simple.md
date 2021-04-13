@@ -46,7 +46,9 @@ if (tmpIfTest) {
   a = 1;
   if (a) {
     a = 2;
+  } else {
   }
+} else {
 }
 $(a);
 `````
@@ -58,6 +60,7 @@ $(1);
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 $(tmpSSA_a);
 `````

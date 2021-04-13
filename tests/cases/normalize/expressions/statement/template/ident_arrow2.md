@@ -46,6 +46,7 @@ const tmpTemplateExpr = function () {
   debugger;
   if (x) {
     y;
+  } else {
   }
 };
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
@@ -61,6 +62,7 @@ const tmpTemplateExpr = function () {
   debugger;
   if (x) {
     y;
+  } else {
   }
 };
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;

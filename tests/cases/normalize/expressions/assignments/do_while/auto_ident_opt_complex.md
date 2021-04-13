@@ -54,6 +54,7 @@ while (true) {
     if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainElementCall.x;
       tmpNestedComplexRhs = tmpChainElementObject;
+    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
@@ -84,6 +85,7 @@ while (true) {
     if (tmpIfTest$1) {
       const tmpChainElementObject = tmpChainElementCall.x;
       tmpNestedComplexRhs = tmpChainElementObject;
+    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;

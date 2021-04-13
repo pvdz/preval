@@ -38,6 +38,7 @@ if (tmpIfTest) {
   $(2);
   const tmpDeleteObj = $(arg);
   delete tmpDeleteObj.y;
+} else {
 }
 $(a, arg);
 `````
@@ -53,6 +54,7 @@ if (tmpIfTest) {
   $(2);
   const tmpDeleteObj = $(arg);
   delete tmpDeleteObj.y;
+} else {
 }
 $(a, arg);
 `````

@@ -45,6 +45,7 @@ if (tmpCalleeParam) {
   tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
@@ -64,6 +65,7 @@ if (tmpCalleeParam) {
   b = arrPatternSplat[0];
   a = tmpNestedAssignArrPatternRhs;
   tmpCalleeParam = tmpNestedAssignArrPatternRhs;
+} else {
 }
 $(tmpCalleeParam);
 $(a, b);

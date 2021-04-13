@@ -66,6 +66,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
+  } else {
   }
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
@@ -85,16 +86,21 @@ if (tmpIfTest$3) {
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
       a = tmpChainElementCall$1;
+    } else {
     }
+  } else {
   }
+} else {
 }
 const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$9) {
   $('fail1');
+} else {
 }
 const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$11) {
   $('fail2');
+} else {
 }
 $(a);
 `````
@@ -114,6 +120,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = 2 === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 2;
+  } else {
   }
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
@@ -130,16 +137,21 @@ if (tmpIfTest$3) {
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
       a = tmpChainElementCall$1;
+    } else {
     }
+  } else {
   }
+} else {
 }
 const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$9) {
   $('fail1');
+} else {
 }
 const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$11) {
   $('fail2');
+} else {
 }
 $(a);
 `````

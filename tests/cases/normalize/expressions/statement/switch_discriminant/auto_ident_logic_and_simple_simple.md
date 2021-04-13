@@ -42,11 +42,13 @@ let a = { a: 999, b: 1000 };
 let tmpSwitchValue = 1;
 if (tmpSwitchValue) {
   tmpSwitchValue = 2;
+} else {
 }
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````

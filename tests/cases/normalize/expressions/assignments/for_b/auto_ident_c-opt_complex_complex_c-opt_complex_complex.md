@@ -50,7 +50,9 @@ while (true) {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       a = tmpChainElementObject$1;
+    } else {
     }
+  } else {
   }
   let tmpIfTest = a;
   if (tmpIfTest) {
@@ -80,7 +82,9 @@ while (true) {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       a = tmpChainElementObject$1;
+    } else {
     }
+  } else {
   }
   const tmpIfTest = a;
   if (tmpIfTest) {

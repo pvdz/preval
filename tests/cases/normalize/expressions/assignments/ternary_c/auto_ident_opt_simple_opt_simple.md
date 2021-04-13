@@ -48,7 +48,9 @@ if (tmpIfTest) {
     if (tmpIfTest$3) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       tmpNestedComplexRhs = tmpChainElementObject$1;
+    } else {
     }
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -76,7 +78,9 @@ if (tmpIfTest) {
     if (tmpIfTest$3) {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       tmpNestedComplexRhs = tmpChainElementObject$1;
+    } else {
     }
+  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

@@ -41,6 +41,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$5 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$3, tmpCalleeParam$5);
   tmpCalleeParam$1 = tmpChainElementCall$1;
+} else {
 }
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
@@ -59,6 +60,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$5 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$5);
   tmpCalleeParam$1 = tmpChainElementCall$1;
+} else {
 }
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);

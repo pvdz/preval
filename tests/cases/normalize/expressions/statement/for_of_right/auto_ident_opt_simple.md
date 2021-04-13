@@ -38,6 +38,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpForOfDeclRhs = tmpChainElementObject;
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
@@ -55,6 +56,7 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   tmpForOfDeclRhs = tmpChainElementObject;
+} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {

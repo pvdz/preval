@@ -55,6 +55,7 @@ if (tmpIfTest) {
   const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;
+} else {
 }
 $(a, b);
 `````

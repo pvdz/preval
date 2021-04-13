@@ -33,6 +33,7 @@ if (a) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   a = tmpCallCallee(tmpCalleeParam);
+} else {
 }
 let tmpForOfDeclRhs = a;
 let x = undefined;
@@ -48,6 +49,7 @@ let tmpSSA_a = 1;
 if (tmpSSA_a) {
   const tmpCalleeParam = $(1);
   tmpSSA_a = $(tmpCalleeParam);
+} else {
 }
 const tmpForOfDeclRhs = tmpSSA_a;
 let x = undefined;

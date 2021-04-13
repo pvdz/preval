@@ -44,6 +44,7 @@ while (true) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
       x = $('fail too');
+    } else {
     }
     continue;
     let x = $('fail');
@@ -63,6 +64,7 @@ while (true) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
       $('fail too');
+    } else {
     }
     continue;
   } else {

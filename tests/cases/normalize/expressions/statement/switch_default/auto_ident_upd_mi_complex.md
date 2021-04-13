@@ -54,6 +54,7 @@ if (tmpIfTest) {
   const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;
   tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+} else {
 }
 $(a, b);
 `````

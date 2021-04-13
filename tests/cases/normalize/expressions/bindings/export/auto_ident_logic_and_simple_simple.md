@@ -29,6 +29,7 @@ $(a);
 let a = 1;
 if (a) {
   a = 2;
+} else {
 }
 export { a };
 $(a);
@@ -40,6 +41,7 @@ $(a);
 let a = 1;
 if (a) {
   a = 2;
+} else {
 }
 export { a };
 $(a);

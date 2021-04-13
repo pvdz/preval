@@ -50,6 +50,7 @@ if (tmpIfTest) {
   const tmpCompObj = b;
   const tmpNewCallee = tmpCompObj.$;
   new tmpNewCallee(1);
+} else {
 }
 $(a);
 `````

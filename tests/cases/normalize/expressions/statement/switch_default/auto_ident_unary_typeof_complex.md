@@ -49,6 +49,7 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpUnaryArg = $(arg);
   typeof tmpUnaryArg;
+} else {
 }
 $(a, arg);
 `````

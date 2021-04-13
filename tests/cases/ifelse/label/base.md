@@ -47,6 +47,7 @@ let f = function () {
   if (tmpIfTest) {
     $(100);
     return undefined;
+  } else {
   }
 };
 f();
@@ -58,6 +59,7 @@ f();
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(100);
+} else {
 }
 `````
 

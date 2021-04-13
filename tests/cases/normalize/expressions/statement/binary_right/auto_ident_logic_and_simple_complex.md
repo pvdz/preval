@@ -34,6 +34,7 @@ if (tmpBinBothRhs) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
@@ -48,6 +49,7 @@ let tmpBinBothRhs = 1;
 if (tmpBinBothRhs) {
   const tmpCalleeParam = $(1);
   tmpBinBothRhs = $(tmpCalleeParam);
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

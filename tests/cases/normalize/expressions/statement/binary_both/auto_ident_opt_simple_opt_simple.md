@@ -42,7 +42,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpBinBothLhs = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 let tmpBinBothRhs = undefined;
 const tmpChainRootProp$1 = b;
@@ -53,7 +55,9 @@ if (tmpIfTest$3) {
   if (tmpIfTest$5) {
     const tmpChainElementObject$5 = tmpChainElementObject$3.y;
     tmpBinBothRhs = tmpChainElementObject$5;
+  } else {
   }
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
@@ -73,7 +77,9 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpBinBothLhs = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 let tmpBinBothRhs = undefined;
 const tmpIfTest$3 = b != null;
@@ -83,7 +89,9 @@ if (tmpIfTest$3) {
   if (tmpIfTest$5) {
     const tmpChainElementObject$5 = tmpChainElementObject$3.y;
     tmpBinBothRhs = tmpChainElementObject$5;
+  } else {
   }
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

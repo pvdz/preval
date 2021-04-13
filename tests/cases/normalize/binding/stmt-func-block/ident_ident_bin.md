@@ -50,6 +50,7 @@ let f = function () {
     b = c + d;
     let a = b;
     $(a, b, c);
+  } else {
   }
 };
 const tmpCallCallee = $;
@@ -65,6 +66,7 @@ const f = function () {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(7, 7, 3);
+  } else {
   }
 };
 const tmpCalleeParam = f();

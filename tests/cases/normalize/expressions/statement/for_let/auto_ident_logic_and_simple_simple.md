@@ -37,6 +37,7 @@ let a = { a: 999, b: 1000 };
 let xyz = 1;
 if (xyz) {
   xyz = 2;
+} else {
 }
 while (true) {
   $(xyz);
@@ -52,6 +53,7 @@ const a = { a: 999, b: 1000 };
 let xyz = 1;
 if (xyz) {
   xyz = 2;
+} else {
 }
 while (true) {
   $(xyz);

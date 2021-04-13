@@ -52,6 +52,7 @@ const tmpBinLhs = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 $(a);
@@ -69,6 +70,7 @@ const tmpBinLhs = new $(tmpCalleeParam, tmpCalleeParam$1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
+} else {
 }
 tmpSwitchCaseToStart <= 0;
 $(a);

@@ -48,6 +48,7 @@ while (true) {
     tmpIfTest = tmpCallCallee(tmpCalleeParam);
     if (tmpIfTest) {
       tmpIfTest = 2;
+    } else {
     }
   }
   if (tmpIfTest) {
@@ -73,6 +74,7 @@ while (true) {
     tmpIfTest = $(tmpCalleeParam);
     if (tmpIfTest) {
       tmpIfTest = 2;
+    } else {
     }
   }
   if (tmpIfTest) {

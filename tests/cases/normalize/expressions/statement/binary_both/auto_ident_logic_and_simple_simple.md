@@ -31,10 +31,12 @@ let a = { a: 999, b: 1000 };
 let tmpBinBothLhs = 1;
 if (tmpBinBothLhs) {
   tmpBinBothLhs = 2;
+} else {
 }
 let tmpBinBothRhs = 1;
 if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
@@ -47,10 +49,12 @@ const a = { a: 999, b: 1000 };
 let tmpBinBothLhs = 1;
 if (tmpBinBothLhs) {
   tmpBinBothLhs = 2;
+} else {
 }
 let tmpBinBothRhs = 1;
 if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
+} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

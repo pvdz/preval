@@ -52,6 +52,7 @@ if (tmpIfTest) {
   const arrAssignPatternRhs = tmpCallCallee(tmpCalleeParam);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   a = arrPatternSplat$1[0];
+} else {
 }
 $(a);
 `````

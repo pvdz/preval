@@ -47,6 +47,7 @@ if (tmpIfTest) {
     const tmpCalleeParam$1 = $(100);
     tmpCallCallee$1(tmpCalleeParam$1);
   }
+} else {
 }
 $(a);
 `````
@@ -58,6 +59,7 @@ const a = { a: 999, b: 1000 };
 const tmpSSA_tmpIfTest = $(60);
 if (tmpSSA_tmpIfTest) {
   $(60);
+} else {
 }
 $(a);
 `````

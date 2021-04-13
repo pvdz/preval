@@ -53,6 +53,7 @@ g();
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   x = 10;
+} else {
 }
 $(x);
 `````
@@ -64,6 +65,7 @@ let tmpSSA_x$1 = 20;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   tmpSSA_x$1 = 10;
+} else {
 }
 $(tmpSSA_x$1);
 `````

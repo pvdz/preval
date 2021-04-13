@@ -26,6 +26,7 @@ let tmpCalleeParam = parseInt(15);
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = foo;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -37,6 +38,7 @@ let tmpCalleeParam = parseInt(15);
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = foo;
+} else {
 }
 $(tmpCalleeParam);
 `````

@@ -36,6 +36,7 @@ if (tmpBinBothRhs) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 if (tmpBinBothRhs) {
 } else {
@@ -57,6 +58,7 @@ let tmpBinBothRhs = $(tmpCalleeParam);
 if (tmpBinBothRhs) {
   const tmpCalleeParam$1 = $(1);
   tmpBinBothRhs = $(tmpCalleeParam$1);
+} else {
 }
 if (tmpBinBothRhs) {
 } else {

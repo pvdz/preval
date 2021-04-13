@@ -34,6 +34,7 @@ if (tmpTemplateExpr) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   tmpTemplateExpr = tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -48,6 +49,7 @@ let tmpTemplateExpr = 1;
 if (tmpTemplateExpr) {
   const tmpCalleeParam$1 = $(1);
   tmpTemplateExpr = $(tmpCalleeParam$1);
+} else {
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);

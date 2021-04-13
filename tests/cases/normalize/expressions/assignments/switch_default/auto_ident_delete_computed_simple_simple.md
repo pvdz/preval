@@ -48,6 +48,7 @@ let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   a = delete arg.y;
+} else {
 }
 $(a, arg);
 `````

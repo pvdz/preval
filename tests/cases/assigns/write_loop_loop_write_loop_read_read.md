@@ -46,6 +46,7 @@ while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       break;
+    } else {
     }
   }
   $(x);
@@ -63,6 +64,7 @@ while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       break;
+    } else {
     }
   }
   $(x);

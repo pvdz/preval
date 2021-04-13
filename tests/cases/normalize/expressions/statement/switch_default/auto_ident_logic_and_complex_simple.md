@@ -46,6 +46,7 @@ if (tmpIfTest) {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   const tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
+} else {
 }
 $(a);
 `````

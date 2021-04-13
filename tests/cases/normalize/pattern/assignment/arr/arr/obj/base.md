@@ -39,6 +39,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep$1.cannotDestructureThis;
+} else {
 }
 $('ok');
 `````
@@ -60,6 +61,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   arrPatternStep$1.cannotDestructureThis;
+} else {
 }
 $('ok');
 `````

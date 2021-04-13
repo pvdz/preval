@@ -53,14 +53,18 @@ if (tmpIfTest) {
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
     x = 10;
+  } else {
   }
   const tmpIfTest$3 = $(3);
   if (tmpIfTest$3) {
     const tmpIfTest$5 = $(4);
     if (tmpIfTest$5) {
       $(x);
+    } else {
     }
+  } else {
   }
+} else {
 }
 `````
 
@@ -73,14 +77,18 @@ if (tmpIfTest) {
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
     x = 10;
+  } else {
   }
   const tmpIfTest$3 = $(3);
   if (tmpIfTest$3) {
     const tmpIfTest$5 = $(4);
     if (tmpIfTest$5) {
       $(x);
+    } else {
     }
+  } else {
   }
+} else {
 }
 `````
 

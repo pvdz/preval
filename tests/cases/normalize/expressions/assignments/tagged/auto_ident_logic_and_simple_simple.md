@@ -33,6 +33,7 @@ const tmpCalleeParam = ['before ', ' after'];
 a = 1;
 if (a) {
   a = 2;
+} else {
 }
 let tmpCalleeParam$1 = a;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
@@ -46,6 +47,7 @@ const tmpCalleeParam = ['before ', ' after'];
 let tmpSSA_a = 1;
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 const tmpCalleeParam$1 = tmpSSA_a;
 $(tmpCalleeParam, tmpCalleeParam$1);

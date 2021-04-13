@@ -35,6 +35,7 @@ if (tmpForInDeclRhs) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   tmpForInDeclRhs = tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 if (tmpForInDeclRhs) {
 } else {
@@ -57,6 +58,7 @@ let tmpForInDeclRhs = $(tmpCalleeParam);
 if (tmpForInDeclRhs) {
   const tmpCalleeParam$1 = $(1);
   tmpForInDeclRhs = $(tmpCalleeParam$1);
+} else {
 }
 if (tmpForInDeclRhs) {
 } else {

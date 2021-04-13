@@ -32,6 +32,7 @@ const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   const tmpAssignRhsProp = b.c;
   tmpCalleeParam = tmpAssignRhsProp.d;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -45,6 +46,7 @@ const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   const tmpAssignRhsProp = b.c;
   tmpCalleeParam = tmpAssignRhsProp.d;
+} else {
 }
 $(tmpCalleeParam);
 `````

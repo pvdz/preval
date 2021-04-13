@@ -63,6 +63,7 @@ let f = function () {
   if (tmpIfTest) {
     const tmpReturnArg$1 = $(1, 'f-return');
     return tmpReturnArg$1;
+  } else {
   }
 };
 let x = $(100, 'init');
@@ -87,6 +88,7 @@ const f = function () {
   if (tmpIfTest) {
     const tmpReturnArg$1 = $(1, 'f-return');
     return tmpReturnArg$1;
+  } else {
   }
 };
 const x = $(100, 'init');

@@ -40,6 +40,7 @@ while (true) {
     const tmpChainElementObject = tmpChainRootProp.c;
     const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
     tmpIfTest = tmpChainElementCall;
+  } else {
   }
   if (tmpIfTest) {
     $(100);
@@ -62,6 +63,7 @@ while (true) {
     const tmpChainElementObject = b.c;
     const tmpChainElementCall = tmpChainElementObject.call(b, 1);
     tmpIfTest = tmpChainElementCall;
+  } else {
   }
   if (tmpIfTest) {
     $(100);

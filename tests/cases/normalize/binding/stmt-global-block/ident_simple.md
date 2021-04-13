@@ -38,6 +38,7 @@ if (tmpIfTest) {
   let c = 3;
   let a = b;
   $(a, b, c);
+} else {
 }
 `````
 
@@ -47,6 +48,7 @@ if (tmpIfTest) {
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(2, 2, 3);
+} else {
 }
 `````
 

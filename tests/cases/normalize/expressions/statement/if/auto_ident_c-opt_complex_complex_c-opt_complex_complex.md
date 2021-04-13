@@ -45,7 +45,9 @@ if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpIfTest = tmpChainElementObject$1;
+  } else {
   }
+} else {
 }
 $(a);
 `````
@@ -65,7 +67,9 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
     const tmpChainRootComputed$1 = $('y');
     tmpChainElementObject[tmpChainRootComputed$1];
+  } else {
   }
+} else {
 }
 $(a);
 `````

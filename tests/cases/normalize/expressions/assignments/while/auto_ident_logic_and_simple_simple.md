@@ -32,6 +32,7 @@ while (true) {
   a = 1;
   if (a) {
     a = 2;
+  } else {
   }
   let tmpIfTest = a;
   if (tmpIfTest) {
@@ -51,6 +52,7 @@ while (true) {
   a = 1;
   if (a) {
     a = 2;
+  } else {
   }
   const tmpIfTest = a;
   if (tmpIfTest) {

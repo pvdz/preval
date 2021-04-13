@@ -53,6 +53,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+} else {
 }
 $('ok');
 `````
@@ -76,6 +77,7 @@ if (objPatternCrashTest) {
 }
 if (objPatternCrashTest) {
   objPatternNoDefault.cannotDestructureThis;
+} else {
 }
 $('ok');
 `````

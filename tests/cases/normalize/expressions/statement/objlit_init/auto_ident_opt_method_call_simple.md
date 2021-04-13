@@ -37,6 +37,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+} else {
 }
 $(a);
 `````
@@ -50,6 +51,7 @@ const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   tmpChainElementObject.call(b, 1);
+} else {
 }
 $(a);
 `````

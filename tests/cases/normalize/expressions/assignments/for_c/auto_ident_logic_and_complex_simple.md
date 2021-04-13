@@ -40,6 +40,7 @@ while (true) {
     a = tmpCallCallee(tmpCalleeParam);
     if (a) {
       a = 2;
+    } else {
     }
   } else {
     break;
@@ -59,6 +60,7 @@ while (true) {
     a = $(tmpCalleeParam);
     if (a) {
       a = 2;
+    } else {
     }
   } else {
     break;

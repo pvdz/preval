@@ -41,6 +41,7 @@ if (xyz) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(2);
   xyz = tmpCallCallee$1(tmpCalleeParam$1);
+} else {
 }
 while (true) {
   $(xyz);
@@ -58,6 +59,7 @@ let xyz = $(tmpCalleeParam);
 if (xyz) {
   const tmpCalleeParam$1 = $(2);
   xyz = $(tmpCalleeParam$1);
+} else {
 }
 while (true) {
   $(xyz);

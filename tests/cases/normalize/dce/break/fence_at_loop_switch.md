@@ -75,6 +75,7 @@ while (true) {
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
+    } else {
     }
     tmpSwitchBreak: {
       const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
@@ -86,6 +87,7 @@ while (true) {
         if (tmpIfTest$5) {
           $('do not visit, default');
           break tmpSwitchBreak;
+        } else {
         }
       }
     }
@@ -110,6 +112,7 @@ while (true) {
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
+    } else {
     }
     tmpSwitchBreak: {
       const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
@@ -121,6 +124,7 @@ while (true) {
         if (tmpIfTest$5) {
           $('do not visit, default');
           break tmpSwitchBreak;
+        } else {
         }
       }
     }

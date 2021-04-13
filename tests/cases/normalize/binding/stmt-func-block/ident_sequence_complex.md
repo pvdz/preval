@@ -48,6 +48,7 @@ let f = function () {
     $(b);
     let a = $(c);
     $(a, b, c);
+  } else {
   }
 };
 const tmpCallCallee = $;
@@ -65,6 +66,7 @@ const f = function () {
     $(2);
     const a = $(3);
     $(a, 2, 3);
+  } else {
   }
 };
 const tmpCalleeParam = f();

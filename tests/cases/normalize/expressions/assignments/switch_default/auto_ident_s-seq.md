@@ -50,6 +50,7 @@ if (tmpIfTest) {
   $(1);
   $(2);
   a = x;
+} else {
 }
 $(a, x);
 `````

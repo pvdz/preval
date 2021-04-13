@@ -33,6 +33,7 @@ let x = $(1);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
   $(x, 'branch');
+} else {
 }
 x = $(2);
 $(x);
@@ -45,6 +46,7 @@ const x = $(1);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
   $(x, 'branch');
+} else {
 }
 const tmpSSA_x = $(2);
 $(tmpSSA_x);

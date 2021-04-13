@@ -41,6 +41,7 @@ if (tmpIfTest$1) {
   const tmpCalleeParam$3 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$1, tmpCalleeParam$3);
   a = tmpChainElementCall$1;
+} else {
 }
 let tmpIfTest = a;
 if (tmpIfTest) {
@@ -64,6 +65,7 @@ if (tmpIfTest$1) {
   const tmpCalleeParam$3 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$3);
   tmpSSA_a = tmpChainElementCall$1;
+} else {
 }
 const tmpIfTest = tmpSSA_a;
 if (tmpIfTest) {

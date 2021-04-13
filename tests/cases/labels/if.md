@@ -41,6 +41,7 @@ foo: {
   if (x) {
     $(1);
     break foo;
+  } else {
   }
 }
 $(2);
@@ -55,6 +56,7 @@ foo: {
   if (x) {
     $(1);
     break foo;
+  } else {
   }
 }
 $(2);

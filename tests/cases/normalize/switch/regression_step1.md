@@ -80,6 +80,7 @@ if (tmpIfTest) {
 }
 if (tmpIfTest) {
   tmpFallthrough = true;
+} else {
 }
 $(a, b);
 `````

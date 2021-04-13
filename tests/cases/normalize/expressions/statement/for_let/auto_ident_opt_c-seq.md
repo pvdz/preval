@@ -44,6 +44,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   xyz = tmpChainElementObject;
+} else {
 }
 while (true) {
   $(xyz);
@@ -63,6 +64,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   xyz = tmpChainElementObject;
+} else {
 }
 while (true) {
   $(xyz);

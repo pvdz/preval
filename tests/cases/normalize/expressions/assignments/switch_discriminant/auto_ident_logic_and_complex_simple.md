@@ -44,12 +44,14 @@ const tmpCalleeParam = $(1);
 a = tmpCallCallee(tmpCalleeParam);
 if (a) {
   a = 2;
+} else {
 }
 let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   $(100);
+} else {
 }
 $(a);
 `````
@@ -61,6 +63,7 @@ const tmpCalleeParam = $(1);
 let tmpSSA_a = $(tmpCalleeParam);
 if (tmpSSA_a) {
   tmpSSA_a = 2;
+} else {
 }
 $(100);
 $(tmpSSA_a);

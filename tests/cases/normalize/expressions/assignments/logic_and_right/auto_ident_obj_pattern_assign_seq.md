@@ -49,6 +49,7 @@ if (tmpCalleeParam) {
   tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
+} else {
 }
 tmpCallCallee(tmpCalleeParam);
 $(a, x, y);
@@ -71,6 +72,7 @@ if (tmpCalleeParam) {
   y = tmpNestedAssignObjPatternRhs.y;
   a = tmpNestedAssignObjPatternRhs;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+} else {
 }
 $(tmpCalleeParam);
 $(a, x, y);

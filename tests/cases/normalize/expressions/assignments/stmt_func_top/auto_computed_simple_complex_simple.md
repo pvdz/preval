@@ -45,6 +45,7 @@ let f = function () {
   const tmpAssignComMemLhsProp = $('b');
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

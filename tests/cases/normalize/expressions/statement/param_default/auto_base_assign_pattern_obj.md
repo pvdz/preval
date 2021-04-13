@@ -48,8 +48,10 @@ let f = function ($$0) {
     const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
     b = tmpNestedAssignObjPatternRhs.b;
     p = tmpNestedAssignObjPatternRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = {};

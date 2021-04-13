@@ -53,6 +53,7 @@ f();
 let f$1 = function () {
   debugger;
   $('pass');
+  return undefined;
 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 2;

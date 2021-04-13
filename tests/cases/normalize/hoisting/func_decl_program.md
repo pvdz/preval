@@ -31,6 +31,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
+  return undefined;
 };
 $(1);
 const tmpCallCallee = $;

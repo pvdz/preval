@@ -94,11 +94,13 @@ let obj = {
   get c() {
     debugger;
     $('get');
+    return undefined;
   },
   set c($$0) {
     let x = $$0;
     debugger;
     $('set');
+    return undefined;
   },
 };
 a = function () {
@@ -159,10 +161,12 @@ const obj = {
   get c() {
     debugger;
     $('get');
+    return undefined;
   },
   set c($$0) {
     debugger;
     $('set');
+    return undefined;
   },
 };
 let tmpSSA_a = function () {

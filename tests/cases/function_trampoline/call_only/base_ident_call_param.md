@@ -35,6 +35,7 @@ const f = function ($$0) {
   let g = $$0;
   debugger;
   g(1);
+  return undefined;
 };
 f($);
 `````

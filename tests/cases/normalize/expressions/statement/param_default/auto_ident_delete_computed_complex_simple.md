@@ -44,8 +44,10 @@ let f = function ($$0) {
   if (tmpIfTest) {
     const tmpDeleteObj = $(arg);
     p = delete tmpDeleteObj.y;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let arg = { y: 1 };

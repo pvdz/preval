@@ -46,6 +46,7 @@ const tmpAnonDefaultExport = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = f(3);
   tmpCallCallee(tmpCalleeParam);
+  return undefined;
 };
 export { tmpAnonDefaultExport as default };
 `````
@@ -58,6 +59,7 @@ const tmpAnonDefaultExport = function () {
   debugger;
   const tmpCalleeParam = $(2);
   $(tmpCalleeParam);
+  return undefined;
 };
 export { tmpAnonDefaultExport as default };
 `````

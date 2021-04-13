@@ -46,8 +46,10 @@ let f = function ($$0) {
     const tmpNestedComplexRhs = typeof tmpUnaryArg;
     a = tmpNestedComplexRhs;
     arg = tmpNestedComplexRhs;
+    return undefined;
   } else {
     arg = tmpParamBare;
+    return undefined;
   }
 };
 let x = 1;

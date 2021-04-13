@@ -79,6 +79,7 @@ let f = function () {
       const tmpBranchingA$1 = function () {
         debugger;
         $('keep, do not eval');
+        return undefined;
       };
       const tmpBranchingB$1 = function () {
         debugger;
@@ -122,6 +123,7 @@ let f = function () {
     const tmpAfterLabel = function () {
       debugger;
       $('fail');
+      return undefined;
     };
     const tmpReturnArg$25 = tmpLabeledBlockFunc();
     return tmpReturnArg$25;

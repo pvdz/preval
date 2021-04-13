@@ -66,6 +66,7 @@ let f = function () {
   const tmpCalleeParam$1 = g();
   const tmpCalleeParam$3 = h();
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  return undefined;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$5 = f();

@@ -69,6 +69,7 @@ const f = function ($$0) {
     };
     const tmpBranchingC = function () {
       debugger;
+      return undefined;
     };
     if (tmpIfTest) {
       const tmpReturnArg$3 = tmpBranchingA();
@@ -87,6 +88,7 @@ const f = function ($$0) {
       return tmpLoopRetValue$1;
     } else {
       x + 1;
+      return undefined;
     }
   };
   while (tmpLoopRetCode) {
@@ -116,6 +118,7 @@ const $clone$f$0_Iundefined = function () {
   while (true) {
     tmpLoopBody();
   }
+  return undefined;
 };
 $clone$f$0_Iundefined();
 $clone$f$0_Iundefined();

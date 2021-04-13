@@ -45,8 +45,10 @@ let f = function ($$0) {
     const tmpNestedComplexRhs = { b: tmpObjLitVal };
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };

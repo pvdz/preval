@@ -55,6 +55,7 @@ let f = function () {
   const tmpBranchingC = function () {
     debugger;
     $('keep, do not eval');
+    return undefined;
   };
   if (tmpIfTest) {
     const tmpReturnArg$1 = tmpBranchingA();

@@ -75,6 +75,7 @@ let f = function () {
   const tmpAfterLabel = function () {
     debugger;
     $('after');
+    return undefined;
   };
   const tmpReturnArg$11 = tmpLabeledBlockFunc();
   return tmpReturnArg$11;
@@ -85,12 +86,17 @@ f();
 ## Output
 
 `````js filename=intro
+const tmpAfterLabel = function () {
+  debugger;
+  $('after');
+  return undefined;
+};
 const tmpIfTest$1 = $(true);
 if (tmpIfTest$1) {
   $(100);
-  $('after');
+  tmpAfterLabel();
 } else {
-  $('after');
+  tmpAfterLabel();
 }
 `````
 

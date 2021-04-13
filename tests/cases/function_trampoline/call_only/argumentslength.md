@@ -45,6 +45,7 @@ const f = function ($$0, $$1, $$2, $$3, $$4) {
   let e = $$4;
   debugger;
   $(tmpArgumentsLen);
+  return undefined;
 };
 f(1, 2, 3, 4, 5);
 `````
@@ -56,6 +57,7 @@ const f = function ($$0, $$1, $$2, $$3, $$4) {
   const tmpArgumentsLen = arguments.length;
   debugger;
   $(tmpArgumentsLen);
+  return undefined;
 };
 f(null, null, null, null, null);
 `````

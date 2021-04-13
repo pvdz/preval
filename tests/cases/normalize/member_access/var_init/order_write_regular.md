@@ -51,6 +51,7 @@ const obj = {
     let _ = $$0;
     debugger;
     $(20);
+    return undefined;
   },
 };
 const varInitAssignLhsComputedObj = $(obj);
@@ -72,6 +73,7 @@ const obj = {
   set x($$0) {
     debugger;
     $(20);
+    return undefined;
   },
 };
 const varInitAssignLhsComputedObj = $(obj);

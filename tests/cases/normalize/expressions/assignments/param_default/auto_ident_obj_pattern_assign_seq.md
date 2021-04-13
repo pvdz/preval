@@ -55,8 +55,10 @@ let f = function ($$0) {
     tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let x = 1;

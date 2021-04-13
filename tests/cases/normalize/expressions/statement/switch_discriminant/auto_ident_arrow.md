@@ -43,6 +43,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = function () {
   debugger;
+  return undefined;
 };
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;

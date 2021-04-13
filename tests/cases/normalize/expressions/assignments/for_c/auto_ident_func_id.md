@@ -39,6 +39,7 @@ while (true) {
   if (tmpIfTest) {
     const f = function () {
       debugger;
+      return undefined;
     };
     a = f;
   } else {
@@ -57,6 +58,7 @@ while (true) {
   if (tmpIfTest) {
     const f = function () {
       debugger;
+      return undefined;
     };
     a = f;
   } else {

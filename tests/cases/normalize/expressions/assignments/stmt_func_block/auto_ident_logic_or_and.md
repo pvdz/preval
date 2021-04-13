@@ -83,6 +83,7 @@ let f = function () {
   const tmpBranchingC = function () {
     debugger;
     $(a);
+    return undefined;
   };
   if (a) {
     const tmpReturnArg$11 = tmpBranchingA();
@@ -111,16 +112,21 @@ const f = function () {
     if (tmpSSA_a) {
       const tmpCalleeParam$9 = $(2);
       tmpSSA_a = $(tmpCalleeParam$9);
-      $(tmpSSA_a);
-      return undefined;
+      const tmpReturnArg$1 = tmpBranchingC();
+      return tmpReturnArg$1;
     } else {
-      $(tmpSSA_a);
-      return undefined;
+      const tmpReturnArg$9 = tmpBranchingC();
+      return tmpReturnArg$9;
     }
   };
-  if (tmpSSA_a) {
+  const tmpBranchingC = function () {
+    debugger;
     $(tmpSSA_a);
     return undefined;
+  };
+  if (tmpSSA_a) {
+    const tmpReturnArg$11 = tmpBranchingC();
+    return tmpReturnArg$11;
   } else {
     const tmpReturnArg$13 = tmpBranchingB();
     return tmpReturnArg$13;

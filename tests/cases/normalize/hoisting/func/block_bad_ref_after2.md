@@ -39,6 +39,7 @@ f$1();
 let f = function () {
   debugger;
   $(1);
+  return undefined;
 };
 f();
 f$1();

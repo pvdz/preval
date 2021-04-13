@@ -33,6 +33,7 @@
 `````js filename=intro
 let a = function () {
   debugger;
+  return undefined;
 };
 $(a);
 `````
@@ -42,6 +43,7 @@ $(a);
 `````js filename=intro
 const a = function () {
   debugger;
+  return undefined;
 };
 $(a);
 `````

@@ -49,6 +49,7 @@ let f = function () {
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
   $(a, b);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

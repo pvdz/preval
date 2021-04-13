@@ -34,6 +34,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpObjSpreadArg = function () {
   debugger;
+  return undefined;
 };
 ({ ...tmpObjSpreadArg });
 $(a);
@@ -45,6 +46,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpObjSpreadArg = function () {
   debugger;
+  return undefined;
 };
 ({ ...tmpObjSpreadArg });
 $(a);

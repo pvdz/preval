@@ -34,6 +34,7 @@ const a = {
   $() {
     debugger;
     $(1);
+    return undefined;
   },
 };
 a.$();
@@ -46,6 +47,7 @@ const a = {
   $() {
     debugger;
     $(1);
+    return undefined;
   },
 };
 a.$();

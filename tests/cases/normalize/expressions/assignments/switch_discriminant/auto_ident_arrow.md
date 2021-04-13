@@ -43,6 +43,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
@@ -59,6 +60,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 $(100);
 $(tmpSSA_a);

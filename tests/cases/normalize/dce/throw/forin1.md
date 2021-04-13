@@ -47,6 +47,7 @@ let f = function () {
     throw tmpThrowArg;
   }
   $('keep, do not eval');
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

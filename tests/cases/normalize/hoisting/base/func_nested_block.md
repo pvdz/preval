@@ -53,6 +53,7 @@ let g = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
+  return undefined;
 };
 g();
 `````

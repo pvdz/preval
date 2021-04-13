@@ -41,6 +41,7 @@ let f = function () {
   let a = { a: 999, b: 1000 };
   a = tmpArgumentsAny;
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -54,6 +55,7 @@ const f = function () {
   const tmpArgumentsAny = arguments;
   debugger;
   $(tmpArgumentsAny);
+  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

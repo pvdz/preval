@@ -44,8 +44,10 @@ let f = function ($$0) {
     const tmpCallCallee = $;
     const tmpCalleeParam = [1, 2];
     p = tmpCallCallee(tmpCalleeParam);
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let bindingPatternArrRoot = { a: 999, b: 1000 };

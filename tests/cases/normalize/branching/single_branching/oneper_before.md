@@ -210,6 +210,7 @@ const X = function ($$0, $$1, $$2, $$3, $$4) {
   };
   const tmpBranchingC = function () {
     debugger;
+    return undefined;
   };
   if (g) {
     const tmpReturnArg$33 = tmpBranchingA();

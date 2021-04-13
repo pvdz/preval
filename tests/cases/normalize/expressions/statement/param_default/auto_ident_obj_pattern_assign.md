@@ -50,8 +50,10 @@ let f = function ($$0) {
     x = tmpNestedAssignObjPatternRhs.x;
     y = tmpNestedAssignObjPatternRhs.y;
     p = tmpNestedAssignObjPatternRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let x = 1;

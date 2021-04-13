@@ -51,6 +51,7 @@ let f = function () {
   b = 2;
   a = 2;
   $(a, b, c);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

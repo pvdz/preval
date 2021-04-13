@@ -33,6 +33,7 @@ let f = function (...$$0) {
   let args = $$0;
   debugger;
   $('f', args);
+  return undefined;
 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
@@ -53,6 +54,7 @@ const f = function (...$$0) {
   const args = $$0;
   debugger;
   $('f', args);
+  return undefined;
 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = f != null;

@@ -44,8 +44,10 @@ let f = function ($$0) {
   if (tmpIfTest) {
     const tmpNewCallee = b.$;
     p = new tmpNewCallee(1);
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { $: $ };

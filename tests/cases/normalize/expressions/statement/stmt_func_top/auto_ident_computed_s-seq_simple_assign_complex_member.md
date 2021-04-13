@@ -50,6 +50,7 @@ let f = function () {
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
   $(a, b);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

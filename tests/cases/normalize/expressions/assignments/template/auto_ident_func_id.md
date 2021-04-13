@@ -35,6 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const f = function () {
   debugger;
+  return undefined;
 };
 a = f;
 let tmpTemplateExpr = a;
@@ -48,6 +49,7 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
+  return undefined;
 };
 const tmpCalleeParam = `before  ${f}  after`;
 $(tmpCalleeParam);
@@ -61,7 +63,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'before function() {} after'
+ - 1: 'before function() {return undefined;} after'
  - 2: '<function>'
  - eval returned: undefined
 

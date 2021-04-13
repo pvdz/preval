@@ -43,8 +43,10 @@ let f = function ($$0) {
     tmpNestedComplexRhs = $(60);
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };

@@ -35,6 +35,7 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = function () {
   debugger;
+  return undefined;
 };
 tmpCompObj.a;
 $(a);
@@ -46,6 +47,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCompObj = function () {
   debugger;
+  return undefined;
 };
 tmpCompObj.a;
 $(a);

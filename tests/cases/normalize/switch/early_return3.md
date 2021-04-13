@@ -148,6 +148,7 @@ let f = function () {
       return 6;
     } else {
       const tmpIfTest$10 = tmpSwitchCaseToStart <= 2;
+      return undefined;
     }
   };
   let tmpIfTest$3 = undefined;

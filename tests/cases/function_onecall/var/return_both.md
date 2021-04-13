@@ -64,6 +64,7 @@ let f = function () {
   };
   g();
   $('c');
+  return undefined;
 };
 const x = f();
 $(x);

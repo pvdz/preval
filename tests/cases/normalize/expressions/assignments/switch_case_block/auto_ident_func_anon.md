@@ -58,6 +58,7 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   a = function () {
     debugger;
+    return undefined;
   };
 } else {
 }
@@ -80,6 +81,7 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   a = function () {
     debugger;
+    return undefined;
   };
 } else {
 }

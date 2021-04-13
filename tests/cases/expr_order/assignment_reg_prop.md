@@ -43,11 +43,13 @@ let b = {
   get c() {
     debugger;
     $('get');
+    return undefined;
   },
   set c($$0) {
     let x = $$0;
     debugger;
     $('set');
+    return undefined;
   },
 };
 const tmpAssignMemLhsObj = $(b);
@@ -63,10 +65,12 @@ const b = {
   get c() {
     debugger;
     $('get');
+    return undefined;
   },
   set c($$0) {
     debugger;
     $('set');
+    return undefined;
   },
 };
 const tmpAssignMemLhsObj = $(b);

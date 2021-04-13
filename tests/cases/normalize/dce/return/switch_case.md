@@ -69,6 +69,7 @@ let f = function () {
       const tmpReturnArg$3 = $(2, 'ret');
       return tmpReturnArg$3;
     } else {
+      return undefined;
     }
   };
   if (tmpIfTest) {
@@ -100,6 +101,7 @@ const f = function () {
       const tmpReturnArg$3 = $(2, 'ret');
       return tmpReturnArg$3;
     } else {
+      return undefined;
     }
   };
   if (tmpIfTest) {

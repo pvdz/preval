@@ -39,6 +39,7 @@ $(p, q);
 let f = function () {
   debugger;
   a = 20;
+  return undefined;
 };
 let a = 10;
 const p = f();

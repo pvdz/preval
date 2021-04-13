@@ -39,6 +39,7 @@ let f = function ($$0) {
   const tmpCallCallee = $;
   const tmpCalleeParam = tmpArgumentsAny[0];
   tmpCallCallee(tmpCalleeParam);
+  return undefined;
 };
 f();
 `````
@@ -51,6 +52,7 @@ const f = function ($$0) {
   debugger;
   const tmpCalleeParam = tmpArgumentsAny[0];
   $(tmpCalleeParam);
+  return undefined;
 };
 f();
 `````

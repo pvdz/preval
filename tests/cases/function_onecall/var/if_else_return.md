@@ -45,6 +45,7 @@ let f = function () {
   const tmpIfTest = $();
   if (tmpIfTest) {
     $(1);
+    return undefined;
   } else {
     const tmpReturnArg = $(2);
     return tmpReturnArg;
@@ -62,6 +63,7 @@ const f = function () {
   const tmpIfTest = $();
   if (tmpIfTest) {
     $(1);
+    return undefined;
   } else {
     const tmpReturnArg = $(2);
     return tmpReturnArg;

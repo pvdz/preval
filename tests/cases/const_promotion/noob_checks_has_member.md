@@ -62,6 +62,7 @@ b = {
     let n = $$0;
     debugger;
     x = $(30, 'from set');
+    return undefined;
   },
   get x() {
     debugger;
@@ -83,6 +84,7 @@ const tmpSSA_b = {
   set x($$0) {
     debugger;
     x = $(30, 'from set');
+    return undefined;
   },
   get x() {
     debugger;

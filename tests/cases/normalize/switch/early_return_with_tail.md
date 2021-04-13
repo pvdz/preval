@@ -250,6 +250,7 @@ let f = function () {
     const tmpAfterLabel = function () {
       debugger;
       $('after');
+      return undefined;
     };
     const tmpReturnArg$79 = tmpLabeledBlockFunc();
     return tmpReturnArg$79;
@@ -270,19 +271,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const tmpAfterLabel = function () {
+  debugger;
+  $('after');
+  return undefined;
+};
 const f = function () {
   debugger;
-  const tmpBranchingB$11 = function () {
-    debugger;
-    const tmpIfTest$43 = tmpSwitchCaseToStart <= 3;
-    if (tmpIfTest$43) {
-      $('after');
-      return undefined;
-    } else {
-      $('after');
-      return undefined;
-    }
-  };
   const tmpBranchingB$7 = function () {
     debugger;
     const tmpIfTest$35 = tmpSwitchCaseToStart <= 1;
@@ -294,8 +289,9 @@ const f = function () {
         const tmpReturnArg$49 = $(6);
         return tmpReturnArg$49;
       } else {
-        const tmpReturnArg$67 = tmpBranchingB$11();
-        return tmpReturnArg$67;
+        tmpSwitchCaseToStart <= 3;
+        const tmpReturnArg$59 = tmpAfterLabel();
+        return tmpReturnArg$59;
       }
     };
     let tmpIfTest$37 = undefined;
@@ -355,11 +351,11 @@ const f = function () {
     const tmpIfTest$27 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$27) {
       $(2);
-      $('after');
-      return undefined;
+      const tmpReturnArg$2 = tmpAfterLabel();
+      return tmpReturnArg$2;
     } else {
-      const tmpReturnArg$6 = tmpBranchingB$7();
-      return tmpReturnArg$6;
+      const tmpReturnArg$8 = tmpBranchingB$7();
+      return tmpReturnArg$8;
     }
   };
   if (tmpIfTest) {

@@ -35,9 +35,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = function () {
   debugger;
+  return undefined;
 };
 const tmpBinBothRhs = function () {
   debugger;
+  return undefined;
 };
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
@@ -49,9 +51,11 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = function () {
   debugger;
+  return undefined;
 };
 const tmpBinBothRhs = function () {
   debugger;
+  return undefined;
 };
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

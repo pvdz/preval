@@ -50,11 +50,13 @@ let top = function () {
   let a = function () {
     debugger;
     $(4);
+    return undefined;
   };
   $(3);
   $(5);
   a();
   $(6);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = top();

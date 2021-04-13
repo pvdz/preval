@@ -38,6 +38,7 @@ let obj = {};
 const tmpCompObj = obj;
 const f = function () {
   debugger;
+  return undefined;
 };
 const tmpCompProp = f;
 tmpCompObj[tmpCompProp];
@@ -51,6 +52,7 @@ const a = { a: 999, b: 1000 };
 const obj = {};
 const f = function () {
   debugger;
+  return undefined;
 };
 obj[f];
 $(a);

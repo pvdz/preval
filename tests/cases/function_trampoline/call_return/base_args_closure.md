@@ -53,6 +53,7 @@ const f = function () {
   };
   const q = g();
   $(q);
+  return undefined;
 };
 f();
 `````

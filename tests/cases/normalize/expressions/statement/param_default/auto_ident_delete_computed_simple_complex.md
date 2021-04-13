@@ -45,8 +45,10 @@ let f = function ($$0) {
     const tmpDeleteCompObj = arg;
     const tmpDeleteCompProp = $('y');
     p = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let arg = { y: 1 };

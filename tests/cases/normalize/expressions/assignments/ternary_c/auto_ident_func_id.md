@@ -42,6 +42,7 @@ if (tmpIfTest) {
 } else {
   const f = function () {
     debugger;
+    return undefined;
   };
   const tmpNestedComplexRhs = f;
   a = tmpNestedComplexRhs;
@@ -62,6 +63,7 @@ if (tmpIfTest) {
 } else {
   const f = function () {
     debugger;
+    return undefined;
   };
   a = f;
   tmpCalleeParam = f;

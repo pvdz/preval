@@ -55,6 +55,7 @@ let f = function () {
   };
   const tmpBranchingC = function () {
     debugger;
+    return undefined;
   };
   let x = undefined;
   if (tmpIfTest) {

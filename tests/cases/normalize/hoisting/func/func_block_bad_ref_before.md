@@ -47,7 +47,9 @@ let g = function () {
   let f$1 = function () {
     debugger;
     $(1);
+    return undefined;
   };
+  return undefined;
 };
 g();
 `````

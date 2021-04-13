@@ -44,8 +44,10 @@ let f = function () {
   let g = function () {
     debugger;
     $(1);
+    return undefined;
   };
   g();
+  return undefined;
 };
 const x = f();
 $(x);

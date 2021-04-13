@@ -43,6 +43,7 @@ const f = function ($$0, $$1, $$2, $$3, $$4) {
   let e = $$4;
   debugger;
   $(c);
+  return undefined;
 };
 f(1, 2, 3, 4, 5);
 `````

@@ -86,6 +86,7 @@ let rule = function ($$0) {
   const d = c + desc;
   const e = d + '"';
   func(e);
+  return undefined;
 };
 const PURPLE = 'purple';
 const RESET = 'reset';

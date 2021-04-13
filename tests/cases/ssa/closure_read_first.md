@@ -62,12 +62,15 @@ let f = function () {
       const tmpCalleeParam = x + 1;
       x = tmpCallCallee(tmpCalleeParam);
       $(x);
+      return undefined;
     } else {
+      return undefined;
     }
   };
   g();
   g();
   $();
+  return undefined;
 };
 if ($) {
   const tmpCallCallee$1 = $;
@@ -89,7 +92,9 @@ if ($) {
       const tmpCalleeParam = x + 1;
       x = $(tmpCalleeParam);
       $(x);
+      return undefined;
     } else {
+      return undefined;
     }
   };
   g();

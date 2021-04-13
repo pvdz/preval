@@ -82,6 +82,7 @@ let f = function ($$0) {
   };
   const tmpBranchingC = function () {
     debugger;
+    return undefined;
   };
   if (tmpIfTest) {
     const tmpReturnArg$11 = tmpBranchingA();
@@ -106,15 +107,20 @@ const tmpBranchingA = function () {
   debugger;
   let tmpNestedComplexRhs$1 = undefined;
   const tmpIfTest$3 = b != null;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    a = tmpNestedComplexRhs$1;
+    return undefined;
+  };
   if (tmpIfTest$3) {
     const tmpChainElementObject$3 = b.c;
     const tmpChainElementCall$3 = tmpChainElementObject$3.call(b, 1);
     tmpNestedComplexRhs$1 = tmpChainElementCall$3;
-    a = tmpNestedComplexRhs$1;
-    return undefined;
+    const tmpReturnArg = tmpBranchingC$1();
+    return tmpReturnArg;
   } else {
-    a = tmpNestedComplexRhs$1;
-    return undefined;
+    const tmpReturnArg$7 = tmpBranchingC$1();
+    return tmpReturnArg$7;
   }
 };
 const b = { c: $ };

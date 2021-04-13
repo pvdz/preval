@@ -61,6 +61,7 @@ let f = function () {
   const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
   $(a, b, c, d, e);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

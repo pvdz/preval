@@ -46,10 +46,13 @@ let f = function ($$0) {
   if (tmpIfTest) {
     const f$1 = function () {
       debugger;
+      return undefined;
     };
     p = f$1;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };

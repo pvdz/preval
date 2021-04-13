@@ -69,9 +69,11 @@ const f = function () {
   const h = function () {
     debugger;
     g(1);
+    return undefined;
   };
   const q = h();
   $(q);
+  return undefined;
 };
 f();
 `````

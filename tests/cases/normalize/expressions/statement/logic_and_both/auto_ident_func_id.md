@@ -35,6 +35,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
+  return undefined;
 };
 const tmpIfTest = f;
 $(a);

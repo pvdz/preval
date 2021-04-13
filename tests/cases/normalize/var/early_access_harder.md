@@ -44,6 +44,7 @@ let x = undefined;
 let f = function () {
   debugger;
   x = 10;
+  return undefined;
 };
 $(x);
 f();

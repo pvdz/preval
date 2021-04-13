@@ -32,6 +32,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

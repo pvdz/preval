@@ -61,6 +61,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = function () {
   debugger;
+  return undefined;
 };
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -100,6 +101,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = function () {
   debugger;
+  return undefined;
 };
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

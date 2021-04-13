@@ -39,6 +39,7 @@ const f = function ($$0) {
   let y = $$0;
   debugger;
   $(y);
+  return undefined;
 };
 f(...x);
 `````
@@ -51,6 +52,7 @@ const f = function ($$0) {
   const y = $$0;
   debugger;
   $(y);
+  return undefined;
 };
 f(...x);
 `````

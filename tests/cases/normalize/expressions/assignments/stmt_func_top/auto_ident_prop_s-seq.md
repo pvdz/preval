@@ -44,6 +44,7 @@ let f = function () {
   const tmpAssignRhsProp = b;
   a = tmpAssignRhsProp.c;
   $(a, b);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

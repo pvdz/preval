@@ -53,6 +53,7 @@ let f = function () {
   const tmpBranchingC = function () {
     debugger;
     $(2);
+    return undefined;
   };
   if (tmpIfTest) {
     const tmpReturnArg$3 = tmpBranchingA();
@@ -69,11 +70,16 @@ f();
 
 `````js filename=intro
 const tmpIfTest = $();
+const tmpBranchingC = function () {
+  debugger;
+  $(2);
+  return undefined;
+};
 if (tmpIfTest) {
   $(1);
-  $(2);
+  tmpBranchingC();
 } else {
-  $(2);
+  tmpBranchingC();
 }
 `````
 

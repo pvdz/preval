@@ -48,8 +48,10 @@ let f = function ($$0) {
     let tmpNestedComplexRhs = b;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = 1;

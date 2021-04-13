@@ -37,6 +37,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = function () {
   debugger;
+  return undefined;
 };
 while (true) {
   $(1);
@@ -49,6 +50,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 while (true) {
   $(1);

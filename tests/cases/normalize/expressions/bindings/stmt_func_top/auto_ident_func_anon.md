@@ -38,8 +38,10 @@ let f = function () {
   debugger;
   let a = function () {
     debugger;
+    return undefined;
   };
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -51,6 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const a = function () {
   debugger;
+  return undefined;
 };
 $(a);
 $(undefined);

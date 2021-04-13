@@ -43,6 +43,7 @@ let f = function () {
   let a = { a: 999, b: 1000 };
   typeof x;
   $(a, x);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

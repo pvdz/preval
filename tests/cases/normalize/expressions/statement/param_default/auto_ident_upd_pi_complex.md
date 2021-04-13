@@ -49,8 +49,10 @@ let f = function ($$0) {
     const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
     tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
     p = tmpNestedPropCompoundComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { x: 1 };

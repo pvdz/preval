@@ -39,6 +39,7 @@ const f = function ($$0, $$1) {
   let str = $$1;
   debugger;
   obj$1[str](1);
+  return undefined;
 };
 const obj = { $: $ };
 f(obj, '$');

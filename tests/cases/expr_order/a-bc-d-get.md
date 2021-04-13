@@ -50,11 +50,13 @@ let b = {
   get c() {
     debugger;
     $('should not be called');
+    return undefined;
   },
   set c($$0) {
     let x = $$0;
     debugger;
     $('set');
+    return undefined;
   },
 };
 let d = 3;
@@ -71,10 +73,12 @@ const b = {
   get c() {
     debugger;
     $('should not be called');
+    return undefined;
   },
   set c($$0) {
     debugger;
     $('set');
+    return undefined;
   },
 };
 b.c = 3;

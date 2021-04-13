@@ -45,6 +45,7 @@ const f = function ($$0, $$1, $$2, $$3, $$4) {
   let e = $$4;
   debugger;
   $(tmpthis);
+  return undefined;
 };
 f(1, 2, 3, 4, 5);
 `````
@@ -56,6 +57,7 @@ const f = function () {
   const tmpthis = this;
   debugger;
   $(tmpthis);
+  return undefined;
 };
 f();
 `````

@@ -58,6 +58,7 @@ let f = function () {
   const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   $(a, b, c);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

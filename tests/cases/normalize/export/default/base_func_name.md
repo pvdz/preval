@@ -28,6 +28,7 @@ export { f as default };
 `````js filename=intro
 let f = function () {
   debugger;
+  return undefined;
 };
 export { f as default };
 `````
@@ -37,6 +38,7 @@ export { f as default };
 `````js filename=intro
 const f = function () {
   debugger;
+  return undefined;
 };
 export { f as default };
 `````

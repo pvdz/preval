@@ -44,8 +44,10 @@ let f = function () {
     let a = $$0;
     debugger;
     a = 'number';
+    return undefined;
   };
   g();
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

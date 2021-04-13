@@ -38,6 +38,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const f = function () {
   debugger;
+  return undefined;
 };
 a = f;
 let tmpCalleeParam = a;
@@ -45,6 +46,7 @@ if (tmpCalleeParam) {
 } else {
   const f$1 = function () {
     debugger;
+    return undefined;
   };
   const tmpNestedComplexRhs = f$1;
   a = tmpNestedComplexRhs;
@@ -59,6 +61,7 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
+  return undefined;
 };
 let tmpSSA_a = f;
 let tmpCalleeParam = tmpSSA_a;
@@ -66,6 +69,7 @@ if (tmpCalleeParam) {
 } else {
   const f$1 = function () {
     debugger;
+    return undefined;
   };
   tmpSSA_a = f$1;
   tmpCalleeParam = f$1;

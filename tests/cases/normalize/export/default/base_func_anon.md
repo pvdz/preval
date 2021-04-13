@@ -28,6 +28,7 @@ export { tmpAnonDefaultExport as default };
 `````js filename=intro
 const tmpAnonDefaultExport = function () {
   debugger;
+  return undefined;
 };
 export { tmpAnonDefaultExport as default };
 `````
@@ -37,6 +38,7 @@ export { tmpAnonDefaultExport as default };
 `````js filename=intro
 const tmpAnonDefaultExport = function () {
   debugger;
+  return undefined;
 };
 export { tmpAnonDefaultExport as default };
 `````

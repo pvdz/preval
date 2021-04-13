@@ -52,8 +52,10 @@ let f = function ($$0) {
     const tmpNestedComplexRhs = tmpPostUpdArgVal;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { x: 1 };

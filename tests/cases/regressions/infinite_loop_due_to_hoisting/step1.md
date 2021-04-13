@@ -42,6 +42,7 @@ let tmpBinaryLeft = undefined;
 let tmpTernaryTest = undefined;
 let g = function () {
   debugger;
+  return undefined;
 };
 tmpBinaryLeft = a.x;
 tmpTernaryTest = tmpBinaryLeft === 1;

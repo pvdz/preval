@@ -39,6 +39,7 @@ const str = '$';
 const f = function () {
   debugger;
   obj[str](1);
+  return undefined;
 };
 f();
 `````

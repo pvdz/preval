@@ -54,13 +54,16 @@ let f = function () {
   let g = function () {
     debugger;
     $('c');
+    return undefined;
   };
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $('a');
     g();
+    return undefined;
   } else {
     $('b');
+    return undefined;
   }
 };
 const x = f();
@@ -76,8 +79,10 @@ const f = function () {
   if (tmpIfTest) {
     $('a');
     $('c');
+    return undefined;
   } else {
     $('b');
+    return undefined;
   }
 };
 const x = f();

@@ -97,6 +97,7 @@ let f = function () {
   const tmpBranchingC = function () {
     debugger;
     $('after outer');
+    return undefined;
   };
   if (x) {
     const tmpReturnArg$11 = tmpBranchingA();

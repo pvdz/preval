@@ -46,8 +46,10 @@ let f = function ($$0) {
     const tmpCompProp = $('$');
     const tmpNewCallee = tmpCompObj[tmpCompProp];
     p = new tmpNewCallee(1);
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { $: $ };

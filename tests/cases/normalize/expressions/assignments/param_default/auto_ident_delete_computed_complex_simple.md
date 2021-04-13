@@ -46,8 +46,10 @@ let f = function ($$0) {
     const tmpNestedComplexRhs = delete tmpDeleteObj.y;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let arg = { y: 1 };

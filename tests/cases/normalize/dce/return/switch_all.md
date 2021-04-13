@@ -120,6 +120,7 @@ let f = function () {
       const tmpBranchingA$3 = function () {
         debugger;
         $('keep, do not eval');
+        return undefined;
       };
       const tmpBranchingB$3 = function () {
         debugger;
@@ -127,6 +128,7 @@ let f = function () {
         const tmpBranchingA$5 = function () {
           debugger;
           $('keep, eval');
+          return undefined;
         };
         const tmpBranchingB$5 = function () {
           debugger;
@@ -184,6 +186,7 @@ let f = function () {
     const tmpAfterLabel = function () {
       debugger;
       $('eliminate after switch');
+      return undefined;
     };
     const tmpReturnArg$41 = tmpLabeledBlockFunc();
     return tmpReturnArg$41;

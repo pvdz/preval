@@ -45,9 +45,11 @@ let f = function () {
   let a = { a: 999, b: 1000 };
   const f$1 = function () {
     debugger;
+    return undefined;
   };
   a = f$1;
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -59,6 +61,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f$1 = function () {
   debugger;
+  return undefined;
 };
 $(f$1);
 $(undefined);

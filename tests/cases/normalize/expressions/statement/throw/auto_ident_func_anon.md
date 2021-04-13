@@ -32,6 +32,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpThrowArg = function () {
   debugger;
+  return undefined;
 };
 throw tmpThrowArg;
 `````
@@ -41,6 +42,7 @@ throw tmpThrowArg;
 `````js filename=intro
 const tmpThrowArg = function () {
   debugger;
+  return undefined;
 };
 throw tmpThrowArg;
 `````
@@ -52,7 +54,7 @@ None
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ function() {} ]>')
+ - eval returned: ('<crash[ function() {return undefined;} ]>')
 
 Pre normalization calls: Same
 

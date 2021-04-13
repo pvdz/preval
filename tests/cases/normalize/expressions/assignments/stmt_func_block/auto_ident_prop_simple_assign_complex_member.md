@@ -52,6 +52,7 @@ let f = function () {
   b.c = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
   $(a, b);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

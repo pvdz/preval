@@ -121,6 +121,7 @@ let f = function () {
     const tmpAfterLabel = function () {
       debugger;
       $('fail');
+      return undefined;
     };
     const tmpReturnArg$17 = tmpLabeledBlockFunc();
     return tmpReturnArg$17;

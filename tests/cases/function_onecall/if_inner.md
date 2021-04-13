@@ -57,12 +57,15 @@ let f = function () {
     if (tmpIfTest) {
       $('a');
       g();
+      return undefined;
     } else {
       $('b');
+      return undefined;
     }
   };
   g();
   $('c');
+  return undefined;
 };
 f();
 `````
@@ -76,8 +79,10 @@ const g = function () {
   if (tmpIfTest) {
     $('a');
     g();
+    return undefined;
   } else {
     $('b');
+    return undefined;
   }
 };
 g();

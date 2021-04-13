@@ -65,12 +65,16 @@ if ($) {
       debugger;
       if ($) {
         $(x);
+        return undefined;
       } else {
+        return undefined;
       }
     };
     if ($) {
       tmpBranchingC();
+      return undefined;
     } else {
+      return undefined;
     }
   };
   g();
@@ -86,7 +90,9 @@ if ($) {
     debugger;
     if ($) {
       $(x);
+      return undefined;
     } else {
+      return undefined;
     }
   };
   const x = $();
@@ -94,7 +100,9 @@ if ($) {
     debugger;
     if ($) {
       tmpBranchingC();
+      return undefined;
     } else {
+      return undefined;
     }
   };
   g();

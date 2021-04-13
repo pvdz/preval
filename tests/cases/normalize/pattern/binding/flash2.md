@@ -61,6 +61,7 @@ let x = function ($$0, $$1) {
     debugger;
     const tmpAssignObjPatternRhs = tmpParamBare$1;
     x$1 = tmpAssignObjPatternRhs.x;
+    return undefined;
   };
   let x$1 = undefined;
   if (tmpIfTest) {

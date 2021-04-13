@@ -51,7 +51,9 @@ let f = function () {
     varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
     let a = varInitAssignLhsComputedRhs;
     $(a, b, c);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCallCallee = $;
@@ -71,7 +73,9 @@ const f = function () {
     const varInitAssignLhsComputedRhs = $(3);
     varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
     $(varInitAssignLhsComputedRhs, 2, 3);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCalleeParam = f();

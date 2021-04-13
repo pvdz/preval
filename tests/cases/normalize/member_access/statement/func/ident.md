@@ -33,6 +33,7 @@ $(f());
 let f = function () {
   debugger;
   $.length;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

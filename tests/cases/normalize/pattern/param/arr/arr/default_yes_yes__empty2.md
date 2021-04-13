@@ -96,15 +96,19 @@ const f = function ($$0) {
       debugger;
       X = A;
       d(A);
+      return undefined;
     };
     const d = function () {
       debugger;
       [...X];
+      return undefined;
     };
     if (A) {
       e(A);
+      return undefined;
     } else {
       d();
+      return undefined;
     }
   };
   let X = undefined;
@@ -113,6 +117,7 @@ const f = function ($$0) {
     const tmpReturnArg = a();
     return tmpReturnArg;
   } else {
+    return undefined;
   }
 };
 const tmpCallCallee = $;
@@ -128,6 +133,7 @@ const f = function () {
   const d = function () {
     debugger;
     [...X];
+    return undefined;
   };
   let X = undefined;
   const A = ['pass3'];

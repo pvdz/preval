@@ -69,6 +69,7 @@ let f = function () {
       const tmpThrowArg = $(2, 'ret');
       throw tmpThrowArg;
     } else {
+      return undefined;
     }
   };
   if (tmpIfTest) {
@@ -100,6 +101,7 @@ const f = function () {
       const tmpThrowArg = $(2, 'ret');
       throw tmpThrowArg;
     } else {
+      return undefined;
     }
   };
   if (tmpIfTest) {

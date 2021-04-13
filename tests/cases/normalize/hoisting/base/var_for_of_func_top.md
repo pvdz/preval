@@ -44,6 +44,7 @@ let f = function () {
     $(x, 'for');
   }
   $(x);
+  return undefined;
 };
 f();
 `````

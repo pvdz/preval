@@ -77,6 +77,7 @@ let f = function ($$0) {
   };
   const tmpBranchingC = function () {
     debugger;
+    return undefined;
   };
   if (tmpIfTest) {
     const tmpReturnArg$11 = tmpBranchingA();
@@ -96,10 +97,28 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$3 = $(1);
-const tmpSSA_tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
-$(undefined);
-$(tmpSSA_tmpNestedComplexRhs$1);
+const tmpBranchingA = function () {
+  debugger;
+  let tmpNestedComplexRhs$1 = 0;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    a = tmpNestedComplexRhs$1;
+    return undefined;
+  };
+  if (tmpNestedComplexRhs$1) {
+    const tmpReturnArg$5 = tmpBranchingC$1();
+    return tmpReturnArg$5;
+  } else {
+    const tmpCalleeParam$3 = $(1);
+    tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
+    const tmpReturnArg$1 = tmpBranchingC$1();
+    return tmpReturnArg$1;
+  }
+};
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam$5 = tmpBranchingA();
+$(tmpCalleeParam$5);
+$(a);
 `````
 
 ## Globals

@@ -56,11 +56,13 @@ let f = function () {
     let b = $$1;
     debugger;
     x = b;
+    return undefined;
   };
   const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
   const arr = tmpCallCallee(tmpCalleeParam);
   g(10, 20, 30, 40, ...arr, 50, 60);
+  return undefined;
 };
 let x = 0;
 f();
@@ -70,10 +72,17 @@ $(x);
 ## Output
 
 `````js filename=intro
+let x = 0;
+const g = function ($$0, ...$$1) {
+  const b = $$1;
+  debugger;
+  x = b;
+  return undefined;
+};
 const tmpCalleeParam = [1, 2];
 const arr = $(tmpCalleeParam);
-const tmpSSA_x = [20, 30, 40, ...arr, 50, 60];
-$(tmpSSA_x);
+g(null, 20, 30, 40, ...arr, 50, 60);
+$(x);
 `````
 
 ## Globals

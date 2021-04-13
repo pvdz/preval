@@ -40,11 +40,13 @@ const g = function () {
   debugger;
   let f = function () {
     debugger;
+    return undefined;
   };
   $(1);
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
+  return undefined;
 };
 g();
 `````

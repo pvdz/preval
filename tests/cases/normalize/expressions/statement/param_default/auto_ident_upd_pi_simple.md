@@ -46,8 +46,10 @@ let f = function ($$0) {
     const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
     b = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = 1;

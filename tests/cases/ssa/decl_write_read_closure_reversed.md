@@ -56,7 +56,9 @@ let f = function () {
       debugger;
       if ($) {
         x$1 = 10;
+        return undefined;
       } else {
+        return undefined;
       }
     };
     g$1();
@@ -89,6 +91,7 @@ let f = function () {
   };
   const tmpBranchingC = function () {
     debugger;
+    return undefined;
   };
   if ($) {
     const tmpReturnArg$7 = tmpBranchingA();
@@ -116,7 +119,9 @@ const tmpBranchingA = function () {
     debugger;
     if ($) {
       x$1 = 10;
+      return undefined;
     } else {
+      return undefined;
     }
   };
   g$1();

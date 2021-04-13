@@ -640,6 +640,7 @@ let f = function () {
     if (tmpIfTest) {
       $(i);
       i = i + 1;
+      return undefined;
     } else {
       tmpLoopRetCode = false;
       return undefined;
@@ -677,6 +678,7 @@ const tmpLoopBody = function () {
   if (tmpIfTest) {
     $(i);
     i = i + 1;
+    return undefined;
   } else {
     tmpLoopRetCode = false;
     return undefined;

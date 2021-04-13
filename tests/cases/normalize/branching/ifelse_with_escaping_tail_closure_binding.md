@@ -58,6 +58,7 @@ const f = function () {
   const g = function () {
     debugger;
     $(xyz, 'g');
+    return undefined;
   };
   const tmpCallCallee = $;
   const tmpCalleeParam = [g];
@@ -102,6 +103,7 @@ const f = function () {
   const g = function () {
     debugger;
     $(xyz, 'g');
+    return undefined;
   };
   const tmpCalleeParam = [g];
   const t = $(tmpCalleeParam);
@@ -109,7 +111,8 @@ const f = function () {
     debugger;
     xyz = $();
     t[0]();
-    $(xyz, 'g');
+    const tmpReturnArg$3 = g();
+    return tmpReturnArg$3;
   };
   let xyz = undefined;
   if ($) {

@@ -30,6 +30,7 @@ else $(2);
 `````js filename=intro
 const tmpIfTest = function () {
   debugger;
+  return undefined;
 };
 if (tmpIfTest) {
   $(1);
@@ -43,6 +44,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = function () {
   debugger;
+  return undefined;
 };
 if (tmpIfTest) {
   $(1);

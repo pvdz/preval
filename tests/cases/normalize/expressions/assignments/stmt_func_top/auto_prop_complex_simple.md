@@ -44,6 +44,7 @@ let f = function () {
   const tmpAssignMemLhsObj = $(a);
   tmpAssignMemLhsObj.b = 2;
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

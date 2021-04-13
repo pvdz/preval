@@ -43,8 +43,10 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     p = b.c;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { c: 1 };

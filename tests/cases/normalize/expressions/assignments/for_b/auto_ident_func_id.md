@@ -39,6 +39,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const f = function () {
     debugger;
+    return undefined;
   };
   a = f;
   let tmpIfTest = a;
@@ -58,6 +59,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const f = function () {
     debugger;
+    return undefined;
   };
   a = f;
   const tmpIfTest = a;

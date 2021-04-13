@@ -106,6 +106,7 @@ let f = function ($$0) {
   };
   const tmpBranchingC = function () {
     debugger;
+    return undefined;
   };
   if (tmpIfTest) {
     const tmpReturnArg$19 = tmpBranchingA();
@@ -141,19 +142,24 @@ const tmpBranchingA = function () {
       const tmpChainRootComputed$11 = $('y');
       const tmpChainElementObject$11 = tmpChainElementObject$7[tmpChainRootComputed$11];
       tmpNestedComplexRhs$1 = tmpChainElementObject$11;
-      a = tmpNestedComplexRhs$1;
-      return undefined;
+      const tmpReturnArg = tmpBranchingC$1();
+      return tmpReturnArg;
     } else {
-      a = tmpNestedComplexRhs$1;
-      return undefined;
+      const tmpReturnArg$7 = tmpBranchingC$1();
+      return tmpReturnArg$7;
     }
+  };
+  const tmpBranchingC$1 = function () {
+    debugger;
+    a = tmpNestedComplexRhs$1;
+    return undefined;
   };
   if (tmpIfTest$5) {
     const tmpReturnArg$13 = tmpBranchingA$1();
     return tmpReturnArg$13;
   } else {
-    a = tmpNestedComplexRhs$1;
-    return undefined;
+    const tmpReturnArg$15 = tmpBranchingC$1();
+    return tmpReturnArg$15;
   }
 };
 const tmpObjLitVal = { y: 1 };

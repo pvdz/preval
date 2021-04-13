@@ -49,6 +49,7 @@ let f = function () {
     return tmpReturnArg;
   }
   $('keep, do not eval');
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -67,6 +68,7 @@ const f = function () {
     return tmpReturnArg;
   }
   $('keep, do not eval');
+  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

@@ -45,8 +45,10 @@ let f = function ($$0) {
     const tmpCompObj = b;
     const tmpNewCallee = tmpCompObj.$;
     p = new tmpNewCallee(1);
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { $: $ };

@@ -42,6 +42,7 @@ let f = function () {
   b = b + 1;
   let a = tmpPostUpdArgIdent;
   $(a, b);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

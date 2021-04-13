@@ -41,6 +41,7 @@ let f = function () {
   const tmpBinBothRhs = $(2);
   tmpBinBothLhs + tmpBinBothRhs;
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

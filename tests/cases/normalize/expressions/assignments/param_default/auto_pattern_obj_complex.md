@@ -44,8 +44,10 @@ let f = function ($$0) {
     const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
     a = tmpNestedAssignObjPatternRhs.a;
     p = tmpNestedAssignObjPatternRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let bindingPatternObjRoot = { a: 999, b: 1000 };

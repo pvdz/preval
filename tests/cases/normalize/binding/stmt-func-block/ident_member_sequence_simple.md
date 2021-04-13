@@ -49,7 +49,9 @@ let f = function () {
     const tmpCompObj = c;
     let a = tmpCompObj.foo;
     $(a, b, c);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCallCallee = $;
@@ -68,7 +70,9 @@ const f = function () {
     b.x;
     const a = (3).foo;
     $(a, b, 3);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCalleeParam = f();

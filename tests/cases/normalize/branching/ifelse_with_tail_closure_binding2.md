@@ -62,6 +62,7 @@ const f = function () {
   const g = function () {
     debugger;
     $(xyz);
+    return undefined;
   };
   $(xyz);
   const tmpBranchingA = function () {
@@ -105,6 +106,7 @@ const f = function () {
     debugger;
     xyz = $();
     $(xyz);
+    return undefined;
   };
   let xyz = undefined;
   if ($) {

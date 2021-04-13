@@ -34,6 +34,7 @@ let f = function () {
   debugger;
   const obj = { foo: 10 };
   obj.foo;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

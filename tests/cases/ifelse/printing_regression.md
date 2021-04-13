@@ -61,6 +61,7 @@ let f = function ($$0) {
   const tmpBranchingC = function () {
     debugger;
     y = undefined;
+    return undefined;
   };
   let y = undefined;
   if ($) {

@@ -39,6 +39,7 @@ let f = function () {
   let bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   let a = bindingPatternObjRoot.a;
   $(a);
+  return undefined;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();

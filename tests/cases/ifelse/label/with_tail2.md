@@ -51,6 +51,7 @@ B();
 `````js filename=intro
 const A = function () {
   debugger;
+  return undefined;
 };
 const B = function () {
   debugger;
@@ -59,7 +60,9 @@ const B = function () {
     const x = $(true);
     if (x) {
       A();
+      return undefined;
     } else {
+      return undefined;
     }
   };
   const r = C();

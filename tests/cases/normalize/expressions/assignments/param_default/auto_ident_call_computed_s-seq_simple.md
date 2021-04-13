@@ -46,8 +46,10 @@ let f = function ($$0) {
     const tmpNestedComplexRhs = tmpCallObj.$(1);
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { $: $ };

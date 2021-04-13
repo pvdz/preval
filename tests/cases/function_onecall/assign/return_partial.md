@@ -79,10 +79,12 @@ let f = function () {
       return tmpReturnArg;
     } else {
       $('b');
+      return undefined;
     }
   };
   g();
   $('c');
+  return undefined;
 };
 let x = $(100);
 const tmpCallCallee = $;

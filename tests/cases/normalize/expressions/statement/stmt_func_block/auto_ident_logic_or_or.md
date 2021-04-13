@@ -75,6 +75,7 @@ let f = function () {
     const tmpBranchingC$1 = function () {
       debugger;
       $(a);
+      return undefined;
     };
     if (tmpIfTest) {
       const tmpReturnArg$7 = tmpBranchingA$1();
@@ -102,19 +103,24 @@ tmpCallCallee$9(tmpCalleeParam$9);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    $(a);
+    return undefined;
+  };
   const a = { a: 999, b: 1000 };
   const tmpCalleeParam = $(0);
   let tmpIfTest = $(tmpCalleeParam);
   const tmpBranchingC = function () {
     debugger;
     if (tmpIfTest) {
-      $(a);
-      return undefined;
+      const tmpReturnArg$7 = tmpBranchingC$1();
+      return tmpReturnArg$7;
     } else {
       const tmpCalleeParam$7 = $(2);
       $(tmpCalleeParam$7);
-      $(a);
-      return undefined;
+      const tmpReturnArg$5 = tmpBranchingC$1();
+      return tmpReturnArg$5;
     }
   };
   if (tmpIfTest) {

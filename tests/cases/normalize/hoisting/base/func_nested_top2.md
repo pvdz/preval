@@ -44,6 +44,7 @@ let g = function () {
     return 100;
   };
   f();
+  return undefined;
 };
 g();
 `````

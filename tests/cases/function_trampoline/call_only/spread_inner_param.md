@@ -38,6 +38,7 @@ const f = function ($$0) {
   let x = $$0;
   debugger;
   $(...x);
+  return undefined;
 };
 f(y);
 `````

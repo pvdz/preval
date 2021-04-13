@@ -105,6 +105,7 @@ let f = function () {
     };
     const tmpBranchingC$1 = function () {
       debugger;
+      return undefined;
     };
     if (tmpIfTest$1) {
       const tmpReturnArg$11 = tmpBranchingA$1();

@@ -69,7 +69,9 @@ const A = function () {
   debugger;
   if ($) {
     $(2);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const f = function () {
@@ -80,12 +82,14 @@ const f = function () {
       const tmpReturnArg$3 = A();
       return tmpReturnArg$3;
     } else {
+      return undefined;
     }
   };
   if ($) {
     const tmpReturnArg$53 = B();
     return tmpReturnArg$53;
   } else {
+    return undefined;
   }
 };
 const tmpCalleeParam = f();
@@ -101,13 +105,16 @@ const B = function () {
     const tmpReturnArg$3 = A();
     return tmpReturnArg$3;
   } else {
+    return undefined;
   }
 };
 const A = function () {
   debugger;
   if ($) {
     $(2);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const f = function () {
@@ -116,6 +123,7 @@ const f = function () {
     const tmpReturnArg$53 = B();
     return tmpReturnArg$53;
   } else {
+    return undefined;
   }
 };
 const tmpCalleeParam = f();

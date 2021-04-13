@@ -1794,6 +1794,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
       const fooReturnArgX5593$1 = YE$cloneX5(SSA_bNeX94, $, SSA_xNeX108);
       tmpLoopRetCode = undefined;
       tmpLoopRetValue = fooReturnArgX5593$1;
+      return undefined;
     };
     const tmpBranchingB$3 = function () {
       debugger;
@@ -2334,6 +2335,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
           };
           tmpLoopRetCode = undefined;
           tmpLoopRetValue = fooReturnArgX5594$5;
+          return undefined;
         };
         const tmpBranchingB$61 = function () {
           debugger;
@@ -2356,6 +2358,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
             };
             tmpLoopRetCode = undefined;
             tmpLoopRetValue = fooReturnArgX5596$7;
+            return undefined;
           };
           const tmpBranchingB$67 = function () {
             debugger;
@@ -2382,6 +2385,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
               );
               tmpLoopRetCode = undefined;
               tmpLoopRetValue = SSA_fooReturnArgX138$9;
+              return undefined;
             };
             const tmpBranchingB$73 = function () {
               debugger;
@@ -2403,6 +2407,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                 );
                 tmpLoopRetCode = undefined;
                 tmpLoopRetValue = SSA_fooReturnArgX139$11;
+                return undefined;
               };
               const tmpBranchingB$79 = function () {
                 debugger;
@@ -2428,6 +2433,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                   );
                   tmpLoopRetCode = undefined;
                   tmpLoopRetValue = SSA_fooReturnArgX140$13;
+                  return undefined;
                 };
                 const tmpBranchingB$85 = function () {
                   debugger;
@@ -2453,6 +2459,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                     );
                     tmpLoopRetCode = undefined;
                     tmpLoopRetValue = SSA_fooReturnArgX141$15;
+                    return undefined;
                   };
                   const tmpBranchingB$91 = function () {
                     debugger;
@@ -2478,6 +2485,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                       );
                       tmpLoopRetCode = undefined;
                       tmpLoopRetValue = SSA_fooReturnArgX142$17;
+                      return undefined;
                     };
                     const tmpBranchingB$97 = function () {
                       debugger;
@@ -2503,6 +2511,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                         );
                         tmpLoopRetCode = undefined;
                         tmpLoopRetValue = SSA_fooReturnArgX143$19;
+                        return undefined;
                       };
                       const tmpBranchingB$103 = function () {
                         debugger;
@@ -2543,6 +2552,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                 };
                                 tmpLoopRetCode = undefined;
                                 tmpLoopRetValue = fooReturnArgX5600$25;
+                                return undefined;
                               };
                               const tmpBranchingB$119 = function () {
                                 debugger;
@@ -2565,6 +2575,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                 };
                                 tmpLoopRetCode = undefined;
                                 tmpLoopRetValue = fooReturnArgX5600$25;
+                                return undefined;
                               };
                               const tmpBranchingC$119 = function () {
                                 debugger;
@@ -2605,6 +2616,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                               };
                               tmpLoopRetCode = undefined;
                               tmpLoopRetValue = fooReturnArgX5599$23;
+                              return undefined;
                             };
                             let fooReturnArgX5599$23 = undefined;
                             if (fooIfTestX13187$23) {
@@ -2656,6 +2668,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                   };
                                   tmpLoopRetCode = undefined;
                                   tmpLoopRetValue = fooReturnArgX5605$27;
+                                  return undefined;
                                 };
                                 const tmpBranchingB$125 = function () {
                                   debugger;
@@ -2685,6 +2698,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                   };
                                   tmpLoopRetCode = undefined;
                                   tmpLoopRetValue = fooReturnArgX5605$27;
+                                  return undefined;
                                 };
                                 const tmpBranchingC$125 = function () {
                                   debugger;
@@ -2732,6 +2746,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                 };
                                 tmpLoopRetCode = undefined;
                                 tmpLoopRetValue = fooReturnArgX5604$25;
+                                return undefined;
                               };
                               let fooReturnArgX5604$25 = undefined;
                               if (fooIfTestX13189$25) {
@@ -2774,6 +2789,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                   };
                                   tmpLoopRetCode = undefined;
                                   tmpLoopRetValue = fooReturnArgX5609$27;
+                                  return undefined;
                                 };
                                 const tmpBranchingB$129 = function () {
                                   debugger;
@@ -2799,6 +2815,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                   };
                                   tmpLoopRetCode = undefined;
                                   tmpLoopRetValue = fooReturnArgX5609$27;
+                                  return undefined;
                                 };
                                 const tmpBranchingC$129 = function () {
                                   debugger;
@@ -2842,6 +2859,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                 };
                                 tmpLoopRetCode = undefined;
                                 tmpLoopRetValue = fooReturnArgX5598$25;
+                                return undefined;
                               };
                               let fooReturnArgX5598$25 = undefined;
                               if (fooIfTestX13186$25) {
@@ -2932,6 +2950,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                             };
                             tmpLoopRetCode = undefined;
                             tmpLoopRetValue = fooReturnArgX5613$23;
+                            return undefined;
                           };
                           const tmpBranchingB$131 = function () {
                             debugger;
@@ -2940,6 +2959,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                               debugger;
                               SSA_xNeX108 = [7, SSA_xNeX108];
                               SSA_SNeX76 = SSA_SNeX76[1];
+                              return undefined;
                             };
                             const tmpBranchingB$137 = function () {
                               debugger;
@@ -2950,6 +2970,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                 const fooArrElementX3259$27 = SSA_SNeX76[1];
                                 SSA_xNeX108 = [2, fooArrElementX3257$27, fooArrElementX3259$27];
                                 SSA_SNeX76 = SSA_SNeX76[2];
+                                return undefined;
                               };
                               const tmpBranchingB$141 = function () {
                                 debugger;
@@ -2960,6 +2981,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                   const fooArrElementX3264$29 = SSA_SNeX76[1];
                                   SSA_xNeX108 = [3, fooArrElementX3262$29, fooArrElementX3264$29];
                                   SSA_SNeX76 = SSA_SNeX76[2];
+                                  return undefined;
                                 };
                                 const tmpBranchingB$145 = function () {
                                   debugger;
@@ -2986,6 +3008,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                     };
                                     tmpLoopRetCode = undefined;
                                     tmpLoopRetValue = fooReturnArgX5615$31;
+                                    return undefined;
                                   };
                                   const tmpBranchingB$149 = function () {
                                     debugger;
@@ -3038,6 +3061,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                       };
                                       tmpLoopRetCode = undefined;
                                       tmpLoopRetValue = fooReturnArgX5617$33;
+                                      return undefined;
                                     };
                                     const tmpBranchingB$153 = function () {
                                       debugger;
@@ -3069,6 +3093,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                         };
                                         tmpLoopRetCode = undefined;
                                         tmpLoopRetValue = fooReturnArgX5619$35;
+                                        return undefined;
                                       };
                                       const tmpBranchingB$157 = function () {
                                         debugger;
@@ -3092,6 +3117,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                           };
                                           tmpLoopRetCode = undefined;
                                           tmpLoopRetValue = fooReturnArgX5622$37;
+                                          return undefined;
                                         };
                                         const tmpBranchingB$159 = function () {
                                           debugger;
@@ -3102,6 +3128,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                             const fooArrElementX3274$39 = SSA_SNeX76[1];
                                             SSA_xNeX108 = [0, fooArrElementX3272$39, fooArrElementX3274$39];
                                             SSA_SNeX76 = SSA_SNeX76[2];
+                                            return undefined;
                                           };
                                           const tmpBranchingB$161 = function () {
                                             debugger;
@@ -3140,6 +3167,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                 SSA_bNeX94 = fooCallCalleeX105$43(SSA_xNeX108, SSA_bNeX94, qNeX60$43);
                                                 SSA_xNeX108 = 0;
                                                 SSA_SNeX76 = GNeX69$43;
+                                                return undefined;
                                               };
                                               const tmpBranchingB$165 = function () {
                                                 debugger;
@@ -3170,6 +3198,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                 SSA_bNeX94 = fooCallCalleeX102$43(SSA_xNeX108, SSA_bNeX94, zNeX57$43);
                                                 SSA_xNeX108 = 0;
                                                 SSA_SNeX76 = JNeX53$43;
+                                                return undefined;
                                               };
                                               const tmpBranchingC$165 = function () {
                                                 debugger;
@@ -3211,6 +3240,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                   };
                                                   tmpLoopRetCode = undefined;
                                                   tmpLoopRetValue = fooReturnArgX5628$45;
+                                                  return undefined;
                                                 };
                                                 const tmpBranchingB$169 = function () {
                                                   debugger;
@@ -3236,6 +3266,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                     };
                                                     tmpLoopRetCode = undefined;
                                                     tmpLoopRetValue = fooReturnArgX5630$47;
+                                                    return undefined;
                                                   };
                                                   const tmpBranchingB$171 = function () {
                                                     debugger;
@@ -3259,6 +3290,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                       };
                                                       tmpLoopRetCode = undefined;
                                                       tmpLoopRetValue = fooReturnArgX5632$49;
+                                                      return undefined;
                                                     };
                                                     const tmpBranchingB$173 = function () {
                                                       debugger;
@@ -3366,6 +3398,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                               );
                                                               tmpLoopRetCode = undefined;
                                                               tmpLoopRetValue = SSA_fooReturnArgX144$57;
+                                                              return undefined;
                                                             };
                                                             const tmpBranchingB$187 = function () {
                                                               debugger;
@@ -3383,6 +3416,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                 );
                                                                 tmpLoopRetCode = undefined;
                                                                 tmpLoopRetValue = SSA_fooReturnArgX145$59;
+                                                                return undefined;
                                                               };
                                                               const tmpBranchingB$189 = function () {
                                                                 debugger;
@@ -3400,6 +3434,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                   );
                                                                   tmpLoopRetCode = undefined;
                                                                   tmpLoopRetValue = SSA_fooReturnArgX146$61;
+                                                                  return undefined;
                                                                 };
                                                                 const tmpBranchingB$191 = function () {
                                                                   debugger;
@@ -3425,6 +3460,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                       );
                                                                       tmpLoopRetCode = undefined;
                                                                       tmpLoopRetValue = SSA_fooReturnArgX147$65;
+                                                                      return undefined;
                                                                     };
                                                                     const tmpBranchingB$195 = function () {
                                                                       debugger;
@@ -3735,6 +3771,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                               );
                                                               tmpLoopRetCode = undefined;
                                                               tmpLoopRetValue = SSA_fooReturnArgX148$57;
+                                                              return undefined;
                                                             };
                                                             const tmpBranchingB$217 = function () {
                                                               debugger;
@@ -3752,6 +3789,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                 );
                                                                 tmpLoopRetCode = undefined;
                                                                 tmpLoopRetValue = SSA_fooReturnArgX149$59;
+                                                                return undefined;
                                                               };
                                                               const tmpBranchingB$219 = function () {
                                                                 debugger;
@@ -3769,6 +3807,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                   );
                                                                   tmpLoopRetCode = undefined;
                                                                   tmpLoopRetValue = SSA_fooReturnArgX150$61;
+                                                                  return undefined;
                                                                 };
                                                                 const tmpBranchingB$221 = function () {
                                                                   debugger;
@@ -3786,6 +3825,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                     );
                                                                     tmpLoopRetCode = undefined;
                                                                     tmpLoopRetValue = SSA_fooReturnArgX151$63;
+                                                                    return undefined;
                                                                   };
                                                                   const tmpBranchingB$223 = function () {
                                                                     debugger;
@@ -3803,6 +3843,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                       );
                                                                       tmpLoopRetCode = undefined;
                                                                       tmpLoopRetValue = SSA_fooReturnArgX152$65;
+                                                                      return undefined;
                                                                     };
                                                                     const tmpBranchingB$225 = function () {
                                                                       debugger;
@@ -3820,6 +3861,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                         );
                                                                         tmpLoopRetCode = undefined;
                                                                         tmpLoopRetValue = SSA_fooReturnArgX153$67;
+                                                                        return undefined;
                                                                       };
                                                                       const tmpBranchingB$227 = function () {
                                                                         debugger;
@@ -3837,6 +3879,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                           );
                                                                           tmpLoopRetCode = undefined;
                                                                           tmpLoopRetValue = SSA_fooReturnArgX154$69;
+                                                                          return undefined;
                                                                         };
                                                                         const tmpBranchingB$229 = function () {
                                                                           debugger;
@@ -3854,6 +3897,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                             );
                                                                             tmpLoopRetCode = undefined;
                                                                             tmpLoopRetValue = SSA_fooReturnArgX155$71;
+                                                                            return undefined;
                                                                           };
                                                                           const tmpBranchingB$231 = function () {
                                                                             debugger;
@@ -3873,6 +3917,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                               );
                                                                               tmpLoopRetCode = undefined;
                                                                               tmpLoopRetValue = SSA_fooReturnArgX156$73;
+                                                                              return undefined;
                                                                             };
                                                                             const tmpBranchingB$233 = function () {
                                                                               debugger;
@@ -3890,6 +3935,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                                 );
                                                                                 tmpLoopRetCode = undefined;
                                                                                 tmpLoopRetValue = SSA_fooReturnArgX157$75;
+                                                                                return undefined;
                                                                               };
                                                                               const tmpBranchingB$235 = function () {
                                                                                 debugger;
@@ -3908,6 +3954,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                                                   );
                                                                                   tmpLoopRetCode = undefined;
                                                                                   tmpLoopRetValue = SSA_fooReturnArgX158$77;
+                                                                                  return undefined;
                                                                                 };
                                                                                 const tmpBranchingB$237 = function () {
                                                                                   debugger;
@@ -4106,6 +4153,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                           );
                                                           tmpLoopRetCode = undefined;
                                                           tmpLoopRetValue = SSA_fooReturnArgX159$53;
+                                                          return undefined;
                                                         };
                                                         const tmpBranchingB$239 = function () {
                                                           debugger;
@@ -4436,6 +4484,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     };
     const tmpBranchingC$3 = function () {
       debugger;
+      return undefined;
     };
     if (fooIfTestX13134) {
       const tmpReturnArg$827 = tmpBranchingA$3();
@@ -4453,6 +4502,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
     if (tmpIfTest) {
       return tmpLoopRetValue$1;
     } else {
+      return undefined;
     }
   };
   while (tmpLoopRetCode) {

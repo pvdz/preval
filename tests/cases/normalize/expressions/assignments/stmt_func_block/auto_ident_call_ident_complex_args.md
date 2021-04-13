@@ -50,6 +50,7 @@ let f = function () {
   const tmpCalleeParam$1 = $(2);
   a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   $(a);
+  return undefined;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = f();

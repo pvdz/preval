@@ -61,6 +61,7 @@ let f = function () {
     let h = function () {
       debugger;
       $(x);
+      return undefined;
     };
     const tmpReturnArg = h();
     return tmpReturnArg;
@@ -88,6 +89,7 @@ if ($) {
     debugger;
     x = $('first');
     $(x);
+    return undefined;
   };
   g();
   g();

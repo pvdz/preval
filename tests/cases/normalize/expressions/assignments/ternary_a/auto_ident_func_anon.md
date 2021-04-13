@@ -38,6 +38,7 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpIfTest = a;
 if (tmpIfTest) {
@@ -55,6 +56,7 @@ $(a);
 let tmpCalleeParam = undefined;
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 if (tmpSSA_a) {
   tmpCalleeParam = $(100);

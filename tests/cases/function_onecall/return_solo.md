@@ -54,6 +54,7 @@ let f = function () {
   };
   g();
   $('c');
+  return undefined;
 };
 f();
 `````

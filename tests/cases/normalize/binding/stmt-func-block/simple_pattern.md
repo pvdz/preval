@@ -54,7 +54,9 @@ let f = function () {
     y = arrPatternSplat[1];
     a = tmpNestedAssignArrPatternRhs;
     $(a, x, y, z);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCallCallee = $;
@@ -74,7 +76,9 @@ const f = function () {
     const tmpSSA_x = arrPatternSplat[0];
     const tmpSSA_y = arrPatternSplat[1];
     $(z, tmpSSA_x, tmpSSA_y, z);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCalleeParam = f();

@@ -33,6 +33,7 @@ f();
 const f = function () {
   debugger;
   $(1);
+  return undefined;
 };
 f();
 `````

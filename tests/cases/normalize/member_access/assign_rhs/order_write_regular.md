@@ -53,6 +53,7 @@ const obj = {
     let _ = $$0;
     debugger;
     $(20);
+    return undefined;
   },
 };
 let x = 10;
@@ -75,6 +76,7 @@ const obj = {
   set x($$0) {
     debugger;
     $(20);
+    return undefined;
   },
 };
 const tmpNestedAssignObj = $(obj);

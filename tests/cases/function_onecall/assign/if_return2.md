@@ -58,7 +58,9 @@ const f = function () {
   debugger;
   if ($) {
     $(1, 'f');
+    return undefined;
   } else {
+    return undefined;
   }
 };
 let x = $(100, 'init');
@@ -75,7 +77,9 @@ const f = function () {
   debugger;
   if ($) {
     $(1, 'f');
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const x = $(100, 'init');

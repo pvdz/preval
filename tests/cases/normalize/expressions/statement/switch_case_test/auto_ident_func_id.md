@@ -48,6 +48,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const f = function () {
   debugger;
+  return undefined;
 };
 const tmpBinLhs = f;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -67,6 +68,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const f = function () {
   debugger;
+  return undefined;
 };
 const tmpIfTest = f === tmpSwitchValue;
 if (tmpIfTest) {

@@ -49,12 +49,14 @@ let out = function () {
     const tmpCallCallee = $;
     const tmpCalleeParam = typeof g$1;
     tmpCallCallee(tmpCalleeParam);
+    return undefined;
   };
   const f = g$1;
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = g;
   const tmpCalleeParam$3 = f();
   tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+  return undefined;
 };
 out();
 out();
@@ -67,11 +69,13 @@ const g$1 = function () {
   debugger;
   const tmpCalleeParam = typeof g$1;
   $(tmpCalleeParam);
+  return undefined;
 };
 const out = function () {
   debugger;
   const tmpCalleeParam$3 = g$1();
   $(10, tmpCalleeParam$3);
+  return undefined;
 };
 out();
 out();

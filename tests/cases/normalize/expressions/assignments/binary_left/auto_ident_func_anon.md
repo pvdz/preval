@@ -35,6 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
@@ -48,6 +49,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpSSA_a + tmpBinBothRhs;
@@ -63,7 +65,7 @@ None
 
 Should call `$` with:
  - 1: 100
- - 2: 'function() {}100'
+ - 2: 'function() {return undefined;}100'
  - 3: '<function>'
  - eval returned: undefined
 

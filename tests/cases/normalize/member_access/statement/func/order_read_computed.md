@@ -58,11 +58,13 @@ let f = function () {
       let _ = $$0;
       debugger;
       $(20);
+      return undefined;
     },
   };
   const tmpCompObj = $(obj);
   const tmpCompProp = $('x');
   tmpCompObj[tmpCompProp];
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -81,6 +83,7 @@ const obj = {
   set x($$0) {
     debugger;
     $(20);
+    return undefined;
   },
 };
 const tmpCompObj = $(obj);

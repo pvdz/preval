@@ -40,8 +40,10 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     p = { x: 1, y: 2, z: 3 };
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };

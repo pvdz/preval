@@ -35,6 +35,7 @@ let f = function () {
   const tmpArgumentsAny = arguments;
   debugger;
   f.apply(tmpthis, tmpArgumentsAny);
+  return undefined;
 };
 `````
 
@@ -46,6 +47,7 @@ const f = function () {
   const tmpArgumentsAny = arguments;
   debugger;
   f.apply(tmpthis, tmpArgumentsAny);
+  return undefined;
 };
 `````
 

@@ -36,6 +36,7 @@ const x = $(1);
 const f = function () {
   debugger;
   $(x);
+  return undefined;
 };
 f();
 `````

@@ -43,8 +43,10 @@ let f = function ($$0) {
   if (tmpIfTest) {
     a = tmpArgumentsAny;
     p = tmpArgumentsAny;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -64,7 +66,9 @@ const f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     a = tmpArgumentsAny;
+    return undefined;
   } else {
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };

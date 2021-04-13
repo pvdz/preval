@@ -33,6 +33,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
@@ -44,6 +45,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 const tmpAnonDefaultExport = tmpSSA_a;
 export { tmpAnonDefaultExport as default };

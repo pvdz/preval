@@ -98,6 +98,7 @@ const f = function ($$0) {
       let tmpNestedComplexRhs$4 = $$0;
       debugger;
       a = tmpNestedComplexRhs$4;
+      return undefined;
     };
     if (tmpIfTest$3) {
       const tmpCallVal$2 = tmpChainElementCall$2.call;

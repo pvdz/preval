@@ -37,6 +37,7 @@ let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const tmpAssignMemLhsObj = function () {
     debugger;
+    return undefined;
   };
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
@@ -53,6 +54,7 @@ let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const tmpAssignMemLhsObj = function () {
     debugger;
+    return undefined;
   };
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }

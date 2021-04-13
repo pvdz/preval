@@ -62,6 +62,7 @@ let f = function () {
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
   $(a, b, c, d);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

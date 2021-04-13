@@ -62,6 +62,7 @@ let x = function ($$0, $$1) {
     debugger;
     const tmpAssignObjPatternRhs = b;
     propTDZ = tmpAssignObjPatternRhs.x;
+    return undefined;
   };
   let propTDZ = undefined;
   if (tmpIfTest) {

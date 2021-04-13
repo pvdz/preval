@@ -192,6 +192,8 @@ import { isComplexNode } from '../ast.mjs';
   - Could normalize AST, like var decl and assignment having a lhs and rhs instead of id/init and left/right (and drop the declarations bit since that'll never happen after the normalize_once step)).
   - There are some cases of loops where we can determine that there's no way for the loop to ever break, making any code that follows it ready to DCE.
   - If a function is called only once but cannot be inlined because it and its caller both contain branching, then move the code into the caller branch into the function to hopefully keep things closer together? see tests/cases/normalize/pattern/param/arr/arr/obj/base.md for an example
+  - TODO: what happens when we reference a global variable after having seen a local binding with the same name? `function f() { const x = $(); $(x); } $(x);` ??? Is this bugged?
+  - TODO: fix tests/cases/normalize/expressions/assignments/param_default/auto_this.md where a function with `this` (or `arguments`) alias gets inlined in single call inlining
   - TODO: unique ident algo will rename implicit globals if a binding with the same name was already found in another scope ;(
   - TODO: norm_once must use registerGlobalLabel to prevent collisions reliably
   - TODO: if an optional chain starts with a literal null or undefined, the rest of the chain can be dropped
@@ -242,6 +244,7 @@ export function phaseNormalize(fdata, fname) {
   const funcStack = []; // [1] is always global (.ast)
   const thisStack = []; // Only for function expressions (no arrows or global, decls are eliminated)
   const ifelseStack = [ast];
+  let inGlobal = true; // While walking, are we currently in global space or inside a function
 
   function assertNoDupeNodes(node = ast, prop = 'ast') {
     if (!VERBOSE_TRACING) return; // Disable this for large inputs but keep it for tests
@@ -672,14 +675,45 @@ export function phaseNormalize(fdata, fname) {
   }
 
   function dce(body, i, desc) {
-    // This should be called after an abnormal flow control (return, break, continue, or throw.
-    // We have to take care about the remainder because it might introduce new binding names that we wouldn't want to eliminate
-    // just yet, for the sake of analysis. Example: `if (y) x = 1; return; let x`
+    vlog('dce("' + desc + '");');
+    // This should be called after an abnormal flow control (return, break, continue, or throw) or an if or block that
+    // is guaranteed to complete abnormally, recursively. Either way, any code that follows it can not be executable.
+    // We do have to be careful about the remainder because it might introduce new binding names that we wouldn't want
+    // to eliminate just yet, for the sake of analysis. Example: `if (y) x = 1; return; let x`.
+    // Additionally, if this was a block or `if`, it should end with an explicit completion. Any trailing bindings
+    // should be moved in front of it, which runs the risk of unnecessarily potentially breaking TDZ semantics.
+
+    ASSERT(
+      [
+        'ReturnStatement',
+        'ThrowStatement',
+        'BreakStatement',
+        'ContinueStatement',
+        // For `if` it means both branches stop early
+        'IfStatement',
+        // If this is a block then it's nested and guaranteed to stop early
+        'BlockStatement',
+      ].includes(body[i].type),
+      'dce after abrupt completion or an if or block that does so',
+      body[i],
+    );
 
     const nominated = body.slice(i);
-    const toKeep = nominated.filter((node) => node.type === 'VariableDeclaration');
-    if (i + toKeep.length + 1 === body.length) {
-      // This DCE call would not eliminate anything
+    let sawReturnUndefinedLast = false;
+    const varDeclsToKeep = nominated.filter((node) => {
+      vlog('- Nominated:', node.type);
+      if (node.type === 'ReturnStatement' && node.argument && node.argument.type === 'Identifier' && node.argument.name === 'undefined') {
+        sawReturnUndefinedLast = true;
+        return false;
+      } else {
+        sawReturnUndefinedLast = false;
+        return node.type === 'VariableDeclaration';
+      }
+    });
+    if (i + 1 + varDeclsToKeep.length + (varDeclsToKeep.length && sawReturnUndefinedLast ? 1 : 0) === body.length) {
+      // The trailing body contained only var decls and if so, maybe, a return statement after them. No need to do anything.
+      // If the return did not return undefined, or was not last, or was present without any var decls being
+      // introduced, then we would still need to change something here.
       return false;
     }
 
@@ -687,27 +721,38 @@ export function phaseNormalize(fdata, fname) {
     example('return; f();', 'return;');
     before(body.slice(i));
 
+    // Note: .length is a getter so this assignment drops all trailing elements from the body
     body.length = i + 1;
-    if (toKeep.length > 0) {
+
+    if (varDeclsToKeep.length > 0) {
       vlog(
         'Restoring',
-        toKeep.length,
+        varDeclsToKeep.length,
         'nodes because they define a binding. We will need another way to eliminate them. Or replace them with an empty var decl...',
       );
-      body.push(
-        ...toKeep.map((node) => {
-          if (node.type === 'VariableDeclaration') {
-            // Note: we're keeping the kind because even if we could force it to be a constant, that would
-            //       throw off certain assertions about how many writes a constant may have. whatever.
-            return AST.variableDeclaration(node.declarations[0].id.name, AST.literal(0), node.kind);
-          } else {
-            if (node.type === 'FunctionDeclaration' || node.type === 'ClassDeclaration') {
-              throw ASSERT(false, 'these should be eliminated while hoisting');
-            }
-            throw ASSERT(false, 'what are we keeping?');
+
+      const toSplice = varDeclsToKeep.map((node) => {
+        if (node.type === 'VariableDeclaration') {
+          // Note: we're keeping the kind because even if we could force it to be a constant, that would
+          //       throw off certain assertions about how many writes a constant may have. whatever.
+          return AST.variableDeclaration(node.declarations[0].id.name, AST.literal(0), node.kind);
+        } else {
+          if (node.type === 'FunctionDeclaration' || node.type === 'ClassDeclaration') {
+            throw ASSERT(false, 'these should be eliminated while hoisting');
           }
-        }),
-      );
+          throw ASSERT(false, 'what are we keeping?');
+        }
+      });
+
+      if (!inGlobal) {
+        // If we keep at least one var decl, then compile a return statement as well for the sake of normalization
+        // If a return existed before it will be replaced. We need to change _something_ so that should be fine.
+        // If there were no variables then all branches should complete explicitly and we would not need this `return`.
+        // Of course, we do not add a return keyword in global.
+        toSplice.push(AST.returnStatement('undefined'));
+      }
+
+      body.splice(i + 1, 0, ...toSplice);
     }
 
     after(body.slice(i));
@@ -808,7 +853,7 @@ export function phaseNormalize(fdata, fname) {
       });
     }
     if (body.length > i + 1) {
-      if (dce(body, i, 'after block')) {
+      if (dce(body, i, 'after continue')) {
         return true;
       }
     }
@@ -888,7 +933,7 @@ export function phaseNormalize(fdata, fname) {
 
   function transformExpression(
     wrapKind /* statement, var, assign, export, default */,
-    node,
+    node, // this is not body[i] (!)
     body,
     i,
     parentNode, // For var/assign, this is the entire node. For statement, this is the ExpressionStatement
@@ -980,45 +1025,7 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'FunctionExpression': {
-        // Note: if this transform wants to mutate the parent body then the object handler method should be revisited
-
-        // If this is a statement then drop the whole thing without processing it
-        if (wrapKind === 'statement') {
-          rule('Function expressions that are statements should be dropped');
-          example('(function(){});', 'undefined;');
-          before(node, parentNode);
-
-          body[i] = AST.expressionStatement(AST.identifier('undefined'));
-
-          after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        funcStack.push(node);
-        thisStack.push(node);
-        ifelseStack.push(node);
-        anyBlock(node.body, node);
-        ifelseStack.pop();
-        thisStack.pop();
-        funcStack.pop();
-
-        if (node.body.body.length) {
-          const last = node.body.body[node.body.body.length - 1];
-          if (last.type === 'ReturnStatement' && last.argument.type === 'Identifier' && last.argument.name === 'undefined') {
-            // I think this rule may not be very valuable considering some of the other rules...
-            rule('If the last statement of a function is `return undefined` then drop it');
-            example('function f(){ g(); return undefined; }', 'function f(){ g(); }');
-            before(node, parentNode);
-
-            node.body.body.pop();
-
-            after(AST.emptyStatement(), parentNode);
-            return true;
-          }
-        }
-
-        return false;
+        return transformFunctionExpression(wrapKind, node, body, i, parentNode);
       }
 
       case 'CallExpression': {
@@ -1569,7 +1576,7 @@ export function phaseNormalize(fdata, fname) {
             const finalNode = AST.throwStatement(AST.literal(DCE_ERROR_MSG));
             body.splice(i + 1, 0, finalNode);
 
-            after(finalNode);
+            after(finalNode, parentNode);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
@@ -5038,19 +5045,123 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
 
+  function transformFunctionExpression(wrapKind, node, body, i, parentNode) {
+    // Note: if this transform wants to mutate the parent body then the object handler method should be revisited
+    const wasGlobal = inGlobal;
+    inGlobal = false;
+    const r = _transformFunctionExpression(wrapKind, node, body, i, parentNode);
+    inGlobal = wasGlobal;
+    return r;
+  }
+
+  function _transformFunctionExpression(wrapKind, node, body, i, parentNode) {
+    // Note: if this transform wants to mutate the parent body then the object handler method should be revisited
+
+    // If this is a statement then drop the whole thing without processing it
+    if (wrapKind === 'statement') {
+      rule('Function expressions that are statements should be dropped');
+      example('(function(){});', 'undefined;');
+      before(node, parentNode);
+
+      body[i] = AST.expressionStatement(AST.identifier('undefined'));
+
+      after(body[i]);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
+    funcStack.push(node);
+    thisStack.push(node);
+    ifelseStack.push(node);
+    anyBlock(node.body, node);
+    ifelseStack.pop();
+    thisStack.pop();
+    funcStack.pop();
+
+    if (!node.body.body.length) {
+      rule('Even empty functions must explicitly return undefined');
+      example('function f(){}', 'function f(){ return undefined; }');
+      before(node);
+
+      node.body.body.push(AST.returnStatement('undefined'));
+
+      after(node);
+      return true;
+    }
+
+    // Note: technically break and continue should be eliminated. But I think (currently?) they may still linger around.
+    // the problem right now is that the DCE is leaving a tail const which is breaking the new normalize return rule
+
+    const last = node.body.body[node.body.body.length - 1];
+    if (last.type === 'IfStatement') {
+      // Confirm that both branches return explicitly and make them if either doesn't
+
+      let changed = false;
+
+      const lastIf = last.consequent.body[last.consequent.body.length - 1];
+      if (!['ReturnStatement', 'ThrowStatement', 'ContinueStatement', 'BreakStatement'].includes(lastIf?.type)) {
+        rule('The `if` branch of the last `if`-statement of a function must return explicitly');
+        example('function f(){ if (x) a(); }', 'function f(){ if (x) { a(); return undefined; } }');
+        before(last, node);
+
+        last.consequent.body.push(AST.returnStatement('undefined'));
+
+        after(last, node);
+        changed = true;
+      }
+
+      const lastElse = last.alternate.body[last.alternate.body.length - 1];
+      if (!['ReturnStatement', 'ThrowStatement', 'ContinueStatement', 'BreakStatement'].includes(lastElse?.type)) {
+        rule('The `else` branch of the last `if`-statement of a function must return explicitly');
+        example('function f(){ if (x) return 1; else a(); }', 'function f(){ if (x) return 1; else { a(); return undefined; } }');
+        before(last, node);
+
+        last.alternate.body.push(AST.returnStatement('undefined'));
+
+        after(last, node);
+        changed = true;
+      }
+
+      if (changed) {
+        return true;
+      }
+    } else if (!['ReturnStatement', 'ThrowStatement', 'ContinueStatement', 'BreakStatement'].includes(last?.type)) {
+      rule('All functions must explicitly return, even if returns undefined');
+      example('function f(){ g(); }', 'function f(){ g(); return undefined; }');
+      before(node);
+
+      node.body.body.push(AST.returnStatement('undefined'));
+
+      after(node);
+      return true;
+    }
+
+    return false;
+  }
+
   function transformIfStatement(node, body, i, parentNode) {
+    if (!node.alternate) {
+      rule('The else branch must exist');
+      example('if (x) y();', 'if (x) y(); else {}');
+      before(node);
+
+      node.alternate = AST.blockStatement();
+
+      after(node);
+      return true;
+    }
+
     if (node.test.type === 'UnaryExpression') {
       if (node.test.operator === '!') {
         // It's kind of redundant since there are plenty of cases where we'll need to deal with
         // the test in an abstracted form (like `if (!a && !b)` or smth). So maybe I'll drop this one later.
         rule('The test of an if cannot be invert');
-        example('if (!x) y;', 'if (x) ; else y;', () => !node.alternate);
-        example('if (!x) y; else z;', 'if (x) z; else y;', () => node.alternate);
+        example('if (!x) y; else z;', 'if (x) z; else y;');
         before(node);
 
         node.test = node.test.argument;
         const tmp = node.consequent;
-        node.consequent = node.alternate || AST.emptyStatement();
+        node.consequent = node.alternate;
         node.alternate = tmp;
 
         after(node);
@@ -5116,17 +5227,6 @@ export function phaseNormalize(fdata, fname) {
 
       after(node);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    if (!node.alternate) {
-      rule('The else branch must exist');
-      example('if (x) y();', 'if (x) y(); else {}');
-      before(node);
-
-      node.alternate = AST.blockStatement();
-
-      after(node);
       return true;
     }
 
@@ -5387,7 +5487,7 @@ export function phaseNormalize(fdata, fname) {
         const primeB = AST.functionExpressionNormalized(
           declaredBindingsBefore.slice(0),
           [
-            ...(node.alternate?.body || []),
+            ...(node.alternate.body || []),
             AST.returnStatement(
               AST.callExpression(
                 tmpNameC,
@@ -5462,7 +5562,6 @@ export function phaseNormalize(fdata, fname) {
       example('if (x) return; f();', 'if (x) return; else f();');
       before(node, parentNode);
 
-      if (!node.alternate) node.alternate = AST.blockStatement();
       node.alternate.body.push(...body.slice(i + 1));
       body.length = i + 1;
 
@@ -5471,7 +5570,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (node.alternate?.$p.returnBreakContinueThrow && i < body.length - 1) {
+    if (node.alternate.$p.returnBreakContinueThrow && i < body.length - 1) {
       // Doesn't matter what kind of abrupt completion it was
       // Inline the remainder of the parent block into the if branch
       rule('If the else-branch returns the remainder of the parent block goes into the if-branch');
@@ -5527,8 +5626,8 @@ export function phaseNormalize(fdata, fname) {
         after(body[i]);
         assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
-      } else if (!prev.alternate && !node.alternate) {
-        // If prev node has no "false" branch then append this if to its consequent
+      } else if (prev.alternate.body.length === 0 && node.alternate.body.length === 0) {
+        // If prev node has an empty "false" branch then append this if to its consequent
         // The idea is that if an ident was truthy before then only the truthy branch may change that
         rule('Back to back `if` with same condition can be merged if the first has no alternate branch');
         example('if (x) { f(); } if (x) { g(); }', 'if (x) { x = f(); if (x) { g(); } }');
@@ -5986,11 +6085,8 @@ export function phaseNormalize(fdata, fname) {
       before(node);
 
       prev.consequent.body.push(AST.returnStatement(AST.cloneSimple(node.argument)));
-      if (prev.alternate) {
-        prev.alternate.body.push(AST.returnStatement(AST.cloneSimple(node.argument)));
-      } else {
-        prev.alternate = AST.blockStatement(AST.returnStatement(AST.cloneSimple(node.argument)));
-      }
+      ASSERT(prev.alternate, 'should exist', prev);
+      prev.alternate.body.push(AST.returnStatement(AST.cloneSimple(node.argument)));
       body[i] = AST.emptyStatement();
 
       after(prev);

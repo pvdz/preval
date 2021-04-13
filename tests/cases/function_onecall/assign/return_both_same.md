@@ -84,6 +84,7 @@ let f = function () {
   const tmpCalleeParam = g();
   tmpCallCallee(tmpCalleeParam);
   $('c');
+  return undefined;
 };
 let x = $(100);
 const tmpCallCallee$1 = $;

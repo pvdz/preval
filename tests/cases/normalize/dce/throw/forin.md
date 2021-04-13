@@ -46,6 +46,7 @@ let f = function () {
     const tmpThrowArg = $(1, 'throw');
     throw tmpThrowArg;
   }
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

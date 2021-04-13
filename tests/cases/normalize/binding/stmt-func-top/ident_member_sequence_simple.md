@@ -43,6 +43,7 @@ let f = function () {
   const tmpCompObj = c;
   let a = tmpCompObj.foo;
   $(a, b, c);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

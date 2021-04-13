@@ -46,9 +46,12 @@ let g = function () {
     let f = function () {
       debugger;
       $(1);
+      return undefined;
     };
     f();
+    return undefined;
   } else {
+    return undefined;
   }
 };
 g();

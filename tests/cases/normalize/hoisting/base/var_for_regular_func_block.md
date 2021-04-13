@@ -48,6 +48,7 @@ let f = function () {
   $(x);
   x = 10;
   $(x);
+  return undefined;
 };
 f();
 `````

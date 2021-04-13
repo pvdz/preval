@@ -45,8 +45,10 @@ let f = function ($$0) {
     const tmpCallCompObj = b;
     const tmpCallCompProp = $('$');
     p = tmpCallCompObj[tmpCallCompProp](1);
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { $: $ };

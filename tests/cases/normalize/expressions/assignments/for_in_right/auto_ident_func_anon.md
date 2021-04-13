@@ -32,6 +32,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpForInDeclRhs = a;
 let x = undefined;
@@ -45,6 +46,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 let x = undefined;
 for (x in tmpSSA_a) {

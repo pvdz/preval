@@ -69,6 +69,7 @@ b = {
     let n = $$0;
     debugger;
     $(2, n);
+    return undefined;
   },
 };
 c = {
@@ -81,6 +82,7 @@ c = {
     let n$1 = $$0;
     debugger;
     $(4, n$1);
+    return undefined;
   },
 };
 const tmpNestedAssignPropRhs = c.x;
@@ -103,6 +105,7 @@ const tmpSSA_b = {
     const n = $$0;
     debugger;
     $(2, n);
+    return undefined;
   },
 };
 const tmpSSA_c = {
@@ -115,6 +118,7 @@ const tmpSSA_c = {
     const n$1 = $$0;
     debugger;
     $(4, n$1);
+    return undefined;
   },
 };
 const tmpNestedAssignPropRhs = tmpSSA_c.x;

@@ -63,6 +63,7 @@ let f = function () {
   const tmpBranchingC = function () {
     debugger;
     $(a);
+    return undefined;
   };
   if (tmpIfTest) {
     const tmpReturnArg$3 = tmpBranchingA();
@@ -87,16 +88,21 @@ const f = function () {
   const b = { x: tmpObjLitVal };
   let tmpSSA_a = undefined;
   const tmpIfTest = b != null;
+  const tmpBranchingC = function () {
+    debugger;
+    $(tmpSSA_a);
+    return undefined;
+  };
   if (tmpIfTest) {
     const tmpChainElementObject$5 = b.x;
     const tmpChainElementObject$7 = tmpChainElementObject$5.y;
     const tmpChainElementObject$9 = tmpChainElementObject$7.z;
     tmpSSA_a = tmpChainElementObject$9;
-    $(tmpSSA_a);
-    return undefined;
+    const tmpReturnArg = tmpBranchingC();
+    return tmpReturnArg;
   } else {
-    $(tmpSSA_a);
-    return undefined;
+    const tmpReturnArg$5 = tmpBranchingC();
+    return tmpReturnArg$5;
   }
 };
 const tmpCalleeParam = f();

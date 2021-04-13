@@ -294,7 +294,7 @@ function runTestCase(
           return (
             (JSON.stringify(clone) ?? '"' + typeof a + '"')
               // All arrows are transformed to function expressions
-              .replace(/\(\) => \{\}/g, 'function() {}')
+              .replace(/\(\) => \{\}/g, 'function() {return undefined;}')
               // Drop function ids
               .replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {')
               // We inject debugger statements into all functions
@@ -305,7 +305,7 @@ function runTestCase(
         return (
           (JSON.stringify(a) ?? '"' + typeof a + '"')
             // All arrows are transformed to function expressions
-            .replace(/\(\) => \{\}/g, 'function() {}')
+            .replace(/\(\) => \{\}/g, 'function() {return undefined;}')
             // Drop function ids
             .replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {')
             // We inject debugger statements into all functions
@@ -319,7 +319,10 @@ function runTestCase(
 
         const tmp = a[0];
 
-        stack.push('[' + a.map(safeCloneString).join(', ') + ']');
+        stack.push('[' + a.map(safeCloneString).join(', ')
+          // We normalize to return undefined so empty functions should get that too
+          .replace(/\(\) \{\}/g, '() {return undefined;}')
+          + ']');
 
         return tmp;
       }
@@ -343,7 +346,11 @@ function runTestCase(
       //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
       const returns = new Function('$', 'objPatternRest', '"use strict"; ' + fdata.intro)($, objPatternRest);
       before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
-      stack.push(safeCloneString(returns));
+      stack.push(
+        safeCloneString(returns)
+        // We normalize to return undefined so empty functions should get that too
+        .replace(/\(\) \{\}/g, '() {return undefined;}')
+      );
 
       if (withOutput) {
         console.log('\n\nEvaluated $ calls for ' + desc + ':', stack);
@@ -367,7 +374,9 @@ function runTestCase(
         // Drop function ids
         .replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {')
         // We inject debugger statements into all functions
-        .replace(/\n?debugger;\n?/g, '');
+        .replace(/\n?debugger;\n?/g, '')
+        // We normalize to return undefined so empty functions should get that too
+        .replace(/\(\) \{\}/g, '() {return undefined;}')
 
       stack.push('"<crash[ ' + msg.replace(/"/g, '\\"').replace(/\n/g, '') + ' ]>"');
 

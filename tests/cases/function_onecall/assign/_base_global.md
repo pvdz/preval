@@ -55,6 +55,7 @@ let closure = function () {
 let f = function () {
   debugger;
   $(1);
+  return undefined;
 };
 let x = $(100);
 const tmpCallCallee = $;

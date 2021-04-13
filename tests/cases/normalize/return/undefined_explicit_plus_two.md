@@ -38,6 +38,7 @@ let f = function () {
   debugger;
   $(1);
   $(2);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

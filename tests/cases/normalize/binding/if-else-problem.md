@@ -151,9 +151,12 @@ let f1 = function () {
     debugger;
     x = function () {
       debugger;
+      return undefined;
     };
     $(x);
+    return undefined;
   };
+  return undefined;
 };
 let f2 = function () {
   debugger;
@@ -163,9 +166,12 @@ let f2 = function () {
     $(x$1);
     x$1 = function () {
       debugger;
+      return undefined;
     };
     $(x$1);
+    return undefined;
   };
+  return undefined;
 };
 let f3 = function () {
   debugger;
@@ -187,6 +193,7 @@ let f3 = function () {
     const tmpBranchingC = function () {
       debugger;
       $(x$3);
+      return undefined;
     };
     if (t) {
       const tmpReturnArg$3 = tmpBranchingA();
@@ -196,6 +203,7 @@ let f3 = function () {
       return tmpReturnArg$5;
     }
   };
+  return undefined;
 };
 let f4 = function () {
   debugger;
@@ -204,13 +212,16 @@ let f4 = function () {
     debugger;
     x$5 = function () {
       debugger;
+      return undefined;
     };
     const tmpReturnArg$7 = function () {
       debugger;
       $(x$5);
+      return undefined;
     };
     return tmpReturnArg$7;
   };
+  return undefined;
 };
 let f5 = function () {
   debugger;
@@ -219,43 +230,46 @@ let f5 = function () {
     debugger;
     x$7 = function () {
       debugger;
+      return undefined;
     };
     let h = function () {
       debugger;
       $(x$7);
+      return undefined;
     };
     const tmpReturnArg$9 = h();
     return tmpReturnArg$9;
   };
+  return undefined;
 };
 if ($) {
   const tmpCallCallee = $;
   const tmpCalleeParam = f1();
   tmpCallCallee(tmpCalleeParam);
-} else {
-}
-if ($) {
-  const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = f2();
-  tmpCallCallee$1(tmpCalleeParam$1);
-} else {
-}
-if ($) {
-  const tmpCallCallee$3 = $;
-  const tmpCalleeParam$3 = f3();
-  tmpCallCallee$3(tmpCalleeParam$3);
-} else {
-}
-if ($) {
-  const tmpCallCallee$5 = $;
-  const tmpCalleeParam$5 = f4();
-  tmpCallCallee$5(tmpCalleeParam$5);
-} else {
-}
-if ($) {
-  const tmpCallCallee$7 = $;
-  const tmpCalleeParam$7 = f5();
-  tmpCallCallee$7(tmpCalleeParam$7);
+  if ($) {
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = f2();
+    tmpCallCallee$1(tmpCalleeParam$1);
+    if ($) {
+      const tmpCallCallee$3 = $;
+      const tmpCalleeParam$3 = f3();
+      tmpCallCallee$3(tmpCalleeParam$3);
+      if ($) {
+        const tmpCallCallee$5 = $;
+        const tmpCalleeParam$5 = f4();
+        tmpCallCallee$5(tmpCalleeParam$5);
+        if ($) {
+          const tmpCallCallee$7 = $;
+          const tmpCalleeParam$7 = f5();
+          tmpCallCallee$7(tmpCalleeParam$7);
+        } else {
+        }
+      } else {
+      }
+    } else {
+    }
+  } else {
+  }
 } else {
 }
 `````
@@ -265,22 +279,22 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(undefined);
-} else {
-}
-if ($) {
-  $(undefined);
-} else {
-}
-if ($) {
-  $(undefined);
-} else {
-}
-if ($) {
-  $(undefined);
-} else {
-}
-if ($) {
-  $(undefined);
+  if ($) {
+    $(undefined);
+    if ($) {
+      $(undefined);
+      if ($) {
+        $(undefined);
+        if ($) {
+          $(undefined);
+        } else {
+        }
+      } else {
+      }
+    } else {
+    }
+  } else {
+  }
 } else {
 }
 `````

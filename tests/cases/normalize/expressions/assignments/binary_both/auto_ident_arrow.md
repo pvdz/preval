@@ -44,10 +44,12 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpBinBothLhs = a;
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
@@ -60,9 +62,11 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 const tmpSSA_a$1 = function () {
   debugger;
+  return undefined;
 };
 const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
 $(tmpCalleeParam);

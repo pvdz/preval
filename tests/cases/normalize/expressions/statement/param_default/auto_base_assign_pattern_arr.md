@@ -49,8 +49,10 @@ let f = function ($$0) {
     const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
     b = arrPatternSplat[0];
     p = tmpNestedAssignArrPatternRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = [];

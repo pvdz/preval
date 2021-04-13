@@ -33,6 +33,7 @@ let f = function () {
   $(1);
   const tmpCompObj = $;
   tmpCompObj.length;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

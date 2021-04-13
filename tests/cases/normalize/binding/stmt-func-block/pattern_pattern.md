@@ -57,7 +57,9 @@ let f = function () {
     let a = arrPatternSplat[0];
     let b = arrPatternSplat[1];
     $(a, b, x, y, z);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCallCallee = $;
@@ -80,7 +82,9 @@ const f = function () {
     const a = arrPatternSplat[0];
     const b = arrPatternSplat[1];
     $(a, b, tmpSSA_x, tmpSSA_y, z);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCalleeParam = f();

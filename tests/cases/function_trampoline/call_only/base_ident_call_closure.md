@@ -60,12 +60,15 @@ const f = function () {
     $('not');
     $('inline');
     $(a);
+    return undefined;
   };
   const h = function () {
     debugger;
     g(1);
+    return undefined;
   };
   h();
+  return undefined;
 };
 f();
 `````

@@ -40,6 +40,7 @@ let f = function () {
   debugger;
   const f$1 = function () {
     debugger;
+    return undefined;
   };
   const tmpReturnArg = f$1;
   return tmpReturnArg;
@@ -57,6 +58,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const f$1 = function () {
   debugger;
+  return undefined;
 };
 $(f$1);
 $(a);

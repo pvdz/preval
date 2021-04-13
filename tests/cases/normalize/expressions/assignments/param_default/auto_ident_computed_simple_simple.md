@@ -45,8 +45,10 @@ let f = function ($$0) {
     const tmpNestedComplexRhs = b.c;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { c: 1 };

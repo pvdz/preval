@@ -38,6 +38,7 @@ let x = undefined;
 let f = function () {
   debugger;
   $(x, 'f');
+  return undefined;
 };
 $(1);
 x = $(2);

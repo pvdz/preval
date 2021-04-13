@@ -50,8 +50,10 @@ let f = function ($$0) {
     const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
     tmpAssignMemLhsObj.x = tmpAssignMemRhs;
     p = tmpPostUpdArgVal;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { x: 1 };

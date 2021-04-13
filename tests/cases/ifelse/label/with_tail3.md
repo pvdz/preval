@@ -53,7 +53,9 @@ const B = function () {
     const x = $(true);
     if (x) {
       $('inner');
+      return undefined;
     } else {
+      return undefined;
     }
   };
   const r = C();

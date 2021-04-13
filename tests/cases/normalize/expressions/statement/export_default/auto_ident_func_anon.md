@@ -33,6 +33,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpAnonDefaultExport = function () {
   debugger;
+  return undefined;
 };
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -44,6 +45,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpAnonDefaultExport = function () {
   debugger;
+  return undefined;
 };
 export { tmpAnonDefaultExport as default };
 $(a);

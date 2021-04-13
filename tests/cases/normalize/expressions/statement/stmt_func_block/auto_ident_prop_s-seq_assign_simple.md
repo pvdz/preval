@@ -48,6 +48,7 @@ let f = function () {
   const tmpAssignMemLhsObj = b;
   tmpAssignMemLhsObj.c = 2;
   $(a, b);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

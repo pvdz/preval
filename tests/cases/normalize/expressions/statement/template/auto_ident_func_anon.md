@@ -35,6 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpTemplateExpr = function () {
   debugger;
+  return undefined;
 };
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -47,6 +48,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpTemplateExpr = function () {
   debugger;
+  return undefined;
 };
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
@@ -60,7 +62,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'before function() {} after'
+ - 1: 'before function() {return undefined;} after'
  - 2: { a: '999', b: '1000' }
  - eval returned: undefined
 

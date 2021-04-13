@@ -46,8 +46,10 @@ let f = function ($$0) {
     const tmpCalleeParam = $(1);
     const tmpCalleeParam$1 = $(2);
     p = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { $: $ };

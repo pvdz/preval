@@ -50,6 +50,7 @@ while (true) {
   } else {
     const f = function () {
       debugger;
+      return undefined;
     };
     tmpIfTest = f;
   }
@@ -74,6 +75,7 @@ while (true) {
   } else {
     const f = function () {
       debugger;
+      return undefined;
     };
     tmpIfTest = f;
   }

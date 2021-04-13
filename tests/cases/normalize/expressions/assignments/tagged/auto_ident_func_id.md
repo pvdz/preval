@@ -34,6 +34,7 @@ const tmpCallCallee = $;
 const tmpCalleeParam = ['before ', ' after'];
 const f = function () {
   debugger;
+  return undefined;
 };
 a = f;
 let tmpCalleeParam$1 = a;
@@ -47,6 +48,7 @@ $(a);
 const tmpCalleeParam = ['before ', ' after'];
 const f = function () {
   debugger;
+  return undefined;
 };
 $(tmpCalleeParam, f);
 $(f);

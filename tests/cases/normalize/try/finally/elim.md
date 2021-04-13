@@ -56,6 +56,7 @@ let f = function () {
     $(3);
   }
   $('fail2');
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

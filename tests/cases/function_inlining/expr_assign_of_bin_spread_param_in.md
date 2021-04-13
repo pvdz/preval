@@ -62,11 +62,13 @@ let f = function () {
     let e = $$4;
     debugger;
     x = a + d;
+    return undefined;
   };
   const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
   const arr = tmpCallCallee(tmpCalleeParam);
   g(10, 20, ...arr, 30, 40, 50, 60);
+  return undefined;
 };
 let x = 0;
 f();
@@ -81,6 +83,7 @@ const g = function ($$0, $$1, $$2, $$3, $$4) {
   const d = $$3;
   debugger;
   x = 10 + d;
+  return undefined;
 };
 const tmpCalleeParam = [1, 2];
 const arr = $(tmpCalleeParam);

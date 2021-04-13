@@ -44,8 +44,10 @@ let f = function ($$0) {
   if (tmpIfTest) {
     const tmpUnaryArg = $(arg);
     p = typeof tmpUnaryArg;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let arg = 1;

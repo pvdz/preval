@@ -90,6 +90,7 @@ let x = function ($$0, $$1) {
       const tmpCalleeParam$1 = [];
       const tmpCalleeParam$3 = undefined;
       x$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+      return undefined;
     };
     if (tmpIfTest$1) {
       const tmpReturnArg$7 = tmpBranchingA$1();

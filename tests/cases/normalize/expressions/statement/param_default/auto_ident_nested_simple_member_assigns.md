@@ -58,8 +58,10 @@ let f = function ($$0) {
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     b.x = tmpNestedPropAssignRhs;
     p = tmpNestedPropAssignRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { x: 1 };

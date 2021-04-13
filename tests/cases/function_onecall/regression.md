@@ -73,6 +73,7 @@ const g = function () {
     const tmpReturnArg$1 = $();
     return tmpReturnArg$1;
   } else {
+    return undefined;
   }
 };
 const h = function ($$0) {
@@ -80,6 +81,7 @@ const h = function ($$0) {
   debugger;
   const t = z | 4096;
   f(t);
+  return undefined;
 };
 h();
 `````

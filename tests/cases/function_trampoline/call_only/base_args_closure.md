@@ -45,8 +45,10 @@ const f = function () {
   const g = function () {
     debugger;
     $(x);
+    return undefined;
   };
   g();
+  return undefined;
 };
 f();
 `````

@@ -41,6 +41,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
@@ -54,6 +55,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 const tmpCalleeParam = { [tmpSSA_a]: 10 };
 $(tmpCalleeParam);

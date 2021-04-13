@@ -41,6 +41,7 @@ let f = function () {
   const tmpCompObj = $(b);
   let a = tmpCompObj.c;
   $(a, b);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

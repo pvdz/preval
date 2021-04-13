@@ -83,6 +83,7 @@ let f = function () {
   const tmpAfterLabel = function () {
     debugger;
     $('after');
+    return undefined;
   };
   const tmpReturnArg$9 = tmpLabeledBlockFunc();
   return tmpReturnArg$9;

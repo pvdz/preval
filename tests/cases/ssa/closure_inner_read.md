@@ -67,11 +67,13 @@ let f = function () {
     const h = function () {
       debugger;
       $(x);
+      return undefined;
     };
     if ($) {
       const tmpReturnArg = h();
       return tmpReturnArg;
     } else {
+      return undefined;
     }
   };
   g();
@@ -101,6 +103,7 @@ if ($) {
       $(x);
       return undefined;
     } else {
+      return undefined;
     }
   };
   g();

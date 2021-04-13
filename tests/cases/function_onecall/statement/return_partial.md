@@ -57,10 +57,12 @@ let f = function () {
       return tmpReturnArg;
     } else {
       $('b');
+      return undefined;
     }
   };
   g();
   $('c');
+  return undefined;
 };
 f();
 `````

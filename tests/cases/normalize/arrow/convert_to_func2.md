@@ -58,6 +58,7 @@ let f = function ($$0) {
       debugger;
       return x;
     };
+    return undefined;
   };
   let y = undefined;
   if (tmpIfTest) {

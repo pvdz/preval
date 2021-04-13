@@ -46,12 +46,15 @@ let f = function ($$0) {
   if (tmpIfTest) {
     const f$1 = function () {
       debugger;
+      return undefined;
     };
     const tmpNestedComplexRhs = f$1;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -66,6 +69,7 @@ $(a);
 `````js filename=intro
 const f$1 = function () {
   debugger;
+  return undefined;
 };
 $(undefined);
 $(f$1);

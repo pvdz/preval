@@ -58,14 +58,17 @@ let f = function () {
     debugger;
     x = function () {
       debugger;
+      return undefined;
     };
     $();
     $(x);
+    return undefined;
   };
   if ($) {
     g();
     return x;
   } else {
+    return undefined;
   }
 };
 if ($) {
@@ -81,6 +84,7 @@ if ($) {
 `````js filename=intro
 const tmpSSA_x = function () {
   debugger;
+  return undefined;
 };
 const f = function () {
   debugger;
@@ -89,6 +93,7 @@ const f = function () {
     $(tmpSSA_x);
     return tmpSSA_x;
   } else {
+    return undefined;
   }
 };
 if ($) {

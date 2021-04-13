@@ -50,6 +50,7 @@ let f = function () {
   const tmpDeleteObj = arg;
   delete tmpDeleteObj.y;
   $(a, arg);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

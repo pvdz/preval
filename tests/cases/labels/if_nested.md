@@ -77,7 +77,9 @@ let f = function () {
         return undefined;
       }
     }
+    return undefined;
   } else {
+    return undefined;
   }
 };
 f();
@@ -106,7 +108,9 @@ const f = function () {
         return undefined;
       }
     }
+    return undefined;
   } else {
+    return undefined;
   }
 };
 f();

@@ -47,6 +47,7 @@ let f = function () {
   a = { b: tmpObjLitVal };
   a.b = 2;
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

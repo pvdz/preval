@@ -46,6 +46,7 @@ let f = function () {
   let g = function () {
     debugger;
     a = 10;
+    return undefined;
   };
   let a = 20;
   g();

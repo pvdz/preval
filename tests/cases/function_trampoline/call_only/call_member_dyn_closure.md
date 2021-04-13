@@ -48,8 +48,10 @@ const f = function () {
   const h = function () {
     debugger;
     obj[str](1);
+    return undefined;
   };
   h();
+  return undefined;
 };
 f();
 `````

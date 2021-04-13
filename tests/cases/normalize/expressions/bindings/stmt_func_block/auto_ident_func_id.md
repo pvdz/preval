@@ -42,9 +42,11 @@ let f = function () {
   debugger;
   const f$1 = function () {
     debugger;
+    return undefined;
   };
   let a = f$1;
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -56,6 +58,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f$1 = function () {
   debugger;
+  return undefined;
 };
 $(f$1);
 $(undefined);

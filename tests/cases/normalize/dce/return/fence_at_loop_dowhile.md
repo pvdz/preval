@@ -113,6 +113,7 @@ let f = function () {
           return tmpLoopRetValue$1;
         } else {
           $('do not visit, do not eliminate');
+          return undefined;
         }
       };
       while (tmpLoopRetCode) {
@@ -136,6 +137,7 @@ let f = function () {
       return tmpLoopRetValue$5;
     } else {
       $('after (not invoked)');
+      return undefined;
     }
   };
   while (tmpLoopRetCode$3) {
@@ -161,6 +163,7 @@ const tmpLoopTail = function ($$0, $$1) {
     return tmpLoopRetValue$1;
   } else {
     $('do not visit, do not eliminate');
+    return undefined;
   }
 };
 let tmpLoopRetCode$3 = true;
@@ -220,6 +223,7 @@ const tmpLoopTail$1 = function ($$0, $$1) {
     return tmpLoopRetValue$5;
   } else {
     $('after (not invoked)');
+    return undefined;
   }
 };
 while (tmpLoopRetCode$3) {

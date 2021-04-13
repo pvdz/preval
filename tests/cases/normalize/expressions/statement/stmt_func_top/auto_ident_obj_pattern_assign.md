@@ -50,6 +50,7 @@ let f = function () {
   x = tmpAssignObjPatternRhs.x;
   y = tmpAssignObjPatternRhs.y;
   $(a, x, y);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

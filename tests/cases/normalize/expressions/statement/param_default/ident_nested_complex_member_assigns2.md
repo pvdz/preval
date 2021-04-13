@@ -44,6 +44,7 @@ $(100, a);
 let f = function () {
   debugger;
   a = y;
+  return undefined;
 };
 let a = 1;
 const x = 3;

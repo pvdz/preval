@@ -65,16 +65,20 @@ let f = function () {
     if (tmpIfTest) {
       $('a');
       g();
+      return undefined;
     } else {
       $('b');
+      return undefined;
     }
   };
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
     $('c');
     g();
+    return undefined;
   } else {
     $('d');
+    return undefined;
   }
 };
 f();
@@ -89,8 +93,10 @@ const g = function () {
   if (tmpIfTest) {
     $('a');
     g();
+    return undefined;
   } else {
     $('b');
+    return undefined;
   }
 };
 const tmpIfTest$1 = $(1);

@@ -43,6 +43,7 @@ let f = function () {
   const tmpArrElement$3 = $(3);
   let a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

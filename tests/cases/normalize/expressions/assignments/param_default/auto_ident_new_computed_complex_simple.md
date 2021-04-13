@@ -47,8 +47,10 @@ let f = function ($$0) {
     const tmpNestedComplexRhs = new tmpNewCallee(1);
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { $: $ };

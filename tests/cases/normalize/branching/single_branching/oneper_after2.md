@@ -92,6 +92,7 @@ const C = function () {
     const tmp$5 = $();
     return tmp$5;
   } else {
+    return undefined;
   }
 };
 A();
@@ -107,6 +108,7 @@ const C = function () {
     const tmp$5 = $();
     return tmp$5;
   } else {
+    return undefined;
   }
 };
 const x = $();

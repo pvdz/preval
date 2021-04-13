@@ -47,13 +47,16 @@ let f = function () {
   let a = function () {
     debugger;
     $('a');
+    return undefined;
   };
   let b = function () {
     debugger;
     $('b');
+    return undefined;
   };
   a();
   b();
+  return undefined;
 };
 f();
 `````

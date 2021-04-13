@@ -52,8 +52,10 @@ let f = function () {
     let b = $$1;
     debugger;
     x = 300;
+    return undefined;
   };
   g(10, 20, 30, 40, 50, 60);
+  return undefined;
 };
 let x = 0;
 f();

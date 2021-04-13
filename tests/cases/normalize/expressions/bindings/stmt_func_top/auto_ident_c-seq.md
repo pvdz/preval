@@ -42,6 +42,7 @@ let f = function () {
   $(2);
   let a = $(x);
   $(a, x);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

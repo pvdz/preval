@@ -33,6 +33,7 @@ $(f);
 $(f);
 const tmpAnonDefaultExport = function () {
   debugger;
+  return undefined;
 };
 export { tmpAnonDefaultExport as default };
 $(f);
@@ -44,6 +45,7 @@ $(f);
 $(f);
 const tmpAnonDefaultExport = function () {
   debugger;
+  return undefined;
 };
 export { tmpAnonDefaultExport as default };
 $(f);

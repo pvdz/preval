@@ -95,6 +95,7 @@ let f = function () {
     const tmpAfterLabel = function () {
       debugger;
       $('keep, do not eval');
+      return undefined;
     };
     const tmpReturnArg$11 = tmpLabeledBlockFunc();
     return tmpReturnArg$11;

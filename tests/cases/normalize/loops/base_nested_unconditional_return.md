@@ -58,6 +58,7 @@ let f = function () {
       tmpLoopRetValue = 100;
       return undefined;
     }
+    return undefined;
   };
   let tmpLoopTail = function ($$0, $$1) {
     let tmpLoopRetCode$1 = $$0;
@@ -67,6 +68,7 @@ let f = function () {
     if (tmpIfTest) {
       return tmpLoopRetValue$1;
     } else {
+      return undefined;
     }
   };
   while (tmpLoopRetCode) {
@@ -95,6 +97,7 @@ const tmpLoopBody = function () {
     tmpLoopRetValue = 100;
     return undefined;
   }
+  return undefined;
 };
 const tmpLoopTail = function ($$0, $$1) {
   const tmpLoopRetCode$1 = $$0;
@@ -104,6 +107,7 @@ const tmpLoopTail = function ($$0, $$1) {
   if (tmpIfTest) {
     return tmpLoopRetValue$1;
   } else {
+    return undefined;
   }
 };
 while (tmpLoopRetCode) {

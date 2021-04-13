@@ -59,10 +59,12 @@ let f = function () {
       return tmpReturnArg;
     } else {
       $('b');
+      return undefined;
     }
   };
   g();
   $('c');
+  return undefined;
 };
 const x = f();
 $(x);

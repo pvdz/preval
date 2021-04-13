@@ -43,6 +43,7 @@ let f = function () {
   const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
   a = tmpAssignObjPatternRhs.a;
   $(a);
+  return undefined;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();

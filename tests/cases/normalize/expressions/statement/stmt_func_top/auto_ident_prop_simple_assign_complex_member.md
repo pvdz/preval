@@ -47,6 +47,7 @@ let f = function () {
   const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
   tmpAssignMemLhsObj.c = tmpAssignMemRhs;
   $(a, b);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

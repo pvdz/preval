@@ -181,6 +181,7 @@ let f = function () {
     const tmpBranchingA$7 = function () {
       debugger;
       $(2);
+      return undefined;
     };
     const tmpBranchingB$7 = function () {
       debugger;
@@ -275,6 +276,7 @@ let f = function () {
           const tmpIfTest$59 = tmpSwitchCaseToStart <= 3;
           const tmpBranchingA$19 = function () {
             debugger;
+            return undefined;
           };
           const tmpBranchingB$19 = function () {
             debugger;
@@ -318,6 +320,7 @@ let f = function () {
     };
     const tmpBranchingC$7 = function () {
       debugger;
+      return undefined;
     };
     if (tmpIfTest$19) {
       const tmpReturnArg$99 = tmpBranchingA$7();

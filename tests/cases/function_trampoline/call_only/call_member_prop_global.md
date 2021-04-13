@@ -36,6 +36,7 @@ const obj = { $: $ };
 const f = function () {
   debugger;
   obj.$(1);
+  return undefined;
 };
 f();
 `````

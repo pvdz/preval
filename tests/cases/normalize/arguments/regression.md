@@ -68,6 +68,7 @@ const f = function ($$0) {
       const tmpArgumentsLen$1 = arguments.length;
       debugger;
       $(tmpArgumentsLen$1);
+      return undefined;
     };
     const tmpReturnArg$3 = g();
     return tmpReturnArg$3;
@@ -93,6 +94,7 @@ const tmpSSA_g = function () {
   const tmpArgumentsLen$1 = arguments.length;
   debugger;
   $(tmpArgumentsLen$1);
+  return undefined;
 };
 const tmpReturnArg$3 = tmpSSA_g();
 $(tmpReturnArg$3);

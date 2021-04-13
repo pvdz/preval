@@ -38,6 +38,7 @@ let obj = {};
 const tmpCompObj = obj;
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
@@ -50,6 +51,7 @@ $(a);
 const obj = {};
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 obj[tmpSSA_a];
 $(tmpSSA_a);

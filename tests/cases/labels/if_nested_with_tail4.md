@@ -162,6 +162,7 @@ let f = function () {
     debugger;
     $('tail1');
     $('end');
+    return undefined;
   };
   const tmpReturnArg$47 = tmpLabeledBlockFunc();
   return tmpReturnArg$47;
@@ -206,6 +207,7 @@ const tmpAfterLabel = function () {
   debugger;
   $('tail1');
   $('end');
+  return undefined;
 };
 const tmpIfTest$5 = $(0);
 if (tmpIfTest$5) {

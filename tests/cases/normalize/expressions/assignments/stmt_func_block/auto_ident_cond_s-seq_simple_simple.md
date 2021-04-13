@@ -59,6 +59,7 @@ let f = function () {
   const tmpBranchingC = function () {
     debugger;
     $(a);
+    return undefined;
   };
   if (tmpIfTest) {
     const tmpReturnArg$3 = tmpBranchingA();
@@ -76,8 +77,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a$1 = $(2);
-$(tmpSSA_a$1);
+const tmpSSA_a = $(2);
+$(tmpSSA_a);
 $(undefined);
 `````
 

@@ -50,6 +50,7 @@ while (true) {
   } else {
     const f = function () {
       debugger;
+      return undefined;
     };
     const tmpNestedComplexRhs = f;
     a = tmpNestedComplexRhs;
@@ -76,6 +77,7 @@ while (true) {
   } else {
     const f = function () {
       debugger;
+      return undefined;
     };
     a = f;
     tmpIfTest = f;

@@ -46,6 +46,7 @@ let f = function () {
   const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
   $(x);
+  return undefined;
 };
 f();
 `````

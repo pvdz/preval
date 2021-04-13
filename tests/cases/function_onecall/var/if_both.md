@@ -67,16 +67,20 @@ let f = function () {
     if (tmpIfTest) {
       $('a');
       g();
+      return undefined;
     } else {
       $('b');
+      return undefined;
     }
   };
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
     $('c');
     g();
+    return undefined;
   } else {
     $('d');
+    return undefined;
   }
 };
 const x = f();
@@ -92,8 +96,10 @@ const g = function () {
   if (tmpIfTest) {
     $('a');
     g();
+    return undefined;
   } else {
     $('b');
+    return undefined;
   }
 };
 const f = function () {
@@ -102,8 +108,10 @@ const f = function () {
   if (tmpIfTest$1) {
     $('c');
     g();
+    return undefined;
   } else {
     $('d');
+    return undefined;
   }
 };
 const x = f();

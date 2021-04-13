@@ -45,8 +45,10 @@ let f = function ($$0) {
     const tmpAssignRhsCompObj = $(b);
     const tmpAssignRhsCompProp = $('c');
     p = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { c: 1 };

@@ -61,11 +61,13 @@ let obj = {
   get c() {
     debugger;
     $('get');
+    return undefined;
   },
   set c($$0) {
     let x = $$0;
     debugger;
     $('set');
+    return undefined;
   },
 };
 let a = 1;
@@ -108,10 +110,12 @@ const obj = {
   get c() {
     debugger;
     $('get');
+    return undefined;
   },
   set c($$0) {
     debugger;
     $('set');
+    return undefined;
   },
 };
 const b = { x: 2 };

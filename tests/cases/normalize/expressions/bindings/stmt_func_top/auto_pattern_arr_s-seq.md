@@ -40,6 +40,7 @@ let f = function () {
   let arrPatternSplat = [...bindingPatternArrRoot];
   let a = arrPatternSplat[0];
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

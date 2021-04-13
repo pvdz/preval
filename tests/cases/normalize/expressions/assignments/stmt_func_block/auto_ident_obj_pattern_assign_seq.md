@@ -57,6 +57,7 @@ let f = function () {
   y = tmpNestedAssignObjPatternRhs.y;
   a = tmpNestedAssignObjPatternRhs;
   $(a, x, y);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

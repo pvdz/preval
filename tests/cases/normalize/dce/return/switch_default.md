@@ -75,6 +75,7 @@ let f = function () {
     const tmpBranchingA$1 = function () {
       debugger;
       $('wrong branch');
+      return undefined;
     };
     const tmpBranchingB$1 = function () {
       debugger;
@@ -104,6 +105,7 @@ let f = function () {
     };
     const tmpBranchingC$1 = function () {
       debugger;
+      return undefined;
     };
     if (tmpIfTest$1) {
       const tmpReturnArg$17 = tmpBranchingA$1();

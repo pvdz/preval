@@ -42,6 +42,7 @@ let f = function () {
   const tmpCompProp = $('toString');
   tmpCompObj[tmpCompProp];
   $(c);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

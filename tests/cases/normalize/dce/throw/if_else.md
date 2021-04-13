@@ -48,6 +48,7 @@ let f = function () {
   const tmpBranchingC = function () {
     debugger;
     $('fail');
+    return undefined;
   };
   if (tmpIfTest) {
     const tmpReturnArg = tmpBranchingA();

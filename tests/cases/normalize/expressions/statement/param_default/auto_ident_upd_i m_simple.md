@@ -45,8 +45,10 @@ let f = function ($$0) {
     const tmpPostUpdArgIdent = b;
     b = b - 1;
     p = tmpPostUpdArgIdent;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = 1;

@@ -36,6 +36,7 @@ $(f());
 let f = function () {
   debugger;
   $(1);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

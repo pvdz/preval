@@ -48,6 +48,7 @@ a = 4;
 let f = function () {
   debugger;
   a = 2;
+  return undefined;
 };
 let a = 1;
 $(a);
@@ -62,9 +63,19 @@ a = 4;
 ## Output
 
 `````js filename=intro
-$(1);
-$(3);
-$(2);
+const f = function () {
+  debugger;
+  a = 2;
+  return undefined;
+};
+let a = 1;
+$(a);
+f();
+a = 3;
+$(a);
+f();
+$(a);
+a = 4;
 `````
 
 ## Globals

@@ -84,6 +84,7 @@ let f = function () {
   };
   g();
   $('c');
+  return undefined;
 };
 let x = $(100);
 const tmpCallCallee = $;

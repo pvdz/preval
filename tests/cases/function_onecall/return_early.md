@@ -63,6 +63,7 @@ let f = function () {
     const tmpBranchingC = function () {
       debugger;
       $('b');
+      return undefined;
     };
     if (tmpIfTest) {
       const tmpReturnArg$5 = tmpBranchingA();
@@ -74,6 +75,7 @@ let f = function () {
   };
   g();
   $('c');
+  return undefined;
 };
 f();
 `````

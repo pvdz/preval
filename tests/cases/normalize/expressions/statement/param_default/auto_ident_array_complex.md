@@ -43,8 +43,10 @@ let f = function ($$0) {
     const tmpArrElement$1 = 2;
     const tmpArrElement$3 = $(3);
     p = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };

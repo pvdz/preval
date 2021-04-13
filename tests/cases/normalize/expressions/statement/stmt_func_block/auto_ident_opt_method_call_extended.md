@@ -66,6 +66,7 @@ let f = function () {
   const tmpBranchingC = function () {
     debugger;
     $(a);
+    return undefined;
   };
   if (tmpIfTest) {
     const tmpReturnArg$3 = tmpBranchingA();
@@ -90,16 +91,21 @@ const f = function () {
   const b = { c: tmpObjLitVal };
   const a = { a: 999, b: 1000 };
   const tmpIfTest = b != null;
+  const tmpBranchingC = function () {
+    debugger;
+    $(a);
+    return undefined;
+  };
   if (tmpIfTest) {
     const tmpChainElementObject$5 = b.c;
     const tmpChainElementObject$7 = tmpChainElementObject$5.d;
     const tmpChainElementObject$9 = tmpChainElementObject$7.e;
     tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
-    $(a);
-    return undefined;
+    const tmpReturnArg = tmpBranchingC();
+    return tmpReturnArg;
   } else {
-    $(a);
-    return undefined;
+    const tmpReturnArg$5 = tmpBranchingC();
+    return tmpReturnArg$5;
   }
 };
 const tmpCalleeParam = f();

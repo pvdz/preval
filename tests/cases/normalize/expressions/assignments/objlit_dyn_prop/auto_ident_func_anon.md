@@ -35,6 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
@@ -48,6 +49,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 const tmpCalleeParam = { [tmpSSA_a]: 10 };
 $(tmpCalleeParam);
@@ -61,12 +63,18 @@ None
 ## Result
 
 Should call `$` with:
- - 1: { 'function() {}': '10' }
+ - 1: { 'function() {return undefined;}': '10' }
  - 2: '<function>'
  - eval returned: undefined
 
 Pre normalization calls: Same
 
-Normalized calls: Same
+Normalized calls: BAD?!
+ - 1: { 'function() {\ndebugger;\nreturn undefined;\n}': '10' }
+ - 2: '<function>'
+ - eval returned: undefined
 
-Final output calls: Same
+Final output calls: BAD!!
+ - 1: { 'function() {\ndebugger;\nreturn undefined;\n}': '10' }
+ - 2: '<function>'
+ - eval returned: undefined

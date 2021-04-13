@@ -37,6 +37,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
+  return undefined;
 };
 a = f;
 while (true) {
@@ -50,6 +51,7 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
+  return undefined;
 };
 while (true) {
   $(1);

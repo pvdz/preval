@@ -62,6 +62,7 @@ let f = function () {
   const tmpCalleeParam = g();
   tmpCallCallee(tmpCalleeParam);
   $('c');
+  return undefined;
 };
 f();
 `````

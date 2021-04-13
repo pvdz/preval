@@ -40,6 +40,7 @@ let f = function () {
   let arg = { y: 1 };
   let a = delete arg.y;
   $(a, arg);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

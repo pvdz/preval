@@ -55,6 +55,7 @@ let f = function () {
   const tmpBranchingC = function () {
     debugger;
     $(a);
+    return undefined;
   };
   if (a) {
     const tmpReturnArg$3 = tmpBranchingA();
@@ -75,13 +76,19 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const f = function () {
   debugger;
   const tmpCalleeParam = $(0);
-  const a = $(tmpCalleeParam);
-  if (a) {
+  let a = $(tmpCalleeParam);
+  const tmpBranchingC = function () {
+    debugger;
     $(a);
     return undefined;
+  };
+  if (a) {
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
   } else {
-    $(2);
-    return undefined;
+    a = 2;
+    const tmpReturnArg$1 = tmpBranchingC();
+    return tmpReturnArg$1;
   }
 };
 const tmpCalleeParam$1 = f();

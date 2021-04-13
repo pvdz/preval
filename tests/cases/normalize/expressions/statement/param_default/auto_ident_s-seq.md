@@ -45,8 +45,10 @@ let f = function ($$0) {
     $(1);
     $(2);
     p = x;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let x = 1;

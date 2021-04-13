@@ -46,6 +46,7 @@ let f = function () {
   const tmpCalleeParam$1 = $(2);
   a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam$3 = f();

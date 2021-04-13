@@ -44,6 +44,7 @@ const tmpObjLitVal = function (...$$0) {
   const tmpCalleeParam = args;
   const tmpCalleeParam$1 = tmpthis.y;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  return undefined;
 };
 const a = { x: tmpObjLitVal, y: 100 };
 const tmpChainRootCall = $;
@@ -65,6 +66,7 @@ const tmpObjLitVal = function (...$$0) {
   debugger;
   const tmpCalleeParam$1 = tmpthis.y;
   $(args, tmpCalleeParam$1);
+  return undefined;
 };
 const a = { x: tmpObjLitVal, y: 100 };
 const tmpChainElementCall = $(a);

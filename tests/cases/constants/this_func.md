@@ -40,6 +40,7 @@ let f = function () {
   debugger;
   const x = tmpthis;
   $(x);
+  return undefined;
 };
 const tmpCallObj = f;
 const tmpCallVal = tmpCallObj.call;
@@ -54,6 +55,7 @@ const f = function () {
   const tmpthis = this;
   debugger;
   $(tmpthis);
+  return undefined;
 };
 const tmpCallVal = f.call;
 const tmpCalleeParam = { pass: 1 };

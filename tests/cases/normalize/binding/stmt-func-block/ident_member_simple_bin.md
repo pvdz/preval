@@ -51,7 +51,9 @@ let f = function () {
     b.x = varInitAssignLhsComputedRhs;
     let a = varInitAssignLhsComputedRhs;
     $(a, b, c);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCallCallee = $;
@@ -69,7 +71,9 @@ const f = function () {
     const b = { x: 2 };
     b.x = 7;
     $(7, b, 3);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCalleeParam = f();

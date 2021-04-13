@@ -72,6 +72,7 @@ const outer = function ($$0) {
   debugger;
   const r = [x];
   $(r);
+  return undefined;
 };
 let main = function () {
   debugger;
@@ -81,13 +82,17 @@ let main = function () {
     outer();
     if ($) {
       outer(x$1);
+      return undefined;
     } else {
+      return undefined;
     }
   };
   inner();
   if ($) {
     inner();
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCalleeParam = main();
@@ -102,20 +107,25 @@ const $clone$inner$0_Iundefined = function () {
   $clone$outer$0_Iundefined();
   if ($) {
     $clone$outer$0_Iundefined();
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const $clone$outer$0_Iundefined = function () {
   debugger;
   const r$1 = [undefined];
   $(r$1);
+  return undefined;
 };
 const main = function () {
   debugger;
   $clone$inner$0_Iundefined();
   if ($) {
     $clone$inner$0_Iundefined();
+    return undefined;
   } else {
+    return undefined;
   }
 };
 const tmpCalleeParam = main();

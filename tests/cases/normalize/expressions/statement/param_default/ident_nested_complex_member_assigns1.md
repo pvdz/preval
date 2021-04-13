@@ -45,6 +45,7 @@ let f = function () {
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
   tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+  return undefined;
 };
 let b = { x: 1 };
 let c = 3;

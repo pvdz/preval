@@ -60,7 +60,9 @@ const f = function () {
     debugger;
     if (t) {
       const g$1 = tmpthis;
+      return undefined;
     } else {
+      return undefined;
     }
   };
   if (t) {
@@ -77,10 +79,20 @@ f();
 ## Output
 
 `````js filename=intro
-const t = $(1);
+let t = $(1);
+const tmpBranchingC = function () {
+  debugger;
+  if (t) {
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
 if (t) {
-  $(2);
+  t = $(2);
+  tmpBranchingC();
 } else {
+  tmpBranchingC();
 }
 `````
 

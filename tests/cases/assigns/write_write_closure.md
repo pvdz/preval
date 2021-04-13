@@ -39,6 +39,7 @@ f();
 let f = function () {
   debugger;
   $(x, 'closure');
+  return undefined;
 };
 let x = $(1);
 x = $(2);

@@ -38,6 +38,7 @@ let f = function () {
   $(1);
   const tmpCompObj = b;
   tmpCompObj.length;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

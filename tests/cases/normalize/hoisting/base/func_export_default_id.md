@@ -32,6 +32,7 @@ export { f as default };
 `````js filename=intro
 let f = function () {
   debugger;
+  return undefined;
 };
 $(f);
 $(f);
@@ -43,6 +44,7 @@ export { f as default };
 `````js filename=intro
 const f = function () {
   debugger;
+  return undefined;
 };
 $(f);
 $(f);

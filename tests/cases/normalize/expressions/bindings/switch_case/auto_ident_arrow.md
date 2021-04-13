@@ -53,6 +53,7 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   a = function () {
     debugger;
+    return undefined;
   };
   $(a);
 } else {
@@ -64,6 +65,7 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 $(tmpSSA_a);
 `````

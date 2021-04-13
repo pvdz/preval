@@ -56,11 +56,13 @@ let f = function () {
     let b = $$1;
     debugger;
     x = typeof b;
+    return undefined;
   };
   const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2, 3];
   const arr = tmpCallCallee(tmpCalleeParam);
   g(10, 20, 30, ...arr, 40, 50, 60);
+  return undefined;
 };
 let x = 0;
 f();

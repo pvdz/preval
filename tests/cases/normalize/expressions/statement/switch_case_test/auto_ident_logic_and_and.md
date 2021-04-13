@@ -48,12 +48,12 @@ if (tmpBinLhs) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = $(1);
   tmpBinLhs = tmpCallCallee$1(tmpCalleeParam$1);
-} else {
-}
-if (tmpBinLhs) {
-  const tmpCallCallee$3 = $;
-  const tmpCalleeParam$3 = $(2);
-  tmpBinLhs = tmpCallCallee$3(tmpCalleeParam$3);
+  if (tmpBinLhs) {
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpBinLhs = tmpCallCallee$3(tmpCalleeParam$3);
+  } else {
+  }
 } else {
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -76,11 +76,11 @@ let tmpBinLhs = $(tmpCalleeParam);
 if (tmpBinLhs) {
   const tmpCalleeParam$1 = $(1);
   tmpBinLhs = $(tmpCalleeParam$1);
-} else {
-}
-if (tmpBinLhs) {
-  const tmpCalleeParam$3 = $(2);
-  tmpBinLhs = $(tmpCalleeParam$3);
+  if (tmpBinLhs) {
+    const tmpCalleeParam$3 = $(2);
+    tmpBinLhs = $(tmpCalleeParam$3);
+  } else {
+  }
 } else {
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;

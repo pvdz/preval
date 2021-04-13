@@ -59,6 +59,7 @@ let f = function () {
   x = $(10);
   $(x);
   $(g);
+  return undefined;
 };
 if ($) {
   const tmpCallCallee = $;

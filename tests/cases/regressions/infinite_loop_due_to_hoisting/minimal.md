@@ -32,6 +32,7 @@ f(a.x === 1 ? 2 : 3);
 `````js filename=intro
 let f = function () {
   debugger;
+  return undefined;
 };
 const a = { x: 1 };
 const tmpCallCallee = f;

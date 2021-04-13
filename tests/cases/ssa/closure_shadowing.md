@@ -50,12 +50,14 @@ let f = function () {
     debugger;
     x = 20;
     $(x);
+    return undefined;
   };
   x = 30;
   if ($) {
     const tmpReturnArg = g();
     return tmpReturnArg;
   } else {
+    return undefined;
   }
 };
 if ($) {
@@ -75,6 +77,7 @@ const f = function () {
     $(20);
     return undefined;
   } else {
+    return undefined;
   }
 };
 if ($) {

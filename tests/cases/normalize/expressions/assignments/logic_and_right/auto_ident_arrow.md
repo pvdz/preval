@@ -38,6 +38,7 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpNestedComplexRhs = function () {
     debugger;
+    return undefined;
   };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -55,6 +56,7 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpNestedComplexRhs = function () {
     debugger;
+    return undefined;
   };
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

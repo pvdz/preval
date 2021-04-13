@@ -44,6 +44,7 @@ let f = function () {
   const tmpCallObj = $(b);
   a = tmpCallObj.$(1);
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

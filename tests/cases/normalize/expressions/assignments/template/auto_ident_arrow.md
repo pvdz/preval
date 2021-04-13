@@ -41,6 +41,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
@@ -53,6 +54,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 const tmpCalleeParam = `before  ${tmpSSA_a}  after`;
 $(tmpCalleeParam);

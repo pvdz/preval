@@ -46,13 +46,17 @@ let f = function () {
     debugger;
     if ($) {
       $(x);
+      return undefined;
     } else {
+      return undefined;
     }
   };
   const x = $('x');
   if ($) {
     g();
+    return undefined;
   } else {
+    return undefined;
   }
 };
 if ($) {
@@ -70,13 +74,17 @@ const f = function () {
     debugger;
     if ($) {
       $(x);
+      return undefined;
     } else {
+      return undefined;
     }
   };
   const x = $('x');
   if ($) {
     g();
+    return undefined;
   } else {
+    return undefined;
   }
 };
 if ($) {

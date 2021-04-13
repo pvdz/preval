@@ -50,6 +50,7 @@ const f = function () {
     const tmpReturnArg = tmpthis.foo;
     return tmpReturnArg;
   } else {
+    return undefined;
   }
 };
 const tmpObjLitVal$1 = f;
@@ -70,6 +71,7 @@ const f = function () {
     const tmpReturnArg = tmpthis.foo;
     return tmpReturnArg;
   } else {
+    return undefined;
   }
 };
 const a = { foo: 10, f: f };

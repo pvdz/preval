@@ -34,6 +34,7 @@ $(t);
 `````js filename=intro
 let f = function () {
   debugger;
+  return undefined;
 };
 const t = f();
 $(t);

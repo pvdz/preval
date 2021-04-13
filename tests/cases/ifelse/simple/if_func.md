@@ -28,6 +28,7 @@ if (
 `````js filename=intro
 const tmpIfTest = function () {
   debugger;
+  return undefined;
 };
 if (tmpIfTest) {
   $();
@@ -40,6 +41,7 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = function () {
   debugger;
+  return undefined;
 };
 if (tmpIfTest) {
   $();

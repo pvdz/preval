@@ -30,6 +30,7 @@ export { f };
 `````js filename=intro
 let f = function () {
   debugger;
+  return undefined;
 };
 f();
 export { f };
@@ -40,6 +41,7 @@ export { f };
 `````js filename=intro
 const f = function () {
   debugger;
+  return undefined;
 };
 export { f };
 `````

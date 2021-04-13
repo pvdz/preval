@@ -35,6 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
@@ -50,6 +51,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 let tmpCalleeParam = tmpSSA_a;
 if (tmpCalleeParam) {

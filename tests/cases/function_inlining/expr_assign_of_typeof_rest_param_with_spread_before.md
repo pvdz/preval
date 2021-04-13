@@ -56,11 +56,13 @@ let f = function () {
     let b = $$1;
     debugger;
     x = typeof b;
+    return undefined;
   };
   const tmpCallCallee = $;
   const tmpCalleeParam = [1, 2];
   const arr = tmpCallCallee(tmpCalleeParam);
   g(...arr, 10, 20, 30, 40, 50, 60);
+  return undefined;
 };
 let x = 0;
 f();
@@ -75,6 +77,7 @@ const g = function ($$0, ...$$1) {
   const b = $$1;
   debugger;
   x = typeof b;
+  return undefined;
 };
 const tmpCalleeParam = [1, 2];
 const arr = $(tmpCalleeParam);

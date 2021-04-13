@@ -51,6 +51,7 @@ let g = function () {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = f();
   tmpCallCallee$1(tmpCalleeParam$1);
+  return undefined;
 };
 g();
 `````

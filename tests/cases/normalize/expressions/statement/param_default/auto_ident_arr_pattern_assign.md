@@ -51,8 +51,10 @@ let f = function ($$0) {
     x = arrPatternSplat[0];
     y = arrPatternSplat[1];
     p = tmpNestedAssignArrPatternRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let x = 1;

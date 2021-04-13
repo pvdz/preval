@@ -55,13 +55,16 @@ let f = function () {
       debugger;
       if ($) {
         x = 10;
+        return undefined;
       } else {
+        return undefined;
       }
     };
     x = 20;
     g();
     return x;
   } else {
+    return undefined;
   }
 };
 if ($) {
@@ -83,13 +86,16 @@ const f = function () {
       debugger;
       if ($) {
         x = 10;
+        return undefined;
       } else {
+        return undefined;
       }
     };
     x = 20;
     g();
     return x;
   } else {
+    return undefined;
   }
 };
 if ($) {

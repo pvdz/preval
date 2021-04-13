@@ -53,6 +53,7 @@ let f = function () {
   const tmpBranchingC = function () {
     debugger;
     $(a);
+    return undefined;
   };
   if (a) {
     const tmpReturnArg$3 = tmpBranchingA();
@@ -70,8 +71,25 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$(2);
-$(undefined);
+const f = function () {
+  debugger;
+  let a = 0;
+  const tmpBranchingC = function () {
+    debugger;
+    $(a);
+    return undefined;
+  };
+  if (a) {
+    const tmpReturnArg$3 = tmpBranchingC();
+    return tmpReturnArg$3;
+  } else {
+    a = 2;
+    const tmpReturnArg$1 = tmpBranchingC();
+    return tmpReturnArg$1;
+  }
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

@@ -44,8 +44,10 @@ let f = function ($$0) {
   if (tmpIfTest) {
     const tmpAssignRhsProp = b;
     p = tmpAssignRhsProp.c;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { c: 1 };

@@ -38,6 +38,7 @@ const g$1 = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = typeof g$1;
   tmpCallCallee(tmpCalleeParam);
+  return undefined;
 };
 const f = g$1;
 const tmpCallCallee$1 = $;
@@ -53,6 +54,7 @@ const g$1 = function () {
   debugger;
   const tmpCalleeParam = typeof g$1;
   $(tmpCalleeParam);
+  return undefined;
 };
 const tmpCalleeParam$3 = g$1();
 $(10, tmpCalleeParam$3);

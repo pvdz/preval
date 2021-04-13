@@ -83,6 +83,7 @@ let f = function () {
       debugger;
       $(x);
       $();
+      return undefined;
     };
     if (t) {
       const tmpReturnArg$3 = tmpBranchingA();
@@ -99,6 +100,7 @@ let f = function () {
   g(false);
   g(true);
   g(true);
+  return undefined;
 };
 if ($) {
   const tmpCallCallee = $;
@@ -116,6 +118,7 @@ if ($) {
     debugger;
     $(x);
     $();
+    return undefined;
   };
   let x = 0;
   const $clone$g$0_Ttrue = function () {

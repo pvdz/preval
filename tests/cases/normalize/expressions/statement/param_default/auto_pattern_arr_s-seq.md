@@ -42,8 +42,10 @@ let f = function ($$0) {
     $(10);
     $(20);
     p = [1, 2];
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let bindingPatternArrRoot = { a: 999, b: 1000 };

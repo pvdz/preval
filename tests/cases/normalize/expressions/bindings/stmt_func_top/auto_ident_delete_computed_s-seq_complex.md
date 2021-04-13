@@ -44,6 +44,7 @@ let f = function () {
   const tmpDeleteCompProp = $('y');
   let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
   $(a, arg);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

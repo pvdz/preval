@@ -92,11 +92,13 @@ let f = function () {
     debugger;
     $('a1');
     $('a2');
+    return undefined;
   };
   let b = function () {
     debugger;
     $('b1');
     $('b2');
+    return undefined;
   };
   $(3.1);
   $(3.2);
@@ -115,6 +117,7 @@ let f = function () {
   $(7.1);
   $(7.2);
   $(7.3);
+  return undefined;
 };
 $(1);
 $(2);

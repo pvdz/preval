@@ -48,6 +48,7 @@ let f = function () {
   const tmpUnaryArg = $(arg);
   typeof tmpUnaryArg;
   $(a, arg);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

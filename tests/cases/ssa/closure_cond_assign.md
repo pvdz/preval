@@ -85,6 +85,7 @@ let f = function () {
       debugger;
       $(x);
       $();
+      return undefined;
     };
     if (t) {
       const tmpReturnArg$3 = tmpBranchingA();
@@ -102,7 +103,9 @@ let f = function () {
     g(false);
     g(true);
     g(true);
+    return undefined;
   } else {
+    return undefined;
   }
 };
 if ($) {
@@ -122,6 +125,7 @@ const f = function () {
     debugger;
     $(x);
     $();
+    return undefined;
   };
   let x = 0;
   const $clone$g$0_Ttrue = function () {
@@ -138,7 +142,9 @@ const f = function () {
     tmpBranchingC();
     $clone$g$0_Ttrue();
     $clone$g$0_Ttrue();
+    return undefined;
   } else {
+    return undefined;
   }
 };
 if ($) {

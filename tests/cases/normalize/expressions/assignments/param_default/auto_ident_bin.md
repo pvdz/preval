@@ -44,8 +44,10 @@ let f = function ($$0) {
     const tmpNestedComplexRhs = tmpBinBothLhs + tmpBinBothRhs;
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };

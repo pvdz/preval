@@ -77,6 +77,7 @@ let f = function ($$0) {
   };
   const tmpBranchingC = function () {
     debugger;
+    return undefined;
   };
   if (tmpIfTest) {
     const tmpReturnArg$11 = tmpBranchingA();
@@ -99,14 +100,19 @@ $(a);
 const tmpBranchingA = function () {
   debugger;
   let tmpNestedComplexRhs$1 = 1;
+  const tmpBranchingC$1 = function () {
+    debugger;
+    a = tmpNestedComplexRhs$1;
+    return undefined;
+  };
   if (tmpNestedComplexRhs$1) {
     const tmpCalleeParam$3 = $(1);
     tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
-    a = tmpNestedComplexRhs$1;
-    return undefined;
+    const tmpReturnArg = tmpBranchingC$1();
+    return tmpReturnArg;
   } else {
-    a = tmpNestedComplexRhs$1;
-    return undefined;
+    const tmpReturnArg$7 = tmpBranchingC$1();
+    return tmpReturnArg$7;
   }
 };
 let a = { a: 999, b: 1000 };

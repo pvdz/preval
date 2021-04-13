@@ -370,6 +370,7 @@ const tmpCalleeParam = function ($$0, $$1) {
   };
   const tmpBranchingC = function () {
     debugger;
+    return undefined;
   };
   if (anode) {
     const tmpReturnArg$37 = tmpBranchingA();

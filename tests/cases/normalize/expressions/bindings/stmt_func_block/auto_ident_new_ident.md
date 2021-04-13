@@ -40,6 +40,7 @@ let f = function () {
   debugger;
   let a = new $(1);
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

@@ -44,8 +44,10 @@ let f = function ($$0) {
   if (tmpIfTest) {
     a = b;
     p = b;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let b = 1;

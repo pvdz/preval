@@ -49,6 +49,7 @@ const obj = {
     let _ = $$0;
     debugger;
     $(20);
+    return undefined;
   },
 };
 const tmpCallCallee = $;
@@ -70,6 +71,7 @@ const obj = {
   set x($$0) {
     debugger;
     $(20);
+    return undefined;
   },
 };
 const tmpCompObj = $(obj);

@@ -30,6 +30,7 @@ let f = function () {
 `````js filename=intro
 let f = function () {
   debugger;
+  return undefined;
 };
 `````
 

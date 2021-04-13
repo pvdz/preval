@@ -67,6 +67,7 @@ let f = function () {
         throw tmpThrowArg;
       }
       $('do not visit, do not eliminate');
+      return undefined;
     } else {
       tmpLoopRetCode = false;
       return undefined;
@@ -81,6 +82,7 @@ let f = function () {
       return tmpLoopRetValue$1;
     } else {
       $('after (not invoked)');
+      return undefined;
     }
   };
   while (tmpLoopRetCode) {
@@ -111,6 +113,7 @@ const tmpLoopBody = function () {
       throw tmpThrowArg;
     }
     $('do not visit, do not eliminate');
+    return undefined;
   } else {
     tmpLoopRetCode = false;
     return undefined;
@@ -124,6 +127,7 @@ const tmpLoopTail = function ($$0) {
     return undefined;
   } else {
     $('after (not invoked)');
+    return undefined;
   }
 };
 while (tmpLoopRetCode) {

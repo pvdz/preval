@@ -40,6 +40,7 @@ x = $(2);
 const f = function () {
   debugger;
   $(x, 'f');
+  return undefined;
 };
 f();
 `````

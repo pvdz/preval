@@ -36,6 +36,7 @@ const tmpCallCallee = $;
 const tmpBinBothLhs = a;
 const f = function () {
   debugger;
+  return undefined;
 };
 const tmpBinBothRhs = f;
 a = tmpBinBothLhs * tmpBinBothRhs;
@@ -50,6 +51,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
+  return undefined;
 };
 const tmpSSA_a = a * f;
 $(tmpSSA_a);

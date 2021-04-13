@@ -46,6 +46,7 @@ let f = function () {
   const tmpArrElement$3 = $(3);
   a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

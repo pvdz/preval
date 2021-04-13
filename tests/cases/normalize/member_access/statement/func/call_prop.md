@@ -32,6 +32,7 @@ let f = function () {
   debugger;
   const tmpCompObj = $('foo');
   tmpCompObj.length;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

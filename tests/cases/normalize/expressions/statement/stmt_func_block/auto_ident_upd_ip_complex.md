@@ -53,6 +53,7 @@ let f = function () {
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   $(a, b);
+  return undefined;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();

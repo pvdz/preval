@@ -32,6 +32,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpForInDeclRhs = function () {
   debugger;
+  return undefined;
 };
 let x = undefined;
 for (x in tmpForInDeclRhs) {
@@ -45,6 +46,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpForInDeclRhs = function () {
   debugger;
+  return undefined;
 };
 let x = undefined;
 for (x in tmpForInDeclRhs) {

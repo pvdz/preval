@@ -29,6 +29,7 @@ let f = function () {
 let f = function () {
   debugger;
   $();
+  return undefined;
 };
 `````
 

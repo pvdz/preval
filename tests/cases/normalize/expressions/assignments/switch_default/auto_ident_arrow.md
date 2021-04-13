@@ -47,6 +47,7 @@ const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   a = function () {
     debugger;
+    return undefined;
   };
 } else {
 }
@@ -59,6 +60,7 @@ $(a);
 $(1);
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 $(tmpSSA_a);
 `````

@@ -133,6 +133,7 @@ let f = function () {
   const tmpCalleeParam$3 = varInitAssignLhsComputedRhs;
   tmpCallCallee$3(tmpCalleeParam$3);
   $('-------- a.foo = 4');
+  return undefined;
 };
 f();
 `````

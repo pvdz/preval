@@ -36,6 +36,7 @@
 let a = { a: 999, b: 1000 };
 a = function () {
   debugger;
+  return undefined;
 };
 $(a);
 `````
@@ -45,6 +46,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 $(tmpSSA_a);
 `````

@@ -48,6 +48,7 @@ let f = function () {
     $(100);
     return undefined;
   } else {
+    return undefined;
   }
 };
 f();

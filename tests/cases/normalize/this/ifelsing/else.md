@@ -52,6 +52,7 @@ const f = function () {
   const tmpIfTest = $(0);
   if (tmpIfTest) {
     $('fail');
+    return undefined;
   } else {
     const tmpReturnArg = tmpthis.foo;
     return tmpReturnArg;
@@ -73,6 +74,7 @@ const f = function () {
   const tmpIfTest = $(0);
   if (tmpIfTest) {
     $('fail');
+    return undefined;
   } else {
     const tmpReturnArg = tmpthis.foo;
     return tmpReturnArg;

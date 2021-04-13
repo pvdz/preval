@@ -46,6 +46,7 @@ let f = function () {
   const tmpObjLitVal$3 = $(3);
   a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

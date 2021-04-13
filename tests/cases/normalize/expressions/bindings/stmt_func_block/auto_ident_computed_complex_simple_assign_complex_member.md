@@ -49,6 +49,7 @@ let f = function () {
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   let a = varInitAssignLhsComputedRhs;
   $(a, b);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

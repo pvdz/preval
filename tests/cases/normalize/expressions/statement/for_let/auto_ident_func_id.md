@@ -38,6 +38,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
+  return undefined;
 };
 let xyz = f;
 while (true) {
@@ -53,6 +54,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
+  return undefined;
 };
 while (true) {
   $(f);

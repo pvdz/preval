@@ -60,24 +60,31 @@ export { a };
 `````js filename=intro
 let a = function () {
   debugger;
+  return undefined;
 };
 let b = function () {
   debugger;
+  return undefined;
 };
 let d = function () {
   debugger;
+  return undefined;
 };
 let f = function () {
   debugger;
+  return undefined;
 };
 let h = function () {
   debugger;
+  return undefined;
 };
 let l = function () {
   debugger;
+  return undefined;
 };
 let x = function () {
   debugger;
+  return undefined;
 };
 a();
 $(a, b, d, f, h, x);
@@ -91,24 +98,31 @@ export { a };
 `````js filename=intro
 const a = function () {
   debugger;
+  return undefined;
 };
 const b = function () {
   debugger;
+  return undefined;
 };
 const d = function () {
   debugger;
+  return undefined;
 };
 const f = function () {
   debugger;
+  return undefined;
 };
 const h = function () {
   debugger;
+  return undefined;
 };
 const l = function () {
   debugger;
+  return undefined;
 };
 const x = function () {
   debugger;
+  return undefined;
 };
 $(a, b, d, f, h, x);
 export { l };

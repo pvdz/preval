@@ -33,6 +33,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const f = function () {
   debugger;
+  return undefined;
 };
 const tmpCalleeParam = f;
 tmpCallCallee(tmpCalleeParam);
@@ -45,6 +46,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
+  return undefined;
 };
 $(f);
 $(a);

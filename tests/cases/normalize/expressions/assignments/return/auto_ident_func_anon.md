@@ -40,6 +40,7 @@ let f = function () {
   debugger;
   a = function () {
     debugger;
+    return undefined;
   };
   let tmpReturnArg = a;
   return tmpReturnArg;
@@ -56,6 +57,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 $(tmpSSA_a);
 $(tmpSSA_a);

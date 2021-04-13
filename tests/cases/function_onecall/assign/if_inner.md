@@ -79,12 +79,15 @@ let f = function () {
     if (tmpIfTest) {
       $('a');
       g();
+      return undefined;
     } else {
       $('b');
+      return undefined;
     }
   };
   g();
   $('c');
+  return undefined;
 };
 let x = $(100);
 const tmpCallCallee = $;
@@ -108,8 +111,10 @@ const g = function () {
   if (tmpIfTest) {
     $('a');
     g();
+    return undefined;
   } else {
     $('b');
+    return undefined;
   }
 };
 g();

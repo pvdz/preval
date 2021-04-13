@@ -46,6 +46,7 @@ let f = function () {
     const tmpReturnArg = $(1, 'return');
     return tmpReturnArg;
   }
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -63,6 +64,7 @@ const f = function () {
     const tmpReturnArg = $(1, 'return');
     return tmpReturnArg;
   }
+  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

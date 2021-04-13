@@ -35,6 +35,7 @@ const b = {
 const b = {
   get foo() {
     debugger;
+    return undefined;
   },
 };
 `````

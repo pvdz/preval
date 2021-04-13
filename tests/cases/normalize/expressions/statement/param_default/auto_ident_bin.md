@@ -42,8 +42,10 @@ let f = function ($$0) {
     const tmpBinBothLhs = $(1);
     const tmpBinBothRhs = $(2);
     p = tmpBinBothLhs + tmpBinBothRhs;
+    return undefined;
   } else {
     p = tmpParamBare;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };

@@ -36,6 +36,7 @@ const x = $('pass');
 const f = function () {
   debugger;
   $(...x);
+  return undefined;
 };
 f();
 `````

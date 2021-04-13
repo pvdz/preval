@@ -89,6 +89,7 @@ let f = function () {
       return tmpLoopRetValue$1;
     } else {
       $('keep, do not eval');
+      return undefined;
     }
   };
   while (tmpLoopRetCode) {
@@ -138,6 +139,7 @@ const tmpLoopTail = function ($$0) {
     return undefined;
   } else {
     $('keep, do not eval');
+    return undefined;
   }
 };
 while (tmpLoopRetCode) {

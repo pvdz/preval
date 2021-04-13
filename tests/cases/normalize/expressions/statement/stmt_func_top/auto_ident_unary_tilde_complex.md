@@ -40,6 +40,7 @@ let f = function () {
   const tmpUnaryArg = $(100);
   ~tmpUnaryArg;
   $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

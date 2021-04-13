@@ -35,6 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 a = function () {
   debugger;
+  return undefined;
 };
 let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
@@ -47,6 +48,7 @@ $(a);
 `````js filename=intro
 const tmpSSA_a = function () {
   debugger;
+  return undefined;
 };
 const tmpCalleeParam = { ...tmpSSA_a };
 $(tmpCalleeParam);

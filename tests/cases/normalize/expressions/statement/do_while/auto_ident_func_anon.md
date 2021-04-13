@@ -50,6 +50,7 @@ while (true) {
   } else {
     tmpIfTest = function () {
       debugger;
+      return undefined;
     };
   }
   if (tmpIfTest) {
@@ -73,6 +74,7 @@ while (true) {
   } else {
     tmpIfTest = function () {
       debugger;
+      return undefined;
     };
   }
   if (tmpIfTest) {

@@ -37,6 +37,7 @@ let f = function () {
   const obj = { a: tmpObjLitVal };
   const tmpCompObj = obj.a;
   tmpCompObj.b;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

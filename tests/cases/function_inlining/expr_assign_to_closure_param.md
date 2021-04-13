@@ -50,6 +50,7 @@ let f = function () {
     let x = $$0;
     debugger;
     a = x;
+    return undefined;
   };
   let a = 20;
   g(10);

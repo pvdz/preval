@@ -688,7 +688,7 @@ export function zero() {
 
 export function isPrimitive(node) {
   // A primitive is a literal boolean, number, string, or null, or an identifier NaN, Infinity, or undefined.
-  // It's different from a literal since, for example, `undefined` is not a Litearl node.
+  // It's different from a literal since, for example, `undefined` is not a Literal node.
 
   if (node.type === 'Literal') {
     return node.raw === 'null' || ['number', 'string', 'boolean'].includes(typeof node.value);

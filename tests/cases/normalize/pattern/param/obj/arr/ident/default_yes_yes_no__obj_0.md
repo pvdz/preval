@@ -111,16 +111,10 @@ const tmpIfTest = objPatternBeforeDefault === undefined;
 const tmpBranchingC = function () {
   debugger;
   arrPatternSplat = [...objPatternAfterDefault];
-  arrPatternBeforeDefault = arrPatternSplat[0];
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    return 'bad';
-  } else {
-    return 'bad';
-  }
+  arrPatternSplat[0];
+  return 'bad';
 };
 let arrPatternSplat = undefined;
-let arrPatternBeforeDefault = undefined;
 if (tmpIfTest) {
   const tmpCalleeParam$1 = ['fail2'];
   objPatternAfterDefault = $(tmpCalleeParam$1);

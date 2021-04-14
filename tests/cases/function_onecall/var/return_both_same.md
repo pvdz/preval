@@ -54,11 +54,7 @@ let f = function () {
   let g = function () {
     debugger;
     const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      return 'xyz';
-    } else {
-      return 'xyz';
-    }
+    return 'xyz';
   };
   const tmpCallCallee = $;
   const tmpCalleeParam = g();
@@ -73,17 +69,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const g = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    return 'xyz';
-  } else {
-    return 'xyz';
-  }
-};
-const tmpCalleeParam = g();
-$(tmpCalleeParam);
+$(1);
+$('xyz');
 $('c');
 $(undefined);
 `````

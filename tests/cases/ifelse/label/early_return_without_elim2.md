@@ -55,11 +55,7 @@ let f = function () {
   debugger;
   const g = function () {
     debugger;
-    if ($) {
-      return undefined;
-    } else {
-      return undefined;
-    }
+    return undefined;
   };
   $('inside');
   const t = g();

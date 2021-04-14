@@ -104,19 +104,10 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpLoopBody = function () {
-  debugger;
-  const tmpIfTest = 3 === s;
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 const $clone$f$0_Iundefined = function () {
   debugger;
   while (true) {
-    tmpLoopBody();
+    s;
   }
   return undefined;
 };

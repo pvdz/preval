@@ -79,20 +79,10 @@ f();
 ## Output
 
 `````js filename=intro
-let t = $(1);
-const tmpBranchingC = function () {
-  debugger;
-  if (t) {
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
+const t = $(1);
 if (t) {
-  t = $(2);
-  tmpBranchingC();
+  $(2);
 } else {
-  tmpBranchingC();
 }
 `````
 

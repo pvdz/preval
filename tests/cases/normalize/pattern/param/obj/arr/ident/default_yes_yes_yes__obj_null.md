@@ -135,13 +135,8 @@ const tmpCalleeParam$9 = { x: null, a: 11, b: 12 };
 const tmpBranchingC$1 = function () {
   debugger;
   arrPatternSplat = [...objPatternAfterDefault];
-  arrPatternBeforeDefault = arrPatternSplat[0];
-  const tmpIfTest$3 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$3) {
-    return 'bad';
-  } else {
-    return 'bad';
-  }
+  arrPatternSplat[0];
+  return 'bad';
 };
 let bindingPatternObjRoot = undefined;
 const tmpIfTest = tmpCalleeParam$9 === undefined;
@@ -163,7 +158,6 @@ const tmpBranchingC = function () {
 let objPatternBeforeDefault = undefined;
 let objPatternAfterDefault = undefined;
 let arrPatternSplat = undefined;
-let arrPatternBeforeDefault = undefined;
 if (tmpIfTest) {
   const tmpObjLitVal$1 = ['fail3'];
   const tmpCalleeParam$1 = { x: tmpObjLitVal$1 };

@@ -5353,6 +5353,95 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
+    if (
+      node.consequent.body.length === 1 &&
+      node.consequent.body[0].type === 'ReturnStatement' &&
+      node.alternate.body.length === 1 &&
+      node.alternate.body[0].type === 'ReturnStatement'
+    ) {
+      const ifBodyLast = node.consequent.body[0].argument;
+      const elseBodyLast = node.alternate.body[0].argument;
+
+      if (ifBodyLast.type === 'Identifier' && elseBodyLast.type === 'Identifier' && ifBodyLast.name === elseBodyLast.name) {
+        vlog('The body of both branches have one element and it is a return statement that returns the same identifier');
+        rule('When both branches of an `if` return the same ident, the if is redundant');
+        example('if (x) { return undefined; } else { return undefined; }', 'x; return undefined;');
+        before(node, parentNode);
+
+        // Note: keep the test condition around because it may trigger TDZ or unknown global errors
+
+        body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
+
+        after(body[i], parentNode);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      if (
+        ifBodyLast.type === 'Literal' &&
+        elseBodyLast.type === 'Literal' &&
+        ifBodyLast.value === elseBodyLast.value &&
+        // TODO: The primitive checks are probably not necessary in this case but then we would have to take more care in comparing
+        AST.isPrimitive(ifBodyLast) &&
+        AST.isPrimitive(elseBodyLast)
+      ) {
+        vlog('The body of both branches have one element and it is a return statement that returns the same literal');
+        rule('When both branches of an `if` return the same literal, the if is redundant');
+        example('if (x) { return 512; } else { return 512; }', 'x; return 512;');
+        before(node, parentNode);
+
+        // Note: keep the test condition around because it may trigger TDZ or unknown global errors
+
+        body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
+
+        after(body[i], parentNode);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
+      if (ifBodyLast.type === 'UnaryExpression' && elseBodyLast.type === 'UnaryExpression') {
+        const ifBodyNeg = ifBodyLast.argument;
+        const elseBodyNeg = elseBodyLast.argument;
+
+        if (ifBodyNeg.type === 'Identifier' && elseBodyNeg.type === 'Identifier' && ifBodyNeg.name === elseBodyLast.name) {
+          vlog('The body of both branches have one element and it is a return statement that returns the same identifier');
+          rule('When both branches of an `if` return the same ident, the if is redundant');
+          example('if (x) { return undefined; } else { return undefined; }', 'x; return undefined;');
+          before(node, parentNode);
+
+          // Note: keep the test condition around because it may trigger TDZ or unknown global errors
+
+          body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
+
+          after(body[i], parentNode);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        if (
+          ifBodyNeg.type === 'Literal' &&
+          elseBodyNeg.type === 'Literal' &&
+          ifBodyNeg.value === elseBodyNeg.value &&
+          // TODO: The primitive checks are probably not necessary in this case but then we would have to take more care in comparing
+          AST.isPrimitive(ifBodyNeg) &&
+          AST.isPrimitive(elseBodyNeg)
+        ) {
+          vlog('The body of both branches have one element and it is a return statement that returns the same literal');
+          rule('When both branches of an `if` return the same literal, the if is redundant');
+          example('if (x) { return 512; } else { return 512; }', 'x; return 512;');
+          before(node, parentNode);
+
+          // Note: keep the test condition around because it may trigger TDZ or unknown global errors
+
+          body.splice(i, 1, AST.expressionStatement(node.test), node.consequent.body[0]);
+
+          after(body[i], parentNode);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+      }
+    }
+
     // Must do this "on the way back up" because we need to first re-map `arguments` and `this`
     // Requiring the function as the "floor" allows us to build bottom up, at the expense of some useless re-traversals...
     // This normalization is currently not applied to generators or async functions. Not sure what the ramification is.

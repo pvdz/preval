@@ -258,15 +258,6 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpBranchingB$11 = function () {
-    debugger;
-    const tmpIfTest$35 = tmpSwitchCaseToStart <= 3;
-    if (tmpIfTest$35) {
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
   const tmpBranchingB$7 = function () {
     debugger;
     const tmpIfTest$27 = tmpSwitchCaseToStart <= 1;
@@ -278,7 +269,7 @@ const f = function () {
         const tmpReturnArg$37 = $(6);
         return tmpReturnArg$37;
       } else {
-        tmpBranchingB$11();
+        tmpSwitchCaseToStart <= 3;
         return undefined;
       }
     };

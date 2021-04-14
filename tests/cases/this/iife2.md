@@ -98,18 +98,8 @@ f();
 
 `````js filename=intro
 const tmpIfTest = $(1);
-const tmpBranchingA = function () {
-  debugger;
-  const tmpBinLhs$1 = typeof window;
-  const tmpIfTest$3 = tmpBinLhs$1 !== 'undefined';
-  if (tmpIfTest$3) {
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if (tmpIfTest) {
-  tmpBranchingA();
+  typeof window;
 } else {
 }
 `````

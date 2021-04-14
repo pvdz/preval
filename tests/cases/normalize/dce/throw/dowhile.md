@@ -130,20 +130,9 @@ const tmpLoopBody = function () {
     return tmpReturnArg$1;
   }
 };
-const tmpLoopTail = function ($$0) {
-  const tmpLoopRetCode$1 = $$0;
-  debugger;
-  const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
-  if (tmpIfTest$1) {
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 while (tmpLoopRetCode) {
   tmpLoopBody();
 }
-tmpLoopTail(tmpLoopRetCode);
 $(undefined);
 `````
 

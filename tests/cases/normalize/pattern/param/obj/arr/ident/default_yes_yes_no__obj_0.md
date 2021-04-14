@@ -112,7 +112,7 @@ const tmpBranchingC = function () {
   debugger;
   arrPatternSplat = [...objPatternAfterDefault];
   arrPatternSplat[0];
-  return 'bad';
+  return undefined;
 };
 let arrPatternSplat = undefined;
 if (tmpIfTest) {

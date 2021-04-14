@@ -147,9 +147,9 @@ const tmpBranchingC$3 = function () {
   debugger;
   if (objPatternCrashTest) {
     objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-    return 'bad';
+    return undefined;
   } else {
-    return 'bad';
+    return undefined;
   }
 };
 const tmpBranchingC$1 = function () {
@@ -157,11 +157,11 @@ const tmpBranchingC$1 = function () {
   objPatternCrashTest = arrPatternStep === undefined;
   if (objPatternCrashTest) {
     tmpBranchingC$3();
-    return 'bad';
+    return undefined;
   } else {
     objPatternCrashTest = arrPatternStep === null;
     tmpBranchingC$3();
-    return 'bad';
+    return undefined;
   }
 };
 let arrPatternStep = undefined;

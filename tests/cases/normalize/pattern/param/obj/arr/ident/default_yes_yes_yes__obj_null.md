@@ -136,7 +136,7 @@ const tmpBranchingC$1 = function () {
   debugger;
   arrPatternSplat = [...objPatternAfterDefault];
   arrPatternSplat[0];
-  return 'bad';
+  return undefined;
 };
 let bindingPatternObjRoot = undefined;
 const tmpIfTest = tmpCalleeParam$9 === undefined;
@@ -148,11 +148,11 @@ const tmpBranchingC = function () {
     const tmpCalleeParam$5 = ['fail2'];
     objPatternAfterDefault = $(tmpCalleeParam$5);
     tmpBranchingC$1();
-    return 'bad';
+    return undefined;
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
     tmpBranchingC$1();
-    return 'bad';
+    return undefined;
   }
 };
 let objPatternBeforeDefault = undefined;

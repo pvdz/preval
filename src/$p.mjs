@@ -35,6 +35,7 @@ export function $p() {
     // - earlyReturn // bool. Not for global. Does this function contain a return statement that is not its last statement?
     // - earlyThrow // bool. Not for global. Does this function contain a throw statement that is not its last statement?
     // - commonReturn // node | null | undefined. A fresh node (one!) that depicts the value being returned by all return points. This node should be simple so it's an ident or a literal. If no return has been seen yet, this value is undefined. If not all returns have the same value, this value will be null. Otherwise it'll be a fresh AST node (ident/lit).
+    // - returnNodes // Array<node>. All return nodes for this function
     // - throwsExplicitly // bool.
     // - hasBranch // bool. Does this function contain an `if`, `while`, or `for-x` statement?
     // - funcDepth // number. Debug. How many nested scopes does this node appear in

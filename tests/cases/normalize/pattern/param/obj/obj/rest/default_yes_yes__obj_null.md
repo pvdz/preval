@@ -115,7 +115,7 @@ const tmpBranchingC$1 = function () {
   const tmpCalleeParam$7 = objPatternAfterDefault;
   const tmpCalleeParam$9 = [];
   objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
-  return 'bad';
+  return undefined;
 };
 let bindingPatternObjRoot = undefined;
 const tmpIfTest = tmpCalleeParam$15 === undefined;
@@ -127,11 +127,11 @@ const tmpBranchingC = function () {
     const tmpCalleeParam$5 = { a: 'fail' };
     objPatternAfterDefault = $(tmpCalleeParam$5);
     tmpBranchingC$1();
-    return 'bad';
+    return undefined;
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
     tmpBranchingC$1();
-    return 'bad';
+    return undefined;
   }
 };
 let objPatternBeforeDefault = undefined;

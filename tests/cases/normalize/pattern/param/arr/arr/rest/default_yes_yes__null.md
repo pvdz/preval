@@ -105,7 +105,7 @@ const tmpBranchingC$1 = function () {
   debugger;
   arrPatternSplat$1 = [...arrPatternStep];
   arrPatternSplat$1.slice(0);
-  return 'bad';
+  return undefined;
 };
 let arrPatternStep = undefined;
 let arrPatternSplat$1 = undefined;

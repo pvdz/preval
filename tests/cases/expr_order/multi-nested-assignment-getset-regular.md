@@ -356,8 +356,8 @@ const tmp = function (...$$0) {
   const tmpCalleeParam = ['$:', a$1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a$1];
   const tmpCalleeParam$1 = { depth: null };
   $(tmpCalleeParam, tmpCalleeParam$1);
-  const tmpReturnArg = a$1[0];
-  return tmpReturnArg;
+  a$1[0];
+  return undefined;
 };
 obja = {
   get a() {

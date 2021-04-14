@@ -183,6 +183,9 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           'normalized code should not other cases, right?',
           parentNode,
         );
+
+        node.$p.returnNodes = [];
+
         funcStack.push(node);
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           thisStack.push(node);
@@ -549,6 +552,9 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
       case 'ReturnStatement:before': {
         const funcNode = funcStack[funcStack.length - 1];
+
+        funcNode.$p.returnNodes.push(node);
+
         discoverEarlyCompletion(node, funcNode, true);
 
         vgroup('[commonReturn]');

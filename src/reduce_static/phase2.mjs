@@ -10,6 +10,7 @@ import { funcScopePromo } from './phase2funcscopepromo.mjs';
 import { dedupeBranchedReturns } from './phase2deduperetbranch.mjs';
 import { ifReduction } from './phase2ifreduction.mjs';
 import { inlineCommonReturns } from './phase2commonreturn.mjs';
+import { dropUnusedReturns } from './phase2unusedreturns.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -64,6 +65,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const commoned = inlineCommonReturns(fdata);
   if (commoned) return commoned;
+
+  const dropped = dropUnusedReturns(fdata);
+  if (dropped) return dropped;
 
   const deduced = ifReduction(fdata);
   if (deduced) return deduced;

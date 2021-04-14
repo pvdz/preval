@@ -113,7 +113,7 @@ const tmpBranchingC$1 = function () {
   const tmpCalleeParam$7 = arrPatternStep;
   const tmpCalleeParam$9 = [];
   objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
-  return 'bad';
+  return undefined;
 };
 let arrPatternStep = undefined;
 const tmpSSA_arrPatternSplat = [...0];

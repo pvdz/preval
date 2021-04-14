@@ -106,7 +106,7 @@ tmpCallCallee$7(tmpCalleeParam$7);
 const tmpBranchingC$1 = function () {
   debugger;
   [...arrPatternStep];
-  return 'bad';
+  return undefined;
 };
 let arrPatternStep = undefined;
 const tmpSSA_arrPatternSplat = [...null];

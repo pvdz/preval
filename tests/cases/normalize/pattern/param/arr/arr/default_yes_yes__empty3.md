@@ -123,7 +123,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpBranchingC$1 = function () {
   debugger;
   [...arrPatternStep];
-  return 'ok';
+  return undefined;
 };
 let arrPatternStep = undefined;
 const tmpAssignRhsProp$1 = ['pass3'];

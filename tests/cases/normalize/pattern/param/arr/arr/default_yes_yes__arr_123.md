@@ -110,7 +110,7 @@ const tmpCalleeParam$9 = [1, 2, 3, 4, 5];
 const tmpBranchingC$1 = function () {
   debugger;
   [...arrPatternStep];
-  return 'ok';
+  return undefined;
 };
 let bindingPatternArrRoot = undefined;
 const tmpIfTest = tmpCalleeParam$9 === undefined;
@@ -123,11 +123,11 @@ const tmpBranchingC = function () {
     const tmpCalleeParam$5 = ['pass2'];
     arrPatternStep = $(tmpCalleeParam$5);
     tmpBranchingC$1();
-    return 'ok';
+    return undefined;
   } else {
     arrPatternStep = arrPatternBeforeDefault;
     tmpBranchingC$1();
-    return 'ok';
+    return undefined;
   }
 };
 let arrPatternSplat = undefined;

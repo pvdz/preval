@@ -52,8 +52,8 @@ f();
 const f = function ($$0, $$1, $$2) {
   const tmpArgumentsLen = arguments.length;
   debugger;
-  const tmpReturnArg = $(tmpArgumentsLen, undefined, undefined);
-  return tmpReturnArg;
+  $(tmpArgumentsLen, undefined, undefined);
+  return undefined;
 };
 f();
 `````

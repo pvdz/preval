@@ -80,7 +80,7 @@ const tmpIfTest = tmpCalleeParam$1 === undefined;
 const tmpBranchingC = function () {
   debugger;
   [...bindingPatternArrRoot];
-  return 'ok';
+  return undefined;
 };
 if (tmpIfTest) {
   bindingPatternArrRoot = $('fail');

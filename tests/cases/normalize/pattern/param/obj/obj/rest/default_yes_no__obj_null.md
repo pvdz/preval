@@ -91,7 +91,7 @@ const tmpBranchingC = function () {
   const tmpCalleeParam$3 = objPatternAfterDefault;
   const tmpCalleeParam$5 = [];
   objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
-  return 'bad';
+  return undefined;
 };
 if (tmpIfTest) {
   const tmpCalleeParam$1 = { a: 'fail' };

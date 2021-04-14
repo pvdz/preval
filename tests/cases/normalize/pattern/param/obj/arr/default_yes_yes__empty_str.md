@@ -105,7 +105,7 @@ tmpCallCallee$7(tmpCalleeParam$7);
 const tmpBranchingC$1 = function () {
   debugger;
   [...objPatternAfterDefault];
-  return 'ok';
+  return undefined;
 };
 let objPatternAfterDefault = undefined;
 const tmpSSA_objPatternBeforeDefault = ''.x;

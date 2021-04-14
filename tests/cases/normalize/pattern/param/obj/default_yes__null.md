@@ -117,9 +117,9 @@ const tmpBranchingC$1 = function () {
   debugger;
   if (objPatternCrashTest) {
     objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
-    return 'bad';
+    return undefined;
   } else {
-    return 'bad';
+    return undefined;
   }
 };
 let bindingPatternObjRoot = undefined;

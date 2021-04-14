@@ -102,9 +102,9 @@ const tmpBranchingC = function () {
   debugger;
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-    return 'ok';
+    return undefined;
   } else {
-    return 'ok';
+    return undefined;
   }
 };
 if (objPatternCrashTest) {

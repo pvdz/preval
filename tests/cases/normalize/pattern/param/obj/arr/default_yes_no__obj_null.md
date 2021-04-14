@@ -85,7 +85,7 @@ const tmpIfTest = objPatternBeforeDefault === undefined;
 const tmpBranchingC = function () {
   debugger;
   [...objPatternAfterDefault];
-  return 'bad';
+  return undefined;
 };
 if (tmpIfTest) {
   const tmpCalleeParam$1 = ['fail'];

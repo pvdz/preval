@@ -61,8 +61,8 @@ const f = function ($$0, $$1, $$2) {
   debugger;
   const tmpUnaryArg = !tmpArgumentsAny;
   const tmpCalleeParam = !tmpUnaryArg;
-  const tmpReturnArg = $(tmpCalleeParam, x, z);
-  return tmpReturnArg;
+  $(tmpCalleeParam, x, z);
+  return undefined;
 };
 f();
 `````

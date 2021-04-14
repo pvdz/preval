@@ -151,9 +151,9 @@ const tmpBranchingC$3 = function () {
   debugger;
   if (objPatternCrashTest) {
     objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-    return 'bad';
+    return undefined;
   } else {
-    return 'bad';
+    return undefined;
   }
 };
 const tmpBranchingC$1 = function () {
@@ -161,11 +161,11 @@ const tmpBranchingC$1 = function () {
   objPatternCrashTest = arrPatternStep === undefined;
   if (objPatternCrashTest) {
     tmpBranchingC$3();
-    return 'bad';
+    return undefined;
   } else {
     objPatternCrashTest = arrPatternStep === null;
     tmpBranchingC$3();
-    return 'bad';
+    return undefined;
   }
 };
 let bindingPatternArrRoot = undefined;
@@ -178,11 +178,11 @@ const tmpBranchingC = function () {
   if (tmpIfTest$1) {
     arrPatternStep = $('fail');
     tmpBranchingC$1();
-    return 'bad';
+    return undefined;
   } else {
     arrPatternStep = arrPatternBeforeDefault;
     tmpBranchingC$1();
-    return 'bad';
+    return undefined;
   }
 };
 let arrPatternSplat = undefined;

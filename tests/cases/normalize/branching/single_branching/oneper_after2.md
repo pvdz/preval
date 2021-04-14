@@ -105,8 +105,8 @@ const C = function () {
   debugger;
   const x$1 = $();
   if (x$1) {
-    const tmp$5 = $();
-    return tmp$5;
+    $();
+    return undefined;
   } else {
     return undefined;
   }

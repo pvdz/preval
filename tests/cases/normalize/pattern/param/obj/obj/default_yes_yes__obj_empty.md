@@ -152,9 +152,9 @@ const tmpBranchingC$3 = function () {
   debugger;
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-    return 'ok';
+    return undefined;
   } else {
-    return 'ok';
+    return undefined;
   }
 };
 const tmpBranchingC$1 = function () {
@@ -162,11 +162,11 @@ const tmpBranchingC$1 = function () {
   objPatternCrashTest = objPatternAfterDefault === undefined;
   if (objPatternCrashTest) {
     tmpBranchingC$3();
-    return 'ok';
+    return undefined;
   } else {
     objPatternCrashTest = objPatternAfterDefault === null;
     tmpBranchingC$3();
-    return 'ok';
+    return undefined;
   }
 };
 let bindingPatternObjRoot = undefined;
@@ -179,11 +179,11 @@ const tmpBranchingC = function () {
     const tmpCalleeParam$5 = { x: 'pass' };
     objPatternAfterDefault = $(tmpCalleeParam$5);
     tmpBranchingC$1();
-    return 'ok';
+    return undefined;
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
     tmpBranchingC$1();
-    return 'ok';
+    return undefined;
   }
 };
 let objPatternBeforeDefault = undefined;

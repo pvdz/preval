@@ -109,8 +109,8 @@ const B = function () {
   $();
   const x$1 = $();
   if (x$1) {
-    const tmpReturnArg = $();
-    return tmpReturnArg;
+    $();
+    return undefined;
   } else {
     return undefined;
   }

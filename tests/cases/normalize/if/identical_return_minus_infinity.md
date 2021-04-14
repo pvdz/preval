@@ -78,18 +78,9 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    return -Infinity;
-  } else {
-    return -Infinity;
-  }
-};
 const g = function () {
   debugger;
   if ($) {
-    f();
     const tmpReturnArg = -Infinity;
     return tmpReturnArg;
   } else {

@@ -134,9 +134,9 @@ const tmpBranchingC$1 = function () {
   const tmpIfTest$3 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$3) {
     $('pass');
-    return 'bad';
+    return undefined;
   } else {
-    return 'bad';
+    return undefined;
   }
 };
 let arrPatternStep = undefined;

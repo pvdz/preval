@@ -113,9 +113,9 @@ const tmpBranchingC = function () {
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     $('fail');
-    return 'bad';
+    return undefined;
   } else {
-    return 'bad';
+    return undefined;
   }
 };
 let arrPatternSplat$1 = undefined;

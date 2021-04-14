@@ -95,7 +95,7 @@ const tmpIfTest = $(1);
 const tmpBranchingC = function () {
   debugger;
   $(100);
-  return 100;
+  return undefined;
 };
 if (tmpIfTest) {
   $(100);

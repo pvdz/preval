@@ -111,7 +111,7 @@ const tmpCalleeParam$9 = { x: tmpObjLitVal$3, a: 11, b: 12 };
 const tmpBranchingC$1 = function () {
   debugger;
   [...objPatternAfterDefault];
-  return 'ok';
+  return undefined;
 };
 let bindingPatternObjRoot = undefined;
 const tmpIfTest = tmpCalleeParam$9 === undefined;
@@ -123,11 +123,11 @@ const tmpBranchingC = function () {
     const tmpCalleeParam$5 = ['fail'];
     objPatternAfterDefault = $(tmpCalleeParam$5);
     tmpBranchingC$1();
-    return 'ok';
+    return undefined;
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
     tmpBranchingC$1();
-    return 'ok';
+    return undefined;
   }
 };
 let objPatternBeforeDefault = undefined;

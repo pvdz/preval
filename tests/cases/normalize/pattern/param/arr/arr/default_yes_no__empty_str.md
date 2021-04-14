@@ -83,7 +83,7 @@ const tmpIfTest = arrPatternBeforeDefault === undefined;
 const tmpBranchingC = function () {
   debugger;
   [...arrPatternStep];
-  return 'ok';
+  return undefined;
 };
 if (tmpIfTest) {
   const tmpCalleeParam$1 = ['pass2'];

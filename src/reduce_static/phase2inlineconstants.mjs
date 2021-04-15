@@ -210,6 +210,8 @@ function attemptConstantInlining(meta, fdata) {
 
     let first = true; // Defer printing the rule until the first actual replacement. It may do nothing.
 
+    const wip = +write.node.$p.pid;
+
     // With the new
     const reads = meta.reads;
     let inlined = false;
@@ -218,9 +220,15 @@ function attemptConstantInlining(meta, fdata) {
       const oldRead = reads[i];
       const { parentNode, parentProp, parentIndex, grandNode, grandProp, grandIndex } = oldRead;
       const blockNode = oldRead.blockBody[oldRead.blockIndex];
+
       if (blockNode.type === 'ExportNamedDeclaration') {
         vlog('Skipping export ident');
+      } else if (+oldRead.node.$p.pid < wip && oldRead.scope === write.scope) {
+        // We have eliminated the only case that breaks this (`default` case in a switch that is not the last case)
+        // So as long as the read is in the same scope of the decl, any read that occurs before the decl is a TDZ.
+        vlog('This read occurred before the var decl and is in the same scope. This must lead to a runtime TDZ if invoked so do not inline it.');
       } else {
+
         if (first) {
           rule('Declaring a constant with a constant value should eliminate the binding');
           example('const x = NaN; f(x);', 'f(NaN);', () => assigneeMeta.isBuiltin);

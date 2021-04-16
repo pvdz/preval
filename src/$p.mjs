@@ -10,7 +10,7 @@ export function $p() {
   let pid = String(++uid);
 
   return {
-    pid, // Incremental unique id (may have gaps between consecutive nodes but will be unique)
+    pid, // Incremental unique non-zero id (may have gaps between consecutive nodes but will be unique)
 
     // Add properties here in a comment but not actually (you would do this for perf) because it makes debugging more noisy
 

@@ -48,12 +48,13 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
+let tmpAnonDefaultExport = undefined;
 const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_a = arrPatternSplat$1[0];
-const tmpSSA_tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
-export { tmpSSA_tmpAnonDefaultExport as default };
+tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { tmpAnonDefaultExport as default };
 $(tmpSSA_a);
 `````
 

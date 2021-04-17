@@ -80,19 +80,15 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpReturnArg = undefined;
   const tmpChainElementCall = $($);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
     const tmpCallVal$1 = tmpChainElementCall.call;
     const tmpCalleeParam$5 = $(1);
     const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementCall, $, tmpCalleeParam$5);
-    tmpReturnArg = tmpChainElementCall$3;
-    const tmpReturnArg$1 = tmpReturnArg;
-    return tmpReturnArg$1;
+    return tmpChainElementCall$3;
   } else {
-    const tmpReturnArg$3 = tmpReturnArg;
-    return tmpReturnArg$3;
+    return undefined;
   }
 };
 const a = { a: 999, b: 1000 };

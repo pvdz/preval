@@ -48,12 +48,13 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
+let tmpAnonDefaultExport = undefined;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
-const tmpSSA_tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
-export { tmpSSA_tmpAnonDefaultExport as default };
+tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+export { tmpAnonDefaultExport as default };
 $(a, tmpSSA_b);
 `````
 

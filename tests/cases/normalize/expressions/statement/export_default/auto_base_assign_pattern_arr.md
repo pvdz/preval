@@ -49,13 +49,14 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
+let tmpAnonDefaultExport = undefined;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_b = arrPatternSplat[0];
-const tmpSSA_tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
-export { tmpSSA_tmpAnonDefaultExport as default };
+tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { tmpAnonDefaultExport as default };
 $(a, tmpSSA_b);
 `````
 

@@ -73,11 +73,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpSSA_y = $();
+  const tmpSSA_y = $();
   const tmpIfTest = tmpSSA_y == null;
   if (tmpIfTest) {
-    tmpSSA_y = foo;
-    const tmpReturnArg = $(tmpSSA_y);
+    const tmpSSA_y$1 = foo;
+    const tmpReturnArg = $(tmpSSA_y$1);
     return tmpReturnArg;
   } else {
     const tmpReturnArg$7 = $(tmpSSA_y);

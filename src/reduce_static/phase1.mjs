@@ -27,7 +27,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   const funcStack = [];
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments.
   const blockStack = []; // Stack of nested blocks (functions, try/catch/finally, or statements)
-  const blockIds = []; // Stack of block pids. Negative if the parent was a loop of sorts.
+  const blockIds = []; // Stack of block pids. Negative if the parent was a loop of sorts. Functions insert a zero.
+  const ifIds = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Used by SSA.
   let readWriteCounter = 0;
 
   const globallyUniqueNamingRegistry = new Map();
@@ -85,7 +86,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
     switch (key) {
       case 'Program:before': {
         funcStack.push(node);
-        blockIds.push(node.$p.pid);
+        blockIds.push(+node.$p.pid);
+        ifIds.push(0);
         blockStack.push(node); // Do we assign node or node.body?
         node.$p.promoParent = null;
         break;
@@ -93,6 +95,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       case 'Program:after': {
         funcStack.pop();
         blockIds.pop();
+        ifIds.pop();
         blockStack.pop();
         break;
       }
@@ -104,12 +107,27 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         if (!['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
           blockIds.push(+node.$p.pid);
         }
+        if (parentNode.type === 'IfStatement') {
+          if (parentNode.consequent === node) {
+            ifIds.push(+parentNode.$p.pid);
+          } else if (parentNode.alternate === node) {
+            ifIds.push(-parentNode.$p.pid);
+          } else {
+            ASSERT(false);
+          }
+        }
         vlog('This block has depth', blockIds.length, 'and pid', node.$p.pid);
         break;
       }
       case 'BlockStatement:after': {
         blockStack.pop();
-        blockIds.pop();
+        if (!['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
+          blockIds.pop();
+        }
+        if (parentNode.type === 'IfStatement') {
+          ifIds.pop();
+        }
+        ASSERT(blockIds.length, 'meh?')
         break;
       }
 
@@ -155,17 +173,30 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
       case 'ForInStatement:before': {
         funcStack[funcStack.length - 1].$p.hasBranch = true;
-        blockIds.push(-node.$p.pid);
+        blockIds.push(-node.$p.pid); // Mark a loop
+        break;
+      }
+      case 'ForInStatement:after': {
+        blockIds.pop();
+        ASSERT(blockIds.length, 'meh2?')
         break;
       }
 
       case 'ForOfStatement:before': {
-        blockIds.push(-node.$p.pid);
+        blockIds.push(-node.$p.pid); // Mark a loop
         funcStack[funcStack.length - 1].$p.hasBranch = true;
+        break;
+      }
+      case 'ForOfStatement:after': {
+        blockIds.pop();
+        ASSERT(blockIds.length, 'meh2?')
         break;
       }
 
       case 'FunctionExpression:before': {
+        blockIds.push(0); // Inject a zero to mark function boundaries
+        ifIds.push(0);
+
         if (firstAfterParse) {
           vlog('Converting parameter nodes to special Param nodes');
           node.params.forEach((pnode, i) => {
@@ -194,6 +225,9 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       }
       case 'FunctionExpression:after': {
         funcStack.pop();
+        blockIds.pop(); // the zero
+        ifIds.pop(); // the zero
+        ASSERT(blockIds.length, 'meh3?')
 
         if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
           thisStack.pop();
@@ -284,6 +318,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           '- Parent: `' + parentNode.type + '.' + parentProp + '`',
           parentNode.type === 'MemberExpression' && node.computed ? 'computed' : 'regular',
         );
+
         if (kind === 'read' && name === 'arguments') {
           // Make a distinction between arguments.length, arguments[], and maybe the slice paradigm?
           // For now we only care whether the function might detect the call arg count. Without arguemnts, it cannot.
@@ -356,7 +391,15 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             const grandProp = path.props[path.props.length - 2];
             const grandIndex = path.indexes[path.indexes.length - 2];
 
-            const innerLoop = blockIds.filter((n) => n < 0).pop() ?? 0;
+            // Find the innermost loop that is in the same function.
+            // TODO: If I keep this as state then I wouldn't need to do these searches for every ident ;(
+            vlog('Current blockids:', blockIds);
+            const innerLoopIndex = blockIds.slice(0).reverse().findIndex( n => n < 0);
+            vlog('innerLoopIndex:', innerLoopIndex, '(from the right):', blockIds[blockIds.length - 1 - innerLoopIndex])
+            const innerFuncIndex = blockIds.slice(0).reverse().findIndex( n => n === 0);
+            vlog('innerFuncIndex:', innerFuncIndex, '(from the right):', blockIds[blockIds.length - 1 - innerFuncIndex])
+            const innerLoop = innerLoopIndex < 0 ? 0 : (innerFuncIndex >= 0 && innerLoopIndex > innerFuncIndex) ? 0 : blockIds[blockIds.length - 1 - innerLoopIndex];
+            vlog('innerLoop:', innerLoop);
 
             const blockBody = blockNode.body;
             meta.reads.push(
@@ -374,6 +417,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 rwCounter: ++readWriteCounter,
                 scope: currentScope.$p.pid,
                 blockChain: blockIds.join(','),
+                ifChain: ifIds.slice(0),
                 innerLoop,
               }),
             );
@@ -399,6 +443,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
                   blockChain: blockIds.join(','),
+                  ifChain: ifIds.slice(0),
                   innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
                 }),
               );
@@ -423,6 +468,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
                   blockChain: blockIds.join(','),
+                  ifChain: ifIds.slice(0),
                   innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
                 }),
               );
@@ -447,6 +493,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   scope: currentScope.$p.pid,
                   innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
                   blockChain: blockIds.join(','),
+                  ifChain: ifIds.slice(0),
                 }),
               );
             }
@@ -677,8 +724,12 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       }
 
       case 'WhileStatement:before': {
-        blockIds.push(-node.$p.pid);
+        blockIds.push(-node.$p.pid); // Inject negative pid to mark loop boundary
         funcStack[funcStack.length - 1].$p.hasBranch = true;
+        break;
+      }
+      case 'WhileStatement:after': {
+        blockIds.pop();
         break;
       }
     }

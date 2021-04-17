@@ -506,11 +506,16 @@ export function createReadRef(obj) {
     rwCounter,
     scope,
     blockChain,
+    ifChain,
     innerLoop,
     ...rest
   } = obj;
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createReadRef in the func too!', rest);
   ASSERT(blockIndex >= 0);
+  ASSERT(typeof innerLoop === 'number');
+  ASSERT(blockChain);
+  ASSERT(ifChain);
+
   return {
     action: 'read',
     kind: 'read', // Can we make better use of this?
@@ -527,6 +532,7 @@ export function createReadRef(obj) {
     rwCounter,
     scope,
     blockChain,
+    ifChain,
     innerLoop,
   };
 }
@@ -543,11 +549,15 @@ export function createWriteRef(obj) {
     rwCounter,
     scope,
     blockChain,
+    ifChain,
     innerLoop,
     ...rest
   } = obj;
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
   ASSERT(blockIndex >= 0);
+  ASSERT(typeof innerLoop === 'number');
+  ASSERT(blockChain);
+  ASSERT(ifChain);
 
   return {
     action: 'write',
@@ -562,6 +572,7 @@ export function createWriteRef(obj) {
     rwCounter,
     scope,
     blockChain,
+    ifChain,
     innerLoop,
   };
 }

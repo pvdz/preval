@@ -115,21 +115,18 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpBranchingC$1 = function () {
   debugger;
-  if (objPatternCrashTest) {
-    objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
+  if (tmpSSA_objPatternCrashTest) {
+    tmpSSA_objPatternCrashTest = null.cannotDestructureThis;
     return undefined;
   } else {
     return undefined;
   }
 };
-let bindingPatternObjRoot = undefined;
-let objPatternCrashTest = undefined;
-bindingPatternObjRoot = null;
-objPatternCrashTest = bindingPatternObjRoot === undefined;
-if (objPatternCrashTest) {
+let tmpSSA_objPatternCrashTest = false;
+if (tmpSSA_objPatternCrashTest) {
   tmpBranchingC$1();
 } else {
-  objPatternCrashTest = bindingPatternObjRoot === null;
+  tmpSSA_objPatternCrashTest = true;
   tmpBranchingC$1();
 }
 $('bad');

@@ -45,11 +45,12 @@ $(a);
 `````js filename=intro
 const bindingPatternObjRoot = { a: 999, b: 1000 };
 bindingPatternObjRoot.a;
+let tmpAnonDefaultExport = undefined;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
-const tmpSSA_tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
-export { tmpSSA_tmpAnonDefaultExport as default };
+tmpAnonDefaultExport = tmpNestedAssignObjPatternRhs;
+export { tmpAnonDefaultExport as default };
 $(tmpSSA_a);
 `````
 

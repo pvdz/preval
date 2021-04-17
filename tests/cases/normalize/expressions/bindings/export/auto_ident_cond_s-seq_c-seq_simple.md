@@ -42,9 +42,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = $(60);
-export { tmpSSA_a as a };
-$(tmpSSA_a);
+let a = undefined;
+a = $(60);
+export { a };
+$(a);
 `````
 
 ## Globals

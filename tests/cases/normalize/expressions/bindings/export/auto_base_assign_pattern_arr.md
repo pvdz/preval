@@ -45,14 +45,15 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let a = undefined;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_b = arrPatternSplat[0];
-const tmpSSA_a = tmpNestedAssignArrPatternRhs;
-export { tmpSSA_a as a };
-$(tmpNestedAssignArrPatternRhs, tmpSSA_b);
+a = tmpNestedAssignArrPatternRhs;
+export { a };
+$(a, tmpSSA_b);
 `````
 
 ## Globals

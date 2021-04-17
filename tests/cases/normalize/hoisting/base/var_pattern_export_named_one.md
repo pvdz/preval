@@ -41,12 +41,13 @@ export { x };
 ## Output
 
 `````js filename=intro
-$(undefined);
+let x = undefined;
+$(x);
 const arrAssignPatternRhs = [10];
 const arrPatternSplat = [...arrAssignPatternRhs];
-const tmpSSA_x = arrPatternSplat[0];
-$(tmpSSA_x);
-export { tmpSSA_x as x };
+x = arrPatternSplat[0];
+$(x);
+export { x };
 `````
 
 ## Globals

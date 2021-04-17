@@ -6,6 +6,8 @@
 >
 > Can we inline hoisted vars
 
+Ignore the comment below. It was wrong. The $() could potentially change x so the SSA is unsafe and invalid.
+
 The outer var is only used in a single scope (so we can at least move it inside).
 
 The var is set before any branching, so we can make it lexical there.

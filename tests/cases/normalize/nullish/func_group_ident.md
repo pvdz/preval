@@ -72,14 +72,13 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   const a = { x: 1 };
-  let y = a;
-  const tmpIfTest = y == null;
+  const tmpIfTest = a == null;
   if (tmpIfTest) {
-    y = x;
-    const tmpReturnArg = $(y);
+    const tmpSSA_y = x;
+    const tmpReturnArg = $(tmpSSA_y);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = $(y);
+    const tmpReturnArg$7 = $(a);
     return tmpReturnArg$7;
   }
 };

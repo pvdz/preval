@@ -47,12 +47,13 @@ $(a, x, y, z);
 
 `````js filename=intro
 const z = [10, 20, 30];
+let a = undefined;
 const arrPatternSplat = [...z];
 const tmpSSA_x = arrPatternSplat[0];
 const tmpSSA_y = arrPatternSplat[1];
-const tmpSSA_a = z;
-export { tmpSSA_a as a };
-$(z, tmpSSA_x, tmpSSA_y, z);
+a = z;
+export { a };
+$(a, tmpSSA_x, tmpSSA_y, z);
 `````
 
 ## Globals

@@ -83,18 +83,14 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpReturnArg = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
     const tmpChainElementObject$5 = b.x;
     const tmpChainElementObject$7 = tmpChainElementObject$5.y;
     const tmpChainElementObject$9 = tmpChainElementObject$7.z;
-    tmpReturnArg = tmpChainElementObject$9;
-    const tmpReturnArg$1 = tmpReturnArg;
-    return tmpReturnArg$1;
+    return tmpChainElementObject$9;
   } else {
-    const tmpReturnArg$3 = tmpReturnArg;
-    return tmpReturnArg$3;
+    return undefined;
   }
 };
 const tmpObjLitVal$1 = { z: 100 };

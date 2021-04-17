@@ -77,15 +77,13 @@ $(a);
 const f = function () {
   debugger;
   const tmpCalleeParam = $(1);
-  let tmpReturnArg = $(tmpCalleeParam);
+  const tmpReturnArg = $(tmpCalleeParam);
   if (tmpReturnArg) {
     const tmpCalleeParam$3 = $(2);
-    tmpReturnArg = $(tmpCalleeParam$3);
-    const tmpReturnArg$1 = tmpReturnArg;
-    return tmpReturnArg$1;
+    const tmpSSA_tmpReturnArg = $(tmpCalleeParam$3);
+    return tmpSSA_tmpReturnArg;
   } else {
-    const tmpReturnArg$3 = tmpReturnArg;
-    return tmpReturnArg$3;
+    return tmpReturnArg;
   }
 };
 const a = { a: 999, b: 1000 };

@@ -39,10 +39,11 @@ export { x };
 ## Output
 
 `````js filename=intro
-$(undefined);
-const tmpSSA_x = 10;
-$(10);
-export { tmpSSA_x as x };
+let x = undefined;
+$(x);
+x = 10;
+$(x);
+export { x };
 `````
 
 ## Globals

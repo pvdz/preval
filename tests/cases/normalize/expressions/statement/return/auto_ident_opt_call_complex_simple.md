@@ -76,17 +76,13 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpReturnArg = undefined;
   const tmpChainElementCall = $($);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
     const tmpChainElementCall$3 = tmpChainElementCall.call($, 1);
-    tmpReturnArg = tmpChainElementCall$3;
-    const tmpReturnArg$1 = tmpReturnArg;
-    return tmpReturnArg$1;
+    return tmpChainElementCall$3;
   } else {
-    const tmpReturnArg$3 = tmpReturnArg;
-    return tmpReturnArg$3;
+    return undefined;
   }
 };
 const a = { a: 999, b: 1000 };

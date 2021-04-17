@@ -80,17 +80,13 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpReturnArg = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
     const tmpChainElementObject$1 = b.c;
     const tmpChainElementCall$1 = tmpChainElementObject$1.call(b, 1);
-    tmpReturnArg = tmpChainElementCall$1;
-    const tmpReturnArg$1 = tmpReturnArg;
-    return tmpReturnArg$1;
+    return tmpChainElementCall$1;
   } else {
-    const tmpReturnArg$3 = tmpReturnArg;
-    return tmpReturnArg$3;
+    return undefined;
   }
 };
 const b = { c: $ };

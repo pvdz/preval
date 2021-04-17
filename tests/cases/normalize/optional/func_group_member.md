@@ -70,16 +70,14 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  let y = undefined;
   const tmpChainRootProp = $();
   const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
     const tmpChainElementObject$1 = tmpChainRootProp.foo;
-    y = tmpChainElementObject$1;
-    const tmpReturnArg = $(y);
+    const tmpReturnArg = $(tmpChainElementObject$1);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = $(y);
+    const tmpReturnArg$7 = $(undefined);
     return tmpReturnArg$7;
   }
 };

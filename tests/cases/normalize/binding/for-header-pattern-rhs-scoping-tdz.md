@@ -52,12 +52,12 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 `````js filename=intro
 const tmpForInPatDeclRhs = [x$1];
 let tmpForInPatDeclLhs = undefined;
-let x$1 = undefined;
+const x$1 = undefined;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrAssignPatternRhs = tmpForInPatDeclLhs;
   const arrPatternSplat = [...arrAssignPatternRhs];
-  x$1 = arrPatternSplat[0];
-  $(x$1);
+  const tmpSSA_x$1 = arrPatternSplat[0];
+  $(tmpSSA_x$1);
 }
 `````
 

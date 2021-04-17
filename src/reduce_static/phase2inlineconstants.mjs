@@ -276,6 +276,7 @@ function attemptConstantInlining(meta, fdata) {
             rwCounter: oldRead.rwCounter,
             scope: oldRead.scope,
             blockChain: oldRead.blockChain,
+            ifChain: oldRead.ifChain,
             innerLoop: oldRead.innerLoop,
           }),
         );

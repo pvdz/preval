@@ -60,8 +60,9 @@ $(x);
 `````
 
 `````js filename=x
-const X = class {};
+let X = class {};
 export { X };
+X = 10;
 `````
 
 ## Globals

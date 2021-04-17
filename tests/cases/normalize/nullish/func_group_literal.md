@@ -68,28 +68,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  let y = 3;
-  const tmpIfTest = y == null;
-  if (tmpIfTest) {
-    y = foo;
-    const tmpReturnArg = $(y);
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$7 = $(y);
-    return tmpReturnArg$7;
-  }
-};
-const tmpCalleeParam = f();
+const tmpCalleeParam = $(3);
 $(tmpCalleeParam);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-foo
+None
 
 ## Result
 

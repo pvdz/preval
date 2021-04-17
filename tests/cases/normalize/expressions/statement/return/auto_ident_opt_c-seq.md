@@ -79,17 +79,13 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpReturnArg = undefined;
   const tmpChainRootProp = $(b);
   const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
     const tmpChainElementObject$1 = tmpChainRootProp.x;
-    tmpReturnArg = tmpChainElementObject$1;
-    const tmpReturnArg$1 = tmpReturnArg;
-    return tmpReturnArg$1;
+    return tmpChainElementObject$1;
   } else {
-    const tmpReturnArg$3 = tmpReturnArg;
-    return tmpReturnArg$3;
+    return undefined;
   }
 };
 const b = { x: 1 };

@@ -854,3 +854,216 @@ export function isProperIdent(node) {
     }
   }
 }
+
+export function mayHaveObservableSideEffect(node) {
+  // This function assumes normalized code (!)
+  // A node may have observable _side_ effects if the userland code may observe something beyond the
+  // explicit action of the node. For example, property access may trigger getters, addition may
+  // trigger coercion (valueOf/toString), that sort of thing. We assume builtins don't do this beyond
+  // the things in the spec (like array length) so primitives are generally safe.
+  // Most nodes are already in this state after noramlization but there are some cases where even the
+  // normalized state may trigger side effects. For example, calling a method must preserve context.
+
+  // Note: This function is paired with ssaCheckContainsIdentName
+
+  if (!isComplexNode(node)) {
+    return false;
+  }
+
+  // An assignment with simple rhs can not trigger anything else than the assign
+  if (node.type === 'AssignmentExpression') {
+    if (node.left.type !== 'Identifier') return true; // May trigger getter
+    return mayHaveObservableSideEffect(node.right);
+  }
+  // This one assumes normalized code, where the contents of classes, arrays, and objects are all simple nodes
+  if (node.type === 'ClassExpression') {
+    // Make sure idents are not coerced to key strings
+    return node.body.body.some((n) => n?.type === 'SpreadElement' || !n.computed || isPrimitive(n.key));
+  }
+  if (
+    node.type === 'ArrayExpression' // spread is observable... (we could check for it)
+  ) {
+    return node.elements.some((n) => n?.type === 'SpreadElement');
+  }
+  if (
+    node.type === 'ObjectExpression' // spread is observable... (we could check for it)
+  ) {
+    // Confirm that all keys are either not computed, or primitives. Makes sure idents are not coerced to key strings.
+    return node.properties.some((n) => n?.type === 'SpreadElement' || !n.computed || isPrimitive(n.key));
+  }
+  if (['FunctionExpression', 'ThisExpression', 'Param'].includes(node.type)) {
+    return false;
+  }
+  if (node.type === 'VariableDeclaration') return mayHaveObservableSideEffect(node.declarations[0].init);
+  if (node.type === 'VariableDeclarator') return mayHaveObservableSideEffect(node.init);
+  if (node.type === 'ExpressionStatement') return mayHaveObservableSideEffect(node.expression);
+  if (node.type === 'TemplateLiteral') {
+    // Note: A template like `a{b}c` may still trigger a string coercion on b so only allow primitives here
+    return node.expressions.some((node) => !isPrimitive(node));
+  }
+  if (node.type === 'UnaryExpression') {
+    if (node.operator === 'typeof') {
+      return isComplexNode(node.argument);
+    }
+    if (node.operator === 'delete') return false;
+    // For all others, only allow primitives because the ops might coerce
+    return !isPrimitive(node.argument);
+  }
+  if (node.type === 'BinaryExpression') {
+    if (['===', '!==', 'in', 'instanceof'].includes(node.operator)) {
+      return isComplexNode(node.left) || isComplexNode(node.right);
+    }
+    // In all other cases the op may coerce
+    return !isPrimitive(node.left) && !isPrimitive(node.right);
+  }
+
+  return true;
+}
+export function ssaCheckContainsIdentName(node, name) {
+  // Returns true on a selection of AST nodes and only if they are not an ident with given name
+  // or contain any such node. The node is assumed to be part of a normalized AST.
+
+  // Note: This function is paired with mayHaveObservableSideEffect
+  //       For any node where `mayHaveObservableSideEffect` can return `false`, this function
+  //       must be able to check such node for the occurrence of given name, recursively.
+
+  if (node.type === 'Identifier') {
+    return node.name === name;
+  }
+  if (!isComplexNode(node)) {
+    // Of the non-complex nodes, only ident needs to be checked (not literal, not unary-number)
+    return false;
+  }
+
+  // An assignment with simple rhs can not trigger anything else than the assign
+  if (node.type === 'AssignmentExpression') {
+    return ssaCheckContainsIdentName(node.left, name) || ssaCheckContainsIdentName(node.right, name)
+  }
+  // This one assumes normalized code, where the contents of classes, arrays, and objects are all simple nodes
+  if (node.type === 'ClassExpression') {
+    // Must check computed keys
+    return (node.superClass && ssaCheckContainsIdentName(node.superClass, name)) || node.body.body.some((n) => n.computed && ssaCheckContainsIdentName(n.key, name));
+  }
+  if (
+    node.type === 'ArrayExpression' // spread is observable... (we could check for it)
+  ) {
+    return node.elements.some((n) => n && ssaCheckContainsIdentName(n, name));
+  }
+  if (
+    node.type === 'ObjectExpression' // spread is observable... (we could check for it)
+  ) {
+    // Confirm that all keys are either not computed, or primitives. Makes sure idents are not coerced to key strings.
+    return node.properties.some((n) => n.computed && ssaCheckContainsIdentName(n.key, name));
+  }
+  if (['FunctionExpression', 'ThisExpression', 'Param'].includes(node.type)) {
+    return false;
+  }
+  if (node.type === 'VariableDeclaration') {
+    const dec = node.declarations[0];
+    return ssaCheckContainsIdentName(dec.id, name) || ssaCheckContainsIdentName(dec.init, name);
+  }
+  if (node.type === 'VariableDeclarator') {
+    return ssaCheckContainsIdentName(node.id, name) || ssaCheckContainsIdentName(node.init, name);
+  }
+  if (node.type === 'ExpressionStatement') {
+    return ssaCheckContainsIdentName(node.expression, name);
+  }
+  if (node.type === 'TemplateLiteral') {
+    // Note: A template like `a{b}c` may still trigger a string coercion on b so only allow primitives here
+    // In theory mayHaveObservableSideEffect would not return false when this returns true for this node...
+    return node.expressions.some((node) => ssaCheckContainsIdentName(node.argument, name));
+  }
+  if (node.type === 'UnaryExpression') {
+    return ssaCheckContainsIdentName(node.argument, name);
+  }
+  if (node.type === 'BinaryExpression') {
+    return ssaCheckContainsIdentName(node.left, name) || ssaCheckContainsIdentName(node.right, name)
+  }
+
+  // The rest are complex nodes that we still want to check through for the "first var assign" case
+
+  if (node.type === 'CallExpression') {
+    return ssaCheckContainsIdentName(node.callee, name) || node.arguments.some(n => ssaCheckContainsIdentName(n, name));
+  }
+  if (node.type === 'NewExpression') {
+    return ssaCheckContainsIdentName(node.callee, name) || node.arguments.some(n => ssaCheckContainsIdentName(n, name));
+  }
+  // tagged template (?), return, throw, label (?), if, while, for-x, block (?), try, import, export, member, method, restelement, super,
+  ASSERT(false, 'gottacatchemall', node);
+
+  return true;
+}
+export function ssaReplaceIdentName(node, oldName, newName) {
+  // Returns true on a selection of AST nodes and only if they are not an ident with given name
+  // or contain any such node. The node is assumed to be part of a normalized AST.
+
+  // Note: This function is paired with mayHaveObservableSideEffect
+  //       For any node where `mayHaveObservableSideEffect` can return `false`, this function
+  //       must be able to check such node for the occurrence of given name, recursively.
+
+  if (node.type === 'Identifier') {
+    if (node.name === oldName) {
+      node.name = newName;
+    }
+  }
+  if (!isComplexNode(node)) {
+    // Of the non-complex nodes, only ident needs to be checked (not literal, not unary-number)
+    return;
+  }
+
+  // An assignment with simple rhs can not trigger anything else than the assign
+  if (node.type === 'AssignmentExpression') {
+    return ssaReplaceIdentName(node.left, oldName, newName) || ssaReplaceIdentName(node.right, oldName, newName)
+  }
+  // This one assumes normalized code, where the contents of classes, arrays, and objects are all simple nodes
+  if (node.type === 'ClassExpression') {
+    // Must check computed keys
+    return (node.superClass && ssaReplaceIdentName(node.superClass, oldName, newName)) || node.body.body.some((n) => n.computed && ssaReplaceIdentName(n.key, oldName, newName));
+  }
+  if (
+    node.type === 'ArrayExpression' // spread is observable... (we could check for it)
+  ) {
+    return node.elements.some((n) => n && ssaReplaceIdentName(n, oldName, newName));
+  }
+  if (
+    node.type === 'ObjectExpression' // spread is observable... (we could check for it)
+  ) {
+    // Confirm that all keys are either not computed, or primitives. Makes sure idents are not coerced to key strings.
+    return node.properties.some((n) => n.computed && ssaReplaceIdentName(n.key, oldName, newName));
+  }
+  if (['FunctionExpression', 'ThisExpression', 'Param'].includes(node.type)) {
+    return;
+  }
+  if (node.type === 'VariableDeclaration') {
+    const dec = node.declarations[0];
+    return ssaReplaceIdentName(dec.id, oldName, newName) || ssaReplaceIdentName(dec.init, oldName, newName);
+  }
+  if (node.type === 'VariableDeclarator') {
+    return ssaReplaceIdentName(node.id, oldName, newName) || ssaReplaceIdentName(node.init, oldName, newName);
+  }
+  if (node.type === 'ExpressionStatement') {
+    return ssaReplaceIdentName(node.expression, oldName, newName);
+  }
+  if (node.type === 'TemplateLiteral') {
+    // Note: A template like `a{b}c` may still trigger a string coercion on b so only allow primitives here
+    // In theory mayHaveObservableSideEffect would not return false when this returns true for this node...
+    return node.expressions.some((node) => ssaReplaceIdentName(node.argument, oldName, newName));
+  }
+  if (node.type === 'UnaryExpression') {
+    return ssaReplaceIdentName(node.argument, oldName, newName);
+  }
+  if (node.type === 'BinaryExpression') {
+    return ssaReplaceIdentName(node.left, oldName, newName) || ssaReplaceIdentName(node.right, oldName, newName)
+  }
+
+  // The rest are complex nodes that we still want to check through for the "first var assign" case
+
+  if (node.type === 'CallExpression') {
+    return ssaReplaceIdentName(node.callee, oldName) || node.arguments.some(n => ssaReplaceIdentName(n, oldName, newName));
+  }
+  if (node.type === 'NewExpression') {
+    return ssaReplaceIdentName(node.callee, oldName) || node.arguments.some(n => ssaReplaceIdentName(n, oldName, newName));
+  }
+  // tagged template (?), return, throw, label (?), if, while, for-x, block (?), try, import, export, member, method, restelement, super,
+  ASSERT(false, 'gottacatchemall', node);
+}

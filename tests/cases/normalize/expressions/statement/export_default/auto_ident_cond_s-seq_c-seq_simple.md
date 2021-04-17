@@ -46,8 +46,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSSA_tmpAnonDefaultExport = $(60);
-export { tmpSSA_tmpAnonDefaultExport as default };
+let tmpAnonDefaultExport = undefined;
+tmpAnonDefaultExport = $(60);
+export { tmpAnonDefaultExport as default };
 $(a);
 `````
 

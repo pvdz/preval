@@ -48,16 +48,18 @@ export { y };
 ## Output
 
 `````js filename=intro
-$(undefined, undefined);
+let x = undefined;
+let y = undefined;
+$(x, y);
 const arrAssignPatternRhs = [10];
 const arrPatternSplat = [...arrAssignPatternRhs];
-const tmpSSA_x = arrPatternSplat[0];
+x = arrPatternSplat[0];
 const arrAssignPatternRhs$1 = [20];
 const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-const tmpSSA_y = arrPatternSplat$1[0];
-$(tmpSSA_x, tmpSSA_y);
-export { tmpSSA_x as x };
-export { tmpSSA_y as y };
+y = arrPatternSplat$1[0];
+$(x, y);
+export { x };
+export { y };
 `````
 
 ## Globals

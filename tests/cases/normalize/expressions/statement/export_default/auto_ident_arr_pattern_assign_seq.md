@@ -54,6 +54,7 @@ $(a, x, y);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
+let tmpAnonDefaultExport = undefined;
 $(1);
 $(2);
 const tmpArrElement = $(3);
@@ -62,8 +63,8 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_x = arrPatternSplat[0];
 const tmpSSA_y = arrPatternSplat[1];
-const tmpSSA_tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
-export { tmpSSA_tmpAnonDefaultExport as default };
+tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
+export { tmpAnonDefaultExport as default };
 $(a, tmpSSA_x, tmpSSA_y);
 `````
 

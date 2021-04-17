@@ -44,13 +44,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let a = undefined;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
-const tmpSSA_a = tmpNestedAssignObjPatternRhs;
-export { tmpSSA_a as a };
-$(tmpNestedAssignObjPatternRhs, tmpSSA_b);
+a = tmpNestedAssignObjPatternRhs;
+export { a };
+$(a, tmpSSA_b);
 `````
 
 ## Globals

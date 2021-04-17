@@ -75,15 +75,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  let x = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    x = 10;
-    const tmpReturnArg = x;
-    return tmpReturnArg;
+    return 10;
   } else {
-    const tmpReturnArg$1 = x;
-    return tmpReturnArg$1;
+    return undefined;
   }
 };
 const tmpCalleeParam = f();

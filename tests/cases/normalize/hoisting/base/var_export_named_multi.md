@@ -44,12 +44,14 @@ export { y };
 ## Output
 
 `````js filename=intro
-$(undefined, undefined);
-const tmpSSA_x = 10;
-const tmpSSA_y = 20;
-$(10, 20);
-export { tmpSSA_x as x };
-export { tmpSSA_y as y };
+let x = undefined;
+let y = undefined;
+$(x, y);
+x = 10;
+y = 20;
+$(x, y);
+export { x };
+export { y };
 `````
 
 ## Globals

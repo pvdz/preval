@@ -65,8 +65,12 @@ $(x);
 `````
 
 `````js filename=x
-const tmpSSA_f = 10;
-export { tmpSSA_f as default };
+let f = function () {
+  debugger;
+  return undefined;
+};
+f = 10;
+export { f as default };
 `````
 
 ## Globals

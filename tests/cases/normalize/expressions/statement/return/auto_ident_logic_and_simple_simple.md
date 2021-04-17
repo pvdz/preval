@@ -70,21 +70,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  let tmpReturnArg = 1;
-  if (tmpReturnArg) {
-    tmpReturnArg = 2;
-    const tmpReturnArg$1 = tmpReturnArg;
-    return tmpReturnArg$1;
-  } else {
-    const tmpReturnArg$3 = tmpReturnArg;
-    return tmpReturnArg$3;
-  }
-};
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(2);
 $(a);
 `````
 

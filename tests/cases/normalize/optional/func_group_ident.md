@@ -74,15 +74,13 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   const a = { x: 1 };
-  let y = undefined;
   const tmpIfTest = a != null;
   if (tmpIfTest) {
     const tmpChainElementObject$1 = a.x;
-    y = tmpChainElementObject$1;
-    const tmpReturnArg = $(y);
+    const tmpReturnArg = $(tmpChainElementObject$1);
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = $(y);
+    const tmpReturnArg$7 = $(undefined);
     return tmpReturnArg$7;
   }
 };

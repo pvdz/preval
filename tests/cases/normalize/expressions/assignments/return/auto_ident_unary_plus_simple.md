@@ -40,8 +40,7 @@ $(a, arg);
 let f = function () {
   debugger;
   a = +arg;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let arg = 1;
 let a = { a: 999, b: 1000 };

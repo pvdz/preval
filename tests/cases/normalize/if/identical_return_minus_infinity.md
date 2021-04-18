@@ -81,8 +81,7 @@ if ($) {
 const g = function () {
   debugger;
   if ($) {
-    const tmpReturnArg = -Infinity;
-    return tmpReturnArg;
+    return -Infinity;
   } else {
     return undefined;
   }

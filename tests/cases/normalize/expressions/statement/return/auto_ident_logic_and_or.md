@@ -104,13 +104,11 @@ const f = function () {
   const tmpBranchingC = function () {
     debugger;
     if (tmpReturnArg) {
-      const tmpReturnArg$5 = tmpReturnArg;
-      return tmpReturnArg$5;
+      return tmpReturnArg;
     } else {
       const tmpCalleeParam$7 = $(2);
       tmpReturnArg = $(tmpCalleeParam$7);
-      const tmpReturnArg$7 = tmpReturnArg;
-      return tmpReturnArg$7;
+      return tmpReturnArg;
     }
   };
   if (tmpReturnArg) {

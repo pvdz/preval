@@ -43,8 +43,7 @@ x = 20;
 f = function () {
   debugger;
   x = 10;
-  let tmpReturnArg = x;
-  return tmpReturnArg;
+  return x;
 };
 x = 30;
 const tmpCallCallee = $;

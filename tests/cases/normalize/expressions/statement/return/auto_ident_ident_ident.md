@@ -42,8 +42,7 @@ $(a, b, c);
 let f = function () {
   debugger;
   b = 2;
-  let tmpReturnArg = b;
-  return tmpReturnArg;
+  return b;
 };
 let b = 1;
 let c = 2;

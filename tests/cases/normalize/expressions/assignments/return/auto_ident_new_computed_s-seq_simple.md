@@ -42,8 +42,7 @@ let f = function () {
   const tmpCompObj = b;
   const tmpNewCallee = tmpCompObj.$;
   a = new tmpNewCallee(1);
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let b = { $: $ };
 let a = { a: 999, b: 1000 };

@@ -41,8 +41,7 @@ let f = function () {
   debugger;
   $(1);
   $(2);
-  const tmpReturnArg = x;
-  return tmpReturnArg;
+  return x;
 };
 let x = 1;
 let a = { a: 999, b: 1000 };

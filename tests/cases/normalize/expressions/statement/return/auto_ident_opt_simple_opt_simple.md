@@ -102,11 +102,6 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    const tmpReturnArg$5 = tmpReturnArg;
-    return tmpReturnArg$5;
-  };
   let tmpReturnArg = undefined;
   const tmpIfTest = b != null;
   const tmpBranchingA = function () {
@@ -116,19 +111,16 @@ const f = function () {
     if (tmpIfTest$3) {
       const tmpChainElementObject$7 = tmpChainElementObject$3.y;
       tmpReturnArg = tmpChainElementObject$7;
-      const tmpReturnArg$1 = tmpBranchingC$1();
-      return tmpReturnArg$1;
+      return tmpReturnArg;
     } else {
-      const tmpReturnArg$9 = tmpBranchingC$1();
-      return tmpReturnArg$9;
+      return tmpReturnArg;
     }
   };
   if (tmpIfTest) {
     const tmpReturnArg$13 = tmpBranchingA();
     return tmpReturnArg$13;
   } else {
-    const tmpReturnArg$11 = tmpReturnArg;
-    return tmpReturnArg$11;
+    return tmpReturnArg;
   }
 };
 const tmpObjLitVal = { y: 1 };

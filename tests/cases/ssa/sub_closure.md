@@ -102,8 +102,7 @@ const parseUnicodeQuadEscape = function ($$0, $$1) {
     const tmpBranchingC$2333 = function () {
       debugger;
       if (tmpIfTest$9053) {
-        const tmpReturnArg$12267 = firstPart;
-        return tmpReturnArg$12267;
+        return firstPart;
       } else {
         const head = firstPart;
         const tail = $(secondPart);

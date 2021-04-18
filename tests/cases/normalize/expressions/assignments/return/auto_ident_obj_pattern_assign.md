@@ -47,8 +47,7 @@ let f = function () {
   x = tmpNestedAssignObjPatternRhs.x;
   y = tmpNestedAssignObjPatternRhs.y;
   a = tmpNestedAssignObjPatternRhs;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let x = 1;
 let y = 2;

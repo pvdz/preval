@@ -45,8 +45,7 @@ let f = function () {
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.c = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };

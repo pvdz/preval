@@ -53,8 +53,7 @@ let f = function () {
   b.x = varInitAssignLhsComputedRhs$1;
   const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
   b.x = varInitAssignLhsComputedRhs;
-  const tmpReturnArg = varInitAssignLhsComputedRhs;
-  return tmpReturnArg;
+  return varInitAssignLhsComputedRhs;
 };
 let b = { x: 1 };
 let c = 3;

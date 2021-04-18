@@ -136,12 +136,10 @@ const f = function () {
     const tmpIfTest$3 = objPatternBeforeDefault === undefined;
     if (tmpIfTest$3) {
       x = $('pass');
-      const tmpReturnArg$7 = x;
-      return tmpReturnArg$7;
+      return x;
     } else {
       x = objPatternBeforeDefault;
-      const tmpReturnArg$9 = x;
-      return tmpReturnArg$9;
+      return x;
     }
   };
   let arrPatternStep = undefined;

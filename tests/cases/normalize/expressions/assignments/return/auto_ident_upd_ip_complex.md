@@ -47,8 +47,7 @@ let f = function () {
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };

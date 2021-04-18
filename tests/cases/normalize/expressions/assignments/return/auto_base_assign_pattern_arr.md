@@ -46,8 +46,7 @@ let f = function () {
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
   a = tmpNestedAssignArrPatternRhs;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let b = [];
 let a = { a: 999, b: 1000 };

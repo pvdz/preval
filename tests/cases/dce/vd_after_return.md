@@ -43,8 +43,7 @@ $(f(1));
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  let g = undefined;
-  return g;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f(1);

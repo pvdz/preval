@@ -42,8 +42,7 @@ let f = function () {
   const tmpAssignRhsCompObj = $(b);
   const tmpAssignRhsCompProp = $('c');
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };

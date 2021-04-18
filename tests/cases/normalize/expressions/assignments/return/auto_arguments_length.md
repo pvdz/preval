@@ -39,8 +39,7 @@ let f = function () {
   const tmpArgumentsAny = arguments;
   debugger;
   a = tmpArgumentsAny;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
@@ -56,8 +55,7 @@ const f = function () {
   const tmpArgumentsAny = arguments;
   debugger;
   a = tmpArgumentsAny;
-  const tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();

@@ -42,8 +42,7 @@ let f = function () {
   debugger;
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;

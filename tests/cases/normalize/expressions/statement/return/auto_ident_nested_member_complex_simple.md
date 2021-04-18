@@ -51,8 +51,7 @@ let f = function () {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
   const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpReturnArg = varInitAssignLhsComputedRhs;
-  return tmpReturnArg;
+  return varInitAssignLhsComputedRhs;
 };
 let b = { x: 1 };
 let c = { y: 2 };

@@ -99,11 +99,6 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    const tmpReturnArg$7 = tmpReturnArg;
-    return tmpReturnArg$7;
-  };
   const tmpCalleeParam = $(0);
   let tmpReturnArg = $(tmpCalleeParam);
   const tmpBranchingB = function () {
@@ -113,16 +108,13 @@ const f = function () {
     if (tmpReturnArg) {
       const tmpCalleeParam$9 = $(2);
       tmpReturnArg = $(tmpCalleeParam$9);
-      const tmpReturnArg$3 = tmpBranchingC$1();
-      return tmpReturnArg$3;
+      return tmpReturnArg;
     } else {
-      const tmpReturnArg$11 = tmpBranchingC$1();
-      return tmpReturnArg$11;
+      return tmpReturnArg;
     }
   };
   if (tmpReturnArg) {
-    const tmpReturnArg$1 = tmpReturnArg;
-    return tmpReturnArg$1;
+    return tmpReturnArg;
   } else {
     const tmpReturnArg$15 = tmpBranchingB();
     return tmpReturnArg$15;

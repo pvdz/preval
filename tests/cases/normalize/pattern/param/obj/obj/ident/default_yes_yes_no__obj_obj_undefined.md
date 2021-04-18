@@ -115,12 +115,10 @@ const f = function ($$0) {
     const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
     if (tmpIfTest$1) {
       y = $('pass');
-      const tmpReturnArg$3 = y;
-      return tmpReturnArg$3;
+      return y;
     } else {
       y = objPatternBeforeDefault$1;
-      const tmpReturnArg$5 = y;
-      return tmpReturnArg$5;
+      return y;
     }
   };
   let objPatternBeforeDefault$1 = undefined;

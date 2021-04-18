@@ -105,12 +105,10 @@ const f = function ($$0) {
       const tmpCalleeParam$5 = $(1);
       const tmpChainElementCall$5 = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
       a = tmpChainElementCall$5;
-      let tmpReturnArg = a;
-      return tmpReturnArg;
+      return a;
     } else {
       a = undefined;
-      let tmpReturnArg$4 = a;
-      return tmpReturnArg$4;
+      return a;
     }
   };
   if (tmpIfTest) {
@@ -138,12 +136,10 @@ const tmpBranchingA = function () {
     const tmpCalleeParam$5 = $(1);
     const tmpChainElementCall$5 = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
     a = tmpChainElementCall$5;
-    const tmpReturnArg = a;
-    return tmpReturnArg;
+    return a;
   } else {
     a = undefined;
-    const tmpReturnArg$4 = a;
-    return tmpReturnArg$4;
+    return a;
   }
 };
 let a = { a: 999, b: 1000 };

@@ -34,8 +34,7 @@ let f = function () {
   debugger;
   $(1);
   $(2);
-  const tmpReturnArg = null;
-  return tmpReturnArg;
+  return null;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

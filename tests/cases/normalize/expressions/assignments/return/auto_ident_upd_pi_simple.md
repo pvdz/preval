@@ -43,8 +43,7 @@ let f = function () {
   const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let b = 1;
 let a = { a: 999, b: 1000 };

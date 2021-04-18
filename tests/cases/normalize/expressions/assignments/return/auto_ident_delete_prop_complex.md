@@ -41,8 +41,7 @@ let f = function () {
   debugger;
   const tmpDeleteObj = $(arg);
   a = delete tmpDeleteObj.y;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };

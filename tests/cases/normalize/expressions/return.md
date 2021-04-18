@@ -33,8 +33,7 @@ let f = function ($$0, $$1) {
   let y = $$1;
   debugger;
   x = y;
-  let tmpReturnArg = x;
-  return tmpReturnArg;
+  return x;
 };
 `````
 

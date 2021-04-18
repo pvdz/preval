@@ -45,8 +45,7 @@ let f = function () {
   const tmpCompProp = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpReturnArg = varInitAssignLhsComputedRhs;
-  return tmpReturnArg;
+  return varInitAssignLhsComputedRhs;
 };
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };

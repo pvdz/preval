@@ -48,8 +48,7 @@ let f = function () {
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let x = 1;
 let y = 2;

@@ -41,8 +41,7 @@ let f = function () {
   debugger;
   const tmpAssignRhsProp = b;
   a = tmpAssignRhsProp.c;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };

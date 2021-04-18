@@ -45,8 +45,7 @@ let f = function () {
   const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
   a = tmpNestedAssignObjPatternRhs;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let b = {};
 let a = { a: 999, b: 1000 };

@@ -138,12 +138,10 @@ const f = function ($$0) {
     const tmpIfTest$3 = objPatternBeforeDefault$1 === undefined;
     if (tmpIfTest$3) {
       y = $('fail');
-      const tmpReturnArg$7 = y;
-      return tmpReturnArg$7;
+      return y;
     } else {
       y = objPatternBeforeDefault$1;
-      const tmpReturnArg$9 = y;
-      return tmpReturnArg$9;
+      return y;
     }
   };
   let bindingPatternObjRoot = undefined;

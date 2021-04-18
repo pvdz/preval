@@ -40,8 +40,7 @@ $(a, x);
 let f = function () {
   debugger;
   a = typeof x;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let x = 1;
 let a = { a: 999, b: 1000 };

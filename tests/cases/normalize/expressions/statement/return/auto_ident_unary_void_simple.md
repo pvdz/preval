@@ -39,8 +39,7 @@ $(a, arg);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpReturnArg = undefined;
-  return tmpReturnArg;
+  return undefined;
 };
 let arg = 1;
 let a = { a: 999, b: 1000 };

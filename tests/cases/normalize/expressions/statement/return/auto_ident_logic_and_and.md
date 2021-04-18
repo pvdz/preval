@@ -106,11 +106,9 @@ const f = function () {
     if (tmpReturnArg) {
       const tmpCalleeParam$7 = $(2);
       tmpReturnArg = $(tmpCalleeParam$7);
-      const tmpReturnArg$5 = tmpReturnArg;
-      return tmpReturnArg$5;
+      return tmpReturnArg;
     } else {
-      const tmpReturnArg$7 = tmpReturnArg;
-      return tmpReturnArg$7;
+      return tmpReturnArg;
     }
   };
   if (tmpReturnArg) {

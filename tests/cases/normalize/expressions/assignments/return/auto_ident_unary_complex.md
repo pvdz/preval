@@ -41,8 +41,7 @@ let f = function () {
   debugger;
   const tmpUnaryArg = $(x);
   a = typeof tmpUnaryArg;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let x = 1;
 let a = { a: 999, b: 1000 };

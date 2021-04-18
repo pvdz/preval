@@ -39,8 +39,7 @@ let f = function () {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
   a = tmpBinBothLhs + tmpBinBothRhs;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;

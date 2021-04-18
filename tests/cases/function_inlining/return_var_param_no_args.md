@@ -38,8 +38,7 @@ $(f());
 let f = function ($$0) {
   let a = $$0;
   debugger;
-  const x = a;
-  return x;
+  return a;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

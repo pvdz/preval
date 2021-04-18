@@ -127,11 +127,9 @@ const tmpBranchingA = function () {
   g$1();
   if ($) {
     x$1 = 20;
-    const tmpReturnArg$1 = x$1;
-    return tmpReturnArg$1;
+    return x$1;
   } else {
-    const tmpReturnArg$3 = x$1;
-    return tmpReturnArg$3;
+    return x$1;
   }
 };
 const f = function () {

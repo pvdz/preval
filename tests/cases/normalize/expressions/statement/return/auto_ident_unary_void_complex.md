@@ -37,8 +37,7 @@ $(a);
 let f = function () {
   debugger;
   $(100);
-  const tmpReturnArg = undefined;
-  return tmpReturnArg;
+  return undefined;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;

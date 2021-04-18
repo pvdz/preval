@@ -143,12 +143,10 @@ const f = function ($$0) {
     const tmpIfTest$3 = arrPatternBeforeDefault$1 === undefined;
     if (tmpIfTest$3) {
       x = $('pass');
-      const tmpReturnArg$7 = x;
-      return tmpReturnArg$7;
+      return x;
     } else {
       x = arrPatternBeforeDefault$1;
-      const tmpReturnArg$9 = x;
-      return tmpReturnArg$9;
+      return x;
     }
   };
   let bindingPatternArrRoot = undefined;

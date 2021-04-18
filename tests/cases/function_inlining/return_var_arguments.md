@@ -51,8 +51,7 @@ let f = function ($$0) {
   debugger;
   let g = function () {
     debugger;
-    const y = x;
-    return y;
+    return x;
   };
   const x = tmpArgumentsAny;
   const tmpReturnArg = g();

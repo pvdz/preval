@@ -6183,6 +6183,23 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
+    if (i && node.argument.type === 'Identifier' && body[i-1].type === 'VariableDeclaration' &&
+    body[i-1].declarations[0].id.name === node.argument.name && !AST.isComplexNode(body[i-1].declarations[0].init)) {
+      // Constant folding does something like this generically, but this particular trampoline also works with `let`
+      rule('Return var trampoline should eliminate the var');
+      example('const x = f; return x;', 'return f;');
+      before(body[i-1], parent);
+      before(node);
+
+      node.argument = body[i-1].declarations[0].init;
+      body[i-1] = AST.emptyStatement();
+
+      after(body[i-1]);
+      after(node, parent);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
     vlog(BLUE + 'Marking parent (' + parent.type + ') as returning early' + RESET);
     parent.$p.returnBreakContinueThrow = 'return';
     if (body.length > i + 1) {

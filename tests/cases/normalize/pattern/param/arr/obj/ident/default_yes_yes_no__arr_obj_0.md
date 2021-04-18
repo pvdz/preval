@@ -117,12 +117,10 @@ const f = function ($$0) {
     const tmpIfTest$1 = objPatternBeforeDefault === undefined;
     if (tmpIfTest$1) {
       x = $('fail');
-      const tmpReturnArg$3 = x;
-      return tmpReturnArg$3;
+      return x;
     } else {
       x = objPatternBeforeDefault;
-      const tmpReturnArg$5 = x;
-      return tmpReturnArg$5;
+      return x;
     }
   };
   let objPatternBeforeDefault = undefined;

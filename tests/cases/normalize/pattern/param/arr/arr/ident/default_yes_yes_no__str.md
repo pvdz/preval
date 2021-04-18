@@ -115,12 +115,10 @@ const f = function () {
     const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
     if (tmpIfTest$1) {
       x = $('fail');
-      const tmpReturnArg$3 = x;
-      return tmpReturnArg$3;
+      return x;
     } else {
       x = arrPatternBeforeDefault$1;
-      const tmpReturnArg$5 = x;
-      return tmpReturnArg$5;
+      return x;
     }
   };
   let arrPatternSplat$1 = undefined;

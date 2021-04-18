@@ -69,8 +69,7 @@ let f = function () {
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let b = { x: 1 };
 let c = 3;

@@ -40,8 +40,7 @@ let f = function () {
   const tmpArrElement$1 = 2;
   const tmpArrElement$3 = $(3);
   a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;

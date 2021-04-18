@@ -43,8 +43,7 @@ let f = function () {
   debugger;
   b = 2;
   a = 2;
-  let tmpReturnArg = a;
-  return tmpReturnArg;
+  return a;
 };
 let b = 1;
 let c = 2;

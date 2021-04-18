@@ -107,11 +107,6 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    const tmpReturnArg$5 = tmpReturnArg;
-    return tmpReturnArg$5;
-  };
   let tmpReturnArg = undefined;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall != null;
@@ -125,19 +120,16 @@ const f = function () {
       const tmpCalleeParam$9 = $(1);
       const tmpChainElementCall$5 = tmpCallVal$3.call(tmpChainElementObject$1, tmpChainElementCall, tmpCalleeParam$9);
       tmpReturnArg = tmpChainElementCall$5;
-      const tmpReturnArg$1 = tmpBranchingC$1();
-      return tmpReturnArg$1;
+      return tmpReturnArg;
     } else {
-      const tmpReturnArg$9 = tmpBranchingC$1();
-      return tmpReturnArg$9;
+      return tmpReturnArg;
     }
   };
   if (tmpIfTest) {
     const tmpReturnArg$13 = tmpBranchingA();
     return tmpReturnArg$13;
   } else {
-    const tmpReturnArg$11 = tmpReturnArg;
-    return tmpReturnArg$11;
+    return tmpReturnArg;
   }
 };
 const b = { $: $ };

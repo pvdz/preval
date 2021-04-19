@@ -569,7 +569,7 @@ export function phaseNormalize(fdata, fname) {
     groupEnd();
   }
 
-  function anyBlock(block, funcNode = null) {
+  function anyBlock(block, funcNode = null, isLabeled = false) {
     // program, body of a function, actual block statement, switch case body, try/catch/finally body
     group('anyBlock');
     const body = block.body;
@@ -577,7 +577,7 @@ export function phaseNormalize(fdata, fname) {
     let somethingChanged = false;
     for (let i = 0; i < body.length; ++i) {
       const cnode = body[i];
-      if (jumpTable(cnode, body, i, block, funcNode)) {
+      if (jumpTable(cnode, body, i, block, funcNode, isLabeled)) {
         changed = true;
         somethingChanged = true;
         --i;
@@ -589,15 +589,15 @@ export function phaseNormalize(fdata, fname) {
     return somethingChanged;
   }
 
-  function jumpTable(node, body, i, parent, funcNode) {
+  function jumpTable(node, body, i, parent, funcNode, isLabeled = false) {
     vgroup('jumpTable', node.type);
     ASSERT(node.type, 'nodes have types oye?', node);
-    const r = _jumpTable(node, body, i, parent, funcNode);
+    const r = _jumpTable(node, body, i, parent, funcNode, isLabeled);
     vgroupEnd();
     return r;
   }
 
-  function _jumpTable(node, body, i, parent, funcNode) {
+  function _jumpTable(node, body, i, parent, funcNode, isLabeled) {
     switch (node.type) {
       case 'BlockStatement':
         return transformBlock(node, body, i, parent, true);
@@ -618,9 +618,9 @@ export function phaseNormalize(fdata, fname) {
       case 'ExpressionStatement':
         return transformExpression('statement', node.expression, body, i, node);
       case 'ForInStatement':
-        return transformForxStatement(node, body, i, true);
+        return transformForxStatement(node, body, i, true, isLabeled);
       case 'ForOfStatement':
-        return transformForxStatement(node, body, i, false);
+        return transformForxStatement(node, body, i, false, isLabeled);
       case 'IfStatement':
         return transformIfStatement(node, body, i, parent);
       case 'ImportDeclaration':
@@ -638,7 +638,7 @@ export function phaseNormalize(fdata, fname) {
       case 'VariableDeclaration':
         return transformVariableDeclaration(node, body, i, parent, funcNode);
       case 'WhileStatement':
-        return transformWhileStatement(node, body, i, parent);
+        return transformWhileStatement(node, body, i, parent, isLabeled);
 
       case 'Program':
         return ASSERT(false); // This should not be visited since it is the first thing to be called and the node should not occur again.
@@ -760,7 +760,7 @@ export function phaseNormalize(fdata, fname) {
     return true;
   }
 
-  function transformBlock(node, body, i, parent, isNested) {
+  function transformBlock(node, body, i, parent, isNested, isLabeled) {
     // Note: isNested=false means this is a sub-statement (if () {}), otherwise it's a block inside a block/func/program node
     ASSERT(isNested ? body && i >= 0 : !body && i < 0, 'body and index are only given for nested blocks');
 
@@ -804,7 +804,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (anyBlock(node)) {
+    if (anyBlock(node, undefined, isLabeled)) {
       return true;
     }
 
@@ -4794,7 +4794,7 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
 
-  function transformForxStatement(node, body, i, forin) {
+  function transformForxStatement(node, body, i, forin, isLabeled) {
     // https://pvdz.ee/weblog/439
     // The rhs is evaluated first. Then the lhs. The rhs is scoped to the for-header first, if that starts with a a decl.
     // Pattern bindings complicate the transform because I want to retain the TDZ errors if the original code contains them.
@@ -5447,6 +5447,7 @@ export function phaseNormalize(fdata, fname) {
     // This normalization is currently not applied to generators or async functions. Not sure what the ramification is.
     vgroup('Start of single-branch-per-function algo');
     const funcNode = ifelseStack[ifelseStack.length - 1];
+
     if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
       if (funcNode.generator) {
         // Currently not seeing a solid way to support function abstraction inside a generator
@@ -5493,7 +5494,8 @@ export function phaseNormalize(fdata, fname) {
         let beforeTheIf = true;
         const declaredBindingsBefore = [];
         const declaredBindingsAfter = [];
-        const bodyOffset = findBodyOffsetExpensiveMaybe(parentBody); // parent may be a regular block!
+        const bodyOffsetMaybe = findBodyOffsetExpensiveMaybe(parentBody); // parent may be a regular block!
+        const bodyOffset = bodyOffsetMaybe < 0 ? 0 : bodyOffsetMaybe;
         for (let i = bodyOffset; i < parentBody.length; ++i) {
           const snode = parentBody[i];
           if (snode === node) {
@@ -5515,6 +5517,9 @@ export function phaseNormalize(fdata, fname) {
                   declaredBindingsBefore.push(name);
                 }
               } else {
+                // A func at the start of a func can still ref a binding declared later. Here we have to be careful
+                // not to break this situation when we move bindings into a tail function.
+                // `function f(){ return x; } if (x) y(); let x = 10; f();`
                 // Note: these nodes have not been visited by normalization yet so the var decls may not be normalized
                 // This search is slower but allows for patterns and multiple bindings per node etc.
                 findBoundNamesInUnnormalizedVarDeclaration(snode, declaredBindingsAfter);
@@ -5800,7 +5805,7 @@ export function phaseNormalize(fdata, fname) {
 
         assertNoDupeNodes(fakeWrapper, 'body');
 
-        const changed = transformBlock(fakeWrapper, undefined, -1, node, false);
+        const changed = transformBlock(fakeWrapper, undefined, -1, node, false, true);
 
         assertNoDupeNodes(fakeWrapper, 'body');
 
@@ -6183,18 +6188,23 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (i && node.argument.type === 'Identifier' && body[i-1].type === 'VariableDeclaration' &&
-    body[i-1].declarations[0].id.name === node.argument.name && !AST.isComplexNode(body[i-1].declarations[0].init)) {
+    if (
+      i &&
+      node.argument.type === 'Identifier' &&
+      body[i - 1].type === 'VariableDeclaration' &&
+      body[i - 1].declarations[0].id.name === node.argument.name &&
+      !AST.isComplexNode(body[i - 1].declarations[0].init)
+    ) {
       // Constant folding does something like this generically, but this particular trampoline also works with `let`
       rule('Return var trampoline should eliminate the var');
       example('const x = f; return x;', 'return f;');
-      before(body[i-1], parent);
+      before(body[i - 1], parent);
       before(node);
 
-      node.argument = body[i-1].declarations[0].init;
-      body[i-1] = AST.emptyStatement();
+      node.argument = body[i - 1].declarations[0].init;
+      body[i - 1] = AST.emptyStatement();
 
-      after(body[i-1]);
+      after(body[i - 1]);
       after(node, parent);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
@@ -6576,7 +6586,7 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
 
-  function transformWhileStatement(node, body, i, parentNode) {
+  function transformWhileStatement(node, body, i, parentNode, isLabeled) {
     if (node.test.type === 'UnaryExpression') {
       if (node.test.operator === '+' || node.test.operator === '-') {
         if (node.test.argument.type === 'Literal') {
@@ -6795,14 +6805,20 @@ export function phaseNormalize(fdata, fname) {
 
     // A normalized loop is a loop whose test is a simple node and whose body does not contain any other branching
 
-    vlog('Trying to normalize the while statement itself now');
-    if (
-      funcStack.length > 1 && // Ignore global space, for now
-      node.body.body.some((n) => {
+    vlog('Trying to normalize the while statement itself now', funcStack.length, isLabeled);
+
+    if (funcStack.length <= 1) {
+      vlog('Ignoring a while in global space, for now');
+    } else if (isLabeled) {
+      vlog('Ignore a labeled loop, for now');
+    } else if (
+      node.body.body.every((n) => {
         ASSERT(n.type !== 'BlockStatement', 'normalized code should not have nested blocks');
-        return ['IfStatement', 'WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(n.type);
+        return !['IfStatement', 'WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(n.type);
       })
     ) {
+      vlog('The `while` does not contain a branching statement, no need to abstract it');
+    } else {
       // The body of the while contains some branching. Let's go.
       ASSERT(
         node.test.type !== 'Literal' || node.test.value === true,

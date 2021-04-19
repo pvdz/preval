@@ -348,118 +348,126 @@ function _applySSA(fdata) {
         nextWriteIndex,
       );
 
-      if (last && seenDecl && block === last.blockBody) {
-        // If the ref is in a loop, only proceed if the var is in the same loop
-        if ((!ref.innerLoop || ref.innerLoop === declInnerLoop) && (isAssign || isSelfRefAssign)) {
-          const write2 = isAssign ? ref : rwOrder[nextWriteIndex];
-          ASSERT(write2);
-          const start = last.blockIndex;
-          const end = write2.blockIndex; // Regardless of self assign or regular assign
-          ASSERT(start < end, 'the refs should have been ordered', start, end);
+      if (!last) {
+        vlog('  - no last');
+      } else if (!seenDecl) {
+        vlog('  - have not seen decl yet');
+      } else if (block !== last.blockBody) {
+        vlog('  - not in same block');
+      } else if (ref.innerLoop && ref.innerLoop !== declInnerLoop) {
+        // If the ref is in a loop, only proceed if the var is in the same loop. And it wasn't.
+        vlog('  - inside loop and decl was not in it');
+      } else if (!isAssign && !isSelfRefAssign) {
+        vlog('  - neither assign nor self assign');
+      } else {
+        const write2 = isAssign ? ref : rwOrder[nextWriteIndex];
+        ASSERT(write2);
+        const start = last.blockIndex;
+        const end = write2.blockIndex; // Regardless of self assign or regular assign
+        ASSERT(start < end, 'the refs should have been ordered', start, end);
 
-          // The rhs contains a reference to the lhs iif isSelfRefAssign
-          let rhs = write2.parentNode.right;
+        // The rhs contains a reference to the lhs iif isSelfRefAssign
+        let rhs = write2.parentNode.right;
 
-          // Exception: If this case happened as the write immediately following the var decl and
-          // the var decl was the first ref, then and only then can we safely ignore side effects
-          // in the rhs of the second write. Because in that case it is not possible to reference
-          // the binding by name as a side effect (Note: in normalized code we eliminate hoisting).
-          const firstDeclAssignCase = i === 1 && last.action === 'write' && last.kind === 'var';
-          vlog('firstDeclAssignCase:', firstDeclAssignCase);
+        // Exception: If this case happened as the write immediately following the var decl and
+        // the var decl was the first ref, then and only then can we safely ignore side effects
+        // in the rhs of the second write. Because in that case it is not possible to reference
+        // the binding by name as a side effect (Note: in normalized code we eliminate hoisting).
+        const firstDeclAssignCase = i === 1 && last.action === 'write' && last.kind === 'var';
+        vlog('firstDeclAssignCase:', firstDeclAssignCase);
 
-          // Any closure may be activated as a side effect, including one that may attempt to read
-          // the value of the binding before changing it. So we can't SSA if this rhs has them.
-          let sideEffectFreeRhs = firstDeclAssignCase || !AST.mayHaveObservableSideEffect(rhs, name);
-          vlog('sideEffectFreeRhs:', sideEffectFreeRhs);
+        // Any closure may be activated as a side effect, including one that may attempt to read
+        // the value of the binding before changing it. So we can't SSA if this rhs has them.
+        let sideEffectFreeRhs = firstDeclAssignCase || !AST.mayHaveObservableSideEffect(rhs, name);
+        vlog('sideEffectFreeRhs:', sideEffectFreeRhs);
 
-          let sideEffectFree = sideEffectFreeRhs;
+        let sideEffectFree = sideEffectFreeRhs;
 
-          // For each statement/declaration between the statement containing the last and current
-          // write check whether the statement has observable side effects. We can't proceed if
-          // that's the case since there's a chance those break if we SSA it.
-          if (end - (start + 1) <= 0) {
-            vlog('There are no statements between the two writes');
-          } else if (firstDeclAssignCase) {
-            vlog('No need to check statements between the writes because there is no closure risk');
-          } else {
-            vlog('Checking if all statements between the two writes at index', start, 'and', end, 'are side effect free');
-            for (let i = start + 1; i < end && sideEffectFree; ++i) {
-              const n = block[i];
-              if (AST.mayHaveObservableSideEffect(n)) {
-                vlog(i, ': no');
-                sideEffectFree = false;
-              } else {
-                vlog(i, ': yes');
-              }
+        // For each statement/declaration between the statement containing the last and current
+        // write check whether the statement has observable side effects. We can't proceed if
+        // that's the case since there's a chance those break if we SSA it.
+        if (end - (start + 1) <= 0) {
+          vlog('There are no statements between the two writes');
+        } else if (firstDeclAssignCase) {
+          vlog('No need to check statements between the writes because there is no closure risk');
+        } else {
+          vlog('Checking if all statements between the two writes at index', start, 'and', end, 'are side effect free');
+          for (let i = start + 1; i < end && sideEffectFree; ++i) {
+            const n = block[i];
+            if (AST.mayHaveObservableSideEffect(n)) {
+              vlog(i, ': no');
+              sideEffectFree = false;
+            } else {
+              vlog(i, ': yes');
             }
           }
+        }
 
-          if (!sideEffectFree) {
-            if (sideEffectFreeRhs) {
-              vlog('There was at least one node between last and current ref that might observe this change so we must bail');
-            } else {
-              vlog('The rhs of the second assignment might have observable side effects so we cant do this');
-            }
+        if (!sideEffectFree) {
+          if (sideEffectFreeRhs) {
+            vlog('There was at least one node between last and current ref that might observe this change so we must bail');
           } else {
-            const name = meta.uniqueName;
-            vlog('  - found back2back write');
+            vlog('The rhs of the second assignment might have observable side effects so we cant do this');
+          }
+        } else {
+          const name = meta.uniqueName;
+          vlog('  - found back2back write');
 
-            const tmpName = createFreshVar(name.startsWith('tmpSSA_') ? name : 'tmpSSA_' + name, fdata);
+          const tmpName = createFreshVar(name.startsWith('tmpSSA_') ? name : 'tmpSSA_' + name, fdata);
 
-            if (last.kind === 'var') {
-              // Back to back writes with no observable side effects between them (so just assignments or whatever)
-              // In this case we create a new var for the second assignment and rename all other usages ot it.
-              rule('Var decl that is not observable should be SSAd');
-              example('let x = 1; x = 2; f(x);', 'let x = 1; let tmp = 2; f(tmp);');
-              example('let x = 1; x = x + 1; f(x);', 'let x = 1; let tmp = x + 1; f(tmp);');
-              before(last.parentNode, last.blockBody[last.blockIndex]);
-              before(write2.parentNode, write2.blockBody[write2.blockIndex]);
+          if (last.kind === 'var') {
+            // Back to back writes with no observable side effects between them (so just assignments or whatever)
+            // In this case we create a new var for the second assignment and rename all other usages ot it.
+            rule('Var decl that is not observable should be SSAd');
+            example('let x = 1; x = 2; f(x);', 'let x = 1; let tmp = 2; f(tmp);');
+            example('let x = 1; x = x + 1; f(x);', 'let x = 1; let tmp = x + 1; f(tmp);');
+            before(last.parentNode, last.blockBody[last.blockIndex]);
+            before(write2.parentNode, write2.blockBody[write2.blockIndex]);
 
-              // This should always be safe to transform
-              // Create a new var decl for the second write (current `ref`). Then replace all other occurrences
-              // with that name. This also fixes the case where a closure was created before the binding.
-              // The old binding will ultimately be dropped since nothing references it
+            // This should always be safe to transform
+            // Create a new var decl for the second write (current `ref`). Then replace all other occurrences
+            // with that name. This also fixes the case where a closure was created before the binding.
+            // The old binding will ultimately be dropped since nothing references it
 
-              write2.blockBody[write2.blockIndex] = AST.variableDeclaration(tmpName, rhs, 'let');
-              ASSERT(nextWriteIndex >= i);
-              rwOrder.forEach((r, n) => {
-                if (!(r.action === 'write' && r.kind === 'var') && (n < i || n > nextWriteIndex)) {
-                  r.node.name = tmpName;
-                }
-              });
+            write2.blockBody[write2.blockIndex] = AST.variableDeclaration(tmpName, rhs, 'let');
+            ASSERT(nextWriteIndex >= i);
+            rwOrder.forEach((r, n) => {
+              if (!(r.action === 'write' && r.kind === 'var') && (n < i || n > nextWriteIndex)) {
+                r.node.name = tmpName;
+              }
+            });
 
-              ++altPath;
-              after(last.blockBody[last.blockIndex]);
-              after(write2.blockBody[write2.blockIndex]);
-              return true; // Move on to next var, even if there might be multiple cases here.
-            } else {
-              // Back to back writes with no observable side effects between them (so just assignments or whatever)
-              // In this case we create a new var for the first assignment and only rename the uses of it in the rhs.
-              rule('Var decl / assignment that is not observable should be SSAd');
-              example('x = 1; x = 2; f(x);', 'let tmp = 1; let x = 2; f(x);');
-              example('x = 1; x = x + 1; f(x);', 'let tmp = 1; let x = tmp + 1; f(x);');
-              before(last.parentNode, last.blockBody[last.blockIndex]);
-              before(write2.parentNode, write2.blockBody[write2.blockIndex]);
+            ++altPath;
+            after(last.blockBody[last.blockIndex]);
+            after(write2.blockBody[write2.blockIndex]);
+            return true; // Move on to next var, even if there might be multiple cases here.
+          } else {
+            // Back to back writes with no observable side effects between them (so just assignments or whatever)
+            // In this case we create a new var for the first assignment and only rename the uses of it in the rhs.
+            rule('Var decl / assignment that is not observable should be SSAd');
+            example('x = 1; x = 2; f(x);', 'let tmp = 1; let x = 2; f(x);');
+            example('x = 1; x = x + 1; f(x);', 'let tmp = 1; let x = tmp + 1; f(x);');
+            before(last.parentNode, last.blockBody[last.blockIndex]);
+            before(write2.parentNode, write2.blockBody[write2.blockIndex]);
 
-              // This should always be safe to transform
-              // Create a new var decl for the second write (current `ref`). Then replace all other occurrences
-              // with that name. This also fixes the case where a closure was created before the binding.
-              // The old binding will ultimately be dropped since nothing references it
+            // This should always be safe to transform
+            // Create a new var decl for the second write (current `ref`). Then replace all other occurrences
+            // with that name. This also fixes the case where a closure was created before the binding.
+            // The old binding will ultimately be dropped since nothing references it
 
-              last.blockBody[last.blockIndex] = AST.variableDeclaration(tmpName, last.parentNode.right, 'const');
-              ASSERT(nextWriteIndex >= i);
-              rwOrder.forEach((r, n) => {
-                // Find all refs in the rhs. Those are the ones we rename.
-                if (n >= i && n < nextWriteIndex) {
-                  r.node.name = tmpName;
-                }
-              });
+            last.blockBody[last.blockIndex] = AST.variableDeclaration(tmpName, last.parentNode.right, 'const');
+            ASSERT(nextWriteIndex >= i);
+            rwOrder.forEach((r, n) => {
+              // Find all refs in the rhs. Those are the ones we rename.
+              if (n >= i && n < nextWriteIndex) {
+                r.node.name = tmpName;
+              }
+            });
 
-              ++altPath;
-              after(last.blockBody[last.blockIndex]);
-              after(write2.blockBody[write2.blockIndex]);
-              return true; // Move on to next var, even if there might be multiple cases here.
-            }
+            ++altPath;
+            after(last.blockBody[last.blockIndex]);
+            after(write2.blockBody[write2.blockIndex]);
+            return true; // Move on to next var, even if there might be multiple cases here.
           }
         }
       }
@@ -470,8 +478,10 @@ function _applySSA(fdata) {
           declInnerLoop = ref.innerLoop;
         }
         last = ref;
-      } else {
-        // Only apply tp back to back writes.
+      } else if (last && ref.action === 'read' && last.blockBody === ref.blockBody) {
+        // Only apply to back2back writes. If there was a read in the same blockBody then it's not back2back.
+        // However, if two writes had statements between them without observable side effects we still consider
+        // them to be back2back, since nothing can observe the difference.
         last = undefined;
       }
     });

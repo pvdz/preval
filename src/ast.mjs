@@ -889,7 +889,7 @@ export function mayHaveObservableSideEffect(node) {
     node.type === 'ObjectExpression' // spread is observable... (we could check for it)
   ) {
     // Confirm that all keys are either not computed, or primitives. Makes sure idents are not coerced to key strings.
-    return node.properties.some((n) => n?.type === 'SpreadElement' || !n.computed || isPrimitive(n.key));
+    return node.properties.some((n) => n?.type === 'SpreadElement' || (n.computed && !isPrimitive(n.key)));
   }
   if (['FunctionExpression', 'ThisExpression', 'Param'].includes(node.type)) {
     return false;
@@ -915,6 +915,10 @@ export function mayHaveObservableSideEffect(node) {
     }
     // In all other cases the op may coerce
     return !isPrimitive(node.left) && !isPrimitive(node.right);
+  }
+  if (node.type === 'IfStatement') {
+    // Assuming this to be about the test ...
+    return mayHaveObservableSideEffect(node.test);
   }
 
   return true;
@@ -987,6 +991,10 @@ export function ssaCheckContainsIdentName(node, name) {
   }
   if (node.type === 'NewExpression') {
     return ssaCheckContainsIdentName(node.callee, name) || node.arguments.some(n => ssaCheckContainsIdentName(n, name));
+  }
+  if (node.type === 'IfStatement') {
+    // Assuming this is about the test
+    return ssaCheckContainsIdentName(node.test, name);
   }
   // tagged template (?), return, throw, label (?), if, while, for-x, block (?), try, import, export, member, method, restelement, super,
   ASSERT(false, 'gottacatchemall', node);
@@ -1063,6 +1071,10 @@ export function ssaReplaceIdentName(node, oldName, newName) {
   }
   if (node.type === 'NewExpression') {
     return ssaReplaceIdentName(node.callee, oldName) || node.arguments.some(n => ssaReplaceIdentName(n, oldName, newName));
+  }
+  if (node.type === 'IfStatement') {
+    // Assuming this is about the test
+    return ssaReplaceIdentName(node.test, oldName);
   }
   // tagged template (?), return, throw, label (?), if, while, for-x, block (?), try, import, export, member, method, restelement, super,
   ASSERT(false, 'gottacatchemall', node);

@@ -493,6 +493,7 @@ export function createFreshLabel(name, fdata) {
 
 export function createReadRef(obj) {
   const {
+    kind,
     parentNode, // parent of the node
     parentProp,
     parentIndex,
@@ -506,19 +507,27 @@ export function createReadRef(obj) {
     rwCounter,
     scope,
     blockChain,
+    blockIds, // Array of blockChain
+    blockBodies, // arrays of statements that is block.body or program.body. 1:1 with blockIndexes
+    blockIndexes, // Indexes per each element of blockChain and blockBodies
     ifChain,
     innerLoop,
     ...rest
   } = obj;
+  ASSERT(typeof kind === 'string');
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createReadRef in the func too!', rest);
   ASSERT(blockIndex >= 0);
   ASSERT(typeof innerLoop === 'number');
   ASSERT(blockChain);
+  ASSERT(blockIds instanceof Array);
+  ASSERT(blockBodies instanceof Array && blockBodies.every(a => Array.isArray(a)));
+  ASSERT(blockIndexes instanceof Array);
+  ASSERT(blockBodies.length === blockIndexes.length, 'each block body should have an index', blockBodies, blockIndexes);
   ASSERT(ifChain);
 
   return {
     action: 'read',
-    kind: 'read', // Can we make better use of this?
+    kind, // "export" | "read"
     parentNode, // parent of the node
     parentProp,
     parentIndex,
@@ -532,6 +541,9 @@ export function createReadRef(obj) {
     rwCounter,
     scope,
     blockChain,
+    blockIds,
+    blockBodies,
+    blockIndexes,
     ifChain,
     innerLoop,
   };
@@ -549,6 +561,9 @@ export function createWriteRef(obj) {
     rwCounter,
     scope,
     blockChain,
+    blockIds, // Array of blockChain
+    blockBodies, // arrays of statements that is block.body or program.body. 1:1 with blockIndexes
+    blockIndexes, // Indexes per each element of blockChain and blockBodies
     ifChain,
     innerLoop,
     ...rest
@@ -557,6 +572,10 @@ export function createWriteRef(obj) {
   ASSERT(blockIndex >= 0);
   ASSERT(typeof innerLoop === 'number');
   ASSERT(blockChain);
+  ASSERT(blockIds instanceof Array);
+  ASSERT(blockBodies instanceof Array && blockBodies.every(a => Array.isArray(a)));
+  ASSERT(blockIndexes instanceof Array);
+  ASSERT(blockBodies.length === blockIndexes.length, 'each block body should have an index', blockBodies, blockIndexes);
   ASSERT(ifChain);
 
   return {
@@ -572,6 +591,9 @@ export function createWriteRef(obj) {
     rwCounter,
     scope,
     blockChain,
+    blockIds,
+    blockBodies,
+    blockIndexes,
     ifChain,
     innerLoop,
   };

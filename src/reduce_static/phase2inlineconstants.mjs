@@ -103,7 +103,7 @@ function _inlineConstants(fdata) {
     });
     log('End of iteration', inlineLoops, 'of constant inlining. Did we inline anything?', inlined ? 'yes; ' + inlined : 'no');
 
-    vlog('\nCurrent state before removal of queued constants\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+    //vlog('\nCurrent state before removal of queued constants\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
     groupEnd();
     if (inlined) {
@@ -263,6 +263,7 @@ function attemptConstantInlining(meta, fdata) {
         // Add a read to the rhs. It is read one more time instead.
         assigneeMeta.reads.push(
           createReadRef({
+            kind: oldRead.kind,
             parentNode,
             parentProp,
             parentIndex,
@@ -276,6 +277,9 @@ function attemptConstantInlining(meta, fdata) {
             rwCounter: oldRead.rwCounter,
             scope: oldRead.scope,
             blockChain: oldRead.blockChain,
+            blockIds: oldRead.blockIds,
+            blockIndexes: oldRead.blockIndexes,
+            blockBodies: oldRead.blockBodies,
             ifChain: oldRead.ifChain,
             innerLoop: oldRead.innerLoop,
           }),

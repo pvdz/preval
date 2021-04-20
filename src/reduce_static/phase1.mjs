@@ -28,7 +28,10 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments.
   const blockStack = []; // Stack of nested blocks (functions, try/catch/finally, or statements)
   const blockIds = []; // Stack of block pids. Negative if the parent was a loop of sorts. Functions insert a zero.
+  const blockBodies = []; // Stack of blocks. Arrays of statements that is block.body or program.body
+  const blockIndexes = []; // Stack of block indexes to match blockIds
   const ifIds = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Used by SSA.
+  const loopStack = []; // Stack of loop nodes (while, for-in, for-of). `null` means function (or program).
   let readWriteCounter = 0;
 
   const globallyUniqueNamingRegistry = new Map();
@@ -83,20 +86,40 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
     const key = nodeType + ':' + (before ? 'before' : 'after');
 
+    if (before && (parentNode?.type === 'Program' || parentNode?.type === 'BlockStatement')) {
+      ASSERT(parentIndex >= 0);
+      blockIndexes.push(parentIndex);
+      ASSERT(
+        blockBodies.length === blockIndexes.length,
+        'for every block id there should be an index',
+        blockBodies,
+        blockIndexes,
+        path.nodes,
+        path.props,
+        path.indexes,
+      );
+    }
+    vlog('ids/indexes:', blockIds, blockIndexes);
+
     switch (key) {
       case 'Program:before': {
         funcStack.push(node);
+        blockBodies.push(node.body);
         blockIds.push(+node.$p.pid);
         ifIds.push(0);
         blockStack.push(node); // Do we assign node or node.body?
         node.$p.promoParent = null;
+        node.$p.blockChain = '0';
+        loopStack.push(0);
         break;
       }
       case 'Program:after': {
         funcStack.pop();
+        blockBodies.pop();
         blockIds.pop();
         ifIds.pop();
         blockStack.pop();
+        loopStack.pop();
         break;
       }
 
@@ -104,7 +127,10 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         node.$p.promoParent = blockStack[blockStack.length - 1];
         blockStack.push(node); // Do we assign node or node.body?
         // Loops push their block id from the statement node, not the body node.
-        if (!['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
+        blockBodies.push(node.body);
+        if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
+          blockIds.push(-node.$p.pid); // Mark a loop
+        } else {
           blockIds.push(+node.$p.pid);
         }
         if (parentNode.type === 'IfStatement') {
@@ -121,13 +147,12 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       }
       case 'BlockStatement:after': {
         blockStack.pop();
-        if (!['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
-          blockIds.pop();
-        }
+        blockBodies.pop();
+        blockIds.pop();
         if (parentNode.type === 'IfStatement') {
           ifIds.pop();
         }
-        ASSERT(blockIds.length, 'meh?')
+        ASSERT(blockIds.length, 'meh?');
         break;
       }
 
@@ -141,7 +166,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
           const parentNode = path.nodes[path.nodes.length - 2];
           const parentProp = path.props[path.props.length - 1];
-          const parentIndex = path.indexes[path.indexes.length - 1];
           ASSERT(
             fdata.globallyUniqueLabelRegistry.has(node.label.name),
             'the label should be registered',
@@ -173,29 +197,30 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
       case 'ForInStatement:before': {
         funcStack[funcStack.length - 1].$p.hasBranch = true;
-        blockIds.push(-node.$p.pid); // Mark a loop
+        loopStack.push(+node.$p.pid);
         break;
       }
       case 'ForInStatement:after': {
-        blockIds.pop();
-        ASSERT(blockIds.length, 'meh2?')
+        loopStack.pop();
         break;
       }
 
       case 'ForOfStatement:before': {
-        blockIds.push(-node.$p.pid); // Mark a loop
         funcStack[funcStack.length - 1].$p.hasBranch = true;
+        loopStack.push(+node.$p.pid);
         break;
       }
       case 'ForOfStatement:after': {
-        blockIds.pop();
-        ASSERT(blockIds.length, 'meh2?')
+        loopStack.pop();
         break;
       }
 
       case 'FunctionExpression:before': {
         blockIds.push(0); // Inject a zero to mark function boundaries
         ifIds.push(0);
+        loopStack.push(0);
+
+        node.$p.blockChain = blockIds.join(',');
 
         if (firstAfterParse) {
           vlog('Converting parameter nodes to special Param nodes');
@@ -215,23 +240,24 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           parentNode,
         );
 
+        if (parentNode.type === 'VariableDeclarator' && path.nodes[path.nodes.length - 3].kind === 'const') {
+          vlog('Bound as a constant as: `' + parentNode.id.name + '`')
+          node.$p.uniqueName = parentNode.id.name;
+        }
+
         node.$p.returnNodes = [];
 
         funcStack.push(node);
-        if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
-          thisStack.push(node);
-        }
+        thisStack.push(node);
         break;
       }
       case 'FunctionExpression:after': {
         funcStack.pop();
         blockIds.pop(); // the zero
         ifIds.pop(); // the zero
-        ASSERT(blockIds.length, 'meh3?')
-
-        if (node.type === 'FunctionDeclaration' || node.type === 'FunctionExpression') {
-          thisStack.pop();
-        }
+        loopStack.pop();
+        ASSERT(blockIds.length, 'meh3?');
+        thisStack.pop();
 
         if (funcStack.length > 1) {
           // This is relevant for determining whether this function can be cloned when it is called with a primitive
@@ -386,24 +412,18 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             } while (true);
           }
 
+          const innerLoop = loopStack[loopStack.length - 1];
+          vlog('innerLoop:', innerLoop);
+
           if (kind === 'read') {
             const grandNode = path.nodes[path.nodes.length - 3];
             const grandProp = path.props[path.props.length - 2];
             const grandIndex = path.indexes[path.indexes.length - 2];
 
-            // Find the innermost loop that is in the same function.
-            // TODO: If I keep this as state then I wouldn't need to do these searches for every ident ;(
-            vlog('Current blockids:', blockIds);
-            const innerLoopIndex = blockIds.slice(0).reverse().findIndex( n => n < 0);
-            vlog('innerLoopIndex:', innerLoopIndex, '(from the right):', blockIds[blockIds.length - 1 - innerLoopIndex])
-            const innerFuncIndex = blockIds.slice(0).reverse().findIndex( n => n === 0);
-            vlog('innerFuncIndex:', innerFuncIndex, '(from the right):', blockIds[blockIds.length - 1 - innerFuncIndex])
-            const innerLoop = innerLoopIndex < 0 ? 0 : (innerFuncIndex >= 0 && innerLoopIndex > innerFuncIndex) ? 0 : blockIds[blockIds.length - 1 - innerLoopIndex];
-            vlog('innerLoop:', innerLoop);
-
             const blockBody = blockNode.body;
             meta.reads.push(
               createReadRef({
+                kind: grandNode.type === 'ExportNamedDeclaration' ? 'export' : 'read',
                 parentNode,
                 parentProp,
                 parentIndex,
@@ -417,6 +437,9 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 rwCounter: ++readWriteCounter,
                 scope: currentScope.$p.pid,
                 blockChain: blockIds.join(','),
+                blockIds: blockIds.slice(0),
+                blockBodies: blockBodies.slice(0),
+                blockIndexes: blockIndexes.slice(0),
                 ifChain: ifIds.slice(0),
                 innerLoop,
               }),
@@ -443,8 +466,11 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
                   blockChain: blockIds.join(','),
+                  blockIds: blockIds.slice(0),
+                  blockBodies: blockBodies.slice(0),
+                  blockIndexes: blockIndexes.slice(0),
                   ifChain: ifIds.slice(0),
-                  innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
+                  innerLoop,
                 }),
               );
             } else if (parentNode.type === 'AssignmentExpression') {
@@ -468,8 +494,11 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
                   blockChain: blockIds.join(','),
+                  blockIds: blockIds.slice(0),
+                  blockBodies: blockBodies.slice(0),
+                  blockIndexes: blockIndexes.slice(0),
                   ifChain: ifIds.slice(0),
-                  innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
+                  innerLoop,
                 }),
               );
             } else if (parentNode.type === 'FunctionDeclaration') {
@@ -491,9 +520,12 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
-                  innerLoop: blockIds.filter((n) => n < 0).pop() ?? 0,
                   blockChain: blockIds.join(','),
+                  blockIds: blockIds.slice(0),
+                  blockBodies: blockBodies.slice(0),
+                  blockIndexes: blockIndexes.slice(0),
                   ifChain: ifIds.slice(0),
+                  innerLoop,
                 }),
               );
             }
@@ -724,14 +756,18 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       }
 
       case 'WhileStatement:before': {
-        blockIds.push(-node.$p.pid); // Inject negative pid to mark loop boundary
         funcStack[funcStack.length - 1].$p.hasBranch = true;
+        loopStack.push(+node.$p.pid);
         break;
       }
       case 'WhileStatement:after': {
-        blockIds.pop();
+        loopStack.pop();
         break;
       }
+    }
+
+    if (!before && (parentNode?.type === 'Program' || parentNode?.type === 'BlockStatement')) {
+      blockIndexes.pop();
     }
 
     vgroupEnd();

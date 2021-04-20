@@ -13,7 +13,6 @@ function _singleScopeSSA(fdata) {
 
   vlog('First going to try to SSA bindings that are used in a single scope');
   let queue = [];
-  let foundTdz = 0;
   // Shallow clone to prevent mutations to the registry from breaking because their read/write refs did not go through phase1
   new Map(fdata.globallyUniqueNamingRegistry).forEach((meta, name) => {
     if (meta.isBuiltin) return;
@@ -21,10 +20,15 @@ function _singleScopeSSA(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
     if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, for-x, ???
-    if (foundTdz) return;
 
     vgroup('- `' + name + '`:', meta.constValueRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 
+    process(meta, name);
+
+    vgroupEnd();
+  });
+
+  function process(meta, name) {
     // We assume that every kind of meta that wasn't filtered out above (builtin, constant, implicit), must
     // be created through a var decl (let or const). TODO: catch clause bindings are currently considered to be implicit globals.
 
@@ -55,10 +59,7 @@ function _singleScopeSSA(fdata) {
 
     vlog('The binding `' + name + '` is a var decl. Analyzing usages (', meta.reads.length, 'reads and', meta.writes.length, 'writes).');
 
-    // Since we regenerate the pid during every phase1, we should be able to rely on it for DFS ordering.
-    const rwOrder = [...meta.reads, ...meta.writes].sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
-      +a < +b ? -1 : +a > +b ? 1 : 0,
-    );
+    const rwOrder = meta.rwOrder;
     vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.pid).join(', ')]);
 
     const declScope = meta.bfuncNode.$p.pid;
@@ -71,185 +72,170 @@ function _singleScopeSSA(fdata) {
 
     const varDeclWrite = meta.writes.find((write) => write.kind === 'var');
     ASSERT(varDeclWrite);
-    const declBlockChain = varDeclWrite.blockChain;
-
-    vlog('Confirming all refs can reach the decl');
-    rwOrder.forEach((ref, i) => {
-      if (ref === varDeclWrite || ref.blockChain.startsWith(declBlockChain)) {
-        // can reach
-      } else {
-        // can not reach. guaranteed tdz?
-        ASSERT(false, 'not sure we allow this case to reach this point since the parser would mark it as an implicit global');
-      }
-    })
 
     let allInSameScope = rwOrder.every((ref, i) => {
       return ref.scope === declScope;
     });
     vlog('allInSameScope:', allInSameScope);
 
-    const declFirst = rwOrder[0] === varDeclWrite;
-    vlog('declFirst:', declFirst);
-    const declLooped = declFirst.innerLoop > 0;
-
-    if (allInSameScope) {
+    if (!allInSameScope) {
       // Analysis is a little easier when we don't have to worry about closures
-      vlog('This binding was only used in the same scope it as was defined in');
-
-      if (!declFirst) {
-        // If there was a read or write to this binding before the decl then check whether we are in a loop.
-        // If inside a loop then special case it. Otherwise it must be a TDZ error. One of the few cases we
-        // can catch. (Un?)fortunately TDZ errors are rare as they would be actual runtime problems.
-
-        // Note: this crash may still be conditional.
-        vlog(
-          'There were references to `' + name + '` before their var decl and there is no closure so we must check for a runtime TDZ error',
-        );
-
-        for (let i = 0; rwOrder[i] !== varDeclWrite; ++i) {
-          const ref = rwOrder[i];
-
-          if (!declLooped || ref.innerLoop !== varDeclWrite.innerLoop) {
-            rule('Reference to future binding when binding is not in same loop and not a closure must mean TDZ');
-            example('x; let x = 10;', 'throw error; let x = 10;');
-            before(ref.node, ref.blockBody[ref.blockIndex]);
-
-            ref.blockBody[ref.blockIndex] = AST.throwStatement(AST.literal('Preval: Cannot access `' + name + '` before initialization'));
-
-            after(ref.node, ref.blockBody[ref.blockIndex]);
-
-            // This will shortcut this step and request another normalization step. This is necessary because other
-            // references may be stale now and dead code is probably introduced for all the code after the new `throw`.
-            // It's fine since this should be a very rare occurrence in real world code.
-            ++foundTdz;
-          }
-        }
-
-        if (foundTdz) return;
-      }
-
-      vlog('Walking through all', rwOrder.length, 'refs');
-      let sawBinding = false;
-      for (let i = 0; i < rwOrder.length; ++i) {
-        const ref = rwOrder[i];
-        vgroup('-', i + 1, '/', rwOrder.length, ':', ref.action, ':', ref.kind);
-        vlog('- blockChain:', ref.blockChain);
-        if (ref === varDeclWrite) {
-          vlog('- This is the decl');
-          // There should only be one binding for this name so this is the one
-          sawBinding = true;
-        } else if (!sawBinding) {
-          // Since this is a flat scope and we've eliminated edge cases like switch-defaults jumping back up
-          // we must now check whether this read and decl were inside a loop. Otherwise this must be a TDZ.
-          vlog('- Saw a ref before the decl. Potential TDZ');
-        } else if (ref.action === 'read') {
-          // do nothing?
-          vlog('- Ignoring read');
-        } else if (ref.action === 'write') {
-          if (ref.kind === 'assign') {
-            let passed = true;
-
-            if (ref.innerLoop) {
-              // This is tricky but we can still do it when
-              // - There is no prior read in this or any parent loop (prior sibling loop is okay)
-              // - All future reads can reach this write (implies they are nested in the same loop)
-              // - Any parent loop up to the lex scope that has the var decl, or the first func boundary, has no read
-              vlog('  Write is inside a loop. Checking if any prior ref occurs in a loop.');
-              for (let k = 0; k < i && passed; ++k) {
-                const refk = rwOrder[k];
-                vlog('  -', k, ':', refk.action, refk.kind, refk.innerLoop);
-                passed = (refk === varDeclWrite) || !refk.innerLoop;
-              }
-              if (passed) {
-                vlog('All prior refs are not in a loop. Ok.');
-              } else {
-                vlog('Found at least one read in the loop before the write in the loop. Bailing');
-              }
-            }
-
-            if (passed) {
-              // Check if all possible reads that may still be invoked from this point in the code must invariably
-              // reach this write. In case of loops this includes earlier reads inside that loop. This also
-              // includes reads that may happen after the current block, if the binding was declared before it.
-
-              vgroup('  Searching through remaining refs to find out whether all future reads can reach the write');
-
-              const eligible = [];
-              for (let j = i + 1; j < rwOrder.length && passed; ++j) {
-                const r2 = rwOrder[j];
-                vlog('--', j + 1, '/', rwOrder.length, ':', r2.action, ':', r2.kind);
-                vlog('  - blockChain:', r2.blockChain);
-                if (r2.innerLoop && r2.action === 'write') {
-                  vlog('A write inside a loop. Bailing.');
-                  passed = false;
-                } else if (r2.blockChain.startsWith(ref.blockChain)) {
-                  vlog('Ref can reach the write. Still eligible for SSA.');
-                  eligible.push(r2);
-                } else {
-                  // TODO: if a future read can not reach the read but is in a branch that is the fork of a shared ancestor
-                  //       that is not beyond function boundaries or even beyond the lex scope to which that binding is
-                  //       bound, then the read can be ignored. `let x = 1; if (a) x = 2; else $(x);` in this case the
-                  //       read can not be affected by the write being SSAd. This does hinge on us knowing that an
-                  //       ancestor is or isn't an `if`...
-
-                  let stillBad = true;
-                  for (let i = 0, l = Math.min(ref.ifChain.length, r2.ifChain.length); i < l; ++i) {
-                    const a = ref.ifChain[i];
-                    const b = r2.ifChain[i];
-                    if (a === b) {
-                      // Same parent
-                      vlog('Same ancestor');
-                    } else if (Math.abs(a) === Math.abs(b)) {
-                      // It branched. We should be good?
-                      // Example: `if (x) a = 1; else $(function(){ a })`.
-                      // Example, `if (x) $(function(){ a = 1 }); else $(a)`
-                      // But the refs were all in the same scope so we can't even have functions here.
-                      vlog('Ok, it branched!');
-                      stillBad = false;
-                      break;
-                    } else {
-                      // Ok this is still bad
-                      vlog('No, actually bad.');
-                      break;
-                    }
-                  }
-
-                  if (stillBad) {
-                    vlog('Ref can not reach the write. Bailing');
-                    passed = false;
-                  }
-                }
-              }
-
-              if (passed) {
-                vlog('All future reads are properly scoped, collected', eligible.length, 'eligible refs');
-                //vlog(eligible);
-                queue.push({ eligible, meta, write: ref });
-              } else {
-                vlog('There was at least one future read that could not reach this write');
-                // Consider something like this:
-                // `let x = 1; { x = 2; f(x); f(x); f(x); } f(x);`
-                // We could still do something like this
-                // `let x = 1; { const y = 2; x = y; f(y); f(y); f(y); } f(x);`
-                // Perhaps this way we can eliminate a few more lets
-                // We can check whether there are any reads at all and prevent this if there aren't any (or fewer than one)
-              }
-
-              vgroupEnd();
-            }
-          } else {
-            // We skip the var decl ref so this must be try/catch or for-x or something. Ignore those for now.
-            vlog('  - Ignoring "other" write');
-          }
-        } else {
-          ASSERT(false);
-        }
-        vgroupEnd();
-      }
+      vlog('This binding was used in multiple scopes, bailing');
+      return;
     }
 
-    vgroupEnd();
-  });
+    const declFirst = rwOrder[0] === varDeclWrite;
+    vlog('declFirst:', declFirst);
+
+    vlog('Walking through all', rwOrder.length, 'refs for `' + name + '`');
+    let sawBinding = false;
+    for (let i = 0; i < rwOrder.length; ++i) {
+      const ref = rwOrder[i];
+      vgroup('-', i + 1, '/', rwOrder.length, ':', ref.action, ':', ref.kind);
+      vlog('- blockChain:', ref.blockChain);
+      if (ref === varDeclWrite) {
+        vlog('- This is the decl');
+        // There should only be one binding for this name so this is the one
+        sawBinding = true;
+      } else if (!sawBinding) {
+        // Since this is a flat scope and we've eliminated edge cases like switch-defaults jumping back up
+        // we must now check whether this read and decl were inside a loop. Otherwise this must be a TDZ.
+        vlog('- Saw a ref before the decl. Potential TDZ');
+      } else if (ref.action === 'read') {
+        // do nothing?
+        vlog('- Ignoring read');
+      } else if (ref.action === 'write') {
+        if (ref.kind === 'assign') {
+          processAssign(meta, name, ref, i);
+        } else {
+          // We skip the var decl ref so this must be try/catch or for-x or something. Ignore those for now.
+          vlog('- Ignoring "other" write');
+        }
+      } else {
+        ASSERT(false);
+      }
+      vgroupEnd();
+    }
+
+    function processAssign(meta, name, ref, i) {
+      let passed = true;
+
+      if (ref.innerLoop) {
+        // This is tricky but we can still do it when
+        // - There is no prior read in this or any parent loop (prior sibling loop is okay)
+        // - All future reads can reach this write (implies they are nested in the same loop)
+        // - Any parent loop up to the lex scope that has the var decl, or the first func boundary, has no read
+        vlog('  Write is inside a loop. Checking if any prior ref occurs in a loop.');
+        for (let k = 0; k < i && passed; ++k) {
+          const refk = rwOrder[k];
+          vlog('  -', k, ':', refk.action, refk.kind, refk.innerLoop);
+          passed = refk === varDeclWrite || !refk.innerLoop;
+        }
+        if (passed) {
+          vlog('All prior refs are not in a loop. Ok.');
+        } else {
+          vlog('Found at least one read in the loop before the write in the loop. Bailing');
+          return;
+        }
+      } else {
+        vlog('Assignment is not inside a loop');
+      }
+
+      // Check if all possible reads that may still be invoked from this point in the code must invariably
+      // reach this write. In case of loops this includes earlier reads inside that loop. This also
+      // includes reads that may happen after the current block, if the binding was declared before it.
+
+      vgroup('Searching through remaining refs to find out whether all future reads can reach the write');
+
+      const eligible = [];
+      for (let j = i + 1; j < rwOrder.length && passed; ++j) {
+        const r2 = rwOrder[j];
+        vlog('--', j + 1, '/', rwOrder.length, ':', r2.action, ':', r2.kind);
+        vlog('  - blockChain:', r2.blockChain);
+        if (r2.innerLoop && r2.action === 'write') {
+          // The write inside can only be improved if it appears in the loop before all other future refs
+          // and if all future refs can reach the write. But let's not conflate that task here.
+          // `let x = 1; while (true) { x = 2; $(x); }`
+          vlog('A write inside a loop. Bailing.');
+          passed = false;
+        } else if (r2.blockChain.startsWith(ref.blockChain)) {
+          vlog('Ref can reach the write. Still eligible for SSA.');
+          eligible.push(r2);
+        } else {
+          vlog('Ref can not reach the write. Checking if it can observe the write at all. Is it in an opposite branch?');
+          /*
+            Consider this:
+            ```
+            let x = undefined;
+            if (tmpIfTest) {
+              x = $(1, 'a');
+              return x;
+            } else {
+              return x;
+            }
+            ```
+            Where the else branch has a reference to x that can't reach the assignment in the if branch.
+            We should still be able to SSA. In particular when the code dead ends.
+
+            Starting at the level of where the var decl is (must be a common ancestor), walk the if-chain
+            and determine whether all the branching is the same. When it's not, determine whether the
+            difference is because one took the `if` where the other took the `else`. If that's not the
+            case then the ref appears after a branch where the read was and we must bail here.
+            If the ref was inside the opposite branch from the write, then the ref cannot observe the
+            write and we can do whatever we want, meaning it does not block SSA.
+           */
+
+          // Note: since the read can not reach the write, one of four things can happen in this loop:
+          // - same branch, continue
+          // - opposite branch, complete ok
+          // - different branch, complete bad
+          // - finding the ref before finding an opposite branch, complete bad
+          let stillBad = true;
+          for (let i = varDeclWrite.ifChain.length - 1, l = Math.min(ref.ifChain.length, r2.ifChain.length); i < l; ++i) {
+            const a = ref.ifChain[i];
+            const b = r2.ifChain[i];
+            if (a === b) {
+              // Same parent
+              vlog('Same ancestor');
+            } else if (Math.abs(a) === Math.abs(b)) {
+              // negative id is else branch
+              // This ref lives in the other side of an if-else from where the write is. As such it can never
+              // observe the write so this should not block SSA for that write.
+              // `let x = 1; if (a) { x = 2; f(x); } else f(x);` -->
+              // `let x = 1; if (a) { let y = 2; f(y); } else f(x);`
+              vlog('Ok, it branched!');
+              stillBad = false;
+              break;
+            } else {
+              // Ok this is still bad
+              vlog('No, actually bad.');
+              break;
+            }
+          }
+
+          if (stillBad) {
+            vlog('Ref can not reach the write and is not in an opposite branch. Bailing');
+            passed = false;
+          }
+        }
+      }
+
+      if (passed) {
+        vlog('All future reads are properly scoped. Collected', eligible.length, 'eligible refs');
+        queue.push({ eligible, meta, write: ref });
+      } else {
+        vlog('There was at least one future read that could not reach this write');
+        // Consider something like this:
+        // `let x = 1; { x = 2; f(x); f(x); f(x); } f(x);`
+        // TODO: We could still do something like this
+        // `let x = 1; { const y = 2; x = y; f(y); f(y); f(y); } f(x);`
+        // Perhaps this way we can eliminate a few more lets
+        // We can check whether there are any reads at all and prevent this if there aren't any (or fewer than one)
+      }
+
+      vgroupEnd();
+    }
+  }
 
   if (queue.length) {
     // Since the same binding may be changed multiple times (`let a = 1; a = 2; a = 3;`) the queue
@@ -290,7 +276,7 @@ function _singleScopeSSA(fdata) {
 
     log('Assignments SSAd:', queue.length, '. Restarting from phase1 to fix up read/write registry');
 
-    vlog('\nCurrent state (after SSA)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+    //vlog('\nCurrent state (after SSA)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
     return 'phase1';
   }

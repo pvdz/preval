@@ -344,22 +344,16 @@ let a = undefined;
 let b = undefined;
 let c = undefined;
 let d = undefined;
-let e = undefined;
-let obja = undefined;
-let objb = undefined;
-let objc = undefined;
-let objd = undefined;
-let obje = undefined;
 const tmp = function (...$$0) {
   const a$1 = $$0;
   debugger;
-  const tmpCalleeParam = ['$:', a$1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a$1];
+  const tmpCalleeParam = ['$:', a$1, b, c, d, tmpSSA_e, tmpSSA_obja, tmpSSA_objb, tmpSSA_objc, tmpSSA_objd, tmpSSA_obje, '::', ...a$1];
   const tmpCalleeParam$1 = { depth: null };
   $(tmpCalleeParam, tmpCalleeParam$1);
   a$1[0];
   return undefined;
 };
-obja = {
+const tmpSSA_obja = {
   get a() {
     debugger;
     tmp('a.get');
@@ -372,7 +366,7 @@ obja = {
     return 1000;
   },
 };
-objb = {
+const tmpSSA_objb = {
   get b() {
     debugger;
     tmp('b.get');
@@ -387,7 +381,7 @@ objb = {
     return 2000;
   },
 };
-objc = {
+const tmpSSA_objc = {
   get c() {
     debugger;
     tmp('c.get');
@@ -404,7 +398,7 @@ objc = {
     return 3000;
   },
 };
-objd = {
+const tmpSSA_objd = {
   get d() {
     debugger;
     tmp('d.get');
@@ -423,7 +417,7 @@ objd = {
     return 4000;
   },
 };
-obje = {
+const tmpSSA_obje = {
   get e() {
     debugger;
     tmp('e.get');
@@ -447,20 +441,20 @@ obje = {
 a = function () {
   debugger;
   tmp('a');
-  return obja;
+  return tmpSSA_obja;
 };
 b = function () {
   debugger;
   tmp('b');
   a = 21;
-  return objb;
+  return tmpSSA_objb;
 };
 c = function () {
   debugger;
   tmp('c');
   a = 31;
   b = 32;
-  return objc;
+  return tmpSSA_objc;
 };
 d = function () {
   debugger;
@@ -468,29 +462,29 @@ d = function () {
   a = 41;
   b = 42;
   c = 43;
-  return objd;
+  return tmpSSA_objd;
 };
-e = function () {
+const tmpSSA_e = function () {
   debugger;
   tmp('e');
   a = 51;
   b = 52;
   c = 53;
   d = 54;
-  return obje;
+  return tmpSSA_obje;
 };
 const varInitAssignLhsComputedObj = a();
 const varInitAssignLhsComputedObj$1 = b();
 const varInitAssignLhsComputedObj$3 = c();
 const varInitAssignLhsComputedObj$5 = d();
-const varInitAssignLhsComputedRhs$5 = e();
+const varInitAssignLhsComputedRhs$5 = tmpSSA_e();
 varInitAssignLhsComputedObj$5.d = varInitAssignLhsComputedRhs$5;
 varInitAssignLhsComputedObj$3.c = varInitAssignLhsComputedRhs$5;
 varInitAssignLhsComputedObj$1.b = varInitAssignLhsComputedRhs$5;
 varInitAssignLhsComputedObj.a = varInitAssignLhsComputedRhs$5;
 tmp(varInitAssignLhsComputedRhs$5);
-tmp(a, b, c, d, e);
-tmp(obja, objb, objc, objd, obje);
+tmp(a, b, c, d, tmpSSA_e);
+tmp(tmpSSA_obja, tmpSSA_objb, tmpSSA_objc, tmpSSA_objd, tmpSSA_obje);
 `````
 
 ## Globals

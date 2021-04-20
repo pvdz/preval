@@ -367,7 +367,7 @@ function runTestCase(
         .replace(/.*Cannot read property 'call' of .*/, '<ref> is not function/iterable') // We transform member calls to .call() so the test should be okay to assume they are the same error
         .replace(/function ?\(\) ?\{/g, 'function() {')
         .replace(/Cannot read property .*? of .*/g, 'Cannot read property <ref> of <ref2>')
-        .replace(/Cannot access '[\w$]+' before initialization/, "Cannot access '<ref>' before initialization")
+        .replace(/(?:Preval: )?Cannot access ['`][\w$]+['`] before initialization/, "Cannot access '<ref>' before initialization")
 
         // All arrows are transformed to function expressions
         .replace(/\(\) => \{\}/g, 'function() {}')

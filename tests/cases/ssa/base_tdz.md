@@ -44,11 +44,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-$(x);
-const x = $(5);
-$(x);
-const tmpSSA_x = $(10);
-$(tmpSSA_x);
+throw 'Preval: Cannot access `x` before initialization';
 `````
 
 ## Globals

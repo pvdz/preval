@@ -1,0 +1,107 @@
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
+import * as AST from '../ast.mjs';
+
+export function singleScopeTdz(fdata) {
+  group('\n\n\nChecking for TDZ cases in single scope\n');
+  const r = _singleScopeTdz(fdata);
+  groupEnd();
+  return r;
+}
+function _singleScopeTdz(fdata) {
+  const ast = fdata.tenkoOutput.ast;
+
+  vlog('First going to try to SSA bindings that are used in a single scope');
+  let foundTdz = 0;
+
+  fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+    if (meta.isBuiltin) return;
+    //if (meta.isConstant) return; // let or const is irrelevant
+    if (meta.isImplicitGlobal) return;
+    //if (meta.isExport) return; // Just do skip the actual export refs as they sorta hoist
+    if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, for-x, ???
+    if (foundTdz) return;
+
+    vgroup('- `' + name + '`:', meta.constValueRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
+    process(meta, name);
+    vgroupEnd();
+  });
+
+  function process(meta, name) {
+    vlog('The binding `' + name + '` is a var decl. Analyzing usages (', meta.reads.length, 'reads and', meta.writes.length, 'writes).');
+
+    const rwOrder = meta.rwOrder;
+    vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.pid).join(', ')]);
+
+    const declScope = meta.bfuncNode.$p.pid;
+    vlog(
+      'Decl scope:',
+      declScope,
+      ', ref scopes:',
+      rwOrder.map((ref) => +ref.pfuncNode.$p.pid),
+    );
+
+    const varDeclWrite = meta.writes.find((write) => write.kind === 'var');
+    ASSERT(varDeclWrite);
+    const declBlockChain = varDeclWrite.blockChain;
+
+    vlog('Asserting all refs can reach the decl');
+    rwOrder.forEach((ref, i) => {
+      if (ref === varDeclWrite || ref.blockChain.startsWith(declBlockChain)) {
+        // can reach
+      } else {
+        // can not reach. guaranteed tdz?
+        ASSERT(false, 'not sure we allow this case to reach this point since the parser would mark it as an implicit global');
+      }
+    });
+
+    let allInSameScope = rwOrder.every((ref, i) => {
+      return ref.scope === declScope;
+    });
+    vlog('allInSameScope:', allInSameScope);
+    if (!allInSameScope) return;
+
+    const declFirst = rwOrder[0] === varDeclWrite;
+    vlog('declFirst:', declFirst);
+    if (declFirst) return;
+
+    const innerLoop = declFirst.innerLoop;
+    const declLooped = innerLoop > 0;
+    vlog('declLooped:', declLooped);
+
+    // Analysis is a little easier when we don't have to worry about closures
+    vlog('This binding was only used in the same scope it as was defined in');
+
+    // If there was a read or write to this binding before the decl then check whether we are in a loop.
+    // If inside a loop then special case it. Otherwise it must be a TDZ error. One of the few cases we
+    // can catch. (Un?)fortunately TDZ errors are rare as they would be actual runtime problems.
+
+    // Note: this crash may still be conditional.
+    vlog('There were references to `' + name + '` before their var decl and there is no closure so we must check for a runtime TDZ error');
+
+    for (let i = 0; rwOrder[i] !== varDeclWrite; ++i) {
+      const ref = rwOrder[i];
+
+      if (!declLooped || ref.innerLoop !== innerLoop) {
+        rule('Reference to future binding when binding is not in same loop and not a closure must mean TDZ');
+        example('x; let x = 10;', 'throw error; let x = 10;');
+        before(ref.node, ref.blockBody[ref.blockIndex]);
+
+        ref.blockBody[ref.blockIndex] = AST.throwStatement(AST.literal('Preval: Cannot access `' + name + '` before initialization'));
+
+        after(ref.node, ref.blockBody[ref.blockIndex]);
+
+        // This will shortcut this step and request another normalization step. This is necessary because other
+        // references may be stale now and dead code is probably introduced for all the code after the new `throw`.
+        // It's fine since this should be a very rare occurrence in real world code.
+        ++foundTdz;
+      }
+    }
+  }
+
+  if (foundTdz) {
+    log('Found TDZ errors:', foundTdz, '. Restarting from from normalization to eliminate dead code.');
+    return true; // Need to potentially eliminate dead code (!)
+  }
+
+  log('Found TDZ errors:: 0.');
+}

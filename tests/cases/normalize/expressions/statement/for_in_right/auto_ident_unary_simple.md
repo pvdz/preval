@@ -42,12 +42,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const tmpForInDeclRhs = typeof x$1;
-let x$1 = undefined;
-for (x$1 in tmpForInDeclRhs) {
-}
-$(a, 1);
+throw 'Preval: Cannot access `x$1` before initialization';
 `````
 
 ## Globals

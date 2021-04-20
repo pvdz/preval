@@ -13,6 +13,7 @@ function _applySSA(fdata) {
 
   vlog('First going to try to SSA bindings that are used in a single scope');
   let queue = [];
+  let foundTdz = 0;
   // Shallow clone to prevent mutations to the registry from breaking because their read/write refs did not go through phase1
   new Map(fdata.globallyUniqueNamingRegistry).forEach((meta, name) => {
     if (meta.isBuiltin) return;
@@ -20,6 +21,7 @@ function _applySSA(fdata) {
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
     if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, for-x, ???
+    if (foundTdz) return;
 
     vgroup('- `' + name + '`:', meta.constValueRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 
@@ -86,15 +88,46 @@ function _applySSA(fdata) {
     });
     vlog('allInSameScope:', allInSameScope);
 
-    if (!allInSameScope) {
-      // Hard path
-      vlog('This binding was used in multiple scopes so skipping the thorough hard path');
-    } else {
-      // Soft path
+    const varDeclWrite = meta.writes.find((write) => write.kind === 'var');
+    ASSERT(varDeclWrite);
+    const declFirst = rwOrder[0] === varDeclWrite;
+    vlog('declFirst:', declFirst);
+    const declLooped = declFirst.innerLoop > 0;
+
+    if (allInSameScope) {
+      // Analysis is a little easier when we don't have to worry about closures
       vlog('This binding was only used in the same scope it as was defined in');
+
       // If there was a read or write to this binding before the decl then check whether we are in a loop.
       // If inside a loop then special case it. Otherwise it must be a TDZ error. One of the few cases we
       // can catch. (Un?)fortunately TDZ errors are rare as they would be actual runtime problems.
+
+      if (!declFirst && !declLooped) {
+        // Note: this may still be conditional.
+        vlog(
+          'There were references to `' +
+            name +
+            '` before their var decl and there is no closure and this is not a loop so this must be a TDZ error at runtime',
+        );
+
+        for (let i = 0; rwOrder[i] !== varDeclWrite; ++i) {
+          const ref = rwOrder[i];
+
+          rule('Reference to future binding when binding is not in loop and not a closure must mean TDZ');
+          example('x; let x = 10;', 'throw error; let x = 10;');
+          before(ref.node, ref.blockBody[ref.blockIndex]);
+
+          ref.blockBody[ref.blockIndex] = AST.throwStatement(AST.literal('Preval: Cannot access `' + name + '` before initialization'));
+
+          after(ref.node, ref.blockBody[ref.blockIndex]);
+        }
+
+        // This will shortcut this step and request another normalization step. This is necessary because other
+        // references may be stale now and dead code is probably introduced for all the code after the new `throw`.
+        // It's fine since this should be a very rare occurrence in real world code.
+        ++foundTdz;
+        return;
+      }
 
       vlog('Walking through all', rwOrder.length, 'refs');
       let sawBinding = false;
@@ -490,6 +523,10 @@ function _applySSA(fdata) {
     vgroupEnd();
   });
 
+  if (foundTdz) {
+    log('Found', foundTdz, 'TDZ errors. Restarting from phase1 to fix up read/write registry');
+    return true; // Need to potentially eliminate dead code (!)
+  }
   if (altPath) {
     log('Assignments SSAd:', altPath, ' via the alt path. Restarting from phase1 to fix up read/write registry');
     return 'phase1';

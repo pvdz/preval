@@ -59,12 +59,10 @@ for (lhs in rhs) {
 let lhs = undefined;
 for (lhs in rhs) {
   if ($) {
-    const rhs$1 = [firstElement];
-    $(rhs$1);
+    throw 'Preval: Cannot access `firstElement` before initialization';
   } else {
     $('init');
   }
-  const firstElement = undefined;
 }
 `````
 

@@ -53,18 +53,7 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-$(x$1);
-$(2);
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-x$1 = tmpNestedAssignObjPatternRhs.x;
-const tmpSSA_y = tmpNestedAssignObjPatternRhs.y;
-let x$1 = undefined;
-for (x$1 in tmpNestedAssignObjPatternRhs) {
-}
-$(a, 1, tmpSSA_y);
+throw 'Preval: Cannot access `x$1` before initialization';
 `````
 
 ## Globals

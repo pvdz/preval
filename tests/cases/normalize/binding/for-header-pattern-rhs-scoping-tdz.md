@@ -50,15 +50,7 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 ## Output
 
 `````js filename=intro
-const tmpForInPatDeclRhs = [x$1];
-let tmpForInPatDeclLhs = undefined;
-const x$1 = undefined;
-for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-  const arrAssignPatternRhs = tmpForInPatDeclLhs;
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  const tmpSSA_x$1 = arrPatternSplat[0];
-  $(tmpSSA_x$1);
-}
+throw 'Preval: Cannot access `x$1` before initialization';
 `````
 
 ## Globals

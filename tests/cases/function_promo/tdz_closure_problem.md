@@ -80,30 +80,9 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const g = function () {
-  debugger;
-  $(x$1);
-  const x$1 = $('inner');
-  if ($) {
-    $('prevent premature elimination');
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const f = function () {
-  debugger;
-  $('outer');
-  g();
-  if ($) {
-    $('prevent premature elimination');
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  f();
+  $('outer');
+  throw 'Preval: Cannot access `x$1` before initialization';
 } else {
 }
 `````

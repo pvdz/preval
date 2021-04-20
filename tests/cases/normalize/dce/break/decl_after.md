@@ -63,10 +63,10 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
-      $('fail too');
+      throw 'Preval: Cannot access `x` before initialization';
     } else {
+      break;
     }
-    break;
   } else {
     break;
   }

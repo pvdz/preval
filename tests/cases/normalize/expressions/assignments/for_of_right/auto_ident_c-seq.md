@@ -47,11 +47,7 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-const tmpSSA_a = $(x$1);
-let x$1 = undefined;
-for (x$1 of tmpSSA_a) {
-}
-$(tmpSSA_a, 1);
+throw 'Preval: Cannot access `x$1` before initialization';
 `````
 
 ## Globals

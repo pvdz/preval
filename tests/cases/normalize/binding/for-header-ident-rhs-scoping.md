@@ -46,11 +46,7 @@ for (x$1 in tmpForInDeclRhs) {
 ## Output
 
 `````js filename=intro
-const tmpForInDeclRhs = [x$1];
-let x$1 = undefined;
-for (x$1 in tmpForInDeclRhs) {
-  $(x$1);
-}
+throw 'Preval: Cannot access `x$1` before initialization';
 `````
 
 ## Globals

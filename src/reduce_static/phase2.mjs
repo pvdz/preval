@@ -11,6 +11,7 @@ import { dedupeBranchedReturns } from './phase2deduperetbranch.mjs';
 import { ifReduction } from './phase2ifreduction.mjs';
 import { inlineCommonReturns } from './phase2commonreturn.mjs';
 import { dropUnusedReturns } from './phase2unusedreturns.mjs';
+import { singleScopeTdz } from './phase2single_scope_tdz.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -35,6 +36,18 @@ function _phase2(program, fdata, resolve, req) {
   // relationships which might otherwise break. This means a binding may have been removed from the books
   // even though it's technically still part of the AST. But since we take the books as leading in this step
   // that should not be a problem.
+
+  fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+    // Since we regenerate the pid during every phase1, we should be able to rely on it for DFS ordering.
+    // Note: this is not necessarily source order. `x = y` will visit `y` before `x`.
+    const rwOrder = [...meta.reads, ...meta.writes].sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
+      +a < +b ? -1 : +a > +b ? 1 : 0,
+    );
+    meta.rwOrder = rwOrder;
+  });
+
+  const tdzd = singleScopeTdz(fdata);
+  if (tdzd) return tdzd;
 
   const emptyFuncs = pruneEmptyFunctions(fdata);
   if (emptyFuncs) return emptyFuncs;

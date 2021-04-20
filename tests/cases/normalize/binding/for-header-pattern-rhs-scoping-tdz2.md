@@ -59,15 +59,7 @@ for (lhs in rhs) {
 ## Output
 
 `````js filename=intro
-const rhs = [firstElement];
-let lhs = undefined;
-const firstElement = undefined;
-for (lhs in rhs) {
-  const pattern = lhs;
-  const patternSplat = [...pattern];
-  const firstElementSSA = patternSplat[0];
-  $(firstElementSSA);
-}
+throw 'Preval: Cannot access `firstElement` before initialization';
 `````
 
 ## Globals

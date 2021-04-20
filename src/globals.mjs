@@ -1,36 +1,39 @@
-// A mapping from global symbol to internal type representation of that value
-// All these names ought to be exposed on the global object, even the syntactic keywords (our system does not care)
-// Note: there is no auto-global `arguments` and `super` is not handled through scoping
-export default new Map([
-  ['clearInterval', 'global.clearInterval'],
-  ['clearTimeout', 'global.clearTimeout'],
-  ['console', 'global.console'],
-  ['false', 'boolean'],
-  ['null', 'null'],
+// Built-in symbol names and their `typeof` result
+
+const globalNames = new Map([
+  ['clearInterval', 'function'],
+  ['clearTimeout', 'function'],
+  ['console', 'function'],
+  //['false', 'boolean'],
+  //['null', 'null'],
   ['this', 'undefined'], // true in strict mode
-  ['parseInt', 'global.parseInt'],
-  ['parseFloat', 'global.parseFloat'],
-  ['setInterval', 'global.setInterval'],
-  ['setTimeout', 'global.setTimeout'],
-  ['true', 'boolean'],
+  ['parseInt', 'function'],
+  ['parseFloat', 'function'],
+  ['setInterval', 'function'],
+  ['setTimeout', 'function'],
+  //['true', 'boolean'],
   ['undefined', 'undefined'],
-  ['Array', 'Array'],
-  ['Boolean', 'Boolean'],
-  ['Date', 'Date'],
-  ['Error', 'Error'],
+  ['Array', 'function'],
+  ['Boolean', 'function'],
+  ['Date', 'function'],
+  ['Error', 'function'],
   ['Infinity', 'number'],
-  ['JSON', 'JSON'],
-  ['Math', 'Math'],
-  ['Map', 'Map'],
-  ['NaN', 'NaN'],
-  ['Number', 'Number'],
-  ['Object', 'Object'],
-  ['RegExp', 'RegExp'],
-  ['Set', 'Set'],
-  ['String', 'String'],
-  // nodejs
-  ['module', 'module'],
+  ['JSON', 'object'],
+  ['Math', 'object'],
+  ['Map', 'function'],
+  ['NaN', 'number'],
+  ['Number', 'function'],
+  ['Object', 'function'],
+  ['RegExp', 'function'],
+  ['Set', 'function'],
+  ['String', 'function'],
+
   // special
   ['$', '$'],
   ['objPatternRest', 'objPatternRest'],
+
+  // nodejs
+  ['module', 'object'],
 ]);
+
+export default globalNames;

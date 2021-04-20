@@ -246,8 +246,8 @@ export function phaseNormalize(fdata, fname) {
   const ifelseStack = [ast];
   let inGlobal = true; // While walking, are we currently in global space or inside a function
 
-  function assertNoDupeNodes(node = ast, prop = 'ast') {
-    if (!VERBOSE_TRACING) return; // Disable this for large inputs but keep it for tests
+  function assertNoDupeNodes(node = ast, prop = 'ast', force = false) {
+    if (!force && !VERBOSE_TRACING) return; // Disable this for large inputs but keep it for tests
     // Assert AST contains no duplicate node objects
     const map = new Map();
     walk(
@@ -3474,46 +3474,65 @@ export function phaseNormalize(fdata, fname) {
           }
 
           if (node.argument.type === 'Identifier') {
-            if (node.argument.name === 'NaN') {
-              rule('Typeof NaN is the string number');
-              example('typeof NaN', '"number"');
-              before(node, parentNode);
+            switch (node.argument.name) {
+              case 'NaN': {
+                rule('Typeof NaN is the string number');
+                example('typeof NaN', '"number"');
+                before(node, parentNode);
 
-              const finalNode = AST.literal('number');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
+                const finalNode = AST.literal('number');
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body[i] = finalParent;
 
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
+                after(finalNode, finalParent);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
 
-            if (node.argument.name === 'undefined') {
-              rule('Typeof undefined is the string undefined');
-              example('typeof undefined', '"undefined"');
-              before(node, parentNode);
+              case 'undefined': {
+                rule('Typeof undefined is the string undefined');
+                example('typeof undefined', '"undefined"');
+                before(node, parentNode);
 
-              const finalNode = AST.literal('undefined');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
+                const finalNode = AST.literal('undefined');
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body[i] = finalParent;
 
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
+                after(finalNode, finalParent);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
 
-            if (node.argument.name === 'Infinity') {
-              rule('Typeof Infinity is the string number');
-              example('typeof Infinity', '"number"');
-              before(node, parentNode);
+              case 'Infinity': {
+                rule('Typeof Infinity is the string number');
+                example('typeof Infinity', '"number"');
+                before(node, parentNode);
 
-              const finalNode = AST.literal('number');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
+                const finalNode = AST.literal('number');
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body[i] = finalParent;
 
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
+                after(finalNode, finalParent);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+
+              default: {
+                if (globals.has(node.argument.name)) {
+                  rule('Typeof of a builtin global can be statically resolved');
+                  example('typeof setTimeout', '"function";');
+                  before(node, parentNode);
+
+                  const finalNode = AST.literal(globals.get(node.argument.name));
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body[i] = finalParent;
+
+                  after(finalNode, finalParent);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+              }
+
             }
           }
 
@@ -5257,6 +5276,8 @@ export function phaseNormalize(fdata, fname) {
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
+
+    assertNoDupeNodes(AST.blockStatement(body), 'body', true);
 
     ASSERT(node.consequent.type === 'BlockStatement');
     ifelseStack.push(node);

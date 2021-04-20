@@ -81,19 +81,18 @@ if ($) {
 const f = function () {
   debugger;
   if ($) {
-    let x = 5;
     const g = function () {
       debugger;
       if ($) {
-        x = 10;
+        tmpSSA_x = 10;
         return undefined;
       } else {
         return undefined;
       }
     };
-    x = 20;
+    let tmpSSA_x = 20;
     g();
-    return x;
+    return tmpSSA_x;
   } else {
     return undefined;
   }

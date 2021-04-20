@@ -290,14 +290,23 @@ tmp(obja, objb, objc, objd);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-let e = undefined;
 const tmp = function (...$$0) {
   const a$1 = $$0;
   debugger;
-  const tmpCalleeParam = ['$:', a$1, b, c, tmpSSA_d, e, tmpSSA_obja, tmpSSA_objb, tmpSSA_objc, tmpSSA_objd, '::', ...a$1];
+  const tmpCalleeParam = [
+    '$:',
+    a$1,
+    tmpSSA_b,
+    tmpSSA_c,
+    tmpSSA_d,
+    tmpSSA_e,
+    tmpSSA_obja,
+    tmpSSA_objb,
+    tmpSSA_objc,
+    tmpSSA_objd,
+    '::',
+    ...a$1,
+  ];
   $(tmpCalleeParam);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
@@ -312,7 +321,7 @@ const tmpSSA_obja = {
     const x = $$0;
     debugger;
     tmp('a.set', x);
-    e = 'faila';
+    tmpSSA_e = 'faila';
     return 1000;
   },
 };
@@ -320,15 +329,15 @@ const tmpSSA_objb = {
   get b() {
     debugger;
     tmp('b.get');
-    a = 210;
+    tmpSSA_a = 210;
     return 100;
   },
   set b($$0) {
     const x$1 = $$0;
     debugger;
     tmp('b.set', x$1);
-    a = 2100;
-    e = 'failb';
+    tmpSSA_a = 2100;
+    tmpSSA_e = 'failb';
     return 2000;
   },
 };
@@ -336,17 +345,17 @@ const tmpSSA_objc = {
   get c() {
     debugger;
     tmp('c.get');
-    a = 310;
-    b = 320;
+    tmpSSA_a = 310;
+    tmpSSA_b = 320;
     return 100;
   },
   set c($$0) {
     const x$3 = $$0;
     debugger;
     tmp('c.set', x$3);
-    a = 3100;
-    b = 3200;
-    e = 'failc';
+    tmpSSA_a = 3100;
+    tmpSSA_b = 3200;
+    tmpSSA_e = 'failc';
     return 3000;
   },
 };
@@ -354,64 +363,64 @@ const tmpSSA_objd = {
   get d() {
     debugger;
     tmp('d.get');
-    a = 410;
-    b = 420;
-    c = 430;
+    tmpSSA_a = 410;
+    tmpSSA_b = 420;
+    tmpSSA_c = 430;
     return 100;
   },
   set d($$0) {
     const x$5 = $$0;
     debugger;
     tmp('d.set', x$5);
-    a = 4100;
-    b = 4200;
-    c = 4300;
-    e = 'faild';
+    tmpSSA_a = 4100;
+    tmpSSA_b = 4200;
+    tmpSSA_c = 4300;
+    tmpSSA_e = 'faild';
     return 4000;
   },
 };
-a = function () {
+let tmpSSA_a = function () {
   debugger;
   tmp('a');
   return tmpSSA_obja;
 };
-b = function () {
+let tmpSSA_b = function () {
   debugger;
   tmp('b');
-  a = 21;
+  tmpSSA_a = 21;
   return tmpSSA_objb;
 };
-c = function () {
+let tmpSSA_c = function () {
   debugger;
   tmp('c');
-  a = 31;
-  b = 32;
+  tmpSSA_a = 31;
+  tmpSSA_b = 32;
   return tmpSSA_objc;
 };
 const tmpSSA_d = function () {
   debugger;
   tmp('d');
-  a = 41;
-  b = 42;
-  c = 43;
+  tmpSSA_a = 41;
+  tmpSSA_b = 42;
+  tmpSSA_c = 43;
   return tmpSSA_objd;
 };
-e = 12345;
-const varInitAssignLhsComputedObj = a();
+let tmpSSA_e = 12345;
+const varInitAssignLhsComputedObj = tmpSSA_a();
 const varInitAssignLhsComputedProp = tmp('a');
-const varInitAssignLhsComputedObj$1 = b();
+const varInitAssignLhsComputedObj$1 = tmpSSA_b();
 const varInitAssignLhsComputedProp$1 = tmp('b');
-const varInitAssignLhsComputedObj$3 = c();
+const varInitAssignLhsComputedObj$3 = tmpSSA_c();
 const varInitAssignLhsComputedProp$3 = tmp('c');
 const varInitAssignLhsComputedObj$5 = tmpSSA_d();
 const varInitAssignLhsComputedProp$5 = tmp('d');
-const varInitAssignLhsComputedRhs$5 = e;
+const varInitAssignLhsComputedRhs$5 = tmpSSA_e;
 varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$5;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$5;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$5;
 tmp(varInitAssignLhsComputedRhs$5);
-tmp(a, b, c, tmpSSA_d, e);
+tmp(tmpSSA_a, tmpSSA_b, tmpSSA_c, tmpSSA_d, tmpSSA_e);
 tmp(tmpSSA_obja, tmpSSA_objb, tmpSSA_objc, tmpSSA_objd);
 `````
 

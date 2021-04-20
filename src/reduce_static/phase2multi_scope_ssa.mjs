@@ -3,7 +3,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function multiScopeSSA(fdata) {
-  group('\n\n\nChecking for vars to SSA\n');
+  group('\n\n\nChecking for vars to SSA in multiple scopes\n');
   const r = _multiScopeSSA(fdata);
   groupEnd();
   return r;
@@ -11,7 +11,6 @@ export function multiScopeSSA(fdata) {
 function _multiScopeSSA(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
-  vlog('Now going to try to SSA bindings that are used in multiple scopes');
   let multiScopeSSA = 0;
   new Map(fdata.globallyUniqueNamingRegistry).forEach((meta, name) => {
     if (meta.isBuiltin) return;
@@ -22,15 +21,12 @@ function _multiScopeSSA(fdata) {
 
     vgroup('- `' + name + '`:', meta.constValueRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 
-    // Since we regenerate the pid during every phase1, we should be able to rely on it for DFS ordering.
-    const rwOrder = [...meta.reads, ...meta.writes].sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
-      +a < +b ? -1 : +a > +b ? 1 : 0,
-    );
+    const rwOrder = meta.rwOrder;
     vlog('rwOrder:', [rwOrder.map((o) => o.action + ':' + o.kind + ':' + o.node.$p.pid + ':' + o.blockIndex).join(', ')]);
 
     vlog('Multi-scope fallback. Attempting to apply SSA to back2back writes');
     vgroup('Walking through all refs of `' + name + '`');
-    let last;
+    const lastMap = new Map; // Map<funcNode, ref|undefined>. For each scope remember the previous write, if any.
     let seenDecl = false;
     const declWasFirstRef = rwOrder[0]?.action === 'write' && rwOrder[0]?.kind === 'var';
     let declInnerLoop = undefined; // If a ref is inside a loop then we can only SSA if it is in the same loop as the var decl is. Otherwise the name will no longer match next iteration.
@@ -40,6 +36,8 @@ function _multiScopeSSA(fdata) {
       const isVar = ref.action === 'write' && ref.kind === 'var';
       const isDeclOrAssign = isAssign || isVar;
       const block = ref.blockBody;
+
+      const last = lastMap.get(ref.pfuncNode);
 
       // Check stuff like `x = x + 1`, `x = x + x`, `x = f(x, x)`, and `x = [x, x, x]`.
       // If the rhs of an assignment contains itself, skip any number of self
@@ -246,12 +244,12 @@ function _multiScopeSSA(fdata) {
           seenDecl = true;
           declInnerLoop = ref.innerLoop;
         }
-        last = ref;
+        lastMap.set(ref.pfuncNode, ref);
       } else if (last && ref.action === 'read' && last.pfuncNode === ref.pfuncNode) {
         // Only apply to back2back writes. If there was a read in the same scope then it's not back2back.
         // However, if two writes had statements between them without observable side effects we still consider
         // them to be back2back, since nothing can observe the difference.
-        last = undefined;
+        lastMap.set(ref.pfuncNode, undefined);
       }
     });
     vgroupEnd();

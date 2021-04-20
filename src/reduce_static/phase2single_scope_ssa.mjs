@@ -3,7 +3,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function singleScopeSSA(fdata) {
-  group('\n\n\nChecking for vars to SSA\n');
+  group('\n\n\nChecking for vars to SSA in single scope\n');
   const r = _singleScopeSSA(fdata);
   groupEnd();
   return r;

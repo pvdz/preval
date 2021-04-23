@@ -2,6 +2,7 @@
 
 import {
   ASSERT,
+  assertNoDupeNodes,
   log,
   group,
   groupEnd,
@@ -56,7 +57,7 @@ function _inlineOneTimeFunctions(fdata) {
     if (!meta.isConstant) return;
 
     vgroup(
-      '- `' +meta.uniqueName+'`:',
+      '- `' + meta.uniqueName + '`:',
       meta.constValueRef.node.type,
       ', writes:',
       meta.writes.length,
@@ -137,7 +138,16 @@ function _inlineOneTimeFunctions(fdata) {
       // We strive for a max of one branch per function so do not merge functions that both have one
       // A branch is an if or a loop (while, for-x). Other types (do-while, for, switch, logic operators,
       // conditional operators, ternary operator) are all gone at this point.
-      vlog('This function or the parent function has a branch so we cant inline');
+      vlog('The called function and the calling function both have a branch so we cant inline');
+      vgroupEnd();
+      return;
+    }
+
+    const write = meta.writes[0];
+
+    vlog('Read funcChain:', read.funcChain, ', func readBlock:', funcNode.$p.funcChain);
+    if (read.funcChain !== funcNode.$p.funcChain && read.funcChain.startsWith(funcNode.$p.funcChain)) {
+      vlog('This call was nested inside the function being called (recursion). This action would implode the function. Bailing.');
       vgroupEnd();
       return;
     }
@@ -172,8 +182,6 @@ function _inlineOneTimeFunctions(fdata) {
       }
     }
 
-    const write = meta.writes[0];
-
     // We should be able to inline this call
     // We must map all the params of the func to the arguments of the call
     // This is a little annoying but we should have all references to all bindings and should be able to
@@ -191,6 +199,7 @@ function _inlineOneTimeFunctions(fdata) {
       read,
       write /*body: read.blockBody, index: read.blockIndex*/,
       funcNode,
+      meta,
     });
 
     vgroupEnd();
@@ -214,7 +223,7 @@ function _inlineOneTimeFunctions(fdata) {
     // The call is leading for this order, not the function decl. The call is where arbitrary statements are injected.
     // The function decls are set to an empty statement and do not change any indexes.
     vlog('');
-    queue.forEach(({ funcNode, read, write, blockRefBak, debugCode }, i) => {
+    queue.forEach(({ funcNode, read, write, blockRefBak, debugCode, meta }, i) => {
       vgroup(
         '- queue[' + i + '][' + funcNode.$p.pid + '] ' + debugCode + '; Starting to inline next one-time called function in the queue',
       );
@@ -261,7 +270,10 @@ function _inlineOneTimeFunctions(fdata) {
       // - inject all statements of the function (except the last return statement, if any) before the call
 
       vlog('Injecting let assignments for each param, initializing them to the argument value');
-      vlog('- Param names:', params.map((pnode) => pnode.name + '>' + (pnode.$p.ref?.name ?? '<unused>')).join(', '));
+      vlog(
+        '- Param names (' + params.length + '):',
+        params.map((pnode) => pnode.name + '>' + (pnode.$p.ref?.name ?? '<unused>')).join(', '),
+      );
 
       // Must now inject a const for each param name, with the init being the arg at the same index.
       // We can't just inline-replace them because it is possible to assign to param names and if
@@ -279,13 +291,16 @@ function _inlineOneTimeFunctions(fdata) {
             ASSERT(pnode.type === 'Param' && !pnode.rest);
             // The lets will promote to a const in most cases, followed by elimination of some kind. Not always.
             if (!pnode.$p.ref) return null;
-            return AST.variableDeclaration(pnode.$p.ref?.name, args[pi] || 'undefined', 'let');
+            return AST.variableDeclaration(pnode.$p.ref?.name, args[pi] ? args[pi] : 'undefined', 'let');
           })
           .filter((n) => !!n),
       );
 
       vlog('After adding the lets:');
       source(funcNode);
+
+      assertNoDupeNodes(read.pfuncNode, 'body');
+      assertNoDupeNodes(funcNode, 'body');
 
       ASSERT(
         ['ExpressionStatement', 'AssignmentExpression', 'VariableDeclarator'].includes(read.grandNode.type),
@@ -297,15 +312,29 @@ function _inlineOneTimeFunctions(fdata) {
       const lastNode = funcBody[funcBody.length - 1];
 
       if (lastNode?.type === 'ReturnStatement') {
+        vlog('Last node of func body is a `return`');
         // Replace the call with the argument of this return statement
         // When normalized, the call can only exist as a statement, rhs of assignment, or init of var decl
         // This means, if we care to replace it at all, then the index must be -1
         const retNode = funcBody.pop(); // This changes the function node (!) but we're dropping it so that's ok??
+        vlog('Dropped the return statement from the function');
+        source(funcNode);
+        vlog('Moving the original return value to replace the call...');
         ASSERT(retNode.argument, 'normalized code must have explicit return values');
         // The parentNode must be a CallExpression. Replace it entirely with the final return value of the func.
+        ASSERT(read.parentNode.type === 'CallExpression', 'the read was a call, right?', read.parentNode);
+        ASSERT(read.grandNode[read.grandProp] === read.parentNode, 'checking just in case');
         // The rest of the func is injected before this line. It was checked not to return early.
+        before(read.grandNode[read.grandProp]);
         read.grandNode[read.grandProp] = retNode.argument; // Should not need to clone this...
+        after(read.grandNode[read.grandProp]);
+
+        vlog('Called function now:');
+        source(funcNode);
+        vlog('Owner function now:');
+        source(read.pfuncNode);
       } else if (lastNode?.type === 'IfStatement') {
+        vlog('Last node of func body is an `if`');
         if (!lastNode.alternate) {
           // If this else ends up not being used at all then some other rule will eliminate it. There should not
           // be a risk of infinite looping here since this block is only added if a reduction happens at all.
@@ -420,14 +449,20 @@ function _inlineOneTimeFunctions(fdata) {
           read.blockBody[read.blockIndex] = AST.emptyStatement();
         }
       } else {
+        vlog('Last node of func body is neither a `return` nor an `if`');
         // Last element was neither an `IfStatement` nor a `ReturnStatement` and did not return early. Inline verbatim.
         // Replace the call with `undefined`
         // The func body should not contain a `return` statement at this point (because that fails if the parent func is global)
         read.grandNode[read.grandProp] = AST.identifier('undefined');
       }
 
+      vlog('Going to remove the', write.blockIndex, 'index from the write function');
+
       write.blockBody[write.blockIndex] = AST.emptyStatement();
       read.blockBody.splice(read.blockIndex, 0, ...funcBody.slice(bodyOffset));
+
+      assertNoDupeNodes(read.pfuncNode, 'body');
+      assertNoDupeNodes(funcNode, 'body');
 
       vlog('read block body:');
       after(read.pfuncNode);

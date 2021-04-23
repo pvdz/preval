@@ -50,10 +50,10 @@ tmpCompObj[tmpCompProp];
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = $(1);
-const tmpSSA_c = $(2);
-const tmpCompProp = $(tmpSSA_c);
-tmpSSA_a[tmpCompProp];
+const a = $(1);
+const c = $(2);
+const tmpCompProp = $(c);
+a[tmpCompProp];
 `````
 
 ## Globals

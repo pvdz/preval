@@ -54,9 +54,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpSSA_a = { b: tmpObjLitVal };
-tmpSSA_a.b = 2;
-$(tmpSSA_a);
+const a = { b: tmpObjLitVal };
+a.b = 2;
+$(a);
 $(undefined);
 `````
 

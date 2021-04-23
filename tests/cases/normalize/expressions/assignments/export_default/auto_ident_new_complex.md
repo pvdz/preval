@@ -40,10 +40,10 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpSSA_a = new tmpNewCallee(1);
-const tmpAnonDefaultExport = tmpSSA_a;
+const a = new tmpNewCallee(1);
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

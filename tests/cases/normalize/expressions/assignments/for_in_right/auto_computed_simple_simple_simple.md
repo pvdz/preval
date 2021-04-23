@@ -44,12 +44,12 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpSSA_a = { b: tmpObjLitVal };
+const a = { b: tmpObjLitVal };
 let x = undefined;
-for (x in tmpSSA_a) {
+for (x in a) {
 }
-tmpSSA_a.b = 2;
-$(tmpSSA_a);
+a.b = 2;
+$(a);
 `````
 
 ## Globals

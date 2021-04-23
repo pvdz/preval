@@ -48,9 +48,9 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpCalleeParam = ['before ', ' after'];
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete arg[tmpDeleteCompProp];
-$(tmpCalleeParam, tmpSSA_a);
-$(tmpSSA_a, arg);
+const a = delete arg[tmpDeleteCompProp];
+$(tmpCalleeParam, a);
+$(a, arg);
 `````
 
 ## Globals

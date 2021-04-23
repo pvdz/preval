@@ -53,9 +53,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = arguments;
+const a = arguments;
 $(100);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

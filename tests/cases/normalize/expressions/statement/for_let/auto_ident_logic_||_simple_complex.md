@@ -53,9 +53,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-const tmpSSA_xyz = $(tmpCalleeParam);
+const xyz = $(tmpCalleeParam);
 while (true) {
-  $(tmpSSA_xyz);
+  $(xyz);
   $(1);
 }
 $(a);

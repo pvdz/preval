@@ -52,18 +52,18 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpSSA_a = tmpChainElementObject;
+  a = tmpChainElementObject;
 } else {
 }
-const tmpObjLitPropKey = tmpSSA_a;
+const tmpObjLitPropKey = a;
 const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

@@ -42,10 +42,10 @@ $(a);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
-const tmpAnonDefaultExport = tmpSSA_a;
+const a = tmpBinBothLhs + tmpBinBothRhs;
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

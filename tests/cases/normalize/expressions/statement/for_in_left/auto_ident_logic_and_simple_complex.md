@@ -54,8 +54,8 @@ const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const tmpCalleeParam$1 = $(1);
-  const tmpSSA_tmpAssignMemLhsObj = $(tmpCalleeParam$1);
-  tmpSSA_tmpAssignMemLhsObj.x = tmpForInLhsNode;
+  const tmpAssignMemLhsObj = $(tmpCalleeParam$1);
+  tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
 $(a);
 `````

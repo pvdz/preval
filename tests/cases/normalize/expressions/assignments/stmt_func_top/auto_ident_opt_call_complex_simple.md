@@ -74,17 +74,17 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 const tmpBranchingC = function () {
   debugger;
-  $(tmpSSA_a);
+  $(a);
   return undefined;
 };
 if (tmpIfTest) {
   const tmpChainElementCall$3 = tmpChainElementCall.call($, 1);
-  tmpSSA_a = tmpChainElementCall$3;
+  a = tmpChainElementCall$3;
   tmpBranchingC();
 } else {
   tmpBranchingC();

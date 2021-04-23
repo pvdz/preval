@@ -50,19 +50,19 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
-  tmpSSA_a = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 } else {
 }
-const tmpAnonDefaultExport = tmpSSA_a;
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

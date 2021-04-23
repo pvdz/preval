@@ -46,13 +46,13 @@ $(x, 'final');
 ## Output
 
 `````js filename=intro
-let tmpSSA_x = $(1, 'before');
+let x = $(1, 'before');
 const tmpIfTest = $(2, 'if');
 if (tmpIfTest) {
-  tmpSSA_x = $(3, 'then');
+  x = $(3, 'then');
 } else {
 }
-$(tmpSSA_x, 'final');
+$(x, 'final');
 `````
 
 ## Globals

@@ -39,9 +39,8 @@ export { x };
 ## Output
 
 `````js filename=intro
-let x = undefined;
 $(undefined);
-x = 10;
+const x = 10;
 $(10);
 export { x };
 `````

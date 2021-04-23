@@ -76,10 +76,10 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam$1 = ['pass'];
-const tmpSSA_bindingPatternArrRoot = $(tmpCalleeParam$1);
-const tmpSSA_tmpssa2_arrPatternSplat = [...tmpSSA_bindingPatternArrRoot];
-const tmpSSA_tmpssa2_x = tmpSSA_tmpssa2_arrPatternSplat.slice(0);
-$(tmpSSA_tmpssa2_x);
+const bindingPatternArrRoot = $(tmpCalleeParam$1);
+const tmpssa2_arrPatternSplat = [...bindingPatternArrRoot];
+const tmpssa2_x = tmpssa2_arrPatternSplat.slice(0);
+$(tmpssa2_x);
 `````
 
 ## Globals

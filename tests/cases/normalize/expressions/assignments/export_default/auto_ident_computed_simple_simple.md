@@ -43,10 +43,10 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpSSA_a = b.c;
-const tmpAnonDefaultExport = tmpSSA_a;
+const a = b.c;
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(tmpSSA_a, b);
+$(a, b);
 `````
 
 ## Globals

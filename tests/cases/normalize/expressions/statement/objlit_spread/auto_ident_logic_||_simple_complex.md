@@ -44,8 +44,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-const tmpSSA_tmpObjSpreadArg = $(tmpCalleeParam);
-({ ...tmpSSA_tmpObjSpreadArg });
+const tmpObjSpreadArg = $(tmpCalleeParam);
+({ ...tmpObjSpreadArg });
 $(a);
 `````
 

@@ -88,8 +88,8 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const tmpSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-const tmpIfTest = tmpSSA_a === tmpSwitchValue;
+const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -110,7 +110,7 @@ if (tmpIfTest$7) {
   $('fail2');
 } else {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

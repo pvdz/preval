@@ -45,8 +45,8 @@ while (true) {
 
 `````js filename=intro
 while (true) {
-  const tmpSSA_a = $(1);
-  $(tmpSSA_a);
+  const a = $(1);
+  $(a);
   break;
 }
 `````

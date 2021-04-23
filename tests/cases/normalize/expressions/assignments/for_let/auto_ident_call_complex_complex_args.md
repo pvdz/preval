@@ -56,12 +56,12 @@ $(a);
 const tmpCallCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpSSA_a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+const a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 while (true) {
-  $(tmpSSA_a);
+  $(a);
   $(1);
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

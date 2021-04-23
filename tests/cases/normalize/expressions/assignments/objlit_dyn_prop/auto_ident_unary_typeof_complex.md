@@ -46,10 +46,10 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const tmpSSA_a = typeof tmpUnaryArg;
-const tmpCalleeParam = { [tmpSSA_a]: 10 };
+const a = typeof tmpUnaryArg;
+const tmpCalleeParam = { [a]: 10 };
 $(tmpCalleeParam);
-$(tmpSSA_a, 1);
+$(a, 1);
 `````
 
 ## Globals

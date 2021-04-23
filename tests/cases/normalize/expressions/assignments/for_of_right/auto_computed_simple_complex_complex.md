@@ -49,14 +49,14 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpSSA_a = { b: tmpObjLitVal };
+const a = { b: tmpObjLitVal };
 let x = undefined;
-for (x of tmpSSA_a) {
+for (x of a) {
 }
 const tmpAssignComMemLhsProp = $('b');
 const tmpAssignComputedRhs = $(2);
-tmpSSA_a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-$(tmpSSA_a);
+a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+$(a);
 `````
 
 ## Globals

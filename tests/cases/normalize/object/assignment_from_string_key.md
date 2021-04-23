@@ -39,8 +39,8 @@ $(y, o);
 
 `````js filename=intro
 const o = { x: 1 };
-const tmpSSA_y = o.x;
-$(tmpSSA_y, o);
+const y = o.x;
+$(y, o);
 `````
 
 ## Globals

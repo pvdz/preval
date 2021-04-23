@@ -80,7 +80,7 @@ $(a);
 const b = { $: $ };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
@@ -91,19 +91,19 @@ if (tmpIfTest$1) {
     const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
-    tmpSSA_a = tmpChainElementCall$1;
+    a = tmpChainElementCall$1;
   } else {
   }
 } else {
 }
-const tmpBinLhs = tmpSSA_a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

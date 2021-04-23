@@ -44,14 +44,14 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpSSA_a = +tmpUnaryArg;
-let tmpCalleeParam = tmpSSA_a;
+const a = +tmpUnaryArg;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

@@ -45,13 +45,13 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpSSA_b = $(2);
-const tmpIfTest = tmpSSA_b;
+let b = $(2);
+const tmpIfTest = b;
 if (tmpIfTest) {
-  tmpSSA_b = $(2);
+  b = $(2);
 } else {
 }
-$(a, tmpSSA_b);
+$(a, b);
 `````
 
 ## Globals

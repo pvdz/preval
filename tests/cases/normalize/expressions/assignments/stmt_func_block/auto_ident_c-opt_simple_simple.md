@@ -83,16 +83,16 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const b = { x: 1 };
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpIfTest = b != null;
 const tmpBranchingC = function () {
   debugger;
-  $(tmpSSA_a);
+  $(a);
   return undefined;
 };
 if (tmpIfTest) {
   const tmpChainElementObject$1 = b.x;
-  tmpSSA_a = tmpChainElementObject$1;
+  a = tmpChainElementObject$1;
   tmpBranchingC();
 } else {
   tmpBranchingC();

@@ -89,8 +89,8 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
-const tmpSSA_a = { b: tmpObjLitVal };
-const tmpIfTest = tmpSSA_a === tmpSwitchValue;
+const a = { b: tmpObjLitVal };
+const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -111,9 +111,9 @@ if (tmpIfTest$7) {
   $('fail2');
 } else {
 }
-const tmpAssignMemLhsObj = $(tmpSSA_a);
+const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.b = 2;
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

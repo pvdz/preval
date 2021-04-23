@@ -60,8 +60,8 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpCalleeParam = $(1);
-const tmpSSA_a$1 = $(tmpCalleeParam);
-$(tmpSSA_a$1);
+const a = $(tmpCalleeParam);
+$(a);
 `````
 
 ## Globals

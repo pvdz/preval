@@ -60,14 +60,14 @@ $(a);
 
 `````js filename=intro
 $(1);
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpIfTest$1 = $ != null;
 if (tmpIfTest$1) {
   const tmpChainElementCall = $(1);
-  tmpSSA_a = tmpChainElementCall;
+  a = tmpChainElementCall;
 } else {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

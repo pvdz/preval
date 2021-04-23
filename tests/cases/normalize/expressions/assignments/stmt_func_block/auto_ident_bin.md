@@ -57,8 +57,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpSSA_a);
+const a = tmpBinBothLhs + tmpBinBothRhs;
+$(a);
 $(undefined);
 `````
 

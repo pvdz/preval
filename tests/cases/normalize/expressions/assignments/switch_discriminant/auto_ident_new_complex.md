@@ -55,9 +55,9 @@ $(a);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpSSA_a = new tmpNewCallee(1);
+const a = new tmpNewCallee(1);
 $(100);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

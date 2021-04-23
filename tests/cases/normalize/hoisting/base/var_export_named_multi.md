@@ -44,11 +44,9 @@ export { y };
 ## Output
 
 `````js filename=intro
-let x = undefined;
-let y = undefined;
 $(undefined, undefined);
-x = 10;
-y = 20;
+const x = 10;
+const y = 20;
 $(10, 20);
 export { x };
 export { y };

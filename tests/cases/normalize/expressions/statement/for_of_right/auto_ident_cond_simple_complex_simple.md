@@ -40,9 +40,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSSA_tmpForOfDeclRhs = $(2);
+const tmpForOfDeclRhs = $(2);
 let x = undefined;
-for (x of tmpSSA_tmpForOfDeclRhs) {
+for (x of tmpForOfDeclRhs) {
 }
 $(a);
 `````

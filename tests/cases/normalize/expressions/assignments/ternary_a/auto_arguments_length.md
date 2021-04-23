@@ -45,14 +45,14 @@ $(a);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const tmpSSA_a = arguments;
-if (tmpSSA_a) {
+const a = arguments;
+if (a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

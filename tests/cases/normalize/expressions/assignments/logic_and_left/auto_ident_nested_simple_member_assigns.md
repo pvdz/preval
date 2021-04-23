@@ -69,8 +69,8 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-const tmpSSA_tmpCalleeParam = $(100);
-$(tmpSSA_tmpCalleeParam);
+const tmpCalleeParam = $(100);
+$(tmpCalleeParam);
 $(3, b, 3);
 `````
 

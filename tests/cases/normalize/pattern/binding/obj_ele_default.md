@@ -99,8 +99,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = {};
-tmpSSA_a.x;
+const a = {};
+a.x;
 $(undefined);
 `````
 

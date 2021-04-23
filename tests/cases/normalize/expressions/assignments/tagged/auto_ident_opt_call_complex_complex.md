@@ -52,19 +52,19 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$5 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$5);
-  tmpSSA_a = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 } else {
 }
-const tmpCalleeParam$1 = tmpSSA_a;
+const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

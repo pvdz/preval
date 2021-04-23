@@ -43,12 +43,12 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpSSA_a = $(tmpCalleeParam);
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
+let a = $(tmpCalleeParam);
+if (a) {
+  a = 2;
 } else {
 }
-const tmpThrowArg = tmpSSA_a;
+const tmpThrowArg = a;
 throw tmpThrowArg;
 `````
 

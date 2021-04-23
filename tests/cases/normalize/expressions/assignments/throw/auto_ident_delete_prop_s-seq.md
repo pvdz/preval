@@ -46,8 +46,8 @@ throw tmpThrowArg;
 const arg = { y: 1 };
 $(1);
 $(2);
-const tmpSSA_a = delete arg.y;
-throw tmpSSA_a;
+const a = delete arg.y;
+throw a;
 `````
 
 ## Globals

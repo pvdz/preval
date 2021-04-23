@@ -50,14 +50,14 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallCompProp = $('$');
-const tmpSSA_a = b[tmpCallCompProp](1);
-let tmpCalleeParam = tmpSSA_a;
+const a = b[tmpCallCompProp](1);
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

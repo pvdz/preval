@@ -47,15 +47,15 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpSSA_a = $(tmpCalleeParam);
-if (tmpSSA_a) {
+let a = $(tmpCalleeParam);
+if (a) {
   const tmpCalleeParam$1 = $(2);
-  tmpSSA_a = $(tmpCalleeParam$1);
+  a = $(tmpCalleeParam$1);
 } else {
 }
-const tmpCalleeParamSpread = tmpSSA_a;
+const tmpCalleeParamSpread = a;
 $(...tmpCalleeParamSpread);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

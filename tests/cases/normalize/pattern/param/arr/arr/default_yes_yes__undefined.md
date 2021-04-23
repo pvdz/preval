@@ -110,16 +110,16 @@ const tmpBranchingC$1 = function () {
   return undefined;
 };
 const tmpCalleeParam$1 = ['pass3'];
-const tmpSSA_bindingPatternArrRoot = $(tmpCalleeParam$1);
-const tmpSSA_tmpssa2_arrPatternSplat = [...tmpSSA_bindingPatternArrRoot];
-const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
-const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
+const bindingPatternArrRoot = $(tmpCalleeParam$1);
+const tmpssa2_arrPatternSplat = [...bindingPatternArrRoot];
+const tmpssa3_arrPatternBeforeDefault = tmpssa2_arrPatternSplat[0];
+const tmpIfTest$1 = tmpssa3_arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$5 = ['fail2'];
   arrPatternStep = $(tmpCalleeParam$5);
   tmpBranchingC$1();
 } else {
-  arrPatternStep = tmpSSA_tmpssa3_arrPatternBeforeDefault;
+  arrPatternStep = tmpssa3_arrPatternBeforeDefault;
   tmpBranchingC$1();
 }
 $('ok');

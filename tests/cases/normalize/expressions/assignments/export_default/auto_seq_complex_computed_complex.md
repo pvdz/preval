@@ -51,15 +51,15 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpSSA_a = { b: tmpObjLitVal };
-const tmpAnonDefaultExport = tmpSSA_a;
+const a = { b: tmpObjLitVal };
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(1);
-const tmpAssignComMemLhsObj = $(tmpSSA_a);
+const tmpAssignComMemLhsObj = $(a);
 const tmpAssignComMemLhsProp = $('b');
 const tmpAssignComputedRhs = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

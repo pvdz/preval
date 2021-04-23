@@ -93,8 +93,8 @@ const f = function () {
   let tmpLoopRetCode = true;
   const tmpLoopBody = function () {
     debugger;
-    const tmpSSA_tmpssa2_x = $(2);
-    $(tmpSSA_tmpssa2_x);
+    const tmpssa2_x = $(2);
+    $(tmpssa2_x);
     if ($) {
       tmpLoopRetCode = false;
       return undefined;

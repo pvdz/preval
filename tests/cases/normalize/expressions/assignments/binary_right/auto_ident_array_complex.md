@@ -46,10 +46,10 @@ $(a);
 const tmpBinBothLhs = $(100);
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpSSA_a = [tmpArrElement, 2, tmpArrElement$3];
-const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
+const a = [tmpArrElement, 2, tmpArrElement$3];
+const tmpCalleeParam = tmpBinBothLhs + a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

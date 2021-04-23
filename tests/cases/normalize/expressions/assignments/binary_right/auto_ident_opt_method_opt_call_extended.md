@@ -64,7 +64,7 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const tmpBinBothLhs = $(100);
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.c;
@@ -73,15 +73,15 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject$3 != null;
   if (tmpIfTest$1) {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
-    tmpSSA_a = tmpChainElementCall;
+    a = tmpChainElementCall;
   } else {
   }
 } else {
 }
-const tmpBinBothRhs = tmpSSA_a;
+const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

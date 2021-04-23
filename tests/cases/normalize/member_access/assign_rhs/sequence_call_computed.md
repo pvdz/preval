@@ -44,8 +44,8 @@ $(c);
 $(1);
 const tmpAssignRhsCompObj = $(2);
 const tmpAssignRhsCompProp = $('toString');
-const tmpSSA_x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(tmpSSA_x);
+const x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(x);
 $(c);
 `````
 

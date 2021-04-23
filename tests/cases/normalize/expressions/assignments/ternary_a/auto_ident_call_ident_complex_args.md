@@ -54,14 +54,14 @@ $(a);
 let tmpCalleeParam = undefined;
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const tmpSSA_a = $(tmpCalleeParam$1, tmpCalleeParam$3);
-if (tmpSSA_a) {
+const a = $(tmpCalleeParam$1, tmpCalleeParam$3);
+if (a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

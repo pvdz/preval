@@ -44,9 +44,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpAnonDefaultExport = 1;
 const tmpCalleeParam = $(1);
-tmpAnonDefaultExport = $(tmpCalleeParam);
+const tmpAnonDefaultExport = $(tmpCalleeParam);
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

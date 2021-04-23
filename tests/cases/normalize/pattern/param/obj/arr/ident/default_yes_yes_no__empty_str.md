@@ -108,13 +108,13 @@ const f = function () {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   const tmpBranchingC = function () {
     debugger;
-    const tmpSSA_tmpssa2_arrPatternSplat = [...objPatternAfterDefault];
-    const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
-    const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
+    const tmpssa2_arrPatternSplat = [...objPatternAfterDefault];
+    const tmpssa3_arrPatternBeforeDefault = tmpssa2_arrPatternSplat[0];
+    const tmpIfTest$1 = tmpssa3_arrPatternBeforeDefault === undefined;
     if (tmpIfTest$1) {
       return 'fail';
     } else {
-      return tmpSSA_tmpssa3_arrPatternBeforeDefault;
+      return tmpssa3_arrPatternBeforeDefault;
     }
   };
   if (tmpIfTest) {

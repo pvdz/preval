@@ -69,22 +69,22 @@ $(a);
 const b = { x: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpSSA_a = tmpChainElementObject;
+  a = tmpChainElementObject;
 } else {
 }
-const tmpBinLhs = tmpSSA_a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

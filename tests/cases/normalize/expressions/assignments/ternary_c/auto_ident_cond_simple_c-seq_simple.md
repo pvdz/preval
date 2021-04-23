@@ -52,9 +52,9 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpSSA_tmpNestedComplexRhs = $(60);
-  a = tmpSSA_tmpNestedComplexRhs;
-  tmpCalleeParam = tmpSSA_tmpNestedComplexRhs;
+  const tmpNestedComplexRhs = $(60);
+  a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
 $(a);

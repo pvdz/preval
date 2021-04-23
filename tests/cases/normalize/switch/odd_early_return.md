@@ -391,8 +391,8 @@ const f = function () {
   };
   const tmpBranchingC$9 = function () {
     debugger;
-    const tmpSSA_tmpssa2_tmpIfTest$35 = tmpSwitchCaseToStart <= 2;
-    if (tmpSSA_tmpssa2_tmpIfTest$35) {
+    const tmpssa2_tmpIfTest$35 = tmpSwitchCaseToStart <= 2;
+    if (tmpssa2_tmpIfTest$35) {
       $(5);
       const tmpReturnArg$79 = $(6);
       return tmpReturnArg$79;

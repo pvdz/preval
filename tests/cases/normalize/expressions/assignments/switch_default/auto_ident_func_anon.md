@@ -58,11 +58,11 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpSSA_a = function () {
+const a = function () {
   debugger;
   return undefined;
 };
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

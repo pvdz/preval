@@ -88,18 +88,18 @@ tmpCallCallee(tmpCalleeParam);
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpIfTest = b != null;
 const tmpBranchingC = function () {
   debugger;
-  $(tmpSSA_a);
+  $(a);
   return undefined;
 };
 if (tmpIfTest) {
   const tmpChainElementObject$5 = b.x;
   const tmpChainElementObject$7 = tmpChainElementObject$5.y;
   const tmpChainElementObject$9 = tmpChainElementObject$7.z;
-  tmpSSA_a = tmpChainElementObject$9;
+  a = tmpChainElementObject$9;
   tmpBranchingC();
 } else {
   tmpBranchingC();

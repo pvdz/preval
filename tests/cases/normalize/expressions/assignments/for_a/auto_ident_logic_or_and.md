@@ -58,21 +58,21 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-let tmpSSA_a = $(tmpCalleeParam);
-if (tmpSSA_a) {
+let a = $(tmpCalleeParam);
+if (a) {
 } else {
   const tmpCalleeParam$1 = $(1);
-  tmpSSA_a = $(tmpCalleeParam$1);
-  if (tmpSSA_a) {
+  a = $(tmpCalleeParam$1);
+  if (a) {
     const tmpCalleeParam$3 = $(2);
-    tmpSSA_a = $(tmpCalleeParam$3);
+    a = $(tmpCalleeParam$3);
   } else {
   }
 }
 while (true) {
   $(1);
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

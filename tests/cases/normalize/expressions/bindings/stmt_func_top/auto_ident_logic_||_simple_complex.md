@@ -70,8 +70,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-const tmpSSA_a = $(tmpCalleeParam$1);
-$(tmpSSA_a);
+const a = $(tmpCalleeParam$1);
+$(a);
 $(undefined);
 `````
 

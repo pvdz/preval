@@ -63,19 +63,19 @@ const f = function () {
   debugger;
   return undefined;
 };
-let tmpSSA_a = f;
-let tmpCalleeParam = tmpSSA_a;
+let a = f;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   const f$1 = function () {
     debugger;
     return undefined;
   };
-  tmpSSA_a = f$1;
+  a = f$1;
   tmpCalleeParam = f$1;
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

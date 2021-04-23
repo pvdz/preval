@@ -58,9 +58,9 @@ f(tmpArg);
 
 `````js filename=intro
 let tmpArg = undefined;
-const tmpSSA_tmpBinaryLeft = a.x;
-const tmpSSA_tmpTernaryTest = tmpSSA_tmpBinaryLeft === 1;
-if (tmpSSA_tmpTernaryTest) {
+const tmpBinaryLeft = a.x;
+const tmpTernaryTest = tmpBinaryLeft === 1;
+if (tmpTernaryTest) {
   tmpArg = 2;
 } else {
   tmpArg = 3;

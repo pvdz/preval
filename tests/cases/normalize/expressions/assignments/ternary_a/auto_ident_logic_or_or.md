@@ -60,25 +60,25 @@ $(a);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 const tmpCalleeParam$1 = $(0);
-let tmpSSA_a = $(tmpCalleeParam$1);
-if (tmpSSA_a) {
+let a = $(tmpCalleeParam$1);
+if (a) {
 } else {
   const tmpCalleeParam$3 = $(1);
-  tmpSSA_a = $(tmpCalleeParam$3);
-  if (tmpSSA_a) {
+  a = $(tmpCalleeParam$3);
+  if (a) {
   } else {
     const tmpCalleeParam$5 = $(2);
-    tmpSSA_a = $(tmpCalleeParam$5);
+    a = $(tmpCalleeParam$5);
   }
 }
-const tmpIfTest = tmpSSA_a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

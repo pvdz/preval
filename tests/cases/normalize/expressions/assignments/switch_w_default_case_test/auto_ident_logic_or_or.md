@@ -98,18 +98,18 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(0);
-let tmpSSA_a = $(tmpCalleeParam);
-if (tmpSSA_a) {
+let a = $(tmpCalleeParam);
+if (a) {
 } else {
   const tmpCalleeParam$1 = $(1);
-  tmpSSA_a = $(tmpCalleeParam$1);
-  if (tmpSSA_a) {
+  a = $(tmpCalleeParam$1);
+  if (a) {
   } else {
     const tmpCalleeParam$3 = $(2);
-    tmpSSA_a = $(tmpCalleeParam$3);
+    a = $(tmpCalleeParam$3);
   }
 }
-const tmpBinLhs = tmpSSA_a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -131,7 +131,7 @@ if (tmpIfTest$7) {
   $('fail2');
 } else {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

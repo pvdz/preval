@@ -44,9 +44,9 @@ $(a);
 const tmpCalleeParam = ['before ', ' after'];
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam, tmpSSA_a);
-$(tmpSSA_a);
+const a = tmpBinBothLhs + tmpBinBothRhs;
+$(tmpCalleeParam, a);
+$(a);
 `````
 
 ## Globals

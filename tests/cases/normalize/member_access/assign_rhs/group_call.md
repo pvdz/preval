@@ -39,8 +39,8 @@ $(x);
 $(1);
 $(2);
 const tmpAssignRhsProp = $($);
-const tmpSSA_x = tmpAssignRhsProp.length;
-$(tmpSSA_x);
+const x = tmpAssignRhsProp.length;
+$(x);
 `````
 
 ## Globals

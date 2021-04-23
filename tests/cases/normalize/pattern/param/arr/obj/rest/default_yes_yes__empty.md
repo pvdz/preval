@@ -115,22 +115,22 @@ const f = function () {
     debugger;
     const tmpCalleeParam$7 = arrPatternStep;
     const tmpCalleeParam$9 = [];
-    const tmpSSA_tmpssa2_x = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
-    return tmpSSA_tmpssa2_x;
+    const tmpssa2_x = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
+    return tmpssa2_x;
   };
   const tmpArrElement$1 = { a: 'pass2' };
   const tmpCalleeParam$1 = [tmpArrElement$1];
-  const tmpSSA_bindingPatternArrRoot = $(tmpCalleeParam$1);
-  const tmpSSA_tmpssa2_arrPatternSplat = [...tmpSSA_bindingPatternArrRoot];
-  const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
-  const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
+  const bindingPatternArrRoot = $(tmpCalleeParam$1);
+  const tmpssa2_arrPatternSplat = [...bindingPatternArrRoot];
+  const tmpssa3_arrPatternBeforeDefault = tmpssa2_arrPatternSplat[0];
+  const tmpIfTest$1 = tmpssa3_arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCalleeParam$2 = { a: 'fail' };
     arrPatternStep = $(tmpCalleeParam$2);
     const tmpReturnArg$1 = tmpBranchingC$1();
     return tmpReturnArg$1;
   } else {
-    arrPatternStep = tmpSSA_tmpssa3_arrPatternBeforeDefault;
+    arrPatternStep = tmpssa3_arrPatternBeforeDefault;
     const tmpReturnArg$4 = tmpBranchingC$1();
     return tmpReturnArg$4;
   }

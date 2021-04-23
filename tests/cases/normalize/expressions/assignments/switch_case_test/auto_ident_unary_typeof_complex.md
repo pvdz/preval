@@ -63,14 +63,14 @@ $(a, arg);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpUnaryArg = $(1);
-const tmpSSA_a = typeof tmpUnaryArg;
-const tmpIfTest = tmpSSA_a === tmpSwitchValue;
+const a = typeof tmpUnaryArg;
+const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-$(tmpSSA_a, 1);
+$(a, 1);
 `````
 
 ## Globals

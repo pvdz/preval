@@ -54,12 +54,12 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallCompProp = $('$');
-const tmpSSA_a = b[tmpCallCompProp](1);
+const a = b[tmpCallCompProp](1);
 while (true) {
-  $(tmpSSA_a);
+  $(a);
   $(1);
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

@@ -63,15 +63,15 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpSSA_a = tmpChainElementObject;
+  a = tmpChainElementObject;
 } else {
 }
-let tmpCalleeParam = tmpSSA_a;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp$1 = $(b);
@@ -81,12 +81,12 @@ if (tmpCalleeParam) {
     tmpNestedComplexRhs = tmpChainElementObject$1;
   } else {
   }
-  tmpSSA_a = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

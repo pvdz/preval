@@ -40,8 +40,8 @@ $(x);
 `````js filename=intro
 const obj = { foo: 10 };
 const tmpAssignRhsCompProp = $('foo');
-const tmpSSA_x = obj[tmpAssignRhsCompProp];
-$(tmpSSA_x);
+const x = obj[tmpAssignRhsCompProp];
+$(x);
 `````
 
 ## Globals

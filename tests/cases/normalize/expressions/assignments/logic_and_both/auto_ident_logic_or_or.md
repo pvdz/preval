@@ -73,18 +73,18 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(0);
-let tmpSSA_a = $(tmpCalleeParam$1);
-if (tmpSSA_a) {
+let a = $(tmpCalleeParam$1);
+if (a) {
 } else {
   const tmpCalleeParam$3 = $(1);
-  tmpSSA_a = $(tmpCalleeParam$3);
-  if (tmpSSA_a) {
+  a = $(tmpCalleeParam$3);
+  if (a) {
   } else {
     const tmpCalleeParam$5 = $(2);
-    tmpSSA_a = $(tmpCalleeParam$5);
+    a = $(tmpCalleeParam$5);
   }
 }
-let tmpCalleeParam = tmpSSA_a;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpCalleeParam$7 = $(0);
   let tmpNestedComplexRhs = $(tmpCalleeParam$7);
@@ -98,12 +98,12 @@ if (tmpCalleeParam) {
       tmpNestedComplexRhs = $(tmpCalleeParam$11);
     }
   }
-  tmpSSA_a = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

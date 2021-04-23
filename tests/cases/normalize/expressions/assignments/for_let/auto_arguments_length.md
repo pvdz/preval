@@ -46,12 +46,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = arguments;
+const a = arguments;
 while (true) {
-  $(tmpSSA_a);
+  $(a);
   $(1);
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

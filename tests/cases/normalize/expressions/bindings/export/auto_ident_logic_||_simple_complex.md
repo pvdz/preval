@@ -40,9 +40,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 0;
 const tmpCalleeParam = $(1);
-a = $(tmpCalleeParam);
+const a = $(tmpCalleeParam);
 export { a };
 $(a);
 `````

@@ -43,11 +43,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = [1, 2, 3];
+const a = [1, 2, 3];
 while (true) {
   $(1);
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

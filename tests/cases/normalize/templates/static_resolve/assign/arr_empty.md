@@ -37,8 +37,8 @@ $(x);
 
 `````js filename=intro
 const tmpTemplateExpr = [];
-const tmpSSA_x = `${tmpTemplateExpr}`;
-$(tmpSSA_x);
+const x = `${tmpTemplateExpr}`;
+$(x);
 `````
 
 ## Globals

@@ -42,14 +42,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = arguments;
-let tmpCalleeParam = tmpSSA_a;
+const a = arguments;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

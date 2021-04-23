@@ -95,7 +95,7 @@ $(5, a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_b = {
+const b = {
   get x() {
     debugger;
     $(1);
@@ -108,7 +108,7 @@ const tmpSSA_b = {
     return undefined;
   },
 };
-const tmpSSA_c = {
+const c = {
   get x() {
     debugger;
     $(3);
@@ -121,8 +121,8 @@ const tmpSSA_c = {
     return undefined;
   },
 };
-const tmpNestedAssignPropRhs = tmpSSA_c.x;
-tmpSSA_b.x = tmpNestedAssignPropRhs;
+const tmpNestedAssignPropRhs = c.x;
+b.x = tmpNestedAssignPropRhs;
 $(5, tmpNestedAssignPropRhs);
 `````
 

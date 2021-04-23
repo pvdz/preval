@@ -35,8 +35,8 @@ $(x);
 
 `````js filename=intro
 const tmpAssignRhsProp = $('foo');
-const tmpSSA_x = tmpAssignRhsProp.length;
-$(tmpSSA_x);
+const x = tmpAssignRhsProp.length;
+$(x);
 `````
 
 ## Globals

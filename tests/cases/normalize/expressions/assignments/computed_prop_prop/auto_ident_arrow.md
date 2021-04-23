@@ -49,12 +49,12 @@ $(a);
 
 `````js filename=intro
 const obj = {};
-const tmpSSA_a = function () {
+const a = function () {
   debugger;
   return undefined;
 };
-obj[tmpSSA_a];
-$(tmpSSA_a);
+obj[a];
+$(a);
 `````
 
 ## Globals

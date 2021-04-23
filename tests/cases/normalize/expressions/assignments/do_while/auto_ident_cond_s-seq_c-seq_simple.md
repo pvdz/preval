@@ -74,9 +74,9 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpSSA_tmpNestedComplexRhs = $(60);
-    a = tmpSSA_tmpNestedComplexRhs;
-    tmpIfTest = tmpSSA_tmpNestedComplexRhs;
+    const tmpNestedComplexRhs = $(60);
+    a = tmpNestedComplexRhs;
+    tmpIfTest = tmpNestedComplexRhs;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

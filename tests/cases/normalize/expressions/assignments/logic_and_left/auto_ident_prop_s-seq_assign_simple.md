@@ -51,8 +51,8 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 b.c = 2;
-const tmpSSA_tmpCalleeParam = $(100);
-$(tmpSSA_tmpCalleeParam);
+const tmpCalleeParam = $(100);
+$(tmpCalleeParam);
 $(2, b);
 `````
 

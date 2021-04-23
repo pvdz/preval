@@ -55,8 +55,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 while (true) {
   const tmpCalleeParam = $(1);
-  const tmpSSA_tmpIfTest = $(tmpCalleeParam);
-  if (tmpSSA_tmpIfTest) {
+  const tmpIfTest = $(tmpCalleeParam);
+  if (tmpIfTest) {
     $(1);
   } else {
     break;

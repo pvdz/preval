@@ -48,8 +48,8 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpSSA_tmpAssignMemLhsObj = $(60);
-  tmpSSA_tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+  const tmpAssignMemLhsObj = $(60);
+  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a);
 `````

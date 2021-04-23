@@ -44,8 +44,8 @@ throw tmpThrowArg;
 `````js filename=intro
 const b = { $: $ };
 const tmpCallCompProp = $('$');
-const tmpSSA_a = b[tmpCallCompProp](1);
-throw tmpSSA_a;
+const a = b[tmpCallCompProp](1);
+throw a;
 `````
 
 ## Globals

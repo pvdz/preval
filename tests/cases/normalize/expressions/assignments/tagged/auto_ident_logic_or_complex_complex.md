@@ -49,15 +49,15 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
 const tmpCalleeParam$3 = $(0);
-let tmpSSA_a = $(tmpCalleeParam$3);
-if (tmpSSA_a) {
+let a = $(tmpCalleeParam$3);
+if (a) {
 } else {
   const tmpCalleeParam$5 = $(2);
-  tmpSSA_a = $(tmpCalleeParam$5);
+  a = $(tmpCalleeParam$5);
 }
-const tmpCalleeParam$1 = tmpSSA_a;
+const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

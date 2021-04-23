@@ -127,13 +127,13 @@ const tmpBranchingC$1 = function () {
   return undefined;
 };
 const tmpAssignRhsProp$1 = ['pass3'];
-const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpAssignRhsProp$1[0];
-const tmpIfTest$3 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
+const tmpssa3_arrPatternBeforeDefault = tmpAssignRhsProp$1[0];
+const tmpIfTest$3 = tmpssa3_arrPatternBeforeDefault === undefined;
 if (tmpIfTest$3) {
   arrPatternStep = ['fail2'];
   tmpBranchingC$1();
 } else {
-  arrPatternStep = tmpSSA_tmpssa3_arrPatternBeforeDefault;
+  arrPatternStep = tmpssa3_arrPatternBeforeDefault;
   tmpBranchingC$1();
 }
 $('ok');

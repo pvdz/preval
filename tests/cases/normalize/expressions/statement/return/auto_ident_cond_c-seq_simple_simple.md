@@ -78,8 +78,8 @@ const f = function () {
   debugger;
   const tmpIfTest = $(30);
   if (tmpIfTest) {
-    const tmpSSA_tmpssa2_tmpReturnArg = $(2);
-    return tmpSSA_tmpssa2_tmpReturnArg;
+    const tmpssa2_tmpReturnArg = $(2);
+    return tmpssa2_tmpReturnArg;
   } else {
     const tmpCalleeParam$1 = $(100);
     const tmpSSA_tmpssa2_tmpReturnArg$1 = $(tmpCalleeParam$1);

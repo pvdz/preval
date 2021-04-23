@@ -107,14 +107,14 @@ const f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   const tmpBranchingC = function () {
     debugger;
-    const tmpSSA_tmpssa2_arrPatternSplat = [...bindingPatternArrRoot];
-    const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
-    const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
+    const tmpssa2_arrPatternSplat = [...bindingPatternArrRoot];
+    const tmpssa3_arrPatternBeforeDefault = tmpssa2_arrPatternSplat[0];
+    const tmpIfTest$1 = tmpssa3_arrPatternBeforeDefault === undefined;
     if (tmpIfTest$1) {
-      const tmpSSA_tmpssa2_x = $('pass');
-      return tmpSSA_tmpssa2_x;
+      const tmpssa2_x = $('pass');
+      return tmpssa2_x;
     } else {
-      return tmpSSA_tmpssa3_arrPatternBeforeDefault;
+      return tmpssa3_arrPatternBeforeDefault;
     }
   };
   if (tmpIfTest) {

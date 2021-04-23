@@ -41,8 +41,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSSA_tmpCompObj = $(2);
-tmpSSA_tmpCompObj.a;
+const tmpCompObj = $(2);
+tmpCompObj.a;
 $(a);
 `````
 

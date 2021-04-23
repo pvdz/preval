@@ -108,9 +108,9 @@ let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 const tmpBranchingC = function () {
   debugger;
-  const tmpSSA_tmpssa2_arrPatternSplat$1 = [...arrPatternStep];
-  const tmpSSA_tmpssa3_arrPatternBeforeDefault$1 = tmpSSA_tmpssa2_arrPatternSplat$1[0];
-  const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault$1 === undefined;
+  const tmpssa2_arrPatternSplat$1 = [...arrPatternStep];
+  const tmpssa3_arrPatternBeforeDefault$1 = tmpssa2_arrPatternSplat$1[0];
+  const tmpIfTest$1 = tmpssa3_arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     $('fail');
     return undefined;

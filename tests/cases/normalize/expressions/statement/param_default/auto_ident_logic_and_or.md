@@ -121,7 +121,6 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let p = undefined;
 const tmpBranchingC$1 = function () {
   debugger;
   if (p) {
@@ -133,7 +132,7 @@ const tmpBranchingC$1 = function () {
   }
 };
 const tmpCalleeParam$5 = $(1);
-p = $(tmpCalleeParam$5);
+let p = $(tmpCalleeParam$5);
 if (p) {
   const tmpCalleeParam$11 = $(1);
   p = $(tmpCalleeParam$11);

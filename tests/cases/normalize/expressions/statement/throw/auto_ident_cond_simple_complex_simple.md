@@ -36,8 +36,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const tmpSSA_tmpThrowArg = $(2);
-throw tmpSSA_tmpThrowArg;
+const tmpThrowArg = $(2);
+throw tmpThrowArg;
 `````
 
 ## Globals

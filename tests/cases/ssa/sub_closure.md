@@ -138,14 +138,14 @@ $(50);
 $(true);
 const tmpBranchingC$2331 = function () {
   debugger;
-  const tmpSSA_tmpssa3_secondPart = tmpBinLhs$1687 | vh;
-  const tmpIfTest$9053 = tmpSSA_tmpssa3_secondPart < 0xdc00;
+  const tmpssa3_secondPart = tmpBinLhs$1687 | vh;
+  const tmpIfTest$9053 = tmpssa3_secondPart < 0xdc00;
   if (tmpIfTest$9053) {
     firstPart;
     return undefined;
   } else {
     firstPart;
-    $(tmpSSA_tmpssa3_secondPart);
+    $(tmpssa3_secondPart);
     return undefined;
   }
 };

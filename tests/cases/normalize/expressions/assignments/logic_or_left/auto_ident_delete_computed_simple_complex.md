@@ -50,14 +50,14 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete arg[tmpDeleteCompProp];
-let tmpCalleeParam = tmpSSA_a;
+const a = delete arg[tmpDeleteCompProp];
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(tmpSSA_a, arg);
+$(a, arg);
 `````
 
 ## Globals

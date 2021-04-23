@@ -96,8 +96,8 @@ $(a, b);
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpSSA_b = $(2);
-const tmpIfTest = tmpSSA_b === tmpSwitchValue;
+const b = $(2);
+const tmpIfTest = b === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -124,7 +124,7 @@ tmpSwitchBreak: {
     }
   }
 }
-$(a, tmpSSA_b);
+$(a, b);
 `````
 
 ## Globals

@@ -52,8 +52,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpSSA_a$1 = $(10);
-const tmpSSA_b$1 = $(20);
-const tmpReturnArg = [tmpSSA_a$1, tmpSSA_b$1];
+const b$1 = $(20);
+const tmpReturnArg = [tmpSSA_a$1, b$1];
 $(tmpReturnArg);
 `````
 

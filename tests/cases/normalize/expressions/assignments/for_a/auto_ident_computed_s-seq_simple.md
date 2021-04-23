@@ -51,11 +51,11 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsCompProp = $('c');
-const tmpSSA_a = b[tmpAssignRhsCompProp];
+const a = b[tmpAssignRhsCompProp];
 while (true) {
   $(1);
 }
-$(tmpSSA_a, b);
+$(a, b);
 `````
 
 ## Globals

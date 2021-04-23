@@ -226,10 +226,10 @@ X('a', 'b', 'c', 'd', 'e');
 ## Output
 
 `````js filename=intro
-const tmpSSA_tmpssa2_l$1 = +'no';
-const tmpSSA_tmpssa3_m$1 = isNaN(tmpSSA_tmpssa2_l$1);
-if (tmpSSA_tmpssa3_m$1) {
-  $('a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, tmpSSA_tmpssa3_m$1);
+const tmpssa2_l$1 = +'no';
+const tmpssa3_m$1 = isNaN(tmpssa2_l$1);
+if (tmpssa3_m$1) {
+  $('a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, tmpssa3_m$1);
 } else {
 }
 `````

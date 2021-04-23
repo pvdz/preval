@@ -89,9 +89,9 @@ const f = function ($$0) {
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   const tmpBranchingC = function () {
     debugger;
-    const tmpSSA_tmpssa2_arrPatternSplat$1 = [...arrPatternStep];
-    const tmpSSA_tmpssa2_x = tmpSSA_tmpssa2_arrPatternSplat$1.slice(0);
-    return tmpSSA_tmpssa2_x;
+    const tmpssa2_arrPatternSplat$1 = [...arrPatternStep];
+    const tmpssa2_x = tmpssa2_arrPatternSplat$1.slice(0);
+    return tmpssa2_x;
   };
   if (tmpIfTest) {
     arrPatternStep = $('pass');

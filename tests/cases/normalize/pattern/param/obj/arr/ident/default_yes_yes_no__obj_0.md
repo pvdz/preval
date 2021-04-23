@@ -110,8 +110,8 @@ let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 const tmpBranchingC = function () {
   debugger;
-  const tmpSSA_tmpssa2_arrPatternSplat = [...objPatternAfterDefault];
-  tmpSSA_tmpssa2_arrPatternSplat[0];
+  const tmpssa2_arrPatternSplat = [...objPatternAfterDefault];
+  tmpssa2_arrPatternSplat[0];
   return undefined;
 };
 if (tmpIfTest) {

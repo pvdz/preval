@@ -42,8 +42,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-a = $(60);
+const a = $(60);
 export { a };
 $(a);
 `````

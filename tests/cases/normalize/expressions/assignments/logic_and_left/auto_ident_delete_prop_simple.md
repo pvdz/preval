@@ -47,14 +47,14 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const tmpSSA_a = delete arg.y;
-let tmpCalleeParam = tmpSSA_a;
+const a = delete arg.y;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   tmpCalleeParam = $(100);
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a, arg);
+$(a, arg);
 `````
 
 ## Globals

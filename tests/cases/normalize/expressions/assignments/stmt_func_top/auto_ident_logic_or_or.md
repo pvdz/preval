@@ -99,28 +99,28 @@ tmpCallCallee$9(tmpCalleeParam$9);
 `````js filename=intro
 const tmpBranchingC$1 = function () {
   debugger;
-  $(tmpSSA_a);
+  $(a);
   return undefined;
 };
 const tmpCalleeParam = $(0);
-let tmpSSA_a = $(tmpCalleeParam);
+let a = $(tmpCalleeParam);
 const tmpBranchingC = function () {
   debugger;
-  if (tmpSSA_a) {
+  if (a) {
     tmpBranchingC$1();
     return undefined;
   } else {
     const tmpCalleeParam$7 = $(2);
-    tmpSSA_a = $(tmpCalleeParam$7);
+    a = $(tmpCalleeParam$7);
     tmpBranchingC$1();
     return undefined;
   }
 };
-if (tmpSSA_a) {
+if (a) {
   tmpBranchingC();
 } else {
   const tmpCalleeParam$3 = $(1);
-  tmpSSA_a = $(tmpCalleeParam$3);
+  a = $(tmpCalleeParam$3);
   tmpBranchingC();
 }
 $(undefined);

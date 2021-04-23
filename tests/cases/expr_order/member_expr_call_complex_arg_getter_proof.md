@@ -80,23 +80,23 @@ tmpCallVal.call(tmpCallObj, tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = {
+const a = {
   get b() {
     debugger;
     $('b.get');
     return 100;
   },
 };
-const tmpSSA_x = {
+const x = {
   get y() {
     debugger;
     $('y.get');
     return $;
   },
 };
-const tmpCallVal = tmpSSA_x.y;
-const tmpCalleeParam = tmpSSA_a.b;
-tmpCallVal.call(tmpSSA_x, tmpCalleeParam);
+const tmpCallVal = x.y;
+const tmpCalleeParam = a.b;
+tmpCallVal.call(x, tmpCalleeParam);
 `````
 
 ## Globals

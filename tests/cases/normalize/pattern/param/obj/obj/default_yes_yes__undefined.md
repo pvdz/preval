@@ -170,14 +170,14 @@ const tmpBranchingC$1 = function () {
 const tmpObjLitVal$1 = { y: 'pass2' };
 const tmpCalleeParam$1 = { x: tmpObjLitVal$1 };
 const tmpSSA_bindingPatternObjRoot = $(tmpCalleeParam$1);
-const tmpSSA_tmpssa3_objPatternBeforeDefault = tmpSSA_bindingPatternObjRoot.x;
-const tmpIfTest$1 = tmpSSA_tmpssa3_objPatternBeforeDefault === undefined;
+const tmpssa3_objPatternBeforeDefault = tmpSSA_bindingPatternObjRoot.x;
+const tmpIfTest$1 = tmpssa3_objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$5 = { x: 'fail' };
   objPatternAfterDefault = $(tmpCalleeParam$5);
   tmpBranchingC$1();
 } else {
-  objPatternAfterDefault = tmpSSA_tmpssa3_objPatternBeforeDefault;
+  objPatternAfterDefault = tmpssa3_objPatternBeforeDefault;
   tmpBranchingC$1();
 }
 $('ok');

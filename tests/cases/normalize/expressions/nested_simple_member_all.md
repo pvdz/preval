@@ -49,12 +49,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = { x: 1 };
-const tmpSSA_b = { x: 2 };
-const tmpSSA_c = { x: 3 };
-const varInitAssignLhsComputedObj = $(tmpSSA_a);
-const varInitAssignLhsComputedObj$1 = $(tmpSSA_b);
-const tmpCompObj = $(tmpSSA_c);
+const a = { x: 1 };
+const b = { x: 2 };
+const c = { x: 3 };
+const varInitAssignLhsComputedObj = $(a);
+const varInitAssignLhsComputedObj$1 = $(b);
+const tmpCompObj = $(c);
 const varInitAssignLhsComputedRhs$1 = tmpCompObj.x;
 varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$1;

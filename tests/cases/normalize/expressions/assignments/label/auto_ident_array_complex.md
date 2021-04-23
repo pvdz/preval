@@ -40,8 +40,8 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpSSA_a = [tmpArrElement, 2, tmpArrElement$3];
-$(tmpSSA_a);
+const a = [tmpArrElement, 2, tmpArrElement$3];
+$(a);
 `````
 
 ## Globals

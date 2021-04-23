@@ -57,22 +57,22 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = function () {
+let a = function () {
   debugger;
   return undefined;
 };
-let tmpCalleeParam = tmpSSA_a;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   const tmpNestedComplexRhs = function () {
     debugger;
     return undefined;
   };
-  tmpSSA_a = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

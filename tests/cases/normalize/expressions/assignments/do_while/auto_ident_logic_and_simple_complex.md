@@ -73,9 +73,9 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpCalleeParam = $(1);
-    const tmpSSA_tmpNestedComplexRhs = $(tmpCalleeParam);
-    a = tmpSSA_tmpNestedComplexRhs;
-    tmpIfTest = tmpSSA_tmpNestedComplexRhs;
+    const tmpNestedComplexRhs = $(tmpCalleeParam);
+    a = tmpNestedComplexRhs;
+    tmpIfTest = tmpNestedComplexRhs;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

@@ -48,9 +48,9 @@ $(a, b);
 const b = { c: 1 };
 const tmpCalleeParam = ['before ', ' after'];
 const tmpAssignRhsCompProp = $('c');
-const tmpSSA_a = b[tmpAssignRhsCompProp];
-$(tmpCalleeParam, tmpSSA_a);
-$(tmpSSA_a, b);
+const a = b[tmpAssignRhsCompProp];
+$(tmpCalleeParam, a);
+$(a, b);
 `````
 
 ## Globals

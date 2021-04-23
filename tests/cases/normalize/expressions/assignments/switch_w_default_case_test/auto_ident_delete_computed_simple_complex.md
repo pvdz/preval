@@ -91,8 +91,8 @@ const arg = { y: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete arg[tmpDeleteCompProp];
-const tmpIfTest = tmpSSA_a === tmpSwitchValue;
+const a = delete arg[tmpDeleteCompProp];
+const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -113,7 +113,7 @@ if (tmpIfTest$7) {
   $('fail2');
 } else {
 }
-$(tmpSSA_a, arg);
+$(a, arg);
 `````
 
 ## Globals

@@ -61,8 +61,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete arg[tmpDeleteCompProp];
-$(tmpSSA_a, arg);
+const a = delete arg[tmpDeleteCompProp];
+$(a, arg);
 $(undefined);
 `````
 

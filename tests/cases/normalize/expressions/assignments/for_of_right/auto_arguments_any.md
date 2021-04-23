@@ -39,11 +39,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = arguments;
+const a = arguments;
 let x = undefined;
-for (x of tmpSSA_a) {
+for (x of a) {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

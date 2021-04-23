@@ -65,11 +65,7 @@ $(x);
 `````
 
 `````js filename=x
-let f = function () {
-  debugger;
-  return undefined;
-};
-f = 10;
+const f = 10;
 export { f as default };
 `````
 

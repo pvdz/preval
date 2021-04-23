@@ -42,8 +42,8 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const tmpSSA_a = typeof tmpUnaryArg;
-throw tmpSSA_a;
+const a = typeof tmpUnaryArg;
+throw a;
 `````
 
 ## Globals

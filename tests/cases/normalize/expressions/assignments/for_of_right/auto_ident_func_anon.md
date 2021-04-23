@@ -44,14 +44,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = function () {
+const a = function () {
   debugger;
   return undefined;
 };
 let x = undefined;
-for (x of tmpSSA_a) {
+for (x of a) {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

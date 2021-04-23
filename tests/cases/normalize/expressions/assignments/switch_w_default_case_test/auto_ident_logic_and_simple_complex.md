@@ -90,8 +90,8 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(1);
-const tmpSSA_a$1 = $(tmpCalleeParam);
-const tmpIfTest = tmpSSA_a$1 === tmpSwitchValue;
+const a = $(tmpCalleeParam);
+const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -112,7 +112,7 @@ if (tmpIfTest$7) {
   $('fail2');
 } else {
 }
-$(tmpSSA_a$1);
+$(a);
 `````
 
 ## Globals

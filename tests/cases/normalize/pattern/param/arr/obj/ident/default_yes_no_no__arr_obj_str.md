@@ -85,8 +85,8 @@ const f = function ($$0) {
   const objPatternBeforeDefault = arrPatternStep.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpSSA_tmpssa2_x = $('fail');
-    return tmpSSA_tmpssa2_x;
+    const tmpssa2_x = $('fail');
+    return tmpssa2_x;
   } else {
     return objPatternBeforeDefault;
   }

@@ -90,7 +90,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSSA_tmpssa2_g = function () {
+const tmpssa2_g = function () {
   const tmpArgumentsLen$1 = arguments.length;
   debugger;
   $(tmpArgumentsLen$1);
@@ -98,7 +98,7 @@ const tmpSSA_tmpssa2_g = function () {
 };
 const tmpBranchingC = function () {
   debugger;
-  tmpSSA_tmpssa2_g();
+  tmpssa2_g();
   return undefined;
 };
 if ($) {

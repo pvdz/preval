@@ -72,19 +72,19 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 $(1);
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = b.x;
   const tmpIfTest$3 = tmpChainElementObject != null;
   if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpSSA_a = tmpChainElementObject$1;
+    a = tmpChainElementObject$1;
   } else {
   }
 } else {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

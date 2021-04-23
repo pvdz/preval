@@ -55,8 +55,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpNewCallee = $($);
-const tmpSSA_a = new tmpNewCallee(1);
-$(tmpSSA_a);
+const a = new tmpNewCallee(1);
+$(a);
 $(undefined);
 `````
 

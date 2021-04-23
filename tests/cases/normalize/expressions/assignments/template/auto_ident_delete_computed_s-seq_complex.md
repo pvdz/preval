@@ -51,10 +51,10 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete arg[tmpDeleteCompProp];
-const tmpCalleeParam = `before  ${tmpSSA_a}  after`;
+const a = delete arg[tmpDeleteCompProp];
+const tmpCalleeParam = `before  ${a}  after`;
 $(tmpCalleeParam);
-$(tmpSSA_a, arg);
+$(a, arg);
 `````
 
 ## Globals

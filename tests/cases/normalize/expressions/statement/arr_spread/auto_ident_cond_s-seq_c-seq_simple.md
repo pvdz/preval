@@ -45,8 +45,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSSA_tmpArrElToSpread = $(60);
-[...tmpSSA_tmpArrElToSpread];
+const tmpArrElToSpread = $(60);
+[...tmpArrElToSpread];
 $(a);
 `````
 

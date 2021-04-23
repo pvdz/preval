@@ -41,8 +41,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSSA_f = { x: 10 };
-let tmpCalleeParam = tmpSSA_f;
+const f = { x: 10 };
+let tmpCalleeParam = f;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   tmpCalleeParam = x;

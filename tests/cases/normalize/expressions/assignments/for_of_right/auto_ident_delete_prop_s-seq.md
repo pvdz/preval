@@ -49,11 +49,11 @@ $(a, arg);
 const arg = { y: 1 };
 $(1);
 $(2);
-const tmpSSA_a = delete arg.y;
+const a = delete arg.y;
 let x = undefined;
-for (x of tmpSSA_a) {
+for (x of a) {
 }
-$(tmpSSA_a, arg);
+$(a, arg);
 `````
 
 ## Globals

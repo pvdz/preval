@@ -40,8 +40,8 @@ throw tmpThrowArg;
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
-throw tmpSSA_a;
+const a = tmpBinBothLhs + tmpBinBothRhs;
+throw a;
 `````
 
 ## Globals

@@ -39,8 +39,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSSA_tmpCalleeParam = $(2);
-$(tmpSSA_tmpCalleeParam);
+const tmpCalleeParam = $(2);
+$(tmpCalleeParam);
 $(a);
 `````
 

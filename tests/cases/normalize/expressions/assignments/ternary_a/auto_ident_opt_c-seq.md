@@ -57,22 +57,22 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 let tmpCalleeParam = undefined;
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpSSA_a = tmpChainElementObject;
+  a = tmpChainElementObject;
 } else {
 }
-const tmpIfTest = tmpSSA_a;
+const tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

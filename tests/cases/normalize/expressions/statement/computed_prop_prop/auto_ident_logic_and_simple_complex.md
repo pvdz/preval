@@ -49,8 +49,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const obj = {};
 const tmpCalleeParam = $(1);
-const tmpSSA_tmpCompProp = $(tmpCalleeParam);
-obj[tmpSSA_tmpCompProp];
+const tmpCompProp = $(tmpCalleeParam);
+obj[tmpCompProp];
 $(a);
 `````
 

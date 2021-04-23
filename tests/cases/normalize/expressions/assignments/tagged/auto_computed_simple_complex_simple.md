@@ -47,11 +47,11 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
 const tmpObjLitVal = $(1);
-const tmpSSA_a = { b: tmpObjLitVal };
-$(tmpCalleeParam, tmpSSA_a);
+const a = { b: tmpObjLitVal };
+$(tmpCalleeParam, a);
 const tmpAssignComMemLhsProp = $('b');
-tmpSSA_a[tmpAssignComMemLhsProp] = 2;
-$(tmpSSA_a);
+a[tmpAssignComMemLhsProp] = 2;
+$(a);
 `````
 
 ## Globals

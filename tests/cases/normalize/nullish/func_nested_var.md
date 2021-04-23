@@ -103,14 +103,14 @@ const f = function () {
   const tmpIfTest = b == null;
   const tmpBranchingC = function () {
     debugger;
-    const tmpSSA_tmpssa3_c = b;
-    const tmpIfTest$1 = tmpSSA_tmpssa3_c == null;
+    const tmpssa3_c = b;
+    const tmpIfTest$1 = tmpssa3_c == null;
     if (tmpIfTest$1) {
-      const tmpSSA_tmpssa3_c$1 = length;
-      const tmpReturnArg$3 = $(tmpSSA_tmpssa3_c$1);
+      const tmpSSA_tmpssa3_c = length;
+      const tmpReturnArg$3 = $(tmpSSA_tmpssa3_c);
       return tmpReturnArg$3;
     } else {
-      const tmpReturnArg$11 = $(tmpSSA_tmpssa3_c);
+      const tmpReturnArg$11 = $(tmpssa3_c);
       return tmpReturnArg$11;
     }
   };

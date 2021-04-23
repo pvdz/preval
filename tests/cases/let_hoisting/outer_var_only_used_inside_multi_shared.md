@@ -85,12 +85,12 @@ if ($) {
 `````js filename=intro
 const g = function () {
   debugger;
-  const tmpSSA_tmpssa2_x = $(1, 'shared');
+  const tmpssa2_x = $(1, 'shared');
   if ($) {
-    $(tmpSSA_tmpssa2_x, 'a');
+    $(tmpssa2_x, 'a');
     return undefined;
   } else {
-    $(tmpSSA_tmpssa2_x, 'b');
+    $(tmpssa2_x, 'b');
     return undefined;
   }
 };

@@ -37,8 +37,8 @@ $(x);
 
 `````js filename=intro
 const obj = { foo: 10 };
-const tmpSSA_x = obj.foo;
-$(tmpSSA_x);
+const x = obj.foo;
+$(x);
 `````
 
 ## Globals

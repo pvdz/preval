@@ -46,16 +46,16 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpSSA_a = $(tmpCalleeParam);
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
+let a = $(tmpCalleeParam);
+if (a) {
+  a = 2;
 } else {
 }
-const tmpForOfDeclRhs = tmpSSA_a;
+const tmpForOfDeclRhs = a;
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

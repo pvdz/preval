@@ -75,9 +75,9 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const tmpSSA_tmpssa2_arrPatternSplat = [];
-const tmpSSA_tmpssa2_x = tmpSSA_tmpssa2_arrPatternSplat.slice(0);
-$(tmpSSA_tmpssa2_x);
+const tmpssa2_arrPatternSplat = [];
+const tmpssa2_x = tmpssa2_arrPatternSplat.slice(0);
+$(tmpssa2_x);
 `````
 
 ## Globals

@@ -51,12 +51,12 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpSSA_a = [tmpArrElement, 2, tmpArrElement$3];
+const a = [tmpArrElement, 2, tmpArrElement$3];
 while (true) {
-  $(tmpSSA_a);
+  $(a);
   $(1);
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

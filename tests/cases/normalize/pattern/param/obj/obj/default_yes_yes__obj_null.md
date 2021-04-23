@@ -175,15 +175,15 @@ let objPatternAfterDefault = undefined;
 let objPatternCrashTest = undefined;
 const tmpBranchingC = function () {
   debugger;
-  const tmpSSA_tmpssa3_objPatternBeforeDefault = bindingPatternObjRoot.x;
-  const tmpIfTest$1 = tmpSSA_tmpssa3_objPatternBeforeDefault === undefined;
+  const tmpssa3_objPatternBeforeDefault = bindingPatternObjRoot.x;
+  const tmpIfTest$1 = tmpssa3_objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCalleeParam$5 = { x: 'fail' };
     objPatternAfterDefault = $(tmpCalleeParam$5);
     tmpBranchingC$1();
     return undefined;
   } else {
-    objPatternAfterDefault = tmpSSA_tmpssa3_objPatternBeforeDefault;
+    objPatternAfterDefault = tmpssa3_objPatternBeforeDefault;
     tmpBranchingC$1();
     return undefined;
   }

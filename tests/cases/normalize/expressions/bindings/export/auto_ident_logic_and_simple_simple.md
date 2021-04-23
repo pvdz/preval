@@ -38,10 +38,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 1;
-a = 2;
+const a = 2;
 export { a };
-$(a);
+$(2);
 `````
 
 ## Globals

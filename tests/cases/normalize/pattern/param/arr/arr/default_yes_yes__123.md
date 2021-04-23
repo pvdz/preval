@@ -109,15 +109,15 @@ const tmpBranchingC$1 = function () {
   [...arrPatternStep];
   return undefined;
 };
-const tmpSSA_tmpssa2_arrPatternSplat = [...1];
-const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
-const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
+const tmpssa2_arrPatternSplat = [...1];
+const tmpssa3_arrPatternBeforeDefault = tmpssa2_arrPatternSplat[0];
+const tmpIfTest$1 = tmpssa3_arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   const tmpCalleeParam$5 = ['fail2'];
   arrPatternStep = $(tmpCalleeParam$5);
   tmpBranchingC$1();
 } else {
-  arrPatternStep = tmpSSA_tmpssa3_arrPatternBeforeDefault;
+  arrPatternStep = tmpssa3_arrPatternBeforeDefault;
   tmpBranchingC$1();
 }
 $('ok');

@@ -41,8 +41,8 @@ throw tmpThrowArg;
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpSSA_a = [tmpArrElement, 2, tmpArrElement$3];
-throw tmpSSA_a;
+const a = [tmpArrElement, 2, tmpArrElement$3];
+throw a;
 `````
 
 ## Globals

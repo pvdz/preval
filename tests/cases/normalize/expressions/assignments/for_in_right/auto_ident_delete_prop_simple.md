@@ -44,11 +44,11 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const tmpSSA_a = delete arg.y;
+const a = delete arg.y;
 let x = undefined;
-for (x in tmpSSA_a) {
+for (x in a) {
 }
-$(tmpSSA_a, arg);
+$(a, arg);
 `````
 
 ## Globals

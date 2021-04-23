@@ -40,9 +40,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
-const tmpSSA_a = arguments;
-$(tmpCalleeParam, tmpSSA_a);
-$(tmpSSA_a);
+const a = arguments;
+$(tmpCalleeParam, a);
+$(a);
 `````
 
 ## Globals

@@ -57,14 +57,14 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpSSA_a = { x: 1, y: 2, z: 3 };
-const tmpIfTest = tmpSSA_a === tmpSwitchValue;
+const a = { x: 1, y: 2, z: 3 };
+const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

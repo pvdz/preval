@@ -47,11 +47,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = $(2);
+const a = $(2);
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpSSA_a + tmpBinBothRhs;
+const tmpCalleeParam = a + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

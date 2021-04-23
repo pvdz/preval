@@ -86,8 +86,8 @@ let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 const tmpBranchingC = function () {
   debugger;
-  const tmpSSA_tmpssa2_arrPatternSplat$1 = [...arrPatternStep];
-  tmpSSA_tmpssa2_arrPatternSplat$1.slice(0);
+  const tmpssa2_arrPatternSplat$1 = [...arrPatternStep];
+  tmpssa2_arrPatternSplat$1.slice(0);
   return undefined;
 };
 if (tmpIfTest) {

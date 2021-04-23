@@ -52,9 +52,9 @@ const arg = { y: 1 };
 const obj = {};
 $(1);
 $(2);
-const tmpSSA_a = delete arg.y;
-obj[tmpSSA_a];
-$(tmpSSA_a, arg);
+const a = delete arg.y;
+obj[a];
+$(a, arg);
 `````
 
 ## Globals

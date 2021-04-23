@@ -42,8 +42,8 @@ throw tmpThrowArg;
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-const tmpSSA_tmpThrowArg = $(tmpCalleeParam);
-throw tmpSSA_tmpThrowArg;
+const tmpThrowArg = $(tmpCalleeParam);
+throw tmpThrowArg;
 `````
 
 ## Globals

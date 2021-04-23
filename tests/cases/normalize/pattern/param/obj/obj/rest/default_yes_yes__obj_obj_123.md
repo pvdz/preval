@@ -117,23 +117,23 @@ const f = function ($$0) {
     debugger;
     const tmpCalleeParam$7 = objPatternAfterDefault;
     const tmpCalleeParam$9 = [];
-    const tmpSSA_tmpssa2_y = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
-    return tmpSSA_tmpssa2_y;
+    const tmpssa2_y = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
+    return tmpssa2_y;
   };
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   let objPatternAfterDefault = undefined;
   const tmpBranchingC = function () {
     debugger;
-    const tmpSSA_tmpssa3_objPatternBeforeDefault = bindingPatternObjRoot.x;
-    const tmpIfTest$1 = tmpSSA_tmpssa3_objPatternBeforeDefault === undefined;
+    const tmpssa3_objPatternBeforeDefault = bindingPatternObjRoot.x;
+    const tmpIfTest$1 = tmpssa3_objPatternBeforeDefault === undefined;
     if (tmpIfTest$1) {
       const tmpCalleeParam$5 = { a: 'fail' };
       objPatternAfterDefault = $(tmpCalleeParam$5);
       const tmpReturnArg$3 = tmpBranchingC$1();
       return tmpReturnArg$3;
     } else {
-      objPatternAfterDefault = tmpSSA_tmpssa3_objPatternBeforeDefault;
+      objPatternAfterDefault = tmpssa3_objPatternBeforeDefault;
       const tmpReturnArg$5 = tmpBranchingC$1();
       return tmpReturnArg$5;
     }

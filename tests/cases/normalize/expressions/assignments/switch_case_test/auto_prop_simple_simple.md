@@ -62,15 +62,15 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpObjLitVal = $(1);
-const tmpSSA_a = { b: tmpObjLitVal };
-const tmpIfTest = tmpSSA_a === tmpSwitchValue;
+const a = { b: tmpObjLitVal };
+const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-tmpSSA_a.b = 2;
-$(tmpSSA_a);
+a.b = 2;
+$(a);
 `````
 
 ## Globals

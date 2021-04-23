@@ -43,10 +43,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = $(1);
-const tmpCalleeParam = { ...tmpSSA_a };
+const a = $(1);
+const tmpCalleeParam = { ...a };
 $(tmpCalleeParam);
-$(tmpSSA_a, 1);
+$(a, 1);
 `````
 
 ## Globals

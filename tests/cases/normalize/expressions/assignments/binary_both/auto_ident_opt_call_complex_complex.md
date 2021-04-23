@@ -65,31 +65,31 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$3 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$3);
-  tmpSSA_a = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
 } else {
 }
-const tmpBinBothLhs = tmpSSA_a;
-let tmpSSA_a$1 = undefined;
+const tmpBinBothLhs = a;
+let tmpSSA_a = undefined;
 const tmpChainElementCall$3 = $($);
 const tmpIfTest$1 = tmpChainElementCall$3 != null;
 if (tmpIfTest$1) {
   const tmpCallVal$1 = tmpChainElementCall$3.call;
   const tmpCalleeParam$7 = $(1);
   const tmpChainElementCall$5 = tmpCallVal$1.call(tmpChainElementCall$3, $, tmpCalleeParam$7);
-  tmpSSA_a$1 = tmpChainElementCall$5;
+  tmpSSA_a = tmpChainElementCall$5;
 } else {
 }
-const tmpBinBothRhs = tmpSSA_a$1;
+const tmpBinBothRhs = tmpSSA_a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(tmpSSA_a$1);
+$(tmpSSA_a);
 `````
 
 ## Globals

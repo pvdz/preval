@@ -102,19 +102,19 @@ const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpIfTest$1 = b != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject = b.x;
   const tmpIfTest$3 = tmpChainElementObject != null;
   if (tmpIfTest$3) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpSSA_a = tmpChainElementObject$1;
+    a = tmpChainElementObject$1;
   } else {
   }
 } else {
 }
-const tmpBinLhs = tmpSSA_a;
+const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -136,7 +136,7 @@ if (tmpIfTest$11) {
   $('fail2');
 } else {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

@@ -51,10 +51,10 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-const tmpSSA_tmpBinBothLhs = $(tmpCalleeParam);
+const tmpBinBothLhs = $(tmpCalleeParam);
 const tmpCalleeParam$1 = $(1);
-const tmpSSA_tmpBinBothRhs = $(tmpCalleeParam$1);
-tmpSSA_tmpBinBothLhs + tmpSSA_tmpBinBothRhs;
+const tmpBinBothRhs = $(tmpCalleeParam$1);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

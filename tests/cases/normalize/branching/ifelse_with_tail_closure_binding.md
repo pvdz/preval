@@ -90,8 +90,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpBranchingC = function () {
   debugger;
-  const tmpSSA_tmpssa2_xyz = $();
-  $(tmpSSA_tmpssa2_xyz);
+  const tmpssa2_xyz = $();
+  $(tmpssa2_xyz);
   return undefined;
 };
 if ($) {

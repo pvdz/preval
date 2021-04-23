@@ -290,15 +290,6 @@ tmp(obja, objb, objc, objd);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-let b = undefined;
-let c = undefined;
-let d = undefined;
-let e = undefined;
-let obja = undefined;
-let objb = undefined;
-let objc = undefined;
-let objd = undefined;
 const tmp = function (...$$0) {
   const a$1 = $$0;
   debugger;
@@ -307,7 +298,7 @@ const tmp = function (...$$0) {
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
 };
-obja = {
+const obja = {
   get a() {
     debugger;
     tmp('a.get');
@@ -321,7 +312,7 @@ obja = {
     return 1000;
   },
 };
-objb = {
+const objb = {
   get b() {
     debugger;
     tmp('b.get');
@@ -337,7 +328,7 @@ objb = {
     return 2000;
   },
 };
-objc = {
+const objc = {
   get c() {
     debugger;
     tmp('c.get');
@@ -355,7 +346,7 @@ objc = {
     return 3000;
   },
 };
-objd = {
+const objd = {
   get d() {
     debugger;
     tmp('d.get');
@@ -375,25 +366,25 @@ objd = {
     return 4000;
   },
 };
-a = function () {
+let a = function () {
   debugger;
   tmp('a');
   return obja;
 };
-b = function () {
+let b = function () {
   debugger;
   tmp('b');
   a = 21;
   return objb;
 };
-c = function () {
+let c = function () {
   debugger;
   tmp('c');
   a = 31;
   b = 32;
   return objc;
 };
-d = function () {
+const d = function () {
   debugger;
   tmp('d');
   a = 41;
@@ -401,7 +392,7 @@ d = function () {
   c = 43;
   return objd;
 };
-e = 12345;
+let e = 12345;
 const varInitAssignLhsComputedObj = a();
 const varInitAssignLhsComputedProp = tmp('a');
 const varInitAssignLhsComputedObj$1 = b();

@@ -112,8 +112,8 @@ if ($) {
 const tmpBranchingA = function () {
   debugger;
   if ($) {
-    const tmpSSA_tmpssa2_x = $(2);
-    $(tmpSSA_tmpssa2_x);
+    const tmpssa2_x = $(2);
+    $(tmpssa2_x);
     return undefined;
   } else {
     $('else');

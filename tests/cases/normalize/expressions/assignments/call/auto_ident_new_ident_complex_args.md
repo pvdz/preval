@@ -47,9 +47,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const tmpSSA_a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
-$(tmpSSA_a);
-$(tmpSSA_a);
+const a = new $(tmpCalleeParam$1, tmpCalleeParam$3);
+$(a);
+$(a);
 `````
 
 ## Globals

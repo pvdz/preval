@@ -111,17 +111,17 @@ $(undefined);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpSSA_theneedle = $(tmpCalleeParam);
+let theneedle = $(tmpCalleeParam);
 const tmpBranchingC$1 = function () {
   debugger;
-  $(tmpSSA_theneedle);
+  $(theneedle);
   return undefined;
 };
 const tmpBranchingC = function () {
   debugger;
-  if (tmpSSA_theneedle) {
+  if (theneedle) {
     const tmpCalleeParam$7 = $(2);
-    tmpSSA_theneedle = $(tmpCalleeParam$7);
+    theneedle = $(tmpCalleeParam$7);
     tmpBranchingC$1();
     return undefined;
   } else {
@@ -129,9 +129,9 @@ const tmpBranchingC = function () {
     return undefined;
   }
 };
-if (tmpSSA_theneedle) {
+if (theneedle) {
   const tmpCalleeParam$3 = $(1);
-  tmpSSA_theneedle = $(tmpCalleeParam$3);
+  theneedle = $(tmpCalleeParam$3);
   tmpBranchingC();
 } else {
   tmpBranchingC();

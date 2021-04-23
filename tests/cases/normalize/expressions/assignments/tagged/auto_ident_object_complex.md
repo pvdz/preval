@@ -45,9 +45,9 @@ $(a);
 const tmpCalleeParam = ['before ', ' after'];
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const tmpSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-$(tmpCalleeParam, tmpSSA_a);
-$(tmpSSA_a);
+const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+$(tmpCalleeParam, a);
+$(a);
 `````
 
 ## Globals

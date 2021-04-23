@@ -86,8 +86,8 @@ if ($) {
 if ($) {
   const g = function () {
     debugger;
-    const tmpSSA_tmpssa2_x = $('first');
-    $(tmpSSA_tmpssa2_x);
+    const tmpssa2_x = $('first');
+    $(tmpssa2_x);
     return undefined;
   };
   g();

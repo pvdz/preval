@@ -100,13 +100,13 @@ $(a);
 const tmpBranchingB = function () {
   debugger;
   const tmpCalleeParam$5 = $(1);
-  const tmpSSA_tmpssa2_tmpReturnArg = $(tmpCalleeParam$5);
-  if (tmpSSA_tmpssa2_tmpReturnArg) {
+  const tmpssa2_tmpReturnArg = $(tmpCalleeParam$5);
+  if (tmpssa2_tmpReturnArg) {
     const tmpCalleeParam$9 = $(2);
-    const tmpSSA_tmpssa2_tmpReturnArg$1 = $(tmpCalleeParam$9);
-    return tmpSSA_tmpssa2_tmpReturnArg$1;
-  } else {
+    const tmpSSA_tmpssa2_tmpReturnArg = $(tmpCalleeParam$9);
     return tmpSSA_tmpssa2_tmpReturnArg;
+  } else {
+    return tmpssa2_tmpReturnArg;
   }
 };
 const f = function () {

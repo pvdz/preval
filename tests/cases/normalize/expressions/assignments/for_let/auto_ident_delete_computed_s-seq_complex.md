@@ -58,12 +58,12 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete arg[tmpDeleteCompProp];
+const a = delete arg[tmpDeleteCompProp];
 while (true) {
-  $(tmpSSA_a);
+  $(a);
   $(1);
 }
-$(tmpSSA_a, arg);
+$(a, arg);
 `````
 
 ## Globals

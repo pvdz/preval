@@ -41,8 +41,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSSA_tmpIfTest = $(2);
-if (tmpSSA_tmpIfTest) {
+const tmpIfTest = $(2);
+if (tmpIfTest) {
   $(100);
 } else {
 }

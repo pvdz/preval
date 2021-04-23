@@ -39,9 +39,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = $(1);
-$(tmpSSA_a);
-$(tmpSSA_a);
+const a = $(1);
+$(a);
+$(a);
 `````
 
 ## Globals

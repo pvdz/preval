@@ -44,10 +44,10 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const tmpSSA_a = typeof tmpUnaryArg;
-const tmpAnonDefaultExport = tmpSSA_a;
+const a = typeof tmpUnaryArg;
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(tmpSSA_a, 1);
+$(a, 1);
 `````
 
 ## Globals

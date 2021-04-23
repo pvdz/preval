@@ -60,18 +60,18 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 const obj = {};
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpIfTest = b != null;
 if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  tmpSSA_a = tmpChainElementObject$3;
+  a = tmpChainElementObject$3;
 } else {
 }
-const tmpCompProp = tmpSSA_a;
+const tmpCompProp = a;
 obj[tmpCompProp];
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

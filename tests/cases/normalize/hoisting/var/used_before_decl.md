@@ -51,8 +51,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $();
-const tmpSSA_a$1 = $();
-$(tmpSSA_a$1);
+const a = $();
+$(a);
 `````
 
 ## Globals

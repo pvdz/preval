@@ -47,8 +47,8 @@ $(c);
 `````js filename=intro
 $(1);
 const tmpAssignRhsCompProp = $('length');
-const tmpSSA_x = 'foo'[tmpAssignRhsCompProp];
-$(tmpSSA_x);
+const x = 'foo'[tmpAssignRhsCompProp];
+$(x);
 $(1);
 `````
 

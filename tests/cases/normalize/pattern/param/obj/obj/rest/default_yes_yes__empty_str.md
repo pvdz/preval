@@ -113,18 +113,18 @@ const f = function () {
     debugger;
     const tmpCalleeParam$7 = objPatternAfterDefault;
     const tmpCalleeParam$9 = [];
-    const tmpSSA_tmpssa2_y = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
-    return tmpSSA_tmpssa2_y;
+    const tmpssa2_y = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
+    return tmpssa2_y;
   };
-  const tmpSSA_tmpssa3_objPatternBeforeDefault = ''.x;
-  const tmpIfTest$1 = tmpSSA_tmpssa3_objPatternBeforeDefault === undefined;
+  const tmpssa3_objPatternBeforeDefault = ''.x;
+  const tmpIfTest$1 = tmpssa3_objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCalleeParam$1 = { a: 'pass' };
     objPatternAfterDefault = $(tmpCalleeParam$1);
     const tmpReturnArg$1 = tmpBranchingC$1();
     return tmpReturnArg$1;
   } else {
-    objPatternAfterDefault = tmpSSA_tmpssa3_objPatternBeforeDefault;
+    objPatternAfterDefault = tmpssa3_objPatternBeforeDefault;
     const tmpReturnArg$4 = tmpBranchingC$1();
     return tmpReturnArg$4;
   }

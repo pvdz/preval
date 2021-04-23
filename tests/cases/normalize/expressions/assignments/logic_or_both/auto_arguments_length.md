@@ -43,15 +43,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = arguments;
-let tmpCalleeParam = tmpSSA_a;
+let a = arguments;
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
-  tmpSSA_a = arguments;
+  a = arguments;
   tmpCalleeParam = arguments;
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

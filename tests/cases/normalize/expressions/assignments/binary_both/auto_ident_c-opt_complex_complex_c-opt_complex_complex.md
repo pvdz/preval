@@ -78,7 +78,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
@@ -88,13 +88,13 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpSSA_a = tmpChainElementObject$1;
+    a = tmpChainElementObject$1;
   } else {
   }
 } else {
 }
-const tmpBinBothLhs = tmpSSA_a;
-let tmpSSA_a$1 = undefined;
+const tmpBinBothLhs = a;
+let tmpSSA_a = undefined;
 const tmpChainElementCall$1 = $(b);
 const tmpIfTest$3 = tmpChainElementCall$1 != null;
 if (tmpIfTest$3) {
@@ -104,15 +104,15 @@ if (tmpIfTest$3) {
   if (tmpIfTest$5) {
     const tmpChainRootComputed$5 = $('y');
     const tmpChainElementObject$5 = tmpChainElementObject$3[tmpChainRootComputed$5];
-    tmpSSA_a$1 = tmpChainElementObject$5;
+    tmpSSA_a = tmpChainElementObject$5;
   } else {
   }
 } else {
 }
-const tmpBinBothRhs = tmpSSA_a$1;
+const tmpBinBothRhs = tmpSSA_a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(tmpSSA_a$1);
+$(tmpSSA_a);
 `````
 
 ## Globals

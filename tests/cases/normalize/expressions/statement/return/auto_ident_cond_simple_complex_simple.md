@@ -51,8 +51,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSSA_tmpReturnArg = $(2);
-$(tmpSSA_tmpReturnArg);
+const tmpReturnArg = $(2);
+$(tmpReturnArg);
 $(a);
 `````
 

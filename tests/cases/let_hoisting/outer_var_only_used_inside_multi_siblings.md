@@ -80,10 +80,10 @@ if ($) {
 const f = function () {
   debugger;
   if ($) {
-    const tmpSSA_tmpssa2_x = $(1, 'a');
-    $(tmpSSA_tmpssa2_x, 'b');
-    const tmpSSA_tmpssa2_x$1 = $(2, 'c');
-    $(tmpSSA_tmpssa2_x$1, 'd');
+    const tmpssa2_x = $(1, 'a');
+    $(tmpssa2_x, 'b');
+    const tmpSSA_tmpssa2_x = $(2, 'c');
+    $(tmpSSA_tmpssa2_x, 'd');
     return undefined;
   } else {
     return undefined;

@@ -46,9 +46,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-const tmpSSA_tmpForInDeclRhs = $(tmpCalleeParam);
+const tmpForInDeclRhs = $(tmpCalleeParam);
 let x = undefined;
-for (x in tmpSSA_tmpForInDeclRhs) {
+for (x in tmpForInDeclRhs) {
 }
 $(a);
 `````

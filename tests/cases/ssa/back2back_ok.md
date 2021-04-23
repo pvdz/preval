@@ -63,14 +63,14 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_x = function () {
+const x = function () {
   debugger;
   return undefined;
 };
 const f = function () {
   debugger;
   if ($) {
-    $(tmpSSA_x);
+    $(x);
     return undefined;
   } else {
     return undefined;

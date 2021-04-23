@@ -47,8 +47,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSSA_tmpTemplateExpr = $(2);
-const tmpCalleeParam = `before  ${tmpSSA_tmpTemplateExpr}  after`;
+const tmpTemplateExpr = $(2);
+const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

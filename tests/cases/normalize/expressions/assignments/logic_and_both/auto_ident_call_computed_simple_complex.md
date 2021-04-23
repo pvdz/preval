@@ -54,17 +54,17 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallCompProp = $('$');
-let tmpSSA_a = b[tmpCallCompProp](1);
-let tmpCalleeParam = tmpSSA_a;
+let a = b[tmpCallCompProp](1);
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpCallCompProp$1 = $('$');
   const tmpNestedComplexRhs = b[tmpCallCompProp$1](1);
-  tmpSSA_a = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

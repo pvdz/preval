@@ -41,11 +41,11 @@ $(a);
 
 `````js filename=intro
 const tmpCallCallee = $($);
-const tmpSSA_a = tmpCallCallee(1);
+const a = tmpCallCallee(1);
 let x = undefined;
-for (x in tmpSSA_a) {
+for (x in a) {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

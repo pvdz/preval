@@ -90,8 +90,8 @@ const f = function () {
     debugger;
     const tmpCalleeParam$3 = arrPatternStep;
     const tmpCalleeParam$5 = [];
-    const tmpSSA_tmpssa2_x = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
-    return tmpSSA_tmpssa2_x;
+    const tmpssa2_x = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+    return tmpssa2_x;
   };
   if (tmpIfTest) {
     const tmpCalleeParam$1 = { a: 'pass' };

@@ -45,9 +45,9 @@ $(a, b);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-const tmpSSA_b = $(2);
-$(tmpCalleeParam, tmpSSA_b);
-$(a, tmpSSA_b);
+const b = $(2);
+$(tmpCalleeParam, b);
+$(a, b);
 `````
 
 ## Globals

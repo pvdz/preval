@@ -83,8 +83,8 @@ const x = class {
     debugger;
     const tmpIfTest = tmpParamBare === undefined;
     if (tmpIfTest) {
-      const tmpSSA_tmpssa2_arg = $(10, 'default');
-      return tmpSSA_tmpssa2_arg;
+      const tmpssa2_arg = $(10, 'default');
+      return tmpssa2_arg;
     } else {
       return tmpParamBare;
     }

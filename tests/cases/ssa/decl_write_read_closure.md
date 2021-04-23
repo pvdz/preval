@@ -84,15 +84,15 @@ const f = function () {
     const g = function () {
       debugger;
       if ($) {
-        tmpSSA_x = 10;
+        x = 10;
         return undefined;
       } else {
         return undefined;
       }
     };
-    let tmpSSA_x = 20;
+    let x = 20;
     g();
-    return tmpSSA_x;
+    return x;
   } else {
     return undefined;
   }

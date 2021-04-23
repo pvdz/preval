@@ -123,8 +123,8 @@ $(a);
 const tmpBranchingB$1 = function () {
   debugger;
   const tmpCalleeParam$11 = $(1);
-  const tmpSSA_tmpssa2_p$1 = $(tmpCalleeParam$11);
-  if (tmpSSA_tmpssa2_p$1) {
+  const tmpssa2_p$1 = $(tmpCalleeParam$11);
+  if (tmpssa2_p$1) {
     return undefined;
   } else {
     const tmpCalleeParam$15 = $(2);
@@ -134,8 +134,8 @@ const tmpBranchingB$1 = function () {
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$5 = $(0);
-const tmpSSA_tmpssa2_p = $(tmpCalleeParam$5);
-if (tmpSSA_tmpssa2_p) {
+const tmpssa2_p = $(tmpCalleeParam$5);
+if (tmpssa2_p) {
 } else {
   tmpBranchingB$1();
 }

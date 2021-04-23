@@ -40,8 +40,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const tmpSSA_b = $(2);
-throw tmpSSA_b;
+const b = $(2);
+throw b;
 `````
 
 ## Globals

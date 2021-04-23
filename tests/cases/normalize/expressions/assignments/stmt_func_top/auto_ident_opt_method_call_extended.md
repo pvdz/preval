@@ -85,11 +85,11 @@ tmpCallCallee(tmpCalleeParam);
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpIfTest = b != null;
 const tmpBranchingC = function () {
   debugger;
-  $(tmpSSA_a);
+  $(a);
   return undefined;
 };
 if (tmpIfTest) {
@@ -97,7 +97,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$7 = tmpChainElementObject$5.d;
   const tmpChainElementObject$9 = tmpChainElementObject$7.e;
   const tmpChainElementCall$1 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
-  tmpSSA_a = tmpChainElementCall$1;
+  a = tmpChainElementCall$1;
   tmpBranchingC();
 } else {
   tmpBranchingC();

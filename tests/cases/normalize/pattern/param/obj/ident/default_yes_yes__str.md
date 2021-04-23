@@ -99,13 +99,13 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpSSA_tmpssa3_objPatternBeforeDefault = 'abc'.x;
-  const tmpIfTest$1 = tmpSSA_tmpssa3_objPatternBeforeDefault === undefined;
+  const tmpssa3_objPatternBeforeDefault = 'abc'.x;
+  const tmpIfTest$1 = tmpssa3_objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpReturnArg = $('pass');
     return tmpReturnArg;
   } else {
-    return tmpSSA_tmpssa3_objPatternBeforeDefault;
+    return tmpssa3_objPatternBeforeDefault;
   }
 };
 const tmpCalleeParam$3 = f();

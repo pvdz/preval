@@ -84,18 +84,18 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const b = { x: 1 };
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
 const tmpBranchingC = function () {
   debugger;
-  $(tmpSSA_a);
+  $(a);
   return undefined;
 };
 if (tmpIfTest) {
   const tmpChainRootComputed$1 = $('x');
   const tmpChainElementObject$1 = tmpChainElementCall[tmpChainRootComputed$1];
-  tmpSSA_a = tmpChainElementObject$1;
+  a = tmpChainElementObject$1;
   tmpBranchingC();
 } else {
   tmpBranchingC();

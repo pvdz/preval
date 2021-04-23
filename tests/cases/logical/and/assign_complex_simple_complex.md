@@ -39,8 +39,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSSA_x$1 = $(2);
-$(tmpSSA_x$1);
+const x = $(2);
+$(x);
 `````
 
 ## Globals

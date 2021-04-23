@@ -46,9 +46,9 @@ $(a);
 const obj = {};
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpSSA_a = tmpBinBothLhs + tmpBinBothRhs;
-obj[tmpSSA_a];
-$(tmpSSA_a);
+const a = tmpBinBothLhs + tmpBinBothRhs;
+obj[a];
+$(a);
 `````
 
 ## Globals

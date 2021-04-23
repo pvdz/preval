@@ -46,8 +46,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 const tmpCalleeParam = $(1);
-const tmpSSA_tmpBinBothRhs = $(tmpCalleeParam);
-tmpBinBothLhs + tmpSSA_tmpBinBothRhs;
+const tmpBinBothRhs = $(tmpCalleeParam);
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

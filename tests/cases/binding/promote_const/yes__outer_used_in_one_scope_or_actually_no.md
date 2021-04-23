@@ -97,8 +97,8 @@ f();
 
 `````js filename=intro
 $('something');
-const tmpSSA_x$1 = $('oops');
-$(tmpSSA_x$1);
+const tmpSSA_x = $('oops');
+$(tmpSSA_x);
 `````
 
 ## Globals

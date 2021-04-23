@@ -73,14 +73,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpSSA_a = $(tmpCalleeParam);
+let a = $(tmpCalleeParam);
 const tmpBranchingC = function () {
   debugger;
-  $(tmpSSA_a);
+  $(a);
   return undefined;
 };
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
+if (a) {
+  a = 2;
   tmpBranchingC();
 } else {
   tmpBranchingC();

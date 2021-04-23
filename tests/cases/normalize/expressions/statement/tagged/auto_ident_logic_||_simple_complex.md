@@ -47,8 +47,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 const tmpCalleeParam$3 = $(1);
-const tmpSSA_tmpCalleeParam$1 = $(tmpCalleeParam$3);
-$(tmpCalleeParam, tmpSSA_tmpCalleeParam$1);
+const tmpCalleeParam$1 = $(tmpCalleeParam$3);
+$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

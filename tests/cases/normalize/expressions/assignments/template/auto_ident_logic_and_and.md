@@ -54,21 +54,21 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-let tmpSSA_a = $(tmpCalleeParam$1);
-if (tmpSSA_a) {
+let a = $(tmpCalleeParam$1);
+if (a) {
   const tmpCalleeParam$3 = $(1);
-  tmpSSA_a = $(tmpCalleeParam$3);
-  if (tmpSSA_a) {
+  a = $(tmpCalleeParam$3);
+  if (a) {
     const tmpCalleeParam$5 = $(2);
-    tmpSSA_a = $(tmpCalleeParam$5);
+    a = $(tmpCalleeParam$5);
   } else {
   }
 } else {
 }
-const tmpTemplateExpr = tmpSSA_a;
+const tmpTemplateExpr = a;
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

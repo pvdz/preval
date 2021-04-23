@@ -48,12 +48,12 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
 const tmpObjLitVal = $(1);
-const tmpSSA_a = { b: tmpObjLitVal };
-$(tmpCalleeParam, tmpSSA_a);
-const tmpAssignMemLhsObj = $(tmpSSA_a);
+const a = { b: tmpObjLitVal };
+$(tmpCalleeParam, a);
+const tmpAssignMemLhsObj = $(a);
 const tmpAssignMemRhs = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

@@ -65,14 +65,14 @@ const b = { c: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpAssignRhsCompProp = $('c');
-const tmpSSA_a = b[tmpAssignRhsCompProp];
-const tmpIfTest = tmpSSA_a === tmpSwitchValue;
+const a = b[tmpAssignRhsCompProp];
+const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-$(tmpSSA_a, b);
+$(a, b);
 `````
 
 ## Globals

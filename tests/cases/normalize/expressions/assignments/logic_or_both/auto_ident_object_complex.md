@@ -52,18 +52,18 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-let tmpSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-let tmpCalleeParam = tmpSSA_a;
+let a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   const tmpObjLitVal$5 = $(1);
   const tmpObjLitVal$9 = $(3);
   const tmpNestedComplexRhs = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
-  tmpSSA_a = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

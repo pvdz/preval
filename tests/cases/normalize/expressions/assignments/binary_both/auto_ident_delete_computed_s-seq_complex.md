@@ -60,14 +60,14 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete arg[tmpDeleteCompProp];
+const a = delete arg[tmpDeleteCompProp];
 $(1);
 $(2);
 const tmpDeleteCompProp$1 = $('y');
-const tmpSSA_a$1 = delete arg[tmpDeleteCompProp$1];
-const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
+const tmpSSA_a = delete arg[tmpDeleteCompProp$1];
+const tmpCalleeParam = a + tmpSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a$1, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## Globals

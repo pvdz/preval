@@ -46,8 +46,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSSA_c = {};
-const tmpCompObj = $(tmpSSA_c);
+const c = {};
+const tmpCompObj = $(c);
 const tmpNestedComplexRhs = tmpCompObj.x;
 $(tmpNestedComplexRhs);
 `````

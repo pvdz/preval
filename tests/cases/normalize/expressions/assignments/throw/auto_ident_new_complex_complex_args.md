@@ -46,8 +46,8 @@ throw tmpThrowArg;
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpSSA_a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-throw tmpSSA_a;
+const a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+throw a;
 `````
 
 ## Globals

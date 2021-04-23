@@ -88,13 +88,13 @@ if ($) {
 const g = function () {
   debugger;
   if ($) {
-    $(tmpSSA_x);
+    $(x);
     return undefined;
   } else {
     return undefined;
   }
 };
-const tmpSSA_x = function () {
+const x = function () {
   debugger;
   return undefined;
 };

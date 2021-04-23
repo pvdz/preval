@@ -54,14 +54,14 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const tmpSSA_a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpNewCallee$1 = $($);
 const tmpCalleeParam$5 = $(1);
 const tmpCalleeParam$7 = $(2);
-const tmpSSA_a$1 = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
-const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
+const tmpSSA_a = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+const tmpCalleeParam = a + tmpSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a$1);
+$(tmpSSA_a);
 `````
 
 ## Globals

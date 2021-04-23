@@ -57,19 +57,19 @@ $(a);
 const tmpCallCallee$1 = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-let tmpSSA_a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
-let tmpCalleeParam = tmpSSA_a;
+let a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
+let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   const tmpCallCallee$3 = $($);
   const tmpCalleeParam$5 = $(1);
   const tmpCalleeParam$7 = $(2);
   const tmpNestedComplexRhs = tmpCallCallee$3(tmpCalleeParam$5, tmpCalleeParam$7);
-  tmpSSA_a = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

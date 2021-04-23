@@ -36,8 +36,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = /foo/;
-throw tmpSSA_a;
+const a = /foo/;
+throw a;
 `````
 
 ## Globals

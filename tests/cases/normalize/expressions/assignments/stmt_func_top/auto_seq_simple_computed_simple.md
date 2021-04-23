@@ -58,12 +58,12 @@ tmpCallCallee$1(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpSSA_a = { b: tmpObjLitVal };
+const a = { b: tmpObjLitVal };
 const tmpCalleeParam = $(1);
-const tmpAssignMemLhsObj = tmpSSA_a(tmpCalleeParam, tmpSSA_a);
+const tmpAssignMemLhsObj = a(tmpCalleeParam, a);
 const tmpAssignMemRhs = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
-$(tmpSSA_a);
+$(a);
 $(undefined);
 `````
 

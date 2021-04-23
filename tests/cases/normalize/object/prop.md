@@ -51,8 +51,8 @@ const program = { modules: tmpObjLitVal, main: tmpObjLitVal$1 };
 
 `````js filename=intro
 const fdata = { name: 1 };
-const tmpSSA_tmpElement_1 = fdata.name;
-const tmpSSA_tmpElement = [tmpSSA_tmpElement_1, fdata];
+const tmpElement_1 = fdata.name;
+const tmpSSA_tmpElement = [tmpElement_1, fdata];
 const tmpSSA_tmpArg_1 = [tmpSSA_tmpElement];
 new Map(tmpSSA_tmpArg_1);
 fdata.name;

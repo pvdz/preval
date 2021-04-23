@@ -84,13 +84,13 @@ const f = function () {
   debugger;
   if ($) {
     $(undefined);
-    const tmpSSA_x = $(2);
-    const tmpSSA_x$1 = [1, tmpSSA_x, 2, tmpSSA_x, 3, tmpSSA_x, 4, tmpSSA_x];
-    $(tmpSSA_x$1);
+    const x = $(2);
+    const tmpSSA_x = [1, x, 2, x, 3, x, 4, x];
+    $(tmpSSA_x);
     const g = function () {
       debugger;
       if ($) {
-        $(tmpSSA_x$1);
+        $(tmpSSA_x);
         return undefined;
       } else {
         return undefined;

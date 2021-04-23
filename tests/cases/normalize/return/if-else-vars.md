@@ -83,11 +83,11 @@ const f = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpSSA_tmpssa2_x = $(1, 'a');
-    return tmpSSA_tmpssa2_x;
+    const tmpssa2_x = $(1, 'a');
+    return tmpssa2_x;
   } else {
-    const tmpSSA_tmpssa2_x$1 = $(2, 'b');
-    return tmpSSA_tmpssa2_x$1;
+    const tmpssa2_x$1 = $(2, 'b');
+    return tmpssa2_x$1;
   }
 };
 const tmpCalleeParam = f();

@@ -118,7 +118,7 @@ const f = function () {
     const tmpCalleeParam$36042 = SSA_SNe$596[2];
     const tmpCalleeParam$36043 = SSA_SNe$596[3];
     const tmpCalleeParam$36044 = SSA_SNe$596[1];
-    const tmpSSA_tmpReturnArg$21651 = $(
+    const tmpReturnArg$21651 = $(
       100,
       tmpCalleeParam$36039,
       101,
@@ -129,7 +129,7 @@ const f = function () {
       102,
       tmpCalleeParam$36044,
     );
-    return tmpSSA_tmpReturnArg$21651;
+    return tmpReturnArg$21651;
   } else {
     return undefined;
   }

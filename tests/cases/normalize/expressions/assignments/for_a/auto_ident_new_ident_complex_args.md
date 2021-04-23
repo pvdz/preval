@@ -52,11 +52,11 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpSSA_a = new $(tmpCalleeParam, tmpCalleeParam$1);
+const a = new $(tmpCalleeParam, tmpCalleeParam$1);
 while (true) {
   $(1);
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

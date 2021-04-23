@@ -106,7 +106,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpIfTest = b != null;
 const tmpBranchingA = function () {
   debugger;
@@ -114,7 +114,7 @@ const tmpBranchingA = function () {
   const tmpIfTest$3 = tmpChainElementObject$3 != null;
   if (tmpIfTest$3) {
     const tmpChainElementObject$7 = tmpChainElementObject$3.y;
-    tmpSSA_a = tmpChainElementObject$7;
+    a = tmpChainElementObject$7;
     tmpBranchingC();
     return undefined;
   } else {
@@ -124,7 +124,7 @@ const tmpBranchingA = function () {
 };
 const tmpBranchingC = function () {
   debugger;
-  $(tmpSSA_a);
+  $(a);
   return undefined;
 };
 if (tmpIfTest) {

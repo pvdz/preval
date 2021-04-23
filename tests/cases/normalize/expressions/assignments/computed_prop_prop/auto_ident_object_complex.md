@@ -47,9 +47,9 @@ $(a);
 const obj = {};
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const tmpSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-obj[tmpSSA_a];
-$(tmpSSA_a);
+const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+obj[a];
+$(a);
 `````
 
 ## Globals

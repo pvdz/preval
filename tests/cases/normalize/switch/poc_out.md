@@ -132,8 +132,8 @@ exit: {
 let fallthrough = false;
 exit: {
   const tmpBinBothRhs = $(1);
-  const tmpSSA_tmpIfTest = undefined === tmpBinBothRhs;
-  if (tmpSSA_tmpIfTest) {
+  const tmpIfTest = undefined === tmpBinBothRhs;
+  if (tmpIfTest) {
     $('A');
     fallthrough = true;
   } else {

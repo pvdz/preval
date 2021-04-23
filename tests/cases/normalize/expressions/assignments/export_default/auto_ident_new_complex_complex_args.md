@@ -48,10 +48,10 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpSSA_a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-const tmpAnonDefaultExport = tmpSSA_a;
+const a = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

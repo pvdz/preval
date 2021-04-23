@@ -51,19 +51,19 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-let tmpSSA_a = undefined;
+let a = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpSSA_a = tmpChainElementObject;
+  a = tmpChainElementObject;
 } else {
 }
-const tmpForInDeclRhs = tmpSSA_a;
+const tmpForInDeclRhs = a;
 let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

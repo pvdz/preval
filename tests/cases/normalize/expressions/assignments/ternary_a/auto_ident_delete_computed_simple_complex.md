@@ -53,14 +53,14 @@ $(a, arg);
 const arg = { y: 1 };
 let tmpCalleeParam = undefined;
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete arg[tmpDeleteCompProp];
-if (tmpSSA_a) {
+const a = delete arg[tmpDeleteCompProp];
+if (a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(tmpSSA_a, arg);
+$(a, arg);
 `````
 
 ## Globals

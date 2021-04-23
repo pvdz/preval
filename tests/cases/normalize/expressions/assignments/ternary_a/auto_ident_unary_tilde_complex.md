@@ -47,14 +47,14 @@ $(a);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 const tmpUnaryArg = $(100);
-const tmpSSA_a = ~tmpUnaryArg;
-if (tmpSSA_a) {
+const a = ~tmpUnaryArg;
+if (a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(a);
 `````
 
 ## Globals

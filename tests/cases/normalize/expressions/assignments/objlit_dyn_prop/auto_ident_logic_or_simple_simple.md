@@ -44,15 +44,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 0;
-if (tmpSSA_a) {
-} else {
-  tmpSSA_a = 2;
-}
-const tmpObjLitPropKey = tmpSSA_a;
-const tmpCalleeParam = { [tmpObjLitPropKey]: 10 };
+const tmpCalleeParam = { [2]: 10 };
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(2);
 `````
 
 ## Globals

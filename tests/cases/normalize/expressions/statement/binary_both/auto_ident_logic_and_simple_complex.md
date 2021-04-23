@@ -50,19 +50,11 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpBinBothLhs = 1;
-if (tmpBinBothLhs) {
-  const tmpCalleeParam = $(1);
-  tmpBinBothLhs = $(tmpCalleeParam);
-} else {
-}
-let tmpBinBothRhs = 1;
-if (tmpBinBothRhs) {
-  const tmpCalleeParam$1 = $(1);
-  tmpBinBothRhs = $(tmpCalleeParam$1);
-} else {
-}
-tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = $(1);
+const tmpSSA_tmpBinBothLhs = $(tmpCalleeParam);
+const tmpCalleeParam$1 = $(1);
+const tmpSSA_tmpBinBothRhs = $(tmpCalleeParam$1);
+tmpSSA_tmpBinBothLhs + tmpSSA_tmpBinBothRhs;
 $(a);
 `````
 

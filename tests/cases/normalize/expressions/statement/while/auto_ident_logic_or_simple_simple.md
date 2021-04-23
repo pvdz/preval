@@ -48,16 +48,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest = 0;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = 2;
-  }
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
+  $(100);
 }
 $(a);
 `````

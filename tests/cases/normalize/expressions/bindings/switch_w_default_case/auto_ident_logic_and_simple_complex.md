@@ -90,13 +90,9 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  const tmpCalleeParam = $(1);
-  tmpSSA_a = $(tmpCalleeParam);
-} else {
-}
-$(tmpSSA_a);
+const tmpCalleeParam = $(1);
+const tmpSSA_a$1 = $(tmpCalleeParam);
+$(tmpSSA_a$1);
 $('fail1');
 $('fail2');
 `````

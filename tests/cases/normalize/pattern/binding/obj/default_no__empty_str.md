@@ -41,15 +41,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-let objPatternCrashTest = false;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = false;
-}
-if (objPatternCrashTest) {
-  ''.cannotDestructureThis;
-} else {
-}
 $('ok');
 `````
 

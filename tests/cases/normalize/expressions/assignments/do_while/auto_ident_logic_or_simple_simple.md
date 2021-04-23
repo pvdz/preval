@@ -70,13 +70,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs = 0;
-    if (tmpNestedComplexRhs) {
-    } else {
-      tmpNestedComplexRhs = 2;
-    }
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = 2;
+    tmpIfTest = 2;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

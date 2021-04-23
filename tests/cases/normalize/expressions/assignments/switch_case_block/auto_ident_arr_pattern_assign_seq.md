@@ -91,8 +91,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  $(x);
-  $(y);
+  $(1);
+  $(2);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];

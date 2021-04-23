@@ -44,16 +44,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
-} else {
-}
-const tmpBinBothLhs = tmpSSA_a;
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = 2 + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(2);
 `````
 
 ## Globals

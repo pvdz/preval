@@ -77,12 +77,7 @@ while (true) {
   b.x = 3;
   b.x = 3;
   a = 3;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a, b, 3);
 `````

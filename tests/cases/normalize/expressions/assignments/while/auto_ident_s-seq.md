@@ -54,12 +54,7 @@ while (true) {
   $(1);
   $(2);
   a = 1;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
+  $(100);
 }
 $(a, 1);
 `````

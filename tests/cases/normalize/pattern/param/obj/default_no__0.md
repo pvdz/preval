@@ -89,22 +89,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let objPatternCrashTest = false;
-const tmpBranchingC = function () {
-  debugger;
-  if (objPatternCrashTest) {
-    objPatternCrashTest = (0).cannotDestructureThis;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-if (objPatternCrashTest) {
-  tmpBranchingC();
-} else {
-  objPatternCrashTest = false;
-  tmpBranchingC();
-}
 $('ok');
 `````
 

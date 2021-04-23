@@ -52,18 +52,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let tmpSSA_b = 0;
-let tmpSSA_a = 0;
-let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
-  tmpSSA_b = tmpSSA_b - 1;
-  const tmpNestedComplexRhs$1 = tmpSSA_b;
-  tmpSSA_a = tmpNestedComplexRhs$1;
-  tmpCalleeParam = tmpNestedComplexRhs$1;
-} else {
-}
-$(tmpCalleeParam);
-$(tmpSSA_a, tmpSSA_b);
+$(0);
+$(0, 0);
 `````
 
 ## Globals

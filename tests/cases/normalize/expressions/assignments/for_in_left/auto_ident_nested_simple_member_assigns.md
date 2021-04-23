@@ -76,8 +76,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   b.x = 3;
   b.x = 3;
   a = 3;
-  const tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+  (3).x = tmpForInLhsNode;
 }
 $(a, b, 3);
 `````

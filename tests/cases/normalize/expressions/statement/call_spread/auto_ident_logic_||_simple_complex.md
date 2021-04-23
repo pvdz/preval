@@ -44,13 +44,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread = 0;
-if (tmpCalleeParamSpread) {
-} else {
-  const tmpCalleeParam = $(1);
-  tmpCalleeParamSpread = $(tmpCalleeParam);
-}
-$(...tmpCalleeParamSpread);
+const tmpCalleeParam = $(1);
+const tmpSSA_tmpCalleeParamSpread = $(tmpCalleeParam);
+$(...tmpSSA_tmpCalleeParamSpread);
 $(a);
 `````
 

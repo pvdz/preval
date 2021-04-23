@@ -145,7 +145,7 @@ const f = function ($$0, $$1) {
     }
   };
   if (tmpIfTest) {
-    a = b;
+    a = undefined;
     const tmpReturnArg = tmpBranchingC();
     return tmpReturnArg;
   } else {

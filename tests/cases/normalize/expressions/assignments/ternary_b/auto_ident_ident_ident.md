@@ -59,9 +59,8 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   b = 2;
-  const tmpNestedComplexRhs = b;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = 2;
+  tmpCalleeParam = 2;
 } else {
   tmpCalleeParam = $(200);
 }

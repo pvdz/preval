@@ -56,26 +56,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  const tmpCalleeParam$1 = $(1);
-  tmpSSA_a = $(tmpCalleeParam$1);
-} else {
-}
-let tmpCalleeParam = tmpSSA_a;
+const tmpCalleeParam$1 = $(1);
+let tmpSSA_a$1 = $(tmpCalleeParam$1);
+let tmpCalleeParam = tmpSSA_a$1;
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs = 1;
-  if (tmpNestedComplexRhs) {
-    const tmpCalleeParam$3 = $(1);
-    tmpNestedComplexRhs = $(tmpCalleeParam$3);
-  } else {
-  }
-  tmpSSA_a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  const tmpCalleeParam$3 = $(1);
+  const tmpSSA_tmpNestedComplexRhs = $(tmpCalleeParam$3);
+  tmpSSA_a$1 = tmpSSA_tmpNestedComplexRhs;
+  tmpCalleeParam = tmpSSA_tmpNestedComplexRhs;
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

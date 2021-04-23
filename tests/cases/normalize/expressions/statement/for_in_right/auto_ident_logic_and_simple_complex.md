@@ -45,14 +45,10 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = 1;
-if (tmpForInDeclRhs) {
-  const tmpCalleeParam = $(1);
-  tmpForInDeclRhs = $(tmpCalleeParam);
-} else {
-}
+const tmpCalleeParam = $(1);
+const tmpSSA_tmpForInDeclRhs = $(tmpCalleeParam);
 let x = undefined;
-for (x in tmpForInDeclRhs) {
+for (x in tmpSSA_tmpForInDeclRhs) {
 }
 $(a);
 `````

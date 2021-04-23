@@ -54,13 +54,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest = 0;
-  if (tmpIfTest) {
-  } else {
-    const tmpCalleeParam = $(1);
-    tmpIfTest = $(tmpCalleeParam);
-  }
-  if (tmpIfTest) {
+  const tmpCalleeParam = $(1);
+  const tmpSSA_tmpIfTest = $(tmpCalleeParam);
+  if (tmpSSA_tmpIfTest) {
     $(1);
   } else {
     break;

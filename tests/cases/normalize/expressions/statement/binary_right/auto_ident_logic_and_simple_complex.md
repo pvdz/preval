@@ -45,13 +45,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-let tmpBinBothRhs = 1;
-if (tmpBinBothRhs) {
-  const tmpCalleeParam = $(1);
-  tmpBinBothRhs = $(tmpCalleeParam);
-} else {
-}
-tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = $(1);
+const tmpSSA_tmpBinBothRhs = $(tmpCalleeParam);
+tmpBinBothLhs + tmpSSA_tmpBinBothRhs;
 $(a);
 `````
 

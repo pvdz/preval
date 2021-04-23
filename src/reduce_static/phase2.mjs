@@ -15,6 +15,7 @@ import { dropUnusedReturns } from './phase2unusedreturns.mjs';
 import { singleScopeTdz } from './phase2single_scope_tdz.mjs';
 import { letHoisting } from './phase2lethoisting.mjs';
 import { ifelseifelse } from './phase2ifelseifelse.mjs';
+import { staticLets } from './phase2staticlets.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -54,6 +55,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const moved = letHoisting(fdata);
   if (moved) return moved;
+
+  const staticLetsInlined = staticLets(fdata);
+  if (staticLetsInlined) return staticLetsInlined;
 
   const emptyFuncs = pruneEmptyFunctions(fdata);
   if (emptyFuncs) return emptyFuncs;

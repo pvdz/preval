@@ -52,24 +52,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
-} else {
-}
-let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
-  let tmpNestedComplexRhs = 1;
-  if (tmpNestedComplexRhs) {
-    tmpNestedComplexRhs = 2;
-  } else {
-  }
-  tmpSSA_a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-} else {
-}
-$(tmpCalleeParam);
-$(tmpSSA_a);
+$(2);
+$(2);
 `````
 
 ## Globals

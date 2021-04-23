@@ -82,10 +82,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
+  b = 2;
+  a = 2;
 } else {
 }
 $(a, b);

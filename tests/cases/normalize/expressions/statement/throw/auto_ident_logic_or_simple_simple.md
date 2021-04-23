@@ -39,12 +39,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let tmpThrowArg = 0;
-if (tmpThrowArg) {
-} else {
-  tmpThrowArg = 2;
-}
-throw tmpThrowArg;
+throw 2;
 `````
 
 ## Globals

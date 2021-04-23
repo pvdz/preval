@@ -38,7 +38,7 @@ export { foo };
 `````js filename=intro
 let foo = undefined;
 foo = 10;
-$(foo);
+$(10);
 export { foo };
 `````
 

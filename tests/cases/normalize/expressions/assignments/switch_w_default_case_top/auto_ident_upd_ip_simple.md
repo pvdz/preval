@@ -109,9 +109,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const tmpPostUpdArgIdent = b;
-  b = b + 1;
-  a = tmpPostUpdArgIdent;
+  b = 2;
+  a = 1;
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

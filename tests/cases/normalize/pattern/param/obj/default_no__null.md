@@ -89,23 +89,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let objPatternCrashTest = false;
-const tmpBranchingC = function () {
-  debugger;
-  if (objPatternCrashTest) {
-    objPatternCrashTest = null.cannotDestructureThis;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-if (objPatternCrashTest) {
-  tmpBranchingC();
-} else {
-  objPatternCrashTest = true;
-  tmpBranchingC();
-}
-$('bad');
+null.cannotDestructureThis;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

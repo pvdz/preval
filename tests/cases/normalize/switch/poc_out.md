@@ -131,13 +131,9 @@ exit: {
 `````js filename=intro
 let fallthrough = false;
 exit: {
-  let tmpIfTest = fallthrough;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothRhs = $(1);
-    tmpIfTest = undefined === tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
+  const tmpBinBothRhs = $(1);
+  const tmpSSA_tmpIfTest = undefined === tmpBinBothRhs;
+  if (tmpSSA_tmpIfTest) {
     $('A');
     fallthrough = true;
   } else {

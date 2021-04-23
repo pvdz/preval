@@ -45,7 +45,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-$(x);
+$(undefined);
 const tmpForInRhs = { y: 100 };
 for (x in tmpForInRhs) {
   $(x, 'for');

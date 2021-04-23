@@ -69,8 +69,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  $(x);
-  $(y);
+  $(1);
+  $(2);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];

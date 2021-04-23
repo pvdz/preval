@@ -55,10 +55,7 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     a = 1;
-    if (a) {
-      a = 2;
-    } else {
-    }
+    a = 2;
   } else {
     break;
   }

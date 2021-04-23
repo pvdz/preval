@@ -46,14 +46,8 @@ $(a);
 
 `````js filename=intro
 const obj = {};
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
-} else {
-}
-const tmpCompProp = tmpSSA_a;
-obj[tmpCompProp];
-$(tmpSSA_a);
+obj[2];
+$(2);
 `````
 
 ## Globals

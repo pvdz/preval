@@ -140,7 +140,7 @@ const tmpBranchingA = function () {
     return a;
   } else {
     a = undefined;
-    return a;
+    return undefined;
   }
 };
 const tmpCalleeParam$6 = tmpBranchingA();

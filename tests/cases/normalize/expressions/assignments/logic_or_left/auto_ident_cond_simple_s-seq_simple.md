@@ -42,12 +42,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = 60;
-if (tmpCalleeParam) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
+$(60);
 $(60);
 `````
 

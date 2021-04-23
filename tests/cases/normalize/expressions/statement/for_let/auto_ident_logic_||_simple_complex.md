@@ -52,14 +52,10 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let xyz = 0;
-if (xyz) {
-} else {
-  const tmpCalleeParam = $(1);
-  xyz = $(tmpCalleeParam);
-}
+const tmpCalleeParam = $(1);
+const tmpSSA_xyz = $(tmpCalleeParam);
 while (true) {
-  $(xyz);
+  $(tmpSSA_xyz);
   $(1);
 }
 $(a);

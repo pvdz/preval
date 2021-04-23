@@ -83,7 +83,7 @@ const f = function () {
     return a;
   } else {
     a = 2;
-    return a;
+    return 2;
   }
 };
 const tmpCalleeParam$1 = f();

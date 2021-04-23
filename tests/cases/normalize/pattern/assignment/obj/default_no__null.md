@@ -41,17 +41,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-let objPatternCrashTest = false;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = true;
-}
-if (objPatternCrashTest) {
-  null.cannotDestructureThis;
-  throw '[Preval]: Can not reach here';
-} else {
-  $('bad');
-}
+null.cannotDestructureThis;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

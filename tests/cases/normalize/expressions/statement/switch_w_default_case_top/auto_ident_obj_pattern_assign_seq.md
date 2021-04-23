@@ -123,8 +123,8 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    $(x);
-    $(y);
+    $(1);
+    $(2);
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);
     const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };

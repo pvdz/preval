@@ -48,13 +48,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const obj = {};
-let tmpCompProp = 1;
-if (tmpCompProp) {
-  const tmpCalleeParam = $(1);
-  tmpCompProp = $(tmpCalleeParam);
-} else {
-}
-obj[tmpCompProp];
+const tmpCalleeParam = $(1);
+const tmpSSA_tmpCompProp = $(tmpCalleeParam);
+obj[tmpSSA_tmpCompProp];
 $(a);
 `````
 

@@ -47,13 +47,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpBinBothRhs = 1;
-if (tmpBinBothRhs) {
-  const tmpCalleeParam$1 = $(1);
-  tmpBinBothRhs = $(tmpCalleeParam$1);
-} else {
-}
-const tmpSSA_a = a * tmpBinBothRhs;
+const tmpCalleeParam$1 = $(1);
+const tmpSSA_tmpBinBothRhs = $(tmpCalleeParam$1);
+const tmpSSA_a = a * tmpSSA_tmpBinBothRhs;
 $(tmpSSA_a);
 $(tmpSSA_a);
 `````

@@ -65,8 +65,8 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
-  $(x);
-  $(y);
+  $(1);
+  $(2);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];

@@ -41,13 +41,9 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let tmpThrowArg = 1;
-if (tmpThrowArg) {
-  const tmpCalleeParam = $(1);
-  tmpThrowArg = $(tmpCalleeParam);
-} else {
-}
-throw tmpThrowArg;
+const tmpCalleeParam = $(1);
+const tmpSSA_tmpThrowArg = $(tmpCalleeParam);
+throw tmpSSA_tmpThrowArg;
 `````
 
 ## Globals

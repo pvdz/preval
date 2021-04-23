@@ -42,12 +42,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpCalleeParam = 1;
-if (tmpCalleeParam) {
-  tmpCalleeParam = 2;
-} else {
-}
-$(tmpCalleeParam);
+$(2);
 $(a);
 `````
 

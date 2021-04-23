@@ -46,10 +46,10 @@ export { y };
 `````js filename=intro
 let x = undefined;
 let y = undefined;
-$(x, y);
+$(undefined, undefined);
 x = 10;
 y = 20;
-$(x, y);
+$(10, 20);
 export { x };
 export { y };
 `````

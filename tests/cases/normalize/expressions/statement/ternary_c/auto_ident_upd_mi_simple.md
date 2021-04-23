@@ -50,7 +50,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  b = b - 1;
+  b = 0;
 }
 $(a, b);
 `````

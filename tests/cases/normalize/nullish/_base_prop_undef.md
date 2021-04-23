@@ -41,13 +41,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = x;
-} else {
-}
-$(tmpCalleeParam);
+const tmpSSA_tmpCalleeParam = x;
+$(tmpSSA_tmpCalleeParam);
 `````
 
 ## Globals

@@ -44,14 +44,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
-} else {
-}
-const tmpCompObj = tmpSSA_a;
-tmpCompObj.a;
-$(tmpSSA_a);
+(2).a;
+$(2);
 `````
 
 ## Globals

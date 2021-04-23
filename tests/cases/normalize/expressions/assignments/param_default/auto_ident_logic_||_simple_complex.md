@@ -97,22 +97,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpNestedComplexRhs$1 = 0;
-const tmpBranchingC$1 = function () {
-  debugger;
-  a = tmpNestedComplexRhs$1;
-  return undefined;
-};
-if (tmpNestedComplexRhs$1) {
-  tmpBranchingC$1();
-} else {
-  const tmpCalleeParam$3 = $(1);
-  tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
-  tmpBranchingC$1();
-}
+const tmpCalleeParam$3 = $(1);
+const tmpSSA_tmpNestedComplexRhs$1 = $(tmpCalleeParam$3);
 $(undefined);
-$(a);
+$(tmpSSA_tmpNestedComplexRhs$1);
 `````
 
 ## Globals

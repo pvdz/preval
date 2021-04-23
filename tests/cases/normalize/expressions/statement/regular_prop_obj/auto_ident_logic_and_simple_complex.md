@@ -46,13 +46,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpCompObj = 1;
-if (tmpCompObj) {
-  const tmpCalleeParam = $(1);
-  tmpCompObj = $(tmpCalleeParam);
-} else {
-}
-tmpCompObj.a;
+const tmpCalleeParam = $(1);
+const tmpSSA_tmpCompObj = $(tmpCalleeParam);
+tmpSSA_tmpCompObj.a;
 $(a);
 `````
 

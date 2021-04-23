@@ -42,13 +42,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpBinBothLhs = 0;
-if (tmpBinBothLhs) {
-} else {
-  tmpBinBothLhs = 2;
-}
 const tmpBinBothRhs = $(100);
-tmpBinBothLhs + tmpBinBothRhs;
+2 + tmpBinBothRhs;
 $(a);
 `````
 

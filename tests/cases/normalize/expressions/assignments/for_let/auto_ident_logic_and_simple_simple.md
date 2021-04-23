@@ -50,17 +50,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
-} else {
-}
-const xyz = tmpSSA_a;
 while (true) {
-  $(xyz);
+  $(2);
   $(1);
 }
-$(tmpSSA_a);
+$(2);
 `````
 
 ## Globals

@@ -55,14 +55,10 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  let tmpNestedComplexRhs = 1;
-  if (tmpNestedComplexRhs) {
-    const tmpCalleeParam$1 = $(1);
-    tmpNestedComplexRhs = $(tmpCalleeParam$1);
-  } else {
-  }
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  const tmpCalleeParam$1 = $(1);
+  const tmpSSA_tmpNestedComplexRhs = $(tmpCalleeParam$1);
+  a = tmpSSA_tmpNestedComplexRhs;
+  tmpCalleeParam = tmpSSA_tmpNestedComplexRhs;
 } else {
   tmpCalleeParam = $(200);
 }

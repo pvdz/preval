@@ -46,7 +46,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-$(x);
+$(undefined);
 const tmpArrElement = [100];
 const tmpForOfRhs = [tmpArrElement];
 let tmpForOfLhsNode = undefined;

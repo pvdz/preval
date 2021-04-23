@@ -86,21 +86,8 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-let tmpSSA_a = 3;
-let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
-} else {
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  b.x = 3;
-  tmpSSA_a = 3;
-  tmpCalleeParam = 3;
-}
-$(tmpCalleeParam);
-$(tmpSSA_a, b, 3);
+$(3);
+$(3, b, 3);
 `````
 
 ## Globals

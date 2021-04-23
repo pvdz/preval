@@ -64,8 +64,8 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
-  $(x);
-  $(y);
+  $(1);
+  $(2);
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };

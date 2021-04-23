@@ -50,7 +50,7 @@ let x = undefined;
 const tmpIfTest = $('if');
 if (tmpIfTest) {
   x = 10;
-  $(x);
+  $(10);
 } else {
 }
 $(x);

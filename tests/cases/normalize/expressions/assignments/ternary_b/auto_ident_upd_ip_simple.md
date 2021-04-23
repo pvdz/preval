@@ -56,10 +56,9 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpPostUpdArgIdent = b;
-  b = b + 1;
-  a = tmpPostUpdArgIdent;
-  tmpCalleeParam = tmpPostUpdArgIdent;
+  b = 2;
+  a = 1;
+  tmpCalleeParam = 1;
 } else {
   tmpCalleeParam = $(200);
 }

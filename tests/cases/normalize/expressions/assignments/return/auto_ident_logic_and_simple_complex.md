@@ -74,21 +74,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  a = 1;
-  if (a) {
-    const tmpCalleeParam$1 = $(1);
-    a = $(tmpCalleeParam$1);
-    return a;
-  } else {
-    return a;
-  }
-};
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
-$(a);
+const tmpCalleeParam$1 = $(1);
+const tmpSSA_a$1 = $(tmpCalleeParam$1);
+$(tmpSSA_a$1);
+$(tmpSSA_a$1);
 `````
 
 ## Globals

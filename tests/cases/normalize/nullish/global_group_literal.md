@@ -37,20 +37,12 @@ $(y);
 ## Output
 
 `````js filename=intro
-let y = 3;
-const tmpIfTest = y == null;
-if (tmpIfTest) {
-  y = foo;
-} else {
-}
-$(y);
+$(3);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-foo
+None
 
 ## Result
 

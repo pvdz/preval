@@ -43,13 +43,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = 0;
-if (tmpForInDeclRhs) {
-} else {
-  tmpForInDeclRhs = 2;
-}
 let x = undefined;
-for (x in tmpForInDeclRhs) {
+for (x in 2) {
 }
 $(a);
 `````

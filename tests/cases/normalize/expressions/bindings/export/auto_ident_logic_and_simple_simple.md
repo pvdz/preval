@@ -39,10 +39,7 @@ $(a);
 
 `````js filename=intro
 let a = 1;
-if (a) {
-  a = 2;
-} else {
-}
+a = 2;
 export { a };
 $(a);
 `````

@@ -43,14 +43,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
-} else {
-}
-const xyz = tmpSSA_a;
-$(xyz);
-$(tmpSSA_a);
+$(2);
+$(2);
 `````
 
 ## Globals

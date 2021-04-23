@@ -58,10 +58,9 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpPostUpdArgIdent = b;
-  b = b - 1;
-  a = tmpPostUpdArgIdent;
-  tmpCalleeParam = tmpPostUpdArgIdent;
+  b = 0;
+  a = 1;
+  tmpCalleeParam = 1;
 }
 $(tmpCalleeParam);
 $(a, b);

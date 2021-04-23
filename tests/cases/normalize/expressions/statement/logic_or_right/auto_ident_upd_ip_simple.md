@@ -49,7 +49,7 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  b = b + 1;
+  b = 2;
 }
 $(a, b);
 `````

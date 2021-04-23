@@ -76,9 +76,8 @@ while (true) {
   if (tmpIfTest) {
   } else {
     b = 2;
-    const tmpNestedComplexRhs = b;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    a = 2;
+    tmpIfTest = 2;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

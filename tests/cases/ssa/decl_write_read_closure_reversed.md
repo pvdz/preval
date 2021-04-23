@@ -127,7 +127,7 @@ const tmpBranchingA = function () {
   g$1();
   if ($) {
     x$1 = 20;
-    return x$1;
+    return 20;
   } else {
     return x$1;
   }

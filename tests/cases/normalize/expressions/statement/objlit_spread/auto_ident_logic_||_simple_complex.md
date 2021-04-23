@@ -43,13 +43,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpObjSpreadArg = 0;
-if (tmpObjSpreadArg) {
-} else {
-  const tmpCalleeParam = $(1);
-  tmpObjSpreadArg = $(tmpCalleeParam);
-}
-({ ...tmpObjSpreadArg });
+const tmpCalleeParam = $(1);
+const tmpSSA_tmpObjSpreadArg = $(tmpCalleeParam);
+({ ...tmpSSA_tmpObjSpreadArg });
 $(a);
 `````
 

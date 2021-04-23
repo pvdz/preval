@@ -49,21 +49,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 0;
-if (tmpSSA_a) {
-} else {
-  tmpSSA_a = 2;
-}
-const tmpBinBothLhs = tmpSSA_a;
-let tmpSSA_a$1 = 0;
-if (tmpSSA_a$1) {
-} else {
-  tmpSSA_a$1 = 2;
-}
-const tmpBinBothRhs = tmpSSA_a$1;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpCalleeParam);
-$(tmpSSA_a$1);
+$(4);
+$(2);
 `````
 
 ## Globals

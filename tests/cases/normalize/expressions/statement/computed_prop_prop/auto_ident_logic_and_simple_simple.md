@@ -46,12 +46,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const obj = {};
-let tmpCompProp = 1;
-if (tmpCompProp) {
-  tmpCompProp = 2;
-} else {
-}
-obj[tmpCompProp];
+obj[2];
 $(a);
 `````
 

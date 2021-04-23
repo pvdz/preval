@@ -53,13 +53,9 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  let tmpAssignMemLhsObj = 0;
-  if (tmpAssignMemLhsObj) {
-  } else {
-    const tmpCalleeParam$1 = $(1);
-    tmpAssignMemLhsObj = $(tmpCalleeParam$1);
-  }
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+  const tmpCalleeParam$1 = $(1);
+  const tmpSSA_tmpAssignMemLhsObj = $(tmpCalleeParam$1);
+  tmpSSA_tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a);
 `````

@@ -46,13 +46,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-let tmpCalleeParam$1 = 1;
-if (tmpCalleeParam$1) {
-  const tmpCalleeParam$3 = $(1);
-  tmpCalleeParam$1 = $(tmpCalleeParam$3);
-} else {
-}
-$(tmpCalleeParam, tmpCalleeParam$1);
+const tmpCalleeParam$3 = $(1);
+const tmpSSA_tmpCalleeParam$1 = $(tmpCalleeParam$3);
+$(tmpCalleeParam, tmpSSA_tmpCalleeParam$1);
 $(a);
 `````
 

@@ -81,7 +81,7 @@ const f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     a = 60;
-    return a;
+    return 60;
   } else {
     const tmpCalleeParam$1 = $(100);
     a = $(tmpCalleeParam$1);

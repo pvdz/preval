@@ -46,12 +46,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = 1;
-if (tmpCalleeParam) {
-  tmpCalleeParam = $(100);
-} else {
-}
-$(tmpCalleeParam);
+const tmpSSA_tmpCalleeParam = $(100);
+$(tmpSSA_tmpCalleeParam);
 $(1, 1);
 `````
 

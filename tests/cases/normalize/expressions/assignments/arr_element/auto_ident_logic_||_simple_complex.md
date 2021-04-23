@@ -53,23 +53,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 0;
-if (tmpSSA_a) {
-} else {
-  const tmpCalleeParam$1 = $(1);
-  tmpSSA_a = $(tmpCalleeParam$1);
-}
-const tmpBinBothLhs = tmpSSA_a;
-let tmpSSA_a$1 = 0;
-if (tmpSSA_a$1) {
-} else {
-  const tmpCalleeParam$3 = $(1);
-  tmpSSA_a$1 = $(tmpCalleeParam$3);
-}
-const tmpBinBothRhs = tmpSSA_a$1;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam$1 = $(1);
+const tmpSSA_a$2 = $(tmpCalleeParam$1);
+const tmpCalleeParam$3 = $(1);
+const tmpSSA_a$4 = $(tmpCalleeParam$3);
+const tmpCalleeParam = tmpSSA_a$2 + tmpSSA_a$4;
 $(tmpCalleeParam);
-$(tmpSSA_a$1);
+$(tmpSSA_a$4);
 `````
 
 ## Globals

@@ -40,13 +40,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
-} else {
-}
-const tmpThrowArg = tmpSSA_a;
-throw tmpThrowArg;
+throw 2;
 `````
 
 ## Globals

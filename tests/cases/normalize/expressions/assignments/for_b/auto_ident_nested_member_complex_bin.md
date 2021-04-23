@@ -80,12 +80,7 @@ while (true) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
   a = 7;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a, b, c, 3, 4);
 `````

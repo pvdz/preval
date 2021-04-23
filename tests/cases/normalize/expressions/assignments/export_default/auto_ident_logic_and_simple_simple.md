@@ -42,14 +42,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
-} else {
-}
-const tmpAnonDefaultExport = tmpSSA_a;
+const tmpAnonDefaultExport = 2;
 export { tmpAnonDefaultExport as default };
-$(tmpSSA_a);
+$(2);
 `````
 
 ## Globals

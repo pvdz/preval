@@ -72,14 +72,10 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    let tmpNestedComplexRhs = 0;
-    if (tmpNestedComplexRhs) {
-    } else {
-      const tmpCalleeParam = $(1);
-      tmpNestedComplexRhs = $(tmpCalleeParam);
-    }
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    const tmpCalleeParam = $(1);
+    const tmpSSA_tmpNestedComplexRhs = $(tmpCalleeParam);
+    a = tmpSSA_tmpNestedComplexRhs;
+    tmpIfTest = tmpSSA_tmpNestedComplexRhs;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

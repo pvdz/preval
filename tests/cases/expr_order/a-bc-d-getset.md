@@ -97,9 +97,8 @@ let b = {
   },
 };
 let d = 3;
-const tmpNestedPropAssignRhs = d;
-b.c = tmpNestedPropAssignRhs;
-$(tmpNestedPropAssignRhs, b, d);
+b.c = 3;
+$(3, b, d);
 `````
 
 ## Globals

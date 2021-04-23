@@ -54,12 +54,7 @@ $(a, arg);
 let a = { a: 999, b: 1000 };
 while (true) {
   a = 1;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a, 1);
 `````

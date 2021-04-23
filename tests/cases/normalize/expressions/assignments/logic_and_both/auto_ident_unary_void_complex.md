@@ -47,16 +47,8 @@ $(a);
 
 `````js filename=intro
 $(100);
-let tmpSSA_a = undefined;
-let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
-  $(100);
-  tmpSSA_a = undefined;
-  tmpCalleeParam = undefined;
-} else {
-}
-$(tmpCalleeParam);
-$(tmpSSA_a);
+$(undefined);
+$(undefined);
 `````
 
 ## Globals

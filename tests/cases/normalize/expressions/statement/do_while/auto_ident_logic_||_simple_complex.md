@@ -71,11 +71,8 @@ while (true) {
   if (tmpIfTest) {
   } else {
     tmpIfTest = 0;
-    if (tmpIfTest) {
-    } else {
-      const tmpCalleeParam = $(1);
-      tmpIfTest = $(tmpCalleeParam);
-    }
+    const tmpCalleeParam = $(1);
+    tmpIfTest = $(tmpCalleeParam);
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

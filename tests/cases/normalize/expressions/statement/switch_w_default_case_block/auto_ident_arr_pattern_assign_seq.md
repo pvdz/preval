@@ -128,8 +128,8 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    $(x);
-    $(y);
+    $(1);
+    $(2);
     const tmpArrElement = $(3);
     const tmpArrElement$1 = $(4);
     const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];

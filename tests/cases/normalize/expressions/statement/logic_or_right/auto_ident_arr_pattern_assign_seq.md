@@ -59,8 +59,8 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  $(x);
-  $(y);
+  $(1);
+  $(2);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];

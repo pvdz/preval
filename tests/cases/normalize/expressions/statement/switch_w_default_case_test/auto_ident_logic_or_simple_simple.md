@@ -95,12 +95,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = 0;
-if (tmpBinLhs) {
-} else {
-  tmpBinLhs = 2;
-}
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = 2 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

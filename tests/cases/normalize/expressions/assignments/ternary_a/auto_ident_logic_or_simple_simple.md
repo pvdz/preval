@@ -48,20 +48,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-let tmpSSA_a = 0;
-if (tmpSSA_a) {
-} else {
-  tmpSSA_a = 2;
-}
-const tmpIfTest = tmpSSA_a;
-if (tmpIfTest) {
-  tmpCalleeParam = $(100);
-} else {
-  tmpCalleeParam = $(200);
-}
-$(tmpCalleeParam);
-$(tmpSSA_a);
+const tmpSSA_tmpCalleeParam = $(100);
+$(tmpSSA_tmpCalleeParam);
+$(2);
 `````
 
 ## Globals

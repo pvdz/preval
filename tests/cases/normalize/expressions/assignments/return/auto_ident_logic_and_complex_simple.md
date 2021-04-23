@@ -81,7 +81,7 @@ const f = function () {
   a = $(tmpCalleeParam);
   if (a) {
     a = 2;
-    return a;
+    return 2;
   } else {
     return a;
   }

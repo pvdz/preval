@@ -45,15 +45,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 60;
-let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
-  tmpSSA_a = 60;
-  tmpCalleeParam = 60;
-} else {
-}
-$(tmpCalleeParam);
-$(tmpSSA_a);
+$(60);
+$(60);
 `````
 
 ## Globals

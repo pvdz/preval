@@ -39,13 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = 10;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = [20];
-} else {
-}
-$(tmpCalleeParam);
+$(10);
 `````
 
 ## Globals

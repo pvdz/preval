@@ -69,12 +69,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-let tmpCalleeParam = 3;
-if (tmpCalleeParam) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
+$(3);
 $(3, b, 3);
 `````
 

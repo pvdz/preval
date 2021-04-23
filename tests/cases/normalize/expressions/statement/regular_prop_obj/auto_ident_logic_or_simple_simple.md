@@ -44,12 +44,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpCompObj = 0;
-if (tmpCompObj) {
-} else {
-  tmpCompObj = 2;
-}
-tmpCompObj.a;
+(2).a;
 $(a);
 `````
 

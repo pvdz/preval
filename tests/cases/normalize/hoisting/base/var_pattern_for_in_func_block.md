@@ -61,7 +61,7 @@ f();
 
 `````js filename=intro
 let x = undefined;
-$(x);
+$(undefined);
 const tmpForInRhs = { y: 100 };
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {

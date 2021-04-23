@@ -36,12 +36,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 1;
-if (x) {
-  x = 2;
-} else {
-}
-$(x);
+$(2);
 `````
 
 ## Globals

@@ -47,7 +47,7 @@ let b = 1;
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  b = b - 1;
+  b = 0;
 } else {
 }
 $(a, b);

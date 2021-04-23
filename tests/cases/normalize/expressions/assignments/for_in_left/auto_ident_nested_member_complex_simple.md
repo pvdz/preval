@@ -76,8 +76,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
   a = 3;
-  const tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+  (3).x = tmpForInLhsNode;
 }
 $(a, b, c, 3);
 `````

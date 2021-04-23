@@ -42,14 +42,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
-} else {
-}
-const tmpCalleeParamSpread = tmpSSA_a;
-$(...tmpCalleeParamSpread);
-$(tmpSSA_a);
+$(...2);
+$(2);
 `````
 
 ## Globals

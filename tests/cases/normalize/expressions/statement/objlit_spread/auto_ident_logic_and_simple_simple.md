@@ -41,12 +41,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpObjSpreadArg = 1;
-if (tmpObjSpreadArg) {
-  tmpObjSpreadArg = 2;
-} else {
-}
-({ ...tmpObjSpreadArg });
+({ ...2 });
 $(a);
 `````
 

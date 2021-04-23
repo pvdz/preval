@@ -226,51 +226,11 @@ X('a', 'b', 'c', 'd', 'e');
 ## Output
 
 `````js filename=intro
-let c = 'c';
-let d = 'd';
-const tmpBranchingB$3 = function () {
-  debugger;
-  const k$5 = -2147483648 > c;
-  if (k$5) {
-    c = -2147483648;
-    tmpBranchingC$1();
-    return undefined;
-  } else {
-    tmpBranchingC$1();
-    return undefined;
-  }
-};
-const h$1 = typeof c;
-const i$1 = 'string' == h$1;
-const tmpBranchingB$1 = function () {
-  debugger;
-  const j$3 = 2147483647 < c;
-  if (j$3) {
-    c = 2147483647;
-    tmpBranchingC$1();
-    return undefined;
-  } else {
-    tmpBranchingB$3();
-    return undefined;
-  }
-};
-const tmpBranchingC$1 = function () {
-  debugger;
-  const tmpSSA_tmpssa2_l$1 = +c;
-  const tmpSSA_tmpssa3_m$1 = isNaN(tmpSSA_tmpssa2_l$1);
-  if (tmpSSA_tmpssa3_m$1) {
-    $('a', 'b', c, d, 'e', 1, false, h$1, i$1, 0, tmpSSA_tmpssa3_m$1);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-if (i$1) {
-  d = c;
-  c = 'no';
-  tmpBranchingC$1();
+const tmpSSA_tmpssa2_l$1 = +'no';
+const tmpSSA_tmpssa3_m$1 = isNaN(tmpSSA_tmpssa2_l$1);
+if (tmpSSA_tmpssa3_m$1) {
+  $('a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, tmpSSA_tmpssa3_m$1);
 } else {
-  tmpBranchingB$1();
 }
 `````
 

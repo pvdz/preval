@@ -129,33 +129,26 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-let tmpSSA_a = 3;
-let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
-  const varInitAssignLhsComputedObj$9 = $(b);
-  const varInitAssignLhsComputedProp$9 = $('x');
-  const varInitAssignLhsComputedObj$11 = $(b);
-  const varInitAssignLhsComputedProp$11 = $('x');
-  const varInitAssignLhsComputedObj$13 = $(b);
-  const varInitAssignLhsComputedProp$13 = $('x');
-  const varInitAssignLhsComputedObj$15 = $(b);
-  const varInitAssignLhsComputedProp$15 = $('x');
-  const varInitAssignLhsComputedObj$17 = $(b);
-  const varInitAssignLhsComputedProp$17 = $('x');
-  const varInitAssignLhsComputedObj$19 = $(b);
-  const varInitAssignLhsComputedProp$19 = $('x');
-  varInitAssignLhsComputedObj$19[varInitAssignLhsComputedProp$19] = 3;
-  varInitAssignLhsComputedObj$17[varInitAssignLhsComputedProp$17] = 3;
-  varInitAssignLhsComputedObj$15[varInitAssignLhsComputedProp$15] = 3;
-  varInitAssignLhsComputedObj$13[varInitAssignLhsComputedProp$13] = 3;
-  varInitAssignLhsComputedObj$11[varInitAssignLhsComputedProp$11] = 3;
-  varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 3;
-  tmpSSA_a = 3;
-  tmpCalleeParam = 3;
-} else {
-}
-$(tmpCalleeParam);
-$(tmpSSA_a, b, 3);
+const varInitAssignLhsComputedObj$9 = $(b);
+const varInitAssignLhsComputedProp$9 = $('x');
+const varInitAssignLhsComputedObj$11 = $(b);
+const varInitAssignLhsComputedProp$11 = $('x');
+const varInitAssignLhsComputedObj$13 = $(b);
+const varInitAssignLhsComputedProp$13 = $('x');
+const varInitAssignLhsComputedObj$15 = $(b);
+const varInitAssignLhsComputedProp$15 = $('x');
+const varInitAssignLhsComputedObj$17 = $(b);
+const varInitAssignLhsComputedProp$17 = $('x');
+const varInitAssignLhsComputedObj$19 = $(b);
+const varInitAssignLhsComputedProp$19 = $('x');
+varInitAssignLhsComputedObj$19[varInitAssignLhsComputedProp$19] = 3;
+varInitAssignLhsComputedObj$17[varInitAssignLhsComputedProp$17] = 3;
+varInitAssignLhsComputedObj$15[varInitAssignLhsComputedProp$15] = 3;
+varInitAssignLhsComputedObj$13[varInitAssignLhsComputedProp$13] = 3;
+varInitAssignLhsComputedObj$11[varInitAssignLhsComputedProp$11] = 3;
+varInitAssignLhsComputedObj$9[varInitAssignLhsComputedProp$9] = 3;
+$(3);
+$(3, b, 3);
 `````
 
 ## Globals

@@ -81,9 +81,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpPostUpdArgIdent = b;
-  b = b - 1;
-  a = tmpPostUpdArgIdent;
+  b = 0;
+  a = 1;
 } else {
 }
 $(a, b);

@@ -48,15 +48,10 @@ $(a);
 
 `````js filename=intro
 const obj = {};
-let tmpSSA_a = 1;
-if (tmpSSA_a) {
-  const tmpCalleeParam = $(1);
-  tmpSSA_a = $(tmpCalleeParam);
-} else {
-}
-const tmpCompProp = tmpSSA_a;
-obj[tmpCompProp];
-$(tmpSSA_a);
+const tmpCalleeParam = $(1);
+const tmpSSA_a$1 = $(tmpCalleeParam);
+obj[tmpSSA_a$1];
+$(tmpSSA_a$1);
 `````
 
 ## Globals

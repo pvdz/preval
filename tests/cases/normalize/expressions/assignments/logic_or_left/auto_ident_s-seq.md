@@ -50,12 +50,7 @@ $(a, x);
 `````js filename=intro
 $(1);
 $(2);
-let tmpCalleeParam = 1;
-if (tmpCalleeParam) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
+$(1);
 $(1, 1);
 `````
 

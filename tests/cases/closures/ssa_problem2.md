@@ -71,10 +71,10 @@ const f = function () {
   a = 2;
   return undefined;
 };
-$(a);
+$(1);
 f();
 a = 3;
-$(a);
+$(3);
 f();
 $(a);
 a = 4;

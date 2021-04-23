@@ -50,16 +50,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 while (true) {
   a = 0;
-  if (a) {
-  } else {
-    a = 2;
-  }
-  const tmpIfTest = a;
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
+  a = 2;
+  $(100);
 }
 $(a);
 `````

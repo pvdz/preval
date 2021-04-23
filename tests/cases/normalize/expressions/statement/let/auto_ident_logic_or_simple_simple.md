@@ -43,12 +43,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let xyz = 0;
-if (xyz) {
-} else {
-  xyz = 2;
-}
-$(xyz);
+$(2);
 $(a);
 `````
 

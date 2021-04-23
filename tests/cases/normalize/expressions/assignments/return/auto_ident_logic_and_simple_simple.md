@@ -72,20 +72,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  a = 1;
-  if (a) {
-    a = 2;
-    return a;
-  } else {
-    return a;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+$(2);
+$(2);
 `````
 
 ## Globals

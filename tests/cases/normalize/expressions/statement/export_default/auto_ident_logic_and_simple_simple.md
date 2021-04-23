@@ -43,10 +43,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 let tmpAnonDefaultExport = 1;
-if (tmpAnonDefaultExport) {
-  tmpAnonDefaultExport = 2;
-} else {
-}
+tmpAnonDefaultExport = 2;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

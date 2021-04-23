@@ -44,14 +44,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
-let tmpSSA_a = 0;
-if (tmpSSA_a) {
-} else {
-  tmpSSA_a = 2;
-}
-const tmpCalleeParam$1 = tmpSSA_a;
-$(tmpCalleeParam, tmpCalleeParam$1);
-$(tmpSSA_a);
+$(tmpCalleeParam, 2);
+$(2);
 `````
 
 ## Globals

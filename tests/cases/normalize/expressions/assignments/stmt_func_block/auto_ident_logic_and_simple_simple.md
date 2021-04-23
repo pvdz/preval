@@ -74,18 +74,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = 1;
-const tmpBranchingC = function () {
-  debugger;
-  $(tmpSSA_a);
-  return undefined;
-};
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
-  tmpBranchingC();
-} else {
-  tmpBranchingC();
-}
+$(2);
 $(undefined);
 `````
 

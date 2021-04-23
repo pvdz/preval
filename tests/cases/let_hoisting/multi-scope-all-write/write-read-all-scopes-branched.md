@@ -112,7 +112,7 @@ const tmpBranchingA = function () {
   debugger;
   x = 2;
   if ($) {
-    $(x);
+    $(2);
     tmpBranchingC();
     return undefined;
   } else {

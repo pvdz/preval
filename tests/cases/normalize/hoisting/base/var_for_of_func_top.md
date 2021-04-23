@@ -53,7 +53,7 @@ f();
 
 `````js filename=intro
 let x = undefined;
-$(x);
+$(undefined);
 const tmpForOfRhs = [100];
 for (x of tmpForOfRhs) {
   $(x, 'for');

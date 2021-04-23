@@ -43,13 +43,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpTemplateExpr = 0;
-if (tmpTemplateExpr) {
-} else {
-  tmpTemplateExpr = 2;
-}
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
-$(tmpCalleeParam);
+$('before  2  after');
 $(a);
 `````
 

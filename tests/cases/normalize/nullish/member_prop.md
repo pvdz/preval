@@ -39,20 +39,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = 10;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = length;
-} else {
-}
-$(tmpCalleeParam);
+$(10);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-length
+None
 
 ## Result
 

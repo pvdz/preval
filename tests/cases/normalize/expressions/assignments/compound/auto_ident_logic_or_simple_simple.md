@@ -45,12 +45,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpBinBothRhs = 0;
-if (tmpBinBothRhs) {
-} else {
-  tmpBinBothRhs = 2;
-}
-const tmpSSA_a = a * tmpBinBothRhs;
+const tmpSSA_a = a * 2;
 $(tmpSSA_a);
 $(tmpSSA_a);
 `````

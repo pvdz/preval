@@ -73,19 +73,9 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-let a = 0;
-const tmpBranchingC = function () {
-  debugger;
-  $(a);
-  return undefined;
-};
-if (a) {
-  tmpBranchingC();
-} else {
-  const tmpCalleeParam$1 = $(1);
-  a = $(tmpCalleeParam$1);
-  tmpBranchingC();
-}
+const tmpCalleeParam$1 = $(1);
+const tmpSSA_a = $(tmpCalleeParam$1);
+$(tmpSSA_a);
 $(undefined);
 `````
 

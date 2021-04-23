@@ -69,12 +69,8 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-let tmpCalleeParam = 3;
-if (tmpCalleeParam) {
-  tmpCalleeParam = $(100);
-} else {
-}
-$(tmpCalleeParam);
+const tmpSSA_tmpCalleeParam = $(100);
+$(tmpSSA_tmpCalleeParam);
 $(3, b, 3);
 `````
 

@@ -10,7 +10,6 @@ export function singleScopeTdz(fdata) {
 function _singleScopeTdz(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
-  vlog('First going to try to SSA bindings that are used in a single scope');
   let foundTdz = 0;
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
@@ -88,7 +87,7 @@ function _singleScopeTdz(fdata) {
 
         ref.blockBody[ref.blockIndex] = AST.throwStatement(AST.literal('Preval: Cannot access `' + name + '` before initialization'));
 
-        after(ref.node, ref.blockBody[ref.blockIndex]);
+        after(ref.blockBody[ref.blockIndex]);
 
         // This will shortcut this step and request another normalization step. This is necessary because other
         // references may be stale now and dead code is probably introduced for all the code after the new `throw`.

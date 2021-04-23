@@ -21,9 +21,11 @@ export function parseTestArgs() {
     targetFile: undefined,
     threadIndex: 0, // ... and this will be that thread
     threads: 1, // By default, only run one thread
+    trace: undefined, // Force set VERBOSE_TRACING=true regardless of input size? If undefined, defaults to verbose.
     trimDollar: false, // Remove trailing $12 from outputs? Reduces noise when diffing when new vars shuffle the incremental suffix
     updateSnapshots: false,
-    verboseTracing: true, // Overridden by general verbose state
+    verboseTracing: undefined, // Overridden by general verbose state. If undefined, governed by input size.
+    verbose: undefined, // Suppress all output
   };
 
   while (argv.length) {
@@ -109,8 +111,18 @@ export function parseTestArgs() {
         break;
       }
 
+      case '--trace': {
+        config.verboseTracing = true;
+        break;
+      }
+
       case '--no-trace': {
         config.verboseTracing = false;
+        break;
+      }
+
+      case '--silent': {
+        config.verbose = false;
         break;
       }
 
@@ -119,6 +131,8 @@ export function parseTestArgs() {
       }
     }
   }
+
+  if (config.verbose === false) config.verboseTracing = false;
 
   return config;
 }

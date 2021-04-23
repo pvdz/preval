@@ -183,11 +183,12 @@ function runTestCase(
 
   let expectedError = false;
   try {
+    if (CONFIG.verbose === false && CONFIG.targetFile) console.log('\nNow running Preval without output...\n');
     output = preval({
       entryPointFile: 'intro',
-      stdio: withOutput ? undefined : () => {}, // handler receives all console calls, first arg is handler string. cant prevent the overhead but does suppress the output
-      verbose: withOutput, // do not bother to pretty print between steps and whatever if we're not printing it anyways
-      verboseTracing: CONFIG.verboseTracing, // Print output but not the nitty gritty (useful for large inputs and -F)
+      stdio: CONFIG.verbose === true || (CONFIG.verbose === undefined && withOutput) ? undefined : () => {}, // handler receives all console calls, first arg is handler string. cant prevent the overhead but does suppress the output
+      verbose: CONFIG.verbose === true || (CONFIG.verbose === undefined && !!withOutput), // do not bother to pretty print between steps and whatever if we're not printing it anyways
+      verboseTracing: withOutput && CONFIG.verboseTracing, // Print output but not the nitty gritty (useful for large inputs and -F)
       resolve(filePath) {
         if (withOutput) console.log('Preval test harness; resolve(' + filePath + ') (no change)');
         return filePath;

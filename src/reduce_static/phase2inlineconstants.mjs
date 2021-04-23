@@ -1,3 +1,5 @@
+// Inline constants where values permit it
+
 import { ALIAS_PREFIX } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
@@ -25,7 +27,7 @@ function _inlineConstants(fdata) {
     fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
       if (meta.isBuiltin) return;
       if (meta.isImplicitGlobal) return;
-      vgroup('-- name:', name, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
+      vgroup('-- name: `' + name + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
 
       if (!name.startsWith(ALIAS_PREFIX)) {
         if (meta.writes.length === 1 && meta.writes[0].kind === 'var' && !meta.isConstant) {
@@ -226,9 +228,10 @@ function attemptConstantInlining(meta, fdata) {
       } else if (+oldRead.node.$p.pid < wip && oldRead.scope === write.scope) {
         // We have eliminated the only case that breaks this (`default` case in a switch that is not the last case)
         // So as long as the read is in the same scope of the decl, any read that occurs before the decl is a TDZ.
-        vlog('This read occurred before the var decl and is in the same scope. This must lead to a runtime TDZ if invoked so do not inline it.');
+        vlog(
+          'This read occurred before the var decl and is in the same scope. This must lead to a runtime TDZ if invoked so do not inline it.',
+        );
       } else {
-
         if (first) {
           rule('Declaring a constant with a constant value should eliminate the binding');
           example('const x = NaN; f(x);', 'f(NaN);', () => assigneeMeta.isBuiltin);
@@ -311,21 +314,7 @@ function attemptConstantInlining(meta, fdata) {
     return inlined;
   }
 
-  if (
-    // numbers, null, true, false, strings
-    (rhs.type === 'Literal' &&
-      (rhs.raw === 'null' ||
-        rhs.value === true ||
-        rhs.value === false ||
-        typeof rhs.value === 'string' ||
-        typeof rhs.value === 'number')) ||
-    // Negative numbers, or numbers with a + before it (noop which we should eliminate anyways... but probably not here).
-    // This kind of unary for other constants should be statically resolved (elsewhere), like `-null` is `-0` etc.
-    (rhs.type === 'UnaryExpression' &&
-      (rhs.operator === '-' || rhs.operator === '+') && // + shouldn't appear here after normalization but okay
-      rhs.argument.type === 'Literal' &&
-      typeof rhs.argument.value === 'number')
-  ) {
+  if (AST.isPrimitive(rhs)) {
     // `const x = 5;`
     // Replace all reads of this name with a clone of the literal, ident, or unary
 

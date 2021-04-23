@@ -35,8 +35,7 @@ $(bar);
 ## Output
 
 `````js filename=intro
-const foo = -Infinity;
-$(foo);
+$(-Infinity);
 `````
 
 ## Globals

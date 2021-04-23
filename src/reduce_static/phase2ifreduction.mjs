@@ -1,3 +1,5 @@
+// Combined with lite type checking, we can reduce the possible valid values for an if condition and deduce the actual value from it that way.
+
 import walk from '../../lib/walk.mjs';
 import {
   ASSERT,
@@ -20,8 +22,6 @@ import * as AST from '../ast.mjs';
 import { createFreshVar, getIdentUsageKind } from '../bindings.mjs';
 
 export function ifReduction(fdata) {
-  // Combined with lite type checking, we can reduce the possible valid values for an
-  // if condition and deduce the actual value from it that way.
   group('\n\n\nReducing idents used in if-else\n');
   const r = _ifReduction(fdata);
   groupEnd();

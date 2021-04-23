@@ -1,3 +1,11 @@
+// Look at functions that end with if-else, where both branches explicitly return,
+// and if they both basically return a function call, check if the call is equal.
+// If it matches, drop the if-else and replace it with only one branch. This might also collapse more stuff.
+
+// This is a case that apparently ends up happening a lot. Maybe just as an artifact of the transforms.
+// But it helps on Tenko at least. Cut 200k from 3.2m result. Let's hope it's not too input biased :)
+
+
 import {
   ASSERT,
   log,
@@ -18,11 +26,6 @@ import {
 import * as AST from '../ast.mjs';
 
 export function dedupeBranchedReturns(fdata) {
-  // This is a case that apparently ends up happening a lot. Maybe just as an artifact of the transforms.
-  // But it helps on Tenko at least. Cut 200k from 3.2m result. Let's hope it's not too input biased :)
-  // The idea is to look at functions that end with if-else, where both branches explicitly return,
-  // and if they both basically return a function call, check if the call is equal.
-  // If it matches, drop the if-else and replace it with only one branch. This might also collapse more stuff.
   group('\n\n\nDetecting branched returns that return the same call\n');
   const r = _dedupeBranchedReturns(fdata);
   groupEnd();

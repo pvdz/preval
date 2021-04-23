@@ -1,3 +1,5 @@
+// Detect excessive params that we can safely drop
+
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 

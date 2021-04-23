@@ -1,35 +1,38 @@
 # Preval test case
 
-# nan.md
+# neg_neg_nan.md
 
-> Normalize > Unary > Minus > Nan
+> Normalize > Call > Primitive args > Neg neg nan
 >
-> Negative literals should be statically resolved where possible
+> Primitive args that may need to be simplified
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(-NaN);
+$(-(-NaN));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(-NaN);
+$(-(-NaN));
 `````
 
 ## Normalized
 
 `````js filename=intro
-$(NaN);
+const tmpCallCallee = $;
+const tmpCalleeParam = -(-NaN);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(NaN);
+const tmpCalleeParam = -(-NaN);
+$(tmpCalleeParam);
 `````
 
 ## Globals

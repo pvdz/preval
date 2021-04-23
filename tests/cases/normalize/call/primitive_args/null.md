@@ -1,35 +1,35 @@
 # Preval test case
 
-# nan.md
+# null.md
 
-> Normalize > Unary > Minus > Nan
+> Normalize > Call > Primitive args > Null
 >
-> Negative literals should be statically resolved where possible
+> Primitive args that may need to be simplified
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(-NaN);
+$(null);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(-NaN);
+$(null);
 `````
 
 ## Normalized
 
 `````js filename=intro
-$(NaN);
+$(null);
 `````
 
 ## Output
 
 `````js filename=intro
-$(NaN);
+$(null);
 `````
 
 ## Globals
@@ -39,7 +39,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: NaN
+ - 1: null
  - eval returned: undefined
 
 Pre normalization calls: Same

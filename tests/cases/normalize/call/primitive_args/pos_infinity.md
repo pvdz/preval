@@ -1,35 +1,37 @@
 # Preval test case
 
-# nan.md
+# pos_infinity.md
 
-> Normalize > Unary > Minus > Nan
+> Normalize > Call > Primitive args > Pos infinity
 >
-> Negative literals should be statically resolved where possible
+> Primitive args that may need to be simplified
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(-NaN);
+$(+Infinity);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(-NaN);
+$(+Infinity);
 `````
 
 ## Normalized
 
 `````js filename=intro
-$(NaN);
+const tmpCallCallee = $;
+const tmpCalleeParam = Infinity;
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(NaN);
+$(Infinity);
 `````
 
 ## Globals
@@ -39,7 +41,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: NaN
+ - 1: Infinity
  - eval returned: undefined
 
 Pre normalization calls: Same

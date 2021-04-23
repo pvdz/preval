@@ -1,10 +1,10 @@
 # Preval test case
 
-# nan.md
+# neg_nan.md
 
-> Normalize > Unary > Minus > Nan
+> Normalize > Call > Primitive args > Neg nan
 >
-> Negative literals should be statically resolved where possible
+> Primitive args that may need to be simplified
 
 #TODO
 

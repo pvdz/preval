@@ -3,6 +3,7 @@ import walk from '../../lib/walk.mjs';
 import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, BUILTIN_REST_HANDLER_NAME, FRESH, OLD, RED, BLUE, RESET } from '../constants.mjs';
 import {
   ASSERT,
+  assertNoDupeNodes,
   log,
   group,
   groupEnd,
@@ -246,33 +247,6 @@ export function phaseNormalize(fdata, fname) {
   const ifelseStack = [ast];
   let inGlobal = true; // While walking, are we currently in global space or inside a function
 
-  function assertNoDupeNodes(node = ast, prop = 'ast', force = false) {
-    if (!force && !VERBOSE_TRACING) return; // Disable this for large inputs but keep it for tests
-    // Assert AST contains no duplicate node objects
-    const map = new Map();
-    walk(
-      (node, down, type, path) => {
-        if (!node || !node.$p) return;
-        if (down) {
-          if (map.has(node.$p.pid)) {
-            console.dir(node, { depth: null });
-            console.log('previous parent:', map.get(node.$p.pid));
-            console.log('current  parent:', path.nodes[path.nodes.length - 2]);
-            console.log('truncated node:', node);
-            ASSERT(
-              false,
-              'every node should appear once in the ast. if this triggers then there is a transform that is injecting the same node twice',
-              node,
-            );
-          }
-          map.set(node.$p.pid, path.nodes[path.nodes.length - 2]);
-        }
-      },
-      node,
-      prop,
-    );
-  }
-
   group('\n\n\n##################################\n## phaseNormalize  ::  ' + fname + '\n##################################\n\n\n');
 
   let passes = 0;
@@ -288,7 +262,7 @@ export function phaseNormalize(fdata, fname) {
       log('Something changed. Running another normalization pass (' + ++passes + ')\n');
     }
 
-    assertNoDupeNodes();
+    assertNoDupeNodes(ast, 'ast');
   } while (changed);
 
   if (VERBOSE_TRACING) {
@@ -955,7 +929,7 @@ export function phaseNormalize(fdata, fname) {
     // This means all expressions should normalize to an atomic state by recursively transforming the decl init and expression statement
 
     vlog('transformExpression:', node.type);
-    ASSERT(parentNode, 'parent node?', parentNode);
+    ASSERT(parentNode, 'parent node?');
 
     switch (node.type) {
       case 'Identifier':
@@ -1125,11 +1099,52 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        // There are two atomic kinds of callee; ident and member expression. Anything else normalizes to ident.
-        const hasComplexArg = args.some((anode) =>
-          anode.type === 'SpreadElement' ? AST.isComplexNode(anode.argument) : AST.isComplexNode(anode),
-        );
+        function simplifyStaticPrimitive(node, parentNode, parentProp, parentIndex) {
+          if (node.type === 'UnaryExpression') {
+            const arg = node.argument;
+            if (AST.isPrimitive(arg)) {
+              if (arg.type === 'UnaryExpression') {
+                return simplifyStaticPrimitive(node, parentNode, parentProp);
+              }
+              if (arg.type === 'Identifier') {
+                if (arg.name === 'NaN') {
+                  rule('+NaN and -NaN are just NaN');
+                  example('+NaN', 'NaN', () => node.operator === '+');
+                  example('-NaN', 'NaN', () => node.operator !== '+');
+                  before(node);
 
+                  if (parentIndex < 0) parentNode[parentProp] = arg;
+                  else parentNode[parentProp][parentIndex] = arg;
+
+                  after(arg, parentNode);
+                  return true;
+                }
+              }
+            }
+          }
+        }
+
+        let hasComplexArg = false;
+        if (
+          args.some((anode, i) => {
+            if (anode.type === 'SpreadElement') {
+              if (AST.isComplexNode(anode.argument)) {
+                hasComplexArg = true;
+              } else if (simplifyStaticPrimitive(anode.argument, anode, 'argument', -i)) {
+                return true;
+              }
+            } else if (AST.isComplexNode(anode)) {
+              hasComplexArg = true;
+            } else if (simplifyStaticPrimitive(anode, node, 'arguments', i)) {
+              return true;
+            }
+          })
+        ) {
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        // There are two atomic kinds of callee; ident and member expression. Anything else normalizes to ident.
         if (callee.type === 'MemberExpression') {
           // Note: `a.b(c.d)` evaluates `a.b` before `c.d` (!)
           //       Because we need to outline complex args, and need to preserve context, we must transform
@@ -1627,8 +1642,9 @@ export function phaseNormalize(fdata, fname) {
           before(node, parentNode);
 
           node.computed = false;
-          node.property = AST.identifier(node.property.value);
-
+          const val = node.property.value;
+          node.property =
+            val === 'true' ? AST.tru() : val === 'false' ? AST.fals() : val === 'null' ? AST.nul() : AST.identifier(node.property.value);
           after(node, parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
@@ -3532,7 +3548,6 @@ export function phaseNormalize(fdata, fname) {
                   return true;
                 }
               }
-
             }
           }
 

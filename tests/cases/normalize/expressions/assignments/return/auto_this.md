@@ -53,13 +53,13 @@ $(a);
 ## Output
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
 const f = function () {
   const tmpthis = this;
   debugger;
   a = tmpthis;
   return a;
 };
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a);

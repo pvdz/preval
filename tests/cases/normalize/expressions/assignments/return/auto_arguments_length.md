@@ -51,13 +51,13 @@ $(a);
 ## Output
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
 const f = function () {
   const tmpArgumentsAny = arguments;
   debugger;
   a = tmpArgumentsAny;
   return a;
 };
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 $(a);

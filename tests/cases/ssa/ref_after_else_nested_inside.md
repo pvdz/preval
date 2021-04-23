@@ -109,20 +109,20 @@ if ($) {
 ## Output
 
 `````js filename=intro
+const tmpBranchingA = function () {
+  debugger;
+  if ($) {
+    const tmpSSA_tmpssa3_x = $(2);
+    $(tmpSSA_tmpssa3_x);
+    return undefined;
+  } else {
+    $(undefined);
+    return undefined;
+  }
+};
 const f = function () {
   debugger;
-  let x = $(1);
-  const tmpBranchingA = function () {
-    debugger;
-    if ($) {
-      x = $(2);
-      $(x);
-      return undefined;
-    } else {
-      $(x);
-      return undefined;
-    }
-  };
+  $(1);
   if ($) {
     tmpBranchingA();
     return undefined;

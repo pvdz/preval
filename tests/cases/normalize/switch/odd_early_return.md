@@ -348,63 +348,62 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingA$9 = function () {
+    debugger;
+    const tmpIfTest$45 = $(8);
+    if (tmpIfTest$45) {
+      const tmpReturnArg$73 = tmpBranchingA$11();
+      return tmpReturnArg$73;
+    } else {
+      const tmpReturnArg$75 = tmpBranchingC$11();
+      return tmpReturnArg$75;
+    }
+  };
+  const tmpBranchingA$11 = function () {
+    debugger;
+    const tmpIfTest$53 = $(9);
+    if (tmpIfTest$53) {
+      const tmpReturnArg$65 = $(10);
+      return tmpReturnArg$65;
+    } else {
+      const tmpReturnArg$67 = tmpBranchingB$13();
+      return tmpReturnArg$67;
+    }
+  };
+  const tmpBranchingB$13 = function () {
+    debugger;
+    $(11);
+    const tmpIfTest$57 = $(2);
+    if (tmpIfTest$57) {
+      $(13);
+      const tmpReturnArg$55 = tmpBranchingC$11();
+      return tmpReturnArg$55;
+    } else {
+      const tmpReturnArg$61 = $(14);
+      return tmpReturnArg$61;
+    }
+  };
+  const tmpBranchingC$11 = function () {
+    debugger;
+    $(3);
+    const tmpReturnArg$71 = tmpBranchingC$9();
+    return tmpReturnArg$71;
+  };
+  const tmpBranchingC$9 = function () {
+    debugger;
+    const tmpSSA_tmpssa2_tmpIfTest$35 = tmpSwitchCaseToStart <= 2;
+    if (tmpSSA_tmpssa2_tmpIfTest$35) {
+      $(5);
+      const tmpReturnArg$79 = $(6);
+      return tmpReturnArg$79;
+    } else {
+      tmpSwitchCaseToStart <= 3;
+      return undefined;
+    }
+  };
   const tmpBranchingB$7 = function () {
     debugger;
-    const tmpBranchingA$11 = function () {
-      debugger;
-      const tmpIfTest$53 = $(9);
-      if (tmpIfTest$53) {
-        const tmpReturnArg$65 = $(10);
-        return tmpReturnArg$65;
-      } else {
-        const tmpReturnArg$67 = tmpBranchingB$13();
-        return tmpReturnArg$67;
-      }
-    };
-    const tmpBranchingB$13 = function () {
-      debugger;
-      $(11);
-      const tmpIfTest$57 = $(2);
-      if (tmpIfTest$57) {
-        $(13);
-        const tmpReturnArg$55 = tmpBranchingC$11();
-        return tmpReturnArg$55;
-      } else {
-        const tmpReturnArg$61 = $(14);
-        return tmpReturnArg$61;
-      }
-    };
-    const tmpBranchingC$11 = function () {
-      debugger;
-      $(3);
-      const tmpReturnArg$71 = tmpBranchingC$9();
-      return tmpReturnArg$71;
-    };
     const tmpIfTest$33 = tmpSwitchCaseToStart <= 1;
-    const tmpBranchingA$9 = function () {
-      debugger;
-      const tmpIfTest$45 = $(8);
-      if (tmpIfTest$45) {
-        const tmpReturnArg$73 = tmpBranchingA$11();
-        return tmpReturnArg$73;
-      } else {
-        const tmpReturnArg$75 = tmpBranchingC$11();
-        return tmpReturnArg$75;
-      }
-    };
-    const tmpBranchingC$9 = function () {
-      debugger;
-      tmpIfTest$35 = tmpSwitchCaseToStart <= 2;
-      if (tmpIfTest$35) {
-        $(5);
-        const tmpReturnArg$79 = $(6);
-        return tmpReturnArg$79;
-      } else {
-        tmpSwitchCaseToStart <= 3;
-        return undefined;
-      }
-    };
-    let tmpIfTest$35 = undefined;
     if (tmpIfTest$33) {
       const tmpReturnArg$95 = tmpBranchingA$9();
       return tmpReturnArg$95;

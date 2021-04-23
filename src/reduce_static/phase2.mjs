@@ -13,6 +13,7 @@ import { ifReduction } from './phase2ifreduction.mjs';
 import { inlineCommonReturns } from './phase2commonreturn.mjs';
 import { dropUnusedReturns } from './phase2unusedreturns.mjs';
 import { singleScopeTdz } from './phase2single_scope_tdz.mjs';
+import { letHoisting } from './phase2lethoisting.mjs';
 import { ifelseifelse } from './phase2ifelseifelse.mjs';
 
 // Things to do
@@ -50,6 +51,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const tdzd = singleScopeTdz(fdata);
   if (tdzd) return tdzd;
+
+  const moved = letHoisting(fdata);
+  if (moved) return moved;
 
   const emptyFuncs = pruneEmptyFunctions(fdata);
   if (emptyFuncs) return emptyFuncs;

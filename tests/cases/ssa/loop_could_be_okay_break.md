@@ -89,12 +89,12 @@ if ($) {
 `````js filename=intro
 const f = function () {
   debugger;
-  let x = $(1);
+  $(1);
   let tmpLoopRetCode = true;
   const tmpLoopBody = function () {
     debugger;
-    x = $(2);
-    $(x);
+    const tmpSSA_tmpssa2_x = $(2);
+    $(tmpSSA_tmpssa2_x);
     if ($) {
       tmpLoopRetCode = false;
       return undefined;

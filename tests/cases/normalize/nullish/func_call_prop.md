@@ -68,20 +68,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpCalleeParam = parseInt(15);
+  const tmpCalleeParam = parseInt(15);
   const tmpIfTest = tmpCalleeParam == null;
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = $(tmpCalleeParam);
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
-    tmpCalleeParam = foo;
-    const tmpReturnArg$1 = tmpBranchingC();
+    const tmpSSA_tmpCalleeParam = foo;
+    const tmpReturnArg$1 = $(tmpSSA_tmpCalleeParam);
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC();
+    const tmpReturnArg$7 = $(tmpCalleeParam);
     return tmpReturnArg$7;
   }
 };

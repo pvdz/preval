@@ -87,9 +87,9 @@ const f = function () {
   if (tmpIfTest) {
     return a$1;
   } else {
-    const tmpSSA_a = $(1);
-    $(tmpSSA_a);
-    return tmpSSA_a;
+    const tmpSSA_tmpssa3_a = $(1);
+    $(tmpSSA_tmpssa3_a);
+    return tmpSSA_tmpssa3_a;
   }
 };
 const tmpCalleeParam = f();

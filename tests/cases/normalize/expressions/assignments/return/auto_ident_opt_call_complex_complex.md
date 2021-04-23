@@ -80,30 +80,22 @@ $(a);
 ## Output
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
   a = undefined;
   const tmpChainElementCall = $($);
   const tmpIfTest = tmpChainElementCall != null;
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     const tmpCallVal$1 = tmpChainElementCall.call;
     const tmpCalleeParam$5 = $(1);
     const tmpChainElementCall$3 = tmpCallVal$1.call(tmpChainElementCall, $, tmpCalleeParam$5);
     a = tmpChainElementCall$3;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
+    return a;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC();
-    return tmpReturnArg$7;
+    return a;
   }
 };
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam$7 = f();
 $(tmpCalleeParam$7);
 $(a);

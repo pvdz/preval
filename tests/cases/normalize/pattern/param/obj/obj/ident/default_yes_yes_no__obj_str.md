@@ -110,18 +110,15 @@ const f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   const tmpBranchingC = function () {
     debugger;
-    objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-    const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
+    const tmpSSA_tmpssa3_objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+    const tmpIfTest$1 = tmpSSA_tmpssa3_objPatternBeforeDefault$1 === undefined;
     if (tmpIfTest$1) {
-      y = $('pass');
-      return y;
+      const tmpSSA_tmpssa2_y = $('pass');
+      return tmpSSA_tmpssa2_y;
     } else {
-      y = objPatternBeforeDefault$1;
-      return y;
+      return tmpSSA_tmpssa3_objPatternBeforeDefault$1;
     }
   };
-  let objPatternBeforeDefault$1 = undefined;
-  let y = undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = { y: 'fail2' };
     objPatternAfterDefault = $(tmpCalleeParam$1);

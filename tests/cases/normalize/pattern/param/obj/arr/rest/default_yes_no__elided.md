@@ -89,12 +89,10 @@ const f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   const tmpBranchingC = function () {
     debugger;
-    arrPatternSplat = [...objPatternAfterDefault];
-    y = arrPatternSplat.slice(0);
-    return y;
+    const tmpSSA_tmpssa2_arrPatternSplat = [...objPatternAfterDefault];
+    const tmpSSA_tmpssa2_y = tmpSSA_tmpssa2_arrPatternSplat.slice(0);
+    return tmpSSA_tmpssa2_y;
   };
-  let arrPatternSplat = undefined;
-  let y = undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = ['fail'];
     objPatternAfterDefault = $(tmpCalleeParam$1);

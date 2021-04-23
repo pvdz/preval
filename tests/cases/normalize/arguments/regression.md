@@ -90,13 +90,22 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSSA_g = function () {
+const tmpSSA_tmpssa2_g = function () {
   const tmpArgumentsLen$1 = arguments.length;
   debugger;
   $(tmpArgumentsLen$1);
   return undefined;
 };
-tmpSSA_g();
+const tmpBranchingC = function () {
+  debugger;
+  tmpSSA_tmpssa2_g();
+  return undefined;
+};
+if ($) {
+  tmpBranchingC();
+} else {
+  tmpBranchingC();
+}
 $(undefined);
 `````
 

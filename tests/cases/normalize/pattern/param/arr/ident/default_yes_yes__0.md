@@ -97,9 +97,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSSA_arrPatternSplat = [...0];
-const tmpSSA_arrPatternBeforeDefault = tmpSSA_arrPatternSplat[0];
-const tmpIfTest$1 = tmpSSA_arrPatternBeforeDefault === undefined;
+const tmpSSA_tmpssa2_arrPatternSplat = [...0];
+const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
+const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   $('fail');
 } else {

@@ -74,21 +74,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const f = function () {
   debugger;
   const obj = { a: 1 };
-  let tmpCalleeParam = undefined;
   const tmpIfTest = obj != null;
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = $(tmpCalleeParam);
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     const tmpChainElementObject$1 = obj.a;
-    tmpCalleeParam = tmpChainElementObject$1;
-    const tmpReturnArg$1 = tmpBranchingC();
+    const tmpReturnArg$1 = $(tmpChainElementObject$1);
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC();
+    const tmpReturnArg$7 = $(undefined);
     return tmpReturnArg$7;
   }
 };

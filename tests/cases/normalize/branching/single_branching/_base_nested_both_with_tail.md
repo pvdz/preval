@@ -143,38 +143,26 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 const tmpBranchingB = function () {
   debugger;
   const tmpIfTest$7 = $(6);
-  const tmpBranchingC$3 = function () {
-    debugger;
-    tmpReturnArg$5 = $(9);
-    return tmpReturnArg$5;
-  };
-  let tmpReturnArg$5 = undefined;
   if (tmpIfTest$7) {
     $(7);
-    const tmpReturnArg$15 = tmpBranchingC$3();
+    const tmpReturnArg$15 = $(9);
     return tmpReturnArg$15;
   } else {
     $(8);
-    const tmpReturnArg$17 = tmpBranchingC$3();
+    const tmpReturnArg$17 = $(9);
     return tmpReturnArg$17;
   }
 };
 const tmpBranchingA = function () {
   debugger;
   const tmpIfTest$5 = $(2);
-  const tmpBranchingC$1 = function () {
-    debugger;
-    tmpReturnArg$3 = $(5);
-    return tmpReturnArg$3;
-  };
-  let tmpReturnArg$3 = undefined;
   if (tmpIfTest$5) {
     $(3);
-    const tmpReturnArg$7 = tmpBranchingC$1();
+    const tmpReturnArg$7 = $(5);
     return tmpReturnArg$7;
   } else {
     $(4);
-    const tmpReturnArg$9 = tmpBranchingC$1();
+    const tmpReturnArg$9 = $(5);
     return tmpReturnArg$9;
   }
 };

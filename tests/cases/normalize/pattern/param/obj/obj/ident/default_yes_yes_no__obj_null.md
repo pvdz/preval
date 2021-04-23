@@ -108,8 +108,8 @@ let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 const tmpBranchingC = function () {
   debugger;
-  objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-  const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
+  const tmpSSA_tmpssa3_objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+  const tmpIfTest$1 = tmpSSA_tmpssa3_objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
     $('fail');
     return undefined;
@@ -117,7 +117,6 @@ const tmpBranchingC = function () {
     return undefined;
   }
 };
-let objPatternBeforeDefault$1 = undefined;
 if (tmpIfTest) {
   const tmpCalleeParam$1 = { y: 'fail2' };
   objPatternAfterDefault = $(tmpCalleeParam$1);

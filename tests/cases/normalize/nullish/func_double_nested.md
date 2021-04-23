@@ -125,20 +125,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpBranchingC$3 = function () {
-    debugger;
-    tmpReturnArg = $(tmpCalleeParam);
-    return tmpReturnArg;
-  };
   const tmpBranchingC$1 = function () {
     debugger;
     const tmpIfTest$3 = tmpCalleeParam == null;
     if (tmpIfTest$3) {
       tmpCalleeParam = c;
-      const tmpReturnArg$9 = tmpBranchingC$3();
+      const tmpReturnArg$9 = $(tmpCalleeParam);
       return tmpReturnArg$9;
     } else {
-      const tmpReturnArg$15 = tmpBranchingC$3();
+      const tmpReturnArg$15 = $(tmpCalleeParam);
       return tmpReturnArg$15;
     }
   };
@@ -160,7 +155,6 @@ const f = function () {
       return tmpReturnArg$19;
     }
   };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     tmpCalleeParam = a;
     const tmpReturnArg$1 = tmpBranchingC();

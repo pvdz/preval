@@ -135,6 +135,7 @@ const arrPatternSplat = [...tmpCalleeParam$1];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
+let objPatternCrashTest = undefined;
 const tmpBranchingC = function () {
   debugger;
   objPatternCrashTest = arrPatternStep === undefined;
@@ -147,7 +148,6 @@ const tmpBranchingC = function () {
     return undefined;
   }
 };
-let objPatternCrashTest = undefined;
 if (tmpIfTest) {
   arrPatternStep = $('fail');
   tmpBranchingC();

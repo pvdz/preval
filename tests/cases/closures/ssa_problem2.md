@@ -65,12 +65,12 @@ a = 4;
 ## Output
 
 `````js filename=intro
+let a = 1;
 const f = function () {
   debugger;
   a = 2;
   return undefined;
 };
-let a = 1;
 $(a);
 f();
 a = 3;

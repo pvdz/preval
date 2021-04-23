@@ -93,10 +93,9 @@ const f = function ($$0) {
     debugger;
     const tmpCalleeParam$3 = objPatternAfterDefault;
     const tmpCalleeParam$5 = [];
-    y = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
-    return y;
+    const tmpSSA_tmpssa2_y = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+    return tmpSSA_tmpssa2_y;
   };
-  let y = undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = { a: 'fail' };
     objPatternAfterDefault = $(tmpCalleeParam$1);

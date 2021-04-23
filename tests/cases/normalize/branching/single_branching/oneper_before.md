@@ -256,18 +256,15 @@ const tmpBranchingB$1 = function () {
 };
 const tmpBranchingC$1 = function () {
   debugger;
-  l$1 = +c;
-  m$1 = isNaN(l$1);
-  if (m$1) {
-    l$1 = 0;
-    $('a', 'b', c, d, 'e', 1, false, h$1, i$1, l$1, m$1);
+  const tmpSSA_tmpssa2_l$1 = +c;
+  const tmpSSA_tmpssa3_m$1 = isNaN(tmpSSA_tmpssa2_l$1);
+  if (tmpSSA_tmpssa3_m$1) {
+    $('a', 'b', c, d, 'e', 1, false, h$1, i$1, 0, tmpSSA_tmpssa3_m$1);
     return undefined;
   } else {
     return undefined;
   }
 };
-let l$1 = undefined;
-let m$1 = undefined;
 if (i$1) {
   d = c;
   c = 'no';

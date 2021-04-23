@@ -78,8 +78,8 @@ tmpCallCallee$5(tmpCalleeParam$9);
 
 `````js filename=intro
 const tmpCalleeParam$5 = [];
-const tmpSSA_x = objPatternRest('abc', tmpCalleeParam$5, 'x');
-$(tmpSSA_x);
+const tmpSSA_tmpssa2_x = objPatternRest('abc', tmpCalleeParam$5, 'x');
+$(tmpSSA_tmpssa2_x);
 `````
 
 ## Globals

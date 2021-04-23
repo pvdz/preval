@@ -85,12 +85,10 @@ const f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   const tmpBranchingC = function () {
     debugger;
-    arrPatternSplat = [...bindingPatternArrRoot];
-    x = arrPatternSplat.slice(0);
-    return x;
+    const tmpSSA_tmpssa2_arrPatternSplat = [...bindingPatternArrRoot];
+    const tmpSSA_tmpssa2_x = tmpSSA_tmpssa2_arrPatternSplat.slice(0);
+    return tmpSSA_tmpssa2_x;
   };
-  let arrPatternSplat = undefined;
-  let x = undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = ['fail'];
     bindingPatternArrRoot = $(tmpCalleeParam$1);

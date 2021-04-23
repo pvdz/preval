@@ -110,11 +110,10 @@ let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 const tmpBranchingC = function () {
   debugger;
-  arrPatternSplat = [...objPatternAfterDefault];
-  arrPatternSplat[0];
+  const tmpSSA_tmpssa2_arrPatternSplat = [...objPatternAfterDefault];
+  tmpSSA_tmpssa2_arrPatternSplat[0];
   return undefined;
 };
-let arrPatternSplat = undefined;
 if (tmpIfTest) {
   const tmpCalleeParam$1 = ['pass2'];
   objPatternAfterDefault = $(tmpCalleeParam$1);

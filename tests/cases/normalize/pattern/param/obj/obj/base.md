@@ -173,23 +173,22 @@ const tmpBranchingC$1 = function () {
 };
 let bindingPatternObjRoot = undefined;
 const tmpIfTest = tmpCalleeParam$1 === undefined;
+let objPatternAfterDefault = undefined;
+let objPatternCrashTest = undefined;
 const tmpBranchingC = function () {
   debugger;
-  objPatternBeforeDefault = bindingPatternObjRoot.x;
-  const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+  const tmpSSA_tmpssa3_objPatternBeforeDefault = bindingPatternObjRoot.x;
+  const tmpIfTest$1 = tmpSSA_tmpssa3_objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     objPatternAfterDefault = 1;
     tmpBranchingC$1();
     return undefined;
   } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
+    objPatternAfterDefault = tmpSSA_tmpssa3_objPatternBeforeDefault;
     tmpBranchingC$1();
     return undefined;
   }
 };
-let objPatternBeforeDefault = undefined;
-let objPatternAfterDefault = undefined;
-let objPatternCrashTest = undefined;
 if (tmpIfTest) {
   bindingPatternObjRoot = 2;
   tmpBranchingC();

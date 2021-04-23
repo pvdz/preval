@@ -119,25 +119,16 @@ const f = function () {
       const tmpChainRootComputed$7 = $('y');
       const tmpChainElementObject$7 = tmpChainElementObject$3[tmpChainRootComputed$7];
       a = tmpChainElementObject$7;
-      const tmpReturnArg$1 = tmpBranchingC();
-      return tmpReturnArg$1;
+      return a;
     } else {
-      const tmpReturnArg$9 = tmpBranchingC();
-      return tmpReturnArg$9;
+      return a;
     }
   };
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     const tmpReturnArg$13 = tmpBranchingA();
     return tmpReturnArg$13;
   } else {
-    const tmpReturnArg$15 = tmpBranchingC();
-    return tmpReturnArg$15;
+    return a;
   }
 };
 const tmpObjLitVal = { y: 1 };

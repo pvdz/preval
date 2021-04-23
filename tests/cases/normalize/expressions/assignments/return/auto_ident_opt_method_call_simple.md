@@ -84,21 +84,13 @@ const f = function () {
   debugger;
   a = undefined;
   const tmpIfTest = b != null;
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     const tmpChainElementObject$1 = b.c;
     const tmpChainElementCall$1 = tmpChainElementObject$1.call(b, 1);
     a = tmpChainElementCall$1;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
+    return a;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC();
-    return tmpReturnArg$7;
+    return a;
   }
 };
 const b = { c: $ };

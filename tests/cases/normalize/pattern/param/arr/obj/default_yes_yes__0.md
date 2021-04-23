@@ -143,6 +143,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
+let arrPatternStep = undefined;
+let objPatternCrashTest = undefined;
 const tmpBranchingC$3 = function () {
   debugger;
   if (objPatternCrashTest) {
@@ -164,16 +166,14 @@ const tmpBranchingC$1 = function () {
     return undefined;
   }
 };
-let arrPatternStep = undefined;
-let objPatternCrashTest = undefined;
-const tmpSSA_arrPatternSplat = [...0];
-const tmpSSA_arrPatternBeforeDefault = tmpSSA_arrPatternSplat[0];
-const tmpIfTest$1 = tmpSSA_arrPatternBeforeDefault === undefined;
+const tmpSSA_tmpssa2_arrPatternSplat = [...0];
+const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
+const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   arrPatternStep = $('fail');
   tmpBranchingC$1();
 } else {
-  arrPatternStep = tmpSSA_arrPatternBeforeDefault;
+  arrPatternStep = tmpSSA_tmpssa3_arrPatternBeforeDefault;
   tmpBranchingC$1();
 }
 $('bad');

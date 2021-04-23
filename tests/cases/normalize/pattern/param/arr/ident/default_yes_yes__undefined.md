@@ -100,14 +100,14 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   const tmpSSA_bindingPatternArrRoot = $('pass2');
-  const tmpSSA_arrPatternSplat = [...tmpSSA_bindingPatternArrRoot];
-  const tmpSSA_arrPatternBeforeDefault = tmpSSA_arrPatternSplat[0];
-  const tmpIfTest$1 = tmpSSA_arrPatternBeforeDefault === undefined;
+  const tmpSSA_tmpssa2_arrPatternSplat = [...tmpSSA_bindingPatternArrRoot];
+  const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
+  const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpReturnArg = $('fail');
     return tmpReturnArg;
   } else {
-    return tmpSSA_arrPatternBeforeDefault;
+    return tmpSSA_tmpssa3_arrPatternBeforeDefault;
   }
 };
 const tmpCalleeParam = f();

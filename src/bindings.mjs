@@ -1,5 +1,5 @@
 import { VERBOSE_TRACING, BLUE, RESET } from './constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd } from './utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source } from './utils.mjs';
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import * as AST from './ast.mjs';
@@ -1052,4 +1052,78 @@ export function inferInitialType(meta, init) {
   } else {
     // Do I want to assert false here? At this point there can't be that many legit unchecked nodes left
   }
+}
+
+export function findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(prev, curr) {
+  // Hello Java my old friend. I know but this name is hard to simplify.
+
+  // Given two refs of a binding where at least one can reach the other, are there any
+  // statements between these refs with observable side effects, ignoring the statement
+  // of the actual refs.
+  // This function can jump into branches (using the ref caches for blockBodies and blockIndexes)
+  // but should not cross function boundaries.
+
+  ASSERT(prev?.action === 'read' || prev?.action === 'write', 'prev should be a ref');
+  ASSERT(curr?.action === 'read' || curr?.action === 'write', 'prev should be a ref');
+  ASSERT(curr.blockChain.startsWith(prev.blockChain), 'the previous ref should be reachable from the current ref');
+
+  let blockPointer = prev.blockBodies.length - 1;
+  let blockBodies = curr.blockBodies;
+  let blockIndexes = curr.blockIndexes;
+
+  let currentBody = prev.blockBody;
+  let currentIndex = prev.blockIndex + 1; // Start after the statement containing the write
+  let currentMax = blockIndexes[blockPointer];
+  vgroup(
+    'findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(). ids:',
+    curr.blockIds,
+    ', indexes:',
+    blockIndexes,
+    ', blockPointer:',
+    blockPointer,
+    ', lens:',
+    blockBodies.map((a) => a.length),
+  );
+
+  vlog('start index:', currentIndex, ', target index:', currentMax, ', total statements:', currentBody.length);
+  while (true) {
+    vgroup('- currentIndex:', currentIndex, ', currentMax:', currentMax, ', block len:', currentBody.length);
+    if (currentBody === curr.blockBody && currentIndex === curr.blockIndex) {
+      vlog('This is the read statement. All pass.');
+      vgroupEnd();
+      break;
+    } else if (currentIndex <= currentMax) {
+      const next = currentBody[currentIndex];
+      vlog('Next statement:', next.type);
+      source(next);
+      if (!AST.nodeHasNoObservableSideEffect(next)) {
+        vlog('Has observable side effects. bailing');
+        source(next);
+        vgroupEnd();
+        vgroupEnd();
+        return true;
+      }
+      vlog('Has no observable side effects. Okay.');
+      ++currentIndex;
+    } else {
+      vlog('End of current block.');
+      ++blockPointer;
+      if (blockPointer >= blockIndexes) {
+        vlog('This may be a bug?');
+        ASSERT(false, 'not sure whether the pointer should ever exceed the block');
+        // This should be the end
+        vgroupEnd();
+        break;
+      }
+      vlog('Jumping into next block');
+      currentBody = blockBodies[blockPointer];
+      currentMax = blockIndexes[blockPointer];
+      currentIndex = 0;
+      vlog('This block has', currentBody.length, 'statements');
+    }
+    vgroupEnd();
+  }
+  vgroupEnd();
+
+  return false;
 }

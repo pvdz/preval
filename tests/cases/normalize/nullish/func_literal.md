@@ -68,34 +68,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  let tmpCalleeParam = 'foo';
-  const tmpIfTest = tmpCalleeParam == null;
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = $(tmpCalleeParam);
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
-  if (tmpIfTest) {
-    tmpCalleeParam = length;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  } else {
-    const tmpReturnArg$7 = tmpBranchingC();
-    return tmpReturnArg$7;
-  }
-};
-const tmpCalleeParam$1 = f();
+const tmpCalleeParam$1 = $('foo');
 $(tmpCalleeParam$1);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-length
+None
 
 ## Result
 

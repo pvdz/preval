@@ -258,22 +258,21 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
+  const tmpBranchingC$9 = function () {
+    debugger;
+    const tmpSSA_tmpssa2_tmpIfTest$29 = tmpSwitchCaseToStart <= 2;
+    if (tmpSSA_tmpssa2_tmpIfTest$29) {
+      $(5);
+      const tmpReturnArg$37 = $(6);
+      return tmpReturnArg$37;
+    } else {
+      tmpSwitchCaseToStart <= 3;
+      return undefined;
+    }
+  };
   const tmpBranchingB$7 = function () {
     debugger;
     const tmpIfTest$27 = tmpSwitchCaseToStart <= 1;
-    const tmpBranchingC$9 = function () {
-      debugger;
-      tmpIfTest$29 = tmpSwitchCaseToStart <= 2;
-      if (tmpIfTest$29) {
-        $(5);
-        const tmpReturnArg$37 = $(6);
-        return tmpReturnArg$37;
-      } else {
-        tmpSwitchCaseToStart <= 3;
-        return undefined;
-      }
-    };
-    let tmpIfTest$29 = undefined;
     if (tmpIfTest$27) {
       $(3);
       const tmpReturnArg$33 = tmpBranchingC$9();

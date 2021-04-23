@@ -89,10 +89,9 @@ const f = function ($$0) {
     debugger;
     const tmpCalleeParam$3 = bindingPatternObjRoot;
     const tmpCalleeParam$5 = [];
-    x = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, 'x');
-    return x;
+    const tmpSSA_tmpssa2_x = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, 'x');
+    return tmpSSA_tmpssa2_x;
   };
-  let x = undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = { a: 'fail' };
     bindingPatternObjRoot = $(tmpCalleeParam$1);

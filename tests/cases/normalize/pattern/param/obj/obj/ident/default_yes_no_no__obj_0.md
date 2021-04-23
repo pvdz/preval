@@ -84,8 +84,8 @@ const f = function ($$0) {
   const objPatternBeforeDefault = objPatternNoDefault.y;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpSSA_y = $('pass');
-    return tmpSSA_y;
+    const tmpSSA_tmpssa2_y = $('pass');
+    return tmpSSA_tmpssa2_y;
   } else {
     return objPatternBeforeDefault;
   }

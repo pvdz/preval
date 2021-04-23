@@ -75,8 +75,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const tmpSSA_arrPatternSplat = [...null];
-tmpSSA_arrPatternSplat.slice(0);
+const tmpSSA_tmpssa2_arrPatternSplat = [...null];
+tmpSSA_tmpssa2_arrPatternSplat.slice(0);
 $('bad');
 `````
 

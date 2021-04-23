@@ -84,11 +84,10 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = 0;
   const g = function () {
     debugger;
-    x = $('first');
-    $(x);
+    const tmpSSA_tmpssa2_x = $('first');
+    $(tmpSSA_tmpssa2_x);
     return undefined;
   };
   g();

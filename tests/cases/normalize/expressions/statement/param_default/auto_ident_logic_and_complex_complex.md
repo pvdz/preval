@@ -99,8 +99,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$3 = $(1);
-const tmpSSA_p = $(tmpCalleeParam$3);
-if (tmpSSA_p) {
+const tmpSSA_tmpssa2_p = $(tmpCalleeParam$3);
+if (tmpSSA_tmpssa2_p) {
   const tmpCalleeParam$7 = $(2);
   $(tmpCalleeParam$7);
 } else {

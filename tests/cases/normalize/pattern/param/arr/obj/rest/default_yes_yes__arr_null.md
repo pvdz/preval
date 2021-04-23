@@ -121,25 +121,23 @@ const tmpBranchingC$1 = function () {
 };
 let bindingPatternArrRoot = undefined;
 const tmpIfTest = tmpCalleeParam$15 === undefined;
+let arrPatternStep = undefined;
 const tmpBranchingC = function () {
   debugger;
-  arrPatternSplat = [...bindingPatternArrRoot];
-  arrPatternBeforeDefault = arrPatternSplat[0];
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+  const tmpSSA_tmpssa2_arrPatternSplat = [...bindingPatternArrRoot];
+  const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
+  const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCalleeParam$5 = { a: 'fail' };
     arrPatternStep = $(tmpCalleeParam$5);
     tmpBranchingC$1();
     return undefined;
   } else {
-    arrPatternStep = arrPatternBeforeDefault;
+    arrPatternStep = tmpSSA_tmpssa3_arrPatternBeforeDefault;
     tmpBranchingC$1();
     return undefined;
   }
 };
-let arrPatternSplat = undefined;
-let arrPatternBeforeDefault = undefined;
-let arrPatternStep = undefined;
 if (tmpIfTest) {
   const tmpArrElement$1 = { a: 'fail2' };
   const tmpCalleeParam$1 = [tmpArrElement$1];

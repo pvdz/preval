@@ -123,13 +123,14 @@ const f = function ($$0, $$1) {
   const tmpParamBare = $$0;
   const tmpParamBare$1 = $$1;
   debugger;
+  let a = undefined;
   const tmpBranchingC$1 = function () {
     debugger;
     const tmpReturnArg$7 = [a, b];
     return tmpReturnArg$7;
   };
-  let a = undefined;
   const tmpIfTest = tmpParamBare === undefined;
+  let b = undefined;
   const tmpBranchingC = function () {
     debugger;
     const tmpIfTest$1 = tmpParamBare$1 === undefined;
@@ -143,7 +144,6 @@ const f = function ($$0, $$1) {
       return tmpReturnArg$5;
     }
   };
-  let b = undefined;
   if (tmpIfTest) {
     a = b;
     const tmpReturnArg = tmpBranchingC();

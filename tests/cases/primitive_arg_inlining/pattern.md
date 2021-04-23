@@ -94,9 +94,9 @@ $(out);
 ## Output
 
 `````js filename=intro
-const tmpSSA_tmpCalleeParam$2 = [];
-const tmpSSA_x = objPatternRest('abc', tmpSSA_tmpCalleeParam$2, undefined);
-$(tmpSSA_x);
+const tmpSSA_tmpssa2_tmpCalleeParam$2 = [];
+const tmpSSA_tmpssa2_x = objPatternRest('abc', tmpSSA_tmpssa2_tmpCalleeParam$2, undefined);
+$(tmpSSA_tmpssa2_x);
 `````
 
 ## Globals

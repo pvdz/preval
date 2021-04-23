@@ -59,6 +59,7 @@ $(a);
 ## Output
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
 const f = function ($$0) {
   const tmpArgumentsAny = arguments;
   const tmpParamBare = $$0;
@@ -71,7 +72,6 @@ const f = function ($$0) {
     return undefined;
   }
 };
-let a = { a: 999, b: 1000 };
 f();
 $(undefined);
 $(a);

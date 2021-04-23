@@ -74,26 +74,18 @@ $(a);
 ## Output
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (a) {
     a = 2;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
+    return a;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC();
-    return tmpReturnArg$7;
+    return a;
   }
 };
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 $(a);

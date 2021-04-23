@@ -113,19 +113,13 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 const tmpBranchingB = function () {
   debugger;
   const tmpIfTest$3 = $(3);
-  const tmpBranchingC$1 = function () {
-    debugger;
-    tmpReturnArg$1 = $(6);
-    return tmpReturnArg$1;
-  };
-  let tmpReturnArg$1 = undefined;
   if (tmpIfTest$3) {
     $(4);
-    const tmpReturnArg$5 = tmpBranchingC$1();
+    const tmpReturnArg$5 = $(6);
     return tmpReturnArg$5;
   } else {
     $(5);
-    const tmpReturnArg$7 = tmpBranchingC$1();
+    const tmpReturnArg$7 = $(6);
     return tmpReturnArg$7;
   }
 };

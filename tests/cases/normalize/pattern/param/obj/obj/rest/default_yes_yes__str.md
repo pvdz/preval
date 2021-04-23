@@ -108,24 +108,23 @@ tmpCallCallee$9(tmpCalleeParam$13);
 `````js filename=intro
 const f = function () {
   debugger;
+  let objPatternAfterDefault = undefined;
   const tmpBranchingC$1 = function () {
     debugger;
     const tmpCalleeParam$7 = objPatternAfterDefault;
     const tmpCalleeParam$9 = [];
-    y = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
-    return y;
+    const tmpSSA_tmpssa2_y = objPatternRest(tmpCalleeParam$7, tmpCalleeParam$9, undefined);
+    return tmpSSA_tmpssa2_y;
   };
-  let objPatternAfterDefault = undefined;
-  let y = undefined;
-  const tmpSSA_objPatternBeforeDefault = 'abc'.x;
-  const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
+  const tmpSSA_tmpssa3_objPatternBeforeDefault = 'abc'.x;
+  const tmpIfTest$1 = tmpSSA_tmpssa3_objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCalleeParam$1 = { a: 'pass' };
     objPatternAfterDefault = $(tmpCalleeParam$1);
     const tmpReturnArg$1 = tmpBranchingC$1();
     return tmpReturnArg$1;
   } else {
-    objPatternAfterDefault = tmpSSA_objPatternBeforeDefault;
+    objPatternAfterDefault = tmpSSA_tmpssa3_objPatternBeforeDefault;
     const tmpReturnArg$4 = tmpBranchingC$1();
     return tmpReturnArg$4;
   }

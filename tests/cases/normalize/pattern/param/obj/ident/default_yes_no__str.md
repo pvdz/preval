@@ -76,8 +76,8 @@ const f = function () {
   const objPatternBeforeDefault = 'abc'.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpSSA_x = $('pass');
-    return tmpSSA_x;
+    const tmpSSA_tmpssa2_x = $('pass');
+    return tmpSSA_tmpssa2_x;
   } else {
     return objPatternBeforeDefault;
   }

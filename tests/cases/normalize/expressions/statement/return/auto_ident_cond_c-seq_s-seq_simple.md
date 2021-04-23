@@ -81,8 +81,8 @@ const f = function () {
     return 60;
   } else {
     const tmpCalleeParam$1 = $(100);
-    const tmpSSA_tmpReturnArg$1 = $(tmpCalleeParam$1);
-    return tmpSSA_tmpReturnArg$1;
+    const tmpSSA_tmpssa2_tmpReturnArg$1 = $(tmpCalleeParam$1);
+    return tmpSSA_tmpssa2_tmpReturnArg$1;
   }
 };
 const a = { a: 999, b: 1000 };

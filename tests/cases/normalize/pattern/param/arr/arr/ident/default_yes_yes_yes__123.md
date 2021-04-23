@@ -131,33 +131,29 @@ tmpCallCallee$7(tmpCalleeParam$7);
 `````js filename=intro
 const f = function () {
   debugger;
+  let arrPatternStep = undefined;
   const tmpBranchingC$1 = function () {
     debugger;
-    arrPatternSplat$1 = [...arrPatternStep];
-    arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-    const tmpIfTest$3 = arrPatternBeforeDefault$1 === undefined;
+    const tmpSSA_tmpssa2_arrPatternSplat$1 = [...arrPatternStep];
+    const tmpSSA_tmpssa3_arrPatternBeforeDefault$1 = tmpSSA_tmpssa2_arrPatternSplat$1[0];
+    const tmpIfTest$3 = tmpSSA_tmpssa3_arrPatternBeforeDefault$1 === undefined;
     if (tmpIfTest$3) {
-      x = $('fail');
-      return x;
+      const tmpSSA_tmpssa2_x = $('fail');
+      return tmpSSA_tmpssa2_x;
     } else {
-      x = arrPatternBeforeDefault$1;
-      return x;
+      return tmpSSA_tmpssa3_arrPatternBeforeDefault$1;
     }
   };
-  let arrPatternStep = undefined;
-  let arrPatternSplat$1 = undefined;
-  let arrPatternBeforeDefault$1 = undefined;
-  let x = undefined;
-  const tmpSSA_arrPatternSplat = [...1];
-  const tmpSSA_arrPatternBeforeDefault = tmpSSA_arrPatternSplat[0];
-  const tmpIfTest$1 = tmpSSA_arrPatternBeforeDefault === undefined;
+  const tmpSSA_tmpssa2_arrPatternSplat = [...1];
+  const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
+  const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCalleeParam$1 = ['fail2'];
     arrPatternStep = $(tmpCalleeParam$1);
     const tmpReturnArg$1 = tmpBranchingC$1();
     return tmpReturnArg$1;
   } else {
-    arrPatternStep = tmpSSA_arrPatternBeforeDefault;
+    arrPatternStep = tmpSSA_tmpssa3_arrPatternBeforeDefault;
     const tmpReturnArg$4 = tmpBranchingC$1();
     return tmpReturnArg$4;
   }

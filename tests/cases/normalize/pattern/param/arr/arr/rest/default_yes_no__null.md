@@ -82,11 +82,10 @@ let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 const tmpBranchingC = function () {
   debugger;
-  arrPatternSplat$1 = [...arrPatternStep];
-  arrPatternSplat$1.slice(0);
+  const tmpSSA_tmpssa2_arrPatternSplat$1 = [...arrPatternStep];
+  tmpSSA_tmpssa2_arrPatternSplat$1.slice(0);
   return undefined;
 };
-let arrPatternSplat$1 = undefined;
 if (tmpIfTest) {
   arrPatternStep = $('fail');
   tmpBranchingC();

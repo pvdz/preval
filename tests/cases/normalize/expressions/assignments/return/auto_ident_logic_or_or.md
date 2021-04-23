@@ -99,28 +99,21 @@ $(a);
 ## Output
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpBranchingC = function () {
+  debugger;
+  if (a) {
+    return a;
+  } else {
+    const tmpCalleeParam$7 = $(2);
+    a = $(tmpCalleeParam$7);
+    return a;
+  }
+};
 const f = function () {
   debugger;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
   const tmpCalleeParam = $(0);
   a = $(tmpCalleeParam);
-  const tmpBranchingC = function () {
-    debugger;
-    if (a) {
-      const tmpReturnArg$9 = tmpBranchingC$1();
-      return tmpReturnArg$9;
-    } else {
-      const tmpCalleeParam$7 = $(2);
-      a = $(tmpCalleeParam$7);
-      const tmpReturnArg$7 = tmpBranchingC$1();
-      return tmpReturnArg$7;
-    }
-  };
-  let tmpReturnArg = undefined;
   if (a) {
     const tmpReturnArg$13 = tmpBranchingC();
     return tmpReturnArg$13;
@@ -131,7 +124,6 @@ const f = function () {
     return tmpReturnArg$3;
   }
 };
-let a = { a: 999, b: 1000 };
 const tmpCalleeParam$9 = f();
 $(tmpCalleeParam$9);
 $(a);

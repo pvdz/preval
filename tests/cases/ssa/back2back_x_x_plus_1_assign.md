@@ -124,8 +124,8 @@ const f = function () {
     };
     let x = $(5);
     $(x);
-    const tmpSSA_x = $(10);
-    x = tmpSSA_x + 1;
+    x = $(10);
+    x = x + 1;
     g();
     return undefined;
   } else {

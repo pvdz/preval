@@ -117,6 +117,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCalleeParam$1 = {};
+let bindingPatternObjRoot = undefined;
 const tmpBranchingC$1 = function () {
   debugger;
   if (objPatternCrashTest) {
@@ -126,8 +127,8 @@ const tmpBranchingC$1 = function () {
     return undefined;
   }
 };
-let bindingPatternObjRoot = undefined;
 const tmpIfTest = tmpCalleeParam$1 === undefined;
+let objPatternCrashTest = undefined;
 const tmpBranchingC = function () {
   debugger;
   objPatternCrashTest = bindingPatternObjRoot === undefined;
@@ -140,7 +141,6 @@ const tmpBranchingC = function () {
     return undefined;
   }
 };
-let objPatternCrashTest = undefined;
 if (tmpIfTest) {
   bindingPatternObjRoot = $('fail');
   tmpBranchingC();

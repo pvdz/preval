@@ -72,22 +72,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpCalleeParam = undefined;
   const tmpChainRootProp = global;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = $(tmpCalleeParam);
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     const tmpChainElementObject$1 = tmpChainRootProp.foo;
-    tmpCalleeParam = tmpChainElementObject$1;
-    const tmpReturnArg$1 = tmpBranchingC();
+    const tmpReturnArg$1 = $(tmpChainElementObject$1);
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC();
+    const tmpReturnArg$7 = $(undefined);
     return tmpReturnArg$7;
   }
 };

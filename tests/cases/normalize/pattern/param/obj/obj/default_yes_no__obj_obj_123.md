@@ -135,6 +135,7 @@ const tmpBranchingC$1 = function () {
 const objPatternBeforeDefault = tmpCalleeParam$5.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
+let objPatternCrashTest = undefined;
 const tmpBranchingC = function () {
   debugger;
   objPatternCrashTest = objPatternAfterDefault === undefined;
@@ -147,7 +148,6 @@ const tmpBranchingC = function () {
     return undefined;
   }
 };
-let objPatternCrashTest = undefined;
 if (tmpIfTest) {
   const tmpCalleeParam$1 = { x: 'fail' };
   objPatternAfterDefault = $(tmpCalleeParam$1);

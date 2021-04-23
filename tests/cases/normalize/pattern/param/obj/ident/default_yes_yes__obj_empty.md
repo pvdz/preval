@@ -107,18 +107,15 @@ const f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   const tmpBranchingC = function () {
     debugger;
-    objPatternBeforeDefault = bindingPatternObjRoot.x;
-    const tmpIfTest$1 = objPatternBeforeDefault === undefined;
+    const tmpSSA_tmpssa3_objPatternBeforeDefault = bindingPatternObjRoot.x;
+    const tmpIfTest$1 = tmpSSA_tmpssa3_objPatternBeforeDefault === undefined;
     if (tmpIfTest$1) {
-      x = $('pass');
-      return x;
+      const tmpSSA_tmpssa2_x = $('pass');
+      return tmpSSA_tmpssa2_x;
     } else {
-      x = objPatternBeforeDefault;
-      return x;
+      return tmpSSA_tmpssa3_objPatternBeforeDefault;
     }
   };
-  let objPatternBeforeDefault = undefined;
-  let x = undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = { x: 'fail2' };
     bindingPatternObjRoot = $(tmpCalleeParam$1);

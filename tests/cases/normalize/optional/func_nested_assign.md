@@ -115,24 +115,18 @@ const f = function () {
     if (tmpIfTest$3) {
       const tmpChainElementObject$7 = tmpChainElementObject$3.b;
       tmpCalleeParam = tmpChainElementObject$7;
-      const tmpReturnArg$1 = tmpBranchingC();
+      const tmpReturnArg$1 = $(tmpCalleeParam);
       return tmpReturnArg$1;
     } else {
-      const tmpReturnArg$9 = tmpBranchingC();
+      const tmpReturnArg$9 = $(tmpCalleeParam);
       return tmpReturnArg$9;
     }
   };
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = $(tmpCalleeParam);
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     const tmpReturnArg$13 = tmpBranchingA();
     return tmpReturnArg$13;
   } else {
-    const tmpReturnArg$15 = tmpBranchingC();
+    const tmpReturnArg$15 = $(tmpCalleeParam);
     return tmpReturnArg$15;
   }
 };

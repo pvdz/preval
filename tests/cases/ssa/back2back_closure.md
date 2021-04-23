@@ -84,14 +84,14 @@ const f = function () {
     const g = function () {
       debugger;
       if ($) {
-        $(tmpSSA_x);
+        $(x);
         return undefined;
       } else {
         return undefined;
       }
     };
-    const x = $(5);
-    const tmpSSA_x = x + 1;
+    let x = $(5);
+    x = x + 1;
     g();
     return undefined;
   } else {

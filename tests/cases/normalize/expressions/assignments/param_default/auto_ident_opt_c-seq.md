@@ -102,8 +102,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 let a = { a: 999, b: 1000 };
+const b = { x: 1 };
 let tmpNestedComplexRhs$1 = undefined;
 const tmpChainRootProp$1 = $(b);
 const tmpIfTest$3 = tmpChainRootProp$1 != null;

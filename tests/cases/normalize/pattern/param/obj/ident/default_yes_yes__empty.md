@@ -101,13 +101,13 @@ const f = function () {
   debugger;
   const tmpCalleeParam$1 = { x: 'pass2' };
   const tmpSSA_bindingPatternObjRoot = $(tmpCalleeParam$1);
-  const tmpSSA_objPatternBeforeDefault = tmpSSA_bindingPatternObjRoot.x;
-  const tmpIfTest$1 = tmpSSA_objPatternBeforeDefault === undefined;
+  const tmpSSA_tmpssa3_objPatternBeforeDefault = tmpSSA_bindingPatternObjRoot.x;
+  const tmpIfTest$1 = tmpSSA_tmpssa3_objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpReturnArg = $('fail');
     return tmpReturnArg;
   } else {
-    return tmpSSA_objPatternBeforeDefault;
+    return tmpSSA_tmpssa3_objPatternBeforeDefault;
   }
 };
 const tmpCalleeParam$3 = f();

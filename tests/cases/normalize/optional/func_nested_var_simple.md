@@ -109,20 +109,17 @@ const f = function () {
   const tmpIfTest = tmpChainElementCall != null;
   const tmpBranchingC = function () {
     debugger;
-    c = undefined;
     const tmpChainRootProp = b;
     const tmpIfTest$1 = tmpChainRootProp != null;
     if (tmpIfTest$1) {
       const tmpChainElementObject$5 = tmpChainRootProp.length;
-      c = tmpChainElementObject$5;
-      const tmpReturnArg$3 = $(c);
+      const tmpReturnArg$3 = $(tmpChainElementObject$5);
       return tmpReturnArg$3;
     } else {
-      const tmpReturnArg$11 = $(c);
+      const tmpReturnArg$11 = $(undefined);
       return tmpReturnArg$11;
     }
   };
-  let c = undefined;
   if (tmpIfTest) {
     const tmpChainElementObject$1 = tmpChainElementCall.toString;
     b = tmpChainElementObject$1;

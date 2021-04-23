@@ -87,22 +87,14 @@ const f = function () {
   debugger;
   a = undefined;
   const tmpIfTest = b != null;
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     const tmpChainElementObject$5 = b.x;
     const tmpChainElementObject$7 = tmpChainElementObject$5.y;
     const tmpChainElementObject$9 = tmpChainElementObject$7.z;
     a = tmpChainElementObject$9;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
+    return a;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC();
-    return tmpReturnArg$7;
+    return a;
   }
 };
 const tmpObjLitVal$1 = { z: 100 };

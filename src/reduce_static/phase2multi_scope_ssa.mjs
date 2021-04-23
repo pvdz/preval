@@ -164,7 +164,7 @@ function _multiScopeSSA(fdata) {
 
       // Any closure may be activated as a side effect, including one that may attempt to read
       // the value of the binding before changing it. So we can't SSA if this rhs has them.
-      let sideEffectFreeRhs = firstDeclAssignCase || !AST.mayHaveObservableSideEffect(rhs, name);
+      let sideEffectFreeRhs = firstDeclAssignCase || !!AST.expressionHasNoObservableSideEffect(rhs, name);
       vlog('sideEffectFreeRhs:', sideEffectFreeRhs);
 
       let sideEffectFree = sideEffectFreeRhs;
@@ -204,11 +204,11 @@ function _multiScopeSSA(fdata) {
 
         for (; offset < end && sideEffectFree; ++offset) {
           const n = block[offset];
-          if (AST.mayHaveObservableSideEffect(n)) {
+          if (AST.expressionHasNoObservableSideEffect(n)) {
+            vlog(offset, ': yes');
+          } else {
             vlog(offset, ': no');
             sideEffectFree = false;
-          } else {
-            vlog(offset, ': yes');
           }
         }
       }

@@ -97,22 +97,22 @@ $(a);
 ## Output
 
 `````js filename=intro
+const tmpBranchingB = function () {
+  debugger;
+  const tmpCalleeParam$5 = $(1);
+  const tmpSSA_tmpssa2_tmpReturnArg = $(tmpCalleeParam$5);
+  if (tmpSSA_tmpssa2_tmpReturnArg) {
+    const tmpCalleeParam$9 = $(2);
+    const tmpSSA_tmpssa2_tmpReturnArg$1 = $(tmpCalleeParam$9);
+    return tmpSSA_tmpssa2_tmpReturnArg$1;
+  } else {
+    return tmpSSA_tmpssa2_tmpReturnArg;
+  }
+};
 const f = function () {
   debugger;
   const tmpCalleeParam = $(0);
-  let tmpReturnArg = $(tmpCalleeParam);
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpCalleeParam$5 = $(1);
-    tmpReturnArg = $(tmpCalleeParam$5);
-    if (tmpReturnArg) {
-      const tmpCalleeParam$9 = $(2);
-      tmpReturnArg = $(tmpCalleeParam$9);
-      return tmpReturnArg;
-    } else {
-      return tmpReturnArg;
-    }
-  };
+  const tmpReturnArg = $(tmpCalleeParam);
   if (tmpReturnArg) {
     return tmpReturnArg;
   } else {

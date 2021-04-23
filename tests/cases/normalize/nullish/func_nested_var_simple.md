@@ -103,18 +103,17 @@ const f = function () {
   const tmpIfTest = b == null;
   const tmpBranchingC = function () {
     debugger;
-    c = b;
-    const tmpIfTest$1 = c == null;
+    const tmpSSA_tmpssa3_c = b;
+    const tmpIfTest$1 = tmpSSA_tmpssa3_c == null;
     if (tmpIfTest$1) {
-      c = length;
-      const tmpReturnArg$3 = $(c);
+      const tmpSSA_tmpssa3_c$1 = length;
+      const tmpReturnArg$3 = $(tmpSSA_tmpssa3_c$1);
       return tmpReturnArg$3;
     } else {
-      const tmpReturnArg$11 = $(c);
+      const tmpReturnArg$11 = $(tmpSSA_tmpssa3_c);
       return tmpReturnArg$11;
     }
   };
-  let c = undefined;
   if (tmpIfTest) {
     b = toString;
     const tmpReturnArg = tmpBranchingC();

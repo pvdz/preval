@@ -172,25 +172,23 @@ const tmpBranchingC$1 = function () {
 };
 let bindingPatternArrRoot = undefined;
 const tmpIfTest = tmpCalleeParam$5 === undefined;
+let arrPatternStep = undefined;
+let objPatternCrashTest = undefined;
 const tmpBranchingC = function () {
   debugger;
-  arrPatternSplat = [...bindingPatternArrRoot];
-  arrPatternBeforeDefault = arrPatternSplat[0];
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+  const tmpSSA_tmpssa2_arrPatternSplat = [...bindingPatternArrRoot];
+  const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
+  const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     arrPatternStep = $('fail');
     tmpBranchingC$1();
     return undefined;
   } else {
-    arrPatternStep = arrPatternBeforeDefault;
+    arrPatternStep = tmpSSA_tmpssa3_arrPatternBeforeDefault;
     tmpBranchingC$1();
     return undefined;
   }
 };
-let arrPatternSplat = undefined;
-let arrPatternBeforeDefault = undefined;
-let arrPatternStep = undefined;
-let objPatternCrashTest = undefined;
 if (tmpIfTest) {
   const tmpCalleeParam$1 = ['fail2'];
   bindingPatternArrRoot = $(tmpCalleeParam$1);

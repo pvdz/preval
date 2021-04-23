@@ -70,8 +70,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpSSA_tmpReturnArg = $(3);
-$(tmpSSA_tmpReturnArg);
+const tmpCalleeParam$1 = $(3);
+$(tmpCalleeParam$1);
 `````
 
 ## Globals

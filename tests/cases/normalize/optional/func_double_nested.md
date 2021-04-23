@@ -137,10 +137,10 @@ const f = function () {
       if (tmpIfTest$9) {
         const tmpChainElementObject$15 = tmpChainElementObject$11.c;
         tmpCalleeParam = tmpChainElementObject$15;
-        const tmpReturnArg$1 = tmpBranchingC();
+        const tmpReturnArg$1 = $(tmpCalleeParam);
         return tmpReturnArg$1;
       } else {
-        const tmpReturnArg$9 = tmpBranchingC();
+        const tmpReturnArg$9 = $(tmpCalleeParam);
         return tmpReturnArg$9;
       }
     };
@@ -148,21 +148,15 @@ const f = function () {
       const tmpReturnArg$15 = tmpBranchingA$1();
       return tmpReturnArg$15;
     } else {
-      const tmpReturnArg$17 = tmpBranchingC();
+      const tmpReturnArg$17 = $(tmpCalleeParam);
       return tmpReturnArg$17;
     }
   };
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = $(tmpCalleeParam);
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     const tmpReturnArg$21 = tmpBranchingA();
     return tmpReturnArg$21;
   } else {
-    const tmpReturnArg$23 = tmpBranchingC();
+    const tmpReturnArg$23 = $(tmpCalleeParam);
     return tmpReturnArg$23;
   }
 };

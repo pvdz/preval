@@ -80,8 +80,8 @@ tmpCallCallee$5(tmpCalleeParam$9);
 const tmpCalleeParam$1 = { a: 'pass' };
 const tmpSSA_bindingPatternObjRoot = $(tmpCalleeParam$1);
 const tmpCalleeParam$5 = [];
-const tmpSSA_x = objPatternRest(tmpSSA_bindingPatternObjRoot, tmpCalleeParam$5, 'x');
-$(tmpSSA_x);
+const tmpSSA_tmpssa2_x = objPatternRest(tmpSSA_bindingPatternObjRoot, tmpCalleeParam$5, 'x');
+$(tmpSSA_tmpssa2_x);
 `````
 
 ## Globals

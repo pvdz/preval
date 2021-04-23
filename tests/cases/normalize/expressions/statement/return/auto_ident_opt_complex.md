@@ -78,6 +78,7 @@ $(a);
 ## Output
 
 `````js filename=intro
+const b = { x: 1 };
 const f = function () {
   debugger;
   const tmpChainElementCall = $(b);
@@ -89,7 +90,6 @@ const f = function () {
     return undefined;
   }
 };
-const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

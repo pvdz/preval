@@ -102,36 +102,27 @@ $(a);
 ## Output
 
 `````js filename=intro
+const tmpBranchingA = function () {
+  debugger;
+  const tmpChainElementObject$3 = b.x;
+  const tmpIfTest$3 = tmpChainElementObject$3 != null;
+  if (tmpIfTest$3) {
+    const tmpChainElementObject$7 = tmpChainElementObject$3.y;
+    a = tmpChainElementObject$7;
+    return a;
+  } else {
+    return a;
+  }
+};
 const f = function () {
   debugger;
   a = undefined;
   const tmpIfTest = b != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementObject$3 = b.x;
-    const tmpIfTest$3 = tmpChainElementObject$3 != null;
-    if (tmpIfTest$3) {
-      const tmpChainElementObject$7 = tmpChainElementObject$3.y;
-      a = tmpChainElementObject$7;
-      const tmpReturnArg$1 = tmpBranchingC();
-      return tmpReturnArg$1;
-    } else {
-      const tmpReturnArg$9 = tmpBranchingC();
-      return tmpReturnArg$9;
-    }
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     const tmpReturnArg$13 = tmpBranchingA();
     return tmpReturnArg$13;
   } else {
-    const tmpReturnArg$15 = tmpBranchingC();
-    return tmpReturnArg$15;
+    return a;
   }
 };
 const tmpObjLitVal = { y: 1 };

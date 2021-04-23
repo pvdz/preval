@@ -281,20 +281,6 @@ const f = function () {
   const tmpBranchingB$7 = function () {
     debugger;
     const tmpIfTest$35 = tmpSwitchCaseToStart <= 1;
-    const tmpBranchingC$9 = function () {
-      debugger;
-      tmpIfTest$37 = tmpSwitchCaseToStart <= 2;
-      if (tmpIfTest$37) {
-        $(5);
-        const tmpReturnArg$49 = $(6);
-        return tmpReturnArg$49;
-      } else {
-        tmpSwitchCaseToStart <= 3;
-        tmpAfterLabel();
-        return undefined;
-      }
-    };
-    let tmpIfTest$37 = undefined;
     if (tmpIfTest$35) {
       $(3);
       const tmpReturnArg$45 = tmpBranchingC$9();
@@ -302,6 +288,19 @@ const f = function () {
     } else {
       const tmpReturnArg$71 = tmpBranchingC$9();
       return tmpReturnArg$71;
+    }
+  };
+  const tmpBranchingC$9 = function () {
+    debugger;
+    const tmpSSA_tmpssa2_tmpIfTest$37 = tmpSwitchCaseToStart <= 2;
+    if (tmpSSA_tmpssa2_tmpIfTest$37) {
+      $(5);
+      const tmpReturnArg$49 = $(6);
+      return tmpReturnArg$49;
+    } else {
+      tmpSwitchCaseToStart <= 3;
+      tmpAfterLabel();
+      return undefined;
     }
   };
   const tmpBranchingB$3 = function () {

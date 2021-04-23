@@ -112,20 +112,15 @@ const f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   const tmpBranchingC = function () {
     debugger;
-    arrPatternSplat = [...objPatternAfterDefault];
-    arrPatternBeforeDefault = arrPatternSplat[0];
-    const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+    const tmpSSA_tmpssa2_arrPatternSplat = [...objPatternAfterDefault];
+    const tmpSSA_tmpssa3_arrPatternBeforeDefault = tmpSSA_tmpssa2_arrPatternSplat[0];
+    const tmpIfTest$1 = tmpSSA_tmpssa3_arrPatternBeforeDefault === undefined;
     if (tmpIfTest$1) {
-      y = 'pass';
-      return y;
+      return 'pass';
     } else {
-      y = arrPatternBeforeDefault;
-      return y;
+      return tmpSSA_tmpssa3_arrPatternBeforeDefault;
     }
   };
-  let arrPatternSplat = undefined;
-  let arrPatternBeforeDefault = undefined;
-  let y = undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = ['fail2'];
     objPatternAfterDefault = $(tmpCalleeParam$1);

@@ -103,8 +103,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 let a = { a: 999, b: 1000 };
+const b = { x: 1 };
 let tmpNestedComplexRhs$1 = undefined;
 const tmpIfTest$3 = b != null;
 const tmpBranchingC$1 = function () {

@@ -90,10 +90,9 @@ const f = function () {
     debugger;
     const tmpCalleeParam$3 = arrPatternStep;
     const tmpCalleeParam$5 = [];
-    x = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
-    return x;
+    const tmpSSA_tmpssa2_x = objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+    return tmpSSA_tmpssa2_x;
   };
-  let x = undefined;
   if (tmpIfTest) {
     const tmpCalleeParam$1 = { a: 'fail' };
     arrPatternStep = $(tmpCalleeParam$1);

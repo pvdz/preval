@@ -95,11 +95,6 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    tmpReturnArg = $(tmpCalleeParam);
-    return tmpReturnArg;
-  };
   const tmpObjLitVal$1 = $();
   const tmpObjLitVal = { b: tmpObjLitVal$1 };
   const obj = { a: tmpObjLitVal };
@@ -110,14 +105,13 @@ const f = function () {
     const tmpIfTest$1 = tmpCalleeParam == null;
     if (tmpIfTest$1) {
       tmpCalleeParam = b;
-      const tmpReturnArg$5 = tmpBranchingC$1();
+      const tmpReturnArg$5 = $(tmpCalleeParam);
       return tmpReturnArg$5;
     } else {
-      const tmpReturnArg$11 = tmpBranchingC$1();
+      const tmpReturnArg$11 = $(tmpCalleeParam);
       return tmpReturnArg$11;
     }
   };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
     tmpCalleeParam = a;
     const tmpReturnArg$1 = tmpBranchingC();

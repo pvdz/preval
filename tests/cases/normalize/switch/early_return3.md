@@ -169,22 +169,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 3;
-const tmpBranchingB = function () {
-  debugger;
-  tmpSwitchCaseToStart = 1;
-  tmpSwitchCaseToStart <= 0;
-  tmpIfTest$4 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$4) {
-    return 6;
-  } else {
-    tmpSwitchCaseToStart <= 2;
-    return undefined;
-  }
-};
-let tmpIfTest$4 = undefined;
-const tmpReturnArg$21 = tmpBranchingB();
-$(tmpReturnArg$21);
+$(6);
 `````
 
 ## Globals

@@ -80,8 +80,8 @@ const f = function () {
   const tmpReturnArg = $(tmpCalleeParam);
   if (tmpReturnArg) {
     const tmpCalleeParam$3 = $(2);
-    const tmpSSA_tmpReturnArg = $(tmpCalleeParam$3);
-    return tmpSSA_tmpReturnArg;
+    const tmpSSA_tmpssa2_tmpReturnArg = $(tmpCalleeParam$3);
+    return tmpSSA_tmpssa2_tmpReturnArg;
   } else {
     return tmpReturnArg;
   }

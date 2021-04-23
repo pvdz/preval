@@ -108,10 +108,10 @@ const tmpBranchingC$1 = function () {
 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-let tmpIfTest = $(tmpCalleeParam);
+const tmpIfTest = $(tmpCalleeParam);
 const tmpBranchingC = function () {
   debugger;
-  if (tmpIfTest) {
+  if (tmpIfelseifelse) {
     const tmpCalleeParam$7 = $(2);
     $(tmpCalleeParam$7);
     tmpBranchingC$1();
@@ -121,11 +121,13 @@ const tmpBranchingC = function () {
     return undefined;
   }
 };
+let tmpIfelseifelse = undefined;
 if (tmpIfTest) {
   const tmpCalleeParam$3 = $(1);
-  tmpIfTest = $(tmpCalleeParam$3);
+  tmpIfelseifelse = $(tmpCalleeParam$3);
   tmpBranchingC();
 } else {
+  tmpIfelseifelse = false;
   tmpBranchingC();
 }
 $(undefined);

@@ -178,10 +178,10 @@ const tmpLoopBody$1 = function () {
     let tmpLoopRetValue = undefined;
     const tmpLoopBody = function () {
       debugger;
-      let tmpIfTest$1 = tmpDoWhileFlag;
+      const tmpIfTest$1 = tmpDoWhileFlag;
       const tmpBranchingC = function () {
         debugger;
-        if (tmpIfTest$1) {
+        if (tmpIfelseifelse) {
           tmpDoWhileFlag = false;
           $('loop');
           const tmpReturnArg$1 = $(100, 'return');
@@ -193,11 +193,13 @@ const tmpLoopBody$1 = function () {
           return undefined;
         }
       };
+      let tmpIfelseifelse = undefined;
       if (tmpIfTest$1) {
+        tmpIfelseifelse = true;
         tmpBranchingC();
         return undefined;
       } else {
-        tmpIfTest$1 = $(true);
+        tmpIfelseifelse = $(true);
         tmpBranchingC();
         return undefined;
       }

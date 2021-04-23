@@ -13,6 +13,7 @@ import { ifReduction } from './phase2ifreduction.mjs';
 import { inlineCommonReturns } from './phase2commonreturn.mjs';
 import { dropUnusedReturns } from './phase2unusedreturns.mjs';
 import { singleScopeTdz } from './phase2single_scope_tdz.mjs';
+import { ifelseifelse } from './phase2ifelseifelse.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -85,6 +86,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const dropped = dropUnusedReturns(fdata);
   if (dropped) return dropped;
+
+  const ifelsed = ifelseifelse(fdata);
+  if (ifelsed) return ifelsed;
 
   const deduced = ifReduction(fdata);
   if (deduced) return deduced;

@@ -113,10 +113,10 @@ let tmpLoopRetCode = true;
 let tmpLoopRetValue = undefined;
 const tmpLoopBody = function () {
   debugger;
-  let tmpIfTest = tmpDoWhileFlag;
+  const tmpIfTest = tmpDoWhileFlag;
   const tmpBranchingC = function () {
     debugger;
-    if (tmpIfTest) {
+    if (tmpIfelseifelse) {
       tmpDoWhileFlag = false;
       const tmpReturnArg$1 = $(1, 'return');
       tmpLoopRetCode = undefined;
@@ -127,11 +127,13 @@ const tmpLoopBody = function () {
       return undefined;
     }
   };
+  let tmpIfelseifelse = undefined;
   if (tmpIfTest) {
+    tmpIfelseifelse = true;
     tmpBranchingC();
     return undefined;
   } else {
-    tmpIfTest = $(true);
+    tmpIfelseifelse = $(true);
     tmpBranchingC();
     return undefined;
   }

@@ -1,9 +1,9 @@
+// Functions that just call another function and return the results.
+// It's a common artifact, at least, for the single branch normalization
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
 export function pruneTrampolineFunctions(fdata) {
-  // Functions that just call another function and return the results.
-  // It's a common artifact, at least, for the single branch normalization
   group('\n\n\nPruning trampoline functions that only return the call to another function\n');
   const r = _pruneTrampolineFunctions(fdata);
   groupEnd();

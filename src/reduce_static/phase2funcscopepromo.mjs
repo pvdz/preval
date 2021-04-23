@@ -1,3 +1,5 @@
+// Attempt to "promote" functions by moving them up one block, step by step
+
 import walk from '../../lib/walk.mjs';
 import { ALIAS_PREFIX } from '../constants.mjs';
 import {
@@ -19,7 +21,6 @@ import {
 } from '../utils.mjs';
 import { getIdentUsageKind } from '../bindings.mjs';
 
-// Attempt to "promote" functions by moving them up one block, step by step
 // - For each function
 //   - Walk the entire body
 //   - Collect all references to bindings

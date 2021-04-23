@@ -223,18 +223,22 @@ export function after(node, parentNode) {
   }
 }
 
-export function assertNoDupeNodes(node, prop) {
+export function assertNoDupeNodes(node, prop, force = false) {
+  if (!force && !VERBOSE_TRACING) return; // Disable this for large inputs but keep it for tests
   // Assert AST contains no duplicate node objects
+  const refset = new Set();
   const map = new Map();
   walk(
     (node, down, type, path) => {
       if (!node || !node.$p) return;
       if (down) {
         if (map.has(node.$p.pid)) {
-          console.dir(node, { depth: null });
-          console.log('previous parent:', map.get(node.$p.pid));
-          console.log('current  parent:', path.nodes[path.nodes.length - 2]);
-          console.log('truncated node:', node);
+          ASSERT(refset.has(node), 'et tu? make sure ids are not re-used and then trigger this');
+          console.log('(assertion triggered; debug data commented out)');
+          //console.dir(node, { depth: null });
+          //console.log('previous parent:', map.get(node.$p.pid));
+          //console.log('current  parent:', path.nodes[path.nodes.length - 2]);
+          //console.log('truncated node:', node);
           ASSERT(
             false,
             'every node should appear once in the ast. if this triggers then there is a transform that is injecting the same node twice',
@@ -242,6 +246,7 @@ export function assertNoDupeNodes(node, prop) {
           );
         }
         map.set(node.$p.pid, path.nodes[path.nodes.length - 2]);
+        refset.add(node);
       }
     },
     node,

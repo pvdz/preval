@@ -512,6 +512,7 @@ export function createReadRef(obj) {
     blockBodies, // arrays of statements that is block.body or program.body. 1:1 with blockIndexes
     blockIndexes, // Indexes per each element of blockChain and blockBodies
     ifChain,
+    funcChain,
     innerLoop,
     ...rest
   } = obj;
@@ -521,10 +522,11 @@ export function createReadRef(obj) {
   ASSERT(typeof innerLoop === 'number');
   ASSERT(blockChain);
   ASSERT(blockIds instanceof Array);
-  ASSERT(blockBodies instanceof Array && blockBodies.every(a => Array.isArray(a)));
+  ASSERT(blockBodies instanceof Array && blockBodies.every((a) => Array.isArray(a)));
   ASSERT(blockIndexes instanceof Array);
   ASSERT(blockBodies.length === blockIndexes.length, 'each block body should have an index', blockBodies, blockIndexes);
   ASSERT(ifChain);
+  ASSERT(funcChain);
 
   return {
     action: 'read',
@@ -546,6 +548,7 @@ export function createReadRef(obj) {
     blockBodies,
     blockIndexes,
     ifChain,
+    funcChain,
     innerLoop,
   };
 }
@@ -566,6 +569,7 @@ export function createWriteRef(obj) {
     blockBodies, // arrays of statements that is block.body or program.body. 1:1 with blockIndexes
     blockIndexes, // Indexes per each element of blockChain and blockBodies
     ifChain,
+    funcChain,
     innerLoop,
     ...rest
   } = obj;
@@ -574,10 +578,11 @@ export function createWriteRef(obj) {
   ASSERT(typeof innerLoop === 'number');
   ASSERT(blockChain);
   ASSERT(blockIds instanceof Array);
-  ASSERT(blockBodies instanceof Array && blockBodies.every(a => Array.isArray(a)));
+  ASSERT(blockBodies instanceof Array && blockBodies.every((a) => Array.isArray(a)));
   ASSERT(blockIndexes instanceof Array);
   ASSERT(blockBodies.length === blockIndexes.length, 'each block body should have an index', blockBodies, blockIndexes);
   ASSERT(ifChain);
+  ASSERT(funcChain);
 
   return {
     action: 'write',
@@ -596,6 +601,7 @@ export function createWriteRef(obj) {
     blockBodies,
     blockIndexes,
     ifChain,
+    funcChain,
     innerLoop,
   };
 }

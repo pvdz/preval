@@ -84,7 +84,22 @@ let f = function () {
 ## Output
 
 `````js filename=intro
-
+const tmpBranchingC = function () {
+  debugger;
+  $(1);
+  return undefined;
+};
+const f = function () {
+  debugger;
+  if ($) {
+    f();
+    tmpBranchingC();
+    return undefined;
+  } else {
+    tmpBranchingC();
+    return undefined;
+  }
+};
 `````
 
 ## Globals

@@ -284,6 +284,7 @@ function attemptConstantInlining(meta, fdata) {
             blockIndexes: oldRead.blockIndexes,
             blockBodies: oldRead.blockBodies,
             ifChain: oldRead.ifChain,
+            funcChain: oldRead.funcChain,
             innerLoop: oldRead.innerLoop,
           }),
         );

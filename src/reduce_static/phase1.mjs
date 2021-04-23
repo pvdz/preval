@@ -110,6 +110,10 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         blockStack.push(node); // Do we assign node or node.body?
         node.$p.promoParent = null;
         node.$p.blockChain = '0';
+        node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
+        node.$p.ownBindings = new Set();
+        node.$p.referencedNames = new Set();
+        node.$p.paramNames = new Set();
         loopStack.push(0);
         break;
       }
@@ -221,6 +225,9 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         loopStack.push(0);
 
         node.$p.blockChain = blockIds.join(',');
+        node.$p.ownBindings = new Set();
+        node.$p.referencedNames = new Set();
+        node.$p.paramNames = new Set();
 
         if (firstAfterParse) {
           vlog('Converting parameter nodes to special Param nodes');
@@ -241,7 +248,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         );
 
         if (parentNode.type === 'VariableDeclarator' && path.nodes[path.nodes.length - 3].kind === 'const') {
-          vlog('Bound as a constant as: `' + parentNode.id.name + '`')
+          vlog('Bound as a constant as: `' + parentNode.id.name + '`');
           node.$p.uniqueName = parentNode.id.name;
         }
 
@@ -249,6 +256,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
         funcStack.push(node);
         thisStack.push(node);
+
+        node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
         break;
       }
       case 'FunctionExpression:after': {
@@ -412,6 +421,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             } while (true);
           }
 
+          const pfuncNode = funcStack[funcStack.length - 1];
+
           const innerLoop = loopStack[loopStack.length - 1];
           vlog('innerLoop:', innerLoop);
 
@@ -432,7 +443,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 grandIndex,
                 blockBody,
                 blockIndex,
-                pfuncNode: funcStack[funcStack.length - 1],
+                pfuncNode,
                 node,
                 rwCounter: ++readWriteCounter,
                 scope: currentScope.$p.pid,
@@ -441,9 +452,12 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 blockBodies: blockBodies.slice(0),
                 blockIndexes: blockIndexes.slice(0),
                 ifChain: ifIds.slice(0),
+                funcChain: funcStack.map((n) => n.$p.pid).join(','),
                 innerLoop,
               }),
             );
+
+            pfuncNode.$p.referencedNames.add(name);
           }
           if (kind === 'write') {
             const blockBody = blockNode.body;
@@ -453,6 +467,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               ASSERT(parentProp === 'id', 'the read check above should cover the prop=init case');
               vlog('- Adding decl write');
 
+              pfuncNode.$p.ownBindings.add(name);
+
               meta.writes.unshift(
                 createWriteRef({
                   kind: 'var',
@@ -461,7 +477,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   parentIndex,
                   blockBody,
                   blockIndex,
-                  pfuncNode: funcStack[funcStack.length - 1],
+                  pfuncNode,
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
@@ -470,6 +486,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   blockBodies: blockBodies.slice(0),
                   blockIndexes: blockIndexes.slice(0),
                   ifChain: ifIds.slice(0),
+                  funcChain: funcStack.map((n) => n.$p.pid).join(','),
                   innerLoop,
                 }),
               );
@@ -489,7 +506,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   parentIndex,
                   blockBody,
                   blockIndex,
-                  pfuncNode: funcStack[funcStack.length - 1],
+                  pfuncNode,
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
@@ -498,6 +515,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   blockBodies: blockBodies.slice(0),
                   blockIndexes: blockIndexes.slice(0),
                   ifChain: ifIds.slice(0),
+                  funcChain: funcStack.map((n) => n.$p.pid).join(','),
                   innerLoop,
                 }),
               );
@@ -516,7 +534,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   parentIndex,
                   blockBody,
                   blockIndex,
-                  pfuncNode: funcStack[funcStack.length - 1],
+                  pfuncNode,
                   node,
                   rwCounter: ++readWriteCounter,
                   scope: currentScope.$p.pid,
@@ -525,6 +543,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   blockBodies: blockBodies.slice(0),
                   blockIndexes: blockIndexes.slice(0),
                   ifChain: ifIds.slice(0),
+                  funcChain: funcStack.map((n) => n.$p.pid).join(','),
                   innerLoop,
                 }),
               );
@@ -623,6 +642,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           const declParam = funcNode.params[node.index];
           ASSERT(declParam.name === node.name, 'the usage of a Param should map back to the decl', node, declParam);
           declParam.$p.ref = { parentNode, parentProp, parentIndex, node, name: parentNode.id.name };
+          funcNode.$p.paramNames.add(parentNode.id.name);
         } else {
           vlog('This is the decl');
         }

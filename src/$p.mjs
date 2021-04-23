@@ -14,7 +14,7 @@ export function $p() {
 
     // Add properties here in a comment but not actually (you would do this for perf) because it makes debugging more noisy
 
-    // phase1 (these props may not exist due to new nodes)
+    // prepare/normalize (these props may not exist due to new nodes)
     // - lexScopeId // number. Debug. Every node with a $scope gets its own unique lexical scope id (phase1)
     // - nameMapping: undefined, // Map. Scope tracking for nodes that have a scope
     // - thisAccess: undefined, // boolean. For functions (not arrows), whether it access `this` anywhere in its own scope. Includes whether nested arrows access this in its scope. But not nested functions
@@ -22,10 +22,10 @@ export function $p() {
     // - originalLabelName // string. Name of a label before making it unique
     // - isForAlias // bool. is this identifier used as part of the alias for this/arguments/arguments.length ?
     // - funcHeader // bool. during normalize_once, this prevents a debugger statement from being deleted if it isn't ours
-
-    // phase2 (these props should exist after phase2... even on new nodes)
     // - hoistedVars // Array<[node, parent, prop, index, exportIndex]> Allows a one-time pass at hoisting by passing on all relevant information through this array
     // - isBlockFuncDecl // bool. Is the node that is a FunctionDeclaration nested in a block (but not a func body)?
+
+    // reduce/phase2 (these props should exist after phas1... even on new nodes)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations
     // - readsArgumentsLen // bool. Does it read `arguments.length`?
     // - readsArgumentsAny // bool. Does it read the implicit `arguments` in any way?
@@ -42,5 +42,9 @@ export function $p() {
     // - oneTimerDirty // bool. Mark a function as having something inlined into it. This invalidates references and requires another phase1 pass before being able to inline the function itself safely.
     // - bodyOffset // number. First body statement after the function header (after the debugger statement). Discovered while walking a function, not maintained
     // - promoParent // node|null. The parent node of this block. Used for function scope promotion.
+    // - ownBindings // Set<string>. Set of all local bindings in a function scope (may be defined in a block). Excludes the custom $$1 params names.
+    // - referencedNames // Set<string>. All bindings referenced in this or nested functions that were not local bindings to any of those funcs. This set includes implicits, built-ins, closures, and local bindings. Excludes `arguments` and the custom $$1 param names.
+    // - blockChain // string. For functions, the block chain of this function, including the trailing zero for this function. Same as for refs.
+    // - funcChain // string. For functions, the ids of parent functions (and global) up to and including this function. Same as for refs.
   };
 }

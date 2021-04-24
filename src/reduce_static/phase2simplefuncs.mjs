@@ -1,6 +1,6 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { isComplexNode } from '../ast.mjs';
+import { resolveNodeAgainstParams } from '../bindings.mjs';
 
 export function inlineSimpleFuncCalls(fdata) {
   group('\n\n\nChecking for simple func calls that can be inlined');
@@ -85,7 +85,7 @@ function _inlineSimpleFuncCalls(fdata) {
                   );
 
                   const right = expr.right;
-                  if (!isComplexNode(right)) {
+                  if (!AST.isComplexNode(right)) {
                     const [resolvedLeft, blockingSpread, paramIndex, isRest] = resolveNodeAgainstParams(right, read.parentNode, funcNode);
 
                     if (blockingSpread) {
@@ -137,7 +137,7 @@ function _inlineSimpleFuncCalls(fdata) {
                     break;
                   } else if (right.type === 'UnaryExpression') {
                     // Right is mostly simple but may be a member expression?
-                    if (!isComplexNode(right.argument)) {
+                    if (!AST.isComplexNode(right.argument)) {
                       const [resolvedLeft, blockingSpread, paramIndex, isRest] = resolveNodeAgainstParams(
                         right.argument,
                         read.parentNode,
@@ -206,7 +206,7 @@ function _inlineSimpleFuncCalls(fdata) {
                   } else if (right.type === 'BinaryExpression') {
                     const lhs = right.left;
                     const rhs = right.right;
-                    if (!isComplexNode(lhs) && !isComplexNode(rhs)) {
+                    if (!AST.isComplexNode(lhs) && !AST.isComplexNode(rhs)) {
                       const [resolvedLeft, blockingSpread, paramIndex, isRest] = resolveNodeAgainstParams(lhs, read.parentNode, funcNode);
                       const [resolvedLeft2, blockingSpread2, paramIndex2, isRest2] = resolveNodeAgainstParams(
                         rhs,
@@ -346,85 +346,4 @@ function _inlineSimpleFuncCalls(fdata) {
   }
 
   log('Inlined function calls: 0.');
-}
-
-function resolveNodeAgainstParams(node, callNode, funcNode) {
-  // If given node is an identifier, check if it's a parameter of given function node.
-  // If it is, resolve the argument at the same index of the parameter being referenced.
-  // If rest, attempt to resolve this in a special way.
-  // If node is a literal, or the identifier is a builtin or something, just keep it as is.
-  // The returned node should be cloned / fresh.
-  // If spread/rest problems block the transform then the returned node will be null.
-
-  if (node.type === 'Identifier') {
-    ASSERT(callNode.type === 'CallExpression');
-    ASSERT(funcNode.type === 'FunctionExpression');
-
-    const name = node.name;
-    let paramIndex = -1;
-    let isRest = false; // Special care for the rest param
-    funcNode.params.some((pnode, pi) => {
-      ASSERT(pnode.type === 'Param');
-      if (name === pnode.$p.ref?.name) {
-        if (pnode.rest) {
-          isRest = true;
-        }
-
-        paramIndex = pi;
-        return true;
-      }
-    });
-
-    if (paramIndex < 0) {
-      return [AST.cloneSimple(node), false, paramIndex, isRest];
-    }
-
-    // Verify whether the call uses a spread before the paramIndex. If so we must bail here.
-
-    const args = callNode['arguments'];
-    let blockingSpread = false;
-    args.some((anode, ai) => {
-      if (isRest && ai === paramIndex) {
-        return true; // Spread can cover this
-      }
-      if (anode.type === 'SpreadElement') {
-        blockingSpread = true;
-        return true;
-      }
-      if (ai === paramIndex) {
-        return true;
-      }
-    });
-
-    if (blockingSpread) {
-      vlog('Cannot inline this call because the call uses a spread that covers the param used in the assignment to inline');
-      return [null, true, paramIndex, isRest];
-    }
-
-    if (isRest) {
-      // This ident is the rest param. We can hack something together to make this work. Pretty specific case tho.
-
-      return [
-        AST.arrayExpression(
-          // Note: all args must be simple although some may be spread they must still be simple too
-          args.slice(paramIndex).map((anode) => {
-            if (anode.type === 'SpreadElement') {
-              return AST.spreadElement(AST.cloneSimple(anode.argument));
-            }
-            return AST.cloneSimple(anode);
-          }),
-        ),
-        false,
-        paramIndex,
-        true,
-      ];
-    }
-
-    // The function contained an assignment that uses a param that is not a rest
-    // The call did not have a spread before or on the index of the used param
-
-    return [AST.cloneSimple(args[paramIndex] || AST.identifier('undefined')), false, paramIndex, false];
-  }
-
-  return [AST.cloneSimple(node), false, -1, false];
 }

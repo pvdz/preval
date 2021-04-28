@@ -16,6 +16,7 @@ import { singleScopeTdz } from './phase2single_scope_tdz.mjs';
 import { letHoisting } from './phase2lethoisting.mjs';
 import { ifelseifelse } from './phase2ifelseifelse.mjs';
 import { staticLets } from './phase2staticlets.mjs';
+import { ifCallIf } from './phase2ifcallif.mjs';
 import { assignHoisting } from './phase2assignhoisting.mjs';
 
 // Things to do
@@ -101,6 +102,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const ifelsed = ifelseifelse(fdata);
   if (ifelsed) return ifelsed;
+
+  const ifcallifed = ifCallIf(fdata);
+  if (ifcallifed) return ifcallifed;
 
   const deduced = ifReduction(fdata);
   if (deduced) return deduced;

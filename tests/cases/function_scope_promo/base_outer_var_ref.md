@@ -179,8 +179,7 @@ const h = function () {
       const tmpReturnArg$7 = g();
       return tmpReturnArg$7;
     } else {
-      const tmpReturnArg$15 = g();
-      return tmpReturnArg$15;
+      return x;
     }
   };
   const x = $(10);
@@ -191,8 +190,7 @@ const h = function () {
     const tmpReturnArg$17 = f();
     return tmpReturnArg$17;
   } else {
-    const tmpReturnArg$25 = f();
-    return tmpReturnArg$25;
+    return x;
   }
 };
 const tmpCalleeParam = h();

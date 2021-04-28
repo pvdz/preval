@@ -109,16 +109,7 @@ const f = function () {
   if ($) {
     const x = $(5);
     const tmpSSA_x = x + 1;
-    const g = function () {
-      debugger;
-      if ($) {
-        $(tmpSSA_x);
-        return undefined;
-      } else {
-        return undefined;
-      }
-    };
-    g();
+    $(tmpSSA_x);
     return undefined;
   } else {
     return undefined;

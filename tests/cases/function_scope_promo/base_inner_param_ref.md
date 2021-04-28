@@ -179,8 +179,7 @@ const tmpBranchingC$3 = function () {
     const tmpReturnArg$1 = g();
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$5 = g();
-    return tmpReturnArg$5;
+    return tmpCalleeParam;
   }
 };
 const h = function () {

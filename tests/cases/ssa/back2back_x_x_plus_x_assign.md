@@ -114,20 +114,11 @@ if ($) {
 const f = function () {
   debugger;
   if ($) {
-    const g = function () {
-      debugger;
-      if ($) {
-        $(x);
-        return undefined;
-      } else {
-        return undefined;
-      }
-    };
-    let x = $(5);
+    const x = $(5);
     $(x);
-    x = $(10);
-    x = x + x;
-    g();
+    const tmpSSA_x = $(10);
+    const tmpSSA_x$1 = tmpSSA_x + tmpSSA_x;
+    $(tmpSSA_x$1);
     return undefined;
   } else {
     return undefined;

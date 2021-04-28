@@ -87,16 +87,7 @@ const f = function () {
     const x = $(2);
     const tmpSSA_x = [1, x, 2, x, 3, x, 4, x];
     $(tmpSSA_x);
-    const g = function () {
-      debugger;
-      if ($) {
-        $(tmpSSA_x);
-        return undefined;
-      } else {
-        return undefined;
-      }
-    };
-    g();
+    $(tmpSSA_x);
     return undefined;
   } else {
     return undefined;

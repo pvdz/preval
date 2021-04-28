@@ -89,7 +89,7 @@ if (condition) {
   f();
 } else {
   tmpIfelseifelse = false;
-  f();
+  $('b');
 }
 `````
 

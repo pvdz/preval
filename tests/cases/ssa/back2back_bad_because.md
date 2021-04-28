@@ -90,19 +90,10 @@ if ($) {
 const f = function () {
   debugger;
   if ($) {
-    const g = function () {
-      debugger;
-      if ($) {
-        const tmpReturnArg = $(x);
-        return tmpReturnArg;
-      } else {
-        return undefined;
-      }
-    };
-    let x = $(5);
-    x = g();
-    g();
-    $(x);
+    const x = $(5);
+    const tmpSSA_x = $(x);
+    $(tmpSSA_x);
+    $(tmpSSA_x);
     return undefined;
   } else {
     return undefined;

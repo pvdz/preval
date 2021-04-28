@@ -121,7 +121,7 @@ if (a) {
   a = $(tmpCalleeParam$3);
   tmpBranchingC();
 } else {
-  tmpBranchingC();
+  tmpBranchingC$1();
 }
 $(undefined);
 `````

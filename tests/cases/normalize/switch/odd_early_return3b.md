@@ -72,17 +72,8 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const g = function () {
-  debugger;
-  if ($) {
-    $ <= 3;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  g();
+  $ <= 3;
 } else {
 }
 `````

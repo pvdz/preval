@@ -128,7 +128,7 @@ if (tmpIfTest) {
   tmpBranchingC();
 } else {
   tmpIfelseifelse = false;
-  tmpBranchingC();
+  tmpBranchingC$1();
 }
 $(undefined);
 `````

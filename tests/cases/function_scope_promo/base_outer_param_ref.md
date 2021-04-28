@@ -181,8 +181,7 @@ const h = function ($$0) {
       const tmpReturnArg$7 = g();
       return tmpReturnArg$7;
     } else {
-      const tmpReturnArg$15 = g();
-      return tmpReturnArg$15;
+      return x;
     }
   };
   if ($) {
@@ -192,8 +191,7 @@ const h = function ($$0) {
     const tmpReturnArg$17 = f();
     return tmpReturnArg$17;
   } else {
-    const tmpReturnArg$25 = f();
-    return tmpReturnArg$25;
+    return x;
   }
 };
 const tmpCalleeParam$1 = $(10);

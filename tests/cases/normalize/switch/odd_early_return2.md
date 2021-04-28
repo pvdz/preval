@@ -99,26 +99,8 @@ $(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const B = function () {
-  debugger;
-  if ($) {
-    A();
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const A = function () {
-  debugger;
-  if ($) {
-    $(2);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  B();
+  $(2);
 } else {
 }
 $(undefined);

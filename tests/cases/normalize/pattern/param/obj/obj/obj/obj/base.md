@@ -129,7 +129,7 @@ const tmpBranchingC = function () {
   }
 };
 if (objPatternCrashTest) {
-  tmpBranchingC();
+  objPatternCrashTest = objPatternNoDefault$3.cannotDestructureThis;
 } else {
   objPatternCrashTest = objPatternNoDefault$3 === null;
   tmpBranchingC();

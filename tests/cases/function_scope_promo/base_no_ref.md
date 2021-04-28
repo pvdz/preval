@@ -177,7 +177,7 @@ const f = function () {
     const tmpReturnArg$9 = g();
     return tmpReturnArg$9;
   } else {
-    const tmpReturnArg$17 = g();
+    const tmpReturnArg$17 = $(10);
     return tmpReturnArg$17;
   }
 };
@@ -190,7 +190,7 @@ const h = function () {
     const tmpReturnArg$19 = f();
     return tmpReturnArg$19;
   } else {
-    const tmpReturnArg$27 = f();
+    const tmpReturnArg$27 = $(10);
     return tmpReturnArg$27;
   }
 };

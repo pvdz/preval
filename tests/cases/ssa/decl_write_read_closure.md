@@ -78,28 +78,8 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    const g = function () {
-      debugger;
-      if ($) {
-        x = 10;
-        return undefined;
-      } else {
-        return undefined;
-      }
-    };
-    let x = 20;
-    g();
-    return x;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  const tmpCalleeParam = f();
-  $(tmpCalleeParam);
+  $(10);
 } else {
 }
 `````

@@ -86,7 +86,7 @@ const f = function () {
 let tmpIfelseifelse = undefined;
 if (condition) {
   tmpIfelseifelse = true;
-  f();
+  $('a');
 } else {
   tmpIfelseifelse = $(false);
   f();

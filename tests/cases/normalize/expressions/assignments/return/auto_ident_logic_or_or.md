@@ -115,8 +115,7 @@ const f = function () {
   const tmpCalleeParam = $(0);
   a = $(tmpCalleeParam);
   if (a) {
-    const tmpReturnArg$13 = tmpBranchingC();
-    return tmpReturnArg$13;
+    return a;
   } else {
     const tmpCalleeParam$3 = $(1);
     a = $(tmpCalleeParam$3);

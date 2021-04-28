@@ -163,7 +163,7 @@ const tmpBranchingC$1 = function () {
   debugger;
   objPatternCrashTest = objPatternAfterDefault === undefined;
   if (objPatternCrashTest) {
-    tmpBranchingC$3();
+    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
     return undefined;
   } else {
     objPatternCrashTest = objPatternAfterDefault === null;

@@ -120,7 +120,7 @@ const tmpBranchingC = function () {
 let tmpIfelseifelse = undefined;
 if (tmpIfTest) {
   tmpIfelseifelse = true;
-  tmpBranchingC();
+  tmpBranchingC$1();
 } else {
   const tmpCalleeParam$3 = $(1);
   tmpIfelseifelse = $(tmpCalleeParam$3);

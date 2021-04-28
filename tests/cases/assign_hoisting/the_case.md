@@ -136,40 +136,13 @@ if ($) {
 const f = function ($$0) {
   const func = $$0;
   debugger;
-  const f$1 = function () {
-    debugger;
-    if ($) {
-      $(a);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  const g = function () {
-    debugger;
-    if ($) {
-      $(b);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  const h = function () {
-    debugger;
-    if ($) {
-      $(c);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
   const a = func(1);
   const b = func(2);
   const c = func(3);
   if ($) {
-    f$1();
-    g();
-    h();
+    $(a);
+    $(b);
+    $(c);
     const tmpReturnArg = [a, b, c];
     return tmpReturnArg;
   } else {

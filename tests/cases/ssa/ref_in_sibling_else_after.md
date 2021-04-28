@@ -93,24 +93,14 @@ if ($) {
 `````js filename=intro
 const f = function () {
   debugger;
-  let x = $(1);
-  const tmpBranchingC = function () {
-    debugger;
-    if ($) {
-      $('if');
-      return undefined;
-    } else {
-      $(x);
-      return undefined;
-    }
-  };
+  const x = $(1);
   if ($) {
-    x = $(2);
-    $(x);
-    tmpBranchingC();
+    const tmpSSA_x = $(2);
+    $(tmpSSA_x);
+    $('if');
     return undefined;
   } else {
-    tmpBranchingC();
+    $(x);
     return undefined;
   }
 };

@@ -132,17 +132,8 @@ const tmpBranchingA = function () {
     return x$1;
   }
 };
-const f = function () {
-  debugger;
-  if ($) {
-    const tmpReturnArg$7 = tmpBranchingA();
-    return tmpReturnArg$7;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  const tmpCalleeParam = f();
+  const tmpCalleeParam = tmpBranchingA();
   $(tmpCalleeParam);
 } else {
 }

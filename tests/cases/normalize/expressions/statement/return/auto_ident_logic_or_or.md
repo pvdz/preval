@@ -112,8 +112,7 @@ const f = function () {
     }
   };
   if (tmpReturnArg) {
-    const tmpReturnArg$13 = tmpBranchingC();
-    return tmpReturnArg$13;
+    return tmpReturnArg;
   } else {
     const tmpCalleeParam$3 = $(1);
     tmpReturnArg = $(tmpCalleeParam$3);

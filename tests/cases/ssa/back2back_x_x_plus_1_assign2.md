@@ -138,28 +138,18 @@ if ($) {
 const f = function () {
   debugger;
   if ($) {
-    const g = function () {
-      debugger;
-      if ($) {
-        $(x);
-        return undefined;
-      } else {
-        return undefined;
-      }
-    };
-    let x = $(5);
+    const x = $(5);
     $(x);
     const tmpCalleeParam = {
       toString() {
         debugger;
         $('tostring');
-        x = 20;
         return 'hi';
       },
     };
-    x = $(tmpCalleeParam);
-    x = x + 1;
-    g();
+    const tmpSSA_x = $(tmpCalleeParam);
+    const tmpSSA_x$1 = tmpSSA_x + 1;
+    $(tmpSSA_x$1);
     return undefined;
   } else {
     return undefined;

@@ -120,8 +120,7 @@ const f = function () {
     const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$15 = tmpBranchingC();
-    return tmpReturnArg$15;
+    return a;
   }
 };
 const tmpCalleeParam$9 = f();

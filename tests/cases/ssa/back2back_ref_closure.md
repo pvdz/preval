@@ -86,15 +86,6 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const g = function () {
-  debugger;
-  if ($) {
-    $(tmpSSA_x);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 const tmpSSA_x = function () {
   debugger;
   return undefined;
@@ -102,7 +93,7 @@ const tmpSSA_x = function () {
 const f = function () {
   debugger;
   if ($) {
-    g();
+    $(tmpSSA_x);
     $(tmpSSA_x);
     return undefined;
   } else {

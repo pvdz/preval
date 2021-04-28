@@ -191,7 +191,7 @@ const h = function () {
     const tmpReturnArg$17 = f();
     return tmpReturnArg$17;
   } else {
-    const tmpReturnArg$25 = f();
+    const tmpReturnArg$25 = g();
     return tmpReturnArg$25;
   }
 };

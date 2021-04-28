@@ -71,17 +71,8 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    $(20);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  f();
+  $(20);
   $(undefined);
 } else {
 }

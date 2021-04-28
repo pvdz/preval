@@ -67,17 +67,8 @@ const x = function () {
   debugger;
   return undefined;
 };
-const f = function () {
-  debugger;
-  if ($) {
-    $(x);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  f();
+  $(x);
 } else {
 }
 `````

@@ -98,17 +98,8 @@ const g = function () {
     return undefined;
   }
 };
-const f = function () {
-  debugger;
-  if ($) {
-    g();
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  f();
+  g();
 } else {
 }
 `````

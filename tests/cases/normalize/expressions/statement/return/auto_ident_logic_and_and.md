@@ -117,8 +117,7 @@ const f = function () {
     const tmpReturnArg$1 = tmpBranchingC();
     return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$15 = tmpBranchingC();
-    return tmpReturnArg$15;
+    return tmpReturnArg;
   }
 };
 const a = { a: 999, b: 1000 };

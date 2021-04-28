@@ -265,17 +265,8 @@ const tmpBranchingA$1 = function () {
     return undefined;
   }
 };
-const f = function () {
-  debugger;
-  if ($) {
-    tmpBranchingA$1();
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  f();
+  tmpBranchingA$1();
 } else {
 }
 `````

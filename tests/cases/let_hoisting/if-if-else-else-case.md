@@ -145,7 +145,7 @@ const f = function () {
     return undefined;
   } else {
     tmpIfelseifelse = false;
-    g();
+    $('B');
     return undefined;
   }
 };

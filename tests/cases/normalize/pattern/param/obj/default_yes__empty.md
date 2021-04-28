@@ -125,7 +125,7 @@ const tmpBranchingC$1 = function () {
 const bindingPatternObjRoot = $('pass');
 let objPatternCrashTest = bindingPatternObjRoot === undefined;
 if (objPatternCrashTest) {
-  tmpBranchingC$1();
+  objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
 } else {
   objPatternCrashTest = bindingPatternObjRoot === null;
   tmpBranchingC$1();

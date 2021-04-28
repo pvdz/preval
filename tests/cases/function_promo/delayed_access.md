@@ -70,18 +70,9 @@ if ($) {
 `````js filename=intro
 const f = function () {
   debugger;
-  const g = function () {
-    debugger;
-    if ($) {
-      $(x);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
   const x = $('x');
   if ($) {
-    g();
+    $(x);
     return undefined;
   } else {
     return undefined;

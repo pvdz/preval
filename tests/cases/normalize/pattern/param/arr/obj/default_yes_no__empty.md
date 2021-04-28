@@ -134,7 +134,7 @@ const tmpBranchingC = function () {
   debugger;
   objPatternCrashTest = arrPatternStep === undefined;
   if (objPatternCrashTest) {
-    tmpBranchingC$1();
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
     return undefined;
   } else {
     objPatternCrashTest = arrPatternStep === null;

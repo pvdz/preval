@@ -128,7 +128,7 @@ const tmpBranchingC = function () {
   }
 };
 if (objPatternCrashTest) {
-  tmpBranchingC();
+  objPatternCrashTest = arrPatternStep$5.cannotDestructureThis;
 } else {
   objPatternCrashTest = arrPatternStep$5 === null;
   tmpBranchingC();

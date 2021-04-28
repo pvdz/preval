@@ -74,18 +74,9 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const g = function () {
-  debugger;
-  if ($) {
-    return foo;
-  } else {
-    return undefined;
-  }
-};
 const foo = $();
 if ($) {
-  const tmpCalleeParam = g();
-  $(tmpCalleeParam);
+  $(foo);
 } else {
 }
 `````

@@ -126,18 +126,8 @@ const tmpBranchingC = function () {
   return undefined;
 };
 let x = 1;
-const f = function () {
-  debugger;
-  if ($) {
-    tmpBranchingA();
-    return undefined;
-  } else {
-    tmpBranchingC();
-    return undefined;
-  }
-};
 if ($) {
-  f();
+  tmpBranchingA();
   $(x);
 } else {
 }

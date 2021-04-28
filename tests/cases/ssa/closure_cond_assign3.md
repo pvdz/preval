@@ -86,26 +86,8 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpBranchingC = function () {
-    debugger;
-    if ($) {
-      $(x);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
   const x = $();
-  const g = function () {
-    debugger;
-    if ($) {
-      tmpBranchingC();
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  g();
+  $(x);
 } else {
 }
 `````

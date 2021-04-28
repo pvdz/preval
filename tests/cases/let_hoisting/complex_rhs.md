@@ -91,18 +91,9 @@ const danger = function () {
     return undefined;
   }
 };
-const f = function () {
-  debugger;
-  if ($) {
-    $(x);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 let x = danger();
 if ($) {
-  f();
+  $(x);
   x = $('do not inline me');
 } else {
 }

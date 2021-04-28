@@ -169,12 +169,11 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   log();
 
   if (options.logPasses) {
-    log('Logging current state to disk...');
+    console.log('--out: Logging first normalized state to disk...');
     allFileNames.forEach((fname, i) => {
-      fs.writeFileSync(
-        path.join(options.logDir, 'preval.pass001.f' + i + '.normalized.log.js'),
-        '// Normalized output after one pass [' + fname + ']\n' + contents.normalized[fname],
-      );
+      const f = path.join(options.logDir, 'preval.pass001.f' + i + '.normalized.log.js');
+      console.log('-', f, '(', contents.normalized[fname].length, 'bytes)');
+      fs.writeFileSync(f, '// Normalized output after one pass [' + fname + ']\n' + contents.normalized[fname]);
     });
   }
 
@@ -241,11 +240,9 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         const outCode = tmat(fdata.tenkoOutput.ast, true);
 
         if (options.logPasses) {
-          log('Logging current result to disk...');
-          fs.writeFileSync(
-            path.join(options.logDir, 'preval.pass' + String(passes).padStart(3, '0') + '.f' + fi + '.result.log.js'),
-            '// Resulting output after one pass [' + fname + ']\n' + outCode,
-          );
+          const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(3, '0') + '.f' + fi + '.result.log.js');
+          console.log('--out: Logging current result to disk:', f, '(', outCode.length, 'bytes)');
+          fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n' + outCode);
         }
 
         changed = outCode !== inputCode;
@@ -262,13 +259,13 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           inputCode = tmat(fdata.tenkoOutput.ast, true);
 
-          if (options.logPasses) {
-            log('Logging current normalized state to disk...');
-            fs.writeFileSync(
-              path.join(options.logDir, 'preval.pass' + String(passes + 1).padStart(3, '0') + '.f' + String(fi) + '.normalized.log.js'),
-              '// Resulting output after ' + (passes + 1) + ' passes [' + fname + ']\n' + outCode,
-            );
-          }
+          //if (options.logPasses) {
+          //  log('Logging current normalized state to disk...');
+          //  fs.writeFileSync(
+          //    path.join(options.logDir, 'preval.pass' + String(passes + 1).padStart(3, '0') + '.f' + String(fi) + '.normalized.log.js'),
+          //    '// Resulting output after ' + (passes + 1) + ' passes [' + fname + ']\n' + outCode,
+          //  );
+          //}
         } else {
           // Report the implicit globals. Tests should explicitly declare the implicit globals so we can automatically verify
           // that none are accidentally left behind / partially eliminated.

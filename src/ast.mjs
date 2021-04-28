@@ -708,6 +708,34 @@ export function isPrimitive(node) {
   return false;
 }
 
+export function isFalsy(node) {
+  // If this function does not return true, it does not automatically mean it's a truthy. Just that we can't determine it to be falsy.
+  if (node.type === 'Literal' && (node.raw === 'null' || node.value === '' || node.value === false || node.value === 0)) return true;
+  if (node.type === 'Identifier' && (node.name === 'undefined' || node.name === 'NaN')) return true;
+
+  // TODO: expand on this
+
+  return false;
+}
+export function isTruthy(node) {
+  // If this function does not return true, it does not automatically mean it's a falsy. Just that we can't determine it to be truthy.
+  if (node.type === 'Literal') {
+    if (typeof node.value === 'string') return node.value !== '';
+    if (typeof node.value === 'boolean') return node.value === true;
+    if (typeof node.value === 'number') return node.value !== 0;
+    // All other literals are auto truthy I think? What about 0 big int?
+    return true;
+  }
+
+  if (node.type === 'Identifier') {
+    return node.name === 'Infinity'
+  }
+
+  // TODO: expand on this
+
+  return false;
+}
+
 export function getPrimitiveValue(node) {
   ASSERT(isPrimitive(node));
 

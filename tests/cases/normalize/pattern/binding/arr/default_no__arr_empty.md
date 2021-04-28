@@ -34,7 +34,7 @@ $('bad');
 
 `````js filename=intro
 [...1];
-$('bad');
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

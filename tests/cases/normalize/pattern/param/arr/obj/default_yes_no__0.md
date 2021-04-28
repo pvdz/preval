@@ -116,40 +116,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpBranchingC$1 = function () {
-  debugger;
-  if (objPatternCrashTest) {
-    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const arrPatternSplat = [...0];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-let objPatternCrashTest = undefined;
-const tmpBranchingC = function () {
-  debugger;
-  objPatternCrashTest = arrPatternStep === undefined;
-  if (objPatternCrashTest) {
-    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-    return undefined;
-  } else {
-    objPatternCrashTest = arrPatternStep === null;
-    tmpBranchingC$1();
-    return undefined;
-  }
-};
-if (tmpIfTest) {
-  arrPatternStep = $('fail');
-  tmpBranchingC();
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-  tmpBranchingC();
-}
-$('bad');
+[...0];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

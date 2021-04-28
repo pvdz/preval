@@ -56,7 +56,6 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 b.x = 3;
 b.x = 3;
 b.x = 3;
@@ -64,7 +63,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 [...3];
-$(a, b, 3);
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

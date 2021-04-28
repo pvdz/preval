@@ -69,9 +69,8 @@ const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $('y');
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-const tmpCalleeParam = [...7];
-$(tmpCalleeParam);
-$(7, b, c, 3, 4);
+[...7];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

@@ -31,17 +31,16 @@ let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 const tmpArrElToSpread = -tmpUnaryArg;
 [...tmpArrElToSpread];
-$(a);
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 const tmpArrElToSpread = -tmpUnaryArg;
 [...tmpArrElToSpread];
-$(a);
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

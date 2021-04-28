@@ -43,18 +43,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...undefined];
-const arrPatternStep = arrPatternSplat[0];
-let objPatternCrashTest = arrPatternStep === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = arrPatternStep === null;
-}
-if (objPatternCrashTest) {
-  arrPatternStep.cannotDestructureThis;
-} else {
-}
-$('bad');
+[...undefined];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

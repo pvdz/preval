@@ -94,9 +94,8 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-const tmpCalleeParam = [...3];
-$(tmpCalleeParam);
-$(3, b, 3);
+[...3];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

@@ -42,11 +42,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 [...1];
-$(a, 1);
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

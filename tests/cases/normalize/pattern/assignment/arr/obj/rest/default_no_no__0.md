@@ -39,18 +39,13 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...0];
-const arrPatternStep = arrPatternSplat[0];
-const tmpCalleeParam$1 = [];
-x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
-$(x);
+[...0];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None
 
 ## Result
 

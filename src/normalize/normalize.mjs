@@ -1,6 +1,17 @@
 import walk from '../../lib/walk.mjs';
 
-import { VERBOSE_TRACING, ASSUME_BUILTINS, DCE_ERROR_MSG, BUILTIN_REST_HANDLER_NAME, FRESH, OLD, RED, BLUE, RESET } from '../constants.mjs';
+import {
+  VERBOSE_TRACING,
+  ASSUME_BUILTINS,
+  DCE_ERROR_MSG,
+  ERR_MSG_ILLEGAL_ARRAY_SPREAD,
+  BUILTIN_REST_HANDLER_NAME,
+  FRESH,
+  OLD,
+  RED,
+  BLUE,
+  RESET,
+} from '../constants.mjs';
 import {
   ASSERT,
   assertNoDupeNodes,
@@ -4038,8 +4049,8 @@ export function phaseNormalize(fdata, fname) {
 
       case 'ArrayExpression': {
         let inlinedAnySpreads = false;
-        for (let i = 0; i < node.elements.length; ++i) {
-          const n = node.elements[i];
+        for (let j = 0; j < node.elements.length; ++j) {
+          const n = node.elements[j];
           if (n && n.type === 'SpreadElement') {
             if (n.argument.type === 'Literal' && typeof n.argument.value === 'string') {
               // We can splat the string into individual elements (this could be an intermediate step while inlining constants)
@@ -4048,21 +4059,44 @@ export function phaseNormalize(fdata, fname) {
               example('[..."xyz"];', '["x", "y", "z"];');
               before(n, node);
 
-              node.elements.splice(i, 1, ...[...n.argument.value].map((s) => AST.literal(s)));
+              node.elements.splice(j, 1, ...[...n.argument.value].map((s) => AST.literal(s)));
 
               after(node);
               inlinedAnySpreads = true;
-              --i; // Relevant if the string is empty
+              --j; // Relevant if the string is empty
+            } else if (
+              n.argument.type === 'Literal' || // Can not be string since that was the previous check
+              (n.argument.type === 'Identifier' && ['undefined', 'Infinity', 'NaN'].includes(n.argument.name)) ||
+              (n.argument.type === 'UnaryExpression' && (n.argument.operator === '-' || n.argument.operator === '+')) // Always a number, always a crash
+            ) {
+              if (node.elements.length !== 1 || body[i + 1]?.type !== 'ThrowStatement') {
+                rule('Array spread on non-string literal must result in an error');
+                example('[...500]');
+                example('[...true]');
+                before(n, node);
+
+                ASSERT(
+                  node.elements.slice(0, j).every((n) => !AST.isComplexNode(n.type === 'SpreadElement' ? n.argument : n)),
+                  'prior array elements should already be normalized',
+                );
+                node.elements.length = 0;
+                node.elements.push(n);
+                body.splice(i + 1, 0, AST.throwStatement(AST.literal(ERR_MSG_ILLEGAL_ARRAY_SPREAD)));
+
+                after(node);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
             } else if (n.argument.type === 'ArrayExpression') {
               rule('Array spread on another array should be unlined');
               example('[...[1, 2 ,3]]', '[1, 2, 3]');
               before(n, node);
 
-              node.elements.splice(i, 1, ...n.argument.elements);
+              node.elements.splice(j, 1, ...n.argument.elements);
 
               after(node);
               inlinedAnySpreads = true;
-              --i;
+              --j;
             }
           }
         }

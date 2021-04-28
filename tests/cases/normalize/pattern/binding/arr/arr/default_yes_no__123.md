@@ -44,18 +44,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...1];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = ['fail2'];
-  arrPatternStep = $(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-[...arrPatternStep];
-$('bad');
+[...1];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

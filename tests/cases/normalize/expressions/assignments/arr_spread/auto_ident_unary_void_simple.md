@@ -43,9 +43,8 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = [...undefined];
-$(tmpCalleeParam);
-$(undefined, 1);
+[...undefined];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

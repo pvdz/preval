@@ -48,7 +48,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 [...null];
-$('bad');
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

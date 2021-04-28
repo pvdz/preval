@@ -66,9 +66,8 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-const tmpCalleeParam = [...3];
-$(tmpCalleeParam);
-$(3, b, 3);
+[...3];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

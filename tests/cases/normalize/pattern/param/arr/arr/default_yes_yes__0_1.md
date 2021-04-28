@@ -47,6 +47,7 @@ f(true);
 
 `````js filename=intro
 [...true];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

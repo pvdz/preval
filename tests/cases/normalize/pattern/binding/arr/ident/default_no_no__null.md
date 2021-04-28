@@ -34,9 +34,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...null];
-arrPatternSplat[0];
-$('bad');
+[...null];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

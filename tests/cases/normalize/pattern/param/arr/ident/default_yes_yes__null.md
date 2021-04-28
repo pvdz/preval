@@ -97,14 +97,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpssa2_arrPatternSplat = [...null];
-const tmpssa3_arrPatternBeforeDefault = tmpssa2_arrPatternSplat[0];
-const tmpIfTest$1 = tmpssa3_arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  $('fail');
-} else {
-}
-$('bad');
+[...null];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

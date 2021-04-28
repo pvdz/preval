@@ -75,9 +75,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const tmpssa2_arrPatternSplat = [...1];
-const tmpssa2_x = tmpssa2_arrPatternSplat.slice(0);
-$(tmpssa2_x);
+[...1];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

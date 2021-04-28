@@ -46,9 +46,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = [...60];
-$(tmpCalleeParam);
-$(60);
+[...60];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

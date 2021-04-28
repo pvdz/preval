@@ -39,11 +39,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...null];
-const arrPatternStep = arrPatternSplat[0];
-const tmpCalleeParam$1 = [];
-const x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
-$(x);
+[...null];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

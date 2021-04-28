@@ -129,37 +129,8 @@ tmpCallCallee$7(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  let arrPatternStep = undefined;
-  const tmpBranchingC$1 = function () {
-    debugger;
-    const tmpssa2_arrPatternSplat$1 = [...arrPatternStep];
-    const tmpssa3_arrPatternBeforeDefault$1 = tmpssa2_arrPatternSplat$1[0];
-    const tmpIfTest$3 = tmpssa3_arrPatternBeforeDefault$1 === undefined;
-    if (tmpIfTest$3) {
-      const tmpssa2_x = $('fail');
-      return tmpssa2_x;
-    } else {
-      return tmpssa3_arrPatternBeforeDefault$1;
-    }
-  };
-  const tmpssa2_arrPatternSplat = [...1];
-  const tmpssa3_arrPatternBeforeDefault = tmpssa2_arrPatternSplat[0];
-  const tmpIfTest$1 = tmpssa3_arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = ['fail2'];
-    arrPatternStep = $(tmpCalleeParam$1);
-    const tmpReturnArg$1 = tmpBranchingC$1();
-    return tmpReturnArg$1;
-  } else {
-    arrPatternStep = tmpssa3_arrPatternBeforeDefault;
-    const tmpReturnArg$4 = tmpBranchingC$1();
-    return tmpReturnArg$4;
-  }
-};
-const tmpCalleeParam$7 = f();
-$(tmpCalleeParam$7);
+[...1];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

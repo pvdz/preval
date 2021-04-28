@@ -50,11 +50,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...undefined];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
-const x = arrPatternSplat$1.slice(0);
-$(x);
+[...undefined];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

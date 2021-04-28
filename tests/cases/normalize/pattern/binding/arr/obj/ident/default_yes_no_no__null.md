@@ -42,15 +42,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...null];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternBeforeDefault = arrPatternStep.x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  $('pass');
-} else {
-}
-$('bad');
+[...null];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

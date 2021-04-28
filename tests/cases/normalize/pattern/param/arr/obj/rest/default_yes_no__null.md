@@ -80,26 +80,8 @@ tmpCallCallee$5(tmpCalleeParam$9);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [...null];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-const tmpBranchingC = function () {
-  debugger;
-  const tmpCalleeParam$3 = arrPatternStep;
-  const tmpCalleeParam$5 = [];
-  objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
-  return undefined;
-};
-if (tmpIfTest) {
-  const tmpCalleeParam$1 = { a: 'fail' };
-  arrPatternStep = $(tmpCalleeParam$1);
-  tmpBranchingC();
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-  tmpBranchingC();
-}
-$('bad');
+[...null];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

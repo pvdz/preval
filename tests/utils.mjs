@@ -183,7 +183,7 @@ export function toNormalizedResult(obj) {
   );
 }
 
-export function toEvaluationResult(evalled, files, implicitGlobals, skipFinal) {
+export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
   function printStack(stack) {
     return stack
       .map((s, i) => {
@@ -207,11 +207,6 @@ export function toEvaluationResult(evalled, files, implicitGlobals, skipFinal) {
     : 'Final output calls:' + (printOutput === finalOutput ? ' Same\n' : ' BAD!!\n' + finalOutput + '\n');
 
   return (
-    '\n\n## Output\n\n' +
-    Object.keys(files)
-      .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-      .map((key) => '`````js filename=' + key + '\n' + fmat(files[key]).trim() + '\n`````')
-      .join('\n\n') +
     '\n\n## Globals\n\n' +
     (implicitGlobals.size > 0
       ? 'BAD@! Found ' + implicitGlobals.size + ' implicit global bindings:\n\n' + [...implicitGlobals].join(', ')
@@ -253,11 +248,11 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
         .join(' > '),
   );
 
-  const mdInput = mdChunks.join('\n\n').trim();
+  const mdInput = CONFIG.logPasses ? '<trimmed, see logs>' : mdChunks.join('\n\n').trim();
 
   let mdBody =
-    (CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +
-    (CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
+    (CONFIG.logPasses ? '<trimmed, see logs>' : CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +
+    (CONFIG.logPasses ? '<trimmed, see logs>' : CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
     // TODO: use this kind of approach to detect whether code is left that still needs to be normalized
     //'\n\n## Uniformed\n\n' +
     //Object.keys(output.files)
@@ -284,7 +279,15 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
     //      '\n`````',
     //  )
     //  .join('\n\n') +
-    toEvaluationResult(evalled, output.files, output.implicitGlobals, false);
+
+    (CONFIG.logPasses
+      ? '<trimmed, see logs>'
+      : '\n\n## Output\n\n' +
+        Object.keys(output.files)
+          .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+          .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
+          .join('\n\n')) +
+    toEvaluationResult(evalled, output.implicitGlobals, false);
 
   if (CONFIG.trimDollar) mdBody = mdBody.replace(/\$\d+/g, '');
 

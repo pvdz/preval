@@ -445,7 +445,7 @@ function runTestCase(
       }
       console.log(toNormalizedResult(output.normalized));
       console.log();
-      console.log(toEvaluationResult(evalled, output.files, output.implicitGlobals, true));
+      console.log(toEvaluationResult(evalled, output.implicitGlobals, true));
     }
   } else {
     let md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError }, CONFIG);
@@ -458,9 +458,7 @@ function runTestCase(
       ++snap;
 
       if (CONFIG.fileVerbatim) {
-        console.log('Not writing result:');
-        console.log(md2);
-        console.log();
+        console.log('Not writing result');
       } else {
         fs.writeFileSync(fname, md2, 'utf8');
       }
@@ -469,7 +467,7 @@ function runTestCase(
     if (normalizationDesync) ++badNorm;
     else if (outputDesync) ++badFinal;
 
-    if (snapshotChanged || normalizationDesync || outputDesync) {
+    if (!CONFIG.fileVerbatim && (snapshotChanged || normalizationDesync || outputDesync)) {
       const data = [
         snapshotChanged ? BOLD + 'Snapshot changed' + RESET : '',
         normalizationDesync ? 'Eval changes for normalization' : '',
@@ -493,7 +491,7 @@ function runTestCase(
     console.groupEnd();
     console.groupEnd();
 
-    if (withOutput) {
+    if (withOutput && !CONFIG.fileVerbatim) {
       console.log('################################################### end of test', caseIndex + 1, '/', testCases.length, '[', fname, ']');
       console.log();
       console.log(md2);

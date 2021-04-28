@@ -22,27 +22,27 @@ In particular, the pattern's "y" should be replaced with a different name.
 
 `````js filename=intro
 {
-  let a = 1;
+  let a$3 = 1;
 }
 ({
   x: {
-    y: { z: a$1 },
+    y: { z: a },
   },
 } = 1);
 {
-  let a$3 = 1;
+  let a$1 = 1;
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let a = 1;
+let a$3 = 1;
 const tmpAssignObjPatternRhs = 1;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-a$1 = objPatternNoDefault$1.z;
-let a$3 = 1;
+a = objPatternNoDefault$1.z;
+let a$1 = 1;
 `````
 
 ## Output
@@ -50,14 +50,14 @@ let a$3 = 1;
 `````js filename=intro
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-a$1 = objPatternNoDefault$1.z;
+a = objPatternNoDefault$1.z;
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-a$1
+a
 
 ## Result
 

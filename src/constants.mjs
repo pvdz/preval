@@ -14,6 +14,7 @@ export const THIS_ALIAS_BASE_NAME = ALIAS_PREFIX + 'This';
 export const ARGUMENTS_ALIAS_PREFIX = ALIAS_PREFIX + 'Arguments';
 export const ARGUMENTS_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Any';
 export const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arguments.length`, which is easier than just `arguments`
+export const IMPLICIT_GLOBAL_PREFIX = '$prevalImplicit$';
 
 export const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
 

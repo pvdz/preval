@@ -25,7 +25,7 @@ f(); // This should work
 
 `````js filename=intro
 {
-  let f = function () {
+  let f$1 = function () {
     debugger;
     $('pass');
   };
@@ -36,20 +36,20 @@ f(); // This should work
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      f();
+      f$1();
       break tmpSwitchBreak;
     }
     if (tmpSwitchCaseToStart <= 1) {
     }
   }
 }
-f$1();
+f();
 `````
 
 ## Normalized
 
 `````js filename=intro
-let f = function () {
+let f$1 = function () {
   debugger;
   $('pass');
   return undefined;
@@ -71,19 +71,19 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    f();
+    f$1();
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
   }
 }
-f$1();
+f();
 `````
 
 ## Output
 
 `````js filename=intro
-const f = function () {
+const f$1 = function () {
   debugger;
   $('pass');
   return undefined;
@@ -105,20 +105,20 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    f();
+    f$1();
     break tmpSwitchBreak;
   } else {
     tmpSwitchCaseToStart <= 1;
   }
 }
-f$1();
+f();
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-f$1
+f
 
 ## Result
 

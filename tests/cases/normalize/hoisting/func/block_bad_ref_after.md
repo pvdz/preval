@@ -23,36 +23,36 @@ f(); // Fails in strict mode (would be fine otherwise)
 
 `````js filename=intro
 {
-  let f = function () {
+  let f$1 = function () {
     debugger;
     $(1);
   };
 }
-f$1();
+f();
 `````
 
 ## Normalized
 
 `````js filename=intro
-let f = function () {
+let f$1 = function () {
   debugger;
   $(1);
   return undefined;
 };
-f$1();
+f();
 `````
 
 ## Output
 
 `````js filename=intro
-f$1();
+f();
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-f$1
+f
 
 ## Result
 

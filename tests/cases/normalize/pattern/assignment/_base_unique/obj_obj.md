@@ -18,27 +18,27 @@
 
 `````js filename=intro
 {
-  let z = 1;
+  let z$3 = 1;
 }
 ({
   x: {
-    y: { z: z$1 },
+    y: { z: z },
   },
 } = 1);
 {
-  let z$3 = 1;
+  let z$1 = 1;
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let z = 1;
+let z$3 = 1;
 const tmpAssignObjPatternRhs = 1;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-z$1 = objPatternNoDefault$1.z;
-let z$3 = 1;
+z = objPatternNoDefault$1.z;
+let z$1 = 1;
 `````
 
 ## Output
@@ -46,14 +46,14 @@ let z$3 = 1;
 `````js filename=intro
 const objPatternNoDefault = (1).x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
-z$1 = objPatternNoDefault$1.z;
+z = objPatternNoDefault$1.z;
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-z$1
+z
 
 ## Result
 

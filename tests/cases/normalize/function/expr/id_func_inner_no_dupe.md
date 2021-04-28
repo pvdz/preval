@@ -26,11 +26,11 @@ out();
 `````js filename=intro
 let out = function () {
   debugger;
-  const f = function g() {
+  const f = function g$1() {
     debugger;
-    $(typeof g);
+    $(typeof g$1);
   };
-  $(typeof g$1, f());
+  $(typeof g, f());
 };
 out();
 out();
@@ -41,16 +41,16 @@ out();
 `````js filename=intro
 let out = function () {
   debugger;
-  const g = function () {
+  const g$1 = function () {
     debugger;
     const tmpCallCallee = $;
-    const tmpCalleeParam = typeof g;
+    const tmpCalleeParam = typeof g$1;
     tmpCallCallee(tmpCalleeParam);
     return undefined;
   };
-  const f = g;
+  const f = g$1;
   const tmpCallCallee$1 = $;
-  const tmpCalleeParam$1 = typeof g$1;
+  const tmpCalleeParam$1 = typeof g;
   const tmpCalleeParam$3 = f();
   tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
   return undefined;
@@ -62,16 +62,16 @@ out();
 ## Output
 
 `````js filename=intro
-const g = function () {
+const g$1 = function () {
   debugger;
-  const tmpCalleeParam = typeof g;
+  const tmpCalleeParam = typeof g$1;
   $(tmpCalleeParam);
   return undefined;
 };
 const out = function () {
   debugger;
-  const tmpCalleeParam$1 = typeof g$1;
-  g();
+  const tmpCalleeParam$1 = typeof g;
+  g$1();
   $(tmpCalleeParam$1, undefined);
   return undefined;
 };
@@ -83,7 +83,7 @@ out();
 
 BAD@! Found 1 implicit global bindings:
 
-g$1
+g
 
 ## Result
 

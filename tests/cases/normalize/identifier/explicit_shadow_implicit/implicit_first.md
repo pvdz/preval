@@ -1,51 +1,54 @@
 # Preval test case
 
-# obj.md
+# implicit_first.md
 
-> Normalize > Pattern > Assignment > Base unique > Obj
+> Normalize > Identifier > Explicit shadow implicit > Implicit first
 >
-> Testing simple pattern normalizations. Make sure pattern bindings are properly renamed to be globally unique.
+> Explicit binding that has the same name as an implicit global should be fine
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-{ let x = 1; }
-({ x } = 1);
-{ let x = 1; }
+$(n);
+{
+  let n = $(10);
+  $(n);
+}
 `````
 
 ## Pre Normal
 
 `````js filename=intro
+$(n);
 {
-  let x$3 = 1;
-}
-({ x: x } = 1);
-{
-  let x$1 = 1;
+  let n$1 = $(10);
+  $(n$1);
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x$3 = 1;
-const tmpAssignObjPatternRhs = 1;
-x = tmpAssignObjPatternRhs.x;
-let x$1 = 1;
+$(n);
+let n$1 = $(10);
+$(n$1);
 `````
 
 ## Output
 
 `````js filename=intro
-x = (1).x;
+$(n);
+const n$1 = $(10);
+$(n$1);
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-x
+n
 
 ## Result
 

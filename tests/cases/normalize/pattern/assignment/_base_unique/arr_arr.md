@@ -19,27 +19,27 @@ $(x);
 
 `````js filename=intro
 {
-  let x = 1;
-}
-[[x$1]] = [[100]];
-{
   let x$3 = 1;
 }
-$(x$1);
+[[x]] = [[100]];
+{
+  let x$1 = 1;
+}
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 1;
+let x$3 = 1;
 const tmpArrElement = [100];
 const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-x$1 = arrPatternSplat$1[0];
-let x$3 = 1;
-$(x$1);
+x = arrPatternSplat$1[0];
+let x$1 = 1;
+$(x);
 `````
 
 ## Output
@@ -50,15 +50,15 @@ const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-x$1 = arrPatternSplat$1[0];
-$(x$1);
+x = arrPatternSplat$1[0];
+$(x);
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-x$1
+x
 
 ## Result
 

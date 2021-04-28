@@ -28,12 +28,12 @@ g();
 let g = function () {
   debugger;
   {
-    let f = function () {
+    let f$1 = function () {
       debugger;
       $(1);
     };
   }
-  f$1();
+  f();
 };
 g();
 `````
@@ -43,12 +43,12 @@ g();
 `````js filename=intro
 let g = function () {
   debugger;
-  let f = function () {
+  let f$1 = function () {
     debugger;
     $(1);
     return undefined;
   };
-  f$1();
+  f();
   return undefined;
 };
 g();
@@ -57,14 +57,14 @@ g();
 ## Output
 
 `````js filename=intro
-f$1();
+f();
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-f$1
+f
 
 ## Result
 

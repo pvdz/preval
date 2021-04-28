@@ -1,4 +1,4 @@
-import { VERBOSE_TRACING, BLUE, RESET } from './constants.mjs';
+import { IMPLICIT_GLOBAL_PREFIX, VERBOSE_TRACING, BLUE, RESET } from './constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source } from './utils.mjs';
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
@@ -314,7 +314,7 @@ export function getIdentUsageKind(parentNode, parentProp) {
       ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'read';
   }
-  throw ASSERT(false, 'Support this new node', node);
+  throw ASSERT(false, 'Support this new node', parentNode);
 }
 
 export function generateUniqueGlobalName(name, fdata, assumeDoubleDollar = false) {
@@ -633,11 +633,21 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
   }
 
   if (index < 0) {
-    if (ignoreGlobals) return node.name; // Ignore the globals. Assume they are already handled (function cloning)
-    log('- The ident `' + node.name + '` could not be resolved and is an implicit global');
+    let globalName = node.name;
+    if (ignoreGlobals) return globalName; // Ignore the globals. Assume they are already handled (function cloning)
+    vlog('- The ident `' + globalName + '` could not be resolved and is an implicit global (potentially builtin)');
+    if (globalName.startsWith(IMPLICIT_GLOBAL_PREFIX) || globallyUniqueNamingRegistry.has(globalName) && !globallyUniqueNamingRegistry.get(globalName).isImplicitGlobal) {
+      // Rename all implicit globals first. Then do a second sweep for all implicit globals and rename
+      // all explicits with the same name to avoid collisions, after which the implicits can be renamed
+      // back to their initial (implicit global) name, since those names must be maintained as we don't
+      // control the final/target environment.
+      globalName = IMPLICIT_GLOBAL_PREFIX + globalName;
+      vlog('  Will temporarily rename to `' + globalName + '` to avoid collisions.');
+    }
+
     // Register one...
-    vlog('Creating implicit global binding for `' + node.name + '` now');
-    const uniqueName = generateUniqueGlobalName(node.name, fdata);
+    vlog('Creating implicit global binding for `' + globalName + '` now');
+    const uniqueName = generateUniqueGlobalName(globalName, fdata);
     const meta = registerGlobalIdent(fdata, uniqueName, node.name, { isImplicitGlobal: true });
     if (VERBOSE_TRACING) {
       vlog('- Meta:', {
@@ -646,7 +656,7 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
         writes: meta.writes.length <= 10 ? meta.writes : '<snip>',
       });
     }
-    lexScopeStack[0].$p.nameMapping.set(node.name, uniqueName);
+    lexScopeStack[0].$p.nameMapping.set(globalName, uniqueName);
     return uniqueName;
   }
 

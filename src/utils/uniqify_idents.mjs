@@ -73,8 +73,6 @@ export function uniqify_idents(funcAst, fdata) {
           );
           vlog('- initial name:', node.name, ', unique name:', uniqueName);
           node.$p.uniqueName = uniqueName;
-          node.$p.debug_originalName = node.name;
-          node.$p.debug_uniqueName = uniqueName; // Cant use this reliably due to new nodes being injected
           node.name = uniqueName;
 
           //const meta = globallyUniqueNamingRegistry.get(uniqueName);

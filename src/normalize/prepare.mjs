@@ -5,6 +5,7 @@ import {
   THIS_ALIAS_BASE_NAME,
   ARGUMENTS_ALIAS_BASE_NAME,
   ARGLENGTH_ALIAS_BASE_NAME,
+  IMPLICIT_GLOBAL_PREFIX,
   RED,
   BLUE,
   RESET,
@@ -19,6 +20,7 @@ import {
   registerGlobalIdent,
   findUniqueNameForBindingIdent,
   preprocessScopeNode,
+  createFreshVar,
 } from '../bindings.mjs';
 
 // This phase is fairly mechanical and should only do discovery, no AST changes (though labels are renamed).
@@ -348,11 +350,9 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
           );
           vlog('- initial name:', node.name, ', unique name:', uniqueName);
           node.$p.uniqueName = uniqueName;
-          node.$p.debug_originalName = node.name;
-          node.$p.debug_uniqueName = uniqueName; // Cant use this reliably due to new nodes being injected
           node.name = uniqueName;
 
-          // TODO: is this relevant for phase1?
+          // TODO: is this relevant for normalization? it does not use these read/write refs
           const meta = globallyUniqueNamingRegistry.get(uniqueName);
           ASSERT(meta, 'the meta should exist this this name at this point');
           if (kind === 'read' || kind === 'readwrite') meta.reads.push(node);
@@ -589,6 +589,62 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
 
     vgroupEnd();
   }
+
+  // If the next global sweep changes anything, consider all caches busted and re-run this prepare from scratch.
+  // That should be a one time cost at the start as afterwards all names must be unique.
+  // Future me: Sorry. This is a bit of a hack but we assume normalize_once does not use any of this stuff and so
+  //            leaving it in a dirty state was a heckuvalot easier than the alternative. Does the foot hurt much?
+  let globalsShuffled = 0;
+  vlog(
+    'After walking, find all aliased implicit globals and give them back their original name, renaming any explicits with the same name',
+  );
+  new Map(globallyUniqueNamingRegistry).forEach((meta, name) => {
+    if (!meta.isImplicitGlobal) return;
+    if (!name.startsWith(IMPLICIT_GLOBAL_PREFIX)) return;
+    vlog('- Reclaiming `' + name + '`, to `' + meta.originalName + '`');
+
+    if (globallyUniqueNamingRegistry.has(meta.originalName)) {
+      const meta2 = globallyUniqueNamingRegistry.get(meta.originalName);
+      if (meta2.isImplicitGlobal) {
+        // This happens for multiple globals. The non-first one will go into this branch. Just rename them back.
+        vlog('  Original name was already recorded as implicit global. Renaming the ident with pid', meta.reads?.[0]?.node?.$p.pid);
+        meta.reads.forEach((node) => (node.name = meta.originalName));
+      } else if (meta2) {
+        const newName = createFreshVar(meta.originalName, fdata);
+        vlog('  This name was also bound explicitly. Renaming existing occurrences to `' + newName + '`');
+        meta2.reads.forEach((node) => (node.name = newName));
+        meta2.writes.forEach((node) => (node.name = newName));
+        vlog('  Renaming the global to its original name `' + meta.originalName + '`');
+        meta.reads.forEach((node) => (node.name = meta.originalName));
+        meta.writes.forEach((node) => (node.name = meta.originalName));
+        ++globalsShuffled;
+        meta2.isImplicitGlobal = true; // Make sure other globals just get renamed (in previous branch)
+        // Poison these refs to prevent a footgun situation
+        meta.reads = null;
+        meta.writes = null;
+        meta2.reads = null;
+        meta2.writes = null;
+      } else {
+        ASSERT(
+          false,
+          'I dont think this should happen. Either the global existed as an explicit too and got a temporary prefix, or it didnt exist yet and it would get registered immediately',
+        );
+      }
+    } else {
+      // A little annoying but hopefully an artificial edge case; the input code contained an implicit global that started with
+      // our custom prefix that globals temporarily get assigned when their name is also explicitly bound.
+      vlog('  Original name was not known to the registry. Was this the prefix exception?');
+      ASSERT(meta.originalName.startsWith(IMPLICIT_GLOBAL_PREFIX), 'was this a binding that started with our custom prefix?', meta);
+      const newName = createFreshVar(meta.originalName, fdata);
+      ASSERT(newName === meta.originalName, 'should be available');
+      meta.reads.forEach((node) => (node.name = newName));
+      meta.writes.forEach((node) => (node.name = newName));
+      vlog('  Swapping meta in the registry');
+      globallyUniqueNamingRegistry.set(newName, meta);
+      globallyUniqueNamingRegistry.delete(name);
+      meta.uniqueName = meta.originalName;
+    }
+  });
 
   if (VERBOSE_TRACING) {
     vlog();

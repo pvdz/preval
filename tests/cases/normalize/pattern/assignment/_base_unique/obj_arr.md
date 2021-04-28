@@ -18,25 +18,25 @@
 
 `````js filename=intro
 {
-  let y = 1;
+  let y$3 = 1;
 }
 ({
-  x: [y$1],
+  x: [y],
 } = 1);
 {
-  let y$3 = 1;
+  let y$1 = 1;
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let y = 1;
+let y$3 = 1;
 const tmpAssignObjPatternRhs = 1;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const arrPatternSplat = [...objPatternNoDefault];
-y$1 = arrPatternSplat[0];
-let y$3 = 1;
+y = arrPatternSplat[0];
+let y$1 = 1;
 `````
 
 ## Output
@@ -44,14 +44,14 @@ let y$3 = 1;
 `````js filename=intro
 const objPatternNoDefault = (1).x;
 const arrPatternSplat = [...objPatternNoDefault];
-y$1 = arrPatternSplat[0];
+y = arrPatternSplat[0];
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-y$1
+y
 
 ## Result
 

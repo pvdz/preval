@@ -22,34 +22,34 @@ In particular, the pattern's "y" should be replaced with a different name.
 
 `````js filename=intro
 {
-  let a = 1;
-}
-({ x: a$1 } = 1);
-{
   let a$3 = 1;
+}
+({ x: a } = 1);
+{
+  let a$1 = 1;
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let a = 1;
-const tmpAssignObjPatternRhs = 1;
-a$1 = tmpAssignObjPatternRhs.x;
 let a$3 = 1;
+const tmpAssignObjPatternRhs = 1;
+a = tmpAssignObjPatternRhs.x;
+let a$1 = 1;
 `````
 
 ## Output
 
 `````js filename=intro
-a$1 = (1).x;
+a = (1).x;
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-a$1
+a
 
 ## Result
 

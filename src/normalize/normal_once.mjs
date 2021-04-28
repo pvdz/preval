@@ -96,7 +96,7 @@ export function phaseNormalOnce(fdata) {
               AST.variableDeclaration(node.declaration.id, node.declaration, 'let'),
               AST._exportNamedDeclarationFromNames(node.declaration.id.name),
             );
-            if (node.declaration.type === 'FunctionDEclaration') {
+            if (node.declaration.type === 'FunctionDeclaration') {
               node.declaration.type = 'FunctionExpression';
               node.declaration.id = null;
             } else {

@@ -1,55 +1,60 @@
 # Preval test case
 
-# obj.md
+# implicit_second.md
 
-> Normalize > Pattern > Assignment > Base unique > Obj
+> Normalize > Identifier > Explicit shadow implicit > Implicit second
 >
-> Testing simple pattern normalizations. Make sure pattern bindings are properly renamed to be globally unique.
+> Explicit binding that has the same name as an implicit global should be fine
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-{ let x = 1; }
-({ x } = 1);
-{ let x = 1; }
+{
+  let n = $(10);
+  $(n);
+}
+$(n);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
 {
-  let x$3 = 1;
+  let n$1 = $(10);
+  $(n$1);
 }
-({ x: x } = 1);
-{
-  let x$1 = 1;
-}
+$(n);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x$3 = 1;
-const tmpAssignObjPatternRhs = 1;
-x = tmpAssignObjPatternRhs.x;
-let x$1 = 1;
+let n$1 = $(10);
+$(n$1);
+$(n);
 `````
 
 ## Output
 
 `````js filename=intro
-x = (1).x;
+const n$1 = $(10);
+$(n$1);
+$(n);
 `````
 
 ## Globals
 
 BAD@! Found 1 implicit global bindings:
 
-x
+n
 
 ## Result
 
 Should call `$` with:
+ - 1: 10
+ - 2: 10
  - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same

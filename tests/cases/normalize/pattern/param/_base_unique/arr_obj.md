@@ -14,6 +14,7 @@ function h([{ x }]) {
   { let x = 2; }
   return x
 }
+h()
 `````
 
 ## Pre Normal
@@ -29,6 +30,7 @@ let h = function ($$0) {
   return x$1;
 };
 let x = 1;
+h();
 `````
 
 ## Normalized
@@ -45,12 +47,15 @@ let h = function ($$0) {
   return x$1;
 };
 let x = 1;
+h();
 `````
 
 ## Output
 
 `````js filename=intro
-
+const arrPatternSplat = [...undefined];
+const arrPatternStep = arrPatternSplat[0];
+arrPatternStep.x;
 `````
 
 ## Globals
@@ -60,7 +65,7 @@ None
 ## Result
 
 Should call `$` with:
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same
 

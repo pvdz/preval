@@ -21,36 +21,38 @@
   }
 })(function () {
   var define, module, exports;
-  return (function e(t, n, r) {
-    function s(o, u) {
-      if (!n[o]) {
-        if (!t[o]) {
+  // tweak; Names in dereqPrime were manually changed
+  return (function dereqPrime(allModules, moduleCache, moduleDeps) {
+    function createModuleClosure(o, u) {
+      if (!moduleCache[o]) {
+        if (!allModules[o]) {
           var a = typeof require == 'function' && require;
           if (!u && a) return a(o, !0);
           if (i) return i(o, !0);
           var f = new Error("Cannot find module '" + o + "'");
           throw ((f.code = 'MODULE_NOT_FOUND'), f);
         }
-        var l = (n[o] = { exports: {} });
-        t[o][0].call(
-          l.exports,
-          function (e) {
-            var n = t[o][1][e];
-            return s(n ? n : e);
+        var reqModuleCache = (moduleCache[o] = { exports: {} });
+        allModules[o][0].call(
+          reqModuleCache.exports,
+          function (reqDepId) {
+            var reqDep = allModules[o][1][reqDepId];
+            return createModuleClosure(reqDep ? reqDep : reqDepId);
           },
-          l,
-          l.exports,
-          e,
-          t,
-          n,
-          r,
+          reqModuleCache,
+          reqModuleCache.exports,
+          // tweak; Don't pass these on. None of the modules use it.
+          //dereqPrime,
+          //allModules,
+          //moduleCache,
+          //moduleDeps,
         );
       }
-      return n[o].exports;
+      return moduleCache[o].exports;
     }
     var i = typeof require == 'function' && require;
-    for (var o = 0; o < r.length; o++) s(r[o]);
-    return s;
+    for (var o = 0; o < moduleDeps.length; o++) createModuleClosure(moduleDeps[o]);
+    return createModuleClosure;
   })(
     {
       1: [

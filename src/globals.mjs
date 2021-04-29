@@ -4,14 +4,10 @@ const globalNames = new Map([
   ['clearInterval', 'function'],
   ['clearTimeout', 'function'],
   ['console', 'function'],
-  //['false', 'boolean'],
-  //['null', 'null'],
-  ['this', 'undefined'], // true in strict mode
   ['parseInt', 'function'],
   ['parseFloat', 'function'],
   ['setInterval', 'function'],
   ['setTimeout', 'function'],
-  //['true', 'boolean'],
   ['undefined', 'undefined'],
   ['Array', 'function'],
   ['Boolean', 'function'],
@@ -28,12 +24,23 @@ const globalNames = new Map([
   ['Set', 'function'],
   ['String', 'function'],
 
-  // special
-  ['$', '$'],
-  ['objPatternRest', 'objPatternRest'],
-
   // nodejs
   ['module', 'object'],
+  ['exports', 'undefined'], // for the react build
+  ['define', 'undefined'], // for the react build
+  ['require', 'undefined'], // for the react build
+  ['Worker', 'undefined'], // for the react build
+  ['Node', 'undefined'], // for the react build
+  ['global', 'object'], // for the react build
+
+  // browser
+  ['window', 'undefined'], // for the react build
+  ['document', 'undefined'], // for the react build
+  ['self', 'undefined'], // for the react build
+
+  // special to Preval
+  ['$', '$'],
+  ['objPatternRest', 'objPatternRest'],
 ]);
 
 export default globalNames;

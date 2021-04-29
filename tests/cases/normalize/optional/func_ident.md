@@ -72,10 +72,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpChainRootProp = global;
-  const tmpIfTest = tmpChainRootProp != null;
+  const tmpIfTest = global != null;
   if (tmpIfTest) {
-    const tmpChainElementObject$1 = tmpChainRootProp.foo;
+    const tmpChainElementObject$1 = global.foo;
     const tmpReturnArg$1 = $(tmpChainElementObject$1);
     return tmpReturnArg$1;
   } else {
@@ -89,9 +88,7 @@ $(tmpCalleeParam$1);
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-global
+None
 
 ## Result
 

@@ -48,7 +48,7 @@ const f = function () {
   const tmpIfTest = $(1);
   const tmpBranchingA = function () {
     debugger;
-    const tmpBinLhs$1 = typeof window;
+    const tmpBinLhs$1 = 'undefined';
     const tmpIfTest$3 = tmpBinLhs$1 !== 'undefined';
     const tmpBranchingA$1 = function () {
       debugger;
@@ -97,18 +97,12 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(1);
-if (tmpIfTest) {
-  typeof window;
-} else {
-}
+$(1);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-window
+None
 
 ## Result
 

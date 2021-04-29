@@ -39,10 +39,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const tmpChainRootProp = global;
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = global != null;
 if (tmpIfTest) {
-  const tmpChainElementObject = tmpChainRootProp.foo;
+  const tmpChainElementObject = global.foo;
   tmpCalleeParam = tmpChainElementObject;
 } else {
 }
@@ -51,9 +50,7 @@ $(tmpCalleeParam);
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-global
+None
 
 ## Result
 

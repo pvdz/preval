@@ -167,9 +167,9 @@ global.React = result;
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-mainCall, global
+mainCall
 
 ## Result
 

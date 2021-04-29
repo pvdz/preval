@@ -8,6 +8,7 @@ export const ASSUME_BUILTINS = true; // Put any rules that assert the internals 
 
 export const DCE_ERROR_MSG = '[Preval]: Can not reach here';
 export const ERR_MSG_ILLEGAL_ARRAY_SPREAD = '[Preval]: Array spread must crash before this line';
+export const ERR_MSG_ILLEGAL_CALLEE = '[Preval]: Call expression with illegal callee must crash before this line ';
 
 export const ALIAS_PREFIX = 'tmpPrevalAlias';
 export const THIS_ALIAS_BASE_NAME = ALIAS_PREFIX + 'This';

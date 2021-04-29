@@ -1,44 +1,42 @@
 # Preval test case
 
-# false_call.md
+# null.md
 
-> Normalize > Optional > False call
+> Normalize > Call > Bad callees > Null
 >
-> Empty string should make `?.` to return undefined. This should throw, not return undefined.
+> Certain values can be statically determined to trigger a runtime error when they're called
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(false?.());
+$('before');
+null();
+$('after');
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(false?.());
+$('before');
+null();
+$('after');
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpCallCallee = $;
-let tmpCalleeParam = undefined;
-const tmpChainRootCall = false;
-const tmpIfTest = tmpChainRootCall != null;
-if (tmpIfTest) {
-  const tmpChainElementCall = tmpChainRootCall();
-  tmpCalleeParam = tmpChainElementCall;
-} else {
-}
-tmpCallCallee(tmpCalleeParam);
+$('before');
+null();
+throw '[Preval]: Call expression with illegal callee must crash before this line ';
 `````
 
 ## Output
 
 `````js filename=intro
-false();
+$('before');
+null();
 throw '[Preval]: Call expression with illegal callee must crash before this line ';
 `````
 
@@ -49,6 +47,7 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: 'before'
  - eval returned: ('<crash[ <ref> is not function/iterable ]>')
 
 Pre normalization calls: Same

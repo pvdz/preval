@@ -38,8 +38,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpChainElementCall = ''();
-$(tmpChainElementCall);
+''();
+throw '[Preval]: Call expression with illegal callee must crash before this line ';
 `````
 
 ## Globals

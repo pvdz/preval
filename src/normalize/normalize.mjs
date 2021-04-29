@@ -5,6 +5,7 @@ import {
   ASSUME_BUILTINS,
   DCE_ERROR_MSG,
   ERR_MSG_ILLEGAL_ARRAY_SPREAD,
+  ERR_MSG_ILLEGAL_CALLEE,
   BUILTIN_REST_HANDLER_NAME,
   FRESH,
   OLD,
@@ -1388,7 +1389,29 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        // Assert normalized form
+        if (
+          node.callee.type === 'Literal' || // Can not be string since that was the previous check
+          (node.callee.type === 'Identifier' && ['undefined', 'Infinity', 'NaN'].includes(node.callee.name)) ||
+          node.callee.type === 'UnaryExpression' // All unary expressions result in uncallable primitives, so whatever.
+        ) {
+          if (node.arguments.length !== 0 || body[i + 1]?.type !== 'ThrowStatement') {
+            rule('Calling an uncallable primitive must crash');
+            example('50(a, b, c);', '50(); throw error;');
+            example('null(a, b, c);', 'null(); throw error;');
+            before(node, parentNode);
+
+            // Drop any references. They shouldn't trigger a crash and are not needed to trigger the crash.
+            // Perhaps this is more of a dead code branch and it leads to fewer references to bindings.
+            node.arguments.length = 0;
+            body.splice(i + 1, 0, AST.throwStatement(AST.literal(ERR_MSG_ILLEGAL_CALLEE)));
+
+            after(node);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+        }
+
+          // Assert normalized form
         ASSERT(
           !AST.isComplexNode(callee) ||
             (callee.type === 'MemberExpression' &&

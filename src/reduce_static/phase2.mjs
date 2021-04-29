@@ -18,6 +18,7 @@ import { ifelseifelse } from './phase2ifelseifelse.mjs';
 import { staticLets } from './phase2staticlets.mjs';
 import { ifCallIf } from './phase2ifcallif.mjs';
 import { assignHoisting } from './phase2assignhoisting.mjs';
+import { arrrrrr } from './phase2arrrr.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -108,6 +109,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const deduced = ifReduction(fdata);
   if (deduced) return deduced;
+
+  const arrrrred = arrrrrr(fdata);
+  if (arrrrred) return arrrrred;
 
   // The read/write data should still be in tact at this point
 }

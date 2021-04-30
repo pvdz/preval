@@ -120,12 +120,12 @@ function _singleScopeSSA(fdata) {
     function processAssign(meta, name, ref, i) {
       let passed = true;
 
-      if (ref.innerLoop) {
+      if (ref.innerLoop && ref.innerLoop !== varDeclWrite.innerLoop) {
         // This is tricky but we can still do it when
         // - There is no prior read in this or any parent loop (prior sibling loop is okay)
         // - All future reads can reach this write (implies they are nested in the same loop)
         // - Any parent loop up to the lex scope that has the var decl, or the first func boundary, has no read
-        vlog('  Write is inside a loop. Checking if any prior ref occurs in a loop.');
+        vlog('  Write is inside a loop and not in the same loop as the decl. Checking if any prior ref occurs in a loop.');
         for (let k = 0; k < i && passed; ++k) {
           const refk = rwOrder[k];
           vlog('  -', k, ':', refk.action, refk.kind, refk.innerLoop);

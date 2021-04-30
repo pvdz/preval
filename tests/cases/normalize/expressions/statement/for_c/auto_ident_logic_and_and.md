@@ -65,11 +65,11 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpCalleeParam = $(1);
-    let tmpIfTest$1 = $(tmpCalleeParam);
+    const tmpIfTest$1 = $(tmpCalleeParam);
     if (tmpIfTest$1) {
       const tmpCalleeParam$1 = $(1);
-      tmpIfTest$1 = $(tmpCalleeParam$1);
-      if (tmpIfTest$1) {
+      const tmpSSA_tmpIfTest$1 = $(tmpCalleeParam$1);
+      if (tmpSSA_tmpIfTest$1) {
         const tmpCalleeParam$3 = $(2);
         $(tmpCalleeParam$3);
       } else {

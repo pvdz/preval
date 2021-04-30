@@ -54,11 +54,11 @@ $(a);
 const a = { a: 999, b: 1000 };
 while (true) {
   const tmpCalleeParam = $(1);
-  let tmpIfTest = $(tmpCalleeParam);
+  const tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
     const tmpCalleeParam$1 = $(2);
-    tmpIfTest = $(tmpCalleeParam$1);
-    if (tmpIfTest) {
+    const tmpSSA_tmpIfTest = $(tmpCalleeParam$1);
+    if (tmpSSA_tmpIfTest) {
       $(100);
     } else {
       break;

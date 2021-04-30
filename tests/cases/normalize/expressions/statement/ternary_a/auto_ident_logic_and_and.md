@@ -39,12 +39,14 @@ if (tmpIfTest) {
     const tmpCallCallee$3 = $;
     const tmpCalleeParam$3 = $(2);
     tmpIfTest = tmpCallCallee$3(tmpCalleeParam$3);
+    if (tmpIfTest) {
+      $(100);
+    } else {
+      $(200);
+    }
   } else {
+    $(200);
   }
-} else {
-}
-if (tmpIfTest) {
-  $(100);
 } else {
   $(200);
 }
@@ -56,19 +58,21 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-let tmpIfTest = $(tmpCalleeParam);
+const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
-  tmpIfTest = $(tmpCalleeParam$1);
-  if (tmpIfTest) {
+  const tmpSSA_tmpIfTest = $(tmpCalleeParam$1);
+  if (tmpSSA_tmpIfTest) {
     const tmpCalleeParam$3 = $(2);
-    tmpIfTest = $(tmpCalleeParam$3);
+    const tmpSSA_tmpIfTest$1 = $(tmpCalleeParam$3);
+    if (tmpSSA_tmpIfTest$1) {
+      $(100);
+    } else {
+      $(200);
+    }
   } else {
+    $(200);
   }
-} else {
-}
-if (tmpIfTest) {
-  $(100);
 } else {
   $(200);
 }

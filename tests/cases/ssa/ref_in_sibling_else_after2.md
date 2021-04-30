@@ -1,10 +1,12 @@
 # Preval test case
 
-# ref_in_sibling_else_after.md
+# ref_in_sibling_else_after2.md
 
-> Ssa > Ref in sibling else after
+> Ssa > Ref in sibling else after2
 >
 > What happens if there are future refs but they are in a sibling branch
+
+Mirror test for back to back ifs. Feel free to ignore.
 
 #TODO
 
@@ -14,14 +16,15 @@
 function f() {
   let x = $(1);
   if ($) {
+  } else {
     x = $(2);
     $(x);
   }
   if ($) {
-    $('if');
-  } else {
     // This should prevent SSA
     $(x);
+  } else {
+    $('if');
   }
 }
 if ($) f();
@@ -34,13 +37,14 @@ let f = function () {
   debugger;
   let x = $(1);
   if ($) {
+  } else {
     x = $(2);
     $(x);
   }
   if ($) {
-    $('if');
-  } else {
     $(x);
+  } else {
+    $('if');
   }
 };
 if ($) f();
@@ -53,17 +57,15 @@ let f = function () {
   debugger;
   let x = $(1);
   if ($) {
+  } else {
     x = $(2);
     $(x);
-    if ($) {
-      $('if');
-      return undefined;
-    } else {
-      $(x);
-      return undefined;
-    }
-  } else {
+  }
+  if ($) {
     $(x);
+    return undefined;
+  } else {
+    $('if');
     return undefined;
   }
 };
@@ -76,26 +78,18 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const x = $(1);
-  if ($) {
-    const tmpSSA_x = $(2);
-    $(tmpSSA_x);
-    if ($) {
-      $('if');
-      return undefined;
-    } else {
-      $(tmpSSA_x);
-      return undefined;
-    }
-  } else {
-    $(x);
-    return undefined;
-  }
-};
 if ($) {
-  f();
+  let x = $(1);
+  if ($) {
+  } else {
+    x = $(2);
+    $(x);
+  }
+  if ($) {
+    $(x);
+  } else {
+    $('if');
+  }
 } else {
 }
 `````
@@ -108,9 +102,7 @@ None
 
 Should call `$` with:
  - 1: 1
- - 2: 2
- - 3: 2
- - 4: 'if'
+ - 2: 1
  - eval returned: undefined
 
 Pre normalization calls: Same

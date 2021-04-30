@@ -19,7 +19,7 @@ function _singleScopeSSA(fdata) {
     if (meta.isConstant) return; // No need to SSA a constant
     if (meta.isImplicitGlobal) return;
     if (meta.isExport) return; // Exports are "live" bindings so any update to it might be observable in strange ways
-    if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, for-x, ???
+    if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, ???
 
     vgroup('- `' + name + '`:', meta.constValueRef.node.type, ', reads:', meta.reads.length, ', writes:', meta.writes.length);
 
@@ -29,7 +29,7 @@ function _singleScopeSSA(fdata) {
   });
 
   function process(meta, name) {
-    // We assume that every kind of meta that wasn't filtered out above (builtin, constant, implicit), must
+    // We assume that every kind of meta that wasn't filtered out before (builtin, constant, implicit), must
     // be created through a var decl (let or const). TODO: catch clause bindings are currently considered to be implicit globals.
 
     // Generally speaking, we want to try and replace this write with a new fresh var decl.
@@ -152,13 +152,15 @@ function _singleScopeSSA(fdata) {
         const r2 = rwOrder[j];
         vlog('--', j + 1, '/', rwOrder.length, ':', r2.action, ':', r2.kind);
         vlog('  - blockChain:', r2.blockChain);
-        if (r2.innerLoop && r2.action === 'write') {
-          // The write inside can only be improved if it appears in the loop before all other future refs
-          // and if all future refs can reach the write. But let's not conflate that task here.
-          // `let x = 1; while (true) { x = 2; $(x); }`
-          vlog('A write inside a loop. Bailing.');
-          passed = false;
-        } else if (r2.blockChain.startsWith(ref.blockChain)) {
+        //if (r2.innerLoop && r2.action === 'write') {
+        // TODO: come up with the test case that requires this check. I'm not sure if we actually need it and it helps in some cases to achieve SSA.
+        //  // The write inside can only be improved if it appears in the loop before all other future refs
+        //  // and if all future refs can reach the write. But let's not conflate that task here.
+        //  // `let x = 1; while (true) { x = 2; $(x); }`
+        //  vlog('A write inside a loop. Bailing.');
+        //  passed = false;
+        //} else
+        if (r2.blockChain.startsWith(ref.blockChain)) {
           vlog('Ref can reach the write. Still eligible for SSA.');
           eligible.push(r2);
         } else {

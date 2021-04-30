@@ -38,10 +38,11 @@ while (true) {
     const tmpCallCallee = $;
     const tmpCalleeParam = $(1);
     tmpIfTest = tmpCallCallee(tmpCalleeParam);
-  } else {
-  }
-  if (tmpIfTest) {
-    $(1);
+    if (tmpIfTest) {
+      $(1);
+    } else {
+      break;
+    }
   } else {
     break;
   }
@@ -55,8 +56,8 @@ $(a);
 const a = { a: 999, b: 1000 };
 while (true) {
   const tmpCalleeParam = $(1);
-  const tmpIfTest = $(tmpCalleeParam);
-  if (tmpIfTest) {
+  const tmpSSA_tmpIfTest = $(tmpCalleeParam);
+  if (tmpSSA_tmpIfTest) {
     $(1);
   } else {
     break;

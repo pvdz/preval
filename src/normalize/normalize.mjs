@@ -5628,7 +5628,11 @@ export function phaseNormalize(fdata, fname) {
           after(body[i], parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
-        } else if (!pCbody.length && nCbody.length === 1 && nCbody[0].type === 'ReturnStatement') {
+        } else if (
+          !pCbody.length &&
+          nCbody.length === 1 &&
+          ['ReturnStatement', 'ContinueStatement', 'BreakStatement', 'ThrowStatement'].includes(nCbody[0].type)
+        ) {
           // This leads to more statements by duplicating a return statement...
           // It might allow let bindings to become constants which could be very valuable
           rule('Back to back ifs with the first consequent empty and second consequent only a return should be inlined');
@@ -5639,14 +5643,34 @@ export function phaseNormalize(fdata, fname) {
           before(prev, parentNode);
           before(node);
 
-          pCbody.push(AST.returnStatement(AST.cloneSimple(nCbody[0].argument)));
+          const target = nCbody[0];
+          switch (target.type) {
+            case 'ReturnStatement':
+              pCbody.push(AST.returnStatement(AST.cloneSimple(target.argument)));
+              break;
+            case 'ContinueStatement':
+              pCbody.push(AST.continueStatement(target.label && AST.cloneSimple(target.label)));
+              break;
+            case 'BreakStatement':
+              pCbody.push(AST.breakStatement(target.label && AST.cloneSimple(target.label)));
+              break;
+            case 'ThrowStatement':
+              pCbody.push(AST.throwStatement(AST.cloneSimple(target.argument)));
+              break;
+            default:
+              ASSERT(false);
+          }
           pAbody.push(node);
           body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
 
           after(body[i - 1], parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
-        } else if (!pAbody.length && nAbody.length === 1 && nAbody[0].type === 'ReturnStatement') {
+        } else if (
+          !pAbody.length &&
+          nAbody.length === 1 &&
+          ['ReturnStatement', 'ContinueStatement', 'BreakStatement', 'ThrowStatement'].includes(nAbody[0].type)
+        ) {
           // This leads to more statements by duplicating a return statement...
           // It might allow let bindings to become constants which could be very valuable
           rule('Back to back ifs with the first alternate empty and second alternate only a return should be inlined');
@@ -5657,7 +5681,23 @@ export function phaseNormalize(fdata, fname) {
           before(prev, parentNode);
           before(node);
 
-          pAbody.push(AST.returnStatement(AST.cloneSimple(nAbody[0].argument)));
+          const target = nAbody[0];
+          switch (target.type) {
+            case 'ReturnStatement':
+              pAbody.push(AST.returnStatement(AST.cloneSimple(target.argument)));
+              break;
+            case 'ContinueStatement':
+              pAbody.push(AST.continueStatement(target.label && AST.cloneSimple(target.label)));
+              break;
+            case 'BreakStatement':
+              pAbody.push(AST.breakStatement(target.label && AST.cloneSimple(target.label)));
+              break;
+            case 'ThrowStatement':
+              pAbody.push(AST.throwStatement(AST.cloneSimple(target.argument)));
+              break;
+            default:
+              ASSERT(false);
+          }
           pCbody.push(node);
           body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
 

@@ -40,12 +40,14 @@ while (true) {
       const tmpCallCallee$3 = $;
       const tmpCalleeParam$3 = $(2);
       tmpIfTest = tmpCallCallee$3(tmpCalleeParam$3);
+      if (tmpIfTest) {
+        $(100);
+      } else {
+        break;
+      }
     } else {
+      break;
     }
-  } else {
-  }
-  if (tmpIfTest) {
-    $(100);
   } else {
     break;
   }
@@ -66,12 +68,14 @@ while (true) {
     if (tmpIfTest) {
       const tmpCalleeParam$3 = $(2);
       tmpIfTest = $(tmpCalleeParam$3);
+      if (tmpIfTest) {
+        $(100);
+      } else {
+        break;
+      }
     } else {
+      break;
     }
-  } else {
-  }
-  if (tmpIfTest) {
-    $(100);
   } else {
     break;
   }

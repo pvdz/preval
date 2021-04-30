@@ -201,28 +201,25 @@ import { isComplexNode } from '../ast.mjs';
   - Any call to a function without explicit return (or where all returns are undefined) can be split-replaced with undefined
   - When passing on a global const, drop the argument in favor of using the global directly
   - Inlining simple functions with rest, like tests/cases/normalize/pattern/param/rest/base.md
-  - Change writes to a constant to an explicit error of sorts (like /home/ptr/proj/preval/tests/cases/normalize/function/expr/id_write2.md )
+  - Change writes to a constant to an explicit error of sorts (like tests/cases/normalize/function/expr/id_write2.md )
   - Could normalize AST, like var decl and assignment having a lhs and rhs instead of id/init and left/right (and drop the declarations bit since that'll never happen after the normalize_once step)).
   - There are some cases of loops where we can determine that there's no way for the loop to ever break, making any code that follows it ready to DCE.
   - If a function is called only once but cannot be inlined because it and its caller both contain branching, then move the code into the caller branch into the function to hopefully keep things closer together? see tests/cases/normalize/pattern/param/arr/arr/obj/base.md for an example
-  - TODO: what happens when we reference a global variable after having seen a local binding with the same name? `function f() { const x = $(); $(x); } $(x);` ??? Is this bugged?
-  - TODO: fix tests/cases/normalize/expressions/assignments/param_default/auto_this.md where a function with `this` (or `arguments`) alias gets inlined in single call inlining
-  - TODO: unique ident algo will rename implicit globals if a binding with the same name was already found in another scope ;(
-  - TODO: norm_once must use registerGlobalLabel to prevent collisions reliably
-  - TODO: if an optional chain starts with a literal null or undefined, the rest of the chain can be dropped
-  - TODO: what's up with the array in /home/ptr/proj/preval/tests/cases/normalize/pattern/param/obj/rest/default_no_no__str.md ???
+  - If two branches return the same closure and the call site has access to this closure then the call can be inlined like we do with primitives, still calling the func but replacing the call value with the closure ident
+  - Double typeof on a const where one binding to hold the result can reach the other, means it can be eliminated as the results are immutable
+  - Common return values that are either closure or arg idents can be inlined: tests/cases/common_return/regression2.md
+  - If a value is only used as a condition then whenever we know the truthy or falsy value of it, we should change it to an actual bool.
+  - A write at the end of the life cycle of a function when the binding is not used, or closured functions are not leaking, should be dropped. `function f(){ let x = 1; function g(){ $(x); } g(); x = 10;}`
+  - can we detect mirror actions in both branches of an if? `if (x) a = f(); else a = f();` etc?
+  - TODO: fix other cases of write-shadowing in different branches for the prevMap approach, like we did in lethoisting2
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
   - TODO: can we safely normalize methods as regular properties? Or are there secret bindings to take into account? Especially wrt `super` bindings.
-  - TODO: how does `arguments` work with the implicit unique binding stuff??
   - TODO: func.name is already botched because I rename all idents to be unique. might help to add an option for it, or maybe support some kind of end-to-end tracking to restore the original name later. same for classes.
   - TODO: fix rounding errors somehow. may mean we dont static compute a value. but then how do we deal with it?
   - TODO: how do we static compute something like `$(1) + 2 + 3` when it splits it like `tmp = $(1) + 2, tmp + 3` ...
-  - TODO: can we detect mirror actions in both branches of an if? `if (x) a = f(); else a = f();` etc?
   - TODO: if we clone normalized code then we should be able to assume that all idents are already unique within that func. So maybe an AST clone would suffice after all? and some special care in renaming all bindings. probably cheaper than a full reparse?
-  - TODO: if a function has arguments access then we shouldnt pad calls to it with undefined /home/ptr/proj/preval/tests/cases/normalize/arguments/param_default_len.md
   - TODO: `$(null[$('keep me')]);` should still invoke the computed prop
-  - TODO: fix property in /home/ptr/proj/preval/tests/cases/normalize/pattern/param/_base_unique/arr_obj.md
   - TODO: should normalize to only have imports and exports as global code and an IIFE as the only other kind of toplevel code that contains all other code. This way there is no global code and everything is scoped to a function.
   -> if-else normalization;
     loops
@@ -705,7 +702,7 @@ export function phaseNormalize(fdata, fname) {
 
     rule('Dead code elimination (DCE) for code after abnormal flow abort; ' + desc);
     example('return; f();', 'return;');
-    before(body.slice(i));
+    before(body.slice(i), body);
 
     // Note: .length is a getter so this assignment drops all trailing elements from the body
     body.length = i + 1;
@@ -1411,7 +1408,7 @@ export function phaseNormalize(fdata, fname) {
           }
         }
 
-          // Assert normalized form
+        // Assert normalized form
         ASSERT(
           !AST.isComplexNode(callee) ||
             (callee.type === 'MemberExpression' &&
@@ -5185,33 +5182,45 @@ export function phaseNormalize(fdata, fname) {
 
     const last = node.body.body[node.body.body.length - 1];
     if (last.type === 'IfStatement') {
-      // Confirm that both branches return explicitly and make them if either doesn't
-
       let changed = false;
+      function returnBranch(node) {
+        // Confirm that both branches return explicitly and make them if either doesn't
+        // If either ends with another `if`, apply the logic to that node instead. For each branch though.
+        ASSERT(node.type === 'IfStatement');
 
-      const lastIf = last.consequent.body[last.consequent.body.length - 1];
-      if (!['ReturnStatement', 'ThrowStatement', 'ContinueStatement', 'BreakStatement'].includes(lastIf?.type)) {
-        rule('The `if` branch of the last `if`-statement of a function must return explicitly');
-        example('function f(){ if (x) a(); }', 'function f(){ if (x) { a(); return undefined; } }');
-        before(last, node);
+        const lastIf = node.consequent.body[node.consequent.body.length - 1];
+        if (lastIf?.type === 'IfStatement') {
+          returnBranch(lastIf);
+        } else if (!['ReturnStatement', 'ThrowStatement', 'ContinueStatement', 'BreakStatement'].includes(lastIf?.type)) {
+          rule('The `if` branch of the last `if`-statement of a function must return explicitly');
+          example('function f(){ if (x) a(); }', 'function f(){ if (x) { a(); return undefined; } }');
+          before(node, node);
 
-        last.consequent.body.push(AST.returnStatement('undefined'));
+          node.consequent.body.push(AST.returnStatement('undefined'));
 
-        after(last, node);
-        changed = true;
+          after(node, node);
+          changed = true;
+        }
+
+        const lastElse = node.alternate.body[node.alternate.body.length - 1];
+        if (lastElse?.type === 'IfStatement') {
+          returnBranch(lastElse);
+        } else if (!['ReturnStatement', 'ThrowStatement', 'ContinueStatement', 'BreakStatement'].includes(lastElse?.type)) {
+          rule('The `else` branch of the last `if`-statement of a function must return explicitly');
+          example('function f(){ if (x) return 1; else a(); }', 'function f(){ if (x) return 1; else { a(); return undefined; } }');
+          before(node, node);
+
+          node.alternate.body.push(AST.returnStatement('undefined'));
+
+          after(node, node);
+          changed = true;
+        }
+
+        if (changed) {
+          return true;
+        }
       }
-
-      const lastElse = last.alternate.body[last.alternate.body.length - 1];
-      if (!['ReturnStatement', 'ThrowStatement', 'ContinueStatement', 'BreakStatement'].includes(lastElse?.type)) {
-        rule('The `else` branch of the last `if`-statement of a function must return explicitly');
-        example('function f(){ if (x) return 1; else a(); }', 'function f(){ if (x) return 1; else { a(); return undefined; } }');
-        before(last, node);
-
-        last.alternate.body.push(AST.returnStatement('undefined'));
-
-        after(last, node);
-        changed = true;
-      }
+      returnBranch(last);
 
       if (changed) {
         return true;
@@ -5359,6 +5368,39 @@ export function phaseNormalize(fdata, fname) {
     ifelseStack.push(node);
     transformBlock(node.alternate, undefined, -1, node, false);
     ifelseStack.pop();
+
+    // TODO: this should not just check the first one but skip any statements that don't have observable side effects before the nested if/else
+    if (node.consequent.body[0]?.type === 'IfStatement') {
+      const inner = node.consequent.body[0];
+      if (node.test.type === 'Identifier' && inner.test.type === 'Identifier' && node.test.name === inner.test.name) {
+        rule('Nested `if` tests for same ident can be collapsed; consequent');
+        example('if (x) { if (x) { f(); } }', 'if (x) { f(); }');
+        before(node);
+
+        // We "collapse" the inner `if` by injecting all its consequent statements into the parent `if` and dropping
+        // the alternate branch altogether. After all, we know it can never be visited.
+        node.consequent.body.splice(0, 1, ...inner.consequent.body);
+
+        after(node);
+        assertNoDupeNodes(AST.blockStatement(body), 'body', true);
+        return true;
+      }
+    } else if (node.alternate.body[0]?.type === 'IfStatement') {
+      const inner = node.alternate.body[0];
+      if (node.test.type === 'Identifier' && inner.test.type === 'Identifier' && node.test.name === inner.test.name) {
+        rule('Nested `if` tests for same ident can be collapsed; alternate');
+        example('if (x) { } else { if (x) { f(); } else { g(); } }', 'if (x) { } else { g(); }');
+        before(node);
+
+        // We "collapse" the inner `if` by injecting all its consequent statements into the parent `if` and dropping
+        // the alternate branch altogether. After all, we know it can never be visited.
+        node.alternate.body.splice(0, 1, ...inner.alternate.body);
+
+        after(node);
+        assertNoDupeNodes(AST.blockStatement(body), 'body', true);
+        return true;
+      }
+    }
 
     if (node.consequent.body.length === 0 && node.alternate.body.length === 0) {
       rule('If-else without else and empty if-block should be just the test expression');
@@ -5535,302 +5577,352 @@ export function phaseNormalize(fdata, fname) {
       }
     }
 
-    // Must do this "on the way back up" because we need to first re-map `arguments` and `this`
-    // Requiring the function as the "floor" allows us to build bottom up, at the expense of some useless re-traversals...
-    // This normalization is currently not applied to generators or async functions. Not sure what the ramification is.
-    vgroup('Start of single-branch-per-function algo');
-    const funcNode = ifelseStack[ifelseStack.length - 1];
+    if (i > 0 && body[i - 1].type === 'IfStatement') {
+      const prev = body[i - 1];
+      vlog('back to back ifs, testing on', prev.test.name ?? '<nonident>', 'and', node.test.name ?? '<nonident>');
+      if (node.test.type === 'Identifier' && prev.test.type === 'Identifier' && node.test.name === prev.test.name) {
+        if (
+          // No children in consequent in either `if`
+          !node.consequent.body.length &&
+          !prev.consequent.body.length
+        ) {
+          // There's nothing in the `true` branch that might change the value of the ident (the test itself is not observable)
+          // so the second `if` should be moved to the back of the `else` branch instead.
+          rule('Back to back if statements testing on the same identifier when the first if has no if branch should be merged');
+          example('if (x) { } else { f(); } if (x) { } else { g(); }', 'if (x) {} else { f(); if (x) { g(); } }');
+          before(body[i - 1], parentNode);
+          before(body[i]);
 
-    if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
-      if (funcNode.generator) {
-        // Currently not seeing a solid way to support function abstraction inside a generator
-        // Sure, we can do it for all the bits that don't contain `yield`, but the thing does taint
-        // so if there's one after the if-else then the whole thing collapses. I dunno yet.
-        vlog(RED + 'Can not apply the branch reduction rule to generators...' + RESET);
-      } else if (funcNode.async) {
-        // Async functions need more research. Unlike generators we may be able to deal with these but I'm not sure yet.
-        // The simplest safe way would be to await the calls of all abstractions. Less invasive would be to filter that
-        // based on whether the abstraction actually contained the keyword `await`. Though it does taint the whole chain.
-        vlog(RED + 'Can not apply the branch reduction rule to async functions yet...' + RESET);
-      } else if (
-        // If this `if` is the last node of the body
-        i >= body.length - 1 &&
-        // or the if or else has no nested `if`
-        !node.consequent.body.some((snode) => snode.type === 'IfStatement') &&
-        !node.alternate.body.some((snode) => snode.type === 'IfStatement')
-      ) {
-        vlog('There is no more code after this if and there are no nested if-elses inside the if or the else. Bailing');
-      } else {
-        vlog('i=', i, 'body has', body.length, 'elements');
-        // TODO: do we want this step before or after the abrubt completion inlining?
-        // This is an if-else directly nested inside another if-else, nested directly in a function/arrow
-        // Note: this may be a method. We'll have to figure out how to outline functions or whatever, or maybe we don't at all.
-        rule('Nested if-else in function must be abstracted');
-        example(
-          'function f(){ if (x) { if (y) { g(); } else { h(); } }',
-          'function f(){ const A() { return g(); }; const B() { return h(); } if (x) { return A(); } else { return B(); } }',
-        );
-        before(node, funcNode);
+          // Since parent visitor won't go back, we'll replace this `if` with the previous `if` so it will be revisited
+          body[i - 1] = AST.emptyStatement();
+          body[i] = prev;
+          prev.alternate.body.push(node);
 
-        // - Collect all bindings created before and after the binding
-        // - Abstract the if, the else, and all other nodes after the if-else `node` into separate functions
-        // - The if and else abstractions should call-return the "other" abstraction (regardless, let DCE do its magic later)
-        // - If there were bindings after the if, then "hoist" them as undefined lets before the loop. Replace the original bindings with tmp consts and then assign those consts to the original name. Hopefully other rules will eliminate them again, but there are cases where that's not possible and then this rule is necessary.
-        // - If there were bindings before the if, pass them on as parameters to all three new functions
+          after(body[i], parentNode);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        } else
+        if (
+          // No children or no alternate body in either `if`
+          !prev.alternate.body.length &&
+          !node.alternate.body.length
+        ) {
+          // There's nothing in the `false` branch that might change the value of the ident (the test itself is not observable)
+          // so the second `if` should be moved to the back of the `false` branch instead.
+          rule('Back to back if statements testing on the same identifier when the first if has no else branch should be merged');
+          example('if (x) { f(); } if (x) { g(); }', 'if (x) { f(); if (x) { g(); } }');
+          before(body[i - 1], parentNode);
+          before(body[i]);
 
-        // We are on the way down the to transform so the body should be normalized, meaning all decls should
-        // be let or const variable declarations now. Collect them up to the if. Also gets us the index.
+          // Since parent visitor won't go back, we'll replace this `if` with the previous `if` so it will be revisited
+          body[i - 1] = AST.emptyStatement();
+          body[i] = prev;
+          prev.consequent.body.push(node);
 
-        const parentBody = parentNode.body;
-
-        let index = -1;
-        let beforeTheIf = true;
-        const declaredBindingsBefore = [];
-        const declaredBindingsAfter = [];
-        const bodyOffsetMaybe = findBodyOffsetExpensiveMaybe(parentBody); // parent may be a regular block!
-        const bodyOffset = bodyOffsetMaybe < 0 ? 0 : bodyOffsetMaybe;
-        for (let i = bodyOffset; i < parentBody.length; ++i) {
-          const snode = parentBody[i];
-          if (snode === node) {
-            index = i;
-            beforeTheIf = false;
-          } else {
-            if (snode.type === 'VariableDeclaration') {
-              if (beforeTheIf) {
-                // Code up to this `if` node should be normalized so we can rely on a single binding and no patterns
-                ASSERT(snode.kind === 'let' || snode.kind === 'const');
-                ASSERT(snode.declarations.length === 1);
-                ASSERT(snode.declarations[0].id.type === 'Identifier');
-                // If a binding is not a constant and it is a closure then we cannot create a
-                // local variable for it. The problem is that the writes would not be observable in
-                // either the original closure, or the tail abstraction (or both).
-                const name = snode.declarations[0].id.name;
-                const meta = fdata.globallyUniqueNamingRegistry.get(name);
-                if (meta.isConstant) {
-                  declaredBindingsBefore.push(name);
-                }
-              } else {
-                // A func at the start of a func can still ref a binding declared later. Here we have to be careful
-                // not to break this situation when we move bindings into a tail function.
-                // `function f(){ return x; } if (x) y(); let x = 10; f();`
-                // Note: these nodes have not been visited by normalization yet so the var decls may not be normalized
-                // This search is slower but allows for patterns and multiple bindings per node etc.
-                findBoundNamesInUnnormalizedVarDeclaration(snode, declaredBindingsAfter);
-                // Replace each existing binding with an assignment. We will declare the names above as undefined lets.
-                // The transform of a var decl to a regular (or destructuring) assignment
-                // `let [{x}] = [{x:y}]` -> `[{x} = [{x:y}]` should be safe for any assignment, for any
-                // number of such bindings declared.
-
-                // The idea is that `log(x); if (a) b(); const x = 10;` becomes
-                // `let x = undefined; log(x); if (a) b(); const tmp = 10; x = 10;`
-                // While this is a TDZ (and would no longer be that), the valid usage is a closure by a function that
-                // is declared before the if and only called after the if (and closed binding). This should work fine.
-                parentBody[i] = AST.expressionStatement(
-                  // `let a = 1, [b] = f();` -> `a = 1, [b] = f();`
-                  // For any number of decls, any kind of id, any kind of init (or `undefined` if there was none)
-                  // Everything should be replaced by a sequence of assignments as long as the binding is declared too.
-                  AST.sequenceExpression(
-                    snode.declarations.map(({ id, init = AST.identifier('undefined') }) =>
-                      AST.assignmentExpression(id, init || AST.identifier('undefined')),
-                    ),
-                  ),
-                );
-              }
-            }
-          }
-        }
-        vlog('Index of `if`:', index, ', bindings before:', declaredBindingsBefore, ', bindings after:', declaredBindingsAfter);
-        ASSERT(index >= 0, 'the if ought to be found? otherwise i think the ifelseStack needs some attention', index);
-
-        // Argument/parameter names to use for all functions and all calls. Let other rules eliminate them.
-        vlog('Local bindings found:', declaredBindingsBefore);
-        // The remainder of the function after the if-else.
-        const bodyRest = parentBody.slice(index + 1);
-        parentBody.length = index + 1;
-
-        vlog('Creating three functions for the if-else branch and its tail');
-        const tmpNameA = createFreshVar('tmpBranchingA', fdata);
-        const tmpNameB = createFreshVar('tmpBranchingB', fdata);
-        const tmpNameC = createFreshVar('tmpBranchingC', fdata);
-        const primeA = AST.functionExpressionNormalized(
-          declaredBindingsBefore.slice(0),
-          [
-            ...node.consequent.body,
-            AST.returnStatement(
-              AST.callExpression(
-                tmpNameC,
-                declaredBindingsBefore.map((s) => AST.identifier(s)),
-              ),
-            ),
-          ],
-          { id: createFreshVar('tmpUnusedPrimeFuncNameA', fdata) },
-        );
-        const primeAcloned = cloneFunctionNode(primeA, undefined, [], fdata).expression;
-        {
-          primeAcloned.id = AST.identifier(tmpNameA);
-          source(primeAcloned);
-          primeAcloned.id = null;
-        }
-        const primeB = AST.functionExpressionNormalized(
-          declaredBindingsBefore.slice(0),
-          [
-            ...(node.alternate.body || []),
-            AST.returnStatement(
-              AST.callExpression(
-                tmpNameC,
-                declaredBindingsBefore.map((s) => AST.identifier(s)),
-              ),
-            ),
-          ],
-          { id: createFreshVar('tmpUnusedPrimeFuncNameB', fdata) },
-        );
-        const primeBcloned = cloneFunctionNode(primeB, undefined, [], fdata).expression;
-        {
-          primeBcloned.id = AST.identifier(tmpNameB);
-          source(primeBcloned);
-          primeBcloned.id = null;
-        }
-        const primeC = AST.functionExpressionNormalized(declaredBindingsBefore.slice(0), bodyRest, {
-          id: createFreshVar('tmpUnusedPrimeFuncNameC', fdata),
-        });
-        const primeCcloned = cloneFunctionNode(primeC, undefined, [], fdata).expression;
-        {
-          primeCcloned.id = AST.identifier(tmpNameC);
-          source(primeCcloned);
-          primeCcloned.id = null;
-        }
-        const newIf = AST.ifStatement(
-          node.test,
-          AST.blockStatement(
-            AST.returnStatement(
-              AST.callExpression(
-                tmpNameA,
-                declaredBindingsBefore.map((s) => AST.identifier(s)),
-              ),
-            ),
-          ),
-          AST.blockStatement(
-            AST.returnStatement(
-              AST.callExpression(
-                tmpNameB,
-                declaredBindingsBefore.map((s) => AST.identifier(s)),
-              ),
-            ),
-          ),
-        );
-        body.splice(
-          i,
-          1,
-          // Inject the three functions (if body, else body, tail code) to go before the new `if`
-          AST.variableDeclaration(tmpNameA, primeAcloned, 'const'),
-          AST.variableDeclaration(tmpNameB, primeBcloned, 'const'),
-          AST.variableDeclaration(tmpNameC, primeCcloned, 'const'), // TODO: does it help to declare C before A/B?
-          // Inject all bindings that were defined as siblings after this `if` statement. Make them lets, init to undefined.
-          ...declaredBindingsAfter.map((name) => AST.variableDeclaration(name, 'undefined', 'let')),
-          newIf,
-        );
-
-        if (VERBOSE_TRACING) {
-          vlog('\nCurrent state after applying "Nested if-else" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
-        }
-
-        vlog(); // newline
-        after(newIf, funcNode);
-        assertNoDupeNodes(AST.blockStatement(funcNode), 'body');
-        return true;
-      }
-    }
-    vgroupEnd();
-
-    if (node.consequent.$p.returnBreakContinueThrow && i < body.length - 1) {
-      // Doesn't matter what kind of abrupt completion it was
-      // Inline the remainder of the parent block into the else branch
-      rule('If the if-branch returns the remainder of the parent block goes into the else-branch');
-      example('if (x) return; f();', 'if (x) return; else f();');
-      before(node, parentNode);
-
-      node.alternate.body.push(...body.slice(i + 1));
-      body.length = i + 1;
-
-      after(parentNode);
-      assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
-      return true;
-    }
-
-    if (node.alternate.$p.returnBreakContinueThrow && i < body.length - 1) {
-      // Doesn't matter what kind of abrupt completion it was
-      // Inline the remainder of the parent block into the if branch
-      rule('If the else-branch returns the remainder of the parent block goes into the if-branch');
-      example('if (x) { f(); } else { return; } g();', 'if (x) { f(); g(); } else { return; }');
-      before(node, parentNode);
-
-      node.consequent.body.push(...body.slice(i + 1));
-      body.length = i + 1;
-
-      after(parentNode);
-      assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
-      return true;
-    }
-
-    vlog(
-      BLUE + 'if;returnBreakContinueThrow?' + RESET,
-      node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow
-        ? 'yes; ' + node.consequent.$p.returnBreakContinueThrow + ' and ' + node.alternate.$p.returnBreakContinueThrow
-        : 'no',
-    );
-    if (node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow) {
-      // Both branches broke flow early so any statements that follow this statement are effectively dead
-      node.$p.returnBreakContinueThrow = node.consequent.$p.returnBreakContinueThrow + '+' + node.alternate.$p.returnBreakContinueThrow;
-
-      if (body.length > i + 1) {
-        if (dce(body, i, 'after if-else')) {
+          after(body[i], parentNode);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
       }
     }
 
-    if (
-      i &&
-      body[i - 1].type === 'IfStatement' &&
-      node.test.type === 'Identifier' &&
-      body[i - 1].test.type === 'Identifier' &&
-      node.test.name === body[i - 1].test.name
-    ) {
-      // This is, if nothing else, a common artifact from our logical operator transform
-      // Folding them like this might allow certain bindings to be detected as constants, where that was harder before
-      const prev = body[i - 1];
-      if (prev.consequent.body.length === 0 && node.consequent.body.length === 0) {
-        // If prev node has no "true" branch then append this if to its alternate
-        rule('Back to back `if` with same condition can be merged if the first has no consequent branch');
-        example('if (x) {} else { x = f(); } if (x) { g(); }', 'if (x) {} else { x = f(); if (x) { g(); } }');
-        before(body[i - 1]);
-        before(node);
+    if (false) {
+      // Must do this "on the way back up" because we need to first re-map `arguments` and `this`
+      // Requiring the function as the "floor" allows us to build bottom up, at the expense of some useless re-traversals...
+      // This normalization is currently not applied to generators or async functions. Not sure what the ramification is.
+      vgroup('Start of single-branch-per-function algo');
+      const funcNode = ifelseStack[ifelseStack.length - 1];
 
-        prev.alternate.body.push(node);
-        body[i] = AST.emptyStatement();
+      if (funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrayFunctionExpression') {
+        if (funcNode.generator) {
+          // Currently not seeing a solid way to support function abstraction inside a generator
+          // Sure, we can do it for all the bits that don't contain `yield`, but the thing does taint
+          // so if there's one after the if-else then the whole thing collapses. I dunno yet.
+          vlog(RED + 'Can not apply the branch reduction rule to generators...' + RESET);
+        } else if (funcNode.async) {
+          // Async functions need more research. Unlike generators we may be able to deal with these but I'm not sure yet.
+          // The simplest safe way would be to await the calls of all abstractions. Less invasive would be to filter that
+          // based on whether the abstraction actually contained the keyword `await`. Though it does taint the whole chain.
+          vlog(RED + 'Can not apply the branch reduction rule to async functions yet...' + RESET);
+        } else if (
+          // If this `if` is the last node of the body
+          i >= body.length - 1 &&
+          // or the if or else has no nested `if`
+          !node.consequent.body.some((snode) => snode.type === 'IfStatement') &&
+          !node.alternate.body.some((snode) => snode.type === 'IfStatement')
+        ) {
+          vlog('There is no more code after this if and there are no nested if-elses inside the if or the else. Bailing');
+        } else {
+          vlog('i=', i, 'body has', body.length, 'elements');
+          // TODO: do we want this step before or after the abrubt completion inlining?
+          // This is an if-else directly nested inside another if-else, nested directly in a function/arrow
+          // Note: this may be a method. We'll have to figure out how to outline functions or whatever, or maybe we don't at all.
+          rule('Nested if-else in function must be abstracted');
+          example(
+            'function f(){ if (x) { if (y) { g(); } else { h(); } }',
+            'function f(){ const A() { return g(); }; const B() { return h(); } if (x) { return A(); } else { return B(); } }',
+          );
+          before(node, funcNode);
 
-        after(body[i - 1]);
-        after(body[i]);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      } else if (prev.alternate.body.length === 0 && node.alternate.body.length === 0) {
-        // If prev node has an empty "false" branch then append this if to its consequent
-        // The idea is that if an ident was truthy before then only the truthy branch may change that
-        rule('Back to back `if` with same condition can be merged if the first has no alternate branch');
-        example('if (x) { f(); } if (x) { g(); }', 'if (x) { x = f(); if (x) { g(); } }');
-        before(body[i - 1]);
-        before(node);
+          // - Collect all bindings created before and after the binding
+          // - Abstract the if, the else, and all other nodes after the if-else `node` into separate functions
+          // - The if and else abstractions should call-return the "other" abstraction (regardless, let DCE do its magic later)
+          // - If there were bindings after the if, then "hoist" them as undefined lets before the loop. Replace the original bindings with tmp consts and then assign those consts to the original name. Hopefully other rules will eliminate them again, but there are cases where that's not possible and then this rule is necessary.
+          // - If there were bindings before the if, pass them on as parameters to all three new functions
 
-        prev.consequent.body.push(node);
-        body[i] = AST.emptyStatement();
+          // We are on the way down the to transform so the body should be normalized, meaning all decls should
+          // be let or const variable declarations now. Collect them up to the if. Also gets us the index.
 
-        after(body[i - 1]);
-        after(body[i]);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+          const parentBody = parentNode.body;
+
+          let index = -1;
+          let beforeTheIf = true;
+          const declaredBindingsBefore = [];
+          const declaredBindingsAfter = [];
+          const bodyOffsetMaybe = findBodyOffsetExpensiveMaybe(parentBody); // parent may be a regular block!
+          const bodyOffset = bodyOffsetMaybe < 0 ? 0 : bodyOffsetMaybe;
+          for (let i = bodyOffset; i < parentBody.length; ++i) {
+            const snode = parentBody[i];
+            if (snode === node) {
+              index = i;
+              beforeTheIf = false;
+            } else {
+              if (snode.type === 'VariableDeclaration') {
+                if (beforeTheIf) {
+                  // Code up to this `if` node should be normalized so we can rely on a single binding and no patterns
+                  ASSERT(snode.kind === 'let' || snode.kind === 'const');
+                  ASSERT(snode.declarations.length === 1);
+                  ASSERT(snode.declarations[0].id.type === 'Identifier');
+                  // If a binding is not a constant and it is a closure then we cannot create a
+                  // local variable for it. The problem is that the writes would not be observable in
+                  // either the original closure, or the tail abstraction (or both).
+                  const name = snode.declarations[0].id.name;
+                  const meta = fdata.globallyUniqueNamingRegistry.get(name);
+                  if (meta.isConstant) {
+                    declaredBindingsBefore.push(name);
+                  }
+                } else {
+                  // A func at the start of a func can still ref a binding declared later. Here we have to be careful
+                  // not to break this situation when we move bindings into a tail function.
+                  // `function f(){ return x; } if (x) y(); let x = 10; f();`
+                  // Note: these nodes have not been visited by normalization yet so the var decls may not be normalized
+                  // This search is slower but allows for patterns and multiple bindings per node etc.
+                  findBoundNamesInUnnormalizedVarDeclaration(snode, declaredBindingsAfter);
+                  // Replace each existing binding with an assignment. We will declare the names above as undefined lets.
+                  // The transform of a var decl to a regular (or destructuring) assignment
+                  // `let [{x}] = [{x:y}]` -> `[{x} = [{x:y}]` should be safe for any assignment, for any
+                  // number of such bindings declared.
+
+                  // The idea is that `log(x); if (a) b(); const x = 10;` becomes
+                  // `let x = undefined; log(x); if (a) b(); const tmp = 10; x = 10;`
+                  // While this is a TDZ (and would no longer be that), the valid usage is a closure by a function that
+                  // is declared before the if and only called after the if (and closed binding). This should work fine.
+                  parentBody[i] = AST.expressionStatement(
+                    // `let a = 1, [b] = f();` -> `a = 1, [b] = f();`
+                    // For any number of decls, any kind of id, any kind of init (or `undefined` if there was none)
+                    // Everything should be replaced by a sequence of assignments as long as the binding is declared too.
+                    AST.sequenceExpression(
+                      snode.declarations.map(({ id, init = AST.identifier('undefined') }) =>
+                        AST.assignmentExpression(id, init || AST.identifier('undefined')),
+                      ),
+                    ),
+                  );
+                }
+              }
+            }
+          }
+          vlog('Index of `if`:', index, ', bindings before:', declaredBindingsBefore, ', bindings after:', declaredBindingsAfter);
+          ASSERT(index >= 0, 'the if ought to be found? otherwise i think the ifelseStack needs some attention', index);
+
+          // Argument/parameter names to use for all functions and all calls. Let other rules eliminate them.
+          vlog('Local bindings found:', declaredBindingsBefore);
+          // The remainder of the function after the if-else.
+          const bodyRest = parentBody.slice(index + 1);
+          parentBody.length = index + 1;
+
+          vlog('Creating three functions for the if-else branch and its tail');
+          const tmpNameA = createFreshVar('tmpBranchingA', fdata);
+          const tmpNameB = createFreshVar('tmpBranchingB', fdata);
+          const tmpNameC = createFreshVar('tmpBranchingC', fdata);
+          const primeA = AST.functionExpressionNormalized(
+            declaredBindingsBefore.slice(0),
+            [
+              ...node.consequent.body,
+              AST.returnStatement(
+                AST.callExpression(
+                  tmpNameC,
+                  declaredBindingsBefore.map((s) => AST.identifier(s)),
+                ),
+              ),
+            ],
+            { id: createFreshVar('tmpUnusedPrimeFuncNameA', fdata) },
+          );
+          const primeAcloned = cloneFunctionNode(primeA, undefined, [], fdata).expression;
+          {
+            primeAcloned.id = AST.identifier(tmpNameA);
+            source(primeAcloned);
+            primeAcloned.id = null;
+          }
+          const primeB = AST.functionExpressionNormalized(
+            declaredBindingsBefore.slice(0),
+            [
+              ...(node.alternate.body || []),
+              AST.returnStatement(
+                AST.callExpression(
+                  tmpNameC,
+                  declaredBindingsBefore.map((s) => AST.identifier(s)),
+                ),
+              ),
+            ],
+            { id: createFreshVar('tmpUnusedPrimeFuncNameB', fdata) },
+          );
+          const primeBcloned = cloneFunctionNode(primeB, undefined, [], fdata).expression;
+          {
+            primeBcloned.id = AST.identifier(tmpNameB);
+            source(primeBcloned);
+            primeBcloned.id = null;
+          }
+          const primeC = AST.functionExpressionNormalized(declaredBindingsBefore.slice(0), bodyRest, {
+            id: createFreshVar('tmpUnusedPrimeFuncNameC', fdata),
+          });
+          const primeCcloned = cloneFunctionNode(primeC, undefined, [], fdata).expression;
+          {
+            primeCcloned.id = AST.identifier(tmpNameC);
+            source(primeCcloned);
+            primeCcloned.id = null;
+          }
+          const newIf = AST.ifStatement(
+            node.test,
+            AST.blockStatement(
+              AST.returnStatement(
+                AST.callExpression(
+                  tmpNameA,
+                  declaredBindingsBefore.map((s) => AST.identifier(s)),
+                ),
+              ),
+            ),
+            AST.blockStatement(
+              AST.returnStatement(
+                AST.callExpression(
+                  tmpNameB,
+                  declaredBindingsBefore.map((s) => AST.identifier(s)),
+                ),
+              ),
+            ),
+          );
+          body.splice(
+            i,
+            1,
+            // Inject the three functions (if body, else body, tail code) to go before the new `if`
+            AST.variableDeclaration(tmpNameA, primeAcloned, 'const'),
+            AST.variableDeclaration(tmpNameB, primeBcloned, 'const'),
+            AST.variableDeclaration(tmpNameC, primeCcloned, 'const'), // TODO: does it help to declare C before A/B?
+            // Inject all bindings that were defined as siblings after this `if` statement. Make them lets, init to undefined.
+            ...declaredBindingsAfter.map((name) => AST.variableDeclaration(name, 'undefined', 'let')),
+            newIf,
+          );
+
+          if (VERBOSE_TRACING) {
+            vlog('\nCurrent state after applying "Nested if-else" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+          }
+
+          vlog(); // newline
+          after(newIf, funcNode);
+          assertNoDupeNodes(AST.blockStatement(funcNode), 'body');
+          return true;
+        }
+      }
+      vgroupEnd();
+
+      if (node.consequent.$p.returnBreakContinueThrow && i < body.length - 1) {
+        // Doesn't matter what kind of abrupt completion it was
+        // Inline the remainder of the parent block into the else branch
+        rule('If the if-branch returns the remainder of the parent block goes into the else-branch');
+        example('if (x) return; f();', 'if (x) return; else f();');
+        before(node, parentNode);
+
+        node.alternate.body.push(...body.slice(i + 1));
+        body.length = i + 1;
+
+        after(parentNode);
+        assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
         return true;
       }
-    }
 
+      if (node.alternate.$p.returnBreakContinueThrow && i < body.length - 1) {
+        // Doesn't matter what kind of abrupt completion it was
+        // Inline the remainder of the parent block into the if branch
+        rule('If the else-branch returns the remainder of the parent block goes into the if-branch');
+        example('if (x) { f(); } else { return; } g();', 'if (x) { f(); g(); } else { return; }');
+        before(node, parentNode);
+
+        node.consequent.body.push(...body.slice(i + 1));
+        body.length = i + 1;
+
+        after(parentNode);
+        assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
+        return true;
+      }
+
+      vlog(
+        BLUE + 'if;returnBreakContinueThrow?' + RESET,
+        node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow
+          ? 'yes; ' + node.consequent.$p.returnBreakContinueThrow + ' and ' + node.alternate.$p.returnBreakContinueThrow
+          : 'no',
+      );
+      if (node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow) {
+        // Both branches broke flow early so any statements that follow this statement are effectively dead
+        node.$p.returnBreakContinueThrow = node.consequent.$p.returnBreakContinueThrow + '+' + node.alternate.$p.returnBreakContinueThrow;
+
+        if (body.length > i + 1) {
+          if (dce(body, i, 'after if-else')) {
+            return true;
+          }
+        }
+      }
+
+      if (
+        i &&
+        body[i - 1].type === 'IfStatement' &&
+        node.test.type === 'Identifier' &&
+        body[i - 1].test.type === 'Identifier' &&
+        node.test.name === body[i - 1].test.name
+      ) {
+        // This is, if nothing else, a common artifact from our logical operator transform
+        // Folding them like this might allow certain bindings to be detected as constants, where that was harder before
+        const prev = body[i - 1];
+        if (prev.consequent.body.length === 0 && node.consequent.body.length === 0) {
+          // If prev node has no "true" branch then append this if to its alternate
+          rule('Back to back `if` with same condition can be merged if the first has no consequent branch');
+          example('if (x) {} else { x = f(); } if (x) { g(); }', 'if (x) {} else { x = f(); if (x) { g(); } }');
+          before(body[i - 1]);
+          before(node);
+
+          prev.alternate.body.push(node);
+          body[i] = AST.emptyStatement();
+
+          after(body[i - 1]);
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        } else if (prev.alternate.body.length === 0 && node.alternate.body.length === 0) {
+          // If prev node has an empty "false" branch then append this if to its consequent
+          // The idea is that if an ident was truthy before then only the truthy branch may change that
+          rule('Back to back `if` with same condition can be merged if the first has no alternate branch');
+          example('if (x) { f(); } if (x) { g(); }', 'if (x) { x = f(); if (x) { g(); } }');
+          before(body[i - 1]);
+          before(node);
+
+          prev.consequent.body.push(node);
+          body[i] = AST.emptyStatement();
+
+          after(body[i - 1]);
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+      }
+    }
     return false;
   }
 
@@ -6869,8 +6961,9 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    // There's a lot in tests/cases/normalize/loops/base.md
-    /*
+    if (false) {
+      // There's a lot in tests/cases/normalize/loops/base.md
+      /*
     If a function contains a toplevel loop whose test is `true`
     - If the loop contains no branching
       - Move along
@@ -6896,206 +6989,231 @@ export function phaseNormalize(fdata, fname) {
         - The return case is the only one where the tail is never called
      */
 
-    // A normalized loop is a loop whose test is a simple node and whose body does not contain any other branching
+      // A normalized loop is a loop whose test is a simple node and whose body does not contain any other branching
 
-    vlog('Trying to normalize the while statement itself now', funcStack.length, isLabeled);
+      vlog('Trying to normalize the while statement itself now', funcStack.length, isLabeled);
 
-    if (funcStack.length <= 1) {
-      vlog('Ignoring a while in global space, for now');
-    } else if (isLabeled) {
-      vlog('Ignore a labeled loop, for now');
-    } else if (
-      node.body.body.every((n) => {
-        ASSERT(n.type !== 'BlockStatement', 'normalized code should not have nested blocks');
-        return !['IfStatement', 'WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(n.type);
-      })
-    ) {
-      vlog('The `while` does not contain a branching statement, no need to abstract it');
-    } else {
-      // The body of the while contains some branching. Let's go.
-      ASSERT(
-        node.test.type !== 'Literal' || node.test.value === true,
-        'if the while test is a literal, it must at this point be true',
-        node.test,
-      );
-      if (node.test.type !== 'Literal' || node.test.value !== true) {
-        // Note: it's fine to leave a regular ident as the while condition so we don't do this unless required
-        rule('While normalization requires the while test to be `true`');
-        example('while (foo) { f(); }', 'while (true) { if (!foo) break; f(); }');
-        before(node);
+      if (funcStack.length <= 1) {
+        vlog('Ignoring a while in global space, for now');
+      } else if (isLabeled) {
+        vlog('Ignore a labeled loop, for now');
+      } else if (
+        node.body.body.every((n) => {
+          ASSERT(n.type !== 'BlockStatement', 'normalized code should not have nested blocks');
+          return !['IfStatement', 'WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(n.type);
+        })
+      ) {
+        vlog('The `while` does not contain a branching statement, no need to abstract it');
+      } else {
+        // The body of the while contains some branching. Let's go.
+        ASSERT(
+          node.test.type !== 'Literal' || node.test.value === true,
+          'if the while test is a literal, it must at this point be true',
+          node.test,
+        );
+        if (node.test.type !== 'Literal' || node.test.value !== true) {
+          // Note: it's fine to leave a regular ident as the while condition so we don't do this unless required
+          rule('While normalization requires the while test to be `true`');
+          example('while (foo) { f(); }', 'while (true) { if (!foo) break; f(); }');
+          before(node);
 
-        node.body.body.unshift(AST.ifStatement(AST.unaryExpression('!', node.test), AST.breakStatement()));
-        node.test = AST.tru();
+          node.body.body.unshift(AST.ifStatement(AST.unaryExpression('!', node.test), AST.breakStatement()));
+          node.test = AST.tru();
 
-        after(node);
+          after(node);
+          return true;
+        }
+
+        rule('Body of a toplevel while must not have branching');
+        example(
+          'while (true) { if (x) return a; else return b; } rest',
+          'let r = true; let v = undefined; function body() { if (x) { r = false; v = a; return; } else { r = false; v = b; return; } } function tail() { if (r) return v; else { rest } } { while (r) { tmp(); }; tail();',
+        );
+        before(node, parentNode);
+
+        /*
+      // input:
+      let i = 0;
+      a() while (i < 10) { $(i); $(i); ++i; } d()
+
+      // current:
+      let i = 0;
+      function loop(){ const x = i < 10; if (x) { more = false; } else { const a = moduleDeps[o]; createModuleClosure(a); i = i + 1; } }
+      function tail(){ d() }
+      a()
+      let more = true
+      if (more) loop();
+      if (more) loop();
+      while (more) loop();
+      tail();
+       */
+
+        const tmpNameBody = createFreshVar('tmpLoopBody', fdata);
+        const tmpNameTail = createFreshVar('tmpLoopTail', fdata);
+        const tmpNameRetCode = createFreshVar('tmpLoopRetCode', fdata);
+        const tmpNameRetValue = createFreshVar('tmpLoopRetValue', fdata);
+        const tmpNameRetCode2 = createFreshVar(tmpNameRetCode, fdata);
+        const tmpNameRetValue2 = createFreshVar(tmpNameRetValue, fdata);
+
+        const newBodyFunc = AST.functionExpression([], [AST.debuggerStatement(), ...node.body.body]);
+        const newTailFunc = AST.functionExpression(
+          [AST.param('$$0'), AST.param('$$1')],
+          [
+            AST.variableDeclaration(tmpNameRetCode2, AST.param('$$0')),
+            AST.variableDeclaration(tmpNameRetValue2, AST.param('$$1')),
+            AST.debuggerStatement(),
+            // if (r === RETURN) return v;
+            // else <do whatever code followed the loop>
+            AST.ifStatement(
+              AST.binaryExpression('===', tmpNameRetCode2, RETURN()),
+              AST.blockStatement(AST.returnStatement(tmpNameRetValue2)),
+              AST.blockStatement(body.slice(i + 1)),
+            ),
+          ],
+        );
+
+        const newNodes = [
+          AST.variableDeclaration(tmpNameRetCode, CONTINUE(), 'let'),
+          AST.variableDeclaration(tmpNameRetValue, AST.identifier('undefined'), 'let'),
+          AST.variableDeclaration(tmpNameBody, newBodyFunc),
+          AST.variableDeclaration(tmpNameTail, newTailFunc),
+
+          // The loop body is always invoked at least once so should we call the body unconditionally first?
+          //AST.expressionStatement(AST.callExpression(tmpNameBody, [])),
+          // Should we "unroll" the loop a bit? Doesn't really work in our current iteration
+          //AST.ifStatement(tmpNameRetCode, AST.expressionStatement(AST.callExpression(tmpNameBody, []))),
+          //AST.ifStatement(tmpNameRetCode, AST.expressionStatement(AST.callExpression(tmpNameBody, []))),
+          //AST.ifStatement(tmpNameRetCode, AST.expressionStatement(AST.callExpression(tmpNameBody, []))),
+        ];
+        body.splice(
+          i + 1,
+          body.length,
+          AST.returnStatement(AST.callExpression(tmpNameTail, [AST.identifier(tmpNameRetCode), AST.identifier(tmpNameRetValue)])),
+        );
+        node.test = AST.identifier(tmpNameRetCode);
+        node.body.body.length = 0;
+        node.body.body.push(AST.expressionStatement(AST.callExpression(tmpNameBody, [])));
+        body.splice(i, 0, ...newNodes);
+
+        vgroup('Finding all abrupt completions');
+        // Track how many loops are nested. Unlabeled breaks/continues inside another loop should be left alone.
+        let loops = 0;
+        let stack = [];
+        const walker = (subnode, beforeVisit, type, path) => {
+          switch (subnode.type) {
+            case 'FunctionExpression': {
+              if (subnode === newBodyFunc) return; // Ignore the root
+              return true; // Do not traverse
+            }
+            case 'FunctionDeclaration':
+            case 'ArrowFunctionExpression': {
+              ASSERT(false, 'eh, no?');
+              break;
+            }
+            case 'ReturnStatement': {
+              // Always transform the return statement. This should work fine even in nested loops although
+              // part of the boilerplate is ignored for inner loops. Other rules should eliminate that tho.
+              if (beforeVisit) {
+                vlog('Found a return; adding to queue');
+                const parentNode = path.nodes[path.nodes.length - 2];
+                const parentProp = path.props[path.props.length - 1];
+                const parentIndex = path.indexes[path.indexes.length - 1];
+                stack.unshift({
+                  type: 'return',
+                  body: parentNode[parentProp],
+                  index: parentIndex,
+                  value: subnode.argument,
+                  parent: parentNode,
+                });
+              }
+              break;
+            }
+            case 'BreakStatement': {
+              // We can not be interested in a labelled break here because our loop is at the function root
+              // That means it can not be the descendant of a labelled statement and so we can ignore them.
+              // If we are inside another loop, also ignore them because they would break to the inner-most loop.
+              if (beforeVisit && !subnode.label && !loops) {
+                vlog('Found a break; adding to queue');
+                const parentNode = path.nodes[path.nodes.length - 2];
+                const parentProp = path.props[path.props.length - 1];
+                const parentIndex = path.indexes[path.indexes.length - 1];
+                stack.unshift({ type: 'break', body: parentNode[parentProp], index: parentIndex, value: undefined, parent: parentNode });
+              }
+              break;
+            }
+            case 'ContinueStatement': {
+              // We can not be interested in a labelled break here because our loop is at the function root
+              // That means it can not be the descendant of a labelled statement and so we can ignore them.
+              // If we are inside another loop, also ignore them because they would break to the inner-most loop.
+              if (beforeVisit && !subnode.label && !loops) {
+                vlog('Found a continue; adding to queue');
+
+                const parentNode = path.nodes[path.nodes.length - 2];
+                const parentProp = path.props[path.props.length - 1];
+                const parentIndex = path.indexes[path.indexes.length - 1];
+                stack.unshift({ type: 'continue', body: parentNode[parentProp], index: parentIndex, value: undefined, parent: parentNode });
+              }
+              break;
+            }
+            case 'ForInStatement':
+            case 'ForOfStatement':
+            case 'WhileStatement': {
+              if (beforeVisit) ++loops;
+              else --loops;
+              break;
+            }
+          }
+        };
+        walk(walker, newBodyFunc, 'body');
+        vgroupEnd();
+
+        // We should now be traversing the discovered nodes in reverse DFS order
+        // The important property to keep in mind here is that this means that injecting new nodes
+        // into any body array should not affect the position of elements still on the stack, since
+        // they should always precede the current node.
+        vgroup('Transforming all abrupt completions in reverse order');
+        stack.forEach(({ type, body, index, value, parent }) => {
+          if (type === 'return') {
+            rule('A return should update r and v and drop its arg');
+            example('return x;', 'r = RETURN; v = x; return;');
+            before(body[index], parent);
+
+            const newNodes = [
+              AST.expressionStatement(AST.assignmentExpression(tmpNameRetCode, RETURN())),
+              AST.expressionStatement(AST.assignmentExpression(tmpNameRetValue, value)),
+              AST.returnStatement('undefined'),
+            ];
+            body.splice(index, 1, ...newNodes);
+
+            after(newNodes, parent);
+          } else if (type === 'continue') {
+            rule('A return should update r and v and drop its arg');
+            example('return x;', 'r = RETURN; v = x; return;');
+            before(body[index], parent);
+
+            // We don't need to queue this because it doesn't need to inject multiple nodes.
+            const newNode = AST.returnStatement('undefined');
+            body[index] = newNode;
+
+            after(newNode, parent);
+          } else {
+            ASSERT(type === 'break');
+            rule('A return should update r and v and drop its arg');
+            example('return x;', 'r = RETURN; v = x; return;');
+            before(body[index], parent);
+
+            const newNodes = [AST.expressionStatement(AST.assignmentExpression(tmpNameRetCode, BREAK())), AST.returnStatement('undefined')];
+            body.splice(index, 1, ...newNodes);
+
+            after(newNodes, parent);
+          }
+        });
+        vgroupEnd();
+
+        after(node, parentNode);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
-
-      rule('Body of a toplevel while must not have branching');
-      example(
-        'while (true) { if (x) return a; else return b; } rest',
-        'let r = true; let v = undefined; function body() { if (x) { r = false; v = a; return; } else { r = false; v = b; return; } } function tail() { if (r) return v; else { rest } } { while (r) { tmp(); }; tail();',
-      );
-      before(node, parentNode);
-
-      const tmpNameBody = createFreshVar('tmpLoopBody', fdata);
-      const tmpNameTail = createFreshVar('tmpLoopTail', fdata);
-      const tmpNameRetCode = createFreshVar('tmpLoopRetCode', fdata);
-      const tmpNameRetValue = createFreshVar('tmpLoopRetValue', fdata);
-      const tmpNameRetCode2 = createFreshVar(tmpNameRetCode, fdata);
-      const tmpNameRetValue2 = createFreshVar(tmpNameRetValue, fdata);
-
-      const newBodyFunc = AST.functionExpression([], [AST.debuggerStatement(), ...node.body.body]);
-      const newTailFunc = AST.functionExpression(
-        [AST.param('$$0'), AST.param('$$1')],
-        [
-          AST.variableDeclaration(tmpNameRetCode2, AST.param('$$0')),
-          AST.variableDeclaration(tmpNameRetValue2, AST.param('$$1')),
-          AST.debuggerStatement(),
-          // if (r === RETURN) return v;
-          // else <do whatever code followed the loop>
-          AST.ifStatement(
-            AST.binaryExpression('===', tmpNameRetCode2, RETURN()),
-            AST.blockStatement(AST.returnStatement(tmpNameRetValue2)),
-            AST.blockStatement(body.slice(i + 1)),
-          ),
-        ],
-      );
-
-      const newNodes = [
-        AST.variableDeclaration(tmpNameRetCode, CONTINUE(), 'let'),
-        AST.variableDeclaration(tmpNameRetValue, AST.identifier('undefined'), 'let'),
-        AST.variableDeclaration(tmpNameBody, newBodyFunc),
-        AST.variableDeclaration(tmpNameTail, newTailFunc),
-      ];
-      body.splice(
-        i + 1,
-        body.length,
-        AST.returnStatement(AST.callExpression(tmpNameTail, [AST.identifier(tmpNameRetCode), AST.identifier(tmpNameRetValue)])),
-      );
-      node.test = AST.identifier(tmpNameRetCode);
-      node.body.body.length = 0;
-      node.body.body.push(AST.expressionStatement(AST.callExpression(tmpNameBody, [])));
-      body.splice(i, 0, ...newNodes);
-
-      vgroup('Finding all abrupt completions');
-      // Track how many loops are nested. Unlabeled breaks/continues inside another loop should be left alone.
-      let loops = 0;
-      let stack = [];
-      const walker = (subnode, beforeVisit, type, path) => {
-        switch (subnode.type) {
-          case 'FunctionExpression': {
-            if (subnode === newBodyFunc) return; // Ignore the root
-            return true; // Do not traverse
-          }
-          case 'FunctionDeclaration':
-          case 'ArrowFunctionExpression': {
-            ASSERT(false, 'eh, no?');
-            break;
-          }
-          case 'ReturnStatement': {
-            // Always transform the return statement. This should work fine even in nested loops although
-            // part of the boilerplate is ignored for inner loops. Other rules should eliminate that tho.
-            if (beforeVisit) {
-              vlog('Found a return; adding to queue');
-              const parentNode = path.nodes[path.nodes.length - 2];
-              const parentProp = path.props[path.props.length - 1];
-              const parentIndex = path.indexes[path.indexes.length - 1];
-              stack.unshift({
-                type: 'return',
-                body: parentNode[parentProp],
-                index: parentIndex,
-                value: subnode.argument,
-                parent: parentNode,
-              });
-            }
-            break;
-          }
-          case 'BreakStatement': {
-            // We can not be interested in a labelled break here because our loop is at the function root
-            // That means it can not be the descendant of a labelled statement and so we can ignore them.
-            // If we are inside another loop, also ignore them because they would break to the inner-most loop.
-            if (beforeVisit && !subnode.label && !loops) {
-              vlog('Found a break; adding to queue');
-              const parentNode = path.nodes[path.nodes.length - 2];
-              const parentProp = path.props[path.props.length - 1];
-              const parentIndex = path.indexes[path.indexes.length - 1];
-              stack.unshift({ type: 'break', body: parentNode[parentProp], index: parentIndex, value: undefined, parent: parentNode });
-            }
-            break;
-          }
-          case 'ContinueStatement': {
-            // We can not be interested in a labelled break here because our loop is at the function root
-            // That means it can not be the descendant of a labelled statement and so we can ignore them.
-            // If we are inside another loop, also ignore them because they would break to the inner-most loop.
-            if (beforeVisit && !subnode.label && !loops) {
-              vlog('Found a continue; adding to queue');
-
-              const parentNode = path.nodes[path.nodes.length - 2];
-              const parentProp = path.props[path.props.length - 1];
-              const parentIndex = path.indexes[path.indexes.length - 1];
-              stack.unshift({ type: 'continue', body: parentNode[parentProp], index: parentIndex, value: undefined, parent: parentNode });
-            }
-            break;
-          }
-          case 'ForInStatement':
-          case 'ForOfStatement':
-          case 'WhileStatement': {
-            if (beforeVisit) ++loops;
-            else --loops;
-            break;
-          }
-        }
-      };
-      walk(walker, newBodyFunc, 'body');
-      vgroupEnd();
-
-      // We should now be traversing the discovered nodes in reverse DFS order
-      // The important property to keep in mind here is that this means that injecting new nodes
-      // into any body array should not affect the position of elements still on the stack, since
-      // they should always precede the current node.
-      vgroup('Transforming all abrupt completions in reverse order');
-      stack.forEach(({ type, body, index, value, parent }) => {
-        if (type === 'return') {
-          rule('A return should update r and v and drop its arg');
-          example('return x;', 'r = RETURN; v = x; return;');
-          before(body[index], parent);
-
-          const newNodes = [
-            AST.expressionStatement(AST.assignmentExpression(tmpNameRetCode, RETURN())),
-            AST.expressionStatement(AST.assignmentExpression(tmpNameRetValue, value)),
-            AST.returnStatement('undefined'),
-          ];
-          body.splice(index, 1, ...newNodes);
-
-          after(newNodes, parent);
-        } else if (type === 'continue') {
-          rule('A return should update r and v and drop its arg');
-          example('return x;', 'r = RETURN; v = x; return;');
-          before(body[index], parent);
-
-          // We don't need to queue this because it doesn't need to inject multiple nodes.
-          const newNode = AST.returnStatement('undefined');
-          body[index] = newNode;
-
-          after(newNode, parent);
-        } else {
-          ASSERT(type === 'break');
-          rule('A return should update r and v and drop its arg');
-          example('return x;', 'r = RETURN; v = x; return;');
-          before(body[index], parent);
-
-          const newNodes = [AST.expressionStatement(AST.assignmentExpression(tmpNameRetCode, BREAK())), AST.returnStatement('undefined')];
-          body.splice(index, 1, ...newNodes);
-
-          after(newNodes, parent);
-        }
-      });
-      vgroupEnd();
-
-      after(node, parentNode);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
     }
 
     vlog(

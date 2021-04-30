@@ -886,15 +886,31 @@ export function isProperIdent(node) {
   }
 }
 
-export function nodeHasNoObservableSideEffect(node) {
+export function nodeHasNoObservableSideEffectNorStatements(node) {
   // This function assumes normalized code (!)
 
   // Given node represents an expression (including an ExpressionStatement), return true if the
   // node contained an expression with an observable side effect, and false if it doesn't.
-  // This function will not visit bodies of functions, merely expressions (if-test, while-test, for-header-rhs, etc).
+  // This function will not visit bodies of functions, merely expressions.
+  // It returns false for any statement that is not a variable declaration or expression statement.
+  // TODO: potentially we can support walking loops and ifs but there's probably no real point to it
 
   const r = expressionHasNoObservableSideEffect(node);
   if (r !== undefined) return r;
+
+  if (node.type === 'VariableDeclaration') {
+    // This one is tricky. The binding itself is observable insofar that it may trigger TDZ errors if moved later.
+    // But I think for the intention of this function, the question is whether the init is observable.
+    // Probably need to revise this a bit later on.
+    return expressionHasNoObservableSideEffect(node.declarations[0].init);
+  }
+
+  if (node.type === 'ExpressionStatement') {
+    // Shouldn't reach here but whatever
+    return expressionHasNoObservableSideEffect(node.expression);
+  }
+
+  return false; // Do not pass other statements
 
   if (node.type === 'IfStatement') {
     // Note: in normalized state the if-test should be a simple node.
@@ -912,17 +928,6 @@ export function nodeHasNoObservableSideEffect(node) {
     //return expressionHasNoObservableSideEffect(node.test);
   }
 
-  if (node.type === 'VariableDeclaration') {
-    // This one is tricky. The binding itself is observable insofar that it may trigger TDZ errors if moved later.
-    // But I think for the intention of this function, the question is whether the init is observable.
-    // Probably need to revise this a bit later on.
-    return expressionHasNoObservableSideEffect(node.declarations[0].init);
-  }
-
-  if (node.type === 'ExpressionStatement') {
-    return expressionHasNoObservableSideEffect(node.expression);
-  }
-
   if (node.type === 'DebuggerStatement') {
     // I'm inclined to treat this as a special case but for now I'll allow it.
     return true;
@@ -934,32 +939,32 @@ export function nodeHasNoObservableSideEffect(node) {
 
   if (node.type === 'LabeledStatement') {
     // Skip for now.... TODO: figure out what to do with this
-    return false;
+    return true;
   }
 
   if (node.type === 'ImportDeclaration') {
     // Skip for now.... TODO: figure out what to do with this
-    return false;
+    return true;
   }
 
   if (node.type === 'ExportNamedDeclaration') {
     // Skip for now.... TODO: figure out what to do with this
-    return false;
+    return true;
   }
 
   if (node.type === 'ForInStatement') {
     // I think this triggers getters. TODO: confirm
-    return false;
+    return true;
   }
 
   if (node.type === 'ForOfStatement') {
     // This one triggers generators on the rhs
-    return false;
+    return true;
   }
 
   if (node.type === 'TryStatement') {
     // Skip for now.... TODO: figure out what to do with this
-    return false;
+    return true;
   }
 
   ASSERT(false, 'TODO: support this node', node);

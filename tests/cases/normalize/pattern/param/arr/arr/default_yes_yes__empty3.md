@@ -65,51 +65,19 @@ let f = function ($$0) {
   let arrPatternBeforeDefault = undefined;
   let arrPatternStep = undefined;
   let arrPatternSplat$1 = undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpAssignRhsProp$1 = ['pass3'];
-    arrPatternBeforeDefault = tmpAssignRhsProp$1[0];
-    const tmpIfTest$3 = arrPatternBeforeDefault === undefined;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      arrPatternStep = ['fail2'];
-      const tmpReturnArg = tmpBranchingC$1();
-      return tmpReturnArg;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      arrPatternStep = arrPatternBeforeDefault;
-      const tmpReturnArg$1 = tmpBranchingC$1();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      arrPatternSplat$1 = [...arrPatternStep];
-      return 'ok';
-    };
-    if (tmpIfTest$3) {
-      const tmpReturnArg$3 = tmpBranchingA$1();
-      return tmpReturnArg$3;
-    } else {
-      const tmpReturnArg$5 = tmpBranchingB$1();
-      return tmpReturnArg$5;
-    }
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$7 = tmpBranchingC();
-    return tmpReturnArg$7;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$9 = tmpBranchingA();
-    return tmpReturnArg$9;
+    const tmpAssignRhsProp = ['pass3'];
+    arrPatternBeforeDefault = tmpAssignRhsProp[0];
+    const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+    if (tmpIfTest$1) {
+      arrPatternStep = ['fail2'];
+    } else {
+      arrPatternStep = arrPatternBeforeDefault;
+    }
+    arrPatternSplat$1 = [...arrPatternStep];
+    return 'ok';
   } else {
-    const tmpReturnArg$11 = tmpBranchingB();
-    return tmpReturnArg$11;
+    return undefined;
   }
 };
 const tmpCallCallee = $;
@@ -121,21 +89,15 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let arrPatternStep = undefined;
-const tmpBranchingC$1 = function () {
-  debugger;
-  [...arrPatternStep];
-  return undefined;
-};
-const tmpAssignRhsProp$1 = ['pass3'];
-const tmpssa3_arrPatternBeforeDefault = tmpAssignRhsProp$1[0];
-const tmpIfTest$3 = tmpssa3_arrPatternBeforeDefault === undefined;
-if (tmpIfTest$3) {
+const tmpAssignRhsProp = ['pass3'];
+const tmpSSA_arrPatternBeforeDefault = tmpAssignRhsProp[0];
+const tmpIfTest$1 = tmpSSA_arrPatternBeforeDefault === undefined;
+if (tmpIfTest$1) {
   arrPatternStep = ['fail2'];
-  tmpBranchingC$1();
 } else {
-  arrPatternStep = tmpssa3_arrPatternBeforeDefault;
-  tmpBranchingC$1();
+  arrPatternStep = tmpSSA_arrPatternBeforeDefault;
 }
+[...arrPatternStep];
 $('ok');
 `````
 

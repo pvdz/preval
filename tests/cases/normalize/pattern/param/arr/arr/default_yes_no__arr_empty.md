@@ -40,63 +40,39 @@ let f = function ($$0) {
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = ['pass2'];
-    arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    arrPatternStep = arrPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    arrPatternSplat$1 = [...arrPatternStep];
-    return 'ok';
-  };
-  let arrPatternSplat$1 = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['pass2'];
+    arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    arrPatternStep = arrPatternBeforeDefault;
   }
+  let arrPatternSplat$1 = [...arrPatternStep];
+  return 'ok';
 };
-const tmpCallCallee$3 = $;
-const tmpCallCallee$5 = f;
-const tmpCalleeParam$5 = [];
-const tmpCalleeParam$7 = 200;
-const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5, tmpCalleeParam$7);
-tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCallCallee$1 = $;
+const tmpCallCallee$3 = f;
+const tmpCalleeParam$3 = [];
+const tmpCalleeParam$5 = 200;
+const tmpCalleeParam$1 = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$5);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$5 = [];
-const arrPatternSplat = [...tmpCalleeParam$5];
+const tmpCalleeParam$3 = [];
+const arrPatternSplat = [...tmpCalleeParam$3];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
-const tmpBranchingC = function () {
-  debugger;
-  [...arrPatternStep];
-  return undefined;
-};
 if (tmpIfTest) {
-  const tmpCalleeParam$1 = ['pass2'];
-  arrPatternStep = $(tmpCalleeParam$1);
-  tmpBranchingC();
+  const tmpCalleeParam = ['pass2'];
+  arrPatternStep = $(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
-  tmpBranchingC();
 }
+[...arrPatternStep];
 $('ok');
 `````
 

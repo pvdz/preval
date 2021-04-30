@@ -42,61 +42,27 @@ let f = function () {
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest = tmpChainElementCall != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainRootComputed$1 = $('$');
-    const tmpChainElementObject$1 = tmpChainElementCall[tmpChainRootComputed$1];
-    const tmpIfTest$3 = tmpChainElementObject$1 != null;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      const tmpCallObj$3 = tmpChainElementObject$1;
-      const tmpCallVal$3 = tmpCallObj$3.call;
-      const tmpCalleeParam$7 = tmpChainElementCall;
-      const tmpCalleeParam$9 = $(1);
-      const tmpChainElementCall$5 = tmpCallVal$3.call(tmpCallObj$3, tmpCalleeParam$7, tmpCalleeParam$9);
-      a = tmpChainElementCall$5;
-      const tmpReturnArg = tmpBranchingC$1();
-      return tmpReturnArg;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpReturnArg$1 = tmpBranchingC$1();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg$3 = tmpBranchingC();
-      return tmpReturnArg$3;
-    };
-    if (tmpIfTest$3) {
-      const tmpReturnArg$5 = tmpBranchingA$1();
-      return tmpReturnArg$5;
-    } else {
-      const tmpReturnArg$7 = tmpBranchingB$1();
-      return tmpReturnArg$7;
-    }
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$9 = tmpBranchingC();
-    return tmpReturnArg$9;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $(a);
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$11 = tmpBranchingA();
-    return tmpReturnArg$11;
+    const tmpChainRootComputed = $('$');
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$1 = tmpChainElementObject != null;
+    if (tmpIfTest$1) {
+      const tmpCallObj = tmpChainElementObject;
+      const tmpCallVal = tmpCallObj.call;
+      const tmpCalleeParam = tmpChainElementCall;
+      const tmpCalleeParam$1 = $(1);
+      const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+      a = tmpChainElementCall$1;
+    } else {
+    }
   } else {
-    const tmpReturnArg$13 = tmpBranchingB();
-    return tmpReturnArg$13;
   }
+  $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
-const tmpCalleeParam$11 = f();
-tmpCallCallee(tmpCalleeParam$11);
+const tmpCalleeParam$3 = f();
+tmpCallCallee(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -106,33 +72,20 @@ const b = { $: $ };
 let a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall != null;
-const tmpBranchingA = function () {
-  debugger;
-  const tmpChainRootComputed$1 = $('$');
-  const tmpChainElementObject$1 = tmpChainElementCall[tmpChainRootComputed$1];
-  const tmpIfTest$3 = tmpChainElementObject$1 != null;
-  if (tmpIfTest$3) {
-    const tmpCallVal$3 = tmpChainElementObject$1.call;
-    const tmpCalleeParam$9 = $(1);
-    const tmpChainElementCall$5 = tmpCallVal$3.call(tmpChainElementObject$1, tmpChainElementCall, tmpCalleeParam$9);
-    a = tmpChainElementCall$5;
-    tmpBranchingC();
-    return undefined;
-  } else {
-    tmpBranchingC();
-    return undefined;
-  }
-};
-const tmpBranchingC = function () {
-  debugger;
-  $(a);
-  return undefined;
-};
 if (tmpIfTest) {
-  tmpBranchingA();
+  const tmpChainRootComputed = $('$');
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$1 = tmpChainElementObject != null;
+  if (tmpIfTest$1) {
+    const tmpCallVal = tmpChainElementObject.call;
+    const tmpCalleeParam$1 = $(1);
+    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
+    a = tmpChainElementCall$1;
+  } else {
+  }
 } else {
-  tmpBranchingC();
 }
+$(a);
 $(undefined);
 `````
 

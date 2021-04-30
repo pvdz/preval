@@ -114,99 +114,54 @@ if ($) {
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpBranchingA$1 = function () {
-    debugger;
-    const g$1 = function () {
+  if ($) {
+    const g = function () {
       debugger;
       if ($) {
-        $(x$1);
+        $(x);
         return undefined;
       } else {
         return undefined;
       }
     };
-    let x$1 = $(5);
-    $(x$1);
-    const t$1 = function () {
+    let x = $(5);
+    $(x);
+    const t = function () {
       debugger;
       if ($) {
-        $(x$1, 't');
+        $(x, 't');
         return undefined;
       } else {
         return undefined;
       }
     };
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = {
       toString() {
         debugger;
-        x$1 = 200;
-        t$1();
-        $(x$1);
-        const tmpBranchingA$3 = function () {
-          debugger;
-          $(11);
-          const tmpReturnArg$7 = tmpBranchingC$3();
-          return tmpReturnArg$7;
-        };
-        const tmpBranchingB$3 = function () {
-          debugger;
-          const tmpReturnArg$9 = tmpBranchingC$3();
-          return tmpReturnArg$9;
-        };
-        const tmpBranchingC$3 = function () {
-          debugger;
-          return 'hi';
-        };
+        x = 200;
+        t();
+        $(x);
         if ($) {
-          const tmpReturnArg$11 = tmpBranchingA$3();
-          return tmpReturnArg$11;
+          $(11);
+          return 'hi';
         } else {
-          const tmpReturnArg$13 = tmpBranchingB$3();
-          return tmpReturnArg$13;
+          return 'hi';
         }
       },
     };
-    x$1 = tmpCallCallee$1(tmpCalleeParam$1);
-    x$1 = x$1 + 1;
-    g$1();
-    t$1();
-    const tmpBranchingA$5 = function () {
-      debugger;
+    x = tmpCallCallee(tmpCalleeParam);
+    x = x + 1;
+    g();
+    t();
+    if ($) {
       $(10);
       return undefined;
-    };
-    const tmpBranchingB$5 = function () {
-      debugger;
-      return undefined;
-    };
-    const tmpBranchingC$5 = function () {
-      debugger;
-      const tmpReturnArg$15 = tmpBranchingC$1();
-      return tmpReturnArg$15;
-    };
-    if ($) {
-      const tmpReturnArg$17 = tmpBranchingA$5();
-      return tmpReturnArg$17;
     } else {
-      const tmpReturnArg$19 = tmpBranchingB$5();
-      return tmpReturnArg$19;
+      return undefined;
     }
-  };
-  const tmpBranchingB$1 = function () {
-    debugger;
-    return undefined;
-  };
-  const tmpBranchingC$1 = function () {
-    debugger;
-    return undefined;
-  };
-  if ($) {
-    const tmpReturnArg$21 = tmpBranchingA$1();
-    return tmpReturnArg$21;
   } else {
-    const tmpReturnArg$23 = tmpBranchingB$1();
-    return tmpReturnArg$23;
+    return undefined;
   }
 };
 if ($) {
@@ -218,55 +173,47 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const tmpBranchingA$1 = function () {
+const f = function () {
   debugger;
-  const g$1 = function () {
-    debugger;
-    if ($) {
-      $(x$1);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  let x$1 = $(5);
-  $(x$1);
-  const t$1 = function () {
-    debugger;
-    if ($) {
-      $(x$1, 't');
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  const tmpCalleeParam$1 = {
-    toString() {
-      debugger;
-      x$1 = 200;
-      t$1();
-      $(x$1);
-      if ($) {
-        $(11);
-        return 'hi';
-      } else {
-        return 'hi';
-      }
-    },
-  };
-  x$1 = $(tmpCalleeParam$1);
-  x$1 = x$1 + 1;
-  g$1();
-  t$1();
   if ($) {
-    $(10);
-    return undefined;
+    let x = $(5);
+    $(x);
+    const tmpCalleeParam = {
+      toString() {
+        debugger;
+        x = 200;
+        if ($) {
+          $(x, 't');
+        } else {
+        }
+        $(x);
+        if ($) {
+          $(11);
+          return 'hi';
+        } else {
+          return 'hi';
+        }
+      },
+    };
+    x = $(tmpCalleeParam);
+    x = x + 1;
+    if ($) {
+      $(x);
+    } else {
+    }
+    $(x, 't');
+    if ($) {
+      $(10);
+      return undefined;
+    } else {
+      return undefined;
+    }
   } else {
     return undefined;
   }
 };
 if ($) {
-  tmpBranchingA$1();
+  f();
 } else {
 }
 `````

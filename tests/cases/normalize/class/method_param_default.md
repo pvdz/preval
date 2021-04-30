@@ -43,28 +43,12 @@ let x = class {
     debugger;
     let arg = undefined;
     const tmpIfTest = tmpParamBare === undefined;
-    const tmpBranchingA = function () {
-      debugger;
-      arg = $(10, 'default');
-      const tmpReturnArg = tmpBranchingC();
-      return tmpReturnArg;
-    };
-    const tmpBranchingB = function () {
-      debugger;
-      arg = tmpParamBare;
-      const tmpReturnArg$1 = tmpBranchingC();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingC = function () {
-      debugger;
-      return arg;
-    };
     if (tmpIfTest) {
-      const tmpReturnArg$3 = tmpBranchingA();
-      return tmpReturnArg$3;
+      arg = $(10, 'default');
+      return arg;
     } else {
-      const tmpReturnArg$5 = tmpBranchingB();
-      return tmpReturnArg$5;
+      arg = tmpParamBare;
+      return arg;
     }
   }
 };
@@ -83,8 +67,8 @@ const x = class {
     debugger;
     const tmpIfTest = tmpParamBare === undefined;
     if (tmpIfTest) {
-      const tmpssa2_arg = $(10, 'default');
-      return tmpssa2_arg;
+      const tmpSSA_arg = $(10, 'default');
+      return tmpSSA_arg;
     } else {
       return tmpParamBare;
     }

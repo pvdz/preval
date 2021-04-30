@@ -36,29 +36,12 @@ let f = function () {
   debugger;
   let y = 3;
   const tmpIfTest = y == null;
-  const tmpBranchingA = function () {
-    debugger;
-    y = foo;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpReturnArg$3 = $(y);
-    return tmpReturnArg$3;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    y = foo;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
   }
+  const tmpReturnArg = $(y);
+  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -68,8 +51,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = $(3);
-$(tmpCalleeParam);
+const tmpReturnArg = $(3);
+$(tmpReturnArg);
 `````
 
 ## Globals

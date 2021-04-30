@@ -37,39 +37,20 @@ let f = function ($$0) {
   debugger;
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = ['fail'];
-    bindingPatternArrRoot = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    bindingPatternArrRoot = tmpParamBare;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    arrPatternSplat = [...bindingPatternArrRoot];
-    x = arrPatternSplat.slice(0);
-    return 'bad';
-  };
-  let arrPatternSplat = undefined;
-  let x = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail'];
+    bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    bindingPatternArrRoot = tmpParamBare;
   }
+  let arrPatternSplat = [...bindingPatternArrRoot];
+  let x = arrPatternSplat.slice(0);
+  return 'bad';
 };
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f(null, 200);
-tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f(null, 200);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output

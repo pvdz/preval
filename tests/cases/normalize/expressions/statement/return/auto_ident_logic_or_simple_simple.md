@@ -37,27 +37,11 @@ $(a);
 let f = function () {
   debugger;
   let tmpReturnArg = 0;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    tmpReturnArg = 2;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return tmpReturnArg;
-  };
   if (tmpReturnArg) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
+    tmpReturnArg = 2;
+    return tmpReturnArg;
   }
 };
 let a = { a: 999, b: 1000 };

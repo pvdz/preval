@@ -41,28 +41,12 @@ let f = function ($$0) {
   let objPatternBeforeDefault = arrPatternStep.x;
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    x = $('fail');
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    x = objPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return x;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    x = $('fail');
+    return x;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    x = objPatternBeforeDefault;
+    return x;
   }
 };
 const tmpCallCallee = $;
@@ -85,8 +69,8 @@ const f = function ($$0) {
   const objPatternBeforeDefault = arrPatternStep.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpssa2_x = $('fail');
-    return tmpssa2_x;
+    const tmpSSA_x = $('fail');
+    return tmpSSA_x;
   } else {
     return objPatternBeforeDefault;
   }

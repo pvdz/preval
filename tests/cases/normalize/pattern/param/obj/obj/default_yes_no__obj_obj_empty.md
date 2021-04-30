@@ -39,122 +39,56 @@ let f = function ($$0) {
   let objPatternBeforeDefault = bindingPatternObjRoot.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = { x: 'fail' };
-    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    objPatternAfterDefault = objPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    objPatternCrashTest = objPatternAfterDefault === undefined;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      const tmpReturnArg$3 = tmpBranchingC$1();
-      return tmpReturnArg$3;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      objPatternCrashTest = objPatternAfterDefault === null;
-      const tmpReturnArg$5 = tmpBranchingC$1();
-      return tmpReturnArg$5;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpBranchingA$3 = function () {
-        debugger;
-        objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-        const tmpReturnArg$7 = tmpBranchingC$3();
-        return tmpReturnArg$7;
-      };
-      const tmpBranchingB$3 = function () {
-        debugger;
-        const tmpReturnArg$9 = tmpBranchingC$3();
-        return tmpReturnArg$9;
-      };
-      const tmpBranchingC$3 = function () {
-        debugger;
-        return 'ok';
-      };
-      if (objPatternCrashTest) {
-        const tmpReturnArg$11 = tmpBranchingA$3();
-        return tmpReturnArg$11;
-      } else {
-        const tmpReturnArg$13 = tmpBranchingB$3();
-        return tmpReturnArg$13;
-      }
-    };
-    if (objPatternCrashTest) {
-      const tmpReturnArg$15 = tmpBranchingA$1();
-      return tmpReturnArg$15;
-    } else {
-      const tmpReturnArg$17 = tmpBranchingB$1();
-      return tmpReturnArg$17;
-    }
-  };
-  let objPatternCrashTest = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$19 = tmpBranchingA();
-    return tmpReturnArg$19;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { x: 'fail' };
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
-    const tmpReturnArg$21 = tmpBranchingB();
-    return tmpReturnArg$21;
+    objPatternAfterDefault = objPatternBeforeDefault;
+  }
+  let objPatternCrashTest = objPatternAfterDefault === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = objPatternAfterDefault === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
   }
 };
-const tmpCallCallee$3 = $;
-const tmpCallCallee$5 = f;
+const tmpCallCallee$1 = $;
+const tmpCallCallee$3 = f;
 const tmpObjLitVal = {};
-const tmpCalleeParam$5 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpCalleeParam$7 = 10;
-const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5, tmpCalleeParam$7);
-tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCalleeParam$3 = { x: tmpObjLitVal, b: 11, c: 12 };
+const tmpCalleeParam$5 = 10;
+const tmpCalleeParam$1 = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$5);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 const tmpObjLitVal = {};
-const tmpCalleeParam$5 = { x: tmpObjLitVal, b: 11, c: 12 };
-const tmpBranchingC$1 = function () {
-  debugger;
-  if (objPatternCrashTest) {
-    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const objPatternBeforeDefault = tmpCalleeParam$5.x;
+const tmpCalleeParam$3 = { x: tmpObjLitVal, b: 11, c: 12 };
+const objPatternBeforeDefault = tmpCalleeParam$3.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
-let objPatternCrashTest = undefined;
-const tmpBranchingC = function () {
-  debugger;
-  objPatternCrashTest = objPatternAfterDefault === undefined;
-  if (objPatternCrashTest) {
-    objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-    return undefined;
-  } else {
-    objPatternCrashTest = objPatternAfterDefault === null;
-    tmpBranchingC$1();
-    return undefined;
-  }
-};
 if (tmpIfTest) {
-  const tmpCalleeParam$1 = { x: 'fail' };
-  objPatternAfterDefault = $(tmpCalleeParam$1);
-  tmpBranchingC();
+  const tmpCalleeParam = { x: 'fail' };
+  objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
-  tmpBranchingC();
+}
+let objPatternCrashTest = objPatternAfterDefault === undefined;
+if (objPatternCrashTest) {
+} else {
+  objPatternCrashTest = objPatternAfterDefault === null;
+}
+if (objPatternCrashTest) {
+  objPatternAfterDefault.cannotDestructureThis;
+} else {
 }
 $('ok');
 `````

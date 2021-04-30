@@ -102,31 +102,18 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const outer = function () {
-  debugger;
-  let x = $(1);
-  const f = function () {
-    debugger;
-    if (x) {
-      $('inner if', x);
-      return undefined;
-    } else {
-      $('inner else', x);
-      return undefined;
-    }
-  };
-  if (x) {
-    x = $(2);
-    f();
-    return undefined;
-  } else {
-    x = false;
-    $('inner else', false);
-    return undefined;
-  }
-};
 if ($) {
-  outer();
+  const x = $(1);
+  if (x) {
+    const tmpSSA_x = $(2);
+    if (tmpSSA_x) {
+      $('inner if', tmpSSA_x);
+    } else {
+      $('inner else', tmpSSA_x);
+    }
+  } else {
+    $('inner else', false);
+  }
   $(undefined, 'outer');
 } else {
 }

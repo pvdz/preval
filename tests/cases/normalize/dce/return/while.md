@@ -40,37 +40,16 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let tmpLoopRetCode = true;
-  let tmpLoopRetValue = undefined;
-  let tmpLoopBody = function () {
-    debugger;
+  while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       const tmpReturnArg = $(1, 'return');
-      tmpLoopRetCode = undefined;
-      tmpLoopRetValue = tmpReturnArg;
-      return undefined;
+      return tmpReturnArg;
     } else {
-      tmpLoopRetCode = false;
-      return undefined;
+      break;
     }
-  };
-  let tmpLoopTail = function ($$0, $$1) {
-    let tmpLoopRetCode$1 = $$0;
-    let tmpLoopRetValue$1 = $$1;
-    debugger;
-    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
-    if (tmpIfTest$1) {
-      return tmpLoopRetValue$1;
-    } else {
-      return undefined;
-    }
-  };
-  while (tmpLoopRetCode) {
-    tmpLoopBody();
   }
-  const tmpReturnArg$1 = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
-  return tmpReturnArg$1;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -80,37 +59,21 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpLoopRetCode = true;
-let tmpLoopRetValue = undefined;
-const tmpLoopBody = function () {
+const f = function () {
   debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpReturnArg = $(1, 'return');
-    tmpLoopRetCode = undefined;
-    tmpLoopRetValue = tmpReturnArg;
-    return undefined;
-  } else {
-    tmpLoopRetCode = false;
-    return undefined;
+  while (true) {
+    const tmpIfTest = $(true);
+    if (tmpIfTest) {
+      const tmpReturnArg = $(1, 'return');
+      return tmpReturnArg;
+    } else {
+      break;
+    }
   }
+  return undefined;
 };
-const tmpLoopTail = function ($$0, $$1) {
-  const tmpLoopRetCode$1 = $$0;
-  const tmpLoopRetValue$1 = $$1;
-  debugger;
-  const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
-  if (tmpIfTest$1) {
-    return tmpLoopRetValue$1;
-  } else {
-    return undefined;
-  }
-};
-while (tmpLoopRetCode) {
-  tmpLoopBody();
-}
-const tmpReturnArg$1 = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
-$(tmpReturnArg$1);
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

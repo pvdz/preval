@@ -75,6 +75,7 @@ while (true) {
         $('do not visit');
         continue;
       }
+      $('fail -> DCE');
     }
     $('infiloop, do not eliminate');
   } else {
@@ -103,6 +104,7 @@ while (true) {
         $('do not visit');
         continue;
       }
+      $('fail -> DCE');
     }
     $('infiloop, do not eliminate');
   } else {

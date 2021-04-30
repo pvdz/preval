@@ -35,35 +35,15 @@ let i = function ($$0) {
   debugger;
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    bindingPatternObjRoot = d;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    bindingPatternObjRoot = tmpParamBare;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    objPatternNoDefault = bindingPatternObjRoot.x;
-    objPatternNoDefault$1 = objPatternNoDefault.y;
-    z = objPatternNoDefault$1.z;
-    return z;
-  };
-  let objPatternNoDefault = undefined;
-  let objPatternNoDefault$1 = undefined;
-  let z = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    bindingPatternObjRoot = d;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    bindingPatternObjRoot = tmpParamBare;
   }
+  let objPatternNoDefault = bindingPatternObjRoot.x;
+  let objPatternNoDefault$1 = objPatternNoDefault.y;
+  let z = objPatternNoDefault$1.z;
+  return z;
 };
 `````
 

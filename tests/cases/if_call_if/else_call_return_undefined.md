@@ -118,22 +118,17 @@ const h = function () {
 };
 const f = function () {
   debugger;
-  let test = $(3);
-  const k = function () {
-    debugger;
-    if (test) {
-      test = $(2);
+  const test = $(3);
+  if (test) {
+    const tmpSSA_test = $(1);
+    if (tmpSSA_test) {
+      $(2);
       h();
       return undefined;
     } else {
       h();
       return undefined;
     }
-  };
-  if (test) {
-    test = $(1);
-    k();
-    return undefined;
   } else {
     h();
     return undefined;

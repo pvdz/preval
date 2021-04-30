@@ -179,29 +179,12 @@ let f3 = function () {
   let g$3 = function ($$0) {
     let t = $$0;
     debugger;
-    const tmpBranchingA = function () {
-      debugger;
-      x$3 = x$3 + 1;
-      const tmpReturnArg = tmpBranchingC();
-      return tmpReturnArg;
-    };
-    const tmpBranchingB = function () {
-      debugger;
-      const tmpReturnArg$1 = tmpBranchingC();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingC = function () {
-      debugger;
-      $(x$3);
-      return undefined;
-    };
     if (t) {
-      const tmpReturnArg$3 = tmpBranchingA();
-      return tmpReturnArg$3;
+      x$3 = x$3 + 1;
     } else {
-      const tmpReturnArg$5 = tmpBranchingB();
-      return tmpReturnArg$5;
     }
+    $(x$3);
+    return undefined;
   };
   return undefined;
 };
@@ -214,12 +197,12 @@ let f4 = function () {
       debugger;
       return undefined;
     };
-    const tmpReturnArg$7 = function () {
+    const tmpReturnArg = function () {
       debugger;
       $(x$5);
       return undefined;
     };
-    return tmpReturnArg$7;
+    return tmpReturnArg;
   };
   return undefined;
 };
@@ -237,8 +220,8 @@ let f5 = function () {
       $(x$7);
       return undefined;
     };
-    const tmpReturnArg$9 = h();
-    return tmpReturnArg$9;
+    const tmpReturnArg$1 = h();
+    return tmpReturnArg$1;
   };
   return undefined;
 };

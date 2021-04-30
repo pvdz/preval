@@ -45,32 +45,14 @@ let x = function ($$0, $$1) {
   debugger;
   let foo = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    foo = x$1;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    foo = tmpParamBare;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpAssignObjPatternRhs = tmpParamBare$1;
-    x$1 = tmpAssignObjPatternRhs.x;
-    return undefined;
-  };
-  let x$1 = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    foo = x$1;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    foo = tmpParamBare;
   }
+  let bindingPatternObjRoot = tmpParamBare$1;
+  let x$1 = bindingPatternObjRoot.x;
+  return undefined;
 };
 x();
 `````
@@ -78,8 +60,7 @@ x();
 ## Output
 
 `````js filename=intro
-undefined.x;
-throw '[Preval]: Can not reach here';
+throw 'Preval: Cannot access `x$1` before initialization';
 `````
 
 ## Globals

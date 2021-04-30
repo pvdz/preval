@@ -43,27 +43,12 @@ $(f());
 let f = function () {
   debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    return 2;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $('keep, do not eval');
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$1 = tmpBranchingA();
-    return tmpReturnArg$1;
   } else {
-    const tmpReturnArg$3 = tmpBranchingB();
-    return tmpReturnArg$3;
+    return 2;
   }
+  $('keep, do not eval');
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -77,11 +62,11 @@ const f = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('keep, do not eval');
-    return undefined;
   } else {
     return 2;
   }
+  $('keep, do not eval');
+  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

@@ -110,21 +110,16 @@ if ($) {
 `````js filename=intro
 const f = function () {
   debugger;
-  let test = $(3);
-  const k = function () {
-    debugger;
-    if (test) {
-      test = $(2);
+  const test = $(3);
+  if (test) {
+    const tmpSSA_test = $(1);
+    if (tmpSSA_test) {
+      $(2);
       $(4);
       return undefined;
     } else {
       return null;
     }
-  };
-  if (test) {
-    test = $(1);
-    const r3 = k();
-    return r3;
   } else {
     return null;
   }

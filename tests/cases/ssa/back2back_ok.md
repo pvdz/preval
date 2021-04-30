@@ -63,11 +63,11 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const x = function () {
-  debugger;
-  return undefined;
-};
 if ($) {
+  const x = function () {
+    debugger;
+    return undefined;
+  };
   $(x);
 } else {
 }

@@ -1112,7 +1112,7 @@ export function findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(prev, c
       const next = currentBody[currentIndex];
       vlog('Next statement:', next.type);
       source(next);
-      if (!AST.nodeHasNoObservableSideEffect(next)) {
+      if (!AST.nodeHasNoObservableSideEffectNorStatements(next)) {
         vlog('Has observable side effects. bailing');
         source(next);
         vgroupEnd();

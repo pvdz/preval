@@ -49,56 +49,26 @@ if ($) $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpBranchingA = function () {
-    debugger;
-    let x$1 = 5;
-    const g$1 = function () {
+  if ($) {
+    let x = 5;
+    const g = function () {
       debugger;
       if ($) {
-        x$1 = 10;
+        x = 10;
         return undefined;
       } else {
         return undefined;
       }
     };
-    g$1();
-    const tmpBranchingA$1 = function () {
-      debugger;
-      x$1 = 20;
-      return x$1;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      return x$1;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg = tmpBranchingC();
-      return tmpReturnArg;
-    };
+    g();
     if ($) {
-      const tmpReturnArg$1 = tmpBranchingA$1();
-      return tmpReturnArg$1;
+      x = 20;
+      return x;
     } else {
-      const tmpReturnArg$3 = tmpBranchingB$1();
-      return tmpReturnArg$3;
+      return x;
     }
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$5 = tmpBranchingC();
-    return tmpReturnArg$5;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return undefined;
-  };
-  if ($) {
-    const tmpReturnArg$7 = tmpBranchingA();
-    return tmpReturnArg$7;
   } else {
-    const tmpReturnArg$9 = tmpBranchingB();
-    return tmpReturnArg$9;
+    return undefined;
   }
 };
 if ($) {
@@ -112,28 +82,25 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const tmpBranchingA = function () {
+const f = function () {
   debugger;
-  let x$1 = 5;
-  const g$1 = function () {
-    debugger;
-    if ($) {
-      x$1 = 10;
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
-  g$1();
   if ($) {
-    x$1 = 20;
-    return 20;
+    let x = 5;
+    if ($) {
+      x = 10;
+    } else {
+    }
+    if ($) {
+      return 20;
+    } else {
+      return x;
+    }
   } else {
-    return x$1;
+    return undefined;
   }
 };
 if ($) {
-  const tmpCalleeParam = tmpBranchingA();
+  const tmpCalleeParam = f();
   $(tmpCalleeParam);
 } else {
 }

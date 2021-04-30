@@ -42,33 +42,15 @@ let f = function () {
   a = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementObject$5 = tmpChainRootProp.c;
-    const tmpChainElementObject$7 = tmpChainElementObject$5.d;
-    const tmpChainElementObject$9 = tmpChainElementObject$7.e;
-    const tmpChainElementCall$1 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
-    a = tmpChainElementCall$1;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+    const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+    a = tmpChainElementCall;
+    return a;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
+    return a;
   }
 };
 const tmpObjLitVal$1 = { e: $ };
@@ -89,11 +71,11 @@ const f = function () {
   a = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
-    const tmpChainElementObject$5 = b.c;
-    const tmpChainElementObject$7 = tmpChainElementObject$5.d;
-    const tmpChainElementObject$9 = tmpChainElementObject$7.e;
-    const tmpChainElementCall$1 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
-    a = tmpChainElementCall$1;
+    const tmpChainElementObject = b.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+    const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+    a = tmpChainElementCall;
     return a;
   } else {
     return a;

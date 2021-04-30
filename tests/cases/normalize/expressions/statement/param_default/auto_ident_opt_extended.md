@@ -41,54 +41,22 @@ let f = function ($$0) {
   debugger;
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    p = undefined;
-    const tmpChainRootProp$1 = b;
-    const tmpIfTest$3 = tmpChainRootProp$1 != null;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      const tmpChainElementObject$11 = tmpChainRootProp$1.x;
-      const tmpChainElementObject$13 = tmpChainElementObject$11.y;
-      const tmpChainElementObject$15 = tmpChainElementObject$13.z;
-      p = tmpChainElementObject$15;
-      const tmpReturnArg = tmpBranchingC$1();
-      return tmpReturnArg;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpReturnArg$1 = tmpBranchingC$1();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg$3 = tmpBranchingC();
-      return tmpReturnArg$3;
-    };
-    if (tmpIfTest$3) {
-      const tmpReturnArg$5 = tmpBranchingA$1();
-      return tmpReturnArg$5;
-    } else {
-      const tmpReturnArg$7 = tmpBranchingB$1();
-      return tmpReturnArg$7;
-    }
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    p = tmpParamBare;
-    const tmpReturnArg$9 = tmpBranchingC();
-    return tmpReturnArg$9;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$11 = tmpBranchingA();
-    return tmpReturnArg$11;
+    p = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpChainElementObject$1 = tmpChainElementObject.y;
+      const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+      p = tmpChainElementObject$3;
+      return undefined;
+    } else {
+      return undefined;
+    }
   } else {
-    const tmpReturnArg$13 = tmpBranchingB();
-    return tmpReturnArg$13;
+    p = tmpParamBare;
+    return undefined;
   }
 };
 const tmpObjLitVal$1 = { z: 100 };
@@ -108,11 +76,11 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-const tmpIfTest$3 = b != null;
-if (tmpIfTest$3) {
-  const tmpChainElementObject$11 = b.x;
-  const tmpChainElementObject$13 = tmpChainElementObject$11.y;
-  tmpChainElementObject$13.z;
+const tmpIfTest$1 = b != null;
+if (tmpIfTest$1) {
+  const tmpChainElementObject = b.x;
+  const tmpChainElementObject$1 = tmpChainElementObject.y;
+  tmpChainElementObject$1.z;
 } else {
 }
 $(undefined);

@@ -41,29 +41,14 @@ const r = function ($$0) {
   let n = $$0;
   debugger;
   const tmpIfTest = n > 100;
-  const tmpBranchingA = function () {
-    debugger;
-    return 10;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpCallCallee = r;
-    const tmpCalleeParam = n + 1;
-    const tmpReturnArg$1 = tmpCallCallee(tmpCalleeParam);
-    return tmpReturnArg$1;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    return 10;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
   }
+  const tmpCallCallee = r;
+  const tmpCalleeParam = n + 1;
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  return tmpReturnArg;
 };
 const f = r;
 const a = $(10);
@@ -81,10 +66,10 @@ const r = function ($$0) {
   if (tmpIfTest) {
     return 10;
   } else {
-    const tmpCalleeParam = n + 1;
-    const tmpReturnArg$1 = r(tmpCalleeParam);
-    return tmpReturnArg$1;
   }
+  const tmpCalleeParam = n + 1;
+  const tmpReturnArg = r(tmpCalleeParam);
+  return tmpReturnArg;
 };
 const a = $(10);
 const x = r(a);

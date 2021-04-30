@@ -42,30 +42,14 @@ let f = function () {
   let tmpReturnArg = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementObject$5 = tmpChainRootProp.x;
-    const tmpChainElementObject$7 = tmpChainElementObject$5.y;
-    const tmpChainElementObject$9 = tmpChainElementObject$7.z;
-    tmpReturnArg = tmpChainElementObject$9;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return tmpReturnArg;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    const tmpChainElementObject = tmpChainRootProp.x;
+    const tmpChainElementObject$1 = tmpChainElementObject.y;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+    tmpReturnArg = tmpChainElementObject$3;
+    return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
+    return tmpReturnArg;
   }
 };
 const tmpObjLitVal$1 = { z: 100 };
@@ -85,10 +69,10 @@ const f = function () {
   debugger;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
-    const tmpChainElementObject$5 = b.x;
-    const tmpChainElementObject$7 = tmpChainElementObject$5.y;
-    const tmpChainElementObject$9 = tmpChainElementObject$7.z;
-    return tmpChainElementObject$9;
+    const tmpChainElementObject = b.x;
+    const tmpChainElementObject$1 = tmpChainElementObject.y;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+    return tmpChainElementObject$3;
   } else {
     return undefined;
   }

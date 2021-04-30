@@ -77,21 +77,15 @@ if (y) {
 
 `````js filename=intro
 const x = $('a');
-const g = function () {
-  debugger;
+const y = x === 'undefined';
+if (y) {
   const tmpAssignRhsProp$105 = tmpthis$63.getInitialState;
   const tmpssa2_y = tmpAssignRhsProp$105._isMockFunction;
   if (tmpssa2_y) {
     $(1);
-    return undefined;
   } else {
     $(2);
-    return undefined;
   }
-};
-const y = x === 'undefined';
-if (y) {
-  g();
 } else {
 }
 `````

@@ -49,25 +49,10 @@ let f = function () {
   let a$1 = $(1);
   $(a$1);
   const tmpIfTest = $();
-  const tmpBranchingA = function () {
-    debugger;
-    return a$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return a;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$1 = tmpBranchingA();
-    return tmpReturnArg$1;
+    return a$1;
   } else {
-    const tmpReturnArg$3 = tmpBranchingB();
-    return tmpReturnArg$3;
+    return a;
   }
 };
 const tmpCallCallee = $;

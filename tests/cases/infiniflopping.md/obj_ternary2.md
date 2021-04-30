@@ -102,20 +102,7 @@ f();
 ## Output
 
 `````js filename=intro
-let objPatternCrashTest = undefined;
-const tmpBranchingC = function () {
-  debugger;
-  if (objPatternCrashTest) {
-    objPatternCrashTest = 2;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-if ($) {
-  tmpBranchingC();
-} else {
-}
+
 `````
 
 ## Globals

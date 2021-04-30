@@ -43,29 +43,12 @@ let f = function () {
   let a = { a: 999, b: 1000 };
   const tmpChainRootCall = $;
   const tmpIfTest = tmpChainRootCall != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementCall$1 = tmpChainRootCall(1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $(a);
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    const tmpChainElementCall = tmpChainRootCall(1);
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
   }
+  $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -77,17 +60,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $ != null;
-const tmpBranchingC = function () {
-  debugger;
-  $(a);
-  return undefined;
-};
 if (tmpIfTest) {
   $(1);
-  tmpBranchingC();
 } else {
-  tmpBranchingC();
 }
+$(a);
 $(undefined);
 `````
 

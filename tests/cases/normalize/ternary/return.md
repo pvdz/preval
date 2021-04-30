@@ -40,28 +40,12 @@ let f = function () {
   let b = 2;
   let c = 3;
   let tmpReturnArg = undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    tmpReturnArg = b;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    tmpReturnArg = c;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return tmpReturnArg;
-  };
   if (a) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    tmpReturnArg = b;
+    return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
+    tmpReturnArg = c;
+    return tmpReturnArg;
   }
 };
 const tmpCallCallee = $;

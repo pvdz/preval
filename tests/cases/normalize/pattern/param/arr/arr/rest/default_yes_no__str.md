@@ -40,33 +40,14 @@ let f = function ($$0) {
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    arrPatternStep = $('pass');
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    arrPatternStep = arrPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    arrPatternSplat$1 = [...arrPatternStep];
-    x = arrPatternSplat$1.slice(0);
-    return x;
-  };
-  let arrPatternSplat$1 = undefined;
-  let x = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    arrPatternStep = $('pass');
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    arrPatternStep = arrPatternBeforeDefault;
   }
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let x = arrPatternSplat$1.slice(0);
+  return x;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f('abc', 200);
@@ -76,30 +57,18 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const arrPatternSplat = ['a', 'b', 'c'];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest = arrPatternBeforeDefault === undefined;
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpssa2_arrPatternSplat$1 = [...arrPatternStep];
-    const tmpssa2_x = tmpssa2_arrPatternSplat$1.slice(0);
-    return tmpssa2_x;
-  };
-  if (tmpIfTest) {
-    arrPatternStep = $('pass');
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const arrPatternSplat = ['a', 'b', 'c'];
+const arrPatternBeforeDefault = arrPatternSplat[0];
+let arrPatternStep = undefined;
+const tmpIfTest = arrPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  arrPatternStep = $('pass');
+} else {
+  arrPatternStep = arrPatternBeforeDefault;
+}
+const arrPatternSplat$1 = [...arrPatternStep];
+const x = arrPatternSplat$1.slice(0);
+$(x);
 `````
 
 ## Globals

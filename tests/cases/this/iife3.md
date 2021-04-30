@@ -37,27 +37,11 @@ f();
 const f = function () {
   debugger;
   let tmpIfTest = $(1);
-  const tmpBranchingA = function () {
-    debugger;
-    tmpIfTest = $(2);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    tmpIfTest = $(2);
+    return undefined;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    return undefined;
   }
 };
 f();

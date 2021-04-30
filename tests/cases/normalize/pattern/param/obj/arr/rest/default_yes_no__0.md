@@ -39,68 +39,37 @@ let f = function ($$0) {
   let objPatternBeforeDefault = bindingPatternObjRoot.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = ['pass'];
-    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    objPatternAfterDefault = objPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    arrPatternSplat = [...objPatternAfterDefault];
-    y = arrPatternSplat.slice(0);
-    return y;
-  };
-  let arrPatternSplat = undefined;
-  let y = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['pass'];
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    objPatternAfterDefault = objPatternBeforeDefault;
   }
+  let arrPatternSplat = [...objPatternAfterDefault];
+  let y = arrPatternSplat.slice(0);
+  return y;
 };
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f(0, 10);
-tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f(0, 10);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const objPatternBeforeDefault = (0).x;
-  let objPatternAfterDefault = undefined;
-  const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpssa2_arrPatternSplat = [...objPatternAfterDefault];
-    const tmpssa2_y = tmpssa2_arrPatternSplat.slice(0);
-    return tmpssa2_y;
-  };
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = ['pass'];
-    objPatternAfterDefault = $(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  } else {
-    objPatternAfterDefault = objPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  }
-};
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
+const objPatternBeforeDefault = (0).x;
+let objPatternAfterDefault = undefined;
+const tmpIfTest = objPatternBeforeDefault === undefined;
+if (tmpIfTest) {
+  const tmpCalleeParam = ['pass'];
+  objPatternAfterDefault = $(tmpCalleeParam);
+} else {
+  objPatternAfterDefault = objPatternBeforeDefault;
+}
+const arrPatternSplat = [...objPatternAfterDefault];
+const y = arrPatternSplat.slice(0);
+$(y);
 `````
 
 ## Globals

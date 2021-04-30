@@ -40,33 +40,14 @@ let f = function ($$0) {
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    arrPatternStep = $('fail');
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    arrPatternStep = arrPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    arrPatternSplat$1 = [...arrPatternStep];
-    x = arrPatternSplat$1.slice(0);
-    return 'bad';
-  };
-  let arrPatternSplat$1 = undefined;
-  let x = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    arrPatternStep = $('fail');
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    arrPatternStep = arrPatternBeforeDefault;
   }
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let x = arrPatternSplat$1.slice(0);
+  return 'bad';
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

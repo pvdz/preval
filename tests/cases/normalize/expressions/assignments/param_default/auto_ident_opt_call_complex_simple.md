@@ -38,55 +38,22 @@ let f = function ($$0) {
   debugger;
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    let tmpNestedComplexRhs$1 = undefined;
-    const tmpChainRootCall$1 = $;
-    const tmpChainElementCall$3 = tmpChainRootCall$1($);
-    const tmpIfTest$3 = tmpChainElementCall$3 != null;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      const tmpChainElementCall$7 = tmpChainElementCall$3.call(tmpChainRootCall$1, 1);
-      tmpNestedComplexRhs$1 = tmpChainElementCall$7;
-      const tmpReturnArg = tmpBranchingC$1();
-      return tmpReturnArg;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpReturnArg$1 = tmpBranchingC$1();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      a = tmpNestedComplexRhs$1;
-      p = tmpNestedComplexRhs$1;
-      const tmpReturnArg$3 = tmpBranchingC();
-      return tmpReturnArg$3;
-    };
-    if (tmpIfTest$3) {
-      const tmpReturnArg$5 = tmpBranchingA$1();
-      return tmpReturnArg$5;
-    } else {
-      const tmpReturnArg$7 = tmpBranchingB$1();
-      return tmpReturnArg$7;
-    }
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    p = tmpParamBare;
-    const tmpReturnArg$9 = tmpBranchingC();
-    return tmpReturnArg$9;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$11 = tmpBranchingA();
-    return tmpReturnArg$11;
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall($);
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+      tmpNestedComplexRhs = tmpChainElementCall$1;
+    } else {
+    }
+    a = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
+    return undefined;
   } else {
-    const tmpReturnArg$13 = tmpBranchingB();
-    return tmpReturnArg$13;
+    p = tmpParamBare;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -99,24 +66,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpNestedComplexRhs$1 = undefined;
-const tmpChainElementCall$3 = $($);
-const tmpIfTest$3 = tmpChainElementCall$3 != null;
-const tmpBranchingC$1 = function () {
-  debugger;
-  a = tmpNestedComplexRhs$1;
-  return undefined;
-};
-if (tmpIfTest$3) {
-  const tmpChainElementCall$7 = tmpChainElementCall$3.call($, 1);
-  tmpNestedComplexRhs$1 = tmpChainElementCall$7;
-  tmpBranchingC$1();
+let tmpNestedComplexRhs = undefined;
+const tmpChainElementCall = $($);
+const tmpIfTest$1 = tmpChainElementCall != null;
+if (tmpIfTest$1) {
+  const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
+  tmpNestedComplexRhs = tmpChainElementCall$1;
 } else {
-  tmpBranchingC$1();
 }
+const tmpSSA_a = tmpNestedComplexRhs;
 $(undefined);
-$(a);
+$(tmpSSA_a);
 `````
 
 ## Globals

@@ -41,26 +41,11 @@ $(f());
 let f = function () {
   debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function () {
-    debugger;
-    throw 2;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    throw 3;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$1 = tmpBranchingA();
-    return tmpReturnArg$1;
+    throw 2;
   } else {
-    const tmpReturnArg$3 = tmpBranchingB();
-    return tmpReturnArg$3;
   }
+  throw 3;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -70,17 +55,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    throw 2;
-  } else {
-    throw 3;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  throw 2;
+} else {
+}
+throw 3;
 `````
 
 ## Globals

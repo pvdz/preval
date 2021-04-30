@@ -53,50 +53,16 @@ if ($) {
 let x = 1;
 const f = function () {
   debugger;
-  const tmpBranchingA = function () {
-    debugger;
-    x = 2;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      $(x);
-      const tmpReturnArg = tmpBranchingC$1();
-      return tmpReturnArg;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpReturnArg$1 = tmpBranchingC$1();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg$3 = tmpBranchingC();
-      return tmpReturnArg$3;
-    };
-    if ($) {
-      const tmpReturnArg$5 = tmpBranchingA$1();
-      return tmpReturnArg$5;
-    } else {
-      const tmpReturnArg$7 = tmpBranchingB$1();
-      return tmpReturnArg$7;
-    }
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$9 = tmpBranchingC();
-    return tmpReturnArg$9;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $(x);
-    return undefined;
-  };
   if ($) {
-    const tmpReturnArg$11 = tmpBranchingA();
-    return tmpReturnArg$11;
+    x = 2;
+    if ($) {
+      $(x);
+    } else {
+    }
   } else {
-    const tmpReturnArg$13 = tmpBranchingB();
-    return tmpReturnArg$13;
   }
+  $(x);
+  return undefined;
 };
 if ($) {
   f();
@@ -108,27 +74,10 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const tmpBranchingA = function () {
-  debugger;
-  x = 2;
-  if ($) {
-    $(2);
-    tmpBranchingC();
-    return undefined;
-  } else {
-    tmpBranchingC();
-    return undefined;
-  }
-};
-const tmpBranchingC = function () {
-  debugger;
-  $(x);
-  return undefined;
-};
-let x = 1;
 if ($) {
-  tmpBranchingA();
-  $(x);
+  $(2);
+  $(2);
+  $(2);
 } else {
 }
 `````

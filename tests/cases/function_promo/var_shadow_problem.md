@@ -103,39 +103,18 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const h = function () {
-  debugger;
-  const x$1 = $();
-  if ($) {
-    $(x$1, 'keep me inner local');
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const f = function () {
-  debugger;
-  const g = function () {
-    debugger;
-    if ($) {
-      $(x, 'keep me a closure');
-      h();
-      return undefined;
-    } else {
-      return undefined;
-    }
-  };
+if ($) {
   const x = $(1);
   if ($) {
-    g();
+    $(x, 'keep me a closure');
+    const x$1 = $();
+    if ($) {
+      $(x$1, 'keep me inner local');
+    } else {
+    }
     $(x, 'keep me outer local');
-    return undefined;
   } else {
-    return undefined;
   }
-};
-if ($) {
-  f();
 } else {
 }
 `````

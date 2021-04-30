@@ -59,17 +59,12 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
+if ($) {
   $(1);
   while (true) {
     const tmpSSA_x = $(2);
     $(tmpSSA_x);
   }
-  return undefined;
-};
-if ($) {
-  f();
 } else {
 }
 `````

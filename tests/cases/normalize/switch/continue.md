@@ -84,17 +84,17 @@ while (run) {
       run = false;
       break tmpSwitchBreak;
     } else {
-      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$5) {
-        continue;
-      } else {
-        const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
-        if (tmpIfTest$7) {
-          run = false;
-          break tmpSwitchBreak;
-        } else {
-        }
-      }
+    }
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      continue;
+    } else {
+    }
+    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$7) {
+      run = false;
+      break tmpSwitchBreak;
+    } else {
     }
   }
 }

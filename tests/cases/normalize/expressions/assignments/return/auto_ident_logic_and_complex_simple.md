@@ -39,29 +39,11 @@ let f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   a = tmpCallCallee(tmpCalleeParam);
-  const tmpBranchingA = function () {
-    debugger;
-    a = 2;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (a) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    a = 2;
+    return a;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
+    return a;
   }
 };
 let a = { a: 999, b: 1000 };

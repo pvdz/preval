@@ -50,11 +50,11 @@ $(x);
 if ($) {
   throw 'Preval: Cannot access `x` before initialization';
 } else {
-  const x = $(5);
-  $(x);
-  const tmpSSA_x = $(10);
-  $(tmpSSA_x);
 }
+const x = $(5);
+$(x);
+const tmpSSA_x = $(10);
+$(tmpSSA_x);
 `````
 
 ## Globals

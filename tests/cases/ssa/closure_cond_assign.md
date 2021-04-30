@@ -70,30 +70,13 @@ let f = function () {
   let g = function ($$0) {
     let t = $$0;
     debugger;
-    const tmpBranchingA = function () {
-      debugger;
-      x = x + 1;
-      const tmpReturnArg = tmpBranchingC();
-      return tmpReturnArg;
-    };
-    const tmpBranchingB = function () {
-      debugger;
-      const tmpReturnArg$1 = tmpBranchingC();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingC = function () {
-      debugger;
-      $(x);
-      $();
-      return undefined;
-    };
     if (t) {
-      const tmpReturnArg$3 = tmpBranchingA();
-      return tmpReturnArg$3;
+      x = x + 1;
     } else {
-      const tmpReturnArg$5 = tmpBranchingB();
-      return tmpReturnArg$5;
     }
+    $(x);
+    $();
+    return undefined;
   };
   if ($) {
     g(true);
@@ -119,24 +102,19 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpBranchingC = function () {
+if ($) {
+  let x = 0;
+  const $clone$g$0_Ffalse = function () {
     debugger;
     $(x);
     $();
     return undefined;
   };
-  let x = 0;
-  const $clone$g$0_Ffalse = function () {
-    debugger;
-    tmpBranchingC();
-    return undefined;
-  };
   const $clone$g$0_Ttrue = function () {
     debugger;
     x = x + 1;
-    tmpBranchingC();
+    $(x);
+    $();
     return undefined;
   };
   if ($) {
@@ -147,13 +125,8 @@ const f = function () {
     $clone$g$0_Ffalse();
     $clone$g$0_Ttrue();
     $clone$g$0_Ttrue();
-    return undefined;
   } else {
-    return undefined;
   }
-};
-if ($) {
-  f();
   $(undefined);
 } else {
 }

@@ -85,12 +85,15 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const x = function () {
-  debugger;
-  return undefined;
-};
 if ($) {
-  $(x);
+  const x = function () {
+    debugger;
+    return undefined;
+  };
+  if ($) {
+    $(x);
+  } else {
+  }
 } else {
 }
 `````

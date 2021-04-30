@@ -64,20 +64,11 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    const x = $(5);
-    $(x);
-    const tmpSSA_x = $(10);
-    $(tmpSSA_x);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  f();
+  const x = $(5);
+  $(x);
+  const tmpSSA_x = $(10);
+  $(tmpSSA_x);
   $(undefined);
 } else {
 }

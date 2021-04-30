@@ -31,37 +31,16 @@ let i = function ($$0) {
   debugger;
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    bindingPatternArrRoot = c;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    bindingPatternArrRoot = tmpParamBare;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    arrPatternSplat = [...bindingPatternArrRoot];
-    arrPatternStep = arrPatternSplat[0];
-    arrPatternSplat$1 = [...arrPatternStep];
-    x = arrPatternSplat$1[0];
-    return x;
-  };
-  let arrPatternSplat = undefined;
-  let arrPatternStep = undefined;
-  let arrPatternSplat$1 = undefined;
-  let x = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    bindingPatternArrRoot = c;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    bindingPatternArrRoot = tmpParamBare;
   }
+  let arrPatternSplat = [...bindingPatternArrRoot];
+  let arrPatternStep = arrPatternSplat[0];
+  let arrPatternSplat$1 = [...arrPatternStep];
+  let x = arrPatternSplat$1[0];
+  return x;
 };
 `````
 

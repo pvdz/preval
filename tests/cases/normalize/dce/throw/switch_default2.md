@@ -60,81 +60,42 @@ let f = function () {
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(0);
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingA = function () {
-    debugger;
+  if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
-    const tmpReturnArg = tmpBranchingC();
+  } else {
+  }
+  const tmpLabeledBlockFunc = function ($$0, $$1, $$2, $$3) {
+    let tmpSwitchValue$3 = $$0;
+    let tmpSwitchCaseToStart$3 = $$1;
+    let tmpBinLhs$3 = $$2;
+    let tmpIfTest$7 = $$3;
+    debugger;
+    const tmpIfTest$9 = tmpSwitchCaseToStart$3 <= 0;
+    if (tmpIfTest$9) {
+      $('keep, do not eval');
+      throw 'wrong exit';
+    } else {
+    }
+    const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
+    if (tmpIfTest$11) {
+      const tmpThrowArg$1 = $(2, 'ret');
+      throw tmpThrowArg$1;
+    } else {
+    }
+    const tmpReturnArg = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$7);
     return tmpReturnArg;
   };
-  const tmpBranchingB = function () {
+  const tmpAfterLabel = function ($$0, $$1, $$2, $$3) {
+    let tmpSwitchValue$1 = $$0;
+    let tmpSwitchCaseToStart$1 = $$1;
+    let tmpBinLhs$1 = $$2;
+    let tmpIfTest$5 = $$3;
     debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
+    $('fail');
+    return undefined;
   };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpLabeledBlockFunc = function () {
-      debugger;
-      const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
-      const tmpBranchingA$1 = function () {
-        debugger;
-        $('keep, do not eval');
-        throw 'wrong exit';
-      };
-      const tmpBranchingB$1 = function () {
-        debugger;
-        const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
-        const tmpBranchingA$3 = function () {
-          debugger;
-          const tmpThrowArg$5 = $(2, 'ret');
-          throw tmpThrowArg$5;
-        };
-        const tmpBranchingB$3 = function () {
-          debugger;
-          const tmpReturnArg$3 = tmpBranchingC$3();
-          return tmpReturnArg$3;
-        };
-        const tmpBranchingC$3 = function () {
-          debugger;
-          const tmpReturnArg$5 = tmpBranchingC$1();
-          return tmpReturnArg$5;
-        };
-        if (tmpIfTest$9) {
-          const tmpReturnArg$7 = tmpBranchingA$3();
-          return tmpReturnArg$7;
-        } else {
-          const tmpReturnArg$9 = tmpBranchingB$3();
-          return tmpReturnArg$9;
-        }
-      };
-      const tmpBranchingC$1 = function () {
-        debugger;
-        const tmpReturnArg$11 = tmpAfterLabel();
-        return tmpReturnArg$11;
-      };
-      if (tmpIfTest$5) {
-        const tmpReturnArg$13 = tmpBranchingA$1();
-        return tmpReturnArg$13;
-      } else {
-        const tmpReturnArg$15 = tmpBranchingB$1();
-        return tmpReturnArg$15;
-      }
-    };
-    const tmpAfterLabel = function () {
-      debugger;
-      $('fail');
-      return undefined;
-    };
-    const tmpReturnArg$17 = tmpLabeledBlockFunc();
-    return tmpReturnArg$17;
-  };
-  if (tmpIfTest) {
-    const tmpReturnArg$19 = tmpBranchingA();
-    return tmpReturnArg$19;
-  } else {
-    const tmpReturnArg$21 = tmpBranchingB();
-    return tmpReturnArg$21;
-  }
+  const tmpReturnArg$1 = tmpLabeledBlockFunc(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
+  return tmpReturnArg$1;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -144,45 +105,29 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpBranchingB$1 = function () {
-    debugger;
-    const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$9) {
-      const tmpThrowArg$5 = $(2, 'ret');
-      throw tmpThrowArg$5;
-    } else {
-      $('fail');
-      return undefined;
-    }
-  };
-  const tmpSwitchValue = $(1, 'disc');
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$5) {
-      $('keep, do not eval');
-      throw 'wrong exit';
-    } else {
-      const tmpReturnArg$5 = tmpBranchingB$1();
-      return tmpReturnArg$5;
-    }
-  };
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$21 = tmpBranchingC();
-    return tmpReturnArg$21;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpSwitchValue = $(1, 'disc');
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(0);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+}
+const tmpSwitchCaseToStart$3 = tmpSwitchCaseToStart;
+const tmpIfTest$9 = tmpSwitchCaseToStart$3 <= 0;
+if (tmpIfTest$9) {
+  $('keep, do not eval');
+  throw 'wrong exit';
+} else {
+}
+const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
+if (tmpIfTest$11) {
+  const tmpThrowArg$1 = $(2, 'ret');
+  throw tmpThrowArg$1;
+} else {
+}
+$('fail');
+$(undefined);
 `````
 
 ## Globals

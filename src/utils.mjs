@@ -2,7 +2,7 @@ import Prettier from 'prettier';
 import { printer } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
 
-import { VERBOSE_TRACING, setVerboseTracing, YELLOW, PURPLE, RESET, DIM } from './constants.mjs';
+import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM } from './constants.mjs';
 
 export function ASSERT(b, m = '', ...rest) {
   if (!b) {
@@ -170,15 +170,23 @@ export function example(from, to, condition) {
   }
 }
 
-export function before(node, parent) {
+export function before(node, parentNode) {
   if (VERBOSE_TRACING) {
-    if (Array.isArray(node)) node.forEach((n) => before(n, parent));
+    if (Array.isArray(node)) node.forEach((n) => before(n, parentNode));
     else {
       const anon = node.type.includes('Function') && 'id' in node && !node.id;
       if (anon) node.id = { type: 'Identifier', name: 'anon' };
-      const parentCode = parent && (typeof node === 'string' ? node : tmat(parent).replace(/\n/g, ' '));
+      const parentCode =
+        parentNode &&
+        (Array.isArray(parentNode)
+          ? parentNode.map((node) => (typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' '))).join('\n')
+          : typeof node === 'string'
+          ? node
+          : tmat(parentNode).replace(/\n/g, ' '));
       const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
-      if (parent && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);
+      if (parentNode && parentCode !== nodeCode) {
+        log(DIM + 'Parent:', parentCode, RESET);
+      }
       log(YELLOW + 'Before:' + RESET, nodeCode);
       if (anon) node.id = null;
     }
@@ -196,12 +204,12 @@ export function source(node, force) {
         code = fmat(code, force); // May fail.
       } catch {}
       if (code.includes('\n')) {
-        log(YELLOW + 'Source:' + RESET);
+        log(ORANGE_DIM + 'Source:' + RESET);
         group();
-        log(code);
+        log(DIM + code + RESET);
         groupEnd();
       } else {
-        log(YELLOW + 'Source:' + RESET, code);
+        log(ORANGE_DIM + 'Source:' + RESET, DIM + code + RESET);
       }
       if (anon) node.id = null;
     }
@@ -214,7 +222,14 @@ export function after(node, parentNode) {
     else {
       const anon = node.type?.includes('Function') && 'id' in node && !node.id;
       if (anon) node.id = { type: 'Identifier', name: 'anon' };
-      const parentCode = parentNode && (typeof node === 'string' ? node : tmat(parentNode).replace(/\n/g, ' '));
+      const parentCode =
+        parentNode &&
+        (Array.isArray(parentNode)
+          ? parentNode.map((node) => (typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' '))).join('\n')
+          : typeof node === 'string'
+          ? node
+          : tmat(parentNode).replace(/\n/g, ' '));
+
       const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
       log(YELLOW + 'After :' + RESET, nodeCode);
       if (parentNode && parentCode !== nodeCode) log(DIM + 'Parent:', parentCode, RESET);

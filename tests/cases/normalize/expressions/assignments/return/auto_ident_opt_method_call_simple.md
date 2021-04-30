@@ -42,31 +42,13 @@ let f = function () {
   a = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementObject$1 = tmpChainRootProp.c;
-    const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainRootProp, 1);
-    a = tmpChainElementCall$1;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+    a = tmpChainElementCall;
+    return a;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
+    return a;
   }
 };
 let b = { c: $ };
@@ -85,9 +67,9 @@ const f = function () {
   a = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
-    const tmpChainElementObject$1 = b.c;
-    const tmpChainElementCall$1 = tmpChainElementObject$1.call(b, 1);
-    a = tmpChainElementCall$1;
+    const tmpChainElementObject = b.c;
+    const tmpChainElementCall = tmpChainElementObject.call(b, 1);
+    a = tmpChainElementCall;
     return a;
   } else {
     return a;

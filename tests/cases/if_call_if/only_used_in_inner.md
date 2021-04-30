@@ -101,31 +101,17 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
+if ($) {
   const outerTest = $(0);
-  const g = function () {
-    debugger;
-    if (innerTest) {
-      return undefined;
+  if (outerTest) {
+    const tmpSSA_innerTest = $(3);
+    if (tmpSSA_innerTest) {
     } else {
       $(2);
-      return undefined;
     }
-  };
-  let innerTest = undefined;
-  if (outerTest) {
-    innerTest = $(3);
-    g();
-    return undefined;
   } else {
-    innerTest = false;
     $(2);
-    return undefined;
   }
-};
-if ($) {
-  f();
   $(undefined);
 } else {
 }

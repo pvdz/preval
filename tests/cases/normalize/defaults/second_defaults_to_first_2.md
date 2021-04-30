@@ -37,36 +37,19 @@ let f = function ($$0, $$1) {
   debugger;
   let a = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    a = 1;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    a = tmpParamBare;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpIfTest$1 = tmpParamBare$1 === undefined;
-    if (tmpIfTest$1) {
-      b = a;
-      return undefined;
-    } else {
-      b = tmpParamBare$1;
-      return undefined;
-    }
-  };
-  let b = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    a = 1;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    a = tmpParamBare;
+  }
+  let b = undefined;
+  const tmpIfTest$1 = tmpParamBare$1 === undefined;
+  if (tmpIfTest$1) {
+    b = a;
+    return undefined;
+  } else {
+    b = tmpParamBare$1;
+    return undefined;
   }
 };
 f();

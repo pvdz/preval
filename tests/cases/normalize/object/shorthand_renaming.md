@@ -50,28 +50,12 @@ let f = function ($$0) {
   let objPatternBeforeDefault = bindingPatternObjRoot.x;
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    x = 10;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    x = objPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return x;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    x = 10;
+    return x;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    x = objPatternBeforeDefault;
+    return x;
   }
 };
 let g = function ($$0) {
@@ -81,32 +65,14 @@ let g = function ($$0) {
   let objPatternBeforeDefault$1 = bindingPatternObjRoot$1.x;
   let x$1 = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
-  const tmpBranchingA$1 = function () {
-    debugger;
-    x$1 = 10;
-    const tmpReturnArg$7 = tmpBranchingC$1();
-    return tmpReturnArg$7;
-  };
-  const tmpBranchingB$1 = function () {
-    debugger;
-    x$1 = objPatternBeforeDefault$1;
-    const tmpReturnArg$9 = tmpBranchingC$1();
-    return tmpReturnArg$9;
-  };
-  const tmpBranchingC$1 = function () {
-    debugger;
-    y = { x: x$1 };
-    const tmpReturnArg$11 = [x$1, y];
-    return tmpReturnArg$11;
-  };
-  let y = undefined;
   if (tmpIfTest$1) {
-    const tmpReturnArg$13 = tmpBranchingA$1();
-    return tmpReturnArg$13;
+    x$1 = 10;
   } else {
-    const tmpReturnArg$15 = tmpBranchingB$1();
-    return tmpReturnArg$15;
+    x$1 = objPatternBeforeDefault$1;
   }
+  let y = { x: x$1 };
+  const tmpReturnArg = [x$1, y];
+  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

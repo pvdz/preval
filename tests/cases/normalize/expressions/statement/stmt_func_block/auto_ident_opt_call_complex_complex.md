@@ -44,37 +44,20 @@ let f = function () {
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall($);
   const tmpIfTest = tmpChainElementCall != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCallObj$1 = tmpChainElementCall;
-    const tmpCallVal$1 = tmpCallObj$1.call;
-    const tmpCalleeParam$3 = tmpChainRootCall;
-    const tmpCalleeParam$5 = $(1);
-    const tmpChainElementCall$3 = tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$3, tmpCalleeParam$5);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $(a);
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    const tmpCallObj = tmpChainElementCall;
+    const tmpCallVal = tmpCallObj.call;
+    const tmpCalleeParam = tmpChainRootCall;
+    const tmpCalleeParam$1 = $(1);
+    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
   }
+  $(a);
+  return undefined;
 };
 const tmpCallCallee = $;
-const tmpCalleeParam$7 = f();
-tmpCallCallee(tmpCalleeParam$7);
+const tmpCalleeParam$3 = f();
+tmpCallCallee(tmpCalleeParam$3);
 `````
 
 ## Output
@@ -83,19 +66,13 @@ tmpCallCallee(tmpCalleeParam$7);
 const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall != null;
-const tmpBranchingC = function () {
-  debugger;
-  $(a);
-  return undefined;
-};
 if (tmpIfTest) {
-  const tmpCallVal$1 = tmpChainElementCall.call;
-  const tmpCalleeParam$5 = $(1);
-  tmpCallVal$1.call(tmpChainElementCall, $, tmpCalleeParam$5);
-  tmpBranchingC();
+  const tmpCallVal = tmpChainElementCall.call;
+  const tmpCalleeParam$1 = $(1);
+  tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
 } else {
-  tmpBranchingC();
 }
+$(a);
 $(undefined);
 `````
 

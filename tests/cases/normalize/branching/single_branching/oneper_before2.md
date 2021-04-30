@@ -193,9 +193,9 @@ tmpBranchingB();
 
 `````js filename=intro
 const tmpssa2_l$1 = +'no';
-const tmpssa2_m$1 = isNaN(tmpssa2_l$1);
-if (tmpssa2_m$1) {
-  $('a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, tmpssa2_m$1);
+const tmpssa3_m$1 = isNaN(tmpssa2_l$1);
+if (tmpssa3_m$1) {
+  $('a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, tmpssa3_m$1);
 } else {
 }
 `````

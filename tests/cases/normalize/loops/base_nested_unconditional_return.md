@@ -47,35 +47,14 @@ $(f());
 let f = function () {
   debugger;
   $('outer');
-  let tmpLoopRetCode = true;
-  let tmpLoopRetValue = undefined;
-  let tmpLoopBody = function () {
-    debugger;
+  while (true) {
     $('middle');
     while (true) {
       $('inner');
-      tmpLoopRetCode = undefined;
-      tmpLoopRetValue = 100;
-      return undefined;
+      return 100;
     }
-    return undefined;
-  };
-  let tmpLoopTail = function ($$0, $$1) {
-    let tmpLoopRetCode$1 = $$0;
-    let tmpLoopRetValue$1 = $$1;
-    debugger;
-    const tmpIfTest = tmpLoopRetCode$1 === undefined;
-    if (tmpIfTest) {
-      return tmpLoopRetValue$1;
-    } else {
-      return undefined;
-    }
-  };
-  while (tmpLoopRetCode) {
-    tmpLoopBody();
   }
-  const tmpReturnArg = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
-  return tmpReturnArg;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -85,36 +64,20 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('outer');
-let tmpLoopRetCode = true;
-let tmpLoopRetValue = undefined;
-const tmpLoopBody = function () {
+const f = function () {
   debugger;
-  $('middle');
+  $('outer');
   while (true) {
-    $('inner');
-    tmpLoopRetCode = undefined;
-    tmpLoopRetValue = 100;
-    return undefined;
+    $('middle');
+    while (true) {
+      $('inner');
+      return 100;
+    }
   }
   return undefined;
 };
-const tmpLoopTail = function ($$0, $$1) {
-  const tmpLoopRetCode$1 = $$0;
-  const tmpLoopRetValue$1 = $$1;
-  debugger;
-  const tmpIfTest = tmpLoopRetCode$1 === undefined;
-  if (tmpIfTest) {
-    return tmpLoopRetValue$1;
-  } else {
-    return undefined;
-  }
-};
-while (tmpLoopRetCode) {
-  tmpLoopBody();
-}
-const tmpReturnArg = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
-$(tmpReturnArg);
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

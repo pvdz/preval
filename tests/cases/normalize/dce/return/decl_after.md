@@ -42,29 +42,14 @@ $(f());
 let f = function () {
   debugger;
   const tmpIfTest = $(false);
-  const tmpBranchingA = function () {
-    debugger;
-    x = $('fail too');
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return undefined;
-  };
-  let x = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    x = $('fail too');
+    return undefined;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    return undefined;
   }
+  let x = $('fail');
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -74,12 +59,19 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(false);
-if (tmpIfTest) {
-  $('fail too');
-} else {
-}
-$(undefined);
+const f = function () {
+  debugger;
+  const tmpIfTest = $(false);
+  if (tmpIfTest) {
+    throw 'Preval: Cannot access `x` before initialization';
+  } else {
+    return undefined;
+  }
+  $('fail');
+  return undefined;
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## Globals

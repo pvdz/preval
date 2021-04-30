@@ -39,37 +39,19 @@ let f = function ($$0) {
   let objPatternBeforeDefault = bindingPatternObjRoot.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = ['fail'];
-    objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    objPatternAfterDefault = objPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    arrPatternSplat = [...objPatternAfterDefault];
-    return 'ok';
-  };
-  let arrPatternSplat = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail'];
+    objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    objPatternAfterDefault = objPatternBeforeDefault;
   }
+  let arrPatternSplat = [...objPatternAfterDefault];
+  return 'ok';
 };
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f('', 10);
-tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f('', 10);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
@@ -78,19 +60,13 @@ tmpCallCallee$3(tmpCalleeParam$3);
 const objPatternBeforeDefault = ''.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
-const tmpBranchingC = function () {
-  debugger;
-  [...objPatternAfterDefault];
-  return undefined;
-};
 if (tmpIfTest) {
-  const tmpCalleeParam$1 = ['fail'];
-  objPatternAfterDefault = $(tmpCalleeParam$1);
-  tmpBranchingC();
+  const tmpCalleeParam = ['fail'];
+  objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
-  tmpBranchingC();
 }
+[...objPatternAfterDefault];
 $('ok');
 `````
 

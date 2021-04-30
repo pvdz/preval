@@ -65,31 +65,13 @@ const f = function () {
     return undefined;
   };
   $(xyz);
-  const tmpBranchingA = function () {
-    debugger;
-    $(1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    xyz = $();
-    const tmpReturnArg$3 = g();
-    return tmpReturnArg$3;
-  };
-  let xyz = undefined;
   if ($) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    $(1);
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
   }
+  const xyz = $();
+  const tmpReturnArg = g();
+  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -99,21 +81,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$(xyz);
-const tmpBranchingC = function () {
-  debugger;
-  xyz = $();
-  $(xyz);
-  return undefined;
-};
-let xyz = undefined;
-if ($) {
-  $(1);
-  tmpBranchingC();
-} else {
-  tmpBranchingC();
-}
-$(undefined);
+throw 'Preval: Cannot access `xyz` before initialization';
 `````
 
 ## Globals

@@ -40,28 +40,12 @@ let f = function ($$0) {
   let arrPatternBeforeDefault = arrPatternSplat[0];
   let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    x = $('fail');
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    x = arrPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return x;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    x = $('fail');
+    return x;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    x = arrPatternBeforeDefault;
+    return x;
   }
 };
 const tmpCallCallee = $;
@@ -78,8 +62,8 @@ const f = function () {
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpssa2_x = $('fail');
-    return tmpssa2_x;
+    const tmpSSA_x = $('fail');
+    return tmpSSA_x;
   } else {
     return arrPatternBeforeDefault;
   }

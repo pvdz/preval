@@ -119,25 +119,18 @@ const a = function () {
 const f = function () {
   debugger;
   const test = $(1);
-  const b = function () {
-    debugger;
-    if (tmpIfelseifelse) {
+  if (test) {
+    a();
+    return undefined;
+  } else {
+    const tmpSSA_tmpIfelseifelse$1 = $(2);
+    if (tmpSSA_tmpIfelseifelse$1) {
       a();
       return undefined;
     } else {
       a();
       return undefined;
     }
-  };
-  let tmpIfelseifelse = undefined;
-  if (test) {
-    tmpIfelseifelse = true;
-    a();
-    return undefined;
-  } else {
-    tmpIfelseifelse = $(2);
-    b();
-    return undefined;
   }
 };
 $(f);

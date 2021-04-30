@@ -76,19 +76,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    $('block inlining');
-    $(x);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 let x = $(2);
 if ($) {
-  f();
+  $('block inlining');
+  $(x);
   x = $(3);
 } else {
   $(x);

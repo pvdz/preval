@@ -54,31 +54,13 @@ const f = function () {
     $(xyz);
     return undefined;
   };
-  const tmpBranchingA = function () {
-    debugger;
-    $(1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    xyz = $();
-    const tmpReturnArg$3 = g();
-    return tmpReturnArg$3;
-  };
-  let xyz = undefined;
   if ($) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    $(1);
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
   }
+  const xyz = $();
+  const tmpReturnArg = g();
+  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -88,18 +70,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpBranchingC = function () {
-  debugger;
-  const tmpssa2_xyz = $();
-  $(tmpssa2_xyz);
-  return undefined;
-};
 if ($) {
   $(1);
-  tmpBranchingC();
 } else {
-  tmpBranchingC();
 }
+const xyz = $();
+$(xyz);
 $(undefined);
 `````
 

@@ -98,18 +98,6 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const g = function () {
-  debugger;
-  const r = $('.');
-  const tmpssa2_promoMe = r === '.';
-  if (tmpssa2_promoMe) {
-    const t = $('');
-    const tmpSSA_tmpssa2_promoMe = t !== '.';
-    return tmpSSA_tmpssa2_promoMe;
-  } else {
-    return false;
-  }
-};
 const f = function ($$0) {
   const s = $$0;
   debugger;
@@ -117,8 +105,15 @@ const f = function ($$0) {
   if (promoMe) {
     return true;
   } else {
-    const v = g();
-    return v;
+    const r = $('.');
+    const tmpSSA_promoMe = r === '.';
+    if (tmpSSA_promoMe) {
+      const t = $('');
+      const tmpSSA_promoMe$1 = t !== '.';
+      return tmpSSA_promoMe$1;
+    } else {
+      return false;
+    }
   }
 };
 if ($) {

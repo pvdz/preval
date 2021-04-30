@@ -50,47 +50,16 @@ const f = function () {
   const tmpthis = this;
   debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpIfTest$3 = $(2);
-    const tmpBranchingA$1 = function () {
-      debugger;
-      const tmpReturnArg$3 = tmpthis.foo;
-      return tmpReturnArg$3;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpReturnArg$5 = tmpBranchingC$1();
-      return tmpReturnArg$5;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg$7 = tmpBranchingC();
-      return tmpReturnArg$7;
-    };
-    if (tmpIfTest$3) {
-      const tmpReturnArg$9 = tmpBranchingA$1();
-      return tmpReturnArg$9;
-    } else {
-      const tmpReturnArg$11 = tmpBranchingB$1();
-      return tmpReturnArg$11;
-    }
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$13 = tmpBranchingC();
-    return tmpReturnArg$13;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$15 = tmpBranchingA();
-    return tmpReturnArg$15;
+    const tmpIfTest$1 = $(2);
+    if (tmpIfTest$1) {
+      const tmpReturnArg = tmpthis.foo;
+      return tmpReturnArg;
+    } else {
+      return undefined;
+    }
   } else {
-    const tmpReturnArg$17 = tmpBranchingB();
-    return tmpReturnArg$17;
+    return undefined;
   }
 };
 const tmpObjLitVal$1 = f;
@@ -107,19 +76,14 @@ const f = function () {
   const tmpthis = this;
   debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpIfTest$3 = $(2);
-    if (tmpIfTest$3) {
-      const tmpReturnArg$3 = tmpthis.foo;
-      return tmpReturnArg$3;
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(2);
+    if (tmpIfTest$1) {
+      const tmpReturnArg = tmpthis.foo;
+      return tmpReturnArg;
     } else {
       return undefined;
     }
-  };
-  if (tmpIfTest) {
-    const tmpReturnArg$15 = tmpBranchingA();
-    return tmpReturnArg$15;
   } else {
     return undefined;
   }

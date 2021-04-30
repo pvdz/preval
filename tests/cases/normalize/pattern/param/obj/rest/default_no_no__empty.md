@@ -37,51 +37,33 @@ let f = function ($$0) {
   debugger;
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = { a: 'pass' };
-    bindingPatternObjRoot = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    bindingPatternObjRoot = tmpParamBare;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpCallCallee$3 = objPatternRest;
-    const tmpCalleeParam$3 = bindingPatternObjRoot;
-    const tmpCalleeParam$5 = [];
-    const tmpCalleeParam$7 = 'x';
-    x = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
-    return x;
-  };
-  let x = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 'pass' };
+    bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    bindingPatternObjRoot = tmpParamBare;
   }
+  const tmpCallCallee$1 = objPatternRest;
+  const tmpCalleeParam$1 = bindingPatternObjRoot;
+  const tmpCalleeParam$3 = [];
+  const tmpCalleeParam$5 = 'x';
+  let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
+  return x;
 };
-const tmpCallCallee$5 = $;
-const tmpCalleeParam$9 = f();
-tmpCallCallee$5(tmpCalleeParam$9);
+const tmpCallCallee$3 = $;
+const tmpCalleeParam$7 = f();
+tmpCallCallee$3(tmpCalleeParam$7);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = { a: 'pass' };
-const bindingPatternObjRoot = $(tmpCalleeParam$1);
-const tmpCalleeParam$5 = [];
-const tmpssa2_x = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$5, 'x');
-$(tmpssa2_x);
+const tmpCalleeParam = { a: 'pass' };
+const bindingPatternObjRoot = $(tmpCalleeParam);
+const tmpCalleeParam$3 = [];
+const x = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$3, 'x');
+$(x);
 `````
 
 ## Globals

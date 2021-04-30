@@ -41,53 +41,21 @@ let f = function ($$0) {
   debugger;
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    p = undefined;
-    const tmpChainRootProp$1 = b;
-    const tmpIfTest$3 = tmpChainRootProp$1 != null;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      const tmpChainRootComputed$3 = 'x';
-      const tmpChainElementObject$3 = tmpChainRootProp$1[tmpChainRootComputed$3];
-      p = tmpChainElementObject$3;
-      const tmpReturnArg = tmpBranchingC$1();
-      return tmpReturnArg;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpReturnArg$1 = tmpBranchingC$1();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg$3 = tmpBranchingC();
-      return tmpReturnArg$3;
-    };
-    if (tmpIfTest$3) {
-      const tmpReturnArg$5 = tmpBranchingA$1();
-      return tmpReturnArg$5;
-    } else {
-      const tmpReturnArg$7 = tmpBranchingB$1();
-      return tmpReturnArg$7;
-    }
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    p = tmpParamBare;
-    const tmpReturnArg$9 = tmpBranchingC();
-    return tmpReturnArg$9;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$11 = tmpBranchingA();
-    return tmpReturnArg$11;
+    p = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
+      const tmpChainRootComputed = 'x';
+      const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+      p = tmpChainElementObject;
+      return undefined;
+    } else {
+      return undefined;
+    }
   } else {
-    const tmpReturnArg$13 = tmpBranchingB();
-    return tmpReturnArg$13;
+    p = tmpParamBare;
+    return undefined;
   }
 };
 let b = { x: 1 };
@@ -103,8 +71,8 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpIfTest$3 = b != null;
-if (tmpIfTest$3) {
+const tmpIfTest$1 = b != null;
+if (tmpIfTest$1) {
   b.x;
 } else {
 }

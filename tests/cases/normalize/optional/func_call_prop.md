@@ -35,31 +35,13 @@ let f = function () {
   const tmpChainRootCall = parseInt;
   const tmpChainElementCall = tmpChainRootCall(15);
   const tmpIfTest = tmpChainElementCall != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementObject$1 = tmpChainElementCall.foo;
-    tmpCalleeParam = tmpChainElementObject$1;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = tmpCallCallee(tmpCalleeParam);
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    const tmpChainElementObject = tmpChainElementCall.foo;
+    tmpCalleeParam = tmpChainElementObject;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
   }
+  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+  return tmpReturnArg;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
@@ -69,21 +51,16 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpChainElementCall = parseInt(15);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject$1 = tmpChainElementCall.foo;
-    const tmpReturnArg$1 = $(tmpChainElementObject$1);
-    return tmpReturnArg$1;
-  } else {
-    const tmpReturnArg$7 = $(undefined);
-    return tmpReturnArg$7;
-  }
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+let tmpCalleeParam = undefined;
+const tmpChainElementCall = parseInt(15);
+const tmpIfTest = tmpChainElementCall != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = tmpChainElementCall.foo;
+  tmpCalleeParam = tmpChainElementObject;
+} else {
+}
+const tmpReturnArg = $(tmpCalleeParam);
+$(tmpReturnArg);
 `````
 
 ## Globals

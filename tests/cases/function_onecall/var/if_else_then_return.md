@@ -45,30 +45,13 @@ $(x);
 let f = function () {
   debugger;
   const tmpIfTest = $();
-  const tmpBranchingA = function () {
-    debugger;
-    $(1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    $(2);
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpReturnArg$3 = $(3);
-    return tmpReturnArg$3;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    $(1);
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
+    $(2);
   }
+  const tmpReturnArg = $(3);
+  return tmpReturnArg;
 };
 const x = f();
 $(x);
@@ -77,21 +60,14 @@ $(x);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    $(1);
-    const tmpReturnArg = $(3);
-    return tmpReturnArg;
-  } else {
-    $(2);
-    const tmpReturnArg$1 = $(3);
-    return tmpReturnArg$1;
-  }
-};
-const x = f();
-$(x);
+const tmpIfTest = $();
+if (tmpIfTest) {
+  $(1);
+} else {
+  $(2);
+}
+const tmpReturnArg = $(3);
+$(tmpReturnArg);
 `````
 
 ## Globals

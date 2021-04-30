@@ -134,32 +134,43 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-$(50);
-$(true);
-const tmpBranchingC$2331 = function () {
+const parseUnicodeQuadEscape = function () {
   debugger;
-  const tmpssa3_secondPart = tmpBinLhs$1687 | vh;
-  const tmpIfTest$9053 = tmpssa3_secondPart < 0xdc00;
-  if (tmpIfTest$9053) {
-    firstPart;
+  let secondPart = undefined;
+  if (tmpIfTest$9045) {
     return undefined;
   } else {
-    firstPart;
-    $(tmpssa3_secondPart);
-    return undefined;
+    secondPart = tmpBinLhs$1687 | vh;
+    const tmpIfTest$9053 = secondPart < 0xdc00;
+    const tmpBranchingC$2333 = function () {
+      debugger;
+      if (tmpIfTest$9053) {
+        return undefined;
+      } else {
+        firstPart;
+        $(secondPart);
+        return undefined;
+      }
+    };
+    if (tmpIfTest$9053) {
+      tmpBranchingC$2333();
+      return undefined;
+    } else {
+      tmpBranchingC$2333();
+      return undefined;
+    }
   }
 };
-if (tmpIfTest$9045) {
-} else {
-  tmpBranchingC$2331();
-}
+$(50);
+$(true);
+parseUnicodeQuadEscape();
 `````
 
 ## Globals
 
 BAD@! Found 4 implicit global bindings:
 
-tmpBinLhs$1687, vh, firstPart, tmpIfTest$9045
+tmpIfTest$9045, tmpBinLhs$1687, vh, firstPart
 
 ## Result
 

@@ -48,33 +48,17 @@ if ($) f();
 let f = function () {
   debugger;
   let x = $(1);
-  const tmpBranchingA = function () {
-    debugger;
+  if ($) {
     x = $(2);
     $(x);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
     if ($) {
       $(x);
       return undefined;
     } else {
       return undefined;
     }
-  };
-  if ($) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    return undefined;
   }
 };
 if ($) {
@@ -92,8 +76,12 @@ const f = function () {
   if ($) {
     const tmpSSA_x = $(2);
     $(tmpSSA_x);
-    $(tmpSSA_x);
-    return undefined;
+    if ($) {
+      $(tmpSSA_x);
+      return undefined;
+    } else {
+      return undefined;
+    }
   } else {
     return undefined;
   }

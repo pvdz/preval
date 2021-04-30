@@ -141,8 +141,14 @@ const f = function ($$0) {
   const c = func(3);
   if ($) {
     $(a);
-    $(b);
-    $(c);
+    if ($) {
+      $(b);
+      if ($) {
+        $(c);
+      } else {
+      }
+    } else {
+    }
     const tmpReturnArg = [a, b, c];
     return tmpReturnArg;
   } else {

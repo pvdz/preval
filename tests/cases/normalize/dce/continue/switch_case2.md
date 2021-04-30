@@ -61,8 +61,8 @@ while (true) {
     if (tmpIfTest$3) {
       continue;
     } else {
-      $('keep');
     }
+    $('keep');
   } else {
     break;
   }
@@ -88,8 +88,8 @@ while (true) {
     if (tmpIfTest$3) {
       continue;
     } else {
-      $('keep');
     }
+    $('keep');
   } else {
     break;
   }

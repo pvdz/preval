@@ -54,48 +54,15 @@ let f = function ($$0) {
   let arrPatternStep$1 = arrPatternSplat$1[0];
   let objPatternNoDefault = arrPatternStep$1.x;
   let objPatternCrashTest = objPatternNoDefault === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    objPatternCrashTest = objPatternNoDefault === null;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-      const tmpReturnArg$3 = tmpBranchingC$1();
-      return tmpReturnArg$3;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpReturnArg$5 = tmpBranchingC$1();
-      return tmpReturnArg$5;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      return 'ok';
-    };
-    if (objPatternCrashTest) {
-      const tmpReturnArg$7 = tmpBranchingA$1();
-      return tmpReturnArg$7;
-    } else {
-      const tmpReturnArg$9 = tmpBranchingB$1();
-      return tmpReturnArg$9;
-    }
-  };
   if (objPatternCrashTest) {
-    const tmpReturnArg$11 = tmpBranchingA();
-    return tmpReturnArg$11;
   } else {
-    const tmpReturnArg$13 = tmpBranchingB();
-    return tmpReturnArg$13;
+    objPatternCrashTest = objPatternNoDefault === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
+    return 'ok';
+  } else {
+    return 'ok';
   }
 };
 const tmpCallCallee = $;
@@ -122,20 +89,13 @@ const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternStep$1 = arrPatternSplat$1[0];
 const objPatternNoDefault = arrPatternStep$1.x;
 let objPatternCrashTest = objPatternNoDefault === undefined;
-const tmpBranchingC = function () {
-  debugger;
-  if (objPatternCrashTest) {
-    objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if (objPatternCrashTest) {
-  objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
 } else {
   objPatternCrashTest = objPatternNoDefault === null;
-  tmpBranchingC();
+}
+if (objPatternCrashTest) {
+  objPatternNoDefault.cannotDestructureThis;
+} else {
 }
 $('ok');
 `````

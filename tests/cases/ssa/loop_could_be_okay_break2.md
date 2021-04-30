@@ -100,28 +100,17 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
+if ($) {
   $(1);
   let tmpLoopRetCode = true;
-  const tmpLoopBody = function () {
-    debugger;
+  while (tmpLoopRetCode) {
     const tmpssa2_x = $(2);
     $(tmpssa2_x);
     if ($) {
       tmpLoopRetCode = false;
-      return undefined;
     } else {
-      return undefined;
     }
-  };
-  while (tmpLoopRetCode) {
-    tmpLoopBody();
   }
-  return undefined;
-};
-if ($) {
-  f();
 } else {
 }
 `````

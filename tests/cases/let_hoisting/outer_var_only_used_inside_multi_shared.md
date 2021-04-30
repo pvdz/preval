@@ -83,19 +83,13 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const g = function () {
-  debugger;
-  const tmpssa2_x = $(1, 'shared');
-  if ($) {
-    $(tmpssa2_x, 'a');
-    return undefined;
-  } else {
-    $(tmpssa2_x, 'b');
-    return undefined;
-  }
-};
 if ($) {
-  g();
+  const tmpssa3_x = $(1, 'shared');
+  if ($) {
+    $(tmpssa3_x, 'a');
+  } else {
+    $(tmpssa3_x, 'b');
+  }
 } else {
 }
 `````

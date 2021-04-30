@@ -37,31 +37,13 @@ let f = function ($$0) {
   debugger;
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    bindingPatternArrRoot = $('fail');
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    bindingPatternArrRoot = tmpParamBare;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    arrPatternSplat = [...bindingPatternArrRoot];
-    return 'ok';
-  };
-  let arrPatternSplat = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    bindingPatternArrRoot = $('fail');
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    bindingPatternArrRoot = tmpParamBare;
   }
+  let arrPatternSplat = [...bindingPatternArrRoot];
+  return 'ok';
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -77,18 +59,12 @@ tmpCallCallee(tmpCalleeParam);
 const tmpCalleeParam$1 = [1, 2, 3];
 let bindingPatternArrRoot = undefined;
 const tmpIfTest = tmpCalleeParam$1 === undefined;
-const tmpBranchingC = function () {
-  debugger;
-  [...bindingPatternArrRoot];
-  return undefined;
-};
 if (tmpIfTest) {
   bindingPatternArrRoot = $('fail');
-  tmpBranchingC();
 } else {
   bindingPatternArrRoot = tmpCalleeParam$1;
-  tmpBranchingC();
 }
+[...bindingPatternArrRoot];
 $('ok');
 `````
 

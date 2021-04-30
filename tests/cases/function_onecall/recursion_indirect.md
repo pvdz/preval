@@ -55,51 +55,19 @@ let f = function () {
     x = 2;
     return undefined;
   };
-  const tmpBranchingA = function () {
-    debugger;
-    f();
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $(x);
-    return undefined;
-  };
   if ($) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    f();
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
   }
+  $(x);
+  return undefined;
 };
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpBranchingC = function () {
-  debugger;
-  $(1);
-  return undefined;
-};
-const f = function () {
-  debugger;
-  if ($) {
-    f();
-    tmpBranchingC();
-    return undefined;
-  } else {
-    tmpBranchingC();
-    return undefined;
-  }
-};
+
 `````
 
 ## Globals

@@ -632,36 +632,16 @@ $(r);
 let f = function () {
   debugger;
   let i = 0;
-  let tmpLoopRetCode = true;
-  let tmpLoopRetValue = undefined;
-  let tmpLoopBody = function () {
-    debugger;
+  while (true) {
     const tmpIfTest = i < 10;
     if (tmpIfTest) {
       $(i);
       i = i + 1;
-      return undefined;
     } else {
-      tmpLoopRetCode = false;
-      return undefined;
+      break;
     }
-  };
-  let tmpLoopTail = function ($$0, $$1) {
-    let tmpLoopRetCode$1 = $$0;
-    let tmpLoopRetValue$1 = $$1;
-    debugger;
-    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
-    if (tmpIfTest$1) {
-      return tmpLoopRetValue$1;
-    } else {
-      return 100;
-    }
-  };
-  while (tmpLoopRetCode) {
-    tmpLoopBody();
   }
-  const tmpReturnArg = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
-  return tmpReturnArg;
+  return 100;
 };
 const r = f();
 $(r);
@@ -671,34 +651,16 @@ $(r);
 
 `````js filename=intro
 let i = 0;
-let tmpLoopRetCode = true;
-const tmpLoopBody = function () {
-  debugger;
+while (true) {
   const tmpIfTest = i < 10;
   if (tmpIfTest) {
     $(i);
     i = i + 1;
-    return undefined;
   } else {
-    tmpLoopRetCode = false;
-    return undefined;
+    break;
   }
-};
-const tmpLoopTail = function ($$0) {
-  const tmpLoopRetCode$1 = $$0;
-  debugger;
-  const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
-  if (tmpIfTest$1) {
-    return undefined;
-  } else {
-    return 100;
-  }
-};
-while (tmpLoopRetCode) {
-  tmpLoopBody();
 }
-const tmpReturnArg = tmpLoopTail(tmpLoopRetCode);
-$(tmpReturnArg);
+$(100);
 `````
 
 ## Globals

@@ -42,28 +42,12 @@ let f = function () {
   let tmpReturnArg = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementObject$1 = tmpChainRootProp.x;
-    tmpReturnArg = tmpChainElementObject$1;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return tmpReturnArg;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    const tmpChainElementObject = tmpChainRootProp.x;
+    tmpReturnArg = tmpChainElementObject;
+    return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
+    return tmpReturnArg;
   }
 };
 let b = { x: 1 };
@@ -82,8 +66,8 @@ const f = function () {
   debugger;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
-    const tmpChainElementObject$1 = b.x;
-    return tmpChainElementObject$1;
+    const tmpChainElementObject = b.x;
+    return tmpChainElementObject;
   } else {
     return undefined;
   }

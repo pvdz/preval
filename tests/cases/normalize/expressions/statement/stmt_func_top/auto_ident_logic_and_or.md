@@ -40,92 +40,43 @@ let f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   let tmpIfTest = tmpCallCallee(tmpCalleeParam);
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCallCallee$3 = $;
-    const tmpCalleeParam$3 = $(1);
-    tmpIfTest = tmpCallCallee$3(tmpCalleeParam$3);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      const tmpReturnArg$3 = tmpBranchingC$1();
-      return tmpReturnArg$3;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpCallCallee$7 = $;
-      const tmpCalleeParam$7 = $(2);
-      tmpCallCallee$7(tmpCalleeParam$7);
-      const tmpReturnArg$5 = tmpBranchingC$1();
-      return tmpReturnArg$5;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      $(a);
-      return undefined;
-    };
-    if (tmpIfTest) {
-      const tmpReturnArg$7 = tmpBranchingA$1();
-      return tmpReturnArg$7;
-    } else {
-      const tmpReturnArg$9 = tmpBranchingB$1();
-      return tmpReturnArg$9;
-    }
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$11 = tmpBranchingA();
-    return tmpReturnArg$11;
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(1);
+    tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
-    const tmpReturnArg$13 = tmpBranchingB();
-    return tmpReturnArg$13;
   }
+  if (tmpIfTest) {
+  } else {
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpCallCallee$3(tmpCalleeParam$3);
+  }
+  $(a);
+  return undefined;
 };
-const tmpCallCallee$9 = $;
-const tmpCalleeParam$9 = f();
-tmpCallCallee$9(tmpCalleeParam$9);
+const tmpCallCallee$5 = $;
+const tmpCalleeParam$5 = f();
+tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpBranchingC$1 = function () {
-  debugger;
-  $(a);
-  return undefined;
-};
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-const tmpIfTest = $(tmpCalleeParam);
-const tmpBranchingC = function () {
-  debugger;
-  if (tmpIfelseifelse) {
-    tmpBranchingC$1();
-    return undefined;
-  } else {
-    const tmpCalleeParam$7 = $(2);
-    $(tmpCalleeParam$7);
-    tmpBranchingC$1();
-    return undefined;
-  }
-};
-let tmpIfelseifelse = undefined;
+let tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
-  const tmpCalleeParam$3 = $(1);
-  tmpIfelseifelse = $(tmpCalleeParam$3);
-  tmpBranchingC();
+  const tmpCalleeParam$1 = $(1);
+  tmpIfTest = $(tmpCalleeParam$1);
 } else {
-  tmpIfelseifelse = false;
-  tmpBranchingC();
 }
+if (tmpIfTest) {
+} else {
+  const tmpCalleeParam$3 = $(2);
+  $(tmpCalleeParam$3);
+}
+$(a);
 $(undefined);
 `````
 

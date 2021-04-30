@@ -52,28 +52,13 @@ let f = function () {
   let g = function () {
     debugger;
     const tmpIfTest = $(1);
-    const tmpBranchingA = function () {
-      debugger;
-      const tmpReturnArg$1 = $('a');
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingB = function () {
-      debugger;
-      const tmpReturnArg$3 = tmpBranchingC();
-      return tmpReturnArg$3;
-    };
-    const tmpBranchingC = function () {
-      debugger;
-      $('b');
-      return undefined;
-    };
     if (tmpIfTest) {
-      const tmpReturnArg$5 = tmpBranchingA();
-      return tmpReturnArg$5;
+      const tmpReturnArg = $('a');
+      return tmpReturnArg;
     } else {
-      const tmpReturnArg$7 = tmpBranchingB();
-      return tmpReturnArg$7;
     }
+    $('b');
+    return undefined;
   };
   g();
   $('c');
@@ -86,12 +71,18 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(1);
-if (tmpIfTest) {
-  $('a');
-} else {
+const g = function () {
+  debugger;
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    $('a');
+    return undefined;
+  } else {
+  }
   $('b');
-}
+  return undefined;
+};
+g();
 $('c');
 $(undefined);
 `````

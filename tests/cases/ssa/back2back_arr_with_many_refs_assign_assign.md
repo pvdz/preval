@@ -77,20 +77,14 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    const x = $(undefined);
-    const tmpSSA_x = [1, x, 2, x, 3, x, 4, x];
-    $(tmpSSA_x);
-    $(tmpSSA_x);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  f();
+  const x = $(undefined);
+  const tmpSSA_x = [1, x, 2, x, 3, x, 4, x];
+  $(tmpSSA_x);
+  if ($) {
+    $(tmpSSA_x);
+  } else {
+  }
 } else {
 }
 `````

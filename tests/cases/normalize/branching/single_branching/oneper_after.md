@@ -332,29 +332,12 @@ const X_BBB = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7) {
   let h$7 = $$7;
   debugger;
   const k = -2147483648 > c$9;
-  const tmpBranchingA = function () {
-    debugger;
-    c$9 = -2147483648;
-    const tmpReturnArg$13 = tmpBranchingC();
-    return tmpReturnArg$13;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$15 = tmpBranchingC();
-    return tmpReturnArg$15;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpReturnArg$17 = X_BBC(a$9, b$9, c$9, d$9, e$9, f$9, g$9, h$7);
-    return tmpReturnArg$17;
-  };
   if (k) {
-    const tmpReturnArg$19 = tmpBranchingA();
-    return tmpReturnArg$19;
+    c$9 = -2147483648;
   } else {
-    const tmpReturnArg$21 = tmpBranchingB();
-    return tmpReturnArg$21;
   }
+  const tmpReturnArg$13 = X_BBC(a$9, b$9, c$9, d$9, e$9, f$9, g$9, h$7);
+  return tmpReturnArg$13;
 };
 const X_BBC = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7) {
   let a$11 = $$0;
@@ -366,8 +349,8 @@ const X_BBC = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7) {
   let g$11 = $$6;
   let h$9 = $$7;
   debugger;
-  const tmpReturnArg$23 = X_C(a$11, b$11, c$11, d$11, e$11, f$11, g$11, h$9, false);
-  return tmpReturnArg$23;
+  const tmpReturnArg$15 = X_C(a$11, b$11, c$11, d$11, e$11, f$11, g$11, h$9, false);
+  return tmpReturnArg$15;
 };
 const X_C = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8) {
   let a$13 = $$0;
@@ -385,8 +368,8 @@ const X_C = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6, $$7, $$8) {
   if (m) {
     const n = a$13.length;
     l = n - false;
-    const tmpReturnArg$25 = $(a$13, b$13, c$13, d$13, e$13, f$13, g$13, h$11, i$1, l, m);
-    return tmpReturnArg$25;
+    const tmpReturnArg$17 = $(a$13, b$13, c$13, d$13, e$13, f$13, g$13, h$11, i$1, l, m);
+    return tmpReturnArg$17;
   } else {
     return undefined;
   }

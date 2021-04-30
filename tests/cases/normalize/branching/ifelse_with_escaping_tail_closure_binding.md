@@ -63,32 +63,14 @@ const f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = [g];
   const t = tmpCallCallee(tmpCalleeParam);
-  const tmpBranchingA = function () {
-    debugger;
-    $(1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    xyz = $();
-    t[0]();
-    const tmpReturnArg$3 = g();
-    return tmpReturnArg$3;
-  };
-  let xyz = undefined;
   if ($) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    $(1);
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
   }
+  const xyz = $();
+  t[0]();
+  const tmpReturnArg = g();
+  return tmpReturnArg;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
@@ -105,20 +87,13 @@ const g = function () {
 };
 const tmpCalleeParam = [g];
 const t = $(tmpCalleeParam);
-const tmpBranchingC = function () {
-  debugger;
-  xyz = $();
-  t[0]();
-  g();
-  return undefined;
-};
-let xyz = undefined;
 if ($) {
   $(1);
-  tmpBranchingC();
 } else {
-  tmpBranchingC();
 }
+const xyz = $();
+t[0]();
+g();
 $(undefined);
 `````
 

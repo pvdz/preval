@@ -135,28 +135,23 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    const x = $(5);
-    $(x);
-    const tmpCalleeParam = {
-      toString() {
-        debugger;
-        $('tostring');
-        return 'hi';
-      },
-    };
-    const tmpSSA_x = $(tmpCalleeParam);
-    const tmpSSA_x$1 = tmpSSA_x + 1;
-    $(tmpSSA_x$1);
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  f();
+  let x = $(5);
+  $(x);
+  const tmpCalleeParam = {
+    toString() {
+      debugger;
+      $('tostring');
+      x = 20;
+      return 'hi';
+    },
+  };
+  x = $(tmpCalleeParam);
+  x = x + 1;
+  if ($) {
+    $(x);
+  } else {
+  }
 } else {
 }
 `````

@@ -42,30 +42,12 @@ let f = function () {
   a = undefined;
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementObject$1 = tmpChainRootProp.x;
-    a = tmpChainElementObject$1;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    const tmpChainElementObject = tmpChainRootProp.x;
+    a = tmpChainElementObject;
+    return a;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
+    return a;
   }
 };
 let b = { x: 1 };
@@ -79,15 +61,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const b = { x: 1 };
+let a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
   a = undefined;
   const tmpIfTest = b != null;
   if (tmpIfTest) {
-    const tmpChainElementObject$1 = b.x;
-    a = tmpChainElementObject$1;
+    const tmpChainElementObject = b.x;
+    a = tmpChainElementObject;
     return a;
   } else {
     return a;

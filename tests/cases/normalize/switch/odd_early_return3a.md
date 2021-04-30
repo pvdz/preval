@@ -85,20 +85,15 @@ $(f);
 ## Output
 
 `````js filename=intro
-const g = function () {
-  debugger;
-  if ($) {
-    $ <= 3;
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 const f = function () {
   debugger;
   if (tmpIfTest) {
-    g();
-    return undefined;
+    if ($) {
+      $ <= 3;
+      return undefined;
+    } else {
+      return undefined;
+    }
   } else {
     return undefined;
   }

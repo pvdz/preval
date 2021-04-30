@@ -125,32 +125,18 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
+if ($) {
   const test = $(1);
-  const g = function () {
-    debugger;
-    if (tmpIfelseifelse) {
+  if (test) {
+    const tmpSSA_tmpIfelseifelse = $(1);
+    if (tmpSSA_tmpIfelseifelse) {
       $('A');
-      return undefined;
     } else {
       $('B');
-      return undefined;
     }
-  };
-  let tmpIfelseifelse = undefined;
-  if (test) {
-    tmpIfelseifelse = $(1);
-    g();
-    return undefined;
   } else {
-    tmpIfelseifelse = false;
     $('B');
-    return undefined;
   }
-};
-if ($) {
-  f();
 } else {
 }
 `````

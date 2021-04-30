@@ -40,58 +40,24 @@ let f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(0);
   a = tmpCallCallee(tmpCalleeParam);
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpCallCallee$5 = $;
-    const tmpCalleeParam$5 = $(1);
-    a = tmpCallCallee$5(tmpCalleeParam$5);
-    const tmpBranchingA$1 = function () {
-      debugger;
-      const tmpCallCallee$9 = $;
-      const tmpCalleeParam$9 = $(2);
-      a = tmpCallCallee$9(tmpCalleeParam$9);
-      const tmpReturnArg$1 = tmpBranchingC$1();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpReturnArg$3 = tmpBranchingC$1();
-      return tmpReturnArg$3;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg$5 = tmpBranchingC();
-      return tmpReturnArg$5;
-    };
-    if (a) {
-      const tmpReturnArg$7 = tmpBranchingA$1();
-      return tmpReturnArg$7;
-    } else {
-      const tmpReturnArg$9 = tmpBranchingB$1();
-      return tmpReturnArg$9;
-    }
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $(a);
-    return undefined;
-  };
   if (a) {
-    const tmpReturnArg$11 = tmpBranchingA();
-    return tmpReturnArg$11;
   } else {
-    const tmpReturnArg$13 = tmpBranchingB();
-    return tmpReturnArg$13;
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(1);
+    a = tmpCallCallee$1(tmpCalleeParam$1);
+    if (a) {
+      const tmpCallCallee$3 = $;
+      const tmpCalleeParam$3 = $(2);
+      a = tmpCallCallee$3(tmpCalleeParam$3);
+    } else {
+    }
   }
+  $(a);
+  return undefined;
 };
-const tmpCallCallee$11 = $;
-const tmpCalleeParam$11 = f();
-tmpCallCallee$11(tmpCalleeParam$11);
+const tmpCallCallee$5 = $;
+const tmpCalleeParam$5 = f();
+tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
 ## Output
@@ -99,30 +65,17 @@ tmpCallCallee$11(tmpCalleeParam$11);
 `````js filename=intro
 const tmpCalleeParam = $(0);
 let a = $(tmpCalleeParam);
-const tmpBranchingB = function () {
-  debugger;
-  const tmpCalleeParam$5 = $(1);
-  a = $(tmpCalleeParam$5);
-  if (a) {
-    const tmpCalleeParam$9 = $(2);
-    a = $(tmpCalleeParam$9);
-    tmpBranchingC();
-    return undefined;
-  } else {
-    tmpBranchingC();
-    return undefined;
-  }
-};
-const tmpBranchingC = function () {
-  debugger;
-  $(a);
-  return undefined;
-};
 if (a) {
-  tmpBranchingC();
 } else {
-  tmpBranchingB();
+  const tmpCalleeParam$1 = $(1);
+  a = $(tmpCalleeParam$1);
+  if (a) {
+    const tmpCalleeParam$3 = $(2);
+    a = $(tmpCalleeParam$3);
+  } else {
+  }
 }
+$(a);
 $(undefined);
 `````
 

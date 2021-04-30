@@ -440,6 +440,9 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
           ASSERT(start <= stop);
           for (let n = start + 1; n <= stop; ++n) {
             const node = ref.blockBody[n];
+            //console.log(
+            //  'TODO   I think this needs to use the other expressionHasNoObservableSideEffect func and traverse cross block? to verify.',
+            //);
             if (!AST.expressionHasNoObservableSideEffect(node)) {
               vlog('  - At least one statement between decl and this one had an observable side effect. Bailing.');
               source(node);

@@ -93,22 +93,16 @@ if ($) {
 `````js filename=intro
 const f = function () {
   debugger;
-  const g = function () {
-    debugger;
-    if (x) {
+  const x = $(1);
+  if (x) {
+    return 500;
+  } else {
+    const tmpSSA_x$1 = $(0);
+    if (tmpSSA_x$1) {
       return 500;
     } else {
       return 1000;
     }
-  };
-  let x = $(1);
-  if (x) {
-    x = true;
-    return 500;
-  } else {
-    x = $(0);
-    const tmpReturnArg$1 = g();
-    return tmpReturnArg$1;
   }
 };
 if ($) {

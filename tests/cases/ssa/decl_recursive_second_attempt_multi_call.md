@@ -62,34 +62,17 @@ let f = function () {
   let g = function ($$0) {
     let x = $$0;
     debugger;
-    const tmpBranchingA = function () {
-      debugger;
+    if (x) {
       g(F);
       $(100);
-      const tmpReturnArg = tmpBranchingC();
-      return tmpReturnArg;
-    };
-    const tmpBranchingB = function () {
-      debugger;
-      const tmpReturnArg$1 = tmpBranchingC();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingC = function () {
-      debugger;
-      const tmpReturnArg$3 = function () {
-        debugger;
-        $('new');
-        return undefined;
-      };
-      return tmpReturnArg$3;
-    };
-    if (x) {
-      const tmpReturnArg$5 = tmpBranchingA();
-      return tmpReturnArg$5;
     } else {
-      const tmpReturnArg$7 = tmpBranchingB();
-      return tmpReturnArg$7;
     }
+    const tmpReturnArg = function () {
+      debugger;
+      $('new');
+      return undefined;
+    };
+    return tmpReturnArg;
   };
   g = g(T);
   g();
@@ -106,7 +89,7 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const tmpReturnArg$3 = function () {
+const tmpReturnArg = function () {
   debugger;
   $('new');
   return undefined;
@@ -120,9 +103,9 @@ if ($) {
     if (x) {
       g(F);
       $(100);
-      return tmpReturnArg$3;
+      return tmpReturnArg;
     } else {
-      return tmpReturnArg$3;
+      return tmpReturnArg;
     }
   };
   g = g(T);

@@ -42,56 +42,21 @@ let f = function () {
   let b = undefined;
   const tmpChainRootProp = $(2);
   const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementObject$1 = tmpChainRootProp.toString;
-    b = tmpChainElementObject$1;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    c = undefined;
-    const tmpChainRootProp$1 = b;
-    const tmpIfTest$1 = tmpChainRootProp$1 != null;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      const tmpChainElementObject$5 = tmpChainRootProp$1.length;
-      c = tmpChainElementObject$5;
-      const tmpReturnArg$3 = tmpBranchingC$1();
-      return tmpReturnArg$3;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpReturnArg$5 = tmpBranchingC$1();
-      return tmpReturnArg$5;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      const tmpReturnArg$7 = $(c);
-      return tmpReturnArg$7;
-    };
-    if (tmpIfTest$1) {
-      const tmpReturnArg$9 = tmpBranchingA$1();
-      return tmpReturnArg$9;
-    } else {
-      const tmpReturnArg$11 = tmpBranchingB$1();
-      return tmpReturnArg$11;
-    }
-  };
-  let c = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$13 = tmpBranchingA();
-    return tmpReturnArg$13;
+    const tmpChainElementObject = tmpChainRootProp.toString;
+    b = tmpChainElementObject;
   } else {
-    const tmpReturnArg$15 = tmpBranchingB();
-    return tmpReturnArg$15;
   }
+  let c = undefined;
+  const tmpChainRootProp$1 = b;
+  const tmpIfTest$1 = tmpChainRootProp$1 != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject$1 = tmpChainRootProp$1.length;
+    c = tmpChainElementObject$1;
+  } else {
+  }
+  const tmpReturnArg = $(c);
+  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -101,36 +66,24 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  let b = undefined;
-  const tmpChainRootProp = $(2);
-  const tmpIfTest = tmpChainRootProp != null;
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpChainRootProp$1 = b;
-    const tmpIfTest$1 = tmpChainRootProp$1 != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject$5 = tmpChainRootProp$1.length;
-      const tmpReturnArg$3 = $(tmpChainElementObject$5);
-      return tmpReturnArg$3;
-    } else {
-      const tmpReturnArg$11 = $(undefined);
-      return tmpReturnArg$11;
-    }
-  };
-  if (tmpIfTest) {
-    const tmpChainElementObject$1 = tmpChainRootProp.toString;
-    b = tmpChainElementObject$1;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$15 = tmpBranchingC();
-    return tmpReturnArg$15;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+let b = undefined;
+const tmpChainRootProp = $(2);
+const tmpIfTest = tmpChainRootProp != null;
+if (tmpIfTest) {
+  const tmpChainElementObject = tmpChainRootProp.toString;
+  b = tmpChainElementObject;
+} else {
+}
+let c = undefined;
+const tmpChainRootProp$1 = b;
+const tmpIfTest$1 = tmpChainRootProp$1 != null;
+if (tmpIfTest$1) {
+  const tmpChainElementObject$1 = tmpChainRootProp$1.length;
+  c = tmpChainElementObject$1;
+} else {
+}
+const tmpReturnArg = $(c);
+$(tmpReturnArg);
 `````
 
 ## Globals

@@ -48,36 +48,18 @@ $(f());
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpBranchingA = function () {
-    debugger;
-    const g$1 = function () {
+  if ($) {
+    const g = function () {
       debugger;
       $(xyz);
       return undefined;
     };
-    $(g$1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    xyz = $();
-    $(1);
-    return undefined;
-  };
-  let xyz = undefined;
-  if ($) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    $(g);
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
   }
+  const xyz = $();
+  $(1);
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -87,24 +69,17 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const g$1 = function () {
-  debugger;
-  $(xyz);
-  return undefined;
-};
-const tmpBranchingC = function () {
-  debugger;
-  xyz = $();
-  $(1);
-  return undefined;
-};
-let xyz = undefined;
 if ($) {
-  $(g$1);
-  tmpBranchingC();
+  const g = function () {
+    debugger;
+    $(xyz);
+    return undefined;
+  };
+  $(g);
 } else {
-  tmpBranchingC();
 }
+const xyz = $();
+$(1);
 $(undefined);
 `````
 

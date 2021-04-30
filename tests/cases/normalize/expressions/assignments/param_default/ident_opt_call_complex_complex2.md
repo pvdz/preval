@@ -128,7 +128,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpBranchingA = function () {
+const f = function () {
   debugger;
   const tmpChainElementCall$2 = $($);
   const tmpIfTest$3 = tmpChainElementCall$2 != null;
@@ -143,7 +143,7 @@ const tmpBranchingA = function () {
     return undefined;
   }
 };
-const tmpCalleeParam$6 = tmpBranchingA();
+const tmpCalleeParam$6 = f();
 $(tmpCalleeParam$6);
 $(a);
 `````

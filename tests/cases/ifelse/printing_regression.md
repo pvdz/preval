@@ -47,30 +47,12 @@ let f = function ($$0) {
   let a = $$0;
   debugger;
   let x = undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    x = $;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    y = undefined;
-    return undefined;
-  };
-  let y = undefined;
   if ($) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    x = $;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
   }
+  let y = undefined;
+  return undefined;
 };
 const c = f();
 $(c);

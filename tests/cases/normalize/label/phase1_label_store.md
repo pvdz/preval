@@ -50,52 +50,19 @@ f();
 const f = function ($$0) {
   let x = $$0;
   debugger;
-  let tmpLoopRetCode = true;
-  let tmpLoopRetValue = undefined;
-  let tmpLoopBody = function () {
-    debugger;
+  while (true) {
     let t = 1;
     const tmpIfTest = 3 === s;
-    const tmpBranchingA = function () {
-      debugger;
-      t = 0;
-      const tmpReturnArg = tmpBranchingC();
-      return tmpReturnArg;
-    };
-    const tmpBranchingB = function () {
-      debugger;
-      const tmpReturnArg$1 = tmpBranchingC();
-      return tmpReturnArg$1;
-    };
-    const tmpBranchingC = function () {
-      debugger;
-      return undefined;
-    };
     if (tmpIfTest) {
-      const tmpReturnArg$3 = tmpBranchingA();
-      return tmpReturnArg$3;
+      t = 0;
     } else {
-      const tmpReturnArg$5 = tmpBranchingB();
-      return tmpReturnArg$5;
     }
-  };
-  let tmpLoopTail = function ($$0, $$1) {
-    let tmpLoopRetCode$1 = $$0;
-    let tmpLoopRetValue$1 = $$1;
-    debugger;
-    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
-    if (tmpIfTest$1) {
-      return tmpLoopRetValue$1;
-    } else {
-      x + 1;
-      return undefined;
+    stop: {
+      break stop;
     }
-  };
-  while (tmpLoopRetCode) {
-    tmpLoopBody();
   }
-  const tmpReturnArg$7 = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
-  return tmpReturnArg$7;
+  x + 1;
+  return undefined;
 };
 f();
 f();
@@ -108,6 +75,9 @@ const $clone$f$0_Iundefined = function () {
   debugger;
   while (true) {
     s;
+    stop$1: {
+      break stop$1;
+    }
   }
   return undefined;
 };

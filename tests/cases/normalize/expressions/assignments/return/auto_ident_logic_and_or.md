@@ -39,60 +39,25 @@ let f = function () {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(1);
   a = tmpCallCallee(tmpCalleeParam);
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCallCallee$3 = $;
-    const tmpCalleeParam$3 = $(1);
-    a = tmpCallCallee$3(tmpCalleeParam$3);
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      const tmpReturnArg$5 = tmpBranchingC$1();
-      return tmpReturnArg$5;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpCallCallee$7 = $;
-      const tmpCalleeParam$7 = $(2);
-      a = tmpCallCallee$7(tmpCalleeParam$7);
-      const tmpReturnArg$7 = tmpBranchingC$1();
-      return tmpReturnArg$7;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      tmpReturnArg = a;
-      return tmpReturnArg;
-    };
-    if (a) {
-      const tmpReturnArg$9 = tmpBranchingA$1();
-      return tmpReturnArg$9;
-    } else {
-      const tmpReturnArg$11 = tmpBranchingB$1();
-      return tmpReturnArg$11;
-    }
-  };
-  let tmpReturnArg = undefined;
   if (a) {
-    const tmpReturnArg$13 = tmpBranchingA();
-    return tmpReturnArg$13;
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(1);
+    a = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
-    const tmpReturnArg$15 = tmpBranchingB();
-    return tmpReturnArg$15;
+  }
+  if (a) {
+    return a;
+  } else {
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    a = tmpCallCallee$3(tmpCalleeParam$3);
+    return a;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$9 = $;
-const tmpCalleeParam$9 = f();
-tmpCallCallee$9(tmpCalleeParam$9);
+const tmpCallCallee$5 = $;
+const tmpCalleeParam$5 = f();
+tmpCallCallee$5(tmpCalleeParam$5);
 $(a);
 `````
 
@@ -100,32 +65,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpBranchingC = function () {
-  debugger;
-  if (a) {
-    return a;
-  } else {
-    const tmpCalleeParam$7 = $(2);
-    a = $(tmpCalleeParam$7);
-    return a;
-  }
-};
 const f = function () {
   debugger;
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
   if (a) {
-    const tmpCalleeParam$3 = $(1);
-    a = $(tmpCalleeParam$3);
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
+    const tmpCalleeParam$1 = $(1);
+    a = $(tmpCalleeParam$1);
   } else {
-    const tmpReturnArg$15 = tmpBranchingC();
-    return tmpReturnArg$15;
+  }
+  if (a) {
+    return a;
+  } else {
+    const tmpCalleeParam$3 = $(2);
+    a = $(tmpCalleeParam$3);
+    return a;
   }
 };
-const tmpCalleeParam$9 = f();
-$(tmpCalleeParam$9);
+const tmpCalleeParam$5 = f();
+$(tmpCalleeParam$5);
 $(a);
 `````
 

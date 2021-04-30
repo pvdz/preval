@@ -87,7 +87,10 @@ if ($) {
 `````js filename=intro
 if ($) {
   const x = $();
-  $(x);
+  if ($) {
+    $(x);
+  } else {
+  }
 } else {
 }
 `````

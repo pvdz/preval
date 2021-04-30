@@ -62,29 +62,12 @@ let f = function () {
   $('something');
   x = 100;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function () {
-    debugger;
-    $(x);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $(x);
-    return x;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    $(x);
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
   }
+  $(x);
+  return x;
 };
 f();
 `````
@@ -94,17 +77,11 @@ f();
 `````js filename=intro
 $('something');
 const tmpIfTest = $(1);
-const tmpBranchingC = function () {
-  debugger;
-  $(100);
-  return undefined;
-};
 if (tmpIfTest) {
   $(100);
-  tmpBranchingC();
 } else {
-  tmpBranchingC();
 }
+$(100);
 `````
 
 ## Globals

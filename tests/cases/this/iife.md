@@ -45,32 +45,16 @@ const f = function () {
   const tmpthis = this;
   debugger;
   let t = $(1);
-  const tmpBranchingA = function () {
-    debugger;
+  if (t) {
     t = $(2);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
     if (t) {
-      const g$1 = tmpthis;
+      const g = tmpthis;
       return undefined;
     } else {
       return undefined;
     }
-  };
-  if (t) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    return undefined;
   }
 };
 f();

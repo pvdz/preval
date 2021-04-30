@@ -99,19 +99,13 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const outer = function () {
-  debugger;
+if ($) {
   const x = $(0);
   if (x) {
     $('inner if', x);
-    return undefined;
   } else {
     $('inner else', false);
-    return undefined;
   }
-};
-if ($) {
-  outer();
   $(undefined, 'outer');
 } else {
 }

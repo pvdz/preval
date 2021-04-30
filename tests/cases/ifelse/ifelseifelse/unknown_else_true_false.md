@@ -73,23 +73,15 @@ if (condition) {
 
 `````js filename=intro
 const condition = $(true);
-const f = function () {
-  debugger;
-  if (tmpIfelseifelse) {
-    $('a');
-    return undefined;
-  } else {
-    $('b');
-    return undefined;
-  }
-};
-let tmpIfelseifelse = undefined;
 if (condition) {
-  tmpIfelseifelse = true;
   $('a');
 } else {
-  tmpIfelseifelse = $(false);
-  f();
+  const tmpSSA_tmpIfelseifelse$1 = $(false);
+  if (tmpSSA_tmpIfelseifelse$1) {
+    $('a');
+  } else {
+    $('b');
+  }
 }
 `````
 

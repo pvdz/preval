@@ -46,28 +46,12 @@ let f = function () {
   debugger;
   let x = undefined;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function () {
-    debugger;
-    $(100);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    x = $(2, 'b');
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return x;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    $(100);
+    return x;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    x = $(2, 'b');
+    return x;
   }
 };
 const tmpCallCallee = $;

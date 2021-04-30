@@ -51,33 +51,16 @@ let f = function () {
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(1, 'case');
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingA = function () {
-    debugger;
-    tmpSwitchCaseToStart = 0;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      const tmpReturnArg$3 = $(2, 'ret');
-      return tmpReturnArg$3;
-    } else {
-      return undefined;
-    }
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    tmpSwitchCaseToStart = 0;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
+  }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    const tmpReturnArg = $(2, 'ret');
+    return tmpReturnArg;
+  } else {
+    return undefined;
   }
 };
 const tmpCallCallee = $;
@@ -94,23 +77,16 @@ const f = function () {
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(1, 'case');
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$1) {
-      const tmpReturnArg$3 = $(2, 'ret');
-      return tmpReturnArg$3;
-    } else {
-      return undefined;
-    }
-  };
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
-    const tmpReturnArg = tmpBranchingC();
+  } else {
+  }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    const tmpReturnArg = $(2, 'ret');
     return tmpReturnArg;
   } else {
-    const tmpReturnArg$7 = tmpBranchingC();
-    return tmpReturnArg$7;
+    return undefined;
   }
 };
 const tmpCalleeParam = f();

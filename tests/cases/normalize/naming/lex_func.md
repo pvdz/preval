@@ -47,29 +47,13 @@ let f = function () {
   let a$1 = $(1);
   $(a$1);
   const tmpIfTest = $();
-  const tmpBranchingA = function () {
-    debugger;
-    return a$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    a = $(1);
-    $(a);
-    return a;
-  };
-  let a = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$1 = tmpBranchingA();
-    return tmpReturnArg$1;
+    return a$1;
   } else {
-    const tmpReturnArg$3 = tmpBranchingB();
-    return tmpReturnArg$3;
   }
+  let a = $(1);
+  $(a);
+  return a;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -87,10 +71,10 @@ const f = function () {
   if (tmpIfTest) {
     return a$1;
   } else {
-    const tmpssa3_a = $(1);
-    $(tmpssa3_a);
-    return tmpssa3_a;
   }
+  const a = $(1);
+  $(a);
+  return a;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

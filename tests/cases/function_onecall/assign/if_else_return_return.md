@@ -65,29 +65,14 @@ let closure = function () {
 let f = function () {
   debugger;
   const tmpIfTest = $();
-  const tmpBranchingA = function () {
-    debugger;
-    $(0);
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = $(1);
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpReturnArg$5 = $(2);
-    return tmpReturnArg$5;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$7 = tmpBranchingA();
-    return tmpReturnArg$7;
+    $(0);
   } else {
-    const tmpReturnArg$9 = tmpBranchingB();
-    return tmpReturnArg$9;
+    const tmpReturnArg = $(1);
+    return tmpReturnArg;
   }
+  const tmpReturnArg$1 = $(2);
+  return tmpReturnArg$1;
 };
 let x = $(100);
 const tmpCallCallee = $;
@@ -108,12 +93,12 @@ const f = function () {
   const tmpIfTest = $();
   if (tmpIfTest) {
     $(0);
-    const tmpReturnArg$3 = $(2);
-    return tmpReturnArg$3;
   } else {
-    const tmpReturnArg$9 = $(1);
-    return tmpReturnArg$9;
+    const tmpReturnArg = $(1);
+    return tmpReturnArg;
   }
+  const tmpReturnArg$1 = $(2);
+  return tmpReturnArg$1;
 };
 const x = $(100);
 $(x);

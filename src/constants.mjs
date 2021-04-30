@@ -32,6 +32,7 @@ export const RED = colorLess ? '' : '\x1b[31;1m';
 export const RED_WHITE = colorLess ? '' : '\x1b[41;1m';
 export const GREEN = colorLess ? '' : '\x1b[32m';
 export const YELLOW = colorLess ? '' : '\x1b[33;1m';
+export const ORANGE_DIM = colorLess ? '' : '\x1b[33;2m';
 export const BLUE = colorLess ? '' : '\x1b[34;1m';
 export const PURPLE = colorLess ? '' : '\x1b[35;1m';
 export const WHITE = colorLess ? '' : '\x1b[37m';

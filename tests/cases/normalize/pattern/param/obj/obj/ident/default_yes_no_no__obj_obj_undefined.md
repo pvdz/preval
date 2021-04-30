@@ -42,28 +42,12 @@ let f = function ($$0) {
   let objPatternBeforeDefault = objPatternNoDefault.y;
   let y = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    y = $('pass');
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    y = objPatternBeforeDefault;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return y;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    y = $('pass');
+    return y;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    y = objPatternBeforeDefault;
+    return y;
   }
 };
 const tmpCallCallee = $;
@@ -85,8 +69,8 @@ const f = function ($$0) {
   const objPatternBeforeDefault = objPatternNoDefault.y;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpssa2_y = $('pass');
-    return tmpssa2_y;
+    const tmpSSA_y = $('pass');
+    return tmpSSA_y;
   } else {
     return objPatternBeforeDefault;
   }

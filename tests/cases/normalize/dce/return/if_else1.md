@@ -48,26 +48,13 @@ $(f());
 let f = function () {
   debugger;
   const tmpIfTest = $(1);
-  const tmpBranchingA = function () {
-    debugger;
-    return 2;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    return 3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $('fail');
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg = tmpBranchingA();
-    return tmpReturnArg;
+    return 2;
   } else {
-    const tmpReturnArg$1 = tmpBranchingB();
-    return tmpReturnArg$1;
+    return 3;
   }
+  $('fail');
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -85,6 +72,8 @@ const f = function () {
   } else {
     return 3;
   }
+  $('fail');
+  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

@@ -44,8 +44,8 @@ while (true) {
     if (tmpIfTest$1) {
       break;
     } else {
-      $('keep, do not eval');
     }
+    $('keep, do not eval');
   } else {
     break;
   }
@@ -63,8 +63,8 @@ while (true) {
     if (tmpIfTest$1) {
       break;
     } else {
-      $('keep, do not eval');
     }
+    $('keep, do not eval');
   } else {
     break;
   }

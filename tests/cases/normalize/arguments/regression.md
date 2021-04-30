@@ -51,36 +51,18 @@ const f = function ($$0) {
   let x1 = $$0;
   debugger;
   let x = undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    x = {};
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    g = function () {
-      const tmpArgumentsLen$1 = arguments.length;
-      debugger;
-      $(tmpArgumentsLen$1);
-      return undefined;
-    };
-    const tmpReturnArg$3 = g();
-    return tmpReturnArg$3;
-  };
-  let g = undefined;
   if ($) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    x = {};
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
   }
+  const g = function () {
+    const tmpArgumentsLen = arguments.length;
+    debugger;
+    $(tmpArgumentsLen);
+    return undefined;
+  };
+  const tmpReturnArg = g();
+  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -90,22 +72,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpssa2_g = function () {
-  const tmpArgumentsLen$1 = arguments.length;
+const g = function () {
+  const tmpArgumentsLen = arguments.length;
   debugger;
-  $(tmpArgumentsLen$1);
+  $(tmpArgumentsLen);
   return undefined;
 };
-const tmpBranchingC = function () {
-  debugger;
-  tmpssa2_g();
-  return undefined;
-};
-if ($) {
-  tmpBranchingC();
-} else {
-  tmpBranchingC();
-}
+g();
 $(undefined);
 `````
 

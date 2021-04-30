@@ -76,18 +76,9 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const g = function () {
-  debugger;
-  if ($) {
-    const tmpSSA_tmpssa2_x = $(1, 'a');
-    $(tmpSSA_tmpssa2_x, 'b');
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  g();
+  const tmpSSA_tmpssa2_x = $(1, 'a');
+  $(tmpSSA_tmpssa2_x, 'b');
 } else {
 }
 `````

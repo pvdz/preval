@@ -38,119 +38,55 @@ let f = function ($$0) {
   debugger;
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCallCallee$5 = $;
-    const tmpCalleeParam$5 = $(1);
-    let tmpNestedComplexRhs$1 = tmpCallCallee$5(tmpCalleeParam$5);
-    const tmpBranchingA$1 = function () {
-      debugger;
-      const tmpCallCallee$11 = $;
-      const tmpCalleeParam$11 = $(1);
-      tmpNestedComplexRhs$1 = tmpCallCallee$11(tmpCalleeParam$11);
-      const tmpBranchingA$3 = function () {
-        debugger;
-        const tmpCallCallee$15 = $;
-        const tmpCalleeParam$15 = $(2);
-        tmpNestedComplexRhs$1 = tmpCallCallee$15(tmpCalleeParam$15);
-        const tmpReturnArg = tmpBranchingC$3();
-        return tmpReturnArg;
-      };
-      const tmpBranchingB$3 = function () {
-        debugger;
-        const tmpReturnArg$1 = tmpBranchingC$3();
-        return tmpReturnArg$1;
-      };
-      const tmpBranchingC$3 = function () {
-        debugger;
-        const tmpReturnArg$3 = tmpBranchingC$1();
-        return tmpReturnArg$3;
-      };
-      if (tmpNestedComplexRhs$1) {
-        const tmpReturnArg$5 = tmpBranchingA$3();
-        return tmpReturnArg$5;
-      } else {
-        const tmpReturnArg$7 = tmpBranchingB$3();
-        return tmpReturnArg$7;
-      }
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      const tmpReturnArg$9 = tmpBranchingC$1();
-      return tmpReturnArg$9;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      a = tmpNestedComplexRhs$1;
-      p = tmpNestedComplexRhs$1;
-      const tmpReturnArg$11 = tmpBranchingC();
-      return tmpReturnArg$11;
-    };
-    if (tmpNestedComplexRhs$1) {
-      const tmpReturnArg$13 = tmpBranchingA$1();
-      return tmpReturnArg$13;
-    } else {
-      const tmpReturnArg$15 = tmpBranchingB$1();
-      return tmpReturnArg$15;
-    }
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    p = tmpParamBare;
-    const tmpReturnArg$17 = tmpBranchingC();
-    return tmpReturnArg$17;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$19 = tmpBranchingA();
-    return tmpReturnArg$19;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(1);
+    let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    if (tmpNestedComplexRhs) {
+      const tmpCallCallee$1 = $;
+      const tmpCalleeParam$1 = $(1);
+      tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+      if (tmpNestedComplexRhs) {
+        const tmpCallCallee$3 = $;
+        const tmpCalleeParam$3 = $(2);
+        tmpNestedComplexRhs = tmpCallCallee$3(tmpCalleeParam$3);
+      } else {
+      }
+    } else {
+    }
+    a = tmpNestedComplexRhs;
+    p = tmpNestedComplexRhs;
+    return undefined;
   } else {
-    const tmpReturnArg$21 = tmpBranchingB();
-    return tmpReturnArg$21;
+    p = tmpParamBare;
+    return undefined;
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$17 = $;
-const tmpCalleeParam$17 = f();
-tmpCallCallee$17(tmpCalleeParam$17);
+const tmpCallCallee$5 = $;
+const tmpCalleeParam$5 = f();
+tmpCallCallee$5(tmpCalleeParam$5);
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$5 = $(1);
-let tmpNestedComplexRhs$1 = $(tmpCalleeParam$5);
-const tmpBranchingA$1 = function () {
-  debugger;
-  const tmpCalleeParam$11 = $(1);
-  tmpNestedComplexRhs$1 = $(tmpCalleeParam$11);
-  if (tmpNestedComplexRhs$1) {
-    const tmpCalleeParam$15 = $(2);
-    tmpNestedComplexRhs$1 = $(tmpCalleeParam$15);
-    tmpBranchingC$1();
-    return undefined;
+const tmpCalleeParam = $(1);
+let tmpNestedComplexRhs = $(tmpCalleeParam);
+if (tmpNestedComplexRhs) {
+  const tmpCalleeParam$1 = $(1);
+  tmpNestedComplexRhs = $(tmpCalleeParam$1);
+  if (tmpNestedComplexRhs) {
+    const tmpCalleeParam$3 = $(2);
+    tmpNestedComplexRhs = $(tmpCalleeParam$3);
   } else {
-    tmpBranchingC$1();
-    return undefined;
   }
-};
-const tmpBranchingC$1 = function () {
-  debugger;
-  a = tmpNestedComplexRhs$1;
-  return undefined;
-};
-if (tmpNestedComplexRhs$1) {
-  tmpBranchingA$1();
 } else {
-  tmpBranchingC$1();
 }
+const tmpSSA_a = tmpNestedComplexRhs;
 $(undefined);
-$(a);
+$(tmpSSA_a);
 `````
 
 ## Globals

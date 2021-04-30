@@ -46,39 +46,19 @@ let f = function () {
   debugger;
   let x = $(3);
   $(x);
-  let tmpLoopRetCode = true;
-  let tmpLoopRetValue = undefined;
-  let tmpLoopBody = function () {
-    debugger;
+  while (true) {
     const tmpCallCallee = $;
     x = x + 1;
     let tmpCalleeParam = x;
     tmpCallCallee(tmpCalleeParam);
     const tmpIfTest = x > 5;
     if (tmpIfTest) {
-      tmpLoopRetCode = false;
-      return undefined;
+      break;
     } else {
-      return undefined;
     }
-  };
-  let tmpLoopTail = function ($$0, $$1) {
-    let tmpLoopRetCode$1 = $$0;
-    let tmpLoopRetValue$1 = $$1;
-    debugger;
-    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
-    if (tmpIfTest$1) {
-      return tmpLoopRetValue$1;
-    } else {
-      $(x);
-      return undefined;
-    }
-  };
-  while (tmpLoopRetCode) {
-    tmpLoopBody();
   }
-  const tmpReturnArg = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
-  return tmpReturnArg;
+  $(x);
+  return undefined;
 };
 if ($) {
   const tmpCallCallee$1 = $;
@@ -91,43 +71,20 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
+if ($) {
   let x = $(3);
   $(x);
-  let tmpLoopRetCode = true;
-  const tmpLoopBody = function () {
-    debugger;
+  while (true) {
     x = x + 1;
     const tmpCalleeParam = x;
     $(tmpCalleeParam);
     const tmpIfTest = x > 5;
     if (tmpIfTest) {
-      tmpLoopRetCode = false;
-      return undefined;
+      break;
     } else {
-      return undefined;
     }
-  };
-  const tmpLoopTail = function ($$0) {
-    const tmpLoopRetCode$1 = $$0;
-    debugger;
-    const tmpIfTest$1 = tmpLoopRetCode$1 === undefined;
-    if (tmpIfTest$1) {
-      return undefined;
-    } else {
-      $(x);
-      return undefined;
-    }
-  };
-  while (tmpLoopRetCode) {
-    tmpLoopBody();
   }
-  tmpLoopTail(tmpLoopRetCode);
-  return undefined;
-};
-if ($) {
-  f();
+  $(x);
   $(undefined);
 } else {
 }

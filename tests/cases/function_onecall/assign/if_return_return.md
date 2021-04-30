@@ -61,29 +61,12 @@ let closure = function () {
 let f = function () {
   debugger;
   const tmpIfTest = $();
-  const tmpBranchingA = function () {
-    debugger;
-    $(1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    $(2);
-    return undefined;
-  };
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    $(1);
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
   }
+  $(2);
+  return undefined;
 };
 let x = $(100);
 const tmpCallCallee = $;
@@ -99,20 +82,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpBranchingC = function () {
-  debugger;
-  $(2);
-  return undefined;
-};
 const x = $(100);
 $(x);
 const tmpIfTest = $();
 if (tmpIfTest) {
   $(1);
-  tmpBranchingC();
 } else {
-  tmpBranchingC();
 }
+$(2);
 $(undefined);
 $(undefined);
 `````

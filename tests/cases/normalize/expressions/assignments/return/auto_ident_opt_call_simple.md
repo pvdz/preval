@@ -39,30 +39,12 @@ let f = function () {
   a = undefined;
   const tmpChainRootCall = $;
   const tmpIfTest = tmpChainRootCall != null;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpChainElementCall$1 = tmpChainRootCall(1);
-    a = tmpChainElementCall$1;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    const tmpReturnArg$3 = tmpBranchingC();
-    return tmpReturnArg$3;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    tmpReturnArg = a;
-    return tmpReturnArg;
-  };
-  let tmpReturnArg = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$5 = tmpBranchingA();
-    return tmpReturnArg$5;
+    const tmpChainElementCall = tmpChainRootCall(1);
+    a = tmpChainElementCall;
+    return a;
   } else {
-    const tmpReturnArg$7 = tmpBranchingB();
-    return tmpReturnArg$7;
+    return a;
   }
 };
 let a = { a: 999, b: 1000 };
@@ -81,8 +63,8 @@ const f = function () {
   a = undefined;
   const tmpIfTest = $ != null;
   if (tmpIfTest) {
-    const tmpChainElementCall$1 = $(1);
-    a = tmpChainElementCall$1;
+    const tmpChainElementCall = $(1);
+    a = tmpChainElementCall;
     return a;
   } else {
     return a;

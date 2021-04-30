@@ -93,24 +93,19 @@ if ($) {
 `````js filename=intro
 const outer = function () {
   debugger;
-  let x = $(0);
-  const f = function () {
-    debugger;
-    if (x) {
-      const tmpReturnArg = $('inner if', x);
-      return tmpReturnArg;
-    } else {
-      const tmpReturnArg$1 = $('inner else', x);
-      return tmpReturnArg$1;
-    }
-  };
+  const x = $(0);
   if (x) {
     const tmpReturnArg$3 = $('inner if', x);
     return tmpReturnArg$3;
   } else {
-    x = $(2);
-    const tmpReturnArg$5 = f();
-    return tmpReturnArg$5;
+    const tmpSSA_x = $(2);
+    if (tmpSSA_x) {
+      const tmpReturnArg = $('inner if', tmpSSA_x);
+      return tmpReturnArg;
+    } else {
+      const tmpReturnArg$1 = $('inner else', tmpSSA_x);
+      return tmpReturnArg$1;
+    }
   }
 };
 if ($) {

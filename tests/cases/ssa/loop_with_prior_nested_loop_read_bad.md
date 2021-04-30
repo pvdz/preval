@@ -47,33 +47,14 @@ if ($) f();
 let f = function () {
   debugger;
   let x = $(1);
-  let tmpLoopRetCode = true;
-  let tmpLoopRetValue = undefined;
-  let tmpLoopBody = function () {
-    debugger;
+  while (true) {
     $(x);
     while (true) {
       x = $(2);
       $(x);
     }
-    return undefined;
-  };
-  let tmpLoopTail = function ($$0, $$1) {
-    let tmpLoopRetCode$1 = $$0;
-    let tmpLoopRetValue$1 = $$1;
-    debugger;
-    const tmpIfTest = tmpLoopRetCode$1 === undefined;
-    if (tmpIfTest) {
-      return tmpLoopRetValue$1;
-    } else {
-      return undefined;
-    }
-  };
-  while (tmpLoopRetCode) {
-    tmpLoopBody();
   }
-  const tmpReturnArg = tmpLoopTail(tmpLoopRetCode, tmpLoopRetValue);
-  return tmpReturnArg;
+  return undefined;
 };
 if ($) {
   f();
@@ -84,25 +65,15 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
+if ($) {
   let x = $(1);
-  const tmpLoopBody = function () {
-    debugger;
+  while (true) {
     $(x);
     while (true) {
       x = $(2);
       $(x);
     }
-    return undefined;
-  };
-  while (true) {
-    tmpLoopBody();
   }
-  return undefined;
-};
-if ($) {
-  f();
 } else {
 }
 `````

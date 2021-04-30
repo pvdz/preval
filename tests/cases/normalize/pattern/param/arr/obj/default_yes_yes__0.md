@@ -37,107 +37,37 @@ let f = function ($$0) {
   debugger;
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = ['fail2'];
-    bindingPatternArrRoot = tmpCallCallee$1(tmpCalleeParam$1);
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    bindingPatternArrRoot = tmpParamBare;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    arrPatternSplat = [...bindingPatternArrRoot];
-    arrPatternBeforeDefault = arrPatternSplat[0];
-    const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-    const tmpBranchingA$1 = function () {
-      debugger;
-      arrPatternStep = $('fail');
-      const tmpReturnArg$3 = tmpBranchingC$1();
-      return tmpReturnArg$3;
-    };
-    const tmpBranchingB$1 = function () {
-      debugger;
-      arrPatternStep = arrPatternBeforeDefault;
-      const tmpReturnArg$5 = tmpBranchingC$1();
-      return tmpReturnArg$5;
-    };
-    const tmpBranchingC$1 = function () {
-      debugger;
-      objPatternCrashTest = arrPatternStep === undefined;
-      const tmpBranchingA$3 = function () {
-        debugger;
-        const tmpReturnArg$7 = tmpBranchingC$3();
-        return tmpReturnArg$7;
-      };
-      const tmpBranchingB$3 = function () {
-        debugger;
-        objPatternCrashTest = arrPatternStep === null;
-        const tmpReturnArg$9 = tmpBranchingC$3();
-        return tmpReturnArg$9;
-      };
-      const tmpBranchingC$3 = function () {
-        debugger;
-        const tmpBranchingA$5 = function () {
-          debugger;
-          objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-          const tmpReturnArg$11 = tmpBranchingC$5();
-          return tmpReturnArg$11;
-        };
-        const tmpBranchingB$5 = function () {
-          debugger;
-          const tmpReturnArg$13 = tmpBranchingC$5();
-          return tmpReturnArg$13;
-        };
-        const tmpBranchingC$5 = function () {
-          debugger;
-          return 'bad';
-        };
-        if (objPatternCrashTest) {
-          const tmpReturnArg$15 = tmpBranchingA$5();
-          return tmpReturnArg$15;
-        } else {
-          const tmpReturnArg$17 = tmpBranchingB$5();
-          return tmpReturnArg$17;
-        }
-      };
-      if (objPatternCrashTest) {
-        const tmpReturnArg$19 = tmpBranchingA$3();
-        return tmpReturnArg$19;
-      } else {
-        const tmpReturnArg$21 = tmpBranchingB$3();
-        return tmpReturnArg$21;
-      }
-    };
-    if (tmpIfTest$1) {
-      const tmpReturnArg$23 = tmpBranchingA$1();
-      return tmpReturnArg$23;
-    } else {
-      const tmpReturnArg$25 = tmpBranchingB$1();
-      return tmpReturnArg$25;
-    }
-  };
-  let arrPatternSplat = undefined;
-  let arrPatternBeforeDefault = undefined;
-  let arrPatternStep = undefined;
-  let objPatternCrashTest = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$27 = tmpBranchingA();
-    return tmpReturnArg$27;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = ['fail2'];
+    bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
-    const tmpReturnArg$29 = tmpBranchingB();
-    return tmpReturnArg$29;
+    bindingPatternArrRoot = tmpParamBare;
+  }
+  let arrPatternSplat = [...bindingPatternArrRoot];
+  let arrPatternBeforeDefault = arrPatternSplat[0];
+  let arrPatternStep = undefined;
+  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
+    arrPatternStep = $('fail');
+  } else {
+    arrPatternStep = arrPatternBeforeDefault;
+  }
+  let objPatternCrashTest = arrPatternStep === undefined;
+  if (objPatternCrashTest) {
+  } else {
+    objPatternCrashTest = arrPatternStep === null;
+  }
+  if (objPatternCrashTest) {
+    objPatternCrashTest = arrPatternStep.cannotDestructureThis;
+    return 'bad';
+  } else {
+    return 'bad';
   }
 };
-const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f(0, 100);
-tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f(0, 100);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output

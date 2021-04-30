@@ -117,22 +117,16 @@ const a = function () {
 };
 const f = function () {
   debugger;
-  let test = $(1);
-  const b = function () {
-    debugger;
-    if (test) {
-      test = '';
+  const test = $(1);
+  if (test) {
+    const tmpSSA_test = $(2);
+    if (tmpSSA_test) {
       a();
       return undefined;
     } else {
       a();
       return undefined;
     }
-  };
-  if (test) {
-    test = $(2);
-    b();
-    return undefined;
   } else {
     a();
     return undefined;

@@ -117,22 +117,16 @@ const tmpBranchingC$1 = function () {
   $(theneedle);
   return undefined;
 };
-const tmpBranchingC = function () {
-  debugger;
+if (theneedle) {
+  const tmpCalleeParam$3 = $(1);
+  theneedle = $(tmpCalleeParam$3);
   if (theneedle) {
     const tmpCalleeParam$7 = $(2);
     theneedle = $(tmpCalleeParam$7);
     tmpBranchingC$1();
-    return undefined;
   } else {
     tmpBranchingC$1();
-    return undefined;
   }
-};
-if (theneedle) {
-  const tmpCalleeParam$3 = $(1);
-  theneedle = $(tmpCalleeParam$3);
-  tmpBranchingC();
 } else {
   tmpBranchingC$1();
 }

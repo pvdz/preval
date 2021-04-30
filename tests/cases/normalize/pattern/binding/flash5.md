@@ -46,32 +46,14 @@ let x = function ($$0, $$1) {
   debugger;
   let foo = undefined;
   const tmpIfTest = a === undefined;
-  const tmpBranchingA = function () {
-    debugger;
-    foo = propTDZ;
-    const tmpReturnArg = tmpBranchingC();
-    return tmpReturnArg;
-  };
-  const tmpBranchingB = function () {
-    debugger;
-    foo = a;
-    const tmpReturnArg$1 = tmpBranchingC();
-    return tmpReturnArg$1;
-  };
-  const tmpBranchingC = function () {
-    debugger;
-    const tmpAssignObjPatternRhs = b;
-    propTDZ = tmpAssignObjPatternRhs.x;
-    return undefined;
-  };
-  let propTDZ = undefined;
   if (tmpIfTest) {
-    const tmpReturnArg$3 = tmpBranchingA();
-    return tmpReturnArg$3;
+    foo = propTDZ;
   } else {
-    const tmpReturnArg$5 = tmpBranchingB();
-    return tmpReturnArg$5;
+    foo = a;
   }
+  let bindingPatternObjRoot = b;
+  let propTDZ = bindingPatternObjRoot.x;
+  return undefined;
 };
 const tmpCallCallee = x;
 const tmpCalleeParam = undefined;
@@ -82,8 +64,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = { x: 1 };
-tmpCalleeParam$1.x;
+throw 'Preval: Cannot access `propTDZ` before initialization';
 `````
 
 ## Globals

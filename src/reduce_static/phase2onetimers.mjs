@@ -134,14 +134,15 @@ function _inlineOneTimeFunctions(fdata) {
       return;
     }
 
-    if (funcNode.$p.hasBranch && read.pfuncNode.$p.hasBranch) {
-      // We strive for a max of one branch per function so do not merge functions that both have one
-      // A branch is an if or a loop (while, for-x). Other types (do-while, for, switch, logic operators,
-      // conditional operators, ternary operator) are all gone at this point.
-      vlog('The called function and the calling function both have a branch so we cant inline');
-      vgroupEnd();
-      return;
-    }
+    // This exception is only relevant when aiming for a "single branch per function" state
+    //if (funcNode.$p.hasBranch && read.pfuncNode.$p.hasBranch) {
+    //  // We strive for a max of one branch per function so do not merge functions that both have one
+    //  // A branch is an if or a loop (while, for-x). Other types (do-while, for, switch, logic operators,
+    //  // conditional operators, ternary operator) are all gone at this point.
+    //  vlog('The called function and the calling function both have a branch so we cant inline');
+    //  vgroupEnd();
+    //  return;
+    //}
 
     const write = meta.writes[0];
 

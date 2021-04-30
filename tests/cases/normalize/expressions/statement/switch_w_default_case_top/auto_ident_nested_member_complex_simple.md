@@ -92,16 +92,16 @@ tmpSwitchBreak: {
     tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      $('fail1');
-    } else {
-    }
-    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$7) {
-      $('fail2');
-    } else {
-    }
+  }
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $('fail1');
+  } else {
+  }
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$7) {
+    $('fail2');
+  } else {
   }
 }
 $(a, b, c, d);
@@ -137,16 +137,16 @@ tmpSwitchBreak: {
     tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      $('fail1');
-    } else {
-    }
-    const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$7) {
-      $('fail2');
-    } else {
-    }
+  }
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $('fail1');
+  } else {
+  }
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$7) {
+    $('fail2');
+  } else {
   }
 }
 $(a, b, c, 3);

@@ -114,13 +114,14 @@ const f = function () {
     $('prevent');
     $('simple');
     $('inlining');
-  } else {
-  }
-  if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
-    return x;
+    if ($) {
+      $('prevent');
+      $('simple');
+      $('inlining');
+      return x;
+    } else {
+      return x;
+    }
   } else {
     return x;
   }

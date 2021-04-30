@@ -115,13 +115,14 @@ const f = function () {
     $('prevent');
     $('simple');
     $('inlining');
-  } else {
-  }
-  if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
-    return tmpCalleeParam$1;
+    if ($) {
+      $('prevent');
+      $('simple');
+      $('inlining');
+      return tmpCalleeParam$1;
+    } else {
+      return tmpCalleeParam$1;
+    }
   } else {
     return tmpCalleeParam$1;
   }

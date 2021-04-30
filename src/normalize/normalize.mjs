@@ -5369,6 +5369,7 @@ export function phaseNormalize(fdata, fname) {
     transformBlock(node.alternate, undefined, -1, node, false);
     ifelseStack.pop();
 
+    // Check nested ifs
     // TODO: this should not just check the first one but skip any statements that don't have observable side effects before the nested if/else
     if (node.consequent.body[0]?.type === 'IfStatement') {
       const inner = node.consequent.body[0];
@@ -5577,55 +5578,97 @@ export function phaseNormalize(fdata, fname) {
       }
     }
 
+    // Check back2back ifs
+    // TODO: also skip statements without observable side effects
     if (i > 0 && body[i - 1].type === 'IfStatement') {
       const prev = body[i - 1];
+      const nCbody = node.consequent.body;
+      const nAbody = node.alternate.body;
+      const pCbody = prev.consequent.body;
+      const pAbody = prev.alternate.body;
       vlog('back to back ifs, testing on', prev.test.name ?? '<nonident>', 'and', node.test.name ?? '<nonident>');
       if (node.test.type === 'Identifier' && prev.test.type === 'Identifier' && node.test.name === prev.test.name) {
         if (
           // No children in consequent in either `if`
-          !node.consequent.body.length &&
-          !prev.consequent.body.length
+          !nCbody.length &&
+          !pCbody.length
         ) {
           // There's nothing in the `true` branch that might change the value of the ident (the test itself is not observable)
           // so the second `if` should be moved to the back of the `else` branch instead.
           rule('Back to back if statements testing on the same identifier when the first if has no if branch should be merged');
           example('if (x) { } else { f(); } if (x) { } else { g(); }', 'if (x) {} else { f(); if (x) { g(); } }');
-          before(body[i - 1], parentNode);
-          before(body[i]);
+          before(prev, parentNode);
+          before(node);
 
           // Since parent visitor won't go back, we'll replace this `if` with the previous `if` so it will be revisited
           body[i - 1] = AST.emptyStatement();
           body[i] = prev;
-          prev.alternate.body.push(node);
+          pAbody.push(node);
 
           after(body[i], parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
-        } else
-        if (
+        } else if (
           // No children or no alternate body in either `if`
-          !prev.alternate.body.length &&
-          !node.alternate.body.length
+          !pAbody.length &&
+          !nAbody.length
         ) {
           // There's nothing in the `false` branch that might change the value of the ident (the test itself is not observable)
           // so the second `if` should be moved to the back of the `false` branch instead.
           rule('Back to back if statements testing on the same identifier when the first if has no else branch should be merged');
           example('if (x) { f(); } if (x) { g(); }', 'if (x) { f(); if (x) { g(); } }');
-          before(body[i - 1], parentNode);
-          before(body[i]);
+          before(prev, parentNode);
+          before(node);
 
           // Since parent visitor won't go back, we'll replace this `if` with the previous `if` so it will be revisited
           body[i - 1] = AST.emptyStatement();
           body[i] = prev;
-          prev.consequent.body.push(node);
+          pCbody.push(node);
 
           after(body[i], parentNode);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        } else if (!pCbody.length && nCbody.length === 1 && nCbody[0].type === 'ReturnStatement') {
+          // This leads to more statements by duplicating a return statement...
+          // It might allow let bindings to become constants which could be very valuable
+          rule('Back to back ifs with the first consequent empty and second consequent only a return should be inlined');
+          example(
+            'if (x) {} else { x = f(); } if (x) { return x; } else { g(); }',
+            'if (x) { return x; } else { x = f(); if (x) { return x; } else { g(); } }',
+          );
+          before(prev, parentNode);
+          before(node);
+
+          pCbody.push(AST.returnStatement(AST.cloneSimple(nCbody[0].argument)));
+          pAbody.push(node);
+          body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
+
+          after(body[i - 1], parentNode);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        } else if (!pAbody.length && nAbody.length === 1 && nAbody[0].type === 'ReturnStatement') {
+          // This leads to more statements by duplicating a return statement...
+          // It might allow let bindings to become constants which could be very valuable
+          rule('Back to back ifs with the first alternate empty and second alternate only a return should be inlined');
+          example(
+            'if (x) { x = f(); } else { } if (x) { g(); } else { return x; }',
+            'if (x) { x = f(); if (x) { g(); } else { return x; } } else { return x; }',
+          );
+          before(prev, parentNode);
+          before(node);
+
+          pAbody.push(AST.returnStatement(AST.cloneSimple(nAbody[0].argument)));
+          pCbody.push(node);
+          body.splice(i, 1); // Drop the current node since we moved it into the previous node. It should be revisited when the parent gets revisited.
+
+          after(body[i - 1], parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
       }
     }
 
+    // single if-else normalization
     if (false) {
       // Must do this "on the way back up" because we need to first re-map `arguments` and `this`
       // Requiring the function as the "floor" allows us to build bottom up, at the expense of some useless re-traversals...

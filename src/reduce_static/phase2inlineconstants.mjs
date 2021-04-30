@@ -16,6 +16,7 @@ function _inlineConstants(fdata) {
   let inlined = 0;
   let inlinedSomething = 0;
   let inlineLoops = 0;
+  let promoted = 0;
   do {
     inlined = 0;
 
@@ -42,6 +43,7 @@ function _inlineConstants(fdata) {
           varDecl.kind = 'const';
 
           after(varDecl);
+          ++promoted;
         }
 
         // Attempt to fold up constants
@@ -151,10 +153,10 @@ function _inlineConstants(fdata) {
     // The read/write data is unreliable from here on out and requires a new phase1 step!
   }
   if (inlinedSomething || toEliminate.length) {
-    log('Constants folded:', inlinedSomething, '. Restarting from phase1 to fix up read/write registry');
+    log('Constants folded:', inlinedSomething, '. Lets promoted to const:', promoted, '. Restarting from phase1 to fix up read/write registry');
     return 'phase1';
   }
-  log('Constants folded:', inlinedSomething, '.');
+  log('Constants folded:', inlinedSomething, '. Lets promoted to const:', promoted);
 }
 
 function attemptConstantInlining(meta, fdata) {

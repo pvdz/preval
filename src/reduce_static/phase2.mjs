@@ -31,8 +31,9 @@ import { arrrrrr } from './phase2arrrr.mjs';
 export function phase2(program, fdata, resolve, req) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
+  vlog('\nCurrent state (before phase2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  vlog('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
   const r = _phase2(program, fdata, resolve, req);
-  vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   groupEnd();
   return r;
 }

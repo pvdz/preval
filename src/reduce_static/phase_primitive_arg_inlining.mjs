@@ -39,14 +39,15 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
       '\n##################################\n\n\n',
   );
 
+  const ast = fdata.tenkoOutput.ast;
+  vlog('\nCurrent state (before primitive arg inlining)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
   // Due to normalization, the assignments will be a statement. The var decl can not contain an assignment as init.
   // Elimination of var decls or assignments will be deferred. This way we can preserve parent/node
   // relationships which might otherwise break. This means a binding may have been removed from the books
   // even though it's technically still part of the AST. But since we take the books as leading in this step
   // that should not be a problem.
-
-  const ast = fdata.tenkoOutput.ast;
 
   // - A function can not be cloned here if it contains another function.
   //   - This should make it impossible to clone cloned functions as a side effect
@@ -80,7 +81,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
 
-    vlog(' - `' + metaName + '`:', meta.constValueRef.node.type, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
+    vlog('- `' + metaName + '`:', meta.constValueRef.node.type, ', writes:', meta.writes.length, ', reads:', meta.reads.length);
     if (meta.constValueRef.node.type === 'FunctionExpression') {
       const funcNode = meta.constValueRef.node;
       const bodyOffset = findBodyOffset(funcNode);
@@ -227,7 +228,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                         AST.variableDeclaration(
                           funcNode.params[paramIndex].$p.ref.name,
                           type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.nul() : AST.literal(paramValue),
-                          'const',
+                          'let',
                         ),
                       );
                     } else {

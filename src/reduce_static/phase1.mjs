@@ -22,7 +22,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   const ast = fdata.tenkoOutput.ast;
 
   const start = Date.now();
-  vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   const funcStack = [];
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments.
@@ -60,6 +59,14 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       ') ::  ' +
       fdata.fname +
       '\n##################################\n\n\n',
+  );
+  vlog('\nCurrent state (start of phase1)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  vlog(
+    '\n\n\n##################################\n## phase1 (first=' +
+    firstAfterParse +
+    ') ::  ' +
+    fdata.fname +
+    '\n##################################\n\n\n',
   );
 
   resetUid();
@@ -811,7 +818,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
     );
 
-    vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+    //vlog('\nCurrent state (after phase1)\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   }
 
   log('End of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');

@@ -196,39 +196,39 @@ const f = function () {
     $(2);
     return undefined;
   } else {
-  }
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$9) {
-    const tmpIfTest$11 = $(8);
-    if (tmpIfTest$11) {
-      const tmpIfTest$13 = $(9);
-      if (tmpIfTest$13) {
-        const tmpReturnArg = $(10);
-        return tmpReturnArg;
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$9) {
+      const tmpIfTest$11 = $(8);
+      if (tmpIfTest$11) {
+        const tmpIfTest$13 = $(9);
+        if (tmpIfTest$13) {
+          const tmpReturnArg = $(10);
+          return tmpReturnArg;
+        } else {
+          $(11);
+          const tmpIfTest$15 = $(2);
+          if (tmpIfTest$15) {
+            $(13);
+          } else {
+            const tmpReturnArg$1 = $(14);
+            return tmpReturnArg$1;
+          }
+        }
       } else {
-        $(11);
       }
-      const tmpIfTest$15 = $(2);
-      if (tmpIfTest$15) {
-        $(13);
-      } else {
-        const tmpReturnArg$1 = $(14);
-        return tmpReturnArg$1;
-      }
+      $(3);
     } else {
     }
-    $(3);
-  } else {
+    const tmpIfTest$17 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$17) {
+      $(5);
+      const tmpReturnArg$3 = $(6);
+      return tmpReturnArg$3;
+    } else {
+      tmpSwitchCaseToStart <= 3;
+      return undefined;
+    }
   }
-  const tmpIfTest$17 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$17) {
-    $(5);
-    const tmpReturnArg$3 = $(6);
-    return tmpReturnArg$3;
-  } else {
-  }
-  tmpSwitchCaseToStart <= 3;
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

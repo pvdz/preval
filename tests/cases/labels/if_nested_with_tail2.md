@@ -25,7 +25,7 @@ function f() {
             } else {
               break label3;
             }
-          $('tail3'); // DCE me
+          $('tail3'); // Do not DCE me
         } else {
           break label1;
         }

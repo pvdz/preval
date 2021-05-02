@@ -158,22 +158,22 @@ const tmpLabeledBlockFunc = function ($$0) {
     $('keep, do not eval');
     return undefined;
   } else {
+    const tmpIfTest$15 = tmpSwitchCaseToStart$3 <= 1;
+    if (tmpIfTest$15) {
+      $('keep, eval');
+      return undefined;
+    } else {
+      const tmpIfTest$17 = tmpSwitchCaseToStart$3 <= 2;
+      if (tmpIfTest$17) {
+        $('keep, do not eval');
+        const tmpReturnArg$1 = $(2, 'ret');
+        return tmpReturnArg$1;
+      } else {
+        $('eliminate after switch');
+        return undefined;
+      }
+    }
   }
-  const tmpIfTest$15 = tmpSwitchCaseToStart$3 <= 1;
-  if (tmpIfTest$15) {
-    $('keep, eval');
-    return undefined;
-  } else {
-  }
-  const tmpIfTest$17 = tmpSwitchCaseToStart$3 <= 2;
-  if (tmpIfTest$17) {
-    $('keep, do not eval');
-    const tmpReturnArg$1 = $(2, 'ret');
-    return tmpReturnArg$1;
-  } else {
-  }
-  $('eliminate after switch');
-  return undefined;
 };
 const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchCaseToStart);
 $(tmpReturnArg$5);

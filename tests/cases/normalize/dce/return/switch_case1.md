@@ -106,9 +106,9 @@ const tmpLabeledBlockFunc = function ($$0) {
     const tmpReturnArg$1 = $(2, 'ret');
     return tmpReturnArg$1;
   } else {
+    $('keep, do not eval');
+    return undefined;
   }
-  $('keep, do not eval');
-  return undefined;
 };
 const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchCaseToStart);
 $(tmpReturnArg$5);

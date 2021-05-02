@@ -66,10 +66,10 @@ const r = function ($$0) {
   if (tmpIfTest) {
     return 10;
   } else {
+    const tmpCalleeParam = n + 1;
+    const tmpReturnArg = r(tmpCalleeParam);
+    return tmpReturnArg;
   }
-  const tmpCalleeParam = n + 1;
-  const tmpReturnArg = r(tmpCalleeParam);
-  return tmpReturnArg;
 };
 const a = $(10);
 const x = r(a);

@@ -20,6 +20,7 @@ import { ifCallIf } from './phase2ifcallif.mjs';
 import { assignHoisting } from './phase2assignhoisting.mjs';
 import { arrrrrr } from './phase2arrrr.mjs';
 import { constAssigns } from './phase2const_assigns.mjs';
+import { ifTailExtending } from './phase2if_tail_extending.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -63,6 +64,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const moved = letHoisting(fdata);
   if (moved) return moved;
+
+  const extended = ifTailExtending(fdata);
+  if (extended) return extended;
 
   const moved2 = assignHoisting(fdata);
   if (moved2) return moved2;

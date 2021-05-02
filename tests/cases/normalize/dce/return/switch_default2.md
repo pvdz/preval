@@ -121,15 +121,15 @@ const tmpLabeledBlockFunc = function ($$0) {
     $('keep, do not eval');
     return undefined;
   } else {
+    const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
+    if (tmpIfTest$11) {
+      const tmpReturnArg$1 = $(2, 'ret');
+      return tmpReturnArg$1;
+    } else {
+      $('fail');
+      return undefined;
+    }
   }
-  const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
-  if (tmpIfTest$11) {
-    const tmpReturnArg$1 = $(2, 'ret');
-    return tmpReturnArg$1;
-  } else {
-  }
-  $('fail');
-  return undefined;
 };
 const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchCaseToStart);
 $(tmpReturnArg$5);

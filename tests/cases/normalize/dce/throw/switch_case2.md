@@ -106,9 +106,9 @@ if (tmpIfTest$7) {
   const tmpThrowArg$1 = $(2, 'ret');
   throw tmpThrowArg$1;
 } else {
+  $('keep, do not eval');
+  $(undefined);
 }
-$('keep, do not eval');
-$(undefined);
 `````
 
 ## Globals

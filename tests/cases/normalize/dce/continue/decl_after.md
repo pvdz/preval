@@ -65,8 +65,8 @@ while (true) {
     if (tmpIfTest$1) {
       throw 'Preval: Cannot access `x` before initialization';
     } else {
+      continue;
     }
-    continue;
   } else {
     break;
   }

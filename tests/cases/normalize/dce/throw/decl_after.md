@@ -62,8 +62,9 @@ const tmpIfTest = $(false);
 if (tmpIfTest) {
   throw 'Preval: Cannot access `x` before initialization';
 } else {
+  throw 'exit';
 }
-throw 'exit';
+$(undefined);
 `````
 
 ## Globals

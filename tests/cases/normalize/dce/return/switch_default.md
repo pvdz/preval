@@ -99,13 +99,13 @@ const f = function () {
     $('wrong branch');
     return undefined;
   } else {
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    const tmpReturnArg = $(2, 'ret');
-    return tmpReturnArg;
-  } else {
-    return undefined;
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      const tmpReturnArg = $(2, 'ret');
+      return tmpReturnArg;
+    } else {
+      return undefined;
+    }
   }
 };
 const tmpCalleeParam = f();

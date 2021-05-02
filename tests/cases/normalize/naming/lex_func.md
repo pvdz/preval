@@ -71,10 +71,10 @@ const f = function () {
   if (tmpIfTest) {
     return a$1;
   } else {
+    const a = $(1);
+    $(a);
+    return a;
   }
-  const a = $(1);
-  $(a);
-  return a;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

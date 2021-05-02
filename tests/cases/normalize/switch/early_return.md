@@ -153,21 +153,21 @@ const f = function () {
     $(2);
     return undefined;
   } else {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$9) {
+      $(3);
+    } else {
+    }
+    const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$11) {
+      $(5);
+      const tmpReturnArg = $(6);
+      return tmpReturnArg;
+    } else {
+      tmpSwitchCaseToStart <= 3;
+      return undefined;
+    }
   }
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$9) {
-    $(3);
-  } else {
-  }
-  const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$11) {
-    $(5);
-    const tmpReturnArg = $(6);
-    return tmpReturnArg;
-  } else {
-  }
-  tmpSwitchCaseToStart <= 3;
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

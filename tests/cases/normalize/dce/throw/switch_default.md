@@ -84,32 +84,27 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpSwitchValue = $(1, 'disc');
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-  }
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    $('wrong branch');
-    throw 'wrong exit';
-  } else {
-  }
+const tmpSwitchValue = $(1, 'disc');
+let tmpSwitchCaseToStart = 1;
+const tmpBinLhs = $(0);
+const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+}
+const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$1) {
+  $('wrong branch');
+  throw 'wrong exit';
+} else {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$3) {
     const tmpThrowArg = $(2, 'throw');
     throw tmpThrowArg;
   } else {
-    return undefined;
+    $(undefined);
   }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+}
 `````
 
 ## Globals

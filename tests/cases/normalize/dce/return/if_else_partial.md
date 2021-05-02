@@ -62,9 +62,9 @@ const f = function () {
   if (tmpIfTest) {
     return 2;
   } else {
+    $('keep, do not eval');
+    return undefined;
   }
-  $('keep, do not eval');
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

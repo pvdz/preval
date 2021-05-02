@@ -68,13 +68,13 @@ const f = function () {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $(2);
+    $(5);
+    return undefined;
   } else {
     $(3);
     const tmpReturnArg = $(4);
     return tmpReturnArg;
   }
-  $(5);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

@@ -60,11 +60,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
+  $('keep, do not eval');
+  $(undefined);
 } else {
   throw 2;
 }
-$('keep, do not eval');
-$(undefined);
 `````
 
 ## Globals

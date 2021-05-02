@@ -60,9 +60,9 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   throw 2;
 } else {
+  $('keep, do not eval');
+  $(undefined);
 }
-$('keep, do not eval');
-$(undefined);
 `````
 
 ## Globals

@@ -61,8 +61,9 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   throw 2;
 } else {
+  throw 3;
 }
-throw 3;
+$(undefined);
 `````
 
 ## Globals

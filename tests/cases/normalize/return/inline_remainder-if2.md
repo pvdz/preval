@@ -66,9 +66,9 @@ const f = function () {
     const tmpReturnArg = $(3);
     return tmpReturnArg;
   } else {
+    $(4);
+    return undefined;
   }
-  $(4);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

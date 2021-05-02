@@ -156,7 +156,13 @@ function _inlineOneTimeFunctions(fdata) {
     }
 
     // This function does not return early. But it may still return a branch.
-    if (funcNode.body.body[funcNode.body.body.length - 1]?.type === 'IfStatement' && read.grandNode.type === 'VariableDeclarator') {
+    const lastNode = funcNode.body.body[funcNode.body.body.length - 1];
+    if (
+      lastNode?.type === 'IfStatement' &&
+      read.grandNode.type === 'VariableDeclarator' &&
+      // If at least one branch throws, there's no concern about multi-plexing a var. Just proceed.
+      (!lastNode.consequent.$p.alwaysThrow && !lastNode.alternate.$p.alwaysThrow)
+    ) {
       // In this case the call site is a var decl and the function ends with an if-else branch.
       // `function f(){ if (x) return a; else return b; } const r = f();` -> `if (x) const r = a; else const r = b;`
       // If we were to inline this then we would end up with potentially two var decls and an unknown tail.

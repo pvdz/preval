@@ -58,19 +58,13 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    $(0);
-  } else {
-    $(1);
-    return undefined;
-  }
+const tmpIfTest = $();
+if (tmpIfTest) {
+  $(0);
   $(2);
-  return undefined;
-};
-f();
+} else {
+  $(1);
+}
 `````
 
 ## Globals

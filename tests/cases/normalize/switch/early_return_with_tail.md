@@ -171,16 +171,19 @@ if (tmpIfTest) {
     }
   }
 }
-const tmpLabeledBlockFunc = function ($$0) {
-  const tmpSwitchCaseToStart$3 = $$0;
+const tmpAfterLabel = function () {
   debugger;
-  const tmpIfTest$19 = tmpSwitchCaseToStart$3 <= 0;
-  if (tmpIfTest$19) {
-    $(2);
-    tmpAfterLabel();
-    return undefined;
-  } else {
-  }
+  $('after');
+  return undefined;
+};
+let tmpReturnArg$9 = undefined;
+const tmpSwitchCaseToStart$3 = tmpSwitchCaseToStart;
+const tmpIfTest$19 = tmpSwitchCaseToStart$3 <= 0;
+if (tmpIfTest$19) {
+  $(2);
+  tmpAfterLabel();
+  tmpReturnArg$9 = undefined;
+} else {
   const tmpIfTest$21 = tmpSwitchCaseToStart$3 <= 1;
   if (tmpIfTest$21) {
     $(3);
@@ -190,25 +193,20 @@ const tmpLabeledBlockFunc = function ($$0) {
   if (tmpIfTest$23) {
     $(5);
     const tmpReturnArg$1 = $(6);
-    return tmpReturnArg$1;
+    tmpReturnArg$9 = tmpReturnArg$1;
   } else {
+    const tmpIfTest$25 = tmpSwitchCaseToStart$3 <= 3;
+    if (tmpIfTest$25) {
+      tmpAfterLabel();
+      tmpReturnArg$9 = undefined;
+    } else {
+      tmpAfterLabel();
+      tmpReturnArg$9 = undefined;
+    }
   }
-  const tmpIfTest$25 = tmpSwitchCaseToStart$3 <= 3;
-  if (tmpIfTest$25) {
-    tmpAfterLabel();
-    return undefined;
-  } else {
-  }
-  tmpAfterLabel();
-  return undefined;
-};
-const tmpAfterLabel = function () {
-  debugger;
-  $('after');
-  return undefined;
-};
-const tmpReturnArg$9 = tmpLabeledBlockFunc(tmpSwitchCaseToStart);
-$(tmpReturnArg$9);
+}
+const tmpCalleeParam = tmpReturnArg$9;
+$(tmpCalleeParam);
 `````
 
 ## Globals

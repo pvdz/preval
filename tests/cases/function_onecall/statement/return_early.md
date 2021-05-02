@@ -68,18 +68,12 @@ f();
 ## Output
 
 `````js filename=intro
-const g = function () {
-  debugger;
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $('a');
-    return undefined;
-  } else {
-  }
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  $('a');
+} else {
   $('b');
-  return undefined;
-};
-g();
+}
 $('c');
 `````
 

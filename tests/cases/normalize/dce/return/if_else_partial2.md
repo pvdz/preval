@@ -62,11 +62,11 @@ const f = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
+    $('keep, do not eval');
+    return undefined;
   } else {
     return 2;
   }
-  $('keep, do not eval');
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

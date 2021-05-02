@@ -119,15 +119,15 @@ if (tmpIfTest$9) {
   $('keep, do not eval');
   throw 'wrong exit';
 } else {
+  const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
+  if (tmpIfTest$11) {
+    const tmpThrowArg$1 = $(2, 'ret');
+    throw tmpThrowArg$1;
+  } else {
+    $('fail');
+    $(undefined);
+  }
 }
-const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
-if (tmpIfTest$11) {
-  const tmpThrowArg$1 = $(2, 'ret');
-  throw tmpThrowArg$1;
-} else {
-}
-$('fail');
-$(undefined);
 `````
 
 ## Globals

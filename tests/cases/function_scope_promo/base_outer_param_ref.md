@@ -109,31 +109,28 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(10);
-const f = function () {
-  debugger;
-  if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
-    if ($) {
-      $('prevent');
-      $('simple');
-      $('inlining');
-      return tmpCalleeParam$1;
-    } else {
-      return tmpCalleeParam$1;
-    }
-  } else {
-    return tmpCalleeParam$1;
-  }
-};
 if ($) {
   $('prevent');
   $('simple');
   $('inlining');
+  if ($) {
+    $('prevent');
+    $('simple');
+    $('inlining');
+  } else {
+  }
 } else {
 }
-const tmpReturnArg$1 = f();
+let tmpReturnArg = undefined;
+if ($) {
+  $('prevent');
+  $('simple');
+  $('inlining');
+  tmpReturnArg = tmpCalleeParam$1;
+} else {
+  tmpReturnArg = tmpCalleeParam$1;
+}
+const tmpReturnArg$1 = tmpReturnArg;
 $(tmpReturnArg$1);
 `````
 

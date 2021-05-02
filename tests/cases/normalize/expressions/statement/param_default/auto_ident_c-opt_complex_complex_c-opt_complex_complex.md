@@ -78,29 +78,22 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed = $('x');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$3 = tmpChainElementObject != null;
-    if (tmpIfTest$3) {
-      const tmpChainRootComputed$1 = $('y');
-      tmpChainElementObject[tmpChainRootComputed$1];
-      return undefined;
-    } else {
-      return undefined;
-    }
-  } else {
-    return undefined;
-  }
-};
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-f();
+const tmpChainElementCall = $(b);
+const tmpIfTest$1 = tmpChainElementCall != null;
+if (tmpIfTest$1) {
+  const tmpChainRootComputed = $('x');
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$3 = tmpChainElementObject != null;
+  if (tmpIfTest$3) {
+    const tmpChainRootComputed$1 = $('y');
+    tmpChainElementObject[tmpChainRootComputed$1];
+  } else {
+  }
+} else {
+}
 $(undefined);
 $(a);
 `````

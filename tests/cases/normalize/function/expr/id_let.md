@@ -11,9 +11,9 @@
 ## Input
 
 `````js filename=intro
-let f = function r() {
-  $(typeof r);
-  return r;
+let f = function findme() {
+  $(typeof findme);
+  return findme;
 };
 const x = f();
 $(x, typeof f);
@@ -22,10 +22,10 @@ $(x, typeof f);
 ## Pre Normal
 
 `````js filename=intro
-let f = function r() {
+let f = function findme() {
   debugger;
-  $(typeof r);
-  return r;
+  $(typeof findme);
+  return findme;
 };
 const x = f();
 $(x, typeof f);
@@ -34,14 +34,14 @@ $(x, typeof f);
 ## Normalized
 
 `````js filename=intro
-const r = function () {
+const findme = function () {
   debugger;
   const tmpCallCallee = $;
-  const tmpCalleeParam = typeof r;
+  const tmpCalleeParam = typeof findme;
   tmpCallCallee(tmpCalleeParam);
-  return r;
+  return findme;
 };
-let f = r;
+let f = findme;
 const x = f();
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = x;
@@ -52,14 +52,14 @@ tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const r = function () {
+const findme = function () {
   debugger;
-  const tmpCalleeParam = typeof r;
+  const tmpCalleeParam = typeof findme;
   $(tmpCalleeParam);
-  return r;
+  return findme;
 };
-const x = r();
-const tmpCalleeParam$3 = typeof r;
+const x = findme();
+const tmpCalleeParam$3 = typeof findme;
 $(x, tmpCalleeParam$3);
 `````
 

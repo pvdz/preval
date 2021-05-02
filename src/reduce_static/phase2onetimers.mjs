@@ -55,6 +55,7 @@ function _inlineOneTimeFunctions(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
+    if (meta.writes.length !== 1) return console.log('FIXME'); // func expr can cause this for now
 
     vgroup(
       '- `' + meta.uniqueName + '`:',
@@ -67,6 +68,7 @@ function _inlineOneTimeFunctions(fdata) {
       meta.reads[0]?.node?.type,
     );
 
+    ASSERT(meta.writes.length === 1, 'because isConstant=true'); // We drop the decl so if this is not the case, we break stuff.
     if (meta.reads.length !== 1) {
       vlog('Not a single read, bailing');
       vgroupEnd();
@@ -252,10 +254,15 @@ function _inlineOneTimeFunctions(fdata) {
       ++actuallyInlined;
       rule('Function that is only used in a call once should be inlined');
       example('function f(a){ g(a); } f(100);', 'g(100);');
-      vlog('Write:');
-      before(write.parentNode);
-      vlog('Read:');
-      before(read.grandNode);
+      vlog('The func:');
+      source(write.parentNode);
+      vlog('The call:');
+      before(read.blockBody[read.blockIndex]);
+
+      vlog('Detaching function from AST. Removing decl.');
+      before(write.blockBody[write.blockIndex]);
+      write.blockBody[write.blockIndex] = AST.emptyStatement();
+      after(write.blockBody[write.blockIndex]);
 
       // Mark the function containing the read as no longer being safe to be inlined itself. Nested
       // functions can still be flattened into it. It will require a phase1 pass to be inlined itself.
@@ -263,18 +270,22 @@ function _inlineOneTimeFunctions(fdata) {
       // Also the node itself since it is no longer attached to the AST and so mutations to its body
       // will not appear in the final AST. (Relevant for functions calling siblings rather than children)
       funcNode.$p.oneTimerDirty = true;
-      vlog('Marked func', funcNode.$p.pid, 'and', read.pfuncNode.$p.pid, 'dirty');
+      vlog('Marked func', funcNode.$p.pid, 'and', read.pfuncNode.$p.pid, 'dirty (`.$p.oneTimerDirty = true`)');
 
       // - inject const for each param, the init being the arg in the same position
       // - replace call with return argument, or undefined if there isn't any
       // - replace function var decl with undefined
       // - inject all statements of the function (except the last return statement, if any) before the call
 
-      vlog('Injecting let assignments for each param, initializing them to the argument value');
-      vlog(
-        '- Param names (' + params.length + '):',
-        params.map((pnode) => pnode.name + '>' + (pnode.$p.ref?.name ?? '<unused>')).join(', '),
-      );
+      if (params.length) {
+        vlog('Copying call args to param inits for each param');
+        vlog(
+          '- Param names (' + params.length + '):',
+          params.map((pnode) => pnode.name + '>' + (pnode.$p.ref?.name ?? '<unused>')).join(', '),
+        );
+      } else {
+        vlog('No params to inline');
+      }
 
       // Must now inject a const for each param name, with the init being the arg at the same index.
       // We can't just inline-replace them because it is possible to assign to param names and if
@@ -283,25 +294,42 @@ function _inlineOneTimeFunctions(fdata) {
       // If we replace then it becomes `$(2); a=10; $(2);`, which is not the same as `const x=2; $(x); x=10; $(x);`
       // The constants will be SSA'd or eliminated entirely by other rules.
 
-      const bodyOffset = findBodyOffset(funcNode);
-      funcNode.body.body.splice(
-        bodyOffset,
-        0,
-        ...params
-          .map((pnode, pi) => {
-            ASSERT(pnode.type === 'Param' && !pnode.rest);
-            // The lets will promote to a const in most cases, followed by elimination of some kind. Not always.
-            if (!pnode.$p.ref) return null;
-            return AST.variableDeclaration(pnode.$p.ref?.name, args[pi] ? args[pi] : 'undefined', 'let');
-          })
-          .filter((n) => !!n),
-      );
+      let headerSize = -1;
+      funcNode.body.body.some((pnode, pi) => {
+        if (pnode.type === 'DebuggerStatement') {
+          headerSize = pi + 1; // If header is empty, debugger is first statement, pi=0
+          return true;
+        }
+        if (pnode.type === 'EmptyStatement') {
+          // We inject those. Ignore.
+          return;
+        }
+        ASSERT(pnode.type === 'VariableDeclaration', 'fixme if this invariant changes but fucn header only has var decls rn', pnode);
+        const init = pnode.declarations[0].init;
+        ASSERT(
+          init.type === 'Param',
+          'funcs that reference `this` or `arguments` were filtered out so only param inits should exist in the heder... did this chnage?',
+          pnode,
+          init,
+        );
+      });
+      ASSERT(headerSize >= 0, 'the func should have a debugger statement indicating the end of our func header');
 
-      vlog('After adding the lets:');
+      const collected = [];
+      funcNode.params.forEach((pnode, pi) => {
+        // Unused params have no ref (?)
+        if (pnode.$p.ref) {
+          collected.push(
+            AST.variableDeclaration(pnode.$p.ref.parentNode.id.name, args[pi] ? args[pi] : AST.identifier('undefined'), 'let'),
+          );
+        }
+      });
+
+      funcNode.body.body.splice(0, headerSize); // Drop all param inits and the debugger statement (our header marker)
+      funcNode.body.body.unshift(...collected);
+
+      vlog('After replacing params with args:');
       source(funcNode);
-
-      assertNoDupeNodes(read.pfuncNode, 'body');
-      assertNoDupeNodes(funcNode, 'body');
 
       ASSERT(
         ['ExpressionStatement', 'AssignmentExpression', 'VariableDeclarator'].includes(read.grandNode.type),
@@ -310,165 +338,153 @@ function _inlineOneTimeFunctions(fdata) {
       );
       ASSERT(read.parentIndex < 0, 'in all three cases the parent should not be an array');
 
+      vlog('Making sure call is properly replaced with final value (init/rhs)');
       const lastNode = funcBody[funcBody.length - 1];
 
       if (lastNode?.type === 'ReturnStatement') {
+        // The simple case because it does not matter whether the call was a var, assign, or stmt.
         vlog('Last node of func body is a `return`');
         // Replace the call with the argument of this return statement
         // When normalized, the call can only exist as a statement, rhs of assignment, or init of var decl
         // This means, if we care to replace it at all, then the index must be -1
-        const retNode = funcBody.pop(); // This changes the function node (!) but we're dropping it so that's ok??
+        before(funcBody[funcBody.length - 1]);
+        funcBody[funcBody.length - 1] = AST.emptyStatement();
         vlog('Dropped the return statement from the function');
-        source(funcNode);
-        vlog('Moving the original return value to replace the call...');
-        ASSERT(retNode.argument, 'normalized code must have explicit return values');
+        after(funcBody[funcBody.length - 1]);
+
         // The parentNode must be a CallExpression. Replace it entirely with the final return value of the func.
+        // The rest of the func is injected before the line of the call expr. It was checked not to return early.
+        vlog('Replacing whole call expression with return.argument expression');
+        ASSERT(lastNode.argument, 'normalized code must have explicit return values');
         ASSERT(read.parentNode.type === 'CallExpression', 'the read was a call, right?', read.parentNode);
         ASSERT(read.grandNode[read.grandProp] === read.parentNode, 'checking just in case');
-        // The rest of the func is injected before this line. It was checked not to return early.
-        before(read.grandNode[read.grandProp]);
-        read.grandNode[read.grandProp] = retNode.argument; // Should not need to clone this...
-        after(read.grandNode[read.grandProp]);
+        before(read.blockBody[read.blockIndex]);
+        // Inject an empty statement. The body injection below assumes the index to be moved one.
+        read.grandNode[read.grandProp] = lastNode.argument; // Should not need to clone this...
+        read.blockBody.splice(read.blockIndex, 0, AST.emptyStatement());
+        after(read.blockBody[read.blockIndex]);
+        after(read.blockBody[read.blockIndex + 1]);
 
-        vlog('Called function now:');
+        vlog('Called function now (this is what will be injected before the line with call expression):');
         source(funcNode);
-        vlog('Owner function now:');
+        vlog('Owner function now (the one that contained the call expression):');
         source(read.pfuncNode);
-      } else if (lastNode?.type === 'IfStatement') {
-        vlog('Last node of func body is an `if`');
-        if (!lastNode.alternate) {
-          // If this else ends up not being used at all then some other rule will eliminate it. There should not
-          // be a risk of infinite looping here since this block is only added if a reduction happens at all.
-          vlog('Forcing the `else` to a block because it had none');
-          lastNode.alternate = AST.blockStatement();
-        }
-
-        const ifLast = lastNode.consequent.body[lastNode.consequent.body.length - 1];
-        const elseLast = lastNode.alternate.body[lastNode.alternate.body.length - 1];
-
-        // The last node of the body is an if-else.
-        // The read is a call that is either a statement or an assignment, or a var decl that is immediately returned.
-        if (read.grandNode.type === 'VariableDeclarator') {
-          // The var decl is special because it requires one of the branches to clone the decl into a fresh var.
-          // Since we don't loop back to normalization, we need to guarantee that all binding names are unique.
-          // Additionally, we need to make sure that we don't introduce new bindings that might need to be
-          // accessed after the branch when the call completes.
-          const varNode = read.blockBody[read.blockIndex];
-          const oldName = varNode.declarations[0].id.name; // Very likely an artifact name but whatever
-          const returnNode = read.blockBody[read.blockIndex + 1];
-
-          // Note: this is on the _caller_ side of things
-          ASSERT(varNode.type === 'VariableDeclaration', 'refs should not be stale');
-          ASSERT(
-            returnNode.type === 'ReturnStatement',
-            'the var decl was allowed to queue because it was followed by a return. if this fails, check first loop that queues things',
-          );
-          ASSERT(returnNode.argument, 'normalized return nodes must have an arg');
-          ASSERT(
-            returnNode.argument.name === oldName,
-            'var decl is only queued if it is immediately returned. if this fails, check first loop and figure out how that check fails here now.',
-          );
-          vlog('The call is init to a const binding that is returned immediately. Special handling required.');
-          // Note: This is `const r = f(); return r; function f() { if (x) return 10; else return 20; }`
-          //       We must make sure to prevent `if (x) { const r = 10; return r; } else { const r = 20; return r; }`
-          //       because it introduces two bindings in the AST with the same name, and normalization rules
-          //       do not allow this. To this end, we create a new name for the `else` branch.
-
-          const ifRetArg = ifLast?.type === 'ReturnStatement' ? ifLast.argument : AST.identifier('undefined');
-          const elseRetArg = elseLast?.type === 'ReturnStatement' ? elseLast.argument : AST.identifier('undefined');
-
-          // Drop the return statements if the branch ended with one. We cached the return value for each branch.
-          if (ifLast?.type === 'ReturnStatement') {
-            lastNode.consequent.body.pop();
-          }
-          if (elseLast?.type === 'ReturnStatement') {
-            lastNode.alternate.body.pop();
-          }
-
-          // Now append a var decl to each branch, assign the return value, and return it. Other rules will reduce it further.
-          const tmpNameA = createFreshVar(oldName, fdata);
-          const tmpNameB = createFreshVar(oldName, fdata);
-          // Make sure the injected code is still normalized and that the binding names are unique
-          lastNode.consequent.body.push(AST.variableDeclaration(tmpNameA, ifRetArg, 'const'), AST.returnStatement(tmpNameA));
-          lastNode.alternate.body.push(AST.variableDeclaration(tmpNameB, elseRetArg, 'const'), AST.returnStatement(tmpNameB));
-
-          // Remove the var decl and return statement on the caller side. The updated body of the function contains its replacement.
-          read.blockBody[read.blockIndex] = AST.emptyStatement();
-          read.blockBody[read.blockIndex + 1] = AST.emptyStatement();
-        } else if (read.grandNode.type === 'ExpressionStatement') {
-          vlog('The read was a statement so we should be able to drop the return statements care free');
-
-          // Drop the call
-          read.grandNode.expression = AST.identifier('undefined');
-
-          // Drop the return statements, if any.
-          if (ifLast?.type === 'ReturnStatement') {
-            vlog('Dropping return statement from `if`');
-            lastNode.consequent.body.pop();
-          }
-          if (elseLast?.type === 'ReturnStatement') {
-            vlog('Dropping return statement from `else`');
-            lastNode.alternate.body.pop();
-          }
-          vlog('if-node after return pruning:');
-          source(lastNode);
-        } else {
-          ASSERT(read.grandNode.type === 'AssignmentExpression');
-          // In both branches, copy the assignment, replacing the call with the return value in that branch.
-          // If there was no return then substitute undefined.
-          vlog(
-            'The read was the rhs of an assignment. In each branch, add the same assignment replacing the rhs with the return arg for that branch, or undefined if return is absent',
-          );
-
-          // The read is an assignment like `x = f()`
-          // In both branches, if the branch ends with a `return y` then replace that with
-          // an assignment `x = y`. If a branch does not end with a return then append `x = undefined`
-          if (ifLast?.type === 'ReturnStatement') {
-            lastNode.consequent.body.pop();
-          }
-          lastNode.consequent.body.push(
-            AST.expressionStatement(
-              AST.assignmentExpression(
-                AST.cloneSimple(read.grandNode.left),
-                ifLast?.type === 'ReturnStatement' ? ifLast.argument : AST.identifier('undefined'),
-              ),
-            ),
-          );
-
-          if (elseLast?.type === 'ReturnStatement') {
-            lastNode.alternate.body.pop();
-          }
-          lastNode.alternate.body.push(
-            AST.expressionStatement(
-              AST.assignmentExpression(
-                AST.cloneSimple(read.grandNode.left),
-                elseLast?.type === 'ReturnStatement' ? elseLast.argument : AST.identifier('undefined'),
-              ),
-            ),
-          );
-
-          read.blockBody[read.blockIndex] = AST.emptyStatement();
-        }
       } else {
-        vlog('Last node of func body is neither a `return` nor an `if`');
-        // Last element was neither an `IfStatement` nor a `ReturnStatement` and did not return early. Inline verbatim.
-        // Replace the call with `undefined`
-        // The func body should not contain a `return` statement at this point (because that fails if the parent func is global)
-        read.grandNode[read.grandProp] = AST.identifier('undefined');
+        // This is the harder path because we must recursively check all last nodes of each branch of the `if`
+        // If the call was a var init, we'll need to first hoist that decl to before this line, otherwise we'll
+        // be injecting a local scoped variable (multiple times) that may need to be referenced afterwards.
+        // Let other rules patch this back up through SSA etc, if it doesn't need this hoisting.
+
+        let targetName = '';
+        if (read.grandNode.type === 'VariableDeclarator') {
+          targetName = read.grandNode.id.name;
+          vlog(
+            'The call was init to a var decl `' +
+              targetName +
+              '`. Since the last statement of the func is an `if`, we must replace the variable with a `let` to `undefined`',
+          );
+          before(read.blockBody[read.blockIndex]);
+          read.blockBody[read.blockIndex] = AST.variableDeclaration(targetName, 'undefined', 'let');
+          after(read.blockBody[read.blockIndex]);
+        } else if (read.grandNode.type === 'AssignmentExpression') {
+          targetName = read.grandNode.left.name;
+          vlog(
+            'The call was the rhs of an assignment to `' +
+              targetName +
+              '`. Dropping that line. Return statements should be replaced with assignments of name = return.argument',
+          );
+          before(read.blockBody[read.blockIndex]);
+          read.blockBody[read.blockIndex] = AST.emptyStatement();
+          after(read.blockBody[read.blockIndex]);
+        } else {
+          vlog(
+            'The call was an expression statement. Dropping that line. Return statements can be dropped entirely (since their arg should be simple nodes).',
+          );
+          before(read.blockBody[read.blockIndex]);
+          read.blockBody[read.blockIndex] = AST.emptyStatement();
+          after(read.blockBody[read.blockIndex]);
+        }
+
+        source(read.pfuncNode);
+
+        vlog('Func may contain any number of return statements, but if so, they must all in a tail position. Replace them all.');
+
+        function inlineTail(node) {
+          const last = node.body[node.body.length - 1];
+          _inlineTail(node, last);
+        }
+        function _inlineTail(node, last) {
+          vlog('_inlineTail:', node?.type, last.type);
+          if (last.type === 'IfStatement') {
+            inlineTail(last.consequent);
+            inlineTail(last.alternate);
+            return;
+          }
+
+          if (last.type === 'ReturnStatement') {
+            if (targetName === '') {
+              vlog('Dropping a return statement');
+              before(last);
+              node.body[node.body.length - 1] = AST.emptyStatement();
+              after(node.body[node.body.length - 1]);
+            } else {
+              vlog('Replacing a return statement with an assignment');
+              before(last);
+              node.body[node.body.length - 1] = AST.expressionStatement(AST.assignmentExpression(targetName, last.argument)); // Should not need to clone this
+              after(node.body[node.body.length - 1]);
+            }
+            return;
+          }
+
+          if (['WhileStatement', 'ForInStatement', 'ForOfStatement', 'BlockStatement', 'LabeledStatement'].includes(last.type)) {
+            inlineTail(last.body);
+            return;
+          }
+
+          if (last.type === 'TryStatement') {
+            inlineTail(last.block);
+            if (last.handler) inlineTail(last.handler);
+            if (last.finalizer) inlineTail(last.finalizer);
+            return;
+          }
+
+          // What's left that we care about?
+          return;
+        }
+        // TODO: if there are any implicit return points then the call should be replaced by `undefined`, but we currently don't do this...
+        //       and we can't init it to undefined beforehand because that may be observable if the func refers to the binding
+        if (
+          [
+            'IfStatement',
+            'ReturnStatement',
+            'WhileStatement',
+            'ForInStatement',
+            'ForOfStatement',
+            'BlockStatement',
+            'LabeledStatement',
+            'TryStatement',
+          ].includes(lastNode.type)
+        ) {
+          // Note: undefined makes sure it triggers an error because it is only used when lastNode is a `return` and it won't. shouldn't.
+          vgroup('Attempting to inline all returns now');
+          _inlineTail(undefined, lastNode);
+          vgroupEnd();
+        } else {
+          vlog('Last node does not need to be visited to replace returns');
+        }
       }
 
-      vlog('Going to remove the', write.blockIndex, 'index from the write function');
+      // We need to inject afterwards because the var decl case will leave a new var decl behind
+      vlog("Injecting what's left of the original function _after_ the index of the call expr");
+      read.blockBody.splice(read.blockIndex + 1, 0, ...funcBody); // funcBody should now not contain the header, not contain the return statements.
 
-      write.blockBody[write.blockIndex] = AST.emptyStatement();
-      read.blockBody.splice(read.blockIndex, 0, ...funcBody.slice(bodyOffset));
+      //source(read.pfuncNode);
 
       assertNoDupeNodes(read.pfuncNode, 'body');
       assertNoDupeNodes(funcNode, 'body');
 
-      vlog('read block body:');
       after(read.pfuncNode);
 
-      vlog('Still have to move the old body code to the parent)');
       //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
       vgroupEnd();

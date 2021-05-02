@@ -173,47 +173,37 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    let x = $(5);
-    $(x);
-    const tmpCalleeParam = {
-      toString() {
-        debugger;
-        x = 200;
-        if ($) {
-          $(x, 't');
-        } else {
-        }
-        $(x);
-        if ($) {
-          $(11);
-          return 'hi';
-        } else {
-          return 'hi';
-        }
-      },
-    };
-    x = $(tmpCalleeParam);
-    x = x + 1;
-    if ($) {
-      $(x);
-    } else {
-    }
-    $(x, 't');
-    if ($) {
-      $(10);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  } else {
-    return undefined;
-  }
-};
 if ($) {
-  f();
+  let x = $(5);
+  $(x);
+  const tmpCalleeParam = {
+    toString() {
+      debugger;
+      x = 200;
+      if ($) {
+        $(x, 't');
+      } else {
+      }
+      $(x);
+      if ($) {
+        $(11);
+        return 'hi';
+      } else {
+        return 'hi';
+      }
+    },
+  };
+  x = $(tmpCalleeParam);
+  x = x + 1;
+  if ($) {
+    $(x);
+  } else {
+  }
+  $(x, 't');
+  if ($) {
+    $(10);
+  } else {
+  }
 } else {
 }
 `````

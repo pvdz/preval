@@ -514,6 +514,7 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
+    prevWrite, // Previous write this read can reach without crossing function boundaries. May be undefined if there isn't any.
     ...rest
   } = obj;
   ASSERT(typeof kind === 'string');
@@ -550,6 +551,7 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
+    prevWrite,
   };
 }
 export function createWriteRef(obj) {
@@ -558,6 +560,9 @@ export function createWriteRef(obj) {
     parentNode, // parent of the node
     parentProp,
     parentIndex,
+    grandNode, // parent of the parent
+    grandProp,
+    grandIndex,
     blockBody, // nearest ancestor block to the node
     blockIndex,
     pfuncNode, // Function/Program that is the nearest to this ref
@@ -590,6 +595,9 @@ export function createWriteRef(obj) {
     parentNode,
     parentProp,
     parentIndex,
+    grandNode, // parent of the parent
+    grandProp,
+    grandIndex,
     blockBody,
     blockIndex,
     pfuncNode, // Function/Program that is the nearest to this ref

@@ -31,9 +31,12 @@ export function $p() {
     // - readsArgumentsAny // bool. Does it read the implicit `arguments` in any way?
     // - containsFunctions // bool. Does a function body contain nested functions (anywhere of any kind)?
     // - unqualifiedLabelUsages // Array<node>. Should contain loop and/or switch nodes. When finding an unqualified break/continue, this tells you where it jumps to.
-    // - earlyComplete // bool. Not for global. Does this function contain an early completion? A return or throw that is not at the end of the function? (break/continue do not stop a function, await/yield are not yet supported)
-    // - earlyReturn // bool. Not for global. Does this function contain a return statement that is not its last statement?
-    // - earlyThrow // bool. Not for global. Does this function contain a throw statement that is not its last statement?
+    // - earlyComplete // bool. Does this block/function contain an early completion? A return or throw that is not at the end of the function? (break/continue do not stop a function, await/yield are not yet supported). For `if`, true if at least one branch does.
+    // - earlyReturn // bool. Does this statement/function contain a return statement that is not its last statement? For `if`, true if at least one branch does.
+    // - earlyThrow // bool. Does this statement/function contain a throw statement that is not its last statement? For `if`, true if at least one branch does.
+    // - alwaysComplete // bool. Does this statement/function always complete explicitly (return/throw)? Even if early. For `if`, only true if both branches do.
+    // - alwaysReturn // bool. Does this statement/function always return explicitly? False if it also throws or returns implicitly. Even if early. For `if`, only true if both branches do.
+    // - alwaysThrow // bool. Does this statement/function always throw? Even if early. False if it also returns im/explicitly. For `if`, only true if both branches do.
     // - commonReturn // node | null | undefined. A fresh node (one!) that depicts the value being returned by all return points. This node should be simple so it's an ident or a literal. If no return has been seen yet, this value is undefined. If not all returns have the same value, this value will be null. Otherwise it'll be a fresh AST node (ident/lit).
     // - returnNodes // Array<node>. All return nodes for this function
     // - throwsExplicitly // bool.

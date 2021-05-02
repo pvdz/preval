@@ -13,9 +13,9 @@ For this reason we must create a constant outside of the function and a local al
 ## Input
 
 `````js filename=intro
-const f = function r() {
-  r = 20; // Ignored. r is read-only but the write fails silently.
-  return r;
+const f = function funcexprname() {
+  funcexprname = 20; // This throws in strict mode because `funcexprname` is a constant.
+  return funcexprname;
 };
 const x = f();
 $(x, typeof f);
@@ -24,10 +24,10 @@ $(x, typeof f);
 ## Pre Normal
 
 `````js filename=intro
-const f = function r() {
+const f = function funcexprname() {
   debugger;
-  r = 20;
-  return r;
+  funcexprname = 20;
+  return funcexprname;
 };
 const x = f();
 $(x, typeof f);
@@ -36,12 +36,12 @@ $(x, typeof f);
 ## Normalized
 
 `````js filename=intro
-const r = function () {
+const funcexprname = function () {
   debugger;
-  r = 20;
-  return r;
+  funcexprname = 20;
+  return funcexprname;
 };
-const f = r;
+const f = funcexprname;
 const x = f();
 const tmpCallCallee = $;
 const tmpCalleeParam = x;
@@ -52,13 +52,13 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const r = function () {
+const funcexprname = function () {
   debugger;
-  r = 20;
-  return r;
+  funcexprname = 20;
+  return funcexprname;
 };
-const x = r();
-const tmpCalleeParam$1 = typeof r;
+const x = funcexprname();
+const tmpCalleeParam$1 = typeof funcexprname;
 $(x, tmpCalleeParam$1);
 `````
 

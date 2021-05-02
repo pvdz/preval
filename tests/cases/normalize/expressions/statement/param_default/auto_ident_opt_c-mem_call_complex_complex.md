@@ -80,29 +80,22 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed = $('$');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$3 = tmpChainElementObject != null;
-    if (tmpIfTest$3) {
-      const tmpCallVal = tmpChainElementObject.call;
-      const tmpCalleeParam$1 = $(1);
-      tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  } else {
-    return undefined;
-  }
-};
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-f();
+const tmpChainElementCall = $(b);
+const tmpIfTest$1 = tmpChainElementCall != null;
+if (tmpIfTest$1) {
+  const tmpChainRootComputed = $('$');
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$3 = tmpChainElementObject != null;
+  if (tmpIfTest$3) {
+    const tmpCallVal = tmpChainElementObject.call;
+    const tmpCalleeParam$1 = $(1);
+    tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
+  } else {
+  }
+} else {
+}
 $(undefined);
 $(a);
 `````

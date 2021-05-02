@@ -211,6 +211,7 @@ import { isComplexNode } from '../ast.mjs';
   - If a value is only used as a condition then whenever we know the truthy or falsy value of it, we should change it to an actual bool.
   - A write at the end of the life cycle of a function when the binding is not used, or closured functions are not leaking, should be dropped. `function f(){ let x = 1; function g(){ $(x); } g(); x = 10;}`
   - can we detect mirror actions in both branches of an if? `if (x) a = f(); else a = f();` etc?
+  - case in tests/cases/function_scope_promo/base_outer_param_ref.md shows an update in both branches, assigned to const, then used as param. it should probably call in each branch and omit the alias.
   - TODO: fix other cases of write-shadowing in different branches for the prevMap approach, like we did in lethoisting2
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
@@ -2438,9 +2439,13 @@ export function phaseNormalize(fdata, fname) {
           // - It is read-only, writes fail hard (only in strict mode, which we force).
           // - It can be shadowed inside the function like by a var or a param
 
+          // Since we give each name a unique name, we can declare the binding anywhere.
+          // So we can create an outer constant and assign it the function, then alias it.
+          // But we have to make sure that the name is unique (!) and prevent collisions
+
           const funcNode = rhs;
 
-          rule('Function expressions should not have an id');
+          rule('Function expressions should not have an id; assignment');
           example('x = function f(){};', 'const f = function(); x = f;');
           before(funcNode, node);
 
@@ -6883,9 +6888,13 @@ export function phaseNormalize(fdata, fname) {
       // - It is read-only, writes fail hard (only in strict mode, which we force).
       // - It can be shadowed inside the function like by a var or a param
 
+      // Since we give each name a unique name, we can declare the binding anywhere.
+      // So we can create an outer constant and assign it the function, then alias it.
+      // But we have to make sure that the name is unique (!) and prevent collisions
+
       const funcNode = dnode.init;
 
-      rule('Function expressions should not have an id');
+      rule('Function expressions should not have an id; var');
       example('let x = function f(){};', 'const f = function(); let x = f;');
       before(funcNode, node);
 

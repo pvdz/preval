@@ -134,36 +134,29 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const parseUnicodeQuadEscape = function () {
-  debugger;
-  let secondPart = undefined;
-  if (tmpIfTest$9045) {
-    return undefined;
-  } else {
-    secondPart = tmpBinLhs$1687 | vh;
-    const tmpIfTest$9053 = secondPart < 0xdc00;
-    const tmpBranchingC$2333 = function () {
-      debugger;
-      if (tmpIfTest$9053) {
-        return undefined;
-      } else {
-        firstPart;
-        $(secondPart);
-        return undefined;
-      }
-    };
-    if (tmpIfTest$9053) {
-      tmpBranchingC$2333();
-      return undefined;
-    } else {
-      tmpBranchingC$2333();
-      return undefined;
-    }
-  }
-};
 $(50);
 $(true);
-parseUnicodeQuadEscape();
+let secondPart = undefined;
+if (tmpIfTest$9045) {
+} else {
+  secondPart = tmpBinLhs$1687 | vh;
+  const tmpIfTest$9053 = secondPart < 0xdc00;
+  const tmpBranchingC$2333 = function () {
+    debugger;
+    if (tmpIfTest$9053) {
+      return undefined;
+    } else {
+      firstPart;
+      $(secondPart);
+      return undefined;
+    }
+  };
+  if (tmpIfTest$9053) {
+    tmpBranchingC$2333();
+  } else {
+    tmpBranchingC$2333();
+  }
+}
 `````
 
 ## Globals

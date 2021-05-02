@@ -76,26 +76,19 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
+if ($) {
   const x = $(1);
   if ($) {
     const tmpSSA_x = $(2);
     $(tmpSSA_x);
     if ($) {
       $('if');
-      return undefined;
     } else {
       $(tmpSSA_x);
-      return undefined;
     }
   } else {
     $(x);
-    return undefined;
   }
-};
-if ($) {
-  f();
 } else {
 }
 `````

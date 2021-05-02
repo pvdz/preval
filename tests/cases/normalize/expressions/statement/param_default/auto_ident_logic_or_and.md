@@ -72,26 +72,19 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpCalleeParam = $(0);
-  const tmpSSA_p = $(tmpCalleeParam);
-  if (tmpSSA_p) {
-    return undefined;
-  } else {
-    const tmpCalleeParam$1 = $(1);
-    const tmpSSA_p$1 = $(tmpCalleeParam$1);
-    if (tmpSSA_p$1) {
-      const tmpCalleeParam$3 = $(2);
-      $(tmpCalleeParam$3);
-      return undefined;
-    } else {
-      return undefined;
-    }
-  }
-};
 const a = { a: 999, b: 1000 };
-f();
+const tmpCalleeParam = $(0);
+const tmpSSA_p = $(tmpCalleeParam);
+if (tmpSSA_p) {
+} else {
+  const tmpCalleeParam$1 = $(1);
+  const tmpSSA_p$1 = $(tmpCalleeParam$1);
+  if (tmpSSA_p$1) {
+    const tmpCalleeParam$3 = $(2);
+    $(tmpCalleeParam$3);
+  } else {
+  }
+}
 $(undefined);
 $(a);
 `````

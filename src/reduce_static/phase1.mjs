@@ -32,6 +32,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   const ifIds = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Used by SSA.
   const loopStack = []; // Stack of loop nodes (while, for-in, for-of). `null` means function (or program).
   let readWriteCounter = 0;
+  const refStack = []; // Array<Map<name, {read,write}>> | null. For every branch referenced, for every binding name, track the last read and write. Functions inject a null. This information is useful if the binding is not used as a closure. Take care if a read in a loop reaches a write outside of a loop.
+  const lastWritesPerName = []; // Array<Map<name, Set<write>>>. For every branch, for every binding name referenced, track the last write/s that is/are potentially still accessible by a read "Right now". This should take abrubt completion into account.
 
   const globallyUniqueNamingRegistry = new Map();
   fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
@@ -63,10 +65,10 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   vlog('\nCurrent state (start of phase1)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   vlog(
     '\n\n\n##################################\n## phase1 (first=' +
-    firstAfterParse +
-    ') ::  ' +
-    fdata.fname +
-    '\n##################################\n\n\n',
+      firstAfterParse +
+      ') ::  ' +
+      fdata.fname +
+      '\n##################################\n\n\n',
   );
 
   resetUid();
@@ -106,7 +108,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         path.indexes,
       );
     }
-    vlog('ids/indexes:', blockIds, blockIndexes);
+    //vlog('ids/indexes:', blockIds, blockIndexes);
 
     switch (key) {
       case 'Program:before': {
@@ -115,6 +117,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         blockIds.push(+node.$p.pid);
         ifIds.push(0);
         blockStack.push(node); // Do we assign node or node.body?
+        refStack.push(new Map());
+        lastWritesPerName.push(new Map());
         node.$p.promoParent = null;
         node.$p.blockChain = '0';
         node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
@@ -131,6 +135,20 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         ifIds.pop();
         blockStack.pop();
         loopStack.pop();
+        refStack.pop();
+        lastWritesPerName.pop();
+
+        if (node.$p.earlyComplete) {
+          vlog('Global contained at least one early completion');
+        } else {
+          vlog('Global does not complete early');
+        }
+        if (node.$p.alwaysComplete) {
+          vlog('Global always completes explicitly, never implicitly');
+        } else {
+          vlog('Global may complete implicitly');
+        }
+
         break;
       }
 
@@ -139,6 +157,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         blockStack.push(node); // Do we assign node or node.body?
         // Loops push their block id from the statement node, not the body node.
         blockBodies.push(node.body);
+        refStack.push(new Map());
+        lastWritesPerName.push(new Map());
         if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
           blockIds.push(-node.$p.pid); // Mark a loop
         } else {
@@ -160,6 +180,159 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         blockStack.pop();
         blockBodies.pop();
         blockIds.pop();
+        refStack.pop();
+
+        // A block has no early / explicit completion if it contains no statements
+        node.body.forEach((cnode) => {
+          if (cnode.$p.earlyComplete) {
+            vlog('The block contained at least one early completion');
+            node.$p.earlyComplete = true;
+            if (cnode.$p.earlyReturn) node.$p.earlyReturn = true;
+            if (cnode.$p.earlyThrow) node.$p.earlyThrow = true;
+          }
+          // The last node may be an explicit completion while not an early completion. May be both (nested block with early return).
+          // Do not propagate the explicit returns from functions, unless it always throws.
+          if (cnode.type === 'FunctionExpression') {
+            // Ignore completion for this node. It does not affect control flow directly (until called).
+          } else if (cnode.$p.alwaysComplete) {
+            vlog('The block contained at least one explicit completion');
+            node.$p.alwaysComplete = true;
+            node.$p.alwaysReturn = cnode.$p.alwaysReturn;
+            node.$p.alwaysThrow = cnode.$p.alwaysThrow;
+          }
+        });
+
+        vgroup('Last write analysis');
+        const lastWrites = lastWritesPerName.pop();
+        const parentLastWrites = lastWritesPerName[lastWritesPerName.length - 1];
+        node.$p.lastWrites = lastWrites;
+        // Disregard all own bindings of this block. If this block had an abrupt completion, disregard all these writes.
+        // If this was the consequent of an if, do nothing and wait for the alternate branch to complete.
+        // If this was the alternate of an if, merge the results of the consequent and alternate branch.
+        // Merge anything left into the map that is now on top of lastWritesPerName.
+        // If if and else of a branch have a name, use the union of those sets as the new set, deleting the old set.
+        // If only one branch (or neither) of an if-else has a name, then the name becomes a union of the old and new set.
+        // If a branch has an early completion, consider it to not reference any name for the rules above.
+        if (parentNode.type === 'IfStatement') {
+          // Special branching rules
+          if (node === parentNode.consequent) {
+            // Ignore the `if` branch. Wait for completion of the `else` branch.
+            vlog('This was the `if` branch of an `if`. Skipping until else-branch');
+          } else {
+            vlog('This was the `else` branch of an `if`');
+            // Note: must process the `if` branch too now.
+            const ifBlock = parentNode.consequent;
+            const elseBlock = parentNode.alternate;
+
+            if (parentLastWrites === null) {
+              // We do not cross function boundaries so nothing to do here
+              vlog('No parent lastWrites so this is a function root?');
+            } else if (ifBlock.$p.earlyComplete) {
+              vlog('if branch returns early');
+              // The if returned early so if the else contained a ref, use that, and otherwise keep the existing.
+              // If the else also returned early, then the rest should be dead code and it shouldn't matter.
+              if (elseBlock.$p.earlyComplete) {
+                vlog('else branch also returns early so it will not execute any code after the if statement');
+              } else {
+                vlog('overwriting parent lastWrites with any lastWrites from the else branch');
+                elseBlock.$p.lastWrites.forEach((writes, bindingName) => {
+                  // Ignore bindings the parent does not have. Those must be local to the branch
+                  if (parentLastWrites.has(bindingName)) {
+                    parentLastWrites.set(bindingName, writes);
+                  }
+                });
+              }
+            } else if (elseBlock.$p.earlyComplete) {
+              vlog('else branch returns early. overwriting parent lastWrites with lastWrites from the if branch');
+              ifBlock.$p.lastWrites.forEach((writes, bindingName) => {
+                // Ignore bindings the parent does not have. Those must be local to the branch
+                if (parentLastWrites.has(bindingName)) {
+                  parentLastWrites.set(bindingName, writes);
+                }
+              });
+            } else {
+              vgroup('Neither branch returns early. Merging write names from both branches and walking them');
+              // Both branches do not return early
+              new Set([...ifBlock.$p.lastWrites.keys(), ...elseBlock.$p.lastWrites.keys()]).forEach((bindingName) => {
+                vlog('-', bindingName);
+                const ifSet = ifBlock.$p.lastWrites.get(bindingName);
+                const elseSet = elseBlock.$p.lastWrites.get(bindingName);
+
+                if (ifSet && elseSet) {
+                  vlog('There was a write in each branch so overwriting the parent lastWrites with the writes from both branches');
+                  // Overwrite the existing set. Both branches had at least one write to this binding in every possible branch.
+                  parentLastWrites.set(bindingName, new Set([...ifSet.values(), ...elseSet.values()]));
+                } else if (ifSet) {
+                  vlog('There was no write in the else branch, merging the writes from the if branch with that of the parent');
+                  // Merge the if into the existing set
+                  let outerSet = parentLastWrites.get(bindingName);
+                  if (outerSet) {
+                    ifSet.forEach((write) => outerSet.add(write));
+                  } else {
+                    // In regular code this would imply an implicit global access. But in normalized code, those would
+                    // have a different name. So this case must mean that the write is a local binding to the branch.
+                    // We should ignore it, not propagate it to the parent, as there's no point to it.
+                  }
+                } else if (elseSet) {
+                  vlog('There was no write in the if branch, merging the writes from the if branch with that of the parent');
+                  // Merge the else into the existing set
+                  let outerSet = parentLastWrites.get(bindingName);
+                  if (outerSet) {
+                    elseSet.forEach((write) => outerSet.add(write));
+                  } else {
+                    // In regular code this would imply an implicit global access. But in normalized code, those would
+                    // have a different name. So this case must mean that the write is a local binding to the branch.
+                    // We should ignore it, not propagate it to the parent, as there's no point to it.
+                  }
+                } else {
+                  ASSERT(false);
+                }
+              });
+              vgroupEnd();
+            }
+          }
+        } else if (parentNode.type === 'WhileStatement') {
+          // TODO
+          node.$p.lastWrites = 'TODO';
+        } else if (parentNode.type === 'ForInStatement' || parentNode.type === 'ForOfStatement') {
+          // TODO
+          node.$p.lastWrites = 'TODO';
+        } else {
+          // This block was a function, try, etc. But not an if or loop. // TODO: try/catch/finally is probably pretty funky
+          //Merge the set of lastWrites set down to the lastWrites of the parent block.
+          lastWrites.forEach((writes, name) => {
+            let set = parentLastWrites.get(name);
+            if (!set) {
+              set = new Set();
+              parentLastWrites.set(name, set);
+            }
+            writes.forEach((write) => set.add(write));
+          });
+        }
+
+        if (typeof lastWrites === 'string') {
+          vlog('Last writes:', lastWrites);
+        } else {
+          vgroup('Last writes:', lastWrites.size === 0 ? (node.$p.earlyComplete ? '(none, early completion)' : '(none)') : '');
+          lastWrites.forEach((set, name) => {
+            vlog('-', name, [...set].map((write) => write.parentNode.$p.pid + ':' + write.blockIndex).join(', '));
+          });
+          vgroupEnd();
+        }
+        if (typeof parentLastWrites === 'string') {
+          vlog('Parent last writes:', parentLastWrites);
+        } else {
+          vgroup(
+            'Parent last writes:',
+            parentLastWrites.size === 0 ? (parentNode.$p.earlyComplete ? '(none, early completion)' : '(none)') : '',
+          );
+          parentLastWrites.forEach((set, name) => {
+            vlog('-', name, [...set].map((write) => write.parentNode.$p.pid + ':' + write.blockIndex).join(', '));
+          });
+          vgroupEnd();
+        }
+        vgroupEnd();
+
         if (parentNode.type === 'IfStatement') {
           ifIds.pop();
         }
@@ -227,14 +400,21 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       }
 
       case 'FunctionExpression:before': {
-        blockIds.push(0); // Inject a zero to mark function boundaries
-        ifIds.push(0);
-        loopStack.push(0);
-
         node.$p.blockChain = blockIds.join(',');
         node.$p.ownBindings = new Set();
         node.$p.referencedNames = new Set();
         node.$p.paramNames = new Set();
+
+        if (parentNode.type === 'ExpressionStatement') {
+          vlog('Do not traverse function expression statement. I am not going to care about the contents.');
+          vgroupEnd();
+          return true;
+        }
+
+        blockIds.push(0); // Inject a zero to mark function boundaries
+        ifIds.push(0);
+        loopStack.push(0);
+        refStack.push(null); // Dont let reads "reach" writes in an upper scope.
 
         if (firstAfterParse) {
           vlog('Converting parameter nodes to special Param nodes');
@@ -243,11 +423,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           });
         }
 
-        if (parentNode.type === 'ExpressionStatement') {
-          vlog('Do not traverse. I dont care whats inside.');
-          vgroupEnd();
-          return true;
-        }
         ASSERT(
           ['VariableDeclarator', 'AssignmentExpression', 'Property', 'MethodDefinition'].includes(parentNode.type),
           'normalized code should not other cases, right?',
@@ -274,6 +449,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         loopStack.pop();
         ASSERT(blockIds.length, 'meh3?');
         thisStack.pop();
+        refStack.pop();
 
         if (funcStack.length > 1) {
           // This is relevant for determining whether this function can be cloned when it is called with a primitive
@@ -343,6 +519,22 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           }
         }
 
+        if (node.body.$p.earlyComplete) {
+          vlog('Function contained at least one early completion');
+          node.$p.earlyComplete = node.body.$p.earlyComplete;
+          node.$p.earlyReturn = node.body.$p.earlyReturn;
+          node.$p.earlyThrow = node.body.$p.earlyThrow;
+        } else {
+          vlog('Function does not complete early');
+        }
+        if (node.body.$p.alwaysComplete) {
+          vlog('Function always completes explicitly');
+          node.$p.alwaysComplete = true;
+          node.$p.alwaysReturn = node.body.$p.alwaysReturn;
+          node.$p.alwaysThrow = node.body.$p.alwaysThrow;
+        } else {
+          vlog('Function may complete implicitly');
+        }
         break;
       }
 
@@ -433,36 +625,58 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           const innerLoop = loopStack[loopStack.length - 1];
           vlog('innerLoop:', innerLoop);
 
+          const grandNode = path.nodes[path.nodes.length - 3];
+          const grandProp = path.props[path.props.length - 2];
+          const grandIndex = path.indexes[path.indexes.length - 2];
+
           if (kind === 'read') {
-            const grandNode = path.nodes[path.nodes.length - 3];
-            const grandProp = path.props[path.props.length - 2];
-            const grandIndex = path.indexes[path.indexes.length - 2];
+            // TODO: what if both branches of an if have a write? Or all branches of a nested if? We'd want to model that.
+            // TODO: what if a branch had a write and an early return, but not the other? How do we track this properly?
+            // TODO: each block can maintain a .$p.lastWrites of Map<name, Array<write>> and we already track early returns
+            let prevWrite = undefined;
+            for (let n = refStack.length - 1; n >= 0 && !prevWrite; --n) {
+              const rcMap = refStack[n];
+              if (!rcMap) break; // Function boundary.
+              if (rcMap.has(name)) {
+                prevWrite = rcMap.get(name).write;
+              }
+            }
+            // Now prevWrite should be the last write this read can reach without moving past a function boundary
+            // If undefined, then there was no previous write in the same scope. Says nothing about loops or early returns.
 
             const blockBody = blockNode.body;
-            meta.reads.push(
-              createReadRef({
-                kind: grandNode.type === 'ExportNamedDeclaration' ? 'export' : 'read',
-                parentNode,
-                parentProp,
-                parentIndex,
-                grandNode,
-                grandProp,
-                grandIndex,
-                blockBody,
-                blockIndex,
-                pfuncNode,
-                node,
-                rwCounter: ++readWriteCounter,
-                scope: currentScope.$p.pid,
-                blockChain: blockIds.join(','),
-                blockIds: blockIds.slice(0),
-                blockBodies: blockBodies.slice(0),
-                blockIndexes: blockIndexes.slice(0),
-                ifChain: ifIds.slice(0),
-                funcChain: funcStack.map((n) => n.$p.pid).join(','),
-                innerLoop,
-              }),
-            );
+            const read = createReadRef({
+              kind: grandNode.type === 'ExportNamedDeclaration' ? 'export' : 'read',
+              parentNode,
+              parentProp,
+              parentIndex,
+              grandNode,
+              grandProp,
+              grandIndex,
+              blockBody,
+              blockIndex,
+              pfuncNode,
+              node,
+              rwCounter: ++readWriteCounter,
+              scope: currentScope.$p.pid,
+              blockChain: blockIds.join(','),
+              blockIds: blockIds.slice(0),
+              blockBodies: blockBodies.slice(0),
+              blockIndexes: blockIndexes.slice(0),
+              ifChain: ifIds.slice(0),
+              funcChain: funcStack.map((n) => n.$p.pid).join(','),
+              innerLoop,
+              prevWrite,
+            });
+            meta.reads.push(read);
+
+            let cache = refStack[refStack.length - 1].get(name);
+            if (cache) {
+              cache.read = read;
+            } else {
+              cache = { read, write: undefined };
+              refStack[refStack.length - 1].set(cache);
+            }
 
             pfuncNode.$p.referencedNames.add(name);
           }
@@ -470,33 +684,51 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             const blockBody = blockNode.body;
             vlog('- Parent block:', blockNode.type, blockNode.$p.pid);
 
+            const write = createWriteRef({
+              kind: parentNode.type === 'VariableDeclarator' ? 'var' : parentNode.type === 'AssignmentExpression' ? 'assign' : 'other',
+              parentNode,
+              parentProp,
+              parentIndex,
+              grandNode,
+              grandProp,
+              grandIndex,
+              blockBody,
+              blockIndex,
+              pfuncNode,
+              node,
+              rwCounter: ++readWriteCounter,
+              scope: currentScope.$p.pid,
+              blockChain: blockIds.join(','),
+              blockIds: blockIds.slice(0),
+              blockBodies: blockBodies.slice(0),
+              blockIndexes: blockIndexes.slice(0),
+              ifChain: ifIds.slice(0),
+              funcChain: funcStack.map((n) => n.$p.pid).join(','),
+              innerLoop,
+            });
+
+            let cache = refStack[refStack.length - 1].get(name);
+            if (cache) {
+              cache.write = write;
+            } else {
+              cache = { read: undefined, write };
+              refStack[refStack.length - 1].set(cache);
+            }
+
+            const lastWriteMap = lastWritesPerName[lastWritesPerName.length - 1];
+            let lastWriteSet = lastWriteMap.get(name);
+            if (lastWriteSet) {
+              lastWriteSet.add(write);
+            } else {
+              lastWriteMap.set(name, new Set([write]));
+            }
+
             if (parentNode.type === 'VariableDeclarator') {
               ASSERT(parentProp === 'id', 'the read check above should cover the prop=init case');
               vlog('- Adding decl write');
 
               pfuncNode.$p.ownBindings.add(name);
-
-              meta.writes.unshift(
-                createWriteRef({
-                  kind: 'var',
-                  parentNode,
-                  parentProp,
-                  parentIndex,
-                  blockBody,
-                  blockIndex,
-                  pfuncNode,
-                  node,
-                  rwCounter: ++readWriteCounter,
-                  scope: currentScope.$p.pid,
-                  blockChain: blockIds.join(','),
-                  blockIds: blockIds.slice(0),
-                  blockBodies: blockBodies.slice(0),
-                  blockIndexes: blockIndexes.slice(0),
-                  ifChain: ifIds.slice(0),
-                  funcChain: funcStack.map((n) => n.$p.pid).join(','),
-                  innerLoop,
-                }),
-              );
+              meta.writes.unshift(write);
             } else if (parentNode.type === 'AssignmentExpression') {
               ASSERT(parentProp === 'left', 'the read check above should cover the prop=right case');
               ASSERT(
@@ -505,27 +737,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 path.nodes[path.nodes.length - 3],
               );
               vlog('Adding assign write');
-              meta.writes.push(
-                createWriteRef({
-                  kind: 'assign',
-                  parentNode,
-                  parentProp,
-                  parentIndex,
-                  blockBody,
-                  blockIndex,
-                  pfuncNode,
-                  node,
-                  rwCounter: ++readWriteCounter,
-                  scope: currentScope.$p.pid,
-                  blockChain: blockIds.join(','),
-                  blockIds: blockIds.slice(0),
-                  blockBodies: blockBodies.slice(0),
-                  blockIndexes: blockIndexes.slice(0),
-                  ifChain: ifIds.slice(0),
-                  funcChain: funcStack.map((n) => n.$p.pid).join(','),
-                  innerLoop,
-                }),
-              );
+              meta.writes.push(write);
             } else if (parentNode.type === 'FunctionDeclaration') {
               ASSERT(false, 'all function declarations should have been eliminated during hoisting');
             } else if (parentProp === 'params' && parentNode.type === 'FunctionExpression') {
@@ -533,27 +745,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             } else {
               // for-x lhs, not sure what else. not param.
               vlog('Adding "other" write');
-              meta.writes.push(
-                createWriteRef({
-                  kind: 'other',
-                  parentNode,
-                  parentProp,
-                  parentIndex,
-                  blockBody,
-                  blockIndex,
-                  pfuncNode,
-                  node,
-                  rwCounter: ++readWriteCounter,
-                  scope: currentScope.$p.pid,
-                  blockChain: blockIds.join(','),
-                  blockIds: blockIds.slice(0),
-                  blockBodies: blockBodies.slice(0),
-                  blockIndexes: blockIndexes.slice(0),
-                  ifChain: ifIds.slice(0),
-                  funcChain: funcStack.map((n) => n.$p.pid).join(','),
-                  innerLoop,
-                }),
-              );
+              meta.writes.push(write);
             }
           }
 
@@ -561,8 +753,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           // After normalization there should only be named exports without declarations and
           // anonymous default exports. This ident won't be part of the latter :p
           // TODO: local vs exported. also: exports are neither read nor write. well, pseudo read maybe?
-          const grandParent = path.nodes[path.nodes.length - 3];
-          if (grandParent.type === 'ExportNamedDeclaration') {
+          if (grandNode.type === 'ExportNamedDeclaration') {
             vlog('Marking `' + name + '` as being an export');
             meta.isExport = true;
           }
@@ -575,6 +766,21 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
       case 'IfStatement:before': {
         funcStack[funcStack.length - 1].$p.hasBranch = true;
+        break;
+      }
+      case 'IfStatement:after': {
+        if (node.consequent.$p.earlyComplete || node.alternate.$p.earlyComplete) {
+          vlog('At least one branch had an early completion');
+          node.$p.earlyComplete = true;
+          node.$p.earlyReturn = node.consequent.$p.earlyReturn || node.alternate.$p.earlyReturn;
+          node.$p.earlyThrow = node.consequent.$p.earlyThrow || node.alternate.$p.earlyThrow;
+        }
+        if (node.consequent.$p.alwaysComplete && node.alternate.$p.alwaysComplete) {
+          vlog('Both branches complete explicitly');
+          node.$p.alwaysComplete = true;
+          node.$p.alwaysReturn = node.consequent.$p.alwaysReturn && node.alternate.$p.alwaysReturn;
+          node.$p.alwaysThrow = node.consequent.$p.alwaysThrow && node.alternate.$p.alwaysThrow;
+        }
         break;
       }
 
@@ -615,7 +821,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         break;
       }
 
-      case 'ImportDefaultSpecifier: after': {
+      case 'ImportDefaultSpecifier:after': {
         // This must be an anonymous function
         ASSERT(node.source && typeof node.source.value === 'string', 'fixme if else', node);
         const source = node.source.value;
@@ -634,6 +840,21 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         // TODO: with the new normalization rules, do we still have labels, break, and continue here?
         vlog('Label:', node.label.name);
         registerGlobalLabel(fdata, node.label.name, node.label.name, node);
+        break;
+      }
+      case 'LabeledStatement:after': {
+        if (node.body.$p.earlyComplete) {
+          vlog('Label block/loop contained at least one early completion');
+          node.$p.earlyComplete = true;
+          node.$p.earlyReturn = node.body.$p.earlyReturn;
+          node.$p.earlyThrow = node.body.$p.earlyThrow;
+        }
+        if (node.body.$p.alwaysComplete) {
+          vlog('Label body completes explicitly');
+          node.$p.alwaysComplete = true;
+          node.$p.alwaysReturn = node.body.$p.alwaysReturn;
+          node.$p.alwaysThrow = node.body.$p.alwaysThrow;
+        }
         break;
       }
 
@@ -661,7 +882,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
         funcNode.$p.returnNodes.push(node);
 
-        discoverEarlyCompletion(node, funcNode, true);
+        markEarlyCompletion(node, funcNode, true, parentNode);
 
         vgroup('[commonReturn]');
         const a = funcNode.$p.commonReturn;
@@ -722,10 +943,28 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         break;
       }
 
+      case 'TryStatement:after': {
+        if (node.block.$p.earlyComplete || node.handler?.$p.earlyComplete || node.finalizer?.$p.earlyComplete) {
+          vlog('At least one block of the try has an early completion');
+          node.$p.earlyComplete = true;
+          node.$p.earlyReturn = node.block.$p.earlyReturn || node.handler?.$p.earlyReturn || node.finalizer?.$p.earlyReturn;
+          node.$p.earlyThrow = node.block.$p.earlyThrow || node.handler?.$p.earlyThrow || node.finalizer?.$p.earlyThrow;
+        }
+        if (node.block.$p.alwaysComplete && node.handler?.$p.alwaysComplete && node.finalizer?.$p.alwaysComplete) {
+          vlog('All blocks of the try complete explicitly');
+          node.$p.alwaysComplete = true;
+          node.$p.alwaysReturn = node.block.$p.alwaysReturn && node.handler?.$p.alwaysReturn && node.finalizer?.$p.alwaysReturn;
+          node.$p.alwaysThrow = node.block.$p.alwaysThrow && node.handler?.$p.alwaysThrow && node.finalizer?.$p.alwaysThrow;
+        }
+        break;
+      }
+
       case 'ThrowStatement:before': {
         // (similar logic to ReturnStatement)
         const funcNode = funcStack[funcStack.length - 1];
-        discoverEarlyCompletion(node, funcNode, false);
+        markEarlyCompletion(node, funcNode, false, parentNode);
+        node.$p.alwaysComplete = true;
+        node.$p.alwaysThrow = true;
         // TODO: unless wrapped in a try/catch. Which we don't really track right now.
         if (funcNode.type === 'FunctionExpression') {
           funcNode.$p.throwsExplicitly = true;
@@ -825,40 +1064,104 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   groupEnd();
 }
 
-function discoverEarlyCompletion(needleNode, funcNode, isReturn) {
-  // Skip this for global (for now) as we only use this for functions atm
-  if (funcNode.type === 'FunctionExpression') {
-    ASSERT(funcNode?.body?.body, 'eh, func node?', funcNode);
-    vlog('Owner func:', funcNode.type, ', last node same?', funcNode.body.body[funcNode.body.body.length - 1] === needleNode);
-    const lastNode = funcNode.body.body[funcNode.body.body.length - 1];
-    if (lastNode === needleNode) {
-      vlog('Found explicit completion and it was the last statement of the function');
-    } else if (lastNode?.type === 'IfStatement') {
-      if (
-        lastNode.consequent.body[lastNode.consequent.body.length - 1] === needleNode ||
-        lastNode.alternate?.body[lastNode.alternate.body.length - 1] === needleNode
-      ) {
-        vlog(
-          'Last func element is `if` and the Completion node is the last element of one of its branches so this is a regular completion.',
-        );
-      } else {
-        vlog('Last func element is `if` and the Completion node is not the last element of either branch so this is an abrubt completion.');
-        funcNode.$p.earlyComplete = true;
-        if (isReturn) {
-          funcNode.$p.earlyReturn = true;
-        } else {
-          funcNode.$p.earlyThrow = true;
-        }
-      }
-    } else {
-      // TODO: this is the safe approach, but we currently do not guarantee that if's or loops are not nested :/
-      vlog('Last node was neither an `if` nor the completion node so this is an abrubt completion');
-      funcNode.$p.earlyComplete = true;
-      if (isReturn) {
-        funcNode.$p.earlyReturn = true;
-      } else {
-        funcNode.$p.earlyThrow = true;
-      }
-    }
+function isTailNode(completionNode, tailNode) {
+  ASSERT(completionNode)
+  ASSERT(tailNode)
+  // In this context, a tail node is the last node of a function, or the last node of an `if` that is the last
+  // node of a function or the last node of an if that is the last node of a function, repeating.
+  if (completionNode === tailNode) return true;
+  if (tailNode.type === 'IfStatement') {
+    return (
+      (tailNode.consequent.body.length === 0
+        ? false
+        : isTailNode(completionNode, tailNode.consequent.body[tailNode.consequent.body.length - 1])) ||
+      (tailNode.alternate.body.length === 0
+        ? false
+        : isTailNode(completionNode, tailNode.alternate.body[tailNode.alternate.body.length - 1]))
+    );
   }
+  if (
+    // Loops
+    tailNode.type === 'WhileStatement' ||
+    tailNode.type === 'ForInStatement' ||
+    tailNode.type === 'ForOfStatement'
+  ) {
+    return tailNode.body.body.length === 0 ? false : isTailNode(completionNode, tailNode.body.body[tailNode.body.body.length - 1]);
+  }
+  if (
+    // Try catch. Trickier because we have to consider the best and worst case.
+    tailNode.type === 'TryStatement'
+  ) {
+    // If the try has a finally it gets a little tricky.
+    // I think in either way we should try to be conservative and only consider early completions if the completion node
+    // is at the end of the try, catch, or finally block. At that point, I don't think it's relevant which block.
+    // Hopefully this isn't a footgun and false positives don't blow up in my face. Eh foot. Eh ... you know.
+    return (
+      (tailNode.block.body.length === 0 ? false : isTailNode(completionNode, tailNode.block.body[tailNode.block.body.length - 1])) ||
+      (!tailNode.handler || tailNode.handler.body.length === 0
+        ? false
+        : isTailNode(completionNode, tailNode.handler.body[tailNode.handler.body.length - 1])) ||
+      (!tailNode.finalizer || tailNode.finalizer.body.length === 0
+        ? false
+        : isTailNode(completionNode, tailNode.finalizer.body[tailNode.finalizer.body.length - 1]))
+    );
+  }
+  if (tailNode.type === 'LabeledStatement') {
+    // Note: body must be either a block or a loop. We generate labels as part of the switch transform and it can also occur in the wild
+    if (tailNode.body.type === 'BlockStatement') {
+      return tailNode.body.body.length === 0 ? false : isTailNode(completionNode, tailNode.body.body[tailNode.body.body.length - 1]);
+    }
+
+    ASSERT(
+      tailNode.body.type === 'WhileStatement' || tailNode.body.type === 'ForInStatement' || tailNode.body.type === 'ForOfStatement',
+      'normalized labels can only have blocks and loops as body',
+    );
+    ASSERT(
+      completionNode !== tailNode.body,
+      'completion node should be a completion and labels can only have blocks and loops as body in normalized code',
+    );
+
+    return false;
+  }
+
+  if (tailNode.type === 'BlockStatement') {
+    ASSERT(false, 'This would be a nested block. I dont think this should happen in normalized code.');
+  }
+
+  return false;
+}
+function markEarlyCompletion(completionNode, funcNode, isReturn, parentNode) {
+  // And early completion is a return/throw/continue/break that is not the last statement of a function.
+  // If the completion is the last statement of a branch then the other branch must not complete or not be last. Recursively.
+
+  // From the end of the function. Check if the statement is the return, in that case bail because this is not early.
+  // If the last statement is not `if`, then consider the completion early since DCE would have removed it otherwise.
+  // If the last statement is an `if` then check if the return is the last statement of either branch. If not, check
+  // if either branch ends with an if. Repeat exhaustively. If the completion was not the last statement of any `if`
+  // in a tail position, then consider it an early completion.
+
+  vlog('markEarlyCompletion(); This was an explicit completion (' + completionNode.type + ')');
+  parentNode.$p.alwaysComplete = true;
+  if (completionNode.type === 'ReturnStatement') parentNode.$p.alwaysReturn = true;
+  if (completionNode.type === 'ThrowStatement') parentNode.$p.alwaysThrow = true;
+  // TODO: this should automatically propagate to the function. We should add an assertion instead of this so we can verify that the values properly propagate through all statements.
+  funcNode.$p.alwaysComplete = true;
+  if (completionNode.type === 'ReturnStatement') funcNode.$p.alwaysReturn = true;
+  if (completionNode.type === 'ThrowStatement') funcNode.$p.alwaysThrow = true;
+
+  const body = funcNode.type === 'Program' ? funcNode.body : funcNode.body.body;
+  if (isTailNode(completionNode, body[body.length - 1])) {
+    vlog('markEarlyCompletion(); Completion node was found to be in a tail position of the function. Not an early return.');
+    return;
+  }
+  vlog('markEarlyCompletion(); This was an early completion.');
+
+  parentNode.$p.earlyComplete = true;
+  if (completionNode.type === 'ReturnStatement') parentNode.$p.earlyReturn = true;
+  if (completionNode.type === 'ThrowStatement') parentNode.$p.earlyThrow = true;
+
+  // TODO: this should automatically propagate to the function. We should add an assertion instead of this so we can verify that the values properly propagate through all statements.
+  funcNode.$p.earlyComplete = true;
+  if (completionNode.type === 'ReturnStatement') funcNode.$p.earlyReturn = true;
+  if (completionNode.type === 'ThrowStatement') funcNode.$p.earlyThrow = true;
 }

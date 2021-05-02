@@ -369,6 +369,7 @@ function runTestCase(
         .replace(/function ?\(\) ?\{/g, 'function() {')
         .replace(/Cannot read property .*? of .*/g, 'Cannot read property <ref> of <ref2>')
         .replace(/(?:Preval: )?Cannot access ['`][\w$]+['`] before initialization/, "Cannot access '<ref>' before initialization")
+        .replace(/Preval: Cannot write to const binding .*/, 'Assignment to constant variable.')
 
         // All arrows are transformed to function expressions
         .replace(/\(\) => \{\}/g, 'function() {}')

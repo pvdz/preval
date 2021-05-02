@@ -19,6 +19,7 @@ import { staticLets } from './phase2staticlets.mjs';
 import { ifCallIf } from './phase2ifcallif.mjs';
 import { assignHoisting } from './phase2assignhoisting.mjs';
 import { arrrrrr } from './phase2arrrr.mjs';
+import { constAssigns } from './phase2const_assigns.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -56,6 +57,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const tdzd = singleScopeTdz(fdata);
   if (tdzd) return tdzd;
+
+  const consts = constAssigns(fdata);
+  if (consts) return consts;
 
   const moved = letHoisting(fdata);
   if (moved) return moved;

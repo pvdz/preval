@@ -54,8 +54,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````js filename=intro
 const funcexprname = function () {
   debugger;
-  funcexprname = 20;
-  return funcexprname;
+  throw 'Preval: Cannot write to const binding `funcexprname`';
 };
 const x = funcexprname();
 const tmpCalleeParam$1 = typeof funcexprname;

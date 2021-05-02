@@ -55,7 +55,7 @@ function _inlineOneTimeFunctions(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
-    if (meta.writes.length !== 1) return console.log('FIXME'); // func expr can cause this for now
+    ASSERT(meta.writes.length === 1, 'fix me if we somehow allow this. This transform would probably break it.');
 
     vgroup(
       '- `' + meta.uniqueName + '`:',

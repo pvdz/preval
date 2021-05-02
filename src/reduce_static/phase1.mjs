@@ -1150,6 +1150,8 @@ function markEarlyCompletion(completionNode, funcNode, isReturn, parentNode) {
   if (completionNode.type === 'ThrowStatement') funcNode.$p.alwaysThrow = true;
 
   const body = funcNode.type === 'Program' ? funcNode.body : funcNode.body.body;
+  ASSERT(body.length, 'the function containing this statement should have at least one statement eh');
+  ASSERT(body[body.length - 1], 'body has no holes amirite', funcNode)
   if (isTailNode(completionNode, body[body.length - 1])) {
     vlog('markEarlyCompletion(); Completion node was found to be in a tail position of the function. Not an early return.');
     return;

@@ -38,6 +38,8 @@ import globals from '../globals.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 import { isComplexNode } from '../ast.mjs';
 
+// pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
+
 /*
   Normalization steps that happen:
   - Parameter defaults are rewritten to ES5 equivalent code
@@ -169,12 +171,10 @@ import { isComplexNode } from '../ast.mjs';
   - assignments inside a branch could be assigned to a fresh var as well. then something like `let x=1; if (y) { x=2; f(x); } f(x)` could have the `f(x)` all be inlined to a constant `f(2)`. but risks infinite changes so non-trivial. could do future reads check to see whether there are any reads for that binding in this branch and then "ssa" for them.
   - the `this` keyword assigned to a constant can be inlined for arrow scope usages as well
   - Decide how to handle built-in cases like `String.fromCharCode(32)`
-  - double func decl with same name? can eliminate one. tests/cases/normalize/hoisting/exported_func_default/nested_double.md
   - if a function does not reference `arguments` then we can drop some params.
   - can we detect all operations that are applied to a binding and infer the contents that way?
     - example: the way we transform switches, if (x <= 0) { ... return} if (x <= 1) { ... return } etc we could know that x cannot be <= 0 since that branch exited. probably a lot of data to track but who knows
   - if a function is guaranteed to throw, compile a `throw "unreachable"` after each call to it. We can always eliminate those later but maybe they allow us to improve DCE
-  - [...null] etc (edge case)
   - "`this` statement"
   - what if I made pseudo-symbols for certain builtins, like `Math.round` to `$MathRound` to help static computations? Many funcs do not need a context but are accessed as such anyways.
   - if we know a function does not access `this`, can we detect member expressions that contain it, anyways, and prevent them?
@@ -197,21 +197,20 @@ import { isComplexNode } from '../ast.mjs';
   - params that are builtins or implicit or explicit globals can be inlined as well
   - `const tmpBranchingC = function (tmpNestedComplexRhs$4) { a = tmpNestedComplexRhs$4;};` inline at call sites tests/cases/normalize/expressions/assignments/param_default/auto_ident_c-opt_complex_complex.md
   - what's up with `const $clone$f$0_Iundefined = function () { const tmpNestedComplexRhs$1 = () => {}; a = tmpNestedComplexRhs$1; };` tests/cases/normalize/expressions/assignments/param_default/auto_ident_arrow.md
-  - if both branches of an if-else return undefined and the if-else is the last of a function then drop them both?
   - Any call to a function without explicit return (or where all returns are undefined) can be split-replaced with undefined
   - When passing on a global const, drop the argument in favor of using the global directly
   - Inlining simple functions with rest, like tests/cases/normalize/pattern/param/rest/base.md
-  - Change writes to a constant to an explicit error of sorts (like tests/cases/normalize/function/expr/id_write2.md )
   - Could normalize AST, like var decl and assignment having a lhs and rhs instead of id/init and left/right (and drop the declarations bit since that'll never happen after the normalize_once step)).
   - There are some cases of loops where we can determine that there's no way for the loop to ever break, making any code that follows it ready to DCE.
   - If a function is called only once but cannot be inlined because it and its caller both contain branching, then move the code into the caller branch into the function to hopefully keep things closer together? see tests/cases/normalize/pattern/param/arr/arr/obj/base.md for an example
   - If two branches return the same closure and the call site has access to this closure then the call can be inlined like we do with primitives, still calling the func but replacing the call value with the closure ident
-  - Double typeof on a const where one binding to hold the result can reach the other, means it can be eliminated as the results are immutable
+  - Duplicate typeof on a const where one binding to hold the result can reach the other, means it can be eliminated as the results are immutable
   - Common return values that are either closure or arg idents can be inlined: tests/cases/common_return/regression2.md
   - If a value is only used as a condition then whenever we know the truthy or falsy value of it, we should change it to an actual bool.
   - A write at the end of the life cycle of a function when the binding is not used, or closured functions are not leaking, should be dropped. `function f(){ let x = 1; function g(){ $(x); } g(); x = 10;}`
   - can we detect mirror actions in both branches of an if? `if (x) a = f(); else a = f();` etc?
   - case in tests/cases/function_scope_promo/base_outer_param_ref.md shows an update in both branches, assigned to const, then used as param. it should probably call in each branch and omit the alias.
+  - bool function pattern: tests/cases/function_bool_ret/base_primitives.md
   - TODO: fix other cases of write-shadowing in different branches for the prevMap approach, like we did in lethoisting2
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
@@ -222,9 +221,6 @@ import { isComplexNode } from '../ast.mjs';
   - TODO: if we clone normalized code then we should be able to assume that all idents are already unique within that func. So maybe an AST clone would suffice after all? and some special care in renaming all bindings. probably cheaper than a full reparse?
   - TODO: `$(null[$('keep me')]);` should still invoke the computed prop
   - TODO: should normalize to only have imports and exports as global code and an IIFE as the only other kind of toplevel code that contains all other code. This way there is no global code and everything is scoped to a function.
-  -> if-else normalization;
-    loops
-    super
 */
 
 function RETURN() {

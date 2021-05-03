@@ -61,13 +61,13 @@ let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   let tmpAssignMemLhsObj = undefined;
   const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall != null;
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
+  } else {
     const tmpCallVal = tmpChainElementCall.call;
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$3);
     tmpAssignMemLhsObj = tmpChainElementCall$1;
-  } else {
   }
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }

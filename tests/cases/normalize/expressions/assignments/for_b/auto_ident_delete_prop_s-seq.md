@@ -60,8 +60,7 @@ while (true) {
   $(1);
   $(2);
   a = delete arg.y;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(1);
   } else {
     break;

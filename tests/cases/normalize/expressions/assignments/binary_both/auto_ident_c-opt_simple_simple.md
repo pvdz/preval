@@ -63,19 +63,19 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 let a = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
-} else {
 }
 const tmpBinBothLhs = a;
 let tmpSSA_a = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject$1 = b.x;
   tmpSSA_a = tmpChainElementObject$1;
-} else {
 }
 const tmpBinBothRhs = tmpSSA_a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

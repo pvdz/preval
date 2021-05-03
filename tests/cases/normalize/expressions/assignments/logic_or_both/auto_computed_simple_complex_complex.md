@@ -57,7 +57,7 @@ $(a);
 const tmpObjLitVal = $(1);
 let a = { b: tmpObjLitVal };
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   const tmpObjLitVal$1 = $(1);
   const tmpNestedComplexRhs = { b: tmpObjLitVal$1 };

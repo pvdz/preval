@@ -75,8 +75,7 @@ while (true) {
     const tmpCalleeParam$3 = $(2);
     a = $(tmpCalleeParam$3);
   }
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(1);
   } else {
     break;

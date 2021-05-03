@@ -61,7 +61,7 @@ const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 let tmpCalleeParam = tmpNestedAssignPropRhs;
-if (tmpCalleeParam) {
+if (tmpNestedAssignPropRhs) {
   tmpCalleeParam = $(100);
 } else {
 }

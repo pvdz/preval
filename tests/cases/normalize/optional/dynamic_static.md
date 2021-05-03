@@ -42,11 +42,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const obj = { foo: 10 };
 let tmpCalleeParam = undefined;
-const tmpIfTest = obj != null;
+const tmpIfTest = obj == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = obj.foo;
   tmpCalleeParam = tmpChainElementObject;
-} else {
 }
 $(tmpCalleeParam);
 `````

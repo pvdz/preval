@@ -64,12 +64,12 @@ let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   a = undefined;
   const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall != null;
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
+  } else {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
-  } else {
   }
   const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForInLhsNode;

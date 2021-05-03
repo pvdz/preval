@@ -60,7 +60,7 @@ foo: while (true) {
 let tmpDoWhileFlag = true;
 foo: while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     tmpIfTest = $(2);
   }

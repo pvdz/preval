@@ -62,21 +62,21 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   a = tmpChainElementCall$1;
-} else {
 }
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$3 = $($);
-  const tmpIfTest$1 = tmpChainElementCall$3 != null;
+  const tmpIfTest$1 = tmpChainElementCall$3 == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementCall$5 = tmpChainElementCall$3.call($, 1);
     tmpNestedComplexRhs = tmpChainElementCall$5;
-  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

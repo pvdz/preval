@@ -59,15 +59,14 @@ $(a);
 const b = { c: $ };
 let tmpCalleeParam = undefined;
 let a = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   a = tmpChainElementCall;
-} else {
 }
-const tmpIfTest = a;
-if (tmpIfTest) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);

@@ -39,11 +39,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const tmpIfTest = global != null;
+const tmpIfTest = global == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = global.foo;
   tmpCalleeParam = tmpChainElementObject;
-} else {
 }
 $(tmpCalleeParam);
 `````

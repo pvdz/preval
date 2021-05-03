@@ -105,13 +105,13 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const tmpSSA_b = { x: tmpObjLitVal };
 let tmpSSA_a = undefined;
-const tmpIfTest$5 = tmpSSA_b != null;
+const tmpIfTest$5 = tmpSSA_b == null;
 if (tmpIfTest$5) {
+} else {
   const tmpChainElementObject = tmpSSA_b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   tmpSSA_a = tmpChainElementObject$3;
-} else {
 }
 $(tmpSSA_a);
 $('fail1');

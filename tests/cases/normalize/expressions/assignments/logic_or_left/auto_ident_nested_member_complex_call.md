@@ -71,7 +71,7 @@ const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
 let tmpCalleeParam = varInitAssignLhsComputedRhs;
-if (tmpCalleeParam) {
+if (varInitAssignLhsComputedRhs) {
 } else {
   tmpCalleeParam = $(100);
 }

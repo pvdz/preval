@@ -59,8 +59,7 @@ while (true) {
     const tmpCalleeParam = $(100);
     a = $(tmpCalleeParam);
   }
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

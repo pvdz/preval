@@ -55,11 +55,11 @@ const b = { x: 1 };
 const tmpCalleeParam = ['before ', ' after'];
 let a = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
-} else {
 }
 const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);

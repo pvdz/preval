@@ -51,11 +51,11 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpObjSpreadArg = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpObjSpreadArg = tmpChainElementObject;
-} else {
 }
 ({ ...tmpObjSpreadArg });
 $(a);

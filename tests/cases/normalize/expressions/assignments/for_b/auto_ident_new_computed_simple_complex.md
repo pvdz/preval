@@ -60,8 +60,7 @@ while (true) {
   const tmpCompProp = $('$');
   const tmpNewCallee = b[tmpCompProp];
   a = new tmpNewCallee(1);
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(1);
   } else {
     break;

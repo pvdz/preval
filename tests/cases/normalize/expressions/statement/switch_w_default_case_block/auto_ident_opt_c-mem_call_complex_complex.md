@@ -134,18 +134,18 @@ tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     const tmpChainElementCall = $(b);
-    const tmpIfTest$5 = tmpChainElementCall != null;
+    const tmpIfTest$5 = tmpChainElementCall == null;
     if (tmpIfTest$5) {
+    } else {
       const tmpChainRootComputed = $('$');
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      const tmpIfTest$7 = tmpChainElementObject != null;
+      const tmpIfTest$7 = tmpChainElementObject == null;
       if (tmpIfTest$7) {
+      } else {
         const tmpCallVal = tmpChainElementObject.call;
         const tmpCalleeParam$1 = $(1);
         tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
-      } else {
       }
-    } else {
     }
     break tmpSwitchBreak;
   } else {

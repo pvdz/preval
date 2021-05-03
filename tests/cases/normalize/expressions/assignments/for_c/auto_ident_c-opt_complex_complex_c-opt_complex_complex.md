@@ -74,18 +74,18 @@ while (true) {
   if (tmpIfTest) {
     a = undefined;
     const tmpChainElementCall = $(b);
-    const tmpIfTest$1 = tmpChainElementCall != null;
+    const tmpIfTest$1 = tmpChainElementCall == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainRootComputed = $('x');
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      const tmpIfTest$3 = tmpChainElementObject != null;
+      const tmpIfTest$3 = tmpChainElementObject == null;
       if (tmpIfTest$3) {
+      } else {
         const tmpChainRootComputed$1 = $('y');
         const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
         a = tmpChainElementObject$1;
-      } else {
       }
-    } else {
     }
   } else {
     break;

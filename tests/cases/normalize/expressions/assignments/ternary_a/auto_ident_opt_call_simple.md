@@ -53,14 +53,13 @@ $(a);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 let a = undefined;
-const tmpIfTest$1 = $ != null;
+const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
-} else {
 }
-const tmpIfTest = a;
-if (tmpIfTest) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);

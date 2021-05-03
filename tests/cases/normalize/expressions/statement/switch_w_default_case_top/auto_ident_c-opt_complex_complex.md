@@ -121,11 +121,11 @@ tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     const tmpChainElementCall = $(b);
-    const tmpIfTest$5 = tmpChainElementCall != null;
+    const tmpIfTest$5 = tmpChainElementCall == null;
     if (tmpIfTest$5) {
+    } else {
       const tmpChainRootComputed = $('x');
       tmpChainElementCall[tmpChainRootComputed];
-    } else {
     }
     break tmpSwitchBreak;
   } else {

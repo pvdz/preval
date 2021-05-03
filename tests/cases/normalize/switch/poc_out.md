@@ -139,7 +139,7 @@ exit: {
   } else {
   }
   let tmpIfTest$1 = fallthrough;
-  if (tmpIfTest$1) {
+  if (fallthrough) {
   } else {
     const tmpBinBothRhs$1 = $(2);
     tmpIfTest$1 = undefined === tmpBinBothRhs$1;
@@ -150,7 +150,7 @@ exit: {
   } else {
   }
   let tmpIfTest$3 = fallthrough;
-  if (tmpIfTest$3) {
+  if (fallthrough) {
   } else {
     const tmpBinBothRhs$3 = $(3);
     tmpIfTest$3 = undefined === tmpBinBothRhs$3;

@@ -53,11 +53,7 @@ const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 const a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  tmpCalleeParam = $(100);
-} else {
-}
+const tmpCalleeParam = $(100);
 $(tmpCalleeParam);
 $(a);
 `````

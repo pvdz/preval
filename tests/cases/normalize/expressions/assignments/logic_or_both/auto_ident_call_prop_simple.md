@@ -51,7 +51,7 @@ $(a);
 const b = { $: $ };
 let a = b.$(1);
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   const tmpNestedComplexRhs = b.$(1);
   a = tmpNestedComplexRhs;

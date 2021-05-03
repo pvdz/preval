@@ -72,13 +72,13 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 $(1);
 let a = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$3;
-} else {
 }
 $(a);
 `````

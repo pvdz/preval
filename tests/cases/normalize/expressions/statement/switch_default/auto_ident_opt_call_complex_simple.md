@@ -61,10 +61,10 @@ $(a);
 const a = { a: 999, b: 1000 };
 $(1);
 const tmpChainElementCall = $($);
-const tmpIfTest$1 = tmpChainElementCall != null;
+const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
-  tmpChainElementCall.call($, 1);
 } else {
+  tmpChainElementCall.call($, 1);
 }
 $(a);
 `````

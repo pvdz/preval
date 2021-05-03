@@ -54,12 +54,12 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpAnonDefaultExport = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpAnonDefaultExport = tmpChainElementObject;
-} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);

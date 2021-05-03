@@ -53,18 +53,17 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest$1 = tmpChainRootProp != null;
+const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  tmpIfTest = tmpChainElementObject;
-} else {
-}
-if (tmpIfTest) {
   $(100);
 } else {
-  $(200);
+  const tmpChainElementObject = tmpChainRootProp.x;
+  if (tmpChainElementObject) {
+    $(100);
+  } else {
+    $(200);
+  }
 }
 $(a);
 `````

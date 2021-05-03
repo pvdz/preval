@@ -57,10 +57,10 @@ if (tmpIfTest) {
   $(100);
 } else {
   const tmpChainElementCall = $(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
+  const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
-    tmpChainElementCall.x;
   } else {
+    tmpChainElementCall.x;
   }
 }
 $(a);

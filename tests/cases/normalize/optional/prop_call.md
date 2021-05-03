@@ -71,10 +71,10 @@ const tmpObjLitVal = function (...$$0) {
 const a = { x: tmpObjLitVal, y: 100 };
 const tmpChainElementCall = $(a);
 const tmpChainElementObject = tmpChainElementCall.x;
-const tmpIfTest = tmpChainElementObject != null;
+const tmpIfTest = tmpChainElementObject == null;
 if (tmpIfTest) {
-  tmpChainElementObject.call(tmpChainElementCall, 1, 2, 3);
 } else {
+  tmpChainElementObject.call(tmpChainElementCall, 1, 2, 3);
 }
 `````
 

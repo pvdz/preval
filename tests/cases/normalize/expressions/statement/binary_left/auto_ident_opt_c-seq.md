@@ -52,11 +52,11 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpBinBothLhs = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpBinBothLhs = tmpChainElementObject;
-} else {
 }
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;

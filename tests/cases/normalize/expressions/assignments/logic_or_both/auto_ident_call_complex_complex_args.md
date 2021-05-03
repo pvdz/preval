@@ -59,7 +59,7 @@ const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 let a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   const tmpCallCallee$3 = $($);
   const tmpCalleeParam$5 = $(1);

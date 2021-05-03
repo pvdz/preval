@@ -67,14 +67,14 @@ const f = function () {
   debugger;
   a = undefined;
   const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall != null;
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
+    return a;
+  } else {
     const tmpCallVal = tmpChainElementCall.call;
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
     a = tmpChainElementCall$1;
-    return a;
-  } else {
     return a;
   }
 };

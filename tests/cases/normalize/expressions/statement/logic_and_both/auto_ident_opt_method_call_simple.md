@@ -60,19 +60,19 @@ $(a);
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   tmpIfTest = tmpChainElementCall;
-} else {
 }
 if (tmpIfTest) {
-  const tmpIfTest$3 = b != null;
+  const tmpIfTest$3 = b == null;
   if (tmpIfTest$3) {
+  } else {
     const tmpChainElementObject$1 = b.c;
     tmpChainElementObject$1.call(b, 1);
-  } else {
   }
 } else {
 }

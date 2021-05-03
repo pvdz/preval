@@ -369,6 +369,7 @@ export function registerGlobalIdent(
     isBuiltin, // Make a distinction between known builtins and unknown builtins.
     bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits. Should be set for anything else (which is only var decls after normalization).
     rwOrder: undefined, // Array<read|write>. Sorted in DFS order ASC, once at the start of phase2
+    tainted: false, // For single rules, mark an identifier dirty, consider its caches potentially busted, requiring another phase1 first.
     // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
     // Useful recent thread on binding mutations: https://twitter.com/youyuxi/status/1329221913579827200
     // var/let a;
@@ -644,7 +645,10 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
     let globalName = node.name;
     if (ignoreGlobals) return globalName; // Ignore the globals. Assume they are already handled (function cloning)
     vlog('- The ident `' + globalName + '` could not be resolved and is an implicit global (potentially builtin)');
-    if (globalName.startsWith(IMPLICIT_GLOBAL_PREFIX) || globallyUniqueNamingRegistry.has(globalName) && !globallyUniqueNamingRegistry.get(globalName).isImplicitGlobal) {
+    if (
+      globalName.startsWith(IMPLICIT_GLOBAL_PREFIX) ||
+      (globallyUniqueNamingRegistry.has(globalName) && !globallyUniqueNamingRegistry.get(globalName).isImplicitGlobal)
+    ) {
       // Rename all implicit globals first. Then do a second sweep for all implicit globals and rename
       // all explicits with the same name to avoid collisions, after which the implicits can be renamed
       // back to their initial (implicit global) name, since those names must be maintained as we don't

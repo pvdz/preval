@@ -54,8 +54,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpCallCompProp = $('$');
   a = b[tmpCallCompProp](1);
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

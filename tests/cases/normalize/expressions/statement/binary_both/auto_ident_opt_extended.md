@@ -66,22 +66,22 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 let tmpBinBothLhs = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   tmpBinBothLhs = tmpChainElementObject$3;
-} else {
 }
 let tmpBinBothRhs = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject$5 = b.x;
   const tmpChainElementObject$7 = tmpChainElementObject$5.y;
   const tmpChainElementObject$9 = tmpChainElementObject$7.z;
   tmpBinBothRhs = tmpChainElementObject$9;
-} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

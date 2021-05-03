@@ -51,17 +51,17 @@ tmpCallCallee(tmpCalleeParam);
 const tmpObjLitVal = {};
 const a = { b: tmpObjLitVal };
 let tmpCalleeParam = undefined;
-const tmpIfTest = a != null;
+const tmpIfTest = a == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = a.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpIfTest$1 = tmpChainElementObject$1 != null;
+  const tmpIfTest$1 = tmpChainElementObject$1 == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementObject$3 = tmpChainElementObject$1.d;
     tmpCalleeParam = tmpChainElementObject$3;
-  } else {
   }
-} else {
 }
 $(tmpCalleeParam);
 `````

@@ -67,13 +67,14 @@ while (true) {
     if (a) {
       const tmpCalleeParam$3 = $(2);
       a = $(tmpCalleeParam$3);
+      if (a) {
+        $(100);
+      } else {
+        break;
+      }
     } else {
+      break;
     }
-  } else {
-  }
-  const tmpIfTest = a;
-  if (tmpIfTest) {
-    $(100);
   } else {
     break;
   }

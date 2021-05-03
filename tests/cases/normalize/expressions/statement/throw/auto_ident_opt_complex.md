@@ -50,11 +50,11 @@ throw tmpThrowArg;
 const b = { x: 1 };
 let tmpThrowArg = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpThrowArg = tmpChainElementObject;
-} else {
 }
 throw tmpThrowArg;
 `````

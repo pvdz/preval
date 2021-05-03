@@ -63,11 +63,11 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpChainElementCall = $(b);
-    const tmpIfTest$1 = tmpChainElementCall != null;
+    const tmpIfTest$1 = tmpChainElementCall == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainRootComputed = $('x');
       tmpChainElementCall[tmpChainRootComputed];
-    } else {
     }
   } else {
     break;

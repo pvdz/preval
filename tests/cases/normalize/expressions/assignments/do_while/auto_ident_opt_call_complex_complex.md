@@ -76,17 +76,17 @@ let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     let tmpNestedComplexRhs = undefined;
     const tmpChainElementCall = $($);
-    const tmpIfTest$1 = tmpChainElementCall != null;
+    const tmpIfTest$1 = tmpChainElementCall == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpCallVal = tmpChainElementCall.call;
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
       tmpNestedComplexRhs = tmpChainElementCall$1;
-    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;

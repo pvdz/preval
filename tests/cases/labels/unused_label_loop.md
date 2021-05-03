@@ -43,8 +43,7 @@ while (true) {
 let x = 2;
 while (true) {
   x = x - 1;
-  const tmpIfTest = x;
-  if (tmpIfTest) {
+  if (x) {
     $(x);
   } else {
     break;

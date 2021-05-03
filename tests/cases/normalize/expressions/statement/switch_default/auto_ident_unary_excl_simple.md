@@ -46,10 +46,6 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  !arg;
-} else {
-}
 $(a, arg);
 `````
 

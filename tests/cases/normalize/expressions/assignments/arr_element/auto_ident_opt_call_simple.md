@@ -56,19 +56,19 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-const tmpIfTest = $ != null;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
-} else {
 }
 const tmpBinBothLhs = a;
 let tmpSSA_a = undefined;
-const tmpIfTest$1 = $ != null;
+const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementCall$1 = $(1);
   tmpSSA_a = tmpChainElementCall$1;
-} else {
 }
 const tmpBinBothRhs = tmpSSA_a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

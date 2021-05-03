@@ -81,34 +81,34 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall != null;
+const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainRootComputed = $('$');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 = tmpChainElementObject != null;
+  const tmpIfTest$3 = tmpChainElementObject == null;
   if (tmpIfTest$3) {
+  } else {
     const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
     tmpIfTest = tmpChainElementCall$1;
-  } else {
   }
-} else {
 }
 if (tmpIfTest) {
   const tmpChainElementCall$3 = $(b);
-  const tmpIfTest$5 = tmpChainElementCall$3 != null;
+  const tmpIfTest$5 = tmpChainElementCall$3 == null;
   if (tmpIfTest$5) {
+  } else {
     const tmpChainRootComputed$1 = $('$');
     const tmpChainElementObject$1 = tmpChainElementCall$3[tmpChainRootComputed$1];
-    const tmpIfTest$7 = tmpChainElementObject$1 != null;
+    const tmpIfTest$7 = tmpChainElementObject$1 == null;
     if (tmpIfTest$7) {
+    } else {
       const tmpCallVal$1 = tmpChainElementObject$1.call;
       const tmpCalleeParam$5 = $(1);
       tmpCallVal$1.call(tmpChainElementObject$1, tmpChainElementCall$3, tmpCalleeParam$5);
-    } else {
     }
-  } else {
   }
 } else {
 }

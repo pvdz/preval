@@ -21,6 +21,7 @@ import { assignHoisting } from './phase2assignhoisting.mjs';
 import { arrrrrr } from './phase2arrrr.mjs';
 import { constAssigns } from './phase2const_assigns.mjs';
 import { ifTailExtending } from './phase2if_tail_extending.mjs';
+import { ifFlipping } from './phase2if_flip.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -70,6 +71,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const moved2 = assignHoisting(fdata);
   if (moved2) return moved2;
+
+  const flipped = ifFlipping(fdata);
+  if (flipped) return flipped;
 
   const staticLetsInlined = staticLets(fdata);
   if (staticLetsInlined) return staticLetsInlined;

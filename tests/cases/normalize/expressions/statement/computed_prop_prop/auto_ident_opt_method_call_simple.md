@@ -56,12 +56,12 @@ const b = { c: $ };
 const a = { a: 999, b: 1000 };
 const obj = {};
 let tmpCompProp = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   tmpCompProp = tmpChainElementCall;
-} else {
 }
 obj[tmpCompProp];
 $(a);

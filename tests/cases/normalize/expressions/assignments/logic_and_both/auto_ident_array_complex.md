@@ -54,7 +54,7 @@ const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 let a = [tmpArrElement, 2, tmpArrElement$3];
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   const tmpArrElement$5 = $(1);
   const tmpArrElement$9 = $(3);
   const tmpNestedComplexRhs = [tmpArrElement$5, 2, tmpArrElement$9];

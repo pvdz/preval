@@ -55,12 +55,12 @@ $(a);
 const b = { c: $ };
 const tmpBinBothLhs = $(100);
 let a = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   a = tmpChainElementCall;
-} else {
 }
 const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

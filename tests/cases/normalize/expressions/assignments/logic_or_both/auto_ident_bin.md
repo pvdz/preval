@@ -52,7 +52,7 @@ const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 let a = tmpBinBothLhs + tmpBinBothRhs;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   const tmpBinBothLhs$1 = $(1);
   const tmpBinBothRhs$1 = $(2);

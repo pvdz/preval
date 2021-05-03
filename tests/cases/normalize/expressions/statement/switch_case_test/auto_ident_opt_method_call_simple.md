@@ -71,12 +71,12 @@ const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   tmpBinLhs = tmpChainElementCall;
-} else {
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

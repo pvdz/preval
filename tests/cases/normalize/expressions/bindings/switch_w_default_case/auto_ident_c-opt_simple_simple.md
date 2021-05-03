@@ -100,11 +100,11 @@ if (tmpIfTest$9) {
 `````js filename=intro
 const tmpSSA_b = { x: 1 };
 let tmpSSA_a = undefined;
-const tmpIfTest$5 = tmpSSA_b != null;
+const tmpIfTest$5 = tmpSSA_b == null;
 if (tmpIfTest$5) {
+} else {
   const tmpChainElementObject = tmpSSA_b.x;
   tmpSSA_a = tmpChainElementObject;
-} else {
 }
 $(tmpSSA_a);
 $('fail1');

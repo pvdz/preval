@@ -69,24 +69,25 @@ const b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 while (true) {
   a = undefined;
-  const tmpIfTest$1 = b != null;
+  const tmpIfTest$1 = b == null;
   if (tmpIfTest$1) {
+    $(100);
+  } else {
     const tmpChainElementObject = b.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
     const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpIfTest$3 = tmpChainElementObject$3 != null;
+    const tmpIfTest$3 = tmpChainElementObject$3 == null;
     if (tmpIfTest$3) {
+      $(100);
+    } else {
       const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
       a = tmpChainElementCall;
-    } else {
+      if (a) {
+        $(100);
+      } else {
+        break;
+      }
     }
-  } else {
-  }
-  const tmpIfTest = a;
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
   }
 }
 $(a);

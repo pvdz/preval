@@ -118,10 +118,10 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    const tmpIfTest$5 = b != null;
+    const tmpIfTest$5 = b == null;
     if (tmpIfTest$5) {
-      b.x;
     } else {
+      b.x;
     }
     break tmpSwitchBreak;
   } else {

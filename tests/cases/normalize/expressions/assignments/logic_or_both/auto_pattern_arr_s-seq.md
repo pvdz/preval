@@ -61,18 +61,8 @@ $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-let tmpSSA_a = arrPatternSplat$1[0];
-let tmpSSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs;
-if (tmpSSA_tmpCalleeParam) {
-} else {
-  $(10);
-  $(20);
-  const tmpNestedAssignArrPatternRhs$1 = [1, 2];
-  const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$1];
-  tmpSSA_a = arrPatternSplat$3[0];
-  tmpSSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
-}
-$(tmpSSA_tmpCalleeParam);
+const tmpSSA_a = arrPatternSplat$1[0];
+$(tmpNestedAssignArrPatternRhs);
 $(tmpSSA_a);
 `````
 

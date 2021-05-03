@@ -61,11 +61,11 @@ const a = { b: tmpObjLitVal };
 let tmpCalleeParam = undefined;
 const tmpChainElementObject = a.b;
 const tmpChainElementObject$1 = tmpChainElementObject.c;
-const tmpIfTest = tmpChainElementObject$1 != null;
+const tmpIfTest = tmpChainElementObject$1 == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject$3 = tmpChainElementObject$1.d;
   tmpCalleeParam = tmpChainElementObject$3;
-} else {
 }
 $(tmpCalleeParam);
 `````

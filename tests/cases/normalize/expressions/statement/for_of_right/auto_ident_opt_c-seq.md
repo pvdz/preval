@@ -53,11 +53,11 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpForOfDeclRhs = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpForOfDeclRhs = tmpChainElementObject;
-} else {
 }
 let x = undefined;
 for (x of tmpForOfDeclRhs) {

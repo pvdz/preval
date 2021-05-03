@@ -70,7 +70,7 @@ const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 let tmpSSA_a = tmpPostUpdArgVal;
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   const tmpCalleeParam$3 = $(b);
   const tmpPostUpdArgObj$1 = $(tmpCalleeParam$3);
   const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;

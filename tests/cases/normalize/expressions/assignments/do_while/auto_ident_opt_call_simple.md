@@ -71,14 +71,14 @@ let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     let tmpNestedComplexRhs = undefined;
-    const tmpIfTest$1 = $ != null;
+    const tmpIfTest$1 = $ == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainElementCall = $(1);
       tmpNestedComplexRhs = tmpChainElementCall;
-    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;

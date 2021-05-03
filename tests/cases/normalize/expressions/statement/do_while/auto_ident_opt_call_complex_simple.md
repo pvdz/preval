@@ -70,15 +70,15 @@ const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     tmpIfTest = undefined;
     const tmpChainElementCall = $($);
-    const tmpIfTest$1 = tmpChainElementCall != null;
+    const tmpIfTest$1 = tmpChainElementCall == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
       tmpIfTest = tmpChainElementCall$1;
-    } else {
     }
   }
   if (tmpIfTest) {

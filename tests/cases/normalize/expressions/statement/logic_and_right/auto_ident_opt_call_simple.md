@@ -47,10 +47,10 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  const tmpIfTest$1 = $ != null;
+  const tmpIfTest$1 = $ == null;
   if (tmpIfTest$1) {
-    $(1);
   } else {
+    $(1);
   }
 } else {
 }

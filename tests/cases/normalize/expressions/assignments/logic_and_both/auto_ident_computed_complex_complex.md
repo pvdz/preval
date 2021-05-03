@@ -57,7 +57,7 @@ const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
 let tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   const tmpCompObj = $(b);
   const tmpCompProp = $('c');
   const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];

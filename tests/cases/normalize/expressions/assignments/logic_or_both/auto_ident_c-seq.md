@@ -56,7 +56,7 @@ $(1);
 $(2);
 let a = $(1);
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   $(1);
   $(2);

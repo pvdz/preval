@@ -50,11 +50,11 @@ $(a);
 `````js filename=intro
 const obj = {};
 let a = undefined;
-const tmpIfTest = $ != null;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
-} else {
 }
 const tmpCompProp = a;
 obj[tmpCompProp];

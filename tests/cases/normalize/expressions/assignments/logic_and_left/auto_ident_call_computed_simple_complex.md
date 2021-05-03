@@ -52,7 +52,7 @@ const b = { $: $ };
 const tmpCallCompProp = $('$');
 const a = b[tmpCallCompProp](1);
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
 }

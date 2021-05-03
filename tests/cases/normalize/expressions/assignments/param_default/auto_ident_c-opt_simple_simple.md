@@ -72,11 +72,11 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 let tmpNestedComplexRhs = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.x;
   tmpNestedComplexRhs = tmpChainElementObject;
-} else {
 }
 const tmpSSA_a = tmpNestedComplexRhs;
 $(undefined);

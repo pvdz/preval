@@ -71,11 +71,11 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.c;
   tmpChainElementObject.call(b, 1);
-} else {
 }
 $(undefined);
 $(a);

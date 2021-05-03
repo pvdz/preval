@@ -88,15 +88,15 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpIfTest$3 = b != null;
+  const tmpIfTest$3 = b == null;
   if (tmpIfTest$3) {
-    const tmpChainElementObject = b.x;
-    const tmpIfTest$5 = tmpChainElementObject != null;
-    if (tmpIfTest$5) {
-      tmpChainElementObject.y;
-    } else {
-    }
   } else {
+    const tmpChainElementObject = b.x;
+    const tmpIfTest$5 = tmpChainElementObject == null;
+    if (tmpIfTest$5) {
+    } else {
+      tmpChainElementObject.y;
+    }
   }
 } else {
 }

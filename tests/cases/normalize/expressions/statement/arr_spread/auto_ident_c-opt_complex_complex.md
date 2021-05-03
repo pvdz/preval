@@ -53,12 +53,12 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpArrElToSpread = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpArrElToSpread = tmpChainElementObject;
-} else {
 }
 [...tmpArrElToSpread];
 $(a);

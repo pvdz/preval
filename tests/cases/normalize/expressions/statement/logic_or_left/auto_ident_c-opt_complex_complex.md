@@ -56,12 +56,12 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall != null;
+const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpIfTest = tmpChainElementObject;
-} else {
 }
 if (tmpIfTest) {
 } else {

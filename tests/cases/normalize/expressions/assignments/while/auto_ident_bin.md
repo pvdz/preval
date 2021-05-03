@@ -50,8 +50,7 @@ while (true) {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
   a = tmpBinBothLhs + tmpBinBothRhs;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

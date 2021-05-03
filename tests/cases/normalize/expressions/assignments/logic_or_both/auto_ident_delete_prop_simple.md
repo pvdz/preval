@@ -51,7 +51,7 @@ $(a, arg);
 const arg = { y: 1 };
 let a = delete arg.y;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   const tmpNestedComplexRhs = delete arg.y;
   a = tmpNestedComplexRhs;

@@ -65,12 +65,12 @@ $(a);
 const b = { x: 1 };
 const f = function () {
   debugger;
-  const tmpIfTest = b != null;
+  const tmpIfTest = b == null;
   if (tmpIfTest) {
+    return undefined;
+  } else {
     const tmpChainElementObject = b.x;
     return tmpChainElementObject;
-  } else {
-    return undefined;
   }
 };
 const a = { a: 999, b: 1000 };

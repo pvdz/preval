@@ -67,7 +67,7 @@ const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     const tmpUnaryArg = $(1);
     tmpIfTest = typeof tmpUnaryArg;

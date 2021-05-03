@@ -54,12 +54,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const a = { b: tmpObjLitVal };
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
+$(a);
 $(1);
 const tmpAssignComMemLhsProp = $('b');
 const tmpAssignComputedRhs = $(2);

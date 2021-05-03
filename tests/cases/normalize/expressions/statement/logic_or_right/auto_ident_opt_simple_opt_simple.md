@@ -60,15 +60,15 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpIfTest$1 = b != null;
+  const tmpIfTest$1 = b == null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject = b.x;
-    const tmpIfTest$3 = tmpChainElementObject != null;
-    if (tmpIfTest$3) {
-      tmpChainElementObject.y;
-    } else {
-    }
   } else {
+    const tmpChainElementObject = b.x;
+    const tmpIfTest$3 = tmpChainElementObject == null;
+    if (tmpIfTest$3) {
+    } else {
+      tmpChainElementObject.y;
+    }
   }
 }
 $(a);

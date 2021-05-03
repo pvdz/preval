@@ -71,8 +71,7 @@ if (a) {
   }
 } else {
 }
-const tmpIfTest = a;
-if (tmpIfTest) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);

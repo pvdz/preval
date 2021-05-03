@@ -64,7 +64,7 @@ let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     const tmpNestedComplexRhs = $(1);
     a = tmpNestedComplexRhs;

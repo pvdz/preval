@@ -57,7 +57,7 @@ const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 let tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
 } else {
   const tmpDeleteCompObj$1 = $(arg);
   const tmpDeleteCompProp$1 = $('y');

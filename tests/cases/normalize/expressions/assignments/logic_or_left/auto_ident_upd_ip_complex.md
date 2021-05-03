@@ -60,7 +60,7 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 let tmpCalleeParam = tmpPostUpdArgVal;
-if (tmpCalleeParam) {
+if (tmpPostUpdArgVal) {
 } else {
   tmpCalleeParam = $(100);
 }

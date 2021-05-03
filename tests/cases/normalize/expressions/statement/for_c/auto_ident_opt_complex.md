@@ -62,10 +62,10 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpChainElementCall = $(b);
-    const tmpIfTest$1 = tmpChainElementCall != null;
+    const tmpIfTest$1 = tmpChainElementCall == null;
     if (tmpIfTest$1) {
-      tmpChainElementCall.x;
     } else {
+      tmpChainElementCall.x;
     }
   } else {
     break;

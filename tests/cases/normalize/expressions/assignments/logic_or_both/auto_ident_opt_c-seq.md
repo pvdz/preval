@@ -65,22 +65,22 @@ $(a);
 const b = { x: 1 };
 let a = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
-} else {
 }
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp$1 = $(b);
-  const tmpIfTest$1 = tmpChainRootProp$1 != null;
+  const tmpIfTest$1 = tmpChainRootProp$1 == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementObject$1 = tmpChainRootProp$1.x;
     tmpNestedComplexRhs = tmpChainElementObject$1;
-  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

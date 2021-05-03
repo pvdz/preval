@@ -54,11 +54,11 @@ const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1 = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpCalleeParam$1 = tmpChainElementObject;
-} else {
 }
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);

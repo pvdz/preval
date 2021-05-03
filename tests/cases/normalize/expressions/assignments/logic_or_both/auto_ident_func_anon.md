@@ -62,7 +62,7 @@ let a = function () {
   return undefined;
 };
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   const tmpNestedComplexRhs = function () {
     debugger;

@@ -67,13 +67,13 @@ const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
-} else {
 }
 $(a);
 $(undefined);

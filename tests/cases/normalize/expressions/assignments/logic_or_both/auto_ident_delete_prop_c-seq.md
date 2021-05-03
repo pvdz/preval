@@ -60,7 +60,7 @@ $(2);
 const tmpDeleteObj = $(arg);
 let tmpSSA_a = delete tmpDeleteObj.y;
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
 } else {
   $(1);
   $(2);

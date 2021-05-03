@@ -85,10 +85,10 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpIfTest$3 = b != null;
+  const tmpIfTest$3 = b == null;
   if (tmpIfTest$3) {
-    b.x;
   } else {
+    b.x;
   }
 } else {
 }

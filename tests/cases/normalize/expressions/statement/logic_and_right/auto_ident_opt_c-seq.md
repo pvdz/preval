@@ -53,10 +53,10 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpChainRootProp = $(b);
-  const tmpIfTest$1 = tmpChainRootProp != null;
+  const tmpIfTest$1 = tmpChainRootProp == null;
   if (tmpIfTest$1) {
-    tmpChainRootProp.x;
   } else {
+    tmpChainRootProp.x;
   }
 } else {
 }

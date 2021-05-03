@@ -64,13 +64,13 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpIfTest = b != null;
+  const tmpIfTest = b == null;
   if (tmpIfTest) {
+    return undefined;
+  } else {
     const tmpChainElementObject = b.c;
     const tmpChainElementCall = tmpChainElementObject.call(b, 1);
     return tmpChainElementCall;
-  } else {
-    return undefined;
   }
 };
 const b = { c: $ };

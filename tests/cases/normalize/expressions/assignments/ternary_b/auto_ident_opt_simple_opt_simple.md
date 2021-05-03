@@ -69,16 +69,16 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$1 = b != null;
+  const tmpIfTest$1 = b == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementObject = b.x;
-    const tmpIfTest$3 = tmpChainElementObject != null;
+    const tmpIfTest$3 = tmpChainElementObject == null;
     if (tmpIfTest$3) {
+    } else {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       tmpNestedComplexRhs = tmpChainElementObject$1;
-    } else {
     }
-  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

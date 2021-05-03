@@ -48,11 +48,7 @@ $(a);
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 const a = [tmpArrElement, 2, tmpArrElement$3];
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  tmpCalleeParam = $(100);
-} else {
-}
+const tmpCalleeParam = $(100);
 $(tmpCalleeParam);
 $(a);
 `````

@@ -58,20 +58,20 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const a = { x: tmpObjLitVal };
 let tmpCalleeParam = undefined;
 const tmpChainElementCall = $(a);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
+  const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     const tmpChainRootComputed$3 = $('z');
     const tmpChainElementObject$3 = tmpChainElementObject$1[tmpChainRootComputed$3];
     tmpCalleeParam = tmpChainElementObject$3;
-  } else {
   }
-} else {
 }
 $(tmpCalleeParam);
 `````

@@ -54,7 +54,7 @@ $(1);
 $(2);
 const a = delete arg.y;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
 }

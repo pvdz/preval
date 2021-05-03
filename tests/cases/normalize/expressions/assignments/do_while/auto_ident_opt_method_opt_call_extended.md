@@ -87,21 +87,21 @@ let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     let tmpNestedComplexRhs = undefined;
-    const tmpIfTest$1 = b != null;
+    const tmpIfTest$1 = b == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainElementObject = b.c;
       const tmpChainElementObject$1 = tmpChainElementObject.d;
       const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-      const tmpIfTest$3 = tmpChainElementObject$3 != null;
+      const tmpIfTest$3 = tmpChainElementObject$3 == null;
       if (tmpIfTest$3) {
+      } else {
         const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
         tmpNestedComplexRhs = tmpChainElementCall;
-      } else {
       }
-    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;

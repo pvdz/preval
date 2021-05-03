@@ -63,21 +63,21 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall != null;
+const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpIfTest = tmpChainElementObject;
-} else {
 }
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $(b);
-  const tmpIfTest$3 = tmpChainElementCall$1 != null;
+  const tmpIfTest$3 = tmpChainElementCall$1 == null;
   if (tmpIfTest$3) {
+  } else {
     const tmpChainRootComputed$1 = $('x');
     tmpChainElementCall$1[tmpChainRootComputed$1];
-  } else {
   }
 }
 $(a);

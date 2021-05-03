@@ -77,22 +77,22 @@ const f = function () {
   debugger;
   a = undefined;
   const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall != null;
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
+    return a;
+  } else {
     const tmpChainRootComputed = $('$');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject != null;
+    const tmpIfTest$1 = tmpChainElementObject == null;
     if (tmpIfTest$1) {
+      return a;
+    } else {
       const tmpCallVal = tmpChainElementObject.call;
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
       a = tmpChainElementCall$1;
       return a;
-    } else {
-      return a;
     }
-  } else {
-    return a;
   }
 };
 const b = { $: $ };

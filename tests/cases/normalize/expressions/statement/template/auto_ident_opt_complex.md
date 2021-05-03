@@ -54,11 +54,11 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpTemplateExpr = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpTemplateExpr = tmpChainElementObject;
-} else {
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);

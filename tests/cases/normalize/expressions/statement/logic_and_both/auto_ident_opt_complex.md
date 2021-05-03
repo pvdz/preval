@@ -61,18 +61,18 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall != null;
+const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpIfTest = tmpChainElementObject;
-} else {
 }
 if (tmpIfTest) {
   const tmpChainElementCall$1 = $(b);
-  const tmpIfTest$3 = tmpChainElementCall$1 != null;
+  const tmpIfTest$3 = tmpChainElementCall$1 == null;
   if (tmpIfTest$3) {
-    tmpChainElementCall$1.x;
   } else {
+    tmpChainElementCall$1.x;
   }
 } else {
 }

@@ -49,7 +49,7 @@ $(a, arg);
 const arg = { y: 1 };
 const a = delete arg.y;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   tmpCalleeParam = $(100);
 }

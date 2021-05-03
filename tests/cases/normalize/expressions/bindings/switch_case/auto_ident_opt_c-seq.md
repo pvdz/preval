@@ -74,11 +74,11 @@ if (tmpIfTest$1) {
 const tmpSSA_b = { x: 1 };
 let tmpSSA_a = undefined;
 const tmpChainRootProp = $(tmpSSA_b);
-const tmpIfTest$3 = tmpChainRootProp != null;
+const tmpIfTest$3 = tmpChainRootProp == null;
 if (tmpIfTest$3) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpSSA_a = tmpChainElementObject;
-} else {
 }
 $(tmpSSA_a);
 `````

@@ -60,12 +60,12 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
-  const tmpIfTest = b != null;
+  const tmpIfTest = b == null;
   if (tmpIfTest) {
+  } else {
     const tmpChainElementObject = b.c;
     const tmpChainElementCall = tmpChainElementObject.call(b, 1);
     tmpNestedComplexRhs = tmpChainElementCall;
-  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

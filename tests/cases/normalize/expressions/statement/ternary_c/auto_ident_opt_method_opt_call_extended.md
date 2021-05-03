@@ -66,17 +66,17 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpIfTest$1 = b != null;
+  const tmpIfTest$1 = b == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementObject = b.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
     const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpIfTest$3 = tmpChainElementObject$3 != null;
+    const tmpIfTest$3 = tmpChainElementObject$3 == null;
     if (tmpIfTest$3) {
-      tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     } else {
+      tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     }
-  } else {
   }
 }
 $(a);

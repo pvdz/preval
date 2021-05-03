@@ -52,7 +52,7 @@ $(1);
 $(2);
 const a = $(1);
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
 }

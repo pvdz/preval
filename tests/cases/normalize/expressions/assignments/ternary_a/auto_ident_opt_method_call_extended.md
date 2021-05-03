@@ -65,17 +65,16 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 let tmpCalleeParam = undefined;
 let a = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
-} else {
 }
-const tmpIfTest = a;
-if (tmpIfTest) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);

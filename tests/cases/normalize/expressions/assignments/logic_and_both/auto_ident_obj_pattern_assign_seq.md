@@ -78,7 +78,7 @@ let tmpSSA_x = tmpNestedAssignObjPatternRhs.x;
 let tmpSSA_y = tmpNestedAssignObjPatternRhs.y;
 let tmpSSA_a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   $(tmpSSA_x);
   $(tmpSSA_y);
   const tmpObjLitVal$3 = $(3);

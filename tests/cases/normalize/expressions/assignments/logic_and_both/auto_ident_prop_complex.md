@@ -54,7 +54,7 @@ const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
 let tmpSSA_a = tmpAssignRhsProp.c;
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   const tmpCompObj = $(b);
   const tmpNestedComplexRhs = tmpCompObj.c;
   tmpSSA_a = tmpNestedComplexRhs;

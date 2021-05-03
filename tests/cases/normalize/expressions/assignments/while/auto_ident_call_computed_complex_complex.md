@@ -55,8 +55,7 @@ while (true) {
   const tmpCallCompObj = $(b);
   const tmpCallCompProp = $('$');
   a = tmpCallCompObj[tmpCallCompProp](1);
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

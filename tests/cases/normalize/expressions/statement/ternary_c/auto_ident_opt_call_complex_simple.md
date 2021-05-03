@@ -52,10 +52,10 @@ if (tmpIfTest) {
   $(100);
 } else {
   const tmpChainElementCall = $($);
-  const tmpIfTest$1 = tmpChainElementCall != null;
+  const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
-    tmpChainElementCall.call($, 1);
   } else {
+    tmpChainElementCall.call($, 1);
   }
 }
 $(a);

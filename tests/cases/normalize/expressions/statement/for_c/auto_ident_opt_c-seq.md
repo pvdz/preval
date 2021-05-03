@@ -61,10 +61,10 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpChainRootProp = $(b);
-    const tmpIfTest$1 = tmpChainRootProp != null;
+    const tmpIfTest$1 = tmpChainRootProp == null;
     if (tmpIfTest$1) {
-      tmpChainRootProp.x;
     } else {
+      tmpChainRootProp.x;
     }
   } else {
     break;

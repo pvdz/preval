@@ -52,13 +52,13 @@ $(a);
 const a = { a: 999, b: 1000 };
 let tmpAnonDefaultExport = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   tmpAnonDefaultExport = tmpChainElementCall$1;
-} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);

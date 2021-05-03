@@ -58,12 +58,12 @@ const a = { a: 999, b: 1000 };
 const obj = {};
 let tmpCompProp = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpCompProp = tmpChainElementObject;
-} else {
 }
 obj[tmpCompProp];
 $(a);

@@ -55,12 +55,12 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpForInDeclRhs = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpForInDeclRhs = tmpChainElementObject;
-} else {
 }
 let x = undefined;
 for (x in tmpForInDeclRhs) {

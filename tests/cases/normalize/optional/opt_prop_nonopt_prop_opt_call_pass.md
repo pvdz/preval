@@ -46,16 +46,16 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpObjLitVal = { c: $ };
 const a = { b: tmpObjLitVal };
-const tmpIfTest = a != null;
+const tmpIfTest = a == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = a.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpIfTest$1 = tmpChainElementObject$1 != null;
+  const tmpIfTest$1 = tmpChainElementObject$1 == null;
   if (tmpIfTest$1) {
-    tmpChainElementObject$1.call(tmpChainElementObject, 1);
   } else {
+    tmpChainElementObject$1.call(tmpChainElementObject, 1);
   }
-} else {
 }
 `````
 

@@ -59,7 +59,7 @@ const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 let tmpCalleeParam = tmpNestedPropCompoundComplexRhs;
-if (tmpCalleeParam) {
+if (tmpNestedPropCompoundComplexRhs) {
 } else {
   tmpCalleeParam = $(100);
 }

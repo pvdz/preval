@@ -65,18 +65,18 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const tmpBinBothLhs = $(100);
 let a = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpIfTest$1 = tmpChainElementObject$3 != null;
+  const tmpIfTest$1 = tmpChainElementObject$3 == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     a = tmpChainElementCall;
-  } else {
   }
-} else {
 }
 const tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

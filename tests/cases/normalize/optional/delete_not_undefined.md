@@ -38,10 +38,10 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const o = $(undefined);
-const tmpIfTest = o != null;
+const tmpIfTest = o == null;
 if (tmpIfTest) {
-  delete o.x;
 } else {
+  delete o.x;
 }
 `````
 

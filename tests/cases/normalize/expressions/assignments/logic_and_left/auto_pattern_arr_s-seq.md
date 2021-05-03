@@ -57,11 +57,7 @@ $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_a = arrPatternSplat$1[0];
-let tmpSSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs;
-if (tmpSSA_tmpCalleeParam) {
-  tmpSSA_tmpCalleeParam = $(100);
-} else {
-}
+const tmpSSA_tmpCalleeParam = $(100);
 $(tmpSSA_tmpCalleeParam);
 $(tmpSSA_a);
 `````

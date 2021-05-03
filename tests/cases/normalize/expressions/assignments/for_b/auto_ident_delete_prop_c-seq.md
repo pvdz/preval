@@ -61,8 +61,7 @@ while (true) {
   $(2);
   const tmpDeleteObj = $(arg);
   a = delete tmpDeleteObj.y;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(1);
   } else {
     break;

@@ -39,11 +39,11 @@ $(y);
 `````js filename=intro
 let y = undefined;
 const tmpChainRootProp = $();
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.foo;
   y = tmpChainElementObject;
-} else {
 }
 $(y);
 `````

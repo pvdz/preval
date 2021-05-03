@@ -85,12 +85,12 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpChainElementCall = $($);
-  const tmpIfTest$3 = tmpChainElementCall != null;
+  const tmpIfTest$3 = tmpChainElementCall == null;
   if (tmpIfTest$3) {
+  } else {
     const tmpCallVal = tmpChainElementCall.call;
     const tmpCalleeParam$1 = $(1);
     tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
-  } else {
   }
 } else {
 }

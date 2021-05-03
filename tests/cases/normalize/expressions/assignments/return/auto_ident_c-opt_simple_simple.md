@@ -67,12 +67,12 @@ let a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
   a = undefined;
-  const tmpIfTest = b != null;
+  const tmpIfTest = b == null;
   if (tmpIfTest) {
-    const tmpChainElementObject = b.x;
-    a = tmpChainElementObject;
     return a;
   } else {
+    const tmpChainElementObject = b.x;
+    a = tmpChainElementObject;
     return a;
   }
 };

@@ -85,11 +85,11 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   a = undefined;
   const tmpChainRootProp = $(b);
-  const tmpIfTest$3 = tmpChainRootProp != null;
+  const tmpIfTest$3 = tmpChainRootProp == null;
   if (tmpIfTest$3) {
+  } else {
     const tmpChainElementObject = tmpChainRootProp.x;
     a = tmpChainElementObject;
-  } else {
   }
 } else {
 }

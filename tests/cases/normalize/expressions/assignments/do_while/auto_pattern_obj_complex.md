@@ -68,7 +68,7 @@ let a = bindingPatternObjRoot.a;
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     const tmpCalleeParam = { a: 1, b: 2 };
     const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);

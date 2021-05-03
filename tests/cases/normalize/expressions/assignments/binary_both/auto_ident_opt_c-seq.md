@@ -62,20 +62,20 @@ $(a);
 const b = { x: 1 };
 let a = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
-} else {
 }
 const tmpBinBothLhs = a;
 let tmpSSA_a = undefined;
 const tmpChainRootProp$1 = $(b);
-const tmpIfTest$1 = tmpChainRootProp$1 != null;
+const tmpIfTest$1 = tmpChainRootProp$1 == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject$1 = tmpChainRootProp$1.x;
   tmpSSA_a = tmpChainElementObject$1;
-} else {
 }
 const tmpBinBothRhs = tmpSSA_a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

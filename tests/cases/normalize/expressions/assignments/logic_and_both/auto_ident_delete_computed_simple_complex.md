@@ -56,7 +56,7 @@ const arg = { y: 1 };
 const tmpDeleteCompProp = $('y');
 let a = delete arg[tmpDeleteCompProp];
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   const tmpDeleteCompProp$1 = $('y');
   const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp$1];
   a = tmpNestedComplexRhs;

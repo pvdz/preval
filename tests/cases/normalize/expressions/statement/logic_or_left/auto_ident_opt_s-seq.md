@@ -53,11 +53,11 @@ $(a);
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.x;
   tmpIfTest = tmpChainElementObject;
-} else {
 }
 if (tmpIfTest) {
 } else {

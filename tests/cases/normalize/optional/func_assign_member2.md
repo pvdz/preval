@@ -61,11 +61,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 let y = undefined;
 const tmpCalleeParam = { foo: 10 };
 const tmpChainRootProp = $(tmpCalleeParam);
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.foo;
   y = tmpChainElementObject;
-} else {
 }
 const tmpReturnArg = $(y);
 $(tmpReturnArg);

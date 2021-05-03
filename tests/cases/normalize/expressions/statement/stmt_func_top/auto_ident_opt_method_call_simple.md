@@ -61,11 +61,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.c;
   tmpChainElementObject.call(b, 1);
-} else {
 }
 $(a);
 $(undefined);

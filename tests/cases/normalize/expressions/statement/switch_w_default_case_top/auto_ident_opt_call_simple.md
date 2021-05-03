@@ -113,10 +113,10 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    const tmpIfTest$5 = $ != null;
+    const tmpIfTest$5 = $ == null;
     if (tmpIfTest$5) {
-      $(1);
     } else {
+      $(1);
     }
     break tmpSwitchBreak;
   } else {

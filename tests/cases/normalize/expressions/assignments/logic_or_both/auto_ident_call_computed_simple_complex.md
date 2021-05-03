@@ -56,7 +56,7 @@ const b = { $: $ };
 const tmpCallCompProp = $('$');
 let a = b[tmpCallCompProp](1);
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   const tmpCallCompProp$1 = $('$');
   const tmpNestedComplexRhs = b[tmpCallCompProp$1](1);

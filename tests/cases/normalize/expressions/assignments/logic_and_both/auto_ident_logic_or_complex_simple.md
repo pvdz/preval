@@ -63,7 +63,7 @@ if (a) {
   a = 2;
 }
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   const tmpCalleeParam$3 = $(0);
   let tmpNestedComplexRhs = $(tmpCalleeParam$3);
   if (tmpNestedComplexRhs) {

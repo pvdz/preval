@@ -53,19 +53,19 @@ tmpCallCallee(tmpCalleeParam);
 const a = {};
 let tmpCalleeParam = undefined;
 const tmpChainElementCall = $(a);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('b');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
+  const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainRootComputed$1 = $('c');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainElementObject, 100);
     tmpCalleeParam = tmpChainElementCall$1;
-  } else {
   }
-} else {
 }
 $(tmpCalleeParam);
 `````

@@ -77,33 +77,33 @@ const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 let tmpBinBothLhs = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
+  const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpBinBothLhs = tmpChainElementObject$1;
-  } else {
   }
-} else {
 }
 let tmpBinBothRhs = undefined;
 const tmpChainElementCall$1 = $(b);
-const tmpIfTest$3 = tmpChainElementCall$1 != null;
+const tmpIfTest$3 = tmpChainElementCall$1 == null;
 if (tmpIfTest$3) {
+} else {
   const tmpChainRootComputed$3 = $('x');
   const tmpChainElementObject$3 = tmpChainElementCall$1[tmpChainRootComputed$3];
-  const tmpIfTest$5 = tmpChainElementObject$3 != null;
+  const tmpIfTest$5 = tmpChainElementObject$3 == null;
   if (tmpIfTest$5) {
+  } else {
     const tmpChainRootComputed$5 = $('y');
     const tmpChainElementObject$5 = tmpChainElementObject$3[tmpChainRootComputed$5];
     tmpBinBothRhs = tmpChainElementObject$5;
-  } else {
   }
-} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

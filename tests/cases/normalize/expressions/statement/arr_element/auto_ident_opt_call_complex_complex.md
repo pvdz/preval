@@ -64,23 +64,23 @@ $(a);
 const a = { a: 999, b: 1000 };
 let tmpBinBothLhs = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   tmpBinBothLhs = tmpChainElementCall$1;
-} else {
 }
 let tmpBinBothRhs = undefined;
 const tmpChainElementCall$3 = $($);
-const tmpIfTest$1 = tmpChainElementCall$3 != null;
+const tmpIfTest$1 = tmpChainElementCall$3 == null;
 if (tmpIfTest$1) {
+} else {
   const tmpCallVal$1 = tmpChainElementCall$3.call;
   const tmpCalleeParam$5 = $(1);
   const tmpChainElementCall$5 = tmpCallVal$1.call(tmpChainElementCall$3, $, tmpCalleeParam$5);
   tmpBinBothRhs = tmpChainElementCall$5;
-} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

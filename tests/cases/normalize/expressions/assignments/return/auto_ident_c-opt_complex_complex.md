@@ -69,13 +69,13 @@ const f = function () {
   debugger;
   a = undefined;
   const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall != null;
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
+    return a;
+  } else {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
-    return a;
-  } else {
     return a;
   }
 };

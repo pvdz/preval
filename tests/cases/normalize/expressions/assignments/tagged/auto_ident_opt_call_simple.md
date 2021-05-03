@@ -48,11 +48,11 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
 let a = undefined;
-const tmpIfTest = $ != null;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
-} else {
 }
 const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);

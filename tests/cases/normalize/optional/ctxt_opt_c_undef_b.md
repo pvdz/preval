@@ -49,11 +49,11 @@ let tmpCalleeParam = undefined;
 const tmpChainElementCall = $(a);
 const tmpChainElementObject = tmpChainElementCall.b;
 const tmpChainElementObject$1 = tmpChainElementObject.c;
-const tmpIfTest = tmpChainElementObject$1 != null;
+const tmpIfTest = tmpChainElementObject$1 == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainElementObject, 100);
   tmpCalleeParam = tmpChainElementCall$1;
-} else {
 }
 $(tmpCalleeParam);
 `````

@@ -109,7 +109,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 let tmpIfTest = a;
-if (tmpIfTest) {
+if (a) {
   tmpIfTest = b;
 } else {
 }

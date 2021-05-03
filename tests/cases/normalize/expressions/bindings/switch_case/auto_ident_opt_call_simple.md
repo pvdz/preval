@@ -66,11 +66,11 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 let tmpSSA_a = undefined;
-const tmpIfTest$3 = $ != null;
+const tmpIfTest$3 = $ == null;
 if (tmpIfTest$3) {
+} else {
   const tmpChainElementCall = $(1);
   tmpSSA_a = tmpChainElementCall;
-} else {
 }
 $(tmpSSA_a);
 `````

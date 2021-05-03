@@ -58,12 +58,12 @@ while (true) {
   x = x.x;
   let tmpIfTest = undefined;
   const tmpChainRootProp = x;
-  const tmpIfTest$1 = tmpChainRootProp != null;
+  const tmpIfTest$1 = tmpChainRootProp == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, x);
     tmpIfTest = tmpChainElementCall;
-  } else {
   }
   if (tmpIfTest) {
   } else {

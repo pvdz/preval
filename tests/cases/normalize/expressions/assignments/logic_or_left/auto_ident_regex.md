@@ -43,12 +43,7 @@ $(a);
 
 `````js filename=intro
 const a = /foo/;
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

@@ -60,8 +60,7 @@ if (tmpIfTest$1) {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
 }
-const tmpIfTest = a;
-if (tmpIfTest) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);

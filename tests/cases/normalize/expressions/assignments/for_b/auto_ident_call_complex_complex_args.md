@@ -60,8 +60,7 @@ while (true) {
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
   a = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(1);
   } else {
     break;

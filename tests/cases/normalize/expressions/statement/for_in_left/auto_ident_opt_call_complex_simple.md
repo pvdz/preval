@@ -57,11 +57,11 @@ let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   let tmpAssignMemLhsObj = undefined;
   const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall != null;
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
+  } else {
     const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
     tmpAssignMemLhsObj = tmpChainElementCall$1;
-  } else {
   }
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }

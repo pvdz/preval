@@ -48,12 +48,7 @@ $(a);
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
 const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

@@ -86,10 +86,10 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpChainElementCall = $(b);
-  const tmpIfTest$3 = tmpChainElementCall != null;
+  const tmpIfTest$3 = tmpChainElementCall == null;
   if (tmpIfTest$3) {
-    tmpChainElementCall.x;
   } else {
+    tmpChainElementCall.x;
   }
 } else {
 }

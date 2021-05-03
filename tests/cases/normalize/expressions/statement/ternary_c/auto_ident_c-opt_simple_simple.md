@@ -56,10 +56,10 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpIfTest$1 = b != null;
+  const tmpIfTest$1 = b == null;
   if (tmpIfTest$1) {
-    b.x;
   } else {
+    b.x;
   }
 }
 $(a);

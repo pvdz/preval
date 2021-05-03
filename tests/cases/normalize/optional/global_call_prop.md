@@ -39,11 +39,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 const tmpChainElementCall = parseInt(15);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainElementCall.foo;
   tmpCalleeParam = tmpChainElementObject;
-} else {
 }
 $(tmpCalleeParam);
 `````

@@ -68,7 +68,7 @@ if (tmpIfTest) {
   a = $(tmpCalleeParam$1);
 }
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {

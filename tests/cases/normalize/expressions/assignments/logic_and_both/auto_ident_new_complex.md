@@ -49,7 +49,7 @@ $(a);
 const tmpNewCallee = $($);
 let a = new tmpNewCallee(1);
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   const tmpNewCallee$1 = $($);
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);
   a = tmpNestedComplexRhs;

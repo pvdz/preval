@@ -3141,19 +3141,19 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (node.operator === '!') {
+          if (wrapKind === 'statement') {
+            rule('Unary invert statement should reduce to the arg since the invert cannot be observed');
+            example('!10;', '10;');
+            before(node, parentNode);
+
+            body[i] = AST.expressionStatement(node.argument);
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
           if (node.argument.type === 'Literal') {
-            if (wrapKind === 'statement') {
-              rule('Unary invert on a literal as statement should be dropped');
-              example('!10;', ';');
-              before(node, parentNode);
-
-              body[i] = AST.emptyStatement();
-
-              after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
             if (typeof node.argument.value === 'number') {
               rule('Inverting a number should be replaced by a boolean');
 
@@ -3166,6 +3166,29 @@ export function phaseNormalize(fdata, fname) {
                 body[i] = finalParent;
               } else {
                 example('!1', 'false');
+                before(node, parentNode);
+
+                const finalNode = AST.fals();
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body[i] = finalParent;
+              }
+
+              after(body[i]);
+              return true;
+            }
+
+            if (typeof node.argument.value === 'string') {
+              rule('Inverting a string should be replaced by a boolean');
+
+              if (node.argument.value === '') {
+                example('!""', 'true');
+                before(node, parentNode);
+
+                const finalNode = AST.tru();
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body[i] = finalParent;
+              } else {
+                example('!"foo"', 'false');
                 before(node, parentNode);
 
                 const finalNode = AST.fals();
@@ -5760,7 +5783,7 @@ export function phaseNormalize(fdata, fname) {
         pCbody.push(
           AST.expressionStatement(
             AST.callExpression(
-              AST.cloneSimple(nAbody[0].expression.callee),
+              AST.cloneSimple(nCbody[0].expression.callee),
               nCbody[0].expression.arguments.map((anode) => AST.cloneSimple(anode)),
             ),
           ),

@@ -67,13 +67,13 @@ const b = { x: 1 };
 const f = function () {
   debugger;
   const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall != null;
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
+    return undefined;
+  } else {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     return tmpChainElementObject;
-  } else {
-    return undefined;
   }
 };
 const a = { a: 999, b: 1000 };

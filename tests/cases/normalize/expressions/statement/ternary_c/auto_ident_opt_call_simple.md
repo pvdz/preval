@@ -50,10 +50,10 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpIfTest$1 = $ != null;
+  const tmpIfTest$1 = $ == null;
   if (tmpIfTest$1) {
-    $(1);
   } else {
+    $(1);
   }
 }
 $(a);

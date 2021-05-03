@@ -67,14 +67,14 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpIfTest = b != null;
+  const tmpIfTest = b == null;
   if (tmpIfTest) {
+    return undefined;
+  } else {
     const tmpChainElementObject = b.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$3 = tmpChainElementObject$1.z;
     return tmpChainElementObject$3;
-  } else {
-    return undefined;
   }
 };
 const tmpObjLitVal$1 = { z: 100 };

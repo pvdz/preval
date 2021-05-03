@@ -70,25 +70,26 @@ let a = { a: 999, b: 1000 };
 while (true) {
   a = undefined;
   const tmpChainElementCall = $(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
+  const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+    $(100);
+  } else {
     const tmpChainRootComputed = $('$');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$3 = tmpChainElementObject != null;
+    const tmpIfTest$3 = tmpChainElementObject == null;
     if (tmpIfTest$3) {
+      $(100);
+    } else {
       const tmpCallVal = tmpChainElementObject.call;
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
       a = tmpChainElementCall$1;
-    } else {
+      if (a) {
+        $(100);
+      } else {
+        break;
+      }
     }
-  } else {
-  }
-  const tmpIfTest = a;
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
   }
 }
 $(a);

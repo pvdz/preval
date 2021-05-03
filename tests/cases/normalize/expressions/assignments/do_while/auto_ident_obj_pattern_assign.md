@@ -79,7 +79,7 @@ let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);

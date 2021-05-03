@@ -67,8 +67,7 @@ while (true) {
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

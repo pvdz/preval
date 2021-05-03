@@ -69,19 +69,19 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let b = undefined;
 const tmpChainElementCall = $(2);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainElementCall.toString;
   b = tmpChainElementObject;
-} else {
 }
 let c = undefined;
 const tmpChainRootProp = b;
-const tmpIfTest$1 = tmpChainRootProp != null;
+const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject$1 = tmpChainRootProp.length;
   c = tmpChainElementObject$1;
-} else {
 }
 const tmpReturnArg = $(c);
 $(tmpReturnArg);

@@ -52,12 +52,12 @@ throw tmpThrowArg;
 const b = { x: 1 };
 let a = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
-} else {
 }
 const tmpThrowArg = a;
 throw tmpThrowArg;

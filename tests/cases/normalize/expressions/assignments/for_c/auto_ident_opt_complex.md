@@ -65,11 +65,11 @@ while (true) {
   if (tmpIfTest) {
     a = undefined;
     const tmpChainElementCall = $(b);
-    const tmpIfTest$1 = tmpChainElementCall != null;
+    const tmpIfTest$1 = tmpChainElementCall == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainElementObject = tmpChainElementCall.x;
       a = tmpChainElementObject;
-    } else {
     }
   } else {
     break;

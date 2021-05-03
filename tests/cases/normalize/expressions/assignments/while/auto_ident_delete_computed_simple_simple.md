@@ -51,8 +51,7 @@ const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
   a = delete arg.y;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

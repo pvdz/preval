@@ -55,11 +55,11 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpBinBothRhs = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpBinBothRhs = tmpChainElementObject;
-} else {
 }
 const tmpSSA_a = a * tmpBinBothRhs;
 $(tmpSSA_a);

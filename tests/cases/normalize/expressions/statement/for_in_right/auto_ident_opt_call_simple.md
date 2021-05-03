@@ -47,11 +47,11 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 let tmpForInDeclRhs = undefined;
-const tmpIfTest = $ != null;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall = $(1);
   tmpForInDeclRhs = tmpChainElementCall;
-} else {
 }
 let x = undefined;
 for (x in tmpForInDeclRhs) {

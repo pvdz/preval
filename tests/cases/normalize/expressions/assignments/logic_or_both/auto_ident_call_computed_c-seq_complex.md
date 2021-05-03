@@ -57,7 +57,7 @@ const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
 let tmpSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
 } else {
   const tmpCallCompObj$1 = $(b);
   const tmpCallCompProp$1 = $('$');

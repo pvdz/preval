@@ -41,8 +41,7 @@ $(f());
 let f = function () {
   debugger;
   let a = { a: 999, b: 1000 };
-  const tmpUnaryArg = $(100);
-  !tmpUnaryArg;
+  $(100);
   $(a);
   return undefined;
 };
@@ -55,8 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(100);
-!tmpUnaryArg;
+$(100);
 $(a);
 $(undefined);
 `````

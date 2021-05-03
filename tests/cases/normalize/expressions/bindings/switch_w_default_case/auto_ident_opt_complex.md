@@ -101,11 +101,11 @@ if (tmpIfTest$9) {
 const tmpSSA_b = { x: 1 };
 let tmpSSA_a = undefined;
 const tmpChainElementCall = $(tmpSSA_b);
-const tmpIfTest$5 = tmpChainElementCall != null;
+const tmpIfTest$5 = tmpChainElementCall == null;
 if (tmpIfTest$5) {
+} else {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpSSA_a = tmpChainElementObject;
-} else {
 }
 $(tmpSSA_a);
 $('fail1');

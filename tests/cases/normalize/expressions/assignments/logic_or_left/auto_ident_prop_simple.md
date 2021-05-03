@@ -49,7 +49,7 @@ $(a, b);
 const b = { c: 1 };
 const a = b.c;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   tmpCalleeParam = $(100);
 }

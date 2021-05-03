@@ -50,11 +50,11 @@ $(a);
 const b = { x: 1 };
 let a = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest$1 = tmpChainRootProp != null;
+const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
-} else {
 }
 $(a);
 `````

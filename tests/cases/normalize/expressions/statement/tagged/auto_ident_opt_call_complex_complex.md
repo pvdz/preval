@@ -54,13 +54,13 @@ const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1 = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$5 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$5);
   tmpCalleeParam$1 = tmpChainElementCall$1;
-} else {
 }
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);

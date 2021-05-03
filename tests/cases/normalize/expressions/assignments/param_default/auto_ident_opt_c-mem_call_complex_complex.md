@@ -83,19 +83,19 @@ $(a);
 const b = { $: $ };
 let tmpNestedComplexRhs = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall != null;
+const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainRootComputed = $('$');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 = tmpChainElementObject != null;
+  const tmpIfTest$3 = tmpChainElementObject == null;
   if (tmpIfTest$3) {
+  } else {
     const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
     tmpNestedComplexRhs = tmpChainElementCall$1;
-  } else {
   }
-} else {
 }
 const tmpSSA_a = tmpNestedComplexRhs;
 $(undefined);

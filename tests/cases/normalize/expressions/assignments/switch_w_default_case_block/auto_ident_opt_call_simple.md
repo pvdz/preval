@@ -113,11 +113,11 @@ if (tmpIfTest) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   a = undefined;
-  const tmpIfTest$5 = $ != null;
+  const tmpIfTest$5 = $ == null;
   if (tmpIfTest$5) {
+  } else {
     const tmpChainElementCall = $(1);
     a = tmpChainElementCall;
-  } else {
   }
 } else {
 }

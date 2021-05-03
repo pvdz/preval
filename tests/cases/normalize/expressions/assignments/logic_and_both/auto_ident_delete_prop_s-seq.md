@@ -59,7 +59,7 @@ $(1);
 $(2);
 let a = delete arg.y;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   $(1);
   $(2);
   const tmpNestedComplexRhs = delete arg.y;

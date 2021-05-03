@@ -64,18 +64,18 @@ const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1 = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
+  const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainRootComputed$1 = $('y');
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpCalleeParam$1 = tmpChainElementObject$1;
-  } else {
   }
-} else {
 }
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);

@@ -52,11 +52,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const a = { b: tmpObjLitVal };
-let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-  tmpCalleeParam = $(100);
-} else {
-}
+const tmpCalleeParam = $(100);
 $(tmpCalleeParam);
 $(1);
 const tmpAssignMemLhsObj = $(a);

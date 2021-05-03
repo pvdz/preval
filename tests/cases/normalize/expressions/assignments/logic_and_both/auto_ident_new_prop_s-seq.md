@@ -56,7 +56,7 @@ const b = { $: $ };
 const tmpNewCallee = b.$;
 let tmpSSA_a = new tmpNewCallee(1);
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   const tmpNewCallee$1 = b.$;
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);
   tmpSSA_a = tmpNestedComplexRhs;

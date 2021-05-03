@@ -118,12 +118,12 @@ const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   a = undefined;
   const tmpChainElementCall = $(b);
-  const tmpIfTest$5 = tmpChainElementCall != null;
+  const tmpIfTest$5 = tmpChainElementCall == null;
   if (tmpIfTest$5) {
+  } else {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
-  } else {
   }
 } else {
 }

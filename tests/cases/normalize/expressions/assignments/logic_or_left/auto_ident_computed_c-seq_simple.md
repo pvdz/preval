@@ -53,7 +53,7 @@ const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
 const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
 } else {
   tmpCalleeParam = $(100);
 }

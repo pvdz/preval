@@ -105,11 +105,11 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest$1 = tmpChainRootProp != null;
+const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpBinLhs = tmpChainElementObject;
-} else {
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

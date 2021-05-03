@@ -53,12 +53,12 @@ $(a);
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
 let tmpForInDeclRhs = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   tmpForInDeclRhs = tmpChainElementCall;
-} else {
 }
 let x = undefined;
 for (x in tmpForInDeclRhs) {

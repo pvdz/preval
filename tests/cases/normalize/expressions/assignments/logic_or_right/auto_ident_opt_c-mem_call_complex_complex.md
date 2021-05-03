@@ -72,19 +72,19 @@ if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall != null;
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
+  } else {
     const tmpChainRootComputed = $('$');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject != null;
+    const tmpIfTest$1 = tmpChainElementObject == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpCallVal = tmpChainElementObject.call;
       const tmpCalleeParam$3 = $(1);
       const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
       tmpNestedComplexRhs = tmpChainElementCall$1;
-    } else {
     }
-  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

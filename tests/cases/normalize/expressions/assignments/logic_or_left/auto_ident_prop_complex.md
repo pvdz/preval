@@ -51,7 +51,7 @@ const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
 const tmpSSA_a = tmpAssignRhsProp.c;
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
 } else {
   tmpCalleeParam = $(100);
 }

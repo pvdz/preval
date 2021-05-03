@@ -48,11 +48,11 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
 let tmpCalleeParam$1 = undefined;
-const tmpIfTest = $ != null;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall = $(1);
   tmpCalleeParam$1 = tmpChainElementCall;
-} else {
 }
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);

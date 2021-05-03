@@ -76,13 +76,13 @@ const b = { x: tmpObjLitVal };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let a = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$3;
-} else {
 }
 const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;

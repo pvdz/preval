@@ -32,8 +32,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpUnaryArg = $(100);
-  !tmpUnaryArg;
+  $(100);
 }
 $(a);
 `````
@@ -46,8 +45,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpUnaryArg = $(100);
-  !tmpUnaryArg;
+  $(100);
 }
 $(a);
 `````

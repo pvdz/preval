@@ -50,8 +50,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 while (true) {
   a = /foo/;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(1);
   } else {
     break;

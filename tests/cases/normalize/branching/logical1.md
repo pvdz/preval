@@ -55,7 +55,7 @@ if (x) {
 
 `````js filename=intro
 let x = a;
-if (x) {
+if (a) {
   x = b;
 } else {
 }

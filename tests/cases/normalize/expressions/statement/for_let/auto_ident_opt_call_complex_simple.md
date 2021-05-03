@@ -56,11 +56,11 @@ $(a);
 const a = { a: 999, b: 1000 };
 let xyz = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   xyz = tmpChainElementCall$1;
-} else {
 }
 while (true) {
   $(xyz);

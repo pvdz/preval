@@ -54,7 +54,7 @@ const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
 let a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   const tmpObjLitVal$5 = $(1);
   const tmpObjLitVal$9 = $(3);

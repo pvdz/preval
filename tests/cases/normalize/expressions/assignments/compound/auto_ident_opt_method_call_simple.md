@@ -55,12 +55,12 @@ $(a);
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
 let tmpBinBothRhs = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   tmpBinBothRhs = tmpChainElementCall;
-} else {
 }
 const tmpSSA_a = a * tmpBinBothRhs;
 $(tmpSSA_a);

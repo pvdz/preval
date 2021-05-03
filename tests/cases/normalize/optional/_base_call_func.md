@@ -57,11 +57,11 @@ const f = function (...$$0) {
   return undefined;
 };
 let tmpCalleeParam = undefined;
-const tmpIfTest = f != null;
+const tmpIfTest = f == null;
 if (tmpIfTest) {
+} else {
   f(1, 2, 3);
   tmpCalleeParam = undefined;
-} else {
 }
 $(tmpCalleeParam);
 `````

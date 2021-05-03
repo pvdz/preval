@@ -52,11 +52,11 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpCalleeParamSpread = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpCalleeParamSpread = tmpChainElementObject;
-} else {
 }
 $(...tmpCalleeParamSpread);
 $(a);

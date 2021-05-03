@@ -57,13 +57,13 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 let tmpCalleeParamSpread = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   tmpCalleeParamSpread = tmpChainElementObject$3;
-} else {
 }
 $(...tmpCalleeParamSpread);
 $(a);

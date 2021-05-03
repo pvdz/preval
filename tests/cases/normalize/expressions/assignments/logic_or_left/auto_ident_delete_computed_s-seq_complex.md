@@ -56,7 +56,7 @@ $(2);
 const tmpDeleteCompProp = $('y');
 const a = delete arg[tmpDeleteCompProp];
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   tmpCalleeParam = $(100);
 }

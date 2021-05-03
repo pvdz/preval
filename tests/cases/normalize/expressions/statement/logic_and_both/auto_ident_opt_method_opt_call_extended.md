@@ -76,31 +76,31 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpIfTest$3 = tmpChainElementObject$3 != null;
+  const tmpIfTest$3 = tmpChainElementObject$3 == null;
   if (tmpIfTest$3) {
+  } else {
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     tmpIfTest = tmpChainElementCall;
-  } else {
   }
-} else {
 }
 if (tmpIfTest) {
-  const tmpIfTest$5 = b != null;
+  const tmpIfTest$5 = b == null;
   if (tmpIfTest$5) {
+  } else {
     const tmpChainElementObject$5 = b.c;
     const tmpChainElementObject$7 = tmpChainElementObject$5.d;
     const tmpChainElementObject$9 = tmpChainElementObject$7.e;
-    const tmpIfTest$7 = tmpChainElementObject$9 != null;
+    const tmpIfTest$7 = tmpChainElementObject$9 == null;
     if (tmpIfTest$7) {
-      tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
     } else {
+      tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
     }
-  } else {
   }
 } else {
 }

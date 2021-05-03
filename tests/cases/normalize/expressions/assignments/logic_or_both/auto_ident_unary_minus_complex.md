@@ -49,7 +49,7 @@ $(a);
 const tmpUnaryArg = $(100);
 let a = -tmpUnaryArg;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   const tmpUnaryArg$1 = $(100);
   const tmpNestedComplexRhs = -tmpUnaryArg$1;

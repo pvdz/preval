@@ -49,11 +49,11 @@ throw tmpThrowArg;
 const b = { x: 1 };
 let tmpThrowArg = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpThrowArg = tmpChainElementObject;
-} else {
 }
 throw tmpThrowArg;
 `````

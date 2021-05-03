@@ -60,14 +60,14 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const tmpCalleeParam = ['before ', ' after'];
 let a = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
-} else {
 }
 const tmpCalleeParam$1 = a;
 $(tmpCalleeParam, tmpCalleeParam$1);

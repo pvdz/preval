@@ -94,16 +94,16 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   a = undefined;
-  const tmpIfTest$3 = b != null;
+  const tmpIfTest$3 = b == null;
   if (tmpIfTest$3) {
+  } else {
     const tmpChainElementObject = b.x;
-    const tmpIfTest$5 = tmpChainElementObject != null;
+    const tmpIfTest$5 = tmpChainElementObject == null;
     if (tmpIfTest$5) {
+    } else {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       a = tmpChainElementObject$1;
-    } else {
     }
-  } else {
   }
 } else {
 }

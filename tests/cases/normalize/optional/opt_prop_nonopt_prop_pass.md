@@ -46,12 +46,12 @@ tmpCallCallee(tmpCalleeParam);
 const tmpObjLitVal = { c: 100 };
 const a = { b: tmpObjLitVal };
 let tmpCalleeParam = undefined;
-const tmpIfTest = a != null;
+const tmpIfTest = a == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = a.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   tmpCalleeParam = tmpChainElementObject$1;
-} else {
 }
 $(tmpCalleeParam);
 `````

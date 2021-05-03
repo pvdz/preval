@@ -51,10 +51,10 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpIfTest = $ != null;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
-  $(1);
 } else {
+  $(1);
 }
 while (true) {
   const tmpIfTest$1 = $(0);

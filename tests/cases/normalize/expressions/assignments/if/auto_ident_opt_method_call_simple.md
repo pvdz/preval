@@ -50,12 +50,12 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 let a = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = tmpChainElementObject.call(b, 1);
   a = tmpChainElementCall;
-} else {
 }
 $(a);
 `````

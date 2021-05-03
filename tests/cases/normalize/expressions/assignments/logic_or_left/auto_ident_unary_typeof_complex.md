@@ -50,7 +50,7 @@ $(a, arg);
 const tmpUnaryArg = $(1);
 const a = typeof tmpUnaryArg;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   tmpCalleeParam = $(100);
 }

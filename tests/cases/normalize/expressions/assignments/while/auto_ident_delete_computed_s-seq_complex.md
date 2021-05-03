@@ -58,8 +58,7 @@ while (true) {
   $(2);
   const tmpDeleteCompProp = $('y');
   a = delete arg[tmpDeleteCompProp];
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

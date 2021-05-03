@@ -51,7 +51,7 @@ const b = { $: $ };
 const tmpCallObj = $(b);
 const tmpSSA_a = tmpCallObj.$(1);
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   tmpCalleeParam = $(100);
 } else {
 }

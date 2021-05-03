@@ -75,11 +75,11 @@ if (tmpIfTest$1) {
 const tmpSSA_b = { x: 1 };
 let tmpSSA_a = undefined;
 const tmpChainElementCall = $(tmpSSA_b);
-const tmpIfTest$3 = tmpChainElementCall != null;
+const tmpIfTest$3 = tmpChainElementCall == null;
 if (tmpIfTest$3) {
+} else {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpSSA_a = tmpChainElementObject;
-} else {
 }
 $(tmpSSA_a);
 `````

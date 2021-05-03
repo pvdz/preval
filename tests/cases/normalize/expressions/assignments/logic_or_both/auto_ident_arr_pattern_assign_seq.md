@@ -81,7 +81,7 @@ let tmpSSA_x = arrPatternSplat[0];
 let tmpSSA_y = arrPatternSplat[1];
 let tmpSSA_a = tmpNestedAssignArrPatternRhs;
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
 } else {
   $(tmpSSA_x);
   $(tmpSSA_y);

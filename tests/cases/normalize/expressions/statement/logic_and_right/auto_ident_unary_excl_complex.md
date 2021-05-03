@@ -30,8 +30,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  const tmpUnaryArg = $(100);
-  !tmpUnaryArg;
+  $(100);
 } else {
 }
 $(a);
@@ -43,8 +42,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  const tmpUnaryArg = $(100);
-  !tmpUnaryArg;
+  $(100);
 } else {
 }
 $(a);

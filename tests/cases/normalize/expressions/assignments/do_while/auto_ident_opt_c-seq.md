@@ -76,15 +76,15 @@ let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     let tmpNestedComplexRhs = undefined;
     const tmpChainRootProp = $(b);
-    const tmpIfTest$1 = tmpChainRootProp != null;
+    const tmpIfTest$1 = tmpChainRootProp == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainElementObject = tmpChainRootProp.x;
       tmpNestedComplexRhs = tmpChainElementObject;
-    } else {
     }
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;

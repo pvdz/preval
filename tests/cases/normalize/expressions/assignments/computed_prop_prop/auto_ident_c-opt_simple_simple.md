@@ -56,11 +56,11 @@ $(a);
 const b = { x: 1 };
 const obj = {};
 let a = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
-} else {
 }
 const tmpCompProp = a;
 obj[tmpCompProp];

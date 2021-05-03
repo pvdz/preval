@@ -68,11 +68,11 @@ $(a);
 `````js filename=intro
 let tmpNestedComplexRhs = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest$1 = tmpChainElementCall != null;
+const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   tmpNestedComplexRhs = tmpChainElementCall$1;
-} else {
 }
 const tmpSSA_a = tmpNestedComplexRhs;
 $(undefined);

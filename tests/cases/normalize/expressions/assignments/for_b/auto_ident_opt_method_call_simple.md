@@ -63,18 +63,18 @@ const b = { c: $ };
 let a = { a: 999, b: 1000 };
 while (true) {
   a = undefined;
-  const tmpIfTest$1 = b != null;
+  const tmpIfTest$1 = b == null;
   if (tmpIfTest$1) {
+    $(1);
+  } else {
     const tmpChainElementObject = b.c;
     const tmpChainElementCall = tmpChainElementObject.call(b, 1);
     a = tmpChainElementCall;
-  } else {
-  }
-  const tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
+    if (a) {
+      $(1);
+    } else {
+      break;
+    }
   }
 }
 $(a);

@@ -55,11 +55,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const obj = { a: 1 };
 let tmpCalleeParam = undefined;
-const tmpIfTest = obj != null;
+const tmpIfTest = obj == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = obj.a;
   tmpCalleeParam = tmpChainElementObject;
-} else {
 }
 const tmpReturnArg = $(tmpCalleeParam);
 $(tmpReturnArg);

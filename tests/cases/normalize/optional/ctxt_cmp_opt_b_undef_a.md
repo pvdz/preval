@@ -50,13 +50,13 @@ let tmpCalleeParam = undefined;
 const tmpChainElementCall = $(undefined);
 const tmpChainRootComputed = $('b');
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-const tmpIfTest = tmpChainElementObject != null;
+const tmpIfTest = tmpChainElementObject == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed$1 = $('c');
   const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
   const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainElementObject, 100);
   tmpCalleeParam = tmpChainElementCall$1;
-} else {
 }
 $(tmpCalleeParam);
 `````

@@ -65,12 +65,12 @@ const b = { x: 1 };
 const f = function () {
   debugger;
   const tmpChainRootProp = $(b);
-  const tmpIfTest = tmpChainRootProp != null;
+  const tmpIfTest = tmpChainRootProp == null;
   if (tmpIfTest) {
+    return undefined;
+  } else {
     const tmpChainElementObject = tmpChainRootProp.x;
     return tmpChainElementObject;
-  } else {
-    return undefined;
   }
 };
 const a = { a: 999, b: 1000 };

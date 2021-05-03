@@ -58,7 +58,7 @@ const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpSSA_b = arrPatternSplat[0];
 let tmpCalleeParam = tmpNestedAssignArrPatternRhs;
-if (tmpCalleeParam) {
+if (tmpNestedAssignArrPatternRhs) {
 } else {
   tmpCalleeParam = $(100);
 }

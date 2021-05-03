@@ -59,13 +59,13 @@ const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  const tmpIfTest$1 = b != null;
+  const tmpIfTest$1 = b == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementObject = b.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
     const tmpChainElementObject$3 = tmpChainElementObject$1.e;
     tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
-  } else {
   }
 } else {
 }

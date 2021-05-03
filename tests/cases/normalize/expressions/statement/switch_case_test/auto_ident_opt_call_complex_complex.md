@@ -71,13 +71,13 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let tmpBinLhs = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest$1 = tmpChainElementCall != null;
+const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
+} else {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   tmpBinLhs = tmpChainElementCall$1;
-} else {
 }
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

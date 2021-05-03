@@ -65,7 +65,7 @@ const f = function () {
 };
 let a = f;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   const f$1 = function () {
     debugger;

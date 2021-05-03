@@ -50,11 +50,11 @@ $(a);
 const a = { a: 999, b: 1000 };
 let tmpCompObj = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   tmpCompObj = tmpChainElementCall$1;
-} else {
 }
 tmpCompObj.a;
 $(a);

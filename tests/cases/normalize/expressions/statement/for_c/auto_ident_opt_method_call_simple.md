@@ -61,11 +61,11 @@ const a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpIfTest$1 = b != null;
+    const tmpIfTest$1 = b == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainElementObject = b.c;
       tmpChainElementObject.call(b, 1);
-    } else {
     }
   } else {
     break;

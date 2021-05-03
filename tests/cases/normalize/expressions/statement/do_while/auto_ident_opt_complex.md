@@ -75,15 +75,15 @@ const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     tmpIfTest = undefined;
     const tmpChainElementCall = $(b);
-    const tmpIfTest$1 = tmpChainElementCall != null;
+    const tmpIfTest$1 = tmpChainElementCall == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainElementObject = tmpChainElementCall.x;
       tmpIfTest = tmpChainElementObject;
-    } else {
     }
   }
   if (tmpIfTest) {

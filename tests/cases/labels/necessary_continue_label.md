@@ -82,7 +82,7 @@ foo: while (true) {
 let tmpDoWhileFlag$1 = true;
 foo: while (true) {
   let tmpIfTest = tmpDoWhileFlag$1;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag$1) {
   } else {
     tmpIfTest = $(false);
   }
@@ -92,7 +92,7 @@ foo: while (true) {
     let tmpDoWhileFlag = true;
     while (true) {
       let tmpIfTest$1 = tmpDoWhileFlag;
-      if (tmpIfTest$1) {
+      if (tmpDoWhileFlag) {
       } else {
         tmpIfTest$1 = $(false);
       }

@@ -71,18 +71,18 @@ let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   let tmpAssignMemLhsObj = undefined;
   const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall != null;
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
+  } else {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject != null;
+    const tmpIfTest$1 = tmpChainElementObject == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpAssignMemLhsObj = tmpChainElementObject$1;
-    } else {
     }
-  } else {
   }
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }

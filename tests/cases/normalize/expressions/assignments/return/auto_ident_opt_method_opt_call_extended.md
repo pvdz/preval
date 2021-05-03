@@ -74,21 +74,21 @@ $(a);
 const f = function () {
   debugger;
   a = undefined;
-  const tmpIfTest = b != null;
+  const tmpIfTest = b == null;
   if (tmpIfTest) {
+    return a;
+  } else {
     const tmpChainElementObject = b.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
     const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpIfTest$1 = tmpChainElementObject$3 != null;
+    const tmpIfTest$1 = tmpChainElementObject$3 == null;
     if (tmpIfTest$1) {
+      return a;
+    } else {
       const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
       a = tmpChainElementCall;
       return a;
-    } else {
-      return a;
     }
-  } else {
-    return a;
   }
 };
 const tmpObjLitVal$1 = { e: $ };

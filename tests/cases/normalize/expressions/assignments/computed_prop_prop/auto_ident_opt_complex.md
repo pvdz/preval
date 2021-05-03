@@ -57,11 +57,11 @@ const b = { x: 1 };
 const obj = {};
 let a = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
-} else {
 }
 const tmpCompProp = a;
 obj[tmpCompProp];

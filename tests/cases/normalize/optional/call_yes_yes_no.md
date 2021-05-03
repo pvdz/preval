@@ -124,20 +124,20 @@ const a = function () {
   return a$1;
 };
 let tmpCalleeParam = undefined;
-const tmpIfTest = a != null;
+const tmpIfTest = a == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall = a();
   const tmpChainElementObject = tmpChainElementCall.b;
-  const tmpIfTest$1 = tmpChainElementObject != null;
+  const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementCall$1 = tmpChainElementObject.call(tmpChainElementCall);
     const tmpChainElementObject$1 = tmpChainElementCall$1.c;
     const tmpChainElementCall$3 = tmpChainElementObject$1.call(tmpChainElementCall$1);
     const tmpChainElementObject$3 = tmpChainElementCall$3.d;
     tmpCalleeParam = tmpChainElementObject$3;
-  } else {
   }
-} else {
 }
 $(tmpCalleeParam);
 `````

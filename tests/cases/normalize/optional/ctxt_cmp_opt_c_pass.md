@@ -55,11 +55,11 @@ const tmpChainRootComputed = $('b');
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
 const tmpChainRootComputed$1 = $('c');
 const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-const tmpIfTest = tmpChainElementObject$1 != null;
+const tmpIfTest = tmpChainElementObject$1 == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainElementObject, 100);
   tmpCalleeParam = tmpChainElementCall$1;
-} else {
 }
 $(tmpCalleeParam);
 `````

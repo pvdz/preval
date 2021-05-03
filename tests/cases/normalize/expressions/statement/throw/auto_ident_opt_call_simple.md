@@ -43,11 +43,11 @@ throw tmpThrowArg;
 
 `````js filename=intro
 let tmpThrowArg = undefined;
-const tmpIfTest = $ != null;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall = $(1);
   tmpThrowArg = tmpChainElementCall;
-} else {
 }
 throw tmpThrowArg;
 `````

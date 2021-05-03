@@ -50,13 +50,13 @@ if (dedupeMe) {
 ## Output
 
 `````js filename=intro
-const dedupeMe = !tmpUnaryArg$83;
-if (dedupeMe) {
-  $(true, 'abc');
-} else {
+tmpUnaryArg$83;
+if (tmpUnaryArg$83) {
   const c = props$15.children;
   const tmpSSA_dedupeMe = c == null;
   $(tmpSSA_dedupeMe, 'xyz');
+} else {
+  $(true, 'abc');
 }
 `````
 

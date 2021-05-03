@@ -56,11 +56,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const a = { x: 1 };
 let y = undefined;
-const tmpIfTest = a != null;
+const tmpIfTest = a == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = a.x;
   y = tmpChainElementObject;
-} else {
 }
 const tmpReturnArg = $(y);
 $(tmpReturnArg);

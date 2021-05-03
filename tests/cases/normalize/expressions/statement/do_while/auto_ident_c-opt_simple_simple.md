@@ -75,14 +75,14 @@ const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     tmpIfTest = undefined;
-    const tmpIfTest$1 = b != null;
+    const tmpIfTest$1 = b == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainElementObject = b.x;
       tmpIfTest = tmpChainElementObject;
-    } else {
     }
   }
   if (tmpIfTest) {

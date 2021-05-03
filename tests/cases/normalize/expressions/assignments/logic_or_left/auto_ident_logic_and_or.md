@@ -69,7 +69,7 @@ if (a) {
   a = $(tmpCalleeParam$5);
 }
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   tmpCalleeParam = $(100);
 }

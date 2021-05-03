@@ -54,8 +54,7 @@ while (true) {
   a = 1;
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

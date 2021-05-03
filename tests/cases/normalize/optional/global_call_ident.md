@@ -32,10 +32,10 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $ != null;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
-  $(15);
 } else {
+  $(15);
 }
 `````
 

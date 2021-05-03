@@ -72,13 +72,13 @@ if (tmpIfTest$1) {
 `````js filename=intro
 let tmpSSA_a = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest$3 = tmpChainElementCall != null;
+const tmpIfTest$3 = tmpChainElementCall == null;
 if (tmpIfTest$3) {
+} else {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$1 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
   tmpSSA_a = tmpChainElementCall$1;
-} else {
 }
 $(tmpSSA_a);
 `````

@@ -71,8 +71,7 @@ while (true) {
     } else {
     }
   }
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

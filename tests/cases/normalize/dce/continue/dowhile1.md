@@ -133,7 +133,7 @@ while (true) {
     let tmpDoWhileFlag = true;
     while (true) {
       let tmpIfTest$1 = tmpDoWhileFlag;
-      if (tmpIfTest$1) {
+      if (tmpDoWhileFlag) {
       } else {
         tmpIfTest$1 = $(true);
       }

@@ -63,11 +63,7 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 const tmpSSA_x = tmpNestedAssignObjPatternRhs.x;
 const tmpSSA_y = tmpNestedAssignObjPatternRhs.y;
-let tmpCalleeParam = tmpNestedAssignObjPatternRhs;
-if (tmpCalleeParam) {
-  tmpCalleeParam = $(100);
-} else {
-}
+const tmpCalleeParam = $(100);
 $(tmpCalleeParam);
 $(tmpNestedAssignObjPatternRhs, tmpSSA_x, tmpSSA_y);
 `````

@@ -53,11 +53,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 let y = undefined;
 const tmpChainRootCall = $();
-const tmpIfTest = tmpChainRootCall != null;
+const tmpIfTest = tmpChainRootCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall = tmpChainRootCall();
   y = tmpChainElementCall;
-} else {
 }
 const tmpReturnArg = $(y);
 $(tmpReturnArg);

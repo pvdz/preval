@@ -57,8 +57,7 @@ while (true) {
     debugger;
     return undefined;
   };
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

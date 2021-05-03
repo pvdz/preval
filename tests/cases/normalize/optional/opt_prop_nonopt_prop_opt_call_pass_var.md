@@ -52,17 +52,17 @@ $(x);
 const tmpObjLitVal = { c: $ };
 const a = { b: tmpObjLitVal };
 let x = undefined;
-const tmpIfTest = a != null;
+const tmpIfTest = a == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = a.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpIfTest$1 = tmpChainElementObject$1 != null;
+  const tmpIfTest$1 = tmpChainElementObject$1 == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);
     x = tmpChainElementCall;
-  } else {
   }
-} else {
 }
 $(x);
 `````

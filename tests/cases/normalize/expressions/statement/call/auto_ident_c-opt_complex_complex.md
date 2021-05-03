@@ -54,12 +54,12 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpCalleeParam = tmpChainElementObject;
-} else {
 }
 $(tmpCalleeParam);
 $(a);

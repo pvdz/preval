@@ -59,19 +59,19 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpBinBothLhs = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp != null;
+const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   tmpBinBothLhs = tmpChainElementObject;
-} else {
 }
 let tmpBinBothRhs = undefined;
 const tmpChainRootProp$1 = $(b);
-const tmpIfTest$1 = tmpChainRootProp$1 != null;
+const tmpIfTest$1 = tmpChainRootProp$1 == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject$1 = tmpChainRootProp$1.x;
   tmpBinBothRhs = tmpChainElementObject$1;
-} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

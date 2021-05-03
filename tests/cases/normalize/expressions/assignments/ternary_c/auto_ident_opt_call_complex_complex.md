@@ -65,13 +65,13 @@ if (tmpIfTest) {
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall = $($);
-  const tmpIfTest$1 = tmpChainElementCall != null;
+  const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpCallVal = tmpChainElementCall.call;
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$3);
     tmpNestedComplexRhs = tmpChainElementCall$1;
-  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

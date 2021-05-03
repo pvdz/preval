@@ -74,7 +74,7 @@ const f = function () {
   let tmpDoWhileFlag = true;
   while (true) {
     let tmpIfTest = tmpDoWhileFlag;
-    if (tmpIfTest) {
+    if (tmpDoWhileFlag) {
     } else {
       tmpIfTest = $(true);
     }

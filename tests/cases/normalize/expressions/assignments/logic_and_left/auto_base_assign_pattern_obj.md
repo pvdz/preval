@@ -56,7 +56,7 @@ const tmpCalleeParam$1 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
 let tmpCalleeParam = tmpNestedAssignObjPatternRhs;
-if (tmpCalleeParam) {
+if (tmpNestedAssignObjPatternRhs) {
   tmpCalleeParam = $(100);
 } else {
 }

@@ -62,8 +62,7 @@ while (true) {
   const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   a = tmpNestedPropCompoundComplexRhs;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

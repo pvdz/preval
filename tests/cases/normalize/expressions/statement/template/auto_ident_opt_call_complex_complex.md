@@ -53,13 +53,13 @@ $(a);
 const a = { a: 999, b: 1000 };
 let tmpTemplateExpr = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$3 = $(1);
   const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$3);
   tmpTemplateExpr = tmpChainElementCall$1;
-} else {
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);

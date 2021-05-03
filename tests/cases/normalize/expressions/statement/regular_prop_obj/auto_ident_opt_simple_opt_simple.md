@@ -60,16 +60,16 @@ const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 let tmpCompObj = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.x;
-  const tmpIfTest$1 = tmpChainElementObject != null;
+  const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     tmpCompObj = tmpChainElementObject$1;
-  } else {
   }
-} else {
 }
 tmpCompObj.a;
 $(a);

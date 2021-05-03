@@ -65,11 +65,11 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let a = undefined;
-const tmpIfTest$1 = $ != null;
+const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
-} else {
 }
 const tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;

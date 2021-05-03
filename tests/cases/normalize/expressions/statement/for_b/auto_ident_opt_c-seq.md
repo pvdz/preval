@@ -60,18 +60,17 @@ $(a);
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 while (true) {
-  let tmpIfTest = undefined;
   const tmpChainRootProp = $(b);
-  const tmpIfTest$1 = tmpChainRootProp != null;
+  const tmpIfTest$1 = tmpChainRootProp == null;
   if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    tmpIfTest = tmpChainElementObject;
-  } else {
-  }
-  if (tmpIfTest) {
     $(1);
   } else {
-    break;
+    const tmpChainElementObject = tmpChainRootProp.x;
+    if (tmpChainElementObject) {
+      $(1);
+    } else {
+      break;
+    }
   }
 }
 $(a);

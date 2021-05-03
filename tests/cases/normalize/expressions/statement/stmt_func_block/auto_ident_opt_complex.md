@@ -66,10 +66,10 @@ tmpCallCallee(tmpCalleeParam);
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
-  tmpChainElementCall.x;
 } else {
+  tmpChainElementCall.x;
 }
 $(a);
 $(undefined);

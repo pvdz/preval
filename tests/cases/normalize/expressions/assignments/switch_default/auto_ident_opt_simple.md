@@ -66,11 +66,11 @@ $(a);
 const b = { x: 1 };
 $(1);
 let a = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
-} else {
 }
 $(a);
 `````

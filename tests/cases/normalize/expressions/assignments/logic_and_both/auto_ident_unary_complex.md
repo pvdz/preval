@@ -53,7 +53,7 @@ $(a, x);
 const tmpUnaryArg = $(1);
 let a = typeof tmpUnaryArg;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   const tmpUnaryArg$1 = $(1);
   const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
   a = tmpNestedComplexRhs;

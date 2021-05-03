@@ -59,10 +59,6 @@ while (true) {
   a = $(tmpCalleeParam);
   if (a) {
     a = 2;
-  } else {
-  }
-  const tmpIfTest = a;
-  if (tmpIfTest) {
     $(1);
   } else {
     break;

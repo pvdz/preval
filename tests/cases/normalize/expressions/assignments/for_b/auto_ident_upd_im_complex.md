@@ -67,8 +67,7 @@ while (true) {
   const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(1);
   } else {
     break;

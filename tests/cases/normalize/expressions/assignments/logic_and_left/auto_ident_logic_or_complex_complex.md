@@ -58,7 +58,7 @@ if (a) {
   a = $(tmpCalleeParam$3);
 }
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
 }

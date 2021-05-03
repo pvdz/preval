@@ -45,7 +45,7 @@ $(a);
 `````js filename=intro
 let a = arguments;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   a = arguments;
   tmpCalleeParam = arguments;
 } else {

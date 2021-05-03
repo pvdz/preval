@@ -54,8 +54,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpAssignRhsCompProp = $('c');
   a = b[tmpAssignRhsCompProp];
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

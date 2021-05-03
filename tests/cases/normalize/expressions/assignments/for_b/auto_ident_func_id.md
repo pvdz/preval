@@ -62,8 +62,7 @@ while (true) {
     return undefined;
   };
   a = f;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(1);
   } else {
     break;

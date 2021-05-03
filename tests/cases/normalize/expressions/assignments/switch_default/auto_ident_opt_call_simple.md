@@ -61,11 +61,11 @@ $(a);
 `````js filename=intro
 $(1);
 let a = undefined;
-const tmpIfTest$1 = $ != null;
+const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
-} else {
 }
 $(a);
 `````

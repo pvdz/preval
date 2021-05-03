@@ -67,14 +67,14 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
-  const tmpIfTest = b != null;
+  const tmpIfTest = b == null;
   if (tmpIfTest) {
+  } else {
     const tmpChainElementObject = b.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
     const tmpChainElementObject$3 = tmpChainElementObject$1.e;
     const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
     tmpNestedComplexRhs = tmpChainElementCall;
-  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

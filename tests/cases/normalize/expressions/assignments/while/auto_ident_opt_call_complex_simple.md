@@ -55,17 +55,17 @@ let a = { a: 999, b: 1000 };
 while (true) {
   a = undefined;
   const tmpChainElementCall = $($);
-  const tmpIfTest$1 = tmpChainElementCall != null;
+  const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
-    const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
-    a = tmpChainElementCall$1;
-  } else {
-  }
-  const tmpIfTest = a;
-  if (tmpIfTest) {
     $(100);
   } else {
-    break;
+    const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
+    a = tmpChainElementCall$1;
+    if (a) {
+      $(100);
+    } else {
+      break;
+    }
   }
 }
 $(a);

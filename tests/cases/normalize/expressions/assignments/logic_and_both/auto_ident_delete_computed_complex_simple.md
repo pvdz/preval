@@ -54,7 +54,7 @@ const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 let tmpSSA_a = delete tmpDeleteObj.y;
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   const tmpDeleteObj$1 = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
   tmpSSA_a = tmpNestedComplexRhs;

@@ -55,8 +55,7 @@ while (true) {
   const tmpAssignRhsCompObj = $(b);
   const tmpAssignRhsCompProp = $('c');
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

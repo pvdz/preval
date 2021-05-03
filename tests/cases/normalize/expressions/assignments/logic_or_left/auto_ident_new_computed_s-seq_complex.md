@@ -53,12 +53,7 @@ const b = { $: $ };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 const tmpSSA_a = new tmpNewCallee(1);
-let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
+$(tmpSSA_a);
 $(tmpSSA_a);
 `````
 

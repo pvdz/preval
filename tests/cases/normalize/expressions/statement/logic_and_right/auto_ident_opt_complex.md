@@ -54,10 +54,10 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpChainElementCall = $(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
+  const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
-    tmpChainElementCall.x;
   } else {
+    tmpChainElementCall.x;
   }
 } else {
 }

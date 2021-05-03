@@ -65,11 +65,11 @@ if (tmpIfTest) {
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp = $(b);
-  const tmpIfTest$1 = tmpChainRootProp != null;
+  const tmpIfTest$1 = tmpChainRootProp == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementObject = tmpChainRootProp.x;
     tmpNestedComplexRhs = tmpChainElementObject;
-  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

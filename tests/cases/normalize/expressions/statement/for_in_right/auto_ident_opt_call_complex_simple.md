@@ -49,11 +49,11 @@ $(a);
 const a = { a: 999, b: 1000 };
 let tmpForInDeclRhs = undefined;
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
   tmpForInDeclRhs = tmpChainElementCall$1;
-} else {
 }
 let x = undefined;
 for (x in tmpForInDeclRhs) {

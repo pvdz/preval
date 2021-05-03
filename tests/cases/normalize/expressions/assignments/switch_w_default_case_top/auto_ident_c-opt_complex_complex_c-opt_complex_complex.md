@@ -126,18 +126,18 @@ const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   a = undefined;
   const tmpChainElementCall = $(b);
-  const tmpIfTest$5 = tmpChainElementCall != null;
+  const tmpIfTest$5 = tmpChainElementCall == null;
   if (tmpIfTest$5) {
+  } else {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$7 = tmpChainElementObject != null;
+    const tmpIfTest$7 = tmpChainElementObject == null;
     if (tmpIfTest$7) {
+    } else {
       const tmpChainRootComputed$1 = $('y');
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       a = tmpChainElementObject$1;
-    } else {
     }
-  } else {
   }
 } else {
 }

@@ -111,19 +111,19 @@ if (tmpIfTest$11) {
 const tmpSSA_b = { $: $ };
 let tmpSSA_a = undefined;
 const tmpChainElementCall = $(tmpSSA_b);
-const tmpIfTest$5 = tmpChainElementCall != null;
+const tmpIfTest$5 = tmpChainElementCall == null;
 if (tmpIfTest$5) {
+} else {
   const tmpChainRootComputed = $('$');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$7 = tmpChainElementObject != null;
+  const tmpIfTest$7 = tmpChainElementObject == null;
   if (tmpIfTest$7) {
+  } else {
     const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
     const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
     tmpSSA_a = tmpChainElementCall$1;
-  } else {
   }
-} else {
 }
 $(tmpSSA_a);
 $('fail1');

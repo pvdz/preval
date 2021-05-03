@@ -52,10 +52,10 @@ const f = function () {
   return 10;
 };
 let tmpCalleeParam = undefined;
-const tmpIfTest = f != null;
+const tmpIfTest = f == null;
 if (tmpIfTest) {
-  tmpCalleeParam = 10;
 } else {
+  tmpCalleeParam = 10;
 }
 $(tmpCalleeParam);
 `````

@@ -60,11 +60,11 @@ while (true) {
   if (tmpIfTest) {
     a = undefined;
     const tmpChainElementCall = $($);
-    const tmpIfTest$1 = tmpChainElementCall != null;
+    const tmpIfTest$1 = tmpChainElementCall == null;
     if (tmpIfTest$1) {
+    } else {
       const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
       a = tmpChainElementCall$1;
-    } else {
     }
   } else {
     break;

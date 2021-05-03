@@ -117,14 +117,14 @@ const a$1 = {
   },
 };
 const tmpChainElementObject = a$1.b;
-const tmpIfTest = tmpChainElementObject != null;
+const tmpIfTest = tmpChainElementObject == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall$1 = tmpChainElementObject.call(a$1);
   const tmpChainElementObject$1 = tmpChainElementCall$1.c;
   const tmpChainElementCall$3 = tmpChainElementObject$1.call(tmpChainElementCall$1);
   const tmpChainElementObject$3 = tmpChainElementCall$3.d;
   tmpCalleeParam = tmpChainElementObject$3;
-} else {
 }
 $(tmpCalleeParam);
 `````

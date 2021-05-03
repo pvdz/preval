@@ -67,21 +67,21 @@ $(a);
 const b = { x: 1 };
 let a = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
-} else {
 }
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$1 = $(b);
-  const tmpIfTest$1 = tmpChainElementCall$1 != null;
+  const tmpIfTest$1 = tmpChainElementCall$1 == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainElementObject$1 = tmpChainElementCall$1.x;
     tmpNestedComplexRhs = tmpChainElementObject$1;
-  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

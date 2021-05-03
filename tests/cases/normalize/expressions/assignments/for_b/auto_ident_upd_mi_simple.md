@@ -61,8 +61,7 @@ while (true) {
   const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(1);
   } else {
     break;

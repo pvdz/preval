@@ -49,11 +49,11 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 let tmpBinBothRhs = undefined;
-const tmpIfTest = $ != null;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall = $(1);
   tmpBinBothRhs = tmpChainElementCall;
-} else {
 }
 const tmpSSA_a = a * tmpBinBothRhs;
 $(tmpSSA_a);

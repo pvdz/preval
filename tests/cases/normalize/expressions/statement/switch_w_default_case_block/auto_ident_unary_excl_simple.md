@@ -78,7 +78,6 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    !arg;
     break tmpSwitchBreak;
   } else {
   }

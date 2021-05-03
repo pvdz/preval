@@ -731,12 +731,19 @@ export function isTruthy(node) {
   }
 
   if (node.type === 'Identifier') {
-    return node.name === 'Infinity'
+    return node.name === 'Infinity';
   }
 
   // TODO: expand on this
 
   return false;
+}
+
+export function isUndefined(node) {
+  return node.type === 'Identifier' && node.name === 'undefined';
+}
+export function isNull(node) {
+  return node.type === 'Literal' && node.raw === 'null';
 }
 
 export function getPrimitiveValue(node) {
@@ -1175,7 +1182,7 @@ export function ssaCheckMightContainIdentName(node, name) {
     });
     return r;
   }
-  if (node.type === 'MemberExpression' ){
+  if (node.type === 'MemberExpression') {
     let r = ssaCheckMightContainIdentName(node.object, name);
     if (r === undefined || r === true) return r;
     if (!node.computed) return false;
@@ -1387,7 +1394,7 @@ export function _ssaFindIdentRefs(node, set = new Set()) {
     return ssaFindIdentRefs(node.object, set) && (!node.computed || !!ssaFindIdentRefs(node.property, set)) && set;
   }
   if (node.type === 'SpreadElement') {
-    return ssaFindIdentRefs(node.argument, set)
+    return ssaFindIdentRefs(node.argument, set);
   }
 
   //if (node.type === 'IfStatement') {

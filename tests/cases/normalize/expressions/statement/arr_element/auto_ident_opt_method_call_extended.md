@@ -68,24 +68,24 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 let tmpBinBothLhs = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
   tmpBinBothLhs = tmpChainElementCall;
-} else {
 }
 let tmpBinBothRhs = undefined;
-const tmpIfTest$1 = b != null;
+const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject$5 = b.c;
   const tmpChainElementObject$7 = tmpChainElementObject$5.d;
   const tmpChainElementObject$9 = tmpChainElementObject$7.e;
   const tmpChainElementCall$1 = tmpChainElementObject$9.call(tmpChainElementObject$7, 1);
   tmpBinBothRhs = tmpChainElementCall$1;
-} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

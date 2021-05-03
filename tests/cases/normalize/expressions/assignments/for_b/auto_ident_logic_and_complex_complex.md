@@ -62,11 +62,11 @@ while (true) {
   if (a) {
     const tmpCalleeParam$1 = $(2);
     a = $(tmpCalleeParam$1);
-  } else {
-  }
-  const tmpIfTest = a;
-  if (tmpIfTest) {
-    $(1);
+    if (a) {
+      $(1);
+    } else {
+      break;
+    }
   } else {
     break;
   }

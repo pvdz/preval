@@ -68,7 +68,7 @@ const a = arrPatternSplat[0];
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+  if (tmpDoWhileFlag) {
   } else {
     $(10);
     $(20);

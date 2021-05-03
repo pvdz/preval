@@ -53,8 +53,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 while (true) {
   a = $(60);
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(100);
   } else {
     break;

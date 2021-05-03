@@ -119,10 +119,10 @@ tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     const tmpChainRootProp = $(b);
-    const tmpIfTest$5 = tmpChainRootProp != null;
+    const tmpIfTest$5 = tmpChainRootProp == null;
     if (tmpIfTest$5) {
-      tmpChainRootProp.x;
     } else {
+      tmpChainRootProp.x;
     }
     break tmpSwitchBreak;
   } else {

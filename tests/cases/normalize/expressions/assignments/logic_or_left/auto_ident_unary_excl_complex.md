@@ -46,9 +46,9 @@ $(a);
 const tmpUnaryArg = $(100);
 const a = !tmpUnaryArg;
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
-} else {
+if (tmpUnaryArg) {
   tmpCalleeParam = $(100);
+} else {
 }
 $(tmpCalleeParam);
 $(a);

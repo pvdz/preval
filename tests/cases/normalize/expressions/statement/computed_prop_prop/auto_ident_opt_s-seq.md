@@ -55,11 +55,11 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const obj = {};
 let tmpCompProp = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.x;
   tmpCompProp = tmpChainElementObject;
-} else {
 }
 obj[tmpCompProp];
 $(a);

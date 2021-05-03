@@ -70,7 +70,7 @@ const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 let tmpSSA_a = tmpNestedAssignPropRhs;
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $('c');
   const tmpCompObj$1 = $(b);

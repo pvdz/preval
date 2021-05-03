@@ -59,7 +59,7 @@ const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 let tmpSSA_a = new tmpNewCallee(1);
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   const tmpCompProp$1 = $('$');
   const tmpNewCallee$1 = b[tmpCompProp$1];
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);

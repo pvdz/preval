@@ -57,8 +57,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpCallObj = $(b);
   a = tmpCallObj.$(1);
-  const tmpIfTest = a;
-  if (tmpIfTest) {
+  if (a) {
     $(1);
   } else {
     break;

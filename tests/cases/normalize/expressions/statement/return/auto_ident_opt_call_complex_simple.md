@@ -61,12 +61,12 @@ $(a);
 const f = function () {
   debugger;
   const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall != null;
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
+    return undefined;
+  } else {
     const tmpChainElementCall$1 = tmpChainElementCall.call($, 1);
     return tmpChainElementCall$1;
-  } else {
-    return undefined;
   }
 };
 const a = { a: 999, b: 1000 };

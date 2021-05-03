@@ -58,18 +58,18 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('$');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$1 = tmpChainElementObject != null;
+  const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpCallVal = tmpChainElementObject.call;
     const tmpCalleeParam$1 = $(1);
     tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
-  } else {
   }
-} else {
 }
 $(a);
 `````

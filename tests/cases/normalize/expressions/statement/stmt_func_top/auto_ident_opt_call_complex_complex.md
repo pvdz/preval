@@ -61,12 +61,12 @@ tmpCallCallee(tmpCalleeParam$3);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $($);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpCallVal = tmpChainElementCall.call;
   const tmpCalleeParam$1 = $(1);
   tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
-} else {
 }
 $(a);
 $(undefined);

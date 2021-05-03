@@ -60,7 +60,7 @@ const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 let tmpSSA_a = new tmpNewCallee(1);
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('$');
   const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];

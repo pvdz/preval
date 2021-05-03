@@ -123,12 +123,12 @@ tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     const tmpChainElementCall = $($);
-    const tmpIfTest$5 = tmpChainElementCall != null;
+    const tmpIfTest$5 = tmpChainElementCall == null;
     if (tmpIfTest$5) {
+    } else {
       const tmpCallVal = tmpChainElementCall.call;
       const tmpCalleeParam$1 = $(1);
       tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
-    } else {
     }
     break tmpSwitchBreak;
   } else {

@@ -46,7 +46,7 @@ $(a);
 const tmpCallCallee$1 = $($);
 const a = tmpCallCallee$1(1);
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
 }

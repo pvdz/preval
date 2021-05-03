@@ -24,8 +24,7 @@ $(typeof !$(100));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpUnaryArg = $(100);
-!tmpUnaryArg;
+$(100);
 const tmpCalleeParam = 'boolean';
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -33,8 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
-!tmpUnaryArg;
+$(100);
 $('boolean');
 `````
 

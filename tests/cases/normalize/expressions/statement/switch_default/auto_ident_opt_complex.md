@@ -66,10 +66,10 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 $(1);
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall != null;
+const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
-  tmpChainElementCall.x;
 } else {
+  tmpChainElementCall.x;
 }
 $(a);
 `````

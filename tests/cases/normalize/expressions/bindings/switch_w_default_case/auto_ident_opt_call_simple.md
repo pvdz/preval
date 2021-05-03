@@ -92,11 +92,11 @@ if (tmpIfTest$9) {
 
 `````js filename=intro
 let tmpSSA_a = undefined;
-const tmpIfTest$5 = $ != null;
+const tmpIfTest$5 = $ == null;
 if (tmpIfTest$5) {
+} else {
   const tmpChainElementCall = $(1);
   tmpSSA_a = tmpChainElementCall;
-} else {
 }
 $(tmpSSA_a);
 $('fail1');

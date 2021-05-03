@@ -116,12 +116,12 @@ if (tmpIfTest) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   a = undefined;
-  const tmpIfTest$5 = b != null;
+  const tmpIfTest$5 = b == null;
   if (tmpIfTest$5) {
+  } else {
     const tmpChainElementObject = b.c;
     const tmpChainElementCall = tmpChainElementObject.call(b, 1);
     a = tmpChainElementCall;
-  } else {
   }
 } else {
 }

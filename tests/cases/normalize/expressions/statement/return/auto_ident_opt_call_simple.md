@@ -59,12 +59,12 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpIfTest = $ != null;
+  const tmpIfTest = $ == null;
   if (tmpIfTest) {
+    return undefined;
+  } else {
     const tmpChainElementCall = $(1);
     return tmpChainElementCall;
-  } else {
-    return undefined;
   }
 };
 const a = { a: 999, b: 1000 };

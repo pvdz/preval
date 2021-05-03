@@ -92,17 +92,17 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpChainElementCall = $(b);
-  const tmpIfTest$3 = tmpChainElementCall != null;
+  const tmpIfTest$3 = tmpChainElementCall == null;
   if (tmpIfTest$3) {
+  } else {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$5 = tmpChainElementObject != null;
+    const tmpIfTest$5 = tmpChainElementObject == null;
     if (tmpIfTest$5) {
+    } else {
       const tmpChainRootComputed$1 = $('y');
       tmpChainElementObject[tmpChainRootComputed$1];
-    } else {
     }
-  } else {
   }
 } else {
 }

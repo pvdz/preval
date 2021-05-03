@@ -54,7 +54,7 @@ const b = { $: $ };
 const tmpCallObj = $(b);
 let tmpSSA_a = tmpCallObj.$(1);
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   const tmpCallObj$1 = $(b);
   const tmpNestedComplexRhs = tmpCallObj$1.$(1);
   tmpSSA_a = tmpNestedComplexRhs;

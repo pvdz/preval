@@ -43,8 +43,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
-  const tmpUnaryArg = $(100);
-  !tmpUnaryArg;
+  $(100);
 } else {
 }
 $(a);
@@ -55,8 +54,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 $(1);
-const tmpUnaryArg = $(100);
-!tmpUnaryArg;
+$(100);
 $(a);
 `````
 

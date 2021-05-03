@@ -59,14 +59,13 @@ const b = { x: 1 };
 let tmpCalleeParam = undefined;
 let a = undefined;
 const tmpChainRootProp = $(b);
-const tmpIfTest$1 = tmpChainRootProp != null;
+const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
-} else {
 }
-const tmpIfTest = a;
-if (tmpIfTest) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);

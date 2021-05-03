@@ -54,11 +54,11 @@ const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 let tmpBinBothRhs = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpBinBothRhs = tmpChainElementObject;
-} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

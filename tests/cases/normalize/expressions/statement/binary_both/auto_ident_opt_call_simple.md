@@ -53,18 +53,18 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 let tmpBinBothLhs = undefined;
-const tmpIfTest = $ != null;
+const tmpIfTest = $ == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementCall = $(1);
   tmpBinBothLhs = tmpChainElementCall;
-} else {
 }
 let tmpBinBothRhs = undefined;
-const tmpIfTest$1 = $ != null;
+const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainElementCall$1 = $(1);
   tmpBinBothRhs = tmpChainElementCall$1;
-} else {
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

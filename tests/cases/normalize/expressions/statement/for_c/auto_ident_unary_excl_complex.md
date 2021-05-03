@@ -35,8 +35,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpUnaryArg = $(100);
-    !tmpUnaryArg;
+    $(100);
   } else {
     break;
   }
@@ -51,8 +50,7 @@ const a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpUnaryArg = $(100);
-    !tmpUnaryArg;
+    $(100);
   } else {
     break;
   }

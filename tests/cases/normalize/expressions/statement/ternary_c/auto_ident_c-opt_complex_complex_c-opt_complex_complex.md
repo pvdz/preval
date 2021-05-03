@@ -66,17 +66,17 @@ if (tmpIfTest) {
   $(100);
 } else {
   const tmpChainElementCall = $(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
+  const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpChainRootComputed = $('x');
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$3 = tmpChainElementObject != null;
+    const tmpIfTest$3 = tmpChainElementObject == null;
     if (tmpIfTest$3) {
+    } else {
       const tmpChainRootComputed$1 = $('y');
       tmpChainElementObject[tmpChainRootComputed$1];
-    } else {
     }
-  } else {
   }
 }
 $(a);

@@ -71,19 +71,19 @@ $(a);
 const f = function () {
   debugger;
   a = undefined;
-  const tmpIfTest = b != null;
+  const tmpIfTest = b == null;
   if (tmpIfTest) {
+    return a;
+  } else {
     const tmpChainElementObject = b.x;
-    const tmpIfTest$1 = tmpChainElementObject != null;
+    const tmpIfTest$1 = tmpChainElementObject == null;
     if (tmpIfTest$1) {
+      return a;
+    } else {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       a = tmpChainElementObject$1;
       return a;
-    } else {
-      return a;
     }
-  } else {
-    return a;
   }
 };
 const tmpObjLitVal = { y: 1 };

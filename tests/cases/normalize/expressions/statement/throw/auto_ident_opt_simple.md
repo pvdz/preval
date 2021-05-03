@@ -48,11 +48,11 @@ throw tmpThrowArg;
 `````js filename=intro
 const b = { x: 1 };
 let tmpThrowArg = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.x;
   tmpThrowArg = tmpChainElementObject;
-} else {
 }
 throw tmpThrowArg;
 `````

@@ -56,11 +56,11 @@ const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   a = undefined;
-  const tmpIfTest = $ != null;
+  const tmpIfTest = $ == null;
   if (tmpIfTest) {
+  } else {
     const tmpChainElementCall = $(1);
     a = tmpChainElementCall;
-  } else {
   }
   const tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;

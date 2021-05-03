@@ -47,7 +47,7 @@ $(a);
 `````js filename=intro
 let a = $(2);
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
 } else {
   const tmpNestedComplexRhs = $(2);
   a = tmpNestedComplexRhs;

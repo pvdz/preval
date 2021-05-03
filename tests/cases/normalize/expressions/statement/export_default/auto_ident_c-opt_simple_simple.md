@@ -52,11 +52,11 @@ $(a);
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpAnonDefaultExport = undefined;
-const tmpIfTest = b != null;
+const tmpIfTest = b == null;
 if (tmpIfTest) {
+} else {
   const tmpChainElementObject = b.x;
   tmpAnonDefaultExport = tmpChainElementObject;
-} else {
 }
 export { tmpAnonDefaultExport as default };
 $(a);

@@ -54,12 +54,12 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $($);
-  const tmpIfTest$1 = tmpChainElementCall != null;
+  const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
+  } else {
     const tmpCallVal = tmpChainElementCall.call;
     const tmpCalleeParam$1 = $(1);
     tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
-  } else {
   }
 }
 $(a);

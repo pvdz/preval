@@ -52,7 +52,7 @@ const b = { c: 1 };
 const tmpAssignRhsCompProp = $('c');
 const a = b[tmpAssignRhsCompProp];
 let tmpCalleeParam = a;
-if (tmpCalleeParam) {
+if (a) {
   tmpCalleeParam = $(100);
 } else {
 }

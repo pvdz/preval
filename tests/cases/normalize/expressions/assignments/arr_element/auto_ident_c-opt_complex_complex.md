@@ -66,22 +66,22 @@ $(a);
 const b = { x: 1 };
 let a = undefined;
 const tmpChainElementCall = $(b);
-const tmpIfTest = tmpChainElementCall != null;
+const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+} else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
-} else {
 }
 const tmpBinBothLhs = a;
 let tmpSSA_a = undefined;
 const tmpChainElementCall$1 = $(b);
-const tmpIfTest$1 = tmpChainElementCall$1 != null;
+const tmpIfTest$1 = tmpChainElementCall$1 == null;
 if (tmpIfTest$1) {
+} else {
   const tmpChainRootComputed$1 = $('x');
   const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
   tmpSSA_a = tmpChainElementObject$1;
-} else {
 }
 const tmpBinBothRhs = tmpSSA_a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;

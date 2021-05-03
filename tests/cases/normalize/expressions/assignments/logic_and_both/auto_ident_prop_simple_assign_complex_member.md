@@ -64,7 +64,7 @@ const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
 let tmpSSA_a = tmpNestedAssignPropRhs;
 let tmpCalleeParam = tmpSSA_a;
-if (tmpCalleeParam) {
+if (tmpSSA_a) {
   const tmpCompObj$1 = $(b);
   const tmpCompProp$1 = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];

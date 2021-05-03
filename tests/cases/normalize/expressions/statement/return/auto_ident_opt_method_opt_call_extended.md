@@ -73,20 +73,20 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpIfTest = b != null;
+  const tmpIfTest = b == null;
   if (tmpIfTest) {
+    return undefined;
+  } else {
     const tmpChainElementObject = b.c;
     const tmpChainElementObject$1 = tmpChainElementObject.d;
     const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpIfTest$1 = tmpChainElementObject$3 != null;
+    const tmpIfTest$1 = tmpChainElementObject$3 == null;
     if (tmpIfTest$1) {
+      return undefined;
+    } else {
       const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
       return tmpChainElementCall;
-    } else {
-      return undefined;
     }
-  } else {
-    return undefined;
   }
 };
 const tmpObjLitVal$1 = { e: $ };

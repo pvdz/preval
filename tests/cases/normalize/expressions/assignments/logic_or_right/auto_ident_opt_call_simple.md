@@ -55,11 +55,11 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
-  const tmpIfTest = $ != null;
+  const tmpIfTest = $ == null;
   if (tmpIfTest) {
+  } else {
     const tmpChainElementCall = $(1);
     tmpNestedComplexRhs = tmpChainElementCall;
-  } else {
   }
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

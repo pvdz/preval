@@ -2555,110 +2555,105 @@ export function phaseNormalize(fdata, fname) {
 
         // Luckily we don't need to. Check whether the left and right are static values. Then switch apply the operator. Boom.
 
-        if (
-          (node.left.type === 'Literal' && node.left.value !== undefined) ||
-          (node.left.type === 'Identifier' && ['NaN', 'undefined', 'Infinity'].includes(node.left.name))
-        ) {
-          if (
-            (node.right.type === 'Literal' && node.right.value !== undefined) ||
-            (node.right.type === 'Identifier' && ['NaN', 'undefined', 'Infinity'].includes(node.right.name))
-          ) {
-            rule('Binary operation on two builtin primitives or values should be statically resolved');
-            example('1 + null', '1');
-            before(node, parentNode);
+        if (AST.isPrimitive(node.left) && AST.isPrimitive(node.right)) {
+          rule('Binary operation on two builtin primitives or values should be statically resolved');
+          example('1 + null', '1');
+          before(node, parentNode);
 
-            const lhs = node.left.type === 'Literal' ? node.left.value : { NaN, undefined, Infinity }[node.left.name];
-            const rhs = node.right.type === 'Literal' ? node.right.value : { NaN, undefined, Infinity }[node.right.name];
+          const lhs = AST.getPrimitiveValue(node.left);
+          const rhs = AST.getPrimitiveValue(node.right);
 
-            try {
-              let result = undefined;
-              switch (node.operator) {
-                case '**':
-                  result = lhs ** rhs;
-                  break;
-                case '*':
-                  result = lhs * rhs;
-                  break;
-                case '/':
-                  result = lhs / rhs;
-                  break;
-                case '%':
-                  result = lhs % rhs;
-                  break;
-                case '+':
-                  result = lhs + rhs;
-                  break;
-                case '-':
-                  result = lhs - rhs;
-                  break;
-                case '<<':
-                  result = lhs << rhs;
-                  break;
-                case '>>':
-                  result = lhs >> rhs;
-                  break;
-                case '>>>':
-                  result = lhs >>> rhs;
-                  break;
-                case '<':
-                  result = lhs < rhs;
-                  break;
-                case '>':
-                  result = lhs > rhs;
-                  break;
-                case '<=':
-                  result = lhs <= rhs;
-                  break;
-                case '>=':
-                  result = lhs >= rhs;
-                  break;
-                case '==':
-                  result = lhs == rhs;
-                  break;
-                case '!=':
-                  result = lhs != rhs;
-                  break;
-                case '===':
-                  result = lhs === rhs;
-                  break;
-                case '!==':
-                  result = lhs !== rhs;
-                  break;
-                case '&':
-                  result = lhs & rhs;
-                  break;
-                case '|':
-                  result = lhs | rhs;
-                  break;
-                case '^':
-                  result = lhs ^ rhs;
-                  break;
-                case 'in':
-                  result = lhs in rhs;
-                  break;
-                case 'instanceof':
-                  result = lhs instanceof rhs;
-                  break;
-                default:
-                  return ASSERT(false, 'new op?', node);
-              }
-
-              vlog('lhs:', [lhs], ', rhs:', [rhs], ', op:', [node.operator], '->', [result]);
-
-              const finalNode =
-                typeof result === 'string' || typeof result === 'boolean'
-                  ? AST.literal(result)
-                  : (ASSERT(typeof result === 'number'),
-                    isNaN(result) ? AST.identifier('NaN') : !isFinite(result) ? AST.identifier('Infinity') : AST.literal(result));
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            } catch {
-              log('Operation resulted in an error so not inlining it');
+          try {
+            let result = undefined;
+            switch (node.operator) {
+              case '**':
+                result = lhs ** rhs;
+                break;
+              case '*':
+                result = lhs * rhs;
+                break;
+              case '/':
+                result = lhs / rhs;
+                break;
+              case '%':
+                result = lhs % rhs;
+                break;
+              case '+':
+                result = lhs + rhs;
+                break;
+              case '-':
+                result = lhs - rhs;
+                break;
+              case '<<':
+                result = lhs << rhs;
+                break;
+              case '>>':
+                result = lhs >> rhs;
+                break;
+              case '>>>':
+                result = lhs >>> rhs;
+                break;
+              case '<':
+                result = lhs < rhs;
+                break;
+              case '>':
+                result = lhs > rhs;
+                break;
+              case '<=':
+                result = lhs <= rhs;
+                break;
+              case '>=':
+                result = lhs >= rhs;
+                break;
+              case '==':
+                result = lhs == rhs;
+                break;
+              case '!=':
+                result = lhs != rhs;
+                break;
+              case '===':
+                result = lhs === rhs;
+                break;
+              case '!==':
+                result = lhs !== rhs;
+                break;
+              case '&':
+                result = lhs & rhs;
+                break;
+              case '|':
+                result = lhs | rhs;
+                break;
+              case '^':
+                result = lhs ^ rhs;
+                break;
+              case 'in':
+                result = lhs in rhs;
+                break;
+              case 'instanceof':
+                result = lhs instanceof rhs;
+                break;
+              default:
+                return ASSERT(false, 'new op?', node);
             }
+
+            vlog('lhs:', [lhs], ', rhs:', [rhs], ', op:', [node.operator], '->', [result]);
+
+            const finalNode =
+              typeof result === 'string' || typeof result === 'boolean' || result === null
+                ? // There are no special string/boolean cases to consider
+                  // I don't think any of these operators can have any operands that result in a `null`, but whatever.
+                  AST.literal(result, true)
+                : // Numbers may result in NaN or Infinity, which are idents. NaN is not a finite so check that one first.
+                  (ASSERT(typeof result === 'number'),
+                  isNaN(result) ? AST.identifier('NaN') : !isFinite(result) ? AST.identifier('Infinity') : AST.literal(result, true));
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          } catch {
+            vlog('Operation resulted in an error so not inlining it');
           }
         }
 

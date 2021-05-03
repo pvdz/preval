@@ -44,7 +44,6 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-0 + -1;
 $(a, -1);
 `````
 

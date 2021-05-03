@@ -51,8 +51,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = 0 + -1;
-$(tmpCalleeParam);
+$(-1);
 $(-1, -1);
 `````
 

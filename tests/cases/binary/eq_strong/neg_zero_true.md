@@ -24,15 +24,14 @@ $(-0 === -0);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = -0 === -0;
+const tmpCalleeParam = true;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = -0 === -0;
-$(tmpCalleeParam);
+$(true);
 `````
 
 ## Globals

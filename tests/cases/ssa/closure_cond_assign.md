@@ -104,27 +104,25 @@ if ($) {
 `````js filename=intro
 if ($) {
   let x = 0;
-  const $clone$g$0_Ffalse = function () {
+  const g = function ($$0) {
+    const t = $$0;
     debugger;
-    $(x);
-    $();
-    return undefined;
-  };
-  const $clone$g$0_Ttrue = function () {
-    debugger;
-    x = x + 1;
+    if (t) {
+      x = x + 1;
+    } else {
+    }
     $(x);
     $();
     return undefined;
   };
   if ($) {
-    $clone$g$0_Ttrue();
-    $clone$g$0_Ffalse();
-    $clone$g$0_Ttrue();
-    $clone$g$0_Ffalse();
-    $clone$g$0_Ffalse();
-    $clone$g$0_Ttrue();
-    $clone$g$0_Ttrue();
+    g(true);
+    g(false);
+    g(true);
+    g(false);
+    g(false);
+    g(true);
+    g(true);
   } else {
   }
   $(undefined);

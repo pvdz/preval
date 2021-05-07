@@ -49,7 +49,7 @@ const f = function () {
   $(tmpArgumentsLen);
   return undefined;
 };
-f(null, null, null);
+f(1, 2, 3);
 `````
 
 ## Globals

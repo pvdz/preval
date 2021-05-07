@@ -73,15 +73,16 @@ $(x);
 
 `````js filename=intro
 let x = 0;
-const g = function (...$$0) {
-  const b = $$0;
+const g = function ($$0, ...$$1) {
+  const a = $$0;
+  const b = $$1;
   debugger;
-  x = 10 + b;
+  x = a + b;
   return undefined;
 };
 const tmpCalleeParam = [1, 2];
 $(tmpCalleeParam);
-g(20, 30, 40, 50, 60);
+g(10, 20, 30, 40, 50, 60);
 $(x);
 `````
 

@@ -71,18 +71,20 @@ f();
 ## Output
 
 `````js filename=intro
-const $clone$f$0_Iundefined = function () {
+const f = function ($$0) {
+  const x = $$0;
   debugger;
   while (true) {
     s;
-    stop$1: {
-      break stop$1;
+    stop: {
+      break stop;
     }
   }
+  x + 1;
   return undefined;
 };
-$clone$f$0_Iundefined();
-$clone$f$0_Iundefined();
+f();
+f();
 `````
 
 ## Globals

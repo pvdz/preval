@@ -110,7 +110,7 @@ const f = function ($$0) {
   }
 };
 const tmpCalleeParam$5 = [undefined, 20, 30];
-const tmpCalleeParam$3 = f(tmpCalleeParam$5);
+const tmpCalleeParam$3 = f(tmpCalleeParam$5, 200);
 $(tmpCalleeParam$3);
 `````
 

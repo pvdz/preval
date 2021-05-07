@@ -59,7 +59,7 @@ const f = function ($$0, $$1, $$2, $$3, $$4) {
   $(tmpArgumentsLen);
   return undefined;
 };
-f(null, null, null, null, null);
+f(1, 2, 3, 4, 5);
 `````
 
 ## Globals

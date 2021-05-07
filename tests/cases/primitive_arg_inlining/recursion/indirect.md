@@ -83,71 +83,6 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const $clone$g$0_D0 = function () {
-  debugger;
-  const tmpBinLhs$1 = $(1);
-  const tmpIfTest$1 = tmpBinLhs$1 > 1000;
-  if (tmpIfTest$1) {
-    return 1;
-  } else {
-    const tmpBinLhs$2 = $(2);
-    const tmpIfTest$2 = tmpBinLhs$2 > 1000;
-    if (tmpIfTest$2) {
-      return 2;
-    } else {
-      const tmpBinLhs$3 = $(3);
-      const tmpIfTest$3 = tmpBinLhs$3 > 1000;
-      if (tmpIfTest$3) {
-        return 3;
-      } else {
-        const tmpBinLhs$4 = $(4);
-        const tmpIfTest$4 = tmpBinLhs$4 > 1000;
-        if (tmpIfTest$4) {
-          return 4;
-        } else {
-          const tmpBinLhs$5 = $(5);
-          const tmpIfTest$5 = tmpBinLhs$5 > 1000;
-          if (tmpIfTest$5) {
-            return 5;
-          } else {
-            const tmpBinLhs$6 = $(6);
-            const tmpIfTest$6 = tmpBinLhs$6 > 1000;
-            if (tmpIfTest$6) {
-              return 6;
-            } else {
-              const tmpBinLhs$7 = $(7);
-              const tmpIfTest$7 = tmpBinLhs$7 > 1000;
-              if (tmpIfTest$7) {
-                return 7;
-              } else {
-                const tmpBinLhs$8 = $(8);
-                const tmpIfTest$8 = tmpBinLhs$8 > 1000;
-                if (tmpIfTest$8) {
-                  return 8;
-                } else {
-                  const tmpBinLhs$9 = $(9);
-                  const tmpIfTest$9 = tmpBinLhs$9 > 1000;
-                  if (tmpIfTest$9) {
-                    return 9;
-                  } else {
-                    const tmpBinLhs$10 = $(10);
-                    const tmpIfTest$10 = tmpBinLhs$10 > 1000;
-                    if (tmpIfTest$10) {
-                      return 10;
-                    } else {
-                      const tmpReturnArg$1 = g(10);
-                      return tmpReturnArg$1;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-};
 const g = function ($$0) {
   const n$1 = $$0;
   debugger;
@@ -161,7 +96,7 @@ const g = function ($$0) {
     return tmpReturnArg$3;
   }
 };
-const tmpCalleeParam$1 = $clone$g$0_D0();
+const tmpCalleeParam$1 = g(0);
 $(tmpCalleeParam$1);
 `````
 

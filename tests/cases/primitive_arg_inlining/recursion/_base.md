@@ -58,8 +58,8 @@ const f = function ($$0) {
   const tmpReturnArg = f(tmpCalleeParam);
   return tmpReturnArg;
 };
-const tmpReturnArg$1 = f(5);
-$(tmpReturnArg$1);
+const tmpCalleeParam$1 = f(0);
+$(tmpCalleeParam$1);
 `````
 
 ## Globals

@@ -75,11 +75,18 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const f = function ($$0) {
+  const tmpParamBare = $$0;
   debugger;
-  const tmpArrElement = { x: 'pass3' };
-  const tmpCalleeParam = [tmpArrElement];
-  const bindingPatternArrRoot = $(tmpCalleeParam);
+  let bindingPatternArrRoot = undefined;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    const tmpArrElement = { x: 'pass3' };
+    const tmpCalleeParam = [tmpArrElement];
+    bindingPatternArrRoot = $(tmpCalleeParam);
+  } else {
+    bindingPatternArrRoot = tmpParamBare;
+  }
   const arrPatternSplat = [...bindingPatternArrRoot];
   const arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep = undefined;

@@ -55,10 +55,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const f = function ($$0) {
   const tmpthis = this;
+  const tmpParamBare = $$0;
   debugger;
-  return tmpthis;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    return tmpthis;
+  } else {
+    return tmpParamBare;
+  }
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

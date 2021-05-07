@@ -102,25 +102,27 @@ $(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const $clone$inner$0_Iundefined = function () {
+const inner = function ($$0) {
+  const x$1 = $$0;
   debugger;
-  $clone$outer$0_Iundefined();
+  outer();
   if ($) {
-    $clone$outer$0_Iundefined();
+    outer(x$1);
     return undefined;
   } else {
     return undefined;
   }
 };
-const $clone$outer$0_Iundefined = function () {
+const outer = function ($$0) {
+  const x = $$0;
   debugger;
-  const r$1 = [undefined];
-  $(r$1);
+  const r = [x];
+  $(r);
   return undefined;
 };
-$clone$inner$0_Iundefined();
+inner();
 if ($) {
-  $clone$inner$0_Iundefined();
+  inner();
 } else {
 }
 $(undefined);

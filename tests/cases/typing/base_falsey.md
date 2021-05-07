@@ -89,18 +89,22 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+const g = function ($$0) {
+  const arg = $$0;
+  debugger;
+  $(arg);
+  $(arg);
+  $(arg);
+  return undefined;
+};
 const tmpCalleeParam = $(1);
 const b = tmpCalleeParam === 10;
 if (b) {
   $('a', true);
-  $(true);
-  $(true);
-  $(true);
+  g(true);
 } else {
   $('b', false);
-  $(false);
-  $(false);
-  $(false);
+  g(false);
 }
 `````
 

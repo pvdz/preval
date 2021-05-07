@@ -85,7 +85,33 @@ tmpCallCallee$5(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-throw 'Preval: Cannot access `b` before initialization';
+const f = function ($$0, $$1) {
+  const tmpParamBare = $$0;
+  const tmpParamBare$1 = $$1;
+  debugger;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    throw 'Preval: Cannot access `b` before initialization';
+  } else {
+    let b = undefined;
+    const tmpIfTest$1 = tmpParamBare$1 === undefined;
+    if (tmpIfTest$1) {
+      b = 'bar';
+    } else {
+      b = tmpParamBare$1;
+    }
+    const tmpReturnArg = [tmpParamBare, b];
+    return tmpReturnArg;
+  }
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
+const tmpCalleeParam$1 = f('x');
+$(tmpCalleeParam$1);
+const tmpCalleeParam$3 = f(undefined, 'y');
+$(tmpCalleeParam$3);
+const tmpCalleeParam$5 = f('x', 'y');
+$(tmpCalleeParam$5);
 `````
 
 ## Globals

@@ -62,8 +62,28 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-[...1];
-throw '[Preval]: Array spread must crash before this line';
+const f = function ($$0) {
+  const tmpParamBare = $$0;
+  debugger;
+  let bindingPatternArrRoot = undefined;
+  const tmpIfTest = tmpParamBare === undefined;
+  if (tmpIfTest) {
+    bindingPatternArrRoot = $('pass2');
+  } else {
+    bindingPatternArrRoot = tmpParamBare;
+  }
+  const arrPatternSplat = [...bindingPatternArrRoot];
+  const arrPatternBeforeDefault = arrPatternSplat[0];
+  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
+  if (tmpIfTest$1) {
+    const tmpSSA_x = $('fail');
+    return tmpSSA_x;
+  } else {
+    return arrPatternBeforeDefault;
+  }
+};
+const tmpCalleeParam = f(1, 2, 3, 200);
+$(tmpCalleeParam);
 `````
 
 ## Globals

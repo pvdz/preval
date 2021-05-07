@@ -80,11 +80,17 @@ if ($) {
 `````js filename=intro
 if ($) {
   let a = { a: 999, b: 1000 };
-  const f = function () {
+  const f = function ($$0) {
     const tmpthis = this;
+    const tmpParamBare = $$0;
     debugger;
-    a = tmpthis;
-    return undefined;
+    const tmpIfTest = tmpParamBare === undefined;
+    if (tmpIfTest) {
+      a = tmpthis;
+      return undefined;
+    } else {
+      return undefined;
+    }
   };
   f();
   $(undefined);

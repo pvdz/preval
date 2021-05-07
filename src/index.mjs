@@ -12,7 +12,6 @@ import { prepareNormalization } from './normalize/prepare.mjs';
 import { phase0 } from './reduce_static/phase0.mjs';
 import { phase1 } from './reduce_static/phase1.mjs';
 import { phase2 } from './reduce_static/phase2.mjs';
-import { phasePrimitiveArgInlining } from './reduce_static/phase_primitive_arg_inlining.mjs';
 
 export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve, req, stopAfterNormalize, options = {} }) {
   if (stdio) setStdio(stdio, verbose);
@@ -232,7 +231,6 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           firstAfterParse = false;
 
           changed = phase2(program, fdata, resolve, req);
-          if (!changed) changed = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);
         } while (changed === 'phase1');
 
         mod.fdata = fdata;

@@ -94,7 +94,7 @@ const f = function ($$0) {
 };
 const tmpArrElement = { x: 'abc', y: 2, z: 3 };
 const tmpCalleeParam$3 = [tmpArrElement, 20, 30];
-const tmpCalleeParam$1 = f(tmpCalleeParam$3);
+const tmpCalleeParam$1 = f(tmpCalleeParam$3, 200);
 $(tmpCalleeParam$1);
 `````
 

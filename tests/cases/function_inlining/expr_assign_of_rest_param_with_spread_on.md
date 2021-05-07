@@ -81,7 +81,7 @@ const g = function ($$0, ...$$1) {
 };
 const tmpCalleeParam = [1, 2];
 const arr = $(tmpCalleeParam);
-g(null, ...arr, 20, 30, 40, 50, 60);
+g(10, ...arr, 20, 30, 40, 50, 60);
 $(x);
 `````
 

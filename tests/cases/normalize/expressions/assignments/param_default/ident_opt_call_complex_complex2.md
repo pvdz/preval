@@ -128,19 +128,25 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const f = function () {
+const f = function ($$0) {
+  const tmpParamDefault = $$0;
   debugger;
-  const tmpChainElementCall$2 = $($);
-  const tmpIfTest$3 = tmpChainElementCall$2 == null;
-  if (tmpIfTest$3) {
-    a = undefined;
-    return undefined;
+  const tmpIfTest = tmpParamDefault === undefined;
+  if (tmpIfTest) {
+    const tmpChainElementCall$2 = $($);
+    const tmpIfTest$3 = tmpChainElementCall$2 == null;
+    if (tmpIfTest$3) {
+      a = undefined;
+      return undefined;
+    } else {
+      const tmpCallVal$2 = tmpChainElementCall$2.call;
+      const tmpCalleeParam$5 = $(1);
+      const tmpChainElementCall$5 = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
+      a = tmpChainElementCall$5;
+      return a;
+    }
   } else {
-    const tmpCallVal$2 = tmpChainElementCall$2.call;
-    const tmpCalleeParam$5 = $(1);
-    const tmpChainElementCall$5 = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
-    a = tmpChainElementCall$5;
-    return a;
+    return undefined;
   }
 };
 const tmpCalleeParam$6 = f();

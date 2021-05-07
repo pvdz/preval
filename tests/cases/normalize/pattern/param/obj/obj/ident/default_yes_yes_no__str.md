@@ -65,9 +65,10 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const f = function ($$0) {
+  const tmpParamBare = $$0;
   debugger;
-  const objPatternBeforeDefault = 'abc'.x;
+  const objPatternBeforeDefault = tmpParamBare.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
@@ -85,7 +86,7 @@ const f = function () {
     return objPatternBeforeDefault$1;
   }
 };
-const tmpCalleeParam$1 = f();
+const tmpCalleeParam$1 = f('abc', 10);
 $(tmpCalleeParam$1);
 `````
 

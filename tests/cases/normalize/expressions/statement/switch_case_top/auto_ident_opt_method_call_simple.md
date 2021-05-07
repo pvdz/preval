@@ -59,7 +59,7 @@ if (tmpIfTest$1) {
   const tmpIfTest$3 = tmpChainRootProp != null;
   if (tmpIfTest$3) {
     const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
   } else {
   }
 } else {
@@ -86,7 +86,7 @@ if (tmpIfTest$1) {
   if (tmpIfTest$3) {
   } else {
     const tmpChainElementObject = b.c;
-    tmpChainElementObject.call(b, 1);
+    $dotCall(tmpChainElementObject, b, 1);
   }
 } else {
 }

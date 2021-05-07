@@ -56,7 +56,7 @@ None
 
 Should call `$` with:
  - 1: '[object Arguments][object Arguments]'
- - 2: { 0: '"<$>"', 1: '"<function>"' }
+ - 2: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - eval returned: undefined
 
 Pre normalization calls: Same

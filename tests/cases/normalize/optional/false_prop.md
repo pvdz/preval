@@ -29,7 +29,7 @@ const tmpChainRootProp = false;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.toString;
-  const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp);
+  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp);
   tmpCalleeParam = tmpChainElementCall;
 } else {
 }
@@ -40,7 +40,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpChainElementObject = false.toString;
-const tmpChainElementCall = tmpChainElementObject.call(false);
+const tmpChainElementCall = $dotCall(tmpChainElementObject, false);
 $(tmpChainElementCall);
 `````
 

@@ -45,7 +45,7 @@ let f = function () {
 const tmpCallObj = f;
 const tmpCallVal = tmpCallObj.call;
 const tmpCalleeParam = { pass: 1 };
-tmpCallVal.call(tmpCallObj, tmpCalleeParam);
+$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 `````
 
 ## Output
@@ -59,7 +59,7 @@ const f = function () {
 };
 const tmpCallVal = f.call;
 const tmpCalleeParam = { pass: 1 };
-tmpCallVal.call(f, tmpCalleeParam);
+$dotCall(tmpCallVal, f, tmpCalleeParam);
 `````
 
 ## Globals

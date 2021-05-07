@@ -35,7 +35,7 @@ const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainElementCall$1 = tmpChainElementCall.call(tmpChainRootCall, 1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
 } else {
 }
 while (true) {
@@ -56,7 +56,7 @@ const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  tmpChainElementCall.call($, 1);
+  $dotCall(tmpChainElementCall, $, 1);
 }
 while (true) {
   const tmpIfTest$1 = $(0);

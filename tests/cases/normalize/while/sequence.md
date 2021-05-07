@@ -36,7 +36,7 @@ while (true) {
   const tmpIfTest$1 = tmpChainRootProp != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, x);
+    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, x);
     tmpIfTest = tmpChainElementCall;
   } else {
   }
@@ -62,7 +62,7 @@ while (true) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, x);
+    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, x);
     tmpIfTest = tmpChainElementCall;
   }
   if (tmpIfTest) {

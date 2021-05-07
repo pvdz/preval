@@ -51,7 +51,7 @@ let f = function ($$0) {
       const tmpChainElementObject$3 = tmpChainElementObject$1.e;
       const tmpIfTest$3 = tmpChainElementObject$3 != null;
       if (tmpIfTest$3) {
-        const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+        const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
         p = tmpChainElementCall;
         return undefined;
       } else {
@@ -91,7 +91,7 @@ if (tmpIfTest$1) {
   const tmpIfTest$3 = tmpChainElementObject$3 == null;
   if (tmpIfTest$3) {
   } else {
-    tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+    $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
   }
 }
 $(undefined);

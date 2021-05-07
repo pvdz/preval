@@ -29,7 +29,7 @@ const tmpChainRootProp = null;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.toString;
-  const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp);
+  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp);
   tmpCalleeParam = tmpChainElementCall;
 } else {
 }

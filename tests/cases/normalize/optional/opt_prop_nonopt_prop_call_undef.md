@@ -31,7 +31,7 @@ const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpChainElementCall = tmpChainElementObject$1.call(tmpChainElementObject, 1);
+  const tmpChainElementCall = $dotCall(tmpChainElementObject$1, tmpChainElementObject, 1);
 } else {
 }
 `````

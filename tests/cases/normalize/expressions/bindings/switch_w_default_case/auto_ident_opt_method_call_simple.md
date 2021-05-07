@@ -76,7 +76,7 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 = tmpChainRootProp != null;
   if (tmpIfTest$5) {
     const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
     a = tmpChainElementCall;
   } else {
   }
@@ -104,7 +104,7 @@ const tmpIfTest$5 = tmpSSA_b == null;
 if (tmpIfTest$5) {
 } else {
   const tmpChainElementObject = tmpSSA_b.c;
-  const tmpChainElementCall = tmpChainElementObject.call(tmpSSA_b, 1);
+  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpSSA_b, 1);
   tmpSSA_a = tmpChainElementCall;
 }
 $(tmpSSA_a);

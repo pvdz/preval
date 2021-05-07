@@ -46,7 +46,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: { 0: '"<$>"', 1: '"<function>"' }
+ - 1: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - eval returned: undefined
 
 Pre normalization calls: Same

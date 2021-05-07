@@ -118,7 +118,7 @@ Should call `$` with:
  - 1: 1
  - 2: 'fail1'
  - 3: 'fail2'
- - 4: { 0: '"<$>"', 1: '"<function>"' }
+ - 4: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - eval returned: undefined
 
 Pre normalization calls: Same

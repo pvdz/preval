@@ -343,9 +343,15 @@ function runTestCase(
         withoutTheseProps.forEach((name) => delete clone[name]); // delete is huge deopt so this needs to be handled differently for a prod release.
         return clone;
       }
+      function $dotCall(func, obj, ...args) {
+        // The input started with a member expression as callee that we separated.
+        // This function serves as a syntactic clue telling us that the .call must be the built-in Function#call and
+        // not a userland .call method that happens to have the same name. This way we can undo some of this "damage" safely.
+        return func.call(obj, ...args);
+      }
       // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
       //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
-      const returns = new Function('$', 'objPatternRest', '"use strict"; ' + fdata.intro)($, objPatternRest);
+      const returns = new Function('$', 'objPatternRest', '$dotCall', '"use strict"; ' + fdata.intro)($, objPatternRest, $dotCall);
       before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
       stack.push(
         safeCloneString(returns)

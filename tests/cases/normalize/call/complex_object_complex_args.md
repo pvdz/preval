@@ -30,7 +30,7 @@ const tmpCallObj = $(a);
 const tmpCallVal = tmpCallObj.b;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
@@ -41,7 +41,7 @@ const tmpCallObj = $(a);
 const tmpCallVal = tmpCallObj.b;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Globals

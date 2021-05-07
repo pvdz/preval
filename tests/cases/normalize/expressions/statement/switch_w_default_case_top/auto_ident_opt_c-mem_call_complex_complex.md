@@ -82,11 +82,11 @@ tmpSwitchBreak: {
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
       const tmpIfTest$7 = tmpChainElementObject != null;
       if (tmpIfTest$7) {
-        const tmpCallObj = tmpChainElementObject;
-        const tmpCallVal = tmpCallObj.call;
-        const tmpCalleeParam = tmpChainElementCall;
-        const tmpCalleeParam$1 = $(1);
-        const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+        const tmpCallCallee = $dotCall;
+        const tmpCalleeParam = tmpChainElementObject;
+        const tmpCalleeParam$1 = tmpChainElementCall;
+        const tmpCalleeParam$3 = $(1);
+        const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
       } else {
       }
     } else {
@@ -138,9 +138,8 @@ tmpSwitchBreak: {
       const tmpIfTest$7 = tmpChainElementObject == null;
       if (tmpIfTest$7) {
       } else {
-        const tmpCallVal = tmpChainElementObject.call;
-        const tmpCalleeParam$1 = $(1);
-        tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
+        const tmpCalleeParam$3 = $(1);
+        $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
       }
     }
     break tmpSwitchBreak;

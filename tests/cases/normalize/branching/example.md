@@ -271,7 +271,7 @@ const tmpCalleeParam = function ($$0, $$1) {
     const tmpCallObj$1 = assigns;
     const tmpCallVal$1 = tmpCallObj$1.push;
     const tmpCalleeParam$1 = AST.assignmentExpression(tmpName, valueNode);
-    tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$1);
+    $dotCall(tmpCallVal$1, tmpCallObj$1, tmpCalleeParam$1);
     const tmpCallObj$3 = newElements;
     const tmpCallVal$3 = tmpCallObj$3.push;
     let tmpCalleeParam$3 = undefined;
@@ -282,7 +282,7 @@ const tmpCalleeParam = function ($$0, $$1) {
     } else {
       tmpCalleeParam$3 = AST.identifier(tmpName);
     }
-    tmpCallVal$3.call(tmpCallObj$3, tmpCalleeParam$3);
+    $dotCall(tmpCallVal$3, tmpCallObj$3, tmpCalleeParam$3);
   } else {
     newElements.push(anode);
   }
@@ -295,7 +295,7 @@ const tmpCalleeParam = function ($$0, $$1) {
     return undefined;
   }
 };
-tmpCallVal.call(tmpCallObj, tmpCalleeParam);
+$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 `````
 
 ## Output

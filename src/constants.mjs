@@ -18,6 +18,7 @@ export const ARGLENGTH_ALIAS_BASE_NAME = ARGUMENTS_ALIAS_PREFIX + 'Len'; // `arg
 export const IMPLICIT_GLOBAL_PREFIX = '$prevalImplicit$';
 
 export const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
+export const BUILTIN_FUNC_CALL_NAME = '$dotCall'; // syntactic clue that this was an actual method call before, not arbitrary .call method
 
 export const FRESH = true;
 export const OLD = false;

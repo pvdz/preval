@@ -36,7 +36,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.b;
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
-    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp);
+    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp);
     tmpCalleeParam = tmpChainElementCall;
   } else {
   }

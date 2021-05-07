@@ -61,31 +61,31 @@ None
 ## Result
 
 Should call `$` with:
- - 1: { 0: '"<$>"', 1: '"<function>"' }
+ - 1: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 2: 1
- - 3: { 0: '"<$>"', 1: '"<function>"' }
+ - 3: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 4: 1
- - 5: { 0: '"<$>"', 1: '"<function>"' }
+ - 5: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 6: 1
- - 7: { 0: '"<$>"', 1: '"<function>"' }
+ - 7: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 8: 1
- - 9: { 0: '"<$>"', 1: '"<function>"' }
+ - 9: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 10: 1
- - 11: { 0: '"<$>"', 1: '"<function>"' }
+ - 11: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 12: 1
- - 13: { 0: '"<$>"', 1: '"<function>"' }
+ - 13: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 14: 1
- - 15: { 0: '"<$>"', 1: '"<function>"' }
+ - 15: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 16: 1
- - 17: { 0: '"<$>"', 1: '"<function>"' }
+ - 17: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 18: 1
- - 19: { 0: '"<$>"', 1: '"<function>"' }
+ - 19: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 20: 1
- - 21: { 0: '"<$>"', 1: '"<function>"' }
+ - 21: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 22: 1
- - 23: { 0: '"<$>"', 1: '"<function>"' }
+ - 23: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 24: 1
- - 25: { 0: '"<$>"', 1: '"<function>"' }
+ - 25: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - 26: 1
  - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
 

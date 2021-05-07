@@ -63,7 +63,7 @@ None
 
 Should call `$` with:
  - 1: { x: '1' }
- - 2: { 0: '"<$>"', 1: '"<function>"', x: '"x"' }
+ - 2: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"', x: '"x"' }
  - eval returned: undefined
 
 Pre normalization calls: Same

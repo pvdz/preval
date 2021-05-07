@@ -39,8 +39,9 @@ const globalNames = new Map([
   ['self', 'undefined'], // for the react build
 
   // special to Preval
-  ['$', '$'],
-  ['objPatternRest', 'objPatternRest'],
+  ['$', '$'], // Do we want to tell Preval that it's a function?
+  ['objPatternRest', 'function'], // Should we tell Preval this is a function?
+  ['$dotCall', 'function'], // Should we tell Preval this is a function?
 ]);
 
 export default globalNames;

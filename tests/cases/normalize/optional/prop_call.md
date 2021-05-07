@@ -52,7 +52,7 @@ const tmpChainElementCall = tmpChainRootCall(a);
 const tmpChainElementObject = tmpChainElementCall.x;
 const tmpIfTest = tmpChainElementObject != null;
 if (tmpIfTest) {
-  const tmpChainElementCall$1 = tmpChainElementObject.call(tmpChainElementCall, 1, 2, 3);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, 1, 2, 3);
 } else {
 }
 `````
@@ -74,7 +74,7 @@ const tmpChainElementObject = tmpChainElementCall.x;
 const tmpIfTest = tmpChainElementObject == null;
 if (tmpIfTest) {
 } else {
-  tmpChainElementObject.call(tmpChainElementCall, 1, 2, 3);
+  $dotCall(tmpChainElementObject, tmpChainElementCall, 1, 2, 3);
 }
 `````
 

@@ -44,7 +44,7 @@ while (true) {
     const tmpChainElementObject$3 = tmpChainElementObject$1.e;
     const tmpIfTest$3 = tmpChainElementObject$3 != null;
     if (tmpIfTest$3) {
-      const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
       tmpIfTest = tmpChainElementCall;
     } else {
     }
@@ -78,7 +78,7 @@ while (true) {
     if (tmpIfTest$3) {
       $(100);
     } else {
-      const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
       if (tmpChainElementCall) {
         $(100);
       } else {

@@ -33,11 +33,11 @@ const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall($);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
-  const tmpCallObj = tmpChainElementCall;
-  const tmpCallVal = tmpCallObj.call;
-  const tmpCalleeParam = tmpChainRootCall;
-  const tmpCalleeParam$1 = $(1);
-  const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+  const tmpCallCallee = $dotCall;
+  const tmpCalleeParam = tmpChainElementCall;
+  const tmpCalleeParam$1 = tmpChainRootCall;
+  const tmpCalleeParam$3 = $(1);
+  const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   tmpIfTest = tmpChainElementCall$1;
 } else {
 }
@@ -47,11 +47,11 @@ if (tmpIfTest) {
   const tmpChainElementCall$3 = tmpChainRootCall$1($);
   const tmpIfTest$3 = tmpChainElementCall$3 != null;
   if (tmpIfTest$3) {
-    const tmpCallObj$1 = tmpChainElementCall$3;
-    const tmpCallVal$1 = tmpCallObj$1.call;
-    const tmpCalleeParam$3 = tmpChainRootCall$1;
-    const tmpCalleeParam$5 = $(1);
-    const tmpChainElementCall$5 = tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$3, tmpCalleeParam$5);
+    const tmpCallCallee$1 = $dotCall;
+    const tmpCalleeParam$5 = tmpChainElementCall$3;
+    const tmpCalleeParam$7 = tmpChainRootCall$1;
+    const tmpCalleeParam$9 = $(1);
+    const tmpChainElementCall$5 = tmpCallCallee$1(tmpCalleeParam$5, tmpCalleeParam$7, tmpCalleeParam$9);
   } else {
   }
 }
@@ -67,9 +67,8 @@ const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpCallVal = tmpChainElementCall.call;
-  const tmpCalleeParam$1 = $(1);
-  const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementCall, $, tmpCalleeParam$1);
+  const tmpCalleeParam$3 = $(1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   tmpIfTest = tmpChainElementCall$1;
 }
 if (tmpIfTest) {
@@ -78,9 +77,8 @@ if (tmpIfTest) {
   const tmpIfTest$3 = tmpChainElementCall$3 == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpCallVal$1 = tmpChainElementCall$3.call;
-    const tmpCalleeParam$5 = $(1);
-    tmpCallVal$1.call(tmpChainElementCall$3, $, tmpCalleeParam$5);
+    const tmpCalleeParam$9 = $(1);
+    $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$9);
   }
 }
 $(a);

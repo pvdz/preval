@@ -88,7 +88,7 @@ tmpSwitchBreak: {
       const tmpChainElementObject$3 = tmpChainElementObject$1.e;
       const tmpIfTest$7 = tmpChainElementObject$3 != null;
       if (tmpIfTest$7) {
-        const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+        const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
       } else {
       }
     } else {
@@ -142,7 +142,7 @@ tmpSwitchBreak: {
       const tmpIfTest$7 = tmpChainElementObject$3 == null;
       if (tmpIfTest$7) {
       } else {
-        tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+        $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
       }
     }
     break tmpSwitchBreak;

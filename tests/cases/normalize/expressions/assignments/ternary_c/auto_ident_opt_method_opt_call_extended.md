@@ -49,7 +49,7 @@ if (tmpIfTest) {
     const tmpChainElementObject$3 = tmpChainElementObject$1.e;
     const tmpIfTest$3 = tmpChainElementObject$3 != null;
     if (tmpIfTest$3) {
-      const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
       tmpNestedComplexRhs = tmpChainElementCall;
     } else {
     }
@@ -84,7 +84,7 @@ if (tmpIfTest) {
     const tmpIfTest$3 = tmpChainElementObject$3 == null;
     if (tmpIfTest$3) {
     } else {
-      const tmpChainElementCall = tmpChainElementObject$3.call(tmpChainElementObject$1, 1);
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
       tmpNestedComplexRhs = tmpChainElementCall;
     }
   }

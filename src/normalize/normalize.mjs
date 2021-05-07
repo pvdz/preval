@@ -33,6 +33,7 @@ import {
   findBodyOffsetExpensiveMaybe,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
 import { createFreshVar, findBoundNamesInVarDeclaration, findBoundNamesInUnnormalizedVarDeclaration } from '../bindings.mjs';
 import globals from '../globals.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
@@ -1047,7 +1048,10 @@ export function phaseNormalize(fdata, fname) {
                 AST.variableDeclaration(tmpNameProp, callee.property, 'const'),
                 AST.variableDeclaration(tmpNameFunc, AST.memberExpression(tmpNameObj, tmpNameProp, true), 'const'),
               ];
-              const finalNode = AST.callExpression(AST.memberExpression(tmpNameFunc, 'call'), [
+              // Call the special builtin to signify that this call was previously in fact a method call. We need this because
+              // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
+              const finalNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
+                AST.identifier(tmpNameFunc),
                 AST.identifier(tmpNameObj), // Context
                 ...args,
               ]);
@@ -1071,7 +1075,10 @@ export function phaseNormalize(fdata, fname) {
               ];
               // We always need to compile to .call because we need to read the member expression before the call, which
               // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
-              const finalNode = AST.callExpression(AST.memberExpression(tmpNameFunc, 'call'), [
+              // Call the special builtin to signify that this call was previously in fact a method call. We need this because
+              // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
+              const finalNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
+                AST.identifier(tmpNameFunc),
                 AST.identifier(tmpNameObj), // Context
                 ...args,
               ]);
@@ -1208,7 +1215,13 @@ export function phaseNormalize(fdata, fname) {
             // Do a `.call` to preserve getter order AND context
             // We always need to compile to .call because we need to read the member expression before the call, which
             // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
-            const finalNode = AST.callExpression(AST.memberExpression(tmpNameVal, 'call'), [AST.identifier(tmpNameObj), ...newArgs]);
+            // Call the special builtin to signify that this call was previously in fact a method call. We need this because
+            // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
+            const finalNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
+              AST.identifier(tmpNameVal),
+              AST.identifier(tmpNameObj),
+              ...newArgs,
+            ]);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body.splice(i, 1, ...newNodes, finalParent);
 
@@ -1236,7 +1249,13 @@ export function phaseNormalize(fdata, fname) {
             // Do a `.call` to preserve getter order AND context
             // We always need to compile to .call because we need to read the member expression before the call, which
             // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
-            const finalNode = AST.callExpression(AST.memberExpression(tmpNameVal, 'call'), [AST.identifier(tmpNameObj), ...newArgs]);
+            // Call the special builtin to signify that this call was previously in fact a method call. We need this because
+            // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
+            const finalNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
+              AST.identifier(tmpNameVal),
+              AST.identifier(tmpNameObj),
+              ...newArgs,
+            ]);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body.splice(i, 1, ...newNodes, finalParent);
 
@@ -4706,7 +4725,9 @@ export function phaseNormalize(fdata, fname) {
                 tmpName,
                 lastObj
                   ? // a?.b(1, 2, 3)  ->  b.call(a, 1, 2, 3)
-                    AST.callExpression(AST.memberExpression(prevObj, 'call'), [AST.identifier(lastObj), ...node.arguments])
+                    // Call the special builtin to signify that this call was previously in fact a method call. We need this because
+                    // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
+                    AST.callExpression(BUILTIN_FUNC_CALL_NAME, [AST.identifier(prevObj), AST.identifier(lastObj), ...node.arguments])
                   : // a(1, 2, 3)  ->  b(1, 2, 3)
                     AST.callExpression(prevObj, node.arguments),
                 'const',

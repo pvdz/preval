@@ -51,11 +51,11 @@ let f = function ($$0) {
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
       const tmpIfTest$3 = tmpChainElementObject != null;
       if (tmpIfTest$3) {
-        const tmpCallObj = tmpChainElementObject;
-        const tmpCallVal = tmpCallObj.call;
-        const tmpCalleeParam = tmpChainElementCall;
-        const tmpCalleeParam$1 = $(1);
-        const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+        const tmpCallCallee = $dotCall;
+        const tmpCalleeParam = tmpChainElementObject;
+        const tmpCalleeParam$1 = tmpChainElementCall;
+        const tmpCalleeParam$3 = $(1);
+        const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
         tmpNestedComplexRhs = tmpChainElementCall$1;
       } else {
       }
@@ -71,9 +71,9 @@ let f = function ($$0) {
 };
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam$3 = f();
-tmpCallCallee(tmpCalleeParam$3);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$5 = f();
+tmpCallCallee$1(tmpCalleeParam$5);
 $(a);
 `````
 
@@ -91,9 +91,8 @@ if (tmpIfTest$1) {
   const tmpIfTest$3 = tmpChainElementObject == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpCallVal = tmpChainElementObject.call;
-    const tmpCalleeParam$1 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
     tmpNestedComplexRhs = tmpChainElementCall$1;
   }
 }

@@ -86,7 +86,7 @@ None
 Should call `$` with:
  - 1: 1
  - 2: 1
- - 3: { 0: '"<$>"', 1: '"<function>"' }
+ - 3: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - eval returned: undefined
 
 Pre normalization calls: Same

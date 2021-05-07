@@ -37,7 +37,7 @@ const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = 2;
 const tmpCalleeParam$5 = 10;
 const tmpCalleeParam$7 = 20;
-tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
+$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
 const tmpCallCallee = $;
 const tmpCalleeParam$9 = arr.length;
 tmpCallCallee(tmpCalleeParam$9);
@@ -50,7 +50,7 @@ const arr = [1, 2, 3];
 const tmpCallObj = arr.splice;
 const tmpCallVal = tmpCallObj.call;
 const tmpCalleeParam$1 = $(1);
-tmpCallVal.call(tmpCallObj, arr, tmpCalleeParam$1, 2, 10, 20);
+$dotCall(tmpCallVal, tmpCallObj, arr, tmpCalleeParam$1, 2, 10, 20);
 const tmpCalleeParam$9 = arr.length;
 $(tmpCalleeParam$9);
 `````

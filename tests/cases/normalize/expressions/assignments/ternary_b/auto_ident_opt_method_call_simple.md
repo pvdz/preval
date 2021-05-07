@@ -41,7 +41,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainRootProp != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
     tmpNestedComplexRhs = tmpChainElementCall;
   } else {
   }
@@ -67,7 +67,7 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainElementObject = b.c;
-    const tmpChainElementCall = tmpChainElementObject.call(b, 1);
+    const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
     tmpNestedComplexRhs = tmpChainElementCall;
   }
   a = tmpNestedComplexRhs;

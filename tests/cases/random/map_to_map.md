@@ -77,7 +77,7 @@ const tmpCalleeParam$3 = function ($$0) {
   const tmpReturnArg = [k, k];
   return tmpReturnArg;
 };
-const tmpCalleeParam$1 = tmpCallVal.call(tmpCallObj$1, tmpCalleeParam$3);
+const tmpCalleeParam$1 = $dotCall(tmpCallVal, tmpCallObj$1, tmpCalleeParam$3);
 const tmpCallObj = new tmpNewCallee(tmpCalleeParam$1);
 const tmpCalleeParam = tmpCallObj.get('$');
 tmpCallCallee(tmpCalleeParam);
@@ -103,7 +103,7 @@ const tmpCalleeParam$3 = function ($$0) {
   const tmpReturnArg = [k, k];
   return tmpReturnArg;
 };
-const tmpCalleeParam$1 = tmpCallVal.call(tmpCallObj$1, tmpCalleeParam$3);
+const tmpCalleeParam$1 = $dotCall(tmpCallVal, tmpCallObj$1, tmpCalleeParam$3);
 const tmpCallObj = new Map(tmpCalleeParam$1);
 const tmpCalleeParam = tmpCallObj.get('$');
 $(tmpCalleeParam);

@@ -48,11 +48,11 @@ let f = function () {
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$1 = tmpChainElementObject != null;
     if (tmpIfTest$1) {
-      const tmpCallObj = tmpChainElementObject;
-      const tmpCallVal = tmpCallObj.call;
-      const tmpCalleeParam = tmpChainElementCall;
-      const tmpCalleeParam$1 = $(1);
-      const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam, tmpCalleeParam$1);
+      const tmpCallCallee = $dotCall;
+      const tmpCalleeParam = tmpChainElementObject;
+      const tmpCalleeParam$1 = tmpChainElementCall;
+      const tmpCalleeParam$3 = $(1);
+      const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
       a = tmpChainElementCall$1;
       return a;
     } else {
@@ -64,9 +64,9 @@ let f = function () {
 };
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $;
-const tmpCalleeParam$3 = f();
-tmpCallCallee(tmpCalleeParam$3);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$5 = f();
+tmpCallCallee$1(tmpCalleeParam$5);
 $(a);
 `````
 
@@ -87,9 +87,8 @@ const f = function () {
     if (tmpIfTest$1) {
       return a;
     } else {
-      const tmpCallVal = tmpChainElementObject.call;
-      const tmpCalleeParam$1 = $(1);
-      const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$1);
+      const tmpCalleeParam$3 = $(1);
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
       a = tmpChainElementCall$1;
       return a;
     }
@@ -97,8 +96,8 @@ const f = function () {
 };
 const b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
+const tmpCalleeParam$5 = f();
+$(tmpCalleeParam$5);
 $(a);
 `````
 

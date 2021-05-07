@@ -52,8 +52,8 @@ None
 ## Result
 
 Should call `$` with:
- - 1: { x: '{"0":"\\"<$>\\"","1":"\\"<function>\\""}' }
- - 2: { 0: '"<$>"', 1: '"<function>"' }
+ - 1: { x: '{"0":"\\"<$>\\"","1":"\\"<function>\\"","2":"\\"<function>\\""}' }
+ - 2: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
  - eval returned: undefined
 
 Pre normalization calls: Same

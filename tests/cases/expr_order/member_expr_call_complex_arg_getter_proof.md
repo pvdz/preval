@@ -74,7 +74,7 @@ x = {
 const tmpCallObj = x;
 const tmpCallVal = tmpCallObj.y;
 const tmpCalleeParam = a.b;
-tmpCallVal.call(tmpCallObj, tmpCalleeParam);
+$dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 `````
 
 ## Output
@@ -96,7 +96,7 @@ const x = {
 };
 const tmpCallVal = x.y;
 const tmpCalleeParam = a.b;
-tmpCallVal.call(x, tmpCalleeParam);
+$dotCall(tmpCallVal, x, tmpCalleeParam);
 `````
 
 ## Globals

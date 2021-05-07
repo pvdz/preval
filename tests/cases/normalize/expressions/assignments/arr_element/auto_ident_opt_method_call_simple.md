@@ -38,7 +38,7 @@ const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
-  const tmpChainElementCall = tmpChainElementObject.call(tmpChainRootProp, 1);
+  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
   a = tmpChainElementCall;
 } else {
 }
@@ -48,7 +48,7 @@ const tmpChainRootProp$1 = b;
 const tmpIfTest$1 = tmpChainRootProp$1 != null;
 if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainRootProp$1.c;
-  const tmpChainElementCall$1 = tmpChainElementObject$1.call(tmpChainRootProp$1, 1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainRootProp$1, 1);
   a = tmpChainElementCall$1;
 } else {
 }
@@ -67,7 +67,7 @@ const tmpIfTest = b == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.c;
-  const tmpChainElementCall = tmpChainElementObject.call(b, 1);
+  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
   a = tmpChainElementCall;
 }
 const tmpBinBothLhs = a;
@@ -76,7 +76,7 @@ const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject$1 = b.c;
-  const tmpChainElementCall$1 = tmpChainElementObject$1.call(b, 1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
   tmpSSA_a = tmpChainElementCall$1;
 }
 const tmpBinBothRhs = tmpSSA_a;

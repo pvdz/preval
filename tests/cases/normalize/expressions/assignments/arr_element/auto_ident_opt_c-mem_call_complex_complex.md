@@ -42,11 +42,11 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
-    const tmpCallObj = tmpChainElementObject;
-    const tmpCallVal = tmpCallObj.call;
-    const tmpCalleeParam$1 = tmpChainElementCall;
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpCallObj, tmpCalleeParam$1, tmpCalleeParam$3);
+    const tmpCallCallee$1 = $dotCall;
+    const tmpCalleeParam$1 = tmpChainElementObject;
+    const tmpCalleeParam$3 = tmpChainElementCall;
+    const tmpCalleeParam$5 = $(1);
+    const tmpChainElementCall$1 = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
     a = tmpChainElementCall$1;
   } else {
   }
@@ -62,11 +62,11 @@ if (tmpIfTest$3) {
   const tmpChainElementObject$1 = tmpChainElementCall$3[tmpChainRootComputed$1];
   const tmpIfTest$5 = tmpChainElementObject$1 != null;
   if (tmpIfTest$5) {
-    const tmpCallObj$1 = tmpChainElementObject$1;
-    const tmpCallVal$1 = tmpCallObj$1.call;
-    const tmpCalleeParam$5 = tmpChainElementCall$3;
-    const tmpCalleeParam$7 = $(1);
-    const tmpChainElementCall$5 = tmpCallVal$1.call(tmpCallObj$1, tmpCalleeParam$5, tmpCalleeParam$7);
+    const tmpCallCallee$3 = $dotCall;
+    const tmpCalleeParam$7 = tmpChainElementObject$1;
+    const tmpCalleeParam$9 = tmpChainElementCall$3;
+    const tmpCalleeParam$11 = $(1);
+    const tmpChainElementCall$5 = tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9, tmpCalleeParam$11);
     a = tmpChainElementCall$5;
   } else {
   }
@@ -92,9 +92,8 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpCallVal = tmpChainElementObject.call;
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = tmpCallVal.call(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
+    const tmpCalleeParam$5 = $(1);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$5);
     a = tmpChainElementCall$1;
   }
 }
@@ -109,9 +108,8 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 = tmpChainElementObject$1 == null;
   if (tmpIfTest$5) {
   } else {
-    const tmpCallVal$1 = tmpChainElementObject$1.call;
-    const tmpCalleeParam$7 = $(1);
-    const tmpChainElementCall$5 = tmpCallVal$1.call(tmpChainElementObject$1, tmpChainElementCall$3, tmpCalleeParam$7);
+    const tmpCalleeParam$11 = $(1);
+    const tmpChainElementCall$5 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, tmpCalleeParam$11);
     tmpSSA_a = tmpChainElementCall$5;
   }
 }

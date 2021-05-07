@@ -893,7 +893,7 @@ export function isProperIdent(node) {
   }
 }
 
-export function nodeHasNoObservableSideEffectNorStatements(node) {
+export function nodeHasNoObservableSideEffectNorStatements(node, noDelete) {
   // This function assumes normalized code (!)
 
   // Given node represents an expression (including an ExpressionStatement), return true if the
@@ -902,19 +902,23 @@ export function nodeHasNoObservableSideEffectNorStatements(node) {
   // It returns false for any statement that is not a variable declaration or expression statement.
   // TODO: potentially we can support walking loops and ifs but there's probably no real point to it
 
-  const r = expressionHasNoObservableSideEffect(node);
+  const r = expressionHasNoObservableSideEffect(node, noDelete);
   if (r !== undefined) return r;
+
+  if (node.type === 'EmptyStatement') {
+    return true;
+  }
 
   if (node.type === 'VariableDeclaration') {
     // This one is tricky. The binding itself is observable insofar that it may trigger TDZ errors if moved later.
     // But I think for the intention of this function, the question is whether the init is observable.
     // Probably need to revise this a bit later on.
-    return expressionHasNoObservableSideEffect(node.declarations[0].init);
+    return expressionHasNoObservableSideEffect(node.declarations[0].init, noDelete);
   }
 
   if (node.type === 'ExpressionStatement') {
     // Shouldn't reach here but whatever
-    return expressionHasNoObservableSideEffect(node.expression);
+    return expressionHasNoObservableSideEffect(node.expression, noDelete);
   }
 
   return false; // Do not pass other statements
@@ -923,7 +927,7 @@ export function nodeHasNoObservableSideEffectNorStatements(node) {
     // Note: in normalized state the if-test should be a simple node.
     // The if-test does not trigger coercion and should not be observable.
     ASSERT(!isComplexNode(node.test));
-    return expressionHasNoObservableSideEffect(node.test);
+    return expressionHasNoObservableSideEffect(node.test, noDelete);
   }
 
   if (node.type === 'WhileStatement') {
@@ -976,7 +980,7 @@ export function nodeHasNoObservableSideEffectNorStatements(node) {
 
   ASSERT(false, 'TODO: support this node', node);
 }
-export function expressionHasNoObservableSideEffect(node) {
+export function expressionHasNoObservableSideEffect(node, noDelete) {
   // This function assumes normalized code (!)
 
   // Return true when the given expression node has an observable side effect, false when it does not,
@@ -1003,7 +1007,7 @@ export function expressionHasNoObservableSideEffect(node) {
   // An assignment with simple rhs can not trigger anything else than the assign
   if (node.type === 'AssignmentExpression') {
     if (node.left.type !== 'Identifier') return false; // May trigger getter
-    return expressionHasNoObservableSideEffect(node.right);
+    return expressionHasNoObservableSideEffect(node.right, noDelete);
   }
   // This one assumes normalized code, where the contents of classes, arrays, and objects are all simple nodes
   if (node.type === 'ClassExpression') {
@@ -1025,13 +1029,13 @@ export function expressionHasNoObservableSideEffect(node) {
     return true;
   }
   if (node.type === 'VariableDeclaration') {
-    return expressionHasNoObservableSideEffect(node.declarations[0].init);
+    return expressionHasNoObservableSideEffect(node.declarations[0].init, noDelete);
   }
   if (node.type === 'VariableDeclarator') {
-    return expressionHasNoObservableSideEffect(node.init);
+    return expressionHasNoObservableSideEffect(node.init, noDelete);
   }
   if (node.type === 'ExpressionStatement') {
-    return expressionHasNoObservableSideEffect(node.expression);
+    return expressionHasNoObservableSideEffect(node.expression, noDelete);
   }
   if (node.type === 'TemplateLiteral') {
     // Note: A template like `a{b}c` may still trigger a string coercion on b so only allow primitives here
@@ -1042,8 +1046,16 @@ export function expressionHasNoObservableSideEffect(node) {
     if (node.operator === 'typeof') {
       return !isComplexNode(node.argument);
     }
-    if (node.operator === 'delete') return true; // The action can't be trapped except by Proxy, which we assume to void us anyways
-    // For all others, only allow primitives because the ops might coerce
+    if (node.operator === 'delete') {
+      if (noDelete) {
+        // Something that wants to use properties should be aware of this expression
+        return false;
+      } else {
+        // The action can't be trapped except by Proxy, which we assume to void us anyways
+        // For all others, only allow primitives because the ops might coerce
+        return true;
+      }
+    }
     return isPrimitive(node.argument);
   }
   if (node.type === 'BinaryExpression') {
@@ -1188,6 +1200,9 @@ export function ssaCheckMightContainIdentName(node, name) {
     if (!node.computed) return false;
     return ssaCheckMightContainIdentName(node.property, name);
   }
+
+  if (node.type === 'EmptyStatement') return false;
+  if (node.type === 'DebuggerStatement') return false;
 
   // tagged template (?), return, throw, label (?), if, while, for-x, block (?), try, import, export, member, method, restelement, super,
   ASSERT(false, 'gottacatchemall 1', node);

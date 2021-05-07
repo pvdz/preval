@@ -1082,7 +1082,7 @@ export function inferInitialType(meta, init) {
   }
 }
 
-export function findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(prev, curr) {
+export function findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(prev, curr, noDelete) {
   // Hello Java my old friend. I know but this name is hard to simplify.
 
   // Given two refs of a binding where at least one can reach the other, are there any
@@ -1124,7 +1124,7 @@ export function findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(prev, c
       const next = currentBody[currentIndex];
       vlog('Next statement:', next.type);
       source(next);
-      if (!AST.nodeHasNoObservableSideEffectNorStatements(next)) {
+      if (!AST.nodeHasNoObservableSideEffectNorStatements(next, noDelete)) {
         vlog('Has observable side effects. bailing');
         source(next);
         vgroupEnd();

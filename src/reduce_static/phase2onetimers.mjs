@@ -126,16 +126,6 @@ function _inlineOneTimeFunctions(fdata) {
       return;
     }
 
-    // If there is a return that is not the last statement then bail. Take care; This also checks if the
-    // return is the last element of an if-else that is the last statement of the function.
-    // Maybe in the future we can do a more thorough check to see if the same value is being returned.
-    // We can ignore break/continue and even throw here. It's `return` whose behavior gets changed.
-    if (funcNode.$p.earlyReturn) {
-      vlog('This function has an early return so bailing');
-      vgroupEnd();
-      return;
-    }
-
     // This exception is only relevant when aiming for a "single branch per function" state
     //if (funcNode.$p.hasBranch && read.pfuncNode.$p.hasBranch) {
     //  // We strive for a max of one branch per function so do not merge functions that both have one
@@ -147,6 +137,37 @@ function _inlineOneTimeFunctions(fdata) {
     //}
 
     const write = meta.writes[0];
+    if (write.kind !== 'var') {
+      vlog('The write was not a var. Bailing');
+      vgroupEnd();
+      return;
+    }
+
+    // To be a trampoline, the read must be a var decl, followed immediately by a return of the name declared by the read.
+    const isTrampoline =
+      read.blockBody[read.blockIndex].type === 'VariableDeclaration' &&
+      read.blockBody.length - 1 > read.blockIndex &&
+      read.blockBody[read.blockIndex + 1].type === 'ReturnStatement' &&
+      read.blockBody[read.blockIndex + 1].argument.type === 'Identifier' &&
+      read.blockBody[read.blockIndex].declarations[0].id.name === read.blockBody[read.blockIndex + 1].argument.name;
+    vlog('Is the call a return trampoline?', isTrampoline);
+
+    // If there is a return that is not the last statement then bail. Take care; This also checks if the
+    // return is the last element of an if-else that is the last statement of the function.
+    // Maybe in the future we can do a more thorough check to see if the same value is being returned.
+    // We can ignore break/continue and even throw here. It's `return` whose behavior gets changed.
+    // Exception: If the caller was a return trampoline we can inline the function anyways and keep the returns.
+    let specialReturnCase = false;
+    if (funcNode.$p.earlyReturn) {
+      if (!isTrampoline) {
+        vlog('This function has an early return and the call was not a return trampoline. Bailing.');
+        vgroupEnd();
+        return;
+      } else {
+        vlog('This function returns early but the call was a return trampoline. We can inline the function anyways.');
+        specialReturnCase = true;
+      }
+    }
 
     vlog('Read funcChain:', read.funcChain, ', func readBlock:', funcNode.$p.funcChain);
     if (read.funcChain !== funcNode.$p.funcChain && read.funcChain.startsWith(funcNode.$p.funcChain)) {
@@ -155,13 +176,15 @@ function _inlineOneTimeFunctions(fdata) {
       return;
     }
 
-    // This function does not return early. But it may still return a branch.
+    // If this function is not the trampoline case, it does not return early. But then it may still return a branch.
     const lastNode = funcNode.body.body[funcNode.body.body.length - 1];
     if (
+      !specialReturnCase &&
       lastNode?.type === 'IfStatement' &&
       read.grandNode.type === 'VariableDeclarator' &&
       // If at least one branch throws, there's no concern about multi-plexing a var. Just proceed.
-      (!lastNode.consequent.$p.alwaysThrow && !lastNode.alternate.$p.alwaysThrow)
+      !lastNode.consequent.$p.alwaysThrow &&
+      !lastNode.alternate.$p.alwaysThrow
     ) {
       // In this case the call site is a var decl and the function ends with an if-else branch.
       // `function f(){ if (x) return a; else return b; } const r = f();` -> `if (x) const r = a; else const r = b;`
@@ -185,6 +208,7 @@ function _inlineOneTimeFunctions(fdata) {
         // `function f(){ if (x) return a; else return b; } function g() { const r = f(); oops(r); } $(g)`
         // -> `function g(){ if (x) const r = a; else const r = b; oops(r); } g();`
         // (We can support specific cases and even abstract it, although I'm worried about infi loops with that)
+
         vlog('This function ends with an if-else and the call site was a var decl so bailing for now');
         vgroupEnd();
         return;
@@ -203,6 +227,7 @@ function _inlineOneTimeFunctions(fdata) {
     queue.push({
       pid: +read.node.$p.pid,
       depth: read.node.$p.funcDepth,
+      specialReturnCase,
       blockRefBak: read.blockBody[read.blockIndex],
       debugCode,
       read,
@@ -232,9 +257,10 @@ function _inlineOneTimeFunctions(fdata) {
     // The call is leading for this order, not the function decl. The call is where arbitrary statements are injected.
     // The function decls are set to an empty statement and do not change any indexes.
     vlog('');
-    queue.forEach(({ funcNode, read, write, blockRefBak, debugCode, meta }, i) => {
+    queue.forEach(({ specialReturnCase, funcNode, read, write, blockRefBak, debugCode, meta }, i) => {
       vgroup(
         '- queue[' + i + '][' + funcNode.$p.pid + '] ' + debugCode + '; Starting to inline next one-time called function in the queue',
+        specialReturnCase ? '(special return trampoline case)' : '',
       );
 
       // This dirty check is only relevant for the parent since that's where we want to inject new elements
@@ -347,7 +373,18 @@ function _inlineOneTimeFunctions(fdata) {
       vlog('Making sure call is properly replaced with final value (init/rhs)');
       const lastNode = funcBody[funcBody.length - 1];
 
-      if (lastNode?.type === 'ReturnStatement') {
+      if (specialReturnCase) {
+        vlog('This is the special "early return" + "trampoline return" case. Keep the return statements. Remove the trampoline.');
+        before(funcBody[funcBody.length - 1]);
+        before(read.blockBody[read.blockIndex]);
+        before(read.blockBody[read.blockIndex + 1]);
+
+        read.blockBody[read.blockIndex] = AST.emptyStatement();
+        read.blockBody[read.blockIndex + 1] = AST.emptyStatement();
+
+        after(read.blockBody[read.blockIndex]);
+        after(read.blockBody[read.blockIndex + 1]);
+      } else if (lastNode?.type === 'ReturnStatement') {
         // The simple case because it does not matter whether the call was a var, assign, or stmt.
         vlog('Last node of func body is a `return`');
         // Replace the call with the argument of this return statement

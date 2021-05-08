@@ -110,9 +110,15 @@ f();
 ## Output
 
 `````js filename=intro
-$(0);
-const tmpLabeledBlockFunc = function () {
+const tmpAfterLabel = function () {
   debugger;
+  $('tail1');
+  $('end');
+  return undefined;
+};
+const f = function () {
+  debugger;
+  $(0);
   const tmpIfTest$5 = $(1);
   if (tmpIfTest$5) {
     label2$1: {
@@ -138,13 +144,7 @@ const tmpLabeledBlockFunc = function () {
   tmpAfterLabel();
   return undefined;
 };
-const tmpAfterLabel = function () {
-  debugger;
-  $('tail1');
-  $('end');
-  return undefined;
-};
-tmpLabeledBlockFunc();
+f();
 `````
 
 ## Globals

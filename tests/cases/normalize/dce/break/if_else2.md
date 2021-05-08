@@ -65,8 +65,8 @@ while (true) {
     if (tmpIfTest$1) {
       break;
     } else {
+      break;
     }
-    break;
   } else {
     break;
   }

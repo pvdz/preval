@@ -148,17 +148,17 @@ exit: {
     $('B');
     break exit;
   } else {
-  }
-  let tmpIfTest$3 = fallthrough;
-  if (fallthrough) {
-  } else {
-    const tmpBinBothRhs$3 = $(3);
-    tmpIfTest$3 = undefined === tmpBinBothRhs$3;
-  }
-  if (tmpIfTest$3) {
-    $('C');
-    break exit;
-  } else {
+    let tmpIfTest$3 = fallthrough;
+    if (fallthrough) {
+    } else {
+      const tmpBinBothRhs$3 = $(3);
+      tmpIfTest$3 = undefined === tmpBinBothRhs$3;
+    }
+    if (tmpIfTest$3) {
+      $('C');
+      break exit;
+    } else {
+    }
   }
 }
 `````

@@ -155,12 +155,12 @@ tmpSwitchBreak: {
     $('B');
     break tmpSwitchBreak;
   } else {
-  }
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$9) {
-    $('C');
-    break tmpSwitchBreak;
-  } else {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$9) {
+      $('C');
+      break tmpSwitchBreak;
+    } else {
+    }
   }
 }
 `````

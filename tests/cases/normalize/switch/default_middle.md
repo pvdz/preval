@@ -219,33 +219,33 @@ tmpSwitchBreak: {
     $(1);
     break tmpSwitchBreak;
   } else {
-  }
-  const tmpIfTest$11 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$11) {
-    $(2);
-  } else {
-  }
-  const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
-  if (tmpIfTest$13) {
-    $('d');
-  } else {
-  }
-  const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
-  if (tmpIfTest$15) {
-    $(3);
-  } else {
-  }
-  const tmpIfTest$17 = tmpSwitchCaseToStart <= 4;
-  if (tmpIfTest$17) {
-    $(4);
-    break tmpSwitchBreak;
-  } else {
-  }
-  const tmpIfTest$19 = tmpSwitchCaseToStart <= 5;
-  if (tmpIfTest$19) {
-    $(5);
-    break tmpSwitchBreak;
-  } else {
+    const tmpIfTest$11 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$11) {
+      $(2);
+    } else {
+    }
+    const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$13) {
+      $('d');
+    } else {
+    }
+    const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
+    if (tmpIfTest$15) {
+      $(3);
+    } else {
+    }
+    const tmpIfTest$17 = tmpSwitchCaseToStart <= 4;
+    if (tmpIfTest$17) {
+      $(4);
+      break tmpSwitchBreak;
+    } else {
+      const tmpIfTest$19 = tmpSwitchCaseToStart <= 5;
+      if (tmpIfTest$19) {
+        $(5);
+        break tmpSwitchBreak;
+      } else {
+      }
+    }
   }
 }
 `````

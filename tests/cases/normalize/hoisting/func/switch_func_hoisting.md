@@ -105,8 +105,8 @@ tmpSwitchBreak: {
     f();
     break tmpSwitchBreak;
   } else {
+    tmpSwitchCaseToStart <= 1;
   }
-  tmpSwitchCaseToStart <= 1;
 }
 `````
 

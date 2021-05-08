@@ -152,9 +152,9 @@ tmpSwitchBreak: {
   if (tmpIfTest$15) {
     break tmpSwitchBreak;
   } else {
+    tmpSwitchCaseToStart <= 4;
+    tmpSwitchCaseToStart <= 5;
   }
-  tmpSwitchCaseToStart <= 4;
-  tmpSwitchCaseToStart <= 5;
 }
 `````
 

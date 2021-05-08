@@ -5206,6 +5206,12 @@ export function phaseNormalize(fdata, fname) {
     thisStack.pop();
     funcStack.pop();
 
+    return postBodyFunctionTransform(node, body, i, parentNode)
+  }
+
+  function postBodyFunctionTransform(node, body, i, parentNode) {
+    // Node can be: FunctionExpression, MethoDefinition
+
     if (!node.body.body.length) {
       rule('Even empty functions must explicitly return undefined');
       example('function f(){}', 'function f(){ return undefined; }');
@@ -5265,7 +5271,7 @@ export function phaseNormalize(fdata, fname) {
       if (changed) {
         return true;
       }
-    } else if (!['ReturnStatement', 'ThrowStatement', 'ContinueStatement', 'BreakStatement'].includes(last?.type)) {
+    } else if (!['ReturnStatement', 'ThrowStatement'/*, 'ContinueStatement', 'BreakStatement'*/].includes(last.type)) {
       rule('All functions must explicitly return, even if returns undefined');
       example('function f(){ g(); }', 'function f(){ g(); return undefined; }');
       before(node);
@@ -6463,7 +6469,7 @@ export function phaseNormalize(fdata, fname) {
     return anyChange;
   }
 
-  function transformMethodDefinition(methodNode, body, i, parent) {
+  function transformMethodDefinition(methodNode, body, i, parentNode) {
     // This will be an anonymous function expression.
     // For now, do the same as with functions
 
@@ -6480,7 +6486,7 @@ export function phaseNormalize(fdata, fname) {
     ifelseStack.pop();
     funcStack.pop();
 
-    return false;
+    return postBodyFunctionTransform(node, body, i, parentNode)
   }
 
   function transformProgram(node) {

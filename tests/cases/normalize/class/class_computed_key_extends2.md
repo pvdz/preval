@@ -38,6 +38,7 @@ const y = 'y';
 let x = class {
   x() {
     debugger;
+    return undefined;
   }
 };
 const tmpCompObj = x();
@@ -50,6 +51,7 @@ tmpCompObj.y;
 const x = class {
   x() {
     debugger;
+    return undefined;
   }
 };
 const tmpCompObj = x();

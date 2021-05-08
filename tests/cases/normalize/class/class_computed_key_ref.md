@@ -35,6 +35,7 @@ const y = 'y';
 let x = class {
   [y]() {
     debugger;
+    return undefined;
   }
 };
 `````

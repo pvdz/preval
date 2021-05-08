@@ -39,9 +39,11 @@ $(new x().b());
 let x = class {
   a() {
     debugger;
+    return undefined;
   }
   b() {
     debugger;
+    return undefined;
   }
 };
 const tmpCallCallee = $;
@@ -56,9 +58,11 @@ tmpCallCallee(tmpCalleeParam);
 const x = class {
   a() {
     debugger;
+    return undefined;
   }
   b() {
     debugger;
+    return undefined;
   }
 };
 const tmpCallObj = new x();

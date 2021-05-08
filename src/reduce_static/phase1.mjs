@@ -475,11 +475,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             if (AST.isPrimitive(body[bodyOffset].argument)) {
               node.$p.inlineMe = 'single return with primitive';
             }
-          } else if (stmt.type === 'ExpressionStatement') {
-            // Considering this must be a normalized expression statement it should
-            // be no problem to inline it into any call site. Like, it should not lead
-            // to more complex situations? Maybe bindings now get referenced multiple times...?
-            node.$p.inlineMe = 'single expression statement';
+          } else {
+            ASSERT (stmt.type !== 'ExpressionStatement', 'every function returns explicitly so the last statement can not be a non-returning non-throwing expression', node);
           }
         } else if (body.length - bodyOffset === 2) {
           vlog('This function has two statements. Trying to see if we can inline calls to it.');
@@ -492,7 +489,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             const ret = two;
             if (ret.argument?.type === 'Identifier' && decr.id.name === ret.argument.name) {
               // This is a function whose body is a variable declaration that is then returned and the func is only called.
-              // `var x = unkonwn; return x`, where unknown is any normalized expression (idc)
+              // `var x = unknown; return x`, where unknown is any normalized expression (idc)
 
               ASSERT(decr.init, 'normalized var decls have an init, right');
               if (AST.isPrimitive(decr.init)) {
@@ -534,6 +531,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           node.$p.alwaysThrow = node.body.$p.alwaysThrow;
         } else {
           vlog('Function may complete implicitly');
+          ASSERT(false, 'but it shouldnt');
         }
         break;
       }
@@ -1143,11 +1141,11 @@ function markEarlyCompletion(completionNode, funcNode, isReturn, parentNode) {
   vlog('markEarlyCompletion(); This was an explicit completion (' + completionNode.type + ')');
   parentNode.$p.alwaysComplete = true;
   if (completionNode.type === 'ReturnStatement') parentNode.$p.alwaysReturn = true;
-  if (completionNode.type === 'ThrowStatement') parentNode.$p.alwaysThrow = true;
+  else if (completionNode.type === 'ThrowStatement') parentNode.$p.alwaysThrow = true;
   // TODO: this should automatically propagate to the function. We should add an assertion instead of this so we can verify that the values properly propagate through all statements.
   funcNode.$p.alwaysComplete = true;
   if (completionNode.type === 'ReturnStatement') funcNode.$p.alwaysReturn = true;
-  if (completionNode.type === 'ThrowStatement') funcNode.$p.alwaysThrow = true;
+  else if (completionNode.type === 'ThrowStatement') funcNode.$p.alwaysThrow = true;
 
   const body = funcNode.type === 'Program' ? funcNode.body : funcNode.body.body;
   ASSERT(body.length, 'the function containing this statement should have at least one statement eh');
@@ -1160,10 +1158,10 @@ function markEarlyCompletion(completionNode, funcNode, isReturn, parentNode) {
 
   parentNode.$p.earlyComplete = true;
   if (completionNode.type === 'ReturnStatement') parentNode.$p.earlyReturn = true;
-  if (completionNode.type === 'ThrowStatement') parentNode.$p.earlyThrow = true;
+  else if (completionNode.type === 'ThrowStatement') parentNode.$p.earlyThrow = true;
 
   // TODO: this should automatically propagate to the function. We should add an assertion instead of this so we can verify that the values properly propagate through all statements.
   funcNode.$p.earlyComplete = true;
   if (completionNode.type === 'ReturnStatement') funcNode.$p.earlyReturn = true;
-  if (completionNode.type === 'ThrowStatement') funcNode.$p.earlyThrow = true;
+  else if (completionNode.type === 'ThrowStatement') funcNode.$p.earlyThrow = true;
 }

@@ -64,8 +64,7 @@ if (a) {
   const tmpCalleeParam$3 = $(2);
   a = $(tmpCalleeParam$3);
 }
-const tmpCalleeParamSpread = a;
-$(...tmpCalleeParamSpread);
+$(...a);
 $(a);
 `````
 

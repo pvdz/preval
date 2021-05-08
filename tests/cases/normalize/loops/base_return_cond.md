@@ -112,8 +112,7 @@ const f = function () {
   let n = 0;
   while (true) {
     n = n + 1;
-    const tmpCalleeParam = n;
-    $(tmpCalleeParam);
+    $(n);
     const tmpIfTest = n > 10;
     if (tmpIfTest) {
       return n;

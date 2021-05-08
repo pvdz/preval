@@ -84,8 +84,7 @@ if (tmpIfTest$1) {
   const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$11);
   tmpSSA_a = tmpChainElementCall$5;
 }
-const tmpBinBothRhs = tmpSSA_a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
 $(tmpSSA_a);
 `````

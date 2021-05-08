@@ -53,8 +53,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
   a = tmpBinBothLhs + tmpBinBothRhs;
-  const tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+  a.x = tmpForInLhsNode;
 }
 $(a);
 `````

@@ -60,9 +60,8 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
 }
-const tmpForInDeclRhs = a;
 let x = undefined;
-for (x in tmpForInDeclRhs) {
+for (x in a) {
 }
 $(a);
 `````

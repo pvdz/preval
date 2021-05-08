@@ -77,8 +77,7 @@ if (tmpIfTest) {
     a = tmpChainElementCall;
   }
 }
-const tmpCompObj = a;
-tmpCompObj.a;
+a.a;
 $(a);
 `````
 

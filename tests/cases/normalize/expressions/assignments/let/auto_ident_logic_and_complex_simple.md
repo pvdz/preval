@@ -51,8 +51,7 @@ if (a) {
   a = 2;
 } else {
 }
-const xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

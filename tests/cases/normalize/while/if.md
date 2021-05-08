@@ -75,8 +75,7 @@ const f = function () {
   let i = 0;
   while (true) {
     i = i + 1;
-    const tmpBinLhs = i;
-    const tmpIfTest = tmpBinLhs < 10;
+    const tmpIfTest = i < 10;
     if (tmpIfTest) {
       const tmpIfTest$1 = i < 5;
       if (tmpIfTest$1) {

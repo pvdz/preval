@@ -53,8 +53,7 @@ if (a) {
   a = 2;
 } else {
 }
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);
 `````

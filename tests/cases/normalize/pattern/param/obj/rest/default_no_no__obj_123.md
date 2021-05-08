@@ -71,9 +71,8 @@ if (tmpIfTest) {
 } else {
   bindingPatternObjRoot = tmpCalleeParam$9;
 }
-const tmpCalleeParam$1 = bindingPatternObjRoot;
 const tmpCalleeParam$3 = [];
-const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, 'x');
+const x = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$3, 'x');
 $(x);
 `````
 

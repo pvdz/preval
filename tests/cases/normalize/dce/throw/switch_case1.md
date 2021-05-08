@@ -98,8 +98,7 @@ if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
-const tmpSwitchCaseToStart$3 = tmpSwitchCaseToStart;
-const tmpIfTest$7 = tmpSwitchCaseToStart$3 <= 0;
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$7) {
   const tmpThrowArg$1 = $(2, 'ret');
   throw tmpThrowArg$1;

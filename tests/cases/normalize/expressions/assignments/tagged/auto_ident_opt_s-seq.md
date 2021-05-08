@@ -59,8 +59,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
 }
-const tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 

@@ -63,8 +63,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
 }
-const tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 

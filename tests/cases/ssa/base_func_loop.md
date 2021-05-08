@@ -76,8 +76,7 @@ if ($) {
   $(x);
   while (true) {
     x = x + 1;
-    const tmpCalleeParam = x;
-    $(tmpCalleeParam);
+    $(x);
     const tmpIfTest = x > 5;
     if (tmpIfTest) {
       break;

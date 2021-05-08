@@ -53,8 +53,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
 }
-const tmpArrSpread = a;
-const tmpCalleeParam = [...tmpArrSpread];
+const tmpCalleeParam = [...a];
 $(tmpCalleeParam);
 $(a);
 `````

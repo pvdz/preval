@@ -54,8 +54,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
 }
-const tmpObjSpread = a;
-const tmpCalleeParam = { ...tmpObjSpread };
+const tmpCalleeParam = { ...a };
 $(tmpCalleeParam);
 $(a);
 `````

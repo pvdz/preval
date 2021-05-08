@@ -60,8 +60,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   } else {
     a = 2;
   }
-  const tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+  a.x = tmpForOfLhsNode;
 }
 $(a);
 `````

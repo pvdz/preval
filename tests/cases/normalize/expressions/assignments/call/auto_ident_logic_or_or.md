@@ -64,8 +64,7 @@ if (a) {
     a = $(tmpCalleeParam$5);
   }
 }
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

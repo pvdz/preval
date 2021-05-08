@@ -77,8 +77,7 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-const tmpArrSpread = a;
-const tmpCalleeParam = [...tmpArrSpread];
+const tmpCalleeParam = [...a];
 $(tmpCalleeParam);
 $(a);
 `````

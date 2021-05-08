@@ -109,8 +109,7 @@ if (tmpIfTest$3) {
     tmpSSA_a = tmpChainElementObject$5;
   }
 }
-const tmpBinBothRhs = tmpSSA_a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
 $(tmpSSA_a);
 `````

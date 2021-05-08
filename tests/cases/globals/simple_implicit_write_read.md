@@ -36,8 +36,7 @@ $(a);
 
 `````js filename=intro
 a = 5;
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

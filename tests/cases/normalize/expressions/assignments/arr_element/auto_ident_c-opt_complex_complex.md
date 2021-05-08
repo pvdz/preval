@@ -83,8 +83,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
   tmpSSA_a = tmpChainElementObject$1;
 }
-const tmpBinBothRhs = tmpSSA_a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
 $(tmpSSA_a);
 `````

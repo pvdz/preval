@@ -65,8 +65,7 @@ if (a) {
   } else {
   }
 }
-const xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

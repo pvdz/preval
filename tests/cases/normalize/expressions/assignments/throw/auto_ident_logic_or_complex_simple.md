@@ -48,8 +48,7 @@ if (a) {
 } else {
   a = 2;
 }
-const tmpThrowArg = a;
-throw tmpThrowArg;
+throw a;
 `````
 
 ## Globals

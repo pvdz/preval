@@ -51,8 +51,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);
 }
-const tmpThrowArg = a;
-throw tmpThrowArg;
+throw a;
 `````
 
 ## Globals

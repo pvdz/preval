@@ -56,8 +56,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
 }
-const tmpCompProp = a;
-obj[tmpCompProp];
+obj[a];
 $(a);
 `````
 

@@ -94,8 +94,7 @@ if (tmpIfTest$1) {
     a = tmpChainElementObject$1;
   }
 }
-const tmpBinLhs = a;
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

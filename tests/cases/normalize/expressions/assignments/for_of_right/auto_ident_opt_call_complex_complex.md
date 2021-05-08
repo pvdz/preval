@@ -60,9 +60,8 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   a = tmpChainElementCall$1;
 }
-const tmpForOfDeclRhs = a;
 let x = undefined;
-for (x of tmpForOfDeclRhs) {
+for (x of a) {
 }
 $(a);
 `````

@@ -76,9 +76,8 @@ if (tmpIfTest) {
     a = tmpChainElementObject$1;
   }
 }
-const tmpForInDeclRhs = a;
 let x = undefined;
-for (x in tmpForInDeclRhs) {
+for (x in a) {
 }
 $(a);
 `````

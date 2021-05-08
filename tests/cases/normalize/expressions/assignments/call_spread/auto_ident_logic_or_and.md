@@ -64,8 +64,7 @@ if (a) {
   } else {
   }
 }
-const tmpCalleeParamSpread = a;
-$(...tmpCalleeParamSpread);
+$(...a);
 $(a);
 `````
 

@@ -63,8 +63,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$3;
 }
-const tmpThrowArg = a;
-throw tmpThrowArg;
+throw a;
 `````
 
 ## Globals

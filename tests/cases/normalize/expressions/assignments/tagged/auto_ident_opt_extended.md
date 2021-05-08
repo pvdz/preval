@@ -67,8 +67,7 @@ if (tmpIfTest) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$3;
 }
-const tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 

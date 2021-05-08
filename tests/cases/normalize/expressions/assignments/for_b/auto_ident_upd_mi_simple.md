@@ -57,8 +57,7 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 while (true) {
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
+  const tmpNestedComplexRhs = b - 1;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
   if (a) {

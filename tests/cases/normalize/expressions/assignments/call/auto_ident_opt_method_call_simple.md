@@ -59,8 +59,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
   a = tmpChainElementCall;
 }
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

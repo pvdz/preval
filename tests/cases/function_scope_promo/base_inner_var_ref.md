@@ -129,8 +129,7 @@ if ($) {
 } else {
   tmpReturnArg = x;
 }
-const tmpReturnArg$1 = tmpReturnArg;
-$(tmpReturnArg$1);
+$(tmpReturnArg);
 `````
 
 ## Globals

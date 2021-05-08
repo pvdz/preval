@@ -98,8 +98,7 @@ const f = function () {
   let n = 0;
   while (true) {
     n = n + 1;
-    const tmpCalleeParam = n;
-    $(tmpCalleeParam);
+    $(n);
     return n;
   }
   $('afterwards');

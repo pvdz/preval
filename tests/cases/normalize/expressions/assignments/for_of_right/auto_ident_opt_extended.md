@@ -66,9 +66,8 @@ if (tmpIfTest) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$3;
 }
-const tmpForOfDeclRhs = a;
 let x = undefined;
-for (x of tmpForOfDeclRhs) {
+for (x of a) {
 }
 $(a);
 `````

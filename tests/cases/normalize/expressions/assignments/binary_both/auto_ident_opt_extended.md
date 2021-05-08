@@ -87,8 +87,7 @@ if (tmpIfTest$1) {
   const tmpChainElementObject$9 = tmpChainElementObject$7.z;
   tmpSSA_a = tmpChainElementObject$9;
 }
-const tmpBinBothRhs = tmpSSA_a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
 $(tmpSSA_a);
 `````

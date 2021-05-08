@@ -51,9 +51,8 @@ if (a) {
   a = 2;
 } else {
 }
-const tmpForOfDeclRhs = a;
 let x = undefined;
-for (x of tmpForOfDeclRhs) {
+for (x of a) {
 }
 $(a);
 `````

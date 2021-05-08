@@ -48,8 +48,7 @@ const y = {};
 const tmpForInPatDeclRhs = [y];
 let tmpForInPatDeclLhs = undefined;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-  const arrAssignPatternRhs = tmpForInPatDeclLhs;
-  const arrPatternSplat = [...arrAssignPatternRhs];
+  const arrPatternSplat = [...tmpForInPatDeclLhs];
   const tmpSSA_x = arrPatternSplat[0];
   $(tmpSSA_x);
 }

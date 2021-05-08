@@ -68,8 +68,7 @@ if (a) {
     a = $(tmpCalleeParam$3);
   }
 }
-const tmpCompProp = a;
-obj[tmpCompProp];
+obj[a];
 $(a);
 `````
 

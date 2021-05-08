@@ -50,8 +50,7 @@ if (a) {
   a = 2;
 } else {
 }
-const tmpCalleeParamSpread = a;
-$(...tmpCalleeParamSpread);
+$(...a);
 $(a);
 `````
 

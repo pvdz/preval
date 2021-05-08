@@ -55,8 +55,7 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
 }
-const tmpObjSpread = a;
-const tmpCalleeParam = { ...tmpObjSpread };
+const tmpCalleeParam = { ...a };
 $(tmpCalleeParam);
 $(a);
 `````

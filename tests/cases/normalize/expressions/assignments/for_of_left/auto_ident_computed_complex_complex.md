@@ -58,8 +58,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpAssignRhsCompObj = $(b);
   const tmpAssignRhsCompProp = $('c');
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-  const tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+  a.x = tmpForOfLhsNode;
 }
 $(a, b);
 `````

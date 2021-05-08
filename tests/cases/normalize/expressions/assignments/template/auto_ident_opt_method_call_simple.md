@@ -60,8 +60,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
   a = tmpChainElementCall;
 }
-const tmpTemplateExpr = a;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpCalleeParam = `before  ${a}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

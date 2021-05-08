@@ -72,8 +72,7 @@ if (tmpSSA_a) {
   const tmpCalleeParam$7 = $(2);
   tmpSSA_a = $(tmpCalleeParam$7);
 }
-const tmpBinBothRhs = tmpSSA_a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
 $(tmpSSA_a);
 `````

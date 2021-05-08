@@ -73,8 +73,7 @@ if (tmpIfTest) {
     a = tmpChainElementObject$1;
   }
 }
-const tmpCompProp = a;
-obj[tmpCompProp];
+obj[a];
 $(a);
 `````
 

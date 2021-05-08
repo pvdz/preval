@@ -54,8 +54,7 @@ if (a) {
 } else {
   a = 2;
 }
-const tmpCompProp = a;
-obj[tmpCompProp];
+obj[a];
 $(a);
 `````
 

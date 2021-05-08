@@ -86,8 +86,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
       a = tmpChainElementCall$1;
     }
   }
-  const tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+  a.x = tmpForInLhsNode;
 }
 $(a);
 `````

@@ -62,8 +62,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $('y');
   a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  const tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+  a.x = tmpForInLhsNode;
 }
 $(a, arg);
 `````

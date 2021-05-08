@@ -74,8 +74,7 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-const tmpThrowArg = a;
-throw tmpThrowArg;
+throw a;
 `````
 
 ## Globals

@@ -55,8 +55,7 @@ if (a) {
   a = $(tmpCalleeParam$5);
 } else {
 }
-const tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 

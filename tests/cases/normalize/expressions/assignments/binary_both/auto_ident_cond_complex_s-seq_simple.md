@@ -73,8 +73,7 @@ if (tmpIfTest$1) {
   const tmpCalleeParam$3 = $(100);
   a = $(tmpCalleeParam$3);
 }
-const tmpBinBothRhs = a;
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinBothLhs + a;
 $(tmpCalleeParam);
 $(a);
 `````

@@ -51,8 +51,7 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
-const tmpThrowArg = a;
-throw tmpThrowArg;
+throw a;
 `````
 
 ## Globals

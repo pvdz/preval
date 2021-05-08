@@ -130,8 +130,7 @@ if ($) {
 } else {
   tmpReturnArg = tmpCalleeParam$1;
 }
-const tmpReturnArg$1 = tmpReturnArg;
-$(tmpReturnArg$1);
+$(tmpReturnArg);
 `````
 
 ## Globals

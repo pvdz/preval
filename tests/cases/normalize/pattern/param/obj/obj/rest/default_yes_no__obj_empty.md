@@ -74,9 +74,8 @@ if (tmpIfTest) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const tmpCalleeParam$1 = objPatternAfterDefault;
 const tmpCalleeParam$3 = [];
-const y = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+const y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
 $(y);
 `````
 

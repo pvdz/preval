@@ -58,8 +58,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpNestedCompoundLhs = b;
-    const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
+    const tmpNestedComplexRhs = b + 1;
     b = tmpNestedComplexRhs;
     a = tmpNestedComplexRhs;
   } else {

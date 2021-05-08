@@ -75,8 +75,7 @@ if (tmpIfTest) {
     a = tmpChainElementCall;
   }
 }
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

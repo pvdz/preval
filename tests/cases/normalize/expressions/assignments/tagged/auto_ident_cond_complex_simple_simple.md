@@ -55,8 +55,7 @@ if (tmpIfTest) {
   const tmpCalleeParam$3 = $(100);
   a = $(tmpCalleeParam$3);
 }
-const tmpCalleeParam$1 = a;
-$(tmpCalleeParam, tmpCalleeParam$1);
+$(tmpCalleeParam, a);
 $(a);
 `````
 

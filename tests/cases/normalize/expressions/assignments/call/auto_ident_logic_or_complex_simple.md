@@ -50,8 +50,7 @@ if (a) {
 } else {
   a = 2;
 }
-const tmpCalleeParam = a;
-$(tmpCalleeParam);
+$(a);
 $(a);
 `````
 

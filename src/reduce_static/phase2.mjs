@@ -16,6 +16,7 @@ import { singleScopeTdz } from './phase2single_scope_tdz.mjs';
 import { letHoisting } from './phase2lethoisting.mjs';
 import { ifelseifelse } from './phase2ifelseifelse.mjs';
 import { staticLets } from './phase2staticlets.mjs';
+import { dealiasing } from './phase2dealiasing.mjs';
 import { ifCallIf } from './phase2ifcallif.mjs';
 import { assignHoisting } from './phase2assignhoisting.mjs';
 import { arrrrrr } from './phase2arrrr.mjs';
@@ -86,6 +87,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const inlinedConstants = inlineConstants(fdata);
   if (inlinedConstants) return inlinedConstants;
+
+  const dealiased = dealiasing(fdata);
+  if (dealiased) return dealiased;
 
   const singleSSA = singleScopeSSA(fdata);
   if (singleSSA) return singleSSA;

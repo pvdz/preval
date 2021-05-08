@@ -205,8 +205,7 @@ if (tmpIfTest$19) {
     }
   }
 }
-const tmpCalleeParam = tmpReturnArg$9;
-$(tmpCalleeParam);
+$(tmpReturnArg$9);
 `````
 
 ## Globals

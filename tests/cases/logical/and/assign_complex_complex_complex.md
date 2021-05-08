@@ -44,8 +44,7 @@ if (x) {
   x = $(2);
 } else {
 }
-const tmpCalleeParam = x;
-$(tmpCalleeParam);
+$(x);
 `````
 
 ## Globals

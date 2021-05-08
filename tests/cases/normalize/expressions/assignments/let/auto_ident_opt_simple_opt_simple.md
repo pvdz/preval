@@ -70,8 +70,7 @@ if (tmpIfTest) {
     a = tmpChainElementObject$1;
   }
 }
-const xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

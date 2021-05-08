@@ -59,8 +59,7 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
 }
-const xyz = a;
-$(xyz);
+$(a);
 $(a);
 `````
 

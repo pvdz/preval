@@ -92,9 +92,8 @@ if (tmpIfTest$1) {
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
-const tmpCalleeParam$3 = objPatternAfterDefault;
 const tmpCalleeParam$5 = [];
-objPatternRest(tmpCalleeParam$3, tmpCalleeParam$5, undefined);
+objPatternRest(objPatternAfterDefault, tmpCalleeParam$5, undefined);
 $('bad');
 `````
 

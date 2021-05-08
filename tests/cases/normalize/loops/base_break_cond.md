@@ -70,8 +70,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 let n = 0;
 while (true) {
   n = n + 1;
-  const tmpCalleeParam = n;
-  $(tmpCalleeParam);
+  $(n);
   const tmpIfTest = n < 4;
   if (tmpIfTest) {
     break;

@@ -52,8 +52,7 @@ if (a) {
 } else {
   a = 2;
 }
-const tmpCompObj = a;
-tmpCompObj.a;
+a.a;
 $(a);
 `````
 

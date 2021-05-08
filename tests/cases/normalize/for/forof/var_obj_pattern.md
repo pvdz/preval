@@ -40,8 +40,7 @@ for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
 const tmpForOfPatDeclRhs = { a: 1, b: 2 };
 let tmpForOfPatDeclLhs = undefined;
 for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
-  const arrAssignPatternRhs = tmpForOfPatDeclLhs;
-  const arrPatternSplat = [...arrAssignPatternRhs];
+  const arrPatternSplat = [...tmpForOfPatDeclLhs];
   const tmpSSA_x = arrPatternSplat[0];
   $(tmpSSA_x);
 }

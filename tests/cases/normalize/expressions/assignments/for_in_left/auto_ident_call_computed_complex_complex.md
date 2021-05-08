@@ -58,8 +58,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpCallCompObj = $(b);
   const tmpCallCompProp = $('$');
   a = tmpCallCompObj[tmpCallCompProp](1);
-  const tmpAssignMemLhsObj = a;
-  tmpAssignMemLhsObj.x = tmpForInLhsNode;
+  a.x = tmpForInLhsNode;
 }
 $(a);
 `````

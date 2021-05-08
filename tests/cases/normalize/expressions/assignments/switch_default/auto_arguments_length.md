@@ -53,8 +53,7 @@ $(a);
 
 `````js filename=intro
 $(1);
-const a = arguments;
-$(a);
+$(arguments);
 `````
 
 ## Globals

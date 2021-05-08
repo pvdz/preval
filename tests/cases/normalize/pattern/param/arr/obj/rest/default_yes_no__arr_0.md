@@ -76,9 +76,8 @@ if (tmpIfTest) {
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
-const tmpCalleeParam$1 = arrPatternStep;
 const tmpCalleeParam$3 = [];
-const x = objPatternRest(tmpCalleeParam$1, tmpCalleeParam$3, undefined);
+const x = objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);
 $(x);
 `````
 

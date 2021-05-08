@@ -65,8 +65,7 @@ if (a) {
     a = $(tmpCalleeParam$5);
   }
 }
-const tmpObjSpread = a;
-const tmpCalleeParam = { ...tmpObjSpread };
+const tmpCalleeParam = { ...a };
 $(tmpCalleeParam);
 $(a);
 `````

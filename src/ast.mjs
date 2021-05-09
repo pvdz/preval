@@ -893,6 +893,9 @@ export function isProperIdent(node) {
   }
 }
 
+
+
+
 export function nodeHasNoObservableSideEffectNorStatements(node, noDelete) {
   // This function assumes normalized code (!)
 
@@ -921,22 +924,55 @@ export function nodeHasNoObservableSideEffectNorStatements(node, noDelete) {
     return expressionHasNoObservableSideEffect(node.expression, noDelete);
   }
 
+  // If this is not what you wanted you were maybe looking for nodeHasNoObservableSideEffectIncStatements
   return false; // Do not pass other statements
+}
+export function nodeHasNoObservableSideEffectIncStatements(node, noDelete) {
+  // This function assumes normalized code (!)
+  // This function DOES assume to be visiting statements
+
+  // Given node represents an expression (including an ExpressionStatement), return true if the
+  // node contained an expression with an observable side effect, and false if it doesn't.
+  // This function will not visit bodies of functions, merely expressions.
+  // It returns false for any statement that is not a variable declaration or expression statement.
+  // TODO: potentially we can support walking loops and ifs but there's probably no real point to it
+
+  const r = expressionHasNoObservableSideEffect(node, noDelete);
+  if (r !== undefined) return r;
+
+  if (node.type === 'EmptyStatement') {
+    return true;
+  }
+
+  if (node.type === 'VariableDeclaration') {
+    // This one is tricky. The binding itself is observable insofar that it may trigger TDZ errors if moved later.
+    // But I think for the intention of this function, the question is whether the init is observable.
+    // Probably need to revise this a bit later on.
+    return expressionHasNoObservableSideEffect(node.declarations[0].init, noDelete);
+  }
+
+  if (node.type === 'ExpressionStatement') {
+    // Shouldn't reach here but whatever
+    return expressionHasNoObservableSideEffect(node.expression, noDelete);
+  }
 
   if (node.type === 'IfStatement') {
-    // Note: in normalized state the if-test should be a simple node.
-    // The if-test does not trigger coercion and should not be observable.
+    // Note: in normalized state the if-test should be a simple node, for which the if-test is not observable.
+    // Visit both branches entirely.
     ASSERT(!isComplexNode(node.test));
-    return expressionHasNoObservableSideEffect(node.test, noDelete);
+    return (
+      node.consequent.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete)) ||
+      node.alternate.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete))
+    );
   }
 
   if (node.type === 'WhileStatement') {
     // Note: in normalized state the while-test should be a simple node.
     // The while-test does not trigger coercion and should not be observable.
     ASSERT(!isComplexNode(node.test));
-    // TODO: for now disallow loops here. Their ident can not trigger a side effect but their body can
-    return false;
-    //return expressionHasNoObservableSideEffect(node.test);
+
+    // The test read is not observable. Visit the body recursively.
+    return node.body.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete));
   }
 
   if (node.type === 'DebuggerStatement') {
@@ -949,32 +985,44 @@ export function nodeHasNoObservableSideEffectNorStatements(node, noDelete) {
   }
 
   if (node.type === 'LabeledStatement') {
-    // Skip for now.... TODO: figure out what to do with this
-    return true;
+    return node.body.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete));
   }
 
   if (node.type === 'ImportDeclaration') {
-    // Skip for now.... TODO: figure out what to do with this
+    // I don't think anything this declaration does is observable when it matters. It resolves at load time.
     return true;
   }
 
   if (node.type === 'ExportNamedDeclaration') {
-    // Skip for now.... TODO: figure out what to do with this
+    // I don't think anything this declaration does is observable when it matters. It resolves at load time.
+    // When normalized, it should only be the `export {X as y}` kind, no func/var/expr etc.
     return true;
   }
 
   if (node.type === 'ForInStatement') {
-    // I think this triggers getters. TODO: confirm
-    return true;
+    return node.body.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete));
   }
 
   if (node.type === 'ForOfStatement') {
-    // This one triggers generators on the rhs
-    return true;
+    return node.body.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete));
   }
 
   if (node.type === 'TryStatement') {
-    // Skip for now.... TODO: figure out what to do with this
+    return (
+      node.block.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete)) &&
+      (!node.handler || node.handler.body.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete))) &&
+      (!node.finalizer || node.finalizer.body.every((cnode) => nodeHasNoObservableSideEffectIncStatements(cnode, noDelete)))
+    );
+  }
+
+  if (
+    node.type === 'ReturnStatement' ||
+    node.type === 'ThrowStatement' ||
+    node.type === 'BreakStatement' ||
+    node.type === 'ContinueStatement'
+  ) {
+    // Tricky. But the statement itself should not really have a _side_ effect. Like, it can't just change the value of a property before
+    // reaching the target ref. So I think we should ignore it, as the argument for return and throw should be simple when normalized.
     return true;
   }
 

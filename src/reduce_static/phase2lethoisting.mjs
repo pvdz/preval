@@ -315,7 +315,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
           return true; // stop
         }
 
-        const observable = findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(prev, ref);
+        const observable = findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(prev, ref, false, true);
         if (observable) {
           vlog('At least one statement between previous ref and this one had an observable side effect. Bailing.');
           failed = true;

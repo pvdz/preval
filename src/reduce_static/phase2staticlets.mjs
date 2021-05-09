@@ -91,7 +91,7 @@ function _staticLets(fdata) {
             'Skipping side effect check because the first ref is a var decl and this is the second ref so no side effects can possibly observe the binding',
           );
         } else {
-          failed = findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(last, ref);
+          failed = findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(last, ref, false, true);
         }
 
         if (!failed) {

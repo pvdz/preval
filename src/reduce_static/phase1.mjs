@@ -23,7 +23,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
   const start = Date.now();
 
-  const funcStack = [];
+  const funcStack = []; // (also includes global/Program)
   const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments.
   const blockStack = []; // Stack of nested blocks (functions, try/catch/finally, or statements)
   const blockIds = []; // Stack of block pids. Negative if the parent was a loop of sorts. Functions insert a zero.
@@ -618,8 +618,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             } while (true);
           }
 
-          const pfuncNode = funcStack[funcStack.length - 1];
-
           const innerLoop = loopStack[loopStack.length - 1];
           vlog('innerLoop:', innerLoop);
 
@@ -653,7 +651,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               grandIndex,
               blockBody,
               blockIndex,
-              pfuncNode,
+              pfuncNode: currentScope,
               node,
               rwCounter: ++readWriteCounter,
               scope: currentScope.$p.pid,
@@ -676,7 +674,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               refStack[refStack.length - 1].set(cache);
             }
 
-            pfuncNode.$p.referencedNames.add(name);
+            currentScope.$p.referencedNames.add(name);
           }
           if (kind === 'write') {
             const blockBody = blockNode.body;
@@ -692,7 +690,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               grandIndex,
               blockBody,
               blockIndex,
-              pfuncNode,
+              pfuncNode: currentScope,
               node,
               rwCounter: ++readWriteCounter,
               scope: currentScope.$p.pid,
@@ -725,7 +723,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               ASSERT(parentProp === 'id', 'the read check above should cover the prop=init case');
               vlog('- Adding decl write');
 
-              pfuncNode.$p.ownBindings.add(name);
+              currentScope.$p.ownBindings.add(name);
               meta.writes.unshift(write);
             } else if (parentNode.type === 'AssignmentExpression') {
               ASSERT(parentProp === 'left', 'the read check above should cover the prop=right case');

@@ -1186,28 +1186,38 @@ export function resolveNodeAgainstParams(node, callNode, funcNode) {
 //       - The idea is that only local functions can mutate a closure. If the function did not escape then a binding that's not
 //         local can't possibly reference a function that does through call or getters/setters so we should be able to ignore it.
 export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties) {
+  ASSERT(meta, 'should receive a meta...');
   vgroup(
-    'mayBindingMutateBetweenRefs( `' + meta.uniqueName + '` ,',
+    'mayBindingMutateBetweenRefs(checking if  `' + (typeof meta === 'string' ? meta : meta.uniqueName) + '` , was mutated between',
     ref1.action + ':' + ref1.kind,
-    ',',
+    ', and ',
     ref2.action + ':' + ref2.kind,
-    ',',
+    ', including props?',
     includeProperties,
     ')',
   );
-  if (meta.isConstant) {
+
+  if (typeof meta === 'string') {
+    vlog('Assuming `' + meta + '` is an implicit global, probably `arguments` or smth. Assuming multi-scope.');
+    const r = _mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties, false);
+    vgroupEnd();
+    return r;
+  }
+
+  if (meta.isConstant || meta.isBuiltin) {
     // This binding can not be mutated at all.
     return false;
   }
-
-  const bindingScope = +meta.bfuncNode.$p.scope;
+  ASSERT(meta.isImplicitGlobal || meta.bfuncNode, 'either its implicitly global or an explicitly defined binding now', meta);
+  const bindingScope = meta.isImplicitGlobal ? 1 : +meta.bfuncNode.$p.scope;
   const onlyLocalUse = meta.rwOrder.every((ref) => +ref.scope === bindingScope);
+  const metaName = meta.uniqueName;
 
-  const r = _mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties, !includeProperties && !!onlyLocalUse);
+  const r = _mayBindingMutateBetweenRefs(metaName, ref1, ref2, includeProperties, !includeProperties && !!onlyLocalUse);
   vgroupEnd();
   return r;
 }
-function _mayBindingMutateBetweenRefs(meta, prev, curr, includeProperties, singleScope) {
+function _mayBindingMutateBetweenRefs(metaName, prev, curr, includeProperties, singleScope) {
   // Traverse all statements between two given refs, which should be of given meta.
   // Check whether any of them write to the meta. Ignore property mutations. Should not be var. (I think?)
   // Note that prev ref may be a read and may still write to itself (like `x = x + 1`).
@@ -1228,8 +1238,6 @@ function _mayBindingMutateBetweenRefs(meta, prev, curr, includeProperties, singl
   //   If there is a forward write ref that can reach this read, return true
   //   (If there is no forward read then for any iteration of the loop the read should return the same value)
   // Must return false
-
-  const metaName = meta.uniqueName;
 
   let blockPointer = prev.blockBodies.length - 1;
   let blockBodies = curr.blockBodies;
@@ -1342,104 +1350,24 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
           // Assignments to idents can not mutate anything other than that ident
         }
 
-        if (!singleScope) {
-          const rhs = expr.right;
-
-          // Rhs may be operator that coerces the value, triggering toString/valueOf
-          if (['Identifier', 'FunctionExpression', 'Literal'].includes(rhs.type)) {
-            // Can not cause mutation of metaName unless lhs is it, and it wasn't
-            vlog('Rhs has no observable side effect');
-          } else if (rhs.type === 'UnaryExpression') {
-            if (includeProperties && rhs.operator === 'delete') {
-              // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
-              vlog('Found a `delete` and explicitly requested no `delete`');
-              mutates = true;
-            } else if (rhs.operator === '-' && rhs.argument.type === 'Literal') {
-              // Ignore: negative numbers.
-              vlog('Negative number, ok');
-            } else if (!['typeof', 'delete', 'void'].includes(rhs.operator)) {
-              vlog('Unary expression with operator `' + rhs.operator + '` could cause a mutation');
-              mutates = true;
-            }
-          } else if (rhs.type === 'BinaryExpression') {
-            if (!['===', '!==', 'in', 'instanceof'].includes(rhs.operator)) {
-              vlog('Unary expression with operator `' + rhs.operator + '` could cause a mutation');
-              mutates = true;
-            } else {
-              vlog('Binary expression without side effects');
-            }
-          } else {
-            // TemplateLiteral
-            // TODO: ObjectExpression / ArrayExpression: the spread could trigger a mutation
-            vlog('The rhs of an assignment may have side effects that is able to cause a mutation');
-            mutates = true;
-          }
+        const rhs = expr.right;
+        if (exprNodeMightMutateNameUntrapped(rhs, singleScope, includeProperties)) {
+          mutates = true;
+          return;
         }
       } else {
-        // Expression may be operator that coerces the value, triggering toString/valueOf
-        if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
-          // Can not cause mutation of metaName
-          vlog('Expr has no observable side effect');
-        } else if (expr.type === 'UnaryExpression') {
-          if (includeProperties && expr.operator === 'delete') {
-            // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
-            vlog('Found a `delete` and explicitly requested no `delete`');
-            mutates = true;
-          } else if (expr.operator === '-' && expr.argument.type === 'Literal') {
-            // Ignore: negative numbers.
-            vlog('Negative number');
-          } else if (!['typeof', 'delete', 'void'].includes(expr.operator)) {
-            vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
-            mutates = true;
-          } else {
-            vlog('Unary without observable side effect');
-          }
-        } else if (expr.type === 'BinaryExpression') {
-          if (!['===', '!==', 'in', 'instanceof'].includes(expr.operator)) {
-            vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
-            mutates = true;
-          } else {
-            vlog('Binary expression without side effects');
-          }
-        } else {
-          // TemplateLiteral
-          // TODO: ObjectExpression / ArrayExpression: the spread could trigger a mutation
-          vlog('The rhs of an assignment may have side effects that is able to cause a mutation');
+        if (exprNodeMightMutateNameUntrapped(expr, singleScope, includeProperties)) {
           mutates = true;
+          return;
         }
       }
     } else if (node.type === 'VariableDeclaration') {
       ASSERT(node.declarations[0].id.name !== metaName, 'right?');
       const init = node.declarations[0].init;
 
-      // Init may be operator that coerces the value, triggering toString/valueOf
-      if (['Identifier', 'FunctionExpression', 'Literal'].includes(init.type)) {
-        // Can only cause mutation of metaName if this was the var decl for it
-        vlog('Init has no observable side effect');
-      } else if (init.type === 'UnaryExpression') {
-        if (includeProperties && init.operator === 'delete') {
-          // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
-          vlog('Found a `delete` and explicitly requested no `delete`');
-          mutates = true;
-        } else if (init.operator === '-' && init.argument.type === 'Literal') {
-          // Ignore: negative numbers.
-          vlog('Negative number');
-        } else if (!['typeof', 'delete', 'void'].includes(init.operator)) {
-          vlog('Unary expression with operator `' + init.operator + '` could cause a mutation');
-          mutates = true;
-        } else {
-          vlog('Unary without observable side effect');
-        }
-      } else if (init.type === 'BinaryExpression') {
-        if (!['===', '!==', 'in', 'instanceof'].includes(init.operator)) {
-          vlog('Unary expression with operator `' + init.operator + '` could cause a mutation');
-          mutates = true;
-        } else {
-          vlog('Binary expression without side effects');
-        }
-      } else {
-        vlog('The rhs of an assignment may have side effects that is able to cause a mutation');
+      if (exprNodeMightMutateNameUntrapped(init, singleScope, includeProperties)) {
         mutates = true;
+        return;
       }
     } else if (node.type === 'IfStatement') {
       // This branch is untrapped so;
@@ -1602,110 +1530,100 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
   if (state === COMPLETES) return { state: COMPLETES, labels: [] };
   ASSERT(false);
 }
+function exprNodeMightMutateNameUntrapped(expr, singleScope, includeProperties) {
+  if (singleScope) {
+    vlog(
+      'A normalized non-assignment expression should not be able to mutate a binding directly so this should not mutate a single scope binding',
+    );
+    return false;
+  }
+
+  // Expr may be operator that coerces the value, triggering toString/valueOf
+  if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
+    // Can not cause mutation of metaName unless lhs is it, and it wasn't
+    vlog('Rhs has no observable side effect');
+  } else if (expr.type === 'UnaryExpression') {
+    if (includeProperties && expr.operator === 'delete') {
+      // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
+      vlog('Found a `delete` and explicitly requested no `delete`');
+      return true;
+    } else if (expr.operator === '-' && expr.argument.type === 'Literal') {
+      // Ignore: negative numbers.
+      vlog('Negative number, ok');
+    } else if (!['typeof', 'delete', 'void'].includes(expr.operator)) {
+      vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
+      return true;
+    }
+  } else if (expr.type === 'BinaryExpression') {
+    if (!['===', '!==', 'in', 'instanceof'].includes(expr.operator)) {
+      vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
+      return true;
+    } else {
+      vlog('Binary expression without side effects');
+    }
+  } else if (expr.type === 'ArrayExpression') {
+    if (expr.elements.every((enode) => enode.type !== 'SpreadElement')) {
+      vlog('Array literal with spread elements might mutate something as a side effect');
+    } else {
+      vlog('Array literal without spread elements cannot mutate anything');
+    }
+  } else if (expr.type === 'ObjectLiteral') {
+    if (expr.properties.every((pnode) => pnode.type !== 'SpreadElement')) {
+      vlog('Object literal with spread elements might mutate something as a side effect');
+    } else {
+      vlog('Object literal without spread elements cannot mutate anything');
+    }
+  } else {
+    // TemplateLiteral
+    // TODO: ObjectExpression / ArrayExpression: the spread could trigger a mutation
+    vlog('The rhs of an assignment may have side effects that is able to cause a mutation');
+    return true;
+  }
+  return false;
+}
 function blockContainsMutate(blockNode, metaName, asSideEffect, includeProperties) {
   // If this node, recursively, contains any write to the binding, return true. Otherwise return false.
   // This is to determine whether a try (which is the parent of the root call) contains a mutation anywhere.
   // No need to maintain state. If we find a write, return true immediately.
-  // Do not visit functions. Vist anything else.
+  // Do not visit functions. Visit anything else.
 
   return blockNode.body.some((cnode) => {
     if (cnode.type === 'ExpressionStatement') {
       const expr = cnode.expression;
 
-      // The only expression we care about is the actual assignment
-      // Once we find a mutation, stop looking. We only want to know about the early completion.
-      if (asSideEffect) {
-        // If we count side effects, most things might mutate a binding. Especially when "unguided".
-        // We're better of with an allow list; expressions that are idents or literals are okay. The end.
+      // If we count side effects, most things might mutate a binding. Especially when "unguided".
+      // We're better of with an allow list; expressions that are idents or literals are okay. The end.
 
-        if (expr.type === 'AssignmentStatement') {
-          // Assignments of simple nodes to idents have no side effects
-          const lhs = expr.left;
+      if (expr.type === 'AssignmentStatement') {
+        // Assignments of simple nodes to idents have no side effects
+        const lhs = expr.left;
 
-          if (lhs.type === 'Identifier' && lhs.name === metaName) {
-            vlog('This actually was a write to the binding...');
-            return true;
-          } else if (lhs.type === 'MemberExpression') {
-            vlog('Assigning to a member expression may trigger a setter');
-            // TODO: an "informed" check may determine that the property access could not possibly mutate target binding...
-            return true;
-          } else if (lhs.type === 'Identifier') {
-            // Assignments to idents can not mutate anything other than that ident
-          }
-
-          const rhs = expr.right;
-
-          // Rhs may be operator that coerces the value, triggering toString/valueOf
-          if (['Identifier', 'FunctionExpression', 'Literal'].includes(rhs.type)) {
-            // Can not cause mutation of metaName unless lhs is it, and it wasn't
-            vlog('Rhs has no observable side effect');
-          } else if (rhs.type === 'UnaryExpression') {
-            if (includeProperties && rhs.operator === 'delete') {
-              // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
-              vlog('Found a `delete` and explicitly requested no `delete`');
-              return true;
-            } else if (rhs.operator === '-' && rhs.argument.type === 'Literal') {
-              // Ignore: negative numbers.
-              vlog('Negative number, ok');
-            } else if (!['typeof', 'delete', 'void'].includes(rhs.operator)) {
-              vlog('Unary expression with operator `' + rhs.operator + '` could cause a mutation');
-              return true;
-            }
-          } else if (rhs.type === 'BinaryExpression') {
-            if (!['===', '!==', 'in', 'instanceof'].includes(rhs.operator)) {
-              vlog('Unary expression with operator `' + rhs.operator + '` could cause a mutation');
-              return true;
-            } else {
-              vlog('Binary expression without side effects');
-            }
-          } else {
-            // TemplateLiteral (can trigger coercion of idents)
-            // TODO: ObjectExpression / ArrayExpression: the spread could trigger a mutation
-            vlog('The rhs of an assignment is a template, array, object, ec which may have side effects that is able to cause a mutation');
-            return true;
-          }
-        } else {
-          // Expression may be operator that coerces the value, triggering toString/valueOf
-          if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
-            // Can not cause mutation of metaName
-            vlog('Expr has no observable side effect');
-          } else if (expr.type === 'UnaryExpression') {
-            if (includeProperties && expr.operator === 'delete') {
-              // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
-              vlog('Found a `delete` and explicitly requested no `delete`');
-              return true;
-            } else if (expr.operator === '-' && expr.argument.type === 'Literal') {
-              // Ignore: negative numbers.
-              vlog('Negative number');
-            } else if (!['typeof', 'delete', 'void'].includes(expr.operator)) {
-              vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
-              return true;
-            } else {
-              vlog('Unary without observable side effect');
-            }
-          } else if (expr.type === 'BinaryExpression') {
-            if (!['===', '!==', 'in', 'instanceof'].includes(expr.operator)) {
-              vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
-              return true;
-            } else {
-              vlog('Binary expression without side effects');
-            }
-          } else {
-            // TemplateLiteral
-            // TODO: ObjectExpression / ArrayExpression: the spread could trigger a mutation
-            vlog('The rhs of an assignment may have side effects that is able to cause a mutation');
-            return true;
-          }
+        if (lhs.type === 'Identifier' && lhs.name === metaName) {
+          vlog('This actually was a write to the binding...');
+          return true;
+        } else if (lhs.type === 'MemberExpression') {
+          vlog('Assigning to a member expression may trigger a setter');
+          // TODO: an "informed" check may determine that the property access could not possibly mutate target binding...
+          return true;
+        } else if (lhs.type === 'Identifier') {
+          // Assignments to idents can not mutate anything other than that ident
         }
+
+        const rhs = expr.right;
+
+        return exprContainsMutate(rhs, metaName, asSideEffect, includeProperties);
       } else {
-        // For the active effect, in normalized code, only actual assignments may mutate a binding
-        return (
-          cnode.expression.type === 'AssignmentStatement' &&
-          cnode.expression.left.type === 'Identifier' &&
-          cnode.expression.left.name === metaName
-        );
+        return exprContainsMutate(expr, metaName, asSideEffect, includeProperties);
       }
     }
+
+    if (cnode.type === 'VariableDeclaration') {
+      ASSERT(cnode.declarations[0].id.name !== metaName, 'right?');
+      const init = cnode.declarations[0].init;
+
+      return exprContainsMutate(init, metaName, asSideEffect, includeProperties);
+    }
+
     if (cnode.type === 'IfStatement') {
       return (
         blockContainsMutate(cnode.consequent, metaName, asSideEffect, includeProperties) ||
@@ -1728,4 +1646,54 @@ function blockContainsMutate(blockNode, metaName, asSideEffect, includePropertie
     }
     // Anything else should be statements that have no child statements and there's nothing else that mutates the binding.
   });
+}
+function exprContainsMutate(expr, metaName, asSideEffect, includeProperties) {
+  if (!asSideEffect) {
+    vlog('A normalized non-assignment expression cannot mutate a binding directly');
+    return false;
+  }
+
+  // Rhs may be operator that coerces the value, triggering toString/valueOf
+  if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
+    // Can not cause mutation of metaName unless lhs is it, and it wasn't
+    vlog('Rhs has no observable side effect');
+  } else if (expr.type === 'UnaryExpression') {
+    if (includeProperties && expr.operator === 'delete') {
+      // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
+      vlog('Found a `delete` and explicitly requested no `delete`');
+      return true;
+    } else if (expr.operator === '-' && expr.argument.type === 'Literal') {
+      // Ignore: negative numbers.
+      vlog('Negative number, ok');
+    } else if (!['typeof', 'delete', 'void'].includes(expr.operator)) {
+      vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
+      return true;
+    }
+  } else if (expr.type === 'BinaryExpression') {
+    if (!['===', '!==', 'in', 'instanceof'].includes(expr.operator)) {
+      vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
+      return true;
+    } else {
+      vlog('Binary expression without side effects');
+    }
+  } else if (expr.type === 'ArrayExpression') {
+    if (expr.elements.every((enode) => enode.type !== 'SpreadElement')) {
+      vlog('Array literal contained a spread element, may trigger side effect');
+      return true;
+    } else {
+      vlog('Array literal did not contain a spread and cannot directly mutate a binding otherwise');
+    }
+  } else if (expr.type === 'ObjectLiteral') {
+    if (expr.properties.every((pnode) => pnode.type !== 'SpreadElement')) {
+      vlog('Object literal contained a spread element, may trigger side effect');
+      return true;
+    } else {
+      vlog('Object literal did not contain a spread and cannot directly mutate a binding otherwise');
+    }
+  } else {
+    // TemplateLiteral (can trigger coercion of idents)
+    vlog('The rhs of an assignment is a template, array, object, ec which may have side effects that is able to cause a mutation');
+    return true;
+  }
+  return false;
 }

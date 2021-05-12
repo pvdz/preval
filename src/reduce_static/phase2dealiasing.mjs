@@ -1,7 +1,6 @@
 // Find constants whose assignment is redundant because the rhs is an ident that won't be changed between declaration and usage
 // This is a common artifact left by normalization, which does not use scope tracking, and has to be safe.
 
-import walk from '../../lib/walk.mjs';
 import {
   ASSERT,
   log,
@@ -20,6 +19,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
+import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function dealiasing(fdata) {
   group('\n\n\nSearching for let-alias constants that are redundant so we can dealias them\n');
@@ -30,6 +30,8 @@ export function dealiasing(fdata) {
 function _dealiasing(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
+  // `const a = x; f(a);` --> `f(x);`
+
   let dropped = 0;
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
@@ -39,7 +41,7 @@ function _dealiasing(fdata) {
     if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, for-x, ???
     if (!meta.isConstant) return; // I don't think this really matters. But perhaps in that case we should just skip the lets...
 
-    vgroup('- Considering `' + name + '`,', meta.reads.length, meta.writes.length);
+    vgroup('- Considering whether `' + name + '` is an unnecessary alias,', meta.reads.length, meta.writes.length);
 
     if (meta.reads.length !== 1) {
       // TODO: This particular artifact is around a single declaration+usage but it should apply to any number of usages.
@@ -51,11 +53,9 @@ function _dealiasing(fdata) {
     vgroupEnd();
   });
 
-  function process(meta, name) {
-    const write = meta.writes[0];
-    const read = meta.reads[0];
-
-    // Note: it's not just the alias we need to check. We must also confirm that the aliased ident is in fact not updated (!)
+  function process(aliasMeta, name) {
+    const write = aliasMeta.writes[0];
+    const read = aliasMeta.reads[0];
 
     // Determine whether the var decl was assigning another ident (not param or literal or whatever)
 
@@ -64,28 +64,24 @@ function _dealiasing(fdata) {
       return;
     }
 
+    // Note: it's not just the alias we need to check. We must also confirm that the aliased ident is in fact not updated (!)
     const realName = write.parentNode.init.name;
-
-    // Confirm that this ident could not have changed between the var decl and the read.
-    // The common pattern I want to tackle here has them in the same block.
-    // TODO: copy paste the check that can move into other blocks
-
-    if (read.blockBody !== write.blockBody) {
-      vlog('Not in same block. Bailing for now. TODO');
+    if (realName === 'arguments' && write.pfuncNode.type === 'FunctionExpression') {
+      vlog('Skipping `arguments` alias');
       return;
     }
+    ASSERT(
+      realName !== 'arguments' || write.pfuncNode.type === 'Program',
+      'the only meta named `arguments` must be an implicit global',
+      write,
+    );
+    const originalMeta = fdata.globallyUniqueNamingRegistry.get(realName);
+    ASSERT(originalMeta || realName === 'arguments', 'the meta for the init ident should be available...', originalMeta, realName);
 
-    vlog('Checking all nodes in between for observable side effects...', write.blockIndex, read.blockIndex);
-    for (let i = write.blockIndex + 1; i < read.blockIndex; ++i) {
-      if (!AST.nodeHasNoObservableSideEffectNorStatements(write.blockBody[i], false)) {
-        vlog('  -', i, ': yes, bailing');
-        return;
-      } else if (AST.ssaCheckMightContainIdentName(write.blockBody[i], realName)) {
-        vlog('  -', i, ': contained reference ot real name, bailing');
-        return;
-      } else {
-        vlog('  -', i, ': nope');
-      }
+    vlog('Checking if it could have been mutated between write and read');
+    if (mayBindingMutateBetweenRefs(originalMeta || realName, write, read)) {
+      vlog('  - yes, bailing');
+      return;
     }
 
     vlog('It seems `' + name + '` was an unnecessary alias for `' + realName + '`. Renaming it now.');

@@ -11,7 +11,7 @@
 ## Input
 
 `````js filename=intro
-do var a = b(c(2));
+do var a = $($(2));
 while (0);
 `````
 
@@ -23,7 +23,7 @@ let a = undefined;
   let tmpDoWhileFlag = true;
   while (tmpDoWhileFlag || 0) {
     tmpDoWhileFlag = false;
-    a = b(c(2));
+    a = $($(2));
   }
 }
 `````
@@ -41,8 +41,8 @@ while (true) {
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
-    const tmpCallCallee = b;
-    const tmpCalleeParam = c(2);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(2);
     a = tmpCallCallee(tmpCalleeParam);
   } else {
     break;
@@ -62,9 +62,8 @@ while (true) {
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
-    const tmpCallCallee = b;
-    const tmpCalleeParam = c(2);
-    tmpCallCallee(tmpCalleeParam);
+    const tmpCalleeParam = $(2);
+    $(tmpCalleeParam);
   } else {
     break;
   }
@@ -73,14 +72,14 @@ while (true) {
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-b, c
+None
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 2
+ - 2: 2
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

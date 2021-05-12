@@ -9,19 +9,22 @@
 ## Input
 
 `````js filename=intro
-f({ x } = 1);
+let x = 0;
+$({ x } = 1);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-f(({ x: x } = 1));
+let x = 0;
+$(({ x: x } = 1));
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpCallCallee = f;
+let x = 0;
+const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpNestedAssignObjPatternRhs = 1;
 x = tmpNestedAssignObjPatternRhs.x;
@@ -32,21 +35,19 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = f;
-x = (1).x;
-tmpCallCallee(1);
+(1).x;
+$(1);
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-f, x
+None
 
 ## Result
 
 Should call `$` with:
- - eval returned: ('<crash[ <ref> is not defined ]>')
+ - 1: 1
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

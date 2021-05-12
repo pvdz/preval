@@ -1060,7 +1060,7 @@ export function expressionHasNoObservableSideEffect(node, noDelete) {
   // This one assumes normalized code, where the contents of classes, arrays, and objects are all simple nodes
   if (node.type === 'ClassExpression') {
     // Make sure idents are not coerced to key strings
-    return !node.body.body.some((n) => n?.type === 'SpreadElement' || (n.computed && !isPrimitive(n.key)));
+    return !node.body.body.some((n) => n.computed && !isPrimitive(n.key));
   }
   if (
     node.type === 'ArrayExpression' // spread is observable... (we could check for it)

@@ -84,11 +84,11 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpssa3_x = $(1, 'shared');
+  const tmpssa2_x = $(1, 'shared');
   if ($) {
-    $(tmpssa3_x, 'a');
+    $(tmpssa2_x, 'a');
   } else {
-    $(tmpssa3_x, 'b');
+    $(tmpssa2_x, 'b');
   }
 } else {
 }

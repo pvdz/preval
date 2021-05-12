@@ -106,11 +106,11 @@ const f = function ($$0) {
     return true;
   } else {
     const r = $('.');
-    const tmpSSA_promoMe = r === '.';
-    if (tmpSSA_promoMe) {
+    const tmpssa2_promoMe = r === '.';
+    if (tmpssa2_promoMe) {
       const t = $('');
-      const tmpSSA_promoMe$1 = t !== '.';
-      return tmpSSA_promoMe$1;
+      const tmpSSA_tmpssa2_promoMe = t !== '.';
+      return tmpSSA_tmpssa2_promoMe;
     } else {
       return false;
     }

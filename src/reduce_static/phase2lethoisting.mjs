@@ -28,7 +28,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar, findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting } from '../bindings.mjs';
+import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import { RESET, GREEN } from '../constants.mjs';
 
 export function letHoisting(fdata) {
@@ -315,7 +315,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
           return true; // stop
         }
 
-        const observable = findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(prev, ref, false, true);
+        const observable = mayBindingMutateBetweenRefs(meta, prev, ref);
         if (observable) {
           vlog('At least one statement between previous ref and this one had an observable side effect. Bailing.');
           failed = true;

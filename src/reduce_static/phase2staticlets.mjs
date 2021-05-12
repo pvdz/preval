@@ -18,7 +18,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar, findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting } from '../bindings.mjs';
+import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function staticLets(fdata) {
   group('\n\n\nChecking for let bindings whose value we can predict anyways');
@@ -91,7 +91,7 @@ function _staticLets(fdata) {
             'Skipping side effect check because the first ref is a var decl and this is the second ref so no side effects can possibly observe the binding',
           );
         } else {
-          failed = findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(last, ref, false, true);
+          failed = mayBindingMutateBetweenRefs(meta, last, ref);
         }
 
         if (!failed) {

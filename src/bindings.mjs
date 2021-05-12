@@ -4,6 +4,11 @@ import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import * as AST from './ast.mjs';
 
+const NONE = 'NONE';
+const MUTATES = 'MUTATES';
+const COMPLETES = 'COMPLETES';
+const LABELS = 'LABELS';
+
 export function getIdentUsageKind(parentNode, parentProp) {
   // Returns 'read', 'write', 'readwrite', 'none', or 'label'
   // Note: for each parent, answer the question "what does the appearance of an ident in each position of a node mean?"
@@ -1082,84 +1087,6 @@ export function inferInitialType(meta, init) {
   }
 }
 
-export function findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(prev, curr, noDelete, noNesting) {
-  // Hello Java my old friend. I know but this name is hard to simplify.
-
-  // Given two refs of a binding where at least one can reach the other, are there any
-  // statements between these refs with observable side effects, ignoring the statement
-  // of the actual refs.
-  // This function can jump into branches (using the ref caches for blockBodies and blockIndexes)
-  // but should not cross function boundaries.
-
-  ASSERT(prev?.action === 'read' || prev?.action === 'write', 'prev should be a ref');
-  ASSERT(curr?.action === 'read' || curr?.action === 'write', 'prev should be a ref');
-  ASSERT(curr.blockChain.startsWith(prev.blockChain), 'the previous ref should be reachable from the current ref');
-
-  let blockPointer = prev.blockBodies.length - 1;
-  let blockBodies = curr.blockBodies;
-  let blockIndexes = curr.blockIndexes;
-
-  let currentBody = prev.blockBody;
-  let currentIndex = prev.blockIndex + 1; // Start after the statement containing the write
-  let currentMax = blockIndexes[blockPointer];
-  vgroup(
-    'findObservableSideEffectsBetweenTwoRefsInAnyBlockNesting(). ids:',
-    curr.blockIds,
-    ', indexes:',
-    blockIndexes,
-    ', blockPointer:',
-    blockPointer,
-    ', lens:',
-    blockBodies.map((a) => a.length),
-  );
-
-  vlog('start index:', currentIndex, ', target index:', currentMax, ', total statements:', currentBody.length);
-  while (true) {
-    vgroup('- currentIndex:', currentIndex, ', currentMax:', currentMax, ', block len:', currentBody.length);
-    if (currentBody === curr.blockBody && currentIndex === curr.blockIndex) {
-      vlog('This is the read statement. All pass.');
-      vgroupEnd();
-      break;
-    } else if (currentIndex <= currentMax) {
-      const next = currentBody[currentIndex];
-      vlog('Next statement:', next.type);
-      source(next);
-      if (
-        noNesting
-          ? !AST.nodeHasNoObservableSideEffectNorStatements(next, noDelete)
-          : !AST.nodeHasNoObservableSideEffectIncStatements(next, noDelete)
-      ) {
-        vlog('Has observable side effects. bailing');
-        source(next);
-        vgroupEnd();
-        vgroupEnd();
-        return true;
-      }
-      vlog('Has no observable side effects. Okay.');
-      ++currentIndex;
-    } else {
-      vlog('End of current block.');
-      ++blockPointer;
-      if (blockPointer >= blockIndexes) {
-        vlog('This may be a bug?');
-        ASSERT(false, 'not sure whether the pointer should ever exceed the block');
-        // This should be the end
-        vgroupEnd();
-        break;
-      }
-      vlog('Jumping into next block');
-      currentBody = blockBodies[blockPointer];
-      currentMax = blockIndexes[blockPointer];
-      currentIndex = 0;
-      vlog('This block has', currentBody.length, 'statements');
-    }
-    vgroupEnd();
-  }
-  vgroupEnd();
-
-  return false;
-}
-
 export function resolveNodeAgainstParams(node, callNode, funcNode) {
   // If given node is an identifier, check if it's a parameter of given function node.
   // If it is, resolve the argument at the same index of the parameter being referenced.
@@ -1239,4 +1166,566 @@ export function resolveNodeAgainstParams(node, callNode, funcNode) {
   }
 
   return [AST.cloneSimple(node), false, -1, false];
+}
+
+// We often only care about one thing: might the binding possibly be mutated between two refs?
+// These are the situations;
+// - The binding is constant:
+//   - By definition, it cannot be mutated. Although properties may.
+// - The binding is not constant
+//   - The binding is only used locally
+//     - The only way for the binding to mutate is by an explicit write to that binding.
+//     - Observable side effects are irrelevant since those could only mutate the binding through a closure
+//   - The binding is used in a closure
+//     - A function with closure access escapes (not passed around directly, and transitively no function calling this function escapes)
+//       - Any observable side effect might mutate it
+//     - Functions that have access under closure do not escape, recursively (any function calling this function does not escape etiher, etc)
+//       - Any observable side effect may end up mutating
+//     - The mutation can happen through a direct mutation or an observable side effect
+//       - Only observable side effects by local bindings might mutate the binding
+//       - The idea is that only local functions can mutate a closure. If the function did not escape then a binding that's not
+//         local can't possibly reference a function that does through call or getters/setters so we should be able to ignore it.
+export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties) {
+  vgroup(
+    'mayBindingMutateBetweenRefs( `' + meta.uniqueName + '` ,',
+    ref1.action + ':' + ref1.kind,
+    ',',
+    ref2.action + ':' + ref2.kind,
+    ',',
+    includeProperties,
+    ')',
+  );
+  if (meta.isConstant) {
+    // This binding can not be mutated at all.
+    return false;
+  }
+
+  const bindingScope = +meta.bfuncNode.$p.scope;
+  const onlyLocalUse = meta.rwOrder.every((ref) => +ref.scope === bindingScope);
+
+  const r = _mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties, !includeProperties && !!onlyLocalUse);
+  vgroupEnd();
+  return r;
+}
+function _mayBindingMutateBetweenRefs(meta, prev, curr, includeProperties, singleScope) {
+  // Traverse all statements between two given refs, which should be of given meta.
+  // Check whether any of them write to the meta. Ignore property mutations. Should not be var. (I think?)
+  // Note that prev ref may be a read and may still write to itself (like `x = x + 1`).
+  // If the curr ref is not nested in the current statement, then the statement must be visited exhaustively (if/while/etc).
+
+  ASSERT(prev?.action === 'read' || prev?.action === 'write', 'prev should be a ref', prev);
+  ASSERT(curr?.action === 'read' || curr?.action === 'write', 'prev should be a ref', curr);
+  ASSERT(curr.blockChain.startsWith(prev.blockChain), 'the previous ref should be reachable from the current ref');
+
+  // Start from the block and index of the prev ref.
+  // If the prev is not an assignment, skip an index forward
+  // As long as the statement containing the curr ref is not found,
+  //   If the current statement is an assignment to meta, return true
+  //   If the current statement is a for-x with meta as the lhs, return true
+  //   Are there any other ways of mutating the binding? Catch can't go here.
+  // If the curr ref is a read inside a loop
+  //   Scan forward in the loop
+  //   If there is a forward write ref that can reach this read, return true
+  //   (If there is no forward read then for any iteration of the loop the read should return the same value)
+  // Must return false
+
+  const metaName = meta.uniqueName;
+
+  let blockPointer = prev.blockBodies.length - 1;
+  let blockBodies = curr.blockBodies;
+  let blockIndexes = curr.blockIndexes;
+
+  let currentBody = prev.blockBody;
+  let currentIndex = prev.blockIndex + 1; // Start after the statement containing the write
+  let currentMax = blockIndexes[blockPointer];
+  vgroup(
+    'mightBindingWriteBetweenRefs(). ids:',
+    curr.blockIds,
+    ', indexes:',
+    blockIndexes,
+    ', blockPointer:',
+    blockPointer,
+    ', lens:',
+    blockBodies.map((a) => a.length),
+  );
+
+  vlog('start index:', currentIndex, ', target index:', currentMax, ', total statements:', currentBody.length);
+  while (true) {
+    vgroup('- currentIndex:', currentIndex, ', currentMax:', currentMax, ', block len:', currentBody.length);
+    if (currentBody === curr.blockBody && currentIndex === curr.blockIndex) {
+      vlog('This is the targeted ref statement. All pass.');
+      vgroupEnd();
+      break;
+    } else if (currentIndex <= currentMax) {
+      // The target ref is not a descendant of this statement. Visit exhaustively before moving on to the next statement.
+      const next = currentBody[currentIndex];
+      vlog('Next statement:', next.type);
+
+      // The only statement to write to a binding is an expression statement writing to the binding (gosh)
+
+      if (nodeMightMutateNameUntrapped([next], metaName, includeProperties, singleScope).state === MUTATES) {
+        vlog('Has observable side effects. bailing');
+        source(next);
+        vgroupEnd();
+        vgroupEnd();
+        return true;
+      }
+
+      vlog('Has no observable side effects. Okay. 3');
+      ++currentIndex;
+    } else {
+      vlog('End of current block.');
+      ++blockPointer;
+      if (blockPointer >= blockIndexes) {
+        vlog('This may be a bug?');
+        ASSERT(false, 'not sure whether the pointer should ever exceed the block');
+        // This should be the end
+        vgroupEnd();
+        break;
+      }
+      vlog('Jumping into next block');
+      currentBody = blockBodies[blockPointer];
+      currentMax = blockIndexes[blockPointer];
+      currentIndex = 0;
+      vlog('This block has', currentBody.length, 'statements');
+    }
+    vgroupEnd();
+  }
+  vgroupEnd();
+
+  return false;
+}
+function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, singleScope) {
+  // This variant assumes that the nodes are nested in at least one other function.
+  // This is a lot trickier since it may be mutated by a myriad of operations now, including something as trivial as
+  // a property read/write (`a.x`) or implicit coercion (`a < x` can trigger `.valueOf()` or `.toString()` calls).
+
+  // The approach is to allow expressions where we know they can't mutate this binding.
+  // TODO: in the future we can extend this analysis to confirm that no function containing the binding could have
+  //       been called, recursively, and that the function does not escape, recursively. But that's a lot more expensive.
+
+  // Apply the same analysis as single scope, plus also disallow many kinds of expressions that may indirectly
+  // mutate the binding. Nothing changes for the statement/declaration nodes.
+
+  let mutates = false;
+  let state = NONE;
+
+  // After visiting a node, if it is a label in this set, or if it is a loop with '' in the set, return MUTATES
+  // This catches the case like `while (true) { if ($) { x = 1; break; } f(x); } f(x);` which mutates x in one branch
+  // of an if, but not in the other. This func should still remember that the node could be mutated after reaching
+  // and processing the break target.
+  let labelsAfterWhichConsiderMutates = [];
+
+  vgroup('nodeMightMutateNameUntrapped(node count: ' + nodes.length + ', target name: `' + metaName + '`)');
+  // Ideal stop condition is when state === MUTATES. Bad for analysis, but this function considers that the end goal.
+  nodes.some((node) => {
+    vlog('-', node.type);
+    if (node.type === 'ExpressionStatement') {
+      const expr = node.expression;
+      vlog('  - expression:', expr.type);
+      // The only expression we care about is the actual assignment
+      // Once we find a mutation, stop looking. We only want to know about the early completion.
+      if (expr.type === 'AssignmentStatement') {
+        const lhs = expr.left;
+
+        if (lhs.type === 'Identifier' && lhs.name === metaName) {
+          vlog('This actually was a write to the binding...');
+          mutates = true;
+          return;
+        } else if (singleScope) {
+          vlog('Not assignment to the binding, nothing else can mutate it because it is single scope, expr does not mutate');
+        } else if (lhs.type === 'MemberExpression') {
+          vlog('Assigning to a member expression may trigger a setter');
+          mutates = true;
+          return;
+        } else if (lhs.type === 'Identifier') {
+          // Assignments to idents can not mutate anything other than that ident
+        }
+
+        if (!singleScope) {
+          const rhs = expr.right;
+
+          // Rhs may be operator that coerces the value, triggering toString/valueOf
+          if (['Identifier', 'FunctionExpression', 'Literal'].includes(rhs.type)) {
+            // Can not cause mutation of metaName unless lhs is it, and it wasn't
+            vlog('Rhs has no observable side effect');
+          } else if (rhs.type === 'UnaryExpression') {
+            if (includeProperties && rhs.operator === 'delete') {
+              // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
+              vlog('Found a `delete` and explicitly requested no `delete`');
+              mutates = true;
+            } else if (rhs.operator === '-' && rhs.argument.type === 'Literal') {
+              // Ignore: negative numbers.
+              vlog('Negative number, ok');
+            } else if (!['typeof', 'delete', 'void'].includes(rhs.operator)) {
+              vlog('Unary expression with operator `' + rhs.operator + '` could cause a mutation');
+              mutates = true;
+            }
+          } else if (rhs.type === 'BinaryExpression') {
+            if (!['===', '!==', 'in', 'instanceof'].includes(rhs.operator)) {
+              vlog('Unary expression with operator `' + rhs.operator + '` could cause a mutation');
+              mutates = true;
+            } else {
+              vlog('Binary expression without side effects');
+            }
+          } else {
+            // TemplateLiteral
+            // TODO: ObjectExpression / ArrayExpression: the spread could trigger a mutation
+            vlog('The rhs of an assignment may have side effects that is able to cause a mutation');
+            mutates = true;
+          }
+        }
+      } else {
+        // Expression may be operator that coerces the value, triggering toString/valueOf
+        if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
+          // Can not cause mutation of metaName
+          vlog('Expr has no observable side effect');
+        } else if (expr.type === 'UnaryExpression') {
+          if (includeProperties && expr.operator === 'delete') {
+            // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
+            vlog('Found a `delete` and explicitly requested no `delete`');
+            mutates = true;
+          } else if (expr.operator === '-' && expr.argument.type === 'Literal') {
+            // Ignore: negative numbers.
+            vlog('Negative number');
+          } else if (!['typeof', 'delete', 'void'].includes(expr.operator)) {
+            vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
+            mutates = true;
+          } else {
+            vlog('Unary without observable side effect');
+          }
+        } else if (expr.type === 'BinaryExpression') {
+          if (!['===', '!==', 'in', 'instanceof'].includes(expr.operator)) {
+            vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
+            mutates = true;
+          } else {
+            vlog('Binary expression without side effects');
+          }
+        } else {
+          // TemplateLiteral
+          // TODO: ObjectExpression / ArrayExpression: the spread could trigger a mutation
+          vlog('The rhs of an assignment may have side effects that is able to cause a mutation');
+          mutates = true;
+        }
+      }
+    } else if (node.type === 'VariableDeclaration') {
+      ASSERT(node.declarations[0].id.name !== metaName, 'right?');
+      const init = node.declarations[0].init;
+
+      // Init may be operator that coerces the value, triggering toString/valueOf
+      if (['Identifier', 'FunctionExpression', 'Literal'].includes(init.type)) {
+        // Can only cause mutation of metaName if this was the var decl for it
+        vlog('Init has no observable side effect');
+      } else if (init.type === 'UnaryExpression') {
+        if (includeProperties && init.operator === 'delete') {
+          // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
+          vlog('Found a `delete` and explicitly requested no `delete`');
+          mutates = true;
+        } else if (init.operator === '-' && init.argument.type === 'Literal') {
+          // Ignore: negative numbers.
+          vlog('Negative number');
+        } else if (!['typeof', 'delete', 'void'].includes(init.operator)) {
+          vlog('Unary expression with operator `' + init.operator + '` could cause a mutation');
+          mutates = true;
+        } else {
+          vlog('Unary without observable side effect');
+        }
+      } else if (init.type === 'BinaryExpression') {
+        if (!['===', '!==', 'in', 'instanceof'].includes(init.operator)) {
+          vlog('Unary expression with operator `' + init.operator + '` could cause a mutation');
+          mutates = true;
+        } else {
+          vlog('Binary expression without side effects');
+        }
+      } else {
+        vlog('The rhs of an assignment may have side effects that is able to cause a mutation');
+        mutates = true;
+      }
+    } else if (node.type === 'IfStatement') {
+      // This branch is untrapped so;
+      // - If at least one branch mutates without completing, the whole `if` mutates. Return immediately.
+      // - Else, each branch that continues/breaks has its label set added to this one, state set to LABELS
+      // - Else, if both branches return/throw, state to COMPLETES if it was NONE, label set empty
+      // - Else, both branches must not mutate, not complete early. Keep state, merge both label sets.
+
+      // The rules are a little different inside a try-catch, but only for throws. Not relevant here.
+
+      const { state: a, labels: labelsA } = nodeMightMutateNameUntrapped(node.consequent.body, metaName);
+      if (a === MUTATES) {
+        // It now doesn't matter what happens in the else branch: the `if` is considered to potentially mutate the binding.
+        mutates = true;
+        vlog('The consequent branch mutates. So this `if` mutates.');
+      } else {
+        const { state: b, labels: labelsB } = nodeMightMutateNameUntrapped(node.alternate.body, metaName);
+        if (a === MUTATES) {
+          // Labels don't matter. This `if` is considered to potentially mutate the binding.
+          mutates = true;
+          vlog('The alternate branch mutates. So this `if` mutates.');
+        } else {
+          if (a === LABELS || b === LABELS) {
+            vlog('At least one branch breaks or continues.');
+            if (a === LABELS) {
+              vlog('- The consequent, considering mutates after these labels:', labelsA);
+              labelsAfterWhichConsiderMutates.push(...labelsA);
+            }
+            if (b === LABELS) {
+              vlog('- The alternate, considering mutates after these labels:', labelsA);
+              labelsAfterWhichConsiderMutates.push(...labelsB);
+            }
+            vlog('Marking the `if` as breaking or continuing because it does not mutate directly');
+            state = LABELS;
+            return true;
+          } else if (a === COMPLETES && b === COMPLETES) {
+            vlog('Both branches of the `if` complete so this `if` completes without labels');
+            if (state === NONE) {
+              vlog('So far state is NONE so it completes now');
+              state = COMPLETES;
+              return true;
+            }
+          } else {
+            vlog('The `if` ends with NONE...');
+          }
+        }
+      }
+    } else if (['ForInStatement', 'ForOfStatement'].includes(node.type)) {
+      if (node.left.type === 'Identifier' && node.left.name === metaName) {
+        mutates = true;
+        vlog('The `for` mutates because it has the name to the lhs');
+      } else {
+        const { state: a, labels: labels } = nodeMightMutateNameUntrapped(node.body.body, metaName);
+        if (a === MUTATES) {
+          mutates = true;
+          vlog('The `for` loop mutates');
+        } else if (labels.includes('')) {
+          mutates = true;
+          vlog('The `for` loop mutates and breaks without label so the `for` mutates');
+        } else if (a === LABELS) {
+          labelsAfterWhichConsiderMutates.push(...labels);
+          state = LABELS;
+          vlog('The `for` loop mutates and breaks with label. Consider mutates after these labels:', labels);
+          return true;
+        } else if (a === COMPLETES) {
+          vlog('The `for` loop completes. Cosnidering the `for` to complete.');
+          if (state === NONE) {
+            state = COMPLETES;
+          }
+          return true;
+        } else {
+          vlog('The `for` ends with NONE...');
+        }
+      }
+    } else if (node.type === 'WhileStatement') {
+      const { state: a, labels: labels } = nodeMightMutateNameUntrapped(node.body.body, metaName);
+      if (a === MUTATES) {
+        mutates = true;
+        vlog('The `while` loop mutates so the `while` mutates');
+      } else if (labels.includes('')) {
+        mutates = true;
+      } else if (a === LABELS) {
+        labelsAfterWhichConsiderMutates.push(...labels);
+        state = LABELS;
+        vlog('The `while` mutates and breaks/continues so the consideringm mutation after labels:', labels);
+        return true;
+      } else if (a === COMPLETES) {
+        vlog('The `while` loop completes so the `while` completes');
+        if (state === NONE) {
+          state = COMPLETES;
+        }
+        return true;
+      } else {
+        vlog('The `while` ends with NONE...');
+      }
+    } else if (node.type === 'LabeledStatement') {
+      const { state: a, labels: labels } = nodeMightMutateNameUntrapped(node.body.body, metaName);
+      if (a === MUTATES) {
+        mutates = true;
+        vlog('The label body mutates so the label mutates');
+      } else if (labels.includes(node.label.name)) {
+        mutates = true;
+        vlog('The label body mutates and breaks or continues to this label so the label mutates');
+      } else if (a === LABELS) {
+        labelsAfterWhichConsiderMutates.push(...labels);
+        state = LABELS;
+        vlog('The label body mutates and breaks or continues, considering mutation after labels:', labels);
+        return true;
+      } else if (a === COMPLETES) {
+        vlog('The label body completes so the label completes');
+        if (state === NONE) {
+          state = COMPLETES;
+        }
+        return true;
+      } else {
+        vlog('The label ends with NONE...');
+      }
+    } else if (node.type === 'ReturnStatement') {
+      state = COMPLETES;
+      vlog('Return statement overrides any other state');
+      return true;
+    } else if (['ContinueStatement', 'BreakStatement'].includes(node.type)) {
+      vlog('A continue or break will LABELS if the previous nodes mutates');
+      if (mutates) {
+        vlog('- previous nodes mutated so adding', node.label?.name || '', 'to the label set');
+        // This mutation is observable as soon as the continue or break target is found. Either the explicit label, or the nearest loop.
+        labelsAfterWhichConsiderMutates.push(node.label?.name || '');
+      }
+      state = LABELS;
+      return true;
+    } else if (node.type === 'ThrowStatement') {
+      vlog('A throw overrides any other state');
+      state = COMPLETES;
+      return true;
+    } else if (node.type === 'TryStatement') {
+      vlog('Try statement. Just checking whether it writes to the binding at all anywhere');
+
+      // Doing puristic mutation analysis with the try statement is a nightmare of surprisingly high complexity. So we won't.
+      // For an example, any completion in the finally block overrides any completion of the other two blocks.
+      // So instead we'll do it differently; if the try, catch, or finally block contain any writes anywhere, consider the
+      // `try` statement to have mutated the binding. It's the safest approach without falling into a very deep rabbit hole.
+
+      if (
+        blockContainsMutate(node.block, metaName, singleScope, includeProperties) ||
+        (node.handler && blockContainsMutate(node.handler.body, metaName, singleScope, includeProperties)) ||
+        (node.finalizer && blockContainsMutate(node.finalizer, metaName, singleScope, includeProperties))
+      ) {
+        vlog('- it does. The try mutates');
+        mutates = true;
+      }
+    } else {
+      vlog('Ehhh. Considering NONE');
+    }
+  });
+  vgroupEnd();
+
+  vlog('Final state:', state, ', mutates?', mutates, ', labels:', labelsAfterWhichConsiderMutates);
+  if (state === NONE) return mutates ? { state: MUTATES, labels: [] } : { state: NONE, labels: labelsAfterWhichConsiderMutates }; // The labels may tell us from where to start considering it mutated
+  if (state === LABELS) return { state: LABELS, labels: labelsAfterWhichConsiderMutates }; // Labels are irrelevant because we DCE and have to consider next sibling nodes mutated anyways
+  if (state === COMPLETES) return { state: COMPLETES, labels: [] };
+  ASSERT(false);
+}
+function blockContainsMutate(blockNode, metaName, asSideEffect, includeProperties) {
+  // If this node, recursively, contains any write to the binding, return true. Otherwise return false.
+  // This is to determine whether a try (which is the parent of the root call) contains a mutation anywhere.
+  // No need to maintain state. If we find a write, return true immediately.
+  // Do not visit functions. Vist anything else.
+
+  return blockNode.body.some((cnode) => {
+    if (cnode.type === 'ExpressionStatement') {
+      const expr = cnode.expression;
+
+      // The only expression we care about is the actual assignment
+      // Once we find a mutation, stop looking. We only want to know about the early completion.
+      if (asSideEffect) {
+        // If we count side effects, most things might mutate a binding. Especially when "unguided".
+        // We're better of with an allow list; expressions that are idents or literals are okay. The end.
+
+        if (expr.type === 'AssignmentStatement') {
+          // Assignments of simple nodes to idents have no side effects
+          const lhs = expr.left;
+
+          if (lhs.type === 'Identifier' && lhs.name === metaName) {
+            vlog('This actually was a write to the binding...');
+            return true;
+          } else if (lhs.type === 'MemberExpression') {
+            vlog('Assigning to a member expression may trigger a setter');
+            // TODO: an "informed" check may determine that the property access could not possibly mutate target binding...
+            return true;
+          } else if (lhs.type === 'Identifier') {
+            // Assignments to idents can not mutate anything other than that ident
+          }
+
+          const rhs = expr.right;
+
+          // Rhs may be operator that coerces the value, triggering toString/valueOf
+          if (['Identifier', 'FunctionExpression', 'Literal'].includes(rhs.type)) {
+            // Can not cause mutation of metaName unless lhs is it, and it wasn't
+            vlog('Rhs has no observable side effect');
+          } else if (rhs.type === 'UnaryExpression') {
+            if (includeProperties && rhs.operator === 'delete') {
+              // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
+              vlog('Found a `delete` and explicitly requested no `delete`');
+              return true;
+            } else if (rhs.operator === '-' && rhs.argument.type === 'Literal') {
+              // Ignore: negative numbers.
+              vlog('Negative number, ok');
+            } else if (!['typeof', 'delete', 'void'].includes(rhs.operator)) {
+              vlog('Unary expression with operator `' + rhs.operator + '` could cause a mutation');
+              return true;
+            }
+          } else if (rhs.type === 'BinaryExpression') {
+            if (!['===', '!==', 'in', 'instanceof'].includes(rhs.operator)) {
+              vlog('Unary expression with operator `' + rhs.operator + '` could cause a mutation');
+              return true;
+            } else {
+              vlog('Binary expression without side effects');
+            }
+          } else {
+            // TemplateLiteral (can trigger coercion of idents)
+            // TODO: ObjectExpression / ArrayExpression: the spread could trigger a mutation
+            vlog('The rhs of an assignment is a template, array, object, ec which may have side effects that is able to cause a mutation');
+            return true;
+          }
+        } else {
+          // Expression may be operator that coerces the value, triggering toString/valueOf
+          if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
+            // Can not cause mutation of metaName
+            vlog('Expr has no observable side effect');
+          } else if (expr.type === 'UnaryExpression') {
+            if (includeProperties && expr.operator === 'delete') {
+              // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
+              vlog('Found a `delete` and explicitly requested no `delete`');
+              return true;
+            } else if (expr.operator === '-' && expr.argument.type === 'Literal') {
+              // Ignore: negative numbers.
+              vlog('Negative number');
+            } else if (!['typeof', 'delete', 'void'].includes(expr.operator)) {
+              vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
+              return true;
+            } else {
+              vlog('Unary without observable side effect');
+            }
+          } else if (expr.type === 'BinaryExpression') {
+            if (!['===', '!==', 'in', 'instanceof'].includes(expr.operator)) {
+              vlog('Unary expression with operator `' + expr.operator + '` could cause a mutation');
+              return true;
+            } else {
+              vlog('Binary expression without side effects');
+            }
+          } else {
+            // TemplateLiteral
+            // TODO: ObjectExpression / ArrayExpression: the spread could trigger a mutation
+            vlog('The rhs of an assignment may have side effects that is able to cause a mutation');
+            return true;
+          }
+        }
+      } else {
+        // For the active effect, in normalized code, only actual assignments may mutate a binding
+        return (
+          cnode.expression.type === 'AssignmentStatement' &&
+          cnode.expression.left.type === 'Identifier' &&
+          cnode.expression.left.name === metaName
+        );
+      }
+    }
+    if (cnode.type === 'IfStatement') {
+      return (
+        blockContainsMutate(cnode.consequent, metaName, asSideEffect, includeProperties) ||
+        blockContainsMutate(cnode.alternate, metaName, asSideEffect, includeProperties)
+      );
+    }
+    if (['WhileStatement', 'LabeledStatement'].includes(cnode.type)) {
+      return blockContainsMutate(cnode.body, metaName, asSideEffect, includeProperties);
+    }
+    if (['ForInStatement', 'ForOfStatement'].includes(cnode.type)) {
+      if (cnode.left.type === 'Identifier' && cnode.left.name === metaName) return true;
+      return blockContainsMutate(cnode.body, metaName, asSideEffect, includeProperties);
+    }
+    if (cnode.type === 'TryStatement') {
+      return (
+        blockContainsMutate(cnode.block, metaName, asSideEffect, includeProperties) ||
+        (cnode.handler && blockContainsMutate(cnode.handler.body, metaName, asSideEffect, includeProperties)) ||
+        (cnode.finalizer && blockContainsMutate(cnode.finalizer, metaName, asSideEffect, includeProperties))
+      );
+    }
+    // Anything else should be statements that have no child statements and there's nothing else that mutates the binding.
+  });
 }

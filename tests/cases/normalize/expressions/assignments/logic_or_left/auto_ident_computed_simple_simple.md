@@ -47,14 +47,8 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const a = b.c;
-let tmpCalleeParam = a;
-if (a) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
-$(a, b);
+$(1);
+$(1, b);
 `````
 
 ## Globals

@@ -50,15 +50,9 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-let tmpCalleeParam = undefined;
-const a = b.c;
-if (a) {
-  tmpCalleeParam = $(100);
-} else {
-  tmpCalleeParam = $(200);
-}
+const tmpCalleeParam = $(100);
 $(tmpCalleeParam);
-$(a, b);
+$(1, b);
 `````
 
 ## Globals

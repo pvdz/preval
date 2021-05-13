@@ -86,11 +86,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpNewCallee = b.$;
-const tmpSSA_a = new tmpNewCallee(1);
+const tmpSSA_a = new $(1);
 const tmpIfTest = tmpSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

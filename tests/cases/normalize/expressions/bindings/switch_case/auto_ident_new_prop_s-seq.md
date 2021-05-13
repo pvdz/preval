@@ -66,9 +66,7 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_b = { $: $ };
-const tmpNewCallee = tmpSSA_b.$;
-const tmpSSA_a = new tmpNewCallee(1);
+const tmpSSA_a = new $(1);
 $(tmpSSA_a);
 `````
 

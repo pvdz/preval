@@ -56,9 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal = [0];
-const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternNoDefault = tmpCalleeParam$1.x;
-const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternSplat = [...tmpObjLitVal];
 const y = arrPatternSplat[0];
 $(y);
 `````

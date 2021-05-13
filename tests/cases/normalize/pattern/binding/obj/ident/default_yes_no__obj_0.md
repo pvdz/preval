@@ -40,16 +40,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: 0 };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let x = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('fail');
-} else {
-  x = objPatternBeforeDefault;
-}
-$(x);
+$(0);
 `````
 
 ## Globals

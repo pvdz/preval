@@ -131,9 +131,8 @@ tmpSwitchBreak: {
     $(2);
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);
-    const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-    x = tmpAssignObjPatternRhs.x;
-    y = tmpAssignObjPatternRhs.y;
+    x = tmpObjLitVal;
+    y = tmpObjLitVal$1;
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

@@ -52,13 +52,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const tmpNewCallee = b.$;
-let tmpSSA_a = new tmpNewCallee(1);
+let tmpSSA_a = new $(1);
 let tmpCalleeParam = tmpSSA_a;
 if (tmpSSA_a) {
-  const tmpNewCallee$1 = b.$;
-  const tmpNestedComplexRhs = new tmpNewCallee$1(1);
+  const tmpNestedComplexRhs = new $(1);
   tmpSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {

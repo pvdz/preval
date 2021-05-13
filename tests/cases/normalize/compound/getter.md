@@ -43,9 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const obj = { x: 0 };
-const tmpCompoundAssignLhs = obj.x;
-const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
-obj.x = tmpAssignMemRhs;
+obj.x = 5;
 const tmpCalleeParam = obj.x;
 $(tmpCalleeParam);
 `````

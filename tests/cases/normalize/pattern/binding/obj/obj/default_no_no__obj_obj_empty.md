@@ -46,15 +46,13 @@ $('ok');
 
 `````js filename=intro
 const tmpObjLitVal = {};
-const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-let objPatternCrashTest = objPatternNoDefault === undefined;
+let objPatternCrashTest = tmpObjLitVal === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = objPatternNoDefault === null;
+  objPatternCrashTest = tmpObjLitVal === null;
 }
 if (objPatternCrashTest) {
-  objPatternNoDefault.cannotDestructureThis;
+  tmpObjLitVal.cannotDestructureThis;
 } else {
 }
 $('ok');

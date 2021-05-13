@@ -50,15 +50,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpNewCallee = b.$;
-  const tmpNestedComplexRhs = new tmpNewCallee(1);
+  const tmpNestedComplexRhs = new $(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

@@ -55,17 +55,13 @@ $('ok');
 
 `````js filename=intro
 const tmpObjLitVal$3 = { z: 1, a: 2, b: 3 };
-const tmpObjLitVal = { x: 13, y: tmpObjLitVal$3, z: 14 };
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-const objPatternNoDefault$1 = objPatternNoDefault.y;
-let objPatternCrashTest = objPatternNoDefault$1 === undefined;
+let objPatternCrashTest = tmpObjLitVal$3 === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = objPatternNoDefault$1 === null;
+  objPatternCrashTest = tmpObjLitVal$3 === null;
 }
 if (objPatternCrashTest) {
-  objPatternNoDefault$1.cannotDestructureThis;
+  tmpObjLitVal$3.cannotDestructureThis;
 } else {
 }
 $('ok');

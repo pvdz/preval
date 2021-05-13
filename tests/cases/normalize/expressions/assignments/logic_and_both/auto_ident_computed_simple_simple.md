@@ -49,16 +49,8 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-let a = b.c;
-let tmpCalleeParam = a;
-if (a) {
-  const tmpNestedComplexRhs = b.c;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
-} else {
-}
-$(tmpCalleeParam);
-$(a, b);
+$(1);
+$(1, b);
 `````
 
 ## Globals

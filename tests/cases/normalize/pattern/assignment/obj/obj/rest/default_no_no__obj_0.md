@@ -40,10 +40,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { x: 0, b: 11, c: 12 };
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const tmpCalleeParam$1 = [];
-y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+y = objPatternRest(0, tmpCalleeParam$1, undefined);
 $(y);
 `````
 

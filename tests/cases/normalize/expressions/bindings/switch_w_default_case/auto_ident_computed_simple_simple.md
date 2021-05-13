@@ -91,8 +91,7 @@ if (tmpIfTest$7) {
 
 `````js filename=intro
 const tmpSSA_b = { c: 1 };
-const tmpSSA_a = tmpSSA_b.c;
-$(tmpSSA_a, tmpSSA_b);
+$(1, tmpSSA_b);
 $('fail1');
 $('fail2');
 `````

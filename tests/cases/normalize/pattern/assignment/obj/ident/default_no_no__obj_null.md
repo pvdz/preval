@@ -33,8 +33,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { x: null };
-x = tmpAssignObjPatternRhs.x;
+x = null;
 $(x);
 `````
 

@@ -74,11 +74,7 @@ if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  b.c;
-} else {
-}
+tmpSwitchCaseToStart <= 0;
 $(a, b);
 `````
 

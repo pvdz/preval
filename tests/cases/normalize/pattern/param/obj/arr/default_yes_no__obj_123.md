@@ -60,18 +60,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$3 = { x: 1, a: 2, b: 3 };
-const objPatternBeforeDefault = tmpCalleeParam$3.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = ['fail'];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-[...objPatternAfterDefault];
-$('ok');
+[...1];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

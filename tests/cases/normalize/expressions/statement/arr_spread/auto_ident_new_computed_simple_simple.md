@@ -41,10 +41,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpNewCallee = b.$;
-const tmpArrElToSpread = new tmpNewCallee(1);
+const tmpArrElToSpread = new $(1);
 [...tmpArrElToSpread];
 $(a);
 `````

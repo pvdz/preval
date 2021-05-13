@@ -44,9 +44,7 @@ $(y);
 
 `````js filename=intro
 const tmpObjLitVal = {};
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-const objPatternBeforeDefault = objPatternNoDefault.y;
+const objPatternBeforeDefault = tmpObjLitVal.y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   y = $('pass');

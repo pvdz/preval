@@ -44,10 +44,9 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const a = b.c;
-const tmpAnonDefaultExport = a;
+const tmpAnonDefaultExport = 1;
 export { tmpAnonDefaultExport as default };
-$(a, b);
+$(1, b);
 `````
 
 ## Globals

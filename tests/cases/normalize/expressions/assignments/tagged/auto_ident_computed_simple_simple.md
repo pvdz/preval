@@ -45,9 +45,8 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpCalleeParam = ['before ', ' after'];
-const a = b.c;
-$(tmpCalleeParam, a);
-$(a, b);
+$(tmpCalleeParam, 1);
+$(1, b);
 `````
 
 ## Globals

@@ -134,6 +134,11 @@ function processAttempt(fdata) {
         readRef.blockIndex,
         ').',
       );
+      if (writeRef.innerLoop !== readRef.innerLoop) {
+        // TODO: if the loop contained no further writes this would still be okay...
+        vlog('The read happened inside a different loop from the write. Bailing just in case.');
+        return;
+      }
       if (mayBindingMutateBetweenRefs(meta, writeRef, readRef, true)) {
         vlog('There was at least one observable side effect that could have mutated the property on the object, so bailing');
         return;

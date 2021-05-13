@@ -53,10 +53,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = { x: null, b: 11, c: 12 };
-const objPatternNoDefault = tmpCalleeParam$1.x;
-objPatternNoDefault.y;
-$('bad');
+null.y;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

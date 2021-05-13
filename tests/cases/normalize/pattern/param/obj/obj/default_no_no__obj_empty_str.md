@@ -62,17 +62,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = { x: '', b: 11, c: 12 };
-const objPatternNoDefault = tmpCalleeParam$1.x;
-let objPatternCrashTest = objPatternNoDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternNoDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternNoDefault.cannotDestructureThis;
-} else {
-}
 $('ok');
 `````
 

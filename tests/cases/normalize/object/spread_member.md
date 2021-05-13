@@ -37,9 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal = { bar: 10 };
-const obj = { foo: tmpObjLitVal };
-const tmpObjSpread = obj.foo;
-const tmpCalleeParam = { ...tmpObjSpread };
+const tmpCalleeParam = { ...tmpObjLitVal };
 $(tmpCalleeParam);
 `````
 

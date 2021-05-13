@@ -40,15 +40,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: undefined };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let x = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('pass');
-} else {
-  x = objPatternBeforeDefault;
-}
+const x = $('pass');
 $(x);
 `````
 

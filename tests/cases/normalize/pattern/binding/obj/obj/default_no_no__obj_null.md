@@ -44,18 +44,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-let objPatternCrashTest = objPatternNoDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternNoDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternNoDefault.cannotDestructureThis;
-} else {
-}
-$('bad');
+null.cannotDestructureThis;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

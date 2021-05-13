@@ -71,13 +71,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal$3 = { a: 10 };
-const tmpObjLitVal$1 = { z: tmpObjLitVal$3 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const tmpCalleeParam$1 = { x: tmpObjLitVal };
-const objPatternNoDefault = tmpCalleeParam$1.x;
-const objPatternNoDefault$1 = objPatternNoDefault.y;
-const a$1 = objPatternNoDefault$1.z;
-$(a$1);
+$(tmpObjLitVal$3);
 `````
 
 ## Globals

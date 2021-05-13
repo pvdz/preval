@@ -52,12 +52,11 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const a = b.c;
 while (true) {
-  $(a);
+  $(1);
   $(1);
 }
-$(a, b);
+$(1, b);
 `````
 
 ## Globals

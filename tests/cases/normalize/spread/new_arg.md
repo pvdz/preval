@@ -59,11 +59,9 @@ new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
 
 `````js filename=intro
 const tmpObjLitVal = [7];
-const g = { h: tmpObjLitVal };
 (2).c;
 (5)[6];
-const tmpCalleeParamSpread = g.h;
-new String(8.5, 8, ...tmpCalleeParamSpread);
+new String(8.5, 8, ...tmpObjLitVal);
 `````
 
 ## Globals

@@ -49,8 +49,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { a: 999, b: 1000 };
-const a = bindingPatternObjRoot.a;
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
@@ -60,7 +58,7 @@ while (true) {
     break;
   }
 }
-$(a);
+$(999);
 `````
 
 ## Globals

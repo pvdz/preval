@@ -52,9 +52,7 @@ const tmpObjLitVal$1 = function () {
   return tmpReturnArg;
 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
-const tmpCallObj = obj.a;
-tmpCallObj.b();
+tmpObjLitVal.b();
 `````
 
 ## Globals

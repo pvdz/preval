@@ -37,11 +37,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: 0, a: 11, b: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const arrPatternSplat = [...objPatternNoDefault];
-arrPatternSplat[0];
-$('bad');
+[...0];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

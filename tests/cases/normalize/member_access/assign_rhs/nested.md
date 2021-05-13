@@ -40,11 +40,7 @@ $(x);
 
 `````js filename=intro
 const tmpObjLitVal$1 = $();
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
-const tmpAssignRhsProp = obj.a;
-const tmpSSA_x = tmpAssignRhsProp.b;
-$(tmpSSA_x);
+$(tmpObjLitVal$1);
 `````
 
 ## Globals

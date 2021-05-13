@@ -36,9 +36,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { x: 'abc', b: 11, c: 12 };
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-y = objPatternNoDefault.y;
+y = 'abc'.y;
 $(y);
 `````
 

@@ -42,10 +42,8 @@ $(y);
 
 `````js filename=intro
 const tmpObjLitVal = { x: 1, y: 2, z: 3 };
-const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
 const tmpCalleeParam$1 = [];
-const y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+const y = objPatternRest(tmpObjLitVal, tmpCalleeParam$1, undefined);
 $(y);
 `````
 

@@ -49,13 +49,11 @@ $(b);
 `````js filename=intro
 let b = undefined;
 const tmpObjLitVal = $('prop');
-const tmpAssignObjPatternRhs = { a: tmpObjLitVal };
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.a;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest = tmpObjLitVal === undefined;
 if (tmpIfTest) {
   b = $('default');
 } else {
-  b = objPatternBeforeDefault;
+  b = tmpObjLitVal;
 }
 $(b);
 `````

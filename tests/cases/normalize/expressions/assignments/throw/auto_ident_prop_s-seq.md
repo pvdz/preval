@@ -41,9 +41,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
-const a = b.c;
-throw a;
+throw 1;
 `````
 
 ## Globals

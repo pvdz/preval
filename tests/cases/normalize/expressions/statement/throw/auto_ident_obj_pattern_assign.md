@@ -51,8 +51,6 @@ throw tmpThrowArg;
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-tmpNestedAssignObjPatternRhs.x;
-tmpNestedAssignObjPatternRhs.y;
 throw tmpNestedAssignObjPatternRhs;
 `````
 

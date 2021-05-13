@@ -41,9 +41,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const tmpNewCallee = b.$;
-const tmpThrowArg = new tmpNewCallee(1);
+const tmpThrowArg = new $(1);
 throw tmpThrowArg;
 `````
 

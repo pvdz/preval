@@ -35,13 +35,7 @@ tmpCompObj.c;
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$3 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
-const tmpCompObj$1 = obj.a;
-const tmpCompObj = tmpCompObj$1.b;
-tmpCompObj.c;
+$();
 `````
 
 ## Globals

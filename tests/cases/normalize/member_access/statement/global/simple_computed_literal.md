@@ -30,8 +30,7 @@ obj.foo;
 ## Output
 
 `````js filename=intro
-const obj = { foo: 10 };
-obj.foo;
+
 `````
 
 ## Globals

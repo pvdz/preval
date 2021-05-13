@@ -38,9 +38,7 @@ $(y);
 
 `````js filename=intro
 const tmpObjLitVal = {};
-const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const y = objPatternNoDefault.y;
+const y = tmpObjLitVal.y;
 $(y);
 `````
 

@@ -57,17 +57,11 @@ $(a, x, y);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-tmpNestedAssignObjPatternRhs.x;
-tmpNestedAssignObjPatternRhs.y;
+$(3);
+$(4);
 const tmpObjLitVal$3 = $(3);
 const tmpObjLitVal$5 = $(4);
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-const tmpSSA_x$1 = tmpAssignObjPatternRhs.x;
-const tmpSSA_y$1 = tmpAssignObjPatternRhs.y;
-$(a, tmpSSA_x$1, tmpSSA_y$1);
+$(a, tmpObjLitVal$3, tmpObjLitVal$5);
 `````
 
 ## Globals

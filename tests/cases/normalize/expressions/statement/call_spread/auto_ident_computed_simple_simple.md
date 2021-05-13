@@ -43,8 +43,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParamSpread = b.c;
-$(...tmpCalleeParamSpread);
+$(...1);
 $(a, b);
 `````
 

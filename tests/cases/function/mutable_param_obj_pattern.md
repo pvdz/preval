@@ -52,8 +52,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = { x: 1 };
-tmpCalleeParam$1.x;
 const a = $(10);
 $(a);
 `````

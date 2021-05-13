@@ -44,11 +44,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = ['before ', ' after'];
-const tmpNewCallee = b.$;
-const tmpCalleeParam$1 = new tmpNewCallee(1);
+const tmpCalleeParam$1 = new $(1);
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

@@ -79,7 +79,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  a = b.c;
+  a = 1;
 } else {
 }
 $(a, b);

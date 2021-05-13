@@ -38,9 +38,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const obj = { foo: 10 };
-const x = obj.foo;
-$(x);
+$(10);
 `````
 
 ## Globals

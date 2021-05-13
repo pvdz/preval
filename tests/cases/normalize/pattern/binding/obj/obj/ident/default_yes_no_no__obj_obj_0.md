@@ -44,18 +44,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { x: 1, y: 0, z: 3 };
-const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const objPatternBeforeDefault = objPatternNoDefault.y;
-let y = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  y = $('fail');
-} else {
-  y = objPatternBeforeDefault;
-}
-$(y);
+$(0);
 `````
 
 ## Globals

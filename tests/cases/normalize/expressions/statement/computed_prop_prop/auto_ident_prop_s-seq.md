@@ -48,8 +48,7 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const obj = {};
-const tmpCompProp = b.c;
-obj[tmpCompProp];
+obj[1];
 $(a, b);
 `````
 

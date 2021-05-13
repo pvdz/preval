@@ -47,16 +47,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: undefined, b: 11, c: 12 };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { a: 'pass' };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
+const tmpCalleeParam = { a: 'pass' };
+const objPatternAfterDefault = $(tmpCalleeParam);
 const tmpCalleeParam$3 = [];
 const y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
 $(y);

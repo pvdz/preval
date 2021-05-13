@@ -49,15 +49,13 @@ $(y);
 
 `````js filename=intro
 const tmpObjLitVal = {};
-const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest = tmpObjLitVal === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam = { a: 'fail' };
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  objPatternAfterDefault = tmpObjLitVal;
 }
 const tmpCalleeParam$3 = [];
 const y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);

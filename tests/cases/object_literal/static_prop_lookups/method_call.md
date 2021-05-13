@@ -1,0 +1,58 @@
+# Preval test case
+
+# method_call.md
+
+> Object literal > Static prop lookups > Method call
+>
+> If we can statically resolve a property lookup, we should
+
+#TODO
+
+## Input
+
+`````js filename=intro
+const o = {x: $(1)};
+$(o.x());
+`````
+
+## Pre Normal
+
+`````js filename=intro
+const o = { x: $(1) };
+$(o.x());
+`````
+
+## Normalized
+
+`````js filename=intro
+const tmpObjLitVal = $(1);
+const o = { x: tmpObjLitVal };
+const tmpCallCallee = $;
+const tmpCalleeParam = o.x();
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+const tmpObjLitVal = $(1);
+const o = { x: tmpObjLitVal };
+const tmpCalleeParam = o.x();
+$(tmpCalleeParam);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 1
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -36,9 +36,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: '', b: 11, c: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const y = objPatternNoDefault.y;
+const y = ''.y;
 $(y);
 `````
 

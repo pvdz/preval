@@ -37,9 +37,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: '', a: 11, b: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternSplat = [];
 const y = arrPatternSplat[0];
 $(y);
 `````

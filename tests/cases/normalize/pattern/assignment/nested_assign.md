@@ -36,7 +36,7 @@ $(y);
 
 `````js filename=intro
 const tmpNestedAssignObjPatternRhs = { x: 1 };
-x = tmpNestedAssignObjPatternRhs.x;
+x = 1;
 $(tmpNestedAssignObjPatternRhs);
 `````
 

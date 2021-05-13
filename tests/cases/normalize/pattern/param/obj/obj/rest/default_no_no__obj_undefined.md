@@ -57,10 +57,8 @@ tmpCallCallee$1(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$7 = { x: undefined, b: 11, c: 12 };
-const objPatternNoDefault = tmpCalleeParam$7.x;
 const tmpCalleeParam$1 = [];
-objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
+objPatternRest(undefined, tmpCalleeParam$1, undefined);
 $('bad');
 `````
 

@@ -53,15 +53,13 @@ $('ok');
 
 `````js filename=intro
 const tmpObjLitVal = {};
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest = tmpObjLitVal === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam = { x: 'fail' };
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  objPatternAfterDefault = tmpObjLitVal;
 }
 let objPatternCrashTest = objPatternAfterDefault === undefined;
 if (objPatternCrashTest) {

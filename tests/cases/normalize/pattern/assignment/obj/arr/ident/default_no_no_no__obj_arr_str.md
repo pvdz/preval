@@ -39,9 +39,7 @@ $(y);
 
 `````js filename=intro
 const tmpObjLitVal = ['abc'];
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternSplat = [...tmpObjLitVal];
 y = arrPatternSplat[0];
 $(y);
 `````

@@ -43,8 +43,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { a: 999, b: 1000 };
-const a = bindingPatternObjRoot.a;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam = { a: 1, b: 2 };
@@ -52,7 +50,7 @@ if (tmpIfTest) {
 } else {
   $(200);
 }
-$(a);
+$(999);
 `````
 
 ## Globals

@@ -45,15 +45,13 @@ $('ok');
 
 `````js filename=intro
 const tmpObjLitVal = [0];
-const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest = tmpObjLitVal === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam = ['fail'];
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  objPatternAfterDefault = tmpObjLitVal;
 }
 [...objPatternAfterDefault];
 $('ok');

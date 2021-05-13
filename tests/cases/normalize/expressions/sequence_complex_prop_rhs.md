@@ -47,9 +47,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 10 };
-const c = { x: tmpObjLitVal };
-const tmpSSA_b = c.x;
-const tmpCompObj = $(tmpSSA_b);
+const tmpCompObj = $(tmpObjLitVal);
 const tmpBinBothRhs = tmpCompObj.y;
 const tmpSSA_a = 'Identifier' === tmpBinBothRhs;
 $(tmpSSA_a);

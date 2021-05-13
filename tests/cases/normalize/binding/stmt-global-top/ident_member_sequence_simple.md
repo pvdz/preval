@@ -40,7 +40,6 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 2 };
-b.x;
 const a = (3).foo;
 $(a, b, 3);
 `````

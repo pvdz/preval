@@ -42,9 +42,7 @@ $('ok');
 `````js filename=intro
 const tmpArrElement = [1, 2, 3];
 const tmpObjLitVal = [tmpArrElement, 13];
-const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternSplat = [...tmpObjLitVal];
 const arrPatternStep = arrPatternSplat[0];
 [...arrPatternStep];
 $('ok');

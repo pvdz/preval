@@ -41,11 +41,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
-const a = { a: 999, b: 1000 };
-const tmpArrElToSpread = b.c;
-[...tmpArrElToSpread];
-$(a, b);
+[...1];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

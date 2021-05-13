@@ -107,7 +107,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  a = b.c;
+  a = 1;
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

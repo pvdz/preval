@@ -23,6 +23,8 @@ import { arrrrrr } from './phase2arrrr.mjs';
 import { constAssigns } from './phase2const_assigns.mjs';
 import { ifTailExtending } from './phase2if_tail_extending.mjs';
 import { ifFlipping } from './phase2if_flip.mjs';
+import { objlitPropAccess } from './phase2objlit_prop.mjs';
+//import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -129,6 +131,13 @@ function _phase2(program, fdata, resolve, req) {
 
   const arrrrred = arrrrrr(fdata);
   if (arrrrred) return arrrrred;
+
+  const propped = objlitPropAccess(fdata);
+  if (propped) return propped;
+
+  // This one is very invasive and expands the code. Needs more work.
+  // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);
+  // if (duped) return duped;
 
   // The read/write data should still be in tact at this point
 }

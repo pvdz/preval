@@ -33,9 +33,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null };
-const x = bindingPatternObjRoot.x;
-$(x);
+$(null);
 `````
 
 ## Globals

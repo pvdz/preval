@@ -57,8 +57,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { a: 999, b: 1000 };
-const a = bindingPatternObjRoot.a;
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = { a: 1, b: 2 };
@@ -69,7 +67,7 @@ if (tmpIfTest) {
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-$(a);
+$(999);
 `````
 
 ## Globals

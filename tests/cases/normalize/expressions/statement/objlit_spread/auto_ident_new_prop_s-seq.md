@@ -42,10 +42,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpNewCallee = b.$;
-const tmpObjSpreadArg = new tmpNewCallee(1);
+const tmpObjSpreadArg = new $(1);
 ({ ...tmpObjSpreadArg });
 $(a);
 `````

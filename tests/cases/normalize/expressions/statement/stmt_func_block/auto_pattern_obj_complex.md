@@ -56,11 +56,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { a: 999, b: 1000 };
-const a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { a: 1, b: 2 };
 $(tmpCalleeParam);
-$(a);
+$(999);
 $(undefined);
 `````
 

@@ -45,8 +45,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { a: 999, b: 1000 };
-const a = bindingPatternObjRoot.a;
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
@@ -55,7 +53,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpAssignMemLhsObj = $(tmpCalleeParam$1);
   tmpAssignMemLhsObj.x = tmpForInLhsNode;
 }
-$(a);
+$(999);
 `````
 
 ## Globals

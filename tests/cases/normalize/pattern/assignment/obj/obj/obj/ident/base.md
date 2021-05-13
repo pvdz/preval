@@ -46,12 +46,7 @@ $(z);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$3 = { z: 1, a: 2, b: 3 };
-const tmpObjLitVal = { x: 13, y: tmpObjLitVal$3, z: 14 };
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-const objPatternNoDefault$1 = objPatternNoDefault.y;
-z = objPatternNoDefault$1.z;
+z = 1;
 $(z);
 `````
 

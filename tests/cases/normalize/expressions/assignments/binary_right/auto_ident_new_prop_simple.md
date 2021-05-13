@@ -45,10 +45,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const tmpBinBothLhs = $(100);
-const tmpNewCallee = b.$;
-const tmpSSA_a = new tmpNewCallee(1);
+const tmpSSA_a = new $(1);
 const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
 $(tmpSSA_a);

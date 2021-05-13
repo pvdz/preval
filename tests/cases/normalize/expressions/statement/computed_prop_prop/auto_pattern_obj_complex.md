@@ -43,13 +43,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { a: 999, b: 1000 };
-const a = bindingPatternObjRoot.a;
 const obj = {};
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpCompProp = $(tmpCalleeParam);
 obj[tmpCompProp];
-$(a);
+$(999);
 `````
 
 ## Globals

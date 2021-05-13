@@ -46,12 +46,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpObjLitVal$1 = $();
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
-const varInitAssignLhsComputedObj = obj.a;
-varInitAssignLhsComputedObj.b = 15;
+tmpObjLitVal.b = 15;
 $(15);
-const tmpCompObj = obj.a;
-const tmpCalleeParam = tmpCompObj.b;
+const tmpCalleeParam = tmpObjLitVal.b;
 $(tmpCalleeParam);
 `````
 

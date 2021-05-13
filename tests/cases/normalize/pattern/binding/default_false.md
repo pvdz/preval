@@ -43,9 +43,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpObjLitVal = $('prop');
-const bindingPatternObjRoot = { a: tmpObjLitVal };
-const objPatternBeforeDefault = bindingPatternObjRoot.a;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest = tmpObjLitVal === undefined;
 if (tmpIfTest) {
   $('default');
 } else {

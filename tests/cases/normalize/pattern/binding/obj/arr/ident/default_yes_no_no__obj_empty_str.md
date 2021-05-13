@@ -44,9 +44,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: '', a: 11, b: 12 };
-const objPatternNoDefault = bindingPatternObjRoot.x;
-const arrPatternSplat = [...objPatternNoDefault];
+const arrPatternSplat = [];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let y = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;

@@ -52,7 +52,6 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-b.c;
 while (true) {
   const tmpIfTest = $(0);
   if (tmpIfTest) {

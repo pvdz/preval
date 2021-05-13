@@ -50,7 +50,7 @@ const o = { x: 1 };
 let y = 1;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  y = o.x;
+  y = 1;
 } else {
 }
 $(y, o);

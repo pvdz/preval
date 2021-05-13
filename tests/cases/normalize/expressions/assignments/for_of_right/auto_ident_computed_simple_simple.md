@@ -44,11 +44,10 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const a = b.c;
 let x = undefined;
-for (x of a) {
+for (x of 1) {
 }
-$(a, b);
+$(1, b);
 `````
 
 ## Globals

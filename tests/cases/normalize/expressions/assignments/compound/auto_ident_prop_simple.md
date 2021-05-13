@@ -46,8 +46,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-const tmpBinBothRhs = b.c;
-const tmpSSA_a = a * tmpBinBothRhs;
+const tmpSSA_a = a * 1;
 $(tmpSSA_a);
 $(tmpSSA_a, b);
 `````

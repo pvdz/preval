@@ -48,7 +48,6 @@ const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  b.c;
 } else {
   $(200);
 }

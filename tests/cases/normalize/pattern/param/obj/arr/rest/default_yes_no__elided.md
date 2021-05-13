@@ -63,15 +63,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpObjLitVal = [, , , 1];
-const tmpCalleeParam$3 = { x: tmpObjLitVal, a: 11, b: 12 };
-const objPatternBeforeDefault = tmpCalleeParam$3.x;
 let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
+const tmpIfTest = tmpObjLitVal === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam = ['fail'];
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
-  objPatternAfterDefault = objPatternBeforeDefault;
+  objPatternAfterDefault = tmpObjLitVal;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 const y = arrPatternSplat.slice(0);

@@ -67,8 +67,8 @@ $(a, x, y);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-let tmpSSA_x = tmpNestedAssignObjPatternRhs.x;
-let tmpSSA_y = tmpNestedAssignObjPatternRhs.y;
+let tmpSSA_x = tmpObjLitVal;
+let tmpSSA_y = tmpObjLitVal$1;
 let tmpSSA_a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = tmpSSA_a;
 if (tmpSSA_a) {
@@ -76,8 +76,8 @@ if (tmpSSA_a) {
   const tmpObjLitVal$3 = $(3);
   const tmpObjLitVal$5 = $(4);
   const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-  tmpSSA_x = tmpNestedAssignObjPatternRhs$1.x;
-  tmpSSA_y = tmpNestedAssignObjPatternRhs$1.y;
+  tmpSSA_x = tmpObjLitVal$3;
+  tmpSSA_y = tmpObjLitVal$5;
   tmpSSA_a = tmpNestedAssignObjPatternRhs$1;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
 }

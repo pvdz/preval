@@ -54,11 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { x: 1, y: 'abc', z: 3 };
-const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = tmpCalleeParam$1.x;
-const y = objPatternNoDefault.y;
-$(y);
+$('abc');
 `````
 
 ## Globals

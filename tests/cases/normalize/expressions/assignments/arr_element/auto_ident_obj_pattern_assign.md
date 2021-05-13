@@ -63,16 +63,12 @@ $(a, x, y);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-tmpNestedAssignObjPatternRhs.x;
-tmpNestedAssignObjPatternRhs.y;
 const tmpObjLitVal$3 = $(3);
 const tmpObjLitVal$5 = $(4);
 const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-const tmpSSA_x$1 = tmpNestedAssignObjPatternRhs$1.x;
-const tmpSSA_y$1 = tmpNestedAssignObjPatternRhs$1.y;
 const tmpCalleeParam = tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
 $(tmpCalleeParam);
-$(tmpNestedAssignObjPatternRhs$1, tmpSSA_x$1, tmpSSA_y$1);
+$(tmpNestedAssignObjPatternRhs$1, tmpObjLitVal$3, tmpObjLitVal$5);
 `````
 
 ## Globals

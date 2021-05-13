@@ -64,9 +64,8 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpNestedComplexRhs = b.c;
 $(undefined);
-$(tmpNestedComplexRhs, b);
+$(1, b);
 `````
 
 ## Globals

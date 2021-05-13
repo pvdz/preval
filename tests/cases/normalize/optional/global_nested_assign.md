@@ -53,8 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpObjLitVal$1 = $();
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
-const tmpAssignMemLhsObj = obj.a;
-tmpAssignMemLhsObj.b = 15;
+tmpObjLitVal.b = 15;
 let tmpCalleeParam = undefined;
 const tmpIfTest = obj == null;
 if (tmpIfTest) {

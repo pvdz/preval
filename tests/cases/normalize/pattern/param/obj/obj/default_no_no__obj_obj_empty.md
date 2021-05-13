@@ -64,15 +64,13 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal = {};
-const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = tmpCalleeParam$1.x;
-let objPatternCrashTest = objPatternNoDefault === undefined;
+let objPatternCrashTest = tmpObjLitVal === undefined;
 if (objPatternCrashTest) {
 } else {
-  objPatternCrashTest = objPatternNoDefault === null;
+  objPatternCrashTest = tmpObjLitVal === null;
 }
 if (objPatternCrashTest) {
-  objPatternNoDefault.cannotDestructureThis;
+  tmpObjLitVal.cannotDestructureThis;
 } else {
 }
 $('ok');

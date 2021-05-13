@@ -50,9 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = { x: '' };
-const x = tmpCalleeParam$1.x;
-$(x);
+$('');
 `````
 
 ## Globals

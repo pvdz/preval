@@ -62,18 +62,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = { x: undefined, b: 11, c: 12 };
-const objPatternNoDefault = tmpCalleeParam$1.x;
-let objPatternCrashTest = objPatternNoDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternNoDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternNoDefault.cannotDestructureThis;
-} else {
-}
-$('bad');
+undefined.cannotDestructureThis;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

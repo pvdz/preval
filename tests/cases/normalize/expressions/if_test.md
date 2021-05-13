@@ -42,10 +42,8 @@ $(x);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal };
-const tmpSSA_x = tmpNestedAssignObjPatternRhs.x;
 $(2);
-$(tmpSSA_x);
+$(tmpObjLitVal);
 `````
 
 ## Globals

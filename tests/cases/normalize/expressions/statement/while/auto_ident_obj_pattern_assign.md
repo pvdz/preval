@@ -61,9 +61,8 @@ const a = { a: 999, b: 1000 };
 while (true) {
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpNestedAssignObjPatternRhs.x;
-  y = tmpNestedAssignObjPatternRhs.y;
+  x = tmpObjLitVal;
+  y = tmpObjLitVal$1;
   $(100);
 }
 $(a, x, y);

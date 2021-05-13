@@ -53,9 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = { x: 'abc', b: 11, c: 12 };
-const objPatternNoDefault = tmpCalleeParam$1.x;
-const y = objPatternNoDefault.y;
+const y = 'abc'.y;
 $(y);
 `````
 

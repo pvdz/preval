@@ -123,8 +123,8 @@ if (tmpIfTest$3) {
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpNestedAssignObjPatternRhs.x;
-  y = tmpNestedAssignObjPatternRhs.y;
+  x = tmpObjLitVal;
+  y = tmpObjLitVal$1;
   a = tmpNestedAssignObjPatternRhs;
 } else {
 }

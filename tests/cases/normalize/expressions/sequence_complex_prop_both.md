@@ -53,13 +53,9 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 10 };
-const c = { x: tmpObjLitVal };
-const p = { x: 20 };
-p.x;
 const tmpCompObj = $(30);
 const tmpBinBothLhs = tmpCompObj.y;
-const tmpSSA_b = c.x;
-const tmpCompObj$1 = $(tmpSSA_b);
+const tmpCompObj$1 = $(tmpObjLitVal);
 const tmpBinBothRhs = tmpCompObj$1.y;
 const tmpSSA_a = tmpBinBothLhs === tmpBinBothRhs;
 $(tmpSSA_a);

@@ -44,10 +44,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpNewCallee = b.$;
-const tmpForInDeclRhs = new tmpNewCallee(1);
+const tmpForInDeclRhs = new $(1);
 let x = undefined;
 for (x in tmpForInDeclRhs) {
 }

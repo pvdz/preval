@@ -52,9 +52,8 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
-  const tmpNestedComplexRhs = b.c;
-  a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  a = 1;
+  tmpCalleeParam = 1;
 }
 $(tmpCalleeParam);
 $(a, b);

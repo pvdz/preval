@@ -56,15 +56,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { d: 10 };
-const tmpObjLitVal = { c: tmpObjLitVal$1 };
-const a = { b: tmpObjLitVal };
 let tmpCalleeParam = undefined;
-const tmpChainElementObject = a.b;
-const tmpChainElementObject$1 = tmpChainElementObject.c;
-const tmpIfTest = tmpChainElementObject$1 == null;
+const tmpIfTest = tmpObjLitVal$1 == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainElementObject$3 = tmpChainElementObject$1.d;
+  const tmpChainElementObject$3 = tmpObjLitVal$1.d;
   tmpCalleeParam = tmpChainElementObject$3;
 }
 $(tmpCalleeParam);

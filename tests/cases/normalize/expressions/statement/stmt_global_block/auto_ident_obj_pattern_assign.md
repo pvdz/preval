@@ -53,10 +53,7 @@ $(a, x, y);
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpSSA_x = tmpAssignObjPatternRhs.x;
-const tmpSSA_y = tmpAssignObjPatternRhs.y;
-$(a, tmpSSA_x, tmpSSA_y);
+$(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
 ## Globals

@@ -59,11 +59,7 @@ $('ok');
 `````js filename=intro
 const tmpArrElement = { a: 1, b: 2, c: 3 };
 const tmpObjLitVal$3 = [tmpArrElement, 15];
-const tmpObjLitVal = { x: 13, y: tmpObjLitVal$3, z: 14 };
-const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-const objPatternNoDefault$1 = objPatternNoDefault.y;
-const arrPatternSplat = [...objPatternNoDefault$1];
+const arrPatternSplat = [...tmpObjLitVal$3];
 const arrPatternStep = arrPatternSplat[0];
 let objPatternCrashTest = arrPatternStep === undefined;
 if (objPatternCrashTest) {

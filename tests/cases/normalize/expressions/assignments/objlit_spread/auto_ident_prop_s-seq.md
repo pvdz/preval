@@ -45,10 +45,9 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const a = b.c;
-const tmpCalleeParam = { ...a };
+const tmpCalleeParam = { ...1 };
 $(tmpCalleeParam);
-$(a, b);
+$(1, b);
 `````
 
 ## Globals

@@ -47,18 +47,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: null, b: 11, c: 12 };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { a: 'fail' };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
 const tmpCalleeParam$3 = [];
-objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
+objPatternRest(null, tmpCalleeParam$3, undefined);
 $('bad');
 `````
 

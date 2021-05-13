@@ -36,10 +36,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { x: undefined, a: 11, b: 12 };
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
-[...objPatternNoDefault];
-$('bad');
+[...undefined];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

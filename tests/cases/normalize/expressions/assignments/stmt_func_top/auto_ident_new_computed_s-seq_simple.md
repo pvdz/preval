@@ -55,9 +55,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const tmpNewCallee = b.$;
-const tmpSSA_a = new tmpNewCallee(1);
+const tmpSSA_a = new $(1);
 $(tmpSSA_a);
 $(undefined);
 `````

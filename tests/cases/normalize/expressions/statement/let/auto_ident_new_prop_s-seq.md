@@ -44,10 +44,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpNewCallee = b.$;
-const xyz = new tmpNewCallee(1);
+const xyz = new $(1);
 $(xyz);
 $(a);
 `````

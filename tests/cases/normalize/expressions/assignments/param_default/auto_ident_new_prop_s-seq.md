@@ -64,9 +64,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const tmpNewCallee = b.$;
-const tmpNestedComplexRhs = new tmpNewCallee(1);
+const tmpNestedComplexRhs = new $(1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````

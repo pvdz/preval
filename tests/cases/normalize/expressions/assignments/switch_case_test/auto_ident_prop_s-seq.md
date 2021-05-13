@@ -63,14 +63,13 @@ $(a, b);
 const b = { c: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const a = b.c;
-const tmpIfTest = a === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-$(a, b);
+$(1, b);
 `````
 
 ## Globals

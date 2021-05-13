@@ -46,6 +46,7 @@ function _dealiasing(fdata) {
     if (meta.reads.length !== 1) {
       // TODO: This particular artifact is around a single declaration+usage but it should apply to any number of usages.
       vlog('More than one read. Bailing.');
+      vgroupEnd();
       return;
     }
 

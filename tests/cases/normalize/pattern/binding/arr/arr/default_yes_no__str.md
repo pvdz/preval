@@ -44,17 +44,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = ['a', 'b', 'c'];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = ['fail2'];
-  arrPatternStep = $(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-[...arrPatternStep];
 $('ok');
 `````
 

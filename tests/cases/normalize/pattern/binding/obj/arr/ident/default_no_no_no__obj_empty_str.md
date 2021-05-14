@@ -37,9 +37,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [];
-const y = arrPatternSplat[0];
-$(y);
+$(undefined);
 `````
 
 ## Globals

@@ -40,14 +40,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('pass');
-} else {
-  x = arrPatternBeforeDefault;
-}
+x = $('pass');
 $(x);
 `````
 

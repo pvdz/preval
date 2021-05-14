@@ -92,17 +92,7 @@ const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
-  let arrPatternStep = undefined;
   if (tmpIfTest) {
-    const tmpAssignRhsProp = ['pass3'];
-    const tmpSSA_arrPatternBeforeDefault = tmpAssignRhsProp[0];
-    const tmpIfTest$1 = tmpSSA_arrPatternBeforeDefault === undefined;
-    if (tmpIfTest$1) {
-      arrPatternStep = ['fail2'];
-    } else {
-      arrPatternStep = tmpSSA_arrPatternBeforeDefault;
-    }
-    [...arrPatternStep];
     return 'ok';
   } else {
     return undefined;

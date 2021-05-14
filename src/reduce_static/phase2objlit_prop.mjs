@@ -43,13 +43,17 @@ function _objlitPropAccess(fdata) {
 
 function processAttempt(fdata) {
   let updated = 0;
+  const lastMap = new Map(); // Map<scope, ref>
 
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     //if (meta.isConstant) return; // Not relevant right now
 
-    vgroup('- `' + name + '`');
+    vgroup(
+      '- `' + name + '`',
+      meta.rwOrder.map((ref) => ref.action + ':' + ref.kind),
+    );
     process(meta, name);
     vgroupEnd();
   });
@@ -58,10 +62,6 @@ function processAttempt(fdata) {
     const rwOrder = meta.rwOrder;
     const first = rwOrder[0];
     if (first.action !== 'write' || first.kind !== 'var') return;
-    vlog(
-      '`' + name + '`:',
-      rwOrder.map((ref) => ref.action + ':' + ref.kind),
-    );
 
     // Initially, target cases like `var obj = {a: x}; var prop = obj.a;`
     // Very simple, very straightforward. Prop access without observable side effects between the obj init and the prop access.
@@ -70,6 +70,7 @@ function processAttempt(fdata) {
     // Second step: for as long as there are no observable side effects between 'em, process each read
     //   For every read that is a property access, try to resolve it immediately, and cut out the property access
     rwOrder.forEach((ref, ri) => {
+      vlog('-', ri, ref.action, ref.kind);
       let rhs;
       if (ref.kind === 'var') {
         rhs = ref.parentNode.init;
@@ -86,44 +87,102 @@ function processAttempt(fdata) {
       }
 
       // Ok this was a write that assigned an object literal. Hurray!
-      vgroup('Found object expression. Tracing nearest property lookups.');
+      vlog('Found object expression. Tracing nearest property lookups.');
       verifyObject(meta, rwOrder, ref, ri, rhs);
-      vgroupEnd();
     });
   }
 
   //moet hier alle tests nog voor toevoegen
 
-  function verifyObject(meta, rwOrder, writeRef, ri, rhs) {
-    for (let i = ri + 1; i < rwOrder.length; ++i) {
-      const readRef = rwOrder[i];
-      vlog('-', readRef.action, readRef.kind, readRef.parentNode.type);
-      if (readRef.action !== 'read') {
-        // TODO: fix me. This is not the way.
-        vlog('Not a read');
-        break;
+  function verifyObject(meta, rwOrder, writeRef, ri, objExprNode) {
+    // It "failed" if the object escapes or when a property was mutated. Otherwise we can consider the object immutable
+    // meaning we can inline properties even as side effects or whatever.
+    let failed = false;
+
+    if (ri === rwOrder.length - 1) {
+      vlog('This is the last write. The assignment is probably observed by a loop or closure or smth.');
+      return;
+    }
+
+    vlog('Checking', rwOrder.length - ri - 1, 'refs, starting at', ri);
+    for (let i = ri; i < rwOrder.length; ++i) {
+      const ref = rwOrder[i];
+      vgroup('- verifyObject:', ref.action + ':' + ref.kind, ref.pfuncNode.$p.pid, ref.parentNode.type);
+      const r = process(meta, rwOrder, writeRef, objExprNode, ref, ri);
+      vgroupEnd();
+      if (r) break;
+    }
+
+    function process(meta, rwOrder, writeRef, objExprNode, ref, ri) {
+      let lastRefArr = lastMap.get(ref.pfuncNode.$p.pid);
+      if (!lastRefArr) {
+        lastRefArr = [];
+        lastMap.set(ref.pfuncNode.$p.pid, lastRefArr);
       }
+
+      if (ref.action === 'write') {
+        lastRefArr.push(ref);
+        vlog('Updated last ref for scope', ref.pfuncNode.$p.pid, 'to a write');
+        return;
+      }
+
+      const readRef = ref;
+
+      ASSERT(readRef.action === 'read');
+
+      let prevWrite = undefined;
+      for (let i = lastRefArr.length - 1; i >= 0; --i) {
+        const r = lastRefArr[i];
+        if (readRef.blockChain.startsWith(r.blockChain)) {
+          prevWrite = r;
+          break;
+        }
+      }
+
+      if (!prevWrite) {
+        vlog('This read has no previous write in the same scope');
+        return;
+      }
+      if (prevWrite.kind !== 'var' && prevWrite.kind !== 'assign') {
+        vlog('Previous write was not a var or assign (so, for-x?)');
+        return;
+      }
+      if (prevWrite.innerLoop !== readRef.innerLoop) {
+        vlog('Current read is not in the same loop as last write', readRef.innerLoop, prevWrite.innerLoop);
+        return;
+      }
+
+      if (!readRef.blockChain.startsWith(prevWrite.blockChain)) {
+        vlog('This read can not reach the last write', prevWrite.blockChain, readRef.blockChain);
+        return;
+      }
+
       if (readRef.parentNode.type !== 'MemberExpression' || readRef.parentNode.computed || readRef.parentProp !== 'object') {
-        // not used as a property. The end.
+        // not used as a property. Or we can't safely determine the property. The end.
+        // TODO: we could do for literals... how often does that happen?
         vlog('Not a member expression or a computed one', readRef.parentNode.type, readRef.parentNode.computed, readRef.parentProp);
-        break;
+        failed = true; // "escapes"
+        return true;
       }
       if (readRef.grandNode.type === 'AssignmentExpression' && readRef.grandProp === 'left') {
         vlog('The member expression was being assigned to. Bailing');
         // x.y = z;
-        break;
+        return true; // "prop mutation"
       }
       if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
+        // TODO: allow list for certain methods, like toString or join. Maybe.
         vlog('The member expression was the callee of a call. Bailing');
         // x.y();
         // This would transform into what exactly?
         // Even `o = {a: f}; o.a()` to `f()` would be non-trivial since we would need to confirm that `f` does not access `this`.
         // However, we probably still want to go this extra mile since it'll be a common pattern to find in the wild.
         // TODO: This breaks `this` and while it's probably fine in many cases, we do need to confirm them first
-        break;
+        failed = true; // "call may mutate object"
+        return true;
       }
-      if (readRef.grandNode.type === 'UnaryExpression' && readRef.grandProp === 'argument') {
+      if (readRef.grandNode.type === 'UnaryExpression' && readRef.grandProp === 'argument' && readRef.grandNode.operator === 'delete') {
         vlog('This "property lookup" was actually the argument to `delete`. Must keep this.');
+        failed = true;
         return;
       }
 
@@ -144,17 +203,17 @@ function processAttempt(fdata) {
         return;
       }
 
-      vlog('Needle found!');
+      vlog('Found a read to an object literal while the object literal could not have been mutated!');
 
       // We have a write ref and a read ref and they are in the same block and there are no observable side effects in between
       // and the write is an object literal and the read is a property lookup. Game time.
 
       ASSERT(readRef.node.type === 'Identifier', 'right?', readRef.node);
       const propName = readRef.parentNode.property.name;
-      const pnode = rhs.properties.find((pnode) => !pnode.computed && pnode.key.name === propName);
+      const pnode = objExprNode.properties.find((pnode) => !pnode.computed && pnode.key.name === propName);
       if (!pnode) {
         vlog('Could not find the property... bailing');
-        break;
+        return;
         // TODO: can do this when we checked the property can not exist, like through computed prop or whatever
         vlog('The object literal did not have a property `' + propName + '` so it must be undefined?');
 

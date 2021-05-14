@@ -1185,7 +1185,7 @@ export function resolveNodeAgainstParams(node, callNode, funcNode) {
 //       - Only observable side effects by local bindings might mutate the binding
 //       - The idea is that only local functions can mutate a closure. If the function did not escape then a binding that's not
 //         local can't possibly reference a function that does through call or getters/setters so we should be able to ignore it.
-export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties) {
+export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties = false) {
   ASSERT(meta, 'should receive a meta...');
   vgroup(
     'mayBindingMutateBetweenRefs(checking if  `' + (typeof meta === 'string' ? meta : meta.uniqueName) + '` , was mutated between',
@@ -1197,15 +1197,23 @@ export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties)
     ')',
   );
 
+  //vlog('ref1:');
+  //source(ref1.blockBody[ref1.blockIndex]);
+  //vlog('ref2:');
+  //source(ref2.blockBody[ref2.blockIndex]);
+
   if (typeof meta === 'string') {
     vlog('Assuming `' + meta + '` is an implicit global, probably `arguments` or smth. Assuming multi-scope.');
     const r = _mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties, false);
     vgroupEnd();
+    vlog('Result:', r);
     return r;
   }
 
   if (meta.isConstant || meta.isBuiltin) {
     // This binding can not be mutated at all.
+    vlog('Result: Constants and builtins wont be mutated');
+    vgroupEnd();
     return false;
   }
   ASSERT(meta.isImplicitGlobal || meta.bfuncNode, 'either its implicitly global or an explicitly defined binding now', meta);
@@ -1215,6 +1223,7 @@ export function mayBindingMutateBetweenRefs(meta, ref1, ref2, includeProperties)
 
   const r = _mayBindingMutateBetweenRefs(metaName, ref1, ref2, includeProperties, !includeProperties && !!onlyLocalUse);
   vgroupEnd();
+  vlog('Result:', r);
   return r;
 }
 function _mayBindingMutateBetweenRefs(metaName, prev, curr, includeProperties, singleScope) {
@@ -1247,7 +1256,16 @@ function _mayBindingMutateBetweenRefs(metaName, prev, curr, includeProperties, s
   let currentIndex = prev.blockIndex + 1; // Start after the statement containing the write
   let currentMax = blockIndexes[blockPointer];
   vgroup(
-    'mightBindingWriteBetweenRefs(). ids:',
+    'mightBindingWriteBetweenRefs(metaName: `' +
+      metaName +
+      '`, includeProperties: ' +
+      includeProperties +
+      ', singleScope: ' +
+      singleScope +
+      ' )',
+  );
+  vlog(
+    'ids:',
     curr.blockIds,
     ', indexes:',
     blockIndexes,
@@ -1378,13 +1396,13 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
 
       // The rules are a little different inside a try-catch, but only for throws. Not relevant here.
 
-      const { state: a, labels: labelsA } = nodeMightMutateNameUntrapped(node.consequent.body, metaName);
+      const { state: a, labels: labelsA } = nodeMightMutateNameUntrapped(node.consequent.body, metaName, includeProperties, singleScope);
       if (a === MUTATES) {
         // It now doesn't matter what happens in the else branch: the `if` is considered to potentially mutate the binding.
         mutates = true;
         vlog('The consequent branch mutates. So this `if` mutates.');
       } else {
-        const { state: b, labels: labelsB } = nodeMightMutateNameUntrapped(node.alternate.body, metaName);
+        const { state: b, labels: labelsB } = nodeMightMutateNameUntrapped(node.alternate.body, metaName, includeProperties, singleScope);
         if (a === MUTATES) {
           // Labels don't matter. This `if` is considered to potentially mutate the binding.
           mutates = true;
@@ -1420,7 +1438,7 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
         mutates = true;
         vlog('The `for` mutates because it has the name to the lhs');
       } else {
-        const { state: a, labels: labels } = nodeMightMutateNameUntrapped(node.body.body, metaName);
+        const { state: a, labels: labels } = nodeMightMutateNameUntrapped(node.body.body, metaName, includeProperties, singleScope);
         if (a === MUTATES) {
           mutates = true;
           vlog('The `for` loop mutates');
@@ -1443,7 +1461,7 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
         }
       }
     } else if (node.type === 'WhileStatement') {
-      const { state: a, labels: labels } = nodeMightMutateNameUntrapped(node.body.body, metaName);
+      const { state: a, labels: labels } = nodeMightMutateNameUntrapped(node.body.body, metaName, includeProperties, singleScope);
       if (a === MUTATES) {
         mutates = true;
         vlog('The `while` loop mutates so the `while` mutates');
@@ -1464,7 +1482,7 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
         vlog('The `while` ends with NONE...');
       }
     } else if (node.type === 'LabeledStatement') {
-      const { state: a, labels: labels } = nodeMightMutateNameUntrapped(node.body.body, metaName);
+      const { state: a, labels: labels } = nodeMightMutateNameUntrapped(node.body.body, metaName, includeProperties, singleScope);
       if (a === MUTATES) {
         mutates = true;
         vlog('The label body mutates so the label mutates');

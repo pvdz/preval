@@ -58,18 +58,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [];
-const arrPatternStep = arrPatternSplat[0];
-let objPatternCrashTest = arrPatternStep === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = arrPatternStep === null;
-}
-if (objPatternCrashTest) {
-  arrPatternStep.cannotDestructureThis;
-} else {
-}
-$('bad');
+undefined.cannotDestructureThis;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

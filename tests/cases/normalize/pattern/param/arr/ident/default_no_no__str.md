@@ -48,9 +48,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = ['a', 'b', 'c'];
-const x = arrPatternSplat[0];
-$(x);
+$('a');
 `````
 
 ## Globals

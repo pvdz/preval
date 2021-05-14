@@ -37,8 +37,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = ['a', 'b', 'c'];
-y = arrPatternSplat[0];
+y = 'a';
 $(y);
 `````
 

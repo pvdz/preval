@@ -236,6 +236,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
   vlog('\nLet hoisting, attempt 2: trying cross scope write-read only SSA');
 
   let updated = 0;
+  let toInject = new Map(); // Map<pid, [names]>
 
   new Map(fdata.globallyUniqueNamingRegistry).forEach(function (meta, name) {
     if (meta.isBuiltin) return;
@@ -273,10 +274,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
     function processRef(ref, ri) {
       const prevArr = prevMap.get(ref.pfuncNode);
       // Find the nearest write that the current ref can reach. This prevents write shadowing in a different branch.
-      vlog(
-        'Prev write blockChains in this scope:',
-        prevArr?.map((write) => write.blockChain),
-      );
+      vlog('Prev write blockChains in this scope:', prevArr ? prevArr.map((write) => write.blockChain) : '(no prev)');
       let prev;
       if (prevArr) {
         for (let i = prevArr.length - 1; i >= 0; --i) {
@@ -363,9 +361,15 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
     funcs.forEach((n) => {
       if (n === meta.bfuncNode) return; // Dont add another binding to the scope that currently already had the binding...
       const tmpName = createFreshVar('tmpssa2_' + name, fdata);
-      vlog('- Injecting a fresh var into a scope: `' + tmpName + '` into scope ' + n.$p.pid);
+      vlog('- Prepared to inject a fresh var: `' + tmpName + '` into scope pid ' + n.$p.pid, '(will be queued)');
       n.$p.ssaName = tmpName;
-      n.body.body.splice(n.$p.bodyOffset, 0, AST.variableDeclaration(tmpName, 'undefined', 'let'));
+      // Need to inject it afterwards because otherwise indexes get shuffled around, breaking this file for sibling refs
+      const arr = toInject.get(n);
+      if (arr) {
+        arr.push(tmpName);
+      } else {
+        toInject.set(n, [tmpName]);
+      }
     });
     vgroupEnd();
 
@@ -388,6 +392,15 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
 
     const ast = fdata.tenkoOutput.ast;
     vlog('\nCurrent state (after let hoisting 2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  }
+
+  if (toInject.size) {
+    vlog('Now injecting the new tmp vars into', toInject.size, 'different funcs');
+    toInject.forEach((arrNewNames, funcNode) => {
+      arrNewNames.forEach((tmpName) => {
+        funcNode.body.body.splice(funcNode.$p.bodyOffset, 0, AST.variableDeclaration(tmpName, 'undefined', 'let'));
+      });
+    });
   }
 
   if (!updated) {

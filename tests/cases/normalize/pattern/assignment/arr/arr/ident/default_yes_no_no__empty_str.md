@@ -42,24 +42,13 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternBeforeDefault = arrPatternSplat$1[0];
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('fail');
-} else {
-  x = arrPatternBeforeDefault;
-}
-$('bad');
+[...undefined];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None
 
 ## Result
 

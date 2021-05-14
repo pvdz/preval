@@ -51,24 +51,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = ['a', 'b', 'c'];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = ['fail2'];
-  arrPatternStep = $(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$1) {
-  x = $('fail');
-} else {
-  x = arrPatternBeforeDefault$1;
-}
+x = 'a';
 $(x);
 `````
 

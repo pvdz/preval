@@ -1,3 +1,4 @@
+// pvdz: Some tweaks were made to help preval. They will be commented with a "pvdz" prefix, like this one.
 /**
  * React v0.14.3
  */
@@ -21,7 +22,7 @@
   }
 })(function () {
   var define, module, exports;
-  // tweak; Names in dereqPrime were manually changed
+  // pvdz: tweak; Names in dereqPrime were manually changed
   return (function dereqPrime(allModules, moduleCache, moduleDeps) {
     function createModuleClosure(o, u) {
       if (!moduleCache[o]) {
@@ -41,7 +42,7 @@
           },
           reqModuleCache,
           reqModuleCache.exports,
-          // tweak; Don't pass these on. None of the modules use it.
+          // pvdz: tweak; Don't pass these on. None of the modules use it.
           //dereqPrime,
           //allModules,
           //moduleCache,

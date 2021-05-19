@@ -24,6 +24,7 @@ import { constAssigns } from './phase2const_assigns.mjs';
 import { ifTailExtending } from './phase2if_tail_extending.mjs';
 import { ifFlipping } from './phase2if_flip.mjs';
 import { objlitPropAccess } from './phase2objlit_prop.mjs';
+import { bitSetTests } from './phase2bit_set_test.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -134,6 +135,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const propped = objlitPropAccess(fdata);
   if (propped) return propped;
+
+  const bitset = bitSetTests(fdata);
+  if (bitset) return bitset;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

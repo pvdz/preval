@@ -476,7 +476,11 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               node.$p.inlineMe = 'single return with primitive';
             }
           } else {
-            ASSERT (stmt.type !== 'ExpressionStatement', 'every function returns explicitly so the last statement can not be a non-returning non-throwing expression', node);
+            ASSERT(
+              stmt.type !== 'ExpressionStatement',
+              'every function returns explicitly so the last statement can not be a non-returning non-throwing expression',
+              node,
+            );
           }
         } else if (body.length - bodyOffset === 2) {
           vlog('This function has two statements. Trying to see if we can inline calls to it.');
@@ -777,6 +781,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           node.$p.alwaysReturn = node.consequent.$p.alwaysReturn && node.alternate.$p.alwaysReturn;
           node.$p.alwaysThrow = node.consequent.$p.alwaysThrow && node.alternate.$p.alwaysThrow;
         }
+
         break;
       }
 
@@ -992,6 +997,19 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           vlog('- marking', meta.uniqueName, 'as constant, ref set to', node.declarations[0].init.type);
           ASSERT(meta);
           meta.isConstant = true;
+
+          const init = node.declarations[0].init;
+          if (init.type === 'BinaryExpression') {
+            if (init.operator === '&') {
+              // Need a number on at least one side. Ignore negative numbers (unary expression).
+              if (init.left.type === 'Literal' && typeof init.left.value === 'number') {
+                meta.typing.oneBitSet = isOneSetBit(init.left.value) ? init.left.value : 0;
+              }
+              if (!meta.typing.oneBitSet && init.right.type === 'Literal' && typeof init.right.value === 'number') {
+                meta.typing.oneBitSet = isOneSetBit(init.right.value) ? init.right.value : 0;
+              }
+            }
+          }
         }
         meta.isImplicitGlobal = false;
         ASSERT(
@@ -1061,8 +1079,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 }
 
 function isTailNode(completionNode, tailNode) {
-  ASSERT(completionNode)
-  ASSERT(tailNode)
+  ASSERT(completionNode);
+  ASSERT(tailNode);
   // In this context, a tail node is the last node of a function, or the last node of an `if` that is the last
   // node of a function or the last node of an if that is the last node of a function, repeating.
   if (completionNode === tailNode) return true;
@@ -1147,7 +1165,7 @@ function markEarlyCompletion(completionNode, funcNode, isReturn, parentNode) {
 
   const body = funcNode.type === 'Program' ? funcNode.body : funcNode.body.body;
   ASSERT(body.length, 'the function containing this statement should have at least one statement eh');
-  ASSERT(body[body.length - 1], 'body has no holes amirite', funcNode)
+  ASSERT(body[body.length - 1], 'body has no holes amirite', funcNode);
   if (isTailNode(completionNode, body[body.length - 1])) {
     vlog('markEarlyCompletion(); Completion node was found to be in a tail position of the function. Not an early return.');
     return;
@@ -1162,4 +1180,13 @@ function markEarlyCompletion(completionNode, funcNode, isReturn, parentNode) {
   funcNode.$p.earlyComplete = true;
   if (completionNode.type === 'ReturnStatement') funcNode.$p.earlyReturn = true;
   else if (completionNode.type === 'ThrowStatement') funcNode.$p.earlyThrow = true;
+}
+
+function isOneSetBit(v) {
+  // Bit counting is relatively expensive. ES6 added Math.clz32, which counts the number of leading bits of a 32bit number.
+  // So what we can do here, rather than bit fiddle to get the whole count, is to get the number of leading zeroes, and then
+  // check whether 2^(31-count) equals our value. If so, it's a single bit. If not, it's not.
+  // Alternative, we could create an object/Set with 32 entries and do a straight lookup. Not sure what's faster. Won't matter much here.
+
+  return 1 << (31 - Math.clz32(v)) === v;
 }

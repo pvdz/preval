@@ -433,6 +433,7 @@ export function registerGlobalIdent(
       // We do have to arbitrarily limit the max size of this set (I guess)
       // Set. If `undefined` then none were collected. If `false` then there were too many, whatever that is.
       valueSet: undefined,
+      oneBitSet: undefined, // int. If set, either the value is guaranteed to have multiple bits set, or this is the value with that one bit set.
     },
   };
   ASSERT(name);

@@ -66,11 +66,9 @@ if (atest) {
 
 `````js filename=intro
 const a = x & 1;
-const atest = a === 0;
-if (atest) {
+if (a) {
   const b = x & 4;
-  const btest = b === 0;
-  if (btest) {
+  if (b) {
     $('yes');
   } else {
     $('no 2');

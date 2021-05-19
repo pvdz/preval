@@ -47,10 +47,11 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 const y = {};
 const tmpForInPatDeclRhs = [y];
 let tmpForInPatDeclLhs = undefined;
+let x = undefined;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
   const arrPatternSplat = [...tmpForInPatDeclLhs];
-  const tmpSSA_x = arrPatternSplat[0];
-  $(tmpSSA_x);
+  x = arrPatternSplat[0];
+  $(x);
 }
 `````
 

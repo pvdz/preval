@@ -38,9 +38,10 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 `````js filename=intro
 const tmpForInPatDeclRhs = { a: 1, b: 2 };
 let tmpForInPatDeclLhs = undefined;
+let x = undefined;
 for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
-  const tmpSSA_x = tmpForInPatDeclLhs.x;
-  $(tmpSSA_x);
+  x = tmpForInPatDeclLhs.x;
+  $(x);
 }
 `````
 

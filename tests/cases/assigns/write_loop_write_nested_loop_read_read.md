@@ -60,20 +60,20 @@ while (true) {
 ## Output
 
 `````js filename=intro
-$(10);
+let x = $(10);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSSA_x = $(20, 'set');
+    x = $(20, 'set');
     while (true) {
       const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
-        $(tmpSSA_x, 'loop');
+        $(x, 'loop');
       } else {
         break;
       }
     }
-    $(tmpSSA_x);
+    $(x);
   } else {
     break;
   }

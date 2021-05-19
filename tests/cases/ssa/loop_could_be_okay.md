@@ -60,10 +60,10 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  $(1);
+  let x = $(1);
   while (true) {
-    const tmpSSA_x = $(2);
-    $(tmpSSA_x);
+    x = $(2);
+    $(x);
   }
 } else {
 }

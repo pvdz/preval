@@ -88,7 +88,7 @@ function _singleScopeSSA(fdata) {
     vlog('declFirst:', declFirst);
 
     vlog('Walking through all', rwOrder.length, 'refs for `' + name + '`');
-    let sawBinding = false;
+    let bindingRef;
     for (let i = 0; i < rwOrder.length; ++i) {
       const ref = rwOrder[i];
       vgroup('-', i + 1, '/', rwOrder.length, ':', ref.action, ':', ref.kind);
@@ -96,11 +96,15 @@ function _singleScopeSSA(fdata) {
       if (ref === varDeclWrite) {
         vlog('- This is the decl');
         // There should only be one binding for this name so this is the one
-        sawBinding = true;
-      } else if (!sawBinding) {
+        bindingRef = ref;
+      } else if (!bindingRef) {
         // Since this is a flat scope and we've eliminated edge cases like switch-defaults jumping back up
         // we must now check whether this read and decl were inside a loop. Otherwise this must be a TDZ.
         vlog('- Saw a ref before the decl. Potential TDZ');
+      } else if (ref.innerLoop !== bindingRef.innerLoop) {
+        // A write inside a loop to an outer binding may be observed at the start of the next iteration
+        // TODO: we can improve this case and not ignore some low hanging fruit here
+        vlog('- This ref is in a different loop from the binding');
       } else if (ref.action === 'read') {
         // do nothing?
         vlog('- Ignoring read');

@@ -81,9 +81,13 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
     ++called;
 
-    const parentNode = path.nodes[path.nodes.length - 2];
-    const parentProp = path.props[path.props.length - 1];
-    const parentIndex = path.indexes[path.indexes.length - 1];
+    const pathNodes = path.nodes;
+    const pathProps = path.props;
+    const pathIndexes = path.indexes;
+
+    const parentNode = pathNodes[pathNodes.length - 2];
+    const parentProp = pathProps[pathProps.length - 1];
+    const parentIndex = pathIndexes[pathIndexes.length - 1];
 
     if (before) {
       ASSERT(!parentNode || parentNode.$p);
@@ -103,9 +107,9 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         'for every block id there should be an index',
         blockBodies,
         blockIndexes,
-        path.nodes,
-        path.props,
-        path.indexes,
+        pathNodes,
+        pathProps,
+        pathIndexes,
       );
     }
     //vlog('ids/indexes:', blockIds, blockIndexes);
@@ -348,8 +352,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           const name = node.label.name;
           vlog('Label:', name);
 
-          const parentNode = path.nodes[path.nodes.length - 2];
-          const parentProp = path.props[path.props.length - 1];
           ASSERT(
             fdata.globallyUniqueLabelRegistry.has(node.label.name),
             'the label should be registered',
@@ -429,7 +431,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           parentNode,
         );
 
-        if (parentNode.type === 'VariableDeclarator' && path.nodes[path.nodes.length - 3].kind === 'const') {
+        if (parentNode.type === 'VariableDeclarator' && pathNodes[pathNodes.length - 3].kind === 'const') {
           vlog('Bound as a constant as: `' + parentNode.id.name + '`');
           node.$p.uniqueName = parentNode.id.name;
         }
@@ -604,17 +606,17 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           let blockIndex;
           if (kind === 'read' || kind === 'write') {
             // Start with the parent, not grandParent (!)
-            let pathIndex = path.nodes.length - 1;
+            let pathIndex = pathNodes.length - 1;
             do {
-              blockNode = path.nodes[pathIndex];
+              blockNode = pathNodes[pathIndex];
               vlog('  - block step;', blockNode.type, blockNode.$p.pid);
               if (blockNode.type === 'BlockStatement' || blockNode.type === 'Program') {
-                blockIndex = path.indexes[pathIndex + 1];
+                blockIndex = pathIndexes[pathIndex + 1];
                 ASSERT(
                   blockIndex >= 0,
                   'block index should be set right',
-                  path.nodes.map((n) => n.type),
-                  path.indexes,
+                  pathNodes.map((n) => n.type),
+                  pathIndexes,
                 );
                 break;
               }
@@ -625,9 +627,9 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           const innerLoop = loopStack[loopStack.length - 1];
           vlog('innerLoop:', innerLoop);
 
-          const grandNode = path.nodes[path.nodes.length - 3];
-          const grandProp = path.props[path.props.length - 2];
-          const grandIndex = path.indexes[path.indexes.length - 2];
+          const grandNode = pathNodes[pathNodes.length - 3];
+          const grandProp = pathProps[pathProps.length - 2];
+          const grandIndex = pathIndexes[pathIndexes.length - 2];
 
           if (kind === 'read') {
             // TODO: what if both branches of an if have a write? Or all branches of a nested if? We'd want to model that.
@@ -732,9 +734,9 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             } else if (parentNode.type === 'AssignmentExpression') {
               ASSERT(parentProp === 'left', 'the read check above should cover the prop=right case');
               ASSERT(
-                path.nodes[path.nodes.length - 3].type === 'ExpressionStatement',
+                pathNodes[pathNodes.length - 3].type === 'ExpressionStatement',
                 'assignments must be normalized to statements',
-                path.nodes[path.nodes.length - 3],
+                pathNodes[pathNodes.length - 3],
               );
               vlog('Adding assign write');
               meta.writes.push(write);

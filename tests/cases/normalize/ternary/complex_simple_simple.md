@@ -54,14 +54,12 @@ if (tmpIfTest) {
 } else {
   a = 3;
 }
-let b = undefined;
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  b = 4;
+  $(a, 4);
 } else {
-  b = 5;
+  $(a, 5);
 }
-$(a, b);
 `````
 
 ## Globals

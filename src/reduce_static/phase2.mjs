@@ -25,6 +25,7 @@ import { ifTailExtending } from './phase2if_tail_extending.mjs';
 import { ifFlipping } from './phase2if_flip.mjs';
 import { objlitPropAccess } from './phase2objlit_prop.mjs';
 import { bitSetTests } from './phase2bit_set_test.mjs';
+import { ifUpdateCall } from './phase2if_update_call.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -138,6 +139,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const bitset = bitSetTests(fdata);
   if (bitset) return bitset;
+
+  const callsHoisted = ifUpdateCall(fdata);
+  if (callsHoisted) return callsHoisted;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

@@ -60,16 +60,14 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 5;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  x = 10;
   $(10, 'a');
+  $(10);
 } else {
-  x = 20;
   $(20, 'b');
+  $(20);
 }
-$(x);
 `````
 
 ## Globals

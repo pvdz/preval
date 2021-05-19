@@ -62,14 +62,12 @@ if (tmpIfTest) {
 }
 const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-let y = undefined;
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  y = 'fail';
+  $('fail');
 } else {
-  y = arrPatternBeforeDefault;
+  $(arrPatternBeforeDefault);
 }
-$(y);
 `````
 
 ## Globals

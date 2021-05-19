@@ -64,10 +64,11 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   y = 'fail';
+  $('fail');
 } else {
   y = arrPatternBeforeDefault;
+  $(arrPatternBeforeDefault);
 }
-$(y);
 `````
 
 ## Globals

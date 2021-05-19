@@ -48,14 +48,12 @@ $(y);
 const tmpObjLitVal = ['abc'];
 const arrPatternSplat = [...tmpObjLitVal];
 const arrPatternBeforeDefault = arrPatternSplat[0];
-let y = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = 'fail';
+  $('fail');
 } else {
-  y = arrPatternBeforeDefault;
+  $(arrPatternBeforeDefault);
 }
-$(y);
 `````
 
 ## Globals

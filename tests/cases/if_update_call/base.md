@@ -1,24 +1,21 @@
 # Preval test case
 
-# base_true.md
+# base.md
 
-> Static lets > Base true
+> If update call > Base
 >
-> If the read of a value of a `let` binding can be determined then we should inline it.
+> If a variable is conditionally set and then used in a call after the `if`/`else`, we can hoist the call inside those branches.
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-let x = 5;
-$(x);
+let x = undefined;
 if ($(true)) {
-  x = 10;
-  $(x, 'a'); // Note: $ gets invoked _after_ reading x so it should not block the inline
+  x = 100;
 } else {
-  x = 20;
-  $(x, 'b');
+  x = 200;
 }
 $(x);
 `````
@@ -26,14 +23,11 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = 5;
-$(x);
+let x = undefined;
 if ($(true)) {
-  x = 10;
-  $(x, 'a');
+  x = 100;
 } else {
-  x = 20;
-  $(x, 'b');
+  x = 200;
 }
 $(x);
 `````
@@ -41,15 +35,12 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x = 5;
-$(x);
+let x = undefined;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  x = 10;
-  $(x, 'a');
+  x = 100;
 } else {
-  x = 20;
-  $(x, 'b');
+  x = 200;
 }
 $(x);
 `````
@@ -57,14 +48,11 @@ $(x);
 ## Output
 
 `````js filename=intro
-$(5);
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  $(10, 'a');
-  $(10);
+  $(100);
 } else {
-  $(20, 'b');
-  $(20);
+  $(200);
 }
 `````
 
@@ -75,10 +63,8 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 5
- - 2: true
- - 3: 10, 'a'
- - 4: 10
+ - 1: true
+ - 2: 100
  - eval returned: undefined
 
 Pre normalization calls: Same

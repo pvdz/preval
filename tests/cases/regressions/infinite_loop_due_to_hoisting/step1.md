@@ -57,15 +57,13 @@ f(tmpArg);
 ## Output
 
 `````js filename=intro
-let tmpArg = undefined;
 const tmpBinaryLeft = a.x;
 const tmpTernaryTest = tmpBinaryLeft === 1;
 if (tmpTernaryTest) {
-  tmpArg = 2;
+  f(2);
 } else {
-  tmpArg = 3;
+  f(3);
 }
-f(tmpArg);
 `````
 
 ## Globals

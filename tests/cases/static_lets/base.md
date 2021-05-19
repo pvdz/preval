@@ -56,16 +56,14 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 5;
 $(5);
 if ($) {
-  x = 10;
   $(10, 'a');
+  $(10);
 } else {
-  x = 20;
   $(20, 'b');
+  $(20);
 }
-$(x);
 `````
 
 ## Globals

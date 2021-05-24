@@ -52,13 +52,13 @@ $(a, b);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
-const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 const tmpAssignRhsCompObj$1 = $(b);
 const tmpAssignRhsCompProp$1 = $('c');
-const tmpSSA_a$1 = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
-const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
+const tmpClusterSSA_a$1 = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
+const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
-$(tmpSSA_a$1, b);
+$(tmpClusterSSA_a$1, b);
 `````
 
 ## Globals

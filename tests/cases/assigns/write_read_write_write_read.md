@@ -44,8 +44,8 @@ $(x, 'b');
 const x = $(1);
 $(x, 'a');
 $(2);
-const tmpSSA_x = $(3);
-$(tmpSSA_x, 'b');
+const tmpClusterSSA_x = $(3);
+$(tmpClusterSSA_x, 'b');
 `````
 
 ## Globals

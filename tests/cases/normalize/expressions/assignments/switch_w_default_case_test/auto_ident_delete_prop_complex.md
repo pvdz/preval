@@ -90,8 +90,8 @@ const arg = { y: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpDeleteObj = $(arg);
-const tmpSSA_a = delete tmpDeleteObj.y;
-const tmpIfTest = tmpSSA_a === tmpSwitchValue;
+const tmpClusterSSA_a = delete tmpDeleteObj.y;
+const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -112,7 +112,7 @@ if (tmpIfTest$7) {
   $('fail2');
 } else {
 }
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

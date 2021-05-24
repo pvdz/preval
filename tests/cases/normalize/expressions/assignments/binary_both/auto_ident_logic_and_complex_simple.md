@@ -61,14 +61,14 @@ if (a) {
 }
 const tmpBinBothLhs = a;
 const tmpCalleeParam$3 = $(1);
-let tmpSSA_a = $(tmpCalleeParam$3);
-if (tmpSSA_a) {
-  tmpSSA_a = 2;
+let tmpClusterSSA_a = $(tmpCalleeParam$3);
+if (tmpClusterSSA_a) {
+  tmpClusterSSA_a = 2;
 } else {
 }
-const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
+const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

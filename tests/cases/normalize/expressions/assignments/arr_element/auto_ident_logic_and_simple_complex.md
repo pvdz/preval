@@ -56,10 +56,10 @@ $(a);
 const tmpCalleeParam$1 = $(1);
 const a = $(tmpCalleeParam$1);
 const tmpCalleeParam$3 = $(1);
-const tmpSSA_a = $(tmpCalleeParam$3);
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = $(tmpCalleeParam$3);
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -71,9 +71,9 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-let tmpSSA_a = tmpNestedAssignPropRhs;
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
+let tmpClusterSSA_a = tmpNestedAssignPropRhs;
+let tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
 } else {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $('c');
@@ -81,11 +81,11 @@ if (tmpSSA_a) {
   const tmpCompProp$1 = $('d');
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  tmpSSA_a = varInitAssignLhsComputedRhs;
+  tmpClusterSSA_a = varInitAssignLhsComputedRhs;
   tmpCalleeParam = varInitAssignLhsComputedRhs;
 }
 $(tmpCalleeParam);
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

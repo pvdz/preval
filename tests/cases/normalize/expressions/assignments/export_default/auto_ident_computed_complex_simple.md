@@ -45,10 +45,10 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
-const tmpAnonDefaultExport = tmpSSA_a;
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
+const tmpAnonDefaultExport = tmpClusterSSA_a;
 export { tmpAnonDefaultExport as default };
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

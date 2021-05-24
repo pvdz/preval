@@ -56,13 +56,13 @@ $(x);
 `````js filename=intro
 const x = $('a');
 $(x);
-const tmpSSA_x = $('b');
+const tmpClusterSSA_x = $('b');
 try {
   $('123');
 } catch {
   $('fail');
 }
-$(tmpSSA_x);
+$(tmpClusterSSA_x);
 `````
 
 ## Globals

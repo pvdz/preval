@@ -46,11 +46,11 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpSSA_a = delete tmpDeleteObj.y;
+const tmpClusterSSA_a = delete tmpDeleteObj.y;
 let x = undefined;
-for (x in tmpSSA_a) {
+for (x in tmpClusterSSA_a) {
 }
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

@@ -90,8 +90,8 @@ const b = { c: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
-const tmpIfTest = tmpSSA_a === tmpSwitchValue;
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
+const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -112,7 +112,7 @@ if (tmpIfTest$7) {
   $('fail2');
 } else {
 }
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

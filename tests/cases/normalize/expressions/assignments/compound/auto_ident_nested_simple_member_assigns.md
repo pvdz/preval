@@ -67,9 +67,9 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-const tmpSSA_a = a * 3;
-$(tmpSSA_a);
-$(tmpSSA_a, b, 3);
+const tmpClusterSSA_a = a * 3;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, b, 3);
 `````
 
 ## Globals

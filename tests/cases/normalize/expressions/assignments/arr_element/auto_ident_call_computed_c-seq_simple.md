@@ -49,12 +49,12 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-const tmpSSA_a = tmpCallObj.$(1);
+const tmpClusterSSA_a = tmpCallObj.$(1);
 const tmpCallObj$1 = $(b);
-const tmpSSA_a$1 = tmpCallObj$1.$(1);
-const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
+const tmpClusterSSA_a$1 = tmpCallObj$1.$(1);
+const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
-$(tmpSSA_a$1);
+$(tmpClusterSSA_a$1);
 `````
 
 ## Globals

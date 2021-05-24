@@ -57,18 +57,18 @@ $(a);
 const b = { $: $ };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
-let tmpSSA_a = new tmpNewCallee(1);
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
+let tmpClusterSSA_a = new tmpNewCallee(1);
+let tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
   const tmpCompProp$1 = $('$');
   const tmpNewCallee$1 = b[tmpCompProp$1];
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);
-  tmpSSA_a = tmpNestedComplexRhs;
+  tmpClusterSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

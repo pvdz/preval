@@ -50,10 +50,10 @@ const tmpBinBothRhs$1 = $(2);
 const a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpBinBothLhs$3 = $(1);
 const tmpBinBothRhs$3 = $(2);
-const tmpSSA_a = tmpBinBothLhs$3 + tmpBinBothRhs$3;
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = tmpBinBothLhs$3 + tmpBinBothRhs$3;
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

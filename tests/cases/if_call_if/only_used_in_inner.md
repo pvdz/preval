@@ -104,8 +104,8 @@ if ($) {
 if ($) {
   const outerTest = $(0);
   if (outerTest) {
-    const tmpSSA_innerTest = $(3);
-    if (tmpSSA_innerTest) {
+    const tmpClusterSSA_innerTest = $(3);
+    if (tmpClusterSSA_innerTest) {
     } else {
       $(2);
     }

@@ -89,11 +89,11 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = function () {
+const tmpClusterSSA_a = function () {
   debugger;
   return undefined;
 };
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $('fail1');
 $('fail2');
 `````

@@ -73,13 +73,13 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-let tmpSSA_p = $(tmpCalleeParam);
-if (tmpSSA_p) {
+let tmpClusterSSA_p = $(tmpCalleeParam);
+if (tmpClusterSSA_p) {
   const tmpCalleeParam$1 = $(1);
-  tmpSSA_p = $(tmpCalleeParam$1);
+  tmpClusterSSA_p = $(tmpCalleeParam$1);
 } else {
 }
-if (tmpSSA_p) {
+if (tmpClusterSSA_p) {
 } else {
   const tmpCalleeParam$3 = $(2);
   $(tmpCalleeParam$3);

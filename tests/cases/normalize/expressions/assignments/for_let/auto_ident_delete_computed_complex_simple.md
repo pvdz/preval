@@ -53,12 +53,12 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpSSA_a = delete tmpDeleteObj.y;
+const tmpClusterSSA_a = delete tmpDeleteObj.y;
 while (true) {
-  $(tmpSSA_a);
+  $(tmpClusterSSA_a);
   $(1);
 }
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

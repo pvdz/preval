@@ -68,23 +68,23 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-let tmpSSA_x = arrPatternSplat[0];
-let tmpSSA_y = arrPatternSplat[1];
-let tmpSSA_a = tmpNestedAssignArrPatternRhs;
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
+let tmpClusterSSA_x = arrPatternSplat[0];
+let tmpClusterSSA_y = arrPatternSplat[1];
+let tmpClusterSSA_a = tmpNestedAssignArrPatternRhs;
+let tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
   const tmpArrElement$3 = $(3);
   const tmpArrElement$5 = $(4);
   const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-  tmpSSA_x = arrPatternSplat$1[0];
-  tmpSSA_y = arrPatternSplat$1[1];
-  tmpSSA_a = tmpNestedAssignArrPatternRhs$1;
+  tmpClusterSSA_x = arrPatternSplat$1[0];
+  tmpClusterSSA_y = arrPatternSplat$1[1];
+  tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$1;
   tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a, tmpSSA_x, tmpSSA_y);
+$(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
 ## Globals

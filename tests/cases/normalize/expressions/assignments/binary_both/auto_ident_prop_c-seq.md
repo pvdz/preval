@@ -49,12 +49,12 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
 const tmpAssignRhsProp$1 = $(b);
-const tmpSSA_a$1 = tmpAssignRhsProp$1.c;
-const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
+const tmpClusterSSA_a$1 = tmpAssignRhsProp$1.c;
+const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
-$(tmpSSA_a$1, b);
+$(tmpClusterSSA_a$1, b);
 `````
 
 ## Globals

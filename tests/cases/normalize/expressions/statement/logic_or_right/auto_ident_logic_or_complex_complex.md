@@ -52,8 +52,8 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam = $(0);
-  const tmpSSA_tmpIfTest = $(tmpCalleeParam);
-  if (tmpSSA_tmpIfTest) {
+  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
+  if (tmpClusterSSA_tmpIfTest) {
   } else {
     const tmpCalleeParam$1 = $(2);
     $(tmpCalleeParam$1);

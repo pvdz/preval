@@ -70,14 +70,14 @@ let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_a = arrPatternSplat$1[0];
+const tmpClusterSSA_a = arrPatternSplat$1[0];
 const tmpIfTest = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -56,14 +56,14 @@ let tmpCalleeParam = undefined;
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const tmpSSA_a = delete tmpDeleteObj.y;
-if (tmpSSA_a) {
+const tmpClusterSSA_a = delete tmpDeleteObj.y;
+if (tmpClusterSSA_a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

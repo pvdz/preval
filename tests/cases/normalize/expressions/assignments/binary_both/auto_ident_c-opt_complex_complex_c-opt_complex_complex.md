@@ -94,7 +94,7 @@ if (tmpIfTest) {
   }
 }
 const tmpBinBothLhs = a;
-let tmpSSA_a = undefined;
+let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$1 = $(b);
 const tmpIfTest$3 = tmpChainElementCall$1 == null;
 if (tmpIfTest$3) {
@@ -106,12 +106,12 @@ if (tmpIfTest$3) {
   } else {
     const tmpChainRootComputed$5 = $('y');
     const tmpChainElementObject$5 = tmpChainElementObject$3[tmpChainRootComputed$5];
-    tmpSSA_a = tmpChainElementObject$5;
+    tmpClusterSSA_a = tmpChainElementObject$5;
   }
 }
-const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
+const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

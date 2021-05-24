@@ -106,7 +106,7 @@ const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_b = arrPatternSplat[0];
+const tmpClusterSSA_b = arrPatternSplat[0];
 const tmpIfTest = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -134,7 +134,7 @@ tmpSwitchBreak: {
     }
   }
 }
-$(a, tmpSSA_b);
+$(a, tmpClusterSSA_b);
 `````
 
 ## Globals

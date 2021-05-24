@@ -82,9 +82,9 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_b = { $: $ };
-let tmpSSA_a = undefined;
-const tmpChainElementCall = $(tmpSSA_b);
+const tmpClusterSSA_b = { $: $ };
+let tmpClusterSSA_a = undefined;
+const tmpChainElementCall = $(tmpClusterSSA_b);
 const tmpIfTest$3 = tmpChainElementCall == null;
 if (tmpIfTest$3) {
 } else {
@@ -95,10 +95,10 @@ if (tmpIfTest$3) {
   } else {
     const tmpCalleeParam$3 = $(1);
     const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
-    tmpSSA_a = tmpChainElementCall$1;
+    tmpClusterSSA_a = tmpChainElementCall$1;
   }
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

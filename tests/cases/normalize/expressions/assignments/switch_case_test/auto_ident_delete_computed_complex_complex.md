@@ -66,14 +66,14 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpIfTest = tmpSSA_a === tmpSwitchValue;
+const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

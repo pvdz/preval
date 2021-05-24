@@ -49,9 +49,9 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(1);
 const tmpBinBothRhs = $(tmpCalleeParam$1);
-const tmpSSA_a = a * tmpBinBothRhs;
-$(tmpSSA_a);
-$(tmpSSA_a);
+const tmpClusterSSA_a = a * tmpBinBothRhs;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

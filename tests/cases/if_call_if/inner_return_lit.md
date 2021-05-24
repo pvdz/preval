@@ -97,8 +97,8 @@ const f = function () {
   if (x) {
     return 500;
   } else {
-    const tmpSSA_x = $(0);
-    if (tmpSSA_x) {
+    const tmpClusterSSA_x = $(0);
+    if (tmpClusterSSA_x) {
       return 500;
     } else {
       return 1000;

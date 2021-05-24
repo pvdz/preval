@@ -57,9 +57,9 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete arg[tmpDeleteCompProp];
-$(tmpSSA_a);
-$(tmpSSA_a, arg);
+const tmpClusterSSA_a = delete arg[tmpDeleteCompProp];
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

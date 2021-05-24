@@ -80,8 +80,8 @@ const obj = {
 };
 const tmpAssignRhsCompObj = $(obj);
 const tmpAssignRhsCompProp = $('x');
-const tmpSSA_x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(tmpSSA_x);
+const tmpClusterSSA_x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(tmpClusterSSA_x);
 `````
 
 ## Globals

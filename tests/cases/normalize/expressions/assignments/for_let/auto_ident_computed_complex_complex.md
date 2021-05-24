@@ -55,12 +55,12 @@ $(a, b);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
-const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 while (true) {
-  $(tmpSSA_a);
+  $(tmpClusterSSA_a);
   $(1);
 }
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

@@ -82,22 +82,22 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const tmpSSA_b = { c: tmpObjLitVal };
-let tmpSSA_a = undefined;
-const tmpIfTest$3 = tmpSSA_b == null;
+const tmpClusterSSA_b = { c: tmpObjLitVal };
+let tmpClusterSSA_a = undefined;
+const tmpIfTest$3 = tmpClusterSSA_b == null;
 if (tmpIfTest$3) {
 } else {
-  const tmpChainElementObject = tmpSSA_b.c;
+  const tmpChainElementObject = tmpClusterSSA_b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpIfTest$5 = tmpChainElementObject$3 == null;
   if (tmpIfTest$5) {
   } else {
     const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-    tmpSSA_a = tmpChainElementCall;
+    tmpClusterSSA_a = tmpChainElementCall;
   }
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

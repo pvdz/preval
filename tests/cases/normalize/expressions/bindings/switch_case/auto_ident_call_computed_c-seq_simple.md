@@ -65,10 +65,10 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_b = { $: $ };
-const tmpCallObj = $(tmpSSA_b);
-const tmpSSA_a = tmpCallObj.$(1);
-$(tmpSSA_a);
+const tmpClusterSSA_b = { $: $ };
+const tmpCallObj = $(tmpClusterSSA_b);
+const tmpClusterSSA_a = tmpCallObj.$(1);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

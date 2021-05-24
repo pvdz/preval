@@ -50,10 +50,10 @@ $(a, x);
 const tmpUnaryArg = $(1);
 const a = typeof tmpUnaryArg;
 const tmpUnaryArg$1 = $(1);
-const tmpSSA_a = typeof tmpUnaryArg$1;
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = typeof tmpUnaryArg$1;
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a, 1);
+$(tmpClusterSSA_a, 1);
 `````
 
 ## Globals

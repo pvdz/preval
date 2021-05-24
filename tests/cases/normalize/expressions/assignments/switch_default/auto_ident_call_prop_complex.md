@@ -60,8 +60,8 @@ $(a);
 const b = { $: $ };
 $(1);
 const tmpCallObj = $(b);
-const tmpSSA_a = tmpCallObj.$(1);
-$(tmpSSA_a);
+const tmpClusterSSA_a = tmpCallObj.$(1);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

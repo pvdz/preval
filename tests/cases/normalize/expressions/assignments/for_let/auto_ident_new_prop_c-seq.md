@@ -55,12 +55,12 @@ $(a);
 const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const tmpSSA_a = new tmpNewCallee(1);
+const tmpClusterSSA_a = new tmpNewCallee(1);
 while (true) {
-  $(tmpSSA_a);
+  $(tmpClusterSSA_a);
   $(1);
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

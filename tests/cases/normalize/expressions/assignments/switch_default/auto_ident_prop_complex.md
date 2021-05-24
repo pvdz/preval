@@ -60,8 +60,8 @@ $(a, b);
 const b = { c: 1 };
 $(1);
 const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
-$(tmpSSA_a, b);
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

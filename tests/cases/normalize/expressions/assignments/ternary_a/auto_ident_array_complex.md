@@ -50,8 +50,8 @@ $(a);
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 const a = [tmpArrElement, 2, tmpArrElement$3];
-const tmpSSA_tmpCalleeParam = $(100);
-$(tmpSSA_tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam = $(100);
+$(tmpClusterSSA_tmpCalleeParam);
 $(a);
 `````
 

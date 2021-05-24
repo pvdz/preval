@@ -47,11 +47,11 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-const tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
+const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpNestedAssignObjPatternRhs + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

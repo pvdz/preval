@@ -58,10 +58,10 @@ if (x) {
 const x = $(false, 'a');
 if (x) {
   $(x, 'pass');
-  const tmpSSA_x = $(true, 'b');
-  if (tmpSSA_x) {
+  const tmpClusterSSA_x = $(true, 'b');
+  if (tmpClusterSSA_x) {
   } else {
-    $(tmpSSA_x, 'hit');
+    $(tmpClusterSSA_x, 'hit');
   }
 } else {
   $(x, 'hit');

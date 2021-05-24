@@ -66,11 +66,11 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_b = { c: 1 };
-const tmpAssignRhsCompObj = $(tmpSSA_b);
+const tmpClusterSSA_b = { c: 1 };
+const tmpAssignRhsCompObj = $(tmpClusterSSA_b);
 const tmpAssignRhsCompProp = $('c');
-const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-$(tmpSSA_a, tmpSSA_b);
+const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+$(tmpClusterSSA_a, tmpClusterSSA_b);
 `````
 
 ## Globals

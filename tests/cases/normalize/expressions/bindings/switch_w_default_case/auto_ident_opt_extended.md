@@ -103,17 +103,17 @@ if (tmpIfTest$9) {
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const tmpSSA_b = { x: tmpObjLitVal };
-let tmpSSA_a = undefined;
-const tmpIfTest$5 = tmpSSA_b == null;
+const tmpClusterSSA_b = { x: tmpObjLitVal };
+let tmpClusterSSA_a = undefined;
+const tmpIfTest$5 = tmpClusterSSA_b == null;
 if (tmpIfTest$5) {
 } else {
-  const tmpChainElementObject = tmpSSA_b.x;
+  const tmpChainElementObject = tmpClusterSSA_b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  tmpSSA_a = tmpChainElementObject$3;
+  tmpClusterSSA_a = tmpChainElementObject$3;
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $('fail1');
 $('fail2');
 `````

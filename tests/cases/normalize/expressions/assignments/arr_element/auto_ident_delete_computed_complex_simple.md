@@ -49,12 +49,12 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpSSA_a = delete tmpDeleteObj.y;
+const tmpClusterSSA_a = delete tmpDeleteObj.y;
 const tmpDeleteObj$1 = $(arg);
-const tmpSSA_a$1 = delete tmpDeleteObj$1.y;
-const tmpCalleeParam = tmpSSA_a + tmpSSA_a$1;
+const tmpClusterSSA_a$1 = delete tmpDeleteObj$1.y;
+const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
 $(tmpCalleeParam);
-$(tmpSSA_a$1, arg);
+$(tmpClusterSSA_a$1, arg);
 `````
 
 ## Globals

@@ -48,8 +48,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
-const tmpSSA_tmpIfTest = $(tmpCalleeParam);
-if (tmpSSA_tmpIfTest) {
+const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
+if (tmpClusterSSA_tmpIfTest) {
 } else {
   $(100);
 }

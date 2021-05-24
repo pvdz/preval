@@ -53,9 +53,9 @@ const f = function () {
   debugger;
   return undefined;
 };
-const tmpSSA_a = a * f;
-$(tmpSSA_a);
-$(tmpSSA_a);
+const tmpClusterSSA_a = a * f;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

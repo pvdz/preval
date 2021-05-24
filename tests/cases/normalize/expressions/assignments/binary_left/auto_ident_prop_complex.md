@@ -47,11 +47,11 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpSSA_a + tmpBinBothRhs;
+const tmpCalleeParam = tmpClusterSSA_a + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

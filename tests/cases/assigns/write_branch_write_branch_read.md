@@ -46,8 +46,8 @@ if (tmpIfTest) {
 $(1);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
-  const tmpSSA_x = $(2);
-  $(tmpSSA_x);
+  const tmpClusterSSA_x = $(2);
+  $(tmpClusterSSA_x);
 } else {
 }
 `````

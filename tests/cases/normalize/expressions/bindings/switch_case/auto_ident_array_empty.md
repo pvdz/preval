@@ -58,8 +58,8 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = [];
-$(tmpSSA_a);
+const tmpClusterSSA_a = [];
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -57,9 +57,9 @@ const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpSSA_a = a * varInitAssignLhsComputedRhs;
-$(tmpSSA_a);
-$(tmpSSA_a, b);
+const tmpClusterSSA_a = a * varInitAssignLhsComputedRhs;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

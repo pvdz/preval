@@ -49,14 +49,14 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
-const tmpSSA_a = tmpAssignRhsProp.c;
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
+const tmpClusterSSA_a = tmpAssignRhsProp.c;
+let tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

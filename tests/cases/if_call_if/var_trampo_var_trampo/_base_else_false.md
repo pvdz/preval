@@ -98,12 +98,12 @@ const outer = function () {
     const tmpReturnArg$3 = $('inner if', x);
     return tmpReturnArg$3;
   } else {
-    const tmpSSA_x = $(2);
-    if (tmpSSA_x) {
-      const tmpReturnArg = $('inner if', tmpSSA_x);
+    const tmpClusterSSA_x = $(2);
+    if (tmpClusterSSA_x) {
+      const tmpReturnArg = $('inner if', tmpClusterSSA_x);
       return tmpReturnArg;
     } else {
-      const tmpReturnArg$1 = $('inner else', tmpSSA_x);
+      const tmpReturnArg$1 = $('inner else', tmpClusterSSA_x);
       return tmpReturnArg$1;
     }
   }

@@ -128,8 +128,8 @@ if ($) {
 if ($) {
   const test = $(1);
   if (test) {
-    const tmpSSA_tmpIfelseifelse = $(1);
-    if (tmpSSA_tmpIfelseifelse) {
+    const tmpClusterSSA_tmpIfelseifelse = $(1);
+    if (tmpClusterSSA_tmpIfelseifelse) {
       $('A');
     } else {
       $('B');

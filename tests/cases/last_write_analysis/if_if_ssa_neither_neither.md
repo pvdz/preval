@@ -60,7 +60,7 @@ $(x);
 `````js filename=intro
 const x = $('a');
 $(x);
-const tmpSSA_x = $('b');
+const tmpClusterSSA_x = $('b');
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(2);
@@ -70,7 +70,7 @@ if (tmpIfTest) {
   }
 } else {
 }
-$(tmpSSA_x);
+$(tmpClusterSSA_x);
 `````
 
 ## Globals

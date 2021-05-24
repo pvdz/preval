@@ -49,14 +49,14 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpSSA_a = delete tmpDeleteObj.y;
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
+const tmpClusterSSA_a = delete tmpDeleteObj.y;
+let tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
   tmpCalleeParam = $(100);
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

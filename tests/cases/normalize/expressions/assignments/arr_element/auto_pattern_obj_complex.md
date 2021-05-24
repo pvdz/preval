@@ -55,10 +55,10 @@ const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 tmpNestedAssignObjPatternRhs.a;
 const tmpCalleeParam$3 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
-const tmpSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
 const tmpCalleeParam = tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

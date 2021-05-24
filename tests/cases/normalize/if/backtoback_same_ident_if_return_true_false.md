@@ -78,9 +78,9 @@ const f = function () {
   if (x) {
     return x;
   } else {
-    const tmpSSA_x = $(0);
-    if (tmpSSA_x) {
-      return tmpSSA_x;
+    const tmpClusterSSA_x = $(0);
+    if (tmpClusterSSA_x) {
+      return tmpClusterSSA_x;
     } else {
       const tmpReturnArg = $(3);
       return tmpReturnArg;

@@ -79,12 +79,12 @@ if ($) {
 if ($) {
   const x = $(1);
   if ($) {
-    const tmpSSA_x = $(2);
-    $(tmpSSA_x);
+    const tmpClusterSSA_x = $(2);
+    $(tmpClusterSSA_x);
     if ($) {
       $('if');
     } else {
-      $(tmpSSA_x);
+      $(tmpClusterSSA_x);
     }
   } else {
     $(x);

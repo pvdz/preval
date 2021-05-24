@@ -64,10 +64,10 @@ const a = delete arg[tmpDeleteCompProp];
 $(1);
 $(2);
 const tmpDeleteCompProp$1 = $('y');
-const tmpSSA_a = delete arg[tmpDeleteCompProp$1];
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = delete arg[tmpDeleteCompProp$1];
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

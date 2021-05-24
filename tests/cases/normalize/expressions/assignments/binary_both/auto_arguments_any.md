@@ -41,10 +41,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = arguments;
-const tmpCalleeParam = arguments + tmpSSA_a;
+const tmpClusterSSA_a = arguments;
+const tmpCalleeParam = arguments + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -42,8 +42,8 @@ $(x);
 `````js filename=intro
 const x = $('a');
 $(x);
-const tmpSSA_x = $('b');
-$(tmpSSA_x);
+const tmpClusterSSA_x = $('b');
+$(tmpClusterSSA_x);
 `````
 
 ## Globals

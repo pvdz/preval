@@ -66,15 +66,15 @@ if (a) {
 }
 const tmpBinBothLhs = a;
 const tmpCalleeParam$5 = $(0);
-let tmpSSA_a = $(tmpCalleeParam$5);
-if (tmpSSA_a) {
+let tmpClusterSSA_a = $(tmpCalleeParam$5);
+if (tmpClusterSSA_a) {
 } else {
   const tmpCalleeParam$7 = $(2);
-  tmpSSA_a = $(tmpCalleeParam$7);
+  tmpClusterSSA_a = $(tmpCalleeParam$7);
 }
-const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
+const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

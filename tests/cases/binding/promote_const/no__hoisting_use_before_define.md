@@ -62,13 +62,13 @@ $(x);
 ## Output
 
 `````js filename=intro
-let tmpSSA_x = 20;
+let tmpClusterSSA_x = 20;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpSSA_x = 10;
+  tmpClusterSSA_x = 10;
 } else {
 }
-$(tmpSSA_x);
+$(tmpClusterSSA_x);
 `````
 
 ## Globals

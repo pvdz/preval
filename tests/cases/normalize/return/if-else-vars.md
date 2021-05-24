@@ -67,11 +67,11 @@ const f = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpSSA_x = $(1, 'a');
-    return tmpSSA_x;
+    const tmpClusterSSA_x = $(1, 'a');
+    return tmpClusterSSA_x;
   } else {
-    const tmpSSA_x$1 = $(2, 'b');
-    return tmpSSA_x$1;
+    const tmpClusterSSA_x$1 = $(2, 'b');
+    return tmpClusterSSA_x$1;
   }
 };
 const tmpCalleeParam = f();

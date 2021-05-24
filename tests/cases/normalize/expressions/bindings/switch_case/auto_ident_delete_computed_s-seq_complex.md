@@ -68,12 +68,12 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_arg = { y: 1 };
+const tmpClusterSSA_arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete tmpSSA_arg[tmpDeleteCompProp];
-$(tmpSSA_a, tmpSSA_arg);
+const tmpClusterSSA_a = delete tmpClusterSSA_arg[tmpDeleteCompProp];
+$(tmpClusterSSA_a, tmpClusterSSA_arg);
 `````
 
 ## Globals

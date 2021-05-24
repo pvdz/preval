@@ -48,8 +48,8 @@ if (tmpIfTest) {
   $(x, 'branch');
 } else {
 }
-const tmpSSA_x = $(2);
-$(tmpSSA_x);
+const tmpClusterSSA_x = $(2);
+$(tmpClusterSSA_x);
 `````
 
 ## Globals

@@ -46,10 +46,10 @@ $(a);
 const tmpUnaryArg = $(100);
 const a = +tmpUnaryArg;
 const tmpUnaryArg$1 = $(100);
-const tmpSSA_a = +tmpUnaryArg$1;
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = +tmpUnaryArg$1;
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

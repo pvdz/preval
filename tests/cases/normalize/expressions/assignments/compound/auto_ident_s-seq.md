@@ -49,9 +49,9 @@ $(a, x);
 const a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpSSA_a = a * 1;
-$(tmpSSA_a);
-$(tmpSSA_a, 1);
+const tmpClusterSSA_a = a * 1;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, 1);
 `````
 
 ## Globals

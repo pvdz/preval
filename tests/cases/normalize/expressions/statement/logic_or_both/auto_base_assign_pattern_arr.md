@@ -60,16 +60,16 @@ const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-let tmpSSA_b = arrPatternSplat[0];
+let tmpClusterSSA_b = arrPatternSplat[0];
 if (tmpNestedAssignArrPatternRhs) {
 } else {
   const tmpArrElement$1 = $(2);
   const tmpCalleeParam$1 = [tmpArrElement$1];
   const arrAssignPatternRhs = $(tmpCalleeParam$1);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
-  tmpSSA_b = arrPatternSplat$1[0];
+  tmpClusterSSA_b = arrPatternSplat$1[0];
 }
-$(a, tmpSSA_b);
+$(a, tmpClusterSSA_b);
 `````
 
 ## Globals

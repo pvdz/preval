@@ -46,9 +46,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = ['before ', ' after'];
-const tmpSSA_a = new $(1);
-$(tmpCalleeParam, tmpSSA_a);
-$(tmpSSA_a);
+const tmpClusterSSA_a = new $(1);
+$(tmpCalleeParam, tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

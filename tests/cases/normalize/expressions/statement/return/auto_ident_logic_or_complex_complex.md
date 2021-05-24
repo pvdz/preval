@@ -66,8 +66,8 @@ const f = function () {
     return tmpReturnArg;
   } else {
     const tmpCalleeParam$1 = $(2);
-    const tmpSSA_tmpReturnArg = $(tmpCalleeParam$1);
-    return tmpSSA_tmpReturnArg;
+    const tmpClusterSSA_tmpReturnArg = $(tmpCalleeParam$1);
+    return tmpClusterSSA_tmpReturnArg;
   }
 };
 const a = { a: 999, b: 1000 };

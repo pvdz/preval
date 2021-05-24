@@ -91,12 +91,12 @@ if (tmpIfTest$7) {
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-let tmpSSA_a = $(tmpCalleeParam);
-if (tmpSSA_a) {
+let tmpClusterSSA_a = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
 } else {
-  tmpSSA_a = 2;
+  tmpClusterSSA_a = 2;
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $('fail1');
 $('fail2');
 `````

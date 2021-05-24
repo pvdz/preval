@@ -49,11 +49,11 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-const tmpSSA_a = tmpAssignObjPatternRhs.a;
+const tmpClusterSSA_a = tmpAssignObjPatternRhs.a;
 while (true) {
   $(1);
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

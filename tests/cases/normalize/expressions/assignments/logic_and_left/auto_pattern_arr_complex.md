@@ -55,14 +55,14 @@ arrPatternSplat[0];
 const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_a = arrPatternSplat$1[0];
-let tmpSSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs;
+const tmpClusterSSA_a = arrPatternSplat$1[0];
+let tmpClusterSSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs;
 if (tmpNestedAssignArrPatternRhs) {
-  tmpSSA_tmpCalleeParam = $(100);
+  tmpClusterSSA_tmpCalleeParam = $(100);
 } else {
 }
-$(tmpSSA_tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_tmpCalleeParam);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

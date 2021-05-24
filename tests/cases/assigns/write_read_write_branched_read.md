@@ -46,10 +46,10 @@ if (tmpIfTest) {
 `````js filename=intro
 const x = $(1);
 $(x, 'a');
-const tmpSSA_x = $(2);
+const tmpClusterSSA_x = $(2);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  $(tmpSSA_x, 'b');
+  $(tmpClusterSSA_x, 'b');
 } else {
 }
 `````

@@ -45,9 +45,9 @@ $(a, arg);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSSA_a = a * 'number';
-$(tmpSSA_a);
-$(tmpSSA_a, 1);
+const tmpClusterSSA_a = a * 'number';
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, 1);
 `````
 
 ## Globals

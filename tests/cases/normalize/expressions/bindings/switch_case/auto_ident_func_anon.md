@@ -63,11 +63,11 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = function () {
+const tmpClusterSSA_a = function () {
   debugger;
   return undefined;
 };
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -104,8 +104,8 @@ const f = function () {
     $('a');
     return 500;
   } else {
-    const tmpSSA_x = $(0);
-    if (tmpSSA_x) {
+    const tmpClusterSSA_x = $(0);
+    if (tmpClusterSSA_x) {
       $('a');
       return 500;
     } else {

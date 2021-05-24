@@ -68,19 +68,19 @@ $(x);
 `````js filename=intro
 const x = $('a');
 $(x);
-let tmpSSA_x = $('b');
+let tmpClusterSSA_x = $('b');
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $('c');
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
-    tmpSSA_x = $('d');
+    tmpClusterSSA_x = $('d');
   } else {
-    tmpSSA_x = $('e');
+    tmpClusterSSA_x = $('e');
   }
 } else {
 }
-$(tmpSSA_x);
+$(tmpClusterSSA_x);
 `````
 
 ## Globals

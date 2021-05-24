@@ -48,11 +48,11 @@ $(a, b);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
-const tmpSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let x = undefined;
-for (x in tmpSSA_a) {
+for (x in tmpClusterSSA_a) {
 }
-$(tmpSSA_a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

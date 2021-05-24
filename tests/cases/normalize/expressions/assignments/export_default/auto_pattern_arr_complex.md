@@ -52,10 +52,10 @@ let tmpAnonDefaultExport = undefined;
 const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_a = arrPatternSplat$1[0];
+const tmpClusterSSA_a = arrPatternSplat$1[0];
 tmpAnonDefaultExport = tmpNestedAssignArrPatternRhs;
 export { tmpAnonDefaultExport as default };
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -54,14 +54,14 @@ $(a);
 const tmpObjLitVal = $(1);
 const a = { b: tmpObjLitVal };
 const tmpObjLitVal$1 = $(1);
-const tmpSSA_a = { b: tmpObjLitVal$1 };
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = { b: tmpObjLitVal$1 };
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-const tmpAssignComMemLhsObj = $(tmpSSA_a);
+const tmpAssignComMemLhsObj = $(tmpClusterSSA_a);
 const tmpAssignComMemLhsProp = $('b');
 const tmpAssignComputedRhs = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

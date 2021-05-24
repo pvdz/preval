@@ -54,10 +54,10 @@ $(10);
 $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_a = arrPatternSplat$1[0];
+const tmpClusterSSA_a = arrPatternSplat$1[0];
 const tmpCalleeParam = { [tmpNestedAssignArrPatternRhs]: 10 };
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

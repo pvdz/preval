@@ -228,8 +228,7 @@ function _singleScopeSSA(fdata) {
         example('x = 1; f(x); x = 2; f(x);', 'x = 1; f(x); let x2 = 2; f(x2);');
         before(firstWrite.blockBody[firstWrite.blockIndex], firstWrite.blockBody);
 
-        //const tmpName = createFreshVar('tmpClusterSSA_' + name, fdata); // TODO: switch over (heavy diff)
-        const tmpName = createFreshVar('tmpSSA_' + name, fdata);
+        const tmpName = createFreshVar('tmpClusterSSA_' + name, fdata);
         refsArr.forEach((ref) => {
           ref.node.name = tmpName;
         });

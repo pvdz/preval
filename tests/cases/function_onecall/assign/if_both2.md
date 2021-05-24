@@ -106,9 +106,9 @@ if (tmpIfTest$1) {
   $('c');
 } else {
 }
-const tmpSSA_x = f();
-$(tmpSSA_x);
-$(tmpSSA_x);
+const tmpClusterSSA_x = f();
+$(tmpClusterSSA_x);
+$(tmpClusterSSA_x);
 `````
 
 ## Globals

@@ -53,12 +53,12 @@ $(x);
 `````js filename=intro
 const x = $('a');
 $(x);
-let tmpSSA_x = $('b');
+let tmpClusterSSA_x = $('b');
 if ($) {
 } else {
-  tmpSSA_x = $('c');
+  tmpClusterSSA_x = $('c');
 }
-$(tmpSSA_x);
+$(tmpClusterSSA_x);
 `````
 
 ## Globals

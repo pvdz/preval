@@ -69,17 +69,17 @@ if (tmpIfTest) {
   a = tmpChainElementObject;
 }
 const tmpBinBothLhs = a;
-let tmpSSA_a = undefined;
+let tmpClusterSSA_a = undefined;
 const tmpChainRootProp$1 = $(b);
 const tmpIfTest$1 = tmpChainRootProp$1 == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject$1 = tmpChainRootProp$1.x;
-  tmpSSA_a = tmpChainElementObject$1;
+  tmpClusterSSA_a = tmpChainElementObject$1;
 }
-const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
+const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

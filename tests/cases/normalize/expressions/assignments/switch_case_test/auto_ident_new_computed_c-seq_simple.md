@@ -66,14 +66,14 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const tmpSSA_a = new tmpNewCallee(1);
-const tmpIfTest = tmpSSA_a === tmpSwitchValue;
+const tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

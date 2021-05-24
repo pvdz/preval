@@ -52,17 +52,17 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-let tmpSSA_a = tmpCallObj.$(1);
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
+let tmpClusterSSA_a = tmpCallObj.$(1);
+let tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
   const tmpCallObj$1 = $(b);
   const tmpNestedComplexRhs = tmpCallObj$1.$(1);
-  tmpSSA_a = tmpNestedComplexRhs;
+  tmpClusterSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

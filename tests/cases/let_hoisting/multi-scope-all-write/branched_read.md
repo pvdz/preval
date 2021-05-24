@@ -109,8 +109,8 @@ const f = function ($$0) {
     const tmpssa2_promoMe = r === '.';
     if (tmpssa2_promoMe) {
       const t = $('');
-      const tmpSSA_tmpssa2_promoMe = t !== '.';
-      return tmpSSA_tmpssa2_promoMe;
+      const tmpClusterSSA_tmpssa2_promoMe = t !== '.';
+      return tmpClusterSSA_tmpssa2_promoMe;
     } else {
       return false;
     }

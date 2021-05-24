@@ -75,8 +75,8 @@ const f = function () {
   let x = 1;
   try {
     do_not_observe_assignment;
-    const tmpSSA_x = $(2, 'prevent optim');
-    return tmpSSA_x;
+    const tmpClusterSSA_x = $(2, 'prevent optim');
+    return tmpClusterSSA_x;
   } finally {
     x = $(3, 'prevent optim');
   }

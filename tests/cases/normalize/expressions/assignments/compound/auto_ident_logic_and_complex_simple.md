@@ -53,9 +53,9 @@ if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
 } else {
 }
-const tmpSSA_a = a * tmpBinBothRhs;
-$(tmpSSA_a);
-$(tmpSSA_a);
+const tmpClusterSSA_a = a * tmpBinBothRhs;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

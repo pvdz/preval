@@ -52,9 +52,9 @@ const b = { $: $ };
 const obj = {};
 const tmpCompProp$1 = $('$');
 const tmpNewCallee = b[tmpCompProp$1];
-const tmpSSA_a = new tmpNewCallee(1);
-obj[tmpSSA_a];
-$(tmpSSA_a);
+const tmpClusterSSA_a = new tmpNewCallee(1);
+obj[tmpClusterSSA_a];
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -62,12 +62,12 @@ const f = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpSSA_tmpReturnArg = $(60);
-    return tmpSSA_tmpReturnArg;
+    const tmpClusterSSA_tmpReturnArg = $(60);
+    return tmpClusterSSA_tmpReturnArg;
   } else {
     const tmpCalleeParam = $(100);
-    const tmpSSA_tmpReturnArg$1 = $(tmpCalleeParam);
-    return tmpSSA_tmpReturnArg$1;
+    const tmpClusterSSA_tmpReturnArg$1 = $(tmpCalleeParam);
+    return tmpClusterSSA_tmpReturnArg$1;
   }
 };
 const a = { a: 999, b: 1000 };

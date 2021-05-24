@@ -77,8 +77,8 @@ const f = function () {
     return tmpReturnArg;
   } else {
     const tmpCalleeParam$3 = $(2);
-    const tmpSSA_tmpReturnArg = $(tmpCalleeParam$3);
-    return tmpSSA_tmpReturnArg;
+    const tmpClusterSSA_tmpReturnArg = $(tmpCalleeParam$3);
+    return tmpClusterSSA_tmpReturnArg;
   }
 };
 const a = { a: 999, b: 1000 };

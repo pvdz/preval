@@ -46,10 +46,10 @@ $(a, b);
 
 `````js filename=intro
 const a = $(1);
-const tmpSSA_a = $(1);
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = $(1);
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a, 1);
+$(tmpClusterSSA_a, 1);
 `````
 
 ## Globals

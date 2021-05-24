@@ -67,8 +67,8 @@ const x = class {
     debugger;
     const tmpIfTest = tmpParamBare === undefined;
     if (tmpIfTest) {
-      const tmpSSA_arg = $(10, 'default');
-      return tmpSSA_arg;
+      const tmpClusterSSA_arg = $(10, 'default');
+      return tmpClusterSSA_arg;
     } else {
       return tmpParamBare;
     }

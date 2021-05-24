@@ -40,8 +40,8 @@ $(x, 'b');
 `````js filename=intro
 const x = $(1);
 $(x, 'a');
-const tmpSSA_x = $(2);
-$(tmpSSA_x, 'b');
+const tmpClusterSSA_x = $(2);
+$(tmpClusterSSA_x, 'b');
 `````
 
 ## Globals

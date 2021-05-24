@@ -78,9 +78,9 @@ if (tmpIfTest$1) {
   const tmpChainElementObject = b.x;
   tmpNestedComplexRhs = tmpChainElementObject;
 }
-const tmpSSA_a = tmpNestedComplexRhs;
+const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

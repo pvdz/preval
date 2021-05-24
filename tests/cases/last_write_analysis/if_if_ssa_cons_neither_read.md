@@ -68,13 +68,13 @@ $(x);
 $('b');
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpSSA_x = $('c');
+  const tmpClusterSSA_x = $('c');
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
     $('123');
   } else {
   }
-  $(tmpSSA_x);
+  $(tmpClusterSSA_x);
 } else {
 }
 `````

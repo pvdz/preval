@@ -52,17 +52,17 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-let tmpSSA_a = delete tmpDeleteObj.y;
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
+let tmpClusterSSA_a = delete tmpDeleteObj.y;
+let tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
   const tmpDeleteObj$1 = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
-  tmpSSA_a = tmpNestedComplexRhs;
+  tmpClusterSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

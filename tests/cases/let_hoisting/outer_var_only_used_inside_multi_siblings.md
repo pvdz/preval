@@ -80,8 +80,8 @@ if ($) {
 if ($) {
   const tmpssa2_x = $(1, 'a');
   $(tmpssa2_x, 'b');
-  const tmpSSA_tmpssa2_x = $(2, 'c');
-  $(tmpSSA_tmpssa2_x, 'd');
+  const tmpClusterSSA_tmpssa2_x = $(2, 'c');
+  $(tmpClusterSSA_tmpssa2_x, 'd');
 } else {
 }
 `````

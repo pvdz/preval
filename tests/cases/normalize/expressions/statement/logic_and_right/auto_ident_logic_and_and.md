@@ -57,11 +57,11 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpCalleeParam = $(1);
-  const tmpSSA_tmpIfTest = $(tmpCalleeParam);
-  if (tmpSSA_tmpIfTest) {
+  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
+  if (tmpClusterSSA_tmpIfTest) {
     const tmpCalleeParam$1 = $(1);
-    const tmpSSA_tmpIfTest$1 = $(tmpCalleeParam$1);
-    if (tmpSSA_tmpIfTest$1) {
+    const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$1);
+    if (tmpClusterSSA_tmpIfTest$1) {
       const tmpCalleeParam$3 = $(2);
       $(tmpCalleeParam$3);
     } else {

@@ -52,14 +52,14 @@ $(a);
 const b = { $: $ };
 let tmpCalleeParam = undefined;
 const tmpCallObj = $(b);
-const tmpSSA_a = tmpCallObj.$(1);
-if (tmpSSA_a) {
+const tmpClusterSSA_a = tmpCallObj.$(1);
+if (tmpClusterSSA_a) {
   tmpCalleeParam = $(100);
 } else {
   tmpCalleeParam = $(200);
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

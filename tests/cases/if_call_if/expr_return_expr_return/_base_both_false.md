@@ -105,11 +105,11 @@ if ($) {
 if ($) {
   const x = $(0);
   if (x) {
-    const tmpSSA_x = $(2);
-    if (tmpSSA_x) {
-      $('inner if', tmpSSA_x);
+    const tmpClusterSSA_x = $(2);
+    if (tmpClusterSSA_x) {
+      $('inner if', tmpClusterSSA_x);
     } else {
-      $('inner else', tmpSSA_x);
+      $('inner else', tmpClusterSSA_x);
     }
   } else {
     $('inner else', false);

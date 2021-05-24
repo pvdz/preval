@@ -57,9 +57,9 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallCompProp = $('$');
-const tmpSSA_a = b[tmpCallCompProp](1);
-$(tmpSSA_a);
-$(tmpSSA_a);
+const tmpClusterSSA_a = b[tmpCallCompProp](1);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

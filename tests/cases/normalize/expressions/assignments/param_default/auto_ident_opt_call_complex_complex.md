@@ -79,9 +79,9 @@ if (tmpIfTest$1) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   tmpNestedComplexRhs = tmpChainElementCall$1;
 }
-const tmpSSA_a = tmpNestedComplexRhs;
+const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

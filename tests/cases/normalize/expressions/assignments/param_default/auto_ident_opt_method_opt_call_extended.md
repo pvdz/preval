@@ -95,9 +95,9 @@ if (tmpIfTest$1) {
     tmpNestedComplexRhs = tmpChainElementCall;
   }
 }
-const tmpSSA_a = tmpNestedComplexRhs;
+const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

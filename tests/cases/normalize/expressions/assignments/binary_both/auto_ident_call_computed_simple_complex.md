@@ -53,10 +53,10 @@ const b = { $: $ };
 const tmpCallCompProp = $('$');
 const a = b[tmpCallCompProp](1);
 const tmpCallCompProp$1 = $('$');
-const tmpSSA_a = b[tmpCallCompProp$1](1);
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = b[tmpCallCompProp$1](1);
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

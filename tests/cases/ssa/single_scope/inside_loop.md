@@ -62,8 +62,8 @@ let styleName$5 = undefined;
 for (styleName$5 in tmpForInDeclRhs) {
   const checkme = $(1);
   if (checkme) {
-    const tmpSSA_checkme = $(2);
-    if (tmpSSA_checkme) {
+    const tmpClusterSSA_checkme = $(2);
+    if (tmpClusterSSA_checkme) {
       $(3);
     } else {
     }

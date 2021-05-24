@@ -64,20 +64,20 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-let tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
+let tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
   $(1);
   $(2);
   const tmpDeleteCompObj$1 = $(arg);
   const tmpDeleteCompProp$1 = $('y');
   const tmpNestedComplexRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-  tmpSSA_a = tmpNestedComplexRhs;
+  tmpClusterSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

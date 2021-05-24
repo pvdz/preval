@@ -55,9 +55,9 @@ const obj = {};
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 obj[tmpNestedAssignObjPatternRhs];
-$(a, tmpSSA_b);
+$(a, tmpClusterSSA_b);
 `````
 
 ## Globals

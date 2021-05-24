@@ -73,18 +73,18 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-let tmpSSA_a = $(tmpCalleeParam);
-if (tmpSSA_a) {
+let tmpClusterSSA_a = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
 } else {
   const tmpCalleeParam$1 = $(1);
-  tmpSSA_a = $(tmpCalleeParam$1);
-  if (tmpSSA_a) {
+  tmpClusterSSA_a = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_a) {
     const tmpCalleeParam$3 = $(2);
-    tmpSSA_a = $(tmpCalleeParam$3);
+    tmpClusterSSA_a = $(tmpCalleeParam$3);
   } else {
   }
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

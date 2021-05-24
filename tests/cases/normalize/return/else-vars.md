@@ -70,8 +70,8 @@ const f = function () {
     $(100);
     return undefined;
   } else {
-    const tmpSSA_x = $(2, 'b');
-    return tmpSSA_x;
+    const tmpClusterSSA_x = $(2, 'b');
+    return tmpClusterSSA_x;
   }
 };
 const tmpCalleeParam = f();

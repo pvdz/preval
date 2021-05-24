@@ -91,8 +91,8 @@ if (tmpIfTest$7) {
 const tmpCalleeParam = [1, 2];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...arrAssignPatternRhs];
-const tmpSSA_a = arrPatternSplat[0];
-$(tmpSSA_a);
+const tmpClusterSSA_a = arrPatternSplat[0];
+$(tmpClusterSSA_a);
 $('fail1');
 $('fail2');
 `````

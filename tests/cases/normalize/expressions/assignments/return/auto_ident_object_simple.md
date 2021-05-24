@@ -49,9 +49,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = { x: 1, y: 2, z: 3 };
-$(tmpSSA_a);
-$(tmpSSA_a);
+const tmpClusterSSA_a = { x: 1, y: 2, z: 3 };
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

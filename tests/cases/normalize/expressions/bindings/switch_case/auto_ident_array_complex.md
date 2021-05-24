@@ -63,8 +63,8 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpSSA_a = [tmpArrElement, 2, tmpArrElement$3];
-$(tmpSSA_a);
+const tmpClusterSSA_a = [tmpArrElement, 2, tmpArrElement$3];
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

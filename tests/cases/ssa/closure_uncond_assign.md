@@ -82,7 +82,7 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_x = function () {
+const tmpClusterSSA_x = function () {
   debugger;
   return undefined;
 };
@@ -90,8 +90,8 @@ const f = function () {
   debugger;
   if ($) {
     $();
-    $(tmpSSA_x);
-    return tmpSSA_x;
+    $(tmpClusterSSA_x);
+    return tmpClusterSSA_x;
   } else {
     return undefined;
   }

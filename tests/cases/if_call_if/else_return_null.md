@@ -112,8 +112,8 @@ const f = function () {
   debugger;
   const test = $(3);
   if (test) {
-    const tmpSSA_test = $(1);
-    if (tmpSSA_test) {
+    const tmpClusterSSA_test = $(1);
+    if (tmpClusterSSA_test) {
       $(2);
       $(4);
       return undefined;

@@ -53,17 +53,17 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-let tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
-let tmpSSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+let tmpClusterSSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
 } else {
   const tmpCalleeParam$3 = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
-  tmpSSA_a = tmpNestedAssignObjPatternRhs$1.a;
-  tmpSSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
+  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+  tmpClusterSSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
 }
-$(tmpSSA_tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_tmpCalleeParam);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

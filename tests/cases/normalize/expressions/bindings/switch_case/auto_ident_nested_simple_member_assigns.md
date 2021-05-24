@@ -81,14 +81,14 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_b = { x: 1 };
-tmpSSA_b.x = 3;
-tmpSSA_b.x = 3;
-tmpSSA_b.x = 3;
-tmpSSA_b.x = 3;
-tmpSSA_b.x = 3;
-tmpSSA_b.x = 3;
-$(3, tmpSSA_b, 3);
+const tmpClusterSSA_b = { x: 1 };
+tmpClusterSSA_b.x = 3;
+tmpClusterSSA_b.x = 3;
+tmpClusterSSA_b.x = 3;
+tmpClusterSSA_b.x = 3;
+tmpClusterSSA_b.x = 3;
+tmpClusterSSA_b.x = 3;
+$(3, tmpClusterSSA_b, 3);
 `````
 
 ## Globals

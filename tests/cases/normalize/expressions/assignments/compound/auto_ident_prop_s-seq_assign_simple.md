@@ -50,9 +50,9 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 b.c = 2;
-const tmpSSA_a = a * 2;
-$(tmpSSA_a);
-$(tmpSSA_a, b);
+const tmpClusterSSA_a = a * 2;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

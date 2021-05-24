@@ -50,12 +50,12 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(1);
 const tmpBinBothRhs = { b: tmpObjLitVal };
-const tmpSSA_a = a * tmpBinBothRhs;
-$(tmpSSA_a);
-const tmpAssignMemLhsObj = $(tmpSSA_a);
+const tmpClusterSSA_a = a * tmpBinBothRhs;
+$(tmpClusterSSA_a);
+const tmpAssignMemLhsObj = $(tmpClusterSSA_a);
 const tmpAssignMemRhs = $(2);
 tmpAssignMemLhsObj.b = tmpAssignMemRhs;
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

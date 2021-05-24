@@ -73,9 +73,9 @@ if ($) {
 if ($) {
   $(1);
   if ($) {
-    const tmpSSA_x = $(2);
-    $(tmpSSA_x);
-    $(tmpSSA_x);
+    const tmpClusterSSA_x = $(2);
+    $(tmpClusterSSA_x);
+    $(tmpClusterSSA_x);
   } else {
   }
 } else {

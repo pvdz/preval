@@ -50,10 +50,10 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const tmpSSA_a = delete tmpDeleteObj.y;
-const tmpCalleeParam = { ...tmpSSA_a };
+const tmpClusterSSA_a = delete tmpDeleteObj.y;
+const tmpCalleeParam = { ...tmpClusterSSA_a };
 $(tmpCalleeParam);
-$(tmpSSA_a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

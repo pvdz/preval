@@ -65,14 +65,14 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpSSA_a = undefined;
+let tmpClusterSSA_a = undefined;
 const tmpIfTest$3 = $ == null;
 if (tmpIfTest$3) {
 } else {
   const tmpChainElementCall = $(1);
-  tmpSSA_a = tmpChainElementCall;
+  tmpClusterSSA_a = tmpChainElementCall;
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

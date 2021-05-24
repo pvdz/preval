@@ -51,12 +51,12 @@ $(a);
 const tmpObjLitVal = $(1);
 const a = { b: tmpObjLitVal };
 const tmpObjLitVal$1 = $(1);
-const tmpSSA_a = { b: tmpObjLitVal$1 };
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = { b: tmpObjLitVal$1 };
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 const tmpAssignMemRhs = $(2);
-tmpSSA_a.b = tmpAssignMemRhs;
-$(tmpSSA_a);
+tmpClusterSSA_a.b = tmpAssignMemRhs;
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

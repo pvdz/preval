@@ -89,8 +89,8 @@ if (tmpIfTest$7) {
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const tmpSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-$(tmpSSA_a);
+const tmpClusterSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+$(tmpClusterSSA_a);
 $('fail1');
 $('fail2');
 `````

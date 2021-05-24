@@ -76,8 +76,8 @@ const condition = $(true);
 if (condition) {
   $('a');
 } else {
-  const tmpSSA_tmpIfelseifelse = $(false);
-  if (tmpSSA_tmpIfelseifelse) {
+  const tmpClusterSSA_tmpIfelseifelse = $(false);
+  if (tmpClusterSSA_tmpIfelseifelse) {
     $('a');
   } else {
     $('b');

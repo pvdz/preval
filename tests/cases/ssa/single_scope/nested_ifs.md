@@ -77,10 +77,10 @@ const f = function ($$0) {
   const y = $$0;
   debugger;
   if (y) {
-    let tmpSSA_n = 0;
+    let tmpClusterSSA_n = 0;
     while (true) {
       if ($) {
-        tmpSSA_n = tmpSSA_n + 1;
+        tmpClusterSSA_n = tmpClusterSSA_n + 1;
         break;
       } else {
       }

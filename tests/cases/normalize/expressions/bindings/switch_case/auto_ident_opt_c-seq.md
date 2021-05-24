@@ -71,16 +71,16 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_b = { x: 1 };
-let tmpSSA_a = undefined;
-const tmpChainRootProp = $(tmpSSA_b);
+const tmpClusterSSA_b = { x: 1 };
+let tmpClusterSSA_a = undefined;
+const tmpChainRootProp = $(tmpClusterSSA_b);
 const tmpIfTest$3 = tmpChainRootProp == null;
 if (tmpIfTest$3) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpSSA_a = tmpChainElementObject;
+  tmpClusterSSA_a = tmpChainElementObject;
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

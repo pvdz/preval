@@ -104,8 +104,8 @@ const f = function ($$0) {
   const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
   const tmpIfTest$3 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$3) {
-    const tmpSSA_x = $('fail');
-    return tmpSSA_x;
+    const tmpClusterSSA_x = $('fail');
+    return tmpClusterSSA_x;
   } else {
     return arrPatternBeforeDefault$1;
   }

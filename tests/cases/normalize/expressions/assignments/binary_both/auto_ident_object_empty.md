@@ -42,10 +42,10 @@ $(a);
 
 `````js filename=intro
 const a = {};
-const tmpSSA_a = {};
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = {};
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

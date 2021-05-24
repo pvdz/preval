@@ -56,11 +56,11 @@ $(10);
 $(20);
 const arrAssignPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...arrAssignPatternRhs];
-const tmpSSA_a = arrPatternSplat$1[0];
+const tmpClusterSSA_a = arrPatternSplat$1[0];
 while (true) {
   $(1);
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

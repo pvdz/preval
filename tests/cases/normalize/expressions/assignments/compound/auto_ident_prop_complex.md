@@ -49,9 +49,9 @@ const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpBinBothRhs = tmpCompObj.c;
-const tmpSSA_a = a * tmpBinBothRhs;
-$(tmpSSA_a);
-$(tmpSSA_a, b);
+const tmpClusterSSA_a = a * tmpBinBothRhs;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

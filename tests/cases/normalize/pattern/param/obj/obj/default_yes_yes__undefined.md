@@ -77,8 +77,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const tmpObjLitVal = { y: 'pass2' };
 const tmpCalleeParam = { x: tmpObjLitVal };
-const tmpSSA_bindingPatternObjRoot = $(tmpCalleeParam);
-const objPatternBeforeDefault = tmpSSA_bindingPatternObjRoot.x;
+const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
+const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {

@@ -58,8 +58,8 @@ const f = function () {
   debugger;
   return undefined;
 };
-const tmpSSA_tmpCalleeParam = $(100);
-$(tmpSSA_tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam = $(100);
+$(tmpClusterSSA_tmpCalleeParam);
 $(f);
 `````
 

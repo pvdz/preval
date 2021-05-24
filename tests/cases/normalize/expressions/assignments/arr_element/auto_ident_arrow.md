@@ -64,13 +64,13 @@ const a = function () {
   debugger;
   return undefined;
 };
-const tmpSSA_a = function () {
+const tmpClusterSSA_a = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

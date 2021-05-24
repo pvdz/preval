@@ -50,10 +50,10 @@ const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
-const tmpSSA_a = new tmpNewCallee(1);
-const tmpCalleeParam = `before  ${tmpSSA_a}  after`;
+const tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpCalleeParam = `before  ${tmpClusterSSA_a}  after`;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

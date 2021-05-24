@@ -47,9 +47,9 @@ $(a, arg);
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
 const tmpBinBothRhs = delete arg.y;
-const tmpSSA_a = a * tmpBinBothRhs;
-$(tmpSSA_a);
-$(tmpSSA_a, arg);
+const tmpClusterSSA_a = a * tmpBinBothRhs;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

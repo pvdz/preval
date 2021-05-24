@@ -72,12 +72,12 @@ const f = function () {
   debugger;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSSA_x = $(1, 'prevent optim');
-    return tmpSSA_x;
+    const tmpClusterSSA_x = $(1, 'prevent optim');
+    return tmpClusterSSA_x;
   } else {
-    const tmpSSA_x$1 = $(2, 'prevent optim');
+    const tmpClusterSSA_x$1 = $(2, 'prevent optim');
     $('prevent return hoisting');
-    return tmpSSA_x$1;
+    return tmpClusterSSA_x$1;
   }
 };
 const tmpCalleeParam = f();

@@ -69,8 +69,8 @@ while (true) {
     if (tmpIfTest$1) {
     } else {
       const tmpCalleeParam$1 = $(1);
-      const tmpSSA_tmpIfTest$1 = $(tmpCalleeParam$1);
-      if (tmpSSA_tmpIfTest$1) {
+      const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$1);
+      if (tmpClusterSSA_tmpIfTest$1) {
       } else {
         const tmpCalleeParam$3 = $(2);
         $(tmpCalleeParam$3);

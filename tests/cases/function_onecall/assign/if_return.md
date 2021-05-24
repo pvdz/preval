@@ -96,9 +96,9 @@ const f = function () {
 const x = $(100, 'init');
 const tmpCalleeParam = $(x, 'closure-return');
 $(tmpCalleeParam, 'closure-global1');
-const tmpSSA_x = f();
-$(tmpSSA_x, 'x-global');
-const tmpCalleeParam$3 = $(tmpSSA_x, 'closure-return');
+const tmpClusterSSA_x = f();
+$(tmpClusterSSA_x, 'x-global');
+const tmpCalleeParam$3 = $(tmpClusterSSA_x, 'closure-return');
 $(tmpCalleeParam$3, 'closure-global2');
 `````
 

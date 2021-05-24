@@ -50,11 +50,11 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-const tmpSSA_a = tmpCallObj.$(1);
+const tmpClusterSSA_a = tmpCallObj.$(1);
 while (true) {
   $(1);
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

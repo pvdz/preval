@@ -108,9 +108,9 @@ if ($) {
 `````js filename=intro
 if ($) {
   const x = $(5);
-  const tmpSSA_x = x + x;
+  const tmpClusterSSA_x = x + x;
   if ($) {
-    $(tmpSSA_x);
+    $(tmpClusterSSA_x);
   } else {
   }
 } else {

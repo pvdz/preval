@@ -60,8 +60,8 @@ if (tmpIfTest$1) {
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpSSA_a = +tmpUnaryArg;
-$(tmpSSA_a);
+const tmpClusterSSA_a = +tmpUnaryArg;
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

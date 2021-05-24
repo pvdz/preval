@@ -64,8 +64,8 @@ const f = function () {
   const tmpReturnArg = $(tmpCalleeParam);
   if (tmpReturnArg) {
     const tmpCalleeParam$1 = $(2);
-    const tmpSSA_tmpReturnArg = $(tmpCalleeParam$1);
-    return tmpSSA_tmpReturnArg;
+    const tmpClusterSSA_tmpReturnArg = $(tmpCalleeParam$1);
+    return tmpClusterSSA_tmpReturnArg;
   } else {
     return tmpReturnArg;
   }

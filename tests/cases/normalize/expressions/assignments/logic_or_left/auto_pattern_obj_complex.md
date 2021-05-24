@@ -49,14 +49,14 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-const tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
-let tmpSSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+let tmpClusterSSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
 } else {
-  tmpSSA_tmpCalleeParam = $(100);
+  tmpClusterSSA_tmpCalleeParam = $(100);
 }
-$(tmpSSA_tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_tmpCalleeParam);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -49,11 +49,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSSA_a = new $(1);
+const tmpClusterSSA_a = new $(1);
 while (true) {
   $(1);
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -113,10 +113,10 @@ if ($) {
 if ($) {
   const x = $(5);
   $(x);
-  const tmpSSA_x = $(10);
-  const tmpSSA_x$1 = tmpSSA_x + 1;
+  const tmpClusterSSA_x = $(10);
+  const tmpClusterSSA_x$1 = tmpClusterSSA_x + 1;
   if ($) {
-    $(tmpSSA_x$1);
+    $(tmpClusterSSA_x$1);
   } else {
   }
 } else {

@@ -49,14 +49,14 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-const tmpSSA_a = tmpCallObj.$(1);
-let tmpCalleeParam = tmpSSA_a;
-if (tmpSSA_a) {
+const tmpClusterSSA_a = tmpCallObj.$(1);
+let tmpCalleeParam = tmpClusterSSA_a;
+if (tmpClusterSSA_a) {
   tmpCalleeParam = $(100);
 } else {
 }
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

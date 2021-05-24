@@ -52,10 +52,10 @@ const tmpObjLitVal$3 = $(3);
 const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 const tmpObjLitVal$5 = $(1);
 const tmpObjLitVal$9 = $(3);
-const tmpSSA_a = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = { x: tmpObjLitVal$5, y: 2, z: tmpObjLitVal$9 };
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

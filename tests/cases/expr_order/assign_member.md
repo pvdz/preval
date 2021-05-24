@@ -38,8 +38,8 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 
 `````js filename=intro
 const a = {};
-const tmpSSA_a = $();
-a.foo = tmpSSA_a;
+const tmpClusterSSA_a = $();
+a.foo = tmpClusterSSA_a;
 `````
 
 ## Globals

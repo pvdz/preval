@@ -63,10 +63,10 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_x = arrPatternSplat[0];
-const tmpSSA_y = arrPatternSplat[1];
+const tmpClusterSSA_x = arrPatternSplat[0];
+const tmpClusterSSA_y = arrPatternSplat[1];
 $(100);
-$(a, tmpSSA_x, tmpSSA_y);
+$(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
 ## Globals

@@ -52,14 +52,14 @@ $(x, y, z);
 `````js filename=intro
 const arrAssignPatternRhs = [1, 2, 3];
 const arrPatternSplat = [...arrAssignPatternRhs];
-const tmpSSA_x = arrPatternSplat[0];
-const tmpSSA_y = arrPatternSplat[1];
-$(tmpSSA_x, tmpSSA_y);
+const tmpClusterSSA_x = arrPatternSplat[0];
+const tmpClusterSSA_y = arrPatternSplat[1];
+$(tmpClusterSSA_x, tmpClusterSSA_y);
 const arrAssignPatternRhs$1 = [4, 5, 6];
 const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-const tmpSSA_x$1 = arrPatternSplat$1[0];
-const tmpSSA_z = arrPatternSplat$1[1];
-$(tmpSSA_x$1, tmpSSA_y, tmpSSA_z);
+const tmpClusterSSA_x$1 = arrPatternSplat$1[0];
+const tmpClusterSSA_z = arrPatternSplat$1[1];
+$(tmpClusterSSA_x$1, tmpClusterSSA_y, tmpClusterSSA_z);
 `````
 
 ## Globals

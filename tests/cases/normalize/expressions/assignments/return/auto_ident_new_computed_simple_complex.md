@@ -59,9 +59,9 @@ $(a);
 const b = { $: $ };
 const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
-const tmpSSA_a = new tmpNewCallee(1);
-$(tmpSSA_a);
-$(tmpSSA_a);
+const tmpClusterSSA_a = new tmpNewCallee(1);
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

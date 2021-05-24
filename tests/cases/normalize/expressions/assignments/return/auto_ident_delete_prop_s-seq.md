@@ -59,9 +59,9 @@ $(a, arg);
 const arg = { y: 1 };
 $(1);
 $(2);
-const tmpSSA_a = delete arg.y;
-$(tmpSSA_a);
-$(tmpSSA_a, arg);
+const tmpClusterSSA_a = delete arg.y;
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

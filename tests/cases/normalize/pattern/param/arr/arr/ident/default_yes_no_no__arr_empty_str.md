@@ -70,8 +70,8 @@ const f = function ($$0) {
   const arrPatternBeforeDefault = arrPatternSplat$1[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpSSA_x = $('pass');
-    return tmpSSA_x;
+    const tmpClusterSSA_x = $('pass');
+    return tmpClusterSSA_x;
   } else {
     return arrPatternBeforeDefault;
   }

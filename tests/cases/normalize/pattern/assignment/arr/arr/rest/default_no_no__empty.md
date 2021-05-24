@@ -45,8 +45,8 @@ const arrAssignPatternRhs = [tmpArrElement];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-const tmpSSA_x = arrPatternSplat$1.slice(0);
-$(tmpSSA_x);
+const tmpClusterSSA_x = arrPatternSplat$1.slice(0);
+$(tmpClusterSSA_x);
 `````
 
 ## Globals

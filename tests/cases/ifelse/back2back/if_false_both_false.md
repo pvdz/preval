@@ -61,11 +61,11 @@ if (x) {
 const x = $(false, 'a');
 if (x) {
   $(x, 'pass');
-  const tmpSSA_x = $(false, 'b');
-  if (tmpSSA_x) {
-    $(tmpSSA_x, 'one');
+  const tmpClusterSSA_x = $(false, 'b');
+  if (tmpClusterSSA_x) {
+    $(tmpClusterSSA_x, 'one');
   } else {
-    $(tmpSSA_x, 'two');
+    $(tmpClusterSSA_x, 'two');
   }
 } else {
   $(x, 'two');

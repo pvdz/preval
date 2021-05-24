@@ -99,17 +99,17 @@ if (tmpIfTest$9) {
 ## Output
 
 `````js filename=intro
-const tmpSSA_b = { x: 1 };
-let tmpSSA_a = undefined;
-const tmpChainElementCall = $(tmpSSA_b);
+const tmpClusterSSA_b = { x: 1 };
+let tmpClusterSSA_a = undefined;
+const tmpChainElementCall = $(tmpClusterSSA_b);
 const tmpIfTest$5 = tmpChainElementCall == null;
 if (tmpIfTest$5) {
 } else {
   const tmpChainRootComputed = $('x');
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  tmpSSA_a = tmpChainElementObject;
+  tmpClusterSSA_a = tmpChainElementObject;
 }
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 $('fail1');
 $('fail2');
 `````

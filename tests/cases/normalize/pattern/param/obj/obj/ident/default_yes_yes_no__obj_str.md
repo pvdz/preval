@@ -83,8 +83,8 @@ const f = function ($$0) {
   const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
-    const tmpSSA_y = $('pass');
-    return tmpSSA_y;
+    const tmpClusterSSA_y = $('pass');
+    return tmpClusterSSA_y;
   } else {
     return objPatternBeforeDefault$1;
   }

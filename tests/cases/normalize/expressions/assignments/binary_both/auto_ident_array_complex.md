@@ -52,10 +52,10 @@ const tmpArrElement$3 = $(3);
 const a = [tmpArrElement, 2, tmpArrElement$3];
 const tmpArrElement$5 = $(1);
 const tmpArrElement$9 = $(3);
-const tmpSSA_a = [tmpArrElement$5, 2, tmpArrElement$9];
-const tmpCalleeParam = a + tmpSSA_a;
+const tmpClusterSSA_a = [tmpArrElement$5, 2, tmpArrElement$9];
+const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
-$(tmpSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

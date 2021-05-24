@@ -59,12 +59,12 @@ const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 while (true) {
   $(tmpNestedAssignObjPatternRhs);
   $(1);
 }
-$(a, tmpSSA_b);
+$(a, tmpClusterSSA_b);
 `````
 
 ## Globals

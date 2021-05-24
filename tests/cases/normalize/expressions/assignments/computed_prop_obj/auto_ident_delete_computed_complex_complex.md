@@ -49,9 +49,9 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
-const tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-tmpSSA_a.a;
-$(tmpSSA_a, arg);
+const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+tmpClusterSSA_a.a;
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

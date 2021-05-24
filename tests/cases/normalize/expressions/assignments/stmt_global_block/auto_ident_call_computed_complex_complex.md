@@ -48,8 +48,8 @@ $(a);
 const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
-const tmpSSA_a = tmpCallCompObj[tmpCallCompProp](1);
-$(tmpSSA_a);
+const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

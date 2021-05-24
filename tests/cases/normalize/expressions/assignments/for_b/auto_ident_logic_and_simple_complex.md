@@ -55,7 +55,6 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  a = 1;
   const tmpCalleeParam = $(1);
   a = $(tmpCalleeParam);
   if (a) {

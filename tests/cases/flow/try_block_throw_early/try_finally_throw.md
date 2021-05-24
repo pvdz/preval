@@ -1,8 +1,8 @@
 # Preval test case
 
-# try_catch_throw.md
+# try_finally_throw.md
 
-> Flow > Try catch throw
+> Flow > Try block throw early > Try finally throw
 >
 > The throw may leave the binding mutated anyways
 
@@ -14,10 +14,12 @@
 function f() {
   let x = 'fail';
   try {
+    fail_early
     x = 'pass';
     throw 'yes';
-  } catch {
-    $('caught');
+  } finally {
+    $('still throws');
+    $(x); // but we can observe x here
   }
   $(x);
 }
@@ -31,10 +33,12 @@ let f = function () {
   debugger;
   let x = 'fail';
   try {
+    fail_early;
     x = 'pass';
     throw 'yes';
-  } catch {
-    $('caught');
+  } finally {
+    $('still throws');
+    $(x);
   }
   $(x);
 };
@@ -48,10 +52,12 @@ let f = function () {
   debugger;
   let x = 'fail';
   try {
+    fail_early;
     x = 'pass';
     throw 'yes';
-  } catch {
-    $('caught');
+  } finally {
+    $('still throws');
+    $(x);
   }
   $(x);
   return undefined;
@@ -64,24 +70,28 @@ f();
 `````js filename=intro
 let x = 'fail';
 try {
+  fail_early;
   x = 'pass';
   throw 'yes';
-} catch {
-  $('caught');
+} finally {
+  $('still throws');
+  $(x);
 }
 $(x);
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+fail_early
 
 ## Result
 
 Should call `$` with:
- - 1: 'caught'
- - 2: 'pass'
- - eval returned: undefined
+ - 1: 'still throws'
+ - 2: 'fail'
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

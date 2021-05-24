@@ -100,8 +100,8 @@ const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpSSA_b$1 = arrPatternSplat[0];
-$(tmpNestedAssignArrPatternRhs, tmpSSA_b$1);
+const tmpSSA_b = arrPatternSplat[0];
+$(tmpNestedAssignArrPatternRhs, tmpSSA_b);
 $('fail1');
 $('fail2');
 `````

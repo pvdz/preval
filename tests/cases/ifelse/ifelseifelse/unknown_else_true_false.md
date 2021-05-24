@@ -76,8 +76,8 @@ const condition = $(true);
 if (condition) {
   $('a');
 } else {
-  const tmpSSA_tmpIfelseifelse$1 = $(false);
-  if (tmpSSA_tmpIfelseifelse$1) {
+  const tmpSSA_tmpIfelseifelse = $(false);
+  if (tmpSSA_tmpIfelseifelse) {
     $('a');
   } else {
     $('b');

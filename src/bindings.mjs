@@ -501,6 +501,7 @@ export function createFreshLabel(name, fdata) {
 
 export function createReadRef(obj) {
   const {
+    name, // The var name, unique in this scope. Owner meta should have the same name.
     kind,
     parentNode, // parent of the node
     parentProp,
@@ -537,6 +538,7 @@ export function createReadRef(obj) {
   ASSERT(funcChain);
 
   return {
+    name,
     action: 'read',
     kind, // "export" | "read"
     parentNode, // parent of the node
@@ -559,10 +561,12 @@ export function createReadRef(obj) {
     funcChain,
     innerLoop,
     prevWrite,
+    reaches: new Set, // Set<Write>. All writes this read can "reach" (might "observe", syntactically speaking)
   };
 }
 export function createWriteRef(obj) {
   const {
+    name, // The var name, unique in this scope. Owner meta should have the same name.
     kind, // var, assign, for, ..?
     parentNode, // parent of the node
     parentProp,
@@ -597,6 +601,7 @@ export function createWriteRef(obj) {
   ASSERT(funcChain);
 
   return {
+    name,
     action: 'write',
     kind,
     parentNode,
@@ -618,6 +623,7 @@ export function createWriteRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
+    reachedBy: new Set, // Set<Read>. All reads that can "reach" this write (might "observe", syntactically speaking)
   };
 }
 

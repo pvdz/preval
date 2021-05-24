@@ -1,0 +1,102 @@
+# Preval test case
+
+# try_return_no_throw.md
+
+> Last write analysis > Try return no throw
+>
+> Last write analysis should pick up on the return and assume that the prior write can not be observed later.
+
+#TODO
+
+## Input
+
+`````js filename=intro
+function f() {
+  let x = 1;
+  try {
+    x = $(2, 'prevent optim');
+    return x;
+  } finally {
+    x = $(3, 'prevent optim');
+  }
+  
+  $('prevent return hoisting');
+  return x;
+}
+$(f());
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let x = 1;
+  try {
+    x = $(2, 'prevent optim');
+    return x;
+  } finally {
+    x = $(3, 'prevent optim');
+  }
+  $('prevent return hoisting');
+  return x;
+};
+$(f());
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  let x = 1;
+  try {
+    x = $(2, 'prevent optim');
+    return x;
+  } finally {
+    x = $(3, 'prevent optim');
+  }
+  $('prevent return hoisting');
+  return x;
+};
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  let x = 1;
+  try {
+    const tmpSSA_x = $(2, 'prevent optim');
+    return tmpSSA_x;
+  } finally {
+    x = $(3, 'prevent optim');
+  }
+  $('prevent return hoisting');
+  return x;
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 2, 'prevent optim'
+ - 2: 3, 'prevent optim'
+ - 3: 2
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

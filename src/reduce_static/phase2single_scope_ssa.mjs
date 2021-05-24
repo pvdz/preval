@@ -11,8 +11,10 @@ export function singleScopeSSA(fdata) {
 function _singleScopeSSA(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
+  let changed = 0;
+
   vlog('First going to try to SSA bindings that are used in a single scope');
-  let queue = [];
+
   // Shallow clone to prevent mutations to the registry from breaking because their read/write refs did not go through phase1
   new Map(fdata.globallyUniqueNamingRegistry).forEach((meta, name) => {
     if (meta.isBuiltin) return;
@@ -86,201 +88,162 @@ function _singleScopeSSA(fdata) {
 
     const declFirst = rwOrder[0] === varDeclWrite;
     vlog('declFirst:', declFirst);
-
-    vlog('Walking through all', rwOrder.length, 'refs for `' + name + '`');
-    let bindingRef;
-    for (let i = 0; i < rwOrder.length; ++i) {
-      const ref = rwOrder[i];
-      vgroup('-', i + 1, '/', rwOrder.length, ':', ref.action, ':', ref.kind);
-      vlog('- blockChain:', ref.blockChain);
-      if (ref === varDeclWrite) {
-        vlog('- This is the decl');
-        // There should only be one binding for this name so this is the one
-        bindingRef = ref;
-      } else if (!bindingRef) {
-        // Since this is a flat scope and we've eliminated edge cases like switch-defaults jumping back up
-        // we must now check whether this read and decl were inside a loop. Otherwise this must be a TDZ.
-        vlog('- Saw a ref before the decl. Potential TDZ');
-      } else if (ref.innerLoop !== bindingRef.innerLoop) {
-        // A write inside a loop to an outer binding may be observed at the start of the next iteration
-        // TODO: we can improve this case and not ignore some low hanging fruit here
-        vlog('- This ref is in a different loop from the binding');
-      } else if (ref.action === 'read') {
-        // do nothing?
-        vlog('- Ignoring read');
-      } else if (ref.action === 'write') {
-        if (ref.kind === 'assign') {
-          processAssign(meta, name, ref, i);
-        } else {
-          // We skip the var decl ref so this must be try/catch or for-x or something. Ignore those for now.
-          vlog('- Ignoring "other" write');
-        }
-      } else {
-        ASSERT(false);
-      }
-      vgroupEnd();
+    // A single-scope constant where the decl is not the first in source order must lead to a TDZ...
+    if (!declFirst) {
+      vlog('Decl is not first. This binding is single scope. This must lead to a TDZ error. Loops dont save you ehre.');
+      return;
     }
 
-    function processAssign(meta, name, ref, i) {
-      let passed = true;
+    const colors = new Map(); // Map<number, Set<Ref>>
 
-      if (ref.innerLoop && ref.innerLoop !== varDeclWrite.innerLoop) {
-        // This is tricky but we can still do it when
-        // - There is no prior read in this or any parent loop (prior sibling loop is okay)
-        // - All future reads can reach this write (implies they are nested in the same loop)
-        // - Any parent loop up to the lex scope that has the var decl, or the first func boundary, has no read
-        vlog('  Write is inside a loop and not in the same loop as the decl. Checking if any prior ref occurs in a loop.');
-        for (let k = 0; k < i && passed; ++k) {
-          const refk = rwOrder[k];
-          vlog('  -', k, ':', refk.action, refk.kind, refk.innerLoop);
-          passed = refk === varDeclWrite || !refk.innerLoop;
-        }
-        if (passed) {
-          vlog('All prior refs are not in a loop. Ok.');
+    vgroup('Walking the writes now...');
+    // For every write, determine whether all reads can only read that write
+    meta.writes.forEach((write) => {
+      vlog('- `' + write.name + '` ::', write.action + ':' + write.kind, ', has', write.reachedBy.size, 'reads');
+      source(write.blockBody[write.blockIndex]);
+
+      const nextColor = colors.size;
+      write.color = nextColor;
+      vlog('This write gets color', write.color);
+      let colorSet = new Set([write]);
+      colors.set(write.color, colorSet);
+
+      vgroup('Painting write.reachedBy,', write.reachedBy.size, 'nodes');
+      write.reachedBy.forEach((ref) => {
+        vlog('-ref');
+        const rc = ref.color;
+        if (rc === nextColor) {
+          vlog('Ref already has this color. No need to paint it.');
+        } else if (ref.color >= 0) {
+          const oldSet = colors.get(rc);
+          ASSERT(oldSet);
+          vlog('- Ref has color', rc, '! Changing', oldSet.size, 'refs to', nextColor);
+          vlog('Marking', rc, 'as deleted...');
+          colors.set(rc, null); // prevent further use. Do not delete because we rely on colors.size.
+          // All colors in the `oldSet` must have .color=rc (that's the point)
+          oldSet.forEach((ref) => {
+            ASSERT(ref.color === rc);
+            ref.color = nextColor;
+            colorSet.add(ref);
+          });
+          vlog('New set now has', colorSet.size, 'refs');
         } else {
-          vlog('Found at least one read in the loop before the write in the loop. Bailing');
+          vlog('Ref had no color yet');
+          ref.color = nextColor;
+          colorSet.add(ref);
+        }
+      });
+      vgroupEnd();
+      vlog('Color set', nextColor, 'finally contains', colorSet.size, 'refs');
+    });
+    vgroupEnd();
+
+    // How many colors do we have? (+debug them in groups)
+    let uniqueColors = 0;
+    colors.forEach((s, c) => {
+      if (s !== null) {
+        ++uniqueColors;
+
+        // Print the clusters (for now, will probably want to get rid of this)
+        vgroup(c, ':');
+        [...s].sort((a, b) => (+a.node.$p.pid < +b.node.$p.pid ? -1 : +a.node.$p.pid > +b.node.$p.pid ? 1 : 0)).forEach((r) => {
+          source(r.blockBody[r.blockIndex])
+        });
+        vgroupEnd();
+      }
+    });
+
+    // If there is more than one cluster then they should all get their own name since
+    // neither write nor read from one cluster can observe any write or read from another
+    // cluster. As per the definition of a cluster. Need a good heuristic for new vars.
+    // Have to be careful of the `let x; if ($) x=1; else x=2` case.
+
+    if (uniqueColors > 1) {
+      vgroup('The binding had multiple colors. Making sure each color gets a unique name');
+      colors.forEach((refs, color) => {
+        if (refs === null) return;
+
+        vlog('- Color', color, ', refs:', refs.size);
+
+        if (refs.has(varDeclWrite)) {
+          vlog('  - Contains the var decl. No need to change this group');
           return;
         }
-      } else {
-        vlog('Assignment is not inside a loop');
-      }
 
-      // Check if all possible reads that may still be invoked from this point in the code must invariably
-      // reach this write. In case of loops this includes earlier reads inside that loop. This also
-      // includes reads that may happen after the current block, if the binding was declared before it.
-
-      vgroup('Searching through remaining refs to find out whether all future reads can reach the write');
-
-      const eligible = [];
-      for (let j = i + 1; j < rwOrder.length && passed; ++j) {
-        const r2 = rwOrder[j];
-        vlog('--', j + 1, '/', rwOrder.length, ':', r2.action, ':', r2.kind);
-        vlog('  - blockChain:', r2.blockChain);
-        //if (r2.innerLoop && r2.action === 'write') {
-        // TODO: come up with the test case that requires this check. I'm not sure if we actually need it and it helps in some cases to achieve SSA.
-        //  // The write inside can only be improved if it appears in the loop before all other future refs
-        //  // and if all future refs can reach the write. But let's not conflate that task here.
-        //  // `let x = 1; while (true) { x = 2; $(x); }`
-        //  vlog('A write inside a loop. Bailing.');
-        //  passed = false;
-        //} else
-        if (r2.blockChain.startsWith(ref.blockChain)) {
-          vlog('Ref can reach the write. Still eligible for SSA.');
-          eligible.push(r2);
-        } else {
-          vlog('Ref can not reach the write. Checking if it can observe the write at all. Is it in an opposite branch?');
-          /*
-            Consider this:
-            ```
-            let x = undefined;
-            if (tmpIfTest) {
-              x = $(1, 'a');
-              return x;
+        if (refs.size === 1) {
+          refs.forEach(ref => {
+            ASSERT(ref.action === 'write');
+            if (ref.kind === 'var') {
+              // Another rule will pick this up. This binding may need to persist to support certain structures:
+              // `let x = undefined; if (a) x = 1; else x = 2; f(x);`, can't eliminate the decl (which will be in its own group)
+            } else if (ref.kind !== 'assign') {
+              // Another rule will pick this up. This may be mandatory. (the decl will be in its own group)
+              // `let x; for (x in y) f();`, the lhs in this `for` header is mandatory even if unused.
             } else {
-              return x;
+              // Trailing write? Should be alright to eliminate...
+              rule('A write with no reads can be eliminated in many cases');
+              example('let x = 1; f(x); x = g();', 'let x = 1; f(x); g()');
+              before(ref.blockBody[ref.blockIndex]);
+
+              ref.blockBody.splice(ref.blockIndex, 1, AST.expressionStatement(ref.parentNode.right));
+
+              after(ref.blockBody[ref.blockIndex]);
+              ++changed;
             }
-            ```
-            Where the else branch has a reference to x that can't reach the assignment in the if branch.
-            We should still be able to SSA. In particular when the code dead ends.
-
-            Starting at the level of where the var decl is (must be a common ancestor), walk the if-chain
-            and determine whether all the branching is the same. When it's not, determine whether the
-            difference is because one took the `if` where the other took the `else`. If that's not the
-            case then the ref appears after a branch where the read was and we must bail here.
-            If the ref was inside the opposite branch from the write, then the ref cannot observe the
-            write and we can do whatever we want, meaning it does not block SSA.
-           */
-
-          // Note: since the read can not reach the write, one of four things can happen in this loop:
-          // - same branch, continue
-          // - opposite branch, complete ok
-          // - different branch, complete bad
-          // - finding the ref before finding an opposite branch, complete bad
-          let stillBad = true;
-          for (let i = varDeclWrite.ifChain.length - 1, l = Math.min(ref.ifChain.length, r2.ifChain.length); i < l; ++i) {
-            const a = ref.ifChain[i];
-            const b = r2.ifChain[i];
-            if (a === b) {
-              // Same parent
-              vlog('Same ancestor');
-            } else if (Math.abs(a) === Math.abs(b)) {
-              // negative id is else branch
-              // This ref lives in the other side of an if-else from where the write is. As such it can never
-              // observe the write so this should not block SSA for that write.
-              // `let x = 1; if (a) { x = 2; f(x); } else f(x);` -->
-              // `let x = 1; if (a) { let y = 2; f(y); } else f(x);`
-              vlog('Ok, it branched!');
-              stillBad = false;
-              break;
-            } else {
-              // Ok this is still bad
-              vlog('No, actually bad.');
-              break;
-            }
-          }
-
-          if (stillBad) {
-            vlog('Ref can not reach the write and is not in an opposite branch. Bailing');
-            passed = false;
-          }
+          })
+          vlog('  - This group had one write and no reads. Bailing to prevent botching an if-else case.');
+          return;
         }
-      }
 
-      if (passed) {
-        vlog('All future reads are properly scoped. Collected', eligible.length, 'eligible refs');
-        queue.push({ eligible, meta, write: ref });
-      } else {
-        vlog('There was at least one future read that could not reach this write');
-        // Consider something like this:
-        // `let x = 1; { x = 2; f(x); f(x); f(x); } f(x);`
-        // TODO: We could still do something like this
-        // `let x = 1; { const y = 2; x = y; f(y); f(y); f(y); } f(x);`
-        // Perhaps this way we can eliminate a few more lets
-        // We can check whether there are any reads at all and prevent this if there aren't any (or fewer than one)
-      }
+        // If the blockChain of the first write, in pid order, is not a prefix of all other writes
+        // in this group, then it must mean that this group spans an if-else with a write in both
+        // branches, which means it must be preceded by a placeholder var decl.
 
+        const refsArr = [...refs].sort((a, b) => (+a.node.$p.pid < +b.node.$p.pid ? -1 : +a.node.$p.pid > +b.node.$p.pid ? 1 : 0));
+
+        vlog('Searching for var decl and making sure all reads can read the write');
+        let firstWrite = undefined; // Like this one :p
+        if (
+          refsArr.some((ref) => {
+            if (ref.action === 'write') {
+              if (!firstWrite) {
+                firstWrite = ref;
+                return;
+              }
+            }
+            vlog('-', '"'+ref.blockChain+'".startsWith("' + firstWrite.blockChain + '")')
+            return !ref.blockChain.startsWith(firstWrite.blockChain);
+          })
+        ) {
+          vlog('  - At least one write is in a different branch from the first write so we must bail.');
+          return;
+        }
+
+        ASSERT(firstWrite.kind === 'assign', 'ehh, or fix me :) dont think for-header is gonna work here');
+
+        // I believe that we should be good to go for changing this write to a var decl now...
+        // TODO: confirm this properly ignores for-header lhs cases.
+        vlog('Changing the first write into a var decl');
+        rule('If a set of read/writes form a separated group from all other read/writes on the same binding, then the group should SSA');
+        example('x = 1; f(x); x = 2; f(x);', 'x = 1; f(x); let x2 = 2; f(x2);');
+        before(firstWrite.blockBody[firstWrite.blockIndex], firstWrite.blockBody);
+
+        //const tmpName = createFreshVar('tmpClusterSSA_' + name, fdata); // TODO: switch over (heavy diff)
+        const tmpName = createFreshVar('tmpSSA_' + name, fdata);
+        refsArr.forEach((ref) => {
+          ref.node.name = tmpName;
+        });
+        firstWrite.blockBody[firstWrite.blockIndex] = AST.variableDeclaration(tmpName, firstWrite.parentNode.right, 'let');
+
+        after(firstWrite.blockBody);
+        ++changed;
+      });
       vgroupEnd();
     }
   }
 
-  if (queue.length) {
-    // Since the same binding may be changed multiple times (`let a = 1; a = 2; a = 3;`) the queue
-    // should be unwound in DFS order per binding. This way we can rename variables inline and the next
-    // step in the queue will only overwrite the next ones. The queue should already be in DFS order.
-
-    vlog('Queue has', queue.length, 'writes to SSA');
-    queue.forEach(({ eligible, meta, write }) => {
-      vgroup('Next binding: `' + meta.uniqueName + '` on', eligible.length, 'refs');
-      rule('Apply SSA where possible');
-      example('let a = 1; f(a); a = 2; f(a);', 'let a = 1; f(a); const tmp = 2; f(tmp);');
-      before(write.parentNode);
-
-      const assign = write.parentNode;
-      ASSERT(
-        assign.type === 'AssignmentExpression',
-        'this should be an assignment?',
-        assign,
-        write.parentNode,
-        write.parentNode?.body,
-        write.parentProp,
-      );
-      const rhs = assign.right;
-      const oldName = meta.uniqueName;
-      vlog('- Applying SSA to `' + oldName + '`');
-      const tmpName = createFreshVar(oldName.startsWith('tmpSSA_') ? oldName : 'tmpSSA_' + oldName, fdata);
-      write.blockBody[write.blockIndex] = AST.variableDeclaration(tmpName, rhs, 'let');
-      eligible.forEach((ref, i) => {
-        vlog('- ref', i);
-        // Note: we must rename the identifier node since we may have changed the parent with the new var decl above
-        // I don't think this is a problem since nodes should not appear more than once in the AST
-        ref.node.name = tmpName;
-      });
-
-      after(write.blockBody[write.blockIndex]);
-      vgroupEnd();
-    });
-
-    log('Assignments SSAd:', queue.length, '. Restarting from phase1 to fix up read/write registry');
+  if (changed) {
+    log('Assignments SSAd:', changed, '. Restarting from phase1 to fix up read/write registry');
 
     //vlog('\nCurrent state (after SSA)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 

@@ -43,15 +43,23 @@ function _singleScopeTdz(fdata) {
     ASSERT(varDeclWrite);
     const declBlockChain = varDeclWrite.blockChain;
 
-    vlog('Asserting all refs can reach the decl');
-    rwOrder.forEach((ref, i) => {
-      if (ref === varDeclWrite || ref.blockChain.startsWith(declBlockChain)) {
-        // can reach
-      } else {
-        // can not reach. guaranteed tdz?
-        ASSERT(false, 'not sure we allow this case to reach this point since the parser would mark it as an implicit global');
-      }
-    });
+    vlog('Checking whether all refs can reach the decl');
+    if (
+      rwOrder.some((ref, i) => {
+        if (ref === varDeclWrite || ref.blockChain.startsWith(declBlockChain)) {
+          // can reach
+        } else {
+          return true;
+        }
+      })
+    ) {
+      // Can happen when a write is in a block and the read the block (`try {} finally { x = 5} f(x);`).
+      // In that case the algo correctly finds that the earlier assignments to `x` are unobservable but since
+      // the write is inside a block, the outer read cannot reach it and it breaks.
+      // (One solution might be to use vars in that case in normalized code, but that seems a bit unnecessary...)
+      vlog('There is at least one read that cannot reach the write. We cannot SSA this safely.');
+      return;
+    }
 
     let allInSameScope = rwOrder.every((ref, i) => {
       return ref.scope === declScope;

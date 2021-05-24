@@ -104,8 +104,8 @@ const f = function () {
     $('a');
     return 500;
   } else {
-    const tmpSSA_x$1 = $(0);
-    if (tmpSSA_x$1) {
+    const tmpSSA_x = $(0);
+    if (tmpSSA_x) {
       $('a');
       return 500;
     } else {

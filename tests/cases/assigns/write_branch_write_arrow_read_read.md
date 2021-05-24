@@ -65,13 +65,13 @@ $(x, 'final');
 $(1);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpSSA_x$1 = $(2, 'branch');
-  const tmpCalleeParam = $(tmpSSA_x$1, 'arrow');
+  const tmpSSA_x = $(2, 'branch');
+  const tmpCalleeParam = $(tmpSSA_x, 'arrow');
   $(tmpCalleeParam, 'result');
 } else {
 }
-const tmpSSA_x = $(3, 'after');
-$(tmpSSA_x, 'final');
+const tmpSSA_x$1 = $(3, 'after');
+$(tmpSSA_x$1, 'final');
 `````
 
 ## Globals

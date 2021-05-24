@@ -60,7 +60,7 @@ $(x);
 let x = $(10);
 while (true) {
   while (true) {
-    x = $(20);
+    $(20);
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       break;

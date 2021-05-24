@@ -56,7 +56,6 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    a = 0;
     const tmpCalleeParam = $(1);
     a = $(tmpCalleeParam);
   } else {

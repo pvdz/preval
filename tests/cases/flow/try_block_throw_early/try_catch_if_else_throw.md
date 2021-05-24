@@ -2,7 +2,7 @@
 
 # try_catch_if_else_throw.md
 
-> Flow > Try catch if else throw
+> Flow > Try block throw early > Try catch if else throw
 >
 > The throw may leave the binding mutated anyways
 
@@ -14,6 +14,7 @@
 function f() {
   let x = 'fail';
   try {
+    fail_early
     if ($) {
       x = 'pass';
       throw 'yes';
@@ -35,6 +36,7 @@ let f = function () {
   debugger;
   let x = 'fail';
   try {
+    fail_early;
     if ($) {
       x = 'pass';
       throw 'yes';
@@ -56,6 +58,7 @@ let f = function () {
   debugger;
   let x = 'fail';
   try {
+    fail_early;
     if ($) {
       x = 'pass';
       throw 'yes';
@@ -76,6 +79,7 @@ f();
 `````js filename=intro
 let x = 'fail';
 try {
+  fail_early;
   if ($) {
     x = 'pass';
     throw 'yes';
@@ -90,13 +94,15 @@ $(x);
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+fail_early
 
 ## Result
 
 Should call `$` with:
- - 1: 'pass', 'mutation is observable in the catch'
- - 2: 'pass'
+ - 1: 'fail', 'mutation is observable in the catch'
+ - 2: 'fail'
  - eval returned: undefined
 
 Pre normalization calls: Same

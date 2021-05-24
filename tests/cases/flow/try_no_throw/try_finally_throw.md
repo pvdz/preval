@@ -2,7 +2,7 @@
 
 # try_finally_throw.md
 
-> Flow > Try finally throw
+> Flow > Try no throw > Try finally throw
 >
 > The throw may leave the binding mutated anyways
 

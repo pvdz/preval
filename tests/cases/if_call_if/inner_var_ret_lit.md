@@ -123,8 +123,8 @@ const f = function () {
     a();
     return undefined;
   } else {
-    const tmpSSA_tmpIfelseifelse$1 = $(2);
-    if (tmpSSA_tmpIfelseifelse$1) {
+    const tmpSSA_tmpIfelseifelse = $(2);
+    if (tmpSSA_tmpIfelseifelse) {
       a();
       return undefined;
     } else {

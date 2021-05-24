@@ -1,8 +1,8 @@
 # Preval test case
 
-# try_break_through.md
+# try_catch_if_return_else_throw.md
 
-> Flow > Try break through
+> Flow > Try catch throw early > Try catch if return else throw
 >
 > The throw may leave the binding mutated anyways
 
@@ -13,20 +13,19 @@
 `````js filename=intro
 function f() {
   let x = 'fail';
-  foo: {
-    try {
-      if ($) {
-        return;
-      } else {
-        x = 'pass';
-        throw 'too';
-      }
-      x = 'fail2'; // This is dead code either way
-    } catch {
-      $('caught');
+  try {
+    if ($) {
+      return;
+    } else {
+      x = 'pass';
+      throw 'too';
     }
-    $(x);
+    x = 'fail2'; // This is dead code either way
+  } catch {
+    throw_early
+    $('caught');
   }
+  $(x);
 }
 f();
 `````
@@ -37,20 +36,19 @@ f();
 let f = function () {
   debugger;
   let x = 'fail';
-  foo: {
-    try {
-      if ($) {
-        return;
-      } else {
-        x = 'pass';
-        throw 'too';
-      }
-      x = 'fail2';
-    } catch {
-      $('caught');
+  try {
+    if ($) {
+      return;
+    } else {
+      x = 'pass';
+      throw 'too';
     }
-    $(x);
+    x = 'fail2';
+  } catch {
+    throw_early;
+    $('caught');
   }
+  $(x);
 };
 f();
 `````
@@ -70,6 +68,7 @@ let f = function () {
     }
     x = 'fail2';
   } catch {
+    throw_early;
     $('caught');
   }
   $(x);
@@ -88,11 +87,11 @@ const f = function () {
     if ($) {
       return undefined;
     } else {
-      x = 'pass';
       throw 'too';
     }
     x = 'fail2';
   } catch {
+    throw_early;
     $('caught');
   }
   $(x);
@@ -103,7 +102,9 @@ f();
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+throw_early
 
 ## Result
 

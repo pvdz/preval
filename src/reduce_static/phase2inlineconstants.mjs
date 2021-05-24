@@ -268,6 +268,7 @@ function attemptConstantInlining(meta, fdata) {
         // Add a read to the rhs. It is read one more time instead.
         assigneeMeta.reads.push(
           createReadRef({
+            name: oldRead.name,
             kind: oldRead.kind,
             parentNode,
             parentProp,

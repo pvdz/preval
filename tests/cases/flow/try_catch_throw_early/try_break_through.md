@@ -1,8 +1,8 @@
 # Preval test case
 
-# try_catch_if_return_else_throw.md
+# try_break_through.md
 
-> Flow > Try catch if return else throw
+> Flow > Try catch throw early > Try break through
 >
 > The throw may leave the binding mutated anyways
 
@@ -13,18 +13,20 @@
 `````js filename=intro
 function f() {
   let x = 'fail';
-  try {
-    if ($) {
-      return;
-    } else {
-      x = 'pass';
-      throw 'too';
+  foo: {
+    try {
+      if ($) {
+        return;
+      } else {
+        x = 'pass';
+        throw 'too';
+      }
+      x = 'fail2'; // This is dead code either way
+    } catch {
+      $('caught');
     }
-    x = 'fail2'; // This is dead code either way
-  } catch {
-    $('caught');
+    $(x);
   }
-  $(x);
 }
 f();
 `````
@@ -35,18 +37,20 @@ f();
 let f = function () {
   debugger;
   let x = 'fail';
-  try {
-    if ($) {
-      return;
-    } else {
-      x = 'pass';
-      throw 'too';
+  foo: {
+    try {
+      if ($) {
+        return;
+      } else {
+        x = 'pass';
+        throw 'too';
+      }
+      x = 'fail2';
+    } catch {
+      $('caught');
     }
-    x = 'fail2';
-  } catch {
-    $('caught');
+    $(x);
   }
-  $(x);
 };
 f();
 `````
@@ -84,7 +88,6 @@ const f = function () {
     if ($) {
       return undefined;
     } else {
-      x = 'pass';
       throw 'too';
     }
     x = 'fail2';

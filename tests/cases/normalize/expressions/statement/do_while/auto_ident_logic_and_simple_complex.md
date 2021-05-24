@@ -70,7 +70,6 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpDoWhileFlag) {
   } else {
-    tmpIfTest = 1;
     const tmpCalleeParam = $(1);
     tmpIfTest = $(tmpCalleeParam);
   }

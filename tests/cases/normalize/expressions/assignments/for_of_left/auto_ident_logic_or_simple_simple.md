@@ -52,7 +52,6 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  a = 0;
   a = 2;
   (2).x = tmpForOfLhsNode;
 }

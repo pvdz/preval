@@ -58,13 +58,7 @@ $(q);
 ## Output
 
 `````js filename=intro
-const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpArgumentsLen = arguments.length;
-  debugger;
-  const r = $(tmpArgumentsLen);
-  return r;
-};
-const q = f(1, 2, 3, 4, 5);
+const q = $(5);
 $(q);
 `````
 

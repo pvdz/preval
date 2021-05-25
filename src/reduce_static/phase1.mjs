@@ -473,6 +473,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         node.$p.ownBindings = new Set();
         node.$p.referencedNames = new Set();
         node.$p.paramNames = new Set();
+        node.$p.readsArgumentsLen = false;
+        node.$p.readsArgumentsLenAt = -1;
 
         if (parentNode.type === 'ExpressionStatement') {
           vlog('Do not traverse function expression statement. I am not going to care about the contents.');
@@ -642,6 +644,19 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             ) {
               // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
               vlog('Marking function as accessing `arguments.length`');
+
+              const grandNode = pathNodes[pathNodes.length - 3];
+              const grandProp = pathProps[pathProps.length - 2];
+              const greatGrandIndex = pathIndexes[pathIndexes.length - 3]; // Note: this is the index of the var decl, not the grandNode
+
+              ASSERT(
+                grandNode.type === 'VariableDeclarator' && grandProp === 'init' && greatGrandIndex >= 0,
+                '`arguments.length` should only appear for the custom alias in normalized code',
+                grandNode.type,
+                grandProp,
+                greatGrandIndex,
+              );
+              thisStack[thisStack.length - 1].$p.readsArgumentsLenAt = greatGrandIndex;
               thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
             } else {
               if (parentNode.type === 'ExpressionStatement') {

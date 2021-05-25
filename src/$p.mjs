@@ -28,6 +28,7 @@ export function $p() {
     // reduce/phase2 (these props should exist after phas1... even on new nodes)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations
     // - readsArgumentsLen // bool. Does it read `arguments.length`?
+    // - readsArgumentsLenAt // int. Block index of the args.len alias
     // - readsArgumentsAny // bool. Does it read the implicit `arguments` in any way?
     // - containsFunctions // bool. Does a function body contain nested functions (anywhere of any kind)?
     // - unqualifiedLabelUsages // Array<node>. Should contain loop and/or switch nodes. When finding an unqualified break/continue, this tells you where it jumps to.

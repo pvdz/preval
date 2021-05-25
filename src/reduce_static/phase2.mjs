@@ -26,6 +26,7 @@ import { ifFlipping } from './phase2if_flip.mjs';
 import { objlitPropAccess } from './phase2objlit_prop.mjs';
 import { bitSetTests } from './phase2bit_set_test.mjs';
 import { ifUpdateCall } from './phase2if_update_call.mjs';
+import { inlineArgLen } from './phase2inline_arguments_length.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -142,6 +143,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const callsHoisted = ifUpdateCall(fdata);
   if (callsHoisted) return callsHoisted;
+
+  const lengthed = inlineArgLen(fdata);
+  if (lengthed) return lengthed;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

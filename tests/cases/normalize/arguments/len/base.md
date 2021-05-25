@@ -43,13 +43,7 @@ f(1, 2, 3);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpArgumentsLen = arguments.length;
-  debugger;
-  $(tmpArgumentsLen);
-  return undefined;
-};
-f(1, 2, 3);
+$(3);
 `````
 
 ## Globals

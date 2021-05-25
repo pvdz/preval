@@ -1,0 +1,104 @@
+# Preval test case
+
+# base.md
+
+> Param always primitive > Base
+>
+> When a function is always called with a certain primitive for a certain parameter then we can inline this safely in many cases.
+
+In this case the param can also be eliminated. But that's not always possible, like with `arguments.length` (unless that is also replaced with the actual count).
+
+#TODO
+
+## Input
+
+`````js filename=intro
+function f(a, b, c) {
+  if ($) {
+    $(a, b, c, 'hopefully b is a literal afterwards');
+  }
+}
+f(1, 2, 3);
+f(4, 2, 5);
+f(6, 2, 7);
+f(8, 2, 9);
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let f = function ($$0, $$1, $$2) {
+  let a = $$0;
+  let b = $$1;
+  let c = $$2;
+  debugger;
+  if ($) {
+    $(a, b, c, 'hopefully b is a literal afterwards');
+  }
+};
+f(1, 2, 3);
+f(4, 2, 5);
+f(6, 2, 7);
+f(8, 2, 9);
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = function ($$0, $$1, $$2) {
+  let a = $$0;
+  let b = $$1;
+  let c = $$2;
+  debugger;
+  if ($) {
+    $(a, b, c, 'hopefully b is a literal afterwards');
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+f(1, 2, 3);
+f(4, 2, 5);
+f(6, 2, 7);
+f(8, 2, 9);
+`````
+
+## Output
+
+`````js filename=intro
+const f = function ($$0, $$1, $$2) {
+  const a = $$0;
+  const b = $$1;
+  const c = $$2;
+  debugger;
+  if ($) {
+    $(a, b, c, 'hopefully b is a literal afterwards');
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+f(1, 2, 3);
+f(4, 2, 5);
+f(6, 2, 7);
+f(8, 2, 9);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 1, 2, 3, 'hopefully b is a literal afterwards'
+ - 2: 4, 2, 5, 'hopefully b is a literal afterwards'
+ - 3: 6, 2, 7, 'hopefully b is a literal afterwards'
+ - 4: 8, 2, 9, 'hopefully b is a literal afterwards'
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

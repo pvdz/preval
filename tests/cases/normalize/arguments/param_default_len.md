@@ -56,12 +56,11 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function ($$0) {
-  const tmpArgumentsLen = arguments.length;
   const tmpParamBare = $$0;
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    return tmpArgumentsLen;
+    return 0;
   } else {
     return tmpParamBare;
   }

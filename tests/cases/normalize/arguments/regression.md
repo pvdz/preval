@@ -72,13 +72,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const g = function () {
-  const tmpArgumentsLen = arguments.length;
-  debugger;
-  $(tmpArgumentsLen);
-  return undefined;
-};
-g();
+$(0);
 $(undefined);
 `````
 

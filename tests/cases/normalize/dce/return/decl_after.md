@@ -70,8 +70,8 @@ const f = function () {
   $('fail');
   return undefined;
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+f();
+$(undefined);
 `````
 
 ## Globals

@@ -1089,8 +1089,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         // TODO: unless wrapped in a try/catch. Which we don't really track right now.
         if (funcNode.type === 'FunctionExpression') {
           funcNode.$p.throwsExplicitly = true;
-          vlog('Setting commonMark to null because the function throws');
-          funcNode.$p.commonReturn = null;
         }
         break;
       }

@@ -67,14 +67,14 @@ if (atest) {
 `````js filename=intro
 const a = x & 1;
 if (a) {
+  $('no 1');
+} else {
   const b = x & 4;
   if (b) {
-    $('yes');
-  } else {
     $('no 2');
+  } else {
+    $('yes');
   }
-} else {
-  $('no 1');
 }
 `````
 

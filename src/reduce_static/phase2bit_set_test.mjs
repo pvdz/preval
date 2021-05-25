@@ -86,11 +86,38 @@ function _bitSetTests(fdata) {
                     vlog('- It was. Replacing that occurrence with `' + meta.uniqueName + '`');
 
                     rule('If a value is known to be a bit test and used as an if-test, use the AND result directly');
-                    example('const a = x & 32; const b = a === 32; if (b) f();', 'const a = x & 32; if (a) f();');
+                    example(
+                      'const a = x & 32; const b = a === 32; if (b) f();',
+                      'const a = x & 32; if (a) f();',
+                      () => read.parentNode.operator === '===' && unknown.value !== 0,
+                    );
+                    example(
+                      'const a = x & 32; const b = a !== 32; if (b) f();',
+                      'const a = x & 32; if (a) ; else f();',
+                      () => read.parentNode.operator === '!==' && unknown.value !== 0,
+                    );
+                    example(
+                      'const a = x & 32; const b = a === 0; if (b) f();',
+                      'const a = x & 32; if (a) ; else f();',
+                      () => read.parentNode.operator === '===' && unknown.value === 0,
+                    );
+                    example(
+                      'const a = x & 32; const b = a !== 0; if (b) f();',
+                      'const a = x & 32; if (a) f();',
+                      () => read.parentNode.operator === '!==' && unknown.value === 0,
+                    );
                     before(meta.writes[0].blockBody[meta.writes[0].blockIndex]);
                     before(read.blockBody[read.blockIndex]);
                     before(eqRead.blockBody[eqRead.blockIndex]);
-
+                    if (
+                      (read.parentNode.operator === '!==' && unknown.value !== 0) ||
+                      (read.parentNode.operator === '===' && unknown.value === 0)
+                    ) {
+                      // Swap branches
+                      const bak = eqRead.parentNode.consequent;
+                      eqRead.parentNode.consequent = eqRead.parentNode.alternate;
+                      eqRead.parentNode.alternate = bak;
+                    }
                     eqRead.node.name = meta.uniqueName;
 
                     after(eqRead.blockBody[eqRead.blockIndex]);

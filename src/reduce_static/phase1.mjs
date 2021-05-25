@@ -324,7 +324,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           }
         });
 
-        vgroup('Last write analysis');
+        vlog('Last write analysis');
         vlog(
           '  - last writes before:',
           [...lastWritesPerName[lastWritesPerName.length - 1].entries()].map(([v, k]) => v + ':' + k.size),

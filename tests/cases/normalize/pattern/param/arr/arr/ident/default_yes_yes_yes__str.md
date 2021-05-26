@@ -75,39 +75,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = ['fail3'];
-    bindingPatternArrRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternArrRoot = tmpParamBare;
-  }
-  const arrPatternSplat = [...bindingPatternArrRoot];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = ['fail2'];
-    arrPatternStep = $(tmpCalleeParam$1);
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
-  const arrPatternSplat$1 = [...arrPatternStep];
-  const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
-  const tmpIfTest$3 = arrPatternBeforeDefault$1 === undefined;
-  if (tmpIfTest$3) {
-    const tmpClusterSSA_x = $('fail');
-    return tmpClusterSSA_x;
-  } else {
-    return arrPatternBeforeDefault$1;
-  }
-};
-const tmpCalleeParam$3 = f('abc', 200);
-$(tmpCalleeParam$3);
+$('a');
 `````
 
 ## Globals

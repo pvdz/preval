@@ -78,19 +78,19 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
           bodyOffset,
           0,
           AST.variableDeclaration(
-            paramDecl.$p.ref.name,
+            paramDecl.$p.paramVarDeclRef.name,
             type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.nul() : AST.literal(paramValue),
             'let',
           ),
         );
 
-        //paramDecl.$p.ref = undefined
+        //paramDecl.$p.paramVarDeclRef = undefined
 
         found = true;
         break;
       }
     }
-    ASSERT(!!found === !!paramDecl.$p.ref, 'iif found then the param should have a ref to it', paramDecl);
+    ASSERT(!!found === !!paramDecl.$p.paramVarDeclRef, 'iif found then the param should have a ref to it', paramDecl);
     if (!found) {
       vlog('It appears that the param is unused. As such we can not find the original param name for this index. Nothing to do here.');
     }

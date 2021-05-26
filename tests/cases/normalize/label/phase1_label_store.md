@@ -71,8 +71,7 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const x = $$0;
+const f = function () {
   debugger;
   while (true) {
     s;
@@ -80,7 +79,6 @@ const f = function ($$0) {
       break stop;
     }
   }
-  x + 1;
   return undefined;
 };
 f();

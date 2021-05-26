@@ -195,8 +195,8 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                   const funcBody = funcNode.body.body;
                   staticArgs.forEach(({ index: paramIndex, type, value: paramValue }) => {
                     if (paramIndex >= funcNode.params.length) return; // Argument without param, we ignore.
-                    if (funcNode.params[paramIndex].$p.ref) {
-                      log('- Replacing param `' + funcNode.params[paramIndex].$p.ref?.name + '` with', paramValue);
+                    if (funcNode.params[paramIndex].$p.paramVarDeclRef) {
+                      log('- Replacing param `' + funcNode.params[paramIndex].$p.paramVarDeclRef?.name + '` with', paramValue);
                     } else {
                       log('- Want to replace param', paramIndex, 'with', paramValue, 'but it looks like it is not used');
                     }
@@ -220,13 +220,13 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                         break;
                       }
                     }
-                    ASSERT(!!found === !!funcNode.params[paramIndex].$p.ref, 'iif found then the param should have a ref to it');
+                    ASSERT(!!found === !!funcNode.params[paramIndex].$p.paramVarDeclRef, 'iif found then the param should have a ref to it');
                     if (found) {
                       funcBody.splice(
                         bodyOffset,
                         0,
                         AST.variableDeclaration(
-                          funcNode.params[paramIndex].$p.ref.name,
+                          funcNode.params[paramIndex].$p.paramVarDeclRef.name,
                           type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.nul() : AST.literal(paramValue),
                           'let',
                         ),

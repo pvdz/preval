@@ -62,16 +62,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    bindingPatternArrRoot = $('pass2');
-  } else {
-    bindingPatternArrRoot = tmpParamBare;
-  }
+  const bindingPatternArrRoot = $('pass2');
   const arrPatternSplat = [...bindingPatternArrRoot];
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;

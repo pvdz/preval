@@ -1111,7 +1111,7 @@ export function resolveNodeAgainstParams(node, callNode, funcNode) {
     let isRest = false; // Special care for the rest param
     funcNode.params.some((pnode, pi) => {
       ASSERT(pnode.type === 'Param');
-      if (name === pnode.$p.ref?.name) {
+      if (name === pnode.$p.paramVarDeclRef?.name) {
         if (pnode.rest) {
           isRest = true;
         }

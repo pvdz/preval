@@ -95,8 +95,8 @@ function _pruneTrampolineFunctions(fdata) {
         // Find out whether `name` is a parameter
         funcNode.params.some((pnode, pi) => {
           ASSERT(pnode.type === 'Param');
-          vlog('    - `' + pnode.$p.ref?.name + '` === `' + innerCalleeName + '`');
-          if (pnode.$p.ref?.name === innerCalleeName) {
+          vlog('    - `' + pnode.$p.paramVarDeclRef?.name + '` === `' + innerCalleeName + '`');
+          if (pnode.$p.paramVarDeclRef?.name === innerCalleeName) {
             calleeMapping = pi;
             return true;
           }
@@ -114,8 +114,8 @@ function _pruneTrampolineFunctions(fdata) {
           // Find out whether `name` is a parameter
           funcNode.params.some((pnode, pi) => {
             ASSERT(pnode.type === 'Param');
-            vlog('    - `' + pnode.$p.ref?.name + '` === `' + objName + '`');
-            if (pnode.$p.ref?.name === objName) {
+            vlog('    - `' + pnode.$p.paramVarDeclRef?.name + '` === `' + objName + '`');
+            if (pnode.$p.paramVarDeclRef?.name === objName) {
               calleeObjMapping = pi;
               return true;
             }
@@ -130,8 +130,8 @@ function _pruneTrampolineFunctions(fdata) {
           // Find out whether `name` is a parameter
           funcNode.params.some((pnode, pi) => {
             ASSERT(pnode.type === 'Param');
-            vlog('    - `' + pnode.$p.ref?.name + '` === `' + propName + '`');
-            if (pnode.$p.ref?.name === propName) {
+            vlog('    - `' + pnode.$p.paramVarDeclRef?.name + '` === `' + propName + '`');
+            if (pnode.$p.paramVarDeclRef?.name === propName) {
               calleePropMapping = pi;
               return true;
             }
@@ -167,7 +167,7 @@ function _pruneTrampolineFunctions(fdata) {
         funcNode.params.some((pnode, pi) => {
           ASSERT(pnode.type === 'Param');
 
-          if (pnode.$p.ref?.name === name) {
+          if (pnode.$p.paramVarDeclRef?.name === name) {
             // For all calls to funcNode we will replace `name` in the clone with the arg at this index
             paramArgMapping.set(ai, pi);
             return true;
@@ -230,7 +230,7 @@ function _pruneTrampolineFunctions(fdata) {
           );
 
           funcParams.some((anode, ai) => {
-            if (anode.$p.ref?.name === calleeName) {
+            if (anode.$p.paramVarDeclRef?.name === calleeName) {
               calleeIdentIndex = ai;
               vlog('          - yes; replacing the callee ident with argument at index', ai);
               return true;
@@ -255,7 +255,7 @@ function _pruneTrampolineFunctions(fdata) {
           // For now, reject both object and property. Later we may support property in a special case.
           if (innerCallee.object.type === 'Identifier') {
             funcParams.some((pnode, ai) => {
-              if (pnode.$p.ref?.name === calleeNameObj) {
+              if (pnode.$p.paramVarDeclRef?.name === calleeNameObj) {
                 calleeObjectIndex = ai;
                 vlog('          - yes; replacing the callee object ident with argument at index', ai);
                 return true;
@@ -264,7 +264,7 @@ function _pruneTrampolineFunctions(fdata) {
           }
           if (innerCallee.computed && innerCallee.property.type === 'Identifier') {
             funcParams.some((pnode, ai) => {
-              if (pnode.$p.ref?.name === calleeNameProp) {
+              if (pnode.$p.paramVarDeclRef?.name === calleeNameProp) {
                 calleePropIndex = ai;
                 vlog('          - yes; replacing the callee prop ident with argument at index', ai);
                 return true;
@@ -298,7 +298,7 @@ function _pruneTrampolineFunctions(fdata) {
 
           funcParams.some((pnode, pi) => {
             ASSERT(pnode.type === 'Param');
-            if (pnode.$p.ref?.name === name) {
+            if (pnode.$p.paramVarDeclRef?.name === name) {
               // We are replacing one call with another, and this is how we map the previous args;
               // "The ath argument of the new call is the pth arg of the previous call"
               paramArgMapping.set(ai, pi);

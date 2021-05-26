@@ -313,7 +313,7 @@ function _inlineOneTimeFunctions(fdata) {
         vlog('Copying call args to param inits for each param');
         vlog(
           '- Param names (' + params.length + '):',
-          params.map((pnode) => pnode.name + '>' + (pnode.$p.ref?.name ?? '<unused>')).join(', '),
+          params.map((pnode) => pnode.name + '>' + (pnode.$p.paramVarDeclRef?.name ?? '<unused>')).join(', '),
         );
       } else {
         vlog('No params to inline');
@@ -350,9 +350,9 @@ function _inlineOneTimeFunctions(fdata) {
       const collected = [];
       funcNode.params.forEach((pnode, pi) => {
         // Unused params have no ref (?)
-        if (pnode.$p.ref) {
+        if (pnode.$p.paramVarDeclRef) {
           collected.push(
-            AST.variableDeclaration(pnode.$p.ref.parentNode.id.name, args[pi] ? args[pi] : AST.identifier('undefined'), 'let'),
+            AST.variableDeclaration(pnode.$p.paramVarDeclRef.name, args[pi] ? args[pi] : AST.identifier('undefined'), 'let'),
           );
         }
       });

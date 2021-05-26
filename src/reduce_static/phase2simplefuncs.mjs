@@ -82,7 +82,7 @@ function _inlineSimpleFuncCalls(fdata) {
                       funcNode.params.every((pnode) => {
                         ASSERT(left.type === 'Identifier', 'normalized code', left);
                         ASSERT(pnode.type === 'Param', 'all params are Params?', pnode);
-                        return left.name !== pnode.$p.ref?.name;
+                        return left.name !== pnode.$p.paramVarDeclRef?.name;
                       }),
                       'assignments to params in this case should be caught and eliminated as noops',
                     );

@@ -75,7 +75,7 @@ function _pruneExcessiveParams(fdata) {
         vlog(
           '    - checking param',
           pi,
-          ': `' + (pnode.name ?? pnode.argument.name) + '`' + (pnode.$p.ref ? ' (`' + pnode.$p.ref.name + '`)' : '(unused)'),
+          ': `' + (pnode.name ?? pnode.argument.name) + '`' + (pnode.$p.paramVarDeclRef ? ' (`' + pnode.$p.paramVarDeclRef.name + '`)' : '(unused)'),
         );
         ASSERT(pnode.type === 'Param');
         // If this param has no reads then for all calls to the function, eliminate that index
@@ -87,11 +87,11 @@ function _pruneExcessiveParams(fdata) {
         }
         vlog('      - not rest param');
 
-        if (pnode.$p.ref) {
+        if (pnode.$p.paramVarDeclRef) {
           vlog('Parameter has a reference so it is used');
           // This assert doesn't appear to hold when running the react code, at least
           //ASSERT(
-          //  fdata.globallyUniqueNamingRegistry.get(pnode.$p.ref.name).reads.length > 0,
+          //  fdata.globallyUniqueNamingRegistry.get(pnode.$p.paramVarDeclRef.name).reads.length > 0,
           //  'a param that is used must have at least one read, can not have only writes (another step would eliminate that)',
           //);
           return;
@@ -144,9 +144,9 @@ function _pruneExcessiveParams(fdata) {
           for (let i = index; i < arr.length; ++i) {
             arr[i].name = '$$' + i;
             arr[i].index = i;
-            if (arr[i].$p.ref) {
-              arr[i].$p.ref.node.name = '$$' + i;
-              arr[i].$p.ref.node.index = i;
+            if (arr[i].$p.paramVarDeclRef) {
+              arr[i].$p.paramVarDeclRef.node.name = '$$' + i;
+              arr[i].$p.paramVarDeclRef.node.index = i;
             }
           }
 

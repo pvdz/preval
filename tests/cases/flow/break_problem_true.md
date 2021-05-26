@@ -91,12 +91,11 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpLabeledBlockFunc = function ($$0) {
-  const x$3 = $$0;
+const tmpLabeledBlockFunc = function () {
   debugger;
   const tmpIfTest$3 = $(true);
   if (tmpIfTest$3) {
-    tmpAfterLabel(x$3);
+    tmpAfterLabel('pass');
     return undefined;
   } else {
     tmpAfterLabel('fail');
@@ -111,7 +110,7 @@ const tmpAfterLabel = function ($$0) {
   $(x$1);
   return undefined;
 };
-tmpLabeledBlockFunc('pass');
+tmpLabeledBlockFunc();
 `````
 
 ## Globals

@@ -53,18 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    return 'fail';
-  } else {
-    return tmpParamBare;
-  }
-};
-const tmpCalleeParam = f(0, 200);
-$(tmpCalleeParam);
+$(0);
 `````
 
 ## Globals

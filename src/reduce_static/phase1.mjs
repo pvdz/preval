@@ -473,6 +473,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         node.$p.ownBindings = new Set();
         node.$p.referencedNames = new Set();
         node.$p.paramNames = new Set();
+        node.$p.readsArgumentsAny = false;
         node.$p.readsArgumentsLen = false;
         node.$p.readsArgumentsLenAt = -1;
 
@@ -999,16 +1000,28 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           parentProp === 'params' || parentProp === 'init',
           'this node should only be used as a placeholder for params or when binding the placeholder to the actual name',
         );
-        ASSERT(!node.$p.ref, 'each param should be referenced at most once');
+        ASSERT(!node.$p.paramVarDeclRef, 'each param should be referenced at most once');
         if (parentProp === 'init') {
-          vlog('Maps to `' + parentNode.id.name + '`');
+          vlog('This is the param var decl. The param maps to `' + parentNode.id.name + '`');
+
+          // This blockNode is the actual var decl `var p = $$0`
+          const blockIndex = pathIndexes[pathIndexes.length - 3]; // (node is init of var decl, so two up, not one)
+          vlog('The var decl of this param is at body['+blockIndex+']');
+
           const funcNode = funcStack[funcStack.length - 1];
-          const declParam = funcNode.params[node.index];
-          ASSERT(declParam.name === node.name, 'the usage of a Param should map back to the decl', node, declParam);
-          declParam.$p.ref = { parentNode, parentProp, parentIndex, node, name: parentNode.id.name };
+          const funcHeaderParamNode = funcNode.params[node.index];
+          ASSERT(funcHeaderParamNode.name === node.name, 'the usage of a Param should map back to the decl', node, funcHeaderParamNode);
+
+          // Point from func header node to its var decl ref
+          funcHeaderParamNode.$p.paramVarDeclRef = { blockBody: funcNode.body.body, blockIndex, node, name: parentNode.id.name };
+
+          //// Point from var decl ref to its func header node
+          //node.$p.paramFuncHeaderRef = {node: funcHeaderParamNode, funcNode};
+
           funcNode.$p.paramNames.add(parentNode.id.name);
         } else {
-          vlog('This is the decl');
+          vlog('This is the param');
+          // This is the func param (!) `function ($$0) {`
         }
         break;
       }
@@ -1124,6 +1137,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         vlog('- Id: `' + node.declarations[0].id.name + '`');
         ASSERT(node.declarations.length === 1, 'all decls should be normalized to one binding');
         ASSERT(node.declarations[0].id.type === 'Identifier', 'all patterns should be normalized away');
+        ASSERT(node.declarations[0].init, 'normalized var decls must have an init', node);
         node.$p.promoParent = blockStack[blockStack.length - 1];
         const meta = globallyUniqueNamingRegistry.get(node.declarations[0].id.name);
         if (node.kind === 'const') {

@@ -102,21 +102,19 @@ $(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const inner = function ($$0) {
-  const x$1 = $$0;
+const inner = function () {
   debugger;
   outer();
   if ($) {
-    outer(x$1);
+    outer();
     return undefined;
   } else {
     return undefined;
   }
 };
-const outer = function ($$0) {
-  const x = $$0;
+const outer = function () {
   debugger;
-  const r = [x];
+  const r = [undefined];
   $(r);
   return undefined;
 };

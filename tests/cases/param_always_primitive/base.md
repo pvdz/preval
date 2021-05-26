@@ -66,22 +66,21 @@ f(8, 2, 9);
 ## Output
 
 `````js filename=intro
-const f = function ($$0, $$1, $$2) {
+const f = function ($$0, $$1) {
   const a = $$0;
-  const b = $$1;
-  const c = $$2;
+  const c = $$1;
   debugger;
   if ($) {
-    $(a, b, c, 'hopefully b is a literal afterwards');
+    $(a, 2, c, 'hopefully b is a literal afterwards');
     return undefined;
   } else {
     return undefined;
   }
 };
-f(1, 2, 3);
-f(4, 2, 5);
-f(6, 2, 7);
-f(8, 2, 9);
+f(1, 3);
+f(4, 5);
+f(6, 7);
+f(8, 9);
 `````
 
 ## Globals

@@ -778,7 +778,7 @@ export function primitive(value) {
     return literal(value);
   }
   if (typeof value === 'string' || typeof value === 'boolean') {
-    return value;
+    return literal(value);
   }
   if (value === undefined) {
     return identifier('undefined');

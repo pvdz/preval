@@ -75,28 +75,10 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpArrElement = { x: 'fail3' };
-    const tmpCalleeParam = [tmpArrElement];
-    bindingPatternArrRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternArrRoot = tmpParamBare;
-  }
-  const arrPatternSplat = [...bindingPatternArrRoot];
-  const arrPatternBeforeDefault = arrPatternSplat[0];
-  let arrPatternStep = undefined;
-  const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-  if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = { x: 'pass2' };
-    arrPatternStep = $(tmpCalleeParam$1);
-  } else {
-    arrPatternStep = arrPatternBeforeDefault;
-  }
+  const tmpCalleeParam$1 = { x: 'pass2' };
+  const arrPatternStep = $(tmpCalleeParam$1);
   const objPatternBeforeDefault = arrPatternStep.x;
   const tmpIfTest$3 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$3) {
@@ -106,7 +88,7 @@ const f = function ($$0) {
     return objPatternBeforeDefault;
   }
 };
-const tmpCalleeParam$3 = f('');
+const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 

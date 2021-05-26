@@ -108,10 +108,9 @@ const tmpAfterLabel$1 = function ($$0) {
   tmpAfterLabel(x$5);
   return undefined;
 };
-const tmpLabeledBlockFunc = function ($$0) {
-  const x$3 = $$0;
+const tmpLabeledBlockFunc = function () {
   debugger;
-  let x$7 = x$3;
+  let x$7 = 'fail';
   if ($) {
     x$7 = 'pass';
     tmpAfterLabel('pass');
@@ -129,7 +128,7 @@ const tmpAfterLabel = function ($$0) {
   $(x$1);
   return undefined;
 };
-tmpLabeledBlockFunc('fail');
+tmpLabeledBlockFunc();
 `````
 
 ## Globals

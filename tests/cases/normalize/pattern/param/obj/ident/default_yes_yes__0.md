@@ -63,18 +63,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const tmpParamBare = $$0;
+const f = function () {
   debugger;
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = { x: 'fail2' };
-    bindingPatternObjRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternObjRoot = tmpParamBare;
-  }
-  const objPatternBeforeDefault = bindingPatternObjRoot.x;
+  const objPatternBeforeDefault = (0).x;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpClusterSSA_x = $('pass');
@@ -83,7 +74,7 @@ const f = function ($$0) {
     return objPatternBeforeDefault;
   }
 };
-const tmpCalleeParam$1 = f(0, 10);
+const tmpCalleeParam$1 = f(10);
 $(tmpCalleeParam$1);
 `````
 

@@ -119,18 +119,18 @@ function _pruneEmptyFunctions(fdata) {
             vlog(
               '  - pos',
               pi,
-              ', placeholder `' + pnode.name + '`, name: ' + (pnode.$p.ref?.name ? '`' + pnode.$p.ref?.name + '`' : '<none>'),
+              ', placeholder `' + pnode.name + '`, name: ' + (pnode.$p.paramVarDeclRef?.name ? '`' + pnode.$p.paramVarDeclRef?.name + '`' : '<none>'),
             );
             ASSERT(pnode.type === 'Param');
             if (pnode.rest) {
-              vlog('    - param at position', pi, 'is a rest param (`' + pnode.$p.ref?.name + '`)');
-              if (pnode.$p.ref?.name === argName) {
+              vlog('    - param at position', pi, 'is a rest param (`' + pnode.$p.paramVarDeclRef?.name + '`)');
+              if (pnode.$p.paramVarDeclRef?.name === argName) {
                 // Skip the implicit global check. We can't do this one.
                 vlog('    - has the same name');
                 found = true;
               }
               rest = true;
-            } else if (pnode.$p.ref?.name === argName) {
+            } else if (pnode.$p.paramVarDeclRef?.name === argName) {
               vlog(
                 '    - param at position',
                 pi,

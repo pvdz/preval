@@ -358,7 +358,7 @@ export function registerGlobalIdent(
   originalName,
   { isExport = false, isImplicitGlobal = false, isBuiltin = false, ...rest } = {},
 ) {
-  ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place');
+  ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place', name);
   ASSERT(Object.keys(rest).length === 0, 'invalid args');
 
   const meta = fdata.globallyUniqueNamingRegistry.get(name);

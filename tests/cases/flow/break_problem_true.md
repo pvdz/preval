@@ -95,19 +95,13 @@ const tmpLabeledBlockFunc = function () {
   debugger;
   const tmpIfTest$3 = $(true);
   if (tmpIfTest$3) {
-    tmpAfterLabel('pass');
+    $('pass');
     return undefined;
   } else {
-    tmpAfterLabel('fail');
+    $('fail');
     return undefined;
   }
-  tmpAfterLabel('fail');
-  return undefined;
-};
-const tmpAfterLabel = function ($$0) {
-  const x$1 = $$0;
-  debugger;
-  $(x$1);
+  $('fail');
   return undefined;
 };
 tmpLabeledBlockFunc();

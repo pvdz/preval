@@ -105,7 +105,7 @@ const tmpAfterLabel$1 = function ($$0) {
   const x$5 = $$0;
   debugger;
   $(x$5);
-  tmpAfterLabel(x$5);
+  $(x$5);
   return undefined;
 };
 const tmpLabeledBlockFunc = function () {
@@ -113,19 +113,13 @@ const tmpLabeledBlockFunc = function () {
   let x$7 = 'fail';
   if ($) {
     x$7 = 'pass';
-    tmpAfterLabel('pass');
+    $('pass');
     return undefined;
   } else {
     tmpAfterLabel$1(x$7);
     return undefined;
   }
   tmpAfterLabel$1(x$7);
-  return undefined;
-};
-const tmpAfterLabel = function ($$0) {
-  const x$1 = $$0;
-  debugger;
-  $(x$1);
   return undefined;
 };
 tmpLabeledBlockFunc();

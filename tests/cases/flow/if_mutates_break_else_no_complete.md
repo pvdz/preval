@@ -84,19 +84,13 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpAfterLabel = function ($$0) {
-  const x$1 = $$0;
-  debugger;
-  $(x$1, 'after label');
-  return undefined;
-};
 const tmpIfTest$1 = $(true);
 if (tmpIfTest$1) {
   $('pass', 'not mutating, not completing');
   $('pass', 'should not be considered mutated');
-  tmpAfterLabel('pass');
+  $('pass', 'after label');
 } else {
-  tmpAfterLabel('fail');
+  $('fail', 'after label');
 }
 `````
 

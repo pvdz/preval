@@ -91,16 +91,11 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
-const tmpAfterLabel = function () {
-  debugger;
-  x = 'fail';
-  return undefined;
-};
 const f = function () {
   debugger;
   try {
     x = 1;
-    tmpAfterLabel();
+    x = 'fail';
     return undefined;
   } finally {
     throw_early;
@@ -108,7 +103,7 @@ const f = function () {
     return undefined;
   }
   console.log(x);
-  tmpAfterLabel();
+  x = 'fail';
   return undefined;
 };
 let x = 0;

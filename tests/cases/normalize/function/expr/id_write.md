@@ -52,13 +52,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const funcexprname = function () {
-  debugger;
-  throw 'Preval: Cannot write to const binding `funcexprname`';
-};
-const x = funcexprname();
-const tmpCalleeParam$1 = typeof funcexprname;
-$(x, tmpCalleeParam$1);
+throw 'Preval: Cannot write to const binding `funcexprname`';
 `````
 
 ## Globals

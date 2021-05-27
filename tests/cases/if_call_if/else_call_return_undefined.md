@@ -111,11 +111,6 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const h = function () {
-  debugger;
-  $(4);
-  return undefined;
-};
 const f = function () {
   debugger;
   const test = $(3);
@@ -123,14 +118,14 @@ const f = function () {
     const tmpClusterSSA_test = $(1);
     if (tmpClusterSSA_test) {
       $(2);
-      h();
+      $(4);
       return undefined;
     } else {
-      h();
+      $(4);
       return undefined;
     }
   } else {
-    h();
+    $(4);
     return undefined;
   }
 };

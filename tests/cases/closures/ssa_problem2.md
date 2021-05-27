@@ -65,19 +65,9 @@ a = 4;
 ## Output
 
 `````js filename=intro
-let a = 1;
-const f = function () {
-  debugger;
-  a = 2;
-  return undefined;
-};
 $(1);
-f();
-a = 3;
 $(3);
-f();
-$(a);
-a = 4;
+$(2);
 `````
 
 ## Globals

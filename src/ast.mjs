@@ -893,9 +893,6 @@ export function isProperIdent(node) {
   }
 }
 
-
-
-
 export function nodeHasNoObservableSideEffectNorStatements(node, noDelete) {
   // This function assumes normalized code (!)
 
@@ -1466,4 +1463,173 @@ export function _ssaFindIdentRefs(node, set = new Set()) {
   //}
   // tagged template (?), return, throw, label (?), if, while, for-x, block (?), try, import, export, member, method, restelement, super,
   ASSERT(false, 'gottacatchemall 3', node);
+}
+
+export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
+  // Assumes normalized input. Should output normalized code, even when fail.ed=true
+  // Walk the node. Replace all occurrences of the read of an ident with the argument.
+  // Bail if a write ident was part of the mapper
+  // Mapper should only contain nodes valid for AST.cloneSimple
+
+  switch (node.type) {
+    case 'IfStatement': {
+      return ifStatement(
+        deepCloneForFuncInlining(node.test, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.consequent, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.alternate, paramArgMapper, fail),
+      );
+    }
+    case 'WhileStatement': {
+      return whileStatement(
+        deepCloneForFuncInlining(node.test, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.body, paramArgMapper, fail),
+      );
+    }
+    case 'ForInStatement': {
+      return forInStatement(
+        deepCloneForFuncInlining(node.left, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.right, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.body, paramArgMapper, fail),
+      );
+    }
+    case 'ForOfStatement': {
+      return forOfStatement(
+        deepCloneForFuncInlining(node.left, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.right, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.body, paramArgMapper, fail),
+      );
+    }
+    case 'EmptyStatement': {
+      return emptyStatement();
+    }
+    case 'DebuggerStatement': {
+      return debuggerStatement();
+    }
+    case 'ExpressionStatement': {
+      return expressionStatement(deepCloneForFuncInlining(node.expression, paramArgMapper, fail));
+    }
+    case 'BlockStatement': {
+      return blockStatement(node.body.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)));
+    }
+
+    case 'Identifier': {
+      // This is the money maker!
+      // Note: the nodes should be normalized call arg nodes, meaning they must be simple nodes, so we should be able to simpleClone them
+      if (paramArgMapper.has(node.name)) {
+        return cloneSimple(paramArgMapper.get(node.name));
+      }
+      return identifier(node.name);
+    }
+    case 'Literal': {
+      return cloneSimple(node);
+    }
+    case 'BinaryExpression': {
+      return binaryExpression(
+        node.operator,
+        deepCloneForFuncInlining(node.left, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.right, paramArgMapper, fail),
+      );
+    }
+    case 'AssignmentExpression': {
+      ASSERT(node.operator === '=');
+      if (node.left.type === 'Identifier' && paramArgMapper.has(node.left.name)) {
+        // Hack. But rather this than throwing...
+        fail.ed = true;
+        return assignmentExpression(cloneSimple(node.left), deepCloneForFuncInlining(node.right, paramArgMapper, fail), '=');
+      }
+      return assignmentExpression(
+        deepCloneForFuncInlining(node.left, paramArgMapper, fail),
+        deepCloneForFuncInlining(node.right, paramArgMapper, fail),
+        '=',
+      );
+    }
+    case 'UnaryExpression': {
+      return unaryExpression(node.operator, deepCloneForFuncInlining(node.argument, paramArgMapper, fail));
+    }
+    case 'ThisExpression': {
+      return thisExpression();
+    }
+    case 'Super': {
+      return thisExpression();
+    }
+    case 'ArrayExpression': {
+      return arrayExpression(node.elements.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)));
+    }
+    case 'ObjectExpression': {
+      return objectExpression(node.properties.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)));
+    }
+    case 'Property': {
+      return property(
+        node.computed ? deepCloneForFuncInlining(node.key, paramArgMapper, fail) : cloneSimple(node.key),
+        deepCloneForFuncInlining(node.value, paramArgMapper, fail),
+        false,
+        node.computed,
+        node.kind,
+        node.method,
+      );
+    }
+    case 'SpreadElement': {
+      return spreadElement(deepCloneForFuncInlining(node.argument, paramArgMapper, fail));
+    }
+    case 'CallExpression': {
+      return callExpression(
+        deepCloneForFuncInlining(node.callee, paramArgMapper, fail),
+        node.arguments.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)),
+      );
+    }
+    case 'MemberExpression': {
+      return memberExpression(
+        deepCloneForFuncInlining(node.object, paramArgMapper, fail),
+        node.computed ? deepCloneForFuncInlining(node.property, paramArgMapper, fail) : cloneSimple(node.property),
+        node.computed,
+      );
+    }
+    case 'NewExpression': {
+      return newExpression(
+        deepCloneForFuncInlining(node.callee, paramArgMapper, fail),
+        node.arguments.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)),
+      );
+    }
+    case 'TemplateExpression': {
+      return templateElement(
+        deepCloneForFuncInlining(node.raw, paramArgMapper, fail),
+        node.tail,
+        deepCloneForFuncInlining(node.cooked, paramArgMapper, fail),
+      );
+    }
+
+    case 'ClassExpression': {
+      throw TODO;
+    }
+    case 'Param': {
+      throw TODO;
+    }
+    case 'TryStatement': {
+      // ;(
+      throw TODO;
+    }
+    case 'LabeledStatement': {
+      // tricky because labels are unique and if we change this one we must change it for the whole structure
+      throw TODO;
+    }
+    case 'BreakStatement': {
+      throw TODO;
+    }
+    case 'ContinueStatement': {
+      throw TODO;
+    }
+    case 'ThrowStatement': {
+      throw TODO;
+    }
+    case 'ReturnStatement': {
+      throw TODO;
+    }
+    case 'FunctionExpression': {
+      // We do not want to deep clone function expressions because it leads to difficult binding duplication issues.
+      // This function should not be called in cases where we do want to clone functions and if we do want to do
+      // this in the future, we need to handle that through a different path.
+      fail.ed = true;
+      return identifier('undefined');
+    }
+  }
 }

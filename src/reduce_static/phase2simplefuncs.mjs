@@ -1,6 +1,8 @@
+import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { resolveNodeAgainstParams } from '../bindings.mjs';
+import { createFreshVar, getIdentUsageKind, resolveNodeAgainstParams } from '../bindings.mjs';
+import { param } from '../ast.mjs';
 
 export function inlineSimpleFuncCalls(fdata) {
   group('\n\n\nChecking for simple func calls that can be inlined');
@@ -9,352 +11,325 @@ export function inlineSimpleFuncCalls(fdata) {
   return r;
 }
 function _inlineSimpleFuncCalls(fdata) {
-  let inlinedFuncCount = 0;
+  const queue = [];
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
-
-    vgroup('- `' + meta.uniqueName + ':', meta.constValueRef.node.type, ', inlineme?', !!meta.constValueRef.node.$p.inlineMe);
+    if (meta.reads.length === 0) return; // :shrug:
 
     const funcNode = meta.constValueRef.node;
-    if (funcNode.type === 'FunctionExpression') {
-      if (funcNode.$p.inlineMe) {
-        vgroup('- Searching for all calls to `' + meta.uniqueName + '`');
-        const funcBody = funcNode.body.body;
-        meta.reads.forEach((read, ri) => {
-          vlog('- Read', ri, ':', read.parentNode.type);
-          if (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee') {
-            vlog('Was a call, inlineme?', funcNode.$p.inlineMe ? '"' + funcNode.$p.inlineMe + '"' : '');
-            // This read was a call to the function
-            switch (funcNode.$p.inlineMe) {
-              case 'single return with primitive': {
-                rule('Function that only returns primitive must be inlined');
-                example('function f() { return 5; } f();', '5;');
-                before(funcNode);
-                before(read.node, read.blockBody[read.blockIndex]);
+    if (funcNode.type !== 'FunctionExpression') return;
 
-                if (read.grandIndex >= 0) {
-                  read.grandNode[read.grandProp][read.grandIndex] = AST.cloneSimple(funcBody[funcBody.length - 1].argument);
-                } else {
-                  read.grandNode[read.grandProp] = AST.cloneSimple(funcBody[funcBody.length - 1].argument);
-                }
-                ++inlinedFuncCount;
-
-                after(read.parentNode, read.blockBody[read.blockIndex]);
-                break;
-              }
-              case 'single expression statement': {
-                //throw 'dead code, but useful';
-
-                // This is an arbitrary expression that we want to inline
-                // The expression should be in a normalized state and can be one of a few cases
-                // However, this is still a large set and we need to convert every ident that is a
-                // parameter into the argument in the same position of that param in this call.
-                // An expression can be a simple node, a simple member expression, a unary, a binary,
-                // a call, a new expression, an array, object, function, class, or an assignment.
-                // Member expressions must be in simple form but can be computed
-                // An assignment can have an ident or member expression as the lhs
-                // An assignment can have a non-assignment expression of the above kind as the rhs
-
-                // Transforms should respect the normal form so inlining complex expressions will require
-                // creating a block and replacing the whole statement containing the function call with a
-                // block where the first statement is the expression being inlined and the second statement
-                // the thing containing the original call, potentially with the actual call replaced.
-
-                ASSERT(
-                  funcBody[funcBody.length - 1]?.type === 'ExpressionStatement',
-                  'func must have only an expression statement',
-                  funcNode,
-                );
-                const expr = funcBody[funcBody.length - 1].expression;
-                vlog('Expression type:', expr.type, expr.left?.type, expr.right?.type);
-                if (expr.type === 'AssignmentExpression') {
-                  // TODO: member expressions. can probably do that more efficiently than a clone of the ident branch.
-
-                  // All cases of assignment become a block with the assignment and the statement containing the
-                  // original call, with the actual call replaced by undefined. In most cases the original
-                  // statement (with the call) ends up being eliminated by other rules.
-
-                  if (expr.left.type === 'Identifier') {
-                    const left = expr.left;
-                    ASSERT(
-                      funcNode.params.every((pnode) => {
-                        ASSERT(left.type === 'Identifier', 'normalized code', left);
-                        ASSERT(pnode.type === 'Param', 'all params are Params?', pnode);
-                        return left.name !== pnode.$p.paramVarDeclRef?.name;
-                      }),
-                      'assignments to params in this case should be caught and eliminated as noops',
-                    );
-
-                    const right = expr.right;
-                    if (!AST.isComplexNode(right)) {
-                      const [resolvedLeft, blockingSpread, paramIndex, isRest] = resolveNodeAgainstParams(right, read.parentNode, funcNode);
-
-                      if (blockingSpread) {
-                        vlog(
-                          'Cannot inline this call because the call uses a spread that covers the param used in the assignment to inline',
-                        );
-                      } else {
-                        rule('Inlining function that consists of a simple assignment');
-                        example(
-                          'let x = 1; function f(a, b, ...c) { x = c; } f(1, 2, 3, 4, 5);',
-                          'let x = 1; x = [3, 4, 5];',
-                          () => isRest,
-                        );
-                        example(
-                          'let x = 1; function f(a, b, ...c) { x = c; } f(1, 2, 3, 4, 5);',
-                          'let x = 1; x = [3, 4, 5];',
-                          () => !isRest && paramIndex >= 0,
-                        );
-                        example(
-                          'let x = 1; let y = 2; function f() { x = y; } f();',
-                          'let x = 1; let y = 2; x = y;',
-                          () => right.type === 'Identifier' && paramIndex < 0,
-                        );
-                        example('let x = 1; function f() { x = 2; } f();', 'let x = 1; x = 2;', () => right.type !== 'Identifier');
-                        example(
-                          'let x = 1; function f(a, b, ...c) { x = c; } y = f(1, 2, 3, 4, 5);',
-                          'let x = 1; { x = [3, 4, 5]; y = undefined; }',
-                          () => isRest,
-                        );
-                        example(
-                          'let x = 1; function f(a, b, ...c) { x = c; } const y = f(1, 2, 3, 4, 5);',
-                          'let x = 1; { x = [3, 4, 5]; const y = undefined; }',
-                          () => isRest,
-                        );
-                        before(funcNode);
-                        before(read.node, read.blockBody[read.blockIndex]);
-
-                        // The assignment becomes its own statement and the original call is replaced with
-                        // undefined. We must wrap that in a block to prevent indexes from being shifted.
-                        // While this could lead to temporary scoping issues, technically, we will be fine
-                        // because at this point we only use unique global identifiers as a guide and the
-                        // redundant block will be eliminated later.
-                        const finalNode = AST.assignmentExpression(AST.cloneSimple(left), resolvedLeft);
-                        const finalParent = AST.blockStatement(AST.expressionStatement(finalNode), read.blockBody[read.blockIndex]);
-                        read.blockBody[read.blockIndex] = finalParent;
-                        if (read.grandIndex >= 0) {
-                          read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
-                        } else {
-                          read.grandNode[read.grandProp] = AST.identifier('undefined');
-                        }
-                        ++inlinedFuncCount;
-
-                        after(finalNode, finalParent);
-                      }
-                      break;
-                    } else if (right.type === 'UnaryExpression') {
-                      // Right is mostly simple but may be a member expression?
-                      if (!AST.isComplexNode(right.argument)) {
-                        const [resolvedLeft, blockingSpread, paramIndex, isRest] = resolveNodeAgainstParams(
-                          right.argument,
-                          read.parentNode,
-                          funcNode,
-                        );
-
-                        if (blockingSpread) {
-                          vlog(
-                            'Cannot inline this call because the call uses a spread that covers the param used in the assignment to inline',
-                          );
-                        } else {
-                          const op = right.operator;
-                          rule('Inlining function that consists of a simple assignment of a unary expression');
-                          example(
-                            'let x = 1; function f(a, b, ...c) { x = ' + op + ' c; } f(1, 2, 3, 4, 5);',
-                            'let x = 1; { x = ' + op + ' [3, 4, 5]; undefined; }',
-                            () => isRest,
-                          );
-                          example(
-                            'let x = 1; function f(a, b, ...c) { x = ' + op + ' b; } f(1, 2, 3, 4, 5);',
-                            'let x = 1; { x = ' + op + ' 3; undefined; }',
-                            () => !isRest && paramIndex >= 0,
-                          );
-                          example(
-                            'let x = 1; let y = 2; function f() { x = ' + op + ' y; } f();',
-                            'let x = 1; let y = 2; { x = ' + op + ' y; undefined; }',
-                            () => right.type === 'Identifier' && paramIndex < 0,
-                          );
-                          example(
-                            'let x = 1; function f() { x = ' + op + ' 2; } f();',
-                            'let x = 1; { x = ' + op + ' 2; undefined; }',
-                            () => right.type !== 'Identifier',
-                          );
-                          example(
-                            'let x = 1; function f(a, b, ...c) { x = ' + op + ' c; } y = f(1, 2, 3, 4, 5);',
-                            'let x = 1; { x = ' + op + ' [3, 4, 5]; y = undefined; }',
-                            () => isRest,
-                          );
-                          example(
-                            'let x = 1; function f(a, b, ...c) { x = ' + op + ' c; } const y = f(1, 2, 3, 4, 5);',
-                            'let x = 1; { x = ' + op + ' [3, 4, 5]; const y = undefined; }',
-                            () => isRest,
-                          );
-                          before(funcNode);
-                          before(read.node, read.blockBody[read.blockIndex]);
-
-                          // The assignment becomes its own statement and the original call is replaced with
-                          // undefined. We must wrap that in a block to prevent indexes from being shifted.
-                          // While this could lead to temporary scoping issues, technically, we will be fine
-                          // because at this point we only use unique global identifiers as a guide and the
-                          // redundant block will be eliminated later.
-                          const finalNode = AST.assignmentExpression(AST.cloneSimple(left), AST.unaryExpression(op, resolvedLeft));
-                          const finalParent = AST.blockStatement(AST.expressionStatement(finalNode), read.blockBody[read.blockIndex]);
-                          read.blockBody[read.blockIndex] = finalParent;
-                          if (read.grandIndex >= 0) {
-                            read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
-                          } else {
-                            read.grandNode[read.grandProp] = AST.identifier('undefined');
-                          }
-                          ++inlinedFuncCount;
-
-                          after(finalNode, finalParent);
-                        }
-                        break;
-                      }
-                    } else if (right.type === 'BinaryExpression') {
-                      const lhs = right.left;
-                      const rhs = right.right;
-                      if (!AST.isComplexNode(lhs) && !AST.isComplexNode(rhs)) {
-                        const [resolvedLeft, blockingSpread, paramIndex, isRest] = resolveNodeAgainstParams(lhs, read.parentNode, funcNode);
-                        const [resolvedLeft2, blockingSpread2, paramIndex2, isRest2] = resolveNodeAgainstParams(
-                          rhs,
-                          read.parentNode,
-                          funcNode,
-                        );
-
-                        if (blockingSpread || blockingSpread2) {
-                          vlog(
-                            'Cannot inline this call because the call uses a spread that covers the param used in the assignment to inline',
-                          );
-                        } else {
-                          const op = right.operator;
-                          rule('Inlining function that consists of a simple assignment of a binary expression');
-                          example(
-                            'let x = 1; function f(a, b) { x = a ' + op + ' 2; } f(1, 2, 3, 4, 5);',
-                            'let x = 1; { x = 1 ' + op + ' 2; undefined; }',
-                          );
-                          example(
-                            'let x = 1; function f(a, b) { x = a ' + op + ' 2; } y = f(1, 2, 3, 4, 5);',
-                            'let x = 1; { x = 1 ' + op + ' 2; y = undefined; }',
-                          );
-                          example(
-                            'let x = 1; function f(a, b) { x = a ' + op + ' 2; } const y = f(1, 2, 3, 4, 5);',
-                            'let x = 1; { x = 1 ' + op + ' 2; const y = undefined; }',
-                          );
-                          before(funcNode);
-                          before(read.node, read.blockBody[read.blockIndex]);
-
-                          // The assignment becomes its own statement and the original call is replaced with
-                          // undefined. We must wrap that in a block to prevent indexes from being shifted.
-                          // While this could lead to temporary scoping issues, technically, we will be fine
-                          // because at this point we only use unique global identifiers as a guide and the
-                          // redundant block will be eliminated later.
-                          const finalNode = AST.assignmentExpression(
-                            AST.cloneSimple(left),
-                            AST.binaryExpression(op, resolvedLeft, resolvedLeft2),
-                          );
-                          const finalParent = AST.blockStatement(AST.expressionStatement(finalNode), read.blockBody[read.blockIndex]);
-                          read.blockBody[read.blockIndex] = finalParent;
-                          if (read.grandIndex >= 0) {
-                            read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
-                          } else {
-                            read.grandNode[read.grandProp] = AST.identifier('undefined');
-                          }
-                          ++inlinedFuncCount;
-
-                          after(finalNode, finalParent);
-                        }
-                        break;
-                      }
-                    }
-                    // Meh.
-                    //else if (right.type === 'ArrayExpression') {
-                    //} else if (right.type === 'ObjectExpression') {
-                    //}
-                    // else FunctionExpression, ArrayFunctionExpression, ClassExpression
-                  }
-                }
-
-                break;
-              }
-              case 'double with primitive': {
-                rule('Function that returns local primitive should be inlined');
-                example('function f() { const x = undefined; return x; } f();', 'undefined;');
-                before(funcNode);
-                before(read.node, read.blockBody[read.blockIndex]);
-
-                const bodyOffset = findBodyOffset(funcNode);
-                if (read.grandIndex >= 0) {
-                  read.grandNode[read.grandProp][read.grandIndex] = funcBody[bodyOffset].declarations[0].init;
-                } else {
-                  read.grandNode[read.grandProp] = funcBody[bodyOffset].declarations[0].init;
-                }
-                ++inlinedFuncCount;
-
-                after(read.parentNode, read.blockBody[read.blockIndex]);
-                break;
-              }
-              case 'double with array with primitives': {
-                rule('Function that returns array literal with only primitives should be inlined');
-                example('function f() { const arr = [1, 2]; return arr; } f();', '[1, 2];');
-                before(funcNode);
-                before(read.node, read.blockBody[read.blockIndex]);
-
-                const bodyOffset = findBodyOffset(funcNode);
-                if (read.grandIndex >= 0) {
-                  read.grandNode[read.grandProp][read.grandIndex] = funcBody[bodyOffset].declarations[0].init;
-                } else {
-                  read.grandNode[read.grandProp] = funcBody[bodyOffset].declarations[0].init;
-                }
-                ++inlinedFuncCount;
-
-                after(read.parentNode, read.blockBody[read.blockIndex]);
-                break;
-              }
-              case 'double with identifier': {
-                const bodyOffset = findBodyOffset(funcNode);
-                const ident = funcBody[bodyOffset].declarations[0].init;
-                const [resolvedLeft, blockingSpread, paramIndex, isRest] = resolveNodeAgainstParams(ident, read.parentNode, funcNode);
-
-                vlog(paramIndex >= 0 ? 'Using param index ' + paramIndex : 'Not using param');
-                vlog('Call site using a spread we cant handle?', blockingSpread);
-
-                if (blockingSpread) {
-                  vlog('- Call is using spread before or at the param index so we must bail');
-                } else if (paramIndex >= 0) {
-                  // Must verify whether the ident is a param, and if so, that it's eligible for replacement,
-                  // and if so, replace all call sites with the argument at that position. If not param, just keep it.
-                  rule('Function that returns local binding set to an identifier should be inlined');
-                  example('function f(a) { const x = a; return x; } f(1);', '1;');
-                  before(funcNode);
-                  before(read.node, read.blockBody[read.blockIndex]);
-
-                  if (read.grandIndex >= 0) {
-                    read.grandNode[read.grandProp][read.grandIndex] = resolvedLeft;
-                  } else {
-                    read.grandNode[read.grandProp] = resolvedLeft;
-                  }
-                  ++inlinedFuncCount;
-
-                  after(read.parentNode, read.blockBody[read.blockIndex]);
-                  break;
-                }
-              }
-            }
-          }
-        });
-
-        vgroupEnd();
-      }
-    }
+    vgroup('- `' + meta.uniqueName + ':', meta.constValueRef.node.type);
+    process(meta, funcNode, fdata, queue);
     vgroupEnd();
   });
 
-  if (inlinedFuncCount > 0) {
-    log('Inlined function calls:', inlinedFuncCount, '. Restarting from phase1 to fix up read/write registry');
+  if (queue.length) {
+    // Now unwind the queue in reverse AST order. This way splices should not interfere with each other.
+    queue.sort(([a], [b]) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.forEach(([pid, f]) => f());
+
+    log('Inlined function calls:', queue.length, '. Restarting from phase1 to fix up read/write registry');
     return 'phase1';
   }
 
   log('Inlined function calls: 0.');
+}
+function process(meta, funcNode, fdata, queue) {
+  if (funcNode.params.some((pnode) => pnode.rest)) {
+    vlog('Function params has a rest element. Bailing');
+    return;
+  }
+
+  // A simple function is a function with one statement and a return statement.
+  // In normalized code, the return statement must have a simple argument with no side effects.
+  // The other statement must not be of a branching or block type (no `if`, `while`, `for`, or `try`)
+  // For the time being, we should probably disallow fresh functions as well, since they add
+  // complexity through closures (local to the params that we will eliminate).
+
+  // The function can have any number of params and we'll need to connect them all to the call
+  // args because they might be used in an array or func call or return value.
+
+  // There are some situations where we cannot inline the call
+  // - Func has rest param. We can't reliably match params to args.
+  // - Call uses spread. We can't reliably match params to args.
+  // - Function uses `this`
+  // - Function uses `arguments`
+  // - Function uses `arguments.length` when we can't determine it (can this even happen without other rules bailing?)
+
+  if (funcNode.$p.thisAccess) {
+    vlog('Function uses `this`. Bailing');
+    return;
+  }
+  if (funcNode.$p.readsArgumentsAny) {
+    // TODO: can we do this anyways? Not if it's actually returned but otherwise..?
+    vlog('Function accesses `arguments`. Bailing');
+    return;
+  }
+
+  const bodyOffset = funcNode.$p.bodyOffset;
+  ASSERT(bodyOffset);
+
+  const bodyNodes = funcNode.body.body.slice(bodyOffset);
+  ASSERT(bodyNodes.length > 0, 'normalized functions must explicitly return so even empty functions must return undefined');
+
+  if (bodyNodes.length === 1) {
+    const ret = bodyNodes[0];
+    if (ret.type === 'IfStatement') {
+      vlog('Function has only `if`. Bailing.');
+      return;
+    }
+
+    // Function only has a return type
+    ASSERT(ret.type === 'ReturnStatement' || ret.type === 'ThrowStatement', 'must end with return/throw?', ret);
+
+    // The call is entirely replaced with the return arg.
+    // If the arg is a param then the call is replaced with that arg.
+
+    let paramIndex = -1;
+    let argslen = false;
+    const returnArg = ret.argument;
+    if (returnArg.type === 'Identifier') {
+      if (returnArg.name === funcNode.$p.readsArgumentsLenAs) {
+        vlog('This is the `arguments.length` alias (A)');
+        argslen = true;
+      } else {
+        paramIndex = funcNode.$p.paramNames.indexOf(returnArg.name);
+      }
+    }
+
+    vgroup('Processing reads.');
+    meta.reads.forEach((read) => {
+      if (read.parentNode.type === 'CallExpression' && read.parentProp === 'callee') {
+        if (read.parentNode['arguments'].some((anode) => anode.type === 'SpreadElement')) {
+          vlog('At least one arg of the call was a spread. Bailing');
+          return;
+        }
+
+        queue.push([
+          +read.node.$p.pid,
+          () => {
+            rule('Simple function with only a return statement can be inlined');
+            example('function f(x){ return x; } f(a); f(b);', 'a; b;');
+            before(read.blockBody[read.blockIndex], funcNode);
+
+            let arg;
+            if (argslen) {
+              // This was the `arguments.length` alias inside this function. Inline it with the number of args of the call now :)
+              arg = AST.literal(read.parentNode['arguments'].length);
+            } else if (paramIndex >= 0) {
+              // Replace call with the arg in position paramIndex of the call
+              // We should not need to clone this since the arg is not reused more then once, and not duplicated in the AST
+              arg = read.parentNode['arguments'][paramIndex];
+            } else {
+              // Replace call with a clone of the return arg
+              arg = AST.cloneSimple(returnArg);
+            }
+
+            if (ret.type === 'ThrowStatement') {
+              read.blockBody.splice(read.blockIndex, 0, AST.throwStatement(arg));
+              // The rest will be DCE'd so whatever.
+              if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier('undefined');
+              else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
+            } else {
+              if (read.grandIndex < 0) read.grandNode[read.grandProp] = arg;
+              else read.grandNode[read.grandProp][read.grandIndex] = arg;
+            }
+
+            after(read.blockBody[read.blockIndex]);
+          },
+        ]);
+      } else {
+        vlog('This read was not a call. Bailing');
+      }
+    });
+    vgroupEnd();
+  } else if (bodyNodes.length === 2) {
+    const stmt = bodyNodes[0];
+    if (!['ExpressionStatement', 'VariableDeclaration'].includes(stmt.type)) {
+      vlog('Function contained something other than expression or var statement', stmt.type, ', bailing');
+      return;
+    }
+
+    const ret = bodyNodes[1];
+    if (ret.type === 'IfStatement') {
+      vlog('Function has only `if`. Bailing.');
+      return;
+    }
+
+    ASSERT(ret.type === 'ReturnStatement' || ret.type === 'ThrowStatement');
+
+    if (stmt.type === 'ExpressionStatement') {
+      if (stmt.expression.type === 'AssignmentExpression' && stmt.expression.right.type === 'FunctionExpression') {
+        return; // Too complex with the potential of closures over params
+      }
+    } else if (stmt.type === 'VariableDeclaration') {
+      if (stmt.declarations[0].init.type === 'FunctionExpression') {
+        return; // Too complex with the potential of closures over params
+      }
+    }
+
+    vgroup('Processing', meta.reads.length, 'reads.');
+    meta.reads.forEach((read, ri) => {
+      const callNode = read.parentNode;
+      if (callNode.type !== 'CallExpression' || read.parentProp !== 'callee') {
+        vlog('-', ri, ': not a call', callNode.type, read.parentProp);
+        return;
+      }
+
+      if (callNode['arguments'].some((anode) => anode.type === 'SpreadElement')) {
+        vlog('-', ri, ': at least one arg was a spread. Bailing');
+        return;
+      }
+
+      const paramArgMapper = new Map(
+        funcNode.params
+          .map((pnode, pi) => [pnode.$p.paramVarDeclRef?.name, callNode['arguments'][pi] ?? AST.identifier('undefined')])
+          .filter((a) => !!a[0]),
+      );
+      if (funcNode.$p.readsArgumentsLen) {
+        // If the argslen alias was referenced, make sure it's replaced with the proper (actual) value
+        paramArgMapper.set(funcNode.$p.readsArgumentsLenAs, AST.literal(callNode['arguments'].length));
+      }
+
+      if (stmt.type === 'VariableDeclaration') {
+        vgroup('-', ri, ': a var');
+        processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue);
+        vgroupEnd();
+      } else {
+        vgroup('-', ri, ': a non-var');
+        processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue);
+        vgroupEnd();
+      }
+    });
+    vgroupEnd();
+  } else {
+    // Maybe we'll want to inline with certain other statements but that's tbd.
+  }
+}
+function processVar(stmt, ret, paramArgMapper, read, ri, funcNode, fdata, queue) {
+  const oldName = stmt.declarations[0].id.name;
+  // Special case because we need to create a unique name for the binding
+  const fail = { de: false };
+  const newInit = AST.deepCloneForFuncInlining(stmt.declarations[0].init, paramArgMapper, fail);
+  if (fail.ed) {
+    vlog('  - Node contained a write to a param. Bailing');
+    return false;
+  }
+
+  queue.push([
+    +read.node.$p.pid,
+    () => {
+      rule('Simple function with only a var decl can be inlined');
+      example('function f(){ const x = g(); return x; } f(); f();', 'g(); g();');
+      before(read.blockBody[read.blockIndex], funcNode);
+
+      const tmpName = createFreshVar(stmt.declarations[0].id.name, fdata);
+      const newNode = AST.variableDeclaration(tmpName, newInit, 'const');
+
+      let paramIndex = -1;
+      let argslen = false;
+      const returnArg = ret.argument;
+      if (returnArg.type === 'Identifier') {
+        if (returnArg.name === funcNode.$p.readsArgumentsLenAs) {
+          vlog('This is the `arguments.length` alias (B)');
+          argslen = true;
+        } else {
+          paramIndex = funcNode.$p.paramNames.indexOf(returnArg.name);
+        }
+      }
+
+      let arg;
+      if (argslen) {
+        // This was the `arguments.length` alias inside this function. Inline it with the number of args of the call now :)
+        arg = AST.literal(read.parentNode['arguments'].length);
+      } else if (paramIndex >= 0) {
+        // Replace call with the arg in position paramIndex of the call
+        // We should not need to clone this since the arg is not reused more then once, and not duplicated in the AST
+        arg = read.parentNode['arguments'][paramIndex];
+      } else if (returnArg.type === 'Identifier' && returnArg.name === oldName) {
+        // Replace call with renamed local variable
+        arg = AST.identifier(tmpName);
+      } else {
+        // Replace call with a clone of the return arg
+        arg = AST.cloneSimple(returnArg);
+      }
+
+      if (ret.type === 'ThrowStatement') {
+        read.blockBody.splice(read.blockIndex, 0, AST.throwStatement(arg));
+        // The rest will be DCE'd so whatever.
+        if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier('undefined');
+        else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
+      } else {
+        if (read.grandIndex < 0) read.grandNode[read.grandProp] = arg;
+        else read.grandNode[read.grandProp][read.grandIndex] = arg;
+      }
+
+      // Make sure to do this second. If the function ended with a throw, this newNode should precede it
+      read.blockBody.splice(read.blockIndex, 0, newNode);
+
+      after(read.blockBody[read.blockIndex]);
+    },
+  ]);
+  return true;
+}
+function processNonVar(stmt, ret, paramArgMapper, read, ri, funcNode, queue) {
+  const fail = { de: false };
+  const newNode = AST.deepCloneForFuncInlining(stmt, paramArgMapper, fail);
+  if (fail.ed) {
+    vlog('  - Node contained a write to a param. Bailing');
+    return false;
+  }
+
+  queue.push([
+    +read.node.$p.pid,
+    () => {
+      rule('Simple function with only an expression can be inlined');
+      example('function f(x){ g(); return x; } f(); f();', 'g(); g();');
+      before(read.blockBody[read.blockIndex], funcNode);
+
+      let paramIndex = -1;
+      let argslen = false;
+      const returnArg = ret.argument;
+      if (returnArg.type === 'Identifier') {
+        if (returnArg.name === funcNode.$p.readsArgumentsLenAs) {
+          vlog('This is the `arguments.length` alias (C)');
+          argslen = true;
+        } else {
+          paramIndex = funcNode.$p.paramNames.indexOf(returnArg.name);
+        }
+      }
+
+      let arg;
+      if (argslen) {
+        // This was the `arguments.length` alias inside this function. Inline it with the number of args of the call now :)
+        arg = AST.literal(read.parentNode['arguments'].length);
+      } else if (paramIndex >= 0) {
+        // Replace call with the arg in position paramIndex of the call
+        // We should not need to clone this since the arg is not reused more then once, and not duplicated in the AST
+        arg = read.parentNode['arguments'][paramIndex];
+      } else {
+        // Replace call with a clone of the return arg
+        arg = AST.cloneSimple(returnArg);
+      }
+
+      if (ret.type === 'ThrowStatement') {
+        read.blockBody.splice(read.blockIndex, 0, AST.throwStatement(arg));
+        // The rest will be DCE'd so whatever.
+        if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier('undefined');
+        else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier('undefined');
+      } else {
+        if (read.grandIndex < 0) read.grandNode[read.grandProp] = arg;
+        else read.grandNode[read.grandProp][read.grandIndex] = arg;
+      }
+
+      // Make sure to do this second. If the function ended with a throw, this newNode should precede it
+      read.blockBody.splice(read.blockIndex, 0, newNode);
+
+      after(read.blockBody[read.blockIndex]);
+    },
+  ]);
+  return true;
 }

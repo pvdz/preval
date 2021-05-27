@@ -59,13 +59,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const r = function () {
-  debugger;
-  throw 'Preval: Cannot write to const binding `r`';
-};
-const x = r();
-const tmpCalleeParam$1 = typeof r;
-$(x, tmpCalleeParam$1);
+throw 'Preval: Cannot write to const binding `r`';
 `````
 
 ## Globals

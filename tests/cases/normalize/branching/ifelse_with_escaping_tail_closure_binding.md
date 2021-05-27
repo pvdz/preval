@@ -93,7 +93,7 @@ if ($) {
 }
 const xyz = $();
 t[0]();
-g();
+$(xyz, 'g');
 $(undefined);
 `````
 

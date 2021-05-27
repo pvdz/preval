@@ -81,11 +81,6 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpAfterLabel = function () {
-  debugger;
-  $('after');
-  return undefined;
-};
 const f = function () {
   debugger;
   const tmpIfTest$1 = $(true);
@@ -94,10 +89,10 @@ const f = function () {
     return undefined;
   } else {
     $(101);
-    tmpAfterLabel();
+    $('after');
     return undefined;
   }
-  tmpAfterLabel();
+  $('after');
   return undefined;
 };
 f();

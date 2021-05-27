@@ -668,21 +668,6 @@ considerMutated(x$31);
 ## Output
 
 `````js filename=intro
-const tmpAfterLabel$3 = function () {
-  debugger;
-  x$27 = 1;
-  return undefined;
-};
-const tmpAfterLabel$1 = function () {
-  debugger;
-  x$25 = 1;
-  return undefined;
-};
-const tmpAfterLabel = function () {
-  debugger;
-  x$21 = 'fail';
-  return undefined;
-};
 let x = 0;
 try {
   x = 1;
@@ -774,13 +759,13 @@ considerMutated(x$19);
 const f = function () {
   debugger;
   try {
-    tmpAfterLabel();
+    x$21 = 'fail';
     return undefined;
   } finally {
     return undefined;
   }
   console.log(x$21);
-  tmpAfterLabel();
+  x$21 = 'fail';
   return undefined;
 };
 let x$21 = 0;
@@ -802,10 +787,10 @@ const f$3 = function () {
   try {
     throw x$25;
   } finally {
-    tmpAfterLabel$1();
+    x$25 = 1;
     return undefined;
   }
-  tmpAfterLabel$1();
+  x$25 = 1;
   return undefined;
 };
 let x$25 = 0;
@@ -818,10 +803,10 @@ const f$5 = function () {
   } catch {
     throw 'two';
   } finally {
-    tmpAfterLabel$3();
+    x$27 = 1;
     return undefined;
   }
-  tmpAfterLabel$3();
+  x$27 = 1;
   return undefined;
 };
 let x$27 = 0;

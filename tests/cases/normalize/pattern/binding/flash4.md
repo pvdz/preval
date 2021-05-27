@@ -45,14 +45,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const x = function ($$0) {
-  const tmpParamBare = $$0;
-  debugger;
-  const x$1 = tmpParamBare.x;
-  return x$1;
-};
-const tmpCalleeParam = { x: x };
-x(tmpCalleeParam);
+
 `````
 
 ## Globals

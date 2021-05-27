@@ -28,6 +28,7 @@ export function $p() {
     // reduce/phase2 (these props should exist after phas1... even on new nodes)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations
     // - readsArgumentsLen // bool. Does it read `arguments.length`?
+    // - readsArgumentsLenAs // string. Name of the alias, if any
     // - readsArgumentsLenAt // int. Block index of the args.len alias
     // - readsArgumentsAny // bool. Does it read the implicit `arguments` in any way?
     // - containsFunctions // bool. Does a function body contain nested functions (anywhere of any kind)?
@@ -55,5 +56,6 @@ export function $p() {
     // - lastWriteStackAfterIf // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map depicts the state after the consequent.) For each relevant binding, a set of writes that are currently "observable" when finding a read.
     // - lastWritesBackupTry // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map depicts the state after the `try-block`.) For each relevant binding, a set of writes that are currently "observable" when finding a read.
     // - lastWritesBackupCatch // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map depicts the state after the `catch` block.) For each relevant binding, a set of writes that are currently "observable" when finding a read.
+    // - paramNames // Array<string>. Original param names for the function. Those will be $$0 mapped in the same order.
   };
 }

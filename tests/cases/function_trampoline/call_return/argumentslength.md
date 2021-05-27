@@ -58,8 +58,8 @@ $(q);
 ## Output
 
 `````js filename=intro
-const q = $(5);
-$(q);
+const r$1 = $(5);
+$(r$1);
 `````
 
 ## Globals

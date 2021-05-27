@@ -134,7 +134,7 @@ function processAttempt(fdata) {
       if (reffedNames === false) break;
 
       if (
-        reffedNames.some((name) => meta.bfuncNode.$p.ownBindings.has(name) && !meta.bfuncNode.$p.paramNames.has(name)) &&
+        reffedNames.some((name) => meta.bfuncNode.$p.ownBindings.has(name) && !meta.bfuncNode.$p.paramNames.includes(name)) &&
         !AST.expressionHasNoObservableSideEffect(node)
       ) {
         vlog('The next statement uses at least one local binding or could observe it and it was not a param name.');

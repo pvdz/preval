@@ -110,25 +110,20 @@ $(f);
 ## Output
 
 `````js filename=intro
-const a = function () {
-  debugger;
-  $(100);
-  return undefined;
-};
 const f = function () {
   debugger;
   const test = $(1);
   if (test) {
     const tmpClusterSSA_test = $(2);
     if (tmpClusterSSA_test) {
-      a();
+      $(100);
       return undefined;
     } else {
-      a();
+      $(100);
       return undefined;
     }
   } else {
-    a();
+    $(100);
     return undefined;
   }
 };

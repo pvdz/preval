@@ -71,17 +71,12 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpAfterLabel = function () {
-  debugger;
-  $('after');
-  return undefined;
-};
 const tmpIfTest$1 = $(true);
 if (tmpIfTest$1) {
   $(100);
-  tmpAfterLabel();
+  $('after');
 } else {
-  tmpAfterLabel();
+  $('after');
 }
 `````
 

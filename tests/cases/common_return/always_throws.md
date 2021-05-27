@@ -78,25 +78,20 @@ try {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
+try {
   throw 'Some error';
-};
-try {
-  f();
 } catch {}
 try {
-  f();
+  throw 'Some error';
 } catch {}
 try {
-  f();
+  throw 'Some error';
 } catch {}
 try {
-  f();
+  throw 'Some error';
 } catch {}
 try {
-  const tmpCalleeParam = f();
-  $(tmpCalleeParam);
+  throw 'Some error';
 } catch {}
 `````
 

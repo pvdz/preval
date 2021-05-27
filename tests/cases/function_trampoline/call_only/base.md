@@ -1,28 +1,21 @@
 # Preval test case
 
-# ssa_problem.md
+# base.md
 
-> Closures > Ssa problem
+> Function trampoline > Call only > Base
 >
-> Trying to come up with ssa problem cases regarding closures
+> Calls to a function that only call another function should immediately call that other function instead 
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-//f();
-let a = 1;
-$(a);
-f();
-a = 3;
-$(a);
 function f() {
-  a = 2;
+  $('inline me');
 }
 f();
-$(a);
-a = 4;
+f();
 `````
 
 ## Pre Normal
@@ -30,16 +23,10 @@ a = 4;
 `````js filename=intro
 let f = function () {
   debugger;
-  a = 2;
+  $('inline me');
 };
-let a = 1;
-$(a);
 f();
-a = 3;
-$(a);
 f();
-$(a);
-a = 4;
 `````
 
 ## Normalized
@@ -47,25 +34,18 @@ a = 4;
 `````js filename=intro
 let f = function () {
   debugger;
-  a = 2;
+  $('inline me');
   return undefined;
 };
-let a = 1;
-$(a);
 f();
-a = 3;
-$(a);
 f();
-$(a);
-a = 4;
 `````
 
 ## Output
 
 `````js filename=intro
-$(1);
-$(3);
-$(2);
+$('inline me');
+$('inline me');
 `````
 
 ## Globals
@@ -75,9 +55,8 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1
- - 2: 3
- - 3: 2
+ - 1: 'inline me'
+ - 2: 'inline me'
  - eval returned: undefined
 
 Pre normalization calls: Same

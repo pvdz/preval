@@ -111,24 +111,19 @@ $(undefined);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let theneedle = $(tmpCalleeParam);
-const tmpBranchingC$1 = function () {
-  debugger;
-  $(theneedle);
-  return undefined;
-};
+const theneedle = $(tmpCalleeParam);
 if (theneedle) {
   const tmpCalleeParam$3 = $(1);
-  theneedle = $(tmpCalleeParam$3);
-  if (theneedle) {
+  const tmpClusterSSA_theneedle = $(tmpCalleeParam$3);
+  if (tmpClusterSSA_theneedle) {
     const tmpCalleeParam$7 = $(2);
-    theneedle = $(tmpCalleeParam$7);
-    tmpBranchingC$1();
+    const tmpClusterSSA_theneedle$1 = $(tmpCalleeParam$7);
+    $(tmpClusterSSA_theneedle$1);
   } else {
-    tmpBranchingC$1();
+    $(tmpClusterSSA_theneedle);
   }
 } else {
-  tmpBranchingC$1();
+  $(theneedle);
 }
 $(undefined);
 `````

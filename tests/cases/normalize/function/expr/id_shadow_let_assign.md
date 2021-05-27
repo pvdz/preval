@@ -63,7 +63,7 @@ const r = function () {
   $('number');
   return 30;
 };
-r();
+$('number');
 const tmpCalleeParam$3 = typeof r;
 $(30, tmpCalleeParam$3);
 `````

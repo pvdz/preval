@@ -132,7 +132,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
         node.$p.ownBindings = new Set();
         node.$p.referencedNames = new Set();
-        node.$p.paramNames = new Set();
+        node.$p.paramNames = [];
         loopStack.push(0);
         break;
       }
@@ -472,7 +472,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         node.$p.blockChain = blockIds.join(',');
         node.$p.ownBindings = new Set();
         node.$p.referencedNames = new Set();
-        node.$p.paramNames = new Set();
+        node.$p.paramNames = [];
         node.$p.readsArgumentsAny = false;
         node.$p.readsArgumentsLen = false;
         node.$p.readsArgumentsLenAt = -1;
@@ -540,62 +540,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           meta.isImplicitGlobal = false;
         }
 
-        const bodyOffset = node.$p.bodyOffset;
-        ASSERT(bodyOffset >= 0, 'normalized functions must have a debugger statement to signify the end of the header');
-        const body = node.body.body;
-        if (body.length - bodyOffset === 1) {
-          vlog('This function has one statement. Trying to see if we can inline calls to it.');
-          const stmt = body[bodyOffset];
-          if (stmt.type === 'ReturnStatement') {
-            // All usages can be inlined with the arg, provided the arg is reachable from the call sites (relevant for closures)
-            if (AST.isPrimitive(body[bodyOffset].argument)) {
-              node.$p.inlineMe = 'single return with primitive';
-            }
-          } else {
-            ASSERT(
-              stmt.type !== 'ExpressionStatement',
-              'every function returns explicitly so the last statement can not be a non-returning non-throwing expression',
-              node,
-            );
-          }
-        } else if (body.length - bodyOffset === 2) {
-          vlog('This function has two statements. Trying to see if we can inline calls to it.');
-          const one = body[bodyOffset];
-          const two = body[bodyOffset + 1];
-          if (one.type === 'VariableDeclaration' && two.type === 'ReturnStatement') {
-            vlog('Has var and return. Checking if it just returns the fresh var.');
-            const decl = one;
-            const decr = decl.declarations[0];
-            const ret = two;
-            if (ret.argument?.type === 'Identifier' && decr.id.name === ret.argument.name) {
-              // This is a function whose body is a variable declaration that is then returned and the func is only called.
-              // `var x = unknown; return x`, where unknown is any normalized expression (idc)
-
-              ASSERT(decr.init, 'normalized var decls have an init, right');
-              if (AST.isPrimitive(decr.init)) {
-                vlog('- Yes. Basically returning a primitive');
-                // I think this shouldn't be the case as I expect these to be normalized away
-                node.$p.inlineMe = 'double with primitive';
-              } else if (decr.init.type === 'ArrayExpression') {
-                vlog('- Yes. Basically returning an array literal');
-                // `function f() { const x = [...]; return x; }`
-                // Let's start with arrays that only contain primitives
-                if (decr.init.elements.every((enode) => AST.isPrimitive(enode))) {
-                  vlog('And it does contain only primitives');
-                  node.$p.inlineMe = 'double with array with primitives';
-                } else {
-                  vlog('No, it contained other things');
-                }
-              } else if (decr.init.type === 'Identifier' && decr.init.name !== 'arguments') {
-                // (Cannot easily mimic arguments). The `this` is not an identifier.
-                node.$p.inlineMe = 'double with identifier';
-              } else {
-                vlog('No, skipping this one.');
-              }
-            }
-          }
-        }
-
         if (node.body.$p.earlyComplete) {
           vlog('Function contained at least one early completion');
           node.$p.earlyComplete = node.body.$p.earlyComplete;
@@ -658,6 +602,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 greatGrandIndex,
               );
               thisStack[thisStack.length - 1].$p.readsArgumentsLenAt = greatGrandIndex;
+              thisStack[thisStack.length - 1].$p.readsArgumentsLenAs = grandNode.id.name; // Name of the alias
               thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
             } else {
               if (parentNode.type === 'ExpressionStatement') {
@@ -1018,7 +963,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           //// Point from var decl ref to its func header node
           //node.$p.paramFuncHeaderRef = {node: funcHeaderParamNode, funcNode};
 
-          funcNode.$p.paramNames.add(parentNode.id.name);
+          funcNode.$p.paramNames.push(parentNode.id.name);
         } else {
           vlog('This is the param');
           // This is the func param (!) `function ($$0) {`
@@ -1093,17 +1038,17 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       }
 
       case 'TryStatement:after': {
-        if (node.block.$p.earlyComplete || node.handler?.$p.earlyComplete || node.finalizer?.$p.earlyComplete) {
+        if (node.block.$p.earlyComplete || node.handler?.body.$p.earlyComplete || node.finalizer?.$p.earlyComplete) {
           vlog('At least one block of the try has an early completion');
           node.$p.earlyComplete = true;
-          node.$p.earlyReturn = node.block.$p.earlyReturn || node.handler?.$p.earlyReturn || node.finalizer?.$p.earlyReturn;
-          node.$p.earlyThrow = node.block.$p.earlyThrow || node.handler?.$p.earlyThrow || node.finalizer?.$p.earlyThrow;
+          node.$p.earlyReturn = node.block.$p.earlyReturn || node.handler?.body.$p.earlyReturn || node.finalizer?.$p.earlyReturn;
+          node.$p.earlyThrow = node.block.$p.earlyThrow || node.handler?.body.$p.earlyThrow || node.finalizer?.$p.earlyThrow;
         }
-        if (node.block.$p.alwaysComplete && node.handler?.$p.alwaysComplete && node.finalizer?.$p.alwaysComplete) {
+        if (node.block.$p.alwaysComplete && node.handler?.body.$p.alwaysComplete && node.finalizer?.$p.alwaysComplete) {
           vlog('All blocks of the try complete explicitly');
           node.$p.alwaysComplete = true;
-          node.$p.alwaysReturn = node.block.$p.alwaysReturn && node.handler?.$p.alwaysReturn && node.finalizer?.$p.alwaysReturn;
-          node.$p.alwaysThrow = node.block.$p.alwaysThrow && node.handler?.$p.alwaysThrow && node.finalizer?.$p.alwaysThrow;
+          node.$p.alwaysReturn = node.block.$p.alwaysReturn && node.handler?.body.$p.alwaysReturn && node.finalizer?.$p.alwaysReturn;
+          node.$p.alwaysThrow = node.block.$p.alwaysThrow && node.handler?.body.$p.alwaysThrow && node.finalizer?.$p.alwaysThrow;
         }
         break;
       }
@@ -1267,7 +1212,7 @@ function lastWrite_mergeLastWriteMapsByRef(from, to) {
 
 function isTailNode(completionNode, tailNode) {
   ASSERT(completionNode);
-  ASSERT(tailNode);
+  ASSERT(tailNode, 'tailNode must exist', tailNode);
   // In this context, a tail node is the last node of a function, or the last node of an `if` that is the last
   // node of a function or the last node of an if that is the last node of a function, repeating.
   if (completionNode === tailNode) return true;
@@ -1299,9 +1244,9 @@ function isTailNode(completionNode, tailNode) {
     // Hopefully this isn't a footgun and false positives don't blow up in my face. Eh foot. Eh ... you know.
     return (
       (tailNode.block.body.length === 0 ? false : isTailNode(completionNode, tailNode.block.body[tailNode.block.body.length - 1])) ||
-      (!tailNode.handler || tailNode.handler.body.length === 0
+      (!tailNode.handler || tailNode.handler.body.body.length === 0
         ? false
-        : isTailNode(completionNode, tailNode.handler.body[tailNode.handler.body.length - 1])) ||
+        : isTailNode(completionNode, tailNode.handler.body.body[tailNode.handler.body.body.length - 1])) ||
       (!tailNode.finalizer || tailNode.finalizer.body.length === 0
         ? false
         : isTailNode(completionNode, tailNode.finalizer.body[tailNode.finalizer.body.length - 1]))

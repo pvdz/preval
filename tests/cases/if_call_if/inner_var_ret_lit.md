@@ -111,24 +111,19 @@ $(f);
 ## Output
 
 `````js filename=intro
-const a = function () {
-  debugger;
-  $(100);
-  return undefined;
-};
 const f = function () {
   debugger;
   const test = $(1);
   if (test) {
-    a();
+    $(100);
     return undefined;
   } else {
     const tmpClusterSSA_tmpIfelseifelse = $(2);
     if (tmpClusterSSA_tmpIfelseifelse) {
-      a();
+      $(100);
       return undefined;
     } else {
-      a();
+      $(100);
       return undefined;
     }
   }

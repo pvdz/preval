@@ -55,6 +55,8 @@ let f = function () {
   const tmpIfTest = $(0);
   if (tmpIfTest) {
     $(2);
+    const tmpReturnArg$1 = $(7);
+    return tmpReturnArg$1;
   } else {
     const tmpIfTest$1 = $(3);
     if (tmpIfTest$1) {
@@ -65,8 +67,6 @@ let f = function () {
     const tmpReturnArg = $(6);
     return tmpReturnArg;
   }
-  const tmpReturnArg$1 = $(7);
-  return tmpReturnArg$1;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

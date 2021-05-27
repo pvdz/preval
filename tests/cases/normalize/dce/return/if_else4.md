@@ -46,8 +46,6 @@ let f = function () {
   } else {
     return 3;
   }
-  $('fail');
-  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -65,8 +63,6 @@ const f = function () {
   } else {
     return 3;
   }
-  $('fail');
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

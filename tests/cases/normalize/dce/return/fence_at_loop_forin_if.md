@@ -86,7 +86,6 @@ let f = function () {
           const tmpReturnArg$1 = $(101, 'return');
           return tmpReturnArg$1;
         }
-        $('fail -> DCE');
       }
       $('after (not invoked but should not be eliminated)');
     } else {
@@ -124,7 +123,6 @@ const f = function () {
           const tmpReturnArg$1 = $(101, 'return');
           return tmpReturnArg$1;
         }
-        $('fail -> DCE');
       }
       $('after (not invoked but should not be eliminated)');
     } else {

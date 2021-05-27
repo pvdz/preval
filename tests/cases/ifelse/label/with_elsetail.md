@@ -55,10 +55,10 @@ let f = function () {
       const tmpReturnArg = tmpAfterLabel();
       return tmpReturnArg;
     } else {
+      $('else');
+      const tmpReturnArg$1 = tmpAfterLabel();
+      return tmpReturnArg$1;
     }
-    $('else');
-    const tmpReturnArg$1 = tmpAfterLabel();
-    return tmpReturnArg$1;
   };
   const tmpAfterLabel = function () {
     debugger;

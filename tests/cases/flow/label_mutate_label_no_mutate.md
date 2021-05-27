@@ -73,18 +73,16 @@ let f = function () {
         const tmpReturnArg$3 = tmpAfterLabel$1(x$7);
         return tmpReturnArg$3;
       }
-      const tmpReturnArg$5 = tmpAfterLabel$1(x$7);
-      return tmpReturnArg$5;
     };
     const tmpAfterLabel$1 = function ($$0) {
       let x$5 = $$0;
       debugger;
       $(x$5);
-      const tmpReturnArg$7 = tmpAfterLabel(x$5);
-      return tmpReturnArg$7;
+      const tmpReturnArg$5 = tmpAfterLabel(x$5);
+      return tmpReturnArg$5;
     };
-    const tmpReturnArg$9 = tmpLabeledBlockFunc$1(x$3);
-    return tmpReturnArg$9;
+    const tmpReturnArg$7 = tmpLabeledBlockFunc$1(x$3);
+    return tmpReturnArg$7;
   };
   const tmpAfterLabel = function ($$0) {
     let x$1 = $$0;
@@ -92,8 +90,8 @@ let f = function () {
     $(x$1);
     return undefined;
   };
-  const tmpReturnArg$11 = tmpLabeledBlockFunc(x);
-  return tmpReturnArg$11;
+  const tmpReturnArg$9 = tmpLabeledBlockFunc(x);
+  return tmpReturnArg$9;
 };
 f();
 `````
@@ -101,28 +99,12 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpAfterLabel$1 = function ($$0) {
-  const x$5 = $$0;
-  debugger;
-  $(x$5);
-  $(x$5);
-  return undefined;
-};
-const tmpLabeledBlockFunc = function () {
-  debugger;
-  let x$7 = 'fail';
-  if ($) {
-    x$7 = 'pass';
-    $('pass');
-    return undefined;
-  } else {
-    tmpAfterLabel$1(x$7);
-    return undefined;
-  }
-  tmpAfterLabel$1(x$7);
-  return undefined;
-};
-tmpLabeledBlockFunc();
+if ($) {
+  $('pass');
+} else {
+  $('fail');
+  $('fail');
+}
 `````
 
 ## Globals

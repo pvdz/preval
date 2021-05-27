@@ -67,11 +67,11 @@ while (true) {
       $('wrong branch');
       continue;
     } else {
-    }
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      continue;
-    } else {
+      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$5) {
+        continue;
+      } else {
+      }
     }
   } else {
     break;

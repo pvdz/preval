@@ -75,15 +75,15 @@ let f = function () {
       $('keep, do not eval');
       throw 'wrong exit';
     } else {
+      const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
+      if (tmpIfTest$11) {
+        const tmpThrowArg$1 = $(2, 'ret');
+        throw tmpThrowArg$1;
+      } else {
+        const tmpReturnArg = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$7);
+        return tmpReturnArg;
+      }
     }
-    const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
-    if (tmpIfTest$11) {
-      const tmpThrowArg$1 = $(2, 'ret');
-      throw tmpThrowArg$1;
-    } else {
-    }
-    const tmpReturnArg = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$7);
-    return tmpReturnArg;
   };
   const tmpAfterLabel = function ($$0, $$1, $$2, $$3) {
     let tmpSwitchValue$1 = $$0;

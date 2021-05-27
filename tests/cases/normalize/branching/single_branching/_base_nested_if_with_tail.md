@@ -64,9 +64,9 @@ let f = function () {
     return tmpReturnArg;
   } else {
     $(6);
+    const tmpReturnArg$1 = $(7);
+    return tmpReturnArg$1;
   }
-  const tmpReturnArg$1 = $(7);
-  return tmpReturnArg$1;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

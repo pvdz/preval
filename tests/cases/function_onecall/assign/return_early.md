@@ -76,9 +76,9 @@ let f = function () {
       const tmpReturnArg = $('a');
       return tmpReturnArg;
     } else {
+      $('b');
+      return undefined;
     }
-    $('b');
-    return undefined;
   };
   g();
   $('c');

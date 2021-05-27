@@ -50,10 +50,10 @@ let f = function () {
   if (tmpIfTest) {
     return a$1;
   } else {
+    let a = $(1);
+    $(a);
+    return a;
   }
-  let a = $(1);
-  $(a);
-  return a;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

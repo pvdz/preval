@@ -101,17 +101,17 @@ while (run) {
       run = false;
       break tmpSwitchBreak;
     } else {
-    }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      continue;
-    } else {
-    }
-    const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$4) {
-      let SSA_run = false;
-      break tmpSwitchBreak;
-    } else {
+      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$3) {
+        continue;
+      } else {
+        const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+        if (tmpIfTest$4) {
+          let SSA_run = false;
+          break tmpSwitchBreak;
+        } else {
+        }
+      }
     }
   }
 }

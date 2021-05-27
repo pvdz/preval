@@ -42,8 +42,6 @@ let f = function () {
   } else {
     throw 3;
   }
-  $('fail');
-  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -59,8 +57,6 @@ if (tmpIfTest) {
 } else {
   throw 3;
 }
-$('fail');
-$(undefined);
 `````
 
 ## Globals

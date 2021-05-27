@@ -68,9 +68,9 @@ let f = function () {
       const tmpThrowArg$1 = $(2, 'ret');
       throw tmpThrowArg$1;
     } else {
+      const tmpReturnArg = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$5);
+      return tmpReturnArg;
     }
-    const tmpReturnArg = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$5);
-    return tmpReturnArg;
   };
   const tmpAfterLabel = function ($$0, $$1, $$2, $$3) {
     let tmpSwitchValue$1 = $$0;

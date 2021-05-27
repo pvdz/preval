@@ -99,9 +99,9 @@ tmpSwitchBreak: {
   if (tmpIfTest$15) {
     break tmpSwitchBreak;
   } else {
+    const tmpIfTest$17 = tmpSwitchCaseToStart <= 4;
+    const tmpIfTest$19 = tmpSwitchCaseToStart <= 5;
   }
-  const tmpIfTest$17 = tmpSwitchCaseToStart <= 4;
-  const tmpIfTest$19 = tmpSwitchCaseToStart <= 5;
 }
 `````
 

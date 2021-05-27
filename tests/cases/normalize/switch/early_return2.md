@@ -75,9 +75,9 @@ let f = function () {
   if (tmpIfTest$7) {
     return 6;
   } else {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+    return undefined;
   }
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
-  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

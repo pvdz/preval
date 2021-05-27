@@ -44,11 +44,11 @@ const r = function ($$0) {
   if (tmpIfTest) {
     return 10;
   } else {
+    const tmpCallCallee = r;
+    const tmpCalleeParam = n + 1;
+    const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
+    return tmpReturnArg;
   }
-  const tmpCallCallee = r;
-  const tmpCalleeParam = n + 1;
-  const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
-  return tmpReturnArg;
 };
 const f = r;
 const a = $(10);

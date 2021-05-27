@@ -67,13 +67,13 @@ while (true) {
       $('keep, do not eval');
       continue;
     } else {
+      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$5) {
+        continue;
+      } else {
+        $('eliminate');
+      }
     }
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      continue;
-    } else {
-    }
-    $('eliminate');
   } else {
     break;
   }

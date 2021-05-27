@@ -253,46 +253,46 @@ const tmpCalleeParam = function ($$0, $$1) {
   let i = $$1;
   debugger;
   if (anode) {
+    let valueNode = anode;
+    const tmpBinLhs = anode.type;
+    const tmpIfTest = tmpBinLhs === 'SpreadElement';
+    if (tmpIfTest) {
+      valueNode = anode.argument;
+      crumb(anode, 'argument', valueNode);
+    } else {
+    }
+    const tmpIfTest$1 = isComplexNode(valueNode);
+    if (tmpIfTest$1) {
+      const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
+      const tmpCallObj$1 = assigns;
+      const tmpCallVal$1 = tmpCallObj$1.push;
+      const tmpCalleeParam$1 = AST.assignmentExpression(tmpName, valueNode);
+      $dotCall(tmpCallVal$1, tmpCallObj$1, tmpCalleeParam$1);
+      const tmpCallObj$3 = newElements;
+      const tmpCallVal$3 = tmpCallObj$3.push;
+      let tmpCalleeParam$3 = undefined;
+      const tmpBinLhs$1 = anode.type;
+      const tmpIfTest$3 = tmpBinLhs$1 === 'SpreadElement';
+      if (tmpIfTest$3) {
+        tmpCalleeParam$3 = AST.spreadElement(tmpName);
+      } else {
+        tmpCalleeParam$3 = AST.identifier(tmpName);
+      }
+      $dotCall(tmpCallVal$3, tmpCallObj$3, tmpCalleeParam$3);
+    } else {
+      newElements.push(anode);
+    }
+    const tmpBinLhs$3 = anode.type;
+    const tmpIfTest$5 = tmpBinLhs$3 === 'SpreadElement';
+    if (tmpIfTest$5) {
+      uncrumb(anode, 'argument', valueNode);
+      return undefined;
+    } else {
+      return undefined;
+    }
   } else {
     const tmpReturnArg = newElements.push(null);
     return tmpReturnArg;
-  }
-  let valueNode = anode;
-  const tmpBinLhs = anode.type;
-  const tmpIfTest = tmpBinLhs === 'SpreadElement';
-  if (tmpIfTest) {
-    valueNode = anode.argument;
-    crumb(anode, 'argument', valueNode);
-  } else {
-  }
-  const tmpIfTest$1 = isComplexNode(valueNode);
-  if (tmpIfTest$1) {
-    const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
-    const tmpCallObj$1 = assigns;
-    const tmpCallVal$1 = tmpCallObj$1.push;
-    const tmpCalleeParam$1 = AST.assignmentExpression(tmpName, valueNode);
-    $dotCall(tmpCallVal$1, tmpCallObj$1, tmpCalleeParam$1);
-    const tmpCallObj$3 = newElements;
-    const tmpCallVal$3 = tmpCallObj$3.push;
-    let tmpCalleeParam$3 = undefined;
-    const tmpBinLhs$1 = anode.type;
-    const tmpIfTest$3 = tmpBinLhs$1 === 'SpreadElement';
-    if (tmpIfTest$3) {
-      tmpCalleeParam$3 = AST.spreadElement(tmpName);
-    } else {
-      tmpCalleeParam$3 = AST.identifier(tmpName);
-    }
-    $dotCall(tmpCallVal$3, tmpCallObj$3, tmpCalleeParam$3);
-  } else {
-    newElements.push(anode);
-  }
-  const tmpBinLhs$3 = anode.type;
-  const tmpIfTest$5 = tmpBinLhs$3 === 'SpreadElement';
-  if (tmpIfTest$5) {
-    uncrumb(anode, 'argument', valueNode);
-    return undefined;
-  } else {
-    return undefined;
   }
 };
 $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);

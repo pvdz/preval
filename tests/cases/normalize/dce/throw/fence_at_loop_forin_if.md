@@ -86,7 +86,6 @@ let f = function () {
           const tmpThrowArg$1 = $(8, 'throw');
           throw tmpThrowArg$1;
         }
-        $('fail -> DCE');
       }
       $('after (not invoked but should not be eliminated)');
     } else {
@@ -122,7 +121,6 @@ while (true) {
         const tmpThrowArg$1 = $(8, 'throw');
         throw tmpThrowArg$1;
       }
-      $('fail -> DCE');
     }
     $('after (not invoked but should not be eliminated)');
   } else {

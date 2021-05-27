@@ -59,8 +59,8 @@ while (true) {
     if (tmpIfTest$3) {
       continue;
     } else {
+      $('keep');
     }
-    $('keep');
   } else {
     break;
   }

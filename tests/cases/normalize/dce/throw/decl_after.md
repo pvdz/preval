@@ -64,7 +64,6 @@ if (tmpIfTest) {
 } else {
   throw 'exit';
 }
-$(undefined);
 `````
 
 ## Globals

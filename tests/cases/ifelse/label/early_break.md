@@ -55,9 +55,9 @@ let f = function () {
       const tmpReturnArg = tmpAfterLabel();
       return tmpReturnArg;
     } else {
+      const tmpReturnArg$1 = tmpAfterLabel();
+      return tmpReturnArg$1;
     }
-    const tmpReturnArg$1 = tmpAfterLabel();
-    return tmpReturnArg$1;
   };
   const tmpAfterLabel = function () {
     debugger;

@@ -105,27 +105,27 @@ let f = function () {
       const tmpReturnArg$3 = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpIfTest$17);
       return tmpReturnArg$3;
     } else {
+      const tmpIfTest$21 = tmpSwitchCaseToStart$3 <= 1;
+      if (tmpIfTest$21) {
+        $(3);
+      } else {
+      }
+      const tmpIfTest$23 = tmpSwitchCaseToStart$3 <= 2;
+      if (tmpIfTest$23) {
+        $(5);
+        const tmpReturnArg$1 = $(6);
+        return tmpReturnArg$1;
+      } else {
+        const tmpIfTest$25 = tmpSwitchCaseToStart$3 <= 3;
+        if (tmpIfTest$25) {
+          const tmpReturnArg$5 = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpIfTest$17);
+          return tmpReturnArg$5;
+        } else {
+          const tmpReturnArg$7 = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpIfTest$17);
+          return tmpReturnArg$7;
+        }
+      }
     }
-    const tmpIfTest$21 = tmpSwitchCaseToStart$3 <= 1;
-    if (tmpIfTest$21) {
-      $(3);
-    } else {
-    }
-    const tmpIfTest$23 = tmpSwitchCaseToStart$3 <= 2;
-    if (tmpIfTest$23) {
-      $(5);
-      const tmpReturnArg$1 = $(6);
-      return tmpReturnArg$1;
-    } else {
-    }
-    const tmpIfTest$25 = tmpSwitchCaseToStart$3 <= 3;
-    if (tmpIfTest$25) {
-      const tmpReturnArg$5 = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpIfTest$17);
-      return tmpReturnArg$5;
-    } else {
-    }
-    const tmpReturnArg$7 = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpIfTest$17);
-    return tmpReturnArg$7;
   };
   const tmpAfterLabel = function ($$0, $$1, $$2) {
     let tmpSwitchValue$1 = $$0;

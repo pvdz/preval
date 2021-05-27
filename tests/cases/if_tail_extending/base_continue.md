@@ -49,8 +49,8 @@ let f = function () {
     if ($) {
       continue;
     } else {
+      $(2);
     }
-    $(2);
   }
   return undefined;
 };

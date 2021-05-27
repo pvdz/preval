@@ -5206,7 +5206,7 @@ export function phaseNormalize(fdata, fname) {
     thisStack.pop();
     funcStack.pop();
 
-    return postBodyFunctionTransform(node, body, i, parentNode)
+    return postBodyFunctionTransform(node, body, i, parentNode);
   }
 
   function postBodyFunctionTransform(node, body, i, parentNode) {
@@ -5271,7 +5271,7 @@ export function phaseNormalize(fdata, fname) {
       if (changed) {
         return true;
       }
-    } else if (!['ReturnStatement', 'ThrowStatement'/*, 'ContinueStatement', 'BreakStatement'*/].includes(last.type)) {
+    } else if (!['ReturnStatement', 'ThrowStatement' /*, 'ContinueStatement', 'BreakStatement'*/].includes(last.type)) {
       rule('All functions must explicitly return, even if returns undefined');
       example('function f(){ g(); }', 'function f(){ g(); return undefined; }');
       before(node);
@@ -6022,96 +6022,98 @@ export function phaseNormalize(fdata, fname) {
         }
       }
       vgroupEnd();
+    }
 
-      if (node.consequent.$p.returnBreakContinueThrow && i < body.length - 1) {
-        // Doesn't matter what kind of abrupt completion it was
-        // Inline the remainder of the parent block into the else branch
-        rule('If the if-branch returns the remainder of the parent block goes into the else-branch');
-        example('if (x) return; f();', 'if (x) return; else f();');
-        before(node, parentNode);
+    if (node.consequent.$p.returnBreakContinueThrow && i < body.length - 1) {
+      // Doesn't matter what kind of abrupt completion it was
+      // Inline the remainder of the parent block into the else branch
+      rule('If the if-branch returns the remainder of the parent block goes into the else-branch');
+      example('if (x) return; f();', 'if (x) return; else f();');
+      before(node, parentNode);
 
-        node.alternate.body.push(...body.slice(i + 1));
-        body.length = i + 1;
+      node.alternate.body.push(...body.slice(i + 1));
+      body.length = i + 1;
 
-        after(parentNode);
-        assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
-        return true;
-      }
+      after(parentNode);
+      assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
+      return true;
+    }
 
-      if (node.alternate.$p.returnBreakContinueThrow && i < body.length - 1) {
-        // Doesn't matter what kind of abrupt completion it was
-        // Inline the remainder of the parent block into the if branch
-        rule('If the else-branch returns the remainder of the parent block goes into the if-branch');
-        example('if (x) { f(); } else { return; } g();', 'if (x) { f(); g(); } else { return; }');
-        before(node, parentNode);
+    if (node.alternate.$p.returnBreakContinueThrow && i < body.length - 1) {
+      // Doesn't matter what kind of abrupt completion it was
+      // Inline the remainder of the parent block into the if branch
+      rule('If the else-branch returns the remainder of the parent block goes into the if-branch');
+      example('if (x) { f(); } else { return; } g();', 'if (x) { f(); g(); } else { return; }');
+      before(node, parentNode);
 
-        node.consequent.body.push(...body.slice(i + 1));
-        body.length = i + 1;
+      node.consequent.body.push(...body.slice(i + 1));
+      body.length = i + 1;
 
-        after(parentNode);
-        assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
-        return true;
-      }
+      after(parentNode);
+      assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
+      return true;
+    }
 
-      vlog(
-        BLUE + 'if;returnBreakContinueThrow?' + RESET,
-        node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow
-          ? 'yes; ' + node.consequent.$p.returnBreakContinueThrow + ' and ' + node.alternate.$p.returnBreakContinueThrow
-          : 'no',
-      );
-      if (node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow) {
-        // Both branches broke flow early so any statements that follow this statement are effectively dead
-        node.$p.returnBreakContinueThrow = node.consequent.$p.returnBreakContinueThrow + '+' + node.alternate.$p.returnBreakContinueThrow;
+    vlog(
+      BLUE + 'if;returnBreakContinueThrow?' + RESET,
+      node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow
+        ? 'yes; ' + node.consequent.$p.returnBreakContinueThrow + ' and ' + node.alternate.$p.returnBreakContinueThrow
+        : 'no',
+    );
+    if (node.alternate && node.consequent.$p.returnBreakContinueThrow && node.alternate.$p.returnBreakContinueThrow) {
+      // Both branches broke flow early so any statements that follow this statement are effectively dead
+      node.$p.returnBreakContinueThrow = node.consequent.$p.returnBreakContinueThrow + '+' + node.alternate.$p.returnBreakContinueThrow;
 
-        if (body.length > i + 1) {
-          if (dce(body, i, 'after if-else')) {
-            return true;
-          }
-        }
-      }
-
-      if (
-        i &&
-        body[i - 1].type === 'IfStatement' &&
-        node.test.type === 'Identifier' &&
-        body[i - 1].test.type === 'Identifier' &&
-        node.test.name === body[i - 1].test.name
-      ) {
-        // This is, if nothing else, a common artifact from our logical operator transform
-        // Folding them like this might allow certain bindings to be detected as constants, where that was harder before
-        const prev = body[i - 1];
-        if (prev.consequent.body.length === 0 && node.consequent.body.length === 0) {
-          // If prev node has no "true" branch then append this if to its alternate
-          rule('Back to back `if` with same condition can be merged if the first has no consequent branch');
-          example('if (x) {} else { x = f(); } if (x) { g(); }', 'if (x) {} else { x = f(); if (x) { g(); } }');
-          before(body[i - 1]);
-          before(node);
-
-          prev.alternate.body.push(node);
-          body[i] = AST.emptyStatement();
-
-          after(body[i - 1]);
-          after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        } else if (prev.alternate.body.length === 0 && node.alternate.body.length === 0) {
-          // If prev node has an empty "false" branch then append this if to its consequent
-          // The idea is that if an ident was truthy before then only the truthy branch may change that
-          rule('Back to back `if` with same condition can be merged if the first has no alternate branch');
-          example('if (x) { f(); } if (x) { g(); }', 'if (x) { x = f(); if (x) { g(); } }');
-          before(body[i - 1]);
-          before(node);
-
-          prev.consequent.body.push(node);
-          body[i] = AST.emptyStatement();
-
-          after(body[i - 1]);
-          after(body[i]);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
+      if (body.length > i + 1) {
+        if (dce(body, i, 'after if-else')) {
           return true;
         }
       }
     }
+
+    //// TODO: check whether this does anything at all... it was disabled for a long time and it may have been subsumed by another rule
+    //if (
+    //  i &&
+    //  body[i - 1].type === 'IfStatement' &&
+    //  node.test.type === 'Identifier' &&
+    //  body[i - 1].test.type === 'Identifier' &&
+    //  node.test.name === body[i - 1].test.name
+    //) {
+    //  // This is, if nothing else, a common artifact from our logical operator transform
+    //  // Folding them like this might allow certain bindings to be detected as constants, where that was harder before
+    //  const prev = body[i - 1];
+    //  if (prev.consequent.body.length === 0 && node.consequent.body.length === 0) {
+    //    // If prev node has no "true" branch then append this if to its alternate
+    //    rule('Back to back `if` with same condition can be merged if the first has no consequent branch');
+    //    example('if (x) {} else { x = f(); } if (x) { g(); }', 'if (x) {} else { x = f(); if (x) { g(); } }');
+    //    before(body[i - 1]);
+    //    before(node);
+    //
+    //    prev.alternate.body.push(node);
+    //    body[i] = AST.emptyStatement();
+    //
+    //    after(body[i - 1]);
+    //    after(body[i]);
+    //    assertNoDupeNodes(AST.blockStatement(body), 'body');
+    //    return true;
+    //  } else if (prev.alternate.body.length === 0 && node.alternate.body.length === 0) {
+    //    // If prev node has an empty "false" branch then append this if to its consequent
+    //    // The idea is that if an ident was truthy before then only the truthy branch may change that
+    //    rule('Back to back `if` with same condition can be merged if the first has no alternate branch');
+    //    example('if (x) { f(); } if (x) { g(); }', 'if (x) { x = f(); if (x) { g(); } }');
+    //    before(body[i - 1]);
+    //    before(node);
+    //
+    //    prev.consequent.body.push(node);
+    //    body[i] = AST.emptyStatement();
+    //
+    //    after(body[i - 1]);
+    //    after(body[i]);
+    //    assertNoDupeNodes(AST.blockStatement(body), 'body');
+    //    return true;
+    //  }
+    //}
+
     return false;
   }
 
@@ -6486,7 +6488,7 @@ export function phaseNormalize(fdata, fname) {
     ifelseStack.pop();
     funcStack.pop();
 
-    return postBodyFunctionTransform(node, body, i, parentNode)
+    return postBodyFunctionTransform(node, body, i, parentNode);
   }
 
   function transformProgram(node) {

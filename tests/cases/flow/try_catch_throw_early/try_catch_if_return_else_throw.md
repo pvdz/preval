@@ -66,7 +66,6 @@ let f = function () {
       x = 'pass';
       throw 'too';
     }
-    x = 'fail2';
   } catch {
     throw_early;
     $('caught');
@@ -87,9 +86,9 @@ const f = function () {
     if ($) {
       return undefined;
     } else {
+      x = 'pass';
       throw 'too';
     }
-    x = 'fail2';
   } catch {
     throw_early;
     $('caught');

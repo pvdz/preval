@@ -54,9 +54,9 @@ const tmpLabeledBlockFunc$3 = function ($$0) {
     $(x);
     return undefined;
   } else {
+    $(x);
+    return undefined;
   }
-  $(x);
-  return undefined;
 };
 $(tmpLabeledBlockFunc$3);
 `````

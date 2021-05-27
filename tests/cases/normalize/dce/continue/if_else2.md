@@ -46,8 +46,8 @@ while (true) {
     if (tmpIfTest$1) {
       continue;
     } else {
+      continue;
     }
-    continue;
   } else {
     break;
   }

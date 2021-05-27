@@ -47,12 +47,12 @@ let f = function () {
   const tmpIfTest = $();
   if (tmpIfTest) {
     $(0);
+    const tmpReturnArg$1 = $(2);
+    return tmpReturnArg$1;
   } else {
     const tmpReturnArg = $(1);
     return tmpReturnArg;
   }
-  const tmpReturnArg$1 = $(2);
-  return tmpReturnArg$1;
 };
 const x = f();
 $(x);

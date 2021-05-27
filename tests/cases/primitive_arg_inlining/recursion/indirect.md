@@ -71,9 +71,9 @@ let h = function ($$0) {
   if (tmpIfTest) {
     return n$3;
   } else {
+    const tmpReturnArg$3 = f(n$3);
+    return tmpReturnArg$3;
   }
-  const tmpReturnArg$3 = f(n$3);
-  return tmpReturnArg$3;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(0);

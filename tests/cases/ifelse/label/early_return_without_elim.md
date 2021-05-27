@@ -64,16 +64,14 @@ let f = function () {
       const tmpReturnArg = tmpAfterLabel();
       return tmpReturnArg;
     }
-    const tmpReturnArg$1 = tmpAfterLabel();
-    return tmpReturnArg$1;
   };
   const tmpAfterLabel = function () {
     debugger;
     $('after');
     return undefined;
   };
-  const tmpReturnArg$3 = tmpLabeledBlockFunc();
-  return tmpReturnArg$3;
+  const tmpReturnArg$1 = tmpLabeledBlockFunc();
+  return tmpReturnArg$1;
 };
 f();
 `````
@@ -81,21 +79,13 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest$1 = $(true);
-  if (tmpIfTest$1) {
-    $(100);
-    return undefined;
-  } else {
-    $(101);
-    $('after');
-    return undefined;
-  }
+const tmpIfTest$1 = $(true);
+if (tmpIfTest$1) {
+  $(100);
+} else {
+  $(101);
   $('after');
-  return undefined;
-};
-f();
+}
 `````
 
 ## Globals

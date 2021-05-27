@@ -49,10 +49,10 @@ let f = function () {
   while (x) {
     $(1);
     if ($) {
+      $(2);
     } else {
       return undefined;
     }
-    $(2);
   }
   return undefined;
 };

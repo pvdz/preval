@@ -78,12 +78,12 @@ tmpSwitchBreak: {
     $(3);
     break tmpSwitchBreak;
   } else {
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
-    $(6);
-    break tmpSwitchBreak;
-  } else {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      $(6);
+      break tmpSwitchBreak;
+    } else {
+    }
   }
 }
 `````

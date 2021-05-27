@@ -56,11 +56,11 @@ let f = function () {
     const tmpCallCallee = $;
     const tmpCalleeParam = arr.length;
     tmpCallCallee(tmpCalleeParam);
+    $('end');
+    return undefined;
   } else {
     return undefined;
   }
-  $('end');
-  return undefined;
 };
 const arr = [1, $, 3];
 f();

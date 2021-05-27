@@ -46,11 +46,11 @@ let f = function () {
   debugger;
   if ($) {
     $(1);
+    const tmpReturnArg = $('ok');
+    return tmpReturnArg;
   } else {
     throw '$ should be defined';
   }
-  const tmpReturnArg = $('ok');
-  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

@@ -53,7 +53,6 @@ while (true) {
     } else {
       continue;
     }
-    $('fail');
   } else {
     break;
   }
@@ -73,7 +72,6 @@ while (true) {
     } else {
       continue;
     }
-    $('fail');
   } else {
     break;
   }

@@ -67,13 +67,13 @@ let f = function () {
     $('wrong branch');
     throw 'wrong exit';
   } else {
-  }
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$3) {
-    const tmpThrowArg = $(2, 'throw');
-    throw tmpThrowArg;
-  } else {
-    return undefined;
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      const tmpThrowArg = $(2, 'throw');
+      throw tmpThrowArg;
+    } else {
+      return undefined;
+    }
   }
 };
 const tmpCallCallee = $;

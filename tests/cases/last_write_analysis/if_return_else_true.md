@@ -56,9 +56,9 @@ let f = function () {
     return x;
   } else {
     x = $(2, 'prevent optim');
+    $('prevent return hoisting');
+    return x;
   }
-  $('prevent return hoisting');
-  return x;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

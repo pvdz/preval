@@ -68,12 +68,12 @@ tmpSwitchBreak: {
     x = 10;
     break tmpSwitchBreak;
   } else {
-  }
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
-    x = 20;
-    break tmpSwitchBreak;
-  } else {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      x = 20;
+      break tmpSwitchBreak;
+    } else {
+    }
   }
 }
 $(x);

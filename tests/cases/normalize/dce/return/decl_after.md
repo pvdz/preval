@@ -47,9 +47,9 @@ let f = function () {
     return undefined;
   } else {
     return undefined;
+    let x = $('fail');
+    return undefined;
   }
-  let x = $('fail');
-  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -59,18 +59,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $(false);
-  if (tmpIfTest) {
-    throw 'Preval: Cannot access `x` before initialization';
-  } else {
-    return undefined;
-  }
-  $('fail');
-  return undefined;
-};
-f();
+const tmpIfTest = $(false);
+if (tmpIfTest) {
+  $('fail too');
+} else {
+}
 $(undefined);
 `````
 

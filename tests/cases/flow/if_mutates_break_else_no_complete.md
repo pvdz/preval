@@ -60,14 +60,14 @@ let f = function () {
     const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
       $(x$3, 'not mutating, not completing');
+      $(x$3, 'should not be considered mutated');
+      const tmpReturnArg$1 = tmpAfterLabel(x$3);
+      return tmpReturnArg$1;
     } else {
       x$3 = 'fail';
       const tmpReturnArg = tmpAfterLabel(x$3);
       return tmpReturnArg;
     }
-    $(x$3, 'should not be considered mutated');
-    const tmpReturnArg$1 = tmpAfterLabel(x$3);
-    return tmpReturnArg$1;
   };
   const tmpAfterLabel = function ($$0) {
     let x$1 = $$0;

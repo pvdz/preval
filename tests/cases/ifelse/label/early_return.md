@@ -54,9 +54,9 @@ let f = function () {
       $(100);
       return 20;
     } else {
+      const tmpReturnArg = tmpAfterLabel();
+      return tmpReturnArg;
     }
-    const tmpReturnArg = tmpAfterLabel();
-    return tmpReturnArg;
   };
   const tmpAfterLabel = function () {
     debugger;

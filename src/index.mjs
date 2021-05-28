@@ -251,6 +251,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
             '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n',
           );
 
+          vlog('\nCurrent state before restart\n--------------\n' + fmat(inputCode) + '\n--------------\n');
+
           const fdata = parseCode(inputCode, fname);
           prepareNormalization(fdata, resolve, req, false); // I want a phase1 because I want the scope tracking set up for normalizing bindings
           phaseNormalize(fdata, fname);

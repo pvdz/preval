@@ -1,3 +1,5 @@
+// Find functions with one statement and a return and inline calls to them
+
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, findBodyOffset } from '../utils.mjs';
 import * as AST from '../ast.mjs';

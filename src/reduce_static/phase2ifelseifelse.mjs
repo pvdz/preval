@@ -1,20 +1,20 @@
 // Attempts to catch all variations of a common pattern of normalized code that I've dubbed "ifelseifelse" (even though it's a bit more than that):
-/*
-let condition = true;
-const f = function() {
-  if (condition) {
-    $('a');
-  } else {
-    $('b');
-  }
-};
-if (condition) {
-  condition = true;
-  f();
-} else {
-  f();
-}
-*/
+//```
+// let condition = true;
+// const f = function() {
+//   if (condition) {
+//     $('a');
+//   } else {
+//     $('b');
+//   }
+// };
+// if (condition) {
+//   condition = true;
+//   f();
+// } else {
+//   f();
+// }
+//```
 
 import {
   ASSERT,

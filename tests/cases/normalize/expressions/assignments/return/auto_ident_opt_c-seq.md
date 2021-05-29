@@ -62,23 +62,16 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  a = undefined;
-  const tmpChainRootProp = $(b);
-  const tmpIfTest = tmpChainRootProp == null;
-  if (tmpIfTest) {
-    return a;
-  } else {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    a = tmpChainElementObject;
-    return a;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+let tmpClusterSSA_a = undefined;
+const tmpChainRootProp = $(b);
+const tmpIfTest = tmpChainRootProp == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  tmpClusterSSA_a = tmpChainElementObject;
+}
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

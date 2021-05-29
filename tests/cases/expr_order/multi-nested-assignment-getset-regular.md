@@ -473,12 +473,12 @@ const varInitAssignLhsComputedObj = a();
 const varInitAssignLhsComputedObj$1 = b();
 const varInitAssignLhsComputedObj$3 = c();
 const varInitAssignLhsComputedObj$5 = d();
-const varInitAssignLhsComputedRhs$5 = e();
-varInitAssignLhsComputedObj$5.d = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$3.c = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$1.b = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj.a = varInitAssignLhsComputedRhs$5;
-tmp(varInitAssignLhsComputedRhs$5);
+e();
+varInitAssignLhsComputedObj$5.d = obje;
+varInitAssignLhsComputedObj$3.c = obje;
+varInitAssignLhsComputedObj$1.b = obje;
+varInitAssignLhsComputedObj.a = obje;
+tmp(obje);
 tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd, obje);
 `````

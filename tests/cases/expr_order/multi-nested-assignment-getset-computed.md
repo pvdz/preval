@@ -479,12 +479,12 @@ const varInitAssignLhsComputedObj$3 = c();
 const varInitAssignLhsComputedProp$3 = tmp('c');
 const varInitAssignLhsComputedObj$5 = d();
 const varInitAssignLhsComputedProp$5 = tmp('d');
-const varInitAssignLhsComputedRhs$5 = e();
-varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$5;
-varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$5;
-tmp(varInitAssignLhsComputedRhs$5);
+e();
+varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = obje;
+varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = obje;
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = obje;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = obje;
+tmp(obje);
 tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd, obje);
 `````

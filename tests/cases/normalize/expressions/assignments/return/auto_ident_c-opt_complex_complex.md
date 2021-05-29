@@ -64,24 +64,17 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  a = undefined;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
-    return a;
-  } else {
-    const tmpChainRootComputed = $('x');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    a = tmpChainElementObject;
-    return a;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+let tmpClusterSSA_a = undefined;
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainRootComputed = $('x');
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  tmpClusterSSA_a = tmpChainElementObject;
+}
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

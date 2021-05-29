@@ -73,32 +73,24 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  a = undefined;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
-    return a;
-  } else {
-    const tmpChainRootComputed = $('$');
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$1 = tmpChainElementObject == null;
-    if (tmpIfTest$1) {
-      return a;
-    } else {
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
-      a = tmpChainElementCall$1;
-      return a;
-    }
-  }
-};
 const b = { $: $ };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam$5 = f();
-$(tmpCalleeParam$5);
-$(a);
+let tmpClusterSSA_a = undefined;
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainRootComputed = $('$');
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$1 = tmpChainElementObject == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
+    tmpClusterSSA_a = tmpChainElementCall$1;
+  }
+}
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

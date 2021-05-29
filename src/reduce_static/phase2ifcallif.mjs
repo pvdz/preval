@@ -132,181 +132,158 @@ function processRead(fdata, queue, read, i, innerFuncNode, innerIfNode, innerIfT
   }
 
   const lastIfId = Math.abs(read.ifChain[read.ifChain.length - 1]); // Negative for `else` branch
-  vlog('Searching for parent `if` with pid =', lastIfId, 'in parent owner func');
+  vlog('Searching for parent `if`', read.ifChain, 'with pid =', lastIfId, 'in parent owner func', read.ifChain[read.ifChain.length - 1]);
+
+  if (lastIfId === 0) {
+    vlog('Parent is global. This is not the pattern. Bailing.');
+    return;
+  }
+
+  const outerIfNode = fdata.flatNodeMap.get('' + lastIfId);
+  ASSERT(outerIfNode);
+
   const outerBranchBody = read.blockBody;
-  const outerFuncNode = read.pfuncNode;
-  const outerFuncBody = outerFuncNode.type === 'Program' ? outerFuncNode.body : outerFuncNode.body.body;
-  const outerBodyOffset = outerFuncNode.$p.bodyOffset ?? 0;
-  for (let n = outerFuncBody.length - 1; n >= outerBodyOffset; --n) {
-    const outerIfNode = outerFuncBody[n];
+  const outerIfTest = outerIfNode.test;
+  vlog(
+    '    Found parent `if`. The `if` is testing on:',
+    outerIfTest.type === 'Identifier' ? '`' + outerIfTest.name + '`' : 'something that is not an ident',
+  );
+
+  const outerCallBranchIndex = read.blockIndex;
+
+  const isCallInOuterIf =
+    outerIfNode.consequent.body === outerBranchBody
+      ? innerIfNode.consequent.body
+      : outerIfNode.alternate.body === outerBranchBody
+      ? innerIfNode.alternate.body
+      : undefined;
+
+  if (!isCallInOuterIf) {
+    vlog('Found parent `if` but the read was not a direct parent of either branch. Maybe nested or smth. Bailing.');
+    return;
+  }
+
+  let innerBranchBody = isCallInOuterIf;
+  const innerTestName = innerIfTest.name;
+
+  if (outerCallBranchIndex === 0) {
+    if (outerIfTest.type !== 'Identifier') {
+      vlog('    Outer `if` test was not an identifier, bailing');
+      return;
+    }
+    if (innerTestName !== outerIfTest.name) {
+      vlog('Call was the first statement of an `if` that tests for a different name than the inner `if`, bailing');
+      return;
+    }
+
     vlog(
-      '  -',
-      n,
-      ':',
-      outerIfNode.type,
-      ', pid:',
-      outerIfNode.$p.pid,
-      ', child block pids:',
-      outerIfNode.consequent?.$p.pid,
-      outerIfNode.alternate?.$p.pid,
+      'The call was the first of a branch of an `if` that tests on the same ident as the first `if` of the outer function. This allows us to safely infer the truthy/falsy state of this variable.',
     );
 
-    if (outerIfNode.type !== 'IfStatement') {
-      vlog('    Not an if');
-    } else if (+outerIfNode.$p.pid !== lastIfId) {
-      vlog('    Not the parent `if`,', +outerIfNode.$p.pid, '!==', lastIfId);
-    } else {
-      const outerIfTest = outerIfNode.test;
+    // Since the call was the first statement after an `if(x)`, we can safely conclude that the state of `x` must have
+    // the same truthfulness value at the start of the call of the inner function.
+  } else {
+    vlog('The call was not the first statement of the branch. Checking if previous statement tells us the state of the test');
+    // Confirm if the previous statement may tell us whether the value is truthy or falsy. If all previous statements
+    // cannot observe the variable then we can assume truthy anyways.
+
+    let n = outerCallBranchIndex - 1;
+    while (n >= 0) {
+      const outerPrev = outerBranchBody[n];
+      if (
+        outerPrev?.type === 'ExpressionStatement' &&
+        outerPrev.expression.type === 'AssignmentExpression' &&
+        outerPrev.expression.left.type === 'Identifier' &&
+        outerPrev.expression.left.name === innerIfTest.name
+      ) {
+        vlog('The statement before the call was an assignment to the test var `' + innerTestName + '`. checking truthy/falsy state of rhs');
+        break;
+      }
+      --n;
+    }
+    if (n < 0) {
       vlog(
-        '    Found parent `if`. The `if` is testing on:',
-        outerIfTest.type === 'Identifier' ? '`' + outerIfTest.name + '`' : 'something that is not an ident',
+        'None of the statements before the call could have changed the var used as if-test so confirm that the outer `if` tests on the same name and then assume its truthfullness state',
       );
-
-      const outerReturnStatement = outerFuncBody[n + 1]?.type === 'ReturnStatement' && outerFuncBody[n + 1];
-      const outerCallBranchIndex = read.blockIndex;
-
-      const isCallInOuterIf =
-        outerIfNode.consequent.body === outerBranchBody
-          ? innerIfNode.consequent.body
-          : outerIfNode.alternate.body === outerBranchBody
-          ? innerIfNode.alternate.body
-          : undefined;
-
-      if (!isCallInOuterIf) {
-        vlog('Found parent `if` but the read was not a direct parent of either branch. Maybe nested or smth. Bailing.');
+      if (outerIfTest.type !== 'Identifier') {
+        vlog('    Outer `if` test was not an identifier, bailing');
         return;
       }
-
-      let innerBranchBody = isCallInOuterIf;
-      const innerTestName = innerIfTest.name;
-
-      if (outerCallBranchIndex === 0) {
-        if (outerIfTest.type !== 'Identifier') {
-          vlog('    Outer `if` test was not an identifier, bailing');
-          return;
-        }
-        if (innerTestName !== outerIfTest.name) {
-          vlog('Call was the first statement of an `if` that tests for a different name than the inner `if`, bailing');
-          return;
-        }
-
-        vlog(
-          'The call was the first of a branch of an `if` that tests on the same ident as the first `if` of the outer function. This allows us to safely infer the truthy/falsy state of this variable.',
-        );
-
-        // Since the call was the first statement after an `if(x)`, we can safely conclude that the state of `x` must have
-        // the same truthfulness value at the start of the call of the inner function.
-      } else {
-        vlog('The call was not the first statement of the branch. Checking if previous statement tells us the state of the test');
-        // Confirm if the previous statement may tell us whether the value is truthy or falsy. If all previous statements
-        // cannot observe the variable then we can assume truthy anyways.
-
-        let n = outerCallBranchIndex - 1;
-        while (n >= 0) {
-          const outerPrev = outerBranchBody[n];
-          if (
-            outerPrev?.type === 'ExpressionStatement' &&
-            outerPrev.expression.type === 'AssignmentExpression' &&
-            outerPrev.expression.left.type === 'Identifier' &&
-            outerPrev.expression.left.name === innerIfTest.name
-          ) {
-            vlog(
-              'The statement before the call was an assignment to the test var `' + innerTestName + '`. checking truthy/falsy state of rhs',
-            );
-            break;
-          }
-          --n;
-        }
-        if (n < 0) {
-          vlog(
-            'None of the statements before the call could have changed the var used as if-test so confirm that the outer `if` tests on the same name and then assume its truthfullness state',
-          );
-          if (outerIfTest.type !== 'Identifier') {
-            vlog('    Outer `if` test was not an identifier, bailing');
-            return;
-          }
-          if (innerTestName !== outerIfTest.name) {
-            vlog('Call was the first statement of an `if` that tests for a different name than the inner `if`, bailing');
-            return;
-          }
-          // Assume the truthfullness of the parent if-test is still the same. Depending on which branch contained the call, use
-          // that state (if/else -> truthy/falsy).
-          if (outerIfNode.consequent.body === read.blockBody) {
-            vlog(
-              'The call happened in the truthy branch, there were no statements before the call, assuming `' +
-                innerTestName +
-                '` is truthy',
-            );
-            innerBranchBody = innerIfNode.consequent.body;
-          } else {
-            vlog(
-              'The call happened in the falsy branch, there were no statements before the call, assuming `' + innerTestName + '` is falsy',
-            );
-            innerBranchBody = innerIfNode.alternate.body;
-          }
-        } else {
-          // The ident was not changed so it should be the same truthfullness value as the if-test
-          const outerPrev = outerBranchBody[n];
-          const rhs = outerPrev.expression.right;
-          if (AST.isTruthy(rhs)) {
-            vlog('The call was preceded by an assignment of a truthy value to the condition');
-            innerBranchBody = innerIfNode.consequent.body;
-          } else if (AST.isFalsy(rhs)) {
-            vlog('The call was preceded by an assignment of a falsy value to the condition');
-            innerBranchBody = innerIfNode.alternate.body;
-          } else {
-            // TODO: confirm that we can assert the if-test value, either because all previous statements can not change it or because we can infer the value from the last one that could
-            vlog('Bailing for now because the prev statement did assign to the variable but we could not assert truthy or falsy');
-            return;
-          }
-        }
-      }
-
-      // The `innerBranchBody` should now be the branch body of the `if` inside the inner function that is invariantly going to be
-      // executed when calling the inner function. We must now determine whether the statements in this branch can be inlined.
-      // As a general rule of thumb, we can not inline statements if they increase the total line count.
-      // Here specifically, we can only inline the branch if it has a return as the first or second statement. We bail otherwise.
-
-      vlog('Now we need to validate whether the resulting inner branch can be inlined at all', innerBranchBody);
-      // TODO: edge case; TDZ error when it returns a binding declared after the return `if (x) { return y; let y; }`. Not very important rn.
-      if (innerBranchBody.length === 0) {
-        vlog(
-          'The branch has no statements. Need to confirm whether the `if` was the last statement of the function. It probably was not. Bailing.',
-        );
-        // Note: in normalized code, all returns are explicit and tail if-statements have an explicit return in each branch.
-        //       As such, since this branch did not end with a return, it should not be the last statement of the function.
+      if (innerTestName !== outerIfTest.name) {
+        vlog('Call was the first statement of an `if` that tests for a different name than the inner `if`, bailing');
         return;
-      } else if (innerBranchBody.length > 0 && innerBranchBody[0].type === 'ReturnStatement') {
-        vlog('The first statement of the inner branch returned');
-        tryToInline(queue, read, innerBranchBody[0], undefined, innerFuncNode, outerReturnStatement);
-      } else if (innerBranchBody.length > 1 && innerBranchBody[1].type === 'ReturnStatement') {
-        vlog('The second statement of the inner branch returned');
-        tryToInline(queue, read, innerBranchBody[0], innerBranchBody[1], innerFuncNode, outerReturnStatement);
-        //} else if () {
-        //  // Edge case specifically for the pattern where the same binding is updated twice and where one branching path
-        //  // in particular the first write is unobservable in userland. It goes a little this:
-        //  // `function f(){ if (test) {} else { test = 'hidden'; if (test) { } else { test = 'visible' } } }`
-        //  // Except, of course, abstracted into functions and a translation artifact of other rules.
-        //  // In this case we can inline the three statements of the inner function (assignment, call, return) into the
-        //  // outer `else` branch which also did an assignment, call, return.
-        //  // TODO
+      }
+      // Assume the truthfullness of the parent if-test is still the same. Depending on which branch contained the call, use
+      // that state (if/else -> truthy/falsy).
+      if (outerIfNode.consequent.body === read.blockBody) {
+        vlog(
+          'The call happened in the truthy branch, there were no statements before the call, assuming `' + innerTestName + '` is truthy',
+        );
+        innerBranchBody = innerIfNode.consequent.body;
       } else {
-        // Either this branch has more than two statements, or (considering normalized code), this
-        // `if` is not at the end of the function.
-        vlog('Cannot inline this function because the branch does not return in the first two statements');
+        vlog('The call happened in the falsy branch, there were no statements before the call, assuming `' + innerTestName + '` is falsy');
+        innerBranchBody = innerIfNode.alternate.body;
+      }
+    } else {
+      // The ident was not changed so it should be the same truthfullness value as the if-test
+      const outerPrev = outerBranchBody[n];
+      const rhs = outerPrev.expression.right;
+      if (AST.isTruthy(rhs)) {
+        vlog('The call was preceded by an assignment of a truthy value to the condition');
+        innerBranchBody = innerIfNode.consequent.body;
+      } else if (AST.isFalsy(rhs)) {
+        vlog('The call was preceded by an assignment of a falsy value to the condition');
+        innerBranchBody = innerIfNode.alternate.body;
+      } else {
+        // TODO: confirm that we can assert the if-test value, either because all previous statements can not change it or because we can infer the value from the last one that could
+        vlog('Bailing for now because the prev statement did assign to the variable but we could not assert truthy or falsy');
         return;
       }
     }
   }
-  vlog('    Parent `if` not found...');
+
+  // The `innerBranchBody` should now be the branch body of the `if` inside the inner function that is invariantly going to be
+  // executed when calling the inner function. We must now determine whether the statements in this branch can be inlined.
+  // As a general rule of thumb, we can not inline statements if they increase the total line count.
+  // Here specifically, we can only inline the branch if it has a return as the first or second statement. We bail otherwise.
+
+  vlog('Now we need to validate whether the resulting inner branch can be inlined at all');
+  source(innerBranchBody);
+  // TODO: edge case; TDZ error when it returns a binding declared after the return `if (x) { return y; let y; }`. Not very important rn.
+  if (innerBranchBody.length === 0) {
+    vlog(
+      'The branch has no statements. Need to confirm whether the `if` was the last statement of the function. It probably was not. Bailing.',
+    );
+    // Note: in normalized code, all returns are explicit and tail if-statements have an explicit return in each branch.
+    //       As such, since this branch did not end with a return, it should not be the last statement of the function.
+    return;
+  } else if (innerBranchBody.length > 0 && innerBranchBody[0].type === 'ReturnStatement') {
+    vlog('The first statement of the inner branch returned');
+    tryToInline(queue, read, innerBranchBody[0], undefined, innerFuncNode);
+  } else if (innerBranchBody.length > 1 && innerBranchBody[1].type === 'ReturnStatement') {
+    vlog('The second statement of the inner branch returned');
+    tryToInline(queue, read, innerBranchBody[0], innerBranchBody[1], innerFuncNode);
+    //} else if () {
+    //  // Edge case specifically for the pattern where the same binding is updated twice and where one branching path
+    //  // in particular the first write is unobservable in userland. It goes a little this:
+    //  // `function f(){ if (test) {} else { test = 'hidden'; if (test) { } else { test = 'visible' } } }`
+    //  // Except, of course, abstracted into functions and a translation artifact of other rules.
+    //  // In this case we can inline the three statements of the inner function (assignment, call, return) into the
+    //  // outer `else` branch which also did an assignment, call, return.
+    //  // TODO
+  } else {
+    // Either this branch has more than two statements, or (considering normalized code), this
+    // `if` is not at the end of the function.
+    vlog('Cannot inline this function because the branch does not return in the first two statements');
+  }
 }
 
-function tryToInline(queue, read, innerFirstStatement, innerSecondStatementMaybe, innerFuncNode, outerReturnStatement) {
+function tryToInline(queue, read, innerFirstStatement, innerSecondStatementMaybe, innerFuncNode) {
   vgroup('tryToInline');
-  _tryToInline(queue, read, innerFirstStatement, innerSecondStatementMaybe, innerFuncNode, outerReturnStatement);
+  _tryToInline(queue, read, innerFirstStatement, innerSecondStatementMaybe, innerFuncNode);
   vgroupEnd();
 }
-function _tryToInline(queue, read, innerFirstStatement, innerSecondStatementMaybe, innerFuncNode, outerReturnStatement) {
+function _tryToInline(queue, read, innerFirstStatement, innerSecondStatementMaybe, innerFuncNode) {
   // Basically replace the call to this function with the return value. Prepend the other statement to the statement
   // that contained the call. If this is a var binding trampoline, make sure to use fresh variables as we keep the `if`, too.
   // Considering it was a function call before, this should not inflate the statement count down the line.
@@ -352,7 +329,6 @@ function _tryToInline(queue, read, innerFirstStatement, innerSecondStatementMayb
         innerFuncNode,
         innerFirstStatement: innerTopStatement,
         innerReturnStatement: innerReturnStatement,
-        outerReturnStatement,
       });
 
       return;
@@ -367,7 +343,6 @@ function _tryToInline(queue, read, innerFirstStatement, innerSecondStatementMayb
         innerFuncNode,
         innerFirstStatement: innerTopStatement,
         innerReturnStatement: innerReturnStatement,
-        outerReturnStatement,
       });
 
       return;

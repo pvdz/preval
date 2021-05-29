@@ -136,25 +136,15 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````js filename=intro
 $(50);
 $(true);
-let secondPart = undefined;
 if (tmpIfTest$9045) {
 } else {
-  secondPart = tmpBinLhs$1687 | vh;
-  const tmpIfTest$9053 = secondPart < 0xdc00;
-  const tmpBranchingC$2333 = function () {
-    debugger;
-    if (tmpIfTest$9053) {
-      return undefined;
-    } else {
-      firstPart;
-      $(secondPart);
-      return undefined;
-    }
-  };
+  const tmpClusterSSA_secondPart = tmpBinLhs$1687 | vh;
+  const tmpIfTest$9053 = tmpClusterSSA_secondPart < 0xdc00;
   if (tmpIfTest$9053) {
-    tmpBranchingC$2333();
+    firstPart;
   } else {
-    tmpBranchingC$2333();
+    firstPart;
+    $(tmpClusterSSA_secondPart);
   }
 }
 `````

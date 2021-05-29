@@ -1,26 +1,77 @@
 # Preval test case
 
-# multi-nested-assignment.md
+# multi-nested-assignment1.md
 
-> Expr order > Multi-nested-assignment
+> Expr order > Multi-nested-assignment1
 >
 > Check whether transform is correct even with multiple nesting levels. The runtime expects to call abcde in that order.
+
+Making sure the closure outlining does not screw up with setters
 
 #TODO
 
 ## Input
 
 `````js filename=intro
+let a = undefined;
+let b = undefined;
+let c = undefined;
+let d = undefined;
+let e = undefined;
 let obj = {
-  get c()  { $('get'); }, 
-  set c(x) { $('set'); },
+  get c() {
+    $('get');
+    return undefined;
+  },
+  set c(x) {
+    obj = 'boom'
+    $('set');
+    return undefined;
+  },
 };
-var a = function(){ $('a'); return obj; }
-var b = function(){ $('b'); a = 21; return obj; }
-var c = function(){ $('c'); a = 31; b = 32; return obj; }
-var d = function(){ $('d'); a = 41; b = 42; c = 43; return obj; }
-var e = function(){ $('e'); a = 51; b = 52; c = 53; d = 54; return obj; }
-a().x = b().x = c().x = d().x = e()
+a = function () {
+  $('a');
+  return obj;
+};
+b = function () {
+  $('b');
+  a = 21;
+  return obj;
+};
+c = function () {
+  $('c');
+  a = 31;
+  b = 32;
+  return obj;
+};
+d = function () {
+  $('d');
+  a = 41;
+  b = 42;
+  c = 43;
+  return obj;
+};
+e = function () {
+  $('e');
+  a = 51;
+  b = 52;
+  c = 53;
+  d = 54;
+  return obj;
+};
+const tmpAssignMemLhsObj = a();
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const varInitAssignLhsComputedObj = b();
+const varInitAssignLhsComputedObj$1 = c();
+const varInitAssignLhsComputedObj$3 = d();
+const varInitAssignLhsComputedRhs$3 = e();
+varInitAssignLhsComputedObj$3.x = varInitAssignLhsComputedRhs$3;
+const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
+varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
+const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 $(a, b, c, d, e);
 `````
 
@@ -36,11 +87,14 @@ let obj = {
   get c() {
     debugger;
     $('get');
+    return undefined;
   },
   set c($$0) {
     let x = $$0;
     debugger;
+    obj = 'boom';
     $('set');
+    return undefined;
   },
 };
 a = function () {
@@ -78,7 +132,19 @@ e = function () {
   d = 54;
   return obj;
 };
-a().x = b().x = c().x = d().x = e();
+const tmpAssignMemLhsObj = a();
+const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+const varInitAssignLhsComputedObj = b();
+const varInitAssignLhsComputedObj$1 = c();
+const varInitAssignLhsComputedObj$3 = d();
+const varInitAssignLhsComputedRhs$3 = e();
+varInitAssignLhsComputedObj$3.x = varInitAssignLhsComputedRhs$3;
+const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
+varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
+const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
+tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
 $(a, b, c, d, e);
 `````
 
@@ -99,6 +165,7 @@ let obj = {
   set c($$0) {
     let x = $$0;
     debugger;
+    obj = 'boom';
     $('set');
     return undefined;
   },
@@ -157,7 +224,7 @@ $(a, b, c, d, e);
 ## Output
 
 `````js filename=intro
-const obj = {
+let obj = {
   get c() {
     debugger;
     $('get');
@@ -165,6 +232,7 @@ const obj = {
   },
   set c($$0) {
     debugger;
+    obj = 'boom';
     $('set');
     return undefined;
   },
@@ -209,10 +277,11 @@ const varInitAssignLhsComputedObj = b();
 const varInitAssignLhsComputedObj$1 = c();
 const varInitAssignLhsComputedObj$3 = d();
 e();
-varInitAssignLhsComputedObj$3.x = obj;
-varInitAssignLhsComputedObj$1.x = obj;
-varInitAssignLhsComputedObj.x = obj;
-tmpAssignMemLhsObj.x = obj;
+const varInitAssignLhsComputedRhs$3 = obj;
+varInitAssignLhsComputedObj$3.x = varInitAssignLhsComputedRhs$3;
+varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$3;
+varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs$3;
+tmpAssignMemLhsObj.x = varInitAssignLhsComputedRhs$3;
 $(a, b, c, d, e);
 `````
 

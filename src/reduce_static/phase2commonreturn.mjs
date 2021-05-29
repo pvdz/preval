@@ -55,6 +55,13 @@ function _inlineCommonReturns(fdata) {
       return;
     }
 
+    if (!AST.isPrimitive(funcNode.$p.commonReturn)) {
+      // node.$p.commonReturn may be an identifier that is not a primitive
+      vlog('Function does not return a primitive. Bailing');
+      vgroupEnd();
+      return;
+    }
+
     meta.reads.forEach((read) => {
       // Find all calls and replace them with a clone of the commonReturn node, moving the call to above
       if (read.parentNode.type !== 'CallExpression' || read.parentProp !== 'callee') {

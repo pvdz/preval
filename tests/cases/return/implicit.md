@@ -1,0 +1,100 @@
+# Preval test case
+
+# implicit.md
+
+> Return > Implicit
+>
+> After normalization it's no longer implicit
+
+#TODO
+
+## Input
+
+`````js filename=intro
+function f() {
+  if ($) {
+    $(100);
+  }
+}
+$(f());
+$(f());
+$(f());
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  if ($) {
+    $(100);
+  }
+};
+$(f());
+$(f());
+$(f());
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  if ($) {
+    $(100);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f();
+tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$3 = $;
+const tmpCalleeParam$3 = f();
+tmpCallCallee$3(tmpCalleeParam$3);
+`````
+
+## Output
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  if ($) {
+    $(100);
+    return undefined;
+  } else {
+    return undefined;
+  }
+};
+f();
+$(undefined);
+f();
+$(undefined);
+f();
+$(undefined);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 100
+ - 2: undefined
+ - 3: 100
+ - 4: undefined
+ - 5: 100
+ - 6: undefined
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

@@ -58,9 +58,9 @@ const findme = function () {
   $(tmpCalleeParam);
   return findme;
 };
-const x = findme();
+findme();
 const tmpCalleeParam$3 = typeof findme;
-$(x, tmpCalleeParam$3);
+$(findme, tmpCalleeParam$3);
 `````
 
 ## Globals

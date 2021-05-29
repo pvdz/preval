@@ -58,22 +58,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  const tmpCalleeParam = $(0);
-  a = $(tmpCalleeParam);
-  if (a) {
-    return a;
-  } else {
-    const tmpCalleeParam$1 = $(2);
-    a = $(tmpCalleeParam$1);
-    return a;
-  }
-};
-const tmpCalleeParam$3 = f();
-$(tmpCalleeParam$3);
-$(a);
+const tmpCalleeParam = $(0);
+let tmpClusterSSA_a = $(tmpCalleeParam);
+if (tmpClusterSSA_a) {
+} else {
+  const tmpCalleeParam$1 = $(2);
+  tmpClusterSSA_a = $(tmpCalleeParam$1);
+}
+$(tmpClusterSSA_a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -41,27 +41,35 @@ function _dropUnusedReturns(fdata) {
 
     vgroup('- `' + meta.uniqueName + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
 
+    if (funcNode.$p.commonReturn?.type === 'Identifier' && funcNode.$p.commonReturn.name === 'undefined') {
+      vlog('  - This function already returns undefined in all places.');
+      return;
+    }
+
     if (
-      meta.reads.every(
+      meta.reads.some(
         (read) =>
-          read.parentNode.type === 'CallExpression' && read.parentProp === 'callee' && read.grandNode.type === 'ExpressionStatement',
+          read.parentNode.type !== 'CallExpression' || read.parentProp !== 'callee' || read.grandNode.type !== 'ExpressionStatement',
       )
     ) {
-      // All usages of this function are calls and its return value is ignored (because the calls are statements)
-      // Get all the return statements in this function and replace the argument to `undefined`
-      funcNode.$p.returnNodes.forEach((rnode) => {
-        if (rnode.argument.type !== 'Identifier' || rnode.argument.name !== 'undefined') {
-          rule('If a function return value is never used all its return statements should return undefined');
-          example('function f(){ return 15; } f();', 'function f(){ return undefined; } f();');
-          before(rnode, funcNode);
-
-          rnode.argument = AST.identifier('undefined');
-
-          ++changed;
-          after(rnode, funcNode);
-        }
-      });
+      vlog('  - There was a read that was not a call or where the return value was used. Bailing');
+      return;
     }
+
+    // All usages of this function are calls and its return value is ignored (because the calls are statements)
+    // Get all the return statements in this function and replace the argument to `undefined`
+    funcNode.$p.returnNodes.forEach((rnode) => {
+      if (rnode.argument.type !== 'Identifier' || rnode.argument.name !== 'undefined') {
+        rule('If a function return value is never used all its return statements should return undefined');
+        example('function f(){ return 15; } f();', 'function f(){ return undefined; } f();');
+        before(rnode, funcNode);
+
+        rnode.argument = AST.identifier('undefined');
+
+        ++changed;
+        after(rnode, funcNode);
+      }
+    });
 
     vgroupEnd();
   });

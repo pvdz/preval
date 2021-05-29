@@ -27,7 +27,8 @@ import { objlitPropAccess } from './phase2objlit_prop.mjs';
 import { bitSetTests } from './phase2bit_set_test.mjs';
 import { ifUpdateCall } from './phase2if_update_call.mjs';
 import { inlineArgLen } from './phase2inline_arguments_length.mjs';
-import {inlineIdenticalParam} from './phase2inline_identical_param.mjs'
+import { inlineIdenticalParam } from './phase2inline_identical_param.mjs';
+import { returnClosure } from './phase2return_closure.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -150,6 +151,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const identicals = inlineIdenticalParam(fdata);
   if (identicals) return identicals;
+
+  const unclosured = returnClosure(fdata);
+  if (unclosured) return unclosured;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

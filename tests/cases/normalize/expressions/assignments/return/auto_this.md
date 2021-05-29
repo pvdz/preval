@@ -58,10 +58,10 @@ const f = function () {
   const tmpthis = this;
   debugger;
   a = tmpthis;
-  return a;
+  return undefined;
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+f();
+$(a);
 $(a);
 `````
 

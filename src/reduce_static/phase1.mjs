@@ -48,6 +48,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   fdata.globallyUniqueLabelRegistry = globallyUniqueLabelRegistry;
   const labelNameSuffixOffset = new Map(); // <name, int>
   fdata.labelNameSuffixOffset = labelNameSuffixOffset;
+  fdata.flatNodeMap = new Map(); // Map<pid, Node>
 
   globals.forEach((_, name) => {
     ASSERT(name);
@@ -68,11 +69,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   );
   vlog('\nCurrent state (start of phase1)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   vlog(
-    '\n\n\n##################################\n## phase1 (first=' +
-      firstAfterParse +
-      ') ::  ' +
-      fdata.fname +
-      '\n##################################\n\n\n',
+    '\n\n\n####################################################################\n\n\n',
   );
 
   resetUid();
@@ -97,6 +94,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       ASSERT(!parentNode || parentNode.$p);
       node.$p = $p();
       node.$p.funcDepth = funcStack.length;
+      fdata.flatNodeMap.set(node.$p.pid, node);
     }
 
     vgroup(BLUE + nodeType + ':' + (before ? 'before' : 'after'), RESET, DIM, node.$p.pid, RESET);
@@ -184,6 +182,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         } else {
           blockIds.push(+node.$p.pid);
         }
+        node.$p.blockChain = blockIds.join(',');
         if (parentNode.type === 'IfStatement') {
           // Last write analysis:
           //      Tricky ;) we need to store the last writes for the consequent first, then when entering
@@ -533,6 +532,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           // as an artificial way to reduce the cloning surface a little bit.
           funcStack[funcStack.length - 1].$p.containsFunctions = true;
         }
+
+        vlog('Final func commonReturn:', node.$p.commonReturn);
 
         if (node.id) {
           const meta = globallyUniqueNamingRegistry.get(node.id.name);
@@ -951,7 +952,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
           // This blockNode is the actual var decl `var p = $$0`
           const blockIndex = pathIndexes[pathIndexes.length - 3]; // (node is init of var decl, so two up, not one)
-          vlog('The var decl of this param is at body['+blockIndex+']');
+          vlog('The var decl of this param is at body[' + blockIndex + ']');
 
           const funcNode = funcStack[funcStack.length - 1];
           const funcHeaderParamNode = funcNode.params[node.index];
@@ -982,8 +983,14 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         const a = funcNode.$p.commonReturn;
         const b = node.argument;
         if (a === null) {
-          // noop
+          // We've already detected that this function returns at least two different values.
           vlog('commonReturn is already null so not setting it');
+        } else if (b.type === 'Identifier') {
+          if (a === undefined) {
+            funcNode.$p.commonReturn = AST.cloneSimple(b);
+          } else if (a.type !== 'Identifier' || a.name !== b.name) {
+            funcNode.$p.commonReturn = null;
+          }
         } else if (!AST.isPrimitive(b)) {
           vlog('the arg is not a primitive so setting commonReturn to null');
           funcNode.$p.commonReturn = null; // No longer use this
@@ -991,14 +998,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           vlog('commonReturn was not set so setting it now');
           funcNode.$p.commonReturn = AST.cloneSimple(node.argument);
         } else if (a.type === b.type) {
-          if (b.type === 'Identifier') {
-            if (a.name !== b.name) {
-              vlog('return value is not same as commonReturn so setting it to null');
-              funcNode.$p.commonReturn = null; // No longer use this
-            } else {
-              vlog('- No change to commonReturn. Both have the same ident:', a.name, b.name);
-            }
-          } else if (b.type === 'Literal') {
+          ASSERT(a.type !== 'Identifier', 'very redundant. hopefully');
+          if (b.type === 'Literal') {
             if (a.value !== b.value || a.raw !== b.raw) {
               vlog('return value is not same as commonReturn so setting it to null');
               funcNode.$p.commonReturn = null; // No longer use this

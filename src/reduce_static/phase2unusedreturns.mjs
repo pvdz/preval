@@ -52,7 +52,7 @@ function _dropUnusedReturns(fdata) {
           read.parentNode.type !== 'CallExpression' || read.parentProp !== 'callee' || read.grandNode.type !== 'ExpressionStatement',
       )
     ) {
-      vlog('  - There was a read that was not a call or where the return value was used. Bailing');
+      vlog('  - There was a read that was not a call or where the return value was unused. Bailing');
       return;
     }
 

@@ -29,6 +29,7 @@ import { ifUpdateCall } from './phase2if_update_call.mjs';
 import { inlineArgLen } from './phase2inline_arguments_length.mjs';
 import { inlineIdenticalParam } from './phase2inline_identical_param.mjs';
 import { returnClosure } from './phase2return_closure.mjs';
+import { returnArg } from './phase2return_arg.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -154,6 +155,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const unclosured = returnClosure(fdata);
   if (unclosured) return unclosured;
+
+  const retargs = returnArg(fdata);
+  if (retargs) return retargs;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

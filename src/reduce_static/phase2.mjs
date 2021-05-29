@@ -30,6 +30,7 @@ import { inlineArgLen } from './phase2inline_arguments_length.mjs';
 import { inlineIdenticalParam } from './phase2inline_identical_param.mjs';
 import { returnClosure } from './phase2return_closure.mjs';
 import { returnArg } from './phase2return_arg.mjs';
+import { constWhileTest } from './phase2const_while_test.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -158,6 +159,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const retargs = returnArg(fdata);
   if (retargs) return retargs;
+
+  const whiled = constWhileTest(fdata);
+  if (whiled) return whiled;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

@@ -1,24 +1,30 @@
 # Preval test case
 
-# base.md
+# regression_true.md
 
-> Static lets > Base
+> Static lets > Regression true
 >
 > If the read of a value of a `let` binding can be determined then we should inline it.
+
+Bug was always looking at the first element of each branch, rather than the last.
 
 #TODO
 
 ## Input
 
 `````js filename=intro
+const oops = function(...args) {
+  $(...args);
+  x = 'fail';
+}
 let x = 5;
 $(x);
 if ($) {
   x = 10;
-  $(x, 'a');
+  oops(x, 'a');
 } else {
   x = 20;
-  $(x, 'b');
+  oops(x, 'b');
 }
 $(x);
 `````
@@ -26,14 +32,20 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
+const oops = function (...$$0) {
+  let args = $$0;
+  debugger;
+  $(...args);
+  x = 'fail';
+};
 let x = 5;
 $(x);
 if ($) {
   x = 10;
-  $(x, 'a');
+  oops(x, 'a');
 } else {
   x = 20;
-  $(x, 'b');
+  oops(x, 'b');
 }
 $(x);
 `````
@@ -41,14 +53,21 @@ $(x);
 ## Normalized
 
 `````js filename=intro
+const oops = function (...$$0) {
+  let args = $$0;
+  debugger;
+  $(...args);
+  x = 'fail';
+  return undefined;
+};
 let x = 5;
 $(x);
 if ($) {
   x = 10;
-  $(x, 'a');
+  oops(x, 'a');
 } else {
   x = 20;
-  $(x, 'b');
+  oops(x, 'b');
 }
 $(x);
 `````
@@ -56,14 +75,21 @@ $(x);
 ## Output
 
 `````js filename=intro
+const oops = function (...$$0) {
+  const args = $$0;
+  debugger;
+  $(...args);
+  x = 'fail';
+  return undefined;
+};
 let x = 5;
 $(5);
 if ($) {
   x = 10;
-  $(10, 'a');
+  oops(10, 'a');
 } else {
   x = 20;
-  $(20, 'b');
+  oops(20, 'b');
 }
 $(x);
 `````
@@ -77,7 +103,7 @@ None
 Should call `$` with:
  - 1: 5
  - 2: 10, 'a'
- - 3: 10
+ - 3: 'fail'
  - eval returned: undefined
 
 Pre normalization calls: Same

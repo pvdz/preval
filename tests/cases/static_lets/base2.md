@@ -1,8 +1,8 @@
 # Preval test case
 
-# conditional_true.md
+# base2.md
 
-> Static lets > Conditional true
+> Static lets > Base2
 >
 > If the read of a value of a `let` binding can be determined then we should inline it.
 
@@ -12,14 +12,13 @@
 
 `````js filename=intro
 let x = 5;
-if ($(true)) {
+$(x);
+if ($(false)) {
   x = 10;
-  const a = x;
-  $(a, 'a');
+  $(x, 'a');
 } else {
   x = 20;
-  const b = x;
-  $(b, 'b');
+  $(x, 'b');
 }
 $(x);
 `````
@@ -28,14 +27,13 @@ $(x);
 
 `````js filename=intro
 let x = 5;
-if ($(true)) {
+$(x);
+if ($(false)) {
   x = 10;
-  const a = x;
-  $(a, 'a');
+  $(x, 'a');
 } else {
   x = 20;
-  const b = x;
-  $(b, 'b');
+  $(x, 'b');
 }
 $(x);
 `````
@@ -44,15 +42,14 @@ $(x);
 
 `````js filename=intro
 let x = 5;
-const tmpIfTest = $(true);
+$(x);
+const tmpIfTest = $(false);
 if (tmpIfTest) {
   x = 10;
-  const a = x;
-  $(a, 'a');
+  $(x, 'a');
 } else {
   x = 20;
-  const b = x;
-  $(b, 'b');
+  $(x, 'b');
 }
 $(x);
 `````
@@ -61,7 +58,8 @@ $(x);
 
 `````js filename=intro
 let x = 5;
-const tmpIfTest = $(true);
+$(5);
+const tmpIfTest = $(false);
 if (tmpIfTest) {
   x = 10;
   $(10, 'a');
@@ -79,9 +77,10 @@ None
 ## Result
 
 Should call `$` with:
- - 1: true
- - 2: 10, 'a'
- - 3: 10
+ - 1: 5
+ - 2: false
+ - 3: 20, 'b'
+ - 4: 20
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -119,17 +119,15 @@ if ($) {
   }
 } else {
 }
-let tmpReturnArg = undefined;
 const x = $(10);
 if ($) {
   $('prevent');
   $('simple');
   $('inlining');
-  tmpReturnArg = x;
+  $(x);
 } else {
-  tmpReturnArg = x;
+  $(x);
 }
-$(tmpReturnArg);
 `````
 
 ## Globals

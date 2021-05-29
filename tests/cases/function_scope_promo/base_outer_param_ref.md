@@ -117,20 +117,20 @@ if ($) {
     $('prevent');
     $('simple');
     $('inlining');
+    if ($) {
+      $('prevent');
+      $('simple');
+      $('inlining');
+      $(tmpCalleeParam$1);
+    } else {
+      $(tmpCalleeParam$1);
+    }
   } else {
+    $(tmpCalleeParam$1);
   }
 } else {
+  $(tmpCalleeParam$1);
 }
-let tmpReturnArg = undefined;
-if ($) {
-  $('prevent');
-  $('simple');
-  $('inlining');
-  tmpReturnArg = tmpCalleeParam$1;
-} else {
-  tmpReturnArg = tmpCalleeParam$1;
-}
-$(tmpReturnArg);
 `````
 
 ## Globals

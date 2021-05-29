@@ -81,14 +81,13 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = $(5);
+  const x = $(5);
   if ($) {
     const tmpReturnArg = $(x);
-    x = tmpReturnArg;
+    $(tmpReturnArg);
   } else {
-    x = undefined;
+    $(undefined);
   }
-  $(x);
 } else {
 }
 `````

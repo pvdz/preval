@@ -118,18 +118,17 @@ if ($) {
   $('prevent');
   $('simple');
   $('inlining');
+  if ($) {
+    $('prevent');
+    $('simple');
+    $('inlining');
+    $(x);
+  } else {
+    $(x);
+  }
 } else {
+  $(x);
 }
-let tmpReturnArg = undefined;
-if ($) {
-  $('prevent');
-  $('simple');
-  $('inlining');
-  tmpReturnArg = x;
-} else {
-  tmpReturnArg = x;
-}
-$(tmpReturnArg);
 `````
 
 ## Globals

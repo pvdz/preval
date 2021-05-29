@@ -55,8 +55,8 @@ function _ifUpdateCall(fdata) {
     if (node.type !== 'IfStatement') return;
 
     if (!node.$p.alwaysComplete) {
-      const lastIf = node.consequent.body[0];
-      const lastElse = node.alternate.body[0];
+      const lastIf = node.consequent.body[node.consequent.body.length - 1];
+      const lastElse = node.alternate.body[node.alternate.body.length - 1];
 
       if (
         lastIf?.type === 'ExpressionStatement' &&

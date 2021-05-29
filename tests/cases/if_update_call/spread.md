@@ -61,16 +61,14 @@ $(...x);
 `````js filename=intro
 const tmpCalleeParam = [100, 200];
 $(tmpCalleeParam);
-let x = undefined;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const r = [1, 2];
-  x = r;
+  $(...r);
 } else {
   const r$1 = [3, 4];
-  x = r$1;
+  $(...r$1);
 }
-$(...x);
 `````
 
 ## Globals

@@ -119,18 +119,17 @@ if ($) {
   $('prevent');
   $('simple');
   $('inlining');
+  if ($) {
+    $('prevent');
+    $('simple');
+    $('inlining');
+    $(tmpCalleeParam);
+  } else {
+    $(tmpCalleeParam);
+  }
 } else {
+  $(tmpCalleeParam);
 }
-let tmpReturnArg = undefined;
-if ($) {
-  $('prevent');
-  $('simple');
-  $('inlining');
-  tmpReturnArg = tmpCalleeParam;
-} else {
-  tmpReturnArg = tmpCalleeParam;
-}
-$(tmpReturnArg);
 `````
 
 ## Globals

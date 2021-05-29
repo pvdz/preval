@@ -121,16 +121,14 @@ if ($) {
 } else {
 }
 const tmpCalleeParam = $(10);
-let tmpReturnArg = undefined;
 if ($) {
   $('prevent');
   $('simple');
   $('inlining');
-  tmpReturnArg = tmpCalleeParam;
+  $(tmpCalleeParam);
 } else {
-  tmpReturnArg = tmpCalleeParam;
+  $(tmpCalleeParam);
 }
-$(tmpReturnArg);
 `````
 
 ## Globals

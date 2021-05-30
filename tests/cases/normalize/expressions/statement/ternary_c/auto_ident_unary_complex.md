@@ -36,8 +36,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpUnaryArg = $(x);
-  typeof tmpUnaryArg;
+  $(x);
 }
 $(a, x);
 `````
@@ -50,8 +49,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpUnaryArg = $(1);
-  typeof tmpUnaryArg;
+  $(1);
 }
 $(a, 1);
 `````

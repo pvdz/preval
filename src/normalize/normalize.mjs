@@ -3486,6 +3486,19 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (node.operator === 'typeof') {
+          if (wrapKind === 'statement') {
+            // Typeof is unique insofar that it never triggers implicit global errors. But it can trigger TDZ errors.
+            rule('Unary `typeof` statement should not be observable (but can trigger TDZ)');
+            example('typeof x;', 'x;');
+            before(node, parentNode);
+
+            body[i] = AST.expressionStatement(node.argument);
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
           if (node.argument.type === 'Literal') {
             if (typeof node.argument.value === 'number') {
               rule('Typeof number is the string number');

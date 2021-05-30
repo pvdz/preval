@@ -39,7 +39,6 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    typeof arg;
   } else {
     break;
   }

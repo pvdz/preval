@@ -24,8 +24,7 @@ $(typeof typeof $(100));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpUnaryArg = $(100);
-typeof tmpUnaryArg;
+$(100);
 const tmpCalleeParam = 'string';
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -33,8 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpUnaryArg = $(100);
-typeof tmpUnaryArg;
+$(100);
 $('string');
 `````
 

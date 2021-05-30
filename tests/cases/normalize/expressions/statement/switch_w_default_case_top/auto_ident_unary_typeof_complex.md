@@ -74,8 +74,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    const tmpUnaryArg = $(arg);
-    typeof tmpUnaryArg;
+    $(arg);
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
@@ -113,8 +112,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    const tmpUnaryArg = $(1);
-    typeof tmpUnaryArg;
+    $(1);
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

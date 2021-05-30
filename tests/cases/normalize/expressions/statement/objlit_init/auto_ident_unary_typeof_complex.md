@@ -32,8 +32,7 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(arg);
-typeof tmpUnaryArg;
+$(arg);
 $(a, arg);
 `````
 
@@ -41,8 +40,7 @@ $(a, arg);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(1);
-typeof tmpUnaryArg;
+$(1);
 $(a, 1);
 `````
 

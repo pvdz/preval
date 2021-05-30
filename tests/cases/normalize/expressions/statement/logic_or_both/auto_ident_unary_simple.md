@@ -33,10 +33,6 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpIfTest = typeof x;
-if (tmpIfTest) {
-} else {
-  typeof x;
-}
 $(a, x);
 `````
 

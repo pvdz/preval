@@ -34,8 +34,7 @@ let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpUnaryArg = $(arg);
-  typeof tmpUnaryArg;
+  $(arg);
 } else {
   $(200);
 }
@@ -48,8 +47,7 @@ $(a, arg);
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpUnaryArg = $(1);
-  typeof tmpUnaryArg;
+  $(1);
 } else {
   $(200);
 }

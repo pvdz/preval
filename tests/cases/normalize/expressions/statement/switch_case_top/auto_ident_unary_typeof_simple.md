@@ -54,10 +54,6 @@ if (tmpIfTest) {
 } else {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  typeof arg;
-} else {
-}
 $(a, arg);
 `````
 

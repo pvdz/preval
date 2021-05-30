@@ -36,7 +36,6 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  typeof arg;
 }
 $(a, arg);
 `````

@@ -58,8 +58,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpUnaryArg = $(arg);
-  typeof tmpUnaryArg;
+  $(arg);
 } else {
 }
 $(a, arg);
@@ -79,8 +78,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpUnaryArg = $(1);
-  typeof tmpUnaryArg;
+  $(1);
 } else {
 }
 $(a, 1);

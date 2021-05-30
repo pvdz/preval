@@ -36,8 +36,7 @@
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(x);
-typeof tmpUnaryArg;
+$(x);
 $(a, x);
 `````
 
@@ -45,8 +44,7 @@ $(a, x);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(1);
-typeof tmpUnaryArg;
+$(1);
 $(a, 1);
 `````
 

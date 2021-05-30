@@ -41,7 +41,6 @@ let f = function () {
   debugger;
   let x = 1;
   let a = { a: 999, b: 1000 };
-  typeof x;
   $(a, x);
   return undefined;
 };

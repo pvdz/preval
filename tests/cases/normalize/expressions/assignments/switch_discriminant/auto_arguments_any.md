@@ -53,14 +53,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = arguments;
 $(100);
-$(a);
+$(arguments);
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+arguments
 
 ## Result
 

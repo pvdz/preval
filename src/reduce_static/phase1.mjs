@@ -24,7 +24,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   const start = Date.now();
 
   const funcStack = []; // (also includes global/Program)
-  const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments.
+  const thisStack = []; // Only contains func exprs. Func decls are eliminated. Arrows do not have this/arguments. Not used for global.
   const blockStack = []; // Stack of nested blocks (functions, try/catch/finally, or statements)
   const blockIds = []; // Stack of block pids. Negative if the parent was a loop of sorts. Functions insert a zero.
   const blockBodies = []; // Stack of blocks. Arrays of statements that is block.body or program.body
@@ -68,9 +68,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       '\n##################################\n\n\n',
   );
   vlog('\nCurrent state (start of phase1)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
-  vlog(
-    '\n\n\n####################################################################\n\n\n',
-  );
+  vlog('\n\n\n####################################################################\n\n\n');
 
   resetUid();
 
@@ -576,52 +574,48 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           parentNode.type === 'MemberExpression' && node.computed ? 'computed' : 'regular',
         );
 
-        if (kind === 'read' && name === 'arguments') {
+        if (kind === 'read' && name === 'arguments' && thisStack.length) {
           // Make a distinction between arguments.length, arguments[], and maybe the slice paradigm?
           // For now we only care whether the function might detect the call arg count. Without arguemnts, it cannot.
-          if (thisStack.length) {
-            // Do not count cases like where the arguments have no observable side effect or our own alias
-            // This makes sure the `arguments` reference does not stick around unnecessarily as an artifact
-            if (
-              parentNode.type === 'MemberExpression' &&
-              parentProp === 'object' &&
-              !parentNode.computed &&
-              parentNode.property.name === 'length'
-            ) {
-              // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
-              vlog('Marking function as accessing `arguments.length`');
+          // Do not count cases like where the arguments have no observable side effect or our own alias
+          // This makes sure the `arguments` reference does not stick around unnecessarily as an artifact
+          if (
+            // Testing for `arguments.length`
+            parentNode.type === 'MemberExpression' &&
+            parentProp === 'object' &&
+            !parentNode.computed &&
+            parentNode.property.name === 'length'
+          ) {
+            // This is an `arguments.length` access. Easier to work around than plain unbound `arguments` access.
+            vlog('Marking function as accessing `arguments.length`');
 
-              const grandNode = pathNodes[pathNodes.length - 3];
-              const grandProp = pathProps[pathProps.length - 2];
-              const greatGrandIndex = pathIndexes[pathIndexes.length - 3]; // Note: this is the index of the var decl, not the grandNode
+            const grandNode = pathNodes[pathNodes.length - 3];
+            const grandProp = pathProps[pathProps.length - 2];
+            const greatGrandIndex = pathIndexes[pathIndexes.length - 3]; // Note: this is the index of the var decl, not the grandNode
 
-              ASSERT(
-                grandNode.type === 'VariableDeclarator' && grandProp === 'init' && greatGrandIndex >= 0,
-                '`arguments.length` should only appear for the custom alias in normalized code',
-                grandNode.type,
-                grandProp,
-                greatGrandIndex,
-              );
-              thisStack[thisStack.length - 1].$p.readsArgumentsLenAt = greatGrandIndex;
-              thisStack[thisStack.length - 1].$p.readsArgumentsLenAs = grandNode.id.name; // Name of the alias
-              thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
-            } else {
-              if (parentNode.type === 'ExpressionStatement') {
-                vlog('Ignoring `arguments` as an expression statement');
-                //} else if (
-                //  parentNode.type === 'VariableDeclaration' &&
-                //  parentNode.declarations[0].id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)
-                //) {
-                //  vlog('Ignoring our own arguments alias');
-              } else {
-                // This disables a few tricks because of observable side effects
-                vlog('Marking function as accessing `arguments` in "any" way');
-                thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
-              }
-            }
+            ASSERT(
+              grandNode.type === 'VariableDeclarator' && grandProp === 'init' && greatGrandIndex >= 0,
+              '`arguments.length` should only appear for the custom alias in normalized code',
+              grandNode.type,
+              grandProp,
+              greatGrandIndex,
+            );
+            thisStack[thisStack.length - 1].$p.readsArgumentsLenAt = greatGrandIndex;
+            thisStack[thisStack.length - 1].$p.readsArgumentsLenAs = grandNode.id.name; // Name of the alias
+            thisStack[thisStack.length - 1].$p.readsArgumentsLen = true;
+          } else if (parentNode.type === 'ExpressionStatement') {
+            // A statement that is just `arguments`. :shrug:
+            vlog('Ignoring `arguments` as an expression statement');
+            //} else if (
+            //  parentNode.type === 'VariableDeclaration' &&
+            //  parentNode.declarations[0].id.name.startsWith(ARGUMENTS_ALIAS_PREFIX)
+            //) {
+            //  vlog('Ignoring our own arguments alias');
           } else {
-            // TODO: do we want to act on this?
-            vlog('Attempting to access `arguments` in global space? Probably crashes at runtime.');
+            // This is an actual read on `arguments`
+            // This disables a few tricks because of observable side effects
+            vlog('Marking function as accessing `arguments` in "any" way');
+            thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
           }
         } else if ((kind === 'read' || kind === 'write') && /^\$\$\d+$/.test(name)) {
           const paramNode = AST.param(name, false);
@@ -982,6 +976,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         vgroup('[commonReturn]');
         const a = funcNode.$p.commonReturn;
         const b = node.argument;
+        ASSERT(b, b.$p);
         if (a === null) {
           // We've already detected that this function returns at least two different values.
           vlog('commonReturn is already null so not setting it');

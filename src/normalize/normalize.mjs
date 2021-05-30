@@ -222,6 +222,7 @@ import { isComplexNode } from '../ast.mjs';
   - TODO: if we clone normalized code then we should be able to assume that all idents are already unique within that func. So maybe an AST clone would suffice after all? and some special care in renaming all bindings. probably cheaper than a full reparse?
   - TODO: `$(null[$('keep me')]);` should still invoke the computed prop
   - TODO: should normalize to only have imports and exports as global code and an IIFE as the only other kind of toplevel code that contains all other code. This way there is no global code and everything is scoped to a function.
+  - TODO: implicit globals should not be shuffled around like in tests/cases/normalize/expressions/assignments/for_a/auto_arguments_length.md
 */
 
 function RETURN() {

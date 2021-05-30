@@ -43,16 +43,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = arguments;
 while (true) {
   $(1);
 }
-$(a);
+$(arguments);
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+arguments
 
 ## Result
 

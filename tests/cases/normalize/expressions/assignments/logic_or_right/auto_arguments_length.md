@@ -55,7 +55,9 @@ $(a);
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+arguments
 
 ## Result
 

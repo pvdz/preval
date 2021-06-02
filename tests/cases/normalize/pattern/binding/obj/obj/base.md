@@ -50,31 +50,12 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { x: 1, y: 2, z: 3 };
-let objPatternAfterDefault = undefined;
-const tmpIfTest = tmpObjLitVal === undefined;
-if (tmpIfTest) {
-  objPatternAfterDefault = a;
-} else {
-  objPatternAfterDefault = tmpObjLitVal;
-}
-let objPatternCrashTest = objPatternAfterDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternAfterDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
-} else {
-}
 $('ok');
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-a
+None
 
 ## Result
 

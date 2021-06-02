@@ -9,7 +9,6 @@ import { inlineSimpleFuncCalls } from './phase2simplefuncs.mjs';
 import { inlineOneTimeFunctions } from './phase2onetimers.mjs';
 import { funcScopePromo } from './phase2funcscopepromo.mjs';
 import { dedupeBranchedReturns } from './phase2deduperetbranch.mjs';
-import { ifReduction } from './phase2ifreduction.mjs';
 import { inlineCommonReturns } from './phase2commonreturn.mjs';
 import { dropUnusedReturns } from './phase2unusedreturns.mjs';
 import { singleScopeTdz } from './phase2single_scope_tdz.mjs';
@@ -31,6 +30,7 @@ import { inlineIdenticalParam } from './phase2inline_identical_param.mjs';
 import { returnClosure } from './phase2return_closure.mjs';
 import { returnArg } from './phase2return_arg.mjs';
 import { constWhileTest } from './phase2const_while_test.mjs';
+import { typeTrackedTricks } from './phase2type_tracked_tricks.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -133,9 +133,6 @@ function _phase2(program, fdata, resolve, req) {
   const ifcallifed = ifCallIf(fdata);
   if (ifcallifed) return ifcallifed;
 
-  const deduced = ifReduction(fdata);
-  if (deduced) return deduced;
-
   const arrrrred = arrrrrr(fdata);
   if (arrrrred) return arrrrred;
 
@@ -162,6 +159,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const whiled = constWhileTest(fdata);
   if (whiled) return whiled;
+
+  const typed = typeTrackedTricks(fdata);
+  if (typed) return typed;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

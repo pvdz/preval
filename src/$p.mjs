@@ -5,6 +5,9 @@ let uid = 0;
 export function resetUid() {
   uid = 0;
 }
+export function getUid() {
+  return uid;
+}
 
 export function $p() {
   let pid = String(++uid);
@@ -57,5 +60,7 @@ export function $p() {
     // - lastWritesBackupTry // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map depicts the state after the `try-block`.) For each relevant binding, a set of writes that are currently "observable" when finding a read.
     // - lastWritesBackupCatch // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map depicts the state after the `catch` block.) For each relevant binding, a set of writes that are currently "observable" when finding a read.
     // - paramNames // Array<string>. Original param names for the function. Those will be $$0 mapped in the same order.
+    // - isPrimitive // bool. For binary expression operand nodes
+    // - primitiveValue // any. When isPrimitive is true, this should be the value. otherwise ignore.
   };
 }

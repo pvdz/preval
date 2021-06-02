@@ -57,14 +57,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpCalleeParam$1 = [1, 2, 3];
-let bindingPatternArrRoot = undefined;
-const tmpIfTest = tmpCalleeParam$1 === undefined;
-if (tmpIfTest) {
-  bindingPatternArrRoot = $('fail');
-} else {
-  bindingPatternArrRoot = tmpCalleeParam$1;
-}
-[...bindingPatternArrRoot];
+[...tmpCalleeParam$1];
 $('ok');
 `````
 

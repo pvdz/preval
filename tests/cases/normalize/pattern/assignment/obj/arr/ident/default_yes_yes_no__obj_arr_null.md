@@ -52,15 +52,7 @@ $(y);
 
 `````js filename=intro
 const tmpObjLitVal = [null];
-let objPatternAfterDefault = undefined;
-const tmpIfTest = tmpObjLitVal === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = ['fail2'];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = tmpObjLitVal;
-}
-const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternSplat = [...tmpObjLitVal];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {

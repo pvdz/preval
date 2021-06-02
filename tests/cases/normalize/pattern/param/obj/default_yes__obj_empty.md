@@ -65,23 +65,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = {};
-let bindingPatternObjRoot = undefined;
-const tmpIfTest = tmpCalleeParam$1 === undefined;
-if (tmpIfTest) {
-  bindingPatternObjRoot = $('fail');
-} else {
-  bindingPatternObjRoot = tmpCalleeParam$1;
-}
-let objPatternCrashTest = bindingPatternObjRoot === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = bindingPatternObjRoot === null;
-}
-if (objPatternCrashTest) {
-  bindingPatternObjRoot.cannotDestructureThis;
-} else {
-}
 $('ok');
 `````
 

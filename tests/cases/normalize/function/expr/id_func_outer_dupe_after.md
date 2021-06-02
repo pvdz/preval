@@ -70,15 +70,9 @@ tmpCallCallee$3(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const g$1 = function () {
-  debugger;
-  const tmpCalleeParam = typeof g$1;
-  $(tmpCalleeParam);
-  return undefined;
-};
 const out = function () {
   debugger;
-  g$1();
+  $('function');
   $(10, undefined);
   return undefined;
 };

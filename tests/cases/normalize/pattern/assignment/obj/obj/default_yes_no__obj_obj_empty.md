@@ -52,24 +52,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = {};
-let objPatternAfterDefault = undefined;
-const tmpIfTest = tmpObjLitVal === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { x: 'fail' };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = tmpObjLitVal;
-}
-let objPatternCrashTest = objPatternAfterDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternAfterDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
-} else {
-}
 $('ok');
 `````
 

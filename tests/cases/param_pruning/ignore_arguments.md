@@ -59,8 +59,7 @@ const f = function ($$0, $$1, $$2) {
   const x = $$0;
   const z = $$2;
   debugger;
-  const tmpUnaryArg = !tmpArgumentsAny;
-  const tmpCalleeParam = !tmpUnaryArg;
+  const tmpCalleeParam = Boolean(tmpArgumentsAny);
   $(tmpCalleeParam, x, z);
   return undefined;
 };

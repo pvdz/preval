@@ -41,16 +41,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { a: 1, b: 2, c: 3 };
-let objPatternCrashTest = tmpAssignObjPatternRhs === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = tmpAssignObjPatternRhs === null;
-}
-if (objPatternCrashTest) {
-  tmpAssignObjPatternRhs.cannotDestructureThis;
-} else {
-}
 $('ok');
 `````
 

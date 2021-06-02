@@ -59,16 +59,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = { a: 1, b: 2, c: 3 };
-let objPatternCrashTest = tmpCalleeParam$1 === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = tmpCalleeParam$1 === null;
-}
-if (objPatternCrashTest) {
-  tmpCalleeParam$1.cannotDestructureThis;
-} else {
-}
 $('ok');
 `````
 

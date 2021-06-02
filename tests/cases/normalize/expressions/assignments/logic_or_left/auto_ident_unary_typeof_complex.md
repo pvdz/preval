@@ -49,12 +49,7 @@ $(a, arg);
 `````js filename=intro
 const tmpUnaryArg = $(1);
 const a = typeof tmpUnaryArg;
-let tmpCalleeParam = a;
-if (a) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
+$(a);
 $(a, 1);
 `````
 

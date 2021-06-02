@@ -69,14 +69,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpArrElement = [, , , 1];
 const tmpCalleeParam$1 = [tmpArrElement, 4, 5];
-let bindingPatternArrRoot = undefined;
-const tmpIfTest = tmpCalleeParam$1 === undefined;
-if (tmpIfTest) {
-  bindingPatternArrRoot = $('fail2');
-} else {
-  bindingPatternArrRoot = tmpCalleeParam$1;
-}
-const arrPatternSplat = [...bindingPatternArrRoot];
+const arrPatternSplat = [...tmpCalleeParam$1];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;

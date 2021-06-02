@@ -695,6 +695,11 @@ export function isPrimitive(node) {
   // A primitive is a literal boolean, number, string, or null, or an identifier NaN, Infinity, or undefined.
   // It's different from a literal since, for example, `undefined` is not a Literal node.
 
+  // This func may be called in the before on a "future" node so the $p may not exist yet
+  if (node.$p?.isPrimitive) {
+    return true;
+  }
+
   if (node.type === 'Literal') {
     return node.raw === 'null' || ['number', 'string', 'boolean'].includes(typeof node.value);
   }
@@ -747,7 +752,11 @@ export function isNull(node) {
 }
 
 export function getPrimitiveValue(node) {
-  ASSERT(isPrimitive(node));
+  ASSERT(isPrimitive(node) || node.$p.isPrimitive, 'should assert a node is a primitive value before calling getPrimitive on it', node);
+
+  if (node.$p.isPrimitive) {
+    return node.$p.primitiveValue;
+  }
 
   if (node.type === 'Literal') {
     if (node.raw === 'null') return null;

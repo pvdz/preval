@@ -60,14 +60,8 @@ tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const r$1 = function () {
-  debugger;
-  $('number');
-  return 30;
-};
 $('number');
-const tmpCalleeParam$3 = typeof r$1;
-$(30, tmpCalleeParam$3);
+$(30, 'function');
 `````
 
 ## Globals

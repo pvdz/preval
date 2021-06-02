@@ -77,32 +77,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$5 = { x: null, b: 11, c: 12 };
-let bindingPatternObjRoot = undefined;
-const tmpIfTest = tmpCalleeParam$5 === undefined;
-if (tmpIfTest) {
-  const tmpObjLitVal = { y: 'fail3' };
-  const tmpCalleeParam = { x: tmpObjLitVal };
-  bindingPatternObjRoot = $(tmpCalleeParam);
-} else {
-  bindingPatternObjRoot = tmpCalleeParam$5;
-}
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  const tmpCalleeParam$1 = { y: 'fail2' };
-  objPatternAfterDefault = $(tmpCalleeParam$1);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
-const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
-const tmpIfTest$3 = objPatternBeforeDefault$1 === undefined;
-if (tmpIfTest$3) {
-  $('fail');
-} else {
-}
-$('bad');
+null.y;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

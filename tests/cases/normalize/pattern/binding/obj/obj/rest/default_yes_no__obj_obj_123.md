@@ -49,16 +49,8 @@ $(y);
 
 `````js filename=intro
 const tmpObjLitVal = { x: 1, y: 2, z: 3 };
-let objPatternAfterDefault = undefined;
-const tmpIfTest = tmpObjLitVal === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { a: 'fail' };
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = tmpObjLitVal;
-}
 const tmpCalleeParam$3 = [];
-const y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);
+const y = objPatternRest(tmpObjLitVal, tmpCalleeParam$3, undefined);
 $(y);
 `````
 

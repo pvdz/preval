@@ -54,13 +54,11 @@ tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 `````js filename=intro
 const findme = function () {
   debugger;
-  const tmpCalleeParam = typeof findme;
-  $(tmpCalleeParam);
+  $('function');
   return findme;
 };
-findme();
-const tmpCalleeParam$3 = typeof findme;
-$(findme, tmpCalleeParam$3);
+$('function');
+$(findme, 'function');
 `````
 
 ## Globals

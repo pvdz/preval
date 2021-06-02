@@ -45,16 +45,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = {};
-let objPatternCrashTest = tmpObjLitVal === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = tmpObjLitVal === null;
-}
-if (objPatternCrashTest) {
-  tmpObjLitVal.cannotDestructureThis;
-} else {
-}
 $('ok');
 `````
 

@@ -49,14 +49,9 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpUnaryArg = $(1);
 const a = typeof tmpUnaryArg;
-if (a) {
-  tmpCalleeParam = $(100);
-} else {
-  tmpCalleeParam = $(200);
-}
+const tmpCalleeParam = $(100);
 $(tmpCalleeParam);
 $(a, 1);
 `````

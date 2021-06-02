@@ -62,15 +62,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpObjLitVal = ['abc'];
-let objPatternAfterDefault = undefined;
-const tmpIfTest = tmpObjLitVal === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = ['fail'];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = tmpObjLitVal;
-}
-[...objPatternAfterDefault];
+[...tmpObjLitVal];
 $('ok');
 `````
 

@@ -45,15 +45,7 @@ $('ok');
 
 `````js filename=intro
 const tmpObjLitVal = [''];
-let objPatternAfterDefault = undefined;
-const tmpIfTest = tmpObjLitVal === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = ['fail'];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = tmpObjLitVal;
-}
-[...objPatternAfterDefault];
+[...tmpObjLitVal];
 $('ok');
 `````
 

@@ -63,15 +63,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpObjLitVal = [1, 2, 3];
-let objPatternAfterDefault = undefined;
-const tmpIfTest = tmpObjLitVal === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = ['fail'];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = tmpObjLitVal;
-}
-const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternSplat = [...tmpObjLitVal];
 const y = arrPatternSplat.slice(0);
 $(y);
 `````

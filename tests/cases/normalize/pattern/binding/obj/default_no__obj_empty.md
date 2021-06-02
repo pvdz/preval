@@ -41,16 +41,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = {};
-let objPatternCrashTest = bindingPatternObjRoot === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = bindingPatternObjRoot === null;
-}
-if (objPatternCrashTest) {
-  bindingPatternObjRoot.cannotDestructureThis;
-} else {
-}
 $('ok');
 `````
 

@@ -46,13 +46,8 @@ $(a, x);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpUnaryArg = $(1);
-const tmpIfTest = typeof tmpUnaryArg;
-if (tmpIfTest) {
-  $(100);
-} else {
-  $(200);
-}
+$(1);
+$(100);
 $(a, 1);
 `````
 

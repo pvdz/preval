@@ -32,9 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpUnaryArg = /1/;
-const tmpCalleeParam = typeof tmpUnaryArg;
-$(tmpCalleeParam);
+$('object');
 `````
 
 ## Globals

@@ -75,27 +75,8 @@ tmpCallCallee$5(tmpCalleeParam$9);
 
 `````js filename=intro
 const tmpObjLitVal$1 = {};
-const tmpCalleeParam$11 = { x: tmpObjLitVal$1, b: 11, c: 12 };
-let bindingPatternObjRoot = undefined;
-const tmpIfTest = tmpCalleeParam$11 === undefined;
-if (tmpIfTest) {
-  const tmpObjLitVal = { a: 'fail2' };
-  const tmpCalleeParam = { x: tmpObjLitVal };
-  bindingPatternObjRoot = $(tmpCalleeParam);
-} else {
-  bindingPatternObjRoot = tmpCalleeParam$11;
-}
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
-let objPatternAfterDefault = undefined;
-const tmpIfTest$1 = objPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  const tmpCalleeParam$1 = { a: 'fail' };
-  objPatternAfterDefault = $(tmpCalleeParam$1);
-} else {
-  objPatternAfterDefault = objPatternBeforeDefault;
-}
 const tmpCalleeParam$5 = [];
-const y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$5, undefined);
+const y = objPatternRest(tmpObjLitVal$1, tmpCalleeParam$5, undefined);
 $(y);
 `````
 

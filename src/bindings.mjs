@@ -422,9 +422,10 @@ export function registerGlobalIdent(
     typing: {
       // string. If anything, this should then be the primitive type that this binding must be.
       // TODO: what if there are multiple options? Or even like bool/undefined/null? "falsy/truthy"
-      mustBeType: '',
-      mustBeFalsy: false, // false, null, undefined, 0, ''
-      mustBeTruthy: false, // at least none of the falsy ones :)
+      mustBeType: '', // null, array, array (lit), object (plain), function, class, set, map, regex, <typeof primitive>
+      mustBeFalsy: false, // bool: only true if value is known to be one of: false, null, undefined, 0, -0, '', NaN
+      mustBeTruthy: false, // bool: only true if known to be a value that is not one of the falsy ones :)
+      bang: false, // bool. Was this explicitly the result of applying `!x`?
       // number. If type is a number range, these are its bounds
       rangeStart: -Infinity,
       rangeEnd: Infinity,

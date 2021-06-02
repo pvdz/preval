@@ -46,15 +46,7 @@ $(y);
 
 `````js filename=intro
 const tmpObjLitVal = [, , , 1];
-let objPatternAfterDefault = undefined;
-const tmpIfTest = tmpObjLitVal === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = ['fail'];
-  objPatternAfterDefault = $(tmpCalleeParam);
-} else {
-  objPatternAfterDefault = tmpObjLitVal;
-}
-const arrPatternSplat = [...objPatternAfterDefault];
+const arrPatternSplat = [...tmpObjLitVal];
 y = arrPatternSplat.slice(0);
 $(y);
 `````

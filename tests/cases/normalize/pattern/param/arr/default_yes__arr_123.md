@@ -56,8 +56,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = [1, 2, 3];
-[...tmpCalleeParam$1];
 $('ok');
 `````
 

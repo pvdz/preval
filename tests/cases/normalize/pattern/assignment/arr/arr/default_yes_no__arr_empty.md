@@ -44,17 +44,8 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = [];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = ['pass2'];
-  arrPatternStep = $(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
+const tmpCalleeParam = ['pass2'];
+const arrPatternStep = $(tmpCalleeParam);
 [...arrPatternStep];
 $('ok');
 `````

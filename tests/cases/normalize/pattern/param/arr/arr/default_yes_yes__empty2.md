@@ -128,8 +128,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const A = ['pass3'];
-[...A];
 $(undefined);
 `````
 

@@ -65,19 +65,8 @@ tmpCallCallee$3(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$9 = [null, 20, 30];
-const arrPatternSplat = [...tmpCalleeParam$9];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { a: 'fail' };
-  arrPatternStep = $(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
 const tmpCalleeParam$3 = [];
-objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);
+objPatternRest(null, tmpCalleeParam$3, undefined);
 $('bad');
 `````
 

@@ -44,11 +44,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = { x: 100 };
-const arrAssignPatternRhs = [tmpArrElement];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-x = arrPatternStep.x;
+x = 100;
 $(x);
 `````
 

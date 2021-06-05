@@ -67,9 +67,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = [];
-const arrPatternSplat = [...a];
-arrPatternSplat[0];
 $(undefined);
 `````
 

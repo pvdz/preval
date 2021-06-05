@@ -48,19 +48,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = ['abc', 20, 30];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { a: 'pass' };
-  arrPatternStep = $(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
 const tmpCalleeParam$3 = [];
-x = objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);
+x = objPatternRest('abc', tmpCalleeParam$3, undefined);
 $(x);
 `````
 

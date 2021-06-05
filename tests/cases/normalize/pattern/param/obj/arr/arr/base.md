@@ -57,11 +57,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = [1, 2, 3];
-const tmpObjLitVal = [tmpArrElement, 13];
-const arrPatternSplat = [...tmpObjLitVal];
-const arrPatternStep = arrPatternSplat[0];
-[...arrPatternStep];
 $('ok');
 `````
 

@@ -43,10 +43,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = [100];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const tmpClusterSSA_x = arrPatternSplat[0];
-$(tmpClusterSSA_x);
+$(100);
 `````
 
 ## Globals

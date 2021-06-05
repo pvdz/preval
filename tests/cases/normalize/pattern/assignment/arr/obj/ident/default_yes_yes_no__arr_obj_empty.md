@@ -52,18 +52,7 @@ $(x);
 
 `````js filename=intro
 const tmpArrElement = {};
-const arrAssignPatternRhs = [tmpArrElement, 20, 30];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = { x: 'fail2' };
-  arrPatternStep = $(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const objPatternBeforeDefault = arrPatternStep.x;
+const objPatternBeforeDefault = tmpArrElement.x;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   x = $('pass');

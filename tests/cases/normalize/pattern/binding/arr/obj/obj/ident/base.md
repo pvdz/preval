@@ -46,14 +46,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { x: 1, y: 2, z: 3 };
-const tmpArrElement = { x: tmpObjLitVal, y: 11 };
-const bindingPatternArrRoot = [tmpArrElement, 10];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternNoDefault = arrPatternStep.x;
-const y = objPatternNoDefault.y;
-$(y);
+$(2);
 `````
 
 ## Globals

@@ -59,8 +59,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$3 = [];
-const arrPatternSplat = [...tmpCalleeParam$3];
+const arrPatternSplat = [];
 const x = arrPatternSplat.slice(0);
 $(x);
 `````

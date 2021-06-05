@@ -35,11 +35,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = [null, 20, 30];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-arrPatternStep.x;
-$('bad');
+null.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

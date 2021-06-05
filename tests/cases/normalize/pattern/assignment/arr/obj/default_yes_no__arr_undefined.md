@@ -50,16 +50,7 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = [undefined, 20, 30];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  arrPatternStep = $('fail');
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
+const arrPatternStep = $('fail');
 let objPatternCrashTest = arrPatternStep === undefined;
 if (objPatternCrashTest) {
 } else {

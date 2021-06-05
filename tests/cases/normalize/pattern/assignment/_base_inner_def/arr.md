@@ -35,22 +35,14 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = [1];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = a;
-} else {
-  x = arrPatternBeforeDefault;
-}
+x = 1;
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-a, x
+x
 
 ## Result
 

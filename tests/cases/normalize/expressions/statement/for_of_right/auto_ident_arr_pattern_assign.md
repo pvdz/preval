@@ -58,10 +58,8 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = $(3);
-const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-[...tmpNestedAssignArrPatternRhs];
+$(3);
+$(4);
 throw 'Preval: Cannot access `x$1` before initialization';
 `````
 

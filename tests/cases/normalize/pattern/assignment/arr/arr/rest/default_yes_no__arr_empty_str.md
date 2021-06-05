@@ -43,17 +43,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = ['', 4, 5];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  arrPatternStep = $('fail');
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternSplat$1 = [];
 x = arrPatternSplat$1.slice(0);
 $(x);
 `````

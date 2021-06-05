@@ -64,10 +64,7 @@ if (tmpIfTest$1) {
 `````js filename=intro
 $(10);
 $(20);
-const arrAssignPatternRhs = [1, 2];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const tmpClusterSSA_a = arrPatternSplat[0];
-$(tmpClusterSSA_a);
+$(1);
 `````
 
 ## Globals

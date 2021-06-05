@@ -38,9 +38,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = [0];
-const arrPatternSplat = [...tmpObjLitVal];
-y = arrPatternSplat[0];
+y = 0;
 $(y);
 `````
 

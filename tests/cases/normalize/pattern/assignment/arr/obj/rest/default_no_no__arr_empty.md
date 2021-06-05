@@ -39,11 +39,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = [];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
 const tmpCalleeParam$1 = [];
-x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
+x = objPatternRest(undefined, tmpCalleeParam$1, undefined);
 $(x);
 `````
 

@@ -36,10 +36,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = ['', 4, 5];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
+const arrPatternSplat$1 = [];
 x = arrPatternSplat$1.slice(0);
 $(x);
 `````

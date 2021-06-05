@@ -40,11 +40,9 @@ $(a);
 `````js filename=intro
 $(10);
 $(20);
-const bindingPatternArrRoot = [1, 2];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
+const a = 1;
 export { a };
-$(a);
+$(1);
 `````
 
 ## Globals

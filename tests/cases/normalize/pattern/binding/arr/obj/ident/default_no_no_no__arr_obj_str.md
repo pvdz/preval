@@ -36,12 +36,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = { x: 'abc', y: 2, z: 3 };
-const bindingPatternArrRoot = [tmpArrElement, 20, 30];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const x = arrPatternStep.x;
-$(x);
+$('abc');
 `````
 
 ## Globals

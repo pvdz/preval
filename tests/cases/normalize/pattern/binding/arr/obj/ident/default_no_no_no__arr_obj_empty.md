@@ -37,10 +37,7 @@ $(x);
 
 `````js filename=intro
 const tmpArrElement = {};
-const bindingPatternArrRoot = [tmpArrElement, 20, 30];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const x = arrPatternStep.x;
+const x = tmpArrElement.x;
 $(x);
 `````
 

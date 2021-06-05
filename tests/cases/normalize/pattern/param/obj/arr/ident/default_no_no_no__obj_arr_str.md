@@ -55,10 +55,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = ['abc'];
-const arrPatternSplat = [...tmpObjLitVal];
-const y = arrPatternSplat[0];
-$(y);
+$('abc');
 `````
 
 ## Globals

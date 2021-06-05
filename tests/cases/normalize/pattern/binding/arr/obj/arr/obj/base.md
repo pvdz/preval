@@ -57,24 +57,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpArrElement$1 = { a: 1, b: 2, c: 3 };
-const tmpObjLitVal = [tmpArrElement$1, 12];
-const tmpArrElement = { x: tmpObjLitVal, y: 11 };
-const bindingPatternArrRoot = [tmpArrElement, 10];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternNoDefault = arrPatternStep.x;
-const arrPatternSplat$1 = [...objPatternNoDefault];
-const arrPatternStep$1 = arrPatternSplat$1[0];
-let objPatternCrashTest = arrPatternStep$1 === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = arrPatternStep$1 === null;
-}
-if (objPatternCrashTest) {
-  arrPatternStep$1.cannotDestructureThis;
-} else {
-}
 $('ok');
 `````
 

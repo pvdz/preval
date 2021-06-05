@@ -45,8 +45,6 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpArrElToSpread = [1, 2];
-[...tmpArrElToSpread];
 $(a);
 `````
 

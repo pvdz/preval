@@ -73,22 +73,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpArrElement$1 = { a: 1, b: 2, c: 3 };
-const tmpObjLitVal = [tmpArrElement$1, 12];
-const tmpArrElement = { x: tmpObjLitVal, y: 11 };
-const tmpCalleeParam$1 = [tmpArrElement, 10];
-const arrPatternSplat = [...tmpCalleeParam$1];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternNoDefault = arrPatternStep.x;
-let objPatternCrashTest = objPatternNoDefault === undefined;
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = objPatternNoDefault === null;
-}
-if (objPatternCrashTest) {
-  objPatternNoDefault.cannotDestructureThis;
-} else {
-}
 $('ok');
 `````
 

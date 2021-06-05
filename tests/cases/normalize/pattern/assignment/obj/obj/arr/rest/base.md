@@ -47,8 +47,7 @@ $(z);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$3 = [1, 2, 3];
-const arrPatternSplat = [...tmpObjLitVal$3];
+const arrPatternSplat = [1, 2, 3];
 z = arrPatternSplat.slice(0);
 $(z);
 `````

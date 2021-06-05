@@ -44,19 +44,8 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = [1, 2, 3, 4, 5];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  const tmpCalleeParam = ['pass2'];
-  arrPatternStep = $(tmpCalleeParam);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-[...arrPatternStep];
-$('ok');
+[...1];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

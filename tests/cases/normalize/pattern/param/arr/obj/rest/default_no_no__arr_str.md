@@ -56,11 +56,8 @@ tmpCallCallee$1(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$7 = ['abc', 20, 30];
-const arrPatternSplat = [...tmpCalleeParam$7];
-const arrPatternStep = arrPatternSplat[0];
 const tmpCalleeParam$1 = [];
-const x = objPatternRest(arrPatternStep, tmpCalleeParam$1, undefined);
+const x = objPatternRest('abc', tmpCalleeParam$1, undefined);
 $(x);
 `````
 

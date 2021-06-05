@@ -78,24 +78,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$5 = [null, 20, 30];
-const arrPatternSplat = [...tmpCalleeParam$5];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let arrPatternStep = undefined;
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  const tmpCalleeParam$1 = { x: 'fail2' };
-  arrPatternStep = $(tmpCalleeParam$1);
-} else {
-  arrPatternStep = arrPatternBeforeDefault;
-}
-const objPatternBeforeDefault = arrPatternStep.x;
-const tmpIfTest$3 = objPatternBeforeDefault === undefined;
-if (tmpIfTest$3) {
-  $('pass');
-} else {
-}
-$('bad');
+null.x;
+throw '[Preval]: Can not reach here';
 `````
 
 ## Globals

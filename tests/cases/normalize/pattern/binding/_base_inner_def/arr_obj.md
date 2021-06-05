@@ -39,10 +39,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpArrElement = {};
-const bindingPatternArrRoot = [tmpArrElement];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternBeforeDefault = arrPatternStep.x;
+const objPatternBeforeDefault = tmpArrElement.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   a;

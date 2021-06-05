@@ -37,8 +37,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = [0];
-[...tmpObjLitVal];
 $('ok');
 `````
 

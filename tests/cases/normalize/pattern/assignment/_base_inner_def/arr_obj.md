@@ -48,10 +48,7 @@ $(x, a);
 
 `````js filename=intro
 const tmpArrElement = {};
-const arrAssignPatternRhs = [tmpArrElement];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternBeforeDefault = arrPatternStep.x;
+const objPatternBeforeDefault = tmpArrElement.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $(100, 100);

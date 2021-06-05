@@ -31,6 +31,7 @@ import { returnClosure } from './phase2return_closure.mjs';
 import { returnArg } from './phase2return_arg.mjs';
 import { constWhileTest } from './phase2const_while_test.mjs';
 import { typeTrackedTricks } from './phase2type_tracked_tricks.mjs';
+import { arrSpreads } from './phase2arr_spread.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -162,6 +163,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const typed = typeTrackedTricks(fdata);
   if (typed) return typed;
+
+  const spread = arrSpreads(fdata);
+  if (spread) return spread;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

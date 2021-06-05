@@ -42,10 +42,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = [1, 2, 3, 20, 30];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternBeforeDefault = arrPatternStep.x;
+const objPatternBeforeDefault = (1).x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {

@@ -48,11 +48,9 @@ $(a, b);
 `````js filename=intro
 const b = [];
 const a = { a: 999, b: 1000 };
-const arrPatternSplat = [...b];
-const tmpClusterSSA_b = arrPatternSplat[0];
 const tmpCalleeParam = { ...b };
 $(tmpCalleeParam);
-$(a, tmpClusterSSA_b);
+$(a, undefined);
 `````
 
 ## Globals

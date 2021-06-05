@@ -47,13 +47,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = [1, 2, 3];
-const tmpArrElement = { x: tmpObjLitVal, y: 11 };
-const bindingPatternArrRoot = [tmpArrElement, 20, 30];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternNoDefault = arrPatternStep.x;
-const arrPatternSplat$1 = [...objPatternNoDefault];
+const arrPatternSplat$1 = [1, 2, 3];
 const y = arrPatternSplat$1.slice(0);
 $(y);
 `````

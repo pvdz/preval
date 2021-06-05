@@ -41,17 +41,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = ['', 201];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-let x = undefined;
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('pass');
-} else {
-  x = arrPatternBeforeDefault;
-}
-$(x);
+$('');
 `````
 
 ## Globals

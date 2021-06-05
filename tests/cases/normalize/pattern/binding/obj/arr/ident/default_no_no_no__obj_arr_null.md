@@ -38,10 +38,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = [null];
-const arrPatternSplat = [...tmpObjLitVal];
-const y = arrPatternSplat[0];
-$(y);
+$(null);
 `````
 
 ## Globals

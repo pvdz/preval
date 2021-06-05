@@ -52,15 +52,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = [0];
-const arrPatternSplat = [...tmpObjLitVal];
-const arrPatternBeforeDefault = arrPatternSplat[0];
-const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
-if (tmpIfTest$1) {
-  $('fail');
-} else {
-  $(arrPatternBeforeDefault);
-}
+$(0);
 `````
 
 ## Globals

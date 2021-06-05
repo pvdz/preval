@@ -50,10 +50,7 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 $(10);
 $(20);
-const arrAssignPatternRhs = [1, 2];
-const arrPatternSplat$1 = [...arrAssignPatternRhs];
-const tmpClusterSSA_a = arrPatternSplat$1[0];
-$(tmpClusterSSA_a);
+$(1);
 `````
 
 ## Globals

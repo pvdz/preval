@@ -51,18 +51,11 @@ $(a, b, d);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = [3];
-const tmpArrElement$3 = { c: tmpObjLitVal };
-const bindingPatternArrRoot = [1, 2, tmpArrElement$3];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
-const b = arrPatternSplat[1];
-const arrPatternStep = arrPatternSplat[2];
-const objPatternNoDefault = arrPatternStep.c;
-const arrPatternSplat$1 = [...objPatternNoDefault];
-const d = arrPatternSplat$1[0];
+const a = 1;
+const b = 2;
+const d = 3;
 export { a, b, d };
-$(a, b, d);
+$(1, 2, 3);
 `````
 
 ## Globals

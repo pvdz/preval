@@ -58,10 +58,8 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
-  const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
+  x = tmpArrElement;
+  y = tmpArrElement$1;
 } else {
 }
 $(a, x, y);

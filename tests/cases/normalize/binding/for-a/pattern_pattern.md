@@ -53,13 +53,7 @@ let b$1 = arrPatternSplat[1];
 ## Output
 
 `````js filename=intro
-const z = [10, 20, 30];
-const arrPatternSplat$1 = [...z];
-arrPatternSplat$1[1];
-arrPatternSplat$1[2];
-const arrPatternSplat = [...z];
-arrPatternSplat[0];
-arrPatternSplat[1];
+
 `````
 
 ## Globals

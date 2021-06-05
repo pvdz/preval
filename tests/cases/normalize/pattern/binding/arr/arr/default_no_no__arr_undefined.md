@@ -35,11 +35,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = [undefined, 4, 5];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-[...arrPatternStep];
-$('bad');
+[...undefined];
+throw '[Preval]: Array spread must crash before this line';
 `````
 
 ## Globals

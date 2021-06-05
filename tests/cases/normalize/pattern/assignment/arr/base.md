@@ -33,8 +33,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = [1, 2, 3];
-[...arrAssignPatternRhs];
 $('ok');
 `````
 

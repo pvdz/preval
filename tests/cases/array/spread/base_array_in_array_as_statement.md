@@ -1,40 +1,41 @@
 # Preval test case
 
-# map_to_map_reg1.md
+# base_array_in_array_as_statement.md
 
-> Spread > Map to map reg1
+> Array > Spread > Base array in array as statement
 >
-> Broken spread case
-
-This was a regression where the spread was not put back into the AST after a transforming step.
+> Spreading an array into another array that is assigned to a binding
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$([...[1]])
+const x = [1, 2, 3];
+['a', ...x, 'b'];
+$('the end');
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$([...[1]]);
+const x = [1, 2, 3];
+['a', ...x, 'b'];
+$('the end');
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpCalleeParam = [1];
-tmpCallCallee(tmpCalleeParam);
+const x = [1, 2, 3];
+[...x];
+$('the end');
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = [1];
-$(tmpCalleeParam);
+$('the end');
 `````
 
 ## Globals
@@ -44,7 +45,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: [1]
+ - 1: 'the end'
  - eval returned: undefined
 
 Pre normalization calls: Same

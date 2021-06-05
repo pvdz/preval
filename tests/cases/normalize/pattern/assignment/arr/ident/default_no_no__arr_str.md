@@ -34,9 +34,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = ['abc'];
-const arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
+x = 'abc';
 $(x);
 `````
 

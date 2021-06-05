@@ -33,8 +33,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = [, , 1];
-[...bindingPatternArrRoot];
 $('ok');
 `````
 

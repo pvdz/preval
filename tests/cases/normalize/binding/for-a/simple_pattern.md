@@ -48,10 +48,7 @@ a$1 = tmpNestedAssignArrPatternRhs;
 ## Output
 
 `````js filename=intro
-const z = [10, 20, 30];
-const arrPatternSplat = [...z];
-arrPatternSplat[0];
-arrPatternSplat[1];
+
 `````
 
 ## Globals

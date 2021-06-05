@@ -60,10 +60,6 @@ $(a, x, y);
 const a = { a: 999, b: 1000 };
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const tmpClusterSSA_x = arrPatternSplat[0];
-const tmpClusterSSA_y = arrPatternSplat[1];
 while (true) {
   const tmpIfTest = $(0);
   if (tmpIfTest) {
@@ -71,7 +67,7 @@ while (true) {
     break;
   }
 }
-$(a, tmpClusterSSA_x, tmpClusterSSA_y);
+$(a, tmpArrElement, tmpArrElement$1);
 `````
 
 ## Globals

@@ -34,10 +34,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = [''];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const x = arrPatternSplat[0];
-$(x);
+$('');
 `````
 
 ## Globals

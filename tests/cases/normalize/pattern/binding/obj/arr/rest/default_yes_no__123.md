@@ -45,8 +45,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = [1, 2, 3];
-const arrPatternSplat = [...tmpObjLitVal];
+const arrPatternSplat = [1, 2, 3];
 const y = arrPatternSplat.slice(0);
 $(y);
 `````

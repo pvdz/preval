@@ -48,16 +48,10 @@ export { y };
 ## Output
 
 `````js filename=intro
-let x = undefined;
-let y = undefined;
 $(undefined, undefined);
-const arrAssignPatternRhs = [10];
-const arrPatternSplat = [...arrAssignPatternRhs];
-x = arrPatternSplat[0];
-const arrAssignPatternRhs$1 = [20];
-const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-y = arrPatternSplat$1[0];
-$(x, y);
+const x = 10;
+const y = 20;
+$(10, 20);
 export { x };
 export { y };
 `````

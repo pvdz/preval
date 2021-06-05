@@ -43,14 +43,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpArrElement$1 = [1, 2, 3];
-const tmpArrElement = [tmpArrElement$1, 14];
-const tmpObjLitVal = [tmpArrElement, 13];
-const arrPatternSplat = [...tmpObjLitVal];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternStep$1 = arrPatternSplat$1[0];
-[...arrPatternStep$1];
 $('ok');
 `````
 

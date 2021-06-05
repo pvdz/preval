@@ -89,10 +89,7 @@ if (tmpIfTest$5) {
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = [30, 40];
-const arrPatternSplat = [...arrAssignPatternRhs];
-arrPatternSplat[0];
-arrPatternSplat[1];
+
 `````
 
 ## Globals

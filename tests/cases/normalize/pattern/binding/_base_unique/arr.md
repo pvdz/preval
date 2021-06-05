@@ -42,10 +42,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = [100];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const x = arrPatternSplat[0];
-$(x);
+$(100);
 `````
 
 ## Globals

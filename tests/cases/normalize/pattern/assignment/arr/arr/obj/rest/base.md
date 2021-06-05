@@ -44,14 +44,8 @@ $(x);
 
 `````js filename=intro
 const tmpArrElement$1 = { x: 1, y: 2, z: 3 };
-const tmpArrElement = [tmpArrElement$1, 20, 30];
-const arrAssignPatternRhs = [tmpArrElement, 40, 50];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternStep$1 = arrPatternSplat$1[0];
 const tmpCalleeParam$1 = [];
-x = objPatternRest(arrPatternStep$1, tmpCalleeParam$1, undefined);
+x = objPatternRest(tmpArrElement$1, tmpCalleeParam$1, undefined);
 $(x);
 `````
 

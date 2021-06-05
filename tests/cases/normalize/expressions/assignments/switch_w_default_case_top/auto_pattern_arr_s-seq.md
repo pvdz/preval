@@ -112,9 +112,7 @@ const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   $(10);
   $(20);
-  const arrAssignPatternRhs = [1, 2];
-  const arrPatternSplat$1 = [...arrAssignPatternRhs];
-  a = arrPatternSplat$1[0];
+  a = 1;
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

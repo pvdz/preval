@@ -43,18 +43,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = { x: undefined, y: 2, z: 3 };
-const bindingPatternArrRoot = [tmpArrElement, 20, 30];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternBeforeDefault = arrPatternStep.x;
-let x = undefined;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('pass');
-} else {
-  x = objPatternBeforeDefault;
-}
+const x = $('pass');
 $(x);
 `````
 

@@ -53,16 +53,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = [1, 2, 3];
-const tmpArrElement$1 = { x: tmpObjLitVal };
-const tmpArrElement = [tmpArrElement$1, 20, 30];
-const bindingPatternArrRoot = [tmpArrElement, 40, 50];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternStep$1 = arrPatternSplat$1[0];
-const objPatternNoDefault = arrPatternStep$1.x;
-[...objPatternNoDefault];
 $('ok');
 `````
 

@@ -36,11 +36,6 @@ $('ok');
 ## Output
 
 `````js filename=intro
-const tmpArrElement = [1, 2, 3];
-const bindingPatternArrRoot = [tmpArrElement, 4, 5];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-[...arrPatternStep];
 $('ok');
 `````
 

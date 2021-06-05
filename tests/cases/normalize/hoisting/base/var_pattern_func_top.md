@@ -56,11 +56,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $(undefined);
-const arrAssignPatternRhs = [10];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const tmpClusterSSA_x = arrPatternSplat[0];
-$(tmpClusterSSA_x);
-$(tmpClusterSSA_x);
+$(10);
+$(10);
 `````
 
 ## Globals

@@ -42,17 +42,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = { x: 0, y: 2, z: 3 };
-const arrAssignPatternRhs = [tmpArrElement, 20, 30];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const arrPatternStep = arrPatternSplat[0];
-const objPatternBeforeDefault = arrPatternStep.x;
-const tmpIfTest = objPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  x = $('fail');
-} else {
-  x = objPatternBeforeDefault;
-}
+x = 0;
 $(x);
 `````
 

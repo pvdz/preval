@@ -39,17 +39,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpArrElement = [];
-const bindingPatternArrRoot = [tmpArrElement];
-const arrPatternSplat = [...bindingPatternArrRoot];
-const arrPatternStep = arrPatternSplat[0];
-const arrPatternSplat$1 = [...arrPatternStep];
-const arrPatternBeforeDefault = arrPatternSplat$1[0];
-const tmpIfTest = arrPatternBeforeDefault === undefined;
-if (tmpIfTest) {
-  a;
-} else {
-}
+a;
 `````
 
 ## Globals

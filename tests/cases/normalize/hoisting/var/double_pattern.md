@@ -48,16 +48,8 @@ $(x, y);
 ## Output
 
 `````js filename=intro
-const arrAssignPatternRhs = [1, 2, 3];
-const arrPatternSplat = [...arrAssignPatternRhs];
-const tmpClusterSSA_x = arrPatternSplat[0];
-const tmpClusterSSA_y = arrPatternSplat[1];
-$(tmpClusterSSA_x, tmpClusterSSA_y);
-const arrAssignPatternRhs$1 = [4, 5, 6];
-const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
-const tmpClusterSSA_x$1 = arrPatternSplat$1[0];
-const tmpClusterSSA_y$1 = arrPatternSplat$1[1];
-$(tmpClusterSSA_x$1, tmpClusterSSA_y$1);
+$(1, 2);
+$(4, 5);
 `````
 
 ## Globals

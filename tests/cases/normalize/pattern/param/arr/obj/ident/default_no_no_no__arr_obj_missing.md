@@ -54,10 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpArrElement = { y: 2, z: 3 };
-const tmpCalleeParam$1 = [tmpArrElement, 20, 30];
-const arrPatternSplat = [...tmpCalleeParam$1];
-const arrPatternStep = arrPatternSplat[0];
-const x = arrPatternStep.x;
+const x = tmpArrElement.x;
 $(x);
 `````
 

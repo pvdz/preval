@@ -46,12 +46,8 @@ let y = arrPatternSplat[1];
 ## Output
 
 `````js filename=intro
-const z = [10, 20, 30];
 $(1);
 $(2);
-const arrPatternSplat = [...z];
-arrPatternSplat[0];
-arrPatternSplat[1];
 `````
 
 ## Globals

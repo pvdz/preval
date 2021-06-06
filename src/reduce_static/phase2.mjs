@@ -33,6 +33,7 @@ import { constWhileTest } from './phase2const_while_test.mjs';
 import { typeTrackedTricks } from './phase2type_tracked_tricks.mjs';
 import { arrSpreads } from './phase2arr_spread.mjs';
 import { conditionalTyping } from './phase2conditional_typing.mjs';
+import { findThrowers } from './phase2throwers.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -68,6 +69,9 @@ function _phase2(program, fdata, resolve, req) {
     );
     meta.rwOrder = rwOrder;
   });
+
+  const throwers = findThrowers(fdata);
+  if (throwers) return throwers;
 
   const tdzd = singleScopeTdz(fdata);
   if (tdzd) return tdzd;

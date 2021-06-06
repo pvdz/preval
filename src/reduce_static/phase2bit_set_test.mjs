@@ -21,7 +21,7 @@ function _bitSetTests(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.typing.oneBitSet) return; // phase1 will have done the necessary checks for the init. we should not need to check the rest?
-    //if (!meta.isConstant) return;
+    if (!meta.isConstant) return;
     //if (meta.writes.length !== 1) return; // :shrug:
     //if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return;
 

@@ -96,11 +96,6 @@ const tmpIfTest = 2 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 2 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 2;
-  } else {
-  }
 }
 tmpSwitchCaseToStart <= 0;
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

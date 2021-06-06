@@ -1,0 +1,305 @@
+// Find if statements where a certain branch knows a binding to be or not to be a certain value
+// `const x = a === 50; if (a) f(a === 50); else f(a === 50);`
+// -> `const x = a === 50; if (true) f(a); else f(false);`
+
+import walk from '../../lib/walk.mjs';
+import {
+  ASSERT,
+  log,
+  group,
+  groupEnd,
+  vlog,
+  vgroup,
+  vgroupEnd,
+  rule,
+  example,
+  before,
+  source,
+  after,
+  fmat,
+  tmat,
+  findBodyOffset,
+} from '../utils.mjs';
+import * as AST from '../ast.mjs';
+import { createFreshVar } from '../bindings.mjs';
+
+export function conditionalTyping(fdata) {
+  group('\n\n\nChecking for known types under condition');
+  const ast = fdata.tenkoOutput.ast;
+  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  const r = _ifNotIt(fdata);
+  groupEnd();
+  return r;
+}
+function _ifNotIt(fdata) {
+  const ast = fdata.tenkoOutput.ast;
+
+  let changed = 0;
+
+  walk(_walker, ast, 'ast');
+  function _walker(node, beforeWalk, nodeType, path) {
+    if (beforeWalk) return;
+
+    if (node.type !== 'IfStatement') return;
+
+    if (node.test.type !== 'Identifier') return;
+
+    vlog('If on ident');
+
+    // First find the `var x = a === b``
+    const ifTestMeta = fdata.globallyUniqueNamingRegistry.get(node.test.name);
+    if (ifTestMeta.isBuiltin) return;
+    if (ifTestMeta.isImplicitGlobal) return;
+    if (ifTestMeta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, for-x, ???
+    //if (meta.writes.length > 1) return; // TODO: fixme if broken
+
+    let varDeclRef = ifTestMeta.writes.find((write) => write.kind === 'var');
+    if (!varDeclRef) {
+      vlog('The binding was not a var. Bailing');
+      return;
+    }
+
+    if (!ifTestMeta.isConstant) {
+      // Can still be okay if the binding was not mutated between decl and test.
+      // For now, we just check back-2-back statements but this can be a generic check... (and we probably want that)
+      const parentIndex = path.indexes[path.indexes.length - 1];
+      if (varDeclRef.blockIndex !== parentIndex - 1) {
+        vlog('The let was not immediately before the `if`. Bailing on this for now');
+        return;
+      }
+    }
+
+    const beforeValueNode = ifTestMeta.constValueRef.node;
+    vlog('If on constant or if is immediately after var:', beforeValueNode.type);
+
+    if (beforeValueNode.type === 'BinaryExpression') {
+      let opbefore = beforeValueNode.operator;
+      vlog('valueNode.operator:', beforeValueNode.operator);
+      if (beforeValueNode.operator === '===' || beforeValueNode.operator === '!==') {
+        const left = beforeValueNode.left;
+        const right = beforeValueNode.right;
+
+        let value;
+        let targetName;
+        if (left.type === 'Identifier' && AST.isPrimitive(right) && !AST.isPrimitive(left)) {
+          targetName = left.name;
+          value = AST.getPrimitiveValue(right);
+        } else if (right.type === 'Identifier' && AST.isPrimitive(left) && !AST.isPrimitive(right)) {
+          value = AST.getPrimitiveValue(left);
+          targetName = right.name;
+        }
+
+        vlog('targetName:', targetName, ', value:', value);
+
+        if (targetName) {
+          vlog('found an ident+prim');
+          // Find all references by this name inside the branch, when op is `===`
+          // In the consequent branch, replace all occurrences with the primitive value found
+          // In the alternate branch, find all refs and try to resolve their context (like `>=` etc) where possible
+          // For the op is `!==` case, do the opposite.
+          // Scope and loops should not matter since those functions should invariantly copy the state of the var
+
+          const targetMeta = fdata.globallyUniqueNamingRegistry.get(targetName);
+          targetMeta.reads.forEach((read, ri) => {
+            vlog('- read', ri);
+            let whichBranch = '';
+            if (+read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid) {
+              vlog('ref in if branch');
+              whichBranch = 'if';
+            } else if (+read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid) {
+              vlog('ref in else branch');
+              whichBranch = 'else';
+            } else {
+              vlog('ref not inside `if` statement at all');
+            }
+
+            const opafter = read.parentNode.operator;
+
+            if (
+              (opbefore === '===' && whichBranch === 'if' && opafter === '===') ||
+              (opbefore === '!==' && whichBranch === 'else' && opafter === '!==')
+            ) {
+              vlog(
+                'either this was checked to be equal and this is the if branch, or it was checked not to be equal and this is the else branch but it should be the same',
+              );
+              vlog('Replacing the occurrence with the value');
+
+              rule('An if that confirmed the value for a constant should be inlined inside that branch');
+              example(
+                'const x = f(); const a = x === 100; if (a) { g(x); }',
+                'const x = f(); const a = x === 100; if (a) { g(100); }',
+                () => whichBranch === 'if',
+              );
+              example(
+                'const x = f(); const a = x !== 100; if (a) else { g(x); }',
+                'const x = f(); const a = x !== 100; if (a) else { g(100); }',
+                () => whichBranch === 'else',
+              );
+              before(varDeclRef.blockBody[read.blockIndex]);
+              before(ifTestMeta.constValueRef.containerNode);
+              before(read.blockBody[read.blockIndex], node);
+
+              ++changed;
+              if (read.parentIndex < 0) read.parentNode[read.parentProp] = AST.primitive(value);
+              else read.parentNode[read.parentProp][read.parentIndex] = AST.primitive(value);
+
+              after(read.blockBody[read.blockIndex]);
+            } else if (whichBranch) {
+              // Trickier because we only know what value it is _not_.
+              // This may still allow us to assert a few things to be false
+
+              if (read.parentNode.type === 'BinaryExpression') {
+                const otherNode = read.parentProp === 'left' ? read.parentNode.right : read.parentNode.left;
+                const isPrimitive = AST.isPrimitive(otherNode);
+                if (isPrimitive) {
+                  const primValue = AST.getPrimitiveValue(otherNode);
+                  switch (opafter) {
+                    case '===':
+                    case '!==': {
+                      /*
+                      const x = f();
+                      const a = x === 5;
+                      if (a) {
+                        // Not here. We are in the else branch
+                      } else {
+                        if (a === 5) { // false
+                          ...
+                        }
+                        if (a !== 5) { // true
+                          ...
+                        }
+                        if (a > 5) { // unknown (it may be <)
+                          ...
+                        }
+                      }
+                      */
+
+                      if (Object.is(value, primValue)) {
+                        vlog(
+                          'op before if:',
+                          opbefore,
+                          ', op now:',
+                          opafter,
+                          ', primValue:',
+                          primValue,
+                          ', targetName:',
+                          targetName,
+                          ', we are in the `else` branch',
+                        );
+                        if (opbefore === '===') {
+                          // We know `name` actually is a constant with `value`
+                          // Since this is comparing it to the exact same value, the answer must be `true`.
+                          if (opafter === '===') {
+                            // If it was not eq before, it is not eq now, so this must be false
+
+                            ASSERT(whichBranch === 'else', 'the === if === case is handled above');
+
+                            rule('when the if-test determines a value, their refs may be optimized inside each branch; === ===');
+                            example(
+                              'const x = f(); const a = x === 100; if (x) {} else { g(x === 100); }',
+                              'const x = f(); const a = x === 100; if (x) {} else { g(false); }',
+                              () => whichBranch === 'else',
+                            );
+                            before(varDeclRef.blockBody[read.blockIndex]);
+                            before(ifTestMeta.constValueRef.containerNode);
+                            before(read.blockBody[read.blockIndex], node);
+
+                            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(false);
+                            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(false);
+
+                            after(read.blockBody[read.blockIndex]);
+                          } else if (opafter === '!==') {
+                            rule('when the if-test determines a value, their refs may be optimized inside each branch; === !==');
+                            example(
+                              'const x = f(); const a = x === 100; if (x) { g(x !== 100); } else {}',
+                              'const x = f(); const a = x === 100; if (x) { g(false); } else {}',
+                              () => whichBranch === 'if',
+                            );
+                            example(
+                              'const x = f(); const a = x === 100; if (x) {} else { g(x !== 100); }',
+                              'const x = f(); const a = x === 100; if (x) {} else { g(true); }',
+                              () => whichBranch === 'else',
+                            );
+                            before(varDeclRef.blockBody[read.blockIndex]);
+                            before(ifTestMeta.constValueRef.containerNode);
+                            before(read.blockBody[read.blockIndex], node);
+
+                            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(whichBranch === 'else');
+                            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(whichBranch === 'else');
+
+                            after(read.blockBody[read.blockIndex]);
+                          } else {
+                            ASSERT(false);
+                          }
+                        } else if (opbefore === '!==') {
+                          // We know the constant `name` is not given value `value` so we know this comparison must be `false`
+
+                          if (opafter === '===') {
+                            // If it was not eq before, it is not eq now, so this must be true
+
+                            rule('when the if-test determines a value, their refs may be optimized inside each branch; !== ===');
+                            example(
+                              'const x = f(); const a = x !== 100; if (x) { g(x === 100); } else {}',
+                              'const x = f(); const a = x !== 100; if (x) { g(false); } else {}',
+                              () => whichBranch === 'if',
+                            );
+                            example(
+                              'const x = f(); const a = x !== 100; if (x) {} else { g(x === 100); }',
+                              'const x = f(); const a = x !== 100; if (x) {} else { g(true); }',
+                              () => whichBranch === 'else',
+                            );
+                            before(varDeclRef.blockBody[read.blockIndex]);
+                            before(ifTestMeta.constValueRef.containerNode);
+                            before(read.blockBody[read.blockIndex], node);
+
+                            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(whichBranch === 'else');
+                            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(whichBranch === 'else');
+
+                            after(read.blockBody[read.blockIndex]);
+                          } else if (opafter === '!==') {
+                            ASSERT(whichBranch === 'if', 'the !== else !== case is handled above');
+                            rule('when the if-test determines a value, their refs may be optimized inside each branch !== !==');
+                            example(
+                              'const x = f(); const a = x !== 100; if (x) { g(x !== 100); } else {}',
+                              'const x = f(); const a = x !== 100; if (x) { g(true); } else {}',
+                              () => whichBranch === 'if',
+                            );
+                            before(varDeclRef.blockBody[read.blockIndex]);
+                            before(ifTestMeta.constValueRef.containerNode);
+                            before(read.blockBody[read.blockIndex], node);
+
+                            if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(true);
+                            else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(true);
+
+                            after(read.blockBody[read.blockIndex]);
+                          } else {
+                            ASSERT(false);
+                          }
+                        } else {
+                          ASSERT(false);
+                        }
+                      }
+                      break;
+                    }
+                    // I think we can do some other ops as well, knowing that x it's not a certain value...
+                    //default:
+                    //  TODO;
+                  }
+                }
+              }
+            } else {
+              vlog('not in either branch');
+            }
+          });
+        }
+      }
+    }
+  }
+
+  if (changed) {
+    log('Conditional types resolved:', changed, '. Restarting from phase1 to fix up read/write registry');
+    return 'phase1';
+  }
+
+  log('Conditional types resolved: 0.');
+}

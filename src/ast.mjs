@@ -610,10 +610,9 @@ export function thisExpression() {
   };
 }
 
-export function throwStatement(argument = null, isString = false, isIdent = false) {
-  if (typeof argument === 'string') {
-    ASSERT(isString || isIdent, 'too dangerous not to be explicit');
-    argument = identifier(argument);
+export function throwStatement(argument = null) {
+  if (typeof argument !== 'object') {
+    ASSERT(false, 'too dangerous not to be explicit about the arg');
   }
 
   return {

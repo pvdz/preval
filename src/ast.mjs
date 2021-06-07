@@ -751,6 +751,7 @@ export function isNull(node) {
 }
 
 export function getPrimitiveValue(node) {
+  ASSERT(node && node.$p, 'node exists yea bossman?', node);
   ASSERT(isPrimitive(node) || node.$p.isPrimitive, 'should assert a node is a primitive value before calling getPrimitive on it', node);
 
   if (node.$p.isPrimitive) {

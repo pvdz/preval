@@ -460,6 +460,23 @@ export function phaseNormalOnce(fdata) {
         }
         break;
       }
+      case 'Literal:before': {
+        if (typeof node.value === 'number') {
+          // Doesn't matter what the value is as long as it's not the current value...
+          // Check whether the second characters is bBoOxX. Apparently there's some legacy
+          // around parseInt('0x500') so let's be semi-lazy here.
+          // Note: this doesn't really change the AST, only how numbers are printed.
+          if (node.raw.length > 1 && !isFinite(parseInt(node.raw[1], 10))) {
+            // Any bigger number will get distorted and then I'd just prefer to keep the existing representation
+            const s = String(node.value);
+            // Large enough representations might lose precision so make sure we only print ints here
+            if (/^-?\d+$/.test(s)) {
+              node.raw = s;
+            }
+          }
+        }
+        break;
+      }
       case 'Identifier:before': {
         if (parentNode.type === 'ExpressionStatement') {
           let remove = false;

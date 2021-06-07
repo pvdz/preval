@@ -57,7 +57,7 @@ const parseUnicodeQuadEscape = function ($$0, $$1) {
   const tmpBranchingC$2331 = function () {
     debugger;
     secondPart = tmpBinLhs$1687 | vh;
-    let tmpIfTest$9053 = secondPart < 0xdc00;
+    let tmpIfTest$9053 = secondPart < 56320;
     const tmpBranchingC$2333 = function () {
       debugger;
       if (tmpIfTest$9053) {
@@ -98,7 +98,7 @@ const parseUnicodeQuadEscape = function ($$0, $$1) {
   const tmpBranchingC$2331 = function () {
     debugger;
     secondPart = tmpBinLhs$1687 | vh;
-    let tmpIfTest$9053 = secondPart < 0xdc00;
+    let tmpIfTest$9053 = secondPart < 56320;
     const tmpBranchingC$2333 = function () {
       debugger;
       if (tmpIfTest$9053) {
@@ -139,7 +139,7 @@ $(true);
 if (tmpIfTest$9045) {
 } else {
   const tmpClusterSSA_secondPart = tmpBinLhs$1687 | vh;
-  const tmpIfTest$9053 = tmpClusterSSA_secondPart < 0xdc00;
+  const tmpIfTest$9053 = tmpClusterSSA_secondPart < 56320;
   if (tmpIfTest$9053) {
     firstPart;
   } else {

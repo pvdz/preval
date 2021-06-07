@@ -17,21 +17,21 @@ $({[1e4]: 10}); // This will create a key 1000, not '1e4'. Luckily this shouldn'
 ## Pre Normal
 
 `````js filename=intro
-$({ [1e4]: 10 });
+$({ [10000]: 10 });
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = { [1e4]: 10 };
+const tmpCalleeParam = { [10000]: 10 };
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = { [1e4]: 10 };
+const tmpCalleeParam = { [10000]: 10 };
 $(tmpCalleeParam);
 `````
 

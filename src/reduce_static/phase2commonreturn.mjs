@@ -74,7 +74,7 @@ function _inlineCommonReturns(fdata) {
       }
 
       // So this should be a read that is a call to the function that we can inline...
-      queue.push({ pid: read.node.$p.pid, meta, read });
+      queue.push({ pid: +read.node.$p.pid, meta, read });
     });
 
     vgroupEnd();
@@ -86,7 +86,7 @@ function _inlineCommonReturns(fdata) {
     // We want to apply the splices back to front, or reverse source code order
     // There's currently no guarantee about the order of the queue so we can't just reverse it.
     // The pid is guaranteed fresh and incremental in traversal order so we use that to sort.
-    queue.sort(({ pid: A, depth: X }, { pid: B, depth: Y }) => (X < Y ? 1 : X > Y ? -1 : A < B ? 1 : A > B ? -1 : 0));
+    queue.sort(({ pid: A }, { pid: B }) => (A < B ? 1 : A > B ? -1 : 0));
     vlog('The inline queue pid and depth order:', queue.map(({ pid }) => '<' + pid + '>').join(', '));
 
     // Inline functions. Start with the lowest nesting to the least nested, last to first source code order.

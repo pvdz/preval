@@ -35,6 +35,7 @@ import { arrSpreads } from './phase2arr_spread.mjs';
 import { conditionalTyping } from './phase2conditional_typing.mjs';
 import { findThrowers } from './phase2throwers.mjs';
 import { ifReturnBit } from './phase2if_return_bit.mjs';
+import { returnsParam } from './phase2return_param.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -178,6 +179,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const ifbits = ifReturnBit(fdata);
   if (ifbits) return ifbits;
+
+  const returnedParams = returnsParam(fdata);
+  if (returnedParams) return returnedParams;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

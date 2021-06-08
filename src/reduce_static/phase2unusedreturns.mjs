@@ -43,6 +43,7 @@ function _dropUnusedReturns(fdata) {
 
     if (funcNode.$p.commonReturn?.type === 'Identifier' && funcNode.$p.commonReturn.name === 'undefined') {
       vlog('  - This function already returns undefined in all places.');
+      vgroupEnd();
       return;
     }
 
@@ -53,6 +54,7 @@ function _dropUnusedReturns(fdata) {
       )
     ) {
       vlog('  - There was a read that was not a call or where the return value was unused. Bailing');
+      vgroupEnd();
       return;
     }
 

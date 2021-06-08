@@ -80,8 +80,7 @@ $(-2);
 f();
 $(-3);
 f();
-const tmpCalleeParam$3 = ~'three';
-$(tmpCalleeParam$3);
+$(-1);
 `````
 
 ## Globals

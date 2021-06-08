@@ -3423,12 +3423,12 @@ export function phaseNormalize(fdata, fname) {
               return true;
             }
 
-            if (node.argument.value === '') {
-              rule('The `~` unary operator on an empty string literal is a -1');
-              example('~""', '-1');
+            if (typeof node.argument.value === 'string') {
+              rule('The `~` unary operator on a string literal can be statically computed');
+              example('~"105"', '-106');
               before(node, parentNode);
 
-              const finalNode = AST.unaryExpression('-', AST.one());
+              const finalNode = AST.primitive(~node.argument.value);
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 

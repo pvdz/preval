@@ -43,8 +43,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpCalleeParamSpread = [tmpArrElement, 2, tmpArrElement$3];
-$(...tmpCalleeParamSpread);
+$(tmpArrElement, 2, tmpArrElement$3);
 $(a);
 `````
 

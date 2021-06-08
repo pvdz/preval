@@ -50,8 +50,7 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 $(10);
 $(20);
-const tmpNestedAssignArrPatternRhs = [1, 2];
-$(...tmpNestedAssignArrPatternRhs);
+$(1, 2);
 $(1);
 `````
 

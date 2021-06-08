@@ -1,4 +1,4 @@
-// Find array literals with spreads that where we can predict the array value safely
+// Find array literals or function calls with spreads that where we can predict the array value safely
 
 import walk from '../../lib/walk.mjs';
 import {
@@ -22,7 +22,7 @@ import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
 export function arrSpreads(fdata) {
-  group('\n\n\nChecking for array spreads');
+  group('\n\n\nChecking for array/call spreads');
   const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _arrSpreads(fdata);
@@ -30,12 +30,13 @@ export function arrSpreads(fdata) {
   return r;
 }
 function _arrSpreads(fdata) {
-  // Find arrays with a spread and see if the spread arg resolves to an array.
+  // Find arrays and calls with a spread and see if the spread arg resolves to an array.
   // Then check if we can guarantee the array contents. This is the tricky part since
   // almost any kind of read could potentially mutate the array.
   // However, I feel it's safe to assume that numbered property access on the array
   // is safe, as well as reading the .length. Assignments to properties are not safe.
   // Although we could probably make a few small steps to support certain cases.
+  // The rules for spreading an array are syntactically the same between arrays and calls
 
   const ast = fdata.tenkoOutput.ast;
 
@@ -46,10 +47,12 @@ function _arrSpreads(fdata) {
   function _walker(node, beforeWalk, nodeType, path) {
     if (beforeWalk) return;
 
-    if (node.type !== 'ArrayExpression') return;
+    if (node.type !== 'ArrayExpression' && node.type !== 'CallExpression') return;
 
-    for (let i = node.elements.length - 1; i >= 0; --i) {
-      const enode = node.elements[i];
+    const nodes = node.type === 'ArrayExpression' ? node.elements : node['arguments'];
+
+    for (let i = nodes.length - 1; i >= 0; --i) {
+      const enode = nodes[i];
       if (enode && enode.type === 'SpreadElement') {
         // Now figure out whether the arg is an array (note that it is normalized code so this
         // can only be the case if the node is an identifier for a binding that must be an array).
@@ -60,7 +63,7 @@ function _arrSpreads(fdata) {
           if (!meta.isConstant) continue; // We can improve on this
           if (meta.isExport) continue; // Exports are "live" bindings so any update to it might be observable in strange ways
           if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') continue; // catch, for-x, ???
-          if (meta.constValueRef.node.type !== 'ArrayExpression') return;
+          if (meta.constValueRef.node.type !== 'ArrayExpression') return; // Map / Set?
           if (meta.writes.length > 1) return; // TODO: fixme if broken
 
           const write = meta.writes[0];
@@ -140,7 +143,7 @@ function _arrSpreads(fdata) {
                 }
               });
 
-              arrNodeSpreadedInto.elements.splice(spreadOffset, 1, ...newElements);
+              nodes.splice(spreadOffset, 1, ...newElements);
               // The parent array of  is either a statement, assignment, or var init
               // Inject the var decls before this node
               queueInjects.push({

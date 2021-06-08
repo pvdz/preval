@@ -63,11 +63,9 @@ const tmpCalleeParam = [100, 200];
 $(tmpCalleeParam);
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  const r = [1, 2];
-  $(...r);
+  $(1, 2);
 } else {
-  const r$1 = [3, 4];
-  $(...r$1);
+  $(3, 4);
 }
 `````
 

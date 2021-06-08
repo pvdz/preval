@@ -54,8 +54,7 @@ $(a, x, y);
 const a = { a: 999, b: 1000 };
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-$(...tmpNestedAssignArrPatternRhs);
+$(tmpArrElement, tmpArrElement$1);
 $(a, tmpArrElement, tmpArrElement$1);
 `````
 

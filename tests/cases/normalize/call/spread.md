@@ -31,8 +31,7 @@ tmpCallCallee(...tmpCalleeParamSpread);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParamSpread = [1, 2, 3];
-$(...tmpCalleeParamSpread);
+$(1, 2, 3);
 `````
 
 ## Globals

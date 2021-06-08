@@ -247,7 +247,7 @@ export function getIdentUsageKind(parentNode, parentProp) {
     case 'ObjectPattern':
       throw ASSERT(false, 'idents here are always wrapped in a Property or SpreadElement');
     case 'Program':
-      throw ASSERT(false);
+      throw ASSERT(false, 'this probably means you forgot to wrap an ident in an expression statement...');
     case 'Property':
       ASSERT(parentProp === 'key' || parentProp === 'value', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       if (parentProp === 'key') {

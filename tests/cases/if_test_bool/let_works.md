@@ -1,24 +1,25 @@
 # Preval test case
 
-# base_false.md
+# let_works.md
 
-> Type tracked > Invert > Base false
+> If test bool > Let works
 >
-> Inverting a value that we know is a falsy value must return true
+> A constant that is tested in an `if` must hold when inverted
 
-#TODO
+Could apply the trick in this case because the mutation happens later. But it's more expensive.
 
 ## Input
 
 `````js filename=intro
 function f() {
-  const x = '' + $('');
+  let x = $(1);
   if (x) {
-    $(!x, 'fail');
+    $('a', !x);
   } else {
-    $(!x, 'pass');
+    $('b', !x);
   }
-  $(x, 'after');
+  if ($) x = 10;
+$(x);
 }
 f();
 f();
@@ -30,13 +31,14 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const x = '' + $('');
+  let x = $(1);
   if (x) {
-    $(!x, 'fail');
+    $('a', !x);
   } else {
-    $(!x, 'pass');
+    $('b', !x);
   }
-  $(x, 'after');
+  if ($) x = 10;
+  $(x);
 };
 f();
 f();
@@ -48,21 +50,23 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpBinBothLhs = '';
-  const tmpBinBothRhs = $('');
-  const x = tmpBinBothLhs + tmpBinBothRhs;
+  let x = $(1);
   if (x) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = !x;
-    const tmpCalleeParam$1 = 'fail';
+    const tmpCalleeParam = 'a';
+    const tmpCalleeParam$1 = !x;
     tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   } else {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$3 = !x;
-    const tmpCalleeParam$5 = 'pass';
+    const tmpCalleeParam$3 = 'b';
+    const tmpCalleeParam$5 = !x;
     tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
   }
-  $(x, 'after');
+  if ($) {
+    x = 10;
+  } else {
+  }
+  $(x);
   return undefined;
 };
 f();
@@ -75,14 +79,19 @@ f();
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpBinBothRhs = $('');
-  const x = '' + tmpBinBothRhs;
+  let x = $(1);
   if (x) {
-    $(false, 'fail');
+    const tmpCalleeParam$1 = !x;
+    $('a', tmpCalleeParam$1);
   } else {
-    $(true, 'pass');
+    const tmpCalleeParam$5 = !x;
+    $('b', tmpCalleeParam$5);
   }
-  $(x, 'after');
+  if ($) {
+    x = 10;
+  } else {
+  }
+  $(x);
   return undefined;
 };
 f();
@@ -97,15 +106,15 @@ None
 ## Result
 
 Should call `$` with:
- - 1: ''
- - 2: true, 'pass'
- - 3: '', 'after'
- - 4: ''
- - 5: true, 'pass'
- - 6: '', 'after'
- - 7: ''
- - 8: true, 'pass'
- - 9: '', 'after'
+ - 1: 1
+ - 2: 'a', false
+ - 3: 10
+ - 4: 1
+ - 5: 'a', false
+ - 6: 10
+ - 7: 1
+ - 8: 'a', false
+ - 9: 10
  - eval returned: undefined
 
 Pre normalization calls: Same

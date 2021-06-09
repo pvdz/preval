@@ -44,8 +44,7 @@ if (x) {
 `````js filename=intro
 const x = $(true);
 if (x) {
-  const tmpCalleeParam = !x;
-  $(tmpCalleeParam);
+  $(false);
 } else {
 }
 `````

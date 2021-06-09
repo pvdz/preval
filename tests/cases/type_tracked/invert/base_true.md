@@ -78,8 +78,7 @@ const f = function () {
   const tmpBinBothRhs = $('truthy');
   const x = '' + tmpBinBothRhs;
   if (x) {
-    const tmpCalleeParam = !x;
-    $(tmpCalleeParam, 'fail');
+    $(false, 'fail');
   } else {
     $(true, 'pass');
   }

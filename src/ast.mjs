@@ -319,9 +319,9 @@ export function functionExpression(params, body, { id, generator, async, normali
   };
 }
 
-export function identifier(name) {
+export function identifier(name, nonComputedProperty = false) {
   ASSERT(typeof name === 'string' && name, 'ident names must be valid nonempty strings', name);
-  ASSERT(!['true', 'false', 'null'].includes(name), 'these are literals.');
+  ASSERT(nonComputedProperty || !['true', 'false', 'null'].includes(name), 'these are literals.');
   return {
     type: 'Identifier',
     name,
@@ -451,7 +451,7 @@ export function memberCall(object, property, args, computed = false, optional = 
 
 export function memberExpression(object, property, computed = false, optional = false) {
   if (typeof object === 'string') object = identifier(object);
-  if (typeof property === 'string') property = identifier(property);
+  if (typeof property === 'string') property = identifier(property, !computed);
 
   return {
     type: 'MemberExpression',

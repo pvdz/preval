@@ -43,10 +43,10 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpObjLitVal = $(1);
-const tmpObjLitVal$3 = $(3);
-const tmpCompObj = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-tmpCompObj.a;
+$(1);
+$(3);
+const tmpObjectPrototype = Object.prototype;
+tmpObjectPrototype.a;
 $(a);
 `````
 

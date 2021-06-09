@@ -34,8 +34,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = {};
-const tmpCalleeParam = a.false;
+const tmpObjectPrototype = Object.prototype;
+const tmpCalleeParam = tmpObjectPrototype.false;
 $(tmpCalleeParam);
 `````
 

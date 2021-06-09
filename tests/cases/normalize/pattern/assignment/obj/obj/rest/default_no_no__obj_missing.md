@@ -40,8 +40,8 @@ $('bad');
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { b: 11, c: 12 };
-const objPatternNoDefault = tmpAssignObjPatternRhs.x;
+const tmpObjectPrototype = Object.prototype;
+const objPatternNoDefault = tmpObjectPrototype.x;
 const tmpCalleeParam$1 = [];
 y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 $('bad');

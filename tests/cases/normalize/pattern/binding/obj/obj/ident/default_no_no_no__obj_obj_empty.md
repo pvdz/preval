@@ -37,8 +37,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = {};
-const y = tmpObjLitVal.y;
+const tmpObjectPrototype = Object.prototype;
+const y = tmpObjectPrototype.y;
 $(y);
 `````
 

@@ -50,8 +50,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = {};
-const objPatternBeforeDefault$1 = tmpObjLitVal.y;
+const tmpObjectPrototype = Object.prototype;
+const objPatternBeforeDefault$1 = tmpObjectPrototype.y;
 const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
   y = $('pass');

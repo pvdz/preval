@@ -52,8 +52,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = { y: 2, z: 3 };
-const objPatternBeforeDefault = tmpArrElement.x;
+const tmpObjectPrototype = Object.prototype;
+const objPatternBeforeDefault = tmpObjectPrototype.x;
 let x = undefined;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {

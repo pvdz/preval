@@ -47,8 +47,8 @@ $(b);
 
 `````js filename=intro
 let b = undefined;
-const tmpAssignObjPatternRhs = {};
-const objPatternBeforeDefault = tmpAssignObjPatternRhs.a;
+const tmpObjectPrototype = Object.prototype;
+const objPatternBeforeDefault = tmpObjectPrototype.a;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   b = $('default');

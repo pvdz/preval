@@ -40,8 +40,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = {};
-const tmpCompObj = a.b;
+const tmpObjectPrototype = Object.prototype;
+const tmpCompObj = tmpObjectPrototype.b;
 let tmpCalleeParam = tmpCompObj.c;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {

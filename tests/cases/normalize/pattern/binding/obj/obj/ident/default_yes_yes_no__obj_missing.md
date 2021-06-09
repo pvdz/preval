@@ -50,8 +50,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { b: 11, c: 12 };
-const objPatternBeforeDefault = bindingPatternObjRoot.x;
+const tmpObjectPrototype = Object.prototype;
+const objPatternBeforeDefault = tmpObjectPrototype.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {

@@ -73,8 +73,8 @@ tmpCallCallee$5(tmpCalleeParam$9);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$11 = { b: 11, c: 12 };
-const objPatternBeforeDefault = tmpCalleeParam$11.x;
+const tmpObjectPrototype = Object.prototype;
+const objPatternBeforeDefault = tmpObjectPrototype.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {

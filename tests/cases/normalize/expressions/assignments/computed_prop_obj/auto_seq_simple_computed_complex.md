@@ -52,7 +52,8 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const a = { b: tmpObjLitVal };
-a.a;
+const tmpObjectPrototype = Object.prototype;
+tmpObjectPrototype.a;
 $(1);
 const tmpAssignComMemLhsProp = $('b');
 const tmpAssignComputedRhs = $(2);

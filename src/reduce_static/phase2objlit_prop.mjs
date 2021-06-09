@@ -19,7 +19,7 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
+import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
 
 export function objlitPropAccess(fdata) {
   group('\n\n\nChecking for object literals whose props are accessed immediately');
@@ -31,17 +31,27 @@ export function objlitPropAccess(fdata) {
 function _objlitPropAccess(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
-  let updated = processAttempt(fdata);
+  let queue = [];
+  let updated = processAttempt(fdata, queue);
 
   log('');
-  if (updated) {
-    log('Assignments promoted:', updated, '. Restarting from phase1 to fix up read/write registry');
+  if (updated + queue.length) {
+    queue.sort(({ pid: a }, { pid: b }) => (a < b ? 1 : a > b ? -1 : 0));
+
+    vgroup('Unwinding', queue.length, 'callbacks');
+    queue.forEach(({ func }) => {
+      vlog('-- next');
+      func();
+    });
+    vgroupEnd();
+
+    log('Assignments promoted:', updated + queue.length, '. Restarting from phase1 to fix up read/write registry');
     return 'phase1';
   }
   log('Assignments promoted: 0.');
 }
 
-function processAttempt(fdata) {
+function processAttempt(fdata, queue) {
   let updated = 0;
   const lastMap = new Map(); // Map<scope, ref>
 
@@ -213,20 +223,29 @@ function processAttempt(fdata) {
       const pnode = objExprNode.properties.find((pnode) => !pnode.computed && pnode.key.name === propName);
       if (!pnode) {
         vlog('Could not find the property... bailing');
-        return;
         // TODO: can do this when we checked the property can not exist, like through computed prop or whatever
         vlog('The object literal did not have a property `' + propName + '` so it must be undefined?');
 
-        rule('An object literal prop lookup when the obj has no such prop must be undefined');
-        example('let obj = {}; let x = obj.x;', 'let obj = {}; let x = undefined;');
-        before(writeRef.blockBody[writeRef.blockIndex]);
-        before(readRef.blockBody[readRef.blockIndex]);
+        queue.push({
+          pid: +readRef.node.$p.pid,
+          func: () => {
+            // The only potential problem with this rule is if the global `Object` is somehow replaced with a different
+            // value. But I believe that value is read-only in global, anyways. Beyond that, objlits should read from proto.
+            rule('An object literal prop lookup when the obj has no such prop must read from the prototype');
+            example('let obj = {}; let x = obj.x;', 'let obj = {}; let x = Object.prototype.x;');
+            before(writeRef.blockBody[writeRef.blockIndex]);
+            before(readRef.blockBody[readRef.blockIndex]);
 
-        // The readRef.parentNode was a member expression. It should be replaced into `undefined`.
-        if (readRef.grandIndex < 0) readRef.grandNode[readRef.grandProp] = AST.identifier('undefined');
-        else readRef.grandNode[readRef.grandProp][readRef.grandIndex] = AST.identifier('undefined');
+            const tmpName = createFreshVar('tmpObjectPrototype', fdata);
+            const objNode = AST.variableDeclaration(tmpName, AST.memberExpression('Object', 'prototype'));
+            const finalNode = AST.memberExpression(tmpName, readRef.parentNode.property.name, readRef.parentNode.property.computed);
+            if (readRef.grandIndex < 0) readRef.grandNode[readRef.grandProp] = finalNode;
+            else readRef.grandNode[readRef.grandProp][readRef.grandIndex] = AST.identifier('undefined');
+            readRef.blockBody.splice(readRef.blockIndex, 0, objNode);
 
-        after(readRef.blockBody[readRef.blockIndex]);
+            after(readRef.blockBody[readRef.blockIndex]);
+          },
+        });
       } else if (pnode.kind !== 'init') {
         // Maybe we can still do something here but for now we're bailing
         vlog('The property `' + propName + '` resolves to a getter or setter. Bailing');

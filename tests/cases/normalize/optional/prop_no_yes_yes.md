@@ -47,9 +47,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = {};
 let tmpCalleeParam = undefined;
-const tmpChainElementObject = a.b;
+const tmpObjectPrototype = Object.prototype;
+const tmpChainElementObject = tmpObjectPrototype.b;
 const tmpIfTest = tmpChainElementObject == null;
 if (tmpIfTest) {
 } else {

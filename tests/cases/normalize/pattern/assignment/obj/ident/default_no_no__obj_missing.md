@@ -33,8 +33,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { b: 2, c: 3 };
-x = tmpAssignObjPatternRhs.x;
+const tmpObjectPrototype = Object.prototype;
+x = tmpObjectPrototype.x;
 $(x);
 `````
 

@@ -45,8 +45,8 @@ $(a, arg);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const obj = {};
-obj.number;
+const tmpObjectPrototype = Object.prototype;
+tmpObjectPrototype.number;
 $(a, 1);
 `````
 

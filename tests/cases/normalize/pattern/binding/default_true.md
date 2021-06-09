@@ -40,8 +40,8 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = {};
-const objPatternBeforeDefault = bindingPatternObjRoot.a;
+const tmpObjectPrototype = Object.prototype;
+const objPatternBeforeDefault = tmpObjectPrototype.a;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   $('default');

@@ -33,8 +33,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = { b: 2, c: 3 };
-const x = bindingPatternObjRoot.x;
+const tmpObjectPrototype = Object.prototype;
+const x = tmpObjectPrototype.x;
 $(x);
 `````
 

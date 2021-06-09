@@ -43,8 +43,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { x: 1, z: 3 };
-const objPatternBeforeDefault = tmpObjLitVal.y;
+const tmpObjectPrototype = Object.prototype;
+const objPatternBeforeDefault = tmpObjectPrototype.y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   y = $('pass');

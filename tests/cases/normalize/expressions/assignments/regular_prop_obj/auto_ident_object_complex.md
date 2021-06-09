@@ -46,7 +46,8 @@ $(a);
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
 const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-a.a;
+const tmpObjectPrototype = Object.prototype;
+tmpObjectPrototype.a;
 $(a);
 `````
 

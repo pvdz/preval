@@ -52,7 +52,7 @@ $(x);
 const a = $(67637);
 let x = a !== 67636;
 if (x) {
-  x = false;
+  x = a === 67636;
 } else {
 }
 $(x);

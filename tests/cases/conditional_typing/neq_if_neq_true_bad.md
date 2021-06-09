@@ -1,8 +1,8 @@
 # Preval test case
 
-# eq_else_eq_true.md
+# neq_if_neq_true_bad.md
 
-> Conditional typing > Eq else eq true
+> Conditional typing > Neq if neq true bad
 >
 > Assignment that cannot be observed should be dropped
 
@@ -12,10 +12,11 @@
 
 `````js filename=intro
 const a = $(67636)
-let x = a === 67636;
+let x = a !== 67636;
 if (x) {
+  a = 10;
+  x = a !== 67636;
 } else {
-  x = a === 67636;
 }
 $(x)
 `````
@@ -24,10 +25,11 @@ $(x)
 
 `````js filename=intro
 const a = $(67636);
-let x = a === 67636;
+let x = a !== 67636;
 if (x) {
+  a = 10;
+  x = a !== 67636;
 } else {
-  x = a === 67636;
 }
 $(x);
 `````
@@ -36,10 +38,11 @@ $(x);
 
 `````js filename=intro
 const a = $(67636);
-let x = a === 67636;
+let x = a !== 67636;
 if (x) {
+  a = 10;
+  x = a !== 67636;
 } else {
-  x = a === 67636;
 }
 $(x);
 `````
@@ -48,12 +51,12 @@ $(x);
 
 `````js filename=intro
 const a = $(67636);
-let x = a === 67636;
+const x = a === 67636;
 if (x) {
+  $(false);
 } else {
-  x = a === 67636;
+  throw 'Preval: Cannot write to const binding `a`';
 }
-$(x);
 `````
 
 ## Globals
@@ -64,7 +67,7 @@ None
 
 Should call `$` with:
  - 1: 67636
- - 2: true
+ - 2: false
  - eval returned: undefined
 
 Pre normalization calls: Same

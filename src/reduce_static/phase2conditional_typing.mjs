@@ -53,20 +53,16 @@ function _ifNotIt(fdata) {
     if (ifTestMeta.constValueRef.containerNode.type !== 'VariableDeclaration') return; // catch, for-x, ???
     //if (meta.writes.length > 1) return; // TODO: fixme if broken
 
-    let varDeclRef = ifTestMeta.writes.find((write) => write.kind === 'var');
+
+    const varDeclRef = ifTestMeta.writes.find((write) => write.kind === 'var');
     if (!varDeclRef) {
       vlog('The binding was not a var. Bailing');
       return;
     }
 
     if (!ifTestMeta.isConstant) {
-      // Can still be okay if the binding was not mutated between decl and test.
-      // For now, we just check back-2-back statements but this can be a generic check... (and we probably want that)
-      const parentIndex = path.indexes[path.indexes.length - 1];
-      if (varDeclRef.blockIndex !== parentIndex - 1) {
-        vlog('The let was not immediately before the `if`. Bailing on this for now');
-        return;
-      }
+      // TODO: we can still do the same thing as long as we can guarantee that the value does not change. But it's much more expensive.
+      return;
     }
 
     const beforeValueNode = ifTestMeta.constValueRef.node;
@@ -206,6 +202,7 @@ function _ifNotIt(fdata) {
 
                             if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(false);
                             else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(false);
+                            ++changed;
 
                             after(read.blockBody[read.blockIndex]);
                           } else if (opafter === '!==') {
@@ -226,6 +223,7 @@ function _ifNotIt(fdata) {
 
                             if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(whichBranch === 'else');
                             else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(whichBranch === 'else');
+                            ++changed;
 
                             after(read.blockBody[read.blockIndex]);
                           } else {
@@ -254,6 +252,7 @@ function _ifNotIt(fdata) {
 
                             if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(whichBranch === 'else');
                             else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(whichBranch === 'else');
+                            ++changed;
 
                             after(read.blockBody[read.blockIndex]);
                           } else if (opafter === '!==') {
@@ -270,6 +269,7 @@ function _ifNotIt(fdata) {
 
                             if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.primitive(true);
                             else read.grandNode[read.grandProp][read.grandIndex] = AST.primitive(true);
+                            ++changed;
 
                             after(read.blockBody[read.blockIndex]);
                           } else {

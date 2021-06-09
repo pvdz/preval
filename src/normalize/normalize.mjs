@@ -1602,6 +1602,137 @@ export function phaseNormalize(fdata, fname) {
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
+
+          if (!node.computed && node.object.type === 'Identifier') {
+            // Drop statements that are static function calls when we know they are not observable otherwise
+            if (
+              wrapKind === 'statement' &&
+              ((node.object.name === 'Array' && ['from', 'isArray', 'of'].includes(node.property.name)) ||
+                (node.object.name === 'Date' && ['now', 'parse', 'UTC'].includes(node.property.name)) ||
+                (node.object.name === 'Math' &&
+                  [
+                    'abs',
+                    'acos',
+                    'acosh',
+                    'asin',
+                    'asinh',
+                    'atan',
+                    'atan2',
+                    'atanh',
+                    'cbrt',
+                    'ceil',
+                    'clz32',
+                    'cos',
+                    'cosh',
+                    'exp',
+                    'expm1',
+                    'floor',
+                    'fround',
+                    'hypot',
+                    'imul',
+                    'log',
+                    'log10',
+                    'log1p',
+                    'log2',
+                    'max',
+                    'min',
+                    'pow',
+                    'random',
+                    'round',
+                    'sign',
+                    'sin',
+                    'sinh',
+                    'sqrt',
+                    'tan',
+                    'tanh',
+                    'trunc',
+                    'E',
+                    'LN10',
+                    'LN2',
+                    'LOG10E',
+                    'LOG2E',
+                    'PI',
+                    'SQRT1_2',
+                    'SQRT2',
+                  ].includes(node.property.name)) ||
+                (node.object.name === 'Number' &&
+                  [
+                    'EPSILON',
+                    'MAX_VALUE',
+                    'MIN_VALUE',
+                    'NEGATIVE_INFINITY',
+                    'POSITIVE_INFINITY',
+                    'isFinite',
+                    'isInteger',
+                    'isNaN',
+                    'isSafeInteger',
+                    'parseFloat',
+                    'parseInt',
+                  ].includes(node.property.name)) ||
+                (node.object.name === 'Object' && ['is', 'isFrozen', 'isSealed'].includes(node.property.name)) ||
+                (node.object.name === 'String' && ['fromCharCode', 'fromCodePoint', 'raw'].includes(node.property.name)))
+            ) {
+              rule('A statement that is a built-in constant value or built-in static call should be eliminated');
+              example('Number.NEGATIVE_INFINITY;', 'undefined;');
+              before(node, body[i]);
+
+              const finalNode = AST.identifier('undefined'); // May be necessary to return an expression in certain wrap cases?
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, finalParent);
+
+              after(body[i]);
+              return true;
+            }
+
+            // We can replace some of the "new" Number properties. The Math ones are unsafe to inline (precision loss).
+            if (node.object.name === 'Number') {
+              switch (node.property.name) {
+                case 'EPSILON': // We keep this as is
+                case 'MAX_VALUE': // We keep this as is
+                case 'MIN_VALUE': {
+                  // We keep this as is
+                  // Keep these values as is because we don't want to introduce any precision loss
+                  break;
+                }
+                case 'NEGATIVE_INFINITY': {
+                  rule('`Number.NEGATIVE_INFINITY` is `-Infinity`');
+                  example('Number.NEGATIVE_INFINITY', '-Infinity');
+                  before(node, body[i]);
+
+                  const finalNode = AST.unaryExpression('-', AST.identifier('Infinity'));
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, finalParent);
+
+                  after(body[i]);
+                  return true;
+                }
+                case 'POSITIVE_INFINITY': {
+                  rule('`Number.POSITIVE_INFINITY` is `Infinity`');
+                  example('Number.POSITIVE_INFINITY', 'Infinity');
+                  before(node, body[i]);
+
+                  const finalNode = AST.identifier('Infinity');
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, finalParent);
+
+                  after(body[i]);
+                  return true;
+                }
+                case 'NaN': {
+                  rule('`Number.NaN` is `NaN`');
+                  example('Number.NaN', 'NaN');
+                  before(node, body[i]);
+
+                  const finalNode = AST.identifier('NaN');
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, finalParent);
+
+                  after(body[i]);
+                  return true;
+                }
+              }
+            }
+          }
         }
 
         if (
@@ -3036,19 +3167,19 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (node.operator === '-') {
+          if (wrapKind === 'statement' && AST.isPrimitive(node.argument)) {
+            rule('Unary minus primitive as statement should be dropped');
+            example('-10;', ';');
+            before(node, parentNode);
+
+            body[i] = AST.emptyStatement();
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
           if (node.argument.type === 'Literal') {
-            if (wrapKind === 'statement') {
-              rule('Unary minus on a literal as statement should be dropped');
-              example('-10;', ';');
-              before(node, parentNode);
-
-              body[i] = AST.emptyStatement();
-
-              after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
             if (node.argument.raw === 'null') {
               rule('The `-` unary operator on a null literal is a _negative_ zero');
               example('+null', '0');

@@ -245,6 +245,107 @@ function CONTINUE() {
   return AST.tru();
 }
 
+const BUILTIN_MEMBERS = new Set([
+  'Array.from',
+  'Array.isArray',
+  'Array.of',
+  'Date.now',
+  'Date.parse',
+  'Date.UTC',
+  'JSON.stringify',
+  'Math.abs',
+  'Math.acos',
+  'Math.acosh',
+  'Math.asin',
+  'Math.asinh',
+  'Math.atan',
+  'Math.atan2',
+  'Math.atanh',
+  'Math.cbrt',
+  'Math.ceil',
+  'Math.clz32',
+  'Math.cos',
+  'Math.cosh',
+  'Math.exp',
+  'Math.expm1',
+  'Math.floor',
+  'Math.fround',
+  'Math.hypot',
+  'Math.imul',
+  'Math.log',
+  'Math.log10',
+  'Math.log1p',
+  'Math.log2',
+  'Math.max',
+  'Math.min',
+  'Math.pow',
+  'Math.random',
+  'Math.round',
+  'Math.sign',
+  'Math.sin',
+  'Math.sinh',
+  'Math.sqrt',
+  'Math.tan',
+  'Math.tanh',
+  'Math.trunc',
+  'Number.isFinite',
+  'Number.isInteger',
+  'Number.isNaN',
+  'Number.isSafeInteger',
+  'Number.parseFloat',
+  'Number.parseInt',
+  'Object.is',
+  'Object.isFrozen',
+  'Object.isSealed',
+  'String.fromCharCode',
+  'String.fromCodePoint',
+  'String.raw',
+]);
+const BUILTIN_NON_COERCE_MEMBERS = new Set([
+  'Array.isArray',
+  'Array.of',
+  'Date.now',
+  'Math.random',
+  'Number.isFinite', // If number, do stuff, otherwise return false
+  'Number.isInteger', // If number, do stuff, otherwise return false
+  'Number.isNaN', // If number, do stuff, otherwise return false
+  'Number.isSafeInteger', // If number, do stuff, otherwise return false
+  'Object.is',
+  'Object.isExtensible',
+  'Object.isFrozen',
+  'Object.isSealed',
+]);
+const BUILTIN_COERCE_FIRST_TO_NUMBER_MEMBER = new Set([
+  'Math.abs',
+  'Math.acos',
+  'Math.acosh',
+  'Math.asin',
+  'Math.asinh',
+  'Math.atan',
+  'Math.atanh',
+  'Math.cbrt',
+  'Math.ceil',
+  'Math.clz32',
+  'Math.cos',
+  'Math.cosh',
+  'Math.exp',
+  'Math.expm1',
+  'Math.floor',
+  'Math.fround',
+  'Math.log',
+  'Math.log10',
+  'Math.log1p',
+  'Math.log2',
+  'Math.round',
+  'Math.sign',
+  'Math.sin',
+  'Math.sinh',
+  'Math.sqrt',
+  'Math.tan',
+  'Math.tanh',
+  'Math.trunc',
+]);
+
 export function phaseNormalize(fdata, fname) {
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
   let somethingChanged = false; // Did phase2 change anything at all?
@@ -1158,6 +1259,111 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
+        if (callee.type === 'Identifier' && ASSUME_BUILTINS && wrapKind === 'statement') {
+          switch (callee.name) {
+            case 'isNaN':
+            case 'isFinite':
+            case 'Boolean': {
+              // The args are not coerced so they can become statements as-is
+              rule('A statement that is a Boolean(), isNaN(), or isFinite() call can be dropped');
+              example('Boolean(a);', 'a;');
+              before(node, parentNode);
+
+              body.splice(
+                i,
+                1,
+                ...node.arguments.map((anode) =>
+                  // Make sure `Number.isNaN(...x)` properly becomes `[...x]` and let another rule deal with that mess.
+                  AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode),
+                ),
+              );
+
+              after(parentNode);
+              return true;
+            }
+
+            case 'parseFloat':
+            case 'Number': {
+              // The first arg should be unary +. The rest as is.
+
+              // Note: the `+` operator is effectively the specificaton's `ToNumber` coercion operation in syntactic form.
+              // Move all args to individual statements. Coerce the first to number. Drop the call.
+              rule('A statement that is Number() or parseInt() should be replaced by its args as statements');
+              example('Number(a);', '+300;');
+              before(node, parentNode);
+
+              const newNodes = node.arguments.map((anode, ai) =>
+                // Make sure `Number(...x)` properly becomes `+[...x][0]` and let another rule deal with that mess.
+                AST.expressionStatement(
+                  ai === 0
+                    ? anode.type === 'SpreadElement'
+                      ? // If the first arg is a spread, convert it to an array and coerce its first element `+[...x][0]`
+                        // That should work (albeit a little ugly)
+                        AST.unaryExpression('+', AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true))
+                      : AST.unaryExpression('+', anode)
+                    : anode.type === 'SpreadElement'
+                    ? AST.arrayExpression(anode)
+                    : anode,
+                ),
+              );
+              body.splice(i, 1, ...newNodes);
+
+              after(parentNode);
+              return true;
+            }
+            case 'String':
+              // Coerce the first arg to string
+              rule('A statement that is String() can be eliminated');
+              example('String(a);', '"" + a;');
+              before(node, parentNode);
+
+              const newNodes = node.arguments.map((anode, ai) =>
+                // Make sure `String(...x)` properly becomes `"" + [...x][0]` and let another rule deal with that mess.
+                AST.expressionStatement(
+                  ai === 0
+                    ? anode.type === 'SpreadElement'
+                      ? // If the first arg is a spread, convert it to an array and coerce its first element `""+[...x][0]`
+                        // That should work (albeit a little ugly)
+                        AST.binaryExpression('+', AST.literal(''), AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true))
+                      : AST.binaryExpression('+', AST.literal(''), anode)
+                    : anode.type === 'SpreadElement'
+                    ? AST.arrayExpression(anode)
+                    : anode,
+                ),
+              );
+              body.splice(i, 1, ...newNodes);
+
+              after(parentNode);
+              return true;
+            case 'parseInt': {
+              // Coerce the first arg to string, the second to number
+              if (node.arguments.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                rule('A statement that is parseInt can be eliminated');
+                example('parseInt(a, b, c);', '""+a; +b; c;');
+                before(node, parentNode);
+
+                const newNodes = node.arguments.map((anode, ai) =>
+                  // Since the all the args need to be coerced, we won't be supporting the spread case here
+                  AST.expressionStatement(
+                    ai === 0
+                      ? AST.binaryExpression('+', AST.literal(''), anode)
+                      : ai === 0
+                      ? AST.unaryExpression('+', AST.literal(''))
+                      : anode.type === 'SpreadElement'
+                      ? AST.arrayExpression(anode)
+                      : anode,
+                  ),
+                );
+                body.splice(i, 1, ...newNodes);
+
+                after(parentNode);
+                return true;
+              }
+              break;
+            }
+          }
+        }
+
         // There are two atomic kinds of callee; ident and member expression. Anything else normalizes to ident.
         if (callee.type === 'MemberExpression') {
           // Note: `a.b(c.d)` evaluates `a.b` before `c.d` (!)
@@ -1232,38 +1438,248 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
+          if (ASSUME_BUILTINS && wrapKind === 'statement' && !callee.computed && callee.object.type === 'Identifier') {
+            const propStr = callee.object.name + '.' + callee.property.name;
+
+            // TODO: make these global Sets
+
+            // Functions that do not coerce at all
+            if (BUILTIN_NON_COERCE_MEMBERS.has(propStr)) {
+              // Move all args to individual statements. Drop the call.
+              rule('A statement that is calling a built-in function without side effects should be replaced by its args as statements');
+              example('Number.isFinite(300);', '300;');
+              before(node, parentNode);
+
+              body.splice(
+                i,
+                1,
+                ...node.arguments.map((anode) =>
+                  // Make sure `Number.isNaN(...x)` properly becomes `[...x]` and let another rule deal with that mess.
+                  AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode),
+                ),
+              );
+
+              after(parentNode);
+              return true;
+            }
+
+            // Functions that coerce the first arg to number but not the rest
+            if (BUILTIN_COERCE_FIRST_TO_NUMBER_MEMBER.has(propStr)) {
+              // Note: the `+` operator is effectively the specificaton's `ToNumber` coercion operation in syntactic form.
+              // Move all args to individual statements. Coerce the first to number. Drop the call.
+              rule('A statement that is calling a built-in function without side effects should be replaced by its args as statements');
+              example('Number.isFinite(300);', '300;');
+              before(node, parentNode);
+
+              const newNodes = node.arguments.map((anode, ai) =>
+                // Make sure `Number.isNaN(...x)` properly becomes `[...x]` and let another rule deal with that mess.
+                AST.expressionStatement(
+                  // Make sure `Date.now(...x)` properly becomes `[...x]` and let another rule deal with that mess.
+
+                  ai === 0
+                    ? anode.type === 'SpreadElement'
+                      ? // If the first arg is a spread, convert it to an array and coerce its first element `""+[...x][0]`
+                        // That should work (albeit a little ugly)
+                        AST.unaryExpression('+', AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true))
+                      : AST.unaryExpression('+', anode)
+                    : anode.type === 'SpreadElement'
+                    ? AST.arrayExpression(anode)
+                    : anode,
+                ),
+              );
+              body.splice(i, 1, ...newNodes);
+
+              after(parentNode);
+              return true;
+            }
+
+            // These are the remaining built-in member expression functions that we want to eliminate as statements.
+            switch (propStr) {
+              case 'Date.parse': {
+                // Coerce the first arg to string
+                rule('A statement that is Date.now can be eliminated');
+                example('Date.parse(300);', '"" + 300;');
+                before(node, parentNode);
+
+                const newNodes = node.arguments.map((anode, ai) =>
+                  // Make sure `Date.now(...x)` properly becomes `[...x]` and let another rule deal with that mess.
+                  AST.expressionStatement(
+                    ai === 0
+                      ? anode.type === 'SpreadElement'
+                        ? // If the first arg is a spread, convert it to an array and coerce its first element `""+[...x][0]`
+                          // That should work (albeit a little ugly)
+                          AST.binaryExpression('+', AST.literal(''), AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true))
+                        : AST.binaryExpression('+', AST.literal(''), anode)
+                      : anode.type === 'SpreadElement'
+                      ? AST.arrayExpression(anode)
+                      : anode,
+                  ),
+                );
+                body.splice(i, 1, ...newNodes);
+
+                after(parentNode);
+                return true;
+              }
+
+              case 'Date.UTC': {
+                // Coerce the first seven args to number
+                if (node.arguments.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 7)) {
+                  rule('A statement that is Date.UTC can be eliminated');
+                  example('Date.UTC(a, b, c);', '+a; +b; +c;');
+                  before(node, parentNode);
+
+                  const newNodes = node.arguments.map((anode, ai) =>
+                    // Make sure `Date.UTC(...x)` properly becomes `[...x]` and let another rule deal with that mess.
+                    // Since the first seven args need to be coerced, we won't be supporting the spread case here
+                    AST.expressionStatement(
+                      anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : ai < 7 ? AST.unaryExpression('+', anode) : anode,
+                    ),
+                  );
+                  body.splice(i, 1, ...newNodes);
+
+                  after(parentNode);
+                  return true;
+                }
+                break;
+              }
+
+              case 'Math.atan2': // Coerce the first two args to number
+              case 'Math.imul': // Coerce the first two args to number
+              case 'Math.pow': {
+                // Coerce the first two args to number
+                if (node.arguments.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                  rule('A Math statement with two args can be eliminated');
+                  example('Math.pow(a, b);', '+a; +b;');
+                  before(node, parentNode);
+
+                  const newNodes = node.arguments.map((anode, ai) =>
+                    // Make sure `Math.pow(...x)` properly becomes `[...x]` and let another rule deal with that mess.
+                    // Since the first two args need to be coerced, we won't be supporting the spread case here
+                    AST.expressionStatement(
+                      anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : ai < 2 ? AST.unaryExpression('+', anode) : anode,
+                    ),
+                  );
+                  body.splice(i, 1, ...newNodes);
+
+                  after(parentNode);
+                  return true;
+                }
+                break;
+              }
+
+              case 'Math.hypot': // Coerce all args to number
+              case 'Math.max': // Coerce all args to number
+              case 'Math.min': // Coerce all args to number
+              case 'String.fromCharCode': // Coerce all args to number
+              case 'String.fromCodePoint': {
+                // Coerce all args to number
+                if (node.arguments.every((anode, ai) => anode.type !== 'SpreadElement')) {
+                  rule('A statement that is a builtin func call that coerces all its args to number can be eliminated');
+                  example('Math.pow(a, b, c);', '+a; +b; +c;');
+                  before(node, parentNode);
+
+                  const newNodes = node.arguments.map((anode, ai) =>
+                    // Since the all the args need to be coerced, we won't be supporting the spread case here
+                    AST.expressionStatement(AST.unaryExpression('+', anode)),
+                  );
+                  body.splice(i, 1, ...newNodes);
+
+                  after(parentNode);
+                  return true;
+                }
+                break;
+              }
+              case 'Number.parseInt': {
+                // Coerce the first arg to string, the second to number
+                if (node.arguments.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                  rule('A statement that is Number.parseInt can be eliminated');
+                  example('Number.parseInt(a, b, c);', '""+a; +b; c;');
+                  before(node, parentNode);
+
+                  const newNodes = node.arguments.map((anode, ai) =>
+                    // Since the all the args need to be coerced, we won't be supporting the spread case here
+                    AST.expressionStatement(
+                      ai === 0
+                        ? AST.binaryExpression('+', AST.literal(''), anode)
+                        : ai === 0
+                        ? AST.unaryExpression('+', AST.literal(''))
+                        : anode.type === 'SpreadElement'
+                        ? AST.arrayExpression(anode)
+                        : anode,
+                    ),
+                  );
+                  body.splice(i, 1, ...newNodes);
+
+                  after(parentNode);
+                  return true;
+                }
+                break;
+              }
+            }
+          }
+
           if (!callee.computed && hasComplexArg) {
-            // At least one param node is complex. Cache them all. And the object too.
+            // Do not dotCall built-in member expressions. Assume it's safe.
+            if (
+              ASSUME_BUILTINS &&
+              callee.object.type === 'Identifier' &&
+              BUILTIN_MEMBERS.has(callee.object.name + '.' + callee.property.name)
+            ) {
+              // At least one param node is complex. Cache them all. But not the object. It is a builtin.
 
-            rule('The arguments of a method call must all be simple');
-            example('a().b(f())', 'tmp = a(), tmp2 = tmp.b, tmp3 = f(), tmp2.call(tmp, tmp3)');
-            before(node, parentNode);
+              rule('The arguments of a builtin call must all be simple');
+              example('Math.sin(f())', 'tmp = f(), Math.sin(tmp)');
+              before(node, parentNode);
 
-            const newArgs = [];
-            const tmpNameObj = createFreshVar('tmpCallObj', fdata);
-            const tmpNameVal = createFreshVar('tmpCallVal', fdata);
-            const newNodes = [
-              AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
-              AST.variableDeclaration(tmpNameVal, AST.memberExpression(tmpNameObj, callee.property), 'const'),
-            ];
-            normalizeCallArgs(args, newArgs, newNodes);
-            // Do a `.call` to preserve getter order AND context
-            // We always need to compile to .call because we need to read the member expression before the call, which
-            // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
-            // Call the special builtin to signify that this call was previously in fact a method call. We need this because
-            // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
-            const finalNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
-              AST.identifier(tmpNameVal),
-              AST.identifier(tmpNameObj),
-              ...newArgs,
-            ]);
-            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-            body.splice(i, 1, ...newNodes, finalParent);
+              const newArgs = [];
+              const newNodes = [];
+              normalizeCallArgs(args, newArgs, newNodes);
+              // Do a `.call` to preserve getter order AND context
+              // We always need to compile to .call because we need to read the member expression before the call, which
+              // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
+              // Call the special builtin to signify that this call was previously in fact a method call. We need this because
+              // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
+              const finalNode = AST.callExpression(node.callee, newArgs);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, ...newNodes, finalParent);
 
-            after(newNodes);
-            after(finalNode, finalParent);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
+              after(newNodes);
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            } else {
+              // At least one param node is complex. Cache them all. And the object too.
+
+              rule('The arguments of a method call must all be simple');
+              example('a().b(f())', 'tmp = a(), tmp2 = tmp.b, tmp3 = f(), tmp2.call(tmp, tmp3)');
+              before(node, parentNode);
+
+              const newArgs = [];
+              const tmpNameObj = createFreshVar('tmpCallObj', fdata);
+              const tmpNameVal = createFreshVar('tmpCallVal', fdata);
+              const newNodes = [
+                AST.variableDeclaration(tmpNameObj, callee.object, 'const'),
+                AST.variableDeclaration(tmpNameVal, AST.memberExpression(tmpNameObj, callee.property), 'const'),
+              ];
+              normalizeCallArgs(args, newArgs, newNodes);
+              // Do a `.call` to preserve getter order AND context
+              // We always need to compile to .call because we need to read the member expression before the call, which
+              // might trigger a getter, and we don't want to trigger a getter twice. We may choose to go with a custom func later.
+              // Call the special builtin to signify that this call was previously in fact a method call. We need this because
+              // when we find a random `.call()` we can't distinguish the built-in Function#call from a user method named `call`
+              const finalNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
+                AST.identifier(tmpNameVal),
+                AST.identifier(tmpNameObj),
+                ...newArgs,
+              ]);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body.splice(i, 1, ...newNodes, finalParent);
+
+              after(newNodes);
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
           }
 
           if (callee.computed && AST.isComplexNode(callee.property)) {

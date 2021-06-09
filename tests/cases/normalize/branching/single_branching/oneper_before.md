@@ -145,7 +145,7 @@ X('a', 'b', 'c', 'd', 'e');
 const l = +'no';
 const m = isNaN(l);
 if (m) {
-  $('a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, m);
+  $('a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, true);
 } else {
 }
 `````

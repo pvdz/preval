@@ -1378,6 +1378,179 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               meta.typing.mustBeTruthy = true;
               break;
             }
+
+            case 'CallExpression': {
+              // Certain builtins have a guaranteed outcome... (or an exception is thrown, which we can ignore here)
+              if (init.callee.type === 'Identifier') {
+                switch (init.callee.name) {
+                  case 'String': {
+                    meta.typing.mustBeType = 'string';
+                    break;
+                  }
+                  case 'Number': {
+                    meta.typing.mustBeType = 'number';
+                    break;
+                  }
+                  case 'Boolean': {
+                    // In some cases we may even be able to predict the outcome...
+                    meta.typing.mustBeType = 'boolean';
+                    break;
+                  }
+                  case 'parseInt':
+                  case 'parseFloat': {
+                    // If the arg is a literal we could resolve it immediately
+                    meta.typing.mustBeType = 'number';
+                    break;
+                  }
+                  case 'isNaN':
+                  case 'isFinite': {
+                    // In some rare cases we would be able to resolve this if the arg was a primitive (or otherwise deduced).
+                    meta.typing.mustBeType = 'boolean';
+                    break;
+                  }
+                }
+              } else if (init.callee.type === 'MemberExpression' && !init.callee.computed) {
+                switch (init.callee.object.name + '.' + init.callee.property.name) {
+                  case 'Array.from': {
+                    meta.typing.mustBeType = 'array';
+                    break;
+                  }
+                  case 'Array.isArray': {
+                    meta.typing.mustBeType = 'boolean';
+                    break;
+                  }
+                  case 'Array.of': {
+                    // Normalization can replace this with array literals in many-if-not-all cases
+                    meta.typing.mustBeType = 'array';
+                    break;
+                  }
+                  case 'Date.now':
+                  case 'Date.parse':
+                  case 'Date.UTC': {
+                    // (Looks like parse/UTC always return a number as well. I hope there's no edge case around that.)
+                    meta.typing.mustBeType = 'number';
+                    break;
+                  }
+                  case 'JSON.stringify': {
+                    // This can be undefined (if you pass no args or `undefined`), so we don't know for sure.
+                    // TODO: Although, if the arg is known to be not `undefined`, then I think the result must be string...
+                    break;
+                  }
+                  case 'Math.abs':
+                  case 'Math.acos':
+                  case 'Math.acosh':
+                  case 'Math.asin':
+                  case 'Math.asinh':
+                  case 'Math.atan':
+                  case 'Math.atan2':
+                  case 'Math.atanh':
+                  case 'Math.cbrt':
+                  case 'Math.ceil':
+                  case 'Math.clz32':
+                  case 'Math.cos':
+                  case 'Math.cosh':
+                  case 'Math.exp':
+                  case 'Math.expm1':
+                  case 'Math.floor':
+                  case 'Math.fround':
+                  case 'Math.hypot':
+                  case 'Math.imul':
+                  case 'Math.log':
+                  case 'Math.log10':
+                  case 'Math.log1p':
+                  case 'Math.log2':
+                  case 'Math.max':
+                  case 'Math.min':
+                  case 'Math.pow':
+                  case 'Math.random': // The odds of this being a round zero are very small... but let's not bet on it :)
+                  case 'Math.round':
+                  case 'Math.sign':
+                  case 'Math.sin':
+                  case 'Math.sinh':
+                  case 'Math.sqrt':
+                  case 'Math.tan':
+                  case 'Math.tanh':
+                  case 'Math.trunc': {
+                    // I think the only thing we can predict about all these funcs is that their result is a number... (might be NaN/Infinity)
+                    meta.typing.mustBeType = 'number';
+                    break;
+                  }
+                  case 'Number.isFinite':
+                  case 'Number.isInteger':
+                  case 'Number.isNaN':
+                  case 'Number.isSafeInteger': {
+                    // Some of these should be replaced with the global builtin function, by normalization
+                    meta.typing.mustBeType = 'boolean';
+                    break;
+                  }
+                  case 'Number.parseFloat':
+                  case 'Number.parseInt': {
+                    // These should be replaced with the global value by normalization
+                    meta.typing.mustBeType = 'number';
+                    break;
+                  }
+                  case 'Object.is': // We may be able to predict certain outcomes
+                  case 'Object.isFrozen':
+                  case 'Object.isSealed': {
+                    meta.typing.mustBeType = 'boolean';
+                    break;
+                  }
+                  case 'String.fromCharCode':
+                  case 'String.fromCodePoint':
+                  case 'String.raw': {
+                    // Looks like these always return a string of sorts... no matter what arg you feed them
+                    meta.typing.mustBeType = 'string';
+                    break;
+                  }
+                }
+              }
+              break;
+            }
+
+            case 'MemberExpression': {
+              if (!init.computed) {
+                // Resolve some builtins...
+                switch (init.object.name + '.' + init.property.name) {
+                  case 'Math.E':
+                  case 'Math.LN10':
+                  case 'Math.LN2':
+                  case 'Math.LOG10E':
+                  case 'Math.LOG2E':
+                  case 'Math.PI':
+                  case 'Math.SQRT1_2':
+                  case 'Math.SQRT2': {
+                    // We can't inline these due to loss of precision
+                    meta.typing.mustBeType = 'number';
+                    meta.typing.mustBeFalsy = false;
+                    meta.typing.mustBeTruthy = true;
+                    break;
+                  }
+
+                  case 'Number.EPSILON': // We keep this as is
+                  case 'Number.MAX_VALUE': // We keep this as is
+                  case 'Number.MIN_VALUE': // We keep this as is
+                  case 'Number.NEGATIVE_INFINITY': // Is -Infinity
+                  case 'Number.POSITIVE_INFINITY': {
+                    // Is Infinity
+                    // Note: the values that could be inlined should be handled by normalization.
+                    meta.typing.mustBeType = 'number';
+                    meta.typing.mustBeFalsy = false;
+                    meta.typing.mustBeTruthy = true;
+                    break;
+                  }
+                  case 'Number.NaN': {
+                    // is global NaN
+                    // Note: the values that could be inlined should be handled by normalization.
+                    meta.typing.mustBeType = 'number';
+                    meta.typing.mustBeFalsy = true;
+                    meta.typing.mustBeTruthy = false;
+                    break;
+                  }
+                }
+              }
+              break;
+            }
+
             default:
             // call, member, etc. :shrug:
           }

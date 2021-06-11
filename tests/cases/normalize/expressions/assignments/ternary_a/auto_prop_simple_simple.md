@@ -49,8 +49,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpClusterSSA_tmpCalleeParam = $(100);
-$(tmpClusterSSA_tmpCalleeParam);
+const tmpCalleeParam = $(100);
+$(tmpCalleeParam);
 const a = { b: tmpObjLitVal };
 a.b = 2;
 $(a);

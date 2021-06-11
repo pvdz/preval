@@ -1,8 +1,8 @@
 # Preval test case
 
-# simple_pattern3.md
+# race.md
 
-> Normalize > Binding > Case-block > Simple pattern3
+> Spyless vars > Race
 >
 > Assignments of all kinds should be normalized in all circumstances
 

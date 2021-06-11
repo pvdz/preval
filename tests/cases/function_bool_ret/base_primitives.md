@@ -71,21 +71,13 @@ tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  if ($) {
-    return true;
-  } else {
-    return false;
-  }
-};
-const tmpUnaryArg = f();
+const tmpUnaryArg = Boolean($);
 const tmpCalleeParam = !tmpUnaryArg;
 $(tmpCalleeParam, 'one');
-const tmpUnaryArg$1 = f();
+const tmpUnaryArg$1 = Boolean($);
 const tmpCalleeParam$3 = !tmpUnaryArg$1;
 $(tmpCalleeParam$3, 'two');
-const tmpUnaryArg$3 = f();
+const tmpUnaryArg$3 = Boolean($);
 const tmpCalleeParam$7 = !tmpUnaryArg$3;
 $(tmpCalleeParam$7, 'three');
 `````

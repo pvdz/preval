@@ -38,6 +38,7 @@ import { ifReturnBit } from './phase2if_return_bit.mjs';
 import { returnsParam } from './phase2return_param.mjs';
 import { ifTestBool } from './phase2if_test_bool.mjs';
 import { spylessVars } from './phase2spyless_vars.mjs';
+import { ifTestFolding } from './phase2if_test_folding.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -205,6 +206,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const testsBooled = ifTestBool(fdata);
   if (testsBooled) return testsBooled;
+
+  const ifsFolded = ifTestFolding(fdata);
+  if (ifsFolded) return ifsFolded;
 
   const ifbits = ifReturnBit(fdata);
   if (ifbits) return ifbits;

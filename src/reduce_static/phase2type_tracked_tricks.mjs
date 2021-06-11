@@ -71,8 +71,7 @@ function _typeTrackedTricks(fdata) {
 
               after(node.test, node);
               ++changes;
-            }
-            if (testMeta.typing.mustBeType) {
+            } else if (testMeta.typing.mustBeType) {
               const ttm = testMeta.typing.mustBeType;
               vlog('Found an `if` testing constant `' + node.test.name + '` with mustBeType:', ttm);
 

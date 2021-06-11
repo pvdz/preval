@@ -62,5 +62,6 @@ export function $p() {
     // - paramNames // Array<string>. Original param names for the function. Those will be $$0 mapped in the same order.
     // - isPrimitive // bool. For binary expression operand nodes
     // - primitiveValue // any. When isPrimitive is true, this should be the value. otherwise ignore.
+    // - lastPid // number. Block nodes. Last pid inside the block. Same as block if the block is empty.
   };
 }

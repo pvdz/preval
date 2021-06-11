@@ -99,7 +99,7 @@ function _typeTrackedTricks(fdata) {
                 case 'null': {
                   vlog('A value that is `undefined` or `null` should be handled by normalization');
                   break;
-                /*
+                  /*
                 // There is no if branch ... we should be able to wipe it..?
                 rule('If the `if` test is known to be a `null` or `undefined` type, drop the `if` branch entirely');
                 example('const a = [][0]; if (a?.b) f(); else g();', 'const a = [][0]; g();');
@@ -522,7 +522,6 @@ function _typeTrackedTricks(fdata) {
         break;
       }
       case 'CallExpression': {
-
         if (node.callee.type === 'Identifier') {
           switch (node.callee.name) {
             case 'Boolean': {
@@ -534,8 +533,8 @@ function _typeTrackedTricks(fdata) {
                   example('const x = a === b; f(Boolean(x));', 'const x = a === b; f(x);');
                   before(node, parentNode);
 
-                  if (parentIndex < 0) parentNode[parentProp] = arg
-                  else parentNode[parentProp][parentIndex] = arg
+                  if (parentIndex < 0) parentNode[parentProp] = arg;
+                  else parentNode[parentProp][parentIndex] = arg;
                   ++changes;
 
                   after(arg, parentNode);
@@ -544,7 +543,7 @@ function _typeTrackedTricks(fdata) {
               }
               break;
             }
-            case 'Number':{
+            case 'Number': {
               const arg = node.arguments[0];
               if (arg?.type === 'Identifier') {
                 const meta = fdata.globallyUniqueNamingRegistry.get(arg.name);
@@ -553,8 +552,8 @@ function _typeTrackedTricks(fdata) {
                   example('const x = a * b; f(Number(x));', 'const x = a * b; f(x);');
                   before(node, parentNode);
 
-                  if (parentIndex < 0) parentNode[parentProp] = arg
-                  else parentNode[parentProp][parentIndex] = arg
+                  if (parentIndex < 0) parentNode[parentProp] = arg;
+                  else parentNode[parentProp][parentIndex] = arg;
                   ++changes;
 
                   after(arg, parentNode);
@@ -563,7 +562,7 @@ function _typeTrackedTricks(fdata) {
               }
               break;
             }
-            case 'String':{
+            case 'String': {
               const arg = node.arguments[0];
               if (arg?.type === 'Identifier') {
                 const meta = fdata.globallyUniqueNamingRegistry.get(arg.name);
@@ -572,8 +571,8 @@ function _typeTrackedTricks(fdata) {
                   example('const x = "" + a; f(String(x));', 'const x = "" + a; f(x);');
                   before(node, parentNode);
 
-                  if (parentIndex < 0) parentNode[parentProp] = arg
-                  else parentNode[parentProp][parentIndex] = arg
+                  if (parentIndex < 0) parentNode[parentProp] = arg;
+                  else parentNode[parentProp][parentIndex] = arg;
                   ++changes;
 
                   after(arg, parentNode);
@@ -586,7 +585,6 @@ function _typeTrackedTricks(fdata) {
             //case 'parseFloat': // Note: this coerces to a string first. Not a noop for numbers.
           }
         }
-
 
         break;
       }

@@ -57,20 +57,37 @@ function _ifFlipping(fdata) {
         // If the argument is an identifier, use that instead. The `!` cannot be observed, nor can the if-test.
         // All reads will do the same and we don't need to update the init to eliminate the `!`.
         // If this causes the alias to no longer be used it will get collected by another rule.
-        if (write.parentNode.init.argument.type === 'Identifier') {
-          rule('If the test of an if is a trivial inverted identifier, use that ident instead and flip the if');
-          example('const x = !y; if (x) f(); else g();', 'const x = !y; if (y) g(); else f();');
-          before(node);
 
-          node.test = AST.identifier(write.parentNode.init.argument.name);
-          const bak = node.consequent;
-          node.consequent = node.alternate;
-          node.alternate = bak;
+        rule('If the test of an if is a trivial inverted identifier, use that ident instead and flip the if');
+        example('const x = !y; if (x) f(); else g();', 'const x = !y; if (y) g(); else f();');
+        before(node);
 
-          after(node);
-          ++changed;
-          meta.tainted = true;
-        }
+        node.test = AST.cloneSimple(write.parentNode.init.argument);
+        const bak = node.consequent;
+        node.consequent = node.alternate;
+        node.alternate = bak;
+
+        after(node);
+        ++changed;
+        meta.tainted = true;
+      } else if (
+        write.parentNode.init.type === 'CallExpression' &&
+        write.parentNode.init.callee.type === 'Identifier' &&
+        write.parentNode.init.callee.name === 'Boolean'
+      ) {
+        // This is the trivial target we are aiming for. Unwrap it.
+        // If the argument is an identifier, use that instead. The `Booelan()` cannot be observed, nor can the if-test.
+        // All reads will do the same and we don't need to update the init to eliminate the `Boolean()`.
+        // If this causes the alias to no longer be used it will get collected by another rule.
+        rule('If the test of an if is a trivial inverted identifier, use that ident instead and unwrap the if');
+        example('const x = Boolean(y); if (x) f(); else g();', 'const x = Boolean(y); if (y) g(); else f();');
+        before(node);
+
+        node.test = AST.cloneSimple(write.parentNode.init.arguments[0] ?? AST.identifier('undefined'));
+
+        after(node);
+        ++changed;
+        meta.tainted = true;
       } else if (
         write.parentNode.init.type === 'BinaryExpression' &&
         // The `!==` op is not observable
@@ -122,7 +139,7 @@ function _ifFlipping(fdata) {
         prevNode &&
         prevNode.type === 'VariableDeclaration' &&
         prevNode.declarations[0].id.name === testName &&
-        prevNode.declarations[0].init.type === 'Identifier'
+        !AST.isComplexNode(prevNode.declarations[0].init)
       ) {
         // The statement before this `if` statement was the var decl on which is being tested and the name is just an alias.
         // While the binding may still change later on, it can not have between the var decl and the `if`, so we can use that name.
@@ -132,33 +149,57 @@ function _ifFlipping(fdata) {
         before(prevNode);
         before(node);
 
-        node.test = AST.identifier(prevNode.declarations[0].init.name);
+        node.test = AST.cloneSimple(prevNode.declarations[0].init);
 
         after(node);
         ++changed;
         meta.tainted = true;
-      }
-      else if (
+      } else if (
         // Check the `let x = !y; if (x)` case
         prevNode &&
         prevNode.type === 'VariableDeclaration' &&
         prevNode.declarations[0].id.name === testName &&
         prevNode.declarations[0].init.type === 'UnaryExpression' &&
-        prevNode.declarations[0].init.operator === '!' &&
-        prevNode.declarations[0].init.argument.type === 'Identifier'
+        prevNode.declarations[0].init.operator === '!'
       ) {
         // The statement before this `if` statement was the var decl on which is being tested and the name is just an inverted alias.
         // While the binding may still change later on, it can not have between the var decl and the `if`, and `!` is also not observable
         // so we can use that name directly if we flip the `if` branches. This way we can potentially eliminate some alias usages.
-        rule('When an `if` test is an inverted `let` alias and there were no statements between the var decl and the `if`, the alias is redundant');
+        rule(
+          'When an `if` test is an inverted `let` alias and there were no statements between the var decl and the `if`, the alias is redundant',
+        );
         example('let x = !y; if (x) f(); else g();', 'let x = !y; if (y) g(); else f();');
         before(prevNode);
         before(node);
 
-        node.test = AST.identifier(prevNode.declarations[0].init.argument.name);
+        node.test = AST.cloneSimple(prevNode.declarations[0].init.argument);
         const bak = node.consequent;
         node.consequent = node.alternate;
         node.alternate = bak;
+
+        after(node);
+        ++changed;
+        meta.tainted = true;
+      } else if (
+        // Check the `let x = Boolean(y); if (x)` case
+        prevNode &&
+        prevNode.type === 'VariableDeclaration' &&
+        prevNode.declarations[0].id.name === testName &&
+        prevNode.declarations[0].init.type === 'CallExpression' &&
+        prevNode.declarations[0].init.callee.type === 'Identifier' &&
+        prevNode.declarations[0].init.callee.name === 'Boolean'
+      ) {
+        // The statement before this `if` statement was the var decl on which is being tested and the name is just a boolean alias.
+        // While the binding may still change later on, it can not have between the var decl and the `if`, and `Boolean()` is also not observable
+        // so we can use that name directly if we flip the `if` branches. This way we can potentially eliminate some alias usages.
+        rule(
+          'When an `if` test is a Boolean() `let` alias and there were no statements between the var decl and the `if`, the alias is redundant',
+        );
+        example('let x = Boolean(y); if (x) f(); else g();', 'let x = !y; if (y) g(); else f();');
+        before(prevNode);
+        before(node);
+
+        node.test = AST.cloneSimple(prevNode.declarations[0].init.arguments[0] ?? AST.identifier('undefined'));
 
         after(node);
         ++changed;

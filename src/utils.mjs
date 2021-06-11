@@ -170,27 +170,35 @@ export function example(from, to, condition) {
   }
 }
 
-export function before(node, parentNode) {
+export function before(node, parentNode, returnOnly) {
   if (VERBOSE_TRACING) {
-    if (Array.isArray(node)) node.forEach((n) => before(n, parentNode));
-    else {
-      const anon = node.type.includes('Function') && 'id' in node && !node.id;
-      if (anon) node.id = { type: 'Identifier', name: 'anon' };
-      const parentCode =
-        parentNode &&
-        (Array.isArray(parentNode)
-          ? parentNode.map((node) => (typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' '))).join('\n')
-          : typeof node === 'string'
-          ? node
-          : tmat(parentNode).replace(/\n/g, ' '));
-      const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
-      if (parentNode && parentCode !== nodeCode) {
-        log(DIM + 'Parent:', parentCode, RESET);
-      }
-      log(YELLOW + 'Before:' + RESET, nodeCode);
-      if (anon) node.id = null;
+    if (Array.isArray(node)) {
+      return node.map((n, i) => before(n, i ? undefined : parentNode, returnOnly)).join('\n');
     }
+
+    const anon = node.type.includes('Function') && 'id' in node && !node.id;
+    if (anon) node.id = { type: 'Identifier', name: 'anon' };
+
+    const parentCode =
+      parentNode &&
+      (Array.isArray(parentNode)
+        ? '\n  ' + parentNode.map((node) => (typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' '))).join('\n  ')
+        : typeof node === 'string'
+        ? node
+        : tmat(parentNode).replace(/\n/g, ' '));
+    const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
+
+    let output = YELLOW + 'Before: ' + RESET + nodeCode;
+
+    if (parentNode && parentCode !== nodeCode) {
+      output = DIM + 'Parent: ' + parentCode + RESET + '\n' + output;
+    }
+    if (anon) node.id = null;
+
+    if (returnOnly) return output;
+    log(output);
   }
+  return '';
 }
 
 export function source(node, force) {

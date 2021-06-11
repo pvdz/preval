@@ -46,8 +46,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const tmpBinBothLhs = $(100);
+const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
 const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);

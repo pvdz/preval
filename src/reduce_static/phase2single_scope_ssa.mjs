@@ -75,9 +75,7 @@ function _singleScopeSSA(fdata) {
     const varDeclWrite = meta.writes.find((write) => write.kind === 'var');
     ASSERT(varDeclWrite);
 
-    let allInSameScope = rwOrder.every((ref, i) => {
-      return ref.scope === declScope;
-    });
+    let allInSameScope = meta.singleScoped;
     vlog('allInSameScope:', allInSameScope);
 
     if (!allInSameScope) {

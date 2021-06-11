@@ -49,8 +49,8 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
+const arg = { y: 1 };
 while (true) {
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $('y');

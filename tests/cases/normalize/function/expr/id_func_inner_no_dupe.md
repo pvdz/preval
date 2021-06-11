@@ -64,8 +64,8 @@ out();
 `````js filename=intro
 const out = function () {
   debugger;
-  const tmpCalleeParam$1 = typeof g;
   $('function');
+  const tmpCalleeParam$1 = typeof g;
   $(tmpCalleeParam$1, undefined);
   return undefined;
 };

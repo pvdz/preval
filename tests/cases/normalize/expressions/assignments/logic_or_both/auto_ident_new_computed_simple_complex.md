@@ -54,8 +54,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const tmpCompProp = $('$');
+const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 let tmpClusterSSA_a = new tmpNewCallee(1);
 let tmpCalleeParam = tmpClusterSSA_a;

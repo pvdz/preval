@@ -74,9 +74,9 @@ const f = function () {
     return tmpChainElementCall$1;
   }
 };
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$5 = f();
 $(tmpCalleeParam$5);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -42,9 +42,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = /foo/;
 const tmpCalleeParam = $(100);
 $(tmpCalleeParam);
+const a = /foo/;
 $(a);
 `````
 

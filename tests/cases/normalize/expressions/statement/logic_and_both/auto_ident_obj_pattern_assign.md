@@ -56,11 +56,11 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(3);
 $(4);
 const tmpObjLitVal$3 = $(3);
 const tmpObjLitVal$5 = $(4);
+const a = { a: 999, b: 1000 };
 $(a, tmpObjLitVal$3, tmpObjLitVal$5);
 `````
 

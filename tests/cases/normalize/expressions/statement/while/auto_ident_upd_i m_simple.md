@@ -49,7 +49,6 @@ $(a, b);
 
 `````js filename=intro
 let b = 1;
-const a = { a: 999, b: 1000 };
 while (true) {
   const tmpPostUpdArgIdent = b;
   b = b - 1;
@@ -59,6 +58,7 @@ while (true) {
     break;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 

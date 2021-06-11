@@ -39,8 +39,8 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpForInDeclRhs = { a: 1, b: 2 };
 let n = undefined;
+const tmpForInDeclRhs = { a: 1, b: 2 };
 for (n in tmpForInDeclRhs) {
   x = undefined;
 }

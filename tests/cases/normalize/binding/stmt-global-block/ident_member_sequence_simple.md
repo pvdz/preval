@@ -49,8 +49,8 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  const b = { x: 2 };
   const a = (3).foo;
+  const b = { x: 2 };
   $(a, b, 3);
 } else {
 }

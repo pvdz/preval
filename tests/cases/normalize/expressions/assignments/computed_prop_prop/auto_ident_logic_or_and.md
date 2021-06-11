@@ -55,7 +55,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const obj = {};
 const tmpCalleeParam = $(0);
 let a = $(tmpCalleeParam);
 if (a) {
@@ -68,6 +67,7 @@ if (a) {
   } else {
   }
 }
+const obj = {};
 obj[a];
 $(a);
 `````

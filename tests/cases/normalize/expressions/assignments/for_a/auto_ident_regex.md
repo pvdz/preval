@@ -43,10 +43,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = /foo/;
 while (true) {
   $(1);
 }
+const a = /foo/;
 $(a);
 `````
 

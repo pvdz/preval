@@ -67,9 +67,9 @@ const f = function () {
     return tmpChainElementCall;
   }
 };
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -54,7 +54,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 while (true) {
   const tmpChainElementCall = $($);
   const tmpIfTest$1 = tmpChainElementCall == null;
@@ -70,6 +69,7 @@ while (true) {
     }
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -47,8 +47,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const obj = {};
 const tmpNestedComplexRhs = $(2);
+const obj = {};
 obj[tmpNestedComplexRhs];
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````

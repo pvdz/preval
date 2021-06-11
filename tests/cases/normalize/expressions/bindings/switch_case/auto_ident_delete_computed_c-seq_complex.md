@@ -68,9 +68,9 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_arg = { y: 1 };
 $(1);
 $(2);
+const tmpClusterSSA_arg = { y: 1 };
 const tmpDeleteCompObj = $(tmpClusterSSA_arg);
 const tmpDeleteCompProp = $('y');
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];

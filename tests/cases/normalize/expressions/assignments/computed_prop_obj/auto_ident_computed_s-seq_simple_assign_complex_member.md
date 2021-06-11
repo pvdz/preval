@@ -51,8 +51,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
 const tmpNestedAssignComMemberProp = $('c');
+const b = { c: 10, d: 20 };
 const tmpCompObj$1 = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj$1[tmpCompProp];

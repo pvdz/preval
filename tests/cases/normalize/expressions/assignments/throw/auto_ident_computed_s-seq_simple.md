@@ -42,8 +42,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 const tmpAssignRhsCompProp = $('c');
+const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
 throw a;
 `````

@@ -50,7 +50,6 @@ $(a, b);
 
 `````js filename=intro
 let b = [];
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpArrElement = $(2);
@@ -61,6 +60,7 @@ if (tmpIfTest) {
 } else {
   $(200);
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 

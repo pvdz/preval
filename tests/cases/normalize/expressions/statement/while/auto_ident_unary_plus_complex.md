@@ -43,7 +43,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 while (true) {
   const tmpUnaryArg = $(100);
   const tmpIfTest = +tmpUnaryArg;
@@ -53,6 +52,7 @@ while (true) {
     break;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

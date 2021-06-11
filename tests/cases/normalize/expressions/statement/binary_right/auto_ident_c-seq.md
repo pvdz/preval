@@ -43,12 +43,12 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
 $(1);
 $(2);
 const tmpBinBothRhs = $(1);
 tmpBinBothLhs + tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

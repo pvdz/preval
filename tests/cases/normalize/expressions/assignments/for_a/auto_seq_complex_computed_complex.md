@@ -56,11 +56,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
 while (true) {
   $(1);
 }
 $(1);
+const a = { b: tmpObjLitVal };
 const tmpAssignComMemLhsObj = $(a);
 const tmpAssignComMemLhsProp = $('b');
 const tmpAssignComputedRhs = $(2);

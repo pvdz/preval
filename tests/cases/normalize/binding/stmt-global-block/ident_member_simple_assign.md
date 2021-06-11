@@ -54,10 +54,10 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  const b = { x: 2 };
   const varInitAssignLhsComputedObj = $(3);
   const varInitAssignLhsComputedRhs$1 = $(4);
   varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs$1;
+  const b = { x: 2 };
   b.x = varInitAssignLhsComputedRhs$1;
   $(varInitAssignLhsComputedRhs$1, b, 3);
 } else {

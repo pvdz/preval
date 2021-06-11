@@ -55,8 +55,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 const tmpAssignRhsCompProp = $('c');
+const b = { c: 1 };
 const tmpClusterSSA_a = b[tmpAssignRhsCompProp];
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);

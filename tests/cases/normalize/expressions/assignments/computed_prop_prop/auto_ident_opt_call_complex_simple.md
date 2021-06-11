@@ -49,7 +49,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const obj = {};
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
@@ -58,6 +57,7 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
 }
+const obj = {};
 obj[a];
 $(a);
 `````

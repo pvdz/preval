@@ -45,10 +45,10 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = !tmpUnaryArg;
 while (true) {
   $(1);
 }
+const a = !tmpUnaryArg;
 $(a);
 `````
 

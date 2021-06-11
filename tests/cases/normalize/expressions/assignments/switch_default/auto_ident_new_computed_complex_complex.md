@@ -59,8 +59,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 $(1);
+const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];

@@ -44,11 +44,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpAnonDefaultExport = new $(tmpCalleeParam, tmpCalleeParam$1);
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

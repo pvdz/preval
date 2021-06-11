@@ -46,13 +46,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const xyz = new tmpNewCallee(1);
 while (true) {
   $(xyz);
   $(1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

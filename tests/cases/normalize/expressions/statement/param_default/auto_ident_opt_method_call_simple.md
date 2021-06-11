@@ -70,7 +70,6 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const a = { a: 999, b: 1000 };
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
 } else {
@@ -78,6 +77,7 @@ if (tmpIfTest$1) {
   $dotCall(tmpChainElementObject, b, 1);
 }
 $(undefined);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

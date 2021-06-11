@@ -44,7 +44,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpObjSpreadArg = undefined;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
@@ -54,6 +53,7 @@ if (tmpIfTest) {
   tmpObjSpreadArg = $(tmpCalleeParam);
 }
 ({ ...tmpObjSpreadArg });
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

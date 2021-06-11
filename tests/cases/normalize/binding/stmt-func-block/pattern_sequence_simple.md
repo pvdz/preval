@@ -69,9 +69,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  const z = [10, 20, 30];
   $(1);
   $(2);
+  const z = [10, 20, 30];
   const arrPatternSplat = [...z];
   const a = arrPatternSplat[0];
   const b = arrPatternSplat[1];

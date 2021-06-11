@@ -43,10 +43,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const b = $(2);
 const tmpClusterSSA_b = $(2);
 b + tmpClusterSSA_b;
+const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 

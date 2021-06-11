@@ -50,8 +50,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 let tmpCalleeParam = undefined;
+const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $('$');
 const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);

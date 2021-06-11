@@ -65,12 +65,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
+  const b = { $: $ };
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {

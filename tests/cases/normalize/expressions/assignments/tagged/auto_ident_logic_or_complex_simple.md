@@ -45,13 +45,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['before ', ' after'];
 const tmpCalleeParam$3 = $(0);
 let a = $(tmpCalleeParam$3);
 if (a) {
 } else {
   a = 2;
 }
+const tmpCalleeParam = ['before ', ' after'];
 $(tmpCalleeParam, a);
 $(a);
 `````

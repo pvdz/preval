@@ -45,9 +45,9 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['before ', ' after'];
 $(1);
 $(2);
+const tmpCalleeParam = ['before ', ' after'];
 $(tmpCalleeParam, 1);
 $(1, 1);
 `````

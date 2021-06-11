@@ -64,9 +64,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { c: $ };
 $(1);
 let a = undefined;
+const b = { c: $ };
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
 } else {

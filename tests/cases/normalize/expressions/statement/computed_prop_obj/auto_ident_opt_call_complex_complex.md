@@ -51,7 +51,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpCompObj = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
@@ -62,6 +61,7 @@ if (tmpIfTest) {
   tmpCompObj = tmpChainElementCall$1;
 }
 tmpCompObj.a;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

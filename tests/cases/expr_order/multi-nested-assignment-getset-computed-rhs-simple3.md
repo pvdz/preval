@@ -99,6 +99,14 @@ g(d);
 ## Output
 
 `````js filename=intro
+const d = function () {
+  debugger;
+  $('a');
+  $('b');
+  return undefined;
+};
+d();
+d();
 const objd = {
   get foo() {
     debugger;
@@ -109,14 +117,6 @@ const objd = {
     return 4000;
   },
 };
-const d = function () {
-  debugger;
-  $('a');
-  $('b');
-  return undefined;
-};
-d();
-d();
 $(objd);
 `````
 

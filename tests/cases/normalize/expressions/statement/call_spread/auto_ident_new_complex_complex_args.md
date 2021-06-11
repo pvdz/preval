@@ -44,12 +44,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpCalleeParamSpread = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(...tmpCalleeParamSpread);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

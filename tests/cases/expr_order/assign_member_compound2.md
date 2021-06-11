@@ -39,8 +39,8 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 ## Output
 
 `````js filename=intro
-const a = {};
 const tmpBinBothRhs = $();
+const a = {};
 const tmpClusterSSA_a = a + tmpBinBothRhs;
 a.foo = tmpClusterSSA_a;
 `````

@@ -49,8 +49,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = { 10: 20 };
 let tmpCalleeParam = undefined;
+const f = { 10: 20 };
 const tmpIfTest = f == null;
 if (tmpIfTest) {
 } else {

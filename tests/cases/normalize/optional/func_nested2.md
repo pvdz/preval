@@ -53,8 +53,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const obj = { a: 1 };
 let tmpCalleeParam = undefined;
+const obj = { a: 1 };
 const tmpIfTest = obj == null;
 if (tmpIfTest) {
 } else {

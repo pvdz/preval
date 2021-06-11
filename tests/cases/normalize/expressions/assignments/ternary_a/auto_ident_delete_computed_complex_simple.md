@@ -49,8 +49,8 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 let tmpCalleeParam = undefined;
+const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpClusterSSA_a = delete tmpDeleteObj.y;
 if (tmpClusterSSA_a) {

@@ -53,7 +53,6 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
@@ -63,6 +62,7 @@ if (tmpIfTest) {
   x = tmpObjLitVal;
   y = tmpObjLitVal$1;
 }
+const a = { a: 999, b: 1000 };
 $(a, x, y);
 `````
 

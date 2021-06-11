@@ -70,9 +70,9 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
 $(1);
 let a = undefined;
+const b = { x: tmpObjLitVal };
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
 } else {

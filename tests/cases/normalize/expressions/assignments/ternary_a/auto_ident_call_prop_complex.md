@@ -49,8 +49,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 let tmpCalleeParam = undefined;
+const b = { $: $ };
 const tmpCallObj = $(b);
 const tmpClusterSSA_a = tmpCallObj.$(1);
 if (tmpClusterSSA_a) {

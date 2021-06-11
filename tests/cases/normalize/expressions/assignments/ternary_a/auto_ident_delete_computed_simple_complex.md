@@ -50,9 +50,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 let tmpCalleeParam = undefined;
 const tmpDeleteCompProp = $('y');
+const arg = { y: 1 };
 const a = delete arg[tmpDeleteCompProp];
 if (a) {
   tmpCalleeParam = $(100);

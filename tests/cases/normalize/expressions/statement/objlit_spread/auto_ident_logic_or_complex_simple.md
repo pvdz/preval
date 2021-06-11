@@ -42,7 +42,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(0);
 let tmpObjSpreadArg = $(tmpCalleeParam);
 if (tmpObjSpreadArg) {
@@ -50,6 +49,7 @@ if (tmpObjSpreadArg) {
   tmpObjSpreadArg = 2;
 }
 ({ ...tmpObjSpreadArg });
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

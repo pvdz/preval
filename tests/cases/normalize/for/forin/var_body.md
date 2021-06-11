@@ -35,8 +35,8 @@ for (n in tmpForInDeclRhs) {
 ## Output
 
 `````js filename=intro
-const tmpForInDeclRhs = { a: 1, b: 2 };
 let n = undefined;
+const tmpForInDeclRhs = { a: 1, b: 2 };
 for (n in tmpForInDeclRhs) {
 }
 `````

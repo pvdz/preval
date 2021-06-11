@@ -52,7 +52,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 $(tmpCalleeParam, tmpCalleeParam$1);
@@ -63,6 +62,7 @@ while (true) {
     break;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

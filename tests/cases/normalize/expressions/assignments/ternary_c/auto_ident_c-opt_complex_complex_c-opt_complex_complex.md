@@ -66,7 +66,6 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
@@ -74,6 +73,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   let tmpNestedComplexRhs = undefined;
+  const b = { x: tmpObjLitVal };
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {

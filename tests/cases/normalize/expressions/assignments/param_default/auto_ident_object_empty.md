@@ -58,8 +58,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpNestedComplexRhs = {};
 $(undefined);
+const tmpNestedComplexRhs = {};
 $(tmpNestedComplexRhs);
 `````
 

@@ -52,7 +52,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
@@ -60,6 +59,7 @@ if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   const tmpCompProp = $('$');
+  const b = { $: $ };
   const tmpNewCallee = b[tmpCompProp];
   const tmpNestedComplexRhs = new tmpNewCallee(1);
   a = tmpNestedComplexRhs;

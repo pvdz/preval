@@ -51,10 +51,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 let tmpCalleeParam = undefined;
 $(1);
 $(2);
+const arg = { y: 1 };
 const a = delete arg.y;
 if (a) {
   tmpCalleeParam = $(100);

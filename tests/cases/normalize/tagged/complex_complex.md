@@ -33,9 +33,9 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['abc ', ' ', ' def'];
 const tmpCalleeParam$1 = $(10);
 const tmpCalleeParam$3 = $(20);
+const tmpCalleeParam = ['abc ', ' ', ' def'];
 $(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 

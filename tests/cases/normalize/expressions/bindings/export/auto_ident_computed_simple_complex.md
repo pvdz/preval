@@ -40,8 +40,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 const tmpCompProp = $('c');
+const b = { c: 1 };
 const a = b[tmpCompProp];
 export { a };
 $(a, b);

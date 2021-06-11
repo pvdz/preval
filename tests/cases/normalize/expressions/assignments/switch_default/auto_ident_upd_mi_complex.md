@@ -62,8 +62,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 $(1);
+const b = { x: 1 };
 const tmpCalleeParam = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs = tmpNestedAssignObj.x;

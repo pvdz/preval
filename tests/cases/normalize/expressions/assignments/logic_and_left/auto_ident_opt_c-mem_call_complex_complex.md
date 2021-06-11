@@ -64,8 +64,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 let a = undefined;
+const b = { $: $ };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {

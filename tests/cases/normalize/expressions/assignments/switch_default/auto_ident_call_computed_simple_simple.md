@@ -56,8 +56,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 $(1);
+const b = { $: $ };
 const a = b.$(1);
 $(a);
 `````

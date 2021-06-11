@@ -44,8 +44,8 @@ $(a);
 `````js filename=intro
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const a = [tmpArrElement, 2, tmpArrElement$3];
 let x = undefined;
+const a = [tmpArrElement, 2, tmpArrElement$3];
 for (x in a) {
 }
 $(a);

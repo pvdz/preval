@@ -47,13 +47,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const obj = {};
 const tmpCalleeParam = $(1);
 let a = $(tmpCalleeParam);
 if (a) {
   a = 2;
 } else {
 }
+const obj = {};
 obj[a];
 $(a);
 `````

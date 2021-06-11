@@ -66,9 +66,9 @@ const f = function () {
     return 2;
   }
 };
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

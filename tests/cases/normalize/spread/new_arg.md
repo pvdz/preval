@@ -58,9 +58,9 @@ new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeParamSpread);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = [7];
 (2).c;
 (5)[6];
+const tmpObjLitVal = [7];
 new String(8.5, 8, ...tmpObjLitVal);
 `````
 

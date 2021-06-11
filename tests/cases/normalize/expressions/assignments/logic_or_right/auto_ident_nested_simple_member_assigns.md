@@ -62,9 +62,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
+const b = { x: 1 };
 if (tmpCalleeParam) {
 } else {
   b.x = 3;

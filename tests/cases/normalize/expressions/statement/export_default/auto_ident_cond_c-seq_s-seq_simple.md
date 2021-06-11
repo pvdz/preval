@@ -45,7 +45,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpAnonDefaultExport = undefined;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
@@ -55,6 +54,7 @@ if (tmpIfTest) {
   tmpAnonDefaultExport = $(tmpCalleeParam);
 }
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

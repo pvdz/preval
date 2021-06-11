@@ -44,12 +44,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpForInDeclRhs = $(tmpCalleeParam);
 let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

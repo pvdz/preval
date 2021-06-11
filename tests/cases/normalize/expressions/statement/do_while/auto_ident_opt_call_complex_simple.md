@@ -66,7 +66,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
@@ -88,6 +87,7 @@ while (true) {
     break;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

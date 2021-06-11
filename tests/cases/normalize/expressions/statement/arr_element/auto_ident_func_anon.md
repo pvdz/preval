@@ -48,7 +48,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = function () {
   debugger;
   return undefined;
@@ -58,6 +57,7 @@ const tmpBinBothRhs = function () {
   return undefined;
 };
 tmpBinBothLhs + tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

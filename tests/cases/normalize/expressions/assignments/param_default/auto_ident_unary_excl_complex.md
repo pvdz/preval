@@ -60,8 +60,8 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpNestedComplexRhs = !tmpUnaryArg;
 $(undefined);
+const tmpNestedComplexRhs = !tmpUnaryArg;
 $(tmpNestedComplexRhs);
 `````
 

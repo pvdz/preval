@@ -36,8 +36,8 @@ export { foo };
 ## Output
 
 `````js filename=intro
-const foo = 10;
 $(10);
+const foo = 10;
 export { foo };
 `````
 

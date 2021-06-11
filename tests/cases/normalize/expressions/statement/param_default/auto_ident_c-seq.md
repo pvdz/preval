@@ -62,11 +62,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 $(1);
 $(undefined);
+const a = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

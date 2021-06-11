@@ -59,7 +59,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpTemplateExpr = function () {
   debugger;
   if (x) {
@@ -71,6 +70,7 @@ const tmpTemplateExpr = function () {
 };
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -64,8 +64,8 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const tmpNestedComplexRhs = typeof tmpUnaryArg;
 $(undefined);
+const tmpNestedComplexRhs = typeof tmpUnaryArg;
 $(tmpNestedComplexRhs, 1);
 `````
 

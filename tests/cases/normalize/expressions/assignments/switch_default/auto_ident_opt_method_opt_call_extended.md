@@ -74,9 +74,9 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const b = { c: tmpObjLitVal };
 $(1);
 let a = undefined;
+const b = { c: tmpObjLitVal };
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
 } else {

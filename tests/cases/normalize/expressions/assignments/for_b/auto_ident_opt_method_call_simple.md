@@ -59,8 +59,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { c: $ };
 let a = { a: 999, b: 1000 };
+const b = { c: $ };
 while (true) {
   a = undefined;
   const tmpIfTest$1 = b == null;

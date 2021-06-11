@@ -50,10 +50,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpReturnArg = new tmpNewCallee(1);
 $(tmpReturnArg);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

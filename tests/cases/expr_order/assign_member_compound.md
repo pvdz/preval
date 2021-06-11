@@ -40,11 +40,11 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 ## Output
 
 `````js filename=intro
-const a = {};
 const tmpObjectPrototype = Object.prototype;
 const tmpCompoundAssignLhs = tmpObjectPrototype.foo;
 const tmpClusterSSA_a = $();
 const tmpAssignMemRhs = tmpCompoundAssignLhs + tmpClusterSSA_a;
+const a = {};
 a.foo = tmpAssignMemRhs;
 `````
 

@@ -46,9 +46,9 @@ $(x, y, z);
 ## Output
 
 `````js filename=intro
-const z = [10, 20, 30];
 $(1);
 $(2);
+const z = [10, 20, 30];
 const arrPatternSplat = [...z];
 const x = arrPatternSplat[0];
 const y = arrPatternSplat[1];

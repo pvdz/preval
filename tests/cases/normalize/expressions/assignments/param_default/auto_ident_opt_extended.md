@@ -75,8 +75,8 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
 let tmpNestedComplexRhs = undefined;
+const b = { x: tmpObjLitVal };
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
 } else {

@@ -71,7 +71,6 @@ $(a);
 
 `````js filename=intro
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
@@ -80,6 +79,7 @@ if (tmpIfTest$1) {
   tmpChainElementCall[tmpChainRootComputed];
 }
 $(undefined);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

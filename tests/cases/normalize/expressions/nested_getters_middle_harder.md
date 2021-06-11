@@ -144,6 +144,9 @@ f();
 
 `````js filename=intro
 $('-------- start');
+$('-------- bound');
+$('-------- let 1');
+const tmpNestedAssignPropRhs = $(6);
 const b = {
   get foo() {
     debugger;
@@ -156,9 +159,6 @@ const b = {
     return tmpReturnArg$1;
   },
 };
-$('-------- bound');
-$('-------- let 1');
-const tmpNestedAssignPropRhs = $(6);
 b.foo = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs);
 $('-------- test case');

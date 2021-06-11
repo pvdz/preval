@@ -46,9 +46,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 const tmpBinBothLhs = $(100);
 const tmpDeleteCompProp = $('y');
+const arg = { y: 1 };
 const a = delete arg[tmpDeleteCompProp];
 const tmpCalleeParam = tmpBinBothLhs + a;
 $(tmpCalleeParam);

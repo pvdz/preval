@@ -37,10 +37,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpObjSpreadArg = new tmpNewCallee(1);
 ({ ...tmpObjSpreadArg });
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

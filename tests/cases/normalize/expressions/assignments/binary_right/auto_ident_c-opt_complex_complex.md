@@ -53,9 +53,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 const tmpBinBothLhs = $(100);
 let a = undefined;
+const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {

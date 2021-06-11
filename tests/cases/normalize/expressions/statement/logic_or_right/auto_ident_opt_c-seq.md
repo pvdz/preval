@@ -48,11 +48,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
+  const b = { x: 1 };
   const tmpChainRootProp = $(b);
   const tmpIfTest$1 = tmpChainRootProp == null;
   if (tmpIfTest$1) {
@@ -60,6 +59,7 @@ if (tmpIfTest) {
     tmpChainRootProp.x;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -35,8 +35,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat = [1, 2, 3];
 a = 1;
+const arrPatternSplat = [1, 2, 3];
 x = arrPatternSplat.slice(1);
 $(x);
 `````

@@ -41,9 +41,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 $(1);
 $(2);
+const arg = { y: 1 };
 const a = delete arg.y;
 export { a };
 $(a, arg);

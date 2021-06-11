@@ -54,7 +54,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(1);
 let tmpBinBothRhs = $(tmpCalleeParam$1);
 if (tmpBinBothRhs) {
@@ -67,6 +66,7 @@ if (tmpBinBothRhs) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 const tmpClusterSSA_a = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);

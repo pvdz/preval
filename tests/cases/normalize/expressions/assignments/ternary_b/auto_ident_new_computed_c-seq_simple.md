@@ -51,11 +51,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
+  const b = { $: $ };
   const tmpCompObj = $(b);
   const tmpNewCallee = tmpCompObj.$;
   const tmpNestedComplexRhs = new tmpNewCallee(1);

@@ -80,8 +80,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 let tmpNestedComplexRhs = undefined;
+const b = { $: $ };
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {

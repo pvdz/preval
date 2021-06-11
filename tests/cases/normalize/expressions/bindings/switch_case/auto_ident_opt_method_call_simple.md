@@ -72,8 +72,8 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_b = { c: $ };
 let tmpClusterSSA_a = undefined;
+const tmpClusterSSA_b = { c: $ };
 const tmpIfTest$3 = tmpClusterSSA_b == null;
 if (tmpIfTest$3) {
 } else {

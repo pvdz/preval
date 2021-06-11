@@ -46,8 +46,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const tmpBinBothLhs = $(100);
+const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 const tmpClusterSSA_a = new tmpNewCallee(1);

@@ -48,11 +48,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const obj = {};
 const a = function () {
   debugger;
   return undefined;
 };
+const obj = {};
 obj[a];
 $(a);
 `````

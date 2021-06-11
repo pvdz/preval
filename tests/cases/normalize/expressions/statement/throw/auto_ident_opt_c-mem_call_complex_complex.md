@@ -57,8 +57,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 let tmpThrowArg = undefined;
+const b = { $: $ };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {

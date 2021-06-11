@@ -67,10 +67,10 @@ $(p, q);
 ## Output
 
 `````js filename=intro
-const b = [10, 20];
 let p = undefined;
 let q = undefined;
 let tmpDoWhileFlag = true;
+const b = [10, 20];
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpDoWhileFlag) {

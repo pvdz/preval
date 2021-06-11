@@ -60,7 +60,6 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(60);
@@ -68,6 +67,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(100);
   $(tmpCalleeParam);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 $(undefined);
 `````

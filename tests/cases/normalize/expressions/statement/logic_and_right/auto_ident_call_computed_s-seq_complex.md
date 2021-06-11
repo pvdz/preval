@@ -45,14 +45,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpCallCompProp = $('$');
+  const b = { $: $ };
   b[tmpCallCompProp](1);
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

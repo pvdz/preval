@@ -59,7 +59,6 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
-const a = { a: 999, b: 1000 };
 while (true) {
   $(x);
   $(y);
@@ -69,6 +68,7 @@ while (true) {
   y = tmpObjLitVal$1;
   $(100);
 }
+const a = { a: 999, b: 1000 };
 $(a, x, y);
 `````
 

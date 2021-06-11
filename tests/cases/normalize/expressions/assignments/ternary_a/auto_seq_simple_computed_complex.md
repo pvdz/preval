@@ -55,12 +55,12 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
 const tmpClusterSSA_tmpCalleeParam = $(100);
 $(tmpClusterSSA_tmpCalleeParam);
 $(1);
 const tmpAssignComMemLhsProp = $('b');
 const tmpAssignComputedRhs = $(2);
+const a = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````

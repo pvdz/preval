@@ -43,10 +43,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 let x = undefined;
 for (x in 1) {
 }
+const b = { c: 1 };
 $(1, b);
 `````
 

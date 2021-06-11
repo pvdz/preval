@@ -45,8 +45,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
 const varInitAssignLhsComputedProp = $('c');
+const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];

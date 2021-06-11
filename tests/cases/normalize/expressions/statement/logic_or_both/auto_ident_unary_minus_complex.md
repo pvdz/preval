@@ -41,7 +41,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 const tmpIfTest = -tmpUnaryArg;
 if (tmpIfTest) {
@@ -49,6 +48,7 @@ if (tmpIfTest) {
   const tmpUnaryArg$1 = $(100);
   -tmpUnaryArg$1;
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

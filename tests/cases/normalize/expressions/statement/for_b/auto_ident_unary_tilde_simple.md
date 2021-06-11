@@ -50,10 +50,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 while (true) {
   $(1);
 }
+const a = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

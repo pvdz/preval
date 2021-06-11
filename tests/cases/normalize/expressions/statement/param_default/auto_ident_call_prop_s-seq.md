@@ -62,9 +62,9 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const a = { a: 999, b: 1000 };
 b.$(1);
 $(undefined);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -62,15 +62,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { c: $ };
-const a = { a: 999, b: 1000 };
 $(1);
+const b = { c: $ };
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject = b.c;
   $dotCall(tmpChainElementObject, b, 1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

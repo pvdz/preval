@@ -41,8 +41,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const arr = [1, 2, 3];
 const tmpAssignComMemLhsProp = $(2);
+const arr = [1, 2, 3];
 arr[tmpAssignComMemLhsProp] = 10;
 const tmpCalleeParam = arr.length;
 $(tmpCalleeParam);

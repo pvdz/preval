@@ -59,8 +59,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpForInDeclRhs = { a: 1, b: 2 };
 let x = undefined;
+const tmpForInDeclRhs = { a: 1, b: 2 };
 for (x in tmpForInDeclRhs) {
   const tmpThrowArg = $(1, 'throw');
   throw tmpThrowArg;

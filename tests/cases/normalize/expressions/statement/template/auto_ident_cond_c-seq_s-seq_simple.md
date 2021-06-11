@@ -46,7 +46,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpTemplateExpr = undefined;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
@@ -57,6 +56,7 @@ if (tmpIfTest) {
 }
 const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

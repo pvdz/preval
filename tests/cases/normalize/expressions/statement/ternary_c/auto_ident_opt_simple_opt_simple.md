@@ -56,12 +56,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
+  const b = { x: tmpObjLitVal };
   const tmpIfTest$1 = b == null;
   if (tmpIfTest$1) {
   } else {
@@ -73,6 +72,7 @@ if (tmpIfTest) {
     }
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

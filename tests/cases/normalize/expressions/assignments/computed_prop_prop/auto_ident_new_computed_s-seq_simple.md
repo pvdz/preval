@@ -47,8 +47,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const obj = {};
 const tmpClusterSSA_a = new $(1);
+const obj = {};
 obj[tmpClusterSSA_a];
 $(tmpClusterSSA_a);
 `````

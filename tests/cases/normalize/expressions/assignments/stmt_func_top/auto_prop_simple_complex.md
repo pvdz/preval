@@ -56,8 +56,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
 const tmpAssignMemRhs = $(2);
+const a = { b: tmpObjLitVal };
 a.b = tmpAssignMemRhs;
 $(a);
 $(undefined);

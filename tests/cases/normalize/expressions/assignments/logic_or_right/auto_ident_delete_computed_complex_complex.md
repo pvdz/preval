@@ -49,9 +49,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
+const arg = { y: 1 };
 if (tmpCalleeParam) {
 } else {
   const tmpDeleteCompObj = $(arg);

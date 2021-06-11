@@ -47,8 +47,8 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
+const arg = { y: 1 };
 while (true) {
   a = delete arg.y;
   if (a) {

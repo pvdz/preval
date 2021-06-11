@@ -46,8 +46,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 const tmpBinBothLhs = $(100);
+const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $('c');
 const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];

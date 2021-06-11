@@ -57,8 +57,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 let a = { a: 999, b: 1000 };
+const b = { x: 1 };
 while (true) {
   const tmpCalleeParam = $(b);
   const tmpNestedAssignObj = $(tmpCalleeParam);

@@ -51,11 +51,11 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-const a = { a: 999, b: 1000 };
 while (true) {
   b = 2;
   $(100);
 }
+const a = { a: 999, b: 1000 };
 $(a, b, 2);
 `````
 

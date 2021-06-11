@@ -61,7 +61,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall == null;
@@ -81,6 +80,7 @@ if (tmpIfTest) {
     $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$9);
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -40,8 +40,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = /foo/;
 const tmpBinBothRhs = $(100);
+const a = /foo/;
 const tmpCalleeParam = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a);

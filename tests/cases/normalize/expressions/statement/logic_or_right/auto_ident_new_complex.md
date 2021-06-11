@@ -40,13 +40,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   const tmpNewCallee = $($);
   new tmpNewCallee(1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -77,8 +77,8 @@ const f = function () {
   $('please');
   return undefined;
 };
-const tmpCalleeParam$1 = [1, 2, 3];
 f();
+const tmpCalleeParam$1 = [1, 2, 3];
 const tmpCalleeParam = tmpCalleeParam$1.toString();
 $(tmpCalleeParam);
 f();

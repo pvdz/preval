@@ -46,9 +46,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 const tmpBinBothLhs = $(100);
 const tmpAssignRhsCompProp = $('c');
+const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
 const tmpCalleeParam = tmpBinBothLhs + a;
 $(tmpCalleeParam);

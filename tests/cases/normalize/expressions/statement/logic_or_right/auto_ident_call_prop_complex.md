@@ -44,14 +44,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
+  const b = { $: $ };
   const tmpCallObj = $(b);
   tmpCallObj.$(1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

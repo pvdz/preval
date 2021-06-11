@@ -86,8 +86,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 $(1);
+const b = { x: 1 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 const varInitAssignLhsComputedObj = $(b);

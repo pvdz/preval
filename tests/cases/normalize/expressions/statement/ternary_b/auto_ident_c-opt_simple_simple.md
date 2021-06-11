@@ -50,10 +50,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
+  const b = { x: 1 };
   const tmpIfTest$1 = b == null;
   if (tmpIfTest$1) {
   } else {
@@ -62,6 +61,7 @@ if (tmpIfTest) {
 } else {
   $(200);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

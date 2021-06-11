@@ -85,8 +85,8 @@ const f = function () {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       $('loop');
-      const tmpForInDeclRhs = { a: 1, b: 2 };
       let x = undefined;
+      const tmpForInDeclRhs = { a: 1, b: 2 };
       for (x in tmpForInDeclRhs) {
         $('loop', x);
         const tmpReturnArg = $(100, 'return');

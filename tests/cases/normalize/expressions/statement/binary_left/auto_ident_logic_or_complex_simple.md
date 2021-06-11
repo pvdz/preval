@@ -43,7 +43,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(0);
 let tmpBinBothLhs = $(tmpCalleeParam);
 if (tmpBinBothLhs) {
@@ -52,6 +51,7 @@ if (tmpBinBothLhs) {
 }
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

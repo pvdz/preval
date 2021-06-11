@@ -58,12 +58,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
 $(1);
+const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 new tmpNewCallee(1);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

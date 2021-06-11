@@ -49,8 +49,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(60);
+const a = { a: 999, b: 1000 };
 $(a);
 $(undefined);
 `````

@@ -53,12 +53,12 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 $(tmpArrElement, tmpArrElement$1);
+const a = { a: 999, b: 1000 };
 $(a, tmpArrElement, tmpArrElement$1);
 `````
 

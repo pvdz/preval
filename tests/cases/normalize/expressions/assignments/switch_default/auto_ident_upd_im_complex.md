@@ -63,8 +63,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 $(1);
+const b = { x: 1 };
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;

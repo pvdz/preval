@@ -46,8 +46,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = {};
 let tmpCalleeParam = undefined;
+const a = {};
 const tmpChainElementCall = $(a);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {

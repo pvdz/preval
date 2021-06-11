@@ -45,11 +45,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['before ', ' after'];
 const f = function () {
   debugger;
   return undefined;
 };
+const tmpCalleeParam = ['before ', ' after'];
 $(tmpCalleeParam, f);
 $(f);
 `````

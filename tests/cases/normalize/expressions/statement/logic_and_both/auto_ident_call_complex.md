@@ -41,7 +41,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCallCallee = $($);
 const tmpIfTest = tmpCallCallee(1);
 if (tmpIfTest) {
@@ -49,6 +48,7 @@ if (tmpIfTest) {
   tmpCallCallee$1(1);
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

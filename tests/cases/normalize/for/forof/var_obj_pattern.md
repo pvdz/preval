@@ -37,9 +37,9 @@ for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
 ## Output
 
 `````js filename=intro
-const tmpForOfPatDeclRhs = { a: 1, b: 2 };
 let tmpForOfPatDeclLhs = undefined;
 let x = undefined;
+const tmpForOfPatDeclRhs = { a: 1, b: 2 };
 for (tmpForOfPatDeclLhs of tmpForOfPatDeclRhs) {
   const arrPatternSplat = [...tmpForOfPatDeclLhs];
   x = arrPatternSplat[0];

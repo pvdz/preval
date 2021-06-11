@@ -48,9 +48,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 const tmpCalleeParam = $(100);
 $(tmpCalleeParam);
+const b = { c: 1 };
 $(1, b);
 `````
 

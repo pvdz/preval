@@ -37,8 +37,8 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 ## Output
 
 `````js filename=intro
-const a = {};
 const tmpClusterSSA_a = $();
+const a = {};
 a.foo = tmpClusterSSA_a;
 `````
 

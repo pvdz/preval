@@ -49,8 +49,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 let tmpCalleeParam = undefined;
+const b = { $: $ };
 const a = b.$(1);
 if (a) {
   tmpCalleeParam = $(100);

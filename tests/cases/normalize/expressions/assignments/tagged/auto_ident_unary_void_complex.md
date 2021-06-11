@@ -40,8 +40,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['before ', ' after'];
 $(100);
+const tmpCalleeParam = ['before ', ' after'];
 $(tmpCalleeParam, undefined);
 $(undefined);
 `````

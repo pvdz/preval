@@ -42,10 +42,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const b = $(2);
 const tmpBinBothRhs = $(100);
 b + tmpBinBothRhs;
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 

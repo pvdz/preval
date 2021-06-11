@@ -1562,7 +1562,7 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       return thisExpression();
     }
     case 'ArrayExpression': {
-      return arrayExpression(node.elements.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)));
+      return arrayExpression(node.elements.map((n) => n && deepCloneForFuncInlining(n, paramArgMapper, fail)));
     }
     case 'ObjectExpression': {
       return objectExpression(node.properties.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)));
@@ -1641,4 +1641,157 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       return identifier('undefined');
     }
   }
+}
+
+export function complexNodeMightSpy(node, fdata) {
+  ASSERT(node, 'expecitng node');
+  ASSERT(fdata, 'expecting fdata');
+  // aka, "a node is user observable when"
+
+  // Assume `node` is in a normalized state.
+
+  // A given node may represent an observable action if, aside from the thing the node explicitly
+  // does, it may also trigger function calls as a side effect. In any way. Like getters and setters.
+  // This means either the operation is safe, or any bindings used in the operation is a constant
+  // known to be of a primitive type, or perhaps known to be a plain array, or plain object without
+  // setters/getters.
+  // Another way that a node might spy is by its object reference. Object reference equality or
+  // property state can be inspected so we have to be careful about that.
+  // (We do ignore proxies here for the time being.)
+
+  switch (node.type) {
+    case 'CallExpression': {
+      // This may return false when the callee is Boolean, or when the callee is a built-in with
+      // primitive typed args.
+
+      if (node.callee.type === 'Identifier') {
+        if (node.callee.name === 'Boolean') {
+          if (node.arguments.length && node.arguments[0].type === 'SpreadElement') {
+            // Why would you do this...
+            return true;
+          }
+          // The arg must be normalized and the call is not observable so this can not be a spy
+          return false;
+        }
+
+        if (node.callee.name === 'Number') {
+          if (!node.arguments.length) {
+            return false;
+          }
+
+          if (node.arguments[0]?.type === 'Identifier') {
+            const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
+            return !(meta.isConstant && meta?.typing.mustBeType === 'number');
+          }
+
+          // :shrug:
+          return true;
+        }
+
+        if (node.callee.name === 'String') {
+          if (!node.arguments.length) {
+            return false;
+          }
+
+          if (node.arguments[0]?.type === 'Identifier') {
+            const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
+            return !(meta.isConstant && meta?.typing.mustBeType === 'string');
+          }
+
+          // :shrug:
+          return true;
+        }
+      }
+
+      break;
+    }
+    case 'FunctionExpression': {
+      // Creating functions is never observable on its own
+      return false;
+    }
+    case 'ClassExpression': {
+      // Creating classes is observable if the superClass is observable, or if any of the method keys
+      // are computed and observable.
+
+      if (node.superClass && complexNodeMightSpy(node.superClass, fdata)) return true;
+      if (node.body.body.some((pnode) => pnode.computed && simpleNodeMightSpy(pnode.key, fdata))) return true;
+      return false;
+    }
+    case 'ArrayExpression': {
+      // Creating an array is not observable unless there's a spread and a spread arg is observable
+      return node.elements.some((enode) => enode && enode.type === 'SpreadElement' && complexNodeMightSpy(enode.argument, fdata));
+    }
+    case 'ObjectExpression': {
+      // Creating an object is not observable unless there's a spread and a spread arg that is observable
+      return node.properties.some((pnode) => pnode.type === 'SpreadElement' && complexNodeMightSpy(pnode.argument, fdata));
+    }
+    case 'UnaryExpression': {
+      // The `!` and `typeof` operators can not be observed in normalized code.
+      // Other ops can not be observed if the arg is of a primitive type.
+      switch (node.operator) {
+        case 'typeof': {
+          ASSERT(!isComplexNode(node.argument));
+          return false;
+        }
+        case '!': {
+          ASSERT(!isComplexNode(node.argument));
+          return false;
+        }
+        case 'delete': {
+          // TODO: if we know the property already can not exist as an own value on this object, then we know the answer
+          // True because the operation may be observed indirectly, by checking the object.
+          // TODO: add a switch to allow this behavior because for certain purposes it is still fine.
+          return true;
+        }
+        case '+':
+        case '-':
+        case '~': {
+          if (node.argument.type === 'Identifier') {
+            return simpleNodeMightSpy(node.argument, fdata);
+          }
+          // A literal will be transformed elsewhere. In normalized state it won't be an object/array/etc. So, this is fine?
+          return true;
+        }
+        default: {
+          // TODO: stuff when we have enough information to guarantee the operation to unobservable
+          // ~+- on a primitive, delete on objects that don't have that property, etc
+        }
+      }
+      break;
+    }
+    case 'BinaryExpression': {
+      // TODO: stuff when we have enough information to guarantee the operation to unobservable
+      // Some operators are unobservable. Most require the operands to be unobservable.
+
+      if (['===', '!==', 'in', 'instanceof'].includes(node.operator)) return false;
+      return simpleNodeMightSpy(node.left, fdata) || simpleNodeMightSpy(node.right, fdata);
+    }
+    case 'Literal': {
+      return false;
+    }
+    case 'Identifier': {
+      return simpleNodeMightSpy(node, fdata);
+    }
+  }
+
+  return true;
+}
+function simpleNodeMightSpy(node, fdata) {
+  ASSERT(!isComplexNode(node));
+  if (node.type !== 'Identifier') {
+    return !isPrimitive(node);
+  }
+
+  const name = node.name;
+  // An identifier might spy if it might be an object that contains a getter, setter, or modified valueOf or toString.
+  // In this context, an identifier known to be of a primitive type can not spy.
+  // Answer the question whether this ident may call another function when it gets coerced to a certain type.
+
+  const meta = fdata.globallyUniqueNamingRegistry.get(name);
+  if (meta.isBuiltin) return name === 'undefined' || name === 'NaN' || name === 'Infinity'; // TODO: perhaps this is `true` in all cases?
+  if (!meta.isConstant) return true;
+  if (meta.isImplicitGlobal) return true;
+
+  // If this is a primitive then the user cannot observe this action
+  return !['undefined', 'null', 'boolean', 'number', 'string'].includes(meta.typing.mustBeType);
 }

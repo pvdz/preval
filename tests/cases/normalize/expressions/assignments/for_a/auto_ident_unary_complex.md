@@ -49,10 +49,10 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const a = typeof tmpUnaryArg;
 while (true) {
   $(1);
 }
+const a = typeof tmpUnaryArg;
 $(a, 1);
 `````
 

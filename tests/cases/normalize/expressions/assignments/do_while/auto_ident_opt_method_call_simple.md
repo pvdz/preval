@@ -72,9 +72,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { c: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
+const b = { c: $ };
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpDoWhileFlag) {

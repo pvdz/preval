@@ -62,10 +62,10 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
 $(100);
 $(1);
 const tmpAssignMemRhs = $(2);
+const a = { b: tmpObjLitVal };
 a.b = tmpAssignMemRhs;
 $(a);
 `````

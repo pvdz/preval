@@ -107,8 +107,8 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $('loop');
-    const tmpForInDeclRhs = { a: 1, b: 2 };
     let x = undefined;
+    const tmpForInDeclRhs = { a: 1, b: 2 };
     for (x in tmpForInDeclRhs) {
       $('loop', x);
       const tmpIfTest$1 = $(1, 'if');

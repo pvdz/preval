@@ -56,11 +56,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   let tmpNestedComplexRhs = undefined;
+  const b = { x: 1 };
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {

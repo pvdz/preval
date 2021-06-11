@@ -57,10 +57,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
+const arg = { y: 1 };
 const tmpClusterSSA_a = delete arg[tmpDeleteCompProp];
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, arg);

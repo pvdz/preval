@@ -46,8 +46,8 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const a = typeof tmpUnaryArg;
 const tmpBinBothRhs = $(100);
+const a = typeof tmpUnaryArg;
 const tmpCalleeParam = a + tmpBinBothRhs;
 $(tmpCalleeParam);
 $(a, 1);

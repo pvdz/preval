@@ -52,10 +52,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
+const arg = { y: 1 };
 if (tmpIfTest) {
   $(1);
   $(2);

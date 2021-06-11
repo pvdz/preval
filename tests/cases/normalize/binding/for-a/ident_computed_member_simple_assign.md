@@ -51,12 +51,12 @@ let a$1 = varInitAssignLhsComputedRhs;
 ## Output
 
 `````js filename=intro
-const b = { x: 2 };
 const varInitAssignLhsComputedProp = $('x');
 const varInitAssignLhsComputedObj$1 = $(3);
 const varInitAssignLhsComputedProp$1 = $('y');
 const varInitAssignLhsComputedRhs$1 = $(4);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+const b = { x: 2 };
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
 `````
 

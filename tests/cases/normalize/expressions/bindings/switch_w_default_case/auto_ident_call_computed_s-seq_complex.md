@@ -92,8 +92,8 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_b = { $: $ };
 const tmpCallCompProp = $('$');
+const tmpClusterSSA_b = { $: $ };
 const tmpClusterSSA_a = tmpClusterSSA_b[tmpCallCompProp](1);
 $(tmpClusterSSA_a);
 $('fail1');

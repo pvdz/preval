@@ -61,8 +61,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpForOfDeclRhs = [10, 20];
   let x = undefined;
+  const tmpForOfDeclRhs = [10, 20];
   for (x of tmpForOfDeclRhs) {
     const tmpReturnArg = $(1, 'return');
     return tmpReturnArg;

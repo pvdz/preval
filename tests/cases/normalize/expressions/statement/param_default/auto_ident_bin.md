@@ -58,11 +58,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 tmpBinBothLhs + tmpBinBothRhs;
 $(undefined);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

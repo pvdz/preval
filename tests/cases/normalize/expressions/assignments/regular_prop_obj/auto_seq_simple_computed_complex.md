@@ -51,12 +51,12 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
 const tmpObjectPrototype = Object.prototype;
 tmpObjectPrototype.a;
 $(1);
 const tmpAssignComMemLhsProp = $('b');
 const tmpAssignComputedRhs = $(2);
+const a = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````

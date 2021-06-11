@@ -49,7 +49,6 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
@@ -60,6 +59,7 @@ if (tmpIfTest) {
   tmpCalleeParam = 1;
 }
 $(tmpCalleeParam);
+const b = { c: 1 };
 $(a, b);
 `````
 

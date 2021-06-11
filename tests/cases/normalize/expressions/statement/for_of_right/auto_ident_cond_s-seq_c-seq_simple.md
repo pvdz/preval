@@ -46,11 +46,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpForOfDeclRhs = $(60);
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

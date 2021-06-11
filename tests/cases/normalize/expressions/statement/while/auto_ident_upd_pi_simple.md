@@ -48,7 +48,6 @@ $(a, b);
 
 `````js filename=intro
 let b = 1;
-const a = { a: 999, b: 1000 };
 while (true) {
   b = b + 1;
   if (b) {
@@ -57,6 +56,7 @@ while (true) {
     break;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 

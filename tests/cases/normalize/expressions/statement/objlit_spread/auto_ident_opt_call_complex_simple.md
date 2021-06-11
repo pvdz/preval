@@ -44,7 +44,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpObjSpreadArg = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
@@ -54,6 +53,7 @@ if (tmpIfTest) {
   tmpObjSpreadArg = tmpChainElementCall$1;
 }
 ({ ...tmpObjSpreadArg });
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

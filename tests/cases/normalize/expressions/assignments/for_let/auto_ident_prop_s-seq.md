@@ -51,11 +51,11 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 while (true) {
   $(1);
   $(1);
 }
+const b = { c: 1 };
 $(1, b);
 `````
 

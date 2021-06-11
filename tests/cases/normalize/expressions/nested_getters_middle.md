@@ -142,6 +142,8 @@ f();
 
 `````js filename=intro
 $('-------- start');
+$('-------- bound');
+$('-------- let 1');
 const b = {
   get foo() {
     debugger;
@@ -154,8 +156,6 @@ const b = {
     return tmpReturnArg$1;
   },
 };
-$('-------- bound');
-$('-------- let 1');
 b.foo = 5;
 $(5);
 $('-------- test case');

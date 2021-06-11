@@ -50,9 +50,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 let tmpCalleeParam = undefined;
 const tmpAssignRhsCompProp = $('c');
+const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
 if (a) {
   tmpCalleeParam = $(100);

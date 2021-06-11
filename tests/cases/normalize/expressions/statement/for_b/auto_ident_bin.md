@@ -48,7 +48,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 while (true) {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
@@ -59,6 +58,7 @@ while (true) {
     break;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

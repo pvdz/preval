@@ -57,13 +57,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(1);
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
 } else {
   $(1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

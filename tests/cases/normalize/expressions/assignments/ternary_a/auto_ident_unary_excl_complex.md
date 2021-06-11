@@ -47,13 +47,13 @@ $(a);
 `````js filename=intro
 let tmpCalleeParam = undefined;
 const tmpUnaryArg = $(100);
-const a = !tmpUnaryArg;
 if (tmpUnaryArg) {
   tmpCalleeParam = $(200);
 } else {
   tmpCalleeParam = $(100);
 }
 $(tmpCalleeParam);
+const a = !tmpUnaryArg;
 $(a);
 `````
 

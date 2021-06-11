@@ -46,10 +46,10 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let x = undefined;
 for (x of 2) {
 }
+const a = { a: 999, b: 1000 };
 $(a, 2, 2);
 `````
 

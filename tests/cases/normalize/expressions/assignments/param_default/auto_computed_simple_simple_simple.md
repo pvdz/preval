@@ -63,8 +63,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpNestedComplexRhs = { b: tmpObjLitVal };
 $(undefined);
+const tmpNestedComplexRhs = { b: tmpObjLitVal };
 tmpNestedComplexRhs.b = 2;
 $(tmpNestedComplexRhs);
 `````

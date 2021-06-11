@@ -61,9 +61,7 @@ function _singleScopeTdz(fdata) {
       return;
     }
 
-    let allInSameScope = rwOrder.every((ref, i) => {
-      return ref.scope === declScope;
-    });
+    let allInSameScope = meta.singleScoped;
     vlog('allInSameScope:', allInSameScope);
     if (!allInSameScope) return;
 

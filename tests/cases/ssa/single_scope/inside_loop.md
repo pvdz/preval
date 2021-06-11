@@ -57,8 +57,8 @@ for (styleName$5 in tmpForInDeclRhs) {
 ## Output
 
 `````js filename=intro
-const tmpForInDeclRhs = { x: 100 };
 let styleName$5 = undefined;
+const tmpForInDeclRhs = { x: 100 };
 for (styleName$5 in tmpForInDeclRhs) {
   const checkme = $(1);
   if (checkme) {

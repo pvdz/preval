@@ -45,12 +45,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const xyz = /foo/;
 while (true) {
+  const xyz = /foo/;
   $(xyz);
   $(1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

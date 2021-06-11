@@ -46,7 +46,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpForInDeclRhs = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
@@ -58,6 +57,7 @@ if (tmpIfTest) {
 let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

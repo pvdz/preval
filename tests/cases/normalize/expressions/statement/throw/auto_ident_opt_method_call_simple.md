@@ -47,8 +47,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const b = { c: $ };
 let tmpThrowArg = undefined;
+const b = { c: $ };
 const tmpIfTest = b == null;
 if (tmpIfTest) {
 } else {

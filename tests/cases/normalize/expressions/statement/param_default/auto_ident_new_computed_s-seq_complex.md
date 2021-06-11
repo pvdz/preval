@@ -63,12 +63,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpCompProp = $('$');
+const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 new tmpNewCallee(1);
 $(undefined);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

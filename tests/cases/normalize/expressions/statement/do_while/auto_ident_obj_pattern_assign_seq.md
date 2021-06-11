@@ -74,7 +74,6 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
-const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (true) {
   let tmpIfTest = tmpDoWhileFlag;
@@ -84,9 +83,9 @@ while (true) {
     $(y);
     const tmpObjLitVal = $(3);
     const tmpObjLitVal$1 = $(4);
-    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
     x = tmpObjLitVal;
     y = tmpObjLitVal$1;
+    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
     tmpIfTest = tmpNestedAssignObjPatternRhs;
   }
   if (tmpIfTest) {
@@ -96,6 +95,7 @@ while (true) {
     break;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, x, y);
 `````
 

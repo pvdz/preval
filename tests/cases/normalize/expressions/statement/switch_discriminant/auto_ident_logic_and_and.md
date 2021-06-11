@@ -66,7 +66,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpSwitchValue = $(tmpCalleeParam);
 if (tmpSwitchValue) {
@@ -80,6 +79,7 @@ if (tmpSwitchValue) {
 } else {
 }
 $(100);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

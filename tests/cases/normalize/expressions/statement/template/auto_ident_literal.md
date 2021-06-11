@@ -37,8 +37,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $('before  foo  after');
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

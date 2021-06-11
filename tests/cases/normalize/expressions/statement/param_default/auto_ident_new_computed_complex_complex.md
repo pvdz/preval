@@ -64,12 +64,12 @@ $(a);
 
 `````js filename=intro
 const b = { $: $ };
-const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 new tmpNewCallee(1);
 $(undefined);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

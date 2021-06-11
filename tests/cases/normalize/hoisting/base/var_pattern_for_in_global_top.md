@@ -46,8 +46,8 @@ $(x);
 `````js filename=intro
 let x = undefined;
 $(undefined);
-const tmpForInRhs = { y: 100 };
 let tmpForInLhsNode = undefined;
+const tmpForInRhs = { y: 100 };
 for (tmpForInLhsNode in tmpForInRhs) {
   const arrPatternSplat = [...tmpForInLhsNode];
   x = arrPatternSplat[0];

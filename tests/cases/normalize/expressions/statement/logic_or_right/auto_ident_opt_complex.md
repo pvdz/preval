@@ -49,11 +49,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
+  const b = { x: 1 };
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
@@ -61,6 +60,7 @@ if (tmpIfTest) {
     tmpChainElementCall.x;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

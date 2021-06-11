@@ -50,7 +50,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const f = function () {
   debugger;
   return undefined;
@@ -60,6 +59,7 @@ const f$1 = function () {
   return undefined;
 };
 f + f$1;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

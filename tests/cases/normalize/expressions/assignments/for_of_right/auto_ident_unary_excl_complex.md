@@ -41,8 +41,8 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const a = !tmpUnaryArg;
 let x = undefined;
+const a = !tmpUnaryArg;
 for (x of a) {
 }
 $(a);

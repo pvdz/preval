@@ -44,7 +44,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let tmpArrElToSpread = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
@@ -54,6 +53,7 @@ if (tmpIfTest) {
   tmpArrElToSpread = $(tmpCalleeParam);
 }
 [...tmpArrElToSpread];
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

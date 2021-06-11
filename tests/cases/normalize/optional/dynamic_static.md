@@ -40,8 +40,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const obj = { foo: 10 };
 let tmpCalleeParam = undefined;
+const obj = { foo: 10 };
 const tmpIfTest = obj == null;
 if (tmpIfTest) {
 } else {

@@ -39,8 +39,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = {};
 let x = undefined;
+const a = {};
 for (x in a) {
 }
 $(a);

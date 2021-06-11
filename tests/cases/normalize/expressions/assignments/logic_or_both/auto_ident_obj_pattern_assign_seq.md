@@ -73,9 +73,9 @@ $(1);
 $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 let tmpClusterSSA_x = tmpObjLitVal;
 let tmpClusterSSA_y = tmpObjLitVal$1;
+const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
 let tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
@@ -84,9 +84,9 @@ if (tmpClusterSSA_a) {
   $(tmpClusterSSA_y);
   const tmpObjLitVal$3 = $(3);
   const tmpObjLitVal$5 = $(4);
-  const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
   tmpClusterSSA_x = tmpObjLitVal$3;
   tmpClusterSSA_y = tmpObjLitVal$5;
+  const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
   tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
   tmpCalleeParam = tmpNestedAssignObjPatternRhs$1;
 }

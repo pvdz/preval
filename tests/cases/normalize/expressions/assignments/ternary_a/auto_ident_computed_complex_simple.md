@@ -49,8 +49,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 let tmpCalleeParam = undefined;
+const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
 const tmpClusterSSA_a = tmpAssignRhsProp.c;
 if (tmpClusterSSA_a) {

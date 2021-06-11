@@ -47,12 +47,12 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   b = 2;
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, b, 2);
 `````
 

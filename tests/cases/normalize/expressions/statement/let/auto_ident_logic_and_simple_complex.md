@@ -44,10 +44,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const xyz = $(tmpCalleeParam);
 $(xyz);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

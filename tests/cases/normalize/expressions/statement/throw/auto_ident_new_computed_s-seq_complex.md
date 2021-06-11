@@ -42,8 +42,8 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const tmpCompProp = $('$');
+const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 const tmpThrowArg = new tmpNewCallee(1);
 throw tmpThrowArg;

@@ -47,9 +47,9 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const obj = {};
 $(1);
 $(2);
+const obj = {};
 obj[1];
 $(1, 1);
 `````

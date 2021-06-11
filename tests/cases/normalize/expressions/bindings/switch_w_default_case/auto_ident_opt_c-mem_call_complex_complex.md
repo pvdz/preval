@@ -108,8 +108,8 @@ if (tmpIfTest$11) {
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_b = { $: $ };
 let tmpClusterSSA_a = undefined;
+const tmpClusterSSA_b = { $: $ };
 const tmpChainElementCall = $(tmpClusterSSA_b);
 const tmpIfTest$5 = tmpChainElementCall == null;
 if (tmpIfTest$5) {

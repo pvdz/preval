@@ -44,12 +44,12 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 let b = $(2);
 if (b) {
 } else {
   b = $(2);
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 

@@ -61,15 +61,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 $(1);
+const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
 } else {
   tmpChainRootProp.x;
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

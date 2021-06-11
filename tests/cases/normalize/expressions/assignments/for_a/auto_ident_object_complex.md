@@ -48,10 +48,10 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 while (true) {
   $(1);
 }
+const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 $(a);
 `````
 

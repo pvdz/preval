@@ -66,9 +66,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 $(1);
 $(2);
+const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $('y');
 const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];

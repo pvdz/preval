@@ -38,10 +38,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCallCallee$1 = $($);
 const tmpCalleeParam = tmpCallCallee$1(1);
 $(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

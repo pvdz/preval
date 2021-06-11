@@ -58,7 +58,6 @@ $(a, b);
 
 `````js filename=intro
 let b = [];
-const a = { a: 999, b: 1000 };
 while (true) {
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];
@@ -71,6 +70,7 @@ while (true) {
     break;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 

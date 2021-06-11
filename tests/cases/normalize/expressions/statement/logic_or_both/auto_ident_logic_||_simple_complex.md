@@ -51,7 +51,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(1);
 const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
 if (tmpClusterSSA_tmpIfTest) {
@@ -59,6 +58,7 @@ if (tmpClusterSSA_tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
   $(tmpCalleeParam$1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

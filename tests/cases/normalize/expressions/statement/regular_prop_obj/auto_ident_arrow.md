@@ -44,12 +44,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCompObj = function () {
   debugger;
   return undefined;
 };
 tmpCompObj.a;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

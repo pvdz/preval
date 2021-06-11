@@ -45,13 +45,13 @@ $(a, b);
 
 `````js filename=intro
 let b = 1;
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   b = 2;
 } else {
   $(200);
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 

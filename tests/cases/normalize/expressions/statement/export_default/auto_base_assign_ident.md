@@ -42,10 +42,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const b = $(2);
 const tmpAnonDefaultExport = b;
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 

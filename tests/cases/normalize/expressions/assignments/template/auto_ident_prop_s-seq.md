@@ -44,8 +44,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
 $('before  1  after');
+const b = { c: 1 };
 $(1, b);
 `````
 

@@ -52,9 +52,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
+const b = { c: 10, d: 20 };
 if (tmpCalleeParam) {
 } else {
   const tmpCompObj = $(b);

@@ -44,8 +44,8 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
 const tmpBinBothLhs = $(100);
+const arg = { y: 1 };
 const a = delete arg.y;
 const tmpCalleeParam = tmpBinBothLhs + a;
 $(tmpCalleeParam);

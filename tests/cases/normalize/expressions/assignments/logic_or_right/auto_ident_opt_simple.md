@@ -54,12 +54,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
   let tmpNestedComplexRhs = undefined;
+  const b = { x: 1 };
   const tmpIfTest = b == null;
   if (tmpIfTest) {
   } else {

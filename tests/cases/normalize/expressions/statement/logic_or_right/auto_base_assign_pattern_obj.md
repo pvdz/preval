@@ -48,7 +48,6 @@ $(a, b);
 
 `````js filename=intro
 let b = {};
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
@@ -57,6 +56,7 @@ if (tmpIfTest) {
   const tmpAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpAssignObjPatternRhs.b;
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 

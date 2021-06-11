@@ -42,9 +42,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const obj = {};
 const tmpNewCallee = $($);
 const a = new tmpNewCallee(1);
+const obj = {};
 obj[a];
 $(a);
 `````

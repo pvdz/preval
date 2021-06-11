@@ -39,9 +39,9 @@ $(a);
 ## Output
 
 `````js filename=intro
+new $(1);
+new $(1);
 const a = { a: 999, b: 1000 };
-new $(1);
-new $(1);
 $(a);
 `````
 

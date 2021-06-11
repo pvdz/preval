@@ -52,8 +52,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
 let x = undefined;
+const a = { b: tmpObjLitVal };
 for (x of a) {
 }
 $(1);

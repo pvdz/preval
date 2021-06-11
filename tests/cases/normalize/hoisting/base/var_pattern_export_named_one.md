@@ -42,8 +42,8 @@ export { x };
 
 `````js filename=intro
 $(undefined);
-const x = 10;
 $(10);
+const x = 10;
 export { x };
 `````
 

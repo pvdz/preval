@@ -61,8 +61,8 @@ $('after');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpForInDeclRhs = { a: 1, b: 2 };
     let x = undefined;
+    const tmpForInDeclRhs = { a: 1, b: 2 };
     for (x in tmpForInDeclRhs) {
       break;
     }

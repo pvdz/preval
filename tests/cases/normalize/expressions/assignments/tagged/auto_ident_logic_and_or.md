@@ -53,7 +53,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['before ', ' after'];
 const tmpCalleeParam$3 = $(1);
 let a = $(tmpCalleeParam$3);
 if (a) {
@@ -66,6 +65,7 @@ if (a) {
   const tmpCalleeParam$7 = $(2);
   a = $(tmpCalleeParam$7);
 }
+const tmpCalleeParam = ['before ', ' after'];
 $(tmpCalleeParam, a);
 $(a);
 `````

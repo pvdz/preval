@@ -374,6 +374,9 @@ export function registerGlobalIdent(
     isBuiltin, // Make a distinction between known builtins and unknown builtins.
     bfuncNode: undefined, // Function scope where this binding was bound. Undefined for builtins/implicits. Should be set for anything else (which is only var decls after normalization).
     rwOrder: undefined, // Array<read|write>. Sorted in DFS order ASC, once at the start of phase2
+    singleScoped: undefined, // bool. Is there any reference inside a different scope from another ref? Set at the start of phase2.
+    //singleScopeWrites: undefined, // bool. Are all writes to this binding happening in the same scope? Set at the start of phase2. (Always true for constants)
+    //singleScopeReads: undefined, // bool. Are all reads of this binding happening in the same scope? Set at the start of phase2.
     tainted: false, // For single rules, mark an identifier dirty, consider its caches potentially busted, requiring another phase1 first.
     // Track all cases where a binding value itself is initialized/mutated (not a property or internal state of its value)
     // Useful recent thread on binding mutations: https://twitter.com/youyuxi/status/1329221913579827200

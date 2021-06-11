@@ -40,13 +40,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const tmpForInDeclRhs = tmpBinBothLhs + tmpBinBothRhs;
 let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

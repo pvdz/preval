@@ -45,8 +45,8 @@ $(a, arg);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const a = typeof tmpUnaryArg;
 let x = undefined;
+const a = typeof tmpUnaryArg;
 for (x of a) {
 }
 $(a, 1);

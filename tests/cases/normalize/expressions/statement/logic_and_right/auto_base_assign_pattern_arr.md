@@ -49,7 +49,6 @@ $(a, b);
 
 `````js filename=intro
 let b = [];
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpArrElement = $(2);
@@ -59,6 +58,7 @@ if (tmpIfTest) {
   b = arrPatternSplat[0];
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 

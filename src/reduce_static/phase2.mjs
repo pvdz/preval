@@ -37,6 +37,7 @@ import { findThrowers } from './phase2throwers.mjs';
 import { ifReturnBit } from './phase2if_return_bit.mjs';
 import { returnsParam } from './phase2return_param.mjs';
 import { ifTestBool } from './phase2if_test_bool.mjs';
+import { spylessVars } from './phase2spyless_vars.mjs';
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
 // Things to do
@@ -71,6 +72,30 @@ function _phase2(program, fdata, resolve, req) {
       +a < +b ? -1 : +a > +b ? 1 : 0,
     );
     meta.rwOrder = rwOrder;
+
+    // We can also settle this in phase1...
+    let lastScope = undefined;
+    //let lastScopeRead = undefined;
+    //let lastScopeWrite = undefined;
+    meta.singleScoped = true;
+    //meta.singleScopeReads = true;
+    //meta.singleScopeWrites = true;
+    rwOrder.some((ref) => {
+      if (lastScope === undefined) lastScope = ref.scope;
+      else if (lastScope !== ref.scope) meta.singleScoped = false;
+
+      //if (ref.type === 'read') {
+      //  if (lastScopeRead === undefined) lastScopeRead = ref.scope;
+      //  else if (lastScopeRead !== ref.scope) meta.singleScopeReads = false;
+      //}
+      //if (ref.type === 'write') {
+      //  if (lastScopeWrite === undefined) lastScopeWrite = ref.scope;
+      //  else if (lastScopeWrite !== ref.scope) meta.singleScopeWrites = false;
+      //}
+      //return +meta.singleScopeReads + +meta.singleScopeWrites === 0;
+
+      return !meta.singleScoped;
+    });
   });
 
   const throwers = findThrowers(fdata);
@@ -186,6 +211,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const returnedParams = returnsParam(fdata);
   if (returnedParams) return returnedParams;
+
+  const varsMoved = spylessVars(fdata);
+  if (varsMoved) return varsMoved;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

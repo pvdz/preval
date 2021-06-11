@@ -43,7 +43,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpForInDeclRhs = function () {
   debugger;
   return undefined;
@@ -51,6 +50,7 @@ const tmpForInDeclRhs = function () {
 let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

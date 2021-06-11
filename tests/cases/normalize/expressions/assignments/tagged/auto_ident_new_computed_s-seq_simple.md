@@ -45,8 +45,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['before ', ' after'];
 const tmpClusterSSA_a = new $(1);
+const tmpCalleeParam = ['before ', ' after'];
 $(tmpCalleeParam, tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

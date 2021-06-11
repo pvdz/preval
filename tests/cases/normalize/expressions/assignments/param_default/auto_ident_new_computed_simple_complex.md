@@ -65,8 +65,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const tmpCompProp = $('$');
+const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 const tmpNestedComplexRhs = new tmpNewCallee(1);
 $(undefined);

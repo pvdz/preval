@@ -53,8 +53,8 @@ $(b);
 ## Output
 
 `````js filename=intro
-const b = { x: 5 };
 let t = true;
+const b = { x: 5 };
 while (t) {
   const tmpBinLhs = b.x;
   const varInitAssignLhsComputedRhs = tmpBinLhs - 1;

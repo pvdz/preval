@@ -35,8 +35,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpNestedAssignObjPatternRhs = { x: 1 };
 x = 1;
+const tmpNestedAssignObjPatternRhs = { x: 1 };
 $(tmpNestedAssignObjPatternRhs);
 `````
 

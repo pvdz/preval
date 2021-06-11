@@ -52,9 +52,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { c: $ };
 const tmpBinBothLhs = $(100);
 let a = undefined;
+const b = { c: $ };
 const tmpIfTest = b == null;
 if (tmpIfTest) {
 } else {

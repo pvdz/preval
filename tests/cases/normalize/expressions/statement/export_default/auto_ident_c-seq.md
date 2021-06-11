@@ -43,11 +43,11 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpAnonDefaultExport = $(1);
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

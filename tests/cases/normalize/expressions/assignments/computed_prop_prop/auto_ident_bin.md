@@ -43,10 +43,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const obj = {};
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const a = tmpBinBothLhs + tmpBinBothRhs;
+const obj = {};
 obj[a];
 $(a);
 `````

@@ -57,8 +57,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 $(1);
+const b = { $: $ };
 const tmpCallObj = $(b);
 const tmpClusterSSA_a = tmpCallObj.$(1);
 $(tmpClusterSSA_a);

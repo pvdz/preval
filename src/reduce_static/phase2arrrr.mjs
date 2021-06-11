@@ -91,7 +91,7 @@ function processAttempt(fdata) {
         return;
       }
 
-      vgroup(
+      vlog(
         '- read',
         i,
         ':',

@@ -25,7 +25,7 @@ $(a, b, c);
 let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
-$(`before  ${(b.x = b.x = b.x = b.x = b.x = b.x = c)}  after`);
+$('before  ' + (b.x = b.x = b.x = b.x = b.x = b.x = c) + '  after');
 $(a, b, c);
 `````
 
@@ -36,6 +36,7 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
+const tmpBinBothLhs = 'before  ';
 const varInitAssignLhsComputedRhs$9 = c;
 b.x = varInitAssignLhsComputedRhs$9;
 const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$9;
@@ -48,8 +49,9 @@ const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
 b.x = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 b.x = varInitAssignLhsComputedRhs;
-const tmpTemplateExpr = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinBothRhs = varInitAssignLhsComputedRhs;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c);
 `````

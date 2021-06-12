@@ -25,7 +25,7 @@ $(a, b, c);
 let b = 1,
   c = 2;
 let a = { a: 999, b: 1000 };
-$`before ${(a = b = 2)} after`;
+$(['before ', ' after'], (a = b = 2));
 $(a, b, c);
 `````
 

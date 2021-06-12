@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(`before  ${$?.(1)}  after`);
+$('before  ' + $?.(1) + '  after');
 $(a);
 `````
 
@@ -29,15 +29,17 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpTemplateExpr = undefined;
+const tmpBinBothLhs = 'before  ';
+let tmpBinBothRhs = undefined;
 const tmpChainRootCall = $;
 const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
-  tmpTemplateExpr = tmpChainElementCall;
+  tmpBinBothRhs = tmpChainElementCall;
 } else {
 }
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -46,14 +48,15 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpTemplateExpr = undefined;
+let tmpBinBothRhs = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
-  tmpTemplateExpr = tmpChainElementCall;
+  tmpBinBothRhs = tmpChainElementCall;
 }
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinLhs = 'before  ' + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
 $(a);
 `````

@@ -17,13 +17,14 @@
 ## Pre Normal
 
 `````js filename=intro
-`${'why'}`;
+'' + 'why' + '';
 `````
 
 ## Normalized
 
 `````js filename=intro
-
+const tmpBinLhs = 'why';
+tmpBinLhs + '';
 `````
 
 ## Output

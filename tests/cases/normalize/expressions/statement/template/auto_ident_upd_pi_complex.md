@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-$(`before  ${++$($(b)).x}  after`);
+$('before  ' + ++$($(b)).x + '  after');
 $(a, b);
 `````
 
@@ -33,14 +33,16 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
+const tmpBinBothLhs = 'before  ';
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(b);
 const varInitAssignLhsComputedObj = tmpCallCallee$1(tmpCalleeParam$1);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+const tmpBinLhs$1 = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs$1 + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpTemplateExpr = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinBothRhs = varInitAssignLhsComputedRhs;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
 `````
@@ -52,10 +54,11 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam$1);
-const tmpBinLhs = varInitAssignLhsComputedObj.x;
-const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
+const tmpBinLhs$1 = varInitAssignLhsComputedObj.x;
+const varInitAssignLhsComputedRhs = tmpBinLhs$1 + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = `before  ${varInitAssignLhsComputedRhs}  after`;
+const tmpBinLhs = 'before  ' + varInitAssignLhsComputedRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
 $(a, b);
 `````

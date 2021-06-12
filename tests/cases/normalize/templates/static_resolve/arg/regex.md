@@ -17,24 +17,26 @@ $(`${/foo/g}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`${/foo/g}`);
+$('' + /foo/g + '');
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpTemplateExpr = /foo/g;
-const tmpCalleeParam = `${tmpTemplateExpr}`;
+const tmpBinBothLhs = '';
+const tmpBinBothRhs = /foo/g;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '';
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpTemplateExpr = /foo/g;
-const tmpCalleeParam = `${tmpTemplateExpr}`;
-$(tmpCalleeParam);
+const tmpBinBothRhs = /foo/g;
+const tmpBinLhs = '' + tmpBinBothRhs;
+$(tmpBinLhs);
 `````
 
 ## Globals

@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { c: { d: { e: $ } } };
 let a = { a: 999, b: 1000 };
-$`before ${(a = b?.c.d.e?.(1))} after`;
+$(['before ', ' after'], (a = b?.c.d.e?.(1)));
 $(a);
 `````
 

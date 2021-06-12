@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
-$`before ${({ a: a } = $({ a: 1, b: 2 }))} after`;
+$(['before ', ' after'], ({ a: a } = $({ a: 1, b: 2 })));
 $(a);
 `````
 

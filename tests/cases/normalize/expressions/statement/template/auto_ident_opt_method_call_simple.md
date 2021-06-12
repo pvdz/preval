@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
-$(`before  ${b?.c(1)}  after`);
+$('before  ' + b?.c(1) + '  after');
 $(a);
 `````
 
@@ -33,16 +33,18 @@ $(a);
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpTemplateExpr = undefined;
+const tmpBinBothLhs = 'before  ';
+let tmpBinBothRhs = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.c;
   const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
-  tmpTemplateExpr = tmpChainElementCall;
+  tmpBinBothRhs = tmpChainElementCall;
 } else {
 }
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -52,15 +54,16 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-let tmpTemplateExpr = undefined;
+let tmpBinBothRhs = undefined;
 const tmpIfTest = b == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpTemplateExpr = tmpChainElementCall;
+  tmpBinBothRhs = tmpChainElementCall;
 }
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinLhs = 'before  ' + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
 $(a);
 `````

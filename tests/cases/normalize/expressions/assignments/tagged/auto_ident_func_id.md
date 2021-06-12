@@ -20,9 +20,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$`before ${(a = function f() {
-  debugger;
-})} after`;
+$(
+  ['before ', ' after'],
+  (a = function f() {
+    debugger;
+  }),
+);
 $(a);
 `````
 

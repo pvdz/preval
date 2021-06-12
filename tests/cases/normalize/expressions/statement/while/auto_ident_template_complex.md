@@ -18,24 +18,26 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let a = `foo${$(1)}`;
+let a = 'foo' + $(1) + '';
 $(a);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpTemplateExpr = $(1);
-let a = `foo${tmpTemplateExpr}`;
+const tmpBinBothLhs = 'foo';
+const tmpBinBothRhs = $(1);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+let a = tmpBinLhs + '';
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpTemplateExpr = $(1);
-const a = `foo${tmpTemplateExpr}`;
-$(a);
+const tmpBinBothRhs = $(1);
+const tmpBinLhs = 'foo' + tmpBinBothRhs;
+$(tmpBinLhs);
 `````
 
 ## Globals

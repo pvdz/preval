@@ -18,7 +18,7 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let a = $`fo${1}o`;
+let a = $(['fo', 'o'], 1);
 $(a);
 `````
 

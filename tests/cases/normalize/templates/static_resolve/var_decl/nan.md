@@ -18,14 +18,15 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = `${NaN}`;
+let x = '' + NaN + '';
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 'NaN';
+const tmpBinLhs = 'NaN';
+let x = tmpBinLhs + '';
 $(x);
 `````
 

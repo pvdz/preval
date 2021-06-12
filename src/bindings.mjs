@@ -1069,6 +1069,7 @@ export function inferInitialType(meta, init) {
     meta.typing.valueSet = false;
   } else if (init.type === 'TaggedTemplateExpression') {
     // TODO (this is not a string but a call)
+    ASSERT(false, 'should be eliminated during normalization');
   } else if (init.type === 'TemplateLiteral') {
     // Note: this must be a template with multiple parts so hard to be more specific
     meta.typing.mustBeType = 'string';

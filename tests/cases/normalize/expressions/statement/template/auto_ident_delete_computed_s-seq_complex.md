@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-$(`before  ${delete ($(1), $(2), arg)[$('y')]}  after`);
+$('before  ' + delete ($(1), $(2), arg)[$('y')] + '  after');
 $(a, arg);
 `````
 
@@ -33,12 +33,14 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
+const tmpBinBothLhs = 'before  ';
 $(1);
 $(2);
 const tmpDeleteCompObj = arg;
 const tmpDeleteCompProp = $('y');
-const tmpTemplateExpr = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinBothRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a, arg);
 `````
@@ -51,8 +53,9 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteCompProp = $('y');
-const tmpTemplateExpr = delete arg[tmpDeleteCompProp];
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinBothRhs = delete arg[tmpDeleteCompProp];
+const tmpBinLhs = 'before  ' + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
 $(a, arg);
 `````

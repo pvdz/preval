@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-$`before ${delete arg[$('y')]} after`;
+$(['before ', ' after'], delete arg[$('y')]);
 $(a, arg);
 `````
 

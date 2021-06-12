@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let [a] = { a: 999, b: 1000 };
-$(`before  ${([a] = ($(10), $(20), $([1, 2])))}  after`);
+$('before  ' + ([a] = ($(10), $(20), $([1, 2]))) + '  after');
 $(a);
 `````
 
@@ -31,7 +31,8 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpCallCallee = $;
-let tmpTemplateExpr = undefined;
+const tmpBinBothLhs = 'before  ';
+let tmpBinBothRhs = undefined;
 $(10);
 $(20);
 const tmpCallCallee$1 = $;
@@ -39,8 +40,9 @@ const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-tmpTemplateExpr = tmpNestedAssignArrPatternRhs;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+tmpBinBothRhs = tmpNestedAssignArrPatternRhs;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -57,7 +59,8 @@ const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a = arrPatternSplat$1[0];
-const tmpCalleeParam = `before  ${tmpNestedAssignArrPatternRhs}  after`;
+const tmpBinLhs = 'before  ' + tmpNestedAssignArrPatternRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

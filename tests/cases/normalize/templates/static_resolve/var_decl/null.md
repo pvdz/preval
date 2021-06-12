@@ -18,14 +18,15 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = `${null}`;
+let x = '' + null + '';
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 'null';
+const tmpBinLhs = 'null';
+let x = tmpBinLhs + '';
 $(x);
 `````
 

@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = `${true}`;
+x = '' + true + '';
 $(x);
 `````
 
@@ -28,7 +28,8 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = 'true';
+const tmpBinLhs = 'true';
+x = tmpBinLhs + '';
 $(x);
 `````
 

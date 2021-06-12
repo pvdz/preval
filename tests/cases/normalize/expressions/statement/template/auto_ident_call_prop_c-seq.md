@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$(`before  ${(1, 2, $(b)).$(1)}  after`);
+$('before  ' + (1, 2, $(b)).$(1) + '  after');
 $(a);
 `````
 
@@ -33,9 +33,11 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
+const tmpBinBothLhs = 'before  ';
 const tmpCallObj = $(b);
-const tmpTemplateExpr = tmpCallObj.$(1);
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinBothRhs = tmpCallObj.$(1);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -46,8 +48,9 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
-const tmpTemplateExpr = tmpCallObj.$(1);
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinBothRhs = tmpCallObj.$(1);
+const tmpBinLhs = 'before  ' + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
 $(a);
 `````

@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-$(`before  ${(a = ++$($(b)).x)}  after`);
+$('before  ' + (a = ++$($(b)).x) + '  after');
 $(a, b);
 `````
 
@@ -33,15 +33,17 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
+const tmpBinBothLhs = 'before  ';
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = $(b);
 const tmpNestedAssignObj = tmpCallCallee$1(tmpCalleeParam$1);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+const tmpBinLhs$1 = tmpNestedAssignObj.x;
+const tmpNestedPropCompoundComplexRhs = tmpBinLhs$1 + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 a = tmpNestedPropCompoundComplexRhs;
-let tmpTemplateExpr = a;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+let tmpBinBothRhs = a;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
 `````
@@ -52,10 +54,11 @@ $(a, b);
 const b = { x: 1 };
 const tmpCalleeParam$1 = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam$1);
-const tmpBinLhs = tmpNestedAssignObj.x;
-const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+const tmpBinLhs$1 = tmpNestedAssignObj.x;
+const tmpNestedPropCompoundComplexRhs = tmpBinLhs$1 + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpCalleeParam = `before  ${tmpNestedPropCompoundComplexRhs}  after`;
+const tmpBinLhs = 'before  ' + tmpNestedPropCompoundComplexRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
 $(tmpNestedPropCompoundComplexRhs, b);
 `````

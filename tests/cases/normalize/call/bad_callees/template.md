@@ -20,7 +20,7 @@ $('after');
 
 `````js filename=intro
 $('before');
-`${$}`();
+('' + $ + '')();
 $('after');
 `````
 
@@ -28,7 +28,8 @@ $('after');
 
 `````js filename=intro
 $('before');
-const tmpCallCallee = `${$}`;
+const tmpBinLhs = '' + $;
+const tmpCallCallee = tmpBinLhs + '';
 tmpCallCallee();
 $('after');
 `````
@@ -37,8 +38,8 @@ $('after');
 
 `````js filename=intro
 $('before');
-const tmpCallCallee = `${$}`;
-tmpCallCallee();
+const tmpBinLhs = '' + $;
+tmpBinLhs();
 $('after');
 `````
 

@@ -25,7 +25,7 @@ $(a, x, y);
 let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
-$(`before  ${({ x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) }))}  after`);
+$('before  ' + ({ x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) })) + '  after');
 $(a, x, y);
 `````
 
@@ -36,7 +36,8 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-let tmpTemplateExpr = undefined;
+const tmpBinBothLhs = 'before  ';
+let tmpBinBothRhs = undefined;
 $(x);
 $(y);
 const tmpObjLitVal = $(3);
@@ -44,8 +45,9 @@ const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
-tmpTemplateExpr = tmpNestedAssignObjPatternRhs;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+tmpBinBothRhs = tmpNestedAssignObjPatternRhs;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a, x, y);
 `````
@@ -59,7 +61,8 @@ $(2);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpCalleeParam = `before  ${tmpNestedAssignObjPatternRhs}  after`;
+const tmpBinLhs = 'before  ' + tmpNestedAssignObjPatternRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````

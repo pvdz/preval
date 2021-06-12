@@ -29,7 +29,7 @@ $(a, b, c);
 let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
-$(`before  ${($(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = c)}  after`);
+$('before  ' + ($(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = c) + '  after');
 $(a, b, c);
 `````
 
@@ -40,6 +40,7 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
+const tmpBinBothLhs = 'before  ';
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $('x');
 const varInitAssignLhsComputedObj$1 = $(b);
@@ -64,8 +65,9 @@ const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpTemplateExpr = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinBothRhs = varInitAssignLhsComputedRhs;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c);
 `````

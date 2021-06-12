@@ -37,7 +37,7 @@ let f = function ($$0) {
   debugger;
   return x;
 };
-f`abc ${$(10)} ${$(20)} def`;
+f(['abc ', ' ', ' def'], $(10), $(20));
 `````
 
 ## Normalized

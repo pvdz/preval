@@ -17,14 +17,15 @@ $(`${"why"}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`${'why'}`);
+$('' + 'why' + '');
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'why';
+const tmpBinLhs = 'why';
+const tmpCalleeParam = tmpBinLhs + '';
 tmpCallCallee(tmpCalleeParam);
 `````
 

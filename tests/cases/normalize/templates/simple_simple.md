@@ -17,14 +17,17 @@ $(`abc ${ 10 } ${ 20 } def`);
 ## Pre Normal
 
 `````js filename=intro
-$(`abc ${10} ${20} def`);
+$('abc ' + 10 + ' ' + 20 + ' def');
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'abc 10 20 def';
+const tmpBinLhs$3 = 'abc 10';
+const tmpBinLhs$1 = tmpBinLhs$3 + ' ';
+const tmpBinLhs = tmpBinLhs$1 + 20;
+const tmpCalleeParam = tmpBinLhs + ' def';
 tmpCallCallee(tmpCalleeParam);
 `````
 

@@ -17,24 +17,26 @@ $(`${[1,2,3]}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`${[1, 2, 3]}`);
+$('' + [1, 2, 3] + '');
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpTemplateExpr = [1, 2, 3];
-const tmpCalleeParam = `${tmpTemplateExpr}`;
+const tmpBinBothLhs = '';
+const tmpBinBothRhs = [1, 2, 3];
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '';
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpTemplateExpr = [1, 2, 3];
-const tmpCalleeParam = `${tmpTemplateExpr}`;
-$(tmpCalleeParam);
+const tmpBinBothRhs = [1, 2, 3];
+const tmpBinLhs = '' + tmpBinBothRhs;
+$(tmpBinLhs);
 `````
 
 ## Globals

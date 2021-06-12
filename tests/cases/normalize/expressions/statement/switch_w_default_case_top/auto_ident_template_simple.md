@@ -18,14 +18,15 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let a = `fo${1}o`;
+let a = 'fo' + 1 + 'o';
 $(a);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let a = 'fo1o';
+const tmpBinLhs = 'fo1';
+let a = tmpBinLhs + 'o';
 $(a);
 `````
 

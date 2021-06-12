@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = `${[]}`;
+x = '' + [] + '';
 $(x);
 `````
 
@@ -28,17 +28,19 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpTemplateExpr = [];
-x = `${tmpTemplateExpr}`;
+const tmpBinBothLhs = '';
+const tmpBinBothRhs = [];
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+x = tmpBinLhs + '';
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpTemplateExpr = [];
-const x = `${tmpTemplateExpr}`;
-$(x);
+const tmpBinBothRhs = [];
+const tmpBinLhs = '' + tmpBinBothRhs;
+$(tmpBinLhs);
 `````
 
 ## Globals

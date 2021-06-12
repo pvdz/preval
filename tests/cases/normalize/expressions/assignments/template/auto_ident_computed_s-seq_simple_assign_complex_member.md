@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-$(`before  ${(a = (1, 2, b)[$('c')] = $(b)[$('d')])}  after`);
+$('before  ' + (a = (1, 2, b)[$('c')] = $(b)[$('d')]) + '  after');
 $(a, b);
 `````
 
@@ -33,6 +33,7 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
+const tmpBinBothLhs = 'before  ';
 const tmpNestedAssignComMemberObj = b;
 const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);
@@ -41,8 +42,9 @@ const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-let tmpTemplateExpr = a;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+let tmpBinBothRhs = a;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
 `````
@@ -50,13 +52,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const tmpNestedAssignComMemberProp = $('c');
 const b = { c: 10, d: 20 };
+const tmpNestedAssignComMemberProp = $('c');
 const tmpCompObj = $(b);
 const tmpCompProp = $('d');
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-const tmpCalleeParam = `before  ${tmpNestedAssignPropRhs}  after`;
+const tmpBinLhs = 'before  ' + tmpNestedAssignPropRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
 $(tmpNestedAssignPropRhs, b);
 `````

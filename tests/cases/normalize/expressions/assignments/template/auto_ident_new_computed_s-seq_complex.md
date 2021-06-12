@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$(`before  ${(a = new (1, 2, b)[$('$')](1))}  after`);
+$('before  ' + (a = new (1, 2, b)[$('$')](1)) + '  after');
 $(a);
 `````
 
@@ -33,12 +33,14 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
+const tmpBinBothLhs = 'before  ';
 const tmpCompObj = b;
 const tmpCompProp = $('$');
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 a = new tmpNewCallee(1);
-let tmpTemplateExpr = a;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+let tmpBinBothRhs = a;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -46,11 +48,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCompProp = $('$');
 const b = { $: $ };
+const tmpCompProp = $('$');
 const tmpNewCallee = b[tmpCompProp];
 const tmpClusterSSA_a = new tmpNewCallee(1);
-const tmpCalleeParam = `before  ${tmpClusterSSA_a}  after`;
+const tmpBinLhs = 'before  ' + tmpClusterSSA_a;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

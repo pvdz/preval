@@ -5021,153 +5021,6 @@ export function phaseNormalize(fdata, fname) {
         return true;
       }
 
-      case 'TaggedTemplateExpression': {
-        rule('Tagged templates should decompose into their runtime values');
-        example("f`foo`','f(['foo'])", () => node.expressions.length === 0);
-        example("f`a${1}b${2}c${3}d`','f(['a', 'b', 'c', 'd'], 1, 2, 3)`", () => node.expressions.length === 0);
-        before(node, parentNode);
-
-        const finalNode = AST.callExpression(node.tag, [
-          AST.arrayExpression(node.quasi.quasis.map((templateElement) => AST.literal(templateElement.value.raw))),
-          ...node.quasi.expressions,
-        ]);
-        const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-        body[i] = finalParent;
-
-        after(finalParent);
-        after(finalNode, finalParent);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      case 'TemplateLiteral': {
-        if (node.expressions.length === 0) {
-          ASSERT(node.quasis.length === 1, 'zero expressions means exactly one "string" part');
-          ASSERT(node.quasis[0].value && typeof node.quasis[0].value.raw === 'string', 'expecting this AST struct', node);
-
-          rule('Templates without expressions must be strings');
-          example('`foo`', "'foo'");
-          before(node, parentNode);
-
-          const finalNode = AST.literal(node.quasis[0].value.raw);
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-          body[i] = finalParent;
-
-          after(finalParent);
-          after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-
-        const newNodes = [];
-        let changes = false;
-        let hasStrings = false;
-        node.expressions.forEach((enode, i) => {
-          if (AST.isComplexNode(enode)) {
-            if (newNodes.length === 0) {
-              rule('Expressions inside a template must be simple nodes');
-              example('`a${f()}b`', 'tmp = f(), `a${f()}b`');
-              before(node, parentNode);
-            }
-
-            const tmpName = createFreshVar('tmpTemplateExpr', fdata);
-            newNodes.push(AST.variableDeclaration(tmpName, enode, 'const'));
-            node.expressions[i] = AST.identifier(tmpName);
-          }
-
-          if (enode.type === 'Identifier' && ['NaN', 'Infinity', 'undefined'].includes(enode.name)) {
-            rule('Template expressions that are builtin values should be serialized');
-            example('`x${NaN}y`', '`x${"NaN"}y`', () => enode.name === 'NaN');
-            example('`x${Infinity}y`', '`x${"Infinity"}y`', () => enode.name === 'Infinity');
-            example('`x${undefined}y`', '`x${"undefined"}y`', () => enode.name === 'undefined');
-            before(enode, node);
-
-            node.expressions[i] = AST.literal(enode.name);
-
-            after(node.expressions[i], node);
-            changes = true;
-            // The next step, which inlines literals, can pick this up immediately
-          }
-
-          if (enode.type === 'Literal') {
-            // Note: we fold up strings after this loop
-            if (enode.raw === 'null' || typeof enode.value === 'number' || enode.value === true || enode.value === false) {
-              rule('Template expressions that are literal values should be serialized');
-              example('`x${"abc"}y`', '`xabcy`');
-              example('`x${true}y`', '`xtruey`');
-              before(enode, node);
-
-              // Note: precision loss is irrelevant here as the string is meant to be serialized in the same way at runtime
-              node.expressions[i] = AST.literal(String(enode.value));
-
-              after(node.expressions[i], node);
-              changes = true;
-            }
-
-            if (typeof enode.value === 'string') {
-              hasStrings = true;
-            }
-          }
-
-          if (enode.type === 'TemplateLiteral' && enode.expressions.length === 0) {
-            rule('Template expressions that are literal values should be serialized');
-            example('`x${"abc"}y`', '`xabcy`');
-            example('`x${true}y`', '`xtruey`');
-            before(enode, node);
-
-            // Note: precision loss is irrelevant here as the string is meant to be serialized in the same way at runtime
-            node.expressions[i] = AST.literal(String(enode.quasis[0].value.raw));
-
-            after(node.expressions[i], node);
-            changes = true;
-
-            hasStrings = true;
-          }
-        });
-        if (newNodes.length > 0) {
-          body.splice(i, 0, ...newNodes);
-
-          after(newNodes);
-          after(node, parentNode); // did not replace node
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
-        }
-        if (changes) {
-          return true;
-        }
-
-        if (hasStrings) {
-          rule('A template with string expressions should concat them');
-          example('`a${"x"}b`', '`axb`');
-          before(node);
-
-          for (let i = 0; i < node.expressions.length; ++i) {
-            const expr = node.expressions[i];
-            if (expr.type === 'Literal' && typeof expr.value === 'string') {
-              const a = node.quasis[i];
-              const c = node.quasis[i + 1];
-              ASSERT(
-                a.type === 'TemplateElement' &&
-                  c.type === 'TemplateElement' &&
-                  typeof a.value.raw === 'string' &&
-                  typeof c.value.raw === 'string',
-                'quasis are strings?',
-                a,
-                c,
-              );
-              node.quasis.splice(i, 2, AST.templateElement(a.value.raw + expr.value + c.value.raw, i === node.expressions.length - 1));
-              node.expressions.splice(i, 1);
-              --i;
-            }
-          }
-
-          after(node);
-          return true;
-        }
-
-        return false;
-      }
-
       case 'ChainExpression': {
         // TODO: what if the chain starts with null/undefined?
         // This serves as a fence. If there's an optional member/call then it might be nested in multiple
@@ -5463,13 +5316,15 @@ export function phaseNormalize(fdata, fname) {
       case 'RestElement':
       case 'SpreadElement':
       case 'Super':
-      case 'TemplateElement':
       case 'YieldExpression': {
         log(RED + 'Missed expr:', node.type, RESET);
         return false;
       }
 
       // Eliminated nodes (for assertions)
+      case 'TaggedTemplateExpression':
+      case 'TemplateElement':
+      case 'TemplateLiteral':
       case 'ArrayPattern':
       case 'AssignmentPattern':
       case 'ObjectPattern':
@@ -7511,11 +7366,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (
-      AST.isComplexNode(dnode.init, false) ||
-      (dnode.init.type === 'Identifier' && dnode.init.name === 'arguments') ||
-      dnode.init.type === 'TemplateLiteral'
-    ) {
+    if (AST.isComplexNode(dnode.init, false) || (dnode.init.type === 'Identifier' && dnode.init.name === 'arguments')) {
       // false: returns true for simple unary as well
       vlog('- init is complex, transforming expression');
       if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {

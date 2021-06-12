@@ -689,6 +689,59 @@ export function phaseNormalOnce(fdata) {
         after(newNodes);
         break;
       }
+      case 'TemplateLiteral:after': {
+        if (parentNode.type !== 'TaggedTemplateExpression') {
+          // See next case
+          // Convert the template to a string concat
+          // `a${b}c${d}e`
+          // becomes
+          // 'a'+b+'c'+d+'e';
+
+          rule('Template literals become string concats');
+          example('x = `a${b}c`', 'x = "a" + b + "c"');
+          before(node, parentNode);
+
+          // Zip them up into a single expression. No need to inject multiple expressions. Regular normalization will take care of that.
+          // Start with the first string. If there are expressions there is also always another string that follows it.
+          // There is always at lest one string, there may not be any expressions.
+          let finalNode = AST.literal(node.quasis[0].value.raw);
+          for (let i = 0; i < node.expressions.length; ++i) {
+            // a = (a + expr) + b
+            finalNode = AST.binaryExpression(
+              '+',
+              AST.binaryExpression('+', finalNode, node.expressions[i]),
+              AST.literal(node.quasis[i + 1].value.raw),
+            );
+          }
+          if (parentIndex < 0) parentNode[parentProp] = finalNode;
+          else parentNode[parentProp][parentIndex] = finalNode;
+
+          after(finalNode, parentNode);
+        }
+        break;
+      }
+      case 'TaggedTemplateExpression:after': {
+        // Convert the tag to a regular function call
+        // foo`x ${1} y ${2} z`
+        // becomes
+        // foo(['x ', ' y ', ' z'], 1, 2),
+
+        rule('Tagged templates should be regular func calls');
+        example('foo`a${b}c${d}`', 'foo(["a", "c", ""], b, d)');
+        before(node, parentNode);
+
+        const finalNode = AST.callExpression(node.tag, [
+          // TODO: cooked or raw?
+          // TODO: this breaks if the code relies on the tagged template literal allowing illegal escapes... can we fix it?
+          AST.arrayExpression(node.quasi.quasis.map((q) => AST.literal(q.value.raw))),
+          ...node.quasi.expressions,
+        ]);
+        if (parentIndex < 0) parentNode[parentProp] = finalNode;
+        else parentNode[parentProp][parentIndex] = finalNode;
+
+        after(finalNode, parentNode);
+        break;
+      }
       case 'ThisExpression:before': {
         if (!node.$p.forAlias) {
           const newNode = AST.identifier(thisStack[thisStack.length - 1]?.$p.thisAliasName ?? 'undefined');

@@ -17,14 +17,15 @@ $(`${NaN}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`${NaN}`);
+$('' + NaN + '');
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'NaN';
+const tmpBinLhs = 'NaN';
+const tmpCalleeParam = tmpBinLhs + '';
 tmpCallCallee(tmpCalleeParam);
 `````
 

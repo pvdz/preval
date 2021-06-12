@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = `${`a ${$(1)} b`}`;
+x = '' + ('a ' + $(1) + ' b') + '';
 $(x);
 `````
 
@@ -28,19 +28,23 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpTemplateExpr$1 = $(1);
-const tmpTemplateExpr = `a ${tmpTemplateExpr$1} b`;
-x = `${tmpTemplateExpr}`;
+const tmpBinBothLhs = '';
+const tmpBinBothLhs$1 = 'a ';
+const tmpBinBothRhs$1 = $(1);
+const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpBinBothRhs = tmpBinLhs$1 + ' b';
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+x = tmpBinLhs + '';
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpTemplateExpr$1 = $(1);
-const tmpTemplateExpr = `a ${tmpTemplateExpr$1} b`;
-const tmpClusterSSA_x = `${tmpTemplateExpr}`;
-$(tmpClusterSSA_x);
+const tmpBinBothRhs$1 = $(1);
+const tmpBinLhs$1 = 'a ' + tmpBinBothRhs$1;
+const tmpBinBothRhs = tmpBinLhs$1 + ' b';
+$(tmpBinBothRhs);
 `````
 
 ## Globals

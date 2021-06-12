@@ -17,13 +17,14 @@
 ## Pre Normal
 
 `````js filename=intro
-`${null}`;
+'' + null + '';
 `````
 
 ## Normalized
 
 `````js filename=intro
-
+const tmpBinLhs = 'null';
+tmpBinLhs + '';
 `````
 
 ## Output

@@ -27,7 +27,7 @@ let b = { x: 1 },
   c = { y: 2 },
   d = 3;
 let a = { a: 999, b: 1000 };
-$(`before  ${(a = $(b)[$('x')] = $(c)[$('y')] = $(d))}  after`);
+$('before  ' + (a = $(b)[$('x')] = $(c)[$('y')] = $(d)) + '  after');
 $(a, b, c, d);
 `````
 
@@ -39,6 +39,7 @@ let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
+const tmpBinBothLhs = 'before  ';
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $('x');
 const varInitAssignLhsComputedObj = $(c);
@@ -49,8 +50,9 @@ const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-let tmpTemplateExpr = a;
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+let tmpBinBothRhs = a;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c, d);
 `````
@@ -67,7 +69,8 @@ const varInitAssignLhsComputedProp = $('y');
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-const tmpCalleeParam = `before  ${varInitAssignLhsComputedRhs}  after`;
+const tmpBinLhs = 'before  ' + varInitAssignLhsComputedRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
 $(varInitAssignLhsComputedRhs, b, c, 3);
 `````

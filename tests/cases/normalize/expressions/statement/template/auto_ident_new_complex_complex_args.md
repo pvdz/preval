@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$(`before  ${new ($($))($(1), $(2))}  after`);
+$('before  ' + new ($($))($(1), $(2)) + '  after');
 $(a);
 `````
 
@@ -33,11 +33,13 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
+const tmpBinBothLhs = 'before  ';
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const tmpTemplateExpr = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinBothRhs = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -45,13 +47,14 @@ $(a);
 ## Output
 
 `````js filename=intro
+const a = { a: 999, b: 1000 };
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const tmpTemplateExpr = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
-const tmpCalleeParam = `before  ${tmpTemplateExpr}  after`;
+const tmpBinBothRhs = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpBinLhs = 'before  ' + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + '  after';
 $(tmpCalleeParam);
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 

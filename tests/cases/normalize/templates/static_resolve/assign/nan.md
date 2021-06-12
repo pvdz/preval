@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = `${NaN}`;
+x = '' + NaN + '';
 $(x);
 `````
 
@@ -28,7 +28,8 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = 'NaN';
+const tmpBinLhs = 'NaN';
+x = tmpBinLhs + '';
 $(x);
 `````
 

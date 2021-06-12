@@ -17,19 +17,20 @@
 ## Pre Normal
 
 `````js filename=intro
-`${-1}`;
+'' + -1 + '';
 `````
 
 ## Normalized
 
 `````js filename=intro
-`${-1}`;
+const tmpBinLhs = '-1';
+tmpBinLhs + '';
 `````
 
 ## Output
 
 `````js filename=intro
-`${-1}`;
+
 `````
 
 ## Globals

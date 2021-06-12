@@ -17,7 +17,7 @@ $`abc ${ $(1) } def`;
 ## Pre Normal
 
 `````js filename=intro
-$`abc ${$(1)} def`;
+$(['abc ', ' def'], $(1));
 `````
 
 ## Normalized

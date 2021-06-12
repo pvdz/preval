@@ -1,0 +1,105 @@
+# Preval test case
+
+# and_8.md
+
+> Bit hacks > If return bit > And 8
+>
+> Just making sure this got fixed
+
+#TODO
+
+## Input
+
+`````js filename=intro
+function f(y) {
+  const x = y & 8;
+  if (x) { return 8; }
+  else { return 0; }
+}
+$(f($(7)));
+$(f($(8)));
+$(f($(9)));
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let f = function ($$0) {
+  let y = $$0;
+  debugger;
+  const x = y & 8;
+  if (x) {
+    return 8;
+  } else {
+    return 0;
+  }
+};
+$(f($(7)));
+$(f($(8)));
+$(f($(9)));
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = function ($$0) {
+  let y = $$0;
+  debugger;
+  const x = y & 8;
+  if (x) {
+    return 8;
+  } else {
+    return 0;
+  }
+};
+const tmpCallCallee = $;
+const tmpCallCallee$1 = f;
+const tmpCalleeParam$1 = $(7);
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$3 = $;
+const tmpCallCallee$5 = f;
+const tmpCalleeParam$5 = $(8);
+const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5);
+tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCallCallee$7 = $;
+const tmpCallCallee$9 = f;
+const tmpCalleeParam$9 = $(9);
+const tmpCalleeParam$7 = tmpCallCallee$9(tmpCalleeParam$9);
+tmpCallCallee$7(tmpCalleeParam$7);
+`````
+
+## Output
+
+`````js filename=intro
+const tmpCalleeParam$1 = $(7);
+const x$5 = tmpCalleeParam$1 & 8;
+$(x$5);
+const tmpCalleeParam$5 = $(8);
+const x$3 = tmpCalleeParam$5 & 8;
+$(x$3);
+const tmpCalleeParam$9 = $(9);
+const x$1 = tmpCalleeParam$9 & 8;
+$(x$1);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 7
+ - 2: 0
+ - 3: 8
+ - 4: 8
+ - 5: 9
+ - 6: 8
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

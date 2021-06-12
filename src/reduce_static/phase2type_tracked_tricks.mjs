@@ -497,6 +497,37 @@ function _typeTrackedTricks(fdata) {
 
             break;
           }
+
+          case '+': {
+            let lit;
+            let val;
+            if (left.type === 'Literal' && left.value === '') {
+              lit = left;
+              val = right;
+            } else if (right.type === 'Literal' && right.value === '') {
+              lit = right;
+              val = left;
+            }
+
+            if (lit && val.type === 'Identifier') {
+              const meta = fdata.globallyUniqueNamingRegistry.get(val.name);
+              if (!meta.isImplicitGlobal && meta.isConstant && meta.typing.mustBeType === 'string') {
+                rule('A concat of empty string with a value known to be a string is a noop');
+                example('const foo = String(); f("" + foo);', 'const foo = String(); f(foo);');
+                before(node, parentNode);
+
+                ASSERT(['init', 'expression', 'left'].includes(parentProp), 'normalized code');
+                ASSERT(parentIndex < 0, 'normalized code');
+
+                parentNode[parentProp] = val;
+
+                after(val, parentNode);
+                ++changes;
+              }
+            }
+
+            break;
+          }
         }
 
         if (mustBeValue === true) {

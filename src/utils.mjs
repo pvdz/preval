@@ -41,36 +41,6 @@ export function ASSERT_LOC(loc) {
   ASSERT(typeof loc.line === 'number' && loc.line >= 1, 'loc filename must be a number >0', loc);
 }
 
-export function printNode(node) {
-  ASSERT(node);
-  ASSERT(node.type);
-  switch (node.type) {
-    case 'Identifier':
-      return `<<${node.name}>>`;
-    case 'Literal':
-      return `<${node.raw}>`;
-    case 'MemberExpression':
-      return `${printNode(node.object)}.${printNode(node.property)}`;
-    case 'CallExpression':
-      return `${printNode(node.callee)}(${node.arguments.map(printNode).join(', ')})`;
-    case 'FunctionDeclaration':
-    case 'FunctionExpression':
-      return `function${node.id ? ' ' + printNode(node.id) : ''}(${node.params.map(printNode).join(', ')})`;
-    case 'ThisExpression':
-      return 'this';
-    case 'Super':
-      return 'super';
-    case 'AssignmentPattern':
-      ASSERT(node.left.type === 'Identifier', 'todo, fixme if this is different');
-      return printNode(node.left) + '=' + printNode(node.right);
-    case 'NewExpression':
-      return 'new ' + printNode(node.callee) + '(' + node.arguments.map(printNode).join(', ') + ')';
-    default:
-      return `<???${node.type}>`;
-  }
-  // return `${t}${path.nodes[i].name ? '<' + path.nodes[i].name + '>' : ''}${t === 'Literal' ? '<' + path.nodes[i].raw + '>' : ''}${path.props[i+1] && `[${path.props[i+1]}]` || ''}`
-}
-
 let VERBOSE = true;
 
 const Console = {

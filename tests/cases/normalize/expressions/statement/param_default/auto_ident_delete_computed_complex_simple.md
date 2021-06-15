@@ -25,7 +25,7 @@ $(a, arg);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? delete $(arg)['y'] : tmpParamBare;
+  let p = tmpParamBare === undefined ? delete $(arg)[`y`] : tmpParamBare;
 };
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };

@@ -25,7 +25,7 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
-(typeof $(x))['a'];
+(typeof $(x))[`a`];
 $(a, x);
 `````
 

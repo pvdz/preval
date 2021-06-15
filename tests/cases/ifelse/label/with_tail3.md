@@ -34,7 +34,7 @@ const B = function () {
     debugger;
     const x = $(true);
     if (x) {
-      $('inner');
+      $(`inner`);
     }
   };
   const r = C();
@@ -52,7 +52,7 @@ const B = function () {
     debugger;
     const x = $(true);
     if (x) {
-      $('inner');
+      $(`inner`);
       return undefined;
     } else {
       return undefined;
@@ -69,7 +69,7 @@ B();
 `````js filename=intro
 const x = $(true);
 if (x) {
-  $('inner');
+  $(`inner`);
 } else {
 }
 `````

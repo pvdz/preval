@@ -134,7 +134,7 @@ const X_B = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
   let g$1 = $$6;
   debugger;
   const h = typeof c$1;
-  const i = 'string' == h;
+  const i = `string` == h;
   if (i) {
     return X_BA(a$1, b$1, c$1, d$1, e$1, f$1, g$1, h, true);
   } else {
@@ -264,7 +264,7 @@ const X_B = function ($$0, $$1, $$2, $$3, $$4, $$5, $$6) {
   let g$1 = $$6;
   debugger;
   const h = typeof c$1;
-  const i = 'string' == h;
+  const i = `string` == h;
   if (i) {
     const tmpReturnArg$1 = X_BA(a$1, b$1, c$1, d$1, e$1, f$1, g$1, h, true);
     return tmpReturnArg$1;
@@ -381,7 +381,7 @@ X();
 
 `````js filename=intro
 undefined.length;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

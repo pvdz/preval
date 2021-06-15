@@ -25,7 +25,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-(a = delete arg[$('y')])['a'];
+(a = delete arg[$(`y`)])[`a`];
 $(a, arg);
 `````
 
@@ -36,7 +36,7 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpDeleteCompObj = arg;
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpCompObj = a;
 tmpCompObj.a;
@@ -46,7 +46,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 const a = delete arg[tmpDeleteCompProp];
 a.a;

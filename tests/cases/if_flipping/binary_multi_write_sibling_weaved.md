@@ -38,14 +38,14 @@ const b = $(2);
 const c = $(3);
 let y = a !== b;
 if (y) {
-  $('if1');
+  $(`if1`);
 } else {
   y = a !== c;
 }
 if (y) {
-  $('if2');
+  $(`if2`);
 } else {
-  $('else1');
+  $(`else1`);
 }
 `````
 
@@ -57,14 +57,14 @@ const b = $(2);
 const c = $(3);
 let y = a !== b;
 if (y) {
-  $('if1');
+  $(`if1`);
 } else {
   y = a !== c;
 }
 if (y) {
-  $('if2');
+  $(`if2`);
 } else {
-  $('else1');
+  $(`else1`);
 }
 `````
 
@@ -78,12 +78,12 @@ let y = a === b;
 if (y) {
   y = a === c;
 } else {
-  $('if1');
+  $(`if1`);
 }
 if (y) {
-  $('else1');
+  $(`else1`);
 } else {
-  $('if2');
+  $(`if2`);
 }
 `````
 

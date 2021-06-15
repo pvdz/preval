@@ -67,11 +67,7 @@ function _bitSetTests(fdata) {
           const known = read.parentNode.left === read.node ? read.parentNode.left : read.parentNode.right;
           const unknown = read.parentNode.left === read.node ? read.parentNode.right : read.parentNode.left;
 
-          if (
-            unknown.type === 'Literal' &&
-            typeof unknown.value === 'number' &&
-            (unknown.value === 0 || unknown.value === meta.typing.oneBitSet)
-          ) {
+          if (AST.isNumber(unknown) && (unknown.value === 0 || unknown.value === meta.typing.oneBitSet)) {
             vlog('Was comparing to zero or the target bit-value', meta.typing.oneBitSet);
             // This is `x === 0` or `x !== 0` or `x === bit` or `x !== bit`
             // We can normalize this slightly and if the binding is used in an `if` then we can replace it.

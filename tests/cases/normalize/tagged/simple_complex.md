@@ -17,14 +17,14 @@ $`abc ${ 10 } ${ $(20) } def`;
 ## Pre Normal
 
 `````js filename=intro
-$(['abc ', ' ', ' def'], 10, $(20));
+$([`abc `, ` `, ` def`], 10, $(20));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = ['abc ', ' ', ' def'];
+const tmpCalleeParam = [`abc `, ` `, ` def`];
 const tmpCalleeParam$1 = 10;
 const tmpCalleeParam$3 = $(20);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
@@ -34,7 +34,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam$3 = $(20);
-const tmpCalleeParam = ['abc ', ' ', ' def'];
+const tmpCalleeParam = [`abc `, ` `, ` def`];
 $(tmpCalleeParam, 10, tmpCalleeParam$3);
 `````
 

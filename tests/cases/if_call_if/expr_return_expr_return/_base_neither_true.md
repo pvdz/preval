@@ -43,10 +43,10 @@ let outer = function () {
   const f = function () {
     debugger;
     if (x) {
-      $('inner if', x);
+      $(`inner if`, x);
       return;
     } else {
-      $('inner else', x);
+      $(`inner else`, x);
       return;
     }
   };
@@ -59,7 +59,7 @@ let outer = function () {
     return;
   }
 };
-if ($) $(outer(), 'outer');
+if ($) $(outer(), `outer`);
 `````
 
 ## Normalized
@@ -71,10 +71,10 @@ let outer = function () {
   const f = function () {
     debugger;
     if (x) {
-      $('inner if', x);
+      $(`inner if`, x);
       return undefined;
     } else {
-      $('inner else', x);
+      $(`inner else`, x);
       return undefined;
     }
   };
@@ -90,7 +90,7 @@ let outer = function () {
 if ($) {
   const tmpCallCallee = $;
   const tmpCalleeParam = outer();
-  const tmpCalleeParam$1 = 'outer';
+  const tmpCalleeParam$1 = `outer`;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 } else {
 }
@@ -102,11 +102,11 @@ if ($) {
 if ($) {
   const x = $(1);
   if (x) {
-    $('inner if', x);
+    $(`inner if`, x);
   } else {
-    $('inner else', false);
+    $(`inner else`, false);
   }
-  $(undefined, 'outer');
+  $(undefined, `outer`);
 } else {
 }
 `````

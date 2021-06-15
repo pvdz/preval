@@ -26,7 +26,7 @@ let f = function ($$0) {
   let {
     x: [[]],
   } = tmpParamBare;
-  return 'ok';
+  return `ok`;
 };
 $(f({ x: [[1, 2, 3], 13], a: 11, b: 12 }, 10));
 `````
@@ -42,7 +42,7 @@ let f = function ($$0) {
   let arrPatternSplat = [...objPatternNoDefault];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
-  return 'ok';
+  return `ok`;
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -57,7 +57,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

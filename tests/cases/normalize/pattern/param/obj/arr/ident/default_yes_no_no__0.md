@@ -24,9 +24,9 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let {
-    x: [y = 'fail'],
+    x: [y = `fail`],
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
 $(f(0, 10));
 `````
@@ -44,11 +44,11 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    y = 'fail';
-    return 'bad';
+    y = `fail`;
+    return `bad`;
   } else {
     y = arrPatternBeforeDefault;
-    return 'bad';
+    return `bad`;
   }
 };
 const tmpCallCallee = $;
@@ -62,7 +62,7 @@ tmpCallCallee(tmpCalleeParam);
 const objPatternNoDefault = (0).x;
 const arrPatternSplat = [...objPatternNoDefault];
 arrPatternSplat[0];
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

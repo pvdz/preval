@@ -23,8 +23,8 @@ $(f({}, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: [] = $(['fail']) } = tmpParamBare;
-  return 'ok';
+  let { x: [] = $([`fail`]) } = tmpParamBare;
+  return `ok`;
 };
 $(f({}, 10));
 `````
@@ -41,13 +41,13 @@ let f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = ['fail'];
+    const tmpCalleeParam = [`fail`];
     objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let arrPatternSplat = [...objPatternAfterDefault];
-  return 'ok';
+  return `ok`;
 };
 const tmpCallCallee$1 = $;
 const tmpCallCallee$3 = f;
@@ -65,13 +65,13 @@ const objPatternBeforeDefault = tmpObjectPrototype.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = ['fail'];
+  const tmpCalleeParam = [`fail`];
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 [...objPatternAfterDefault];
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

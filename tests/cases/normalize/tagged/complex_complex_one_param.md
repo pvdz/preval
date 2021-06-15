@@ -37,7 +37,7 @@ let f = function ($$0) {
   debugger;
   return x;
 };
-f(['abc ', ' ', ' def'], $(10), $(20));
+f([`abc `, ` `, ` def`], $(10), $(20));
 `````
 
 ## Normalized
@@ -49,7 +49,7 @@ let f = function ($$0) {
   return x;
 };
 const tmpCallCallee = f;
-const tmpCalleeParam = ['abc ', ' ', ' def'];
+const tmpCalleeParam = [`abc `, ` `, ` def`];
 const tmpCalleeParam$1 = $(10);
 const tmpCalleeParam$3 = $(20);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);

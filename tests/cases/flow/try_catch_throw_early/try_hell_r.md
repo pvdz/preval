@@ -33,11 +33,11 @@ considerMutated(x) // always true (!)
 let f = function () {
   debugger;
   stop: try {
-    throw 'one';
+    throw `one`;
   } catch {
     throw_early;
     x = 2;
-    throw 'two';
+    throw `two`;
   } finally {
     break stop;
   }
@@ -53,11 +53,11 @@ considerMutated(x);
 let f = function () {
   debugger;
   try {
-    throw 'one';
+    throw `one`;
   } catch {
     throw_early;
     x = 2;
-    throw 'two';
+    throw `two`;
   } finally {
     return undefined;
   }
@@ -74,11 +74,11 @@ considerMutated(x);
 const f = function () {
   debugger;
   try {
-    throw 'one';
+    throw `one`;
   } catch {
     throw_early;
     x = 2;
-    throw 'two';
+    throw `two`;
   } finally {
     return undefined;
   }

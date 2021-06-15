@@ -29,45 +29,45 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
-x = $('b');
+x = $(`b`);
 if ($) {
-  x = $('c');
+  x = $(`c`);
 } else {
-  x = $('d');
+  x = $(`d`);
 }
-$('break if hoisting optimization ooops');
+$(`break if hoisting optimization ooops`);
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
-x = $('b');
+x = $(`b`);
 if ($) {
-  x = $('c');
+  x = $(`c`);
 } else {
-  x = $('d');
+  x = $(`d`);
 }
-$('break if hoisting optimization ooops');
+$(`break if hoisting optimization ooops`);
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
-$('b');
+$(`b`);
 if ($) {
-  x = $('c');
+  x = $(`c`);
 } else {
-  x = $('d');
+  x = $(`d`);
 }
-$('break if hoisting optimization ooops');
+$(`break if hoisting optimization ooops`);
 $(x);
 `````
 

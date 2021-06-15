@@ -24,7 +24,7 @@
 `````js filename=intro
 {
   let b = { c: 1 };
-  let a = $(b)['c'];
+  let a = $(b)[`c`];
   $(a, b);
 }
 `````

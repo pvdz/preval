@@ -19,7 +19,7 @@ $('ok');
 
 `````js filename=intro
 const [] = [, , 1];
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -27,13 +27,13 @@ $('ok');
 `````js filename=intro
 const bindingPatternArrRoot = [, , 1];
 const arrPatternSplat = [...bindingPatternArrRoot];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

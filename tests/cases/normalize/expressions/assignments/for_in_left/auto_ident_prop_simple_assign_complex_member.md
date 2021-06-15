@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-for ((a = b.c = $(b)[$('d')]).x in $({ x: 1 }));
+for ((a = b.c = $(b)[$(`d`)]).x in $({ x: 1 }));
 $(a, b);
 `````
 
@@ -38,7 +38,7 @@ const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.c = tmpNestedPropAssignRhs;
@@ -59,7 +59,7 @@ const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   b.c = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;

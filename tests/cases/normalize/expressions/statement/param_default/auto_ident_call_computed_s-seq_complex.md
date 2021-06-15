@@ -25,7 +25,7 @@ $(a);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? (1, 2, b)[$('$')](1) : tmpParamBare;
+  let p = tmpParamBare === undefined ? (1, 2, b)[$(`$`)](1) : tmpParamBare;
 };
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
@@ -43,7 +43,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCompObj = b;
-    const tmpCallCompProp = $('$');
+    const tmpCallCompProp = $(`$`);
     p = tmpCallCompObj[tmpCallCompProp](1);
     return undefined;
   } else {
@@ -62,7 +62,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const b = { $: $ };
 b[tmpCallCompProp](1);
 $(undefined);

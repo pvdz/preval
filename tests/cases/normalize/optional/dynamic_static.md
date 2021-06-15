@@ -17,7 +17,7 @@ $(obj?.['foo']);
 
 `````js filename=intro
 const obj = { foo: 10 };
-$(obj?.['foo']);
+$(obj?.[`foo`]);
 `````
 
 ## Normalized
@@ -29,7 +29,7 @@ let tmpCalleeParam = undefined;
 const tmpChainRootProp = obj;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = 'foo';
+  const tmpChainRootComputed = `foo`;
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpCalleeParam = tmpChainElementObject;
 } else {

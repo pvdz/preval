@@ -23,8 +23,8 @@ $(f({ x: 0, b: 11, c: 12 }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: {} = $({ x: 'fail' }) } = tmpParamBare;
-  return 'ok';
+  let { x: {} = $({ x: `fail` }) } = tmpParamBare;
+  return `ok`;
 };
 $(f({ x: 0, b: 11, c: 12 }, 10));
 `````
@@ -41,7 +41,7 @@ let f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = { x: 'fail' };
+    const tmpCalleeParam = { x: `fail` };
     objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -53,9 +53,9 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-    return 'ok';
+    return `ok`;
   } else {
-    return 'ok';
+    return `ok`;
   }
 };
 const tmpCallCallee$1 = $;
@@ -69,7 +69,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

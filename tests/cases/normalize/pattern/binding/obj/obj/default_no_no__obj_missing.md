@@ -21,7 +21,7 @@ $('bad');
 const {
   x: {},
 } = { b: 11, c: 12 };
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -38,7 +38,7 @@ if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -55,7 +55,7 @@ if (objPatternCrashTest) {
   objPatternNoDefault.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

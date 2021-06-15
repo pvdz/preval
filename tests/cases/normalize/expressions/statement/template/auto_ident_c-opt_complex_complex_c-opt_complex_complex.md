@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { x: { y: 1 } };
 let a = { a: 999, b: 1000 };
-$('before  ' + $(b)?.[$('x')]?.[$('y')] + '  after');
+$(`before  ` + $(b)?.[$(`x`)]?.[$(`y`)] + `  after`);
 $(a);
 `````
 
@@ -34,17 +34,17 @@ const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpBinBothLhs = 'before  ';
+const tmpBinBothLhs = `before  `;
 let tmpBinBothRhs = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = $('x');
+  const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
-    const tmpChainRootComputed$1 = $('y');
+    const tmpChainRootComputed$1 = $(`y`);
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpBinBothRhs = tmpChainElementObject$1;
   } else {
@@ -52,7 +52,7 @@ if (tmpIfTest) {
 } else {
 }
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -68,18 +68,18 @@ const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainRootComputed = $('x');
+  const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {
   } else {
-    const tmpChainRootComputed$1 = $('y');
+    const tmpChainRootComputed$1 = $(`y`);
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpBinBothRhs = tmpChainElementObject$1;
   }
 }
-const tmpBinLhs = 'before  ' + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpBinLhs = `before  ` + tmpBinBothRhs;
+const tmpCalleeParam = tmpBinLhs + `  after`;
 $(tmpCalleeParam);
 $(a);
 `````

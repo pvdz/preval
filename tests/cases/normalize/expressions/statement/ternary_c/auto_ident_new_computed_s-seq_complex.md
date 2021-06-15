@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$(0) ? $(100) : new (1, 2, b)[$('$')](1);
+$(0) ? $(100) : new (1, 2, b)[$(`$`)](1);
 $(a);
 `````
 
@@ -37,7 +37,7 @@ if (tmpIfTest) {
   $(100);
 } else {
   const tmpCompObj = b;
-  const tmpCompProp = $('$');
+  const tmpCompProp = $(`$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
   new tmpNewCallee(1);
 }
@@ -51,7 +51,7 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCompProp = $('$');
+  const tmpCompProp = $(`$`);
   const b = { $: $ };
   const tmpNewCallee = b[tmpCompProp];
   new tmpNewCallee(1);

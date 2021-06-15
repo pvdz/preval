@@ -19,7 +19,7 @@ if ("pass") {
 ## Pre Normal
 
 `````js filename=intro
-if ('pass') {
+if (`pass`) {
   $(1);
 } else {
   $(2);

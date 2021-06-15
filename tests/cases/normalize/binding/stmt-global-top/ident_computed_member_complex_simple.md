@@ -21,7 +21,7 @@ $(a, b, c);
 `````js filename=intro
 let b = { x: 2 },
   c = 3;
-let a = ($(b)[$('x')] = c);
+let a = ($(b)[$(`x`)] = c);
 $(a, b, c);
 `````
 
@@ -31,7 +31,7 @@ $(a, b, c);
 let b = { x: 2 };
 let c = 3;
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedRhs = c;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 let a = varInitAssignLhsComputedRhs;
@@ -43,7 +43,7 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 2 };
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 $(3, b, 3);
 `````

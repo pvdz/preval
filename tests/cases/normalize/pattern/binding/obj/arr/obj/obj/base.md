@@ -31,7 +31,7 @@ const {
     },
   ],
 } = { x: [{ x: 15, y: { a: 1, b: 2, c: 3 }, c: 16 }, 13, 14], a: 11, b: 12 };
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -55,13 +55,13 @@ if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault$1.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

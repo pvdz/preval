@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-$(['before ', ' after'], delete arg['y']);
+$([`before `, ` after`], delete arg[`y`]);
 $(a, arg);
 `````
 
@@ -33,7 +33,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$1 = delete arg.y;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a, arg);
@@ -44,7 +44,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$1 = delete arg.y;
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a, arg);

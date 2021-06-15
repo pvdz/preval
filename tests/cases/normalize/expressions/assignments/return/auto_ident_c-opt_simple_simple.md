@@ -26,7 +26,7 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  return (a = b?.['x']);
+  return (a = b?.[`x`]);
 };
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
@@ -43,7 +43,7 @@ let f = function () {
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
-    const tmpChainRootComputed = 'x';
+    const tmpChainRootComputed = `x`;
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     a = tmpChainElementObject;
     return a;

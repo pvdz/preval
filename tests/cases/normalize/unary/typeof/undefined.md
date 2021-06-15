@@ -24,14 +24,14 @@ $(typeof undefined);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'undefined';
+const tmpCalleeParam = `undefined`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('undefined');
+$(`undefined`);
 `````
 
 ## Globals

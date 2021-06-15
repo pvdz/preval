@@ -25,7 +25,7 @@ $(a, b);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? (a = $(b)['c'] = $(b)[$('d')]) : tmpParamBare;
+  let p = tmpParamBare === undefined ? (a = $(b)[`c`] = $(b)[$(`d`)]) : tmpParamBare;
 };
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
@@ -44,7 +44,7 @@ let f = function ($$0) {
   if (tmpIfTest) {
     const varInitAssignLhsComputedObj = $(b);
     const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
+    const tmpCompProp = $(`d`);
     const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
     varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
     const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
@@ -70,7 +70,7 @@ $(a, b);
 const b = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 $(undefined);

@@ -24,7 +24,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let xyz = (a = $(b)[$('c')]);
+let xyz = (a = $(b)[$(`c`)]);
 $(xyz);
 $(a, b);
 `````
@@ -35,7 +35,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpAssignRhsCompObj = $(b);
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let xyz = a;
 $(xyz);
@@ -47,7 +47,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);

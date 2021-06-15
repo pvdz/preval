@@ -42,13 +42,13 @@ let a = { a: 999, b: 1000 };
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = c;
+      a = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = c;
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -77,17 +77,17 @@ if (tmpIfTest) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
+  const tmpNestedAssignComMemberProp = $(`x`);
   const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $('x');
+  const varInitAssignLhsComputedProp = $(`x`);
   const varInitAssignLhsComputedObj$1 = $(b);
-  const varInitAssignLhsComputedProp$1 = $('x');
+  const varInitAssignLhsComputedProp$1 = $(`x`);
   const varInitAssignLhsComputedObj$3 = $(b);
-  const varInitAssignLhsComputedProp$3 = $('x');
+  const varInitAssignLhsComputedProp$3 = $(`x`);
   const varInitAssignLhsComputedObj$5 = $(b);
-  const varInitAssignLhsComputedProp$5 = $('x');
+  const varInitAssignLhsComputedProp$5 = $(`x`);
   const varInitAssignLhsComputedObj$7 = $(b);
-  const varInitAssignLhsComputedProp$7 = $('x');
+  const varInitAssignLhsComputedProp$7 = $(`x`);
   const varInitAssignLhsComputedRhs$7 = c;
   varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = varInitAssignLhsComputedRhs$7;
   const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
@@ -106,12 +106,12 @@ if (tmpIfTest$3) {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 $(a, b, c);
@@ -138,17 +138,17 @@ if (tmpIfTest) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
+  const tmpNestedAssignComMemberProp = $(`x`);
   const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $('x');
+  const varInitAssignLhsComputedProp = $(`x`);
   const varInitAssignLhsComputedObj$1 = $(b);
-  const varInitAssignLhsComputedProp$1 = $('x');
+  const varInitAssignLhsComputedProp$1 = $(`x`);
   const varInitAssignLhsComputedObj$3 = $(b);
-  const varInitAssignLhsComputedProp$3 = $('x');
+  const varInitAssignLhsComputedProp$3 = $(`x`);
   const varInitAssignLhsComputedObj$5 = $(b);
-  const varInitAssignLhsComputedProp$5 = $('x');
+  const varInitAssignLhsComputedProp$5 = $(`x`);
   const varInitAssignLhsComputedObj$7 = $(b);
-  const varInitAssignLhsComputedProp$7 = $('x');
+  const varInitAssignLhsComputedProp$7 = $(`x`);
   varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
   varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
   varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
@@ -160,12 +160,12 @@ if (tmpIfTest$3) {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 $(a, b, 3);

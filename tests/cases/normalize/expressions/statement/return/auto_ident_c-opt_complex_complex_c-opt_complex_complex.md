@@ -26,7 +26,7 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  return $(b)?.[$('x')]?.[$('y')];
+  return $(b)?.[$(`x`)]?.[$(`y`)];
 };
 let b = { x: { y: 1 } };
 let a = { a: 999, b: 1000 };
@@ -44,11 +44,11 @@ let f = function () {
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
-    const tmpChainRootComputed = $('x');
+    const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$1 = tmpChainElementObject != null;
     if (tmpIfTest$1) {
-      const tmpChainRootComputed$1 = $('y');
+      const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpReturnArg = tmpChainElementObject$1;
       return tmpReturnArg;
@@ -78,13 +78,13 @@ const f = function () {
   if (tmpIfTest) {
     return undefined;
   } else {
-    const tmpChainRootComputed = $('x');
+    const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$1 = tmpChainElementObject == null;
     if (tmpIfTest$1) {
       return undefined;
     } else {
-      const tmpChainRootComputed$1 = $('y');
+      const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       return tmpChainElementObject$1;
     }

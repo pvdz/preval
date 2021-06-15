@@ -1015,6 +1015,13 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             } else {
               vlog('- No change to commonReturn. Both have the same value/raw:', a.value, a.raw, b.value, b.raw);
             }
+          } else if (a.type === 'TemplateLiteral') {
+            if (AST.getStringValue(a) !== AST.getStringValue(b)) {
+              vlog('return string is not same as commonReturn so setting it to null');
+              funcNode.$p.commonReturn = null; // No longer use this
+            } else {
+              vlog('- No change to commonReturn. Both have the same value/raw:', a.value, a.raw, b.value, b.raw);
+            }
           } else if (b.type === 'UnaryExpression') {
             const aa = a.argument;
             const bb = b.argument; // We already checked isPrimitive so this should be fine
@@ -1028,6 +1035,13 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             } else if (aa.type === 'Literal') {
               if (aa.value !== bb.value || aa.raw !== bb.raw) {
                 vlog('return value is not same as commonReturn so setting it to null');
+                funcNode.$p.commonReturn = null; // No longer use this
+              } else {
+                vlog('- No change to commonReturn. Both have the same unary value/raw:', aa.value, aa.raw, bb.value, bb.raw);
+              }
+            } else if (aa.type === 'TemplateLiteral') {
+              if (AST.getStringValue(aa) !== AST.getStringValue(bb)) {
+                vlog('return string is not same as commonReturn so setting it to null');
                 funcNode.$p.commonReturn = null; // No longer use this
               } else {
                 vlog('- No change to commonReturn. Both have the same unary value/raw:', aa.value, aa.raw, bb.value, bb.raw);
@@ -1110,9 +1124,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               } else if (typeof init.value === 'boolean') {
                 meta.typing.mustBeType = 'boolean';
                 value = init.value;
-              } else if (typeof init.value === 'string') {
-                meta.typing.mustBeType = 'string';
-                value = init.value;
               } else if (typeof init.value === 'number') {
                 value = init.value;
                 meta.typing.mustBeType = 'number';
@@ -1134,6 +1145,22 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 meta.typing.mustBeTruthy = !!value;
                 meta.typing.isPrimitive = true;
                 meta.typing.primitiveValue = value;
+              }
+              break;
+            }
+            case 'TemplateLiteral': {
+              if (AST.isStringLiteral(init)) {
+                meta.typing.mustBeType = 'string';
+                const value = AST.getStringValue(init);
+                meta.typing.mustBeValue = value;
+                meta.typing.mustBeFalsy = !value;
+                meta.typing.mustBeTruthy = !!value;
+                meta.typing.isPrimitive = true;
+                meta.typing.primitiveValue = value;
+              } else {
+                meta.typing.mustBeFalsy = AST.isFalsy(init);
+                meta.typing.mustBeTruthy = AST.isTruthy(init);
+                meta.typing.isPrimitive = true;
               }
               break;
             }
@@ -1221,10 +1248,10 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   meta.typing.mustBeType = 'number';
 
                   // Need a number on at least one side. Ignore negative numbers (unary expression).
-                  if (init.left.type === 'Literal' && typeof init.left.value === 'number') {
+                  if (AST.isNumber(init.left)) {
                     meta.typing.oneBitSet = isOneSetBit(init.left.value) ? init.left.value : 0;
                   }
-                  if (!meta.typing.oneBitSet && init.right.type === 'Literal' && typeof init.right.value === 'number') {
+                  if (!meta.typing.oneBitSet && AST.isNumber(init.right)) {
                     meta.typing.oneBitSet = isOneSetBit(init.right.value) ? init.right.value : 0;
                   }
                   break;

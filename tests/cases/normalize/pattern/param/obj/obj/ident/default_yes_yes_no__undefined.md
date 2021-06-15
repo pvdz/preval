@@ -23,8 +23,8 @@ $(f(undefined, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: { y: y = $('fail') } = $({ y: 'fail2' }) } = tmpParamBare;
-  return 'bad';
+  let { x: { y: y = $(`fail`) } = $({ y: `fail2` }) } = tmpParamBare;
+  return `bad`;
 };
 $(f(undefined, 10));
 `````
@@ -41,7 +41,7 @@ let f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = { y: 'fail2' };
+    const tmpCalleeParam = { y: `fail2` };
     objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -50,11 +50,11 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
-    y = $('fail');
-    return 'bad';
+    y = $(`fail`);
+    return `bad`;
   } else {
     y = objPatternBeforeDefault$1;
-    return 'bad';
+    return `bad`;
   }
 };
 const tmpCallCallee$1 = $;
@@ -66,7 +66,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 undefined.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

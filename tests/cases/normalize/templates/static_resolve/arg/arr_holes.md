@@ -17,17 +17,17 @@ $(`${[1,,3]}`);
 ## Pre Normal
 
 `````js filename=intro
-$('' + [1, , 3] + '');
+$(`` + [1, , 3] + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinBothLhs = '';
+const tmpBinBothLhs = ``;
 const tmpBinBothRhs = [1, , 3];
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + '';
+const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpBinBothRhs = [1, , 3];
-const tmpBinLhs = '' + tmpBinBothRhs;
+const tmpBinLhs = `` + tmpBinBothRhs;
 $(tmpBinLhs);
 `````
 

@@ -18,20 +18,20 @@ $('ok');
 ## Pre Normal
 
 `````js filename=intro
-const { x: {} = $({ x: 'pass' }) } = '';
-$('ok');
+const { x: {} = $({ x: `pass` }) } = ``;
+$(`ok`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = '';
+const bindingPatternObjRoot = ``;
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = { x: 'pass' };
+  const tmpCalleeParam = { x: `pass` };
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -45,17 +45,17 @@ if (objPatternCrashTest) {
   objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = ''.x;
+const objPatternBeforeDefault = ``.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = { x: 'pass' };
+  const tmpCalleeParam = { x: `pass` };
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -69,7 +69,7 @@ if (objPatternCrashTest) {
   objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

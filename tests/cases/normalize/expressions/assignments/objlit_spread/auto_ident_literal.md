@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$({ ...(a = 'foo') });
+$({ ...(a = `foo`) });
 $(a);
 `````
 
@@ -29,7 +29,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = 'foo';
+a = `foo`;
 let tmpObjSpread = a;
 const tmpCalleeParam = { ...tmpObjSpread };
 tmpCallCallee(tmpCalleeParam);
@@ -39,9 +39,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = { ...'foo' };
+const tmpCalleeParam = { ...`foo` };
 $(tmpCalleeParam);
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

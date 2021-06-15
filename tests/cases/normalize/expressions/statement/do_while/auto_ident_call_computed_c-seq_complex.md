@@ -27,7 +27,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (1, 2, $(b))[$('$')](1)) {
+  while (tmpDoWhileFlag || (1, 2, $(b))[$(`$`)](1)) {
     tmpDoWhileFlag = false;
     {
       $(100);
@@ -48,7 +48,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpCallCompObj = $(b);
-    const tmpCallCompProp = $('$');
+    const tmpCallCompProp = $(`$`);
     tmpIfTest = tmpCallCompObj[tmpCallCompProp](1);
   }
   if (tmpIfTest) {
@@ -72,7 +72,7 @@ while (true) {
   if (tmpDoWhileFlag) {
   } else {
     const tmpCallCompObj = $(b);
-    const tmpCallCompProp = $('$');
+    const tmpCallCompProp = $(`$`);
     tmpIfTest = tmpCallCompObj[tmpCallCompProp](1);
   }
   if (tmpIfTest) {

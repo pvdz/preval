@@ -23,7 +23,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpAnonDefaultExport = (a = { b: $(1) });
 export { tmpAnonDefaultExport as default };
-$(a)[$('b')] = 2;
+$(a)[$(`b`)] = 2;
 $(a);
 `````
 
@@ -36,7 +36,7 @@ a = { b: tmpObjLitVal };
 let tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
@@ -49,7 +49,7 @@ const a = { b: tmpObjLitVal };
 const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````

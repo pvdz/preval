@@ -34,9 +34,9 @@ let f = function () {
   debugger;
   stop: try {
     fail_early;
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     break stop;
   }
@@ -56,9 +56,9 @@ let f = function () {
     debugger;
     try {
       fail_early;
-      throw 'one';
+      throw `one`;
     } catch {
-      throw 'two';
+      throw `two`;
     } finally {
       const tmpReturnArg = tmpAfterLabel();
       return tmpReturnArg;
@@ -86,9 +86,9 @@ const f = function () {
   debugger;
   try {
     fail_early;
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     x = 1;
     return undefined;

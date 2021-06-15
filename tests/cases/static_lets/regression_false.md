@@ -36,16 +36,16 @@ const oops = function (...$$0) {
   let args = $$0;
   debugger;
   $(...args);
-  x = 'fail';
+  x = `fail`;
 };
 let x = 5;
 $(x);
 if ($(false)) {
   x = 10;
-  oops(x, 'a');
+  oops(x, `a`);
 } else {
   x = 20;
-  oops(x, 'b');
+  oops(x, `b`);
 }
 $(x);
 `````
@@ -57,7 +57,7 @@ const oops = function (...$$0) {
   let args = $$0;
   debugger;
   $(...args);
-  x = 'fail';
+  x = `fail`;
   return undefined;
 };
 let x = 5;
@@ -65,10 +65,10 @@ $(x);
 const tmpIfTest = $(false);
 if (tmpIfTest) {
   x = 10;
-  oops(x, 'a');
+  oops(x, `a`);
 } else {
   x = 20;
-  oops(x, 'b');
+  oops(x, `b`);
 }
 $(x);
 `````
@@ -80,7 +80,7 @@ const oops = function (...$$0) {
   const args = $$0;
   debugger;
   $(...args);
-  x = 'fail';
+  x = `fail`;
   return undefined;
 };
 let x = 5;
@@ -88,10 +88,10 @@ $(5);
 const tmpIfTest = $(false);
 if (tmpIfTest) {
   x = 10;
-  oops(10, 'a');
+  oops(10, `a`);
 } else {
   x = 20;
-  oops(20, 'b');
+  oops(20, `b`);
 }
 $(x);
 `````

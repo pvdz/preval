@@ -31,7 +31,7 @@ $('ok');
     },
   ],
 ] = [[{ x: [1, 2, 3] }, 20, 30], 40, 50];
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -47,13 +47,13 @@ const arrPatternSplat$1 = [...arrPatternStep];
 const arrPatternStep$1 = arrPatternSplat$1[0];
 const objPatternNoDefault = arrPatternStep$1.x;
 const arrPatternSplat$3 = [...objPatternNoDefault];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

@@ -27,7 +27,7 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpSwitchValue = b?.['x'];
+  const tmpSwitchValue = b?.[`x`];
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
@@ -47,7 +47,7 @@ let tmpSwitchValue = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = 'x';
+  const tmpChainRootComputed = `x`;
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   tmpSwitchValue = tmpChainElementObject;
 } else {

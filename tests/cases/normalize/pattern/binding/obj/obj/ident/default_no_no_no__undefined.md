@@ -21,7 +21,7 @@ $('bad');
 const {
   x: { y: y },
 } = undefined;
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -30,14 +30,14 @@ $('bad');
 const bindingPatternObjRoot = undefined;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const y = objPatternNoDefault.y;
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 undefined.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

@@ -25,7 +25,7 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 {
   while ($(1)) {
-    b['c'] = $(b)[$('d')];
+    b[`c`] = $(b)[$(`d`)];
   }
 }
 $(a, b);
@@ -41,7 +41,7 @@ while (true) {
   if (tmpIfTest) {
     const tmpAssignMemLhsObj = b;
     const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
+    const tmpCompProp = $(`d`);
     const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
     tmpAssignMemLhsObj.c = tmpAssignMemRhs;
   } else {
@@ -60,7 +60,7 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
+    const tmpCompProp = $(`d`);
     const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
     b.c = tmpAssignMemRhs;
   } else {

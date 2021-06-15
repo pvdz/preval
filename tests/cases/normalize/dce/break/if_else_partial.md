@@ -27,11 +27,11 @@ $('after');
 while ($(true)) {
   if ($(1)) {
     break;
-    $('fail');
+    $(`fail`);
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -44,13 +44,13 @@ while (true) {
     if (tmpIfTest$1) {
       break;
     } else {
-      $('keep, do not eval');
+      $(`keep, do not eval`);
     }
   } else {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -63,13 +63,13 @@ while (true) {
     if (tmpIfTest$1) {
       break;
     } else {
-      $('keep, do not eval');
+      $(`keep, do not eval`);
     }
   } else {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

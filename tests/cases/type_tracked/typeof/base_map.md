@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 new Map();
-$('object');
+$(`object`);
 `````
 
 ## Globals

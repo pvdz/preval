@@ -26,7 +26,7 @@ $(a, b);
 `````js filename=intro
 let f = function () {
   debugger;
-  return (a = (1, 2, $(b))[$('c')]);
+  return (a = (1, 2, $(b))[$(`c`)]);
 };
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
@@ -40,7 +40,7 @@ $(a, b);
 let f = function () {
   debugger;
   const tmpAssignRhsCompObj = $(b);
-  const tmpAssignRhsCompProp = $('c');
+  const tmpAssignRhsCompProp = $(`c`);
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   return a;
 };
@@ -57,7 +57,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b);

@@ -17,22 +17,22 @@ $(`${NaN}`);
 ## Pre Normal
 
 `````js filename=intro
-$('' + NaN + '');
+$(`` + NaN + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = 'NaN';
-const tmpCalleeParam = tmpBinLhs + '';
+const tmpBinLhs = `NaN`;
+const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('NaN');
+$(`NaN`);
 `````
 
 ## Globals

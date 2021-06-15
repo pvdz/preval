@@ -67,7 +67,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 [...3];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

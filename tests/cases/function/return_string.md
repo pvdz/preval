@@ -30,7 +30,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  return 'foo';
+  return `foo`;
 };
 $(f());
 `````
@@ -40,7 +40,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  return 'foo';
+  return `foo`;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -50,7 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

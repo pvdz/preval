@@ -24,7 +24,7 @@ $(x);
 let x = undefined;
 $(x);
 {
-  for (x in { y: 100 }) $(x, 'for');
+  for (x in { y: 100 }) $(x, `for`);
 }
 $(x);
 `````
@@ -36,7 +36,7 @@ let x = undefined;
 $(x);
 const tmpForInRhs = { y: 100 };
 for (x in tmpForInRhs) {
-  $(x, 'for');
+  $(x, `for`);
 }
 $(x);
 `````
@@ -48,7 +48,7 @@ let x = undefined;
 $(undefined);
 const tmpForInRhs = { y: 100 };
 for (x in tmpForInRhs) {
-  $(x, 'for');
+  $(x, `for`);
 }
 $(x);
 `````

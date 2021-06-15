@@ -32,7 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('object');
+$(`object`);
 `````
 
 ## Globals

@@ -21,27 +21,27 @@ $(x, 'b');
 
 `````js filename=intro
 let x = $(1);
-$(x, 'a');
+$(x, `a`);
 x = $(2);
-$(x, 'b');
+$(x, `b`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 let x = $(1);
-$(x, 'a');
+$(x, `a`);
 x = $(2);
-$(x, 'b');
+$(x, `b`);
 `````
 
 ## Output
 
 `````js filename=intro
 const x = $(1);
-$(x, 'a');
+$(x, `a`);
 const tmpClusterSSA_x = $(2);
-$(tmpClusterSSA_x, 'b');
+$(tmpClusterSSA_x, `b`);
 `````
 
 ## Globals

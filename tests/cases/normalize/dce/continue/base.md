@@ -19,7 +19,7 @@ $('after, wont eval due to infinite loop');
 
 `````js filename=intro
 while ($(true)) continue;
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Normalized
@@ -33,7 +33,7 @@ while (true) {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Output
@@ -47,7 +47,7 @@ while (true) {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Globals

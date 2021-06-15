@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-if ((a = b[$('c')]));
+if ((a = b[$(`c`)]));
 $(a, b);
 `````
 
@@ -33,7 +33,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpAssignRhsCompObj = b;
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let tmpIfTest = a;
 $(a, b);
@@ -42,7 +42,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
 $(a, b);

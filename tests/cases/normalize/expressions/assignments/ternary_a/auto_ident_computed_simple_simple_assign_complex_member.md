@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-$((a = b['c'] = $(b)[$('d')]) ? $(100) : $(200));
+$((a = b[`c`] = $(b)[$(`d`)]) ? $(100) : $(200));
 $(a, b);
 `````
 
@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.c = tmpNestedPropAssignRhs;
@@ -56,7 +56,7 @@ $(a, b);
 let tmpCalleeParam = undefined;
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {

@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-$($(0) ? $(100) : (a = b[$('c')] = $(b)[$('d')]));
+$($(0) ? $(100) : (a = b[$(`c`)] = $(b)[$(`d`)]));
 $(a, b);
 `````
 
@@ -39,9 +39,9 @@ if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   const varInitAssignLhsComputedObj = b;
-  const varInitAssignLhsComputedProp = $('c');
+  const varInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
@@ -62,9 +62,9 @@ const b = { c: 10, d: 20 };
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const varInitAssignLhsComputedProp = $('c');
+  const varInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   a = varInitAssignLhsComputedRhs;

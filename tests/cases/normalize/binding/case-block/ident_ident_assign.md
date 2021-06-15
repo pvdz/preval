@@ -25,9 +25,9 @@ let a = 1,
   d = 4;
 {
   let a$1;
-  const tmpSwitchValue = $('a');
+  const tmpSwitchValue = $(`a`);
   let tmpSwitchCaseToStart = 1;
-  if ($('a') === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if ($(`a`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
@@ -47,9 +47,9 @@ let b = 2;
 let c = 3;
 let d = 4;
 let a$1 = undefined;
-const tmpSwitchValue = $('a');
+const tmpSwitchValue = $(`a`);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $('a');
+const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -75,9 +75,9 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 2;
-const tmpSwitchValue = $('a');
+const tmpSwitchValue = $(`a`);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $('a');
+const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

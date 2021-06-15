@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-for ((delete ($(1), $(2), $(arg))[$('y')]).x of $({ x: 1 }));
+for ((delete ($(1), $(2), $(arg))[$(`y`)]).x of $({ x: 1 }));
 $(a, arg);
 `````
 
@@ -40,7 +40,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   $(1);
   $(2);
   const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $('y');
+  const tmpDeleteCompProp = $(`y`);
   const tmpAssignMemLhsObj = delete tmpDeleteCompObj[tmpDeleteCompProp];
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
@@ -59,7 +59,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   $(1);
   $(2);
   const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $('y');
+  const tmpDeleteCompProp = $(`y`);
   const tmpAssignMemLhsObj = delete tmpDeleteCompObj[tmpDeleteCompProp];
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }

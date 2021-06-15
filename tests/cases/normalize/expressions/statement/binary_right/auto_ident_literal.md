@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(100) + 'foo';
+$(100) + `foo`;
 $(a);
 `````
 
@@ -29,7 +29,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpBinLhs = $(100);
-tmpBinLhs + 'foo';
+tmpBinLhs + `foo`;
 $(a);
 `````
 
@@ -37,7 +37,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinLhs = $(100);
-tmpBinLhs + 'foo';
+tmpBinLhs + `foo`;
 const a = { a: 999, b: 1000 };
 $(a);
 `````

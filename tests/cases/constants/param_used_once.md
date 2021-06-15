@@ -849,7 +849,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
   let SSA_SNeX76 = yNeX272;
   while (true) {
     const fooBinBothRhsX4240 = typeof SSA_SNeX76;
-    const fooIfTestX13134 = 'number' == fooBinBothRhsX4240;
+    const fooIfTestX13134 = `number` == fooBinBothRhsX4240;
     if (fooIfTestX13134) {
       const fooReturnArgX5593 = YE$cloneX5(SSA_bNeX94, $, SSA_xNeX108);
       return fooReturnArgX5593;
@@ -1137,10 +1137,10 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
       const CNeX70 = SSA_SNeX76[2];
       kNeX164 = SSA_SNeX76[1];
       const fooBinBothRhsX4241 = typeof CNeX70;
-      const fooIfTestX13184 = 'number' == fooBinBothRhsX4241;
+      const fooIfTestX13184 = `number` == fooBinBothRhsX4241;
       if (fooIfTestX13184) {
         const fooBinBothRhsX4244 = typeof NNeX135;
-        const fooIfTestX13187 = 'number' == fooBinBothRhsX4244;
+        const fooIfTestX13187 = `number` == fooBinBothRhsX4244;
         if (fooIfTestX13187) {
           let fooReturnArgX5600 = undefined;
           const fooIfTestX13188 = 0 === NNeX135;
@@ -1192,7 +1192,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
         wNeX70 = CNeX70[2];
         LNeX86 = CNeX70[1];
         const fooBinBothRhsX4245 = typeof NNeX135;
-        const fooIfTestX13189 = 'number' == fooBinBothRhsX4245;
+        const fooIfTestX13189 = `number` == fooBinBothRhsX4245;
         if (fooIfTestX13189) {
           let fooReturnArgX5605 = undefined;
           const fooIfTestX13190 = 0 === NNeX135;
@@ -1249,7 +1249,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
       }
       jNeX68 = CNeX70[1];
       const fooBinBothRhsX4243 = typeof NNeX135;
-      const fooIfTestX13186 = 'number' == fooBinBothRhsX4243;
+      const fooIfTestX13186 = `number` == fooBinBothRhsX4243;
       if (fooIfTestX13186) {
         let fooReturnArgX5609 = undefined;
         const fooIfTestX13191 = 0 === NNeX135;
@@ -1376,7 +1376,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
         const sCeX130 = YA(rCeX220, fooCalleeParamX11316);
         const fooUnaryArgX395 = sCeX130[2];
         const fooBinBothRhsX4246 = typeof fooUnaryArgX395;
-        const fooIfTestX13192 = 'number' == fooBinBothRhsX4246;
+        const fooIfTestX13192 = `number` == fooBinBothRhsX4246;
         if (fooIfTestX13192) {
           const fooCalleeParamX11317 = SSA_bNeX94;
           const fooCalleeParamX11318 = SSA_xNeX108;
@@ -1539,7 +1539,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
       const $NeX101 = SSA_SNeX76[2];
       const eCeX71 = SSA_SNeX76[1];
       const fooBinBothRhsX4248 = typeof eCeX71;
-      const fooIfTestX13194 = 'number' == fooBinBothRhsX4248;
+      const fooIfTestX13194 = `number` == fooBinBothRhsX4248;
       if (fooIfTestX13194) {
         let fooSwitchCaseToStartX353 = 4;
         const fooIfTestX13195 = 0 === eCeX71;
@@ -1785,7 +1785,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
   let SSA_SNeX76 = yNeX272;
   while (true) {
     const fooBinBothRhsX4240 = typeof SSA_SNeX76;
-    const fooIfTestX13134 = 'number' == fooBinBothRhsX4240;
+    const fooIfTestX13134 = `number` == fooBinBothRhsX4240;
     if (fooIfTestX13134) {
       const fooReturnArgX5593 = YE$cloneX5(SSA_bNeX94, $, SSA_xNeX108);
       return fooReturnArgX5593;
@@ -2074,10 +2074,10 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                         const CNeX70 = SSA_SNeX76[2];
                         kNeX164 = SSA_SNeX76[1];
                         const fooBinBothRhsX4241 = typeof CNeX70;
-                        const fooIfTestX13184 = 'number' == fooBinBothRhsX4241;
+                        const fooIfTestX13184 = `number` == fooBinBothRhsX4241;
                         if (fooIfTestX13184) {
                           const fooBinBothRhsX4244 = typeof NNeX135;
-                          const fooIfTestX13187 = 'number' == fooBinBothRhsX4244;
+                          const fooIfTestX13187 = `number` == fooBinBothRhsX4244;
                           if (fooIfTestX13187) {
                             let fooReturnArgX5600 = undefined;
                             const fooIfTestX13188 = 0 === NNeX135;
@@ -2131,7 +2131,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                             wNeX70 = CNeX70[2];
                             LNeX86 = CNeX70[1];
                             const fooBinBothRhsX4245 = typeof NNeX135;
-                            const fooIfTestX13189 = 'number' == fooBinBothRhsX4245;
+                            const fooIfTestX13189 = `number` == fooBinBothRhsX4245;
                             if (fooIfTestX13189) {
                               let fooReturnArgX5605 = undefined;
                               const fooIfTestX13190 = 0 === NNeX135;
@@ -2190,7 +2190,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                           } else {
                             jNeX68 = CNeX70[1];
                             const fooBinBothRhsX4243 = typeof NNeX135;
-                            const fooIfTestX13186 = 'number' == fooBinBothRhsX4243;
+                            const fooIfTestX13186 = `number` == fooBinBothRhsX4243;
                             if (fooIfTestX13186) {
                               let fooReturnArgX5609 = undefined;
                               const fooIfTestX13191 = 0 === NNeX135;
@@ -2322,7 +2322,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                     const sCeX130 = YA(rCeX220, fooCalleeParamX11316);
                                     const fooUnaryArgX395 = sCeX130[2];
                                     const fooBinBothRhsX4246 = typeof fooUnaryArgX395;
-                                    const fooIfTestX13192 = 'number' == fooBinBothRhsX4246;
+                                    const fooIfTestX13192 = `number` == fooBinBothRhsX4246;
                                     if (fooIfTestX13192) {
                                       const fooCalleeParamX11317 = SSA_bNeX94;
                                       const fooCalleeParamX11318 = SSA_xNeX108;
@@ -2513,7 +2513,7 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
                                                   const $NeX101 = SSA_SNeX76[2];
                                                   const eCeX71 = SSA_SNeX76[1];
                                                   const fooBinBothRhsX4248 = typeof eCeX71;
-                                                  const fooIfTestX13194 = 'number' == fooBinBothRhsX4248;
+                                                  const fooIfTestX13194 = `number` == fooBinBothRhsX4248;
                                                   if (fooIfTestX13194) {
                                                     let fooSwitchCaseToStartX353 = 4;
                                                     const fooIfTestX13195 = 0 === eCeX71;

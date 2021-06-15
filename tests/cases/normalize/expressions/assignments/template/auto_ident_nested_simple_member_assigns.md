@@ -25,7 +25,7 @@ $(a, b, c);
 let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
-$('before  ' + (a = b.x = b.x = b.x = b.x = b.x = b.x = c) + '  after');
+$(`before  ` + (a = b.x = b.x = b.x = b.x = b.x = b.x = c) + `  after`);
 $(a, b, c);
 `````
 
@@ -36,7 +36,7 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpBinBothLhs = 'before  ';
+const tmpBinBothLhs = `before  `;
 const varInitAssignLhsComputedRhs$7 = c;
 b.x = varInitAssignLhsComputedRhs$7;
 const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
@@ -53,7 +53,7 @@ b.x = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpBinBothRhs = a;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c);
 `````
@@ -68,7 +68,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-$('before  3  after');
+$(`before  3  after`);
 $(3, b, 3);
 `````
 

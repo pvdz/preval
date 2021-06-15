@@ -32,17 +32,17 @@ let a = { a: 999, b: 1000 };
 {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 1;
-  if ((a = (1, 2, b)[$('c')] = $(b)[$('d')]) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if ((a = (1, 2, b)[$(`c`)] = $(b)[$(`d`)]) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else if (2 === tmpSwitchValue) tmpSwitchCaseToStart = 2;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -57,9 +57,9 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpNestedAssignComMemberObj = b;
-const tmpNestedAssignComMemberProp = $('c');
+const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
@@ -78,12 +78,12 @@ if (tmpIfTest) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 $(a, b);
@@ -95,9 +95,9 @@ $(a, b);
 const b = { c: 10, d: 20 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpNestedAssignComMemberProp = $('c');
+const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 const tmpIfTest = tmpNestedAssignPropRhs === tmpSwitchValue;
@@ -113,12 +113,12 @@ if (tmpIfTest) {
 tmpSwitchCaseToStart <= 0;
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 $(tmpNestedAssignPropRhs, b);

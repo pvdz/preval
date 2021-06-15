@@ -18,14 +18,14 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-({ x: x } = { x: '' });
+({ x: x } = { x: `` });
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { x: '' };
+const tmpAssignObjPatternRhs = { x: `` };
 x = tmpAssignObjPatternRhs.x;
 $(x);
 `````
@@ -33,7 +33,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-x = '';
+x = ``;
 $(x);
 `````
 

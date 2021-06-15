@@ -28,7 +28,7 @@ let f = function () {
   debugger;
   {
     let a = { a: 999, b: 1000 };
-    (a = { b: $(1) })($(1), a)[$('b')] = $(2);
+    (a = { b: $(1) })($(1), a)[$(`b`)] = $(2);
     $(a);
   }
 };
@@ -47,7 +47,7 @@ let f = function () {
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = a;
   const tmpAssignComMemLhsObj = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  const tmpAssignComMemLhsProp = $('b');
+  const tmpAssignComMemLhsProp = $(`b`);
   const tmpAssignComputedObj = tmpAssignComMemLhsObj;
   const tmpAssignComputedProp = tmpAssignComMemLhsProp;
   const tmpAssignComputedRhs = $(2);
@@ -67,7 +67,7 @@ const tmpObjLitVal = $(1);
 const tmpCalleeParam = $(1);
 const a = { b: tmpObjLitVal };
 const tmpAssignComMemLhsObj = a(tmpCalleeParam, a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);

@@ -39,8 +39,8 @@ let f = function () {
   } else {
     y = false;
   }
-  $('block');
-  $('block');
+  $(`block`);
+  $(`block`);
   return y;
 };
 f();
@@ -60,8 +60,8 @@ let f = function () {
   } else {
     y = false;
   }
-  $('block');
-  $('block');
+  $(`block`);
+  $(`block`);
   return y;
 };
 f();
@@ -76,8 +76,8 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   const tmpBinLhs = $(0);
-  $('block');
-  $('block');
+  $(`block`);
+  $(`block`);
   const x = tmpBinLhs === 1;
   return x;
 };

@@ -39,7 +39,7 @@ let f = function () {
       x = $(2);
       $(x);
     } else {
-      $('else');
+      $(`else`);
     }
   } else {
     $(x);

@@ -24,9 +24,9 @@ if (x) {
 `````js filename=intro
 const x = [1, 2, 3];
 if (x) {
-  $('pass');
+  $(`pass`);
 } else {
-  $('false');
+  $(`false`);
 }
 `````
 
@@ -35,16 +35,16 @@ if (x) {
 `````js filename=intro
 const x = [1, 2, 3];
 if (x) {
-  $('pass');
+  $(`pass`);
 } else {
-  $('false');
+  $(`false`);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-$('pass');
+$(`pass`);
 `````
 
 ## Globals

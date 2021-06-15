@@ -27,7 +27,7 @@ $(a, b, c, d);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? ($(b)[$('x')] = $(c)[$('y')] = $(d)) : tmpParamBare;
+  let p = tmpParamBare === undefined ? ($(b)[$(`x`)] = $(c)[$(`y`)] = $(d)) : tmpParamBare;
 };
 let b = { x: 1 },
   c = { y: 2 },
@@ -47,9 +47,9 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $('x');
+    const tmpNestedAssignComMemberProp = $(`x`);
     const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $('y');
+    const varInitAssignLhsComputedProp = $(`y`);
     const varInitAssignLhsComputedRhs = $(d);
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
@@ -79,9 +79,9 @@ const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;

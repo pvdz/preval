@@ -21,7 +21,7 @@ $('bad');
 const {
   x: [],
 } = 1;
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -30,7 +30,7 @@ $('bad');
 const bindingPatternObjRoot = 1;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -38,7 +38,7 @@ $('bad');
 `````js filename=intro
 const objPatternNoDefault = (1).x;
 [...objPatternNoDefault];
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

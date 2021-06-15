@@ -38,7 +38,7 @@ let f = function () {
   } else {
     return;
   }
-  $('end');
+  $(`end`);
 };
 const arr = [1, $, 3];
 f();
@@ -56,7 +56,7 @@ let f = function () {
     const tmpCallCallee = $;
     const tmpCalleeParam = arr[1];
     tmpCallCallee(tmpCalleeParam);
-    $('end');
+    $(`end`);
     return undefined;
   } else {
     return undefined;
@@ -76,7 +76,7 @@ const f = function () {
   debugger;
   if ($) {
     $($);
-    $('end');
+    $(`end`);
     return undefined;
   } else {
     return undefined;

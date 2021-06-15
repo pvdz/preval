@@ -19,21 +19,21 @@ $(y);
 
 `````js filename=intro
 const {
-  x: { y: y = $('pass') },
-} = { x: '', b: 11, c: 12 };
+  x: { y: y = $(`pass`) },
+} = { x: ``, b: 11, c: 12 };
 $(y);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: '', b: 11, c: 12 };
+const bindingPatternObjRoot = { x: ``, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 let y = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = $('pass');
+  y = $(`pass`);
 } else {
   y = objPatternBeforeDefault;
 }
@@ -43,11 +43,11 @@ $(y);
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = ''.y;
+const objPatternBeforeDefault = ``.y;
 let y = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = $('pass');
+  y = $(`pass`);
 } else {
   y = objPatternBeforeDefault;
 }

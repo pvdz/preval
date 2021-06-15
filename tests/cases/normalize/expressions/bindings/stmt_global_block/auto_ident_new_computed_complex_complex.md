@@ -24,7 +24,7 @@
 `````js filename=intro
 {
   let b = { $: $ };
-  let a = new ($(b)[$('$')])(1);
+  let a = new ($(b)[$(`$`)])(1);
   $(a);
 }
 `````
@@ -34,7 +34,7 @@
 `````js filename=intro
 let b = { $: $ };
 const tmpCompObj = $(b);
-const tmpCompProp = $('$');
+const tmpCompProp = $(`$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 let a = new tmpNewCallee(1);
 $(a);
@@ -45,7 +45,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCompObj = $(b);
-const tmpCompProp = $('$');
+const tmpCompProp = $(`$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 const a = new tmpNewCallee(1);
 $(a);

@@ -18,8 +18,8 @@ $(a['$']);
 ## Pre Normal
 
 `````js filename=intro
-const a = { ['$']: 1 };
-$(a['$']);
+const a = { [`$`]: 1 };
+$(a[`$`]);
 `````
 
 ## Normalized

@@ -21,7 +21,7 @@ $(a);
 
 `````js filename=intro
 let b = { $: $ };
-let a = b[$('$')](1);
+let a = b[$(`$`)](1);
 export { a };
 $(a);
 `````
@@ -31,7 +31,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 const tmpCallCompObj = b;
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 let a = tmpCallCompObj[tmpCallCompProp](1);
 export { a };
 $(a);
@@ -40,7 +40,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const b = { $: $ };
 const a = b[tmpCallCompProp](1);
 export { a };

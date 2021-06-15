@@ -23,7 +23,7 @@ $(a);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? 'foo' : tmpParamBare;
+  let p = tmpParamBare === undefined ? `foo` : tmpParamBare;
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -39,7 +39,7 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    p = 'foo';
+    p = `foo`;
     return undefined;
   } else {
     p = tmpParamBare;

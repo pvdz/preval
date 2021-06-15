@@ -24,7 +24,7 @@ $(1);
 `````js filename=intro
 let x = true;
 while (x) {
-  $('inside');
+  $(`inside`);
   x = false;
 }
 $(1);
@@ -35,7 +35,7 @@ $(1);
 `````js filename=intro
 let x = true;
 while (x) {
-  $('inside');
+  $(`inside`);
   x = false;
 }
 $(1);
@@ -46,7 +46,7 @@ $(1);
 `````js filename=intro
 let x = true;
 while (x) {
-  $('inside');
+  $(`inside`);
   x = false;
 }
 $(1);

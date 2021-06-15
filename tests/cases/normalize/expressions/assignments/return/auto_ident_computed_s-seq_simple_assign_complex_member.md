@@ -26,7 +26,7 @@ $(a, b);
 `````js filename=intro
 let f = function () {
   debugger;
-  return (a = (1, 2, b)[$('c')] = $(b)[$('d')]);
+  return (a = (1, 2, b)[$(`c`)] = $(b)[$(`d`)]);
 };
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
@@ -40,9 +40,9 @@ $(a, b);
 let f = function () {
   debugger;
   const tmpNestedAssignComMemberObj = b;
-  const tmpNestedAssignComMemberProp = $('c');
+  const tmpNestedAssignComMemberProp = $(`c`);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
@@ -60,10 +60,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const tmpNestedAssignComMemberProp = $('c');
+const tmpNestedAssignComMemberProp = $(`c`);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs);

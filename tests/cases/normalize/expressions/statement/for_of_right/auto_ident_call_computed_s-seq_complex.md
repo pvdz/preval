@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-for (let x of (1, 2, b)[$('$')](1));
+for (let x of (1, 2, b)[$(`$`)](1));
 $(a);
 `````
 
@@ -33,7 +33,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const tmpForOfDeclRhs = tmpCallCompObj[tmpCallCompProp](1);
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
@@ -46,7 +46,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const tmpForOfDeclRhs = b[tmpCallCompProp](1);
 let x = undefined;
 for (x of tmpForOfDeclRhs) {

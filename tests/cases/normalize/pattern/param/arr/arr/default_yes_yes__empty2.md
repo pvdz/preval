@@ -57,7 +57,7 @@ const f = function ($$0) {
   debugger;
   const a = function () {
     debugger;
-    const A = ['pass3'];
+    const A = [`pass3`];
     const e = function () {
       debugger;
       X = A;
@@ -91,7 +91,7 @@ const f = function ($$0) {
   debugger;
   const a = function () {
     debugger;
-    const A = ['pass3'];
+    const A = [`pass3`];
     const e = function () {
       debugger;
       X = A;

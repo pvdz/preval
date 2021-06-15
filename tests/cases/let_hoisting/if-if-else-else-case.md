@@ -72,10 +72,10 @@ let f = function () {
   const g = function () {
     debugger;
     if (test) {
-      $('A');
+      $(`A`);
       return undefined;
     } else {
-      $('B');
+      $(`B`);
       return undefined;
     }
   };
@@ -100,10 +100,10 @@ let f = function () {
   const g = function () {
     debugger;
     if (test) {
-      $('A');
+      $(`A`);
       return undefined;
     } else {
-      $('B');
+      $(`B`);
       return undefined;
     }
   };
@@ -130,12 +130,12 @@ if ($) {
   if (test) {
     const tmpClusterSSA_tmpIfelseifelse = $(1);
     if (tmpClusterSSA_tmpIfelseifelse) {
-      $('A');
+      $(`A`);
     } else {
-      $('B');
+      $(`B`);
     }
   } else {
-    $('B');
+    $(`B`);
   }
 } else {
 }

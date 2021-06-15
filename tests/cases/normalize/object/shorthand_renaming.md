@@ -84,7 +84,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 
 `````js filename=intro
 undefined.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

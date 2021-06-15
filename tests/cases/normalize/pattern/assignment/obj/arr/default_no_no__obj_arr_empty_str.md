@@ -20,24 +20,24 @@ $('ok');
 `````js filename=intro
 ({
   x: [],
-} = { x: [''], a: 11, b: 12 });
-$('ok');
+} = { x: [``], a: 11, b: 12 });
+$(`ok`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal = [''];
+const tmpObjLitVal = [``];
 const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const arrPatternSplat = [...objPatternNoDefault];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

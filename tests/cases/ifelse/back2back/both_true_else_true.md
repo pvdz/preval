@@ -30,15 +30,15 @@ if (x) {
 `````js filename=intro
 let x = $(1);
 if (x) {
-  $(x, 'A');
+  $(x, `A`);
   x = $(1);
 } else {
-  $(x, 'B');
+  $(x, `B`);
   x = $(1);
 }
 if (x) {
 } else {
-  $(x, 'hit');
+  $(x, `hit`);
 }
 `````
 
@@ -47,15 +47,15 @@ if (x) {
 `````js filename=intro
 let x = $(1);
 if (x) {
-  $(x, 'A');
+  $(x, `A`);
   x = $(1);
 } else {
-  $(x, 'B');
+  $(x, `B`);
   x = $(1);
 }
 if (x) {
 } else {
-  $(x, 'hit');
+  $(x, `hit`);
 }
 `````
 
@@ -64,15 +64,15 @@ if (x) {
 `````js filename=intro
 let x = $(1);
 if (x) {
-  $(x, 'A');
+  $(x, `A`);
   x = $(1);
 } else {
-  $(x, 'B');
+  $(x, `B`);
   x = $(1);
 }
 if (x) {
 } else {
-  $(x, 'hit');
+  $(x, `hit`);
 }
 `````
 

@@ -30,7 +30,7 @@ let f = function () {
   {
     let a = { a: 999, b: 1000 };
     a = { b: $(1) };
-    a[$('b')] = 2;
+    a[$(`b`)] = 2;
     $(a);
   }
 };
@@ -46,7 +46,7 @@ let f = function () {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
   const tmpAssignComMemLhsObj = a;
-  const tmpAssignComMemLhsProp = $('b');
+  const tmpAssignComMemLhsProp = $(`b`);
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
   $(a);
   return undefined;
@@ -60,7 +60,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const a = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = 2;
 $(a);

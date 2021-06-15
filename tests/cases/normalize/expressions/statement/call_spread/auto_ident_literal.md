@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(...'foo');
+$(...`foo`);
 $(a);
 `````
 
@@ -28,14 +28,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(...'foo');
+$(...`foo`);
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-$(...'foo');
+$(...`foo`);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

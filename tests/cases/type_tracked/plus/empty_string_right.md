@@ -26,10 +26,10 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const a = '' + $(1);
-  $(a, 'a');
-  const b = a + '';
-  $(b, 'b');
+  const a = `` + $(1);
+  $(a, `a`);
+  const b = a + ``;
+  $(b, `b`);
 };
 f();
 f();
@@ -40,12 +40,12 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpBinBothLhs = '';
+  const tmpBinBothLhs = ``;
   const tmpBinBothRhs = $(1);
   const a = tmpBinBothLhs + tmpBinBothRhs;
-  $(a, 'a');
-  const b = a + '';
-  $(b, 'b');
+  $(a, `a`);
+  const b = a + ``;
+  $(b, `b`);
   return undefined;
 };
 f();
@@ -58,9 +58,9 @@ f();
 const f = function () {
   debugger;
   const tmpBinBothRhs = $(1);
-  const a = '' + tmpBinBothRhs;
-  $(a, 'a');
-  $(a, 'b');
+  const a = `` + tmpBinBothRhs;
+  $(a, `a`);
+  $(a, `b`);
   return undefined;
 };
 f();

@@ -42,7 +42,7 @@ f();
 let x = undefined;
 let f = function () {
   debugger;
-  $('something');
+  $(`something`);
   x = 100;
   if ($(1)) {
     $(x);
@@ -59,7 +59,7 @@ f();
 let x = undefined;
 let f = function () {
   debugger;
-  $('something');
+  $(`something`);
   x = 100;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
@@ -75,7 +75,7 @@ f();
 ## Output
 
 `````js filename=intro
-$('something');
+$(`something`);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(100);

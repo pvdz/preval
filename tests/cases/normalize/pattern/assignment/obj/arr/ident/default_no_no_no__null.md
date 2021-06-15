@@ -21,7 +21,7 @@ $('bad');
 ({
   x: [y],
 } = null);
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -31,14 +31,14 @@ const tmpAssignObjPatternRhs = null;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const arrPatternSplat = [...objPatternNoDefault];
 y = arrPatternSplat[0];
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 null.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

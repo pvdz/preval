@@ -30,9 +30,9 @@ const v = $(65);
 const and = v & 64;
 const set = and === 65;
 if (set) {
-  $('fail');
+  $(`fail`);
 } else {
-  $('pass');
+  $(`pass`);
 }
 `````
 
@@ -43,9 +43,9 @@ const v = $(65);
 const and = v & 64;
 const set = and === 65;
 if (set) {
-  $('fail');
+  $(`fail`);
 } else {
-  $('pass');
+  $(`pass`);
 }
 `````
 
@@ -56,9 +56,9 @@ const v = $(65);
 const and = v & 64;
 const set = and === 65;
 if (set) {
-  $('fail');
+  $(`fail`);
 } else {
-  $('pass');
+  $(`pass`);
 }
 `````
 

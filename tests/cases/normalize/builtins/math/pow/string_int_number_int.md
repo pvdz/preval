@@ -17,7 +17,7 @@ $(Math.pow('3', 5));
 ## Pre Normal
 
 `````js filename=intro
-$(Math.pow('3', 5));
+$(Math.pow(`3`, 5));
 `````
 
 ## Normalized

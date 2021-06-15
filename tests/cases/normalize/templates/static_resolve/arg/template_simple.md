@@ -17,22 +17,22 @@ $(`${`I am a string`}`);
 ## Pre Normal
 
 `````js filename=intro
-$('' + 'I am a string' + '');
+$(`` + `I am a string` + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = 'I am a string';
-const tmpCalleeParam = tmpBinLhs + '';
+const tmpBinLhs = `I am a string`;
+const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('I am a string');
+$(`I am a string`);
 `````
 
 ## Globals

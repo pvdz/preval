@@ -23,10 +23,10 @@ $(f('', 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [[] = $(['pass2'])] = tmpParamBare === undefined ? $(['fail3']) : tmpParamBare;
-  return 'ok';
+  let [[] = $([`pass2`])] = tmpParamBare === undefined ? $([`fail3`]) : tmpParamBare;
+  return `ok`;
 };
-$(f('', 200));
+$(f(``, 200));
 `````
 
 ## Normalized
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = ['fail3'];
+    const tmpCalleeParam = [`fail3`];
     bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
     bindingPatternArrRoot = tmpParamBare;
@@ -50,26 +50,26 @@ let f = function ($$0) {
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = ['pass2'];
+    const tmpCalleeParam$1 = [`pass2`];
     arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
   let arrPatternSplat$1 = [...arrPatternStep];
-  return 'ok';
+  return `ok`;
 };
 const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f('', 200);
+const tmpCalleeParam$3 = f(``, 200);
 tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = ['pass2'];
+const tmpCalleeParam$1 = [`pass2`];
 const arrPatternStep = $(tmpCalleeParam$1);
 [...arrPatternStep];
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

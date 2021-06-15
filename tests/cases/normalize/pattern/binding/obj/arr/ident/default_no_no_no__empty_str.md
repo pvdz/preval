@@ -20,27 +20,27 @@ $('bad');
 `````js filename=intro
 const {
   x: [y],
-} = '';
-$('bad');
+} = ``;
+$(`bad`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = '';
+const bindingPatternObjRoot = ``;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const y = arrPatternSplat[0];
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = ''.x;
+const objPatternNoDefault = ``.x;
 const arrPatternSplat = [...objPatternNoDefault];
 arrPatternSplat[0];
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

@@ -29,8 +29,8 @@ let f = function () {
   debugger;
   let i = 0;
   while (++i < 10) {
-    if (i < 5) $(i, 'sub');
-    else $(i, 'sup');
+    if (i < 5) $(i, `sub`);
+    else $(i, `sup`);
   }
   $(i);
 };
@@ -50,9 +50,9 @@ let f = function () {
     if (tmpIfTest) {
       const tmpIfTest$1 = i < 5;
       if (tmpIfTest$1) {
-        $(i, 'sub');
+        $(i, `sub`);
       } else {
-        $(i, 'sup');
+        $(i, `sup`);
       }
     } else {
       break;
@@ -79,9 +79,9 @@ const f = function () {
     if (tmpIfTest) {
       const tmpIfTest$1 = i < 5;
       if (tmpIfTest$1) {
-        $(i, 'sub');
+        $(i, `sub`);
       } else {
-        $(i, 'sup');
+        $(i, `sup`);
       }
     } else {
       break;

@@ -27,7 +27,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpSwitchValue = (a = delete $(arg)[$('y')]);
+  const tmpSwitchValue = (a = delete $(arg)[$(`y`)]);
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
@@ -44,7 +44,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
@@ -61,7 +61,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(100);
 $(tmpClusterSSA_a, arg);

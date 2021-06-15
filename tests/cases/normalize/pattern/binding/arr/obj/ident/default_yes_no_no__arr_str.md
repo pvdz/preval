@@ -18,21 +18,21 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const [{ x: x = $('pass') }] = ['abc', 20, 30];
+const [{ x: x = $(`pass`) }] = [`abc`, 20, 30];
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = ['abc', 20, 30];
+const bindingPatternArrRoot = [`abc`, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = objPatternBeforeDefault;
 }
@@ -42,11 +42,11 @@ $(x);
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = 'abc'.x;
+const objPatternBeforeDefault = `abc`.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = objPatternBeforeDefault;
 }

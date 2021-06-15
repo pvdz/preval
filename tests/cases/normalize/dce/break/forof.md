@@ -28,10 +28,10 @@ $('after');
 while ($(true)) {
   for (let x of [10, 20]) {
     break;
-    $('fail');
+    $(`fail`);
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -49,7 +49,7 @@ while (true) {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -67,7 +67,7 @@ while (true) {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

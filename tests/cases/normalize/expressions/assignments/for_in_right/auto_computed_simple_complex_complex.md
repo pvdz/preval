@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 for (let x in (a = { b: $(1) }));
-a[$('b')] = $(2);
+a[$(`b`)] = $(2);
 $(a);
 `````
 
@@ -37,7 +37,7 @@ let x = undefined;
 for (x in tmpForInDeclRhs) {
 }
 const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(2);
@@ -53,7 +53,7 @@ let x = undefined;
 const a = { b: tmpObjLitVal };
 for (x in a) {
 }
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);

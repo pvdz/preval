@@ -31,7 +31,7 @@ let a = { a: 999, b: 1000 };
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a = $(b)[$('c')] = $(b)[$('d')];
+      a = $(b)[$(`c`)] = $(b)[$(`d`)];
     }
   }
 }
@@ -48,9 +48,9 @@ let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('c');
+  const tmpNestedAssignComMemberProp = $(`c`);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
@@ -66,9 +66,9 @@ $(a, b);
 $(1);
 const b = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('c');
+const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, b);

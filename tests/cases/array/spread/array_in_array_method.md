@@ -21,8 +21,8 @@ $(y);
 
 `````js filename=intro
 const x = [1, 2, 3];
-$(x.join(''));
-const y = ['a', ...x, 'b'];
+$(x.join(``));
+const y = [`a`, ...x, `b`];
 $(y);
 `````
 
@@ -31,9 +31,9 @@ $(y);
 `````js filename=intro
 const x = [1, 2, 3];
 const tmpCallCallee = $;
-const tmpCalleeParam = x.join('');
+const tmpCalleeParam = x.join(``);
 tmpCallCallee(tmpCalleeParam);
-const y = ['a', ...x, 'b'];
+const y = [`a`, ...x, `b`];
 $(y);
 `````
 
@@ -41,9 +41,9 @@ $(y);
 
 `````js filename=intro
 const x = [1, 2, 3];
-const tmpCalleeParam = x.join('');
+const tmpCalleeParam = x.join(``);
 $(tmpCalleeParam);
-const y = ['a', ...x, 'b'];
+const y = [`a`, ...x, `b`];
 $(y);
 `````
 

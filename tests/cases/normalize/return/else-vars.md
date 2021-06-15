@@ -32,11 +32,11 @@ let f = function () {
   if ($(1)) {
     $(100);
   } else {
-    x = $(2, 'b');
+    x = $(2, `b`);
   }
   return x;
 };
-$(f(), 'result');
+$(f(), `result`);
 `````
 
 ## Normalized
@@ -50,13 +50,13 @@ let f = function () {
     $(100);
     return x;
   } else {
-    x = $(2, 'b');
+    x = $(2, `b`);
     return x;
   }
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
-const tmpCalleeParam$1 = 'result';
+const tmpCalleeParam$1 = `result`;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
@@ -70,12 +70,12 @@ const f = function () {
     $(100);
     return undefined;
   } else {
-    const tmpClusterSSA_x = $(2, 'b');
+    const tmpClusterSSA_x = $(2, `b`);
     return tmpClusterSSA_x;
   }
 };
 const tmpCalleeParam = f();
-$(tmpCalleeParam, 'result');
+$(tmpCalleeParam, `result`);
 `````
 
 ## Globals

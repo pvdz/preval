@@ -33,7 +33,7 @@ const a = {
     const tmpthis = this;
     debugger;
     if ($(0)) {
-      $('fail');
+      $(`fail`);
     } else {
       return tmpthis.foo;
     }
@@ -51,7 +51,7 @@ const f = function () {
   debugger;
   const tmpIfTest = $(0);
   if (tmpIfTest) {
-    $('fail');
+    $(`fail`);
     return undefined;
   } else {
     const tmpReturnArg = tmpthis.foo;
@@ -73,7 +73,7 @@ const f = function () {
   debugger;
   const tmpIfTest = $(0);
   if (tmpIfTest) {
-    $('fail');
+    $(`fail`);
     return undefined;
   } else {
     const tmpReturnArg = tmpthis.foo;

@@ -19,7 +19,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let b = 'foo';
+let b = `foo`;
 let x = ($(1), b).length;
 $(x);
 `````
@@ -27,7 +27,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let b = 'foo';
+let b = `foo`;
 $(1);
 const tmpCompObj = b;
 let x = tmpCompObj.length;

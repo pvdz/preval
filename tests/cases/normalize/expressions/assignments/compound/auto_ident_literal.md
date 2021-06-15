@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$((a *= 'foo'));
+$((a *= `foo`));
 $(a);
 `````
 
@@ -29,7 +29,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = a * 'foo';
+a = a * `foo`;
 let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -39,7 +39,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * 'foo';
+const tmpClusterSSA_a = a * `foo`;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

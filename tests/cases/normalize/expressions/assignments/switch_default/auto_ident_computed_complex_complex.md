@@ -31,7 +31,7 @@ let a = { a: 999, b: 1000 };
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a = $(b)[$('c')];
+      a = $(b)[$(`c`)];
     }
   }
 }
@@ -48,7 +48,7 @@ let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
   const tmpAssignRhsCompObj = $(b);
-  const tmpAssignRhsCompProp = $('c');
+  const tmpAssignRhsCompProp = $(`c`);
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 } else {
 }
@@ -61,7 +61,7 @@ $(a, b);
 $(1);
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(tmpClusterSSA_a, b);
 `````

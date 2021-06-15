@@ -18,7 +18,7 @@ $(y);
 ## Pre Normal
 
 `````js filename=intro
-const { x: [y = 'fail'] = $(['pass2']) } = 0;
+const { x: [y = `fail`] = $([`pass2`]) } = 0;
 $(y);
 `````
 
@@ -31,7 +31,7 @@ let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = ['pass2'];
+  const tmpCalleeParam = [`pass2`];
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -41,7 +41,7 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 let y = undefined;
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  y = 'fail';
+  y = `fail`;
 } else {
   y = arrPatternBeforeDefault;
 }
@@ -55,7 +55,7 @@ const objPatternBeforeDefault = (0).x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = ['pass2'];
+  const tmpCalleeParam = [`pass2`];
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -64,7 +64,7 @@ const arrPatternSplat = [...objPatternAfterDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  $('fail');
+  $(`fail`);
 } else {
   $(arrPatternBeforeDefault);
 }

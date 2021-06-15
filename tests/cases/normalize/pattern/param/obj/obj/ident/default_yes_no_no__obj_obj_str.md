@@ -24,11 +24,11 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let {
-    x: { y: y = $('fail') },
+    x: { y: y = $(`fail`) },
   } = tmpParamBare;
   return y;
 };
-$(f({ x: { x: 1, y: 'abc', z: 3 }, b: 11, c: 12 }, 10));
+$(f({ x: { x: 1, y: `abc`, z: 3 }, b: 11, c: 12 }, 10));
 `````
 
 ## Normalized
@@ -43,7 +43,7 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    y = $('fail');
+    y = $(`fail`);
     return y;
   } else {
     y = objPatternBeforeDefault;
@@ -52,7 +52,7 @@ let f = function ($$0) {
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
-const tmpObjLitVal = { x: 1, y: 'abc', z: 3 };
+const tmpObjLitVal = { x: 1, y: `abc`, z: 3 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
 const tmpCalleeParam$3 = 10;
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
@@ -69,13 +69,13 @@ const f = function ($$0) {
   const objPatternBeforeDefault = objPatternNoDefault.y;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpClusterSSA_y = $('fail');
+    const tmpClusterSSA_y = $(`fail`);
     return tmpClusterSSA_y;
   } else {
     return objPatternBeforeDefault;
   }
 };
-const tmpObjLitVal = { x: 1, y: 'abc', z: 3 };
+const tmpObjLitVal = { x: 1, y: `abc`, z: 3 };
 const tmpCalleeParam$1 = { x: tmpObjLitVal, b: 11, c: 12 };
 const tmpCalleeParam = f(tmpCalleeParam$1, 10);
 $(tmpCalleeParam);

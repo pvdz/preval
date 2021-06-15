@@ -30,10 +30,10 @@ let x = 5;
 $(x);
 if ($(true)) {
   x = 10;
-  $(x, 'a');
+  $(x, `a`);
 } else {
   x = 20;
-  $(x, 'b');
+  $(x, `b`);
 }
 $(x);
 `````
@@ -46,10 +46,10 @@ $(x);
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   x = 10;
-  $(x, 'a');
+  $(x, `a`);
 } else {
   x = 20;
-  $(x, 'b');
+  $(x, `b`);
 }
 $(x);
 `````
@@ -62,10 +62,10 @@ $(5);
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   x = 10;
-  $(10, 'a');
+  $(10, `a`);
 } else {
   x = 20;
-  $(20, 'b');
+  $(20, `b`);
 }
 $(x);
 `````

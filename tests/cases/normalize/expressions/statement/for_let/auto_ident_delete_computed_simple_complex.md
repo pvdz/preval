@@ -24,7 +24,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let xyz = delete arg[$('y')];
+  let xyz = delete arg[$(`y`)];
   while (true) {
     $(xyz);
     $(1);
@@ -39,7 +39,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = arg;
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 let xyz = delete tmpDeleteCompObj[tmpDeleteCompProp];
 while (true) {
   $(xyz);
@@ -53,7 +53,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const xyz = delete arg[tmpDeleteCompProp];
 while (true) {
   $(xyz);

@@ -19,38 +19,38 @@ $('bad');
 
 `````js filename=intro
 const {
-  x: { y: y = $('fail') },
-} = 'abc';
-$('bad');
+  x: { y: y = $(`fail`) },
+} = `abc`;
+$(`bad`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = 'abc';
+const bindingPatternObjRoot = `abc`;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 let y = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = $('fail');
+  y = $(`fail`);
 } else {
   y = objPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = 'abc'.x;
+const objPatternNoDefault = `abc`.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  $('fail');
+  $(`fail`);
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

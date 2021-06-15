@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-$(['before ', ' after'], (a = --b));
+$([`before `, ` after`], (a = --b));
 $(a, b);
 `````
 
@@ -33,7 +33,7 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpNestedCompoundLhs = b;
 const tmpNestedComplexRhs = tmpNestedCompoundLhs - 1;
 b = tmpNestedComplexRhs;
@@ -46,7 +46,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, 0);
 $(0, 0);
 `````

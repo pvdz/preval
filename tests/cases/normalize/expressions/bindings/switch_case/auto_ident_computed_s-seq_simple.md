@@ -33,7 +33,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       b = { c: 1 };
-      a = (1, 2, b)[$('c')];
+      a = (1, 2, b)[$(`c`)];
       $(a, b);
     }
   }
@@ -56,7 +56,7 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   b = { c: 1 };
   const tmpAssignRhsCompObj = b;
-  const tmpAssignRhsCompProp = $('c');
+  const tmpAssignRhsCompProp = $(`c`);
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   $(a, b);
 } else {
@@ -66,7 +66,7 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 const tmpClusterSSA_b = { c: 1 };
 const tmpClusterSSA_a = tmpClusterSSA_b[tmpAssignRhsCompProp];
 $(tmpClusterSSA_a, tmpClusterSSA_b);

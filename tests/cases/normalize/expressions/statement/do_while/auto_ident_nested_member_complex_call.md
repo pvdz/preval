@@ -31,7 +31,7 @@ let b = { x: 1 },
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ($(b)[$('x')] = $(c)[$('y')] = $(d))) {
+  while (tmpDoWhileFlag || ($(b)[$(`x`)] = $(c)[$(`y`)] = $(d))) {
     tmpDoWhileFlag = false;
     {
       $(100);
@@ -54,9 +54,9 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $('x');
+    const tmpNestedAssignComMemberProp = $(`x`);
     const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $('y');
+    const varInitAssignLhsComputedProp = $(`y`);
     const varInitAssignLhsComputedRhs = $(d);
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
@@ -86,9 +86,9 @@ while (true) {
   if (tmpDoWhileFlag) {
   } else {
     const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $('x');
+    const tmpNestedAssignComMemberProp = $(`x`);
     const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $('y');
+    const varInitAssignLhsComputedProp = $(`y`);
     const varInitAssignLhsComputedRhs = $(3);
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;

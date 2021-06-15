@@ -37,14 +37,14 @@ let f = function () {
   debugger;
   let x = 1;
   try {
-    x = $(2, 'prevent optim');
+    x = $(2, `prevent optim`);
     do_observe_assignment;
     return x;
   } finally {
     $(x);
-    x = $(3, 'prevent optim');
+    x = $(3, `prevent optim`);
   }
-  $('prevent return hoisting');
+  $(`prevent return hoisting`);
   return x;
 };
 $(f());
@@ -57,14 +57,14 @@ let f = function () {
   debugger;
   let x = 1;
   try {
-    x = $(2, 'prevent optim');
+    x = $(2, `prevent optim`);
     do_observe_assignment;
     return x;
   } finally {
     $(x);
-    x = $(3, 'prevent optim');
+    x = $(3, `prevent optim`);
   }
-  $('prevent return hoisting');
+  $(`prevent return hoisting`);
   return x;
 };
 const tmpCallCallee = $;
@@ -79,14 +79,14 @@ const f = function () {
   debugger;
   let x = 1;
   try {
-    x = $(2, 'prevent optim');
+    x = $(2, `prevent optim`);
     do_observe_assignment;
     return x;
   } finally {
     $(x);
-    x = $(3, 'prevent optim');
+    x = $(3, `prevent optim`);
   }
-  $('prevent return hoisting');
+  $(`prevent return hoisting`);
   return x;
 };
 const tmpCalleeParam = f();

@@ -49,12 +49,12 @@ function _ifReturnBit(fdata) {
       if (ifNode.type === 'IfStatement' && read.parentProp === 'test') {
         if (
           ifNode.consequent.body.length === 1 &&
-          ifNode.consequent.body[0].type === 'ReturnStatement' &&
-          ifNode.consequent.body[0].argument.type === 'Literal' &&
-          ifNode.consequent.body[0].argument.value === meta.typing.oneBitSet &&
           ifNode.alternate.body.length === 1 &&
+          ifNode.consequent.body[0].type === 'ReturnStatement' &&
           ifNode.alternate.body[0].type === 'ReturnStatement' &&
-          ifNode.alternate.body[0].argument.type === 'Literal' &&
+          AST.isNumber(ifNode.consequent.body[0].argument) &&
+          AST.isNumber(ifNode.alternate.body[0].argument) &&
+          ifNode.consequent.body[0].argument.value === meta.typing.oneBitSet &&
           ifNode.alternate.body[0].argument.value === 0
         ) {
           rule('When an `if` exclusively returns the bit value of its test it may as well return the test');

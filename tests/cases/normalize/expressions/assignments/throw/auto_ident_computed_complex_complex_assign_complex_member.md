@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-throw (a = $(b)[$('c')] = $(b)[$('d')]);
+throw (a = $(b)[$(`c`)] = $(b)[$(`d`)]);
 $(a, b);
 `````
 
@@ -33,9 +33,9 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('c');
+const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
@@ -49,9 +49,9 @@ throw tmpThrowArg;
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('c');
+const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 throw tmpNestedAssignPropRhs;

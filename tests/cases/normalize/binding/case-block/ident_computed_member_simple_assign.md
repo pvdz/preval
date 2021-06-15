@@ -26,12 +26,12 @@ $(a, b, c);
 let obj = {
   get c() {
     debugger;
-    $('get');
+    $(`get`);
   },
   set c($$0) {
     let x = $$0;
     debugger;
-    $('set');
+    $(`set`);
   },
 };
 let a = 1,
@@ -40,13 +40,13 @@ let a = 1,
   d = 4;
 {
   let a$1;
-  const tmpSwitchValue = $('a');
+  const tmpSwitchValue = $(`a`);
   let tmpSwitchCaseToStart = 1;
-  if ($('a') === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if ($(`a`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a$1 = b[$('x')] = $(c)[$('y')] = $(d);
+      a$1 = b[$(`x`)] = $(c)[$(`y`)] = $(d);
       break tmpSwitchBreak;
     }
   }
@@ -60,13 +60,13 @@ $(a, b, c);
 let obj = {
   get c() {
     debugger;
-    $('get');
+    $(`get`);
     return undefined;
   },
   set c($$0) {
     let x = $$0;
     debugger;
-    $('set');
+    $(`set`);
     return undefined;
   },
 };
@@ -75,9 +75,9 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 let a$1 = undefined;
-const tmpSwitchValue = $('a');
+const tmpSwitchValue = $(`a`);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $('a');
+const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -87,9 +87,9 @@ tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     const tmpNestedAssignComMemberObj = b;
-    const tmpNestedAssignComMemberProp = $('x');
+    const tmpNestedAssignComMemberProp = $(`x`);
     const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $('y');
+    const varInitAssignLhsComputedProp = $(`y`);
     const varInitAssignLhsComputedRhs = $(d);
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
@@ -107,9 +107,9 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 2 };
-const tmpSwitchValue = $('a');
+const tmpSwitchValue = $(`a`);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $('a');
+const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -118,9 +118,9 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const tmpNestedAssignComMemberProp = $('x');
+    const tmpNestedAssignComMemberProp = $(`x`);
     const varInitAssignLhsComputedObj = $(3);
-    const varInitAssignLhsComputedProp = $('y');
+    const varInitAssignLhsComputedProp = $(`y`);
     const varInitAssignLhsComputedRhs = $(4);
     varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
     b[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;

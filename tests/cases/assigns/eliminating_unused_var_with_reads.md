@@ -22,33 +22,33 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = $('unknown 1');
-let z = $('unknown 2');
+let x = $(`unknown 1`);
+let z = $(`unknown 2`);
 $(x);
 let unused = x + z;
-x = $('unknown 3');
+x = $(`unknown 3`);
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = $('unknown 1');
-let z = $('unknown 2');
+let x = $(`unknown 1`);
+let z = $(`unknown 2`);
 $(x);
 let unused = x + z;
-x = $('unknown 3');
+x = $(`unknown 3`);
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = $('unknown 1');
-const z = $('unknown 2');
+const x = $(`unknown 1`);
+const z = $(`unknown 2`);
 $(x);
 x + z;
-const tmpClusterSSA_x = $('unknown 3');
+const tmpClusterSSA_x = $(`unknown 3`);
 $(tmpClusterSSA_x);
 `````
 

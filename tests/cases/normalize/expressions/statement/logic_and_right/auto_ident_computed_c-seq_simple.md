@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-$(100) && (1, 2, $(b))[$('c')];
+$(100) && (1, 2, $(b))[$(`c`)];
 $(a, b);
 `````
 
@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpCompObj = $(b);
-  const tmpCompProp = $('c');
+  const tmpCompProp = $(`c`);
   tmpCompObj[tmpCompProp];
 } else {
 }
@@ -50,7 +50,7 @@ const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpCompObj = $(b);
-  const tmpCompProp = $('c');
+  const tmpCompProp = $(`c`);
   tmpCompObj[tmpCompProp];
 } else {
 }

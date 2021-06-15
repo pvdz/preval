@@ -18,21 +18,21 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = 'foo'.toString();
+let x = `foo`.toString();
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = 'foo'.toString();
+let x = `foo`.toString();
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = 'foo'.toString();
+const x = `foo`.toString();
 $(x);
 `````
 

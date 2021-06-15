@@ -20,7 +20,7 @@ $(x === y); // Must be false (number !== bool)
 
 `````js filename=intro
 const x = 1 * $(2);
-const y = '' + $(2);
+const y = `` + $(2);
 $(x === y);
 `````
 
@@ -30,7 +30,7 @@ $(x === y);
 const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(2);
 const x = tmpBinBothLhs * tmpBinBothRhs;
-const tmpBinBothLhs$1 = '';
+const tmpBinBothLhs$1 = ``;
 const tmpBinBothRhs$1 = $(2);
 const y = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpCallCallee = $;
@@ -44,7 +44,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpBinBothRhs = $(2);
 1 * tmpBinBothRhs;
 const tmpBinBothRhs$1 = $(2);
-'' + tmpBinBothRhs$1;
+`` + tmpBinBothRhs$1;
 $(false);
 `````
 

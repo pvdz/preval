@@ -29,9 +29,9 @@ while (true) {
 let x = $(1);
 while (true) {
   if (x % 2) {
-    $(++x, 'write');
+    $(++x, `write`);
   } else {
-    $(x, 'read');
+    $(x, `read`);
   }
 }
 `````
@@ -46,10 +46,10 @@ while (true) {
     const tmpCallCallee = $;
     x = x + 1;
     let tmpCalleeParam = x;
-    const tmpCalleeParam$1 = 'write';
+    const tmpCalleeParam$1 = `write`;
     tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   } else {
-    $(x, 'read');
+    $(x, `read`);
   }
 }
 `````
@@ -62,9 +62,9 @@ while (true) {
   const tmpIfTest = x % 2;
   if (tmpIfTest) {
     x = x + 1;
-    $(x, 'write');
+    $(x, `write`);
   } else {
-    $(x, 'read');
+    $(x, `read`);
   }
 }
 `````

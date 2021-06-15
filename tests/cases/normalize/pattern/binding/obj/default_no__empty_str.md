@@ -18,14 +18,14 @@ $('ok');
 ## Pre Normal
 
 `````js filename=intro
-const {} = '';
-$('ok');
+const {} = ``;
+$(`ok`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = '';
+const bindingPatternObjRoot = ``;
 let objPatternCrashTest = bindingPatternObjRoot === undefined;
 if (objPatternCrashTest) {
 } else {
@@ -35,13 +35,13 @@ if (objPatternCrashTest) {
   objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

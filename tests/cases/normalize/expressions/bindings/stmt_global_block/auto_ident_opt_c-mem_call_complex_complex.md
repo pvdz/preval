@@ -24,7 +24,7 @@
 `````js filename=intro
 {
   let b = { $: $ };
-  let a = $(b)?.[$('$')]?.($(1));
+  let a = $(b)?.[$(`$`)]?.($(1));
   $(a);
 }
 `````
@@ -38,7 +38,7 @@ const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = $('$');
+  const tmpChainRootComputed = $(`$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
@@ -64,7 +64,7 @@ const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainRootComputed = $('$');
+  const tmpChainRootComputed = $(`$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {

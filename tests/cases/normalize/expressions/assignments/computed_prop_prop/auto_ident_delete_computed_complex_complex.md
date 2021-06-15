@@ -25,7 +25,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-obj[(a = delete $(arg)[$('y')])];
+obj[(a = delete $(arg)[$(`y`)])];
 $(a, arg);
 `````
 
@@ -37,7 +37,7 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
 const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
@@ -50,7 +50,7 @@ $(a, arg);
 const arg = { y: 1 };
 const obj = {};
 const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 obj[tmpClusterSSA_a];
 $(tmpClusterSSA_a, arg);

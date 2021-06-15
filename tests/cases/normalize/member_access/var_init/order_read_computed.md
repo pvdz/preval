@@ -34,7 +34,7 @@ const obj = {
     $(20);
   },
 };
-let x = $(obj)[$('x')];
+let x = $(obj)[$(`x`)];
 $(x);
 `````
 
@@ -55,7 +55,7 @@ const obj = {
   },
 };
 const tmpCompObj = $(obj);
-const tmpCompProp = $('x');
+const tmpCompProp = $(`x`);
 let x = tmpCompObj[tmpCompProp];
 $(x);
 `````
@@ -76,7 +76,7 @@ const obj = {
   },
 };
 const tmpCompObj = $(obj);
-const tmpCompProp = $('x');
+const tmpCompProp = $(`x`);
 const x = tmpCompObj[tmpCompProp];
 $(x);
 `````

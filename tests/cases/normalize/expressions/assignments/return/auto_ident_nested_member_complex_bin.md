@@ -29,7 +29,7 @@ $(a, b, c, d, e);
 `````js filename=intro
 let f = function () {
   debugger;
-  return (a = $(b)[$('x')] = $(c)[$('y')] = d + e);
+  return (a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e);
 };
 let b = { x: 1 },
   c = { y: 2 },
@@ -46,9 +46,9 @@ $(a, b, c, d, e);
 let f = function () {
   debugger;
   const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
+  const tmpNestedAssignComMemberProp = $(`x`);
   const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $('y');
+  const varInitAssignLhsComputedProp = $(`y`);
   const varInitAssignLhsComputedRhs = d + e;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
@@ -74,9 +74,9 @@ $(a, b, c, d, e);
 const b = { x: 1 };
 const c = { y: 2 };
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 $(7);

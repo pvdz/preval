@@ -48,7 +48,7 @@ const tmpSwitchTest = $(1);
 tmpSwitchBreak: {
   let tmpFallthrough = false;
   if (tmpFallthrough || tmpSwitchTest === ([b] = $([$(2)]))) {
-    ('case 0:');
+    `case 0:`;
     {
     }
     tmpFallthrough = true;

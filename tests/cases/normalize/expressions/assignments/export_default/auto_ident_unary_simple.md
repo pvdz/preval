@@ -42,9 +42,9 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const tmpAnonDefaultExport = 'number';
+const tmpAnonDefaultExport = `number`;
 export { tmpAnonDefaultExport as default };
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

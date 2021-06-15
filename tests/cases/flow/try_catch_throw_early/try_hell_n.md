@@ -32,7 +32,7 @@ let f = function () {
   debugger;
   foo: {
     try {
-      throw 'not me';
+      throw `not me`;
     } finally {
       return;
     }
@@ -49,7 +49,7 @@ considerMutated(x);
 let f = function () {
   debugger;
   try {
-    throw 'not me';
+    throw `not me`;
   } finally {
     return undefined;
   }
@@ -66,7 +66,7 @@ considerMutated(x);
 const f = function () {
   debugger;
   try {
-    throw 'not me';
+    throw `not me`;
   } finally {
     return undefined;
   }

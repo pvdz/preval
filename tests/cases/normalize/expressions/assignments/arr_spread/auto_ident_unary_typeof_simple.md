@@ -43,9 +43,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['n', 'u', 'm', 'b', 'e', 'r'];
+const tmpCalleeParam = [`n`, `u`, `m`, `b`, `e`, `r`];
 $(tmpCalleeParam);
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

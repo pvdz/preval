@@ -22,7 +22,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  throw 'x';
+  throw `x`;
 };
 $(f());
 `````
@@ -32,7 +32,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  throw 'x';
+  throw `x`;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -42,7 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-throw 'x';
+throw `x`;
 `````
 
 ## Globals

@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = delete arg[$('y')]);
+const tmpAnonDefaultExport = (a = delete arg[$(`y`)]);
 export { tmpAnonDefaultExport as default };
 $(a, arg);
 `````
@@ -34,7 +34,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpDeleteCompObj = arg;
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
@@ -45,7 +45,7 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const a = delete arg[tmpDeleteCompProp];
 const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };

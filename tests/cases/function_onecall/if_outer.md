@@ -32,13 +32,13 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    $('c');
+    $(`c`);
   };
   if ($(1)) {
-    $('a');
+    $(`a`);
     g();
   } else {
-    $('b');
+    $(`b`);
   }
 };
 f();
@@ -51,16 +51,16 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    $('c');
+    $(`c`);
     return undefined;
   };
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('a');
+    $(`a`);
     g();
     return undefined;
   } else {
-    $('b');
+    $(`b`);
     return undefined;
   }
 };
@@ -72,10 +72,10 @@ f();
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  $('a');
-  $('c');
+  $(`a`);
+  $(`c`);
 } else {
-  $('b');
+  $(`b`);
 }
 `````
 

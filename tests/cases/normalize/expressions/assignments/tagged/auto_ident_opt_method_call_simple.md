@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
-$(['before ', ' after'], (a = b?.c(1)));
+$([`before `, ` after`], (a = b?.c(1)));
 $(a);
 `````
 
@@ -33,7 +33,7 @@ $(a);
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 a = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
@@ -52,7 +52,7 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 let a = undefined;
 const tmpIfTest = b == null;
 if (tmpIfTest) {

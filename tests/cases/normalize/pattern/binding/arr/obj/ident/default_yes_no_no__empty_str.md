@@ -18,32 +18,32 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-const [{ x: x = $('pass') }] = '';
-$('bad');
+const [{ x: x = $(`pass`) }] = ``;
+$(`bad`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = '';
+const bindingPatternArrRoot = ``;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = objPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 undefined.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

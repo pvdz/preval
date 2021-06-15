@@ -23,10 +23,10 @@ $(f({ x: 'abc' }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: x = $('fail') } = tmpParamBare === undefined ? $({ x: 'fail2' }) : tmpParamBare;
+  let { x: x = $(`fail`) } = tmpParamBare === undefined ? $({ x: `fail2` }) : tmpParamBare;
   return x;
 };
-$(f({ x: 'abc' }, 10));
+$(f({ x: `abc` }, 10));
 `````
 
 ## Normalized
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = { x: 'fail2' };
+    const tmpCalleeParam = { x: `fail2` };
     bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
     bindingPatternObjRoot = tmpParamBare;
@@ -48,7 +48,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    x = $('fail');
+    x = $(`fail`);
     return x;
   } else {
     x = objPatternBeforeDefault;
@@ -57,7 +57,7 @@ let f = function ($$0) {
 };
 const tmpCallCallee$1 = $;
 const tmpCallCallee$3 = f;
-const tmpCalleeParam$3 = { x: 'abc' };
+const tmpCalleeParam$3 = { x: `abc` };
 const tmpCalleeParam$5 = 10;
 const tmpCalleeParam$1 = tmpCallCallee$3(tmpCalleeParam$3, tmpCalleeParam$5);
 tmpCallCallee$1(tmpCalleeParam$1);
@@ -72,7 +72,7 @@ const f = function ($$0) {
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCalleeParam = { x: 'fail2' };
+    const tmpCalleeParam = { x: `fail2` };
     bindingPatternObjRoot = $(tmpCalleeParam);
   } else {
     bindingPatternObjRoot = tmpParamBare;
@@ -80,13 +80,13 @@ const f = function ($$0) {
   const objPatternBeforeDefault = bindingPatternObjRoot.x;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpClusterSSA_x = $('fail');
+    const tmpClusterSSA_x = $(`fail`);
     return tmpClusterSSA_x;
   } else {
     return objPatternBeforeDefault;
   }
 };
-const tmpCalleeParam$3 = { x: 'abc' };
+const tmpCalleeParam$3 = { x: `abc` };
 const tmpCalleeParam$1 = f(tmpCalleeParam$3, 10);
 $(tmpCalleeParam$1);
 `````

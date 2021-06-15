@@ -39,14 +39,14 @@ let a = { a: 999, b: 1000 };
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      $(b)?.[$('$')]?.($(1));
+      $(b)?.[$(`$`)]?.($(1));
       break tmpSwitchBreak;
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -78,7 +78,7 @@ tmpSwitchBreak: {
     const tmpChainElementCall = tmpChainRootCall(b);
     const tmpIfTest$5 = tmpChainElementCall != null;
     if (tmpIfTest$5) {
-      const tmpChainRootComputed = $('$');
+      const tmpChainRootComputed = $(`$`);
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
       const tmpIfTest$7 = tmpChainElementObject != null;
       if (tmpIfTest$7) {
@@ -95,12 +95,12 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$9) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$11) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }
@@ -133,7 +133,7 @@ tmpSwitchBreak: {
     const tmpIfTest$5 = tmpChainElementCall == null;
     if (tmpIfTest$5) {
     } else {
-      const tmpChainRootComputed = $('$');
+      const tmpChainRootComputed = $(`$`);
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
       const tmpIfTest$7 = tmpChainElementObject == null;
       if (tmpIfTest$7) {
@@ -146,12 +146,12 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$9) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$11) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }

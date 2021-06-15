@@ -30,14 +30,14 @@ while ($(true)) {
     while (tmpDoWhileFlag || $(true)) {
       tmpDoWhileFlag = false;
       {
-        $('loop');
+        $(`loop`);
         continue;
-        $('fail');
+        $(`fail`);
       }
     }
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Normalized
@@ -55,7 +55,7 @@ while (true) {
       }
       if (tmpIfTest$1) {
         tmpDoWhileFlag = false;
-        $('loop');
+        $(`loop`);
         continue;
       } else {
         break;
@@ -65,7 +65,7 @@ while (true) {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Output
@@ -83,7 +83,7 @@ while (true) {
       }
       if (tmpIfTest$1) {
         tmpDoWhileFlag = false;
-        $('loop');
+        $(`loop`);
         continue;
       } else {
         break;
@@ -93,7 +93,7 @@ while (true) {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Globals

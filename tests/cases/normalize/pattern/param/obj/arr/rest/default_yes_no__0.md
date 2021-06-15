@@ -23,7 +23,7 @@ $(f(0, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: [...y] = $(['pass']) } = tmpParamBare;
+  let { x: [...y] = $([`pass`]) } = tmpParamBare;
   return y;
 };
 $(f(0, 10));
@@ -41,7 +41,7 @@ let f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = ['pass'];
+    const tmpCalleeParam = [`pass`];
     objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -62,7 +62,7 @@ const objPatternBeforeDefault = (0).x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = ['pass'];
+  const tmpCalleeParam = [`pass`];
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;

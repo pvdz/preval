@@ -30,18 +30,18 @@ $(f());
 let f = function () {
   debugger;
   {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
     if ($(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
     else;
     tmpSwitchBreak: {
       if (tmpSwitchCaseToStart <= 0) {
-        $('wrong branch');
-        throw 'wrong exit';
+        $(`wrong branch`);
+        throw `wrong exit`;
       }
       if (tmpSwitchCaseToStart <= 1) {
-        throw $(2, 'throw');
-        $('fail');
+        throw $(2, `throw`);
+        $(`fail`);
       }
     }
   }
@@ -54,7 +54,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSwitchValue = $(1, 'disc');
+  const tmpSwitchValue = $(1, `disc`);
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(0);
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -64,12 +64,12 @@ let f = function () {
   }
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    $('wrong branch');
-    throw 'wrong exit';
+    $(`wrong branch`);
+    throw `wrong exit`;
   } else {
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$3) {
-      const tmpThrowArg = $(2, 'throw');
+      const tmpThrowArg = $(2, `throw`);
       throw tmpThrowArg;
     } else {
       return undefined;
@@ -84,7 +84,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1, 'disc');
+const tmpSwitchValue = $(1, `disc`);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(0);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -94,12 +94,12 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  $('wrong branch');
-  throw 'wrong exit';
+  $(`wrong branch`);
+  throw `wrong exit`;
 } else {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
   if (tmpIfTest$3) {
-    const tmpThrowArg = $(2, 'throw');
+    const tmpThrowArg = $(2, `throw`);
     throw tmpThrowArg;
   } else {
     $(undefined);

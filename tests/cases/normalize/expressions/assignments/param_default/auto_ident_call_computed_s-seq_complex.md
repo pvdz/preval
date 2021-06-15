@@ -25,7 +25,7 @@ $(a);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? (a = (1, 2, b)[$('$')](1)) : tmpParamBare;
+  let p = tmpParamBare === undefined ? (a = (1, 2, b)[$(`$`)](1)) : tmpParamBare;
 };
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
@@ -43,7 +43,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCompObj = b;
-    const tmpCallCompProp = $('$');
+    const tmpCallCompProp = $(`$`);
     const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
@@ -64,7 +64,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const b = { $: $ };
 const tmpNestedComplexRhs = b[tmpCallCompProp](1);
 $(undefined);

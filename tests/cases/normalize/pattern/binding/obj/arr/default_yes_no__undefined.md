@@ -18,8 +18,8 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-const { x: [] = $(['fail']) } = undefined;
-$('bad');
+const { x: [] = $([`fail`]) } = undefined;
+$(`bad`);
 `````
 
 ## Normalized
@@ -31,20 +31,20 @@ let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = ['fail'];
+  const tmpCalleeParam = [`fail`];
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 undefined.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

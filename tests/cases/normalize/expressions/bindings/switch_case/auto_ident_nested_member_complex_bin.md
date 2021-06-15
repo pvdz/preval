@@ -39,7 +39,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       (b = { x: 1 }), (c = { y: 2 }), (d = 3), (e = 4);
-      a = $(b)[$('x')] = $(c)[$('y')] = d + e;
+      a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e;
       $(a, b, c, d, e);
     }
   }
@@ -68,9 +68,9 @@ if (tmpIfTest$1) {
   d = 3;
   e = 4;
   const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
+  const tmpNestedAssignComMemberProp = $(`x`);
   const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $('y');
+  const varInitAssignLhsComputedProp = $(`y`);
   const varInitAssignLhsComputedRhs = d + e;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
@@ -88,9 +88,9 @@ if (tmpIfTest$1) {
 const tmpClusterSSA_b = { x: 1 };
 const tmpClusterSSA_c = { y: 2 };
 const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(tmpClusterSSA_c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 $(7, tmpClusterSSA_b, tmpClusterSSA_c, 3, 4);

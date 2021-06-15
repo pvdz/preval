@@ -28,9 +28,9 @@ let f = function ($$0) {
   let x = $$0;
   debugger;
   if (x) {
-    $('false');
+    $(`false`);
   } else {
-    $('pass');
+    $(`pass`);
   }
 };
 f();
@@ -43,10 +43,10 @@ let f = function ($$0) {
   let x = $$0;
   debugger;
   if (x) {
-    $('false');
+    $(`false`);
     return undefined;
   } else {
-    $('pass');
+    $(`pass`);
     return undefined;
   }
 };
@@ -56,7 +56,7 @@ f();
 ## Output
 
 `````js filename=intro
-$('pass');
+$(`pass`);
 `````
 
 ## Globals

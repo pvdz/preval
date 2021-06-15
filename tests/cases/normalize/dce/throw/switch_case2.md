@@ -28,18 +28,18 @@ $(f());
 let f = function () {
   debugger;
   {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
-    if ($(1, 'case') === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+    if ($(1, `case`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
     else;
     tmpSwitchBreak: {
       if (tmpSwitchCaseToStart <= 0) {
-        throw $(2, 'ret');
-        $('fail');
+        throw $(2, `ret`);
+        $(`fail`);
       }
     }
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
 };
 $(f());
 `````
@@ -49,9 +49,9 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSwitchValue = $(1, 'disc');
+  const tmpSwitchValue = $(1, `disc`);
   let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(1, 'case');
+  const tmpBinLhs = $(1, `case`);
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
@@ -65,7 +65,7 @@ let f = function () {
     debugger;
     const tmpIfTest$7 = tmpSwitchCaseToStart$3 <= 0;
     if (tmpIfTest$7) {
-      const tmpThrowArg$1 = $(2, 'ret');
+      const tmpThrowArg$1 = $(2, `ret`);
       throw tmpThrowArg$1;
     } else {
       const tmpReturnArg = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$5);
@@ -78,7 +78,7 @@ let f = function () {
     let tmpBinLhs$1 = $$2;
     let tmpIfTest$3 = $$3;
     debugger;
-    $('keep, do not eval');
+    $(`keep, do not eval`);
     return undefined;
   };
   const tmpReturnArg$1 = tmpLabeledBlockFunc(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
@@ -92,9 +92,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1, 'disc');
+const tmpSwitchValue = $(1, `disc`);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(1, 'case');
+const tmpBinLhs = $(1, `case`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -102,10 +102,10 @@ if (tmpIfTest) {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$7) {
-  const tmpThrowArg$1 = $(2, 'ret');
+  const tmpThrowArg$1 = $(2, `ret`);
   throw tmpThrowArg$1;
 } else {
-  $('keep, do not eval');
+  $(`keep, do not eval`);
   $(undefined);
 }
 `````

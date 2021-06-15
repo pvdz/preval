@@ -34,21 +34,21 @@ $(f());
 let f = function () {
   debugger;
   while ($(true)) {
-    $('loop');
+    $(`loop`);
     {
       let tmpDoWhileFlag = true;
       while (tmpDoWhileFlag || $(true)) {
         tmpDoWhileFlag = false;
         {
-          $('loop');
-          throw $(7, 'throw');
-          $('fail');
+          $(`loop`);
+          throw $(7, `throw`);
+          $(`fail`);
         }
       }
     }
-    $('do not visit, do not eliminate');
+    $(`do not visit, do not eliminate`);
   }
-  $('after (not invoked)');
+  $(`after (not invoked)`);
 };
 $(f());
 `````
@@ -61,7 +61,7 @@ let f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      $('loop');
+      $(`loop`);
       let tmpDoWhileFlag = true;
       while (true) {
         let tmpIfTest$1 = tmpDoWhileFlag;
@@ -71,19 +71,19 @@ let f = function () {
         }
         if (tmpIfTest$1) {
           tmpDoWhileFlag = false;
-          $('loop');
-          const tmpThrowArg = $(7, 'throw');
+          $(`loop`);
+          const tmpThrowArg = $(7, `throw`);
           throw tmpThrowArg;
         } else {
           break;
         }
       }
-      $('do not visit, do not eliminate');
+      $(`do not visit, do not eliminate`);
     } else {
       break;
     }
   }
-  $('after (not invoked)');
+  $(`after (not invoked)`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -97,7 +97,7 @@ tmpCallCallee(tmpCalleeParam);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('loop');
+    $(`loop`);
     let tmpDoWhileFlag = true;
     while (true) {
       let tmpIfTest$1 = tmpDoWhileFlag;
@@ -107,19 +107,19 @@ while (true) {
       }
       if (tmpIfTest$1) {
         tmpDoWhileFlag = false;
-        $('loop');
-        const tmpThrowArg = $(7, 'throw');
+        $(`loop`);
+        const tmpThrowArg = $(7, `throw`);
         throw tmpThrowArg;
       } else {
         break;
       }
     }
-    $('do not visit, do not eliminate');
+    $(`do not visit, do not eliminate`);
   } else {
     break;
   }
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 $(undefined);
 `````
 

@@ -41,20 +41,20 @@ let f = function () {
   debugger;
   const tmpIfTest = 0;
   if (tmpIfTest) {
-    $('a');
+    $(`a`);
   } else {
     const tmpIfTest$1 = 1;
     if (tmpIfTest$1) {
-      $('b');
+      $(`b`);
     } else {
       const tmpIfTest$2 = 2;
       if (tmpIfTest$2) {
-        $('c');
+        $(`c`);
       }
     }
-    $('after inner');
+    $(`after inner`);
   }
-  $('after outer');
+  $(`after outer`);
 };
 f();
 `````
@@ -66,21 +66,21 @@ let f = function () {
   debugger;
   const tmpIfTest = 0;
   if (tmpIfTest) {
-    $('a');
+    $(`a`);
   } else {
     const tmpIfTest$1 = 1;
     if (tmpIfTest$1) {
-      $('b');
+      $(`b`);
     } else {
       const tmpIfTest$2 = 2;
       if (tmpIfTest$2) {
-        $('c');
+        $(`c`);
       } else {
       }
     }
-    $('after inner');
+    $(`after inner`);
   }
-  $('after outer');
+  $(`after outer`);
   return undefined;
 };
 f();
@@ -89,9 +89,9 @@ f();
 ## Output
 
 `````js filename=intro
-$('b');
-$('after inner');
-$('after outer');
+$(`b`);
+$(`after inner`);
+$(`after outer`);
 `````
 
 ## Globals

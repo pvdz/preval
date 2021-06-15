@@ -30,12 +30,12 @@ $(x);
 let x = 5;
 $(x);
 if ($(false)) {
-  if ($) $('tmp');
+  if ($) $(`tmp`);
   x = 10;
-  $(x, 'a');
+  $(x, `a`);
 } else {
   x = 20;
-  $(x, 'b');
+  $(x, `b`);
 }
 $(x);
 `````
@@ -48,14 +48,14 @@ $(x);
 const tmpIfTest = $(false);
 if (tmpIfTest) {
   if ($) {
-    $('tmp');
+    $(`tmp`);
   } else {
   }
   x = 10;
-  $(x, 'a');
+  $(x, `a`);
 } else {
   x = 20;
-  $(x, 'b');
+  $(x, `b`);
 }
 $(x);
 `````
@@ -68,14 +68,14 @@ $(5);
 const tmpIfTest = $(false);
 if (tmpIfTest) {
   if ($) {
-    $('tmp');
+    $(`tmp`);
   } else {
   }
   x = 10;
-  $(10, 'a');
+  $(10, `a`);
 } else {
   x = 20;
-  $(20, 'b');
+  $(20, `b`);
 }
 $(x);
 `````

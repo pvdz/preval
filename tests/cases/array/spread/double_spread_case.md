@@ -31,46 +31,46 @@ $(aa, zz, a, b);
 ## Pre Normal
 
 `````js filename=intro
-let a = $('x');
-let b = $('y');
+let a = $(`x`);
+let b = $(`y`);
 const x = [a, a, a, a, 2, 3];
-a = $('u');
-b = $('w');
+a = $(`u`);
+b = $(`w`);
 const y = [1, b, a, a, b, 3];
-a = $('o');
-b = $('p');
-const aa = ['a', ...x, ...y, 'a'];
-const zz = ['z', ...y, ...x, 'z'];
+a = $(`o`);
+b = $(`p`);
+const aa = [`a`, ...x, ...y, `a`];
+const zz = [`z`, ...y, ...x, `z`];
 $(aa, zz, a, b);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let a = $('x');
-let b = $('y');
+let a = $(`x`);
+let b = $(`y`);
 const x = [a, a, a, a, 2, 3];
-a = $('u');
-b = $('w');
+a = $(`u`);
+b = $(`w`);
 const y = [1, b, a, a, b, 3];
-a = $('o');
-b = $('p');
-const aa = ['a', ...x, ...y, 'a'];
-const zz = ['z', ...y, ...x, 'z'];
+a = $(`o`);
+b = $(`p`);
+const aa = [`a`, ...x, ...y, `a`];
+const zz = [`z`, ...y, ...x, `z`];
 $(aa, zz, a, b);
 `````
 
 ## Output
 
 `````js filename=intro
-const a = $('x');
-$('y');
-const tmpClusterSSA_a = $('u');
-const b = $('w');
-const tmpClusterSSA_a$1 = $('o');
-const tmpClusterSSA_b = $('p');
-const aa = ['a', a, a, a, a, 2, 3, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, 'a'];
-const zz = ['z', 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3, 'z'];
+const a = $(`x`);
+$(`y`);
+const tmpClusterSSA_a = $(`u`);
+const b = $(`w`);
+const tmpClusterSSA_a$1 = $(`o`);
+const tmpClusterSSA_b = $(`p`);
+const aa = [`a`, a, a, a, a, 2, 3, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, `a`];
+const zz = [`z`, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3, `z`];
 $(aa, zz, tmpClusterSSA_a$1, tmpClusterSSA_b);
 `````
 

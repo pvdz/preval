@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-while (b?.['x']) $(100);
+while (b?.[`x`]) $(100);
 $(a);
 `````
 
@@ -37,7 +37,7 @@ while (true) {
   const tmpChainRootProp = b;
   const tmpIfTest$1 = tmpChainRootProp != null;
   if (tmpIfTest$1) {
-    const tmpChainRootComputed = 'x';
+    const tmpChainRootComputed = `x`;
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     tmpIfTest = tmpChainElementObject;
   } else {

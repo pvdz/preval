@@ -23,8 +23,8 @@ $(f());
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: {} = $({ x: 'fail' }) } = tmpParamBare === undefined ? $({ x: { y: 'pass2' } }) : tmpParamBare;
-  return 'ok';
+  let { x: {} = $({ x: `fail` }) } = tmpParamBare === undefined ? $({ x: { y: `pass2` } }) : tmpParamBare;
+  return `ok`;
 };
 $(f());
 `````
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpObjLitVal = { y: 'pass2' };
+    const tmpObjLitVal = { y: `pass2` };
     const tmpCalleeParam = { x: tmpObjLitVal };
     bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
@@ -50,7 +50,7 @@ let f = function ($$0) {
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = { x: 'fail' };
+    const tmpCalleeParam$1 = { x: `fail` };
     objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -62,9 +62,9 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-    return 'ok';
+    return `ok`;
   } else {
-    return 'ok';
+    return `ok`;
   }
 };
 const tmpCallCallee$3 = $;
@@ -75,14 +75,14 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 'pass2' };
+const tmpObjLitVal = { y: `pass2` };
 const tmpCalleeParam = { x: tmpObjLitVal };
 const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
 const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 = { x: 'fail' };
+  const tmpCalleeParam$1 = { x: `fail` };
   objPatternAfterDefault = $(tmpCalleeParam$1);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -96,7 +96,7 @@ if (objPatternCrashTest) {
   objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

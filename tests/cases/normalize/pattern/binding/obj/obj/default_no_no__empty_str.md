@@ -20,14 +20,14 @@ $('bad');
 `````js filename=intro
 const {
   x: {},
-} = '';
-$('bad');
+} = ``;
+$(`bad`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = '';
+const bindingPatternObjRoot = ``;
 const objPatternNoDefault = bindingPatternObjRoot.x;
 let objPatternCrashTest = objPatternNoDefault === undefined;
 if (objPatternCrashTest) {
@@ -38,13 +38,13 @@ if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = ''.x;
+const objPatternNoDefault = ``.x;
 let objPatternCrashTest = objPatternNoDefault === undefined;
 if (objPatternCrashTest) {
 } else {
@@ -54,7 +54,7 @@ if (objPatternCrashTest) {
   objPatternNoDefault.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

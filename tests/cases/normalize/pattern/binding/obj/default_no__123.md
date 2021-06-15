@@ -19,7 +19,7 @@ $('ok');
 
 `````js filename=intro
 const {} = 1;
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -35,13 +35,13 @@ if (objPatternCrashTest) {
   objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

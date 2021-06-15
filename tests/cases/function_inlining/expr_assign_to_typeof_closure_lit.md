@@ -45,7 +45,7 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    a = 'number';
+    a = `number`;
     return undefined;
   };
   let a = 20;
@@ -60,7 +60,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('number');
+$(`number`);
 `````
 
 ## Globals

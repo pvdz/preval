@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for ('foo'.x in $({ x: 1 }));
+for (`foo`.x in $({ x: 1 }));
 $(a);
 `````
 
@@ -33,7 +33,7 @@ const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = tmpCallCallee(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
-  'foo'.x = tmpForInLhsNode;
+  `foo`.x = tmpForInLhsNode;
 }
 $(a);
 `````
@@ -46,7 +46,7 @@ const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
-  'foo'.x = tmpForInLhsNode;
+  `foo`.x = tmpForInLhsNode;
 }
 $(a);
 `````

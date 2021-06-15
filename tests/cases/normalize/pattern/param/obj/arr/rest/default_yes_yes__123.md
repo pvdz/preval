@@ -23,7 +23,7 @@ $(f({ x: [1, 2, 3], a: 11, b: 12 }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: [...y] = $(['fail']) } = tmpParamBare === undefined ? $({ x: ['fail2'] }) : tmpParamBare;
+  let { x: [...y] = $([`fail`]) } = tmpParamBare === undefined ? $({ x: [`fail2`] }) : tmpParamBare;
   return y;
 };
 $(f({ x: [1, 2, 3], a: 11, b: 12 }, 10));
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpObjLitVal = ['fail2'];
+    const tmpObjLitVal = [`fail2`];
     const tmpCalleeParam = { x: tmpObjLitVal };
     bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
@@ -50,7 +50,7 @@ let f = function ($$0) {
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = ['fail'];
+    const tmpCalleeParam$1 = [`fail`];
     objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;

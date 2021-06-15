@@ -29,7 +29,7 @@ switch ($(1)) {
   let x;
   let f = function () {
     debugger;
-    return $(x, 'x');
+    return $(x, `x`);
   };
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 2;
@@ -55,7 +55,7 @@ switch ($(1)) {
 let x = undefined;
 let f = function () {
   debugger;
-  const tmpReturnArg = $(x, 'x');
+  const tmpReturnArg = $(x, `x`);
   return tmpReturnArg;
 };
 const tmpSwitchValue = $(1);
@@ -108,7 +108,7 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$5) {
-      $(100, 'x');
+      $(100, `x`);
       break tmpSwitchBreak;
     } else {
     }

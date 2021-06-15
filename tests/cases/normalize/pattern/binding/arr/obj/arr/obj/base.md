@@ -27,7 +27,7 @@ const [
     x: [{}],
   },
 ] = [{ x: [{ a: 1, b: 2, c: 3 }, 12], y: 11 }, 10];
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -51,13 +51,13 @@ if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep$1.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

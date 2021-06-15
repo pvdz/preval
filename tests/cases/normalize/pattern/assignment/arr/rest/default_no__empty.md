@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 [...x] = 1;
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -28,14 +28,14 @@ $('bad');
 const arrAssignPatternRhs = 1;
 const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat.slice(0);
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 [...1];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

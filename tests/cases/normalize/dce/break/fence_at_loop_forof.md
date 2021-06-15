@@ -29,15 +29,15 @@ $('after (not invoked)');
 
 `````js filename=intro
 while ($(true)) {
-  $('loop');
+  $(`loop`);
   for (let x of [1, 2]) {
-    $('loop', x);
+    $(`loop`, x);
     break;
-    $('fail');
+    $(`fail`);
   }
-  $('infiloop, do not eliminate');
+  $(`infiloop, do not eliminate`);
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Normalized
@@ -46,19 +46,19 @@ $('after (not invoked)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('loop');
+    $(`loop`);
     const tmpForOfDeclRhs = [1, 2];
     let x = undefined;
     for (x of tmpForOfDeclRhs) {
-      $('loop', x);
+      $(`loop`, x);
       break;
     }
-    $('infiloop, do not eliminate');
+    $(`infiloop, do not eliminate`);
   } else {
     break;
   }
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Output
@@ -67,19 +67,19 @@ $('after (not invoked)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('loop');
+    $(`loop`);
     let x = undefined;
     const tmpForOfDeclRhs = [1, 2];
     for (x of tmpForOfDeclRhs) {
-      $('loop', x);
+      $(`loop`, x);
       break;
     }
-    $('infiloop, do not eliminate');
+    $(`infiloop, do not eliminate`);
   } else {
     break;
   }
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Globals

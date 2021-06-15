@@ -18,8 +18,8 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-[{} = $('fail')] = [null, 20, 30];
-$('bad');
+[{} = $(`fail`)] = [null, 20, 30];
+$(`bad`);
 `````
 
 ## Normalized
@@ -31,7 +31,7 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  arrPatternStep = $('fail');
+  arrPatternStep = $(`fail`);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
@@ -44,14 +44,14 @@ if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 null.cannotDestructureThis;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

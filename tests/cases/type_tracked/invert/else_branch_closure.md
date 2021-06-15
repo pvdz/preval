@@ -39,23 +39,23 @@ f($('foop'));
 let f = function ($$0) {
   let y = $$0;
   debugger;
-  const x = '' + y;
+  const x = `` + y;
   if (x) {
-    $(x, 'fail');
+    $(x, `fail`);
   } else {
     const f$1 = function ($$0) {
       let z = $$0;
       debugger;
-      $('keepme');
-      $('keepme');
+      $(`keepme`);
+      $(`keepme`);
       return [x, z];
     };
-    $(f$1(10), 'pass');
-    $(f$1(20), 'pass');
+    $(f$1(10), `pass`);
+    $(f$1(20), `pass`);
   }
 };
-f($(''));
-f($('foop'));
+f($(``));
+f($(`foop`));
 `````
 
 ## Normalized
@@ -64,35 +64,35 @@ f($('foop'));
 let f = function ($$0) {
   let y = $$0;
   debugger;
-  const x = '' + y;
+  const x = `` + y;
   if (x) {
-    $(x, 'fail');
+    $(x, `fail`);
     return undefined;
   } else {
     const f$1 = function ($$0) {
       let z = $$0;
       debugger;
-      $('keepme');
-      $('keepme');
+      $(`keepme`);
+      $(`keepme`);
       const tmpReturnArg = [x, z];
       return tmpReturnArg;
     };
     const tmpCallCallee = $;
     const tmpCalleeParam = f$1(10);
-    const tmpCalleeParam$1 = 'pass';
+    const tmpCalleeParam$1 = `pass`;
     tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$3 = f$1(20);
-    const tmpCalleeParam$5 = 'pass';
+    const tmpCalleeParam$5 = `pass`;
     tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
     return undefined;
   }
 };
 const tmpCallCallee$3 = f;
-const tmpCalleeParam$7 = $('');
+const tmpCalleeParam$7 = $(``);
 tmpCallCallee$3(tmpCalleeParam$7);
 const tmpCallCallee$5 = f;
-const tmpCalleeParam$9 = $('foop');
+const tmpCalleeParam$9 = $(`foop`);
 tmpCallCallee$5(tmpCalleeParam$9);
 `````
 
@@ -105,26 +105,26 @@ const f = function ($$0) {
   const f$1 = function ($$0) {
     const z = $$0;
     debugger;
-    $('keepme');
-    $('keepme');
+    $(`keepme`);
+    $(`keepme`);
     const tmpReturnArg = [x, z];
     return tmpReturnArg;
   };
-  const x = '' + y;
+  const x = `` + y;
   if (x) {
-    $(x, 'fail');
+    $(x, `fail`);
     return undefined;
   } else {
     const tmpCalleeParam = f$1(10);
-    $(tmpCalleeParam, 'pass');
+    $(tmpCalleeParam, `pass`);
     const tmpCalleeParam$3 = f$1(20);
-    $(tmpCalleeParam$3, 'pass');
+    $(tmpCalleeParam$3, `pass`);
     return undefined;
   }
 };
-const tmpCalleeParam$7 = $('');
+const tmpCalleeParam$7 = $(``);
 f(tmpCalleeParam$7);
-const tmpCalleeParam$9 = $('foop');
+const tmpCalleeParam$9 = $(`foop`);
 f(tmpCalleeParam$9);
 `````
 

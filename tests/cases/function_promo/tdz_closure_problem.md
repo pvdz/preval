@@ -36,12 +36,12 @@ let f = function () {
   let g = function () {
     debugger;
     $(x$1);
-    let x$1 = $('inner');
-    if ($) $('prevent premature elimination');
+    let x$1 = $(`inner`);
+    if ($) $(`prevent premature elimination`);
   };
-  let x = $('outer');
+  let x = $(`outer`);
   g();
-  if ($) $('prevent premature elimination');
+  if ($) $(`prevent premature elimination`);
 };
 if ($) f();
 `````
@@ -54,18 +54,18 @@ let f = function () {
   let g = function () {
     debugger;
     $(x$1);
-    let x$1 = $('inner');
+    let x$1 = $(`inner`);
     if ($) {
-      $('prevent premature elimination');
+      $(`prevent premature elimination`);
       return undefined;
     } else {
       return undefined;
     }
   };
-  let x = $('outer');
+  let x = $(`outer`);
   g();
   if ($) {
-    $('prevent premature elimination');
+    $(`prevent premature elimination`);
     return undefined;
   } else {
     return undefined;
@@ -81,8 +81,8 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  $('outer');
-  throw 'Preval: Cannot access `x$1` before initialization';
+  $(`outer`);
+  throw `Preval: Cannot access \`x$1\` before initialization`;
 } else {
 }
 `````

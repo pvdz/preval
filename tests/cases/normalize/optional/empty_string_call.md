@@ -17,7 +17,7 @@ $(''?.());
 ## Pre Normal
 
 `````js filename=intro
-$(''?.());
+$(``?.());
 `````
 
 ## Normalized
@@ -25,7 +25,7 @@ $(''?.());
 `````js filename=intro
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-const tmpChainRootCall = '';
+const tmpChainRootCall = ``;
 const tmpIfTest = tmpChainRootCall != null;
 if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall();
@@ -38,8 +38,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-''();
-throw '[Preval]: Call expression with illegal callee must crash before this line ';
+``();
+throw `[Preval]: Call expression with illegal callee must crash before this line `;
 `````
 
 ## Globals

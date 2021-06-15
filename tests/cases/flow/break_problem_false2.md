@@ -34,13 +34,13 @@ const tmpLabeledBlockFunc = function () {
   debugger;
   const tmpIfTest$3 = $(false);
   if (tmpIfTest$3) {
-    $('fail');
+    $(`fail`);
     return undefined;
   } else {
-    $('pass');
+    $(`pass`);
     return undefined;
   }
-  $('pass');
+  $(`pass`);
   return undefined;
 };
 tmpLabeledBlockFunc();
@@ -53,10 +53,10 @@ const tmpLabeledBlockFunc = function () {
   debugger;
   const tmpIfTest$3 = $(false);
   if (tmpIfTest$3) {
-    $('fail');
+    $(`fail`);
     return undefined;
   } else {
-    $('pass');
+    $(`pass`);
     return undefined;
   }
 };
@@ -68,9 +68,9 @@ tmpLabeledBlockFunc();
 `````js filename=intro
 const tmpIfTest$3 = $(false);
 if (tmpIfTest$3) {
-  $('fail');
+  $(`fail`);
 } else {
-  $('pass');
+  $(`pass`);
 }
 `````
 

@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const { x: x = $('pass') } = { x: undefined };
+const { x: x = $(`pass`) } = { x: undefined };
 $(x);
 `````
 
@@ -30,7 +30,7 @@ const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = objPatternBeforeDefault;
 }
@@ -40,7 +40,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = $('pass');
+const x = $(`pass`);
 $(x);
 `````
 

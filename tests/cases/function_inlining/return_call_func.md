@@ -30,9 +30,9 @@ let f = function () {
 let g = function ($$0) {
   let a = $$0;
   debugger;
-  return $(a, 'g');
+  return $(a, `g`);
 };
-$(f(), 'outer');
+$(f(), `outer`);
 `````
 
 ## Normalized
@@ -46,20 +46,20 @@ let f = function () {
 let g = function ($$0) {
   let a = $$0;
   debugger;
-  const tmpReturnArg$1 = $(a, 'g');
+  const tmpReturnArg$1 = $(a, `g`);
   return tmpReturnArg$1;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
-const tmpCalleeParam$1 = 'outer';
+const tmpCalleeParam$1 = `outer`;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = $(10, 'g');
-$(tmpCalleeParam, 'outer');
+const tmpCalleeParam = $(10, `g`);
+$(tmpCalleeParam, `outer`);
 `````
 
 ## Globals

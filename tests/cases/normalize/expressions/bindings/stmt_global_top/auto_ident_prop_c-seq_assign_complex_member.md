@@ -21,7 +21,7 @@ $(a, b);
 
 `````js filename=intro
 let b = { c: 10, d: 20 };
-let a = ((1, 2, $(b)).c = $(b)[$('d')]);
+let a = ((1, 2, $(b)).c = $(b)[$(`d`)]);
 $(a, b);
 `````
 
@@ -31,7 +31,7 @@ $(a, b);
 let b = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 let a = varInitAssignLhsComputedRhs;
@@ -44,7 +44,7 @@ $(a, b);
 const b = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs, b);

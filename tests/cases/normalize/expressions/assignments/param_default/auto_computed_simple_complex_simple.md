@@ -28,7 +28,7 @@ let f = function ($$0) {
 };
 let a = { a: 999, b: 1000 };
 $(f());
-a[$('b')] = 2;
+a[$(`b`)] = 2;
 $(a);
 `````
 
@@ -56,7 +56,7 @@ const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
 const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
@@ -66,7 +66,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 $(undefined);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpNestedComplexRhs = { b: tmpObjLitVal };
 tmpNestedComplexRhs[tmpAssignComMemLhsProp] = 2;
 $(tmpNestedComplexRhs);

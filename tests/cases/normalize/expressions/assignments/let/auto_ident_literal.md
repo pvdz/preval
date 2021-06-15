@@ -21,7 +21,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let xyz = (a = 'foo');
+let xyz = (a = `foo`);
 $(xyz);
 $(a);
 `````
@@ -30,7 +30,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = 'foo';
+a = `foo`;
 let xyz = a;
 $(xyz);
 $(a);
@@ -39,8 +39,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-$('foo');
-$('foo');
+$(`foo`);
+$(`foo`);
 `````
 
 ## Globals

@@ -22,7 +22,7 @@ $(f());
 let f = function () {
   debugger;
   const obj = { foo: 10 };
-  obj['fo' + 'o'];
+  obj[`fo` + `o`];
 };
 $(f());
 `````
@@ -34,7 +34,7 @@ let f = function () {
   debugger;
   const obj = { foo: 10 };
   const tmpCompObj = obj;
-  const tmpCompProp = 'foo';
+  const tmpCompProp = `foo`;
   tmpCompObj[tmpCompProp];
   return undefined;
 };

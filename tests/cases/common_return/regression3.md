@@ -36,7 +36,7 @@ const d = function ($$0) {
   let x = $$0;
   debugger;
   if ($) {
-    $('d');
+    $(`d`);
     return x;
   } else {
     return x;
@@ -44,7 +44,7 @@ const d = function ($$0) {
 };
 const c = function () {
   debugger;
-  $('c');
+  $(`c`);
   $(d($(10)), d($(20)));
 };
 c();
@@ -58,7 +58,7 @@ const d = function ($$0) {
   let x = $$0;
   debugger;
   if ($) {
-    $('d');
+    $(`d`);
     return x;
   } else {
     return x;
@@ -66,7 +66,7 @@ const d = function ($$0) {
 };
 const c = function () {
   debugger;
-  $('c');
+  $(`c`);
   const tmpCallCallee = $;
   const tmpCallCallee$1 = d;
   const tmpCalleeParam$3 = $(10);
@@ -87,7 +87,7 @@ c();
 const d = function () {
   debugger;
   if ($) {
-    $('d');
+    $(`d`);
     return undefined;
   } else {
     return undefined;
@@ -95,7 +95,7 @@ const d = function () {
 };
 const c = function () {
   debugger;
-  $('c');
+  $(`c`);
   const tmpCalleeParam$3 = $(10);
   d();
   const tmpCalleeParam$5 = $(20);

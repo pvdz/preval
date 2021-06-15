@@ -30,7 +30,7 @@ let a = 1;
 let b = {
   get c() {
     debugger;
-    $('b.get');
+    $(`b.get`);
     b = undefined;
     d = undefined;
     return 5;
@@ -38,7 +38,7 @@ let b = {
   set c($$0) {
     let x = $$0;
     debugger;
-    $('b.set');
+    $(`b.set`);
     b = null;
     d = null;
     return 7;
@@ -56,7 +56,7 @@ let a = 1;
 let b = {
   get c() {
     debugger;
-    $('b.get');
+    $(`b.get`);
     b = undefined;
     d = undefined;
     return 5;
@@ -64,7 +64,7 @@ let b = {
   set c($$0) {
     let x = $$0;
     debugger;
-    $('b.set');
+    $(`b.set`);
     b = null;
     d = null;
     return 7;
@@ -83,14 +83,14 @@ $(a, b, d);
 let b = {
   get c() {
     debugger;
-    $('b.get');
+    $(`b.get`);
     b = undefined;
     d = undefined;
     return 5;
   },
   set c($$0) {
     debugger;
-    $('b.set');
+    $(`b.set`);
     b = null;
     d = null;
     return 7;

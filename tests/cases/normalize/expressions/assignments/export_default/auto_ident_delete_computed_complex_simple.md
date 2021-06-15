@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = delete $(arg)['y']);
+const tmpAnonDefaultExport = (a = delete $(arg)[`y`]);
 export { tmpAnonDefaultExport as default };
 $(a, arg);
 `````

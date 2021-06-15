@@ -15,21 +15,21 @@ $('a' + 'b')
 ## Pre Normal
 
 `````js filename=intro
-$('a' + 'b');
+$(`a` + `b`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'ab';
+const tmpCalleeParam = `ab`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ab');
+$(`ab`);
 `````
 
 ## Globals

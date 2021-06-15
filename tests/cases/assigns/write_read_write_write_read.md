@@ -22,30 +22,30 @@ $(x, 'b');
 
 `````js filename=intro
 let x = $(1);
-$(x, 'a');
+$(x, `a`);
 x = $(2);
 x = $(3);
-$(x, 'b');
+$(x, `b`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 let x = $(1);
-$(x, 'a');
+$(x, `a`);
 x = $(2);
 x = $(3);
-$(x, 'b');
+$(x, `b`);
 `````
 
 ## Output
 
 `````js filename=intro
 const x = $(1);
-$(x, 'a');
+$(x, `a`);
 $(2);
 const tmpClusterSSA_x = $(3);
-$(tmpClusterSSA_x, 'b');
+$(tmpClusterSSA_x, `b`);
 `````
 
 ## Globals

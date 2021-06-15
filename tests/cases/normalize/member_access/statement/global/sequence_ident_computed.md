@@ -20,8 +20,8 @@ $(c);
 
 `````js filename=intro
 let c = 1,
-  b = 'foo';
-($(1), b)[$('length')];
+  b = `foo`;
+($(1), b)[$(`length`)];
 $(c);
 `````
 
@@ -29,10 +29,10 @@ $(c);
 
 `````js filename=intro
 let c = 1;
-let b = 'foo';
+let b = `foo`;
 $(1);
 const tmpCompObj = b;
-const tmpCompProp = $('length');
+const tmpCompProp = $(`length`);
 tmpCompObj[tmpCompProp];
 $(c);
 `````
@@ -41,8 +41,8 @@ $(c);
 
 `````js filename=intro
 $(1);
-const tmpCompProp = $('length');
-'foo'[tmpCompProp];
+const tmpCompProp = $(`length`);
+`foo`[tmpCompProp];
 $(1);
 `````
 

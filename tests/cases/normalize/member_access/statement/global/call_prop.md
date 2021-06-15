@@ -15,20 +15,20 @@ $('foo').length;
 ## Pre Normal
 
 `````js filename=intro
-$('foo').length;
+$(`foo`).length;
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpCompObj = $('foo');
+const tmpCompObj = $(`foo`);
 tmpCompObj.length;
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCompObj = $('foo');
+const tmpCompObj = $(`foo`);
 tmpCompObj.length;
 `````
 

@@ -39,14 +39,14 @@ let a = { a: 999, b: 1000 };
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      $(b)?.[$('x')]?.[$('y')];
+      $(b)?.[$(`x`)]?.[$(`y`)];
       break tmpSwitchBreak;
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -79,11 +79,11 @@ tmpSwitchBreak: {
     const tmpChainElementCall = tmpChainRootCall(b);
     const tmpIfTest$5 = tmpChainElementCall != null;
     if (tmpIfTest$5) {
-      const tmpChainRootComputed = $('x');
+      const tmpChainRootComputed = $(`x`);
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
       const tmpIfTest$7 = tmpChainElementObject != null;
       if (tmpIfTest$7) {
-        const tmpChainRootComputed$1 = $('y');
+        const tmpChainRootComputed$1 = $(`y`);
         const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       } else {
       }
@@ -93,12 +93,12 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$9) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$11) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }
@@ -132,12 +132,12 @@ tmpSwitchBreak: {
     const tmpIfTest$5 = tmpChainElementCall == null;
     if (tmpIfTest$5) {
     } else {
-      const tmpChainRootComputed = $('x');
+      const tmpChainRootComputed = $(`x`);
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
       const tmpIfTest$7 = tmpChainElementObject == null;
       if (tmpIfTest$7) {
       } else {
-        const tmpChainRootComputed$1 = $('y');
+        const tmpChainRootComputed$1 = $(`y`);
         tmpChainElementObject[tmpChainRootComputed$1];
       }
     }
@@ -145,12 +145,12 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$9) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$11) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }

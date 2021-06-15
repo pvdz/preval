@@ -20,7 +20,7 @@ $(z);
 ## Pre Normal
 
 `````js filename=intro
-const x = $('32768');
+const x = $(`32768`);
 const y = x & 32768;
 const z = y === 32768;
 $(z);
@@ -29,7 +29,7 @@ $(z);
 ## Normalized
 
 `````js filename=intro
-const x = $('32768');
+const x = $(`32768`);
 const y = x & 32768;
 const z = y === 32768;
 $(z);
@@ -38,7 +38,7 @@ $(z);
 ## Output
 
 `````js filename=intro
-const x = $('32768');
+const x = $(`32768`);
 const y = x & 32768;
 const z = y === 32768;
 $(z);

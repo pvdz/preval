@@ -218,19 +218,19 @@ node.elements.forEach(($$0, $$1) => {
   debugger;
   if (!anode) return newElements.push(null);
   let valueNode = anode;
-  if (anode.type === 'SpreadElement') {
+  if (anode.type === `SpreadElement`) {
     valueNode = anode.argument;
-    crumb(anode, 'argument', valueNode);
+    crumb(anode, `argument`, valueNode);
   }
   if (isComplexNode(valueNode)) {
-    const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
+    const tmpName = createFreshVarInCurrentRootScope(`tmpElement`, true);
     assigns.push(AST.assignmentExpression(tmpName, valueNode));
-    newElements.push(anode.type === 'SpreadElement' ? AST.spreadElement(tmpName) : AST.identifier(tmpName));
+    newElements.push(anode.type === `SpreadElement` ? AST.spreadElement(tmpName) : AST.identifier(tmpName));
   } else {
     newElements.push(anode);
   }
-  if (anode.type === 'SpreadElement') {
-    uncrumb(anode, 'argument', valueNode);
+  if (anode.type === `SpreadElement`) {
+    uncrumb(anode, `argument`, valueNode);
   }
 });
 `````
@@ -255,15 +255,15 @@ const tmpCalleeParam = function ($$0, $$1) {
   if (anode) {
     let valueNode = anode;
     const tmpBinLhs = anode.type;
-    const tmpIfTest = tmpBinLhs === 'SpreadElement';
+    const tmpIfTest = tmpBinLhs === `SpreadElement`;
     if (tmpIfTest) {
       valueNode = anode.argument;
-      crumb(anode, 'argument', valueNode);
+      crumb(anode, `argument`, valueNode);
     } else {
     }
     const tmpIfTest$1 = isComplexNode(valueNode);
     if (tmpIfTest$1) {
-      const tmpName = createFreshVarInCurrentRootScope('tmpElement', true);
+      const tmpName = createFreshVarInCurrentRootScope(`tmpElement`, true);
       const tmpCallObj$1 = assigns;
       const tmpCallVal$1 = tmpCallObj$1.push;
       const tmpCalleeParam$1 = AST.assignmentExpression(tmpName, valueNode);
@@ -272,7 +272,7 @@ const tmpCalleeParam = function ($$0, $$1) {
       const tmpCallVal$3 = tmpCallObj$3.push;
       let tmpCalleeParam$3 = undefined;
       const tmpBinLhs$1 = anode.type;
-      const tmpIfTest$3 = tmpBinLhs$1 === 'SpreadElement';
+      const tmpIfTest$3 = tmpBinLhs$1 === `SpreadElement`;
       if (tmpIfTest$3) {
         tmpCalleeParam$3 = AST.spreadElement(tmpName);
       } else {
@@ -283,9 +283,9 @@ const tmpCalleeParam = function ($$0, $$1) {
       newElements.push(anode);
     }
     const tmpBinLhs$3 = anode.type;
-    const tmpIfTest$5 = tmpBinLhs$3 === 'SpreadElement';
+    const tmpIfTest$5 = tmpBinLhs$3 === `SpreadElement`;
     if (tmpIfTest$5) {
-      uncrumb(anode, 'argument', valueNode);
+      uncrumb(anode, `argument`, valueNode);
       return undefined;
     } else {
       return undefined;
@@ -302,7 +302,7 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 
 `````js filename=intro
 undefined.elements;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

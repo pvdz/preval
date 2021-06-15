@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let [a] = { a: 999, b: 1000 };
-$(['before ', ' after'], ($(10), $(20), $([1, 2])));
+$([`before `, ` after`], ($(10), $(20), $([1, 2])));
 $(a);
 `````
 
@@ -31,7 +31,7 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 $(10);
 $(20);
 const tmpCallCallee$1 = $;
@@ -47,7 +47,7 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 $(10);
 $(20);
 const tmpCalleeParam$3 = [1, 2];

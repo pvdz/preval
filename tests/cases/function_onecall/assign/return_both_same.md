@@ -47,13 +47,13 @@ let f = function () {
   let g = function () {
     debugger;
     if ($(1)) {
-      return 'xyz';
+      return `xyz`;
     } else {
-      return 'xyz';
+      return `xyz`;
     }
   };
   $(g());
-  $('c');
+  $(`c`);
 };
 let x = $(100);
 $(closure());
@@ -74,12 +74,12 @@ let f = function () {
   let g = function () {
     debugger;
     const tmpIfTest = $(1);
-    return 'xyz';
+    return `xyz`;
   };
   const tmpCallCallee = $;
   const tmpCalleeParam = g();
   tmpCallCallee(tmpCalleeParam);
-  $('c');
+  $(`c`);
   return undefined;
 };
 let x = $(100);
@@ -99,8 +99,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 const x = $(100);
 $(x);
 $(1);
-$('xyz');
-$('c');
+$(`xyz`);
+$(`c`);
 $(undefined);
 $(undefined);
 `````

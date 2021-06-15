@@ -43,10 +43,10 @@ let f = function ($$0) {
   let arrPatternStep = undefined;
   let arrPatternSplat$1 = undefined;
   if (tmpIfTest) {
-    arrPatternBeforeDefault = ['pass3'][0];
-    arrPatternStep = arrPatternBeforeDefault === undefined ? ['fail2'] : arrPatternBeforeDefault;
+    arrPatternBeforeDefault = [`pass3`][0];
+    arrPatternStep = arrPatternBeforeDefault === undefined ? [`fail2`] : arrPatternBeforeDefault;
     arrPatternSplat$1 = [...arrPatternStep];
-    return 'ok';
+    return `ok`;
   } else {
   }
 };
@@ -66,16 +66,16 @@ let f = function ($$0) {
   let arrPatternStep = undefined;
   let arrPatternSplat$1 = undefined;
   if (tmpIfTest) {
-    const tmpAssignRhsProp = ['pass3'];
+    const tmpAssignRhsProp = [`pass3`];
     arrPatternBeforeDefault = tmpAssignRhsProp[0];
     const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
     if (tmpIfTest$1) {
-      arrPatternStep = ['fail2'];
+      arrPatternStep = [`fail2`];
     } else {
       arrPatternStep = arrPatternBeforeDefault;
     }
     arrPatternSplat$1 = [...arrPatternStep];
-    return 'ok';
+    return `ok`;
   } else {
     return undefined;
   }
@@ -88,7 +88,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

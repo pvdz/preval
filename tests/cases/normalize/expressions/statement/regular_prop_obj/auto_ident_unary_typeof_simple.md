@@ -43,7 +43,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-'number'.a;
+`number`.a;
 const a = { a: 999, b: 1000 };
 $(a, 1);
 `````

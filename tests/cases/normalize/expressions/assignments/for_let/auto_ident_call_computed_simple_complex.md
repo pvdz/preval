@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
-  let xyz = (a = b[$('$')](1));
+  let xyz = (a = b[$(`$`)](1));
   while (true) {
     $(xyz);
     $(1);
@@ -39,7 +39,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 let xyz = a;
 while (true) {
@@ -52,7 +52,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const b = { $: $ };
 const a = b[tmpCallCompProp](1);
 while (true) {

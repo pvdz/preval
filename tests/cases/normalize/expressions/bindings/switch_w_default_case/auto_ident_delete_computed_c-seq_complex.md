@@ -38,14 +38,14 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       arg = { y: 1 };
-      a = delete ($(1), $(2), $(arg))[$('y')];
+      a = delete ($(1), $(2), $(arg))[$(`y`)];
       $(a, arg);
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -74,19 +74,19 @@ if (tmpIfTest$3) {
   $(1);
   $(2);
   const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $('y');
+  const tmpDeleteCompProp = $(`y`);
   a = delete tmpDeleteCompObj[tmpDeleteCompProp];
   $(a, arg);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 `````
@@ -98,11 +98,11 @@ $(1);
 $(2);
 const tmpClusterSSA_arg = { y: 1 };
 const tmpDeleteCompObj = $(tmpClusterSSA_arg);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(tmpClusterSSA_a, tmpClusterSSA_arg);
-$('fail1');
-$('fail2');
+$(`fail1`);
+$(`fail2`);
 `````
 
 ## Globals

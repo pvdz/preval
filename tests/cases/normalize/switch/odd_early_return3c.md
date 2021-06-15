@@ -43,9 +43,9 @@ let a = function () {
   };
   let g = function () {
     debugger;
-    $('x');
-    $('y');
-    $('z');
+    $(`x`);
+    $(`y`);
+    $(`z`);
     return $(2);
   };
   return g();
@@ -67,9 +67,9 @@ let a = function () {
   };
   let g = function () {
     debugger;
-    $('x');
-    $('y');
-    $('z');
+    $(`x`);
+    $(`y`);
+    $(`z`);
     const tmpReturnArg = $(2);
     return tmpReturnArg;
   };
@@ -84,9 +84,9 @@ $(a);
 `````js filename=intro
 const a = function () {
   debugger;
-  $('x');
-  $('y');
-  $('z');
+  $(`x`);
+  $(`y`);
+  $(`z`);
   const tmpReturnArg = $(2);
   return tmpReturnArg;
 };

@@ -18,14 +18,14 @@ $('ok');
 ## Pre Normal
 
 `````js filename=intro
-[{}] = ['', 20, 30];
-$('ok');
+[{}] = [``, 20, 30];
+$(`ok`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const arrAssignPatternRhs = ['', 20, 30];
+const arrAssignPatternRhs = [``, 20, 30];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 let objPatternCrashTest = arrPatternStep === undefined;
@@ -37,13 +37,13 @@ if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

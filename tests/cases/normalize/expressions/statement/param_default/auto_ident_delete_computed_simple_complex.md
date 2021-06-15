@@ -25,7 +25,7 @@ $(a, arg);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? delete arg[$('y')] : tmpParamBare;
+  let p = tmpParamBare === undefined ? delete arg[$(`y`)] : tmpParamBare;
 };
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
@@ -43,7 +43,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpDeleteCompObj = arg;
-    const tmpDeleteCompProp = $('y');
+    const tmpDeleteCompProp = $(`y`);
     p = delete tmpDeleteCompObj[tmpDeleteCompProp];
     return undefined;
   } else {
@@ -64,7 +64,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 delete arg[tmpDeleteCompProp];
 $(undefined);
 $(a, arg);

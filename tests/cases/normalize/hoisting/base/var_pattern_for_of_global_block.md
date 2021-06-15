@@ -24,7 +24,7 @@ $(x);
 let x = undefined;
 $(x);
 {
-  for ([x] of [[100]]) $(x, 'for');
+  for ([x] of [[100]]) $(x, `for`);
 }
 $(x);
 `````
@@ -41,7 +41,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const arrAssignPatternRhs = tmpForOfLhsNode;
   const arrPatternSplat = [...arrAssignPatternRhs];
   x = arrPatternSplat[0];
-  $(x, 'for');
+  $(x, `for`);
 }
 $(x);
 `````
@@ -57,7 +57,7 @@ let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   const arrPatternSplat = [...tmpForOfLhsNode];
   x = arrPatternSplat[0];
-  $(x, 'for');
+  $(x, `for`);
 }
 $(x);
 `````

@@ -38,14 +38,14 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       b = { c: 10, d: 20 };
-      a = $(b).c = $(b)[$('d')];
+      a = $(b).c = $(b)[$(`d`)];
       $(a, b);
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -73,7 +73,7 @@ if (tmpIfTest$3) {
   b = { c: 10, d: 20 };
   const tmpNestedAssignObj = $(b);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
@@ -83,12 +83,12 @@ if (tmpIfTest$3) {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 `````
@@ -99,12 +99,12 @@ if (tmpIfTest$7) {
 const tmpClusterSSA_b = { c: 10, d: 20 };
 const tmpNestedAssignObj = $(tmpClusterSSA_b);
 const tmpCompObj = $(tmpClusterSSA_b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, tmpClusterSSA_b);
-$('fail1');
-$('fail2');
+$(`fail1`);
+$(`fail2`);
 `````
 
 ## Globals

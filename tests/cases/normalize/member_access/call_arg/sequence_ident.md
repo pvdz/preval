@@ -18,14 +18,14 @@ $(($(1), b).length);
 ## Pre Normal
 
 `````js filename=intro
-let b = 'foo';
+let b = `foo`;
 $(($(1), b).length);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let b = 'foo';
+let b = `foo`;
 const tmpCallCallee = $;
 $(1);
 const tmpCompObj = b;

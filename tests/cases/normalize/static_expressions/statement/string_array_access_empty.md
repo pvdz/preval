@@ -17,7 +17,7 @@ $(""[0]);
 ## Pre Normal
 
 `````js filename=intro
-$(''[0]);
+$(``[0]);
 `````
 
 ## Normalized

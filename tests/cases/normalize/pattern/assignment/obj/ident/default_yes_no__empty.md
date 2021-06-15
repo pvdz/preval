@@ -18,8 +18,8 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-({ x: x = $('fail') } = 1);
-$('bad');
+({ x: x = $(`fail`) } = 1);
+$(`bad`);
 `````
 
 ## Normalized
@@ -29,11 +29,11 @@ const tmpAssignObjPatternRhs = 1;
 const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('fail');
+  x = $(`fail`);
 } else {
   x = objPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -42,11 +42,11 @@ $('bad');
 const objPatternBeforeDefault = (1).x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('fail');
+  x = $(`fail`);
 } else {
   x = objPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

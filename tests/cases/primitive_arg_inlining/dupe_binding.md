@@ -47,8 +47,8 @@ let f = function ($$0, $$1) {
   $(a, b);
   return a;
 };
-$(f($(1), $(2)), 'outer1');
-$(f(100, $(200)), 'outer2');
+$(f($(1), $(2)), `outer1`);
+$(f(100, $(200)), `outer2`);
 `````
 
 ## Normalized
@@ -66,14 +66,14 @@ const tmpCallCallee$1 = f;
 const tmpCalleeParam$3 = $(1);
 const tmpCalleeParam$5 = $(2);
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
-const tmpCalleeParam$1 = 'outer1';
+const tmpCalleeParam$1 = `outer1`;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 const tmpCallCallee$3 = $;
 const tmpCallCallee$5 = f;
 const tmpCalleeParam$11 = 100;
 const tmpCalleeParam$13 = $(200);
 const tmpCalleeParam$7 = tmpCallCallee$5(tmpCalleeParam$11, tmpCalleeParam$13);
-const tmpCalleeParam$9 = 'outer2';
+const tmpCalleeParam$9 = `outer2`;
 tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 `````
 
@@ -83,10 +83,10 @@ tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 const tmpCalleeParam$3 = $(1);
 const tmpCalleeParam$5 = $(2);
 $(tmpCalleeParam$3, tmpCalleeParam$5);
-$(tmpCalleeParam$3, 'outer1');
+$(tmpCalleeParam$3, `outer1`);
 const tmpCalleeParam$13 = $(200);
 $(100, tmpCalleeParam$13);
-$(100, 'outer2');
+$(100, `outer2`);
 `````
 
 ## Globals

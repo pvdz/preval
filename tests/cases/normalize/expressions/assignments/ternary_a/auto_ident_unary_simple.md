@@ -50,7 +50,7 @@ $(a, x);
 `````js filename=intro
 const tmpCalleeParam = $(100);
 $(tmpCalleeParam);
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

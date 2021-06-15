@@ -20,7 +20,7 @@ $(x);
 `````js filename=intro
 const obj = { a: { b: $() } };
 let x = 10;
-x = obj['a']['b'];
+x = obj[`a`][`b`];
 $(x);
 `````
 

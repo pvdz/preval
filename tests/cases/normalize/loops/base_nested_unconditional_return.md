@@ -29,11 +29,11 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  $('outer');
+  $(`outer`);
   while (true) {
-    $('middle');
+    $(`middle`);
     while (true) {
-      $('inner');
+      $(`inner`);
       return 100;
     }
   }
@@ -46,11 +46,11 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  $('outer');
+  $(`outer`);
   while (true) {
-    $('middle');
+    $(`middle`);
     while (true) {
-      $('inner');
+      $(`inner`);
       return 100;
     }
   }
@@ -66,11 +66,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  $('outer');
+  $(`outer`);
   while (true) {
-    $('middle');
+    $(`middle`);
     while (true) {
-      $('inner');
+      $(`inner`);
       return 100;
     }
   }

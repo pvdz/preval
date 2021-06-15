@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-$(100) || ((1, 2, $(b))[$('c')] = $(b)[$('d')]);
+$(100) || ((1, 2, $(b))[$(`c`)] = $(b)[$(`d`)]);
 $(a, b);
 `````
 
@@ -36,11 +36,11 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   const tmpAssignComMemLhsObj = $(b);
-  const tmpAssignComMemLhsProp = $('c');
+  const tmpAssignComMemLhsProp = $(`c`);
   const tmpAssignComputedObj = tmpAssignComMemLhsObj;
   const tmpAssignComputedProp = tmpAssignComMemLhsProp;
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 }
@@ -56,9 +56,9 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   const tmpAssignComMemLhsObj = $(b);
-  const tmpAssignComMemLhsProp = $('c');
+  const tmpAssignComMemLhsProp = $(`c`);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 }

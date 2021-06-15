@@ -25,7 +25,7 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-obj[(b['c'] = $(b)[$('d')])];
+obj[(b[`c`] = $(b)[$(`d`)])];
 $(a, b);
 `````
 
@@ -37,7 +37,7 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
 const tmpCompObj$1 = $(b);
-const tmpCompProp$1 = $('d');
+const tmpCompProp$1 = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
 b.c = varInitAssignLhsComputedRhs;
 const tmpCompProp = varInitAssignLhsComputedRhs;
@@ -52,7 +52,7 @@ const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
 const obj = {};
 const tmpCompObj$1 = $(b);
-const tmpCompProp$1 = $('d');
+const tmpCompProp$1 = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
 b.c = varInitAssignLhsComputedRhs;
 obj[varInitAssignLhsComputedRhs];

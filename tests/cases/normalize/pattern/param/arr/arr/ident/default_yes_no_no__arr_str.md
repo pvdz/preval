@@ -23,10 +23,10 @@ $(f(['abc', 4, 5], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [[x = $('fail')]] = tmpParamBare;
+  let [[x = $(`fail`)]] = tmpParamBare;
   return x;
 };
-$(f(['abc', 4, 5], 200));
+$(f([`abc`, 4, 5], 200));
 `````
 
 ## Normalized
@@ -43,7 +43,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    x = $('fail');
+    x = $(`fail`);
     return x;
   } else {
     x = arrPatternBeforeDefault;
@@ -52,7 +52,7 @@ let f = function ($$0) {
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
-const tmpCalleeParam$1 = ['abc', 4, 5];
+const tmpCalleeParam$1 = [`abc`, 4, 5];
 const tmpCalleeParam$3 = 200;
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
@@ -70,13 +70,13 @@ const f = function ($$0) {
   const arrPatternBeforeDefault = arrPatternSplat$1[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $('fail');
+    const tmpClusterSSA_x = $(`fail`);
     return tmpClusterSSA_x;
   } else {
     return arrPatternBeforeDefault;
   }
 };
-const tmpCalleeParam$1 = ['abc', 4, 5];
+const tmpCalleeParam$1 = [`abc`, 4, 5];
 const tmpCalleeParam = f(tmpCalleeParam$1, 200);
 $(tmpCalleeParam);
 `````

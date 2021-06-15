@@ -26,7 +26,7 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  return (a = b[$('$')](1));
+  return (a = b[$(`$`)](1));
 };
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
@@ -40,7 +40,7 @@ $(a);
 let f = function () {
   debugger;
   const tmpCallCompObj = b;
-  const tmpCallCompProp = $('$');
+  const tmpCallCompProp = $(`$`);
   a = tmpCallCompObj[tmpCallCompProp](1);
   return a;
 };
@@ -55,7 +55,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const b = { $: $ };
 const tmpClusterSSA_a = b[tmpCallCompProp](1);
 $(tmpClusterSSA_a);

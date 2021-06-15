@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-$((a = b[$('c')]) ? $(100) : $(200));
+$((a = b[$(`c`)]) ? $(100) : $(200));
 $(a, b);
 `````
 
@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpAssignRhsCompObj = b;
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let tmpIfTest = a;
 if (tmpIfTest) {
@@ -51,7 +51,7 @@ $(a, b);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
 if (a) {

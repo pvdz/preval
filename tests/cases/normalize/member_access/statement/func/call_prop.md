@@ -20,7 +20,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  $('foo').length;
+  $(`foo`).length;
 };
 $(f());
 `````
@@ -30,7 +30,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCompObj = $('foo');
+  const tmpCompObj = $(`foo`);
   tmpCompObj.length;
   return undefined;
 };
@@ -42,7 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCompObj = $('foo');
+const tmpCompObj = $(`foo`);
 tmpCompObj.length;
 $(undefined);
 `````

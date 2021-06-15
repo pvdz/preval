@@ -19,7 +19,7 @@ $('ok');
 
 `````js filename=intro
 [[[[]]]] = [[[[1, 2, 3], 4, 5], 20, 30], 40, 50];
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -36,13 +36,13 @@ const arrPatternStep$1 = arrPatternSplat$1[0];
 const arrPatternSplat$3 = [...arrPatternStep$1];
 const arrPatternStep$3 = arrPatternSplat$3[0];
 const arrPatternSplat$5 = [...arrPatternStep$3];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

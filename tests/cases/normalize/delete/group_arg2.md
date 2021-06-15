@@ -40,7 +40,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 $(true);
-$('number');
+$(`number`);
 `````
 
 ## Globals

@@ -24,7 +24,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-let xyz = (a = delete arg['y']);
+let xyz = (a = delete arg[`y`]);
 $(xyz);
 $(a, arg);
 `````

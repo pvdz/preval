@@ -17,22 +17,22 @@ $(`${true}`);
 ## Pre Normal
 
 `````js filename=intro
-$('' + true + '');
+$(`` + true + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = 'true';
-const tmpCalleeParam = tmpBinLhs + '';
+const tmpBinLhs = `true`;
+const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('true');
+$(`true`);
 `````
 
 ## Globals

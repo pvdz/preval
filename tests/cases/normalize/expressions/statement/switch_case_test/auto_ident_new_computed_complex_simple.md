@@ -28,7 +28,7 @@ let a = { a: 999, b: 1000 };
 {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 1;
-  if (new ($(b)['$'])(1) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if (new ($(b)[`$`])(1) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {

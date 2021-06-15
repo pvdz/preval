@@ -40,7 +40,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-throw 'number';
+throw `number`;
 `````
 
 ## Globals

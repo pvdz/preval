@@ -53,7 +53,7 @@ const f = function () {
   const b = function () {
     debugger;
     if (test) {
-      test = '';
+      test = ``;
       a();
       return undefined;
     } else {
@@ -87,7 +87,7 @@ const f = function () {
   const b = function () {
     debugger;
     if (test) {
-      test = '';
+      test = ``;
       a();
       return undefined;
     } else {

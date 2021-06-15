@@ -29,13 +29,13 @@ $('after, do not evaluate (infinite loop)');
 `````js filename=intro
 while ($(true)) {
   {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
     if ($(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
     else;
     tmpSwitchBreak: {
       if (tmpSwitchCaseToStart <= 0) {
-        $('keep, do not eval');
+        $(`keep, do not eval`);
         continue;
       }
       if (tmpSwitchCaseToStart <= 1) {
@@ -43,9 +43,9 @@ while ($(true)) {
       }
     }
   }
-  $('eliminate');
+  $(`eliminate`);
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Normalized
@@ -54,7 +54,7 @@ $('after, do not evaluate (infinite loop)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
     const tmpBinLhs = $(0);
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
@@ -64,21 +64,21 @@ while (true) {
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$3) {
-      $('keep, do not eval');
+      $(`keep, do not eval`);
       continue;
     } else {
       const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
       if (tmpIfTest$5) {
         continue;
       } else {
-        $('eliminate');
+        $(`eliminate`);
       }
     }
   } else {
     break;
   }
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Output
@@ -87,7 +87,7 @@ $('after, do not evaluate (infinite loop)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
     const tmpBinLhs = $(0);
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
@@ -97,21 +97,21 @@ while (true) {
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$3) {
-      $('keep, do not eval');
+      $(`keep, do not eval`);
       continue;
     } else {
       const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
       if (tmpIfTest$5) {
         continue;
       } else {
-        $('eliminate');
+        $(`eliminate`);
       }
     }
   } else {
     break;
   }
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Globals

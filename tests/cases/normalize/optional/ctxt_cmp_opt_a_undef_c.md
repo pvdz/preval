@@ -19,7 +19,7 @@ $($(a)?.[$('b')][$('c')](100));
 
 `````js filename=intro
 const a = { b: {} };
-$($(a)?.[$('b')][$('c')](100));
+$($(a)?.[$(`b`)][$(`c`)](100));
 `````
 
 ## Normalized
@@ -33,9 +33,9 @@ const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(a);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = $('b');
+  const tmpChainRootComputed = $(`b`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpChainRootComputed$1 = $('c');
+  const tmpChainRootComputed$1 = $(`c`);
   const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainElementObject, 100);
   tmpCalleeParam = tmpChainElementCall$1;
@@ -54,9 +54,9 @@ const tmpChainElementCall = $(a);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainRootComputed = $('b');
+  const tmpChainRootComputed = $(`b`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpChainRootComputed$1 = $('c');
+  const tmpChainRootComputed$1 = $(`c`);
   const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainElementObject, 100);
   tmpCalleeParam = tmpChainElementCall$1;

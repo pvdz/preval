@@ -47,7 +47,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 undefined.b;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

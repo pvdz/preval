@@ -23,10 +23,10 @@ $(f('', 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: {} = $({ x: 'pass' }) } = tmpParamBare === undefined ? $({ x: { y: 'fail2' } }) : tmpParamBare;
-  return 'ok';
+  let { x: {} = $({ x: `pass` }) } = tmpParamBare === undefined ? $({ x: { y: `fail2` } }) : tmpParamBare;
+  return `ok`;
 };
-$(f('', 10));
+$(f(``, 10));
 `````
 
 ## Normalized
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpObjLitVal = { y: 'fail2' };
+    const tmpObjLitVal = { y: `fail2` };
     const tmpCalleeParam = { x: tmpObjLitVal };
     bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
@@ -50,7 +50,7 @@ let f = function ($$0) {
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = { x: 'pass' };
+    const tmpCalleeParam$1 = { x: `pass` };
     objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -62,24 +62,24 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-    return 'ok';
+    return `ok`;
   } else {
-    return 'ok';
+    return `ok`;
   }
 };
 const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f('', 10);
+const tmpCalleeParam$3 = f(``, 10);
 tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = ''.x;
+const objPatternBeforeDefault = ``.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpCalleeParam$1 = { x: 'pass' };
+  const tmpCalleeParam$1 = { x: `pass` };
   objPatternAfterDefault = $(tmpCalleeParam$1);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -93,7 +93,7 @@ if (objPatternCrashTest) {
   objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

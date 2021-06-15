@@ -32,15 +32,15 @@ let f = function ($$0, ...$$1) {
   let x = $$0;
   let rest = $$1;
   debugger;
-  $('no', rest);
-  $('inlining');
-  $('please');
+  $(`no`, rest);
+  $(`inlining`);
+  $(`please`);
   const y = ~x;
   return y;
 };
 $(f(1));
 $(f(2));
-$(f('three'));
+$(f(`three`));
 `````
 
 ## Normalized
@@ -50,9 +50,9 @@ let f = function ($$0, ...$$1) {
   let x = $$0;
   let rest = $$1;
   debugger;
-  $('no', rest);
-  $('inlining');
-  $('please');
+  $(`no`, rest);
+  $(`inlining`);
+  $(`please`);
   const y = ~x;
   return y;
 };
@@ -63,7 +63,7 @@ const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(2);
 tmpCallCallee$1(tmpCalleeParam$1);
 const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f('three');
+const tmpCalleeParam$3 = f(`three`);
 tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
@@ -73,9 +73,9 @@ tmpCallCallee$3(tmpCalleeParam$3);
 const f = function (...$$0) {
   const rest = $$0;
   debugger;
-  $('no', rest);
-  $('inlining');
-  $('please');
+  $(`no`, rest);
+  $(`inlining`);
+  $(`please`);
   return undefined;
 };
 f();

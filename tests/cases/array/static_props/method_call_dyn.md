@@ -22,7 +22,7 @@ $(arr.length);
 
 `````js filename=intro
 const arr = [1, 2, 3];
-arr[$('splice')](1, 2, 20);
+arr[$(`splice`)](1, 2, 20);
 $(arr.length);
 `````
 
@@ -31,7 +31,7 @@ $(arr.length);
 `````js filename=intro
 const arr = [1, 2, 3];
 const tmpCallCompObj = arr;
-const tmpCallCompProp = $('splice');
+const tmpCallCompProp = $(`splice`);
 tmpCallCompObj[tmpCallCompProp](1, 2, 20);
 const tmpCallCallee = $;
 const tmpCalleeParam = arr.length;
@@ -41,7 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallCompProp = $('splice');
+const tmpCallCompProp = $(`splice`);
 const arr = [1, 2, 3];
 arr[tmpCallCompProp](1, 2, 20);
 const tmpCalleeParam = arr.length;

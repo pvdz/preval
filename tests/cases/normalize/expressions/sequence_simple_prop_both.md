@@ -22,7 +22,7 @@ $(a);
 
 `````js filename=intro
 let a = 0;
-a = 'Identifier'.length === 'woop'.length;
+a = `Identifier`.length === `woop`.length;
 $(a);
 `````
 

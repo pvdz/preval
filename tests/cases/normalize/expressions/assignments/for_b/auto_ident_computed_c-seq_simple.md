@@ -24,7 +24,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
-  while ((a = (1, 2, $(b))[$('c')])) {
+  while ((a = (1, 2, $(b))[$(`c`)])) {
     $(1);
   }
 }
@@ -38,7 +38,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
   const tmpAssignRhsCompObj = $(b);
-  const tmpAssignRhsCompProp = $('c');
+  const tmpAssignRhsCompProp = $(`c`);
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   let tmpIfTest = a;
   if (tmpIfTest) {
@@ -57,7 +57,7 @@ let a = { a: 999, b: 1000 };
 const b = { c: 1 };
 while (true) {
   const tmpAssignRhsCompObj = $(b);
-  const tmpAssignRhsCompProp = $('c');
+  const tmpAssignRhsCompProp = $(`c`);
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   if (a) {
     $(1);

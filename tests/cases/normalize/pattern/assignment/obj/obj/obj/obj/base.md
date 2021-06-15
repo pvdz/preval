@@ -31,7 +31,7 @@ $('ok');
     },
   },
 } = { x: { x: 13, y: { z: { a: 1, b: 2, c: 3 }, a: 15, b: 16 }, z: 14 }, b: 11, c: 12 });
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -54,13 +54,13 @@ if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault$3.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

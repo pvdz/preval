@@ -18,18 +18,18 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-({ x: x = $('fail') } = { x: 'abc' });
+({ x: x = $(`fail`) } = { x: `abc` });
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { x: 'abc' };
+const tmpAssignObjPatternRhs = { x: `abc` };
 const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('fail');
+  x = $(`fail`);
 } else {
   x = objPatternBeforeDefault;
 }
@@ -39,7 +39,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-x = 'abc';
+x = `abc`;
 $(x);
 `````
 

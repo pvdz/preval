@@ -30,12 +30,12 @@ while ($(true)) {
       tmpDoWhileFlag = false;
       {
         break;
-        $('fail');
+        $(`fail`);
       }
     }
   }
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Normalized
@@ -62,7 +62,7 @@ while (true) {
     break;
   }
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Output
@@ -89,7 +89,7 @@ while (true) {
     break;
   }
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Globals

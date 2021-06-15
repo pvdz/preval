@@ -21,7 +21,7 @@ $('bad');
 const {
   x: [y],
 } = {};
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -31,7 +31,7 @@ const bindingPatternObjRoot = {};
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
 const y = arrPatternSplat[0];
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -41,7 +41,7 @@ const tmpObjectPrototype = Object.prototype;
 const objPatternNoDefault = tmpObjectPrototype.x;
 const arrPatternSplat = [...objPatternNoDefault];
 arrPatternSplat[0];
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

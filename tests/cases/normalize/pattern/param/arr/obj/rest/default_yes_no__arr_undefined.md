@@ -23,7 +23,7 @@ $(f([undefined, 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ ...x } = $({ a: 'pass' })] = tmpParamBare;
+  let [{ ...x } = $({ a: `pass` })] = tmpParamBare;
   return x;
 };
 $(f([undefined, 20, 30], 200));
@@ -42,7 +42,7 @@ let f = function ($$0) {
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = { a: 'pass' };
+    const tmpCalleeParam = { a: `pass` };
     arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
@@ -65,7 +65,7 @@ tmpCallCallee$3(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = { a: 'pass' };
+const tmpCalleeParam = { a: `pass` };
 const arrPatternStep = $(tmpCalleeParam);
 const tmpCalleeParam$3 = [];
 const x = objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);

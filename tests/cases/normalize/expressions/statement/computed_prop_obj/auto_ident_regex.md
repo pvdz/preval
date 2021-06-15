@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-/foo/['a'];
+/foo/[`a`];
 $(a);
 `````
 

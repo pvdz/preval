@@ -26,29 +26,29 @@ if (x) {
 ## Pre Normal
 
 `````js filename=intro
-let x = $(false, 'a');
+let x = $(false, `a`);
 if (x) {
 } else {
-  $(x, 'pass');
-  x = $(false, 'b');
+  $(x, `pass`);
+  x = $(false, `b`);
 }
 if (x) {
 } else {
-  $(x, 'hit');
+  $(x, `hit`);
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = $(false, 'a');
+let x = $(false, `a`);
 if (x) {
 } else {
-  $(x, 'pass');
-  x = $(false, 'b');
+  $(x, `pass`);
+  x = $(false, `b`);
   if (x) {
   } else {
-    $(x, 'hit');
+    $(x, `hit`);
   }
 }
 `````
@@ -56,14 +56,14 @@ if (x) {
 ## Output
 
 `````js filename=intro
-const x = $(false, 'a');
+const x = $(false, `a`);
 if (x) {
 } else {
-  $(x, 'pass');
-  const tmpClusterSSA_x = $(false, 'b');
+  $(x, `pass`);
+  const tmpClusterSSA_x = $(false, `b`);
   if (tmpClusterSSA_x) {
   } else {
-    $(tmpClusterSSA_x, 'hit');
+    $(tmpClusterSSA_x, `hit`);
   }
 }
 `````

@@ -26,7 +26,7 @@ $(a, b);
 `````js filename=intro
 let f = function () {
   debugger;
-  return (a = b.c = $(b)[$('d')]);
+  return (a = b.c = $(b)[$(`d`)]);
 };
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
@@ -40,7 +40,7 @@ $(a, b);
 let f = function () {
   debugger;
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.c = tmpNestedPropAssignRhs;
@@ -60,7 +60,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs);

@@ -28,8 +28,8 @@ $(f());
 let f = function () {
   debugger;
   while ($(true)) {
-    throw $(1, 'return');
-    $('fail');
+    throw $(1, `return`);
+    $(`fail`);
   }
 };
 $(f());
@@ -43,7 +43,7 @@ let f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      const tmpThrowArg = $(1, 'return');
+      const tmpThrowArg = $(1, `return`);
       throw tmpThrowArg;
     } else {
       break;
@@ -62,7 +62,7 @@ tmpCallCallee(tmpCalleeParam);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpThrowArg = $(1, 'return');
+    const tmpThrowArg = $(1, `return`);
     throw tmpThrowArg;
   } else {
     break;

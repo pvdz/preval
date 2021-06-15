@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$((a = b[$('$')](1)) + (a = b[$('$')](1)));
+$((a = b[$(`$`)](1)) + (a = b[$(`$`)](1)));
 $(a);
 `````
 
@@ -34,11 +34,11 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCallCompObj = b;
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpBinBothLhs = a;
 const tmpCallCompObj$1 = b;
-const tmpCallCompProp$1 = $('$');
+const tmpCallCompProp$1 = $(`$`);
 a = tmpCallCompObj$1[tmpCallCompProp$1](1);
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
@@ -49,10 +49,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const b = { $: $ };
 const a = b[tmpCallCompProp](1);
-const tmpCallCompProp$1 = $('$');
+const tmpCallCompProp$1 = $(`$`);
 const tmpClusterSSA_a = b[tmpCallCompProp$1](1);
 const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);

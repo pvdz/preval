@@ -42,7 +42,7 @@ let f = function () {
     }
     console.log(x);
   }
-  x = 'fail';
+  x = `fail`;
 };
 let x = 0;
 f();
@@ -68,7 +68,7 @@ let f = function () {
   };
   const tmpAfterLabel = function () {
     debugger;
-    x = 'fail';
+    x = `fail`;
     return undefined;
   };
   const tmpReturnArg$3 = tmpLabeledBlockFunc();
@@ -85,13 +85,13 @@ considerMutated(x);
 const f = function () {
   debugger;
   try {
-    x = 'fail';
+    x = `fail`;
     return undefined;
   } finally {
     return undefined;
   }
   console.log(x);
-  x = 'fail';
+  x = `fail`;
   return undefined;
 };
 let x = 0;

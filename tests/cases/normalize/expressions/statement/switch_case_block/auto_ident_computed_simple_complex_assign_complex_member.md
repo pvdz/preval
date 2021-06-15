@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       {
-        b[$('c')] = $(b)[$('d')];
+        b[$(`c`)] = $(b)[$(`d`)];
       }
     }
   }
@@ -59,11 +59,11 @@ if (tmpIfTest) {
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpAssignComMemLhsObj = b;
-  const tmpAssignComMemLhsProp = $('c');
+  const tmpAssignComMemLhsProp = $(`c`);
   const tmpAssignComputedObj = tmpAssignComMemLhsObj;
   const tmpAssignComputedProp = tmpAssignComMemLhsProp;
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 } else {
@@ -86,9 +86,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpAssignComMemLhsProp = $('c');
+  const tmpAssignComMemLhsProp = $(`c`);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
   b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 } else {

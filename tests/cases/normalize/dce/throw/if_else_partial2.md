@@ -30,9 +30,9 @@ let f = function () {
   if ($(1)) {
   } else {
     throw 2;
-    $('fail');
+    $(`fail`);
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
 };
 $(f());
 `````
@@ -44,7 +44,7 @@ let f = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('keep, do not eval');
+    $(`keep, do not eval`);
     return undefined;
   } else {
     throw 2;
@@ -60,7 +60,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  $('keep, do not eval');
+  $(`keep, do not eval`);
   $(undefined);
 } else {
   throw 2;

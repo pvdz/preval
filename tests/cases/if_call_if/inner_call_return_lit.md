@@ -41,10 +41,10 @@ let f = function () {
   let g = function () {
     debugger;
     if (x) {
-      $('a');
+      $(`a`);
       return 500;
     } else {
-      $('b');
+      $(`b`);
       return 1000;
     }
   };
@@ -68,10 +68,10 @@ let f = function () {
   let g = function () {
     debugger;
     if (x) {
-      $('a');
+      $(`a`);
       return 500;
     } else {
-      $('b');
+      $(`b`);
       return 1000;
     }
   };
@@ -101,15 +101,15 @@ const f = function () {
   debugger;
   const x = $(1);
   if (x) {
-    $('a');
+    $(`a`);
     return 500;
   } else {
     const tmpClusterSSA_x = $(0);
     if (tmpClusterSSA_x) {
-      $('a');
+      $(`a`);
       return 500;
     } else {
-      $('b');
+      $(`b`);
       return 1000;
     }
   }

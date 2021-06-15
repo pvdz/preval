@@ -27,7 +27,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpSwitchValue = delete $(arg)['y'];
+  const tmpSwitchValue = delete $(arg)[`y`];
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {

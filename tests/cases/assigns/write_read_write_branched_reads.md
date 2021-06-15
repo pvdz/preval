@@ -24,23 +24,23 @@ else $(x, 'c');
 
 `````js filename=intro
 let x = $(1);
-$(x, 'a');
+$(x, `a`);
 x = $(2);
-if ($(1)) $(x, 'b');
-else $(x, 'c');
+if ($(1)) $(x, `b`);
+else $(x, `c`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 let x = $(1);
-$(x, 'a');
+$(x, `a`);
 x = $(2);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  $(x, 'b');
+  $(x, `b`);
 } else {
-  $(x, 'c');
+  $(x, `c`);
 }
 `````
 
@@ -48,13 +48,13 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $(1);
-$(x, 'a');
+$(x, `a`);
 const tmpClusterSSA_x = $(2);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  $(tmpClusterSSA_x, 'b');
+  $(tmpClusterSSA_x, `b`);
 } else {
-  $(tmpClusterSSA_x, 'c');
+  $(tmpClusterSSA_x, `c`);
 }
 `````
 

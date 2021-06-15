@@ -24,7 +24,7 @@ $(b);
 
 `````js filename=intro
 let b;
-({ a: b = $('default') } = {});
+({ a: b = $(`default`) } = {});
 $(b);
 `````
 
@@ -36,7 +36,7 @@ const tmpAssignObjPatternRhs = {};
 const objPatternBeforeDefault = tmpAssignObjPatternRhs.a;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  b = $('default');
+  b = $(`default`);
 } else {
   b = objPatternBeforeDefault;
 }
@@ -51,7 +51,7 @@ const tmpObjectPrototype = Object.prototype;
 const objPatternBeforeDefault = tmpObjectPrototype.a;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  b = $('default');
+  b = $(`default`);
 } else {
   b = objPatternBeforeDefault;
 }

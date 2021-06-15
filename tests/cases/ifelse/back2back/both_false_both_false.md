@@ -29,54 +29,54 @@ if (x) {
 ## Pre Normal
 
 `````js filename=intro
-let x = $(false, 'a');
+let x = $(false, `a`);
 if (x) {
-  $(x, 'A');
-  x = $(false, 'b');
+  $(x, `A`);
+  x = $(false, `b`);
 } else {
-  $(x, 'B');
-  x = $(false, 'b');
+  $(x, `B`);
+  x = $(false, `b`);
 }
 if (x) {
-  $(x, 'one');
+  $(x, `one`);
 } else {
-  $(x, 'two');
+  $(x, `two`);
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = $(false, 'a');
+let x = $(false, `a`);
 if (x) {
-  $(x, 'A');
-  x = $(false, 'b');
+  $(x, `A`);
+  x = $(false, `b`);
 } else {
-  $(x, 'B');
-  x = $(false, 'b');
+  $(x, `B`);
+  x = $(false, `b`);
 }
 if (x) {
-  $(x, 'one');
+  $(x, `one`);
 } else {
-  $(x, 'two');
+  $(x, `two`);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let x = $(false, 'a');
+let x = $(false, `a`);
 if (x) {
-  $(x, 'A');
-  x = $(false, 'b');
+  $(x, `A`);
+  x = $(false, `b`);
 } else {
-  $(x, 'B');
-  x = $(false, 'b');
+  $(x, `B`);
+  x = $(false, `b`);
 }
 if (x) {
-  $(x, 'one');
+  $(x, `one`);
 } else {
-  $(x, 'two');
+  $(x, `two`);
 }
 `````
 

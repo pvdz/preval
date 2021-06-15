@@ -22,7 +22,7 @@ $(y);
 `````js filename=intro
 const x = [1, 2, 3];
 $(x);
-const y = ['a', ...x, 'b'];
+const y = [`a`, ...x, `b`];
 $(y);
 `````
 
@@ -31,7 +31,7 @@ $(y);
 `````js filename=intro
 const x = [1, 2, 3];
 $(x);
-const y = ['a', ...x, 'b'];
+const y = [`a`, ...x, `b`];
 $(y);
 `````
 
@@ -40,7 +40,7 @@ $(y);
 `````js filename=intro
 const x = [1, 2, 3];
 $(x);
-const y = ['a', ...x, 'b'];
+const y = [`a`, ...x, `b`];
 $(y);
 `````
 

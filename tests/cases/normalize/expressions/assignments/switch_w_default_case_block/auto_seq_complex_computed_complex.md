@@ -44,14 +44,14 @@ let a = { a: 999, b: 1000 };
       }
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
-($(1), $(a))[$('b')] = $(2);
+($(1), $(a))[$(`b`)] = $(2);
 $(a);
 `````
 
@@ -80,17 +80,17 @@ if (tmpIfTest$3) {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 $(1);
 const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(2);
@@ -123,17 +123,17 @@ if (tmpIfTest$3) {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 $(1);
 const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);

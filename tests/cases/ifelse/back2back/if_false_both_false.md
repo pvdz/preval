@@ -26,49 +26,49 @@ if (x) {
 ## Pre Normal
 
 `````js filename=intro
-let x = $(false, 'a');
+let x = $(false, `a`);
 if (x) {
-  $(x, 'pass');
-  x = $(false, 'b');
+  $(x, `pass`);
+  x = $(false, `b`);
 }
 if (x) {
-  $(x, 'one');
+  $(x, `one`);
 } else {
-  $(x, 'two');
+  $(x, `two`);
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = $(false, 'a');
+let x = $(false, `a`);
 if (x) {
-  $(x, 'pass');
-  x = $(false, 'b');
+  $(x, `pass`);
+  x = $(false, `b`);
   if (x) {
-    $(x, 'one');
+    $(x, `one`);
   } else {
-    $(x, 'two');
+    $(x, `two`);
   }
 } else {
-  $(x, 'two');
+  $(x, `two`);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-const x = $(false, 'a');
+const x = $(false, `a`);
 if (x) {
-  $(x, 'pass');
-  const tmpClusterSSA_x = $(false, 'b');
+  $(x, `pass`);
+  const tmpClusterSSA_x = $(false, `b`);
   if (tmpClusterSSA_x) {
-    $(tmpClusterSSA_x, 'one');
+    $(tmpClusterSSA_x, `one`);
   } else {
-    $(tmpClusterSSA_x, 'two');
+    $(tmpClusterSSA_x, `two`);
   }
 } else {
-  $(x, 'two');
+  $(x, `two`);
 }
 `````
 

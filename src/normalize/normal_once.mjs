@@ -475,6 +475,20 @@ export function phaseNormalOnce(fdata) {
             }
           }
         }
+
+        if (typeof node.value === 'string') {
+          // Note: this file also converts literals to strings. Since these should not be revisited this should not lead to infinite loops
+          // Note: technically certain things can not be templates, like import source and property keys. But I don't think we
+          //       actually care about that distinction. Within Preval we treat templates (post pre-normalization) as strings.
+          rule('Strings should be templates');
+          example('"foo"', '`foo`');
+          before(node, parentNode);
+
+          if (parentIndex < 0) parentNode[parentProp] = AST.templateLiteral(node.value);
+          else parentNode[parentProp][parentIndex] = AST.templateLiteral(node.value);
+
+          after(parentNode);
+        }
         break;
       }
       case 'Identifier:before': {
@@ -701,16 +715,17 @@ export function phaseNormalOnce(fdata) {
           example('x = `a${b}c`', 'x = "a" + b + "c"');
           before(node, parentNode);
 
+          // Note: this file also converts strings to templates. Since these should not be revisited this should not lead to infinite loops
           // Zip them up into a single expression. No need to inject multiple expressions. Regular normalization will take care of that.
           // Start with the first string. If there are expressions there is also always another string that follows it.
           // There is always at lest one string, there may not be any expressions.
-          let finalNode = AST.literal(node.quasis[0].value.raw);
+          let finalNode = AST.templateLiteral(node.quasis[0].value.cooked);
           for (let i = 0; i < node.expressions.length; ++i) {
             // a = (a + expr) + b
             finalNode = AST.binaryExpression(
               '+',
               AST.binaryExpression('+', finalNode, node.expressions[i]),
-              AST.literal(node.quasis[i + 1].value.raw),
+              AST.templateLiteral(node.quasis[i + 1].value.cooked),
             );
           }
           if (parentIndex < 0) parentNode[parentProp] = finalNode;
@@ -730,10 +745,10 @@ export function phaseNormalOnce(fdata) {
         example('foo`a${b}c${d}`', 'foo(["a", "c", ""], b, d)');
         before(node, parentNode);
 
+        // Note: this file also converts strings to templates. Since these should not be revisited this should not lead to infinite loops
         const finalNode = AST.callExpression(node.tag, [
-          // TODO: cooked or raw?
           // TODO: this breaks if the code relies on the tagged template literal allowing illegal escapes... can we fix it?
-          AST.arrayExpression(node.quasi.quasis.map((q) => AST.literal(q.value.raw))),
+          AST.arrayExpression(node.quasi.quasis.map((q) => AST.templateLiteral(q.value.cooked))),
           ...node.quasi.expressions,
         ]);
         if (parentIndex < 0) parentNode[parentProp] = finalNode;

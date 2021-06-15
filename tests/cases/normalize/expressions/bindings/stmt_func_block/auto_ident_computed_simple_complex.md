@@ -29,7 +29,7 @@ let f = function () {
   debugger;
   {
     let b = { c: 1 };
-    let a = b[$('c')];
+    let a = b[$(`c`)];
     $(a, b);
   }
 };
@@ -43,7 +43,7 @@ let f = function () {
   debugger;
   let b = { c: 1 };
   const tmpCompObj = b;
-  const tmpCompProp = $('c');
+  const tmpCompProp = $(`c`);
   let a = tmpCompObj[tmpCompProp];
   $(a, b);
   return undefined;
@@ -56,7 +56,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 const b = { c: 1 };
 const a = b[tmpCompProp];
 $(a, b);

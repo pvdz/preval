@@ -37,14 +37,14 @@ const a = $(1);
 const b = $(2);
 let y = !a;
 if (y) {
-  $('if1');
+  $(`if1`);
 } else {
   y = !b;
 }
 if (y) {
-  $('if2');
+  $(`if2`);
 } else {
-  $('else1');
+  $(`else1`);
 }
 `````
 
@@ -55,14 +55,14 @@ const a = $(1);
 const b = $(2);
 let y = !a;
 if (y) {
-  $('if1');
+  $(`if1`);
 } else {
   y = !b;
 }
 if (y) {
-  $('if2');
+  $(`if2`);
 } else {
-  $('else1');
+  $(`else1`);
 }
 `````
 
@@ -75,12 +75,12 @@ let y = a;
 if (a) {
   y = b;
 } else {
-  $('if1');
+  $(`if1`);
 }
 if (y) {
-  $('else1');
+  $(`else1`);
 } else {
-  $('if2');
+  $(`if2`);
 }
 `````
 

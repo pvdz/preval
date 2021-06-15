@@ -42,7 +42,7 @@ $(a, x);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = 'number';
+const tmpAnonDefaultExport = `number`;
 export { tmpAnonDefaultExport as default };
 $(a, 1);
 `````

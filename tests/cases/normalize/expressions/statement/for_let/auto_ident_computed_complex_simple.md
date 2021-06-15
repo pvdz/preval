@@ -24,7 +24,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
-  let xyz = $(b)['c'];
+  let xyz = $(b)[`c`];
   while (true) {
     $(xyz);
     $(1);

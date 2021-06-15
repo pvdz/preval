@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-throw 'Preval: Cannot write to const binding `r`';
+throw `Preval: Cannot write to const binding \`r\``;
 `````
 
 ## Globals

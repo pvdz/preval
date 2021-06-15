@@ -19,26 +19,26 @@ $('after');
 ## Pre Normal
 
 `````js filename=intro
-$('before');
+$(`before`);
 $([1, 2, ...3]);
-$('after');
+$(`after`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-$('before');
+$(`before`);
 const tmpCallCallee = $;
 const tmpCalleeParam = [...3];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Output
 
 `````js filename=intro
-$('before');
+$(`before`);
 [...3];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

@@ -21,11 +21,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $(
-  'before  ' +
+  `before  ` +
     (a = function () {
       debugger;
     }) +
-    '  after',
+    `  after`,
 );
 $(a);
 `````
@@ -35,14 +35,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpBinBothLhs = 'before  ';
+const tmpBinBothLhs = `before  `;
 a = function () {
   debugger;
   return undefined;
 };
 let tmpBinBothRhs = a;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -54,8 +54,8 @@ const a = function () {
   debugger;
   return undefined;
 };
-const tmpBinLhs = 'before  ' + a;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpBinLhs = `before  ` + a;
+const tmpCalleeParam = tmpBinLhs + `  after`;
 $(tmpCalleeParam);
 $(a);
 `````

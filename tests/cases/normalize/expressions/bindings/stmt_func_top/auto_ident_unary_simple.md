@@ -50,7 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('number', 1);
+$(`number`, 1);
 $(undefined);
 `````
 

@@ -18,7 +18,7 @@ $(c);
 ## Pre Normal
 
 `````js filename=intro
-$(($(1), $(2))[$('toString')]);
+$(($(1), $(2))[$(`toString`)]);
 $(c);
 `````
 
@@ -28,7 +28,7 @@ $(c);
 const tmpCallCallee = $;
 $(1);
 const tmpCompObj = $(2);
-const tmpCompProp = $('toString');
+const tmpCompProp = $(`toString`);
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
 tmpCallCallee(tmpCalleeParam);
 $(c);
@@ -39,7 +39,7 @@ $(c);
 `````js filename=intro
 $(1);
 const tmpCompObj = $(2);
-const tmpCompProp = $('toString');
+const tmpCompProp = $(`toString`);
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
 $(tmpCalleeParam);
 $(c);

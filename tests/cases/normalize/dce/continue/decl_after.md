@@ -28,11 +28,11 @@ $('after, wont eval due to infinite loop');
 
 `````js filename=intro
 while ($(true)) {
-  if ($(false)) x = $('fail too');
+  if ($(false)) x = $(`fail too`);
   continue;
-  let x = $('fail');
+  let x = $(`fail`);
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Normalized
@@ -43,16 +43,16 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
-      x = $('fail too');
+      x = $(`fail too`);
     } else {
     }
     continue;
-    let x = $('fail');
+    let x = $(`fail`);
   } else {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Output
@@ -63,7 +63,7 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
-      throw 'Preval: Cannot access `x` before initialization';
+      throw `Preval: Cannot access \`x\` before initialization`;
     } else {
       continue;
     }
@@ -71,7 +71,7 @@ while (true) {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Globals

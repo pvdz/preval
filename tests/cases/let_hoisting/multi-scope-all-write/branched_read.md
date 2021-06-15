@@ -40,14 +40,14 @@ if ($) $(f);
 const f = function ($$0) {
   let s = $$0;
   debugger;
-  let promoMe = s === '';
+  let promoMe = s === ``;
   const g = function () {
     debugger;
-    const r = $('.');
-    promoMe = r === '.';
+    const r = $(`.`);
+    promoMe = r === `.`;
     if (promoMe) {
-      const t = $('');
-      promoMe = t !== '.';
+      const t = $(``);
+      promoMe = t !== `.`;
       return promoMe;
     } else {
       return promoMe;
@@ -69,14 +69,14 @@ if ($) $(f);
 const f = function ($$0) {
   let s = $$0;
   debugger;
-  let promoMe = s === '';
+  let promoMe = s === ``;
   const g = function () {
     debugger;
-    const r = $('.');
-    promoMe = r === '.';
+    const r = $(`.`);
+    promoMe = r === `.`;
     if (promoMe) {
-      const t = $('');
-      promoMe = t !== '.';
+      const t = $(``);
+      promoMe = t !== `.`;
       return promoMe;
     } else {
       return promoMe;
@@ -101,15 +101,15 @@ if ($) {
 const f = function ($$0) {
   const s = $$0;
   debugger;
-  const promoMe = s === '';
+  const promoMe = s === ``;
   if (promoMe) {
     return true;
   } else {
-    const r = $('.');
-    const tmpssa2_promoMe = r === '.';
+    const r = $(`.`);
+    const tmpssa2_promoMe = r === `.`;
     if (tmpssa2_promoMe) {
-      const t = $('');
-      const tmpClusterSSA_tmpssa2_promoMe = t !== '.';
+      const t = $(``);
+      const tmpClusterSSA_tmpssa2_promoMe = t !== `.`;
       return tmpClusterSSA_tmpssa2_promoMe;
     } else {
       return false;

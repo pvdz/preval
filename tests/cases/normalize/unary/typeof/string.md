@@ -17,21 +17,21 @@ $(typeof "foo");
 ## Pre Normal
 
 `````js filename=intro
-$(typeof 'foo');
+$(typeof `foo`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'string';
+const tmpCalleeParam = `string`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('string');
+$(`string`);
 `````
 
 ## Globals

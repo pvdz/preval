@@ -21,9 +21,9 @@ $('after');
 
 `````js filename=intro
 while ({ a: $(1), b: $(2) }) {
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -34,12 +34,12 @@ while (true) {
   const tmpObjLitVal$1 = $(2);
   const tmpIfTest = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
   if (tmpIfTest) {
-    $('loop');
+    $(`loop`);
   } else {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -48,9 +48,9 @@ $('after');
 while (true) {
   $(1);
   $(2);
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

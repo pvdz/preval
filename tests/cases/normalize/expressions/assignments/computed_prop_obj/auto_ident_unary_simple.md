@@ -25,7 +25,7 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
-(a = typeof x)['a'];
+(a = typeof x)[`a`];
 $(a, x);
 `````
 
@@ -44,8 +44,8 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-'number'.a;
-$('number', 1);
+`number`.a;
+$(`number`, 1);
 `````
 
 ## Globals

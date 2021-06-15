@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-[{ ...x } = $({ a: 'pass' })] = [];
+[{ ...x } = $({ a: `pass` })] = [];
 $(x);
 `````
 
@@ -32,7 +32,7 @@ let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 'pass' };
+  const tmpCalleeParam = { a: `pass` };
   arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
@@ -48,7 +48,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = { a: 'pass' };
+const tmpCalleeParam = { a: `pass` };
 const arrPatternStep = $(tmpCalleeParam);
 const tmpCalleeParam$3 = [];
 x = objPatternRest(arrPatternStep, tmpCalleeParam$3, undefined);

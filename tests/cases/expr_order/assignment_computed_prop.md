@@ -25,15 +25,15 @@ $(b)[$('c')] = $(3);
 let b = {
   get c() {
     debugger;
-    $('get');
+    $(`get`);
   },
   set c($$0) {
     let x = $$0;
     debugger;
-    $('set');
+    $(`set`);
   },
 };
-$(b)[$('c')] = $(3);
+$(b)[$(`c`)] = $(3);
 `````
 
 ## Normalized
@@ -42,18 +42,18 @@ $(b)[$('c')] = $(3);
 let b = {
   get c() {
     debugger;
-    $('get');
+    $(`get`);
     return undefined;
   },
   set c($$0) {
     let x = $$0;
     debugger;
-    $('set');
+    $(`set`);
     return undefined;
   },
 };
 const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('c');
+const tmpAssignComMemLhsProp = $(`c`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(3);
@@ -66,17 +66,17 @@ tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 const b = {
   get c() {
     debugger;
-    $('get');
+    $(`get`);
     return undefined;
   },
   set c($$0) {
     debugger;
-    $('set');
+    $(`set`);
     return undefined;
   },
 };
 const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('c');
+const tmpAssignComMemLhsProp = $(`c`);
 const tmpAssignComputedRhs = $(3);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 `````

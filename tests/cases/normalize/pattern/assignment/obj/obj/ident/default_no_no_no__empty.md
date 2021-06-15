@@ -21,7 +21,7 @@ $('bad');
 ({
   x: { y: y },
 } = 1);
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -30,7 +30,7 @@ $('bad');
 const tmpAssignObjPatternRhs = 1;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 y = objPatternNoDefault.y;
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -38,7 +38,7 @@ $('bad');
 `````js filename=intro
 const objPatternNoDefault = (1).x;
 y = objPatternNoDefault.y;
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

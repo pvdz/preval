@@ -18,21 +18,21 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const [[x = $('fail')] = $(['fail2'])] = ['abc', 4, 5];
+const [[x = $(`fail`)] = $([`fail2`])] = [`abc`, 4, 5];
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = ['abc', 4, 5];
+const bindingPatternArrRoot = [`abc`, 4, 5];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = ['fail2'];
+  const tmpCalleeParam = [`fail2`];
   arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
@@ -42,7 +42,7 @@ const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
 let x = undefined;
 const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
-  x = $('fail');
+  x = $(`fail`);
 } else {
   x = arrPatternBeforeDefault$1;
 }
@@ -52,7 +52,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-$('a');
+$(`a`);
 `````
 
 ## Globals

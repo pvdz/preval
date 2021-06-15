@@ -20,7 +20,7 @@ $(y);
 
 `````js filename=intro
 const x = [1, 2, 3];
-const y = ['a', ...x, 'b'];
+const y = [`a`, ...x, `b`];
 $(y);
 `````
 
@@ -28,14 +28,14 @@ $(y);
 
 `````js filename=intro
 const x = [1, 2, 3];
-const y = ['a', ...x, 'b'];
+const y = [`a`, ...x, `b`];
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-const y = ['a', 1, 2, 3, 'b'];
+const y = [`a`, 1, 2, 3, `b`];
 $(y);
 `````
 

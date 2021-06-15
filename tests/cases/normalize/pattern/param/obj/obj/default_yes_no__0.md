@@ -23,8 +23,8 @@ $(f(0, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: {} = $({ x: 'pass' }) } = tmpParamBare;
-  return 'ok';
+  let { x: {} = $({ x: `pass` }) } = tmpParamBare;
+  return `ok`;
 };
 $(f(0, 10));
 `````
@@ -41,7 +41,7 @@ let f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = { x: 'pass' };
+    const tmpCalleeParam = { x: `pass` };
     objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -53,9 +53,9 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-    return 'ok';
+    return `ok`;
   } else {
-    return 'ok';
+    return `ok`;
   }
 };
 const tmpCallCallee$1 = $;
@@ -70,7 +70,7 @@ const objPatternBeforeDefault = (0).x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = { x: 'pass' };
+  const tmpCalleeParam = { x: `pass` };
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -84,7 +84,7 @@ if (objPatternCrashTest) {
   objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

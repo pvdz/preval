@@ -34,7 +34,7 @@ x: {
       break x;
     }
   }
-  $('eliminate');
+  $(`eliminate`);
 }
 `````
 

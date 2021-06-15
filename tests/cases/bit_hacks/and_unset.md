@@ -35,12 +35,12 @@ if (atest) {
   const b = x & 4;
   const btest = b === 0;
   if (btest) {
-    $('yes');
+    $(`yes`);
   } else {
-    $('no 2');
+    $(`no 2`);
   }
 } else {
-  $('no 1');
+  $(`no 1`);
 }
 `````
 
@@ -53,12 +53,12 @@ if (atest) {
   const b = x & 4;
   const btest = b === 0;
   if (btest) {
-    $('yes');
+    $(`yes`);
   } else {
-    $('no 2');
+    $(`no 2`);
   }
 } else {
-  $('no 1');
+  $(`no 1`);
 }
 `````
 
@@ -67,13 +67,13 @@ if (atest) {
 `````js filename=intro
 const a = x & 1;
 if (a) {
-  $('no 1');
+  $(`no 1`);
 } else {
   const b = x & 4;
   if (b) {
-    $('no 2');
+    $(`no 2`);
   } else {
-    $('yes');
+    $(`yes`);
   }
 }
 `````

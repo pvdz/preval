@@ -27,7 +27,7 @@ let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
 let obj = {};
-(b.x = b.x = b.x = b.x = b.x = b.x = c)['a'];
+(b.x = b.x = b.x = b.x = b.x = b.x = c)[`a`];
 $(a, b, c);
 `````
 

@@ -27,10 +27,10 @@ $(y);
 let x = undefined;
 let f = function () {
   debugger;
-  return $(x, 'returned');
+  return $(x, `returned`);
 };
 x = 10;
-const y = $(x, 'final');
+const y = $(x, `final`);
 $(y);
 `````
 
@@ -40,18 +40,18 @@ $(y);
 let x = undefined;
 let f = function () {
   debugger;
-  const tmpReturnArg = $(x, 'returned');
+  const tmpReturnArg = $(x, `returned`);
   return tmpReturnArg;
 };
 x = 10;
-const y = $(x, 'final');
+const y = $(x, `final`);
 $(y);
 `````
 
 ## Output
 
 `````js filename=intro
-const y = $(10, 'final');
+const y = $(10, `final`);
 $(y);
 `````
 

@@ -31,15 +31,15 @@ $(f('three'));
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   const y = x.length;
   return y;
 };
 $(f([1, 2, 3]));
 $(f($));
-$(f('three'));
+$(f(`three`));
 `````
 
 ## Normalized
@@ -48,9 +48,9 @@ $(f('three'));
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   const y = x.length;
   return y;
 };
@@ -63,7 +63,7 @@ const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = f($);
 tmpCallCallee$3(tmpCalleeParam$3);
 const tmpCallCallee$5 = $;
-const tmpCalleeParam$5 = f('three');
+const tmpCalleeParam$5 = f(`three`);
 tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
@@ -72,9 +72,9 @@ tmpCallCallee$5(tmpCalleeParam$5);
 `````js filename=intro
 const f = function () {
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   return undefined;
 };
 f();

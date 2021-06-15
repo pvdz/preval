@@ -24,7 +24,7 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let [[[[]]]] = tmpParamBare;
-  return 'ok';
+  return `ok`;
 };
 $(f([[[[1, 2, 3], 4, 5], 20, 30], 40, 50], 200));
 `````
@@ -43,7 +43,7 @@ let f = function ($$0) {
   let arrPatternSplat$3 = [...arrPatternStep$1];
   let arrPatternStep$3 = arrPatternSplat$3[0];
   let arrPatternSplat$5 = [...arrPatternStep$3];
-  return 'ok';
+  return `ok`;
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

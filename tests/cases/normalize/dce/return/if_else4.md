@@ -30,7 +30,7 @@ let f = function () {
     return 2;
   }
   return 3;
-  $('fail');
+  $(`fail`);
 };
 $(f());
 `````

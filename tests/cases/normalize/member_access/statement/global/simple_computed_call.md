@@ -17,7 +17,7 @@ obj[$('foo')];
 
 `````js filename=intro
 const obj = { foo: 10 };
-obj[$('foo')];
+obj[$(`foo`)];
 `````
 
 ## Normalized
@@ -25,14 +25,14 @@ obj[$('foo')];
 `````js filename=intro
 const obj = { foo: 10 };
 const tmpCompObj = obj;
-const tmpCompProp = $('foo');
+const tmpCompProp = $(`foo`);
 tmpCompObj[tmpCompProp];
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCompProp = $('foo');
+const tmpCompProp = $(`foo`);
 const obj = { foo: 10 };
 obj[tmpCompProp];
 `````

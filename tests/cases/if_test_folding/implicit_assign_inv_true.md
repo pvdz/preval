@@ -37,8 +37,8 @@ let f = function () {
   } else {
     y = false;
   }
-  $('block');
-  $('block');
+  $(`block`);
+  $(`block`);
   return y;
 };
 f();
@@ -56,8 +56,8 @@ let f = function () {
   } else {
     y = false;
   }
-  $('block');
-  $('block');
+  $(`block`);
+  $(`block`);
   return y;
 };
 f();
@@ -77,8 +77,8 @@ const f = function () {
   } else {
     y = false;
   }
-  $('block');
-  $('block');
+  $(`block`);
+  $(`block`);
   return y;
 };
 f();

@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-$((a = b?.['x']) + (a = b?.['x']));
+$((a = b?.[`x`]) + (a = b?.[`x`]));
 $(a);
 `````
 
@@ -37,7 +37,7 @@ a = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = 'x';
+  const tmpChainRootComputed = `x`;
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   a = tmpChainElementObject;
 } else {
@@ -47,7 +47,7 @@ a = undefined;
 const tmpChainRootProp$1 = b;
 const tmpIfTest$1 = tmpChainRootProp$1 != null;
 if (tmpIfTest$1) {
-  const tmpChainRootComputed$1 = 'x';
+  const tmpChainRootComputed$1 = `x`;
   const tmpChainElementObject$1 = tmpChainRootProp$1[tmpChainRootComputed$1];
   a = tmpChainElementObject$1;
 } else {

@@ -26,7 +26,7 @@ let f = function ($$0) {
   let {
     x: { y: y },
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
 $(f(0, 10));
 `````
@@ -40,7 +40,7 @@ let f = function ($$0) {
   let bindingPatternObjRoot = tmpParamBare;
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let y = objPatternNoDefault.y;
-  return 'bad';
+  return `bad`;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f(0, 10);
@@ -52,7 +52,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const objPatternNoDefault = (0).x;
 objPatternNoDefault.y;
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

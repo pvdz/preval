@@ -35,9 +35,9 @@ let f = function () {
     return false;
   }
 };
-$(!f(), 'one');
-$(!f(), 'two');
-$(!f(), 'three');
+$(!f(), `one`);
+$(!f(), `two`);
+$(!f(), `three`);
 `````
 
 ## Normalized
@@ -54,17 +54,17 @@ let f = function () {
 const tmpCallCallee = $;
 const tmpUnaryArg = f();
 const tmpCalleeParam = !tmpUnaryArg;
-const tmpCalleeParam$1 = 'one';
+const tmpCalleeParam$1 = `one`;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 const tmpCallCallee$1 = $;
 const tmpUnaryArg$1 = f();
 const tmpCalleeParam$3 = !tmpUnaryArg$1;
-const tmpCalleeParam$5 = 'two';
+const tmpCalleeParam$5 = `two`;
 tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 const tmpCallCallee$3 = $;
 const tmpUnaryArg$3 = f();
 const tmpCalleeParam$7 = !tmpUnaryArg$3;
-const tmpCalleeParam$9 = 'three';
+const tmpCalleeParam$9 = `three`;
 tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 `````
 
@@ -73,13 +73,13 @@ tmpCallCallee$3(tmpCalleeParam$7, tmpCalleeParam$9);
 `````js filename=intro
 const tmpUnaryArg = Boolean($);
 const tmpCalleeParam = !tmpUnaryArg;
-$(tmpCalleeParam, 'one');
+$(tmpCalleeParam, `one`);
 const tmpUnaryArg$1 = Boolean($);
 const tmpCalleeParam$3 = !tmpUnaryArg$1;
-$(tmpCalleeParam$3, 'two');
+$(tmpCalleeParam$3, `two`);
 const tmpUnaryArg$3 = Boolean($);
 const tmpCalleeParam$7 = !tmpUnaryArg$3;
-$(tmpCalleeParam$7, 'three');
+$(tmpCalleeParam$7, `three`);
 `````
 
 ## Globals

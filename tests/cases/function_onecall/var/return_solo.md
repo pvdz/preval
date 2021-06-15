@@ -31,12 +31,12 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    $('a');
-    $('b');
-    return $('ab');
+    $(`a`);
+    $(`b`);
+    return $(`ab`);
   };
   g();
-  $('c');
+  $(`c`);
 };
 const x = f();
 $(x);
@@ -49,13 +49,13 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    $('a');
-    $('b');
-    const tmpReturnArg = $('ab');
+    $(`a`);
+    $(`b`);
+    const tmpReturnArg = $(`ab`);
     return tmpReturnArg;
   };
   g();
-  $('c');
+  $(`c`);
   return undefined;
 };
 const x = f();
@@ -65,10 +65,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-$('a');
-$('b');
-$('ab');
-$('c');
+$(`a`);
+$(`b`);
+$(`ab`);
+$(`c`);
 $(undefined);
 `````
 

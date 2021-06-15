@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-for (let x in (1, 2, $(b))[$('c')]);
+for (let x in (1, 2, $(b))[$(`c`)]);
 $(a, b);
 `````
 
@@ -33,7 +33,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 const tmpForInDeclRhs = tmpCompObj[tmpCompProp];
 let x = undefined;
 for (x in tmpForInDeclRhs) {
@@ -47,7 +47,7 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 const tmpForInDeclRhs = tmpCompObj[tmpCompProp];
 let x = undefined;
 for (x in tmpForInDeclRhs) {

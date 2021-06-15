@@ -18,21 +18,21 @@ $(y);
 ## Pre Normal
 
 `````js filename=intro
-({ x: { y: y = $('fail') } = $({ y: 'fail2' }) } = { x: { x: 1, y: '', z: 3 }, b: 11, c: 12 });
+({ x: { y: y = $(`fail`) } = $({ y: `fail2` }) } = { x: { x: 1, y: ``, z: 3 }, b: 11, c: 12 });
 $(y);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal = { x: 1, y: '', z: 3 };
+const tmpObjLitVal = { x: 1, y: ``, z: 3 };
 const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = { y: 'fail2' };
+  const tmpCalleeParam = { y: `fail2` };
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -40,7 +40,7 @@ if (tmpIfTest) {
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
 const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
-  y = $('fail');
+  y = $(`fail`);
 } else {
   y = objPatternBeforeDefault$1;
 }
@@ -50,7 +50,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-y = '';
+y = ``;
 $(y);
 `````
 

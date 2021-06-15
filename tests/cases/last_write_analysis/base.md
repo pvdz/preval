@@ -22,27 +22,27 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
-x = $('b');
+x = $(`b`);
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
-x = $('b');
+x = $(`b`);
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = $('a');
+const x = $(`a`);
 $(x);
-const tmpClusterSSA_x = $('b');
+const tmpClusterSSA_x = $(`b`);
 $(tmpClusterSSA_x);
 `````
 

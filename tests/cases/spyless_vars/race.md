@@ -26,7 +26,7 @@ $(a, z);
 let y = 2;
 let z = [10, 20, 30];
 let tmpSwitchCaseToStart = 1;
-if ($('a') === $) tmpSwitchCaseToStart = 0;
+if ($(`a`) === $) tmpSwitchCaseToStart = 0;
 $(a, z);
 `````
 
@@ -36,7 +36,7 @@ $(a, z);
 let y = 2;
 let z = [10, 20, 30];
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $('a');
+const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === $;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -48,7 +48,7 @@ $(a, z);
 ## Output
 
 `````js filename=intro
-$('a');
+$(`a`);
 const z = [10, 20, 30];
 $(a, z);
 `````

@@ -22,7 +22,7 @@ $(y, o);
 `````js filename=intro
 const o = { x: 1 };
 let y = 1;
-y = o['x'];
+y = o[`x`];
 $(y, o);
 `````
 

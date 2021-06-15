@@ -32,7 +32,7 @@ for (lhs in rhs) {
     const rhs$1 = [firstElement];
     $(rhs$1);
   } else {
-    $('init');
+    $(`init`);
   }
   let firstElement = undefined;
 }
@@ -47,7 +47,7 @@ for (lhs in rhs) {
     const rhs$1 = [firstElement];
     $(rhs$1);
   } else {
-    $('init');
+    $(`init`);
   }
   let firstElement = undefined;
 }
@@ -59,9 +59,9 @@ for (lhs in rhs) {
 let lhs = undefined;
 for (lhs in rhs) {
   if ($) {
-    throw 'Preval: Cannot access `firstElement` before initialization';
+    throw `Preval: Cannot access \`firstElement\` before initialization`;
   } else {
-    $('init');
+    $(`init`);
   }
 }
 `````

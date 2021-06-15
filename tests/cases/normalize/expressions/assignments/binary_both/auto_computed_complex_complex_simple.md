@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $((a = { b: $(1) }) + (a = { b: $(1) }));
-$(a)[$('b')] = 2;
+$(a)[$(`b`)] = 2;
 $(a);
 `````
 
@@ -40,7 +40,7 @@ let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
 const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
@@ -55,7 +55,7 @@ const tmpClusterSSA_a = { b: tmpObjLitVal$1 };
 const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 const tmpAssignComMemLhsObj = $(tmpClusterSSA_a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(tmpClusterSSA_a);
 `````

@@ -27,20 +27,20 @@ $('fail');
 `````js filename=intro
 null;
 let x = 10;
-$('fail');
+$(`fail`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 let x = 10;
-$('fail');
+$(`fail`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('fail');
+$(`fail`);
 `````
 
 ## Globals

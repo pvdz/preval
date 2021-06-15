@@ -19,7 +19,7 @@ delete obj['x'];
 
 `````js filename=intro
 const obj = { x: 1 };
-delete obj['x'];
+delete obj[`x`];
 `````
 
 ## Normalized

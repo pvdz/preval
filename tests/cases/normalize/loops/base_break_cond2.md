@@ -35,10 +35,10 @@ let f = function () {
     $(++n);
     if (n < 4) break;
   }
-  $('afterwards');
+  $(`afterwards`);
   return 100;
 };
-$(f(), 'f');
+$(f(), `f`);
 `````
 
 ## Normalized
@@ -58,12 +58,12 @@ let f = function () {
     } else {
     }
   }
-  $('afterwards');
+  $(`afterwards`);
   return 100;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f();
-const tmpCalleeParam$3 = 'f';
+const tmpCalleeParam$3 = `f`;
 tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
@@ -80,8 +80,8 @@ while (true) {
   } else {
   }
 }
-$('afterwards');
-$(100, 'f');
+$(`afterwards`);
+$(100, `f`);
 `````
 
 ## Globals

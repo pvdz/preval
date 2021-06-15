@@ -33,7 +33,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       b = { c: 1 };
-      a = $(b)['c'];
+      a = $(b)[`c`];
       $(a, b);
     }
   }

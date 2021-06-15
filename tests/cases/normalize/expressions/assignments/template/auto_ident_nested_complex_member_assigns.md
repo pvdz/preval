@@ -29,7 +29,7 @@ $(a, b, c);
 let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
-$('before  ' + (a = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = $(b)[$('x')] = c) + '  after');
+$(`before  ` + (a = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = $(b)[$(`x`)] = c) + `  after`);
 $(a, b, c);
 `````
 
@@ -40,19 +40,19 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpBinBothLhs = 'before  ';
+const tmpBinBothLhs = `before  `;
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(b);
-const varInitAssignLhsComputedProp$1 = $('x');
+const varInitAssignLhsComputedProp$1 = $(`x`);
 const varInitAssignLhsComputedObj$3 = $(b);
-const varInitAssignLhsComputedProp$3 = $('x');
+const varInitAssignLhsComputedProp$3 = $(`x`);
 const varInitAssignLhsComputedObj$5 = $(b);
-const varInitAssignLhsComputedProp$5 = $('x');
+const varInitAssignLhsComputedProp$5 = $(`x`);
 const varInitAssignLhsComputedObj$7 = $(b);
-const varInitAssignLhsComputedProp$7 = $('x');
+const varInitAssignLhsComputedProp$7 = $(`x`);
 const varInitAssignLhsComputedRhs$7 = c;
 varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = varInitAssignLhsComputedRhs$7;
 const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
@@ -69,7 +69,7 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignR
 a = tmpNestedPropAssignRhs;
 let tmpBinBothRhs = a;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c);
 `````
@@ -79,24 +79,24 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(b);
-const varInitAssignLhsComputedProp$1 = $('x');
+const varInitAssignLhsComputedProp$1 = $(`x`);
 const varInitAssignLhsComputedObj$3 = $(b);
-const varInitAssignLhsComputedProp$3 = $('x');
+const varInitAssignLhsComputedProp$3 = $(`x`);
 const varInitAssignLhsComputedObj$5 = $(b);
-const varInitAssignLhsComputedProp$5 = $('x');
+const varInitAssignLhsComputedProp$5 = $(`x`);
 const varInitAssignLhsComputedObj$7 = $(b);
-const varInitAssignLhsComputedProp$7 = $('x');
+const varInitAssignLhsComputedProp$7 = $(`x`);
 varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
 varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-$('before  3  after');
+$(`before  3  after`);
 $(3, b, 3);
 `````
 

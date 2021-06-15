@@ -26,7 +26,7 @@ let f = function ($$0) {
   let {
     x: {},
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
 $(f(0, 10));
 `````
@@ -46,9 +46,9 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-    return 'bad';
+    return `bad`;
   } else {
-    return 'bad';
+    return `bad`;
   }
 };
 const tmpCallCallee = $;
@@ -69,7 +69,7 @@ if (objPatternCrashTest) {
   objPatternNoDefault.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

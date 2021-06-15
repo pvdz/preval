@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a = $(b)['c'];
+      a = $(b)[`c`];
     }
   }
 }

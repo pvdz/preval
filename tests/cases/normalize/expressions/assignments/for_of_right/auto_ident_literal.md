@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for (let x of (a = 'foo'));
+for (let x of (a = `foo`));
 $(a);
 `````
 
@@ -28,7 +28,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = 'foo';
+a = `foo`;
 let tmpForOfDeclRhs = a;
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
@@ -40,9 +40,9 @@ $(a);
 
 `````js filename=intro
 let x = undefined;
-for (x of 'foo') {
+for (x of `foo`) {
 }
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

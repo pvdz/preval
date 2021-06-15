@@ -26,7 +26,7 @@ $(a, arg);
 `````js filename=intro
 let f = function () {
   debugger;
-  return (a = delete ($(1), $(2), arg)[$('y')]);
+  return (a = delete ($(1), $(2), arg)[$(`y`)]);
 };
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
@@ -42,7 +42,7 @@ let f = function () {
   $(1);
   $(2);
   const tmpDeleteCompObj = arg;
-  const tmpDeleteCompProp = $('y');
+  const tmpDeleteCompProp = $(`y`);
   a = delete tmpDeleteCompObj[tmpDeleteCompProp];
   return a;
 };
@@ -59,7 +59,7 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 const tmpClusterSSA_a = delete arg[tmpDeleteCompProp];
 $(tmpClusterSSA_a);

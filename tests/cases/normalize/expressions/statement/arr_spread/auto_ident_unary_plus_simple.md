@@ -34,14 +34,14 @@ let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpArrElToSpread = +arg;
 [...tmpArrElToSpread];
-throw '[Preval]: Array spread must crash before this line';
+$(a, arg);
 `````
 
 ## Output
 
 `````js filename=intro
 [...1];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

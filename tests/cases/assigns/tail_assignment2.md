@@ -27,9 +27,9 @@ $(f());
 let f = function () {
   debugger;
   let x = $(1);
-  $(x, 'middle');
-  x = $(x, 'observable rhs');
-  return $('end');
+  $(x, `middle`);
+  x = $(x, `observable rhs`);
+  return $(`end`);
 };
 $(f());
 $(f());
@@ -41,9 +41,9 @@ $(f());
 let f = function () {
   debugger;
   let x = $(1);
-  $(x, 'middle');
-  x = $(x, 'observable rhs');
-  const tmpReturnArg = $('end');
+  $(x, `middle`);
+  x = $(x, `observable rhs`);
+  const tmpReturnArg = $(`end`);
   return tmpReturnArg;
 };
 const tmpCallCallee = $;
@@ -60,9 +60,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const f = function () {
   debugger;
   const x = $(1);
-  $(x, 'middle');
-  $(x, 'observable rhs');
-  const tmpReturnArg = $('end');
+  $(x, `middle`);
+  $(x, `observable rhs`);
+  const tmpReturnArg = $(`end`);
   return tmpReturnArg;
 };
 const tmpCalleeParam = f();

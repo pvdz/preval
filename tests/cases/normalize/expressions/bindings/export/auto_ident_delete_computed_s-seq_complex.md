@@ -21,7 +21,7 @@ $(a, arg);
 
 `````js filename=intro
 let arg = { y: 1 };
-let a = delete ($(1), $(2), arg)[$('y')];
+let a = delete ($(1), $(2), arg)[$(`y`)];
 export { a };
 $(a, arg);
 `````
@@ -33,7 +33,7 @@ let arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteCompObj = arg;
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 export { a };
 $(a, arg);
@@ -44,7 +44,7 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 const a = delete arg[tmpDeleteCompProp];
 export { a };

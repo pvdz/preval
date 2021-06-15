@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
 {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 1;
-  if ($(b)?.[$('x')]?.[$('y')] === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if ($(b)?.[$(`x`)]?.[$(`y`)] === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else if (2 === tmpSwitchValue) tmpSwitchCaseToStart = 2;
   else;
   tmpSwitchBreak: {
@@ -41,10 +41,10 @@ let a = { a: 999, b: 1000 };
       break tmpSwitchBreak;
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -64,11 +64,11 @@ const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest$1 = tmpChainElementCall != null;
 if (tmpIfTest$1) {
-  const tmpChainRootComputed = $('x');
+  const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$3 = tmpChainElementObject != null;
   if (tmpIfTest$3) {
-    const tmpChainRootComputed$1 = $('y');
+    const tmpChainRootComputed$1 = $(`y`);
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpBinLhs = tmpChainElementObject$1;
   } else {
@@ -92,12 +92,12 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$9) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$11) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }
@@ -118,12 +118,12 @@ const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainRootComputed = $('x');
+  const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$3 = tmpChainElementObject == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpChainRootComputed$1 = $('y');
+    const tmpChainRootComputed$1 = $(`y`);
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpBinLhs = tmpChainElementObject$1;
   }
@@ -145,12 +145,12 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$9) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$11) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }

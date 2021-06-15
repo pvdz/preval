@@ -23,8 +23,8 @@ while (true) {
 `````js filename=intro
 let x = $(10);
 while (true) {
-  x = $(20, 'set');
-  $(x, 'loop');
+  x = $(20, `set`);
+  $(x, `loop`);
 }
 `````
 
@@ -33,8 +33,8 @@ while (true) {
 `````js filename=intro
 let x = $(10);
 while (true) {
-  x = $(20, 'set');
-  $(x, 'loop');
+  x = $(20, `set`);
+  $(x, `loop`);
 }
 `````
 
@@ -43,8 +43,8 @@ while (true) {
 `````js filename=intro
 let x = $(10);
 while (true) {
-  x = $(20, 'set');
-  $(x, 'loop');
+  x = $(20, `set`);
+  $(x, `loop`);
 }
 `````
 

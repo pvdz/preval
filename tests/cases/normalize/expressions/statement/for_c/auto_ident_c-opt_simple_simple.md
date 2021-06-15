@@ -25,7 +25,7 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
   while ($(1)) {
-    b?.['x'];
+    b?.[`x`];
   }
 }
 $(a);
@@ -42,7 +42,7 @@ while (true) {
     const tmpChainRootProp = b;
     const tmpIfTest$1 = tmpChainRootProp != null;
     if (tmpIfTest$1) {
-      const tmpChainRootComputed = 'x';
+      const tmpChainRootComputed = `x`;
       const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     } else {
     }

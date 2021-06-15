@@ -26,7 +26,7 @@ let f = function () {
   debugger;
   let x = undefined;
   $(x);
-  for ([x] in { y: 100 }) $(x, 'for');
+  for ([x] in { y: 100 }) $(x, `for`);
   $(x);
 };
 f();
@@ -45,7 +45,7 @@ let f = function () {
     const arrAssignPatternRhs = tmpForInLhsNode;
     const arrPatternSplat = [...arrAssignPatternRhs];
     x = arrPatternSplat[0];
-    $(x, 'for');
+    $(x, `for`);
   }
   $(x);
   return undefined;
@@ -63,7 +63,7 @@ const tmpForInRhs = { y: 100 };
 for (tmpForInLhsNode in tmpForInRhs) {
   const arrPatternSplat = [...tmpForInLhsNode];
   x = arrPatternSplat[0];
-  $(x, 'for');
+  $(x, `for`);
 }
 $(x);
 `````

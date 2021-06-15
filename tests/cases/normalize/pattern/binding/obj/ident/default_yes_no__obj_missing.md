@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const { x: x = $('pass') } = { b: 2, c: 3 };
+const { x: x = $(`pass`) } = { b: 2, c: 3 };
 $(x);
 `````
 
@@ -30,7 +30,7 @@ const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = objPatternBeforeDefault;
 }
@@ -45,7 +45,7 @@ const objPatternBeforeDefault = tmpObjectPrototype.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = objPatternBeforeDefault;
 }

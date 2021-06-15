@@ -31,22 +31,22 @@ $(f());
 let f = function () {
   debugger;
   {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
     if ($(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
     else;
     tmpSwitchBreak: {
       if (tmpSwitchCaseToStart <= 0) {
-        $('keep, do not eval');
+        $(`keep, do not eval`);
         return;
       }
       if (tmpSwitchCaseToStart <= 1) {
-        return $(2, 'ret');
-        $('fail');
+        return $(2, `ret`);
+        $(`fail`);
       }
     }
   }
-  $('fail');
+  $(`fail`);
 };
 $(f());
 `````
@@ -56,7 +56,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSwitchValue = $(1, 'disc');
+  const tmpSwitchValue = $(1, `disc`);
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(0);
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -72,12 +72,12 @@ let f = function () {
     debugger;
     const tmpIfTest$9 = tmpSwitchCaseToStart$3 <= 0;
     if (tmpIfTest$9) {
-      $('keep, do not eval');
+      $(`keep, do not eval`);
       return undefined;
     } else {
       const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
       if (tmpIfTest$11) {
-        const tmpReturnArg$1 = $(2, 'ret');
+        const tmpReturnArg$1 = $(2, `ret`);
         return tmpReturnArg$1;
       } else {
         const tmpReturnArg$3 = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$7);
@@ -91,7 +91,7 @@ let f = function () {
     let tmpBinLhs$1 = $$2;
     let tmpIfTest$5 = $$3;
     debugger;
-    $('fail');
+    $(`fail`);
     return undefined;
   };
   const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
@@ -105,7 +105,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1, 'disc');
+const tmpSwitchValue = $(1, `disc`);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(0);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -118,15 +118,15 @@ const tmpLabeledBlockFunc = function ($$0) {
   debugger;
   const tmpIfTest$9 = tmpSwitchCaseToStart$3 <= 0;
   if (tmpIfTest$9) {
-    $('keep, do not eval');
+    $(`keep, do not eval`);
     return undefined;
   } else {
     const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
     if (tmpIfTest$11) {
-      const tmpReturnArg$1 = $(2, 'ret');
+      const tmpReturnArg$1 = $(2, `ret`);
       return tmpReturnArg$1;
     } else {
-      $('fail');
+      $(`fail`);
       return undefined;
     }
   }

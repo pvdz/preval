@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-({ x: x = $('pass') } = 0);
+({ x: x = $(`pass`) } = 0);
 $(x);
 `````
 
@@ -29,7 +29,7 @@ const tmpAssignObjPatternRhs = 0;
 const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = objPatternBeforeDefault;
 }
@@ -42,7 +42,7 @@ $(x);
 const objPatternBeforeDefault = (0).x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = objPatternBeforeDefault;
 }

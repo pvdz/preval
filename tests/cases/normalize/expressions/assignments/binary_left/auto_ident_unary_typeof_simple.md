@@ -45,9 +45,9 @@ $(a, arg);
 
 `````js filename=intro
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = 'number' + tmpBinBothRhs;
+const tmpCalleeParam = `number` + tmpBinBothRhs;
 $(tmpCalleeParam);
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

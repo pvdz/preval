@@ -20,22 +20,22 @@ $('after');
 ## Pre Normal
 
 `````js filename=intro
-while ('') {
-  $('loop');
+while (``) {
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-$('after');
+$(`after`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('after');
+$(`after`);
 `````
 
 ## Globals

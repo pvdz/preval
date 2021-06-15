@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-$([...(a = b['c'])]);
+$([...(a = b[`c`])]);
 $(a, b);
 `````
 
@@ -44,7 +44,7 @@ $(a, b);
 
 `````js filename=intro
 [...1];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

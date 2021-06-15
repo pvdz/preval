@@ -24,12 +24,12 @@ if (x) {
 `````js filename=intro
 const x = function () {
   debugger;
-  $('fail');
+  $(`fail`);
 };
 if (x) {
-  $('pass');
+  $(`pass`);
 } else {
-  $('false');
+  $(`false`);
 }
 `````
 
@@ -38,20 +38,20 @@ if (x) {
 `````js filename=intro
 const x = function () {
   debugger;
-  $('fail');
+  $(`fail`);
   return undefined;
 };
 if (x) {
-  $('pass');
+  $(`pass`);
 } else {
-  $('false');
+  $(`false`);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-$('pass');
+$(`pass`);
 `````
 
 ## Globals

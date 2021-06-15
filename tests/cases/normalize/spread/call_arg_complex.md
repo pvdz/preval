@@ -59,7 +59,7 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam, tmpCalleeParam$1, ...tmpCalleeP
 
 `````js filename=intro
 undefined.y;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

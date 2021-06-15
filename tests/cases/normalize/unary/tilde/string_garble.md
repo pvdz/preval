@@ -17,7 +17,7 @@ $(~"garble");
 ## Pre Normal
 
 `````js filename=intro
-$(~'garble');
+$(~`garble`);
 `````
 
 ## Normalized

@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-if ((a = 'foo'));
+if ((a = `foo`));
 $(a);
 `````
 
@@ -28,7 +28,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = 'foo';
+a = `foo`;
 let tmpIfTest = a;
 $(a);
 `````
@@ -36,7 +36,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

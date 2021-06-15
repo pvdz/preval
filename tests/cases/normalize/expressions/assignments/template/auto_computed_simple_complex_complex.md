@@ -21,8 +21,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$('before  ' + (a = { b: $(1) }) + '  after');
-a[$('b')] = $(2);
+$(`before  ` + (a = { b: $(1) }) + `  after`);
+a[$(`b`)] = $(2);
 $(a);
 `````
 
@@ -31,15 +31,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpBinBothLhs = 'before  ';
+const tmpBinBothLhs = `before  `;
 const tmpObjLitVal = $(1);
 a = { b: tmpObjLitVal };
 let tmpBinBothRhs = a;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
 const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(2);
@@ -52,10 +52,10 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 const a = { b: tmpObjLitVal };
-const tmpBinLhs = 'before  ' + a;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpBinLhs = `before  ` + a;
+const tmpCalleeParam = tmpBinLhs + `  after`;
 $(tmpCalleeParam);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);

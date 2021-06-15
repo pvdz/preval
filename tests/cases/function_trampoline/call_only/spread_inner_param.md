@@ -21,7 +21,7 @@ f(y); // In this test, this is the call we expect to be replaced by trampoline i
 ## Pre Normal
 
 `````js filename=intro
-const y = $('pass');
+const y = $(`pass`);
 const f = function ($$0) {
   let x = $$0;
   debugger;
@@ -33,7 +33,7 @@ f(y);
 ## Normalized
 
 `````js filename=intro
-const y = $('pass');
+const y = $(`pass`);
 const f = function ($$0) {
   let x = $$0;
   debugger;
@@ -46,7 +46,7 @@ f(y);
 ## Output
 
 `````js filename=intro
-const y = $('pass');
+const y = $(`pass`);
 $(...y);
 `````
 

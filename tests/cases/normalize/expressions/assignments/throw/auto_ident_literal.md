@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-throw (a = 'foo');
+throw (a = `foo`);
 $(a);
 `````
 
@@ -28,7 +28,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = 'foo';
+a = `foo`;
 let tmpThrowArg = a;
 throw tmpThrowArg;
 `````
@@ -36,7 +36,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-throw 'foo';
+throw `foo`;
 `````
 
 ## Globals

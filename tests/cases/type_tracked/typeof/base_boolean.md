@@ -38,7 +38,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 $(1);
 $(2);
-$('boolean');
+$(`boolean`);
 `````
 
 ## Globals

@@ -18,22 +18,22 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = '' + 'I am a string' + '';
+let x = `` + `I am a string` + ``;
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinLhs = 'I am a string';
-let x = tmpBinLhs + '';
+const tmpBinLhs = `I am a string`;
+let x = tmpBinLhs + ``;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-$('I am a string');
+$(`I am a string`);
 `````
 
 ## Globals

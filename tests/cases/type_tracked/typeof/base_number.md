@@ -38,7 +38,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpBinBothRhs = $(2);
 1 * tmpBinBothRhs;
-$('number');
+$(`number`);
 `````
 
 ## Globals

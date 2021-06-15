@@ -58,7 +58,7 @@ $(a, x);
 
 `````js filename=intro
 $(100);
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

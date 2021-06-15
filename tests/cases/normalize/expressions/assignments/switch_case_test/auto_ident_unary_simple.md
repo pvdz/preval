@@ -61,13 +61,13 @@ $(a, x);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 'number' === tmpSwitchValue;
+const tmpIfTest = `number` === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

@@ -50,14 +50,14 @@ let f = function () {
       } else {
         break label3;
       }
-      $('tail3');
+      $(`tail3`);
     } else {
       break label1;
     }
-    $('tail2');
+    $(`tail2`);
   }
-  $('tail1');
-  $('end');
+  $(`tail1`);
+  $(`end`);
 };
 f();
 `````
@@ -83,13 +83,13 @@ let f = function () {
               break label3$1;
             }
           }
-          $('tail3');
+          $(`tail3`);
         } else {
           const tmpReturnArg = tmpAfterLabel();
           return tmpReturnArg;
         }
       }
-      $('tail2');
+      $(`tail2`);
     } else {
     }
     const tmpReturnArg$1 = tmpAfterLabel();
@@ -97,8 +97,8 @@ let f = function () {
   };
   const tmpAfterLabel = function () {
     debugger;
-    $('tail1');
-    $('end');
+    $(`tail1`);
+    $(`end`);
     return undefined;
   };
   const tmpReturnArg$3 = tmpLabeledBlockFunc();
@@ -112,8 +112,8 @@ f();
 `````js filename=intro
 const tmpAfterLabel = function () {
   debugger;
-  $('tail1');
-  $('end');
+  $(`tail1`);
+  $(`end`);
   return undefined;
 };
 const f = function () {
@@ -132,13 +132,13 @@ const f = function () {
             break label3$1;
           }
         }
-        $('tail3');
+        $(`tail3`);
       } else {
         tmpAfterLabel();
         return undefined;
       }
     }
-    $('tail2');
+    $(`tail2`);
   } else {
   }
   tmpAfterLabel();

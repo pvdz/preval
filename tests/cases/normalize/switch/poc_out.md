@@ -60,20 +60,20 @@ let fallthrough = false;
 exit: {
   if (fallthrough || x === $(1)) {
     {
-      $('A');
+      $(`A`);
     }
     fallthrough = true;
   }
   if (fallthrough || x === $(2)) {
     {
-      $('B');
+      $(`B`);
       break exit;
     }
     fallthrough = true;
   }
   if (fallthrough || x === $(3)) {
     {
-      $('C');
+      $(`C`);
       break exit;
     }
     fallthrough = true;
@@ -95,7 +95,7 @@ exit: {
     tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   }
   if (tmpIfTest) {
-    $('A');
+    $(`A`);
     fallthrough = true;
   } else {
   }
@@ -107,7 +107,7 @@ exit: {
     tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
-    $('B');
+    $(`B`);
     break exit;
   } else {
     let tmpIfTest$3 = fallthrough;
@@ -118,7 +118,7 @@ exit: {
       tmpIfTest$3 = tmpBinBothLhs$3 === tmpBinBothRhs$3;
     }
     if (tmpIfTest$3) {
-      $('C');
+      $(`C`);
       break exit;
     } else {
     }
@@ -134,7 +134,7 @@ exit: {
   const tmpBinBothRhs = $(1);
   const tmpIfTest = undefined === tmpBinBothRhs;
   if (tmpIfTest) {
-    $('A');
+    $(`A`);
     fallthrough = true;
   } else {
   }
@@ -145,7 +145,7 @@ exit: {
     tmpIfTest$1 = undefined === tmpBinBothRhs$1;
   }
   if (tmpIfTest$1) {
-    $('B');
+    $(`B`);
     break exit;
   } else {
     let tmpIfTest$3 = fallthrough;
@@ -155,7 +155,7 @@ exit: {
       tmpIfTest$3 = undefined === tmpBinBothRhs$3;
     }
     if (tmpIfTest$3) {
-      $('C');
+      $(`C`);
       break exit;
     } else {
     }

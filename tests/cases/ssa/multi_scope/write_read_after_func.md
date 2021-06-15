@@ -33,7 +33,7 @@ if (y) {
 ## Pre Normal
 
 `````js filename=intro
-const x = $('a');
+const x = $(`a`);
 const g = function () {
   debugger;
   const tmpAssignRhsProp$105 = tmpthis$63.getInitialState;
@@ -44,7 +44,7 @@ const g = function () {
     $(2);
   }
 };
-let y = x === 'undefined';
+let y = x === `undefined`;
 if (y) {
   g();
 }
@@ -53,7 +53,7 @@ if (y) {
 ## Normalized
 
 `````js filename=intro
-const x = $('a');
+const x = $(`a`);
 const g = function () {
   debugger;
   const tmpAssignRhsProp$105 = tmpthis$63.getInitialState;
@@ -66,7 +66,7 @@ const g = function () {
     return undefined;
   }
 };
-let y = x === 'undefined';
+let y = x === `undefined`;
 if (y) {
   g();
 } else {
@@ -76,8 +76,8 @@ if (y) {
 ## Output
 
 `````js filename=intro
-const x = $('a');
-const y = x === 'undefined';
+const x = $(`a`);
+const y = x === `undefined`;
 if (y) {
   const tmpAssignRhsProp$105 = tmpthis$63.getInitialState;
   const tmpssa2_y = tmpAssignRhsProp$105._isMockFunction;

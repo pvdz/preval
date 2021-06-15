@@ -23,7 +23,7 @@ $(f([0, 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ ...x } = $({ a: 'fail' })] = tmpParamBare === undefined ? $([{ a: 'fail2' }]) : tmpParamBare;
+  let [{ ...x } = $({ a: `fail` })] = tmpParamBare === undefined ? $([{ a: `fail2` }]) : tmpParamBare;
   return x;
 };
 $(f([0, 20, 30], 200));
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpArrElement = { a: 'fail2' };
+    const tmpArrElement = { a: `fail2` };
     const tmpCalleeParam = [tmpArrElement];
     bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
@@ -51,7 +51,7 @@ let f = function ($$0) {
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = { a: 'fail' };
+    const tmpCalleeParam$1 = { a: `fail` };
     arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;

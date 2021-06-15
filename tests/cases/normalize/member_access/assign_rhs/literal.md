@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-x = 'foo'.length;
+x = `foo`.length;
 $(x);
 `````
 
@@ -28,7 +28,7 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-x = 'foo'.length;
+x = `foo`.length;
 $(x);
 `````
 

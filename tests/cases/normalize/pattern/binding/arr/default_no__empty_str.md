@@ -18,22 +18,22 @@ $('ok');
 ## Pre Normal
 
 `````js filename=intro
-const [] = '';
-$('ok');
+const [] = ``;
+$(`ok`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = '';
+const bindingPatternArrRoot = ``;
 const arrPatternSplat = [...bindingPatternArrRoot];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

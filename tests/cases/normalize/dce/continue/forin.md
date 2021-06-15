@@ -28,10 +28,10 @@ $('after, wont eval due to infinite loop');
 while ($(true)) {
   for (let x in { a: 1, b: 2 }) {
     continue;
-    $('fail');
+    $(`fail`);
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Normalized
@@ -49,7 +49,7 @@ while (true) {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Output
@@ -67,7 +67,7 @@ while (true) {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Globals

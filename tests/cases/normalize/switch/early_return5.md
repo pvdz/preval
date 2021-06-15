@@ -38,17 +38,17 @@ let f = function () {
   debugger;
   const x = 0;
   if (x) {
-    $('a');
+    $(`a`);
   } else {
     const y = 1;
     if (y) {
-      $('b');
+      $(`b`);
     } else {
-      $('c');
+      $(`c`);
     }
-    $('after inner');
+    $(`after inner`);
   }
-  $('after outer');
+  $(`after outer`);
 };
 f();
 `````
@@ -60,17 +60,17 @@ let f = function () {
   debugger;
   const x = 0;
   if (x) {
-    $('a');
+    $(`a`);
   } else {
     const y = 1;
     if (y) {
-      $('b');
+      $(`b`);
     } else {
-      $('c');
+      $(`c`);
     }
-    $('after inner');
+    $(`after inner`);
   }
-  $('after outer');
+  $(`after outer`);
   return undefined;
 };
 f();
@@ -79,9 +79,9 @@ f();
 ## Output
 
 `````js filename=intro
-$('b');
-$('after inner');
-$('after outer');
+$(`b`);
+$(`after inner`);
+$(`after outer`);
 `````
 
 ## Globals

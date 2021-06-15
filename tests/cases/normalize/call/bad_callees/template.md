@@ -19,28 +19,28 @@ $('after');
 ## Pre Normal
 
 `````js filename=intro
-$('before');
-('' + $ + '')();
-$('after');
+$(`before`);
+(`` + $ + ``)();
+$(`after`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-$('before');
-const tmpBinLhs = '' + $;
-const tmpCallCallee = tmpBinLhs + '';
+$(`before`);
+const tmpBinLhs = `` + $;
+const tmpCallCallee = tmpBinLhs + ``;
 tmpCallCallee();
-$('after');
+$(`after`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('before');
-const tmpBinLhs = '' + $;
+$(`before`);
+const tmpBinLhs = `` + $;
 tmpBinLhs();
-$('after');
+$(`after`);
 `````
 
 ## Globals

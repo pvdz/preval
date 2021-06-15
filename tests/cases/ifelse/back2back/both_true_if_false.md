@@ -27,32 +27,32 @@ if (x) {
 ## Pre Normal
 
 `````js filename=intro
-let x = $(true, 'a');
+let x = $(true, `a`);
 if (x) {
-  $(x, 'A');
-  x = $(false, 'b');
+  $(x, `A`);
+  x = $(false, `b`);
 } else {
-  $(x, 'B');
-  x = $(false, 'b');
+  $(x, `B`);
+  x = $(false, `b`);
 }
 if (x) {
-  $(x, 'hit');
+  $(x, `hit`);
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = $(true, 'a');
+let x = $(true, `a`);
 if (x) {
-  $(x, 'A');
-  x = $(false, 'b');
+  $(x, `A`);
+  x = $(false, `b`);
 } else {
-  $(x, 'B');
-  x = $(false, 'b');
+  $(x, `B`);
+  x = $(false, `b`);
 }
 if (x) {
-  $(x, 'hit');
+  $(x, `hit`);
 } else {
 }
 `````
@@ -60,16 +60,16 @@ if (x) {
 ## Output
 
 `````js filename=intro
-let x = $(true, 'a');
+let x = $(true, `a`);
 if (x) {
-  $(x, 'A');
-  x = $(false, 'b');
+  $(x, `A`);
+  x = $(false, `b`);
 } else {
-  $(x, 'B');
-  x = $(false, 'b');
+  $(x, `B`);
+  x = $(false, `b`);
 }
 if (x) {
-  $(x, 'hit');
+  $(x, `hit`);
 } else {
 }
 `````

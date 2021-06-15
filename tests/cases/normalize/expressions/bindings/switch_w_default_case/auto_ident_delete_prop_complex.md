@@ -42,10 +42,10 @@ switch (1) {
       $(a, arg);
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -78,12 +78,12 @@ if (tmpIfTest$3) {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 `````
@@ -95,8 +95,8 @@ const tmpClusterSSA_arg = { y: 1 };
 const tmpDeleteObj = $(tmpClusterSSA_arg);
 const tmpClusterSSA_a = delete tmpDeleteObj.y;
 $(tmpClusterSSA_a, tmpClusterSSA_arg);
-$('fail1');
-$('fail2');
+$(`fail1`);
+$(`fail2`);
 `````
 
 ## Globals

@@ -26,9 +26,9 @@ if (y) { // This should become x, with the branches flipped
 const x = $(1);
 const y = x != null;
 if (y) {
-  $('if');
+  $(`if`);
 } else {
-  $('else');
+  $(`else`);
 }
 `````
 
@@ -38,9 +38,9 @@ if (y) {
 const x = $(1);
 const y = x != null;
 if (y) {
-  $('if');
+  $(`if`);
 } else {
-  $('else');
+  $(`else`);
 }
 `````
 
@@ -50,9 +50,9 @@ if (y) {
 const x = $(1);
 const y = x == null;
 if (y) {
-  $('else');
+  $(`else`);
 } else {
-  $('if');
+  $(`if`);
 }
 `````
 

@@ -21,7 +21,7 @@ $('bad');
 ({
   x: { ...y },
 } = 0);
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -34,7 +34,7 @@ const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
 const tmpCalleeParam$3 = undefined;
 y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -43,7 +43,7 @@ $('bad');
 const objPatternNoDefault = (0).x;
 const tmpCalleeParam$1 = [];
 y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

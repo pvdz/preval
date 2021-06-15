@@ -36,7 +36,7 @@ const obj = {
   },
 };
 let x = 10;
-x = $(obj)[$('x')] = 30;
+x = $(obj)[$(`x`)] = 30;
 $(x);
 `````
 
@@ -58,7 +58,7 @@ const obj = {
 };
 let x = 10;
 const tmpNestedAssignComMemberObj = $(obj);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const tmpNestedPropAssignRhs = 30;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 x = tmpNestedPropAssignRhs;
@@ -81,7 +81,7 @@ const obj = {
   },
 };
 const tmpNestedAssignComMemberObj = $(obj);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 30;
 $(30);
 `````

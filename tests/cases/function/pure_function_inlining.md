@@ -60,17 +60,17 @@ let rule = function ($$0) {
   let desc = $$0;
   debugger;
   const func = $;
-  const a = PURPLE + 'Rule:';
+  const a = PURPLE + `Rule:`;
   const b = a + RESET;
-  const c = b + ' "';
+  const c = b + ` "`;
   const d = c + desc;
-  const e = d + '"';
+  const e = d + `"`;
   func(e);
 };
-const PURPLE = 'purple';
-const RESET = 'reset';
-rule('I want it my way');
-rule('You have to listen to me');
+const PURPLE = `purple`;
+const RESET = `reset`;
+rule(`I want it my way`);
+rule(`You have to listen to me`);
 `````
 
 ## Normalized
@@ -80,18 +80,18 @@ let rule = function ($$0) {
   let desc = $$0;
   debugger;
   const func = $;
-  const a = PURPLE + 'Rule:';
+  const a = PURPLE + `Rule:`;
   const b = a + RESET;
-  const c = b + ' "';
+  const c = b + ` "`;
   const d = c + desc;
-  const e = d + '"';
+  const e = d + `"`;
   func(e);
   return undefined;
 };
-const PURPLE = 'purple';
-const RESET = 'reset';
-rule('I want it my way');
-rule('You have to listen to me');
+const PURPLE = `purple`;
+const RESET = `reset`;
+rule(`I want it my way`);
+rule(`You have to listen to me`);
 `````
 
 ## Output
@@ -100,13 +100,13 @@ rule('You have to listen to me');
 const rule = function ($$0) {
   const desc = $$0;
   debugger;
-  const d = 'purpleRule:reset "' + desc;
-  const e = d + '"';
+  const d = `purpleRule:reset "` + desc;
+  const e = d + `"`;
   $(e);
   return undefined;
 };
-rule('I want it my way');
-rule('You have to listen to me');
+rule(`I want it my way`);
+rule(`You have to listen to me`);
 `````
 
 ## Globals

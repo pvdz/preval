@@ -23,7 +23,7 @@ $(f([{ x: 1, y: 2, z: 3 }, 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ ...x } = $({ a: 'fail' })] = tmpParamBare;
+  let [{ ...x } = $({ a: `fail` })] = tmpParamBare;
   return x;
 };
 $(f([{ x: 1, y: 2, z: 3 }, 20, 30], 200));
@@ -42,7 +42,7 @@ let f = function ($$0) {
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = { a: 'fail' };
+    const tmpCalleeParam = { a: `fail` };
     arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;

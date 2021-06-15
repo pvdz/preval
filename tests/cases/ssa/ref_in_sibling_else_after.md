@@ -38,7 +38,7 @@ let f = function () {
     $(x);
   }
   if ($) {
-    $('if');
+    $(`if`);
   } else {
     $(x);
   }
@@ -56,7 +56,7 @@ let f = function () {
     x = $(2);
     $(x);
     if ($) {
-      $('if');
+      $(`if`);
       return undefined;
     } else {
       $(x);
@@ -82,7 +82,7 @@ if ($) {
     const tmpClusterSSA_x = $(2);
     $(tmpClusterSSA_x);
     if ($) {
-      $('if');
+      $(`if`);
     } else {
       $(tmpClusterSSA_x);
     }

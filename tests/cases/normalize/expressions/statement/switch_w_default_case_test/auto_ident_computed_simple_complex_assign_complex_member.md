@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
 {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 1;
-  if ((b[$('c')] = $(b)[$('d')]) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if ((b[$(`c`)] = $(b)[$(`d`)]) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else if (2 === tmpSwitchValue) tmpSwitchCaseToStart = 2;
   else;
   tmpSwitchBreak: {
@@ -41,10 +41,10 @@ let a = { a: 999, b: 1000 };
       break tmpSwitchBreak;
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -59,9 +59,9 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const varInitAssignLhsComputedObj = b;
-const varInitAssignLhsComputedProp = $('c');
+const varInitAssignLhsComputedProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpBinLhs = varInitAssignLhsComputedRhs;
@@ -82,12 +82,12 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$5) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$7) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }
@@ -102,9 +102,9 @@ const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const varInitAssignLhsComputedProp = $('c');
+const varInitAssignLhsComputedProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpIfTest = varInitAssignLhsComputedRhs === tmpSwitchValue;
@@ -124,12 +124,12 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$5) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$7) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }

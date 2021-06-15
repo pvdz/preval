@@ -29,11 +29,11 @@ while ($(true)) {
   if ($(1)) {
   } else {
     break;
-    $('fail');
+    $(`fail`);
   }
-  $('keep');
+  $(`keep`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -44,7 +44,7 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      $('keep');
+      $(`keep`);
     } else {
       break;
     }
@@ -52,7 +52,7 @@ while (true) {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -63,7 +63,7 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      $('keep');
+      $(`keep`);
     } else {
       break;
     }
@@ -71,7 +71,7 @@ while (true) {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

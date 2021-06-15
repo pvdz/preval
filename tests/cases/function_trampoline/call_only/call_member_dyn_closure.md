@@ -28,7 +28,7 @@ f();
 const obj = { $: $ };
 const f = function () {
   debugger;
-  const str = '$';
+  const str = `$`;
   const h = function () {
     debugger;
     obj[str](1);
@@ -44,7 +44,7 @@ f();
 const obj = { $: $ };
 const f = function () {
   debugger;
-  const str = '$';
+  const str = `$`;
   const h = function () {
     debugger;
     obj[str](1);

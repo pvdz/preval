@@ -24,7 +24,7 @@
 `````js filename=intro
 {
   let b = { $: $ };
-  let a = new b['$'](1);
+  let a = new b[`$`](1);
   $(a);
 }
 `````

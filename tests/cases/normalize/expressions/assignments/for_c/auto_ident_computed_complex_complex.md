@@ -25,7 +25,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   while ($(1)) {
-    a = $(b)[$('c')];
+    a = $(b)[$(`c`)];
   }
 }
 $(a, b);
@@ -40,7 +40,7 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpAssignRhsCompObj = $(b);
-    const tmpAssignRhsCompProp = $('c');
+    const tmpAssignRhsCompProp = $(`c`);
     a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   } else {
     break;
@@ -58,7 +58,7 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpAssignRhsCompObj = $(b);
-    const tmpAssignRhsCompProp = $('c');
+    const tmpAssignRhsCompProp = $(`c`);
     a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   } else {
     break;

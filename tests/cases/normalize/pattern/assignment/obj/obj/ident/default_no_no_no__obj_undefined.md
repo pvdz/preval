@@ -21,7 +21,7 @@ $('bad');
 ({
   x: { y: y },
 } = { x: undefined, b: 11, c: 12 });
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -30,14 +30,14 @@ $('bad');
 const tmpAssignObjPatternRhs = { x: undefined, b: 11, c: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 y = objPatternNoDefault.y;
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 y = undefined.y;
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

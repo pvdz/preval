@@ -19,9 +19,9 @@ $('bad');
 
 `````js filename=intro
 const {
-  x: { y: y = $('fail') },
+  x: { y: y = $(`fail`) },
 } = { b: 11, c: 12 };
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -33,11 +33,11 @@ const objPatternBeforeDefault = objPatternNoDefault.y;
 let y = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = $('fail');
+  y = $(`fail`);
 } else {
   y = objPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -48,10 +48,10 @@ const objPatternNoDefault = tmpObjectPrototype.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  $('fail');
+  $(`fail`);
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

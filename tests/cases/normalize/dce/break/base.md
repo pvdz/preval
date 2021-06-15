@@ -19,7 +19,7 @@ $('after');
 
 `````js filename=intro
 while ($(true)) break;
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -33,7 +33,7 @@ while (true) {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -47,7 +47,7 @@ while (true) {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

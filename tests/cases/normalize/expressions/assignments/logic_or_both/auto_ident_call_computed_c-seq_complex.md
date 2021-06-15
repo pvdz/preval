@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$((a = (1, 2, $(b))[$('$')](1)) || (a = (1, 2, $(b))[$('$')](1)));
+$((a = (1, 2, $(b))[$(`$`)](1)) || (a = (1, 2, $(b))[$(`$`)](1)));
 $(a);
 `````
 
@@ -34,13 +34,13 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   const tmpCallCompObj$1 = $(b);
-  const tmpCallCompProp$1 = $('$');
+  const tmpCallCompProp$1 = $(`$`);
   const tmpNestedComplexRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -54,13 +54,13 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 let tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
 } else {
   const tmpCallCompObj$1 = $(b);
-  const tmpCallCompProp$1 = $('$');
+  const tmpCallCompProp$1 = $(`$`);
   const tmpNestedComplexRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
   tmpClusterSSA_a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

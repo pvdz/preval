@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = '' + Infinity + '';
+x = `` + Infinity + ``;
 $(x);
 `````
 
@@ -28,15 +28,15 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpBinLhs = 'Infinity';
-x = tmpBinLhs + '';
+const tmpBinLhs = `Infinity`;
+x = tmpBinLhs + ``;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-$('Infinity');
+$(`Infinity`);
 `````
 
 ## Globals

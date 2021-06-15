@@ -23,10 +23,10 @@ $(f(['', 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x: x = $('pass') }] = tmpParamBare;
+  let [{ x: x = $(`pass`) }] = tmpParamBare;
   return x;
 };
-$(f(['', 20, 30], 200));
+$(f([``, 20, 30], 200));
 `````
 
 ## Normalized
@@ -42,7 +42,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    x = $('pass');
+    x = $(`pass`);
     return x;
   } else {
     x = objPatternBeforeDefault;
@@ -51,7 +51,7 @@ let f = function ($$0) {
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
-const tmpCalleeParam$1 = ['', 20, 30];
+const tmpCalleeParam$1 = [``, 20, 30];
 const tmpCalleeParam$3 = 200;
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
@@ -68,13 +68,13 @@ const f = function ($$0) {
   const objPatternBeforeDefault = arrPatternStep.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $('pass');
+    const tmpClusterSSA_x = $(`pass`);
     return tmpClusterSSA_x;
   } else {
     return objPatternBeforeDefault;
   }
 };
-const tmpCalleeParam$1 = ['', 20, 30];
+const tmpCalleeParam$1 = [``, 20, 30];
 const tmpCalleeParam = f(tmpCalleeParam$1, 200);
 $(tmpCalleeParam);
 `````

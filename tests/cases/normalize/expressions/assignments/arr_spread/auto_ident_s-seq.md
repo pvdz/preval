@@ -48,7 +48,7 @@ $(a, x);
 $(1);
 $(2);
 [...1];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

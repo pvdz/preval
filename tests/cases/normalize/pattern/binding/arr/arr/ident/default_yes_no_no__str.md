@@ -18,14 +18,14 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const [[x = $('fail')]] = 'abc';
+const [[x = $(`fail`)]] = `abc`;
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = 'abc';
+const bindingPatternArrRoot = `abc`;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
@@ -33,7 +33,7 @@ const arrPatternBeforeDefault = arrPatternSplat$1[0];
 let x = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('fail');
+  x = $(`fail`);
 } else {
   x = arrPatternBeforeDefault;
 }
@@ -43,7 +43,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-$('a');
+$(`a`);
 `````
 
 ## Globals

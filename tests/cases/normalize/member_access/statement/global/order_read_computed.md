@@ -33,7 +33,7 @@ const obj = {
     $(20);
   },
 };
-$(obj)[$('x')];
+$(obj)[$(`x`)];
 `````
 
 ## Normalized
@@ -53,7 +53,7 @@ const obj = {
   },
 };
 const tmpCompObj = $(obj);
-const tmpCompProp = $('x');
+const tmpCompProp = $(`x`);
 tmpCompObj[tmpCompProp];
 `````
 
@@ -73,7 +73,7 @@ const obj = {
   },
 };
 const tmpCompObj = $(obj);
-const tmpCompProp = $('x');
+const tmpCompProp = $(`x`);
 tmpCompObj[tmpCompProp];
 `````
 

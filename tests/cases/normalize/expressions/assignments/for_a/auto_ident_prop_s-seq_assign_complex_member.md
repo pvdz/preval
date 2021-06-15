@@ -24,7 +24,7 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 {
-  a = (1, 2, b).c = $(b)[$('d')];
+  a = (1, 2, b).c = $(b)[$(`d`)];
   while (true) {
     $(1);
   }
@@ -39,7 +39,7 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpNestedAssignObj = b;
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
@@ -55,7 +55,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
 while (true) {

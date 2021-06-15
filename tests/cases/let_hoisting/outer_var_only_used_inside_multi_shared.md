@@ -37,11 +37,11 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    x = $(1, 'shared');
+    x = $(1, `shared`);
     if ($) {
-      $(x, 'a');
+      $(x, `a`);
     } else {
-      $(x, 'b');
+      $(x, `b`);
     }
   };
   let x = undefined;
@@ -57,12 +57,12 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    x = $(1, 'shared');
+    x = $(1, `shared`);
     if ($) {
-      $(x, 'a');
+      $(x, `a`);
       return undefined;
     } else {
-      $(x, 'b');
+      $(x, `b`);
       return undefined;
     }
   };
@@ -84,11 +84,11 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpssa2_x = $(1, 'shared');
+  const tmpssa2_x = $(1, `shared`);
   if ($) {
-    $(tmpssa2_x, 'a');
+    $(tmpssa2_x, `a`);
   } else {
-    $(tmpssa2_x, 'b');
+    $(tmpssa2_x, `b`);
   }
 } else {
 }

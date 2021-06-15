@@ -38,9 +38,9 @@ $(g());
 `````js filename=intro
 let f = function () {
   debugger;
-  $('abc');
+  $(`abc`);
   if ($(1)) {
-    $('def');
+    $(`def`);
   }
   return 15;
 };
@@ -50,7 +50,7 @@ let g = function () {
     return f();
   } else {
     const x = f();
-    $(x, 'foooopsie');
+    $(x, `foooopsie`);
   }
 };
 g();
@@ -65,10 +65,10 @@ $(g());
 `````js filename=intro
 let f = function () {
   debugger;
-  $('abc');
+  $(`abc`);
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('def');
+    $(`def`);
     return 15;
   } else {
     return 15;
@@ -82,7 +82,7 @@ let g = function () {
     return tmpReturnArg;
   } else {
     const x = f();
-    $(x, 'foooopsie');
+    $(x, `foooopsie`);
     return undefined;
   }
 };
@@ -100,10 +100,10 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  $('abc');
+  $(`abc`);
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('def');
+    $(`def`);
     return undefined;
   } else {
     return undefined;
@@ -117,7 +117,7 @@ const g = function () {
     return 15;
   } else {
     f();
-    $(15, 'foooopsie');
+    $(15, `foooopsie`);
     return undefined;
   }
 };

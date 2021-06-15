@@ -27,14 +27,14 @@ $(f());
 let f = function () {
   debugger;
   {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
-    if ($(1, 'case') === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+    if ($(1, `case`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
     else;
     tmpSwitchBreak: {
       if (tmpSwitchCaseToStart <= 0) {
-        throw $(2, 'ret');
-        $('fail');
+        throw $(2, `ret`);
+        $(`fail`);
       }
     }
   }
@@ -47,9 +47,9 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSwitchValue = $(1, 'disc');
+  const tmpSwitchValue = $(1, `disc`);
   let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(1, 'case');
+  const tmpBinLhs = $(1, `case`);
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
@@ -57,7 +57,7 @@ let f = function () {
   }
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    const tmpThrowArg = $(2, 'ret');
+    const tmpThrowArg = $(2, `ret`);
     throw tmpThrowArg;
   } else {
     return undefined;
@@ -71,9 +71,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1, 'disc');
+const tmpSwitchValue = $(1, `disc`);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(1, 'case');
+const tmpBinLhs = $(1, `case`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -81,7 +81,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpThrowArg = $(2, 'ret');
+  const tmpThrowArg = $(2, `ret`);
   throw tmpThrowArg;
 } else {
   $(undefined);

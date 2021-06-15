@@ -83,7 +83,7 @@ function _findThrowers(fdata) {
           example('function f(){ throw x; } g(f());', 'function f(){ throw x; } g(f()); throw "always";');
           before(read.blockBody[read.blockIndex]);
 
-          read.blockBody.splice(read.blockIndex + 1, 0, AST.throwStatement(AST.literal('Preval: the previous call always throws')));
+          read.blockBody.splice(read.blockIndex + 1, 0, AST.throwStatement(AST.templateLiteral('Preval: the previous call always throws')));
 
           after(read.blockBody[read.blockIndex]);
           after(read.blockBody[read.blockIndex + 1]);

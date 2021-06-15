@@ -18,7 +18,7 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let a = $(['foo']);
+let a = $([`foo`]);
 $(a);
 `````
 
@@ -26,7 +26,7 @@ $(a);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = ['foo'];
+const tmpCalleeParam = [`foo`];
 let a = tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -34,7 +34,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['foo'];
+const tmpCalleeParam = [`foo`];
 const a = $(tmpCalleeParam);
 $(a);
 `````

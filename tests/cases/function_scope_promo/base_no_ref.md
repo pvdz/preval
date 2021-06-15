@@ -37,23 +37,23 @@ let h = function () {
     let g = function () {
       debugger;
       if ($) {
-        $('prevent');
-        $('simple');
-        $('inlining');
+        $(`prevent`);
+        $(`simple`);
+        $(`inlining`);
       }
       return $(10);
     };
     if ($) {
-      $('prevent');
-      $('simple');
-      $('inlining');
+      $(`prevent`);
+      $(`simple`);
+      $(`inlining`);
     }
     return g();
   };
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
   }
   return f();
 };
@@ -70,27 +70,27 @@ let h = function () {
     let g = function () {
       debugger;
       if ($) {
-        $('prevent');
-        $('simple');
-        $('inlining');
+        $(`prevent`);
+        $(`simple`);
+        $(`inlining`);
       } else {
       }
       const tmpReturnArg = $(10);
       return tmpReturnArg;
     };
     if ($) {
-      $('prevent');
-      $('simple');
-      $('inlining');
+      $(`prevent`);
+      $(`simple`);
+      $(`inlining`);
     } else {
     }
     const tmpReturnArg$1 = g();
     return tmpReturnArg$1;
   };
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
   } else {
   }
   const tmpReturnArg$3 = f();
@@ -105,17 +105,17 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 if ($) {
-  $('prevent');
-  $('simple');
-  $('inlining');
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
     if ($) {
-      $('prevent');
-      $('simple');
-      $('inlining');
+      $(`prevent`);
+      $(`simple`);
+      $(`inlining`);
     } else {
     }
   } else {

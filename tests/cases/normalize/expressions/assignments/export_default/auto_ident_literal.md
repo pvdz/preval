@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = 'foo');
+const tmpAnonDefaultExport = (a = `foo`);
 export { tmpAnonDefaultExport as default };
 $(a);
 `````
@@ -29,7 +29,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = 'foo';
+a = `foo`;
 let tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -38,9 +38,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpAnonDefaultExport = 'foo';
+const tmpAnonDefaultExport = `foo`;
 export { tmpAnonDefaultExport as default };
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

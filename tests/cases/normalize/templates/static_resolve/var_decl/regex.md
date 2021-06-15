@@ -18,17 +18,17 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = '' + /foo/g + '';
+let x = `` + /foo/g + ``;
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinBothLhs = '';
+const tmpBinBothLhs = ``;
 const tmpBinBothRhs = /foo/g;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = tmpBinLhs + '';
+let x = tmpBinLhs + ``;
 $(x);
 `````
 
@@ -36,7 +36,7 @@ $(x);
 
 `````js filename=intro
 const tmpBinBothRhs = /foo/g;
-const tmpBinLhs = '' + tmpBinBothRhs;
+const tmpBinLhs = `` + tmpBinBothRhs;
 $(tmpBinLhs);
 `````
 

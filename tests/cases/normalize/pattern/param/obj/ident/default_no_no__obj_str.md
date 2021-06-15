@@ -26,7 +26,7 @@ let f = function ($$0) {
   let { x: x } = tmpParamBare;
   return x;
 };
-$(f({ x: 'abc' }, 10));
+$(f({ x: `abc` }, 10));
 `````
 
 ## Normalized
@@ -41,7 +41,7 @@ let f = function ($$0) {
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
-const tmpCalleeParam$1 = { x: 'abc' };
+const tmpCalleeParam$1 = { x: `abc` };
 const tmpCalleeParam$3 = 10;
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
@@ -50,7 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('abc');
+$(`abc`);
 `````
 
 ## Globals

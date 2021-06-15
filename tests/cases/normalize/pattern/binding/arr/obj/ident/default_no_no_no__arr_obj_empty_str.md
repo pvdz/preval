@@ -18,14 +18,14 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const [{ x: x }] = [{ x: '', y: 2, z: 3 }, 20, 30];
+const [{ x: x }] = [{ x: ``, y: 2, z: 3 }, 20, 30];
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpArrElement = { x: '', y: 2, z: 3 };
+const tmpArrElement = { x: ``, y: 2, z: 3 };
 const bindingPatternArrRoot = [tmpArrElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
@@ -36,7 +36,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-$('');
+$(``);
 `````
 
 ## Globals

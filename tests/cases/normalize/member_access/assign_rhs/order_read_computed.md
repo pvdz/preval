@@ -36,7 +36,7 @@ const obj = {
   },
 };
 let x = 10;
-x = $(obj)[$('x')];
+x = $(obj)[$(`x`)];
 $(x);
 `````
 
@@ -58,7 +58,7 @@ const obj = {
 };
 let x = 10;
 const tmpAssignRhsCompObj = $(obj);
-const tmpAssignRhsCompProp = $('x');
+const tmpAssignRhsCompProp = $(`x`);
 x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(x);
 `````
@@ -79,7 +79,7 @@ const obj = {
   },
 };
 const tmpAssignRhsCompObj = $(obj);
-const tmpAssignRhsCompProp = $('x');
+const tmpAssignRhsCompProp = $(`x`);
 const tmpClusterSSA_x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(tmpClusterSSA_x);
 `````

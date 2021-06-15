@@ -28,7 +28,7 @@ let f = function ($$0) {
   } = tmpParamBare;
   return y;
 };
-$(f({ x: 'abc', b: 11, c: 12 }, 10));
+$(f({ x: `abc`, b: 11, c: 12 }, 10));
 `````
 
 ## Normalized
@@ -44,7 +44,7 @@ let f = function ($$0) {
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
-const tmpCalleeParam$1 = { x: 'abc', b: 11, c: 12 };
+const tmpCalleeParam$1 = { x: `abc`, b: 11, c: 12 };
 const tmpCalleeParam$3 = 10;
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
@@ -53,7 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const y = 'abc'.y;
+const y = `abc`.y;
 $(y);
 `````
 

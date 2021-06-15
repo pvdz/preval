@@ -29,10 +29,10 @@ $(f());
 let f = function () {
   debugger;
   while ($(true)) {
-    return $(1, 'return');
-    $('fail');
+    return $(1, `return`);
+    $(`fail`);
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
 };
 $(f());
 `````
@@ -45,13 +45,13 @@ let f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      const tmpReturnArg = $(1, 'return');
+      const tmpReturnArg = $(1, `return`);
       return tmpReturnArg;
     } else {
       break;
     }
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -67,13 +67,13 @@ const f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      const tmpReturnArg = $(1, 'return');
+      const tmpReturnArg = $(1, `return`);
       return tmpReturnArg;
     } else {
       break;
     }
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
   return undefined;
 };
 const tmpCalleeParam = f();

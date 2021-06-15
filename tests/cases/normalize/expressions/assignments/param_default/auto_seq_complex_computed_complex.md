@@ -30,7 +30,7 @@ let f = function ($$0) {
 };
 let a = { a: 999, b: 1000 };
 $(f());
-($(1), $(a))[$('b')] = $(2);
+($(1), $(a))[$(`b`)] = $(2);
 $(a);
 `````
 
@@ -59,7 +59,7 @@ const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
 $(1);
 const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(2);
@@ -75,7 +75,7 @@ $(undefined);
 $(1);
 const tmpNestedComplexRhs = { b: tmpObjLitVal };
 const tmpAssignComMemLhsObj = $(tmpNestedComplexRhs);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(tmpNestedComplexRhs);

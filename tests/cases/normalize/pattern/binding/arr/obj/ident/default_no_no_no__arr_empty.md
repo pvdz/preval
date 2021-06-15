@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 const [{ x: x }] = [];
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -29,14 +29,14 @@ const bindingPatternArrRoot = [];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
 const x = arrPatternStep.x;
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 undefined.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

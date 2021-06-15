@@ -23,7 +23,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpAnonDefaultExport = (a = { b: $(1) });
 export { tmpAnonDefaultExport as default };
-a['b'] = $(2);
+a[`b`] = $(2);
 $(a);
 `````
 

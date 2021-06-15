@@ -44,9 +44,9 @@ $(a, arg);
 
 `````js filename=intro
 let x = undefined;
-for (x in 'number') {
+for (x in `number`) {
 }
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

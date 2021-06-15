@@ -28,7 +28,7 @@ let a = { a: 999, b: 1000 };
 {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 1;
-  if (delete ($(1), $(2), arg)[$('y')] === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if (delete ($(1), $(2), arg)[$(`y`)] === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
@@ -48,7 +48,7 @@ let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
 const tmpDeleteCompObj = arg;
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const tmpBinLhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -68,7 +68,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const tmpBinLhs = delete arg[tmpDeleteCompProp];
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {

@@ -37,7 +37,7 @@ const f = function () {
   debugger;
   const g = function () {
     debugger;
-    $(xyz, 'g');
+    $(xyz, `g`);
   };
   const t = $([g]);
   if ($) {
@@ -57,7 +57,7 @@ const f = function () {
   debugger;
   const g = function () {
     debugger;
-    $(xyz, 'g');
+    $(xyz, `g`);
     return undefined;
   };
   const tmpCallCallee = $;
@@ -82,7 +82,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const g = function () {
   debugger;
-  $(xyz, 'g');
+  $(xyz, `g`);
   return undefined;
 };
 const tmpCalleeParam = [g];
@@ -93,7 +93,7 @@ if ($) {
 }
 const xyz = $();
 t[0]();
-$(xyz, 'g');
+$(xyz, `g`);
 $(undefined);
 `````
 

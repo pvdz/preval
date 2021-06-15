@@ -26,7 +26,7 @@ let f = function ($$0) {
   let {
     x: {},
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
 $(f());
 `````
@@ -46,9 +46,9 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-    return 'bad';
+    return `bad`;
   } else {
-    return 'bad';
+    return `bad`;
   }
 };
 const tmpCallCallee = $;
@@ -60,7 +60,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 undefined.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

@@ -21,7 +21,7 @@ $('bad');
 ({
   x: [y],
 } = { x: null, a: 11, b: 12 });
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -31,14 +31,14 @@ const tmpAssignObjPatternRhs = { x: null, a: 11, b: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const arrPatternSplat = [...objPatternNoDefault];
 y = arrPatternSplat[0];
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 [...null];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

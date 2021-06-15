@@ -18,7 +18,7 @@ $(y);
 ## Pre Normal
 
 `````js filename=intro
-({ x: { ...y } = $({ a: 'fail' }) } = { x: 0, b: 11, c: 12 });
+({ x: { ...y } = $({ a: `fail` }) } = { x: 0, b: 11, c: 12 });
 $(y);
 `````
 
@@ -31,7 +31,7 @@ let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 'fail' };
+  const tmpCalleeParam = { a: `fail` };
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;

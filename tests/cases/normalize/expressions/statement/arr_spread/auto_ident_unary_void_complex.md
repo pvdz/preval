@@ -39,7 +39,7 @@ $(a);
 `````js filename=intro
 $(100);
 [...undefined];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

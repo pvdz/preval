@@ -30,9 +30,9 @@ let f = function () {
   if ($(1)) {
   } else {
     return 2;
-    $('fail');
+    $(`fail`);
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
 };
 $(f());
 `````
@@ -44,7 +44,7 @@ let f = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('keep, do not eval');
+    $(`keep, do not eval`);
     return undefined;
   } else {
     return 2;
@@ -62,7 +62,7 @@ const f = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('keep, do not eval');
+    $(`keep, do not eval`);
     return undefined;
   } else {
     return 2;

@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = '' + ('a ' + $(1) + ' b') + '';
+x = `` + (`a ` + $(1) + ` b`) + ``;
 $(x);
 `````
 
@@ -28,13 +28,13 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpBinBothLhs = '';
-const tmpBinBothLhs$1 = 'a ';
+const tmpBinBothLhs = ``;
+const tmpBinBothLhs$1 = `a `;
 const tmpBinBothRhs$1 = $(1);
 const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothRhs = tmpBinLhs$1 + ' b';
+const tmpBinBothRhs = tmpBinLhs$1 + ` b`;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-x = tmpBinLhs + '';
+x = tmpBinLhs + ``;
 $(x);
 `````
 
@@ -42,8 +42,8 @@ $(x);
 
 `````js filename=intro
 const tmpBinBothRhs$1 = $(1);
-const tmpBinLhs$1 = 'a ' + tmpBinBothRhs$1;
-const tmpBinBothRhs = tmpBinLhs$1 + ' b';
+const tmpBinLhs$1 = `a ` + tmpBinBothRhs$1;
+const tmpBinBothRhs = tmpBinLhs$1 + ` b`;
 $(tmpBinBothRhs);
 `````
 

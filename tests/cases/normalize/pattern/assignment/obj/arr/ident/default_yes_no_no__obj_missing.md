@@ -19,9 +19,9 @@ $('bad');
 
 `````js filename=intro
 ({
-  x: [y = 'fail'],
+  x: [y = `fail`],
 } = { a: 11, b: 12 });
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -33,11 +33,11 @@ const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = 'fail';
+  y = `fail`;
 } else {
   y = arrPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -49,11 +49,11 @@ const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = 'fail';
+  y = `fail`;
 } else {
   y = arrPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

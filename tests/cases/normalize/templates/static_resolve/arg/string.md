@@ -17,22 +17,22 @@ $(`${"why"}`);
 ## Pre Normal
 
 `````js filename=intro
-$('' + 'why' + '');
+$(`` + `why` + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = 'why';
-const tmpCalleeParam = tmpBinLhs + '';
+const tmpBinLhs = `why`;
+const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('why');
+$(`why`);
 `````
 
 ## Globals

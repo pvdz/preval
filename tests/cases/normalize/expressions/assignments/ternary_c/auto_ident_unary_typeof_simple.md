@@ -55,8 +55,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  a = 'number';
-  tmpCalleeParam = 'number';
+  a = `number`;
+  tmpCalleeParam = `number`;
 }
 $(tmpCalleeParam);
 $(a, 1);

@@ -31,7 +31,7 @@ let f = function () {
     debugger;
     if ($) $(x);
   };
-  const x = $('x');
+  const x = $(`x`);
   if ($) g();
 };
 if ($) f();
@@ -51,7 +51,7 @@ let f = function () {
       return undefined;
     }
   };
-  const x = $('x');
+  const x = $(`x`);
   if ($) {
     g();
     return undefined;
@@ -69,7 +69,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $('x');
+  const x = $(`x`);
   if ($) {
     $(x);
   } else {

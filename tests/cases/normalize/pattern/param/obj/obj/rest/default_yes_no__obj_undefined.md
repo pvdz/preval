@@ -23,7 +23,7 @@ $(f({ x: undefined, b: 11, c: 12 }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: { ...y } = $({ a: 'pass' }) } = tmpParamBare;
+  let { x: { ...y } = $({ a: `pass` }) } = tmpParamBare;
   return y;
 };
 $(f({ x: undefined, b: 11, c: 12 }, 10));
@@ -41,7 +41,7 @@ let f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = { a: 'pass' };
+    const tmpCalleeParam = { a: `pass` };
     objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -64,7 +64,7 @@ tmpCallCallee$3(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = { a: 'pass' };
+const tmpCalleeParam = { a: `pass` };
 const objPatternAfterDefault = $(tmpCalleeParam);
 const tmpCalleeParam$3 = [];
 const y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$3, undefined);

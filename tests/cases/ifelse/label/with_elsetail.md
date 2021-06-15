@@ -35,9 +35,9 @@ let f = function () {
       $(100);
       break foo;
     }
-    $('else');
+    $(`else`);
   }
-  $('after');
+  $(`after`);
 };
 f();
 `````
@@ -55,14 +55,14 @@ let f = function () {
       const tmpReturnArg = tmpAfterLabel();
       return tmpReturnArg;
     } else {
-      $('else');
+      $(`else`);
       const tmpReturnArg$1 = tmpAfterLabel();
       return tmpReturnArg$1;
     }
   };
   const tmpAfterLabel = function () {
     debugger;
-    $('after');
+    $(`after`);
     return undefined;
   };
   const tmpReturnArg$3 = tmpLabeledBlockFunc();
@@ -77,10 +77,10 @@ f();
 const tmpIfTest$1 = $(true);
 if (tmpIfTest$1) {
   $(100);
-  $('after');
+  $(`after`);
 } else {
-  $('else');
-  $('after');
+  $(`else`);
+  $(`after`);
 }
 `````
 

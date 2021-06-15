@@ -24,7 +24,7 @@ $(q);
 ## Pre Normal
 
 `````js filename=intro
-const x = $('pass');
+const x = $(`pass`);
 const f = function ($$0) {
   let y = $$0;
   debugger;
@@ -38,7 +38,7 @@ $(q);
 ## Normalized
 
 `````js filename=intro
-const x = $('pass');
+const x = $(`pass`);
 const f = function ($$0) {
   let y = $$0;
   debugger;
@@ -52,7 +52,7 @@ $(q);
 ## Output
 
 `````js filename=intro
-const x = $('pass');
+const x = $(`pass`);
 const f = function ($$0) {
   const y = $$0;
   debugger;

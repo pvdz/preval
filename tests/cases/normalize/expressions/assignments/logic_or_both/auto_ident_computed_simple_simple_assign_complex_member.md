@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-$((a = b['c'] = $(b)[$('d')]) || (a = b['c'] = $(b)[$('d')]));
+$((a = b[`c`] = $(b)[$(`d`)]) || (a = b[`c`] = $(b)[$(`d`)]));
 $(a, b);
 `````
 
@@ -34,7 +34,7 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.c = tmpNestedPropAssignRhs;
@@ -43,7 +43,7 @@ let tmpCalleeParam = a;
 if (tmpCalleeParam) {
 } else {
   const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $('d');
+  const tmpCompProp$1 = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
   b.c = varInitAssignLhsComputedRhs;
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
@@ -59,7 +59,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
 let tmpClusterSSA_a = tmpNestedAssignPropRhs;
@@ -67,7 +67,7 @@ let tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
 } else {
   const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $('d');
+  const tmpCompProp$1 = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
   b.c = varInitAssignLhsComputedRhs;
   tmpClusterSSA_a = varInitAssignLhsComputedRhs;

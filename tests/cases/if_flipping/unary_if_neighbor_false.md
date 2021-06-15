@@ -25,7 +25,7 @@ $(test);
 
 `````js filename=intro
 const a = $(false);
-const b = $('alt');
+const b = $(`alt`);
 let test = !a;
 if (test) {
   test = b;
@@ -38,7 +38,7 @@ $(test);
 
 `````js filename=intro
 const a = $(false);
-const b = $('alt');
+const b = $(`alt`);
 let test = !a;
 if (test) {
   test = b;
@@ -51,7 +51,7 @@ $(test);
 
 `````js filename=intro
 const a = $(false);
-const b = $('alt');
+const b = $(`alt`);
 let test = !a;
 if (a) {
 } else {

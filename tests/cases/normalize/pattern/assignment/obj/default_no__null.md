@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 ({} = null);
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -35,14 +35,14 @@ if (objPatternCrashTest) {
   objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 null.cannotDestructureThis;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

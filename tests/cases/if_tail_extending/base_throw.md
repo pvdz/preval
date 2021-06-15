@@ -31,7 +31,7 @@ let f = function () {
   while (x) {
     $(1);
     if ($) {
-      throw 'error';
+      throw `error`;
     }
     $(2);
   }
@@ -47,7 +47,7 @@ let f = function () {
   while (x) {
     $(1);
     if ($) {
-      throw 'error';
+      throw `error`;
     } else {
       $(2);
     }
@@ -63,7 +63,7 @@ f();
 while (x) {
   $(1);
   if ($) {
-    throw 'error';
+    throw `error`;
   } else {
     $(2);
   }

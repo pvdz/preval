@@ -33,9 +33,9 @@ let f = function () {
   debugger;
   stop: try {
     x = 1;
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     break stop;
   }
@@ -52,9 +52,9 @@ let f = function () {
   debugger;
   try {
     x = 1;
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     return undefined;
   }
@@ -72,9 +72,9 @@ const f = function () {
   debugger;
   try {
     x = 1;
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     return undefined;
   }

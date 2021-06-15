@@ -34,17 +34,17 @@ b = {
   set x($$0) {
     let n = $$0;
     debugger;
-    x = $(30, 'from set');
+    x = $(30, `from set`);
   },
   get x() {
     debugger;
-    return $(40, 'from get');
+    return $(40, `from get`);
   },
 };
 a = 2;
 b.x = x;
 x = $(20);
-$(x, a, b, 'final');
+$(x, a, b, `final`);
 `````
 
 ## Normalized
@@ -61,19 +61,19 @@ b = {
   set x($$0) {
     let n = $$0;
     debugger;
-    x = $(30, 'from set');
+    x = $(30, `from set`);
     return undefined;
   },
   get x() {
     debugger;
-    const tmpReturnArg = $(40, 'from get');
+    const tmpReturnArg = $(40, `from get`);
     return tmpReturnArg;
   },
 };
 a = 2;
 b.x = x;
 x = $(20);
-$(x, a, b, 'final');
+$(x, a, b, `final`);
 `````
 
 ## Output
@@ -83,18 +83,18 @@ let x = $(10);
 const b = {
   set x($$0) {
     debugger;
-    x = $(30, 'from set');
+    x = $(30, `from set`);
     return undefined;
   },
   get x() {
     debugger;
-    const tmpReturnArg = $(40, 'from get');
+    const tmpReturnArg = $(40, `from get`);
     return tmpReturnArg;
   },
 };
 b.x = x;
 x = $(20);
-$(x, 2, b, 'final');
+$(x, 2, b, `final`);
 `````
 
 ## Globals

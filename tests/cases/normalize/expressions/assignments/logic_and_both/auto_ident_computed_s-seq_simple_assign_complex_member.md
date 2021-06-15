@@ -26,7 +26,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-$((a = (1, 2, b)[$('c')] = $(b)[$('d')]) && (a = (1, 2, b)[$('c')] = $(b)[$('d')]));
+$((a = (1, 2, b)[$(`c`)] = $(b)[$(`d`)]) && (a = (1, 2, b)[$(`c`)] = $(b)[$(`d`)]));
 $(a, b);
 `````
 
@@ -37,9 +37,9 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpNestedAssignComMemberObj = b;
-const tmpNestedAssignComMemberProp = $('c');
+const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
@@ -47,9 +47,9 @@ a = tmpNestedPropAssignRhs;
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const varInitAssignLhsComputedObj = b;
-  const varInitAssignLhsComputedProp = $('c');
+  const varInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $('d');
+  const tmpCompProp$1 = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
@@ -64,18 +64,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const tmpNestedAssignComMemberProp = $('c');
+const tmpNestedAssignComMemberProp = $(`c`);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 let tmpClusterSSA_a = tmpNestedAssignPropRhs;
 let tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
-  const varInitAssignLhsComputedProp = $('c');
+  const varInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $('d');
+  const tmpCompProp$1 = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
   b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   tmpClusterSSA_a = varInitAssignLhsComputedRhs;

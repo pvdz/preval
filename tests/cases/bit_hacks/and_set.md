@@ -35,12 +35,12 @@ if (atest) {
   const b = x & 4;
   const btest = b === 4;
   if (btest) {
-    $('yes');
+    $(`yes`);
   } else {
-    $('no 2');
+    $(`no 2`);
   }
 } else {
-  $('no 1');
+  $(`no 1`);
 }
 `````
 
@@ -53,12 +53,12 @@ if (atest) {
   const b = x & 4;
   const btest = b === 4;
   if (btest) {
-    $('yes');
+    $(`yes`);
   } else {
-    $('no 2');
+    $(`no 2`);
   }
 } else {
-  $('no 1');
+  $(`no 1`);
 }
 `````
 
@@ -69,12 +69,12 @@ const a = x & 1;
 if (a) {
   const b = x & 4;
   if (b) {
-    $('yes');
+    $(`yes`);
   } else {
-    $('no 2');
+    $(`no 2`);
   }
 } else {
-  $('no 1');
+  $(`no 1`);
 }
 `````
 

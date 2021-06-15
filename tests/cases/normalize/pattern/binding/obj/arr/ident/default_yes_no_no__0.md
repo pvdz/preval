@@ -19,9 +19,9 @@ $('bad');
 
 `````js filename=intro
 const {
-  x: [y = 'fail'],
+  x: [y = `fail`],
 } = 0;
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -34,11 +34,11 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 let y = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = 'fail';
+  y = `fail`;
 } else {
   y = arrPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -47,7 +47,7 @@ $('bad');
 const objPatternNoDefault = (0).x;
 const arrPatternSplat = [...objPatternNoDefault];
 arrPatternSplat[0];
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

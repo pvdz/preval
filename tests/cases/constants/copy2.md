@@ -18,7 +18,7 @@ $(wow)
 ## Pre Normal
 
 `````js filename=intro
-const foo = 'five';
+const foo = `five`;
 const bar = foo;
 const wow = bar;
 $(wow);
@@ -27,7 +27,7 @@ $(wow);
 ## Normalized
 
 `````js filename=intro
-const foo = 'five';
+const foo = `five`;
 const bar = foo;
 const wow = bar;
 $(wow);
@@ -36,7 +36,7 @@ $(wow);
 ## Output
 
 `````js filename=intro
-$('five');
+$(`five`);
 `````
 
 ## Globals

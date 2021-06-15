@@ -25,7 +25,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-obj[b[$('c')]];
+obj[b[$(`c`)]];
 $(a, b);
 `````
 
@@ -37,7 +37,7 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
 const tmpCompObj$1 = b;
-const tmpCompProp$1 = $('c');
+const tmpCompProp$1 = $(`c`);
 const tmpCompProp = tmpCompObj$1[tmpCompProp$1];
 tmpCompObj[tmpCompProp];
 $(a, b);
@@ -49,7 +49,7 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const obj = {};
-const tmpCompProp$1 = $('c');
+const tmpCompProp$1 = $(`c`);
 const tmpCompProp = b[tmpCompProp$1];
 obj[tmpCompProp];
 $(a, b);

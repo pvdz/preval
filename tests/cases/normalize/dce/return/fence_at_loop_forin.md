@@ -34,15 +34,15 @@ $(f());
 let f = function () {
   debugger;
   while ($(true)) {
-    $('loop');
+    $(`loop`);
     for (let x in { a: 1, b: 2 }) {
-      $('loop', x);
-      return $(100, 'return');
-      $('fail');
+      $(`loop`, x);
+      return $(100, `return`);
+      $(`fail`);
     }
-    $('fail');
+    $(`fail`);
   }
-  $('after (not invoked but should not be eliminated)');
+  $(`after (not invoked but should not be eliminated)`);
 };
 $(f());
 `````
@@ -55,20 +55,20 @@ let f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      $('loop');
+      $(`loop`);
       const tmpForInDeclRhs = { a: 1, b: 2 };
       let x = undefined;
       for (x in tmpForInDeclRhs) {
-        $('loop', x);
-        const tmpReturnArg = $(100, 'return');
+        $(`loop`, x);
+        const tmpReturnArg = $(100, `return`);
         return tmpReturnArg;
       }
-      $('fail');
+      $(`fail`);
     } else {
       break;
     }
   }
-  $('after (not invoked but should not be eliminated)');
+  $(`after (not invoked but should not be eliminated)`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -84,20 +84,20 @@ const f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      $('loop');
+      $(`loop`);
       let x = undefined;
       const tmpForInDeclRhs = { a: 1, b: 2 };
       for (x in tmpForInDeclRhs) {
-        $('loop', x);
-        const tmpReturnArg = $(100, 'return');
+        $(`loop`, x);
+        const tmpReturnArg = $(100, `return`);
         return tmpReturnArg;
       }
-      $('fail');
+      $(`fail`);
     } else {
       break;
     }
   }
-  $('after (not invoked but should not be eliminated)');
+  $(`after (not invoked but should not be eliminated)`);
   return undefined;
 };
 const tmpCalleeParam = f();

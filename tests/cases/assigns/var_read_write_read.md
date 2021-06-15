@@ -23,9 +23,9 @@ $(x, 'b');
 `````js filename=intro
 let x = undefined;
 $(1);
-$(x, 'a');
+$(x, `a`);
 x = $(2);
-$(x, 'b');
+$(x, `b`);
 `````
 
 ## Normalized
@@ -33,18 +33,18 @@ $(x, 'b');
 `````js filename=intro
 let x = undefined;
 $(1);
-$(x, 'a');
+$(x, `a`);
 x = $(2);
-$(x, 'b');
+$(x, `b`);
 `````
 
 ## Output
 
 `````js filename=intro
 $(1);
-$(undefined, 'a');
+$(undefined, `a`);
 const x = $(2);
-$(x, 'b');
+$(x, `b`);
 `````
 
 ## Globals

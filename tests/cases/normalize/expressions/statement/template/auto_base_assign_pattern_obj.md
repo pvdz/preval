@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-$('before  ' + ({ b: b } = $({ b: $(2) })) + '  after');
+$(`before  ` + ({ b: b } = $({ b: $(2) })) + `  after`);
 $(a, b);
 `````
 
@@ -33,7 +33,7 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpBinBothLhs = 'before  ';
+const tmpBinBothLhs = `before  `;
 let tmpBinBothRhs = undefined;
 const tmpCallCallee$1 = $;
 const tmpObjLitVal = $(2);
@@ -42,7 +42,7 @@ const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
 b = tmpNestedAssignObjPatternRhs.b;
 tmpBinBothRhs = tmpNestedAssignObjPatternRhs;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
 `````
@@ -55,8 +55,8 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-const tmpBinLhs = 'before  ' + tmpNestedAssignObjPatternRhs;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpBinLhs = `before  ` + tmpNestedAssignObjPatternRhs;
+const tmpCalleeParam = tmpBinLhs + `  after`;
 $(tmpCalleeParam);
 $(a, tmpClusterSSA_b);
 `````

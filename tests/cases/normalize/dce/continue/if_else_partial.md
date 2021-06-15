@@ -27,11 +27,11 @@ $('after, wont eval due to infinite loop');
 while ($(true)) {
   if ($(1)) {
     continue;
-    $('fail');
+    $(`fail`);
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Normalized
@@ -44,13 +44,13 @@ while (true) {
     if (tmpIfTest$1) {
       continue;
     } else {
-      $('keep, do not eval');
+      $(`keep, do not eval`);
     }
   } else {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Output
@@ -63,13 +63,13 @@ while (true) {
     if (tmpIfTest$1) {
       continue;
     } else {
-      $('keep, do not eval');
+      $(`keep, do not eval`);
     }
   } else {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Globals

@@ -59,7 +59,7 @@ for (lhs in rhs) {
 ## Output
 
 `````js filename=intro
-throw 'Preval: Cannot access `firstElement` before initialization';
+throw `Preval: Cannot access \`firstElement\` before initialization`;
 `````
 
 ## Globals

@@ -22,7 +22,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  'foo'.length;
+  `foo`.length;
 };
 $(f());
 `````

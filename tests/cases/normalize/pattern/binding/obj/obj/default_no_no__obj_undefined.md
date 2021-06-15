@@ -21,7 +21,7 @@ $('bad');
 const {
   x: {},
 } = { x: undefined, b: 11, c: 12 };
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -38,14 +38,14 @@ if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 undefined.cannotDestructureThis;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

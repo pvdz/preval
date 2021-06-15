@@ -18,36 +18,36 @@ $('ok');
 ## Pre Normal
 
 `````js filename=intro
-const [[] = $(['pass2'])] = '';
-$('ok');
+const [[] = $([`pass2`])] = ``;
+$(`ok`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = '';
+const bindingPatternArrRoot = ``;
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = ['pass2'];
+  const tmpCalleeParam = [`pass2`];
   arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
 const arrPatternSplat$1 = [...arrPatternStep];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['pass2'];
+const tmpCalleeParam = [`pass2`];
 const arrPatternStep = $(tmpCalleeParam);
 [...arrPatternStep];
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

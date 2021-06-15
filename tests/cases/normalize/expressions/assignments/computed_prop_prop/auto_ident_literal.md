@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-obj[(a = 'foo')];
+obj[(a = `foo`)];
 $(a);
 `````
 
@@ -32,7 +32,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-a = 'foo';
+a = `foo`;
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
@@ -43,7 +43,7 @@ $(a);
 `````js filename=intro
 const tmpObjectPrototype = Object.prototype;
 tmpObjectPrototype.foo;
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

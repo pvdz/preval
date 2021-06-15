@@ -19,20 +19,20 @@ $(y);
 
 `````js filename=intro
 ({
-  x: { y: y = $('pass') },
-} = { x: 'abc', b: 11, c: 12 });
+  x: { y: y = $(`pass`) },
+} = { x: `abc`, b: 11, c: 12 });
 $(y);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { x: 'abc', b: 11, c: 12 };
+const tmpAssignObjPatternRhs = { x: `abc`, b: 11, c: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = $('pass');
+  y = $(`pass`);
 } else {
   y = objPatternBeforeDefault;
 }
@@ -42,10 +42,10 @@ $(y);
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = 'abc'.y;
+const objPatternBeforeDefault = `abc`.y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = $('pass');
+  y = $(`pass`);
 } else {
   y = objPatternBeforeDefault;
 }

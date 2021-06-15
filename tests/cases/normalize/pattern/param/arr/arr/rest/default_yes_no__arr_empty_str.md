@@ -23,10 +23,10 @@ $(f(['', 4, 5], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [[...x] = $('fail')] = tmpParamBare;
+  let [[...x] = $(`fail`)] = tmpParamBare;
   return x;
 };
-$(f(['', 4, 5], 200));
+$(f([``, 4, 5], 200));
 `````
 
 ## Normalized
@@ -41,7 +41,7 @@ let f = function ($$0) {
   let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    arrPatternStep = $('fail');
+    arrPatternStep = $(`fail`);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
@@ -51,7 +51,7 @@ let f = function ($$0) {
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
-const tmpCalleeParam$1 = ['', 4, 5];
+const tmpCalleeParam$1 = [``, 4, 5];
 const tmpCalleeParam$3 = 200;
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);

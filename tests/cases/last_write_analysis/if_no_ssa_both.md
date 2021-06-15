@@ -25,12 +25,12 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
 if ($) {
-  x = $('b');
+  x = $(`b`);
 } else {
-  x = $('c');
+  x = $(`c`);
 }
 $(x);
 `````
@@ -38,12 +38,12 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
 if ($) {
-  x = $('b');
+  x = $(`b`);
 } else {
-  x = $('c');
+  x = $(`c`);
 }
 $(x);
 `````
@@ -51,12 +51,12 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
 if ($) {
-  x = $('b');
+  x = $(`b`);
 } else {
-  x = $('c');
+  x = $(`c`);
 }
 $(x);
 `````

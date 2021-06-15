@@ -28,11 +28,11 @@ $('after');
 
 `````js filename=intro
 while ($(true)) {
-  if ($(false)) x = $('fail too');
+  if ($(false)) x = $(`fail too`);
   break;
-  let x = $('fail');
+  let x = $(`fail`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -43,16 +43,16 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
-      x = $('fail too');
+      x = $(`fail too`);
     } else {
     }
     break;
-    let x = $('fail');
+    let x = $(`fail`);
   } else {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -63,7 +63,7 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
-      throw 'Preval: Cannot access `x` before initialization';
+      throw `Preval: Cannot access \`x\` before initialization`;
     } else {
       break;
     }
@@ -71,7 +71,7 @@ while (true) {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

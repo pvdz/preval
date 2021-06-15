@@ -27,7 +27,7 @@ let x = class {
   y($$0) {
     const tmpParamBare = $$0;
     debugger;
-    let arg = tmpParamBare === undefined ? $(10, 'default') : tmpParamBare;
+    let arg = tmpParamBare === undefined ? $(10, `default`) : tmpParamBare;
     return arg;
   }
 };
@@ -44,7 +44,7 @@ let x = class {
     let arg = undefined;
     const tmpIfTest = tmpParamBare === undefined;
     if (tmpIfTest) {
-      arg = $(10, 'default');
+      arg = $(10, `default`);
       return arg;
     } else {
       arg = tmpParamBare;
@@ -67,7 +67,7 @@ const x = class {
     debugger;
     const tmpIfTest = tmpParamBare === undefined;
     if (tmpIfTest) {
-      const tmpClusterSSA_arg = $(10, 'default');
+      const tmpClusterSSA_arg = $(10, `default`);
       return tmpClusterSSA_arg;
     } else {
       return tmpParamBare;

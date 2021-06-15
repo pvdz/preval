@@ -75,9 +75,9 @@ const f = function () {
     let ssax = $({
       toString() {
         debugger;
-        $('tostring');
+        $(`tostring`);
         x = 20;
-        return 'hi';
+        return `hi`;
       },
     });
     x = ssax + 1;
@@ -114,9 +114,9 @@ const f = function () {
     const tmpCalleeParam = {
       toString() {
         debugger;
-        $('tostring');
+        $(`tostring`);
         x = 20;
-        return 'hi';
+        return `hi`;
       },
     };
     let ssax = tmpCallCallee(tmpCalleeParam);
@@ -142,9 +142,9 @@ if ($) {
   const tmpCalleeParam = {
     toString() {
       debugger;
-      $('tostring');
+      $(`tostring`);
       x = 20;
-      return 'hi';
+      return `hi`;
     },
   };
   const ssax = $(tmpCalleeParam);

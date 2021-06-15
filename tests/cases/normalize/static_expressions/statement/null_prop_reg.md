@@ -19,7 +19,7 @@ $('fail, DCE me');
 
 `````js filename=intro
 $(null.foo);
-$('fail, DCE me');
+$(`fail, DCE me`);
 `````
 
 ## Normalized
@@ -27,14 +27,14 @@ $('fail, DCE me');
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpCalleeParam = null.foo;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Output
 
 `````js filename=intro
 null.foo;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

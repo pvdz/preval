@@ -24,7 +24,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
-  while ((a = delete $(arg)['y'])) {
+  while ((a = delete $(arg)[`y`])) {
     $(1);
   }
 }

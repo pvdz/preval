@@ -18,14 +18,14 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-[[...x]] = ['abc', 4, 5];
+[[...x]] = [`abc`, 4, 5];
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const arrAssignPatternRhs = ['abc', 4, 5];
+const arrAssignPatternRhs = [`abc`, 4, 5];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
@@ -36,7 +36,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const arrPatternSplat$1 = ['a', 'b', 'c'];
+const arrPatternSplat$1 = [`a`, `b`, `c`];
 x = arrPatternSplat$1.slice(0);
 $(x);
 `````

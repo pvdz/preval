@@ -26,9 +26,9 @@ if (x) {
 const a = $(true);
 const x = a === true;
 if (x) {
-  $(x, 'pass');
+  $(x, `pass`);
 } else {
-  $(x, 'false');
+  $(x, `false`);
 }
 `````
 
@@ -38,9 +38,9 @@ if (x) {
 const a = $(true);
 const x = a === true;
 if (x) {
-  $(x, 'pass');
+  $(x, `pass`);
 } else {
-  $(x, 'false');
+  $(x, `false`);
 }
 `````
 
@@ -50,9 +50,9 @@ if (x) {
 const a = $(true);
 const x = a === true;
 if (x) {
-  $(true, 'pass');
+  $(true, `pass`);
 } else {
-  $(false, 'false');
+  $(false, `false`);
 }
 `````
 

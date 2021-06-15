@@ -37,20 +37,20 @@ $(
   new Map(
     [
       ...new Map([
-        ['clearInterval', 'global.clearInterval'],
-        ['clearTimeout', 'global.clearTimeout'],
-        ['console', 'global.console'],
-        ['false', 'boolean'],
-        ['null', 'null'],
-        ['$', '$'],
+        [`clearInterval`, `global.clearInterval`],
+        [`clearTimeout`, `global.clearTimeout`],
+        [`console`, `global.console`],
+        [`false`, `boolean`],
+        [`null`, `null`],
+        [`$`, `$`],
       ]).keys(),
-      'module',
+      `module`,
     ].map(($$0) => {
       let k = $$0;
       debugger;
       return [k, k];
     }),
-  ).get('$'),
+  ).get(`$`),
 );
 `````
 
@@ -60,16 +60,16 @@ $(
 const tmpCallCallee = $;
 const tmpNewCallee = Map;
 const tmpNewCallee$1 = Map;
-const tmpArrElement = ['clearInterval', 'global.clearInterval'];
-const tmpArrElement$1 = ['clearTimeout', 'global.clearTimeout'];
-const tmpArrElement$3 = ['console', 'global.console'];
-const tmpArrElement$5 = ['false', 'boolean'];
-const tmpArrElement$7 = ['null', 'null'];
-const tmpArrElement$9 = ['$', '$'];
+const tmpArrElement = [`clearInterval`, `global.clearInterval`];
+const tmpArrElement$1 = [`clearTimeout`, `global.clearTimeout`];
+const tmpArrElement$3 = [`console`, `global.console`];
+const tmpArrElement$5 = [`false`, `boolean`];
+const tmpArrElement$7 = [`null`, `null`];
+const tmpArrElement$9 = [`$`, `$`];
 const tmpCalleeParam$5 = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
 const tmpCallObj$3 = new tmpNewCallee$1(tmpCalleeParam$5);
 const tmpArrSpread = tmpCallObj$3.keys();
-const tmpCallObj$1 = [...tmpArrSpread, 'module'];
+const tmpCallObj$1 = [...tmpArrSpread, `module`];
 const tmpCallVal = tmpCallObj$1.map;
 const tmpCalleeParam$3 = function ($$0) {
   let k = $$0;
@@ -79,23 +79,23 @@ const tmpCalleeParam$3 = function ($$0) {
 };
 const tmpCalleeParam$1 = $dotCall(tmpCallVal, tmpCallObj$1, tmpCalleeParam$3);
 const tmpCallObj = new tmpNewCallee(tmpCalleeParam$1);
-const tmpCalleeParam = tmpCallObj.get('$');
+const tmpCalleeParam = tmpCallObj.get(`$`);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpArrElement = ['clearInterval', 'global.clearInterval'];
-const tmpArrElement$1 = ['clearTimeout', 'global.clearTimeout'];
-const tmpArrElement$3 = ['console', 'global.console'];
-const tmpArrElement$5 = ['false', 'boolean'];
-const tmpArrElement$7 = ['null', 'null'];
-const tmpArrElement$9 = ['$', '$'];
+const tmpArrElement = [`clearInterval`, `global.clearInterval`];
+const tmpArrElement$1 = [`clearTimeout`, `global.clearTimeout`];
+const tmpArrElement$3 = [`console`, `global.console`];
+const tmpArrElement$5 = [`false`, `boolean`];
+const tmpArrElement$7 = [`null`, `null`];
+const tmpArrElement$9 = [`$`, `$`];
 const tmpCalleeParam$5 = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
 const tmpCallObj$3 = new Map(tmpCalleeParam$5);
 const tmpArrSpread = tmpCallObj$3.keys();
-const tmpCallObj$1 = [...tmpArrSpread, 'module'];
+const tmpCallObj$1 = [...tmpArrSpread, `module`];
 const tmpCallVal = tmpCallObj$1.map;
 const tmpCalleeParam$3 = function ($$0) {
   const k = $$0;
@@ -105,7 +105,7 @@ const tmpCalleeParam$3 = function ($$0) {
 };
 const tmpCalleeParam$1 = $dotCall(tmpCallVal, tmpCallObj$1, tmpCalleeParam$3);
 const tmpCallObj = new Map(tmpCalleeParam$1);
-const tmpCalleeParam = tmpCallObj.get('$');
+const tmpCalleeParam = tmpCallObj.get(`$`);
 $(tmpCalleeParam);
 `````
 

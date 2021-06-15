@@ -25,9 +25,9 @@ while ($(true)) {
 `````js filename=intro
 let x = $(10);
 while ($(true)) {
-  x = $(20, 'set');
+  x = $(20, `set`);
   while ($(true)) {
-    $(x, 'loop');
+    $(x, `loop`);
   }
 }
 `````
@@ -39,11 +39,11 @@ let x = $(10);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    x = $(20, 'set');
+    x = $(20, `set`);
     while (true) {
       const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
-        $(x, 'loop');
+        $(x, `loop`);
       } else {
         break;
       }
@@ -61,11 +61,11 @@ let x = $(10);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    x = $(20, 'set');
+    x = $(20, `set`);
     while (true) {
       const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
-        $(x, 'loop');
+        $(x, `loop`);
       } else {
         break;
       }

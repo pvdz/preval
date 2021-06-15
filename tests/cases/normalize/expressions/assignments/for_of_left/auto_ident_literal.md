@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-for ((a = 'foo').x of $({ x: 1 }));
+for ((a = `foo`).x of $({ x: 1 }));
 $(a);
 `````
 
@@ -33,7 +33,7 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  a = 'foo';
+  a = `foo`;
   let tmpAssignMemLhsObj = a;
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
@@ -48,8 +48,8 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  a = 'foo';
-  'foo'.x = tmpForOfLhsNode;
+  a = `foo`;
+  `foo`.x = tmpForOfLhsNode;
 }
 $(a);
 `````

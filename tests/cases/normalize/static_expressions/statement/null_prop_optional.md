@@ -19,7 +19,7 @@ $('okay, do not DCE');
 
 `````js filename=intro
 $(null?.foo);
-$('okay, do not DCE');
+$(`okay, do not DCE`);
 `````
 
 ## Normalized
@@ -35,14 +35,14 @@ if (tmpIfTest) {
 } else {
 }
 tmpCallCallee(tmpCalleeParam);
-$('okay, do not DCE');
+$(`okay, do not DCE`);
 `````
 
 ## Output
 
 `````js filename=intro
 $(undefined);
-$('okay, do not DCE');
+$(`okay, do not DCE`);
 `````
 
 ## Globals

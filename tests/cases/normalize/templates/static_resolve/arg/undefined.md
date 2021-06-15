@@ -17,22 +17,22 @@ $(`${undefined}`);
 ## Pre Normal
 
 `````js filename=intro
-$('' + undefined + '');
+$(`` + undefined + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = 'undefined';
-const tmpCalleeParam = tmpBinLhs + '';
+const tmpBinLhs = `undefined`;
+const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('undefined');
+$(`undefined`);
 `````
 
 ## Globals

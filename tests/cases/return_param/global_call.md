@@ -31,15 +31,15 @@ f('three');
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  const bad = $('please');
+  $(`no`);
+  $(`inlining`);
+  const bad = $(`please`);
   const y = x | bad;
   return y;
 };
 $(f(1));
 $(f(2));
-f('three');
+f(`three`);
 `````
 
 ## Normalized
@@ -48,9 +48,9 @@ f('three');
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  const bad = $('please');
+  $(`no`);
+  $(`inlining`);
+  const bad = $(`please`);
   const y = x | bad;
   return y;
 };
@@ -60,7 +60,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(2);
 tmpCallCallee$1(tmpCalleeParam$1);
-f('three');
+f(`three`);
 `````
 
 ## Output
@@ -69,9 +69,9 @@ f('three');
 const f = function ($$0) {
   const x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  const bad = $('please');
+  $(`no`);
+  $(`inlining`);
+  const bad = $(`please`);
   const y = x | bad;
   return y;
 };
@@ -79,7 +79,7 @@ const tmpCalleeParam = f(1);
 $(tmpCalleeParam);
 const tmpCalleeParam$1 = f(2);
 $(tmpCalleeParam$1);
-f('three');
+f(`three`);
 `````
 
 ## Globals

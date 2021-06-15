@@ -26,7 +26,7 @@ let f = function ($$0) {
   let [...x] = tmpParamBare;
   return x;
 };
-$(f('', 200));
+$(f(``, 200));
 `````
 
 ## Normalized
@@ -41,7 +41,7 @@ let f = function ($$0) {
   return x;
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('', 200);
+const tmpCalleeParam = f(``, 200);
 tmpCallCallee(tmpCalleeParam);
 `````
 

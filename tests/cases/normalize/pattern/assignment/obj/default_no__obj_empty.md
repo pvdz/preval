@@ -19,7 +19,7 @@ $('ok');
 
 `````js filename=intro
 ({} = {});
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -35,13 +35,13 @@ if (objPatternCrashTest) {
   objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

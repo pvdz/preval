@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-$('before  ' + typeof x + '  after');
+$(`before  ` + typeof x + `  after`);
 $(a, x);
 `````
 
@@ -33,10 +33,10 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpBinBothLhs = 'before  ';
+const tmpBinBothLhs = `before  `;
 const tmpBinBothRhs = typeof x;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a, x);
 `````
@@ -44,7 +44,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-$('before  number  after');
+$(`before  number  after`);
 const a = { a: 999, b: 1000 };
 $(a, 1);
 `````

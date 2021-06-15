@@ -23,8 +23,8 @@ $(f({ x: [null], a: 11, b: 12 }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: [] = $(['fail']) } = tmpParamBare;
-  return 'ok';
+  let { x: [] = $([`fail`]) } = tmpParamBare;
+  return `ok`;
 };
 $(f({ x: [null], a: 11, b: 12 }, 10));
 `````
@@ -41,13 +41,13 @@ let f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = ['fail'];
+    const tmpCalleeParam = [`fail`];
     objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let arrPatternSplat = [...objPatternAfterDefault];
-  return 'ok';
+  return `ok`;
 };
 const tmpCallCallee$1 = $;
 const tmpCallCallee$3 = f;
@@ -61,7 +61,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

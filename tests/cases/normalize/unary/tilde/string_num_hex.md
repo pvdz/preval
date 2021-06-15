@@ -17,7 +17,7 @@ $(~"0x0a05");
 ## Pre Normal
 
 `````js filename=intro
-$(~'0x0a05');
+$(~`0x0a05`);
 `````
 
 ## Normalized

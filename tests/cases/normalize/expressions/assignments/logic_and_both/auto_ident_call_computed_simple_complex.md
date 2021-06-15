@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$((a = b[$('$')](1)) && (a = b[$('$')](1)));
+$((a = b[$(`$`)](1)) && (a = b[$(`$`)](1)));
 $(a);
 `````
 
@@ -34,12 +34,12 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCallCompObj = b;
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpCallCompObj$1 = b;
-  const tmpCallCompProp$1 = $('$');
+  const tmpCallCompProp$1 = $(`$`);
   const tmpNestedComplexRhs = tmpCallCompObj$1[tmpCallCompProp$1](1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -52,12 +52,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const b = { $: $ };
 let a = b[tmpCallCompProp](1);
 let tmpCalleeParam = a;
 if (a) {
-  const tmpCallCompProp$1 = $('$');
+  const tmpCallCompProp$1 = $(`$`);
   const tmpNestedComplexRhs = b[tmpCallCompProp$1](1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

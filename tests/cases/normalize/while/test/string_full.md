@@ -20,28 +20,28 @@ $('after');
 ## Pre Normal
 
 `````js filename=intro
-while ('full') {
-  $('loop');
+while (`full`) {
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 while (true) {
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
 
 `````js filename=intro
 while (true) {
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

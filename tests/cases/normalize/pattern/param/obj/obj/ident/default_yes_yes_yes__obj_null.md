@@ -23,8 +23,8 @@ $(f({ x: null, b: 11, c: 12 }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: { y: y = $('fail') } = $({ y: 'fail2' }) } = tmpParamBare === undefined ? $({ x: { y: 'fail3' } }) : tmpParamBare;
-  return 'bad';
+  let { x: { y: y = $(`fail`) } = $({ y: `fail2` }) } = tmpParamBare === undefined ? $({ x: { y: `fail3` } }) : tmpParamBare;
+  return `bad`;
 };
 $(f({ x: null, b: 11, c: 12 }, 10));
 `````
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpObjLitVal = { y: 'fail3' };
+    const tmpObjLitVal = { y: `fail3` };
     const tmpCalleeParam = { x: tmpObjLitVal };
     bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
@@ -50,7 +50,7 @@ let f = function ($$0) {
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = { y: 'fail2' };
+    const tmpCalleeParam$1 = { y: `fail2` };
     objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -59,11 +59,11 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest$3 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$3) {
-    y = $('fail');
-    return 'bad';
+    y = $(`fail`);
+    return `bad`;
   } else {
     y = objPatternBeforeDefault$1;
-    return 'bad';
+    return `bad`;
   }
 };
 const tmpCallCallee$3 = $;
@@ -78,7 +78,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 null.y;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

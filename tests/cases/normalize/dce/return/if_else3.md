@@ -28,7 +28,7 @@ let f = function () {
   debugger;
   if ($(1)) {
     return 2;
-    $('fail');
+    $(`fail`);
   }
   return 3;
 };

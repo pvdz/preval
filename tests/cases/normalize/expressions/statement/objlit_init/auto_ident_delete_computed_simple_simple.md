@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-({ x: delete arg['y'] });
+({ x: delete arg[`y`] });
 $(a, arg);
 `````
 

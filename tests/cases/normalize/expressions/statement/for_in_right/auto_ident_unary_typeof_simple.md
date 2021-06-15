@@ -43,7 +43,7 @@ $(a, arg);
 
 `````js filename=intro
 let x = undefined;
-for (x in 'number') {
+for (x in `number`) {
 }
 const a = { a: 999, b: 1000 };
 $(a, 1);

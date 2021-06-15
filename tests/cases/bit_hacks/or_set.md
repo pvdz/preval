@@ -36,9 +36,9 @@ if (test) {
   test = b === 4;
 }
 if (test) {
-  $('yes');
+  $(`yes`);
 } else {
-  $('no 2');
+  $(`no 2`);
 }
 `````
 
@@ -53,9 +53,9 @@ if (test) {
   test = b === 4;
 }
 if (test) {
-  $('yes');
+  $(`yes`);
 } else {
-  $('no 2');
+  $(`no 2`);
 }
 `````
 
@@ -70,9 +70,9 @@ if (test) {
   test = b === 4;
 }
 if (test) {
-  $('yes');
+  $(`yes`);
 } else {
-  $('no 2');
+  $(`no 2`);
 }
 `````
 

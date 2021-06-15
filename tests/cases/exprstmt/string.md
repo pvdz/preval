@@ -15,7 +15,7 @@
 ## Pre Normal
 
 `````js filename=intro
-'foo';
+`foo`;
 `````
 
 ## Normalized

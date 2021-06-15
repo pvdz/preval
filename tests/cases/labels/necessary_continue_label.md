@@ -27,13 +27,13 @@ dropme: {
   let tmpDoWhileFlag$1 = true;
   foo: while (tmpDoWhileFlag$1 || $(false)) {
     tmpDoWhileFlag$1 = false;
-    $(1, 'outer');
+    $(1, `outer`);
     {
       let tmpDoWhileFlag = true;
       while (tmpDoWhileFlag || $(false)) {
         tmpDoWhileFlag = false;
         {
-          $(1, 'inner');
+          $(1, `inner`);
           continue foo;
         }
       }
@@ -54,7 +54,7 @@ foo: while (true) {
   }
   if (tmpIfTest) {
     tmpDoWhileFlag$1 = false;
-    $(1, 'outer');
+    $(1, `outer`);
     let tmpDoWhileFlag = true;
     while (true) {
       let tmpIfTest$1 = tmpDoWhileFlag;
@@ -64,7 +64,7 @@ foo: while (true) {
       }
       if (tmpIfTest$1) {
         tmpDoWhileFlag = false;
-        $(1, 'inner');
+        $(1, `inner`);
         continue foo;
       } else {
         break;
@@ -88,7 +88,7 @@ foo: while (true) {
   }
   if (tmpIfTest) {
     tmpDoWhileFlag$1 = false;
-    $(1, 'outer');
+    $(1, `outer`);
     let tmpDoWhileFlag = true;
     while (true) {
       let tmpIfTest$1 = tmpDoWhileFlag;
@@ -98,7 +98,7 @@ foo: while (true) {
       }
       if (tmpIfTest$1) {
         tmpDoWhileFlag = false;
-        $(1, 'inner');
+        $(1, `inner`);
         continue foo;
       } else {
         break;

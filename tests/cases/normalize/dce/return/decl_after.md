@@ -29,9 +29,9 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  if ($(false)) x = $('fail too');
+  if ($(false)) x = $(`fail too`);
   return;
-  let x = $('fail');
+  let x = $(`fail`);
 };
 $(f());
 `````
@@ -43,11 +43,11 @@ let f = function () {
   debugger;
   const tmpIfTest = $(false);
   if (tmpIfTest) {
-    x = $('fail too');
+    x = $(`fail too`);
     return undefined;
   } else {
     return undefined;
-    let x = $('fail');
+    let x = $(`fail`);
     return undefined;
   }
 };
@@ -61,7 +61,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpIfTest = $(false);
 if (tmpIfTest) {
-  $('fail too');
+  $(`fail too`);
 } else {
 }
 $(undefined);

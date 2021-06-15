@@ -23,36 +23,36 @@ $(x, 'final');
 
 `````js filename=intro
 let x = undefined;
-x = $(1, 'before');
-if ($(2, 'if')) {
-  x = $(3, 'then');
+x = $(1, `before`);
+if ($(2, `if`)) {
+  x = $(3, `then`);
 }
-$(x, 'final');
+$(x, `final`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 let x = undefined;
-x = $(1, 'before');
-const tmpIfTest = $(2, 'if');
+x = $(1, `before`);
+const tmpIfTest = $(2, `if`);
 if (tmpIfTest) {
-  x = $(3, 'then');
+  x = $(3, `then`);
 } else {
 }
-$(x, 'final');
+$(x, `final`);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = $(1, 'before');
-const tmpIfTest = $(2, 'if');
+let x = $(1, `before`);
+const tmpIfTest = $(2, `if`);
 if (tmpIfTest) {
-  x = $(3, 'then');
+  x = $(3, `then`);
 } else {
 }
-$(x, 'final');
+$(x, `final`);
 `````
 
 ## Globals

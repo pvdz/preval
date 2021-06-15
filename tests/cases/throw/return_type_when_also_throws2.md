@@ -34,12 +34,12 @@ $(_THROW())
 `````js filename=intro
 const _THROW = function () {
   debugger;
-  $('do');
-  $('not');
-  $('inline');
-  $('please');
+  $(`do`);
+  $(`not`);
+  $(`inline`);
+  $(`please`);
   if ($) return;
-  throw new Error('always throws');
+  throw new Error(`always throws`);
 };
 $(_THROW());
 $(_THROW());
@@ -52,14 +52,14 @@ $(_THROW());
 `````js filename=intro
 const _THROW = function () {
   debugger;
-  $('do');
-  $('not');
-  $('inline');
-  $('please');
+  $(`do`);
+  $(`not`);
+  $(`inline`);
+  $(`please`);
   if ($) {
     return undefined;
   } else {
-    const tmpThrowArg = new Error('always throws');
+    const tmpThrowArg = new Error(`always throws`);
     throw tmpThrowArg;
   }
 };
@@ -82,14 +82,14 @@ tmpCallCallee$5(tmpCalleeParam$5);
 `````js filename=intro
 const _THROW = function () {
   debugger;
-  $('do');
-  $('not');
-  $('inline');
-  $('please');
+  $(`do`);
+  $(`not`);
+  $(`inline`);
+  $(`please`);
   if ($) {
     return undefined;
   } else {
-    const tmpThrowArg = new Error('always throws');
+    const tmpThrowArg = new Error(`always throws`);
     throw tmpThrowArg;
   }
 };

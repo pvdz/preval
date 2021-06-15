@@ -44,14 +44,14 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       (b = { x: 1 }), (c = { y: 2 }), (d = 3), (e = 4);
-      a = $(b)[$('x')] = $(c)[$('y')] = d + e;
+      a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e;
       $(a, b, c, d, e);
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -84,9 +84,9 @@ if (tmpIfTest$3) {
   d = 3;
   e = 4;
   const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('x');
+  const tmpNestedAssignComMemberProp = $(`x`);
   const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $('y');
+  const varInitAssignLhsComputedProp = $(`y`);
   const varInitAssignLhsComputedRhs = d + e;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
@@ -98,12 +98,12 @@ if (tmpIfTest$3) {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 `````
@@ -114,14 +114,14 @@ if (tmpIfTest$7) {
 const tmpClusterSSA_b = { x: 1 };
 const tmpClusterSSA_c = { y: 2 };
 const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(tmpClusterSSA_c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 $(7, tmpClusterSSA_b, tmpClusterSSA_c, 3, 4);
-$('fail1');
-$('fail2');
+$(`fail1`);
+$(`fail2`);
 `````
 
 ## Globals

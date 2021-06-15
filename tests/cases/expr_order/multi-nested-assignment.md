@@ -35,35 +35,35 @@ let e = undefined;
 let obj = {
   get c() {
     debugger;
-    $('get');
+    $(`get`);
   },
   set c($$0) {
     let x = $$0;
     debugger;
-    $('set');
+    $(`set`);
   },
 };
 a = function () {
   debugger;
-  $('a');
+  $(`a`);
   return obj;
 };
 b = function () {
   debugger;
-  $('b');
+  $(`b`);
   a = 21;
   return obj;
 };
 c = function () {
   debugger;
-  $('c');
+  $(`c`);
   a = 31;
   b = 32;
   return obj;
 };
 d = function () {
   debugger;
-  $('d');
+  $(`d`);
   a = 41;
   b = 42;
   c = 43;
@@ -71,7 +71,7 @@ d = function () {
 };
 e = function () {
   debugger;
-  $('e');
+  $(`e`);
   a = 51;
   b = 52;
   c = 53;
@@ -93,37 +93,37 @@ let e = undefined;
 let obj = {
   get c() {
     debugger;
-    $('get');
+    $(`get`);
     return undefined;
   },
   set c($$0) {
     let x = $$0;
     debugger;
-    $('set');
+    $(`set`);
     return undefined;
   },
 };
 a = function () {
   debugger;
-  $('a');
+  $(`a`);
   return obj;
 };
 b = function () {
   debugger;
-  $('b');
+  $(`b`);
   a = 21;
   return obj;
 };
 c = function () {
   debugger;
-  $('c');
+  $(`c`);
   a = 31;
   b = 32;
   return obj;
 };
 d = function () {
   debugger;
-  $('d');
+  $(`d`);
   a = 41;
   b = 42;
   c = 43;
@@ -131,7 +131,7 @@ d = function () {
 };
 e = function () {
   debugger;
-  $('e');
+  $(`e`);
   a = 51;
   b = 52;
   c = 53;
@@ -160,36 +160,36 @@ $(a, b, c, d, e);
 const obj = {
   get c() {
     debugger;
-    $('get');
+    $(`get`);
     return undefined;
   },
   set c($$0) {
     debugger;
-    $('set');
+    $(`set`);
     return undefined;
   },
 };
 let a = function () {
   debugger;
-  $('a');
+  $(`a`);
   return obj;
 };
 let b = function () {
   debugger;
-  $('b');
+  $(`b`);
   a = 21;
   return obj;
 };
 let c = function () {
   debugger;
-  $('c');
+  $(`c`);
   a = 31;
   b = 32;
   return obj;
 };
 let d = function () {
   debugger;
-  $('d');
+  $(`d`);
   a = 41;
   b = 42;
   c = 43;
@@ -197,7 +197,7 @@ let d = function () {
 };
 const e = function () {
   debugger;
-  $('e');
+  $(`e`);
   a = 51;
   b = 52;
   c = 53;

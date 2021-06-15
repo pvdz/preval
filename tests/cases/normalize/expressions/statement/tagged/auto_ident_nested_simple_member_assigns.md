@@ -25,7 +25,7 @@ $(a, b, c);
 let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
-$(['before ', ' after'], (b.x = b.x = b.x = b.x = b.x = b.x = c));
+$([`before `, ` after`], (b.x = b.x = b.x = b.x = b.x = b.x = c));
 $(a, b, c);
 `````
 
@@ -36,7 +36,7 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const varInitAssignLhsComputedRhs$9 = c;
 b.x = varInitAssignLhsComputedRhs$9;
 const varInitAssignLhsComputedRhs$7 = varInitAssignLhsComputedRhs$9;
@@ -59,7 +59,7 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 b.x = 3;
 b.x = 3;
 b.x = 3;

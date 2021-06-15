@@ -28,11 +28,11 @@ let f = function () {
   debugger;
   let a = function () {
     debugger;
-    $('a');
+    $(`a`);
   };
   let b = function () {
     debugger;
-    $('b');
+    $(`b`);
   };
   a();
   b();
@@ -48,12 +48,12 @@ let f = function () {
   debugger;
   let a = function () {
     debugger;
-    $('a');
+    $(`a`);
     return undefined;
   };
   let b = function () {
     debugger;
-    $('b');
+    $(`b`);
     return undefined;
   };
   a();
@@ -67,8 +67,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-$('a');
-$('b');
+$(`a`);
+$(`b`);
 $(undefined);
 `````
 

@@ -26,19 +26,19 @@ $('after, do not evaluate (infinite loop)');
 `````js filename=intro
 while ($(true)) {
   {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
-    if ($(1, 'case') === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+    if ($(1, `case`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
     else;
     tmpSwitchBreak: {
       if (tmpSwitchCaseToStart <= 0) {
         break tmpSwitchBreak;
-        $('fail');
+        $(`fail`);
       }
     }
   }
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Normalized
@@ -47,9 +47,9 @@ $('after, do not evaluate (infinite loop)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
-    const tmpBinLhs = $(1, 'case');
+    const tmpBinLhs = $(1, `case`);
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
@@ -66,7 +66,7 @@ while (true) {
     break;
   }
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Output
@@ -75,9 +75,9 @@ $('after, do not evaluate (infinite loop)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
-    const tmpBinLhs = $(1, 'case');
+    const tmpBinLhs = $(1, `case`);
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
@@ -94,7 +94,7 @@ while (true) {
     break;
   }
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Globals

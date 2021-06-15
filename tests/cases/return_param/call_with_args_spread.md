@@ -31,31 +31,31 @@ $(f(function(...args){ $('pass3', args); }));
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
-  const y = x(1, 'two', null, NaN);
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y = x(1, `two`, null, NaN);
   return y;
 };
 $(
   f(function (...$$0) {
     let args = $$0;
     debugger;
-    $('pass1', args);
+    $(`pass1`, args);
   }),
 );
 $(
   f(function (...$$0) {
     let args$1 = $$0;
     debugger;
-    $('pass2', args$1);
+    $(`pass2`, args$1);
   }),
 );
 $(
   f(function (...$$0) {
     let args$3 = $$0;
     debugger;
-    $('pass3', args$3);
+    $(`pass3`, args$3);
   }),
 );
 `````
@@ -66,10 +66,10 @@ $(
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
-  const y = x(1, 'two', null, NaN);
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y = x(1, `two`, null, NaN);
   return y;
 };
 const tmpCallCallee = $;
@@ -77,7 +77,7 @@ const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = function (...$$0) {
   let args = $$0;
   debugger;
-  $('pass1', args);
+  $(`pass1`, args);
   return undefined;
 };
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
@@ -87,7 +87,7 @@ const tmpCallCallee$5 = f;
 const tmpCalleeParam$5 = function (...$$0) {
   let args$1 = $$0;
   debugger;
-  $('pass2', args$1);
+  $(`pass2`, args$1);
   return undefined;
 };
 const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5);
@@ -97,7 +97,7 @@ const tmpCallCallee$9 = f;
 const tmpCalleeParam$9 = function (...$$0) {
   let args$3 = $$0;
   debugger;
-  $('pass3', args$3);
+  $(`pass3`, args$3);
   return undefined;
 };
 const tmpCalleeParam$7 = tmpCallCallee$9(tmpCalleeParam$9);
@@ -109,37 +109,37 @@ tmpCallCallee$7(tmpCalleeParam$7);
 `````js filename=intro
 const f = function () {
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   return undefined;
 };
 const tmpCalleeParam$1 = function (...$$0) {
   const args = $$0;
   debugger;
-  $('pass1', args);
+  $(`pass1`, args);
   return undefined;
 };
 f();
-tmpCalleeParam$1(1, 'two', null, NaN);
+tmpCalleeParam$1(1, `two`, null, NaN);
 $(undefined);
 const tmpCalleeParam$5 = function (...$$0) {
   const args$1 = $$0;
   debugger;
-  $('pass2', args$1);
+  $(`pass2`, args$1);
   return undefined;
 };
 f();
-tmpCalleeParam$5(1, 'two', null, NaN);
+tmpCalleeParam$5(1, `two`, null, NaN);
 $(undefined);
 const tmpCalleeParam$9 = function (...$$0) {
   const args$3 = $$0;
   debugger;
-  $('pass3', args$3);
+  $(`pass3`, args$3);
   return undefined;
 };
 f();
-tmpCalleeParam$9(1, 'two', null, NaN);
+tmpCalleeParam$9(1, `two`, null, NaN);
 $(undefined);
 `````
 

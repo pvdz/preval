@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = 10,
-  b = 'foo';
+  b = `foo`;
 x = ($(1), b).length;
 $(x);
 `````
@@ -29,7 +29,7 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-let b = 'foo';
+let b = `foo`;
 $(1);
 const tmpAssignRhsProp = b;
 x = tmpAssignRhsProp.length;

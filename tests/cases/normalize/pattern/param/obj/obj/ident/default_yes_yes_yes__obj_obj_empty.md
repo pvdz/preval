@@ -23,7 +23,7 @@ $(f({ x: {}, b: 11, c: 12 }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: { y: y = $('pass') } = $({ y: 'fail2' }) } = tmpParamBare === undefined ? $({ x: { y: 'fail3' } }) : tmpParamBare;
+  let { x: { y: y = $(`pass`) } = $({ y: `fail2` }) } = tmpParamBare === undefined ? $({ x: { y: `fail3` } }) : tmpParamBare;
   return y;
 };
 $(f({ x: {}, b: 11, c: 12 }, 10));
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpObjLitVal = { y: 'fail3' };
+    const tmpObjLitVal = { y: `fail3` };
     const tmpCalleeParam = { x: tmpObjLitVal };
     bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
@@ -50,7 +50,7 @@ let f = function ($$0) {
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = { y: 'fail2' };
+    const tmpCalleeParam$1 = { y: `fail2` };
     objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -59,7 +59,7 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest$3 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$3) {
-    y = $('pass');
+    y = $(`pass`);
     return y;
   } else {
     y = objPatternBeforeDefault$1;
@@ -84,7 +84,7 @@ const f = function ($$0) {
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpObjLitVal = { y: 'fail3' };
+    const tmpObjLitVal = { y: `fail3` };
     const tmpCalleeParam = { x: tmpObjLitVal };
     bindingPatternObjRoot = $(tmpCalleeParam);
   } else {
@@ -94,7 +94,7 @@ const f = function ($$0) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = { y: 'fail2' };
+    const tmpCalleeParam$1 = { y: `fail2` };
     objPatternAfterDefault = $(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -102,7 +102,7 @@ const f = function ($$0) {
   const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
   const tmpIfTest$3 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$3) {
-    const tmpClusterSSA_y = $('pass');
+    const tmpClusterSSA_y = $(`pass`);
     return tmpClusterSSA_y;
   } else {
     return objPatternBeforeDefault$1;

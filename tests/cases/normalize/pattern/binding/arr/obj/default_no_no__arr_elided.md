@@ -19,7 +19,7 @@ $('ok');
 
 `````js filename=intro
 const [{}] = [, , , 1, 20, 30];
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -37,14 +37,14 @@ if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
 undefined.cannotDestructureThis;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

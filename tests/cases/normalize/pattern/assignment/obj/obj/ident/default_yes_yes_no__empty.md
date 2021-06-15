@@ -18,8 +18,8 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-({ x: { y: y = $('fail') } = $({ y: 'fail2' }) } = 1);
-$('bad');
+({ x: { y: y = $(`fail`) } = $({ y: `fail2` }) } = 1);
+$(`bad`);
 `````
 
 ## Normalized
@@ -31,7 +31,7 @@ let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = { y: 'fail2' };
+  const tmpCalleeParam = { y: `fail2` };
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -39,11 +39,11 @@ if (tmpIfTest) {
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
 const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
-  y = $('fail');
+  y = $(`fail`);
 } else {
   y = objPatternBeforeDefault$1;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -53,7 +53,7 @@ const objPatternBeforeDefault = (1).x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = { y: 'fail2' };
+  const tmpCalleeParam = { y: `fail2` };
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -61,11 +61,11 @@ if (tmpIfTest) {
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
 const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
-  y = $('fail');
+  y = $(`fail`);
 } else {
   y = objPatternBeforeDefault$1;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

@@ -21,7 +21,7 @@ $(a);
 
 `````js filename=intro
 let b = { x: 1 };
-let a = b?.['x'];
+let a = b?.[`x`];
 export { a };
 $(a);
 `````
@@ -34,7 +34,7 @@ let a = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = 'x';
+  const tmpChainRootComputed = `x`;
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   a = tmpChainElementObject;
 } else {

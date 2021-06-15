@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-for ((a = b?.['x']).x of $({ x: 1 }));
+for ((a = b?.[`x`]).x of $({ x: 1 }));
 $(a);
 `````
 
@@ -41,7 +41,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
-    const tmpChainRootComputed = 'x';
+    const tmpChainRootComputed = `x`;
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     a = tmpChainElementObject;
   } else {

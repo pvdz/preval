@@ -67,7 +67,7 @@ out();
 `````js filename=intro
 const out = function () {
   debugger;
-  $('function');
+  $(`function`);
   $(10, undefined);
   return undefined;
 };

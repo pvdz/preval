@@ -34,21 +34,21 @@ $(f());
 let f = function () {
   debugger;
   while ($(true)) {
-    $('loop');
+    $(`loop`);
     {
       let tmpDoWhileFlag = true;
       while (tmpDoWhileFlag || $(true)) {
         tmpDoWhileFlag = false;
         {
-          $('loop');
-          return $(100, 'return');
-          $('fail');
+          $(`loop`);
+          return $(100, `return`);
+          $(`fail`);
         }
       }
     }
-    $('do not visit, do not eliminate');
+    $(`do not visit, do not eliminate`);
   }
-  $('after (not invoked)');
+  $(`after (not invoked)`);
 };
 $(f());
 `````
@@ -61,7 +61,7 @@ let f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      $('loop');
+      $(`loop`);
       let tmpDoWhileFlag = true;
       while (true) {
         let tmpIfTest$1 = tmpDoWhileFlag;
@@ -71,19 +71,19 @@ let f = function () {
         }
         if (tmpIfTest$1) {
           tmpDoWhileFlag = false;
-          $('loop');
-          const tmpReturnArg = $(100, 'return');
+          $(`loop`);
+          const tmpReturnArg = $(100, `return`);
           return tmpReturnArg;
         } else {
           break;
         }
       }
-      $('do not visit, do not eliminate');
+      $(`do not visit, do not eliminate`);
     } else {
       break;
     }
   }
-  $('after (not invoked)');
+  $(`after (not invoked)`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -99,7 +99,7 @@ const f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      $('loop');
+      $(`loop`);
       let tmpDoWhileFlag = true;
       while (true) {
         let tmpIfTest$1 = tmpDoWhileFlag;
@@ -109,19 +109,19 @@ const f = function () {
         }
         if (tmpIfTest$1) {
           tmpDoWhileFlag = false;
-          $('loop');
-          const tmpReturnArg = $(100, 'return');
+          $(`loop`);
+          const tmpReturnArg = $(100, `return`);
           return tmpReturnArg;
         } else {
           break;
         }
       }
-      $('do not visit, do not eliminate');
+      $(`do not visit, do not eliminate`);
     } else {
       break;
     }
   }
-  $('after (not invoked)');
+  $(`after (not invoked)`);
   return undefined;
 };
 const tmpCalleeParam = f();

@@ -30,11 +30,11 @@ let f = function () {
     while (tmpDoWhileFlag || $(true)) {
       tmpDoWhileFlag = false;
       {
-        return $(1, 'return');
+        return $(1, `return`);
       }
     }
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
 };
 $(f());
 `````
@@ -53,13 +53,13 @@ let f = function () {
     }
     if (tmpIfTest) {
       tmpDoWhileFlag = false;
-      const tmpReturnArg = $(1, 'return');
+      const tmpReturnArg = $(1, `return`);
       return tmpReturnArg;
     } else {
       break;
     }
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -81,13 +81,13 @@ const f = function () {
     }
     if (tmpIfTest) {
       tmpDoWhileFlag = false;
-      const tmpReturnArg = $(1, 'return');
+      const tmpReturnArg = $(1, `return`);
       return tmpReturnArg;
     } else {
       break;
     }
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
   return undefined;
 };
 const tmpCalleeParam = f();

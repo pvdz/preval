@@ -29,7 +29,7 @@ let f = function () {
   debugger;
   {
     let b = { $: $ };
-    let a = new (1, 2, $(b))[$('$')](1);
+    let a = new (1, 2, $(b))[$(`$`)](1);
     $(a);
   }
 };
@@ -43,7 +43,7 @@ let f = function () {
   debugger;
   let b = { $: $ };
   const tmpCompObj = $(b);
-  const tmpCompProp = $('$');
+  const tmpCompProp = $(`$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
   let a = new tmpNewCallee(1);
   $(a);
@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const b = { $: $ };
 const tmpCompObj = $(b);
-const tmpCompProp = $('$');
+const tmpCompProp = $(`$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 const a = new tmpNewCallee(1);
 $(a);

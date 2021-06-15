@@ -21,9 +21,9 @@ $('after');
 
 `````js filename=intro
 while ([$(1), $(2), $(3)]) {
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -35,12 +35,12 @@ while (true) {
   const tmpArrElement$3 = $(3);
   const tmpIfTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
   if (tmpIfTest) {
-    $('loop');
+    $(`loop`);
   } else {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -50,9 +50,9 @@ while (true) {
   $(1);
   $(2);
   $(3);
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

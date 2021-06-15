@@ -23,8 +23,8 @@ $(f());
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{} = $('fail')] = tmpParamBare === undefined ? $(['fail2']) : tmpParamBare;
-  return 'bad';
+  let [{} = $(`fail`)] = tmpParamBare === undefined ? $([`fail2`]) : tmpParamBare;
+  return `bad`;
 };
 $(f());
 `````
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = ['fail2'];
+    const tmpCalleeParam = [`fail2`];
     bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
     bindingPatternArrRoot = tmpParamBare;
@@ -49,7 +49,7 @@ let f = function ($$0) {
   let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    arrPatternStep = $('fail');
+    arrPatternStep = $(`fail`);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
@@ -60,9 +60,9 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-    return 'bad';
+    return `bad`;
   } else {
-    return 'bad';
+    return `bad`;
   }
 };
 const tmpCallCallee$1 = $;
@@ -73,14 +73,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['fail2'];
+const tmpCalleeParam = [`fail2`];
 const bindingPatternArrRoot = $(tmpCalleeParam);
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  arrPatternStep = $('fail');
+  arrPatternStep = $(`fail`);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }
@@ -93,7 +93,7 @@ if (objPatternCrashTest) {
   arrPatternStep.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

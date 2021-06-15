@@ -39,14 +39,14 @@ let f = function ($$0) {
   let bool = $$0;
   debugger;
   if (bool) {
-    $(1, 'true');
+    $(1, `true`);
     return f;
   } else {
     f = function () {
       debugger;
       return () => {
         debugger;
-        return $(2, 'from new func');
+        return $(2, `from new func`);
       };
     };
   }
@@ -62,14 +62,14 @@ let f = function ($$0) {
   let bool = $$0;
   debugger;
   if (bool) {
-    $(1, 'true');
+    $(1, `true`);
     return f;
   } else {
     f = function () {
       debugger;
       const tmpReturnArg = function () {
         debugger;
-        const tmpReturnArg$1 = $(2, 'from new func');
+        const tmpReturnArg$1 = $(2, `from new func`);
         return tmpReturnArg$1;
       };
       return tmpReturnArg;
@@ -88,14 +88,14 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpReturnArg = function () {
   debugger;
-  const tmpReturnArg$1 = $(2, 'from new func');
+  const tmpReturnArg$1 = $(2, `from new func`);
   return tmpReturnArg$1;
 };
 let f = function ($$0) {
   const bool = $$0;
   debugger;
   if (bool) {
-    $(1, 'true');
+    $(1, `true`);
     return f;
   } else {
     f = function () {

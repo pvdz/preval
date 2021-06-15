@@ -54,7 +54,7 @@ tmpCallCallee$1(tmpCalleeParam$5);
 
 `````js filename=intro
 [...null];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

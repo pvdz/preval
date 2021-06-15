@@ -35,12 +35,12 @@ let f = function () {
   let x = 1;
   try {
     do_not_observe_assignment;
-    x = $(2, 'prevent optim');
+    x = $(2, `prevent optim`);
     return x;
   } finally {
-    x = $(3, 'prevent optim');
+    x = $(3, `prevent optim`);
   }
-  $('prevent return hoisting');
+  $(`prevent return hoisting`);
   return x;
 };
 $(f());
@@ -54,12 +54,12 @@ let f = function () {
   let x = 1;
   try {
     do_not_observe_assignment;
-    x = $(2, 'prevent optim');
+    x = $(2, `prevent optim`);
     return x;
   } finally {
-    x = $(3, 'prevent optim');
+    x = $(3, `prevent optim`);
   }
-  $('prevent return hoisting');
+  $(`prevent return hoisting`);
   return x;
 };
 const tmpCallCallee = $;
@@ -75,12 +75,12 @@ const f = function () {
   let x = 1;
   try {
     do_not_observe_assignment;
-    const tmpClusterSSA_x = $(2, 'prevent optim');
+    const tmpClusterSSA_x = $(2, `prevent optim`);
     return tmpClusterSSA_x;
   } finally {
-    x = $(3, 'prevent optim');
+    x = $(3, `prevent optim`);
   }
-  $('prevent return hoisting');
+  $(`prevent return hoisting`);
   return x;
 };
 const tmpCalleeParam = f();

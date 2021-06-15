@@ -28,7 +28,7 @@ let b = { x: 1 },
   d = 3;
 let a = { a: 999, b: 1000 };
 {
-  $(b)[$('x')] = $(c)[$('y')] = d;
+  $(b)[$(`x`)] = $(c)[$(`y`)] = d;
   while ($(0)) {}
 }
 $(a, b, c, d);
@@ -42,11 +42,11 @@ let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
 const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('x');
+const tmpAssignComMemLhsProp = $(`x`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = d;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
@@ -68,9 +68,9 @@ const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
 const tmpAssignComMemLhsObj = $(b);
-const tmpAssignComMemLhsProp = $('x');
+const tmpAssignComMemLhsProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
 while (true) {

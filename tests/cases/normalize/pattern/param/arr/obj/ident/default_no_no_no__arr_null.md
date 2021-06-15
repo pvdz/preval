@@ -24,7 +24,7 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let [{ x: x }] = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
 $(f([null, 20, 30], 200));
 `````
@@ -39,7 +39,7 @@ let f = function ($$0) {
   let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternStep = arrPatternSplat[0];
   let x = arrPatternStep.x;
-  return 'bad';
+  return `bad`;
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -53,7 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 null.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

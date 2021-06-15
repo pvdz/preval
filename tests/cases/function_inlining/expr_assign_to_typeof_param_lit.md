@@ -43,7 +43,7 @@ let f = function () {
   let g = function ($$0) {
     let a = $$0;
     debugger;
-    a = 'number';
+    a = `number`;
     return undefined;
   };
   g();

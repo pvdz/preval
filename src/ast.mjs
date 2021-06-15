@@ -8,6 +8,7 @@ export function cloneSimple(node) {
 
   if (node.type === 'Literal') {
     if (node.raw === 'null') return nul(); // be explicit for null
+    if (typeof node.value === 'string') return templateLiteral(node.value);
     return literal(node.value);
   }
 
@@ -30,6 +31,13 @@ export function cloneSimple(node) {
   if (node.type === 'ThisExpression') {
     ASSERT(false, 'I think we shouldnt allow to clone `this` without an explicit optin');
     //return thisExpression();
+  }
+
+  if (node.type === 'TemplateLiteral') {
+    // It should only clone if the template has no expressions. Otherwise there's an operation going. Caller should assert !isComplex
+    ASSERT(node.expressions.length === 0, 'caller should assert not to clone templates with expressions', node);
+    ASSERT(typeof node.quasis[0].value.cooked === 'string');
+    return templateLiteral(node.quasis[0].value.cooked);
   }
 
   ASSERT(false, 'add me', node);
@@ -346,7 +354,7 @@ export function ifStatement(test, consequent, alternate = null) {
 export function importDeclarationNamed(imported, local = typeof imported === 'string' ? imported : imported.name, source) {
   if (typeof imported === 'string') imported = identifier(imported);
   if (typeof local === 'string') local = identifier(local);
-  if (typeof source === 'string') source = literal(source);
+  if (typeof source === 'string') source = templateLiteral(source);
 
   return {
     type: 'ImportDeclaration',
@@ -365,8 +373,9 @@ export function importDeclarationNamed(imported, local = typeof imported === 'st
 
 export function importDeclarationFromSpecifier(specifier, source) {
   ASSERT(specifier && specifier.type.includes('Specifier'));
-  if (typeof source === 'string') source = literal(source);
-  ASSERT(source.type === 'Literal');
+  if (typeof source === 'string') source = templateLiteral(source);
+  //ASSERT(source.type === 'Literal');
+  ASSERT(source.type === 'TemplateLiteral');
   return {
     type: 'ImportDeclaration',
     specifiers: [specifier],
@@ -395,13 +404,6 @@ export function literal(value, yesnull = false) {
       raw: String(value),
       $p: $p(),
     };
-  } else if (typeof value === 'string') {
-    return {
-      type: 'Literal',
-      value: value,
-      raw: JSON.stringify(value),
-      $p: $p(),
-    };
   } else if (value === true) {
     return {
       type: 'Literal',
@@ -427,6 +429,8 @@ export function literal(value, yesnull = false) {
       raw: 'null',
       $p: $p(),
     };
+  } else if (typeof value === 'string') {
+    ASSERT(false, 'string literals should be TemplateLiterals');
   } else {
     ASSERT(false, 'TODO', value);
   }
@@ -590,15 +594,53 @@ export function switchStatement(discriminant, cases) {
   };
 }
 
-export function templateElement(raw, tail, cooked = raw) {
-  ASSERT(typeof raw === 'string');
+export function templateElement(raw, tail, cooked) {
   ASSERT(typeof cooked === 'string');
   ASSERT(typeof tail === 'boolean');
+  ASSERT(typeof raw === 'string');
+  //ASSERT(!/[^\\]`/.test(raw), 'the raw string should explicitly contain a backslash before a backtick (etc). cooked should not.');
 
   return {
     type: 'TemplateElement',
     tail,
-    value: { raw, cooked },
+    value: {
+      raw, // Will contain backslashes if the string contains backticks
+      cooked, // Can contain backticks without backslashes
+    },
+    $p: $p(),
+  };
+}
+
+export function templateLiteral(cookedStrings, expressions) {
+  if (typeof cookedStrings === 'string') {
+    ASSERT(arguments.length === 1, 'can only pass string as first arg when there is no second arg');
+    cookedStrings = [cookedStrings];
+    expressions = [];
+  } else {
+    ASSERT(Array.isArray(cookedStrings) && Array.isArray(expressions), 'input must either be only a string or two arrays');
+    ASSERT(
+      cookedStrings.length === expressions.length + 1,
+      'there should be exactly one more string than there are values',
+      cookedStrings.length,
+      expressions.length,
+    );
+    ASSERT(
+      cookedStrings.every((str) => typeof str === 'string'),
+      'the strings array should actually contain strings, not nodes',
+    );
+    ASSERT(
+      expressions.every((enode) => typeof enode === 'object'),
+      'do not pass primitives as expressions. expecting actual nodes',
+    );
+    cookedStrings = cookedStrings.map((s) => s.replace(/`/g, '\\`'));
+  }
+
+  return {
+    type: 'TemplateLiteral',
+    expressions,
+    quasis: cookedStrings.map((str, si) => {
+      return templateElement(str.replace(/`/g, '\\`'), si === cookedStrings.length - 1, str);
+    }),
     $p: $p(),
   };
 }
@@ -690,6 +732,51 @@ export function zero() {
   return literal(0);
 }
 
+export function isUndefined(node) {
+  return node.type === 'Identifier' && node.name === 'undefined';
+}
+export function isNull(node) {
+  return node.type === 'Literal' && node.raw === 'null';
+}
+export function isBoolean(node) {
+  return node.type === 'Literal' && typeof node.value === 'boolean';
+}
+export function isTrue(node) {
+  return node.type === 'Literal' && node.value === true;
+}
+export function isFalse(node) {
+  return node.type === 'Literal' && node.value === false;
+}
+export function isNumber(node) {
+  return node.type === 'Literal' && typeof node.value === 'number';
+}
+export function isStringLiteral(node, allowLiteral = false) {
+  // The difference is a template with and without expressions
+  // We allow literals during normalization
+  return (
+    (node.type === 'TemplateLiteral' && node.expressions.length === 0) ||
+    (allowLiteral && node.type === 'Literal' && typeof node.value === 'string')
+  );
+}
+export function isStringValue(node, str, allowLiteral = false) {
+  return node.type === 'TemplateLiteral'
+    ? node.expressions.length === 0 && node.quasis[0].value.cooked === str
+    : allowLiteral && node.type === 'Literal'
+    ? node.value === str
+    : false;
+}
+export function getStringValue(node, allowLiteral = false) {
+  if (allowLiteral) {
+    if (node.type === 'TemplateLiteral') {
+      return node.quasis[0].value.cooked;
+    }
+    ASSERT(node.type === 'Literal', 'should be checked before');
+    return node.value;
+  }
+  ASSERT(node.type === 'TemplateLiteral' && node.expressions.length === 0, 'should be checked before. can it be a literal?');
+  return node.quasis[0].value.cooked;
+}
+
 export function isPrimitive(node) {
   // A primitive is a literal boolean, number, string, or null, or an identifier NaN, Infinity, or undefined.
   // It's different from a literal since, for example, `undefined` is not a Literal node.
@@ -712,12 +799,15 @@ export function isPrimitive(node) {
     return isPrimitive(node.argument);
   }
 
+  if (node.type === 'TemplateLiteral') return node.expressions.length === 0;
+
   return false;
 }
 
 export function isFalsy(node) {
   // If this function does not return true, it does not automatically mean it's a truthy. Just that we can't determine it to be falsy.
   if (node.type === 'Literal' && (node.raw === 'null' || node.value === '' || node.value === false || node.value === 0)) return true;
+  if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return node.quasis[0].value.cooked === '';
   if (node.type === 'Identifier' && (node.name === 'undefined' || node.name === 'NaN')) return true;
 
   // TODO: expand on this
@@ -733,6 +823,7 @@ export function isTruthy(node) {
     // All other literals are auto truthy I think? What about 0 big int?
     return true;
   }
+  if (node.type === 'TemplateLiteral') return node.quasis.some((te) => te.value.cooked !== '');
 
   if (node.type === 'Identifier') {
     return node.name === 'Infinity';
@@ -741,13 +832,6 @@ export function isTruthy(node) {
   // TODO: expand on this
 
   return false;
-}
-
-export function isUndefined(node) {
-  return node.type === 'Identifier' && node.name === 'undefined';
-}
-export function isNull(node) {
-  return node.type === 'Literal' && node.raw === 'null';
 }
 
 export function getPrimitiveValue(node) {
@@ -762,6 +846,11 @@ export function getPrimitiveValue(node) {
     if (node.raw === 'null') return null;
     if (['number', 'string', 'boolean'].includes(typeof node.value)) return node.value;
     ASSERT(false);
+  }
+
+  if (node.type === 'TemplateLiteral') {
+    ASSERT(node.expressions.length === 0, 'caller should have checked isPrimitive', node);
+    return node.quasis[0].value.cooked;
   }
 
   if (node.type === 'Identifier') {
@@ -786,7 +875,10 @@ export function primitive(value) {
     }
     return literal(value);
   }
-  if (typeof value === 'string' || typeof value === 'boolean') {
+  if (typeof value === 'string') {
+    return templateLiteral(value);
+  }
+  if (typeof value === 'boolean') {
     return literal(value);
   }
   if (value === undefined) {
@@ -882,23 +974,32 @@ export function isComplexNode(node, incNested = true) {
     // -NaN, +NaN, -Infinity, +Infinity
     if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
   }
-  if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return false; // Template without expressions is a string
+  if (node.type === 'TemplateLiteral') return node.expressions.length > 0; // Template without expressions is a string and simple.
   if (node.type === 'ThisExpression') return true;
   if (node.type === 'Super') return false;
 
   return true;
 }
 
-export function isProperIdent(node) {
-  if (node.type === 'Literal' && typeof node.value === 'string') {
-    const str = node.value;
-    // If the key name is a legit key then why not. Let's just test it.
-    try {
-      // TODO: find a clean way to test any unicode identifier without opening up to eval attacks here
-      return !!(/^[\w_$]+$/.test(str) && Function('foo.' + str) && true);
-    } catch {
-      return false;
-    }
+export function isProperIdent(node, allowLiteral = false) {
+  if (node.type === 'TemplateLiteral') {
+    return node.expressions.length === 0 && _isIdent(node.quasis[0].value.cooked);
+  }
+
+  if (allowLiteral) {
+    return node.type === 'Literal' && typeof node.value === 'string' && _isIdent(node.value);
+  }
+
+  ASSERT(node.type !== 'Literal' || typeof node.value !== 'string', 'fix assertion at caller?');
+  return false;
+}
+function _isIdent(str) {
+  // If the key name is a legit key then why not. Let's just test it.
+  try {
+    // TODO: find a clean way to test any unicode identifier without opening up to eval attacks here
+    return !!(/^[\w_$]+$/.test(str) && Function('foo.' + str) && true);
+  } catch {
+    return false;
   }
 }
 
@@ -1092,9 +1193,8 @@ export function expressionHasNoObservableSideEffect(node, noDelete) {
     return expressionHasNoObservableSideEffect(node.expression, noDelete);
   }
   if (node.type === 'TemplateLiteral') {
-    // Note: A template like `a{b}c` may still trigger a string coercion on b so only allow primitives here
-    // Note: A little redundant. In this case it's a static template that should be converted to a string literal. But okay.
-    return node.expressions.every((node) => isPrimitive(node));
+    // Templates that reach this point must be introduced by Preval and any expressions must not be spying
+    return true;
   }
   if (node.type === 'UnaryExpression') {
     if (node.operator === 'typeof') {
@@ -1213,17 +1313,9 @@ export function ssaCheckMightContainIdentName(node, name) {
     return ssaCheckMightContainIdentName(node.expression, name);
   }
   if (node.type === 'TemplateLiteral') {
-    // Note: A template like `a{b}c` may still trigger a string coercion on b so only allow primitives here
-    // In theory expressionHasNoObservableSideEffect would not return false when this returns true for this node...
-    let r = false;
-    node.expressions.some((node) => {
-      const s = ssaCheckMightContainIdentName(node, name);
-      if (s === undefined || s === true) {
-        r = s;
-        return true;
-      }
-    });
-    return r;
+    // Templates that reach this point must be introduced by Preval and only contain simple nodes
+    // So we don't need to dig deep here. There's no spreads or other special casing involved here.
+    return node.expressions.some((enode) => enode.type === 'Identifier' && enode.name === name);
   }
   if (node.type === 'UnaryExpression') {
     return ssaCheckMightContainIdentName(node.argument, name);
@@ -1265,9 +1357,6 @@ export function ssaCheckMightContainIdentName(node, name) {
   return undefined;
 }
 export function ssaReplaceIdentName(node, oldName, newName) {
-  // Returns true on a selection of AST nodes and only if they are not an ident with given name
-  // or contain any such node. The node is assumed to be part of a normalized AST.
-
   // Note: This function is paired with expressionHasNoObservableSideEffect
   //       For any node where `expressionHasNoObservableSideEffect` can return `false`, this function
   //       must be able to check such node for the occurrence of given name, recursively.
@@ -1334,9 +1423,13 @@ export function ssaReplaceIdentName(node, oldName, newName) {
     return ssaReplaceIdentName(node.expression, oldName, newName);
   }
   if (node.type === 'TemplateLiteral') {
-    // Note: A template like `a{b}c` may still trigger a string coercion on b so only allow primitives here
-    // In theory expressionHasNoObservableSideEffect would not return false when this returns true for this node...
-    node.expressions.forEach((node) => ssaReplaceIdentName(node, oldName, newName));
+    // Templates that reach this point must be introduced by Preval and only contain simple nodes
+    // So we don't need to dig deep here. There's no spreads or other special casing involved here.
+    return node.expressions.forEach((enode, i) => {
+      if (enode.type === 'Identifier' && enode.name === oldName) {
+        node.expressions[i] = identifier(newName);
+      }
+    });
     return;
   }
   if (node.type === 'UnaryExpression') {
@@ -1440,9 +1533,12 @@ export function _ssaFindIdentRefs(node, set = new Set()) {
     return ssaFindIdentRefs(node.expression, set);
   }
   if (node.type === 'TemplateLiteral') {
-    // Note: A template like `a{b}c` may still trigger a string coercion on b so only allow primitives here
-    // In theory expressionHasNoObservableSideEffect would not return false when this returns true for this node...
-    return node.expressions.every((node) => !!ssaFindIdentRefs(node, set)) && set;
+    // Templates that reach this point must be introduced by Preval and only contain simple nodes
+    // So we don't need to dig deep here. There's no spreads or other special casing involved here.
+    node.expressions.forEach((enode) => {
+      if (enode.type === 'Identifier') set.add(node.name);
+    });
+    return set;
   }
   if (node.type === 'UnaryExpression') {
     return ssaFindIdentRefs(node.argument, set);
@@ -1599,7 +1695,14 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
         node.arguments.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)),
       );
     }
-    case 'TemplateExpression': {
+    case 'TemplateLiteral': {
+      return templateLiteral(
+        node.quasis.map((te) => te.value.cooked),
+        node.expressions,
+      );
+    }
+    case 'TemplateElement': {
+      ASSERT(false, 'eh?');
       return templateElement(
         deepCloneForFuncInlining(node.raw, paramArgMapper, fail),
         node.tail,
@@ -1639,6 +1742,9 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       // this in the future, we need to handle that through a different path.
       fail.ed = true;
       return identifier('undefined');
+    }
+    default: {
+      ASSERT(false, 'deep clone missing type', node);
     }
   }
 }
@@ -1767,6 +1873,10 @@ export function complexNodeMightSpy(node, fdata) {
       return simpleNodeMightSpy(node.left, fdata) || simpleNodeMightSpy(node.right, fdata);
     }
     case 'Literal': {
+      return false;
+    }
+    case 'TemplateLiteral': {
+      // If a template reaches this point it must be introduced by Preval which means it cannot have any expressions that spy.
       return false;
     }
     case 'Identifier': {

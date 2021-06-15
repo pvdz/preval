@@ -23,9 +23,9 @@ $(x, 'after');
 `````js filename=intro
 let x = $(10);
 while ($(true)) {
-  $(x, 'loop');
+  $(x, `loop`);
 }
-$(x, 'after');
+$(x, `after`);
 `````
 
 ## Normalized
@@ -35,12 +35,12 @@ let x = $(10);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $(x, 'loop');
+    $(x, `loop`);
   } else {
     break;
   }
 }
-$(x, 'after');
+$(x, `after`);
 `````
 
 ## Output
@@ -50,12 +50,12 @@ const x = $(10);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $(x, 'loop');
+    $(x, `loop`);
   } else {
     break;
   }
 }
-$(x, 'after');
+$(x, `after`);
 `````
 
 ## Globals

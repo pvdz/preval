@@ -41,13 +41,13 @@ f();
 let f = function () {
   debugger;
   if (getType() !== 16472) {
-    $('a');
+    $(`a`);
   } else {
     skip(lexerFlags);
     if (getType() === 16473) {
-      $('x');
+      $(`x`);
     } else {
-      $('y');
+      $(`y`);
     }
   }
 };
@@ -57,7 +57,7 @@ let getType = function () {
 };
 let skip = function () {
   debugger;
-  curtype = $('random');
+  curtype = $(`random`);
 };
 let curtype = 0;
 f();
@@ -72,17 +72,17 @@ let f = function () {
   const tmpBinLhs = getType();
   const tmpIfTest = tmpBinLhs !== 16472;
   if (tmpIfTest) {
-    $('a');
+    $(`a`);
     return undefined;
   } else {
     skip(lexerFlags);
     const tmpBinLhs$1 = getType();
     const tmpIfTest$1 = tmpBinLhs$1 === 16473;
     if (tmpIfTest$1) {
-      $('x');
+      $(`x`);
       return undefined;
     } else {
-      $('y');
+      $(`y`);
       return undefined;
     }
   }
@@ -93,7 +93,7 @@ let getType = function () {
 };
 let skip = function () {
   debugger;
-  curtype = $('random');
+  curtype = $(`random`);
   return undefined;
 };
 let curtype = 0;
@@ -109,17 +109,17 @@ const f = function () {
   debugger;
   const tmpIfTest = curtype === 16472;
   if (tmpIfTest) {
-    curtype = $('random');
+    curtype = $(`random`);
     const tmpIfTest$1 = curtype === 16473;
     if (tmpIfTest$1) {
-      $('x');
+      $(`x`);
       return undefined;
     } else {
-      $('y');
+      $(`y`);
       return undefined;
     }
   } else {
-    $('a');
+    $(`a`);
     return undefined;
   }
 };

@@ -39,8 +39,8 @@ let f = function () {
   } else {
     y = true;
   }
-  $('block');
-  $('block');
+  $(`block`);
+  $(`block`);
   return y;
 };
 f();
@@ -60,8 +60,8 @@ let f = function () {
   } else {
     y = true;
   }
-  $('block');
-  $('block');
+  $(`block`);
+  $(`block`);
   return y;
 };
 f();
@@ -78,8 +78,8 @@ const f = function () {
   const tmpBinLhs = $(1);
   const x = tmpBinLhs === 1;
   const y = !x;
-  $('block');
-  $('block');
+  $(`block`);
+  $(`block`);
   return y;
 };
 f();

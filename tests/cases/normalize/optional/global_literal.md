@@ -17,7 +17,7 @@ $('foo'?.length);
 ## Pre Normal
 
 `````js filename=intro
-$('foo'?.length);
+$(`foo`?.length);
 `````
 
 ## Normalized
@@ -25,7 +25,7 @@ $('foo'?.length);
 `````js filename=intro
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-const tmpChainRootProp = 'foo';
+const tmpChainRootProp = `foo`;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.length;

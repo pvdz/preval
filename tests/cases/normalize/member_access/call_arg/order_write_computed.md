@@ -33,7 +33,7 @@ const obj = {
     $(20);
   },
 };
-$(($(obj)[$('x')] = 30));
+$(($(obj)[$(`x`)] = 30));
 `````
 
 ## Normalized
@@ -54,7 +54,7 @@ const obj = {
 };
 const tmpCallCallee = $;
 const varInitAssignLhsComputedObj = $(obj);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedRhs = 30;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpCalleeParam = varInitAssignLhsComputedRhs;
@@ -77,7 +77,7 @@ const obj = {
   },
 };
 const varInitAssignLhsComputedObj = $(obj);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
 $(30);
 `````

@@ -36,9 +36,9 @@ const f = function () {
   const g = function ($$0) {
     let a = $$0;
     debugger;
-    $('do');
-    $('not');
-    $('inline');
+    $(`do`);
+    $(`not`);
+    $(`inline`);
     const r = $(a);
     return r;
   };
@@ -60,9 +60,9 @@ const f = function () {
   const g = function ($$0) {
     let a = $$0;
     debugger;
-    $('do');
-    $('not');
-    $('inline');
+    $(`do`);
+    $(`not`);
+    $(`inline`);
     const r = $(a);
     return r;
   };
@@ -81,9 +81,9 @@ f();
 ## Output
 
 `````js filename=intro
-$('do');
-$('not');
-$('inline');
+$(`do`);
+$(`not`);
+$(`inline`);
 $(1);
 $(undefined);
 `````

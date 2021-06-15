@@ -18,32 +18,32 @@ $('ok');
 ## Pre Normal
 
 `````js filename=intro
-const { x: [] = $(['fail']) } = { x: '', a: 11, b: 12 };
-$('ok');
+const { x: [] = $([`fail`]) } = { x: ``, a: 11, b: 12 };
+$(`ok`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: '', a: 11, b: 12 };
+const bindingPatternObjRoot = { x: ``, a: 11, b: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = ['fail'];
+  const tmpCalleeParam = [`fail`];
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

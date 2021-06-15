@@ -18,14 +18,14 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const [x] = ['abc'];
+const [x] = [`abc`];
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternArrRoot = ['abc'];
+const bindingPatternArrRoot = [`abc`];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const x = arrPatternSplat[0];
 $(x);
@@ -34,7 +34,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-$('abc');
+$(`abc`);
 `````
 
 ## Globals

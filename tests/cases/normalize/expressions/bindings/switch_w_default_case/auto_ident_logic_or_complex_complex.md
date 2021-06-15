@@ -38,10 +38,10 @@ switch (1) {
       $(a);
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -79,12 +79,12 @@ if (tmpIfTest$3) {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$7) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 `````
@@ -100,8 +100,8 @@ if (tmpClusterSSA_a) {
   tmpClusterSSA_a = $(tmpCalleeParam$1);
 }
 $(tmpClusterSSA_a);
-$('fail1');
-$('fail2');
+$(`fail1`);
+$(`fail2`);
 `````
 
 ## Globals

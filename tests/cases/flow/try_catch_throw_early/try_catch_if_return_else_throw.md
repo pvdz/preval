@@ -35,18 +35,18 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = 'fail';
+  let x = `fail`;
   try {
     if ($) {
       return;
     } else {
-      x = 'pass';
-      throw 'too';
+      x = `pass`;
+      throw `too`;
     }
-    x = 'fail2';
+    x = `fail2`;
   } catch {
     throw_early;
-    $('caught');
+    $(`caught`);
   }
   $(x);
 };
@@ -58,17 +58,17 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = 'fail';
+  let x = `fail`;
   try {
     if ($) {
       return undefined;
     } else {
-      x = 'pass';
-      throw 'too';
+      x = `pass`;
+      throw `too`;
     }
   } catch {
     throw_early;
-    $('caught');
+    $(`caught`);
   }
   $(x);
   return undefined;
@@ -81,17 +81,17 @@ f();
 `````js filename=intro
 const f = function () {
   debugger;
-  let x = 'fail';
+  let x = `fail`;
   try {
     if ($) {
       return undefined;
     } else {
-      x = 'pass';
-      throw 'too';
+      x = `pass`;
+      throw `too`;
     }
   } catch {
     throw_early;
-    $('caught');
+    $(`caught`);
   }
   $(x);
   return undefined;

@@ -23,7 +23,7 @@ $(f([[1, 2, 3], 4, 5], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [[...x] = $('fail')] = tmpParamBare;
+  let [[...x] = $(`fail`)] = tmpParamBare;
   return x;
 };
 $(f([[1, 2, 3], 4, 5], 200));
@@ -41,7 +41,7 @@ let f = function ($$0) {
   let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    arrPatternStep = $('fail');
+    arrPatternStep = $(`fail`);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }

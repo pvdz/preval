@@ -28,7 +28,7 @@ let f = function () {
   debugger;
   {
     let a = { a: 999, b: 1000 };
-    a = 'foo';
+    a = `foo`;
     $(a);
   }
 };
@@ -41,7 +41,7 @@ $(f());
 let f = function () {
   debugger;
   let a = { a: 999, b: 1000 };
-  a = 'foo';
+  a = `foo`;
   $(a);
   return undefined;
 };
@@ -53,7 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('foo');
+$(`foo`);
 $(undefined);
 `````
 

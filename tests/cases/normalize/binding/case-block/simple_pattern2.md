@@ -47,9 +47,9 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 let a$1 = undefined;
-const tmpSwitchValue = $('a');
+const tmpSwitchValue = $(`a`);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $('a');
+const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -78,9 +78,9 @@ let x = 1;
 let y = 2;
 let z = [10, 20, 30];
 let a$1 = undefined;
-const tmpSwitchValue = $('a');
+const tmpSwitchValue = $(`a`);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $('a');
+const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -107,9 +107,9 @@ $(a, x, y, z);
 let x = 1;
 let y = 2;
 const z = [10, 20, 30];
-const tmpSwitchValue = $('a');
+const tmpSwitchValue = $(`a`);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $('a');
+const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-$(100) || ((1, 2, b).c = $(b)[$('d')]);
+$(100) || ((1, 2, b).c = $(b)[$(`d`)]);
 $(a, b);
 `````
 
@@ -38,7 +38,7 @@ if (tmpIfTest) {
   const tmpAssignMemLhsObj = b;
   const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
   tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
 }
@@ -54,7 +54,7 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
   b.c = tmpAssignMemRhs;
 }

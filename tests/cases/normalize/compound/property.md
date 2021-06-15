@@ -32,18 +32,18 @@ $(a, s); // 5, 'read;write[5]'
 ## Pre Normal
 
 `````js filename=intro
-let s = '';
+let s = ``;
 let a = 0;
 const obj = {
   get x() {
     debugger;
-    s += 'read;';
+    s += `read;`;
     return a;
   },
   set x($$0) {
     let v = $$0;
     debugger;
-    s += 'write[' + v + '];';
+    s += `write[` + v + `];`;
     a += v;
     return a;
   },
@@ -55,20 +55,20 @@ $(a, s);
 ## Normalized
 
 `````js filename=intro
-let s = '';
+let s = ``;
 let a = 0;
 const obj = {
   get x() {
     debugger;
-    s = s + 'read;';
+    s = s + `read;`;
     return a;
   },
   set x($$0) {
     let v = $$0;
     debugger;
     const tmpBinBothLhs = s;
-    const tmpBinLhs = 'write[' + v;
-    const tmpBinBothRhs = tmpBinLhs + '];';
+    const tmpBinLhs = `write[` + v;
+    const tmpBinBothRhs = tmpBinLhs + `];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;
@@ -84,20 +84,20 @@ $(a, s);
 ## Output
 
 `````js filename=intro
-let s = '';
+let s = ``;
 let a = 0;
 const obj = {
   get x() {
     debugger;
-    s = s + 'read;';
+    s = s + `read;`;
     return a;
   },
   set x($$0) {
     const v = $$0;
     debugger;
     const tmpBinBothLhs = s;
-    const tmpBinLhs = 'write[' + v;
-    const tmpBinBothRhs = tmpBinLhs + '];';
+    const tmpBinLhs = `write[` + v;
+    const tmpBinBothRhs = tmpBinLhs + `];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;

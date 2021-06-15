@@ -18,7 +18,7 @@ $(y);
 ## Pre Normal
 
 `````js filename=intro
-const { x: { y: y = $('fail') } = $({ y: 'fail2' }) } = { x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 };
+const { x: { y: y = $(`fail`) } = $({ y: `fail2` }) } = { x: { x: 1, y: 2, z: 3 }, b: 11, c: 12 };
 $(y);
 `````
 
@@ -32,7 +32,7 @@ let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = { y: 'fail2' };
+  const tmpCalleeParam = { y: `fail2` };
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -41,7 +41,7 @@ const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
 let y = undefined;
 const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
-  y = $('fail');
+  y = $(`fail`);
 } else {
   y = objPatternBeforeDefault$1;
 }

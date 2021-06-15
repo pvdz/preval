@@ -28,7 +28,7 @@ let f = function () {
   debugger;
   let arg = { y: 1 };
   let a = { a: 999, b: 1000 };
-  delete ($(1), $(2), $(arg))[$('y')];
+  delete ($(1), $(2), $(arg))[$(`y`)];
   $(a, arg);
 };
 $(f());
@@ -44,7 +44,7 @@ let f = function () {
   $(1);
   $(2);
   const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $('y');
+  const tmpDeleteCompProp = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
   $(a, arg);
   return undefined;
@@ -62,7 +62,7 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(a, arg);
 $(undefined);

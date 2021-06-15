@@ -28,7 +28,7 @@ const f = function ($$0, $$1) {
   obj$1[str](1);
 };
 const obj = { $: $ };
-f(obj, '$');
+f(obj, `$`);
 `````
 
 ## Normalized
@@ -42,7 +42,7 @@ const f = function ($$0, $$1) {
   return undefined;
 };
 const obj = { $: $ };
-f(obj, '$');
+f(obj, `$`);
 `````
 
 ## Output

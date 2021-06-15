@@ -24,9 +24,9 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let [{}] = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
-$(f('', 100));
+$(f(``, 100));
 `````
 
 ## Normalized
@@ -45,13 +45,13 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-    return 'bad';
+    return `bad`;
   } else {
-    return 'bad';
+    return `bad`;
   }
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('', 100);
+const tmpCalleeParam = f(``, 100);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 undefined.cannotDestructureThis;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

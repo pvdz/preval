@@ -17,21 +17,21 @@ $`foo`;
 ## Pre Normal
 
 `````js filename=intro
-$(['foo']);
+$([`foo`]);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = ['foo'];
+const tmpCalleeParam = [`foo`];
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['foo'];
+const tmpCalleeParam = [`foo`];
 $(tmpCalleeParam);
 `````
 

@@ -19,7 +19,7 @@ $('' === x); // Must be false (number !== string)
 
 `````js filename=intro
 const x = 1 * $(2);
-$('' === x);
+$(`` === x);
 `````
 
 ## Normalized
@@ -29,7 +29,7 @@ const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(2);
 const x = tmpBinBothLhs * tmpBinBothRhs;
 const tmpCallCallee = $;
-const tmpCalleeParam = '' === x;
+const tmpCalleeParam = `` === x;
 tmpCallCallee(tmpCalleeParam);
 `````
 

@@ -18,8 +18,8 @@ $('ok');
 ## Pre Normal
 
 `````js filename=intro
-const { x: [] = $(['fail']) } = { x: 1, a: 2, b: 3 };
-$('ok');
+const { x: [] = $([`fail`]) } = { x: 1, a: 2, b: 3 };
+$(`ok`);
 `````
 
 ## Normalized
@@ -31,20 +31,20 @@ let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = ['fail'];
+  const tmpCalleeParam = [`fail`];
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
 [...1];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

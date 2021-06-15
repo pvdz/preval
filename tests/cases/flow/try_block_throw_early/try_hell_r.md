@@ -34,10 +34,10 @@ let f = function () {
   debugger;
   stop: try {
     fail_early;
-    throw 'one';
+    throw `one`;
   } catch {
     x = 2;
-    throw 'two';
+    throw `two`;
   } finally {
     break stop;
   }
@@ -54,10 +54,10 @@ let f = function () {
   debugger;
   try {
     fail_early;
-    throw 'one';
+    throw `one`;
   } catch {
     x = 2;
-    throw 'two';
+    throw `two`;
   } finally {
     return undefined;
   }
@@ -75,10 +75,10 @@ const f = function () {
   debugger;
   try {
     fail_early;
-    throw 'one';
+    throw `one`;
   } catch {
     x = 2;
-    throw 'two';
+    throw `two`;
   } finally {
     return undefined;
   }

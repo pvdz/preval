@@ -64,7 +64,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('number');
+$(`number`);
 `````
 
 ## Globals

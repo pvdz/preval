@@ -34,7 +34,7 @@ let f = function () {
   let x = 0;
   let g = function () {
     debugger;
-    x = $('first');
+    x = $(`first`);
     let h = function () {
       debugger;
       $(x);
@@ -57,7 +57,7 @@ let f = function () {
   let x = 0;
   let g = function () {
     debugger;
-    x = $('first');
+    x = $(`first`);
     let h = function () {
       debugger;
       $(x);
@@ -86,7 +86,7 @@ if ($) {
 if ($) {
   const g = function () {
     debugger;
-    const tmpssa2_x = $('first');
+    const tmpssa2_x = $(`first`);
     $(tmpssa2_x);
     return undefined;
   };

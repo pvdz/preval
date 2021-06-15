@@ -21,9 +21,9 @@ $('after');
 
 `````js filename=intro
 while ({ ...$({ a: $(1), b: $(2) }) }) {
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -37,12 +37,12 @@ while (true) {
   const tmpObjSpread = tmpCallCallee(tmpCalleeParam);
   const tmpIfTest = { ...tmpObjSpread };
   if (tmpIfTest) {
-    $('loop');
+    $(`loop`);
   } else {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -54,9 +54,9 @@ while (true) {
   const tmpCalleeParam = { a: tmpObjLitVal, b: tmpObjLitVal$1 };
   const tmpObjSpread = $(tmpCalleeParam);
   ({ ...tmpObjSpread });
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

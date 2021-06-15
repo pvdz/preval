@@ -26,9 +26,9 @@ if (y) { // This should become x, with the branches flipped
 const x = $(1);
 const y = !x;
 if (y) {
-  $('if');
+  $(`if`);
 } else {
-  $('else');
+  $(`else`);
 }
 `````
 
@@ -38,9 +38,9 @@ if (y) {
 const x = $(1);
 const y = !x;
 if (y) {
-  $('if');
+  $(`if`);
 } else {
-  $('else');
+  $(`else`);
 }
 `````
 
@@ -49,9 +49,9 @@ if (y) {
 `````js filename=intro
 const x = $(1);
 if (x) {
-  $('else');
+  $(`else`);
 } else {
-  $('if');
+  $(`if`);
 }
 `````
 

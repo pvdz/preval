@@ -40,7 +40,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

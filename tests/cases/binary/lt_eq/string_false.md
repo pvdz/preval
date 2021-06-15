@@ -15,7 +15,7 @@ $('x' <= 'y');
 ## Pre Normal
 
 `````js filename=intro
-$('x' <= 'y');
+$(`x` <= `y`);
 `````
 
 ## Normalized

@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-$(b)[$('c')] + $(b)[$('c')];
+$(b)[$(`c`)] + $(b)[$(`c`)];
 $(a, b);
 `````
 
@@ -33,10 +33,10 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 const tmpBinBothLhs = tmpCompObj[tmpCompProp];
 const tmpCompObj$1 = $(b);
-const tmpCompProp$1 = $('c');
+const tmpCompProp$1 = $(`c`);
 const tmpBinBothRhs = tmpCompObj$1[tmpCompProp$1];
 tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);
@@ -48,10 +48,10 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 const tmpBinBothLhs = tmpCompObj[tmpCompProp];
 const tmpCompObj$1 = $(b);
-const tmpCompProp$1 = $('c');
+const tmpCompProp$1 = $(`c`);
 const tmpBinBothRhs = tmpCompObj$1[tmpCompProp$1];
 tmpBinBothLhs + tmpBinBothRhs;
 $(a, b);

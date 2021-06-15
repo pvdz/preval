@@ -28,7 +28,7 @@ $(a, b, c, d, e);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? (a = $(b)[$('x')] = $(c)[$('y')] = d + e) : tmpParamBare;
+  let p = tmpParamBare === undefined ? (a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e) : tmpParamBare;
 };
 let b = { x: 1 },
   c = { y: 2 },
@@ -49,9 +49,9 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $('x');
+    const varInitAssignLhsComputedProp = $(`x`);
     const varInitAssignLhsComputedObj$1 = $(c);
-    const varInitAssignLhsComputedProp$1 = $('y');
+    const varInitAssignLhsComputedProp$1 = $(`y`);
     const varInitAssignLhsComputedRhs$1 = d + e;
     varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
     const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
@@ -82,9 +82,9 @@ $(a, b, c, d, e);
 const b = { x: 1 };
 const c = { y: 2 };
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $('y');
+const varInitAssignLhsComputedProp$1 = $(`y`);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 $(undefined);

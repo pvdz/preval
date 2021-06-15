@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { x: { y: 1 } };
 let a = { a: 999, b: 1000 };
-$($(100) && (a = $(b)?.[$('x')]?.[$('y')]));
+$($(100) && (a = $(b)?.[$(`x`)]?.[$(`y`)]));
 $(a);
 `````
 
@@ -41,11 +41,11 @@ if (tmpCalleeParam) {
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
-    const tmpChainRootComputed = $('x');
+    const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$1 = tmpChainElementObject != null;
     if (tmpIfTest$1) {
-      const tmpChainRootComputed$1 = $('y');
+      const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpNestedComplexRhs = tmpChainElementObject$1;
     } else {
@@ -73,12 +73,12 @@ if (tmpCalleeParam) {
   const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
   } else {
-    const tmpChainRootComputed = $('x');
+    const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$1 = tmpChainElementObject == null;
     if (tmpIfTest$1) {
     } else {
-      const tmpChainRootComputed$1 = $('y');
+      const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       tmpNestedComplexRhs = tmpChainElementObject$1;
     }

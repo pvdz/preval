@@ -25,7 +25,7 @@ $(typeof !$(100));
 `````js filename=intro
 const tmpCallCallee = $;
 $(100);
-const tmpCalleeParam = 'boolean';
+const tmpCalleeParam = `boolean`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -33,7 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $(100);
-$('boolean');
+$(`boolean`);
 `````
 
 ## Globals

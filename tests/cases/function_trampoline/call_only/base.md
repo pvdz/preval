@@ -23,7 +23,7 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  $('inline me');
+  $(`inline me`);
 };
 f();
 f();
@@ -34,7 +34,7 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  $('inline me');
+  $(`inline me`);
   return undefined;
 };
 f();
@@ -44,8 +44,8 @@ f();
 ## Output
 
 `````js filename=intro
-$('inline me');
-$('inline me');
+$(`inline me`);
+$(`inline me`);
 `````
 
 ## Globals

@@ -18,20 +18,20 @@ $(y);
 ## Pre Normal
 
 `````js filename=intro
-({ x: [...y] = $(['pass']) } = 'abc');
+({ x: [...y] = $([`pass`]) } = `abc`);
 $(y);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = 'abc';
+const tmpAssignObjPatternRhs = `abc`;
 const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = ['pass'];
+  const tmpCalleeParam = [`pass`];
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -44,11 +44,11 @@ $(y);
 ## Output
 
 `````js filename=intro
-const objPatternBeforeDefault = 'abc'.x;
+const objPatternBeforeDefault = `abc`.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  const tmpCalleeParam = ['pass'];
+  const tmpCalleeParam = [`pass`];
   objPatternAfterDefault = $(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;

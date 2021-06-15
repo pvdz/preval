@@ -35,7 +35,7 @@ let x = undefined;
 const f = function () {
   debugger;
   if ($) {
-    $('block inlining');
+    $(`block inlining`);
     $(x);
   }
 };
@@ -56,7 +56,7 @@ let x = undefined;
 const f = function () {
   debugger;
   if ($) {
-    $('block inlining');
+    $(`block inlining`);
     $(x);
     return undefined;
   } else {
@@ -78,7 +78,7 @@ $(x);
 `````js filename=intro
 let x = $(2);
 if ($) {
-  $('block inlining');
+  $(`block inlining`);
   $(x);
   x = $(3);
 } else {

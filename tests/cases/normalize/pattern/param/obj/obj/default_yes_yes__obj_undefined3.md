@@ -26,7 +26,7 @@ let f = function ($$0) {
   let {
     x: {},
   } = tmpParamBare;
-  return 'ok';
+  return `ok`;
 };
 f({ x: null });
 `````
@@ -46,9 +46,9 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-    return 'ok';
+    return `ok`;
   } else {
-    return 'ok';
+    return `ok`;
   }
 };
 const tmpCallCallee = f;
@@ -60,7 +60,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 null.cannotDestructureThis;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

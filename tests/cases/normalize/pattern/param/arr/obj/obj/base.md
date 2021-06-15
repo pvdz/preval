@@ -32,7 +32,7 @@ let f = function ($$0) {
       x: {},
     },
   ] = tmpParamBare;
-  return 'ok';
+  return `ok`;
 };
 $(f([{ x: [{ a: 1, b: 2, c: 3 }, 12], y: 11 }, 10], 100));
 `````
@@ -54,9 +54,9 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-    return 'ok';
+    return `ok`;
   } else {
-    return 'ok';
+    return `ok`;
   }
 };
 const tmpCallCallee = $;
@@ -73,7 +73,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

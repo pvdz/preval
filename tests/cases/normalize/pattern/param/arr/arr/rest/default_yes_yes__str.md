@@ -23,10 +23,10 @@ $(f('abc', 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [[...x] = $('fail')] = tmpParamBare === undefined ? $('fail2') : tmpParamBare;
+  let [[...x] = $(`fail`)] = tmpParamBare === undefined ? $(`fail2`) : tmpParamBare;
   return x;
 };
-$(f('abc', 200));
+$(f(`abc`, 200));
 `````
 
 ## Normalized
@@ -38,7 +38,7 @@ let f = function ($$0) {
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    bindingPatternArrRoot = $('fail2');
+    bindingPatternArrRoot = $(`fail2`);
   } else {
     bindingPatternArrRoot = tmpParamBare;
   }
@@ -47,7 +47,7 @@ let f = function ($$0) {
   let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    arrPatternStep = $('fail');
+    arrPatternStep = $(`fail`);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
@@ -56,14 +56,14 @@ let f = function ($$0) {
   return x;
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('abc', 200);
+const tmpCalleeParam = f(`abc`, 200);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const arrPatternSplat$1 = ['a'];
+const arrPatternSplat$1 = [`a`];
 const x = arrPatternSplat$1.slice(0);
 $(x);
 `````

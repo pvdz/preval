@@ -38,7 +38,7 @@ let f = function () {
       x = $(2);
       $(x);
     } else {
-      $('else');
+      $(`else`);
     }
     $(x);
   }

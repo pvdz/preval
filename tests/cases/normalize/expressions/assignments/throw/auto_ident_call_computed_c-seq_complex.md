@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-throw (a = (1, 2, $(b))[$('$')](1));
+throw (a = (1, 2, $(b))[$(`$`)](1));
 $(a);
 `````
 
@@ -33,7 +33,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpThrowArg = a;
 throw tmpThrowArg;
@@ -44,7 +44,7 @@ throw tmpThrowArg;
 `````js filename=intro
 const b = { $: $ };
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 throw tmpClusterSSA_a;
 `````

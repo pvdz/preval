@@ -17,7 +17,7 @@
 ## Pre Normal
 
 `````js filename=intro
-({ ['x']: 1, y: 2 });
+({ [`x`]: 1, y: 2 });
 `````
 
 ## Normalized

@@ -34,17 +34,17 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = 'fail';
+  let x = `fail`;
   try {
     if ($) {
-      x = 'pass';
-      throw 'yes';
+      x = `pass`;
+      throw `yes`;
     } else {
-      throw 'too';
+      throw `too`;
     }
   } catch {
     throw_early;
-    $(x, 'mutation is observable in the catch');
+    $(x, `mutation is observable in the catch`);
   }
   $(x);
 };
@@ -56,17 +56,17 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = 'fail';
+  let x = `fail`;
   try {
     if ($) {
-      x = 'pass';
-      throw 'yes';
+      x = `pass`;
+      throw `yes`;
     } else {
-      throw 'too';
+      throw `too`;
     }
   } catch {
     throw_early;
-    $(x, 'mutation is observable in the catch');
+    $(x, `mutation is observable in the catch`);
   }
   $(x);
   return undefined;
@@ -77,17 +77,17 @@ f();
 ## Output
 
 `````js filename=intro
-let x = 'fail';
+let x = `fail`;
 try {
   if ($) {
-    x = 'pass';
-    throw 'yes';
+    x = `pass`;
+    throw `yes`;
   } else {
-    throw 'too';
+    throw `too`;
   }
 } catch {
   throw_early;
-  $(x, 'mutation is observable in the catch');
+  $(x, `mutation is observable in the catch`);
 }
 $(x);
 `````

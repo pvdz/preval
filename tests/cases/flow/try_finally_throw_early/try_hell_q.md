@@ -34,9 +34,9 @@ let f = function () {
   debugger;
   stop: try {
     x = 1;
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     throw_early;
     break stop;
@@ -54,9 +54,9 @@ let f = function () {
   debugger;
   try {
     x = 1;
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     throw_early;
     return undefined;
@@ -75,9 +75,9 @@ const f = function () {
   debugger;
   try {
     x = 1;
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     throw_early;
     return undefined;

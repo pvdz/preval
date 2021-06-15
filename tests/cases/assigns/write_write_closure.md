@@ -25,7 +25,7 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  $(x, 'closure');
+  $(x, `closure`);
 };
 let x = $(1);
 x = $(2);
@@ -38,7 +38,7 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  $(x, 'closure');
+  $(x, `closure`);
   return undefined;
 };
 let x = $(1);
@@ -53,7 +53,7 @@ f();
 $(1);
 const x = $(2);
 $(x);
-$(x, 'closure');
+$(x, `closure`);
 `````
 
 ## Globals

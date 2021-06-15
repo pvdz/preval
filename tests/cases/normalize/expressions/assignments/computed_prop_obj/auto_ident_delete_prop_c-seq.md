@@ -25,7 +25,7 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-(a = delete ($(1), $(2), $(arg)).y)['a'];
+(a = delete ($(1), $(2), $(arg)).y)[`a`];
 $(a, arg);
 `````
 

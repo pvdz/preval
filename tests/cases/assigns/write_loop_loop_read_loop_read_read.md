@@ -28,12 +28,12 @@ $(x, 'outer');
 let x = $(10);
 while (true) {
   while (true) {
-    $(x, 'inner');
+    $(x, `inner`);
     if ($(true)) break;
   }
-  $(x, 'middle');
+  $(x, `middle`);
 }
-$(x, 'outer');
+$(x, `outer`);
 `````
 
 ## Normalized
@@ -42,16 +42,16 @@ $(x, 'outer');
 let x = $(10);
 while (true) {
   while (true) {
-    $(x, 'inner');
+    $(x, `inner`);
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       break;
     } else {
     }
   }
-  $(x, 'middle');
+  $(x, `middle`);
 }
-$(x, 'outer');
+$(x, `outer`);
 `````
 
 ## Output
@@ -60,16 +60,16 @@ $(x, 'outer');
 const x = $(10);
 while (true) {
   while (true) {
-    $(x, 'inner');
+    $(x, `inner`);
     const tmpIfTest = $(true);
     if (tmpIfTest) {
       break;
     } else {
     }
   }
-  $(x, 'middle');
+  $(x, `middle`);
 }
-$(x, 'outer');
+$(x, `outer`);
 `````
 
 ## Globals

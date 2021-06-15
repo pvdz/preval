@@ -23,11 +23,11 @@ $(f('y'));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let a = tmpParamBare === undefined ? 'foo' : tmpParamBare;
+  let a = tmpParamBare === undefined ? `foo` : tmpParamBare;
   return a;
 };
-$(f('x'));
-$(f('y'));
+$(f(`x`));
+$(f(`y`));
 `````
 
 ## Normalized
@@ -39,7 +39,7 @@ let f = function ($$0) {
   let a = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    a = 'foo';
+    a = `foo`;
     return a;
   } else {
     a = tmpParamBare;
@@ -47,10 +47,10 @@ let f = function ($$0) {
   }
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('x');
+const tmpCalleeParam = f(`x`);
 tmpCallCallee(tmpCalleeParam);
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = f('y');
+const tmpCalleeParam$1 = f(`y`);
 tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
@@ -62,14 +62,14 @@ const f = function ($$0) {
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    return 'foo';
+    return `foo`;
   } else {
     return tmpParamBare;
   }
 };
-const tmpCalleeParam = f('x');
+const tmpCalleeParam = f(`x`);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f('y');
+const tmpCalleeParam$1 = f(`y`);
 $(tmpCalleeParam$1);
 `````
 

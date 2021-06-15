@@ -33,7 +33,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       b = { c: 10, d: 20 };
-      a = (1, 2, $(b))[$('c')] = $(b)[$('d')];
+      a = (1, 2, $(b))[$(`c`)] = $(b)[$(`d`)];
       $(a, b);
     }
   }
@@ -56,9 +56,9 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   b = { c: 10, d: 20 };
   const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $('c');
+  const tmpNestedAssignComMemberProp = $(`c`);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
@@ -73,9 +73,9 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpClusterSSA_b = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
-const tmpNestedAssignComMemberProp = $('c');
+const tmpNestedAssignComMemberProp = $(`c`);
 const tmpCompObj = $(tmpClusterSSA_b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, tmpClusterSSA_b);

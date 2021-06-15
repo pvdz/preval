@@ -27,7 +27,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = $(b)['c'])) {
+  while (tmpDoWhileFlag || (a = $(b)[`c`])) {
     tmpDoWhileFlag = false;
     {
       $(100);

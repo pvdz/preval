@@ -23,8 +23,8 @@ $(f(null, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { ...x } = tmpParamBare === undefined ? $({ a: 'fail' }) : tmpParamBare;
-  return 'bad';
+  let { ...x } = tmpParamBare === undefined ? $({ a: `fail` }) : tmpParamBare;
+  return `bad`;
 };
 $(f(null, 10));
 `````
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = { a: 'fail' };
+    const tmpCalleeParam = { a: `fail` };
     bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
     bindingPatternObjRoot = tmpParamBare;
@@ -47,9 +47,9 @@ let f = function ($$0) {
   const tmpCallCallee$1 = objPatternRest;
   const tmpCalleeParam$1 = bindingPatternObjRoot;
   const tmpCalleeParam$3 = [];
-  const tmpCalleeParam$5 = 'x';
+  const tmpCalleeParam$5 = `x`;
   let x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
-  return 'bad';
+  return `bad`;
 };
 const tmpCallCallee$3 = $;
 const tmpCalleeParam$7 = f(null, 10);
@@ -60,8 +60,8 @@ tmpCallCallee$3(tmpCalleeParam$7);
 
 `````js filename=intro
 const tmpCalleeParam$3 = [];
-objPatternRest(null, tmpCalleeParam$3, 'x');
-$('bad');
+objPatternRest(null, tmpCalleeParam$3, `x`);
+$(`bad`);
 `````
 
 ## Globals

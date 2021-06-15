@@ -31,7 +31,7 @@ let a = { a: 999, b: 1000 };
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      (1, 2, $(b)).c = $(b)[$('d')];
+      (1, 2, $(b)).c = $(b)[$(`d`)];
     }
   }
 }
@@ -50,7 +50,7 @@ if (tmpIfTest) {
   const tmpAssignMemLhsObj = $(b);
   const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
   tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
 } else {
@@ -66,7 +66,7 @@ const a = { a: 999, b: 1000 };
 $(1);
 const tmpAssignMemLhsObj = $(b);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
 tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 $(a, b);

@@ -24,14 +24,14 @@ $(typeof false);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'boolean';
+const tmpCalleeParam = `boolean`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('boolean');
+$(`boolean`);
 `````
 
 ## Globals

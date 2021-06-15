@@ -17,7 +17,7 @@ $(obj[$('foo')]);
 
 `````js filename=intro
 const obj = { foo: 10 };
-$(obj[$('foo')]);
+$(obj[$(`foo`)]);
 `````
 
 ## Normalized
@@ -26,7 +26,7 @@ $(obj[$('foo')]);
 const obj = { foo: 10 };
 const tmpCallCallee = $;
 const tmpCompObj = obj;
-const tmpCompProp = $('foo');
+const tmpCompProp = $(`foo`);
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -34,7 +34,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCompProp = $('foo');
+const tmpCompProp = $(`foo`);
 const obj = { foo: 10 };
 const tmpCalleeParam = obj[tmpCompProp];
 $(tmpCalleeParam);

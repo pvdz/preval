@@ -23,7 +23,7 @@ $(x, 'out');
 let x = undefined;
 $(1);
 x = $(2);
-$(x, 'out');
+$(x, `out`);
 `````
 
 ## Normalized
@@ -32,7 +32,7 @@ $(x, 'out');
 let x = undefined;
 $(1);
 x = $(2);
-$(x, 'out');
+$(x, `out`);
 `````
 
 ## Output
@@ -40,7 +40,7 @@ $(x, 'out');
 `````js filename=intro
 $(1);
 const x = $(2);
-$(x, 'out');
+$(x, `out`);
 `````
 
 ## Globals

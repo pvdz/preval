@@ -21,7 +21,7 @@ $('ok');
 ({
   x: [],
 } = { x: [null], a: 11, b: 12 });
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -31,13 +31,13 @@ const tmpObjLitVal = [null];
 const tmpAssignObjPatternRhs = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const arrPatternSplat = [...objPatternNoDefault];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

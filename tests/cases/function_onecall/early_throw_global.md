@@ -32,9 +32,9 @@ let f = function () {
   if ($) {
     $(1);
   } else {
-    throw '$ should be defined';
+    throw `$ should be defined`;
   }
-  return $('ok');
+  return $(`ok`);
 };
 $(f());
 `````
@@ -46,10 +46,10 @@ let f = function () {
   debugger;
   if ($) {
     $(1);
-    const tmpReturnArg = $('ok');
+    const tmpReturnArg = $(`ok`);
     return tmpReturnArg;
   } else {
-    throw '$ should be defined';
+    throw `$ should be defined`;
   }
 };
 const tmpCallCallee = $;
@@ -62,10 +62,10 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 if ($) {
   $(1);
-  const tmpReturnArg = $('ok');
+  const tmpReturnArg = $(`ok`);
   $(tmpReturnArg);
 } else {
-  throw '$ should be defined';
+  throw `$ should be defined`;
 }
 `````
 

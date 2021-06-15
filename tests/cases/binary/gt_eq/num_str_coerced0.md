@@ -15,7 +15,7 @@ $(0 >= '1');
 ## Pre Normal
 
 `````js filename=intro
-$(0 >= '1');
+$(0 >= `1`);
 `````
 
 ## Normalized

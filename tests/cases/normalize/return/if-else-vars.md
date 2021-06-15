@@ -30,13 +30,13 @@ let f = function () {
   debugger;
   let x = undefined;
   if ($(1)) {
-    x = $(1, 'a');
+    x = $(1, `a`);
   } else {
-    x = $(2, 'b');
+    x = $(2, `b`);
   }
   return x;
 };
-$(f(), 'result');
+$(f(), `result`);
 `````
 
 ## Normalized
@@ -47,16 +47,16 @@ let f = function () {
   let x = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    x = $(1, 'a');
+    x = $(1, `a`);
     return x;
   } else {
-    x = $(2, 'b');
+    x = $(2, `b`);
     return x;
   }
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
-const tmpCalleeParam$1 = 'result';
+const tmpCalleeParam$1 = `result`;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
@@ -67,15 +67,15 @@ const f = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $(1, 'a');
+    const tmpClusterSSA_x = $(1, `a`);
     return tmpClusterSSA_x;
   } else {
-    const tmpClusterSSA_x$1 = $(2, 'b');
+    const tmpClusterSSA_x$1 = $(2, `b`);
     return tmpClusterSSA_x$1;
   }
 };
 const tmpCalleeParam = f();
-$(tmpCalleeParam, 'result');
+$(tmpCalleeParam, `result`);
 `````
 
 ## Globals

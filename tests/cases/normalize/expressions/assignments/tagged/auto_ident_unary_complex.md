@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-$(['before ', ' after'], (a = typeof $(x)));
+$([`before `, ` after`], (a = typeof $(x)));
 $(a, x);
 `````
 
@@ -33,7 +33,7 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpUnaryArg = $(x);
 a = typeof tmpUnaryArg;
 let tmpCalleeParam$1 = a;
@@ -44,7 +44,7 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpUnaryArg = $(1);
 const a = typeof tmpUnaryArg;
 $(tmpCalleeParam, a);

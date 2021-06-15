@@ -24,7 +24,7 @@ $(b);
 
 `````js filename=intro
 let b;
-({ a: b = $('default') } = { a: $('prop') });
+({ a: b = $(`default`) } = { a: $(`prop`) });
 $(b);
 `````
 
@@ -32,12 +32,12 @@ $(b);
 
 `````js filename=intro
 let b = undefined;
-const tmpObjLitVal = $('prop');
+const tmpObjLitVal = $(`prop`);
 const tmpAssignObjPatternRhs = { a: tmpObjLitVal };
 const objPatternBeforeDefault = tmpAssignObjPatternRhs.a;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  b = $('default');
+  b = $(`default`);
 } else {
   b = objPatternBeforeDefault;
 }
@@ -48,10 +48,10 @@ $(b);
 
 `````js filename=intro
 let b = undefined;
-const tmpObjLitVal = $('prop');
+const tmpObjLitVal = $(`prop`);
 const tmpIfTest = tmpObjLitVal === undefined;
 if (tmpIfTest) {
-  b = $('default');
+  b = $(`default`);
 } else {
   b = tmpObjLitVal;
 }

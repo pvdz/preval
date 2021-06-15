@@ -39,7 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('function');
+$(`function`);
 `````
 
 ## Globals

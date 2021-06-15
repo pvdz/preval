@@ -23,7 +23,7 @@ $(f([{ x: 0, y: 2, z: 3 }, 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x: x = $('fail') }] = tmpParamBare;
+  let [{ x: x = $(`fail`) }] = tmpParamBare;
   return x;
 };
 $(f([{ x: 0, y: 2, z: 3 }, 20, 30], 200));
@@ -42,7 +42,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    x = $('fail');
+    x = $(`fail`);
     return x;
   } else {
     x = objPatternBeforeDefault;
@@ -69,7 +69,7 @@ const f = function ($$0) {
   const objPatternBeforeDefault = arrPatternStep.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $('fail');
+    const tmpClusterSSA_x = $(`fail`);
     return tmpClusterSSA_x;
   } else {
     return objPatternBeforeDefault;

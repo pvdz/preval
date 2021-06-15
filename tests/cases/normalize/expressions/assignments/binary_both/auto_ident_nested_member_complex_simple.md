@@ -29,7 +29,7 @@ let b = { x: 1 },
   c = { y: 2 },
   d = 3;
 let a = { a: 999, b: 1000 };
-$((a = $(b)[$('x')] = $(c)[$('y')] = d) + (a = $(b)[$('x')] = $(c)[$('y')] = d));
+$((a = $(b)[$(`x`)] = $(c)[$(`y`)] = d) + (a = $(b)[$(`x`)] = $(c)[$(`y`)] = d));
 $(a, b, c, d);
 `````
 
@@ -42,9 +42,9 @@ let d = 3;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = d;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
@@ -53,9 +53,9 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignR
 a = tmpNestedPropAssignRhs;
 let tmpBinBothLhs = a;
 const tmpNestedAssignComMemberObj$1 = $(b);
-const tmpNestedAssignComMemberProp$1 = $('x');
+const tmpNestedAssignComMemberProp$1 = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $('y');
+const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = d;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const tmpNestedAssignPropRhs$1 = varInitAssignLhsComputedRhs$1;
@@ -74,15 +74,15 @@ $(a, b, c, d);
 const b = { x: 1 };
 const c = { y: 2 };
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 const tmpNestedAssignComMemberObj$1 = $(b);
-const tmpNestedAssignComMemberProp$1 = $('x');
+const tmpNestedAssignComMemberProp$1 = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $('y');
+const varInitAssignLhsComputedProp$1 = $(`y`);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 3;
 $(6);

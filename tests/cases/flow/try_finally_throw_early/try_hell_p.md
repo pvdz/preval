@@ -33,9 +33,9 @@ considerMutated(x) // always true (!)
 let f = function () {
   debugger;
   stop: try {
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     throw_early;
     break stop;
@@ -55,9 +55,9 @@ let f = function () {
   const tmpLabeledBlockFunc = function () {
     debugger;
     try {
-      throw 'one';
+      throw `one`;
     } catch {
-      throw 'two';
+      throw `two`;
     } finally {
       throw_early;
       const tmpReturnArg = tmpAfterLabel();
@@ -85,9 +85,9 @@ considerMutated(x);
 const f = function () {
   debugger;
   try {
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     throw_early;
     x = 1;

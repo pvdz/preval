@@ -31,10 +31,10 @@ $(f(function(a,b,c,d,e){ $('pass3', a,b,c,d,e); }));
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
-  const y = x(1, 'two', foo, NaN);
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y = x(1, `two`, foo, NaN);
   return y;
 };
 $(
@@ -45,7 +45,7 @@ $(
     let d = $$3;
     let e = $$4;
     debugger;
-    $('pass1', a, b, c, d, e);
+    $(`pass1`, a, b, c, d, e);
   }),
 );
 $(
@@ -56,7 +56,7 @@ $(
     let d$1 = $$3;
     let e$1 = $$4;
     debugger;
-    $('pass2', a$1, b$1, c$1, d$1, e$1);
+    $(`pass2`, a$1, b$1, c$1, d$1, e$1);
   }),
 );
 $(
@@ -67,7 +67,7 @@ $(
     let d$3 = $$3;
     let e$3 = $$4;
     debugger;
-    $('pass3', a$3, b$3, c$3, d$3, e$3);
+    $(`pass3`, a$3, b$3, c$3, d$3, e$3);
   }),
 );
 `````
@@ -78,10 +78,10 @@ $(
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
-  const y = x(1, 'two', foo, NaN);
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y = x(1, `two`, foo, NaN);
   return y;
 };
 const tmpCallCallee = $;
@@ -93,7 +93,7 @@ const tmpCalleeParam$1 = function ($$0, $$1, $$2, $$3, $$4) {
   let d = $$3;
   let e = $$4;
   debugger;
-  $('pass1', a, b, c, d, e);
+  $(`pass1`, a, b, c, d, e);
   return undefined;
 };
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
@@ -107,7 +107,7 @@ const tmpCalleeParam$5 = function ($$0, $$1, $$2, $$3, $$4) {
   let d$1 = $$3;
   let e$1 = $$4;
   debugger;
-  $('pass2', a$1, b$1, c$1, d$1, e$1);
+  $(`pass2`, a$1, b$1, c$1, d$1, e$1);
   return undefined;
 };
 const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5);
@@ -121,7 +121,7 @@ const tmpCalleeParam$9 = function ($$0, $$1, $$2, $$3, $$4) {
   let d$3 = $$3;
   let e$3 = $$4;
   debugger;
-  $('pass3', a$3, b$3, c$3, d$3, e$3);
+  $(`pass3`, a$3, b$3, c$3, d$3, e$3);
   return undefined;
 };
 const tmpCalleeParam$7 = tmpCallCallee$9(tmpCalleeParam$9);
@@ -134,10 +134,10 @@ tmpCallCallee$7(tmpCalleeParam$7);
 const f = function ($$0) {
   const x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
-  const y = x(1, 'two', foo, NaN);
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
+  const y = x(1, `two`, foo, NaN);
   return y;
 };
 const tmpCalleeParam$1 = function ($$0, $$1, $$2, $$3, $$4) {
@@ -147,7 +147,7 @@ const tmpCalleeParam$1 = function ($$0, $$1, $$2, $$3, $$4) {
   const d = $$3;
   const e = $$4;
   debugger;
-  $('pass1', a, b, c, d, e);
+  $(`pass1`, a, b, c, d, e);
   return undefined;
 };
 const tmpCalleeParam = f(tmpCalleeParam$1);
@@ -159,7 +159,7 @@ const tmpCalleeParam$5 = function ($$0, $$1, $$2, $$3, $$4) {
   const d$1 = $$3;
   const e$1 = $$4;
   debugger;
-  $('pass2', a$1, b$1, c$1, d$1, e$1);
+  $(`pass2`, a$1, b$1, c$1, d$1, e$1);
   return undefined;
 };
 const tmpCalleeParam$3 = f(tmpCalleeParam$5);
@@ -171,7 +171,7 @@ const tmpCalleeParam$9 = function ($$0, $$1, $$2, $$3, $$4) {
   const d$3 = $$3;
   const e$3 = $$4;
   debugger;
-  $('pass3', a$3, b$3, c$3, d$3, e$3);
+  $(`pass3`, a$3, b$3, c$3, d$3, e$3);
   return undefined;
 };
 const tmpCalleeParam$7 = f(tmpCalleeParam$9);

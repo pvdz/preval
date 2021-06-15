@@ -18,8 +18,8 @@ $('ok');
 ## Pre Normal
 
 `````js filename=intro
-const { x: [] = ['fail'] } = 1;
-$('ok');
+const { x: [] = [`fail`] } = 1;
+$(`ok`);
 `````
 
 ## Normalized
@@ -30,12 +30,12 @@ const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  objPatternAfterDefault = ['fail'];
+  objPatternAfterDefault = [`fail`];
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const arrPatternSplat = [...objPatternAfterDefault];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
@@ -45,12 +45,12 @@ const objPatternBeforeDefault = (1).x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  objPatternAfterDefault = ['fail'];
+  objPatternAfterDefault = [`fail`];
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 [...objPatternAfterDefault];
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

@@ -23,7 +23,7 @@ $(f(undefined, 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [[...x] = $('fail')] = tmpParamBare === undefined ? $('pass2') : tmpParamBare;
+  let [[...x] = $(`fail`)] = tmpParamBare === undefined ? $(`pass2`) : tmpParamBare;
   return x;
 };
 $(f(undefined, 200));
@@ -38,7 +38,7 @@ let f = function ($$0) {
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    bindingPatternArrRoot = $('pass2');
+    bindingPatternArrRoot = $(`pass2`);
   } else {
     bindingPatternArrRoot = tmpParamBare;
   }
@@ -47,7 +47,7 @@ let f = function ($$0) {
   let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    arrPatternStep = $('fail');
+    arrPatternStep = $(`fail`);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
@@ -63,13 +63,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const bindingPatternArrRoot = $('pass2');
+const bindingPatternArrRoot = $(`pass2`);
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  arrPatternStep = $('fail');
+  arrPatternStep = $(`fail`);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
 }

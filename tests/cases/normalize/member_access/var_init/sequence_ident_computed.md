@@ -20,9 +20,9 @@ $(c);
 ## Pre Normal
 
 `````js filename=intro
-let b = 'foo',
+let b = `foo`,
   c = 1;
-let x = ($(1), b)[$('length')];
+let x = ($(1), b)[$(`length`)];
 $(x);
 $(c);
 `````
@@ -30,11 +30,11 @@ $(c);
 ## Normalized
 
 `````js filename=intro
-let b = 'foo';
+let b = `foo`;
 let c = 1;
 $(1);
 const tmpCompObj = b;
-const tmpCompProp = $('length');
+const tmpCompProp = $(`length`);
 let x = tmpCompObj[tmpCompProp];
 $(x);
 $(c);
@@ -44,8 +44,8 @@ $(c);
 
 `````js filename=intro
 $(1);
-const tmpCompProp = $('length');
-const x = 'foo'[tmpCompProp];
+const tmpCompProp = $(`length`);
+const x = `foo`[tmpCompProp];
 $(x);
 $(1);
 `````

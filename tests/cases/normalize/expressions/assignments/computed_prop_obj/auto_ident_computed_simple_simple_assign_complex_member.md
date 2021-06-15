@@ -25,7 +25,7 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-(a = b['c'] = $(b)[$('d')])['a'];
+(a = b[`c`] = $(b)[$(`d`)])[`a`];
 $(a, b);
 `````
 
@@ -36,7 +36,7 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj$1 = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj$1[tmpCompProp];
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 b.c = tmpNestedPropAssignRhs;
@@ -51,7 +51,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const tmpCompObj$1 = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj$1[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
 tmpNestedAssignPropRhs.a;

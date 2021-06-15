@@ -23,7 +23,7 @@ let a = 1,
   c = 3,
   d = 4;
 {
-  let a$1 = (b[$('x')] = $(c)[$('y')] = $(d));
+  let a$1 = (b[$(`x`)] = $(c)[$(`y`)] = $(d));
   while (false) {
     $(a$1, b, c);
   }
@@ -38,9 +38,9 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 const varInitAssignLhsComputedObj = b;
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $('y');
+const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = $(d);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
@@ -51,9 +51,9 @@ let a$1 = varInitAssignLhsComputedRhs;
 ## Output
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(3);
-const varInitAssignLhsComputedProp$1 = $('y');
+const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = $(4);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const b = { x: 2 };

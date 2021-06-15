@@ -35,11 +35,11 @@ let f = function () {
   debugger;
   let a = function () {
     debugger;
-    $('a');
+    $(`a`);
   };
   let b = function () {
     debugger;
-    $('b');
+    $(`b`);
   };
   $(3);
   $(4);
@@ -62,12 +62,12 @@ let f = function () {
   debugger;
   let a = function () {
     debugger;
-    $('a');
+    $(`a`);
     return undefined;
   };
   let b = function () {
     debugger;
-    $('b');
+    $(`b`);
     return undefined;
   };
   $(3);
@@ -92,10 +92,10 @@ $(1);
 $(2);
 $(3);
 $(4);
-$('a');
+$(`a`);
 $(5);
 $(6);
-$('b');
+$(`b`);
 $(7);
 $(8);
 `````

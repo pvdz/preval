@@ -43,7 +43,7 @@ let f = function () {
     }
     return function () {
       debugger;
-      $('new');
+      $(`new`);
     };
   };
   g = g(T);
@@ -69,7 +69,7 @@ let f = function () {
     }
     const tmpReturnArg = function () {
       debugger;
-      $('new');
+      $(`new`);
       return undefined;
     };
     return tmpReturnArg;
@@ -91,7 +91,7 @@ if ($) {
 `````js filename=intro
 const tmpReturnArg = function () {
   debugger;
-  $('new');
+  $(`new`);
   return undefined;
 };
 const T = $(true);

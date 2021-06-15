@@ -34,19 +34,19 @@ $(closure(), 'closure-global2');
 `````js filename=intro
 let closure = function () {
   debugger;
-  return $(x, 'closure-return');
+  return $(x, `closure-return`);
 };
 let f = function () {
   debugger;
   if ($()) {
-    return $(1, 'f-return');
+    return $(1, `f-return`);
   }
 };
-let x = $(100, 'init');
-$(closure(), 'closure-global1');
+let x = $(100, `init`);
+$(closure(), `closure-global1`);
 x = f();
-$(x, 'x-global');
-$(closure(), 'closure-global2');
+$(x, `x-global`);
+$(closure(), `closure-global2`);
 `````
 
 ## Normalized
@@ -54,29 +54,29 @@ $(closure(), 'closure-global2');
 `````js filename=intro
 let closure = function () {
   debugger;
-  const tmpReturnArg = $(x, 'closure-return');
+  const tmpReturnArg = $(x, `closure-return`);
   return tmpReturnArg;
 };
 let f = function () {
   debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {
-    const tmpReturnArg$1 = $(1, 'f-return');
+    const tmpReturnArg$1 = $(1, `f-return`);
     return tmpReturnArg$1;
   } else {
     return undefined;
   }
 };
-let x = $(100, 'init');
+let x = $(100, `init`);
 const tmpCallCallee = $;
 const tmpCalleeParam = closure();
-const tmpCalleeParam$1 = 'closure-global1';
+const tmpCalleeParam$1 = `closure-global1`;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 x = f();
-$(x, 'x-global');
+$(x, `x-global`);
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = closure();
-const tmpCalleeParam$5 = 'closure-global2';
+const tmpCalleeParam$5 = `closure-global2`;
 tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 `````
 
@@ -87,19 +87,19 @@ const f = function () {
   debugger;
   const tmpIfTest = $();
   if (tmpIfTest) {
-    const tmpReturnArg$1 = $(1, 'f-return');
+    const tmpReturnArg$1 = $(1, `f-return`);
     return tmpReturnArg$1;
   } else {
     return undefined;
   }
 };
-const x = $(100, 'init');
-const tmpCalleeParam = $(x, 'closure-return');
-$(tmpCalleeParam, 'closure-global1');
+const x = $(100, `init`);
+const tmpCalleeParam = $(x, `closure-return`);
+$(tmpCalleeParam, `closure-global1`);
 const tmpClusterSSA_x = f();
-$(tmpClusterSSA_x, 'x-global');
-const tmpCalleeParam$3 = $(tmpClusterSSA_x, 'closure-return');
-$(tmpCalleeParam$3, 'closure-global2');
+$(tmpClusterSSA_x, `x-global`);
+const tmpCalleeParam$3 = $(tmpClusterSSA_x, `closure-return`);
+$(tmpCalleeParam$3, `closure-global2`);
 `````
 
 ## Globals

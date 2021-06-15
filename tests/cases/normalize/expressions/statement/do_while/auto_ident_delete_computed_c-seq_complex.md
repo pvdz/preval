@@ -27,7 +27,7 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || delete ($(1), $(2), $(arg))[$('y')]) {
+  while (tmpDoWhileFlag || delete ($(1), $(2), $(arg))[$(`y`)]) {
     tmpDoWhileFlag = false;
     {
       $(100);
@@ -50,7 +50,7 @@ while (true) {
     $(1);
     $(2);
     const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = $('y');
+    const tmpDeleteCompProp = $(`y`);
     tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
   }
   if (tmpIfTest) {
@@ -76,7 +76,7 @@ while (true) {
     $(1);
     $(2);
     const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = $('y');
+    const tmpDeleteCompProp = $(`y`);
     tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
   }
   if (tmpIfTest) {

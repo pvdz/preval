@@ -33,7 +33,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       arg = { y: 1 };
-      a = delete $(arg)['y'];
+      a = delete $(arg)[`y`];
       $(a, arg);
     }
   }

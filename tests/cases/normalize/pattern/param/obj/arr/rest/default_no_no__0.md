@@ -26,7 +26,7 @@ let f = function ($$0) {
   let {
     x: [...y],
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
 $(f(0, 10));
 `````
@@ -41,7 +41,7 @@ let f = function ($$0) {
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let y = arrPatternSplat.slice(0);
-  return 'bad';
+  return `bad`;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f(0, 10);
@@ -54,7 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 const objPatternNoDefault = (0).x;
 const arrPatternSplat = [...objPatternNoDefault];
 arrPatternSplat.slice(0);
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

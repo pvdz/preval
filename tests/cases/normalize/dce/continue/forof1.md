@@ -29,9 +29,9 @@ while ($(true)) {
   for (let x in { a: 1, b: 2 }) {
     continue;
   }
-  $('keep');
+  $(`keep`);
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Normalized
@@ -45,12 +45,12 @@ while (true) {
     for (x in tmpForInDeclRhs) {
       continue;
     }
-    $('keep');
+    $(`keep`);
   } else {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Output
@@ -64,12 +64,12 @@ while (true) {
     for (x in tmpForInDeclRhs) {
       continue;
     }
-    $('keep');
+    $(`keep`);
   } else {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Globals

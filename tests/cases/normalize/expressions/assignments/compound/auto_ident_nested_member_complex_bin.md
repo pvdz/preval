@@ -29,7 +29,7 @@ let b = { x: 1 },
   d = 3,
   e = 4;
 let a = { a: 999, b: 1000 };
-$((a *= $(b)[$('x')] = $(c)[$('y')] = d + e));
+$((a *= $(b)[$(`x`)] = $(c)[$(`y`)] = d + e));
 $(a, b, c, d, e);
 `````
 
@@ -44,9 +44,9 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = a;
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $('y');
+const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = d + e;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
@@ -65,9 +65,9 @@ const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(c);
-const varInitAssignLhsComputedProp$1 = $('y');
+const varInitAssignLhsComputedProp$1 = $(`y`);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 const tmpClusterSSA_a = a * 7;

@@ -23,10 +23,10 @@ $(f(['', 201], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [x = $('pass')] = tmpParamBare;
+  let [x = $(`pass`)] = tmpParamBare;
   return x;
 };
-$(f(['', 201], 200));
+$(f([``, 201], 200));
 `````
 
 ## Normalized
@@ -41,7 +41,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    x = $('pass');
+    x = $(`pass`);
     return x;
   } else {
     x = arrPatternBeforeDefault;
@@ -50,7 +50,7 @@ let f = function ($$0) {
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
-const tmpCalleeParam$1 = ['', 201];
+const tmpCalleeParam$1 = [``, 201];
 const tmpCalleeParam$3 = 200;
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 tmpCallCallee(tmpCalleeParam);
@@ -66,13 +66,13 @@ const f = function ($$0) {
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $('pass');
+    const tmpClusterSSA_x = $(`pass`);
     return tmpClusterSSA_x;
   } else {
     return arrPatternBeforeDefault;
   }
 };
-const tmpCalleeParam$1 = ['', 201];
+const tmpCalleeParam$1 = [``, 201];
 const tmpCalleeParam = f(tmpCalleeParam$1, 200);
 $(tmpCalleeParam);
 `````

@@ -21,7 +21,7 @@ $(x, 'a');
 `````js filename=intro
 let x = $(1);
 x = $(2);
-$(x, 'a');
+$(x, `a`);
 `````
 
 ## Normalized
@@ -29,7 +29,7 @@ $(x, 'a');
 `````js filename=intro
 let x = $(1);
 x = $(2);
-$(x, 'a');
+$(x, `a`);
 `````
 
 ## Output
@@ -37,7 +37,7 @@ $(x, 'a');
 `````js filename=intro
 $(1);
 const x = $(2);
-$(x, 'a');
+$(x, `a`);
 `````
 
 ## Globals

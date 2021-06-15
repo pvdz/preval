@@ -52,13 +52,13 @@ let f = function () {
   debugger;
   let a = function () {
     debugger;
-    $('a1');
-    $('a2');
+    $(`a1`);
+    $(`a2`);
   };
   let b = function () {
     debugger;
-    $('b1');
-    $('b2');
+    $(`b1`);
+    $(`b2`);
   };
   $(3.1);
   $(3.2);
@@ -92,14 +92,14 @@ let f = function () {
   debugger;
   let a = function () {
     debugger;
-    $('a1');
-    $('a2');
+    $(`a1`);
+    $(`a2`);
     return undefined;
   };
   let b = function () {
     debugger;
-    $('b1');
-    $('b2');
+    $(`b1`);
+    $(`b2`);
     return undefined;
   };
   $(3.1);
@@ -139,16 +139,16 @@ $(3.3);
 $(4.1);
 $(4.2);
 $(4.3);
-$('a1');
-$('a2');
+$(`a1`);
+$(`a2`);
 $(5.1);
 $(5.2);
 $(5.3);
 $(6.1);
 $(6.2);
 $(6.3);
-$('b1');
-$('b2');
+$(`b1`);
+$(`b2`);
 $(7.1);
 $(7.2);
 $(7.3);

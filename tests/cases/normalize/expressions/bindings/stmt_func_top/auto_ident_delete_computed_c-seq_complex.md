@@ -26,7 +26,7 @@ $(f());
 let f = function () {
   debugger;
   let arg = { y: 1 };
-  let a = delete ($(1), $(2), $(arg))[$('y')];
+  let a = delete ($(1), $(2), $(arg))[$(`y`)];
   $(a, arg);
 };
 $(f());
@@ -41,7 +41,7 @@ let f = function () {
   $(1);
   $(2);
   const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $('y');
+  const tmpDeleteCompProp = $(`y`);
   let a = delete tmpDeleteCompObj[tmpDeleteCompProp];
   $(a, arg);
   return undefined;
@@ -58,7 +58,7 @@ $(1);
 $(2);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(a, arg);
 $(undefined);

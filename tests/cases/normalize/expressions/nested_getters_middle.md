@@ -65,7 +65,7 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  $('-------- start');
+  $(`-------- start`);
   const b = {
     get foo() {
       debugger;
@@ -77,17 +77,17 @@ let f = function () {
       return $(3);
     },
   };
-  $('-------- bound');
+  $(`-------- bound`);
   let a = 1;
-  $('-------- let 1');
+  $(`-------- let 1`);
   $((a = b.foo = 5));
-  $('-------- test case');
+  $(`-------- test case`);
   $(a);
-  $('-------- a');
+  $(`-------- a`);
   $(b.foo);
-  $('-------- a.foo');
+  $(`-------- a.foo`);
   $((b.foo = 4));
-  $('-------- a.foo = 4');
+  $(`-------- a.foo = 4`);
 };
 f();
 `````
@@ -97,7 +97,7 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  $('-------- start');
+  $(`-------- start`);
   const b = {
     get foo() {
       debugger;
@@ -111,28 +111,28 @@ let f = function () {
       return tmpReturnArg$1;
     },
   };
-  $('-------- bound');
+  $(`-------- bound`);
   let a = 1;
-  $('-------- let 1');
+  $(`-------- let 1`);
   const tmpCallCallee = $;
   const tmpNestedPropAssignRhs = 5;
   b.foo = tmpNestedPropAssignRhs;
   a = tmpNestedPropAssignRhs;
   let tmpCalleeParam = a;
   tmpCallCallee(tmpCalleeParam);
-  $('-------- test case');
+  $(`-------- test case`);
   $(a);
-  $('-------- a');
+  $(`-------- a`);
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$1 = b.foo;
   tmpCallCallee$1(tmpCalleeParam$1);
-  $('-------- a.foo');
+  $(`-------- a.foo`);
   const tmpCallCallee$3 = $;
   const varInitAssignLhsComputedRhs = 4;
   b.foo = varInitAssignLhsComputedRhs;
   const tmpCalleeParam$3 = varInitAssignLhsComputedRhs;
   tmpCallCallee$3(tmpCalleeParam$3);
-  $('-------- a.foo = 4');
+  $(`-------- a.foo = 4`);
   return undefined;
 };
 f();
@@ -141,9 +141,9 @@ f();
 ## Output
 
 `````js filename=intro
-$('-------- start');
-$('-------- bound');
-$('-------- let 1');
+$(`-------- start`);
+$(`-------- bound`);
+$(`-------- let 1`);
 const b = {
   get foo() {
     debugger;
@@ -158,15 +158,15 @@ const b = {
 };
 b.foo = 5;
 $(5);
-$('-------- test case');
+$(`-------- test case`);
 $(5);
-$('-------- a');
+$(`-------- a`);
 const tmpCalleeParam$1 = b.foo;
 $(tmpCalleeParam$1);
-$('-------- a.foo');
+$(`-------- a.foo`);
 b.foo = 4;
 $(4);
-$('-------- a.foo = 4');
+$(`-------- a.foo = 4`);
 `````
 
 ## Globals

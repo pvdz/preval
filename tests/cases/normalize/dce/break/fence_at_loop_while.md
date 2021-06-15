@@ -29,15 +29,15 @@ $('after (not invoked)');
 
 `````js filename=intro
 while ($(true)) {
-  $('loop');
+  $(`loop`);
   while ($(true)) {
-    $('loop');
+    $(`loop`);
     break;
-    $('fail');
+    $(`fail`);
   }
-  $('infiloop, do not eliminate');
+  $(`infiloop, do not eliminate`);
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Normalized
@@ -46,22 +46,22 @@ $('after (not invoked)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('loop');
+    $(`loop`);
     while (true) {
       const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
-        $('loop');
+        $(`loop`);
         break;
       } else {
         break;
       }
     }
-    $('infiloop, do not eliminate');
+    $(`infiloop, do not eliminate`);
   } else {
     break;
   }
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Output
@@ -70,22 +70,22 @@ $('after (not invoked)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('loop');
+    $(`loop`);
     while (true) {
       const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
-        $('loop');
+        $(`loop`);
         break;
       } else {
         break;
       }
     }
-    $('infiloop, do not eliminate');
+    $(`infiloop, do not eliminate`);
   } else {
     break;
   }
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Globals

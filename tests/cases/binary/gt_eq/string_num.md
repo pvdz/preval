@@ -15,7 +15,7 @@ $('x' >= 2);
 ## Pre Normal
 
 `````js filename=intro
-$('x' >= 2);
+$(`x` >= 2);
 `````
 
 ## Normalized

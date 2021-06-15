@@ -29,7 +29,7 @@ let f = function () {
   let x = undefined;
   $(x);
   {
-    for (x of [100]) $(x, 'for');
+    for (x of [100]) $(x, `for`);
   }
   $(x);
 };
@@ -45,7 +45,7 @@ let f = function () {
   $(x);
   const tmpForOfRhs = [100];
   for (x of tmpForOfRhs) {
-    $(x, 'for');
+    $(x, `for`);
   }
   $(x);
   return undefined;
@@ -60,7 +60,7 @@ let x = undefined;
 $(undefined);
 const tmpForOfRhs = [100];
 for (x of tmpForOfRhs) {
-  $(x, 'for');
+  $(x, `for`);
 }
 $(x);
 `````

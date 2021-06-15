@@ -31,20 +31,20 @@ $(f('three'));
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   const y = x();
   return y;
 };
 $(
   f(function () {
     debugger;
-    $('pass');
+    $(`pass`);
   }),
 );
 $(f(2));
-$(f('three'));
+$(f(`three`));
 `````
 
 ## Normalized
@@ -53,9 +53,9 @@ $(f('three'));
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   const y = x();
   return y;
 };
@@ -63,7 +63,7 @@ const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = function () {
   debugger;
-  $('pass');
+  $(`pass`);
   return undefined;
 };
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
@@ -72,7 +72,7 @@ const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = f(2);
 tmpCallCallee$3(tmpCalleeParam$3);
 const tmpCallCallee$5 = $;
-const tmpCalleeParam$5 = f('three');
+const tmpCalleeParam$5 = f(`three`);
 tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
@@ -81,17 +81,17 @@ tmpCallCallee$5(tmpCalleeParam$5);
 `````js filename=intro
 const f = function () {
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   return undefined;
 };
 f();
-$('pass');
+$(`pass`);
 $(undefined);
 f();
 2();
-throw '[Preval]: Call expression with illegal callee must crash before this line ';
+throw `[Preval]: Call expression with illegal callee must crash before this line `;
 `````
 
 ## Globals

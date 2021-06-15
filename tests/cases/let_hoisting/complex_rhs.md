@@ -45,7 +45,7 @@ const f = function () {
 let x = danger();
 if ($) {
   f();
-  x = $('do not inline me');
+  x = $(`do not inline me`);
 }
 $(x);
 `````
@@ -74,7 +74,7 @@ const f = function () {
 let x = danger();
 if ($) {
   f();
-  x = $('do not inline me');
+  x = $(`do not inline me`);
 } else {
 }
 $(x);
@@ -94,7 +94,7 @@ const danger = function () {
 let x = danger();
 if ($) {
   $(x);
-  x = $('do not inline me');
+  x = $(`do not inline me`);
 } else {
 }
 $(x);

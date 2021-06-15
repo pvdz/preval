@@ -42,23 +42,23 @@ $(f());
 let f = function () {
   debugger;
   while ($(true)) {
-    $('loop');
+    $(`loop`);
     for (let x in { a: 1, b: 2 }) {
-      $('loop', x);
-      if ($(1, 'if')) {
-        $('pass');
-        return $(100, 'return');
-        $('fail');
+      $(`loop`, x);
+      if ($(1, `if`)) {
+        $(`pass`);
+        return $(100, `return`);
+        $(`fail`);
       } else {
-        $('do not visit');
-        return $(101, 'return');
-        $('fail');
+        $(`do not visit`);
+        return $(101, `return`);
+        $(`fail`);
       }
-      $('fail -> DCE');
+      $(`fail -> DCE`);
     }
-    $('after (not invoked but should not be eliminated)');
+    $(`after (not invoked but should not be eliminated)`);
   }
-  $('after (not invoked)');
+  $(`after (not invoked)`);
 };
 $(f());
 `````
@@ -71,28 +71,28 @@ let f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      $('loop');
+      $(`loop`);
       const tmpForInDeclRhs = { a: 1, b: 2 };
       let x = undefined;
       for (x in tmpForInDeclRhs) {
-        $('loop', x);
-        const tmpIfTest$1 = $(1, 'if');
+        $(`loop`, x);
+        const tmpIfTest$1 = $(1, `if`);
         if (tmpIfTest$1) {
-          $('pass');
-          const tmpReturnArg = $(100, 'return');
+          $(`pass`);
+          const tmpReturnArg = $(100, `return`);
           return tmpReturnArg;
         } else {
-          $('do not visit');
-          const tmpReturnArg$1 = $(101, 'return');
+          $(`do not visit`);
+          const tmpReturnArg$1 = $(101, `return`);
           return tmpReturnArg$1;
         }
       }
-      $('after (not invoked but should not be eliminated)');
+      $(`after (not invoked but should not be eliminated)`);
     } else {
       break;
     }
   }
-  $('after (not invoked)');
+  $(`after (not invoked)`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -108,28 +108,28 @@ const f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      $('loop');
+      $(`loop`);
       let x = undefined;
       const tmpForInDeclRhs = { a: 1, b: 2 };
       for (x in tmpForInDeclRhs) {
-        $('loop', x);
-        const tmpIfTest$1 = $(1, 'if');
+        $(`loop`, x);
+        const tmpIfTest$1 = $(1, `if`);
         if (tmpIfTest$1) {
-          $('pass');
-          const tmpReturnArg = $(100, 'return');
+          $(`pass`);
+          const tmpReturnArg = $(100, `return`);
           return tmpReturnArg;
         } else {
-          $('do not visit');
-          const tmpReturnArg$1 = $(101, 'return');
+          $(`do not visit`);
+          const tmpReturnArg$1 = $(101, `return`);
           return tmpReturnArg$1;
         }
       }
-      $('after (not invoked but should not be eliminated)');
+      $(`after (not invoked but should not be eliminated)`);
     } else {
       break;
     }
   }
-  $('after (not invoked)');
+  $(`after (not invoked)`);
   return undefined;
 };
 const tmpCalleeParam = f();

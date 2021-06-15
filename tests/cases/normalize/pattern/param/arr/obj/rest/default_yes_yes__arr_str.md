@@ -23,10 +23,10 @@ $(f(['abc', 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ ...x } = $({ a: 'pass' })] = tmpParamBare === undefined ? $([{ a: 'fail2' }]) : tmpParamBare;
+  let [{ ...x } = $({ a: `pass` })] = tmpParamBare === undefined ? $([{ a: `fail2` }]) : tmpParamBare;
   return x;
 };
-$(f(['abc', 20, 30], 200));
+$(f([`abc`, 20, 30], 200));
 `````
 
 ## Normalized
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpArrElement = { a: 'fail2' };
+    const tmpArrElement = { a: `fail2` };
     const tmpCalleeParam = [tmpArrElement];
     bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
@@ -51,7 +51,7 @@ let f = function ($$0) {
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = { a: 'pass' };
+    const tmpCalleeParam$1 = { a: `pass` };
     arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
@@ -65,7 +65,7 @@ let f = function ($$0) {
 };
 const tmpCallCallee$5 = $;
 const tmpCallCallee$7 = f;
-const tmpCalleeParam$11 = ['abc', 20, 30];
+const tmpCalleeParam$11 = [`abc`, 20, 30];
 const tmpCalleeParam$13 = 200;
 const tmpCalleeParam$9 = tmpCallCallee$7(tmpCalleeParam$11, tmpCalleeParam$13);
 tmpCallCallee$5(tmpCalleeParam$9);
@@ -75,7 +75,7 @@ tmpCallCallee$5(tmpCalleeParam$9);
 
 `````js filename=intro
 const tmpCalleeParam$5 = [];
-const x = objPatternRest('abc', tmpCalleeParam$5, undefined);
+const x = objPatternRest(`abc`, tmpCalleeParam$5, undefined);
 $(x);
 `````
 

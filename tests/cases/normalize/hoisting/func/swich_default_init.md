@@ -27,7 +27,7 @@ switch ($(1)) {
 {
   let f = function () {
     debugger;
-    return $('f');
+    return $(`f`);
   };
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 0;
@@ -50,7 +50,7 @@ switch ($(1)) {
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpReturnArg = $('f');
+  const tmpReturnArg = $(`f`);
   return tmpReturnArg;
 };
 const tmpSwitchValue = $(1);
@@ -92,7 +92,7 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$3) {
-      $('f');
+      $(`f`);
       break tmpSwitchBreak;
     } else {
     }

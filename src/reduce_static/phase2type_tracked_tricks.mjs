@@ -197,7 +197,7 @@ function _typeTrackedTricks(fdata) {
                       example('const x = "foo".slice(a); if (x) f(x); else f(x);', 'const x = "foo".slice(a); if (x) f(x); else f("");');
                       before(read.node, node);
 
-                      const finalNode = AST.literal(ttm === 'number' ? 0 : '');
+                      const finalNode = ttm === 'number' ? AST.literal(0) : AST.templateLiteral('');
                       if (read.parentIndex < 0) read.parentNode[read.parentProp] = finalNode;
                       else read.parentNode[read.parentProp][read.parentIndex] = finalNode;
 
@@ -338,7 +338,7 @@ function _typeTrackedTricks(fdata) {
                 example('typeof a === b;', '"boolean";');
                 before(node, parentNode);
 
-                const finalNode = AST.literal('boolean');
+                const finalNode = AST.templateLiteral('boolean');
                 if (parentIndex < 0) parentNode[parentProp] = finalNode;
                 else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -352,7 +352,7 @@ function _typeTrackedTricks(fdata) {
                 example('typeof a * b;', '"number";');
                 before(node, parentNode);
 
-                const finalNode = AST.literal('number');
+                const finalNode = AST.templateLiteral('number');
                 if (parentIndex < 0) parentNode[parentProp] = finalNode;
                 else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -366,7 +366,7 @@ function _typeTrackedTricks(fdata) {
                 example('typeof String(x);', '"string";');
                 before(node, parentNode);
 
-                const finalNode = AST.literal('string');
+                const finalNode = AST.templateLiteral('string');
                 if (parentIndex < 0) parentNode[parentProp] = finalNode;
                 else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -384,7 +384,7 @@ function _typeTrackedTricks(fdata) {
                 example('typeof /foo/;', '"object";');
                 before(node, parentNode);
 
-                const finalNode = AST.literal('object');
+                const finalNode = AST.templateLiteral('object');
                 if (parentIndex < 0) parentNode[parentProp] = finalNode;
                 else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -399,7 +399,7 @@ function _typeTrackedTricks(fdata) {
                 example('typeof function(){};', '"function";');
                 before(node, parentNode);
 
-                const finalNode = AST.literal('function');
+                const finalNode = AST.templateLiteral('function');
                 if (parentIndex < 0) parentNode[parentProp] = finalNode;
                 else parentNode[parentProp][parentIndex] = finalNode;
 
@@ -501,10 +501,10 @@ function _typeTrackedTricks(fdata) {
           case '+': {
             let lit;
             let val;
-            if (left.type === 'Literal' && left.value === '') {
+            if (AST.isStringValue(left, '')) {
               lit = left;
               val = right;
-            } else if (right.type === 'Literal' && right.value === '') {
+            } else if (AST.isStringValue(right, '')) {
               lit = right;
               val = left;
             }

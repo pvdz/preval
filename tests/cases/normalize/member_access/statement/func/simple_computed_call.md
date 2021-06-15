@@ -22,7 +22,7 @@ $(f());
 let f = function () {
   debugger;
   const obj = { foo: 10 };
-  obj[$('foo')];
+  obj[$(`foo`)];
 };
 $(f());
 `````
@@ -34,7 +34,7 @@ let f = function () {
   debugger;
   const obj = { foo: 10 };
   const tmpCompObj = obj;
-  const tmpCompProp = $('foo');
+  const tmpCompProp = $(`foo`);
   tmpCompObj[tmpCompProp];
   return undefined;
 };
@@ -46,7 +46,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCompProp = $('foo');
+const tmpCompProp = $(`foo`);
 const obj = { foo: 10 };
 obj[tmpCompProp];
 $(undefined);

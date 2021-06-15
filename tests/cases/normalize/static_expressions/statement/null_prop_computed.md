@@ -20,8 +20,8 @@ $('fail, DCE me');
 ## Pre Normal
 
 `````js filename=intro
-$(null[$('keep me')]);
-$('fail, DCE me');
+$(null[$(`keep me`)]);
+$(`fail, DCE me`);
 `````
 
 ## Normalized
@@ -29,14 +29,14 @@ $('fail, DCE me');
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpCalleeParam = null.eliminatedComputedProp;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Output
 
 `````js filename=intro
 null.eliminatedComputedProp;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

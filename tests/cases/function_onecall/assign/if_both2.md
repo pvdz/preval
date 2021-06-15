@@ -46,15 +46,15 @@ const g = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('a');
+    $(`a`);
     g();
   } else {
-    $('b');
+    $(`b`);
   }
 };
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  $('c');
+  $(`c`);
   x = undefined;
 } else {
   x = undefined;
@@ -75,17 +75,17 @@ const g = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('a');
+    $(`a`);
     g();
     return undefined;
   } else {
-    $('b');
+    $(`b`);
     return undefined;
   }
 };
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  $('c');
+  $(`c`);
   x = undefined;
 } else {
   x = undefined;
@@ -103,7 +103,7 @@ const x = $(100);
 $(x);
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  $('c');
+  $(`c`);
 } else {
 }
 const tmpClusterSSA_x = f();

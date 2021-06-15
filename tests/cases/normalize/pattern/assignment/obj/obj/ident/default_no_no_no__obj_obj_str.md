@@ -20,14 +20,14 @@ $(y);
 `````js filename=intro
 ({
   x: { y: y },
-} = { x: { x: 1, y: 'abc', z: 3 }, b: 11, c: 12 });
+} = { x: { x: 1, y: `abc`, z: 3 }, b: 11, c: 12 });
 $(y);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal = { x: 1, y: 'abc', z: 3 };
+const tmpObjLitVal = { x: 1, y: `abc`, z: 3 };
 const tmpAssignObjPatternRhs = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 y = objPatternNoDefault.y;
@@ -37,7 +37,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-y = 'abc';
+y = `abc`;
 $(y);
 `````
 

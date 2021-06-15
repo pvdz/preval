@@ -27,7 +27,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = $(b)[$('c')])) {
+  while (tmpDoWhileFlag || (a = $(b)[$(`c`)])) {
     tmpDoWhileFlag = false;
     {
       $(100);
@@ -48,7 +48,7 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpCompObj = $(b);
-    const tmpCompProp = $('c');
+    const tmpCompProp = $(`c`);
     const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
@@ -74,7 +74,7 @@ while (true) {
   if (tmpDoWhileFlag) {
   } else {
     const tmpCompObj = $(b);
-    const tmpCompProp = $('c');
+    const tmpCompProp = $(`c`);
     const tmpNestedComplexRhs = tmpCompObj[tmpCompProp];
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;

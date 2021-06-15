@@ -23,7 +23,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let b = 'foo';
+  let b = `foo`;
   ($(1), b).length;
 };
 $(f());
@@ -34,7 +34,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let b = 'foo';
+  let b = `foo`;
   $(1);
   const tmpCompObj = b;
   tmpCompObj.length;

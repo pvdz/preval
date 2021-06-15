@@ -5,7 +5,6 @@
 // This is a case that apparently ends up happening a lot. Maybe just as an artifact of the transforms.
 // But it helps on Tenko at least. Cut 200k from 3.2m result. Let's hope it's not too input biased :)
 
-
 import {
   ASSERT,
   log,
@@ -124,7 +123,7 @@ function _dedupeBranchedReturns(fdata) {
     // If one has more args than the other, assume `undefined` for the sake of comparison. Other rules will enforce this.
     const max = Math.max(ifCall.arguments.length, elseCall.arguments.length);
     let match = true; // If no args, then call is equal
-    for (let i=0; i<max; ++i) {
+    for (let i = 0; i < max; ++i) {
       const a = ifArgs[i] || AST.identifier('undefined');
       const b = elseArgs[i] || AST.identifier('undefined');
 
@@ -148,17 +147,17 @@ function _dedupeBranchedReturns(fdata) {
           match = false;
           break;
         }
-      } else if (a.type === 'UnaryExpression' &&
-        a.argument.type === 'Literal' && typeof a.argument.value === 'number' &&
-        b.argument.type === 'Literal' && typeof b.argument.value === 'number'
-      ) {
-        if (
-        a.argument.value !== b.argument.value
-
-        ) {
+      } else if (AST.isStringLiteral(a)) {
+        if (AST.getStringValue(a) !== AST.getStringValue(b)) {
+          vlog('  - String of arg at index', i, 'does not match');
+          match = false;
+          break;
+        }
+      } else if (a.type === 'UnaryExpression' && AST.isNumber(a.argument) && AST.isNumber(b.argument)) {
+        if (a.argument.value !== b.argument.value) {
           vlog('  - Negative value of arg at index', i, 'does not match');
           match = false;
-        break;
+          break;
         }
       } else {
         // This branch just means the normalized call contained a node that I did not expect in normalized form.
@@ -171,21 +170,21 @@ function _dedupeBranchedReturns(fdata) {
       return;
     }
 
-    vlog('It appears that the function ends with if-else and in both branches returns the value of calling the same function with the same arguments. Should be able to fold this up.');
+    vlog(
+      'It appears that the function ends with if-else and in both branches returns the value of calling the same function with the same arguments. Should be able to fold this up.',
+    );
     // Considering that the rule only applies to the last node of a function, and that we explicitly checked the
     // structure of the if-else; we should be able to safely replace the if-else without worrying about dirty state.
 
     rule('Last statement of a function that returns the exact same func call should be merged');
-    example('function f(x) { if (x) { const t1 = g(a, b, c); return t1; } else { const t2 = g(a, b, c); return t2; }',
-      'function f(x) { const t1 = g(a, b, c); return t1; }'
-      );
+    example(
+      'function f(x) { if (x) { const t1 = g(a, b, c); return t1; } else { const t2 = g(a, b, c); return t2; }',
+      'function f(x) { const t1 = g(a, b, c); return t1; }',
+    );
     before(lastNode, funcNode);
 
     funcNode.body.body.pop();
-    funcNode.body.body.push(
-      ifVar,
-      ifRet
-    );
+    funcNode.body.body.push(ifVar, ifRet);
 
     after(ifVar);
     after(ifRet, funcNode);

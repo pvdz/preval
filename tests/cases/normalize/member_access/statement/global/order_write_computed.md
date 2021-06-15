@@ -33,7 +33,7 @@ const obj = {
     $(20);
   },
 };
-$(obj)[$('x')] = 30;
+$(obj)[$(`x`)] = 30;
 `````
 
 ## Normalized
@@ -53,7 +53,7 @@ const obj = {
   },
 };
 const tmpAssignComMemLhsObj = $(obj);
-const tmpAssignComMemLhsProp = $('x');
+const tmpAssignComMemLhsProp = $(`x`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
 `````
 
@@ -73,7 +73,7 @@ const obj = {
   },
 };
 const tmpAssignComMemLhsObj = $(obj);
-const tmpAssignComMemLhsProp = $('x');
+const tmpAssignComMemLhsProp = $(`x`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
 `````
 

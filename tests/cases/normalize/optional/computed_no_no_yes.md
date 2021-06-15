@@ -20,9 +20,9 @@ $(a[b][c]?.[d]);
 
 `````js filename=intro
 const a = { b: { c: { d: 10 } } };
-const b = 'b',
-  c = 'c',
-  d = 'd';
+const b = `b`,
+  c = `c`,
+  d = `d`;
 $(a[b][c]?.[d]);
 `````
 
@@ -32,9 +32,9 @@ $(a[b][c]?.[d]);
 const tmpObjLitVal$1 = { d: 10 };
 const tmpObjLitVal = { c: tmpObjLitVal$1 };
 const a = { b: tmpObjLitVal };
-const b = 'b';
-const c = 'c';
-const d = 'd';
+const b = `b`;
+const c = `c`;
+const d = `d`;
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpChainRootProp = a;

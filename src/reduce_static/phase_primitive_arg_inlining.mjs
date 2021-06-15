@@ -220,14 +220,23 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                         break;
                       }
                     }
-                    ASSERT(!!found === !!funcNode.params[paramIndex].$p.paramVarDeclRef, 'iif found then the param should have a ref to it');
+                    ASSERT(
+                      !!found === !!funcNode.params[paramIndex].$p.paramVarDeclRef,
+                      'iif found then the param should have a ref to it',
+                    );
                     if (found) {
                       funcBody.splice(
                         bodyOffset,
                         0,
                         AST.variableDeclaration(
                           funcNode.params[paramIndex].$p.paramVarDeclRef.name,
-                          type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.nul() : AST.literal(paramValue),
+                          type === 'I'
+                            ? AST.identifier(paramValue)
+                            : type === 'N'
+                            ? AST.nul()
+                            : type === 'S'
+                            ? AST.templateLiteral(paramValue)
+                            : AST.literal(paramValue),
                           'let',
                         ),
                       );
@@ -306,10 +315,9 @@ function hashArg(index, valueNode) {
       ? valueNode.name
       : valueNode.type === 'Literal'
       ? valueNode.value
-      : valueNode.type === 'UnaryExpression' &&
-        valueNode.operator === '-' &&
-        valueNode.argument.type === 'Literal' &&
-        typeof valueNode.argument.value === 'number'
+      : valueNode.type === 'TemplateLiteral'
+      ? (ASSERT(AST.isStringValue(valueNode), AST.getStringValue(valueNode)))
+      : valueNode.type === 'UnaryExpression' && valueNode.operator === '-' && AST.isNumber(valueNode.argument)
       ? -valueNode.argument.value
       : ASSERT(false, 'support this node kind', valueNode);
   return {

@@ -36,11 +36,11 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = 'fail';
+  let x = `fail`;
   foo: {
     bar: {
       if ($) {
-        x = 'pass';
+        x = `pass`;
         break foo;
       } else {
         break bar;
@@ -58,7 +58,7 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = 'fail';
+  let x = `fail`;
   const tmpLabeledBlockFunc = function ($$0) {
     let x$3 = $$0;
     debugger;
@@ -66,7 +66,7 @@ let f = function () {
       let x$7 = $$0;
       debugger;
       if ($) {
-        x$7 = 'pass';
+        x$7 = `pass`;
         const tmpReturnArg$1 = tmpAfterLabel(x$7);
         return tmpReturnArg$1;
       } else {
@@ -100,10 +100,10 @@ f();
 
 `````js filename=intro
 if ($) {
-  $('pass');
+  $(`pass`);
 } else {
-  $('fail');
-  $('fail');
+  $(`fail`);
+  $(`fail`);
 }
 `````
 

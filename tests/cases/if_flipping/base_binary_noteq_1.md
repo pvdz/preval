@@ -26,9 +26,9 @@ if (y) {
 const x = $(1);
 const y = x != 1;
 if (y) {
-  $('if');
+  $(`if`);
 } else {
-  $('else');
+  $(`else`);
 }
 `````
 
@@ -38,9 +38,9 @@ if (y) {
 const x = $(1);
 const y = x != 1;
 if (y) {
-  $('if');
+  $(`if`);
 } else {
-  $('else');
+  $(`else`);
 }
 `````
 
@@ -50,9 +50,9 @@ if (y) {
 const x = $(1);
 const y = x != 1;
 if (y) {
-  $('if');
+  $(`if`);
 } else {
-  $('else');
+  $(`else`);
 }
 `````
 

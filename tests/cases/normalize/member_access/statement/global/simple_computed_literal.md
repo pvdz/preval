@@ -17,7 +17,7 @@ obj['foo'];
 
 `````js filename=intro
 const obj = { foo: 10 };
-obj['foo'];
+obj[`foo`];
 `````
 
 ## Normalized

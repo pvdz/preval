@@ -31,11 +31,11 @@ let x = 5;
 if ($(true)) {
   x = 10;
   const a = x;
-  $(a, 'a');
+  $(a, `a`);
 } else {
   x = 20;
   const b = x;
-  $(b, 'b');
+  $(b, `b`);
 }
 $(x);
 `````
@@ -48,11 +48,11 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   x = 10;
   const a = x;
-  $(a, 'a');
+  $(a, `a`);
 } else {
   x = 20;
   const b = x;
-  $(b, 'b');
+  $(b, `b`);
 }
 $(x);
 `````
@@ -64,10 +64,10 @@ let x = 5;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   x = 10;
-  $(10, 'a');
+  $(10, `a`);
 } else {
   x = 20;
-  $(20, 'b');
+  $(20, `b`);
 }
 $(x);
 `````

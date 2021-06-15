@@ -47,33 +47,33 @@ let obje = undefined;
 let tmp = function (...$$0) {
   let a$1 = $$0;
   debugger;
-  $(['$:', a$1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a$1], { depth: null });
+  $([`$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1], { depth: null });
   return a$1[0];
 };
 obja = {
   get a() {
     debugger;
-    tmp('a.get');
+    tmp(`a.get`);
     return 110;
   },
   set a($$0) {
     let x = $$0;
     debugger;
-    tmp('a.set', x);
+    tmp(`a.set`, x);
     return 1000;
   },
 };
 objb = {
   get b() {
     debugger;
-    tmp('b.get');
+    tmp(`b.get`);
     a = 210;
     return 100;
   },
   set b($$0) {
     let x$1 = $$0;
     debugger;
-    tmp('b.set', x$1);
+    tmp(`b.set`, x$1);
     a = 2100;
     return 2000;
   },
@@ -81,7 +81,7 @@ objb = {
 objc = {
   get c() {
     debugger;
-    tmp('c.get');
+    tmp(`c.get`);
     a = 310;
     b = 320;
     return 100;
@@ -89,7 +89,7 @@ objc = {
   set c($$0) {
     let x$3 = $$0;
     debugger;
-    tmp('c.set', x$3);
+    tmp(`c.set`, x$3);
     a = 3100;
     b = 3200;
     return 3000;
@@ -98,7 +98,7 @@ objc = {
 objd = {
   get d() {
     debugger;
-    tmp('d.get');
+    tmp(`d.get`);
     a = 410;
     b = 420;
     c = 430;
@@ -107,7 +107,7 @@ objd = {
   set d($$0) {
     let x$5 = $$0;
     debugger;
-    tmp('d.set', x$5);
+    tmp(`d.set`, x$5);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -117,7 +117,7 @@ objd = {
 obje = {
   get e() {
     debugger;
-    tmp('e.get');
+    tmp(`e.get`);
     a = 510;
     b = 520;
     c = 530;
@@ -127,7 +127,7 @@ obje = {
   set e($$0) {
     let x$7 = $$0;
     debugger;
-    tmp('e.set', x$7);
+    tmp(`e.set`, x$7);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -137,25 +137,25 @@ obje = {
 };
 a = function () {
   debugger;
-  tmp('a');
+  tmp(`a`);
   return obja;
 };
 b = function () {
   debugger;
-  tmp('b');
+  tmp(`b`);
   a = 21;
   return objb;
 };
 c = function () {
   debugger;
-  tmp('c');
+  tmp(`c`);
   a = 31;
   b = 32;
   return objc;
 };
 d = function () {
   debugger;
-  tmp('d');
+  tmp(`d`);
   a = 41;
   b = 42;
   c = 43;
@@ -163,7 +163,7 @@ d = function () {
 };
 e = function () {
   debugger;
-  tmp('e');
+  tmp(`e`);
   a = 51;
   b = 52;
   c = 53;
@@ -192,7 +192,7 @@ let tmp = function (...$$0) {
   let a$1 = $$0;
   debugger;
   const tmpCallCallee = $;
-  const tmpCalleeParam = ['$:', a$1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a$1];
+  const tmpCalleeParam = [`$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];
   const tmpCalleeParam$1 = { depth: null };
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   const tmpReturnArg = a$1[0];
@@ -201,27 +201,27 @@ let tmp = function (...$$0) {
 obja = {
   get a() {
     debugger;
-    tmp('a.get');
+    tmp(`a.get`);
     return 110;
   },
   set a($$0) {
     let x = $$0;
     debugger;
-    tmp('a.set', x);
+    tmp(`a.set`, x);
     return 1000;
   },
 };
 objb = {
   get b() {
     debugger;
-    tmp('b.get');
+    tmp(`b.get`);
     a = 210;
     return 100;
   },
   set b($$0) {
     let x$1 = $$0;
     debugger;
-    tmp('b.set', x$1);
+    tmp(`b.set`, x$1);
     a = 2100;
     return 2000;
   },
@@ -229,7 +229,7 @@ objb = {
 objc = {
   get c() {
     debugger;
-    tmp('c.get');
+    tmp(`c.get`);
     a = 310;
     b = 320;
     return 100;
@@ -237,7 +237,7 @@ objc = {
   set c($$0) {
     let x$3 = $$0;
     debugger;
-    tmp('c.set', x$3);
+    tmp(`c.set`, x$3);
     a = 3100;
     b = 3200;
     return 3000;
@@ -246,7 +246,7 @@ objc = {
 objd = {
   get d() {
     debugger;
-    tmp('d.get');
+    tmp(`d.get`);
     a = 410;
     b = 420;
     c = 430;
@@ -255,7 +255,7 @@ objd = {
   set d($$0) {
     let x$5 = $$0;
     debugger;
-    tmp('d.set', x$5);
+    tmp(`d.set`, x$5);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -265,7 +265,7 @@ objd = {
 obje = {
   get e() {
     debugger;
-    tmp('e.get');
+    tmp(`e.get`);
     a = 510;
     b = 520;
     c = 530;
@@ -275,7 +275,7 @@ obje = {
   set e($$0) {
     let x$7 = $$0;
     debugger;
-    tmp('e.set', x$7);
+    tmp(`e.set`, x$7);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -285,25 +285,25 @@ obje = {
 };
 a = function () {
   debugger;
-  tmp('a');
+  tmp(`a`);
   return obja;
 };
 b = function () {
   debugger;
-  tmp('b');
+  tmp(`b`);
   a = 21;
   return objb;
 };
 c = function () {
   debugger;
-  tmp('c');
+  tmp(`c`);
   a = 31;
   b = 32;
   return objc;
 };
 d = function () {
   debugger;
-  tmp('d');
+  tmp(`d`);
   a = 41;
   b = 42;
   c = 43;
@@ -311,7 +311,7 @@ d = function () {
 };
 e = function () {
   debugger;
-  tmp('e');
+  tmp(`e`);
   a = 51;
   b = 52;
   c = 53;
@@ -343,7 +343,7 @@ tmp(obja, objb, objc, objd, obje);
 const tmp = function (...$$0) {
   const a$1 = $$0;
   debugger;
-  const tmpCalleeParam = ['$:', a$1, b, c, d, e, obja, objb, objc, objd, obje, '::', ...a$1];
+  const tmpCalleeParam = [`$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];
   const tmpCalleeParam$1 = { depth: null };
   $(tmpCalleeParam, tmpCalleeParam$1);
   a$1[0];
@@ -352,27 +352,27 @@ const tmp = function (...$$0) {
 const obja = {
   get a() {
     debugger;
-    tmp('a.get');
+    tmp(`a.get`);
     return 110;
   },
   set a($$0) {
     const x = $$0;
     debugger;
-    tmp('a.set', x);
+    tmp(`a.set`, x);
     return 1000;
   },
 };
 const objb = {
   get b() {
     debugger;
-    tmp('b.get');
+    tmp(`b.get`);
     a = 210;
     return 100;
   },
   set b($$0) {
     const x$1 = $$0;
     debugger;
-    tmp('b.set', x$1);
+    tmp(`b.set`, x$1);
     a = 2100;
     return 2000;
   },
@@ -380,7 +380,7 @@ const objb = {
 const objc = {
   get c() {
     debugger;
-    tmp('c.get');
+    tmp(`c.get`);
     a = 310;
     b = 320;
     return 100;
@@ -388,7 +388,7 @@ const objc = {
   set c($$0) {
     const x$3 = $$0;
     debugger;
-    tmp('c.set', x$3);
+    tmp(`c.set`, x$3);
     a = 3100;
     b = 3200;
     return 3000;
@@ -397,7 +397,7 @@ const objc = {
 const objd = {
   get d() {
     debugger;
-    tmp('d.get');
+    tmp(`d.get`);
     a = 410;
     b = 420;
     c = 430;
@@ -406,7 +406,7 @@ const objd = {
   set d($$0) {
     const x$5 = $$0;
     debugger;
-    tmp('d.set', x$5);
+    tmp(`d.set`, x$5);
     a = 4100;
     b = 4200;
     c = 4300;
@@ -416,7 +416,7 @@ const objd = {
 const obje = {
   get e() {
     debugger;
-    tmp('e.get');
+    tmp(`e.get`);
     a = 510;
     b = 520;
     c = 530;
@@ -426,7 +426,7 @@ const obje = {
   set e($$0) {
     const x$7 = $$0;
     debugger;
-    tmp('e.set', x$7);
+    tmp(`e.set`, x$7);
     a = 5100;
     b = 5200;
     c = 5300;
@@ -436,25 +436,25 @@ const obje = {
 };
 let a = function () {
   debugger;
-  tmp('a');
+  tmp(`a`);
   return obja;
 };
 let b = function () {
   debugger;
-  tmp('b');
+  tmp(`b`);
   a = 21;
   return objb;
 };
 let c = function () {
   debugger;
-  tmp('c');
+  tmp(`c`);
   a = 31;
   b = 32;
   return objc;
 };
 let d = function () {
   debugger;
-  tmp('d');
+  tmp(`d`);
   a = 41;
   b = 42;
   c = 43;
@@ -462,7 +462,7 @@ let d = function () {
 };
 const e = function () {
   debugger;
-  tmp('e');
+  tmp(`e`);
   a = 51;
   b = 52;
   c = 53;

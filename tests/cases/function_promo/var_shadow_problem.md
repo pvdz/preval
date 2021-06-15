@@ -44,17 +44,17 @@ let f = function () {
     let h = function () {
       debugger;
       const x$1 = $();
-      if ($) $(x$1, 'keep me inner local');
+      if ($) $(x$1, `keep me inner local`);
     };
     if ($) {
-      $(x, 'keep me a closure');
+      $(x, `keep me a closure`);
       h();
     }
   };
   let x = $(1);
   if ($) {
     g();
-    $(x, 'keep me outer local');
+    $(x, `keep me outer local`);
   }
 };
 if ($) f();
@@ -71,14 +71,14 @@ let f = function () {
       debugger;
       const x$1 = $();
       if ($) {
-        $(x$1, 'keep me inner local');
+        $(x$1, `keep me inner local`);
         return undefined;
       } else {
         return undefined;
       }
     };
     if ($) {
-      $(x, 'keep me a closure');
+      $(x, `keep me a closure`);
       h();
       return undefined;
     } else {
@@ -88,7 +88,7 @@ let f = function () {
   let x = $(1);
   if ($) {
     g();
-    $(x, 'keep me outer local');
+    $(x, `keep me outer local`);
     return undefined;
   } else {
     return undefined;
@@ -106,13 +106,13 @@ if ($) {
 if ($) {
   const x = $(1);
   if ($) {
-    $(x, 'keep me a closure');
+    $(x, `keep me a closure`);
     const x$1 = $();
     if ($) {
-      $(x$1, 'keep me inner local');
+      $(x$1, `keep me inner local`);
     } else {
     }
-    $(x, 'keep me outer local');
+    $(x, `keep me outer local`);
   } else {
   }
 } else {

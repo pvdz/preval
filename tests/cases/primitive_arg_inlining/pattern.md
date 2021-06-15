@@ -37,7 +37,7 @@ let f = function ($$0) {
   let ap = undefined;
   const useDef = op === undefined;
   if (useDef) {
-    const p = { a: 'fail' };
+    const p = { a: `fail` };
     ap = $(p);
   } else {
     ap = op;
@@ -46,7 +46,7 @@ let f = function ($$0) {
   let x = objPatternRest(ap, tmpCalleeParam$2, undefined);
   return x;
 };
-const out = f('abc');
+const out = f(`abc`);
 $(out);
 `````
 
@@ -59,7 +59,7 @@ let f = function ($$0) {
   let ap = undefined;
   const useDef = op === undefined;
   if (useDef) {
-    const p = { a: 'fail' };
+    const p = { a: `fail` };
     ap = $(p);
   } else {
     ap = op;
@@ -68,7 +68,7 @@ let f = function ($$0) {
   let x = objPatternRest(ap, tmpCalleeParam$2, undefined);
   return x;
 };
-const out = f('abc');
+const out = f(`abc`);
 $(out);
 `````
 
@@ -76,7 +76,7 @@ $(out);
 
 `````js filename=intro
 const tmpCalleeParam$2 = [];
-const x = objPatternRest('abc', tmpCalleeParam$2, undefined);
+const x = objPatternRest(`abc`, tmpCalleeParam$2, undefined);
 $(x);
 `````
 

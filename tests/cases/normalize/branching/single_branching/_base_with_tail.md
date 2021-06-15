@@ -34,7 +34,7 @@ let f = function () {
   }
   return $(3);
 };
-$(f(), 'final');
+$(f(), `final`);
 `````
 
 ## Normalized
@@ -53,7 +53,7 @@ let f = function () {
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
-const tmpCalleeParam$1 = 'final';
+const tmpCalleeParam$1 = `final`;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
@@ -67,7 +67,7 @@ if (tmpIfTest) {
   $(3);
 }
 const tmpReturnArg = $(3);
-$(tmpReturnArg, 'final');
+$(tmpReturnArg, `final`);
 `````
 
 ## Globals

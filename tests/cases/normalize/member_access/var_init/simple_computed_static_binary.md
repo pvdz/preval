@@ -18,7 +18,7 @@ $(x);
 
 `````js filename=intro
 const obj = { foo: 10 };
-let x = obj['fo' + 'o'];
+let x = obj[`fo` + `o`];
 $(x);
 `````
 
@@ -27,7 +27,7 @@ $(x);
 `````js filename=intro
 const obj = { foo: 10 };
 const tmpCompObj = obj;
-const tmpCompProp = 'foo';
+const tmpCompProp = `foo`;
 let x = tmpCompObj[tmpCompProp];
 $(x);
 `````

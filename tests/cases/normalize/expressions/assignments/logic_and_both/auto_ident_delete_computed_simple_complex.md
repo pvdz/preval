@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-$((a = delete arg[$('y')]) && (a = delete arg[$('y')]));
+$((a = delete arg[$(`y`)]) && (a = delete arg[$(`y`)]));
 $(a, arg);
 `````
 
@@ -34,12 +34,12 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpDeleteCompObj = arg;
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpCalleeParam = a;
 if (tmpCalleeParam) {
   const tmpDeleteCompObj$1 = arg;
-  const tmpDeleteCompProp$1 = $('y');
+  const tmpDeleteCompProp$1 = $(`y`);
   const tmpNestedComplexRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
@@ -52,12 +52,12 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 let a = delete arg[tmpDeleteCompProp];
 let tmpCalleeParam = a;
 if (a) {
-  const tmpDeleteCompProp$1 = $('y');
+  const tmpDeleteCompProp$1 = $(`y`);
   const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp$1];
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;

@@ -24,7 +24,7 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 (function f() {
   debugger;
-}['a']);
+}[`a`]);
 $(a);
 `````
 

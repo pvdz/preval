@@ -29,9 +29,9 @@ let f = function ($$0) {
   let x = $$0;
   debugger;
   if (x) {
-    $('a', !x);
+    $(`a`, !x);
   } else {
-    $('b', !x);
+    $(`b`, !x);
   }
 };
 f($(0));
@@ -46,13 +46,13 @@ let f = function ($$0) {
   debugger;
   if (x) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = 'a';
+    const tmpCalleeParam = `a`;
     const tmpCalleeParam$1 = !x;
     tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
     return undefined;
   } else {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$3 = 'b';
+    const tmpCalleeParam$3 = `b`;
     const tmpCalleeParam$5 = !x;
     tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
     return undefined;
@@ -73,10 +73,10 @@ const f = function ($$0) {
   const x = $$0;
   debugger;
   if (x) {
-    $('a', false);
+    $(`a`, false);
     return undefined;
   } else {
-    $('b', true);
+    $(`b`, true);
     return undefined;
   }
 };

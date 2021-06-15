@@ -74,9 +74,9 @@ const f = function () {
     x = $({
       toString() {
         debugger;
-        $('tostring');
+        $(`tostring`);
         x = 20;
-        return 'hi';
+        return `hi`;
       },
     });
     x = x + 1;
@@ -113,9 +113,9 @@ const f = function () {
     const tmpCalleeParam = {
       toString() {
         debugger;
-        $('tostring');
+        $(`tostring`);
         x = 20;
-        return 'hi';
+        return `hi`;
       },
     };
     x = tmpCallCallee(tmpCalleeParam);
@@ -141,9 +141,9 @@ if ($) {
   const tmpCalleeParam = {
     toString() {
       debugger;
-      $('tostring');
+      $(`tostring`);
       x = 20;
-      return 'hi';
+      return `hi`;
     },
   };
   x = $(tmpCalleeParam);

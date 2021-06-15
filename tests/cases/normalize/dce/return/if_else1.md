@@ -32,12 +32,12 @@ let f = function () {
   debugger;
   if ($(1)) {
     return 2;
-    $('fail');
+    $(`fail`);
   } else {
     return 3;
-    $('fail');
+    $(`fail`);
   }
-  $('fail');
+  $(`fail`);
 };
 $(f());
 `````

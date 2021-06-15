@@ -29,7 +29,7 @@ switch (1) {
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a = 'foo';
+      a = `foo`;
       $(a);
     }
   }
@@ -49,7 +49,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  a = 'foo';
+  a = `foo`;
   $(a);
 } else {
 }
@@ -58,7 +58,7 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

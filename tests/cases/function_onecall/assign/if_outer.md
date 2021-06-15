@@ -46,13 +46,13 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    $('c');
+    $(`c`);
   };
   if ($(1)) {
-    $('a');
+    $(`a`);
     g();
   } else {
-    $('b');
+    $(`b`);
   }
 };
 let x = $(100);
@@ -73,16 +73,16 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    $('c');
+    $(`c`);
     return undefined;
   };
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('a');
+    $(`a`);
     g();
     return undefined;
   } else {
-    $('b');
+    $(`b`);
     return undefined;
   }
 };
@@ -104,10 +104,10 @@ const x = $(100);
 $(x);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  $('a');
-  $('c');
+  $(`a`);
+  $(`c`);
 } else {
-  $('b');
+  $(`b`);
 }
 $(undefined);
 $(undefined);

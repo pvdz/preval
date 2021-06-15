@@ -23,7 +23,7 @@ $(f([{ y: 2, z: 3 }, 20, 30], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{ x: x = $('pass') } = $({ x: 'fail2' })] = tmpParamBare === undefined ? $([{ x: 'fail3' }]) : tmpParamBare;
+  let [{ x: x = $(`pass`) } = $({ x: `fail2` })] = tmpParamBare === undefined ? $([{ x: `fail3` }]) : tmpParamBare;
   return x;
 };
 $(f([{ y: 2, z: 3 }, 20, 30], 200));
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpArrElement = { x: 'fail3' };
+    const tmpArrElement = { x: `fail3` };
     const tmpCalleeParam = [tmpArrElement];
     bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
@@ -51,7 +51,7 @@ let f = function ($$0) {
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = { x: 'fail2' };
+    const tmpCalleeParam$1 = { x: `fail2` };
     arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
@@ -60,7 +60,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest$3 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$3) {
-    x = $('pass');
+    x = $(`pass`);
     return x;
   } else {
     x = objPatternBeforeDefault;
@@ -85,7 +85,7 @@ const f = function ($$0) {
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpArrElement = { x: 'fail3' };
+    const tmpArrElement = { x: `fail3` };
     const tmpCalleeParam = [tmpArrElement];
     bindingPatternArrRoot = $(tmpCalleeParam);
   } else {
@@ -96,7 +96,7 @@ const f = function ($$0) {
   let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = { x: 'fail2' };
+    const tmpCalleeParam$1 = { x: `fail2` };
     arrPatternStep = $(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
@@ -104,7 +104,7 @@ const f = function ($$0) {
   const objPatternBeforeDefault = arrPatternStep.x;
   const tmpIfTest$3 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$3) {
-    const tmpClusterSSA_x = $('pass');
+    const tmpClusterSSA_x = $(`pass`);
     return tmpClusterSSA_x;
   } else {
     return objPatternBeforeDefault;

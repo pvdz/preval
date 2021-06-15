@@ -44,7 +44,7 @@ let f = function () {
   if ($) {
     $(x);
   } else {
-    $('if');
+    $(`if`);
   }
 };
 if ($) f();
@@ -65,7 +65,7 @@ let f = function () {
     $(x);
     return undefined;
   } else {
-    $('if');
+    $(`if`);
     return undefined;
   }
 };
@@ -88,7 +88,7 @@ if ($) {
   if ($) {
     $(x);
   } else {
-    $('if');
+    $(`if`);
   }
 } else {
 }

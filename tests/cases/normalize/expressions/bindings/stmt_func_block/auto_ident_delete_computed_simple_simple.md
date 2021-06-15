@@ -29,7 +29,7 @@ let f = function () {
   debugger;
   {
     let arg = { y: 1 };
-    let a = delete arg['y'];
+    let a = delete arg[`y`];
     $(a, arg);
   }
 };

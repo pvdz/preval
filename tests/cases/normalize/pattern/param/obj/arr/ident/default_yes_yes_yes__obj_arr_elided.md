@@ -23,7 +23,7 @@ $(f({ x: [, , , 1], a: 11, b: 12 }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: [y = 'pass'] = $(['fail2']) } = tmpParamBare === undefined ? $({ x: ['fail3'] }) : tmpParamBare;
+  let { x: [y = `pass`] = $([`fail2`]) } = tmpParamBare === undefined ? $({ x: [`fail3`] }) : tmpParamBare;
   return y;
 };
 $(f({ x: [, , , 1], a: 11, b: 12 }, 10));
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpObjLitVal = ['fail3'];
+    const tmpObjLitVal = [`fail3`];
     const tmpCalleeParam = { x: tmpObjLitVal };
     bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
@@ -50,7 +50,7 @@ let f = function ($$0) {
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = ['fail2'];
+    const tmpCalleeParam$1 = [`fail2`];
     objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -60,7 +60,7 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest$3 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$3) {
-    y = 'pass';
+    y = `pass`;
     return y;
   } else {
     y = arrPatternBeforeDefault;
@@ -85,7 +85,7 @@ const f = function ($$0) {
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpObjLitVal = ['fail3'];
+    const tmpObjLitVal = [`fail3`];
     const tmpCalleeParam = { x: tmpObjLitVal };
     bindingPatternObjRoot = $(tmpCalleeParam);
   } else {
@@ -95,7 +95,7 @@ const f = function ($$0) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = ['fail2'];
+    const tmpCalleeParam$1 = [`fail2`];
     objPatternAfterDefault = $(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -104,7 +104,7 @@ const f = function ($$0) {
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest$3 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$3) {
-    return 'pass';
+    return `pass`;
   } else {
     return arrPatternBeforeDefault;
   }

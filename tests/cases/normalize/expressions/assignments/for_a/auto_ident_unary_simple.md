@@ -50,7 +50,7 @@ $(a, x);
 while (true) {
   $(1);
 }
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

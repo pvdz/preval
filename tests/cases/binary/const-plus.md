@@ -19,8 +19,8 @@ $(xyz);
 ## Pre Normal
 
 `````js filename=intro
-const x = 'a';
-const y = 'b' + x;
+const x = `a`;
+const y = `b` + x;
 const z = x + y;
 const xyz = z;
 $(xyz);
@@ -29,8 +29,8 @@ $(xyz);
 ## Normalized
 
 `````js filename=intro
-const x = 'a';
-const y = 'b' + x;
+const x = `a`;
+const y = `b` + x;
 const z = x + y;
 const xyz = z;
 $(xyz);
@@ -39,7 +39,7 @@ $(xyz);
 ## Output
 
 `````js filename=intro
-$('aba');
+$(`aba`);
 `````
 
 ## Globals

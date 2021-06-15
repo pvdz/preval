@@ -28,8 +28,8 @@ $(f());
 let f = function () {
   debugger;
   for (let x in { a: 1, b: 2 }) {
-    return $(1, 'return');
-    $('fail');
+    return $(1, `return`);
+    $(`fail`);
   }
 };
 $(f());
@@ -43,7 +43,7 @@ let f = function () {
   const tmpForInDeclRhs = { a: 1, b: 2 };
   let x = undefined;
   for (x in tmpForInDeclRhs) {
-    const tmpReturnArg = $(1, 'return');
+    const tmpReturnArg = $(1, `return`);
     return tmpReturnArg;
   }
   return undefined;
@@ -61,7 +61,7 @@ const f = function () {
   let x = undefined;
   const tmpForInDeclRhs = { a: 1, b: 2 };
   for (x in tmpForInDeclRhs) {
-    const tmpReturnArg = $(1, 'return');
+    const tmpReturnArg = $(1, `return`);
     return tmpReturnArg;
   }
   return undefined;

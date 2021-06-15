@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 for ((a = { b: $(1) }).x of $({ x: 1 }));
-$(a)[$('b')] = 2;
+$(a)[$(`b`)] = 2;
 $(a);
 `````
 
@@ -41,7 +41,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
@@ -59,7 +59,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   a.x = tmpForOfLhsNode;
 }
 const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````

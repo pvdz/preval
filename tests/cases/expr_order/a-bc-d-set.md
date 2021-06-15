@@ -30,7 +30,7 @@ let b = {
   set c($$0) {
     let x = $$0;
     debugger;
-    $('b.set');
+    $(`b.set`);
     b = null;
     d = null;
     return 7;
@@ -49,7 +49,7 @@ let b = {
   set c($$0) {
     let x = $$0;
     debugger;
-    $('b.set');
+    $(`b.set`);
     b = null;
     d = null;
     return 7;
@@ -68,7 +68,7 @@ $(a, b, d);
 let b = {
   set c($$0) {
     debugger;
-    $('b.set');
+    $(`b.set`);
     b = null;
     d = null;
     return 7;

@@ -18,7 +18,7 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let a = 'foo';
+let a = `foo`;
 export { a };
 $(a);
 `````
@@ -26,7 +26,7 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-let a = 'foo';
+let a = `foo`;
 export { a };
 $(a);
 `````
@@ -34,9 +34,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = 'foo';
+const a = `foo`;
 export { a };
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

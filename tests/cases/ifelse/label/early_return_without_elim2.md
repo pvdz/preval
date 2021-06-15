@@ -41,7 +41,7 @@ let f = function () {
       return undefined;
     }
   };
-  $('inside');
+  $(`inside`);
   const t = g();
   return t;
 };
@@ -57,7 +57,7 @@ let f = function () {
     debugger;
     return undefined;
   };
-  $('inside');
+  $(`inside`);
   const t = g();
   return t;
 };
@@ -67,7 +67,7 @@ f();
 ## Output
 
 `````js filename=intro
-$('inside');
+$(`inside`);
 `````
 
 ## Globals

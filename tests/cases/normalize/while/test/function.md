@@ -25,27 +25,27 @@ while (
     debugger;
   }
 ) {
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 while (true) {
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
 
 `````js filename=intro
 while (true) {
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

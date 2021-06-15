@@ -29,11 +29,11 @@ $('after, wont eval due to infinite loop');
 while ($(true)) {
   for (let x of [10, 20]) {
     continue;
-    $('fail');
+    $(`fail`);
   }
-  $('keep');
+  $(`keep`);
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Normalized
@@ -47,12 +47,12 @@ while (true) {
     for (x of tmpForOfDeclRhs) {
       continue;
     }
-    $('keep');
+    $(`keep`);
   } else {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Output
@@ -66,12 +66,12 @@ while (true) {
     for (x of tmpForOfDeclRhs) {
       continue;
     }
-    $('keep');
+    $(`keep`);
   } else {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Globals

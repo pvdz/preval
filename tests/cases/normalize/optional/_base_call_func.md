@@ -21,7 +21,7 @@ $(f?.(1, 2, 3));
 let f = function (...$$0) {
   let args = $$0;
   debugger;
-  $('f', args);
+  $(`f`, args);
 };
 $(f?.(1, 2, 3));
 `````
@@ -32,7 +32,7 @@ $(f?.(1, 2, 3));
 let f = function (...$$0) {
   let args = $$0;
   debugger;
-  $('f', args);
+  $(`f`, args);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -53,7 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 const f = function (...$$0) {
   const args = $$0;
   debugger;
-  $('f', args);
+  $(`f`, args);
   return undefined;
 };
 let tmpCalleeParam = undefined;

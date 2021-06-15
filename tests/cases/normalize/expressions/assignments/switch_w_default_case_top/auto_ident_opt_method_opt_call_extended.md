@@ -41,10 +41,10 @@ let a = { a: 999, b: 1000 };
       a = b?.c.d.e?.(1);
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -92,12 +92,12 @@ if (tmpIfTest$3) {
 }
 const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$9) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$11) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 $(a);
@@ -143,12 +143,12 @@ if (tmpIfTest$3) {
 }
 const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$9) {
-  $('fail1');
+  $(`fail1`);
 } else {
 }
 const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
 if (tmpIfTest$11) {
-  $('fail2');
+  $(`fail2`);
 } else {
 }
 $(a);

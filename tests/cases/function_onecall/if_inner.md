@@ -34,14 +34,14 @@ let f = function () {
   let g = function () {
     debugger;
     if ($(1)) {
-      $('a');
+      $(`a`);
       g();
     } else {
-      $('b');
+      $(`b`);
     }
   };
   g();
-  $('c');
+  $(`c`);
 };
 f();
 `````
@@ -55,16 +55,16 @@ let f = function () {
     debugger;
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      $('a');
+      $(`a`);
       g();
       return undefined;
     } else {
-      $('b');
+      $(`b`);
       return undefined;
     }
   };
   g();
-  $('c');
+  $(`c`);
   return undefined;
 };
 f();
@@ -77,16 +77,16 @@ const g = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('a');
+    $(`a`);
     g();
     return undefined;
   } else {
-    $('b');
+    $(`b`);
     return undefined;
   }
 };
 g();
-$('c');
+$(`c`);
 `````
 
 ## Globals

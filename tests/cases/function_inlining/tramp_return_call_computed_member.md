@@ -27,7 +27,7 @@ $(r);
 ## Pre Normal
 
 `````js filename=intro
-const toString = $('toString');
+const toString = $(`toString`);
 const g = function () {
   debugger;
   const y = String[toString]();
@@ -45,7 +45,7 @@ $(r);
 ## Normalized
 
 `````js filename=intro
-const toString = $('toString');
+const toString = $(`toString`);
 const g = function () {
   debugger;
   const y = String[toString]();
@@ -63,7 +63,7 @@ $(r);
 ## Output
 
 `````js filename=intro
-const toString = $('toString');
+const toString = $(`toString`);
 const r = String[toString]();
 $(r);
 `````

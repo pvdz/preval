@@ -25,7 +25,7 @@ let f = function ($$0) {
   let tmp = $$0;
   debugger;
   [] = tmp;
-  return 'bad';
+  return `bad`;
 };
 f(true);
 `````
@@ -38,7 +38,7 @@ let f = function ($$0) {
   debugger;
   const arrAssignPatternRhs = tmp;
   const arrPatternSplat = [...arrAssignPatternRhs];
-  return 'bad';
+  return `bad`;
 };
 f(true);
 `````
@@ -47,7 +47,7 @@ f(true);
 
 `````js filename=intro
 [...true];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

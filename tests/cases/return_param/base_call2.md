@@ -36,14 +36,14 @@ $(tmpCalleeParam$5);
 `````js filename=intro
 const f = function () {
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   return undefined;
 };
 undefined;
 f();
-$('pass');
+$(`pass`);
 $(undefined);
 undefined;
 f();
@@ -51,7 +51,7 @@ const tmpCalleeParam$3 = 2();
 $(tmpCalleeParam$3);
 undefined;
 f();
-const tmpCalleeParam$5 = 'three'();
+const tmpCalleeParam$5 = `three`();
 $(tmpCalleeParam$5);
 `````
 
@@ -60,17 +60,17 @@ $(tmpCalleeParam$5);
 `````js filename=intro
 const f = function () {
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   return undefined;
 };
 f();
-$('pass');
+$(`pass`);
 $(undefined);
 f();
 const tmpCalleeParam$3 = 2();
-throw '[Preval]: Call expression with illegal callee must crash before this line ';
+throw `[Preval]: Call expression with illegal callee must crash before this line `;
 const tmpCalleeParam$5 = 0;
 `````
 
@@ -79,17 +79,17 @@ const tmpCalleeParam$5 = 0;
 `````js filename=intro
 const f = function () {
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   return undefined;
 };
 f();
-$('pass');
+$(`pass`);
 $(undefined);
 f();
 2();
-throw '[Preval]: Call expression with illegal callee must crash before this line ';
+throw `[Preval]: Call expression with illegal callee must crash before this line `;
 `````
 
 ## Globals

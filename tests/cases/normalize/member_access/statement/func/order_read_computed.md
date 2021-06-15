@@ -38,7 +38,7 @@ let f = function () {
       $(20);
     },
   };
-  $(obj)[$('x')];
+  $(obj)[$(`x`)];
 };
 $(f());
 `````
@@ -62,7 +62,7 @@ let f = function () {
     },
   };
   const tmpCompObj = $(obj);
-  const tmpCompProp = $('x');
+  const tmpCompProp = $(`x`);
   tmpCompObj[tmpCompProp];
   return undefined;
 };
@@ -87,7 +87,7 @@ const obj = {
   },
 };
 const tmpCompObj = $(obj);
-const tmpCompProp = $('x');
+const tmpCompProp = $(`x`);
 tmpCompObj[tmpCompProp];
 $(undefined);
 `````

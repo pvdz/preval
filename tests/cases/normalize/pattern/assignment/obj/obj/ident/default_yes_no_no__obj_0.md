@@ -19,7 +19,7 @@ $(y);
 
 `````js filename=intro
 ({
-  x: { y: y = $('pass') },
+  x: { y: y = $(`pass`) },
 } = { x: 0, b: 11, c: 12 });
 $(y);
 `````
@@ -32,7 +32,7 @@ const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = $('pass');
+  y = $(`pass`);
 } else {
   y = objPatternBeforeDefault;
 }
@@ -45,7 +45,7 @@ $(y);
 const objPatternBeforeDefault = (0).y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = $('pass');
+  y = $(`pass`);
 } else {
   y = objPatternBeforeDefault;
 }

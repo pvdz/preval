@@ -24,7 +24,7 @@ while ($(x)) {
 let x = $(10);
 while ($(x)) {
   x = $(0);
-  if ($(true)) $(x, 'branch');
+  if ($(true)) $(x, `branch`);
 }
 `````
 
@@ -38,7 +38,7 @@ while (true) {
     x = $(0);
     const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
-      $(x, 'branch');
+      $(x, `branch`);
     } else {
     }
   } else {
@@ -57,7 +57,7 @@ while (true) {
     x = $(0);
     const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
-      $(x, 'branch');
+      $(x, `branch`);
     } else {
     }
   } else {

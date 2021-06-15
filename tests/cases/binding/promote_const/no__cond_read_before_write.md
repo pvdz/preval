@@ -31,7 +31,7 @@ var x;
 let x = undefined;
 {
   if ($(0)) {
-    $(x, 'fail');
+    $(x, `fail`);
   }
   x = 10;
   if ($(1)) {
@@ -46,7 +46,7 @@ let x = undefined;
 let x = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  $(x, 'fail');
+  $(x, `fail`);
 } else {
 }
 x = 10;
@@ -62,7 +62,7 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  $(undefined, 'fail');
+  $(undefined, `fail`);
 } else {
 }
 const tmpIfTest$1 = $(1);

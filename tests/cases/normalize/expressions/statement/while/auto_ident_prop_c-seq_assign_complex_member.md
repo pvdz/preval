@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-while (((1, 2, $(b)).c = $(b)[$('d')])) $(100);
+while (((1, 2, $(b)).c = $(b)[$(`d`)])) $(100);
 $(a, b);
 `````
 
@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const varInitAssignLhsComputedObj = $(b);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   const tmpIfTest = varInitAssignLhsComputedRhs;
@@ -56,7 +56,7 @@ const a = { a: 999, b: 1000 };
 while (true) {
   const varInitAssignLhsComputedObj = $(b);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   if (varInitAssignLhsComputedRhs) {

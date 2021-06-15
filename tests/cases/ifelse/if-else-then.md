@@ -28,13 +28,13 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  $('A');
+  $(`A`);
   if ($(1)) {
-    $('B');
+    $(`B`);
   } else {
-    $('C');
+    $(`C`);
   }
-  $('D');
+  $(`D`);
 };
 $(f());
 `````
@@ -44,14 +44,14 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  $('A');
+  $(`A`);
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    $('B');
+    $(`B`);
   } else {
-    $('C');
+    $(`C`);
   }
-  $('D');
+  $(`D`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -62,14 +62,14 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('A');
+$(`A`);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  $('B');
+  $(`B`);
 } else {
-  $('C');
+  $(`C`);
 }
-$('D');
+$(`D`);
 $(undefined);
 `````
 

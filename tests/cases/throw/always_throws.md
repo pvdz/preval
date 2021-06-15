@@ -33,11 +33,11 @@ $(_THROW())
 `````js filename=intro
 const _THROW = function () {
   debugger;
-  $('do');
-  $('not');
-  $('inline');
-  $('please');
-  throw new Error('always throws');
+  $(`do`);
+  $(`not`);
+  $(`inline`);
+  $(`please`);
+  throw new Error(`always throws`);
 };
 $(_THROW());
 $(_THROW());
@@ -50,11 +50,11 @@ $(_THROW());
 `````js filename=intro
 const _THROW = function () {
   debugger;
-  $('do');
-  $('not');
-  $('inline');
-  $('please');
-  const tmpThrowArg = new Error('always throws');
+  $(`do`);
+  $(`not`);
+  $(`inline`);
+  $(`please`);
+  const tmpThrowArg = new Error(`always throws`);
   throw tmpThrowArg;
 };
 const tmpCallCallee = $;
@@ -74,11 +74,11 @@ tmpCallCallee$5(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-$('do');
-$('not');
-$('inline');
-$('please');
-const tmpThrowArg = new Error('always throws');
+$(`do`);
+$(`not`);
+$(`inline`);
+$(`please`);
+const tmpThrowArg = new Error(`always throws`);
 throw tmpThrowArg;
 `````
 

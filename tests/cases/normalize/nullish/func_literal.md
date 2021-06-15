@@ -22,7 +22,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  return $('foo' ?? length);
+  return $(`foo` ?? length);
 };
 $(f());
 `````
@@ -33,7 +33,7 @@ $(f());
 let f = function () {
   debugger;
   const tmpCallCallee = $;
-  let tmpCalleeParam = 'foo';
+  let tmpCalleeParam = `foo`;
   const tmpIfTest = tmpCalleeParam == null;
   if (tmpIfTest) {
     tmpCalleeParam = length;
@@ -50,7 +50,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpReturnArg = $('foo');
+const tmpReturnArg = $(`foo`);
 $(tmpReturnArg);
 `````
 

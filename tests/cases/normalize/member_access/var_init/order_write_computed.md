@@ -34,7 +34,7 @@ const obj = {
     $(20);
   },
 };
-let x = ($(obj)[$('x')] = 30);
+let x = ($(obj)[$(`x`)] = 30);
 $(x);
 `````
 
@@ -55,7 +55,7 @@ const obj = {
   },
 };
 const varInitAssignLhsComputedObj = $(obj);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedRhs = 30;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 let x = varInitAssignLhsComputedRhs;
@@ -78,7 +78,7 @@ const obj = {
   },
 };
 const varInitAssignLhsComputedObj = $(obj);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 30;
 $(30);
 `````

@@ -18,8 +18,8 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-const { x: [y = 'fail'] = $(['pass2']) } = { x: undefined, a: 11, b: 12 };
-$('bad');
+const { x: [y = `fail`] = $([`pass2`]) } = { x: undefined, a: 11, b: 12 };
+$(`bad`);
 `````
 
 ## Normalized
@@ -31,7 +31,7 @@ let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = ['pass2'];
+  const tmpCalleeParam = [`pass2`];
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -41,21 +41,21 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 let y = undefined;
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  y = 'fail';
+  y = `fail`;
 } else {
   y = arrPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['pass2'];
+const tmpCalleeParam = [`pass2`];
 const objPatternAfterDefault = $(tmpCalleeParam);
 const arrPatternSplat = [...objPatternAfterDefault];
 arrPatternSplat[0];
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

@@ -34,8 +34,8 @@ let f = function () {
   let g = function () {
     debugger;
     if ($) {
-      x = $(1, 'a');
-      $(x, 'b');
+      x = $(1, `a`);
+      $(x, `b`);
     }
   };
   let x = undefined;
@@ -52,8 +52,8 @@ let f = function () {
   let g = function () {
     debugger;
     if ($) {
-      x = $(1, 'a');
-      $(x, 'b');
+      x = $(1, `a`);
+      $(x, `b`);
       return undefined;
     } else {
       return undefined;
@@ -77,8 +77,8 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpClusterSSA_tmpssa2_x = $(1, 'a');
-  $(tmpClusterSSA_tmpssa2_x, 'b');
+  const tmpClusterSSA_tmpssa2_x = $(1, `a`);
+  $(tmpClusterSSA_tmpssa2_x, `b`);
 } else {
 }
 `````

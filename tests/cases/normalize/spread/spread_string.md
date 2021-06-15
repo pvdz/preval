@@ -18,21 +18,21 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const x = [...'hello'];
+const x = [...`hello`];
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const x = ['h', 'e', 'l', 'l', 'o'];
+const x = [`h`, `e`, `l`, `l`, `o`];
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = ['h', 'e', 'l', 'l', 'o'];
+const x = [`h`, `e`, `l`, `l`, `o`];
 $(x);
 `````
 

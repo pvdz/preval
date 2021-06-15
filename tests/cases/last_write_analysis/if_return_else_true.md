@@ -33,12 +33,12 @@ let f = function () {
   debugger;
   let x = 1;
   if ($(true)) {
-    x = $(1, 'prevent optim');
+    x = $(1, `prevent optim`);
     return x;
   } else {
-    x = $(2, 'prevent optim');
+    x = $(2, `prevent optim`);
   }
-  $('prevent return hoisting');
+  $(`prevent return hoisting`);
   return x;
 };
 $(f());
@@ -52,11 +52,11 @@ let f = function () {
   let x = 1;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    x = $(1, 'prevent optim');
+    x = $(1, `prevent optim`);
     return x;
   } else {
-    x = $(2, 'prevent optim');
-    $('prevent return hoisting');
+    x = $(2, `prevent optim`);
+    $(`prevent return hoisting`);
     return x;
   }
 };
@@ -72,11 +72,11 @@ const f = function () {
   debugger;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $(1, 'prevent optim');
+    const tmpClusterSSA_x = $(1, `prevent optim`);
     return tmpClusterSSA_x;
   } else {
-    const tmpClusterSSA_x$1 = $(2, 'prevent optim');
-    $('prevent return hoisting');
+    const tmpClusterSSA_x$1 = $(2, `prevent optim`);
+    $(`prevent return hoisting`);
     return tmpClusterSSA_x$1;
   }
 };

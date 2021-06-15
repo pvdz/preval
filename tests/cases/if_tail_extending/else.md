@@ -28,7 +28,7 @@ let f = function () {
   } else {
     return;
   }
-  $('x');
+  $(`x`);
 };
 f();
 `````
@@ -39,7 +39,7 @@ f();
 let f = function () {
   debugger;
   if ($) {
-    $('x');
+    $(`x`);
     return undefined;
   } else {
     return undefined;
@@ -52,7 +52,7 @@ f();
 
 `````js filename=intro
 if ($) {
-  $('x');
+  $(`x`);
 } else {
 }
 `````

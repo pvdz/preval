@@ -28,11 +28,11 @@ let f = function () {
   debugger;
   let x = undefined;
   if ($(1)) {
-    x = $(1, 'a');
+    x = $(1, `a`);
   }
   return x;
 };
-$(f(), 'result');
+$(f(), `result`);
 `````
 
 ## Normalized
@@ -43,7 +43,7 @@ let f = function () {
   let x = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    x = $(1, 'a');
+    x = $(1, `a`);
     return x;
   } else {
     return x;
@@ -51,7 +51,7 @@ let f = function () {
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
-const tmpCalleeParam$1 = 'result';
+const tmpCalleeParam$1 = `result`;
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
@@ -62,14 +62,14 @@ const f = function () {
   debugger;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $(1, 'a');
+    const tmpClusterSSA_x = $(1, `a`);
     return tmpClusterSSA_x;
   } else {
     return undefined;
   }
 };
 const tmpCalleeParam = f();
-$(tmpCalleeParam, 'result');
+$(tmpCalleeParam, `result`);
 `````
 
 ## Globals

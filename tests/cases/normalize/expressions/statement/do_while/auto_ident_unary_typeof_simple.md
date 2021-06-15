@@ -67,7 +67,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpDoWhileFlag) {
   } else {
-    tmpIfTest = 'number';
+    tmpIfTest = `number`;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

@@ -23,7 +23,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let a = 'foo';
+  let a = `foo`;
   $(a);
 };
 $(f());
@@ -34,7 +34,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let a = 'foo';
+  let a = `foo`;
   $(a);
   return undefined;
 };
@@ -46,7 +46,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('foo');
+$(`foo`);
 $(undefined);
 `````
 

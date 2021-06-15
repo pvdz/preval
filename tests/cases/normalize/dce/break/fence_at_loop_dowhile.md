@@ -29,21 +29,21 @@ $('after (not invoked)');
 
 `````js filename=intro
 while ($(true)) {
-  $('loop');
+  $(`loop`);
   {
     let tmpDoWhileFlag = true;
     while (tmpDoWhileFlag || $(true)) {
       tmpDoWhileFlag = false;
       {
-        $('loop');
+        $(`loop`);
         break;
-        $('fail');
+        $(`fail`);
       }
     }
   }
-  $('infiloop, do not eliminate');
+  $(`infiloop, do not eliminate`);
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Normalized
@@ -52,7 +52,7 @@ $('after (not invoked)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('loop');
+    $(`loop`);
     let tmpDoWhileFlag = true;
     while (true) {
       let tmpIfTest$1 = tmpDoWhileFlag;
@@ -62,18 +62,18 @@ while (true) {
       }
       if (tmpIfTest$1) {
         tmpDoWhileFlag = false;
-        $('loop');
+        $(`loop`);
         break;
       } else {
         break;
       }
     }
-    $('infiloop, do not eliminate');
+    $(`infiloop, do not eliminate`);
   } else {
     break;
   }
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Output
@@ -82,7 +82,7 @@ $('after (not invoked)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('loop');
+    $(`loop`);
     let tmpDoWhileFlag = true;
     while (true) {
       let tmpIfTest$1 = tmpDoWhileFlag;
@@ -92,18 +92,18 @@ while (true) {
       }
       if (tmpIfTest$1) {
         tmpDoWhileFlag = false;
-        $('loop');
+        $(`loop`);
         break;
       } else {
         break;
       }
     }
-    $('infiloop, do not eliminate');
+    $(`infiloop, do not eliminate`);
   } else {
     break;
   }
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Globals

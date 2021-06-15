@@ -39,10 +39,10 @@ let f = function ($$0) {
   debugger;
   const b = x === 10;
   if (b) {
-    $('a', b);
+    $(`a`, b);
     return g(b);
   } else {
-    $('b', b);
+    $(`b`, b);
     return g(b);
   }
 };
@@ -64,11 +64,11 @@ let f = function ($$0) {
   debugger;
   const b = x === 10;
   if (b) {
-    $('a', b);
+    $(`a`, b);
     const tmpReturnArg = g(b);
     return tmpReturnArg;
   } else {
-    $('b', b);
+    $(`b`, b);
     const tmpReturnArg$1 = g(b);
     return tmpReturnArg$1;
   }
@@ -100,10 +100,10 @@ const g = function ($$0) {
 const tmpCalleeParam = $(10);
 const b = tmpCalleeParam === 10;
 if (b) {
-  $('a', true);
+  $(`a`, true);
   g(true);
 } else {
-  $('b', false);
+  $(`b`, false);
   g(false);
 }
 `````

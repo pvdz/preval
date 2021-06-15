@@ -21,7 +21,7 @@ $('bad');
 const {
   x: { ...y },
 } = undefined;
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -34,14 +34,14 @@ const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
 const tmpCalleeParam$3 = undefined;
 const y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 undefined.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

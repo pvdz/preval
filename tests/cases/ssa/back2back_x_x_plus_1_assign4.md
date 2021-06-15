@@ -82,7 +82,7 @@ const f = function () {
     $(x);
     const t = function () {
       debugger;
-      if ($) $(x, 't');
+      if ($) $(x, `t`);
     };
     x = $({
       toString() {
@@ -91,7 +91,7 @@ const f = function () {
         t();
         $(x);
         if ($) $(11);
-        return 'hi';
+        return `hi`;
       },
     });
     x = x + 1;
@@ -129,7 +129,7 @@ const f = function () {
     const t = function () {
       debugger;
       if ($) {
-        $(x, 't');
+        $(x, `t`);
         return undefined;
       } else {
         return undefined;
@@ -144,9 +144,9 @@ const f = function () {
         $(x);
         if ($) {
           $(11);
-          return 'hi';
+          return `hi`;
         } else {
-          return 'hi';
+          return `hi`;
         }
       },
     };
@@ -181,15 +181,15 @@ if ($) {
       debugger;
       x = 200;
       if ($) {
-        $(x, 't');
+        $(x, `t`);
       } else {
       }
       $(x);
       if ($) {
         $(11);
-        return 'hi';
+        return `hi`;
       } else {
-        return 'hi';
+        return `hi`;
       }
     },
   };
@@ -199,7 +199,7 @@ if ($) {
     $(x);
   } else {
   }
-  $(x, 't');
+  $(x, `t`);
   if ($) {
     $(10);
   } else {

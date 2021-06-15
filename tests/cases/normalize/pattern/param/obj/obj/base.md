@@ -25,7 +25,7 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let { x: {} = a } = tmpParamBare === undefined ? b : tmpParamBare;
-  return 'ok';
+  return `ok`;
 };
 const a = 1,
   b = 2;
@@ -60,9 +60,9 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
-    return 'ok';
+    return `ok`;
   } else {
-    return 'ok';
+    return `ok`;
   }
 };
 const a = 1;
@@ -79,7 +79,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

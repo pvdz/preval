@@ -30,8 +30,8 @@ let f = function () {
     while (tmpDoWhileFlag || $(true)) {
       tmpDoWhileFlag = false;
       {
-        throw $(1, 'throw');
-        $('fail');
+        throw $(1, `throw`);
+        $(`fail`);
       }
     }
   }
@@ -53,7 +53,7 @@ let f = function () {
     }
     if (tmpIfTest) {
       tmpDoWhileFlag = false;
-      const tmpThrowArg = $(1, 'throw');
+      const tmpThrowArg = $(1, `throw`);
       throw tmpThrowArg;
     } else {
       break;
@@ -78,7 +78,7 @@ while (true) {
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
-    const tmpThrowArg = $(1, 'throw');
+    const tmpThrowArg = $(1, `throw`);
     throw tmpThrowArg;
   } else {
     break;

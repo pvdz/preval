@@ -24,7 +24,7 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let {
-    x: { y: y = $('fail') },
+    x: { y: y = $(`fail`) },
   } = tmpParamBare;
   return y;
 };
@@ -43,7 +43,7 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    y = $('fail');
+    y = $(`fail`);
     return y;
   } else {
     y = objPatternBeforeDefault;
@@ -69,7 +69,7 @@ const f = function ($$0) {
   const objPatternBeforeDefault = objPatternNoDefault.y;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpClusterSSA_y = $('fail');
+    const tmpClusterSSA_y = $(`fail`);
     return tmpClusterSSA_y;
   } else {
     return objPatternBeforeDefault;

@@ -22,7 +22,7 @@ while ($(true)) {
 `````js filename=intro
 let x = $(10);
 while ($(true)) {
-  $(x, 'loop');
+  $(x, `loop`);
 }
 `````
 
@@ -33,7 +33,7 @@ let x = $(10);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $(x, 'loop');
+    $(x, `loop`);
   } else {
     break;
   }
@@ -47,7 +47,7 @@ const x = $(10);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $(x, 'loop');
+    $(x, `loop`);
   } else {
     break;
   }

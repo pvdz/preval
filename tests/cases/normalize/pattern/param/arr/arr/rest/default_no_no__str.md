@@ -26,7 +26,7 @@ let f = function ($$0) {
   let [[...x]] = tmpParamBare;
   return x;
 };
-$(f('abc', 4, 5, 200));
+$(f(`abc`, 4, 5, 200));
 `````
 
 ## Normalized
@@ -43,14 +43,14 @@ let f = function ($$0) {
   return x;
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('abc', 4, 5, 200);
+const tmpCalleeParam = f(`abc`, 4, 5, 200);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const arrPatternSplat$1 = ['a'];
+const arrPatternSplat$1 = [`a`];
 const x = arrPatternSplat$1.slice(0);
 $(x);
 `````

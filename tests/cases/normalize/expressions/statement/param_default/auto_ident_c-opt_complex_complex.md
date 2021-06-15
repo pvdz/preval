@@ -25,7 +25,7 @@ $(a);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? $(b)?.[$('x')] : tmpParamBare;
+  let p = tmpParamBare === undefined ? $(b)?.[$(`x`)] : tmpParamBare;
 };
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
@@ -47,7 +47,7 @@ let f = function ($$0) {
     const tmpChainElementCall = tmpChainRootCall(b);
     const tmpIfTest$1 = tmpChainElementCall != null;
     if (tmpIfTest$1) {
-      const tmpChainRootComputed = $('x');
+      const tmpChainRootComputed = $(`x`);
       const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
       p = tmpChainElementObject;
       return undefined;
@@ -75,7 +75,7 @@ const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainRootComputed = $('x');
+  const tmpChainRootComputed = $(`x`);
   tmpChainElementCall[tmpChainRootComputed];
 }
 $(undefined);

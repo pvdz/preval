@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const [x = $('pass')] = [null, 201];
+const [x = $(`pass`)] = [null, 201];
 $(x);
 `````
 
@@ -31,7 +31,7 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 let x = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = arrPatternBeforeDefault;
 }

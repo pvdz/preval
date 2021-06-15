@@ -38,22 +38,22 @@ $(f('three'));
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   const y = ~x;
   if ($(true)) {
-    $('a');
+    $(`a`);
     return y;
   } else {
-    $('b');
+    $(`b`);
     return y;
   }
 };
 $(f(1));
 $(f(2));
 $(f.length);
-$(f('three'));
+$(f(`three`));
 `````
 
 ## Normalized
@@ -62,16 +62,16 @@ $(f('three'));
 let f = function ($$0) {
   let x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   const y = ~x;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('a');
+    $(`a`);
     return y;
   } else {
-    $('b');
+    $(`b`);
     return y;
   }
 };
@@ -85,7 +85,7 @@ const tmpCallCallee$3 = $;
 const tmpCalleeParam$3 = f.length;
 tmpCallCallee$3(tmpCalleeParam$3);
 const tmpCallCallee$5 = $;
-const tmpCalleeParam$5 = f('three');
+const tmpCalleeParam$5 = f(`three`);
 tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
@@ -95,16 +95,16 @@ tmpCallCallee$5(tmpCalleeParam$5);
 const f = function ($$0) {
   const x = $$0;
   debugger;
-  $('no');
-  $('inlining');
-  $('please');
+  $(`no`);
+  $(`inlining`);
+  $(`please`);
   const y = ~x;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('a');
+    $(`a`);
     return y;
   } else {
-    $('b');
+    $(`b`);
     return y;
   }
 };
@@ -114,7 +114,7 @@ const tmpCalleeParam$1 = f(2);
 $(tmpCalleeParam$1);
 const tmpCalleeParam$3 = f.length;
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f('three');
+const tmpCalleeParam$5 = f(`three`);
 $(tmpCalleeParam$5);
 `````
 

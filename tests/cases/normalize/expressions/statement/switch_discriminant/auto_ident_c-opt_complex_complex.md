@@ -27,7 +27,7 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
-  const tmpSwitchValue = $(b)?.[$('x')];
+  const tmpSwitchValue = $(b)?.[$(`x`)];
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
@@ -48,7 +48,7 @@ const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = $('x');
+  const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpSwitchValue = tmpChainElementObject;
 } else {
@@ -71,7 +71,7 @@ const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainRootComputed = $('x');
+  const tmpChainRootComputed = $(`x`);
   tmpChainElementCall[tmpChainRootComputed];
 }
 $(100);

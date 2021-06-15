@@ -24,14 +24,14 @@ $(typeof setTimeout);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'function';
+const tmpCalleeParam = `function`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('function');
+$(`function`);
 `````
 
 ## Globals

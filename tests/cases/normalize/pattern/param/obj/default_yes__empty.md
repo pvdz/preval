@@ -23,8 +23,8 @@ $(f());
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let {} = tmpParamBare === undefined ? $('pass') : tmpParamBare;
-  return 'ok';
+  let {} = tmpParamBare === undefined ? $(`pass`) : tmpParamBare;
+  return `ok`;
 };
 $(f());
 `````
@@ -38,7 +38,7 @@ let f = function ($$0) {
   let bindingPatternObjRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    bindingPatternObjRoot = $('pass');
+    bindingPatternObjRoot = $(`pass`);
   } else {
     bindingPatternObjRoot = tmpParamBare;
   }
@@ -49,9 +49,9 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
-    return 'ok';
+    return `ok`;
   } else {
-    return 'ok';
+    return `ok`;
   }
 };
 const tmpCallCallee = $;
@@ -62,7 +62,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const bindingPatternObjRoot = $('pass');
+const bindingPatternObjRoot = $(`pass`);
 let objPatternCrashTest = bindingPatternObjRoot === undefined;
 if (objPatternCrashTest) {
 } else {
@@ -72,7 +72,7 @@ if (objPatternCrashTest) {
   bindingPatternObjRoot.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

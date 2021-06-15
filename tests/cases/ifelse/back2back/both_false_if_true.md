@@ -29,14 +29,14 @@ if (x) {
 `````js filename=intro
 let x = $(false);
 if (x) {
-  $(x, 'A');
+  $(x, `A`);
   x = $(true);
 } else {
-  $(x, 'B');
+  $(x, `B`);
   x = $(true);
 }
 if (x) {
-  $(x, 'hit');
+  $(x, `hit`);
 }
 `````
 
@@ -45,14 +45,14 @@ if (x) {
 `````js filename=intro
 let x = $(false);
 if (x) {
-  $(x, 'A');
+  $(x, `A`);
   x = $(true);
 } else {
-  $(x, 'B');
+  $(x, `B`);
   x = $(true);
 }
 if (x) {
-  $(x, 'hit');
+  $(x, `hit`);
 } else {
 }
 `````
@@ -62,14 +62,14 @@ if (x) {
 `````js filename=intro
 let x = $(false);
 if (x) {
-  $(x, 'A');
+  $(x, `A`);
   x = $(true);
 } else {
-  $(x, 'B');
+  $(x, `B`);
   x = $(true);
 }
 if (x) {
-  $(x, 'hit');
+  $(x, `hit`);
 } else {
 }
 `````

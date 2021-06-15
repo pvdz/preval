@@ -27,7 +27,7 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const b = '' + $('');
+  const b = `` + $(``);
   if (b) {
     $(b);
   } else {
@@ -42,8 +42,8 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpBinBothLhs = '';
-  const tmpBinBothRhs = $('');
+  const tmpBinBothLhs = ``;
+  const tmpBinBothRhs = $(``);
   const b = tmpBinBothLhs + tmpBinBothRhs;
   if (b) {
     $(b);
@@ -59,12 +59,12 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpBinBothRhs = $('');
-const b = '' + tmpBinBothRhs;
+const tmpBinBothRhs = $(``);
+const b = `` + tmpBinBothRhs;
 if (b) {
   $(b);
 } else {
-  $('');
+  $(``);
 }
 `````
 

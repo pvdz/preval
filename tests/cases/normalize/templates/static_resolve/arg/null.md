@@ -17,22 +17,22 @@ $(`${null}`);
 ## Pre Normal
 
 `````js filename=intro
-$('' + null + '');
+$(`` + null + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = 'null';
-const tmpCalleeParam = tmpBinLhs + '';
+const tmpBinLhs = `null`;
+const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('null');
+$(`null`);
 `````
 
 ## Globals

@@ -50,7 +50,7 @@ $(a, arg);
 
 `````js filename=intro
 while (true) {
-  $('number');
+  $(`number`);
   $(1);
 }
 const a = { a: 999, b: 1000 };

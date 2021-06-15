@@ -34,11 +34,11 @@ let f = function () {
   try {
     $(1);
     fail;
-    $('fail');
+    $(`fail`);
   } finally {
     $(3);
   }
-  $('fail2');
+  $(`fail2`);
 };
 $(f());
 `````
@@ -51,11 +51,11 @@ let f = function () {
   try {
     $(1);
     fail;
-    $('fail');
+    $(`fail`);
   } finally {
     $(3);
   }
-  $('fail2');
+  $(`fail2`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -69,11 +69,11 @@ tmpCallCallee(tmpCalleeParam);
 try {
   $(1);
   fail;
-  $('fail');
+  $(`fail`);
 } finally {
   $(3);
 }
-$('fail2');
+$(`fail2`);
 $(undefined);
 `````
 

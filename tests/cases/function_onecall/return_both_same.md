@@ -33,13 +33,13 @@ let f = function () {
   let g = function () {
     debugger;
     if ($(1)) {
-      return 'xyz';
+      return `xyz`;
     } else {
-      return 'xyz';
+      return `xyz`;
     }
   };
   $(g());
-  $('c');
+  $(`c`);
 };
 f();
 `````
@@ -52,12 +52,12 @@ let f = function () {
   let g = function () {
     debugger;
     const tmpIfTest = $(1);
-    return 'xyz';
+    return `xyz`;
   };
   const tmpCallCallee = $;
   const tmpCalleeParam = g();
   tmpCallCallee(tmpCalleeParam);
-  $('c');
+  $(`c`);
   return undefined;
 };
 f();
@@ -67,8 +67,8 @@ f();
 
 `````js filename=intro
 $(1);
-$('xyz');
-$('c');
+$(`xyz`);
+$(`c`);
 `````
 
 ## Globals

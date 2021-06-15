@@ -23,19 +23,19 @@ $('pass');
 while (true) {
   break;
 }
-$('pass');
+$(`pass`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-$('pass');
+$(`pass`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('pass');
+$(`pass`);
 `````
 
 ## Globals

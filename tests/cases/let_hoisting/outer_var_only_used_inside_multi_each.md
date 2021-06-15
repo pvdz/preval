@@ -39,11 +39,11 @@ let f = function () {
   let g = function () {
     debugger;
     if ($) {
-      x = $(1, 'a');
-      $(x, 'b');
+      x = $(1, `a`);
+      $(x, `b`);
     } else {
-      x = $(2, 'c');
-      $(x, 'd');
+      x = $(2, `c`);
+      $(x, `d`);
     }
   };
   let x = undefined;
@@ -60,12 +60,12 @@ let f = function () {
   let g = function () {
     debugger;
     if ($) {
-      x = $(1, 'a');
-      $(x, 'b');
+      x = $(1, `a`);
+      $(x, `b`);
       return undefined;
     } else {
-      x = $(2, 'c');
-      $(x, 'd');
+      x = $(2, `c`);
+      $(x, `d`);
       return undefined;
     }
   };
@@ -87,8 +87,8 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpClusterSSA_tmpssa2_x = $(1, 'a');
-  $(tmpClusterSSA_tmpssa2_x, 'b');
+  const tmpClusterSSA_tmpssa2_x = $(1, `a`);
+  $(tmpClusterSSA_tmpssa2_x, `b`);
 } else {
 }
 `````

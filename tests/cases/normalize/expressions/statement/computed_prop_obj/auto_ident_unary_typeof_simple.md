@@ -25,7 +25,7 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 let obj = {};
-(typeof arg)['a'];
+(typeof arg)[`a`];
 $(a, arg);
 `````
 
@@ -43,7 +43,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-'number'.a;
+`number`.a;
 const a = { a: 999, b: 1000 };
 $(a, 1);
 `````

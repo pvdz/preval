@@ -26,7 +26,7 @@ $(f());
 let f = function () {
   debugger;
   let b = { $: $ };
-  let a = b['$'](1);
+  let a = b[`$`](1);
   $(a);
 };
 $(f());

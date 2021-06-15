@@ -16,14 +16,14 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = $('foo').length;
+let x = $(`foo`).length;
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpCompObj = $('foo');
+const tmpCompObj = $(`foo`);
 let x = tmpCompObj.length;
 $(x);
 `````
@@ -31,7 +31,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpCompObj = $('foo');
+const tmpCompObj = $(`foo`);
 const x = tmpCompObj.length;
 $(x);
 `````

@@ -21,7 +21,7 @@
 
 `````js filename=intro
 {
-  let a = 'foo';
+  let a = `foo`;
   $(a);
 }
 `````
@@ -29,14 +29,14 @@
 ## Normalized
 
 `````js filename=intro
-let a = 'foo';
+let a = `foo`;
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

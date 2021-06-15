@@ -23,8 +23,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-(a = { b: $(1) })['a'];
-a[$('b')] = $(2);
+(a = { b: $(1) })[`a`];
+a[$(`b`)] = $(2);
 $(a);
 `````
 
@@ -38,7 +38,7 @@ a = { b: tmpObjLitVal };
 let tmpCompObj = a;
 tmpCompObj.a;
 const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(2);
@@ -52,7 +52,7 @@ $(a);
 const tmpObjLitVal = $(1);
 const tmpObjectPrototype = Object.prototype;
 tmpObjectPrototype.a;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 const a = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;

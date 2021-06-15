@@ -33,7 +33,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       b = { c: 10, d: 20 };
-      a = b['c'] = $(b)[$('d')];
+      a = b[`c`] = $(b)[$(`d`)];
       $(a, b);
     }
   }
@@ -56,7 +56,7 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   b = { c: 10, d: 20 };
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.c = tmpNestedPropAssignRhs;
@@ -71,7 +71,7 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpClusterSSA_b = { c: 10, d: 20 };
 const tmpCompObj = $(tmpClusterSSA_b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpClusterSSA_b.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, tmpClusterSSA_b);

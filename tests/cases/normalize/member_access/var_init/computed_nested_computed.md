@@ -18,7 +18,7 @@ $(x);
 
 `````js filename=intro
 const obj = { a: { b: $() } };
-let x = obj['a']['b'];
+let x = obj[`a`][`b`];
 $(x);
 `````
 

@@ -24,7 +24,7 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 {
-  (1, 2, b).c = $(b)[$('d')];
+  (1, 2, b).c = $(b)[$(`d`)];
   while ($(0)) {}
 }
 $(a, b);
@@ -38,7 +38,7 @@ let a = { a: 999, b: 1000 };
 const tmpAssignMemLhsObj = b;
 const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
 tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
 while (true) {
@@ -57,7 +57,7 @@ $(a, b);
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
 b.c = tmpAssignMemRhs;
 while (true) {

@@ -35,10 +35,10 @@ let f = function ($$0, $$1, $$2, $$3) {
   let d = $$3;
   debugger;
   if ($) {
-    $(a, b, c, d, tmpArgumentsLen, 'hopefully b is a literal afterwards');
+    $(a, b, c, d, tmpArgumentsLen, `hopefully b is a literal afterwards`);
   }
 };
-f(1, 2, 3, 'oops');
+f(1, 2, 3, `oops`);
 f(4, 2, 5);
 f(6, 2, 7);
 f(8, 2, 9);
@@ -55,13 +55,13 @@ let f = function ($$0, $$1, $$2, $$3) {
   let d = $$3;
   debugger;
   if ($) {
-    $(a, b, c, d, tmpArgumentsLen, 'hopefully b is a literal afterwards');
+    $(a, b, c, d, tmpArgumentsLen, `hopefully b is a literal afterwards`);
     return undefined;
   } else {
     return undefined;
   }
 };
-f(1, 2, 3, 'oops');
+f(1, 2, 3, `oops`);
 f(4, 2, 5);
 f(6, 2, 7);
 f(8, 2, 9);
@@ -78,13 +78,13 @@ const f = function ($$0, $$1, $$2, $$3) {
   const d = $$3;
   debugger;
   if ($) {
-    $(a, b, c, d, tmpArgumentsLen, 'hopefully b is a literal afterwards');
+    $(a, b, c, d, tmpArgumentsLen, `hopefully b is a literal afterwards`);
     return undefined;
   } else {
     return undefined;
   }
 };
-f(1, 2, 3, 'oops');
+f(1, 2, 3, `oops`);
 f(4, 2, 5);
 f(6, 2, 7);
 f(8, 2, 9);

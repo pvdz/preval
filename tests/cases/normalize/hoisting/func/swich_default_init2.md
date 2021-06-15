@@ -29,7 +29,7 @@ const x = $(1);
 {
   let f = function () {
     debugger;
-    return $('f');
+    return $(`f`);
   };
   const tmpSwitchValue = x;
   let tmpSwitchCaseToStart = 0;
@@ -53,7 +53,7 @@ const x = $(1);
 const x = $(1);
 let f = function () {
   debugger;
-  const tmpReturnArg = $('f');
+  const tmpReturnArg = $(`f`);
   return tmpReturnArg;
 };
 const tmpSwitchValue = x;
@@ -95,7 +95,7 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$3) {
-      $('f');
+      $(`f`);
       break tmpSwitchBreak;
     } else {
     }

@@ -23,8 +23,8 @@ $(f([1, 2, 3, 4, 5], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [[] = $(['pass2'])] = tmpParamBare;
-  return 'ok';
+  let [[] = $([`pass2`])] = tmpParamBare;
+  return `ok`;
 };
 $(f([1, 2, 3, 4, 5], 200));
 `````
@@ -42,13 +42,13 @@ let f = function ($$0) {
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = ['pass2'];
+    const tmpCalleeParam = [`pass2`];
     arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
   let arrPatternSplat$1 = [...arrPatternStep];
-  return 'ok';
+  return `ok`;
 };
 const tmpCallCallee$1 = $;
 const tmpCallCallee$3 = f;
@@ -62,7 +62,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 [...1];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

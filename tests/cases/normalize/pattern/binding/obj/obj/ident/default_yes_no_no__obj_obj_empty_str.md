@@ -19,22 +19,22 @@ $(y);
 
 `````js filename=intro
 const {
-  x: { y: y = $('fail') },
-} = { x: { x: 1, y: '', z: 3 }, b: 11, c: 12 };
+  x: { y: y = $(`fail`) },
+} = { x: { x: 1, y: ``, z: 3 }, b: 11, c: 12 };
 $(y);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal = { x: 1, y: '', z: 3 };
+const tmpObjLitVal = { x: 1, y: ``, z: 3 };
 const bindingPatternObjRoot = { x: tmpObjLitVal, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 let y = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = $('fail');
+  y = $(`fail`);
 } else {
   y = objPatternBeforeDefault;
 }
@@ -44,7 +44,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-$('');
+$(``);
 `````
 
 ## Globals

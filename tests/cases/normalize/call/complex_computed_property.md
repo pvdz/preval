@@ -21,7 +21,7 @@ $(a)[b()](1);
 `````js filename=intro
 let b = function () {
   debugger;
-  return $('b');
+  return $(`b`);
 };
 const a = { b: $ };
 $(a)[b()](1);
@@ -32,7 +32,7 @@ $(a)[b()](1);
 `````js filename=intro
 let b = function () {
   debugger;
-  const tmpReturnArg = $('b');
+  const tmpReturnArg = $(`b`);
   return tmpReturnArg;
 };
 const a = { b: $ };
@@ -46,8 +46,8 @@ tmpCallCompObj[tmpCallCompProp](1);
 `````js filename=intro
 const a = { b: $ };
 const tmpCallCompObj = $(a);
-const tmpReturnArg = $('b');
-tmpCallCompObj[tmpReturnArg](1);
+const tmpCallCompProp = $(`b`);
+tmpCallCompObj[tmpCallCompProp](1);
 `````
 
 ## Globals

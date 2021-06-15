@@ -18,14 +18,14 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const [{ x: x = $('fail') }] = [{ x: 'abc', y: 2, z: 3 }, 20, 30];
+const [{ x: x = $(`fail`) }] = [{ x: `abc`, y: 2, z: 3 }, 20, 30];
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpArrElement = { x: 'abc', y: 2, z: 3 };
+const tmpArrElement = { x: `abc`, y: 2, z: 3 };
 const bindingPatternArrRoot = [tmpArrElement, 20, 30];
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternStep = arrPatternSplat[0];
@@ -33,7 +33,7 @@ const objPatternBeforeDefault = arrPatternStep.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('fail');
+  x = $(`fail`);
 } else {
   x = objPatternBeforeDefault;
 }
@@ -43,7 +43,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-$('abc');
+$(`abc`);
 `````
 
 ## Globals

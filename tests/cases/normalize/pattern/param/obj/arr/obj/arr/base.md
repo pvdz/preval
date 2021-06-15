@@ -36,7 +36,7 @@ let f = function ($$0) {
       },
     ],
   } = tmpParamBare;
-  return 'ok';
+  return `ok`;
 };
 $(f({ x: [{ x: 15, y: [1, 2, 3], c: 16 }, 13, 14], a: 11, b: 12 }, 10));
 `````
@@ -53,7 +53,7 @@ let f = function ($$0) {
   let arrPatternStep = arrPatternSplat[0];
   let objPatternNoDefault$1 = arrPatternStep.y;
   let arrPatternSplat$1 = [...objPatternNoDefault$1];
-  return 'ok';
+  return `ok`;
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -70,7 +70,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

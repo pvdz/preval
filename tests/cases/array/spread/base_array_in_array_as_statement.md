@@ -20,8 +20,8 @@ $('the end');
 
 `````js filename=intro
 const x = [1, 2, 3];
-['a', ...x, 'b'];
-$('the end');
+[`a`, ...x, `b`];
+$(`the end`);
 `````
 
 ## Normalized
@@ -29,13 +29,13 @@ $('the end');
 `````js filename=intro
 const x = [1, 2, 3];
 [...x];
-$('the end');
+$(`the end`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('the end');
+$(`the end`);
 `````
 
 ## Globals

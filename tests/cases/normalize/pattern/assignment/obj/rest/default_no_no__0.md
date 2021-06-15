@@ -29,7 +29,7 @@ const tmpAssignObjPatternRhs = 0;
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = tmpAssignObjPatternRhs;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$3 = 'x';
+const tmpCalleeParam$3 = `x`;
 x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 $(x);
 `````
@@ -38,7 +38,7 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam$1 = [];
-x = objPatternRest(0, tmpCalleeParam$1, 'x');
+x = objPatternRest(0, tmpCalleeParam$1, `x`);
 $(x);
 `````
 

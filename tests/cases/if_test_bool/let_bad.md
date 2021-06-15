@@ -33,9 +33,9 @@ let f = function () {
   let x = $(1);
   if ($) x = 10;
   if (x) {
-    $('a', !x);
+    $(`a`, !x);
   } else {
-    $('b', !x);
+    $(`b`, !x);
   }
 };
 f();
@@ -55,13 +55,13 @@ let f = function () {
   }
   if (x) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = 'a';
+    const tmpCalleeParam = `a`;
     const tmpCalleeParam$1 = !x;
     tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
     return undefined;
   } else {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$3 = 'b';
+    const tmpCalleeParam$3 = `b`;
     const tmpCalleeParam$5 = !x;
     tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
     return undefined;
@@ -84,11 +84,11 @@ const f = function () {
   }
   if (x) {
     const tmpCalleeParam$1 = !x;
-    $('a', tmpCalleeParam$1);
+    $(`a`, tmpCalleeParam$1);
     return undefined;
   } else {
     const tmpCalleeParam$5 = !x;
-    $('b', tmpCalleeParam$5);
+    $(`b`, tmpCalleeParam$5);
     return undefined;
   }
 };

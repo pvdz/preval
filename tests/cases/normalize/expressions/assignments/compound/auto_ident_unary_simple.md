@@ -45,7 +45,7 @@ $(a, x);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * 'number';
+const tmpClusterSSA_a = a * `number`;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, 1);
 `````

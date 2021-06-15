@@ -25,11 +25,11 @@ $(x, typeof f, 'b');
 const f = function r$1($$0) {
   let r$1 = $$0;
   debugger;
-  $(typeof r$1, 'a');
+  $(typeof r$1, `a`);
   return r$1;
 };
 const x = f(10);
-$(x, typeof f, 'b');
+$(x, typeof f, `b`);
 `````
 
 ## Normalized
@@ -40,7 +40,7 @@ const r$1 = function ($$0) {
   debugger;
   const tmpCallCallee = $;
   const tmpCalleeParam = typeof r$2;
-  const tmpCalleeParam$1 = 'a';
+  const tmpCalleeParam$1 = `a`;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   return r$2;
 };
@@ -49,15 +49,15 @@ const x = f(10);
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = x;
 const tmpCalleeParam$5 = typeof f;
-const tmpCalleeParam$7 = 'b';
+const tmpCalleeParam$7 = `b`;
 tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5, tmpCalleeParam$7);
 `````
 
 ## Output
 
 `````js filename=intro
-$('number', 'a');
-$(10, 'function', 'b');
+$(`number`, `a`);
+$(10, `function`, `b`);
 `````
 
 ## Globals

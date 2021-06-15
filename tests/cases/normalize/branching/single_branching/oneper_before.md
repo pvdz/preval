@@ -65,10 +65,10 @@ const X = function ($$0, $$1, $$2, $$3, $$4) {
     return -1;
   } else {
     const h = typeof c;
-    const i = 'string' == h;
+    const i = `string` == h;
     if (i) {
       d = c;
-      c = 'no';
+      c = `no`;
     } else {
       const j = 2147483647 < c;
       if (j) {
@@ -89,7 +89,7 @@ const X = function ($$0, $$1, $$2, $$3, $$4) {
     }
   }
 };
-X('a', 'b', 'c', 'd', 'e');
+X(`a`, `b`, `c`, `d`, `e`);
 `````
 
 ## Normalized
@@ -108,10 +108,10 @@ const X = function ($$0, $$1, $$2, $$3, $$4) {
     return -1;
   } else {
     const h = typeof c;
-    const i = 'string' == h;
+    const i = `string` == h;
     if (i) {
       d = c;
-      c = 'no';
+      c = `no`;
     } else {
       const j = 2147483647 < c;
       if (j) {
@@ -136,16 +136,16 @@ const X = function ($$0, $$1, $$2, $$3, $$4) {
     }
   }
 };
-X('a', 'b', 'c', 'd', 'e');
+X(`a`, `b`, `c`, `d`, `e`);
 `````
 
 ## Output
 
 `````js filename=intro
-const l = +'no';
+const l = +`no`;
 const m = isNaN(l);
 if (m) {
-  $('a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, true);
+  $(`a`, `b`, `no`, `c`, `e`, 1, false, `string`, true, 0, true);
 } else {
 }
 `````

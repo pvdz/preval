@@ -24,8 +24,8 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let c = 'foo';
-  ($(1), $(2))[$('toString')];
+  let c = `foo`;
+  ($(1), $(2))[$(`toString`)];
   $(c);
 };
 $(f());
@@ -36,10 +36,10 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  let c = 'foo';
+  let c = `foo`;
   $(1);
   const tmpCompObj = $(2);
-  const tmpCompProp = $('toString');
+  const tmpCompProp = $(`toString`);
   tmpCompObj[tmpCompProp];
   $(c);
   return undefined;
@@ -54,9 +54,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 $(1);
 const tmpCompObj = $(2);
-const tmpCompProp = $('toString');
+const tmpCompProp = $(`toString`);
 tmpCompObj[tmpCompProp];
-$('foo');
+$(`foo`);
 $(undefined);
 `````
 

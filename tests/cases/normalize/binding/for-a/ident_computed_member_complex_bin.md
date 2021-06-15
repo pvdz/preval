@@ -23,7 +23,7 @@ let a = 1,
   c = 3,
   d = 4;
 {
-  let a$1 = ($(b)[$('x')] = c + d);
+  let a$1 = ($(b)[$(`x`)] = c + d);
   while (false) {
     $(a$1, b, c);
   }
@@ -38,7 +38,7 @@ let b = { x: 2 };
 let c = 3;
 let d = 4;
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedRhs = c + d;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 let a$1 = varInitAssignLhsComputedRhs;
@@ -49,7 +49,7 @@ let a$1 = varInitAssignLhsComputedRhs;
 `````js filename=intro
 const b = { x: 2 };
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('x');
+const varInitAssignLhsComputedProp = $(`x`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 `````
 

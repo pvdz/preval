@@ -90,7 +90,7 @@ switch (6) {
       $(2);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('d');
+      $(`d`);
     }
     if (tmpSwitchCaseToStart <= 3) {
       $(3);
@@ -155,7 +155,7 @@ tmpSwitchBreak: {
     }
     const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$13) {
-      $('d');
+      $(`d`);
     } else {
     }
     const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
@@ -226,7 +226,7 @@ tmpSwitchBreak: {
     }
     const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$13) {
-      $('d');
+      $(`d`);
     } else {
     }
     const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;

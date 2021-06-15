@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-a[$('b')] = 2;
+a[$(`b`)] = 2;
 $(a);
 `````
 
@@ -51,7 +51,7 @@ if (tmpIfTest) {
 } else {
 }
 const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
@@ -61,7 +61,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = $(1);
 $(100);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const a = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = 2;
 $(a);

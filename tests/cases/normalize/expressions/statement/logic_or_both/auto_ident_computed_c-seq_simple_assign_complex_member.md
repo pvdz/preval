@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-((1, 2, $(b))[$('c')] = $(b)[$('d')]) || ((1, 2, $(b))[$('c')] = $(b)[$('d')]);
+((1, 2, $(b))[$(`c`)] = $(b)[$(`d`)]) || ((1, 2, $(b))[$(`c`)] = $(b)[$(`d`)]);
 $(a, b);
 `````
 
@@ -33,20 +33,20 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('c');
+const varInitAssignLhsComputedProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpIfTest = varInitAssignLhsComputedRhs;
 if (tmpIfTest) {
 } else {
   const tmpAssignComMemLhsObj = $(b);
-  const tmpAssignComMemLhsProp = $('c');
+  const tmpAssignComMemLhsProp = $(`c`);
   const tmpAssignComputedObj = tmpAssignComMemLhsObj;
   const tmpAssignComputedProp = tmpAssignComMemLhsProp;
   const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $('d');
+  const tmpCompProp$1 = $(`d`);
   const tmpAssignComputedRhs = tmpCompObj$1[tmpCompProp$1];
   tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 }
@@ -59,17 +59,17 @@ $(a, b);
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = $(b);
-const varInitAssignLhsComputedProp = $('c');
+const varInitAssignLhsComputedProp = $(`c`);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
 } else {
   const tmpAssignComMemLhsObj = $(b);
-  const tmpAssignComMemLhsProp = $('c');
+  const tmpAssignComMemLhsProp = $(`c`);
   const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $('d');
+  const tmpCompProp$1 = $(`d`);
   const tmpAssignComputedRhs = tmpCompObj$1[tmpCompProp$1];
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 }

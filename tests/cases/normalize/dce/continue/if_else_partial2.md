@@ -29,11 +29,11 @@ while ($(true)) {
   if ($(1)) {
   } else {
     continue;
-    $('fail');
+    $(`fail`);
   }
-  $('keep');
+  $(`keep`);
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Normalized
@@ -44,7 +44,7 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      $('keep');
+      $(`keep`);
     } else {
       continue;
     }
@@ -52,7 +52,7 @@ while (true) {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Output
@@ -63,7 +63,7 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
-      $('keep');
+      $(`keep`);
     } else {
       continue;
     }
@@ -71,7 +71,7 @@ while (true) {
     break;
   }
 }
-$('after, wont eval due to infinite loop');
+$(`after, wont eval due to infinite loop`);
 `````
 
 ## Globals

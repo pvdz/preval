@@ -33,7 +33,7 @@ let b = { x: 1 },
   e = 4;
 let a = { a: 999, b: 1000 };
 {
-  const tmpSwitchValue = (a = $(b)[$('x')] = $(c)[$('y')] = d + e);
+  const tmpSwitchValue = (a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e);
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
@@ -53,9 +53,9 @@ let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = d + e;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
@@ -78,9 +78,9 @@ $(a, b, c, d, e);
 const b = { x: 1 };
 const c = { y: 2 };
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 $(100);

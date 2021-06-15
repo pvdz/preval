@@ -32,7 +32,7 @@ let cTmp = $;
 let cTail = c;
 while (true) {
   if ($) {
-    cTail = $('keep');
+    cTail = $(`keep`);
     cTmp = $(cTmp);
   } else {
     cTmp = cTail;
@@ -49,7 +49,7 @@ let cTmp = $;
 let cTail = c;
 while (true) {
   if ($) {
-    cTail = $('keep');
+    cTail = $(`keep`);
     cTmp = $(cTmp);
   } else {
     cTmp = cTail;
@@ -66,7 +66,7 @@ let cTmp = $;
 let cTail = c;
 while (true) {
   if ($) {
-    cTail = $('keep');
+    cTail = $(`keep`);
     cTmp = $(cTmp);
   } else {
     cTmp = cTail;

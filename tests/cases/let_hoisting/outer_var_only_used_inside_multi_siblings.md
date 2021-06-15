@@ -36,10 +36,10 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    x = $(1, 'a');
-    $(x, 'b');
-    x = $(2, 'c');
-    $(x, 'd');
+    x = $(1, `a`);
+    $(x, `b`);
+    x = $(2, `c`);
+    $(x, `d`);
   };
   let x = undefined;
   if ($) g();
@@ -54,10 +54,10 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    x = $(1, 'a');
-    $(x, 'b');
-    x = $(2, 'c');
-    $(x, 'd');
+    x = $(1, `a`);
+    $(x, `b`);
+    x = $(2, `c`);
+    $(x, `d`);
     return undefined;
   };
   let x = undefined;
@@ -78,10 +78,10 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const tmpssa2_x = $(1, 'a');
-  $(tmpssa2_x, 'b');
-  const tmpClusterSSA_tmpssa2_x = $(2, 'c');
-  $(tmpClusterSSA_tmpssa2_x, 'd');
+  const tmpssa2_x = $(1, `a`);
+  $(tmpssa2_x, `b`);
+  const tmpClusterSSA_tmpssa2_x = $(2, `c`);
+  $(tmpClusterSSA_tmpssa2_x, `d`);
 } else {
 }
 `````

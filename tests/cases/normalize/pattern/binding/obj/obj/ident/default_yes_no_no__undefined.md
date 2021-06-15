@@ -19,9 +19,9 @@ $('bad');
 
 `````js filename=intro
 const {
-  x: { y: y = $('fail') },
+  x: { y: y = $(`fail`) },
 } = undefined;
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -33,18 +33,18 @@ const objPatternBeforeDefault = objPatternNoDefault.y;
 let y = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = $('fail');
+  y = $(`fail`);
 } else {
   y = objPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 undefined.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

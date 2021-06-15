@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-({ x: x = $('fail') } = { x: null });
+({ x: x = $(`fail`) } = { x: null });
 $(x);
 `````
 
@@ -29,7 +29,7 @@ const tmpAssignObjPatternRhs = { x: null };
 const objPatternBeforeDefault = tmpAssignObjPatternRhs.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('fail');
+  x = $(`fail`);
 } else {
   x = objPatternBeforeDefault;
 }

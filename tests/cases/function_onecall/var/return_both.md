@@ -34,13 +34,13 @@ let f = function () {
   let g = function () {
     debugger;
     if ($(1)) {
-      return $('a');
+      return $(`a`);
     } else {
-      return $('b');
+      return $(`b`);
     }
   };
   g();
-  $('c');
+  $(`c`);
 };
 const x = f();
 $(x);
@@ -55,15 +55,15 @@ let f = function () {
     debugger;
     const tmpIfTest = $(1);
     if (tmpIfTest) {
-      const tmpReturnArg = $('a');
+      const tmpReturnArg = $(`a`);
       return tmpReturnArg;
     } else {
-      const tmpReturnArg$1 = $('b');
+      const tmpReturnArg$1 = $(`b`);
       return tmpReturnArg$1;
     }
   };
   g();
-  $('c');
+  $(`c`);
   return undefined;
 };
 const x = f();
@@ -75,11 +75,11 @@ $(x);
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  $('a');
+  $(`a`);
 } else {
-  $('b');
+  $(`b`);
 }
-$('c');
+$(`c`);
 $(undefined);
 `````
 

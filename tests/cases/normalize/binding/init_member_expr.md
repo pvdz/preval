@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = 'foo'.length;
+let x = `foo`.length;
 $(x);
 `````
 

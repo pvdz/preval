@@ -22,7 +22,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 $((a = { b: $(1) }) || $(100));
-a[$('b')] = 2;
+a[$(`b`)] = 2;
 $(a);
 `````
 
@@ -40,7 +40,7 @@ if (tmpCalleeParam) {
 }
 tmpCallCallee(tmpCalleeParam);
 const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
@@ -51,7 +51,7 @@ $(a);
 const tmpObjLitVal = $(1);
 const a = { b: tmpObjLitVal };
 $(a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 a[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````

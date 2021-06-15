@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let xyz = 'foo';
+  let xyz = `foo`;
   while (true) {
     $(xyz);
     $(1);
@@ -34,7 +34,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let xyz = 'foo';
+let xyz = `foo`;
 while (true) {
   $(xyz);
   $(1);
@@ -46,7 +46,7 @@ $(a);
 
 `````js filename=intro
 while (true) {
-  $('foo');
+  $(`foo`);
   $(1);
 }
 const a = { a: 999, b: 1000 };

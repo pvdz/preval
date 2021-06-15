@@ -21,7 +21,7 @@ for ($(a)[$('foo')] of $(b)) $(a);
 `````js filename=intro
 let a = {};
 let b = { x: 1, y: 2 };
-for ($(a)[$('foo')] of $(b)) $(a);
+for ($(a)[$(`foo`)] of $(b)) $(a);
 `````
 
 ## Normalized
@@ -33,7 +33,7 @@ const tmpForOfRhs = $(b);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpAssignComMemLhsObj = $(a);
-  const tmpAssignComMemLhsProp = $('foo');
+  const tmpAssignComMemLhsProp = $(`foo`);
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForOfLhsNode;
   $(a);
 }
@@ -48,7 +48,7 @@ const tmpForOfRhs = $(b);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpAssignComMemLhsObj = $(a);
-  const tmpAssignComMemLhsProp = $('foo');
+  const tmpAssignComMemLhsProp = $(`foo`);
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpForOfLhsNode;
   $(a);
 }

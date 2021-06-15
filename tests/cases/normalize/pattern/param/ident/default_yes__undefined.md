@@ -23,7 +23,7 @@ $(f(undefined, 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let x = tmpParamBare === undefined ? 'pass' : tmpParamBare;
+  let x = tmpParamBare === undefined ? `pass` : tmpParamBare;
   return x;
 };
 $(f(undefined, 200));
@@ -38,7 +38,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    x = 'pass';
+    x = `pass`;
     return x;
   } else {
     x = tmpParamBare;
@@ -53,7 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('pass');
+$(`pass`);
 `````
 
 ## Globals

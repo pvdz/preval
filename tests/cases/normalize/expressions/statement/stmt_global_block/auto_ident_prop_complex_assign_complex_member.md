@@ -26,7 +26,7 @@
 {
   let b = { c: 10, d: 20 };
   let a = { a: 999, b: 1000 };
-  $(b).c = $(b)[$('d')];
+  $(b).c = $(b)[$(`d`)];
   $(a, b);
 }
 `````
@@ -39,7 +39,7 @@ let a = { a: 999, b: 1000 };
 const tmpAssignMemLhsObj = $(b);
 const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
 tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
 $(a, b);
@@ -52,7 +52,7 @@ const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
 const tmpAssignMemLhsObj = $(b);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
 tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 $(a, b);

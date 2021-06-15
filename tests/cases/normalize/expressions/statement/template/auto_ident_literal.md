@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$('before  ' + 'foo' + '  after');
+$(`before  ` + `foo` + `  after`);
 $(a);
 `````
 
@@ -29,8 +29,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpBinLhs = 'before  foo';
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpBinLhs = `before  foo`;
+const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -38,7 +38,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-$('before  foo  after');
+$(`before  foo  after`);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

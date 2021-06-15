@@ -25,7 +25,7 @@ $(a, arg);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? (a = delete ($(1), $(2), arg)[$('y')]) : tmpParamBare;
+  let p = tmpParamBare === undefined ? (a = delete ($(1), $(2), arg)[$(`y`)]) : tmpParamBare;
 };
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
@@ -45,7 +45,7 @@ let f = function ($$0) {
     $(1);
     $(2);
     const tmpDeleteCompObj = arg;
-    const tmpDeleteCompProp = $('y');
+    const tmpDeleteCompProp = $(`y`);
     const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
@@ -68,7 +68,7 @@ $(a, arg);
 `````js filename=intro
 $(1);
 $(2);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp];
 $(undefined);

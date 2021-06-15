@@ -24,7 +24,7 @@ $(a);
 let a = 0,
   b = 1,
   c = { x: { y: 10 } };
-a = ((b = c.x), b).y === 'Identifier';
+a = ((b = c.x), b).y === `Identifier`;
 $(a);
 `````
 
@@ -38,7 +38,7 @@ let c = { x: tmpObjLitVal };
 b = c.x;
 const tmpCompObj = b;
 const tmpBinLhs = tmpCompObj.y;
-a = tmpBinLhs === 'Identifier';
+a = tmpBinLhs === `Identifier`;
 $(a);
 `````
 

@@ -81,7 +81,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-throw 'Preval: Cannot access `xyz` before initialization';
+throw `Preval: Cannot access \`xyz\` before initialization`;
 `````
 
 ## Globals

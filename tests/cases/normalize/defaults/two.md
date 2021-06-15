@@ -26,14 +26,14 @@ let f = function ($$0, $$1) {
   const tmpParamBare = $$0;
   const tmpParamBare$1 = $$1;
   debugger;
-  let a = tmpParamBare === undefined ? 'foo' : tmpParamBare;
-  let b = tmpParamBare$1 === undefined ? 'bar' : tmpParamBare$1;
+  let a = tmpParamBare === undefined ? `foo` : tmpParamBare;
+  let b = tmpParamBare$1 === undefined ? `bar` : tmpParamBare$1;
   return [a, b];
 };
 $(f());
-$(f('x'));
-$(f(undefined, 'y'));
-$(f('x', 'y'));
+$(f(`x`));
+$(f(undefined, `y`));
+$(f(`x`, `y`));
 `````
 
 ## Normalized
@@ -46,14 +46,14 @@ let f = function ($$0, $$1) {
   let a = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    a = 'foo';
+    a = `foo`;
   } else {
     a = tmpParamBare;
   }
   let b = undefined;
   const tmpIfTest$1 = tmpParamBare$1 === undefined;
   if (tmpIfTest$1) {
-    b = 'bar';
+    b = `bar`;
   } else {
     b = tmpParamBare$1;
   }
@@ -64,13 +64,13 @@ const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = f('x');
+const tmpCalleeParam$1 = f(`x`);
 tmpCallCallee$1(tmpCalleeParam$1);
 const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f(undefined, 'y');
+const tmpCalleeParam$3 = f(undefined, `y`);
 tmpCallCallee$3(tmpCalleeParam$3);
 const tmpCallCallee$5 = $;
-const tmpCalleeParam$5 = f('x', 'y');
+const tmpCalleeParam$5 = f(`x`, `y`);
 tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
@@ -84,14 +84,14 @@ const f = function ($$0, $$1) {
   let a = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    a = 'foo';
+    a = `foo`;
   } else {
     a = tmpParamBare;
   }
   let b = undefined;
   const tmpIfTest$1 = tmpParamBare$1 === undefined;
   if (tmpIfTest$1) {
-    b = 'bar';
+    b = `bar`;
   } else {
     b = tmpParamBare$1;
   }
@@ -100,11 +100,11 @@ const f = function ($$0, $$1) {
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f('x');
+const tmpCalleeParam$1 = f(`x`);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(undefined, 'y');
+const tmpCalleeParam$3 = f(undefined, `y`);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f('x', 'y');
+const tmpCalleeParam$5 = f(`x`, `y`);
 $(tmpCalleeParam$5);
 `````
 

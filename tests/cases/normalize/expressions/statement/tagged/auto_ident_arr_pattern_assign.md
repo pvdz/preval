@@ -25,7 +25,7 @@ $(a, x, y);
 let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
-$(['before ', ' after'], ([x, y] = [$(3), $(4)]));
+$([`before `, ` after`], ([x, y] = [$(3), $(4)]));
 $(a, x, y);
 `````
 
@@ -36,7 +36,7 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 let tmpCalleeParam$1 = undefined;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
@@ -53,7 +53,7 @@ $(a, x, y);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];

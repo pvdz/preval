@@ -23,10 +23,10 @@ $(f('xyz', 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [x = $('fail')] = tmpParamBare === undefined ? $('fail2') : tmpParamBare;
+  let [x = $(`fail`)] = tmpParamBare === undefined ? $(`fail2`) : tmpParamBare;
   return x;
 };
-$(f('xyz', 200));
+$(f(`xyz`, 200));
 `````
 
 ## Normalized
@@ -38,7 +38,7 @@ let f = function ($$0) {
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    bindingPatternArrRoot = $('fail2');
+    bindingPatternArrRoot = $(`fail2`);
   } else {
     bindingPatternArrRoot = tmpParamBare;
   }
@@ -47,7 +47,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    x = $('fail');
+    x = $(`fail`);
     return x;
   } else {
     x = arrPatternBeforeDefault;
@@ -55,14 +55,14 @@ let f = function ($$0) {
   }
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('xyz', 200);
+const tmpCalleeParam = f(`xyz`, 200);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('x');
+$(`x`);
 `````
 
 ## Globals

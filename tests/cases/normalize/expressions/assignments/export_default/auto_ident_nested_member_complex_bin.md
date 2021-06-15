@@ -29,7 +29,7 @@ let b = { x: 1 },
   d = 3,
   e = 4;
 let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (a = $(b)[$('x')] = $(c)[$('y')] = d + e);
+const tmpAnonDefaultExport = (a = $(b)[$(`x`)] = $(c)[$(`y`)] = d + e);
 export { tmpAnonDefaultExport as default };
 $(a, b, c, d, e);
 `````
@@ -43,9 +43,9 @@ let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = d + e;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
@@ -63,9 +63,9 @@ $(a, b, c, d, e);
 const b = { x: 1 };
 const c = { y: 2 };
 const tmpNestedAssignComMemberObj = $(b);
-const tmpNestedAssignComMemberProp = $('x');
+const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
-const varInitAssignLhsComputedProp = $('y');
+const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 const tmpAnonDefaultExport = 7;

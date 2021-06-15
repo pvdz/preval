@@ -30,7 +30,7 @@ const f = function () {
   debugger;
   let g = undefined;
   if ($(1)) {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== `undefined`) {
       g = tmpthis;
     }
   }
@@ -47,8 +47,8 @@ const f = function () {
   let g = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpBinLhs = 'undefined';
-    const tmpIfTest$1 = tmpBinLhs !== 'undefined';
+    const tmpBinLhs = `undefined`;
+    const tmpIfTest$1 = tmpBinLhs !== `undefined`;
     if (tmpIfTest$1) {
       g = tmpthis;
       return undefined;

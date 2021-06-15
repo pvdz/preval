@@ -38,14 +38,14 @@ let x = undefined;
 a = {
   get b() {
     debugger;
-    $('b.get');
+    $(`b.get`);
     return 100;
   },
 };
 x = {
   get y() {
     debugger;
-    $('y.get');
+    $(`y.get`);
     return $;
   },
 };
@@ -60,14 +60,14 @@ let x = undefined;
 a = {
   get b() {
     debugger;
-    $('b.get');
+    $(`b.get`);
     return 100;
   },
 };
 x = {
   get y() {
     debugger;
-    $('y.get');
+    $(`y.get`);
     return $;
   },
 };
@@ -83,14 +83,14 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 const a = {
   get b() {
     debugger;
-    $('b.get');
+    $(`b.get`);
     return 100;
   },
 };
 const x = {
   get y() {
     debugger;
-    $('y.get');
+    $(`y.get`);
     return $;
   },
 };

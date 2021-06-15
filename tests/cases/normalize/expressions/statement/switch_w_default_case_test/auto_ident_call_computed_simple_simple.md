@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
 {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 1;
-  if (b['$'](1) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if (b[`$`](1) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else if (2 === tmpSwitchValue) tmpSwitchCaseToStart = 2;
   else;
   tmpSwitchBreak: {
@@ -41,10 +41,10 @@ let a = { a: 999, b: 1000 };
       break tmpSwitchBreak;
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -76,12 +76,12 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$5) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$7) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }
@@ -114,12 +114,12 @@ tmpSwitchBreak: {
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$5) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$7) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }

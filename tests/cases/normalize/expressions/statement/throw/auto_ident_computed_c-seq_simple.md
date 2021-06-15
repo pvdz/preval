@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-throw (1, 2, $(b))[$('c')];
+throw (1, 2, $(b))[$(`c`)];
 $(a, b);
 `````
 
@@ -33,7 +33,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 const tmpThrowArg = tmpCompObj[tmpCompProp];
 throw tmpThrowArg;
 `````
@@ -43,7 +43,7 @@ throw tmpThrowArg;
 `````js filename=intro
 const b = { c: 1 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 const tmpThrowArg = tmpCompObj[tmpCompProp];
 throw tmpThrowArg;
 `````

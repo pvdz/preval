@@ -30,13 +30,13 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const x = '' + $('');
+  const x = `` + $(``);
   if (x) {
-    $(!x, 'fail');
+    $(!x, `fail`);
   } else {
-    $(!x, 'pass');
+    $(!x, `pass`);
   }
-  $(x, 'after');
+  $(x, `after`);
 };
 f();
 f();
@@ -48,21 +48,21 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpBinBothLhs = '';
-  const tmpBinBothRhs = $('');
+  const tmpBinBothLhs = ``;
+  const tmpBinBothRhs = $(``);
   const x = tmpBinBothLhs + tmpBinBothRhs;
   if (x) {
     const tmpCallCallee = $;
     const tmpCalleeParam = !x;
-    const tmpCalleeParam$1 = 'fail';
+    const tmpCalleeParam$1 = `fail`;
     tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   } else {
     const tmpCallCallee$1 = $;
     const tmpCalleeParam$3 = !x;
-    const tmpCalleeParam$5 = 'pass';
+    const tmpCalleeParam$5 = `pass`;
     tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
   }
-  $(x, 'after');
+  $(x, `after`);
   return undefined;
 };
 f();
@@ -75,14 +75,14 @@ f();
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpBinBothRhs = $('');
-  const x = '' + tmpBinBothRhs;
+  const tmpBinBothRhs = $(``);
+  const x = `` + tmpBinBothRhs;
   if (x) {
-    $(false, 'fail');
+    $(false, `fail`);
   } else {
-    $(true, 'pass');
+    $(true, `pass`);
   }
-  $(x, 'after');
+  $(x, `after`);
   return undefined;
 };
 f();

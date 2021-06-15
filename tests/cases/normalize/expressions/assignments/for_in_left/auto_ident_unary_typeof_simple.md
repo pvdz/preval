@@ -52,8 +52,8 @@ const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
-  a = 'number';
-  'number'.x = tmpForInLhsNode;
+  a = `number`;
+  `number`.x = tmpForInLhsNode;
 }
 $(a, 1);
 `````

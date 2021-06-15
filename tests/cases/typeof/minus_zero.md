@@ -22,14 +22,14 @@ $(typeof -0);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'number';
+const tmpCalleeParam = `number`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('number');
+$(`number`);
 `````
 
 ## Globals

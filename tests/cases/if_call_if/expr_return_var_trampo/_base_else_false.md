@@ -41,9 +41,9 @@ let outer = function () {
   const f = function () {
     debugger;
     if (x) {
-      return $('inner if', x);
+      return $(`inner if`, x);
     } else {
-      return $('inner else', x);
+      return $(`inner else`, x);
     }
   };
   if (x) {
@@ -55,7 +55,7 @@ let outer = function () {
     return;
   }
 };
-if ($) $(outer(), 'outer');
+if ($) $(outer(), `outer`);
 `````
 
 ## Normalized
@@ -67,10 +67,10 @@ let outer = function () {
   const f = function () {
     debugger;
     if (x) {
-      const tmpReturnArg = $('inner if', x);
+      const tmpReturnArg = $(`inner if`, x);
       return tmpReturnArg;
     } else {
-      const tmpReturnArg$1 = $('inner else', x);
+      const tmpReturnArg$1 = $(`inner else`, x);
       return tmpReturnArg$1;
     }
   };
@@ -86,7 +86,7 @@ let outer = function () {
 if ($) {
   const tmpCallCallee = $;
   const tmpCalleeParam = outer();
-  const tmpCalleeParam$1 = 'outer';
+  const tmpCalleeParam$1 = `outer`;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 } else {
 }
@@ -98,16 +98,16 @@ if ($) {
 if ($) {
   const x = $(0);
   if (x) {
-    $('inner if', x);
+    $(`inner if`, x);
   } else {
     const tmpClusterSSA_x = $(2);
     if (tmpClusterSSA_x) {
-      $('inner if', tmpClusterSSA_x);
+      $(`inner if`, tmpClusterSSA_x);
     } else {
-      $('inner else', tmpClusterSSA_x);
+      $(`inner else`, tmpClusterSSA_x);
     }
   }
-  $(undefined, 'outer');
+  $(undefined, `outer`);
 } else {
 }
 `````

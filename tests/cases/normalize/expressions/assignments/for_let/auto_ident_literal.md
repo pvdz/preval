@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  let xyz = (a = 'foo');
+  let xyz = (a = `foo`);
   while (true) {
     $(xyz);
     $(1);
@@ -34,7 +34,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-a = 'foo';
+a = `foo`;
 let xyz = a;
 while (true) {
   $(xyz);
@@ -47,10 +47,10 @@ $(a);
 
 `````js filename=intro
 while (true) {
-  $('foo');
+  $(`foo`);
   $(1);
 }
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

@@ -32,13 +32,13 @@
 
 `````js filename=intro
 let cTmp = $(1);
-let cTail = 'fail';
+let cTail = `fail`;
 let n = 0;
 while (true) {
   n = n + 1;
   const tmpIfTest = n < 2;
   if (tmpIfTest) {
-    cTail = 'pass';
+    cTail = `pass`;
     cTmp = $(3);
   } else {
     cTmp = cTail;
@@ -52,13 +52,13 @@ $(cTmp);
 
 `````js filename=intro
 let cTmp = $(1);
-let cTail = 'fail';
+let cTail = `fail`;
 let n = 0;
 while (true) {
   n = n + 1;
   const tmpIfTest = n < 2;
   if (tmpIfTest) {
-    cTail = 'pass';
+    cTail = `pass`;
     cTmp = $(3);
   } else {
     cTmp = cTail;
@@ -72,13 +72,13 @@ $(cTmp);
 
 `````js filename=intro
 let cTmp = $(1);
-let cTail = 'fail';
+let cTail = `fail`;
 let n = 0;
 while (true) {
   n = n + 1;
   const tmpIfTest = n < 2;
   if (tmpIfTest) {
-    cTail = 'pass';
+    cTail = `pass`;
     cTmp = $(3);
   } else {
     cTmp = cTail;

@@ -20,14 +20,14 @@ $('ok');
 `````js filename=intro
 ({
   x: {},
-} = { x: 'abc', b: 11, c: 12 });
-$('ok');
+} = { x: `abc`, b: 11, c: 12 });
+$(`ok`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = { x: 'abc', b: 11, c: 12 };
+const tmpAssignObjPatternRhs = { x: `abc`, b: 11, c: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 let objPatternCrashTest = objPatternNoDefault === undefined;
 if (objPatternCrashTest) {
@@ -38,13 +38,13 @@ if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

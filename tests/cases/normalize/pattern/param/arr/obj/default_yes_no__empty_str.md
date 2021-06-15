@@ -23,10 +23,10 @@ $(f('', 100));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [{} = $('pass')] = tmpParamBare;
-  return 'ok';
+  let [{} = $(`pass`)] = tmpParamBare;
+  return `ok`;
 };
-$(f('', 100));
+$(f(``, 100));
 `````
 
 ## Normalized
@@ -41,7 +41,7 @@ let f = function ($$0) {
   let arrPatternStep = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    arrPatternStep = $('pass');
+    arrPatternStep = $(`pass`);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
   }
@@ -52,20 +52,20 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = arrPatternStep.cannotDestructureThis;
-    return 'ok';
+    return `ok`;
   } else {
-    return 'ok';
+    return `ok`;
   }
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('', 100);
+const tmpCalleeParam = f(``, 100);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const arrPatternStep = $('pass');
+const arrPatternStep = $(`pass`);
 let objPatternCrashTest = arrPatternStep === undefined;
 if (objPatternCrashTest) {
 } else {
@@ -75,7 +75,7 @@ if (objPatternCrashTest) {
   arrPatternStep.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

@@ -22,36 +22,36 @@ if (x) {
 ## Pre Normal
 
 `````js filename=intro
-const x = '' + $('');
+const x = `` + $(``);
 if (x) {
-  $(x, 'false');
+  $(x, `false`);
 } else {
-  $(x, 'pass');
+  $(x, `pass`);
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinBothLhs = '';
-const tmpBinBothRhs = $('');
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = $(``);
 const x = tmpBinBothLhs + tmpBinBothRhs;
 if (x) {
-  $(x, 'false');
+  $(x, `false`);
 } else {
-  $(x, 'pass');
+  $(x, `pass`);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpBinBothRhs = $('');
-const x = '' + tmpBinBothRhs;
+const tmpBinBothRhs = $(``);
+const x = `` + tmpBinBothRhs;
 if (x) {
-  $(x, 'false');
+  $(x, `false`);
 } else {
-  $('', 'pass');
+  $(``, `pass`);
 }
 `````
 

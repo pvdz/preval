@@ -30,22 +30,22 @@ $(a, c, rest);
 let obj = {
   get a() {
     debugger;
-    return $('a');
+    return $(`a`);
   },
   get b() {
     debugger;
     return {
       get c() {
         debugger;
-        return $('b');
+        return $(`b`);
       },
       get d() {
         debugger;
-        return $('c');
+        return $(`c`);
       },
       get e() {
         debugger;
-        return $('d');
+        return $(`d`);
       },
     };
   },
@@ -63,7 +63,7 @@ $(a, c, rest);
 let obj = {
   get a() {
     debugger;
-    const tmpReturnArg = $('a');
+    const tmpReturnArg = $(`a`);
     return tmpReturnArg;
   },
   get b() {
@@ -71,17 +71,17 @@ let obj = {
     const tmpReturnArg$1 = {
       get c() {
         debugger;
-        const tmpReturnArg$3 = $('b');
+        const tmpReturnArg$3 = $(`b`);
         return tmpReturnArg$3;
       },
       get d() {
         debugger;
-        const tmpReturnArg$5 = $('c');
+        const tmpReturnArg$5 = $(`c`);
         return tmpReturnArg$5;
       },
       get e() {
         debugger;
-        const tmpReturnArg$7 = $('d');
+        const tmpReturnArg$7 = $(`d`);
         return tmpReturnArg$7;
       },
     };
@@ -94,7 +94,7 @@ let objPatternNoDefault = bindingPatternObjRoot.b;
 let c = objPatternNoDefault.c;
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = objPatternNoDefault;
-const tmpCalleeParam$1 = ['c'];
+const tmpCalleeParam$1 = [`c`];
 const tmpCalleeParam$3 = undefined;
 let rest = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 $(a, c, rest);
@@ -106,7 +106,7 @@ $(a, c, rest);
 const obj = {
   get a() {
     debugger;
-    const tmpReturnArg = $('a');
+    const tmpReturnArg = $(`a`);
     return tmpReturnArg;
   },
   get b() {
@@ -114,17 +114,17 @@ const obj = {
     const tmpReturnArg$1 = {
       get c() {
         debugger;
-        const tmpReturnArg$3 = $('b');
+        const tmpReturnArg$3 = $(`b`);
         return tmpReturnArg$3;
       },
       get d() {
         debugger;
-        const tmpReturnArg$5 = $('c');
+        const tmpReturnArg$5 = $(`c`);
         return tmpReturnArg$5;
       },
       get e() {
         debugger;
-        const tmpReturnArg$7 = $('d');
+        const tmpReturnArg$7 = $(`d`);
         return tmpReturnArg$7;
       },
     };
@@ -134,7 +134,7 @@ const obj = {
 const a = obj.a;
 const objPatternNoDefault = obj.b;
 const c = objPatternNoDefault.c;
-const tmpCalleeParam$1 = ['c'];
+const tmpCalleeParam$1 = [`c`];
 const rest = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 $(a, c, rest);
 `````

@@ -25,7 +25,7 @@ let x = $(1);
 $(x);
 x = $(2);
 $(x);
-x = $('redundant');
+x = $(`redundant`);
 `````
 
 ## Normalized
@@ -35,7 +35,7 @@ let x = $(1);
 $(x);
 x = $(2);
 $(x);
-x = $('redundant');
+x = $(`redundant`);
 `````
 
 ## Output
@@ -45,7 +45,7 @@ const x = $(1);
 $(x);
 const tmpClusterSSA_x = $(2);
 $(tmpClusterSSA_x);
-$('redundant');
+$(`redundant`);
 `````
 
 ## Globals

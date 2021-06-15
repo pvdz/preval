@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-$({ [(a = b[$('c')])]: 10 });
+$({ [(a = b[$(`c`)])]: 10 });
 $(a, b);
 `````
 
@@ -34,7 +34,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpAssignRhsCompObj = b;
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
@@ -47,7 +47,7 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 const a = b[tmpAssignRhsCompProp];
 const tmpCalleeParam = { [a]: 10 };
 $(tmpCalleeParam);

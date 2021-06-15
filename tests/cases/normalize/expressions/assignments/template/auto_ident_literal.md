@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$('before  ' + (a = 'foo') + '  after');
+$(`before  ` + (a = `foo`) + `  after`);
 $(a);
 `````
 
@@ -29,11 +29,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpBinBothLhs = 'before  ';
-a = 'foo';
+const tmpBinBothLhs = `before  `;
+a = `foo`;
 let tmpBinBothRhs = a;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -41,8 +41,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-$('before  foo  after');
-$('foo');
+$(`before  foo  after`);
+$(`foo`);
 `````
 
 ## Globals

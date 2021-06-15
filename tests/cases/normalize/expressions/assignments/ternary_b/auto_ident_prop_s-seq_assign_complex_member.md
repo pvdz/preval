@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-$($(1) ? (a = (1, 2, b).c = $(b)[$('d')]) : $(200));
+$($(1) ? (a = (1, 2, b).c = $(b)[$(`d`)]) : $(200));
 $(a, b);
 `````
 
@@ -38,7 +38,7 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   const varInitAssignLhsComputedObj = b;
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
@@ -60,7 +60,7 @@ const tmpIfTest = $(1);
 const b = { c: 10, d: 20 };
 if (tmpIfTest) {
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   b.c = varInitAssignLhsComputedRhs;
   a = varInitAssignLhsComputedRhs;

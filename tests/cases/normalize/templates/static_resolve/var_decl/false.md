@@ -18,22 +18,22 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = '' + false + '';
+let x = `` + false + ``;
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinLhs = 'false';
-let x = tmpBinLhs + '';
+const tmpBinLhs = `false`;
+let x = tmpBinLhs + ``;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-$('false');
+$(`false`);
 `````
 
 ## Globals

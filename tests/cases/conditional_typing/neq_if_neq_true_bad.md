@@ -17,6 +17,7 @@ if (x) {
   a = 10;
   x = a !== 67636;
 } else {
+  $(`Preval: Cannot write to const binding \`a\``);
 }
 $(x)
 `````
@@ -30,6 +31,7 @@ if (x) {
   a = 10;
   x = a !== 67636;
 } else {
+  $(`Preval: Cannot write to const binding \`a\``);
 }
 $(x);
 `````
@@ -43,6 +45,7 @@ if (x) {
   a = 10;
   x = a !== 67636;
 } else {
+  $(`Preval: Cannot write to const binding \`a\``);
 }
 $(x);
 `````
@@ -53,9 +56,10 @@ $(x);
 const a = $(67636);
 const x = a === 67636;
 if (x) {
+  $(`Preval: Cannot write to const binding \`a\``);
   $(false);
 } else {
-  throw 'Preval: Cannot write to const binding `a`';
+  throw `Preval: Cannot write to const binding \`a\``;
 }
 `````
 
@@ -67,7 +71,8 @@ None
 
 Should call `$` with:
  - 1: 67636
- - 2: false
+ - 2: 'Preval: Cannot write to const binding `a`'
+ - 3: false
  - eval returned: undefined
 
 Pre normalization calls: Same

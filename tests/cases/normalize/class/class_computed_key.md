@@ -23,7 +23,7 @@ $(new x().f());
 
 `````js filename=intro
 let x = class {
-  [$('f')]() {
+  [$(`f`)]() {
     debugger;
     return $(100);
   }
@@ -34,7 +34,7 @@ $(new x().f());
 ## Normalized
 
 `````js filename=intro
-const tmpClassComputedKey = $('f');
+const tmpClassComputedKey = $(`f`);
 let x = class {
   [tmpClassComputedKey]() {
     debugger;
@@ -51,7 +51,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpClassComputedKey = $('f');
+const tmpClassComputedKey = $(`f`);
 const x = class {
   [tmpClassComputedKey]() {
     debugger;

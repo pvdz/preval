@@ -41,7 +41,7 @@ if (1 === 1) {
   const tmpSwitchValue = 1;
   let tmpSwitchCaseToStart = 2;
   if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else if ('no' === tmpSwitchValue) tmpSwitchCaseToStart = 1;
+  else if (`no` === tmpSwitchValue) tmpSwitchCaseToStart = 1;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
@@ -69,7 +69,7 @@ const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 'no' === tmpSwitchValue;
+  const tmpIfTest$1 = `no` === tmpSwitchValue;
   if (tmpIfTest$1) {
     tmpSwitchCaseToStart = 1;
   } else {

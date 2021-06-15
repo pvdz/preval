@@ -20,30 +20,30 @@ $('bad');
 `````js filename=intro
 ({
   x: { ...y },
-} = '');
-$('bad');
+} = ``);
+$(`bad`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = '';
+const tmpAssignObjPatternRhs = ``;
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = objPatternNoDefault;
 const tmpCalleeParam$1 = [];
 const tmpCalleeParam$3 = undefined;
 y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = ''.x;
+const objPatternNoDefault = ``.x;
 const tmpCalleeParam$1 = [];
 y = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

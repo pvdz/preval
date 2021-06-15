@@ -29,9 +29,9 @@ $(f(function(a){ $(a, 'third'); }));
 let f = function ($$0) {
   let g = $$0;
   debugger;
-  $('a');
-  $('b');
-  $('c');
+  $(`a`);
+  $(`b`);
+  $(`c`);
   let y = g(1);
   return y;
 };
@@ -39,21 +39,21 @@ $(
   f(function ($$0) {
     let a = $$0;
     debugger;
-    $(a, 'first');
+    $(a, `first`);
   }),
 );
 $(
   f(function ($$0) {
     let a$1 = $$0;
     debugger;
-    $(a$1, 'second');
+    $(a$1, `second`);
   }),
 );
 $(
   f(function ($$0) {
     let a$3 = $$0;
     debugger;
-    $(a$3, 'third');
+    $(a$3, `third`);
   }),
 );
 `````
@@ -64,9 +64,9 @@ $(
 let f = function ($$0) {
   let g = $$0;
   debugger;
-  $('a');
-  $('b');
-  $('c');
+  $(`a`);
+  $(`b`);
+  $(`c`);
   let y = g(1);
   return y;
 };
@@ -75,7 +75,7 @@ const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = function ($$0) {
   let a = $$0;
   debugger;
-  $(a, 'first');
+  $(a, `first`);
   return undefined;
 };
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
@@ -85,7 +85,7 @@ const tmpCallCallee$5 = f;
 const tmpCalleeParam$5 = function ($$0) {
   let a$1 = $$0;
   debugger;
-  $(a$1, 'second');
+  $(a$1, `second`);
   return undefined;
 };
 const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5);
@@ -95,7 +95,7 @@ const tmpCallCallee$9 = f;
 const tmpCalleeParam$9 = function ($$0) {
   let a$3 = $$0;
   debugger;
-  $(a$3, 'third');
+  $(a$3, `third`);
   return undefined;
 };
 const tmpCalleeParam$7 = tmpCallCallee$9(tmpCalleeParam$9);
@@ -107,19 +107,19 @@ tmpCallCallee$7(tmpCalleeParam$7);
 `````js filename=intro
 const f = function () {
   debugger;
-  $('a');
-  $('b');
-  $('c');
+  $(`a`);
+  $(`b`);
+  $(`c`);
   return undefined;
 };
 f();
-$(1, 'first');
+$(1, `first`);
 $(undefined);
 f();
-$(1, 'second');
+$(1, `second`);
 $(undefined);
 f();
-$(1, 'third');
+$(1, `third`);
 $(undefined);
 `````
 

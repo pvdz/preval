@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-for ((a = $(b)?.[$('x')]).x in $({ x: 1 }));
+for ((a = $(b)?.[$(`x`)]).x in $({ x: 1 }));
 $(a);
 `````
 
@@ -42,7 +42,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
-    const tmpChainRootComputed = $('x');
+    const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
   } else {
@@ -67,7 +67,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
   } else {
-    const tmpChainRootComputed = $('x');
+    const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
   }

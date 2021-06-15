@@ -34,15 +34,15 @@ $(f());
 let f = function () {
   debugger;
   while ($(true)) {
-    $('loop');
+    $(`loop`);
     while ($(true)) {
-      $('loop');
-      throw $(7, 'throw');
-      $('fail');
+      $(`loop`);
+      throw $(7, `throw`);
+      $(`fail`);
     }
-    $('do not visit, do not eliminate');
+    $(`do not visit, do not eliminate`);
   }
-  $('after (not invoked)');
+  $(`after (not invoked)`);
 };
 $(f());
 `````
@@ -55,23 +55,23 @@ let f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      $('loop');
+      $(`loop`);
       while (true) {
         const tmpIfTest$1 = $(true);
         if (tmpIfTest$1) {
-          $('loop');
-          const tmpThrowArg = $(7, 'throw');
+          $(`loop`);
+          const tmpThrowArg = $(7, `throw`);
           throw tmpThrowArg;
         } else {
           break;
         }
       }
-      $('do not visit, do not eliminate');
+      $(`do not visit, do not eliminate`);
     } else {
       break;
     }
   }
-  $('after (not invoked)');
+  $(`after (not invoked)`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -85,23 +85,23 @@ tmpCallCallee(tmpCalleeParam);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('loop');
+    $(`loop`);
     while (true) {
       const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
-        $('loop');
-        const tmpThrowArg = $(7, 'throw');
+        $(`loop`);
+        const tmpThrowArg = $(7, `throw`);
         throw tmpThrowArg;
       } else {
         break;
       }
     }
-    $('do not visit, do not eliminate');
+    $(`do not visit, do not eliminate`);
   } else {
     break;
   }
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 $(undefined);
 `````
 

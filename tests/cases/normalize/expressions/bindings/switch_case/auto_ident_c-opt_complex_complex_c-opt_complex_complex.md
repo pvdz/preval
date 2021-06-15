@@ -33,7 +33,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       b = { x: { y: 1 } };
-      a = $(b)?.[$('x')]?.[$('y')];
+      a = $(b)?.[$(`x`)]?.[$(`y`)];
       $(a);
     }
   }
@@ -61,11 +61,11 @@ if (tmpIfTest$1) {
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest$3 = tmpChainElementCall != null;
   if (tmpIfTest$3) {
-    const tmpChainRootComputed = $('x');
+    const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$5 = tmpChainElementObject != null;
     if (tmpIfTest$5) {
-      const tmpChainRootComputed$1 = $('y');
+      const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       a = tmpChainElementObject$1;
     } else {
@@ -87,12 +87,12 @@ const tmpChainElementCall = $(tmpClusterSSA_b);
 const tmpIfTest$3 = tmpChainElementCall == null;
 if (tmpIfTest$3) {
 } else {
-  const tmpChainRootComputed = $('x');
+  const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$5 = tmpChainElementObject == null;
   if (tmpIfTest$5) {
   } else {
-    const tmpChainRootComputed$1 = $('y');
+    const tmpChainRootComputed$1 = $(`y`);
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
     tmpClusterSSA_a = tmpChainElementObject$1;
   }

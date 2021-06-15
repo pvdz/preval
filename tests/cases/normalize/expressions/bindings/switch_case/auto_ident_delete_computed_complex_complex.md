@@ -33,7 +33,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       arg = { y: 1 };
-      a = delete $(arg)[$('y')];
+      a = delete $(arg)[$(`y`)];
       $(a, arg);
     }
   }
@@ -56,7 +56,7 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   arg = { y: 1 };
   const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $('y');
+  const tmpDeleteCompProp = $(`y`);
   a = delete tmpDeleteCompObj[tmpDeleteCompProp];
   $(a, arg);
 } else {
@@ -68,7 +68,7 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpClusterSSA_arg = { y: 1 };
 const tmpDeleteCompObj = $(tmpClusterSSA_arg);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(tmpClusterSSA_a, tmpClusterSSA_arg);
 `````

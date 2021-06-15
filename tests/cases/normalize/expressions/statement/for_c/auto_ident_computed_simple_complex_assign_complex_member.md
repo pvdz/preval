@@ -25,7 +25,7 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 {
   while ($(1)) {
-    b[$('c')] = $(b)[$('d')];
+    b[$(`c`)] = $(b)[$(`d`)];
   }
 }
 $(a, b);
@@ -40,11 +40,11 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpAssignComMemLhsObj = b;
-    const tmpAssignComMemLhsProp = $('c');
+    const tmpAssignComMemLhsProp = $(`c`);
     const tmpAssignComputedObj = tmpAssignComMemLhsObj;
     const tmpAssignComputedProp = tmpAssignComMemLhsProp;
     const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
+    const tmpCompProp = $(`d`);
     const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
     tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
   } else {
@@ -62,9 +62,9 @@ const a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpAssignComMemLhsProp = $('c');
+    const tmpAssignComMemLhsProp = $(`c`);
     const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
+    const tmpCompProp = $(`d`);
     const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
     b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
   } else {

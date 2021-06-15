@@ -59,7 +59,7 @@ let f = function () {
       }
     }
   }
-  $('after');
+  $(`after`);
 };
 $(f());
 `````
@@ -132,7 +132,7 @@ let f = function () {
     let tmpSwitchCaseToStart$1 = $$1;
     let tmpIfTest$15 = $$2;
     debugger;
-    $('after');
+    $(`after`);
     return undefined;
   };
   const tmpReturnArg$9 = tmpLabeledBlockFunc(tmpSwitchValue, tmpSwitchCaseToStart, tmpIfTest);
@@ -176,7 +176,7 @@ const tmpSwitchCaseToStart$3 = tmpSwitchCaseToStart;
 const tmpIfTest$19 = tmpSwitchCaseToStart$3 <= 0;
 if (tmpIfTest$19) {
   $(2);
-  $('after');
+  $(`after`);
   tmpReturnArg$9 = undefined;
 } else {
   const tmpIfTest$21 = tmpSwitchCaseToStart$3 <= 1;
@@ -192,10 +192,10 @@ if (tmpIfTest$19) {
   } else {
     const tmpIfTest$25 = tmpSwitchCaseToStart$3 <= 3;
     if (tmpIfTest$25) {
-      $('after');
+      $(`after`);
       tmpReturnArg$9 = undefined;
     } else {
-      $('after');
+      $(`after`);
       tmpReturnArg$9 = undefined;
     }
   }

@@ -19,7 +19,7 @@ $(y);
 
 `````js filename=intro
 ({
-  x: [y = 'pass'],
+  x: [y = `pass`],
 } = { x: [, , , 1], a: 11, b: 12 });
 $(y);
 `````
@@ -34,7 +34,7 @@ const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = 'pass';
+  y = `pass`;
 } else {
   y = arrPatternBeforeDefault;
 }
@@ -44,8 +44,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-y = 'pass';
-$('pass');
+y = `pass`;
+$(`pass`);
 `````
 
 ## Globals

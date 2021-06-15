@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  return 'foo';
+  return `foo`;
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -36,7 +36,7 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  return 'foo';
+  return `foo`;
 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
@@ -48,7 +48,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-$('foo');
+$(`foo`);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

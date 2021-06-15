@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-$(100) + delete ($(1), $(2), $(arg))[$('y')];
+$(100) + delete ($(1), $(2), $(arg))[$(`y`)];
 $(a, arg);
 `````
 
@@ -36,7 +36,7 @@ const tmpBinBothLhs = $(100);
 $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const tmpBinBothRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);
@@ -51,7 +51,7 @@ const tmpBinBothLhs = $(100);
 $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const tmpBinBothRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
 tmpBinBothLhs + tmpBinBothRhs;
 $(a, arg);

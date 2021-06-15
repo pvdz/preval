@@ -17,7 +17,7 @@ $(x > y);
 ## Pre Normal
 
 `````js filename=intro
-const x = 'xyz';
+const x = `xyz`;
 const y = x;
 $(x > y);
 `````
@@ -25,7 +25,7 @@ $(x > y);
 ## Normalized
 
 `````js filename=intro
-const x = 'xyz';
+const x = `xyz`;
 const y = x;
 const tmpCallCallee = $;
 const tmpCalleeParam = x > y;

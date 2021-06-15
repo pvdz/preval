@@ -21,7 +21,7 @@ $(a)[b()]($(1), $(2));
 `````js filename=intro
 let b = function () {
   debugger;
-  return $('b');
+  return $(`b`);
 };
 const a = { b: $ };
 $(a)[b()]($(1), $(2));
@@ -32,7 +32,7 @@ $(a)[b()]($(1), $(2));
 `````js filename=intro
 let b = function () {
   debugger;
-  const tmpReturnArg = $('b');
+  const tmpReturnArg = $(`b`);
   return tmpReturnArg;
 };
 const a = { b: $ };
@@ -49,8 +49,8 @@ $dotCall(tmpCallCompVal, tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);
 `````js filename=intro
 const a = { b: $ };
 const tmpCallCompObj = $(a);
-const tmpReturnArg = $('b');
-const tmpCallCompVal = tmpCallCompObj[tmpReturnArg];
+const tmpCallCompProp = $(`b`);
+const tmpCallCompVal = tmpCallCompObj[tmpCallCompProp];
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 $dotCall(tmpCallCompVal, tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);

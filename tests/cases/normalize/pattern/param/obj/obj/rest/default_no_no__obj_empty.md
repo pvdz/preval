@@ -26,7 +26,7 @@ let f = function ($$0) {
   let {
     x: { ...y },
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
 $(f({}, 10));
 `````
@@ -44,7 +44,7 @@ let f = function ($$0) {
   const tmpCalleeParam$1 = [];
   const tmpCalleeParam$3 = undefined;
   let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-  return 'bad';
+  return `bad`;
 };
 const tmpCallCallee$1 = $;
 const tmpCallCallee$3 = f;
@@ -61,7 +61,7 @@ const tmpObjectPrototype = Object.prototype;
 const objPatternNoDefault = tmpObjectPrototype.x;
 const tmpCalleeParam$1 = [];
 objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

@@ -565,7 +565,7 @@ export function createReadRef(obj) {
     funcChain,
     innerLoop,
     prevWrite,
-    reaches: new Set, // Set<Write>. All writes this read can "reach" (might "observe", syntactically speaking)
+    reaches: new Set(), // Set<Write>. All writes this read can "reach" (might "observe", syntactically speaking)
   };
 }
 export function createWriteRef(obj) {
@@ -627,7 +627,7 @@ export function createWriteRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
-    reachedBy: new Set, // Set<Read>. All reads that can "reach" this write (might "observe", syntactically speaking)
+    reachedBy: new Set(), // Set<Read>. All reads that can "reach" this write (might "observe", syntactically speaking)
   };
 }
 
@@ -932,10 +932,11 @@ export function inferInitialType(meta, init) {
       meta.typing.mustBeTruthy = init.value !== 0;
       meta.typing.valueSet = new Set([init.value]);
     } else if (typeof init.value === 'string') {
-      meta.typing.mustBeType = 'string';
-      meta.typing.mustBeFalsy = init.value === '';
-      meta.typing.mustBeTruthy = init.value !== '';
-      meta.typing.valueSet = new Set([init.value]);
+      ASSERT(false, 'not in phase1 onward', init);
+      //meta.typing.mustBeType = 'string';
+      //meta.typing.mustBeFalsy = init.value === '';
+      //meta.typing.mustBeTruthy = init.value !== '';
+      //meta.typing.valueSet = new Set([init.value]);
     } else if (typeof init.value === 'boolean') {
       meta.typing.mustBeType = 'boolean';
       meta.typing.mustBeFalsy = !init.value;
@@ -949,7 +950,16 @@ export function inferInitialType(meta, init) {
     } else {
       ASSERT(false, 'support me', init);
     }
+  } else if (init.type === 'TemplateLiteral') {
+    meta.typing.mustBeType = 'string';
+    if (init.expressions.length === 0) {
+      const str = AST.getStringValue(init);
+      meta.typing.mustBeFalsy = str === ''; // or if all expressions and raws are falsy... (but then they should fold up)
+      meta.typing.valueSet = new Set([str]);
+    }
+    meta.typing.mustBeTruthy = init.quasis.some((te) => te.value.cooked !== ''); // Or if any expression is non-falsy
   } else if (init.type === 'Literal') {
+    // TODO: this is Identifier
     switch (init.name) {
       case 'undefined': {
         meta.typing.mustBeType = 'undefined';
@@ -1070,9 +1080,6 @@ export function inferInitialType(meta, init) {
   } else if (init.type === 'TaggedTemplateExpression') {
     // TODO (this is not a string but a call)
     ASSERT(false, 'should be eliminated during normalization');
-  } else if (init.type === 'TemplateLiteral') {
-    // Note: this must be a template with multiple parts so hard to be more specific
-    meta.typing.mustBeType = 'string';
   } else if (init.type === 'ClassExpression') {
     meta.typing.mustBeType = 'class';
     meta.typing.mustBeFalsy = false;
@@ -1572,6 +1579,8 @@ function exprNodeMightMutateNameUntrapped(expr, singleScope, includeProperties) 
   if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
     // Can not cause mutation of metaName unless lhs is it, and it wasn't
     vlog('Rhs has no observable side effect');
+  } else if (expr.type === 'TemplateLiteral') {
+    vlog('Templates can not have observable side effects inside Preval');
   } else if (expr.type === 'UnaryExpression') {
     if (includeProperties && expr.operator === 'delete') {
       // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
@@ -1687,6 +1696,8 @@ function exprContainsMutate(expr, metaName, asSideEffect, includeProperties) {
   if (['Identifier', 'FunctionExpression', 'Literal'].includes(expr.type)) {
     // Can not cause mutation of metaName unless lhs is it, and it wasn't
     vlog('Rhs has no observable side effect');
+  } else if (expr.type === 'TemplateLiteral') {
+    vlog('Templates can not mutate');
   } else if (expr.type === 'UnaryExpression') {
     if (includeProperties && expr.operator === 'delete') {
       // TODO: zoom in on the argument. Exclude some cases where we can guarantee it's not removing properties from target name
@@ -1721,8 +1732,7 @@ function exprContainsMutate(expr, metaName, asSideEffect, includeProperties) {
       vlog('Object literal did not contain a spread and cannot directly mutate a binding otherwise');
     }
   } else {
-    // TemplateLiteral (can trigger coercion of idents)
-    vlog('The rhs of an assignment is a template, array, object, ec which may have side effects that is able to cause a mutation');
+    vlog('The rhs of an assignment is an array, object, ec which may have side effects that is able to cause a mutation');
     return true;
   }
   return false;

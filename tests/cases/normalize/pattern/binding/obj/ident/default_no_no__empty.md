@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 const { x: x } = 1;
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -27,14 +27,14 @@ $('bad');
 `````js filename=intro
 const bindingPatternObjRoot = 1;
 const x = bindingPatternObjRoot.x;
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 (1).x;
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

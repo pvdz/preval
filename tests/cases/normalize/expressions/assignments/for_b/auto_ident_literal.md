@@ -21,7 +21,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 {
-  while ((a = 'foo')) {
+  while ((a = `foo`)) {
     $(1);
   }
 }
@@ -33,7 +33,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  a = 'foo';
+  a = `foo`;
   let tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
@@ -49,7 +49,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  a = 'foo';
+  a = `foo`;
   $(1);
 }
 $(a);

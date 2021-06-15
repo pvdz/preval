@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-$((a = delete arg[$('y')]) ? $(100) : $(200));
+$((a = delete arg[$(`y`)]) ? $(100) : $(200));
 $(a, arg);
 `````
 
@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpDeleteCompObj = arg;
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let tmpIfTest = a;
 if (tmpIfTest) {
@@ -51,7 +51,7 @@ $(a, arg);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 const a = delete arg[tmpDeleteCompProp];
 if (a) {

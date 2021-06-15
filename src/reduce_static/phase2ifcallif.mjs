@@ -467,6 +467,9 @@ function paramAwareClone(expr, callNode, funcNode) {
       return resolvedLeft;
     case 'Literal':
       return AST.cloneSimple(expr);
+    case 'TemplateLiteral':
+      ASSERT(AST.isStringLiteral(expr), 'return args must be simple so this should be a template without expressions');
+      return AST.cloneSimple(expr);
     case 'MemberExpression':
       return AST.memberExpression(
         paramAwareClone(expr.object, callNode, funcNode),

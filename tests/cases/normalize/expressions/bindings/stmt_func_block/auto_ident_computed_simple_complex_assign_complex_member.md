@@ -29,7 +29,7 @@ let f = function () {
   debugger;
   {
     let b = { c: 10, d: 20 };
-    let a = (b[$('c')] = $(b)[$('d')]);
+    let a = (b[$(`c`)] = $(b)[$(`d`)]);
     $(a, b);
   }
 };
@@ -43,9 +43,9 @@ let f = function () {
   debugger;
   let b = { c: 10, d: 20 };
   const varInitAssignLhsComputedObj = b;
-  const varInitAssignLhsComputedProp = $('c');
+  const varInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   let a = varInitAssignLhsComputedRhs;
@@ -60,10 +60,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const varInitAssignLhsComputedProp = $('c');
+const varInitAssignLhsComputedProp = $(`c`);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs, b);

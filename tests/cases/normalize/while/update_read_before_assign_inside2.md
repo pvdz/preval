@@ -27,7 +27,7 @@ while (true) {
   $(x);
   x = 2;
 }
-$('unreachable');
+$(`unreachable`);
 `````
 
 ## Normalized
@@ -38,7 +38,7 @@ while (true) {
   $(x);
   x = 2;
 }
-$('unreachable');
+$(`unreachable`);
 `````
 
 ## Output
@@ -49,7 +49,7 @@ while (true) {
   $(x);
   x = 2;
 }
-$('unreachable');
+$(`unreachable`);
 `````
 
 ## Globals

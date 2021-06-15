@@ -38,23 +38,23 @@ $(new x().y());
 
 `````js filename=intro
 let s = String;
-const y = 'y';
+const y = `y`;
 let x = class extends $(s) {
-  [$('f')]() {
+  [$(`f`)]() {
     debugger;
-    return $(100, 'method');
+    return $(100, `method`);
   }
   g() {
     debugger;
-    return $(200, 'method');
+    return $(200, `method`);
   }
-  [((s = Number), 'x')]() {
+  [((s = Number), `x`)]() {
     debugger;
-    return $(300, 'method');
+    return $(300, `method`);
   }
   [y]() {
     debugger;
-    return $(400, 'method');
+    return $(400, `method`);
   }
 };
 $(new x().f());
@@ -67,30 +67,30 @@ $(new x().y());
 
 `````js filename=intro
 let s = String;
-const y = 'y';
+const y = `y`;
 const tmpClassSuper = $(s);
-const tmpClassComputedKey = $('f');
+const tmpClassComputedKey = $(`f`);
 s = Number;
-const tmpClassComputedKey$1 = 'x';
+const tmpClassComputedKey$1 = `x`;
 let x = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
     debugger;
-    const tmpReturnArg = $(100, 'method');
+    const tmpReturnArg = $(100, `method`);
     return tmpReturnArg;
   }
   g() {
     debugger;
-    const tmpReturnArg$1 = $(200, 'method');
+    const tmpReturnArg$1 = $(200, `method`);
     return tmpReturnArg$1;
   }
   [tmpClassComputedKey$1]() {
     debugger;
-    const tmpReturnArg$3 = $(300, 'method');
+    const tmpReturnArg$3 = $(300, `method`);
     return tmpReturnArg$3;
   }
   [y]() {
     debugger;
-    const tmpReturnArg$5 = $(400, 'method');
+    const tmpReturnArg$5 = $(400, `method`);
     return tmpReturnArg$5;
   }
 };
@@ -116,26 +116,26 @@ tmpCallCallee$5(tmpCalleeParam$5);
 
 `````js filename=intro
 const tmpClassSuper = $(String);
-const tmpClassComputedKey = $('f');
+const tmpClassComputedKey = $(`f`);
 const x = class extends tmpClassSuper {
   [tmpClassComputedKey]() {
     debugger;
-    const tmpReturnArg = $(100, 'method');
+    const tmpReturnArg = $(100, `method`);
     return tmpReturnArg;
   }
   g() {
     debugger;
-    const tmpReturnArg$1 = $(200, 'method');
+    const tmpReturnArg$1 = $(200, `method`);
     return tmpReturnArg$1;
   }
-  ['x']() {
+  x() {
     debugger;
-    const tmpReturnArg$3 = $(300, 'method');
+    const tmpReturnArg$3 = $(300, `method`);
     return tmpReturnArg$3;
   }
-  ['y']() {
+  y() {
     debugger;
-    const tmpReturnArg$5 = $(400, 'method');
+    const tmpReturnArg$5 = $(400, `method`);
     return tmpReturnArg$5;
   }
 };

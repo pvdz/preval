@@ -27,7 +27,7 @@ let f = function () {
   debugger;
   return x;
 };
-const x = 'x';
+const x = `x`;
 $(f());
 `````
 
@@ -38,7 +38,7 @@ let f = function () {
   debugger;
   return x;
 };
-const x = 'x';
+const x = `x`;
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
@@ -47,7 +47,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('x');
+$(`x`);
 `````
 
 ## Globals

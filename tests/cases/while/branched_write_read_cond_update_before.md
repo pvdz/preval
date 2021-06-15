@@ -28,11 +28,11 @@ while (true) {
 `````js filename=intro
 let x = $(1);
 while (true) {
-  if (x % 3) x = $(10, 'ten');
+  if (x % 3) x = $(10, `ten`);
   if (x % 2) {
-    $(++x, 'write');
+    $(++x, `write`);
   } else {
-    $(x, 'read');
+    $(x, `read`);
   }
 }
 `````
@@ -44,7 +44,7 @@ let x = $(1);
 while (true) {
   const tmpIfTest = x % 3;
   if (tmpIfTest) {
-    x = $(10, 'ten');
+    x = $(10, `ten`);
   } else {
   }
   const tmpIfTest$1 = x % 2;
@@ -52,10 +52,10 @@ while (true) {
     const tmpCallCallee = $;
     x = x + 1;
     let tmpCalleeParam = x;
-    const tmpCalleeParam$1 = 'write';
+    const tmpCalleeParam$1 = `write`;
     tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   } else {
-    $(x, 'read');
+    $(x, `read`);
   }
 }
 `````
@@ -67,15 +67,15 @@ let x = $(1);
 while (true) {
   const tmpIfTest = x % 3;
   if (tmpIfTest) {
-    x = $(10, 'ten');
+    x = $(10, `ten`);
   } else {
   }
   const tmpIfTest$1 = x % 2;
   if (tmpIfTest$1) {
     x = x + 1;
-    $(x, 'write');
+    $(x, `write`);
   } else {
-    $(x, 'read');
+    $(x, `read`);
   }
 }
 `````

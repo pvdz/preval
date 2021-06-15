@@ -23,7 +23,7 @@ $(f([], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [...x] = tmpParamBare === undefined ? $(['fail']) : tmpParamBare;
+  let [...x] = tmpParamBare === undefined ? $([`fail`]) : tmpParamBare;
   return x;
 };
 $(f([], 200));
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = ['fail'];
+    const tmpCalleeParam = [`fail`];
     bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
     bindingPatternArrRoot = tmpParamBare;

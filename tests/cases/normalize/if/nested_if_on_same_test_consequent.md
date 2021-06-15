@@ -25,9 +25,9 @@ if ($) {
 `````js filename=intro
 if ($) {
   if ($) {
-    $('keep me');
+    $(`keep me`);
   } else {
-    $('eliminate me');
+    $(`eliminate me`);
   }
 }
 `````
@@ -36,7 +36,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  $('keep me');
+  $(`keep me`);
 } else {
 }
 `````
@@ -45,7 +45,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  $('keep me');
+  $(`keep me`);
 } else {
 }
 `````

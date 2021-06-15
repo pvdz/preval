@@ -21,7 +21,7 @@ $('bad');
 ({
   x: { y: y },
 } = { b: 11, c: 12 });
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -30,7 +30,7 @@ $('bad');
 const tmpAssignObjPatternRhs = { b: 11, c: 12 };
 const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 y = objPatternNoDefault.y;
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -39,7 +39,7 @@ $('bad');
 const tmpObjectPrototype = Object.prototype;
 const objPatternNoDefault = tmpObjectPrototype.x;
 y = objPatternNoDefault.y;
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

@@ -28,12 +28,12 @@ $('after');
 while ($(true)) {
   if ($(1)) {
     break;
-    $('fail');
+    $(`fail`);
   }
   break;
-  $('fail');
+  $(`fail`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -52,7 +52,7 @@ while (true) {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -71,7 +71,7 @@ while (true) {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

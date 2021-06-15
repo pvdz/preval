@@ -28,8 +28,8 @@ $(f());
 let f = function () {
   debugger;
   while ($(true)) {
-    return $(1, 'return');
-    $('fail');
+    return $(1, `return`);
+    $(`fail`);
   }
 };
 $(f());
@@ -43,7 +43,7 @@ let f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      const tmpReturnArg = $(1, 'return');
+      const tmpReturnArg = $(1, `return`);
       return tmpReturnArg;
     } else {
       break;
@@ -64,7 +64,7 @@ const f = function () {
   while (true) {
     const tmpIfTest = $(true);
     if (tmpIfTest) {
-      const tmpReturnArg = $(1, 'return');
+      const tmpReturnArg = $(1, `return`);
       return tmpReturnArg;
     } else {
       break;

@@ -25,7 +25,7 @@ $(typeof void $(100));
 `````js filename=intro
 const tmpCallCallee = $;
 $(100);
-const tmpCalleeParam = 'undefined';
+const tmpCalleeParam = `undefined`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -33,7 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $(100);
-$('undefined');
+$(`undefined`);
 `````
 
 ## Globals

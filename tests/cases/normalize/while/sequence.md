@@ -19,7 +19,7 @@ while (((x = x * 'str'), (x = x * 8), (x = x), (x = x * x), (x = x.x), x?.x(x)))
 
 `````js filename=intro
 let x = 1;
-while (((x = x * 'str'), (x = x * 8), (x = x), (x = x * x), (x = x.x), x?.x(x))) {}
+while (((x = x * `str`), (x = x * 8), (x = x), (x = x * x), (x = x.x), x?.x(x))) {}
 `````
 
 ## Normalized
@@ -27,7 +27,7 @@ while (((x = x * 'str'), (x = x * 8), (x = x), (x = x * x), (x = x.x), x?.x(x)))
 `````js filename=intro
 let x = 1;
 while (true) {
-  x = x * 'str';
+  x = x * `str`;
   x = x * 8;
   x = x * x;
   x = x.x;
@@ -52,7 +52,7 @@ while (true) {
 `````js filename=intro
 let x = 1;
 while (true) {
-  x = x * 'str';
+  x = x * `str`;
   x = x * 8;
   x = x * x;
   x = x.x;

@@ -18,7 +18,7 @@ $(y);
 ## Pre Normal
 
 `````js filename=intro
-const { x: [...y] = $(['fail']) } = { x: [1, 2, 3], a: 11, b: 12 };
+const { x: [...y] = $([`fail`]) } = { x: [1, 2, 3], a: 11, b: 12 };
 $(y);
 `````
 
@@ -32,7 +32,7 @@ let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = ['fail'];
+  const tmpCalleeParam = [`fail`];
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;

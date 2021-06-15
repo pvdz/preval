@@ -72,13 +72,13 @@ tmpCallCallee$3(tmpCalleeParam$5);
 `````js filename=intro
 const out = function () {
   debugger;
-  $('function');
+  $(`function`);
   $(10, undefined);
   return undefined;
 };
 out();
 out();
-$('number');
+$(`number`);
 `````
 
 ## Globals

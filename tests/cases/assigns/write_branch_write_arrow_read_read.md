@@ -26,15 +26,15 @@ $(x, 'final');
 `````js filename=intro
 let x = $(1);
 if ($(1)) {
-  x = $(2, 'branch');
+  x = $(2, `branch`);
   const f = () => {
     debugger;
-    return $(x, 'arrow');
+    return $(x, `arrow`);
   };
-  $(f(), 'result');
+  $(f(), `result`);
 }
-x = $(3, 'after');
-$(x, 'final');
+x = $(3, `after`);
+$(x, `final`);
 `````
 
 ## Normalized
@@ -43,20 +43,20 @@ $(x, 'final');
 let x = $(1);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  x = $(2, 'branch');
+  x = $(2, `branch`);
   const f = function () {
     debugger;
-    const tmpReturnArg = $(x, 'arrow');
+    const tmpReturnArg = $(x, `arrow`);
     return tmpReturnArg;
   };
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
-  const tmpCalleeParam$1 = 'result';
+  const tmpCalleeParam$1 = `result`;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 } else {
 }
-x = $(3, 'after');
-$(x, 'final');
+x = $(3, `after`);
+$(x, `final`);
 `````
 
 ## Output
@@ -65,13 +65,13 @@ $(x, 'final');
 $(1);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpClusterSSA_x = $(2, 'branch');
-  const tmpCalleeParam = $(tmpClusterSSA_x, 'arrow');
-  $(tmpCalleeParam, 'result');
+  const tmpClusterSSA_x = $(2, `branch`);
+  const tmpCalleeParam = $(tmpClusterSSA_x, `arrow`);
+  $(tmpCalleeParam, `result`);
 } else {
 }
-const tmpClusterSSA_x$1 = $(3, 'after');
-$(tmpClusterSSA_x$1, 'final');
+const tmpClusterSSA_x$1 = $(3, `after`);
+$(tmpClusterSSA_x$1, `final`);
 `````
 
 ## Globals

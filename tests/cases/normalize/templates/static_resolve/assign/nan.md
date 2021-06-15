@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = '' + NaN + '';
+x = `` + NaN + ``;
 $(x);
 `````
 
@@ -28,15 +28,15 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpBinLhs = 'NaN';
-x = tmpBinLhs + '';
+const tmpBinLhs = `NaN`;
+x = tmpBinLhs + ``;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-$('NaN');
+$(`NaN`);
 `````
 
 ## Globals

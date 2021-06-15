@@ -63,7 +63,7 @@ let f = function () {
     $(++n);
     return n;
   }
-  $('afterwards');
+  $(`afterwards`);
   return 100;
 };
 $(f());
@@ -82,7 +82,7 @@ let f = function () {
     tmpCallCallee(tmpCalleeParam);
     return n;
   }
-  $('afterwards');
+  $(`afterwards`);
   return 100;
 };
 const tmpCallCallee$1 = $;
@@ -101,7 +101,7 @@ const f = function () {
     $(n);
     return n;
   }
-  $('afterwards');
+  $(`afterwards`);
   return 100;
 };
 const tmpCalleeParam$1 = f();

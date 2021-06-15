@@ -24,13 +24,13 @@ let a = 1,
   c = 3;
 {
   let a$1;
-  const tmpSwitchValue = $('a');
+  const tmpSwitchValue = $(`a`);
   let tmpSwitchCaseToStart = 1;
-  if ($('a') === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if ($(`a`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a$1 = $(b)[$('x')] = c;
+      a$1 = $(b)[$(`x`)] = c;
       break tmpSwitchBreak;
     }
   }
@@ -45,9 +45,9 @@ let a = 1;
 let b = { x: 2 };
 let c = 3;
 let a$1 = undefined;
-const tmpSwitchValue = $('a');
+const tmpSwitchValue = $(`a`);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $('a');
+const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -57,7 +57,7 @@ tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $('x');
+    const tmpNestedAssignComMemberProp = $(`x`);
     const tmpNestedPropAssignRhs = c;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
     a$1 = tmpNestedPropAssignRhs;
@@ -72,9 +72,9 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 2 };
-const tmpSwitchValue = $('a');
+const tmpSwitchValue = $(`a`);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $('a');
+const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -84,7 +84,7 @@ tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $('x');
+    const tmpNestedAssignComMemberProp = $(`x`);
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
     break tmpSwitchBreak;
   } else {

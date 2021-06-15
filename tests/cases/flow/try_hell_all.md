@@ -370,7 +370,7 @@
       }
       console.log(x$21);
     }
-    x$21 = 'fail';
+    x$21 = `fail`;
   };
   let x$21 = 0;
   f();
@@ -381,7 +381,7 @@
     debugger;
     foo$9: {
       try {
-        throw 'not me';
+        throw `not me`;
       } finally {
         return;
       }
@@ -409,9 +409,9 @@
   let f$5 = function () {
     debugger;
     stop$1: try {
-      throw 'one';
+      throw `one`;
     } catch {
-      throw 'two';
+      throw `two`;
     } finally {
       break stop$1;
     }
@@ -426,9 +426,9 @@
     debugger;
     stop$3: try {
       x$29 = 1;
-      throw 'one';
+      throw `one`;
     } catch {
-      throw 'two';
+      throw `two`;
     } finally {
       break stop$3;
     }
@@ -441,10 +441,10 @@
   let f$9 = function () {
     debugger;
     stop$5: try {
-      throw 'one';
+      throw `one`;
     } catch {
       x$31 = 2;
-      throw 'two';
+      throw `two`;
     } finally {
       break stop$5;
     }
@@ -562,7 +562,7 @@ let f = function () {
   };
   const tmpAfterLabel = function () {
     debugger;
-    x$21 = 'fail';
+    x$21 = `fail`;
     return undefined;
   };
   const tmpReturnArg$3 = tmpLabeledBlockFunc();
@@ -574,7 +574,7 @@ considerMutated(x$21);
 let f$1 = function () {
   debugger;
   try {
-    throw 'not me';
+    throw `not me`;
   } finally {
     return undefined;
   }
@@ -612,9 +612,9 @@ let f$5 = function () {
   const tmpLabeledBlockFunc$3 = function () {
     debugger;
     try {
-      throw 'one';
+      throw `one`;
     } catch {
-      throw 'two';
+      throw `two`;
     } finally {
       const tmpReturnArg$11 = tmpAfterLabel$3();
       return tmpReturnArg$11;
@@ -637,9 +637,9 @@ let f$7 = function () {
   debugger;
   try {
     x$29 = 1;
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     return undefined;
   }
@@ -651,10 +651,10 @@ considerMutated(x$29);
 let f$9 = function () {
   debugger;
   try {
-    throw 'one';
+    throw `one`;
   } catch {
     x$31 = 2;
-    throw 'two';
+    throw `two`;
   } finally {
     return undefined;
   }
@@ -759,13 +759,13 @@ considerMutated(x$19);
 const f = function () {
   debugger;
   try {
-    x$21 = 'fail';
+    x$21 = `fail`;
     return undefined;
   } finally {
     return undefined;
   }
   console.log(x$21);
-  x$21 = 'fail';
+  x$21 = `fail`;
   return undefined;
 };
 let x$21 = 0;
@@ -774,7 +774,7 @@ considerMutated(x$21);
 const f$1 = function () {
   debugger;
   try {
-    throw 'not me';
+    throw `not me`;
   } finally {
     return undefined;
   }
@@ -799,9 +799,9 @@ considerMutated(x$25);
 const f$5 = function () {
   debugger;
   try {
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     x$27 = 1;
     return undefined;
@@ -816,9 +816,9 @@ const f$7 = function () {
   debugger;
   try {
     x$29 = 1;
-    throw 'one';
+    throw `one`;
   } catch {
-    throw 'two';
+    throw `two`;
   } finally {
     return undefined;
   }
@@ -830,10 +830,10 @@ considerMutated(x$29);
 const f$9 = function () {
   debugger;
   try {
-    throw 'one';
+    throw `one`;
   } catch {
     x$31 = 2;
-    throw 'two';
+    throw `two`;
   } finally {
     return undefined;
   }

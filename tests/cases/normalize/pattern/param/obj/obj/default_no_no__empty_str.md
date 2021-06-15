@@ -26,9 +26,9 @@ let f = function ($$0) {
   let {
     x: {},
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
-$(f('', 10));
+$(f(``, 10));
 `````
 
 ## Normalized
@@ -46,20 +46,20 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
-    return 'bad';
+    return `bad`;
   } else {
-    return 'bad';
+    return `bad`;
   }
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('', 10);
+const tmpCalleeParam = f(``, 10);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = ''.x;
+const objPatternNoDefault = ``.x;
 let objPatternCrashTest = objPatternNoDefault === undefined;
 if (objPatternCrashTest) {
 } else {
@@ -69,7 +69,7 @@ if (objPatternCrashTest) {
   objPatternNoDefault.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

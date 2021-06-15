@@ -29,7 +29,7 @@ a = function () {
 };
 a = x;
 x = $(20);
-$(x, a, 'final');
+$(x, a, `final`);
 `````
 
 ## Normalized
@@ -43,7 +43,7 @@ a = function () {
 };
 a = x;
 x = $(20);
-$(x, a, 'final');
+$(x, a, `final`);
 `````
 
 ## Output
@@ -51,7 +51,7 @@ $(x, a, 'final');
 `````js filename=intro
 const x = $(10);
 const tmpClusterSSA_x = $(20);
-$(tmpClusterSSA_x, x, 'final');
+$(tmpClusterSSA_x, x, `final`);
 `````
 
 ## Globals

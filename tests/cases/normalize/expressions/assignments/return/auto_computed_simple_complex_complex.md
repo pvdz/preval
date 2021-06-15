@@ -29,7 +29,7 @@ let f = function () {
 };
 let a = { a: 999, b: 1000 };
 $(f());
-a[$('b')] = $(2);
+a[$(`b`)] = $(2);
 $(a);
 `````
 
@@ -47,7 +47,7 @@ const tmpCallCallee = $;
 const tmpCalleeParam = f();
 tmpCallCallee(tmpCalleeParam);
 const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(2);
@@ -61,7 +61,7 @@ $(a);
 const tmpObjLitVal = $(1);
 const tmpClusterSSA_a = { b: tmpObjLitVal };
 $(tmpClusterSSA_a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 tmpClusterSSA_a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(tmpClusterSSA_a);

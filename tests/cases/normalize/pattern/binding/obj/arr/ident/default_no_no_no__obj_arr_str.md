@@ -20,14 +20,14 @@ $(y);
 `````js filename=intro
 const {
   x: [y],
-} = { x: ['abc'], a: 11, b: 12 };
+} = { x: [`abc`], a: 11, b: 12 };
 $(y);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal = ['abc'];
+const tmpObjLitVal = [`abc`];
 const bindingPatternObjRoot = { x: tmpObjLitVal, a: 11, b: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const arrPatternSplat = [...objPatternNoDefault];
@@ -38,7 +38,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-$('abc');
+$(`abc`);
 `````
 
 ## Globals

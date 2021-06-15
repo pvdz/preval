@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-a[$('b')] = 2;
+a[$(`b`)] = 2;
 $(a);
 `````
 
@@ -53,7 +53,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
@@ -71,7 +71,7 @@ if (tmpIfTest) {
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 a[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````

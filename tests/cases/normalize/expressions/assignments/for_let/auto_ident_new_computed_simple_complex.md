@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
-  let xyz = (a = new b[$('$')](1));
+  let xyz = (a = new b[$(`$`)](1));
   while (true) {
     $(xyz);
     $(1);
@@ -39,7 +39,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
-const tmpCompProp = $('$');
+const tmpCompProp = $(`$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 a = new tmpNewCallee(1);
 let xyz = a;
@@ -53,7 +53,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCompProp = $('$');
+const tmpCompProp = $(`$`);
 const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 const tmpClusterSSA_a = new tmpNewCallee(1);

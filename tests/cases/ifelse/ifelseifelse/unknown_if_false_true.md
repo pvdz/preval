@@ -34,9 +34,9 @@ let condition = $(false);
 const f = function () {
   debugger;
   if (condition) {
-    $('a');
+    $(`a`);
   } else {
-    $('b');
+    $(`b`);
   }
 };
 if (condition) {
@@ -54,10 +54,10 @@ let condition = $(false);
 const f = function () {
   debugger;
   if (condition) {
-    $('a');
+    $(`a`);
     return undefined;
   } else {
-    $('b');
+    $(`b`);
     return undefined;
   }
 };
@@ -76,12 +76,12 @@ const condition = $(false);
 if (condition) {
   const tmpClusterSSA_tmpIfelseifelse = $(true);
   if (tmpClusterSSA_tmpIfelseifelse) {
-    $('a');
+    $(`a`);
   } else {
-    $('b');
+    $(`b`);
   }
 } else {
-  $('b');
+  $(`b`);
 }
 `````
 

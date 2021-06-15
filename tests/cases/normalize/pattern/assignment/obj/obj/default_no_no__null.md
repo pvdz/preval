@@ -21,7 +21,7 @@ $('bad');
 ({
   x: {},
 } = null);
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -38,14 +38,14 @@ if (objPatternCrashTest) {
   objPatternCrashTest = objPatternNoDefault.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 null.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

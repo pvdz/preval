@@ -48,8 +48,8 @@ const objd = {
 };
 const d = function () {
   debugger;
-  $('a');
-  $('b');
+  $(`a`);
+  $(`b`);
   return objd;
 };
 d();
@@ -72,8 +72,8 @@ const objd = {
 };
 const d = function () {
   debugger;
-  $('a');
-  $('b');
+  $(`a`);
+  $(`b`);
   return objd;
 };
 d();
@@ -95,8 +95,8 @@ const objd = {
 };
 const d = function () {
   debugger;
-  $('a');
-  $('b');
+  $(`a`);
+  $(`b`);
   return objd;
 };
 d();

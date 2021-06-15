@@ -39,23 +39,23 @@ let h = function () {
       debugger;
       const x = $(10);
       if ($) {
-        $('prevent');
-        $('simple');
-        $('inlining');
+        $(`prevent`);
+        $(`simple`);
+        $(`inlining`);
       }
       return x;
     };
     if ($) {
-      $('prevent');
-      $('simple');
-      $('inlining');
+      $(`prevent`);
+      $(`simple`);
+      $(`inlining`);
     }
     return g();
   };
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
   }
   return f();
 };
@@ -73,27 +73,27 @@ let h = function () {
       debugger;
       const x = $(10);
       if ($) {
-        $('prevent');
-        $('simple');
-        $('inlining');
+        $(`prevent`);
+        $(`simple`);
+        $(`inlining`);
         return x;
       } else {
         return x;
       }
     };
     if ($) {
-      $('prevent');
-      $('simple');
-      $('inlining');
+      $(`prevent`);
+      $(`simple`);
+      $(`inlining`);
     } else {
     }
     const tmpReturnArg = g();
     return tmpReturnArg;
   };
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
   } else {
   }
   const tmpReturnArg$1 = f();
@@ -108,22 +108,22 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 if ($) {
-  $('prevent');
-  $('simple');
-  $('inlining');
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
   } else {
   }
 } else {
 }
 const x = $(10);
 if ($) {
-  $('prevent');
-  $('simple');
-  $('inlining');
+  $(`prevent`);
+  $(`simple`);
+  $(`inlining`);
   $(x);
 } else {
   $(x);

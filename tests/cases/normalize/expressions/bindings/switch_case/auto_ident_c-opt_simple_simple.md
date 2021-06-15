@@ -33,7 +33,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       b = { x: 1 };
-      a = b?.['x'];
+      a = b?.[`x`];
       $(a);
     }
   }
@@ -59,7 +59,7 @@ if (tmpIfTest$1) {
   const tmpChainRootProp = b;
   const tmpIfTest$3 = tmpChainRootProp != null;
   if (tmpIfTest$3) {
-    const tmpChainRootComputed = 'x';
+    const tmpChainRootComputed = `x`;
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     a = tmpChainElementObject;
   } else {

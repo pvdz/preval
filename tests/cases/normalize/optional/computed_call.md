@@ -30,7 +30,7 @@ const a = {
   },
   y: 100,
 };
-$(a)[$('x')]?.(1, 2, 3);
+$(a)[$(`x`)]?.(1, 2, 3);
 `````
 
 ## Normalized
@@ -49,7 +49,7 @@ const tmpObjLitVal = function (...$$0) {
 const a = { x: tmpObjLitVal, y: 100 };
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(a);
-const tmpChainRootComputed = $('x');
+const tmpChainRootComputed = $(`x`);
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
 const tmpIfTest = tmpChainElementObject != null;
 if (tmpIfTest) {
@@ -71,7 +71,7 @@ const tmpObjLitVal = function (...$$0) {
 };
 const a = { x: tmpObjLitVal, y: 100 };
 const tmpChainElementCall = $(a);
-const tmpChainRootComputed = $('x');
+const tmpChainRootComputed = $(`x`);
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
 const tmpIfTest = tmpChainElementObject == null;
 if (tmpIfTest) {

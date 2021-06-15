@@ -70,8 +70,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpDoWhileFlag) {
   } else {
-    a = 'number';
-    tmpIfTest = 'number';
+    a = `number`;
+    tmpIfTest = `number`;
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

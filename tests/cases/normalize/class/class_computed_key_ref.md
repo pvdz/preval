@@ -20,7 +20,7 @@ class x {
 ## Pre Normal
 
 `````js filename=intro
-const y = 'y';
+const y = `y`;
 let x = class {
   [y]() {
     debugger;
@@ -31,7 +31,7 @@ let x = class {
 ## Normalized
 
 `````js filename=intro
-const y = 'y';
+const y = `y`;
 let x = class {
   [y]() {
     debugger;

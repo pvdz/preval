@@ -28,8 +28,8 @@ $(f());
 let f = function () {
   debugger;
   for (let x in { a: 1, b: 2 }) {
-    throw $(1, 'throw');
-    $('fail');
+    throw $(1, `throw`);
+    $(`fail`);
   }
 };
 $(f());
@@ -43,7 +43,7 @@ let f = function () {
   const tmpForInDeclRhs = { a: 1, b: 2 };
   let x = undefined;
   for (x in tmpForInDeclRhs) {
-    const tmpThrowArg = $(1, 'throw');
+    const tmpThrowArg = $(1, `throw`);
     throw tmpThrowArg;
   }
   return undefined;
@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 let x = undefined;
 const tmpForInDeclRhs = { a: 1, b: 2 };
 for (x in tmpForInDeclRhs) {
-  const tmpThrowArg = $(1, 'throw');
+  const tmpThrowArg = $(1, `throw`);
   throw tmpThrowArg;
 }
 $(undefined);

@@ -32,14 +32,14 @@ if (y) { // This should also become x, with the branches flipped
 const x = $(1);
 const y = !x;
 if (y) {
-  $('if1');
+  $(`if1`);
 } else {
-  $('else1');
+  $(`else1`);
 }
 if (y) {
-  $('if2');
+  $(`if2`);
 } else {
-  $('else2');
+  $(`else2`);
 }
 `````
 
@@ -49,14 +49,14 @@ if (y) {
 const x = $(1);
 const y = !x;
 if (y) {
-  $('if1');
+  $(`if1`);
 } else {
-  $('else1');
+  $(`else1`);
 }
 if (y) {
-  $('if2');
+  $(`if2`);
 } else {
-  $('else2');
+  $(`else2`);
 }
 `````
 
@@ -65,14 +65,14 @@ if (y) {
 `````js filename=intro
 const x = $(1);
 if (x) {
-  $('else1');
+  $(`else1`);
 } else {
-  $('if1');
+  $(`if1`);
 }
 if (x) {
-  $('else2');
+  $(`else2`);
 } else {
-  $('if2');
+  $(`if2`);
 }
 `````
 

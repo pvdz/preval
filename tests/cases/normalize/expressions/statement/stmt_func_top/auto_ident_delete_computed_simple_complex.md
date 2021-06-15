@@ -28,7 +28,7 @@ let f = function () {
   debugger;
   let arg = { y: 1 };
   let a = { a: 999, b: 1000 };
-  delete arg[$('y')];
+  delete arg[$(`y`)];
   $(a, arg);
 };
 $(f());
@@ -42,7 +42,7 @@ let f = function () {
   let arg = { y: 1 };
   let a = { a: 999, b: 1000 };
   const tmpDeleteCompObj = arg;
-  const tmpDeleteCompProp = $('y');
+  const tmpDeleteCompProp = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
   $(a, arg);
   return undefined;
@@ -57,7 +57,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpDeleteCompProp = $('y');
+const tmpDeleteCompProp = $(`y`);
 delete arg[tmpDeleteCompProp];
 $(a, arg);
 $(undefined);

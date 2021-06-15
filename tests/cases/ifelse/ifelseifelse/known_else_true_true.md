@@ -34,9 +34,9 @@ let condition = true;
 const f = function () {
   debugger;
   if (condition) {
-    $('a');
+    $(`a`);
   } else {
-    $('b');
+    $(`b`);
   }
 };
 if (condition) {
@@ -54,10 +54,10 @@ let condition = true;
 const f = function () {
   debugger;
   if (condition) {
-    $('a');
+    $(`a`);
     return undefined;
   } else {
-    $('b');
+    $(`b`);
     return undefined;
   }
 };
@@ -72,7 +72,7 @@ if (condition) {
 ## Output
 
 `````js filename=intro
-$('a');
+$(`a`);
 `````
 
 ## Globals

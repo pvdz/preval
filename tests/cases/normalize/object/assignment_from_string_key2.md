@@ -25,7 +25,7 @@ $(y, o);
 const o = { x: 1 };
 let y = 1;
 if ($(true)) {
-  y = o['x'];
+  y = o[`x`];
 }
 $(y, o);
 `````

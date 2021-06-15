@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 ({ ...x } = null);
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -29,17 +29,17 @@ const tmpAssignObjPatternRhs = null;
 const tmpCallCallee = objPatternRest;
 const tmpCalleeParam = tmpAssignObjPatternRhs;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam$3 = 'x';
+const tmpCalleeParam$3 = `x`;
 x = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 const tmpCalleeParam$1 = [];
-x = objPatternRest(null, tmpCalleeParam$1, 'x');
-$('bad');
+x = objPatternRest(null, tmpCalleeParam$1, `x`);
+$(`bad`);
 `````
 
 ## Globals

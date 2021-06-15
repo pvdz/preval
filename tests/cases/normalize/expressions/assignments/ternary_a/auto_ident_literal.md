@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$((a = 'foo') ? $(100) : $(200));
+$((a = `foo`) ? $(100) : $(200));
 $(a);
 `````
 
@@ -30,7 +30,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-a = 'foo';
+a = `foo`;
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
@@ -46,7 +46,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $(100);
 $(tmpCalleeParam);
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

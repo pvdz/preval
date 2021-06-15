@@ -59,11 +59,9 @@ function _ifTestFolding(fdata) {
       firstElse.expression.type === 'AssignmentExpression' &&
       firstThen.expression.left.type === 'Identifier' &&
       firstElse.expression.left.type === 'Identifier' &&
-      firstThen.expression.right.type === 'Literal' &&
-      firstElse.expression.right.type === 'Literal' &&
       // Are they an assignment of a bool?
-      typeof firstThen.expression.right.value === 'boolean' &&
-      typeof firstElse.expression.right.value === 'boolean' &&
+      AST.isBoolean(firstThen.expression.right) &&
+      AST.isBoolean(firstElse.expression.right) &&
       // Is the assignment to the same ident?
       firstThen.expression.left.name === firstElse.expression.left.name &&
       // Are they assigning an opposite bool?
@@ -117,11 +115,9 @@ function _ifTestFolding(fdata) {
       node.alternate.body.length === 1 &&
       firstThen.type === 'ReturnStatement' &&
       firstElse.type === 'ReturnStatement' &&
-      firstThen.argument.type === 'Literal' &&
-      firstElse.argument.type === 'Literal' &&
       // Are they returning a bool?
-      typeof firstThen.argument.value === 'boolean' &&
-      typeof firstElse.argument.value === 'boolean' &&
+      AST.isBoolean(firstThen.argument) &&
+      AST.isBoolean(firstElse.argument) &&
       // Is it returning the same ident?
       firstThen.argument.name === firstElse.argument.name &&
       // Are they returning an opposite bool?

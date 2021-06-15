@@ -26,7 +26,7 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  return $(b)?.[$('$')]?.($(1));
+  return $(b)?.[$(`$`)]?.($(1));
 };
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
@@ -44,7 +44,7 @@ let f = function () {
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
-    const tmpChainRootComputed = $('$');
+    const tmpChainRootComputed = $(`$`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$1 = tmpChainElementObject != null;
     if (tmpIfTest$1) {
@@ -80,7 +80,7 @@ const f = function () {
   if (tmpIfTest) {
     return undefined;
   } else {
-    const tmpChainRootComputed = $('$');
+    const tmpChainRootComputed = $(`$`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$1 = tmpChainElementObject == null;
     if (tmpIfTest$1) {

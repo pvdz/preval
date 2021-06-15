@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-while ((a = b[$('c')])) $(100);
+while ((a = b[$(`c`)])) $(100);
 $(a, b);
 `````
 
@@ -34,7 +34,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 while (true) {
   const tmpAssignRhsCompObj = b;
-  const tmpAssignRhsCompProp = $('c');
+  const tmpAssignRhsCompProp = $(`c`);
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   let tmpIfTest = a;
   if (tmpIfTest) {
@@ -52,7 +52,7 @@ $(a, b);
 let a = { a: 999, b: 1000 };
 const b = { c: 1 };
 while (true) {
-  const tmpAssignRhsCompProp = $('c');
+  const tmpAssignRhsCompProp = $(`c`);
   a = b[tmpAssignRhsCompProp];
   if (a) {
     $(100);

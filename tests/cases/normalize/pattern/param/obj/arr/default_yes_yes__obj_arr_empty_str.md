@@ -23,10 +23,10 @@ $(f({ x: [''], a: 11, b: 12 }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: [] = $(['fail']) } = tmpParamBare === undefined ? $({ x: ['fail2'] }) : tmpParamBare;
-  return 'ok';
+  let { x: [] = $([`fail`]) } = tmpParamBare === undefined ? $({ x: [`fail2`] }) : tmpParamBare;
+  return `ok`;
 };
-$(f({ x: [''], a: 11, b: 12 }, 10));
+$(f({ x: [``], a: 11, b: 12 }, 10));
 `````
 
 ## Normalized
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpObjLitVal = ['fail2'];
+    const tmpObjLitVal = [`fail2`];
     const tmpCalleeParam = { x: tmpObjLitVal };
     bindingPatternObjRoot = tmpCallCallee(tmpCalleeParam);
   } else {
@@ -50,17 +50,17 @@ let f = function ($$0) {
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = ['fail'];
+    const tmpCalleeParam$1 = [`fail`];
     objPatternAfterDefault = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   let arrPatternSplat = [...objPatternAfterDefault];
-  return 'ok';
+  return `ok`;
 };
 const tmpCallCallee$3 = $;
 const tmpCallCallee$5 = f;
-const tmpObjLitVal$1 = [''];
+const tmpObjLitVal$1 = [``];
 const tmpCalleeParam$5 = { x: tmpObjLitVal$1, a: 11, b: 12 };
 const tmpCalleeParam$7 = 10;
 const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5, tmpCalleeParam$7);
@@ -70,7 +70,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

@@ -34,7 +34,7 @@ let f = function ($$0, $$1, $$2) {
   let c = $$2;
   debugger;
   if ($) {
-    $(a, b, c, tmpArgumentsLen, 'hopefully b is a literal afterwards');
+    $(a, b, c, tmpArgumentsLen, `hopefully b is a literal afterwards`);
   }
 };
 f(1, 2, 3);
@@ -53,7 +53,7 @@ let f = function ($$0, $$1, $$2) {
   let c = $$2;
   debugger;
   if ($) {
-    $(a, b, c, tmpArgumentsLen, 'hopefully b is a literal afterwards');
+    $(a, b, c, tmpArgumentsLen, `hopefully b is a literal afterwards`);
     return undefined;
   } else {
     return undefined;
@@ -73,7 +73,7 @@ const f = function ($$0, $$1) {
   const c = $$1;
   debugger;
   if ($) {
-    $(a, 2, c, 3, 'hopefully b is a literal afterwards');
+    $(a, 2, c, 3, `hopefully b is a literal afterwards`);
     return undefined;
   } else {
     return undefined;

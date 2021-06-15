@@ -20,14 +20,14 @@ $(y);
 `````js filename=intro
 const {
   x: { y: y },
-} = { x: 'abc', b: 11, c: 12 };
+} = { x: `abc`, b: 11, c: 12 };
 $(y);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: 'abc', b: 11, c: 12 };
+const bindingPatternObjRoot = { x: `abc`, b: 11, c: 12 };
 const objPatternNoDefault = bindingPatternObjRoot.x;
 const y = objPatternNoDefault.y;
 $(y);
@@ -36,7 +36,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const y = 'abc'.y;
+const y = `abc`.y;
 $(y);
 `````
 

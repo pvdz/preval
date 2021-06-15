@@ -26,7 +26,7 @@ $(a, b);
 `````js filename=intro
 let f = function () {
   debugger;
-  return ((1, 2, b).c = $(b)[$('d')]);
+  return ((1, 2, b).c = $(b)[$(`d`)]);
 };
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
@@ -41,7 +41,7 @@ let f = function () {
   debugger;
   const varInitAssignLhsComputedObj = b;
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   return varInitAssignLhsComputedRhs;
@@ -60,7 +60,7 @@ $(a, b);
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs);

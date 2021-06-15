@@ -17,27 +17,27 @@
 ## Pre Normal
 
 `````js filename=intro
-'' + ('a ' + $(1) + ' b') + '';
+`` + (`a ` + $(1) + ` b`) + ``;
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinBothLhs = '';
-const tmpBinBothLhs$1 = 'a ';
+const tmpBinBothLhs = ``;
+const tmpBinBothLhs$1 = `a `;
 const tmpBinBothRhs$1 = $(1);
 const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothRhs = tmpBinLhs$1 + ' b';
+const tmpBinBothRhs = tmpBinLhs$1 + ` b`;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-tmpBinLhs + '';
+tmpBinLhs + ``;
 `````
 
 ## Output
 
 `````js filename=intro
 const tmpBinBothRhs$1 = $(1);
-const tmpBinLhs$1 = 'a ' + tmpBinBothRhs$1;
-tmpBinLhs$1 + ' b';
+const tmpBinLhs$1 = `a ` + tmpBinBothRhs$1;
+tmpBinLhs$1 + ` b`;
 `````
 
 ## Globals

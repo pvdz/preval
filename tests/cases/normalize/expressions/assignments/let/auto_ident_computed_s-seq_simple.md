@@ -24,7 +24,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-let xyz = (a = (1, 2, b)[$('c')]);
+let xyz = (a = (1, 2, b)[$(`c`)]);
 $(xyz);
 $(a, b);
 `````
@@ -35,7 +35,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpAssignRhsCompObj = b;
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 let xyz = a;
 $(xyz);
@@ -45,7 +45,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
 $(a);

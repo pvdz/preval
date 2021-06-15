@@ -23,7 +23,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-if ($('if')) {
+if ($(`if`)) {
   x = 10;
   $(x);
 }
@@ -34,7 +34,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpIfTest = $('if');
+const tmpIfTest = $(`if`);
 if (tmpIfTest) {
   x = 10;
   $(x);
@@ -47,7 +47,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpIfTest = $('if');
+const tmpIfTest = $(`if`);
 if (tmpIfTest) {
   x = 10;
   $(10);

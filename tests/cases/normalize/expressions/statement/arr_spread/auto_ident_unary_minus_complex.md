@@ -31,7 +31,7 @@ let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 const tmpArrElToSpread = -tmpUnaryArg;
 [...tmpArrElToSpread];
-throw '[Preval]: Array spread must crash before this line';
+$(a);
 `````
 
 ## Output
@@ -40,7 +40,8 @@ throw '[Preval]: Array spread must crash before this line';
 const tmpUnaryArg = $(100);
 const tmpArrElToSpread = -tmpUnaryArg;
 [...tmpArrElToSpread];
-throw '[Preval]: Array spread must crash before this line';
+const a = { a: 999, b: 1000 };
+$(a);
 `````
 
 ## Globals

@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  return (a = 'foo');
+  return (a = `foo`);
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -36,7 +36,7 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  a = 'foo';
+  a = `foo`;
   return a;
 };
 let a = { a: 999, b: 1000 };
@@ -49,8 +49,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-$('foo');
-$('foo');
+$(`foo`);
+$(`foo`);
 `````
 
 ## Globals

@@ -24,11 +24,11 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let {
-    x: { y: y = $('fail') },
+    x: { y: y = $(`fail`) },
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
-$(f('', 10));
+$(f(``, 10));
 `````
 
 ## Normalized
@@ -43,29 +43,29 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    y = $('fail');
-    return 'bad';
+    y = $(`fail`);
+    return `bad`;
   } else {
     y = objPatternBeforeDefault;
-    return 'bad';
+    return `bad`;
   }
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('', 10);
+const tmpCalleeParam = f(``, 10);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = ''.x;
+const objPatternNoDefault = ``.x;
 const objPatternBeforeDefault = objPatternNoDefault.y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  $('fail');
+  $(`fail`);
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

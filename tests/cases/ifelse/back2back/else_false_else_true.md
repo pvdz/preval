@@ -29,12 +29,12 @@ if (x) {
 let x = $(false);
 if (x) {
 } else {
-  $(x, 'pass');
+  $(x, `pass`);
   x = $(true);
 }
 if (x) {
 } else {
-  $(x, 'hit');
+  $(x, `hit`);
 }
 `````
 
@@ -44,11 +44,11 @@ if (x) {
 let x = $(false);
 if (x) {
 } else {
-  $(x, 'pass');
+  $(x, `pass`);
   x = $(true);
   if (x) {
   } else {
-    $(x, 'hit');
+    $(x, `hit`);
   }
 }
 `````
@@ -59,11 +59,11 @@ if (x) {
 const x = $(false);
 if (x) {
 } else {
-  $(x, 'pass');
+  $(x, `pass`);
   const tmpClusterSSA_x = $(true);
   if (tmpClusterSSA_x) {
   } else {
-    $(tmpClusterSSA_x, 'hit');
+    $(tmpClusterSSA_x, `hit`);
   }
 }
 `````

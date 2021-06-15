@@ -17,7 +17,7 @@ $();
 ## Pre Normal
 
 `````js filename=intro
-'use strict';
+`use strict`;
 $();
 `````
 

@@ -17,14 +17,14 @@
 ## Pre Normal
 
 `````js filename=intro
-'' + 'I am a string' + '';
+`` + `I am a string` + ``;
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinLhs = 'I am a string';
-tmpBinLhs + '';
+const tmpBinLhs = `I am a string`;
+tmpBinLhs + ``;
 `````
 
 ## Output

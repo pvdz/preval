@@ -25,7 +25,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
-new ($(b)[$('$')])(1)['a'];
+new ($(b)[$(`$`)])(1)[`a`];
 $(a);
 `````
 
@@ -36,7 +36,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj$1 = $(b);
-const tmpCompProp = $('$');
+const tmpCompProp = $(`$`);
 const tmpNewCallee = tmpCompObj$1[tmpCompProp];
 const tmpCompObj = new tmpNewCallee(1);
 tmpCompObj.a;
@@ -49,7 +49,7 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCompObj$1 = $(b);
-const tmpCompProp = $('$');
+const tmpCompProp = $(`$`);
 const tmpNewCallee = tmpCompObj$1[tmpCompProp];
 const tmpCompObj = new tmpNewCallee(1);
 tmpCompObj.a;

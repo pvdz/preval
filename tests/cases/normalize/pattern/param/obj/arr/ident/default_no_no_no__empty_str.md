@@ -26,9 +26,9 @@ let f = function ($$0) {
   let {
     x: [y],
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
-$(f('', 10));
+$(f(``, 10));
 `````
 
 ## Normalized
@@ -41,20 +41,20 @@ let f = function ($$0) {
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let arrPatternSplat = [...objPatternNoDefault];
   let y = arrPatternSplat[0];
-  return 'bad';
+  return `bad`;
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('', 10);
+const tmpCalleeParam = f(``, 10);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const objPatternNoDefault = ''.x;
+const objPatternNoDefault = ``.x;
 const arrPatternSplat = [...objPatternNoDefault];
 arrPatternSplat[0];
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

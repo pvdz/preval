@@ -26,9 +26,9 @@ $(f());
 let f = function () {
   debugger;
   {
-    return $(1, 'return');
+    return $(1, `return`);
   }
-  $('fail');
+  $(`fail`);
 };
 $(f());
 `````
@@ -38,7 +38,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpReturnArg = $(1, 'return');
+  const tmpReturnArg = $(1, `return`);
   return tmpReturnArg;
 };
 const tmpCallCallee = $;
@@ -49,7 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = $(1, 'return');
+const tmpCalleeParam = $(1, `return`);
 $(tmpCalleeParam);
 `````
 

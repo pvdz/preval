@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-for (($(b)['c'] = $(b)[$('d')]).x in $({ x: 1 }));
+for (($(b)[`c`] = $(b)[$(`d`)]).x in $({ x: 1 }));
 $(a, b);
 `````
 
@@ -39,7 +39,7 @@ let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const varInitAssignLhsComputedObj = $(b);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
@@ -59,7 +59,7 @@ let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
   const varInitAssignLhsComputedObj = $(b);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   varInitAssignLhsComputedRhs.x = tmpForInLhsNode;

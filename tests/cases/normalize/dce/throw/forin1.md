@@ -28,9 +28,9 @@ $(f());
 let f = function () {
   debugger;
   for (let x in { a: 1, b: 2 }) {
-    throw $(1, 'return');
+    throw $(1, `return`);
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
 };
 $(f());
 `````
@@ -43,10 +43,10 @@ let f = function () {
   const tmpForInDeclRhs = { a: 1, b: 2 };
   let x = undefined;
   for (x in tmpForInDeclRhs) {
-    const tmpThrowArg = $(1, 'return');
+    const tmpThrowArg = $(1, `return`);
     throw tmpThrowArg;
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -60,10 +60,10 @@ tmpCallCallee(tmpCalleeParam);
 let x = undefined;
 const tmpForInDeclRhs = { a: 1, b: 2 };
 for (x in tmpForInDeclRhs) {
-  const tmpThrowArg = $(1, 'return');
+  const tmpThrowArg = $(1, `return`);
   throw tmpThrowArg;
 }
-$('keep, do not eval');
+$(`keep, do not eval`);
 $(undefined);
 `````
 

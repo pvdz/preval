@@ -17,14 +17,14 @@
 ## Pre Normal
 
 `````js filename=intro
-'' + undefined + '';
+`` + undefined + ``;
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinLhs = 'undefined';
-tmpBinLhs + '';
+const tmpBinLhs = `undefined`;
+tmpBinLhs + ``;
 `````
 
 ## Output

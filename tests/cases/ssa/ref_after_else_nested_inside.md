@@ -42,7 +42,7 @@ let f = function () {
       $(x);
     }
   } else {
-    $('else');
+    $(`else`);
   }
 };
 if ($) f();
@@ -59,7 +59,7 @@ let f = function () {
     $(x);
     return undefined;
   } else {
-    $('else');
+    $(`else`);
     return undefined;
   }
 };
@@ -78,7 +78,7 @@ if ($) {
     const tmpClusterSSA_x = $(2);
     $(tmpClusterSSA_x);
   } else {
-    $('else');
+    $(`else`);
   }
 } else {
 }

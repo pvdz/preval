@@ -22,7 +22,7 @@ f(...x); // This should NOT be inlined (for now) because we can't safely reason 
 ## Pre Normal
 
 `````js filename=intro
-const x = $('pass');
+const x = $(`pass`);
 const f = function ($$0) {
   let y = $$0;
   debugger;
@@ -34,7 +34,7 @@ f(...x);
 ## Normalized
 
 `````js filename=intro
-const x = $('pass');
+const x = $(`pass`);
 const f = function ($$0) {
   let y = $$0;
   debugger;
@@ -47,7 +47,7 @@ f(...x);
 ## Output
 
 `````js filename=intro
-const x = $('pass');
+const x = $(`pass`);
 const f = function ($$0) {
   const y = $$0;
   debugger;

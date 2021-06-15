@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$({ [(a = 'foo')]: 10 });
+$({ [(a = `foo`)]: 10 });
 $(a);
 `````
 
@@ -29,7 +29,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = 'foo';
+a = `foo`;
 let tmpObjLitPropKey = a;
 const tmpObjLitPropVal = 10;
 const tmpCalleeParam = { [tmpObjLitPropKey]: tmpObjLitPropVal };
@@ -42,7 +42,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = { foo: 10 };
 $(tmpCalleeParam);
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

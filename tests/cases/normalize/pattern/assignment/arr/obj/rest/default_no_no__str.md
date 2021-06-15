@@ -18,14 +18,14 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-[{ ...x }] = 'abc';
+[{ ...x }] = `abc`;
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const arrAssignPatternRhs = 'abc';
+const arrAssignPatternRhs = `abc`;
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const tmpCallCallee = objPatternRest;
@@ -40,7 +40,7 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam$1 = [];
-x = objPatternRest('a', tmpCalleeParam$1, undefined);
+x = objPatternRest(`a`, tmpCalleeParam$1, undefined);
 $(x);
 `````
 

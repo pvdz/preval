@@ -23,7 +23,7 @@ $(a);
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? (a = 'foo') : tmpParamBare;
+  let p = tmpParamBare === undefined ? (a = `foo`) : tmpParamBare;
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -39,8 +39,8 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    a = 'foo';
-    p = 'foo';
+    a = `foo`;
+    p = `foo`;
     return undefined;
   } else {
     p = tmpParamBare;
@@ -58,7 +58,7 @@ $(a);
 
 `````js filename=intro
 $(undefined);
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

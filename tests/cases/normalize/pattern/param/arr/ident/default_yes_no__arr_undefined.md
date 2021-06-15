@@ -23,7 +23,7 @@ $(f([undefined, 201], 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [x = $('pass')] = tmpParamBare;
+  let [x = $(`pass`)] = tmpParamBare;
   return x;
 };
 $(f([undefined, 201], 200));
@@ -41,7 +41,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    x = $('pass');
+    x = $(`pass`);
     return x;
   } else {
     x = arrPatternBeforeDefault;
@@ -66,7 +66,7 @@ const f = function ($$0) {
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $('pass');
+    const tmpClusterSSA_x = $(`pass`);
     return tmpClusterSSA_x;
   } else {
     return arrPatternBeforeDefault;

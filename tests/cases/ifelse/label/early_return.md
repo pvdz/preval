@@ -37,7 +37,7 @@ let f = function () {
       break foo;
     }
   }
-  $('after');
+  $(`after`);
 };
 f();
 `````
@@ -60,7 +60,7 @@ let f = function () {
   };
   const tmpAfterLabel = function () {
     debugger;
-    $('after');
+    $(`after`);
     return undefined;
   };
   const tmpReturnArg$1 = tmpLabeledBlockFunc();
@@ -76,7 +76,7 @@ const tmpIfTest$1 = $(true);
 if (tmpIfTest$1) {
   $(100);
 } else {
-  $('after');
+  $(`after`);
 }
 `````
 

@@ -31,18 +31,18 @@ closure();
 `````js filename=intro
 const closure = function () {
   debugger;
-  return $(x, 'closure');
+  return $(x, `closure`);
 };
 const f = function () {
   debugger;
   if ($) {
-    $(1, 'f');
+    $(1, `f`);
   }
 };
-let x = $(100, 'init');
+let x = $(100, `init`);
 closure();
 x = f();
-$(x, 'x');
+$(x, `x`);
 closure();
 `````
 
@@ -51,36 +51,36 @@ closure();
 `````js filename=intro
 const closure = function () {
   debugger;
-  const tmpReturnArg = $(x, 'closure');
+  const tmpReturnArg = $(x, `closure`);
   return tmpReturnArg;
 };
 const f = function () {
   debugger;
   if ($) {
-    $(1, 'f');
+    $(1, `f`);
     return undefined;
   } else {
     return undefined;
   }
 };
-let x = $(100, 'init');
+let x = $(100, `init`);
 closure();
 x = f();
-$(x, 'x');
+$(x, `x`);
 closure();
 `````
 
 ## Output
 
 `````js filename=intro
-const x = $(100, 'init');
-$(x, 'closure');
+const x = $(100, `init`);
+$(x, `closure`);
 if ($) {
-  $(1, 'f');
+  $(1, `f`);
 } else {
 }
-$(undefined, 'x');
-$(undefined, 'closure');
+$(undefined, `x`);
+$(undefined, `closure`);
 `````
 
 ## Globals

@@ -21,7 +21,7 @@ $(x);
 
 `````js filename=intro
 let x = $(1);
-if ($(10)) $(x, 'branch');
+if ($(10)) $(x, `branch`);
 x = $(2);
 $(x);
 `````
@@ -32,7 +32,7 @@ $(x);
 let x = $(1);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
-  $(x, 'branch');
+  $(x, `branch`);
 } else {
 }
 x = $(2);
@@ -45,7 +45,7 @@ $(x);
 const x = $(1);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
-  $(x, 'branch');
+  $(x, `branch`);
 } else {
 }
 const tmpClusterSSA_x = $(2);

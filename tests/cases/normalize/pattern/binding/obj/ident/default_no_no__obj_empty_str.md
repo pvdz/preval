@@ -18,14 +18,14 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-const { x: x } = { x: '' };
+const { x: x } = { x: `` };
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: '' };
+const bindingPatternObjRoot = { x: `` };
 const x = bindingPatternObjRoot.x;
 $(x);
 `````
@@ -33,7 +33,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-$('');
+$(``);
 `````
 
 ## Globals

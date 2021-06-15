@@ -37,7 +37,6 @@ import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
 import { createFreshVar, findBoundNamesInVarDeclaration, findBoundNamesInUnnormalizedVarDeclaration } from '../bindings.mjs';
 import globals from '../globals.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
-import { isComplexNode } from '../ast.mjs';
 
 // pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
 
@@ -427,8 +426,8 @@ export function phaseNormalize(fdata, fname) {
           OLD,
           AST.callExpression(BUILTIN_REST_HANDLER_NAME, [
             AST.identifier(cacheNameStack[cacheNameStack.length - 1]),
-            AST.arrayExpression(node.properties.filter((n) => n !== propNode).map((n) => AST.literal(n.key.name))),
-            top ? AST.literal(restName) : AST.identifier('undefined'),
+            AST.arrayExpression(node.properties.filter((n) => n !== propNode).map((n) => AST.templateLiteral(n.key.name))),
+            top ? AST.templateLiteral(restName) : AST.identifier('undefined'),
           ]),
         ]);
 
@@ -697,7 +696,7 @@ export function phaseNormalize(fdata, fname) {
         return true;
       }
       case 'ExportNamedDeclaration':
-        return transformExportNamedDeclaration(node, body, i);
+        return transformExportNamedDeclaration(node, body, i, parent);
       case 'ExpressionStatement':
         return transformExpression('statement', node.expression, body, i, node);
       case 'ForInStatement':
@@ -960,8 +959,21 @@ export function phaseNormalize(fdata, fname) {
     });
   }
 
-  function transformExportNamedDeclaration(node, body, i) {
+  function transformExportNamedDeclaration(node, body, i, parentNode) {
     ASSERT(!node.declaration, 'decl style should have been eliminated in the initial norm_once step');
+
+    if (node.source?.type === 'Literal') {
+      ASSERT(typeof node.source.value === 'string', 'right?', node.source);
+
+      rule('Export source strings should be templates internally, even if that is technically invalid');
+      example('export {x} from "foo"', 'export {x} from `foo`');
+      before(node.source, node);
+
+      node.source = AST.templateLiteral(node.source.value);
+
+      after(node.source, node);
+      return true;
+    }
 
     const specs = node.specifiers;
     ASSERT(specs, 'one or the other', node);
@@ -1090,6 +1102,12 @@ export function phaseNormalize(fdata, fname) {
       }
 
       case 'Literal': {
+        ASSERT(
+          typeof node.value !== 'string',
+          'these should be eliminated from most cases in the pre-normalization step and the ones left should be handled explicitly. track down the source of this string and convert it.',
+          node,
+        );
+
         if (wrapKind === 'statement') {
           // Even if this scoops up "use strict", it shouldn't matter since we're already in strict mode
           // There is an edge case regarding complex parameters, but that's a parse time error anyways.
@@ -1116,12 +1134,14 @@ export function phaseNormalize(fdata, fname) {
         const args = node.arguments;
 
         if (callee.type === 'MemberExpression' && callee.computed) {
-          if (AST.isProperIdent(callee.property)) {
+          if (AST.isProperIdent(callee.property, true)) {
+            const str = AST.getStringValue(callee.property, true);
+
             rule('Computed property that is a proper ident must be regular property; callee');
             example('a["x"]()', 'a.x()');
             before(callee, node);
 
-            callee.property = AST.identifier(callee.property.value);
+            callee.property = AST.identifier(str);
             callee.computed = false;
 
             after(callee, node);
@@ -1324,8 +1344,12 @@ export function phaseNormalize(fdata, fname) {
                     ? anode.type === 'SpreadElement'
                       ? // If the first arg is a spread, convert it to an array and coerce its first element `""+[...x][0]`
                         // That should work (albeit a little ugly)
-                        AST.binaryExpression('+', AST.literal(''), AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true))
-                      : AST.binaryExpression('+', AST.literal(''), anode)
+                        AST.binaryExpression(
+                          '+',
+                          AST.templateLiteral(''),
+                          AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true),
+                        )
+                      : AST.binaryExpression('+', AST.templateLiteral(''), anode)
                     : anode.type === 'SpreadElement'
                     ? AST.arrayExpression(anode)
                     : anode,
@@ -1346,9 +1370,9 @@ export function phaseNormalize(fdata, fname) {
                   // Since the all the args need to be coerced, we won't be supporting the spread case here
                   AST.expressionStatement(
                     ai === 0
-                      ? AST.binaryExpression('+', AST.literal(''), anode)
+                      ? AST.binaryExpression('+', AST.templateLiteral(''), anode)
                       : ai === 0
-                      ? AST.unaryExpression('+', AST.literal(''))
+                      ? AST.unaryExpression('+', AST.templateLiteral(''))
                       : anode.type === 'SpreadElement'
                       ? AST.arrayExpression(anode)
                       : anode,
@@ -1508,8 +1532,12 @@ export function phaseNormalize(fdata, fname) {
                       ? anode.type === 'SpreadElement'
                         ? // If the first arg is a spread, convert it to an array and coerce its first element `""+[...x][0]`
                           // That should work (albeit a little ugly)
-                          AST.binaryExpression('+', AST.literal(''), AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true))
-                        : AST.binaryExpression('+', AST.literal(''), anode)
+                          AST.binaryExpression(
+                            '+',
+                            AST.templateLiteral(''),
+                            AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true),
+                          )
+                        : AST.binaryExpression('+', AST.templateLiteral(''), anode)
                       : anode.type === 'SpreadElement'
                       ? AST.arrayExpression(anode)
                       : anode,
@@ -1600,9 +1628,9 @@ export function phaseNormalize(fdata, fname) {
                     // Since the all the args need to be coerced, we won't be supporting the spread case here
                     AST.expressionStatement(
                       ai === 0
-                        ? AST.binaryExpression('+', AST.literal(''), anode)
+                        ? AST.binaryExpression('+', AST.templateLiteral(''), anode)
                         : ai === 0
-                        ? AST.unaryExpression('+', AST.literal(''))
+                        ? AST.unaryExpression('+', AST.templateLiteral(''))
                         : anode.type === 'SpreadElement'
                         ? AST.arrayExpression(anode)
                         : anode,
@@ -1820,8 +1848,8 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (
-          node.callee.type === 'Literal' || // Can not be string since that was the previous check
-          (node.callee.type === 'Identifier' && ['undefined', 'Infinity', 'NaN'].includes(node.callee.name)) ||
+          AST.isPrimitive(node.callee) ||
+          node.callee.type === 'TemplateLiteral' || // Any template literal is a string and is uncallable
           node.callee.type === 'UnaryExpression' // All unary expressions result in uncallable primitives, so whatever.
         ) {
           if (node.arguments.length !== 0 || body[i + 1]?.type !== 'ThrowStatement') {
@@ -1833,7 +1861,7 @@ export function phaseNormalize(fdata, fname) {
             // Drop any references. They shouldn't trigger a crash and are not needed to trigger the crash.
             // Perhaps this is more of a dead code branch and it leads to fewer references to bindings.
             node.arguments.length = 0;
-            body.splice(i + 1, 0, AST.throwStatement(AST.literal(ERR_MSG_ILLEGAL_CALLEE)));
+            body.splice(i + 1, 0, AST.throwStatement(AST.templateLiteral(ERR_MSG_ILLEGAL_CALLEE)));
 
             after(node);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -1948,52 +1976,41 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (ASSUME_BUILTINS) {
-          if (AST.isPrimitive(node.object)) {
-            // "foo".length -> 3
-            if (node.object.type === 'Literal') {
-              if (typeof node.object.value === 'string') {
-                if (node.computed) {
-                  // "foo"[0]
-                  if (node.property.type === 'Literal' && typeof node.property.value === 'number') {
-                    rule('Array access on string should be the actual character being accessed');
-                    example('"Hello!"[1]', '"e"');
-                    before(node, parentNode);
+          // "foo".length -> 3
+          if (AST.isStringLiteral(node.object, true)) {
+            if (node.computed) {
+              // "foo"[0]
+              if (AST.isNumber(node.property)) {
+                rule('Array access on string should be the actual character being accessed');
+                example('"Hello!"[1]', '"e"');
+                before(node, parentNode);
 
-                    const v = node.object.value[node.property.value]; // OOB yields undefined.
-                    const finalNode = v === undefined ? AST.identifier('undefined') : AST.literal(v);
-                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                const v = AST.getStringValue(node.object, true)[node.property.value]; // OOB yields undefined.
+                const finalNode = v === undefined ? AST.identifier('undefined') : AST.templateLiteral(v);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
 
-                    body.splice(i, 1, finalParent);
+                body.splice(i, 1, finalParent);
 
-                    after(finalNode, finalParent);
-                    assertNoDupeNodes(AST.blockStatement(body), 'body');
-                    return true;
-                  }
-                } else {
-                  ASSERT(node.property.type === 'Identifier');
-                  switch (node.property.name) {
-                    case 'length': {
-                      // "foo".length
-                      rule('The `length` property on a string is a static expression');
-                      example('"foo".length', '3');
-                      before(node, parentNode);
+                after(finalNode, finalParent);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+            } else {
+              ASSERT(node.property.type === 'Identifier');
+              switch (node.property.name) {
+                case 'length': {
+                  // "foo".length
+                  rule('The `length` property on a string is a static expression');
+                  example('"foo".length', '3');
+                  before(node, parentNode);
 
-                      const finalNode = AST.literal(node.object.value.length);
-                      const finalParent = wrapExpressionAs(
-                        wrapKind,
-                        varInitAssignKind,
-                        varInitAssignId,
-                        wrapLhs,
-                        varOrAssignKind,
-                        finalNode,
-                      );
-                      body.splice(i, 1, finalParent);
+                  const finalNode = AST.primitive(AST.getStringValue(node.object, true).length);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, finalParent);
 
-                      after(finalNode, finalParent);
-                      assertNoDupeNodes(AST.blockStatement(body), 'body');
-                      return true;
-                    }
-                  }
+                  after(finalNode, finalParent);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
                 }
               }
             }
@@ -2151,10 +2168,7 @@ export function phaseNormalize(fdata, fname) {
           }
         }
 
-        if (
-          (node.object.type === 'Literal' && node.object.raw === 'null') ||
-          (node.object.type === 'Identifier' && node.object.name === 'undefined')
-        ) {
+        if (AST.isNull(node.object) || AST.isUndefined(node.object)) {
           if (node.computed) {
             rule('Computed property on `null` or `undefined` should be replaced with a regular prop');
             example('null[foo]', 'null.eliminatedComputedProp');
@@ -2169,21 +2183,19 @@ export function phaseNormalize(fdata, fname) {
             return true; // Very unlikely that we don't also want to do the next one but one step at a time.
           }
 
-          if (
-            body[i + 1]?.type === 'ThrowStatement' &&
-            body[i + 1].argument.type === 'Literal' &&
-            body[i + 1].argument.value === DCE_ERROR_MSG
-          ) {
+          if (body[i + 1]?.type === 'ThrowStatement' && AST.isStringValue(body[i + 1].argument, DCE_ERROR_MSG, true)) {
             vlog('Already has throw following it');
           } else {
+            ASSERT(AST.getPrimitiveValue(node.object) == null, 'should have null or undefined left now', node);
+
             // Any property on this object results in a throw... What do we want to do with that? DCE the rest?
             // We can compile an explicit throw after this line so the DCE check cleans up any remains...
             rule('Property on `null` or `undefined` must lead to an exception');
-            example('null.foo;', 'null.foo; throw "must crash";', () => node.object.type === 'Literal');
-            example('null.foo;', 'null.foo; throw "must crash";', () => node.object.type !== 'Literal');
+            example('null.foo;', 'null.foo; throw "must crash";', () => node.object.type !== 'Identifier');
+            example('undefined.foo;', 'undefined.foo; throw "must crash";', () => node.object.type === 'Identifier');
             before(node, parentNode);
 
-            const finalNode = AST.throwStatement(AST.literal(DCE_ERROR_MSG));
+            const finalNode = AST.throwStatement(AST.templateLiteral(DCE_ERROR_MSG));
             body.splice(i + 1, 0, finalNode);
 
             after(finalNode, parentNode);
@@ -2230,16 +2242,18 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (node.computed && AST.isProperIdent(node.property)) {
+        if (node.computed && AST.isProperIdent(node.property, true)) {
+          const str = AST.getStringValue(node.property, true);
+
           rule('Computed property that is valid ident must be member expression; prop');
           example('a["foo"]', 'a.foo');
-          vlog('- Name: `' + node.property.value + '`');
           before(node, parentNode);
 
+          vlog('- Name: `' + str + '`');
+
           node.computed = false;
-          const val = node.property.value;
-          node.property =
-            val === 'true' ? AST.tru() : val === 'false' ? AST.fals() : val === 'null' ? AST.nul() : AST.identifier(node.property.value);
+          const val = str;
+          node.property = val === 'true' ? AST.tru() : val === 'false' ? AST.fals() : val === 'null' ? AST.nul() : AST.identifier(str);
           after(node, parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
@@ -2375,14 +2389,16 @@ export function phaseNormalize(fdata, fname) {
           // Must start with object/property because we don't want to duplicate complex nodes while eliminating compound assignments
           // The reason is that compound assignments read before they write so the getters also become an observable side effect
 
-          if (mem.computed && AST.isProperIdent(mem.property)) {
+          if (mem.computed && AST.isProperIdent(mem.property, true)) {
+            const str = AST.getStringValue(mem.property, true);
             rule('Computed property that is valid ident must be member expression; assign rhs');
             example('a["foo"]', 'a.foo');
-            vlog('- Name: `' + mem.property.value + '`');
             before(mem, parentNode);
 
+            vlog('- Name: `' + str + '`');
+
             mem.computed = false;
-            mem.property = AST.identifier(mem.property.value);
+            mem.property = AST.identifier(str);
 
             after(mem, parentNode);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -2962,14 +2978,17 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (rhs.computed && AST.isProperIdent(rhs.property)) {
+          if (rhs.computed && AST.isProperIdent(rhs.property, true)) {
+            const str = AST.getStringValue(rhs.property, true);
+
             rule('Computed property that is valid ident must be member expression; assign rhs');
             example('a["foo"]', 'a.foo');
-            vlog('- Name: `' + rhs.property.value + '`');
             before(rhs, parentNode);
 
+            vlog('- Name: `' + str + '`');
+
             rhs.computed = false;
-            rhs.property = AST.identifier(rhs.property.value);
+            rhs.property = AST.identifier(str);
 
             after(rhs, parentNode);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -3206,7 +3225,10 @@ export function phaseNormalize(fdata, fname) {
             vlog('lhs:', [lhs], ', rhs:', [rhs], ', op:', [node.operator], '->', [result]);
 
             const finalNode =
-              typeof result === 'string' || typeof result === 'boolean' || result === null
+              typeof result === 'string'
+                ? // There are no special string cases to consider
+                  AST.templateLiteral(result)
+                : typeof result === 'boolean' || result === null
                 ? // There are no special string/boolean cases to consider
                   // I don't think any of these operators can have any operands that result in a `null`, but whatever.
                   AST.literal(result, true)
@@ -3329,14 +3351,17 @@ export function phaseNormalize(fdata, fname) {
 
           if (arg.type === 'MemberExpression') {
             if (arg.computed) {
-              if (AST.isProperIdent(arg.property)) {
+              if (AST.isProperIdent(arg.property, true)) {
+                const str = AST.getStringValue(arg.property, true);
+
                 rule('Computed property that is valid ident must be member expression; delete');
                 example('a["foo"]', 'a.foo');
-                vlog('- Name: `' + arg.property.value + '`');
                 before(arg, parentNode);
 
+                vlog('- Name: `' + str + '`');
+
                 arg.computed = false;
-                arg.property = AST.identifier(arg.property.value);
+                arg.property = AST.identifier(str);
 
                 after(arg, parentNode);
                 assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -3503,20 +3528,20 @@ export function phaseNormalize(fdata, fname) {
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
+          }
 
-            if (node.argument.value === '') {
-              rule('The `+` unary operator on an empty string literal is a 0');
-              example('+""', '1');
-              before(node, parentNode);
+          if (AST.isStringValue(node.argument, '', true)) {
+            rule('The `+` unary operator on an empty string literal is a 0');
+            example('+``', '1');
+            before(node, parentNode);
 
-              const finalNode = AST.zero();
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
+            const finalNode = AST.zero();
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
 
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
           }
 
           if (node.argument.type === 'Identifier') {
@@ -3631,18 +3656,18 @@ export function phaseNormalize(fdata, fname) {
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
+          }
 
-            if (node.argument.value === '') {
-              rule('The `+` unary operator on an empty string literal is a _negative_ 0');
-              example('+""', '1');
-              before(node, parentNode);
+          if (AST.isStringValue(node.argument, '', true)) {
+            rule('The `+` unary operator on an empty string literal is a _negative_ 0');
+            example('+``', '1');
+            before(node, parentNode);
 
-              node.argument = AST.zero();
+            node.argument = AST.zero();
 
-              after(node);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
+            after(node);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
           }
 
           if (node.argument.type === 'Identifier') {
@@ -3676,11 +3701,7 @@ export function phaseNormalize(fdata, fname) {
           }
 
           if (node.argument.type === 'UnaryExpression') {
-            if (
-              node.argument.operator === '-' &&
-              node.argument.argument.type === 'Literal' &&
-              typeof node.argument.argument.value === 'number'
-            ) {
+            if (node.argument.operator === '-' && AST.isNumber(node.argument.argument)) {
               // "double negative"
               // TODO: we can do the same for ~ in many cases but we'd have to be careful about 32bit boundaries
               rule('The `-` unary operator on a number literal twice is a noop');
@@ -3735,29 +3756,6 @@ export function phaseNormalize(fdata, fname) {
               return true;
             }
 
-            if (typeof node.argument.value === 'string') {
-              rule('Inverting a string should be replaced by a boolean');
-
-              if (node.argument.value === '') {
-                example('!""', 'true');
-                before(node, parentNode);
-
-                const finalNode = AST.tru();
-                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                body[i] = finalParent;
-              } else {
-                example('!"foo"', 'false');
-                before(node, parentNode);
-
-                const finalNode = AST.fals();
-                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                body[i] = finalParent;
-              }
-
-              after(body[i]);
-              return true;
-            }
-
             if (node.argument.raw === 'null' || node.argument.value === false) {
               if (node.argument.value === false) {
                 rule('Inverting a `false` should be replaced by a `true`');
@@ -3788,6 +3786,28 @@ export function phaseNormalize(fdata, fname) {
               after(finalNode, finalParent);
               return true;
             }
+          }
+
+          if (AST.isStringLiteral(node.argument, true)) {
+            rule('Inverting a string should be replaced by a boolean');
+            if (AST.isStringValue(node.argument, '', true)) {
+              example('!""', 'true');
+              before(node, parentNode);
+
+              const finalNode = AST.tru();
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+            } else {
+              example('!"foo"', 'false');
+              before(node, parentNode);
+
+              const finalNode = AST.fals();
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+            }
+
+            after(body[i]);
+            return true;
           }
 
           if (node.argument.type === 'Identifier') {
@@ -3827,30 +3847,24 @@ export function phaseNormalize(fdata, fname) {
 
           if (node.argument.type === 'Unary') {
             // !!x
-            if (node.argument.operator === '!' && node.argument.argument.type === 'Literal') {
+            if (node.argument.operator === '!' && AST.isNumber(node.argument.argument)) {
               // "double negative" on a literal
               // TODO: we can do the same for ~ in many cases but we'd have to be careful about 32bit boundaries
 
-              if (typeof node.argument.argument.value === 'number') {
-                rule('The `-` unary operator on a number literal twice is a noop');
-                example('--100', '100');
-                before(node, parentNode);
+              rule('The `-` unary operator on a number literal twice is a noop');
+              example('--100', '100');
+              before(node, parentNode);
 
-                const finalNode = node.argument.argument;
-                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                body[i] = finalParent;
+              const finalNode = node.argument.argument;
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
 
-                after(finalNode, finalParent);
-                return true;
-              }
+              after(finalNode, finalParent);
+              return true;
             }
 
             // !-x
-            if (
-              node.argument.operator === '-' &&
-              node.argument.argument.type === 'Literal' &&
-              typeof node.argument.argument.value === 'number'
-            ) {
+            if (node.argument.operator === '-' && AST.isNumber(node.argument.argument)) {
               // TODO: we can do the same for ~
               rule('The `!` unary on a `-` unary operator on a number literal should be resolved');
               example('!-100', 'false');
@@ -3970,21 +3984,23 @@ export function phaseNormalize(fdata, fname) {
               return true;
             }
 
-            if (typeof node.argument.value === 'string') {
-              rule('The `~` unary operator on a string literal can be statically computed');
-              example('~"105"', '-106');
-              before(node, parentNode);
-
-              const finalNode = AST.primitive(~node.argument.value);
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
             // TODO: we can do any literal with runtime semantics...
+          }
+
+          if (AST.isStringLiteral(node.argument, true)) {
+            // Note: this coerces.
+
+            rule('The `~` unary operator on a string literal can be statically computed');
+            example('~"105"', '-106');
+            before(node, parentNode);
+
+            const finalNode = AST.primitive(~AST.getStringValue(node.argument, true));
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
           }
 
           if (node.argument.type === 'Identifier') {
@@ -4052,21 +4068,7 @@ export function phaseNormalize(fdata, fname) {
               example('typeof 5', '"number"');
               before(node);
 
-              const finalNode = AST.literal('number');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (typeof node.argument.value === 'string') {
-              rule('Typeof string is the string string');
-              example('typeof "foo"', '"string"');
-              before(node);
-
-              const finalNode = AST.literal('string');
+              const finalNode = AST.templateLiteral('number');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -4081,7 +4083,7 @@ export function phaseNormalize(fdata, fname) {
               example('typeof false', '"boolean"');
               before(node);
 
-              const finalNode = AST.literal('boolean');
+              const finalNode = AST.templateLiteral('boolean');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -4095,7 +4097,7 @@ export function phaseNormalize(fdata, fname) {
               example('typeof null', '"object"');
               before(node);
 
-              const finalNode = AST.literal('object');
+              const finalNode = AST.templateLiteral('object');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -4109,7 +4111,7 @@ export function phaseNormalize(fdata, fname) {
               example('typeof /foo/', '"object"');
               before(node);
 
-              const finalNode = AST.literal('object');
+              const finalNode = AST.templateLiteral('object');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -4119,6 +4121,20 @@ export function phaseNormalize(fdata, fname) {
             }
           }
 
+          if (AST.isStringLiteral(node.argument, true)) {
+            rule('Typeof string is the string string (Literal)');
+            example('typeof "foo"', '"string"');
+            before(node);
+
+            const finalNode = AST.templateLiteral('string');
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
           if (node.argument.type === 'Identifier') {
             switch (node.argument.name) {
               case 'NaN': {
@@ -4126,7 +4142,7 @@ export function phaseNormalize(fdata, fname) {
                 example('typeof NaN', '"number"');
                 before(node, parentNode);
 
-                const finalNode = AST.literal('number');
+                const finalNode = AST.templateLiteral('number');
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body[i] = finalParent;
 
@@ -4140,7 +4156,7 @@ export function phaseNormalize(fdata, fname) {
                 example('typeof undefined', '"undefined"');
                 before(node, parentNode);
 
-                const finalNode = AST.literal('undefined');
+                const finalNode = AST.templateLiteral('undefined');
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body[i] = finalParent;
 
@@ -4154,7 +4170,7 @@ export function phaseNormalize(fdata, fname) {
                 example('typeof Infinity', '"number"');
                 before(node, parentNode);
 
-                const finalNode = AST.literal('number');
+                const finalNode = AST.templateLiteral('number');
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body[i] = finalParent;
 
@@ -4169,7 +4185,7 @@ export function phaseNormalize(fdata, fname) {
                   example('typeof setTimeout', '"function";');
                   before(node, parentNode);
 
-                  const finalNode = AST.literal(globals.get(node.argument.name));
+                  const finalNode = AST.templateLiteral(globals.get(node.argument.name));
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                   body[i] = finalParent;
 
@@ -4179,6 +4195,20 @@ export function phaseNormalize(fdata, fname) {
                 }
               }
             }
+          }
+
+          if (node.argument.type === 'TemplateLiteral') {
+            rule('Typeof string is the string string');
+            example('typeof `foo`', '"string"');
+            before(node);
+
+            const finalNode = AST.templateLiteral('string');
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
           }
 
           if (node.argument.type === 'UnaryExpression') {
@@ -4197,7 +4227,7 @@ export function phaseNormalize(fdata, fname) {
 
               // Preserve the arg in case it has a side effect. Other rules may eliminate it anyways.
               const newNodes = [AST.expressionStatement(node.argument)];
-              const finalNode = AST.literal('number');
+              const finalNode = AST.templateLiteral('number');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body.splice(i, 1, ...newNodes, finalParent);
 
@@ -4216,7 +4246,7 @@ export function phaseNormalize(fdata, fname) {
               // We're not going to hash out the details here since `typeof x` is fine even if `x` doesn't actually exist while
               // something like `typeof x.y()` is an observable side effect. So just keep the arg as is and let other rules fix it.
               const newNodes = [AST.expressionStatement(node.argument)];
-              const finalNode = AST.literal('string');
+              const finalNode = AST.templateLiteral('string');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body.splice(i, 1, ...newNodes, finalParent);
 
@@ -4234,7 +4264,7 @@ export function phaseNormalize(fdata, fname) {
 
               // Must preserve the argument since it (obviously) has an effect. The result is just always a bool.
               const newNodes = [AST.expressionStatement(node.argument)];
-              const finalNode = AST.literal('boolean');
+              const finalNode = AST.templateLiteral('boolean');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body.splice(i, 1, ...newNodes, finalParent);
 
@@ -4251,7 +4281,7 @@ export function phaseNormalize(fdata, fname) {
 
               // Must preserve the argument since it (obviously) has an effect. The result is just always a bool.
               const newNodes = [AST.expressionStatement(node.argument)];
-              const finalNode = AST.literal('undefined');
+              const finalNode = AST.templateLiteral('undefined');
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body.splice(i, 1, ...newNodes, finalParent);
 
@@ -4671,23 +4701,19 @@ export function phaseNormalize(fdata, fname) {
         for (let j = 0; j < node.elements.length; ++j) {
           const n = node.elements[j];
           if (n && n.type === 'SpreadElement') {
-            if (n.argument.type === 'Literal' && typeof n.argument.value === 'string') {
+            if (AST.isStringLiteral(n.argument, true)) {
               // We can splat the string into individual elements (this could be an intermediate step while inlining constants)
               // TODO: do we want to limit the length of the string here? Or doesn't matter?
               rule('Array spread on string should be individual elements');
               example('[..."xyz"];', '["x", "y", "z"];');
               before(n, node);
 
-              node.elements.splice(j, 1, ...[...n.argument.value].map((s) => AST.literal(s)));
+              node.elements.splice(j, 1, ...[...AST.getStringValue(n.argument, true)].map((s) => AST.templateLiteral(s)));
 
               after(node);
               inlinedAnySpreads = true;
               --j; // Relevant if the string is empty
-            } else if (
-              n.argument.type === 'Literal' || // Can not be string since that was the previous check
-              (n.argument.type === 'Identifier' && ['undefined', 'Infinity', 'NaN'].includes(n.argument.name)) ||
-              (n.argument.type === 'UnaryExpression' && (n.argument.operator === '-' || n.argument.operator === '+')) // Always a number, always a crash
-            ) {
+            } else if (AST.isPrimitive(n.argument)) {
               if (node.elements.length !== 1 || body[i + 1]?.type !== 'ThrowStatement') {
                 rule('Array spread on non-string literal must result in an error');
                 example('[...500]');
@@ -4700,7 +4726,7 @@ export function phaseNormalize(fdata, fname) {
                 );
                 node.elements.length = 0;
                 node.elements.push(n);
-                body.splice(i + 1, 0, AST.throwStatement(AST.literal(ERR_MSG_ILLEGAL_ARRAY_SPREAD)));
+                body.splice(i + 1, 0, AST.throwStatement(AST.templateLiteral(ERR_MSG_ILLEGAL_ARRAY_SPREAD)));
 
                 after(node);
                 assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -4737,9 +4763,9 @@ export function phaseNormalize(fdata, fname) {
             return false;
           }
 
-          rule('Array statements are only allowed with one spread');
+          rule('Array statements are only allowed if they have exactly one spread with a simple arg');
           example('[a, b()];', 'a; b();');
-          example('[...a, ...b];', '[...a]; [...b];');
+          example('[...a(), ...b];', 'const tmp = a(); [...tmp]; [...b];');
           before(node, parentNode);
 
           const newNodes = [];
@@ -4831,21 +4857,36 @@ export function phaseNormalize(fdata, fname) {
         node.properties.forEach((pnode) => {
           if (pnode.type === 'SpreadElement') {
             ++hasSpread;
-            if (isComplexNode(pnode.argument)) spreadComplex = true;
-          } else {
-            hasNonSpread = true;
+            if (AST.isComplexNode(pnode.argument)) spreadComplex = true;
+            return;
           }
 
-          if (pnode.computed && AST.isProperIdent(pnode.key)) {
+          hasNonSpread = true;
+
+          if (pnode.computed && AST.isProperIdent(pnode.key, true)) {
+            const str = AST.getStringValue(pnode.key, true);
+
             rule('Object literal computed key that is ident must be ident');
             example('{["x"]: y}', '{x: y}');
             before(node, parentNode);
 
             pnode.computed = false;
-            pnode.key = AST.identifier(pnode.key.value);
+            pnode.key = AST.identifier(str);
 
             after(node, parentNode);
             changes = true;
+            return;
+          }
+
+          if (pnode.key.type === 'literal' && typeof pnode.key.value === 'string') {
+            rule('Property keys that are strings should be templates internally, even if that is technically invalid');
+            example('x = {"a": foo}', 'x = {`a`: foo}');
+            before(node, parentNode);
+
+            pnode.key = AST.templateLiteral(pnode.key);
+
+            after(parentNode);
+            return true;
           }
         });
         if (changes) return true;
@@ -5231,6 +5272,36 @@ export function phaseNormalize(fdata, fname) {
         // Simplify extends and computed keys
         // Other rules tbd, if any
 
+        let changes = false;
+        node.body.body.forEach((methodNode) => {
+          if (methodNode.computed && AST.isProperIdent(methodNode.key, true)) {
+            const str = AST.getStringValue(methodNode.key, true);
+
+            rule('Class computed key that is ident must be ident');
+            example('class x = {["x"](){}}', 'class {x(){}}');
+            before(node, parentNode);
+
+            methodNode.computed = false;
+            methodNode.key = AST.identifier(str);
+
+            after(node, parentNode);
+            changes = true;
+            return;
+          }
+
+          if (methodNode.key.type === 'literal' && typeof methodNode.key.value === 'string') {
+            rule('Class keys that are strings should be templates internally, even if that is technically invalid');
+            example('class x {"a"(){}}', 'class x {`a`(){}}');
+            before(node, parentNode);
+
+            methodNode.key = AST.templateLiteral(methodNode.key);
+
+            after(parentNode);
+            return true;
+          }
+        });
+        if (changes) return true;
+
         let last = -1;
         node.body.body.forEach((pnode, i) => {
           ASSERT(pnode.type === 'MethodDefinition', 'update me if this gets extended');
@@ -5308,6 +5379,33 @@ export function phaseNormalize(fdata, fname) {
         return false;
       }
 
+      case 'TemplateLiteral': {
+        // Note: templates are "special" insofar that they are eliminate in the pre-normalization phase and
+        //       any templates that we find here are introduced in phase2. They represent a string concat
+        //       that we know cannot spy (when we know both operands must already be primitives of any kind).
+        // Note: while the operands may both be non-strings, the fact that they appear inside a template will
+        //       imply that they are presumed to have seen like `'' + a + b`, even when a and b are numbers.
+        // The point of templates is to allow multiple spy-free string concats to be a single statement.
+
+        // All strings literals are transformed to templates. The printer takes care of normalizing them
+        // for places where templates are absolutely not allowed (import source, computed prop key)
+
+        if (wrapKind === 'statement') {
+          // A template must always be side-effect free post pre-normalization. So this should be safe to drop.
+          rule('Template literals that are statements should be dropped');
+          example('`foo`;', ';');
+          example('`fo${x}o`;', ';');
+          before(node, parentNode);
+
+          body[i] = AST.emptyStatement();
+
+          after(AST.emptyStatement(), parentNode);
+          return true;
+        }
+
+        return;
+      }
+
       case 'AwaitExpression':
       case 'Directive':
       case 'MetaProperty':
@@ -5324,7 +5422,6 @@ export function phaseNormalize(fdata, fname) {
       // Eliminated nodes (for assertions)
       case 'TaggedTemplateExpression':
       case 'TemplateElement':
-      case 'TemplateLiteral':
       case 'ArrayPattern':
       case 'AssignmentPattern':
       case 'ObjectPattern':
@@ -5732,6 +5829,18 @@ export function phaseNormalize(fdata, fname) {
       }
 
       if (node.test.operator === '+' || node.test.operator === '-') {
+        if (AST.isStringValue(node.test.argument, '""', true)) {
+          // Doesn't matter whether it's +' or -' here. This is false now.
+          rule('A +/- if test of the empty string is always false'); // Well, +0/-0 to be precise
+          example('if (-"") f();', 'if (false) f();');
+          before(node);
+
+          node.test = AST.fals();
+
+          after(node);
+          return true;
+        }
+
         if (node.test.argument.type === 'Literal') {
           if (node.test.argument.value === 0 || node.test.argument.raw === 'null') {
             // Doesn't matter whether it's +0 or -0 here. This is false now.
@@ -5744,7 +5853,9 @@ export function phaseNormalize(fdata, fname) {
 
             after(node);
             return true;
-          } else if (typeof node.test.argument.value === 'number') {
+          }
+
+          if (typeof node.test.argument.value === 'number') {
             rule('An if test that is a non-zero +/- number is always true');
             example('if (-1) f();', 'if (true) f();');
             before(node);
@@ -5879,20 +5990,24 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (node.test.type === 'Literal') {
-      if (node.test.value === 0 || node.test.value === '' || node.test.value === false || node.test.raw === 'null') {
-        rule('Eliminate if-else with falsy test literal');
-        example('if (0) f(); else g();', 'g();');
-        before(node);
+    if (
+      (node.test.type === 'Literal' && (node.test.value === 0 || node.test.value === false || node.test.raw === 'null')) ||
+      AST.isStringValue(node.test, '', true)
+    ) {
+      rule('Eliminate if-else with falsy test literal');
+      example('if (0) f(); else g();', 'g();');
+      before(node);
 
-        const finalParent = node.alternate;
-        body[i] = finalParent;
+      const finalParent = node.alternate;
+      body[i] = finalParent;
 
-        after(finalParent);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
+      after(finalParent);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
 
+    if (node.test.type === 'Literal' || AST.isStringLiteral(node.test, true)) {
+      // Note: only for templates without expression since we can't (usually) predict the template value that have expressions
       rule('Eliminate if-else with truthy test literal');
       example('if (100) f(); else g();', 'g();');
       before(node);
@@ -5976,12 +6091,10 @@ export function phaseNormalize(fdata, fname) {
       }
 
       if (
-        ifBodyLast.type === 'Literal' &&
-        elseBodyLast.type === 'Literal' &&
-        ifBodyLast.value === elseBodyLast.value &&
-        // TODO: The primitive checks are probably not necessary in this case but then we would have to take more care in comparing
         AST.isPrimitive(ifBodyLast) &&
-        AST.isPrimitive(elseBodyLast)
+        AST.isPrimitive(elseBodyLast) &&
+        // Work around NaN and -0 cases with Object.is
+        Object.is(AST.getPrimitiveValue(ifBodyLast), AST.getPrimitiveValue(elseBodyLast))
       ) {
         vlog('The body of both branches have one element and it is a return statement that returns the same literal');
         rule('When both branches of an `if` return the same literal, the if is redundant');
@@ -6017,12 +6130,10 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (
-          ifBodyNeg.type === 'Literal' &&
-          elseBodyNeg.type === 'Literal' &&
-          ifBodyNeg.value === elseBodyNeg.value &&
-          // TODO: The primitive checks are probably not necessary in this case but then we would have to take more care in comparing
           AST.isPrimitive(ifBodyNeg) &&
-          AST.isPrimitive(elseBodyNeg)
+          AST.isPrimitive(elseBodyNeg) &&
+          // Work around NaN and -0 cases with Object.is
+          Object.is(AST.getPrimitiveValue(ifBodyNeg), AST.getPrimitiveValue(elseBodyNeg))
         ) {
           vlog('The body of both branches have one element and it is a return statement that returns the same literal');
           rule('When both branches of an `if` return the same literal, the if is redundant');
@@ -6533,15 +6644,28 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
 
-  function transformImportDeclaration(node, body, i, parent) {
+  function transformImportDeclaration(node, body, i, parentNode) {
+    if (node.source.type === 'Literal') {
+      ASSERT(typeof node.source.value === 'string', 'right?', node.source);
+
+      rule('Import source strings should be templates internally, even if that is technically invalid');
+      example('import x from "foo"', 'import x from `foo`');
+      before(node.source, node);
+
+      node.source = AST.templateLiteral(node.source.value);
+
+      after(node.source, node);
+      return true;
+    }
+
     if (node.specifiers.length > 1) {
       rule('Imports should have one specifier');
       example('import a, {b} from "c"', 'import a from "c"; import {b} from "c"');
       before(node);
 
       const newNodes = node.specifiers.map((specifier) => {
-        ASSERT(node.source.type === 'Literal', 'if this changes then the below should change');
-        return AST.importDeclarationFromSpecifier(specifier, node.source.value);
+        ASSERT(AST.isStringLiteral(node.source, true), 'if this changes then the below should change');
+        return AST.importDeclarationFromSpecifier(specifier, AST.getStringValue(node.source, true));
       });
       body.splice(i, 1, ...newNodes);
 
@@ -6914,7 +7038,7 @@ export function phaseNormalize(fdata, fname) {
     return false;
   }
 
-  function transformReturnStatement(node, body, i, parent) {
+  function transformReturnStatement(node, body, i, parentNode) {
     if (!node.argument) {
       rule('Return argument must exist');
       example('return;', 'return undefined;');
@@ -6941,6 +7065,17 @@ export function phaseNormalize(fdata, fname) {
       after(newNode);
       after(node);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
+
+    if (node.argument.type === 'Literal' && typeof node.argument.value === 'string') {
+      rule('Return values that are strings should be templates');
+      example('return "foo";', 'return `foo`;');
+      before(node.argument, parentNode);
+
+      node.argument = AST.templateLiteral(node.argument.value);
+
+      after(node.argument, parentNode);
       return true;
     }
 
@@ -6976,7 +7111,7 @@ export function phaseNormalize(fdata, fname) {
       body[i] = AST.emptyStatement();
 
       after(prev);
-      assertNoDupeNodes(AST.blockStatement(parent), 'body');
+      assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
       return true;
     }
 
@@ -6990,20 +7125,20 @@ export function phaseNormalize(fdata, fname) {
       // Constant folding does something like this generically, but this particular trampoline also works with `let`
       rule('Return var trampoline should eliminate the var');
       example('const x = f; return x;', 'return f;');
-      before(body[i - 1], parent);
+      before(body[i - 1], parentNode);
       before(node);
 
       node.argument = body[i - 1].declarations[0].init;
       body[i - 1] = AST.emptyStatement();
 
       after(body[i - 1]);
-      after(node, parent);
+      after(node, parentNode);
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
-    vlog(BLUE + 'Marking parent (' + parent.type + ') as returning early' + RESET);
-    parent.$p.returnBreakContinueThrow = 'return';
+    vlog(BLUE + 'Marking parent (' + parentNode.type + ') as returning early' + RESET);
+    parentNode.$p.returnBreakContinueThrow = 'return';
     if (body.length > i + 1) {
       if (dce(body, i, 'after return')) {
         return true;
@@ -7366,6 +7501,17 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
+    if (dnode.init.type === 'Literal' && typeof dnode.init.value === 'string') {
+      rule('Var inits that are strings should be templates');
+      example('const x = "foo";', 'const x = `foo`;');
+      before(dnode.init, parentNode);
+
+      dnode.init = AST.templateLiteral(dnode.init.value);
+
+      after(dnode.init, parentNode);
+      return true;
+    }
+
     if (AST.isComplexNode(dnode.init, false) || (dnode.init.type === 'Identifier' && dnode.init.name === 'arguments')) {
       // false: returns true for simple unary as well
       vlog('- init is complex, transforming expression');
@@ -7379,6 +7525,8 @@ export function phaseNormalize(fdata, fname) {
   }
 
   function transformWhileStatement(node, body, i, parentNode, isLabeled) {
+    // TODO: do AST.isPrimitive instead. Drop a bunch of logic here.
+
     if (node.test.type === 'UnaryExpression') {
       if (node.test.operator === '+' || node.test.operator === '-') {
         if (node.test.argument.type === 'Literal') {
@@ -7393,7 +7541,8 @@ export function phaseNormalize(fdata, fname) {
 
             after(node);
             return true;
-          } else if (typeof node.test.argument.value === 'number') {
+          }
+          if (typeof node.test.argument.value === 'number') {
             rule('A while test that is a non-zero +/- number is always true');
             example('while (-1) f();', 'while (true) f();');
             before(node);
@@ -7403,6 +7552,17 @@ export function phaseNormalize(fdata, fname) {
             after(node);
             return true;
           }
+        }
+
+        if (AST.isStringValue(node.test, '', true)) {
+          rule('A +/- while test of empty string is always false');
+          example('while (-"") f();', 'while (false) f();');
+          before(node);
+
+          node.test = AST.fals();
+
+          after(node);
+          return true;
         }
 
         if (node.test.argument.type === 'Identifier') {
@@ -7429,19 +7589,22 @@ export function phaseNormalize(fdata, fname) {
       }
     }
 
-    if (node.test.type === 'Literal' && node.test.value !== true) {
-      if (node.test.value === 0 || node.test.value === '' || node.test.value === false || node.test.raw === 'null') {
-        rule('Eliminate while with falsy literal');
-        example('while (false) f();', ';');
-        before(node);
+    if (
+      (node.test.type === 'Literal' && (node.test.value === 0 || node.test.value === false || node.test.raw === 'null')) ||
+      AST.isStringValue(node.test, '', true)
+    ) {
+      rule('Eliminate while with falsy literal');
+      example('while (false) f();', ';');
+      before(node);
 
-        body[i] = AST.emptyStatement();
+      body[i] = AST.emptyStatement();
 
-        after(body[i]);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
+      after(body[i]);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
 
+    if (node.test.type === 'Literal' ? node.test.value !== true : AST.isStringLiteral(node.test, true)) {
       rule('Replace truthy while test literal with `true`');
       example('while (100) f();', 'while (true) f();');
       before(node);
@@ -7497,7 +7660,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (node.test.type === 'Literal' && node.test.value === false) {
+    if (AST.isFalse(node.test)) {
       rule('While test that is false means the while can be eliminated entirely');
       example('while (false) neverCallMe();', ';');
       before(node);
@@ -7509,7 +7672,7 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (node.test.type !== 'Identifier' && (node.test.type !== 'Literal' || node.test.value !== true)) {
+    if (node.test.type !== 'Identifier' && !AST.isTrue(node.test)) {
       // We do this because it makes all reads that relate to the loop be inside the block.
       // There are heuristics that want to know whether a binding is used inside a loop and if
       // we don't do this then parts of the loop may not be inside the block. And we already
@@ -7618,7 +7781,8 @@ export function phaseNormalize(fdata, fname) {
           'if the while test is a literal, it must at this point be true',
           node.test,
         );
-        if (node.test.type !== 'Literal' || node.test.value !== true) {
+        if (!AST.isTrue(node.test)) {
+          // TODO: so under previous assertion this is dead code?
           // Note: it's fine to leave a regular ident as the while condition so we don't do this unless required
           rule('While normalization requires the while test to be `true`');
           example('while (foo) { f(); }', 'while (true) { if (!foo) break; f(); }');

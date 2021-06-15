@@ -19,27 +19,27 @@ $('after');
 ## Pre Normal
 
 `````js filename=intro
-$('before');
+$(`before`);
 ({ a: 1, b: 2 }());
-$('after');
+$(`after`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-$('before');
+$(`before`);
 const tmpCallCallee = { a: 1, b: 2 };
 tmpCallCallee();
-$('after');
+$(`after`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('before');
+$(`before`);
 const tmpCallCallee = { a: 1, b: 2 };
 tmpCallCallee();
-$('after');
+$(`after`);
 `````
 
 ## Globals

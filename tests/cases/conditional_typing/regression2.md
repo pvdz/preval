@@ -43,18 +43,18 @@ const f = function () {
   debugger;
   const tmpIfTest = curtype === 16472;
   if (tmpIfTest) {
-    curtype = $('random');
+    curtype = $(`random`);
     undefined;
     const tmpIfTest$1 = curtype === 16473;
     if (tmpIfTest$1) {
-      $('x');
+      $(`x`);
       return undefined;
     } else {
-      $('y');
+      $(`y`);
       return undefined;
     }
   } else {
-    $('a');
+    $(`a`);
     return undefined;
   }
 };
@@ -70,17 +70,17 @@ const f = function () {
   debugger;
   const tmpIfTest = curtype === 16472;
   if (tmpIfTest) {
-    curtype = $('random');
+    curtype = $(`random`);
     const tmpIfTest$1 = curtype === 16473;
     if (tmpIfTest$1) {
-      $('x');
+      $(`x`);
       return undefined;
     } else {
-      $('y');
+      $(`y`);
       return undefined;
     }
   } else {
-    $('a');
+    $(`a`);
     return undefined;
   }
 };
@@ -96,17 +96,17 @@ const f = function () {
   debugger;
   const tmpIfTest = curtype === 16472;
   if (tmpIfTest) {
-    curtype = $('random');
+    curtype = $(`random`);
     const tmpIfTest$1 = curtype === 16473;
     if (tmpIfTest$1) {
-      $('x');
+      $(`x`);
       return undefined;
     } else {
-      $('y');
+      $(`y`);
       return undefined;
     }
   } else {
-    $('a');
+    $(`a`);
     return undefined;
   }
 };

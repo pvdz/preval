@@ -29,9 +29,9 @@ while ($(true)) {
   for (let x in { a: 1, b: 2 }) {
     break;
   }
-  $('keep');
+  $(`keep`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -45,12 +45,12 @@ while (true) {
     for (x in tmpForInDeclRhs) {
       break;
     }
-    $('keep');
+    $(`keep`);
   } else {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -64,12 +64,12 @@ while (true) {
     for (x in tmpForInDeclRhs) {
       break;
     }
-    $('keep');
+    $(`keep`);
   } else {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

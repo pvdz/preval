@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 [{ x: x }] = [];
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -29,14 +29,14 @@ const arrAssignPatternRhs = [];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 x = undefined.x;
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

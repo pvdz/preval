@@ -21,9 +21,9 @@ $(c);
 
 `````js filename=intro
 let x = 10,
-  b = 'foo',
+  b = `foo`,
   c = 1;
-x = ($(1), b)[$('length')];
+x = ($(1), b)[$(`length`)];
 $(x);
 $(c);
 `````
@@ -32,11 +32,11 @@ $(c);
 
 `````js filename=intro
 let x = 10;
-let b = 'foo';
+let b = `foo`;
 let c = 1;
 $(1);
 const tmpAssignRhsCompObj = b;
-const tmpAssignRhsCompProp = $('length');
+const tmpAssignRhsCompProp = $(`length`);
 x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(x);
 $(c);
@@ -46,8 +46,8 @@ $(c);
 
 `````js filename=intro
 $(1);
-const tmpAssignRhsCompProp = $('length');
-const x = 'foo'[tmpAssignRhsCompProp];
+const tmpAssignRhsCompProp = $(`length`);
+const x = `foo`[tmpAssignRhsCompProp];
 $(x);
 $(1);
 `````

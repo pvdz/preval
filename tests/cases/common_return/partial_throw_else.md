@@ -30,7 +30,7 @@ $(f());
 let f = function () {
   debugger;
   if ($(0)) {
-    throw 'Some error';
+    throw `Some error`;
   } else {
     return 15;
   }
@@ -48,7 +48,7 @@ let f = function () {
   debugger;
   const tmpIfTest = $(0);
   if (tmpIfTest) {
-    throw 'Some error';
+    throw `Some error`;
   } else {
     return 15;
   }
@@ -68,7 +68,7 @@ const f = function () {
   debugger;
   const tmpIfTest = $(0);
   if (tmpIfTest) {
-    throw 'Some error';
+    throw `Some error`;
   } else {
     return undefined;
   }

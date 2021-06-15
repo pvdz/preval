@@ -48,7 +48,7 @@ let f = function () {
     }
     console.log(x);
   }
-  x = 'fail';
+  x = `fail`;
 };
 let x = 0;
 f();
@@ -77,7 +77,7 @@ let f = function () {
   };
   const tmpAfterLabel = function () {
     debugger;
-    x = 'fail';
+    x = `fail`;
     return undefined;
   };
   const tmpReturnArg$3 = tmpLabeledBlockFunc();
@@ -95,7 +95,7 @@ const f = function () {
   debugger;
   try {
     x = 1;
-    x = 'fail';
+    x = `fail`;
     return undefined;
   } finally {
     throw_early;
@@ -103,7 +103,7 @@ const f = function () {
     return undefined;
   }
   console.log(x);
-  x = 'fail';
+  x = `fail`;
   return undefined;
 };
 let x = 0;

@@ -18,7 +18,7 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-x = $('foo').length;
+x = $(`foo`).length;
 $(x);
 `````
 
@@ -26,7 +26,7 @@ $(x);
 
 `````js filename=intro
 let x = 10;
-const tmpAssignRhsProp = $('foo');
+const tmpAssignRhsProp = $(`foo`);
 x = tmpAssignRhsProp.length;
 $(x);
 `````
@@ -34,7 +34,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpAssignRhsProp = $('foo');
+const tmpAssignRhsProp = $(`foo`);
 const x = tmpAssignRhsProp.length;
 $(x);
 `````

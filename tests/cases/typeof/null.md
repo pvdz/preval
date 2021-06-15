@@ -26,14 +26,14 @@ $(typeof null);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'object';
+const tmpCalleeParam = `object`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('object');
+$(`object`);
 `````
 
 ## Globals

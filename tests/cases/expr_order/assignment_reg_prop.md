@@ -25,12 +25,12 @@ $(b).c = $(2);
 let b = {
   get c() {
     debugger;
-    $('get');
+    $(`get`);
   },
   set c($$0) {
     let x = $$0;
     debugger;
-    $('set');
+    $(`set`);
   },
 };
 $(b).c = $(2);
@@ -42,13 +42,13 @@ $(b).c = $(2);
 let b = {
   get c() {
     debugger;
-    $('get');
+    $(`get`);
     return undefined;
   },
   set c($$0) {
     let x = $$0;
     debugger;
-    $('set');
+    $(`set`);
     return undefined;
   },
 };
@@ -64,12 +64,12 @@ tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
 const b = {
   get c() {
     debugger;
-    $('get');
+    $(`get`);
     return undefined;
   },
   set c($$0) {
     debugger;
-    $('set');
+    $(`set`);
     return undefined;
   },
 };

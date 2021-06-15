@@ -26,7 +26,7 @@ $(f());
 let f = function () {
   debugger;
   let b = { c: 10, d: 20 };
-  let a = ($(b).c = $(b)[$('d')]);
+  let a = ($(b).c = $(b)[$(`d`)]);
   $(a, b);
 };
 $(f());
@@ -40,7 +40,7 @@ let f = function () {
   let b = { c: 10, d: 20 };
   const varInitAssignLhsComputedObj = $(b);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
   let a = varInitAssignLhsComputedRhs;
@@ -58,7 +58,7 @@ tmpCallCallee(tmpCalleeParam);
 const b = { c: 10, d: 20 };
 const varInitAssignLhsComputedObj = $(b);
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs, b);

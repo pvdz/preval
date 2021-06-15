@@ -23,8 +23,8 @@ $(f({ x: undefined, a: 11, b: 12 }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: [y = 'fail'] = $(['pass2']) } = tmpParamBare;
-  return 'bad';
+  let { x: [y = `fail`] = $([`pass2`]) } = tmpParamBare;
+  return `bad`;
 };
 $(f({ x: undefined, a: 11, b: 12 }, 10));
 `````
@@ -41,7 +41,7 @@ let f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = ['pass2'];
+    const tmpCalleeParam = [`pass2`];
     objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -51,11 +51,11 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    y = 'fail';
-    return 'bad';
+    y = `fail`;
+    return `bad`;
   } else {
     y = arrPatternBeforeDefault;
-    return 'bad';
+    return `bad`;
   }
 };
 const tmpCallCallee$1 = $;
@@ -69,11 +69,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['pass2'];
+const tmpCalleeParam = [`pass2`];
 const objPatternAfterDefault = $(tmpCalleeParam);
 const arrPatternSplat = [...objPatternAfterDefault];
 arrPatternSplat[0];
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

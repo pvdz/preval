@@ -47,7 +47,7 @@ $(a, x);
 `````js filename=intro
 const tmpObjectPrototype = Object.prototype;
 tmpObjectPrototype.number;
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

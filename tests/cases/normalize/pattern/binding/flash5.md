@@ -64,7 +64,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-throw 'Preval: Cannot access `propTDZ` before initialization';
+throw `Preval: Cannot access \`propTDZ\` before initialization`;
 `````
 
 ## Globals

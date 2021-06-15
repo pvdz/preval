@@ -33,7 +33,7 @@ let f = function ($$0) {
 };
 $(f(1));
 $(f(2));
-$(f('three'));
+$(f(`three`));
 `````
 
 ## Normalized
@@ -53,7 +53,7 @@ const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(2);
 tmpCallCallee$1(tmpCalleeParam$1);
 const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f('three');
+const tmpCalleeParam$3 = f(`three`);
 tmpCallCallee$3(tmpCalleeParam$3);
 `````
 
@@ -71,7 +71,7 @@ const tmpCalleeParam = f(1);
 $(tmpCalleeParam);
 const tmpCalleeParam$1 = f(2);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f('three');
+const tmpCalleeParam$3 = f(`three`);
 $(tmpCalleeParam$3);
 `````
 

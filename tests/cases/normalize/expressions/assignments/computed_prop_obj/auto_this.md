@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let obj = {};
-(a = undefined)['a'];
+(a = undefined)[`a`];
 $(a);
 `````
 
@@ -43,7 +43,7 @@ $(a);
 
 `````js filename=intro
 undefined.a;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

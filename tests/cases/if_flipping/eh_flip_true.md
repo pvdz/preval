@@ -22,8 +22,8 @@ else $('else');
 `````js filename=intro
 const y = $(1);
 const x = !y;
-if (x) $('then');
-else $('else');
+if (x) $(`then`);
+else $(`else`);
 `````
 
 ## Normalized
@@ -32,9 +32,9 @@ else $('else');
 const y = $(1);
 const x = !y;
 if (x) {
-  $('then');
+  $(`then`);
 } else {
-  $('else');
+  $(`else`);
 }
 `````
 
@@ -43,9 +43,9 @@ if (x) {
 `````js filename=intro
 const y = $(1);
 if (y) {
-  $('else');
+  $(`else`);
 } else {
-  $('then');
+  $(`then`);
 }
 `````
 

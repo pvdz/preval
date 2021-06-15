@@ -33,7 +33,7 @@ let f = function () {
   if ($(1)) {
     return 15;
   } else {
-    throw 'Some error';
+    throw `Some error`;
   }
 };
 f();
@@ -52,7 +52,7 @@ let f = function () {
   if (tmpIfTest) {
     return 15;
   } else {
-    throw 'Some error';
+    throw `Some error`;
   }
 };
 f();
@@ -73,7 +73,7 @@ const f = function () {
   if (tmpIfTest) {
     return undefined;
   } else {
-    throw 'Some error';
+    throw `Some error`;
   }
 };
 f();

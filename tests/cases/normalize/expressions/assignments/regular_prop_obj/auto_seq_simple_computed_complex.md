@@ -24,7 +24,7 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 (a = { b: $(1) }).a;
-($(1), a)[$('b')] = $(2);
+($(1), a)[$(`b`)] = $(2);
 $(a);
 `````
 
@@ -39,7 +39,7 @@ let tmpCompObj = a;
 tmpCompObj.a;
 $(1);
 const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(2);
@@ -54,7 +54,7 @@ const tmpObjLitVal = $(1);
 const tmpObjectPrototype = Object.prototype;
 tmpObjectPrototype.a;
 $(1);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 const a = { b: tmpObjLitVal };
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;

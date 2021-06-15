@@ -24,7 +24,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
-  b[$('c')];
+  b[$(`c`)];
   while ($(0)) {}
 }
 $(a, b);
@@ -36,7 +36,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 tmpCompObj[tmpCompProp];
 while (true) {
   const tmpIfTest = $(0);
@@ -53,7 +53,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 b[tmpCompProp];
 while (true) {
   const tmpIfTest = $(0);

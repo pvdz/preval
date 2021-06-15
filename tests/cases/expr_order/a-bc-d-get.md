@@ -29,12 +29,12 @@ let a = 1;
 let b = {
   get c() {
     debugger;
-    $('should not be called');
+    $(`should not be called`);
   },
   set c($$0) {
     let x = $$0;
     debugger;
-    $('set');
+    $(`set`);
   },
 };
 let d = 3;
@@ -49,13 +49,13 @@ let a = 1;
 let b = {
   get c() {
     debugger;
-    $('should not be called');
+    $(`should not be called`);
     return undefined;
   },
   set c($$0) {
     let x = $$0;
     debugger;
-    $('set');
+    $(`set`);
     return undefined;
   },
 };
@@ -72,12 +72,12 @@ $(a, b, d);
 const b = {
   get c() {
     debugger;
-    $('should not be called');
+    $(`should not be called`);
     return undefined;
   },
   set c($$0) {
     debugger;
-    $('set');
+    $(`set`);
     return undefined;
   },
 };

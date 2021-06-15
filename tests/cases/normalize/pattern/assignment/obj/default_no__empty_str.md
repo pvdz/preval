@@ -18,14 +18,14 @@ $('ok');
 ## Pre Normal
 
 `````js filename=intro
-({} = '');
-$('ok');
+({} = ``);
+$(`ok`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpAssignObjPatternRhs = '';
+const tmpAssignObjPatternRhs = ``;
 let objPatternCrashTest = tmpAssignObjPatternRhs === undefined;
 if (objPatternCrashTest) {
 } else {
@@ -35,13 +35,13 @@ if (objPatternCrashTest) {
   objPatternCrashTest = tmpAssignObjPatternRhs.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

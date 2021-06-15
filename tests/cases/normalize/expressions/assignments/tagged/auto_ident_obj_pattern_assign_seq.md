@@ -25,7 +25,7 @@ $(a, x, y);
 let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
-$(['before ', ' after'], (a = { x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) })));
+$([`before `, ` after`], (a = { x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) })));
 $(a, x, y);
 `````
 
@@ -36,7 +36,7 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 $(x);
 $(y);
 const tmpObjLitVal = $(3);
@@ -53,7 +53,7 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 $(1);
 $(2);
 const tmpObjLitVal = $(3);

@@ -25,7 +25,7 @@ $(f());
 let f = function () {
   debugger;
   let a = { a: 999, b: 1000 };
-  ('foo');
+  `foo`;
   $(a);
 };
 $(f());

@@ -26,7 +26,7 @@ let f = function ($$0) {
   let [x] = tmpParamBare;
   return x;
 };
-$(f('abc', 200));
+$(f(`abc`, 200));
 `````
 
 ## Normalized
@@ -41,14 +41,14 @@ let f = function ($$0) {
   return x;
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('abc', 200);
+const tmpCalleeParam = f(`abc`, 200);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('a');
+$(`a`);
 `````
 
 ## Globals

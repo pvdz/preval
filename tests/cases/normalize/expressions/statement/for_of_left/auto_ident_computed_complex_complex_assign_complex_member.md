@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-for (($(b)[$('c')] = $(b)[$('d')]).x of $({ x: 1 }));
+for (($(b)[$(`c`)] = $(b)[$(`d`)]).x of $({ x: 1 }));
 $(a, b);
 `````
 
@@ -38,9 +38,9 @@ const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $('c');
+  const varInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   const tmpAssignMemLhsObj = varInitAssignLhsComputedRhs;
@@ -59,9 +59,9 @@ const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
   const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $('c');
+  const varInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   varInitAssignLhsComputedRhs.x = tmpForOfLhsNode;

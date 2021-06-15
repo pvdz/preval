@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$(['before ', ' after'], (a = new (1, 2, b).$(1)));
+$([`before `, ` after`], (a = new (1, 2, b).$(1)));
 $(a);
 `````
 
@@ -33,7 +33,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpCompObj = b;
 const tmpNewCallee = tmpCompObj.$;
 a = new tmpNewCallee(1);
@@ -46,7 +46,7 @@ $(a);
 
 `````js filename=intro
 const tmpClusterSSA_a = new $(1);
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 $(tmpCalleeParam, tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

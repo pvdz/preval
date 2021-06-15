@@ -54,11 +54,11 @@ tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 `````js filename=intro
 const findme = function () {
   debugger;
-  $('function');
+  $(`function`);
   return findme;
 };
-$('function');
-$(findme, 'function');
+$(`function`);
+$(findme, `function`);
 `````
 
 ## Globals

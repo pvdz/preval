@@ -17,23 +17,23 @@
 ## Pre Normal
 
 `````js filename=intro
-'' + [] + '';
+`` + [] + ``;
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinBothLhs = '';
+const tmpBinBothLhs = ``;
 const tmpBinBothRhs = [];
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-tmpBinLhs + '';
+tmpBinLhs + ``;
 `````
 
 ## Output
 
 `````js filename=intro
 const tmpBinBothRhs = [];
-'' + tmpBinBothRhs;
+`` + tmpBinBothRhs;
 `````
 
 ## Globals

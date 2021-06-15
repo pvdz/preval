@@ -18,25 +18,25 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-[{ x: x }] = '';
-$('bad');
+[{ x: x }] = ``;
+$(`bad`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const arrAssignPatternRhs = '';
+const arrAssignPatternRhs = ``;
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 x = arrPatternStep.x;
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 x = undefined.x;
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

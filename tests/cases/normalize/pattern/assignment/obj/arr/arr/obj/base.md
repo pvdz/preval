@@ -21,7 +21,7 @@ $('ok');
 ({
   x: [[{}]],
 } = { x: [[{ a: 1, b: 2, c: 3 }, 14], 13], a: 11, b: 12 });
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -45,13 +45,13 @@ if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep$1.cannotDestructureThis;
 } else {
 }
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

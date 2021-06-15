@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-[{ x: x = $('pass') }] = [{}, 20, 30];
+[{ x: x = $(`pass`) }] = [{}, 20, 30];
 $(x);
 `````
 
@@ -32,7 +32,7 @@ const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = objPatternBeforeDefault;
 }
@@ -46,7 +46,7 @@ const tmpObjectPrototype = Object.prototype;
 const objPatternBeforeDefault = tmpObjectPrototype.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = objPatternBeforeDefault;
 }

@@ -24,9 +24,9 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let {} = tmpParamBare;
-  return 'ok';
+  return `ok`;
 };
-$(f('abc', 10));
+$(f(`abc`, 10));
 `````
 
 ## Normalized
@@ -43,20 +43,20 @@ let f = function ($$0) {
   }
   if (objPatternCrashTest) {
     objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
-    return 'ok';
+    return `ok`;
   } else {
-    return 'ok';
+    return `ok`;
   }
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('abc', 10);
+const tmpCalleeParam = f(`abc`, 10);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

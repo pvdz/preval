@@ -42,15 +42,15 @@ let a = { a: 999, b: 1000 };
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       {
-        $(b)['c'] = $(b)[$('d')];
+        $(b)[`c`] = $(b)[$(`d`)];
       }
       break tmpSwitchBreak;
     }
     if (tmpSwitchCaseToStart <= 1) {
-      $('fail1');
+      $(`fail1`);
     }
     if (tmpSwitchCaseToStart <= 2) {
-      $('fail2');
+      $(`fail2`);
     }
   }
 }
@@ -81,19 +81,19 @@ tmpSwitchBreak: {
     const tmpAssignMemLhsObj = $(b);
     const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
     const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
+    const tmpCompProp = $(`d`);
     const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
     tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$5) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$7) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }
@@ -124,19 +124,19 @@ tmpSwitchBreak: {
   if (tmpIfTest$3) {
     const tmpAssignMemLhsObj = $(b);
     const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
+    const tmpCompProp = $(`d`);
     const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
     tmpAssignMemLhsObj.c = tmpAssignMemRhs;
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$5) {
-      $('fail1');
+      $(`fail1`);
     } else {
     }
     const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
     if (tmpIfTest$7) {
-      $('fail2');
+      $(`fail2`);
     } else {
     }
   }

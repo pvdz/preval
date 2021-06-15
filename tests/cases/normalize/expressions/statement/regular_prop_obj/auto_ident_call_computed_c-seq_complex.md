@@ -25,7 +25,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
-(1, 2, $(b))[$('$')](1).a;
+(1, 2, $(b))[$(`$`)](1).a;
 $(a);
 `````
 
@@ -36,7 +36,7 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const tmpCompObj = tmpCallCompObj[tmpCallCompProp](1);
 tmpCompObj.a;
 $(a);
@@ -48,7 +48,7 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const tmpCompObj = tmpCallCompObj[tmpCallCompProp](1);
 tmpCompObj.a;
 $(a);

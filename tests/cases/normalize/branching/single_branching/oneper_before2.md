@@ -72,8 +72,8 @@ tmpBranchingB();
 ## Pre Normal
 
 `````js filename=intro
-let c = 'c';
-let d = 'd';
+let c = `c`;
+let d = `d`;
 const tmpBranchingB = function () {
   debugger;
   const tmpBranchingB$3 = function () {
@@ -89,7 +89,7 @@ const tmpBranchingB = function () {
     }
   };
   const h$1 = typeof c;
-  const i$1 = 'string' == h$1;
+  const i$1 = `string` == h$1;
   const tmpBranchingB$1 = function () {
     debugger;
     const j$3 = 2147483647 < c;
@@ -108,7 +108,7 @@ const tmpBranchingB = function () {
     m$1 = isNaN(l$1);
     if (m$1) {
       l$1 = 0;
-      $('a', 'b', c, d, 'e', 1, false, h$1, i$1, l$1, m$1);
+      $(`a`, `b`, c, d, `e`, 1, false, h$1, i$1, l$1, m$1);
       return undefined;
     } else {
       return undefined;
@@ -118,7 +118,7 @@ const tmpBranchingB = function () {
   let m$1 = undefined;
   if (i$1) {
     d = c;
-    c = 'no';
+    c = `no`;
     const tmpReturnArg = tmpBranchingC$1();
     return tmpReturnArg;
   } else {
@@ -132,8 +132,8 @@ tmpBranchingB();
 ## Normalized
 
 `````js filename=intro
-let c = 'c';
-let d = 'd';
+let c = `c`;
+let d = `d`;
 const tmpBranchingB = function () {
   debugger;
   const tmpBranchingB$3 = function () {
@@ -149,7 +149,7 @@ const tmpBranchingB = function () {
     }
   };
   const h$1 = typeof c;
-  const i$1 = 'string' == h$1;
+  const i$1 = `string` == h$1;
   const tmpBranchingB$1 = function () {
     debugger;
     const j$3 = 2147483647 < c;
@@ -168,7 +168,7 @@ const tmpBranchingB = function () {
     m$1 = isNaN(l$1);
     if (m$1) {
       l$1 = 0;
-      $('a', 'b', c, d, 'e', 1, false, h$1, i$1, l$1, m$1);
+      $(`a`, `b`, c, d, `e`, 1, false, h$1, i$1, l$1, m$1);
       return undefined;
     } else {
       return undefined;
@@ -178,7 +178,7 @@ const tmpBranchingB = function () {
   let m$1 = undefined;
   if (i$1) {
     d = c;
-    c = 'no';
+    c = `no`;
     const tmpReturnArg = tmpBranchingC$1();
     return tmpReturnArg;
   } else {
@@ -192,10 +192,10 @@ tmpBranchingB();
 ## Output
 
 `````js filename=intro
-const tmpssa2_l$1 = +'no';
+const tmpssa2_l$1 = +`no`;
 const tmpssa3_m$1 = isNaN(tmpssa2_l$1);
 if (tmpssa3_m$1) {
-  $('a', 'b', 'no', 'c', 'e', 1, false, 'string', true, 0, true);
+  $(`a`, `b`, `no`, `c`, `e`, 1, false, `string`, true, 0, true);
 } else {
 }
 `````

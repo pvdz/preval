@@ -23,7 +23,7 @@ if ($(10)) $(x, 'branch')
 let x = $(1);
 x = $(2);
 $(x);
-if ($(10)) $(x, 'branch');
+if ($(10)) $(x, `branch`);
 `````
 
 ## Normalized
@@ -34,7 +34,7 @@ x = $(2);
 $(x);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
-  $(x, 'branch');
+  $(x, `branch`);
 } else {
 }
 `````
@@ -47,7 +47,7 @@ const x = $(2);
 $(x);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
-  $(x, 'branch');
+  $(x, `branch`);
 } else {
 }
 `````

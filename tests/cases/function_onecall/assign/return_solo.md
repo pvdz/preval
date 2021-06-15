@@ -44,12 +44,12 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    $('a');
-    $('b');
-    return $('ab');
+    $(`a`);
+    $(`b`);
+    return $(`ab`);
   };
   g();
-  $('c');
+  $(`c`);
 };
 let x = $(100);
 $(closure());
@@ -69,13 +69,13 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    $('a');
-    $('b');
-    const tmpReturnArg = $('ab');
+    $(`a`);
+    $(`b`);
+    const tmpReturnArg = $(`ab`);
     return tmpReturnArg;
   };
   g();
-  $('c');
+  $(`c`);
   return undefined;
 };
 let x = $(100);
@@ -94,10 +94,10 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const x = $(100);
 $(x);
-$('a');
-$('b');
-$('ab');
-$('c');
+$(`a`);
+$(`b`);
+$(`ab`);
+$(`c`);
 $(undefined);
 $(undefined);
 `````

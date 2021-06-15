@@ -29,15 +29,15 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
-x = $('b');
+x = $(`b`);
 if ($(1)) {
 } else {
-  x = $('c');
+  x = $(`c`);
   if ($(2)) {
   } else {
-    x = $('d');
+    x = $(`d`);
   }
 }
 $(x);
@@ -46,17 +46,17 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
-x = $('b');
+x = $(`b`);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
 } else {
-  x = $('c');
+  x = $(`c`);
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
   } else {
-    x = $('d');
+    x = $(`d`);
   }
 }
 $(x);
@@ -65,17 +65,17 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = $('a');
+const x = $(`a`);
 $(x);
-let tmpClusterSSA_x = $('b');
+let tmpClusterSSA_x = $(`b`);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
 } else {
-  tmpClusterSSA_x = $('c');
+  tmpClusterSSA_x = $(`c`);
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
   } else {
-    tmpClusterSSA_x = $('d');
+    tmpClusterSSA_x = $(`d`);
   }
 }
 $(tmpClusterSSA_x);

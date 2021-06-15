@@ -26,7 +26,7 @@ let f = function ($$0) {
   let { x: x } = tmpParamBare;
   return x;
 };
-$(f('', 10));
+$(f(``, 10));
 `````
 
 ## Normalized
@@ -40,14 +40,14 @@ let f = function ($$0) {
   return x;
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('', 10);
+const tmpCalleeParam = f(``, 10);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = ''.x;
+const x = ``.x;
 $(x);
 `````
 

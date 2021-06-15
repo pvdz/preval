@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-(1, 2, b)[$('c')] + $(100);
+(1, 2, b)[$(`c`)] + $(100);
 $(a, b);
 `````
 
@@ -33,7 +33,7 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = b;
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 const tmpBinBothLhs = tmpCompObj[tmpCompProp];
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;
@@ -45,7 +45,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 const tmpBinBothLhs = b[tmpCompProp];
 const tmpBinBothRhs = $(100);
 tmpBinBothLhs + tmpBinBothRhs;

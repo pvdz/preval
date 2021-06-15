@@ -31,7 +31,7 @@ let x = 1;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      $('A');
+      $(`A`);
     }
   }
 }
@@ -51,7 +51,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  $('A');
+  $(`A`);
 } else {
 }
 `````
@@ -68,7 +68,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  $('A');
+  $(`A`);
 } else {
 }
 `````

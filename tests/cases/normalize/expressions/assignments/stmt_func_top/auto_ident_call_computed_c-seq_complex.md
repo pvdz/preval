@@ -28,7 +28,7 @@ let f = function () {
   debugger;
   let b = { $: $ };
   let a = { a: 999, b: 1000 };
-  a = (1, 2, $(b))[$('$')](1);
+  a = (1, 2, $(b))[$(`$`)](1);
   $(a);
 };
 $(f());
@@ -42,7 +42,7 @@ let f = function () {
   let b = { $: $ };
   let a = { a: 999, b: 1000 };
   const tmpCallCompObj = $(b);
-  const tmpCallCompProp = $('$');
+  const tmpCallCompProp = $(`$`);
   a = tmpCallCompObj[tmpCallCompProp](1);
   $(a);
   return undefined;
@@ -57,7 +57,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $('$');
+const tmpCallCompProp = $(`$`);
 const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 $(tmpClusterSSA_a);
 $(undefined);

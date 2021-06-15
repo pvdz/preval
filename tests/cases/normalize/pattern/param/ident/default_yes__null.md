@@ -23,7 +23,7 @@ $(f(null, 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let x = tmpParamBare === undefined ? 'fail' : tmpParamBare;
+  let x = tmpParamBare === undefined ? `fail` : tmpParamBare;
   return x;
 };
 $(f(null, 200));
@@ -38,7 +38,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    x = 'fail';
+    x = `fail`;
     return x;
   } else {
     x = tmpParamBare;

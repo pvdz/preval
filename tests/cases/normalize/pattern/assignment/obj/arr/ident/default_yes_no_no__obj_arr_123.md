@@ -19,7 +19,7 @@ $(y);
 
 `````js filename=intro
 ({
-  x: [y = 'fail'],
+  x: [y = `fail`],
 } = { x: [1, 2, 3], a: 11, b: 12 });
 $(y);
 `````
@@ -34,7 +34,7 @@ const arrPatternSplat = [...objPatternNoDefault];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = 'fail';
+  y = `fail`;
 } else {
   y = arrPatternBeforeDefault;
 }

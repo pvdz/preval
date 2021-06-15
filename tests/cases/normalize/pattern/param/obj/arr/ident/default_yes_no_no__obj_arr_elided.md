@@ -24,7 +24,7 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let {
-    x: [y = 'pass'],
+    x: [y = `pass`],
   } = tmpParamBare;
   return y;
 };
@@ -44,7 +44,7 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    y = 'pass';
+    y = `pass`;
     return y;
   } else {
     y = arrPatternBeforeDefault;
@@ -71,7 +71,7 @@ const f = function ($$0) {
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    return 'pass';
+    return `pass`;
   } else {
     return arrPatternBeforeDefault;
   }

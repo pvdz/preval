@@ -28,9 +28,9 @@ let f = function () {
   debugger;
   if ($(1)) {
     return 2;
-    $('fail');
+    $(`fail`);
   }
-  $('keep, do not eval');
+  $(`keep, do not eval`);
 };
 $(f());
 `````
@@ -44,7 +44,7 @@ let f = function () {
   if (tmpIfTest) {
     return 2;
   } else {
-    $('keep, do not eval');
+    $(`keep, do not eval`);
     return undefined;
   }
 };
@@ -62,7 +62,7 @@ const f = function () {
   if (tmpIfTest) {
     return 2;
   } else {
-    $('keep, do not eval');
+    $(`keep, do not eval`);
     return undefined;
   }
 };

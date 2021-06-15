@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-[{ x: x = $('pass') }] = [{ x: undefined, y: 2, z: 3 }, 20, 30];
+[{ x: x = $(`pass`) }] = [{ x: undefined, y: 2, z: 3 }, 20, 30];
 $(x);
 `````
 
@@ -32,7 +32,7 @@ const arrPatternStep = arrPatternSplat[0];
 const objPatternBeforeDefault = arrPatternStep.x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('pass');
+  x = $(`pass`);
 } else {
   x = objPatternBeforeDefault;
 }
@@ -42,7 +42,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-x = $('pass');
+x = $(`pass`);
 $(x);
 `````
 

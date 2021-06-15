@@ -23,7 +23,7 @@ $(f());
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [x = $('fail')] = tmpParamBare === undefined ? $('pass2') : tmpParamBare;
+  let [x = $(`fail`)] = tmpParamBare === undefined ? $(`pass2`) : tmpParamBare;
   return x;
 };
 $(f());
@@ -38,7 +38,7 @@ let f = function ($$0) {
   let bindingPatternArrRoot = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    bindingPatternArrRoot = $('pass2');
+    bindingPatternArrRoot = $(`pass2`);
   } else {
     bindingPatternArrRoot = tmpParamBare;
   }
@@ -47,7 +47,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    x = $('fail');
+    x = $(`fail`);
     return x;
   } else {
     x = arrPatternBeforeDefault;
@@ -64,12 +64,12 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  const bindingPatternArrRoot = $('pass2');
+  const bindingPatternArrRoot = $(`pass2`);
   const arrPatternSplat = [...bindingPatternArrRoot];
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpClusterSSA_x = $('fail');
+    const tmpClusterSSA_x = $(`fail`);
     return tmpClusterSSA_x;
   } else {
     return arrPatternBeforeDefault;

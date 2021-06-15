@@ -26,7 +26,7 @@ $(f());
 let f = function () {
   debugger;
   let b = { x: 1 };
-  let a = $(b)?.[$('x')];
+  let a = $(b)?.[$(`x`)];
   $(a);
 };
 $(f());
@@ -43,7 +43,7 @@ let f = function () {
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
-    const tmpChainRootComputed = $('x');
+    const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
   } else {
@@ -65,7 +65,7 @@ const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainRootComputed = $('x');
+  const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
 }

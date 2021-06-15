@@ -17,21 +17,21 @@ $("fop"[1]);
 ## Pre Normal
 
 `````js filename=intro
-$('fop'[1]);
+$(`fop`[1]);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = 'o';
+const tmpCalleeParam = `o`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('o');
+$(`o`);
 `````
 
 ## Globals

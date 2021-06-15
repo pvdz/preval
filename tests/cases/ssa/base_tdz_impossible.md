@@ -48,7 +48,7 @@ $(x);
 
 `````js filename=intro
 if ($) {
-  throw 'Preval: Cannot access `x` before initialization';
+  throw `Preval: Cannot access \`x\` before initialization`;
 } else {
   const x = $(5);
   $(x);

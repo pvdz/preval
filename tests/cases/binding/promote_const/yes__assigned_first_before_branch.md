@@ -28,7 +28,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-$('something');
+$(`something`);
 x = 100;
 if ($(1)) {
   $(x);
@@ -40,7 +40,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-$('something');
+$(`something`);
 x = 100;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
@@ -53,7 +53,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-$('something');
+$(`something`);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(100);

@@ -25,7 +25,7 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   while ($(1)) {
-    (1, 2, b)[$('c')];
+    (1, 2, b)[$(`c`)];
   }
 }
 $(a, b);
@@ -40,7 +40,7 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpCompObj = b;
-    const tmpCompProp = $('c');
+    const tmpCompProp = $(`c`);
     tmpCompObj[tmpCompProp];
   } else {
     break;
@@ -57,7 +57,7 @@ const a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpCompProp = $('c');
+    const tmpCompProp = $(`c`);
     b[tmpCompProp];
   } else {
     break;

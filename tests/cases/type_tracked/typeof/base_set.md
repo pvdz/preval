@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 new Set();
-$('object');
+$(`object`);
 `````
 
 ## Globals

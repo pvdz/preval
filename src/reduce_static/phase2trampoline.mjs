@@ -156,7 +156,7 @@ function _pruneTrampolineFunctions(fdata) {
 
         if (!name) {
           ASSERT(
-            anode.type === 'Literal' || anode.argument?.type === 'Literal',
+            !AST.isComplexNode(anode) || (anode.argument && !AST.isComplexNode(anode.argument)),
             'all args must be simple nodes and werent idents so they are literals, yea?',
           );
           // No need to map literals
@@ -289,8 +289,9 @@ function _pruneTrampolineFunctions(fdata) {
 
           if (!name) {
             ASSERT(
-              anode.type === 'Literal' || anode.argument?.type === 'Literal',
+              AST.isPrimitive(anode) || (anode.argument && AST.isPrimitive(anode.argument)),
               'all args must be simple nodes and werent idents so they are literals, yea?',
+              anode,
             );
             // No need to map literals
             return;

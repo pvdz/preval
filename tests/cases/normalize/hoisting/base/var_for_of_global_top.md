@@ -21,7 +21,7 @@ $(x);
 `````js filename=intro
 let x = undefined;
 $(x);
-for (x of [100]) $(x, 'for');
+for (x of [100]) $(x, `for`);
 $(x);
 `````
 
@@ -32,7 +32,7 @@ let x = undefined;
 $(x);
 const tmpForOfRhs = [100];
 for (x of tmpForOfRhs) {
-  $(x, 'for');
+  $(x, `for`);
 }
 $(x);
 `````
@@ -44,7 +44,7 @@ let x = undefined;
 $(undefined);
 const tmpForOfRhs = [100];
 for (x of tmpForOfRhs) {
-  $(x, 'for');
+  $(x, `for`);
 }
 $(x);
 `````

@@ -17,14 +17,14 @@
 ## Pre Normal
 
 `````js filename=intro
-'' + NaN + '';
+`` + NaN + ``;
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinLhs = 'NaN';
-tmpBinLhs + '';
+const tmpBinLhs = `NaN`;
+tmpBinLhs + ``;
 `````
 
 ## Output

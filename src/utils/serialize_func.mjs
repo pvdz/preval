@@ -79,7 +79,7 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
           0,
           AST.variableDeclaration(
             paramDecl.$p.paramVarDeclRef.name,
-            type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.nul() : AST.literal(paramValue),
+            type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.nul() : type === 'S' ? AST.templateLiteral(paramValue) : AST.literal(paramValue),
             'let',
           ),
         );

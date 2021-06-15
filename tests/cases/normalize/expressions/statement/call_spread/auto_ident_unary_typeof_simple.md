@@ -41,7 +41,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-$(...'number');
+$(...`number`);
 const a = { a: 999, b: 1000 };
 $(a, 1);
 `````

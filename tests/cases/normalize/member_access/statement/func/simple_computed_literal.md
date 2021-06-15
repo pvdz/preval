@@ -22,7 +22,7 @@ $(f());
 let f = function () {
   debugger;
   const obj = { foo: 10 };
-  obj['foo'];
+  obj[`foo`];
 };
 $(f());
 `````

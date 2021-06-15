@@ -30,8 +30,8 @@ let f = function () {
     while (tmpDoWhileFlag || $(true)) {
       tmpDoWhileFlag = false;
       {
-        return $(1, 'return');
-        $('fail');
+        return $(1, `return`);
+        $(`fail`);
       }
     }
   }
@@ -53,7 +53,7 @@ let f = function () {
     }
     if (tmpIfTest) {
       tmpDoWhileFlag = false;
-      const tmpReturnArg = $(1, 'return');
+      const tmpReturnArg = $(1, `return`);
       return tmpReturnArg;
     } else {
       break;
@@ -80,7 +80,7 @@ const f = function () {
     }
     if (tmpIfTest) {
       tmpDoWhileFlag = false;
-      const tmpReturnArg = $(1, 'return');
+      const tmpReturnArg = $(1, `return`);
       return tmpReturnArg;
     } else {
       break;

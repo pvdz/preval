@@ -20,7 +20,7 @@ $(c);
 
 `````js filename=intro
 let c = 1;
-($(1), $(2))[$('toString')];
+($(1), $(2))[$(`toString`)];
 $(c);
 `````
 
@@ -30,7 +30,7 @@ $(c);
 let c = 1;
 $(1);
 const tmpCompObj = $(2);
-const tmpCompProp = $('toString');
+const tmpCompProp = $(`toString`);
 tmpCompObj[tmpCompProp];
 $(c);
 `````
@@ -40,7 +40,7 @@ $(c);
 `````js filename=intro
 $(1);
 const tmpCompObj = $(2);
-const tmpCompProp = $('toString');
+const tmpCompProp = $(`toString`);
 tmpCompObj[tmpCompProp];
 $(1);
 `````

@@ -42,10 +42,10 @@ const g = function ($$0) {
 const tmpCalleeParam = $(10);
 const b = tmpCalleeParam === 10;
 if (b) {
-  $('a', true);
+  $(`a`, true);
   g(true);
 } else {
-  $('b', false);
+  $(`b`, false);
   g(false);
 }
 `````
@@ -64,10 +64,10 @@ const g = function ($$0) {
 const tmpCalleeParam = $(10);
 const b = tmpCalleeParam === 10;
 if (b) {
-  $('a', true);
+  $(`a`, true);
   g(true);
 } else {
-  $('b', false);
+  $(`b`, false);
   g(false);
 }
 `````
@@ -86,10 +86,10 @@ const g = function ($$0) {
 const tmpCalleeParam = $(10);
 const b = tmpCalleeParam === 10;
 if (b) {
-  $('a', true);
+  $(`a`, true);
   g(true);
 } else {
-  $('b', false);
+  $(`b`, false);
   g(false);
 }
 `````

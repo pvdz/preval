@@ -41,7 +41,7 @@ $(a, arg);
 
 `````js filename=intro
 [...false];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

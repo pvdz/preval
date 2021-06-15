@@ -19,9 +19,9 @@ $('bad');
 
 `````js filename=intro
 const {
-  x: [y = 'fail'],
+  x: [y = `fail`],
 } = null;
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -34,18 +34,18 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 let y = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  y = 'fail';
+  y = `fail`;
 } else {
   y = arrPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 null.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

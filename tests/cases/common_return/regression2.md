@@ -51,7 +51,7 @@ const d = function ($$0) {
   let x = $$0;
   debugger;
   if ($) {
-    $('d');
+    $(`d`);
     return x;
   } else {
     return x;
@@ -59,13 +59,13 @@ const d = function ($$0) {
 };
 const c = function () {
   debugger;
-  $('c');
+  $(`c`);
   return d($(10));
 };
 const b = function () {
   debugger;
   if ($) {
-    $('b');
+    $(`b`);
     return c();
   } else {
     return c();
@@ -74,7 +74,7 @@ const b = function () {
 const a = function () {
   debugger;
   if ($) {
-    $('a');
+    $(`a`);
     return b();
   } else {
     return b();
@@ -90,7 +90,7 @@ const d = function ($$0) {
   let x = $$0;
   debugger;
   if ($) {
-    $('d');
+    $(`d`);
     return x;
   } else {
     return x;
@@ -98,7 +98,7 @@ const d = function ($$0) {
 };
 const c = function () {
   debugger;
-  $('c');
+  $(`c`);
   const tmpCallCallee = d;
   const tmpCalleeParam = $(10);
   const tmpReturnArg = tmpCallCallee(tmpCalleeParam);
@@ -107,7 +107,7 @@ const c = function () {
 const b = function () {
   debugger;
   if ($) {
-    $('b');
+    $(`b`);
     const tmpReturnArg$1 = c();
     return tmpReturnArg$1;
   } else {
@@ -118,7 +118,7 @@ const b = function () {
 const a = function () {
   debugger;
   if ($) {
-    $('a');
+    $(`a`);
     const tmpReturnArg$5 = b();
     return tmpReturnArg$5;
   } else {
@@ -136,10 +136,10 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const c = function () {
   debugger;
-  $('c');
+  $(`c`);
   const tmpCalleeParam = $(10);
   if ($) {
-    $('d');
+    $(`d`);
     return tmpCalleeParam;
   } else {
     return tmpCalleeParam;
@@ -148,9 +148,9 @@ const c = function () {
 const a = function () {
   debugger;
   if ($) {
-    $('a');
+    $(`a`);
     if ($) {
-      $('b');
+      $(`b`);
       const tmpReturnArg$1 = c();
       return tmpReturnArg$1;
     } else {

@@ -27,11 +27,11 @@ x();
 `````js filename=intro
 let f = function () {
   debugger;
-  $('f');
+  $(`f`);
 };
 let g = function () {
   debugger;
-  $('f');
+  $(`f`);
 };
 let x = undefined;
 if ($(true)) {
@@ -47,12 +47,12 @@ x();
 `````js filename=intro
 let f = function () {
   debugger;
-  $('f');
+  $(`f`);
   return undefined;
 };
 let g = function () {
   debugger;
-  $('f');
+  $(`f`);
   return undefined;
 };
 let x = undefined;
@@ -70,9 +70,9 @@ x();
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  $('f');
+  $(`f`);
 } else {
-  $('f');
+  $(`f`);
 }
 `````
 

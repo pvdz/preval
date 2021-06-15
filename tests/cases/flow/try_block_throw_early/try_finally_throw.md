@@ -31,13 +31,13 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = 'fail';
+  let x = `fail`;
   try {
     fail_early;
-    x = 'pass';
-    throw 'yes';
+    x = `pass`;
+    throw `yes`;
   } finally {
-    $('still throws');
+    $(`still throws`);
     $(x);
   }
   $(x);
@@ -50,13 +50,13 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = 'fail';
+  let x = `fail`;
   try {
     fail_early;
-    x = 'pass';
-    throw 'yes';
+    x = `pass`;
+    throw `yes`;
   } finally {
-    $('still throws');
+    $(`still throws`);
     $(x);
   }
   $(x);
@@ -68,13 +68,13 @@ f();
 ## Output
 
 `````js filename=intro
-let x = 'fail';
+let x = `fail`;
 try {
   fail_early;
-  x = 'pass';
-  throw 'yes';
+  x = `pass`;
+  throw `yes`;
 } finally {
-  $('still throws');
+  $(`still throws`);
   $(x);
 }
 $(x);

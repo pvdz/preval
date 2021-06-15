@@ -152,7 +152,7 @@ function _inlineConstants(fdata) {
     groupEnd();
     // The read/write data is unreliable from here on out and requires a new phase1 step!
   }
-  if (inlinedSomething || toEliminate.length) {
+  if (promoted || inlinedSomething || toEliminate.length) {
     log('Constants folded:', inlinedSomething, '. Lets promoted to const:', promoted, '. Restarting from phase1 to fix up read/write registry');
     return 'phase1';
   }

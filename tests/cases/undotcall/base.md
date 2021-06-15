@@ -31,7 +31,7 @@ const map = pre.map;
 const f = function ($$0) {
   let item = $$0;
   debugger;
-  $('hello', item);
+  $(`hello`, item);
   return item + 1;
 };
 const arr = $dotCall(map, pre, f);
@@ -46,7 +46,7 @@ const map = pre.map;
 const f = function ($$0) {
   let item = $$0;
   debugger;
-  $('hello', item);
+  $(`hello`, item);
   const tmpReturnArg = item + 1;
   return tmpReturnArg;
 };
@@ -62,7 +62,7 @@ const map = pre.map;
 const f = function ($$0) {
   const item = $$0;
   debugger;
-  $('hello', item);
+  $(`hello`, item);
   const tmpReturnArg = item + 1;
   return tmpReturnArg;
 };

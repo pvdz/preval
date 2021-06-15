@@ -26,13 +26,13 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
-x = $('b');
+x = $(`b`);
 try {
-  $('123');
+  $(`123`);
 } catch {
-  $('fail');
+  $(`fail`);
 }
 $(x);
 `````
@@ -40,13 +40,13 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
-x = $('b');
+x = $(`b`);
 try {
-  $('123');
+  $(`123`);
 } catch {
-  $('fail');
+  $(`fail`);
 }
 $(x);
 `````
@@ -54,13 +54,13 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = $('a');
+const x = $(`a`);
 $(x);
-const tmpClusterSSA_x = $('b');
+const tmpClusterSSA_x = $(`b`);
 try {
-  $('123');
+  $(`123`);
 } catch {
-  $('fail');
+  $(`fail`);
 }
 $(tmpClusterSSA_x);
 `````

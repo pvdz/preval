@@ -37,7 +37,7 @@ f();
 let x = undefined;
 let f = function () {
   debugger;
-  $('something');
+  $(`something`);
   x = 100;
   if (g(1)) {
     $(x);
@@ -47,7 +47,7 @@ let f = function () {
 };
 let g = function () {
   debugger;
-  x = $('oops');
+  x = $(`oops`);
 };
 f();
 `````
@@ -58,7 +58,7 @@ f();
 let x = undefined;
 let f = function () {
   debugger;
-  $('something');
+  $(`something`);
   x = 100;
   const tmpIfTest = g(1);
   if (tmpIfTest) {
@@ -70,7 +70,7 @@ let f = function () {
 };
 let g = function () {
   debugger;
-  x = $('oops');
+  x = $(`oops`);
   return undefined;
 };
 f();
@@ -79,8 +79,8 @@ f();
 ## Output
 
 `````js filename=intro
-$('something');
-const tmpClusterSSA_tmpssa3_x = $('oops');
+$(`something`);
+const tmpClusterSSA_tmpssa3_x = $(`oops`);
 $(tmpClusterSSA_tmpssa3_x);
 `````
 

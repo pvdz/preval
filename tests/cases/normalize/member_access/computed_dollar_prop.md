@@ -19,12 +19,12 @@ a['$']();
 
 `````js filename=intro
 const a = {
-  ['$']() {
+  [`$`]() {
     debugger;
     $(1);
   },
 };
-a['$']();
+a[`$`]();
 `````
 
 ## Normalized

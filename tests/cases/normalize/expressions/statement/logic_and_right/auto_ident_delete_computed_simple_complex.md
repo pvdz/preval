@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-$(100) && delete arg[$('y')];
+$(100) && delete arg[$(`y`)];
 $(a, arg);
 `````
 
@@ -35,7 +35,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpDeleteCompObj = arg;
-  const tmpDeleteCompProp = $('y');
+  const tmpDeleteCompProp = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
 } else {
 }
@@ -49,7 +49,7 @@ const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  const tmpDeleteCompProp = $('y');
+  const tmpDeleteCompProp = $(`y`);
   delete arg[tmpDeleteCompProp];
 } else {
 }

@@ -17,16 +17,16 @@ $(bar + foo)
 ## Pre Normal
 
 `````js filename=intro
-const foo = 'five';
-const bar = 'six';
+const foo = `five`;
+const bar = `six`;
 $(bar + foo);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const foo = 'five';
-const bar = 'six';
+const foo = `five`;
+const bar = `six`;
 const tmpCallCallee = $;
 const tmpCalleeParam = bar + foo;
 tmpCallCallee(tmpCalleeParam);
@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$('sixfive');
+$(`sixfive`);
 `````
 
 ## Globals

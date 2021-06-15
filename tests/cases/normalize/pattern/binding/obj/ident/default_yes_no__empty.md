@@ -18,8 +18,8 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-const { x: x = $('fail') } = 1;
-$('bad');
+const { x: x = $(`fail`) } = 1;
+$(`bad`);
 `````
 
 ## Normalized
@@ -30,11 +30,11 @@ const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $('fail');
+  x = $(`fail`);
 } else {
   x = objPatternBeforeDefault;
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -43,10 +43,10 @@ $('bad');
 const objPatternBeforeDefault = (1).x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  $('fail');
+  $(`fail`);
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

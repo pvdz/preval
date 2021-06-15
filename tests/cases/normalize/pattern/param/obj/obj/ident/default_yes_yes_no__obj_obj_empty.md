@@ -23,7 +23,7 @@ $(f({ x: {}, b: 11, c: 12 }, 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: { y: y = $('pass') } = $({ y: 'fail2' }) } = tmpParamBare;
+  let { x: { y: y = $(`pass`) } = $({ y: `fail2` }) } = tmpParamBare;
   return y;
 };
 $(f({ x: {}, b: 11, c: 12 }, 10));
@@ -41,7 +41,7 @@ let f = function ($$0) {
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = { y: 'fail2' };
+    const tmpCalleeParam = { y: `fail2` };
     objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -50,7 +50,7 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
-    y = $('pass');
+    y = $(`pass`);
     return y;
   } else {
     y = objPatternBeforeDefault$1;
@@ -76,7 +76,7 @@ const f = function ($$0) {
   let objPatternAfterDefault = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpCalleeParam = { y: 'fail2' };
+    const tmpCalleeParam = { y: `fail2` };
     objPatternAfterDefault = $(tmpCalleeParam);
   } else {
     objPatternAfterDefault = objPatternBeforeDefault;
@@ -84,7 +84,7 @@ const f = function ($$0) {
   const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
   const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
-    const tmpClusterSSA_y = $('pass');
+    const tmpClusterSSA_y = $(`pass`);
     return tmpClusterSSA_y;
   } else {
     return objPatternBeforeDefault$1;

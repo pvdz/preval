@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
-$(['before ', ' after'], $({ a: 1, b: 2 }));
+$([`before `, ` after`], $({ a: 1, b: 2 }));
 $(a);
 `````
 
@@ -30,7 +30,7 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = { a: 1, b: 2 };
 const tmpCalleeParam$1 = tmpCallCallee$1(tmpCalleeParam$3);
@@ -41,7 +41,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$3 = { a: 1, b: 2 };
 const tmpCalleeParam$1 = $(tmpCalleeParam$3);
 $(tmpCalleeParam, tmpCalleeParam$1);

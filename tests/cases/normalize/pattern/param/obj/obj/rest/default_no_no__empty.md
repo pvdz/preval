@@ -26,7 +26,7 @@ let f = function ($$0) {
   let {
     x: { ...y },
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
 $(f());
 `````
@@ -44,7 +44,7 @@ let f = function ($$0) {
   const tmpCalleeParam$1 = [];
   const tmpCalleeParam$3 = undefined;
   let y = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-  return 'bad';
+  return `bad`;
 };
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$5 = f();
@@ -55,7 +55,7 @@ tmpCallCallee$1(tmpCalleeParam$5);
 
 `````js filename=intro
 undefined.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

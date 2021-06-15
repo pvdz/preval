@@ -15,14 +15,14 @@ $($('foo').length);
 ## Pre Normal
 
 `````js filename=intro
-$($('foo').length);
+$($(`foo`).length);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCompObj = $('foo');
+const tmpCompObj = $(`foo`);
 const tmpCalleeParam = tmpCompObj.length;
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -30,7 +30,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCompObj = $('foo');
+const tmpCompObj = $(`foo`);
 const tmpCalleeParam = tmpCompObj.length;
 $(tmpCalleeParam);
 `````

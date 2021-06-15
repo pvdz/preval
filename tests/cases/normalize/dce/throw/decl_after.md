@@ -29,9 +29,9 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  if ($(false)) x = $('fail too');
-  throw 'exit';
-  let x = $('fail');
+  if ($(false)) x = $(`fail too`);
+  throw `exit`;
+  let x = $(`fail`);
 };
 $(f());
 `````
@@ -43,11 +43,11 @@ let f = function () {
   debugger;
   const tmpIfTest = $(false);
   if (tmpIfTest) {
-    x = $('fail too');
+    x = $(`fail too`);
   } else {
   }
-  throw 'exit';
-  let x = $('fail');
+  throw `exit`;
+  let x = $(`fail`);
   return undefined;
 };
 const tmpCallCallee = $;
@@ -60,9 +60,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpIfTest = $(false);
 if (tmpIfTest) {
-  throw 'Preval: Cannot access `x` before initialization';
+  throw `Preval: Cannot access \`x\` before initialization`;
 } else {
-  throw 'exit';
+  throw `exit`;
 }
 `````
 

@@ -27,7 +27,7 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ($(b)[$('c')] = $(b)[$('d')])) {
+  while (tmpDoWhileFlag || ($(b)[$(`c`)] = $(b)[$(`d`)])) {
     tmpDoWhileFlag = false;
     {
       $(100);
@@ -48,9 +48,9 @@ while (true) {
   if (tmpIfTest) {
   } else {
     const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $('c');
+    const tmpNestedAssignComMemberProp = $(`c`);
     const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
+    const tmpCompProp = $(`d`);
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
     const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
@@ -77,9 +77,9 @@ while (true) {
   if (tmpDoWhileFlag) {
   } else {
     const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $('c');
+    const tmpNestedAssignComMemberProp = $(`c`);
     const tmpCompObj = $(b);
-    const tmpCompProp = $('d');
+    const tmpCompProp = $(`d`);
     const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
     tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
     tmpIfTest = tmpNestedAssignPropRhs;

@@ -30,15 +30,15 @@ if (x) {
 `````js filename=intro
 let x = $(false);
 if (x) {
-  $(x, 'A');
+  $(x, `A`);
   x = $(true);
 } else {
-  $(x, 'B');
+  $(x, `B`);
   x = $(true);
 }
 if (x) {
 } else {
-  $(x, 'hit');
+  $(x, `hit`);
 }
 `````
 
@@ -47,15 +47,15 @@ if (x) {
 `````js filename=intro
 let x = $(false);
 if (x) {
-  $(x, 'A');
+  $(x, `A`);
   x = $(true);
 } else {
-  $(x, 'B');
+  $(x, `B`);
   x = $(true);
 }
 if (x) {
 } else {
-  $(x, 'hit');
+  $(x, `hit`);
 }
 `````
 
@@ -64,15 +64,15 @@ if (x) {
 `````js filename=intro
 let x = $(false);
 if (x) {
-  $(x, 'A');
+  $(x, `A`);
   x = $(true);
 } else {
-  $(x, 'B');
+  $(x, `B`);
   x = $(true);
 }
 if (x) {
 } else {
-  $(x, 'hit');
+  $(x, `hit`);
 }
 `````
 

@@ -39,7 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 false();
-throw '[Preval]: Call expression with illegal callee must crash before this line ';
+throw `[Preval]: Call expression with illegal callee must crash before this line `;
 `````
 
 ## Globals

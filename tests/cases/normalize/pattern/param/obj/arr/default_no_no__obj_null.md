@@ -26,7 +26,7 @@ let f = function ($$0) {
   let {
     x: [],
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
 $(f({ x: null, a: 11, b: 12 }, 10));
 `````
@@ -40,7 +40,7 @@ let f = function ($$0) {
   let bindingPatternObjRoot = tmpParamBare;
   let objPatternNoDefault = bindingPatternObjRoot.x;
   let arrPatternSplat = [...objPatternNoDefault];
-  return 'bad';
+  return `bad`;
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
@@ -54,7 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 [...null];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

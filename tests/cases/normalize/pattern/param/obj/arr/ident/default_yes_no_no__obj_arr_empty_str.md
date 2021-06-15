@@ -24,11 +24,11 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let {
-    x: [y = 'fail'],
+    x: [y = `fail`],
   } = tmpParamBare;
   return y;
 };
-$(f({ x: [''], a: 11, b: 12 }, 10));
+$(f({ x: [``], a: 11, b: 12 }, 10));
 `````
 
 ## Normalized
@@ -44,7 +44,7 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    y = 'fail';
+    y = `fail`;
     return y;
   } else {
     y = arrPatternBeforeDefault;
@@ -53,7 +53,7 @@ let f = function ($$0) {
 };
 const tmpCallCallee = $;
 const tmpCallCallee$1 = f;
-const tmpObjLitVal = [''];
+const tmpObjLitVal = [``];
 const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
 const tmpCalleeParam$3 = 10;
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
@@ -71,12 +71,12 @@ const f = function ($$0) {
   const arrPatternBeforeDefault = arrPatternSplat[0];
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    return 'fail';
+    return `fail`;
   } else {
     return arrPatternBeforeDefault;
   }
 };
-const tmpObjLitVal = [''];
+const tmpObjLitVal = [``];
 const tmpCalleeParam$1 = { x: tmpObjLitVal, a: 11, b: 12 };
 const tmpCalleeParam = f(tmpCalleeParam$1, 10);
 $(tmpCalleeParam);

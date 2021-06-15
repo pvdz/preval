@@ -17,19 +17,19 @@ $(`foo`);
 ## Pre Normal
 
 `````js filename=intro
-$('foo');
+$(`foo`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-$('foo');
+$(`foo`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('foo');
+$(`foo`);
 `````
 
 ## Globals

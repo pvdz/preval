@@ -18,22 +18,22 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = '' + NaN + '';
+let x = `` + NaN + ``;
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinLhs = 'NaN';
-let x = tmpBinLhs + '';
+const tmpBinLhs = `NaN`;
+let x = tmpBinLhs + ``;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-$('NaN');
+$(`NaN`);
 `````
 
 ## Globals

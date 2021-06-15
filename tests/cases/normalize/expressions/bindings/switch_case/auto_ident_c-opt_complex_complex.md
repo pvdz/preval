@@ -33,7 +33,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       b = { x: 1 };
-      a = $(b)?.[$('x')];
+      a = $(b)?.[$(`x`)];
       $(a);
     }
   }
@@ -60,7 +60,7 @@ if (tmpIfTest$1) {
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest$3 = tmpChainElementCall != null;
   if (tmpIfTest$3) {
-    const tmpChainRootComputed = $('x');
+    const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
   } else {
@@ -79,7 +79,7 @@ const tmpChainElementCall = $(tmpClusterSSA_b);
 const tmpIfTest$3 = tmpChainElementCall == null;
 if (tmpIfTest$3) {
 } else {
-  const tmpChainRootComputed = $('x');
+  const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   tmpClusterSSA_a = tmpChainElementObject;
 }

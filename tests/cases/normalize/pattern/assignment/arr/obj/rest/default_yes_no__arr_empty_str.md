@@ -18,21 +18,21 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-[{ ...x } = $({ a: 'fail' })] = ['', 20, 30];
+[{ ...x } = $({ a: `fail` })] = [``, 20, 30];
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const arrAssignPatternRhs = ['', 20, 30];
+const arrAssignPatternRhs = [``, 20, 30];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 'fail' };
+  const tmpCalleeParam = { a: `fail` };
   arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
@@ -49,7 +49,7 @@ $(x);
 
 `````js filename=intro
 const tmpCalleeParam$3 = [];
-x = objPatternRest('', tmpCalleeParam$3, undefined);
+x = objPatternRest(``, tmpCalleeParam$3, undefined);
 $(x);
 `````
 

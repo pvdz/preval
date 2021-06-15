@@ -23,7 +23,7 @@ $(f(undefined, 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [[x = $('fail')] = $(['fail2'])] = tmpParamBare === undefined ? $(['pass3']) : tmpParamBare;
+  let [[x = $(`fail`)] = $([`fail2`])] = tmpParamBare === undefined ? $([`pass3`]) : tmpParamBare;
   return x;
 };
 $(f(undefined, 200));
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = ['pass3'];
+    const tmpCalleeParam = [`pass3`];
     bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
     bindingPatternArrRoot = tmpParamBare;
@@ -50,7 +50,7 @@ let f = function ($$0) {
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
     const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = ['fail2'];
+    const tmpCalleeParam$1 = [`fail2`];
     arrPatternStep = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
@@ -60,7 +60,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest$3 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$3) {
-    x = $('fail');
+    x = $(`fail`);
     return x;
   } else {
     x = arrPatternBeforeDefault$1;
@@ -77,14 +77,14 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpCalleeParam = ['pass3'];
+  const tmpCalleeParam = [`pass3`];
   const bindingPatternArrRoot = $(tmpCalleeParam);
   const arrPatternSplat = [...bindingPatternArrRoot];
   const arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
-    const tmpCalleeParam$1 = ['fail2'];
+    const tmpCalleeParam$1 = [`fail2`];
     arrPatternStep = $(tmpCalleeParam$1);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
@@ -93,7 +93,7 @@ const f = function () {
   const arrPatternBeforeDefault$1 = arrPatternSplat$1[0];
   const tmpIfTest$3 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$3) {
-    const tmpClusterSSA_x = $('fail');
+    const tmpClusterSSA_x = $(`fail`);
     return tmpClusterSSA_x;
   } else {
     return arrPatternBeforeDefault$1;

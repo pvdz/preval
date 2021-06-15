@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-$('before  ' + (a = (1, 2, b).c = 2) + '  after');
+$(`before  ` + (a = (1, 2, b).c = 2) + `  after`);
 $(a, b);
 `````
 
@@ -33,14 +33,14 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpBinBothLhs = 'before  ';
+const tmpBinBothLhs = `before  `;
 const tmpNestedAssignObj = b;
 const tmpNestedPropAssignRhs = 2;
 tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
 let tmpBinBothRhs = a;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + '  after';
+const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
 `````
@@ -50,7 +50,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 b.c = 2;
-$('before  2  after');
+$(`before  2  after`);
 $(2, b);
 `````
 

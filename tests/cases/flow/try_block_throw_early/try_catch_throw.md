@@ -30,13 +30,13 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = 'fail';
+  let x = `fail`;
   try {
     fail_early;
-    x = 'pass';
-    throw 'yes';
+    x = `pass`;
+    throw `yes`;
   } catch {
-    $('caught');
+    $(`caught`);
   }
   $(x);
 };
@@ -48,13 +48,13 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = 'fail';
+  let x = `fail`;
   try {
     fail_early;
-    x = 'pass';
-    throw 'yes';
+    x = `pass`;
+    throw `yes`;
   } catch {
-    $('caught');
+    $(`caught`);
   }
   $(x);
   return undefined;
@@ -65,13 +65,13 @@ f();
 ## Output
 
 `````js filename=intro
-let x = 'fail';
+let x = `fail`;
 try {
   fail_early;
-  x = 'pass';
-  throw 'yes';
+  x = `pass`;
+  throw `yes`;
 } catch {
-  $('caught');
+  $(`caught`);
 }
 $(x);
 `````

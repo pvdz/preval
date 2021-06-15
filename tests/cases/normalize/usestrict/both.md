@@ -22,10 +22,10 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  ('use strict');
+  `use strict`;
   return $();
 };
-('use strict');
+`use strict`;
 $(f());
 `````
 

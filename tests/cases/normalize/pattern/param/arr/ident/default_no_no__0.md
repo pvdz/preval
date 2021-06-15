@@ -24,7 +24,7 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let [x] = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
 $(f(0, 200));
 `````
@@ -38,7 +38,7 @@ let f = function ($$0) {
   let bindingPatternArrRoot = tmpParamBare;
   let arrPatternSplat = [...bindingPatternArrRoot];
   let x = arrPatternSplat[0];
-  return 'bad';
+  return `bad`;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f(0, 200);
@@ -49,7 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 [...0];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

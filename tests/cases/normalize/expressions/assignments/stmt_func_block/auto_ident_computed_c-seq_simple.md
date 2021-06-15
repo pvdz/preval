@@ -31,7 +31,7 @@ let f = function () {
   {
     let b = { c: 1 };
     let a = { a: 999, b: 1000 };
-    a = (1, 2, $(b))[$('c')];
+    a = (1, 2, $(b))[$(`c`)];
     $(a, b);
   }
 };
@@ -46,7 +46,7 @@ let f = function () {
   let b = { c: 1 };
   let a = { a: 999, b: 1000 };
   const tmpAssignRhsCompObj = $(b);
-  const tmpAssignRhsCompProp = $('c');
+  const tmpAssignRhsCompProp = $(`c`);
   a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
   $(a, b);
   return undefined;
@@ -61,7 +61,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
-const tmpAssignRhsCompProp = $('c');
+const tmpAssignRhsCompProp = $(`c`);
 const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(tmpClusterSSA_a, b);
 $(undefined);

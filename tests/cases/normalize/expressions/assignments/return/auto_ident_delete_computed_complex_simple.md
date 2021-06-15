@@ -26,7 +26,7 @@ $(a, arg);
 `````js filename=intro
 let f = function () {
   debugger;
-  return (a = delete $(arg)['y']);
+  return (a = delete $(arg)[`y`]);
 };
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };

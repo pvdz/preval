@@ -31,7 +31,7 @@ let f = function () {
   {
     let b = { $: $ };
     let a = { a: 999, b: 1000 };
-    new (1, 2, $(b))[$('$')](1);
+    new (1, 2, $(b))[$(`$`)](1);
     $(a);
   }
 };
@@ -46,7 +46,7 @@ let f = function () {
   let b = { $: $ };
   let a = { a: 999, b: 1000 };
   const tmpCompObj = $(b);
-  const tmpCompProp = $('$');
+  const tmpCompProp = $(`$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
   new tmpNewCallee(1);
   $(a);
@@ -63,7 +63,7 @@ tmpCallCallee(tmpCalleeParam);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('$');
+const tmpCompProp = $(`$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 new tmpNewCallee(1);
 $(a);

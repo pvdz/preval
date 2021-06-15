@@ -23,10 +23,10 @@ $(f('', 10));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let { x: x = $('pass') } = tmpParamBare;
+  let { x: x = $(`pass`) } = tmpParamBare;
   return x;
 };
-$(f('', 10));
+$(f(``, 10));
 `````
 
 ## Normalized
@@ -40,7 +40,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    x = $('pass');
+    x = $(`pass`);
     return x;
   } else {
     x = objPatternBeforeDefault;
@@ -48,7 +48,7 @@ let f = function ($$0) {
   }
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('', 10);
+const tmpCalleeParam = f(``, 10);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -57,10 +57,10 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  const objPatternBeforeDefault = ''.x;
+  const objPatternBeforeDefault = ``.x;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $('pass');
+    const tmpClusterSSA_x = $(`pass`);
     return tmpClusterSSA_x;
   } else {
     return objPatternBeforeDefault;

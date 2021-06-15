@@ -34,7 +34,7 @@ let f = function () {
   foo: {
     try {
       fail_early;
-      throw 'not me';
+      throw `not me`;
     } finally {
       return;
     }
@@ -52,7 +52,7 @@ let f = function () {
   debugger;
   try {
     fail_early;
-    throw 'not me';
+    throw `not me`;
   } finally {
     return undefined;
   }
@@ -70,7 +70,7 @@ const f = function () {
   debugger;
   try {
     fail_early;
-    throw 'not me';
+    throw `not me`;
   } finally {
     return undefined;
   }

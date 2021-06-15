@@ -31,7 +31,7 @@ const [
     },
   },
 ] = [{ x: { x: 13, y: [1, 2, 3], z: 31 }, y: 11 }, 10];
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -47,13 +47,13 @@ const arrPatternStep = arrPatternSplat[0];
 const objPatternNoDefault = arrPatternStep.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const arrPatternSplat$1 = [...objPatternNoDefault$1];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

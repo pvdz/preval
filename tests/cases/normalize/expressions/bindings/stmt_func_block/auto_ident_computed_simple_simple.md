@@ -29,7 +29,7 @@ let f = function () {
   debugger;
   {
     let b = { c: 1 };
-    let a = b['c'];
+    let a = b[`c`];
     $(a, b);
   }
 };

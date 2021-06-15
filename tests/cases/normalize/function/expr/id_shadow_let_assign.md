@@ -58,8 +58,8 @@ tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-$('number');
-$(30, 'function');
+$(`number`);
+$(30, `function`);
 `````
 
 ## Globals

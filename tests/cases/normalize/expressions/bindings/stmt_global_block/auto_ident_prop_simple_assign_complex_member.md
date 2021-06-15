@@ -24,7 +24,7 @@
 `````js filename=intro
 {
   let b = { c: 10, d: 20 };
-  let a = (b.c = $(b)[$('d')]);
+  let a = (b.c = $(b)[$(`d`)]);
   $(a, b);
 }
 `````
@@ -34,7 +34,7 @@
 `````js filename=intro
 let b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
 let a = varInitAssignLhsComputedRhs;
@@ -46,7 +46,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs, b);

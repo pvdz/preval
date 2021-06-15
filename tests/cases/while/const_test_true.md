@@ -23,9 +23,9 @@ $('after');
 `````js filename=intro
 const x = $(true);
 while (x) {
-  $('body');
+  $(`body`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -33,9 +33,9 @@ $('after');
 `````js filename=intro
 const x = $(true);
 while (x) {
-  $('body');
+  $(`body`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -44,11 +44,11 @@ $('after');
 const x = $(true);
 if (x) {
   while (true) {
-    $('body');
+    $(`body`);
   }
 } else {
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

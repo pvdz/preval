@@ -33,7 +33,7 @@ let f = function () {
     $(++n);
     if (n < 4) break;
   }
-  $('afterwards');
+  $(`afterwards`);
   return 100;
 };
 $(f());
@@ -56,7 +56,7 @@ let f = function () {
     } else {
     }
   }
-  $('afterwards');
+  $(`afterwards`);
   return 100;
 };
 const tmpCallCallee$1 = $;
@@ -77,7 +77,7 @@ while (true) {
   } else {
   }
 }
-$('afterwards');
+$(`afterwards`);
 $(100);
 `````
 

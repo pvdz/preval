@@ -24,10 +24,10 @@ if ($) {
 ## Pre Normal
 
 `````js filename=intro
-const a = +$('1');
+const a = +$(`1`);
 const x = a * 2;
 if ($) {
-  $('foo');
+  $(`foo`);
   $(x);
 } else {
   $(x);
@@ -37,11 +37,11 @@ if ($) {
 ## Normalized
 
 `````js filename=intro
-const tmpUnaryArg = $('1');
+const tmpUnaryArg = $(`1`);
 const a = +tmpUnaryArg;
 const x = a * 2;
 if ($) {
-  $('foo');
+  $(`foo`);
   $(x);
 } else {
   $(x);
@@ -51,11 +51,11 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const tmpUnaryArg = $('1');
+const tmpUnaryArg = $(`1`);
 const a = +tmpUnaryArg;
 const x = a * 2;
 if ($) {
-  $('foo');
+  $(`foo`);
   $(x);
 } else {
   $(x);

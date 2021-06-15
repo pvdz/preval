@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { x: { y: 1 } };
 let a = { a: 999, b: 1000 };
-while ((a = $(b)?.[$('x')]?.[$('y')])) $(100);
+while ((a = $(b)?.[$(`x`)]?.[$(`y`)])) $(100);
 $(a);
 `````
 
@@ -39,11 +39,11 @@ while (true) {
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest$1 = tmpChainElementCall != null;
   if (tmpIfTest$1) {
-    const tmpChainRootComputed = $('x');
+    const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$3 = tmpChainElementObject != null;
     if (tmpIfTest$3) {
-      const tmpChainRootComputed$1 = $('y');
+      const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       a = tmpChainElementObject$1;
     } else {
@@ -73,13 +73,13 @@ while (true) {
   if (tmpIfTest$1) {
     $(100);
   } else {
-    const tmpChainRootComputed = $('x');
+    const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$3 = tmpChainElementObject == null;
     if (tmpIfTest$3) {
       $(100);
     } else {
-      const tmpChainRootComputed$1 = $('y');
+      const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       a = tmpChainElementObject$1;
       if (a) {

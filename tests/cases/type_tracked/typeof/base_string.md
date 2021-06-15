@@ -18,14 +18,14 @@ $(typeof x);
 ## Pre Normal
 
 `````js filename=intro
-const x = '' + $(2);
+const x = `` + $(2);
 $(typeof x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinBothLhs = '';
+const tmpBinBothLhs = ``;
 const tmpBinBothRhs = $(2);
 const x = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCallCallee = $;
@@ -37,8 +37,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpBinBothRhs = $(2);
-'' + tmpBinBothRhs;
-$('string');
+`` + tmpBinBothRhs;
+$(`string`);
 `````
 
 ## Globals

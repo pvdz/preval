@@ -18,20 +18,20 @@ $(y);
 ## Pre Normal
 
 `````js filename=intro
-const { x: { ...y } = $({ a: 'fail' }) } = { x: 'abc', b: 11, c: 12 };
+const { x: { ...y } = $({ a: `fail` }) } = { x: `abc`, b: 11, c: 12 };
 $(y);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const bindingPatternObjRoot = { x: 'abc', b: 11, c: 12 };
+const bindingPatternObjRoot = { x: `abc`, b: 11, c: 12 };
 const objPatternBeforeDefault = bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 'fail' };
+  const tmpCalleeParam = { a: `fail` };
   objPatternAfterDefault = tmpCallCallee(tmpCalleeParam);
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
@@ -48,7 +48,7 @@ $(y);
 
 `````js filename=intro
 const tmpCalleeParam$3 = [];
-const y = objPatternRest('abc', tmpCalleeParam$3, undefined);
+const y = objPatternRest(`abc`, tmpCalleeParam$3, undefined);
 $(y);
 `````
 

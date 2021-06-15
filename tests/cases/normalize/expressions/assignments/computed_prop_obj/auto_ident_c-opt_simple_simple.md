@@ -25,7 +25,7 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let obj = {};
-(a = b?.['x'])['a'];
+(a = b?.[`x`])[`a`];
 $(a);
 `````
 
@@ -39,7 +39,7 @@ a = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = 'x';
+  const tmpChainRootComputed = `x`;
   const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   a = tmpChainElementObject;
 } else {

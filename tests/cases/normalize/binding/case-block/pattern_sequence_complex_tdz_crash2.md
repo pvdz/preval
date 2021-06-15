@@ -35,7 +35,7 @@ switch (1) { default: let x = x; $('fail'); }
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       x = x;
-      $('fail');
+      $(`fail`);
     }
   }
 }
@@ -49,7 +49,7 @@ const tmpSwitchValue = 1;
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
-  $('fail');
+  $(`fail`);
 } else {
 }
 `````
@@ -57,7 +57,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-$('fail');
+$(`fail`);
 `````
 
 ## Globals

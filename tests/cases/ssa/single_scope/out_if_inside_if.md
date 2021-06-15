@@ -26,11 +26,11 @@ if (dedupeMe) {
 `````js filename=intro
 let dedupeMe = !tmpUnaryArg$83;
 if (dedupeMe) {
-  $(true, 'abc');
+  $(true, `abc`);
 } else {
   const c = props$15.children;
   dedupeMe = c == null;
-  $(dedupeMe, 'xyz');
+  $(dedupeMe, `xyz`);
 }
 `````
 
@@ -39,11 +39,11 @@ if (dedupeMe) {
 `````js filename=intro
 let dedupeMe = !tmpUnaryArg$83;
 if (dedupeMe) {
-  $(true, 'abc');
+  $(true, `abc`);
 } else {
   const c = props$15.children;
   dedupeMe = c == null;
-  $(dedupeMe, 'xyz');
+  $(dedupeMe, `xyz`);
 }
 `````
 
@@ -54,9 +54,9 @@ tmpUnaryArg$83;
 if (tmpUnaryArg$83) {
   const c = props$15.children;
   const tmpClusterSSA_dedupeMe = c == null;
-  $(tmpClusterSSA_dedupeMe, 'xyz');
+  $(tmpClusterSSA_dedupeMe, `xyz`);
 } else {
-  $(true, 'abc');
+  $(true, `abc`);
 }
 `````
 

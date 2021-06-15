@@ -23,10 +23,10 @@ $(f('abc', 200));
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [[x = $('fail')] = $(['fail2'])] = tmpParamBare;
+  let [[x = $(`fail`)] = $([`fail2`])] = tmpParamBare;
   return x;
 };
-$(f('abc', 200));
+$(f(`abc`, 200));
 `````
 
 ## Normalized
@@ -42,7 +42,7 @@ let f = function ($$0) {
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = ['fail2'];
+    const tmpCalleeParam = [`fail2`];
     arrPatternStep = tmpCallCallee(tmpCalleeParam);
   } else {
     arrPatternStep = arrPatternBeforeDefault;
@@ -52,7 +52,7 @@ let f = function ($$0) {
   let x = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$1) {
-    x = $('fail');
+    x = $(`fail`);
     return x;
   } else {
     x = arrPatternBeforeDefault$1;
@@ -60,14 +60,14 @@ let f = function ($$0) {
   }
 };
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = f('abc', 200);
+const tmpCalleeParam$1 = f(`abc`, 200);
 tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
-$('a');
+$(`a`);
 `````
 
 ## Globals

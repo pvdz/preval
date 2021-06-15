@@ -30,7 +30,7 @@ try { $(f()); } catch {}
 `````js filename=intro
 let f = function () {
   debugger;
-  throw 'Some error';
+  throw `Some error`;
 };
 try {
   f();
@@ -54,7 +54,7 @@ try {
 `````js filename=intro
 let f = function () {
   debugger;
-  throw 'Some error';
+  throw `Some error`;
 };
 try {
   f();
@@ -79,19 +79,19 @@ try {
 
 `````js filename=intro
 try {
-  throw 'Some error';
+  throw `Some error`;
 } catch {}
 try {
-  throw 'Some error';
+  throw `Some error`;
 } catch {}
 try {
-  throw 'Some error';
+  throw `Some error`;
 } catch {}
 try {
-  throw 'Some error';
+  throw `Some error`;
 } catch {}
 try {
-  throw 'Some error';
+  throw `Some error`;
 } catch {}
 `````
 

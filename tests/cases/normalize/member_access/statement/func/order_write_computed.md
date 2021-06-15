@@ -38,7 +38,7 @@ let f = function () {
       $(20);
     },
   };
-  $(obj)[$('x')] = 30;
+  $(obj)[$(`x`)] = 30;
 };
 $(f());
 `````
@@ -62,7 +62,7 @@ let f = function () {
     },
   };
   const tmpAssignComMemLhsObj = $(obj);
-  const tmpAssignComMemLhsProp = $('x');
+  const tmpAssignComMemLhsProp = $(`x`);
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
   return undefined;
 };
@@ -87,7 +87,7 @@ const obj = {
   },
 };
 const tmpAssignComMemLhsObj = $(obj);
-const tmpAssignComMemLhsProp = $('x');
+const tmpAssignComMemLhsProp = $(`x`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 30;
 $(undefined);
 `````

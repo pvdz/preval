@@ -24,9 +24,9 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let {
-    x: { y: y = $('fail') },
+    x: { y: y = $(`fail`) },
   } = tmpParamBare;
-  return 'bad';
+  return `bad`;
 };
 $(f(null, 10));
 `````
@@ -43,11 +43,11 @@ let f = function ($$0) {
   let y = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    y = $('fail');
-    return 'bad';
+    y = $(`fail`);
+    return `bad`;
   } else {
     y = objPatternBeforeDefault;
-    return 'bad';
+    return `bad`;
   }
 };
 const tmpCallCallee = $;
@@ -59,7 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 null.x;
-throw '[Preval]: Can not reach here';
+throw `[Preval]: Can not reach here`;
 `````
 
 ## Globals

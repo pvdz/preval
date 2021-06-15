@@ -61,7 +61,7 @@ $(a, x);
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 'number' === tmpSwitchValue;
+const tmpIfTest = `number` === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

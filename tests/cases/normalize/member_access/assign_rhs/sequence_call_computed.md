@@ -21,7 +21,7 @@ $(c);
 
 `````js filename=intro
 let x = 10;
-x = ($(1), $(2))[$('toString')];
+x = ($(1), $(2))[$(`toString`)];
 $(x);
 $(c);
 `````
@@ -32,7 +32,7 @@ $(c);
 let x = 10;
 $(1);
 const tmpAssignRhsCompObj = $(2);
-const tmpAssignRhsCompProp = $('toString');
+const tmpAssignRhsCompProp = $(`toString`);
 x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(x);
 $(c);
@@ -43,7 +43,7 @@ $(c);
 `````js filename=intro
 $(1);
 const tmpAssignRhsCompObj = $(2);
-const tmpAssignRhsCompProp = $('toString');
+const tmpAssignRhsCompProp = $(`toString`);
 const x = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 $(x);
 $(c);

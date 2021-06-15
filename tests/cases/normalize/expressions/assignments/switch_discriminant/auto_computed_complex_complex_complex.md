@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
     }
   }
 }
-$(a)[$('b')] = $(2);
+$(a)[$(`b`)] = $(2);
 $(a);
 `````
 
@@ -51,7 +51,7 @@ if (tmpIfTest) {
 } else {
 }
 const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(2);
@@ -66,7 +66,7 @@ const tmpObjLitVal = $(1);
 $(100);
 const a = { b: tmpObjLitVal };
 const tmpAssignComMemLhsObj = $(a);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);

@@ -19,25 +19,25 @@ $('after');
 ## Pre Normal
 
 `````js filename=intro
-$('before');
-'maybe'();
-$('after');
+$(`before`);
+`maybe`();
+$(`after`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-$('before');
-'maybe'();
-throw '[Preval]: Call expression with illegal callee must crash before this line ';
+$(`before`);
+`maybe`();
+throw `[Preval]: Call expression with illegal callee must crash before this line `;
 `````
 
 ## Output
 
 `````js filename=intro
-$('before');
-'maybe'();
-throw '[Preval]: Call expression with illegal callee must crash before this line ';
+$(`before`);
+`maybe`();
+throw `[Preval]: Call expression with illegal callee must crash before this line `;
 `````
 
 ## Globals

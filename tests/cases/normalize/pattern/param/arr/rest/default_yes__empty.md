@@ -23,7 +23,7 @@ $(f());
 let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let [...x] = tmpParamBare === undefined ? $(['pass']) : tmpParamBare;
+  let [...x] = tmpParamBare === undefined ? $([`pass`]) : tmpParamBare;
   return x;
 };
 $(f());
@@ -39,7 +39,7 @@ let f = function ($$0) {
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     const tmpCallCallee = $;
-    const tmpCalleeParam = ['pass'];
+    const tmpCalleeParam = [`pass`];
     bindingPatternArrRoot = tmpCallCallee(tmpCalleeParam);
   } else {
     bindingPatternArrRoot = tmpParamBare;
@@ -56,7 +56,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ['pass'];
+const tmpCalleeParam = [`pass`];
 const bindingPatternArrRoot = $(tmpCalleeParam);
 const arrPatternSplat = [...bindingPatternArrRoot];
 const x = arrPatternSplat.slice(0);

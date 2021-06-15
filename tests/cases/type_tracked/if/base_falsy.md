@@ -30,12 +30,12 @@ if (x) {
 `````js filename=intro
 const x = 1 * $(1);
 if (x) {
-  $(x, 'fail1');
+  $(x, `fail1`);
 } else {
   if (x) {
-    $(x, 'fail2');
+    $(x, `fail2`);
   } else {
-    $(x, 'pass');
+    $(x, `pass`);
   }
 }
 `````
@@ -47,9 +47,9 @@ const tmpBinBothLhs = 1;
 const tmpBinBothRhs = $(1);
 const x = tmpBinBothLhs * tmpBinBothRhs;
 if (x) {
-  $(x, 'fail1');
+  $(x, `fail1`);
 } else {
-  $(x, 'pass');
+  $(x, `pass`);
 }
 `````
 
@@ -59,9 +59,9 @@ if (x) {
 const tmpBinBothRhs = $(1);
 const x = 1 * tmpBinBothRhs;
 if (x) {
-  $(x, 'fail1');
+  $(x, `fail1`);
 } else {
-  $(x, 'pass');
+  $(x, `pass`);
 }
 `````
 

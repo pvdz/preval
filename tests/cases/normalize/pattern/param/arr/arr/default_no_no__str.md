@@ -24,9 +24,9 @@ let f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
   let [[]] = tmpParamBare;
-  return 'ok';
+  return `ok`;
 };
-$(f('abc', 200));
+$(f(`abc`, 200));
 `````
 
 ## Normalized
@@ -39,17 +39,17 @@ let f = function ($$0) {
   let arrPatternSplat = [...bindingPatternArrRoot];
   let arrPatternStep = arrPatternSplat[0];
   let arrPatternSplat$1 = [...arrPatternStep];
-  return 'ok';
+  return `ok`;
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('abc', 200);
+const tmpCalleeParam = f(`abc`, 200);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

@@ -38,9 +38,9 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const a = 'number';
+const a = `number`;
 export { a };
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-$(['before ', ' after'], ({ b: b } = $({ b: $(2) })));
+$([`before `, ` after`], ({ b: b } = $({ b: $(2) })));
 $(a, b);
 `````
 
@@ -33,7 +33,7 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 let tmpCalleeParam$1 = undefined;
 const tmpCallCallee$1 = $;
 const tmpObjLitVal = $(2);
@@ -49,7 +49,7 @@ $(a, b);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpObjLitVal = $(2);
 const tmpCalleeParam$3 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);

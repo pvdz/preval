@@ -48,9 +48,9 @@ let alwaysFalse = false;
 const f = function () {
   debugger;
   if (alwaysFalse) {
-    $('a');
+    $(`a`);
   } else {
-    $('b');
+    $(`b`);
   }
 };
 if (alwaysFalse) {
@@ -68,10 +68,10 @@ let alwaysFalse = false;
 const f = function () {
   debugger;
   if (alwaysFalse) {
-    $('a');
+    $(`a`);
     return undefined;
   } else {
-    $('b');
+    $(`b`);
     return undefined;
   }
 };
@@ -86,7 +86,7 @@ if (alwaysFalse) {
 ## Output
 
 `````js filename=intro
-$('b');
+$(`b`);
 `````
 
 ## Globals

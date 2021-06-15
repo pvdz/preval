@@ -51,11 +51,7 @@ if ($) $(g());
 `````js filename=intro
 let f = function () {
   debugger;
-  if ($) {
-    return -Infinity;
-  } else {
-    return -Infinity;
-  }
+  return -Infinity;
 };
 let g = function () {
   debugger;

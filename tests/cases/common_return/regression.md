@@ -60,9 +60,9 @@ const g = function ($$0) {
   let x = $$0;
   debugger;
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
     return x;
   } else {
     return x;
@@ -71,9 +71,9 @@ const g = function ($$0) {
 const f = function () {
   debugger;
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
     return k();
   } else {
     return k();
@@ -82,9 +82,9 @@ const f = function () {
 const h = function () {
   debugger;
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
     return f();
   } else {
     return f();
@@ -107,9 +107,9 @@ const g = function ($$0) {
   let x = $$0;
   debugger;
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
     return x;
   } else {
     return x;
@@ -118,9 +118,9 @@ const g = function ($$0) {
 const f = function () {
   debugger;
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
     const tmpReturnArg$1 = k();
     return tmpReturnArg$1;
   } else {
@@ -131,9 +131,9 @@ const f = function () {
 const h = function () {
   debugger;
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
     const tmpReturnArg$5 = f();
     return tmpReturnArg$5;
   } else {
@@ -153,9 +153,9 @@ const k = function () {
   debugger;
   const tmpCalleeParam = $(10);
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
     return tmpCalleeParam;
   } else {
     return tmpCalleeParam;
@@ -164,13 +164,13 @@ const k = function () {
 const h = function () {
   debugger;
   if ($) {
-    $('prevent');
-    $('simple');
-    $('inlining');
+    $(`prevent`);
+    $(`simple`);
+    $(`inlining`);
     if ($) {
-      $('prevent');
-      $('simple');
-      $('inlining');
+      $(`prevent`);
+      $(`simple`);
+      $(`inlining`);
       const tmpReturnArg$1 = k();
       return tmpReturnArg$1;
     } else {

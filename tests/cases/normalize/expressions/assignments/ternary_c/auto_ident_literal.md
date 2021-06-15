@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$($(0) ? $(100) : (a = 'foo'));
+$($(0) ? $(100) : (a = `foo`));
 $(a);
 `````
 
@@ -34,8 +34,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  a = 'foo';
-  tmpCalleeParam = 'foo';
+  a = `foo`;
+  tmpCalleeParam = `foo`;
 }
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -50,8 +50,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  a = 'foo';
-  tmpCalleeParam = 'foo';
+  a = `foo`;
+  tmpCalleeParam = `foo`;
 }
 $(tmpCalleeParam);
 $(a);

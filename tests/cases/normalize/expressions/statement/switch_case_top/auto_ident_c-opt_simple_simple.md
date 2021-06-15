@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      b?.['x'];
+      b?.[`x`];
     }
   }
 }
@@ -58,7 +58,7 @@ if (tmpIfTest$1) {
   const tmpChainRootProp = b;
   const tmpIfTest$3 = tmpChainRootProp != null;
   if (tmpIfTest$3) {
-    const tmpChainRootComputed = 'x';
+    const tmpChainRootComputed = `x`;
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
   } else {
   }

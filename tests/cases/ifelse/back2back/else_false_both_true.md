@@ -27,48 +27,48 @@ if (x) {
 ## Pre Normal
 
 `````js filename=intro
-let x = $(false, 'a');
+let x = $(false, `a`);
 if (x) {
 } else {
-  $(x, 'pass');
-  x = $(true, 'b');
+  $(x, `pass`);
+  x = $(true, `b`);
 }
 if (x) {
-  $(x, 'one');
+  $(x, `one`);
 } else {
-  $(x, 'two');
+  $(x, `two`);
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let x = $(false, 'a');
+let x = $(false, `a`);
 if (x) {
 } else {
-  $(x, 'pass');
-  x = $(true, 'b');
+  $(x, `pass`);
+  x = $(true, `b`);
 }
 if (x) {
-  $(x, 'one');
+  $(x, `one`);
 } else {
-  $(x, 'two');
+  $(x, `two`);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let x = $(false, 'a');
+let x = $(false, `a`);
 if (x) {
 } else {
-  $(x, 'pass');
-  x = $(true, 'b');
+  $(x, `pass`);
+  x = $(true, `b`);
 }
 if (x) {
-  $(x, 'one');
+  $(x, `one`);
 } else {
-  $(x, 'two');
+  $(x, `two`);
 }
 `````
 

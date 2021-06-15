@@ -27,7 +27,7 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = b?.['x'])) {
+  while (tmpDoWhileFlag || (a = b?.[`x`])) {
     tmpDoWhileFlag = false;
     {
       $(100);
@@ -51,7 +51,7 @@ while (true) {
     const tmpChainRootProp = b;
     const tmpIfTest$1 = tmpChainRootProp != null;
     if (tmpIfTest$1) {
-      const tmpChainRootComputed = 'x';
+      const tmpChainRootComputed = `x`;
       const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
       tmpNestedComplexRhs = tmpChainElementObject;
     } else {

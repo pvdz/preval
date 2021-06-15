@@ -27,10 +27,10 @@ $(f());
 let f = function () {
   debugger;
   {
-    throw $(1, 'throw');
-    $('fail');
+    throw $(1, `throw`);
+    $(`fail`);
   }
-  $('fail');
+  $(`fail`);
 };
 $(f());
 `````
@@ -40,7 +40,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpThrowArg = $(1, 'throw');
+  const tmpThrowArg = $(1, `throw`);
   throw tmpThrowArg;
 };
 const tmpCallCallee = $;
@@ -51,7 +51,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpThrowArg = $(1, 'throw');
+const tmpThrowArg = $(1, `throw`);
 throw tmpThrowArg;
 `````
 

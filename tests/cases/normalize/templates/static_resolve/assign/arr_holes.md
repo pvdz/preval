@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = '' + [1, , 3] + '';
+x = `` + [1, , 3] + ``;
 $(x);
 `````
 
@@ -28,10 +28,10 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpBinBothLhs = '';
+const tmpBinBothLhs = ``;
 const tmpBinBothRhs = [1, , 3];
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-x = tmpBinLhs + '';
+x = tmpBinLhs + ``;
 $(x);
 `````
 
@@ -39,7 +39,7 @@ $(x);
 
 `````js filename=intro
 const tmpBinBothRhs = [1, , 3];
-const tmpBinLhs = '' + tmpBinBothRhs;
+const tmpBinLhs = `` + tmpBinBothRhs;
 $(tmpBinLhs);
 `````
 

@@ -17,22 +17,22 @@ $(`${false}`);
 ## Pre Normal
 
 `````js filename=intro
-$('' + false + '');
+$(`` + false + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = 'false';
-const tmpCalleeParam = tmpBinLhs + '';
+const tmpBinLhs = `false`;
+const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('false');
+$(`false`);
 `````
 
 ## Globals

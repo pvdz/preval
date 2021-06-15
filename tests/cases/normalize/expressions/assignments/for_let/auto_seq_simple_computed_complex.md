@@ -28,7 +28,7 @@ let a = { a: 999, b: 1000 };
     $(1);
   }
 }
-($(1), a)[$('b')] = $(2);
+($(1), a)[$(`b`)] = $(2);
 $(a);
 `````
 
@@ -45,7 +45,7 @@ while (true) {
 }
 $(1);
 const tmpAssignComMemLhsObj = a;
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedObj = tmpAssignComMemLhsObj;
 const tmpAssignComputedProp = tmpAssignComMemLhsProp;
 const tmpAssignComputedRhs = $(2);
@@ -63,7 +63,7 @@ while (true) {
   $(1);
 }
 $(1);
-const tmpAssignComMemLhsProp = $('b');
+const tmpAssignComMemLhsProp = $(`b`);
 const tmpAssignComputedRhs = $(2);
 a[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);

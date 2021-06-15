@@ -26,7 +26,7 @@ let f = function ($$0) {
   let [[...x]] = tmpParamBare;
   return x;
 };
-$(f('', 4, 5, 200));
+$(f(``, 4, 5, 200));
 `````
 
 ## Normalized
@@ -43,7 +43,7 @@ let f = function ($$0) {
   return x;
 };
 const tmpCallCallee = $;
-const tmpCalleeParam = f('', 4, 5, 200);
+const tmpCalleeParam = f(``, 4, 5, 200);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -51,7 +51,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 [...undefined];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

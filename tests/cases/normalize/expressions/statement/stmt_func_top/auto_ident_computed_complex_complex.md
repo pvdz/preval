@@ -28,7 +28,7 @@ let f = function () {
   debugger;
   let b = { c: 1 };
   let a = { a: 999, b: 1000 };
-  $(b)[$('c')];
+  $(b)[$(`c`)];
   $(a, b);
 };
 $(f());
@@ -42,7 +42,7 @@ let f = function () {
   let b = { c: 1 };
   let a = { a: 999, b: 1000 };
   const tmpCompObj = $(b);
-  const tmpCompProp = $('c');
+  const tmpCompProp = $(`c`);
   tmpCompObj[tmpCompProp];
   $(a, b);
   return undefined;
@@ -58,7 +58,7 @@ tmpCallCallee(tmpCalleeParam);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('c');
+const tmpCompProp = $(`c`);
 tmpCompObj[tmpCompProp];
 $(a, b);
 $(undefined);

@@ -23,7 +23,7 @@ f(); // In this test, this is the call we expect to be replaced by trampoline in
 
 `````js filename=intro
 const obj = { $: $ };
-const str = '$';
+const str = `$`;
 const f = function () {
   debugger;
   obj[str](1);
@@ -35,7 +35,7 @@ f();
 
 `````js filename=intro
 const obj = { $: $ };
-const str = '$';
+const str = `$`;
 const f = function () {
   debugger;
   obj[str](1);

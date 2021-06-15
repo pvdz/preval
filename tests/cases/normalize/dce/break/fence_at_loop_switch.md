@@ -38,28 +38,28 @@ $('after (not invoked)');
 
 `````js filename=intro
 while ($(true)) {
-  $('loop');
+  $(`loop`);
   {
-    const tmpSwitchValue = $(true, 'dis');
+    const tmpSwitchValue = $(true, `dis`);
     let tmpSwitchCaseToStart = 1;
-    if ($(true, 'case') === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+    if ($(true, `case`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
     else;
     tmpSwitchBreak: {
       if (tmpSwitchCaseToStart <= 0) {
-        $('case');
+        $(`case`);
         break tmpSwitchBreak;
-        $('fail');
+        $(`fail`);
       }
       if (tmpSwitchCaseToStart <= 1) {
-        $('do not visit, default');
+        $(`do not visit, default`);
         break tmpSwitchBreak;
-        $('fail');
+        $(`fail`);
       }
     }
   }
-  $('infiloop, do not eliminate');
+  $(`infiloop, do not eliminate`);
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Normalized
@@ -68,10 +68,10 @@ $('after (not invoked)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('loop');
-    const tmpSwitchValue = $(true, 'dis');
+    $(`loop`);
+    const tmpSwitchValue = $(true, `dis`);
     let tmpSwitchCaseToStart = 1;
-    const tmpBinLhs = $(true, 'case');
+    const tmpBinLhs = $(true, `case`);
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
@@ -80,23 +80,23 @@ while (true) {
     tmpSwitchBreak: {
       const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
       if (tmpIfTest$3) {
-        $('case');
+        $(`case`);
         break tmpSwitchBreak;
       } else {
         const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
         if (tmpIfTest$5) {
-          $('do not visit, default');
+          $(`do not visit, default`);
           break tmpSwitchBreak;
         } else {
         }
       }
     }
-    $('infiloop, do not eliminate');
+    $(`infiloop, do not eliminate`);
   } else {
     break;
   }
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Output
@@ -105,10 +105,10 @@ $('after (not invoked)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $('loop');
-    const tmpSwitchValue = $(true, 'dis');
+    $(`loop`);
+    const tmpSwitchValue = $(true, `dis`);
     let tmpSwitchCaseToStart = 1;
-    const tmpBinLhs = $(true, 'case');
+    const tmpBinLhs = $(true, `case`);
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
@@ -117,23 +117,23 @@ while (true) {
     tmpSwitchBreak: {
       const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
       if (tmpIfTest$3) {
-        $('case');
+        $(`case`);
         break tmpSwitchBreak;
       } else {
         const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
         if (tmpIfTest$5) {
-          $('do not visit, default');
+          $(`do not visit, default`);
           break tmpSwitchBreak;
         } else {
         }
       }
     }
-    $('infiloop, do not eliminate');
+    $(`infiloop, do not eliminate`);
   } else {
     break;
   }
 }
-$('after (not invoked)');
+$(`after (not invoked)`);
 `````
 
 ## Globals

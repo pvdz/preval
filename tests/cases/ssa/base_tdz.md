@@ -44,7 +44,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-throw 'Preval: Cannot access `x` before initialization';
+throw `Preval: Cannot access \`x\` before initialization`;
 `````
 
 ## Globals

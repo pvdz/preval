@@ -34,13 +34,14 @@ function _constAssigns(fdata) {
     meta.writes.forEach((write) => {
       if (write.parentNode.type === 'VariableDeclarator' && write.parentProp === 'id') return; // This is the var decl. Skip that one.
 
+
       rule('Writes to a const binding must throw');
       example('const x = 5; x = 10; f();', 'const x = 5; x = 10; throw error; f();');
       before(write.blockBody[write.blockIndex]);
 
       // I want to eliminate the assignment because it must be a crashing branch of code that is probably never executed and
       // it should not hold back optimizations otherwise just because it is a constant with multiple writes or whatever.
-      write.blockBody[write.blockIndex] = AST.throwStatement(AST.literal('Preval: Cannot write to const binding `' + name + '`')),
+      write.blockBody[write.blockIndex] = AST.throwStatement(AST.templateLiteral('Preval: Cannot write to const binding `' + name + '`'));
 
       after(write.blockBody[write.blockIndex]);
       // This will shortcut this step and request another normalization step. This is necessary because other

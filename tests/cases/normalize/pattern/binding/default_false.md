@@ -21,19 +21,19 @@ const {
 ## Pre Normal
 
 `````js filename=intro
-const { a: b = $('default') } = { a: $('prop') };
+const { a: b = $(`default`) } = { a: $(`prop`) };
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal = $('prop');
+const tmpObjLitVal = $(`prop`);
 const bindingPatternObjRoot = { a: tmpObjLitVal };
 const objPatternBeforeDefault = bindingPatternObjRoot.a;
 let b = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  b = $('default');
+  b = $(`default`);
 } else {
   b = objPatternBeforeDefault;
 }
@@ -42,10 +42,10 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = $('prop');
+const tmpObjLitVal = $(`prop`);
 const tmpIfTest = tmpObjLitVal === undefined;
 if (tmpIfTest) {
-  $('default');
+  $(`default`);
 } else {
 }
 `````

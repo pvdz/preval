@@ -19,7 +19,7 @@ $(a['false']);
 
 `````js filename=intro
 const a = {};
-$(a['false']);
+$(a[`false`]);
 `````
 
 ## Normalized

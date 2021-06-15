@@ -31,7 +31,7 @@ $('ok');
     },
   },
 } = { x: { x: 13, y: { z: [1, 2, 3], a: 15, b: 16 }, z: 14 }, b: 11, c: 12 });
-$('ok');
+$(`ok`);
 `````
 
 ## Normalized
@@ -46,13 +46,13 @@ const objPatternNoDefault = tmpAssignObjPatternRhs.x;
 const objPatternNoDefault$1 = objPatternNoDefault.y;
 const objPatternNoDefault$3 = objPatternNoDefault$1.z;
 const arrPatternSplat = [...objPatternNoDefault$3];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

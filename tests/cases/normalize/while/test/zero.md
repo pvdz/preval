@@ -21,21 +21,21 @@ $('after');
 
 `````js filename=intro
 while (0) {
-  $('loop');
+  $(`loop`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-$('after');
+$(`after`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('after');
+$(`after`);
 `````
 
 ## Globals

@@ -18,8 +18,8 @@ $('bad');
 ## Pre Normal
 
 `````js filename=intro
-const [{ ...x } = $({ a: 'fail' })] = [null, 20, 30];
-$('bad');
+const [{ ...x } = $({ a: `fail` })] = [null, 20, 30];
+$(`bad`);
 `````
 
 ## Normalized
@@ -32,7 +32,7 @@ let arrPatternStep = undefined;
 const tmpIfTest = arrPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 'fail' };
+  const tmpCalleeParam = { a: `fail` };
   arrPatternStep = tmpCallCallee(tmpCalleeParam);
 } else {
   arrPatternStep = arrPatternBeforeDefault;
@@ -42,7 +42,7 @@ const tmpCalleeParam$1 = arrPatternStep;
 const tmpCalleeParam$3 = [];
 const tmpCalleeParam$5 = undefined;
 const x = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3, tmpCalleeParam$5);
-$('bad');
+$(`bad`);
 `````
 
 ## Output
@@ -50,7 +50,7 @@ $('bad');
 `````js filename=intro
 const tmpCalleeParam$3 = [];
 objPatternRest(null, tmpCalleeParam$3, undefined);
-$('bad');
+$(`bad`);
 `````
 
 ## Globals

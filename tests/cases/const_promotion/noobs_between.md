@@ -29,7 +29,7 @@ a = function () {
 };
 a = 2;
 x = $(20);
-$(x, a, 'final');
+$(x, a, `final`);
 `````
 
 ## Normalized
@@ -43,7 +43,7 @@ a = function () {
 };
 a = 2;
 x = $(20);
-$(x, a, 'final');
+$(x, a, `final`);
 `````
 
 ## Output
@@ -51,7 +51,7 @@ $(x, a, 'final');
 `````js filename=intro
 $(10);
 const x = $(20);
-$(x, 2, 'final');
+$(x, 2, `final`);
 `````
 
 ## Globals

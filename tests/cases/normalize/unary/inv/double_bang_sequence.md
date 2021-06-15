@@ -19,7 +19,7 @@ $(!!((x = 'foo'), $(x)));
 
 `````js filename=intro
 let x = undefined;
-$(!!((x = 'foo'), $(x)));
+$(!!((x = `foo`), $(x)));
 `````
 
 ## Normalized
@@ -27,7 +27,7 @@ $(!!((x = 'foo'), $(x)));
 `````js filename=intro
 let x = undefined;
 const tmpCallCallee = $;
-x = 'foo';
+x = `foo`;
 const tmpUnaryArg$1 = $(x);
 const tmpUnaryArg = !tmpUnaryArg$1;
 const tmpCalleeParam = !tmpUnaryArg;
@@ -37,7 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpUnaryArg$1 = $('foo');
+const tmpUnaryArg$1 = $(`foo`);
 const tmpCalleeParam = Boolean(tmpUnaryArg$1);
 $(tmpCalleeParam);
 `````

@@ -17,22 +17,22 @@ $(`abc ${ 10 } def`);
 ## Pre Normal
 
 `````js filename=intro
-$('abc ' + 10 + ' def');
+$(`abc ` + 10 + ` def`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = 'abc 10';
-const tmpCalleeParam = tmpBinLhs + ' def';
+const tmpBinLhs = `abc 10`;
+const tmpCalleeParam = tmpBinLhs + ` def`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$('abc 10 def');
+$(`abc 10 def`);
 `````
 
 ## Globals

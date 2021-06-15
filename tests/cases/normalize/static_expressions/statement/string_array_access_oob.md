@@ -17,7 +17,7 @@ $("fop"[5]);
 ## Pre Normal
 
 `````js filename=intro
-$('fop'[5]);
+$(`fop`[5]);
 `````
 
 ## Normalized

@@ -29,7 +29,7 @@ let f = function () {
   debugger;
   {
     let b = { x: 1 };
-    let a = b?.['x'];
+    let a = b?.[`x`];
     $(a);
   }
 };
@@ -46,7 +46,7 @@ let f = function () {
   const tmpChainRootProp = b;
   const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
-    const tmpChainRootComputed = 'x';
+    const tmpChainRootComputed = `x`;
     const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
     a = tmpChainElementObject;
   } else {

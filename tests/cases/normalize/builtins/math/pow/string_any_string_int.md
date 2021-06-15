@@ -17,21 +17,21 @@ $(Math.pow('nope', '3'));
 ## Pre Normal
 
 `````js filename=intro
-$(Math.pow('nope', '3'));
+$(Math.pow(`nope`, `3`));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = Math.pow('nope', '3');
+const tmpCalleeParam = Math.pow(`nope`, `3`);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = Math.pow('nope', '3');
+const tmpCalleeParam = Math.pow(`nope`, `3`);
 $(tmpCalleeParam);
 `````
 

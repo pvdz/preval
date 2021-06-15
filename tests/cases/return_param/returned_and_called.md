@@ -35,21 +35,21 @@ $(
   f(function ($$0) {
     let a = $$0;
     debugger;
-    $(a, 'first');
+    $(a, `first`);
   }),
 );
 $(
   f(function ($$0) {
     let a$1 = $$0;
     debugger;
-    $(a$1, 'second');
+    $(a$1, `second`);
   }),
 );
 $(
   f(function ($$0) {
     let a$3 = $$0;
     debugger;
-    $(a$3, 'third');
+    $(a$3, `third`);
   }),
 );
 `````
@@ -69,7 +69,7 @@ const tmpCallCallee$1 = f;
 const tmpCalleeParam$1 = function ($$0) {
   let a = $$0;
   debugger;
-  $(a, 'first');
+  $(a, `first`);
   return undefined;
 };
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
@@ -79,7 +79,7 @@ const tmpCallCallee$5 = f;
 const tmpCalleeParam$5 = function ($$0) {
   let a$1 = $$0;
   debugger;
-  $(a$1, 'second');
+  $(a$1, `second`);
   return undefined;
 };
 const tmpCalleeParam$3 = tmpCallCallee$5(tmpCalleeParam$5);
@@ -89,7 +89,7 @@ const tmpCallCallee$9 = f;
 const tmpCalleeParam$9 = function ($$0) {
   let a$3 = $$0;
   debugger;
-  $(a$3, 'third');
+  $(a$3, `third`);
   return undefined;
 };
 const tmpCalleeParam$7 = tmpCallCallee$9(tmpCalleeParam$9);
@@ -109,7 +109,7 @@ const f = function ($$0) {
 const tmpCalleeParam$1 = function ($$0) {
   const a = $$0;
   debugger;
-  $(a, 'first');
+  $(a, `first`);
   return undefined;
 };
 const tmpCalleeParam = f(tmpCalleeParam$1);
@@ -117,7 +117,7 @@ $(tmpCalleeParam);
 const tmpCalleeParam$5 = function ($$0) {
   const a$1 = $$0;
   debugger;
-  $(a$1, 'second');
+  $(a$1, `second`);
   return undefined;
 };
 const tmpCalleeParam$3 = f(tmpCalleeParam$5);
@@ -125,7 +125,7 @@ $(tmpCalleeParam$3);
 const tmpCalleeParam$9 = function ($$0) {
   const a$3 = $$0;
   debugger;
-  $(a$3, 'third');
+  $(a$3, `third`);
   return undefined;
 };
 const tmpCalleeParam$7 = f(tmpCalleeParam$9);

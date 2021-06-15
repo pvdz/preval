@@ -31,7 +31,7 @@ let f = function () {
   {
     let b = { c: 10, d: 20 };
     let a = { a: 999, b: 1000 };
-    a = b['c'] = $(b)[$('d')];
+    a = b[`c`] = $(b)[$(`d`)];
     $(a, b);
   }
 };
@@ -46,7 +46,7 @@ let f = function () {
   let b = { c: 10, d: 20 };
   let a = { a: 999, b: 1000 };
   const tmpCompObj = $(b);
-  const tmpCompProp = $('d');
+  const tmpCompProp = $(`d`);
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
   b.c = tmpNestedPropAssignRhs;
@@ -64,7 +64,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
-const tmpCompProp = $('d');
+const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, b);

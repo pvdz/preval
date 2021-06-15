@@ -29,11 +29,11 @@ $('after');
 while ($(true)) {
   for (let x of [10, 20]) {
     break;
-    $('fail');
+    $(`fail`);
   }
-  $('keep');
+  $(`keep`);
 }
-$('after');
+$(`after`);
 `````
 
 ## Normalized
@@ -47,12 +47,12 @@ while (true) {
     for (x of tmpForOfDeclRhs) {
       break;
     }
-    $('keep');
+    $(`keep`);
   } else {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Output
@@ -66,12 +66,12 @@ while (true) {
     for (x of tmpForOfDeclRhs) {
       break;
     }
-    $('keep');
+    $(`keep`);
   } else {
     break;
   }
 }
-$('after');
+$(`after`);
 `````
 
 ## Globals

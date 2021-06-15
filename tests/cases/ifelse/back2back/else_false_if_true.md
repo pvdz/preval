@@ -28,11 +28,11 @@ if (x) {
 let x = $(false);
 if (x) {
 } else {
-  $(x, 'pass');
+  $(x, `pass`);
   x = $(true);
 }
 if (x) {
-  $(x, 'hit');
+  $(x, `hit`);
 }
 `````
 
@@ -42,11 +42,11 @@ if (x) {
 let x = $(false);
 if (x) {
 } else {
-  $(x, 'pass');
+  $(x, `pass`);
   x = $(true);
 }
 if (x) {
-  $(x, 'hit');
+  $(x, `hit`);
 } else {
 }
 `````
@@ -57,11 +57,11 @@ if (x) {
 let x = $(false);
 if (x) {
 } else {
-  $(x, 'pass');
+  $(x, `pass`);
   x = $(true);
 }
 if (x) {
-  $(x, 'hit');
+  $(x, `hit`);
 } else {
 }
 `````

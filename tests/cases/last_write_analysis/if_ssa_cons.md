@@ -24,11 +24,11 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
-x = $('b');
+x = $(`b`);
 if ($) {
-  x = $('c');
+  x = $(`c`);
 }
 $(x);
 `````
@@ -36,11 +36,11 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x = $('a');
+let x = $(`a`);
 $(x);
-x = $('b');
+x = $(`b`);
 if ($) {
-  x = $('c');
+  x = $(`c`);
 } else {
 }
 $(x);
@@ -49,11 +49,11 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = $('a');
+const x = $(`a`);
 $(x);
-let tmpClusterSSA_x = $('b');
+let tmpClusterSSA_x = $(`b`);
 if ($) {
-  tmpClusterSSA_x = $('c');
+  tmpClusterSSA_x = $(`c`);
 } else {
 }
 $(tmpClusterSSA_x);

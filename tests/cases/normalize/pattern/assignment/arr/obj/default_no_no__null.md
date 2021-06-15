@@ -19,7 +19,7 @@ $('bad');
 
 `````js filename=intro
 [{}] = null;
-$('bad');
+$(`bad`);
 `````
 
 ## Normalized
@@ -37,14 +37,14 @@ if (objPatternCrashTest) {
   objPatternCrashTest = arrPatternStep.cannotDestructureThis;
 } else {
 }
-$('bad');
+$(`bad`);
 `````
 
 ## Output
 
 `````js filename=intro
 [...null];
-throw '[Preval]: Array spread must crash before this line';
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

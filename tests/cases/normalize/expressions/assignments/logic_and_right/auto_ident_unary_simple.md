@@ -50,8 +50,8 @@ $(a, x);
 let a = { a: 999, b: 1000 };
 let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  a = 'number';
-  tmpCalleeParam = 'number';
+  a = `number`;
+  tmpCalleeParam = `number`;
 } else {
 }
 $(tmpCalleeParam);

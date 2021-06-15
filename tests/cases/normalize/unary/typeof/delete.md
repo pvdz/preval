@@ -26,7 +26,7 @@ $(typeof delete $(100).x);
 const tmpCallCallee = $;
 const tmpDeleteObj = $(100);
 delete tmpDeleteObj.x;
-const tmpCalleeParam = 'boolean';
+const tmpCalleeParam = `boolean`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -35,7 +35,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpDeleteObj = $(100);
 delete tmpDeleteObj.x;
-$('boolean');
+$(`boolean`);
 `````
 
 ## Globals

@@ -22,7 +22,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  return $('foo'?.length);
+  return $(`foo`?.length);
 };
 $(f());
 `````
@@ -34,7 +34,7 @@ let f = function () {
   debugger;
   const tmpCallCallee = $;
   let tmpCalleeParam = undefined;
-  const tmpChainRootProp = 'foo';
+  const tmpChainRootProp = `foo`;
   const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
     const tmpChainElementObject = tmpChainRootProp.length;

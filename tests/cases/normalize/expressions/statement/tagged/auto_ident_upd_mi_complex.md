@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-$(['before ', ' after'], --$($(b)).x);
+$([`before `, ` after`], --$($(b)).x);
 $(a, b);
 `````
 
@@ -33,7 +33,7 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpCallCallee$1 = $;
 const tmpCalleeParam$3 = $(b);
 const varInitAssignLhsComputedObj = tmpCallCallee$1(tmpCalleeParam$3);
@@ -50,7 +50,7 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam = ['before ', ' after'];
+const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$3 = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam$3);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;

@@ -18,24 +18,24 @@ $('ok');
 ## Pre Normal
 
 `````js filename=intro
-[[]] = ['', 4, 5];
-$('ok');
+[[]] = [``, 4, 5];
+$(`ok`);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const arrAssignPatternRhs = ['', 4, 5];
+const arrAssignPatternRhs = [``, 4, 5];
 const arrPatternSplat = [...arrAssignPatternRhs];
 const arrPatternStep = arrPatternSplat[0];
 const arrPatternSplat$1 = [...arrPatternStep];
-$('ok');
+$(`ok`);
 `````
 
 ## Output
 
 `````js filename=intro
-$('ok');
+$(`ok`);
 `````
 
 ## Globals

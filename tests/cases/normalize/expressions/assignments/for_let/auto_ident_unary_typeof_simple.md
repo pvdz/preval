@@ -51,10 +51,10 @@ $(a, arg);
 
 `````js filename=intro
 while (true) {
-  $('number');
+  $(`number`);
   $(1);
 }
-$('number', 1);
+$(`number`, 1);
 `````
 
 ## Globals

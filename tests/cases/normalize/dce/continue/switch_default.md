@@ -29,23 +29,23 @@ $('after, do not evaluate (infinite loop)');
 `````js filename=intro
 while ($(true)) {
   {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
     if ($(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
     else;
     tmpSwitchBreak: {
       if (tmpSwitchCaseToStart <= 0) {
-        $('wrong branch');
+        $(`wrong branch`);
         continue;
       }
       if (tmpSwitchCaseToStart <= 1) {
         continue;
-        $('fail');
+        $(`fail`);
       }
     }
   }
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Normalized
@@ -54,7 +54,7 @@ $('after, do not evaluate (infinite loop)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
     const tmpBinLhs = $(0);
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
@@ -64,7 +64,7 @@ while (true) {
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$3) {
-      $('wrong branch');
+      $(`wrong branch`);
       continue;
     } else {
       const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
@@ -77,7 +77,7 @@ while (true) {
     break;
   }
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Output
@@ -86,7 +86,7 @@ $('after, do not evaluate (infinite loop)');
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSwitchValue = $(1, 'disc');
+    const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
     const tmpBinLhs = $(0);
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
@@ -96,7 +96,7 @@ while (true) {
     }
     const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$3) {
-      $('wrong branch');
+      $(`wrong branch`);
       continue;
     } else {
       const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
@@ -109,7 +109,7 @@ while (true) {
     break;
   }
 }
-$('after, do not evaluate (infinite loop)');
+$(`after, do not evaluate (infinite loop)`);
 `````
 
 ## Globals

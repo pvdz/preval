@@ -27,11 +27,11 @@ export function conditionalTyping(fdata) {
   group('\n\n\nChecking for known types under condition');
   const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
-  const r = _ifNotIt(fdata);
+  const r = _conditionalTyping(fdata);
   groupEnd();
   return r;
 }
-function _ifNotIt(fdata) {
+function _conditionalTyping(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
   let changed = 0;

@@ -108,6 +108,7 @@ function _ifTestFolding(fdata) {
       vgroupEnd();
       return;
     }
+    vgroupEnd();
 
     vgroup('Checking if both branches return an opposite boolean');
     if (
@@ -170,6 +171,7 @@ function _ifTestFolding(fdata) {
       vgroupEnd();
       return;
     }
+    vgroupEnd();
   }
 
   vlog('Found', queue.length, 'if statements that qualify');

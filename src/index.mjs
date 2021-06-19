@@ -227,6 +227,10 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         const fdata = phase0(inputCode, fname);
         let firstAfterParse = true;
         do {
+
+          // Slow; serialize and parse to verify each cycle
+          //parseCode(tmat(fdata.tenkoOutput.ast, true), fname);
+
           phase1(fdata, resolve, req, firstAfterParse); // I want a phase1 because I want the scope tracking set up for normalizing bindings
           firstAfterParse = false;
 

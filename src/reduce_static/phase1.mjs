@@ -840,6 +840,28 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             }
           }
 
+          if (node.name === 'undefined') {
+            meta.typing.mustBeType = 'undefined';
+            meta.typing.mustBeFalsy = true;
+            meta.typing.mustBeTruthy = false;
+            meta.typing.isPrimitive = true;
+            meta.typing.primitiveValue = undefined;
+          } else if (node.name === 'Infinity') {
+            meta.typing.mustBeType = 'number';
+            meta.typing.mustBeFalsy = false;
+            meta.typing.mustBeTruthy = true;
+            meta.typing.rangeStart = Infinity; // Or should we not set this? Kinda useless?
+            meta.typing.rangeEnd = Infinity;
+            meta.typing.isPrimitive = true;
+            meta.typing.primitiveValue = Infinity;
+          } else if (node.name === 'NaN') {
+            meta.typing.mustBeType = 'number';
+            meta.typing.mustBeFalsy = true;
+            meta.typing.mustBeTruthy = false;
+            meta.typing.isPrimitive = true;
+            meta.typing.primitiveValue = NaN;
+          }
+
           // Resolve whether this was an export. If so, mark the name as such.
           // After normalization there should only be named exports without declarations and
           // anonymous default exports. This ident won't be part of the latter :p

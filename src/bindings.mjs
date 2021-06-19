@@ -958,8 +958,8 @@ export function inferInitialType(meta, init) {
       meta.typing.valueSet = new Set([str]);
     }
     meta.typing.mustBeTruthy = init.quasis.some((te) => te.value.cooked !== ''); // Or if any expression is non-falsy
-  } else if (init.type === 'Literal') {
-    // TODO: this is Identifier
+  } else if (init.type === 'Identifier') {
+    // At least covered by tests/cases/array/spread/array_in_array_method.md
     switch (init.name) {
       case 'undefined': {
         meta.typing.mustBeType = 'undefined';

@@ -41,6 +41,7 @@ function _typeTrackedTricks(fdata) {
     const parentNode = path.nodes[path.nodes.length - 2];
     const parentProp = path.props[path.props.length - 1];
     const parentIndex = path.indexes[path.indexes.length - 1];
+    const grandNode = path.nodes[path.nodes.length - 3];
 
     switch (node.type) {
       case 'IfStatement': {
@@ -305,7 +306,6 @@ function _typeTrackedTricks(fdata) {
             // Any falsy value that is the argument of ~ will result in -1...
             // Unfortunately we won't see the tilde very often in real world code ;)
             if (argMeta.typing.mustBeFalsy) {
-              TODO: test; // Not sure whether it's currently possible to trigger this code path (only non-literal falsy value type is number)
               rule('Bitwise inverting a falsy value yields `-1`');
               example('~null', '-1');
               before(node, parentNode);
@@ -421,7 +421,7 @@ function _typeTrackedTricks(fdata) {
       case 'BinaryExpression': {
         const left = node.left;
         const right = node.right;
-        vlog('bin expr:', left.type, node.operator, right.type);
+        vlog('bin expr:', left.type, '`' + node.operator + '`', right.type);
         let mustBeValue = undefined; // undefined | true | false
         switch (node.operator) {
           case '===':
@@ -429,7 +429,7 @@ function _typeTrackedTricks(fdata) {
             const lp = left.$p.isPrimitive;
             const rp = right.$p.isPrimitive;
             // Note: the code runs as if it was `===` and inverts the result afterwards if the op is `!==`
-            if (left.type === 'Identifier' && right.type === 'Identifier' && !lp && !rp) {
+            if (left.type === 'Identifier' && right.type === 'Identifier') {
               // Both are idents and not primitives
               // Covered by tests/cases/type_tracked/eqeqeq/eq_number_string.md
               const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
@@ -437,9 +437,9 @@ function _typeTrackedTricks(fdata) {
 
               const lt = leftMeta.typing.mustBeType;
               const rt = rightMeta.typing.mustBeType;
-              vlog('yah?', left.name, right.name, [lt, rt], right);
+              vlog('yah?', (leftMeta.isConstant || leftMeta.isBuiltin), (rightMeta.isConstant || rightMeta.isBuiltin), left.name, right.name, [lt, rt], right);
 
-              if (rt && rt && lt !== rt) {
+              if ((leftMeta.isConstant || leftMeta.isBuiltin) && (rightMeta.isConstant || rightMeta.isBuiltin) && lt && rt && lt !== rt) {
                 rule('Strict n/equal comparison between two idents when rhs is known to be undefined or null depends on the lhs');
                 example(
                   'const a = $(undefined); const b = $(undefined); a === b;',
@@ -448,7 +448,7 @@ function _typeTrackedTricks(fdata) {
                 mustBeValue = false; // Note: we're acting as if op is ===
               } else {
                 // Since `===` and `!==` are type sensitive, we can predict their outcome even if we
-                // don't know their condcrete values. If we reached here then it means that either:
+                // don't know their concrete values. If we reached here then it means that either:
                 // - we don't have type information about the left or right ident, or
                 // - their type matches (in which case we can't predict anything)
               }
@@ -456,10 +456,11 @@ function _typeTrackedTricks(fdata) {
               // Left ident, right a primitive node
               const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
               const lt = leftMeta.typing.mustBeType;
+              vlog('Left type:', [lt], ', right value:', [right.$p.primitiveValue], 'operator:', '`' + node.operator + '`');
               // Note that the rhs is a primitive so no need to check explicitly for class.
               // We do explicitly check for `null` just in case, even though that case may never reach here.
               const rt = right.$p.primitiveValue === null ? 'null' : typeof right.$p.primitiveValue;
-              if (lt && lt !== rt) {
+              if ((leftMeta.isConstant || leftMeta.isBuiltin) && lt && lt !== rt) {
                 // Covered: tests/cases/bit_hacks/and_eq_bad.md
                 rule('Strict n/equal comparison between an ident and a primitive depends on their type');
                 example('const x = 1 * f(2); g(x === "");', 'const x = 1 * f(2); g(false);');
@@ -474,7 +475,7 @@ function _typeTrackedTricks(fdata) {
               // Note that the rhs is a primitive so no need to check explicitly for class.
               // We do explicitly check for `null`
               const lt = left.$p.primitiveValue === null ? 'null' : typeof left.$p.primitiveValue;
-              if (rt && rt !== lt) {
+              if ((rightMeta.isConstant || rightMeta.isBuiltin) && rt && rt !== lt) {
                 // Covered: tests/cases/bit_hacks/and_eq_bad.md
                 rule('Strict n/equal comparison between a primitive and an ident depends on their type');
                 example('const x = 1 * f(2); g("" === x);', 'const x = 1 * f(2); g(false);');
@@ -531,21 +532,21 @@ function _typeTrackedTricks(fdata) {
         }
 
         if (mustBeValue === true) {
-          before(node, parentNode);
+          before(node, grandNode);
 
           if (parentIndex < 0) parentNode[parentProp] = AST.tru();
           else parentNode[parentProp][parentIndex] = AST.tru();
 
-          after(AST.tru(), parentNode);
+          after(AST.tru(), grandNode);
           ++changes;
         } else if (mustBeValue === false) {
-          before(node, parentNode);
+          before(node, grandNode);
 
           if (parentIndex < 0) parentNode[parentProp] = AST.fals();
           else parentNode[parentProp][parentIndex] = AST.fals();
           // Covered by tests/cases/bit_hacks/and_eq_bad.md
 
-          after(AST.fals(), parentNode);
+          after(AST.fals(), grandNode);
           ++changes;
         }
 

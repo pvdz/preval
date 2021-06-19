@@ -49,7 +49,7 @@ $(a);
 const tmpObjLitVal = $(1);
 const a = { b: tmpObjLitVal };
 const tmpBinLhs = `before  ` + a;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.b = 2;

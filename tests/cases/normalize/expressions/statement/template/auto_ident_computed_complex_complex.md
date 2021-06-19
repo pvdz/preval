@@ -52,7 +52,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`c`);
 const tmpBinBothRhs = tmpCompObj[tmpCompProp];
 const tmpBinLhs = `before  ` + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(a, b);
 `````

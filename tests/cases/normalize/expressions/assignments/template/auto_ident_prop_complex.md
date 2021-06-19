@@ -50,7 +50,7 @@ const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
 const tmpClusterSSA_a = tmpAssignRhsProp.c;
 const tmpBinLhs = `before  ` + tmpClusterSSA_a;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, b);
 `````

@@ -44,8 +44,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 const tmpBinBothRhs = ~tmpUnaryArg;
-const tmpBinLhs = `before  ` + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

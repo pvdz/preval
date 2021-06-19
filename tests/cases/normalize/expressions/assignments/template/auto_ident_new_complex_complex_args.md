@@ -53,7 +53,7 @@ const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 const a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
 const tmpBinLhs = `before  ` + a;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

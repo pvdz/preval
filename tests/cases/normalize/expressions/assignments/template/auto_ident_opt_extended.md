@@ -69,7 +69,7 @@ if (tmpIfTest) {
   a = tmpChainElementObject$3;
 }
 const tmpBinLhs = `before  ` + a;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

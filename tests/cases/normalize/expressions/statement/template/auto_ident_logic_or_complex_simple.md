@@ -54,7 +54,7 @@ if (tmpBinBothRhs) {
   tmpBinBothRhs = 2;
 }
 const tmpBinLhs = `before  ` + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

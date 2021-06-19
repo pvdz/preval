@@ -48,7 +48,7 @@ $(a);
 `````js filename=intro
 const tmpClusterSSA_a = new $(1);
 const tmpBinLhs = `before  ` + tmpClusterSSA_a;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

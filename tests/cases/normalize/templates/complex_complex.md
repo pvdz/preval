@@ -39,10 +39,10 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpBinBothRhs$1 = $(10);
 const tmpBinLhs$1 = `abc ` + tmpBinBothRhs$1;
-const tmpBinBothLhs = tmpBinLhs$1 + ` `;
+const tmpBinBothLhs = `${tmpBinLhs$1} `;
 const tmpBinBothRhs = $(20);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ` def`;
+const tmpCalleeParam = `${tmpBinLhs} def`;
 $(tmpCalleeParam);
 `````
 

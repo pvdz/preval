@@ -5403,6 +5403,43 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
+        let newNode = node;
+        for (let i = newNode.expressions.length - 1; i >= 0; --i) {
+          const expr = newNode.expressions[i];
+          if (AST.isPrimitive(expr)) {
+            const val = AST.getPrimitiveValue(expr);
+            newNode.expressions.splice(i, 1);
+            newNode.quasis[i].value.cooked += val + newNode.quasis[i + 1].value.cooked;
+            newNode.quasis.splice(i + 1, 1);
+            newNode = AST.templateLiteral(
+              newNode.quasis.map((te) => te.value.cooked),
+              newNode.expressions,
+            );
+          } else if (expr.type === 'TemplateLiteral') {
+            ASSERT(expr.expressions.length > 0);
+            newNode.expressions.splice(i, 1, ...expr.expressions);
+            newNode.quasis[i].value.cooked = newNode.quasis[i].value.cooked + expr.quasis[0].value.cooked;
+            newNode.quasis[i + 1].value.cooked = expr.quasis[expr.quasis.length - 1].value.cooked + newNode.quasis[i + 1].value.cooked;
+            newNode.quasis.splice(i + 1, 0, ...expr.quasis.slice(1, -1));
+            newNode = AST.templateLiteral(
+              newNode.quasis.map((te) => te.value.cooked),
+              newNode.expressions,
+            );
+          }
+        }
+
+        if (node !== newNode) {
+          rule('A template with primitive expressions must resolve statically');
+          example('`a${1}b`, `a1b`');
+          before(node, body[i]);
+
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
+          body[i] = finalParent;
+
+          after(newNode, body[i]);
+          return true;
+        }
+
         return;
       }
 
@@ -7512,7 +7549,11 @@ export function phaseNormalize(fdata, fname) {
       return true;
     }
 
-    if (AST.isComplexNode(dnode.init, false) || (dnode.init.type === 'Identifier' && dnode.init.name === 'arguments')) {
+    if (
+      AST.isComplexNode(dnode.init, false) ||
+      dnode.init.type === 'TemplateLiteral' ||
+      (dnode.init.type === 'Identifier' && dnode.init.name === 'arguments')
+    ) {
       // false: returns true for simple unary as well
       vlog('- init is complex, transforming expression');
       if (transformExpression('var', dnode.init, body, i, node, dnode.id, node.kind)) {

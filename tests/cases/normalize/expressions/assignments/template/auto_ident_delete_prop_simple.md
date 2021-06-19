@@ -47,8 +47,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = delete arg.y;
-const tmpBinLhs = `before  ` + a;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `before  ${a}  after`;
 $(tmpCalleeParam);
 $(a, arg);
 `````

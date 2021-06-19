@@ -50,8 +50,7 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpDeleteCompProp = $(`y`);
 const a = delete arg[tmpDeleteCompProp];
-const tmpBinLhs = `before  ` + a;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `before  ${a}  after`;
 $(tmpCalleeParam);
 $(a, arg);
 `````

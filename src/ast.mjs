@@ -397,7 +397,7 @@ export function labeledStatement(label, body) {
 
 export function literal(value, yesnull = false) {
   if (typeof value === 'number') {
-    ASSERT(isFinite(value), 'do not use this for Infinity, NaN, etc...', value);
+    ASSERT(isFinite(value), 'do not use this for Infinity, NaN, etc... see AST.primitive', value);
     return {
       type: 'Literal',
       value: value,
@@ -632,14 +632,13 @@ export function templateLiteral(cookedStrings, expressions) {
       expressions.every((enode) => typeof enode === 'object'),
       'do not pass primitives as expressions. expecting actual nodes',
     );
-    cookedStrings = cookedStrings.map((s) => s.replace(/`/g, '\\`'));
   }
 
   return {
     type: 'TemplateLiteral',
     expressions,
     quasis: cookedStrings.map((str, si) => {
-      return templateElement(str.replace(/`/g, '\\`'), si === cookedStrings.length - 1, str);
+      return templateElement(str.replace(/([\\`])/g, '\\$1'), si === cookedStrings.length - 1, str);
     }),
     $p: $p(),
   };
@@ -870,9 +869,11 @@ export function getPrimitiveValue(node) {
 export function primitive(value) {
   if (typeof value === 'number') {
     // .sign does not support -0 ;(
-    if (Math.sign(1 / value) < 0) {
-      return unaryExpression('-', literal(-value));
+    if (Object.is(value, -0)) {
+      return unaryExpression('-', literal(0));
     }
+    if (isNaN(value)) return identifier('NaN');
+    if (value === Infinity) return identifier('Infinity');
     return literal(value);
   }
   if (typeof value === 'string') {
@@ -945,9 +946,9 @@ export function isSimpleNodeOrSimpleMember(node) {
   return !(isComplexNode(node.object) || (node.computed && isComplexNode(node.property)));
 }
 
-export function isComplexNode(node, incNested = true) {
+export function isComplexNode(node, incNested = true, preNormalization = false) {
   ASSERT(typeof node !== 'string', 'dont pass .type');
-  ASSERT([1, 2].includes(arguments.length), 'arg count');
+  ASSERT([1, 2, 3].includes(arguments.length), 'arg count');
   // A node is simple if it is
   // - an identifier
   // - a literal (but not regex)
@@ -974,7 +975,7 @@ export function isComplexNode(node, incNested = true) {
     // -NaN, +NaN, -Infinity, +Infinity
     if (node.argument.type === 'Identifier' && (node.argument.name === 'Infinity' || node.argument.name === 'NaN')) return false;
   }
-  if (node.type === 'TemplateLiteral') return node.expressions.length > 0; // Template without expressions is a string and simple.
+  if (node.type === 'TemplateLiteral') return node.expressions.length > 0; // After the pre-normalization, all templates must be string concats only, no matter how many expressions it has
   if (node.type === 'ThisExpression') return true;
   if (node.type === 'Super') return false;
 

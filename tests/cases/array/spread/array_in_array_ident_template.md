@@ -55,7 +55,7 @@ $(y);
 $(10);
 const tmpBinBothRhs$1 = $(`x`);
 const tmpBinLhs$1 = `` + tmpBinBothRhs$1;
-const tmpBinBothLhs = tmpBinLhs$1 + ` `;
+const tmpBinBothLhs = `${tmpBinLhs$1} `;
 const tmpBinBothRhs = $(`y`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 if ($) {

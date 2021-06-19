@@ -52,7 +52,7 @@ const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`$`);
 const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 const tmpBinLhs = `before  ` + tmpClusterSSA_a;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

@@ -51,7 +51,7 @@ const b = { $: $ };
 const tmpCallCompProp = $(`$`);
 const a = b[tmpCallCompProp](1);
 const tmpBinLhs = `before  ` + a;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

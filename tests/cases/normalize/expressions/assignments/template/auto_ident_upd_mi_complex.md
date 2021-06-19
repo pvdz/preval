@@ -57,8 +57,7 @@ const tmpNestedAssignObj = $(tmpCalleeParam$1);
 const tmpBinLhs$1 = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs$1 - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpBinLhs = `before  ` + tmpNestedPropCompoundComplexRhs;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `before  ${tmpNestedPropCompoundComplexRhs}  after`;
 $(tmpCalleeParam);
 $(tmpNestedPropCompoundComplexRhs, b);
 `````

@@ -56,7 +56,7 @@ const f = function () {
   return undefined;
 };
 const tmpBinLhs = `before  ` + f;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

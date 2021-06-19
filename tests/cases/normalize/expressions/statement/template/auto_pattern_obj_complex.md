@@ -46,7 +46,7 @@ $(a);
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpBinBothRhs = $(tmpCalleeParam$1);
 const tmpBinLhs = `before  ` + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(999);
 `````

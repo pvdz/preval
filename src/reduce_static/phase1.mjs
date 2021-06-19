@@ -1061,6 +1061,15 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         break;
       }
 
+      case 'TemplateLiteral': {
+        ASSERT(
+          node.expressions.length === 0 || ['ExpressionStatement', 'VariableDeclarator', 'AssignmentExpression'].includes(parentNode.type),
+          'complex templates should have the same limitations as other complex expression nodes',
+          parentNode,
+        );
+        break;
+      }
+
       case 'TryStatement:after': {
         if (node.block.$p.earlyComplete || node.handler?.body.$p.earlyComplete || node.finalizer?.$p.earlyComplete) {
           vlog('At least one block of the try has an early completion');

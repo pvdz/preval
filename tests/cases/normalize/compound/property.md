@@ -97,7 +97,7 @@ const obj = {
     debugger;
     const tmpBinBothLhs = s;
     const tmpBinLhs = `write[` + v;
-    const tmpBinBothRhs = tmpBinLhs + `];`;
+    const tmpBinBothRhs = `${tmpBinLhs}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;

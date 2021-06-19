@@ -48,7 +48,7 @@ const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 const tmpBinBothRhs = [tmpArrElement, 2, tmpArrElement$3];
 const tmpBinLhs = `before  ` + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

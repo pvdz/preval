@@ -68,7 +68,7 @@ if (a) {
   a = $(tmpCalleeParam$5);
 }
 const tmpBinLhs = `before  ` + a;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `${tmpBinLhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

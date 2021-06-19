@@ -48,8 +48,7 @@ $(a, arg);
 `````js filename=intro
 const tmpUnaryArg = $(1);
 const a = typeof tmpUnaryArg;
-const tmpBinLhs = `before  ` + a;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpCalleeParam = `before  ${a}  after`;
 $(tmpCalleeParam);
 $(a, 1);
 `````

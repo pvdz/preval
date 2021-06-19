@@ -101,7 +101,7 @@ const rule = function ($$0) {
   const desc = $$0;
   debugger;
   const d = `purpleRule:reset "` + desc;
-  const e = d + `"`;
+  const e = `${d}"`;
   $(e);
   return undefined;
 };

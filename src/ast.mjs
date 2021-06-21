@@ -874,6 +874,7 @@ export function primitive(value) {
     }
     if (isNaN(value)) return identifier('NaN');
     if (value === Infinity) return identifier('Infinity');
+    if (value === -Infinity) return unaryExpression('-', identifier('Infinity'));
     return literal(value);
   }
   if (typeof value === 'string') {

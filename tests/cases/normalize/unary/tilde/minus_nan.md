@@ -24,15 +24,14 @@ $(~-NaN);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = ~-NaN;
+const tmpCalleeParam = -1;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ~-NaN;
-$(tmpCalleeParam);
+$(-1);
 `````
 
 ## Globals

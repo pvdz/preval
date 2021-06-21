@@ -24,15 +24,14 @@ $(~-Infinity);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = ~-Infinity;
+const tmpCalleeParam = -1;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = ~-Infinity;
-$(tmpCalleeParam);
+$(-1);
 `````
 
 ## Globals

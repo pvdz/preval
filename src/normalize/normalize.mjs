@@ -3953,89 +3953,15 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (node.operator === '~') {
-          if (node.argument.type === 'Literal') {
-            if (wrapKind === 'statement') {
-              rule('Unary tilde on a literal as statement should be dropped');
-              example('~10;', ';');
-              before(node, parentNode);
+          if (AST.isPrimitive(node.argument)) {
+            rule('The `~` operator on a primitive must resolve immediately');
+            example('~NaN', '-1');
+            before(node, body[i]);
 
-              body[i] = AST.emptyStatement();
+            const pv = AST.getPrimitiveValue(node.argument);
+            const pvn = ~pv;
 
-              after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (typeof node.argument.value === 'number') {
-              // Note: this is never a negative number because then the argument would be a unary expression
-              rule('The `~` unary operator on a number literal should be resolved');
-              example('~100', '-101');
-              example(String(node.argument.value), String(~node.argument.value));
-              before(node, parentNode);
-
-              const result = ~node.argument.value;
-              const finalNode = result < 0 ? AST.unaryExpression('-', AST.literal(-result)) : AST.literal(result);
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.raw === 'null') {
-              rule('The `~` unary operator on a null literal is -1');
-              example('~null', '-1');
-              before(node, parentNode);
-
-              const finalNode = AST.unaryExpression('-', AST.one());
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.value === true) {
-              rule('The `~` unary operator on a true literal is -2');
-              example('~true', '-2');
-              before(node, parentNode);
-
-              const finalNode = AST.unaryExpression('-', AST.literal(2));
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.value === false) {
-              rule('The `~` unary operator on a false literal is -1');
-              example('+false', '-1');
-              before(node, parentNode);
-
-              const finalNode = AST.unaryExpression('-', AST.one());
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            // TODO: we can do any literal with runtime semantics...
-          }
-
-          if (AST.isStringLiteral(node.argument, true)) {
-            // Note: this coerces.
-
-            rule('The `~` unary operator on a string literal can be statically computed');
-            example('~"105"', '-106');
-            before(node, parentNode);
-
-            const finalNode = AST.primitive(~AST.getStringValue(node.argument, true));
+            const finalNode = AST.primitive(pvn);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body[i] = finalParent;
 
@@ -4044,45 +3970,16 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (node.argument.type === 'Identifier') {
-            if (node.argument.name === 'NaN') {
-              rule('A NaN with a `~` unary is -1');
-              example('~NaN', 'NaN');
+          if (node.argument.type === 'Literal') {
+            // This still could catch a few cases but that's only because regex etc have not gotten a special treatment yet
+            if (wrapKind === 'statement') {
+              rule('Unary tilde on a literal as statement should be dropped');
+              example('~10;', ';');
               before(node, parentNode);
 
-              const finalNode = AST.unaryExpression('-', AST.one());
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
+              body[i] = AST.emptyStatement();
 
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.name === 'undefined') {
-              rule('An undefined with a `~` unary is -1');
-              example('~undefined', '-1');
-              before(node, parentNode);
-
-              const finalNode = AST.unaryExpression('-', AST.one());
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.name === 'Infinity') {
-              rule('A `~` on Infinity is -1');
-              example('~Infinity', '-1');
-              before(node, parentNode);
-
-              const finalNode = AST.unaryExpression('-', AST.one());
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
+              after(body[i]);
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }

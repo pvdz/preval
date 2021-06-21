@@ -3141,7 +3141,10 @@ export function phaseNormalize(fdata, fname) {
 
         // Luckily we don't need to. Check whether the left and right are static values. Then switch apply the operator. Boom.
 
-        if (AST.isPrimitive(node.left) && AST.isPrimitive(node.right)) {
+        const lp = AST.isPrimitive(node.left);
+        const rp = AST.isPrimitive(node.right);
+
+        if (lp && rp) {
           rule('Binary operation on two builtin primitives or values should be statically resolved');
           example('1 + null', '1');
           before(node, parentNode);
@@ -3243,6 +3246,44 @@ export function phaseNormalize(fdata, fname) {
             return true;
           } catch {
             vlog('Operation resulted in an error so not inlining it');
+          }
+        }
+
+        if (['&', '|', '^'].includes(node.operator)) {
+          if (lp) {
+            const pv = AST.getPrimitiveValue(node.left);
+            const pvn = 0 | pv;
+            if (pv !== pvn) {
+              // This means the primitive will coerce to a simpler value (int) with the bitwise operator
+              // The coercion happens regardless of the other operand so we should apply that immediately.
+              rule(
+                'An operand to bitwise operators (`&`, `|`, `^`) will unconditionally coerce a primitive operand that is not a 32bit int',
+              );
+              example('x | "200.50"', 'x | 200');
+              before(node, body[i]);
+
+              node.left = AST.primitive(pvn);
+
+              after(node, body[i]);
+              return true;
+            }
+          } else if (rp) {
+            const pv = AST.getPrimitiveValue(node.right);
+            const pvn = 0 | pv;
+            if (pv !== pvn) {
+              // This means the primitive will coerce to a simpler value (int) with the bitwise operator
+              // The coercion happens regardless of the other operand so we should apply that immediately.
+              rule(
+                'An operand to bitwise operators (`&`, `|`, `^`) will unconditionally coerce a primitive operand that is not a 32bit int',
+              );
+              example('"200.50" | x', '200 | x');
+              before(node, body[i]);
+
+              node.right = AST.primitive(pvn);
+
+              after(node, body[i]);
+              return true;
+            }
           }
         }
 

@@ -50,6 +50,8 @@ function _bitSetTests(fdata) {
         // - `bit === 33` -> `false` (for any value other than 0 or 32)
         // - `bit !== 32` -> `true` (bit must be zero or the bit, so it won't be anything else)
         // - `bit !== 0` -> `!bit` (bit must be zero or the bit, so it won't be anything else)
+        // - `bit & bit` -> redundant
+        // - `bit & nonbit` -> `0`
         // TODO: they're all a bit edge casy but these are others we can do:
         // - `bit == 32` -> `===`
         // - `bit != 32` -> `!==`, or `=== 0` ("the other")

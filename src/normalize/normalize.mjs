@@ -3758,71 +3758,15 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (node.argument.type === 'Literal') {
-            if (typeof node.argument.value === 'number') {
-              rule('Typeof number is the string number');
-              example('typeof 5', '"number"');
-              before(node);
+          if (AST.isPrimitive(node.argument)) {
+            const pv = AST.getPrimitiveValue(node.argument);
+            const pvn = typeof pv;
 
-              const finalNode = AST.templateLiteral('number');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (typeof node.argument.value === 'boolean') {
-              rule('Typeof bool is the string boolean');
-              example('typeof true', '"boolean"');
-              example('typeof false', '"boolean"');
-              before(node);
-
-              const finalNode = AST.templateLiteral('boolean');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.raw === 'null') {
-              rule('Typeof null is the string object');
-              example('typeof null', '"object"');
-              before(node);
-
-              const finalNode = AST.templateLiteral('object');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.value instanceof RegExp) {
-              rule('Typeof regex is the string object');
-              example('typeof /foo/', '"object"');
-              before(node);
-
-              const finalNode = AST.templateLiteral('object');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-          }
-
-          if (AST.isStringLiteral(node.argument, true)) {
-            rule('Typeof string is the string string (Literal)');
-            example('typeof "foo"', '"string"');
+            rule('Typeof on primitives should be inlined');
+            example('typeof 5', '"number"');
             before(node);
 
-            const finalNode = AST.templateLiteral('string');
+            const finalNode = AST.templateLiteral(pvn);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body[i] = finalParent;
 
@@ -3831,74 +3775,26 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (node.argument.type === 'Identifier') {
-            switch (node.argument.name) {
-              case 'NaN': {
-                rule('Typeof NaN is the string number');
-                example('typeof NaN', '"number"');
-                before(node, parentNode);
-
-                const finalNode = AST.templateLiteral('number');
-                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                body[i] = finalParent;
-
-                after(finalNode, finalParent);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
-                return true;
-              }
-
-              case 'undefined': {
-                rule('Typeof undefined is the string undefined');
-                example('typeof undefined', '"undefined"');
-                before(node, parentNode);
-
-                const finalNode = AST.templateLiteral('undefined');
-                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                body[i] = finalParent;
-
-                after(finalNode, finalParent);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
-                return true;
-              }
-
-              case 'Infinity': {
-                rule('Typeof Infinity is the string number');
-                example('typeof Infinity', '"number"');
-                before(node, parentNode);
-
-                const finalNode = AST.templateLiteral('number');
-                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                body[i] = finalParent;
-
-                after(finalNode, finalParent);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
-                return true;
-              }
-
-              default: {
-                if (globals.has(node.argument.name)) {
-                  rule('Typeof of a builtin global can be statically resolved');
-                  example('typeof setTimeout', '"function";');
-                  before(node, parentNode);
-
-                  const finalNode = AST.templateLiteral(globals.get(node.argument.name));
-                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body[i] = finalParent;
-
-                  after(finalNode, finalParent);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-              }
-            }
-          }
-
-          if (node.argument.type === 'TemplateLiteral') {
-            rule('Typeof string is the string string');
-            example('typeof `foo`', '"string"');
+          if (node.argument.type === 'Literal' && node.argument.value instanceof RegExp) {
+            rule('Typeof regex is the string object');
+            example('typeof /foo/', '"object"');
             before(node);
 
-            const finalNode = AST.templateLiteral('string');
+            const finalNode = AST.templateLiteral('object');
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
+
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          if (node.argument.type === 'Identifier' && globals.has(node.argument.name)) {
+            rule('Typeof of a builtin global can be statically resolved');
+            example('typeof setTimeout', '"function";');
+            before(node, parentNode);
+
+            const finalNode = AST.templateLiteral(globals.get(node.argument.name));
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body[i] = finalParent;
 

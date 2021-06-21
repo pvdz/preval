@@ -1283,9 +1283,13 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   if (AST.isPrimitive(init.left)) {
                     const v = AST.getPrimitiveValue(init.left) | 0
                     meta.typing.oneBitAnded = isOneSetBit(v) ? v: undefined;
+
+                    meta.typing.anded = v;
                   } else if (AST.isPrimitive(init.right)) {
                     const v = AST.getPrimitiveValue(init.right) | 0
                     meta.typing.oneBitAnded = isOneSetBit(v) ? v : undefined;
+
+                    meta.typing.anded = v;
                   }
                   break;
                 }

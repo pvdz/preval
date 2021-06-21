@@ -54,12 +54,7 @@ if (tmpIfTest) {
 const x = $(200);
 const y = x & 200;
 $(y);
-const tmpIfTest = y === 3;
-if (tmpIfTest) {
-  $(`fail`);
-} else {
-  $(`pass`);
-}
+$(`pass`);
 `````
 
 ## Globals

@@ -1,0 +1,97 @@
+# Preval test case
+
+# and_if_and_if_unknown.md
+
+> Bit hacks > And > And if and if unknown
+>
+> Combine two checked ands
+
+#TODO
+
+## Input
+
+`````js filename=intro
+function f(a) {
+  const x = a & 1;
+  if (x) {
+    const y = a & 4;
+    if (y) {
+      $('pass');
+    }
+  }
+}
+
+f($(1));
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let f = function ($$0) {
+  let a = $$0;
+  debugger;
+  const x = a & 1;
+  if (x) {
+    const y = a & 4;
+    if (y) {
+      $(`pass`);
+    }
+  }
+};
+f($(1));
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = function ($$0) {
+  let a = $$0;
+  debugger;
+  const x = a & 1;
+  if (x) {
+    const y = a & 4;
+    if (y) {
+      $(`pass`);
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    return undefined;
+  }
+};
+const tmpCallCallee = f;
+const tmpCalleeParam = $(1);
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+const tmpCalleeParam = $(1);
+const x = tmpCalleeParam & 1;
+if (x) {
+  const y = tmpCalleeParam & 4;
+  if (y) {
+    $(`pass`);
+  } else {
+  }
+} else {
+}
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 1
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

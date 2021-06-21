@@ -54,11 +54,10 @@ if (tmpIfTest) {
 const x = $(200);
 const y = x & 200;
 $(y);
-const tmpIfTest = y === 0;
-if (tmpIfTest) {
-  $(`fail`);
-} else {
+if (y) {
   $(`pass`);
+} else {
+  $(`fail`);
 }
 `````
 

@@ -50,11 +50,10 @@ if (tmpIfTest) {
 `````js filename=intro
 const x = $(200);
 const y = x & 200;
-const tmpIfTest = y === 0;
-if (tmpIfTest) {
-  $(`fail`);
-} else {
+if (y) {
   $(`pass`);
+} else {
+  $(`fail`);
 }
 `````
 

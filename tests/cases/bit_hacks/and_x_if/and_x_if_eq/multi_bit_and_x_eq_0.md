@@ -6,7 +6,7 @@
 >
 > In some cases we can predict bitwise results or meta results
 
-#TODO
+Note: since `&` will always return a 32bit int (never `undefined` or `Infinity`), we can safely do a truthy check.
 
 ## Input
 
@@ -50,11 +50,10 @@ if (tmpIfTest) {
 `````js filename=intro
 const x = $(200);
 const y = x & 200;
-const tmpIfTest = y === 0;
-if (tmpIfTest) {
-  $(`fail`);
-} else {
+if (y) {
   $(`pass`);
+} else {
+  $(`fail`);
 }
 `````
 

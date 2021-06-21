@@ -49,13 +49,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $(200);
-const y = x & 200;
-const tmpIfTest = y === 3;
-if (tmpIfTest) {
-  $(`fail`);
-} else {
-  $(`pass`);
-}
+x & 200;
+$(`pass`);
 `````
 
 ## Globals

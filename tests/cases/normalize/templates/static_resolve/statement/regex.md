@@ -33,7 +33,7 @@ tmpBinLhs + ``;
 
 `````js filename=intro
 const tmpBinBothRhs = /foo/g;
-`` + tmpBinBothRhs;
+tmpBinBothRhs + ``;
 `````
 
 ## Globals

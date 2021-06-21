@@ -68,7 +68,7 @@ const varInitAssignLhsComputedProp$1 = $(`y`);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 const tmpBinBothRhs = $(100);
-0 + tmpBinBothRhs;
+tmpBinBothRhs + 0;
 $(a, b, c, 3, 4);
 `````
 

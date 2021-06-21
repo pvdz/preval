@@ -28,17 +28,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpBinBothLhs = ``;
-const tmpBinBothRhs = $(100);
-tmpBinBothLhs + tmpBinBothRhs;
+const tmpBinLhs = $(100);
+tmpBinLhs + ``;
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpBinBothRhs = $(100);
-`` + tmpBinBothRhs;
+const tmpBinLhs = $(100);
+tmpBinLhs + ``;
 const a = { a: 999, b: 1000 };
 $(a);
 `````

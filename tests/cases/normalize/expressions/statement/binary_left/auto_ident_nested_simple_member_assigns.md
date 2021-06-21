@@ -65,7 +65,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 const tmpBinBothRhs = $(100);
-0 + tmpBinBothRhs;
+tmpBinBothRhs + 0;
 $(a, b, 3);
 `````
 

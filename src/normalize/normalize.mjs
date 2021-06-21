@@ -3192,7 +3192,9 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (AST.isPrimitive(node.left)) {
+          const pl = AST.isPrimitive(node.left);
+
+          if (pl) {
             const v = AST.getPrimitiveValue(node.left);
             if ((typeof v === 'string' && v !== '') || (typeof v === 'number' && !Object.is(v, 0))) {
               rule('Binary expression as statement should have number/string literal left operand reduced to zero or empty string');
@@ -3208,7 +3210,21 @@ export function phaseNormalize(fdata, fname) {
             }
           }
 
-          if (AST.isPrimitive(node.right)) {
+          const pr = AST.isPrimitive(node.right);
+
+          if (pl && pr) {
+            rule('Drop a binary expression that is a statement when both operands are primitives');
+            example('1 === "x";', ';');
+            before(node);
+
+            body[i] = AST.emptyStatement();
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          if (pr) {
             const v = AST.getPrimitiveValue(node.right);
             if ((typeof v === 'string' && v !== '') || (typeof v === 'number' && !Object.is(v, 0))) {
               rule('Binary expression as statement should have number/string literal right operand reduced to zero or empty string');
@@ -3222,6 +3238,41 @@ export function phaseNormalize(fdata, fname) {
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
+          }
+
+          if (!pl && !pr) {
+            // Ideally we want to split these cases up to try and eliminate references we know we can eliminate
+            // Unfortunately we can't do this for all because coercion, like with `+`, `==`, and `<=`.
+            if (['**', '*', '/', '-', '<<', '>>', '>>>', '&', '^', '|'].includes(node.operator)) {
+              rule('A numeric binary expression that is a statement should have only one non-literal operand');
+              example('a * b;', 'a * 0; b * 0;');
+              before(node, body[i]);
+
+              body.splice(
+                i,
+                1,
+                AST.expressionStatement(AST.binaryExpression(node.operator, node.left, AST.literal(0))),
+                AST.expressionStatement(AST.binaryExpression(node.operator, node.right, AST.literal(0))),
+              );
+
+              after(body.slice(i, i + 2));
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+
+          if (pl) {
+            rule('A binary expression that is a statement must have the primitive to the right');
+            example('0 + x;', 'x + 0;');
+            before(body[i]);
+
+            const t = node.left;
+            node.left = node.right;
+            node.right = t;
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
           }
 
           // TODO: if we know the lhs or rhs is of a certain kind then we can replace the expression with

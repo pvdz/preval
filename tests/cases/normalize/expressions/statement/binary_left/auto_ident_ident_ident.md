@@ -46,7 +46,7 @@ $(a, b, c);
 
 `````js filename=intro
 const tmpBinBothRhs = $(100);
-0 + tmpBinBothRhs;
+tmpBinBothRhs + 0;
 const a = { a: 999, b: 1000 };
 $(a, 2, 2);
 `````

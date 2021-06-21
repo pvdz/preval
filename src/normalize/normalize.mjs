@@ -3548,6 +3548,20 @@ export function phaseNormalize(fdata, fname) {
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
+
+            if (node.argument.operator === 'typeof') {
+              rule('Plus on a typeof result always results in NaN');
+              example('f(+typeof x)', 'f(NaN)');
+              before(node, body[i]);
+
+              const finalNode = AST.identifier('NaN');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
           }
         }
 
@@ -3614,6 +3628,20 @@ export function phaseNormalize(fdata, fname) {
               body[i] = finalParent;
 
               after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.operator === 'typeof') {
+              rule('Minus on a typeof result always results in NaN');
+              example('f(-typeof x)', 'f(NaN)');
+              before(node, body[i]);
+
+              const finalNode = AST.identifier('NaN');
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, body[i]);
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }

@@ -3501,82 +3501,15 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (node.operator === '+') {
-          if (node.argument.type === 'Literal') {
-            if (wrapKind === 'statement') {
-              rule('Unary plus on a literal as statement should be dropped');
-              example('+10;', ';');
-              before(node, parentNode);
+          if (AST.isPrimitive(node.argument)) {
+            const pv = AST.getPrimitiveValue(node.argument);
+            const pvn = +pv;
 
-              body[i] = AST.emptyStatement();
+            rule('The `+` operator applied to a primitive should be inlined');
+            example('+"15"', '15');
+            before(node, body[i]);
 
-              after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (typeof node.argument.value === 'number') {
-              rule('The `+` unary operator on a number literal is a noop');
-              example('+100', '100');
-              before(node, parentNode);
-
-              const finalNode = node.argument;
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.raw === 'null') {
-              rule('The `+` unary operator on a null literal is a zero');
-              example('+null', '0');
-              before(node, parentNode);
-
-              const finalNode = AST.zero();
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.value === true) {
-              rule('The `+` unary operator on a true literal is a 1');
-              example('+true', '1');
-              before(node, parentNode);
-
-              const finalNode = AST.one();
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.value === false) {
-              rule('The `+` unary operator on a false literal is a 0');
-              example('+false', '1');
-              before(node, parentNode);
-
-              const finalNode = AST.zero();
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-          }
-
-          if (AST.isStringValue(node.argument, '', true)) {
-            rule('The `+` unary operator on an empty string literal is a 0');
-            example('+``', '1');
-            before(node, parentNode);
-
-            const finalNode = AST.zero();
+            const finalNode = AST.primitive(pvn);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body[i] = finalParent;
 
@@ -3585,45 +3518,16 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (node.argument.type === 'Identifier') {
-            if (node.argument.name === 'NaN') {
-              rule('A NaN with a `+` unary is a NaN');
-              example('+NaN', 'NaN');
+          if (node.argument.type === 'Literal') {
+            // regex etc
+            if (wrapKind === 'statement') {
+              rule('Unary plus on a literal as statement should be dropped');
+              example('+10;', ';');
               before(node, parentNode);
 
-              const finalNode = AST.identifier('NaN');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
+              body[i] = AST.emptyStatement();
 
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.name === 'undefined') {
-              rule('An undefined with a `+` unary is a NaN');
-              example('+undefined', 'NaN');
-              before(node, parentNode);
-
-              const finalNode = AST.identifier('NaN');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.name === 'Infinity') {
-              rule('A `+` on Infinity is regular Infinity');
-              example('+Infinity', 'Infinity');
-              before(node, parentNode);
-
-              const finalNode = AST.identifier('Infinity');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
+              after(body[i]);
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }

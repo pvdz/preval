@@ -150,8 +150,7 @@ X(`a`, `b`, `c`, `d`, `e`);
 ## Output
 
 `````js filename=intro
-const l = +`no`;
-const m = isNaN(l);
+const m = isNaN(NaN);
 if (m) {
   $(`a`, `b`, `no`, `c`, `e`, 1, false, `string`, true, 0, true);
 } else {

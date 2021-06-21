@@ -61,7 +61,7 @@ const f = function ($$0) {
       break stop;
     }
   }
-  x + 1;
+  x + 0;
   return undefined;
 };
 f();

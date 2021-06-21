@@ -46,7 +46,7 @@ $(a, x);
 const tmpBinBothLhs = $(100);
 $(1);
 $(2);
-tmpBinBothLhs + 1;
+tmpBinBothLhs + 0;
 const a = { a: 999, b: 1000 };
 $(a, 1);
 `````

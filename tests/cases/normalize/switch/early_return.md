@@ -164,7 +164,7 @@ const f = function () {
       const tmpReturnArg = $(6);
       return tmpReturnArg;
     } else {
-      tmpSwitchCaseToStart <= 3;
+      tmpSwitchCaseToStart <= 0;
       return undefined;
     }
   }

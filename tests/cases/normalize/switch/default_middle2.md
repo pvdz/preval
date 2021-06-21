@@ -60,7 +60,7 @@ if (tmpIfTest) {
 } else {
 }
 tmpSwitchCaseToStart <= 0;
-tmpSwitchCaseToStart <= 1;
+tmpSwitchCaseToStart <= 0;
 `````
 
 ## Globals

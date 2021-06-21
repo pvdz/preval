@@ -225,7 +225,7 @@ const f = function () {
       const tmpReturnArg$3 = $(6);
       return tmpReturnArg$3;
     } else {
-      tmpSwitchCaseToStart <= 3;
+      tmpSwitchCaseToStart <= 0;
       return undefined;
     }
   }

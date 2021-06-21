@@ -92,7 +92,7 @@ varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
 varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
-tmpBinBothLhs + 3;
+tmpBinBothLhs + 0;
 $(a, b, 3);
 `````
 

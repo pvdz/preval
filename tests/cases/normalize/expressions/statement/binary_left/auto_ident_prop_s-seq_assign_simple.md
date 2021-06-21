@@ -48,7 +48,7 @@ const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 b.c = 2;
 const tmpBinBothRhs = $(100);
-2 + tmpBinBothRhs;
+0 + tmpBinBothRhs;
 $(a, b);
 `````
 

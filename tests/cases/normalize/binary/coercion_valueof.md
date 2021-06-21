@@ -39,7 +39,7 @@ a < b;
 `````js filename=intro
 const tmpCalleeParam = { valueOf: $ };
 const a = $(tmpCalleeParam);
-a < 2;
+a < 0;
 `````
 
 ## Globals

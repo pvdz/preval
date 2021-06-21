@@ -1393,12 +1393,12 @@ export function phaseNormalize(fdata, fname) {
               case 'isNaN': {
                 if (args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isNaN` on a primitive should resolve');
-                  example('isNaN("hello")', 'true', ); // tests/cases/normalize/builtins/globals_with_primitives/isnan_500.md
+                  example('isNaN("hello")', 'true'); // tests/cases/normalize/builtins/globals_with_primitives/isnan_500.md
                   before(node, parentNode);
 
                   const finalNode = isNaN(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1, ...args.slice(1).map(enode => AST.expressionStatement(enode)), finalParent);
+                  body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
 
                   after(finalNode, body.slice(i, args.length));
                   return true;
@@ -1408,12 +1408,12 @@ export function phaseNormalize(fdata, fname) {
               case 'isFinite': {
                 if (args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isFinite` on a primitive should resolve');
-                  example('isFinite("hello")', 'false', ); // tests/cases/normalize/builtins/globals_with_primitives/isfinite_500.md
+                  example('isFinite("hello")', 'false'); // tests/cases/normalize/builtins/globals_with_primitives/isfinite_500.md
                   before(node, parentNode);
 
                   const finalNode = isFinite(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1, ...args.slice(1).map(enode => AST.expressionStatement(enode)), finalParent);
+                  body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
 
                   after(finalNode, body.slice(i, args.length));
                   return true;
@@ -1428,7 +1428,7 @@ export function phaseNormalize(fdata, fname) {
 
                   const finalNode = Boolean(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1, ...args.slice(1).map(enode => AST.expressionStatement(enode)), finalParent);
+                  body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
 
                   after(finalNode, body.slice(i, args.length));
                   return true;
@@ -1447,13 +1447,20 @@ export function phaseNormalize(fdata, fname) {
                       // Ok... Seems this is safe to convert
 
                       rule('Calling `parseFloat` on a primitive should resolve');
-                      example('parseInt("50hello")', '50', ); // tests/cases/normalize/builtins/globals_with_primitives/parseint_500.md
+                      example('parseInt("50hello")', '50'); // tests/cases/normalize/builtins/globals_with_primitives/parseint_500.md
                       before(node, parentNode);
 
                       const finalNode = AST.primitive(pvn);
-                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                      const finalParent = wrapExpressionAs(
+                        wrapKind,
+                        varInitAssignKind,
+                        varInitAssignId,
+                        wrapLhs,
+                        varOrAssignKind,
+                        finalNode,
+                      );
                       // If there was a second arg it must have been a primitive to get here. In that case we can ignore it here.
-                      body.splice(i, 1, ...args.slice(2).map(enode => AST.expressionStatement(enode)), finalParent);
+                      body.splice(i, 1, ...args.slice(2).map((enode) => AST.expressionStatement(enode)), finalParent);
 
                       after(finalNode, body.slice(i, args.length));
                       return true;
@@ -1471,13 +1478,13 @@ export function phaseNormalize(fdata, fname) {
                   if (pvn === +String(pvn)) {
                     // Ok... Seems this is safe to convert
                     rule('Calling `parseFloat` or `Number on a primitive should resolve');
-                    example('parseFloat("50.3hello")', '50.3', () => callee.name ==='parseFloat'); // tests/cases/normalize/builtins/globals_with_primitives/parsefloat_500.md
-                    example('parseFloat("50.3hello")', '50.3', () => callee.name ==='Number' ); // tests/cases/normalize/builtins/globals_with_primitives/number_500.md
+                    example('parseFloat("50.3hello")', '50.3', () => callee.name === 'parseFloat'); // tests/cases/normalize/builtins/globals_with_primitives/parsefloat_500.md
+                    example('parseFloat("50.3hello")', '50.3', () => callee.name === 'Number'); // tests/cases/normalize/builtins/globals_with_primitives/number_500.md
                     before(node, parentNode);
 
                     const finalNode = AST.primitive(pvn);
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1, ...args.slice(1).map(enode => AST.expressionStatement(enode)), finalParent);
+                    body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
 
                     after(finalNode, body.slice(i, args.length));
                     return true;
@@ -3183,6 +3190,38 @@ export function phaseNormalize(fdata, fname) {
             after(finalNode, finalParent);
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
+          }
+
+          if (AST.isPrimitive(node.left)) {
+            const v = AST.getPrimitiveValue(node.left);
+            if ((typeof v === 'string' && v !== '') || (typeof v === 'number' && !Object.is(v, 0))) {
+              rule('Binary expression as statement should have number/string literal left operand reduced to zero or empty string');
+              example('x + "very long string"', 'x + ""', () => typeof v === 'string');
+              example('x + 5000', 'x + 0', () => typeof v === 'number');
+              before(node, body[i]);
+
+              node.left = AST.primitive(typeof v === 'number' ? 0 : '');
+
+              after(node, body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+
+          if (AST.isPrimitive(node.right)) {
+            const v = AST.getPrimitiveValue(node.right);
+            if ((typeof v === 'string' && v !== '') || (typeof v === 'number' && !Object.is(v, 0))) {
+              rule('Binary expression as statement should have number/string literal right operand reduced to zero or empty string');
+              example('x + "very long string"', 'x + ""', () => typeof v === 'string');
+              example('x + 5000', 'x + 0', () => typeof v === 'number');
+              before(node, body[i]);
+
+              node.right = AST.primitive(typeof v === 'number' ? 0 : '');
+
+              after(node, body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
           }
 
           // TODO: if we know the lhs or rhs is of a certain kind then we can replace the expression with

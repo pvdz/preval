@@ -60,7 +60,7 @@ let f = function () {
   debugger;
   const inlineMe = function () {
     debugger;
-    $ <= 3;
+    $ <= 0;
     return undefined;
   };
   const g = function () {
@@ -89,7 +89,7 @@ const f = function () {
   debugger;
   if (tmpIfTest) {
     if ($) {
-      $ <= 3;
+      $ <= 0;
       return undefined;
     } else {
       return undefined;

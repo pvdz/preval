@@ -44,7 +44,7 @@ $(a, b);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-tmpBinBothLhs + 1;
+tmpBinBothLhs + 0;
 const a = { a: 999, b: 1000 };
 $(a, 2);
 `````

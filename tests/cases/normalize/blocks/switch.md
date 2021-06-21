@@ -146,14 +146,14 @@ tmpSwitchBreak: {
     $(3);
   } else {
   }
-  tmpSwitchCaseToStart <= 1;
-  tmpSwitchCaseToStart <= 2;
+  tmpSwitchCaseToStart <= 0;
+  tmpSwitchCaseToStart <= 0;
   const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
   if (tmpIfTest$15) {
     break tmpSwitchBreak;
   } else {
-    tmpSwitchCaseToStart <= 4;
-    tmpSwitchCaseToStart <= 5;
+    tmpSwitchCaseToStart <= 0;
+    tmpSwitchCaseToStart <= 0;
   }
 }
 `````

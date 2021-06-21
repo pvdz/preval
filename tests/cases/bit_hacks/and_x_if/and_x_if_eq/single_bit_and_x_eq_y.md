@@ -49,7 +49,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $(32768);
-x & 32768;
+x & 0;
 $(`pass`);
 `````
 

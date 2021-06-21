@@ -65,7 +65,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-tmpBinBothLhs + 3;
+tmpBinBothLhs + 0;
 $(a, b, 3);
 `````
 

@@ -104,7 +104,7 @@ tmpSwitchBreak: {
     $(`pass`);
     break tmpSwitchBreak;
   } else {
-    tmpSwitchCaseToStart <= 1;
+    tmpSwitchCaseToStart <= 0;
   }
 }
 `````

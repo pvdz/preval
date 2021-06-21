@@ -51,7 +51,7 @@ if ($) {
 `````js filename=intro
 const inlineMe = function () {
   debugger;
-  $ <= 3;
+  $ <= 0;
   return undefined;
 };
 const g = function () {
@@ -73,7 +73,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  $ <= 3;
+  $ <= 0;
 } else {
 }
 `````

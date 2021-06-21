@@ -22,18 +22,16 @@ $(-(-/1/));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpUnaryArg$1 = /1/;
-const tmpUnaryArg = -tmpUnaryArg$1;
-const tmpCalleeParam = -tmpUnaryArg;
+const tmpUnaryArg = /1/;
+const tmpCalleeParam = +tmpUnaryArg;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpUnaryArg$1 = /1/;
-const tmpUnaryArg = -tmpUnaryArg$1;
-const tmpCalleeParam = -tmpUnaryArg;
+const tmpUnaryArg = /1/;
+const tmpCalleeParam = +tmpUnaryArg;
 $(tmpCalleeParam);
 `````
 

@@ -27,7 +27,7 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const x = -(-Infinity);
+const x = Infinity;
 const y = x;
 $(y);
 `````
@@ -35,8 +35,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const x = -(-Infinity);
-$(x);
+$(Infinity);
 `````
 
 ## Globals

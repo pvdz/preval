@@ -30,8 +30,7 @@ $(z);
 
 `````js filename=intro
 const x = $(5);
-const tmpUnaryArg = -x;
-const y = -tmpUnaryArg;
+const y = +x;
 const z = y;
 $(z);
 `````
@@ -40,8 +39,7 @@ $(z);
 
 `````js filename=intro
 const x = $(5);
-const tmpUnaryArg = -x;
-const y = -tmpUnaryArg;
+const y = +x;
 $(y);
 `````
 

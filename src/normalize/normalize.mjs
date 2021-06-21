@@ -3518,23 +3518,22 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (node.argument.type === 'Literal') {
+          if (AST.isPrimitive(node.argument) && wrapKind === 'statement') {
             // regex etc
-            if (wrapKind === 'statement') {
-              rule('Unary plus on a literal as statement should be dropped');
-              example('+10;', ';');
-              before(node, parentNode);
+            rule('Unary negative on a primitive as statement should be dropped');
+            example('+10;', ';');
+            before(node, parentNode);
 
-              body[i] = AST.emptyStatement();
+            body[i] = AST.emptyStatement();
 
-              after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
           }
 
           if (node.argument.type === 'UnaryExpression') {
             if (['+', '-', '~'].includes(node.argument.operator)) {
+              // Note: actual arg value is irrelevant since we know the nested operator will coerce to number first
               rule('Plus operator in front of +-~ operator is a noop');
               example('+-x', '-x', () => node.operator === '-');
               example('+~x', '~x', () => node.operator === '~');
@@ -3553,8 +3552,30 @@ export function phaseNormalize(fdata, fname) {
         }
 
         if (node.operator === '-') {
-          if (wrapKind === 'statement' && AST.isPrimitive(node.argument)) {
-            rule('Unary minus primitive as statement should be dropped');
+          if (AST.isPrimitive(node.argument)) {
+            const pv = AST.getPrimitiveValue(node.argument);
+            const pvn = -pv;
+
+            // The minus sticks around in the AST for negative numbers and other values so
+            // we have to confirm that the arg changed before replacing the whole thing.
+            if (-pvn !== pv) {
+              rule('The `-` operator applied to a primitive should be inlined unless was already a negative number');
+              example('-"15"', '-15');
+              before(node, body[i]);
+
+              const finalNode = AST.primitive(pvn);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+
+          if (AST.isPrimitive(node.argument) && wrapKind === 'statement') {
+            // regex etc
+            rule('Unary minus number as statement should be dropped');
             example('-10;', ';');
             before(node, parentNode);
 
@@ -3565,95 +3586,30 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (node.argument.type === 'Literal') {
-            if (node.argument.raw === 'null') {
-              rule('The `-` unary operator on a null literal is a _negative_ zero');
-              example('+null', '0');
-              before(node, parentNode);
-
-              node.argument = AST.zero();
-
-              after(node);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.value === true) {
-              rule('The `-` unary operator on a true literal is a -1');
-              example('+true', '1');
-              before(node, parentNode);
-
-              node.argument = AST.one();
-
-              after(node);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.value === false) {
-              rule('The `-` unary operator on a false literal is a _negative_ 0');
-              example('+false', '1');
-              before(node, parentNode);
-
-              node.argument = AST.zero();
-
-              after(node);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-          }
-
-          if (AST.isStringValue(node.argument, '', true)) {
-            rule('The `+` unary operator on an empty string literal is a _negative_ 0');
-            example('+``', '1');
-            before(node, parentNode);
-
-            node.argument = AST.zero();
-
-            after(node);
-            assertNoDupeNodes(AST.blockStatement(body), 'body');
-            return true;
-          }
-
-          if (node.argument.type === 'Identifier') {
-            if (node.argument.name === 'NaN') {
-              rule('A NaN with a `-` unary is a NaN');
-              example('+NaN', 'NaN');
-              before(node, parentNode);
-
-              const finalNode = AST.identifier('NaN');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.name === 'undefined') {
-              rule('An undefined with a `-` unary is a NaN');
-              example('+undefined', 'NaN');
-              before(node, parentNode);
-
-              const finalNode = AST.identifier('NaN');
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-          }
-
           if (node.argument.type === 'UnaryExpression') {
-            if (node.argument.operator === '-' && AST.isNumber(node.argument.argument)) {
-              // "double negative"
-              // TODO: we can do the same for ~ in many cases but we'd have to be careful about 32bit boundaries
-              rule('The `-` unary operator on a number literal twice is a noop');
-              example('--100', '100');
+            // Note: actual arg value is irrelevant since we know the nested operator will coerce to number first
+
+            if (node.argument.operator === '-') {
+              // Can't blindly eliminate because coercion. If this can be eliminated another rule will pick it up.
+              rule('Double negative operator is same as single positive operator');
+              example('--x', '+x');
               before(node, parentNode);
 
-              const finalNode = node.argument.argument;
+              const finalNode = AST.unaryExpression('+', node.argument.argument);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
+
+              after(finalNode, finalParent);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+            if (node.argument.operator === '+') {
+              rule('Negative operator on a positive operator means negative operator');
+              example('-+x', '-x');
+              before(node, parentNode);
+
+              const finalNode = AST.unaryExpression('+', node.argument.argument);
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 

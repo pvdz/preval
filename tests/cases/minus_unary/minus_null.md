@@ -22,8 +22,7 @@ $(-(-null));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpUnaryArg = -0;
-const tmpCalleeParam = -tmpUnaryArg;
+const tmpCalleeParam = 0;
 tmpCallCallee(tmpCalleeParam);
 `````
 

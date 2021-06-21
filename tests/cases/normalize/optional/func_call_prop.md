@@ -51,15 +51,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
-const tmpChainElementCall = parseInt(15);
-const tmpIfTest = tmpChainElementCall == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = tmpChainElementCall.foo;
-  tmpCalleeParam = tmpChainElementObject;
-}
-const tmpReturnArg = $(tmpCalleeParam);
+const tmpChainElementObject = (15).foo;
+const tmpReturnArg = $(tmpChainElementObject);
 $(tmpReturnArg);
 `````
 

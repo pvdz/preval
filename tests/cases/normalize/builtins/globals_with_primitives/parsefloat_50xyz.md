@@ -1,40 +1,39 @@
 # Preval test case
 
-# global_call_prop.md
+# parsefloat_50xyz.md
 
-> Normalize > Nullish > Global call prop
+> Normalize > Builtins > Globals with primitives > Parsefloat 50xyz
 >
-> Ident property access should not be changed
+> Calling parseFloat on a primitive should resolve
+
+This is different from `parseInt`...
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-$(parseInt(15)??foo);
+$(parseFloat("50xyz"));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(parseInt(15) ?? foo);
+$(parseFloat(`50xyz`));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-let tmpCalleeParam = 15;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = foo;
-} else {
-}
+const tmpCalleeParam = 50;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(15);
+$(50);
 `````
 
 ## Globals
@@ -44,7 +43,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 15
+ - 1: 50
  - eval returned: undefined
 
 Pre normalization calls: Same

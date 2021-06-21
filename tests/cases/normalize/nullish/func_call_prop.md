@@ -31,7 +31,7 @@ $(f());
 let f = function () {
   debugger;
   const tmpCallCallee = $;
-  let tmpCalleeParam = parseInt(15);
+  let tmpCalleeParam = 15;
   const tmpIfTest = tmpCalleeParam == null;
   if (tmpIfTest) {
     tmpCalleeParam = foo;
@@ -48,21 +48,13 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = parseInt(15);
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = foo;
-} else {
-}
-const tmpReturnArg = $(tmpCalleeParam);
+const tmpReturnArg = $(15);
 $(tmpReturnArg);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-foo
+None
 
 ## Result
 

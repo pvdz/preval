@@ -1,40 +1,38 @@
 # Preval test case
 
-# global_call_prop.md
+# string_foo.md
 
-> Normalize > Nullish > Global call prop
+> Normalize > Builtins > Globals with primitives > String foo
 >
-> Ident property access should not be changed
+> Calling String on a primitive should resolve
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-$(parseInt(15)??foo);
+$(String("foo"));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(parseInt(15) ?? foo);
+$(String(`foo`));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-let tmpCalleeParam = 15;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = foo;
-} else {
-}
+const tmpCalleeParam = String(`foo`);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(15);
+const tmpCalleeParam = String(`foo`);
+$(tmpCalleeParam);
 `````
 
 ## Globals
@@ -44,7 +42,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 15
+ - 1: 'foo'
  - eval returned: undefined
 
 Pre normalization calls: Same

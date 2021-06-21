@@ -1279,100 +1279,78 @@ export function phaseNormalize(fdata, fname) {
           return true;
         }
 
-        if (callee.type === 'Identifier' && ASSUME_BUILTINS && wrapKind === 'statement') {
-          switch (callee.name) {
-            case 'isNaN':
-            case 'isFinite':
-            case 'Boolean': {
-              // The args are not coerced so they can become statements as-is
-              rule('A statement that is a Boolean(), isNaN(), or isFinite() call can be dropped');
-              example('Boolean(a);', 'a;');
-              before(node, parentNode);
-
-              body.splice(
-                i,
-                1,
-                ...node.arguments.map((anode) =>
-                  // Make sure `Number.isNaN(...x)` properly becomes `[...x]` and let another rule deal with that mess.
-                  AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode),
-                ),
-              );
-
-              after(parentNode);
-              return true;
-            }
-
-            case 'parseFloat':
-            case 'Number': {
-              // The first arg should be unary +. The rest as is.
-
-              // Note: the `+` operator is effectively the specificaton's `ToNumber` coercion operation in syntactic form.
-              // Move all args to individual statements. Coerce the first to number. Drop the call.
-              rule('A statement that is Number() or parseInt() should be replaced by its args as statements');
-              example('Number(a);', '+300;');
-              before(node, parentNode);
-
-              const newNodes = node.arguments.map((anode, ai) =>
-                // Make sure `Number(...x)` properly becomes `+[...x][0]` and let another rule deal with that mess.
-                AST.expressionStatement(
-                  ai === 0
-                    ? anode.type === 'SpreadElement'
-                      ? // If the first arg is a spread, convert it to an array and coerce its first element `+[...x][0]`
-                        // That should work (albeit a little ugly)
-                        AST.unaryExpression('+', AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true))
-                      : AST.unaryExpression('+', anode)
-                    : anode.type === 'SpreadElement'
-                    ? AST.arrayExpression(anode)
-                    : anode,
-                ),
-              );
-              body.splice(i, 1, ...newNodes);
-
-              after(parentNode);
-              return true;
-            }
-            case 'String':
-              // Coerce the first arg to string
-              rule('A statement that is String() can be eliminated');
-              example('String(a);', '"" + a;');
-              before(node, parentNode);
-
-              const newNodes = node.arguments.map((anode, ai) =>
-                // Make sure `String(...x)` properly becomes `"" + [...x][0]` and let another rule deal with that mess.
-                AST.expressionStatement(
-                  ai === 0
-                    ? anode.type === 'SpreadElement'
-                      ? // If the first arg is a spread, convert it to an array and coerce its first element `""+[...x][0]`
-                        // That should work (albeit a little ugly)
-                        AST.binaryExpression(
-                          '+',
-                          AST.templateLiteral(''),
-                          AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true),
-                        )
-                      : AST.binaryExpression('+', AST.templateLiteral(''), anode)
-                    : anode.type === 'SpreadElement'
-                    ? AST.arrayExpression(anode)
-                    : anode,
-                ),
-              );
-              body.splice(i, 1, ...newNodes);
-
-              after(parentNode);
-              return true;
-            case 'parseInt': {
-              // Coerce the first arg to string, the second to number
-              if (node.arguments.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
-                rule('A statement that is parseInt can be eliminated');
-                example('parseInt(a, b, c);', '""+a; +b; c;');
+        if (callee.type === 'Identifier' && ASSUME_BUILTINS) {
+          if (wrapKind === 'statement') {
+            switch (callee.name) {
+              case 'isNaN':
+              case 'isFinite':
+              case 'Boolean': {
+                // The args are not coerced so they can become statements as-is
+                rule('A statement that is a Boolean(), isNaN(), or isFinite() call can be dropped');
+                example('Boolean(a);', 'a;');
                 before(node, parentNode);
 
-                const newNodes = node.arguments.map((anode, ai) =>
-                  // Since the all the args need to be coerced, we won't be supporting the spread case here
+                body.splice(
+                  i,
+                  1,
+                  ...args.map((anode) =>
+                    // Make sure `Number.isNaN(...x)` properly becomes `[...x]` and let another rule deal with that mess.
+                    AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode),
+                  ),
+                );
+
+                after(parentNode);
+                return true;
+              }
+
+              case 'parseFloat':
+              case 'Number': {
+                // The first arg should be unary +. The rest as is.
+
+                // Note: the `+` operator is effectively the specificaton's `ToNumber` coercion operation in syntactic form.
+                // Move all args to individual statements. Coerce the first to number. Drop the call.
+                rule('A statement that is Number() or parseInt() should be replaced by its args as statements');
+                example('Number(a);', '+300;');
+                before(node, parentNode);
+
+                const newNodes = args.map((anode, ai) =>
+                  // Make sure `Number(...x)` properly becomes `+[...x][0]` and let another rule deal with that mess.
                   AST.expressionStatement(
                     ai === 0
-                      ? AST.binaryExpression('+', AST.templateLiteral(''), anode)
-                      : ai === 0
-                      ? AST.unaryExpression('+', AST.templateLiteral(''))
+                      ? anode.type === 'SpreadElement'
+                        ? // If the first arg is a spread, convert it to an array and coerce its first element `+[...x][0]`
+                          // That should work (albeit a little ugly)
+                          AST.unaryExpression('+', AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true))
+                        : AST.unaryExpression('+', anode)
+                      : anode.type === 'SpreadElement'
+                      ? AST.arrayExpression(anode)
+                      : anode,
+                  ),
+                );
+                body.splice(i, 1, ...newNodes);
+
+                after(body[i]);
+                return true;
+              }
+              case 'String':
+                // Coerce the first arg to string
+                rule('A statement that is String() can be eliminated');
+                example('String(a);', '"" + a;');
+                before(node, parentNode);
+
+                const newNodes = args.map((anode, ai) =>
+                  // Make sure `String(...x)` properly becomes `"" + [...x][0]` and let another rule deal with that mess.
+                  AST.expressionStatement(
+                    ai === 0
+                      ? anode.type === 'SpreadElement'
+                        ? // If the first arg is a spread, convert it to an array and coerce its first element `""+[...x][0]`
+                          // That should work (albeit a little ugly)
+                          AST.binaryExpression(
+                            '+',
+                            AST.templateLiteral(''),
+                            AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true),
+                          )
+                        : AST.binaryExpression('+', AST.templateLiteral(''), anode)
                       : anode.type === 'SpreadElement'
                       ? AST.arrayExpression(anode)
                       : anode,
@@ -1382,8 +1360,131 @@ export function phaseNormalize(fdata, fname) {
 
                 after(parentNode);
                 return true;
+              case 'parseInt': {
+                // Coerce the first arg to string, the second to number
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                  rule('A statement that is parseInt can be eliminated');
+                  example('parseInt(a, b, c);', '""+a; +b; c;');
+                  before(node, parentNode);
+
+                  const newNodes = args.map((anode, ai) =>
+                    // Since the all the args need to be coerced, we won't be supporting the spread case here
+                    AST.expressionStatement(
+                      ai === 0
+                        ? AST.binaryExpression('+', AST.templateLiteral(''), anode)
+                        : ai === 0
+                        ? AST.unaryExpression('+', AST.templateLiteral(''))
+                        : anode.type === 'SpreadElement'
+                        ? AST.arrayExpression(anode)
+                        : anode,
+                    ),
+                  );
+                  body.splice(i, 1, ...newNodes);
+
+                  after(parentNode);
+                  return true;
+                }
+                break;
               }
-              break;
+            }
+          } else {
+            const firstArgNode = args[0];
+            switch (callee.name) {
+              case 'isNaN': {
+                if (args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `isNaN` on a primitive should resolve');
+                  example('isNaN("hello")', 'true', ); // tests/cases/normalize/builtins/globals_with_primitives/isnan_500.md
+                  before(node, parentNode);
+
+                  const finalNode = isNaN(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, ...args.slice(1).map(enode => AST.expressionStatement(enode)), finalParent);
+
+                  after(finalNode, body.slice(i, args.length));
+                  return true;
+                }
+                break;
+              }
+              case 'isFinite': {
+                if (args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `isFinite` on a primitive should resolve');
+                  example('isFinite("hello")', 'false', ); // tests/cases/normalize/builtins/globals_with_primitives/isfinite_500.md
+                  before(node, parentNode);
+
+                  const finalNode = isFinite(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, ...args.slice(1).map(enode => AST.expressionStatement(enode)), finalParent);
+
+                  after(finalNode, body.slice(i, args.length));
+                  return true;
+                }
+                break;
+              }
+              case 'Boolean': {
+                if (args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `Boolean` on a primitive should resolve');
+                  example('Boolean("hello")', 'true', () => TESTME);
+                  before(node, parentNode);
+
+                  const finalNode = Boolean(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, ...args.slice(1).map(enode => AST.expressionStatement(enode)), finalParent);
+
+                  after(finalNode, body.slice(i, args.length));
+                  return true;
+                }
+                break;
+              }
+              case 'parseInt': {
+                if (firstArgNode && AST.isPrimitive(firstArgNode)) {
+                  if (!args[1] || AST.isPrimitive(args[1])) {
+                    const pv1 = AST.getPrimitiveValue(firstArgNode);
+                    const pv2 = args[1] && AST.getPrimitiveValue(args[1]);
+
+                    const pvn = args[1] ? parseInt(pv1, pv2) : parseInt(pv1);
+                    // Confirm that we can serialize it without loss of precision
+                    if (pvn === +String(pvn)) {
+                      // Ok... Seems this is safe to convert
+
+                      rule('Calling `parseFloat` on a primitive should resolve');
+                      example('parseInt("50hello")', '50', ); // tests/cases/normalize/builtins/globals_with_primitives/parseint_500.md
+                      before(node, parentNode);
+
+                      const finalNode = AST.primitive(pvn);
+                      const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                      // If there was a second arg it must have been a primitive to get here. In that case we can ignore it here.
+                      body.splice(i, 1, ...args.slice(2).map(enode => AST.expressionStatement(enode)), finalParent);
+
+                      after(finalNode, body.slice(i, args.length));
+                      return true;
+                    }
+                  }
+                }
+                break;
+              }
+              case 'parseFloat':
+              case 'Number': {
+                if (firstArgNode && AST.isPrimitive(firstArgNode)) {
+                  const pv = AST.getPrimitiveValue(firstArgNode);
+                  const pvn = callee.name === 'parseFloat' ? parseFloat(pv) : Number(pv); // should be the same :snrug:
+                  // Confirm that we can serialize it without loss of precision
+                  if (pvn === +String(pvn)) {
+                    // Ok... Seems this is safe to convert
+                    rule('Calling `parseFloat` or `Number on a primitive should resolve');
+                    example('parseFloat("50.3hello")', '50.3', () => callee.name ==='parseFloat'); // tests/cases/normalize/builtins/globals_with_primitives/parsefloat_500.md
+                    example('parseFloat("50.3hello")', '50.3', () => callee.name ==='Number' ); // tests/cases/normalize/builtins/globals_with_primitives/number_500.md
+                    before(node, parentNode);
+
+                    const finalNode = AST.primitive(pvn);
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body.splice(i, 1, ...args.slice(1).map(enode => AST.expressionStatement(enode)), finalParent);
+
+                    after(finalNode, body.slice(i, args.length));
+                    return true;
+                  }
+                }
+                break;
+              }
             }
           }
         }
@@ -1477,7 +1578,7 @@ export function phaseNormalize(fdata, fname) {
               body.splice(
                 i,
                 1,
-                ...node.arguments.map((anode) =>
+                ...args.map((anode) =>
                   // Make sure `Number.isNaN(...x)` properly becomes `[...x]` and let another rule deal with that mess.
                   AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode),
                 ),
@@ -1495,7 +1596,7 @@ export function phaseNormalize(fdata, fname) {
               example('Number.isFinite(300);', '300;');
               before(node, parentNode);
 
-              const newNodes = node.arguments.map((anode, ai) =>
+              const newNodes = args.map((anode, ai) =>
                 // Make sure `Number.isNaN(...x)` properly becomes `[...x]` and let another rule deal with that mess.
                 AST.expressionStatement(
                   // Make sure `Date.now(...x)` properly becomes `[...x]` and let another rule deal with that mess.
@@ -1525,7 +1626,7 @@ export function phaseNormalize(fdata, fname) {
                 example('Date.parse(300);', '"" + 300;');
                 before(node, parentNode);
 
-                const newNodes = node.arguments.map((anode, ai) =>
+                const newNodes = args.map((anode, ai) =>
                   // Make sure `Date.now(...x)` properly becomes `[...x]` and let another rule deal with that mess.
                   AST.expressionStatement(
                     ai === 0
@@ -1551,12 +1652,12 @@ export function phaseNormalize(fdata, fname) {
 
               case 'Date.UTC': {
                 // Coerce the first seven args to number
-                if (node.arguments.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 7)) {
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 7)) {
                   rule('A statement that is Date.UTC can be eliminated');
                   example('Date.UTC(a, b, c);', '+a; +b; +c;');
                   before(node, parentNode);
 
-                  const newNodes = node.arguments.map((anode, ai) =>
+                  const newNodes = args.map((anode, ai) =>
                     // Make sure `Date.UTC(...x)` properly becomes `[...x]` and let another rule deal with that mess.
                     // Since the first seven args need to be coerced, we won't be supporting the spread case here
                     AST.expressionStatement(
@@ -1575,12 +1676,12 @@ export function phaseNormalize(fdata, fname) {
               case 'Math.imul': // Coerce the first two args to number
               case 'Math.pow': {
                 // Coerce the first two args to number
-                if (node.arguments.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
                   rule('A Math statement with two args can be eliminated');
                   example('Math.pow(a, b);', '+a; +b;');
                   before(node, parentNode);
 
-                  const newNodes = node.arguments.map((anode, ai) =>
+                  const newNodes = args.map((anode, ai) =>
                     // Make sure `Math.pow(...x)` properly becomes `[...x]` and let another rule deal with that mess.
                     // Since the first two args need to be coerced, we won't be supporting the spread case here
                     AST.expressionStatement(
@@ -1601,12 +1702,12 @@ export function phaseNormalize(fdata, fname) {
               case 'String.fromCharCode': // Coerce all args to number
               case 'String.fromCodePoint': {
                 // Coerce all args to number
-                if (node.arguments.every((anode, ai) => anode.type !== 'SpreadElement')) {
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement')) {
                   rule('A statement that is a builtin func call that coerces all its args to number can be eliminated');
                   example('Math.pow(a, b, c);', '+a; +b; +c;');
                   before(node, parentNode);
 
-                  const newNodes = node.arguments.map((anode, ai) =>
+                  const newNodes = args.map((anode, ai) =>
                     // Since the all the args need to be coerced, we won't be supporting the spread case here
                     AST.expressionStatement(AST.unaryExpression('+', anode)),
                   );
@@ -1619,12 +1720,12 @@ export function phaseNormalize(fdata, fname) {
               }
               case 'Number.parseInt': {
                 // Coerce the first arg to string, the second to number
-                if (node.arguments.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
                   rule('A statement that is Number.parseInt can be eliminated');
                   example('Number.parseInt(a, b, c);', '""+a; +b; c;');
                   before(node, parentNode);
 
-                  const newNodes = node.arguments.map((anode, ai) =>
+                  const newNodes = args.map((anode, ai) =>
                     // Since the all the args need to be coerced, we won't be supporting the spread case here
                     AST.expressionStatement(
                       ai === 0
@@ -1757,7 +1858,7 @@ export function phaseNormalize(fdata, fname) {
               const objName = callee.object.name;
 
               if (objName === 'Math') {
-                if (node.arguments.every((n) => AST.isPrimitive(n))) {
+                if (args.every((n) => AST.isPrimitive(n))) {
                   vlog(
                     'This is a math prop with primitive values. Inline the constant expression but beware of rounding/representation errors.',
                   );
@@ -1852,7 +1953,7 @@ export function phaseNormalize(fdata, fname) {
           node.callee.type === 'TemplateLiteral' || // Any template literal is a string and is uncallable
           node.callee.type === 'UnaryExpression' // All unary expressions result in uncallable primitives, so whatever.
         ) {
-          if (node.arguments.length !== 0 || body[i + 1]?.type !== 'ThrowStatement') {
+          if (args.length !== 0 || body[i + 1]?.type !== 'ThrowStatement') {
             rule('Calling an uncallable primitive must crash');
             example('50(a, b, c);', '50(); throw error;');
             example('null(a, b, c);', 'null(); throw error;');
@@ -1860,7 +1961,7 @@ export function phaseNormalize(fdata, fname) {
 
             // Drop any references. They shouldn't trigger a crash and are not needed to trigger the crash.
             // Perhaps this is more of a dead code branch and it leads to fewer references to bindings.
-            node.arguments.length = 0;
+            args.length = 0;
             body.splice(i + 1, 0, AST.throwStatement(AST.templateLiteral(ERR_MSG_ILLEGAL_CALLEE)));
 
             after(node);

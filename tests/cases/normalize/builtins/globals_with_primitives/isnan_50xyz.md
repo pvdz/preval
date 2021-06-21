@@ -1,40 +1,39 @@
 # Preval test case
 
-# global_call_prop.md
+# isnan_50xyz.md
 
-> Normalize > Nullish > Global call prop
+> Normalize > Builtins > Globals with primitives > Isnan 50xyz
 >
-> Ident property access should not be changed
+> Calling isNaN on a value that is a NaN should invariantly return true
+
+This is different from `parseInt`...
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-$(parseInt(15)??foo);
+$(isNaN("50xyz"));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(parseInt(15) ?? foo);
+$(isNaN(`50xyz`));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-let tmpCalleeParam = 15;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = foo;
-} else {
-}
+const tmpCalleeParam = true;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(15);
+$(true);
 `````
 
 ## Globals
@@ -44,7 +43,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 15
+ - 1: true
  - eval returned: undefined
 
 Pre normalization calls: Same

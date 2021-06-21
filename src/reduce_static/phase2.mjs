@@ -41,6 +41,7 @@ import { spylessVars } from './phase2spyless_vars.mjs';
 import { ifTestFolding } from './phase2if_test_folding.mjs';
 import { stringFusing } from './phase2string_fusing.mjs';
 import { andCases } from './phase2and_cases.mjs';
+import { globalCasting } from './phase2global_casting.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -227,6 +228,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const ands = andCases(fdata);
   if (ands) return ands;
+
+  const casted = globalCasting(fdata);
+  if (casted) return casted;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

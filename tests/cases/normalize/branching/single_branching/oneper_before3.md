@@ -150,18 +150,12 @@ X(`a`, `b`, `c`, `d`, `e`);
 ## Output
 
 `````js filename=intro
-const m = isNaN(NaN);
-if (m) {
-  $(`a`, `b`, `no`, `c`, `e`, 1, false, `string`, true, 0, true);
-} else {
-}
+$(`a`, `b`, `no`, `c`, `e`, 1, false, `string`, true, 0, true);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-isNaN
+None
 
 ## Result
 

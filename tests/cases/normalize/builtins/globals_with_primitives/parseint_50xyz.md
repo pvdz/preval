@@ -1,40 +1,37 @@
 # Preval test case
 
-# global_call_prop.md
+# parseint_50xyz.md
 
-> Normalize > Nullish > Global call prop
+> Normalize > Builtins > Globals with primitives > Parseint 50xyz
 >
-> Ident property access should not be changed
+> Calling parseInt on a primitive should resolve
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-$(parseInt(15)??foo);
+$(parseInt("50xyz"));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(parseInt(15) ?? foo);
+$(parseInt(`50xyz`));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-let tmpCalleeParam = 15;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = foo;
-} else {
-}
+const tmpCalleeParam = 50;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(15);
+$(50);
 `````
 
 ## Globals
@@ -44,7 +41,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 15
+ - 1: 50
  - eval returned: undefined
 
 Pre normalization calls: Same

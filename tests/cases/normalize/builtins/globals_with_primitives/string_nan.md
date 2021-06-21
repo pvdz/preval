@@ -1,40 +1,38 @@
 # Preval test case
 
-# global_call_prop.md
+# string_nan.md
 
-> Normalize > Nullish > Global call prop
+> Normalize > Builtins > Globals with primitives > String nan
 >
-> Ident property access should not be changed
+> Calling String on a primitive should resolve
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-$(parseInt(15)??foo);
+$(String(NaN));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(parseInt(15) ?? foo);
+$(String(NaN));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-let tmpCalleeParam = 15;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = foo;
-} else {
-}
+const tmpCalleeParam = String(NaN);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(15);
+const tmpCalleeParam = String(NaN);
+$(tmpCalleeParam);
 `````
 
 ## Globals
@@ -44,7 +42,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 15
+ - 1: 'NaN'
  - eval returned: undefined
 
 Pre normalization calls: Same

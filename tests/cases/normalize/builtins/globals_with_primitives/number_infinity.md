@@ -1,40 +1,37 @@
 # Preval test case
 
-# global_call_prop.md
+# number_infinity.md
 
-> Normalize > Nullish > Global call prop
+> Normalize > Builtins > Globals with primitives > Number infinity
 >
-> Ident property access should not be changed
+> Calling Number on a primitive should resolve
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-$(parseInt(15)??foo);
+$(Number(Infinity));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(parseInt(15) ?? foo);
+$(Number(Infinity));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-let tmpCalleeParam = 15;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = foo;
-} else {
-}
+const tmpCalleeParam = Infinity;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(15);
+$(Infinity);
 `````
 
 ## Globals
@@ -44,7 +41,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 15
+ - 1: Infinity
  - eval returned: undefined
 
 Pre normalization calls: Same

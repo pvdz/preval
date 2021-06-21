@@ -1,40 +1,38 @@
 # Preval test case
 
-# global_call_prop.md
+# argless.md
 
-> Normalize > Nullish > Global call prop
+> Global casting > Number > Argless
 >
-> Ident property access should not be changed
+> Calling global constructors to cast when the call is redundant should be eliminated
+
+#TODO
 
 ## Input
 
 `````js filename=intro
-$(parseInt(15)??foo);
+const y = Number();
+$(y);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(parseInt(15) ?? foo);
+const y = Number();
+$(y);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpCallCallee = $;
-let tmpCalleeParam = 15;
-const tmpIfTest = tmpCalleeParam == null;
-if (tmpIfTest) {
-  tmpCalleeParam = foo;
-} else {
-}
-tmpCallCallee(tmpCalleeParam);
+const y = Number();
+$(y);
 `````
 
 ## Output
 
 `````js filename=intro
-$(15);
+$(0);
 `````
 
 ## Globals
@@ -44,7 +42,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 15
+ - 1: 0
  - eval returned: undefined
 
 Pre normalization calls: Same

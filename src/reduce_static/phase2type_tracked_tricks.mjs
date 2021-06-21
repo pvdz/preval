@@ -437,7 +437,15 @@ function _typeTrackedTricks(fdata) {
 
               const lt = leftMeta.typing.mustBeType;
               const rt = rightMeta.typing.mustBeType;
-              vlog('yah?', (leftMeta.isConstant || leftMeta.isBuiltin), (rightMeta.isConstant || rightMeta.isBuiltin), left.name, right.name, [lt, rt], right);
+              vlog(
+                'yah?',
+                leftMeta.isConstant || leftMeta.isBuiltin,
+                rightMeta.isConstant || rightMeta.isBuiltin,
+                left.name,
+                right.name,
+                [lt, rt],
+                right,
+              );
 
               if ((leftMeta.isConstant || leftMeta.isBuiltin) && (rightMeta.isConstant || rightMeta.isBuiltin) && lt && rt && lt !== rt) {
                 rule('Strict n/equal comparison between two idents when rhs is known to be undefined or null depends on the lhs');
@@ -548,73 +556,6 @@ function _typeTrackedTricks(fdata) {
 
           after(AST.fals(), grandNode);
           ++changes;
-        }
-
-        break;
-      }
-      case 'CallExpression': {
-        if (node.callee.type === 'Identifier') {
-          switch (node.callee.name) {
-            case 'Boolean': {
-              const arg = node.arguments[0];
-              if (arg?.type === 'Identifier') {
-                const meta = fdata.globallyUniqueNamingRegistry.get(arg.name);
-                if (meta.typing.mustBeType === 'boolean') {
-                  rule('Calling `Boolean()` on a value that we know must be a boolean is a noop');
-                  example('const x = a === b; f(Boolean(x));', 'const x = a === b; f(x);');
-                  before(node, parentNode);
-
-                  if (parentIndex < 0) parentNode[parentProp] = arg;
-                  else parentNode[parentProp][parentIndex] = arg;
-                  ++changes;
-
-                  after(arg, parentNode);
-                  break;
-                }
-              }
-              break;
-            }
-            case 'Number': {
-              const arg = node.arguments[0];
-              if (arg?.type === 'Identifier') {
-                const meta = fdata.globallyUniqueNamingRegistry.get(arg.name);
-                if (meta.typing.mustBeType === 'number') {
-                  rule('Calling `Number()` on a value that we know must be a number is a noop');
-                  example('const x = a * b; f(Number(x));', 'const x = a * b; f(x);');
-                  before(node, parentNode);
-
-                  if (parentIndex < 0) parentNode[parentProp] = arg;
-                  else parentNode[parentProp][parentIndex] = arg;
-                  ++changes;
-
-                  after(arg, parentNode);
-                  break;
-                }
-              }
-              break;
-            }
-            case 'String': {
-              const arg = node.arguments[0];
-              if (arg?.type === 'Identifier') {
-                const meta = fdata.globallyUniqueNamingRegistry.get(arg.name);
-                if (meta.typing.mustBeType === 'string') {
-                  rule('Calling `String()` on a value that we know must be a string is a noop');
-                  example('const x = "" + a; f(String(x));', 'const x = "" + a; f(x);');
-                  before(node, parentNode);
-
-                  if (parentIndex < 0) parentNode[parentProp] = arg;
-                  else parentNode[parentProp][parentIndex] = arg;
-                  ++changes;
-
-                  after(arg, parentNode);
-                  break;
-                }
-              }
-              break;
-            }
-            //case 'parseInt': // Note: this coerces to a string first. Not a noop for numbers.
-            //case 'parseFloat': // Note: this coerces to a string first. Not a noop for numbers.
-          }
         }
 
         break;

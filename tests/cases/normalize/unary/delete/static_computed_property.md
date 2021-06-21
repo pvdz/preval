@@ -2,7 +2,7 @@
 
 # static_computed_property.md
 
-> Normalize > Delete > Static computed property
+> Normalize > Unary > Delete > Static computed property
 >
 > The property be normalized
 

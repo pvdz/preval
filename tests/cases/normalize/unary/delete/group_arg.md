@@ -2,7 +2,7 @@
 
 # group_arg.md
 
-> Normalize > Delete > Group arg
+> Normalize > Unary > Delete > Group arg
 >
 > Delete on non-property is valid but useless
 

@@ -2,7 +2,7 @@
 
 # binary_arg.md
 
-> Normalize > Delete > Binary arg
+> Normalize > Unary > Delete > Binary arg
 >
 > Delete on non-property is valid but useless
 

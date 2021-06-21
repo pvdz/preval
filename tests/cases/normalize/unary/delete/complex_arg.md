@@ -2,7 +2,7 @@
 
 # complex_arg.md
 
-> Normalize > Delete > Complex arg
+> Normalize > Unary > Delete > Complex arg
 >
 > The complex arg should not lead to a syntax error
 

@@ -1,46 +1,37 @@
 # Preval test case
 
-# group_arg2.md
+# minus_number.md
 
-> Normalize > Unary > Delete > Group arg2
+> Normalize > Unary > Delete > Minus number
 >
-> Delete on non-property is valid but useless
+> Silly case that we hopefully never see but :shrug:
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-let foo = 1;
-$(delete (null, foo));
-$(typeof foo)
+$(delete -1);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-let foo = 1;
-$(delete (null, foo));
-$(typeof foo);
+$(delete -1);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let foo = 1;
 const tmpCallCallee = $;
 const tmpCalleeParam = true;
 tmpCallCallee(tmpCalleeParam);
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = typeof foo;
-tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
 $(true);
-$(`number`);
 `````
 
 ## Globals
@@ -51,7 +42,6 @@ None
 
 Should call `$` with:
  - 1: true
- - 2: 'number'
  - eval returned: undefined
 
 Pre normalization calls: Same

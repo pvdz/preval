@@ -1160,10 +1160,10 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 meta.typing.mustBeType = 'number';
                 meta.typing.rangeStart = value;
                 meta.typing.rangeEnd = value;
-                const oneBit = isOneSetBit(init.value);
-                if (oneBit) {
-                  meta.typing.oneBitSet = oneBit;
-                }
+                //const oneBit = isOneSetBit(init.value);
+                //if (oneBit) {
+                //  meta.typing.oneBitSet = oneBit;
+                //}
               } else if (init.value instanceof RegExp) {
                 meta.typing.mustBeType = 'regex';
                 value = init.value;
@@ -1236,20 +1236,21 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 case '+':
                 case '~': {
                   meta.typing.mustBeType = 'number';
-                  if (AST.isPrimitive(init.argument)) {
-                    const value = AST.getPrimitiveValue(init.argument);
-                    if (typeof value === 'number' && isFinite(value)) {
-                      // subsumes isNaN
-                      meta.typing.rangeStart = value;
-                      meta.typing.rangeEnd = value;
-                      const oneBit = isOneSetBit(value);
-                      if (oneBit) {
-                        meta.typing.oneBitSet = oneBit;
-                      }
-                    }
-                    meta.typing.mustBeFalsy = !value;
-                    meta.typing.mustBeTruthy = !!value;
-                  }
+                  //if (AST.isPrimitive(init.argument)) {
+                  //  const arg = AST.getPrimitiveValue(init.argument);
+                  //  const value = init.operator === '-' ? -arg : init.operator === '+' ? +arg : ~arg;
+                  //  //if (typeof value === 'number' && isFinite(value)) {
+                  //  //  // subsumes isNaN
+                  //  //  meta.typing.rangeStart = value;
+                  //  //  meta.typing.rangeEnd = value;
+                  //  //  const oneBit = isOneSetBit(value);
+                  //  //  if (oneBit) {
+                  //  //    meta.typing.oneBitSet = oneBit;
+                  //  //  }
+                  //  //}
+                  //  meta.typing.mustBeFalsy = !value;
+                  //  meta.typing.mustBeTruthy = !!value;
+                  //}
                   break;
                 }
                 case 'typeof': {
@@ -1279,11 +1280,12 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                   meta.typing.mustBeType = 'number';
 
                   // Need a number on at least one side. Ignore negative numbers (unary expression).
-                  if (AST.isNumber(init.left)) {
-                    meta.typing.oneBitSet = isOneSetBit(init.left.value) ? init.left.value : 0;
-                  }
-                  if (!meta.typing.oneBitSet && AST.isNumber(init.right)) {
-                    meta.typing.oneBitSet = isOneSetBit(init.right.value) ? init.right.value : 0;
+                  if (AST.isPrimitive(init.left)) {
+                    const v = AST.getPrimitiveValue(init.left) | 0
+                    meta.typing.oneBitAnded = isOneSetBit(v) ? v: undefined;
+                  } else if (AST.isPrimitive(init.right)) {
+                    const v = AST.getPrimitiveValue(init.right) | 0
+                    meta.typing.oneBitAnded = isOneSetBit(v) ? v : undefined;
                   }
                   break;
                 }

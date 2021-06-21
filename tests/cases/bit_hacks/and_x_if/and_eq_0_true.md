@@ -1,47 +1,49 @@
 # Preval test case
 
-# bitunset.md
+# and_eq_0_true.md
 
-> Bit hacks > Bitunset
+> Bit hacks > And x if > And eq 0 true
 >
-> Testing if one specific bit is unset
+> Meh
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-const x = $(1234);
-const y = x & 2;
-const z = y === 0;
-$(x, y, z);
+const x = +$(1);
+const y = x & 32768;
+const z = y === 0; // true
+$(z);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-const x = $(1234);
-const y = x & 2;
+const x = +$(1);
+const y = x & 32768;
 const z = y === 0;
-$(x, y, z);
+$(z);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const x = $(1234);
-const y = x & 2;
+const tmpUnaryArg = $(1);
+const x = +tmpUnaryArg;
+const y = x & 32768;
 const z = y === 0;
-$(x, y, z);
+$(z);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = $(1234);
-const y = x & 2;
+const tmpUnaryArg = $(1);
+const x = +tmpUnaryArg;
+const y = x & 32768;
 const z = !y;
-$(x, y, z);
+$(z);
 `````
 
 ## Globals
@@ -51,8 +53,8 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1234
- - 2: 1234, 2, false
+ - 1: 1
+ - 2: true
  - eval returned: undefined
 
 Pre normalization calls: Same

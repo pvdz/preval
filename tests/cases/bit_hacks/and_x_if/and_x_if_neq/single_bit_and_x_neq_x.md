@@ -1,10 +1,10 @@
 # Preval test case
 
-# and_eq_false.md
+# single_bit_and_x_neq_x.md
 
-> Bit hacks > And eq false
+> Bit hacks > And x if > And x if neq > Single bit and x neq x
 >
-> Meh
+> In some cases we can predict bitwise results or meta results
 
 #TODO
 
@@ -13,8 +13,11 @@
 `````js filename=intro
 const x = $(32768);
 const y = x & 32768;
-const z = y === 32768;
-$(z);
+if (y !== 32768) {
+  $('fail');
+} else {
+  $('pass');
+}
 `````
 
 ## Pre Normal
@@ -22,8 +25,11 @@ $(z);
 `````js filename=intro
 const x = $(32768);
 const y = x & 32768;
-const z = y === 32768;
-$(z);
+if (y !== 32768) {
+  $(`fail`);
+} else {
+  $(`pass`);
+}
 `````
 
 ## Normalized
@@ -31,8 +37,12 @@ $(z);
 `````js filename=intro
 const x = $(32768);
 const y = x & 32768;
-const z = y === 32768;
-$(z);
+const tmpIfTest = y !== 32768;
+if (tmpIfTest) {
+  $(`fail`);
+} else {
+  $(`pass`);
+}
 `````
 
 ## Output
@@ -40,8 +50,11 @@ $(z);
 `````js filename=intro
 const x = $(32768);
 const y = x & 32768;
-const z = y === 32768;
-$(z);
+if (y) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
 `````
 
 ## Globals
@@ -52,7 +65,7 @@ None
 
 Should call `$` with:
  - 1: 32768
- - 2: true
+ - 2: 'pass'
  - eval returned: undefined
 
 Pre normalization calls: Same

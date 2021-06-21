@@ -51,13 +51,8 @@ if (set) {
 
 `````js filename=intro
 const v = $(64);
-const and = v & 64;
-const set = and === 65;
-if (set) {
-  $(`fail`);
-} else {
-  $(`pass`);
-}
+v & 64;
+$(`pass`);
 `````
 
 ## Globals

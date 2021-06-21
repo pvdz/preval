@@ -1,20 +1,19 @@
 # Preval test case
 
-# base_eq_not_one_bit_32.md
+# single_bit_and_x_eq_y.md
 
-> Bit hacks > Bit set > Base eq not one bit 32
+> Bit hacks > And x if > And x if eq > Single bit and x eq y
 >
-> Specific pattern of checking if a bit is set. In this case multiple bits are set.
+> In some cases we can predict bitwise results or meta results
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-const v = $(32);
-const and = v & 64;
-const set = and === 65;
-if (set) {
+const x = $(32768);
+const y = x & 32768;
+if (y === 32) {
   $('fail');
 } else {
   $('pass');
@@ -24,10 +23,9 @@ if (set) {
 ## Pre Normal
 
 `````js filename=intro
-const v = $(32);
-const and = v & 64;
-const set = and === 65;
-if (set) {
+const x = $(32768);
+const y = x & 32768;
+if (y === 32) {
   $(`fail`);
 } else {
   $(`pass`);
@@ -37,10 +35,10 @@ if (set) {
 ## Normalized
 
 `````js filename=intro
-const v = $(32);
-const and = v & 64;
-const set = and === 65;
-if (set) {
+const x = $(32768);
+const y = x & 32768;
+const tmpIfTest = y === 32;
+if (tmpIfTest) {
   $(`fail`);
 } else {
   $(`pass`);
@@ -50,8 +48,8 @@ if (set) {
 ## Output
 
 `````js filename=intro
-const v = $(32);
-v & 64;
+const x = $(32768);
+x & 32768;
 $(`pass`);
 `````
 
@@ -62,7 +60,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 32
+ - 1: 32768
  - 2: 'pass'
  - eval returned: undefined
 

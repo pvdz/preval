@@ -1,8 +1,8 @@
 # Preval test case
 
-# and_eq_true.md
+# and_eq_0_false.md
 
-> Bit hacks > And eq true
+> Bit hacks > And x if > And eq 0 false
 >
 > Meh
 
@@ -11,38 +11,36 @@
 ## Input
 
 `````js filename=intro
-const x = +$(1);
+const x = $(32768);
 const y = x & 32768;
-const z = y === 32768;
+const z = y === 0; // false
 $(z);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-const x = +$(1);
+const x = $(32768);
 const y = x & 32768;
-const z = y === 32768;
+const z = y === 0;
 $(z);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpUnaryArg = $(1);
-const x = +tmpUnaryArg;
+const x = $(32768);
 const y = x & 32768;
-const z = y === 32768;
+const z = y === 0;
 $(z);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpUnaryArg = $(1);
-const x = +tmpUnaryArg;
+const x = $(32768);
 const y = x & 32768;
-const z = y === 32768;
+const z = !y;
 $(z);
 `````
 
@@ -53,7 +51,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1
+ - 1: 32768
  - 2: false
  - eval returned: undefined
 

@@ -63,16 +63,15 @@ if (test) {
 
 `````js filename=intro
 const a = x & 1;
-let test = a === 1;
-if (test) {
-} else {
-  const b = x & 4;
-  test = b === 4;
-}
-if (test) {
+if (a) {
   $(`yes`);
 } else {
-  $(`no 2`);
+  const b = x & 4;
+  if (b) {
+    $(`yes`);
+  } else {
+    $(`no 2`);
+  }
 }
 `````
 

@@ -1,8 +1,8 @@
 # Preval test case
 
-# and_eq_bad.md
+# and_eq_coercion.md
 
-> Bit hacks > And eq bad
+> Bit hacks > And x if > And eq coercion
 >
 > Meh
 
@@ -12,8 +12,8 @@
 
 `````js filename=intro
 const x = $('32768');
-const y = x & 32768;
-const z = y === 32768;
+const y = x & 32768; // (coercion)
+const z = y === 32768 // true
 $(z);
 `````
 
@@ -40,7 +40,7 @@ $(z);
 `````js filename=intro
 const x = $(`32768`);
 const y = x & 32768;
-const z = y === 32768;
+const z = Boolean(y);
 $(z);
 `````
 

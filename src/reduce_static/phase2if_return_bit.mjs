@@ -1,5 +1,6 @@
 // Find ifs that check whether a bit is set and only return either the set bit or zero.
 // Pretty much an edge case.
+// `if (x) { return x; } else { return 0 }` where x can only have one bit set
 
 import {
   ASSERT,
@@ -34,10 +35,10 @@ function _ifReturnBit(fdata) {
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
 
-    const bit = meta.typing.oneBitSet;
+    const bit = meta.typing.oneBitAnded;
     if (!bit) return;
 
-    vgroup('- `' + meta.uniqueName + '` has one bit set:', bit);
+    vgroup('- `' + meta.uniqueName + '` has at most one bit set:', bit);
     process(meta);
     vgroupEnd();
   });
@@ -47,6 +48,7 @@ function _ifReturnBit(fdata) {
       vlog('-', ri, ':', read.parentNode.type + '.' + read.parentProp);
       const ifNode = read.parentNode;
       if (ifNode.type === 'IfStatement' && read.parentProp === 'test') {
+        // `if (x) { return x; } else { return 0 }` where x can only have one bit set
         if (
           ifNode.consequent.body.length === 1 &&
           ifNode.alternate.body.length === 1 &&
@@ -54,7 +56,7 @@ function _ifReturnBit(fdata) {
           ifNode.alternate.body[0].type === 'ReturnStatement' &&
           AST.isNumber(ifNode.consequent.body[0].argument) &&
           AST.isNumber(ifNode.alternate.body[0].argument) &&
-          ifNode.consequent.body[0].argument.value === meta.typing.oneBitSet &&
+          ifNode.consequent.body[0].argument.value === meta.typing.oneBitAnded &&
           ifNode.alternate.body[0].argument.value === 0
         ) {
           rule('When an `if` exclusively returns the bit value of its test it may as well return the test');

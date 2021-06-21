@@ -31,7 +31,7 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpUnaryArg = $(100);
-  ~tmpUnaryArg;
+  +tmpUnaryArg;
 } else {
 }
 $(a);
@@ -43,7 +43,7 @@ $(a);
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const tmpUnaryArg = $(100);
-  ~tmpUnaryArg;
+  +tmpUnaryArg;
 } else {
 }
 const a = { a: 999, b: 1000 };

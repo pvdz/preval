@@ -93,7 +93,7 @@ const f = function ($$0) {
   $(`no`);
   $(`inlining`);
   $(`please`);
-  ~x;
+  +x;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $(`a`);

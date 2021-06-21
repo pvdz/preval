@@ -35,7 +35,7 @@ $(a, arg);
 `````js filename=intro
 let arg = 1;
 let a = { a: 999, b: 1000 };
-~arg;
++arg;
 while (true) {
   const tmpIfTest = $(0);
   if (tmpIfTest) {

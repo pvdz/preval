@@ -75,7 +75,7 @@ tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     const tmpUnaryArg = $(100);
-    ~tmpUnaryArg;
+    +tmpUnaryArg;
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
@@ -114,7 +114,7 @@ tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     const tmpUnaryArg = $(100);
-    ~tmpUnaryArg;
+    +tmpUnaryArg;
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

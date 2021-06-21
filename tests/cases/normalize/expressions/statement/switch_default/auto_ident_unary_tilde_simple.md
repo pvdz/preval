@@ -47,7 +47,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
-  ~arg;
+  +arg;
 } else {
 }
 $(a, arg);

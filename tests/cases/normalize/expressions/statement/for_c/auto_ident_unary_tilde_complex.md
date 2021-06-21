@@ -36,7 +36,7 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpUnaryArg = $(100);
-    ~tmpUnaryArg;
+    +tmpUnaryArg;
   } else {
     break;
   }
@@ -51,7 +51,7 @@ while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpUnaryArg = $(100);
-    ~tmpUnaryArg;
+    +tmpUnaryArg;
   } else {
     break;
   }

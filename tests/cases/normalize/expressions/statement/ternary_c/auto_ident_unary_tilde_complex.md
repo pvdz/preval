@@ -33,7 +33,7 @@ if (tmpIfTest) {
   $(100);
 } else {
   const tmpUnaryArg = $(100);
-  ~tmpUnaryArg;
+  +tmpUnaryArg;
 }
 $(a);
 `````
@@ -46,7 +46,7 @@ if (tmpIfTest) {
   $(100);
 } else {
   const tmpUnaryArg = $(100);
-  ~tmpUnaryArg;
+  +tmpUnaryArg;
 }
 const a = { a: 999, b: 1000 };
 $(a);

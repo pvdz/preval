@@ -33,7 +33,7 @@
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
-~tmpUnaryArg;
++tmpUnaryArg;
 $(a);
 `````
 
@@ -41,7 +41,7 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-~tmpUnaryArg;
++tmpUnaryArg;
 const a = { a: 999, b: 1000 };
 $(a);
 `````

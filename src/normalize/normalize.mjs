@@ -3714,17 +3714,31 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (node.argument.type === 'Literal') {
-            // This still could catch a few cases but that's only because regex etc have not gotten a special treatment yet
-            if (wrapKind === 'statement') {
-              rule('Unary tilde on a literal as statement should be dropped');
-              example('~10;', ';');
+          if (wrapKind === 'statement') {
+            rule('Unary `~` statement should be replaced by `+`');
+            example('+10;', '10;');
+            before(node, parentNode);
+
+            body[i] = AST.expressionStatement(AST.unaryExpression('+', node.argument));
+
+            after(body[i]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          if (node.argument.type === 'Unary') {
+            // ~typeof x
+            if (node.argument.operator === 'typeof') {
+              // Probably never hits a real world case but at least there's a test
+              rule('Applying `~` to the result of `typeof` always results in `-1`');
+              example('~typeof x', '-1');
               before(node, parentNode);
 
-              body[i] = AST.emptyStatement();
+              const finalNode = AST.primitive(-1);
+              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+              body[i] = finalParent;
 
-              after(body[i]);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              after(finalNode, finalParent);
               return true;
             }
           }

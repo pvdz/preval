@@ -34,7 +34,7 @@ let arg = 1;
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(100);
 if (tmpIfTest) {
-  ~arg;
+  +arg;
 } else {
 }
 $(a, arg);

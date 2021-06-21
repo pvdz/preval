@@ -58,7 +58,7 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-~tmpUnaryArg;
++tmpUnaryArg;
 $(undefined);
 const a = { a: 999, b: 1000 };
 $(a);

@@ -3623,7 +3623,7 @@ export function phaseNormalize(fdata, fname) {
               example('-+x', '-x');
               before(node, parentNode);
 
-              const finalNode = AST.unaryExpression('+', node.argument.argument);
+              const finalNode = AST.unaryExpression('-', node.argument.argument);
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 
@@ -3661,153 +3661,24 @@ export function phaseNormalize(fdata, fname) {
             return true;
           }
 
-          if (node.argument.type === 'Literal') {
-            if (typeof node.argument.value === 'number') {
-              rule('Inverting a number should be replaced by a boolean');
+          if (AST.isPrimitive(node.argument)) {
+            const pv = AST.getPrimitiveValue(node.argument);
+            const pvn = !pv;
 
-              if (node.argument.value === 0) {
-                example('!0', 'true');
-                before(node, parentNode);
+            rule('The `!` on a primitive value must be replaced');
+            example('!500', 'false');
+            before(node, body[i]);
 
-                const finalNode = AST.tru();
-                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                body[i] = finalParent;
-              } else {
-                example('!1', 'false');
-                before(node, parentNode);
+            const finalNode = AST.primitive(pvn);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body[i] = finalParent;
 
-                const finalNode = AST.fals();
-                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                body[i] = finalParent;
-              }
-
-              after(body[i]);
-              return true;
-            }
-
-            if (node.argument.raw === 'null' || node.argument.value === false) {
-              if (node.argument.value === false) {
-                rule('Inverting a `false` should be replaced by a `true`');
-                example('!false', 'true');
-              } else {
-                rule('Inverting a `null` should be replaced by a `true`');
-                example('!null', 'true');
-              }
-              before(node, parentNode);
-
-              const finalNode = AST.tru();
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              return true;
-            }
-
-            if (node.argument.value === true) {
-              rule('Inverting a `true` should be replaced by a `false`');
-              example('!true', 'false');
-              before(node, parentNode);
-
-              const finalNode = AST.fals();
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              return true;
-            }
-          }
-
-          if (AST.isStringLiteral(node.argument, true)) {
-            rule('Inverting a string should be replaced by a boolean');
-            if (AST.isStringValue(node.argument, '', true)) {
-              example('!""', 'true');
-              before(node, parentNode);
-
-              const finalNode = AST.tru();
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-            } else {
-              example('!"foo"', 'false');
-              before(node, parentNode);
-
-              const finalNode = AST.fals();
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-            }
-
-            after(body[i]);
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           }
 
-          if (node.argument.type === 'Identifier') {
-            if (node.argument.name === 'NaN' || node.argument.name === 'undefined') {
-              if (node.argument.name === 'NaN') {
-                rule('Inverting NaN must be replaced by a true');
-                example('!NaN', 'true');
-              } else {
-                rule('Inverting undefined must be replaced by a true');
-                example('!undefined', 'true');
-              }
-              before(node, parentNode);
-
-              const finalNode = AST.tru();
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-
-            if (node.argument.name === 'Infinity') {
-              rule('Inverting Infinity must be replaced by a false');
-              example('!Infinity', 'false');
-              before(node, parentNode);
-
-              const finalNode = AST.fals();
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              assertNoDupeNodes(AST.blockStatement(body), 'body');
-              return true;
-            }
-          }
-
           if (node.argument.type === 'Unary') {
-            // !!x
-            if (node.argument.operator === '!' && AST.isNumber(node.argument.argument)) {
-              // "double negative" on a literal
-              // TODO: we can do the same for ~ in many cases but we'd have to be careful about 32bit boundaries
-
-              rule('The `-` unary operator on a number literal twice is a noop');
-              example('--100', '100');
-              before(node, parentNode);
-
-              const finalNode = node.argument.argument;
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              return true;
-            }
-
-            // !-x
-            if (node.argument.operator === '-' && AST.isNumber(node.argument.argument)) {
-              // TODO: we can do the same for ~
-              rule('The `!` unary on a `-` unary operator on a number literal should be resolved');
-              example('!-100', 'false');
-              example('!-0', 'true');
-              before(node, parentNode);
-
-              const finalNode = AST.identifier(node.argument.argument.value === 0);
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              return true;
-            }
-
             // !typeof x
             if (node.argument.operator === 'typeof') {
               // Probably never hits a real world case but at least there's a test
@@ -3816,21 +3687,6 @@ export function phaseNormalize(fdata, fname) {
               before(node, parentNode);
 
               const finalNode = AST.fals();
-              const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-              body[i] = finalParent;
-
-              after(finalNode, finalParent);
-              return true;
-            }
-
-            // !void x
-            if (node.argument.operator === 'void') {
-              // Probably never hits a real world case but at least there's a test
-              rule('Inverting the result of `void` always results in true');
-              example('!void x', 'true');
-              before(node, parentNode);
-
-              const finalNode = AST.tru();
               const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
               body[i] = finalParent;
 

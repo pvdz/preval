@@ -24,8 +24,7 @@ $(!-undefined);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpUnaryArg = NaN;
-const tmpCalleeParam = !tmpUnaryArg;
+const tmpCalleeParam = true;
 tmpCallCallee(tmpCalleeParam);
 `````
 

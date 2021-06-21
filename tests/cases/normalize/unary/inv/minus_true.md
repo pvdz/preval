@@ -24,16 +24,14 @@ $(!-true);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpUnaryArg = -1;
-const tmpCalleeParam = !tmpUnaryArg;
+const tmpCalleeParam = false;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = !-1;
-$(tmpCalleeParam);
+$(false);
 `````
 
 ## Globals

@@ -67,10 +67,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 let a = undefined;
+const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
@@ -78,12 +77,6 @@ if (tmpIfTest$1) {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
 }
-const tmpIfTest = a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

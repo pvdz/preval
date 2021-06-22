@@ -60,15 +60,8 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = delete arg.y;
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
+$(1);
+delete arg.y;
 $(a, arg);
 `````
 

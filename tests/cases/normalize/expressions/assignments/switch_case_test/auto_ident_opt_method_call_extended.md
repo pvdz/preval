@@ -74,8 +74,7 @@ $(a);
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 let a = undefined;
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
@@ -86,12 +85,6 @@ if (tmpIfTest$1) {
   const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
 }
-const tmpIfTest = a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

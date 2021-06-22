@@ -48,10 +48,9 @@ $(a, arg);
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
 const tmpDeleteCompProp = $(`y`);
-const tmpBinBothLhs = delete arg[tmpDeleteCompProp];
+delete arg[tmpDeleteCompProp];
 const tmpDeleteCompProp$1 = $(`y`);
-const tmpBinBothRhs = delete arg[tmpDeleteCompProp$1];
-tmpBinBothLhs + tmpBinBothRhs;
+delete arg[tmpDeleteCompProp$1];
 $(a, arg);
 `````
 

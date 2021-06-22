@@ -60,17 +60,10 @@ $(a);
 ## Output
 
 `````js filename=intro
+$(1);
 const b = { $: $ };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpCallObj = $(b);
 const tmpClusterSSA_a = tmpCallObj.$(1);
-const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(tmpClusterSSA_a);
 `````
 

@@ -60,15 +60,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 const tmpClusterSSA_a = new $(1);
-const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(tmpClusterSSA_a);
 `````
 

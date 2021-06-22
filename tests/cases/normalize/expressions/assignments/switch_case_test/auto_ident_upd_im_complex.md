@@ -66,20 +66,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+$(1);
 const b = { x: 1 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpIfTest = tmpPostUpdArgVal === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(tmpPostUpdArgVal, b);
 `````
 

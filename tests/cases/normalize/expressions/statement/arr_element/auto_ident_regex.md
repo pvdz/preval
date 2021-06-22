@@ -38,9 +38,6 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpBinBothLhs = /foo/;
-const tmpBinBothRhs = /foo/;
-tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

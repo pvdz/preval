@@ -94,7 +94,6 @@ if (tmpIfTest) {
   } else {
   }
 }
-tmpSwitchCaseToStart <= 0;
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
 if (tmpIfTest$5) {
   $(`fail1`);

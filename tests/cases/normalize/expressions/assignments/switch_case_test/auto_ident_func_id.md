@@ -64,18 +64,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 const f = function () {
   debugger;
   return undefined;
 };
-const tmpIfTest = f === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(f);
 `````
 

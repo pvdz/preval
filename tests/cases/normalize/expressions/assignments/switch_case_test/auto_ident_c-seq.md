@@ -61,17 +61,10 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 $(1);
 $(2);
 const a = $(1);
-const tmpIfTest = a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(a, 1);
 `````
 

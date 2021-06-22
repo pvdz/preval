@@ -32,8 +32,7 @@ tmpBinLhs + ``;
 ## Output
 
 `````js filename=intro
-const tmpBinBothRhs = /foo/g;
-tmpBinBothRhs + ``;
+
 `````
 
 ## Globals

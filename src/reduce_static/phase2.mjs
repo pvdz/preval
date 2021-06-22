@@ -42,6 +42,7 @@ import { ifTestFolding } from './phase2if_test_folding.mjs';
 import { stringFusing } from './phase2string_fusing.mjs';
 import { andCases } from './phase2and_cases.mjs';
 import { globalCasting } from './phase2global_casting.mjs';
+import { binExprStmt } from './phase2bin_expr_stmt.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -231,6 +232,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const casted = globalCasting(fdata);
   if (casted) return casted;
+
+  const binned = binExprStmt(fdata);
+  if (binned) return binned;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

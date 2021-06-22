@@ -74,8 +74,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 let a = undefined;
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
@@ -88,12 +87,6 @@ if (tmpIfTest$1) {
     a = tmpChainElementObject$1;
   }
 }
-const tmpIfTest = a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

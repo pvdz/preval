@@ -51,7 +51,7 @@ if (set) {
 
 `````js filename=intro
 const v = $(64);
-v & 0;
+v ** 0;
 $(`pass`);
 `````
 

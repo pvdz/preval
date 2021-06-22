@@ -73,7 +73,7 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  $ <= 0;
+  $ ** 0;
 } else {
 }
 `````

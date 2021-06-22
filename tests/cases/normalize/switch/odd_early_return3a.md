@@ -89,7 +89,7 @@ const f = function () {
   debugger;
   if (tmpIfTest) {
     if ($) {
-      $ <= 0;
+      $ ** 0;
       return undefined;
     } else {
       return undefined;

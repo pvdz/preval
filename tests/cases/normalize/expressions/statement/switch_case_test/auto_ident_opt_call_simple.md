@@ -62,21 +62,12 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
+$(1);
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall = $(1);
-  tmpBinLhs = tmpChainElementCall;
+  $(1);
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

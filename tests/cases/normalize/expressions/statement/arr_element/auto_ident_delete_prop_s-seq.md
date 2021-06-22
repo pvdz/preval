@@ -51,11 +51,10 @@ const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
 $(1);
 $(2);
-const tmpBinBothLhs = delete arg.y;
+delete arg.y;
 $(1);
 $(2);
-const tmpBinBothRhs = delete arg.y;
-tmpBinBothLhs + tmpBinBothRhs;
+delete arg.y;
 $(a, arg);
 `````
 

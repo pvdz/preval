@@ -65,20 +65,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+$(1);
 const b = { x: 1 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs$1 = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs$1 + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-const tmpIfTest = tmpNestedPropCompoundComplexRhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(tmpNestedPropCompoundComplexRhs, b);
 `````
 

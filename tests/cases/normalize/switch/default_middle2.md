@@ -52,15 +52,7 @@ const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 0;
-const tmpBinLhs = $(30);
-const tmpIfTest = tmpBinLhs === 6;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 1;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
-tmpSwitchCaseToStart <= 0;
+$(30);
 `````
 
 ## Globals

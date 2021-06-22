@@ -61,17 +61,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 const tmpAssignRhsCompProp = $(`c`);
+const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
-const tmpIfTest = a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(a, b);
 `````
 

@@ -42,7 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpBinBothRhs = $(2);
-tmpBinBothRhs * 0;
+tmpBinBothRhs ** 0;
 const tmpBinBothRhs$1 = $(2);
 tmpBinBothRhs$1 + ``;
 $(true);

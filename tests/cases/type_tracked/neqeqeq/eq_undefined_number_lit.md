@@ -38,8 +38,8 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-tmpBinBothLhs * 0;
-tmpBinBothRhs * 0;
+tmpBinBothLhs ** 0;
+tmpBinBothRhs ** 0;
 $(true);
 `````
 

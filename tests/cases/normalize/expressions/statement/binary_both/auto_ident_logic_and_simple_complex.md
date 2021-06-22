@@ -50,10 +50,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-const tmpBinBothLhs = $(tmpCalleeParam);
+$(tmpCalleeParam);
 const tmpCalleeParam$1 = $(1);
-const tmpBinBothRhs = $(tmpCalleeParam$1);
-tmpBinBothLhs + tmpBinBothRhs;
+$(tmpCalleeParam$1);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

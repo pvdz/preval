@@ -52,12 +52,11 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const tmpBinBothLhs = delete tmpDeleteObj.y;
+delete tmpDeleteObj.y;
 $(1);
 $(2);
 const tmpDeleteObj$1 = $(arg);
-const tmpBinBothRhs = delete tmpDeleteObj$1.y;
-tmpBinBothLhs + tmpBinBothRhs;
+delete tmpDeleteObj$1.y;
 $(a, arg);
 `````
 

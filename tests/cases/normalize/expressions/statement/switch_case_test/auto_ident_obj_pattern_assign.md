@@ -67,18 +67,10 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-const tmpIfTest = tmpNestedAssignObjPatternRhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
+const a = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
 

@@ -39,9 +39,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpBinBothLhs = -tmpUnaryArg;
+-tmpUnaryArg;
 const tmpBinBothRhs = $(100);
-tmpBinBothLhs + tmpBinBothRhs;
+tmpBinBothRhs + 0;
 const a = { a: 999, b: 1000 };
 $(a);
 `````

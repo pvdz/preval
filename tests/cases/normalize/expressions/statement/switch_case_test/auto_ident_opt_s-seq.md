@@ -67,21 +67,12 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
+$(1);
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementObject = b.x;
-  tmpBinLhs = tmpChainElementObject;
+  b.x;
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

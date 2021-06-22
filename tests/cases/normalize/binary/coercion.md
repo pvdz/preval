@@ -36,7 +36,7 @@ a < b;
 
 `````js filename=intro
 const a = $(1);
-a < 0;
+a ** 0;
 `````
 
 ## Globals

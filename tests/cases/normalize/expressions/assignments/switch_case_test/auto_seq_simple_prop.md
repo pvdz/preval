@@ -63,18 +63,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
-const tmpIfTest = a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(1);
 const tmpAssignMemRhs = $(2);
+const a = { b: tmpObjLitVal };
 a.b = tmpAssignMemRhs;
 $(a);
 `````

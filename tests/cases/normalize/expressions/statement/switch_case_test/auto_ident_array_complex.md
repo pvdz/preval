@@ -57,18 +57,10 @@ $(a);
 ## Output
 
 `````js filename=intro
+$(1);
+$(1);
+$(3);
 const a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-const tmpArrElement = $(1);
-const tmpArrElement$3 = $(3);
-const tmpBinLhs = [tmpArrElement, 2, tmpArrElement$3];
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

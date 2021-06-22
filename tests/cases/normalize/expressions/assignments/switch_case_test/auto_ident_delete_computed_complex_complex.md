@@ -61,18 +61,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
+$(1);
 const arg = { y: 1 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(tmpClusterSSA_a, arg);
 `````
 

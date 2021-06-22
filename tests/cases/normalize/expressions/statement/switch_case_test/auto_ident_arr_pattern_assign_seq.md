@@ -70,24 +70,13 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_x = arrPatternSplat[0];
-const tmpClusterSSA_y = arrPatternSplat[1];
-const tmpIfTest = tmpNestedAssignArrPatternRhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
-$(a, tmpClusterSSA_x, tmpClusterSSA_y);
+const a = { a: 999, b: 1000 };
+$(a, tmpArrElement, tmpArrElement$1);
 `````
 
 ## Globals

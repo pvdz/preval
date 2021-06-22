@@ -63,19 +63,12 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const arg = { y: 1 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
+const arg = { y: 1 };
 const a = delete arg[tmpDeleteCompProp];
-const tmpIfTest = a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(a, arg);
 `````
 

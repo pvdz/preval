@@ -36,7 +36,7 @@ $(a);
 
 `````js filename=intro
 const a = $(100);
-a | 0;
+a ** 0;
 $(a);
 `````
 

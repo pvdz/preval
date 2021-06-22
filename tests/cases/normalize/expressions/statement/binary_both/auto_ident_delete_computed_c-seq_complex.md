@@ -55,13 +55,12 @@ $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpBinBothLhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(1);
 $(2);
 const tmpDeleteCompObj$1 = $(arg);
 const tmpDeleteCompProp$1 = $(`y`);
-const tmpBinBothRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-tmpBinBothLhs + tmpBinBothRhs;
+delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
 $(a, arg);
 `````
 

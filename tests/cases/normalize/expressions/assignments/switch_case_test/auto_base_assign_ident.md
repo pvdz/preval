@@ -61,15 +61,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+$(1);
 const tmpNestedComplexRhs = $(2);
-const tmpIfTest = tmpNestedComplexRhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 

@@ -53,7 +53,7 @@ if (set) {
 
 `````js filename=intro
 const v = $(65);
-v & 0;
+v ** 0;
 $(`pass`);
 `````
 

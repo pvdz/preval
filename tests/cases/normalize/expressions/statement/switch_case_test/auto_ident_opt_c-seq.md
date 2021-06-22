@@ -67,22 +67,13 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
+$(1);
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  tmpBinLhs = tmpChainElementObject;
+  tmpChainRootProp.x;
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

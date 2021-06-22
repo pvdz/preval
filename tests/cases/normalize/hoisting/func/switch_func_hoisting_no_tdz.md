@@ -103,7 +103,6 @@ tmpSwitchBreak: {
     $(`pass`);
     break tmpSwitchBreak;
   } else {
-    tmpSwitchCaseToStart <= 0;
   }
 }
 f();

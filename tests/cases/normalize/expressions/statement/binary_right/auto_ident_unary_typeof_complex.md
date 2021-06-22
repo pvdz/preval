@@ -42,11 +42,10 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(100);
-const tmpUnaryArg = $(1);
-const tmpBinBothRhs = typeof tmpUnaryArg;
-tmpBinBothLhs + tmpBinBothRhs;
+$(1);
+tmpBinBothLhs + ``;
+const a = { a: 999, b: 1000 };
 $(a, 1);
 `````
 

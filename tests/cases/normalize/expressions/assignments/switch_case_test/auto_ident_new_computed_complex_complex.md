@@ -62,19 +62,12 @@ $(a);
 ## Output
 
 `````js filename=intro
+$(1);
 const b = { $: $ };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpCompObj = $(b);
 const tmpCompProp = $(`$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 const tmpClusterSSA_a = new tmpNewCallee(1);
-const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(tmpClusterSSA_a);
 `````
 

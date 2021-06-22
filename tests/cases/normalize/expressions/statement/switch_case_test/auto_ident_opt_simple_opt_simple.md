@@ -74,9 +74,7 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
+$(1);
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
 } else {
@@ -84,16 +82,9 @@ if (tmpIfTest$1) {
   const tmpIfTest$3 = tmpChainElementObject == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpBinLhs = tmpChainElementObject$1;
+    tmpChainElementObject.y;
   }
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchCaseToStart <= 0;
 $(a);
 `````
 

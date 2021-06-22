@@ -40,10 +40,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpBinBothLhs = +tmpUnaryArg;
++tmpUnaryArg;
 const tmpUnaryArg$1 = $(100);
-const tmpBinBothRhs = +tmpUnaryArg$1;
-tmpBinBothLhs + tmpBinBothRhs;
++tmpUnaryArg$1;
 const a = { a: 999, b: 1000 };
 $(a);
 `````

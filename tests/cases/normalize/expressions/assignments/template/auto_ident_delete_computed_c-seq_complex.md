@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-$(`before  ` + (a = delete ($(1), $(2), $(arg))[$(`y`)]) + `  after`);
+$(`before  ` + String((a = delete ($(1), $(2), $(arg))[$(`y`)])) + `  after`);
 $(a, arg);
 `````
 
@@ -34,12 +34,14 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
+const tmpCallCallee$1 = String;
 $(1);
 $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpBinBothRhs = a;
+let tmpCalleeParam$1 = a;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -55,7 +57,8 @@ $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-const tmpCalleeParam = `before  ${tmpClusterSSA_a}  after`;
+const tmpBinBothRhs = String(tmpClusterSSA_a);
+const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````

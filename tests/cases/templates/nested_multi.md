@@ -24,8 +24,8 @@ $(`A${`A${a}B${b}C`}B${`A${a}B${b}C`}C`);
 `````js filename=intro
 const a = $(`x`);
 const b = $(`y`);
-$(`A` + a + `B` + b + `C`);
-$(`A` + (`A` + a + `B` + b + `C`) + `B` + (`A` + a + `B` + b + `C`) + `C`);
+$(`A` + String(a) + `B` + String(b) + `C`);
+$(`A` + String(`A` + String(a) + `B` + String(b) + `C`) + `B` + String(`A` + String(a) + `B` + String(b) + `C`) + `C`);
 `````
 
 ## Normalized
@@ -34,25 +34,38 @@ $(`A` + (`A` + a + `B` + b + `C`) + `B` + (`A` + a + `B` + b + `C`) + `C`);
 const a = $(`x`);
 const b = $(`y`);
 const tmpCallCallee = $;
-const tmpBinLhs$3 = `A` + a;
-const tmpBinLhs$1 = tmpBinLhs$3 + `B`;
-const tmpBinLhs = tmpBinLhs$1 + b;
+const tmpBinBothLhs$1 = `A`;
+const tmpBinBothRhs$1 = String(a);
+const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpBinBothLhs = tmpBinLhs$1 + `B`;
+const tmpBinBothRhs = String(b);
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `C`;
 tmpCallCallee(tmpCalleeParam);
 const tmpCallCallee$1 = $;
-const tmpBinBothLhs$1 = `A`;
-const tmpBinLhs$13 = `A` + a;
-const tmpBinLhs$11 = tmpBinLhs$13 + `B`;
-const tmpBinLhs$9 = tmpBinLhs$11 + b;
-const tmpBinBothRhs$1 = tmpBinLhs$9 + `C`;
-const tmpBinLhs$7 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothLhs = tmpBinLhs$7 + `B`;
-const tmpBinLhs$19 = `A` + a;
-const tmpBinLhs$17 = tmpBinLhs$19 + `B`;
-const tmpBinLhs$15 = tmpBinLhs$17 + b;
-const tmpBinBothRhs = tmpBinLhs$15 + `C`;
-const tmpBinLhs$5 = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam$1 = tmpBinLhs$5 + `C`;
+const tmpBinBothLhs$5 = `A`;
+const tmpCallCallee$3 = String;
+const tmpBinBothLhs$9 = `A`;
+const tmpBinBothRhs$9 = String(a);
+const tmpBinLhs$9 = tmpBinBothLhs$9 + tmpBinBothRhs$9;
+const tmpBinBothLhs$7 = tmpBinLhs$9 + `B`;
+const tmpBinBothRhs$7 = String(b);
+const tmpBinLhs$7 = tmpBinBothLhs$7 + tmpBinBothRhs$7;
+const tmpCalleeParam$3 = tmpBinLhs$7 + `C`;
+const tmpBinBothRhs$5 = tmpCallCallee$3(tmpCalleeParam$3);
+const tmpBinLhs$5 = tmpBinBothLhs$5 + tmpBinBothRhs$5;
+const tmpBinBothLhs$3 = tmpBinLhs$5 + `B`;
+const tmpCallCallee$5 = String;
+const tmpBinBothLhs$13 = `A`;
+const tmpBinBothRhs$13 = String(a);
+const tmpBinLhs$13 = tmpBinBothLhs$13 + tmpBinBothRhs$13;
+const tmpBinBothLhs$11 = tmpBinLhs$13 + `B`;
+const tmpBinBothRhs$11 = String(b);
+const tmpBinLhs$11 = tmpBinBothLhs$11 + tmpBinBothRhs$11;
+const tmpCalleeParam$5 = tmpBinLhs$11 + `C`;
+const tmpBinBothRhs$3 = tmpCallCallee$5(tmpCalleeParam$5);
+const tmpBinLhs$3 = tmpBinBothLhs$3 + tmpBinBothRhs$3;
+const tmpCalleeParam$1 = tmpBinLhs$3 + `C`;
 tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
@@ -61,18 +74,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const a = $(`x`);
 const b = $(`y`);
-const tmpBinLhs$3 = `A` + a;
-const tmpBinLhs$1 = `${tmpBinLhs$3}B`;
-const tmpBinLhs = tmpBinLhs$1 + b;
-const tmpCalleeParam = `${tmpBinLhs}C`;
+const tmpBinBothRhs$1 = String(a);
+const tmpBinBothRhs = String(b);
+const tmpCalleeParam = `A${tmpBinBothRhs$1}B${tmpBinBothRhs}C`;
 $(tmpCalleeParam);
-const tmpBinLhs$13 = `A` + a;
-const tmpBinLhs$11 = `${tmpBinLhs$13}B`;
-const tmpBinLhs$9 = tmpBinLhs$11 + b;
-const tmpBinLhs$19 = `A` + a;
-const tmpBinLhs$17 = `${tmpBinLhs$19}B`;
-const tmpBinLhs$15 = tmpBinLhs$17 + b;
-const tmpCalleeParam$1 = `A${tmpBinLhs$9}CB${tmpBinLhs$15}CC`;
+const tmpBinBothRhs$9 = String(a);
+const tmpBinBothRhs$7 = String(b);
+const tmpBinBothRhs$13 = String(a);
+const tmpBinBothRhs$11 = String(b);
+const tmpCalleeParam$1 = `AA${tmpBinBothRhs$9}B${tmpBinBothRhs$7}CBA${tmpBinBothRhs$13}B${tmpBinBothRhs$11}CC`;
 $(tmpCalleeParam$1);
 `````
 

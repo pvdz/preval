@@ -17,7 +17,7 @@ $(`${[]}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + [] + ``);
+$(`` + String([]) + ``);
 `````
 
 ## Normalized
@@ -25,7 +25,9 @@ $(`` + [] + ``);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = [];
+const tmpCallCallee$1 = String;
+const tmpCalleeParam$1 = [];
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
@@ -34,9 +36,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpBinBothRhs = [];
-const tmpBinLhs = `` + tmpBinBothRhs;
-$(tmpBinLhs);
+const tmpCalleeParam$1 = [];
+const tmpBinBothRhs = String(tmpCalleeParam$1);
+$(tmpBinBothRhs);
 `````
 
 ## Globals

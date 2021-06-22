@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = `` + Infinity + ``;
+x = `` + String(Infinity) + ``;
 $(x);
 `````
 
@@ -28,7 +28,9 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpBinLhs = `Infinity`;
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = `Infinity`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 x = tmpBinLhs + ``;
 $(x);
 `````

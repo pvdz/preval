@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = `` + `I am a string` + ``;
+x = `` + String(`I am a string`) + ``;
 $(x);
 `````
 
@@ -28,7 +28,9 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpBinLhs = `I am a string`;
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = `I am a string`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 x = tmpBinLhs + ``;
 $(x);
 `````

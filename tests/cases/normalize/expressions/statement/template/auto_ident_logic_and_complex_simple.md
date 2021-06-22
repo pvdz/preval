@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(`before  ` + ($($(1)) && 2) + `  after`);
+$(`before  ` + String($($(1)) && 2) + `  after`);
 $(a);
 `````
 
@@ -30,13 +30,15 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = $(1);
-let tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
-if (tmpBinBothRhs) {
-  tmpBinBothRhs = 2;
+const tmpCallCallee$1 = String;
+const tmpCallCallee$3 = $;
+const tmpCalleeParam$3 = $(1);
+let tmpCalleeParam$1 = tmpCallCallee$3(tmpCalleeParam$3);
+if (tmpCalleeParam$1) {
+  tmpCalleeParam$1 = 2;
 } else {
 }
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -47,14 +49,14 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$1 = $(1);
-let tmpBinBothRhs = $(tmpCalleeParam$1);
-if (tmpBinBothRhs) {
-  tmpBinBothRhs = 2;
+const tmpCalleeParam$3 = $(1);
+let tmpCalleeParam$1 = $(tmpCalleeParam$3);
+if (tmpCalleeParam$1) {
+  tmpCalleeParam$1 = 2;
 } else {
 }
-const tmpBinLhs = `before  ` + tmpBinBothRhs;
-const tmpCalleeParam = `${tmpBinLhs}  after`;
+const tmpBinBothRhs = String(tmpCalleeParam$1);
+const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

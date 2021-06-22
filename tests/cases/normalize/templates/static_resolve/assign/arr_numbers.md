@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = `` + [1, 2, 3] + ``;
+x = `` + String([1, 2, 3]) + ``;
 $(x);
 `````
 
@@ -29,7 +29,9 @@ $(x);
 `````js filename=intro
 let x = undefined;
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = [1, 2, 3];
+const tmpCallCallee = String;
+const tmpCalleeParam = [1, 2, 3];
+const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 x = tmpBinLhs + ``;
 $(x);
@@ -38,9 +40,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpBinBothRhs = [1, 2, 3];
-const tmpBinLhs = `` + tmpBinBothRhs;
-$(tmpBinLhs);
+const tmpCalleeParam = [1, 2, 3];
+const tmpBinBothRhs = String(tmpCalleeParam);
+$(tmpBinBothRhs);
 `````
 
 ## Globals

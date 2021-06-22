@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = `` + false + ``;
+x = `` + String(false) + ``;
 $(x);
 `````
 
@@ -28,7 +28,9 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpBinLhs = `false`;
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = `false`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 x = tmpBinLhs + ``;
 $(x);
 `````

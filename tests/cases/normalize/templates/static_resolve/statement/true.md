@@ -17,13 +17,15 @@
 ## Pre Normal
 
 `````js filename=intro
-`` + true + ``;
+`` + String(true) + ``;
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinLhs = `true`;
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = `true`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 tmpBinLhs + ``;
 `````
 

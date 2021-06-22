@@ -18,7 +18,7 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let a = `foo` + $(1) + ``;
+let a = `foo` + String($(1)) + ``;
 $(a);
 `````
 
@@ -26,7 +26,9 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = `foo`;
-const tmpBinBothRhs = $(1);
+const tmpCallCallee = String;
+const tmpCalleeParam = $(1);
+const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 let a = tmpBinLhs + ``;
 $(a);
@@ -35,8 +37,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpBinBothRhs = $(1);
-const tmpBinLhs = `foo` + tmpBinBothRhs;
+const tmpCalleeParam = $(1);
+const tmpBinBothRhs = String(tmpCalleeParam);
+const tmpBinLhs = `foo${tmpBinBothRhs}`;
 $(tmpBinLhs);
 `````
 

@@ -18,14 +18,16 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = `` + Infinity + ``;
+let x = `` + String(Infinity) + ``;
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinLhs = `Infinity`;
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = `Infinity`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 let x = tmpBinLhs + ``;
 $(x);
 `````

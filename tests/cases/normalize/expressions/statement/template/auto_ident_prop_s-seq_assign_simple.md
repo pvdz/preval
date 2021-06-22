@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-$(`before  ` + ((1, 2, b).c = 2) + `  after`);
+$(`before  ` + String(((1, 2, b).c = 2)) + `  after`);
 $(a, b);
 `````
 
@@ -34,10 +34,12 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
+const tmpCallCallee$1 = String;
 const varInitAssignLhsComputedObj = b;
 const varInitAssignLhsComputedRhs = 2;
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const tmpBinBothRhs = varInitAssignLhsComputedRhs;
+const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);

@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-$(`before  ` + ({ b: b } = $({ b: $(2) })) + `  after`);
+$(`before  ` + String(({ b: b } = $({ b: $(2) }))) + `  after`);
 $(a, b);
 `````
 
@@ -34,13 +34,15 @@ let b = {};
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-let tmpBinBothRhs = undefined;
-const tmpCallCallee$1 = $;
+const tmpCallCallee$1 = String;
+let tmpCalleeParam$1 = undefined;
+const tmpCallCallee$3 = $;
 const tmpObjLitVal = $(2);
-const tmpCalleeParam$1 = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCalleeParam$3 = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = tmpCallCallee$3(tmpCalleeParam$3);
 b = tmpNestedAssignObjPatternRhs.b;
-tmpBinBothRhs = tmpNestedAssignObjPatternRhs;
+tmpCalleeParam$1 = tmpNestedAssignObjPatternRhs;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -52,11 +54,11 @@ $(a, b);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
-const tmpCalleeParam$1 = { b: tmpObjLitVal };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
+const tmpCalleeParam$3 = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-const tmpBinLhs = `before  ` + tmpNestedAssignObjPatternRhs;
-const tmpCalleeParam = `${tmpBinLhs}  after`;
+const tmpBinBothRhs = String(tmpNestedAssignObjPatternRhs);
+const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a, tmpClusterSSA_b);
 `````

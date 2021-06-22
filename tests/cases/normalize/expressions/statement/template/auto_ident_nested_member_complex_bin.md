@@ -29,7 +29,7 @@ let b = { x: 1 },
   d = 3,
   e = 4;
 let a = { a: 999, b: 1000 };
-$(`before  ` + ($(b)[$(`x`)] = $(c)[$(`y`)] = d + e) + `  after`);
+$(`before  ` + String(($(b)[$(`x`)] = $(c)[$(`y`)] = d + e)) + `  after`);
 $(a, b, c, d, e);
 `````
 
@@ -43,6 +43,7 @@ let e = 4;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
+const tmpCallCallee$1 = String;
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(c);
@@ -51,7 +52,8 @@ const varInitAssignLhsComputedRhs$1 = d + e;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpBinBothRhs = varInitAssignLhsComputedRhs;
+const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);

@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-$(`before  ` + typeof $(x) + `  after`);
+$(`before  ` + String(typeof $(x)) + `  after`);
 $(a, x);
 `````
 
@@ -34,8 +34,10 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
+const tmpCallCallee$1 = String;
 const tmpUnaryArg = $(x);
-const tmpBinBothRhs = typeof tmpUnaryArg;
+const tmpCalleeParam$1 = typeof tmpUnaryArg;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -47,8 +49,8 @@ $(a, x);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(1);
-const tmpBinBothRhs = typeof tmpUnaryArg;
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+const tmpCalleeParam$1 = typeof tmpUnaryArg;
+const tmpCalleeParam = `before  ${tmpCalleeParam$1}  after`;
 $(tmpCalleeParam);
 $(a, 1);
 `````

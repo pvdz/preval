@@ -1492,6 +1492,21 @@ export function phaseNormalize(fdata, fname) {
                 }
                 break;
               }
+              case 'String': {
+                if (args[0] && AST.isPrimitive(args[0])) {
+                  rule('Calling `String` on a primitive should resolve');
+                  example('String(123)', '"123"');
+                  before(node, parentNode);
+
+                  const finalNode = AST.primitive(String(AST.getPrimitiveValue(firstArgNode)));
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
+
+                  after(finalNode, body.slice(i, args.length));
+                  return true;
+                }
+                break;
+              }
             }
           }
         }

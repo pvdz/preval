@@ -711,8 +711,9 @@ export function phaseNormalOnce(fdata) {
           // becomes
           // 'a'+b+'c'+d+'e';
 
-          rule('Template literals become string concats');
-          example('x = `a${b}c`', 'x = "a" + b + "c"');
+          // Note: templates will explicitly cast to String whereas `"" + x` will call `.valueOf()` first. Relevant difference.
+          rule('Template literals become string concats explicitly cast with String');
+          example('x = `a${b}c`', 'x = "a" + String(b) + "c"');
           before(node, parentNode);
 
           // Note: this file also converts strings to templates. Since these should not be revisited this should not lead to infinite loops
@@ -724,7 +725,7 @@ export function phaseNormalOnce(fdata) {
             // a = (a + expr) + b
             finalNode = AST.binaryExpression(
               '+',
-              AST.binaryExpression('+', finalNode, node.expressions[i]),
+              AST.binaryExpression('+', finalNode, AST.callExpression('String', [node.expressions[i]])),
               AST.templateLiteral(node.quasis[i + 1].value.cooked),
             );
           }

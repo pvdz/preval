@@ -22,9 +22,9 @@ $(a);
 let a = { a: 999, b: 1000 };
 $(
   `before  ` +
-    function f() {
+    String(function f() {
       debugger;
-    } +
+    }) +
     `  after`,
 );
 $(a);
@@ -36,11 +36,13 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
+const tmpCallCallee$1 = String;
 const f = function () {
   debugger;
   return undefined;
 };
-const tmpBinBothRhs = f;
+const tmpCalleeParam$1 = f;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -55,8 +57,8 @@ const f = function () {
   debugger;
   return undefined;
 };
-const tmpBinLhs = `before  ` + f;
-const tmpCalleeParam = `${tmpBinLhs}  after`;
+const tmpBinBothRhs = String(f);
+const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

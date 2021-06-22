@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_ident_upd_i m_simple.md
+# auto_ident_upd_im_simple.md
 
-> Normalize > Expressions > Statement > While > Auto ident upd i m simple
+> Normalize > Expressions > Statement > While > Auto ident upd im simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 
@@ -50,8 +50,13 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 while (true) {
+  const tmpPostUpdArgIdent = b;
   b = b - 1;
-  $(100);
+  if (tmpPostUpdArgIdent) {
+    $(100);
+  } else {
+    break;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a, b);
@@ -72,31 +77,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 100
- - 2: 100
- - 3: 100
- - 4: 100
- - 5: 100
- - 6: 100
- - 7: 100
- - 8: 100
- - 9: 100
- - 10: 100
- - 11: 100
- - 12: 100
- - 13: 100
- - 14: 100
- - 15: 100
- - 16: 100
- - 17: 100
- - 18: 100
- - 19: 100
- - 20: 100
- - 21: 100
- - 22: 100
- - 23: 100
- - 24: 100
- - 25: 100
- - 26: 100
- - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+Final output calls: Same

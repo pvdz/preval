@@ -17,14 +17,16 @@
 ## Pre Normal
 
 `````js filename=intro
-`` + /foo/g + ``;
+`` + String(/foo/g) + ``;
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = /foo/g;
+const tmpCallCallee = String;
+const tmpCalleeParam = /foo/g;
+const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 tmpBinLhs + ``;
 `````

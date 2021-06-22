@@ -17,16 +17,19 @@ $(`abc ${ 10 } ${ 20 } def`);
 ## Pre Normal
 
 `````js filename=intro
-$(`abc ` + 10 + ` ` + 20 + ` def`);
+$(`abc ` + String(10) + ` ` + String(20) + ` def`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs$3 = `abc 10`;
-const tmpBinLhs$1 = tmpBinLhs$3 + ` `;
-const tmpBinLhs = tmpBinLhs$1 + 20;
+const tmpBinBothLhs$1 = `abc `;
+const tmpBinBothRhs$1 = `10`;
+const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+const tmpBinBothLhs = tmpBinLhs$1 + ` `;
+const tmpBinBothRhs = `20`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + ` def`;
 tmpCallCallee(tmpCalleeParam);
 `````

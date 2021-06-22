@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = `` + (`a ` + $(1) + ` b`) + ``;
+let x = `` + String(`a ` + String($(1)) + ` b`) + ``;
 $(x);
 `````
 
@@ -26,10 +26,14 @@ $(x);
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
+const tmpCallCallee = String;
 const tmpBinBothLhs$1 = `a `;
-const tmpBinBothRhs$1 = $(1);
+const tmpCallCallee$1 = String;
+const tmpCalleeParam$1 = $(1);
+const tmpBinBothRhs$1 = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothRhs = tmpBinLhs$1 + ` b`;
+const tmpCalleeParam = tmpBinLhs$1 + ` b`;
+const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 let x = tmpBinLhs + ``;
 $(x);
@@ -38,10 +42,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpBinBothRhs$1 = $(1);
-const tmpBinLhs$1 = `a ` + tmpBinBothRhs$1;
-const tmpBinBothRhs = `${tmpBinLhs$1} b`;
-$(tmpBinBothRhs);
+const tmpCalleeParam$1 = $(1);
+const tmpBinBothRhs$1 = String(tmpCalleeParam$1);
+const tmpCalleeParam = `a ${tmpBinBothRhs$1} b`;
+$(tmpCalleeParam);
 `````
 
 ## Globals

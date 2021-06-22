@@ -27,7 +27,7 @@ let b = { x: 1 },
   c = { y: 2 },
   d = 3;
 let a = { a: 999, b: 1000 };
-$(`before  ` + (a = $(b)[$(`x`)] = $(c)[$(`y`)] = d) + `  after`);
+$(`before  ` + String((a = $(b)[$(`x`)] = $(c)[$(`y`)] = d)) + `  after`);
 $(a, b, c, d);
 `````
 
@@ -40,6 +40,7 @@ let d = 3;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
+const tmpCallCallee$1 = String;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
@@ -50,7 +51,8 @@ const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
 const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
 a = tmpNestedPropAssignRhs;
-let tmpBinBothRhs = a;
+let tmpCalleeParam$1 = a;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);

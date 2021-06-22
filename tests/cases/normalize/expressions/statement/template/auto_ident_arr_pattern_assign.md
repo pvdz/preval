@@ -25,7 +25,7 @@ $(a, x, y);
 let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
-$(`before  ` + ([x, y] = [$(3), $(4)]) + `  after`);
+$(`before  ` + String(([x, y] = [$(3), $(4)])) + `  after`);
 $(a, x, y);
 `````
 
@@ -37,14 +37,16 @@ let y = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-let tmpBinBothRhs = undefined;
+const tmpCallCallee$1 = String;
+let tmpCalleeParam$1 = undefined;
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-tmpBinBothRhs = tmpNestedAssignArrPatternRhs;
+tmpCalleeParam$1 = tmpNestedAssignArrPatternRhs;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -61,8 +63,8 @@ const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_x = arrPatternSplat[0];
 const tmpClusterSSA_y = arrPatternSplat[1];
-const tmpBinLhs = `before  ` + tmpNestedAssignArrPatternRhs;
-const tmpCalleeParam = `${tmpBinLhs}  after`;
+const tmpBinBothRhs = String(tmpNestedAssignArrPatternRhs);
+const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````

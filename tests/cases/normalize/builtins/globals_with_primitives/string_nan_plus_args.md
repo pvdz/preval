@@ -24,15 +24,16 @@ $(String(NaN, 1, `two`, implicitGlobal, 3));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = String(NaN, 1, `two`, implicitGlobal, 3);
+implicitGlobal;
+const tmpCalleeParam = `NaN`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = String(NaN, 1, `two`, implicitGlobal, 3);
-$(tmpCalleeParam);
+implicitGlobal;
+$(`NaN`);
 `````
 
 ## Globals

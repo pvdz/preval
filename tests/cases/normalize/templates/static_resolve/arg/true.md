@@ -17,14 +17,16 @@ $(`${true}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + true + ``);
+$(`` + String(true) + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = `true`;
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = `true`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````

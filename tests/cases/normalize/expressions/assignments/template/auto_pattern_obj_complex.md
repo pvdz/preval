@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
-$(`before  ` + ({ a: a } = $({ a: 1, b: 2 })) + `  after`);
+$(`before  ` + String(({ a: a } = $({ a: 1, b: 2 }))) + `  after`);
 $(a);
 `````
 
@@ -31,12 +31,14 @@ let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-let tmpBinBothRhs = undefined;
-const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$1 = String;
+let tmpCalleeParam$1 = undefined;
+const tmpCallCallee$3 = $;
+const tmpCalleeParam$3 = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs = tmpCallCallee$3(tmpCalleeParam$3);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpBinBothRhs = tmpNestedAssignObjPatternRhs;
+tmpCalleeParam$1 = tmpNestedAssignObjPatternRhs;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -46,11 +48,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = { a: 1, b: 2 };
-const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
+const tmpCalleeParam$3 = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$3);
 const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
-const tmpBinLhs = `before  ` + tmpNestedAssignObjPatternRhs;
-const tmpCalleeParam = `${tmpBinLhs}  after`;
+const tmpBinBothRhs = String(tmpNestedAssignObjPatternRhs);
+const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````

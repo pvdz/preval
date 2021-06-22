@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(`before  ` + (a = { x: 1, y: 2, z: 3 }) + `  after`);
+$(`before  ` + String((a = { x: 1, y: 2, z: 3 })) + `  after`);
 $(a);
 `````
 
@@ -30,8 +30,10 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
+const tmpCallCallee$1 = String;
 a = { x: 1, y: 2, z: 3 };
-let tmpBinBothRhs = a;
+let tmpCalleeParam$1 = a;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -42,8 +44,8 @@ $(a);
 
 `````js filename=intro
 const a = { x: 1, y: 2, z: 3 };
-const tmpBinLhs = `before  ` + a;
-const tmpCalleeParam = `${tmpBinLhs}  after`;
+const tmpBinBothRhs = String(a);
+const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

@@ -25,7 +25,7 @@ $(a, b, c);
 let b = 1,
   c = 2;
 let a = { a: 999, b: 1000 };
-$(`before  ` + (b = 2) + `  after`);
+$(`before  ` + String((b = 2)) + `  after`);
 $(a, b, c);
 `````
 
@@ -37,8 +37,10 @@ let c = 2;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
+const tmpCallCallee$1 = String;
 b = 2;
-let tmpBinBothRhs = b;
+let tmpCalleeParam$1 = b;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);

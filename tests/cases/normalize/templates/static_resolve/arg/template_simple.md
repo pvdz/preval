@@ -17,14 +17,16 @@ $(`${`I am a string`}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + `I am a string` + ``);
+$(`` + String(`I am a string`) + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = `I am a string`;
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = `I am a string`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````

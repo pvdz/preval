@@ -17,14 +17,16 @@ $(`${undefined}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + undefined + ``);
+$(`` + String(undefined) + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = `undefined`;
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = `undefined`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````

@@ -23,7 +23,7 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-$(`before  ` + ($(1), $(2), x) + `  after`);
+$(`before  ` + String(($(1), $(2), x)) + `  after`);
 $(a, x);
 `````
 
@@ -34,9 +34,11 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
+const tmpCallCallee$1 = String;
 $(1);
 $(2);
-const tmpBinBothRhs = x;
+const tmpCalleeParam$1 = x;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);

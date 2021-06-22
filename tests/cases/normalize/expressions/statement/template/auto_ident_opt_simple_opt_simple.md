@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { x: { y: 1 } };
 let a = { a: 999, b: 1000 };
-$(`before  ` + b?.x?.y + `  after`);
+$(`before  ` + String(b?.x?.y) + `  after`);
 $(a);
 `````
 
@@ -35,7 +35,8 @@ let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-let tmpBinBothRhs = undefined;
+const tmpCallCallee$1 = String;
+let tmpCalleeParam$1 = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
@@ -43,11 +44,12 @@ if (tmpIfTest) {
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpBinBothRhs = tmpChainElementObject$1;
+    tmpCalleeParam$1 = tmpChainElementObject$1;
   } else {
   }
 } else {
 }
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -60,7 +62,7 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let tmpBinBothRhs = undefined;
+let tmpCalleeParam$1 = undefined;
 const tmpIfTest = b == null;
 if (tmpIfTest) {
 } else {
@@ -69,11 +71,11 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpBinBothRhs = tmpChainElementObject$1;
+    tmpCalleeParam$1 = tmpChainElementObject$1;
   }
 }
-const tmpBinLhs = `before  ` + tmpBinBothRhs;
-const tmpCalleeParam = `${tmpBinLhs}  after`;
+const tmpBinBothRhs = String(tmpCalleeParam$1);
+const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
 `````

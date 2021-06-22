@@ -24,15 +24,14 @@ $(String(NaN));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = String(NaN);
+const tmpCalleeParam = `NaN`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = String(NaN);
-$(tmpCalleeParam);
+$(`NaN`);
 `````
 
 ## Globals

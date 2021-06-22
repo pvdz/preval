@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = `` + /foo/g + ``;
+let x = `` + String(/foo/g) + ``;
 $(x);
 `````
 
@@ -26,7 +26,9 @@ $(x);
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = /foo/g;
+const tmpCallCallee = String;
+const tmpCalleeParam = /foo/g;
+const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 let x = tmpBinLhs + ``;
 $(x);
@@ -35,9 +37,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpBinBothRhs = /foo/g;
-const tmpBinLhs = `` + tmpBinBothRhs;
-$(tmpBinLhs);
+const tmpCalleeParam = /foo/g;
+const tmpBinBothRhs = String(tmpCalleeParam);
+$(tmpBinBothRhs);
 `````
 
 ## Globals

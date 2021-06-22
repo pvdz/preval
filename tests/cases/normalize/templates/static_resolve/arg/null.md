@@ -17,14 +17,16 @@ $(`${null}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + null + ``);
+$(`` + String(null) + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = `null`;
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = `null`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````

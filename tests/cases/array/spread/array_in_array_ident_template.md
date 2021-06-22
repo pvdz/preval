@@ -22,7 +22,7 @@ $(y);
 
 `````js filename=intro
 let a = $(10);
-const x = [1, `` + $(`x`) + ` ` + $(`y`) + ``, 3];
+const x = [1, `` + String($(`x`)) + ` ` + String($(`y`)) + ``, 3];
 if ($) a = $(20);
 const y = [`a`, ...x, `b`];
 $(y);
@@ -34,10 +34,14 @@ $(y);
 let a = $(10);
 const tmpArrElement = 1;
 const tmpBinBothLhs$1 = ``;
-const tmpBinBothRhs$1 = $(`x`);
+const tmpCallCallee = String;
+const tmpCalleeParam = $(`x`);
+const tmpBinBothRhs$1 = tmpCallCallee(tmpCalleeParam);
 const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpBinBothLhs = tmpBinLhs$1 + ` `;
-const tmpBinBothRhs = $(`y`);
+const tmpCallCallee$1 = String;
+const tmpCalleeParam$1 = $(`y`);
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpArrElement$1 = tmpBinLhs + ``;
 const x = [tmpArrElement, tmpArrElement$1, 3];
@@ -53,11 +57,11 @@ $(y);
 
 `````js filename=intro
 $(10);
-const tmpBinBothRhs$1 = $(`x`);
-const tmpBinLhs$1 = `` + tmpBinBothRhs$1;
-const tmpBinBothLhs = `${tmpBinLhs$1} `;
-const tmpBinBothRhs = $(`y`);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = $(`x`);
+const tmpBinBothRhs$1 = String(tmpCalleeParam);
+const tmpCalleeParam$1 = $(`y`);
+const tmpBinBothRhs = String(tmpCalleeParam$1);
+const tmpBinLhs = `${tmpBinBothRhs$1} ${tmpBinBothRhs}`;
 if ($) {
   $(20);
 } else {

@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_ident_upd_i m_simple.md
+# auto_ident_upd_im_simple.md
 
-> Normalize > Expressions > Statement > For b > Auto ident upd i m simple
+> Normalize > Expressions > Statement > For b > Auto ident upd im simple
 >
 > Normalization of all kinds of expressions should work the same no matter where they are
 

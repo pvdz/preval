@@ -24,15 +24,14 @@ $(String(`foo`));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = String(`foo`);
+const tmpCalleeParam = `foo`;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = String(`foo`);
-$(tmpCalleeParam);
+$(`foo`);
 `````
 
 ## Globals

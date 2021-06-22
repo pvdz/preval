@@ -17,16 +17,20 @@ $(`abc ${ 10 } ${ $(20) } def`);
 ## Pre Normal
 
 `````js filename=intro
-$(`abc ` + 10 + ` ` + $(20) + ` def`);
+$(`abc ` + String(10) + ` ` + String($(20)) + ` def`);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs$1 = `abc 10`;
+const tmpBinBothLhs$1 = `abc `;
+const tmpBinBothRhs$1 = `10`;
+const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
 const tmpBinBothLhs = tmpBinLhs$1 + ` `;
-const tmpBinBothRhs = $(20);
+const tmpCallCallee$1 = String;
+const tmpCalleeParam$1 = $(20);
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + ` def`;
 tmpCallCallee(tmpCalleeParam);
@@ -35,9 +39,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpBinBothRhs = $(20);
-const tmpBinLhs = `abc 10 ` + tmpBinBothRhs;
-const tmpCalleeParam = `${tmpBinLhs} def`;
+const tmpCalleeParam$1 = $(20);
+const tmpBinBothRhs = String(tmpCalleeParam$1);
+const tmpCalleeParam = `abc 10 ${tmpBinBothRhs} def`;
 $(tmpCalleeParam);
 `````
 

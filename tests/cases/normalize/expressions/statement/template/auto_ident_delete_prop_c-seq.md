@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-$(`before  ` + delete ($(1), $(2), $(arg)).y + `  after`);
+$(`before  ` + String(delete ($(1), $(2), $(arg)).y) + `  after`);
 $(a, arg);
 `````
 
@@ -34,10 +34,12 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
+const tmpCallCallee$1 = String;
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const tmpBinBothRhs = delete tmpDeleteObj.y;
+const tmpCalleeParam$1 = delete tmpDeleteObj.y;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -52,7 +54,8 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const tmpBinBothRhs = delete tmpDeleteObj.y;
+const tmpCalleeParam$1 = delete tmpDeleteObj.y;
+const tmpBinBothRhs = String(tmpCalleeParam$1);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a, arg);

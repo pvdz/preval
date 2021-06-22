@@ -17,14 +17,16 @@ $(`${Infinity}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + Infinity + ``);
+$(`` + String(Infinity) + ``);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinLhs = `Infinity`;
+const tmpBinBothLhs = ``;
+const tmpBinBothRhs = `Infinity`;
+const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + ``;
 tmpCallCallee(tmpCalleeParam);
 `````

@@ -17,17 +17,21 @@
 ## Pre Normal
 
 `````js filename=intro
-`` + (`a ` + $(1) + ` b`) + ``;
+`` + String(`a ` + String($(1)) + ` b`) + ``;
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
+const tmpCallCallee = String;
 const tmpBinBothLhs$1 = `a `;
-const tmpBinBothRhs$1 = $(1);
+const tmpCallCallee$1 = String;
+const tmpCalleeParam$1 = $(1);
+const tmpBinBothRhs$1 = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothRhs = tmpBinLhs$1 + ` b`;
+const tmpCalleeParam = tmpBinLhs$1 + ` b`;
+const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 tmpBinLhs + ``;
 `````
@@ -35,8 +39,8 @@ tmpBinLhs + ``;
 ## Output
 
 `````js filename=intro
-const tmpBinBothRhs$1 = $(1);
-tmpBinBothRhs$1 + ``;
+const tmpCalleeParam$1 = $(1);
+tmpCalleeParam$1 + ``;
 `````
 
 ## Globals

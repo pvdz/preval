@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-$(`before  ` + (a = [b] = $([$(2)])) + `  after`);
+$(`before  ` + String((a = [b] = $([$(2)]))) + `  after`);
 $(a, b);
 `````
 
@@ -34,14 +34,16 @@ let b = [];
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$1 = $;
+const tmpCallCallee$1 = String;
+const tmpCallCallee$3 = $;
 const tmpArrElement = $(2);
-const tmpCalleeParam$1 = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCalleeParam$3 = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = tmpCallCallee$3(tmpCalleeParam$3);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 b = arrPatternSplat[0];
 a = tmpNestedAssignArrPatternRhs;
-let tmpBinBothRhs = a;
+let tmpCalleeParam$1 = a;
+const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
 tmpCallCallee(tmpCalleeParam);
@@ -52,12 +54,12 @@ $(a, b);
 
 `````js filename=intro
 const tmpArrElement = $(2);
-const tmpCalleeParam$1 = [tmpArrElement];
-const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
+const tmpCalleeParam$3 = [tmpArrElement];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$3);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
-const tmpBinLhs = `before  ` + tmpNestedAssignArrPatternRhs;
-const tmpCalleeParam = `${tmpBinLhs}  after`;
+const tmpBinBothRhs = String(tmpNestedAssignArrPatternRhs);
+const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````

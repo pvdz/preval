@@ -227,14 +227,24 @@ function processAttempt(fdata) {
           return;
         }
 
-        if (read.parentNode.callee.type !== 'Identifier') {
+        let callee;
+        if (read.parentNode.callee.type === 'Identifier') {
+          callee = read.parentNode.callee.name;
+        } else if (
+          read.parentNode.callee.type === 'MemberExpression' &&
+          read.parentNode.callee.object.type === 'Identifier' &&
+          read.parentNode.callee.property.type === 'Identifier' &&
+          !read.parentNode.callee.computed
+        ) {
+          callee = read.parentNode.callee.object.name + '.' + read.parentNode.callee.property.name;
+        } else {
           // TODO: what valid member expressions might this array be an arg to? Like, Array.isArray()
-          vlog('Array was arg to a call to a member expression. Bailing');
+          vlog('Array was arg to a call with unknown callee. Bailing');
           failed = true;
           return;
         }
 
-        switch (read.parentNode.callee.name) {
+        switch (callee) {
           case 'String': {
             if (
               arrNode.elements.every((enode) => {
@@ -292,6 +302,7 @@ function processAttempt(fdata) {
             // Note: due to how array serialization works, if the first arg would parse to a number, so does the array
             // Note: this will still trigger spies on all elements, regardless of the outcome
             // `Number([{valueOf(){ console.log('x') }, toString(){ console.log('y'); }}])` -> prints y
+            // TODO: if we can splice the elements out we don't care about the actual contents
             if (
               arrNode.elements.every((enode) => {
                 ASSERT(!enode || enode.type !== 'SpreadElement', 'asserted above');
@@ -300,6 +311,29 @@ function processAttempt(fdata) {
             ) {
               rule('An array literal called on Boolean always returns true');
               example('Boolean([1, 2, 3])', 'true;');
+              before(read.node, read.blockBody[read.blockIndex]);
+
+              const finalNode = AST.tru();
+              if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+              else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+              after(finalNode, read.blockBody[read.blockIndex]);
+              meta.tainted = true;
+              ++updated;
+              return;
+            }
+            break;
+          }
+          case 'Array.isArray': {
+            // TODO: if we can splice the elements out we don't care about the actual contents
+            if (
+              arrNode.elements.every((enode) => {
+                ASSERT(!enode || enode.type !== 'SpreadElement', 'asserted above');
+                return AST.isPrimitive(enode);
+              })
+            ) {
+              rule('An array literal called on Array.isArray always returns true');
+              example('Array.isArray([1, 2, 3])', 'true;');
               before(read.node, read.blockBody[read.blockIndex]);
 
               const finalNode = AST.tru();

@@ -422,22 +422,21 @@ export function registerGlobalIdent(
     reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
 
     // Phase1 collects typing information
+    // Note: This should be typing information that holds for any point in the life cycle of the binding
+    //       For constants that's easy but for lets this severely restricts what we can track. In most cases just the typeof.
     typing: {
       // string. If anything, this should then be the primitive type that this binding must be.
       // TODO: what if there are multiple options? Or even like bool/undefined/null? "falsy/truthy"
-      mustBeType: '', // null, array, array (lit), object (plain), function, class, set, map, regex, <typeof primitive>
-      mustBeFalsy: false, // bool: only true if value is known to be one of: false, null, undefined, 0, -0, '', NaN
-      mustBeTruthy: false, // bool: only true if known to be a value that is not one of the falsy ones :)
-      bang: false, // bool. Was this explicitly the result of applying `!x`?
+      mustBeType: '', // enum|undefined|false. 'null', 'array' (lit), 'object' (plain), 'function', 'class', 'set', 'map', 'regex', <typeof primitive>. When false, the type can not be determined safely.
+      mustBeFalsy: undefined, // bool: only true if value is known to be one of: false, null, undefined, 0, -0, '', NaN. When false, known not to (always) be falsy.
+      mustBeTruthy: undefined, // bool: only true if known to be a value that is not one of the falsy ones :) When false, known not to (always) be truthy.
+      bang: undefined, // bool. Was this explicitly the result of applying `!x`? When false, known not to always be the case.
       // number. If type is a number range, these are its bounds
       rangeStart: -Infinity,
       rangeEnd: Infinity,
-      // For bindings where we know the value to be within a certain set of values, this is that set.
-      // For example: `const t = typeof x` has a (small) finite set of values regardless of what `x` is
-      // We do have to arbitrarily limit the max size of this set (I guess)
-      // Set. If `undefined` then none were collected. If `false` then there were too many, whatever that is.
-      valueSet: undefined,
-      oneBitSet: undefined, // int. If set, either the value is guaranteed to have multiple bits set, or this is the value with that one bit set.
+
+      oneBitAnded: undefined, // number. If set, this value is the result of applying the bitwise AND operator and this single bit value to an arbitrary value. In other words, either this bit is set or unset on this value.
+      anded: undefined, // number. If set, this value is the result of bitwise AND an arbitrary value with this value
     },
   };
   ASSERT(name);
@@ -457,6 +456,34 @@ export function createFreshVar(name, fdata) {
   const tmpName = generateUniqueGlobalName(name, fdata, false);
   registerGlobalIdent(fdata, tmpName, tmpName);
   return tmpName;
+}
+
+export function mergeTyping(metaFrom, metaInto) {
+  vlog('mergeTyping(', metaFrom.uniqueName, '->', metaInto.uniqueName, ')');
+  //if (metaFrom.isImplicitGlobal) {
+  //  vlog('mergeTyping: Aliasing an implicit global so clearing all typing info');
+  //  metaInto.mustBeType = '';
+  //  metaInto.mustBeFalsy = false;
+  //  metaInto.mustBeTruthy = false;
+  //  metaInto.bang = false;
+  //  //metaTarget.rangeStart: -Infinity,
+  //  //metaTarget.rangeEnd: Infinity,
+  //
+  //  metaInto.oneBitAnded = 0;
+  //  metaInto.anded = 0;
+  //  return;
+  //}
+
+  const A = metaFrom.typing;
+  const B = metaInto.typing;
+  B.mustBeType = A.mustBeType;
+  B.mustBeFalsy = A.mustBeFalsy;
+  B.mustBeTruthy = A.mustBeTruthy;
+  B.bang = A.bang;
+  B.rangeStart = A.rangeStart;
+  B.rangeEnd = A.rangeEnd;
+  B.oneBitAnded = A.oneBitAnded;
+  B.anded = A.anded;
 }
 
 export function createUniqueGlobalLabel(name, fdata) {
@@ -918,191 +945,478 @@ export function findBoundNamesInVarDeclarator(decl, names = []) {
   return names;
 }
 
-export function inferInitialType(meta, init) {
+export function inferInitialType(fdata, typing, init, kind) {
   // Given a node `init`, determine the initial typing for this meta.
 
-  if (init.type === 'Literal') {
-    if (init.raw === 'null') {
-      meta.typing.mustBeType = 'null';
-      meta.typing.mustBeFalsy = true;
-      meta.typing.valueSet = new Set([null]);
-    } else if (typeof init.value === 'number') {
-      meta.typing.mustBeType = 'number';
-      meta.typing.mustBeFalsy = init.value === 0;
-      meta.typing.mustBeTruthy = init.value !== 0;
-      meta.typing.valueSet = new Set([init.value]);
-    } else if (typeof init.value === 'string') {
-      ASSERT(false, 'not in phase1 onward', init);
-      //meta.typing.mustBeType = 'string';
-      //meta.typing.mustBeFalsy = init.value === '';
-      //meta.typing.mustBeTruthy = init.value !== '';
-      //meta.typing.valueSet = new Set([init.value]);
-    } else if (typeof init.value === 'boolean') {
-      meta.typing.mustBeType = 'boolean';
-      meta.typing.mustBeFalsy = !init.value;
-      meta.typing.mustBeTruthy = init.value;
-      meta.typing.valueSet = new Set([init.value]);
-    } else if (init.raw[0] === '/') {
-      meta.typing.mustBeType = 'regex';
-      meta.typing.mustBeFalsy = false;
-      meta.typing.mustBeTruthy = true;
-      meta.typing.valueSet = new Set([init.value]);
+  if (AST.isPrimitive(init)) {
+    const value = AST.getPrimitiveValue(init);
+    if (value === null) {
+      typing.mustBeType = 'null';
     } else {
-      ASSERT(false, 'support me', init);
+      ASSERT(['undefined', 'boolean', 'number', 'string'].includes(typeof value), 'primitive be primitive?', value, typeof value);
+      typing.mustBeType = typeof value;
     }
-  } else if (init.type === 'TemplateLiteral') {
-    meta.typing.mustBeType = 'string';
-    if (init.expressions.length === 0) {
-      const str = AST.getStringValue(init);
-      meta.typing.mustBeFalsy = str === ''; // or if all expressions and raws are falsy... (but then they should fold up)
-      meta.typing.valueSet = new Set([str]);
-    }
-    meta.typing.mustBeTruthy = init.quasis.some((te) => te.value.cooked !== ''); // Or if any expression is non-falsy
-  } else if (init.type === 'Identifier') {
-    // At least covered by tests/cases/array/spread/array_in_array_method.md
-    switch (init.name) {
-      case 'undefined': {
-        meta.typing.mustBeType = 'undefined';
-        meta.typing.mustBeFalsy = true;
-        meta.typing.mustBeTruthy = false;
-        meta.typing.valueSet = new Set([undefined]);
-        break;
+    typing.mustBeTruthy = !!value;
+    typing.mustBeFalsy = !value;
+    typing.isPrimitive = true;
+    typing.primitiveValue = value;
+    if (kind === 'const') typing.mustBeValue = value; // TODO: drop the check here but invalidate on update
+    return;
+  }
+
+  switch (init.type) {
+    case 'Literal': {
+      if (init.raw[0] === '/') {
+        typing.mustBeType = 'regex';
+        typing.mustBeFalsy = false;
+        typing.mustBeTruthy = true;
+      } else {
+        ASSERT(false, 'support me', init);
       }
-      case 'NaN':
-        meta.typing.mustBeType = 'number';
-        meta.typing.mustBeFalsy = true;
-        meta.typing.mustBeTruthy = false;
-        meta.typing.valueSet = new Set([NaN]);
-        break;
-      case 'Infinity':
-        meta.typing.mustBeType = 'number';
-        meta.typing.mustBeFalsy = false;
-        meta.typing.mustBeTruthy = true;
-        meta.typing.valueSet = new Set([Infinity]);
-        break;
+      return;
     }
-  } else if (init.type === 'ThisExpression') {
-    meta.typing.mustBeType = 'object';
-    meta.typing.mustBeFalsy = false;
-    meta.typing.mustBeTruthy = true;
-    meta.typing.valueSet = false;
-  } else if (init.type === 'UnaryExpression') {
-    switch (init.operator) {
-      case 'delete':
-        meta.typing.mustBeType = 'boolean';
-        meta.typing.valueSet = new Set([true, false]);
-        break;
-      case 'void':
-        meta.typing.mustBeType = 'undefined';
-        meta.typing.mustBeFalsy = true;
-        meta.typing.mustBeTruthy = false;
-        meta.typing.valueSet = new Set([undefined]);
-        break;
-      case '+':
-        meta.typing.mustBeType = 'number';
-        break;
-      case '-':
-        meta.typing.mustBeType = 'number';
-        break;
-      case '!':
-        meta.typing.mustBeType = 'boolean';
-        meta.typing.valueSet = new Set([true, false]);
-        break;
-      case '~':
-        meta.typing.mustBeType = 'number';
-        break;
-      case 'typeof':
-        meta.typing.mustBeType = 'string';
-        meta.typing.valueSet = new Set(['undefined', 'boolean', 'number', 'string', 'object', 'function', 'bigint']);
-        break;
-      default:
-        ASSERT(false);
+    case 'TemplateLiteral': {
+      ASSERT(init.expressions.length, 'it would be a primitive if there werent any expressions');
+      typing.mustBeType = 'string';
+      typing.mustBeTruthy = init.quasis.some((te) => te.value.cooked !== ''); // Or if any expression is non-falsy
+      return;
     }
-  } else if (init.type === 'BinaryExpression') {
-    switch (init.operator) {
-      case '===':
-      case '==':
-      case '!==':
-      case '!=':
-      case '<':
-      case '<=':
-      case '>':
-      case '>=':
-      case 'in':
-      case 'instanceof':
-        meta.typing.mustBeType = 'boolean';
-        meta.typing.valueSet = new Set([true, false]);
-        break;
-      case '-':
-      case '*':
-      case '/':
-      case '%':
-      case '>>':
-      case '>>>':
-      case '<<':
-      case '^':
-      case '&':
-      case '|':
-      case '**':
-        meta.typing.mustBeType = 'number';
-        meta.typing.valueSet = false;
-        break;
-      case '+':
-        // TODO... If I know one side is a string or object then I'll know the result is a string...?
-        break;
-      default:
-        ASSERT(false, 'you forgot one', init);
+    case 'Identifier': {
+      return;
     }
-  } else if (init.type === 'FunctionExpression') {
-    meta.typing.mustBeType = 'function';
-    meta.typing.mustBeFalsy = false;
-    meta.typing.mustBeTruthy = true;
-    meta.typing.valueSet = false;
-  } else if (init.type === 'CallExpression') {
-    // TODO
-  } else if (init.type === 'NewExpression') {
-    meta.typing.mustBeType = 'object';
-    meta.typing.mustBeFalsy = false;
-    meta.typing.mustBeTruthy = true;
-    meta.typing.valueSet = false;
-  } else if (init.type === 'MemberExpression') {
-    // TODO
-  } else if (init.type === 'ArrayExpression') {
-    meta.typing.mustBeType = 'array';
-    meta.typing.mustBeFalsy = false;
-    meta.typing.mustBeTruthy = true;
-    meta.typing.valueSet = false;
-  } else if (init.type === 'ObjectExpression') {
-    meta.typing.mustBeType = 'object';
-    meta.typing.mustBeFalsy = false;
-    meta.typing.mustBeTruthy = true;
-    meta.typing.valueSet = false;
-  } else if (init.type === 'TaggedTemplateExpression') {
-    // TODO (this is not a string but a call)
-    ASSERT(false, 'should be eliminated during normalization');
-  } else if (init.type === 'ClassExpression') {
-    meta.typing.mustBeType = 'class';
-    meta.typing.mustBeFalsy = false;
-    meta.typing.mustBeTruthy = true;
-    meta.typing.valueSet = false;
-  } else if (init.type === 'Param') {
-    // hmmmm do nothing?
-  } else if (init.type === 'ChainExpression') {
-    ASSERT(false);
-  } else if (init.type === 'SequenceExpression') {
-    ASSERT(false);
-  } else if (init.type === 'AssignmentExpression') {
-    ASSERT(false);
-  } else if (init.type === 'LogicalExpression') {
-    ASSERT(false);
-  } else if (init.type === 'ConditionalExpression') {
-    ASSERT(false);
-  } else if (init.type === 'UpdateExpression') {
-    ASSERT(false);
-  } else if (init.type === 'ArrowFunctionExpression') {
-    ASSERT(false);
-  } else {
-    // Do I want to assert false here? At this point there can't be that many legit unchecked nodes left
+    case 'ThisExpression': {
+      typing.mustBeType = 'object';
+      typing.mustBeFalsy = false;
+      typing.mustBeTruthy = true;
+      return;
+    }
+    case 'UnaryExpression': {
+      switch (init.operator) {
+        case 'delete':
+          typing.mustBeType = 'boolean';
+          break;
+        case 'void':
+          ASSERT(false, 'normalized code should not contain `void`');
+          break;
+        case '+':
+          typing.mustBeType = 'number';
+          break;
+        case '-':
+          typing.mustBeType = 'number';
+          break;
+        case '!':
+          typing.mustBeType = 'boolean';
+          typing.bang = true;
+          break;
+        case '~':
+          typing.mustBeType = 'number';
+          break;
+        case 'typeof':
+          typing.mustBeType = 'string';
+          typing.mustBeFalsy = false;
+          typing.mustBeTruthy = true;
+          break;
+        default:
+          ASSERT(false);
+      }
+      return;
+    }
+    case 'BinaryExpression': {
+      switch (init.operator) {
+        case '&': {
+          typing.mustBeType = 'number';
+
+          // Need a number on at least one side. Ignore negative numbers (unary expression).
+          if (AST.isPrimitive(init.left)) {
+            const v = AST.getPrimitiveValue(init.left) | 0;
+            typing.oneBitAnded = isOneSetBit(v) ? v : undefined;
+            typing.anded = v;
+          } else if (AST.isPrimitive(init.right)) {
+            const v = AST.getPrimitiveValue(init.right) | 0;
+            typing.oneBitAnded = isOneSetBit(v) ? v : undefined;
+            typing.anded = v;
+          }
+          break;
+        }
+        case '===':
+        case '==':
+        case '!==':
+        case '!=':
+        case '<':
+        case '<=':
+        case '>':
+        case '>=':
+        case 'in':
+        case 'instanceof': {
+          typing.mustBeType = 'boolean';
+          break;
+        }
+        case '-':
+        case '*':
+        case '/':
+        case '%':
+        case '>>':
+        case '>>>':
+        case '<<':
+        case '^':
+        case '|':
+        case '**': {
+          typing.mustBeType = 'number';
+          break;
+        }
+        case '+': {
+          vlog('- doing a plus');
+          // Trickier because it highly depends on the args...
+          // Note: despite looks object concat does not need to be string:
+          //       `{toString(){ return 1; }} + {toString(){ return 1; }} === 2`
+          // IF we know the lhs or rhs is a string, then the result must be a string.
+          // Otherwise, both sides are attempted to be coerced to a number, which may or may not
+          // succeed. However, it will be a type error if both values do not end up as the same type.
+          const left = init.left;
+          const right = init.right;
+
+          // Note: this also checks node.$p.isPrimitive but not typing.mustBeType
+          const ipl = AST.isPrimitive(left);
+          const ipr = AST.isPrimitive(right);
+          const pl = ipl && AST.getPrimitiveValue(left);
+          const pr = ipr && AST.getPrimitiveValue(right);
+
+          if (ipl && ipr) {
+            // This case should be resolved by normalization
+            typing.mustBeType = typeof (pr + pr);
+            vlog('- both are primitives, result is a:', typing.mustBeType, pl, pr);
+          } else if (ipl && typeof pl === 'string') {
+            typing.mustBeType = 'string';
+            vlog('- left is a string so result is a string');
+          } else if (ipr && typeof pr === 'string') {
+            typing.mustBeType = 'string';
+            vlog('- right is a string so result is a string');
+          } else if (ipl && right.type === 'Identifier') {
+            // We don't really know anything because if the unknown side is a string, the result will still
+            // be a string, regardless of what the other side turns out to be.
+            // We can turn to typing.mustBeType...
+            const rightMeta = fdata.globallyUniqueNamingRegistry.get(right.name);
+            if (rightMeta.typing.mustBeType) {
+              if (rightMeta.typing.mustBeType === 'string') {
+                typing.mustBeType = 'string';
+                vlog('- left is primitive but not string, right is a string type, so result is a string');
+              } else if (['undefined', 'null', 'boolean', 'number'].includes(rightMeta.typing.mustBeType)) {
+                // Note: we know the LHS value is a primitive and not a string.
+                // This will coerce to a number (even if that is NaN)
+                typing.mustBeType = 'number';
+                vlog('- lhs a primitive, rhs neither string nor object type, so the result is a number');
+              } else {
+                // The right side is an object. Maybe we can fix this in the future but for now, let it go.
+                vlog('- left is primitive, right is object, so we must bail');
+              }
+            } else {
+              // We don't know anything about the right type so we have to pass here.
+              vlog('- left is primitive but not a string, right is unknown. We must bail here');
+            }
+          } else if (ipr && left.type === 'Identifier') {
+            // We don't really know anything because if the unknown side is a string, the result will still
+            // be a string, regardless of what the other side turns out to be.
+            // We can turn to typing.mustBeType...
+            const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
+            if (leftMeta.typing.mustBeType) {
+              if (leftMeta.typing.mustBeType === 'string') {
+                typing.mustBeType = 'string';
+                vlog('- right is primitive but not string, left is string type, result is a string');
+              } else if (['undefined', 'null', 'boolean', 'number'].includes(leftMeta.typing.mustBeType)) {
+                // Note: we know the RHS value is a primitive and not a string.
+                // This will coerce to a number (even if that is NaN)
+                typing.mustBeType = 'number';
+                vlog('- lhs a primitive, rhs neither string nor object type, so the result is a number');
+              } else {
+                // The left side is an object. Maybe we can fix this in the future but for now, let it go.
+                vlog('- right is primitive, left is object, so we must bail');
+              }
+            } else {
+              // We don't know anything about the left type so we have to pass here.
+              vlog('- right is primitive but not a string, left is unknown. We must bail here');
+            }
+          } else if (left.type === 'Identifier' && right.type === 'Identifier') {
+            // Neither left nor right was a primitive node
+            // In that case we haven't checked their typing.mustBeTypes yet, so let's try this now.
+            const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
+            const rightMeta = fdata.globallyUniqueNamingRegistry.get(right.name);
+            ASSERT(leftMeta, 'should have meta for left name', left.name, leftMeta);
+            ASSERT(rightMeta, 'should have meta for right name', right.name, rightMeta);
+            if (leftMeta.typing.mustBeType === 'string' || rightMeta.typing.mustBeType === 'string') {
+              typing.mustBeType = 'string';
+              vlog('- left and right are string types, result must be a string');
+            } else if (
+              ['undefined', 'null', 'boolean', 'number'].includes(leftMeta.typing.mustBeType) &&
+              ['undefined', 'null', 'boolean', 'number'].includes(rightMeta.typing.mustBeType)
+            ) {
+              typing.mustBeType = 'number';
+              vlog('- left and right are neither string nor object types, result must be a number');
+            } else {
+              // Either side is an object type. We don't have enough insight right now.
+              vlog('- neither left nor right is a string, at least one is an object, result is unknown');
+            }
+          } else {
+            // Neither node was a primitive and the nodes did not have enough type info to
+            // guarantee us the outcome of a `+` so we can't predict anything here. Sadly.
+            vlog('- left and right are neither primitive nor ident and we do not have enough type information to predict the result type');
+          }
+          break;
+        }
+        default:
+          ASSERT(false, 'you forgot an op', init);
+      }
+      return;
+    }
+    case 'FunctionExpression': {
+      typing.mustBeType = 'function';
+      typing.mustBeFalsy = false;
+      typing.mustBeTruthy = true;
+      return;
+    }
+    case 'CallExpression':  {
+      // Certain builtins have a guaranteed outcome... (or an exception is thrown, which we can ignore here)
+      if (init.callee.type === 'Identifier') {
+        switch (init.callee.name) {
+          case 'String': {
+            typing.mustBeType = 'string';
+            break;
+          }
+          case 'Number': {
+            typing.mustBeType = 'number';
+            break;
+          }
+          case 'Boolean': {
+            // In some cases we may even be able to predict the outcome...
+            typing.mustBeType = 'boolean';
+            break;
+          }
+          case 'parseInt':
+          case 'parseFloat': {
+            // If the arg is a literal we could resolve it immediately
+            typing.mustBeType = 'number';
+            break;
+          }
+          case 'isNaN':
+          case 'isFinite': {
+            // In some rare cases we would be able to resolve this if the arg was a primitive (or otherwise deduced).
+            typing.mustBeType = 'boolean';
+            break;
+          }
+        }
+      } else if (init.callee.type === 'MemberExpression' && !init.callee.computed) {
+        switch (init.callee.object.name + '.' + init.callee.property.name) {
+          case 'Array.from': {
+            typing.mustBeType = 'array';
+            typing.mustBeFalsy = false;
+            typing.mustBeTruthy = true;
+            break;
+          }
+          case 'Array.isArray': {
+            typing.mustBeType = 'boolean';
+            break;
+          }
+          case 'Array.of': {
+            // Normalization can replace this with array literals in many-if-not-all cases
+            typing.mustBeType = 'array';
+            typing.mustBeFalsy = false;
+            typing.mustBeTruthy = true;
+            break;
+          }
+          case 'Date.now': {
+            typing.mustBeFalsy = false;
+            typing.mustBeTruthy = true;
+            typing.mustBeType = 'number';
+            break;
+          }
+          case 'Date.parse':
+          case 'Date.UTC': {
+            // (Looks like parse/UTC always return a number as well. I hope there's no edge case around that.)
+            typing.mustBeType = 'number';
+            break;
+          }
+          case 'JSON.stringify': {
+            // This can be undefined (if you pass no args or `undefined`), so we don't know for sure.
+            // TODO: Although, if the arg is known to be not `undefined`, then I think the result must be string...
+            break;
+          }
+          case 'Math.abs':
+          case 'Math.acos':
+          case 'Math.acosh':
+          case 'Math.asin':
+          case 'Math.asinh':
+          case 'Math.atan':
+          case 'Math.atan2':
+          case 'Math.atanh':
+          case 'Math.cbrt':
+          case 'Math.ceil':
+          case 'Math.clz32':
+          case 'Math.cos':
+          case 'Math.cosh':
+          case 'Math.exp':
+          case 'Math.expm1':
+          case 'Math.floor':
+          case 'Math.fround':
+          case 'Math.hypot':
+          case 'Math.imul':
+          case 'Math.log':
+          case 'Math.log10':
+          case 'Math.log1p':
+          case 'Math.log2':
+          case 'Math.max':
+          case 'Math.min':
+          case 'Math.pow':
+          case 'Math.random': // The odds of this being a round zero are very small... but let's not bet on it :)
+          case 'Math.round':
+          case 'Math.sign':
+          case 'Math.sin':
+          case 'Math.sinh':
+          case 'Math.sqrt':
+          case 'Math.tan':
+          case 'Math.tanh':
+          case 'Math.trunc': {
+            // I think the only thing we can predict about all these funcs is that their result is a number... (might be NaN/Infinity)
+            typing.mustBeType = 'number';
+            break;
+          }
+          case 'Number.isFinite':
+          case 'Number.isInteger':
+          case 'Number.isNaN':
+          case 'Number.isSafeInteger': {
+            // Some of these should be replaced with the global builtin function, by normalization
+            typing.mustBeType = 'boolean';
+            break;
+          }
+          case 'Number.parseFloat':
+          case 'Number.parseInt': {
+            // These should be replaced with the global value by normalization
+            typing.mustBeType = 'number';
+            break;
+          }
+          case 'Object.is': // We may be able to predict certain outcomes
+          case 'Object.isFrozen':
+          case 'Object.isSealed': {
+            typing.mustBeType = 'boolean';
+            break;
+          }
+          case 'String.fromCharCode':
+          case 'String.fromCodePoint':
+          case 'String.raw': {
+            // Looks like these always return a string of sorts... no matter what arg you feed them
+            typing.mustBeType = 'string';
+            break;
+          }
+        }
+      }
+      break;
+    }
+    case 'NewExpression': {
+      typing.mustBeType = 'object';
+      typing.mustBeFalsy = false;
+      typing.mustBeTruthy = true;
+      return;
+    }
+    case 'MemberExpression': {
+      if (!init.computed) {
+        // Resolve some builtins...
+        switch (init.object.name + '.' + init.property.name) {
+          case 'Math.E':
+          case 'Math.LN10':
+          case 'Math.LN2':
+          case 'Math.LOG10E':
+          case 'Math.LOG2E':
+          case 'Math.PI':
+          case 'Math.SQRT1_2':
+          case 'Math.SQRT2': {
+            // We can't inline these due to loss of precision
+            typing.mustBeType = 'number';
+            typing.mustBeFalsy = false;
+            typing.mustBeTruthy = true;
+            break;
+          }
+
+          case 'Number.EPSILON': // We keep this as is
+          case 'Number.MAX_VALUE': // We keep this as is
+          case 'Number.MIN_VALUE': // We keep this as is
+          case 'Number.NEGATIVE_INFINITY': // Is -Infinity
+          case 'Number.POSITIVE_INFINITY': {
+            // Is Infinity
+            // Note: the values that could be inlined should be handled by normalization.
+            typing.mustBeType = 'number';
+            typing.mustBeFalsy = false;
+            typing.mustBeTruthy = true;
+            break;
+          }
+          case 'Number.NaN': {
+            // is global NaN
+            // Note: the values that could be inlined should be handled by normalization.
+            typing.mustBeType = 'number';
+            typing.mustBeFalsy = true;
+            typing.mustBeTruthy = false;
+            break;
+          }
+        }
+      }
+      break;
+    }
+    case 'ArrayExpression': {
+      typing.mustBeType = 'array';
+      typing.mustBeFalsy = false;
+      typing.mustBeTruthy = true;
+      return;
+    }
+    case 'ObjectExpression': {
+      typing.mustBeType = 'object';
+      typing.mustBeFalsy = false;
+      typing.mustBeTruthy = true;
+      return;
+    }
+    case 'TaggedTemplateExpression': {
+      // TODO (this is not a string but a call)
+      ASSERT(false, 'should be eliminated during normalization');
+      return;
+    }
+    case 'ClassExpression': {
+      typing.mustBeType = 'class';
+      typing.mustBeFalsy = false;
+      typing.mustBeTruthy = true;
+      return;
+    }
+    case 'Param': {
+      // hmmmm do nothing?
+      return;
+    }
+    case 'ChainExpression': {
+      ASSERT(false);
+      return;
+    }
+    case 'SequenceExpression': {
+      ASSERT(false);
+      return;
+    }
+    case 'AssignmentExpression': {
+      ASSERT(false);
+      return;
+    }
+    case 'LogicalExpression': {
+      ASSERT(false);
+      return;
+    }
+    case 'ConditionalExpression': {
+      ASSERT(false);
+      return;
+    }
+    case 'UpdateExpression': {
+      ASSERT(false);
+      return;
+    }
+    case 'ArrowFunctionExpression': {
+      ASSERT(false);
+      return;
+    }
+    default: {
+      // Do I want to assert false here? At this point there can't be that many legit unchecked nodes left
+      return;
+    }
   }
 }
 
@@ -1736,4 +2050,13 @@ function exprContainsMutate(expr, metaName, asSideEffect, includeProperties) {
     return true;
   }
   return false;
+}
+
+function isOneSetBit(v) {
+  // Bit counting is relatively expensive. ES6 added Math.clz32, which counts the number of leading bits of a 32bit number.
+  // So what we can do here, rather than bit fiddle to get the whole count, is to get the number of leading zeroes, and then
+  // check whether 2^(31-count) equals our value. If so, it's a single bit. If not, it's not.
+  // Alternative, we could create an object/Set with 32 entries and do a straight lookup. Not sure what's faster. Won't matter much here.
+
+  return 1 << (31 - Math.clz32(v)) === v;
 }

@@ -50,9 +50,17 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   fdata.labelNameSuffixOffset = labelNameSuffixOffset;
   fdata.flatNodeMap = new Map(); // Map<pid, Node>
 
-  globals.forEach((_, name) => {
+  globals.forEach((typing, name) => {
     ASSERT(name);
-    registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: false, isBuiltin: true });
+    const meta = registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: false, isBuiltin: true });
+    // Some values have detailed typing info
+    if (typeof typing !== 'string') {
+      meta.typing.mustBeType = typing.mustBeType;
+      meta.typing.mustBeFalsy = typing.mustBeFalsy;
+      meta.typing.mustBeTruthy = typing.mustBeTruthy;
+      meta.typing.isPrimitive = typing.isPrimitive;
+      meta.typing.primitiveValue = typing.primitiveValue;
+    }
   });
 
   const imports = new Map(); // Discovered filenames to import from. We don't care about the imported symbols here just yet.
@@ -838,28 +846,69 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               vlog('Adding "other" write');
               meta.writes.push(write);
             }
+
+            vlog('Writing to thing now')
+            if (parentNode.type === 'AssignmentExpression') {
+              const nowTyping = meta.typing;
+              const newTyping = {};
+              inferInitialType(fdata, newTyping, parentNode.right);
+              vlog('Results in', newTyping, 'which we will inject into', nowTyping);
+
+              if (nowTyping.mustBeType && nowTyping.mustBeType !== newTyping.mustBeType) {
+                nowTyping.mustBeType = ''; // Found conflicting types
+              }
+              if (nowTyping.mustBeFalsy && !newTyping.mustBeFalsy) {
+                nowTyping.mustBeFalsy = false;
+              }
+              if (nowTyping.mustBeTruthy && !newTyping.mustBeTruthy) {
+                nowTyping.mustBeTruthy = false;
+              }
+              if (nowTyping.bang && !newTyping.bang) {
+                nowTyping.bang = false;
+              }
+              if (nowTyping.isPrimitive && !newTyping.isPrimitive) {
+                nowTyping.isPrimitive = false;
+                meta.typing.primitiveValue = undefined;
+              }
+              if (nowTyping.valueSet) {
+                if (newTyping.valueSet) {
+                  if (nowTyping.valueSet.size !== newTyping.valueSet.size) {
+                    nowTyping.valueSet = false;
+                  } else {
+                    for (const x of newTyping.valueSet) {
+                      if (!nowTyping.valueSet.has(x)) {
+                        nowTyping.valueSet = false;
+                        break;
+                      }
+                    }
+                  }
+                }
+              }
+              // Either the same bit is set (silly redundancy but okay), or this binding does not always represent a single bit
+              nowTyping.oneBitAnded = (nowTyping.oneBitAnded & nowTyping.oneBitAnded) || undefined;
+              // Same as with the single bit, I guess.
+              nowTyping.anded = (nowTyping.anded & nowTyping.anded) || undefined;
+            } else if (parentNode.type !== 'VariableDeclarator') {
+              // for lhs? not sure what else, currently
+              vlog('Clearing types because the write was not an assignment expression...', parentNode.type)
+              // We don't know anything (maybe once we start tracking `for` properly)
+              meta.typing.mustBeType = '';
+              meta.typing.mustBeFalsy = false;
+              meta.typing.mustBeTruthy = false;
+              meta.typing.isPrimitive = false;
+              meta.typing.primitiveValue = undefined;
+              vlog('Typing now:', meta.typing);
+            } else {
+              // var decl typing is handled in its handler
+              vlog('Not changing the typing. It should be set through the var decl handler');
+            }
           }
 
-          if (node.name === 'undefined') {
-            meta.typing.mustBeType = 'undefined';
-            meta.typing.mustBeFalsy = true;
-            meta.typing.mustBeTruthy = false;
-            meta.typing.isPrimitive = true;
-            meta.typing.primitiveValue = undefined;
-          } else if (node.name === 'Infinity') {
-            meta.typing.mustBeType = 'number';
+          if (node.name === 'arguments') {
+            meta.typing.mustBeType = ''; // Let's not treat `arguments` as a regular object, nor an array...
             meta.typing.mustBeFalsy = false;
             meta.typing.mustBeTruthy = true;
-            meta.typing.rangeStart = Infinity; // Or should we not set this? Kinda useless?
-            meta.typing.rangeEnd = Infinity;
-            meta.typing.isPrimitive = true;
-            meta.typing.primitiveValue = Infinity;
-          } else if (node.name === 'NaN') {
-            meta.typing.mustBeType = 'number';
-            meta.typing.mustBeFalsy = true;
-            meta.typing.mustBeTruthy = false;
-            meta.typing.isPrimitive = true;
-            meta.typing.primitiveValue = NaN;
+            meta.typing.isPrimitive = false;
           }
 
           // Resolve whether this was an export. If so, mark the name as such.
@@ -1145,481 +1194,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           vlog('- marking', meta.uniqueName, 'as constant, ref set to', node.declarations[0].init.type);
           ASSERT(meta);
           meta.isConstant = true;
-
-          switch (init.type) {
-            case 'Literal': {
-              let value = undefined; // a literal would never be undefined
-              if (init.raw === 'null') {
-                meta.typing.mustBeType = 'null';
-                value = null;
-              } else if (typeof init.value === 'boolean') {
-                meta.typing.mustBeType = 'boolean';
-                value = init.value;
-              } else if (typeof init.value === 'number') {
-                value = init.value;
-                meta.typing.mustBeType = 'number';
-                meta.typing.rangeStart = value;
-                meta.typing.rangeEnd = value;
-                //const oneBit = isOneSetBit(init.value);
-                //if (oneBit) {
-                //  meta.typing.oneBitSet = oneBit;
-                //}
-              } else if (init.value instanceof RegExp) {
-                meta.typing.mustBeType = 'regex';
-                value = init.value;
-              } else {
-                // TODO. bigint?
-              }
-              if (value !== undefined) {
-                meta.typing.mustBeValue = value;
-                meta.typing.mustBeFalsy = !value;
-                meta.typing.mustBeTruthy = !!value;
-                meta.typing.isPrimitive = true;
-                meta.typing.primitiveValue = value;
-              }
-              break;
-            }
-            case 'TemplateLiteral': {
-              if (AST.isStringLiteral(init)) {
-                meta.typing.mustBeType = 'string';
-                const value = AST.getStringValue(init);
-                meta.typing.mustBeValue = value;
-                meta.typing.mustBeFalsy = !value;
-                meta.typing.mustBeTruthy = !!value;
-                meta.typing.isPrimitive = true;
-                meta.typing.primitiveValue = value;
-              } else {
-                meta.typing.mustBeFalsy = AST.isFalsy(init);
-                meta.typing.mustBeTruthy = AST.isTruthy(init);
-                meta.typing.isPrimitive = true;
-              }
-              break;
-            }
-            case 'Identifier': {
-              if (init.name === 'undefined') {
-                meta.typing.mustBeType = 'undefined';
-                meta.typing.mustBeFalsy = true;
-                meta.typing.mustBeTruthy = false;
-                meta.typing.isPrimitive = true;
-                meta.typing.primitiveValue = undefined;
-              } else if (init.name === 'Infinity') {
-                meta.typing.mustBeType = 'number';
-                meta.typing.mustBeFalsy = false;
-                meta.typing.mustBeTruthy = true;
-                meta.typing.rangeStart = Infinity; // Or should we not set this? Kinda useless?
-                meta.typing.rangeEnd = Infinity;
-                meta.typing.isPrimitive = true;
-                meta.typing.primitiveValue = Infinity;
-              } else if (init.name === 'NaN') {
-                meta.typing.mustBeType = 'number';
-                meta.typing.mustBeFalsy = true;
-                meta.typing.mustBeTruthy = false;
-                meta.typing.isPrimitive = true;
-                meta.typing.primitiveValue = NaN;
-              } else {
-                // "something else". But maybe we can infer that with scope tracking...
-              }
-              break;
-            }
-            case 'UnaryExpression': {
-              switch (init.operator) {
-                case 'delete': {
-                  meta.typing.mustBeType = 'boolean';
-                  break;
-                }
-                case '!': {
-                  meta.typing.mustBeType = 'boolean';
-                  meta.typing.bang = true;
-                  break;
-                }
-                case '-':
-                case '+':
-                case '~': {
-                  meta.typing.mustBeType = 'number';
-                  //if (AST.isPrimitive(init.argument)) {
-                  //  const arg = AST.getPrimitiveValue(init.argument);
-                  //  const value = init.operator === '-' ? -arg : init.operator === '+' ? +arg : ~arg;
-                  //  //if (typeof value === 'number' && isFinite(value)) {
-                  //  //  // subsumes isNaN
-                  //  //  meta.typing.rangeStart = value;
-                  //  //  meta.typing.rangeEnd = value;
-                  //  //  const oneBit = isOneSetBit(value);
-                  //  //  if (oneBit) {
-                  //  //    meta.typing.oneBitSet = oneBit;
-                  //  //  }
-                  //  //}
-                  //  meta.typing.mustBeFalsy = !value;
-                  //  meta.typing.mustBeTruthy = !!value;
-                  //}
-                  break;
-                }
-                case 'typeof': {
-                  meta.typing.mustBeType = 'string';
-                  meta.typing.valueSet = new Set([
-                    'undefined',
-                    'boolean',
-                    'number',
-                    'string',
-                    'object',
-                    'function',
-                    'bigint',
-                    'symbol',
-                    'unknown', // old ie :shrug:
-                  ]);
-                  // The string is always not empty
-                  meta.typing.mustBeFalsy = false;
-                  meta.typing.mustBeTruthy = true;
-                  break;
-                }
-              }
-              break;
-            }
-            case 'BinaryExpression': {
-              switch (init.operator) {
-                case '&': {
-                  meta.typing.mustBeType = 'number';
-
-                  // Need a number on at least one side. Ignore negative numbers (unary expression).
-                  if (AST.isPrimitive(init.left)) {
-                    const v = AST.getPrimitiveValue(init.left) | 0
-                    meta.typing.oneBitAnded = isOneSetBit(v) ? v: undefined;
-
-                    meta.typing.anded = v;
-                  } else if (AST.isPrimitive(init.right)) {
-                    const v = AST.getPrimitiveValue(init.right) | 0
-                    meta.typing.oneBitAnded = isOneSetBit(v) ? v : undefined;
-
-                    meta.typing.anded = v;
-                  }
-                  break;
-                }
-                case '^':
-                case '|':
-                case '>>':
-                case '>>>':
-                case '<<':
-                case '/':
-                case '-':
-                case '%':
-                case '*': {
-                  meta.typing.mustBeType = 'number';
-                  break;
-                }
-                case '===':
-                case '!==':
-                case '<':
-                case '<=':
-                case '>':
-                case '>=':
-                case 'instanceof':
-                case 'in': {
-                  meta.typing.mustBeType = 'boolean';
-                  break;
-                }
-                case '+': {
-                  vlog('- doing a plus');
-                  // Trickier because it highly depends on the args...
-                  // Note: despite looks object concat does not need to be string:
-                  //       `{toString(){ return 1; }} + {toString(){ return 1; }} === 2`
-                  // IF we know the lhs or rhs is a string, then the result must be a string.
-                  // Otherwise, both sides are attempted to be coerced to a number, which may or may not
-                  // succeed. However, it will be a type error if both values do not end up as the same type.
-                  const left = init.left;
-                  const right = init.right;
-                  // Note: this also checks node.$p.isPrimitive but not meta.typing.mustBeType
-                  const ipl = AST.isPrimitive(left);
-                  const ipr = AST.isPrimitive(right);
-                  if (ipl && ipr) {
-                    const pl = AST.getPrimitiveValue(left);
-                    const pr = AST.getPrimitiveValue(right);
-                    meta.typing.mustBeType = typeof (pr + pr);
-                    vlog('- both are primitives, result is a:', meta.typing.mustBeType, pl, pr);
-                  } else if (ipl && typeof AST.getPrimitiveValue(left) === 'string') {
-                    meta.typing.mustBeType = 'string';
-                    vlog('- left is a string so result is a string');
-                  } else if (ipr && typeof AST.getPrimitiveValue(right) === 'string') {
-                    meta.typing.mustBeType = 'string';
-                    vlog('- right is a string so result is a string');
-                  } else if (ipl && right.type === 'Identifier') {
-                    // We don't really know anything because if the unknown side is a string, the result will still
-                    // be a string, regardless of what the other side turns out to be.
-                    // We can turn to meta.typing.mustBeType...
-                    const rightMeta = fdata.globallyUniqueNamingRegistry.get(right.name);
-                    if (rightMeta.typing.mustBeType) {
-                      if (rightMeta.typing.mustBeType === 'string') {
-                        meta.typing.mustBeType = 'string';
-                        vlog('- left is primitive but not string, right is a string type, so result is a string');
-                      } else if (['undefined', 'null', 'boolean', 'number'].includes(rightMeta.typing.mustBeType)) {
-                        // Note: we know the LHS value is a primitive and not a string.
-                        // This will coerce to a number (even if that is NaN)
-                        meta.typing.mustBeType = 'number';
-                        vlog('- lhs a primitive, rhs neither string nor object type, so the result is a number');
-                      } else {
-                        // The right side is an object. Maybe we can fix this in the future but for now, let it go.
-                        vlog('- left is primitive, right is object, so we must bail');
-                      }
-                    } else {
-                      // We don't know anything about the right type so we have to pass here.
-                      vlog('- left is primitive but not a string, right is unknown. We must bail here');
-                    }
-                  } else if (ipr && left.type === 'Identifier') {
-                    // We don't really know anything because if the unknown side is a string, the result will still
-                    // be a string, regardless of what the other side turns out to be.
-                    // We can turn to meta.typing.mustBeType...
-                    const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
-                    if (leftMeta.typing.mustBeType) {
-                      if (leftMeta.typing.mustBeType === 'string') {
-                        meta.typing.mustBeType = 'string';
-                        vlog('- right is primitive but not string, left is string type, result is a string');
-                      } else if (['undefined', 'null', 'boolean', 'number'].includes(leftMeta.typing.mustBeType)) {
-                        // Note: we know the RHS value is a primitive and not a string.
-                        // This will coerce to a number (even if that is NaN)
-                        meta.typing.mustBeType = 'number';
-                        vlog('- lhs a primitive, rhs neither string nor object type, so the result is a number');
-                      } else {
-                        // The left side is an object. Maybe we can fix this in the future but for now, let it go.
-                        vlog('- right is primitive, left is object, so we must bail');
-                      }
-                    } else {
-                      // We don't know anything about the left type so we have to pass here.
-                      vlog('- right is primitive but not a string, left is unknown. We must bail here');
-                    }
-                  } else if (left.type === 'Identifier' && right.type === 'Identifier') {
-                    // Neither left nor right was a primitive node
-                    // In that case we haven't checked their meta.typing.mustBeTypes yet, so let's try this now.
-                    const leftMeta = fdata.globallyUniqueNamingRegistry.get(left.name);
-                    const rightMeta = fdata.globallyUniqueNamingRegistry.get(right.name);
-                    ASSERT(leftMeta, 'should have meta for left name', left.name, leftMeta);
-                    ASSERT(rightMeta, 'should have meta for right name', right.name, rightMeta);
-                    if (leftMeta.typing.mustBeType === 'string' || rightMeta.typing.mustBeType === 'string') {
-                      meta.typing.mustBeType = 'string';
-                      vlog('- left and right are string types, result must be a string');
-                    } else if (
-                      ['undefined', 'null', 'boolean', 'number'].includes(leftMeta.typing.mustBeType) &&
-                      ['undefined', 'null', 'boolean', 'number'].includes(rightMeta.typing.mustBeType)
-                    ) {
-                      meta.typing.mustBeType = 'number';
-                      vlog('- left and right are neither string nor object types, result must be a number');
-                    } else {
-                      // Either side is an object type. We don't have enough insight right now.
-                      vlog('- neither left nor right is a string, at least one is an object, result is unknown');
-                    }
-                  } else {
-                    // Neither node was a primitive and the nodes did not have enough type info to
-                    // guarantee us the outcome of a `+` so we can't predict anything here. Sadly.
-                    vlog(
-                      '- left and right are neither primitive nor ident and we do not have enough type information to predict the result type',
-                    );
-                  }
-                  break;
-                }
-                case '==':
-                case '!=': {
-                  // TODO
-
-                  break;
-                }
-                default:
-                  ASSERT(false, 'what op?', node, init);
-              }
-              break;
-            }
-            case 'ArrayExpression': {
-              meta.typing.mustBeType = 'array';
-              meta.typing.mustBeFalsy = false;
-              meta.typing.mustBeTruthy = true;
-              break;
-            }
-            case 'ObjectExpression': {
-              meta.typing.mustBeType = 'array';
-              meta.typing.mustBeFalsy = false;
-              meta.typing.mustBeTruthy = true;
-              break;
-            }
-            case 'FunctionExpression': {
-              meta.typing.mustBeType = 'function';
-              meta.typing.mustBeFalsy = false;
-              meta.typing.mustBeTruthy = true;
-              break;
-            }
-
-            case 'CallExpression': {
-              // Certain builtins have a guaranteed outcome... (or an exception is thrown, which we can ignore here)
-              if (init.callee.type === 'Identifier') {
-                switch (init.callee.name) {
-                  case 'String': {
-                    meta.typing.mustBeType = 'string';
-                    break;
-                  }
-                  case 'Number': {
-                    meta.typing.mustBeType = 'number';
-                    break;
-                  }
-                  case 'Boolean': {
-                    // In some cases we may even be able to predict the outcome...
-                    meta.typing.mustBeType = 'boolean';
-                    break;
-                  }
-                  case 'parseInt':
-                  case 'parseFloat': {
-                    // If the arg is a literal we could resolve it immediately
-                    meta.typing.mustBeType = 'number';
-                    break;
-                  }
-                  case 'isNaN':
-                  case 'isFinite': {
-                    // In some rare cases we would be able to resolve this if the arg was a primitive (or otherwise deduced).
-                    meta.typing.mustBeType = 'boolean';
-                    break;
-                  }
-                }
-              } else if (init.callee.type === 'MemberExpression' && !init.callee.computed) {
-                switch (init.callee.object.name + '.' + init.callee.property.name) {
-                  case 'Array.from': {
-                    meta.typing.mustBeType = 'array';
-                    break;
-                  }
-                  case 'Array.isArray': {
-                    meta.typing.mustBeType = 'boolean';
-                    break;
-                  }
-                  case 'Array.of': {
-                    // Normalization can replace this with array literals in many-if-not-all cases
-                    meta.typing.mustBeType = 'array';
-                    break;
-                  }
-                  case 'Date.now':
-                  case 'Date.parse':
-                  case 'Date.UTC': {
-                    // (Looks like parse/UTC always return a number as well. I hope there's no edge case around that.)
-                    meta.typing.mustBeType = 'number';
-                    break;
-                  }
-                  case 'JSON.stringify': {
-                    // This can be undefined (if you pass no args or `undefined`), so we don't know for sure.
-                    // TODO: Although, if the arg is known to be not `undefined`, then I think the result must be string...
-                    break;
-                  }
-                  case 'Math.abs':
-                  case 'Math.acos':
-                  case 'Math.acosh':
-                  case 'Math.asin':
-                  case 'Math.asinh':
-                  case 'Math.atan':
-                  case 'Math.atan2':
-                  case 'Math.atanh':
-                  case 'Math.cbrt':
-                  case 'Math.ceil':
-                  case 'Math.clz32':
-                  case 'Math.cos':
-                  case 'Math.cosh':
-                  case 'Math.exp':
-                  case 'Math.expm1':
-                  case 'Math.floor':
-                  case 'Math.fround':
-                  case 'Math.hypot':
-                  case 'Math.imul':
-                  case 'Math.log':
-                  case 'Math.log10':
-                  case 'Math.log1p':
-                  case 'Math.log2':
-                  case 'Math.max':
-                  case 'Math.min':
-                  case 'Math.pow':
-                  case 'Math.random': // The odds of this being a round zero are very small... but let's not bet on it :)
-                  case 'Math.round':
-                  case 'Math.sign':
-                  case 'Math.sin':
-                  case 'Math.sinh':
-                  case 'Math.sqrt':
-                  case 'Math.tan':
-                  case 'Math.tanh':
-                  case 'Math.trunc': {
-                    // I think the only thing we can predict about all these funcs is that their result is a number... (might be NaN/Infinity)
-                    meta.typing.mustBeType = 'number';
-                    break;
-                  }
-                  case 'Number.isFinite':
-                  case 'Number.isInteger':
-                  case 'Number.isNaN':
-                  case 'Number.isSafeInteger': {
-                    // Some of these should be replaced with the global builtin function, by normalization
-                    meta.typing.mustBeType = 'boolean';
-                    break;
-                  }
-                  case 'Number.parseFloat':
-                  case 'Number.parseInt': {
-                    // These should be replaced with the global value by normalization
-                    meta.typing.mustBeType = 'number';
-                    break;
-                  }
-                  case 'Object.is': // We may be able to predict certain outcomes
-                  case 'Object.isFrozen':
-                  case 'Object.isSealed': {
-                    meta.typing.mustBeType = 'boolean';
-                    break;
-                  }
-                  case 'String.fromCharCode':
-                  case 'String.fromCodePoint':
-                  case 'String.raw': {
-                    // Looks like these always return a string of sorts... no matter what arg you feed them
-                    meta.typing.mustBeType = 'string';
-                    break;
-                  }
-                }
-              }
-              break;
-            }
-
-            case 'MemberExpression': {
-              if (!init.computed) {
-                // Resolve some builtins...
-                switch (init.object.name + '.' + init.property.name) {
-                  case 'Math.E':
-                  case 'Math.LN10':
-                  case 'Math.LN2':
-                  case 'Math.LOG10E':
-                  case 'Math.LOG2E':
-                  case 'Math.PI':
-                  case 'Math.SQRT1_2':
-                  case 'Math.SQRT2': {
-                    // We can't inline these due to loss of precision
-                    meta.typing.mustBeType = 'number';
-                    meta.typing.mustBeFalsy = false;
-                    meta.typing.mustBeTruthy = true;
-                    break;
-                  }
-
-                  case 'Number.EPSILON': // We keep this as is
-                  case 'Number.MAX_VALUE': // We keep this as is
-                  case 'Number.MIN_VALUE': // We keep this as is
-                  case 'Number.NEGATIVE_INFINITY': // Is -Infinity
-                  case 'Number.POSITIVE_INFINITY': {
-                    // Is Infinity
-                    // Note: the values that could be inlined should be handled by normalization.
-                    meta.typing.mustBeType = 'number';
-                    meta.typing.mustBeFalsy = false;
-                    meta.typing.mustBeTruthy = true;
-                    break;
-                  }
-                  case 'Number.NaN': {
-                    // is global NaN
-                    // Note: the values that could be inlined should be handled by normalization.
-                    meta.typing.mustBeType = 'number';
-                    meta.typing.mustBeFalsy = true;
-                    meta.typing.mustBeTruthy = false;
-                    break;
-                  }
-                }
-              }
-              break;
-            }
-
-            default:
-            // call, member, etc. :shrug:
-          }
-
-          vlog('  - Typing data:', meta.typing);
         }
         meta.isImplicitGlobal = false;
         ASSERT(
@@ -1638,7 +1212,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           containerParent: parentNode.body,
           containerIndex: parentIndex,
         };
-        inferInitialType(meta, init);
+        inferInitialType(fdata, meta.typing, init, node.kind);
+        vlog('  - Typing data:', meta.typing);
         // Binding "owner" func node. In which scope was this binding bound?
         meta.bfuncNode = funcStack[funcStack.length - 1];
         break;

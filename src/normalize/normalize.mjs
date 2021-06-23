@@ -4015,7 +4015,8 @@ export function phaseNormalize(fdata, fname) {
             example('typeof setTimeout', '"function";');
             before(node, parentNode);
 
-            const finalNode = AST.templateLiteral(globals.get(node.argument.name));
+            const v = globals.get(node.argument.name);
+            const finalNode = AST.templateLiteral(typeof v === 'string' ? v : v.typeof);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body[i] = finalParent;
 

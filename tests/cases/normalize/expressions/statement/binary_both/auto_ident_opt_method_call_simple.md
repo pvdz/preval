@@ -59,18 +59,23 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpIfTest = b == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.c;
-  $dotCall(tmpChainElementObject, b, 1);
+  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
+  tmpBinBothLhs = tmpChainElementCall;
 }
+let tmpBinBothRhs = undefined;
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject$1 = b.c;
-  $dotCall(tmpChainElementObject$1, b, 1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
+  tmpBinBothRhs = tmpChainElementCall$1;
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

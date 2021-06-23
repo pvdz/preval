@@ -1,4 +1,5 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from '../utils.mjs';
+import { mergeTyping } from '../bindings.mjs';
 import { pruneEmptyFunctions } from './phase2emptyfunc.mjs';
 import { pruneTrampolineFunctions } from './phase2trampoline.mjs';
 import { pruneExcessiveParams } from './phase2exparam.mjs';
@@ -78,6 +79,19 @@ function _phase2(program, fdata, resolve, req) {
       +a < +b ? -1 : +a > +b ? 1 : 0,
     );
     meta.rwOrder = rwOrder;
+
+    if (meta.isConstant && meta.constValueRef.node.type === 'Identifier') {
+      const name2 = meta.constValueRef.node.name;
+      if (name2 !== 'arguments') {
+        const meta2 = fdata.globallyUniqueNamingRegistry.get(name2);
+        if (meta2.isConstant) {
+          vlog('Merging the typing from `' + name2 + '` into `' + name + '`');
+          vlog('From typing:', meta2.typing);
+          vlog('Into typing:', meta.typing);
+          mergeTyping(meta2, meta);
+        }
+      }
+    }
 
     // We can also settle this in phase1...
     let lastScope = undefined;

@@ -79,6 +79,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
+let tmpBinBothLhs = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -89,9 +90,11 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$3 = $(1);
-    $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
+    tmpBinBothLhs = tmpChainElementCall$1;
   }
 }
+let tmpBinBothRhs = undefined;
 const tmpChainElementCall$3 = $(b);
 const tmpIfTest$3 = tmpChainElementCall$3 == null;
 if (tmpIfTest$3) {
@@ -102,9 +105,11 @@ if (tmpIfTest$3) {
   if (tmpIfTest$5) {
   } else {
     const tmpCalleeParam$9 = $(1);
-    $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, tmpCalleeParam$9);
+    const tmpChainElementCall$5 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$3, tmpCalleeParam$9);
+    tmpBinBothRhs = tmpChainElementCall$5;
   }
 }
+tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 

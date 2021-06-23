@@ -67,7 +67,8 @@ const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`x`);
-  tmpBinBothLhs = tmpChainElementCall[tmpChainRootComputed];;
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  tmpBinBothLhs = tmpChainElementObject;
 }
 let tmpBinBothRhs = undefined;
 const tmpChainElementCall$1 = $(b);
@@ -75,7 +76,8 @@ const tmpIfTest$1 = tmpChainElementCall$1 == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainRootComputed$1 = $(`x`);
-  tmpBinBothRhs = tmpChainElementCall$1[tmpChainRootComputed$1];
+  const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
+  tmpBinBothRhs = tmpChainElementObject$1;
 }
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);

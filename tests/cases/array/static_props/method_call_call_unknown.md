@@ -51,8 +51,7 @@ const tmpCallObj = arr.splice;
 const tmpCallVal = tmpCallObj.call;
 const tmpCalleeParam$1 = $(1);
 $dotCall(tmpCallVal, tmpCallObj, arr, tmpCalleeParam$1, 2, 10, 20);
-const tmpCalleeParam$9 = arr.length;
-$(tmpCalleeParam$9);
+$(3);
 `````
 
 ## Globals

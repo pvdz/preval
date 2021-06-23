@@ -36,9 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = [1, , 3];
-const tmpBinBothRhs = String(tmpCalleeParam$1);
-$(tmpBinBothRhs);
+$(`1,,3`);
 `````
 
 ## Globals

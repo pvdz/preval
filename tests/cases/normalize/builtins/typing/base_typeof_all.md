@@ -526,7 +526,7 @@ tmpCallCallee$151(tmpCalleeParam$275, tmpCalleeParam$277);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(`String`);
-tmpCalleeParam$1 + ``;
+String(tmpCalleeParam$1);
 $(`string`);
 const tmpCalleeParam$5 = $(`Number`);
 +tmpCalleeParam$5;

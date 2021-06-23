@@ -1,42 +1,39 @@
 # Preval test case
 
-# arr_numbers.md
+# number_numbers.md
 
-> Normalize > Templates > Static resolve > Arg > Arr numbers
+> Array > Number numbers
 >
-> Templates should be able to resolve literals
+> Calling Number on arrays trigger spies
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(`${[1,2,3]}`);
+$(Number([1, 2, 3]));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(`` + String([1, 2, 3]) + ``);
+$(Number([1, 2, 3]));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinBothLhs = ``;
-const tmpCallCallee$1 = String;
+const tmpCallCallee$1 = Number;
 const tmpCalleeParam$1 = [1, 2, 3];
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ``;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(`1,2,3`);
+$(NaN);
 `````
 
 ## Globals
@@ -46,7 +43,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: '1,2,3'
+ - 1: NaN
  - eval returned: undefined
 
 Pre normalization calls: Same

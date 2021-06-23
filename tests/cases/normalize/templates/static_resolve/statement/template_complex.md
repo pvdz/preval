@@ -40,7 +40,7 @@ tmpBinLhs + ``;
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-tmpCalleeParam$1 + ``;
+String(tmpCalleeParam$1);
 `````
 
 ## Globals

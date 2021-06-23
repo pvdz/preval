@@ -41,8 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const arr = [1, 2, 3];
 $(arr);
-const tmpCalleeParam = arr.length;
-$(tmpCalleeParam);
+$(3);
 `````
 
 ## Globals

@@ -37,9 +37,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = [1, , 3];
-const tmpBinBothRhs = String(tmpCalleeParam);
-$(tmpBinBothRhs);
+$(`1,,3`);
 `````
 
 ## Globals

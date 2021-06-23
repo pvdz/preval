@@ -1,40 +1,39 @@
 # Preval test case
 
-# arr_empty.md
+# number_str_foo.md
 
-> Normalize > Templates > Static resolve > Statement > Arr empty
+> Array > Number str foo
 >
-> Templates should be able to resolve literals
+> Calling Number on arrays triggers coercion
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-`${[]}`;
+$(Number(['foo']));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-`` + String([]) + ``;
+$(Number([`foo`]));
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinBothLhs = ``;
-const tmpCallCallee = String;
-const tmpCalleeParam = [];
-const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-tmpBinLhs + ``;
+const tmpCallCallee = $;
+const tmpCallCallee$1 = Number;
+const tmpCalleeParam$1 = [`foo`];
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-
+$(NaN);
 `````
 
 ## Globals
@@ -44,6 +43,7 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: NaN
  - eval returned: undefined
 
 Pre normalization calls: Same

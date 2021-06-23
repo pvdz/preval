@@ -1,43 +1,37 @@
 # Preval test case
 
-# arr_empty.md
+# string_empty.md
 
-> Normalize > Templates > Static resolve > Var decl > Arr empty
+> Array > String empty
 >
-> Templates should be able to resolve literals
+> Calling String on empty array
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-let x = `${[]}`;
-$(x);
+String([]);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-let x = `` + String([]) + ``;
-$(x);
+String([]);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpBinBothLhs = ``;
 const tmpCallCallee = String;
 const tmpCalleeParam = [];
-const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = tmpBinLhs + ``;
-$(x);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(``);
+
 `````
 
 ## Globals
@@ -47,7 +41,6 @@ None
 ## Result
 
 Should call `$` with:
- - 1: ''
  - eval returned: undefined
 
 Pre normalization calls: Same

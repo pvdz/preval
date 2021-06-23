@@ -1332,34 +1332,57 @@ export function phaseNormalize(fdata, fname) {
                 after(body[i]);
                 return true;
               }
-              case 'String':
-                // Coerce the first arg to string
-                rule('A statement that is String() can be eliminated');
-                example('String(a);', '"" + a;');
-                before(node, parentNode);
+              case 'String': {
+                // Note: `String(x)` is not the same as `""+x`
 
-                const newNodes = args.map((anode, ai) =>
-                  // Make sure `String(...x)` properly becomes `"" + [...x][0]` and let another rule deal with that mess.
-                  AST.expressionStatement(
-                    ai === 0
-                      ? anode.type === 'SpreadElement'
-                        ? // If the first arg is a spread, convert it to an array and coerce its first element `""+[...x][0]`
-                          // That should work (albeit a little ugly)
-                          AST.binaryExpression(
-                            '+',
-                            AST.templateLiteral(''),
-                            AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true),
-                          )
-                        : AST.binaryExpression('+', AST.templateLiteral(''), anode)
-                      : anode.type === 'SpreadElement'
-                      ? AST.arrayExpression(anode)
-                      : anode,
-                  ),
-                );
-                body.splice(i, 1, ...newNodes);
+                if (args.length === 0) {
+                  rule('A statement that is `String()` can be eliminated');
+                  example('String();', ';');
+                  before(node, parentNode);
 
-                after(parentNode);
-                return true;
+                  body[i] = AST.emptyStatement();
+
+                  after(AST.emptyStatement());
+                  return true;
+                }
+
+                if (args.length > 1) {
+                  rule('A statement calls String with multiple args should call it with one');
+                  example('String(a, b, c);', 'const tmp = a; b; c; String(a);');
+                  before(node, parentNode);
+
+                  const newNodes = [];
+
+                  let tmpArgName;
+                  args.forEach((anode, ai) => {
+                    if (ai === 0) {
+                      // Make sure `String(...x)` properly becomes `"" + [...x][0]` and let another rule deal with that mess.
+                      if (anode.type === 'SpreadElement') {
+                        tmpArgName = createFreshVar('tmpStringSpread', fdata);
+                        newNodes.push(AST.variableDeclaration(tmpArgName, AST.arrayExpression(anode), 'const')); // [...arg]
+                      } else {
+                        tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
+                        newNodes.push(AST.variableDeclaration(tmpArgName, anode, 'const'));
+                      }
+                    } else {
+                      newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
+                    }
+                  });
+                  newNodes.push(
+                    AST.callExpression('String', [
+                      args[0].type === 'SpreadElement'
+                        ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
+                        : AST.identifier(tmpArgName),
+                    ]),
+                  );
+                  body.splice(i, 1, ...newNodes);
+
+                  after(parentNode);
+                  return true;
+                }
+
+                break;
+              }
               case 'parseInt': {
                 // Coerce the first arg to string, the second to number
                 if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {

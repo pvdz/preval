@@ -34,8 +34,7 @@ tmpBinLhs + ``;
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = [1, 2, 3];
-tmpCalleeParam + ``;
+
 `````
 
 ## Globals

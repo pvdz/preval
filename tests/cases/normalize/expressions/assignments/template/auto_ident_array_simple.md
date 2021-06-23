@@ -43,10 +43,8 @@ $(a);
 ## Output
 
 `````js filename=intro
+$(`before  1,2,3  after`);
 const a = [1, 2, 3];
-const tmpBinBothRhs = String(a);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
 $(a);
 `````
 

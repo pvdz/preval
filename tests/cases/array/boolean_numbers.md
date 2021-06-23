@@ -1,42 +1,39 @@
 # Preval test case
 
-# arr_numbers.md
+# boolean_numbers.md
 
-> Normalize > Templates > Static resolve > Arg > Arr numbers
+> Array > Boolean numbers
 >
-> Templates should be able to resolve literals
+> Calling Boolean on arrays trigger spies
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(`${[1,2,3]}`);
+$(Boolean([1, 2, 3]));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(`` + String([1, 2, 3]) + ``);
+$(Boolean([1, 2, 3]));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpBinBothLhs = ``;
-const tmpCallCallee$1 = String;
+const tmpCallCallee$1 = Boolean;
 const tmpCalleeParam$1 = [1, 2, 3];
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
-const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ``;
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(`1,2,3`);
+$(true);
 `````
 
 ## Globals
@@ -46,7 +43,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: '1,2,3'
+ - 1: true
  - eval returned: undefined
 
 Pre normalization calls: Same

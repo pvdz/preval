@@ -104,120 +104,221 @@ function processAttempt(fdata) {
         '<read>',
       );
 
-      const mem = read.parentNode;
+      if (read.parentNode.type === 'MemberExpression') {
+        const mem = read.parentNode;
 
-      if (mem.type !== 'MemberExpression' || read.parentProp !== 'object') {
+        if (read.parentProp !== 'object') {
+          vlog('This read is not a property access and so we consider the array to escape. We can not trust its contents to be immutable.');
+          failed = true;
+          return;
+        }
+
+        if (read.grandNode.type === 'UnaryExpression' && read.grandProp === 'argument' && read.grandNode.operator === 'delete') {
+          // `delete arr[2]`
+          vlog('This "property lookup" was actually the argument to `delete`. Must keep this.');
+          failed = true;
+          return;
+        }
+
+        if (read.grandNode.type === 'CallExpression' && read.grandProp === 'callee') {
+          // TODO: allow list for certain methods, like toString or join. Maybe.
+          vlog('Calling a dynamic property. Cannot guarantee the sandbox. Bailing');
+          failed = true;
+          return;
+        }
+
+        if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') {
+          // TODO: allow for length under very specific circumstances. Might not be worth it.
+          vlog('Assigning to a dynamic property. Array is mutated. Bailing');
+          failed = true;
+          return;
+        }
+
+        // This was some kind of property access on the array
+        if (mem.computed) {
+          vlog('Dynamic property:', mem.property.type === 'Identifier' ? '`' + mem.property.name + '`' : mem.property.type);
+          // As long as we don't call this property we should be fine (since we also assert the array
+          // doesn't "escape", we can assert that it should not matter whether non-index properties
+          // are accessed as long as they aren't immediately called)
+          vlog('Reading a dynamic property should be okay since it is not called');
+          if (AST.isNumber(mem.property)) {
+            vgroup('This is an indexed access to the array tp index', mem.property.value, '. May be able to resolve it immediately');
+            // Skip if the read is not in the same loop as the write
+            // Skip if the read is in a different function scope
+            // If skipped, we can still do it if we can guarantee the array to be immutable
+            if (write.innerLoop === read.innerLoop && write.pfuncNode.$p.pid === read.pfuncNode.$p.pid) {
+              vlog('Checking now...');
+              if (mayBindingMutateBetweenRefs(meta, write, read, true)) {
+                vlog('May mutate the array. Bailing');
+                failed = true;
+                sawMutatedOnce = true;
+              } else {
+                vlog('Array could not have mutated between decl and first read. The access was numeric so we can resolve it.');
+                vlog('Replacing the property lookup with', arrNode.elements[mem.property.value]);
+
+                rule('An array literal lookup that can be statically resolved should be replaced');
+                example('const arr = [1]; f(arr[0]);', 'const arr = [1]; f(1);');
+                before(read.blockBody[read.blockIndex], write.blockBody[write.blockIndex]);
+
+                // The read.node will be the object of a member expression. We want to replace the member expression.
+                // If the index was OOB it must be undefined because this is is a regular array.
+                const finalNode =
+                  mem.property.value < arrLen ? AST.cloneSimple(arrNode.elements[mem.property.value]) : AST.identifier('undefined');
+                if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+                else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+                after(read.blockBody[read.blockIndex]);
+                meta.tainted = true;
+                ++updated;
+                vgroupEnd();
+                return;
+              }
+            } else {
+              vlog('Bailing check because there is a parent scope or loop mismatch between the write and the read');
+            }
+            vgroupEnd();
+          } else {
+            vlog('Not index property within range of the array');
+          }
+        } else {
+          vlog('Property name: `.' + mem.property.name + '`');
+          if (mem.property.name === 'length') {
+            vlog('Accessing array.length might be resolvable');
+            // Skip if the read is not in the same loop as the write
+            // Skip if the read is in a different function scope
+            // If skipped, we can still do it if we can guarantee the array to be immutable
+            if (write.innerLoop === read.innerLoop && write.pfuncNode.$p.pid === read.pfuncNode.$p.pid) {
+              vlog('Checking now...');
+              if (mayBindingMutateBetweenRefs(meta, write, read, true)) {
+                vlog('May mutate the array. Bailing');
+                failed = true;
+                sawMutatedOnce = true;
+              } else {
+                vlog('Array could not have mutated between decl and first read. So we can resolve it.');
+                vlog('Replacing the .length lookup with', arrNode.elements.length);
+
+                rule('An array literal lookup that can be statically resolved should be replaced');
+                example('const arr = [1]; f(arr[0]);', 'const arr = [1]; f(1);');
+                before(read.blockBody[read.blockIndex], write.blockBody[write.blockIndex]);
+
+                // The read.node will be the object of a member expression. We want to replace the member expression.
+                const finalNode = AST.literal(arrNode.elements.length);
+                if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+                else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+                after(read.blockBody[read.blockIndex]);
+                meta.tainted = true;
+                ++updated;
+                vgroupEnd();
+                return;
+              }
+            } else {
+              vlog('Bailing check because there is a parent scope or loop mismatch between the write and the read');
+            }
+          } else {
+            vlog('This was a property access that was not called. Should not be able to mutate the array.');
+          }
+        }
+        vgroupEnd();
+      } else if (read.parentNode.type === 'CallExpression') {
+        if (read.parentProp !== 'arguments') {
+          vlog('Calling an array? Okay good luck');
+          failed = true;
+          return;
+        }
+
+        if (read.parentNode.callee.type !== 'Identifier') {
+          // TODO: what valid member expressions might this array be an arg to? Like, Array.isArray()
+          vlog('Array was arg to a call to a member expression. Bailing');
+          failed = true;
+          return;
+        }
+
+        switch (read.parentNode.callee.name) {
+          case 'String': {
+            if (
+              arrNode.elements.every((enode) => {
+                ASSERT(!enode || enode.type !== 'SpreadElement', 'asserted above');
+                return !enode || AST.isPrimitive(enode);
+              })
+            ) {
+              rule('An array literal with primitives that is an arg of String can be resolved');
+              example('String([1, 2, 3])', '"1,2,3"');
+              before(read.node, read.blockBody[read.blockIndex]);
+
+              // Note: we put `undefined` in the position of holes. This is the same for String()
+              const v = arrNode.elements.map((enode) => (enode ? AST.getPrimitiveValue(enode) : undefined));
+              const vn = String(v);
+              const finalNode = AST.primitive(vn);
+              if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+              else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+              after(finalNode, read.blockBody[read.blockIndex]);
+              meta.tainted = true;
+              ++updated;
+              return;
+            }
+            break;
+          }
+          case 'Number': {
+            // Note: due to how array serialization works, if the first arg would parse to a number, so does the array
+            // Note: this will still trigger spies on all elements, regardless of the outcome
+            // `Number([{valueOf(){ console.log('x') }, toString(){ console.log('y'); }}])` -> prints y
+            if (
+              arrNode.elements.every((enode) => {
+                ASSERT(!enode || enode.type !== 'SpreadElement', 'asserted above');
+                return AST.isPrimitive(enode);
+              })
+            ) {
+              rule('An array literal with primitives that is an arg of Number can be resolved');
+              example('Number([1, 2, 3])', '"1,2,3"');
+              before(read.node, read.blockBody[read.blockIndex]);
+
+              // Holes are ignored here
+              const v = arrNode.elements.map((enode) => (enode ? AST.getPrimitiveValue(enode) : undefined));
+              const vn = Number(v);
+              const finalNode = AST.primitive(vn);
+              if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+              else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+              after(finalNode, read.blockBody[read.blockIndex]);
+              meta.tainted = true;
+              ++updated;
+              return;
+            }
+            break;
+          }
+          case 'Boolean': {
+            // Note: due to how array serialization works, if the first arg would parse to a number, so does the array
+            // Note: this will still trigger spies on all elements, regardless of the outcome
+            // `Number([{valueOf(){ console.log('x') }, toString(){ console.log('y'); }}])` -> prints y
+            if (
+              arrNode.elements.every((enode) => {
+                ASSERT(!enode || enode.type !== 'SpreadElement', 'asserted above');
+                return AST.isPrimitive(enode);
+              })
+            ) {
+              rule('An array literal called on Boolean always returns true');
+              example('Boolean([1, 2, 3])', 'true;');
+              before(read.node, read.blockBody[read.blockIndex]);
+
+              const finalNode = AST.tru();
+              if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+              else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+              after(finalNode, read.blockBody[read.blockIndex]);
+              meta.tainted = true;
+              ++updated;
+              return;
+            }
+            break;
+          }
+        }
+      } else {
         vlog('This read is not a property access and so we consider the array to escape. We can not trust its contents to be immutable.');
         failed = true;
         return;
       }
-      if (read.grandNode.type === 'UnaryExpression' && read.grandProp === 'argument' && read.grandNode.operator === 'delete') {
-        // `delete arr[2]`
-        vlog('This "property lookup" was actually the argument to `delete`. Must keep this.');
-        failed = true;
-        return;
-      }
-
-      if (read.grandNode.type === 'CallExpression' && read.grandProp === 'callee') {
-        // TODO: allow list for certain methods, like toString or join. Maybe.
-        vlog('Calling a dynamic property. Cannot guarantee the sandbox. Bailing');
-        failed = true;
-        return;
-      }
-
-      if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') {
-        // TODO: allow for length under very specific circumstances. Might not be worth it.
-        vlog('Assigning to a dynamic property. Array is mutated. Bailing');
-        failed = true;
-        return;
-      }
-
-      // This was some kind of property access on the array
-      if (mem.computed) {
-        vlog('Dynamic property:', mem.property.type === 'Identifier' ? '`' + mem.property.name + '`' : mem.property.type);
-        // As long as we don't call this property we should be fine (since we also assert the array
-        // doesn't "escape", we can assert that it should not matter whether non-index properties
-        // are accessed as long as they aren't immediately called)
-        vlog('Reading a dynamic property should be okay since it is not called');
-        if (AST.isNumber(mem.property)) {
-          vgroup('This is an indexed access to the array tp index', mem.property.value, '. May be able to resolve it immediately');
-          // Skip if the read is not in the same loop as the write
-          // Skip if the read is in a different function scope
-          // If skipped, we can still do it if we can guarantee the array to be immutable
-          if (write.innerLoop === read.innerLoop && write.pfuncNode.$p.pid === read.pfuncNode.$p.pid) {
-            vlog('Checking now...');
-            if (mayBindingMutateBetweenRefs(meta, write, read, true)) {
-              vlog('May mutate the array. Bailing');
-              failed = true;
-              sawMutatedOnce = true;
-            } else {
-              vlog('Array could not have mutated between decl and first read. The access was numeric so we can resolve it.');
-              vlog('Replacing the property lookup with', arrNode.elements[mem.property.value]);
-
-              rule('An array literal lookup that can be statically resolved should be replaced');
-              example('const arr = [1]; f(arr[0]);', 'const arr = [1]; f(1);');
-              before(read.blockBody[read.blockIndex], write.blockBody[write.blockIndex]);
-
-              // The read.node will be the object of a member expression. We want to replace the member expression.
-              // If the index was OOB it must be undefined because this is is a regular array.
-              const finalNode =
-                mem.property.value < arrLen ? AST.cloneSimple(arrNode.elements[mem.property.value]) : AST.identifier('undefined');
-              if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
-              else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
-
-              after(read.blockBody[read.blockIndex]);
-              meta.tainted = true;
-              ++updated;
-              vgroupEnd();
-              return;
-            }
-          } else {
-            vlog('Bailing check because there is a parent scope or loop mismatch between the write and the read');
-          }
-          vgroupEnd();
-        } else {
-          vlog('Not index property within range of the array');
-        }
-      } else {
-        vlog('Property name: `.' + mem.property.name + '`');
-        if (mem.property.name === 'length') {
-          vlog('Accessing array.length might be resolvable');
-          // Skip if the read is not in the same loop as the write
-          // Skip if the read is in a different function scope
-          // If skipped, we can still do it if we can guarantee the array to be immutable
-          if (write.innerLoop === read.innerLoop && write.pfuncNode.$p.pid === read.pfuncNode.$p.pid) {
-            vlog('Checking now...');
-            if (mayBindingMutateBetweenRefs(meta, write, read, true)) {
-              vlog('May mutate the array. Bailing');
-              failed = true;
-              sawMutatedOnce = true;
-            } else {
-              vlog('Array could not have mutated between decl and first read. So we can resolve it.');
-              vlog('Replacing the .length lookup with', arrNode.elements.length);
-
-              rule('An array literal lookup that can be statically resolved should be replaced');
-              example('const arr = [1]; f(arr[0]);', 'const arr = [1]; f(1);');
-              before(read.blockBody[read.blockIndex], write.blockBody[write.blockIndex]);
-
-              // The read.node will be the object of a member expression. We want to replace the member expression.
-              const finalNode = AST.literal(arrNode.elements.length);
-              if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
-              else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
-
-              after(read.blockBody[read.blockIndex]);
-              meta.tainted = true;
-              ++updated;
-              vgroupEnd();
-              return;
-            }
-          } else {
-            vlog('Bailing check because there is a parent scope or loop mismatch between the write and the read');
-          }
-        } else {
-          vlog('This was a property access that was not called. Should not be able to mutate the array.');
-        }
-      }
-      vgroupEnd();
     });
 
     if (meta.tainted) {

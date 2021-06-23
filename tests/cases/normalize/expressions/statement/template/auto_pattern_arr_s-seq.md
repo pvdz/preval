@@ -51,10 +51,7 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpCalleeParam$1 = [1, 2];
-const tmpBinBothRhs = String(tmpCalleeParam$1);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
+$(`before  1,2  after`);
 $(a);
 `````
 

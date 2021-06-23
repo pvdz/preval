@@ -40,9 +40,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = [];
-const tmpBinBothRhs = String(tmpCalleeParam);
-$(tmpBinBothRhs);
+$(``);
 `````
 
 ## Globals

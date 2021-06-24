@@ -351,7 +351,7 @@ function runTestCase(
       }
       // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
       //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
-      const returns = new Function('$', 'objPatternRest', '$dotCall', '"use strict"; ' + fdata.intro)($, objPatternRest, $dotCall);
+      const returns = new Function('$', 'objPatternRest', '$dotCall', '$ArrayPrototype', '"use strict"; ' + fdata.intro)($, objPatternRest, $dotCall, Array.prototype);
       before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
       stack.push(
         safeCloneString(returns)

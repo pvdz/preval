@@ -4,7 +4,7 @@
 
 > random > jsfu
 >
-> from jsf*ck.com. This should result in the string "$(1)"
+> from jsf*ck.com. This should result in the string "$(1, 2)"
 
 We have ways to go.
 

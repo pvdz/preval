@@ -53,7 +53,6 @@ function _objlitPropAccess(fdata) {
 
 function processAttempt(fdata, queue) {
   let updated = 0;
-  const lastMap = new Map(); // Map<scope, ref>
 
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return;
@@ -97,14 +96,14 @@ function processAttempt(fdata, queue) {
       }
 
       // Ok this was a write that assigned an object literal. Hurray!
-      vlog('Found object expression. Tracing nearest property lookups.');
-      verifyObject(meta, rwOrder, ref, ri, rhs);
+      vlog('Found object expression at ref', ri,' assigned to `' + name + '`. Tracing nearest property lookups.');
+      verifyAfterObjectAssign(meta, rwOrder, ref, ri, rhs);
     });
   }
 
-  //moet hier alle tests nog voor toevoegen
+  //moet hier alle tests nog voor toevoegen. see you never.
 
-  function verifyObject(meta, rwOrder, writeRef, ri, objExprNode) {
+  function verifyAfterObjectAssign(meta, rwOrder, writeRef, ri, objExprNode) {
     // It "failed" if the object escapes or when a property was mutated. Otherwise we can consider the object immutable
     // meaning we can inline properties even as side effects or whatever.
     let failed = false;
@@ -114,16 +113,18 @@ function processAttempt(fdata, queue) {
       return;
     }
 
-    vlog('Checking', rwOrder.length - ri - 1, 'refs, starting at', ri);
+    const lastMap = new Map(); // Map<scope, ref>
+
+    vlog('verifyAfterObjectAssign(): Checking', rwOrder.length - ri - 1, 'refs, starting at', ri);
     for (let i = ri; i < rwOrder.length; ++i) {
       const ref = rwOrder[i];
-      vgroup('- verifyObject:', ref.action + ':' + ref.kind, ref.pfuncNode.$p.pid, ref.parentNode.type);
-      const r = process(meta, rwOrder, writeRef, objExprNode, ref, ri);
+      vgroup('- ref', i,';', ref.action + ':' + ref.kind, ref.pfuncNode.$p.pid, ref.parentNode.type);
+      const r = processRef(meta, rwOrder, writeRef, objExprNode, ref, ri);
       vgroupEnd();
       if (r) break;
     }
 
-    function process(meta, rwOrder, writeRef, objExprNode, ref, ri) {
+    function processRef(meta, rwOrder, writeRef, objExprNode, ref, ri) {
       let lastRefArr = lastMap.get(ref.pfuncNode.$p.pid);
       if (!lastRefArr) {
         lastRefArr = [];
@@ -132,7 +133,7 @@ function processAttempt(fdata, queue) {
 
       if (ref.action === 'write') {
         lastRefArr.push(ref);
-        vlog('Updated last ref for scope', ref.pfuncNode.$p.pid, 'to a write');
+        vlog('Updated last write ref for scope', ref.pfuncNode.$p.pid, 'to a write');
         return;
       }
 
@@ -170,7 +171,7 @@ function processAttempt(fdata, queue) {
       if (readRef.parentNode.type !== 'MemberExpression' || readRef.parentNode.computed || readRef.parentProp !== 'object') {
         // not used as a property. Or we can't safely determine the property. The end.
         // TODO: we could do for literals... how often does that happen?
-        vlog('Not a member expression or a computed one', readRef.parentNode.type, readRef.parentNode.computed, readRef.parentProp);
+        vlog('Not a non-computed member expression or the read was not the object; type:', readRef.parentNode.type, ', computed:', readRef.parentNode.computed, ', parent prop:', readRef.parentProp);
         failed = true; // "escapes"
         return true;
       }
@@ -208,6 +209,7 @@ function processAttempt(fdata, queue) {
         vlog('The read happened inside a different loop from the write. Bailing just in case.');
         return;
       }
+
       if (mayBindingMutateBetweenRefs(meta, writeRef, readRef, true)) {
         vlog('There was at least one observable side effect that could have mutated the property on the object, so bailing');
         return;

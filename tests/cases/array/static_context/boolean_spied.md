@@ -59,21 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const spy = {
-  valueOf() {
-    debugger;
-    $(`x`);
-    return undefined;
-  },
-  toString() {
-    debugger;
-    $(`y`);
-    return undefined;
-  },
-};
-const tmpCalleeParam$1 = [spy, spy];
-const tmpCalleeParam = Boolean(tmpCalleeParam$1);
-$(tmpCalleeParam);
+$(true);
 `````
 
 ## Globals

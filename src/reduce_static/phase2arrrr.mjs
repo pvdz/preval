@@ -37,7 +37,15 @@ export function arrrrrr(fdata) {
 function _arrrrrr(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
-  let updated = processAttempt(fdata);
+  const queue = [];
+
+  let updated = processAttempt(fdata, queue);
+
+  if (queue.length) {
+    // By index, high to low. This way it should not be possible to cause reference problems by changing index
+    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.forEach(({ index, func }) => func());
+  }
 
   log('');
   if (updated) {
@@ -47,7 +55,7 @@ function _arrrrrr(fdata) {
   log('Array accesses changed: 0.');
 }
 
-function processAttempt(fdata) {
+function processAttempt(fdata, queue) {
   // Find arrays which are constants and do not escape and where all member expressions are reads
 
   let updated = 0;
@@ -59,11 +67,11 @@ function processAttempt(fdata) {
     if (meta.constValueRef.node.type !== 'ArrayExpression') return;
 
     vgroup('- `' + name + '` is a constant array literal');
-    process(meta, name);
+    process(meta, name, queue);
     vgroupEnd();
   });
 
-  function process(meta, name) {
+  function process(meta, name, queue) {
     const arrNode = meta.constValueRef.node;
 
     if (arrNode.elements.some((enode) => enode?.type === 'SpreadElement')) {
@@ -107,29 +115,28 @@ function processAttempt(fdata) {
       if (read.parentNode.type === 'MemberExpression') {
         const mem = read.parentNode;
 
-        if (read.parentProp !== 'object') {
-          // Edge case. Solve the jsf*ck case `[][[]]` -> `undefined`
-          // Note: `({"":"pass"}[[]])` -> `"pass"` (not undefined)
-          // Note: `({0:"pass"}[[0]])` -> `"pass"` (not undefined)
-          if (read.parentProp === 'property' && read.parentNode.computed && arrNode.elements.every((enode) => AST.isPrimitive(enode))) {
-            if (arrNode.elements.length === 0) {
-              rule('The empty array literal that is used as a computed property name is the empty string');
-              example('x[[]]', 'x[""]');
-            } else {
-              rule('An array that is used as a computed property is always converted to a string');
-              example('x[[1, 2, 3]]', 'x["1,2,3"]');
-            }
-            before(read.node, read.blockBody[read.blockIndex]);
-
-            read.parentNode.property = AST.primitive(String(arrNode.elements.map((enode) => AST.getPrimitiveValue(enode))));
-
-            after(read.parentNode.property, read.blockBody[read.blockIndex]);
-            ++updated;
-            meta.tainted = true;
-            vgroupEnd();
-            return;
+        // Edge case. Solve the jsf*ck case `[][[]]` -> `undefined`
+        // Note: `({"":"pass"}[[]])` -> `"pass"` (not undefined)
+        // Note: `({0:"pass"}[[0]])` -> `"pass"` (not undefined)
+        if (read.parentProp === 'property' && read.parentNode.computed && arrNode.elements.every((enode) => AST.isPrimitive(enode))) {
+          if (arrNode.elements.length === 0) {
+            rule('The empty array literal that is used as a computed property name is the empty string');
+            example('x[[]]', 'x[""]');
+          } else {
+            rule('An array that is used as a computed property is always converted to a string');
+            example('x[[1, 2, 3]]', 'x["1,2,3"]');
           }
+          before(read.node, read.blockBody[read.blockIndex]);
 
+          read.parentNode.property = AST.primitive(String(arrNode.elements.map((enode) => AST.getPrimitiveValue(enode))));
+
+          after(read.parentNode.property, read.blockBody[read.blockIndex]);
+          ++updated;
+          meta.tainted = true;
+          return;
+        }
+
+        if (read.parentProp !== 'object') {
           vlog('This read is not a property access and so we consider the array to escape. We can not trust its contents to be immutable.');
           failed = true;
           return;
@@ -150,7 +157,6 @@ function processAttempt(fdata) {
 
                 before(read.parentNode, read.blockBody[read.blockIndex]);
                 ++updated;
-                vgroupEnd();
                 return;
               }
 
@@ -166,7 +172,6 @@ function processAttempt(fdata) {
 
                 before(read.parentNode, read.blockBody[read.blockIndex]);
                 ++updated;
-                vgroupEnd();
                 return;
               }
             }
@@ -269,7 +274,6 @@ function processAttempt(fdata) {
                 after(read.blockBody[read.blockIndex]);
                 meta.tainted = true;
                 ++updated;
-                vgroupEnd();
                 return;
               }
             } else {
@@ -279,7 +283,6 @@ function processAttempt(fdata) {
             vlog('This was a property access that was not called. Should not be able to mutate the array.');
           }
         }
-        vgroupEnd();
       } else if (read.parentNode.type === 'CallExpression') {
         if (read.parentProp !== 'arguments') {
           vlog('Calling an array? Okay good luck');
@@ -313,7 +316,7 @@ function processAttempt(fdata) {
               })
             ) {
               rule('An array literal with primitives that is an arg of String can be resolved');
-              example('String([1, 2, 3])', '"1,2,3"');
+              example('const x = [1, 2, 3]; f(String(x));', 'const x = [1, 2, 3]; f("1,2,3");');
               before(read.node, read.blockBody[read.blockIndex]);
 
               // Note: we put `undefined` in the position of holes. This is the same for String()
@@ -341,7 +344,8 @@ function processAttempt(fdata) {
               })
             ) {
               rule('An array literal with primitives that is an arg of Number can be resolved');
-              example('Number([1, 2, 3])', '"1,2,3"');
+              example('const x = [1, 2, 3]; f(Number(x));', 'const x = [1, 2, 3]; f(NaN);');
+              example('const x = [1]; f(Number(x));', 'const x = [1, 2, 3]; f(1);');
               before(read.node, read.blockBody[read.blockIndex]);
 
               // Holes are ignored here
@@ -359,21 +363,59 @@ function processAttempt(fdata) {
             break;
           }
           case 'Boolean': {
-            // Note: due to how array serialization works, if the first arg would parse to a number, so does the array
-            // Note: this will still trigger spies on all elements, regardless of the outcome
-            // `Number([{valueOf(){ console.log('x') }, toString(){ console.log('y'); }}])` -> prints y
-            // TODO: if we can splice the elements out we don't care about the actual contents
+            rule('An array literal called on Boolean always returns true');
+            example('const x = [1, 2, 3]; f(Boolean(x));', 'const x = [1, 2, 3]; f(true);');
+            before(read.node, read.blockBody[read.blockIndex]);
+
+            const finalNode = AST.tru();
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+            else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+            after(finalNode, read.blockBody[read.blockIndex]);
+            meta.tainted = true;
+            ++updated;
+            return;
+          }
+          case 'Array.isArray': {
+            rule('An array literal called on Array.isArray always returns true');
+            example('const x = [1, 2, 3]; f(Array.isArray(x))', 'const x = [1, 2, 3]; f(true);');
+            before(read.node, read.blockBody[read.blockIndex]);
+
+            const finalNode = AST.tru();
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+            else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+            after(finalNode, read.blockBody[read.blockIndex]);
+            meta.tainted = true;
+
+            ++updated;
+            return;
+          }
+        }
+      } else if (read.parentNode.type === 'UnaryExpression') {
+        const op = read.parentNode.operator;
+        switch (op) {
+          case '+':
+          case '-':
+          case '!':
+          case '~': {
             if (
               arrNode.elements.every((enode) => {
                 ASSERT(!enode || enode.type !== 'SpreadElement', 'asserted above');
                 return AST.isPrimitive(enode);
               })
             ) {
-              rule('An array literal called on Boolean always returns true');
-              example('Boolean([1, 2, 3])', 'true;');
+              rule('An array literal with primitives as argument to a unary expression can be resolved');
+              example('+[1, 2, 3]', 'NaN;', () => op === '+');
+              example('-[1, 2, 3]', 'NaN;', () => op === '-');
+              example('![1, 2, 3]', 'NaN;', () => op === '!');
+              example('~[1, 2, 3]', 'NaN;', () => op === '~');
               before(read.node, read.blockBody[read.blockIndex]);
 
-              const finalNode = AST.tru();
+              const arr = arrNode.elements.map((enode) => (enode ? AST.getPrimitiveValue(enode) : undefined));
+
+              const finalNode = AST.primitive(op === '+' ? +arr : op === '-' ? -arr : op === '!' ? !arr : typeof arr);
+
               if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
               else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
@@ -384,26 +426,80 @@ function processAttempt(fdata) {
             }
             break;
           }
-          case 'Array.isArray': {
-            // TODO: if we can splice the elements out we don't care about the actual contents
+
+          case 'typeof': {
+            // Typeof is different because it does not evaluate the elements so they don't need to be primitives here
+            rule('An array literal with primitives as argument to `typeof` always returns "object"');
+            example('const x = [1, 2, 3]; f(typeof x);', 'const x = [1, 2, 3]; f("object");');
+            before(read.node, read.blockBody[read.blockIndex]);
+
+            const finalNode = AST.primitive('object');
+            if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+            else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+            after(finalNode, read.blockBody[read.blockIndex]);
+            meta.tainted = true;
+            ++updated;
+            return;
+          }
+        }
+      } else if (read.parentNode.type === 'BinaryExpression') {
+        const op = read.parentNode.operator;
+        switch (op) {
+          case '+': {
+            // If an array is on either side of a `+1 then it _will_ be converted to a string:
+            // - the algo first calls ToPrimitive() on both operands
+            // - ToPrimitive will proc valueOf() and if that does not return a primitive, it calls toString()
+            // - valueOf() on an array, by default, returns the array itself (which is not a primitive)
+            // - toString() calls .join() if it is a function, and otherwise Object#toString
+            // - join() will be called without args and those default to a comma (`","`)
+            // - So we assume `+` on array will invariably do this... but this can be torpedoed.
             if (
               arrNode.elements.every((enode) => {
                 ASSERT(!enode || enode.type !== 'SpreadElement', 'asserted above');
                 return AST.isPrimitive(enode);
               })
             ) {
-              rule('An array literal called on Array.isArray always returns true');
-              example('Array.isArray([1, 2, 3])', 'true;');
-              before(read.node, read.blockBody[read.blockIndex]);
+              // Either the other side is a primitive, in which case we can melt them immediately
+              // Or the other side is not a primitive, in which case we just replace the ref ot the array here
+              if (read.parentProp === 'left' ? AST.isPrimitive(read.parentNode.right) : AST.isPrimitive(read.parentNode.left)) {
+                const prim =
+                  read.parentProp === 'left' ? AST.getPrimitiveValue(read.parentNode.right) : AST.getPrimitiveValue(read.parentNode.left);
 
-              const finalNode = AST.tru();
-              if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
-              else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+                rule('An array literal with primitives that is the operand to `+` with a primitive to other side can be resolved');
+                example('[1, 2, 3] + "foo"', '"1,2,3foo";', () => read.parentProp === 'left');
+                example('"foo" + [1, 2, 3]', '"foo1,2,3";', () => read.parentProp === 'right');
+                before(arrNode, read.blockBody[read.blockIndex]);
 
-              after(finalNode, read.blockBody[read.blockIndex]);
-              meta.tainted = true;
-              ++updated;
-              return;
+                const arr = arrNode.elements.map((enode) => (enode ? AST.getPrimitiveValue(enode) : undefined));
+
+                const finalNode = AST.primitive(read.parentProp === 'left' ? arr + prim : prim + arr);
+
+                if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+                else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+                after(finalNode, read.blockBody[read.blockIndex]);
+                meta.tainted = true;
+                ++updated;
+                return;
+              } else {
+                rule('An array with only primitives that is part of a `+` should be converted to a string');
+                example('[1, 2, 3] + x', '"1,2,3" + x;', () => read.parentProp === 'left');
+                example('x + [1, 2, 3]', 'x + "1,2,3";', () => read.parentProp === 'right');
+                before(arrNode, read.blockBody[read.blockIndex]);
+
+                const arr = arrNode.elements.map((enode) => (enode ? AST.getPrimitiveValue(enode) : undefined));
+
+                const finalNode = AST.primitive(String(arr));
+
+                if (read.parentIndex < 0) read.parentNode[read.parentProp] = finalNode;
+                else read.parentNode[read.parentProp][read.parentIndex] = finalNode;
+
+                after(finalNode, read.blockBody[read.blockIndex]);
+                meta.tainted = true;
+                ++updated;
+                return;
+              }
             }
             break;
           }
@@ -446,7 +542,11 @@ function processAttempt(fdata) {
         '<read>',
       );
 
-      if (read.parentNode.type !== 'MemberExpression') return;
+      if (read.parentNode.type !== 'MemberExpression') {
+        vlog('The parent is not a member expression');
+        vgroupEnd();
+        return;
+      }
 
       ASSERT(
         read.parentNode.type === 'MemberExpression' && read.parentProp === 'object',

@@ -32,9 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = [$];
-const tmpCalleeParam = Array.isArray(tmpCalleeParam$1);
-$(tmpCalleeParam);
+$(true);
 `````
 
 ## Globals

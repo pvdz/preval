@@ -33,9 +33,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = [crash_hard];
-const tmpCalleeParam = Boolean(tmpCalleeParam$1);
-$(tmpCalleeParam);
+crash_hard;
+$(true);
 `````
 
 ## Globals

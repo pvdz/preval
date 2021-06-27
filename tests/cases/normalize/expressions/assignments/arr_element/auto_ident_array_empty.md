@@ -41,10 +41,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = [];
+$(``);
 const tmpClusterSSA_a = [];
-const tmpCalleeParam = a + tmpClusterSSA_a;
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

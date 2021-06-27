@@ -35,12 +35,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpArrElement = $(1);
-const tmpArrElement$1 = $(2);
-const tmpArrElement$3 = $(3);
-const tmpCalleeParam$1 = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-const tmpCalleeParam = Array.isArray(tmpCalleeParam$1);
-$(tmpCalleeParam);
+$(1);
+$(2);
+$(3);
+$(true);
 `````
 
 ## Globals

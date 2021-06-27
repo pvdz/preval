@@ -46,9 +46,8 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
-const tmpBinBothLhs = [1, 2];
 const tmpBinBothRhs = $(100);
-tmpBinBothLhs + tmpBinBothRhs;
+tmpBinBothRhs + ``;
 $(a);
 `````
 

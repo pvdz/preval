@@ -1562,6 +1562,45 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 }
                 break;
               }
+              case 'RegExp': {
+                // I'm pretty sure we can safely convert regular expressions to literals when the args are strings
+                // The exception would be for illegal regexes, where they would be safer in their constructor form...
+
+                if (args.length === 0) {
+                  // This will generate the regex `/(?:)/`
+
+                  rule('Calling `RegExp()` without args returns `/(?:)/`');
+                  example('RegExp()', '/(?:)/');
+                  before(node, body[i]);
+
+                  const finalNode = AST.literal(/(?:)/);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
+
+                  after(finalNode, body.slice(i, args.length));
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                } else if (AST.isPrimitive(firstArgNode)) {
+                  // Construct the arg
+
+                  if (AST.isPrimitive(args[0]) && (!args[1] || AST.isPrimitive(args[1]))) {
+                    rule('Calling `RegExp()` with primitives should construct the regex');
+                    example('RegExp("foo")', '/foo/', () => !args[1]);
+                    example('RegExp("foo". "g")', '/foo/g', () => !!args[1]);
+                    before(node, body[i]);
+
+                    const finalNode = AST.literal(RegExp(AST.getPrimitiveValue(args[0]), args[1] && AST.getPrimitiveValue(args[1])));
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
+
+                    after(finalNode, body.slice(i, args.length));
+                    assertNoDupeNodes(AST.blockStatement(body), 'body');
+                    return true;
+                  }
+                }
+
+                break;
+              }
               case 'String': {
                 if (args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `String` on a primitive should resolve');

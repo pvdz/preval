@@ -46,13 +46,7 @@ tmpCallObj.b();
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = function () {
-  debugger;
-  const tmpReturnArg = $(1);
-  return tmpReturnArg;
-};
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-tmpObjLitVal.b();
+$(1);
 `````
 
 ## Globals

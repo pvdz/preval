@@ -623,10 +623,7 @@ function _typeTrackedTricks(fdata) {
             case '$dotCall': {
               // Resolve .call in some cases ($dotCall)
 
-              ASSERT(
-                node.arguments.length >= 2,
-                'should at least have the function to call and context, and then any number of args',
-              );
+              ASSERT(node.arguments.length >= 2, 'should at least have the function to call and context, and then any number of args');
               const [
                 funcRefNode, // This is the cached function value passed on as first arg
                 contextNode, // This is the original object that must be the context of this call (until we can determine the context is unused/eliminable)
@@ -693,6 +690,25 @@ function _typeTrackedTricks(fdata) {
             case BUILTIN_REST_HANDLER_NAME: {
               // Resolve object spread in some cases
               break;
+            }
+          }
+        } else if (node.callee.type === 'MemberExpression') {
+          if (node.callee.object.type === 'Identifier' && !node.callee.computed) {
+            const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
+            switch (objMeta.typing.mustBeType + '.' + node.callee.property.name) {
+              case 'regex.constructor': {
+                // `/foo/.constructor("bar", "g")` silliness, originated from jsf*ck
+
+                rule('Calling regex.constructor() should call the constructor directly');
+                example('/foo/.constructor("bar", "g")', 'RegExp("bar", "g")');
+                before(node, parentNode);
+
+                node.callee = AST.identifier('RegExp');
+
+                after(node, parentNode);
+                ++changes;
+                break;
+              }
             }
           }
         }

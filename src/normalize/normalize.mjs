@@ -1493,7 +1493,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               case 'Boolean': {
                 if (args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `Boolean` on a primitive should resolve');
-                  example('Boolean("hello")', 'true', () => TESTME);
+                  example('Boolean("hello")', 'true');
                   before(node, parentNode);
 
                   const finalNode = Boolean(AST.getPrimitiveValue(firstArgNode)) ? AST.tru() : AST.fals();
@@ -2080,6 +2080,59 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
+                case 'constructor': {
+                  ASSERT(node.arguments.length === 1, 'meh just a silly hack, no full support');
+                  rule('A call to `str.constructor` on a string should be inlined');
+                  example('"blue".constructor(123)', '"123"');
+                  before(node, body[i]);
+
+                  node.callee = AST.identifier('String');
+
+                  after(node, body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+              }
+            }
+
+            if (!callee.computed && callee.object.type === 'Literal') {
+              // Should not need ot check `null` or strings
+              if (typeof callee.object.value === 'boolean') {
+                switch (callee.property.name) {
+                  case 'constructor': {
+                    ASSERT(node.arguments.length === 1, 'meh just a silly hack, no full support');
+                    rule('A call to `true.constructor` on a bool should be inlined');
+                    example('true.constructor(1)', 'Boolean(1)');
+                    before(node, body[i]);
+
+                    node.callee = AST.identifier('Boolean');
+
+                    after(node, body[i]);
+                    assertNoDupeNodes(AST.blockStatement(body), 'body');
+                    return true;
+                  }
+                  default: {
+                    // TODO?
+                  }
+                }
+              } else if (typeof callee.object.value === 'number') {
+                switch (callee.property.name) {
+                  case 'constructor': {
+                    ASSERT(node.arguments.length === 1, 'meh just a silly hack, no full support');
+                    rule('A call to `str.constructor` on a string should be inlined');
+                    example('123..constructor("500")', 'Number("500")');
+                    before(node, body[i]);
+
+                    node.callee = AST.identifier('Number');
+
+                    after(node, body[i]);
+                    assertNoDupeNodes(AST.blockStatement(body), 'body');
+                    return true;
+                  }
+                  default: {
+                    // TODO?
+                  }
+                }
               }
             }
           }
@@ -2232,6 +2285,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         // The object must be simple
         // If computed, the property must be simple. Check this first because in that case, the object must be cached too.
 
+        // (!!) Note: this visitor is not walked for the callee of a method call (!!) It might break.
+
         if (node.optional) {
           // `x = a?.b` -> `let x = a; if (x != null) x = x.b; else x = undefined;`
           // TODO: if the chain starts with null or undefined, the rest of the chain can be dropped
@@ -2321,6 +2376,41 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 }
               }
             }
+          }
+
+          // Properties on primitives
+          if (!node.computed && node.type === 'Literal') {
+            if (node.value instanceof RegExp) {
+              if (node.property.name === 'constructor') {
+                // Found this in jsf*ck code... So why not.
+                rule('`regex.constructor should resolve to RegExp');
+                example('/foo/.constructor("bar")', 'RegExp("bar")');
+                before(node, body[i]);
+
+                const finalNode = AST.unaryExpression('-', AST.identifier('Infinity'));
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(body[i]);
+                return true;
+              }
+            } else if (typeof node.value === 'boolean') {
+              if (node.property.name === 'constructor') {
+                // Found this in jsf*ck code... So why not.
+                rule('`regex.constructor should resolve to RegExp');
+                example('/foo/.constructor("bar")', 'RegExp("bar")');
+                before(node, body[i]);
+
+                const finalNode = AST.unaryExpression('-', AST.identifier('Infinity'));
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(body[i]);
+                return true;
+              }
+            } else if (typeof node.value === 'number') {
+            }
+            // Should not need to cover `null` here. Should not need to cover string here.
           }
 
           if (

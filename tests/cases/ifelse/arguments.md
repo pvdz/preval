@@ -80,8 +80,7 @@ const f = function () {
     return undefined;
   }
 };
-const obj = { f: f, foo: 10 };
-const tmpCalleeParam = obj.f();
+const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 

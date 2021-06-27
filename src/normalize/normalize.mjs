@@ -36,7 +36,7 @@ import * as AST from '../ast.mjs';
 import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
 import { createFreshVar, findBoundNamesInVarDeclaration, findBoundNamesInUnnormalizedVarDeclaration } from '../bindings.mjs';
 import globals from '../globals.mjs';
-import { cloneFunctionNode } from '../utils/serialize_func.mjs';
+import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
 
 // pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
 
@@ -345,7 +345,7 @@ const BUILTIN_COERCE_FIRST_TO_NUMBER_MEMBER = new Set([
   'Math.trunc',
 ]);
 
-export function phaseNormalize(fdata, fname) {
+export function phaseNormalize(fdata, fname, { allowEval = true }) {
   let changed = false; // Was the AST updated? We assume that updates can not be circular and repeat until nothing changes.
   let somethingChanged = false; // Did phase2 change anything at all?
 
@@ -1417,6 +1417,49 @@ export function phaseNormalize(fdata, fname) {
           } else {
             const firstArgNode = args[0];
             switch (callee.name) {
+              case 'Function': {
+                // The "easier" eval
+                // If we can determine all the args then I think we can construct a new global function and that's just it
+                // However, doing so may introduce new implicit globals and naming collisions that need to be resolved.
+
+                // This is dangerous since we renamed many variables, possibly already eliminated some of them, and the
+                // eval would want to try and reference them as they were in the original input. So we can certainly
+                // try this, but there's a very good chance it will just fail hard.
+                if (allowEval) {
+                  if (args.every((anode) => AST.isPrimitive(anode))) {
+                    // TODO: we could try to find the original point of this call and replace the arg but I'm sure there are plenty of cases where this is not feasible (like conditionals etc)
+                    vlog('This call to `Function` has primitive args so we should be able to resolve it...');
+                    rule('Call to `Function` with primitive args can be resolved (although there is no guarantee it will work)');
+                    example('const x = Function("return 10;"', 'const x = function(){ return 10; };');
+                    before(node, body[i]);
+
+                    const finalNode = createNormalizedFunctionFromString(
+                      'function anon(' +
+                        args
+                          .slice(0, -1)
+                          .map((anode) => String(AST.getPrimitiveValue(anode)))
+                          .join(',') +
+                        ') { ' +
+                        AST.getPrimitiveValue(args[args.length - 1]) +
+                        '}',
+                      undefined,
+                      fdata,
+                    );
+
+                    vlog('Cloned func:');
+                    source(finalNode);
+
+                    vlog('Replacing call with fresh function');
+                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                    body[i] = finalParent;
+
+                    after(body[i]);
+                    assertNoDupeNodes(AST.blockStatement(body), 'body');
+                    return true;
+                  }
+                }
+                break;
+              }
               case 'isNaN': {
                 if (args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isNaN` on a primitive should resolve');

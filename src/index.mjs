@@ -19,7 +19,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   setVerboseTracing(!!verbose && verboseTracing !== false);
 
   {
-    const { logDir, logPasses, maxPass, cloneLimit, ...rest } = options;
+    const { logDir, logPasses, maxPass, cloneLimit, allowEval, ...rest } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error('Preval: Unsupported options received:', rest);
   }
 
@@ -88,7 +88,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
     const fdata = parseCode(preCode, nextFname);
     prepareNormalization(fdata, resolve, req, false); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-    phaseNormalize(fdata, nextFname);
+    phaseNormalize(fdata, nextFname, { allowEval: options.allowEval });
 
     mod.children = new Set(fdata.imports.values());
     mod.fdata = fdata;
@@ -227,7 +227,6 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         const fdata = phase0(inputCode, fname);
         let firstAfterParse = true;
         do {
-
           // Slow; serialize and parse to verify each cycle
           //parseCode(tmat(fdata.tenkoOutput.ast, true), fname);
 
@@ -259,7 +258,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           const fdata = parseCode(inputCode, fname);
           prepareNormalization(fdata, resolve, req, false); // I want a phase1 because I want the scope tracking set up for normalizing bindings
-          phaseNormalize(fdata, fname);
+          phaseNormalize(fdata, fname, { allowEval: options.allowEval });
 
           inputCode = tmat(fdata.tenkoOutput.ast, true);
 

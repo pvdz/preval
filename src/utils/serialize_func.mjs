@@ -20,6 +20,9 @@ import {
 import * as AST from '../ast.mjs';
 import { phase0 } from '../reduce_static/phase0.mjs';
 import { uniqify_idents } from './uniqify_idents.mjs';
+import { parseCode } from '../normalize/parse.mjs';
+import { prepareNormalization } from '../normalize/prepare.mjs';
+import { phaseNormalOnce } from '../normalize/normal_once.mjs';
 
 // - Receive a function declaration AST node
 // - Serialize it to a string
@@ -79,7 +82,13 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
           0,
           AST.variableDeclaration(
             paramDecl.$p.paramVarDeclRef.name,
-            type === 'I' ? AST.identifier(paramValue) : type === 'N' ? AST.nul() : type === 'S' ? AST.templateLiteral(paramValue) : AST.literal(paramValue),
+            type === 'I'
+              ? AST.identifier(paramValue)
+              : type === 'N'
+              ? AST.nul()
+              : type === 'S'
+              ? AST.templateLiteral(paramValue)
+              : AST.literal(paramValue),
             'let',
           ),
         );
@@ -128,6 +137,48 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
   log('## End of function cloning', funcNode.id?.name, '\n\n');
 
   return ast.body[0];
+}
+
+export function createNormalizedFunctionFromString(funcString, clonedName = 'noname', fdata) {
+  log('Size of function string:', funcString.length);
+
+  const preFdata = parseCode(funcString, '');
+  prepareNormalization(preFdata, /*resolve*/ undefined, /*req*/ undefined, true); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+  source(preFdata.tenkoOutput.ast);
+  phaseNormalOnce(preFdata);
+
+  vlog('Now processing...');
+
+  // Note: This AST should contain one element in Program: the function declaration
+  //       which means we can ignore certain edge cases for scope tracking like imports/exports
+  // TODO: still need to worry about new implicit globals
+  const ast = preFdata.tenkoOutput.ast;
+  source(ast);
+
+  const clonedFunc = ast.body[0].declarations[0].init;
+  ASSERT(
+    clonedFunc.type === 'FunctionExpression' || clonedFunc.type === 'ArrowFunctionExpression',
+    'expecting to be cloning a func expr or arrow',
+    clonedFunc,
+    clonedFunc.type,
+  );
+
+  clonedFunc.id = null;
+
+  log('  - uniqify_idents');
+  uniqify_idents(clonedFunc, fdata);
+
+  if (clonedName) clonedFunc.id = AST.identifier(clonedName);
+
+  log('  - printing?');
+  vlog('\nCloned function:\n--------------\n' + fmat(tmat(clonedFunc)) + '\n--------------\n');
+
+  if (clonedName) clonedFunc.id = null;
+
+  groupEnd();
+  log('## End of function cloning', clonedName, '\n\n');
+
+  return ast.body[0].declarations[0].init;
 }
 
 // TODO: fix labels

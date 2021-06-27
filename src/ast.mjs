@@ -646,11 +646,13 @@ export function templateLiteral(cookedStrings, expressions) {
     );
   }
 
+  ASSERT(expressions.length + 1 === cookedStrings.length, 'a template has one more quasi than it has expressions');
+
   return {
     type: 'TemplateLiteral',
     expressions,
     quasis: cookedStrings.map((str, si) => {
-      return templateElement(str.replace(/([\\`])/g, '\\$1'), si === cookedStrings.length - 1, str);
+      return templateElement(str.replace(/([\\`$])/g, '\\$1'), si === cookedStrings.length - 1, str);
     }),
     $p: $p(),
   };

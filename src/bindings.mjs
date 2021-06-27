@@ -1,4 +1,4 @@
-import { IMPLICIT_GLOBAL_PREFIX, VERBOSE_TRACING, BLUE, RESET } from './constants.mjs';
+import { IMPLICIT_GLOBAL_PREFIX, BUILTIN_ARRAY_PROTOTYPE, VERBOSE_TRACING, BLUE, RESET } from './constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source } from './utils.mjs';
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
@@ -434,6 +434,8 @@ export function registerGlobalIdent(
       // number. If type is a number range, these are its bounds
       rangeStart: -Infinity,
       rangeEnd: Infinity,
+
+      builtinTag: '', // string. When builtin, this string represents a unique id for the built-in resource (like `Number.parseInt` or `Array#slice`). There's a lot to implement here, sigh.
 
       oneBitAnded: undefined, // number. If set, this value is the result of applying the bitwise AND operator and this single bit value to an arbitrary value. In other words, either this bit is set or unset on this value.
       anded: undefined, // number. If set, this value is the result of bitwise AND an arbitrary value with this value
@@ -1352,6 +1354,23 @@ export function inferInitialType(fdata, typing, init, kind) {
             typing.mustBeType = 'number';
             typing.mustBeFalsy = true;
             typing.mustBeTruthy = false;
+            break;
+          }
+
+          case BUILTIN_ARRAY_PROTOTYPE+'.flat': {
+            typing.builtinTag = 'Array#flat';
+            typing.mustBeType = 'function';
+            typing.mustBeFalsy = false;
+            typing.mustBeTruthy = true;
+            typing.isPrimitive = false;
+            break;
+          }
+          case BUILTIN_ARRAY_PROTOTYPE+'.concat': {
+            typing.builtinTag = 'Array#concat';
+            typing.mustBeType = 'function';
+            typing.mustBeFalsy = false;
+            typing.mustBeTruthy = true;
+            typing.isPrimitive = false;
             break;
           }
         }

@@ -19,6 +19,7 @@ export const IMPLICIT_GLOBAL_PREFIX = '$prevalImplicit$';
 
 export const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globals
 export const BUILTIN_FUNC_CALL_NAME = '$dotCall'; // syntactic clue that this was an actual method call before, not arbitrary .call method
+export const BUILTIN_ARRAY_PROTOTYPE = '$ArrayPrototype';
 
 export const FRESH = true;
 export const OLD = false;

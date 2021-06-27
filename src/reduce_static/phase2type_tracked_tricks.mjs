@@ -563,6 +563,23 @@ function _typeTrackedTricks(fdata) {
                     return;
                   }
                 }
+
+                switch (meta.typing.builtinTag) {
+                  case 'Array#flat': {
+                    // This is a one-of example which serves to unravel the jsf*ck code (which uses Array#flat)
+                    rule('Doing `+` on a builtin function always returns a string; Array#flat');
+                    example('f(Array.prototype.flat + "x")', 'f("function flat() { [native code] }x")');
+                    before(node, parentNode);
+
+                    const finalNode = AST.primitive('function flat() { [native code] }');
+                    if (pl) node.right = finalNode;
+                    else node.left = finalNode;
+
+                    after(node, parentNode);
+                    ++changes;
+                    return;
+                  }
+                }
               }
             }
 

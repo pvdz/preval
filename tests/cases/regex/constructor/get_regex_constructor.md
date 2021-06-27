@@ -38,9 +38,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const x = /foo/;
-const c = x.constructor;
-const y = c(`x`, `g`);
+const y = /x/g;
 $(y);
 `````
 

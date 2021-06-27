@@ -1987,43 +1987,59 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           if (ASSUME_BUILTINS) {
             if (!callee.computed && callee.object.type === 'Identifier') {
               const objName = callee.object.name;
+              const propName = callee.property.name;
 
-              if (objName === 'Math') {
-                if (args.every((n) => AST.isPrimitive(n))) {
-                  vlog(
-                    'This is a math prop with primitive values. Inline the constant expression but beware of rounding/representation errors.',
-                  );
-                  const propName = callee.property.name;
-                  switch (propName) {
-                    case 'pow': {
-                      // TODO: there are many combinations of arguments we can "safely" inline here.
-                      // For now, I think if the result is a finite number or a non-number then we should be fine to inline
-                      const arg1 = AST.getPrimitiveValue(node['arguments'][0]);
-                      const arg2 = AST.getPrimitiveValue(node['arguments'][1]);
-                      const result = Math.pow(arg1, arg2);
-                      vlog('Arg1:', [arg1], ', arg2:', [arg2], ', result:', [result]);
-                      if ((typeof result !== 'number' || Number.isInteger(result) || isNaN(result)) && result <= Number.MAX_SAFE_INTEGER) {
-                        rule('Inline Math.pow with primitive args');
-                        example('Math.pow(2, 4)', '16');
-                        before(node, parentNode);
+              switch (objName + '.' + propName) {
+                case 'Math.pow': {
+                  if (AST.isPrimitive(args[0]) && AST.isPrimitive(args[1])) {
+                    // TODO: there are many combinations of arguments we can "safely" inline here.
+                    // For now, I think if the result is a finite number or a non-number then we should be fine to inline
+                    const arg1 = AST.getPrimitiveValue(args[0]);
+                    const arg2 = AST.getPrimitiveValue(args[1]);
+                    const result = Math.pow(arg1, arg2);
+                    vlog('Arg1:', [arg1], ', arg2:', [arg2], ', result:', [result]);
 
-                        const finalNode = AST.primitive(result);
-                        const finalParent = wrapExpressionAs(
-                          wrapKind,
-                          varInitAssignKind,
-                          varInitAssignId,
-                          wrapLhs,
-                          varOrAssignKind,
-                          finalNode,
-                        );
-                        body.splice(i, 1, finalParent);
+                    // Note: `Number.MAX_SAFE_INTEGER + 1 === Number.MAX_SAFE_INTEGER + 2`
+                    //       > Number.MAX_SAFE_INTEGER+1
+                    //         9007199254740992
+                    //       > Number.MAX_SAFE_INTEGER+2
+                    //         9007199254740992
+                    //       > Number.MAX_SAFE_INTEGER+3
+                    //         9007199254740994
+                    //       > Math.pow(2,53) < (Math.pow(2,53) - 1)
+                    //         false
+                    // The relevant edge case here is `Math.pow(2,53)-1`
+                    // I'm pretty sure you can't get to 9007199254740993 (not representable) with Math.pow so we should be good
+                    // on relying on checking the +1 instead for this particular case...
+                    // Ultimately I think source code that contains a number that can be represented in source without
+                    // any precision loss (meaning, no 1.2342e10 kind of representation) is equal to the Math.pow() version.
+                    // Since we can't do `===` (and not even `Object.is` saves us here) we need to serialize the string and
+                    // confirm that the value serializes to digits. No dots or e/E.
+                    if (
+                      isNaN(result) ||
+                      typeof result !== 'number' ||
+                      (Number.isInteger(result) /* && result <= (Number.MAX_SAFE_INTEGER+1)*/ && /^\d+$/.test(String(result)))
+                    ) {
+                      rule('Inline Math.pow with primitive args');
+                      example('Math.pow(2, 4)', '16');
+                      before(node, parentNode);
 
-                        after(finalNode, finalParent);
-                        assertNoDupeNodes(AST.blockStatement(body), 'body');
-                        return true;
-                      }
-                      break;
+                      const finalNode = AST.primitive(result);
+                      const finalParent = wrapExpressionAs(
+                        wrapKind,
+                        varInitAssignKind,
+                        varInitAssignId,
+                        wrapLhs,
+                        varOrAssignKind,
+                        finalNode,
+                      );
+                      body.splice(i, 1, finalParent);
+
+                      after(finalNode, finalParent);
+                      assertNoDupeNodes(AST.blockStatement(body), 'body');
+                      return true;
                     }
+                    break;
                   }
                 }
               }

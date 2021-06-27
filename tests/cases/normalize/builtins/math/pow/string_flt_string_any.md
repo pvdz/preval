@@ -24,15 +24,14 @@ $(Math.pow(`3.7`, `foo`));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = Math.pow(`3.7`, `foo`);
+const tmpCalleeParam = NaN;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = Math.pow(`3.7`, `foo`);
-$(tmpCalleeParam);
+$(NaN);
 `````
 
 ## Globals

@@ -1,7 +1,5 @@
 // By doing some type tracking we can apply some more in depth tricks in phase 2
 
-// fix: /home/ptr/proj/preval/tests/cases/normalize/unary/inv/typeof.md
-
 import walk from '../../lib/walk.mjs';
 import {
   ASSERT,
@@ -20,6 +18,7 @@ import {
   after,
   findBodyOffset,
 } from '../utils.mjs';
+import { BUILTIN_FUNC_CALL_NAME, BUILTIN_REST_HANDLER_NAME } from '../constants.mjs';
 import * as AST from '../ast.mjs';
 
 export function typeTrackedTricks(fdata) {
@@ -42,6 +41,8 @@ function _typeTrackedTricks(fdata) {
     const parentProp = path.props[path.props.length - 1];
     const parentIndex = path.indexes[path.indexes.length - 1];
     const grandNode = path.nodes[path.nodes.length - 3];
+    const blockBody = path.blockBodies[path.blockBodies.length - 1];
+    const blockIndex = path.blockIndexes[path.blockIndexes.length - 1];
 
     switch (node.type) {
       case 'IfStatement': {
@@ -608,6 +609,96 @@ function _typeTrackedTricks(fdata) {
 
         break;
       }
+      case 'CallExpression': {
+        if (node.callee.type === 'Identifier') {
+          switch (node.callee.name) {
+            case 'eval': {
+              // Even more difficult than Function because of direct eval stuffs
+              break;
+            }
+            case 'Function': {
+              // TODO: if the arg is a string, we could generate a function from it? Dunno if that's gonna break anything :)
+              break;
+            }
+            case '$dotCall': {
+              // Resolve .call in some cases ($dotCall)
+
+              ASSERT(
+                node.arguments.length >= 2,
+                'should at least have the function to call and context, and then any number of args',
+              );
+              const [
+                funcRefNode, // This is the cached function value passed on as first arg
+                contextNode, // This is the original object that must be the context of this call (until we can determine the context is unused/eliminable)
+                ...argNodes // These are the actual args of the original call
+              ] = node.arguments;
+              if (funcRefNode.type === 'Identifier') {
+                // Let's see if we can eliminate some cases here :D
+                switch (funcRefNode.name) {
+                  case 'Function': {
+                    // Context is ignored. Replace with regular call
+                    rule('Doing .call on `Function` is moot because it ignores the context');
+                    example('Function.call(a, b, c)', 'Function(b, c)');
+                    example(BUILTIN_FUNC_CALL_NAME + '(Function, a, b, c)', 'Function(a, b, c)');
+                    before(node, grandNode);
+
+                    node.callee = funcRefNode;
+                    // Mark all args as tainted, just in case.
+                    // We should not need to taint Function and $dotCall metas for this.
+                    node.arguments.forEach((enode, i) => {
+                      if (i === 1 || i > 2) {
+                        if (enode.type === 'Identifier') {
+                          taint(enode);
+                        } else if (enode.type === 'SpreadElement') {
+                          taint(enode.argument);
+                        }
+                      }
+                    });
+                    node.arguments.splice(0, 3); // Drop `Function`, the context ref, and the prop name
+
+                    after(node);
+                    ++changes;
+                    break;
+                  }
+                  case 'RegExp': {
+                    // Context is ignored. Replace with regular call
+                    rule('Doing .call on `RegExp` is moot because it ignores the context');
+                    example('RegExp.call(a, b, c)', 'RegExp(b, c)');
+                    example(BUILTIN_FUNC_CALL_NAME + '(RegExp, a, b, c)', 'RegExp(a, b, c)');
+                    before(node, grandNode);
+
+                    node.callee = funcRefNode;
+                    // Mark all args as tainted, just in case.
+                    // We should not need to taint Function and $dotCall metas for this.
+                    node.arguments.forEach((enode, i) => {
+                      if (i === 1 || i > 2) {
+                        if (enode.type === 'Identifier') {
+                          taint(enode);
+                        } else if (enode.type === 'SpreadElement') {
+                          taint(enode.argument);
+                        }
+                      }
+                    });
+                    node.arguments.splice(0, 3); // Drop `RegExp`, the context ref, and the prop name
+
+                    after(node);
+                    ++changes;
+                    break;
+                  }
+                }
+              }
+
+              break;
+            }
+            case BUILTIN_REST_HANDLER_NAME: {
+              // Resolve object spread in some cases
+              break;
+            }
+          }
+        }
+
+        break;
+      }
     }
   }
 
@@ -617,4 +708,11 @@ function _typeTrackedTricks(fdata) {
   }
 
   log('Type tracked tricks applied: 0.');
+}
+
+function taint(node, fdata) {
+  if (node.type === 'Identifier') {
+    const meta = fdata.globallyUniqueNamingRegistry.get(node.name);
+    meta.tainted = true;
+  }
 }

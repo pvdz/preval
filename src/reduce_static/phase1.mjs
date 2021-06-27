@@ -75,7 +75,14 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       fdata.fname +
       '\n##################################\n\n\n',
   );
-  vlog('\nCurrent state (start of phase1)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  try {
+    vlog('\nCurrent state (start of phase1)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  } catch (e) {
+    vlog('printing ast failed');
+    console.dir(ast, {depth: null})
+    
+    throw e;
+  }
   vlog('\n\n\n####################################################################\n\n\n');
 
   resetUid();
@@ -576,7 +583,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           node.$p.alwaysThrow = node.body.$p.alwaysThrow;
         } else {
           vlog('Function may complete implicitly');
-          ASSERT(false, 'but it shouldnt');
+          ASSERT(false, 'Function may complete implicitly but it shouldnt');
         }
         break;
       }

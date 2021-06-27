@@ -431,6 +431,18 @@ export function literal(value, yesnull = false) {
     };
   } else if (typeof value === 'string') {
     ASSERT(false, 'string literals should be TemplateLiterals');
+  } else if (value instanceof RegExp) {
+    const raw = String(value)
+    return {
+      type: 'Literal',
+      regex: {
+        body: raw.slice(1, raw.lastIndexOf('/')),
+        flags: raw.slice(raw.lastIndexOf('/')+1),
+      },
+      value,
+      raw,
+      $p: $p(),
+    };
   } else {
     ASSERT(false, 'TODO', value);
   }

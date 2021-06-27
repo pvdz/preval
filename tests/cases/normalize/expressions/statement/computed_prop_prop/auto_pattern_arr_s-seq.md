@@ -50,8 +50,7 @@ const a = arrPatternSplat[0];
 const obj = {};
 $(10);
 $(20);
-const tmpCompProp = [1, 2];
-obj[tmpCompProp];
+obj[`1,2`];
 $(a);
 `````
 

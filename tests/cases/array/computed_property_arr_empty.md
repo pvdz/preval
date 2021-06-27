@@ -1,8 +1,8 @@
 # Preval test case
 
-# arr_computed_property_1.md
+# computed_property_arr_empty.md
 
-> Array > Arr computed property 1
+> Array > Computed property arr empty
 >
 > An array with primitives that is a computed property should be converted to a string
 
@@ -11,24 +11,24 @@
 ## Input
 
 `````js filename=intro
-const x = ['fail', 'pass'];
-$(x[[1]]);
+const x = [];
+$(x[[]]);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-const x = [`fail`, `pass`];
-$(x[[1]]);
+const x = [];
+$(x[[]]);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const x = [`fail`, `pass`];
+const x = [];
 const tmpCallCallee = $;
 const tmpCompObj = x;
-const tmpCompProp = [1];
+const tmpCompProp = [];
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -36,9 +36,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const x = [`fail`, `pass`];
-const tmpCompProp = [1];
-const tmpCalleeParam = x[tmpCompProp];
+const x = [];
+const tmpCalleeParam = x[``];
 $(tmpCalleeParam);
 `````
 
@@ -49,7 +48,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'pass'
+ - 1: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

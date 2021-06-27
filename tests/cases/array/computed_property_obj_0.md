@@ -1,8 +1,8 @@
 # Preval test case
 
-# arr_computed_property_empty.md
+# computed_property_obj_0.md
 
-> Array > Arr computed property empty
+> Array > Computed property obj 0
 >
 > An array with primitives that is a computed property should be converted to a string
 
@@ -11,24 +11,24 @@
 ## Input
 
 `````js filename=intro
-const x = {'': 'pass'};
-$(x[[]]);
+const x = {0: 'pass'};
+$(x[[0]]);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-const x = { '': `pass` };
-$(x[[]]);
+const x = { 0: `pass` };
+$(x[[0]]);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const x = { '': `pass` };
+const x = { 0: `pass` };
 const tmpCallCallee = $;
 const tmpCompObj = x;
-const tmpCompProp = [];
+const tmpCompProp = [0];
 const tmpCalleeParam = tmpCompObj[tmpCompProp];
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -36,9 +36,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const x = { '': `pass` };
-const tmpCompProp = [];
-const tmpCalleeParam = x[tmpCompProp];
+const x = { 0: `pass` };
+const tmpCalleeParam = x[`0`];
 $(tmpCalleeParam);
 `````
 

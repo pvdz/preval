@@ -1,8 +1,8 @@
 # Preval test case
 
-# arr_computed_property_0.md
+# computed_property_arr_0.md
 
-> Array > Arr computed property 0
+> Array > Computed property arr 0
 >
 > An array with primitives that is a computed property should be converted to a string
 
@@ -37,8 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const x = [`pass`];
-const tmpCompProp = [0];
-const tmpCalleeParam = x[tmpCompProp];
+const tmpCalleeParam = x[`0`];
 $(tmpCalleeParam);
 `````
 

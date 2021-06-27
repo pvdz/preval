@@ -108,6 +108,28 @@ function processAttempt(fdata) {
         const mem = read.parentNode;
 
         if (read.parentProp !== 'object') {
+          // Edge case. Solve the jsf*ck case `[][[]]` -> `undefined`
+          // Note: `({"":"pass"}[[]])` -> `"pass"` (not undefined)
+          // Note: `({0:"pass"}[[0]])` -> `"pass"` (not undefined)
+          if (read.parentProp === 'property' && read.parentNode.computed && arrNode.elements.every((enode) => AST.isPrimitive(enode))) {
+            if (arrNode.elements.length === 0) {
+              rule('The empty array literal that is used as a computed property name is the empty string');
+              example('x[[]]', 'x[""]');
+            } else {
+              rule('An array that is used as a computed property is always converted to a string');
+              example('x[[1, 2, 3]]', 'x["1,2,3"]');
+            }
+            before(read.node, read.blockBody[read.blockIndex]);
+
+            read.parentNode.property = AST.primitive(String(arrNode.elements.map((enode) => AST.getPrimitiveValue(enode))));
+
+            after(read.parentNode.property, read.blockBody[read.blockIndex]);
+            ++updated;
+            meta.tainted = true;
+            vgroupEnd();
+            return;
+          }
+
           vlog('This read is not a property access and so we consider the array to escape. We can not trust its contents to be immutable.');
           failed = true;
           return;

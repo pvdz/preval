@@ -171,9 +171,9 @@ export function before(node, parentNode, returnOnly) {
   return '';
 }
 
-export function source(node, force) {
+export function source(node, force, callCount = 0) {
   if (VERBOSE_TRACING || force) {
-    if (Array.isArray(node)) node.forEach((n) => source(n, force));
+    if (Array.isArray(node)) node.forEach((n) => source(n, force, callCount++));
     else {
       const anon = node.type?.includes('Function') && 'id' in node && node.id === null;
       if (anon) node.id = { type: 'Identifier', name: '$anon$' };
@@ -182,12 +182,17 @@ export function source(node, force) {
         code = fmat(code, force); // May fail.
       } catch {}
       if (code.includes('\n')) {
-        log(ORANGE_DIM + 'Source:' + RESET);
+        if (callCount === 0) log(ORANGE_DIM + 'Source:' + RESET);
         group();
         log(DIM + code + RESET);
         groupEnd();
       } else {
-        log(ORANGE_DIM + 'Source:' + RESET, DIM + code + RESET);
+        if (callCount === 0) {
+          // Print the Source thing only for the first line
+          log(ORANGE_DIM + 'Source:' + RESET, DIM + code + RESET);
+        } else {
+          log(DIM + code + RESET);
+        }
       }
       if (anon) node.id = null;
     }

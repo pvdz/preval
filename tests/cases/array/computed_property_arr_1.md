@@ -36,9 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const x = [`fail`, `pass`];
-const tmpCalleeParam = x[`1`];
-$(tmpCalleeParam);
+$(`pass`);
 `````
 
 ## Globals

@@ -135,6 +135,44 @@ function processAttempt(fdata) {
           return;
         }
 
+        if (read.parentNode.computed) {
+          if (AST.isPrimitive(read.parentNode.property)) {
+            let v = AST.getPrimitiveValue(read.parentNode.property);
+            if (typeof v !== 'number') {
+              if (typeof v !== 'string') v = String(v);
+              const n = parseInt(v, 10);
+              if (String(n) === v) {
+                rule('Computed index property access on an array should be a number');
+                example('const arr = []; f(arr["10"]);', 'const arr = []; f(arr[10]);');
+                before(read.parentNode, read.blockBody[read.blockIndex]);
+
+                read.parentNode.property = AST.literal(n);
+
+                before(read.parentNode, read.blockBody[read.blockIndex]);
+                ++updated;
+                vgroupEnd();
+                return;
+              }
+
+              if (v === '') {
+                // Edge case: support jsf*ck decoding by supporting `[][[]]` -> `undefined`
+                rule('Empty string property access on an array returns `undefined`');
+                example('const x = []; f(x[""]);', 'const x = []; f(undefined);');
+                before(read.parentNode, read.blockBody[read.blockIndex]);
+
+                const finalNode = AST.identifier('undefined');
+                if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
+                else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+
+                before(read.parentNode, read.blockBody[read.blockIndex]);
+                ++updated;
+                vgroupEnd();
+                return;
+              }
+            }
+          }
+        }
+
         if (read.grandNode.type === 'UnaryExpression' && read.grandProp === 'argument' && read.grandNode.operator === 'delete') {
           // `delete arr[2]`
           vlog('This "property lookup" was actually the argument to `delete`. Must keep this.');

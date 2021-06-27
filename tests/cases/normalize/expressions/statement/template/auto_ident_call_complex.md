@@ -31,8 +31,8 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
 const tmpCallCallee$1 = String;
-const tmpCallCallee$3 = $($);
-const tmpCalleeParam$1 = tmpCallCallee$3(1);
+const tmpCallComplexCallee = $($);
+const tmpCalleeParam$1 = tmpCallComplexCallee(1);
 const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
 const tmpCalleeParam = tmpBinLhs + `  after`;
@@ -44,8 +44,8 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCallCallee$3 = $($);
-const tmpCalleeParam$1 = tmpCallCallee$3(1);
+const tmpCallComplexCallee = $($);
+const tmpCalleeParam$1 = tmpCallComplexCallee(1);
 const tmpBinBothRhs = String(tmpCalleeParam$1);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);

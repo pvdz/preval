@@ -65,8 +65,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const tmpCallCallee = $($);
-  a = tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  a = tmpCallComplexCallee(1);
   $(a);
 } else {
 }
@@ -85,8 +85,8 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpClusterSSA_a = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const tmpClusterSSA_a = tmpCallComplexCallee(1);
 $(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);

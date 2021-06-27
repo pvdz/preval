@@ -29,8 +29,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $($);
-a = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+a = tmpCallComplexCallee(1);
 let tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -39,8 +39,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const a = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee(1);
 const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);

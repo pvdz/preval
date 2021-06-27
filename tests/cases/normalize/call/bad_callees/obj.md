@@ -28,8 +28,8 @@ $(`after`);
 
 `````js filename=intro
 $(`before`);
-const tmpCallCallee = { a: 1, b: 2 };
-tmpCallCallee();
+const tmpCallComplexCallee = { a: 1, b: 2 };
+tmpCallComplexCallee();
 $(`after`);
 `````
 
@@ -37,8 +37,8 @@ $(`after`);
 
 `````js filename=intro
 $(`before`);
-const tmpCallCallee = { a: 1, b: 2 };
-tmpCallCallee();
+const tmpCallComplexCallee = { a: 1, b: 2 };
+tmpCallComplexCallee();
 $(`after`);
 `````
 

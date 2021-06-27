@@ -34,8 +34,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpCallCallee$1 = $($);
-  const tmpNestedComplexRhs = tmpCallCallee$1(1);
+  const tmpCallComplexCallee = $($);
+  const tmpNestedComplexRhs = tmpCallComplexCallee(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }
@@ -52,8 +52,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
-  const tmpCallCallee$1 = $($);
-  const tmpNestedComplexRhs = tmpCallCallee$1(1);
+  const tmpCallComplexCallee = $($);
+  const tmpNestedComplexRhs = tmpCallComplexCallee(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 }

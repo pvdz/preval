@@ -49,8 +49,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  const tmpCallCallee = $($);
-  a = tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  a = tmpCallComplexCallee(1);
   $(a);
 } else {
 }
@@ -59,8 +59,8 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpClusterSSA_a = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const tmpClusterSSA_a = tmpCallComplexCallee(1);
 $(tmpClusterSSA_a);
 `````
 

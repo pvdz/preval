@@ -26,8 +26,8 @@ $(a);
 ## Normalized
 
 `````js filename=intro
-const tmpCallCallee = $($);
-let a = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+let a = tmpCallComplexCallee(1);
 export { a };
 $(a);
 `````
@@ -35,8 +35,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const a = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee(1);
 export { a };
 $(a);
 `````

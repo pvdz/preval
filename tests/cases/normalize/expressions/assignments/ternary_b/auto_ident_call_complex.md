@@ -32,8 +32,8 @@ const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpCallCallee$1 = $($);
-  const tmpNestedComplexRhs = tmpCallCallee$1(1);
+  const tmpCallComplexCallee = $($);
+  const tmpNestedComplexRhs = tmpCallComplexCallee(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {
@@ -50,8 +50,8 @@ let a = { a: 999, b: 1000 };
 let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpCallCallee$1 = $($);
-  const tmpNestedComplexRhs = tmpCallCallee$1(1);
+  const tmpCallComplexCallee = $($);
+  const tmpNestedComplexRhs = tmpCallComplexCallee(1);
   a = tmpNestedComplexRhs;
   tmpCalleeParam = tmpNestedComplexRhs;
 } else {

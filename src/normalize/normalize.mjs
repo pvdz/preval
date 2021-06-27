@@ -2174,7 +2174,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           example('a()(x, y)', 'tmp = a(), tmp(x, y)');
           before(node, parentNode);
 
-          const tmpName = createFreshVar('tmpCallCallee', fdata);
+          const tmpName = createFreshVar('tmpCallComplexCallee', fdata);
           const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
           const finalNode = AST.callExpression(tmpName, args);
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);

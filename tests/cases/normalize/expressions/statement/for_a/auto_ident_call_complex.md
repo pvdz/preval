@@ -31,8 +31,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $($);
-tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+tmpCallComplexCallee(1);
 while (true) {
   const tmpIfTest = $(0);
   if (tmpIfTest) {
@@ -46,8 +46,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+tmpCallComplexCallee(1);
 while (true) {
   const tmpIfTest = $(0);
   if (tmpIfTest) {

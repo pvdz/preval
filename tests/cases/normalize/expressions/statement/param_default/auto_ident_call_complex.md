@@ -39,8 +39,8 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $($);
-    p = tmpCallCallee(1);
+    const tmpCallComplexCallee = $($);
+    p = tmpCallComplexCallee(1);
     return undefined;
   } else {
     p = tmpParamBare;
@@ -48,17 +48,17 @@ let f = function ($$0) {
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
+const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee$1(tmpCalleeParam);
+tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+tmpCallComplexCallee(1);
 $(undefined);
 const a = { a: 999, b: 1000 };
 $(a);

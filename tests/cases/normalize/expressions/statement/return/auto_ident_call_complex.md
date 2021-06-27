@@ -36,22 +36,22 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $($);
-  const tmpReturnArg = tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  const tmpReturnArg = tmpCallComplexCallee(1);
   return tmpReturnArg;
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
+const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee$1(tmpCalleeParam);
+tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpReturnArg = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const tmpReturnArg = tmpCallComplexCallee(1);
 $(tmpReturnArg);
 const a = { a: 999, b: 1000 };
 $(a);

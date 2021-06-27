@@ -39,8 +39,8 @@ let f = function ($$0) {
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    const tmpCallCallee = $($);
-    const tmpNestedComplexRhs = tmpCallCallee(1);
+    const tmpCallComplexCallee = $($);
+    const tmpNestedComplexRhs = tmpCallComplexCallee(1);
     a = tmpNestedComplexRhs;
     p = tmpNestedComplexRhs;
     return undefined;
@@ -50,17 +50,17 @@ let f = function ($$0) {
   }
 };
 let a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = $;
+const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee$1(tmpCalleeParam);
+tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpNestedComplexRhs = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const tmpNestedComplexRhs = tmpCallComplexCallee(1);
 $(undefined);
 $(tmpNestedComplexRhs);
 `````

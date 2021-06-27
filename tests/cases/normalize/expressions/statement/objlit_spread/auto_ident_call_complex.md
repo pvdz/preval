@@ -28,8 +28,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $($);
-const tmpObjSpreadArg = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const tmpObjSpreadArg = tmpCallComplexCallee(1);
 ({ ...tmpObjSpreadArg });
 $(a);
 `````
@@ -37,8 +37,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpObjSpreadArg = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const tmpObjSpreadArg = tmpCallComplexCallee(1);
 ({ ...tmpObjSpreadArg });
 const a = { a: 999, b: 1000 };
 $(a);

@@ -30,8 +30,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpCallCallee = $($);
-  tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  tmpCallComplexCallee(1);
 } else {
   $(200);
 }
@@ -43,8 +43,8 @@ $(a);
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpCallCallee = $($);
-  tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  tmpCallComplexCallee(1);
 } else {
   $(200);
 }

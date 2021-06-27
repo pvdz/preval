@@ -28,10 +28,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $($);
-const tmpBinBothLhs = tmpCallCallee(1);
-const tmpCallCallee$1 = $($);
-const tmpBinBothRhs = tmpCallCallee$1(1);
+const tmpCallComplexCallee = $($);
+const tmpBinBothLhs = tmpCallComplexCallee(1);
+const tmpCallComplexCallee$1 = $($);
+const tmpBinBothRhs = tmpCallComplexCallee$1(1);
 tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
@@ -39,10 +39,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpBinBothLhs = tmpCallCallee(1);
-const tmpCallCallee$1 = $($);
-const tmpBinBothRhs = tmpCallCallee$1(1);
+const tmpCallComplexCallee = $($);
+const tmpBinBothLhs = tmpCallComplexCallee(1);
+const tmpCallComplexCallee$1 = $($);
+const tmpBinBothRhs = tmpCallComplexCallee$1(1);
 tmpBinBothLhs + tmpBinBothRhs;
 const a = { a: 999, b: 1000 };
 $(a);

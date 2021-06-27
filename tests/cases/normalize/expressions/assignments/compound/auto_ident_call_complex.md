@@ -30,8 +30,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = a;
-const tmpCallCallee$1 = $($);
-const tmpBinBothRhs = tmpCallCallee$1(1);
+const tmpCallComplexCallee = $($);
+const tmpBinBothRhs = tmpCallComplexCallee(1);
 a = tmpBinBothLhs * tmpBinBothRhs;
 let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
@@ -41,8 +41,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee$1 = $($);
-const tmpBinBothRhs = tmpCallCallee$1(1);
+const tmpCallComplexCallee = $($);
+const tmpBinBothRhs = tmpCallComplexCallee(1);
 const a = { a: 999, b: 1000 };
 const tmpClusterSSA_a = a * tmpBinBothRhs;
 $(tmpClusterSSA_a);

@@ -31,8 +31,8 @@ $(`before`);
 const tmpBinBothLhs = ``;
 const tmpBinBothRhs = String($);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCallCallee = tmpBinLhs + ``;
-tmpCallCallee();
+const tmpCallComplexCallee = tmpBinLhs + ``;
+tmpCallComplexCallee();
 $(`after`);
 `````
 

@@ -39,8 +39,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $($);
-const tmpSwitchValue = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const tmpSwitchValue = tmpCallComplexCallee(1);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest) {
@@ -53,8 +53,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+tmpCallComplexCallee(1);
 $(100);
 const a = { a: 999, b: 1000 };
 $(a);

@@ -51,8 +51,8 @@ let g = function () {
   return f;
 };
 const tmpCallCallee = $;
-const tmpCallCallee$1 = g();
-const tmpCalleeParam = tmpCallCallee$1();
+const tmpCallComplexCallee = g();
+const tmpCalleeParam = tmpCallComplexCallee();
 tmpCallCallee(tmpCalleeParam);
 `````
 

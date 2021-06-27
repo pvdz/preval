@@ -32,21 +32,21 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $(parseInt);
-  const y = tmpCallCallee();
+  const tmpCallComplexCallee = $(parseInt);
+  const y = tmpCallComplexCallee();
   const tmpReturnArg = $(y);
   return tmpReturnArg;
 };
-const tmpCallCallee$1 = $;
+const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee$1(tmpCalleeParam);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $(parseInt);
-const y = tmpCallCallee();
+const tmpCallComplexCallee = $(parseInt);
+const y = tmpCallComplexCallee();
 const tmpReturnArg = $(y);
 $(tmpReturnArg);
 `````

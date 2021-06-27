@@ -24,8 +24,8 @@
 
 `````js filename=intro
 $();
-const tmpCallCallee = Date;
-tmpCallCallee();
+const tmpCallComplexCallee = Date;
+tmpCallComplexCallee();
 `````
 
 ## Output

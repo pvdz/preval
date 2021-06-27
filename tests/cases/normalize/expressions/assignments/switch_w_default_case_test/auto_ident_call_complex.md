@@ -52,8 +52,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpCallCallee = $($);
-a = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+a = tmpCallComplexCallee(1);
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
@@ -84,8 +84,8 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpCallCallee = $($);
-const a = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee(1);
 const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

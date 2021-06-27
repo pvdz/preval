@@ -32,8 +32,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
-const tmpCallCallee = $($);
-a = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+a = tmpCallComplexCallee(1);
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
 $(a);
@@ -42,8 +42,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const a = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee(1);
 const obj = {};
 obj[a];
 $(a);

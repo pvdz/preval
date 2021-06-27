@@ -67,8 +67,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const tmpCallCallee = $($);
-  a = tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  a = tmpCallComplexCallee(1);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
@@ -103,8 +103,8 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const tmpCallCallee = $($);
-  a = tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  a = tmpCallComplexCallee(1);
 } else {
 }
 const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;

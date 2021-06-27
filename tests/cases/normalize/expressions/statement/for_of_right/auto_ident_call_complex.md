@@ -28,8 +28,8 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCallCallee = $($);
-const tmpForOfDeclRhs = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const tmpForOfDeclRhs = tmpCallComplexCallee(1);
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }
@@ -39,8 +39,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const tmpForOfDeclRhs = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const tmpForOfDeclRhs = tmpCallComplexCallee(1);
 let x = undefined;
 for (x of tmpForOfDeclRhs) {
 }

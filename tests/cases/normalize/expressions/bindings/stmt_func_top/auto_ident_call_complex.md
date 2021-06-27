@@ -34,21 +34,21 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpCallCallee = $($);
-  let a = tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  let a = tmpCallComplexCallee(1);
   $(a);
   return undefined;
 };
-const tmpCallCallee$1 = $;
+const tmpCallCallee = $;
 const tmpCalleeParam = f();
-tmpCallCallee$1(tmpCalleeParam);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-const a = tmpCallCallee(1);
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee(1);
 $(a);
 $(undefined);
 `````

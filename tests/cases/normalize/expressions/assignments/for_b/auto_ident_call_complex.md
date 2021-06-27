@@ -33,8 +33,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  const tmpCallCallee = $($);
-  a = tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  a = tmpCallComplexCallee(1);
   let tmpIfTest = a;
   if (tmpIfTest) {
     $(1);
@@ -50,8 +50,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 while (true) {
-  const tmpCallCallee = $($);
-  a = tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  a = tmpCallComplexCallee(1);
   if (a) {
     $(1);
   } else {

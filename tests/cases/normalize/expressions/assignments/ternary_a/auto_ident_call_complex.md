@@ -30,8 +30,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
-const tmpCallCallee$1 = $($);
-a = tmpCallCallee$1(1);
+const tmpCallComplexCallee = $($);
+a = tmpCallComplexCallee(1);
 let tmpIfTest = a;
 if (tmpIfTest) {
   tmpCalleeParam = $(100);
@@ -46,8 +46,8 @@ $(a);
 
 `````js filename=intro
 let tmpCalleeParam = undefined;
-const tmpCallCallee$1 = $($);
-const a = tmpCallCallee$1(1);
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee(1);
 if (a) {
   tmpCalleeParam = $(100);
 } else {

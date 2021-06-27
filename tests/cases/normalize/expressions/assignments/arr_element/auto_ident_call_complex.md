@@ -29,11 +29,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCallCallee$1 = $($);
-a = tmpCallCallee$1(1);
+const tmpCallComplexCallee = $($);
+a = tmpCallComplexCallee(1);
 let tmpBinBothLhs = a;
-const tmpCallCallee$3 = $($);
-a = tmpCallCallee$3(1);
+const tmpCallComplexCallee$1 = $($);
+a = tmpCallComplexCallee$1(1);
 let tmpBinBothRhs = a;
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 tmpCallCallee(tmpCalleeParam);
@@ -43,10 +43,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee$1 = $($);
-const a = tmpCallCallee$1(1);
-const tmpCallCallee$3 = $($);
-const tmpClusterSSA_a = tmpCallCallee$3(1);
+const tmpCallComplexCallee = $($);
+const a = tmpCallComplexCallee(1);
+const tmpCallComplexCallee$1 = $($);
+const tmpClusterSSA_a = tmpCallComplexCallee$1(1);
 const tmpCalleeParam = a + tmpClusterSSA_a;
 $(tmpCalleeParam);
 $(tmpClusterSSA_a);

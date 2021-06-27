@@ -43,8 +43,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpCallCallee = $($);
-    tmpIfTest = tmpCallCallee(1);
+    const tmpCallComplexCallee = $($);
+    tmpIfTest = tmpCallComplexCallee(1);
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
@@ -64,8 +64,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpDoWhileFlag) {
   } else {
-    const tmpCallCallee = $($);
-    tmpIfTest = tmpCallCallee(1);
+    const tmpCallComplexCallee = $($);
+    tmpIfTest = tmpCallComplexCallee(1);
   }
   if (tmpIfTest) {
     tmpDoWhileFlag = false;

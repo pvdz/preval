@@ -23,15 +23,15 @@ $($)(1, 2);
 ## Normalized
 
 `````js filename=intro
-const tmpCallCallee = $($);
-tmpCallCallee(1, 2);
+const tmpCallComplexCallee = $($);
+tmpCallComplexCallee(1, 2);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCallCallee = $($);
-tmpCallCallee(1, 2);
+const tmpCallComplexCallee = $($);
+tmpCallComplexCallee(1, 2);
 `````
 
 ## Globals

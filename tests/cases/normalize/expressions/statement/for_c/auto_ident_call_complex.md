@@ -35,8 +35,8 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpCallCallee = $($);
-    tmpCallCallee(1);
+    const tmpCallComplexCallee = $($);
+    tmpCallComplexCallee(1);
   } else {
     break;
   }
@@ -50,8 +50,8 @@ $(a);
 while (true) {
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpCallCallee = $($);
-    tmpCallCallee(1);
+    const tmpCallComplexCallee = $($);
+    tmpCallComplexCallee(1);
   } else {
     break;
   }

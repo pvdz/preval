@@ -32,8 +32,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCallCallee = $($);
-  tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  tmpCallComplexCallee(1);
 }
 $(a);
 `````
@@ -45,8 +45,8 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const tmpCallCallee = $($);
-  tmpCallCallee(1);
+  const tmpCallComplexCallee = $($);
+  tmpCallComplexCallee(1);
 }
 const a = { a: 999, b: 1000 };
 $(a);

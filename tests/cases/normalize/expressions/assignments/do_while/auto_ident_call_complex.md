@@ -43,8 +43,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
-    const tmpCallCallee = $($);
-    const tmpNestedComplexRhs = tmpCallCallee(1);
+    const tmpCallComplexCallee = $($);
+    const tmpNestedComplexRhs = tmpCallComplexCallee(1);
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }
@@ -67,8 +67,8 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpDoWhileFlag) {
   } else {
-    const tmpCallCallee = $($);
-    const tmpNestedComplexRhs = tmpCallCallee(1);
+    const tmpCallComplexCallee = $($);
+    const tmpNestedComplexRhs = tmpCallComplexCallee(1);
     a = tmpNestedComplexRhs;
     tmpIfTest = tmpNestedComplexRhs;
   }

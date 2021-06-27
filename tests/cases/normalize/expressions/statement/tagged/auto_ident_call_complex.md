@@ -30,8 +30,8 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = [`before `, ` after`];
-const tmpCallCallee$1 = $($);
-const tmpCalleeParam$1 = tmpCallCallee$1(1);
+const tmpCallComplexCallee = $($);
+const tmpCalleeParam$1 = tmpCallComplexCallee(1);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
@@ -41,8 +41,8 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
-const tmpCallCallee$1 = $($);
-const tmpCalleeParam$1 = tmpCallCallee$1(1);
+const tmpCallComplexCallee = $($);
+const tmpCalleeParam$1 = tmpCallComplexCallee(1);
 $(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````

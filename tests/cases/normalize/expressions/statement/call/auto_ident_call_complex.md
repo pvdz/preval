@@ -29,8 +29,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-const tmpCallCallee$1 = $($);
-const tmpCalleeParam = tmpCallCallee$1(1);
+const tmpCallComplexCallee = $($);
+const tmpCalleeParam = tmpCallComplexCallee(1);
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````
@@ -38,8 +38,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCallee$1 = $($);
-const tmpCalleeParam = tmpCallCallee$1(1);
+const tmpCallComplexCallee = $($);
+const tmpCalleeParam = tmpCallComplexCallee(1);
 $(tmpCalleeParam);
 const a = { a: 999, b: 1000 };
 $(a);

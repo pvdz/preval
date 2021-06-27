@@ -32,9 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpBinLhs = /1/;
-const tmpCalleeParam = tmpBinLhs + `xyz`;
-$(tmpCalleeParam);
+$(`/1/xyz`);
 `````
 
 ## Globals

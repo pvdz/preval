@@ -41,10 +41,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = /foo/;
+$(`/foo//foo/`);
 const tmpClusterSSA_a = /foo/;
-const tmpCalleeParam = a + tmpClusterSSA_a;
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

@@ -520,18 +520,49 @@ function _typeTrackedTricks(fdata) {
 
             if (lit && val.type === 'Identifier') {
               const meta = fdata.globallyUniqueNamingRegistry.get(val.name);
-              if (!meta.isImplicitGlobal && meta.isConstant && meta.typing.mustBeType === 'string') {
-                rule('A concat of empty string with a value known to be a string is a noop');
-                example('const foo = String(); f("" + foo);', 'const foo = String(); f(foo);');
-                before(node, parentNode);
 
-                ASSERT(['init', 'expression', 'left'].includes(parentProp), 'normalized code');
-                ASSERT(parentIndex < 0, 'normalized code');
+              if (lit) {
+                if (!meta.isImplicitGlobal && meta.isConstant && meta.typing.mustBeType === 'string') {
+                  rule('A concat of empty string with a value known to be a string is a noop');
+                  example('const foo = String(); f("" + foo);', 'const foo = String(); f(foo);');
+                  before(node, parentNode);
 
-                parentNode[parentProp] = val;
+                  ASSERT(['init', 'expression', 'left'].includes(parentProp), 'normalized code');
+                  ASSERT(parentIndex < 0, 'normalized code');
 
-                after(val, parentNode);
-                ++changes;
+                  parentNode[parentProp] = val;
+
+                  after(val, parentNode);
+                  ++changes;
+                  return;
+                }
+              }
+            }
+
+            const li = node.left.type === 'Identifier';
+            const ri = node.right.type === 'Identifier';
+            if (li || ri) {
+              vlog('Checking whether `' + node.left.name + ' + ' + node.right.name + '` can be coerced');
+              const pl = AST.isPrimitive(node.left);
+              const pr = AST.isPrimitive(node.right);
+              if (!pl || !pr) {
+                const meta = fdata.globallyUniqueNamingRegistry.get(pl ? node.right.name : node.left.name);
+
+                if (meta.typing.mustBeType === 'regex') {
+                  if (meta.typing.mustBeValue || meta.constValueRef?.node?.raw) {
+                    rule('A regex that is used with `+` becomes a string');
+                    example('/foo/ + 1', '"/foo/1"');
+                    before(node, parentNode);
+
+                    const finalNode = AST.primitive(String(meta.typing.mustBeValue || meta.constValueRef.node.raw));
+                    if (pl) node.right = finalNode;
+                    else node.left = finalNode;
+
+                    after(node, parentNode);
+                    ++changes;
+                    return;
+                  }
+                }
               }
             }
 

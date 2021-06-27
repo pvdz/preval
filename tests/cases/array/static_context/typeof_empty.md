@@ -1,8 +1,8 @@
 # Preval test case
 
-# boolean_numbers.md
+# typeof_empty.md
 
-> Array > Boolean numbers
+> Array > Static context > Typeof empty
 >
 > Calling Boolean on arrays trigger spies
 
@@ -11,29 +11,28 @@
 ## Input
 
 `````js filename=intro
-$(Boolean([1, 2, 3]));
+$(typeof [0]);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(Boolean([1, 2, 3]));
+$(typeof [0]);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCallCallee$1 = Boolean;
-const tmpCalleeParam$1 = [1, 2, 3];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpUnaryArg = [0];
+const tmpCalleeParam = typeof tmpUnaryArg;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(true);
+$(`object`);
 `````
 
 ## Globals
@@ -43,7 +42,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: true
+ - 1: 'object'
  - eval returned: undefined
 
 Pre normalization calls: Same

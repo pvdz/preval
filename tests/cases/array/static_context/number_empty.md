@@ -1,31 +1,31 @@
 # Preval test case
 
-# boolean_str_foo.md
+# number_empty.md
 
-> Array > Boolean str foo
+> Array > Static context > Number empty
 >
-> Calling Boolean on arrays trigger spies
+> Calling Number on arrays trigger spies
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(Boolean(['foo']));
+$(Number([]));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(Boolean([`foo`]));
+$(Number([]));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCallCallee$1 = Boolean;
-const tmpCalleeParam$1 = [`foo`];
+const tmpCallCallee$1 = Number;
+const tmpCalleeParam$1 = [];
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -33,7 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$(true);
+$(0);
 `````
 
 ## Globals
@@ -43,7 +43,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: true
+ - 1: 0
  - eval returned: undefined
 
 Pre normalization calls: Same

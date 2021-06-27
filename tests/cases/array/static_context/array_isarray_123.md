@@ -1,32 +1,31 @@
 # Preval test case
 
-# boolean_str_50foo.md
+# array_isarray_123.md
 
-> Array > Boolean str 50foo
+> Array > Static context > Array isarray 123
 >
-> Calling Boolean on arrays trigger spies
+> Array.isArray does not care about the contents
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(Boolean(['50foo']));
+$(Array.isArray([1,2,3]));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(Boolean([`50foo`]));
+$(Array.isArray([1, 2, 3]));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCallCallee$1 = Boolean;
-const tmpCalleeParam$1 = [`50foo`];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCalleeParam$1 = [1, 2, 3];
+const tmpCalleeParam = Array.isArray(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
 

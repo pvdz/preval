@@ -2,7 +2,7 @@
 
 # isarray_with_unknown.md
 
-> Array > Isarray with unknown
+> Array > Static context > Isarray with unknown
 >
 > Array.isArray check
 

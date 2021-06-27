@@ -1,8 +1,8 @@
 # Preval test case
 
-# boolean_number_0.md
+# boolean_0.md
 
-> Array > Boolean number 0
+> Array > Static context > Boolean 0
 >
 > Calling Boolean on arrays trigger spies
 

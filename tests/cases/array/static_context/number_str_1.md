@@ -1,37 +1,39 @@
 # Preval test case
 
-# string_empty.md
+# number_str_1.md
 
-> Array > String empty
+> Array > Static context > Number str 1
 >
-> Calling String on empty array
+> Calling Number on arrays triggers coercion
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-String([]);
+$(Number(['1']));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-String([]);
+$(Number([`1`]));
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpCallCallee = String;
-const tmpCalleeParam = [];
+const tmpCallCallee = $;
+const tmpCallCallee$1 = Number;
+const tmpCalleeParam$1 = [`1`];
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-
+$(1);
 `````
 
 ## Globals
@@ -41,6 +43,7 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: 1
  - eval returned: undefined
 
 Pre normalization calls: Same

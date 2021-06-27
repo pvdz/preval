@@ -1,23 +1,23 @@
 # Preval test case
 
-# number_str_0.md
+# number_number_0.md
 
-> Array > Number str 0
+> Array > Static context > Number number 0
 >
-> Calling Number on arrays triggers coercion
+> Calling Number on arrays trigger spies
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(Number(['0']));
+$(Number([0]));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(Number([`0`]));
+$(Number([0]));
 `````
 
 ## Normalized
@@ -25,7 +25,7 @@ $(Number([`0`]));
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpCallCallee$1 = Number;
-const tmpCalleeParam$1 = [`0`];
+const tmpCalleeParam$1 = [0];
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````

@@ -1,39 +1,38 @@
 # Preval test case
 
-# number_empty.md
+# array_isarray_empty.md
 
-> Array > Number empty
+> Array > Static context > Array isarray empty
 >
-> Calling Number on arrays trigger spies
+> Array.isArray does not care about the contents
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(Number([]));
+$(Array.isArray([]));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(Number([]));
+$(Array.isArray([]));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCallCallee$1 = Number;
 const tmpCalleeParam$1 = [];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCalleeParam = Array.isArray(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(0);
+$(true);
 `````
 
 ## Globals
@@ -43,7 +42,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 0
+ - 1: true
  - eval returned: undefined
 
 Pre normalization calls: Same

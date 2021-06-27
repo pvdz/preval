@@ -1,10 +1,10 @@
 # Preval test case
 
-# boolean_spied.md
+# number_spied.md
 
-> Array > Boolean spied
+> Array > Static context > Number spied
 >
-> Calling Boolean on arrays trigger spies
+> Calling Number on arrays trigger spies
 
 #TODO
 
@@ -15,7 +15,7 @@ const spy = {
   valueOf(){ $('x') }, 
   toString(){ $('y'); },
 };
-$(Boolean([spy, spy]));
+$(Number([spy, spy]));
 `````
 
 ## Pre Normal
@@ -31,7 +31,7 @@ const spy = {
     $(`y`);
   },
 };
-$(Boolean([spy, spy]));
+$(Number([spy, spy]));
 `````
 
 ## Normalized
@@ -50,7 +50,7 @@ const spy = {
   },
 };
 const tmpCallCallee = $;
-const tmpCallCallee$1 = Boolean;
+const tmpCallCallee$1 = Number;
 const tmpCalleeParam$1 = [spy, spy];
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
@@ -72,7 +72,7 @@ const spy = {
   },
 };
 const tmpCalleeParam$1 = [spy, spy];
-const tmpCalleeParam = Boolean(tmpCalleeParam$1);
+const tmpCalleeParam = Number(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
@@ -83,7 +83,9 @@ None
 ## Result
 
 Should call `$` with:
- - 1: true
+ - 1: 'y'
+ - 2: 'y'
+ - 3: NaN
  - eval returned: undefined
 
 Pre normalization calls: Same

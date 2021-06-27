@@ -1,8 +1,8 @@
 # Preval test case
 
-# boolean_str_0.md
+# typeof_tdz.md
 
-> Array > Boolean str 0
+> Array > Static context > Typeof tdz
 >
 > Calling Boolean on arrays trigger spies
 
@@ -11,40 +11,41 @@
 ## Input
 
 `````js filename=intro
-$(Boolean(['0']));
+$(typeof [crash_hard]);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(Boolean([`0`]));
+$(typeof [crash_hard]);
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCallCallee$1 = Boolean;
-const tmpCalleeParam$1 = [`0`];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpUnaryArg = [crash_hard];
+const tmpCalleeParam = typeof tmpUnaryArg;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(true);
+crash_hard;
+$(`object`);
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+crash_hard
 
 ## Result
 
 Should call `$` with:
- - 1: true
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

@@ -2,7 +2,7 @@
 
 # string_spy.md
 
-> Array > String spy
+> Array > Static context > String spy
 >
 > Trying to break the String([1,2,3]) trick
 

@@ -2,7 +2,7 @@
 
 # boolean_str_1.md
 
-> Array > Boolean str 1
+> Array > Static context > Boolean str 1
 >
 > Calling Boolean on arrays trigger spies
 

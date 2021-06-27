@@ -1,10 +1,10 @@
 # Preval test case
 
-# number_spied.md
+# string_spied.md
 
-> Array > Number spied
+> Array > Static context > String spied
 >
-> Calling Number on arrays trigger spies
+> Calling String on arrays trigger spies
 
 #TODO
 
@@ -15,7 +15,7 @@ const spy = {
   valueOf(){ $('x') }, 
   toString(){ $('y'); },
 };
-$(Number([spy, spy]));
+String([spy, spy]);
 `````
 
 ## Pre Normal
@@ -31,7 +31,7 @@ const spy = {
     $(`y`);
   },
 };
-$(Number([spy, spy]));
+String([spy, spy]);
 `````
 
 ## Normalized
@@ -49,10 +49,8 @@ const spy = {
     return undefined;
   },
 };
-const tmpCallCallee = $;
-const tmpCallCallee$1 = Number;
-const tmpCalleeParam$1 = [spy, spy];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee = String;
+const tmpCalleeParam = [spy, spy];
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -71,9 +69,8 @@ const spy = {
     return undefined;
   },
 };
-const tmpCalleeParam$1 = [spy, spy];
-const tmpCalleeParam = Number(tmpCalleeParam$1);
-$(tmpCalleeParam);
+const tmpCalleeParam = [spy, spy];
+String(tmpCalleeParam);
 `````
 
 ## Globals
@@ -85,7 +82,6 @@ None
 Should call `$` with:
  - 1: 'y'
  - 2: 'y'
- - 3: NaN
  - eval returned: undefined
 
 Pre normalization calls: Same

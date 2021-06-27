@@ -1,39 +1,37 @@
 # Preval test case
 
-# number_str_foo.md
+# string_empty.md
 
-> Array > Number str foo
+> Array > Static context > String empty
 >
-> Calling Number on arrays triggers coercion
+> Calling String on empty array
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(Number(['foo']));
+String([]);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(Number([`foo`]));
+String([]);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpCallCallee = $;
-const tmpCallCallee$1 = Number;
-const tmpCalleeParam$1 = [`foo`];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee = String;
+const tmpCalleeParam = [];
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(NaN);
+
 `````
 
 ## Globals
@@ -43,7 +41,6 @@ None
 ## Result
 
 Should call `$` with:
- - 1: NaN
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -1,8 +1,8 @@
 # Preval test case
 
-# boolean_1.md
+# boolean_numbers.md
 
-> Array > Boolean 1
+> Array > Static context > Boolean numbers
 >
 > Calling Boolean on arrays trigger spies
 
@@ -11,13 +11,13 @@
 ## Input
 
 `````js filename=intro
-$(Boolean([1]));
+$(Boolean([1, 2, 3]));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(Boolean([1]));
+$(Boolean([1, 2, 3]));
 `````
 
 ## Normalized
@@ -25,7 +25,7 @@ $(Boolean([1]));
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpCallCallee$1 = Boolean;
-const tmpCalleeParam$1 = [1];
+const tmpCalleeParam$1 = [1, 2, 3];
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````

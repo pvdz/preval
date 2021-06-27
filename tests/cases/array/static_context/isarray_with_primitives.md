@@ -1,39 +1,38 @@
 # Preval test case
 
-# number_numbers.md
+# isarray_with_primitives.md
 
-> Array > Number numbers
+> Array > Static context > Isarray with primitives
 >
-> Calling Number on arrays trigger spies
+> Array.isArray check
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(Number([1, 2, 3]));
+$(Array.isArray([1,2,3]));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(Number([1, 2, 3]));
+$(Array.isArray([1, 2, 3]));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCallCallee$1 = Number;
 const tmpCalleeParam$1 = [1, 2, 3];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCalleeParam = Array.isArray(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(NaN);
+$(true);
 `````
 
 ## Globals
@@ -43,7 +42,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: NaN
+ - 1: true
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -1,31 +1,31 @@
 # Preval test case
 
-# number_str_50foo.md
+# boolean_str_foo.md
 
-> Array > Number str 50foo
+> Array > Static context > Boolean str foo
 >
-> Calling Number on arrays triggers coercion
+> Calling Boolean on arrays trigger spies
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(Number(['50foo']));
+$(Boolean(['foo']));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(Number([`50foo`]));
+$(Boolean([`foo`]));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCallCallee$1 = Number;
-const tmpCalleeParam$1 = [`50foo`];
+const tmpCallCallee$1 = Boolean;
+const tmpCalleeParam$1 = [`foo`];
 const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -33,7 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$(NaN);
+$(true);
 `````
 
 ## Globals
@@ -43,7 +43,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: NaN
+ - 1: true
  - eval returned: undefined
 
 Pre normalization calls: Same

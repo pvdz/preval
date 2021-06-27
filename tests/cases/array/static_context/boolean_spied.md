@@ -1,10 +1,10 @@
 # Preval test case
 
-# string_spied.md
+# boolean_spied.md
 
-> Array > String spied
+> Array > Static context > Boolean spied
 >
-> Calling String on arrays trigger spies
+> Calling Boolean on arrays trigger spies
 
 #TODO
 
@@ -15,7 +15,7 @@ const spy = {
   valueOf(){ $('x') }, 
   toString(){ $('y'); },
 };
-String([spy, spy]);
+$(Boolean([spy, spy]));
 `````
 
 ## Pre Normal
@@ -31,7 +31,7 @@ const spy = {
     $(`y`);
   },
 };
-String([spy, spy]);
+$(Boolean([spy, spy]));
 `````
 
 ## Normalized
@@ -49,8 +49,10 @@ const spy = {
     return undefined;
   },
 };
-const tmpCallCallee = String;
-const tmpCalleeParam = [spy, spy];
+const tmpCallCallee = $;
+const tmpCallCallee$1 = Boolean;
+const tmpCalleeParam$1 = [spy, spy];
+const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -69,8 +71,9 @@ const spy = {
     return undefined;
   },
 };
-const tmpCalleeParam = [spy, spy];
-String(tmpCalleeParam);
+const tmpCalleeParam$1 = [spy, spy];
+const tmpCalleeParam = Boolean(tmpCalleeParam$1);
+$(tmpCalleeParam);
 `````
 
 ## Globals
@@ -80,8 +83,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'y'
- - 2: 'y'
+ - 1: true
  - eval returned: undefined
 
 Pre normalization calls: Same

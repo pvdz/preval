@@ -1,30 +1,30 @@
 # Preval test case
 
-# isarray_with_primitives.md
+# array_isarray_tdz.md
 
-> Array > Isarray with primitives
+> Array > Static context > Array isarray tdz
 >
-> Array.isArray check
+> Array.isArray does not care about the contents
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-$(Array.isArray([1,2,3]));
+$(Array.isArray([crash_hard]));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-$(Array.isArray([1, 2, 3]));
+$(Array.isArray([crash_hard]));
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam$1 = [1, 2, 3];
+const tmpCalleeParam$1 = [crash_hard];
 const tmpCalleeParam = Array.isArray(tmpCalleeParam$1);
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -32,18 +32,21 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$(true);
+const tmpCalleeParam$1 = [crash_hard];
+const tmpCalleeParam = Array.isArray(tmpCalleeParam$1);
+$(tmpCalleeParam);
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+crash_hard
 
 ## Result
 
 Should call `$` with:
- - 1: true
- - eval returned: undefined
+ - eval returned: ('<crash[ <ref> is not defined ]>')
 
 Pre normalization calls: Same
 

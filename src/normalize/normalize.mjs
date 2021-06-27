@@ -1409,6 +1409,10 @@ export function phaseNormalize(fdata, fname) {
                 }
                 break;
               }
+              case 'Function': {
+                // TODO. Are args coerced? I think the call itself is not observable otherwise.
+                break;
+              }
             }
           } else {
             const firstArgNode = args[0];
@@ -2123,6 +2127,9 @@ export function phaseNormalize(fdata, fname) {
 
         if (ASSUME_BUILTINS) {
           // "foo".length -> 3
+          // "foo"["2"] -> "foo"[2]
+          // "foo"[2] -> "o"
+
           if (AST.isStringLiteral(node.object, true)) {
             if (node.computed) {
               // "foo"[0]
@@ -4605,6 +4612,7 @@ export function phaseNormalize(fdata, fname) {
           example('[...a(), ...b];', 'const tmp = a(); [...tmp]; [...b];');
           before(node, parentNode);
 
+          vlog('Replacing the spreads...');
           const newNodes = [];
           node.elements.forEach((enode) => {
             if (!enode) return;
@@ -4629,9 +4637,14 @@ export function phaseNormalize(fdata, fname) {
             const newNode = AST.expressionStatement(enode);
             newNodes.push(newNode);
           });
+          vlog('done replacing the spreads');
           body.splice(i, 1, ...newNodes);
+          vlog('and done with the body');
 
           after(newNodes, parentNode);
+          after(newNodes);
+          after(parentNode);
+          vlog('okayyyyy');
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
@@ -5237,13 +5250,18 @@ export function phaseNormalize(fdata, fname) {
           body[i] = AST.emptyStatement();
 
           after(AST.emptyStatement(), parentNode);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 
+        vlog('Walking the', node.expressions.length, 'expressions of the template...');
         let newNode = node;
         for (let i = newNode.expressions.length - 1; i >= 0; --i) {
           const expr = newNode.expressions[i];
           if (AST.isPrimitive(expr)) {
+            vlog('- Inlining primitive at', i);
+            // Drop the expression that represents the primitive
+            // Squash the value of the quasi at the same position of the expression, with the primitive and its next expression sibling
             const val = AST.getPrimitiveValue(expr);
             newNode.expressions.splice(i, 1);
             newNode.quasis[i].value.cooked += val + newNode.quasis[i + 1].value.cooked;
@@ -5267,13 +5285,15 @@ export function phaseNormalize(fdata, fname) {
 
         if (node !== newNode) {
           rule('A template with primitive expressions must resolve statically');
-          example('`a${1}b`, `a1b`');
+          example('`a${1}b`', '`a1b`');
+
           before(node, body[i]);
 
           const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, newNode);
           body[i] = finalParent;
 
           after(newNode, body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
 

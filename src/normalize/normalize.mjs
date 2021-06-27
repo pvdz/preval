@@ -2044,6 +2044,44 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 }
               }
             }
+
+            if (!callee.computed && AST.isStringLiteral(callee.object, true)) {
+              // Method call on a string
+              switch (callee.property.name) {
+                // jsf*ck hacks tbh. This needs to be excavated for all the builtin methods. Quite a task here.
+                // (These are correct, just not complete in case of args)
+                case 'fontcolor': {
+                  ASSERT(node.arguments.length === 0, 'meh just a silly hack, no full support');
+                  rule('A call to `fontcolor` on a string should be inlined');
+                  example('"blue".fontcolor()', '\'<font color="undefined">blue</font>\'');
+                  before(node, parentNode);
+
+                  const s = AST.getStringValue(callee.object, true);
+                  const finalNode = AST.primitive('<font color="undefined">' + s + '</font>');
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, finalParent);
+
+                  after(finalNode, finalParent);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                case 'italics': {
+                  ASSERT(node.arguments.length === 0, 'meh just a silly hack, no full support');
+                  rule('A call to `italics` on a string should be inlined');
+                  example('"blue".italics()', '"<i>blue</i>"');
+                  before(node, parentNode);
+
+                  const s = AST.getStringValue(callee.object, true);
+                  const finalNode = AST.primitive('<i>' + s + '</i>');
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, finalParent);
+
+                  after(finalNode, finalParent);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+              }
+            }
           }
 
           // Simple member expression is atomic callee. Can't break down further since the object can change the context.

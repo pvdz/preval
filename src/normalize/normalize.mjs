@@ -2246,6 +2246,24 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }
+
+              if (AST.isPrimitive(node.property)) {
+                let v = AST.getPrimitiveValue(node.property);
+                ASSERT(typeof v !== 'number');
+                if (typeof v !== 'string') v = String(v);
+                const n = parseInt(v, 10);
+                if (String(n) === v) {
+                  rule('Computed index property access on a string should be a number');
+                  example('f("hello"["3"]);', 'f("hello"[3]);');
+                  before(node, parentNode);
+
+                  node.property = AST.primitive(n);
+
+                  after(node, parentNode);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+              }
             } else {
               ASSERT(node.property.type === 'Identifier');
               switch (node.property.name) {

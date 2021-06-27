@@ -33,7 +33,7 @@ switch (1) {
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       b = { $: $ };
-      a = new (1, 2, $(b))[$(`$`)](1);
+      a = new (1, 2, $(b))[$(`\$`)](1);
       $(a);
     }
   }
@@ -56,7 +56,7 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   b = { $: $ };
   const tmpCompObj = $(b);
-  const tmpCompProp = $(`$`);
+  const tmpCompProp = $(`\$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
   a = new tmpNewCallee(1);
   $(a);
@@ -69,7 +69,7 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpClusterSSA_b = { $: $ };
 const tmpCompObj = $(tmpClusterSSA_b);
-const tmpCompProp = $(`$`);
+const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 const tmpClusterSSA_a = new tmpNewCallee(1);
 $(tmpClusterSSA_a);

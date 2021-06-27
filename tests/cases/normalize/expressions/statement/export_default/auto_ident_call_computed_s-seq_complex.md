@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpAnonDefaultExport = (1, 2, b)[$(`$`)](1);
+const tmpAnonDefaultExport = (1, 2, b)[$(`\$`)](1);
 export { tmpAnonDefaultExport as default };
 $(a);
 `````
@@ -34,7 +34,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 const tmpAnonDefaultExport = tmpCallCompObj[tmpCallCompProp](1);
 export { tmpAnonDefaultExport as default };
 $(a);
@@ -45,7 +45,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 const tmpAnonDefaultExport = b[tmpCallCompProp](1);
 export { tmpAnonDefaultExport as default };
 $(a);

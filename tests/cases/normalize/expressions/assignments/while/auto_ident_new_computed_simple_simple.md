@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-while ((a = new b[`$`](1))) $(100);
+while ((a = new b[`\$`](1))) $(100);
 $(a);
 `````
 

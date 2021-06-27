@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$(100) || (1, 2, b)[$(`$`)](1);
+$(100) || (1, 2, b)[$(`\$`)](1);
 $(a);
 `````
 
@@ -36,7 +36,7 @@ const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   const tmpCallCompObj = b;
-  const tmpCallCompProp = $(`$`);
+  const tmpCallCompProp = $(`\$`);
   tmpCallCompObj[tmpCallCompProp](1);
 }
 $(a);
@@ -48,7 +48,7 @@ $(a);
 const tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
-  const tmpCallCompProp = $(`$`);
+  const tmpCallCompProp = $(`\$`);
   const b = { $: $ };
   b[tmpCallCompProp](1);
 }

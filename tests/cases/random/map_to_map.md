@@ -42,7 +42,7 @@ $(
         [`console`, `global.console`],
         [`false`, `boolean`],
         [`null`, `null`],
-        [`$`, `$`],
+        [`\$`, `\$`],
       ]).keys(),
       `module`,
     ].map(($$0) => {
@@ -50,7 +50,7 @@ $(
       debugger;
       return [k, k];
     }),
-  ).get(`$`),
+  ).get(`\$`),
 );
 `````
 
@@ -65,7 +65,7 @@ const tmpArrElement$1 = [`clearTimeout`, `global.clearTimeout`];
 const tmpArrElement$3 = [`console`, `global.console`];
 const tmpArrElement$5 = [`false`, `boolean`];
 const tmpArrElement$7 = [`null`, `null`];
-const tmpArrElement$9 = [`$`, `$`];
+const tmpArrElement$9 = [`\$`, `\$`];
 const tmpCalleeParam$5 = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
 const tmpCallObj$3 = new tmpNewCallee$1(tmpCalleeParam$5);
 const tmpArrSpread = tmpCallObj$3.keys();
@@ -79,7 +79,7 @@ const tmpCalleeParam$3 = function ($$0) {
 };
 const tmpCalleeParam$1 = $dotCall(tmpCallVal, tmpCallObj$1, tmpCalleeParam$3);
 const tmpCallObj = new tmpNewCallee(tmpCalleeParam$1);
-const tmpCalleeParam = tmpCallObj.get(`$`);
+const tmpCalleeParam = tmpCallObj.get(`\$`);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -91,7 +91,7 @@ const tmpArrElement$1 = [`clearTimeout`, `global.clearTimeout`];
 const tmpArrElement$3 = [`console`, `global.console`];
 const tmpArrElement$5 = [`false`, `boolean`];
 const tmpArrElement$7 = [`null`, `null`];
-const tmpArrElement$9 = [`$`, `$`];
+const tmpArrElement$9 = [`\$`, `\$`];
 const tmpCalleeParam$5 = [tmpArrElement, tmpArrElement$1, tmpArrElement$3, tmpArrElement$5, tmpArrElement$7, tmpArrElement$9];
 const tmpCallObj$3 = new Map(tmpCalleeParam$5);
 const tmpArrSpread = tmpCallObj$3.keys();
@@ -105,7 +105,7 @@ const tmpCalleeParam$3 = function ($$0) {
 };
 const tmpCalleeParam$1 = $dotCall(tmpCallVal, tmpCallObj$1, tmpCalleeParam$3);
 const tmpCallObj = new Map(tmpCalleeParam$1);
-const tmpCalleeParam = tmpCallObj.get(`$`);
+const tmpCalleeParam = tmpCallObj.get(`\$`);
 $(tmpCalleeParam);
 `````
 

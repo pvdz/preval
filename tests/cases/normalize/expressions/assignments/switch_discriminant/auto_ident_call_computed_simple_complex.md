@@ -27,7 +27,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
-  const tmpSwitchValue = (a = b[$(`$`)](1));
+  const tmpSwitchValue = (a = b[$(`\$`)](1));
   let tmpSwitchCaseToStart = 0;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
@@ -44,7 +44,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpSwitchValue = a;
 let tmpSwitchCaseToStart = 0;
@@ -59,7 +59,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 const b = { $: $ };
 const a = b[tmpCallCompProp](1);
 $(100);

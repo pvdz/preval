@@ -39,7 +39,7 @@ let a = { a: 999, b: 1000 };
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      $(b)[$(`$`)](1);
+      $(b)[$(`\$`)](1);
       break tmpSwitchBreak;
     }
     if (tmpSwitchCaseToStart <= 1) {
@@ -75,7 +75,7 @@ tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     const tmpCallCompObj = $(b);
-    const tmpCallCompProp = $(`$`);
+    const tmpCallCompProp = $(`\$`);
     tmpCallCompObj[tmpCallCompProp](1);
     break tmpSwitchBreak;
   } else {
@@ -116,7 +116,7 @@ tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
     const tmpCallCompObj = $(b);
-    const tmpCallCompProp = $(`$`);
+    const tmpCallCompProp = $(`\$`);
     tmpCallCompObj[tmpCallCompProp](1);
     break tmpSwitchBreak;
   } else {

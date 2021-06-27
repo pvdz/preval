@@ -24,7 +24,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-let xyz = (1, 2, b)[$(`$`)](1);
+let xyz = (1, 2, b)[$(`\$`)](1);
 $(xyz);
 $(a);
 `````
@@ -35,7 +35,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = b;
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 let xyz = tmpCallCompObj[tmpCallCompProp](1);
 $(xyz);
 $(a);
@@ -46,7 +46,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 const xyz = b[tmpCallCompProp](1);
 $(xyz);
 $(a);

@@ -25,7 +25,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
-obj[(a = new (1, 2, b)[$(`$`)](1))];
+obj[(a = new (1, 2, b)[$(`\$`)](1))];
 $(a);
 `````
 
@@ -37,7 +37,7 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
 const tmpCompObj$1 = b;
-const tmpCompProp$1 = $(`$`);
+const tmpCompProp$1 = $(`\$`);
 const tmpNewCallee = tmpCompObj$1[tmpCompProp$1];
 a = new tmpNewCallee(1);
 let tmpCompProp = a;
@@ -50,7 +50,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const obj = {};
-const tmpCompProp$1 = $(`$`);
+const tmpCompProp$1 = $(`\$`);
 const tmpNewCallee = b[tmpCompProp$1];
 const tmpClusterSSA_a = new tmpNewCallee(1);
 obj[tmpClusterSSA_a];

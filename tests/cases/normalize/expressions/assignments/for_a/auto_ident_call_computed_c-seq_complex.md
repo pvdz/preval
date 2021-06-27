@@ -24,7 +24,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
-  a = (1, 2, $(b))[$(`$`)](1);
+  a = (1, 2, $(b))[$(`\$`)](1);
   while (true) {
     $(1);
   }
@@ -38,7 +38,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 while (true) {
   $(1);
@@ -51,7 +51,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 while (true) {
   $(1);

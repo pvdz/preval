@@ -59,7 +59,7 @@ $(a, x, y);
 `````js filename=intro
 $(3);
 $(4);
-throw `Preval: Cannot access \`x$1\` before initialization`;
+throw `Preval: Cannot access \`x\$1\` before initialization`;
 `````
 
 ## Globals

@@ -1,8 +1,8 @@
 # Preval test case
 
-# regression2.md
+# two_objects_one_scope2.md
 
-> Object literal > Static prop lookups > Regression2
+> Object literal > Static prop lookups > Two objects one scope2
 >
 > Trying to catch a problem
 

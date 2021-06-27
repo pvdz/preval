@@ -33,7 +33,7 @@ let a = { a: 999, b: 1000 };
 {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 1;
-  if (new (1, 2, b)[$(`$`)](1) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if (new (1, 2, b)[$(`\$`)](1) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else if (2 === tmpSwitchValue) tmpSwitchCaseToStart = 2;
   else;
   tmpSwitchBreak: {
@@ -59,7 +59,7 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCompObj = b;
-const tmpCompProp = $(`$`);
+const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 const tmpBinLhs = new tmpNewCallee(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -99,7 +99,7 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpCompProp = $(`$`);
+const tmpCompProp = $(`\$`);
 const tmpNewCallee = b[tmpCompProp];
 const tmpBinLhs = new tmpNewCallee(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;

@@ -38,7 +38,7 @@ let a = { a: 999, b: 1000 };
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a = new ($(b)[`$`])(1);
+      a = new ($(b)[`\$`])(1);
     }
     if (tmpSwitchCaseToStart <= 1) {
       $(`fail1`);

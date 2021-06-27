@@ -26,7 +26,7 @@ $(a);
 `````js filename=intro
 let f = function () {
   debugger;
-  return (1, 2, b)[$(`$`)](1);
+  return (1, 2, b)[$(`\$`)](1);
 };
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
@@ -40,7 +40,7 @@ $(a);
 let f = function () {
   debugger;
   const tmpCallCompObj = b;
-  const tmpCallCompProp = $(`$`);
+  const tmpCallCompProp = $(`\$`);
   const tmpReturnArg = tmpCallCompObj[tmpCallCompProp](1);
   return tmpReturnArg;
 };
@@ -57,7 +57,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 const tmpReturnArg = b[tmpCallCompProp](1);
 $(tmpReturnArg);
 $(a);

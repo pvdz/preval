@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-for (let x of new ($(b)[`$`])(1));
+for (let x of new ($(b)[`\$`])(1));
 $(a);
 `````
 

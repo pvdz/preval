@@ -82,7 +82,7 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(`outer`);
-  throw `Preval: Cannot access \`x$1\` before initialization`;
+  throw `Preval: Cannot access \`x\$1\` before initialization`;
 } else {
 }
 `````

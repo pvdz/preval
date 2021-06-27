@@ -60,7 +60,7 @@ x();
 ## Output
 
 `````js filename=intro
-throw `Preval: Cannot access \`x$1\` before initialization`;
+throw `Preval: Cannot access \`x\$1\` before initialization`;
 `````
 
 ## Globals

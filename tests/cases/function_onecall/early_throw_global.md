@@ -32,7 +32,7 @@ let f = function () {
   if ($) {
     $(1);
   } else {
-    throw `$ should be defined`;
+    throw `\$ should be defined`;
   }
   return $(`ok`);
 };
@@ -49,7 +49,7 @@ let f = function () {
     const tmpReturnArg = $(`ok`);
     return tmpReturnArg;
   } else {
-    throw `$ should be defined`;
+    throw `\$ should be defined`;
   }
 };
 const tmpCallCallee = $;
@@ -65,7 +65,7 @@ if ($) {
   const tmpReturnArg = $(`ok`);
   $(tmpReturnArg);
 } else {
-  throw `$ should be defined`;
+  throw `\$ should be defined`;
 }
 `````
 

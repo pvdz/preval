@@ -25,7 +25,7 @@ $(q);
 
 `````js filename=intro
 const obj = { $: $ };
-const str = `$`;
+const str = `\$`;
 const f = function () {
   debugger;
   const r = obj[str](1);
@@ -39,7 +39,7 @@ $(q);
 
 `````js filename=intro
 const obj = { $: $ };
-const str = `$`;
+const str = `\$`;
 const f = function () {
   debugger;
   const r = obj[str](1);

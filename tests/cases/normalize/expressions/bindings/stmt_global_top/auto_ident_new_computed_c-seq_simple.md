@@ -21,7 +21,7 @@ $(a);
 
 `````js filename=intro
 let b = { $: $ };
-let a = new (1, 2, $(b))[`$`](1);
+let a = new (1, 2, $(b))[`\$`](1);
 $(a);
 `````
 

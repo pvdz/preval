@@ -25,7 +25,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
-obj[(a = $(b)?.[$(`$`)]?.($(1)))];
+obj[(a = $(b)?.[$(`\$`)]?.($(1)))];
 $(a);
 `````
 
@@ -41,7 +41,7 @@ const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = $(`$`);
+  const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
@@ -70,7 +70,7 @@ const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainRootComputed = $(`$`);
+  const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {

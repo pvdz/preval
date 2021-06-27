@@ -31,7 +31,7 @@ const f = function ($$0, $$1) {
   return r;
 };
 const obj = { $: $ };
-const q = f(obj, `$`);
+const q = f(obj, `\$`);
 $(q);
 `````
 
@@ -46,7 +46,7 @@ const f = function ($$0, $$1) {
   return r;
 };
 const obj = { $: $ };
-const q = f(obj, `$`);
+const q = f(obj, `\$`);
 $(q);
 `````
 

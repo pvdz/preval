@@ -28,7 +28,7 @@ let a = { a: 999, b: 1000 };
 {
   const tmpSwitchValue = $(1);
   let tmpSwitchCaseToStart = 1;
-  if ((a = (1, 2, $(b))[$(`$`)](1)) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
+  if ((a = (1, 2, $(b))[$(`\$`)](1)) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
@@ -46,7 +46,7 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpBinLhs = a;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
@@ -64,7 +64,7 @@ $(a);
 $(1);
 const b = { $: $ };
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 $(tmpClusterSSA_a);
 `````

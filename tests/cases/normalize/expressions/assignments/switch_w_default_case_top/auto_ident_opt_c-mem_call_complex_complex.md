@@ -38,7 +38,7 @@ let a = { a: 999, b: 1000 };
   else;
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
-      a = $(b)?.[$(`$`)]?.($(1));
+      a = $(b)?.[$(`\$`)]?.($(1));
     }
     if (tmpSwitchCaseToStart <= 1) {
       $(`fail1`);
@@ -76,7 +76,7 @@ if (tmpIfTest$3) {
   const tmpChainElementCall = tmpChainRootCall(b);
   const tmpIfTest$5 = tmpChainElementCall != null;
   if (tmpIfTest$5) {
-    const tmpChainRootComputed = $(`$`);
+    const tmpChainRootComputed = $(`\$`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$7 = tmpChainElementObject != null;
     if (tmpIfTest$7) {
@@ -130,7 +130,7 @@ if (tmpIfTest$3) {
   const tmpIfTest$5 = tmpChainElementCall == null;
   if (tmpIfTest$5) {
   } else {
-    const tmpChainRootComputed = $(`$`);
+    const tmpChainRootComputed = $(`\$`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     const tmpIfTest$7 = tmpChainElementObject == null;
     if (tmpIfTest$7) {

@@ -69,7 +69,7 @@ arguments
 
 Should call `$` with:
  - 1: 1
- - 2: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"' }
+ - 2: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"', 3: '[]' }
  - eval returned: undefined
 
 Pre normalization calls: Same

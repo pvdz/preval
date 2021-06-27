@@ -47,7 +47,7 @@ let obje = undefined;
 let tmp = function (...$$0) {
   let a$1 = $$0;
   debugger;
-  $([`$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1]);
+  $([`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1]);
   return a$1[0];
 };
 obja = {
@@ -192,7 +192,7 @@ let tmp = function (...$$0) {
   let a$1 = $$0;
   debugger;
   const tmpCallCallee = $;
-  const tmpCalleeParam = [`$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];
+  const tmpCalleeParam = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];
   tmpCallCallee(tmpCalleeParam);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
@@ -346,7 +346,7 @@ tmp(obja, objb, objc, objd, obje);
 const tmp = function (...$$0) {
   const a$1 = $$0;
   debugger;
-  const tmpCalleeParam = [`$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];
+  const tmpCalleeParam = [`\$:`, a$1, b, c, d, e, obja, objb, objc, objd, obje, `::`, ...a$1];
   $(tmpCalleeParam);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;

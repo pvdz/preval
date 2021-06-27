@@ -40,7 +40,7 @@ let a = { a: 999, b: 1000 };
   tmpSwitchBreak: {
     if (tmpSwitchCaseToStart <= 0) {
       {
-        a = b[$(`$`)](1);
+        a = b[$(`\$`)](1);
       }
     }
     if (tmpSwitchCaseToStart <= 1) {
@@ -75,7 +75,7 @@ if (tmpIfTest) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpCallCompObj = b;
-  const tmpCallCompProp = $(`$`);
+  const tmpCallCompProp = $(`\$`);
   a = tmpCallCompObj[tmpCallCompProp](1);
 } else {
 }
@@ -111,7 +111,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  const tmpCallCompProp = $(`$`);
+  const tmpCallCompProp = $(`\$`);
   const b = { $: $ };
   a = b[tmpCallCompProp](1);
 } else {

@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$($(100) || (a = new ($(b)[$(`$`)])(1)));
+$($(100) || (a = new ($(b)[$(`\$`)])(1)));
 $(a);
 `````
 
@@ -37,7 +37,7 @@ let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
 } else {
   const tmpCompObj = $(b);
-  const tmpCompProp = $(`$`);
+  const tmpCompProp = $(`\$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
   const tmpNestedComplexRhs = new tmpNewCallee(1);
   a = tmpNestedComplexRhs;
@@ -56,7 +56,7 @@ if (tmpCalleeParam) {
 } else {
   const b = { $: $ };
   const tmpCompObj = $(b);
-  const tmpCompProp = $(`$`);
+  const tmpCompProp = $(`\$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
   const tmpNestedComplexRhs = new tmpNewCallee(1);
   a = tmpNestedComplexRhs;

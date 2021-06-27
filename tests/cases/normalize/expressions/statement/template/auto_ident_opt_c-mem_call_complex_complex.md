@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-$(`before  ` + String($(b)?.[$(`$`)]?.($(1))) + `  after`);
+$(`before  ` + String($(b)?.[$(`\$`)]?.($(1))) + `  after`);
 $(a);
 `````
 
@@ -40,7 +40,7 @@ const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
 const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainRootComputed = $(`$`);
+  const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
@@ -71,7 +71,7 @@ const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
 } else {
-  const tmpChainRootComputed = $(`$`);
+  const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {

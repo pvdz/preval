@@ -25,7 +25,7 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let obj = {};
-obj[(a = $(b)[$(`$`)](1))];
+obj[(a = $(b)[$(`\$`)](1))];
 $(a);
 `````
 
@@ -37,7 +37,7 @@ let a = { a: 999, b: 1000 };
 let obj = {};
 const tmpCompObj = obj;
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 a = tmpCallCompObj[tmpCallCompProp](1);
 let tmpCompProp = a;
 tmpCompObj[tmpCompProp];
@@ -50,7 +50,7 @@ $(a);
 const b = { $: $ };
 const obj = {};
 const tmpCallCompObj = $(b);
-const tmpCallCompProp = $(`$`);
+const tmpCallCompProp = $(`\$`);
 const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 obj[tmpClusterSSA_a];
 $(tmpClusterSSA_a);

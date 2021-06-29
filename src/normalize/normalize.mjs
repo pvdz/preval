@@ -1072,6 +1072,86 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           } else {
+            vlog('Expression statement that is only an identifier that is an implicit global. Checking if it happens to be used in the next statement');
+            let usedNext = false;
+            const next = body[i+1];
+            switch (next?.type) {
+              case 'ExpressionStatement': {
+                if (next.expression.type === 'Identifier') {
+                  usedNext = next.expression.name === node.name;
+                  break;
+                }
+                if (next.expression.type === 'UnaryExpression') {
+                  usedNext = next.expression.argument.type === 'Identifier' && next.expression.argument.name === node.name;
+                  break;
+                }
+                if (next.expression.type === 'BinaryExpression') {
+                  usedNext = next.expression.left.type === 'Identifier' && next.expression.left.name === node.name;
+                  break;
+                }
+                if (next.expression.type === 'CallExpression' || next.expression.type === 'NewExpression') {
+                  usedNext = next.expression.callee.type === 'Identifier' && next.expression.callee.name === node.name;
+                  break;
+                }
+                if (next.expression.type === 'AssignmentExpression') {
+                  if (next.expression.right.type === 'Identifier') {
+                    usedNext = next.expression.right.name === node.name;
+                    break;
+                  }
+                  if (next.expression.right.type === 'UnaryExpression') {
+                    usedNext = next.expression.right.argument.type === 'Identifier' && next.expression.right.argument.name === node.name;
+                    break;
+                  }
+                  if (next.expression.right.type === 'BinaryExpression') {
+                    usedNext = next.expression.right.left.type === 'Identifier' && next.expression.right.left.name === node.name;
+                    break;
+                  }
+                  if (next.expression.right.type === 'CallExpression' || next.expression.right.type === 'NewExpression') {
+                    usedNext = next.expression.right.callee.type === 'Identifier' && next.expression.right.callee.name === node.name;
+                    break;
+                  }
+                }
+                break;
+
+              }
+              case 'IfStatement':
+              case 'WhileStatement': {
+                usedNext = next.test.type === 'Identifier' && next.test.name === node.name;
+                break;
+              }
+              case 'VariableDeclaration': {
+                if (next.declarations[0].init.type === 'Identifier') {
+                  usedNext = next.declarations[0].init.name === node.name;
+                  break;
+                }
+                if (next.declarations[0].init.type === 'UnaryExpression') {
+                  usedNext = next.declarations[0].init.argument.type === 'Identifier' && next.declarations[0].init.argument.name === node.name;
+                  break;
+                }
+                if (next.declarations[0].init.type === 'BinaryExpression') {
+                  usedNext = next.declarations[0].init.left.type === 'Identifier' && next.declarations[0].init.left.name === node.name;
+                  break;
+                }
+                if (next.declarations[0].init.type === 'CallExpression' || next.declarations[0].init.type === 'NewExpression') {
+                  usedNext = next.declarations[0].init.callee.type === 'Identifier' && next.declarations[0].init.callee.name === node.name;
+                  break;
+                }
+              }
+            }
+
+            if (usedNext) {
+              rule('A statement that is an ident that is an implicit global can be eliminated if the same ident is evaluated first in the next statement as well');
+              example('x; x();', 'x();');
+              before(node, parentNode);
+
+              body[i] = AST.emptyStatement();
+
+              after(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+
+
             // The idea is that we don't want to eliminate an implicit global that might trigger a runtime exception
             vlog('Not eliminating this identifier statement because it is an implicit global');
           }

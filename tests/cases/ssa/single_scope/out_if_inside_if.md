@@ -50,7 +50,6 @@ if (dedupeMe) {
 ## Output
 
 `````js filename=intro
-tmpUnaryArg$83;
 if (tmpUnaryArg$83) {
   const c = props$15.children;
   const tmpClusterSSA_dedupeMe = c == null;

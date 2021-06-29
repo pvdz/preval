@@ -155,8 +155,6 @@ x ** 0;
 x ** 0;
 x ** 0;
 x ** 0;
-x;
-x;
 const tmpArrElement$33 = x & 0;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;

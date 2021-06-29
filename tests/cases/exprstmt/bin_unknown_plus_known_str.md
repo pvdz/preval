@@ -27,7 +27,7 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-const x = `` * $;
+const x = 0 * $;
 x + $;
 $(x);
 `````
@@ -36,7 +36,7 @@ $(x);
 
 `````js filename=intro
 $ + 0;
-const x = `` * $;
+const x = 0 * $;
 $(x);
 `````
 

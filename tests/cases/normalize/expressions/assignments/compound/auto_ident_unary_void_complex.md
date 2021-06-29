@@ -43,9 +43,9 @@ $(a);
 `````js filename=intro
 $(100);
 const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * undefined;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+a ** 0;
+$(NaN);
+$(NaN);
 `````
 
 ## Globals

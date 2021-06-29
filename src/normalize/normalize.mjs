@@ -3744,44 +3744,177 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           }
         }
 
-        if (['&', '|', '^'].includes(node.operator)) {
-          if (lp) {
-            const pv = AST.getPrimitiveValue(node.left);
-            const pvn = 0 | pv;
-            if (pv !== pvn) {
-              // This means the primitive will coerce to a simpler value (int) with the bitwise operator
-              // The coercion happens regardless of the other operand so we should apply that immediately.
-              rule(
-                'An operand to bitwise operators (`&`, `|`, `^`) will unconditionally coerce a primitive operand that is not a 32bit int',
-              );
-              example('x | "200.50"', 'x | 200');
-              before(node, body[i]);
+        if (lp || rp) {
+          if (['&', '|', '^', '<<', '>>', '>>>'].includes(node.operator)) {
+            // The bitwise operands are all coerced to 32bit ints regardless
+            if (lp) {
+              const pv = AST.getPrimitiveValue(node.left);
+              const pvn = 0 | pv;
+              if (pv !== pvn) {
+                // This means the primitive will coerce to a simpler value (int) with the bitwise operator
+                // The coercion happens regardless of the other operand so we should apply that immediately.
+                rule(
+                  'An operand to bitwise operators (`&`, `|`, `^`) will unconditionally coerce a primitive operand that is not a 32bit int',
+                );
+                example('x | "200.50"', 'x | 200');
+                before(node, body[i]);
 
-              node.left = AST.primitive(pvn);
+                node.left = AST.primitive(pvn);
 
-              after(node, body[i]);
-              return true;
+                after(node, body[i]);
+                return true;
+              }
             }
-          } else if (rp) {
-            const pv = AST.getPrimitiveValue(node.right);
-            const pvn = 0 | pv;
-            if (pv !== pvn) {
-              // This means the primitive will coerce to a simpler value (int) with the bitwise operator
-              // The coercion happens regardless of the other operand so we should apply that immediately.
-              rule(
-                'An operand to bitwise operators (`&`, `|`, `^`) will unconditionally coerce a primitive operand that is not a 32bit int',
-              );
-              example('"200.50" | x', '200 | x');
-              before(node, body[i]);
+            if (rp) {
+              const pv = AST.getPrimitiveValue(node.right);
+              const pvn = 0 | pv;
+              if (pv !== pvn) {
+                // This means the primitive will coerce to a simpler value (int) with the bitwise operator
+                // The coercion happens regardless of the other operand so we should apply that immediately.
+                rule(
+                  'An operand to bitwise operators (`&`, `|`, `^`) will unconditionally coerce a primitive operand that is not a 32bit int',
+                );
+                example('"200.50" | x', '200 | x');
+                before(node, body[i]);
 
-              node.right = AST.primitive(pvn);
+                node.right = AST.primitive(pvn);
 
-              after(node, body[i]);
-              return true;
+                after(node, body[i]);
+                return true;
+              }
+            }
+          } else if (['**', '*', '/', '-', '%'].includes(node.operator)) {
+            // The math ops coerce to number, but may still end up as NaN or Infinity, but not as false, undefined, or null
+            // Additionally, if an operand is NaN then so is the result. We'd need more information to cover Infinity cases.
+            if (lp) {
+              const pv = AST.getPrimitiveValue(node.left);
+              // Note: it seems that if x is a string, then isNaN(x) === isNaN(Number(x)), so the string case should be covered too
+              if (isNaN(pv)) {
+                rule('A NaN operand left to binary math operators (`*`, `/`, etc) will cause the result to be NaN');
+                example('f(x * NaN);', 'x * 1; f(NaN);');
+                before(node, body[i]);
+
+                const finalNode = AST.identifier('NaN');
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, AST.expressionStatement(AST.binaryExpression('*', node.right, AST.literal(0))), finalParent);
+
+                after(finalParent, body[i]);
+                return true;
+              } else if ([true, false, null].includes(pv) || typeof pv === 'string') {
+                const pvn = Number(pv);
+                ASSERT(!isNaN(pvn), 'we tried to check that before...', lp, pv, pvn);
+                if (pv !== pvn) {
+                  // This means the primitive will coerce to a simpler value (int) with the bitwise operator
+                  // The coercion happens regardless of the other operand so we should apply that immediately.
+                  rule(
+                    'An operand to binary math operators (`*`, `/`, etc) will unconditionally coerce any primitive operand that is not a number',
+                  );
+                  example('x * "200.50"', 'x * 200.5');
+                  before(node, body[i]);
+
+                  node.left = AST.primitive(pvn);
+
+                  after(node, body[i]);
+                  return true;
+                }
+              }
+            }
+            if (rp) {
+              const pv = AST.getPrimitiveValue(node.right);
+              // Note: it seems that if x is a string, then isNaN(x) === isNaN(Number(x)), so the string case should be covered too
+              if (isNaN(pv)) {
+                rule('A NaN operand left to binary math operators (`*`, `/`, etc) will cause the result to be NaN');
+                example('f(x * NaN);', 'x * 1; f(NaN);');
+                before(node, body[i]);
+
+                const finalNode = AST.identifier('NaN');
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, AST.expressionStatement(AST.binaryExpression('*', node.left, AST.literal(0))), finalParent);
+
+                after(finalParent, body[i]);
+                return true;
+              } else if ([true, false, null].includes(pv) || typeof pv === 'string') {
+                const pvn = Number(pv);
+                ASSERT(!isNaN(pvn), 'we tried to check that before...', lp, pv, pvn);
+                if (pv !== pvn) {
+                  // This means the primitive will coerce to a simpler value (int) with the bitwise operator
+                  // The coercion happens regardless of the other operand so we should apply that immediately.
+                  rule(
+                    'An operand to binary math operators (`*`, `/`, etc) will unconditionally coerce any primitive operand that is not a number',
+                  );
+                  example('x * "200.50"', 'x * 200.5');
+                  before(node, body[i]);
+
+                  node.right = AST.primitive(pvn);
+
+                  after(node, body[i]);
+                  return true;
+                }
+              }
+            }
+          } else if (['==', '!=', '===', '!==', '<', '<=', '>', '>='].includes(node.operator)) {
+            if (lp) {
+              const pv = AST.getPrimitiveValue(node.left);
+              if (Object.is(pv, NaN)) {
+                if (node.operator === '!=' || node.operator === '!==') {
+                  rule('A NaN operand left to comparison operators (`!=`, `!==`) will cause the result to be true');
+                  example('f(NaN != x);', 'x * 1; f(true);');
+                  example('f(NaN !== x);', 'x; f(true);');
+                } else {
+                  rule('A NaN operand left to comparison operators (`==`, `<=`, etc) will cause the result to be false');
+                  example('f(NaN == x);', 'x * 1; f(false);');
+                  // Note! === and !== are the only two that don't coerce, but must still leave the other side for TDZ reasons
+                  example('f(NaN === x);', 'x; f(false);');
+                }
+                before(node, body[i]);
+
+                const finalNode = node.operator === '!=' || node.operator === '!==' ? AST.tru() : AST.fals();
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(
+                  i,
+                  1,
+                  node.operator === '===' || node.operator === '!=='
+                    ? AST.expressionStatement(node.right)
+                    : AST.expressionStatement(AST.binaryExpression('*', node.right, AST.literal(0))),
+                  finalParent,
+                );
+
+                after(finalParent, body[i]);
+                return true;
+              }
+            }
+            if (rp) {
+              const pv = AST.getPrimitiveValue(node.right);
+              if (Object.is(pv, NaN)) {
+                if (node.operator === '!=' || node.operator === '!==') {
+                  rule('A NaN operand right to comparison operators (`!=`, `!==`) will cause the result to be true');
+                  example('f(NaN != x);', 'x * 1; f(true);');
+                  example('f(NaN !== x);', 'x; f(true);');
+                } else {
+                  rule('A NaN operand right to comparison operators (`==`, `<=`, etc) will cause the result to be false');
+                  example('f(x == NaN);', 'x * 1; f(false);');
+                  // Note! === and !== are the only two that don't coerce, but must still leave the other side for TDZ reasons
+                  example('f(x === NaN);', 'x; f(false);');
+                }
+                before(node, body[i]);
+
+                const finalNode = node.operator === '!=' || node.operator === '!==' ? AST.tru() : AST.fals();
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(
+                  i,
+                  1,
+                  node.operator === '===' || node.operator === '!=='
+                    ? AST.expressionStatement(node.left)
+                    : AST.expressionStatement(AST.binaryExpression('*', node.left, AST.literal(0))),
+                  finalParent,
+                );
+
+                after(finalParent, body[i]);
+                return true;
+              }
             }
           }
         }
-
         return false;
       }
 

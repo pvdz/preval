@@ -27,7 +27,8 @@ while (((x = x * `str`), (x = x * 8), (x = x), (x = x * x), (x = x.x), x?.x(x)))
 `````js filename=intro
 let x = 1;
 while (true) {
-  x = x * `str`;
+  x * 0;
+  x = NaN;
   x = x * 8;
   x = x * x;
   x = x.x;
@@ -52,10 +53,8 @@ while (true) {
 `````js filename=intro
 let x = 1;
 while (true) {
-  x = x * `str`;
-  x = x * 8;
-  x = x * x;
-  x = x.x;
+  x ** 0;
+  x = NaN.x;
   let tmpIfTest = undefined;
   const tmpChainRootProp = x;
   const tmpIfTest$1 = tmpChainRootProp == null;

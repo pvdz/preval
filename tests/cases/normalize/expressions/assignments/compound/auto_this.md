@@ -31,7 +31,8 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
-a = a * undefined;
+a * 0;
+a = NaN;
 let tmpCalleeParam = a;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -41,9 +42,9 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * undefined;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+a ** 0;
+$(NaN);
+$(NaN);
 `````
 
 ## Globals

@@ -23,7 +23,7 @@ $(0xffffffffffffffffff);
 $(327698);
 $(327698);
 $(295147905179352830000);
-$(0xffffffffffffffffff);
+$(4.722366482869645e21);
 `````
 
 ## Normalized
@@ -32,7 +32,7 @@ $(0xffffffffffffffffff);
 $(327698);
 $(327698);
 $(295147905179352830000);
-$(0xffffffffffffffffff);
+$(4.722366482869645e21);
 `````
 
 ## Output
@@ -41,7 +41,7 @@ $(0xffffffffffffffffff);
 $(327698);
 $(327698);
 $(295147905179352830000);
-$(0xffffffffffffffffff);
+$(4.722366482869645e21);
 `````
 
 ## Globals

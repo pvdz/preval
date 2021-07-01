@@ -1072,9 +1072,11 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             assertNoDupeNodes(AST.blockStatement(body), 'body');
             return true;
           } else {
-            vlog('Expression statement that is only an identifier that is an implicit global. Checking if it happens to be used in the next statement');
+            vlog(
+              'Expression statement that is only an identifier that is an implicit global. Checking if it happens to be used in the next statement',
+            );
             let usedNext = false;
-            const next = body[i+1];
+            const next = body[i + 1];
             switch (next?.type) {
               case 'ExpressionStatement': {
                 if (next.expression.type === 'Identifier') {
@@ -1112,7 +1114,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   }
                 }
                 break;
-
               }
               case 'IfStatement':
               case 'WhileStatement': {
@@ -1125,7 +1126,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   break;
                 }
                 if (next.declarations[0].init.type === 'UnaryExpression') {
-                  usedNext = next.declarations[0].init.argument.type === 'Identifier' && next.declarations[0].init.argument.name === node.name;
+                  usedNext =
+                    next.declarations[0].init.argument.type === 'Identifier' && next.declarations[0].init.argument.name === node.name;
                   break;
                 }
                 if (next.declarations[0].init.type === 'BinaryExpression') {
@@ -1140,7 +1142,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             }
 
             if (usedNext) {
-              rule('A statement that is an ident that is an implicit global can be eliminated if the same ident is evaluated first in the next statement as well');
+              rule(
+                'A statement that is an ident that is an implicit global can be eliminated if the same ident is evaluated first in the next statement as well',
+              );
               example('x; x();', 'x();');
               before(node, parentNode);
 
@@ -1150,7 +1154,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               assertNoDupeNodes(AST.blockStatement(body), 'body');
               return true;
             }
-
 
             // The idea is that we don't want to eliminate an implicit global that might trigger a runtime exception
             vlog('Not eliminating this identifier statement because it is an implicit global');

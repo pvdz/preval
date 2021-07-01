@@ -25,7 +25,8 @@ $(/foo/g + `xyz`);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpBinLhs = /foo/g;
-const tmpCalleeParam = tmpBinLhs + `xyz`;
+const tmpStringConcatR = tmpBinLhs + ``;
+const tmpCalleeParam = `${tmpStringConcatR}xyz`;
 tmpCallCallee(tmpCalleeParam);
 `````
 

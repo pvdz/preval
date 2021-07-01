@@ -28,7 +28,8 @@ $(a);
 const tmpBinBothLhs = `fo`;
 const tmpBinBothRhs = `1`;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let a = tmpBinLhs + `o`;
+const tmpStringConcatR = tmpBinLhs + ``;
+let a = `${tmpStringConcatR}o`;
 $(a);
 `````
 

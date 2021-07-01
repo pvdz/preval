@@ -60,15 +60,18 @@ let a = 0;
 const obj = {
   get x() {
     debugger;
-    s = s + `read;`;
+    const tmpStringConcatR = s + ``;
+    s = `${tmpStringConcatR}read;`;
     return a;
   },
   set x($$0) {
     let v = $$0;
     debugger;
     const tmpBinBothLhs = s;
-    const tmpBinLhs = `write[` + v;
-    const tmpBinBothRhs = tmpBinLhs + `];`;
+    const tmpStringConcatL = v + ``;
+    const tmpBinLhs = `write[${tmpStringConcatL}`;
+    const tmpStringConcatR$1 = tmpBinLhs + ``;
+    const tmpBinBothRhs = `${tmpStringConcatR$1}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;
@@ -89,16 +92,14 @@ let a = 0;
 const obj = {
   get x() {
     debugger;
-    s = s + `read;`;
+    s = `${s}read;`;
     return a;
   },
   set x($$0) {
     const v = $$0;
     debugger;
-    const tmpBinBothLhs = s;
-    const tmpBinLhs = `write[` + v;
-    const tmpBinBothRhs = `${tmpBinLhs}];`;
-    s = tmpBinBothLhs + tmpBinBothRhs;
+    const tmpStringConcatL = v + ``;
+    s = `${s}write[${tmpStringConcatL}];`;
     a = a + v;
     return a;
   },

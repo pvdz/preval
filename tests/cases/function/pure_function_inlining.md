@@ -80,11 +80,14 @@ let rule = function ($$0) {
   let desc = $$0;
   debugger;
   const func = $;
-  const a = PURPLE + `Rule:`;
+  const tmpStringConcatR = PURPLE + ``;
+  const a = `${tmpStringConcatR}Rule:`;
   const b = a + RESET;
-  const c = b + ` "`;
+  const tmpStringConcatR$1 = b + ``;
+  const c = `${tmpStringConcatR$1} "`;
   const d = c + desc;
-  const e = d + `"`;
+  const tmpStringConcatR$3 = d + ``;
+  const e = `${tmpStringConcatR$3}"`;
   func(e);
   return undefined;
 };
@@ -100,8 +103,8 @@ rule(`You have to listen to me`);
 const rule = function ($$0) {
   const desc = $$0;
   debugger;
-  const d = `purpleRule:reset "` + desc;
-  const e = `${d}"`;
+  const tmpStringConcatL = desc + ``;
+  const e = `purpleRule:reset "${tmpStringConcatL}"`;
   $(e);
   return undefined;
 };

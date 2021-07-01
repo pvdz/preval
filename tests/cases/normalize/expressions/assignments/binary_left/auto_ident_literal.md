@@ -41,7 +41,8 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = `foo` + tmpBinBothRhs;
+const tmpStringConcatL = tmpBinBothRhs + ``;
+const tmpCalleeParam = `foo${tmpStringConcatL}`;
 $(tmpCalleeParam);
 $(`foo`);
 `````

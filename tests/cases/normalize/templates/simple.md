@@ -29,7 +29,8 @@ const tmpCallCallee$1 = String;
 const tmpCalleeParam$1 = $(1);
 const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ` def`;
+const tmpStringConcatR = tmpBinLhs + ``;
+const tmpCalleeParam = `${tmpStringConcatR} def`;
 tmpCallCallee(tmpCalleeParam);
 `````
 

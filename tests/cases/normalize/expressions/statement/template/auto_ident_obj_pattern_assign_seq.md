@@ -49,7 +49,8 @@ y = tmpNestedAssignObjPatternRhs.y;
 tmpCalleeParam$1 = tmpNestedAssignObjPatternRhs;
 const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpStringConcatR = tmpBinLhs + ``;
+const tmpCalleeParam = `${tmpStringConcatR}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a, x, y);
 `````

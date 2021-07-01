@@ -35,7 +35,8 @@ if (a) {
 } else {
 }
 let tmpBinLhs = a;
-const tmpCalleeParam = tmpBinLhs + `after`;
+const tmpStringConcatR = tmpBinLhs + ``;
+const tmpCalleeParam = `${tmpStringConcatR}after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````

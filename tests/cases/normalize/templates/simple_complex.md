@@ -27,12 +27,14 @@ const tmpCallCallee = $;
 const tmpBinBothLhs$1 = `abc `;
 const tmpBinBothRhs$1 = `10`;
 const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothLhs = tmpBinLhs$1 + ` `;
+const tmpStringConcatR = tmpBinLhs$1 + ``;
+const tmpBinBothLhs = `${tmpStringConcatR} `;
 const tmpCallCallee$1 = String;
 const tmpCalleeParam$1 = $(20);
 const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ` def`;
+const tmpStringConcatR$1 = tmpBinLhs + ``;
+const tmpCalleeParam = `${tmpStringConcatR$1} def`;
 tmpCallCallee(tmpCalleeParam);
 `````
 

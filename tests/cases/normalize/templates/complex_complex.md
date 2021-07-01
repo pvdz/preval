@@ -29,12 +29,14 @@ const tmpCallCallee$1 = String;
 const tmpCalleeParam$1 = $(10);
 const tmpBinBothRhs$1 = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpBinBothLhs = tmpBinLhs$1 + ` `;
+const tmpStringConcatR = tmpBinLhs$1 + ``;
+const tmpBinBothLhs = `${tmpStringConcatR} `;
 const tmpCallCallee$3 = String;
 const tmpCalleeParam$3 = $(20);
 const tmpBinBothRhs = tmpCallCallee$3(tmpCalleeParam$3);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ` def`;
+const tmpStringConcatR$1 = tmpBinLhs + ``;
+const tmpCalleeParam = `${tmpStringConcatR$1} def`;
 tmpCallCallee(tmpCalleeParam);
 `````
 

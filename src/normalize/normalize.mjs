@@ -3996,6 +3996,44 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 return true;
               }
             }
+          } else if (node.operator === '+') {
+            if (lp) {
+              const pv = AST.getPrimitiveValue(node.left);
+              if (typeof pv === 'string' && pv !== '') {
+                rule('Concat with string literal left must be with empty string');
+                example('f("hello" + world);', 'const tmp = world + ""; f(`hello ${tmp}`);');
+                before(node, body[i]);
+
+                const tmpName = createFreshVar('tmpStringConcatL', fdata);
+                const varNode = AST.variableDeclaration(tmpName, AST.binaryExpression('+', node.right, AST.primitive('')), 'const');
+                const finalNode = AST.templateLiteral([pv, ''], [AST.identifier(tmpName)]);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, varNode, finalParent);
+
+                after(varNode);
+                after(finalParent);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+            } else if (rp) {
+              const pv = AST.getPrimitiveValue(node.right);
+              if (typeof pv === 'string' && pv !== '') {
+                rule('Concat with string literal right must be with empty string');
+                example('f(hello + "world");', 'const tmp = hello + ""; f(`${tmp} world`);');
+                before(node, body[i]);
+
+                const tmpName = createFreshVar('tmpStringConcatR', fdata);
+                const varNode = AST.variableDeclaration(tmpName, AST.binaryExpression('+', node.left, AST.primitive('')), 'const');
+                const finalNode = AST.templateLiteral(['', pv], [AST.identifier(tmpName)]);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, varNode, finalParent);
+
+                after(varNode);
+                after(finalParent);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+            }
           }
         }
         return false;

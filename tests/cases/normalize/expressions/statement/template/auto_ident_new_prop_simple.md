@@ -39,7 +39,8 @@ const tmpNewCallee = b.$;
 const tmpCalleeParam$1 = new tmpNewCallee(1);
 const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpStringConcatR = tmpBinLhs + ``;
+const tmpCalleeParam = `${tmpStringConcatR}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````

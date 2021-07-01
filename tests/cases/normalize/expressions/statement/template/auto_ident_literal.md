@@ -32,7 +32,8 @@ const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
 const tmpBinBothRhs = `foo`;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + `  after`;
+const tmpStringConcatR = tmpBinLhs + ``;
+const tmpCalleeParam = `${tmpStringConcatR}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
 `````

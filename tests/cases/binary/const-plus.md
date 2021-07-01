@@ -30,7 +30,8 @@ $(xyz);
 
 `````js filename=intro
 const x = `a`;
-const y = `b` + x;
+const tmpStringConcatL = x + ``;
+const y = `b${tmpStringConcatL}`;
 const z = x + y;
 const xyz = z;
 $(xyz);

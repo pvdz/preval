@@ -27,7 +27,8 @@ const tmpCallCallee = $;
 const tmpBinBothLhs = `abc `;
 const tmpBinBothRhs = `10`;
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ` def`;
+const tmpStringConcatR = tmpBinLhs + ``;
+const tmpCalleeParam = `${tmpStringConcatR} def`;
 tmpCallCallee(tmpCalleeParam);
 `````
 

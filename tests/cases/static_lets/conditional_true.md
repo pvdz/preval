@@ -60,7 +60,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 5;
+let x = 0;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   x = 10;

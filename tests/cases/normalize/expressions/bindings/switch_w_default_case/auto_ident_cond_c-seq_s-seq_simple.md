@@ -91,7 +91,7 @@ if (tmpIfTest$9) {
 ## Output
 
 `````js filename=intro
-let a = undefined;
+let a = 0;
 const tmpIfTest$5 = $(30);
 if (tmpIfTest$5) {
   a = 60;

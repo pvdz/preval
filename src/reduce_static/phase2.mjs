@@ -45,6 +45,7 @@ import { andCases } from './phase2and_cases.mjs';
 import { globalCasting } from './phase2global_casting.mjs';
 import { binExprStmt } from './phase2bin_expr_stmt.mjs';
 import { propertyLookups } from './phase2property_lookups.mjs';
+import { letIfElse } from './phase2let_if_else.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -253,6 +254,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const looked = propertyLookups(fdata);
   if (looked) return looked;
+
+  const leffed = letIfElse(fdata);
+  if (leffed) return leffed;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

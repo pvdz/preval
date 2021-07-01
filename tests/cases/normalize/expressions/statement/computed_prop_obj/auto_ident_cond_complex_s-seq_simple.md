@@ -47,7 +47,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCompObj = undefined;
+let tmpCompObj = 0;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   tmpCompObj = 60;

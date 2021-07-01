@@ -55,7 +55,7 @@ $(a, b, c);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
+let tmpCalleeParam = 0;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   b = 2;

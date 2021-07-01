@@ -81,14 +81,14 @@ const f = function ($$0, $$1) {
   const tmpParamBare = $$0;
   const tmpParamBare$1 = $$1;
   debugger;
-  let a = undefined;
+  let a = ``;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
     a = `foo`;
   } else {
     a = tmpParamBare;
   }
-  let b = undefined;
+  let b = ``;
   const tmpIfTest$1 = tmpParamBare$1 === undefined;
   if (tmpIfTest$1) {
     b = `bar`;

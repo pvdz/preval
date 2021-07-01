@@ -99,7 +99,7 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
+let tmpBinLhs = 0;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
   tmpBinLhs = 2;

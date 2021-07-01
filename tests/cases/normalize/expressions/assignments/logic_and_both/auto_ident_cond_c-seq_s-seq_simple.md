@@ -72,7 +72,7 @@ if (tmpIfTest) {
 }
 let tmpCalleeParam = a;
 if (a) {
-  let tmpNestedComplexRhs = undefined;
+  let tmpNestedComplexRhs = 0;
   const tmpIfTest$1 = $(30);
   if (tmpIfTest$1) {
     tmpNestedComplexRhs = 60;

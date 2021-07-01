@@ -44,7 +44,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpObjSpreadArg = undefined;
+let tmpObjSpreadArg = 0;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   tmpObjSpreadArg = 60;

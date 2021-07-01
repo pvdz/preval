@@ -71,7 +71,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  let y = undefined;
+  let y = true;
   if (x) {
     y = true;
   } else {

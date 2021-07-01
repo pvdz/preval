@@ -46,7 +46,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-let tmpBinBothRhs = undefined;
+let tmpBinBothRhs = 0;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   tmpBinBothRhs = 2;

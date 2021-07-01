@@ -45,7 +45,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParamSpread = undefined;
+let tmpCalleeParamSpread = 0;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   tmpCalleeParamSpread = 60;

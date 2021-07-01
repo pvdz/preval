@@ -43,7 +43,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let tmpThrowArg = undefined;
+let tmpThrowArg = 0;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   tmpThrowArg = 2;

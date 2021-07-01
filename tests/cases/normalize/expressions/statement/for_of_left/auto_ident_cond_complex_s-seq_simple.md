@@ -55,7 +55,7 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  let tmpAssignMemLhsObj = undefined;
+  let tmpAssignMemLhsObj = 0;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     tmpAssignMemLhsObj = 60;

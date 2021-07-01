@@ -53,7 +53,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let xyz = undefined;
+let xyz = 0;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   xyz = 60;

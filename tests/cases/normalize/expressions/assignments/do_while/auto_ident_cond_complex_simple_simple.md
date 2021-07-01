@@ -74,7 +74,7 @@ while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpDoWhileFlag) {
   } else {
-    let tmpNestedComplexRhs = undefined;
+    let tmpNestedComplexRhs = 0;
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
       tmpNestedComplexRhs = 2;

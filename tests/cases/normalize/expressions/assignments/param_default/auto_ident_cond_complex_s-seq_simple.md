@@ -66,7 +66,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpNestedComplexRhs = undefined;
+let tmpNestedComplexRhs = 0;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
   tmpNestedComplexRhs = 60;

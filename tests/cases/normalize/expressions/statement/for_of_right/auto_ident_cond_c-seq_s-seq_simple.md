@@ -46,7 +46,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpForOfDeclRhs = undefined;
+let tmpForOfDeclRhs = 0;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpForOfDeclRhs = 60;

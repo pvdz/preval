@@ -51,7 +51,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpCalleeParam$1 = undefined;
+let tmpCalleeParam$1 = 0;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   tmpCalleeParam$1 = 2;

@@ -54,7 +54,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpBinBothLhs = undefined;
+let tmpBinBothLhs = 0;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpBinBothLhs = 60;
@@ -62,7 +62,7 @@ if (tmpIfTest) {
   const tmpCalleeParam = $(100);
   tmpBinBothLhs = $(tmpCalleeParam);
 }
-let tmpBinBothRhs = undefined;
+let tmpBinBothRhs = 0;
 const tmpIfTest$1 = $(30);
 if (tmpIfTest$1) {
   tmpBinBothRhs = 60;

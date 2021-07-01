@@ -47,7 +47,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = undefined;
+let tmpIfTest = 0;
 const tmpIfTest$1 = $(30);
 if (tmpIfTest$1) {
   tmpIfTest = 60;

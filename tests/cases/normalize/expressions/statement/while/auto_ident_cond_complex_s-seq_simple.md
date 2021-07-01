@@ -51,7 +51,7 @@ $(a);
 
 `````js filename=intro
 while (true) {
-  let tmpIfTest = undefined;
+  let tmpIfTest = 0;
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
     tmpIfTest = 60;

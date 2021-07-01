@@ -58,7 +58,7 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-let a = undefined;
+let a = 0;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = 2;

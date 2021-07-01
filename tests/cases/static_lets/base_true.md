@@ -57,7 +57,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 5;
+let x = 0;
 $(5);
 const tmpIfTest = $(true);
 if (tmpIfTest) {

@@ -56,7 +56,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 5;
+let x = 0;
 $(5);
 if ($) {
   x = 10;

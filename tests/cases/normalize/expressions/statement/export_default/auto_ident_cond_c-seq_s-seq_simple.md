@@ -45,7 +45,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpAnonDefaultExport = undefined;
+let tmpAnonDefaultExport = 0;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   tmpAnonDefaultExport = 60;

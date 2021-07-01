@@ -65,7 +65,7 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let a = undefined;
+let a = 0;
 const tmpIfTest$3 = $(30);
 if (tmpIfTest$3) {
   a = 60;

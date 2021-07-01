@@ -43,7 +43,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = undefined;
+let x = 0;
 try {
 } finally {
   x = 10;

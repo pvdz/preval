@@ -91,7 +91,7 @@ arguments
 Should call `$` with:
  - 1: 1
  - 2: 1
- - 3: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"', 3: '[]' }
+ - 3: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"', 3: '"<$spy>"', 4: '[]' }
  - eval returned: undefined
 
 Pre normalization calls: Same

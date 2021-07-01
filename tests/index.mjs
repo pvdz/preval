@@ -271,6 +271,8 @@ function runTestCase(
 
         if (a === $) {
           return '"<$>"';
+        } else if (a === $spy) {
+          return '"<$spy>"';
         }
 
         if (Array.isArray(a)) {
@@ -282,6 +284,10 @@ function runTestCase(
         }
 
         if (a && typeof a === 'object') {
+          if (spies.has(a)) {
+            return '"<spy[' + a.id + ']>"';
+          }
+
           const clone = {};
           Object.keys(a).forEach((key) => {
             const d = Object.getOwnPropertyDescriptor(a, key);
@@ -320,10 +326,15 @@ function runTestCase(
 
         const tmp = a[0];
 
-        stack.push('[' + a.map(safeCloneString).join(', ')
-          // We normalize to return undefined so empty functions should get that too
-          .replace(/\(\) \{\}/g, '() {return undefined;}')
-          + ']');
+        stack.push(
+          '[' +
+            a
+              .map(safeCloneString)
+              .join(', ')
+              // We normalize to return undefined so empty functions should get that too
+              .replace(/\(\) \{\}/g, '() {return undefined;}') +
+            ']',
+        );
 
         return tmp;
       }
@@ -349,14 +360,40 @@ function runTestCase(
         // not a userland .call method that happens to have the same name. This way we can undo some of this "damage" safely.
         return func.call(obj, ...args);
       }
+      const spies = new Set();
+      function $spy(x) {
+        const id = spies.size + 1;
+        $('Creating spy', id);
+        const spy = {
+          id,
+          toString() {
+            if (arguments.length) $('$spy[' + id + '].toString()', x);
+            else $('$spy[' + id + '].toString()');
+            return arguments.length ? x : `spy`;
+          },
+          valueOf() {
+            if (arguments.length) $('$spy[' + id + '].valueOf()', x);
+            else $('$spy[' + id + '].valueOf()');
+            return arguments.length ? x : 12345;
+          },
+        };
+        spies.add(spy);
+        return spy;
+      }
       // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
       //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
-      const returns = new Function('$', 'objPatternRest', '$dotCall', '$ArrayPrototype', '"use strict"; ' + fdata.intro)($, objPatternRest, $dotCall, Array.prototype);
+      const returns = new Function('$', 'objPatternRest', '$dotCall', '$spy', '$ArrayPrototype', '"use strict"; ' + fdata.intro)(
+        $,
+        objPatternRest,
+        $dotCall,
+        $spy,
+        Array.prototype,
+      );
       before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
       stack.push(
         safeCloneString(returns)
-        // We normalize to return undefined so empty functions should get that too
-        .replace(/\(\) \{\}/g, '() {return undefined;}')
+          // We normalize to return undefined so empty functions should get that too
+          .replace(/\(\) \{\}/g, '() {return undefined;}'),
       );
 
       if (withOutput) {
@@ -384,7 +421,7 @@ function runTestCase(
         // We inject debugger statements into all functions
         .replace(/\n?debugger;\n?/g, '')
         // We normalize to return undefined so empty functions should get that too
-        .replace(/\(\) \{\}/g, '() {return undefined;}')
+        .replace(/\(\) \{\}/g, '() {return undefined;}');
 
       stack.push('"<crash[ ' + msg.replace(/"/g, '\\"').replace(/\n/g, '') + ' ]>"');
 

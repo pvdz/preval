@@ -60,7 +60,7 @@ arguments
 
 Should call `$` with:
  - 1: 'before [object Arguments] after'
- - 2: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"', 3: '[]' }
+ - 2: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"', 3: '"<$spy>"', 4: '[]' }
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -20,6 +20,14 @@ import {
   toMarkdownCase,
   toNormalizedResult,
 } from './utils.mjs';
+import {
+  BUILTIN_ARRAY_PROTOTYPE,
+  BUILTIN_FUNCTION_PROTOTYPE,
+  BUILTIN_NUMBER_PROTOTYPE,
+  BUILTIN_OBJECT_PROTOTYPE,
+  BUILTIN_STRING_PROTOTYPE,
+} from '../src/constants.mjs';
+import { coerce } from '../src/utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
 import { parseTestArgs } from './process-env.mjs';
 // Note: worker_threads are node 10.15. I'd make them optional if import syntax allowed this, but I'm not gonna taint the whole test suite with async for the sake of it.
@@ -238,6 +246,8 @@ function runTestCase(
     }
   }
 
+  //hoe kunnen we tests/cases/templates/nested_multi.md weer lijmen?
+
   const evalled = { $in: [], $pre: [], $norm: [], $out: [] };
   function ev(desc, fdata, stack) {
     if (!fdata) return stack.slice(0);
@@ -361,33 +371,54 @@ function runTestCase(
         return func.call(obj, ...args);
       }
       const spies = new Set();
-      function $spy(x) {
+      function $spy(str, val = str) {
         const id = spies.size + 1;
-        $('Creating spy', id);
+        const alen = arguments.length;
+        $('Creating spy', id, arguments.length, [alen === 0 ? 'spy' : str, alen === 0 ? 12345 : val]);
         const spy = {
           id,
           toString() {
-            if (arguments.length) $('$spy[' + id + '].toString()', x);
+            if (alen) $('$spy[' + id + '].toString()', str);
             else $('$spy[' + id + '].toString()');
-            return arguments.length ? x : `spy`;
+            return alen ? str : `spy`;
           },
           valueOf() {
-            if (arguments.length) $('$spy[' + id + '].valueOf()', x);
+            if (alen) $('$spy[' + id + '].valueOf()', val);
             else $('$spy[' + id + '].valueOf()');
-            return arguments.length ? x : 12345;
+            return alen ? val : 12345;
           },
         };
         spies.add(spy);
         return spy;
       }
+      function $coerce(x, to) {
+        return coerce(x, to);
+      }
       // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
       //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
-      const returns = new Function('$', 'objPatternRest', '$dotCall', '$spy', '$ArrayPrototype', '"use strict"; ' + fdata.intro)(
+      const returns = new Function(
+        '$',
+        'objPatternRest',
+        '$dotCall',
+        '$spy',
+        '$coerce',
+        BUILTIN_ARRAY_PROTOTYPE,
+        BUILTIN_FUNCTION_PROTOTYPE,
+        BUILTIN_NUMBER_PROTOTYPE,
+        BUILTIN_OBJECT_PROTOTYPE,
+        BUILTIN_STRING_PROTOTYPE,
+        '"use strict"; ' + fdata.intro,
+      )(
         $,
         objPatternRest,
         $dotCall,
         $spy,
+        $coerce,
         Array.prototype,
+        Function.prototype,
+        Number.prototype,
+        Object.prototype,
+        String.prototype,
       );
       before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
       stack.push(
@@ -435,11 +466,13 @@ function runTestCase(
     return stack.slice(0);
   }
   const SKIPPED = '"<skipped by option>"';
-  evalled.$in = mdOptions.skipEval || mdOptions.skipEvalInput ? [SKIPPED] : ev('input', fin, evalled.$in);
-  evalled.$pre = mdOptions.skipEval || mdOptions.skipEvalPre ? [SKIPPED] : ev('pre normalization', fin, evalled.$pre);
-  evalled.$norm = mdOptions.skipEval || mdOptions.skipEvalNormalized ? [SKIPPED] : ev('normalized', output?.normalized, evalled.$norm);
+  evalled.$in = CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput ? [SKIPPED] : ev('input', fin, evalled.$in);
+  evalled.$pre = CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre ? [SKIPPED] : ev('pre normalization', fin, evalled.$pre);
+  evalled.$norm =
+    CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized ? [SKIPPED] : ev('normalized', output?.normalized, evalled.$norm);
   if (!CONFIG.onlyNormalized) {
-    evalled.$out = mdOptions.skipEval || mdOptions.skipEvalOutput ? [SKIPPED] : ev('output', output?.files, evalled.$out);
+    evalled.$out =
+      CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput ? [SKIPPED] : ev('output', output?.files, evalled.$out);
   }
 
   if (withOutput) {

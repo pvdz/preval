@@ -24,15 +24,15 @@ $(Number(`foo`));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = Number(`foo`);
+const tmpStringFirstArg = `foo`;
+const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = Number(`foo`);
-$(tmpCalleeParam);
+$(NaN);
 `````
 
 ## Globals

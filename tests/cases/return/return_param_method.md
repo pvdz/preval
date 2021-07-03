@@ -72,14 +72,11 @@ const f = function () {
   return undefined;
 };
 f();
-const tmpCalleeParam = (1).toString(2);
-$(tmpCalleeParam);
+$(`1`);
 f();
-const tmpCalleeParam$1 = (2).toString(2);
-$(tmpCalleeParam$1);
+$(`10`);
 f();
-const tmpCalleeParam$3 = `three`.toString(2);
-$(tmpCalleeParam$3);
+$(`three`);
 `````
 
 ## Globals

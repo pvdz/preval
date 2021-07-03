@@ -17,7 +17,7 @@ $(`abc ${ $(1) } def`);
 ## Pre Normal
 
 `````js filename=intro
-$(`abc ` + String($(1)) + ` def`);
+$(`abc ` + $coerce($(1), `string`) + ` def`);
 `````
 
 ## Normalized
@@ -25,11 +25,10 @@ $(`abc ` + String($(1)) + ` def`);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpBinBothLhs = `abc `;
-const tmpCallCallee$1 = String;
-const tmpCalleeParam$1 = $(1);
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$1 = $(1);
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = tmpBinLhs + ``;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR} def`;
 tmpCallCallee(tmpCalleeParam);
 `````
@@ -37,8 +36,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(1);
-const tmpBinBothRhs = String(tmpCalleeParam$1);
+const tmpCallCallee$1 = $(1);
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpCalleeParam = `abc ${tmpBinBothRhs} def`;
 $(tmpCalleeParam);
 `````

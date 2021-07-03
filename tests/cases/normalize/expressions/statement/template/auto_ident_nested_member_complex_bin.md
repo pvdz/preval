@@ -29,7 +29,7 @@ let b = { x: 1 },
   d = 3,
   e = 4;
 let a = { a: 999, b: 1000 };
-$(`before  ` + String(($(b)[$(`x`)] = $(c)[$(`y`)] = d + e)) + `  after`);
+$(`before  ` + $coerce(($(b)[$(`x`)] = $(c)[$(`y`)] = d + e), `string`) + `  after`);
 $(a, b, c, d, e);
 `````
 
@@ -43,7 +43,6 @@ let e = 4;
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$1 = String;
 const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
 const varInitAssignLhsComputedObj$1 = $(c);
@@ -52,10 +51,10 @@ const varInitAssignLhsComputedRhs$1 = d + e;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-const tmpCalleeParam$1 = varInitAssignLhsComputedRhs;
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$1 = varInitAssignLhsComputedRhs;
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = tmpBinLhs + ``;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a, b, c, d, e);

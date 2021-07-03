@@ -23,9 +23,8 @@ String([]);
 ## Normalized
 
 `````js filename=intro
-const tmpCallCallee = String;
-const tmpCalleeParam = [];
-tmpCallCallee(tmpCalleeParam);
+const tmpStringFirstArg = [];
+$coerce(tmpStringFirstArg, `string`);
 `````
 
 ## Output

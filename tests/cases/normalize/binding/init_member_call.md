@@ -25,15 +25,14 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-let x = `foo`.toString();
+let x = `foo`;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = `foo`.toString();
-$(x);
+$(`foo`);
 `````
 
 ## Globals

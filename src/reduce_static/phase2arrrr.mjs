@@ -22,6 +22,7 @@ import {
   after,
   fmat,
   tmat,
+  coerce,
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
@@ -290,6 +291,7 @@ function processAttempt(fdata, queue) {
           return;
         }
 
+        const args = read.parentNode.arguments;
         let callee;
         if (read.parentNode.callee.type === 'Identifier') {
           callee = read.parentNode.callee.name;
@@ -308,50 +310,34 @@ function processAttempt(fdata, queue) {
         }
 
         switch (callee) {
-          case 'String': {
+          case 'String':
+          case 'Number': {
+            ASSERT(false, 'string an number constructors should be replaced by $coerce during normalization');
+            break;
+          }
+          case '$coerce': {
             if (
               arrNode.elements.every((enode) => {
                 ASSERT(!enode || enode.type !== 'SpreadElement', 'asserted above');
                 return !enode || AST.isPrimitive(enode);
               })
             ) {
-              rule('An array literal with primitives that is an arg of String can be resolved');
-              example('const x = [1, 2, 3]; f(String(x));', 'const x = [1, 2, 3]; f("1,2,3");');
+              // Note: due to how array serialization works, if the first arg would parse to a number, so does the array
+              // Note: this will still trigger spies on all elements, regardless of the outcome
+              // `Number([{valueOf(){ console.log('x') }, toString(){ console.log('y'); }}])` -> prints y
+
+              rule('An array literal with primitives that is an arg of $coerce can be resolved');
+              example('const x = [1, 2, 3]; f($coerce(x, "string"));', 'const x = [1, 2, 3]; f("1,2,3");');
+              example('const x = [1, 2, 3]; f($coerce(x, "number"));', 'const x = [1, 2, 3]; f(NaN);');
+              example('const x = [1]; f($coerce(x, "number"));', 'const x = [1, 2, 3]; f(1);');
               before(read.node, read.blockBody[read.blockIndex]);
 
-              // Note: we put `undefined` in the position of holes. This is the same for String()
+              const kind = AST.getPrimitiveValue(args[1]);
+              // Note: we put `undefined` in the position of holes. This is the same for String() / Number()
               const v = arrNode.elements.map((enode) => (enode ? AST.getPrimitiveValue(enode) : undefined));
-              const vn = String(v);
+              const vn = coerce(v, kind);
               const finalNode = AST.primitive(vn);
-              if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
-              else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
-              after(finalNode, read.blockBody[read.blockIndex]);
-              meta.tainted = true;
-              ++updated;
-              return;
-            }
-            break;
-          }
-          case 'Number': {
-            // Note: due to how array serialization works, if the first arg would parse to a number, so does the array
-            // Note: this will still trigger spies on all elements, regardless of the outcome
-            // `Number([{valueOf(){ console.log('x') }, toString(){ console.log('y'); }}])` -> prints y
-            if (
-              arrNode.elements.every((enode) => {
-                ASSERT(!enode || enode.type !== 'SpreadElement', 'asserted above');
-                return AST.isPrimitive(enode);
-              })
-            ) {
-              rule('An array literal with primitives that is an arg of Number can be resolved');
-              example('const x = [1, 2, 3]; f(Number(x));', 'const x = [1, 2, 3]; f(NaN);');
-              example('const x = [1]; f(Number(x));', 'const x = [1, 2, 3]; f(1);');
-              before(read.node, read.blockBody[read.blockIndex]);
-
-              // Holes are ignored here
-              const v = arrNode.elements.map((enode) => (enode ? AST.getPrimitiveValue(enode) : undefined));
-              const vn = Number(v);
-              const finalNode = AST.primitive(vn);
               if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
               else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 

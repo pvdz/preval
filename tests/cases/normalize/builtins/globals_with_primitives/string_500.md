@@ -24,7 +24,8 @@ $(String(500));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = `500`;
+const tmpStringFirstArg = 500;
+const tmpCalleeParam = $coerce(tmpStringFirstArg, `string`);
 tmpCallCallee(tmpCalleeParam);
 `````
 

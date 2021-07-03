@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-$(`before  ` + String(b?.x) + `  after`);
+$(`before  ` + $coerce(b?.x, `string`) + `  after`);
 $(a);
 `````
 
@@ -34,18 +34,17 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$1 = String;
-let tmpCalleeParam$1 = undefined;
+let tmpCallCallee$1 = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpCalleeParam$1 = tmpChainElementObject;
+  tmpCallCallee$1 = tmpChainElementObject;
 } else {
 }
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = tmpBinLhs + ``;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -56,14 +55,14 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpCalleeParam$1 = undefined;
+let tmpCallCallee$1 = undefined;
 const tmpIfTest = b == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.x;
-  tmpCalleeParam$1 = tmpChainElementObject;
+  tmpCallCallee$1 = tmpChainElementObject;
 }
-const tmpBinBothRhs = String(tmpCalleeParam$1);
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);

@@ -290,3 +290,57 @@ export function findBodyOffsetExpensive(body) {
   if (r >= 0) return r;
   ASSERT(false, 'findBodyOffset; the debugger statement should appear exactly once');
 }
+
+export function toPrimitive(x, prefer) {
+  ASSERT(prefer === 'string' || prefer === 'number', 'hint not optional and enum');
+  // This should implement the spec ToPrimitive logic. Including Symbol.toPrimitive check.
+  // https://tc39.es/ecma262/#sec-toprimitive
+
+  if (!x) return x; // undefined, null, false
+  if (typeof x === 'number' || typeof x === 'string' || x === true) return x;
+
+  // Must be objecty type now
+  const stp = x[Symbol.toPrimitive];
+  if (stp != null) {
+    // If the value is not nullish then it must be callable or JS will throw an error. So we assume this too.
+    const v = stp.call(x, prefer ? 'string' : 'number');
+    if (!v || typeof v === 'number' || typeof v === 'string' || v === true) return v;
+  } else if (prefer === 'number') {
+    // Try to do what JS does. Rely on the caller to know the difference between binary `+` and unary `+`, for example (hint).
+    const ts = x.toString;
+    if (typeof ts === 'function') {
+      const v = ts.call(x);
+      if (!v || typeof v === 'number' || typeof v === 'string' || v === true) return v;
+    }
+    const vo = x.valueOf;
+    if (typeof vo === 'function') {
+      const v = vo.call(x);
+      if (!v || typeof v === 'number' || typeof v === 'string' || v === true) return v;
+    }
+  } else if (prefer === 'string') {
+    const vo = x.valueOf;
+    if (typeof vo === 'function') {
+      const v = vo.call(x);
+      if (!v || typeof v === 'number' || typeof v === 'string' || v === true) return v;
+    }
+    const ts = x.toString;
+    if (typeof ts === 'function') {
+      const v = ts.call(x);
+      if (!v || typeof v === 'number' || typeof v === 'string' || v === true) return v;
+    }
+  } else {
+    throw new Error('missing preference');
+  }
+  throw new Error('Preval: value was not coercible');
+}
+export function coerce(v, kind) {
+  if (kind === 'string') {
+    return String(v);
+  } else if (kind === 'plustr') {
+    return '' + v; // This is neither `String(v)` nor `String(Number(v))`. This is `String(ToPrimitive(v))`
+  } else if (kind === 'number') {
+    return Number(v);
+  } else {
+    ASSERT(false);
+  }
+}

@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(`before  ` + String($($(0)) || ($($(1)) && $($(2)))) + `  after`);
+$(`before  ` + $coerce($($(0)) || ($($(1)) && $($(2))), `string`) + `  after`);
 $(a);
 `````
 
@@ -30,25 +30,24 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$1 = String;
 const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = $(0);
-let tmpCalleeParam$1 = tmpCallCallee$3(tmpCalleeParam$3);
-if (tmpCalleeParam$1) {
+const tmpCalleeParam$1 = $(0);
+let tmpCallCallee$1 = tmpCallCallee$3(tmpCalleeParam$1);
+if (tmpCallCallee$1) {
 } else {
   const tmpCallCallee$5 = $;
-  const tmpCalleeParam$5 = $(1);
-  tmpCalleeParam$1 = tmpCallCallee$5(tmpCalleeParam$5);
-  if (tmpCalleeParam$1) {
+  const tmpCalleeParam$3 = $(1);
+  tmpCallCallee$1 = tmpCallCallee$5(tmpCalleeParam$3);
+  if (tmpCallCallee$1) {
     const tmpCallCallee$7 = $;
-    const tmpCalleeParam$7 = $(2);
-    tmpCalleeParam$1 = tmpCallCallee$7(tmpCalleeParam$7);
+    const tmpCalleeParam$5 = $(2);
+    tmpCallCallee$1 = tmpCallCallee$7(tmpCalleeParam$5);
   } else {
   }
 }
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = tmpBinLhs + ``;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -58,19 +57,19 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$3 = $(0);
-let tmpCalleeParam$1 = $(tmpCalleeParam$3);
-if (tmpCalleeParam$1) {
+const tmpCalleeParam$1 = $(0);
+let tmpCallCallee$1 = $(tmpCalleeParam$1);
+if (tmpCallCallee$1) {
 } else {
-  const tmpCalleeParam$5 = $(1);
-  tmpCalleeParam$1 = $(tmpCalleeParam$5);
-  if (tmpCalleeParam$1) {
-    const tmpCalleeParam$7 = $(2);
-    tmpCalleeParam$1 = $(tmpCalleeParam$7);
+  const tmpCalleeParam$3 = $(1);
+  tmpCallCallee$1 = $(tmpCalleeParam$3);
+  if (tmpCallCallee$1) {
+    const tmpCalleeParam$5 = $(2);
+    tmpCallCallee$1 = $(tmpCalleeParam$5);
   } else {
   }
 }
-const tmpBinBothRhs = String(tmpCalleeParam$1);
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);

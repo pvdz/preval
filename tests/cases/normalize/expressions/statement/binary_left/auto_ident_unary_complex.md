@@ -44,7 +44,7 @@ $(a, x);
 `````js filename=intro
 $(1);
 const tmpBinBothRhs = $(100);
-tmpBinBothRhs + ``;
+$coerce(tmpBinBothRhs, `number`);
 const a = { a: 999, b: 1000 };
 $(a, 1);
 `````

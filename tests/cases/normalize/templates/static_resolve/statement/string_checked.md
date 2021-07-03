@@ -17,7 +17,7 @@ $(`${"why"}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + String(`why`) + ``);
+$(`` + $coerce(`why`, `string`) + ``);
 `````
 
 ## Normalized
@@ -25,9 +25,9 @@ $(`` + String(`why`) + ``);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = `why`;
+const tmpBinBothRhs = $coerce(`why`, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ``;
+const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
 tmpCallCallee(tmpCalleeParam);
 `````
 

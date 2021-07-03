@@ -17,7 +17,7 @@ $(`${[]}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + String([]) + ``);
+$(`` + $coerce([], `string`) + ``);
 `````
 
 ## Normalized
@@ -25,11 +25,10 @@ $(`` + String([]) + ``);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpBinBothLhs = ``;
-const tmpCallCallee$1 = String;
-const tmpCalleeParam$1 = [];
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$1 = [];
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ``;
+const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
 tmpCallCallee(tmpCalleeParam);
 `````
 

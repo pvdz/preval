@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-$(`before  ` + String((1, 2, b)[$(`c`)]) + `  after`);
+$(`before  ` + $coerce((1, 2, b)[$(`c`)], `string`) + `  after`);
 $(a, b);
 `````
 
@@ -34,13 +34,12 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$1 = String;
 const tmpCompObj = b;
 const tmpCompProp = $(`c`);
-const tmpCalleeParam$1 = tmpCompObj[tmpCompProp];
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$1 = tmpCompObj[tmpCompProp];
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = tmpBinLhs + ``;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
@@ -52,8 +51,8 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCompProp = $(`c`);
-const tmpCalleeParam$1 = b[tmpCompProp];
-const tmpBinBothRhs = String(tmpCalleeParam$1);
+const tmpCallCallee$1 = b[tmpCompProp];
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a, b);

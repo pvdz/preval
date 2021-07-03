@@ -31,7 +31,9 @@ $(y);
 `````js filename=intro
 const a = $(`a`);
 const x = +a;
-const y = Number(x, $, 1, fail_hard, `twee`);
+const tmpStringFirstArg = x;
+fail_hard;
+const y = $coerce(tmpStringFirstArg, `number`);
 $(y);
 `````
 

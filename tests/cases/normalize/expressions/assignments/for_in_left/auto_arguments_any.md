@@ -64,7 +64,21 @@ arguments
 
 Should call `$` with:
  - 1: { x: '1' }
- - 2: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"', 3: '"<$spy>"', 4: '[]', x: '"x"' }
+ - 2: 
+  {
+    0: '"<$>"',
+    1: '"<function>"',
+    2: '"<function>"',
+    3: '"<$spy>"',
+    4: '"<function>"',
+    5: '[]',
+    6: '"<function>"',
+    7: '{}',
+    8: '{}',
+    9: '{}',
+    x: '"x"',
+  },
+
  - eval returned: undefined
 
 Pre normalization calls: Same

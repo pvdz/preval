@@ -17,6 +17,7 @@ import {
   source,
   after,
   findBodyOffset,
+  assertNoDupeNodes,
 } from '../utils.mjs';
 import { BUILTIN_FUNC_CALL_NAME, BUILTIN_REST_HANDLER_NAME } from '../constants.mjs';
 import * as AST from '../ast.mjs';
@@ -31,6 +32,7 @@ function _typeTrackedTricks(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
   let changes = 0;
+  let queue = []; // Changes that invalidate index caches
 
   // TODO: is the walking of individual if statements here more efficient than the gc pressure of collecting all if-statements and their parent etc in phase1 (often redundantly so)?
   walk(_walker, ast, 'ast');
@@ -41,6 +43,8 @@ function _typeTrackedTricks(fdata) {
     const parentProp = path.props[path.props.length - 1];
     const parentIndex = path.indexes[path.indexes.length - 1];
     const grandNode = path.nodes[path.nodes.length - 3];
+    const grandProp = path.props[path.props.length - 2];
+    const grandIndex = path.indexes[path.indexes.length - 2];
     const blockBody = path.blockBodies[path.blockBodies.length - 1];
     const blockIndex = path.blockIndexes[path.blockIndexes.length - 1];
 
@@ -566,6 +570,20 @@ function _typeTrackedTricks(fdata) {
                 }
 
                 switch (meta.typing.builtinTag) {
+                  case 'Array#filter': {
+                    // This is a one-of example which serves to unravel the jsf*ck code (which uses Array#filter)
+                    rule('Doing `+` on a builtin function always returns a string; Array#flat');
+                    example('f(Array.prototype.filter + "x")', 'f("function flat() { [native code] }x")');
+                    before(node, parentNode);
+
+                    const finalNode = AST.primitive('function filter() { [native code] }');
+                    if (pl) node.right = finalNode;
+                    else node.left = finalNode;
+
+                    after(node, parentNode);
+                    ++changes;
+                    return;
+                  }
                   case 'Array#flat': {
                     // This is a one-of example which serves to unravel the jsf*ck code (which uses Array#flat)
                     rule('Doing `+` on a builtin function always returns a string; Array#flat');
@@ -620,12 +638,13 @@ function _typeTrackedTricks(fdata) {
               // TODO: if the arg is a string, we could generate a function from it? Dunno if that's gonna break anything :)
               break;
             }
-            case '$dotCall': {
+            case BUILTIN_FUNC_CALL_NAME: {
+              // '$dotCall'
               // Resolve .call in some cases ($dotCall)
 
               ASSERT(node.arguments.length >= 2, 'should at least have the function to call and context, and then any number of args');
               const [
-                funcRefNode, // This is the cached function value passed on as first arg
+                funcRefNode, // This is the (potentially cached) function value passed on as first arg
                 contextNode, // This is the original object that must be the context of this call (until we can determine the context is unused/eliminable)
                 ...argNodes // These are the actual args of the original call
               ] = node.arguments;
@@ -645,13 +664,13 @@ function _typeTrackedTricks(fdata) {
                     node.arguments.forEach((enode, i) => {
                       if (i === 1 || i > 2) {
                         if (enode.type === 'Identifier') {
-                          taint(enode);
+                          taint(enode, fdata);
                         } else if (enode.type === 'SpreadElement') {
-                          taint(enode.argument);
+                          taint(enode.argument, fdata);
                         }
                       }
                     });
-                    node.arguments.splice(0, 3); // Drop `Function`, the context ref, and the prop name
+                    node.arguments.splice(0, 2); // Drop `Function`, the context ref, and the prop name
 
                     after(node);
                     ++changes;
@@ -670,16 +689,61 @@ function _typeTrackedTricks(fdata) {
                     node.arguments.forEach((enode, i) => {
                       if (i === 1 || i > 2) {
                         if (enode.type === 'Identifier') {
-                          taint(enode);
+                          taint(enode, fdata);
                         } else if (enode.type === 'SpreadElement') {
-                          taint(enode.argument);
+                          taint(enode.argument, fdata);
                         }
                       }
                     });
-                    node.arguments.splice(0, 3); // Drop `RegExp`, the context ref, and the prop name
+                    node.arguments.splice(0, 2); // Drop `RegExp`, the context ref, and the prop name
 
                     after(node);
                     ++changes;
+                    break;
+                  }
+                }
+
+                // Resolve builtin functions when we somehow know they're being cached
+                const refMeta = fdata.globallyUniqueNamingRegistry.get(funcRefNode.name);
+                switch (refMeta.typing.builtinTag) {
+                  case 'Number#toString': {
+                    // The radix is a vital arg so we can't resolve this unless we can resolve the arg
+                    // This could even support something like `Number.prototype.toString.call("foo")` because why not
+                    if ((AST.isPrimitive(contextNode) && !argNodes.length) || AST.isPrimitive(argNodes[0])) {
+                      rule('Calling `Number#toString` on a primitive can be resolved if we know the radix');
+                      example('123..toString()', '"123"');
+                      example('123..toString(15)', '"83"');
+                      before(node, blockBody[blockIndex]);
+
+                      const pv = AST.getPrimitiveValue(contextNode);
+                      // We don't care about the radix as long as we can resolve the primitive. Defer to JS to resolve the final value.
+                      const radix = argNodes[0] ? AST.getPrimitiveValue(argNodes[0]) : 10;
+                      const pvn = Number.prototype.toString.call(pv, radix); // pv may not be a string so we do it this way. Let JS sort it out.
+                      const finalNode = AST.primitive(pvn);
+
+                      if (parentIndex < 0) parentNode[parentProp] = finalNode;
+                      else parentNode[parentProp][parentIndex] = finalNode;
+
+                      // Such an edge case, but make sure additional args (which are ignored) do not trigger tdz errors etc.
+                      argNodes.forEach((enode, i) => i && taint(enode.type === 'SpreadElement' ? enode.argument : enode));
+                      queue.push({
+                        index: blockIndex,
+                        func: () =>
+                          blockBody.splice(
+                            blockIndex,
+                            1,
+                            // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
+                            // If the method was called with a spread, make sure the spread still happens.
+                            ...argNodes
+                              .slice(1)
+                              .map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
+                          ),
+                      });
+
+                      after(node, blockBody[blockIndex]);
+                      ++changes;
+                      return true;
+                    }
                     break;
                   }
                 }
@@ -719,6 +783,11 @@ function _typeTrackedTricks(fdata) {
   }
 
   if (changes) {
+
+    // By index, high to low. This way it should not be possible to cause reference problems by moving index
+    queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
+    queue.forEach(({ index, func }) => func());
+
     log('Type tracked tricks applied:', changes, '. Restarting from phase1');
     return 'phase1';
   }

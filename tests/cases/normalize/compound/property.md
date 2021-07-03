@@ -60,7 +60,7 @@ let a = 0;
 const obj = {
   get x() {
     debugger;
-    const tmpStringConcatR = s + ``;
+    const tmpStringConcatR = $coerce(s, `plustr`);
     s = `${tmpStringConcatR}read;`;
     return a;
   },
@@ -68,9 +68,9 @@ const obj = {
     let v = $$0;
     debugger;
     const tmpBinBothLhs = s;
-    const tmpStringConcatL = v + ``;
+    const tmpStringConcatL = $coerce(v, `plustr`);
     const tmpBinLhs = `write[${tmpStringConcatL}`;
-    const tmpStringConcatR$1 = tmpBinLhs + ``;
+    const tmpStringConcatR$1 = $coerce(tmpBinLhs, `plustr`);
     const tmpBinBothRhs = `${tmpStringConcatR$1}];`;
     s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
@@ -98,8 +98,10 @@ const obj = {
   set x($$0) {
     const v = $$0;
     debugger;
-    const tmpStringConcatL = v + ``;
-    s = `${s}write[${tmpStringConcatL}];`;
+    const tmpBinBothLhs = s;
+    const tmpStringConcatL = $coerce(v, `plustr`);
+    const tmpBinBothRhs = `write[${tmpStringConcatL}];`;
+    s = tmpBinBothLhs + tmpBinBothRhs;
     a = a + v;
     return a;
   },

@@ -23,7 +23,7 @@ $(a);
 `````js filename=intro
 let b = { c: { d: { e: $ } } };
 let a = { a: 999, b: 1000 };
-$(`before  ` + String((a = b?.c.d.e(1))) + `  after`);
+$(`before  ` + $coerce((a = b?.c.d.e(1)), `string`) + `  after`);
 $(a);
 `````
 
@@ -36,7 +36,6 @@ let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$1 = String;
 a = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
@@ -48,10 +47,10 @@ if (tmpIfTest) {
   a = tmpChainElementCall;
 } else {
 }
-let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpCallCallee$1 = a;
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = tmpBinLhs + ``;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -73,7 +72,7 @@ if (tmpIfTest) {
   const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
 }
-const tmpBinBothRhs = String(a);
+const tmpBinBothRhs = $coerce(a, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);

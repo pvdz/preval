@@ -17,25 +17,23 @@
 ## Pre Normal
 
 `````js filename=intro
-`` + String(/foo/g) + ``;
+`` + $coerce(/foo/g, `string`) + ``;
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
-const tmpCallCallee = String;
-const tmpCalleeParam = /foo/g;
-const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee = /foo/g;
+const tmpBinBothRhs = $coerce(tmpCallCallee, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-tmpBinLhs + ``;
+$coerce(tmpBinLhs, `plustr`);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = /foo/g;
-String(tmpCalleeParam);
+
 `````
 
 ## Globals

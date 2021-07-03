@@ -25,7 +25,7 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const y = String();
+const y = ``;
 $(y);
 `````
 

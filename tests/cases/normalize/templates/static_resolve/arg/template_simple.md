@@ -17,7 +17,7 @@ $(`${`I am a string`}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + String(`I am a string`) + ``);
+$(`` + $coerce(`I am a string`, `string`) + ``);
 `````
 
 ## Normalized
@@ -25,9 +25,9 @@ $(`` + String(`I am a string`) + ``);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = `I am a string`;
+const tmpBinBothRhs = $coerce(`I am a string`, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ``;
+const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
 tmpCallCallee(tmpCalleeParam);
 `````
 

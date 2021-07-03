@@ -23,7 +23,7 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-$(`before  ` + String($($(b)).x--) + `  after`);
+$(`before  ` + $coerce($($(b)).x--, `string`) + `  after`);
 $(a, b);
 `````
 
@@ -34,18 +34,17 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$1 = String;
 const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = $(b);
-const tmpPostUpdArgObj = tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCalleeParam$1 = $(b);
+const tmpPostUpdArgObj = tmpCallCallee$3(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-const tmpCalleeParam$1 = tmpPostUpdArgVal;
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$1 = tmpPostUpdArgVal;
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = tmpBinLhs + ``;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a, b);
@@ -56,12 +55,12 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpCalleeParam$3 = $(b);
-const tmpPostUpdArgObj = $(tmpCalleeParam$3);
+const tmpCalleeParam$1 = $(b);
+const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpBinBothRhs = String(tmpPostUpdArgVal);
+const tmpBinBothRhs = $coerce(tmpPostUpdArgVal, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a, b);

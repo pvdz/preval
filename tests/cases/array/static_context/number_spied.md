@@ -50,9 +50,8 @@ const spy = {
   },
 };
 const tmpCallCallee = $;
-const tmpCallCallee$1 = Number;
-const tmpCalleeParam$1 = [spy, spy];
-const tmpCalleeParam = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpStringFirstArg = [spy, spy];
+const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -71,8 +70,8 @@ const spy = {
     return undefined;
   },
 };
-const tmpCalleeParam$1 = [spy, spy];
-const tmpCalleeParam = Number(tmpCalleeParam$1);
+const tmpStringFirstArg = [spy, spy];
+const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
 $(tmpCalleeParam);
 `````
 

@@ -17,16 +17,16 @@
 ## Pre Normal
 
 `````js filename=intro
-`` + String(-0) + ``;
+`` + $coerce(-0, `string`) + ``;
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = `0`;
+const tmpBinBothRhs = $coerce(-0, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-tmpBinLhs + ``;
+$coerce(tmpBinLhs, `plustr`);
 `````
 
 ## Output

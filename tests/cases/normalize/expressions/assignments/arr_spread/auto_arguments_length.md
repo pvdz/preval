@@ -54,8 +54,21 @@ arguments
 ## Result
 
 Should call `$` with:
- - 1: ['<$>', '<function>', '<function>', '<$spy>', []]
- - 2: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"', 3: '"<$spy>"', 4: '[]' }
+ - 1: ['<$>', '<function>', '<function>', '<$spy>', '<function>', [], '<function>', {}, {}, {}]
+ - 2: 
+  {
+    0: '"<$>"',
+    1: '"<function>"',
+    2: '"<function>"',
+    3: '"<$spy>"',
+    4: '"<function>"',
+    5: '[]',
+    6: '"<function>"',
+    7: '{}',
+    8: '{}',
+    9: '{}',
+  },
+
  - eval returned: undefined
 
 Pre normalization calls: Same

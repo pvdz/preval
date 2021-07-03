@@ -60,7 +60,7 @@ f();
 
 `````js filename=intro
 const tmpBinBothRhs = $(``);
-const b = `` + tmpBinBothRhs;
+const b = $coerce(tmpBinBothRhs, `plustr`);
 if (b) {
   $(b);
 } else {

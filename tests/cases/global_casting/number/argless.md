@@ -25,7 +25,7 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const y = Number();
+const y = 0;
 $(y);
 `````
 

@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = `` + String(/foo/g) + ``;
+let x = `` + $coerce(/foo/g, `string`) + ``;
 $(x);
 `````
 
@@ -26,20 +26,17 @@ $(x);
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
-const tmpCallCallee = String;
-const tmpCalleeParam = /foo/g;
-const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee = /foo/g;
+const tmpBinBothRhs = $coerce(tmpCallCallee, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = tmpBinLhs + ``;
+let x = $coerce(tmpBinLhs, `plustr`);
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = /foo/g;
-const tmpBinBothRhs = String(tmpCalleeParam);
-$(tmpBinBothRhs);
+$(`/foo/g`);
 `````
 
 ## Globals

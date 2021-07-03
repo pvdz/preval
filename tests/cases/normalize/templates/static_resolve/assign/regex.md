@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = `` + String(/foo/g) + ``;
+x = `` + $coerce(/foo/g, `string`) + ``;
 $(x);
 `````
 
@@ -29,20 +29,17 @@ $(x);
 `````js filename=intro
 let x = undefined;
 const tmpBinBothLhs = ``;
-const tmpCallCallee = String;
-const tmpCalleeParam = /foo/g;
-const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee = /foo/g;
+const tmpBinBothRhs = $coerce(tmpCallCallee, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-x = tmpBinLhs + ``;
+x = $coerce(tmpBinLhs, `plustr`);
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = /foo/g;
-const tmpBinBothRhs = String(tmpCalleeParam);
-$(tmpBinBothRhs);
+$(`/foo/g`);
 `````
 
 ## Globals

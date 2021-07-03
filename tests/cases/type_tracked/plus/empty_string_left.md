@@ -44,7 +44,7 @@ let f = function () {
   const tmpBinBothRhs = $(1);
   const a = tmpBinBothLhs + tmpBinBothRhs;
   $(a, `a`);
-  const b = `` + a;
+  const b = $coerce(a, `plustr`);
   $(b, `b`);
   return undefined;
 };
@@ -58,7 +58,7 @@ f();
 const f = function () {
   debugger;
   const tmpBinBothRhs = $(1);
-  const a = `` + tmpBinBothRhs;
+  const a = $coerce(tmpBinBothRhs, `plustr`);
   $(a, `a`);
   $(a, `b`);
   return undefined;

@@ -46,6 +46,7 @@ import { globalCasting } from './phase2global_casting.mjs';
 import { binExprStmt } from './phase2bin_expr_stmt.mjs';
 import { propertyLookups } from './phase2property_lookups.mjs';
 import { letIfElse } from './phase2let_if_else.mjs';
+import { coercials } from './phase2coerced.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -119,6 +120,9 @@ function _phase2(program, fdata, resolve, req) {
       return !meta.singleScoped;
     });
   });
+
+  const coerced = coercials(fdata);
+  if (coerced) return coerced;
 
   const throwers = findThrowers(fdata);
   if (throwers) return throwers;

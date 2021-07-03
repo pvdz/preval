@@ -1,4 +1,4 @@
-// Find calls to builtin constructors like Boolean, Number, and String and try to determine them obsolete
+// Find calls to builtin constructors like Boolean and $coerce (`Number`, and `String`) and try to determine them obsolete
 // `Number(+x)` -> `+x`
 
 import {
@@ -35,7 +35,7 @@ function _globalCasting(fdata) {
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (!meta.isBuiltin) return;
-    if (!['Boolean', 'String', 'Number'].includes(name)) return;
+    if (!['Boolean', '$coerce'].includes(name)) return;
 
     vgroup('- Checking an explicit cast using `' + name + '()` (', meta.reads.length, 'reads)');
     process(fdata, meta, name, queue);
@@ -62,20 +62,24 @@ function process(fdata, meta, name, queue) {
     }
 
     const args = read.parentNode['arguments'];
+    ASSERT(
+      name === 'Boolean' || args.length === 2,
+      'We completely control $coerce and it should always have exactly two args',
+      read.parentNode,
+    );
+    const kind = name === '$coerce' ? AST.getPrimitiveValue(args[1]) : 'boolean';
+
     if (args.length === 0) {
-      vlog('  - Queuing for argless call');
+      ASSERT(name === 'Boolean');
+      vlog('  - Queuing for argless call to Boolean()');
       queue.push({
         pid: +read.parentNode.$p.pid,
         func: () => {
-          if (name === 'Boolean') rule('Calling `Boolean()` without args results a `false`');
-          if (name === 'Number') rule('Calling `Number()` without args results a `0`');
-          if (name === 'String') rule('Calling `String()` without args results a `""`');
+          rule('Calling `Boolean()` without args results a `false`');
           example('Boolean()', 'false', () => name === 'Boolean');
-          example('Number()', '0', () => name === 'Number');
-          example('String()', '""', () => name === 'String');
           before(read.parentNode, read.blockBody[read.blockIndex]);
 
-          const finalNode = name === 'Boolean' ? AST.fals() : name === 'String' ? AST.primitive('') : AST.literal(0);
+          const finalNode = AST.fals();
           if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
           else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
@@ -85,17 +89,19 @@ function process(fdata, meta, name, queue) {
     } else if (args[0].type === 'Identifier') {
       const arg = args[0];
       const meta = fdata.globallyUniqueNamingRegistry.get(arg.name);
-      if (meta.typing.mustBeType === (name === 'Boolean' ? 'boolean' : name === 'String' ? 'string' : 'number')) {
+      ASSERT(['boolean', 'number', 'string', 'plustr'].includes(kind), 'enum plus an extra one here', kind);
+      if (meta.typing.mustBeType === (kind === 'plustr' ? 'string' : kind)) {
         vlog('  - Queuing for arged call');
         queue.push({
           pid: +read.parentNode.$p.pid,
           func: () => {
-            if (name === 'Boolean') rule('Calling `Boolean()` on a value that we know must be a boolean is a noop');
-            if (name === 'Number') rule('Calling `Number()` on a value that we know must be a number is a noop');
-            if (name === 'String') rule('Calling `String()` on a value that we know must be a string is a noop');
+            if (kind === 'boolean') rule('Calling `Boolean()` on a value that we know must be a boolean is a noop');
+            if (kind === 'number') rule('Calling `$coerce(x, "number")` on a value that we know must be a number is a noop');
+            if (kind === 'string') rule('Calling `$coerce(x, "string")` on a value that we know must be a string is a noop');
+            if (kind === 'plustr') rule('Calling `$coerce(x, "plustr")` on a value that we know must be a string is a noop');
             example('const x = a === b; f(Boolean(x));', 'const x = a === b; f(x);', () => name === 'Boolean');
-            example('const x = +a; f(Number(x));', 'const x = +a; f(x);', () => name === 'Number');
-            example('const x = ""+a; f(String(x));', 'const x = ""+a; f(x);', () => name === 'String');
+            example('const x = +a; f(Number(x));', 'const x = +a; f(x);', () => kind === 'number');
+            example('const x = ""+a; f(String(x));', 'const x = ""+a; f(x);', () => kind === 'string' || kind === 'plustr');
             before(read.parentNode, read.blockBody[read.blockIndex]);
 
             if (read.grandIndex < 0) read.grandNode[read.grandProp] = arg;

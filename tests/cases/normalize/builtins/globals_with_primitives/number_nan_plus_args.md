@@ -24,7 +24,9 @@ $(Number(NaN, 1, `two`, implicitGlobal, 3));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = Number(NaN, 1, `two`, implicitGlobal, 3);
+const tmpStringFirstArg = NaN;
+implicitGlobal;
+const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
 tmpCallCallee(tmpCalleeParam);
 `````
 

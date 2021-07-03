@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = `` + String(false) + ``;
+let x = `` + $coerce(false, `string`) + ``;
 $(x);
 `````
 
@@ -26,9 +26,9 @@ $(x);
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = `false`;
+const tmpBinBothRhs = $coerce(false, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = tmpBinLhs + ``;
+let x = $coerce(tmpBinLhs, `plustr`);
 $(x);
 `````
 

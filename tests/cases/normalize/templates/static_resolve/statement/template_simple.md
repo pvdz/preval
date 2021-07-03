@@ -17,16 +17,16 @@
 ## Pre Normal
 
 `````js filename=intro
-`` + String(`I am a string`) + ``;
+`` + $coerce(`I am a string`, `string`) + ``;
 `````
 
 ## Normalized
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = `I am a string`;
+const tmpBinBothRhs = $coerce(`I am a string`, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-tmpBinLhs + ``;
+$coerce(tmpBinLhs, `plustr`);
 `````
 
 ## Output

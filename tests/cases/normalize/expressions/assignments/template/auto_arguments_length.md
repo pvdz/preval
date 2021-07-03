@@ -20,7 +20,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-$(`before  ` + String((a = arguments)) + `  after`);
+$(`before  ` + $coerce((a = arguments), `string`) + `  after`);
 $(a);
 `````
 
@@ -30,12 +30,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$1 = String;
 a = arguments;
-let tmpCalleeParam$1 = a;
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+let tmpCallCallee$1 = a;
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = tmpBinLhs + ``;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a);
@@ -45,7 +44,7 @@ $(a);
 
 `````js filename=intro
 const a = arguments;
-const tmpBinBothRhs = String(a);
+const tmpBinBothRhs = $coerce(a, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a);
@@ -61,7 +60,20 @@ arguments
 
 Should call `$` with:
  - 1: 'before [object Arguments] after'
- - 2: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"', 3: '"<$spy>"', 4: '[]' }
+ - 2: 
+  {
+    0: '"<$>"',
+    1: '"<function>"',
+    2: '"<function>"',
+    3: '"<$spy>"',
+    4: '"<function>"',
+    5: '[]',
+    6: '"<function>"',
+    7: '{}',
+    8: '{}',
+    9: '{}',
+  },
+
  - eval returned: undefined
 
 Pre normalization calls: Same

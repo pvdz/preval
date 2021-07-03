@@ -18,6 +18,7 @@ export function parseTestArgs() {
     maxPass: undefined,
     onlyNormalized: false,
     onlyOutput: false, // When generating test cases, only add the `## Output` block (for diffing)
+    skipEval: false, // Do not run the eval checks afterwards
     targetFile: undefined,
     threadIndex: 0, // ... and this will be that thread
     threads: 1, // By default, only run one thread
@@ -123,6 +124,11 @@ export function parseTestArgs() {
 
       case '--silent': {
         config.verbose = false;
+        break;
+      }
+
+      case '--skip-eval': {
+        config.skipEval = true;
         break;
       }
 

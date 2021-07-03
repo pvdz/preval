@@ -76,7 +76,7 @@ f();
 const f = function () {
   debugger;
   const tmpBinBothRhs = $(``);
-  const x = `` + tmpBinBothRhs;
+  const x = $coerce(tmpBinBothRhs, `plustr`);
   if (x) {
     $(false, `fail`);
   } else {

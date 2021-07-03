@@ -36,15 +36,12 @@ $(tmpCompObj$459);
 ## Output
 
 `````js filename=intro
-$ArrayPrototype.flat;
 $(`NaNfunction flat() { [native code] }`);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-$ArrayPrototype
+None
 
 ## Result
 

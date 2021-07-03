@@ -11,10 +11,7 @@
 ## Input
 
 `````js filename=intro
-const x = {
-  toString(){ return $('toString'); },
-  valueOf(){ $('valueOf'); return 100; },
-};
+const x = $spy();
 
 const arr = [
   [] ** x,
@@ -50,17 +47,7 @@ $(arr2);
 ## Pre Normal
 
 `````js filename=intro
-const x = {
-  toString() {
-    debugger;
-    return $(`toString`);
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
+const x = $spy();
 const arr = [
   [] ** x,
   [] * x,
@@ -91,18 +78,7 @@ $(arr2);
 ## Normalized
 
 `````js filename=intro
-const x = {
-  toString() {
-    debugger;
-    const tmpReturnArg = $(`toString`);
-    return tmpReturnArg;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
+const x = $spy();
 const tmpBinLhs = [];
 const tmpArrElement = tmpBinLhs ** x;
 const tmpBinLhs$1 = [];
@@ -177,18 +153,7 @@ $(arr2);
 ## Output
 
 `````js filename=intro
-const x = {
-  toString() {
-    debugger;
-    const tmpReturnArg = $(`toString`);
-    return tmpReturnArg;
-  },
-  valueOf() {
-    debugger;
-    $(`valueOf`);
-    return 100;
-  },
-};
+const x = $spy();
 const tmpBinLhs = [];
 const tmpArrElement = tmpBinLhs ** x;
 const tmpBinLhs$1 = [];
@@ -197,7 +162,7 @@ const tmpBinLhs$3 = [];
 const tmpArrElement$3 = tmpBinLhs$3 / x;
 const tmpBinLhs$5 = [];
 const tmpArrElement$5 = tmpBinLhs$5 % x;
-const tmpArrElement$7 = `` + x;
+const tmpArrElement$7 = $coerce(x, `plustr`);
 const tmpBinLhs$9 = [];
 const tmpArrElement$9 = tmpBinLhs$9 - x;
 const tmpBinLhs$11 = [];
@@ -218,6 +183,10 @@ const tmpBinLhs$25 = [];
 const tmpArrElement$25 = tmpBinLhs$25 == x;
 const tmpBinLhs$27 = [];
 const tmpArrElement$27 = tmpBinLhs$27 != x;
+const tmpBinLhs$29 = [];
+const tmpArrElement$29 = tmpBinLhs$29 === x;
+const tmpBinLhs$31 = [];
+const tmpArrElement$31 = tmpBinLhs$31 !== x;
 const tmpBinLhs$33 = [];
 const tmpArrElement$33 = tmpBinLhs$33 & x;
 const tmpBinLhs$35 = [];
@@ -240,8 +209,8 @@ const arr = [
   tmpArrElement$23,
   tmpArrElement$25,
   tmpArrElement$27,
-  false,
-  true,
+  tmpArrElement$29,
+  tmpArrElement$31,
   tmpArrElement$33,
   tmpArrElement$35,
   tmpArrElement$37,
@@ -262,23 +231,24 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'valueOf'
- - 2: 'valueOf'
- - 3: 'valueOf'
- - 4: 'valueOf'
- - 5: 'valueOf'
- - 6: 'valueOf'
- - 7: 'valueOf'
- - 8: 'valueOf'
- - 9: 'valueOf'
- - 10: 'valueOf'
- - 11: 'valueOf'
- - 12: 'valueOf'
- - 13: 'valueOf'
- - 14: 'valueOf'
- - 15: 'valueOf'
- - 16: 'valueOf'
- - 17: [0, 0, 0, 0, '100', -100, 0, 0, 0, true, false, true, false, false, true, false, true, 0, 100, 100]
+ - 1: 'Creating spy', 1, 0, ['spy', 12345]
+ - 2: '$spy[1].valueOf()'
+ - 3: '$spy[1].valueOf()'
+ - 4: '$spy[1].valueOf()'
+ - 5: '$spy[1].valueOf()'
+ - 6: '$spy[1].valueOf()'
+ - 7: '$spy[1].valueOf()'
+ - 8: '$spy[1].valueOf()'
+ - 9: '$spy[1].valueOf()'
+ - 10: '$spy[1].valueOf()'
+ - 11: '$spy[1].valueOf()'
+ - 12: '$spy[1].valueOf()'
+ - 13: '$spy[1].valueOf()'
+ - 14: '$spy[1].valueOf()'
+ - 15: '$spy[1].valueOf()'
+ - 16: '$spy[1].valueOf()'
+ - 17: '$spy[1].valueOf()'
+ - 18: [0, 0, 0, 0, '12345', -12345, 0, 0, 0, true, false, true, false, false, true, false, true, 0, 12345, 12345]
  - eval returned: ("<crash[ Right-hand side of 'instanceof' is not callable ]>")
 
 Pre normalization calls: Same

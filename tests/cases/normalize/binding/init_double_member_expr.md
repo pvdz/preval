@@ -33,13 +33,15 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = (3).toString;
+const x = $NumberPrototype.toString;
 $(x);
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+$NumberPrototype
 
 ## Result
 

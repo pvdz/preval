@@ -16,7 +16,7 @@ Just wanted an eval test to cover this case to make sure
 function f(y) {
   const x = '' + y;
   if (x) {
-    $(x, 'fail');
+    $(x, 'if');
   } else {
     const f = function(z) {
       $('keepme');
@@ -41,7 +41,7 @@ let f = function ($$0) {
   debugger;
   const x = `` + y;
   if (x) {
-    $(x, `fail`);
+    $(x, `if`);
   } else {
     const f$1 = function ($$0) {
       let z = $$0;
@@ -64,9 +64,9 @@ f($(`foop`));
 let f = function ($$0) {
   let y = $$0;
   debugger;
-  const x = `` + y;
+  const x = $coerce(y, `plustr`);
   if (x) {
-    $(x, `fail`);
+    $(x, `if`);
     return undefined;
   } else {
     const f$1 = function ($$0) {
@@ -110,9 +110,9 @@ const f = function ($$0) {
     const tmpReturnArg = [x, z];
     return tmpReturnArg;
   };
-  const x = `` + y;
+  const x = $coerce(y, `plustr`);
   if (x) {
-    $(x, `fail`);
+    $(x, `if`);
     return undefined;
   } else {
     const tmpCalleeParam = f$1(10);
@@ -143,7 +143,7 @@ Should call `$` with:
  - 6: 'keepme'
  - 7: ['', 20], 'pass'
  - 8: 'foop'
- - 9: 'foop', 'fail'
+ - 9: 'foop', 'if'
  - eval returned: undefined
 
 Pre normalization calls: Same

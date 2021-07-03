@@ -41,7 +41,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothRhs = $(100);
-const tmpStringConcatL = tmpBinBothRhs + ``;
+const tmpStringConcatL = $coerce(tmpBinBothRhs, `plustr`);
 const tmpCalleeParam = `/foo/${tmpStringConcatL}`;
 $(tmpCalleeParam);
 const a = /foo/;

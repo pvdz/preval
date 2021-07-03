@@ -24,15 +24,14 @@ $(parseFloat(`foo`));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = parseFloat(`foo`);
+const tmpCalleeParam = NaN;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = parseFloat(`foo`);
-$(tmpCalleeParam);
+$(NaN);
 `````
 
 ## Globals

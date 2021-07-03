@@ -30,8 +30,9 @@ $(y);
 
 `````js filename=intro
 const a = $(`a`);
-const x = `` + a;
-const y = String(x, 1, `twee`);
+const x = $coerce(a, `plustr`);
+const tmpStringFirstArg = x;
+const y = $coerce(tmpStringFirstArg, `string`);
 $(y);
 `````
 
@@ -39,7 +40,7 @@ $(y);
 
 `````js filename=intro
 const a = $(`a`);
-const x = `` + a;
+const x = $coerce(a, `plustr`);
 $(x);
 `````
 

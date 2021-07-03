@@ -44,7 +44,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpBinBothRhs = $(2);
 tmpBinBothRhs ** 0;
 const tmpBinBothRhs$1 = $(2);
-tmpBinBothRhs$1 + ``;
+$coerce(tmpBinBothRhs$1, `number`);
 $(true);
 `````
 

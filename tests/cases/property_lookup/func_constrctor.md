@@ -36,15 +36,14 @@ $(f);
 ## Output
 
 `````js filename=intro
-$ArrayPrototype.flat;
 $(Function);
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-$ArrayPrototype, Function
+Function
 
 ## Result
 

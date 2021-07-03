@@ -17,7 +17,7 @@ $(`${NaN}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + String(NaN) + ``);
+$(`` + $coerce(NaN, `string`) + ``);
 `````
 
 ## Normalized
@@ -25,9 +25,9 @@ $(`` + String(NaN) + ``);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = `NaN`;
+const tmpBinBothRhs = $coerce(NaN, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ``;
+const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
 tmpCallCallee(tmpCalleeParam);
 `````
 

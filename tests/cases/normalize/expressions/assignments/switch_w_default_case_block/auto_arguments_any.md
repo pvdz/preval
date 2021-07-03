@@ -134,7 +134,20 @@ Should call `$` with:
  - 2: 1
  - 3: 'fail1'
  - 4: 'fail2'
- - 5: { 0: '"<$>"', 1: '"<function>"', 2: '"<function>"', 3: '"<$spy>"', 4: '[]' }
+ - 5: 
+  {
+    0: '"<$>"',
+    1: '"<function>"',
+    2: '"<function>"',
+    3: '"<$spy>"',
+    4: '"<function>"',
+    5: '[]',
+    6: '"<function>"',
+    7: '{}',
+    8: '{}',
+    9: '{}',
+  },
+
  - eval returned: undefined
 
 Pre normalization calls: Same

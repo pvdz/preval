@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = `` + String(`I am a string`) + ``;
+x = `` + $coerce(`I am a string`, `string`) + ``;
 $(x);
 `````
 
@@ -29,9 +29,9 @@ $(x);
 `````js filename=intro
 let x = undefined;
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = `I am a string`;
+const tmpBinBothRhs = $coerce(`I am a string`, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-x = tmpBinLhs + ``;
+x = $coerce(tmpBinLhs, `plustr`);
 $(x);
 `````
 

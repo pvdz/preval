@@ -17,7 +17,7 @@ $(`${/foo/g}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + String(/foo/g) + ``);
+$(`` + $coerce(/foo/g, `string`) + ``);
 `````
 
 ## Normalized
@@ -25,20 +25,17 @@ $(`` + String(/foo/g) + ``);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpBinBothLhs = ``;
-const tmpCallCallee$1 = String;
-const tmpCalleeParam$1 = /foo/g;
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$1 = /foo/g;
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ``;
+const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = /foo/g;
-const tmpBinBothRhs = String(tmpCalleeParam$1);
-$(tmpBinBothRhs);
+$(`/foo/g`);
 `````
 
 ## Globals

@@ -80,13 +80,13 @@ let rule = function ($$0) {
   let desc = $$0;
   debugger;
   const func = $;
-  const tmpStringConcatR = PURPLE + ``;
+  const tmpStringConcatR = $coerce(PURPLE, `plustr`);
   const a = `${tmpStringConcatR}Rule:`;
   const b = a + RESET;
-  const tmpStringConcatR$1 = b + ``;
+  const tmpStringConcatR$1 = $coerce(b, `plustr`);
   const c = `${tmpStringConcatR$1} "`;
   const d = c + desc;
-  const tmpStringConcatR$3 = d + ``;
+  const tmpStringConcatR$3 = $coerce(d, `plustr`);
   const e = `${tmpStringConcatR$3}"`;
   func(e);
   return undefined;
@@ -103,7 +103,7 @@ rule(`You have to listen to me`);
 const rule = function ($$0) {
   const desc = $$0;
   debugger;
-  const tmpStringConcatL = desc + ``;
+  const tmpStringConcatL = $coerce(desc, `plustr`);
   const e = `purpleRule:reset "${tmpStringConcatL}"`;
   $(e);
   return undefined;

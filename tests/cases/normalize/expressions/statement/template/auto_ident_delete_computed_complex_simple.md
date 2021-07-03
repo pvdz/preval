@@ -23,7 +23,7 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-$(`before  ` + String(delete $(arg)[`y`]) + `  after`);
+$(`before  ` + $coerce(delete $(arg)[`y`], `string`) + `  after`);
 $(a, arg);
 `````
 
@@ -34,12 +34,11 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpBinBothLhs = `before  `;
-const tmpCallCallee$1 = String;
 const tmpDeleteObj = $(arg);
-const tmpCalleeParam$1 = delete tmpDeleteObj.y;
-const tmpBinBothRhs = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$1 = delete tmpDeleteObj.y;
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = tmpBinLhs + ``;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR}  after`;
 tmpCallCallee(tmpCalleeParam);
 $(a, arg);
@@ -51,8 +50,8 @@ $(a, arg);
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
 const tmpDeleteObj = $(arg);
-const tmpCalleeParam$1 = delete tmpDeleteObj.y;
-const tmpBinBothRhs = String(tmpCalleeParam$1);
+const tmpCallCallee$1 = delete tmpDeleteObj.y;
+const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
 $(a, arg);

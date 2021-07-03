@@ -33,8 +33,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = (3).toString();
-$(x);
+$(`3`);
 `````
 
 ## Globals

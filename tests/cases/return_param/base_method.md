@@ -82,11 +82,9 @@ const tmpCalleeParam$1 = [1, 2, 3];
 const tmpCalleeParam = tmpCalleeParam$1.toString();
 $(tmpCalleeParam);
 f();
-const tmpCalleeParam$3 = (300).toString();
-$(tmpCalleeParam$3);
+$(`300`);
 f();
-const tmpCalleeParam$5 = `three`.toString();
-$(tmpCalleeParam$5);
+$(`three`);
 `````
 
 ## Globals

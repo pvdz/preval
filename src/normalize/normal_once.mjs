@@ -725,7 +725,7 @@ export function phaseNormalOnce(fdata) {
             // a = (a + expr) + b
             finalNode = AST.binaryExpression(
               '+',
-              AST.binaryExpression('+', finalNode, AST.callExpression('String', [node.expressions[i]])),
+              AST.binaryExpression('+', finalNode, AST.callExpression('$coerce', [node.expressions[i], AST.primitive('string')])),
               AST.templateLiteral(node.quasis[i + 1].value.cooked),
             );
           }

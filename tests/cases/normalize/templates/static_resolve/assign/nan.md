@@ -20,7 +20,7 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-x = `` + String(NaN) + ``;
+x = `` + $coerce(NaN, `string`) + ``;
 $(x);
 `````
 
@@ -29,9 +29,9 @@ $(x);
 `````js filename=intro
 let x = undefined;
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = `NaN`;
+const tmpBinBothRhs = $coerce(NaN, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-x = tmpBinLhs + ``;
+x = $coerce(tmpBinLhs, `plustr`);
 $(x);
 `````
 

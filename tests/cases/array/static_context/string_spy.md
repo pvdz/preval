@@ -48,7 +48,8 @@ const arr = [`fail`, 2, 3];
 f();
 f();
 const tmpCallCallee = $;
-const tmpCalleeParam = String(arr);
+const tmpStringFirstArg = arr;
+const tmpCalleeParam = $coerce(tmpStringFirstArg, `string`);
 tmpCallCallee(tmpCalleeParam);
 `````
 
@@ -64,7 +65,7 @@ const f = function () {
 const arr = [`fail`, 2, 3];
 f();
 f();
-const tmpCalleeParam = String(arr);
+const tmpCalleeParam = $coerce(arr, `string`);
 $(tmpCalleeParam);
 `````
 

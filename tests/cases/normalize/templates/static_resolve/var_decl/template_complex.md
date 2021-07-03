@@ -18,7 +18,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-let x = `` + String(`a ` + String($(1)) + ` b`) + ``;
+let x = `` + $coerce(`a ` + $coerce($(1), `string`) + ` b`, `string`) + ``;
 $(x);
 `````
 
@@ -26,27 +26,25 @@ $(x);
 
 `````js filename=intro
 const tmpBinBothLhs = ``;
-const tmpCallCallee = String;
 const tmpBinBothLhs$1 = `a `;
-const tmpCallCallee$1 = String;
-const tmpCalleeParam$1 = $(1);
-const tmpBinBothRhs$1 = tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCallCallee$1 = $(1);
+const tmpBinBothRhs$1 = $coerce(tmpCallCallee$1, `string`);
 const tmpBinLhs$1 = tmpBinBothLhs$1 + tmpBinBothRhs$1;
-const tmpStringConcatR = tmpBinLhs$1 + ``;
-const tmpCalleeParam = `${tmpStringConcatR} b`;
-const tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
+const tmpStringConcatR = $coerce(tmpBinLhs$1, `plustr`);
+const tmpCallCallee = `${tmpStringConcatR} b`;
+const tmpBinBothRhs = $coerce(tmpCallCallee, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-let x = tmpBinLhs + ``;
+let x = $coerce(tmpBinLhs, `plustr`);
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam$1 = $(1);
-const tmpBinBothRhs$1 = String(tmpCalleeParam$1);
-const tmpCalleeParam = `a ${tmpBinBothRhs$1} b`;
-$(tmpCalleeParam);
+const tmpCallCallee$1 = $(1);
+const tmpBinBothRhs$1 = $coerce(tmpCallCallee$1, `string`);
+const tmpCallCallee = `a ${tmpBinBothRhs$1} b`;
+$(tmpCallCallee);
 `````
 
 ## Globals

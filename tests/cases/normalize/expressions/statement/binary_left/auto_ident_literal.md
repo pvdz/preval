@@ -29,7 +29,7 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpBinLhs = $(100);
-tmpBinLhs + ``;
+$coerce(tmpBinLhs, `plustr`);
 $(a);
 `````
 
@@ -37,7 +37,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinLhs = $(100);
-tmpBinLhs + ``;
+$coerce(tmpBinLhs, `number`);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

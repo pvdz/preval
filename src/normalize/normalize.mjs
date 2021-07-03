@@ -12,6 +12,8 @@ import {
   RED,
   BLUE,
   RESET,
+  BUILTIN_ARRAY_PROTOTYPE,
+  BUILTIN_NUMBER_PROTOTYPE,
 } from '../constants.mjs';
 import {
   ASSERT,
@@ -131,22 +133,68 @@ import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/
   - Normalize branching inside loops into an abstract function
  */
 
-// low hanging fruit: async, iterators
-// next level: assignment analysis and first pass of ssa
+// high level stuff that's not supported: async, iterators, classes <methods, super, inheritance>, prototype, most built-in behavior/funcs.
+
+/*
+
+For normalization, it makes sense to turn `undefined`, `NaN`, and `Infinity` into literals...
+
+
+The delete should not be deleted in this case of if-reduction
+
+const tmpIfTest = delete arg.y;
+if (tmpIfTest) {
+  $(100);
+} else {
+  $(200);
+}
+ */
+
+/*
+the point of the two cases in this comment are that if x === 33 then x&32 must be true, so the check is subsumed. apparently relevant for tenko at least.
+
+if one check subsumes the other then fold them? In the next case, 32768 is one bit, set in 49265, so the bit check subsumes the === check
+              const tmpIfTest$3287 = $tp_next_type$3 === 49265;
+              if (tmpIfTest$3287) {
+                return destructible$13;
+              } else {
+                const tmpBinLhs$785 = $tp_next_type$3 & 32768;
+                if (tmpBinLhs$785) {
+                  return destructible$13;
+                } else {
+                  THROW_RANGE('Can not compound assign to a pattern', lastStart, lastStop);
+                  return destructible$13;
+                }
+              }
+same thing but different logic. the first check bails if the number is not x. the second check bails if a certain bit is not set. but if that bit is not set then it also can't be x. so the second check subsumes the first. I guess in essence it's the same one as above
+            const $tp_next_type$3 = lastType;
+            const tmpIfTest$3287 = $tp_next_type$3 === 49265;
+            if (tmpIfTest$3287) {
+              return destructible$13;
+            } else {
+              const tmpBinLhs$785 = $tp_next_type$3 & 32768;
+              if (tmpBinLhs$785) {
+                THROW_RANGE('Can not compound assign to a pattern', lastStart, lastStop);
+                return destructible$13;
+              } else {
+                return destructible$13;
+              }
+            }
+
+
+ */
 
 // http://compileroptimizations.com/category/if_optimization.htm
 // https://en.wikipedia.org/wiki/Loop-invariant_code_motion
 
 /*
+
+need to make pids numbers
+
   Ideas for normalization;
-  - Figure out how to get around the var-might-be-undefined problem
-    - Current implementation makes our system think the var might be `undefined` when we know that's never the case
-    - Should the vars we introduce be set at the first time usage instead? hmmm
-    - Fixing this generically might also increase input support so there's that
   - treeshaking?
     - Not sure if this should (or can?) happen here but ESM treeshaking should be done asap. Is this too soon for it?
     - we know all the relevant bits so why not
-  - Remove unused `return` keywords? Or force add them instead such that all functions end with an explicit return, even if it's just undefined?
   - Return value of a `forEach` arg kinds of things. Return statements are ignored so it's about branching.
   - Object spreads that are trivial to do should be done if we can figure them out statically
   - eliminate redundant labels (continue without crossing a loop boundary, break that does not need a label, or at the end of flow)
@@ -155,12 +203,7 @@ import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/
     - check how the context is set when calling a namespace
   - default exports, do we eliminate them anyways, maybe opt-in or out to the defineProperty hack to fix the name?
   - method names that are literals, probably classes and objects alike
-  - if a param has more than one write, copy it as a local let immediately. this way we can assume all params to be constants... (barring magic `arguments` crap, of course)
-  - if a var binding is only referenced in one scope then we can, at least, hoist it to that scope.
-    - runtime analysis may be able to get us closer to an initialization but that's gonna be much harder.
-  - can we drop unused parameters? probably not so easy because it affects function.length (and maybe arguments?)
   - when the same value is assigned to two constants.... (a.b(); a.b(); will cache a.b twice)
-  - the value tracking idea where a value is statically resolved by referencing its node or something
   - maybe reconsider var decls inside for headers. might be worthwhile to force them as const. perhaps we can hack it by assigning it to a const inside the body.
   - can we do something with infinite loops? DCE code that follows it. maybe worth it when including some early return analysis?
   - normalize labels in loops?
@@ -168,49 +211,84 @@ import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/
     - always compile a continue rather than implicitly?
   - catch scope vars are not properly processed (or not at all?)
   - catch scope to always have a binding even if its unused.
-  - assignments inside a branch could be assigned to a fresh var as well. then something like `let x=1; if (y) { x=2; f(x); } f(x)` could have the `f(x)` all be inlined to a constant `f(2)`. but risks infinite changes so non-trivial. could do future reads check to see whether there are any reads for that binding in this branch and then "ssa" for them.
-  - the `this` keyword assigned to a constant can be inlined for arrow scope usages as well
   - Decide how to handle built-in cases like `String.fromCharCode(32)`
-  - if a function does not reference `arguments` then we can drop some params.
   - can we detect all operations that are applied to a binding and infer the contents that way?
     - example: the way we transform switches, if (x <= 0) { ... return} if (x <= 1) { ... return } etc we could know that x cannot be <= 0 since that branch exited. probably a lot of data to track but who knows
   - if a function is guaranteed to throw, compile a `throw "unreachable"` after each call to it. We can always eliminate those later but maybe they allow us to improve DCE
-  - "`this` statement"
+    - this is somewhat complicated by try/catch/finally. but still doable.
   - what if I made pseudo-symbols for certain builtins, like `Math.round` to `$MathRound` to help static computations? Many funcs do not need a context but are accessed as such anyways.
   - if we know a function does not access `this`, can we detect member expressions that contain it, anyways, and prevent them?
-  - a function returning one thing after normalization should be able to be inlined...
-  - if a function consists of an assignment and the return of that assigned value and the rest is pure then we can inline its calls...
-    - closures need to be accessible from the scope of the call, too
-    - parm/args need to be mapped properly etc
   - if a func has an object arg "like" destructuring that is only read, can we pass on the properties as args instead?
     - function f(obj) { x = obj.foo; } f({foo: 10}); -> function f(foo) { x = foo } f(10);
-  - the `if (x) y = 10; else y = 20; return y` pattern
-  - const tmpObjLitVal$342 = function ($h$254) { const tmpReturnArg$1021 = '' + $h$254; return tmpReturnArg$1021; };
-  - if an if/else ends with a return, move the rest of the sibling nodes after the if into and after the branch that does not return. `if (x) return x; y();` -> `if (x) return x; else y();`
-  - if a function returns a call to another function then it could be inlined by an immediate call to the other function
-    - does need to check whether the binding is reachable from the call site
-    - this/arguments/super stuff? I guess it can't be super (would be another line)
-    - must make sure the parameters are properly mapped because they might not map 1:1
-  - if a function is called once we should still do the parameter inlining, even if there's a function nested.
-  - if we know a function is called with the same primitive on all call sites, and there's no escaping, we should still just do it
-  - inline functions that have one statement which is not a return
   - params that are builtins or implicit or explicit globals can be inlined as well
-  - `const tmpBranchingC = function (tmpNestedComplexRhs$4) { a = tmpNestedComplexRhs$4;};` inline at call sites tests/cases/normalize/expressions/assignments/param_default/auto_ident_c-opt_complex_complex.md
-  - what's up with `const $clone$f$0_Iundefined = function () { const tmpNestedComplexRhs$1 = () => {}; a = tmpNestedComplexRhs$1; };` tests/cases/normalize/expressions/assignments/param_default/auto_ident_arrow.md
-  - Any call to a function without explicit return (or where all returns are undefined) can be split-replaced with undefined
   - When passing on a global const, drop the argument in favor of using the global directly
   - Inlining simple functions with rest, like tests/cases/normalize/pattern/param/rest/base.md
   - Could normalize AST, like var decl and assignment having a lhs and rhs instead of id/init and left/right (and drop the declarations bit since that'll never happen after the normalize_once step)).
   - There are some cases of loops where we can determine that there's no way for the loop to ever break, making any code that follows it ready to DCE.
   - If a function is called only once but cannot be inlined because it and its caller both contain branching, then move the code into the caller branch into the function to hopefully keep things closer together? see tests/cases/normalize/pattern/param/arr/arr/obj/base.md for an example
-  - If two branches return the same closure and the call site has access to this closure then the call can be inlined like we do with primitives, still calling the func but replacing the call value with the closure ident
   - Duplicate typeof on a const where one binding to hold the result can reach the other, means it can be eliminated as the results are immutable
-  - Common return values that are either closure or arg idents can be inlined: tests/cases/common_return/regression2.md
   - If a value is only used as a condition then whenever we know the truthy or falsy value of it, we should change it to an actual bool.
-  - A write at the end of the life cycle of a function when the binding is not used, or closured functions are not leaking, should be dropped. `function f(){ let x = 1; function g(){ $(x); } g(); x = 10;}`
   - can we detect mirror actions in both branches of an if? `if (x) a = f(); else a = f();` etc?
-  - case in tests/cases/function_scope_promo/base_outer_param_ref.md shows an update in both branches, assigned to const, then used as param. it should probably call in each branch and omit the alias.
   - bool function pattern: tests/cases/function_bool_ret/base_primitives.md
+  - edge case but we could fold up an `if` like: `if (b) { $(b); } else { $(''); }` when we know it's just a $(b) either way. exapmle: tests/cases/typing/base_string_truthy.md
+  - do we want to fix cases like in tests/cases/normalize/expressions/statement/template/auto_ident_unary_tilde_complex.md basically whether a number literal can be explicitly casted by String() or implicitly by a template and there's no observable difference. I think that's fine? so we could drop the String() trampoline in that case.
+ >- `let x = 1; if ($) x = 1; else x = 1` we're not detecting redundant sets
+
+when doing `0 + x` we can also convert to $coerce with a `plunum` or smth.
+
+ should we introduce a $toPrimitive() ? We can drop it if the arg is a primitive node or when we know the arg is a primitive type. but then we don't need to worry about x+y versus Number(x) versus String(x) cases. Especially with Date stuff.
+
+
+  - if an identifier-statement would be the first expression in the next statement (like call arg, left binary arg, unary arg, etc) then drop it. `a; f(a);` -> `f();`
+  - hoist the same thing above an `if`? `if (x) a = f(); else b = f();`, trickier for fresh bindings (do we even want that?) but still doable: `if (x) const a = f(); else const b = f();`. you'd have to merge the idents. but that'd be okay for constants anyways, right? or is the opposite easier for us? does it matter? what if its not the tail position?
+  - why is parseIdentUnicodeOrError not inlined in tenko?
+  - why is this not hoisted in tenko? `let tmpCalleeParam$433 = undefined; const tmpIfTest$1559 = collectTokens === 3; if (tmpIfTest$1559) { tmpCalleeParam$433 = consumedTokenType$3; } else { tmpCalleeParam$433 = createBaseToken(consumedTokenType$3, start$3, pointer$3, startCol$3, startRow$3, consumedNewlinesBeforeSolid); } $dotCall(tmpCallVal$65, tmpCallObj$91, tmpCalleeParam$433);`
+  - when a function updates a closure and the return value is not used, can it return updates to the closure instead? only if the function doesn't have observable side effects (only works if the closure cannot be observed) `const x = 1; function f(){ x = x + 1; } f(); f();` -> `const x = 1; function (){ const t = x + 1; return t; } x = f(); x = f();`
+    - likewise, we can pass closure values into a function to eliminate a closure dependency. but can only work if the closure is accessed before a side effect.
+  - When nesting a template, move the strings around the template to the next one and replace the caller with a string cast. `  const x = `a${b}c`; const y = `A${x}C` ``  -> `` const x = String(b); const y = `aA${x}Cc` ``
+  - (if not already done:)
+    - tests/cases/bit_hacks/bit_clear.md
+    - tests/cases/bit_hacks/expensive_patterns.md -> !x is true
+    - tests/cases/function_bool_ret/base_primitives_double_bang.md
+    - tests/cases/function_trampoline/call_only/implicit_global_crash.md
+    - tests/cases/while/unwind.md
+    - tests/cases/conditional_typing/conditional_concat.md
+  - last loop in SCOPE_addLexBinding can be folded up. if a variable is set to some state in one branch and the next branch checks for a different value then we can infer that the state will be false for some cases. not sure how generic. `if (x) { a = 0; } else { a = f(); } let y = x === 9; if (y) { } else { y = a === 10; } if (y) { ... } else {}`
+    - if nothing else, setting the `parentValue` to 0 does not do anything since the checks explicitly check against two values. we could init the var to 0 (instead of undefined).
+    - this function also duplicates teh `scoop$11.parent.names` lookup parts. not sure if we can fix that at all.
+  - we could consider to normalize all cases of the normalized `x = a || b` (-> `let x = a; if (x) {} else { x = b }`) to `let a = undefined; if (x) x = a; else a = b;` ???
+    - one case in favor of assignment in both branch is the if-update-call
+    - one case against assignment in both branch is type checking gets skewed
+  - concat with empty string when the other value is a string is a noop
+  - if an operation inside a loop is not observable then it can be moved out. ``let a = f(); while (x) { a = a | 10; x = f(); } $(a)` -> `let a = f(); while (x) { x = f(); } a = a | 10; $(a);` (and in this case it could be done immediately but only if the 10 value is a primitive etc.) -> tests/cases/while/unobservable_ops.md
+  - _parseClassBody in tenko eindigt met een `|undefined` ????
+  - parseFunctionBody always throws?? looks like I made a booboo. fun times.
+  - is isStrictOnlyKeyword( indeed a bogus call in parseGroupToplevels ?? (no. oh no.)
+  - Did I do the false when already false check yet? `let tmpIfTest$1917 = lastType === 67636; if (tmpIfTest$1917) { } else { tmpIfTest$1917 = false; }`
+  - `const x = a & 1; if (x) { const y = a & 4; if (y) {` -> `const x = a & 5; const y = x === 5; if (y) {` -> tests/cases/bit_hacks/and/and_if_and_if.md
+  - provided we can reverse it, would `if (a) { if (b) {` be more efficient as `if (Boolean(a) + Boolean(b) === 2) {` be the better approach since it has one `if`?
+  - spread param that we know is empty should be empty array
+  - we not doing this?? `const x = a <= 10; if (x) { return true; } else { return false; }`
+  - `if (x) Boolean(x);` -> `if (x) true`
+  - `const a = b === 1; c = !a;` should be `c = b !== 1`. -> cases/if_test_folding/tenko_parseasync_case.md
+  - probably already have this, but in `if (a === 33) if (a & 32)` the second check is subsumed by the first (if a is 33 then its 5th bit must be set, too)
+  - Fix `const x = tmpBinLhs === 1; const tmpIfTestFold = !x; return tmpIfTestFold;` like in cases/if_test_folding/bool_assign_false2.md (and others in that folder)
+  - we can change this either to the `let undefined` pattern, or init to `b` first, and false in the then branch: `let test = !a; if (a) { } else { test = b; }` . see cases/if_flipping/unary_if_neighbor_false.md
+  - static expressions involving objects and arrays: `const tmpBinBothRhs = [1, , 3]; const tmpBinLhs = '' + tmpBinBothRhs;` (example test : tests/cases/normalize/templates/static_resolve/var_decl/arr_numbers.md )
+  - statement that is a binary expression with a known primitive value and a primitive value can be eliminated safely: tests/cases/normalize/templates/static_resolve/statement/template_complex.md
+    - same for operations on literals (arrays etc) that we can guarantee not to spy
+  - Move excessive args for builtin funcions to separate statements (can do that in this normalization phase in a CallExpression handler)
+  - hele serie in de orde van `if (a === 2) if (a === 3)` -> `t = a & 2; if (x > 1)`. maar dan niet veilig voor coercion.
+  - de return value outlining kun je verder naar achteren duwen door de eerste statement te zoeken die niet statisch bepaald is. zoals `const x = arg === true; if (x) { return 256; } else { return 1; }`. als arg een input is dan bepaalt die uiteindelijk wat er teruggegeven wordt dus dat kun je op basis daarvan uitlijnen... misschien levert dat wel te veel code duplcatie op...
+  - hmmmmm `const tmpBinLhs$1169 = subDestruct$1 & 1; let tmpIfTest$3797 = tmpBinLhs$1169 === 1;` ok. we can do this.
+  - implicit globals are hoisted up, causing the wrong order potentially, like in tests/cases/exprstmt/bin_unknown.md
+  - Boolean([x,y,z]) and Array.isArray([x,y,z]) should work even with unknowns. currently only works with primitive elements
+  - `const a = 'f' + b; const c = `${a}nt`;` -> `const a = '' + b; const c = `f${a}nt` (attempt to consolidate the string contents)
+  - var that is ternary alias of another constant can be initialized as that constant first. `const x = y; let z = undefined; if (a) z = x; else z = b;` -> `let z = y; if (a) ; else z = b;`. If x is used then it can not be eliminated of course. tenko does this a lot.
+  - `if (x) f(); else g(); if (x) {} else {} if (x) {} else {}` if the blocks cant spy then the blocks can be merged into one block. See parseClassMethodAfterKey on babelCompat in tenko
+  - can we group the `a || b || c` somehow if we first cast all the vars to a bool (or know they are)? can we mix and match || and && into one call somehow, without tripping up during normalization? a little harder because that would require nesting or something.
+  - (to revisit) maybe... conditional concat can be moved in? `const x = s + 'abc'; let y = undefined; if (t) { y = 'def' + t; } else { y = 'ghi'; } const z = x + y;' -> `let y = undefined; if (t) { y = 'abcdef' + t; } else { y = 'abcghi'; } const z = s + y; }` -> `let y = 'abcghi'; if (t) { y = 'abcdef' + t; } else { } const z = s + y; }` (maybe). Pattern seems to happen a few times in tenko (`'------- error'`)
+  - TODO: do AST.isPrimitive instead. Drop a bunch of logic here
   - TODO: fix other cases of write-shadowing in different branches for the prevMap approach, like we did in lethoisting2
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
   - TODO: assignment expression, compound assignment to property, I think the c check _can_ safely be the first check. Would eliminate some redundant vars. But those should not be a problem atm.
@@ -222,7 +300,32 @@ import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/
   - TODO: `$(null[$('keep me')]);` should still invoke the computed prop
   - TODO: should normalize to only have imports and exports as global code and an IIFE as the only other kind of toplevel code that contains all other code. This way there is no global code and everything is scoped to a function.
   - TODO: implicit globals should not be shuffled around like in tests/cases/normalize/expressions/assignments/for_a/auto_arguments_length.md
+  - TODO: are we breaking use strict directives?
 */
+
+/*
+
+fix the binding-after-return case in /home/ptr/proj/preval/tests/cases/normalize/dce/return/decl_after.md
+we should throw for the tdz. but also make sure we handle the multi-scope case proper
+
+
+need to fix the simple function elimination also dropping implicit globals
+tests/cases/function_trampoline/call_only/should_roll_up.md
+
+
+doing multiple static operations on the same value can reuse those results if stored in a constant
+              const tmpIfTest$3265 = fromStmtOrExpr$1 === 1;
+              const tmpCalleeParam$1363 = !tmpIfTest$3265;
+              const tmpIfTest$3267 = fromStmtOrExpr$1 === 1;
+              let tmpIfTest$3269 = isExport$5 === true;
+              if (tmpIfTest$3269) {
+              } else {
+                tmpIfTest$3269 = fromStmtOrExpr$1 === 1;
+              }
+              const canonName = parseFunctionDeclaration( lexerFlags$139, scoop$33, tmpCalleeParam$1363, tmpIfTest$3267, 2074, $tp_async_start$7, $tp_async_line$7, $tp_async_column$7, $tp_async_start$7, $tp_function_stop, tmpIfTest$3269, isLabelled$11, fdState$17, astProp$43, );
+
+
+ */
 
 function RETURN() {
   // Part of the while-normalization-logic
@@ -235,10 +338,12 @@ function RETURN() {
   // infinite loop).
   return AST.identifier('undefined');
 }
+
 function BREAK() {
   // Part of the while-normalization-logic. See the RETURN func.
   return AST.fals();
 }
+
 function CONTINUE() {
   // Part of the while-normalization-logic. See the RETURN func.
   return AST.tru();
@@ -1053,8 +1158,18 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     ASSERT(parentNode, 'parent node?');
 
     switch (node.type) {
-      case 'Identifier':
+      case 'Identifier': {
         vlog('- name: `' + node.name + '`');
+
+        ASSERT(
+          node.name !== '$coerce' ||
+            (parentNode.type === 'CallExpression' &&
+              parentNode.callee === node &&
+              parentNode.arguments.length === 2 &&
+              AST.isStringLiteral(parentNode.arguments[1])),
+          'we control $coerce so it should always have a fixed form',
+          node.parentNode,
+        );
 
         if (wrapKind === 'statement') {
           // TODO: what about implicit globals or TDZ? This prevents a crash.
@@ -1165,6 +1280,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         }
 
         return false;
+      }
 
       case 'Param': {
         vlog('- name: `' + node.name + '`, rest?', node.rest);
@@ -1383,28 +1499,95 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 );
 
                 after(parentNode);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }
 
-              case 'parseFloat':
-              case 'Number': {
-                // The first arg should be unary +. The rest as is.
+              case 'parseFloat': {
+                // This is not "just" calling Number or String... We can probably do this anyways.
+                if (node.arguments.length > 1 || node.arguments[0].type === 'SpreadElement') {
+                  // Note: the `+` operator is effectively the specification's `ToNumber` coercion operation in syntactic form.
+                  // Move all args to individual statements. Coerce the first to number.
+                  rule(
+                    'A statement that is `Number()` or `parseFloat()` should be replaced by a call to `$coerce` on "number" with one arg',
+                  );
+                  example('Number(a);', '$coerce(300, "number");');
+                  example('parseFloat(a);', '$coerce(300, "number");');
+                  before(node, parentNode);
 
-                // Note: the `+` operator is effectively the specificaton's `ToNumber` coercion operation in syntactic form.
-                // Move all args to individual statements. Coerce the first to number. Drop the call.
-                rule('A statement that is Number() or parseInt() should be replaced by its args as statements');
-                example('Number(a);', '+300;');
+                  const newNodes = args.map((anode, ai) =>
+                    // Make sure `Number(...x)` properly becomes `$coerce([...x][0], "number")` and let another rule deal with that mess.
+                    AST.expressionStatement(
+                      ai === 0
+                        ? anode.type === 'SpreadElement'
+                          ? // If the first arg is a spread, convert it to an array and coerce its first element `+[...x][0]`
+                            // That should work (albeit a little ugly)
+                            AST.callExpression('$coerce', [
+                              AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true),
+                              AST.primitive('number'),
+                            ])
+                          : AST.callExpression('$coerce', [anode, AST.primitive('number')])
+                        : anode.type === 'SpreadElement'
+                        ? AST.arrayExpression(anode)
+                        : anode,
+                    ),
+                  );
+                  body.splice(i, 1, ...newNodes);
+
+                  after(body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                if (node.arguments.length === 1 && AST.isPrimitive(node.arguments[0])) {
+                  rule('If a `parseFloat` statement received a primitive value it can be dropped');
+                  rule('parseFloat("50foo");', ';');
+                  before(node, parentNode);
+
+                  body[i] = AST.emptyStatement();
+
+                  after(AST.emptyStatement());
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                break;
+              }
+
+              case 'Number': {
+                // Note: `Number(x)` is not the same as `1 * x`
+
+                if (args.length === 0) {
+                  rule('A statement that is `Number()` or `parseInt()` (zero args) can be eliminated');
+                  example('String();', ';');
+                  example('parseInt();', ';');
+                  before(node, parentNode);
+
+                  body[i] = AST.emptyStatement();
+
+                  after(AST.emptyStatement());
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                // Note: the `+` operator is effectively the specification's `ToNumber` coercion operation in syntactic form.
+                // Move all args to individual statements. Coerce the first to number.
+                rule('A statement that is `Number()` or `parseFloat()` should be replaced by a call to `$coerce` on "number" with one arg');
+                example('Number(a);', '$coerce(300, "number");');
+                example('parseFloat(a);', '$coerce(300, "number");');
                 before(node, parentNode);
 
                 const newNodes = args.map((anode, ai) =>
-                  // Make sure `Number(...x)` properly becomes `+[...x][0]` and let another rule deal with that mess.
+                  // Make sure `Number(...x)` properly becomes `$coerce([...x][0], "number")` and let another rule deal with that mess.
                   AST.expressionStatement(
                     ai === 0
                       ? anode.type === 'SpreadElement'
                         ? // If the first arg is a spread, convert it to an array and coerce its first element `+[...x][0]`
                           // That should work (albeit a little ugly)
-                          AST.unaryExpression('+', AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true))
-                        : AST.unaryExpression('+', anode)
+                          AST.callExpression('$coerce', [
+                            AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true),
+                            AST.primitive('number'),
+                          ])
+                        : AST.callExpression('$coerce', [anode, AST.primitive('number')])
                       : anode.type === 'SpreadElement'
                       ? AST.arrayExpression(anode)
                       : anode,
@@ -1413,10 +1596,12 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 body.splice(i, 1, ...newNodes);
 
                 after(body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }
               case 'String': {
                 // Note: `String(x)` is not the same as `""+x`
+                // We eliminate calls to Number and String in favor of $coerce
 
                 if (args.length === 0) {
                   rule('A statement that is `String()` can be eliminated');
@@ -1426,45 +1611,46 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   body[i] = AST.emptyStatement();
 
                   after(AST.emptyStatement());
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
 
-                if (args.length > 1) {
-                  rule('A statement calls String with multiple args should call it with one');
-                  example('String(a, b, c);', 'const tmp = a; b; c; String(a);');
-                  before(node, parentNode);
+                rule('A statement call to `String` with some args should call `$coerce` with one');
+                example('String(a, b, c);', 'const tmp = a; b; c; $coerce(a, "string");');
+                before(node, parentNode);
 
-                  const newNodes = [];
+                const newNodes = [];
 
-                  let tmpArgName;
-                  args.forEach((anode, ai) => {
-                    if (ai === 0) {
-                      // Make sure `String(...x)` properly becomes `"" + [...x][0]` and let another rule deal with that mess.
-                      if (anode.type === 'SpreadElement') {
-                        tmpArgName = createFreshVar('tmpStringSpread', fdata);
-                        newNodes.push(AST.variableDeclaration(tmpArgName, AST.arrayExpression(anode), 'const')); // [...arg]
-                      } else {
-                        tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
-                        newNodes.push(AST.variableDeclaration(tmpArgName, anode, 'const'));
-                      }
+                let tmpArgName;
+                args.forEach((anode, ai) => {
+                  if (ai === 0) {
+                    // Make sure `String(...x)` properly becomes `"" + [...x][0]` and let another rule deal with that mess.
+                    if (anode.type === 'SpreadElement') {
+                      tmpArgName = createFreshVar('tmpStringSpread', fdata);
+                      newNodes.push(AST.variableDeclaration(tmpArgName, AST.arrayExpression(anode), 'const')); // [...arg]
                     } else {
-                      newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
+                      tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
+                      newNodes.push(AST.variableDeclaration(tmpArgName, anode, 'const'));
                     }
-                  });
-                  newNodes.push(
-                    AST.callExpression('String', [
+                  } else {
+                    newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
+                  }
+                });
+                newNodes.push(
+                  AST.expressionStatement(
+                    AST.callExpression('$coerce', [
                       args[0].type === 'SpreadElement'
                         ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
                         : AST.identifier(tmpArgName),
+                      AST.primitive('string'),
                     ]),
-                  );
-                  body.splice(i, 1, ...newNodes);
+                  ),
+                );
+                body.splice(i, 1, ...newNodes);
 
-                  after(parentNode);
-                  return true;
-                }
-
-                break;
+                after(parentNode);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
               }
               case 'parseInt': {
                 // Coerce the first arg to string, the second to number
@@ -1488,6 +1674,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   body.splice(i, 1, ...newNodes);
 
                   after(parentNode);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
                 break;
@@ -1498,6 +1685,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               }
             }
           } else {
+            // if not statement
+
             const firstArgNode = args[0];
             switch (callee.name) {
               case 'Function': {
@@ -1622,28 +1811,128 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 }
                 break;
               }
-              case 'parseFloat':
-              case 'Number': {
-                if (firstArgNode && AST.isPrimitive(firstArgNode)) {
-                  const pv = AST.getPrimitiveValue(firstArgNode);
-                  const pvn = callee.name === 'parseFloat' ? parseFloat(pv) : Number(pv); // should be the same :snrug:
-                  // Confirm that we can serialize it without loss of precision
-                  if (pvn === +String(pvn)) {
-                    // Ok... Seems this is safe to convert
-                    rule('Calling `parseFloat` or `Number on a primitive should resolve');
-                    example('parseFloat("50.3hello")', '50.3', () => callee.name === 'parseFloat'); // tests/cases/normalize/builtins/globals_with_primitives/parsefloat_500.md
-                    example('parseFloat("50.3hello")', '50.3', () => callee.name === 'Number'); // tests/cases/normalize/builtins/globals_with_primitives/number_500.md
-                    before(node, parentNode);
+              case 'parseFloat': {
+                // This is not "just" calling Number or String... We can probably do this anyways.
 
-                    const finalNode = AST.primitive(pvn);
-                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
+                if (args.length === 0) {
+                  rule('A call to `parseFloat()` without args is NaN');
+                  example('f(parseFloat());', 'f(NaN);');
+                  before(node, body[i]);
 
-                    after(finalNode, body.slice(i, args.length));
-                    return true;
-                  }
+                  const finalNode = AST.identifier('NaN');
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, finalParent);
+
+                  after(finalParent, body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
                 }
+
+                if (node.arguments.length > 1 || node.arguments[0].type === 'SpreadElement') {
+                  rule('A call to `parseFloat` with some args should call `$coerce` with one');
+                  example('f(parseFloat(a, b, c));', 'const tmp = a; b; c; f(parseFloat(a));');
+                  before(node, parentNode);
+
+                  const newNodes = [];
+
+                  let tmpArgName;
+                  args.forEach((anode, ai) => {
+                    if (ai === 0) {
+                      // Make sure `Number(...x)` properly becomes `$coerce([...x][0], "number")` and let another rule deal with that mess.
+                      if (anode.type === 'SpreadElement') {
+                        tmpArgName = createFreshVar('tmpStringSpread', fdata);
+                        newNodes.push(AST.variableDeclaration(tmpArgName, AST.arrayExpression(anode), 'const')); // [...arg]
+                      } else {
+                        tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
+                        newNodes.push(AST.variableDeclaration(tmpArgName, anode, 'const'));
+                      }
+                    } else {
+                      newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
+                    }
+                  });
+                  const finalNode = AST.callExpression('parseFloat', [
+                    args[0].type === 'SpreadElement'
+                      ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
+                      : AST.identifier(tmpArgName),
+                  ]);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+
+                  body.splice(i, 1, ...newNodes, finalParent);
+
+                  after(newNodes);
+                  after(finalParent, body[i + newNodes.length]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                if (AST.isPrimitive(node.arguments[0])) {
+                  rule('A primitive value to `parseFloat` should be resolved');
+                  example('f(parseFloat("50foo"))', 'f(50)');
+                  before(node, body[i]);
+
+                  const finalNode = AST.primitive(parseFloat(AST.getPrimitiveValue(node.arguments[0])));
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, finalParent);
+
+                  after(finalParent, body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
                 break;
+              }
+              case 'Number': {
+                // We eliminate Number in favor of $coerce
+
+                if (args.length === 0) {
+                  rule('A call to `Number()` without args is zero');
+                  example('f(Number());', 'f(0);');
+                  before(node, body[i]);
+
+                  const finalNode = AST.primitive(0);
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, finalParent);
+
+                  after(finalParent, body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                rule('A call to `Number` with some args should call `$coerce` with one');
+                example('f(Number(a, b, c));', 'const tmp = a; b; c; f($coerce(a, "number"));');
+                before(node, parentNode);
+
+                const newNodes = [];
+
+                let tmpArgName;
+                args.forEach((anode, ai) => {
+                  if (ai === 0) {
+                    // Make sure `Number(...x)` properly becomes `$coerce([...x][0], "number")` and let another rule deal with that mess.
+                    if (anode.type === 'SpreadElement') {
+                      tmpArgName = createFreshVar('tmpStringSpread', fdata);
+                      newNodes.push(AST.variableDeclaration(tmpArgName, AST.arrayExpression(anode), 'const')); // [...arg]
+                    } else {
+                      tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
+                      newNodes.push(AST.variableDeclaration(tmpArgName, anode, 'const'));
+                    }
+                  } else {
+                    newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
+                  }
+                });
+                const finalNode = AST.callExpression('$coerce', [
+                  args[0].type === 'SpreadElement'
+                    ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
+                    : AST.identifier(tmpArgName),
+                  AST.primitive('number'),
+                ]);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+
+                body.splice(i, 1, ...newNodes, finalParent);
+
+                after(newNodes);
+                after(finalParent, body[i + newNodes.length]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
               }
               case 'RegExp': {
                 // I'm pretty sure we can safely convert regular expressions to literals when the args are strings
@@ -1685,19 +1974,57 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 break;
               }
               case 'String': {
-                if (args[0] && AST.isPrimitive(args[0])) {
-                  rule('Calling `String` on a primitive should resolve');
-                  example('String(123)', '"123"');
-                  before(node, parentNode);
+                // Consolidate all calls to String to a single special cased `$coerce` call, exposed by Preval
 
-                  const finalNode = AST.primitive(String(AST.getPrimitiveValue(firstArgNode)));
+                if (args.length === 0) {
+                  rule('A call to `String()` without args is the empty string');
+                  example('f(String());', 'f("");');
+                  before(node, body[i]);
+
+                  const finalNode = AST.primitive('');
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                  body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
+                  body.splice(i, 1, finalParent);
 
-                  after(finalNode, body.slice(i, args.length));
+                  after(finalParent, body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
-                break;
+
+                rule('A call to `String` with some args should call `$coerce` with one');
+                example('f(String(a, b, c));', 'const tmp = a; b; c; f($coerce(a, "string"));');
+                before(node, parentNode);
+
+                const newNodes = [];
+
+                let tmpArgName;
+                args.forEach((anode, ai) => {
+                  if (ai === 0) {
+                    // Make sure `String(...x)` properly becomes `$coerce([...x][0], "string")` and let another rule deal with that mess.
+                    if (anode.type === 'SpreadElement') {
+                      tmpArgName = createFreshVar('tmpStringSpread', fdata);
+                      newNodes.push(AST.variableDeclaration(tmpArgName, AST.arrayExpression(anode), 'const')); // [...arg]
+                    } else {
+                      tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
+                      newNodes.push(AST.variableDeclaration(tmpArgName, anode, 'const'));
+                    }
+                  } else {
+                    newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
+                  }
+                });
+                const finalNode = AST.callExpression('$coerce', [
+                  args[0].type === 'SpreadElement'
+                    ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
+                    : AST.identifier(tmpArgName),
+                  AST.primitive('string'),
+                ]);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+
+                body.splice(i, 1, ...newNodes, finalParent);
+
+                after(newNodes);
+                after(finalParent, body[i + newNodes.length]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
               }
             }
           }
@@ -2099,7 +2426,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                     // Since we can't do `===` (and not even `Object.is` saves us here) we need to serialize the string and
                     // confirm that the value serializes to digits. No dots or e/E.
                     if (
-                      isNaN(result) ||
+                      Object.is(NaN, result) ||
                       typeof result !== 'number' ||
                       (Number.isInteger(result) /* && result <= (Number.MAX_SAFE_INTEGER+1)*/ && /^\d+$/.test(String(result)))
                     ) {
@@ -2169,9 +2496,37 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   example('"blue".constructor(123)', '"123"');
                   before(node, body[i]);
 
+                  // Note: use String here because if there are multiple args, or any spreads, there's a rule that will clean it up first.
                   node.callee = AST.identifier('String');
 
                   after(node, body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                case 'toString':
+                case 'valueOf': {
+                  rule('Calling `toString` or `valueOf` on a string returns the string');
+                  example('"foo".toString()', '"foo"');
+                  example('"foo".valueOf()', '"foo"');
+                  before(node, body[i]);
+
+                  const finalParent = wrapExpressionAs(
+                    wrapKind,
+                    varInitAssignKind,
+                    varInitAssignId,
+                    wrapLhs,
+                    varOrAssignKind,
+                    callee.object,
+                  );
+                  body.splice(
+                    i,
+                    1, // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
+                    // If the method was called with a spread, make sure the spread still happens.
+                    ...args.map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
+                    finalParent,
+                  );
+
+                  after(callee.object, body[i]);
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
@@ -2203,10 +2558,72 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   case 'constructor': {
                     ASSERT(node.arguments.length === 1, 'meh just a silly hack, no full support');
                     rule('A call to `str.constructor` on a string should be inlined');
-                    example('123..constructor("500")', 'Number("500")');
+                    example('123..constructor("500")', '$coerce("500", "number)');
                     before(node, body[i]);
 
-                    node.callee = AST.identifier('Number');
+                    node.callee = AST.identifier('$coerce');
+                    node.arguments[1] = AST.primitive('number');
+
+                    after(node, body[i]);
+                    assertNoDupeNodes(AST.blockStatement(body), 'body');
+                    return true;
+                  }
+                  case 'toString': {
+                    // The radix is a vital arg so we can't resolve this unless we can resolve the arg
+                    if (!args.length || AST.isPrimitive(args[0])) {
+                      rule('Calling `toString` on a number serializes the number with a radix');
+                      example('123..toString(15)', '"83"');
+                      before(node, body[i]);
+
+                      const pv = AST.getPrimitiveValue(callee.object);
+                      // We don't care about the radix as long as we can resolve the primitive. Defer to JS to resolve the final value.
+                      const radix = args[0] ? AST.getPrimitiveValue(args[0]) : 10;
+                      const finalNode = AST.primitive(pv.toString(radix));
+                      const finalParent = wrapExpressionAs(
+                        wrapKind,
+                        varInitAssignKind,
+                        varInitAssignId,
+                        wrapLhs,
+                        varOrAssignKind,
+                        finalNode,
+                      );
+                      body.splice(
+                        i,
+                        1, // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
+                        // If the method was called with a spread, make sure the spread still happens.
+                        ...args.map((anode) =>
+                          AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode),
+                        ),
+                        finalParent,
+                      );
+
+                      after(node, body[i]);
+                      assertNoDupeNodes(AST.blockStatement(body), 'body');
+                      return true;
+                    }
+                    break;
+                  }
+                  case 'valueOf': {
+                    rule('Calling `valueOf` on a number returns the number');
+                    example('123..valueOf()', '123');
+                    before(node, body[i]);
+
+                    const finalParent = wrapExpressionAs(
+                      wrapKind,
+                      varInitAssignKind,
+                      varInitAssignId,
+                      wrapLhs,
+                      varOrAssignKind,
+                      callee.object,
+                    );
+                    body.splice(
+                      i,
+                      1,
+                      // Do not ignore the args. If there are any, make sure to preserve their side effects. If any.
+                      // If the method was called with a spread, make sure the spread still happens.
+                      ...args.map((anode) => AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode)),
+                      finalParent,
+                    );
 
                     after(node, body[i]);
                     assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -2229,25 +2646,47 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         // Otherwise, check if the callee is simple. If not cache just the callee.
 
         if (hasComplexArg) {
-          // At least one param node is complex. Cache them all. And the callee too.
+          if (callee.name === '$coerce') {
+            // Just outline the first arg. The rest is controlled by us and should be ok.
 
-          rule('The arguments of a call must all be simple');
-          example('a(f())', 'tmp = a(), tmp2 = f(), tmp(tmp2)', () => callee.type === 'Identifier');
-          example('a()(f())', 'tmp = a(), tmp2 = f(), tmp(tmp2)', () => callee.type !== 'Identifier');
-          before(node, parentNode);
+            rule('The arg of $coerce must allways be simple');
+            example('$coerce(f(), "string")', 'tmp = f(), $coerce(tmp2, "string")');
+            before(node, parentNode);
 
-          const newArgs = [];
-          const tmpName = createFreshVar('tmpCallCallee', fdata);
-          const newNodes = [AST.variableDeclaration(tmpName, callee, 'const')];
-          normalizeCallArgs(args, newArgs, newNodes);
-          const finalNode = AST.callExpression(tmpName, newArgs);
-          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-          body.splice(i, 1, ...newNodes, finalParent);
+            const tmpName = createFreshVar('tmpCallCallee', fdata);
+            const varNode = AST.variableDeclaration(tmpName, args[0], 'const');
+            args[0] = AST.identifier(tmpName);
+            body.splice(i, 0, varNode);
 
-          after(newNodes);
-          after(finalNode, finalParent);
-          assertNoDupeNodes(AST.blockStatement(body), 'body');
-          return true;
+            after(varNode);
+            after(parentNode, body[i + 1]);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          } else {
+            // At least one param node is complex. Cache them all. And the callee too.
+
+            rule('The arguments of a call must all be simple');
+            example('a(f())', 'tmp = a(), tmp2 = f(), tmp(tmp2)', () => callee.type === 'Identifier');
+            example('a()(f())', 'tmp = a(), tmp2 = f(), tmp(tmp2)', () => callee.type !== 'Identifier');
+            before(node, parentNode);
+
+            const newArgs = [];
+            const newNodes = [];
+            let tmpName = '$coerce';
+            if (callee.name !== '$coerce') {
+              tmpName = createFreshVar('tmpCallCallee', fdata);
+              newNodes.push(AST.variableDeclaration(tmpName, callee, 'const'));
+            }
+            normalizeCallArgs(args, newArgs, newNodes);
+            const finalNode = AST.callExpression(tmpName, newArgs);
+            const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+            body.splice(i, 1, ...newNodes, finalParent);
+
+            after(newNodes);
+            after(finalNode, finalParent);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
         }
 
         if (AST.isComplexNode(callee)) {
@@ -2404,6 +2843,23 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           // "foo"["2"] -> "foo"[2]
           // "foo"[2] -> "o"
 
+          if (
+            node.object.type === 'Identifier' &&
+            ['Boolean', 'Number', 'String', 'Function', 'Regex', 'Array', 'Object', BUILTIN_ARRAY_PROTOTYPE].includes(node.object.name)
+          ) {
+            if (wrapKind === 'statement') {
+              rule('A statement that is a property on a built in constructor should be removed');
+              example('Array.from;', ';');
+              before(node);
+
+              body[i] = AST.emptyStatement();
+
+              before(body[i]);
+              assertNoDupeNodes(AST.blockStatement(body), 'body');
+              return true;
+            }
+          }
+
           if (AST.isStringLiteral(node.object, true)) {
             if (node.computed) {
               // "foo"[0]
@@ -2457,41 +2913,89 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
                 }
+                case 'constructor': {
+                  // Found this in jsf*ck code... So why not.
+                  rule('`str.constructor should resolve to `String`');
+                  example('"abc".constructor(500)', 'String(500)');
+                  before(node, body[i]);
+
+                  const finalNode = AST.identifier('String');
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, finalParent);
+
+                  after(body[i]);
+                  return true;
+                }
+                case 'toString': {
+                  // Found this in jsf*ck code... So why not.
+                  rule('`str.toString should resolve to `String.prototype.toString`');
+                  example('f("foo".toString)', 'f($StringPrototype.toString)');
+                  before(node, body[i]);
+
+                  node.object = AST.identifier(BUILTIN_NUMBER_PROTOTYPE);
+
+                  after(body[i]);
+                  return true;
+                }
               }
             }
           }
 
           // Properties on primitives
-          if (!node.computed && node.type === 'Literal') {
-            if (node.value instanceof RegExp) {
+          if (!node.computed && node.object.type === 'Literal') {
+            if (node.object.value instanceof RegExp) {
               if (node.property.name === 'constructor') {
                 // Found this in jsf*ck code... So why not.
-                rule('`regex.constructor should resolve to RegExp');
+                rule('`regex.constructor should resolve to `RegExp`');
                 example('/foo/.constructor("bar")', 'RegExp("bar")');
                 before(node, body[i]);
 
-                const finalNode = AST.unaryExpression('-', AST.identifier('Infinity'));
+                const finalNode = AST.identifier('RegExp');
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body.splice(i, 1, finalParent);
 
                 after(body[i]);
                 return true;
               }
-            } else if (typeof node.value === 'boolean') {
+            } else if (typeof node.object.value === 'boolean') {
               if (node.property.name === 'constructor') {
                 // Found this in jsf*ck code... So why not.
-                rule('`regex.constructor should resolve to RegExp');
-                example('/foo/.constructor("bar")', 'RegExp("bar")');
+                rule('`bool.constructor should resolve to `Boolean`');
+                example('false.constructor("bar")', 'Boolean("bar")');
                 before(node, body[i]);
 
-                const finalNode = AST.unaryExpression('-', AST.identifier('Infinity'));
+                const finalNode = AST.identifier('Boolean');
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body.splice(i, 1, finalParent);
 
                 after(body[i]);
                 return true;
               }
-            } else if (typeof node.value === 'number') {
+            } else if (typeof node.object.value === 'number') {
+              if (node.property.name === 'constructor') {
+                // Found this in jsf*ck code... So why not.
+                rule('`num.constructor` should resolve to `Number`');
+                example('500..constructor("bar")', 'Number("bar")');
+                before(node, body[i]);
+
+                const finalNode = AST.identifier('Number');
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(body[i]);
+                return true;
+              }
+              if (node.property.name === 'toString') {
+                // Found this in jsf*ck code... So why not.
+                rule('`num.toString` should resolve to `Number.prototype.toString`');
+                example('f(600..toString)', 'f($NumberPrototype.toString)');
+                before(node, body[i]);
+
+                node.object = AST.identifier(BUILTIN_NUMBER_PROTOTYPE);
+
+                after(body[i]);
+                return true;
+              }
             }
             // Should not need to cover `null` here. Should not need to cover string here.
           }
@@ -3999,7 +4503,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           } else if (node.operator === '+') {
             if (lp) {
               const pv = AST.getPrimitiveValue(node.left);
-              if (typeof pv === 'string' && pv !== '') {
+              if (pv === '') {
+                rule('Concat to empty string left should become $coerce');
+                example('const x = a + "";', 'const x = $coerce(a, "plustr");');
+                before(node, body[i]);
+
+                const finalNode = AST.callExpression('$coerce', [node.right, AST.primitive('plustr')]);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(finalParent);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+              if (typeof pv === 'string') {
                 rule('Concat with string literal left must be with empty string');
                 example('f("hello" + world);', 'const tmp = world + ""; f(`hello ${tmp}`);');
                 before(node, body[i]);
@@ -4017,7 +4534,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               }
             } else if (rp) {
               const pv = AST.getPrimitiveValue(node.right);
-              if (typeof pv === 'string' && pv !== '') {
+              if (pv === '') {
+                rule('Concat to empty string right should become $coerce');
+                example('const x = a + "";', 'const x = $coerce(a);');
+                before(node, body[i]);
+
+                const finalNode = AST.callExpression('$coerce', [node.left, AST.primitive('plustr')]);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(finalParent);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+              if (typeof pv === 'string') {
                 rule('Concat with string literal right must be with empty string');
                 example('f(hello + "world");', 'const tmp = hello + ""; f(`${tmp} world`);');
                 before(node, body[i]);
@@ -4036,6 +4566,34 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             }
           }
         }
+
+        if (['+', '&', '|', '^', '<<', '>>', '>>>', '**', '*', '/', '-', '%', '<', '<=', '>', '>='].includes(node.operator)) {
+          // Support serializing some globals. Mostly for jsf*ck cases.
+          const isBuiltinConstructor =
+            node.left.type === 'Identifier' && ['Array', 'Object', 'Boolean', 'Number', 'String', 'RegExp'].includes(node.left.name)
+              ? node.left
+              : node.right.type === 'Identifier' && ['Array', 'Object', 'Boolean', 'Number', 'String', 'RegExp'].includes(node.right.name)
+              ? node.right
+              : null;
+          if (isBuiltinConstructor) {
+            const constructorName = isBuiltinConstructor.name;
+            const builtinLeftOrRight = node.left === isBuiltinConstructor ? 'left' : 'right';
+            rule('Adding a builtin constructor to a primitive can be resolved');
+            example('f(0 + Array);', 'f("0function Array() { [native code] }");', () => constructorName === 'Array');
+            example('f(0 + Object);', 'f("0function Object() { [native code] }");', () => constructorName === 'Object');
+            example('f(0 + Boolean);', 'f("0function Boolean() { [native code] }");', () => constructorName === 'Boolean');
+            example('f(0 + Number);', 'f("0function Number() { [native code] }");', () => constructorName === 'Number');
+            example('f(0 + String);', 'f("0function String() { [native code] }");', () => constructorName === 'String');
+            example('f(0 + RegExp);', 'f("0function RegExp() { [native code] }");', () => constructorName === 'RegExp');
+            before(node, body[i]);
+
+            node[builtinLeftOrRight] = AST.primitive('function ' + constructorName + '() { [native code] }');
+
+            before(node, body[i]);
+            return true;
+          }
+        }
+
         return false;
       }
 
@@ -6158,6 +6716,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     const last = node.body.body[node.body.body.length - 1];
     if (last.type === 'IfStatement') {
       let changed = false;
+
       function returnBranch(node) {
         // Confirm that both branches return explicitly and make them if either doesn't
         // If either ends with another `if`, apply the logic to that node instead. For each branch though.
@@ -6195,6 +6754,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           return true;
         }
       }
+
       returnBranch(last);
 
       if (changed) {

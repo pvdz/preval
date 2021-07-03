@@ -49,6 +49,7 @@ const globalNames = new Map([
   ['$spy', '$spy'], // Do we want to tell Preval that it's a function?
   ['objPatternRest', 'function'], // Should we tell Preval this is a function?
   ['$dotCall', 'function'], // Should we tell Preval this is a function?
+  ['$coerce', '$coerce'], // dito
 ]);
 
 export default globalNames;

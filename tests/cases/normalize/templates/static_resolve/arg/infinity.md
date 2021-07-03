@@ -17,7 +17,7 @@ $(`${Infinity}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + String(Infinity) + ``);
+$(`` + $coerce(Infinity, `string`) + ``);
 `````
 
 ## Normalized
@@ -25,9 +25,9 @@ $(`` + String(Infinity) + ``);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = `Infinity`;
+const tmpBinBothRhs = $coerce(Infinity, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ``;
+const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
 tmpCallCallee(tmpCalleeParam);
 `````
 

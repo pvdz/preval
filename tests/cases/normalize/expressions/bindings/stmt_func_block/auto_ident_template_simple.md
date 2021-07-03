@@ -18,7 +18,7 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let a = `fo` + String(1) + `o`;
+let a = `fo` + $coerce(1, `string`) + `o`;
 $(a);
 `````
 
@@ -26,9 +26,9 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = `fo`;
-const tmpBinBothRhs = `1`;
+const tmpBinBothRhs = $coerce(1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = tmpBinLhs + ``;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 let a = `${tmpStringConcatR}o`;
 $(a);
 `````

@@ -47,7 +47,7 @@ const a = arrPatternSplat[0];
 $(10);
 $(20);
 const tmpBinBothRhs = $(100);
-tmpBinBothRhs + ``;
+$coerce(tmpBinBothRhs, `number`);
 $(a);
 `````
 

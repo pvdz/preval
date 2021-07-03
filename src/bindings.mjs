@@ -1,4 +1,14 @@
-import { IMPLICIT_GLOBAL_PREFIX, BUILTIN_ARRAY_PROTOTYPE, VERBOSE_TRACING, BLUE, RESET } from './constants.mjs';
+import {
+  IMPLICIT_GLOBAL_PREFIX,
+  VERBOSE_TRACING,
+  BLUE,
+  RESET,
+  BUILTIN_ARRAY_PROTOTYPE,
+  BUILTIN_FUNCTION_PROTOTYPE,
+  BUILTIN_NUMBER_PROTOTYPE,
+  BUILTIN_OBJECT_PROTOTYPE,
+  BUILTIN_STRING_PROTOTYPE,
+} from './constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source } from './utils.mjs';
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
@@ -948,6 +958,7 @@ export function findBoundNamesInVarDeclarator(decl, names = []) {
 }
 
 export function inferInitialType(fdata, typing, init, kind) {
+  // Assumes >= phase1 (so normalized code)
   // Given a node `init`, determine the initial typing for this meta.
 
   if (AST.isPrimitive(init)) {
@@ -1175,16 +1186,26 @@ export function inferInitialType(fdata, typing, init, kind) {
       typing.mustBeTruthy = true;
       return;
     }
-    case 'CallExpression':  {
+    case 'CallExpression': {
       // Certain builtins have a guaranteed outcome... (or an exception is thrown, which we can ignore here)
       if (init.callee.type === 'Identifier') {
         switch (init.callee.name) {
           case 'String': {
+            // done
+            ASSERT(false, 'should be changed to $coerce during normalization. should not be reintroduced...?', init);
             typing.mustBeType = 'string';
             break;
           }
           case 'Number': {
+            ASSERT(false, 'should be changed to $coerce during normalization. should not be reintroduced...?', init);
             typing.mustBeType = 'number';
+            break;
+          }
+          case '$coerce': {
+            const kind = AST.getPrimitiveValue(init.arguments[1]);
+            if (kind === 'string' || kind === 'plustr') typing.mustBeType = 'string';
+            else if (kind === 'number') typing.mustBeType = 'number';
+            else ASSERT(false, 'add this kind', kind);
             break;
           }
           case 'Boolean': {
@@ -1357,7 +1378,15 @@ export function inferInitialType(fdata, typing, init, kind) {
             break;
           }
 
-          case BUILTIN_ARRAY_PROTOTYPE+'.flat': {
+          case BUILTIN_ARRAY_PROTOTYPE + '.filter': {
+            typing.builtinTag = 'Array#filter';
+            typing.mustBeType = 'function';
+            typing.mustBeFalsy = false;
+            typing.mustBeTruthy = true;
+            typing.isPrimitive = false;
+            break;
+          }
+          case BUILTIN_ARRAY_PROTOTYPE + '.flat': {
             typing.builtinTag = 'Array#flat';
             typing.mustBeType = 'function';
             typing.mustBeFalsy = false;
@@ -1365,8 +1394,24 @@ export function inferInitialType(fdata, typing, init, kind) {
             typing.isPrimitive = false;
             break;
           }
-          case BUILTIN_ARRAY_PROTOTYPE+'.concat': {
+          case BUILTIN_ARRAY_PROTOTYPE + '.concat': {
             typing.builtinTag = 'Array#concat';
+            typing.mustBeType = 'function';
+            typing.mustBeFalsy = false;
+            typing.mustBeTruthy = true;
+            typing.isPrimitive = false;
+            break;
+          }
+          case BUILTIN_NUMBER_PROTOTYPE + '.toString': {
+            typing.builtinTag = 'Number#toString';
+            typing.mustBeType = 'function';
+            typing.mustBeFalsy = false;
+            typing.mustBeTruthy = true;
+            typing.isPrimitive = false;
+            break;
+          }
+          case BUILTIN_STRING_PROTOTYPE + '.toString': {
+            typing.builtinTag = 'String#toString';
             typing.mustBeType = 'function';
             typing.mustBeFalsy = false;
             typing.mustBeTruthy = true;

@@ -17,7 +17,7 @@ $(`abc ${ 10 } def`);
 ## Pre Normal
 
 `````js filename=intro
-$(`abc ` + String(10) + ` def`);
+$(`abc ` + $coerce(10, `string`) + ` def`);
 `````
 
 ## Normalized
@@ -25,9 +25,9 @@ $(`abc ` + String(10) + ` def`);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpBinBothLhs = `abc `;
-const tmpBinBothRhs = `10`;
+const tmpBinBothRhs = $coerce(10, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpStringConcatR = tmpBinLhs + ``;
+const tmpStringConcatR = $coerce(tmpBinLhs, `plustr`);
 const tmpCalleeParam = `${tmpStringConcatR} def`;
 tmpCallCallee(tmpCalleeParam);
 `````

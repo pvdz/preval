@@ -17,7 +17,7 @@ $(`${-1}`);
 ## Pre Normal
 
 `````js filename=intro
-$(`` + String(-1) + ``);
+$(`` + $coerce(-1, `string`) + ``);
 `````
 
 ## Normalized
@@ -25,9 +25,9 @@ $(`` + String(-1) + ``);
 `````js filename=intro
 const tmpCallCallee = $;
 const tmpBinBothLhs = ``;
-const tmpBinBothRhs = `-1`;
+const tmpBinBothRhs = $coerce(-1, `string`);
 const tmpBinLhs = tmpBinBothLhs + tmpBinBothRhs;
-const tmpCalleeParam = tmpBinLhs + ``;
+const tmpCalleeParam = $coerce(tmpBinLhs, `plustr`);
 tmpCallCallee(tmpCalleeParam);
 `````
 

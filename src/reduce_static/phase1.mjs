@@ -79,8 +79,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
     vlog('\nCurrent state (start of phase1)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   } catch (e) {
     vlog('printing ast failed');
-    console.dir(ast, {depth: null})
-    
+    console.dir(ast, { depth: null });
+
     throw e;
   }
   vlog('\n\n\n####################################################################\n\n\n');
@@ -448,6 +448,17 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         break;
       }
 
+      case 'CallExpression:before': {
+        ASSERT(
+          node.callee.type !== 'Identifier' ||
+            node.callee.name !== '$coerce' ||
+            (node.arguments.length === 2 && AST.isPrimitive(node.arguments[1])),
+          '$coerce is a custom symbol that we control. make sure it always conforms to normalized state.',
+          node,
+        );
+        break;
+      }
+
       //case 'CatchClause:before': {
       //  // Note: the catch scope is set on node.handler of the try (parent node of the catch clause)
       //  break;
@@ -597,6 +608,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         vlog('- Ident kind:', kind);
 
         ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment and we eliminated those? prove me wrong', node);
+        ASSERT(name !== '$coerce' || (parentNode.type === 'CallExpression' && parentProp === 'callee' && parentNode.arguments.length === 2 && AST.isStringLiteral(parentNode.arguments[1])), 'we control $coerce, it should have a specific form all the time')
 
         vlog(
           '- Parent: `' + parentNode.type + '.' + parentProp + '`',
@@ -854,7 +866,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               meta.writes.push(write);
             }
 
-            vlog('Writing to thing now')
+            vlog('Writing to thing now');
             if (parentNode.type === 'AssignmentExpression') {
               const nowTyping = meta.typing;
               const newTyping = {};
@@ -892,12 +904,12 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 }
               }
               // Either the same bit is set (silly redundancy but okay), or this binding does not always represent a single bit
-              nowTyping.oneBitAnded = (nowTyping.oneBitAnded & nowTyping.oneBitAnded) || undefined;
+              nowTyping.oneBitAnded = nowTyping.oneBitAnded & nowTyping.oneBitAnded || undefined;
               // Same as with the single bit, I guess.
-              nowTyping.anded = (nowTyping.anded & nowTyping.anded) || undefined;
+              nowTyping.anded = nowTyping.anded & nowTyping.anded || undefined;
             } else if (parentNode.type !== 'VariableDeclarator') {
               // for lhs? not sure what else, currently
-              vlog('Clearing types because the write was not an assignment expression...', parentNode.type)
+              vlog('Clearing types because the write was not an assignment expression...', parentNode.type);
               // We don't know anything (maybe once we start tracking `for` properly)
               meta.typing.mustBeType = '';
               meta.typing.mustBeFalsy = false;
@@ -1190,6 +1202,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         break;
       }
       case 'VariableDeclaration:after': {
+        ASSERT(node.declarations[0].id.type === 'Identifier', 'var ids are idents?', node.declarations[0]);
         vlog('- Id: `' + node.declarations[0].id.name + '`');
         ASSERT(node.declarations.length === 1, 'all decls should be normalized to one binding');
         ASSERT(node.declarations[0].id.type === 'Identifier', 'all patterns should be normalized away');

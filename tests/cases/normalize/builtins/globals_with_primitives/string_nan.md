@@ -24,7 +24,8 @@ $(String(NaN));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = `NaN`;
+const tmpStringFirstArg = NaN;
+const tmpCalleeParam = $coerce(tmpStringFirstArg, `string`);
 tmpCallCallee(tmpCalleeParam);
 `````
 

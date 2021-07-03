@@ -41,7 +41,7 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = `` + tmpBinBothRhs;
+const tmpCalleeParam = $coerce(tmpBinBothRhs, `plustr`);
 $(tmpCalleeParam);
 const a = [];
 $(a);

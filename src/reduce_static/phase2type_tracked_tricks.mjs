@@ -671,6 +671,22 @@ function _typeTrackedTricks(fdata) {
                       }
                     });
                     node.arguments.splice(0, 2); // Drop `Function`, the context ref, and the prop name
+                    node.callee = funcNode;
+
+                    // Mark all args as tainted, just in case.
+                    // We should not need to taint Function and $dotCall metas for this.
+                    node.arguments.forEach((enode, i) => {
+                      if (i) {
+                        if (enode.type === 'Identifier') {
+                          const meta = fdata.globallyUniqueNamingRegistry.get(enode.name);
+                          meta.tainted = true;
+                        } else if (enode.type === 'SpreadElement' && enode.argument.type === 'Identifier') {
+                          const meta = fdata.globallyUniqueNamingRegistry.get(enode.argument.name);
+                          meta.tainted = true;
+                        }
+                      }
+                    });
+                    node.arguments.splice(0, 2); // Drop `Function` and the context ref
 
                     after(node);
                     ++changes;
@@ -783,7 +799,6 @@ function _typeTrackedTricks(fdata) {
   }
 
   if (changes) {
-
     // By index, high to low. This way it should not be possible to cause reference problems by moving index
     queue.sort(({ index: a }, { index: b }) => (a < b ? 1 : a > b ? -1 : 0));
     queue.forEach(({ index, func }) => func());

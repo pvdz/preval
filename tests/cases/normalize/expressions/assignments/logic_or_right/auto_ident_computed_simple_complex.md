@@ -50,16 +50,16 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 const b = { c: 1 };
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
 } else {
   const tmpCompProp = $(`c`);
   const tmpNestedComplexRhs = b[tmpCompProp];
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(a, b);
 `````
 

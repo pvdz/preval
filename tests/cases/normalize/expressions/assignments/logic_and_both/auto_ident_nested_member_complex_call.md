@@ -84,7 +84,7 @@ const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
 let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
-let tmpCalleeParam = tmpClusterSSA_a;
+const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
   const varInitAssignLhsComputedObj$1 = $(b);
   const varInitAssignLhsComputedProp$1 = $(`x`);
@@ -94,10 +94,10 @@ if (tmpClusterSSA_a) {
   varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$3;
   tmpClusterSSA_a = varInitAssignLhsComputedRhs$3;
-  tmpCalleeParam = varInitAssignLhsComputedRhs$3;
+  $(varInitAssignLhsComputedRhs$3);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a, b, c, 3);
 `````
 

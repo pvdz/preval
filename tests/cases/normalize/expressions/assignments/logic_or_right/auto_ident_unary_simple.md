@@ -48,13 +48,13 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
 } else {
   a = `number`;
-  tmpCalleeParam = `number`;
+  $(`number`);
 }
-$(tmpCalleeParam);
 $(a, 1);
 `````
 

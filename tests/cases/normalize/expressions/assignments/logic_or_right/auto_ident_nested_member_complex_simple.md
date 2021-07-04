@@ -64,8 +64,9 @@ $(a, b, c, d);
 const b = { x: 1 };
 const c = { y: 2 };
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
 } else {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`x`);
@@ -74,9 +75,8 @@ if (tmpCalleeParam) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   a = 3;
-  tmpCalleeParam = 3;
+  $(3);
 }
-$(tmpCalleeParam);
 $(a, b, c, 3);
 `````
 

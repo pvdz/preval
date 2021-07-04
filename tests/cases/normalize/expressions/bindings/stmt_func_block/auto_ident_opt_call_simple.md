@@ -57,14 +57,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
+  $(tmpChainElementCall);
 }
-$(a);
 $(undefined);
 `````
 

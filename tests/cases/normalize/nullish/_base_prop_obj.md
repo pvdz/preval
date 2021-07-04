@@ -42,13 +42,13 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = { x: 10 };
-let tmpCalleeParam = f;
-const tmpIfTest = tmpCalleeParam == null;
+const tmpIfTest = f == null;
 if (tmpIfTest) {
-  tmpCalleeParam = x;
+  x;
+  $(x);
 } else {
+  $(f);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

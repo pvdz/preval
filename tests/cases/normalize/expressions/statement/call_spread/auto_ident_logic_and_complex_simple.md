@@ -44,12 +44,12 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpCalleeParamSpread = $(tmpCalleeParam);
+const tmpCalleeParamSpread = $(tmpCalleeParam);
 if (tmpCalleeParamSpread) {
-  tmpCalleeParamSpread = 2;
+  $(...2);
 } else {
+  $(...tmpCalleeParamSpread);
 }
-$(...tmpCalleeParamSpread);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

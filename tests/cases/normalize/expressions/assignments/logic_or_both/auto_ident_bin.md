@@ -51,16 +51,16 @@ $(a);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 let a = tmpBinBothLhs + tmpBinBothRhs;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
+  $(tmpCalleeParam);
 } else {
   const tmpBinBothLhs$1 = $(1);
   const tmpBinBothRhs$1 = $(2);
   const tmpNestedComplexRhs = tmpBinBothLhs$1 + tmpBinBothRhs$1;
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

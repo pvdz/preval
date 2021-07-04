@@ -55,17 +55,17 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpObjLitVal = $(2);
   const tmpCalleeParam$1 = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
   b = tmpNestedAssignObjPatternRhs.b;
   a = tmpNestedAssignObjPatternRhs;
-  tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+  $(tmpNestedAssignObjPatternRhs);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a, b);
 `````
 

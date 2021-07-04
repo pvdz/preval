@@ -67,7 +67,6 @@ const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 let tmpClusterSSA_a = arrPatternSplat$1[0];
-let tmpClusterSSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs;
 if (tmpNestedAssignArrPatternRhs) {
   $(10);
   $(20);
@@ -75,10 +74,10 @@ if (tmpNestedAssignArrPatternRhs) {
   const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$3);
   const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$1];
   tmpClusterSSA_a = arrPatternSplat$3[0];
-  tmpClusterSSA_tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
+  $(tmpNestedAssignArrPatternRhs$1);
 } else {
+  $(tmpNestedAssignArrPatternRhs);
 }
-$(tmpClusterSSA_tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

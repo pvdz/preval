@@ -58,16 +58,15 @@ tmpCallCallee(tmpCalleeParam);
 const tmpObjLitVal$1 = { d: 10 };
 const tmpObjLitVal = { c: tmpObjLitVal$1 };
 const a = { b: tmpObjLitVal };
-let tmpCalleeParam = undefined;
 const tmpIfTest = a == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject = a.b;
   const tmpChainElementObject$1 = tmpChainElementObject.c;
   const tmpChainElementObject$3 = tmpChainElementObject$1.d;
-  tmpCalleeParam = tmpChainElementObject$3;
+  $(tmpChainElementObject$3);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

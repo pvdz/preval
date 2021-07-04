@@ -54,13 +54,14 @@ if (tmpIfTest) {
   b = toString;
 } else {
 }
-let c = b;
+const c = b;
 const tmpIfTest$1 = c == null;
 if (tmpIfTest$1) {
-  c = length;
+  length;
+  $(length);
 } else {
+  $(c);
 }
-$(c);
 `````
 
 ## Globals

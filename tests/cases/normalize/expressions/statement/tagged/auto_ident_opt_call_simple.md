@@ -47,14 +47,13 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
-let tmpCalleeParam$1 = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementCall = $(1);
-  tmpCalleeParam$1 = tmpChainElementCall;
+  $(tmpCalleeParam, tmpChainElementCall);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

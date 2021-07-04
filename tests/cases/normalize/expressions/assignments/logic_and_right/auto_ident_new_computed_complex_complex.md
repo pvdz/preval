@@ -51,7 +51,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const b = { $: $ };
   const tmpCompObj = $(b);
@@ -59,10 +59,10 @@ if (tmpCalleeParam) {
   const tmpNewCallee = tmpCompObj[tmpCompProp];
   const tmpNestedComplexRhs = new tmpNewCallee(1);
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

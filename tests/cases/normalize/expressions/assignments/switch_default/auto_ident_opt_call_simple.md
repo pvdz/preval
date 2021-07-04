@@ -60,14 +60,13 @@ $(a);
 
 `````js filename=intro
 $(1);
-let a = undefined;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
+  $(undefined);
 } else {
   const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
+  $(tmpChainElementCall);
 }
-$(a);
 `````
 
 ## Globals

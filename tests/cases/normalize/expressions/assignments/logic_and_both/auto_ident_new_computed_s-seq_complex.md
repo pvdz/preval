@@ -58,16 +58,16 @@ const tmpCompProp = $(`\$`);
 const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
 let tmpClusterSSA_a = new tmpNewCallee(1);
-let tmpCalleeParam = tmpClusterSSA_a;
+const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
   const tmpCompProp$1 = $(`\$`);
   const tmpNewCallee$1 = b[tmpCompProp$1];
   const tmpNestedComplexRhs = new tmpNewCallee$1(1);
   tmpClusterSSA_a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

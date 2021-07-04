@@ -53,20 +53,17 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 const tmpIfTest = $(100);
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
   $(1);
   $(2);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
-  x = tmpArrElement;
-  y = tmpArrElement$1;
+  $(a, tmpArrElement, tmpArrElement$1);
 } else {
+  $(a, 1, 2);
 }
-const a = { a: 999, b: 1000 };
-$(a, x, y);
 `````
 
 ## Globals

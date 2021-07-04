@@ -64,17 +64,17 @@ const f = function () {
   return undefined;
 };
 let a = f;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
+  $(tmpCalleeParam);
 } else {
   const f$1 = function () {
     debugger;
     return undefined;
   };
   a = f$1;
-  tmpCalleeParam = f$1;
+  $(f$1);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

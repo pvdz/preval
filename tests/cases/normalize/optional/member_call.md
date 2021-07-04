@@ -51,13 +51,12 @@ const f = function () {
   debugger;
   return 10;
 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = f == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
-  tmpCalleeParam = 10;
+  $(10);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

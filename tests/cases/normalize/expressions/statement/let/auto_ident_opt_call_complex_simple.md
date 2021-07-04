@@ -46,15 +46,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let xyz = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-  xyz = tmpChainElementCall$1;
+  $(tmpChainElementCall$1);
 }
-$(xyz);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

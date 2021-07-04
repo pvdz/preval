@@ -36,13 +36,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = parseInt;
-const tmpIfTest = tmpCalleeParam == null;
+const tmpIfTest = parseInt == null;
 if (tmpIfTest) {
-  tmpCalleeParam = foo;
+  foo;
+  $(foo);
 } else {
+  $(parseInt);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

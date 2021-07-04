@@ -52,18 +52,18 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 const b = { c: 10, d: 20 };
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
 } else {
   const tmpCompObj = $(b);
   const tmpCompProp = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
   b.c = varInitAssignLhsComputedRhs;
   a = varInitAssignLhsComputedRhs;
-  tmpCalleeParam = varInitAssignLhsComputedRhs;
+  $(varInitAssignLhsComputedRhs);
 }
-$(tmpCalleeParam);
 $(a, b);
 `````
 

@@ -69,7 +69,7 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 let tmpClusterSSA_a = tmpPostUpdArgVal;
-let tmpCalleeParam = tmpClusterSSA_a;
+const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
   const tmpCalleeParam$3 = $(b);
   const tmpPostUpdArgObj$1 = $(tmpCalleeParam$3);
@@ -77,10 +77,10 @@ if (tmpClusterSSA_a) {
   const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 - 1;
   tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
   tmpClusterSSA_a = tmpPostUpdArgVal$1;
-  tmpCalleeParam = tmpPostUpdArgVal$1;
+  $(tmpPostUpdArgVal$1);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a, b);
 `````
 

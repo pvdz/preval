@@ -37,15 +37,14 @@ $(y);
 ## Output
 
 `````js filename=intro
-let y = undefined;
 const tmpChainRootProp = $();
 const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject = tmpChainRootProp.foo;
-  y = tmpChainElementObject;
+  $(tmpChainElementObject);
 }
-$(y);
 `````
 
 ## Globals

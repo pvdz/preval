@@ -40,15 +40,14 @@ $(y);
 ## Output
 
 `````js filename=intro
-let y = undefined;
 const a = { x: 1 };
 const tmpIfTest = a == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject = a.x;
-  y = tmpChainElementObject;
+  $(tmpChainElementObject);
 }
-$(y);
 `````
 
 ## Globals

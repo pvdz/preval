@@ -46,14 +46,13 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let xyz = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall = $(1);
-  xyz = tmpChainElementCall;
+  $(tmpChainElementCall);
 }
-$(xyz);
 $(a);
 `````
 

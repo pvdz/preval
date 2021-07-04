@@ -40,16 +40,15 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const obj = { foo: 10 };
 const tmpIfTest = obj == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainRootComputed = $();
   const tmpChainElementObject = obj[tmpChainRootComputed];
-  tmpCalleeParam = tmpChainElementObject;
+  $(tmpChainElementObject);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

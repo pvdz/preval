@@ -55,11 +55,12 @@ const tmpCalleeParam = [`before `, ` after`];
 let a = undefined;
 const tmpIfTest = b == null;
 if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
+  $(tmpCalleeParam, tmpChainElementObject);
 }
-$(tmpCalleeParam, a);
 $(a);
 `````
 

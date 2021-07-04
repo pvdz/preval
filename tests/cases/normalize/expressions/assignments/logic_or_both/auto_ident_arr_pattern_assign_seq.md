@@ -80,8 +80,9 @@ const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 let tmpClusterSSA_x = arrPatternSplat[0];
 let tmpClusterSSA_y = arrPatternSplat[1];
 let tmpClusterSSA_a = tmpNestedAssignArrPatternRhs;
-let tmpCalleeParam = tmpClusterSSA_a;
+const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
+  $(tmpCalleeParam);
 } else {
   $(tmpClusterSSA_x);
   $(tmpClusterSSA_y);
@@ -92,9 +93,8 @@ if (tmpClusterSSA_a) {
   tmpClusterSSA_x = arrPatternSplat$1[0];
   tmpClusterSSA_y = arrPatternSplat$1[1];
   tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$1;
-  tmpCalleeParam = tmpNestedAssignArrPatternRhs$1;
+  $(tmpNestedAssignArrPatternRhs$1);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 

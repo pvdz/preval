@@ -71,7 +71,7 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+const a = arrPatternSplat[0];
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
@@ -84,10 +84,10 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   $(10);
   $(20);
-  a = 1;
+  $(1);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## Globals

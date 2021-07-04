@@ -51,16 +51,16 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpCalleeParam$1 = [1, 2];
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
   a = arrPatternSplat$1[0];
-  tmpCalleeParam = tmpNestedAssignArrPatternRhs;
+  $(tmpNestedAssignArrPatternRhs);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

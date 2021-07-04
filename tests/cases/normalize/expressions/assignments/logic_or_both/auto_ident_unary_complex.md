@@ -52,15 +52,15 @@ $(a, x);
 `````js filename=intro
 const tmpUnaryArg = $(1);
 let a = typeof tmpUnaryArg;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
+  $(tmpCalleeParam);
 } else {
   const tmpUnaryArg$1 = $(1);
   const tmpNestedComplexRhs = typeof tmpUnaryArg$1;
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(a, 1);
 `````
 

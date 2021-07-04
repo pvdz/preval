@@ -50,11 +50,12 @@ const tmpCalleeParam = [`before `, ` after`];
 let a = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
+  $(tmpCalleeParam, tmpChainElementCall);
 }
-$(tmpCalleeParam, a);
 $(a);
 `````
 

@@ -64,16 +64,15 @@ $(a);
 
 `````js filename=intro
 $(1);
-let a = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
+  $(undefined);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
+  $(tmpChainElementObject);
 }
-$(a);
 `````
 
 ## Globals

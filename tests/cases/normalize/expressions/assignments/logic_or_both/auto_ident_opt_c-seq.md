@@ -71,8 +71,9 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
 }
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
+  $(tmpCalleeParam);
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp$1 = $(b);
@@ -83,9 +84,8 @@ if (a) {
     tmpNestedComplexRhs = tmpChainElementObject$1;
   }
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

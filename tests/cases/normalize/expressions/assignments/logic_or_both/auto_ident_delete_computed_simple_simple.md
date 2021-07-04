@@ -50,14 +50,14 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 let a = delete arg.y;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
+  $(tmpCalleeParam);
 } else {
   const tmpNestedComplexRhs = delete arg.y;
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(a, arg);
 `````
 

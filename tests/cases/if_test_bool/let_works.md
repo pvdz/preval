@@ -79,20 +79,19 @@ f();
 `````js filename=intro
 const f = function () {
   debugger;
-  let x = $(1);
+  const x = $(1);
   if (x) {
-    const tmpCalleeParam$1 = !x;
-    $(`a`, tmpCalleeParam$1);
+    $(`a`, false);
   } else {
-    const tmpCalleeParam$5 = !x;
-    $(`b`, tmpCalleeParam$5);
+    $(`b`, true);
   }
   if ($) {
-    x = 10;
+    $(10);
+    return undefined;
   } else {
+    $(x);
+    return undefined;
   }
-  $(x);
-  return undefined;
 };
 f();
 f();

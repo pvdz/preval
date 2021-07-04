@@ -49,7 +49,6 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpObjLitVal = { c: $ };
 const a = { b: tmpObjLitVal };
-let tmpCalleeParam = undefined;
 const tmpChainElementCall = $(a);
 const tmpChainRootComputed = $(`b`);
 const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
@@ -57,11 +56,11 @@ const tmpChainRootComputed$1 = $(`c`);
 const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
 const tmpIfTest = tmpChainElementObject$1 == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainElementObject, 100);
-  tmpCalleeParam = tmpChainElementCall$1;
+  $(tmpChainElementCall$1);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

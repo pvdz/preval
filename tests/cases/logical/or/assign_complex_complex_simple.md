@@ -39,12 +39,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let x = $(1);
+const x = $(1);
 if (x) {
+  $(x);
 } else {
-  x = 2;
+  $(2);
 }
-$(x);
 `````
 
 ## Globals

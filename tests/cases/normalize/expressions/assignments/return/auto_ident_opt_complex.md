@@ -67,11 +67,12 @@ const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
   tmpClusterSSA_a = tmpChainElementObject;
+  $(tmpChainElementObject);
 }
-$(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 

@@ -35,13 +35,14 @@ $(y);
 ## Output
 
 `````js filename=intro
-let y = $();
+const y = $();
 const tmpIfTest = y == null;
 if (tmpIfTest) {
-  y = foo;
+  foo;
+  $(foo);
 } else {
+  $(y);
 }
-$(y);
 `````
 
 ## Globals

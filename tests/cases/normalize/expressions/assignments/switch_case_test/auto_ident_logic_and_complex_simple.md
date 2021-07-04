@@ -63,12 +63,12 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
+const a = $(tmpCalleeParam);
 if (a) {
-  a = 2;
+  $(2);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## Globals

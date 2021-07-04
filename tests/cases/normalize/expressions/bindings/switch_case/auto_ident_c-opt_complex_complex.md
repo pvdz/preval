@@ -73,17 +73,16 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpClusterSSA_a = undefined;
 const tmpClusterSSA_b = { x: 1 };
 const tmpChainElementCall = $(tmpClusterSSA_b);
 const tmpIfTest$3 = tmpChainElementCall == null;
 if (tmpIfTest$3) {
+  $(undefined);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  tmpClusterSSA_a = tmpChainElementObject;
+  $(tmpChainElementObject);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Globals

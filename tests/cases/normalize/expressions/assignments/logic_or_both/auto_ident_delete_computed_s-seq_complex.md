@@ -64,17 +64,17 @@ $(2);
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 let a = delete arg[tmpDeleteCompProp];
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
+  $(tmpCalleeParam);
 } else {
   $(1);
   $(2);
   const tmpDeleteCompProp$1 = $(`y`);
   const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp$1];
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(a, arg);
 `````
 

@@ -84,7 +84,6 @@ $(a, b, c, d, e);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
@@ -101,10 +100,11 @@ if (tmpIfTest$1) {
   const varInitAssignLhsComputedProp = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-  a = 7;
+  $(7, b, c, 3, 4);
 } else {
+  const a = { a: 999, b: 1000 };
+  $(a, b, c, 3, 4);
 }
-$(a, b, c, 3, 4);
 `````
 
 ## Globals

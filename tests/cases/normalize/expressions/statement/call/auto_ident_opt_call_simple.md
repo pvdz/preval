@@ -45,14 +45,13 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall = $(1);
-  tmpCalleeParam = tmpChainElementCall;
+  $(tmpChainElementCall);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

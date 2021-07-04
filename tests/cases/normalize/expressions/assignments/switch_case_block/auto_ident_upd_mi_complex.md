@@ -74,7 +74,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
@@ -90,10 +89,11 @@ if (tmpIfTest$1) {
   const tmpBinLhs$1 = tmpNestedAssignObj.x;
   const tmpNestedPropCompoundComplexRhs = tmpBinLhs$1 - 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
+  $(tmpNestedPropCompoundComplexRhs, b);
 } else {
+  const a = { a: 999, b: 1000 };
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Globals

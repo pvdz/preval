@@ -47,12 +47,12 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$3 = $(0);
-let tmpCalleeParam$1 = $(tmpCalleeParam$3);
+const tmpCalleeParam$1 = $(tmpCalleeParam$3);
 if (tmpCalleeParam$1) {
+  $(tmpCalleeParam, tmpCalleeParam$1);
 } else {
-  tmpCalleeParam$1 = 2;
+  $(tmpCalleeParam, 2);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

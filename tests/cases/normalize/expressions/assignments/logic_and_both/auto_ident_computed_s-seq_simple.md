@@ -55,15 +55,15 @@ $(a, b);
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 let a = b[tmpAssignRhsCompProp];
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   const tmpCompProp = $(`c`);
   const tmpNestedComplexRhs = b[tmpCompProp];
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a, b);
 `````
 

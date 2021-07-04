@@ -46,14 +46,13 @@ $(y, o);
 ## Output
 
 `````js filename=intro
-let y = 1;
 const tmpIfTest = $(true);
-if (tmpIfTest) {
-  y = 1;
-} else {
-}
 const o = { x: 1 };
-$(y, o);
+if (tmpIfTest) {
+  $(1, o);
+} else {
+  $(1, o);
+}
 `````
 
 ## Globals

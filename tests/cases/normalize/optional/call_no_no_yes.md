@@ -97,7 +97,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const a$1 = {
   a() {
     debugger;
@@ -121,12 +120,12 @@ const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, a$1);
 const tmpChainElementObject$1 = tmpChainElementCall$1.c;
 const tmpIfTest = tmpChainElementObject$1 == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall$3 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1);
   const tmpChainElementObject$3 = tmpChainElementCall$3.d;
-  tmpCalleeParam = tmpChainElementObject$3;
+  $(tmpChainElementObject$3);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

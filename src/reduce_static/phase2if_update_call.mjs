@@ -59,16 +59,18 @@ function _ifUpdateCall(fdata) {
       const lastElse = node.alternate.body[node.alternate.body.length - 1];
 
       if (
-        lastIf?.type === 'ExpressionStatement' &&
-        lastElse?.type === 'ExpressionStatement' &&
-        lastIf.expression.type === 'AssignmentExpression' &&
-        lastElse.expression.type === 'AssignmentExpression' &&
-        lastIf.expression.left.type === 'Identifier' &&
-        lastElse.expression.left.type === 'Identifier' &&
-        lastIf.expression.left.name === lastElse.expression.left.name
+        (!lastElse ||
+          (lastElse?.type === 'ExpressionStatement' &&
+            lastElse.expression.type === 'AssignmentExpression' &&
+            lastElse.expression.left.type === 'Identifier')) &&
+        (!lastIf ||
+          (lastIf?.type === 'ExpressionStatement' &&
+            lastIf.expression.type === 'AssignmentExpression' &&
+            lastIf.expression.left.type === 'Identifier')) &&
+        (!lastIf !== !lastElse || lastIf.expression.left.name === lastElse.expression.left.name)
       ) {
-        const target = lastIf.expression.left.name;
-        vlog('- Found an if that updates `' + target + '` at the end of both branches');
+        const target = lastIf?.expression.left.name ?? lastElse?.expression.left.name;
+        vlog('- Found an if that updates `' + target + '` at the end of both branches or has one empty branch');
 
         // Add to queue in reverse DFS order (we are on the way back here)
         const parentNode = path.nodes[path.nodes.length - 2];
@@ -79,12 +81,12 @@ function _ifUpdateCall(fdata) {
         // `if (x) a = 1; else a = 2; f(a);`
         // -> `if (x) f(1); else f(2);`
         const next = parentNode[parentProp][parentIndex + 1];
-        const rhsIf = lastIf.expression.right;
-        const rhsElse = lastElse.expression.right;
+        const rhsIf = lastIf?.expression.right;
+        const rhsElse = lastElse?.expression.right;
         if (
           // We can only inline the call if the rhs is a simple node
-          AST.isComplexNode(rhsIf) ||
-          AST.isComplexNode(rhsElse)
+          (rhsIf && AST.isComplexNode(rhsIf)) ||
+          (rhsElse && AST.isComplexNode(rhsElse))
         ) {
           vlog('  - The assignments had a complex rhs');
         } else if (
@@ -122,9 +124,15 @@ function _ifUpdateCall(fdata) {
       vlog('Next if, assigning to:', target);
 
       rule('An `if` that updates a binding at the end of both branch and which binding is used in a call afterwards can be inlined');
-      example('if (x) a = 1; else a = 2; f(a);', 'if (x) { a = 1; f(1); } else { a = 2; f(2); }');
-      example('if (x) a = f; else a = g; a();', 'if (x) { a = f; f(); } else { a = g; g(); }');
+      example('if (x) a = 1; else a = 2; f(a);', 'if (x) { a = 1; f(1); } else { a = 2; f(2); }', () => rhsIf && rhsElse);
+      example('if (x) a = f; else a = g; a();', 'if (x) { a = f; f(); } else { a = g; g(); }', () => rhsIf && rhsElse);
+      example('if (x) {} else a = 2; f(a);', 'if (x) { f(a); } else { a = 2; f(2); }', () => !rhsIf || !rhsElse);
+      example('if (x) {} else a = g; a();', 'if (x) { f(a); } else { a = g; g(); }', () => !rhsIf || !rhsElse);
       before(node, body[index]);
+
+      // If one branch was empty, use the binding as a reference instead.
+      if (!rhsIf) rhsIf = AST.identifier(target);
+      else if (!rhsElse) rhsElse = AST.identifier(target);
 
       // - Eliminate the original call
       // - Clone it twice, for each clone:

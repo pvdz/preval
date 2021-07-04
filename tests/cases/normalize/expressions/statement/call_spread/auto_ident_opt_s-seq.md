@@ -50,14 +50,13 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread = undefined;
 const tmpIfTest = b == null;
 if (tmpIfTest) {
+  $(...undefined);
 } else {
   const tmpChainElementObject = b.x;
-  tmpCalleeParamSpread = tmpChainElementObject;
+  $(...tmpChainElementObject);
 }
-$(...tmpCalleeParamSpread);
 $(a);
 `````
 

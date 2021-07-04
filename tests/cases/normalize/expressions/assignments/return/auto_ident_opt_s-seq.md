@@ -65,11 +65,12 @@ let tmpClusterSSA_a = undefined;
 const b = { x: 1 };
 const tmpIfTest = b == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject = b.x;
   tmpClusterSSA_a = tmpChainElementObject;
+  $(tmpChainElementObject);
 }
-$(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 

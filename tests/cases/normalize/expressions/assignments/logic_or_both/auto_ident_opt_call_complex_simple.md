@@ -68,8 +68,9 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
 }
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
+  $(tmpCalleeParam);
 } else {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$3 = $($);
@@ -80,9 +81,8 @@ if (a) {
     tmpNestedComplexRhs = tmpChainElementCall$5;
   }
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

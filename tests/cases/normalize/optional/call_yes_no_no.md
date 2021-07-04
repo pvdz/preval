@@ -119,9 +119,9 @@ const a = function () {
   };
   return a$1;
 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = a == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall = a();
   const tmpChainElementObject = tmpChainElementCall.b;
@@ -129,9 +129,8 @@ if (tmpIfTest) {
   const tmpChainElementObject$1 = tmpChainElementCall$1.c;
   const tmpChainElementCall$3 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1);
   const tmpChainElementObject$3 = tmpChainElementCall$3.d;
-  tmpCalleeParam = tmpChainElementObject$3;
+  $(tmpChainElementObject$3);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

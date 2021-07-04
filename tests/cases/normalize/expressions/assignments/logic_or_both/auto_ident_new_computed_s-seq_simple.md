@@ -53,14 +53,14 @@ $(a);
 
 `````js filename=intro
 let tmpClusterSSA_a = new $(1);
-let tmpCalleeParam = tmpClusterSSA_a;
+const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
+  $(tmpCalleeParam);
 } else {
   const tmpNestedComplexRhs = new $(1);
   tmpClusterSSA_a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

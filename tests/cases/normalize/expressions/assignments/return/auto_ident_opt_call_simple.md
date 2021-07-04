@@ -60,11 +60,12 @@ $(a);
 let tmpClusterSSA_a = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall = $(1);
   tmpClusterSSA_a = tmpChainElementCall;
+  $(tmpChainElementCall);
 }
-$(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 

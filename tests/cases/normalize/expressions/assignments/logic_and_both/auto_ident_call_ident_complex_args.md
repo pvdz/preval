@@ -57,16 +57,16 @@ $(a);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 let a = $(tmpCalleeParam$1, tmpCalleeParam$3);
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   const tmpCalleeParam$5 = $(1);
   const tmpCalleeParam$7 = $(2);
   const tmpNestedComplexRhs = $(tmpCalleeParam$5, tmpCalleeParam$7);
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

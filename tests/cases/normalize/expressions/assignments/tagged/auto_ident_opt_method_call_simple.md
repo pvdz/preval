@@ -56,12 +56,13 @@ const tmpCalleeParam = [`before `, ` after`];
 let a = undefined;
 const tmpIfTest = b == null;
 if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
   a = tmpChainElementCall;
+  $(tmpCalleeParam, tmpChainElementCall);
 }
-$(tmpCalleeParam, a);
 $(a);
 `````
 

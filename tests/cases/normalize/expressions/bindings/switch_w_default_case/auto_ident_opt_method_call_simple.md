@@ -98,16 +98,15 @@ if (tmpIfTest$9) {
 ## Output
 
 `````js filename=intro
-let tmpClusterSSA_a = undefined;
 const tmpClusterSSA_b = { c: $ };
 const tmpIfTest$5 = tmpClusterSSA_b == null;
 if (tmpIfTest$5) {
+  $(undefined);
 } else {
   const tmpChainElementObject = tmpClusterSSA_b.c;
   const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpClusterSSA_b, 1);
-  tmpClusterSSA_a = tmpChainElementCall;
+  $(tmpChainElementCall);
 }
-$(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);
 `````

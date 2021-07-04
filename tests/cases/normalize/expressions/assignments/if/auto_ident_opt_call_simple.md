@@ -43,14 +43,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
+  $(undefined);
 } else {
   const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
+  $(tmpChainElementCall);
 }
-$(a);
 `````
 
 ## Globals

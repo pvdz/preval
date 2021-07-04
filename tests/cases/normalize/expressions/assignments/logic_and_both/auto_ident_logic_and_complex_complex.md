@@ -67,7 +67,7 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   const tmpCalleeParam$5 = $(1);
   let tmpNestedComplexRhs = $(tmpCalleeParam$5);
@@ -77,10 +77,10 @@ if (a) {
   } else {
   }
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

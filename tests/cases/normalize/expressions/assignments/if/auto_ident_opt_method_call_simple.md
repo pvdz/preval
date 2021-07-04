@@ -48,16 +48,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 const b = { c: $ };
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+  $(undefined);
 } else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  a = tmpChainElementCall;
+  $(tmpChainElementCall);
 }
-$(a);
 `````
 
 ## Globals

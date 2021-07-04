@@ -69,7 +69,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
@@ -84,10 +83,11 @@ if (tmpIfTest$1) {
     debugger;
     return undefined;
   };
-  a = f;
+  $(f);
 } else {
+  const a = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Globals

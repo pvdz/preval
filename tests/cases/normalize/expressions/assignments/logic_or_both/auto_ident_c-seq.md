@@ -55,16 +55,16 @@ $(a, x);
 $(1);
 $(2);
 let a = $(1);
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
+  $(tmpCalleeParam);
 } else {
   $(1);
   $(2);
   const tmpNestedComplexRhs = $(1);
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(a, 1);
 `````
 

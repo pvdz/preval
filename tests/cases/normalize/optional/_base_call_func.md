@@ -56,14 +56,13 @@ const f = function (...$$0) {
   $(`f`, args);
   return undefined;
 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = f == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   f(1, 2, 3);
-  tmpCalleeParam = undefined;
+  $(undefined);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

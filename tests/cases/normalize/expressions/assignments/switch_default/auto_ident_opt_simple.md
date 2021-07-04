@@ -64,15 +64,14 @@ $(a);
 
 `````js filename=intro
 $(1);
-let a = undefined;
 const b = { x: 1 };
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+  $(undefined);
 } else {
   const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
+  $(tmpChainElementObject);
 }
-$(a);
 `````
 
 ## Globals

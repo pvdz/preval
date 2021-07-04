@@ -59,17 +59,17 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 let tmpClusterSSA_a = delete tmpDeleteObj.y;
-let tmpCalleeParam = tmpClusterSSA_a;
+const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
+  $(tmpCalleeParam);
 } else {
   $(1);
   $(2);
   const tmpDeleteObj$1 = $(arg);
   const tmpNestedComplexRhs = delete tmpDeleteObj$1.y;
   tmpClusterSSA_a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````
 

@@ -50,14 +50,14 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = $(100);
+const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   b = 2;
   a = 2;
-  tmpCalleeParam = 2;
+  $(2);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a, b);
 `````
 

@@ -60,10 +60,11 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpCalleeParam == null;
 if (tmpIfTest$1) {
-  tmpCalleeParam = b;
+  b;
+  $(b);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

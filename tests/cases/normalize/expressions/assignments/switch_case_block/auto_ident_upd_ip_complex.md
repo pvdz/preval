@@ -75,7 +75,6 @@ $(a, b);
 
 `````js filename=intro
 const b = { x: 1 };
-let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
@@ -91,10 +90,11 @@ if (tmpIfTest$1) {
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
-  a = tmpPostUpdArgVal;
+  $(tmpPostUpdArgVal, b);
 } else {
+  const a = { a: 999, b: 1000 };
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Globals

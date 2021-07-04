@@ -52,12 +52,11 @@ $(test);
 `````js filename=intro
 const a = $(true);
 const b = $(`alt`);
-let test = !a;
 if (a) {
+  $(false);
 } else {
-  test = b;
+  $(b);
 }
-$(test);
 `````
 
 ## Globals

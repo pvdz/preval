@@ -45,14 +45,14 @@ $(a);
 
 `````js filename=intro
 let a = /foo/;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   const tmpNestedComplexRhs = /foo/;
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

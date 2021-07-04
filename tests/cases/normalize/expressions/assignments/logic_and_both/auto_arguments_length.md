@@ -44,13 +44,14 @@ $(a);
 
 `````js filename=intro
 let a = arguments;
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   a = arguments;
-  tmpCalleeParam = arguments;
+  arguments;
+  $(arguments);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

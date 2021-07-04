@@ -49,15 +49,14 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const f = { 10: 20 };
 const tmpIfTest = f == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject = f[10];
-  tmpCalleeParam = tmpChainElementObject;
+  $(tmpChainElementObject);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

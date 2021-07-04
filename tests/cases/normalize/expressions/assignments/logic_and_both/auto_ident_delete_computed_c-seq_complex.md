@@ -65,7 +65,7 @@ const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 let tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpCalleeParam = tmpClusterSSA_a;
+const tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
   $(1);
   $(2);
@@ -73,10 +73,10 @@ if (tmpClusterSSA_a) {
   const tmpDeleteCompProp$1 = $(`y`);
   const tmpNestedComplexRhs = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
   tmpClusterSSA_a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````
 

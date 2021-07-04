@@ -48,9 +48,10 @@ const tmpCalleeParam = $(1);
 let a = $(tmpCalleeParam);
 if (a) {
   a = 2;
+  $(...2);
 } else {
+  $(...a);
 }
-$(...a);
 $(a);
 `````
 

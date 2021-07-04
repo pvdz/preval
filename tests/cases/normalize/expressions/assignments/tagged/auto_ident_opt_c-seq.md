@@ -56,11 +56,12 @@ let a = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
+  $(tmpCalleeParam, tmpChainElementObject);
 }
-$(tmpCalleeParam, a);
 $(a);
 `````
 

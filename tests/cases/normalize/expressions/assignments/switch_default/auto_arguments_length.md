@@ -53,6 +53,7 @@ $(a);
 
 `````js filename=intro
 $(1);
+arguments;
 $(arguments);
 `````
 

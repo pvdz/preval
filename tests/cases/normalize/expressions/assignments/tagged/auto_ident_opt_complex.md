@@ -57,11 +57,12 @@ let a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
+  $(tmpCalleeParam, tmpChainElementObject);
 }
-$(tmpCalleeParam, a);
 $(a);
 `````
 

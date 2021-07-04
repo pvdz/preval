@@ -53,10 +53,11 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpCalleeParam == null;
 if (tmpIfTest$1) {
-  tmpCalleeParam = d;
+  d;
+  $(d);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

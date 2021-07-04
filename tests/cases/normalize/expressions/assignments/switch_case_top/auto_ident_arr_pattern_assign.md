@@ -73,9 +73,6 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
@@ -90,12 +87,13 @@ if (tmpIfTest$1) {
   const tmpArrElement$1 = $(4);
   const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  a = tmpNestedAssignArrPatternRhs;
+  const tmpClusterSSA_x = arrPatternSplat[0];
+  const tmpClusterSSA_y = arrPatternSplat[1];
+  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 } else {
+  const a = { a: 999, b: 1000 };
+  $(a, 1, 2);
 }
-$(a, x, y);
 `````
 
 ## Globals

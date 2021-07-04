@@ -77,9 +77,6 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
@@ -94,13 +91,12 @@ if (tmpIfTest$1) {
   $(2);
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  a = tmpNestedAssignObjPatternRhs;
+  $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 } else {
+  const a = { a: 999, b: 1000 };
+  $(a, 1, 2);
 }
-$(a, x, y);
 `````
 
 ## Globals

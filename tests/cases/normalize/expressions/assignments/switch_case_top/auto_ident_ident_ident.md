@@ -68,8 +68,6 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
@@ -80,11 +78,11 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
-  b = 2;
-  a = 2;
+  $(2, 2, 2);
 } else {
+  const a = { a: 999, b: 1000 };
+  $(a, 1, 2);
 }
-$(a, b, 2);
 `````
 
 ## Globals

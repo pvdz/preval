@@ -105,17 +105,16 @@ if (tmpIfTest$9) {
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const tmpClusterSSA_b = { c: tmpObjLitVal };
-let tmpClusterSSA_a = undefined;
 const tmpIfTest$5 = tmpClusterSSA_b == null;
 if (tmpIfTest$5) {
+  $(undefined);
 } else {
   const tmpChainElementObject = tmpClusterSSA_b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-  tmpClusterSSA_a = tmpChainElementCall;
+  $(tmpChainElementCall);
 }
-$(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);
 `````

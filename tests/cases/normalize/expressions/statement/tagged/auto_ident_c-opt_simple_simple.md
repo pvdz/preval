@@ -53,14 +53,13 @@ $(a);
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
-let tmpCalleeParam$1 = undefined;
 const tmpIfTest = b == null;
 if (tmpIfTest) {
+  $(tmpCalleeParam, undefined);
 } else {
   const tmpChainElementObject = b.x;
-  tmpCalleeParam$1 = tmpChainElementObject;
+  $(tmpCalleeParam, tmpChainElementObject);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

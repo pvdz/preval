@@ -79,19 +79,18 @@ const tmpObjLitVal$1 = function (...$$0) {
 };
 const tmpObjLitVal = { c: tmpObjLitVal$1 };
 const a = { b: tmpObjLitVal };
-let tmpCalleeParam$3 = undefined;
 const tmpChainElementCall = $(a);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainRootComputed = $(`b`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   const tmpChainRootComputed$1 = $(`c`);
   const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainElementObject, 100);
-  tmpCalleeParam$3 = tmpChainElementCall$1;
+  $(tmpChainElementCall$1);
 }
-$(tmpCalleeParam$3);
 `````
 
 ## Globals

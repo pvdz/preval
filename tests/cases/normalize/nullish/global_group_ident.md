@@ -39,13 +39,13 @@ $(y);
 
 `````js filename=intro
 const a = { x: 1 };
-let y = a;
-const tmpIfTest = y == null;
+const tmpIfTest = a == null;
 if (tmpIfTest) {
-  y = x;
+  x;
+  $(x);
 } else {
+  $(a);
 }
-$(y);
 `````
 
 ## Globals

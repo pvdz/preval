@@ -47,13 +47,12 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 100;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  x = 10;
+  $(10);
 } else {
+  $(100);
 }
-$(x);
 `````
 
 ## Globals

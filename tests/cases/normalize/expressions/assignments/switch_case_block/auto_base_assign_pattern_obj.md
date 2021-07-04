@@ -72,8 +72,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
+const b = {};
+const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
@@ -87,11 +87,11 @@ if (tmpIfTest$1) {
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
+  const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+  $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 } else {
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Globals

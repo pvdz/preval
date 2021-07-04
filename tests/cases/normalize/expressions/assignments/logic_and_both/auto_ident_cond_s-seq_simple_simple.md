@@ -62,14 +62,14 @@ $(a);
 
 `````js filename=intro
 let a = $(2);
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
   const tmpNestedComplexRhs = $(2);
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

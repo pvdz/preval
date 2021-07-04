@@ -52,16 +52,15 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpCalleeParamSpread = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(...undefined);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  tmpCalleeParamSpread = tmpChainElementObject;
+  $(...tmpChainElementObject);
 }
-$(...tmpCalleeParamSpread);
 $(a);
 `````
 

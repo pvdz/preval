@@ -60,12 +60,12 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
+const a = $(tmpCalleeParam);
 if (a) {
-  a = 2;
+  $(2);
 } else {
+  $(a);
 }
-$(a);
 $(undefined);
 `````
 

@@ -72,8 +72,6 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -87,11 +85,10 @@ const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$1) {
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
-  x = tmpArrElement;
-  y = tmpArrElement$1;
+  $(a, tmpArrElement, tmpArrElement$1);
 } else {
+  $(a, 1, 2);
 }
-$(a, x, y);
 `````
 
 ## Globals

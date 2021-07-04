@@ -45,12 +45,12 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let xyz = $(tmpCalleeParam);
+const xyz = $(tmpCalleeParam);
 if (xyz) {
-  xyz = 2;
+  $(2);
 } else {
+  $(xyz);
 }
-$(xyz);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

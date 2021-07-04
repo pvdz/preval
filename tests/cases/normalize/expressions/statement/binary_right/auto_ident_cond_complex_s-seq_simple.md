@@ -46,10 +46,9 @@ $(a);
 
 `````js filename=intro
 const tmpBinBothLhs = $(100);
-let tmpBinBothRhs = 0;
+let tmpBinBothRhs = 60;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpBinBothRhs = 60;
 } else {
   const tmpCalleeParam = $(100);
   tmpBinBothRhs = $(tmpCalleeParam);

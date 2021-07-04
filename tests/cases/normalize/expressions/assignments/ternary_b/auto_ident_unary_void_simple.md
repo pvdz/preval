@@ -54,7 +54,6 @@ let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = undefined;
-  tmpCalleeParam = undefined;
 } else {
   tmpCalleeParam = $(200);
 }

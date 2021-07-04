@@ -43,10 +43,9 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let tmpThrowArg = 0;
+let tmpThrowArg = 60;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpThrowArg = 60;
 } else {
   const tmpCalleeParam = $(100);
   tmpThrowArg = $(tmpCalleeParam);

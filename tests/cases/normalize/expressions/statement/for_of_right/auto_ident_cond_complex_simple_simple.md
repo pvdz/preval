@@ -46,10 +46,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpForOfDeclRhs = 0;
+let tmpForOfDeclRhs = 2;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpForOfDeclRhs = 2;
 } else {
   const tmpCalleeParam = $(100);
   tmpForOfDeclRhs = $(tmpCalleeParam);

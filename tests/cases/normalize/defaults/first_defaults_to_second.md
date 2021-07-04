@@ -93,10 +93,9 @@ const f = function ($$0, $$1) {
   if (tmpIfTest) {
     throw `Preval: Cannot access \`b\` before initialization`;
   } else {
-    let b = ``;
+    let b = `bar`;
     const tmpIfTest$1 = tmpParamBare$1 === undefined;
     if (tmpIfTest$1) {
-      b = `bar`;
     } else {
       b = tmpParamBare$1;
     }

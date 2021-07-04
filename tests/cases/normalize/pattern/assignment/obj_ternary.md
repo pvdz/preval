@@ -58,9 +58,8 @@ f();
 ## Output
 
 `````js filename=intro
-let bindingPatternObjRoot = 0;
+let bindingPatternObjRoot = 1;
 if ($) {
-  bindingPatternObjRoot = 1;
 } else {
   bindingPatternObjRoot = 2;
 }

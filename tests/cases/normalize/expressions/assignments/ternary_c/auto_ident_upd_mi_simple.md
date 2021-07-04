@@ -59,7 +59,6 @@ if (tmpIfTest) {
 } else {
   b = 0;
   a = 0;
-  tmpCalleeParam = 0;
 }
 $(tmpCalleeParam);
 $(a, b);

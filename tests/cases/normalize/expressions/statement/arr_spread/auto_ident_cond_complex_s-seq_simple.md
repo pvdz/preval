@@ -44,10 +44,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpArrElToSpread = 0;
+let tmpArrElToSpread = 60;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpArrElToSpread = 60;
 } else {
   const tmpCalleeParam = $(100);
   tmpArrElToSpread = $(tmpCalleeParam);

@@ -53,7 +53,6 @@ if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   a = undefined;
-  tmpCalleeParam = undefined;
 }
 $(tmpCalleeParam);
 $(a);

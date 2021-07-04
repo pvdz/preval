@@ -50,10 +50,9 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const obj = {};
-let tmpCompProp = 0;
+let tmpCompProp = 2;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpCompProp = 2;
 } else {
   const tmpCalleeParam = $(100);
   tmpCompProp = $(tmpCalleeParam);

@@ -45,10 +45,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpBinBothLhs = 0;
+let tmpBinBothLhs = 60;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
-  tmpBinBothLhs = 60;
 } else {
   const tmpCalleeParam = $(100);
   tmpBinBothLhs = $(tmpCalleeParam);

@@ -54,11 +54,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = 0;
+let tmpCalleeParam = 60;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = 60;
-  tmpCalleeParam = 60;
 } else {
   tmpCalleeParam = $(200);
 }

@@ -56,7 +56,6 @@ if (tmpIfTest) {
   tmpCalleeParam = $(100);
 } else {
   a = false;
-  tmpCalleeParam = false;
 }
 $(tmpCalleeParam);
 $(a, 1);

@@ -65,10 +65,9 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let a = 0;
+let a = 2;
 const tmpIfTest$3 = $(1);
 if (tmpIfTest$3) {
-  a = 2;
 } else {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);

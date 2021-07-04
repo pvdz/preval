@@ -54,7 +54,6 @@ if (tmpIfTest) {
 } else {
   $(100);
   a = undefined;
-  tmpCalleeParam = undefined;
 }
 $(tmpCalleeParam);
 $(a);

@@ -47,10 +47,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCompObj = 0;
+let tmpCompObj = 60;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
-  tmpCompObj = 60;
 } else {
   const tmpCalleeParam = $(100);
   tmpCompObj = $(tmpCalleeParam);

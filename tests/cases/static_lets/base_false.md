@@ -63,7 +63,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 0;
+let x = 10;
 $(5);
 const tmpIfTest = $(false);
 if (tmpIfTest) {
@@ -71,7 +71,6 @@ if (tmpIfTest) {
     $(`tmp`);
   } else {
   }
-  x = 10;
   $(10, `a`);
 } else {
   x = 20;

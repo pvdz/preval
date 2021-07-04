@@ -45,10 +45,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpAnonDefaultExport = 0;
+let tmpAnonDefaultExport = 2;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpAnonDefaultExport = 2;
 } else {
   const tmpCalleeParam = $(100);
   tmpAnonDefaultExport = $(tmpCalleeParam);

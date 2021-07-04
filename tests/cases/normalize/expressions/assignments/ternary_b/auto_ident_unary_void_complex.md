@@ -52,7 +52,6 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(100);
   a = undefined;
-  tmpCalleeParam = undefined;
 } else {
   tmpCalleeParam = $(200);
 }

@@ -47,17 +47,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = 0;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  tmpIfTest = 2;
-} else {
-  const tmpCalleeParam = $(100);
-  tmpIfTest = $(tmpCalleeParam);
-}
-if (tmpIfTest) {
   $(100);
 } else {
+  const tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
+  if (tmpClusterSSA_tmpIfTest) {
+    $(100);
+  } else {
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);

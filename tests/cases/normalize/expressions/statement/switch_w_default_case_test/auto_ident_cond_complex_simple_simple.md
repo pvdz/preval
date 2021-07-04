@@ -99,10 +99,9 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = 0;
+let tmpBinLhs = 2;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  tmpBinLhs = 2;
 } else {
   const tmpCalleeParam = $(100);
   tmpBinLhs = $(tmpCalleeParam);

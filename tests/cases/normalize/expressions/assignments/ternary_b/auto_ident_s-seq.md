@@ -52,13 +52,12 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = 0;
+let tmpCalleeParam = 1;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   $(1);
   $(2);
   a = 1;
-  tmpCalleeParam = 1;
 } else {
   tmpCalleeParam = $(200);
 }

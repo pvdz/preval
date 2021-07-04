@@ -53,7 +53,7 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = 0;
+let tmpCalleeParam = 2;
 const tmpIfTest = $(0);
 const b = { c: 1 };
 if (tmpIfTest) {
@@ -61,7 +61,6 @@ if (tmpIfTest) {
 } else {
   b.c = 2;
   a = 2;
-  tmpCalleeParam = 2;
 }
 $(tmpCalleeParam);
 $(a, b);

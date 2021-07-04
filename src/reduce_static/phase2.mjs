@@ -47,6 +47,7 @@ import { binExprStmt } from './phase2bin_expr_stmt.mjs';
 import { propertyLookups } from './phase2property_lookups.mjs';
 import { letIfElse } from './phase2let_if_else.mjs';
 import { coercials } from './phase2coerced.mjs';
+import { redundantWrites } from './phase2redundant_writes.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -261,6 +262,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const leffed = letIfElse(fdata);
   if (leffed) return leffed;
+
+  const rwrites = redundantWrites(fdata);
+  if (rwrites) return rwrites;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

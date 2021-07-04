@@ -48,10 +48,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpBinBothRhs = 0;
+let tmpBinBothRhs = 2;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpBinBothRhs = 2;
 } else {
   const tmpCalleeParam$1 = $(100);
   tmpBinBothRhs = $(tmpCalleeParam$1);

@@ -83,7 +83,7 @@ $(a, b, c);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = 0;
+let tmpCalleeParam = 3;
 const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
@@ -106,7 +106,6 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   a = 3;
-  tmpCalleeParam = 3;
 } else {
   tmpCalleeParam = $(200);
 }

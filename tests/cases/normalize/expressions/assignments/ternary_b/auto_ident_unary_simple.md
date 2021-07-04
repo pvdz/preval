@@ -50,11 +50,10 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = ``;
+let tmpCalleeParam = `number`;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = `number`;
-  tmpCalleeParam = `number`;
 } else {
   tmpCalleeParam = $(200);
 }

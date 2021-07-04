@@ -42,10 +42,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 0;
+let a = 60;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
-  a = 60;
 } else {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);

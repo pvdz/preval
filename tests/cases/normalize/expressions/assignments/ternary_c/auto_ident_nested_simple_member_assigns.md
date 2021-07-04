@@ -65,7 +65,7 @@ $(a, b, c);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = 0;
+let tmpCalleeParam = 3;
 const tmpIfTest = $(0);
 const b = { x: 1 };
 if (tmpIfTest) {
@@ -78,7 +78,6 @@ if (tmpIfTest) {
   b.x = 3;
   b.x = 3;
   a = 3;
-  tmpCalleeParam = 3;
 }
 $(tmpCalleeParam);
 $(a, b, 3);

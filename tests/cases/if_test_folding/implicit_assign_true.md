@@ -73,7 +73,6 @@ const f = function () {
   debugger;
   let y = false;
   if (x) {
-    y = false;
   } else {
     y = true;
   }

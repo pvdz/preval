@@ -47,10 +47,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = 0;
+let a = 2;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  a = 2;
 } else {
   a = 3;
 }

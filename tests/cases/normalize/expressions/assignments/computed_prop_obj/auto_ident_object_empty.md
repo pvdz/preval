@@ -40,8 +40,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-tmpObjectPrototype.a;
+$ObjectPrototype.a;
 const a = {};
 $(a);
 `````

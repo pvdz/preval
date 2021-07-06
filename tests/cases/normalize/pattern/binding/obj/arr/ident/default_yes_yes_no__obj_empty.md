@@ -51,8 +51,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-const objPatternBeforeDefault = tmpObjectPrototype.x;
+const objPatternBeforeDefault = $ObjectPrototype.x;
 let objPatternAfterDefault = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {

@@ -59,8 +59,7 @@ $(problem2);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-tmpObjectPrototype.now;
+$ObjectPrototype.now;
 const tmpClusterSSA_problem2 = {};
 $(tmpClusterSSA_problem2);
 `````

@@ -44,8 +44,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-let tmpCalleeParam = tmpObjectPrototype.b;
+let tmpCalleeParam = $ObjectPrototype.b;
 const tmpIfTest = tmpCalleeParam == null;
 let tmpIfTest$1 = undefined;
 if (tmpIfTest) {

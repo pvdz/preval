@@ -36,8 +36,7 @@ $(`bad`);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-const objPatternNoDefault = tmpObjectPrototype.x;
+const objPatternNoDefault = $ObjectPrototype.x;
 y = objPatternNoDefault.y;
 $(`bad`);
 `````

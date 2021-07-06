@@ -50,6 +50,12 @@ const globalNames = new Map([
   ['objPatternRest', 'function'], // Should we tell Preval this is a function?
   ['$dotCall', 'function'], // Should we tell Preval this is a function?
   ['$coerce', '$coerce'], // dito
+
+  ['$ArrayPrototype', {typeof: 'object', mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, isPrimitive: false }],
+  ['$FunctionPrototype', {typeof: 'object', mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, isPrimitive: false }],
+  ['$NumberPrototype', {typeof: 'object', mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, isPrimitive: false }],
+  ['$ObjectPrototype', {typeof: 'object', mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, isPrimitive: false }],
+  ['$StringPrototype', {typeof: 'object', mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, isPrimitive: false }],
 ]);
 
 export default globalNames;

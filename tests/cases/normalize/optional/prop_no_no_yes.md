@@ -43,8 +43,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-const tmpChainElementObject = tmpObjectPrototype.b;
+const tmpChainElementObject = $ObjectPrototype.b;
 const tmpChainElementObject$1 = tmpChainElementObject.c;
 const tmpIfTest = tmpChainElementObject$1 == null;
 if (tmpIfTest) {

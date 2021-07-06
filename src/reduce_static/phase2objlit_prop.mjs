@@ -21,7 +21,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
-import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
+import { BUILTIN_FUNC_CALL_NAME, BUILTIN_OBJECT_PROTOTYPE } from '../constants.mjs';
 
 export function objlitPropAccess(fdata) {
   group('\n\n\nChecking for object literals whose props are accessed immediately');
@@ -242,15 +242,9 @@ function processAttempt(fdata, queue) {
               before(writeRef.blockBody[writeRef.blockIndex]);
               before(readRef.blockBody[readRef.blockIndex]);
 
-              // TODO: go down the $ObjectPrototype route (and prepare this for all primitive builtin constructors that we care about)
-              // `const tmpObjectPrototype = Object.prototype`
-              const tmpNameProto = createFreshVar('tmpObjectPrototype', fdata);
-              const protoVarNode = AST.variableDeclaration(tmpNameProto, AST.memberExpression('Object', 'prototype'), 'const');
-
-              // `const tmpObjectMethod = tmpObjectPrototype.prop`
               ASSERT(!readRef.parentNode.property.computed, 'checked before getting here, right?');
               const tmpNameMethod = createFreshVar('tmpObjectMethod', fdata);
-              const methodNode = AST.memberExpression(tmpNameProto, readRef.parentNode.property.name, false);
+              const methodNode = AST.memberExpression(BUILTIN_OBJECT_PROTOTYPE, readRef.parentNode.property.name, false);
               const methodVarNode = AST.variableDeclaration(tmpNameMethod, methodNode, 'const');
 
               // `$dotCall(tmpNameMethod, obj, ...args)`
@@ -281,7 +275,7 @@ function processAttempt(fdata, queue) {
                 blockNodeAtIndex.expression.right = callNode;
               }
 
-              readRef.blockBody.splice(readRef.blockIndex, 0, protoVarNode, methodVarNode);
+              readRef.blockBody.splice(readRef.blockIndex, 0, methodVarNode);
 
               after(readRef.blockBody[readRef.blockIndex]);
             },
@@ -299,13 +293,9 @@ function processAttempt(fdata, queue) {
 
               ASSERT(!readRef.parentNode.property.computed, 'checked before getting here, right?');
 
-              // TODO: go down the $ObjectPrototype route (and prepare this for all primitive builtin constructors that we care about)
-              const tmpName = createFreshVar('tmpObjectPrototype', fdata);
-              const objNode = AST.variableDeclaration(tmpName, AST.memberExpression('Object', 'prototype'));
-              const finalNode = AST.memberExpression(tmpName, readRef.parentNode.property.name, false);
+              const finalNode = AST.memberExpression(BUILTIN_OBJECT_PROTOTYPE, readRef.parentNode.property.name, false);
               if (readRef.grandIndex < 0) readRef.grandNode[readRef.grandProp] = finalNode;
               else readRef.grandNode[readRef.grandProp][readRef.grandIndex] = AST.identifier('undefined'); // FIXME: broken?? shouldnt this be finalNode?
-              readRef.blockBody.splice(readRef.blockIndex, 0, objNode);
 
               after(readRef.blockBody[readRef.blockIndex]);
             },

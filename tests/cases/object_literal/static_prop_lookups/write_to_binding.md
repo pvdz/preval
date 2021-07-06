@@ -39,8 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 $(1);
-const tmpObjectPrototype = Object.prototype;
-const tmpCalleeParam = tmpObjectPrototype.x;
+const tmpCalleeParam = $ObjectPrototype.x;
 $(tmpCalleeParam);
 `````
 

@@ -35,8 +35,7 @@ $(objPatternBeforeDefault);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-const objPatternBeforeDefault = tmpObjectPrototype.x;
+const objPatternBeforeDefault = $ObjectPrototype.x;
 $(objPatternBeforeDefault);
 `````
 

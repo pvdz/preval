@@ -39,8 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-const tmpCalleeParam = tmpObjectPrototype.b;
+const tmpCalleeParam = $ObjectPrototype.b;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = c.d;

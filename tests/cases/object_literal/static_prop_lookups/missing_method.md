@@ -36,8 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-const tmpObjectMethod = tmpObjectPrototype.toString;
+const tmpObjectMethod = $ObjectPrototype.toString;
 const o = {};
 const tmpCalleeParam = $dotCall(tmpObjectMethod, o);
 $(tmpCalleeParam);

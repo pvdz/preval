@@ -46,8 +46,7 @@ $(b);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-const objPatternBeforeDefault = tmpObjectPrototype.a;
+const objPatternBeforeDefault = $ObjectPrototype.a;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpClusterSSA_b = $(`default`);

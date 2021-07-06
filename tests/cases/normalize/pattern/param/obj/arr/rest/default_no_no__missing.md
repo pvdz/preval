@@ -54,8 +54,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-const objPatternNoDefault = tmpObjectPrototype.x;
+const objPatternNoDefault = $ObjectPrototype.x;
 const arrPatternSplat = [...objPatternNoDefault];
 arrPatternSplat.slice(0);
 $(`bad`);

@@ -44,8 +44,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpObjectPrototype = Object.prototype;
-const objPatternBeforeDefault = tmpObjectPrototype.y;
+const objPatternBeforeDefault = $ObjectPrototype.y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpClusterSSA_y = $(`pass`);

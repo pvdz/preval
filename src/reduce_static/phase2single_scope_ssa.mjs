@@ -97,7 +97,7 @@ function _singleScopeSSA(fdata) {
     vgroup('Walking the writes now...');
     // For every write, determine whether all reads can only read that write
     meta.writes.forEach((write) => {
-      vlog('- `' + write.name + '` ::', write.action + ':' + write.kind, ', has', write.reachedBy.size, 'reads');
+      vlog('- `' + write.name + '` ::', write.action + ':' + write.kind, ', has', write.reachedByReads.size, 'reads');
       source(write.blockBody[write.blockIndex]);
 
       const nextColor = colors.size;
@@ -106,8 +106,8 @@ function _singleScopeSSA(fdata) {
       let colorSet = new Set([write]);
       colors.set(write.color, colorSet);
 
-      vgroup('Painting write.reachedBy,', write.reachedBy.size, 'nodes');
-      write.reachedBy.forEach((ref) => {
+      vgroup('Painting write.reachedByReads,', write.reachedByReads.size, 'nodes');
+      write.reachedByReads.forEach((ref) => {
         vlog('-ref');
         const rc = ref.color;
         if (rc === nextColor) {

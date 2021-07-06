@@ -664,7 +664,8 @@ export function createWriteRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
-    reachedBy: new Set(), // Set<Read>. All reads that can "reach" this write (might "observe", syntactically speaking)
+    reachedByReads: new Set(), // Set<Read>. All reads that can "reach" this write (might "observe", syntactically speaking)
+    reachesWrites: new Set(), // Set<Write>. The previous writes to this binding this write can reach. Used for redundant let write detection.
   };
 }
 

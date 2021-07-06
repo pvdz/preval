@@ -725,11 +725,12 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             const currentLastWriteMapForName = lastWritesPerName[lastWritesPerName.length - 1];
             let currentLastWriteSetForName = currentLastWriteMapForName.get(name);
             vlog('Last write analysis; this read can reach', currentLastWriteSetForName?.size ?? 0, 'writes...');
+
             if (currentLastWriteSetForName) {
               // This is the write(s) this read can reach. Can be multiple, for example after two writes in a branch.
               currentLastWriteSetForName.forEach((write) => {
                 // Point to each other
-                write.reachedBy.add(read);
+                write.reachedByReads.add(read);
                 read.reaches.add(write);
               });
               // Now check whether this read crosses any loop boundary (must check all, in case nested, until we encounter
@@ -1266,7 +1267,7 @@ function lastWrites_closeTheLoop(lastWritesAtLoopStart, currentLastWriteMapForNa
     let currentLastWriteSetForName = currentLastWriteMapForName.get(read.name);
     if (currentLastWriteSetForName) {
       currentLastWriteSetForName.forEach((write) => {
-        write.reachedBy.add(read);
+        write.reachedByReads.add(read);
         read.reaches.add(write);
       });
     }

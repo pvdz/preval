@@ -56,7 +56,7 @@ function _redundantWrites(fdata) {
       if (ni <= varWrite.blockIndex) return;
       if (node.type !== 'IfStatement') return;
 
-      if (varWrite.reachedBy.size === 0) {
+      if (varWrite.reachedByReads.size === 0) {
         vlog('The init could not be observed so replace it with either init as long as it is primitive');
       }
 
@@ -74,7 +74,7 @@ function _redundantWrites(fdata) {
       vlog('Should now have two writes for a var decl that occur in a `then` and `else` branch of an `if` on the same level as the `var`');
 
       if (AST.isPrimitive(w1.parentNode.right)) {
-        if (varWrite.reachedBy.size === 0) {
+        if (varWrite.reachedByReads.size === 0) {
           rule('When the init of a binding cannot be observed it can be replaced with the primitive rhs of an assignment');
           example('let x = 0; if (a) x = 1; else x = 2;', 'let x = 1; if (a) ; else x = 2;');
           before(varWrite.blockBody[varWrite.blockIndex]);
@@ -103,7 +103,7 @@ function _redundantWrites(fdata) {
           return true;
         }
       } else if (AST.isPrimitive(w2.parentNode.right)) {
-        if (varWrite.reachedBy.size === 0) {
+        if (varWrite.reachedByReads.size === 0) {
           rule('When the init of a binding cannot be observed it can be replaced with the primitive rhs of an assignment');
           example('let x = 0; if (a) x = 1; else x = 2;', 'let x = 1; if (a) ; else x = 2;');
           before(varWrite.blockBody[varWrite.blockIndex]);

@@ -1,5 +1,6 @@
 // Find lets that are assigned conditionally
 // `let x = undefined; if ($) x = 1; else x = 2;`
+// -> `let x = 0; if ($) x = 1; else x = 2;`
 
 import {
   ASSERT,
@@ -43,7 +44,7 @@ function _letIfElse(fdata) {
 
     const varDeclWrite = meta.writes.find((write) => write.kind === 'var');
     ASSERT(varDeclWrite, 'constant should have a var decl');
-    if (varDeclWrite.reachedBy.size > 0) {
+    if (varDeclWrite.reachedByReads.size > 0) {
       vlog('There was at least one read that could reach this write so must bail');
       return;
     }

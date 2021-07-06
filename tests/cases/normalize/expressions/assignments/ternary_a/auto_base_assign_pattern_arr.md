@@ -54,18 +54,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
 if (tmpNestedAssignArrPatternRhs) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````
 

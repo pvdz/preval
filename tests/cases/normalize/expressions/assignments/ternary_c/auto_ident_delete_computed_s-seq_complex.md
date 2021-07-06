@@ -54,20 +54,19 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 const arg = { y: 1 };
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   $(1);
   $(2);
   const tmpDeleteCompProp = $(`y`);
   const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp];
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(a, arg);
 `````
 

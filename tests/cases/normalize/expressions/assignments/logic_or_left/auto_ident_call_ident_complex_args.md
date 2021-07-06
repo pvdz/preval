@@ -52,12 +52,12 @@ $(a);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 const a = $(tmpCalleeParam$1, tmpCalleeParam$3);
-let tmpCalleeParam = a;
 if (a) {
+  $(a);
 } else {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

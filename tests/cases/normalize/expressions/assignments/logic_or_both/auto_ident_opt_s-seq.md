@@ -66,23 +66,23 @@ let a = undefined;
 const b = { x: 1 };
 const tmpIfTest = b == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
-}
-const tmpCalleeParam = a;
-if (a) {
-  $(tmpCalleeParam);
-} else {
-  let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
+  if (tmpChainElementObject) {
+    $(tmpChainElementObject);
   } else {
-    const tmpChainElementObject$1 = b.x;
-    tmpNestedComplexRhs = tmpChainElementObject$1;
+    let tmpNestedComplexRhs = undefined;
+    const tmpIfTest$1 = b == null;
+    if (tmpIfTest$1) {
+    } else {
+      const tmpChainElementObject$1 = b.x;
+      tmpNestedComplexRhs = tmpChainElementObject$1;
+    }
+    a = tmpNestedComplexRhs;
+    $(tmpNestedComplexRhs);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
 $(a);
 `````

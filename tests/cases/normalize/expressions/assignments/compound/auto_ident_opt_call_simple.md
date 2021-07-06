@@ -48,15 +48,16 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpBinBothRhs = undefined;
 const tmpIfTest = $ == null;
+let tmpClusterSSA_a = NaN;
 if (tmpIfTest) {
+  a ** 0;
+  $(NaN);
 } else {
   const tmpChainElementCall = $(1);
-  tmpBinBothRhs = tmpChainElementCall;
+  tmpClusterSSA_a = a * tmpChainElementCall;
+  $(tmpClusterSSA_a);
 }
-const tmpClusterSSA_a = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 

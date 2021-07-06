@@ -58,12 +58,12 @@ const tmpNestedAssignObj = $(tmpCalleeParam$1);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-let tmpCalleeParam = tmpNestedPropCompoundComplexRhs;
 if (tmpNestedPropCompoundComplexRhs) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpNestedPropCompoundComplexRhs);
 }
-$(tmpCalleeParam);
 $(tmpNestedPropCompoundComplexRhs, b);
 `````
 

@@ -55,7 +55,6 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpNestedAssignComMemberProp = $(`c`);
 const b = { c: 10, d: 20 };
 const tmpCompObj = $(b);
@@ -63,11 +62,12 @@ const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(tmpNestedAssignPropRhs, b);
 `````
 

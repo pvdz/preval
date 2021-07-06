@@ -63,17 +63,20 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
+let tmpCalleeParam = undefined;
 if (a) {
+  tmpCalleeParam = a;
 } else {
   const tmpCalleeParam$5 = $(2);
   a = $(tmpCalleeParam$5);
+  tmpCalleeParam = a;
 }
-let tmpCalleeParam = a;
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

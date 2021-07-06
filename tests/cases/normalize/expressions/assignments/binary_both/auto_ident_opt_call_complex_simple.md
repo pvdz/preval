@@ -57,25 +57,26 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-  a = tmpChainElementCall$1;
+  tmpBinBothLhs = tmpChainElementCall$1;
 }
-const tmpBinBothLhs = a;
 let tmpClusterSSA_a = undefined;
 const tmpChainElementCall$3 = $($);
 const tmpIfTest$1 = tmpChainElementCall$3 == null;
 if (tmpIfTest$1) {
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);
   tmpClusterSSA_a = tmpChainElementCall$5;
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementCall$5;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

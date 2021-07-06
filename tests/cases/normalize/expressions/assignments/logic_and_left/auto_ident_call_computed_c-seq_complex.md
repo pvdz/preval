@@ -52,12 +52,12 @@ const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
 const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
-let tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpClusterSSA_a);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

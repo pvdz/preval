@@ -50,12 +50,12 @@ $(a);
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
-let tmpClusterSSA_tmpCalleeParam = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
-  tmpClusterSSA_tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpNestedAssignObjPatternRhs);
 }
-$(tmpClusterSSA_tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

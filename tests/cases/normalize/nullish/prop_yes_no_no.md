@@ -41,14 +41,14 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const a = {};
-let tmpCalleeParam = a;
-const tmpIfTest = tmpCalleeParam == null;
+const tmpIfTest = a == null;
 if (tmpIfTest) {
   const tmpAssignRhsProp = b.c;
-  tmpCalleeParam = tmpAssignRhsProp.d;
+  const tmpClusterSSA_tmpCalleeParam = tmpAssignRhsProp.d;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(a);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

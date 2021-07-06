@@ -82,7 +82,7 @@ while (true) {
       const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       a = tmpChainElementObject$1;
-      if (a) {
+      if (tmpChainElementObject$1) {
         $(100);
       } else {
         break;

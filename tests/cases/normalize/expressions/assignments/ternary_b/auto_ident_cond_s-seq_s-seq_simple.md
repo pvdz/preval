@@ -54,14 +54,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = 60;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = 60;
+  $(60);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

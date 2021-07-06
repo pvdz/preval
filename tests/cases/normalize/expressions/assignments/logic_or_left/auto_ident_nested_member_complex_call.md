@@ -70,12 +70,12 @@ const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-let tmpCalleeParam = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
+  $(varInitAssignLhsComputedRhs);
 } else {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(varInitAssignLhsComputedRhs, b, c, 3);
 `````
 

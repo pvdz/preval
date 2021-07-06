@@ -75,6 +75,7 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 let a = undefined;
 const tmpIfTest = b == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.c;
@@ -82,8 +83,8 @@ if (tmpIfTest) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
+  tmpCalleeParam = tmpChainElementCall;
 }
-const tmpCalleeParam = a;
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpIfTest$1 = b == null;

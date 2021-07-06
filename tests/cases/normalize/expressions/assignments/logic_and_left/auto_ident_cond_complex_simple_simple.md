@@ -51,18 +51,20 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
+let tmpCalleeParam = 2;
 if (tmpIfTest) {
   a = 2;
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
+  tmpCalleeParam = a;
 }
-let tmpCalleeParam = a;
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

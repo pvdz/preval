@@ -54,13 +54,14 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = 2;
+  $(`before  2  after`);
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(a, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
 $(a);
 `````
 

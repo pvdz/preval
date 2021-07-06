@@ -104,15 +104,15 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpSwitchValue = $(1, `disc`);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(0);
+let tmpSwitchCaseToStart$3 = 0;
+let tmpIfTest$9 = true;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
 } else {
+  tmpSwitchCaseToStart$3 = 1;
+  tmpIfTest$9 = false;
 }
-const tmpSwitchCaseToStart$3 = tmpSwitchCaseToStart;
-const tmpIfTest$9 = tmpSwitchCaseToStart$3 <= 0;
 if (tmpIfTest$9) {
   $(`keep, do not eval`);
   throw `wrong exig`;

@@ -54,15 +54,12 @@ $(y);
 ## Output
 
 `````js filename=intro
-let x = 100;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
+  $(`100right`);
 } else {
-  x = 200;
+  $(`200right`);
 }
-const tmpStringConcatR = $coerce(x, `string`);
-const y = `${tmpStringConcatR}right`;
-$(y);
 `````
 
 ## Globals

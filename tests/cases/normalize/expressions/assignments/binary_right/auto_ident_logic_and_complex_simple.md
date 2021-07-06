@@ -51,10 +51,12 @@ const tmpCalleeParam$1 = $(1);
 let a = $(tmpCalleeParam$1);
 if (a) {
   a = 2;
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + 2;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + a;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const tmpCalleeParam = tmpBinBothLhs + a;
-$(tmpCalleeParam);
 $(a);
 `````
 

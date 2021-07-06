@@ -47,7 +47,6 @@ let a = arguments;
 const tmpCalleeParam = a;
 if (a) {
   a = arguments;
-  arguments;
   $(arguments);
 } else {
   $(tmpCalleeParam);

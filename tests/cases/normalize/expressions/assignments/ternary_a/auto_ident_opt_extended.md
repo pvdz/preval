@@ -62,7 +62,6 @@ $(a);
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
-let tmpCalleeParam = undefined;
 let a = undefined;
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
@@ -73,11 +72,12 @@ if (tmpIfTest$1) {
   a = tmpChainElementObject$3;
 }
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

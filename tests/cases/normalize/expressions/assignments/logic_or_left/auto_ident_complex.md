@@ -47,12 +47,12 @@ $(a, b);
 
 `````js filename=intro
 const a = $(1);
-let tmpCalleeParam = a;
 if (a) {
+  $(a);
 } else {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a, 1);
 `````
 

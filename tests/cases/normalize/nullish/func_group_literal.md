@@ -51,8 +51,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpReturnArg = $(3);
-$(tmpReturnArg);
+const tmpClusterSSA_tmpReturnArg$1 = $(3);
+$(tmpClusterSSA_tmpReturnArg$1);
 `````
 
 ## Globals

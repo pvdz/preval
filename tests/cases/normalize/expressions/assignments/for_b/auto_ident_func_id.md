@@ -62,11 +62,7 @@ while (true) {
     return undefined;
   };
   a = f;
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a);
 `````

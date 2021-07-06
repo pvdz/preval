@@ -54,15 +54,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
-  a = $(60);
+  const tmpClusterSSA_a = $(60);
+  $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
+  const tmpClusterSSA_a$1 = $(tmpCalleeParam);
+  $(tmpClusterSSA_a$1);
 }
-$(a);
 $(undefined);
 `````
 

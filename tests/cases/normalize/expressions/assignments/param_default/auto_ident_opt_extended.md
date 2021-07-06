@@ -75,17 +75,16 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-let tmpNestedComplexRhs = undefined;
 const b = { x: tmpObjLitVal };
 const tmpIfTest$1 = b == null;
+let tmpClusterSSA_a = undefined;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  tmpNestedComplexRhs = tmpChainElementObject$3;
+  tmpClusterSSA_a = tmpChainElementObject$3;
 }
-const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
 $(tmpClusterSSA_a);
 `````

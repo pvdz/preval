@@ -69,22 +69,17 @@ $(a, b);
 
 `````js filename=intro
 const b = { c: 1 };
-let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   const tmpAssignRhsProp = $(b);
-  a = tmpAssignRhsProp.c;
+  const tmpClusterSSA_a = tmpAssignRhsProp.c;
+  $(tmpClusterSSA_a, b);
 } else {
+  const a = { a: 999, b: 1000 };
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Globals

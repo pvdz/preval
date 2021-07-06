@@ -39,13 +39,14 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = $(1);
+const x = $(1);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
-  x = $(2);
+  const tmpClusterSSA_x = $(2);
+  $(tmpClusterSSA_x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## Globals

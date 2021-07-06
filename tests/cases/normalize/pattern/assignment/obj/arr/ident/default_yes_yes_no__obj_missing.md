@@ -65,10 +65,10 @@ const arrPatternBeforeDefault = arrPatternSplat[0];
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   y = `fail`;
-  $(`fail`);
+  $(y);
 } else {
   y = arrPatternBeforeDefault;
-  $(arrPatternBeforeDefault);
+  $(y);
 }
 `````
 

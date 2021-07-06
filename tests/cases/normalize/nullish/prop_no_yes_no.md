@@ -40,13 +40,14 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjectPrototype = Object.prototype;
-let tmpCalleeParam = tmpObjectPrototype.b;
+const tmpCalleeParam = tmpObjectPrototype.b;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
-  tmpCalleeParam = c.d;
+  const tmpClusterSSA_tmpCalleeParam = c.d;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 `````
 
 ## Globals

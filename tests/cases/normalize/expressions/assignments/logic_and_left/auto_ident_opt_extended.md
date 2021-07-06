@@ -62,19 +62,21 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 let a = undefined;
 const tmpIfTest = b == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$3;
+  tmpCalleeParam = tmpChainElementObject$3;
 }
-let tmpCalleeParam = a;
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

@@ -56,17 +56,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpObjLitVal = $(1);
   const tmpNestedComplexRhs = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(1);
 const tmpAssignComMemLhsObj = a;
 const tmpAssignComMemLhsProp = $(`b`);

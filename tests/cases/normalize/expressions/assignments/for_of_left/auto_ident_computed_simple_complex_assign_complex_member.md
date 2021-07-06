@@ -66,7 +66,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
-  a.x = tmpForOfLhsNode;
+  tmpNestedAssignPropRhs.x = tmpForOfLhsNode;
 }
 $(a, b);
 `````

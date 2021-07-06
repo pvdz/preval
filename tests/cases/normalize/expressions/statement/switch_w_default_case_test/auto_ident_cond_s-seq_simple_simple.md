@@ -96,11 +96,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(2);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpClusterSSA_tmpBinLhs = $(2);
+const tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -127,6 +126,7 @@ tmpSwitchBreak: {
     }
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

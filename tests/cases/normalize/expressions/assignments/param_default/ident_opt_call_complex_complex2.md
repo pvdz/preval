@@ -140,7 +140,7 @@ const f = function () {
     const tmpCalleeParam$5 = $(1);
     const tmpChainElementCall$5 = tmpCallVal$2.call(tmpChainElementCall$2, $, tmpCalleeParam$5);
     a = tmpChainElementCall$5;
-    return a;
+    return tmpChainElementCall$5;
   }
 };
 const tmpCalleeParam$6 = f();

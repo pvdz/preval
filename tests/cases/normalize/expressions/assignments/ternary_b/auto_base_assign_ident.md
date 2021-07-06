@@ -52,17 +52,16 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   b = $(2);
   const tmpNestedComplexRhs = b;
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a, b);
 `````
 

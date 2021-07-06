@@ -61,18 +61,17 @@ const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let tmpCallCallee$1 = undefined;
 const tmpIfTest = b == null;
 if (tmpIfTest) {
+  $(`before  undefined  after`);
 } else {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  tmpCallCallee$1 = tmpChainElementObject$3;
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementObject$3, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
 $(a);
 `````
 

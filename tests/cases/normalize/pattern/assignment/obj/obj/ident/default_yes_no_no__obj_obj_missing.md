@@ -48,10 +48,11 @@ const objPatternBeforeDefault = tmpObjectPrototype.y;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   y = $(`pass`);
+  $(y);
 } else {
   y = objPatternBeforeDefault;
+  $(y);
 }
-$(y);
 `````
 
 ## Globals

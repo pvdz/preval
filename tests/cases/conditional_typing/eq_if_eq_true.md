@@ -51,12 +51,12 @@ $(x);
 
 `````js filename=intro
 const a = $(67636);
-let x = a === 67636;
+const x = a === 67636;
 if (x) {
-  x = a === 67636;
+  $(true);
 } else {
+  $(false);
 }
-$(x);
 `````
 
 ## Globals

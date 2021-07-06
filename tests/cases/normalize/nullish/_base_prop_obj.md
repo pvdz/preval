@@ -44,7 +44,6 @@ tmpCallCallee(tmpCalleeParam);
 const f = { x: 10 };
 const tmpIfTest = f == null;
 if (tmpIfTest) {
-  x;
   $(x);
 } else {
   $(f);

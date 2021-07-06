@@ -49,13 +49,14 @@ $(a);
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
 const tmpCalleeParam$3 = $(0);
-let tmpCalleeParam$1 = $(tmpCalleeParam$3);
+const tmpCalleeParam$1 = $(tmpCalleeParam$3);
 if (tmpCalleeParam$1) {
+  $(tmpCalleeParam, tmpCalleeParam$1);
 } else {
   const tmpCalleeParam$5 = $(2);
-  tmpCalleeParam$1 = $(tmpCalleeParam$5);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(tmpCalleeParam$5);
+  $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

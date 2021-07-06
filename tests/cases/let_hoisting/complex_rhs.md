@@ -91,13 +91,14 @@ const danger = function () {
     return undefined;
   }
 };
-let x = danger();
+const x = danger();
 if ($) {
   $(x);
-  x = $(`do not inline me`);
+  const tmpClusterSSA_x = $(`do not inline me`);
+  $(tmpClusterSSA_x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## Globals

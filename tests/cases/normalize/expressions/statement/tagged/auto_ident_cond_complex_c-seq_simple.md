@@ -48,15 +48,15 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
-let tmpCalleeParam$1 = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpCalleeParam$1 = $(60);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(60);
+  $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
 } else {
   const tmpCalleeParam$3 = $(100);
-  tmpCalleeParam$1 = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpCalleeParam$2 = $(tmpCalleeParam$3);
+  $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$2);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

@@ -47,14 +47,16 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-let tmpBinBothRhs = $(tmpCalleeParam$1);
-if (tmpBinBothRhs) {
-  tmpBinBothRhs = 2;
-} else {
-}
+const tmpBinBothRhs = $(tmpCalleeParam$1);
+let tmpClusterSSA_a = undefined;
 const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
+if (tmpBinBothRhs) {
+  tmpClusterSSA_a = a * 2;
+  $(tmpClusterSSA_a);
+} else {
+  tmpClusterSSA_a = a * tmpBinBothRhs;
+  $(tmpClusterSSA_a);
+}
 $(tmpClusterSSA_a);
 `````
 

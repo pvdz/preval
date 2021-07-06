@@ -50,17 +50,17 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 if (tmpClusterSSA_a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````
 

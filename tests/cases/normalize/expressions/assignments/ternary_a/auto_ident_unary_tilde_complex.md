@@ -45,15 +45,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpUnaryArg = $(100);
 const a = ~tmpUnaryArg;
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

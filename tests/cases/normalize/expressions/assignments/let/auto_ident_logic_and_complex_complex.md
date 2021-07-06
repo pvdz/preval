@@ -52,9 +52,10 @@ let a = $(tmpCalleeParam);
 if (a) {
   const tmpCalleeParam$1 = $(2);
   a = $(tmpCalleeParam$1);
+  $(a);
 } else {
+  $(a);
 }
-$(a);
 $(a);
 `````
 

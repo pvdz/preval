@@ -58,14 +58,15 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 let a = undefined;
 const tmpIfTest = b == null;
+let tmpAnonDefaultExport = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$3;
+  tmpAnonDefaultExport = tmpChainElementObject$3;
 }
-const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

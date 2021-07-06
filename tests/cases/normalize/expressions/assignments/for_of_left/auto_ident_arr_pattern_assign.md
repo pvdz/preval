@@ -70,7 +70,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
-  a.x = tmpForOfLhsNode;
+  tmpNestedAssignArrPatternRhs.x = tmpForOfLhsNode;
 }
 $(a, x, y);
 `````

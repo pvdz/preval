@@ -58,16 +58,17 @@ const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
+  if (tmpChainElementObject) {
+    $(tmpChainElementObject);
+  } else {
+    const tmpClusterSSA_tmpCalleeParam = $(100);
+    $(tmpClusterSSA_tmpCalleeParam);
+  }
 }
-let tmpCalleeParam = a;
-if (a) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
 $(a);
 `````
 

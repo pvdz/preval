@@ -57,12 +57,13 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let xyz = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
+  xyz = tmpChainElementCall$1;
 }
-const xyz = a;
 while (true) {
   $(xyz);
   $(1);

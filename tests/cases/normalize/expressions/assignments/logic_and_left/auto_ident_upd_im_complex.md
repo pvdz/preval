@@ -59,12 +59,12 @@ const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-let tmpCalleeParam = tmpPostUpdArgVal;
 if (tmpPostUpdArgVal) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpPostUpdArgVal);
 }
-$(tmpCalleeParam);
 $(tmpPostUpdArgVal, b);
 `````
 

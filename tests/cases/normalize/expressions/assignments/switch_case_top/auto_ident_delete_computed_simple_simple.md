@@ -65,21 +65,16 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
-let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
+  const tmpClusterSSA_a = delete arg.y;
+  $(tmpClusterSSA_a, arg);
 } else {
+  const a = { a: 999, b: 1000 };
+  $(a, arg);
 }
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  a = delete arg.y;
-} else {
-}
-$(a, arg);
 `````
 
 ## Globals

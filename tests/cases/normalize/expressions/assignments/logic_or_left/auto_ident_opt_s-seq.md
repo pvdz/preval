@@ -57,16 +57,17 @@ let a = undefined;
 const b = { x: 1 };
 const tmpIfTest = b == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
+  if (tmpChainElementObject) {
+    $(tmpChainElementObject);
+  } else {
+    const tmpClusterSSA_tmpCalleeParam = $(100);
+    $(tmpClusterSSA_tmpCalleeParam);
+  }
 }
-let tmpCalleeParam = a;
-if (a) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
 $(a);
 `````
 

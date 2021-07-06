@@ -67,6 +67,7 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 let a = undefined;
 const tmpIfTest = b == null;
+let xyz = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.c;
@@ -74,8 +75,8 @@ if (tmpIfTest) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
+  xyz = tmpChainElementCall;
 }
-const xyz = a;
 while (true) {
   $(xyz);
   $(1);

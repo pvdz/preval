@@ -48,12 +48,14 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $(0);
 let a = $(tmpCalleeParam);
+let tmpAnonDefaultExport = undefined;
 if (a) {
+  tmpAnonDefaultExport = a;
 } else {
   const tmpCalleeParam$1 = $(2);
   a = $(tmpCalleeParam$1);
+  tmpAnonDefaultExport = a;
 }
-const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

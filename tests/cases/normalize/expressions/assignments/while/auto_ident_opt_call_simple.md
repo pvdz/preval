@@ -59,7 +59,7 @@ while (true) {
   } else {
     const tmpChainElementCall = $(1);
     a = tmpChainElementCall;
-    if (a) {
+    if (tmpChainElementCall) {
       $(100);
     } else {
       break;

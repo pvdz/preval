@@ -49,12 +49,12 @@ $(a, b);
 
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
-let tmpCalleeParam = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
+  $(tmpNestedComplexRhs);
 } else {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 

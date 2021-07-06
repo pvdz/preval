@@ -62,14 +62,16 @@ const tmpBinBothLhs = $(100);
 let a = undefined;
 const tmpIfTest = b == null;
 if (tmpIfTest) {
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$3;
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementObject$3;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const tmpCalleeParam = tmpBinBothLhs + a;
-$(tmpCalleeParam);
 $(a);
 `````
 

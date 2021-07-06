@@ -53,14 +53,16 @@ $(`bad`);
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;
 let objPatternAfterDefault = undefined;
+let objPatternCrashTest = false;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   const tmpCalleeParam = { x: `fail` };
   objPatternAfterDefault = $(tmpCalleeParam);
+  objPatternCrashTest = objPatternAfterDefault === undefined;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
+  objPatternCrashTest = false;
 }
-let objPatternCrashTest = objPatternAfterDefault === undefined;
 if (objPatternCrashTest) {
 } else {
   objPatternCrashTest = objPatternAfterDefault === null;

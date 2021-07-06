@@ -50,17 +50,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(1);
-let tmpCallCallee$1 = $(tmpCalleeParam$1);
+const tmpCallCallee$1 = $(tmpCalleeParam$1);
 if (tmpCallCallee$1) {
   const tmpCalleeParam$3 = $(2);
-  tmpCallCallee$1 = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpCallCallee$1 = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  const tmpClusterSSA_tmpBinBothRhs$1 = $coerce(tmpCallCallee$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam$1 = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

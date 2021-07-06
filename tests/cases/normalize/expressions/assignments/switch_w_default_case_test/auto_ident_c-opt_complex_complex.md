@@ -94,19 +94,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let a = undefined;
+const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
+let tmpIfTest = undefined;
 if (tmpIfTest$1) {
+  tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
+  tmpIfTest = tmpChainElementObject === tmpSwitchValue;
 }
-const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

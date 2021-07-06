@@ -62,12 +62,14 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(0);
 let a = $(tmpCalleeParam$1);
+let tmpCalleeParam = undefined;
 if (a) {
+  tmpCalleeParam = a;
 } else {
   const tmpCalleeParam$3 = $(2);
   a = $(tmpCalleeParam$3);
+  tmpCalleeParam = a;
 }
-const tmpCalleeParam = a;
 if (a) {
   const tmpCalleeParam$5 = $(0);
   let tmpNestedComplexRhs = $(tmpCalleeParam$5);

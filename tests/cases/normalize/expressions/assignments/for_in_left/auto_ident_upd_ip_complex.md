@@ -66,7 +66,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;
-  a.x = tmpForInLhsNode;
+  tmpPostUpdArgVal.x = tmpForInLhsNode;
 }
 $(a, b);
 `````

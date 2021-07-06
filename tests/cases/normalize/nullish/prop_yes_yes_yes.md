@@ -51,19 +51,22 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const a = {};
 let tmpCalleeParam = a;
-const tmpIfTest = tmpCalleeParam == null;
+const tmpIfTest = a == null;
+let tmpIfTest$1 = undefined;
 if (tmpIfTest) {
   tmpCalleeParam = b;
+  tmpIfTest$1 = tmpCalleeParam == null;
 } else {
+  tmpIfTest$1 = tmpCalleeParam == null;
 }
-const tmpIfTest$1 = tmpCalleeParam == null;
+let tmpIfTest$3 = undefined;
 if (tmpIfTest$1) {
   tmpCalleeParam = c;
+  tmpIfTest$3 = tmpCalleeParam == null;
 } else {
+  tmpIfTest$3 = tmpCalleeParam == null;
 }
-const tmpIfTest$3 = tmpCalleeParam == null;
 if (tmpIfTest$3) {
-  d;
   $(d);
 } else {
   $(tmpCalleeParam);

@@ -53,12 +53,13 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
+let tmpAnonDefaultExport = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
+  tmpAnonDefaultExport = tmpChainElementObject;
 }
-const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

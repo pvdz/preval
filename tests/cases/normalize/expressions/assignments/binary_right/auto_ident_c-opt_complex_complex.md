@@ -59,13 +59,15 @@ const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementObject;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const tmpCalleeParam = tmpBinBothLhs + a;
-$(tmpCalleeParam);
 $(a);
 `````
 

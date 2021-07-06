@@ -59,11 +59,13 @@ f();
 
 `````js filename=intro
 let bindingPatternObjRoot = 1;
+let objPatternCrashTest = false;
 if ($) {
+  objPatternCrashTest = false;
 } else {
   bindingPatternObjRoot = 2;
+  objPatternCrashTest = false;
 }
-let objPatternCrashTest = bindingPatternObjRoot === undefined;
 if (objPatternCrashTest) {
 } else {
   objPatternCrashTest = bindingPatternObjRoot === null;

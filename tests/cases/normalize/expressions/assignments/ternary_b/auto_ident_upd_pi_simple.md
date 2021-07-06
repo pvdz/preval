@@ -52,15 +52,15 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = 2;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   b = 2;
   a = 2;
+  $(2);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a, b);
 `````
 

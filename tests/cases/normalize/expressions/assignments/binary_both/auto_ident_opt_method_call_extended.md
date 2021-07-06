@@ -70,29 +70,30 @@ $(a);
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
-let a = undefined;
 const tmpIfTest = b == null;
+let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-  a = tmpChainElementCall;
+  tmpBinBothLhs = tmpChainElementCall;
 }
-const tmpBinBothLhs = a;
 let tmpClusterSSA_a = undefined;
 const tmpIfTest$1 = b == null;
 if (tmpIfTest$1) {
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementObject$5 = b.c;
   const tmpChainElementObject$7 = tmpChainElementObject$5.d;
   const tmpChainElementObject$9 = tmpChainElementObject$7.e;
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpChainElementObject$7, 1);
   tmpClusterSSA_a = tmpChainElementCall$1;
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementCall$1;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

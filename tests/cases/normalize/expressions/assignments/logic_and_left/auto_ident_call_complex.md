@@ -45,12 +45,12 @@ $(a);
 `````js filename=intro
 const tmpCallComplexCallee = $($);
 const a = tmpCallComplexCallee(1);
-let tmpCalleeParam = a;
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(a);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

@@ -59,13 +59,14 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let a = $(tmpCalleeParam);
+const a = $(tmpCalleeParam);
 if (a) {
   const tmpCalleeParam$1 = $(2);
-  a = $(tmpCalleeParam$1);
+  const tmpClusterSSA_a = $(tmpCalleeParam$1);
+  $(tmpClusterSSA_a);
 } else {
+  $(a);
 }
-$(a);
 $(undefined);
 `````
 

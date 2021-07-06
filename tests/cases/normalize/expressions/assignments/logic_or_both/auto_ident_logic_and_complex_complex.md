@@ -62,12 +62,14 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 let a = $(tmpCalleeParam$1);
+let tmpCalleeParam = undefined;
 if (a) {
   const tmpCalleeParam$3 = $(2);
   a = $(tmpCalleeParam$3);
+  tmpCalleeParam = a;
 } else {
+  tmpCalleeParam = a;
 }
-const tmpCalleeParam = a;
 if (a) {
   $(tmpCalleeParam);
 } else {

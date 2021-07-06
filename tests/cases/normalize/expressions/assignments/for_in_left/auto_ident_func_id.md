@@ -59,7 +59,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
     return undefined;
   };
   a = f;
-  a.x = tmpForInLhsNode;
+  f.x = tmpForInLhsNode;
 }
 $(a);
 `````

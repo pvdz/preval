@@ -79,12 +79,14 @@ if (tmpNestedComplexRhs) {
   tmpNestedComplexRhs = $(tmpCalleeParam$1);
 } else {
 }
+let tmpClusterSSA_a = undefined;
 if (tmpNestedComplexRhs) {
+  tmpClusterSSA_a = tmpNestedComplexRhs;
 } else {
   const tmpCalleeParam$3 = $(2);
-  tmpNestedComplexRhs = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpNestedComplexRhs = $(tmpCalleeParam$3);
+  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
 }
-const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
 $(tmpClusterSSA_a);
 `````

@@ -61,10 +61,10 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
@@ -72,9 +72,8 @@ if (tmpIfTest) {
   y = tmpObjLitVal$1;
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   a = tmpNestedAssignObjPatternRhs;
-  tmpCalleeParam = tmpNestedAssignObjPatternRhs;
+  $(tmpNestedAssignObjPatternRhs);
 }
-$(tmpCalleeParam);
 $(a, x, y);
 `````
 

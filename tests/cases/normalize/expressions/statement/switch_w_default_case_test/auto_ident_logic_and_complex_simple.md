@@ -94,16 +94,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(1);
-let tmpBinLhs = $(tmpCalleeParam);
+const tmpBinLhs = $(tmpCalleeParam);
+let tmpIfTest = undefined;
 if (tmpBinLhs) {
-  tmpBinLhs = 2;
+  tmpIfTest = 2 === tmpSwitchValue;
 } else {
+  tmpIfTest = tmpBinLhs === tmpSwitchValue;
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -130,6 +130,7 @@ tmpSwitchBreak: {
     }
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

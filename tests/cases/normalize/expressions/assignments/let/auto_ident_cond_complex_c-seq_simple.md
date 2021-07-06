@@ -50,11 +50,12 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = $(60);
+  $(a);
 } else {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);
+  $(a);
 }
-$(a);
 $(a);
 `````
 

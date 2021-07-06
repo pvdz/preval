@@ -45,14 +45,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = 2;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
+  $(2);
 } else {
   const tmpCalleeParam$1 = $(100);
-  tmpCalleeParam = $(tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam = $(tmpCalleeParam$1);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

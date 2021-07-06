@@ -52,7 +52,7 @@ $(y);
 
 `````js filename=intro
 y = `abc`;
-$(`abc`);
+$(y);
 `````
 
 ## Globals

@@ -65,23 +65,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   const tmpBinBothLhs = $(1);
   const tmpBinBothRhs = $(2);
-  a = tmpBinBothLhs + tmpBinBothRhs;
+  const tmpClusterSSA_a = tmpBinBothLhs + tmpBinBothRhs;
+  $(tmpClusterSSA_a);
 } else {
+  const a = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Globals

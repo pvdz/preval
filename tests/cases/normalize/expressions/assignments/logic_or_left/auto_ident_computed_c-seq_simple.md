@@ -52,12 +52,12 @@ const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
 const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-let tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
 } else {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a, b);
 `````
 

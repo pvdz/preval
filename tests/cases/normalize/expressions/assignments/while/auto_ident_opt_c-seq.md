@@ -65,7 +65,7 @@ while (true) {
   } else {
     const tmpChainElementObject = tmpChainRootProp.x;
     a = tmpChainElementObject;
-    if (a) {
+    if (tmpChainElementObject) {
       $(100);
     } else {
       break;

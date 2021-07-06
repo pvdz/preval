@@ -63,10 +63,10 @@ $(a);
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   let tmpNestedComplexRhs = undefined;
   const b = { x: tmpObjLitVal };
@@ -79,9 +79,8 @@ if (tmpIfTest) {
     tmpNestedComplexRhs = tmpChainElementObject$3;
   }
   a = tmpNestedComplexRhs;
-  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

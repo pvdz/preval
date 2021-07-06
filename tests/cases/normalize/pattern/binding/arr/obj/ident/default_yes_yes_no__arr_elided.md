@@ -54,14 +54,13 @@ $(x);
 const tmpCalleeParam = { x: `pass2` };
 const arrPatternStep = $(tmpCalleeParam);
 const objPatternBeforeDefault = arrPatternStep.x;
-let x = undefined;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  x = $(`pass`);
+  const tmpClusterSSA_x = $(`pass`);
+  $(tmpClusterSSA_x);
 } else {
-  x = objPatternBeforeDefault;
+  $(objPatternBeforeDefault);
 }
-$(x);
 `````
 
 ## Globals

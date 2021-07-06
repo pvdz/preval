@@ -74,15 +74,9 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     const tmpSwitchValue = $(1, `disc`);
-    let tmpSwitchCaseToStart = 1;
     const tmpBinLhs = $(1, `case`);
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 0;
-    } else {
-    }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$3) {
       continue;
     } else {
     }

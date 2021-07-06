@@ -58,7 +58,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpPostUpdArgIdent = b;
   b = b + 1;
   a = tmpPostUpdArgIdent;
-  a.x = tmpForOfLhsNode;
+  tmpPostUpdArgIdent.x = tmpForOfLhsNode;
 }
 $(a, b);
 `````

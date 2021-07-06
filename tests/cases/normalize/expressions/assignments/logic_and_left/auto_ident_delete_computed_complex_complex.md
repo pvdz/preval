@@ -52,12 +52,12 @@ const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(false);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````
 

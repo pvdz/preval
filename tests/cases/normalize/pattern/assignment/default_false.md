@@ -47,15 +47,14 @@ $(b);
 ## Output
 
 `````js filename=intro
-let b = undefined;
 const tmpObjLitVal = $(`prop`);
 const tmpIfTest = tmpObjLitVal === undefined;
 if (tmpIfTest) {
-  b = $(`default`);
+  const tmpClusterSSA_b = $(`default`);
+  $(tmpClusterSSA_b);
 } else {
-  b = tmpObjLitVal;
+  $(tmpObjLitVal);
 }
-$(b);
 `````
 
 ## Globals

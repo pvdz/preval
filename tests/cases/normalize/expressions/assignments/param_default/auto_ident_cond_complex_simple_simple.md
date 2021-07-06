@@ -66,14 +66,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpNestedComplexRhs = 2;
 const tmpIfTest$1 = $(1);
+let tmpClusterSSA_a = 2;
 if (tmpIfTest$1) {
 } else {
   const tmpCalleeParam = $(100);
-  tmpNestedComplexRhs = $(tmpCalleeParam);
+  const tmpClusterSSA_tmpNestedComplexRhs = $(tmpCalleeParam);
+  tmpClusterSSA_a = tmpClusterSSA_tmpNestedComplexRhs;
 }
-const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
 $(tmpClusterSSA_a);
 `````

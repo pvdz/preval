@@ -65,7 +65,6 @@ $(a, b, c);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = 3;
 const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
@@ -76,10 +75,11 @@ if (tmpIfTest) {
   b.x = 3;
   b.x = 3;
   a = 3;
+  $(3);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam = $(200);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a, b, 3);
 `````
 

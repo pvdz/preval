@@ -60,11 +60,12 @@ if (a) {
 } else {
 }
 if (a) {
+  $(a);
 } else {
   const tmpCalleeParam$5 = $(2);
   a = $(tmpCalleeParam$5);
+  $(a);
 }
-$(a);
 $(a);
 `````
 

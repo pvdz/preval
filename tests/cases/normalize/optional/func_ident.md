@@ -52,15 +52,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpIfTest = global == null;
 if (tmpIfTest) {
+  const tmpClusterSSA_tmpReturnArg = $(undefined);
+  $(tmpClusterSSA_tmpReturnArg);
 } else {
   const tmpChainElementObject = global.foo;
-  tmpCalleeParam = tmpChainElementObject;
+  const tmpClusterSSA_tmpReturnArg$1 = $(tmpChainElementObject);
+  $(tmpClusterSSA_tmpReturnArg$1);
 }
-const tmpReturnArg = $(tmpCalleeParam);
-$(tmpReturnArg);
 `````
 
 ## Globals

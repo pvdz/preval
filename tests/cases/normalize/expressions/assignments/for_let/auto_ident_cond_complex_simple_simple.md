@@ -55,13 +55,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
+let xyz = 2;
 if (tmpIfTest) {
   a = 2;
 } else {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);
+  xyz = a;
 }
-const xyz = a;
 while (true) {
   $(xyz);
   $(1);

@@ -58,10 +58,10 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpArrElement = $(2);
   const tmpCalleeParam$1 = [tmpArrElement];
@@ -69,9 +69,8 @@ if (tmpIfTest) {
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
   a = tmpNestedAssignArrPatternRhs;
-  tmpCalleeParam = tmpNestedAssignArrPatternRhs;
+  $(tmpNestedAssignArrPatternRhs);
 }
-$(tmpCalleeParam);
 $(a, b);
 `````
 

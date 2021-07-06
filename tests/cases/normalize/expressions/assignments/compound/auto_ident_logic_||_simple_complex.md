@@ -47,11 +47,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-const tmpBinBothRhs = $(tmpCalleeParam$1);
+const tmpClusterSSA_tmpBinBothRhs = $(tmpCalleeParam$1);
 const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const tmpClusterSSA_tmpClusterSSA_a = a * tmpClusterSSA_tmpBinBothRhs;
+$(tmpClusterSSA_tmpClusterSSA_a);
+$(tmpClusterSSA_tmpClusterSSA_a);
 `````
 
 ## Globals

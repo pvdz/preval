@@ -76,7 +76,7 @@ while (true) {
     } else {
       const tmpChainElementObject$1 = tmpChainElementObject.y;
       a = tmpChainElementObject$1;
-      if (a) {
+      if (tmpChainElementObject$1) {
         $(100);
       } else {
         break;

@@ -48,17 +48,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpBinBothRhs = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpClusterSSA_a = NaN;
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  a ** 0;
+  $(NaN);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-  tmpBinBothRhs = tmpChainElementCall$1;
+  tmpClusterSSA_a = a * tmpChainElementCall$1;
+  $(tmpClusterSSA_a);
 }
-const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 

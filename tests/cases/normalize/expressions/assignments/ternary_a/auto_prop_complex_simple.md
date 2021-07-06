@@ -50,8 +50,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpCalleeParam = $(100);
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam = $(100);
+$(tmpClusterSSA_tmpCalleeParam);
 const a = { b: tmpObjLitVal };
 const tmpAssignMemLhsObj = $(a);
 tmpAssignMemLhsObj.b = 2;

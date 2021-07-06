@@ -54,8 +54,8 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
 $(10);
 $(20);
-const tmpClusterSSA_tmpCalleeParam = $(100);
-$(tmpClusterSSA_tmpCalleeParam);
+const tmpClusterSSA_tmpClusterSSA_tmpCalleeParam = $(100);
+$(tmpClusterSSA_tmpClusterSSA_tmpCalleeParam);
 $(1);
 `````
 

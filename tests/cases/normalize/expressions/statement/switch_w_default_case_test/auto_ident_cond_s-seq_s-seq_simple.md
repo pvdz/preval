@@ -96,7 +96,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpIfTest = 60 === tmpSwitchValue;
@@ -126,6 +125,7 @@ tmpSwitchBreak: {
     }
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

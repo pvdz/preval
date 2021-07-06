@@ -55,13 +55,14 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpAnonDefaultExport = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
+  tmpAnonDefaultExport = tmpChainElementObject;
 }
-const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

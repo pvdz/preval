@@ -57,18 +57,17 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpCallCallee$1 = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(`before  undefined  after`);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  tmpCallCallee$1 = tmpChainElementObject;
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementObject, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
 $(a);
 `````
 

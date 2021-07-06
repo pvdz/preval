@@ -64,9 +64,8 @@ const tmpCalleeParam$1 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
-const tmpCalleeParam = tmpClusterSSA_a;
-if (tmpClusterSSA_a) {
-  $(tmpCalleeParam);
+if (tmpNestedAssignObjPatternRhs) {
+  $(tmpNestedAssignObjPatternRhs);
 } else {
   const tmpObjLitVal$1 = $(2);
   const tmpCalleeParam$3 = { b: tmpObjLitVal$1 };

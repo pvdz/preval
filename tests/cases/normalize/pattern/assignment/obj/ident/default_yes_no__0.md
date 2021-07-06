@@ -43,10 +43,11 @@ const objPatternBeforeDefault = (0).x;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
   x = $(`pass`);
+  $(x);
 } else {
   x = objPatternBeforeDefault;
+  $(x);
 }
-$(x);
 `````
 
 ## Globals

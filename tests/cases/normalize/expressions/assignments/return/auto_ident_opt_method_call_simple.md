@@ -62,18 +62,24 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpClusterSSA_a = undefined;
+const f = function () {
+  debugger;
+  a = undefined;
+  const tmpIfTest = b == null;
+  if (tmpIfTest) {
+    return a;
+  } else {
+    const tmpChainElementObject = b.c;
+    const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
+    a = tmpChainElementCall;
+    return tmpChainElementCall;
+  }
+};
 const b = { c: $ };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpClusterSSA_a = tmpChainElementCall;
-  $(tmpChainElementCall);
-}
-$(tmpClusterSSA_a);
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
+$(a);
 `````
 
 ## Globals

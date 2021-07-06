@@ -60,7 +60,7 @@ while (true) {
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
   a = tmpNestedAssignObjPatternRhs;
-  if (a) {
+  if (tmpNestedAssignObjPatternRhs) {
     $(100);
   } else {
     break;

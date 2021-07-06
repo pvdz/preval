@@ -232,14 +232,15 @@ need to make pids numbers
   - bool function pattern: tests/cases/function_bool_ret/base_primitives.md
   - edge case but we could fold up an `if` like: `if (b) { $(b); } else { $(''); }` when we know it's just a $(b) either way. exapmle: tests/cases/typing/base_string_truthy.md
   - do we want to fix cases like in tests/cases/normalize/expressions/statement/template/auto_ident_unary_tilde_complex.md basically whether a number literal can be explicitly casted by String() or implicitly by a template and there's no observable difference. I think that's fine? so we could drop the String() trampoline in that case.
- >- `let x = 1; if ($) x = 1; else x = 1` we're not detecting redundant sets
-
-when doing `0 + x` we can also convert to $coerce with a `plunum` or smth.
-
- should we introduce a $toPrimitive() ? We can drop it if the arg is a primitive node or when we know the arg is a primitive type. but then we don't need to worry about x+y versus Number(x) versus String(x) cases. Especially with Date stuff.
-
-
-  - if an identifier-statement would be the first expression in the next statement (like call arg, left binary arg, unary arg, etc) then drop it. `a; f(a);` -> `f();`
+  - when doing `0 + x` we can also convert to $coerce with a `plunum` or smth. but trickier since if the primitive is a string then that's also fine. plunum?
+ >- when a lit with conditional init is used once afterwards in another init, maybe we can combine them. `let x = ``; if (a) { x = `source`; } else { x = `arguments`; } const y = f(x);` -> `let y = undefined; if (a) y = f('source'); else y = f('arguments');`
+  - const tmpObjectPrototype = Object.prototype; -> $ObjectPrototype
+  - Template as statement?
+  - If a let is updated to the same primitive everywhere, ehh, get rid of it? -> objPatternCrashTest in tests/cases/normalize/pattern/assignment/obj_ternary.md
+  - Didnt I fix this case of redundant write? tests/cases/normalize/switch/poc_out.md
+  - constant inlining is not inlining complex template literals -> tests/cases/conditional_typing/conditional_concat_spy.md
+  - spread on primitives throw an error
+  - if an identifier-statement would be the first expression in the next statement (like call arg, left binary arg, unary arg, etc) then drop it. `a; f(a);` -> `f();` see tests/cases/binding/cond_let_called.md
   - hoist the same thing above an `if`? `if (x) a = f(); else b = f();`, trickier for fresh bindings (do we even want that?) but still doable: `if (x) const a = f(); else const b = f();`. you'd have to merge the idents. but that'd be okay for constants anyways, right? or is the opposite easier for us? does it matter? what if its not the tail position?
   - why is parseIdentUnicodeOrError not inlined in tenko?
   - why is this not hoisted in tenko? `let tmpCalleeParam$433 = undefined; const tmpIfTest$1559 = collectTokens === 3; if (tmpIfTest$1559) { tmpCalleeParam$433 = consumedTokenType$3; } else { tmpCalleeParam$433 = createBaseToken(consumedTokenType$3, start$3, pointer$3, startCol$3, startRow$3, consumedNewlinesBeforeSolid); } $dotCall(tmpCallVal$65, tmpCallObj$91, tmpCalleeParam$433);`
@@ -253,6 +254,7 @@ when doing `0 + x` we can also convert to $coerce with a `plunum` or smth.
     - tests/cases/function_trampoline/call_only/implicit_global_crash.md
     - tests/cases/while/unwind.md
     - tests/cases/conditional_typing/conditional_concat.md
+    - tests/cases/normalize/dce/return/switch_default.md -> do the value tracking to resolve the `<=` checks
   - last loop in SCOPE_addLexBinding can be folded up. if a variable is set to some state in one branch and the next branch checks for a different value then we can infer that the state will be false for some cases. not sure how generic. `if (x) { a = 0; } else { a = f(); } let y = x === 9; if (y) { } else { y = a === 10; } if (y) { ... } else {}`
     - if nothing else, setting the `parentValue` to 0 does not do anything since the checks explicitly check against two values. we could init the var to 0 (instead of undefined).
     - this function also duplicates teh `scoop$11.parent.names` lookup parts. not sure if we can fix that at all.
@@ -288,6 +290,9 @@ when doing `0 + x` we can also convert to $coerce with a `plunum` or smth.
   - `if (x) f(); else g(); if (x) {} else {} if (x) {} else {}` if the blocks cant spy then the blocks can be merged into one block. See parseClassMethodAfterKey on babelCompat in tenko
   - can we group the `a || b || c` somehow if we first cast all the vars to a bool (or know they are)? can we mix and match || and && into one call somehow, without tripping up during normalization? a little harder because that would require nesting or something.
   - (to revisit) maybe... conditional concat can be moved in? `const x = s + 'abc'; let y = undefined; if (t) { y = 'def' + t; } else { y = 'ghi'; } const z = x + y;' -> `let y = undefined; if (t) { y = 'abcdef' + t; } else { y = 'abcghi'; } const z = s + y; }` -> `let y = 'abcghi'; if (t) { y = 'abcdef' + t; } else { } const z = s + y; }` (maybe). Pattern seems to happen a few times in tenko (`'------- error'`)
+  - the logic in tests/cases/normalize/expressions/assignments/logic_and_left/auto_ident_logic_and_complex_simple.md is such that the two ifs can be merged safely
+  - why can't we resolve tests/cases/normalize/expressions/assignments/let/auto_ident_c-opt_simple_simple.md to $(1) $(1) ?
+  - if a falsy value is spread can't it be replaced by `if (typeof x !== 'string') throw error`? Because all other falsy values cannot be spread and the empty string spreads into zero elements... -> tests/cases/normalize/expressions/assignments/call_spread/auto_ident_logic_and_or.md (when a is falsy)
   - TODO: do AST.isPrimitive instead. Drop a bunch of logic here
   - TODO: fix other cases of write-shadowing in different branches for the prevMap approach, like we did in lethoisting2
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut

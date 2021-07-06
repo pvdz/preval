@@ -69,8 +69,7 @@ const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 let tmpClusterSSA_a = tmpNestedAssignPropRhs;
-const tmpCalleeParam = tmpClusterSSA_a;
-if (tmpClusterSSA_a) {
+if (tmpNestedAssignPropRhs) {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`c`);
   const tmpCompObj$1 = $(b);
@@ -80,7 +79,7 @@ if (tmpClusterSSA_a) {
   tmpClusterSSA_a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
 } else {
-  $(tmpCalleeParam);
+  $(tmpNestedAssignPropRhs);
 }
 $(tmpClusterSSA_a, b);
 `````

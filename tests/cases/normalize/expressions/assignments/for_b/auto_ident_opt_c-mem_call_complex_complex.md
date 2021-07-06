@@ -87,7 +87,7 @@ while (true) {
       const tmpCalleeParam$3 = $(1);
       const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
       a = tmpChainElementCall$1;
-      if (a) {
+      if (tmpChainElementCall$1) {
         $(1);
       } else {
         break;

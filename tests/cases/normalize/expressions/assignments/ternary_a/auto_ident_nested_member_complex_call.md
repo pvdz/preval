@@ -65,7 +65,6 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-let tmpCalleeParam = undefined;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
@@ -74,11 +73,12 @@ const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(varInitAssignLhsComputedRhs, b, c, 3);
 `````
 

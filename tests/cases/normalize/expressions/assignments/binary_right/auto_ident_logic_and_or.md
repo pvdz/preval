@@ -63,12 +63,14 @@ if (a) {
 } else {
 }
 if (a) {
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + a;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpCalleeParam$5 = $(2);
   a = $(tmpCalleeParam$5);
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + a;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const tmpCalleeParam = tmpBinBothLhs + a;
-$(tmpCalleeParam);
 $(a);
 `````
 

@@ -53,8 +53,8 @@ $(a);
 
 `````js filename=intro
 $(1);
-const a = { x: 1, y: 2, z: 3 };
-$(a);
+const tmpClusterSSA_a = { x: 1, y: 2, z: 3 };
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

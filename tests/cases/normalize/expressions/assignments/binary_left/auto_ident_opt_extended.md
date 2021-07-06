@@ -60,14 +60,15 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 let a = undefined;
 const tmpIfTest = b == null;
+let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.x;
   const tmpChainElementObject$1 = tmpChainElementObject.y;
   const tmpChainElementObject$3 = tmpChainElementObject$1.z;
   a = tmpChainElementObject$3;
+  tmpBinBothLhs = tmpChainElementObject$3;
 }
-const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);

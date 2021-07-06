@@ -66,12 +66,13 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
+  tmpCalleeParam = tmpChainElementObject;
 }
-const tmpCalleeParam = a;
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainRootProp$1 = $(b);

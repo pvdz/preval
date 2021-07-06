@@ -43,14 +43,13 @@ $(x);
 
 `````js filename=intro
 const objPatternBeforeDefault = (0).x;
-let x = undefined;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  x = $(`pass`);
+  const tmpClusterSSA_x = $(`pass`);
+  $(tmpClusterSSA_x);
 } else {
-  x = objPatternBeforeDefault;
+  $(objPatternBeforeDefault);
 }
-$(x);
 `````
 
 ## Globals

@@ -52,21 +52,19 @@ $(c);
 ## Output
 
 `````js filename=intro
-let b = undefined;
 const tmpChainRootProp = $(2);
 const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = tmpChainRootProp.toString;
-  b = tmpChainElementObject;
-}
-const tmpChainRootProp$1 = b;
-const tmpIfTest$1 = tmpChainRootProp$1 == null;
-if (tmpIfTest$1) {
   $(undefined);
 } else {
-  const tmpChainElementObject$1 = tmpChainRootProp$1.length;
-  $(tmpChainElementObject$1);
+  const tmpChainElementObject = tmpChainRootProp.toString;
+  const tmpClusterSSA_tmpIfTest$1 = tmpChainElementObject == null;
+  if (tmpClusterSSA_tmpIfTest$1) {
+    $(undefined);
+  } else {
+    const tmpChainElementObject$1 = tmpChainElementObject.length;
+    $(tmpChainElementObject$1);
+  }
 }
 `````
 

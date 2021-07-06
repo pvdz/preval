@@ -52,8 +52,8 @@ const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
 const tmpClusterSSA_a = new tmpNewCallee(1);
-const tmpCalleeParam = $(100);
-$(tmpCalleeParam);
+const tmpClusterSSA_tmpCalleeParam = $(100);
+$(tmpClusterSSA_tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

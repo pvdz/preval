@@ -60,11 +60,12 @@ if (xyz) {
 } else {
 }
 if (xyz) {
+  $(xyz);
 } else {
   const tmpCalleeParam$3 = $(2);
-  xyz = $(tmpCalleeParam$3);
+  const tmpClusterSSA_xyz = $(tmpCalleeParam$3);
+  $(tmpClusterSSA_xyz);
 }
-$(xyz);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

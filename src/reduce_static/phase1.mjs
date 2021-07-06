@@ -68,6 +68,8 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   fdata.imports = imports;
   fdata.exports = exports;
 
+  fdata.phase1count = (fdata.phase1count || 0) + 1;
+
   group(
     '\n\n\n##################################\n## phase1 (first=' +
       firstAfterParse +
@@ -105,7 +107,9 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
     if (before) {
       ASSERT(!parentNode || parentNode.$p);
+      ASSERT(node.$p?.phase1count !== fdata.phase1count, 'if this node was tagged with the current count before then that implies it occurs multiple times in the AST which is a bad state. fix the last transform to touch this AST.', node);
       node.$p = $p();
+      node.$p.phase1count = fdata.phase1count;
       node.$p.funcDepth = funcStack.length;
       fdata.flatNodeMap.set(node.$p.pid, node);
     }

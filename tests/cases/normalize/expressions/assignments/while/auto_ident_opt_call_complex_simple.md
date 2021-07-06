@@ -61,7 +61,7 @@ while (true) {
   } else {
     const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
     a = tmpChainElementCall$1;
-    if (a) {
+    if (tmpChainElementCall$1) {
       $(100);
     } else {
       break;

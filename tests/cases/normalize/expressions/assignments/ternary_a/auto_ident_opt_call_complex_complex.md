@@ -56,7 +56,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall == null;
@@ -67,11 +66,12 @@ if (tmpIfTest$1) {
   a = tmpChainElementCall$1;
 }
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

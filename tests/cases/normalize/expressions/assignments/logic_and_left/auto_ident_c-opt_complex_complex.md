@@ -59,18 +59,20 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
+  tmpCalleeParam = tmpChainElementObject;
 }
-let tmpCalleeParam = a;
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

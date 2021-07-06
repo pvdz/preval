@@ -65,8 +65,8 @@ $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
-const a = delete arg[tmpDeleteCompProp];
-$(a, arg);
+const tmpClusterSSA_a = delete arg[tmpDeleteCompProp];
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

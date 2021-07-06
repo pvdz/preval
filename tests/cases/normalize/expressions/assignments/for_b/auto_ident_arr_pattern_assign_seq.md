@@ -75,11 +75,7 @@ while (true) {
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a, x, y);
 `````

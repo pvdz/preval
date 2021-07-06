@@ -59,23 +59,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const f$1 = function () {
   debugger;
   return undefined;
 };
-let a = f;
-const tmpCalleeParam = a;
-if (a) {
-  const f$1 = function () {
-    debugger;
-    return undefined;
-  };
-  a = f$1;
-  $(f$1);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+$(f$1);
+$(f$1);
 `````
 
 ## Globals

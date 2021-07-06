@@ -46,16 +46,15 @@ $(b);
 ## Output
 
 `````js filename=intro
-let b = undefined;
 const tmpObjectPrototype = Object.prototype;
 const objPatternBeforeDefault = tmpObjectPrototype.a;
 const tmpIfTest = objPatternBeforeDefault === undefined;
 if (tmpIfTest) {
-  b = $(`default`);
+  const tmpClusterSSA_b = $(`default`);
+  $(tmpClusterSSA_b);
 } else {
-  b = objPatternBeforeDefault;
+  $(objPatternBeforeDefault);
 }
-$(b);
 `````
 
 ## Globals

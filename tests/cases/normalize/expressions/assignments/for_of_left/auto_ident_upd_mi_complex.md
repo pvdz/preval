@@ -65,7 +65,7 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
   const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
   tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
   a = tmpNestedPropCompoundComplexRhs;
-  a.x = tmpForOfLhsNode;
+  tmpNestedPropCompoundComplexRhs.x = tmpForOfLhsNode;
 }
 $(a, b);
 `````

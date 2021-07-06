@@ -74,15 +74,9 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   const tmpSwitchValue = $(1, `disc`);
-  let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(1, `case`);
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-  }
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
     const tmpReturnArg = $(2, `ret`);
     return tmpReturnArg;
   } else {

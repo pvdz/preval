@@ -59,7 +59,7 @@ while (true) {
   const tmpPostUpdArgIdent = b;
   b = b + 1;
   a = tmpPostUpdArgIdent;
-  if (a) {
+  if (tmpPostUpdArgIdent) {
     $(1);
   } else {
     break;

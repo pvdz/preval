@@ -72,11 +72,12 @@ if (tmpClusterSSA_a) {
 } else {
 }
 if (tmpClusterSSA_a) {
+  $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam$3 = $(2);
   tmpClusterSSA_a = $(tmpCalleeParam$3);
+  $(tmpClusterSSA_a);
 }
-$(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 

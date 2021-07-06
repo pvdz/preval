@@ -62,16 +62,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 $(1);
 const tmpIfTest$1 = $(30);
 if (tmpIfTest$1) {
-  a = $(2);
+  const tmpClusterSSA_a = $(2);
+  $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
+  const tmpClusterSSA_a$1 = $(tmpCalleeParam);
+  $(tmpClusterSSA_a$1);
 }
-$(a);
 `````
 
 ## Globals

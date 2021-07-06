@@ -12,7 +12,7 @@
 
 `````js filename=intro
 function f(){ $('f'); }
-function g(){ $('f'); }
+function g(){ $('g'); }
 let x = undefined;
 if ($(true)) {
   x = f;
@@ -31,7 +31,7 @@ let f = function () {
 };
 let g = function () {
   debugger;
-  $(`f`);
+  $(`g`);
 };
 let x = undefined;
 if ($(true)) {
@@ -52,7 +52,7 @@ let f = function () {
 };
 let g = function () {
   debugger;
-  $(`f`);
+  $(`g`);
   return undefined;
 };
 let x = undefined;
@@ -72,7 +72,7 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(`f`);
 } else {
-  $(`f`);
+  $(`g`);
 }
 `````
 

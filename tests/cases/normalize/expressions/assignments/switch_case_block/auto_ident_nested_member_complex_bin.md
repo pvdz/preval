@@ -88,15 +88,9 @@ $(a, b, c, d, e);
 const b = { x: 1 };
 const c = { y: 2 };
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
   const varInitAssignLhsComputedObj = $(c);

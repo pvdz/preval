@@ -45,12 +45,13 @@ $(y);
 ## Output
 
 `````js filename=intro
-let y = [];
 if ($) {
-  y = [`a`, 1, 2, 3, `b`];
+  const tmpClusterSSA_y = [`a`, 1, 2, 3, `b`];
+  $(tmpClusterSSA_y);
 } else {
+  const y = [];
+  $(y);
 }
-$(y);
 `````
 
 ## Globals

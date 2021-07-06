@@ -61,12 +61,14 @@ if (a) {
   a = $(tmpCalleeParam$3);
 } else {
 }
+let tmpBinBothLhs = undefined;
 if (a) {
+  tmpBinBothLhs = a;
 } else {
   const tmpCalleeParam$5 = $(2);
   a = $(tmpCalleeParam$5);
+  tmpBinBothLhs = a;
 }
-const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);

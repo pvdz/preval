@@ -61,11 +61,11 @@ $(a, b);
 
 `````js filename=intro
 $(1);
+const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_b = tmpAssignObjPatternRhs.b;
-const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 

@@ -54,12 +54,12 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpClusterSSA_a = delete tmpDeleteObj.y;
-let tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
+  $(true);
 } else {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a, arg);
 `````
 

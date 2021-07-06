@@ -58,7 +58,7 @@ for (tmpForInLhsNode in tmpForInRhs) {
   const tmpNestedComplexRhs = $(2);
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  a.x = tmpForInLhsNode;
+  tmpNestedComplexRhs.x = tmpForInLhsNode;
 }
 $(a, b);
 `````

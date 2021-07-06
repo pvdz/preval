@@ -53,13 +53,13 @@ if (tmpIfTest) {
   a = $(2);
 } else {
 }
-let b = 5;
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  b = $(4);
+  const tmpClusterSSA_b = $(4);
+  $(a, tmpClusterSSA_b);
 } else {
+  $(a, 5);
 }
-$(a, b);
 `````
 
 ## Globals

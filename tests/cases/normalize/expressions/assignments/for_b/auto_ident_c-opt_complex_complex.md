@@ -72,7 +72,7 @@ while (true) {
     const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
     a = tmpChainElementObject;
-    if (a) {
+    if (tmpChainElementObject) {
       $(1);
     } else {
       break;

@@ -59,26 +59,27 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
+let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  a = tmpChainElementObject;
+  tmpBinBothLhs = tmpChainElementObject;
 }
-const tmpBinBothLhs = a;
 let tmpClusterSSA_a = undefined;
 const tmpChainRootProp$1 = $(b);
 const tmpIfTest$1 = tmpChainRootProp$1 == null;
 if (tmpIfTest$1) {
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementObject$1 = tmpChainRootProp$1.x;
   tmpClusterSSA_a = tmpChainElementObject$1;
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementObject$1;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

@@ -67,13 +67,14 @@ $(a);
 let a = undefined;
 const b = { c: $ };
 const tmpIfTest = b == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
   a = tmpChainElementCall;
+  tmpCalleeParam = tmpChainElementCall;
 }
-const tmpCalleeParam = a;
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpIfTest$1 = b == null;

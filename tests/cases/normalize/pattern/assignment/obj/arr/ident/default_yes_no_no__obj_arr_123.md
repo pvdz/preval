@@ -45,7 +45,7 @@ $(y);
 
 `````js filename=intro
 y = 1;
-$(1);
+$(y);
 `````
 
 ## Globals

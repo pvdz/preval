@@ -70,7 +70,7 @@ while (true) {
   } else {
     const tmpChainElementObject = tmpChainElementCall.x;
     a = tmpChainElementObject;
-    if (a) {
+    if (tmpChainElementObject) {
       $(1);
     } else {
       break;

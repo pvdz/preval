@@ -50,17 +50,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-let tmpCallCallee$1 = 60;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
+  $(`before  60  after`);
 } else {
   const tmpCalleeParam$1 = $(100);
-  tmpCallCallee$1 = $(tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCallCallee$1 = $(tmpCalleeParam$1);
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

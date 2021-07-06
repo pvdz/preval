@@ -96,18 +96,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
 const tmpIfTest$1 = $(1);
+let tmpIfTest = undefined;
 if (tmpIfTest$1) {
-  tmpBinLhs = $(60);
+  const tmpClusterSSA_tmpBinLhs = $(60);
+  tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
 } else {
   const tmpCalleeParam = $(100);
-  tmpBinLhs = $(tmpCalleeParam);
+  const tmpClusterSSA_tmpBinLhs$1 = $(tmpCalleeParam);
+  tmpIfTest = tmpClusterSSA_tmpBinLhs$1 === tmpSwitchValue;
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -134,6 +134,7 @@ tmpSwitchBreak: {
     }
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

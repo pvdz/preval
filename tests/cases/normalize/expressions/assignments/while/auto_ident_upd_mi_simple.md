@@ -56,7 +56,7 @@ while (true) {
   const tmpNestedComplexRhs = b - 1;
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  if (a) {
+  if (tmpNestedComplexRhs) {
     $(100);
   } else {
     break;

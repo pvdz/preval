@@ -59,14 +59,15 @@ let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(`before  undefined  after`);
 } else {
   const tmpCalleeParam$5 = $(1);
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$5);
   a = tmpChainElementCall$1;
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
 $(a);
 `````
 

@@ -48,16 +48,18 @@ $(c);
 ## Output
 
 `````js filename=intro
-let b = $(2);
+const b = $(2);
 const tmpIfTest = b == null;
+let c = undefined;
+let tmpIfTest$1 = undefined;
 if (tmpIfTest) {
-  b = toString;
+  c = toString;
+  tmpIfTest$1 = c == null;
 } else {
+  c = b;
+  tmpIfTest$1 = b == null;
 }
-const c = b;
-const tmpIfTest$1 = c == null;
 if (tmpIfTest$1) {
-  length;
   $(length);
 } else {
   $(c);

@@ -52,7 +52,6 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest$1 = $(30);
 if (tmpIfTest$1) {
   a = $(2);
@@ -61,11 +60,12 @@ if (tmpIfTest$1) {
   a = $(tmpCalleeParam$1);
 }
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

@@ -49,12 +49,13 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpAnonDefaultExport = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
+  tmpAnonDefaultExport = tmpChainElementCall$1;
 }
-const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

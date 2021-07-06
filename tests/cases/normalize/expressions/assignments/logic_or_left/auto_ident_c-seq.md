@@ -51,12 +51,12 @@ $(a, x);
 $(1);
 $(2);
 const a = $(1);
-let tmpCalleeParam = a;
 if (a) {
+  $(a);
 } else {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a, 1);
 `````
 

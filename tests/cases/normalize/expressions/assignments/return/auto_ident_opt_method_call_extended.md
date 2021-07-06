@@ -66,22 +66,28 @@ $(a);
 ## Output
 
 `````js filename=intro
+const f = function () {
+  debugger;
+  a = undefined;
+  const tmpIfTest = b == null;
+  if (tmpIfTest) {
+    return a;
+  } else {
+    const tmpChainElementObject = b.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+    a = tmpChainElementCall;
+    return tmpChainElementCall;
+  }
+};
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
-let tmpClusterSSA_a = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-  tmpClusterSSA_a = tmpChainElementCall;
-  $(tmpChainElementCall);
-}
-$(tmpClusterSSA_a);
+let a = { a: 999, b: 1000 };
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
+$(a);
 `````
 
 ## Globals

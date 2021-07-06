@@ -40,14 +40,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 60;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
+  $(60);
 } else {
   const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
+  const tmpClusterSSA_a = $(tmpCalleeParam);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Globals

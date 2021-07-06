@@ -49,7 +49,6 @@ if (a) {
   $(tmpCalleeParam);
 } else {
   a = arguments;
-  arguments;
   $(arguments);
 }
 $(a);

@@ -91,11 +91,13 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(1);
 let a = $(tmpCalleeParam);
+let tmpIfTest = undefined;
 if (a) {
   a = 2;
+  tmpIfTest = 2 === tmpSwitchValue;
 } else {
+  tmpIfTest = a === tmpSwitchValue;
 }
-const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

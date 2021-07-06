@@ -64,25 +64,13 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = $(3);
-const tmpObjLitVal$1 = $(4);
-let tmpClusterSSA_x = tmpObjLitVal;
-let tmpClusterSSA_y = tmpObjLitVal$1;
-const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
-const tmpCalleeParam = tmpClusterSSA_a;
-if (tmpClusterSSA_a) {
-  const tmpObjLitVal$3 = $(3);
-  const tmpObjLitVal$5 = $(4);
-  tmpClusterSSA_x = tmpObjLitVal$3;
-  tmpClusterSSA_y = tmpObjLitVal$5;
-  const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
-  $(tmpNestedAssignObjPatternRhs$1);
-} else {
-  $(tmpCalleeParam);
-}
-$(tmpClusterSSA_a, tmpClusterSSA_x, tmpClusterSSA_y);
+$(3);
+$(4);
+const tmpObjLitVal$3 = $(3);
+const tmpObjLitVal$5 = $(4);
+const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
+$(tmpNestedAssignObjPatternRhs$1);
+$(tmpNestedAssignObjPatternRhs$1, tmpObjLitVal$3, tmpObjLitVal$5);
 `````
 
 ## Globals

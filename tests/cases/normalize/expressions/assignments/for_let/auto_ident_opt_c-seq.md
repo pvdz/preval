@@ -61,12 +61,13 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest = tmpChainRootProp == null;
+let xyz = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
   a = tmpChainElementObject;
+  xyz = tmpChainElementObject;
 }
-const xyz = a;
 while (true) {
   $(xyz);
   $(1);

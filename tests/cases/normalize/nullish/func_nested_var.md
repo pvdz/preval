@@ -62,20 +62,24 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let b = $(2);
+const b = $(2);
 const tmpIfTest = b == null;
+let c = undefined;
+let tmpIfTest$1 = undefined;
 if (tmpIfTest) {
-  b = toString;
+  c = toString;
+  tmpIfTest$1 = c == null;
 } else {
+  c = b;
+  tmpIfTest$1 = b == null;
 }
-let c = b;
-const tmpIfTest$1 = c == null;
 if (tmpIfTest$1) {
-  c = length;
+  const tmpClusterSSA_tmpReturnArg = $(length);
+  $(tmpClusterSSA_tmpReturnArg);
 } else {
+  const tmpClusterSSA_tmpReturnArg$1 = $(c);
+  $(tmpClusterSSA_tmpReturnArg$1);
 }
-const tmpReturnArg = $(c);
-$(tmpReturnArg);
 `````
 
 ## Globals

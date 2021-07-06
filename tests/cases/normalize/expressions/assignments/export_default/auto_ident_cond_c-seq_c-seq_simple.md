@@ -47,13 +47,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(30);
+let tmpAnonDefaultExport = undefined;
 if (tmpIfTest) {
   a = $(60);
+  tmpAnonDefaultExport = a;
 } else {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);
+  tmpAnonDefaultExport = a;
 }
-const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

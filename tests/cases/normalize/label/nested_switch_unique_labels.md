@@ -79,14 +79,8 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let tmpSwitchCaseToStart = 1;
 const tmpIfTest = 3 === $;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   let tmpSwitchCaseToStart$1 = 1;
   const tmpIfTest$3 = 3 === $;
   if (tmpIfTest$3) {

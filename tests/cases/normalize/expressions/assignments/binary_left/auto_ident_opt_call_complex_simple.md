@@ -51,12 +51,13 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
+  tmpBinBothLhs = tmpChainElementCall$1;
 }
-const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);

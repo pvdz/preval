@@ -59,11 +59,12 @@ if (tmpCalleeParam) {
 } else {
 }
 if (tmpCalleeParam) {
+  $(tmpCalleeParam);
 } else {
   const tmpCalleeParam$5 = $(2);
-  tmpCalleeParam = $(tmpCalleeParam$5);
+  const tmpClusterSSA_tmpCalleeParam = $(tmpCalleeParam$5);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

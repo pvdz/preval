@@ -39,12 +39,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let x = $(1);
+const x = $(1);
 if (x) {
-  x = $(2);
+  const tmpClusterSSA_x = $(2);
+  $(tmpClusterSSA_x);
 } else {
+  $(x);
 }
-$(x);
 `````
 
 ## Globals

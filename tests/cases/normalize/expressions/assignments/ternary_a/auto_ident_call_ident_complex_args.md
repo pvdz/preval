@@ -51,16 +51,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 const a = $(tmpCalleeParam$1, tmpCalleeParam$3);
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

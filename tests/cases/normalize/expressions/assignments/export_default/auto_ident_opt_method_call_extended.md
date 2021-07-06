@@ -59,6 +59,7 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 let a = undefined;
 const tmpIfTest = b == null;
+let tmpAnonDefaultExport = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.c;
@@ -66,8 +67,8 @@ if (tmpIfTest) {
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
+  tmpAnonDefaultExport = tmpChainElementCall;
 }
-const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

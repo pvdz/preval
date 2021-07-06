@@ -54,13 +54,14 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+let xyz = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
+  xyz = tmpChainElementCall;
 }
-const xyz = a;
 while (true) {
   $(xyz);
   $(1);

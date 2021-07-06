@@ -63,19 +63,8 @@ const f = function () {
   debugger;
   return undefined;
 };
-let a = f;
-const tmpCalleeParam = a;
-if (a) {
-  $(tmpCalleeParam);
-} else {
-  const f$1 = function () {
-    debugger;
-    return undefined;
-  };
-  a = f$1;
-  $(f$1);
-}
-$(a);
+$(f);
+$(f);
 `````
 
 ## Globals

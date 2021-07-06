@@ -54,16 +54,17 @@ let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
+  if (tmpChainElementCall$1) {
+    $(tmpChainElementCall$1);
+  } else {
+    const tmpClusterSSA_tmpCalleeParam = $(100);
+    $(tmpClusterSSA_tmpCalleeParam);
+  }
 }
-let tmpCalleeParam = a;
-if (a) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
 $(a);
 `````
 

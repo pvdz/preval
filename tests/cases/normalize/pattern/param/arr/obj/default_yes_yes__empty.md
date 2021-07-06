@@ -78,13 +78,15 @@ const bindingPatternArrRoot = $(tmpCalleeParam);
 const arrPatternSplat = [...bindingPatternArrRoot];
 const arrPatternBeforeDefault = arrPatternSplat[0];
 let arrPatternStep = undefined;
+let objPatternCrashTest = false;
 const tmpIfTest$1 = arrPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
   arrPatternStep = $(`fail`);
+  objPatternCrashTest = arrPatternStep === undefined;
 } else {
   arrPatternStep = arrPatternBeforeDefault;
+  objPatternCrashTest = false;
 }
-let objPatternCrashTest = arrPatternStep === undefined;
 if (objPatternCrashTest) {
 } else {
   objPatternCrashTest = arrPatternStep === null;

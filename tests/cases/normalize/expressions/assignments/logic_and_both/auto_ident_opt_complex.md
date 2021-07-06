@@ -68,12 +68,13 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
+  tmpCalleeParam = tmpChainElementObject;
 }
-const tmpCalleeParam = a;
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$1 = $(b);

@@ -51,12 +51,12 @@ $(a, b);
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
-let tmpCalleeParam = a;
 if (a) {
+  $(a);
 } else {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a, b);
 `````
 

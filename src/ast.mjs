@@ -43,6 +43,12 @@ export function cloneSimple(node) {
   ASSERT(false, 'add me', node);
 }
 
+export function cloneSimpleOrTemplate(node) {
+  return node.type === 'TemplateLiteral'
+    ? templateLiteral([...node.quasis.map((te) => te.value.cooked)], [...node.expressions.map((n) => cloneSimpleOrTemplate(n))])
+    : cloneSimple(node);
+}
+
 export function arrayExpression(...elements) {
   // An array is not a valid element for the AST node so if it is an array it's
   // safe to assume that we want to use the first arg as the elements array verbatim
@@ -432,12 +438,12 @@ export function literal(value, yesnull = false) {
   } else if (typeof value === 'string') {
     ASSERT(false, 'string literals should be TemplateLiterals');
   } else if (value instanceof RegExp) {
-    const raw = String(value)
+    const raw = String(value);
     return {
       type: 'Literal',
       regex: {
         body: raw.slice(1, raw.lastIndexOf('/')),
-        flags: raw.slice(raw.lastIndexOf('/')+1),
+        flags: raw.slice(raw.lastIndexOf('/') + 1),
       },
       value,
       raw,

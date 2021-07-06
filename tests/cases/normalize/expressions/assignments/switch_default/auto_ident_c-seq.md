@@ -61,8 +61,8 @@ $(a, x);
 $(1);
 $(1);
 $(2);
-const a = $(1);
-$(a, 1);
+const tmpClusterSSA_a = $(1);
+$(tmpClusterSSA_a, 1);
 `````
 
 ## Globals

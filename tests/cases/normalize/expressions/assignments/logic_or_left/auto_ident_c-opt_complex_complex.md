@@ -60,17 +60,18 @@ const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
+  if (tmpChainElementObject) {
+    $(tmpChainElementObject);
+  } else {
+    const tmpClusterSSA_tmpCalleeParam = $(100);
+    $(tmpClusterSSA_tmpCalleeParam);
+  }
 }
-let tmpCalleeParam = a;
-if (a) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
 $(a);
 `````
 

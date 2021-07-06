@@ -103,15 +103,15 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp == null;
+let tmpIfTest = undefined;
 if (tmpIfTest$1) {
+  tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpBinLhs = tmpChainElementObject;
+  tmpIfTest = tmpChainElementObject === tmpSwitchValue;
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

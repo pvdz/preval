@@ -41,7 +41,6 @@ $(y);
 const a = { x: 1 };
 const tmpIfTest = a == null;
 if (tmpIfTest) {
-  x;
   $(x);
 } else {
   $(a);

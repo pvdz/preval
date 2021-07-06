@@ -44,9 +44,10 @@ $(a);
 ## Output
 
 `````js filename=intro
+let tmpAnonDefaultExport = 0;
 const tmpCalleeParam = $(1);
 const a = $(tmpCalleeParam);
-const tmpAnonDefaultExport = a;
+tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

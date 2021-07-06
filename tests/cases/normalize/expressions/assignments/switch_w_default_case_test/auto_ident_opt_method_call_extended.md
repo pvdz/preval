@@ -104,15 +104,17 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let a = undefined;
 const tmpIfTest$1 = b == null;
+let tmpIfTest = undefined;
 if (tmpIfTest$1) {
+  tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpChainElementObject = b.c;
   const tmpChainElementObject$1 = tmpChainElementObject.d;
   const tmpChainElementObject$3 = tmpChainElementObject$1.e;
   const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
   a = tmpChainElementCall;
+  tmpIfTest = tmpChainElementCall === tmpSwitchValue;
 }
-const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

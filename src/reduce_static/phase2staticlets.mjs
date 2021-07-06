@@ -94,8 +94,11 @@ function _staticLets(fdata) {
           failed = mayBindingMutateBetweenRefs(meta, last, ref);
         }
 
-        if (!failed) {
+        if (failed) {
+          vlog('May have changed between the previous ref and this so bailing');
+        } else {
           const valueNode = last.parentNode.type === 'VariableDeclarator' ? last.parentNode.init : last.parentNode.right;
+          vlog('Is the value node (init/rhs) a primitive?', valueNode?.type, valueNode?.name, valueNode?.value);
           ASSERT(valueNode, 'since the write should be a decl or assign', last.blockBody[last.blockIndex]);
           if (AST.isPrimitive(valueNode)) {
             rule('A write of primitive to a `let` binding followed by a read should inline the read');
@@ -107,6 +110,23 @@ function _staticLets(fdata) {
 
             after(ref.blockBody[ref.blockIndex]);
             ++changed;
+          } else if (valueNode.type === 'Identifier') {
+            const meta = fdata.globallyUniqueNamingRegistry.get(valueNode.name);
+            if (meta.isConstant || meta.isBuiltin) {
+              rule('A write of constants or builtins to a `let` binding followed by a read should inline the read');
+              example('const y = f(); let x = y; f(x);', 'const y = f(); let x = y; f(y);');
+              before(ref.node, ref.blockBody[ref.blockIndex]);
+
+              if (ref.parentIndex < 0) ref.parentNode[ref.parentProp] = AST.cloneSimple(valueNode);
+              else ref.parentNode[ref.parentProp][ref.parentIndex] = AST.cloneSimple(valueNode);
+
+              after(ref.blockBody[ref.blockIndex]);
+              ++changed;
+            } else {
+              vlog('Not a builtin nor a constant');
+            }
+          } else {
+            vlog('Neither a primitive nor a constant nor a builtin');
           }
         }
       }

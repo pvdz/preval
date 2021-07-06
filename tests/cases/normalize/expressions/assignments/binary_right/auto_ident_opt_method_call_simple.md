@@ -57,13 +57,15 @@ let a = undefined;
 const b = { c: $ };
 const tmpIfTest = b == null;
 if (tmpIfTest) {
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
   a = tmpChainElementCall;
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementCall;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const tmpCalleeParam = tmpBinBothLhs + a;
-$(tmpCalleeParam);
 $(a);
 `````
 

@@ -49,11 +49,12 @@ let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = 60;
+  $(60);
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
+  $(a);
 }
-$(a);
 $(a);
 `````
 

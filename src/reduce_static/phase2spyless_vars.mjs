@@ -21,14 +21,13 @@ import * as AST from '../ast.mjs';
 
 export function spylessVars(fdata) {
   group('\n\n\nChecking for single scoped spyless vars to move');
+  //const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _spylessVars(fdata);
   groupEnd();
   return r;
 }
 function _spylessVars(fdata) {
-  const ast = fdata.tenkoOutput.ast;
-
   const queue = [];
   const dupes = new Map(); // We can't continue if the system detects multiple vars want to move within the same body.
   processAttempt(fdata, queue, dupes);
@@ -75,6 +74,8 @@ function processAttempt(fdata, queue, dupes) {
   // the second search `b` had also been moved forward so `a` could move further.
   // Each binding does not care about indexes before it (we only move var decls for whom the decl
   // is the first ref) and we don't change index order until we actually move, so this should be ok?
+  // Another problem we have to deal with is branching. If we move a decl into a block that references
+  // it then another reference after that block may now fail hard.
 
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return;
@@ -177,6 +178,7 @@ function process(fdata, meta, name, queue, dupes) {
         afterPid,
         '?',
         lastRefPid > afterPid ? 'yes, so we end here' : 'no, so we move into this node',
+        //meta.rwOrder.map(ref => ref.node.$p.pid)
       );
 
       // First check whether there are any references to this binding _after_ the next node which contains at least one ref.

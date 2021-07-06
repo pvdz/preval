@@ -91,14 +91,14 @@ if (tmpIfTest$9) {
 ## Output
 
 `````js filename=intro
-let a = 2;
 const tmpIfTest$5 = $(1);
 if (tmpIfTest$5) {
+  $(2);
 } else {
   const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
+  const tmpClusterSSA_a = $(tmpCalleeParam);
+  $(tmpClusterSSA_a);
 }
-$(a);
 $(`fail1`);
 $(`fail2`);
 `````

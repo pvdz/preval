@@ -64,24 +64,24 @@ let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
-}
-const tmpCalleeParam = a;
-if (a) {
-  $(tmpCalleeParam);
-} else {
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainElementCall$3 = $($);
-  const tmpIfTest$1 = tmpChainElementCall$3 == null;
-  if (tmpIfTest$1) {
+  if (tmpChainElementCall$1) {
+    $(tmpChainElementCall$1);
   } else {
-    const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);
-    tmpNestedComplexRhs = tmpChainElementCall$5;
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainElementCall$3 = $($);
+    const tmpIfTest$1 = tmpChainElementCall$3 == null;
+    if (tmpIfTest$1) {
+    } else {
+      const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);
+      tmpNestedComplexRhs = tmpChainElementCall$5;
+    }
+    a = tmpNestedComplexRhs;
+    $(tmpNestedComplexRhs);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
 $(a);
 `````

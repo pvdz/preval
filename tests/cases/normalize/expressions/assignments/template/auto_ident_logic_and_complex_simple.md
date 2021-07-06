@@ -53,11 +53,12 @@ const tmpCalleeParam$1 = $(1);
 let a = $(tmpCalleeParam$1);
 if (a) {
   a = 2;
+  $(`before  2  after`);
 } else {
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(a, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
 $(a);
 `````
 

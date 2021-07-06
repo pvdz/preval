@@ -47,12 +47,12 @@ $(a);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const a = tmpBinBothLhs + tmpBinBothRhs;
-let tmpCalleeParam = a;
 if (a) {
+  $(a);
 } else {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

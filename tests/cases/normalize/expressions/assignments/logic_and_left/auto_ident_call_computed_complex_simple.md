@@ -50,12 +50,12 @@ $(a);
 const b = { $: $ };
 const tmpCallObj = $(b);
 const tmpClusterSSA_a = tmpCallObj.$(1);
-let tmpCalleeParam = tmpClusterSSA_a;
 if (tmpClusterSSA_a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpClusterSSA_a);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

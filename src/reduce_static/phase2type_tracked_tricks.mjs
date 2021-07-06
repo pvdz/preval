@@ -532,7 +532,7 @@ function _typeTrackedTricks(fdata) {
                   example('const foo = String(); f("" + foo);', 'const foo = String(); f(foo);');
                   before(node, parentNode);
 
-                  ASSERT(['init', 'expression', 'left'].includes(parentProp), 'normalized code');
+                  ASSERT(['init', 'expression', 'right'].includes(parentProp), 'normalized code', parentProp);
                   ASSERT(parentIndex < 0, 'normalized code');
 
                   parentNode[parentProp] = val;

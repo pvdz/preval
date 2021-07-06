@@ -68,12 +68,13 @@ if (a) {
     a = $(tmpCalleeParam$5);
   }
 }
-let tmpCalleeParam = a;
+const tmpCalleeParam = a;
 if (a) {
+  $(tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

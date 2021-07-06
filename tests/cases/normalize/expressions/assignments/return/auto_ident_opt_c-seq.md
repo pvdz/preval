@@ -61,18 +61,24 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpClusterSSA_a = undefined;
 const b = { x: 1 };
-const tmpChainRootProp = $(b);
-const tmpIfTest = tmpChainRootProp == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementObject = tmpChainRootProp.x;
-  tmpClusterSSA_a = tmpChainElementObject;
-  $(tmpChainElementObject);
-}
-$(tmpClusterSSA_a);
+let a = { a: 999, b: 1000 };
+const f = function () {
+  debugger;
+  a = undefined;
+  const tmpChainRootProp = $(b);
+  const tmpIfTest = tmpChainRootProp == null;
+  if (tmpIfTest) {
+    return a;
+  } else {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    a = tmpChainElementObject;
+    return tmpChainElementObject;
+  }
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
+$(a);
 `````
 
 ## Globals

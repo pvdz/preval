@@ -72,26 +72,21 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = [];
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   const tmpArrElement = $(2);
   const tmpCalleeParam = [tmpArrElement];
   const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...arrAssignPatternRhs];
-  b = arrPatternSplat[0];
+  const tmpClusterSSA_b = arrPatternSplat[0];
+  $(a, tmpClusterSSA_b);
 } else {
+  const b = [];
+  $(a, b);
 }
-$(a, b);
 `````
 
 ## Globals

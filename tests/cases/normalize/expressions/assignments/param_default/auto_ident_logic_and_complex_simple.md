@@ -65,12 +65,12 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpNestedComplexRhs = $(tmpCalleeParam);
+const tmpNestedComplexRhs = $(tmpCalleeParam);
+let tmpClusterSSA_a = 2;
 if (tmpNestedComplexRhs) {
-  tmpNestedComplexRhs = 2;
 } else {
+  tmpClusterSSA_a = tmpNestedComplexRhs;
 }
-const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
 $(tmpClusterSSA_a);
 `````

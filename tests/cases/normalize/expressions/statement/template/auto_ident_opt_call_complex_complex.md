@@ -54,19 +54,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
-let tmpCallCallee$1 = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
+  $(`before  undefined  after`);
 } else {
   const tmpCalleeParam$5 = $(1);
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$5);
-  tmpCallCallee$1 = tmpChainElementCall$1;
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

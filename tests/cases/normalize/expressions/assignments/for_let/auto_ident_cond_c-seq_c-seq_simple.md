@@ -56,13 +56,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(30);
+let xyz = undefined;
 if (tmpIfTest) {
   a = $(60);
+  xyz = a;
 } else {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);
+  xyz = a;
 }
-const xyz = a;
 while (true) {
   $(xyz);
   $(1);

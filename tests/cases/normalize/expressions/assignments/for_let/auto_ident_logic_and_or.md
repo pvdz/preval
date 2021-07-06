@@ -67,12 +67,14 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
+let xyz = undefined;
 if (a) {
+  xyz = a;
 } else {
   const tmpCalleeParam$3 = $(2);
   a = $(tmpCalleeParam$3);
+  xyz = a;
 }
-const xyz = a;
 while (true) {
   $(xyz);
   $(1);

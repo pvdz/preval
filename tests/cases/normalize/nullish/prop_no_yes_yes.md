@@ -47,13 +47,14 @@ tmpCallCallee(tmpCalleeParam);
 const tmpObjectPrototype = Object.prototype;
 let tmpCalleeParam = tmpObjectPrototype.b;
 const tmpIfTest = tmpCalleeParam == null;
+let tmpIfTest$1 = undefined;
 if (tmpIfTest) {
   tmpCalleeParam = c;
+  tmpIfTest$1 = tmpCalleeParam == null;
 } else {
+  tmpIfTest$1 = tmpCalleeParam == null;
 }
-const tmpIfTest$1 = tmpCalleeParam == null;
 if (tmpIfTest$1) {
-  d;
   $(d);
 } else {
   $(tmpCalleeParam);

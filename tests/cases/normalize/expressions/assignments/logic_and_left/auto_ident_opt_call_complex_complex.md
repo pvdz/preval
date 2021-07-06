@@ -57,18 +57,20 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$5 = $(1);
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$5);
   a = tmpChainElementCall$1;
+  tmpCalleeParam = tmpChainElementCall$1;
 }
-let tmpCalleeParam = a;
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

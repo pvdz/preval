@@ -55,8 +55,8 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpCallComplexCallee = $($);
-const a = tmpCallComplexCallee(1);
-$(a);
+const tmpClusterSSA_a = tmpCallComplexCallee(1);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

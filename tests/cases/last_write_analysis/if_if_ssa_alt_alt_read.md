@@ -72,13 +72,14 @@ $(`b`);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
 } else {
-  let tmpClusterSSA_x = $(`c`);
+  const tmpClusterSSA_x = $(`c`);
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
+    $(tmpClusterSSA_x);
   } else {
-    tmpClusterSSA_x = $(`d`);
+    const tmpClusterSSA_tmpClusterSSA_x = $(`d`);
+    $(tmpClusterSSA_tmpClusterSSA_x);
   }
-  $(tmpClusterSSA_x);
 }
 `````
 

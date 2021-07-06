@@ -61,15 +61,16 @@ if (tmpIfTest) {
 `````js filename=intro
 const x = $(`a`);
 $(x);
-let tmpClusterSSA_x = $(`b`);
+const tmpClusterSSA_x = $(`b`);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(2);
   if (tmpIfTest$1) {
-    tmpClusterSSA_x = $(`c`);
+    const tmpClusterSSA_tmpClusterSSA_x = $(`c`);
+    $(tmpClusterSSA_tmpClusterSSA_x);
   } else {
+    $(tmpClusterSSA_x);
   }
-  $(tmpClusterSSA_x);
 } else {
 }
 `````

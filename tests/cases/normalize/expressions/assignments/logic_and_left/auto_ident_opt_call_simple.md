@@ -50,18 +50,20 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+let tmpCalleeParam = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
+  tmpCalleeParam = tmpChainElementCall;
 }
-let tmpCalleeParam = a;
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
+  $(tmpCalleeParam);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

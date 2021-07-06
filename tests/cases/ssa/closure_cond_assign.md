@@ -109,9 +109,10 @@ if ($) {
     debugger;
     if (t) {
       x = x + 1;
+      $(x);
     } else {
+      $(x);
     }
-    $(x);
     $();
     return undefined;
   };

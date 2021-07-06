@@ -59,11 +59,12 @@ if (tmpCalleeParamSpread) {
 } else {
 }
 if (tmpCalleeParamSpread) {
+  $(...tmpCalleeParamSpread);
 } else {
   const tmpCalleeParam$3 = $(2);
-  tmpCalleeParamSpread = $(tmpCalleeParam$3);
+  const tmpClusterSSA_tmpCalleeParamSpread = $(tmpCalleeParam$3);
+  $(...tmpClusterSSA_tmpCalleeParamSpread);
 }
-$(...tmpCalleeParamSpread);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

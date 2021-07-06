@@ -89,12 +89,13 @@ const f = function () {
   const tmpSwitchValue = $(1, `disc`);
   let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(0);
+  let tmpIfTest$1 = true;
   const tmpIfTest = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest) {
     tmpSwitchCaseToStart = 0;
   } else {
+    tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   }
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
     $(`wrong branch`);
     return undefined;

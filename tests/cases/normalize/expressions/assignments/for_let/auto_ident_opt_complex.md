@@ -62,12 +62,13 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
+let xyz = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
+  xyz = tmpChainElementObject;
 }
-const xyz = a;
 while (true) {
   $(xyz);
   $(1);

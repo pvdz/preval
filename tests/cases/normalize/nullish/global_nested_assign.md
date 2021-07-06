@@ -53,14 +53,15 @@ const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 tmpObjLitVal.b = 15;
 let tmpCalleeParam = obj;
-const tmpIfTest = tmpCalleeParam == null;
+const tmpIfTest = obj == null;
+let tmpIfTest$1 = undefined;
 if (tmpIfTest) {
   tmpCalleeParam = a;
+  tmpIfTest$1 = tmpCalleeParam == null;
 } else {
+  tmpIfTest$1 = tmpCalleeParam == null;
 }
-const tmpIfTest$1 = tmpCalleeParam == null;
 if (tmpIfTest$1) {
-  b;
   $(b);
 } else {
   $(tmpCalleeParam);

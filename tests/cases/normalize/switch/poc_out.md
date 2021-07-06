@@ -132,13 +132,15 @@ exit: {
 let fallthrough = false;
 exit: {
   const tmpBinBothRhs = $(1);
+  let tmpIfTest$1 = true;
   const tmpIfTest = undefined === tmpBinBothRhs;
   if (tmpIfTest) {
     $(`A`);
     fallthrough = true;
+    tmpIfTest$1 = true;
   } else {
+    tmpIfTest$1 = fallthrough;
   }
-  let tmpIfTest$1 = fallthrough;
   if (fallthrough) {
   } else {
     const tmpBinBothRhs$1 = $(2);

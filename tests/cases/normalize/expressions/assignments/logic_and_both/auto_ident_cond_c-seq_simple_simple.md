@@ -64,13 +64,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(30);
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
   a = $(2);
+  tmpCalleeParam = a;
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
+  tmpCalleeParam = a;
 }
-const tmpCalleeParam = a;
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpIfTest$1 = $(30);

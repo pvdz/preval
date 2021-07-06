@@ -92,12 +92,13 @@ while (true) {
     const tmpSwitchValue = $(1, `disc`);
     let tmpSwitchCaseToStart = 1;
     const tmpBinLhs = $(0);
+    let tmpIfTest$3 = true;
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
       tmpSwitchCaseToStart = 0;
     } else {
+      tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
     }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
     if (tmpIfTest$3) {
       $(`keep, do not eval`);
       continue;

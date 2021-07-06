@@ -54,17 +54,17 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
-let tmpCalleeParam = undefined;
 const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a = arrPatternSplat$1[0];
 if (tmpNestedAssignArrPatternRhs) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

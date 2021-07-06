@@ -56,16 +56,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let y = undefined;
 const tmpChainRootProp = $();
 const tmpIfTest = tmpChainRootProp == null;
 if (tmpIfTest) {
+  const tmpClusterSSA_tmpReturnArg = $(undefined);
+  $(tmpClusterSSA_tmpReturnArg);
 } else {
   const tmpChainElementObject = tmpChainRootProp.foo;
-  y = tmpChainElementObject;
+  const tmpClusterSSA_tmpReturnArg$1 = $(tmpChainElementObject);
+  $(tmpClusterSSA_tmpReturnArg$1);
 }
-const tmpReturnArg = $(y);
-$(tmpReturnArg);
 `````
 
 ## Globals

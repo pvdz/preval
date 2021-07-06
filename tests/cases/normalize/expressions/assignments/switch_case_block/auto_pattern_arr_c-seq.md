@@ -73,26 +73,21 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
+const a = arrPatternSplat[0];
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   $(10);
   $(20);
   const tmpCalleeParam = [1, 2];
   const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
-  a = arrPatternSplat$1[0];
+  const tmpClusterSSA_a = arrPatternSplat$1[0];
+  $(tmpClusterSSA_a);
 } else {
+  $(a);
 }
-$(a);
 `````
 
 ## Globals

@@ -59,12 +59,14 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
+let tmpAnonDefaultExport = undefined;
 if (a) {
+  tmpAnonDefaultExport = a;
 } else {
   const tmpCalleeParam$3 = $(2);
   a = $(tmpCalleeParam$3);
+  tmpAnonDefaultExport = a;
 }
-const tmpAnonDefaultExport = a;
 export { tmpAnonDefaultExport as default };
 $(a);
 `````

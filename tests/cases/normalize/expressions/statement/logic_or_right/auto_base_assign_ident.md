@@ -43,14 +43,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
 const tmpIfTest = $(100);
-if (tmpIfTest) {
-} else {
-  b = $(2);
-}
 const a = { a: 999, b: 1000 };
-$(a, b);
+if (tmpIfTest) {
+  $(a, 1);
+} else {
+  const tmpClusterSSA_b = $(2);
+  $(a, tmpClusterSSA_b);
+}
 `````
 
 ## Globals

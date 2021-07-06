@@ -48,16 +48,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(1);
-let tmpCallCallee$1 = $(tmpCalleeParam$1);
+const tmpCallCallee$1 = $(tmpCalleeParam$1);
 if (tmpCallCallee$1) {
-  tmpCallCallee$1 = 2;
+  $(`before  2  after`);
 } else {
+  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+  $(tmpClusterSSA_tmpCalleeParam);
 }
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

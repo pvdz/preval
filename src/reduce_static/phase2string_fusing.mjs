@@ -77,14 +77,13 @@ function _processTemplate(node, fdata, path) {
         // We can append this to the quasi but then we have to deal with raw/cooked stuff. So we just inject it as another expression.
         // Another rule will clean it up properly. That way I don't have to duplicate that logic here.
 
-        rule('Adding a template to a primitive should be resolved statically');
+        rule('Adding a template to a primitive ident should be resolved statically');
         example('`a${b}c` + 15', '`a${b}c${15}`');
         before(node, parentNode);
 
-        node.expressions[ei] = AST.templateLiteral(
-          expr.quasis.map((te) => te.value.cooked),
-          expr.expressions.slice(0),
-        );
+        const newTemplateNode = AST.cloneSimpleOrTemplate(expr);
+
+        node.expressions[ei] = newTemplateNode;
 
         after(node, parentNode);
         changed = true;
@@ -155,7 +154,12 @@ function _processBinary(node, fdata, path) {
       example('`a${b}c` + 15', '`a${b}c${15}`');
       before(node, parentNode);
 
-      const newTemplateNode = AST.templateLiteral([...left.quasis.map((te) => te.value.cooked), ''], [...left.expressions, right]);
+      const newRight = AST.cloneSimpleOrTemplate(right);
+
+      const newTemplateNode = AST.templateLiteral(
+        [...left.quasis.map((te) => te.value.cooked), ''],
+        [...left.expressions.map((n) => AST.cloneSimple(n)), newRight],
+      );
       if (parentIndex < 0) parentNode[parentProp] = newTemplateNode;
       else parentNode[parentProp][parentIndex] = newTemplateNode;
 
@@ -170,7 +174,12 @@ function _processBinary(node, fdata, path) {
       example('15 + `a${b}c`', '`${15}a${b}c`');
       before(node, parentNode);
 
-      const newTemplateNode = AST.templateLiteral(['', ...right.quasis.map((te) => te.value.cooked)], [left, ...right.expressions]);
+      const newLeft = AST.cloneSimpleOrTemplate(left)
+
+      const newTemplateNode = AST.templateLiteral(
+        ['', ...right.quasis.map((te) => te.value.cooked)],
+        [...right.expressions.map((n) => AST.cloneSimple(n)), newLeft],
+      );
       if (parentIndex < 0) parentNode[parentProp] = newTemplateNode;
       else parentNode[parentProp][parentIndex] = newTemplateNode;
 

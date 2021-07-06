@@ -52,12 +52,14 @@ const tmpBinBothLhs = $(100);
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   a = 60;
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + 60;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + a;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const tmpCalleeParam = tmpBinBothLhs + a;
-$(tmpCalleeParam);
 $(a);
 `````
 

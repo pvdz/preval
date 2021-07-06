@@ -72,15 +72,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpSwitchValue = $(1, `disc`);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(1, `case`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   const tmpThrowArg = $(2, `ret`);
   throw tmpThrowArg;
 } else {

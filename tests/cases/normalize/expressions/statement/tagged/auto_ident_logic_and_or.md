@@ -62,11 +62,12 @@ if (tmpCalleeParam$1) {
 } else {
 }
 if (tmpCalleeParam$1) {
+  $(tmpCalleeParam, tmpCalleeParam$1);
 } else {
   const tmpCalleeParam$7 = $(2);
-  tmpCalleeParam$1 = $(tmpCalleeParam$7);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(tmpCalleeParam$7);
+  $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam, tmpCalleeParam$1);
 $(a);
 `````
 

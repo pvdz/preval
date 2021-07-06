@@ -55,23 +55,24 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 const tmpIfTest = $ == null;
+let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
-  a = tmpChainElementCall;
+  tmpBinBothLhs = tmpChainElementCall;
 }
-const tmpBinBothLhs = a;
 let tmpClusterSSA_a = undefined;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
+  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpChainElementCall$1 = $(1);
   tmpClusterSSA_a = tmpChainElementCall$1;
+  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementCall$1;
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

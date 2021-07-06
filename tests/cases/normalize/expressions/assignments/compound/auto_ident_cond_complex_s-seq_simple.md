@@ -48,16 +48,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpBinBothRhs = 60;
 const tmpIfTest = $(1);
+let tmpClusterSSA_a = undefined;
+const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
+  tmpClusterSSA_a = a * 60;
+  $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam$1 = $(100);
-  tmpBinBothRhs = $(tmpCalleeParam$1);
+  const tmpClusterSSA_tmpBinBothRhs = $(tmpCalleeParam$1);
+  tmpClusterSSA_a = a * tmpClusterSSA_tmpBinBothRhs;
+  $(tmpClusterSSA_a);
 }
-const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 

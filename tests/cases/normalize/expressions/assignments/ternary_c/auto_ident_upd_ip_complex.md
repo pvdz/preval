@@ -57,11 +57,11 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpCalleeParam = undefined;
 const tmpIfTest = $(0);
 const b = { x: 1 };
 if (tmpIfTest) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpCalleeParam$1 = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam$1);
@@ -69,9 +69,8 @@ if (tmpIfTest) {
   const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;
-  tmpCalleeParam = tmpPostUpdArgVal;
+  $(tmpPostUpdArgVal);
 }
-$(tmpCalleeParam);
 $(a, b);
 `````
 

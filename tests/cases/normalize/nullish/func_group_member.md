@@ -49,14 +49,15 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let y = $();
+const y = $();
 const tmpIfTest = y == null;
 if (tmpIfTest) {
-  y = foo;
+  const tmpClusterSSA_tmpReturnArg = $(foo);
+  $(tmpClusterSSA_tmpReturnArg);
 } else {
+  const tmpClusterSSA_tmpReturnArg$1 = $(y);
+  $(tmpClusterSSA_tmpReturnArg$1);
 }
-const tmpReturnArg = $(y);
-$(tmpReturnArg);
 `````
 
 ## Globals

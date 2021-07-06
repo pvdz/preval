@@ -44,13 +44,14 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-let a = $(tmpCalleeParam);
+const a = $(tmpCalleeParam);
 if (a) {
+  $(a);
 } else {
   const tmpCalleeParam$1 = $(2);
-  a = $(tmpCalleeParam$1);
+  const tmpClusterSSA_a = $(tmpCalleeParam$1);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Globals

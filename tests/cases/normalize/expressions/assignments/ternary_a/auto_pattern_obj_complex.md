@@ -49,16 +49,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const tmpCalleeParam$1 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
 if (tmpNestedAssignObjPatternRhs) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 

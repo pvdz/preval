@@ -70,16 +70,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpNestedComplexRhs = undefined;
 const b = { c: $ };
 const tmpIfTest$1 = b == null;
+let tmpClusterSSA_a = undefined;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpNestedComplexRhs = tmpChainElementCall;
+  tmpClusterSSA_a = tmpChainElementCall;
 }
-const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
 $(tmpClusterSSA_a);
 `````

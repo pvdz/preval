@@ -56,10 +56,10 @@ const f = function () {
   const tmpArgumentsAny = arguments;
   debugger;
   a = tmpArgumentsAny;
-  return undefined;
+  return tmpArgumentsAny;
 };
-f();
-$(a);
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 $(a);
 `````
 

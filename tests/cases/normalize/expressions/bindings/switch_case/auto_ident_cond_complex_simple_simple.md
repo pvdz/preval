@@ -65,14 +65,14 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-let a = 2;
 const tmpIfTest$3 = $(1);
 if (tmpIfTest$3) {
+  $(2);
 } else {
   const tmpCalleeParam = $(100);
-  a = $(tmpCalleeParam);
+  const tmpClusterSSA_a = $(tmpCalleeParam);
+  $(tmpClusterSSA_a);
 }
-$(a);
 `````
 
 ## Globals

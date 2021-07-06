@@ -96,18 +96,17 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall == null;
+let tmpIfTest = undefined;
 if (tmpIfTest$1) {
+  tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-  tmpBinLhs = tmpChainElementCall$1;
+  tmpIfTest = tmpChainElementCall$1 === tmpSwitchValue;
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -134,6 +133,7 @@ tmpSwitchBreak: {
     }
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

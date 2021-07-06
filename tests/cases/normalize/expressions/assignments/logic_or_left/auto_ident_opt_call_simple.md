@@ -52,16 +52,17 @@ $(a);
 let a = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
+  $(undefined);
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
+  if (tmpChainElementCall) {
+    $(tmpChainElementCall);
+  } else {
+    const tmpClusterSSA_tmpCalleeParam = $(100);
+    $(tmpClusterSSA_tmpCalleeParam);
+  }
 }
-let tmpCalleeParam = a;
-if (a) {
-} else {
-  tmpCalleeParam = $(100);
-}
-$(tmpCalleeParam);
 $(a);
 `````
 

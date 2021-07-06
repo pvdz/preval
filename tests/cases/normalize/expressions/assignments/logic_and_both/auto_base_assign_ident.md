@@ -54,14 +54,13 @@ $(a, b);
 const tmpNestedComplexRhs = $(2);
 let b = tmpNestedComplexRhs;
 let a = tmpNestedComplexRhs;
-const tmpCalleeParam = a;
-if (a) {
+if (tmpNestedComplexRhs) {
   b = $(2);
   const tmpNestedComplexRhs$1 = b;
   a = tmpNestedComplexRhs$1;
   $(tmpNestedComplexRhs$1);
 } else {
-  $(tmpCalleeParam);
+  $(tmpNestedComplexRhs);
 }
 $(a, b);
 `````

@@ -13,8 +13,8 @@ If a group normalization would "hoist" the inits outside of the var decls withou
 `````js filename=intro
 function f() {
   const a = 10,
-        b = $(2)??toString,
-        c = b??length
+        b = $(2) ?? implicitA,
+        c = b ?? implicitB
   return $(c);
 }
 $(f());
@@ -26,8 +26,8 @@ $(f());
 let f = function () {
   debugger;
   const a = 10,
-    b = $(2) ?? toString,
-    c = b ?? length;
+    b = $(2) ?? implicitA,
+    c = b ?? implicitB;
   return $(c);
 };
 $(f());
@@ -42,13 +42,13 @@ let f = function () {
   let b = $(2);
   const tmpIfTest = b == null;
   if (tmpIfTest) {
-    b = toString;
+    b = implicitA;
   } else {
   }
   let c = b;
   const tmpIfTest$1 = c == null;
   if (tmpIfTest$1) {
-    c = length;
+    c = implicitB;
   } else {
   }
   const tmpReturnArg = $(c);
@@ -62,27 +62,31 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let b = $(2);
+const b = $(2);
 const tmpIfTest = b == null;
+let c = undefined;
+let tmpIfTest$1 = undefined;
 if (tmpIfTest) {
-  b = toString;
+  c = implicitA;
+  tmpIfTest$1 = c == null;
 } else {
+  c = b;
+  tmpIfTest$1 = b == null;
 }
-let c = b;
-const tmpIfTest$1 = c == null;
 if (tmpIfTest$1) {
-  c = length;
+  const tmpClusterSSA_tmpReturnArg = $(implicitB);
+  $(tmpClusterSSA_tmpReturnArg);
 } else {
+  const tmpClusterSSA_tmpReturnArg$1 = $(c);
+  $(tmpClusterSSA_tmpReturnArg$1);
 }
-const tmpReturnArg = $(c);
-$(tmpReturnArg);
 `````
 
 ## Globals
 
 BAD@! Found 2 implicit global bindings:
 
-toString, length
+implicitA, implicitB
 
 ## Result
 

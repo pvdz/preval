@@ -57,11 +57,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = $(2);
 const tmpClusterSSA_a = $(2);
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const a = $(2);
+const tmpCalleeParam = tmpClusterSSA_a + a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## Globals

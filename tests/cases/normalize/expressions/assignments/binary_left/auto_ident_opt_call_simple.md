@@ -48,13 +48,14 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+let tmpBinBothLhs = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
+  tmpBinBothLhs = tmpChainElementCall;
 }
-const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);

@@ -58,8 +58,8 @@ $(a);
 $(1);
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-$(a);
+const tmpClusterSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

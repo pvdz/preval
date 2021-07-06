@@ -55,19 +55,22 @@ const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
 let tmpCalleeParam = obj;
-const tmpIfTest = tmpCalleeParam == null;
+const tmpIfTest = obj == null;
+let tmpIfTest$1 = undefined;
 if (tmpIfTest) {
   tmpCalleeParam = a;
+  tmpIfTest$1 = tmpCalleeParam == null;
 } else {
+  tmpIfTest$1 = tmpCalleeParam == null;
 }
-const tmpIfTest$1 = tmpCalleeParam == null;
+let tmpIfTest$3 = undefined;
 if (tmpIfTest$1) {
   tmpCalleeParam = b;
+  tmpIfTest$3 = tmpCalleeParam == null;
 } else {
+  tmpIfTest$3 = tmpCalleeParam == null;
 }
-const tmpIfTest$3 = tmpCalleeParam == null;
 if (tmpIfTest$3) {
-  c;
   $(c);
 } else {
   $(tmpCalleeParam);

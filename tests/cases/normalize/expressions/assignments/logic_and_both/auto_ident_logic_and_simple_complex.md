@@ -58,14 +58,14 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 let a = $(tmpCalleeParam$1);
-const tmpCalleeParam = a;
+const tmpClusterSSA_tmpCalleeParam = a;
 if (a) {
   const tmpCalleeParam$3 = $(1);
   const tmpNestedComplexRhs = $(tmpCalleeParam$3);
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpCalleeParam);
+  $(tmpClusterSSA_tmpCalleeParam);
 }
 $(a);
 `````

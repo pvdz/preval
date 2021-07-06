@@ -59,8 +59,8 @@ $(a, x);
 `````js filename=intro
 $(1);
 const tmpUnaryArg = $(1);
-const a = typeof tmpUnaryArg;
-$(a, 1);
+const tmpClusterSSA_a = typeof tmpUnaryArg;
+$(tmpClusterSSA_a, 1);
 `````
 
 ## Globals

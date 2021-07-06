@@ -69,8 +69,7 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 let tmpClusterSSA_a = tmpPostUpdArgVal;
-const tmpCalleeParam = tmpClusterSSA_a;
-if (tmpClusterSSA_a) {
+if (tmpPostUpdArgVal) {
   const tmpCalleeParam$3 = $(b);
   const tmpPostUpdArgObj$1 = $(tmpCalleeParam$3);
   const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
@@ -79,7 +78,7 @@ if (tmpClusterSSA_a) {
   tmpClusterSSA_a = tmpPostUpdArgVal$1;
   $(tmpPostUpdArgVal$1);
 } else {
-  $(tmpCalleeParam);
+  $(tmpPostUpdArgVal);
 }
 $(tmpClusterSSA_a, b);
 `````

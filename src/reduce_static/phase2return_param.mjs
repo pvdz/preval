@@ -1,4 +1,6 @@
 // Find functions that return a direct derivative of its param (and don't escape). Outline the param.
+//    `function f(a) { const x = a + 1; return x; } $(f(y));'
+// -> 'function f(a) { const x = a + 1; return x; } f(); $(y + 1);
 // TODO: also do the case where the last statement is just using the param but it's result is not returned
 
 import {
@@ -262,36 +264,36 @@ function _returnsParam(fdata) {
       });
       if (!ok) return false;
 
-      const matchingArgNode = AST.cloneSimple(callNode['arguments'][paramIndex]);
+      const matchingArgNodeClone = AST.cloneSimple(callNode['arguments'][paramIndex]);
 
       let clone;
       if (expr.type === 'UnaryExpression') {
-        clone = AST.unaryExpression(expr.operator, matchingArgNode);
+        clone = AST.unaryExpression(expr.operator, matchingArgNodeClone);
       } else if (expr.type === 'BinaryExpression') {
         ASSERT((expr.left.type === 'Identifier') ^ (expr.right.type === 'Identifier'), 'either must be ident but not both', expr);
         if (expr.left.type === 'Identifier') {
-          clone = AST.binaryExpression(expr.operator, matchingArgNode, AST.cloneSimple(expr.right));
+          clone = AST.binaryExpression(expr.operator, matchingArgNodeClone, AST.cloneSimple(expr.right));
         } else {
-          clone = AST.binaryExpression(expr.operator, AST.cloneSimple(expr.left), matchingArgNode);
+          clone = AST.binaryExpression(expr.operator, AST.cloneSimple(expr.left), matchingArgNodeClone);
         }
       } else if (expr.type === 'Identifier') {
-        clone = matchingArgNode;
+        clone = matchingArgNodeClone;
       } else if (expr.type === 'CallExpression') {
         if (expr.callee.type === 'Identifier') {
           clone = AST.callExpression(
-            matchingArgNode,
+            matchingArgNodeClone,
             expr['arguments'].map((anode) => AST.cloneSimple(anode)),
           );
         } else if (expr.callee.type === 'MemberExpression') {
           clone = AST.callExpression(
-            AST.memberExpression(matchingArgNode, AST.cloneSimple(expr.callee.property), expr.callee.computed),
+            AST.memberExpression(matchingArgNodeClone, AST.cloneSimple(expr.callee.property), expr.callee.computed),
             expr['arguments'].map((anode) => AST.cloneSimple(anode)),
           );
         } else {
           ASSERT(false);
         }
       } else if (expr.type === 'MemberExpression') {
-        clone = AST.memberExpression(matchingArgNode, expr.property, expr.computed);
+        clone = AST.memberExpression(matchingArgNodeClone, AST.cloneSimple(expr.property), expr.computed);
       } else {
         ASSERT(false);
       }

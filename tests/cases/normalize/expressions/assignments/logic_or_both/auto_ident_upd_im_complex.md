@@ -69,9 +69,8 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 let tmpClusterSSA_a = tmpPostUpdArgVal;
-const tmpCalleeParam = tmpClusterSSA_a;
-if (tmpClusterSSA_a) {
-  $(tmpCalleeParam);
+if (tmpPostUpdArgVal) {
+  $(tmpPostUpdArgVal);
 } else {
   const tmpCalleeParam$3 = $(b);
   const tmpPostUpdArgObj$1 = $(tmpCalleeParam$3);

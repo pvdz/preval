@@ -67,7 +67,7 @@ while (true) {
   const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
   b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
-  if (a) {
+  if (tmpNestedAssignPropRhs) {
     $(1);
   } else {
     break;

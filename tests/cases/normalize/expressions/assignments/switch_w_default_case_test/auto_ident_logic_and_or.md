@@ -104,12 +104,14 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
+let tmpIfTest = undefined;
 if (a) {
+  tmpIfTest = a === tmpSwitchValue;
 } else {
   const tmpCalleeParam$3 = $(2);
   a = $(tmpCalleeParam$3);
+  tmpIfTest = a === tmpSwitchValue;
 }
-const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

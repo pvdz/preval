@@ -54,7 +54,6 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let tmpCalleeParam = undefined;
 const b = { x: 1 };
 const tmpCalleeParam$1 = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam$1);
@@ -62,11 +61,12 @@ const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
 if (tmpNestedPropCompoundComplexRhs) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(tmpNestedPropCompoundComplexRhs, b);
 `````
 

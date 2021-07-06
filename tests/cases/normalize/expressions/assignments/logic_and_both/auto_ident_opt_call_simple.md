@@ -59,13 +59,14 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+let tmpCalleeParam = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
+  tmpCalleeParam = tmpChainElementCall;
 }
-const tmpCalleeParam = a;
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpIfTest$1 = $ == null;

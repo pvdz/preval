@@ -54,12 +54,13 @@ $(a);
 let a = undefined;
 const b = { x: 1 };
 const tmpIfTest = b == null;
+let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
+  tmpBinBothLhs = tmpChainElementObject;
 }
-const tmpBinBothLhs = a;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);

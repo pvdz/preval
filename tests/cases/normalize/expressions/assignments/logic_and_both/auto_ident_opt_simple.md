@@ -65,12 +65,13 @@ $(a);
 let a = undefined;
 const b = { x: 1 };
 const tmpIfTest = b == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementObject = b.x;
   a = tmpChainElementObject;
+  tmpCalleeParam = tmpChainElementObject;
 }
-const tmpCalleeParam = a;
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpIfTest$1 = b == null;

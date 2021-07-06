@@ -58,11 +58,12 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(0);
 let a = $(tmpCalleeParam$1);
+let tmpCalleeParam = 2;
 if (a) {
+  tmpCalleeParam = a;
 } else {
   a = 2;
 }
-const tmpCalleeParam = a;
 if (a) {
   const tmpCalleeParam$3 = $(0);
   let tmpNestedComplexRhs = $(tmpCalleeParam$3);

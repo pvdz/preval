@@ -78,7 +78,7 @@ while (true) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
   a = varInitAssignLhsComputedRhs;
-  if (a) {
+  if (varInitAssignLhsComputedRhs) {
     $(1);
   } else {
     break;

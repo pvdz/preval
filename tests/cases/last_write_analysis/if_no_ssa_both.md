@@ -51,14 +51,15 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = $(`a`);
+const x = $(`a`);
 $(x);
 if ($) {
-  x = $(`b`);
+  const tmpClusterSSA_x = $(`b`);
+  $(tmpClusterSSA_x);
 } else {
-  x = $(`c`);
+  const tmpClusterSSA_x$1 = $(`c`);
+  $(tmpClusterSSA_x$1);
 }
-$(x);
 `````
 
 ## Globals

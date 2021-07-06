@@ -66,7 +66,7 @@ while (true) {
   } else {
     const tmpChainElementObject = tmpChainElementCall.x;
     a = tmpChainElementObject;
-    if (a) {
+    if (tmpChainElementObject) {
       $(100);
     } else {
       break;

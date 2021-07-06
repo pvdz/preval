@@ -66,7 +66,6 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
-let tmpCalleeParam = undefined;
 let a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
@@ -83,11 +82,12 @@ if (tmpIfTest$1) {
   }
 }
 if (a) {
-  tmpCalleeParam = $(100);
+  const tmpClusterSSA_tmpCalleeParam = $(100);
+  $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  tmpCalleeParam = $(200);
+  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
+  $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(tmpCalleeParam);
 $(a);
 `````
 

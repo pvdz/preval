@@ -91,13 +91,15 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let a = undefined;
+let tmpIfTest = undefined;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
+  tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
+  tmpIfTest = tmpChainElementCall === tmpSwitchValue;
 }
-const tmpIfTest = a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

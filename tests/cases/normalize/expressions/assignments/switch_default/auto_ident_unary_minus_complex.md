@@ -55,8 +55,8 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpUnaryArg = $(100);
-const a = -tmpUnaryArg;
-$(a);
+const tmpClusterSSA_a = -tmpUnaryArg;
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

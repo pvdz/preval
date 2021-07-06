@@ -105,16 +105,16 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
+let tmpIfTest = undefined;
 if (tmpIfTest$1) {
+  tmpIfTest = undefined === tmpSwitchValue;
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  tmpBinLhs = tmpChainElementObject;
+  tmpIfTest = tmpChainElementObject === tmpSwitchValue;
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {

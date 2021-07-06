@@ -233,8 +233,7 @@ need to make pids numbers
   - edge case but we could fold up an `if` like: `if (b) { $(b); } else { $(''); }` when we know it's just a $(b) either way. exapmle: tests/cases/typing/base_string_truthy.md
   - do we want to fix cases like in tests/cases/normalize/expressions/statement/template/auto_ident_unary_tilde_complex.md basically whether a number literal can be explicitly casted by String() or implicitly by a template and there's no observable difference. I think that's fine? so we could drop the String() trampoline in that case.
   - when doing `0 + x` we can also convert to $coerce with a `plunum` or smth. but trickier since if the primitive is a string then that's also fine. plunum?
- >- const tmpObjectPrototype = Object.prototype; -> $ObjectPrototype
-  - Template as statement?
+ >- Template as statement?
   - If a let is updated to the same primitive everywhere, ehh, get rid of it? -> objPatternCrashTest in tests/cases/normalize/pattern/assignment/obj_ternary.md
   - Didnt I fix this case of redundant write? tests/cases/normalize/switch/poc_out.md
   - constant inlining is not inlining complex template literals -> tests/cases/conditional_typing/conditional_concat_spy.md

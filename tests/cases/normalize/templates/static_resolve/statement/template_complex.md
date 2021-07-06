@@ -39,9 +39,7 @@ $coerce(tmpBinLhs, `plustr`);
 
 `````js filename=intro
 const tmpCallCallee$1 = $(1);
-const tmpBinBothRhs$1 = $coerce(tmpCallCallee$1, `string`);
-const tmpCallCallee = `a ${tmpBinBothRhs$1} b`;
-$coerce(tmpCallCallee, `number`);
+$coerce(tmpCallCallee$1, `string`);
 `````
 
 ## Globals

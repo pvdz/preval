@@ -44,7 +44,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpBinBothRhs = $spy();
 tmpBinBothRhs ** 0;
 const tmpBinBothRhs$1 = $spy();
-$coerce(tmpBinBothRhs$1, `number`);
+$coerce(tmpBinBothRhs$1, `plustr`);
 $(true);
 `````
 

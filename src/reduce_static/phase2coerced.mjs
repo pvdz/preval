@@ -102,6 +102,24 @@ function _coercials(fdata) {
     const at = argMeta.typing.mustBeType;
     // Note: null and undefined are actual values. Let normalize clean those up.
 
+    if (at === 'string' && (kind === 'string' || kind === 'plustr')) {
+      const argWrite = argMeta.writes.find(write => write.kind === 'var');
+      ASSERT(argWrite, 'right?');
+
+      rule('Coercing a string to a string is a noop');
+      example('const x = `a${b}c`; const b = $coerce(x, "string");', 'const x = `a${b}c`; const b = x;');
+      before(argWrite.blockBody[argWrite.blockIndex]);
+      before(read.parentNode, read.blockBody[read.blockIndex]);
+
+      if (read.grandIndex < 0) read.grandNode[read.grandProp] = argNode;
+      else read.grandNode[read.grandProp][read.grandIndex] = argNode;
+
+      after(argWrite.blockBody[argWrite.blockIndex]);
+      after(AST.emptyStatement());
+      ++changes;
+      return;
+    }
+
     if (at === 'number' && kind === 'plustr') {
       rule('Calling $coerce on a value that is a number when asking for plustr can be changed to want a string');
       example('const x = +y; $coerce(y, "plustr");', 'const x = +y; $coerce(y, "string");');
@@ -111,19 +129,6 @@ function _coercials(fdata) {
 
       after(argNode, read.blockBody[read.blockIndex]);
       ++changes;
-      // Allow next checks to scan this change
-    }
-
-    if (kind === 'plustr' && read.grandNode.type === 'ExpressionStatement') {
-      rule('Calling $coerce with plustr as a statement should just coerce to number');
-      example('const x = +y; $coerce(y, "plustr");', 'const x = +y; $coerce(y, "string");');
-      before(read.parentNode, read.blockBody[read.blockIndex]);
-
-      read.parentNode['arguments'][1] = AST.primitive('number'); // The string part does not spy since it applies to a primitive
-
-      after(argNode, read.blockBody[read.blockIndex]);
-      ++changes;
-
       // Allow next checks to scan this change
     }
 

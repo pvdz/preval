@@ -47,7 +47,7 @@ import { binExprStmt } from './phase2bin_expr_stmt.mjs';
 import { propertyLookups } from './phase2property_lookups.mjs';
 import { letIfElse } from './phase2let_if_else.mjs';
 import { coercials } from './phase2coerced.mjs';
-import { redundantWrites } from './phase2redundant_writes.mjs';
+import { redundantWrites } from './phase2redundant_if_else_writes.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 

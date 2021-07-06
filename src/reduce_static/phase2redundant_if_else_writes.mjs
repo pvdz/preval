@@ -45,7 +45,7 @@ function _redundantWrites(fdata) {
     const varWrite = meta.writes.find((write) => write.kind === 'var');
     ASSERT(varWrite, 'all constants have a var', meta);
     if (!AST.isPrimitive(varWrite.parentNode.init)) return;
-    const initValue = AST.getPrimitiveValue(varWrite.parentNode.init);
+    //const initValue = AST.getPrimitiveValue(varWrite.parentNode.init);
 
     // There should be three writes and one of them is the var. So...
     const w1 = meta.writes[0] === varWrite ? meta.writes[1] : meta.writes[0];

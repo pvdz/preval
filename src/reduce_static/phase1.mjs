@@ -32,7 +32,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   const ifIds = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Used by SSA.
   const loopStack = []; // Stack of loop nodes (while, for-in, for-of). `null` means function (or program).
   let readWriteCounter = 0;
-  const refStack = []; // Array<Map<name, {read,write}>> | null. For every branch referenced, for every binding name, track the last read and write. Functions inject a null. This information is useful if the binding is not used as a closure. Take care if a read in a loop reaches a write outside of a loop.
 
   // For each block,branch,loop,func; track the last writes, which decls were generated in this block, and whether it is a loop/func (?)
   // When going back up, drop all decls from the open set of writes. When going up a function, pop the writes entirely.
@@ -141,7 +140,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         blockBodies.push(node.body);
         blockIds.push(+node.$p.pid);
         blockStack.push(node); // Do we assign node or node.body?
-        refStack.push(new Map());
         node.$p.promoParent = null;
         node.$p.blockChain = '0';
         node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
@@ -166,8 +164,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         ASSERT(blockStack.length === 0, 'stack should be empty now');
         loopStack.pop();
         ASSERT(loopStack.length === 0, 'stack should be empty now');
-        refStack.pop();
-        ASSERT(refStack.length === 0, 'stack should be empty now');
 
         if (node.$p.earlyComplete) {
           vlog('Global contained at least one early completion');
@@ -206,7 +202,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           ? 'func'
           : 'other';
         blockBodies.push(node.body);
-        refStack.push(new Map());
         if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
           blockIds.push(-node.$p.pid); // Mark a loop
         } else {
@@ -332,7 +327,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         blockStack.pop();
         blockBodies.pop();
         blockIds.pop();
-        refStack.pop();
 
         // A block has no early / explicit completion if it contains no statements
         node.body.forEach((cnode) => {
@@ -527,7 +521,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         blockIds.push(0); // Inject a zero to mark function boundaries
         ifIds.push(0);
         loopStack.push(0);
-        refStack.push(null); // Dont let reads "reach" writes in an upper scope.
         lastWritesAtStartPerLoop.push(null); // Mark function boundary
 
         if (firstAfterParse) {
@@ -565,7 +558,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         loopStack.pop();
         ASSERT(blockIds.length, 'meh3?');
         thisStack.pop();
-        refStack.pop();
         lastWritesAtStartPerLoop.pop(); // null
 
         if (funcStack.length > 1) {
@@ -704,19 +696,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           const grandIndex = pathIndexes[pathIndexes.length - 2];
 
           if (kind === 'read') {
-            // TODO: what if both branches of an if have a write? Or all branches of a nested if? We'd want to model that.
-            // TODO: what if a branch had a write and an early return, but not the other? How do we track this properly?
-            let prevWrite = undefined;
-            for (let n = refStack.length - 1; n >= 0 && !prevWrite; --n) {
-              const rcMap = refStack[n];
-              if (!rcMap) break; // Function boundary.
-              if (rcMap.has(name)) {
-                prevWrite = rcMap.get(name).write;
-              }
-            }
-            // Now prevWrite should be the last write this read can reach without moving past a function boundary
-            // If undefined, then there was no previous write in the same scope. Says nothing about loops or early returns.
-
             const blockBody = blockNode.body;
             const read = createReadRef({
               name,
@@ -740,7 +719,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               ifChain: ifIds.slice(0),
               funcChain: funcStack.map((n) => n.$p.pid).join(','),
               innerLoop,
-              prevWrite,
             });
             meta.reads.push(read);
 
@@ -789,14 +767,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               }
             }
 
-            let cache = refStack[refStack.length - 1].get(name);
-            if (cache) {
-              cache.read = read;
-            } else {
-              cache = { read, write: undefined };
-              refStack[refStack.length - 1].set(cache);
-            }
-
             currentScope.$p.referencedNames.add(name);
           }
           if (kind === 'write') {
@@ -826,14 +796,6 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               funcChain: funcStack.map((n) => n.$p.pid).join(','),
               innerLoop,
             });
-
-            let cache = refStack[refStack.length - 1].get(name);
-            if (cache) {
-              cache.write = write;
-            } else {
-              cache = { read: undefined, write };
-              refStack[refStack.length - 1].set(cache);
-            }
 
             // This needs to overwrite the current reachable write (if any)
             const currentLastWriteMap = lastWritesPerName[lastWritesPerName.length - 1];

@@ -565,7 +565,6 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
-    prevWrite, // Previous write this read can reach without crossing function boundaries. May be undefined if there isn't any.
     ...rest
   } = obj;
   ASSERT(typeof kind === 'string');
@@ -603,7 +602,6 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
-    prevWrite,
     reaches: new Set(), // Set<Write>. All writes this read can "reach" (might "observe", syntactically speaking)
   };
 }

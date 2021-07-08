@@ -1,38 +1,38 @@
 # Preval test case
 
-# spread_array.md
+# string_arr.md
 
-> Normalize > Spread > Spread array
+> Normalize > Spread > String arr
 >
-> Spreading an array literal can be resolved statically
+> Literal operations can be extrapolated and reduced
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-const x = [...[1, 2, 3, 4]];
+const x = [..."hello"];
 $(x);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-const x = [...[1, 2, 3, 4]];
+const x = [...`hello`];
 $(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const x = [1, 2, 3, 4];
+const x = [`h`, `e`, `l`, `l`, `o`];
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = [1, 2, 3, 4];
+const x = [`h`, `e`, `l`, `l`, `o`];
 $(x);
 `````
 
@@ -43,7 +43,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: [1, 2, 3, 4]
+ - 1: ['h', 'e', 'l', 'l', 'o']
  - eval returned: undefined
 
 Pre normalization calls: Same

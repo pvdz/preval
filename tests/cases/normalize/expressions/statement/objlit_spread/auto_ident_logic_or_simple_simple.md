@@ -40,7 +40,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-({ ...2 });
 const a = { a: 999, b: 1000 };
 $(a);
 `````

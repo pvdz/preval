@@ -1,39 +1,41 @@
 # Preval test case
 
-# spread_string.md
+# number_obj.md
 
-> Normalize > Spread > Spread string
+> Normalize > Spread > Number obj
 >
-> Literal operations can be extrapolated and reduced
+> Spread on number is an error
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-const x = [..."hello"];
-$(x);
+const x = 100;
+$({...x});
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-const x = [...`hello`];
-$(x);
+const x = 100;
+$({ ...x });
 `````
 
 ## Normalized
 
 `````js filename=intro
-const x = [`h`, `e`, `l`, `l`, `o`];
-$(x);
+const x = 100;
+const tmpCallCallee = $;
+const tmpCalleeParam = { ...x };
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const x = [`h`, `e`, `l`, `l`, `o`];
-$(x);
+const tmpCalleeParam = {};
+$(tmpCalleeParam);
 `````
 
 ## Globals
@@ -43,7 +45,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: ['h', 'e', 'l', 'l', 'o']
+ - 1: {}
  - eval returned: undefined
 
 Pre normalization calls: Same

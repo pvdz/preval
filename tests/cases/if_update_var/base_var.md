@@ -1,0 +1,82 @@
+# Preval test case
+
+# base_var.md
+
+> If update var > Base var
+>
+> Real base that is not optimized away rn
+
+#TODO
+
+## Input
+
+`````js filename=intro
+let x = 1;
+if ($) {
+  x = 0;
+} else {
+  x = 0;
+}
+const tmpCallCallee = $;
+const tmpBinBothLhs = x;
+const tmpBinBothRhs = $(`prevent inlining`);
+const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let x = 1;
+if ($) {
+  x = 0;
+} else {
+  x = 0;
+}
+const tmpCallCallee = $;
+const tmpBinBothLhs = x;
+const tmpBinBothRhs = $(`prevent inlining`);
+const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Normalized
+
+`````js filename=intro
+let x = 1;
+if ($) {
+  x = 0;
+} else {
+  x = 0;
+}
+const tmpCallCallee = $;
+const tmpBinBothLhs = x;
+const tmpBinBothRhs = $(`prevent inlining`);
+const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+const tmpBinBothRhs = $(`prevent inlining`);
+const tmpCalleeParam = 0 + tmpBinBothRhs;
+$(tmpCalleeParam);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 'prevent inlining'
+ - 2: '0prevent inlining'
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

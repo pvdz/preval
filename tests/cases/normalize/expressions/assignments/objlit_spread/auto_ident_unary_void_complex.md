@@ -41,7 +41,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpCalleeParam = { ...undefined };
+const tmpCalleeParam = {};
 $(tmpCalleeParam);
 $(undefined);
 `````

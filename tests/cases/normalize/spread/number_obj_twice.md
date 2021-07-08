@@ -1,39 +1,37 @@
 # Preval test case
 
-# auto_ident_cond_simple_simple_simple.md
+# number_obj_twice.md
 
-> Normalize > Expressions > Assignments > Objlit spread > Auto ident cond simple simple simple
+> Normalize > Spread > Number obj twice
 >
-> Normalization of assignments should work the same everywhere they are
+> Spread on number is an error
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-$({ ...(a = 1 ? 2 : $($(100))) });
-$(a);
+const x = 100;
+const y = 200;
+$({...x, ...y});
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-$({ ...(a = 1 ? 2 : $($(100))) });
-$(a);
+const x = 100;
+const y = 200;
+$({ ...x, ...y });
 `````
 
 ## Normalized
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+const x = 100;
+const y = 200;
 const tmpCallCallee = $;
-a = 2;
-let tmpObjSpread = a;
-const tmpCalleeParam = { ...tmpObjSpread };
+const tmpCalleeParam = { ...x, ...y };
 tmpCallCallee(tmpCalleeParam);
-$(a);
 `````
 
 ## Output
@@ -41,7 +39,6 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = {};
 $(tmpCalleeParam);
-$(2);
 `````
 
 ## Globals
@@ -52,7 +49,6 @@ None
 
 Should call `$` with:
  - 1: {}
- - 2: 2
  - eval returned: undefined
 
 Pre normalization calls: Same

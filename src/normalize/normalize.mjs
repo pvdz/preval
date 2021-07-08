@@ -233,10 +233,7 @@ need to make pids numbers
   - edge case but we could fold up an `if` like: `if (b) { $(b); } else { $(''); }` when we know it's just a $(b) either way. exapmle: tests/cases/typing/base_string_truthy.md
   - do we want to fix cases like in tests/cases/normalize/expressions/statement/template/auto_ident_unary_tilde_complex.md basically whether a number literal can be explicitly casted by String() or implicitly by a template and there's no observable difference. I think that's fine? so we could drop the String() trampoline in that case.
   - when doing `0 + x` we can also convert to $coerce with a `plunum` or smth. but trickier since if the primitive is a string then that's also fine. plunum?
- >- If a let is updated to the same primitive everywhere, ehh, get rid of it? -> objPatternCrashTest in tests/cases/normalize/pattern/assignment/obj_ternary.md
-  - Didnt I fix this case of redundant write? tests/cases/normalize/switch/poc_out.md
-  - constant inlining is not inlining complex template literals -> tests/cases/conditional_typing/conditional_concat_spy.md
-  - spread on primitives throw an error
+ >- spread on primitives throw an error
   - if an identifier-statement would be the first expression in the next statement (like call arg, left binary arg, unary arg, etc) then drop it. `a; f(a);` -> `f();` see tests/cases/binding/cond_let_called.md
   - hoist the same thing above an `if`? `if (x) a = f(); else b = f();`, trickier for fresh bindings (do we even want that?) but still doable: `if (x) const a = f(); else const b = f();`. you'd have to merge the idents. but that'd be okay for constants anyways, right? or is the opposite easier for us? does it matter? what if its not the tail position?
   - why is parseIdentUnicodeOrError not inlined in tenko?
@@ -291,6 +288,7 @@ need to make pids numbers
   - why can't we resolve tests/cases/normalize/expressions/assignments/let/auto_ident_c-opt_simple_simple.md to $(1) $(1) ?
   - if a falsy value is spread can't it be replaced by `if (typeof x !== 'string') throw error`? Because all other falsy values cannot be spread and the empty string spreads into zero elements... -> tests/cases/normalize/expressions/assignments/call_spread/auto_ident_logic_and_or.md (when a is falsy)
   - An assignment in an if that can be moved later, perhaps should be? See tests/cases/static_lets/base_true.md where the `$(x)` could be hoisted inside the `if` when the assignment to `x` was at the end. But the assignment is not observable itself so the move would be valid here. problem is, not always (loops etc).
+  - trailing break/continue statements may be able to be dropped, like tests/cases/normalize/switch/poc_out.md
   - TODO: do AST.isPrimitive instead. Drop a bunch of logic here
   - TODO: fix other cases of write-shadowing in different branches for the prevMap approach, like we did in lethoisting2
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut
@@ -5619,8 +5617,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             } else if (AST.isPrimitive(n.argument)) {
               if (node.elements.length !== 1 || body[i + 1]?.type !== 'ThrowStatement') {
                 rule('Array spread on non-string literal must result in an error');
-                example('[...500]');
-                example('[...true]');
+                example('[...500];', '[...500]; throw error;');
+                example('[...true];', '[...true]; throw error;');
                 before(n, node);
 
                 ASSERT(
@@ -5763,41 +5761,71 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         let hasSpread = 0;
         let spreadComplex = false;
         let hasNonSpread = false;
-        node.properties.forEach((pnode) => {
+        for (let pi = node.properties.length - 1; pi >= 0; --pi) {
+          const pnode = node.properties[pi];
+          ASSERT(pnode, 'props cannot be elided', pi, node.properties);
+
           if (pnode.type === 'SpreadElement') {
-            ++hasSpread;
-            if (AST.isComplexNode(pnode.argument)) spreadComplex = true;
-            return;
+            if (AST.isPrimitive(pnode.argument)) {
+              if (AST.isStringLiteral(pnode.argument)) {
+                // This actually adds new properties
+                rule('A string primitive that is spread into an object adds each char individually as index props');
+                example('({..."foo"});', '({0: "f", 1: "o", 2: "o"});');
+                before(node, parentNode);
+
+                node.properties.splice(
+                  pi,
+                  1,
+                  ...[...AST.getPrimitiveValue(pnode.argument)].map((c, ci) =>
+                    AST.property(AST.primitive(String(ci)), AST.primitive(c), false, false, 'init', false),
+                  ),
+                );
+
+                changes = true;
+                after(node, parentNode);
+              } else {
+                // This is a noop
+                rule('A non-string primitive that is spread into an object can be deleted');
+                example('({...10});', '({});');
+                before(node, parentNode);
+
+                node.properties.splice(pi, 1);
+
+                changes = true;
+                after(node, parentNode);
+              }
+            } else {
+              ++hasSpread;
+              if (AST.isComplexNode(pnode.argument)) spreadComplex = true;
+            }
+          } else {
+            hasNonSpread = true;
+
+            if (pnode.computed && AST.isProperIdent(pnode.key, true)) {
+              const str = AST.getStringValue(pnode.key, true);
+
+              rule('Object literal computed key that is ident must be ident');
+              example('{["x"]: y}', '{x: y}');
+              before(node, parentNode);
+
+              pnode.computed = false;
+              pnode.key = AST.identifier(str);
+
+              after(node, parentNode);
+              changes = true;
+            } else if (pnode.key.type === 'literal' && typeof pnode.key.value === 'string') {
+              rule('Property keys that are strings should be templates internally, even if that is technically invalid');
+              example('x = {"a": foo}', 'x = {`a`: foo}');
+              before(node, parentNode);
+
+              pnode.key = AST.templateLiteral(pnode.key);
+
+              after(parentNode);
+              changes = true;
+            }
           }
+        }
 
-          hasNonSpread = true;
-
-          if (pnode.computed && AST.isProperIdent(pnode.key, true)) {
-            const str = AST.getStringValue(pnode.key, true);
-
-            rule('Object literal computed key that is ident must be ident');
-            example('{["x"]: y}', '{x: y}');
-            before(node, parentNode);
-
-            pnode.computed = false;
-            pnode.key = AST.identifier(str);
-
-            after(node, parentNode);
-            changes = true;
-            return;
-          }
-
-          if (pnode.key.type === 'literal' && typeof pnode.key.value === 'string') {
-            rule('Property keys that are strings should be templates internally, even if that is technically invalid');
-            example('x = {"a": foo}', 'x = {`a`: foo}');
-            before(node, parentNode);
-
-            pnode.key = AST.templateLiteral(pnode.key);
-
-            after(parentNode);
-            return true;
-          }
-        });
         if (changes) return true;
 
         if (wrapKind === 'statement') {

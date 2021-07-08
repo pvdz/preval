@@ -39,7 +39,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = { ...`foo` };
+const tmpCalleeParam = { 0: `f`, 1: `o`, 2: `o` };
 $(tmpCalleeParam);
 $(`foo`);
 `````

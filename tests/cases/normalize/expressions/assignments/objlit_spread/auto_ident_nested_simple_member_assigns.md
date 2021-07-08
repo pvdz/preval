@@ -66,7 +66,7 @@ b.x = 3;
 b.x = 3;
 b.x = 3;
 b.x = 3;
-const tmpCalleeParam = { ...3 };
+const tmpCalleeParam = {};
 $(tmpCalleeParam);
 $(3, b, 3);
 `````

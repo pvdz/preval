@@ -46,6 +46,7 @@ function _letIfElse(fdata) {
     ASSERT(varDeclWrite, 'constant should have a var decl');
     if (varDeclWrite.reachedByReads.size > 0) {
       vlog('There was at least one read that could reach this write so must bail');
+      vgroupEnd();
       return;
     }
 

@@ -103,6 +103,7 @@ function _staticLets(fdata) {
           if (AST.isPrimitive(valueNode)) {
             rule('A write of primitive to a `let` binding followed by a read should inline the read');
             example('let x = 5; f(x);', 'let x = 5; f(5);');
+            before(last.blockBody[last.blockIndex]);
             before(ref.node, ref.blockBody[ref.blockIndex]);
 
             if (ref.parentIndex < 0) ref.parentNode[ref.parentProp] = AST.cloneSimple(valueNode);

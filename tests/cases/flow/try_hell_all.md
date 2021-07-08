@@ -679,12 +679,10 @@ try {
   x$1 = 1;
 }
 considerMutated(x$1);
-let x$3 = 0;
 try {
 } finally {
-  x$3 = 1;
 }
-considerMutated(x$3);
+considerMutated(1);
 let x$5 = 0;
 try {
   x$5 = 1;
@@ -706,13 +704,11 @@ try {
 } finally {
 }
 considerMutated(x$9);
-let x$11 = 0;
 try {
 } catch {
 } finally {
-  x$11 = 1;
 }
-considerMutated(x$11);
+considerMutated(1);
 let x$13 = 0;
 foo: {
   try {
@@ -726,36 +722,30 @@ foo: {
   }
 }
 considerMutated(x$13);
-let x$15 = 0;
 foo$1: {
   try {
     break foo$1;
   } catch {
   } finally {
-    x$15 = 1;
   }
 }
-considerMutated(x$15);
-let x$17 = 0;
+considerMutated(1);
 foo$3: {
   try {
     break foo$3;
   } catch {
   } finally {
-    x$17 = 1;
   }
 }
-considerMutated(x$17);
-let x$19 = 0;
+considerMutated(1);
 foo$5: {
   try {
     break foo$5;
   } catch {
   } finally {
-    x$19 = 1;
   }
 }
-considerMutated(x$19);
+considerMutated(1);
 const f = function () {
   debugger;
   try {

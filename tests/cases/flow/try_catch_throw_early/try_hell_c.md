@@ -48,13 +48,11 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
-let x = 0;
 try {
 } finally {
   throw_early;
-  x = 1;
 }
-considerMutated(x);
+considerMutated(1);
 `````
 
 ## Globals

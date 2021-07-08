@@ -471,6 +471,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
       case 'ForInStatement:before': {
         node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
+        node.$p.outWrites = new Set(); // Dito for writes
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         loopStack.push(+node.$p.pid);
         const currentLastWritesClone = lastWrites_cloneLastMap(lastWritesPerName[lastWritesPerName.length - 1]);
@@ -488,6 +489,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
       case 'ForOfStatement:before': {
         node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
+        node.$p.outWrites = new Set(); // Dito for writes
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         loopStack.push(+node.$p.pid);
         const currentLastWritesClone = lastWrites_cloneLastMap(lastWritesPerName[lastWritesPerName.length - 1]);
@@ -695,6 +697,10 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           const grandProp = pathProps[pathProps.length - 2];
           const grandIndex = pathIndexes[pathIndexes.length - 2];
 
+          const currentLastWriteMapForName = lastWritesPerName[lastWritesPerName.length - 1];
+          let currentLastWriteSetForName = currentLastWriteMapForName.get(name);
+          vlog('Last write analysis; this ref can reach', currentLastWriteSetForName?.size ?? 0, 'writes...');
+
           if (kind === 'read') {
             const blockBody = blockNode.body;
             const read = createReadRef({
@@ -722,16 +728,13 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             });
             meta.reads.push(read);
 
-            const currentLastWriteMapForName = lastWritesPerName[lastWritesPerName.length - 1];
-            let currentLastWriteSetForName = currentLastWriteMapForName.get(name);
-            vlog('Last write analysis; this read can reach', currentLastWriteSetForName?.size ?? 0, 'writes...');
-
             if (currentLastWriteSetForName) {
               // This is the write(s) this read can reach. Can be multiple, for example after two writes in a branch.
               currentLastWriteSetForName.forEach((write) => {
                 // Point to each other
+                vlog('  - Pointing a read and a write to each other', read.type + ':' + read.kind + ':' + read.node.$p.pid + '.reachesWrites <->', write.type + ':' + write.kind + ':' + write.node.$p.pid + '.reachedByReads');
+                read.reachesWrites.add(write);
                 write.reachedByReads.add(read);
-                read.reaches.add(write);
               });
               // Now check whether this read crosses any loop boundary (must check all, in case nested, until we encounter
               // the block containing the binding, which we must invariably encounter at some point in normalized code).
@@ -798,19 +801,59 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               innerLoop,
             });
 
-            // This needs to overwrite the current reachable write (if any)
-            const currentLastWriteMap = lastWritesPerName[lastWritesPerName.length - 1];
-            let currentLastWriteSetForName = currentLastWriteMap.get(name);
+            if (currentLastWriteSetForName) {
+              // This is the write(s) this write can reach. Can be multiple, for example after two writes in a branch.
+              currentLastWriteSetForName.forEach((prevWrite) => {
+                // Point to each other
+                vlog('  - Pointing two writes to each other', write.action + ':' + write.kind + ':' + write.node.$p.pid + '.reachesWrites <->', prevWrite.action + ':' + prevWrite.kind + ':' + prevWrite.node.$p.pid + '.reachedByWrites');
+                write.reachesWrites.add(prevWrite);
+                prevWrite.reachedByWrites.add(write);
+              });
+              // Now check whether this read crosses any loop boundary (must check all, in case nested, until we encounter
+              // the block containing the binding, which we must invariably encounter at some point in normalized code).
+
+              // No matter how nested the read is, it should be added to the outReads for any block up to the block with decl
+              // let a, b, c, d, e;
+              // f(d); // 0x
+              // while (true) {
+              //   f(a); // 1x
+              //   c = 1;
+              //   if ($) e = 1;
+              //   while (true) {
+              //     f(b); // 2x
+              //     while (true) {
+              //       f(c); // 2x (!)
+              //       f(e); // 2x (but none of the parents will have a blockchain match!)
+              //     }
+              //   }
+              // }
+
+              // Walk the stack backwards. Stop at function boundaries (element is null) or end.
+              // We walk all the loops in current function because we don't really know when to stop, but in the real
+              // world the worst case should not be morse than a handful of loops, so I think it's fine.
+              for (let i = lastWritesAtStartPerLoop.length - 1; i >= 0; --i) {
+                const lastWritesAtLoopStart = lastWritesAtStartPerLoop[i];
+                if (lastWritesAtLoopStart === null) break; // Function boundary
+
+                const lastWrites = lastWritesAtLoopStart.allWrites.get(name);
+                if (lastWrites) {
+                  // At the end of this loop, connect all outWrites writes to the bindings still open at that point.
+                  // The idea here is if the loop loops, these last writes are now going to be reachable by these writes.
+                  lastWritesAtLoopStart.loopNode.$p.outWrites.add(write);
+                }
+              }
+            }
+
             vlog(
               'Last write analysis: this binding had',
               currentLastWriteSetForName?.size ?? 0,
               'reachable writes before this one. Replacing the reachable writes for this binding with this one.',
             );
-            currentLastWriteMap.set(name, new Set([write]));
+            currentLastWriteMapForName.set(name, new Set([write]));
 
             if (parentNode.type === 'VariableDeclarator') {
               ASSERT(parentProp === 'id', 'the read check above should cover the prop=init case');
-              vlog('- Adding decl write');
+              vlog('- Adding decl write to meta.writes');
 
               currentScope.$p.ownBindings.add(name);
               meta.writes.unshift(write);
@@ -821,7 +864,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
                 'assignments must be normalized to statements',
                 pathNodes[pathNodes.length - 3],
               );
-              vlog('Adding assign write');
+              vlog('- Adding assign write to meta.writes');
               meta.writes.push(write);
             } else if (parentNode.type === 'FunctionDeclaration') {
               ASSERT(false, 'all function declarations should have been eliminated during hoisting');
@@ -829,11 +872,11 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               ASSERT(false, 'actual params are special nodes now and original params are local bindings so this should not trigger');
             } else {
               // for-x lhs, not sure what else. not param.
-              vlog('Adding "other" write');
+              vlog('- Adding "other" write to meta.writes');
               meta.writes.push(write);
             }
 
-            vlog('Writing to thing now');
+            vlog('Writing to .typing now');
             if (parentNode.type === 'AssignmentExpression') {
               const nowTyping = meta.typing;
               const newTyping = {};
@@ -1208,6 +1251,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
       case 'WhileStatement:before': {
         node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
+        node.$p.outWrites = new Set(); // Dito for writes
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         loopStack.push(+node.$p.pid);
         const currentLastWritesClone = lastWrites_cloneLastMap(lastWritesPerName[lastWritesPerName.length - 1]);
@@ -1268,7 +1312,16 @@ function lastWrites_closeTheLoop(lastWritesAtLoopStart, currentLastWriteMapForNa
     if (currentLastWriteSetForName) {
       currentLastWriteSetForName.forEach((write) => {
         write.reachedByReads.add(read);
-        read.reaches.add(write);
+        read.reachesWrites.add(write);
+      });
+    }
+  });
+  lastWritesAtLoopStart.loopNode.$p.outWrites.forEach((outWrite) => {
+    let currentLastWriteSetForName = currentLastWriteMapForName.get(outWrite.name);
+    if (currentLastWriteSetForName) {
+      currentLastWriteSetForName.forEach((write) => {
+        write.reachedByWrites.add(outWrite);
+        outWrite.reachesWrites.add(write);
       });
     }
   });

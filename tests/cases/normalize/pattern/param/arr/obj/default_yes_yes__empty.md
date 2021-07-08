@@ -85,7 +85,6 @@ if (tmpIfTest$1) {
   objPatternCrashTest = arrPatternStep === undefined;
 } else {
   arrPatternStep = arrPatternBeforeDefault;
-  objPatternCrashTest = false;
 }
 if (objPatternCrashTest) {
 } else {

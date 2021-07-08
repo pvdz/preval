@@ -38,13 +38,11 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = undefined;
 let n = undefined;
 const tmpForInDeclRhs = { a: 1, b: 2 };
 for (n in tmpForInDeclRhs) {
-  x = undefined;
 }
-$(x);
+$(undefined);
 `````
 
 ## Globals

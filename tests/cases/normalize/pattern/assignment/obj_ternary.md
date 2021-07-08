@@ -58,22 +58,7 @@ f();
 ## Output
 
 `````js filename=intro
-let bindingPatternObjRoot = 1;
-let objPatternCrashTest = false;
-if ($) {
-  objPatternCrashTest = false;
-} else {
-  bindingPatternObjRoot = 2;
-  objPatternCrashTest = false;
-}
-if (objPatternCrashTest) {
-} else {
-  objPatternCrashTest = bindingPatternObjRoot === null;
-}
-if (objPatternCrashTest) {
-  bindingPatternObjRoot.cannotDestructureThis;
-} else {
-}
+
 `````
 
 ## Globals

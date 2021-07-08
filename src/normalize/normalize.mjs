@@ -290,6 +290,7 @@ need to make pids numbers
   - the logic in tests/cases/normalize/expressions/assignments/logic_and_left/auto_ident_logic_and_complex_simple.md is such that the two ifs can be merged safely
   - why can't we resolve tests/cases/normalize/expressions/assignments/let/auto_ident_c-opt_simple_simple.md to $(1) $(1) ?
   - if a falsy value is spread can't it be replaced by `if (typeof x !== 'string') throw error`? Because all other falsy values cannot be spread and the empty string spreads into zero elements... -> tests/cases/normalize/expressions/assignments/call_spread/auto_ident_logic_and_or.md (when a is falsy)
+  - An assignment in an if that can be moved later, perhaps should be? See tests/cases/static_lets/base_true.md where the `$(x)` could be hoisted inside the `if` when the assignment to `x` was at the end. But the assignment is not observable itself so the move would be valid here. problem is, not always (loops etc).
   - TODO: do AST.isPrimitive instead. Drop a bunch of logic here
   - TODO: fix other cases of write-shadowing in different branches for the prevMap approach, like we did in lethoisting2
   - TODO: need to get rid of the nested assignment transform that's leaving empty lets behind as a shortcut

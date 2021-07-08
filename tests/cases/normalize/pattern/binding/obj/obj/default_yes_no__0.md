@@ -61,7 +61,6 @@ if (tmpIfTest) {
   objPatternCrashTest = objPatternAfterDefault === undefined;
 } else {
   objPatternAfterDefault = objPatternBeforeDefault;
-  objPatternCrashTest = false;
 }
 if (objPatternCrashTest) {
 } else {

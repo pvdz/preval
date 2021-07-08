@@ -88,13 +88,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = 60;
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpIfTest$1 = $(30);
 let tmpIfTest = undefined;
 if (tmpIfTest$1) {
-  a = 60;
   tmpIfTest = 60 === tmpSwitchValue;
 } else {
   const tmpCalleeParam = $(100);

@@ -61,28 +61,27 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = 60;
 const tmpIfTest = $(1);
-let tmpCalleeParam = 60;
 if (tmpIfTest) {
-  a = 60;
+  $(60);
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
-  tmpCalleeParam = a;
-}
-if (a) {
-  $(tmpCalleeParam);
-} else {
-  let tmpNestedComplexRhs = 60;
-  const tmpIfTest$1 = $(1);
-  if (tmpIfTest$1) {
+  const tmpClusterSSA_tmpCalleeParam = a;
+  if (a) {
+    $(tmpClusterSSA_tmpCalleeParam);
   } else {
-    const tmpCalleeParam$3 = $(100);
-    tmpNestedComplexRhs = $(tmpCalleeParam$3);
+    let tmpNestedComplexRhs = 60;
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
+    } else {
+      const tmpCalleeParam$3 = $(100);
+      tmpNestedComplexRhs = $(tmpCalleeParam$3);
+    }
+    a = tmpNestedComplexRhs;
+    $(tmpNestedComplexRhs);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
 $(a);
 `````

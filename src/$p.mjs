@@ -55,6 +55,7 @@ export function $p() {
     // - blockChain // string. For functions, the block chain of this function, including the trailing zero for this function. Same as for refs.
     // - funcChain // string. For functions, the ids of parent functions (and global) up to and including this function. Same as for refs.
     // - outReads // Set<Read>. For loops. All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
+    // - outWrites // Set<Read>. For loops. All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
     // - lastWritesBackupBefore // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map is stored and depicts the state before an `if` or `try`). For each relevant binding, a set of writes that are currently "observable" when finding a read.
     // - lastWriteStackAfterIf // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map depicts the state after the consequent.) For each relevant binding, a set of writes that are currently "observable" when finding a read.
     // - lastWritesBackupTry // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map depicts the state after the `try-block`.) For each relevant binding, a set of writes that are currently "observable" when finding a read.

@@ -43,12 +43,10 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 0;
 try {
 } finally {
-  x = 10;
 }
-$(x);
+$(10);
 `````
 
 ## Globals

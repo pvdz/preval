@@ -51,13 +51,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpBinBothLhs = 0;
-if ($) {
-} else {
-  tmpBinBothLhs = 0;
-}
 const tmpBinBothRhs = $(`prevent inlining`);
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = 0 + tmpBinBothRhs;
 $(tmpCalleeParam);
 `````
 

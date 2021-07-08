@@ -51,10 +51,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = 2;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  a = 2;
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);

@@ -55,7 +55,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = 2;
 const tmpIfTest = $(1);
 let tmpBinBothLhs = 2;
 if (tmpIfTest) {
@@ -66,7 +66,6 @@ if (tmpIfTest) {
 }
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
-  a = 2;
   const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + 2;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {

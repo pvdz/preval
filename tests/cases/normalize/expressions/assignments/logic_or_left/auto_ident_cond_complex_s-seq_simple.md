@@ -49,21 +49,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = 60;
 const tmpIfTest = $(1);
-let tmpCalleeParam = 60;
 if (tmpIfTest) {
-  a = 60;
+  $(60);
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
-  tmpCalleeParam = a;
-}
-if (a) {
-  $(tmpCalleeParam);
-} else {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  const tmpClusterSSA_tmpCalleeParam$1 = a;
+  if (a) {
+    $(tmpClusterSSA_tmpCalleeParam$1);
+  } else {
+    const tmpClusterSSA_tmpCalleeParam = $(100);
+    $(tmpClusterSSA_tmpCalleeParam);
+  }
 }
 $(a);
 `````

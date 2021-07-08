@@ -42,11 +42,9 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let x = undefined;
 while (true) {
-  const tmpIfTest = $(x);
+  const tmpIfTest = $(undefined);
   if (tmpIfTest) {
-    x = undefined;
   } else {
     break;
   }

@@ -177,7 +177,6 @@ const tmpIfTest$19 = tmpSwitchCaseToStart$3 <= 0;
 if (tmpIfTest$19) {
   $(2);
   $(`after`);
-  tmpReturnArg$9 = undefined;
 } else {
   const tmpIfTest$21 = tmpSwitchCaseToStart$3 <= 1;
   if (tmpIfTest$21) {
@@ -193,10 +192,8 @@ if (tmpIfTest$19) {
     const tmpIfTest$25 = tmpSwitchCaseToStart$3 <= 3;
     if (tmpIfTest$25) {
       $(`after`);
-      tmpReturnArg$9 = undefined;
     } else {
       $(`after`);
-      tmpReturnArg$9 = undefined;
     }
   }
 }

@@ -137,7 +137,6 @@ exit: {
   if (tmpIfTest) {
     $(`A`);
     fallthrough = true;
-    tmpIfTest$1 = true;
   } else {
     tmpIfTest$1 = fallthrough;
   }

@@ -47,11 +47,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = 60;
 const tmpBinBothLhs = $(100);
 const tmpIfTest = $(30);
 if (tmpIfTest) {
-  a = 60;
   const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + 60;
   $(tmpClusterSSA_tmpCalleeParam);
 } else {

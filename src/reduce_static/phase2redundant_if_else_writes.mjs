@@ -23,7 +23,7 @@ import {
 import * as AST from '../ast.mjs';
 
 export function redundantWrites(fdata) {
-  group('\n\n\nFinding redundant writes');
+  group('\n\n\nFinding redundant if-else writes');
   const r = _redundantWrites(fdata);
   groupEnd();
   return r;
@@ -38,101 +38,71 @@ function _redundantWrites(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isConstant) return; // Can't have redundant writes if you can't have more than one
     if (!meta.singleScoped) return; // TODO: we can go the hard way on this one?
-    if (meta.writes.length !== 3) return; // meh. specific pattern
 
     vgroup('-- name: `' + name + '`, writes:', meta.writes.length, ', reads:', meta.reads.length);
 
     const varWrite = meta.writes.find((write) => write.kind === 'var');
     ASSERT(varWrite, 'all constants have a var', meta);
-    if (!AST.isPrimitive(varWrite.parentNode.init)) return;
-    //const initValue = AST.getPrimitiveValue(varWrite.parentNode.init);
 
-    // There should be three writes and one of them is the var. So...
-    const w1 = meta.writes[0] === varWrite ? meta.writes[1] : meta.writes[0];
-    const w2 = meta.writes[2] === varWrite ? meta.writes[1] : meta.writes[2];
+    ASSERT(
+      varWrite.reachedByWrites.size > 0,
+      'when not TDZ and not multi-scope and not a constant, the var should be reachable by at least one other write',
+    );
 
-    varWrite.blockBody.some((node, ni) => {
-      // Find an `if` in the same scope of the binding that contains both writes
-      if (ni <= varWrite.blockIndex) return;
-      if (node.type !== 'IfStatement') return;
-
-      if (varWrite.reachedByReads.size === 0) {
-        vlog('The init could not be observed so replace it with either init as long as it is primitive');
-      }
-
-      // Check whether the two writes use both branches
-      if (
-        w1.blockBody === w2.blockBody ||
-        (w1.blockBody !== node.consequent.body &&
-          w1.blockBody !== node.alternate.body &&
-          w2.blockBody !== node.consequent.body &&
-          w2.blockBody !== node.alternate.body)
-      ) {
-        return;
-      }
-
-      vlog('Should now have two writes for a var decl that occur in a `then` and `else` branch of an `if` on the same level as the `var`');
-
-      if (AST.isPrimitive(w1.parentNode.right)) {
-        if (varWrite.reachedByReads.size === 0) {
+    // If the var decl init cannot be observed, replace it with any primitive assigned in a write that reaches ("shadows") the var
+    let hasNoPrimitives = false;
+    vlog('Reads that can reach this var:', varWrite.reachedByReads.size);
+    let replacedWith; // Prevent reprocessing this deleted write (if any)
+    if (varWrite.reachedByReads.size === 0) {
+      hasNoPrimitives = true;
+      vlog('Going to try and find a write with primitive to replace the init');
+      [...varWrite.reachedByWrites].some((shadowWrite) => {
+        vlog('-', shadowWrite.action+':'+shadowWrite.kind, shadowWrite.parentNode.right.type);
+        if (shadowWrite.kind !== 'assign') return; // for
+        if (AST.isPrimitive(shadowWrite.parentNode.right)) {
           rule('When the init of a binding cannot be observed it can be replaced with the primitive rhs of an assignment');
           example('let x = 0; if (a) x = 1; else x = 2;', 'let x = 1; if (a) ; else x = 2;');
           before(varWrite.blockBody[varWrite.blockIndex]);
-          before(w1.blockBody[w1.blockIndex]);
+          before(shadowWrite.blockBody[shadowWrite.blockIndex]);
 
-          varWrite.parentNode.init = w1.parentNode.right;
-          w1.blockBody[w1.blockIndex] = AST.emptyStatement();
+          varWrite.parentNode.init = shadowWrite.parentNode.right;
+          shadowWrite.blockBody[shadowWrite.blockIndex] = AST.emptyStatement();
 
           before(varWrite.blockBody[varWrite.blockIndex]);
+          before(AST.emptyStatement());
           ++changes;
+          hasNoPrimitives = false; // We found at least one
+          replacedWith = shadowWrite;
           return true;
         }
+      });
+    }
 
-        if (
-          AST.isPrimitive(varWrite.parentNode.init) &&
-          Object.is(AST.getPrimitiveValue(varWrite.parentNode.init), AST.getPrimitiveValue(w1.parentNode.right))
-        ) {
+    // If we wanted to replace the init but didn't, then none of the assignments have a primitive and the next check is moot
+    if (hasNoPrimitives) {
+      vlog('Since we checked for an assignment with primitive before but did not find it, we do not have to scan again');
+    } else {
+      vlog('Going to try and find a write with primitive to replace the init');
+      if (!AST.isPrimitive(varWrite.parentNode.init)) return;
+      const pv = AST.getPrimitiveValue(varWrite.parentNode.init);
+
+      varWrite.reachedByWrites.forEach((shadowWrite) => {
+        if (shadowWrite === replacedWith) return; // Skip. This one was deleted in previous block.
+        vlog('-', shadowWrite.action+':'+shadowWrite.kind, shadowWrite.parentNode.right.type);
+        if (shadowWrite.kind !== 'assign') return; // for
+
+        if (AST.isPrimitive(shadowWrite.parentNode.right) && Object.is(AST.getPrimitiveValue(shadowWrite.parentNode.right), pv)) {
           rule('A write that is the same as the init can be dropped');
           example('let x = 0; if (a) x = 0; else x = 2;', 'let x = 0; if (a) ; else x = 2;');
-          before(w1.blockBody[w1.blockIndex]);
+          before(shadowWrite.blockBody[shadowWrite.blockIndex]);
 
-          w1.blockBody[w1.blockIndex] = AST.emptyStatement();
+          shadowWrite.blockBody[shadowWrite.blockIndex] = AST.emptyStatement();
 
-          before(w1.blockBody[w1.blockIndex]);
+          before(shadowWrite.blockBody[shadowWrite.blockIndex]);
           ++changes;
-          return true;
         }
-      } else if (AST.isPrimitive(w2.parentNode.right)) {
-        if (varWrite.reachedByReads.size === 0) {
-          rule('When the init of a binding cannot be observed it can be replaced with the primitive rhs of an assignment');
-          example('let x = 0; if (a) x = 1; else x = 2;', 'let x = 1; if (a) ; else x = 2;');
-          before(varWrite.blockBody[varWrite.blockIndex]);
-          before(w2.blockBody[w2.blockIndex]);
-
-          varWrite.parentNode.init = w2.parentNode.right;
-          w2.blockBody[w2.blockIndex] = AST.emptyStatement();
-
-          before(varWrite.blockBody[varWrite.blockIndex]);
-          ++changes;
-          return true;
-        }
-
-        if (
-          AST.isPrimitive(varWrite.parentNode.init) &&
-          Object.is(AST.getPrimitiveValue(varWrite.parentNode.init), AST.getPrimitiveValue(w2.parentNode.right))
-        ) {
-          rule('A write that is the same as the init can be dropped');
-          example('let x = 0; if (a) x = 0; else x = 2;', 'let x = 0; if (a) ; else x = 2;');
-          before(w2.blockBody[w2.blockIndex]);
-
-          w2.blockBody[w2.blockIndex] = AST.emptyStatement();
-
-          before(w2.blockBody[w2.blockIndex]);
-          ++changes;
-          return true;
-        }
-      }
-    });
+      });
+    }
 
     vgroupEnd();
   });

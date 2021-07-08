@@ -181,6 +181,7 @@ function _singleScopeSSA(fdata) {
               // Trailing write? Should be alright to eliminate...
               rule('A write with no reads can be eliminated in many cases');
               example('let x = 1; f(x); x = g();', 'let x = 1; f(x); g()');
+              before(varDeclWrite.blockBody[varDeclWrite.blockIndex]);
               before(ref.blockBody[ref.blockIndex]);
 
               ref.blockBody.splice(ref.blockIndex, 1, AST.expressionStatement(ref.parentNode.right));

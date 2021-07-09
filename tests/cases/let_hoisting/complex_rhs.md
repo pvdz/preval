@@ -92,12 +92,11 @@ const danger = function () {
   }
 };
 const x = danger();
+$(x);
 if ($) {
-  $(x);
   const tmpClusterSSA_x = $(`do not inline me`);
   $(tmpClusterSSA_x);
 } else {
-  $(x);
 }
 `````
 

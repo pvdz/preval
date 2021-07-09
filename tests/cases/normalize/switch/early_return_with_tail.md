@@ -189,12 +189,8 @@ if (tmpIfTest$19) {
     const tmpReturnArg$1 = $(6);
     tmpReturnArg$9 = tmpReturnArg$1;
   } else {
-    const tmpIfTest$25 = tmpSwitchCaseToStart$3 <= 3;
-    if (tmpIfTest$25) {
-      $(`after`);
-    } else {
-      $(`after`);
-    }
+    tmpSwitchCaseToStart$3 ** 0;
+    $(`after`);
   }
 }
 $(tmpReturnArg$9);

@@ -46,13 +46,9 @@ $(y, o);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(true);
+$(true);
 const o = { x: 1 };
-if (tmpIfTest) {
-  $(1, o);
-} else {
-  $(1, o);
-}
+$(1, o);
 `````
 
 ## Globals

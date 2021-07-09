@@ -104,22 +104,12 @@ A();
 ## Output
 
 `````js filename=intro
-const B = function () {
-  debugger;
+$();
+$();
+const x$1 = $();
+if (x$1) {
   $();
-  const x$1 = $();
-  if (x$1) {
-    $();
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const x = $();
-if (x) {
-  B();
 } else {
-  B();
 }
 `````
 

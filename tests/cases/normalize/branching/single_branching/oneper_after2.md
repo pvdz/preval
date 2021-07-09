@@ -101,21 +101,11 @@ A();
 ## Output
 
 `````js filename=intro
-const C = function () {
-  debugger;
-  const x$1 = $();
-  if (x$1) {
-    $();
-    return undefined;
-  } else {
-    return undefined;
-  }
-};
-const x = $();
-if (x) {
-  C();
+$();
+const x$1 = $();
+if (x$1) {
+  $();
 } else {
-  C();
 }
 `````
 

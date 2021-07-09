@@ -118,14 +118,9 @@ const f = function () {
     $(100);
     return undefined;
   } else {
-    const tmpClusterSSA_tmpIfelseifelse = $(2);
-    if (tmpClusterSSA_tmpIfelseifelse) {
-      $(100);
-      return undefined;
-    } else {
-      $(100);
-      return undefined;
-    }
+    $(2);
+    $(100);
+    return undefined;
   }
 };
 $(f);

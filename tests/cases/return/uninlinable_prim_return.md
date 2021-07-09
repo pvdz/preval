@@ -98,25 +98,18 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const g = function () {
   debugger;
+  const tmpIfTest$1 = $(1);
   $(`abc`);
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $(`def`);
-    return undefined;
   } else {
-    return undefined;
   }
-};
-const g = function () {
-  debugger;
-  const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
-    f();
     return 15;
   } else {
-    f();
     $(15, `foooopsie`);
     return undefined;
   }

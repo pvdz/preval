@@ -47,13 +47,8 @@ $(x);
 ## Output
 
 `````js filename=intro
-const a = $(67636);
-const x = a === 67636;
-if (x) {
-  $(false);
-} else {
-  $(false);
-}
+$(67636);
+$(false);
 `````
 
 ## Globals

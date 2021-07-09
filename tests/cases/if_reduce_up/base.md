@@ -2,48 +2,52 @@
 
 # base.md
 
-> Normalize > Dce > Break > Base
+> If reduce up > Base
 >
-> Any statements that follow a return in the same parent should be eliminated.
+> Trivial case
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-while ($(true)) break;
-$('after');
+let x = 0;
+if ($) {
+  x = 1;
+} else {
+  x = 1;
+}
+$(x);
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-while ($(true)) break;
-$(`after`);
+let x = 0;
+if ($) {
+  x = 1;
+} else {
+  x = 1;
+}
+$(x);
 `````
 
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    break;
-  } else {
-    break;
-  }
+let x = 0;
+if ($) {
+  x = 1;
+} else {
+  x = 1;
 }
-$(`after`);
+$(x);
 `````
 
 ## Output
 
 `````js filename=intro
-while (true) {
-  $(true);
-  break;
-}
-$(`after`);
+$(1);
 `````
 
 ## Globals
@@ -53,8 +57,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: true
- - 2: 'after'
+ - 1: 1
  - eval returned: undefined
 
 Pre normalization calls: Same

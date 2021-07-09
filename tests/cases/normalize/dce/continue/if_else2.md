@@ -61,12 +61,8 @@ $(`after, wont eval due to infinite loop`);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpIfTest$1 = $(1);
-    if (tmpIfTest$1) {
-      continue;
-    } else {
-      continue;
-    }
+    $(1);
+    continue;
   } else {
     break;
   }

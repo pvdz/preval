@@ -63,12 +63,8 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     while (true) {
-      const tmpIfTest$1 = $(true);
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        break;
-      }
+      $(true);
+      break;
     }
     $(`keep`);
   } else {

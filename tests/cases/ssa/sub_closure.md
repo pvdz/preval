@@ -139,11 +139,10 @@ $(true);
 if (tmpIfTest$9045) {
 } else {
   const tmpClusterSSA_secondPart = tmpBinLhs$1687 | vh;
+  firstPart;
   const tmpIfTest$9053 = tmpClusterSSA_secondPart < 56320;
   if (tmpIfTest$9053) {
-    firstPart;
   } else {
-    firstPart;
     $(tmpClusterSSA_secondPart);
   }
 }

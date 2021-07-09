@@ -48,6 +48,7 @@ import { propertyLookups } from './phase2property_lookups.mjs';
 import { letIfElse } from './phase2let_if_else.mjs';
 import { coercials } from './phase2coerced.mjs';
 import { redundantWrites } from './phase2redundant_if_else_writes.mjs';
+import { ifReduceUp } from './phase2if_reduce_up.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -265,6 +266,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const rwrites = redundantWrites(fdata);
   if (rwrites) return rwrites;
+
+  const redupped = ifReduceUp(fdata);
+  if (redupped) return redupped;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

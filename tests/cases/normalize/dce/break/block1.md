@@ -50,12 +50,8 @@ $(`after`);
 
 `````js filename=intro
 while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    break;
-  } else {
-    break;
-  }
+  $(true);
+  break;
 }
 $(`after`);
 `````

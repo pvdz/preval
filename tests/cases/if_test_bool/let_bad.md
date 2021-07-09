@@ -78,17 +78,17 @@ f();
 const f = function () {
   debugger;
   let x = $(1);
+  let tmpCalleeParam$1 = false;
   if ($) {
     x = 10;
   } else {
+    tmpCalleeParam$1 = !x;
   }
   if (x) {
-    const tmpCalleeParam$1 = !x;
     $(`a`, tmpCalleeParam$1);
     return undefined;
   } else {
-    const tmpCalleeParam$5 = !x;
-    $(`b`, tmpCalleeParam$5);
+    $(`b`, tmpCalleeParam$1);
     return undefined;
   }
 };

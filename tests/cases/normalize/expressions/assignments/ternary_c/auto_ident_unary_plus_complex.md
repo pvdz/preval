@@ -48,12 +48,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(0);
+const tmpClusterSSA_tmpCalleeParam = $(100);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  const tmpUnaryArg = $(100);
-  const tmpNestedComplexRhs = +tmpUnaryArg;
+  const tmpNestedComplexRhs = +tmpClusterSSA_tmpCalleeParam;
   a = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }

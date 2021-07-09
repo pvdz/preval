@@ -66,9 +66,31 @@ function _ifReduceUp(fdata) {
     // The edge case is a var statement, since we have to rename all occurrences of the variable
 
     if (firstThen.type === 'VariableDeclaration') {
-      rule('When each branch of an `if` starts with the same expression, hoist them up');
-      example('if (x) { let a = 1; f(a); } else { let b = 1; g(b); }', 'let a = 1; if (x) f(a); else g(a);');
-      before(node);
+      // Find the meta for one of them. Replace the name of all refs with the name of the other binding. Drop the var decl.
+      queue.push({
+        pid: +node.$p.pid,
+        func: () => {
+          rule('When each branch of an `if` starts with the same expression, hoist them up');
+          example('if (x) { let a = 1; f(a); } else { let b = 1; g(b); }', 'let a = 1; if (x) f(a); else g(a);');
+          before(node);
+
+          const name = firstThen.declarations[0].id.name;
+          const meta = fdata.globallyUniqueNamingRegistry.get(firstElse.declarations[0].id.name);
+          meta.rwOrder.forEach(ref => {
+            if (ref.action === 'write' && ref.kind === 'var') {
+              // Ignore the var. We'll drop it next.
+            } else {
+              ref.node.name = name;
+            }
+          })
+
+          blockBody.splice(blockIndex, 0, firstThen);
+          node.consequent.body.shift();
+          node.alternate.body.shift();
+
+          after(node);
+        }
+      })
     } else {
       queue.push({
         pid: +node.$p.pid,

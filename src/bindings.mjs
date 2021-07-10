@@ -1036,21 +1036,6 @@ export function inferInitialType(fdata, typing, init, kind) {
     }
     case 'BinaryExpression': {
       switch (init.operator) {
-        case '&': {
-          typing.mustBeType = 'number';
-
-          // Need a number on at least one side. Ignore negative numbers (unary expression).
-          if (AST.isPrimitive(init.left)) {
-            const v = AST.getPrimitiveValue(init.left) | 0;
-            typing.oneBitAnded = isOneSetBit(v) ? v : undefined;
-            typing.anded = v;
-          } else if (AST.isPrimitive(init.right)) {
-            const v = AST.getPrimitiveValue(init.right) | 0;
-            typing.oneBitAnded = isOneSetBit(v) ? v : undefined;
-            typing.anded = v;
-          }
-          break;
-        }
         case '===':
         case '==':
         case '!==':
@@ -1071,10 +1056,49 @@ export function inferInitialType(fdata, typing, init, kind) {
         case '>>':
         case '>>>':
         case '<<':
-        case '^':
-        case '|':
         case '**': {
           typing.mustBeType = 'number';
+          break;
+        }
+        case '&': {
+          typing.mustBeType = 'number';
+
+          // Need a number on at least one side. Ignore negative numbers (unary expression).
+          if (AST.isPrimitive(init.left)) {
+            const v = AST.getPrimitiveValue(init.left) | 0;
+            typing.oneBitAnded = isOneSetBit(v) ? v : undefined;
+            typing.anded = v;
+          } else if (AST.isPrimitive(init.right)) {
+            const v = AST.getPrimitiveValue(init.right) | 0;
+            typing.oneBitAnded = isOneSetBit(v) ? v : undefined;
+            typing.anded = v;
+          }
+          break;
+        }
+        case '^': {
+          typing.mustBeType = 'number';
+          if (AST.isPrimitive(init.left)) {
+            const pv = AST.getPrimitiveValue(init.left) | 0;
+            typing.xorredWith = pv;
+          }
+          if (AST.isPrimitive(init.right)) {
+            const pv = AST.getPrimitiveValue(init.right) | 0;
+            typing.xorredWith = pv;
+          }
+          break;
+        }
+        case '|': {
+          typing.mustBeType = 'number';
+          if (AST.isPrimitive(init.left)) {
+            const pv = AST.getPrimitiveValue(init.left) | 0;
+            typing.orredWith |= pv;
+            typing.bitsMustBeSet |= pv;
+          }
+          if (AST.isPrimitive(init.right)) {
+            const pv = AST.getPrimitiveValue(init.right) | 0;
+            typing.orredWith |= pv;
+            typing.bitsMustBeSet |= pv;
+          }
           break;
         }
         case '+': {

@@ -506,7 +506,8 @@ function runTestCase(
     console.log('###################################################', caseIndex + 1, '/', testCases.length, '[', fname, ']');
 
     console.log(`TEST ${RED}FAIL${RESET} Threw an error`);
-    console.log(lastError.stack || lastError);
+    console.log('(stack should be printed above. uncomment me if not)');
+    //console.log(lastError.stack || lastError);
     throw new Error('the test failed...');
   }
 

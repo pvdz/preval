@@ -103,7 +103,7 @@ function _coercials(fdata) {
     // Note: null and undefined are actual values. Let normalize clean those up.
 
     if (at === 'string' && (kind === 'string' || kind === 'plustr')) {
-      const argWrite = argMeta.writes.find(write => write.kind === 'var');
+      const argWrite = argMeta.writes.find((write) => write.kind === 'var');
       ASSERT(argWrite, 'right?');
 
       rule('Coercing a string to a string is a noop');
@@ -144,7 +144,7 @@ function _coercials(fdata) {
       ++changes;
     }
 
-    if (argMeta.typing.mustBeType === 'regex') {
+    if (at === 'regex') {
       if (argMeta.typing.mustBeValue || argMeta.constValueRef?.node?.raw) {
         rule('A regex as arg to $coerce can be resolved');
         example('$coerce(/foo/, "number")', 'NaN');

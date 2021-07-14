@@ -27,7 +27,6 @@ export function returnClosure(fdata) {
   return r;
 }
 function _returnClosure(fdata) {
-
   let queue = [];
   fdata.globallyUniqueNamingRegistry.forEach(function (meta, name) {
     if (meta.isBuiltin) return; // We can probably do it for some of these cases? But let's do that in another step
@@ -60,7 +59,7 @@ function _returnClosure(fdata) {
     // to outline the closure. This simplifies things a little bit, opening the door
     // to more optimizations (closures prevent a few things).
 
-    const retVarDecl = returnMeta.writes.find(write => write.kind === 'var');
+    const retVarDecl = returnMeta.writes.find((write) => write.kind === 'var');
     ASSERT(returnMeta.isBuiltin || returnMeta.isImplicitGlobal || retVarDecl, 'remind me, when was this possible? globals?');
 
     // TODO: fix the global cases
@@ -77,39 +76,42 @@ function _returnClosure(fdata) {
     }
 
     vlog('Function passes. Replacing all calls with the closure `' + returnedName + '`');
-    meta.reads.forEach((read,ri) => {
-      vlog('-',ri,read.action+':'+read.kind);
-      const callNode = read.parentNode
+    meta.reads.forEach((read, ri) => {
+      vlog('-', ri, read.action + ':' + read.kind);
+      const callNode = read.parentNode;
       if (callNode.type !== 'CallExpression' || read.parentProp !== 'callee') {
         vlog('  - Read is not a call so bailing');
         return;
       }
 
       if (read.blockBody[read.blockIndex].type === 'ExpressionStatement') {
-        vlog('  - The call is a statement so the return value is ignored so we don\'t do anything here.');
+        vlog("  - The call is a statement so the return value is ignored so we don't do anything here.");
         return;
       }
 
       vlog('  - Adding to queue for replacement');
       source(read.blockBody[read.blockIndex]);
-      queue.push([callNode.$p.pid, () => {
-        vlog('Should be able to replace the call with the closure and move the call before the original call now...');
+      queue.push([
+        callNode.$p.pid,
+        () => {
+          vlog('Should be able to replace the call with the closure and move the call before the original call now...');
 
-        rule('If a function always returns a certain closure, the closure can be outlined');
-        example(
-          'function f() { let x = 1; function g(){ return ++x; } h(g()); }',
-        'function f() { let x = 1; function g(){ ++x; } g(); h(x); }'
-        );
-        before(read.blockBody[read.blockIndex], funcNode);
+          rule('If a function always returns a certain closure, the closure can be outlined');
+          example(
+            'function f() { let x = 1; function g(){ return ++x; } h(g()); }',
+            'function f() { let x = 1; function g(){ ++x; } g(); h(x); }',
+          );
+          before(read.blockBody[read.blockIndex], funcNode);
 
-        if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier(returnedName);
-        else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier(returnedName);
-        read.blockBody.splice(read.blockIndex, 0, AST.expressionStatement(callNode));
+          if (read.grandIndex < 0) read.grandNode[read.grandProp] = AST.identifier(returnedName);
+          else read.grandNode[read.grandProp][read.grandIndex] = AST.identifier(returnedName);
+          read.blockBody.splice(read.blockIndex, 0, AST.expressionStatement(callNode));
 
-        after(read.blockBody[read.blockIndex]);
-        after(read.blockBody[read.blockIndex+1]);
-      }])
-    })
+          after(read.blockBody[read.blockIndex]);
+          after(read.blockBody[read.blockIndex + 1]);
+        },
+      ]);
+    });
 
     vgroupEnd();
   });
@@ -123,10 +125,9 @@ function _returnClosure(fdata) {
     queue.sort(([a], [b]) => (a < b ? 1 : a > b ? -1 : 0));
     queue.forEach(([pid, f]) => {
       vgroup('-');
-      f()
+      f();
       vgroupEnd();
     });
-
 
     log('Closures outlined:', queue.length, '. Restarting from phase1 to fix up read/write registry');
     return 'phase1';

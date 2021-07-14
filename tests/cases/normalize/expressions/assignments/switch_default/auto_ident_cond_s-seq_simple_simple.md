@@ -60,8 +60,8 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpClusterSSA_a = $(2);
-$(tmpClusterSSA_a);
+const a = $(2);
+$(a);
 `````
 
 ## Globals

@@ -62,20 +62,22 @@ function _funcScopePromo(fdata) {
     // It does mean that order is not important and we can just replace at will here.
 
     vlog('Now promoting the functions by removing them from their old parent and injecting them into their new parent');
-    queue.forEach(({
-      varDecl, // A VariableDeclaration node (by reference, as it appears in the AST right now)
-      from, // A BlockStatement.body array
-      to, // A BlockStatement.body array
-      toPid,
-    }) => {
-      vlog('Moving', varDecl.$p.pid, 'to', toPid);
-      const pos = from.indexOf(varDecl);
-      ASSERT(pos >= 0, 'var decl must be part of this parent');
-      from.splice(pos, 1);
-      let bodyOffset = findBodyOffsetExpensiveMaybe(to);
-      if (bodyOffset < 0) bodyOffset = 0;
-      to.splice(bodyOffset, 0, varDecl);
-    });
+    queue.forEach(
+      ({
+        varDecl, // A VariableDeclaration node (by reference, as it appears in the AST right now)
+        from, // A BlockStatement.body array
+        to, // A BlockStatement.body array
+        toPid,
+      }) => {
+        vlog('Moving', varDecl.$p.pid, 'to', toPid);
+        const pos = from.indexOf(varDecl);
+        ASSERT(pos >= 0, 'var decl must be part of this parent');
+        from.splice(pos, 1);
+        let bodyOffset = findBodyOffsetExpensiveMaybe(to);
+        if (bodyOffset < 0) bodyOffset = 0;
+        to.splice(bodyOffset, 0, varDecl);
+      },
+    );
 
     //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
 
@@ -88,7 +90,7 @@ function _funcScopePromo(fdata) {
 
 function oneFunc(meta, funcName, queue) {
   vgroup('- `' + meta.uniqueName + '`:', meta.constValueRef.node.type);
-  const r = _oneFunc(meta, funcName, queue)
+  const r = _oneFunc(meta, funcName, queue);
   vgroupEnd();
   return r;
 }
@@ -113,7 +115,7 @@ function _oneFunc(meta, funcName, queue) {
   vgroupEnd();
 
   // TODO: I don't like how we need to find the first promo parent ;( Too convoluted.
-  const write = meta.writes.find(write => write.kind === 'var');
+  const write = meta.writes.find((write) => write.kind === 'var');
   ASSERT(write, 'there should be such write', meta);
   const varDecl = write.blockBody[write.blockIndex];
   // For every step of the loop, which node do we consider its "current" parent? Starts with the real parent.
@@ -125,7 +127,7 @@ function _oneFunc(meta, funcName, queue) {
   while (currentParentNode.type !== 'Program') {
     vgroup('Loop start');
 
-    vgroup('Step 2.' + (++i) + ': find all local bindings to the current parent node of the function binding');
+    vgroup('Step 2.' + ++i + ': find all local bindings to the current parent node of the function binding');
     vlog('Current parent node pid:', currentParentNode.$p.pid, ', current promo pid:', currentPromoParent.$p.pid);
     const parentBindings = findLocalBindings(currentParentNode, funcName);
     vlog('The current parent node has these bindings:', parentBindings);
@@ -134,8 +136,8 @@ function _oneFunc(meta, funcName, queue) {
     vlog('Step 3.' + i + ': Check whether the function refers to any of the parent bindings');
     // We have to do a union of the two sets. I think it's more likely for the set of parentBindings
     // to be smaller than the set of referenced bindings so we check that way.
-    if (parentBindings.some(pname => closures.has(pname))) {
-      vlog('- At least one reference in', closures, 'referenced a closure of', parentBindings,', so we can not promote further');
+    if (parentBindings.some((pname) => closures.has(pname))) {
+      vlog('- At least one reference in', closures, 'referenced a closure of', parentBindings, ', so we can not promote further');
       vgroupEnd();
       break;
     }
@@ -160,7 +162,7 @@ function _oneFunc(meta, funcName, queue) {
     varDecl,
     from: write.blockBody,
     to: currentParentNode.body,
-    toPid: currentParentNode.$p.pid
+    toPid: currentParentNode.$p.pid,
   });
 
   return true;
@@ -181,7 +183,7 @@ function findClosureRefs(funcNode) {
     const key = nodeType + ':' + (before ? 'before' : 'after');
     switch (key) {
       case 'BlockStatement:before': {
-        blockReferences.push(new Set);
+        blockReferences.push(new Set());
         break;
       }
       case 'BlockStatement:after': {
@@ -215,10 +217,10 @@ function findClosureRefs(funcNode) {
 
   vlog('Verifying local from closure...');
   // "A reference is a closure when `not one` of the parent blocks contained a var decl for this name"
-  const closures = new Set;
+  const closures = new Set();
   referenced.forEach(([name, chain]) => {
     if (closures.has(name)) return; // It's likely a closure is referenced multiple times
-    if (!chain.some(set => set.has(name))) {
+    if (!chain.some((set) => set.has(name))) {
       closures.add(name);
     }
   });

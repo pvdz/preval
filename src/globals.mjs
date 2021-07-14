@@ -8,22 +8,16 @@ const globalNames = new Map([
   ['parseFloat', 'function'],
   ['setInterval', 'function'],
   ['setTimeout', 'function'],
-  [
-    'undefined',
-    { typeof: 'undefined', mustBeType: 'undefined', mustBeFalsy: true, mustBeTruthy: false, isPrimitive: true, primitiveValue: undefined },
-  ],
+  ['undefined', { mustBeType: 'undefined', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: undefined }],
   ['Array', 'function'],
   ['Boolean', 'function'],
   ['Date', 'function'],
   ['Error', 'function'],
-  [
-    'Infinity',
-    { typeof: 'number', mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, isPrimitive: true, primitiveValue: Infinity },
-  ],
+  ['Infinity', { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: Infinity }],
   ['JSON', 'object'],
   ['Math', 'object'],
   ['Map', 'function'],
-  ['NaN', { typeof: 'number', mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, isPrimitive: true, primitiveValue: NaN }],
+  ['NaN', { mustBeType: 'number', mustBeFalsy: true, mustBeTruthy: false, mustBePrimitive: true, primitiveValue: NaN }],
   ['Number', 'function'],
   ['Object', 'function'],
   ['RegExp', 'function'],
@@ -51,11 +45,11 @@ const globalNames = new Map([
   ['$dotCall', 'function'], // Should we tell Preval this is a function?
   ['$coerce', '$coerce'], // dito
 
-  ['$ArrayPrototype', {typeof: 'object', mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, isPrimitive: false }],
-  ['$FunctionPrototype', {typeof: 'object', mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, isPrimitive: false }],
-  ['$NumberPrototype', {typeof: 'object', mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, isPrimitive: false }],
-  ['$ObjectPrototype', {typeof: 'object', mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, isPrimitive: false }],
-  ['$StringPrototype', {typeof: 'object', mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, isPrimitive: false }],
+  ['$ArrayPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ['$FunctionPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ['$NumberPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ['$ObjectPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ['$StringPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
 ]);
 
 export default globalNames;

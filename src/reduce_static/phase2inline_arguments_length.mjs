@@ -115,7 +115,8 @@ function process(meta, name) {
 
   funcNode.body.body[funcNode.$p.readsArgumentsLenAt] = AST.emptyStatement();
   funcNode.body.body.splice(
-    funcNode.$p.bodyOffset,0,
+    funcNode.$p.bodyOffset,
+    0,
     // Note: this should be our own alias so we should be able to keep it a constant...
     AST.variableDeclaration(aliasVarNode.declarations[0].id, AST.literal(paramCount), 'const'),
   );

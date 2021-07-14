@@ -87,24 +87,13 @@ while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     const tmpSwitchValue = $(1, `disc`);
-    let tmpSwitchCaseToStart = 1;
     const tmpBinLhs = $(0);
-    let tmpIfTest$3 = true;
     const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
     if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 0;
-    } else {
-      tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-    }
-    if (tmpIfTest$3) {
       $(`wrong branch`);
       continue;
     } else {
-      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$5) {
-        continue;
-      } else {
-      }
+      continue;
     }
   } else {
     break;

@@ -5,10 +5,13 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, sour
 import { $p, resetUid, getUid } from '../$p.mjs';
 import * as AST from '../ast.mjs';
 import {
-  getIdentUsageKind,
   createReadRef,
   createWriteRef,
-  inferInitialType,
+  getCleanTypingObject,
+  getIdentUsageKind,
+  getUnknownTypingObject,
+  inferNodeTyping,
+  mergeTyping,
   registerGlobalIdent,
   registerGlobalLabel,
 } from '../bindings.mjs';
@@ -54,11 +57,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
     const meta = registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: false, isBuiltin: true });
     // Some values have detailed typing info
     if (typeof typing !== 'string') {
-      meta.typing.mustBeType = typing.mustBeType;
-      meta.typing.mustBeFalsy = typing.mustBeFalsy;
-      meta.typing.mustBeTruthy = typing.mustBeTruthy;
-      meta.typing.isPrimitive = typing.isPrimitive;
-      meta.typing.primitiveValue = typing.primitiveValue;
+      mergeTyping(typing, meta.typing);
     }
   });
 
@@ -106,7 +105,11 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
 
     if (before) {
       ASSERT(!parentNode || parentNode.$p);
-      ASSERT(node.$p?.phase1count !== fdata.phase1count, 'if this node was tagged with the current count before then that implies it occurs multiple times in the AST which is a bad state. fix the last transform to touch this AST.', node);
+      ASSERT(
+        node.$p?.phase1count !== fdata.phase1count,
+        'if this node was tagged with the current count before then that implies it occurs multiple times in the AST which is a bad state. fix the last transform to touch this AST.',
+        node,
+      );
       node.$p = $p();
       node.$p.phase1count = fdata.phase1count;
       node.$p.funcDepth = funcStack.length;
@@ -133,6 +136,20 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
     //vlog('ids/indexes:', blockIds, blockIndexes);
 
     switch (key) {
+      case 'AssignmentExpression:after': {
+        vlog('-', node.left.type, node.operator, node.right.type);
+        if (node.left.type === 'Identifier') {
+          const meta = fdata.globallyUniqueNamingRegistry.get(node.left.name);
+          ASSERT(meta);
+          vlog('Resolving .typing of `' + node.left.name + '` with the details of the rhs', node.right.type);
+          const newTyping = inferNodeTyping(fdata, node.right);
+          vlog('Results in', newTyping, 'which we will inject into', meta.typing);
+          mergeTyping(newTyping, meta.typing);
+          vlog('  - Typing data:', meta.typing);
+        }
+        break;
+      }
+
       case 'Program:before': {
         funcStack.push(node);
         lastWritesPerName.push(new Map());
@@ -606,7 +623,14 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         vlog('- Ident kind:', kind);
 
         ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment and we eliminated those? prove me wrong', node);
-        ASSERT(name !== '$coerce' || (parentNode.type === 'CallExpression' && parentProp === 'callee' && parentNode.arguments.length === 2 && AST.isStringLiteral(parentNode.arguments[1])), 'we control $coerce, it should have a specific form all the time')
+        ASSERT(
+          name !== '$coerce' ||
+            (parentNode.type === 'CallExpression' &&
+              parentProp === 'callee' &&
+              parentNode.arguments.length === 2 &&
+              AST.isStringLiteral(parentNode.arguments[1])),
+          'we control $coerce, it should have a specific form all the time',
+        );
 
         vlog(
           '- Parent: `' + parentNode.type + '.' + parentProp + '`',
@@ -732,7 +756,11 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               // This is the write(s) this read can reach. Can be multiple, for example after two writes in a branch.
               currentLastWriteSetForName.forEach((write) => {
                 // Point to each other
-                vlog('  - Pointing a read and a write to each other', read.type + ':' + read.kind + ':' + read.node.$p.pid + '.reachesWrites <->', write.type + ':' + write.kind + ':' + write.node.$p.pid + '.reachedByReads');
+                vlog(
+                  '  - Pointing a read and a write to each other',
+                  read.type + ':' + read.kind + ':' + read.node.$p.pid + '.reachesWrites <->',
+                  write.type + ':' + write.kind + ':' + write.node.$p.pid + '.reachedByReads',
+                );
                 read.reachesWrites.add(write);
                 write.reachedByReads.add(read);
               });
@@ -805,7 +833,11 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               // This is the write(s) this write can reach. Can be multiple, for example after two writes in a branch.
               currentLastWriteSetForName.forEach((prevWrite) => {
                 // Point to each other
-                vlog('  - Pointing two writes to each other', write.action + ':' + write.kind + ':' + write.node.$p.pid + '.reachesWrites <->', prevWrite.action + ':' + prevWrite.kind + ':' + prevWrite.node.$p.pid + '.reachedByWrites');
+                vlog(
+                  '  - Pointing two writes to each other',
+                  write.action + ':' + write.kind + ':' + write.node.$p.pid + '.reachesWrites <->',
+                  prevWrite.action + ':' + prevWrite.kind + ':' + prevWrite.node.$p.pid + '.reachedByWrites',
+                );
                 write.reachesWrites.add(prevWrite);
                 prevWrite.reachedByWrites.add(write);
               });
@@ -851,6 +883,9 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             );
             currentLastWriteMapForName.set(name, new Set([write]));
 
+            const meta = fdata.globallyUniqueNamingRegistry.get(node.name);
+
+            // Inject var decls at the top, append other writes at the end
             if (parentNode.type === 'VariableDeclarator') {
               ASSERT(parentProp === 'id', 'the read check above should cover the prop=init case');
               vlog('- Adding decl write to meta.writes');
@@ -876,68 +911,34 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               meta.writes.push(write);
             }
 
+            // Update .typing for this binding
+            ASSERT(meta);
             vlog('Writing to .typing now');
-            if (parentNode.type === 'AssignmentExpression') {
-              const nowTyping = meta.typing;
-              const newTyping = {};
-              inferInitialType(fdata, newTyping, parentNode.right);
-              vlog('Results in', newTyping, 'which we will inject into', nowTyping);
-
-              if (nowTyping.mustBeType && nowTyping.mustBeType !== newTyping.mustBeType) {
-                nowTyping.mustBeType = ''; // Found conflicting types
-              }
-              if (nowTyping.mustBeFalsy && !newTyping.mustBeFalsy) {
-                nowTyping.mustBeFalsy = false;
-              }
-              if (nowTyping.mustBeTruthy && !newTyping.mustBeTruthy) {
-                nowTyping.mustBeTruthy = false;
-              }
-              if (nowTyping.bang && !newTyping.bang) {
-                nowTyping.bang = false;
-              }
-              if (nowTyping.isPrimitive && !newTyping.isPrimitive) {
-                nowTyping.isPrimitive = false;
-                meta.typing.primitiveValue = undefined;
-              }
-              if (nowTyping.valueSet) {
-                if (newTyping.valueSet) {
-                  if (nowTyping.valueSet.size !== newTyping.valueSet.size) {
-                    nowTyping.valueSet = false;
-                  } else {
-                    for (const x of newTyping.valueSet) {
-                      if (!nowTyping.valueSet.has(x)) {
-                        nowTyping.valueSet = false;
-                        break;
-                      }
-                    }
-                  }
-                }
-              }
-              // Either the same bit is set (silly redundancy but okay), or this binding does not always represent a single bit
-              nowTyping.oneBitAnded = nowTyping.oneBitAnded & nowTyping.oneBitAnded || undefined;
-              // Same as with the single bit, I guess.
-              nowTyping.anded = nowTyping.anded & nowTyping.anded || undefined;
-            } else if (parentNode.type !== 'VariableDeclarator') {
-              // for lhs? not sure what else, currently
-              vlog('Clearing types because the write was not an assignment expression...', parentNode.type);
-              // We don't know anything (maybe once we start tracking `for` properly)
-              meta.typing.mustBeType = '';
-              meta.typing.mustBeFalsy = false;
-              meta.typing.mustBeTruthy = false;
-              meta.typing.isPrimitive = false;
-              meta.typing.primitiveValue = undefined;
-              vlog('Typing now:', meta.typing);
+            if (write.kind === 'var' || write.kind === 'assign') {
+              vlog('Skipping typing till after the parent var/assign handler');
             } else {
-              // var decl typing is handled in its handler
-              vlog('Not changing the typing. It should be set through the var decl handler');
+              // `for` lhs? not sure what else, currently. since we dont do catch clause yet and normalize everything else.
+              ASSERT(
+                parentNode.type === 'ForInStatement' ||
+                  parentNode.type === 'ForOfStatement' ||
+                  parentNode.type === 'ImportSpecifier' ||
+                  parentNode.type === 'CatchClause' ||
+                  parentNode.type === 'ClassExpression', // meh. i'm allowing it for now.
+                'assign is var, assign, import, catch, or for ... right?',
+                parentNode.type,
+              );
+              vlog('Clearing types because the write was not a var or an assignment expression...', parentNode.type);
+              const newTyping = getUnknownTypingObject();
+              mergeTyping(newTyping, meta.typing);
+              vlog('Typing now:', meta.typing);
             }
           }
 
           if (node.name === 'arguments') {
-            meta.typing.mustBeType = ''; // Let's not treat `arguments` as a regular object, nor an array...
-            meta.typing.mustBeFalsy = false;
-            meta.typing.mustBeTruthy = true;
-            meta.typing.isPrimitive = false;
+            //ASSERT(kind === 'write', 'so this must be a write to the identifier `arguments`', kind, parentNode.type);
+            // Treat `arguments` as an unknown object. It's not an array and very special.
+            // This can be reached by the regular arguments alias, or by a ref to arguments in global space.
+            meta.typing = getCleanTypingObject();
           }
 
           // Resolve whether this was an export. If so, mark the name as such.
@@ -1242,8 +1243,13 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           containerParent: parentNode.body,
           containerIndex: parentIndex,
         };
-        inferInitialType(fdata, meta.typing, init, node.kind);
+
+        vlog('Resolving .typing details of the init');
+        const newTyping = inferNodeTyping(fdata, node.declarations[0].init);
+        vlog('Results in', newTyping, 'which we will inject into', meta.typing);
+        mergeTyping(newTyping, meta.typing);
         vlog('  - Typing data:', meta.typing);
+
         // Binding "owner" func node. In which scope was this binding bound?
         meta.bfuncNode = funcStack[funcStack.length - 1];
         break;

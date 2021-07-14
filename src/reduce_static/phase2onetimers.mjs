@@ -351,9 +351,7 @@ function _inlineOneTimeFunctions(fdata) {
       funcNode.params.forEach((pnode, pi) => {
         // Unused params have no ref (?)
         if (pnode.$p.paramVarDeclRef) {
-          collected.push(
-            AST.variableDeclaration(pnode.$p.paramVarDeclRef.name, args[pi] ? args[pi] : AST.identifier('undefined'), 'let'),
-          );
+          collected.push(AST.variableDeclaration(pnode.$p.paramVarDeclRef.name, args[pi] ? args[pi] : AST.identifier('undefined'), 'let'));
         }
       });
 

@@ -75,7 +75,10 @@ function _pruneExcessiveParams(fdata) {
         vlog(
           '    - checking param',
           pi,
-          ': `' + (pnode.name ?? pnode.argument.name) + '`' + (pnode.$p.paramVarDeclRef ? ' (`' + pnode.$p.paramVarDeclRef.name + '`)' : '(unused)'),
+          ': `' +
+            (pnode.name ?? pnode.argument.name) +
+            '`' +
+            (pnode.$p.paramVarDeclRef ? ' (`' + pnode.$p.paramVarDeclRef.name + '`)' : '(unused)'),
         );
         ASSERT(pnode.type === 'Param');
         // If this param has no reads then for all calls to the function, eliminate that index

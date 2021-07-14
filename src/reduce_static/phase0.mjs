@@ -19,7 +19,6 @@ export function phase0(code, fname, subCall) {
     astUids: false, // For debugging
   });
 
-
   log('- Finished parsing');
 
   groupEnd();

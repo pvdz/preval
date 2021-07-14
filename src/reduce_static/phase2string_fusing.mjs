@@ -23,7 +23,6 @@ import { createFreshVar } from '../bindings.mjs';
 
 export function stringFusing(fdata) {
   group('\n\n\nSearching for strings to fuse together');
-  const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _stringFusing(fdata);
   groupEnd();
@@ -174,7 +173,7 @@ function _processBinary(node, fdata, path) {
       example('15 + `a${b}c`', '`${15}a${b}c`');
       before(node, parentNode);
 
-      const newLeft = AST.cloneSimpleOrTemplate(left)
+      const newLeft = AST.cloneSimpleOrTemplate(left);
 
       const newTemplateNode = AST.templateLiteral(
         ['', ...right.quasis.map((te) => te.value.cooked)],

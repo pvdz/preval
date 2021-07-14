@@ -119,7 +119,10 @@ function _pruneEmptyFunctions(fdata) {
             vlog(
               '  - pos',
               pi,
-              ', placeholder `' + pnode.name + '`, name: ' + (pnode.$p.paramVarDeclRef?.name ? '`' + pnode.$p.paramVarDeclRef?.name + '`' : '<none>'),
+              ', placeholder `' +
+                pnode.name +
+                '`, name: ' +
+                (pnode.$p.paramVarDeclRef?.name ? '`' + pnode.$p.paramVarDeclRef?.name + '`' : '<none>'),
             );
             ASSERT(pnode.type === 'Param');
             if (pnode.rest) {
@@ -205,7 +208,7 @@ function _pruneEmptyFunctions(fdata) {
   log('\nQueued', toDelete.length, 'calls for deletion,', toReplaceAt.length, 'for replacement, and', toReplaceWith.length, 'for inlining');
   if (toDelete.length || toReplaceAt.length || toReplaceWith.length) {
     toDelete.forEach(({ node, parentNode, grandNode, grandProp, grandIndex, ...rest }, i) => {
-      rule('[' + (i+1) + '/' + toDelete.length + '] Call to function with empty body should be replaced with `undefined`');
+      rule('[' + (i + 1) + '/' + toDelete.length + '] Call to function with empty body should be replaced with `undefined`');
       example('function f(){} f();', 'undefined;');
       before(node, grandNode);
 
@@ -216,7 +219,7 @@ function _pruneEmptyFunctions(fdata) {
       after(AST.identifier('undefined'), grandNode);
     });
     toReplaceAt.forEach(([{ node, parentNode, grandNode, grandProp, grandIndex, ...rest }, pi], i) => {
-      rule('[' + (i+1) + '/' + toReplaceAt.length + '] Call to function that returns a param should be replaced with that arg');
+      rule('[' + (i + 1) + '/' + toReplaceAt.length + '] Call to function that returns a param should be replaced with that arg');
       example('function f(a){ return a; } f(10);', '10;');
       before(parentNode, grandNode);
 
@@ -230,7 +233,9 @@ function _pruneEmptyFunctions(fdata) {
       vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
     });
     toReplaceWith.forEach(([what, { node, parentNode, grandNode, grandProp, grandIndex, ...rest }, arg], i) => {
-      rule('[' + (i+1) + '/' + toReplaceWith.length + '] Call to function that returns a [' + what + '] should be replaced with that node');
+      rule(
+        '[' + (i + 1) + '/' + toReplaceWith.length + '] Call to function that returns a [' + what + '] should be replaced with that node',
+      );
       example('function f(){ return 15; } f(10);', '15;', () => what === 'primitive');
       example('function f(){ return x; } f(10);', 'x;', () => what === 'identifier');
       before(parentNode, grandNode);

@@ -1,5 +1,5 @@
 import walk from '../../lib/walk.mjs';
-import {ASSERT, log, group, groupEnd} from "../utils.mjs"
+import { ASSERT, log, group, groupEnd } from '../utils.mjs';
 
 export function printAST(node, prop) {
   walk(
@@ -12,7 +12,6 @@ export function printAST(node, prop) {
 
         if (parentIndex >= 0) group();
         log(node.type + ':' + node.$p.pid);
-
       } else {
         if (parentIndex >= 0) groupEnd();
       }

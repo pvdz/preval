@@ -79,7 +79,7 @@ function _ifTailExtending(fdata) {
     vgroup('Processing ifs now');
     queue.forEach(({ contbrk, consEnds, node, body, index }) => {
       if (contbrk) {
-        vlog('Next if:', node.$p.pid, ', breaks or continues: in the', consEnds ? 'if' : 'else','branch');
+        vlog('Next if:', node.$p.pid, ', breaks or continues: in the', consEnds ? 'if' : 'else', 'branch');
         if (consEnds) {
           // Only the if-branch ended with a `continue` or `break` statement.
           rule('The `if` branch has `continue` or `break`, move the tail into the `else` branch');

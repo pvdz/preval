@@ -21,7 +21,6 @@ import * as AST from '../ast.mjs';
 
 export function spylessVars(fdata) {
   group('\n\n\nChecking for single scoped spyless vars to move');
-  //const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _spylessVars(fdata);
   groupEnd();
@@ -292,7 +291,7 @@ function process(fdata, meta, name, queue, dupes) {
 
     // Queue the re-injection to happen in a queue
     queue.push({
-      index: targetBody[targetIndexToContainRef],
+      index: targetIndexToContainRef, // targetBody[targetIndexToContainRef],
       pid: varNode.$p.pid, // If two vars are competing for the same index, make sure to keep original source order
       func: () => {
         if (dupes.get(targetBody) === true) {
@@ -304,7 +303,10 @@ function process(fdata, meta, name, queue, dupes) {
         example('const x = +y; const z = x * 2; if ($) $(); $(z);', 'const x = +y; if ($) $(); const z = x * 2; $(z);');
         vlog(outputBefore);
 
-        varDeclRef.blockBody[varDeclRef.blockIndex] = AST.emptyStatement();
+        const index = varDeclRef.blockBody.indexOf(varNode);
+        varDeclRef.blockBody[index] = AST.emptyStatement();
+        //varDeclRef.blockBody[varDeclRef.blockIndex] = AST.emptyStatement();
+
         targetBody.splice(targetIndexToContainRef, 0, varNode);
 
         after(varNode, targetBody);

@@ -34,7 +34,6 @@ function _constAssigns(fdata) {
     meta.writes.forEach((write) => {
       if (write.parentNode.type === 'VariableDeclarator' && write.parentProp === 'id') return; // This is the var decl. Skip that one.
 
-
       rule('Writes to a const binding must throw');
       example('const x = 5; x = 10; f();', 'const x = 5; x = 10; throw error; f();');
       before(write.blockBody[write.blockIndex]);

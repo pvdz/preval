@@ -413,7 +413,8 @@ function _typeTrackedTricks(fdata) {
                 break;
               }
 
-              case '':
+              case undefined:
+              case false:
                 break;
               default:
                 ASSERT(false, 'support this mustBeType enum value...', argMeta.typing);

@@ -8,6 +8,7 @@ import * as AST from '../ast.mjs';
 
 export function andCases(fdata) {
   group('\n\n\nChecking AND cases\n');
+  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _andCases(fdata);
   groupEnd();
   return r;
@@ -20,7 +21,7 @@ function _andCases(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
-    if (meta.typing.anded === undefined) return; // phase1 will have done the necessary checks for the init. we should not need to check the rest?
+    if (meta.typing.anded === false || meta.typing.anded === undefined) return; // phase1 will have done the necessary checks for the init. we should not need to check the rest?
     if (!meta.isConstant) return;
     //if (meta.writes.length !== 1) return; // :shrug:
     //if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return;
@@ -35,6 +36,7 @@ function _andCases(fdata) {
     // a literal on one side of the operand (potentially two, though). Must confirm whether the number is a "single bit".
 
     const bitsAnded = meta.typing.anded;
+    ASSERT(typeof bitsAnded === 'number', 'undefined, false, or a number', bitsAnded);
 
     // Check if there's a usage of this in a comparison to zero or the bit that was set
     vgroup('Scanning for all usages of `' + meta.uniqueName + '`...');
@@ -57,8 +59,9 @@ function _andCases(fdata) {
 
           // We have `const x = y === unknown`. Now we check whether `unknown` is either `0` or has overlapping bits.
           if (AST.isPrimitive(unknown)) {
-            const pv = AST.getPrimitiveValue(unknown);
-            vlog('Was comparing to a primitive:', pv);
+            const pvo = AST.getPrimitiveValue(unknown);
+            const pv = pvo | 0;
+            vlog('Was comparing to a primitive:', pvo, '(', pv, ')');
             // This is `y === <primitive>` where we only know `y` to be the result of `& <anded>`
 
             vlog('- Then: 0b' + bitsAnded.toString(2).padStart(32, ' '));

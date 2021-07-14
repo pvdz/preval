@@ -316,7 +316,7 @@ function hashArg(index, valueNode) {
       : valueNode.type === 'Literal'
       ? valueNode.value
       : valueNode.type === 'TemplateLiteral'
-      ? (ASSERT(AST.isStringValue(valueNode), AST.getStringValue(valueNode)))
+      ? ASSERT(AST.isStringValue(valueNode), AST.getStringValue(valueNode))
       : valueNode.type === 'UnaryExpression' && valueNode.operator === '-' && AST.isNumber(valueNode.argument)
       ? -valueNode.argument.value
       : ASSERT(false, 'support this node kind', valueNode);

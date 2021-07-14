@@ -71,7 +71,7 @@ function process(meta, name) {
   }
 
   const params = funcNode.params;
-  if (params.some(pnode => pnode.rest)) {
+  if (params.some((pnode) => pnode.rest)) {
     vlog('The function has a rest param. Bailing');
     return false;
   }
@@ -190,12 +190,8 @@ function process(meta, name) {
 
         params.splice(i, 1);
         paramNode.$p.paramVarDeclRef.blockBody[paramNode.$p.paramVarDeclRef.blockIndex] = AST.emptyStatement();
-        const freshVarNode = AST.variableDeclaration(varDecl.declarations[0].id.name, AST.primitive(knownValues[i]), varDecl.kind)
-        funcNode.body.body.splice(
-          funcNode.$p.bodyOffset,
-          0,
-          freshVarNode,
-        );
+        const freshVarNode = AST.variableDeclaration(varDecl.declarations[0].id.name, AST.primitive(knownValues[i]), varDecl.kind);
+        funcNode.body.body.splice(funcNode.$p.bodyOffset, 0, freshVarNode);
         //vlog('Added', varDecl.declarations[0].id.name, freshVarNode, knownValues[i], '->', AST.primitive(knownValues[i]))
       }
 
@@ -205,7 +201,7 @@ function process(meta, name) {
       });
     }
   }
-  vlog('Renaming Param nodes to eliminate holes we may have left')
+  vlog('Renaming Param nodes to eliminate holes we may have left');
   params.forEach((paramNode, pi) => {
     // Make sure the params are incremental in order. We can't leave any holes.
     if (paramNode.index !== pi) {

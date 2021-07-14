@@ -136,11 +136,7 @@ tmpSwitchBreak: {
       $(`fail1`);
     } else {
     }
-    const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$9) {
-      $(`fail2`);
-    } else {
-    }
+    $(`fail2`);
   }
 }
 $(a);

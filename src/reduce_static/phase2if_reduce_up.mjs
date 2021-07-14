@@ -76,21 +76,21 @@ function _ifReduceUp(fdata) {
 
           const name = firstThen.declarations[0].id.name;
           const meta = fdata.globallyUniqueNamingRegistry.get(firstElse.declarations[0].id.name);
-          meta.rwOrder.forEach(ref => {
+          meta.rwOrder.forEach((ref) => {
             if (ref.action === 'write' && ref.kind === 'var') {
               // Ignore the var. We'll drop it next.
             } else {
               ref.node.name = name;
             }
-          })
+          });
 
           blockBody.splice(blockIndex, 0, firstThen);
           node.consequent.body.shift();
           node.alternate.body.shift();
 
           after(node);
-        }
-      })
+        },
+      });
     } else {
       queue.push({
         pid: +node.$p.pid,

@@ -5,12 +5,7 @@ import walk from '../../lib/walk.mjs';
 import { RED, BLUE, RESET } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd } from '../utils.mjs';
 import { $p } from '../$p.mjs';
-import {
-  getIdentUsageKind,
-  createFreshLabel,
-  findUniqueNameForBindingIdent,
-  preprocessScopeNode,
-} from '../bindings.mjs';
+import { getIdentUsageKind, createFreshLabel, findUniqueNameForBindingIdent, preprocessScopeNode } from '../bindings.mjs';
 
 export function uniqify_idents(funcAst, fdata) {
   const lexScopeStack = [];
@@ -19,7 +14,7 @@ export function uniqify_idents(funcAst, fdata) {
   const funcScopeStack = [];
 
   let walked = 0;
-  log('    - before walk')
+  log('    - before walk');
   walk(_walker, funcAst, 'ast');
   log('    - after walk, visitor called', walked, 'times');
   function _walker(node, before, nodeType, path) {

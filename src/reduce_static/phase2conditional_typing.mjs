@@ -123,29 +123,27 @@ function _conditionalTyping(fdata) {
 
       if (targetMeta.isImplicitGlobal) {
         vlog('The name is an implicit global. Not safe to continue.');
-        return
+        return;
       }
 
       if (!targetMeta.isConstant) {
         vlog('The name is not a constant. Not safe to continue.');
-        return
+        return;
       }
 
-      vgroup('The init is an ident and a primitive. Walking all',targetMeta.reads.length,'reads now...');
+      vgroup('The init is an ident and a primitive. Walking all', targetMeta.reads.length, 'reads now...');
       targetMeta.reads.forEach((read, ri) => {
         vgroup('- read', ri);
-        binaryEqNeqRead(read, ri, value, targetName, ifTestMeta, varDeclRef, beforeValueNode, opbefore, node, fdata)
+        binaryEqNeqRead(read, ri, value, targetName, ifTestMeta, varDeclRef, beforeValueNode, opbefore, node, fdata);
         vgroupEnd();
       });
       vgroupEnd();
-    }
-    else {
+    } else {
       vlog('The binary expression was not an ident and primitive. Bailing');
     }
   }
 
   function binaryEqNeqRead(read, ri, value, targetName, ifTestMeta, varDeclRef, beforeValueNode, opbefore, node) {
-
     let whichBranch = '';
     if (+read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid) {
       vlog('ref in if branch');
@@ -338,8 +336,5 @@ function _conditionalTyping(fdata) {
     } else {
       vlog('not in either branch');
     }
-
   }
-
-
 }

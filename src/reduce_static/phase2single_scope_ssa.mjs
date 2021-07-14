@@ -144,9 +144,11 @@ function _singleScopeSSA(fdata) {
 
         // Print the clusters (for now, will probably want to get rid of this)
         vgroup(c, ':');
-        [...s].sort((a, b) => (+a.node.$p.pid < +b.node.$p.pid ? -1 : +a.node.$p.pid > +b.node.$p.pid ? 1 : 0)).forEach((r) => {
-          source(r.blockBody[r.blockIndex])
-        });
+        [...s]
+          .sort((a, b) => (+a.node.$p.pid < +b.node.$p.pid ? -1 : +a.node.$p.pid > +b.node.$p.pid ? 1 : 0))
+          .forEach((r) => {
+            source(r.blockBody[r.blockIndex]);
+          });
         vgroupEnd();
       }
     });
@@ -169,7 +171,7 @@ function _singleScopeSSA(fdata) {
         }
 
         if (refs.size === 1) {
-          refs.forEach(ref => {
+          refs.forEach((ref) => {
             ASSERT(ref.action === 'write');
             if (ref.kind === 'var') {
               // Another rule will pick this up. This binding may need to persist to support certain structures:
@@ -189,7 +191,7 @@ function _singleScopeSSA(fdata) {
               after(ref.blockBody[ref.blockIndex]);
               ++changed;
             }
-          })
+          });
           vlog('  - This group had one write and no reads. Bailing to prevent botching an if-else case.');
           return;
         }
@@ -210,7 +212,7 @@ function _singleScopeSSA(fdata) {
                 return;
               }
             }
-            vlog('-', '"'+ref.blockChain+'".startsWith("' + firstWrite.blockChain + '")')
+            vlog('-', '"' + ref.blockChain + '".startsWith("' + firstWrite.blockChain + '")');
             return !ref.blockChain.startsWith(firstWrite.blockChain);
           })
         ) {

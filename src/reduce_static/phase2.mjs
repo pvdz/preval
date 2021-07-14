@@ -35,7 +35,7 @@ import { typeTrackedTricks } from './phase2type_tracked_tricks.mjs';
 import { arrSpreads } from './phase2arr_spread.mjs';
 import { conditionalTyping } from './phase2conditional_typing.mjs';
 import { findThrowers } from './phase2throwers.mjs';
-import { ifReturnBit } from './phase2if_return_bit.mjs';
+import { ifDualAssign } from './phase2if_dual_assign.mjs';
 import { returnsParam } from './phase2return_param.mjs';
 import { ifTestBool } from './phase2if_test_bool.mjs';
 import { spylessVars } from './phase2spyless_vars.mjs';
@@ -50,6 +50,7 @@ import { coercials } from './phase2coerced.mjs';
 import { redundantWrites } from './phase2redundant_if_else_writes.mjs';
 import { ifReduceUp } from './phase2if_reduce_up.mjs';
 import { reduceOrXors } from './phase2orxor_cases.mjs';
+import { resolveBoundValueSet } from './phase2bound_value_set.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -94,7 +95,7 @@ function _phase2(program, fdata, resolve, req) {
           vlog('Merging the typing from `' + name2 + '` into `' + name + '`');
           vlog('From typing:', meta2.typing);
           vlog('Into typing:', meta.typing);
-          mergeTyping(meta2, meta);
+          mergeTyping(meta2.typing, meta.typing);
         }
       }
     }
@@ -126,6 +127,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const coerced = coercials(fdata);
   if (coerced) return coerced;
+
+  const bounds = resolveBoundValueSet(fdata);
+  if (bounds) return bounds;
 
   const throwers = findThrowers(fdata);
   if (throwers) return throwers;
@@ -238,8 +242,8 @@ function _phase2(program, fdata, resolve, req) {
   const ifsFolded = ifTestFolding(fdata);
   if (ifsFolded) return ifsFolded;
 
-  const ifbits = ifReturnBit(fdata);
-  if (ifbits) return ifbits;
+  const dualed = ifDualAssign(fdata);
+  if (dualed) return dualed;
 
   const returnedParams = returnsParam(fdata);
   if (returnedParams) return returnedParams;

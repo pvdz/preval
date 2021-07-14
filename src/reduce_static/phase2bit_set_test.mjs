@@ -8,6 +8,7 @@ import * as AST from '../ast.mjs';
 
 export function bitSetTests(fdata) {
   group('\n\n\nChecking for bit-set `if`-test pattern\n');
+  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _bitSetTests(fdata);
   groupEnd();
   return r;
@@ -20,7 +21,7 @@ function _bitSetTests(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
-    if (meta.typing.oneBitAnded === undefined) return; // phase1 will have done the necessary checks for the init. we should not need to check the rest?
+    if (!meta.typing.oneBitAnded) return; // (undefined, false, 0) phase1 will have done the necessary checks for the init. we should not need to check the rest?
     if (!meta.isConstant) return;
     //if (meta.writes.length !== 1) return; // :shrug:
     //if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return;
@@ -35,6 +36,7 @@ function _bitSetTests(fdata) {
     // a literal on one side of the operand (potentially two, though). Must confirm whether the number is a "single bit".
 
     const oneBitAnded = meta.typing.oneBitAnded;
+    ASSERT(typeof oneBitAnded === 'number', 'should be undefined, false, or a number', oneBitAnded);
 
     // Check if there's a usage of this in a comparison to zero or the bit that was set
     vgroup('Scanning for all usages of `' + meta.uniqueName + '`...');
@@ -119,6 +121,7 @@ function _bitSetTests(fdata) {
               else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
               after(finalNode, read.blockBody[read.blockIndex]);
+              ++found;
             } else {
               rule('Anding a value known to have one bit set with a value that does not have that bit set means the result is zero');
               example('const x = a & 32; const y = x & 4; f(y);', 'const x = 0; const y = x; f(y);'); // tests/cases/bit_hacks/and_twice_bad.md
@@ -130,6 +133,7 @@ function _bitSetTests(fdata) {
               else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
 
               after(finalNode, read.blockBody[read.blockIndex]);
+              ++found;
             }
           }
         }

@@ -144,11 +144,7 @@ if (tmpIfTest$9) {
   $(`c`);
 } else {
 }
-const tmpIfTest$11 = tmpSwitchCaseToStart <= 3;
-if (tmpIfTest$11) {
-  $(`d`);
-} else {
-}
+$(`d`);
 `````
 
 ## Globals

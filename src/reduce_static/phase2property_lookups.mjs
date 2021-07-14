@@ -18,7 +18,8 @@ import {
   after,
   findBodyOffset,
 } from '../utils.mjs';
-import {   BUILTIN_ARRAY_PROTOTYPE,
+import {
+  BUILTIN_ARRAY_PROTOTYPE,
   BUILTIN_FUNCTION_PROTOTYPE,
   BUILTIN_NUMBER_PROTOTYPE,
   BUILTIN_OBJECT_PROTOTYPE,
@@ -28,6 +29,7 @@ import * as AST from '../ast.mjs';
 
 export function propertyLookups(fdata) {
   group('\n\n\nFinding static properties to resolve\n');
+  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _propertyLookups(fdata);
   groupEnd();
   return r;
@@ -54,13 +56,13 @@ function _propertyLookups(fdata) {
     if (parentNode.type === 'CallExpression') return; // Bail on method calls for now.
     ASSERT(parentNode.type !== 'NewExpression', 'normalized code should not have member expressions as the callee of a new (nor its args)');
 
-    vlog('-', node.computed ? node.object.type + '[' + node.property.type + ']' : node.object.type + '.' + node.property.type)
+    vlog('-', node.computed ? node.object.type + '[' + node.property.type + ']' : node.object.type + '.' + node.property.type);
 
     if (node.object.type === 'Identifier' && !AST.isPrimitive(node.object) && node.object.name !== 'arguments') {
       const meta = fdata.globallyUniqueNamingRegistry.get(node.object.name);
-      vlog('  -', node.computed ? node.object.name + '[' + node.property.type + ']' : node.object.name + '.' + node.property.name)
+      vlog('  -', node.computed ? node.object.name + '[' + node.property.type + ']' : node.object.name + '.' + node.property.name);
       vlog('the obj is a', meta.typing.mustBeType || '<unknown>');
-      vlog('    - typing for `' + node.object.name  + '`:', meta.typing)
+      vlog('    - typing for `' + node.object.name + '`:', meta.typing);
       if (meta.typing.mustBeType === 'array') {
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
@@ -70,7 +72,7 @@ function _propertyLookups(fdata) {
             // jsf*ck specific support
             // This is Function#flat ...
             rule('Fetching but not calling a method from Array.prototype should do this explicitly');
-            example('f([].flat)', 'f('+BUILTIN_ARRAY_PROTOTYPE+'.flat)');
+            example('f([].flat)', 'f(' + BUILTIN_ARRAY_PROTOTYPE + '.flat)');
             before(node, grandNode);
 
             node.object = AST.identifier(BUILTIN_ARRAY_PROTOTYPE);
@@ -79,7 +81,7 @@ function _propertyLookups(fdata) {
             ++changes;
             return;
           }
-        } else         if (prop === 'constructor') {
+        } else if (prop === 'constructor') {
           if (true) {
             // jsf*ck specific support
             // This is Function ...
@@ -96,7 +98,6 @@ function _propertyLookups(fdata) {
             return;
           }
         }
-
       } else if (meta.typing.mustBeType === 'function') {
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
@@ -182,7 +183,7 @@ function _propertyLookups(fdata) {
             // jsf*ck specific support
             // This is Function#flat ...
             rule('Fetching but not calling a method from Array.prototype should do this explicitly');
-            example('f("foo".toString)', 'f('+BUILTIN_STRING_PROTOTYPE+'.toString)');
+            example('f("foo".toString)', 'f(' + BUILTIN_STRING_PROTOTYPE + '.toString)');
             before(node, grandNode);
 
             node.object = AST.identifier(BUILTIN_STRING_PROTOTYPE);
@@ -214,7 +215,6 @@ function _propertyLookups(fdata) {
         }
       }
     }
-
   }
 
   if (changes) {

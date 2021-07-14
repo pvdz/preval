@@ -22,6 +22,7 @@ import * as AST from '../ast.mjs';
 
 export function globalCasting(fdata) {
   group('\n\n\nSearching for calls to global builtins that cast their arg\n');
+  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _globalCasting(fdata);
   groupEnd();
   return r;

@@ -239,12 +239,8 @@ tmpSwitchBreak: {
       $(4);
       break tmpSwitchBreak;
     } else {
-      const tmpIfTest$19 = tmpSwitchCaseToStart <= 5;
-      if (tmpIfTest$19) {
-        $(5);
-        break tmpSwitchBreak;
-      } else {
-      }
+      $(5);
+      break tmpSwitchBreak;
     }
   }
 }

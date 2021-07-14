@@ -91,7 +91,9 @@ function _singleScopeTdz(fdata) {
         example('x; let x = 10;', 'throw error; let x = 10;');
         before(ref.node, ref.blockBody[ref.blockIndex]);
 
-        ref.blockBody[ref.blockIndex] = AST.throwStatement(AST.templateLiteral('Preval: Cannot access `' + name + '` before initialization'));
+        ref.blockBody[ref.blockIndex] = AST.throwStatement(
+          AST.templateLiteral('Preval: Cannot access `' + name + '` before initialization'),
+        );
 
         after(ref.blockBody[ref.blockIndex]);
 

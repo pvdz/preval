@@ -21,9 +21,9 @@ export function ASSERT(b, m = '', ...rest) {
     setVerboseTracing(true);
 
     error('Assertion error happened...');
-    log('ASSERTION ARGS:');
+    ASSERT_LOG('ASSERTION ARGS:');
     let n = m || '<assertion without desc>';
-    log(...(rest.length ? rest : ['<assert had no further args>']));
+    ASSERT_LOG(...(rest.length ? rest : ['<assert had no further args>']));
 
     if (log !== console.log && typeof window !== 'undefined') {
       console.error('Assertion error happened...');
@@ -40,6 +40,9 @@ export function ASSERT_LOC(loc) {
   ASSERT(typeof loc.column === 'number' && loc.column >= 0, 'loc filename must be a number >=0', loc);
   ASSERT(typeof loc.line === 'number' && loc.line >= 1, 'loc filename must be a number >0', loc);
 }
+
+// Certain things need to be loggable regardless
+export const ASSERT_LOG = console.log;
 
 let VERBOSE = true;
 

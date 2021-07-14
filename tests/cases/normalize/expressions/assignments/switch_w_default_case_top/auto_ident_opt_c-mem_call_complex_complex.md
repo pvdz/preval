@@ -147,11 +147,7 @@ if (tmpIfTest$9) {
   $(`fail1`);
 } else {
 }
-const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$11) {
-  $(`fail2`);
-} else {
-}
+$(`fail2`);
 $(a);
 `````
 

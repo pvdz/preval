@@ -5103,7 +5103,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             before(node, parentNode);
 
             const v = globals.get(node.argument.name);
-            const finalNode = AST.templateLiteral(typeof v === 'string' ? v : v.typeof);
+            const finalNode = AST.templateLiteral(typeof v === 'string' ? v : v.mustBeType);
             const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
             body[i] = finalParent;
 

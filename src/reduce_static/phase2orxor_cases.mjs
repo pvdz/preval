@@ -12,15 +12,15 @@ export function reduceOrXors(fdata) {
   return r;
 }
 function _reduceOrXors(fdata) {
-  const ast = fdata.tenkoOutput.ast;
-
   const queue = [];
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
-    if (meta.typing.orredWith === undefined) return; // phase1 will have done the necessary checks for the init. we should not need to check the rest?
+    if (!meta.typing.orredWith) return; // (undefined, false, 0) phase1 will have done the necessary checks for the init. we should not need to check the rest?
     if (!meta.isConstant) return;
+
+    ASSERT(typeof meta.typing.orredWith === 'number', 'undefined, false, or number', meta.typing.orredWith);
 
     vgroup('- `' + name + '`: is a const var whose value was ORed to:', '0b' + meta.typing.orredWith.toString(2));
     process(meta, name, queue);
@@ -33,7 +33,11 @@ function _reduceOrXors(fdata) {
 
     const varWrite = meta.writes.find((write) => write.kind === 'var');
     ASSERT(varWrite, 'constants must have a var');
-    ASSERT(varWrite.parentNode.init.type === 'BinaryExpression' && varWrite.parentNode.init.operator === '|');
+    ASSERT(
+      varWrite.parentNode.init.type === 'BinaryExpression' && varWrite.parentNode.init.operator === '|',
+      'parent should be binary on OR because typing.orredWith was set',
+      meta.typing,
+    );
 
     const ilp = AST.isPrimitive(varWrite.parentNode.init.left);
     const irp = AST.isPrimitive(varWrite.parentNode.init.right);
@@ -120,7 +124,7 @@ function _reduceOrXors(fdata) {
                     // Drop the overlap from the primitive of the existing xor
                     read.parentNode.right = AST.primitive(xv ^ overlap);
                     read.parentNode.left = AST.identifier(tmp);
-                    read.blockBody.splice(read.blockIndex, 0, varNode)
+                    read.blockBody.splice(read.blockIndex, 0, varNode);
 
                     after(varWrite.blockBody[varWrite.blockIndex]);
                     after(read.blockBody[read.blockIndex]);

@@ -88,26 +88,11 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+$(1);
 const b = { c: 1 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 b.c = 2;
-const tmpIfTest = 2 === tmpSwitchValue;
-let tmpIfTest$5 = true;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-}
-if (tmpIfTest$5) {
-  $(`fail1`);
-} else {
-}
-const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
-if (tmpIfTest$7) {
-  $(`fail2`);
-} else {
-}
+$(`fail1`);
+$(`fail2`);
 $(2, b);
 `````
 

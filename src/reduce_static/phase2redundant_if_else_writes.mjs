@@ -57,7 +57,7 @@ function _redundantWrites(fdata) {
       hasNoPrimitives = true;
       vlog('Going to try and find a write with primitive to replace the init');
       [...varWrite.reachedByWrites].some((shadowWrite) => {
-        vlog('-', shadowWrite.action+':'+shadowWrite.kind, shadowWrite.parentNode.right.type);
+        vlog('-', shadowWrite.action + ':' + shadowWrite.kind, shadowWrite.parentNode.right.type);
         if (shadowWrite.kind !== 'assign') return; // for
         if (AST.isPrimitive(shadowWrite.parentNode.right)) {
           rule('When the init of a binding cannot be observed it can be replaced with the primitive rhs of an assignment');
@@ -88,7 +88,7 @@ function _redundantWrites(fdata) {
 
       varWrite.reachedByWrites.forEach((shadowWrite) => {
         if (shadowWrite === replacedWith) return; // Skip. This one was deleted in previous block.
-        vlog('-', shadowWrite.action+':'+shadowWrite.kind, shadowWrite.parentNode.right.type);
+        vlog('-', shadowWrite.action + ':' + shadowWrite.kind, shadowWrite.parentNode.right.type);
         if (shadowWrite.kind !== 'assign') return; // for
 
         if (AST.isPrimitive(shadowWrite.parentNode.right) && Object.is(AST.getPrimitiveValue(shadowWrite.parentNode.right), pv)) {

@@ -28,6 +28,7 @@ import * as AST from '../ast.mjs';
 
 export function binExprStmt(fdata) {
   group('\n\n\nFinding dead binary expression statements\n');
+  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _binExprStmt(fdata);
   groupEnd();
   return r;

@@ -76,7 +76,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = undefined;
+let x = 10;
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 0;
 const tmpIfTest = 1 === tmpSwitchValue;
@@ -87,15 +87,10 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$1) {
-    x = 10;
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$3) {
-      x = 20;
-      break tmpSwitchBreak;
-    } else {
-    }
+    x = 20;
+    break tmpSwitchBreak;
   }
 }
 $(x);

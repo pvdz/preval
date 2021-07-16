@@ -1,6 +1,6 @@
 // Find `if` tests that are identifier and whose value is inverted inside either branch
 // `if (x) y = !x'
-// -> 'if (x) y = false;
+// -> 'if (x) y = false;`
 
 import walk from '../../lib/walk.mjs';
 import {
@@ -26,11 +26,11 @@ export function ifTestBool(fdata) {
   group('\n\n\nChecking for if-tests that are inverted');
   const ast = fdata.tenkoOutput.ast;
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
-  const r = _ifNotIt(fdata);
+  const r = _ifTestBool(fdata);
   groupEnd();
   return r;
 }
-function _ifNotIt(fdata) {
+function _ifTestBool(fdata) {
   const ast = fdata.tenkoOutput.ast;
 
   let changed = 0;

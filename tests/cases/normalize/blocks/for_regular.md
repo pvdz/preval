@@ -28,14 +28,11 @@ for ($(1); $(2); $(3)) $(4);
 
 `````js filename=intro
 $(1);
-while (true) {
-  const tmpIfTest = $(2);
-  if (tmpIfTest) {
-    $(4);
-    $(3);
-  } else {
-    break;
-  }
+let tmpIfTest = $(2);
+while (tmpIfTest) {
+  $(4);
+  $(3);
+  tmpIfTest = $(2);
 }
 `````
 
@@ -43,14 +40,11 @@ while (true) {
 
 `````js filename=intro
 $(1);
-while (true) {
-  const tmpIfTest = $(2);
-  if (tmpIfTest) {
-    $(4);
-    $(3);
-  } else {
-    break;
-  }
+let tmpIfTest = $(2);
+while (tmpIfTest) {
+  $(4);
+  $(3);
+  tmpIfTest = $(2);
 }
 `````
 

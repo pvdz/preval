@@ -43,23 +43,16 @@ $(`after (not invoked)`);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  $(`loop`);
+  let tmpIfTest$1 = $(true);
+  while (tmpIfTest$1) {
     $(`loop`);
-    while (true) {
-      const tmpIfTest$1 = $(true);
-      if (tmpIfTest$1) {
-        $(`loop`);
-        break;
-      } else {
-        break;
-      }
-    }
-    $(`infiloop, do not eliminate`);
-  } else {
     break;
   }
+  $(`infiloop, do not eliminate`);
+  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````
@@ -67,23 +60,19 @@ $(`after (not invoked)`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  $(`loop`);
+  const tmpIfTest$1 = $(true);
+  if (tmpIfTest$1) {
     while (true) {
-      const tmpIfTest$1 = $(true);
-      if (tmpIfTest$1) {
-        $(`loop`);
-        break;
-      } else {
-        break;
-      }
+      $(`loop`);
+      break;
     }
-    $(`infiloop, do not eliminate`);
   } else {
-    break;
   }
+  $(`infiloop, do not eliminate`);
+  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````

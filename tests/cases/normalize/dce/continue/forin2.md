@@ -39,18 +39,15 @@ $(`after, wont eval due to infinite loop`);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpForOfDeclRhs = [10, 20];
-    let x = undefined;
-    for (x of tmpForOfDeclRhs) {
-      continue;
-    }
-    $(`keep`);
-  } else {
-    break;
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  const tmpForOfDeclRhs = [10, 20];
+  let x = undefined;
+  for (x of tmpForOfDeclRhs) {
+    continue;
   }
+  $(`keep`);
+  tmpIfTest = $(true);
 }
 $(`after, wont eval due to infinite loop`);
 `````
@@ -58,18 +55,15 @@ $(`after, wont eval due to infinite loop`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    let x = undefined;
-    const tmpForOfDeclRhs = [10, 20];
-    for (x of tmpForOfDeclRhs) {
-      continue;
-    }
-    $(`keep`);
-  } else {
-    break;
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  let x = undefined;
+  const tmpForOfDeclRhs = [10, 20];
+  for (x of tmpForOfDeclRhs) {
+    continue;
   }
+  $(`keep`);
+  tmpIfTest = $(true);
 }
 $(`after, wont eval due to infinite loop`);
 `````

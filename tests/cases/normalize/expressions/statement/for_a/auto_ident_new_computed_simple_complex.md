@@ -39,12 +39,9 @@ const tmpCompObj = b;
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 new tmpNewCallee(1);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a);
 `````
@@ -57,12 +54,9 @@ const a = { a: 999, b: 1000 };
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = b[tmpCompProp];
 new tmpNewCallee(1);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a);
 `````

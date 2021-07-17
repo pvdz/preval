@@ -42,12 +42,9 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall.x;
 } else {
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````
@@ -63,12 +60,9 @@ if (tmpIfTest) {
 } else {
   tmpChainElementCall.x;
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````

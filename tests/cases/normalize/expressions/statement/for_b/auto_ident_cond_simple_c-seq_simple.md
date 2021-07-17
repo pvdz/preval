@@ -47,13 +47,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(60);
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
+let tmpIfTest = $(60);
+while (tmpIfTest) {
+  $(1);
+  tmpIfTest = $(60);
 }
 const a = { a: 999, b: 1000 };
 $(a);

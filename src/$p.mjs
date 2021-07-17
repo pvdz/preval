@@ -27,6 +27,8 @@ export function $p() {
     // - funcHeader // bool. during normalize_once, this prevents a debugger statement from being deleted if it isn't ours
     // - hoistedVars // Array<[node, parent, prop, index, exportIndex]> Allows a one-time pass at hoisting by passing on all relevant information through this array
     // - isBlockFuncDecl // bool. Is the node that is a FunctionDeclaration nested in a block (but not a func body)?
+    // - doesBreak // bool. Does this loop/switch have any break statement?
+    // - doesContinue // bool. Does this loop have any continue statement?
 
     // reduce/phase2 (these props should exist after phas1... even on new nodes)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations

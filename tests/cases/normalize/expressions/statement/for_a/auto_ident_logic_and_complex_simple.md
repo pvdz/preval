@@ -34,12 +34,9 @@ let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
 const tmpIfTest = tmpCallCallee(tmpCalleeParam);
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````
@@ -49,12 +46,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $(1);
 $(tmpCalleeParam);
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 const a = { a: 999, b: 1000 };
 $(a);

@@ -49,13 +49,10 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = b.c;
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
+let tmpIfTest = 1;
+while (tmpIfTest) {
+  $(100);
+  tmpIfTest = b.c;
 }
 $(a, b);
 `````

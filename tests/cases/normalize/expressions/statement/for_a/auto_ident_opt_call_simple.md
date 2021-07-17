@@ -37,12 +37,9 @@ if (tmpIfTest) {
   const tmpChainElementCall = tmpChainRootCall(1);
 } else {
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````
@@ -56,12 +53,9 @@ if (tmpIfTest) {
 } else {
   $(1);
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````

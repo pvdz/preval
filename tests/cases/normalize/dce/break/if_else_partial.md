@@ -37,17 +37,14 @@ $(`after`);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(1);
-    if (tmpIfTest$1) {
-      break;
-    } else {
-      $(`keep, do not eval`);
-    }
-  } else {
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  const tmpIfTest$1 = $(1);
+  if (tmpIfTest$1) {
     break;
+  } else {
+    $(`keep, do not eval`);
+    tmpIfTest = $(true);
   }
 }
 $(`after`);
@@ -56,17 +53,14 @@ $(`after`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(1);
-    if (tmpIfTest$1) {
-      break;
-    } else {
-      $(`keep, do not eval`);
-    }
-  } else {
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  const tmpIfTest$1 = $(1);
+  if (tmpIfTest$1) {
     break;
+  } else {
+    $(`keep, do not eval`);
+    tmpIfTest = $(true);
   }
 }
 $(`after`);

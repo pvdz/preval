@@ -43,27 +43,24 @@ $(`after, wont eval due to infinite loop`);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    let tmpDoWhileFlag = true;
-    while (true) {
-      let tmpIfTest$1 = tmpDoWhileFlag;
-      if (tmpIfTest$1) {
-      } else {
-        tmpIfTest$1 = $(true);
-      }
-      if (tmpIfTest$1) {
-        tmpDoWhileFlag = false;
-        $(`loop`);
-        continue;
-      } else {
-        break;
-      }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  let tmpDoWhileFlag = true;
+  while (true) {
+    let tmpIfTest$1 = tmpDoWhileFlag;
+    if (tmpIfTest$1) {
+    } else {
+      tmpIfTest$1 = $(true);
     }
-  } else {
-    break;
+    if (tmpIfTest$1) {
+      tmpDoWhileFlag = false;
+      $(`loop`);
+      continue;
+    } else {
+      break;
+    }
   }
+  tmpIfTest = $(true);
 }
 $(`after, wont eval due to infinite loop`);
 `````
@@ -71,27 +68,24 @@ $(`after, wont eval due to infinite loop`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    let tmpDoWhileFlag = true;
-    while (true) {
-      let tmpIfTest$1 = tmpDoWhileFlag;
-      if (tmpDoWhileFlag) {
-      } else {
-        tmpIfTest$1 = $(true);
-      }
-      if (tmpIfTest$1) {
-        tmpDoWhileFlag = false;
-        $(`loop`);
-        continue;
-      } else {
-        break;
-      }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  let tmpDoWhileFlag = true;
+  while (true) {
+    let tmpIfTest$1 = tmpDoWhileFlag;
+    if (tmpDoWhileFlag) {
+    } else {
+      tmpIfTest$1 = $(true);
     }
-  } else {
-    break;
+    if (tmpIfTest$1) {
+      tmpDoWhileFlag = false;
+      $(`loop`);
+      continue;
+    } else {
+      break;
+    }
   }
+  tmpIfTest = $(true);
 }
 $(`after, wont eval due to infinite loop`);
 `````

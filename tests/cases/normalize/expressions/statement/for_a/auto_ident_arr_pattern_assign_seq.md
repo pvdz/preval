@@ -46,12 +46,9 @@ const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...arrAssignPatternRhs];
 x = arrPatternSplat[0];
 y = arrPatternSplat[1];
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, x, y);
 `````
@@ -63,12 +60,9 @@ $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 const a = { a: 999, b: 1000 };
 $(a, tmpArrElement, tmpArrElement$1);

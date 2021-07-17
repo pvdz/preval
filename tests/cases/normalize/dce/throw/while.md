@@ -40,14 +40,10 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      const tmpThrowArg = $(1, `return`);
-      throw tmpThrowArg;
-    } else {
-      break;
-    }
+  let tmpIfTest = $(true);
+  while (tmpIfTest) {
+    const tmpThrowArg = $(1, `return`);
+    throw tmpThrowArg;
   }
   return undefined;
 };
@@ -59,14 +55,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  while (true) {
     const tmpThrowArg = $(1, `return`);
     throw tmpThrowArg;
-  } else {
-    break;
   }
+} else {
 }
 $(undefined);
 `````

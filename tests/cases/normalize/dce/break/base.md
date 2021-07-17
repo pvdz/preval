@@ -25,24 +25,15 @@ $(`after`);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    break;
-  } else {
-    break;
-  }
-}
+const tmpUnaryArg = $(true);
+let tmpIfTest = !tmpUnaryArg;
 $(`after`);
 `````
 
 ## Output
 
 `````js filename=intro
-while (true) {
-  $(true);
-  break;
-}
+$(true);
 $(`after`);
 `````
 

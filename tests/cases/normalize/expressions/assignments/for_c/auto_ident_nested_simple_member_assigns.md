@@ -39,26 +39,23 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const varInitAssignLhsComputedRhs$7 = c;
-    b.x = varInitAssignLhsComputedRhs$7;
-    const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-    b.x = varInitAssignLhsComputedRhs$5;
-    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-    b.x = varInitAssignLhsComputedRhs$3;
-    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-    b.x = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    b.x = varInitAssignLhsComputedRhs;
-    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    b.x = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const varInitAssignLhsComputedRhs$7 = c;
+  b.x = varInitAssignLhsComputedRhs$7;
+  const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
+  b.x = varInitAssignLhsComputedRhs$5;
+  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
+  b.x = varInitAssignLhsComputedRhs$3;
+  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
+  b.x = varInitAssignLhsComputedRhs$1;
+  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+  b.x = varInitAssignLhsComputedRhs;
+  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  b.x = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  tmpIfTest = $(1);
 }
 $(a, b, c);
 `````
@@ -67,20 +64,17 @@ $(a, b, c);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpIfTest = $(1);
 const b = { x: 1 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    a = 3;
-  } else {
-    break;
-  }
+while (tmpIfTest) {
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  a = 3;
+  tmpIfTest = $(1);
 }
 $(a, b, 3);
 `````

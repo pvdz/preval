@@ -27,12 +27,9 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  tmpIfTest = $(true);
 }
 $(x);
 `````
@@ -40,12 +37,9 @@ $(x);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  tmpIfTest = $(true);
 }
 $(undefined);
 `````

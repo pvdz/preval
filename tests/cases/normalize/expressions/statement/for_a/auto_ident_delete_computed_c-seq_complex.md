@@ -40,12 +40,9 @@ $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 delete tmpDeleteCompObj[tmpDeleteCompProp];
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, arg);
 `````
@@ -60,12 +57,9 @@ $(2);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 delete tmpDeleteCompObj[tmpDeleteCompProp];
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, arg);
 `````

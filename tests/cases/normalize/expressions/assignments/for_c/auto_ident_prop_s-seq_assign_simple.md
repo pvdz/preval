@@ -36,16 +36,13 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpNestedAssignObj = b;
-    const tmpNestedPropAssignRhs = 2;
-    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-    a = tmpNestedPropAssignRhs;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpNestedAssignObj = b;
+  const tmpNestedPropAssignRhs = 2;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  a = tmpNestedPropAssignRhs;
+  tmpIfTest = $(1);
 }
 $(a, b);
 `````
@@ -54,15 +51,12 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpIfTest = $(1);
 const b = { c: 1 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    b.c = 2;
-    a = 2;
-  } else {
-    break;
-  }
+while (tmpIfTest) {
+  b.c = 2;
+  a = 2;
+  tmpIfTest = $(1);
 }
 $(a, b);
 `````

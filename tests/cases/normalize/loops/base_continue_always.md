@@ -50,7 +50,6 @@ let f = function () {
     n = n + 1;
     let tmpCalleeParam = n;
     tmpCallCallee(tmpCalleeParam);
-    continue;
   }
   $(`afterwards`);
   return 100;
@@ -67,7 +66,6 @@ let n = 0;
 while (true) {
   n = n + 1;
   $(n);
-  continue;
 }
 $(`afterwards`);
 $(100);

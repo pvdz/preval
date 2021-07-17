@@ -35,12 +35,9 @@ let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 $(10);
 $(20);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a);
 `````
@@ -53,12 +50,9 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(10);
 $(20);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a);
 `````

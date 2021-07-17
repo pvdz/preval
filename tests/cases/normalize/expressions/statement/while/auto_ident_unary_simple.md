@@ -32,13 +32,10 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = typeof x;
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
+let tmpIfTest = typeof x;
+while (tmpIfTest) {
+  $(100);
+  tmpIfTest = typeof x;
 }
 $(a, x);
 `````

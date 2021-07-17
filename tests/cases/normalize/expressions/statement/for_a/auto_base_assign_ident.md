@@ -36,12 +36,9 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 b = $(2);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, b);
 `````
@@ -50,12 +47,9 @@ $(a, b);
 
 `````js filename=intro
 const b = $(2);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 const a = { a: 999, b: 1000 };
 $(a, b);

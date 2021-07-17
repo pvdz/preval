@@ -38,12 +38,9 @@ if (tmpIfTest) {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
 } else {
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````
@@ -57,12 +54,9 @@ if (tmpIfTest) {
 } else {
   $dotCall(tmpChainElementCall, $, 1);
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 const a = { a: 999, b: 1000 };
 $(a);

@@ -52,21 +52,18 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      const tmpForInDeclRhs = { a: 1, b: 2 };
-      let x = undefined;
-      for (x in tmpForInDeclRhs) {
-        $(`loop`, x);
-        const tmpReturnArg = $(100, `return`);
-        return tmpReturnArg;
-      }
-      $(`fail`);
-    } else {
-      break;
+  let tmpIfTest = $(true);
+  while (tmpIfTest) {
+    $(`loop`);
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    let x = undefined;
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+      const tmpReturnArg = $(100, `return`);
+      return tmpReturnArg;
     }
+    $(`fail`);
+    tmpIfTest = $(true);
   }
   $(`after (not invoked but should not be eliminated)`);
   return undefined;
@@ -81,21 +78,18 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      let x = undefined;
-      const tmpForInDeclRhs = { a: 1, b: 2 };
-      for (x in tmpForInDeclRhs) {
-        $(`loop`, x);
-        const tmpReturnArg = $(100, `return`);
-        return tmpReturnArg;
-      }
-      $(`fail`);
-    } else {
-      break;
+  let tmpIfTest = $(true);
+  while (tmpIfTest) {
+    $(`loop`);
+    let x = undefined;
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+      const tmpReturnArg = $(100, `return`);
+      return tmpReturnArg;
     }
+    $(`fail`);
+    tmpIfTest = $(true);
   }
   $(`after (not invoked but should not be eliminated)`);
   return undefined;

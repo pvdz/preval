@@ -40,14 +40,10 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      const tmpReturnArg = $(1, `return`);
-      return tmpReturnArg;
-    } else {
-      break;
-    }
+  let tmpIfTest = $(true);
+  while (tmpIfTest) {
+    const tmpReturnArg = $(1, `return`);
+    return tmpReturnArg;
   }
   return undefined;
 };
@@ -61,16 +57,16 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    while (true) {
       const tmpReturnArg = $(1, `return`);
       return tmpReturnArg;
-    } else {
-      break;
     }
+    return undefined;
+  } else {
+    return undefined;
   }
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

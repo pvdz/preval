@@ -41,12 +41,9 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
 } else {
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````
@@ -62,12 +59,9 @@ if (tmpIfTest) {
 } else {
   tmpChainRootProp.x;
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````

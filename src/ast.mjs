@@ -9,6 +9,8 @@ export function cloneSimple(node) {
   if (node.type === 'Literal') {
     if (node.raw === 'null') return nul(); // be explicit for null
     if (typeof node.value === 'string') return templateLiteral(node.value);
+    if (node.regex) return regex(node.regex.pattern, node.regex.flags, node.raw);
+    ASSERT(node.value !== null, 'the null case was checked before?', node);
     return literal(node.value);
   }
 
@@ -435,23 +437,21 @@ export function literal(value, yesnull = false) {
       raw: 'null',
       $p: $p(),
     };
-  } else if (typeof value === 'string') {
-    ASSERT(false, 'string literals should be TemplateLiterals');
-  } else if (value instanceof RegExp) {
-    const raw = String(value);
-    return {
-      type: 'Literal',
-      regex: {
-        body: raw.slice(1, raw.lastIndexOf('/')),
-        flags: raw.slice(raw.lastIndexOf('/') + 1),
-      },
-      value,
-      raw,
-      $p: $p(),
-    };
   } else {
+    ASSERT(typeof value !== 'string', 'string literals should be TemplateLiterals');
+    ASSERT(!(value instanceof RegExp), 'regex literal should call AST.regex() explicitly');
     ASSERT(false, 'TODO', value);
   }
+}
+
+export function regex(pattern, flags, raw) {
+  return {
+    type: 'Literal',
+    value: null,
+    regex: { pattern, flags},
+    raw: raw,
+    $p: $p(),
+  };
 }
 
 export function logicalExpression(operator, left, right) {

@@ -40,12 +40,9 @@ if (tmpIfTest) {
   tmpCallCallee$1(tmpCalleeParam$1);
 } else {
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````
@@ -60,12 +57,9 @@ if (tmpIfTest) {
   $(tmpCalleeParam$1);
 } else {
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 const a = { a: 999, b: 1000 };
 $(a);

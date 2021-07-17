@@ -65,36 +65,33 @@ $(`after (not invoked)`);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    const tmpSwitchValue = $(true, `dis`);
-    let tmpSwitchCaseToStart = 1;
-    const tmpBinLhs = $(true, `case`);
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 0;
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  $(`loop`);
+  const tmpSwitchValue = $(true, `dis`);
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $(true, `case`);
+  const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+  }
+  tmpSwitchBreak: {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$3) {
+      $(`case`);
+      break tmpSwitchBreak;
     } else {
-    }
-    tmpSwitchBreak: {
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-      if (tmpIfTest$3) {
-        $(`case`);
+      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$5) {
+        $(`do not visit, default`);
         break tmpSwitchBreak;
       } else {
-        const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-        if (tmpIfTest$5) {
-          $(`do not visit, default`);
-          break tmpSwitchBreak;
-        } else {
-        }
       }
     }
-    $(`infiloop, do not eliminate`);
-  } else {
-    break;
   }
+  $(`infiloop, do not eliminate`);
+  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````
@@ -102,32 +99,29 @@ $(`after (not invoked)`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
-    const tmpSwitchValue = $(true, `dis`);
-    let tmpSwitchCaseToStart = 1;
-    const tmpBinLhs = $(true, `case`);
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 0;
-    } else {
-    }
-    tmpSwitchBreak: {
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-      if (tmpIfTest$3) {
-        $(`case`);
-        break tmpSwitchBreak;
-      } else {
-        $(`do not visit, default`);
-        break tmpSwitchBreak;
-      }
-    }
-    $(`infiloop, do not eliminate`);
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  $(`loop`);
+  const tmpSwitchValue = $(true, `dis`);
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $(true, `case`);
+  const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    tmpSwitchCaseToStart = 0;
   } else {
-    break;
   }
+  tmpSwitchBreak: {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+    if (tmpIfTest$3) {
+      $(`case`);
+      break tmpSwitchBreak;
+    } else {
+      $(`do not visit, default`);
+      break tmpSwitchBreak;
+    }
+  }
+  $(`infiloop, do not eliminate`);
+  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````

@@ -42,12 +42,9 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, b);
 `````
@@ -62,12 +59,9 @@ const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, b);
 `````

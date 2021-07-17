@@ -32,13 +32,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(100);
-  if (tmpIfTest) {
-    break;
-  } else {
-    $(1);
-  }
+const tmpUnaryArg = $(100);
+let tmpIfTest = !tmpUnaryArg;
+while (tmpIfTest) {
+  $(1);
+  const tmpUnaryArg$1 = $(100);
+  tmpIfTest = !tmpUnaryArg$1;
 }
 $(a);
 `````
@@ -46,13 +45,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(100);
-  if (tmpIfTest) {
-    break;
-  } else {
-    $(1);
-  }
+const tmpUnaryArg = $(100);
+let tmpIfTest = !tmpUnaryArg;
+while (tmpIfTest) {
+  $(1);
+  const tmpUnaryArg$1 = $(100);
+  tmpIfTest = !tmpUnaryArg$1;
 }
 const a = { a: 999, b: 1000 };
 $(a);

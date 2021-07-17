@@ -32,18 +32,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpChainRootCall = $;
-    const tmpIfTest$1 = tmpChainRootCall != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementCall = tmpChainRootCall(1);
-    } else {
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpChainRootCall = $;
+  const tmpIfTest$1 = tmpChainRootCall != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementCall = tmpChainRootCall(1);
   } else {
-    break;
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -51,17 +48,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $ == null;
-    if (tmpIfTest$1) {
-    } else {
-      $(1);
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpIfTest$1 = $ == null;
+  if (tmpIfTest$1) {
   } else {
-    break;
+    $(1);
   }
+  tmpIfTest = $(1);
 }
 const a = { a: 999, b: 1000 };
 $(a);

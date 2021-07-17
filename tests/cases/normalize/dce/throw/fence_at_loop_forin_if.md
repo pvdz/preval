@@ -68,47 +68,11 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      const tmpForInDeclRhs = { a: 1, b: 2 };
-      let x = undefined;
-      for (x in tmpForInDeclRhs) {
-        $(`loop`, x);
-        const tmpIfTest$1 = $(1, `if`);
-        if (tmpIfTest$1) {
-          $(`pass`);
-          const tmpThrowArg = $(7, `throw`);
-          throw tmpThrowArg;
-        } else {
-          $(`do not visit`);
-          const tmpThrowArg$1 = $(8, `throw`);
-          throw tmpThrowArg$1;
-        }
-      }
-      $(`after (not invoked but should not be eliminated)`);
-    } else {
-      break;
-    }
-  }
-  $(`after (not invoked)`);
-  return undefined;
-};
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-`````
-
-## Output
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
+  let tmpIfTest = $(true);
+  while (tmpIfTest) {
     $(`loop`);
-    let x = undefined;
     const tmpForInDeclRhs = { a: 1, b: 2 };
+    let x = undefined;
     for (x in tmpForInDeclRhs) {
       $(`loop`, x);
       const tmpIfTest$1 = $(1, `if`);
@@ -123,9 +87,39 @@ while (true) {
       }
     }
     $(`after (not invoked but should not be eliminated)`);
-  } else {
-    break;
+    tmpIfTest = $(true);
   }
+  $(`after (not invoked)`);
+  return undefined;
+};
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  $(`loop`);
+  let x = undefined;
+  const tmpForInDeclRhs = { a: 1, b: 2 };
+  for (x in tmpForInDeclRhs) {
+    $(`loop`, x);
+    const tmpIfTest$1 = $(1, `if`);
+    if (tmpIfTest$1) {
+      $(`pass`);
+      const tmpThrowArg = $(7, `throw`);
+      throw tmpThrowArg;
+    } else {
+      $(`do not visit`);
+      const tmpThrowArg$1 = $(8, `throw`);
+      throw tmpThrowArg$1;
+    }
+  }
+  $(`after (not invoked but should not be eliminated)`);
+  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 $(undefined);

@@ -35,12 +35,9 @@ let a = bindingPatternObjRoot.a;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 tmpCallCallee(tmpCalleeParam);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a);
 `````
@@ -50,12 +47,9 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };
 $(tmpCalleeParam);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(999);
 `````

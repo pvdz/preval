@@ -29,13 +29,10 @@ $(`after`);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = { a: 1, b: 2 };
-  if (tmpIfTest) {
-    $(`loop`);
-  } else {
-    break;
-  }
+let tmpIfTest = { a: 1, b: 2 };
+while (tmpIfTest) {
+  $(`loop`);
+  tmpIfTest = { a: 1, b: 2 };
 }
 $(`after`);
 `````
@@ -43,8 +40,10 @@ $(`after`);
 ## Output
 
 `````js filename=intro
-while (true) {
+let tmpIfTest = { a: 1, b: 2 };
+while (tmpIfTest) {
   $(`loop`);
+  tmpIfTest = { a: 1, b: 2 };
 }
 $(`after`);
 `````

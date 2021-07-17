@@ -23,26 +23,20 @@ while ($(1)) $(2);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(2);
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  $(2);
+  tmpIfTest = $(1);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(2);
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  $(2);
+  tmpIfTest = $(1);
 }
 `````
 

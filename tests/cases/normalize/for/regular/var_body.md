@@ -29,25 +29,19 @@ let x = undefined;
 
 `````js filename=intro
 let x = undefined;
-while (true) {
-  const tmpIfTest = $(false);
-  if (tmpIfTest) {
-    x = 0;
-  } else {
-    break;
-  }
+let tmpIfTest = $(false);
+while (tmpIfTest) {
+  x = 0;
+  tmpIfTest = $(false);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(false);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(false);
+while (tmpIfTest) {
+  tmpIfTest = $(false);
 }
 `````
 

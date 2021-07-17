@@ -41,12 +41,9 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
 tmpAssignMemLhsObj$1.c = tmpAssignMemRhs;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, b);
 `````
@@ -60,12 +57,9 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
 b.c = tmpAssignMemRhs;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, b);
 `````

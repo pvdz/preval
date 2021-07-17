@@ -38,6 +38,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
   const funcScopeStack = [];
   const thisStack = [];
   const fenceStack = []; // switch, loops. To determine where unqualified break/continue jumps to.
+  const breakableStack = []; // for, while, do, and also switch
 
   fdata.globalNameCounter = 0;
   const globallyUniqueNamingRegistry = new Map();
@@ -538,6 +539,19 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
           }
           fenceNode.$p.unqualifiedLabelUsages.push(node);
         }
+
+        for (let i=breakableStack.length-1; i>=0; --i) {
+          const breakableNode = breakableStack[i];
+          if (key === 'ContinueStatement:before') {
+            if (breakableNode.type === 'SwitchStatement') continue;
+            breakableNode.$p.doesContinue = true;
+            vlog('Setting doesContinue', breakableNode.$p.pid)
+          } else {
+            breakableNode.$p.doesBreak = true;
+            vlog('Setting doesBreak on', breakableNode.$p.pid)
+          }
+          break;
+        }
         break;
       }
 
@@ -567,6 +581,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
       case 'SwitchStatement:before': {
         node.$p.unqualifiedLabelUsages = [];
         fenceStack.push(node);
+        breakableStack.push(node);
         break;
       }
       case 'ForStatement:after':
@@ -576,6 +591,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
       case 'DoWhileStatement:after':
       case 'SwitchStatement:after': {
         fenceStack.pop();
+        breakableStack.pop();
         break;
       }
     }

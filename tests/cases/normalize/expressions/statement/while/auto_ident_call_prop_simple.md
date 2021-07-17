@@ -32,13 +32,10 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = b.$(1);
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
+let tmpIfTest = b.$(1);
+while (tmpIfTest) {
+  $(100);
+  tmpIfTest = b.$(1);
 }
 $(a);
 `````
@@ -48,13 +45,10 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = b.$(1);
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
-  }
+let tmpIfTest = b.$(1);
+while (tmpIfTest) {
+  $(100);
+  tmpIfTest = b.$(1);
 }
 $(a);
 `````

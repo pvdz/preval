@@ -39,12 +39,9 @@ const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a);
 `````
@@ -55,12 +52,9 @@ $(a);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 $(tmpCalleeParam, tmpCalleeParam$1);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 const a = { a: 999, b: 1000 };
 $(a);

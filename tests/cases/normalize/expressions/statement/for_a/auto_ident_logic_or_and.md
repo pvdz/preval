@@ -46,12 +46,9 @@ if (tmpIfTest) {
   } else {
   }
 }
-while (true) {
-  const tmpIfTest$3 = $(0);
-  if (tmpIfTest$3) {
-  } else {
-    break;
-  }
+let tmpIfTest$3 = $(0);
+while (tmpIfTest$3) {
+  tmpIfTest$3 = $(0);
 }
 $(a);
 `````
@@ -71,12 +68,9 @@ if (tmpIfTest) {
   } else {
   }
 }
-while (true) {
-  const tmpIfTest$3 = $(0);
-  if (tmpIfTest$3) {
-  } else {
-    break;
-  }
+let tmpIfTest$3 = $(0);
+while (tmpIfTest$3) {
+  tmpIfTest$3 = $(0);
 }
 const a = { a: 999, b: 1000 };
 $(a);

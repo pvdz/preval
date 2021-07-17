@@ -42,12 +42,9 @@ const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
 const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
 const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;
 tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, b);
 `````
@@ -62,12 +59,9 @@ const tmpAssignMemLhsObj = $(tmpCalleeParam);
 const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
 const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, b);
 `````

@@ -757,7 +757,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     groupEnd();
   }
 
-  function anyBlock(block, funcNode = null, isLabeled = false) {
+  function anyBlock(block, funcNode = null, loopLabelNode = null) {
     // program, body of a function, actual block statement, switch case body, try/catch/finally body
     group('anyBlock');
     const body = block.body;
@@ -765,7 +765,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     let somethingChanged = false;
     for (let i = 0; i < body.length; ++i) {
       const cnode = body[i];
-      if (jumpTable(cnode, body, i, block, funcNode, isLabeled)) {
+      if (jumpTable(cnode, body, i, block, funcNode, loopLabelNode)) {
         changed = true;
         somethingChanged = true;
         --i;
@@ -777,15 +777,15 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return somethingChanged;
   }
 
-  function jumpTable(node, body, i, parent, funcNode, isLabeled = false) {
+  function jumpTable(node, body, i, parent, funcNode, loopLabelNode = null) {
     vgroup('jumpTable', node.type);
     ASSERT(node.type, 'nodes have types oye?', node);
-    const r = _jumpTable(node, body, i, parent, funcNode, isLabeled);
+    const r = _jumpTable(node, body, i, parent, funcNode, loopLabelNode);
     vgroupEnd();
     return r;
   }
 
-  function _jumpTable(node, body, i, parent, funcNode, isLabeled) {
+  function _jumpTable(node, body, i, parent, funcNode, loopLabelNode) {
     switch (node.type) {
       case 'BlockStatement':
         return transformBlock(node, body, i, parent, true);
@@ -806,9 +806,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       case 'ExpressionStatement':
         return transformExpression('statement', node.expression, body, i, node);
       case 'ForInStatement':
-        return transformForxStatement(node, body, i, true, isLabeled);
+        return transformForxStatement(node, body, i, true, loopLabelNode);
       case 'ForOfStatement':
-        return transformForxStatement(node, body, i, false, isLabeled);
+        return transformForxStatement(node, body, i, false, loopLabelNode);
       case 'IfStatement':
         return transformIfStatement(node, body, i, parent);
       case 'ImportDeclaration':
@@ -826,7 +826,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       case 'VariableDeclaration':
         return transformVariableDeclaration(node, body, i, parent, funcNode);
       case 'WhileStatement':
-        return transformWhileStatement(node, body, i, parent, isLabeled);
+        return transformWhileStatement(node, body, i, parent, loopLabelNode);
 
       case 'Program':
         return ASSERT(false); // This should not be visited since it is the first thing to be called and the node should not occur again.
@@ -948,7 +948,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return true;
   }
 
-  function transformBlock(node, body, i, parent, isNested, isLabeled) {
+  function transformBlock(node, body, i, parent, isNested, loopLabelNode) {
     // Note: isNested=false means this is a sub-statement (if () {}), otherwise it's a block inside a block/func/program node
     ASSERT(isNested ? body && i >= 0 : !body && i < 0, 'body and index are only given for nested blocks');
 
@@ -992,7 +992,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
-    if (anyBlock(node, undefined, isLabeled)) {
+    if (anyBlock(node, undefined, loopLabelNode)) {
       return true;
     }
 
@@ -1946,7 +1946,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   example('RegExp()', '/(?:)/');
                   before(node, body[i]);
 
-                  const finalNode = AST.literal(/(?:)/);
+                  const finalNode = AST.regex('(?:)', '', '/(?:)/');
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                   body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
 
@@ -1962,7 +1962,11 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                     example('RegExp("foo". "g")', '/foo/g', () => !!args[1]);
                     before(node, body[i]);
 
-                    const finalNode = AST.literal(RegExp(AST.getPrimitiveValue(args[0]), args[1] && AST.getPrimitiveValue(args[1])));
+                    const finalNode = AST.regex(
+                      AST.getPrimitiveValue(args[0]),
+                      args[1] ? AST.getPrimitiveValue(args[1]) : '',
+                      String(RegExp(AST.getPrimitiveValue(args[0]), args[1] && AST.getPrimitiveValue(args[1]))),
+                    );
                     const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                     body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
 
@@ -6440,7 +6444,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return false;
   }
 
-  function transformForxStatement(node, body, i, forin, isLabeled) {
+  function transformForxStatement(node, body, i, forin, loopLabelNode) {
     // https://pvdz.ee/weblog/439
     // The rhs is evaluated first. Then the lhs. The rhs is scoped to the for-header first, if that starts with a a decl.
     // Pattern bindings complicate the transform because I want to retain the TDZ errors if the original code contains them.
@@ -7728,7 +7732,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
         assertNoDupeNodes(fakeWrapper, 'body');
 
-        const changed = transformBlock(fakeWrapper, undefined, -1, node, false, true);
+        const changed = transformBlock(fakeWrapper, undefined, -1, node, false, node);
 
         assertNoDupeNodes(fakeWrapper, 'body');
 
@@ -8535,128 +8539,43 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     return false;
   }
 
-  function transformWhileStatement(node, body, i, parentNode, isLabeled) {
-    // TODO: do AST.isPrimitive instead. Drop a bunch of logic here.
-
-    if (node.test.type === 'UnaryExpression') {
-      if (node.test.operator === '+' || node.test.operator === '-') {
-        if (node.test.argument.type === 'Literal') {
-          if (node.test.argument.value === 0 || node.test.argument.raw === 'null') {
-            // Doesn't matter whether it's +0 or -0 here. This is false now.
-            rule('A +/- while test of zero or null is always false');
-            example('while (-0) f();', 'while (false) f();', () => node.test.argument.value === 0);
-            example('while (-null) f();', 'while (false) f();', () => node.test.argument.value !== 0);
-            before(node);
-
-            node.test = AST.fals();
-
-            after(node);
-            return true;
-          }
-          if (typeof node.test.argument.value === 'number') {
-            rule('A while test that is a non-zero +/- number is always true');
-            example('while (-1) f();', 'while (true) f();');
-            before(node);
-
-            node.test = AST.tru();
-
-            after(node);
-            return true;
-          }
-        }
-
-        if (AST.isStringValue(node.test, '', true)) {
-          rule('A +/- while test of empty string is always false');
-          example('while (-"") f();', 'while (false) f();');
+  function transformWhileStatement(node, body, i, parentNode, loopLabelNode) {
+    if (AST.isPrimitive(node.test)) {
+      const pv = AST.getPrimitiveValue(node.test);
+      if (pv !== true) {
+        if (pv) {
+          rule('The while-test that is a truthy primitive should be an explicit `true`');
+          example('while (1) {}', 'while (true) {}');
           before(node);
 
-          node.test = AST.fals();
+          node.test = AST.tru();
 
           after(node);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        } else {
+          rule('The while-test that is a falsy primitive should drop the while');
+          example('while (0) {}', ';');
+          before(node);
+
+          body[i] = AST.emptyStatement();
+
+          after(AST.emptyStatement());
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
         }
-
-        if (node.test.argument.type === 'Identifier') {
-          const name = node.test.argument.name;
-          if (['undefined', 'NaN'].includes(name)) {
-            // Doesn't matter whether it's +0 or -0 here. This is false now.
-            rule('The while test that is +/- undefined or NaN is always false');
-            example('while (-undefined) f();', 'while (false) f();', () => name === 'undefined');
-            example('while (-NaN) f();', 'while (false) f();', () => name !== 'undefined');
-            before(node);
-
-            node.test = AST.fals();
-          } else if (['Infinity'].includes(name)) {
-            rule('The while test that is +/- Infinity is always true');
-            example('while (-Infinity) f();', 'while (true) f();');
-            before(node);
-
-            node.test = AST.tru();
-
-            after(node);
-            return true;
-          }
-        }
       }
     }
 
     if (
-      (node.test.type === 'Literal' && (node.test.value === 0 || node.test.value === false || node.test.raw === 'null')) ||
-      AST.isStringValue(node.test, '', true)
-    ) {
-      rule('Eliminate while with falsy literal');
-      example('while (false) f();', ';');
-      before(node);
-
-      body[i] = AST.emptyStatement();
-
-      after(body[i]);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    if (node.test.type === 'Literal' ? node.test.value !== true : AST.isStringLiteral(node.test, true)) {
-      rule('Replace truthy while test literal with `true`');
-      example('while (100) f();', 'while (true) f();');
-      before(node);
-
-      node.test = AST.tru();
-
-      after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    if (node.test.type === 'Identifier') {
-      if (['undefined', 'NaN'].includes(node.test.name)) {
-        rule('Eliminate while with falsy identifier');
-        example('while (false) f();', ';');
-        before(node);
-
-        body[i] = AST.emptyStatement();
-
-        after(body[i]);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-
-      if (['Infinity'].includes(node.test.name)) {
-        rule('Replace truthy while test identifier with `true`');
-        example('while (Infinity) f();', 'while (true) f();');
-        before(node);
-
-        node.test = AST.tru();
-
-        after(node);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
-        return true;
-      }
-    }
-
-    if (
-      ['ThisExpression', 'FunctionExpression', 'ClassExpression' /*'ArrayExpression', 'ObjectExpression', 'NewExpression'*/].includes(
-        node.test.type,
-      )
+      [
+        'ThisExpression',
+        'FunctionExpression',
+        'ArrowFunctionExpression',
+        'ClassExpression',
+        /*'ArrayExpression', 'ObjectExpression', 'NewExpression'*/ // TODO: but if theyre not empty they may spy and should not just drop
+      ].includes(node.test.type) ||
+      (node.test.type === 'Literal' && node.test.regex)
     ) {
       // Silly conditions. Real world code is unlikely to ever trigger this.
       // Note: Needs special support for observable side effects. Probably not worth coding out here.
@@ -8667,18 +8586,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       node.test = AST.tru();
 
       after(node);
-      assertNoDupeNodes(AST.blockStatement(body), 'body');
-      return true;
-    }
-
-    if (AST.isFalse(node.test)) {
-      rule('While test that is false means the while can be eliminated entirely');
-      example('while (false) neverCallMe();', ';');
-      before(node);
-
-      body[i] = AST.emptyStatement();
-
-      after(AST.emptyStatement());
       assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
@@ -8694,6 +8601,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       before(node);
 
       const newNode = AST.whileStatement(AST.tru(), AST.blockStatement(AST.ifStatement(node.test, node.body, AST.breakStatement())));
+      if (node.$p.doesContinue) newNode.$p.doesContinue = true;
+      if (node.$p.doesBreak) newNode.$p.doesBreak = true;
       body[i] = newNode;
 
       after(newNode);
@@ -8714,286 +8623,158 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
+    //if (AST.isComplexNode(node.test)) {
+    //  const tmpName = createFreshVar('tmpWhileTest', fdata);
+    //  const initTestNode = AST.variableDeclaration(tmpName, node.test, 'let');
+    //  const
+    //}
+
     ASSERT(node.body.type === 'BlockStatement');
     ifelseStack.push(node);
     transformBlock(node.body, undefined, -1, node, false);
     ifelseStack.pop();
 
-    if (node.body.body.length === 1 && node.body.body[0].type === 'BreakStatement') {
-      const brk = node.body.body[0];
-      if (brk.label) {
-        rule('A while with only a break statement must be removed; labeled break');
-        example('x: { while (true) { break x; } }', 'x: { break x; }');
+    // Undo some of the stuffs
+
+    const whileBody = node.body.body;
+
+    if (whileBody.length) {
+      const last = whileBody[whileBody.length - 1];
+
+      if (last.type === 'ContinueStatement' && !last.label) {
+        rule('If the last statement of a while body is an unlabeled continue then remove it');
+        example('while (x) { f(); break; }', 'while (x) { f(); }');
         before(node);
 
-        body[[i]] = brk;
+        whileBody.pop();
 
-        after(body[[i]]);
+        after(node);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
 
-      rule('A while with only a break statement must be removed; break without label');
-      example('while (true) { break; }', ';');
-      before(node);
-
-      body[[i]] = AST.emptyStatement();
-
-      after(body[[i]]);
-      return true;
-    }
-
-    if (false) {
-      // There's a lot in tests/cases/normalize/loops/base.md
-      /*
-    If a function contains a toplevel loop whose test is `true`
-    - If the loop contains no branching
-      - Move along
-    - Else
-      - Abstract the code (whole body or starting from the branch only?) into (uniquely called) `body
-      - Find all closures and greedily-yet-cautiously turn reads into params up until the point where we can no longer guarantee them to be immutable
-      - Replace tail with abstraction (uniquely) called `tail`
-      - Prepend two new `let` bindings before the loop; `r` initialized to `true` and `v` initialized to `undefined`
-        - `r` and `v` must be made unique like anything else
-      - Any occurrence of `return x` in the body must be replaced with `r = false; v = x; return;` for the entire argument `x`
-      - Any occurrence of `break` in the loop is replaced with `r = undefined; return;`
-      - Any occurrence of `continue` in the loop is replaced with `return`
-      - The body of the loop is replaced with a call to `body`, passing on any names that were detected to be read-only
-      - The test of the loop is replaced with `r`
-      - The tail (code after the loop) is replaced with `if (r === false) return v; else return tail();`
-    Notes:
-      - This should work nested as all r's and v's are unique. The inner loop constructions are just ignored.
-        - Maybe we can optimize against that?
-      - If the loop was toplevel then there can not be a labeled break or continue that wants to jump "outside" of it
-      - Other rules will take care of mangling the new functions into an unrecognizable though normalized mess
-      - There are basically three abrupt completions we need to take care of in the loop; break, return, continue.
-        - The continue case is the same as no abrupt completion
-        - The return case is the only one where the tail is never called
-     */
-
-      // A normalized loop is a loop whose test is a simple node and whose body does not contain any other branching
-
-      vlog('Trying to normalize the while statement itself now', funcStack.length, isLabeled);
-
-      if (funcStack.length <= 1) {
-        vlog('Ignoring a while in global space, for now');
-      } else if (isLabeled) {
-        vlog('Ignore a labeled loop, for now');
-      } else if (
-        node.body.body.every((n) => {
-          ASSERT(n.type !== 'BlockStatement', 'normalized code should not have nested blocks');
-          return !['IfStatement', 'WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(n.type);
-        })
+      // Bail if this loop is labeled. Too many hard cases to solve and how much will it matter?
+      // For now, only works on `while (true)` loops
+      if (
+        !node.$p.doesContinue &&
+        !loopLabelNode &&
+        whileBody.length === 2 &&
+        last.type === 'IfStatement' &&
+        node.test.type === 'Literal' &&
+        node.test.value === true
       ) {
-        vlog('The `while` does not contain a branching statement, no need to abstract it');
-      } else {
-        // The body of the while contains some branching. Let's go.
-        ASSERT(
-          node.test.type !== 'Literal' || node.test.value === true,
-          'if the while test is a literal, it must at this point be true',
-          node.test,
-        );
-        if (!AST.isTrue(node.test)) {
-          // TODO: so under previous assertion this is dead code?
-          // Note: it's fine to leave a regular ident as the while condition so we don't do this unless required
-          rule('While normalization requires the while test to be `true`');
-          example('while (foo) { f(); }', 'while (true) { if (!foo) break; f(); }');
+        // We can't do this trick when there are continues because then we need to clone the code (so it gets executed properly)
+        // TODO: can we work around that with a labeled break? `while (x) { if (x) continue; else y(); }` -> `while (x) { foo: { if (x) break foo; else y(); } }`. but that's not safe within a switch, but we eliminate switches, so perhaps it's fine to do in a second phase or whatever.
+        // The if should already be normalized here
+
+        const first = whileBody[0];
+        if (last.test.type === 'Identifier' && first.type === 'VariableDeclaration' && first.declarations[0].id.name === last.test.name) {
+          const whileTestName = last.test.name;
+          const whileTestExpr = first.declarations[0].init;
+          ASSERT(whileTestExpr);
+          // This is a while with a var decl and an `if`. The `if` tests the ident declared by that decl.
+          // Confirm that either branch is only a `break`
+          if (last.consequent.body.length === 1 && last.consequent.body[0].type === 'BreakStatement') {
+            rule('A normalized while body with var-if-not-break pattern can be duped and simplified');
+            example(
+              'while (true) { const a = f(); if (a) { break; } else { x(); y(); }',
+              'let a = !f(); while (a) { x(); y(); a = !f(); }',
+            );
+            before(node);
+
+            const fail = {};
+            const clonedWhileTestExpr = AST.deepCloneForFuncInlining(whileTestExpr, new Map(), fail);
+            ASSERT(
+              !fail.ed,
+              'this (currently) only fails for assignment to param names and funcs. this is normalized code and the init cannot be an assignment. it could be a function but thats a silly case since this is a while-test.',
+              first.declarations[0].init,
+            );
+
+            // Move the var node to appear before the if.
+            // We can't change order so we wrap it in a block so we can replace the whole `while`
+            // We asserted the while not to be labeled so this should be safe.
+            const newBlock = AST.blockStatement(first, node);
+            // Move the var node to appear before the if. Must do so without changing body index order so wrap in a block.
+            body.splice(i, 1, newBlock);
+            // Make it `let` (if it wasn't already, but it should be const).
+            first.kind = 'let';
+            // Clear its old position.
+            whileBody[0] = AST.emptyStatement();
+            // Wrap the init in an excl
+            first.declarations[0].init = AST.unaryExpression('!', whileTestExpr);
+            // Replace the `if` with the branch that was not just the `break`. Keep its block.
+            ASSERT(whileBody[1] === last);
+            whileBody[1] = last.alternate;
+            // At the end of branch block that replaces the if, assign the clone to the var id, which is now a let
+            last.alternate.body.push(
+              AST.expressionStatement(AST.assignmentExpression(whileTestName, AST.unaryExpression('!', clonedWhileTestExpr), '=')),
+            );
+            // Update the while test with the var id
+            node.test = AST.identifier(whileTestName);
+
+            after(newBlock);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          if (last.alternate.body.length === 1 && last.alternate.body[0].type === 'BreakStatement') {
+            // Difference to above is that we don't wrap the while-test-expr in an invert expr
+            rule('A normalized while body with var-if-else-break pattern can be duped and simplified');
+            example('while (true) { const a = f(); if (a) { x(); y(); } else { break; }', 'let a = f(); while (a) { x(); y(); a = f(); }');
+            before(node);
+
+            const fail = {};
+            const clonedWhileTestExpr = AST.deepCloneForFuncInlining(whileTestExpr, new Map(), fail);
+            ASSERT(
+              !fail.ed,
+              'this (currently) only fails for assignment to param names and funcs. this is normalized code and the init cannot be an assignment. it could be a function but thats a silly case since this is a while-test.',
+              first.declarations[0].init,
+            );
+
+            // Move the var node to appear before the if.
+            // We can't change order so we wrap it in a block so we can replace the whole `while`
+            // We asserted the while not to be labeled so this should be safe.
+            let newBlock = AST.blockStatement(first, node);
+            // Move the var node to appear before the if. Must do so without changing body index order so wrap in a block.
+            body.splice(i, 1, newBlock);
+            // Make it `let` (if it wasn't already, but it should be const).
+            first.kind = 'let';
+            // Clear its old position.
+            whileBody[0] = AST.emptyStatement();
+            // Replace the `if` with the branch that was not just the `break`. Keep its block.
+            whileBody[1] = last.consequent;
+            // At the end of branch block that replaces the if, assign the clone to the var id, which is now a let
+            last.consequent.body.push(AST.expressionStatement(AST.assignmentExpression(whileTestName, clonedWhileTestExpr), '='));
+            // Update the while test with the var id
+            node.test = AST.identifier(whileTestName);
+
+            after(newBlock);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+        }
+      }
+
+      if (whileBody.length === 1 && whileBody[0].type === 'BreakStatement') {
+        const brk = whileBody[0];
+        if (brk.label) {
+          rule('A while with only a break statement must be removed; labeled break');
+          example('x: { while (true) { break x; } }', 'x: { break x; }');
           before(node);
 
-          node.body.body.unshift(AST.ifStatement(AST.unaryExpression('!', node.test), AST.breakStatement()));
-          node.test = AST.tru();
+          body[[i]] = brk;
 
-          after(node);
+          after(body[[i]]);
           return true;
         }
 
-        rule('Body of a toplevel while must not have branching');
-        example(
-          'while (true) { if (x) return a; else return b; } rest',
-          'let r = true; let v = undefined; function body() { if (x) { r = false; v = a; return; } else { r = false; v = b; return; } } function tail() { if (r) return v; else { rest } } { while (r) { tmp(); }; tail();',
-        );
-        before(node, parentNode);
+        rule('A while with only a break statement must be removed; break without label');
+        example('while (true) { break; }', ';');
+        before(node);
 
-        /*
-      // input:
-      let i = 0;
-      a() while (i < 10) { $(i); $(i); ++i; } d()
+        body[[i]] = AST.emptyStatement();
 
-      // current:
-      let i = 0;
-      function loop(){ const x = i < 10; if (x) { more = false; } else { const a = moduleDeps[o]; createModuleClosure(a); i = i + 1; } }
-      function tail(){ d() }
-      a()
-      let more = true
-      if (more) loop();
-      if (more) loop();
-      while (more) loop();
-      tail();
-       */
-
-        const tmpNameBody = createFreshVar('tmpLoopBody', fdata);
-        const tmpNameTail = createFreshVar('tmpLoopTail', fdata);
-        const tmpNameRetCode = createFreshVar('tmpLoopRetCode', fdata);
-        const tmpNameRetValue = createFreshVar('tmpLoopRetValue', fdata);
-        const tmpNameRetCode2 = createFreshVar(tmpNameRetCode, fdata);
-        const tmpNameRetValue2 = createFreshVar(tmpNameRetValue, fdata);
-
-        const newBodyFunc = AST.functionExpression([], [AST.debuggerStatement(), ...node.body.body]);
-        const newTailFunc = AST.functionExpression(
-          [AST.param('$$0'), AST.param('$$1')],
-          [
-            AST.variableDeclaration(tmpNameRetCode2, AST.param('$$0')),
-            AST.variableDeclaration(tmpNameRetValue2, AST.param('$$1')),
-            AST.debuggerStatement(),
-            // if (r === RETURN) return v;
-            // else <do whatever code followed the loop>
-            AST.ifStatement(
-              AST.binaryExpression('===', tmpNameRetCode2, RETURN()),
-              AST.blockStatement(AST.returnStatement(tmpNameRetValue2)),
-              AST.blockStatement(body.slice(i + 1)),
-            ),
-          ],
-        );
-
-        const newNodes = [
-          AST.variableDeclaration(tmpNameRetCode, CONTINUE(), 'let'),
-          AST.variableDeclaration(tmpNameRetValue, AST.identifier('undefined'), 'let'),
-          AST.variableDeclaration(tmpNameBody, newBodyFunc),
-          AST.variableDeclaration(tmpNameTail, newTailFunc),
-
-          // The loop body is always invoked at least once so should we call the body unconditionally first?
-          //AST.expressionStatement(AST.callExpression(tmpNameBody, [])),
-          // Should we "unroll" the loop a bit? Doesn't really work in our current iteration
-          //AST.ifStatement(tmpNameRetCode, AST.expressionStatement(AST.callExpression(tmpNameBody, []))),
-          //AST.ifStatement(tmpNameRetCode, AST.expressionStatement(AST.callExpression(tmpNameBody, []))),
-          //AST.ifStatement(tmpNameRetCode, AST.expressionStatement(AST.callExpression(tmpNameBody, []))),
-        ];
-        body.splice(
-          i + 1,
-          body.length,
-          AST.returnStatement(AST.callExpression(tmpNameTail, [AST.identifier(tmpNameRetCode), AST.identifier(tmpNameRetValue)])),
-        );
-        node.test = AST.identifier(tmpNameRetCode);
-        node.body.body.length = 0;
-        node.body.body.push(AST.expressionStatement(AST.callExpression(tmpNameBody, [])));
-        body.splice(i, 0, ...newNodes);
-
-        vgroup('Finding all abrupt completions');
-        // Track how many loops are nested. Unlabeled breaks/continues inside another loop should be left alone.
-        let loops = 0;
-        let stack = [];
-        const walker = (subnode, beforeVisit, type, path) => {
-          switch (subnode.type) {
-            case 'FunctionExpression': {
-              if (subnode === newBodyFunc) return; // Ignore the root
-              return true; // Do not traverse
-            }
-            case 'FunctionDeclaration':
-            case 'ArrowFunctionExpression': {
-              ASSERT(false, 'eh, no?');
-              break;
-            }
-            case 'ReturnStatement': {
-              // Always transform the return statement. This should work fine even in nested loops although
-              // part of the boilerplate is ignored for inner loops. Other rules should eliminate that tho.
-              if (beforeVisit) {
-                vlog('Found a return; adding to queue');
-                const parentNode = path.nodes[path.nodes.length - 2];
-                const parentProp = path.props[path.props.length - 1];
-                const parentIndex = path.indexes[path.indexes.length - 1];
-                stack.unshift({
-                  type: 'return',
-                  body: parentNode[parentProp],
-                  index: parentIndex,
-                  value: subnode.argument,
-                  parent: parentNode,
-                });
-              }
-              break;
-            }
-            case 'BreakStatement': {
-              // We can not be interested in a labelled break here because our loop is at the function root
-              // That means it can not be the descendant of a labelled statement and so we can ignore them.
-              // If we are inside another loop, also ignore them because they would break to the inner-most loop.
-              if (beforeVisit && !subnode.label && !loops) {
-                vlog('Found a break; adding to queue');
-                const parentNode = path.nodes[path.nodes.length - 2];
-                const parentProp = path.props[path.props.length - 1];
-                const parentIndex = path.indexes[path.indexes.length - 1];
-                stack.unshift({ type: 'break', body: parentNode[parentProp], index: parentIndex, value: undefined, parent: parentNode });
-              }
-              break;
-            }
-            case 'ContinueStatement': {
-              // We can not be interested in a labelled break here because our loop is at the function root
-              // That means it can not be the descendant of a labelled statement and so we can ignore them.
-              // If we are inside another loop, also ignore them because they would break to the inner-most loop.
-              if (beforeVisit && !subnode.label && !loops) {
-                vlog('Found a continue; adding to queue');
-
-                const parentNode = path.nodes[path.nodes.length - 2];
-                const parentProp = path.props[path.props.length - 1];
-                const parentIndex = path.indexes[path.indexes.length - 1];
-                stack.unshift({ type: 'continue', body: parentNode[parentProp], index: parentIndex, value: undefined, parent: parentNode });
-              }
-              break;
-            }
-            case 'ForInStatement':
-            case 'ForOfStatement':
-            case 'WhileStatement': {
-              if (beforeVisit) ++loops;
-              else --loops;
-              break;
-            }
-          }
-        };
-        walk(walker, newBodyFunc, 'body');
-        vgroupEnd();
-
-        // We should now be traversing the discovered nodes in reverse DFS order
-        // The important property to keep in mind here is that this means that injecting new nodes
-        // into any body array should not affect the position of elements still on the stack, since
-        // they should always precede the current node.
-        vgroup('Transforming all abrupt completions in reverse order');
-        stack.forEach(({ type, body, index, value, parent }) => {
-          if (type === 'return') {
-            rule('A return should update r and v and drop its arg');
-            example('return x;', 'r = RETURN; v = x; return;');
-            before(body[index], parent);
-
-            const newNodes = [
-              AST.expressionStatement(AST.assignmentExpression(tmpNameRetCode, RETURN())),
-              AST.expressionStatement(AST.assignmentExpression(tmpNameRetValue, value)),
-              AST.returnStatement('undefined'),
-            ];
-            body.splice(index, 1, ...newNodes);
-
-            after(newNodes, parent);
-          } else if (type === 'continue') {
-            rule('A return should update r and v and drop its arg');
-            example('return x;', 'r = RETURN; v = x; return;');
-            before(body[index], parent);
-
-            // We don't need to queue this because it doesn't need to inject multiple nodes.
-            const newNode = AST.returnStatement('undefined');
-            body[index] = newNode;
-
-            after(newNode, parent);
-          } else {
-            ASSERT(type === 'break');
-            rule('A return should update r and v and drop its arg');
-            example('return x;', 'r = RETURN; v = x; return;');
-            before(body[index], parent);
-
-            const newNodes = [AST.expressionStatement(AST.assignmentExpression(tmpNameRetCode, BREAK())), AST.returnStatement('undefined')];
-            body.splice(index, 1, ...newNodes);
-
-            after(newNodes, parent);
-          }
-        });
-        vgroupEnd();
-
-        after(node, parentNode);
-        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        after(body[[i]]);
         return true;
       }
     }

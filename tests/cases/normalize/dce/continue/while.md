@@ -37,20 +37,17 @@ $(`after, do not evaluate (infinite loop)`);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    while (true) {
-      const tmpIfTest$1 = $(true);
-      if (tmpIfTest$1) {
-        continue;
-      } else {
-        break;
-      }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  while (true) {
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+      continue;
+    } else {
+      break;
     }
-  } else {
-    break;
   }
+  tmpIfTest = $(true);
 }
 $(`after, do not evaluate (infinite loop)`);
 `````
@@ -58,20 +55,17 @@ $(`after, do not evaluate (infinite loop)`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    while (true) {
-      const tmpIfTest$1 = $(true);
-      if (tmpIfTest$1) {
-        continue;
-      } else {
-        break;
-      }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  while (true) {
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+      continue;
+    } else {
+      break;
     }
-  } else {
-    break;
   }
+  tmpIfTest = $(true);
 }
 $(`after, do not evaluate (infinite loop)`);
 `````

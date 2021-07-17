@@ -37,12 +37,9 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 const tmpPostUpdArgIdent = b;
 b = b - 1;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, b);
 `````
@@ -50,12 +47,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 const a = { a: 999, b: 1000 };
 $(a, 0);

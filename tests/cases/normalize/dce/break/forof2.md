@@ -39,18 +39,15 @@ $(`after`);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    let x = undefined;
-    for (x in tmpForInDeclRhs) {
-      break;
-    }
-    $(`keep`);
-  } else {
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  const tmpForInDeclRhs = { a: 1, b: 2 };
+  let x = undefined;
+  for (x in tmpForInDeclRhs) {
     break;
   }
+  $(`keep`);
+  tmpIfTest = $(true);
 }
 $(`after`);
 `````
@@ -58,18 +55,15 @@ $(`after`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    let x = undefined;
-    const tmpForInDeclRhs = { a: 1, b: 2 };
-    for (x in tmpForInDeclRhs) {
-      break;
-    }
-    $(`keep`);
-  } else {
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  let x = undefined;
+  const tmpForInDeclRhs = { a: 1, b: 2 };
+  for (x in tmpForInDeclRhs) {
     break;
   }
+  $(`keep`);
+  tmpIfTest = $(true);
 }
 $(`after`);
 `````

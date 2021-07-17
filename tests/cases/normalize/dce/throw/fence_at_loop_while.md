@@ -52,24 +52,17 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
+  let tmpIfTest = $(true);
+  while (tmpIfTest) {
+    $(`loop`);
+    let tmpIfTest$1 = $(true);
+    while (tmpIfTest$1) {
       $(`loop`);
-      while (true) {
-        const tmpIfTest$1 = $(true);
-        if (tmpIfTest$1) {
-          $(`loop`);
-          const tmpThrowArg = $(7, `throw`);
-          throw tmpThrowArg;
-        } else {
-          break;
-        }
-      }
-      $(`do not visit, do not eliminate`);
-    } else {
-      break;
+      const tmpThrowArg = $(7, `throw`);
+      throw tmpThrowArg;
     }
+    $(`do not visit, do not eliminate`);
+    tmpIfTest = $(true);
   }
   $(`after (not invoked)`);
   return undefined;
@@ -82,24 +75,20 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(`loop`);
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  $(`loop`);
+  const tmpIfTest$1 = $(true);
+  if (tmpIfTest$1) {
     while (true) {
-      const tmpIfTest$1 = $(true);
-      if (tmpIfTest$1) {
-        $(`loop`);
-        const tmpThrowArg = $(7, `throw`);
-        throw tmpThrowArg;
-      } else {
-        break;
-      }
+      $(`loop`);
+      const tmpThrowArg = $(7, `throw`);
+      throw tmpThrowArg;
     }
-    $(`do not visit, do not eliminate`);
   } else {
-    break;
   }
+  $(`do not visit, do not eliminate`);
+  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 $(undefined);

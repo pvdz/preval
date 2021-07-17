@@ -58,30 +58,27 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      let tmpDoWhileFlag = true;
-      while (true) {
-        let tmpIfTest$1 = tmpDoWhileFlag;
-        if (tmpIfTest$1) {
-        } else {
-          tmpIfTest$1 = $(true);
-        }
-        if (tmpIfTest$1) {
-          tmpDoWhileFlag = false;
-          $(`loop`);
-          const tmpReturnArg = $(100, `return`);
-          return tmpReturnArg;
-        } else {
-          break;
-        }
+  let tmpIfTest = $(true);
+  while (tmpIfTest) {
+    $(`loop`);
+    let tmpDoWhileFlag = true;
+    while (true) {
+      let tmpIfTest$1 = tmpDoWhileFlag;
+      if (tmpIfTest$1) {
+      } else {
+        tmpIfTest$1 = $(true);
       }
-      $(`do not visit, do not eliminate`);
-    } else {
-      break;
+      if (tmpIfTest$1) {
+        tmpDoWhileFlag = false;
+        $(`loop`);
+        const tmpReturnArg = $(100, `return`);
+        return tmpReturnArg;
+      } else {
+        break;
+      }
     }
+    $(`do not visit, do not eliminate`);
+    tmpIfTest = $(true);
   }
   $(`after (not invoked)`);
   return undefined;
@@ -96,30 +93,27 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      let tmpDoWhileFlag = true;
-      while (true) {
-        let tmpIfTest$1 = tmpDoWhileFlag;
-        if (tmpDoWhileFlag) {
-        } else {
-          tmpIfTest$1 = $(true);
-        }
-        if (tmpIfTest$1) {
-          tmpDoWhileFlag = false;
-          $(`loop`);
-          const tmpReturnArg = $(100, `return`);
-          return tmpReturnArg;
-        } else {
-          break;
-        }
+  let tmpIfTest = $(true);
+  while (tmpIfTest) {
+    $(`loop`);
+    let tmpDoWhileFlag = true;
+    while (true) {
+      let tmpIfTest$1 = tmpDoWhileFlag;
+      if (tmpDoWhileFlag) {
+      } else {
+        tmpIfTest$1 = $(true);
       }
-      $(`do not visit, do not eliminate`);
-    } else {
-      break;
+      if (tmpIfTest$1) {
+        tmpDoWhileFlag = false;
+        $(`loop`);
+        const tmpReturnArg = $(100, `return`);
+        return tmpReturnArg;
+      } else {
+        break;
+      }
     }
+    $(`do not visit, do not eliminate`);
+    tmpIfTest = $(true);
   }
   $(`after (not invoked)`);
   return undefined;

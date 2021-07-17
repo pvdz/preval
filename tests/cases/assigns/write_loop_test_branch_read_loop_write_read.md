@@ -34,18 +34,15 @@ $(x);
 
 `````js filename=intro
 let x = $(10);
-while (true) {
-  const tmpIfTest = $(x);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(x);
-    } else {
-    }
-    x = $(20);
+let tmpIfTest = $(x);
+while (tmpIfTest) {
+  const tmpIfTest$1 = $(true);
+  if (tmpIfTest$1) {
+    $(x);
   } else {
-    break;
   }
+  x = $(20);
+  tmpIfTest = $(x);
 }
 $(x);
 `````
@@ -54,18 +51,15 @@ $(x);
 
 `````js filename=intro
 let x = $(10);
-while (true) {
-  const tmpIfTest = $(x);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(x);
-    } else {
-    }
-    x = $(20);
+let tmpIfTest = $(x);
+while (tmpIfTest) {
+  const tmpIfTest$1 = $(true);
+  if (tmpIfTest$1) {
+    $(x);
   } else {
-    break;
   }
+  x = $(20);
+  tmpIfTest = $(x);
 }
 $(x);
 `````

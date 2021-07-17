@@ -52,12 +52,9 @@ if (tmpIfTest) {
   }
 } else {
 }
-while (true) {
-  const tmpIfTest$3 = $(0);
-  if (tmpIfTest$3) {
-  } else {
-    break;
-  }
+let tmpIfTest$3 = $(0);
+while (tmpIfTest$3) {
+  tmpIfTest$3 = $(0);
 }
 $(a);
 `````
@@ -80,12 +77,9 @@ if (tmpIfTest) {
     $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
   }
 }
-while (true) {
-  const tmpIfTest$3 = $(0);
-  if (tmpIfTest$3) {
-  } else {
-    break;
-  }
+let tmpIfTest$3 = $(0);
+while (tmpIfTest$3) {
+  tmpIfTest$3 = $(0);
 }
 $(a);
 `````

@@ -58,50 +58,13 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      $(`loop`);
-      let tmpDoWhileFlag = true;
-      while (true) {
-        let tmpIfTest$1 = tmpDoWhileFlag;
-        if (tmpIfTest$1) {
-        } else {
-          tmpIfTest$1 = $(true);
-        }
-        if (tmpIfTest$1) {
-          tmpDoWhileFlag = false;
-          $(`loop`);
-          const tmpThrowArg = $(7, `throw`);
-          throw tmpThrowArg;
-        } else {
-          break;
-        }
-      }
-      $(`do not visit, do not eliminate`);
-    } else {
-      break;
-    }
-  }
-  $(`after (not invoked)`);
-  return undefined;
-};
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
-`````
-
-## Output
-
-`````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
+  let tmpIfTest = $(true);
+  while (tmpIfTest) {
     $(`loop`);
     let tmpDoWhileFlag = true;
     while (true) {
       let tmpIfTest$1 = tmpDoWhileFlag;
-      if (tmpDoWhileFlag) {
+      if (tmpIfTest$1) {
       } else {
         tmpIfTest$1 = $(true);
       }
@@ -115,9 +78,40 @@ while (true) {
       }
     }
     $(`do not visit, do not eliminate`);
-  } else {
-    break;
+    tmpIfTest = $(true);
   }
+  $(`after (not invoked)`);
+  return undefined;
+};
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  $(`loop`);
+  let tmpDoWhileFlag = true;
+  while (true) {
+    let tmpIfTest$1 = tmpDoWhileFlag;
+    if (tmpDoWhileFlag) {
+    } else {
+      tmpIfTest$1 = $(true);
+    }
+    if (tmpIfTest$1) {
+      tmpDoWhileFlag = false;
+      $(`loop`);
+      const tmpThrowArg = $(7, `throw`);
+      throw tmpThrowArg;
+    } else {
+      break;
+    }
+  }
+  $(`do not visit, do not eliminate`);
+  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 $(undefined);

@@ -32,21 +32,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    a = tmpCallCallee(tmpCalleeParam);
-    if (a) {
-      const tmpCallCallee$1 = $;
-      const tmpCalleeParam$1 = $(2);
-      a = tmpCallCallee$1(tmpCalleeParam$1);
-    } else {
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  a = tmpCallCallee(tmpCalleeParam);
+  if (a) {
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(2);
+    a = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
-    break;
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -55,19 +52,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpCalleeParam = $(1);
-    a = $(tmpCalleeParam);
-    if (a) {
-      const tmpCalleeParam$1 = $(2);
-      a = $(tmpCalleeParam$1);
-    } else {
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpCalleeParam = $(1);
+  a = $(tmpCalleeParam);
+  if (a) {
+    const tmpCalleeParam$1 = $(2);
+    a = $(tmpCalleeParam$1);
   } else {
-    break;
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````

@@ -43,12 +43,9 @@ if (tmpIfTest) {
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
 } else {
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````
@@ -65,12 +62,9 @@ if (tmpIfTest) {
   const tmpChainRootComputed = $(`x`);
   tmpChainElementCall[tmpChainRootComputed];
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````

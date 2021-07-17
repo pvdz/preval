@@ -36,20 +36,17 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpAssignComMemLhsObj = $(b);
-    const tmpAssignComMemLhsProp = $(`c`);
-    const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-    const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpAssignComMemLhsObj = $(b);
+  const tmpAssignComMemLhsProp = $(`c`);
+  const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+  const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`d`);
+  const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+  tmpIfTest = $(1);
 }
 $(a, b);
 `````
@@ -59,18 +56,15 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpAssignComMemLhsObj = $(b);
-    const tmpAssignComMemLhsProp = $(`c`);
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpAssignComMemLhsObj = $(b);
+  const tmpAssignComMemLhsProp = $(`c`);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`d`);
+  const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
+  tmpIfTest = $(1);
 }
 $(a, b);
 `````

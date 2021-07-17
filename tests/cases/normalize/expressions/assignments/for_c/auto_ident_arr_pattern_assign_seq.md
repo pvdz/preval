@@ -39,21 +39,18 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(x);
-    $(y);
-    const tmpArrElement = $(3);
-    const tmpArrElement$1 = $(4);
-    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    a = tmpNestedAssignArrPatternRhs;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  $(x);
+  $(y);
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  a = tmpNestedAssignArrPatternRhs;
+  tmpIfTest = $(1);
 }
 $(a, x, y);
 `````
@@ -64,21 +61,18 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(x);
-    $(y);
-    const tmpArrElement = $(3);
-    const tmpArrElement$1 = $(4);
-    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    a = tmpNestedAssignArrPatternRhs;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  $(x);
+  $(y);
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  a = tmpNestedAssignArrPatternRhs;
+  tmpIfTest = $(1);
 }
 $(a, x, y);
 `````

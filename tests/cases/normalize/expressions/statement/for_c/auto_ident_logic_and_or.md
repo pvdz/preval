@@ -32,27 +32,24 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    let tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
-    if (tmpIfTest$1) {
-      const tmpCallCallee$1 = $;
-      const tmpCalleeParam$1 = $(1);
-      tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
-    } else {
-    }
-    if (tmpIfTest$1) {
-    } else {
-      const tmpCallCallee$3 = $;
-      const tmpCalleeParam$3 = $(2);
-      tmpCallCallee$3(tmpCalleeParam$3);
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  let tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
+  if (tmpIfTest$1) {
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(1);
+    tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
-    break;
   }
+  if (tmpIfTest$1) {
+  } else {
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpCallCallee$3(tmpCalleeParam$3);
+  }
+  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -60,24 +57,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpCalleeParam = $(1);
-    let tmpIfTest$1 = $(tmpCalleeParam);
-    if (tmpIfTest$1) {
-      const tmpCalleeParam$1 = $(1);
-      tmpIfTest$1 = $(tmpCalleeParam$1);
-    } else {
-    }
-    if (tmpIfTest$1) {
-    } else {
-      const tmpCalleeParam$3 = $(2);
-      $(tmpCalleeParam$3);
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpCalleeParam = $(1);
+  let tmpIfTest$1 = $(tmpCalleeParam);
+  if (tmpIfTest$1) {
+    const tmpCalleeParam$1 = $(1);
+    tmpIfTest$1 = $(tmpCalleeParam$1);
   } else {
-    break;
   }
+  if (tmpIfTest$1) {
+  } else {
+    const tmpCalleeParam$3 = $(2);
+    $(tmpCalleeParam$3);
+  }
+  tmpIfTest = $(1);
 }
 const a = { a: 999, b: 1000 };
 $(a);

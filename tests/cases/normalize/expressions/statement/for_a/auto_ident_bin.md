@@ -34,12 +34,9 @@ let a = { a: 999, b: 1000 };
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 tmpBinBothLhs + tmpBinBothRhs;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a);
 `````
@@ -50,12 +47,9 @@ $(a);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 tmpBinBothLhs + tmpBinBothRhs;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 const a = { a: 999, b: 1000 };
 $(a);

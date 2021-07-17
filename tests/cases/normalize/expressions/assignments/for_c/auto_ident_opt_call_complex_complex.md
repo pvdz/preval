@@ -32,25 +32,22 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    a = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall($);
-    const tmpIfTest$1 = tmpChainElementCall != null;
-    if (tmpIfTest$1) {
-      const tmpCallCallee = $dotCall;
-      const tmpCalleeParam = tmpChainElementCall;
-      const tmpCalleeParam$1 = tmpChainRootCall;
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-      a = tmpChainElementCall$1;
-    } else {
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  a = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall($);
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
+    const tmpCallCallee = $dotCall;
+    const tmpCalleeParam = tmpChainElementCall;
+    const tmpCalleeParam$1 = tmpChainRootCall;
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+    a = tmpChainElementCall$1;
   } else {
-    break;
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -59,21 +56,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    a = undefined;
-    const tmpChainElementCall = $($);
-    const tmpIfTest$1 = tmpChainElementCall == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
-      a = tmpChainElementCall$1;
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  a = undefined;
+  const tmpChainElementCall = $($);
+  const tmpIfTest$1 = tmpChainElementCall == null;
+  if (tmpIfTest$1) {
   } else {
-    break;
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+    a = tmpChainElementCall$1;
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````

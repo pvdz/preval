@@ -27,13 +27,10 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    x = $(10);
-  } else {
-    break;
-  }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  x = $(10);
+  tmpIfTest = $(true);
 }
 $(x);
 `````
@@ -42,13 +39,10 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    x = $(10);
-  } else {
-    break;
-  }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  x = $(10);
+  tmpIfTest = $(true);
 }
 $(x);
 `````

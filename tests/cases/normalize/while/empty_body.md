@@ -23,24 +23,18 @@ while ($());
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $();
+while (tmpIfTest) {
+  tmpIfTest = $();
 }
 `````
 
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $();
+while (tmpIfTest) {
+  tmpIfTest = $();
 }
 `````
 

@@ -32,18 +32,15 @@ while ($(x)) {
 
 `````js filename=intro
 let x = $(10);
-while (true) {
-  const tmpIfTest = $(x);
-  if (tmpIfTest) {
-    x = $(0);
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(x, `branch`);
-    } else {
-    }
+let tmpIfTest = $(x);
+while (tmpIfTest) {
+  x = $(0);
+  const tmpIfTest$1 = $(true);
+  if (tmpIfTest$1) {
+    $(x, `branch`);
   } else {
-    break;
   }
+  tmpIfTest = $(x);
 }
 `````
 
@@ -51,18 +48,15 @@ while (true) {
 
 `````js filename=intro
 let x = $(10);
-while (true) {
-  const tmpIfTest = $(x);
-  if (tmpIfTest) {
-    x = $(0);
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(x, `branch`);
-    } else {
-    }
+let tmpIfTest = $(x);
+while (tmpIfTest) {
+  x = $(0);
+  const tmpIfTest$1 = $(true);
+  if (tmpIfTest$1) {
+    $(x, `branch`);
   } else {
-    break;
   }
+  tmpIfTest = $(x);
 }
 `````
 

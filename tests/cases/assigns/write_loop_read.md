@@ -30,13 +30,10 @@ while ($(true)) {
 
 `````js filename=intro
 let x = $(10);
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(x, `loop`);
-  } else {
-    break;
-  }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  $(x, `loop`);
+  tmpIfTest = $(true);
 }
 `````
 
@@ -44,13 +41,10 @@ while (true) {
 
 `````js filename=intro
 const x = $(10);
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(x, `loop`);
-  } else {
-    break;
-  }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  $(x, `loop`);
+  tmpIfTest = $(true);
 }
 `````
 

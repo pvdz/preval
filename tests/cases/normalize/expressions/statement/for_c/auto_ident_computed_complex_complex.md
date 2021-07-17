@@ -36,15 +36,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`c`);
-    tmpCompObj[tmpCompProp];
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`c`);
+  tmpCompObj[tmpCompProp];
+  tmpIfTest = $(1);
 }
 $(a, b);
 `````
@@ -54,15 +51,12 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`c`);
-    tmpCompObj[tmpCompProp];
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`c`);
+  tmpCompObj[tmpCompProp];
+  tmpIfTest = $(1);
 }
 $(a, b);
 `````

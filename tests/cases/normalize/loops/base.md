@@ -632,14 +632,11 @@ $(r);
 let f = function () {
   debugger;
   let i = 0;
-  while (true) {
-    const tmpIfTest = i < 10;
-    if (tmpIfTest) {
-      $(i);
-      i = i + 1;
-    } else {
-      break;
-    }
+  let tmpIfTest = i < 10;
+  while (tmpIfTest) {
+    $(i);
+    i = i + 1;
+    tmpIfTest = i < 10;
   }
   return 100;
 };
@@ -651,14 +648,11 @@ $(r);
 
 `````js filename=intro
 let i = 0;
-while (true) {
-  const tmpIfTest = i < 10;
-  if (tmpIfTest) {
-    $(i);
-    i = i + 1;
-  } else {
-    break;
-  }
+let tmpIfTest = true;
+while (tmpIfTest) {
+  $(i);
+  i = i + 1;
+  tmpIfTest = i < 10;
 }
 $(100);
 `````

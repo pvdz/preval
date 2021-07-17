@@ -40,14 +40,10 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
-      const tmpReturnArg = $(1, `return`);
-      return tmpReturnArg;
-    } else {
-      break;
-    }
+  let tmpIfTest = $(true);
+  while (tmpIfTest) {
+    const tmpReturnArg = $(1, `return`);
+    return tmpReturnArg;
   }
   $(`keep, do not eval`);
   return undefined;
@@ -62,14 +58,13 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  while (true) {
-    const tmpIfTest = $(true);
-    if (tmpIfTest) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    while (true) {
       const tmpReturnArg = $(1, `return`);
       return tmpReturnArg;
-    } else {
-      break;
     }
+  } else {
   }
   $(`keep, do not eval`);
   return undefined;

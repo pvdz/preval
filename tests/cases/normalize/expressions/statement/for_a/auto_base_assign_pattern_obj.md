@@ -40,12 +40,9 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 b = tmpAssignObjPatternRhs.b;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, b);
 `````
@@ -58,12 +55,9 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_b = tmpAssignObjPatternRhs.b;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, tmpClusterSSA_b);
 `````

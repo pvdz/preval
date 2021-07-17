@@ -32,16 +32,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpObjLitVal = $(1);
-    const tmpObjLitVal$1 = 2;
-    const tmpObjLitVal$3 = $(3);
-    a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpObjLitVal = $(1);
+  const tmpObjLitVal$1 = 2;
+  const tmpObjLitVal$3 = $(3);
+  a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
+  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -50,15 +47,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpObjLitVal = $(1);
-    const tmpObjLitVal$3 = $(3);
-    a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpObjLitVal = $(1);
+  const tmpObjLitVal$3 = $(3);
+  a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+  tmpIfTest = $(1);
 }
 $(a);
 `````

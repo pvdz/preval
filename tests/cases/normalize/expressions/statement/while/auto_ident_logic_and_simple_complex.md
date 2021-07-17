@@ -28,17 +28,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  let tmpIfTest = 1;
+let tmpIfTest = 1;
+while (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  tmpIfTest = tmpCallCallee(tmpCalleeParam);
   if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    tmpIfTest = tmpCallCallee(tmpCalleeParam);
-    if (tmpIfTest) {
-      $(100);
-    } else {
-      break;
-    }
+    $(100);
+    tmpIfTest = 1;
   } else {
     break;
   }
@@ -49,10 +46,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
+let tmpIfTest = 1;
+while (tmpIfTest) {
   const tmpCalleeParam = $(1);
-  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
-  if (tmpClusterSSA_tmpIfTest) {
+  tmpIfTest = $(tmpCalleeParam);
+  if (tmpIfTest) {
     $(100);
   } else {
     break;

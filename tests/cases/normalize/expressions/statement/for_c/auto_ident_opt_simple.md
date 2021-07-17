@@ -36,18 +36,15 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.x;
-    } else {
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpChainRootProp = b;
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
+    const tmpChainElementObject = tmpChainRootProp.x;
   } else {
-    break;
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -57,17 +54,14 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = b == null;
-    if (tmpIfTest$1) {
-    } else {
-      b.x;
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpIfTest$1 = b == null;
+  if (tmpIfTest$1) {
   } else {
-    break;
+    b.x;
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````

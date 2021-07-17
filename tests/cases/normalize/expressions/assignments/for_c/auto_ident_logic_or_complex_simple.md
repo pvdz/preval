@@ -32,19 +32,16 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(0);
-    a = tmpCallCallee(tmpCalleeParam);
-    if (a) {
-    } else {
-      a = 2;
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(0);
+  a = tmpCallCallee(tmpCalleeParam);
+  if (a) {
   } else {
-    break;
+    a = 2;
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -53,18 +50,15 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpCalleeParam = $(0);
-    a = $(tmpCalleeParam);
-    if (a) {
-    } else {
-      a = 2;
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpCalleeParam = $(0);
+  a = $(tmpCalleeParam);
+  if (a) {
   } else {
-    break;
+    a = 2;
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````

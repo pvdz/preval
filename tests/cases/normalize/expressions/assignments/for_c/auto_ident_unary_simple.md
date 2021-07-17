@@ -36,13 +36,10 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    a = typeof x;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  a = typeof x;
+  tmpIfTest = $(1);
 }
 $(a, x);
 `````
@@ -51,13 +48,10 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    a = `number`;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  a = `number`;
+  tmpIfTest = $(1);
 }
 $(a, 1);
 `````

@@ -42,12 +42,9 @@ if (tmpIfTest) {
   const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
 } else {
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````
@@ -63,12 +60,9 @@ if (tmpIfTest) {
   const tmpChainElementObject = b.c;
   $dotCall(tmpChainElementObject, b, 1);
 }
-while (true) {
-  const tmpIfTest$1 = $(0);
-  if (tmpIfTest$1) {
-  } else {
-    break;
-  }
+let tmpIfTest$1 = $(0);
+while (tmpIfTest$1) {
+  tmpIfTest$1 = $(0);
 }
 $(a);
 `````

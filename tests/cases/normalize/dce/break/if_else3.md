@@ -37,15 +37,11 @@ $(`after`);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(1);
-    if (tmpIfTest$1) {
-      break;
-    } else {
-      break;
-    }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  const tmpIfTest$1 = $(1);
+  if (tmpIfTest$1) {
+    break;
   } else {
     break;
   }
@@ -56,14 +52,13 @@ $(`after`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  while (true) {
     $(1);
     break;
-  } else {
-    break;
   }
+} else {
 }
 $(`after`);
 `````

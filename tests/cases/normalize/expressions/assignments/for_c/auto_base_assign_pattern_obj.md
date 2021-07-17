@@ -36,18 +36,15 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpObjLitVal = $(2);
-    const tmpCalleeParam = { b: tmpObjLitVal };
-    const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-    b = tmpNestedAssignObjPatternRhs.b;
-    a = tmpNestedAssignObjPatternRhs;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpObjLitVal = $(2);
+  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  b = tmpNestedAssignObjPatternRhs.b;
+  a = tmpNestedAssignObjPatternRhs;
+  tmpIfTest = $(1);
 }
 $(a, b);
 `````
@@ -57,17 +54,14 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpObjLitVal = $(2);
-    const tmpCalleeParam = { b: tmpObjLitVal };
-    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-    b = tmpNestedAssignObjPatternRhs.b;
-    a = tmpNestedAssignObjPatternRhs;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpObjLitVal = $(2);
+  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+  b = tmpNestedAssignObjPatternRhs.b;
+  a = tmpNestedAssignObjPatternRhs;
+  tmpIfTest = $(1);
 }
 $(a, b);
 `````

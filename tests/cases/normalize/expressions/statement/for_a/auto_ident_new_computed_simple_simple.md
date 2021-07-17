@@ -37,12 +37,9 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpNewCallee = b.$;
 new tmpNewCallee(1);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a);
 `````
@@ -51,12 +48,9 @@ $(a);
 
 `````js filename=intro
 new $(1);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 const a = { a: 999, b: 1000 };
 $(a);

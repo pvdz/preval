@@ -54,12 +54,9 @@ const varInitAssignLhsComputedRhs = d + e;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 const tmpAssignComputedRhs = varInitAssignLhsComputedRhs;
 tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, b, c, d, e);
 `````
@@ -76,12 +73,9 @@ const varInitAssignLhsComputedObj = $(c);
 const varInitAssignLhsComputedProp = $(`y`);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a, b, c, 3, 4);
 `````

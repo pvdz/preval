@@ -39,19 +39,16 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(x);
-    $(y);
-    const tmpObjLitVal = $(3);
-    const tmpObjLitVal$1 = $(4);
-    const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-    x = tmpAssignObjPatternRhs.x;
-    y = tmpAssignObjPatternRhs.y;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  $(x);
+  $(y);
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  x = tmpAssignObjPatternRhs.x;
+  y = tmpAssignObjPatternRhs.y;
+  tmpIfTest = $(1);
 }
 $(a, x, y);
 `````
@@ -61,18 +58,15 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    $(x);
-    $(y);
-    const tmpObjLitVal = $(3);
-    const tmpObjLitVal$1 = $(4);
-    x = tmpObjLitVal;
-    y = tmpObjLitVal$1;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  $(x);
+  $(y);
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  x = tmpObjLitVal;
+  y = tmpObjLitVal$1;
+  tmpIfTest = $(1);
 }
 const a = { a: 999, b: 1000 };
 $(a, x, y);

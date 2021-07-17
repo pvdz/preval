@@ -37,28 +37,25 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    a = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
-    const tmpIfTest$1 = tmpChainElementCall != null;
-    if (tmpIfTest$1) {
-      const tmpChainRootComputed = $(`x`);
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      const tmpIfTest$3 = tmpChainElementObject != null;
-      if (tmpIfTest$3) {
-        const tmpChainRootComputed$1 = $(`y`);
-        const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-        a = tmpChainElementObject$1;
-      } else {
-      }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  a = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
+    const tmpChainRootComputed = $(`x`);
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$3 = tmpChainElementObject != null;
+    if (tmpIfTest$3) {
+      const tmpChainRootComputed$1 = $(`y`);
+      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      a = tmpChainElementObject$1;
     } else {
     }
   } else {
-    break;
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -69,27 +66,24 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    a = undefined;
-    const tmpChainElementCall = $(b);
-    const tmpIfTest$1 = tmpChainElementCall == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpChainRootComputed = $(`x`);
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      const tmpIfTest$3 = tmpChainElementObject == null;
-      if (tmpIfTest$3) {
-      } else {
-        const tmpChainRootComputed$1 = $(`y`);
-        const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-        a = tmpChainElementObject$1;
-      }
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  a = undefined;
+  const tmpChainElementCall = $(b);
+  const tmpIfTest$1 = tmpChainElementCall == null;
+  if (tmpIfTest$1) {
   } else {
-    break;
+    const tmpChainRootComputed = $(`x`);
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$3 = tmpChainElementObject == null;
+    if (tmpIfTest$3) {
+    } else {
+      const tmpChainRootComputed$1 = $(`y`);
+      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      a = tmpChainElementObject$1;
+    }
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````

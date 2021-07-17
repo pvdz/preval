@@ -32,23 +32,20 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall($);
-    const tmpIfTest$1 = tmpChainElementCall != null;
-    if (tmpIfTest$1) {
-      const tmpCallCallee = $dotCall;
-      const tmpCalleeParam = tmpChainElementCall;
-      const tmpCalleeParam$1 = tmpChainRootCall;
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-    } else {
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall($);
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
+    const tmpCallCallee = $dotCall;
+    const tmpCalleeParam = tmpChainElementCall;
+    const tmpCalleeParam$1 = tmpChainRootCall;
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   } else {
-    break;
   }
+  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -56,19 +53,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpChainElementCall = $($);
-    const tmpIfTest$1 = tmpChainElementCall == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpCalleeParam$3 = $(1);
-      $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
-    }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpChainElementCall = $($);
+  const tmpIfTest$1 = tmpChainElementCall == null;
+  if (tmpIfTest$1) {
   } else {
-    break;
+    const tmpCalleeParam$3 = $(1);
+    $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   }
+  tmpIfTest = $(1);
 }
 const a = { a: 999, b: 1000 };
 $(a);

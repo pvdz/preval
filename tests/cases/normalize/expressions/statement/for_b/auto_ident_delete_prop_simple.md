@@ -36,13 +36,10 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = delete arg.y;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
+let tmpIfTest = delete arg.y;
+while (tmpIfTest) {
+  $(1);
+  tmpIfTest = delete arg.y;
 }
 $(a, arg);
 `````
@@ -52,13 +49,10 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = delete arg.y;
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
+let tmpIfTest = delete arg.y;
+while (tmpIfTest) {
+  $(1);
+  tmpIfTest = delete arg.y;
 }
 $(a, arg);
 `````

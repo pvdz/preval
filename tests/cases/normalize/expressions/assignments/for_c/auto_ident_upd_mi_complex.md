@@ -36,19 +36,16 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(b);
-    const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-    const tmpBinLhs = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    a = tmpNestedPropCompoundComplexRhs;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(b);
+  const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
+  const tmpBinLhs = tmpNestedAssignObj.x;
+  const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
+  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+  a = tmpNestedPropCompoundComplexRhs;
+  tmpIfTest = $(1);
 }
 $(a, b);
 `````
@@ -57,19 +54,16 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpIfTest = $(1);
 const b = { x: 1 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpCalleeParam = $(b);
-    const tmpNestedAssignObj = $(tmpCalleeParam);
-    const tmpBinLhs = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    a = tmpNestedPropCompoundComplexRhs;
-  } else {
-    break;
-  }
+while (tmpIfTest) {
+  const tmpCalleeParam = $(b);
+  const tmpNestedAssignObj = $(tmpCalleeParam);
+  const tmpBinLhs = tmpNestedAssignObj.x;
+  const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
+  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+  a = tmpNestedPropCompoundComplexRhs;
+  tmpIfTest = $(1);
 }
 $(a, b);
 `````

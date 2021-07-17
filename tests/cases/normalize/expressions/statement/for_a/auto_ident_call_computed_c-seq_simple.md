@@ -37,12 +37,9 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
 tmpCallObj.$(1);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a);
 `````
@@ -54,12 +51,9 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCallObj = $(b);
 tmpCallObj.$(1);
-while (true) {
-  const tmpIfTest = $(0);
-  if (tmpIfTest) {
-  } else {
-    break;
-  }
+let tmpIfTest = $(0);
+while (tmpIfTest) {
+  tmpIfTest = $(0);
 }
 $(a);
 `````

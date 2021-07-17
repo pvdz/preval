@@ -39,25 +39,22 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    const tmpAssignMemLhsObj = b;
-    const varInitAssignLhsComputedRhs$7 = c;
-    b.x = varInitAssignLhsComputedRhs$7;
-    const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-    b.x = varInitAssignLhsComputedRhs$5;
-    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-    b.x = varInitAssignLhsComputedRhs$3;
-    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-    b.x = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    b.x = varInitAssignLhsComputedRhs;
-    const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  const tmpAssignMemLhsObj = b;
+  const varInitAssignLhsComputedRhs$7 = c;
+  b.x = varInitAssignLhsComputedRhs$7;
+  const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
+  b.x = varInitAssignLhsComputedRhs$5;
+  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
+  b.x = varInitAssignLhsComputedRhs$3;
+  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
+  b.x = varInitAssignLhsComputedRhs$1;
+  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+  b.x = varInitAssignLhsComputedRhs;
+  const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpIfTest = $(1);
 }
 $(a, b, c);
 `````
@@ -67,18 +64,15 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-    b.x = 3;
-  } else {
-    break;
-  }
+let tmpIfTest = $(1);
+while (tmpIfTest) {
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  b.x = 3;
+  tmpIfTest = $(1);
 }
 $(a, b, 3);
 `````

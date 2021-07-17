@@ -38,19 +38,15 @@ $(`after`);
 ## Normalized
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(false);
-    if (tmpIfTest$1) {
-      x = $(`fail too`);
-    } else {
-    }
-    break;
-    let x = $(`fail`);
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  const tmpIfTest$1 = $(false);
+  if (tmpIfTest$1) {
+    x = $(`fail too`);
   } else {
-    break;
   }
+  break;
+  let x = 0;
 }
 $(`after`);
 `````
@@ -58,18 +54,16 @@ $(`after`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $(false);
-    if (tmpIfTest$1) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+  const tmpIfTest$1 = $(false);
+  if (tmpIfTest$1) {
+    while (true) {
       throw `Preval: Cannot access \`x\` before initialization`;
-    } else {
-      break;
     }
   } else {
-    break;
   }
+} else {
 }
 $(`after`);
 `````

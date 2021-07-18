@@ -27,11 +27,11 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (1, 2, b)[$(`c`)]) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = (1, 2, b)[$(`c`)];
   }
 }
 $(a, b);
@@ -43,20 +43,11 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpAssignRhsCompObj = b;
-    const tmpAssignRhsCompProp = $(`c`);
-    tmpIfTest = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpAssignRhsCompObj = b;
+  const tmpAssignRhsCompProp = $(`c`);
+  tmpDoWhileFlag = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 }
 $(a, b);
 `````
@@ -67,19 +58,10 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpAssignRhsCompProp = $(`c`);
-    tmpIfTest = b[tmpAssignRhsCompProp];
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpAssignRhsCompProp = $(`c`);
+  tmpDoWhileFlag = b[tmpAssignRhsCompProp];
 }
 $(a, b);
 `````

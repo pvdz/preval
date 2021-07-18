@@ -27,11 +27,11 @@ let f = function () {
   debugger;
   {
     let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag || $(true)) {
-      tmpDoWhileFlag = false;
+    while (tmpDoWhileFlag) {
       {
         throw $(1, `return`);
       }
+      tmpDoWhileFlag = $(true);
     }
   }
   $(`keep, do not eval`);
@@ -45,19 +45,9 @@ $(f());
 let f = function () {
   debugger;
   let tmpDoWhileFlag = true;
-  while (true) {
-    let tmpIfTest = tmpDoWhileFlag;
-    if (tmpIfTest) {
-    } else {
-      tmpIfTest = $(true);
-    }
-    if (tmpIfTest) {
-      tmpDoWhileFlag = false;
-      const tmpThrowArg = $(1, `return`);
-      throw tmpThrowArg;
-    } else {
-      break;
-    }
+  while (tmpDoWhileFlag) {
+    const tmpThrowArg = $(1, `return`);
+    throw tmpThrowArg;
   }
   $(`keep, do not eval`);
   return undefined;
@@ -70,20 +60,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
 while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    tmpIfTest = $(true);
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    const tmpThrowArg = $(1, `return`);
-    throw tmpThrowArg;
-  } else {
-    break;
-  }
+  const tmpThrowArg = $(1, `return`);
+  throw tmpThrowArg;
 }
 $(`keep, do not eval`);
 $(undefined);

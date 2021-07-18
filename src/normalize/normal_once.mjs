@@ -309,6 +309,29 @@ export function phaseNormalOnce(fdata) {
           parentNode.body = newNodes;
 
           after(newNodes, parentNode);
+        } else if (!node.$p.doesContinue) {
+          // We can use a simpler pattern for this case. The continue case is harder since every occurrence would first need to
+          // do the assignment as well which would lead to more code duplication. Maybe that's still acceptable, something TBD.
+          rule('Do-while without continue must be simple regular while');
+          example('do { f(); } while (g());', 'let tmp = true; while (tmp) { f(); tmp = g(); }');
+          before(node, parentNode);
+
+          const tmpName = createFreshVar('tmpDoWhileFlag', fdata);
+          const newNodes = AST.blockStatement([
+            AST.variableDeclaration(tmpName, AST.tru(), 'let'),
+            AST.whileStatement(
+              AST.identifier(tmpName),
+              AST.blockStatement(
+                node.body,
+                AST.expressionStatement(AST.assignmentExpression(tmpName, node.test)),
+              ),
+            ),
+          ]);
+
+          if (parentIndex < 0) parentNode[parentProp] = newNodes;
+          else parentNode[parentProp][parentIndex] = newNodes;
+
+          after(newNodes, parentNode);
         } else {
           rule('Do-while must be regular while');
           example('do { f(); } while(g());', 'let tmp = true; while (tmp || g()) { tmp = false; g(); }');

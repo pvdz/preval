@@ -27,11 +27,11 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || typeof x) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = typeof x;
   }
 }
 $(a, x);
@@ -43,18 +43,9 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = typeof x;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  tmpDoWhileFlag = typeof x;
 }
 $(a, x);
 `````
@@ -63,18 +54,9 @@ $(a, x);
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    tmpIfTest = `number`;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  tmpDoWhileFlag = `number`;
 }
 const a = { a: 999, b: 1000 };
 $(a, 1);

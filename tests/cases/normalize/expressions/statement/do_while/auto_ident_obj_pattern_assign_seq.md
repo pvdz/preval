@@ -29,11 +29,11 @@ let x = 1,
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ({ x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) }))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = { x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) });
   }
 }
 $(a, x, y);
@@ -46,25 +46,16 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    $(x);
-    $(y);
-    const tmpObjLitVal = $(3);
-    const tmpObjLitVal$1 = $(4);
-    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-    x = tmpNestedAssignObjPatternRhs.x;
-    y = tmpNestedAssignObjPatternRhs.y;
-    tmpIfTest = tmpNestedAssignObjPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  $(x);
+  $(y);
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  x = tmpNestedAssignObjPatternRhs.x;
+  y = tmpNestedAssignObjPatternRhs.y;
+  tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
 }
 $(a, x, y);
 `````
@@ -75,25 +66,16 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    $(x);
-    $(y);
-    const tmpObjLitVal = $(3);
-    const tmpObjLitVal$1 = $(4);
-    x = tmpObjLitVal;
-    y = tmpObjLitVal$1;
-    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-    tmpIfTest = tmpNestedAssignObjPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  $(x);
+  $(y);
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  x = tmpObjLitVal;
+  y = tmpObjLitVal$1;
+  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
 }
 const a = { a: 999, b: 1000 };
 $(a, x, y);

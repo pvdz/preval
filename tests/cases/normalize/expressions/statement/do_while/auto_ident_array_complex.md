@@ -24,11 +24,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || [$(1), 2, $(3)]) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = [$(1), 2, $(3)];
   }
 }
 $(a);
@@ -39,21 +39,12 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpArrElement = $(1);
-    const tmpArrElement$1 = 2;
-    const tmpArrElement$3 = $(3);
-    tmpIfTest = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpArrElement = $(1);
+  const tmpArrElement$1 = 2;
+  const tmpArrElement$3 = $(3);
+  tmpDoWhileFlag = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 }
 $(a);
 `````
@@ -62,20 +53,11 @@ $(a);
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpArrElement = $(1);
-    const tmpArrElement$3 = $(3);
-    tmpIfTest = [tmpArrElement, 2, tmpArrElement$3];
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpArrElement = $(1);
+  const tmpArrElement$3 = $(3);
+  tmpDoWhileFlag = [tmpArrElement, 2, tmpArrElement$3];
 }
 const a = { a: 999, b: 1000 };
 $(a);

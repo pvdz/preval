@@ -27,11 +27,11 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = $(b)?.[$(`x`)])) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = $(b)?.[$(`x`)];
   }
 }
 $(a);
@@ -43,29 +43,20 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
+while (tmpDoWhileFlag) {
+  $(100);
+  let tmpNestedComplexRhs = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall(b);
+  const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
+    const tmpChainRootComputed = $(`x`);
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    tmpNestedComplexRhs = tmpChainElementObject;
   } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall(b);
-    const tmpIfTest$1 = tmpChainElementCall != null;
-    if (tmpIfTest$1) {
-      const tmpChainRootComputed = $(`x`);
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      tmpNestedComplexRhs = tmpChainElementObject;
-    } else {
-    }
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
   }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -76,28 +67,19 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 const b = { x: 1 };
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpChainElementCall = $(b);
-    const tmpIfTest$1 = tmpChainElementCall == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpChainRootComputed = $(`x`);
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      tmpNestedComplexRhs = tmpChainElementObject;
-    }
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  let tmpNestedComplexRhs = undefined;
+  const tmpChainElementCall = $(b);
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
   } else {
-    break;
+    const tmpChainRootComputed = $(`x`);
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    tmpNestedComplexRhs = tmpChainElementObject;
   }
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````

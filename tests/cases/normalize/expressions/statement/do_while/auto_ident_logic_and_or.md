@@ -24,11 +24,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ($($(1)) && $($(1))) || $($(2))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = ($($(1)) && $($(1))) || $($(2));
   }
 }
 $(a);
@@ -39,31 +39,22 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(1);
+  tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+  if (tmpDoWhileFlag) {
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(1);
+    tmpDoWhileFlag = tmpCallCallee$1(tmpCalleeParam$1);
   } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    tmpIfTest = tmpCallCallee(tmpCalleeParam);
-    if (tmpIfTest) {
-      const tmpCallCallee$1 = $;
-      const tmpCalleeParam$1 = $(1);
-      tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
-    } else {
-    }
-    if (tmpIfTest) {
-    } else {
-      const tmpCallCallee$3 = $;
-      const tmpCalleeParam$3 = $(2);
-      tmpIfTest = tmpCallCallee$3(tmpCalleeParam$3);
-    }
   }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
+  if (tmpDoWhileFlag) {
   } else {
-    break;
+    const tmpCallCallee$3 = $;
+    const tmpCalleeParam$3 = $(2);
+    tmpDoWhileFlag = tmpCallCallee$3(tmpCalleeParam$3);
   }
 }
 $(a);
@@ -73,28 +64,19 @@ $(a);
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCalleeParam = $(1);
+  tmpDoWhileFlag = $(tmpCalleeParam);
+  if (tmpDoWhileFlag) {
+    const tmpCalleeParam$1 = $(1);
+    tmpDoWhileFlag = $(tmpCalleeParam$1);
+  } else {
+  }
   if (tmpDoWhileFlag) {
   } else {
-    const tmpCalleeParam = $(1);
-    tmpIfTest = $(tmpCalleeParam);
-    if (tmpIfTest) {
-      const tmpCalleeParam$1 = $(1);
-      tmpIfTest = $(tmpCalleeParam$1);
-    } else {
-    }
-    if (tmpIfTest) {
-    } else {
-      const tmpCalleeParam$3 = $(2);
-      tmpIfTest = $(tmpCalleeParam$3);
-    }
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
+    const tmpCalleeParam$3 = $(2);
+    tmpDoWhileFlag = $(tmpCalleeParam$3);
   }
 }
 const a = { a: 999, b: 1000 };

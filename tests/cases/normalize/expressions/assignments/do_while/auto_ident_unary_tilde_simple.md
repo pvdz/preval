@@ -27,11 +27,11 @@ let arg = 1;
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = ~arg)) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = ~arg;
   }
 }
 $(a, arg);
@@ -43,20 +43,11 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpNestedComplexRhs = ~arg;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpNestedComplexRhs = ~arg;
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a, arg);
 `````
@@ -66,19 +57,10 @@ $(a, arg);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    a = -2;
-    tmpIfTest = -2;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  a = -2;
+  tmpDoWhileFlag = -2;
 }
 $(a, 1);
 `````

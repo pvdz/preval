@@ -27,11 +27,11 @@ let b = { x: { y: { z: 100 } } };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || b?.x.y.z) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = b?.x.y.z;
   }
 }
 $(a);
@@ -45,26 +45,17 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
+while (tmpDoWhileFlag) {
+  $(100);
+  tmpDoWhileFlag = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
+    const tmpChainElementObject = tmpChainRootProp.x;
+    const tmpChainElementObject$1 = tmpChainElementObject.y;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+    tmpDoWhileFlag = tmpChainElementObject$3;
   } else {
-    tmpIfTest = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.x;
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-      tmpIfTest = tmpChainElementObject$3;
-    } else {
-    }
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
   }
 }
 $(a);
@@ -78,25 +69,16 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    tmpIfTest = undefined;
-    const tmpIfTest$1 = b == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpChainElementObject = b.x;
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-      tmpIfTest = tmpChainElementObject$3;
-    }
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  tmpDoWhileFlag = undefined;
+  const tmpIfTest = b == null;
   if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
   } else {
-    break;
+    const tmpChainElementObject = b.x;
+    const tmpChainElementObject$1 = tmpChainElementObject.y;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+    tmpDoWhileFlag = tmpChainElementObject$3;
   }
 }
 $(a);

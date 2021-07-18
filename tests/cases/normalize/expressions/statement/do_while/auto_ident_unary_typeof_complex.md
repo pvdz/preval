@@ -27,11 +27,11 @@ let arg = 1;
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || typeof $(arg)) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = typeof $(arg);
   }
 }
 $(a, arg);
@@ -43,19 +43,10 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpUnaryArg = $(arg);
-    tmpIfTest = typeof tmpUnaryArg;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpUnaryArg = $(arg);
+  tmpDoWhileFlag = typeof tmpUnaryArg;
 }
 $(a, arg);
 `````
@@ -64,19 +55,10 @@ $(a, arg);
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpUnaryArg = $(1);
-    tmpIfTest = typeof tmpUnaryArg;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpUnaryArg = $(1);
+  tmpDoWhileFlag = typeof tmpUnaryArg;
 }
 const a = { a: 999, b: 1000 };
 $(a, 1);

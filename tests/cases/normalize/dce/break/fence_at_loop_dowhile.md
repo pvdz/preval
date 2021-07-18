@@ -32,13 +32,13 @@ while ($(true)) {
   $(`loop`);
   {
     let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag || $(true)) {
-      tmpDoWhileFlag = false;
+    while (tmpDoWhileFlag) {
       {
         $(`loop`);
         break;
         $(`fail`);
       }
+      tmpDoWhileFlag = $(true);
     }
   }
   $(`infiloop, do not eliminate`);
@@ -53,19 +53,9 @@ let tmpIfTest = $(true);
 while (tmpIfTest) {
   $(`loop`);
   let tmpDoWhileFlag = true;
-  while (true) {
-    let tmpIfTest$1 = tmpDoWhileFlag;
-    if (tmpIfTest$1) {
-    } else {
-      tmpIfTest$1 = $(true);
-    }
-    if (tmpIfTest$1) {
-      tmpDoWhileFlag = false;
-      $(`loop`);
-      break;
-    } else {
-      break;
-    }
+  while (tmpDoWhileFlag) {
+    $(`loop`);
+    break;
   }
   $(`infiloop, do not eliminate`);
   tmpIfTest = $(true);
@@ -79,20 +69,9 @@ $(`after (not invoked)`);
 let tmpIfTest = $(true);
 while (tmpIfTest) {
   $(`loop`);
-  let tmpDoWhileFlag = true;
   while (true) {
-    let tmpIfTest$1 = tmpDoWhileFlag;
-    if (tmpDoWhileFlag) {
-    } else {
-      tmpIfTest$1 = $(true);
-    }
-    if (tmpIfTest$1) {
-      tmpDoWhileFlag = false;
-      $(`loop`);
-      break;
-    } else {
-      break;
-    }
+    $(`loop`);
+    break;
   }
   $(`infiloop, do not eliminate`);
   tmpIfTest = $(true);

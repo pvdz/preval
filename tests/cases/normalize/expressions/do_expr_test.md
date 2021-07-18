@@ -23,9 +23,9 @@ let a = 1,
   y = 4;
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || x + y) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     $(a);
+    tmpDoWhileFlag = x + y;
   }
 }
 `````
@@ -37,18 +37,9 @@ let a = 1;
 let x = 3;
 let y = 4;
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = x + y;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(a);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(a);
+  tmpDoWhileFlag = x + y;
 }
 `````
 
@@ -56,18 +47,9 @@ while (true) {
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    tmpIfTest = 7;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(1);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(1);
+  tmpDoWhileFlag = 7;
 }
 `````
 

@@ -27,11 +27,11 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (1, 2, $(b)).c) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = (1, 2, $(b)).c;
   }
 }
 $(a, b);
@@ -43,19 +43,10 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpAssignRhsProp = $(b);
-    tmpIfTest = tmpAssignRhsProp.c;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpAssignRhsProp = $(b);
+  tmpDoWhileFlag = tmpAssignRhsProp.c;
 }
 $(a, b);
 `````
@@ -66,19 +57,10 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpAssignRhsProp = $(b);
-    tmpIfTest = tmpAssignRhsProp.c;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpAssignRhsProp = $(b);
+  tmpDoWhileFlag = tmpAssignRhsProp.c;
 }
 $(a, b);
 `````

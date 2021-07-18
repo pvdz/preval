@@ -24,11 +24,11 @@ $(a);
 let { a: a } = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ({ a: a } = $({ a: 1, b: 2 }))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = { a: a } = $({ a: 1, b: 2 });
   }
 }
 $(a);
@@ -40,22 +40,13 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = { a: 1, b: 2 };
-    const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-    a = tmpNestedAssignObjPatternRhs.a;
-    tmpIfTest = tmpNestedAssignObjPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  a = tmpNestedAssignObjPatternRhs.a;
+  tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
 }
 $(a);
 `````
@@ -65,21 +56,12 @@ $(a);
 `````js filename=intro
 let a = 999;
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpCalleeParam = { a: 1, b: 2 };
-    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-    a = tmpNestedAssignObjPatternRhs.a;
-    tmpIfTest = tmpNestedAssignObjPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCalleeParam = { a: 1, b: 2 };
+  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+  a = tmpNestedAssignObjPatternRhs.a;
+  tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
 }
 $(a);
 `````

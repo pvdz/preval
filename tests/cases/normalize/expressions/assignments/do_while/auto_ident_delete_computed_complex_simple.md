@@ -27,11 +27,11 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = delete $(arg)[`y`])) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = delete $(arg)[`y`];
   }
 }
 $(a, arg);
@@ -43,21 +43,12 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpDeleteObj = $(arg);
-    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpDeleteObj = $(arg);
+  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a, arg);
 `````
@@ -68,21 +59,12 @@ $(a, arg);
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 const arg = { y: 1 };
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpDeleteObj = $(arg);
-    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpDeleteObj = $(arg);
+  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a, arg);
 `````

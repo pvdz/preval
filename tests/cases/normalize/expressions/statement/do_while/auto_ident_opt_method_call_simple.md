@@ -27,11 +27,11 @@ let b = { c: $ };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || b?.c(1)) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = b?.c(1);
   }
 }
 $(a);
@@ -43,25 +43,16 @@ $(a);
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
+while (tmpDoWhileFlag) {
+  $(100);
+  tmpDoWhileFlag = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+    tmpDoWhileFlag = tmpChainElementCall;
   } else {
-    tmpIfTest = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.c;
-      const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
-      tmpIfTest = tmpChainElementCall;
-    } else {
-    }
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
   }
 }
 $(a);
@@ -73,24 +64,15 @@ $(a);
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    tmpIfTest = undefined;
-    const tmpIfTest$1 = b == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpChainElementObject = b.c;
-      const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-      tmpIfTest = tmpChainElementCall;
-    }
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  tmpDoWhileFlag = undefined;
+  const tmpIfTest = b == null;
   if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
   } else {
-    break;
+    const tmpChainElementObject = b.c;
+    const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
+    tmpDoWhileFlag = tmpChainElementCall;
   }
 }
 $(a);

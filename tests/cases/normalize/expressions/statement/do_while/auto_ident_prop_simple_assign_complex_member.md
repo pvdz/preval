@@ -27,11 +27,11 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (b.c = $(b)[$(`d`)])) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = b.c = $(b)[$(`d`)];
   }
 }
 $(a, b);
@@ -43,23 +43,14 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    b.c = tmpNestedPropAssignRhs;
-    tmpIfTest = tmpNestedPropAssignRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`d`);
+  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+  b.c = tmpNestedPropAssignRhs;
+  tmpDoWhileFlag = tmpNestedPropAssignRhs;
 }
 $(a, b);
 `````
@@ -70,22 +61,13 @@ $(a, b);
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-    b.c = tmpNestedAssignPropRhs;
-    tmpIfTest = tmpNestedAssignPropRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`d`);
+  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+  b.c = tmpNestedAssignPropRhs;
+  tmpDoWhileFlag = tmpNestedAssignPropRhs;
 }
 $(a, b);
 `````

@@ -24,11 +24,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || $($)?.($(1))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = $($)?.($(1));
   }
 }
 $(a);
@@ -39,29 +39,20 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
+while (tmpDoWhileFlag) {
+  $(100);
+  tmpDoWhileFlag = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall($);
+  const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
+    const tmpCallCallee = $dotCall;
+    const tmpCalleeParam = tmpChainElementCall;
+    const tmpCalleeParam$1 = tmpChainRootCall;
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+    tmpDoWhileFlag = tmpChainElementCall$1;
   } else {
-    tmpIfTest = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall($);
-    const tmpIfTest$1 = tmpChainElementCall != null;
-    if (tmpIfTest$1) {
-      const tmpCallCallee = $dotCall;
-      const tmpCalleeParam = tmpChainElementCall;
-      const tmpCalleeParam$1 = tmpChainRootCall;
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-      tmpIfTest = tmpChainElementCall$1;
-    } else {
-    }
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
   }
 }
 $(a);
@@ -71,25 +62,16 @@ $(a);
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    tmpIfTest = undefined;
-    const tmpChainElementCall = $($);
-    const tmpIfTest$1 = tmpChainElementCall == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
-      tmpIfTest = tmpChainElementCall$1;
-    }
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  tmpDoWhileFlag = undefined;
+  const tmpChainElementCall = $($);
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
   } else {
-    break;
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+    tmpDoWhileFlag = tmpChainElementCall$1;
   }
 }
 const a = { a: 999, b: 1000 };

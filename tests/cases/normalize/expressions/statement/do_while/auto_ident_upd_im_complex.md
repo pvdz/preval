@@ -27,11 +27,11 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || $($(b)).x--) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = $($(b)).x--;
   }
 }
 $(a, b);
@@ -43,25 +43,16 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(b);
-    const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-    const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-    const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-    const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    tmpIfTest = tmpPostUpdArgVal;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(b);
+  const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
+  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+  tmpDoWhileFlag = tmpPostUpdArgVal;
 }
 $(a, b);
 `````
@@ -72,23 +63,14 @@ $(a, b);
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpCalleeParam = $(b);
-    const tmpPostUpdArgObj = $(tmpCalleeParam);
-    const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-    const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
-    tmpPostUpdArgObj.x = tmpAssignMemRhs;
-    tmpIfTest = tmpPostUpdArgVal;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCalleeParam = $(b);
+  const tmpPostUpdArgObj = $(tmpCalleeParam);
+  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+  const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
+  tmpPostUpdArgObj.x = tmpAssignMemRhs;
+  tmpDoWhileFlag = tmpPostUpdArgVal;
 }
 $(a, b);
 `````

@@ -27,11 +27,11 @@ let b = {};
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = { b: b } = $({ b: $(2) }))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = { b: b } = $({ b: $(2) });
   }
 }
 $(a, b);
@@ -43,26 +43,17 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpCallCallee = $;
-    const tmpObjLitVal = $(2);
-    const tmpCalleeParam = { b: tmpObjLitVal };
-    const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-    b = tmpNestedAssignObjPatternRhs.b;
-    tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  let tmpNestedComplexRhs = undefined;
+  const tmpCallCallee = $;
+  const tmpObjLitVal = $(2);
+  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+  b = tmpNestedAssignObjPatternRhs.b;
+  tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a, b);
 `````
@@ -73,23 +64,14 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpObjLitVal = $(2);
-    const tmpCalleeParam = { b: tmpObjLitVal };
-    const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-    b = tmpNestedAssignObjPatternRhs.b;
-    a = tmpNestedAssignObjPatternRhs;
-    tmpIfTest = tmpNestedAssignObjPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpObjLitVal = $(2);
+  const tmpCalleeParam = { b: tmpObjLitVal };
+  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+  b = tmpNestedAssignObjPatternRhs.b;
+  a = tmpNestedAssignObjPatternRhs;
+  tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
 }
 $(a, b);
 `````

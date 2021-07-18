@@ -24,11 +24,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = $($)?.(1))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = $($)?.(1);
   }
 }
 $(a);
@@ -39,28 +39,19 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
+while (tmpDoWhileFlag) {
+  $(100);
+  let tmpNestedComplexRhs = undefined;
+  const tmpChainRootCall = $;
+  const tmpChainElementCall = tmpChainRootCall($);
+  const tmpIfTest = tmpChainElementCall != null;
   if (tmpIfTest) {
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
+    tmpNestedComplexRhs = tmpChainElementCall$1;
   } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpChainRootCall = $;
-    const tmpChainElementCall = tmpChainRootCall($);
-    const tmpIfTest$1 = tmpChainElementCall != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
-      tmpNestedComplexRhs = tmpChainElementCall$1;
-    } else {
-    }
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
   }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -70,27 +61,18 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpChainElementCall = $($);
-    const tmpIfTest$1 = tmpChainElementCall == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-      tmpNestedComplexRhs = tmpChainElementCall$1;
-    }
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  let tmpNestedComplexRhs = undefined;
+  const tmpChainElementCall = $($);
+  const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
   } else {
-    break;
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+    tmpNestedComplexRhs = tmpChainElementCall$1;
   }
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````

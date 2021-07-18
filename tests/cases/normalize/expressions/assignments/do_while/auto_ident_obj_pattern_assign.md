@@ -29,11 +29,11 @@ let x = 1,
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = { x: x, y: y } = { x: $(3), y: $(4) })) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = { x: x, y: y } = { x: $(3), y: $(4) };
   }
 }
 $(a, x, y);
@@ -46,26 +46,17 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpObjLitVal = $(3);
-    const tmpObjLitVal$1 = $(4);
-    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-    x = tmpNestedAssignObjPatternRhs.x;
-    y = tmpNestedAssignObjPatternRhs.y;
-    tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  let tmpNestedComplexRhs = undefined;
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  x = tmpNestedAssignObjPatternRhs.x;
+  y = tmpNestedAssignObjPatternRhs.y;
+  tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a, x, y);
 `````
@@ -77,24 +68,15 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpObjLitVal = $(3);
-    const tmpObjLitVal$1 = $(4);
-    x = tmpObjLitVal;
-    y = tmpObjLitVal$1;
-    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-    a = tmpNestedAssignObjPatternRhs;
-    tmpIfTest = tmpNestedAssignObjPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpObjLitVal = $(3);
+  const tmpObjLitVal$1 = $(4);
+  x = tmpObjLitVal;
+  y = tmpObjLitVal$1;
+  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+  a = tmpNestedAssignObjPatternRhs;
+  tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
 }
 $(a, x, y);
 `````

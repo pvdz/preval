@@ -27,11 +27,11 @@ let b = { c: { d: { e: $ } } };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || b?.c.d.e?.(1)) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = b?.c.d.e?.(1);
   }
 }
 $(a);
@@ -45,31 +45,22 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
+while (tmpDoWhileFlag) {
+  $(100);
+  tmpDoWhileFlag = undefined;
+  const tmpChainRootProp = b;
+  const tmpIfTest = tmpChainRootProp != null;
   if (tmpIfTest) {
-  } else {
-    tmpIfTest = undefined;
-    const tmpChainRootProp = b;
-    const tmpIfTest$1 = tmpChainRootProp != null;
+    const tmpChainElementObject = tmpChainRootProp.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+    const tmpIfTest$1 = tmpChainElementObject$3 != null;
     if (tmpIfTest$1) {
-      const tmpChainElementObject = tmpChainRootProp.c;
-      const tmpChainElementObject$1 = tmpChainElementObject.d;
-      const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-      const tmpIfTest$3 = tmpChainElementObject$3 != null;
-      if (tmpIfTest$3) {
-        const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-        tmpIfTest = tmpChainElementCall;
-      } else {
-      }
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+      tmpDoWhileFlag = tmpChainElementCall;
     } else {
     }
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
   } else {
-    break;
   }
 }
 $(a);
@@ -83,30 +74,21 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
+while (tmpDoWhileFlag) {
+  $(100);
+  tmpDoWhileFlag = undefined;
+  const tmpIfTest = b == null;
+  if (tmpIfTest) {
   } else {
-    tmpIfTest = undefined;
-    const tmpIfTest$1 = b == null;
+    const tmpChainElementObject = b.c;
+    const tmpChainElementObject$1 = tmpChainElementObject.d;
+    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+    const tmpIfTest$1 = tmpChainElementObject$3 == null;
     if (tmpIfTest$1) {
     } else {
-      const tmpChainElementObject = b.c;
-      const tmpChainElementObject$1 = tmpChainElementObject.d;
-      const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-      const tmpIfTest$3 = tmpChainElementObject$3 == null;
-      if (tmpIfTest$3) {
-      } else {
-        const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-        tmpIfTest = tmpChainElementCall;
-      }
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+      tmpDoWhileFlag = tmpChainElementCall;
     }
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
   }
 }
 $(a);

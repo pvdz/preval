@@ -24,11 +24,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = $($(0)) || ($($(1)) && $($(2))))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = $($(0)) || ($($(1)) && $($(2)));
   }
 }
 $(a);
@@ -39,34 +39,25 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(0);
+  let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+  if (tmpNestedComplexRhs) {
   } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(0);
-    let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    const tmpCallCallee$1 = $;
+    const tmpCalleeParam$1 = $(1);
+    tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
     if (tmpNestedComplexRhs) {
+      const tmpCallCallee$3 = $;
+      const tmpCalleeParam$3 = $(2);
+      tmpNestedComplexRhs = tmpCallCallee$3(tmpCalleeParam$3);
     } else {
-      const tmpCallCallee$1 = $;
-      const tmpCalleeParam$1 = $(1);
-      tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
-      if (tmpNestedComplexRhs) {
-        const tmpCallCallee$3 = $;
-        const tmpCalleeParam$3 = $(2);
-        tmpNestedComplexRhs = tmpCallCallee$3(tmpCalleeParam$3);
-      } else {
-      }
     }
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
   }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -76,31 +67,22 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCalleeParam = $(0);
+  let tmpNestedComplexRhs = $(tmpCalleeParam);
+  if (tmpNestedComplexRhs) {
   } else {
-    const tmpCalleeParam = $(0);
-    let tmpNestedComplexRhs = $(tmpCalleeParam);
+    const tmpCalleeParam$1 = $(1);
+    tmpNestedComplexRhs = $(tmpCalleeParam$1);
     if (tmpNestedComplexRhs) {
+      const tmpCalleeParam$3 = $(2);
+      tmpNestedComplexRhs = $(tmpCalleeParam$3);
     } else {
-      const tmpCalleeParam$1 = $(1);
-      tmpNestedComplexRhs = $(tmpCalleeParam$1);
-      if (tmpNestedComplexRhs) {
-        const tmpCalleeParam$3 = $(2);
-        tmpNestedComplexRhs = $(tmpCalleeParam$3);
-      } else {
-      }
     }
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
   }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````

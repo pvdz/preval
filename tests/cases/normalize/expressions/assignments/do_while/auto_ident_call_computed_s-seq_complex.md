@@ -27,11 +27,11 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = (1, 2, b)[$(`\$`)](1))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = (1, 2, b)[$(`\$`)](1);
   }
 }
 $(a);
@@ -43,22 +43,13 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpCallCompObj = b;
-    const tmpCallCompProp = $(`\$`);
-    const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCallCompObj = b;
+  const tmpCallCompProp = $(`\$`);
+  const tmpNestedComplexRhs = tmpCallCompObj[tmpCallCompProp](1);
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -69,21 +60,12 @@ $(a);
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 const b = { $: $ };
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpCallCompProp = $(`\$`);
-    const tmpNestedComplexRhs = b[tmpCallCompProp](1);
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCallCompProp = $(`\$`);
+  const tmpNestedComplexRhs = b[tmpCallCompProp](1);
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````

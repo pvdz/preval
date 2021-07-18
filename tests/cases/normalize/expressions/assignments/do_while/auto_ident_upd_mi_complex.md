@@ -27,11 +27,11 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = --$($(b)).x)) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = --$($(b)).x;
   }
 }
 $(a, b);
@@ -43,26 +43,17 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(b);
-    const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
-    const tmpBinLhs = varInitAssignLhsComputedObj.x;
-    const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(b);
+  const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
+  const tmpBinLhs = varInitAssignLhsComputedObj.x;
+  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a, b);
 `````
@@ -73,24 +64,15 @@ $(a, b);
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 const b = { x: 1 };
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpCalleeParam = $(b);
-    const varInitAssignLhsComputedObj = $(tmpCalleeParam);
-    const tmpBinLhs = varInitAssignLhsComputedObj.x;
-    const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-    varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-    a = varInitAssignLhsComputedRhs;
-    tmpIfTest = varInitAssignLhsComputedRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCalleeParam = $(b);
+  const varInitAssignLhsComputedObj = $(tmpCalleeParam);
+  const tmpBinLhs = varInitAssignLhsComputedObj.x;
+  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+  varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
+  a = varInitAssignLhsComputedRhs;
+  tmpDoWhileFlag = varInitAssignLhsComputedRhs;
 }
 $(a, b);
 `````

@@ -27,11 +27,11 @@ let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ((1, 2, b).c = 2)) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = (1, 2, b).c = 2;
   }
 }
 $(a, b);
@@ -43,21 +43,12 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpNestedAssignObj = b;
-    const tmpNestedPropAssignRhs = 2;
-    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-    tmpIfTest = tmpNestedPropAssignRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpNestedAssignObj = b;
+  const tmpNestedPropAssignRhs = 2;
+  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+  tmpDoWhileFlag = tmpNestedPropAssignRhs;
 }
 $(a, b);
 `````
@@ -68,19 +59,10 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    b.c = 2;
-    tmpIfTest = 2;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  b.c = 2;
+  tmpDoWhileFlag = 2;
 }
 $(a, b);
 `````

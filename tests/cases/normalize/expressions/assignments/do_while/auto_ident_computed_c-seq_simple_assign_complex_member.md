@@ -27,11 +27,11 @@ let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = (1, 2, $(b))[$(`c`)] = $(b)[$(`d`)])) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = (1, 2, $(b))[$(`c`)] = $(b)[$(`d`)];
   }
 }
 $(a, b);
@@ -43,26 +43,17 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $(`c`);
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedProp = $(`c`);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`d`);
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a, b);
 `````
@@ -73,25 +64,16 @@ $(a, b);
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 const b = { c: 10, d: 20 };
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const varInitAssignLhsComputedObj = $(b);
-    const varInitAssignLhsComputedProp = $(`c`);
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`d`);
-    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    a = varInitAssignLhsComputedRhs;
-    tmpIfTest = varInitAssignLhsComputedRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const varInitAssignLhsComputedObj = $(b);
+  const varInitAssignLhsComputedProp = $(`c`);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`d`);
+  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  a = varInitAssignLhsComputedRhs;
+  tmpDoWhileFlag = varInitAssignLhsComputedRhs;
 }
 $(a, b);
 `````

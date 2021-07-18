@@ -24,11 +24,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || $(1) + $(2)) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = $(1) + $(2);
   }
 }
 $(a);
@@ -39,20 +39,11 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpBinBothLhs = $(1);
-    const tmpBinBothRhs = $(2);
-    tmpIfTest = tmpBinBothLhs + tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpBinBothLhs = $(1);
+  const tmpBinBothRhs = $(2);
+  tmpDoWhileFlag = tmpBinBothLhs + tmpBinBothRhs;
 }
 $(a);
 `````
@@ -61,20 +52,11 @@ $(a);
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpBinBothLhs = $(1);
-    const tmpBinBothRhs = $(2);
-    tmpIfTest = tmpBinBothLhs + tmpBinBothRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpBinBothLhs = $(1);
+  const tmpBinBothRhs = $(2);
+  tmpDoWhileFlag = tmpBinBothLhs + tmpBinBothRhs;
 }
 const a = { a: 999, b: 1000 };
 $(a);

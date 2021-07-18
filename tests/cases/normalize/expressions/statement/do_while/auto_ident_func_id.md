@@ -24,16 +24,13 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (
-    tmpDoWhileFlag ||
-    function f() {
-      debugger;
-    }
-  ) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = function f() {
+      debugger;
+    };
   }
 }
 $(a);
@@ -44,22 +41,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const f = function () {
-      debugger;
-      return undefined;
-    };
-    tmpIfTest = f;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const f = function () {
+    debugger;
+    return undefined;
+  };
+  tmpDoWhileFlag = f;
 }
 $(a);
 `````
@@ -68,22 +56,13 @@ $(a);
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const f = function () {
-      debugger;
-      return undefined;
-    };
-    tmpIfTest = f;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const f = function () {
+    debugger;
+    return undefined;
+  };
+  tmpDoWhileFlag = f;
 }
 const a = { a: 999, b: 1000 };
 $(a);

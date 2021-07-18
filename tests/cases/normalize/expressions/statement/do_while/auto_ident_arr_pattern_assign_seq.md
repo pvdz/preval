@@ -29,11 +29,11 @@ let x = 1,
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ([x, y] = ($(x), $(y), [$(3), $(4)]))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = [x, y] = ($(x), $(y), [$(3), $(4)]);
   }
 }
 $(a, x, y);
@@ -46,26 +46,17 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    $(x);
-    $(y);
-    const tmpArrElement = $(3);
-    const tmpArrElement$1 = $(4);
-    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    tmpIfTest = tmpNestedAssignArrPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  $(x);
+  $(y);
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
 }
 $(a, x, y);
 `````
@@ -76,26 +67,17 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    $(x);
-    $(y);
-    const tmpArrElement = $(3);
-    const tmpArrElement$1 = $(4);
-    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    tmpIfTest = tmpNestedAssignArrPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  $(x);
+  $(y);
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
 }
 const a = { a: 999, b: 1000 };
 $(a, x, y);

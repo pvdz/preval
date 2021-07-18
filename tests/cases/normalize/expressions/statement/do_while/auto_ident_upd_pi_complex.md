@@ -27,11 +27,11 @@ let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ++$($(b)).x) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = ++$($(b)).x;
   }
 }
 $(a, b);
@@ -43,24 +43,15 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(b);
-    const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-    const tmpBinLhs = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    tmpIfTest = tmpNestedPropCompoundComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $(b);
+  const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
+  const tmpBinLhs = tmpNestedAssignObj.x;
+  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+  tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs;
 }
 $(a, b);
 `````
@@ -71,23 +62,14 @@ $(a, b);
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpCalleeParam = $(b);
-    const tmpNestedAssignObj = $(tmpCalleeParam);
-    const tmpBinLhs = tmpNestedAssignObj.x;
-    const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-    tmpIfTest = tmpNestedPropCompoundComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCalleeParam = $(b);
+  const tmpNestedAssignObj = $(tmpCalleeParam);
+  const tmpBinLhs = tmpNestedAssignObj.x;
+  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+  tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs;
 }
 $(a, b);
 `````

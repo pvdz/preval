@@ -24,11 +24,11 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = (10, 20, $(30)) ? (40, 50, $(60)) : $($(100)))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = (10, 20, $(30)) ? (40, 50, $(60)) : $($(100));
   }
 }
 $(a);
@@ -39,28 +39,19 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
+while (tmpDoWhileFlag) {
+  $(100);
+  let tmpNestedComplexRhs = undefined;
+  const tmpIfTest = $(30);
   if (tmpIfTest) {
+    tmpNestedComplexRhs = $(60);
   } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpIfTest$1 = $(30);
-    if (tmpIfTest$1) {
-      tmpNestedComplexRhs = $(60);
-    } else {
-      const tmpCallCallee = $;
-      const tmpCalleeParam = $(100);
-      tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-    }
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(100);
+    tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
   }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -70,27 +61,18 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpIfTest$1 = $(30);
-    if (tmpIfTest$1) {
-      tmpNestedComplexRhs = $(60);
-    } else {
-      const tmpCalleeParam = $(100);
-      tmpNestedComplexRhs = $(tmpCalleeParam);
-    }
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  let tmpNestedComplexRhs = undefined;
+  const tmpIfTest = $(30);
   if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
+    tmpNestedComplexRhs = $(60);
   } else {
-    break;
+    const tmpCalleeParam = $(100);
+    tmpNestedComplexRhs = $(tmpCalleeParam);
   }
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````

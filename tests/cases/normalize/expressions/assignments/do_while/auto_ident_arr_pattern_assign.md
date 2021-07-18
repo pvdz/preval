@@ -29,11 +29,11 @@ let x = 1,
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = [x, y] = [$(3), $(4)])) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = [x, y] = [$(3), $(4)];
   }
 }
 $(a, x, y);
@@ -46,27 +46,18 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpArrElement = $(3);
-    const tmpArrElement$1 = $(4);
-    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  let tmpNestedComplexRhs = undefined;
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a, x, y);
 `````
@@ -78,25 +69,16 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpArrElement = $(3);
-    const tmpArrElement$1 = $(4);
-    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    a = tmpNestedAssignArrPatternRhs;
-    tmpIfTest = tmpNestedAssignArrPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpArrElement = $(3);
+  const tmpArrElement$1 = $(4);
+  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  a = tmpNestedAssignArrPatternRhs;
+  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
 }
 $(a, x, y);
 `````

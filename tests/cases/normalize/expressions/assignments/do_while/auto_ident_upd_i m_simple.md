@@ -27,11 +27,11 @@ let b = 1;
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = b--)) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = b--;
   }
 }
 $(a, b);
@@ -43,22 +43,13 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpPostUpdArgIdent = b;
-    b = b - 1;
-    const tmpNestedComplexRhs = tmpPostUpdArgIdent;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpPostUpdArgIdent = b;
+  b = b - 1;
+  const tmpNestedComplexRhs = tmpPostUpdArgIdent;
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a, b);
 `````
@@ -69,21 +60,12 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpPostUpdArgIdent = b;
-    b = b - 1;
-    a = tmpPostUpdArgIdent;
-    tmpIfTest = tmpPostUpdArgIdent;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpPostUpdArgIdent = b;
+  b = b - 1;
+  a = tmpPostUpdArgIdent;
+  tmpDoWhileFlag = tmpPostUpdArgIdent;
 }
 $(a, b);
 `````

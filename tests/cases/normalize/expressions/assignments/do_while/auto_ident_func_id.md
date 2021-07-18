@@ -24,16 +24,13 @@ $(a);
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (
-    tmpDoWhileFlag ||
-    (a = function f() {
-      debugger;
-    })
-  ) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = function f() {
+      debugger;
+    };
   }
 }
 $(a);
@@ -44,24 +41,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const f = function () {
-      debugger;
-      return undefined;
-    };
-    const tmpNestedComplexRhs = f;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const f = function () {
+    debugger;
+    return undefined;
+  };
+  const tmpNestedComplexRhs = f;
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -71,23 +59,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const f = function () {
-      debugger;
-      return undefined;
-    };
-    a = f;
-    tmpIfTest = f;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const f = function () {
+    debugger;
+    return undefined;
+  };
+  a = f;
+  tmpDoWhileFlag = f;
 }
 $(a);
 `````

@@ -27,11 +27,11 @@ let b = { $: $ };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || new (1, 2, $(b))[$(`\$`)](1)) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = new (1, 2, $(b))[$(`\$`)](1);
   }
 }
 $(a);
@@ -43,21 +43,12 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`\$`);
-    const tmpNewCallee = tmpCompObj[tmpCompProp];
-    tmpIfTest = new tmpNewCallee(1);
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`\$`);
+  const tmpNewCallee = tmpCompObj[tmpCompProp];
+  tmpDoWhileFlag = new tmpNewCallee(1);
 }
 $(a);
 `````
@@ -68,21 +59,12 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpCompObj = $(b);
-    const tmpCompProp = $(`\$`);
-    const tmpNewCallee = tmpCompObj[tmpCompProp];
-    tmpIfTest = new tmpNewCallee(1);
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpCompObj = $(b);
+  const tmpCompProp = $(`\$`);
+  const tmpNewCallee = tmpCompObj[tmpCompProp];
+  tmpDoWhileFlag = new tmpNewCallee(1);
 }
 $(a);
 `````

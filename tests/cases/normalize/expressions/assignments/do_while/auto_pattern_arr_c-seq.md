@@ -24,11 +24,11 @@ $(a);
 let [a] = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ([a] = ($(10), $(20), $([1, 2])))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = [a] = ($(10), $(20), $([1, 2]));
   }
 }
 $(a);
@@ -41,25 +41,16 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    $(10);
-    $(20);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = [1, 2];
-    const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-    a = arrPatternSplat$1[0];
-    tmpIfTest = tmpNestedAssignArrPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  $(10);
+  $(20);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = [1, 2];
+  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+  a = arrPatternSplat$1[0];
+  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
 }
 $(a);
 `````
@@ -71,24 +62,15 @@ const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    $(10);
-    $(20);
-    const tmpCalleeParam = [1, 2];
-    const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-    a = arrPatternSplat$1[0];
-    tmpIfTest = tmpNestedAssignArrPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  $(10);
+  $(20);
+  const tmpCalleeParam = [1, 2];
+  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+  a = arrPatternSplat$1[0];
+  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
 }
 $(a);
 `````

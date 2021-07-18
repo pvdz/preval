@@ -27,11 +27,11 @@ let b = [];
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || (a = [b] = $([$(2)]))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = a = [b] = $([$(2)]);
   }
 }
 $(a, b);
@@ -43,27 +43,18 @@ $(a, b);
 let b = [];
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    let tmpNestedComplexRhs = undefined;
-    const tmpCallCallee = $;
-    const tmpArrElement = $(2);
-    const tmpCalleeParam = [tmpArrElement];
-    const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    b = arrPatternSplat[0];
-    tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-    a = tmpNestedComplexRhs;
-    tmpIfTest = tmpNestedComplexRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  let tmpNestedComplexRhs = undefined;
+  const tmpCallCallee = $;
+  const tmpArrElement = $(2);
+  const tmpCalleeParam = [tmpArrElement];
+  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  b = arrPatternSplat[0];
+  tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
+  a = tmpNestedComplexRhs;
+  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a, b);
 `````
@@ -74,24 +65,15 @@ $(a, b);
 let b = [];
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpArrElement = $(2);
-    const tmpCalleeParam = [tmpArrElement];
-    const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-    b = arrPatternSplat[0];
-    a = tmpNestedAssignArrPatternRhs;
-    tmpIfTest = tmpNestedAssignArrPatternRhs;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpArrElement = $(2);
+  const tmpCalleeParam = [tmpArrElement];
+  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+  b = arrPatternSplat[0];
+  a = tmpNestedAssignArrPatternRhs;
+  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
 }
 $(a, b);
 `````

@@ -26,12 +26,12 @@ $('after, do not evaluate (infinite loop)');
 while ($(true)) {
   {
     let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag || $(true)) {
-      tmpDoWhileFlag = false;
+    while (tmpDoWhileFlag) {
       {
         break;
         $(`fail`);
       }
+      tmpDoWhileFlag = $(true);
     }
   }
 }
@@ -44,19 +44,6 @@ $(`after, do not evaluate (infinite loop)`);
 let tmpIfTest = $(true);
 while (tmpIfTest) {
   let tmpDoWhileFlag = true;
-  while (true) {
-    let tmpIfTest$1 = tmpDoWhileFlag;
-    if (tmpIfTest$1) {
-    } else {
-      tmpIfTest$1 = $(true);
-    }
-    if (tmpIfTest$1) {
-      tmpDoWhileFlag = false;
-      break;
-    } else {
-      break;
-    }
-  }
   tmpIfTest = $(true);
 }
 $(`after, do not evaluate (infinite loop)`);
@@ -67,20 +54,6 @@ $(`after, do not evaluate (infinite loop)`);
 `````js filename=intro
 let tmpIfTest = $(true);
 while (tmpIfTest) {
-  let tmpDoWhileFlag = true;
-  while (true) {
-    let tmpIfTest$1 = tmpDoWhileFlag;
-    if (tmpDoWhileFlag) {
-    } else {
-      tmpIfTest$1 = $(true);
-    }
-    if (tmpIfTest$1) {
-      tmpDoWhileFlag = false;
-      break;
-    } else {
-      break;
-    }
-  }
   tmpIfTest = $(true);
 }
 $(`after, do not evaluate (infinite loop)`);

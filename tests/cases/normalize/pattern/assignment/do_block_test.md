@@ -25,11 +25,11 @@ let a = 1,
   q;
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || x + y) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       [p, q] = $(b);
     }
+    tmpDoWhileFlag = x + y;
   }
 }
 $(p, q);
@@ -45,21 +45,12 @@ let y = 4;
 let p = undefined;
 let q = undefined;
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = x + y;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    const arrAssignPatternRhs = $(b);
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    p = arrPatternSplat[0];
-    q = arrPatternSplat[1];
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  const arrAssignPatternRhs = $(b);
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  p = arrPatternSplat[0];
+  q = arrPatternSplat[1];
+  tmpDoWhileFlag = x + y;
 }
 $(p, q);
 `````
@@ -71,21 +62,12 @@ let p = undefined;
 let q = undefined;
 let tmpDoWhileFlag = true;
 const b = [10, 20];
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    tmpIfTest = 7;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    const arrAssignPatternRhs = $(b);
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    p = arrPatternSplat[0];
-    q = arrPatternSplat[1];
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  const arrAssignPatternRhs = $(b);
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  p = arrPatternSplat[0];
+  q = arrPatternSplat[1];
+  tmpDoWhileFlag = 7;
 }
 $(p, q);
 `````

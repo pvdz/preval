@@ -20,9 +20,9 @@ do var x = 0; while ($(x));
 let x = undefined;
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || $(x)) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     x = 0;
+    tmpDoWhileFlag = $(x);
   }
 }
 `````
@@ -32,38 +32,18 @@ let x = undefined;
 `````js filename=intro
 let x = undefined;
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = $(x);
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    x = 0;
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  x = 0;
+  tmpDoWhileFlag = $(x);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let x = undefined;
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    tmpIfTest = $(x);
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    x = 0;
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  tmpDoWhileFlag = $(0);
 }
 `````
 

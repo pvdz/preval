@@ -27,11 +27,11 @@ let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || delete $(arg)[$(`y`)]) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = delete $(arg)[$(`y`)];
   }
 }
 $(a, arg);
@@ -43,20 +43,11 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = $(`y`);
-    tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpDeleteCompObj = $(arg);
+  const tmpDeleteCompProp = $(`y`);
+  tmpDoWhileFlag = delete tmpDeleteCompObj[tmpDeleteCompProp];
 }
 $(a, arg);
 `````
@@ -67,20 +58,11 @@ $(a, arg);
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    const tmpDeleteCompObj = $(arg);
-    const tmpDeleteCompProp = $(`y`);
-    tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  const tmpDeleteCompObj = $(arg);
+  const tmpDeleteCompProp = $(`y`);
+  tmpDoWhileFlag = delete tmpDeleteCompObj[tmpDeleteCompProp];
 }
 $(a, arg);
 `````

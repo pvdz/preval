@@ -24,11 +24,11 @@ $(a);
 let [a] = { a: 999, b: 1000 };
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || ($(10), $(20), $([1, 2]))) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     {
       $(100);
     }
+    tmpDoWhileFlag = ($(10), $(20), $([1, 2]));
   }
 }
 $(a);
@@ -41,22 +41,13 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    $(10);
-    $(20);
-    const tmpCallCallee = $;
-    const tmpCalleeParam = [1, 2];
-    tmpIfTest = tmpCallCallee(tmpCalleeParam);
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  $(10);
+  $(20);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = [1, 2];
+  tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
 }
 $(a);
 `````
@@ -68,21 +59,12 @@ const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    $(10);
-    $(20);
-    const tmpCalleeParam = [1, 2];
-    tmpIfTest = $(tmpCalleeParam);
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(100);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(100);
+  $(10);
+  $(20);
+  const tmpCalleeParam = [1, 2];
+  tmpDoWhileFlag = $(tmpCalleeParam);
 }
 $(a);
 `````

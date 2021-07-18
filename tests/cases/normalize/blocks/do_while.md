@@ -18,9 +18,9 @@ while ($(2));
 `````js filename=intro
 {
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag || $(2)) {
-    tmpDoWhileFlag = false;
+  while (tmpDoWhileFlag) {
     $(1);
+    tmpDoWhileFlag = $(2);
   }
 }
 `````
@@ -29,18 +29,9 @@ while ($(2));
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpIfTest) {
-  } else {
-    tmpIfTest = $(2);
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(1);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(1);
+  tmpDoWhileFlag = $(2);
 }
 `````
 
@@ -48,18 +39,9 @@ while (true) {
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    tmpIfTest = $(2);
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(1);
-  } else {
-    break;
-  }
+while (tmpDoWhileFlag) {
+  $(1);
+  tmpDoWhileFlag = $(2);
 }
 `````
 

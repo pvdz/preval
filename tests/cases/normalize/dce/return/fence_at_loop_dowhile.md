@@ -37,13 +37,13 @@ let f = function () {
     $(`loop`);
     {
       let tmpDoWhileFlag = true;
-      while (tmpDoWhileFlag || $(true)) {
-        tmpDoWhileFlag = false;
+      while (tmpDoWhileFlag) {
         {
           $(`loop`);
           return $(100, `return`);
           $(`fail`);
         }
+        tmpDoWhileFlag = $(true);
       }
     }
     $(`do not visit, do not eliminate`);
@@ -62,20 +62,10 @@ let f = function () {
   while (tmpIfTest) {
     $(`loop`);
     let tmpDoWhileFlag = true;
-    while (true) {
-      let tmpIfTest$1 = tmpDoWhileFlag;
-      if (tmpIfTest$1) {
-      } else {
-        tmpIfTest$1 = $(true);
-      }
-      if (tmpIfTest$1) {
-        tmpDoWhileFlag = false;
-        $(`loop`);
-        const tmpReturnArg = $(100, `return`);
-        return tmpReturnArg;
-      } else {
-        break;
-      }
+    while (tmpDoWhileFlag) {
+      $(`loop`);
+      const tmpReturnArg = $(100, `return`);
+      return tmpReturnArg;
     }
     $(`do not visit, do not eliminate`);
     tmpIfTest = $(true);
@@ -96,21 +86,10 @@ const f = function () {
   let tmpIfTest = $(true);
   while (tmpIfTest) {
     $(`loop`);
-    let tmpDoWhileFlag = true;
     while (true) {
-      let tmpIfTest$1 = tmpDoWhileFlag;
-      if (tmpDoWhileFlag) {
-      } else {
-        tmpIfTest$1 = $(true);
-      }
-      if (tmpIfTest$1) {
-        tmpDoWhileFlag = false;
-        $(`loop`);
-        const tmpReturnArg = $(100, `return`);
-        return tmpReturnArg;
-      } else {
-        break;
-      }
+      $(`loop`);
+      const tmpReturnArg = $(100, `return`);
+      return tmpReturnArg;
     }
     $(`do not visit, do not eliminate`);
     tmpIfTest = $(true);

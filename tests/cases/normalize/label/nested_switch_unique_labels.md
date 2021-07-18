@@ -81,18 +81,8 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpIfTest = 3 === $;
 if (tmpIfTest) {
-  let tmpSwitchCaseToStart$1 = 1;
-  const tmpIfTest$3 = 3 === $;
-  if (tmpIfTest$3) {
-    tmpSwitchCaseToStart$1 = 0;
-  } else {
-  }
   tmpSwitchBreak$1: {
-    const tmpIfTest$5 = tmpSwitchCaseToStart$1 <= 0;
-    if (tmpIfTest$5) {
-      break tmpSwitchBreak$1;
-    } else {
-    }
+    break tmpSwitchBreak$1;
   }
 } else {
 }

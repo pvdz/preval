@@ -44,8 +44,8 @@ if (tmpIfTest$3265) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest$3265 = fromStmtOrExpr$1 === 1;
-tmpCalleeParam$1359 = !tmpIfTest$3265;
+const tmpIfTest$3265 = fromStmtOrExpr$1 !== 1;
+tmpCalleeParam$1359 = tmpIfTest$3265;
 `````
 
 ## Globals

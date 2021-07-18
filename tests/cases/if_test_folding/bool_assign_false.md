@@ -76,11 +76,10 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   const tmpBinLhs = $(0);
-  const x = tmpBinLhs === 1;
-  const y = !x;
   $(`block`);
   $(`block`);
-  return y;
+  const x = tmpBinLhs !== 1;
+  return x;
 };
 f();
 const tmpCalleeParam = f();

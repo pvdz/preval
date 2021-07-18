@@ -52,6 +52,7 @@ import { ifReduceUp } from './phase2if_reduce_up.mjs';
 import { reduceOrXors } from './phase2orxor_cases.mjs';
 import { resolveBoundValueSet } from './phase2bound_value_set.mjs';
 import { typedComparison } from './phase2typed_comparison.mjs';
+import { eqBang } from './phase2eq_bang.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -281,6 +282,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const comps = typedComparison(fdata);
   if (comps) return comps;
+
+  const ebts = eqBang(fdata);
+  if (ebts) return ebts;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

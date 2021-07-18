@@ -8655,26 +8655,29 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
       // Bail if this loop is labeled. Too many hard cases to solve and how much will it matter?
       // For now, only works on `while (true)` loops
-      if (
-        !node.$p.doesContinue &&
-        !loopLabelNode &&
-        whileBody.length === 2 &&
-        last.type === 'IfStatement' &&
-        node.test.type === 'Literal' &&
-        node.test.value === true
-      ) {
+      if (!node.$p.doesContinue && !loopLabelNode && whileBody.length === 2 && last.type === 'IfStatement') {
         // We can't do this trick when there are continues because then we need to clone the code (so it gets executed properly)
         // TODO: can we work around that with a labeled break? `while (x) { if (x) continue; else y(); }` -> `while (x) { foo: { if (x) break foo; else y(); } }`. but that's not safe within a switch, but we eliminate switches, so perhaps it's fine to do in a second phase or whatever.
         // The if should already be normalized here
 
         const first = whileBody[0];
-        if (last.test.type === 'Identifier' && first.type === 'VariableDeclaration' && first.declarations[0].id.name === last.test.name) {
+        if (
+          // Does the `while` test on `true`?
+          node.test.type === 'Literal' &&
+          node.test.value === true &&
+          // Is the first a var and is the if testing on this var?
+          last.test.type === 'Identifier' &&
+          first.type === 'VariableDeclaration' &&
+          first.declarations[0].id.name === last.test.name
+        ) {
+          // This is a while with a var decl and an `if`. The `if` tests the ident declared by that decl.
+          // Confirm that either branch is only a `break`, then simplify them
+
           const whileTestName = last.test.name;
           const whileTestExpr = first.declarations[0].init;
           ASSERT(whileTestExpr);
-          // This is a while with a var decl and an `if`. The `if` tests the ident declared by that decl.
-          // Confirm that either branch is only a `break`
-          if (last.consequent.body.length === 1 && last.consequent.body[0].type === 'BreakStatement') {
+
+          if (last.consequent.body.length === 1 && last.consequent.body[0].type === 'BreakStatement' && !last.consequent.body[0].label) {
             rule('A normalized while body with var-if-not-break pattern can be duped and simplified');
             example(
               'while (true) { const a = f(); if (a) { break; } else { x(); y(); }',
@@ -8687,7 +8690,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             ASSERT(
               !fail.ed,
               'this (currently) only fails for assignment to param names and funcs. this is normalized code and the init cannot be an assignment. it could be a function but thats a silly case since this is a while-test.',
-              first.declarations[0].init,
+              whileTestExpr,
             );
 
             // Move the var node to appear before the if.
@@ -8717,7 +8720,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             return true;
           }
 
-          if (last.alternate.body.length === 1 && last.alternate.body[0].type === 'BreakStatement') {
+          if (last.alternate.body.length === 1 && last.alternate.body[0].type === 'BreakStatement' && !last.alternate.body[0].label) {
             // Difference to above is that we don't wrap the while-test-expr in an invert expr
             rule('A normalized while body with var-if-else-break pattern can be duped and simplified');
             example('while (true) { const a = f(); if (a) { x(); y(); } else { break; }', 'let a = f(); while (a) { x(); y(); a = f(); }');
@@ -8728,7 +8731,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             ASSERT(
               !fail.ed,
               'this (currently) only fails for assignment to param names and funcs. this is normalized code and the init cannot be an assignment. it could be a function but thats a silly case since this is a while-test.',
-              first.declarations[0].init,
+              whileTestExpr,
             );
 
             // Move the var node to appear before the if.
@@ -8745,6 +8748,96 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             whileBody[1] = last.consequent;
             // At the end of branch block that replaces the if, assign the clone to the var id, which is now a let
             last.consequent.body.push(AST.expressionStatement(AST.assignmentExpression(whileTestName, clonedWhileTestExpr), '='));
+            // Update the while test with the var id
+            node.test = AST.identifier(whileTestName);
+
+            after(newBlock);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+        }
+
+        if (
+          // Is the while testing the same ident as the if inside it?
+          node.test.type === 'Identifier' &&
+          last.test.type === 'Identifier' &&
+          last.test.name === node.test.name &&
+          // Is the first statement an assignment to this same name?
+          first.type === 'ExpressionStatement' &&
+          first.expression.type === 'AssignmentExpression' &&
+          first.expression.left.type === 'Identifier' &&
+          first.expression.left.name === node.test.name
+        ) {
+          // This is `while (x) { x = y; if (x) f(); else break }`. Confirm that the while has exactly two children and that
+          // one branch of the `if` inside of it (already verified) is only a break statement.
+
+          const whileTestName = first.expression.left.name;
+          const whileTestExpr = first.expression.right;
+
+          if (last.consequent.body.length === 1 && last.consequent.body[0].type === 'BreakStatement' && !last.consequent.body[0].label) {
+            rule('A normalized while body with assign-if-not-break pattern can be duped and simplified');
+            example('while (a) { a = f(); if (a) { break; } else { x(); y(); }', 'a = !f(); while (a) { x(); y(); a = !f(); }');
+            before(node);
+
+            const fail = {};
+            const clonedWhileTestExpr = AST.deepCloneForFuncInlining(whileTestExpr, new Map(), fail);
+            ASSERT(
+              !fail.ed,
+              'this (currently) only fails for assignment to param names and funcs. this is normalized code and the rhs cannot be an assignment too. it could be a function but thats a silly case since this is a while-test.',
+              whileTestExpr,
+            );
+
+            // Move the assign node to appear before the if.
+            // We can't change order so we wrap it in a block so we can replace the whole `while`
+            // We asserted the while not to be labeled so this should be safe.
+            const newBlock = AST.blockStatement(first, node);
+            // Move the assign stmt node to appear before the if
+            body.splice(i, 1, newBlock);
+            // Clear its old position.
+            whileBody[0] = AST.emptyStatement();
+            // Wrap the rhs in an excl
+            first.declarations[0].init = AST.unaryExpression('!', whileTestExpr);
+            // Replace the `if` with the branch that was not just the `break`. Keep its block.
+            ASSERT(whileBody[1] === last);
+            whileBody[1] = last.alternate;
+            // At the end of branch block that replaces the if, assign the clone to the assign lhs
+            last.alternate.body.push(
+              AST.expressionStatement(AST.assignmentExpression(whileTestName, AST.unaryExpression('!', clonedWhileTestExpr), '=')),
+            );
+            // Update the while test with the var id
+            node.test = AST.identifier(whileTestName);
+
+            after(newBlock);
+            assertNoDupeNodes(AST.blockStatement(body), 'body');
+            return true;
+          }
+
+          if (last.alternate.body.length === 1 && last.alternate.body[0].type === 'BreakStatement' && !last.alternate.body[0].label) {
+            rule('A normalized while body with assign-if-break pattern can be duped and simplified');
+            example('while (a) { a = f(); if (a) { break; } else { x(); y(); }', 'a = f(); while (a) { x(); y(); a = f(); }');
+            before(node);
+
+            const fail = {};
+            const clonedWhileTestExpr = AST.deepCloneForFuncInlining(whileTestExpr, new Map(), fail);
+            ASSERT(
+              !fail.ed,
+              'this (currently) only fails for assignment to param names and funcs. this is normalized code and the rhs cannot be an assignment too. it could be a function but thats a silly case since this is a while-test.',
+              whileTestExpr,
+            );
+
+            // Move the assign node to appear before the if.
+            // We can't change order so we wrap it in a block so we can replace the whole `while`
+            // We asserted the while not to be labeled so this should be safe.
+            const newBlock = AST.blockStatement(first, node);
+            // Move the assign stmt node to appear before the if
+            body.splice(i, 1, newBlock);
+            // Clear its old position.
+            whileBody[0] = AST.emptyStatement();
+            // Replace the `if` with the branch that was not just the `break`. Keep its block.
+            ASSERT(whileBody[1] === last);
+            whileBody[1] = last.consequent;
+            // At the end of branch block that replaces the if, assign the clone to the assign lhs
+            last.consequent.body.push(AST.expressionStatement(AST.assignmentExpression(whileTestName, clonedWhileTestExpr, '=')));
             // Update the while test with the var id
             node.test = AST.identifier(whileTestName);
 

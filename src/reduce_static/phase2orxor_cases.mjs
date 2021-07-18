@@ -28,9 +28,6 @@ function _reduceOrXors(fdata) {
   });
 
   function process(meta, name, queue) {
-    // This meta is a constant binding whose init was a binary expression with operator & and which had at least
-    // a literal on one side of the operand (potentially two, though). Must confirm whether the number is a "single bit".
-
     const varWrite = meta.writes.find((write) => write.kind === 'var');
     ASSERT(varWrite, 'constants must have a var');
     ASSERT(
@@ -50,13 +47,10 @@ function _reduceOrXors(fdata) {
     // This should be the node that was orred then xorred. Confirm that it's a constant.
     const sourceNode = ilp ? varWrite.parentNode.init.right : varWrite.parentNode.init.left;
 
-    if (sourceNode.type !== 'Identifier') {
-      vlog('The source was not an ident. Bailing');
-      return;
-    }
-    if (!fdata.globallyUniqueNamingRegistry.get(sourceNode.name).isConstant) {
-      // We can probably support some cases here anyways. But for now we bail.
-      vlog('The source was not a constant. Bailing');
+    // Actual node is irrelevant since we can guarantee the outcome of an `|` with a number, and that's all we care about.
+    if (AST.isComplexNode(sourceNode)) {
+      // We need to clone this. Can probably also do complex nodes here tbf.
+      vlog('The source was not a simple node. Bailing');
       return;
     }
 

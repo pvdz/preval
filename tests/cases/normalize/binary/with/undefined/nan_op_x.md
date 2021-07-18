@@ -123,7 +123,8 @@ const tmpArrElement$25 = undefined == x;
 const tmpArrElement$27 = undefined != x;
 const tmpArrElement$29 = undefined === x;
 const tmpArrElement$31 = undefined !== x;
-const tmpArrElement$33 = 0 & x;
+x & 0;
+const tmpArrElement$33 = 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 const arr = [
@@ -185,7 +186,7 @@ const tmpArrElement$21 = undefined <= x;
 const tmpArrElement$23 = undefined >= x;
 const tmpArrElement$25 = undefined == x;
 const tmpArrElement$27 = undefined != x;
-const tmpArrElement$33 = 0 & x;
+x ** 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 const arr = [
@@ -206,7 +207,7 @@ const arr = [
   tmpArrElement$27,
   false,
   true,
-  tmpArrElement$33,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ];

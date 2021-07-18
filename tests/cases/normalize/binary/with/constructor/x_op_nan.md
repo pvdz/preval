@@ -126,7 +126,8 @@ const tmpArrElement$25 = x == String;
 const tmpArrElement$27 = x != String;
 const tmpArrElement$29 = x === String;
 const tmpArrElement$31 = x !== String;
-const tmpArrElement$33 = x & 0;
+x & 0;
+const tmpArrElement$33 = 0;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
 const arr = [
@@ -191,7 +192,7 @@ const tmpArrElement$25 = x == String;
 const tmpArrElement$27 = x != String;
 const tmpArrElement$29 = x === String;
 const tmpArrElement$31 = x !== String;
-const tmpArrElement$33 = x & 0;
+x ** 0;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
 const arr = [
@@ -212,7 +213,7 @@ const arr = [
   tmpArrElement$27,
   tmpArrElement$29,
   tmpArrElement$31,
-  tmpArrElement$33,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ];

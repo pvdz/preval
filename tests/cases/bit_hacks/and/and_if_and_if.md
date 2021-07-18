@@ -21,7 +21,8 @@ function f(a) {
   }
 }
 
-f(1);
+$(f(1));
+$(f(2));
 `````
 
 ## Pre Normal
@@ -38,7 +39,8 @@ let f = function ($$0) {
     }
   }
 };
-f(1);
+$(f(1));
+$(f(2));
 `````
 
 ## Normalized
@@ -60,13 +62,37 @@ let f = function ($$0) {
     return undefined;
   }
 };
-f(1);
+const tmpCallCallee = $;
+const tmpCalleeParam = f(1);
+tmpCallCallee(tmpCalleeParam);
+const tmpCallCallee$1 = $;
+const tmpCalleeParam$1 = f(2);
+tmpCallCallee$1(tmpCalleeParam$1);
 `````
 
 ## Output
 
 `````js filename=intro
-
+const f = function ($$0) {
+  const a = $$0;
+  debugger;
+  const x = a & 1;
+  if (x) {
+    const y = a & 4;
+    if (y) {
+      $(`pass`);
+      return undefined;
+    } else {
+      return undefined;
+    }
+  } else {
+    return undefined;
+  }
+};
+f(1);
+$(undefined);
+f(2);
+$(undefined);
 `````
 
 ## Globals
@@ -76,6 +102,8 @@ None
 ## Result
 
 Should call `$` with:
+ - 1: undefined
+ - 2: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

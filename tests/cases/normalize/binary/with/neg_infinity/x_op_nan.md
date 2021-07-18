@@ -120,7 +120,8 @@ const tmpArrElement$25 = x == -Infinity;
 const tmpArrElement$27 = x != -Infinity;
 const tmpArrElement$29 = x === -Infinity;
 const tmpArrElement$31 = x !== -Infinity;
-const tmpArrElement$33 = x & 0;
+x & 0;
+const tmpArrElement$33 = 0;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
 const arr = [
@@ -182,7 +183,7 @@ const tmpArrElement$21 = x <= -Infinity;
 const tmpArrElement$23 = x >= -Infinity;
 const tmpArrElement$25 = x == -Infinity;
 const tmpArrElement$27 = x != -Infinity;
-const tmpArrElement$33 = x & 0;
+x ** 0;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
 const arr = [
@@ -203,7 +204,7 @@ const arr = [
   tmpArrElement$27,
   false,
   true,
-  tmpArrElement$33,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ];

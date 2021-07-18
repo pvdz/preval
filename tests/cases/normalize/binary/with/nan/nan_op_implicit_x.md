@@ -105,7 +105,8 @@ x;
 const tmpArrElement$29 = false;
 x;
 const tmpArrElement$31 = true;
-const tmpArrElement$33 = 0 & x;
+x & 0;
+const tmpArrElement$33 = 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 const arr = [
@@ -155,8 +156,7 @@ x ** 0;
 x ** 0;
 x ** 0;
 x ** 0;
-x;
-const tmpArrElement$33 = 0 & x;
+x ** 0;
 const tmpArrElement$35 = 0 ^ x;
 const tmpArrElement$37 = 0 | x;
 const arr = [
@@ -177,7 +177,7 @@ const arr = [
   true,
   false,
   true,
-  tmpArrElement$33,
+  0,
   tmpArrElement$35,
   tmpArrElement$37,
 ];

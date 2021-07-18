@@ -40,7 +40,8 @@ $(x, y, z);
 `````js filename=intro
 const x = $(1234);
 const y = x & 200;
-$(x, y, 0);
+const z = y & 8;
+$(x, y, z);
 `````
 
 ## Globals

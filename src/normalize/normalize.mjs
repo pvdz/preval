@@ -4342,6 +4342,22 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             if (lp) {
               const pv = AST.getPrimitiveValue(node.left);
               const pvn = 0 | pv;
+
+              if (node.operator === '&' && pvn === 0 && wrapKind !== 'statement') {
+                rule('Any value anded with lhs zero results zero');
+                example('f(0 & a);', '0 & a; f(0);');
+                before(node, body[i]);
+
+                const finalNode = AST.literal(0);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, AST.expressionStatement(node), finalParent);
+
+                after(node, body[i]);
+                after(node, body[i+1]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+
               if (pv !== pvn) {
                 // This means the primitive will coerce to a simpler value (int) with the bitwise operator
                 // The coercion happens regardless of the other operand so we should apply that immediately.
@@ -4354,12 +4370,29 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 node.left = AST.primitive(pvn);
 
                 after(node, body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }
             }
             if (rp) {
               const pv = AST.getPrimitiveValue(node.right);
               const pvn = 0 | pv;
+
+              if (node.operator === '&' && pvn === 0 && wrapKind !== 'statement') {
+                rule('Any value anded with rhs zero results zero');
+                example('f(a & 0);', 'a & 0; f(0);');
+                before(node, body[i]);
+
+                const finalNode = AST.literal(0);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, AST.expressionStatement(node), finalParent);
+
+                after(node, body[i]);
+                after(node, body[i+1]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+
               if (pv !== pvn) {
                 // This means the primitive will coerce to a simpler value (int) with the bitwise operator
                 // The coercion happens regardless of the other operand so we should apply that immediately.
@@ -4372,6 +4405,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 node.right = AST.primitive(pvn);
 
                 after(node, body[i]);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }
             }

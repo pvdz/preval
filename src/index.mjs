@@ -9,9 +9,9 @@ import { parseCode } from './normalize/parse.mjs';
 import { phaseNormalize } from './normalize/normalize.mjs';
 import { phaseNormalOnce } from './normalize/normal_once.mjs';
 import { prepareNormalization } from './normalize/prepare.mjs';
-import { phase0 } from './reduce_static/phase0.mjs';
-import { phase1 } from './reduce_static/phase1.mjs';
-import { phase2 } from './reduce_static/phase2.mjs';
+import { phase0 } from './reduce_static/_phase0.mjs';
+import { phase1 } from './reduce_static/_phase1.mjs';
+import { phase2 } from './reduce_static/_phase2.mjs';
 
 export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve, req, stopAfterNormalize, options = {} }) {
   if (stdio) setStdio(stdio, verbose);

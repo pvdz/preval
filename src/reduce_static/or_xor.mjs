@@ -5,13 +5,13 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, b
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
-export function reduceOrXors(fdata) {
+export function orXor(fdata) {
   group('\n\n\nChecking OrXor cases\n');
-  const r = _reduceOrXors(fdata);
+  const r = _orXor(fdata);
   groupEnd();
   return r;
 }
-function _reduceOrXors(fdata) {
+function _orXor(fdata) {
   const queue = [];
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {

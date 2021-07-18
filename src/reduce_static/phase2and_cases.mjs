@@ -172,16 +172,17 @@ function _andCases(fdata) {
                 (pv & bitsAnded) !== 0 && (pv & bitsAnded) !== bitsAnded,
                 'there must be at least some bits in the new mask that get unset',
               );
-              rule('Anding a value known to have one bit set with a value that does not have that bit set means the result is zero');
-              example('const x = a & 33; const y = x & 5; f(y);', 'const x = 33; const y = x & 1; f(y);'); // tests/cases/bit_hacks/anding.md
-              before(read.parentNode, read.blockBody[read.blockIndex]);
+              // If this was a coercion from string, then so be it. Just being lazy here tbh.
+              // Note that there's little we can do here.
+              if (unknown.type === 'Literal') {
+                rule('Anding a value known to have one bit set with a value with that and other bits set can reduce that and to that one bit');
+                example('const x = a & 32; const y = x & 33; f(y);', 'const x = 32; const y = x & 32; f(y);'); // tests/cases/bit_hacks/anding.md
+                before(read.parentNode, read.blockBody[read.blockIndex]);
 
-              // Note: we know that the other side is a number so we don't have to worry about a spy here
-              const finalNode = AST.literal(0);
-              if (read.grandIndex < 0) read.grandNode[read.grandProp] = finalNode;
-              else read.grandNode[read.grandProp][read.grandIndex] = finalNode;
+                unknown.value = pv & bitsAnded;
 
-              after(finalNode, read.blockBody[read.blockIndex]);
+                after(unknown, read.blockBody[read.blockIndex]);
+              }
             }
           }
         }

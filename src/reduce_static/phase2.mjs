@@ -53,6 +53,8 @@ import { reduceOrXors } from './phase2orxor_cases.mjs';
 import { resolveBoundValueSet } from './phase2bound_value_set.mjs';
 import { typedComparison } from './phase2typed_comparison.mjs';
 import { eqBang } from './phase2eq_bang.mjs';
+import { orOr } from './phase2or_or.mjs';
+import { andAnd } from './phase2and_and.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -285,6 +287,12 @@ function _phase2(program, fdata, resolve, req) {
 
   const ebts = eqBang(fdata);
   if (ebts) return ebts;
+
+  const ores = orOr(fdata);
+  if (ores) return ores;
+
+  const ants = andAnd(fdata);
+  if (ants) return ants;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

@@ -76,7 +76,7 @@ function _bitSetTests(fdata) {
           // We have `const x = y === unknown`. Now we check whether `unknown` is either `0` or the value that we know x is ANDed with.
           if (AST.isPrimitive(unknown)) {
             const pv = AST.getPrimitiveValue(unknown);
-            vlog('Was comparing to a primitive:', pv);
+            vlog('Was comparing to a primitive:', pv, '&', oneBitAnded);
             // This is `y === <primitive>` where we know `y` must be zero or <oneBitAnded>
 
             // There are two cases; Either
@@ -104,7 +104,7 @@ function _bitSetTests(fdata) {
           const unknown = read.parentNode.left === read.node ? read.parentNode.right : read.parentNode.left;
           if (AST.isPrimitive(unknown)) {
             const pv = AST.getPrimitiveValue(unknown);
-            vlog('Was comparing to a primitive:', pv);
+            vlog('Was comparing to a primitive:', pv, '&', oneBitAnded);
             // Regardless of the primitive, check if it has the same bit set as the value was already ANDed with.
             // If the bit is set, remove the binary expression (leaving just the ident)
             // If the bit was unset, then the result must be zero, so replace the binary expression with a zero.

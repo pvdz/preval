@@ -1,0 +1,81 @@
+# Preval test case
+
+# compare_return.md
+
+> Ret bool after if > Compare return
+>
+> When the if-test must be a bool and the branches return true/false, the if can collapse.
+
+#TODO
+
+## Input
+
+`````js filename=intro
+function f() {
+  const x = $(100);
+  if (x <= 100) {
+    return true;
+  } else {
+    return false;
+  }
+}
+$(f());
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const x = $(100);
+  if (x <= 100) {
+    return true;
+  } else {
+    return false;
+  }
+};
+$(f());
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  const x = $(100);
+  const tmpIfTest = x <= 100;
+  if (tmpIfTest) {
+    return true;
+  } else {
+    return false;
+  }
+};
+const tmpCallCallee = $;
+const tmpCalleeParam = f();
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+const x = $(100);
+const tmpIfTest = x <= 100;
+$(tmpIfTest);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 100
+ - 2: true
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

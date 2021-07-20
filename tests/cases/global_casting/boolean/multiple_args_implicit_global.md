@@ -34,7 +34,9 @@ $(y);
 const a = $(`a`);
 const b = $(`b`);
 const x = a === b;
-const y = Boolean(x, $, 1, fail_hard, `twee`);
+const tmpArgOverflow = x;
+fail_hard;
+const y = Boolean(tmpArgOverflow);
 $(y);
 `````
 

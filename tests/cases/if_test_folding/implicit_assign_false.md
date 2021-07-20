@@ -12,7 +12,7 @@
 
 `````js filename=intro
 function f() {
-  let y = undefined;
+  let y = undefined; // y = !x
   if (x) {
     y = false;
   } else {

@@ -25,7 +25,7 @@ $(y);
 ## Normalized
 
 `````js filename=intro
-const y = Boolean();
+const y = false;
 $(y);
 `````
 

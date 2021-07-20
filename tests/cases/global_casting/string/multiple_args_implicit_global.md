@@ -31,8 +31,9 @@ $(y);
 `````js filename=intro
 const a = $(`a`);
 const x = $coerce(a, `plustr`);
-const tmpStringFirstArg = x;
+const tmpArgOverflow = x;
 fail_hard;
+const tmpStringFirstArg = tmpArgOverflow;
 const y = $coerce(tmpStringFirstArg, `string`);
 $(y);
 `````

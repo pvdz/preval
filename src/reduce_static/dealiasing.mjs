@@ -71,18 +71,27 @@ function _dealiasing(fdata) {
       vlog('Skipping `arguments` alias');
       return;
     }
+
     ASSERT(
       realName !== 'arguments' || write.pfuncNode.type === 'Program',
       'the only meta named `arguments` must be an implicit global',
       write,
     );
-    const originalMeta = fdata.globallyUniqueNamingRegistry.get(realName);
-    ASSERT(originalMeta || realName === 'arguments', 'the meta for the init ident should be available...', originalMeta, realName);
+    if (realName !== 'arguments') {
+      const originalMeta = fdata.globallyUniqueNamingRegistry.get(realName);
+      ASSERT(originalMeta || realName === 'arguments', 'the meta for the init ident should be available...', originalMeta, realName);
 
-    vlog('Checking if it could have been mutated between write and read');
-    if (mayBindingMutateBetweenRefs(originalMeta || realName, write, read)) {
-      vlog('  - yes, bailing');
-      return;
+      // Technically correct but for now I'm going to let this go. It will mess up with errors triggered by implicit globals that don't exist
+      //if (originalMeta.isImplicitGlobal) {
+      //  vlog('the init is an implicit global. Cannot safely continue because it may prevent a crash');
+      //  return;
+      //}
+
+      vlog('Checking if it could have been mutated between write and read');
+      if (mayBindingMutateBetweenRefs(originalMeta || realName, write, read)) {
+        vlog('  - yes, bailing');
+        return;
+      }
     }
 
     vlog('It seems `' + name + '` was an unnecessary alias for `' + realName + '`. Renaming it now.');

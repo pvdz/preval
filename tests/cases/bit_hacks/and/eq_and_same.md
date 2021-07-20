@@ -1,8 +1,8 @@
 # Preval test case
 
-# eq_and.md
+# eq_and_same.md
 
-> Bit hacks > And > Eq and
+> Bit hacks > And > Eq and same
 >
 > The and is subsumed by the eq
 

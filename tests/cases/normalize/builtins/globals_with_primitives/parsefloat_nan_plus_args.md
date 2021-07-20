@@ -24,9 +24,9 @@ $(parseFloat(NaN, 1, `two`, implicitGlobal, 3));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpStringFirstArg = NaN;
+const tmpArgOverflow = NaN;
 implicitGlobal;
-const tmpCalleeParam = parseFloat(tmpStringFirstArg);
+const tmpCalleeParam = parseFloat(tmpArgOverflow);
 tmpCallCallee(tmpCalleeParam);
 `````
 

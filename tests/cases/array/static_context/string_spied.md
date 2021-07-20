@@ -49,8 +49,8 @@ const spy = {
     return undefined;
   },
 };
-const tmpStringFirstArg = [spy, spy];
-$coerce(tmpStringFirstArg, `string`);
+const tmpCallCallee = [spy, spy];
+$coerce(tmpCallCallee, `string`);
 `````
 
 ## Output
@@ -68,8 +68,8 @@ const spy = {
     return undefined;
   },
 };
-const tmpStringFirstArg = [spy, spy];
-$coerce(tmpStringFirstArg, `string`);
+const tmpCallCallee = [spy, spy];
+$coerce(tmpCallCallee, `string`);
 `````
 
 ## Globals

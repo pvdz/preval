@@ -337,7 +337,7 @@ export function functionExpression(params, body, { id, generator, async, normali
 
 export function identifier(name, nonComputedProperty = false) {
   ASSERT(typeof name === 'string' && name, 'ident names must be valid nonempty strings', name);
-  ASSERT(nonComputedProperty || !['true', 'false', 'null'].includes(name), 'these are literals.');
+  ASSERT(nonComputedProperty || (typeof nonComputedProperty === 'boolean' && !['true', 'false', 'null'].includes(name)), 'these are literals.');
   return {
     type: 'Identifier',
     name,

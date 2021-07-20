@@ -1332,6 +1332,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       case 'CallExpression': {
         const callee = node.callee;
         const args = node.arguments;
+        const firstSpread = args.length > 0 && args[0].type === 'SpreadElement';
 
         if (callee.type === 'MemberExpression' && callee.computed) {
           if (AST.isProperIdent(callee.property, true)) {
@@ -1480,121 +1481,248 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         }
 
         if (callee.type === 'Identifier' && ASSUME_BUILTINS) {
+          // First eliminate excessive args, or first args that are spreads
+          switch (callee.name) {
+            case 'isNaN':
+            case 'isFinite':
+            case 'Boolean':
+            case 'parseFloat':
+            case 'Number':
+            case 'String': {
+              if (args.length === 0 || (args.length === 1 && AST.isPrimitive(args[0]))) {
+                rule('If certain builtin global funcs received a primitive value or none at all it can be resolved');
+                rule('isNaN("50foo");', ';');
+                rule('isFinite();', ';');
+                before(node, parentNode);
+
+                // Note: for some funcs there's a difference between calling it with undefined or nothing (String() vs String(undefined))
+                const pv = args.length === 0 ? undefined : AST.getPrimitiveValue(args[0]);
+                let v;
+                switch (callee.name) {
+                  case 'isNaN':
+                    v = isNaN(pv);
+                    break;
+                  case 'isFinite':
+                    v = isFinite(pv);
+                    break;
+                  case 'Boolean':
+                    v = Boolean(pv);
+                    break;
+                  case 'parseFloat':
+                    v = parseFloat(pv);
+                    break;
+                  case 'Number':
+                    v = args.length === 0 ? 0 : Number(pv);
+                    break;
+                  case 'String':
+                    v = args.length === 0 ? '' : String(pv);
+                    break;
+                  default:
+                    ASSERT(false);
+                }
+
+                const finalNode = AST.primitive(v);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(AST.emptyStatement());
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+
+              if (args.length > 1 || firstSpread) {
+                rule('Builtins that accept one arg should not receive more');
+                example('isNaN(a(), b(), c());', 'const tmp = a(); b(); c(); isNaN(tmp);');
+                example('isNaN(...a(), b(), c());', 'const tmp = [...a()][0]; b(); c(); isNaN(tmp);');
+                before(node, body);
+
+                // It's not pretty but if we want to maintain proper order, the first arg has to be cached.
+                const tmpName = createFreshVar('tmpArgOverflow', fdata);
+
+                const finalNode = AST.callExpression(callee.name, [AST.identifier(tmpName)]);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+
+                body.splice(
+                  i,
+                  1,
+                  AST.variableDeclaration(
+                    tmpName,
+                    firstSpread ? AST.memberExpression(AST.arrayExpression(args[0]), AST.literal(0), true) : args[0],
+                    'const',
+                  ),
+                  // If any excessive args was a spread, we can create an array expression for it... `f(a, ...b)` -> `[...b];`
+                  ...args.slice(1).map((e) => (e.type === 'SpreadElement' ? AST.arrayExpression(e) : AST.expressionStatement(e))),
+                  finalParent,
+                );
+
+                after(body[0], body);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+
+              break;
+            }
+            case 'parseInt': {
+              if (
+                args.length === 0 ||
+                (args.length === 1 && AST.isPrimitive(args[0])) ||
+                (args.length === 2 && AST.isPrimitive(args[0]) && AST.isPrimitive(args[1]))
+              ) {
+                rule('A statement that is `parseInt()` (without args or with primitive args) can be eliminated');
+                example('String();', ';');
+                example('String(100);', ';');
+                example('String(100, 300n);', ';');
+                before(node, parentNode);
+
+                const finalNode = AST.primitive(
+                  args.length === 0
+                    ? parseInt()
+                    : args.length === 1
+                    ? parseInt(AST.getPrimitiveValue(args[0]))
+                    : parseInt(AST.getPrimitiveValue(args[0]), AST.getPrimitiveValue(args[1])),
+                );
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(AST.emptyStatement());
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+
+              if (
+                firstSpread &&
+                (args.length < 2 || args[1].type !== 'SpreadElement') &&
+                (args.length < 3 || args[2].type !== 'SpreadElement')
+              ) {
+                // Special case.
+                // This never ends so we are only going to support the first-arg-as-spread case here.
+
+                rule('`parseInt` called with a spread should be called with non-spreads');
+                example(
+                  'parseInt(...x, a, b, c);',
+                  'const tmp = [...x]; const tmp2 = a; const tmp3 = b; c; parseInt(tmp.length ? tmp[0] : tmp2, tmp.length > 1 ? tmp[1] ? tmp.length ? tmp3 : tmp2);',
+                );
+                before(node, body);
+
+                const tmpName1 = createFreshVar('tmpArgOverflowOne', fdata);
+                const tmpName2 = createFreshVar('tmpArgOverflowTwo', fdata);
+                const tmpName3 = createFreshVar('tmpArgOverflowThree', fdata);
+                const tmpName4 = createFreshVar('tmpArgOverflowLen', fdata);
+
+                const finalNode = AST.callExpression('parseInt', [
+                  AST.conditionalExpression(tmpName4, AST.memberExpression(tmpName1, AST.literal(0), true), tmpName2),
+                  AST.conditionalExpression(
+                    AST.binaryExpression('>', tmpName4, AST.literal(1)),
+                    AST.memberExpression(tmpName1, AST.literal(1), true),
+                    AST.conditionalExpression(tmpName4, tmpName2, tmpName3),
+                  ),
+                ]);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+
+                body.splice(
+                  i,
+                  1,
+                  AST.variableDeclaration(tmpName1, AST.arrayExpression(args[0]), 'const'),
+                  AST.variableDeclaration(tmpName4, AST.memberExpression(tmpName1, 'length'), 'const'),
+                  AST.variableDeclaration(tmpName2, args[1] || AST.identifier('undefined'), 'const'),
+                  AST.variableDeclaration(tmpName3, args[2] || AST.identifier('undefined'), 'const'),
+                  ...args.slice(3).map((e) => AST.expressionStatement(e.type === 'SpreadElement' ? AST.arrayExpression(e) : e)),
+                  finalParent,
+                );
+
+                after(finalNode, body);
+                assertNoDupeNodes(AST.blockStatement(body), 'body');
+                return true;
+              }
+
+              if (args.length > 2 && !firstSpread && args[1].type !== 'SpreadElement' && args[2].type !== 'SpreadElement') {
+                rule('parseInt accepts two args should not receive more');
+                example('parseInt(a(), b(), c());', 'const tmp = a(); const tmp2 = b(); c(); parseInt(tmp, tmp2);');
+                before(node, body);
+
+                // It's not pretty but if we want to maintain proper order, the first args have to be cached.
+                const tmpName1 = createFreshVar('tmpArgOverflowOne', fdata);
+                const tmpName2 = createFreshVar('tmpArgOverflowTwo', fdata);
+
+                const finalNode = AST.callExpression(callee.name, [AST.identifier(tmpName1), AST.identifier(tmpName2)]);
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+
+                body.splice(
+                  i,
+                  1,
+                  // Note: the first arg should not be a spread at this point
+                  AST.variableDeclaration(tmpName1, args[0], 'const'),
+                  AST.variableDeclaration(tmpName2, args[1], 'const'),
+                  ...args.slice(2).map((e) => AST.expressionStatement(e)),
+                  finalParent,
+                );
+
+                after(body[0], body);
+                return true;
+              }
+
+              break;
+            }
+          }
+
           if (wrapKind === 'statement') {
             switch (callee.name) {
               case 'isNaN':
               case 'isFinite':
               case 'Boolean': {
-                // The args are not coerced so they can become statements as-is
-                rule('A statement that is a Boolean(), isNaN(), or isFinite() call can be dropped');
-                example('Boolean(a);', 'a;');
+                // Boolean cannot be observed? Whereas isNaN and isFinite might, but only if they have args
+                if (args.length && AST.isPrimitive(args[0])) {
+                  rule('A statement that is a call to Boolean(), or isNaN() or isFinite() with a primitive arg can be dropped');
+                  example('Boolean(a);', ';');
+                  before(node, body);
+
+                  body.splice(i, 1, AST.emptyStatement());
+
+                  after(AST.emptyStatement(), body);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                if (callee.name === 'Boolean') {
+                  rule('A statement that is a call to Boolean() with arg can be replaced by the arg itself');
+                  example('Boolean(a);', 'a;');
+                  before(node, parentNode);
+
+                  body.splice(i, 1, AST.expressionStatement(args[0]));
+
+                  after(AST.expressionStatement(args[0]), body);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                break;
+              }
+              case 'parseFloat': {
+                // This is not "just" calling Number or String... We can probably do this anyways.
+
+                // Coerce the first arg to string
+                rule('`parseFloat` with one arg can be reduced');
+                example('parseFloat(a);', '""+a;');
                 before(node, parentNode);
 
-                body.splice(
-                  i,
-                  1,
-                  ...args.map((anode) =>
-                    // Make sure `Number.isNaN(...x)` properly becomes `[...x]` and let another rule deal with that mess.
-                    AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode),
-                  ),
-                );
+                // The cases with args.length!=1 and where they can be spread are handled above
+                body.splice(i, 1, AST.expressionStatement(AST.binaryExpression('+', AST.templateLiteral(''), args[0])));
 
                 after(parentNode);
                 assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }
-
-              case 'parseFloat': {
-                // This is not "just" calling Number or String... We can probably do this anyways.
-                if (node.arguments.length > 1 || node.arguments[0].type === 'SpreadElement') {
-                  // Note: the `+` operator is effectively the specification's `ToNumber` coercion operation in syntactic form.
-                  // Move all args to individual statements. Coerce the first to number.
-                  rule(
-                    'A statement that is `Number()` or `parseFloat()` should be replaced by a call to `$coerce` on "number" with one arg',
-                  );
-                  example('Number(a);', '$coerce(300, "number");');
-                  example('parseFloat(a);', '$coerce(300, "number");');
-                  before(node, parentNode);
-
-                  const newNodes = args.map((anode, ai) =>
-                    // Make sure `Number(...x)` properly becomes `$coerce([...x][0], "number")` and let another rule deal with that mess.
-                    AST.expressionStatement(
-                      ai === 0
-                        ? anode.type === 'SpreadElement'
-                          ? // If the first arg is a spread, convert it to an array and coerce its first element `+[...x][0]`
-                            // That should work (albeit a little ugly)
-                            AST.callExpression('$coerce', [
-                              AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true),
-                              AST.primitive('number'),
-                            ])
-                          : AST.callExpression('$coerce', [anode, AST.primitive('number')])
-                        : anode.type === 'SpreadElement'
-                        ? AST.arrayExpression(anode)
-                        : anode,
-                    ),
-                  );
-                  body.splice(i, 1, ...newNodes);
-
-                  after(body[i]);
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
-                if (node.arguments.length === 1 && AST.isPrimitive(node.arguments[0])) {
-                  rule('If a `parseFloat` statement received a primitive value it can be dropped');
-                  rule('parseFloat("50foo");', ';');
-                  before(node, parentNode);
-
-                  body[i] = AST.emptyStatement();
-
-                  after(AST.emptyStatement());
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-                break;
-              }
-
               case 'Number': {
                 // Note: `Number(x)` is not the same as `1 * x`
 
-                if (args.length === 0) {
-                  rule('A statement that is `Number()` or `parseInt()` (zero args) can be eliminated');
-                  example('String();', ';');
-                  example('parseInt();', ';');
-                  before(node, parentNode);
-
-                  body[i] = AST.emptyStatement();
-
-                  after(AST.emptyStatement());
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
                 // Note: the `+` operator is effectively the specification's `ToNumber` coercion operation in syntactic form.
                 // Move all args to individual statements. Coerce the first to number.
-                rule('A statement that is `Number()` or `parseFloat()` should be replaced by a call to `$coerce` on "number" with one arg');
-                example('Number(a);', '$coerce(300, "number");');
-                example('parseFloat(a);', '$coerce(300, "number");');
+                rule('A statement that is `Number()` should be replaced by a call to `$coerce` on "number" with one arg');
+                example('Number(a);', '$coerce(a, "number");');
                 before(node, parentNode);
 
-                const newNodes = args.map((anode, ai) =>
-                  // Make sure `Number(...x)` properly becomes `$coerce([...x][0], "number")` and let another rule deal with that mess.
-                  AST.expressionStatement(
-                    ai === 0
-                      ? anode.type === 'SpreadElement'
-                        ? // If the first arg is a spread, convert it to an array and coerce its first element `+[...x][0]`
-                          // That should work (albeit a little ugly)
-                          AST.callExpression('$coerce', [
-                            AST.memberExpression(AST.arrayExpression(anode), AST.literal(0), true),
-                            AST.primitive('number'),
-                          ])
-                        : AST.callExpression('$coerce', [anode, AST.primitive('number')])
-                      : anode.type === 'SpreadElement'
-                      ? AST.arrayExpression(anode)
-                      : anode,
-                  ),
-                );
-                body.splice(i, 1, ...newNodes);
+                ASSERT(args.length === 1 && args[0].type !== 'SpreadElement');
+                body.splice(i, 1, AST.expressionStatement(AST.callExpression('$coerce', [args[0], AST.primitive('number')])));
 
                 after(body[i]);
                 assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -1604,74 +1732,32 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 // Note: `String(x)` is not the same as `""+x`
                 // We eliminate calls to Number and String in favor of $coerce
 
-                if (args.length === 0) {
-                  rule('A statement that is `String()` can be eliminated');
-                  example('String();', ';');
-                  before(node, parentNode);
-
-                  body[i] = AST.emptyStatement();
-
-                  after(AST.emptyStatement());
-                  assertNoDupeNodes(AST.blockStatement(body), 'body');
-                  return true;
-                }
-
-                rule('A statement call to `String` with some args should call `$coerce` with one');
-                example('String(a, b, c);', 'const tmp = a; b; c; $coerce(a, "string");');
+                rule('A statement call to `String` with an arg should call `$coerce` with it');
+                example('String(a);', '$coerce(a, "string");');
                 before(node, parentNode);
 
-                const newNodes = [];
-
-                let tmpArgName;
-                args.forEach((anode, ai) => {
-                  if (ai === 0) {
-                    // Make sure `String(...x)` properly becomes `"" + [...x][0]` and let another rule deal with that mess.
-                    if (anode.type === 'SpreadElement') {
-                      tmpArgName = createFreshVar('tmpStringSpread', fdata);
-                      newNodes.push(AST.variableDeclaration(tmpArgName, AST.arrayExpression(anode), 'const')); // [...arg]
-                    } else {
-                      tmpArgName = createFreshVar('tmpStringFirstArg', fdata);
-                      newNodes.push(AST.variableDeclaration(tmpArgName, anode, 'const'));
-                    }
-                  } else {
-                    newNodes.push(AST.expressionStatement(anode.type === 'SpreadElement' ? AST.arrayExpression(anode) : anode));
-                  }
-                });
-                newNodes.push(
-                  AST.expressionStatement(
-                    AST.callExpression('$coerce', [
-                      args[0].type === 'SpreadElement'
-                        ? AST.memberExpression(tmpArgName, AST.literal(0), true) // `tmpName[0]`
-                        : AST.identifier(tmpArgName),
-                      AST.primitive('string'),
-                    ]),
-                  ),
-                );
-                body.splice(i, 1, ...newNodes);
+                ASSERT(args.length === 1 && args[0].type !== 'SpreadElement');
+                body.splice(i, 1, AST.expressionStatement(AST.callExpression('$coerce', [args[0], AST.primitive('string')])));
 
                 after(parentNode);
                 assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }
               case 'parseInt': {
-                // Coerce the first arg to string, the second to number
-                if (args.every((anode, ai) => anode.type !== 'SpreadElement' || ai >= 2)) {
+                if (!(firstSpread || (args.length > 1 && args[1].type === 'SpreadElement'))) {
+                  // Coerce the first arg to string, the second to number
+
                   rule('A statement that is parseInt can be eliminated');
                   example('parseInt(a, b, c);', '""+a; +b; c;');
                   before(node, parentNode);
 
-                  const newNodes = args.map((anode, ai) =>
-                    // Since the all the args need to be coerced, we won't be supporting the spread case here
-                    AST.expressionStatement(
-                      ai === 0
-                        ? AST.binaryExpression('+', AST.templateLiteral(''), anode)
-                        : ai === 0
-                        ? AST.unaryExpression('+', AST.templateLiteral(''))
-                        : anode.type === 'SpreadElement'
-                        ? AST.arrayExpression(anode)
-                        : anode,
-                    ),
-                  );
+                  const newNodes = [];
+                  if (args.length > 0) {
+                    newNodes.push(AST.expressionStatement(AST.callExpression('String', [args[0]])));
+                  }
+                  if (args.length > 1) {
+                    newNodes.push(AST.expressionStatement(AST.unaryExpression('+', args[1])));
+                  }
                   body.splice(i, 1, ...newNodes);
 
                   after(parentNode);
@@ -1953,27 +2039,25 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   after(finalNode, body.slice(i, args.length));
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
                   return true;
-                } else if (AST.isPrimitive(firstArgNode)) {
-                  // Construct the arg
+                }
 
-                  if (AST.isPrimitive(args[0]) && (!args[1] || AST.isPrimitive(args[1]))) {
-                    rule('Calling `RegExp()` with primitives should construct the regex');
-                    example('RegExp("foo")', '/foo/', () => !args[1]);
-                    example('RegExp("foo". "g")', '/foo/g', () => !!args[1]);
-                    before(node, body[i]);
+                if (AST.isPrimitive(args[0]) && (!args[1] || AST.isPrimitive(args[1]))) {
+                  rule('Calling `RegExp()` with primitives should construct the regex');
+                  example('RegExp("foo")', '/foo/', () => !args[1]);
+                  example('RegExp("foo". "g")', '/foo/g', () => !!args[1]);
+                  before(node, body[i]);
 
-                    const finalNode = AST.regex(
-                      AST.getPrimitiveValue(args[0]),
-                      args[1] ? AST.getPrimitiveValue(args[1]) : '',
-                      String(RegExp(AST.getPrimitiveValue(args[0]), args[1] && AST.getPrimitiveValue(args[1]))),
-                    );
-                    const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
-                    body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
+                  const finalNode = AST.regex(
+                    AST.getPrimitiveValue(args[0]),
+                    args[1] ? AST.getPrimitiveValue(args[1]) : '',
+                    String(RegExp(AST.getPrimitiveValue(args[0]), args[1] && AST.getPrimitiveValue(args[1]))),
+                  );
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
 
-                    after(finalNode, body.slice(i, args.length));
-                    assertNoDupeNodes(AST.blockStatement(body), 'body');
-                    return true;
-                  }
+                  after(finalNode, body.slice(i, args.length));
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
                 }
 
                 break;
@@ -4353,7 +4437,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 body.splice(i, 1, AST.expressionStatement(node), finalParent);
 
                 after(node, body[i]);
-                after(node, body[i+1]);
+                after(node, body[i + 1]);
                 assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }
@@ -4388,7 +4472,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 body.splice(i, 1, AST.expressionStatement(node), finalParent);
 
                 after(node, body[i]);
-                after(node, body[i+1]);
+                after(node, body[i + 1]);
                 assertNoDupeNodes(AST.blockStatement(body), 'body');
                 return true;
               }

@@ -24,15 +24,18 @@ $(parseInt(NaN, 1, `two`, implicitGlobal, 3));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = parseInt(NaN, 1, `two`, implicitGlobal, 3);
+const tmpArgOverflowOne = NaN;
+const tmpArgOverflowTwo = 1;
+implicitGlobal;
+const tmpCalleeParam = parseInt(tmpArgOverflowOne, tmpArgOverflowTwo);
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = parseInt(NaN, 1, `two`, implicitGlobal, 3);
-$(tmpCalleeParam);
+implicitGlobal;
+$(NaN);
 `````
 
 ## Globals

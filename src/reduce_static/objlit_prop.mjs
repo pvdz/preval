@@ -393,6 +393,7 @@ function processAttempt(fdata, queue) {
             readRef.grandNode.callee = newCallee;
 
             after(readRef.blockBody[readRef.blockIndex]);
+            ++updated
           }
         } else {
           rule('An object literal whose property is looked up immediately can resolve the lookup immediately');
@@ -405,6 +406,7 @@ function processAttempt(fdata, queue) {
           else readRef.grandNode[readRef.grandProp][readRef.grandIndex] = AST.cloneSimple(pnode.value); // This will crash for complex nodes ;(
 
           after(readRef.blockBody[readRef.blockIndex]);
+          ++updated
         }
       }
     }

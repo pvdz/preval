@@ -24,8 +24,7 @@ $(String(Infinity));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpStringFirstArg = Infinity;
-const tmpCalleeParam = $coerce(tmpStringFirstArg, `string`);
+const tmpCalleeParam = `Infinity`;
 tmpCallCallee(tmpCalleeParam);
 `````
 

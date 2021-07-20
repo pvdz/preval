@@ -24,15 +24,14 @@ $(parseInt(`foo`));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = parseInt(`foo`);
+const tmpCalleeParam = NaN;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = parseInt(`foo`);
-$(tmpCalleeParam);
+$(NaN);
 `````
 
 ## Globals

@@ -24,15 +24,14 @@ $(parseInt(Infinity));
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCalleeParam = parseInt(Infinity);
+const tmpCalleeParam = NaN;
 tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = parseInt(Infinity);
-$(tmpCalleeParam);
+$(NaN);
 `````
 
 ## Globals

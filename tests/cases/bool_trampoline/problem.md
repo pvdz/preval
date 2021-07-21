@@ -1,0 +1,116 @@
+# Preval test case
+
+# problem.md
+
+> Bool trampoline > Problem
+>
+> A bool trampoline has an arbitrary expression, coerces it to bool, and returns the bool.
+
+#TODO
+
+## Input
+
+`````js filename=intro
+let x;
+let y;
+function f() {
+  x = $(100);
+  y = Boolean(x);
+  return y;
+}
+
+// Prevent simple inlining
+$(f);
+$(f);
+
+if (f()) $('pass');
+else $('fail');
+$(x);
+$(y);
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  x = $(100);
+  y = Boolean(x);
+  return y;
+};
+let x;
+let y;
+$(f);
+$(f);
+if (f()) $(`pass`);
+else $(`fail`);
+$(x);
+$(y);
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = function () {
+  debugger;
+  x = $(100);
+  y = Boolean(x);
+  return y;
+};
+let x = undefined;
+let y = undefined;
+$(f);
+$(f);
+const tmpIfTest = f();
+if (tmpIfTest) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+$(x);
+$(y);
+`````
+
+## Output
+
+`````js filename=intro
+const f = function () {
+  debugger;
+  x = $(100);
+  y = Boolean(x);
+  return y;
+};
+let x = undefined;
+let y = undefined;
+$(f);
+$(f);
+f();
+if (y) {
+  $(`pass`);
+} else {
+  $(`fail`);
+}
+$(x);
+$(y);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: '<function>'
+ - 2: '<function>'
+ - 3: 100
+ - 4: 'pass'
+ - 5: 100
+ - 6: true
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

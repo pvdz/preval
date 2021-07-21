@@ -63,14 +63,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const x = $(0);
-  const tmpIfTestFold = !x;
-  return tmpIfTestFold;
-};
-f();
-const tmpCalleeParam = f();
+$(0);
+const tmpBoolTrampoline = $(0);
+const tmpCalleeParam = !tmpBoolTrampoline;
 $(tmpCalleeParam);
 `````
 

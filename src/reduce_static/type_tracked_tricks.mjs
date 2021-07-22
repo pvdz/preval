@@ -135,7 +135,7 @@ function _typeTrackedTricks(fdata) {
                       '<=',
                       +node.consequent.$p.lastPid,
                       '(',
-                      +read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid < +node.consequent.$p.lastPid,
+                      +read.node.$p.pid > +node.consequent.$p.pid && +read.node.$p.pid <= +node.consequent.$p.lastPid,
                       ')',
                       ', or alternate?',
                       +node.alternate.$p.pid,
@@ -144,7 +144,7 @@ function _typeTrackedTricks(fdata) {
                       '<=',
                       +node.alternate.$p.lastPid,
                       '(',
-                      +read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid < +node.alternate.$p.lastPid,
+                      +read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid,
                       ')',
                     );
                     source(read.blockBody[read.blockIndex]);
@@ -195,7 +195,7 @@ function _typeTrackedTricks(fdata) {
                       ', alternate end pid:',
                       node.alternate.$p.lastPid,
                     );
-                    if (+read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid < +node.alternate.$p.lastPid) {
+                    if (+read.node.$p.pid > +node.alternate.$p.pid && +read.node.$p.pid <= +node.alternate.$p.lastPid) {
                       // This read should be contained somewhere inside the `if`. Possibly even nested in a func.
                       // In any case, the string value was a constant so it should be en empty string here.
                       // Covered by tests/cases/type_tracked/if/base_string_empty.md

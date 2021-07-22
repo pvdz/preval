@@ -192,13 +192,16 @@ function _ifDualAssign(fdata) {
       // Find all refs that fall within the body of either branch and replace them with the actual truthy or falsy value.
       // (Note: this is a constant)
 
-      const thenPid = ifNode.consequent.$p.pid;
-      const elsePid = ifNode.alternate.$p.pid;
-      const postPid = ifNode.alternate.$p.lastPid;
+      const thenPid = +ifNode.consequent.$p.pid;
+      const elsePid = +ifNode.alternate.$p.pid;
+      const postPid = +ifNode.alternate.$p.lastPid;
+      //vlog('->', thenPid, elsePid, postPid)
 
       let replaced = 0;
-      meta.reads.forEach((read) => {
-        if (+read.node.$p.pid > thenPid && +read.node.$p.pid < elsePid) {
+      meta.reads.forEach((read, ri) => {
+        const pid = +read.node.$p.pid;
+        vlog('- ri:', ri, ', pid=', pid, ', inside `then`?', pid > thenPid && pid < elsePid, 'inside `else`?', pid >= elsePid && pid <= postPid);
+        if (pid > thenPid && pid < elsePid) {
           if (ruling) ruling = ruling();
           before(read.node, read.blockBody[read.blockIndex]);
 
@@ -208,7 +211,7 @@ function _ifDualAssign(fdata) {
 
           after(AST.primitive(truthy), read.blockBody[read.blockIndex]);
           ++replaced;
-        } else if (+read.node.$p.pid > elsePid && +read.node.$p.pid < postPid) {
+        } else if (pid > elsePid && pid <= postPid) {
           if (ruling) ruling = ruling();
           before(read.node, read.blockBody[read.blockIndex]);
 

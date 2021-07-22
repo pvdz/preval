@@ -14,8 +14,6 @@ export function bitSetTests(fdata) {
   return r;
 }
 function _bitSetTests(fdata) {
-  const ast = fdata.tenkoOutput.ast;
-
   let found = 0;
 
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
@@ -23,8 +21,6 @@ function _bitSetTests(fdata) {
     if (meta.isImplicitGlobal) return;
     if (!meta.typing.oneBitAnded) return; // (undefined, false, 0) phase1 will have done the necessary checks for the init. we should not need to check the rest?
     if (!meta.isConstant) return;
-    //if (meta.writes.length !== 1) return; // :shrug:
-    //if (meta.constValueRef.containerNode.type !== 'VariableDeclaration') return;
 
     vgroup('- `' + name + '`: is a const var whose value is a single bit:', meta.typing.oneBitAnded);
     process(meta, name);
@@ -88,7 +84,7 @@ function _bitSetTests(fdata) {
 
             if (pv === 0 || pv === oneBitAnded) {
               // We don't know the outcome. Replace any `if` tests.
-              replaceIfTests(meta, read, read.parentNode.operator, pv, name);
+              replaceEqTests(meta, read, read.parentNode.operator, pv, name);
               ++found;
             } else {
               // We know the outcome. Replace the binary expression and let other rules clean it up.
@@ -153,7 +149,7 @@ function _bitSetTests(fdata) {
   log('Found bit tests:: 0.');
 }
 
-function replaceIfTests(meta, read, op, pv, name) {
+function replaceEqTests(meta, read, op, pv, name) {
   // Okay so we have an `x = y === z` where we know `y` is either zero or one other explicit number, and `z` is
   // one of those two values but we don't know which. This means that we do know z to be truthy or falsy and
   // only have one value for each. Essentially this means we can transform it to `z = Boolean(y)`. So we will.

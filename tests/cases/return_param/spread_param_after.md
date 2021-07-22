@@ -70,9 +70,9 @@ tmpCallCallee$3(tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-const f = function (...$$0) {
-  const rest = $$0;
+const f = function () {
   debugger;
+  const rest = [];
   $(`no`, rest);
   $(`inlining`);
   $(`please`);

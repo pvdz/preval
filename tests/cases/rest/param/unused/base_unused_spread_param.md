@@ -1,51 +1,50 @@
 # Preval test case
 
-# empty.md
+# base_unused_spread_param.md
 
-> Normalize > Pattern > Param > Rest > Empty
+> Rest > Param > Unused > Base unused spread param
 >
-> By normalizing patterns we don't have to concern ourselves with its complexities. Defaults are another dimension to take care off and test for.
+> A function with a spread param that we know will not receive any args should be an empty array
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-function f(...x) {
-  return x;
+function f(...rest) {
+  $(rest);
 }
-$(f());
+f();
 `````
 
 ## Pre Normal
 
 `````js filename=intro
 let f = function (...$$0) {
-  let x = $$0;
+  let rest = $$0;
   debugger;
-  return x;
+  $(rest);
 };
-$(f());
+f();
 `````
 
 ## Normalized
 
 `````js filename=intro
 let f = function (...$$0) {
-  let x = $$0;
+  let rest = $$0;
   debugger;
-  return x;
+  $(rest);
+  return undefined;
 };
-const tmpCallCallee = $;
-const tmpCalleeParam = f();
-tmpCallCallee(tmpCalleeParam);
+f();
 `````
 
 ## Output
 
 `````js filename=intro
-const x = [];
-$(x);
+const rest = [];
+$(rest);
 `````
 
 ## Globals

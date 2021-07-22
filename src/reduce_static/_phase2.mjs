@@ -57,6 +57,7 @@ import { orOr } from './or_or.mjs';
 import { andAnd } from './and_and.mjs';
 import { branchConstantInlining } from './branch_constants.mjs';
 import { boolTrampolines } from './bool_trampoline.mjs';
+import { restParams } from './rest_params.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -301,6 +302,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const bt = boolTrampolines(fdata);
   if (bt) return bt;
+
+  const rp = restParams(fdata);
+  if (rp) return rp;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

@@ -175,7 +175,9 @@ function _andCases(fdata) {
               // If this was a coercion from string, then so be it. Just being lazy here tbh.
               // Note that there's little we can do here.
               if (unknown.type === 'Literal') {
-                rule('Anding a value known to have one bit set with a value with that and other bits set can reduce that and to that one bit');
+                rule(
+                  'Anding a value known to have one bit set with a value with that and other bits set can reduce that and to that one bit',
+                );
                 example('const x = a & 32; const y = x & 33; f(y);', 'const x = 32; const y = x & 32; f(y);'); // tests/cases/bit_hacks/anding.md
                 before(read.parentNode, read.blockBody[read.blockIndex]);
 
@@ -184,6 +186,106 @@ function _andCases(fdata) {
                 after(unknown, read.blockBody[read.blockIndex]);
               }
             }
+          }
+        }
+      } else if (read.parentNode.type === 'IfStatement') {
+        vlog('This means that we can predict the value of this binding in each branch but also the value of the  ');
+
+        // If the init of this binding had a constant on one side and a literal on the other, then we can resolve the
+        // value in the `else` branch to be zero. In addition we can resolve certain expressions when we know the bit
+        // is not contained in the other side.
+
+        const varWrite = meta.writes[0];
+        ASSERT(varWrite.kind === 'var');
+        const init = varWrite.parentNode.init;
+        ASSERT(init.type === 'BinaryExpression' && init.operator === '&');
+
+        const pl = AST.isPrimitive(init.left);
+        const pr = AST.isPrimitive(init.right);
+        let initIdent;
+        if (pl && !pr && init.right.type === 'Identifier') {
+          initIdent = init.right;
+        } else if (!pl && pr && init.left.type === 'Identifier') {
+          initIdent = init.left;
+        } else {
+          vlog('Either both sides are primitives or the other side is not an identifier. Bailing');
+        }
+
+        if (initIdent) {
+          const initMeta = fdata.globallyUniqueNamingRegistry.get(initIdent.name);
+          ASSERT(initMeta);
+          if (!initMeta.isImplicitGlobal && initMeta.isConstant) {
+            vlog('Find all occurrences in the `then` branch and replace them with zero');
+
+            const thenFirstPid = +read.parentNode.consequent.$p.pid;
+            const elseFirstPid = +read.parentNode.alternate.$p.pid;
+            const elseLastPid = +read.parentNode.alternate.$p.lastPid;
+            initMeta.reads.forEach((r) => {
+              const pid = +r.node.$p.pid;
+              if (pid >= thenFirstPid && pid <= elseFirstPid) {
+                vlog('The result of an AND in the `then` branch means the value has at least some of these bits set');
+                // We can resolve this read (r) if, for example, it is compared against a value that does not contain any bit
+
+                const op = r.parentNode.operator;
+
+                let pvn;
+                let pva;
+                if (r.parentNode.type === 'BinaryExpression' && (op === '===' || op === '!==')) {
+                  if (r.parentProp === 'left' && AST.isPrimitive(r.parentNode.right)) {
+                    pvn = r.parentNode.right;
+                    pva = AST.getPrimitiveValue(pvn) & bitsAnded;
+                  } else if (r.parentProp === 'right' && AST.isPrimitive(r.parentNode.left)) {
+                    pvn = r.parentNode.left;
+                    pva = AST.getPrimitiveValue(pvn) & bitsAnded;
+                  }
+                }
+
+                if (pvn && op === '===' && pva === 0) {
+                  rule(
+                    'When a value gets ANDed and the result is an if-test then the `then` branch must have these bits set so it can resolve comparisons against value that do not have these bits',
+                  );
+                  example('const x = a & 16; if (x) f(a === 32);', 'const x = a & 16; if (x) f(false);');
+                  before(r.parentNode, r.blockBody[r.blockIndex]);
+
+                  if (r.grandIndex < 0) r.grandNode[r.grandProp] = op === '===' ? AST.fals() : AST.tru();
+                  else r.grandNode[r.grandProp][r.grandIndex] = op === '===' ? AST.fals() : AST.tru();
+
+                  after(AST.fals(), r.blockBody[r.blockIndex]);
+                  ++found;
+                }
+              } else if (pid >= elseFirstPid && pid <= elseLastPid) {
+                vlog('The result of an AND in the `else` branch means the value has none of these bits set');
+                // We can resolve this read (r) if, for example, it is compared against a value that contains any bit
+
+                const op = r.parentNode.operator;
+
+                let pvn;
+                let pva;
+                if (r.parentNode.type === 'BinaryExpression' && (op === '===' || op === '!==')) {
+                  if (r.parentProp === 'left' && AST.isPrimitive(r.parentNode.right)) {
+                    pvn = r.parentNode.right;
+                    pva = AST.getPrimitiveValue(pvn) & bitsAnded;
+                  } else if (r.parentProp === 'right' && AST.isPrimitive(r.parentNode.left)) {
+                    pvn = r.parentNode.left;
+                    pva = AST.getPrimitiveValue(pvn) & bitsAnded;
+                  }
+                }
+
+                if (pvn && pva === bitsAnded) {
+                  rule(
+                    'When a value gets ANDed and the result is an if-test then the `else` branch must have none of these bits set so it can resolve comparisons against value that has any of these bits',
+                  );
+                  example('const x = a & 16; if (x) {} else f(a === 17);', 'const x = a & 16; if (x) {} else f(false);');
+                  before(r.parentNode, r.blockBody[r.blockIndex]);
+
+                  if (r.grandIndex < 0) r.grandNode[r.grandProp] = op === '===' ? AST.fals() : AST.tru();
+                  else r.grandNode[r.grandProp][r.grandIndex] = op === '===' ? AST.fals() : AST.tru();
+
+                  after(AST.fals(), r.blockBody[r.blockIndex]);
+                  ++found;
+                }
+              }
+            });
           }
         }
       } else {

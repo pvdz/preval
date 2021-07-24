@@ -1,0 +1,80 @@
+# Preval test case
+
+# base_two_levels_10.md
+
+> Bit hacks > And > Nested if > Nested if spied > Base two levels 10
+>
+> Nested ifs that check AND on same binding can be merged in some cases
+
+#TODO
+
+## Input
+
+`````js filename=intro
+const x = $spy(10);
+if (x & 8) {
+  if (x & 2) {
+    $('it is ten');
+  }
+}
+`````
+
+## Pre Normal
+
+`````js filename=intro
+const x = $spy(10);
+if (x & 8) {
+  if (x & 2) {
+    $(`it is ten`);
+  }
+}
+`````
+
+## Normalized
+
+`````js filename=intro
+const x = $spy(10);
+const tmpIfTest = x & 8;
+if (tmpIfTest) {
+  const tmpIfTest$1 = x & 2;
+  if (tmpIfTest$1) {
+    $(`it is ten`);
+  } else {
+  }
+} else {
+}
+`````
+
+## Output
+
+`````js filename=intro
+const x = $spy(10);
+const tmpIfTest = x & 8;
+if (tmpIfTest) {
+  const tmpIfTest$1 = x & 2;
+  if (tmpIfTest$1) {
+    $(`it is ten`);
+  } else {
+  }
+} else {
+}
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 'Creating spy', 1, 1, [10, 10]
+ - 2: '$spy[1].valueOf()', 10
+ - 3: '$spy[1].valueOf()', 10
+ - 4: 'it is ten'
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

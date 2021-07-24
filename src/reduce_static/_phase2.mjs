@@ -58,6 +58,7 @@ import { andAnd } from './and_and.mjs';
 import { branchConstantInlining } from './branch_constants.mjs';
 import { boolTrampolines } from './bool_trampoline.mjs';
 import { restParams } from './rest_params.mjs';
+import { andIfAndIf } from './and_if_and_if.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -305,6 +306,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const rp = restParams(fdata);
   if (rp) return rp;
+
+  const iaia = andIfAndIf(fdata);
+  if (iaia) return iaia;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

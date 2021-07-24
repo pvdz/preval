@@ -76,12 +76,9 @@ const c = $(`y`, `one`);
 const a = b === c;
 if (a) {
   $(true, `middle`);
-} else {
-  $(false, `middle`);
-}
-if (a) {
   $(true, `end`);
 } else {
+  $(false, `middle`);
   $(false, `end`);
 }
 `````

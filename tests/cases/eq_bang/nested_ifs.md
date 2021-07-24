@@ -115,6 +115,7 @@ if (a) {
   } else {
     $(`then c1`);
   }
+  $(`else a2`);
 } else {
   $(`then a1`);
   const tmpBinBothLhs$3 = $(1);
@@ -125,10 +126,6 @@ if (a) {
   } else {
     $(`then b1`);
   }
-}
-if (a) {
-  $(`else a2`);
-} else {
   $(`then a2`);
 }
 `````

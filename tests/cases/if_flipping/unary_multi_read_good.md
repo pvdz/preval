@@ -66,12 +66,9 @@ if (y) {
 const x = $(1);
 if (x) {
   $(`else1`);
-} else {
-  $(`if1`);
-}
-if (x) {
   $(`else2`);
 } else {
+  $(`if1`);
   $(`if2`);
 }
 `````

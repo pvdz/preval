@@ -71,15 +71,10 @@ const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (tmpDoWhileFlag) {
   $(100);
-  tmpDoWhileFlag = undefined;
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementObject = b.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-    tmpDoWhileFlag = tmpChainElementObject$3;
-  }
+  const tmpChainElementObject = b.x;
+  const tmpChainElementObject$1 = tmpChainElementObject.y;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  tmpDoWhileFlag = tmpChainElementObject$3;
 }
 $(a);
 `````

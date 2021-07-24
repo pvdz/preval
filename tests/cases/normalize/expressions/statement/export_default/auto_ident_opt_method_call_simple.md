@@ -49,17 +49,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { c: $ };
-const a = { a: 999, b: 1000 };
 let tmpAnonDefaultExport = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpAnonDefaultExport = tmpChainElementCall;
-}
+const b = { c: $ };
+const tmpChainElementCall = $dotCall($, b, 1);
+tmpAnonDefaultExport = tmpChainElementCall;
 export { tmpAnonDefaultExport as default };
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

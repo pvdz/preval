@@ -66,16 +66,11 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  a = undefined;
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementObject = b.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-    a = tmpChainElementObject$3;
-  }
-  a.x = tmpForOfLhsNode;
+  const tmpChainElementObject = b.x;
+  const tmpChainElementObject$1 = tmpChainElementObject.y;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+  a = tmpChainElementObject$3;
+  tmpChainElementObject$3.x = tmpForOfLhsNode;
 }
 $(a);
 `````

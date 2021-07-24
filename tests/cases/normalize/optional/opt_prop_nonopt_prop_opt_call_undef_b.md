@@ -43,17 +43,12 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const a = {};
-const tmpIfTest = a == null;
-if (tmpIfTest) {
+const tmpChainElementObject = $ObjectPrototype.b;
+const tmpChainElementObject$1 = tmpChainElementObject.c;
+const tmpIfTest$1 = tmpChainElementObject$1 == null;
+if (tmpIfTest$1) {
 } else {
-  const tmpChainElementObject = a.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpIfTest$1 = tmpChainElementObject$1 == null;
-  if (tmpIfTest$1) {
-  } else {
-    $dotCall(tmpChainElementObject$1, tmpChainElementObject, 1);
-  }
+  $dotCall(tmpChainElementObject$1, tmpChainElementObject, 1);
 }
 `````
 

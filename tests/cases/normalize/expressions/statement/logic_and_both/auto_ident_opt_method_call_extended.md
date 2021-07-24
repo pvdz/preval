@@ -64,28 +64,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
-const tmpIfTest$1 = b == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-  tmpIfTest = tmpChainElementCall;
-}
-if (tmpIfTest) {
-  const tmpIfTest$3 = b == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainElementObject$5 = b.c;
-    const tmpChainElementObject$7 = tmpChainElementObject$5.d;
-    const tmpChainElementObject$9 = tmpChainElementObject$7.e;
-    $dotCall(tmpChainElementObject$9, tmpChainElementObject$7, 1);
-  }
+const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+if (tmpChainElementCall) {
+  const tmpChainElementObject$9 = tmpObjLitVal$1.e;
+  $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, 1);
 } else {
 }
 $(a);

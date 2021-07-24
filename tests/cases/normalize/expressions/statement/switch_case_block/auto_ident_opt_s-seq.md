@@ -72,19 +72,9 @@ $(a);
 ## Output
 
 `````js filename=intro
+$(1);
+$(1);
 const a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  const b = { x: 1 };
-  const tmpIfTest$3 = b == null;
-  if (tmpIfTest$3) {
-  } else {
-    b.x;
-  }
-} else {
-}
 $(a);
 `````
 

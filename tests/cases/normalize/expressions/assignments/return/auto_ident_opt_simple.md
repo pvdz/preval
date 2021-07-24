@@ -61,23 +61,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-let a = { a: 999, b: 1000 };
-const f = function () {
-  debugger;
-  a = undefined;
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-    return a;
-  } else {
-    const tmpChainElementObject = b.x;
-    a = tmpChainElementObject;
-    return tmpChainElementObject;
-  }
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+$(1);
+$(1);
 `````
 
 ## Globals

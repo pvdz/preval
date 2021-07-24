@@ -42,19 +42,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = { x: 10 };
-const tmpIfTest = f == null;
-if (tmpIfTest) {
-  $(x);
-} else {
-  $(f);
-}
+$(f);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None
 
 ## Result
 

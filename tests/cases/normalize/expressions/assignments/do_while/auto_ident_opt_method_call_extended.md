@@ -74,18 +74,12 @@ let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (tmpDoWhileFlag) {
   $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-    tmpNestedComplexRhs = tmpChainElementCall;
-  }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+  const tmpChainElementObject = b.c;
+  const tmpChainElementObject$1 = tmpChainElementObject.d;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+  a = tmpChainElementCall;
+  tmpDoWhileFlag = tmpChainElementCall;
 }
 $(a);
 `````

@@ -57,11 +57,7 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
 while (tmpIfTest) {
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    b.x;
-  }
+  b.x;
   tmpIfTest = $(1);
 }
 $(a);

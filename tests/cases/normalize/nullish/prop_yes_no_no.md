@@ -41,21 +41,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const a = {};
-const tmpIfTest = a == null;
-if (tmpIfTest) {
-  const tmpAssignRhsProp = b.c;
-  const tmpClusterSSA_tmpCalleeParam = tmpAssignRhsProp.d;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  $(a);
-}
+$(a);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-b
+None
 
 ## Result
 

@@ -80,24 +80,14 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const tmpClusterSSA_b = { c: tmpObjLitVal };
-let tmpClusterSSA_a = undefined;
-const tmpIfTest$3 = tmpClusterSSA_b == null;
-if (tmpIfTest$3) {
+const tmpIfTest$5 = $ == null;
+if (tmpIfTest$5) {
+  $(undefined);
 } else {
-  const tmpChainElementObject = tmpClusterSSA_b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpIfTest$5 = tmpChainElementObject$3 == null;
-  if (tmpIfTest$5) {
-  } else {
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-    tmpClusterSSA_a = tmpChainElementCall;
-  }
+  const tmpObjLitVal$1 = { e: $ };
+  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  $(tmpChainElementCall);
 }
-$(tmpClusterSSA_a);
 `````
 
 ## Globals

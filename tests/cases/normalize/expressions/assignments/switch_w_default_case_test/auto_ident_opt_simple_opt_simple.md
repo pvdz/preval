@@ -98,23 +98,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let a = undefined;
-const tmpIfTest$1 = b == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementObject = b.x;
-  const tmpIfTest$3 = tmpChainElementObject == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    a = tmpChainElementObject$1;
-  }
-}
-const tmpIfTest = a === tmpSwitchValue;
+const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -130,7 +116,7 @@ if (tmpIfTest$9) {
 } else {
 }
 $(`fail2`);
-$(a);
+$(1);
 `````
 
 ## Globals

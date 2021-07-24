@@ -59,26 +59,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const tmpIfTest = b == null;
-let tmpBinBothLhs = undefined;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  tmpBinBothLhs = tmpChainElementObject;
-}
-let tmpClusterSSA_a = undefined;
-const tmpIfTest$1 = b == null;
-if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpChainElementObject$1 = b.x;
-  tmpClusterSSA_a = tmpChainElementObject$1;
-  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementObject$1;
-  $(tmpClusterSSA_tmpCalleeParam$1);
-}
-$(tmpClusterSSA_a);
+$(2);
+$(1);
 `````
 
 ## Globals

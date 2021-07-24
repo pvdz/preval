@@ -59,13 +59,8 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
 const b = { x: 1 };
 while (tmpIfTest) {
-  a = undefined;
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject = b.x;
-    a = tmpChainElementObject;
-  }
+  const tmpChainElementObject = b.x;
+  a = tmpChainElementObject;
   tmpIfTest = $(1);
 }
 $(a);

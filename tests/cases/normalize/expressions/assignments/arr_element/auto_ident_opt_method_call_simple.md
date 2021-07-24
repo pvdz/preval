@@ -62,27 +62,12 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const tmpIfTest = b == null;
-let tmpBinBothLhs = undefined;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpBinBothLhs = tmpChainElementCall;
-}
-let tmpClusterSSA_a = undefined;
-const tmpIfTest$1 = b == null;
-if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
-  $(tmpClusterSSA_tmpCalleeParam);
-} else {
-  const tmpChainElementObject$1 = b.c;
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
-  tmpClusterSSA_a = tmpChainElementCall$1;
-  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementCall$1;
-  $(tmpClusterSSA_tmpCalleeParam$1);
-}
-$(tmpClusterSSA_a);
+const tmpChainElementCall = $dotCall($, b, 1);
+const tmpChainElementObject$1 = b.c;
+const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
+const tmpCalleeParam = tmpChainElementCall + tmpChainElementCall$1;
+$(tmpCalleeParam);
+$(tmpChainElementCall$1);
 `````
 
 ## Globals

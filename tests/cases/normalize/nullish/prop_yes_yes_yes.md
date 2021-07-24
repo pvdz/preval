@@ -50,34 +50,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const a = {};
-let tmpCalleeParam = a;
-const tmpIfTest = a == null;
-let tmpIfTest$1 = undefined;
-if (tmpIfTest) {
-  tmpCalleeParam = b;
-  tmpIfTest$1 = tmpCalleeParam == null;
-} else {
-  tmpIfTest$1 = tmpCalleeParam == null;
-}
-let tmpIfTest$3 = undefined;
-if (tmpIfTest$1) {
-  tmpCalleeParam = c;
-  tmpIfTest$3 = tmpCalleeParam == null;
-} else {
-  tmpIfTest$3 = tmpCalleeParam == null;
-}
-if (tmpIfTest$3) {
-  $(d);
-} else {
-  $(tmpCalleeParam);
-}
+$(a);
 `````
 
 ## Globals
 
-BAD@! Found 3 implicit global bindings:
-
-b, c, d
+None
 
 ## Result
 

@@ -117,15 +117,9 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
-  a = undefined;
   const b = { c: $ };
-  const tmpIfTest$5 = b == null;
-  if (tmpIfTest$5) {
-  } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-    a = tmpChainElementCall;
-  }
+  const tmpChainElementCall = $dotCall($, b, 1);
+  a = tmpChainElementCall;
 } else {
 }
 const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;

@@ -50,19 +50,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
-let tmpThrowArg = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  tmpThrowArg = tmpChainElementObject$3;
-}
-throw tmpThrowArg;
+throw 100;
 `````
 
 ## Globals

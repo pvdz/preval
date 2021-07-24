@@ -53,17 +53,12 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const a = { a: 999, b: 1000 };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.c;
-  $dotCall(tmpChainElementObject, b, 1);
-}
+$dotCall($, b, 1);
 let tmpIfTest$1 = $(0);
 while (tmpIfTest$1) {
   tmpIfTest$1 = $(0);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -55,23 +55,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = b == null;
-let tmpClusterSSA_a = NaN;
-if (tmpIfTest) {
-  a ** 0;
-  $(NaN);
-} else {
-  const tmpChainElementObject = b.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  tmpClusterSSA_a = a * tmpChainElementObject$3;
-  $(tmpClusterSSA_a);
-}
-$(tmpClusterSSA_a);
+const tmpClusterSSA_tmpClusterSSA_a = a * 100;
+$(tmpClusterSSA_tmpClusterSSA_a);
+$(tmpClusterSSA_tmpClusterSSA_a);
 `````
 
 ## Globals

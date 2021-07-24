@@ -60,15 +60,9 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  let tmpAssignMemLhsObj = undefined;
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-    tmpAssignMemLhsObj = tmpChainElementCall;
-  }
-  tmpAssignMemLhsObj.x = tmpForOfLhsNode;
+  const tmpChainElementObject = b.c;
+  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
+  tmpChainElementCall.x = tmpForOfLhsNode;
 }
 $(a);
 `````

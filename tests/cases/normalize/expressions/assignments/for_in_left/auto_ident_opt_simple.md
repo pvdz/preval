@@ -60,14 +60,9 @@ const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
-  a = undefined;
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementObject = b.x;
-    a = tmpChainElementObject;
-  }
-  a.x = tmpForInLhsNode;
+  const tmpChainElementObject = b.x;
+  a = tmpChainElementObject;
+  tmpChainElementObject.x = tmpForInLhsNode;
 }
 $(a);
 `````

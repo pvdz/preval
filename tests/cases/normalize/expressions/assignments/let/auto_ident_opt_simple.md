@@ -50,17 +50,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
-  $(tmpChainElementObject);
-}
-$(a);
+$(1);
+$(1);
 `````
 
 ## Globals

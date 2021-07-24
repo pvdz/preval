@@ -59,14 +59,8 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const b = { c: $ };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  $(tmpChainElementCall);
-}
+const tmpChainElementCall = $dotCall($, b, 1);
+$(tmpChainElementCall);
 $(undefined);
 `````
 

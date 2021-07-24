@@ -60,16 +60,8 @@ const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  let tmpNestedComplexRhs = undefined;
-  const b = { x: 1 };
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementObject = b.x;
-    tmpNestedComplexRhs = tmpChainElementObject;
-  }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
+  a = 1;
+  $(1);
 }
 $(a);
 `````

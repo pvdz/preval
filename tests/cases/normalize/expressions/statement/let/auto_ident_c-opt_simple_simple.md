@@ -50,15 +50,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
+$(1);
 const a = { a: 999, b: 1000 };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementObject = b.x;
-  $(tmpChainElementObject);
-}
 $(a);
 `````
 

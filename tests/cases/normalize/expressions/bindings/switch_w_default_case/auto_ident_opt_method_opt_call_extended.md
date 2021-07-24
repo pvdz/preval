@@ -106,24 +106,14 @@ if (tmpIfTest$11) {
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const tmpClusterSSA_b = { c: tmpObjLitVal };
-let tmpClusterSSA_a = undefined;
-const tmpIfTest$5 = tmpClusterSSA_b == null;
-if (tmpIfTest$5) {
+const tmpIfTest$7 = $ == null;
+if (tmpIfTest$7) {
+  $(undefined);
 } else {
-  const tmpChainElementObject = tmpClusterSSA_b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpIfTest$7 = tmpChainElementObject$3 == null;
-  if (tmpIfTest$7) {
-  } else {
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-    tmpClusterSSA_a = tmpChainElementCall;
-  }
+  const tmpObjLitVal$1 = { e: $ };
+  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  $(tmpChainElementCall);
 }
-$(tmpClusterSSA_a);
 $(`fail1`);
 $(`fail2`);
 `````

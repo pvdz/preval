@@ -76,12 +76,7 @@ const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
   const b = { c: $ };
-  const tmpIfTest$3 = b == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainElementObject = b.c;
-    $dotCall(tmpChainElementObject, b, 1);
-  }
+  $dotCall($, b, 1);
 } else {
 }
 $(a);

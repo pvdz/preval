@@ -215,10 +215,6 @@ const tmpBinLhs$21 = /foo/g;
 const tmpArrElement$21 = tmpBinLhs$21 <= x;
 const tmpBinLhs$23 = /foo/g;
 const tmpArrElement$23 = tmpBinLhs$23 >= x;
-const tmpBinLhs$25 = /foo/g;
-const tmpArrElement$25 = tmpBinLhs$25 == x;
-const tmpBinLhs$27 = /foo/g;
-const tmpArrElement$27 = tmpBinLhs$27 != x;
 const tmpBinLhs$33 = /foo/g;
 const tmpArrElement$33 = tmpBinLhs$33 & x;
 const tmpBinLhs$35 = /foo/g;
@@ -239,8 +235,8 @@ const arr = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
+  false,
+  true,
   false,
   true,
   tmpArrElement$33,

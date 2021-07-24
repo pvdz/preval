@@ -58,17 +58,10 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
-  let tmpNestedComplexRhs = undefined;
   const b = { c: $ };
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-    tmpNestedComplexRhs = tmpChainElementCall;
-  }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
+  const tmpChainElementCall = $dotCall($, b, 1);
+  a = tmpChainElementCall;
+  $(tmpChainElementCall);
 } else {
   $(tmpCalleeParam);
 }

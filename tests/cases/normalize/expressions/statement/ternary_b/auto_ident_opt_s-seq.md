@@ -51,12 +51,6 @@ $(a);
 `````js filename=intro
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const b = { x: 1 };
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    b.x;
-  }
 } else {
   $(200);
 }

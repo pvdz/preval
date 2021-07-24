@@ -49,16 +49,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(100);
-if (tmpIfTest) {
-  const b = { x: 1 };
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    b.x;
-  }
-} else {
-}
+$(100);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

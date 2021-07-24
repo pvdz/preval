@@ -52,16 +52,9 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
+const tmpChainElementCall = $dotCall($, b, 1);
+tmpChainElementCall.a;
 const a = { a: 999, b: 1000 };
-let tmpCompObj = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpCompObj = tmpChainElementCall;
-}
-tmpCompObj.a;
 $(a);
 `````
 

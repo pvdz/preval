@@ -103,23 +103,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest$1 = b == null;
-let tmpIfTest = undefined;
-if (tmpIfTest$1) {
-  tmpIfTest = undefined === tmpSwitchValue;
-} else {
-  const tmpChainElementObject = b.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  tmpIfTest = tmpChainElementObject$3 === tmpSwitchValue;
-}
-if (tmpIfTest) {
+const tmpClusterSSA_tmpIfTest = 100 === tmpSwitchValue;
+if (tmpClusterSSA_tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpIfTest$3 = 2 === tmpSwitchValue;

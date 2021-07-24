@@ -48,16 +48,9 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let a = undefined;
 const b = { c: $ };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  a = tmpChainElementCall;
-}
-throw a;
+const tmpChainElementCall = $dotCall($, b, 1);
+throw tmpChainElementCall;
 `````
 
 ## Globals

@@ -62,13 +62,9 @@ const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
 while (tmpIfTest) {
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject = b.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpChainElementObject$1.z;
-  }
+  const tmpChainElementObject = b.x;
+  const tmpChainElementObject$1 = tmpChainElementObject.y;
+  tmpChainElementObject$1.z;
   tmpIfTest = $(1);
 }
 $(a);

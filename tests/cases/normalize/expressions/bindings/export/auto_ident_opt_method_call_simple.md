@@ -48,13 +48,8 @@ $(a);
 `````js filename=intro
 let a = undefined;
 const b = { c: $ };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  a = tmpChainElementCall;
-}
+const tmpChainElementCall = $dotCall($, b, 1);
+a = tmpChainElementCall;
 export { a };
 $(a);
 `````

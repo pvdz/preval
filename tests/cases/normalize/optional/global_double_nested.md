@@ -53,27 +53,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpObjLitVal$3 = $();
-const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-const obj = { a: tmpObjLitVal };
-let tmpCalleeParam = undefined;
-const tmpIfTest = obj == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = obj.a;
-  const tmpIfTest$1 = tmpChainElementObject == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject$1 = tmpChainElementObject.b;
-    const tmpIfTest$3 = tmpChainElementObject$1 == null;
-    if (tmpIfTest$3) {
-    } else {
-      const tmpChainElementObject$3 = tmpChainElementObject$1.c;
-      tmpCalleeParam = tmpChainElementObject$3;
-    }
-  }
-}
-$(tmpCalleeParam);
+$(tmpObjLitVal$3);
 `````
 
 ## Globals

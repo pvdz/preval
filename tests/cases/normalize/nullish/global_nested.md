@@ -47,27 +47,12 @@ tmpCallCallee(tmpCalleeParam);
 const tmpObjLitVal$1 = $();
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
-let tmpCalleeParam = obj;
-const tmpIfTest = obj == null;
-let tmpIfTest$1 = undefined;
-if (tmpIfTest) {
-  tmpCalleeParam = a;
-  tmpIfTest$1 = tmpCalleeParam == null;
-} else {
-  tmpIfTest$1 = tmpCalleeParam == null;
-}
-if (tmpIfTest$1) {
-  $(b);
-} else {
-  $(tmpCalleeParam);
-}
+$(obj);
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
-
-a, b
+None
 
 ## Result
 

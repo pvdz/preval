@@ -59,14 +59,9 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
 const b = { c: $ };
 while (tmpIfTest) {
-  a = undefined;
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-    a = tmpChainElementCall;
-  }
+  const tmpChainElementObject = b.c;
+  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
+  a = tmpChainElementCall;
   tmpIfTest = $(1);
 }
 $(a);

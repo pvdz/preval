@@ -451,15 +451,30 @@ function _typeTrackedTricks(fdata) {
                 right.name,
                 [lt, rt],
                 right,
+                leftMeta.typing.mustBeType,
+                rightMeta.typing.mustBeType,
               );
 
-              if ((leftMeta.isConstant || leftMeta.isBuiltin) && (rightMeta.isConstant || rightMeta.isBuiltin) && lt && rt && lt !== rt) {
-                rule('Strict n/equal comparison between two idents when rhs is known to be undefined or null depends on the lhs');
-                example(
-                  'const a = $(undefined); const b = $(undefined); a === b;',
-                  'const a = $(undefined); const b = $(undefined); true;',
-                );
-                mustBeValue = false; // Note: we're acting as if op is ===
+              if ((leftMeta.isConstant || leftMeta.isBuiltin) && (rightMeta.isConstant || rightMeta.isBuiltin)) {
+                if (lt && rt && lt !== rt) {
+                  rule('Strict n/equal comparison between two idents when rhs is known to be undefined or null depends on the lhs');
+                  example(
+                    'const a = $(undefined); const b = $(undefined); a === b;',
+                    'const a = $(undefined); const b = $(undefined); true;',
+                  );
+                  mustBeValue = false; // Note: we're acting as if op is ===
+                } else if (
+                  leftMeta.typing.mustBeType &&
+                  rightMeta.typing.mustBeType &&
+                  leftMeta.typing.mustBeType !== rightMeta.typing.mustBeType
+                ) {
+                  rule('Strict n/equal comparison between two idents when we know they must be different types can be resolved');
+                  example(
+                    'const a = $(undefined); const b = $(undefined); a === b;',
+                    'const a = $(undefined); const b = $(undefined); true;',
+                  );
+                  mustBeValue = node.operator === '!=='; // When op is !==, return true because typing mismatch. When ===, return false.
+                }
               } else {
                 // Since `===` and `!==` are type sensitive, we can predict their outcome even if we
                 // don't know their concrete values. If we reached here then it means that either:
@@ -513,6 +528,65 @@ function _typeTrackedTricks(fdata) {
             break;
           }
 
+          case '==':
+          case '!=':
+            // https://tc39.es/ecma262/#sec-islooselyequal
+            // Comparing anything to null or undefined is not observable
+            // Comparing object types to each other is not observable
+            // In all other cases at least one side is a primitive and the other side is coerced to one if it isn't too
+            const lp = left.$p.isPrimitive;
+            const rp = right.$p.isPrimitive;
+
+            if (lp && !rp && node.right.type === 'Identifier') {
+              const pv = AST.getPrimitiveValue(node.left);
+              // We can assert a few cases using the .typing data
+              const meta = fdata.globallyUniqueNamingRegistry.get(node.right.name);
+              if (meta.isConstant || meta.isBuiltin) {
+                if (pv == null && meta.typing.mustBeType) {
+                  ASSERT(
+                    meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
+                    'already confirmed not to be a primitive',
+                  );
+                  // The only two things that weakly compare equal to `null` or `undefined` are `null` and `undefined`.
+                  // So as long as that's not the values it can't match.
+                  mustBeValue = node.operator !== '==';
+                }
+              }
+            }
+
+            if (!lp && rp && node.left.type === 'Identifier') {
+              const pv = AST.getPrimitiveValue(node.right);
+              // We can assert a few cases using the .typing data
+              const meta = fdata.globallyUniqueNamingRegistry.get(node.left.name);
+              if (meta.isConstant || meta.isBuiltin) {
+                if (pv == null && meta.typing.mustBeType) {
+                  ASSERT(
+                    meta.typing.mustBeType !== 'undefined' && meta.typing.mustBeType !== 'null',
+                    'already confirmed not to be a primitive',
+                  );
+                  // The only two things that weakly compare equal to `null` or `undefined` are `null` and `undefined`.
+                  // So as long as that's not the values it can't match.
+                  mustBeValue = node.operator !== '==';
+                }
+              }
+            }
+
+            if (!lp && !rp) {
+              // We know that when both sides are object but of a different kind, that the result is false
+              // But we may as well consolidate that logic inside the strict comparison handlers. So we just delegate here.
+              rule('When we know each side of a weak comparison must be an object of sorts, use strong comparisons instead');
+              example('[] == []', '[] === []', () => node.operator === '==');
+              example('[] != []', '[] !== []', () => node.operator === '!=');
+              before(node);
+
+              // This is comparing object-types which is the same as using strict comparison so we should change to that
+              node.operator = node.operator === '==' ? '===' : '!==';
+
+              after(node);
+              ++changes;
+            }
+
+            break;
           case '+': {
             let lit;
             let val;

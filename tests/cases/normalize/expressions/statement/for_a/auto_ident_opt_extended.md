@@ -55,21 +55,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
-const a = { a: 999, b: 1000 };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  tmpChainElementObject$1.z;
-}
 let tmpIfTest$1 = $(0);
 while (tmpIfTest$1) {
   tmpIfTest$1 = $(0);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

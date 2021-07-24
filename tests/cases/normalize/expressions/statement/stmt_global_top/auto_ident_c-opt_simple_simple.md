@@ -45,13 +45,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  b.x;
-}
 $(a);
 `````
 

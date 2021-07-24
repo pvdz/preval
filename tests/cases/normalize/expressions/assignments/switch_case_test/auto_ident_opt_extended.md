@@ -70,19 +70,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
 $(1);
-const tmpIfTest$1 = b == null;
-if (tmpIfTest$1) {
-  $(undefined);
-} else {
-  const tmpChainElementObject = b.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  $(tmpChainElementObject$3);
-}
+$(100);
 `````
 
 ## Globals

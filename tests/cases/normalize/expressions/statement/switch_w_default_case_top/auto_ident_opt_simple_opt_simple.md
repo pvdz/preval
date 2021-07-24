@@ -106,8 +106,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -125,16 +123,6 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    const tmpIfTest$5 = b == null;
-    if (tmpIfTest$5) {
-    } else {
-      const tmpChainElementObject = b.x;
-      const tmpIfTest$7 = tmpChainElementObject == null;
-      if (tmpIfTest$7) {
-      } else {
-        tmpChainElementObject.y;
-      }
-    }
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;

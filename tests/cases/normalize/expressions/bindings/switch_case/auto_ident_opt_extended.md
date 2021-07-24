@@ -75,18 +75,7 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const tmpClusterSSA_b = { x: tmpObjLitVal };
-const tmpIfTest$3 = tmpClusterSSA_b == null;
-if (tmpIfTest$3) {
-  $(undefined);
-} else {
-  const tmpChainElementObject = tmpClusterSSA_b.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  $(tmpChainElementObject$3);
-}
+$(100);
 `````
 
 ## Globals

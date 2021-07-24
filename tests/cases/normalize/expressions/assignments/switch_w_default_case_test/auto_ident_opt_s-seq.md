@@ -94,17 +94,7 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let a = undefined;
-const b = { x: 1 };
-const tmpIfTest$1 = b == null;
-let tmpIfTest = undefined;
-if (tmpIfTest$1) {
-  tmpIfTest = undefined === tmpSwitchValue;
-} else {
-  const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
-  tmpIfTest = tmpChainElementObject === tmpSwitchValue;
-}
+const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -120,7 +110,7 @@ if (tmpIfTest$7) {
 } else {
 }
 $(`fail2`);
-$(a);
+$(1);
 `````
 
 ## Globals

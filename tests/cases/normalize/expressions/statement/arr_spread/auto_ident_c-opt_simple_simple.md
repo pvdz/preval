@@ -48,17 +48,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
-let tmpArrElToSpread = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  tmpArrElToSpread = tmpChainElementObject;
-}
-[...tmpArrElToSpread];
-$(a);
+[...1];
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

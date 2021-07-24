@@ -68,16 +68,10 @@ let tmpDoWhileFlag = true;
 const b = { c: $ };
 while (tmpDoWhileFlag) {
   $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-    tmpNestedComplexRhs = tmpChainElementCall;
-  }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+  const tmpChainElementObject = b.c;
+  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
+  a = tmpChainElementCall;
+  tmpDoWhileFlag = tmpChainElementCall;
 }
 $(a);
 `````

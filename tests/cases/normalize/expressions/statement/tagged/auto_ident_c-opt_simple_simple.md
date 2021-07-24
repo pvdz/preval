@@ -50,16 +50,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-  $(tmpCalleeParam, undefined);
-} else {
-  const tmpChainElementObject = b.x;
-  $(tmpCalleeParam, tmpChainElementObject);
-}
+$(tmpCalleeParam, 1);
 $(a);
 `````
 

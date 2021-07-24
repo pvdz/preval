@@ -70,18 +70,13 @@ $(a);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
+  const tmpChainElementObject = b.x;
+  const tmpIfTest$1 = tmpChainElementObject == null;
+  if (tmpIfTest$1) {
     return undefined;
   } else {
-    const tmpChainElementObject = b.x;
-    const tmpIfTest$1 = tmpChainElementObject == null;
-    if (tmpIfTest$1) {
-      return undefined;
-    } else {
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      return tmpChainElementObject$1;
-    }
+    const tmpChainElementObject$1 = tmpChainElementObject.y;
+    return tmpChainElementObject$1;
   }
 };
 const tmpObjLitVal = { y: 1 };

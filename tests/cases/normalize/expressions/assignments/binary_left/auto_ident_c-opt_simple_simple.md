@@ -52,20 +52,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const tmpIfTest = b == null;
-let tmpBinBothLhs = undefined;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
-  tmpBinBothLhs = tmpChainElementObject;
-}
 const tmpBinBothRhs = $(100);
-const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
+const tmpCalleeParam = 1 + tmpBinBothRhs;
 $(tmpCalleeParam);
-$(a);
+$(1);
 `````
 
 ## Globals

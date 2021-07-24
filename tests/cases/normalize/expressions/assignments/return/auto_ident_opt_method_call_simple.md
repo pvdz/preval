@@ -62,24 +62,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  a = undefined;
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-    return a;
-  } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-    a = tmpChainElementCall;
-    return tmpChainElementCall;
-  }
-};
 const b = { c: $ };
-let a = { a: 999, b: 1000 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+const tmpChainElementCall = $dotCall($, b, 1);
+$(tmpChainElementCall);
+$(tmpChainElementCall);
 `````
 
 ## Globals

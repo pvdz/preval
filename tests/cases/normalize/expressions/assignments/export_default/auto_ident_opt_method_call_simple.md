@@ -50,19 +50,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-const b = { c: $ };
-const tmpIfTest = b == null;
 let tmpAnonDefaultExport = undefined;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  a = tmpChainElementCall;
-  tmpAnonDefaultExport = tmpChainElementCall;
-}
+const b = { c: $ };
+const tmpChainElementCall = $dotCall($, b, 1);
+tmpAnonDefaultExport = tmpChainElementCall;
 export { tmpAnonDefaultExport as default };
-$(a);
+$(tmpChainElementCall);
 `````
 
 ## Globals

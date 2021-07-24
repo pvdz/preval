@@ -63,17 +63,10 @@ if (tmpIfTest) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
-  let tmpNestedComplexRhs = undefined;
   const b = { c: $ };
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-    tmpNestedComplexRhs = tmpChainElementCall;
-  }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
+  const tmpChainElementCall = $dotCall($, b, 1);
+  a = tmpChainElementCall;
+  $(tmpChainElementCall);
 }
 $(a);
 `````

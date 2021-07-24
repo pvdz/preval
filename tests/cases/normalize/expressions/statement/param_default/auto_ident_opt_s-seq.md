@@ -68,12 +68,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const tmpIfTest$1 = b == null;
-if (tmpIfTest$1) {
-} else {
-  b.x;
-}
 $(undefined);
 const a = { a: 999, b: 1000 };
 $(a);

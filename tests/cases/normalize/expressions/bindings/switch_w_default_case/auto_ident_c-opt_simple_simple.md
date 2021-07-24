@@ -98,14 +98,7 @@ if (tmpIfTest$9) {
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_b = { x: 1 };
-const tmpIfTest$5 = tmpClusterSSA_b == null;
-if (tmpIfTest$5) {
-  $(undefined);
-} else {
-  const tmpChainElementObject = tmpClusterSSA_b.x;
-  $(tmpChainElementObject);
-}
+$(1);
 $(`fail1`);
 $(`fail2`);
 `````

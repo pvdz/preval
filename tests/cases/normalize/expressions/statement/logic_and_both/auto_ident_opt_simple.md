@@ -55,23 +55,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
-const tmpIfTest$1 = b == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementObject = b.x;
-  tmpIfTest = tmpChainElementObject;
-}
-if (tmpIfTest) {
-  const tmpIfTest$3 = b == null;
-  if (tmpIfTest$3) {
-  } else {
-    b.x;
-  }
-} else {
-}
 $(a);
 `````
 

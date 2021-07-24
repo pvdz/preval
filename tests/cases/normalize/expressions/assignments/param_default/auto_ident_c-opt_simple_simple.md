@@ -70,16 +70,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const tmpIfTest$1 = b == null;
-let tmpClusterSSA_a = undefined;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementObject = b.x;
-  tmpClusterSSA_a = tmpChainElementObject;
-}
 $(undefined);
-$(tmpClusterSSA_a);
+$(1);
 `````
 
 ## Globals

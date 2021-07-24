@@ -236,10 +236,6 @@ const tmpBinBothRhs$21 = [];
 const tmpArrElement$21 = x <= tmpBinBothRhs$21;
 const tmpBinBothRhs$23 = [];
 const tmpArrElement$23 = x >= tmpBinBothRhs$23;
-const tmpBinBothRhs$25 = [];
-const tmpArrElement$25 = x == tmpBinBothRhs$25;
-const tmpBinBothRhs$27 = [];
-const tmpArrElement$27 = x != tmpBinBothRhs$27;
 const tmpBinBothRhs$33 = [];
 const tmpArrElement$33 = x & tmpBinBothRhs$33;
 const tmpBinBothRhs$35 = [];
@@ -260,8 +256,8 @@ const arr = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
+  false,
+  true,
   false,
   true,
   tmpArrElement$33,

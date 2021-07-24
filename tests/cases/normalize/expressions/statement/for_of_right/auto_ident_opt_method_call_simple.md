@@ -51,18 +51,11 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const a = { a: 999, b: 1000 };
-let tmpForOfDeclRhs = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpForOfDeclRhs = tmpChainElementCall;
-}
+const tmpChainElementCall = $dotCall($, b, 1);
 let x = undefined;
-for (x of tmpForOfDeclRhs) {
+for (x of tmpChainElementCall) {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

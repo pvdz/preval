@@ -54,12 +54,6 @@ const tmpIfTest = $(0);
 if (tmpIfTest) {
   $(100);
 } else {
-  const b = { x: 1 };
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    b.x;
-  }
 }
 const a = { a: 999, b: 1000 };
 $(a);

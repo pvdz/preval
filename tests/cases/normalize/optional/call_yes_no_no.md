@@ -97,40 +97,30 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const a = function () {
-  debugger;
-  const a$1 = {
-    a() {
-      debugger;
-      return a$1;
-    },
-    b() {
-      debugger;
-      return a$1;
-    },
-    c() {
-      debugger;
-      return a$1;
-    },
-    d() {
-      debugger;
-      return a$1;
-    },
-  };
-  return a$1;
+const a$1 = {
+  a() {
+    debugger;
+    return a$1;
+  },
+  b() {
+    debugger;
+    return a$1;
+  },
+  c() {
+    debugger;
+    return a$1;
+  },
+  d() {
+    debugger;
+    return a$1;
+  },
 };
-const tmpIfTest = a == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementCall = a();
-  const tmpChainElementObject = tmpChainElementCall.b;
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall);
-  const tmpChainElementObject$1 = tmpChainElementCall$1.c;
-  const tmpChainElementCall$3 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1);
-  const tmpChainElementObject$3 = tmpChainElementCall$3.d;
-  $(tmpChainElementObject$3);
-}
+const tmpChainElementObject = a$1.b;
+const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, a$1);
+const tmpChainElementObject$1 = tmpChainElementCall$1.c;
+const tmpChainElementCall$3 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$1);
+const tmpChainElementObject$3 = tmpChainElementCall$3.d;
+$(tmpChainElementObject$3);
 `````
 
 ## Globals

@@ -119,12 +119,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    const tmpIfTest$5 = b == null;
-    if (tmpIfTest$5) {
-    } else {
-      const tmpChainElementObject = b.c;
-      $dotCall(tmpChainElementObject, b, 1);
-    }
+    $dotCall($, b, 1);
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;

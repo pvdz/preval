@@ -70,18 +70,14 @@ let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
 while (tmpIfTest) {
   a = undefined;
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
+  const tmpChainElementObject = b.c;
+  const tmpChainElementObject$1 = tmpChainElementObject.d;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  const tmpIfTest$3 = tmpChainElementObject$3 == null;
+  if (tmpIfTest$3) {
   } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpIfTest$3 = tmpChainElementObject$3 == null;
-    if (tmpIfTest$3) {
-    } else {
-      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-      a = tmpChainElementCall;
-    }
+    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+    a = tmpChainElementCall;
   }
   tmpIfTest = $(1);
 }

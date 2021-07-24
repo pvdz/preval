@@ -75,23 +75,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-let tmpNestedComplexRhs = undefined;
-const b = { x: tmpObjLitVal };
-const tmpIfTest$1 = b == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementObject = b.x;
-  const tmpIfTest$3 = tmpChainElementObject == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpNestedComplexRhs = tmpChainElementObject$1;
-  }
-}
-const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
-$(tmpClusterSSA_a);
+$(1);
 `````
 
 ## Globals

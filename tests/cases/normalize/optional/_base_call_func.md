@@ -56,13 +56,8 @@ const f = function (...$$0) {
   $(`f`, args);
   return undefined;
 };
-const tmpIfTest = f == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  f(1, 2, 3);
-  $(undefined);
-}
+f(1, 2, 3);
+$(undefined);
 `````
 
 ## Globals

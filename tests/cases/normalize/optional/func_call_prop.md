@@ -52,8 +52,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpChainElementObject = (15).foo;
-const tmpClusterSSA_tmpReturnArg$1 = $(tmpChainElementObject);
-$(tmpClusterSSA_tmpReturnArg$1);
+const tmpReturnArg = $(tmpChainElementObject);
+$(tmpReturnArg);
 `````
 
 ## Globals

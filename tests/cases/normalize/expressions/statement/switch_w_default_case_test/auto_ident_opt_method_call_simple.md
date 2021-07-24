@@ -100,20 +100,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { c: $ };
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest$1 = b == null;
-let tmpIfTest = undefined;
-if (tmpIfTest$1) {
-  tmpIfTest = undefined === tmpSwitchValue;
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpIfTest = tmpChainElementCall === tmpSwitchValue;
-}
-if (tmpIfTest) {
+const b = { c: $ };
+const tmpChainElementCall = $dotCall($, b, 1);
+const tmpClusterSSA_tmpIfTest = tmpChainElementCall === tmpSwitchValue;
+if (tmpClusterSSA_tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpIfTest$3 = 2 === tmpSwitchValue;
@@ -135,6 +127,7 @@ tmpSwitchBreak: {
     $(`fail2`);
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

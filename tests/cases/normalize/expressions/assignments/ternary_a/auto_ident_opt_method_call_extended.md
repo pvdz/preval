@@ -61,26 +61,15 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const b = { c: tmpObjLitVal };
-let a = undefined;
-const tmpIfTest$1 = b == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-  a = tmpChainElementCall;
-}
-if (a) {
+const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+if (tmpChainElementCall) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {
   const tmpClusterSSA_tmpCalleeParam$1 = $(200);
   $(tmpClusterSSA_tmpCalleeParam$1);
 }
-$(a);
+$(tmpChainElementCall);
 `````
 
 ## Globals

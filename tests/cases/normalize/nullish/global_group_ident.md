@@ -39,19 +39,12 @@ $(y);
 
 `````js filename=intro
 const a = { x: 1 };
-const tmpIfTest = a == null;
-if (tmpIfTest) {
-  $(x);
-} else {
-  $(a);
-}
+$(a);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None
 
 ## Result
 

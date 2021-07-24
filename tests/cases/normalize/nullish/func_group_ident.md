@@ -53,21 +53,13 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const a = { x: 1 };
-const tmpIfTest = a == null;
-if (tmpIfTest) {
-  const tmpClusterSSA_tmpReturnArg = $(x);
-  $(tmpClusterSSA_tmpReturnArg);
-} else {
-  const tmpClusterSSA_tmpReturnArg$1 = $(a);
-  $(tmpClusterSSA_tmpReturnArg$1);
-}
+const tmpReturnArg = $(a);
+$(tmpReturnArg);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
-
-x
+None
 
 ## Result
 

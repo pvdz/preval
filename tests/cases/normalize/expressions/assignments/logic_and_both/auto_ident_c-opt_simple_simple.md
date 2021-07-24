@@ -64,30 +64,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const tmpIfTest = b == null;
-let tmpCalleeParam = undefined;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
-  tmpCalleeParam = tmpChainElementObject;
-}
-if (a) {
-  let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject$1 = b.x;
-    tmpNestedComplexRhs = tmpChainElementObject$1;
-  }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+$(1);
+$(1);
 `````
 
 ## Globals

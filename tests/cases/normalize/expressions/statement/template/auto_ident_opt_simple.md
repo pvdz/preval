@@ -53,17 +53,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
+$(`before  1  after`);
 const a = { a: 999, b: 1000 };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-  $(`before  undefined  after`);
-} else {
-  const tmpChainElementObject = b.x;
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementObject, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
-}
 $(a);
 `````
 

@@ -58,23 +58,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
-let a = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-  $(`before  undefined  after`);
-} else {
-  const tmpChainElementObject = b.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  a = tmpChainElementObject$3;
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementObject$3, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
-}
-$(a);
+$(`before  100  after`);
+$(100);
 `````
 
 ## Globals

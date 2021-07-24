@@ -71,36 +71,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const a = $(1);
-const b = $(2);
-const c = $(3);
+$(1);
+$(2);
+$(3);
 const tmpObjLitVal$3 = $();
 const tmpObjLitVal$1 = { c: tmpObjLitVal$3 };
 const tmpObjLitVal = { b: tmpObjLitVal$1 };
 const obj = { a: tmpObjLitVal };
-let tmpCalleeParam = obj;
-const tmpIfTest = obj == null;
-let tmpIfTest$1 = undefined;
-if (tmpIfTest) {
-  tmpCalleeParam = a;
-  tmpIfTest$1 = a == null;
-} else {
-  tmpIfTest$1 = tmpCalleeParam == null;
-}
-let tmpIfTest$3 = undefined;
-if (tmpIfTest$1) {
-  tmpCalleeParam = b;
-  tmpIfTest$3 = b == null;
-} else {
-  tmpIfTest$3 = tmpCalleeParam == null;
-}
-if (tmpIfTest$3) {
-  const tmpClusterSSA_tmpReturnArg = $(c);
-  $(tmpClusterSSA_tmpReturnArg);
-} else {
-  const tmpClusterSSA_tmpReturnArg$1 = $(tmpCalleeParam);
-  $(tmpClusterSSA_tmpReturnArg$1);
-}
+const tmpClusterSSA_tmpReturnArg$1 = $(obj);
+$(tmpClusterSSA_tmpReturnArg$1);
 `````
 
 ## Globals

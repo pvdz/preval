@@ -71,16 +71,9 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const tmpIfTest$1 = b == null;
-let tmpClusterSSA_a = undefined;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpClusterSSA_a = tmpChainElementCall;
-}
+const tmpChainElementCall = $dotCall($, b, 1);
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpChainElementCall);
 `````
 
 ## Globals

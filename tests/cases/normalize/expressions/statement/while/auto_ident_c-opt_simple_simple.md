@@ -56,18 +56,10 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-    $(100);
-  } else {
-    const tmpChainElementObject = b.x;
-    if (tmpChainElementObject) {
-      $(100);
-    } else {
-      break;
-    }
-  }
+let tmpChainElementObject = 1;
+while (tmpChainElementObject) {
+  $(100);
+  tmpChainElementObject = b.x;
 }
 $(a);
 `````

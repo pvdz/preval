@@ -78,24 +78,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-let tmpNestedComplexRhs = undefined;
-const b = { c: tmpObjLitVal };
-const tmpIfTest$1 = b == null;
-if (tmpIfTest$1) {
+let tmpClusterSSA_a = undefined;
+const tmpIfTest$3 = $ == null;
+if (tmpIfTest$3) {
 } else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpIfTest$3 = tmpChainElementObject$3 == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-    tmpNestedComplexRhs = tmpChainElementCall;
-  }
+  const tmpObjLitVal$1 = { e: $ };
+  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  tmpClusterSSA_a = tmpChainElementCall;
 }
-const tmpClusterSSA_a = tmpNestedComplexRhs;
 $(undefined);
 $(tmpClusterSSA_a);
 `````

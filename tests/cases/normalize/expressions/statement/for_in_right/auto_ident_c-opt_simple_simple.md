@@ -50,18 +50,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
-let tmpForInDeclRhs = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  tmpForInDeclRhs = tmpChainElementObject;
-}
 let x = undefined;
-for (x in tmpForInDeclRhs) {
+for (x in 1) {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

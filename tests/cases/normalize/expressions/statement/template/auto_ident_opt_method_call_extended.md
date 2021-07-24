@@ -59,21 +59,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-  $(`before  undefined  after`);
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
-}
+const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
+const tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
+$(tmpCalleeParam);
 $(a);
 `````
 

@@ -98,23 +98,10 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const b = { c: tmpObjLitVal };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-let a = undefined;
-const tmpIfTest$1 = b == null;
-let tmpIfTest = undefined;
-if (tmpIfTest$1) {
-  tmpIfTest = undefined === tmpSwitchValue;
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-  a = tmpChainElementCall;
-  tmpIfTest = tmpChainElementCall === tmpSwitchValue;
-}
+const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+const tmpIfTest = tmpChainElementCall === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -130,7 +117,7 @@ if (tmpIfTest$7) {
 } else {
 }
 $(`fail2`);
-$(a);
+$(tmpChainElementCall);
 `````
 
 ## Globals

@@ -78,43 +78,28 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const b = { c: tmpObjLitVal };
 let a = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
+const tmpIfTest$1 = $ == null;
+if (tmpIfTest$1) {
+  $(undefined);
 } else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpIfTest$1 = tmpChainElementObject$3 == null;
-  if (tmpIfTest$1) {
+  const tmpObjLitVal$1 = { e: $ };
+  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  a = tmpChainElementCall;
+  if (tmpChainElementCall) {
+    $(tmpChainElementCall);
   } else {
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-    a = tmpChainElementCall;
-  }
-}
-const tmpCalleeParam = a;
-if (a) {
-  $(tmpCalleeParam);
-} else {
-  let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$3 = b == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainElementObject$5 = b.c;
-    const tmpChainElementObject$7 = tmpChainElementObject$5.d;
-    const tmpChainElementObject$9 = tmpChainElementObject$7.e;
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainElementObject$9 = tmpObjLitVal$1.e;
     const tmpIfTest$5 = tmpChainElementObject$9 == null;
     if (tmpIfTest$5) {
     } else {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpChainElementObject$7, 1);
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, 1);
       tmpNestedComplexRhs = tmpChainElementCall$1;
     }
+    a = tmpNestedComplexRhs;
+    $(tmpNestedComplexRhs);
   }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
 }
 $(a);
 `````

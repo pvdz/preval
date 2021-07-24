@@ -186,8 +186,6 @@ const tmpArrElement$17 = x < undefined;
 const tmpArrElement$19 = x > undefined;
 const tmpArrElement$21 = x <= undefined;
 const tmpArrElement$23 = x >= undefined;
-const tmpArrElement$25 = x == undefined;
-const tmpArrElement$27 = x != undefined;
 x ** 0;
 const tmpArrElement$35 = x ^ 0;
 const tmpArrElement$37 = x | 0;
@@ -205,8 +203,8 @@ const arr = [
   tmpArrElement$19,
   tmpArrElement$21,
   tmpArrElement$23,
-  tmpArrElement$25,
-  tmpArrElement$27,
+  false,
+  true,
   false,
   true,
   0,

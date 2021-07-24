@@ -106,8 +106,6 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -125,14 +123,7 @@ if (tmpIfTest) {
 tmpSwitchBreak: {
   const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
   if (tmpIfTest$3) {
-    const tmpIfTest$5 = b == null;
-    if (tmpIfTest$5) {
-    } else {
-      const tmpChainElementObject = b.c;
-      const tmpChainElementObject$1 = tmpChainElementObject.d;
-      const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-      $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-    }
+    $dotCall($, tmpObjLitVal$1, 1);
     break tmpSwitchBreak;
   } else {
     const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;

@@ -62,20 +62,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-    return undefined;
-  } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-    return tmpChainElementCall;
-  }
-};
 const b = { c: $ };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpChainElementCall = $dotCall($, b, 1);
+$(tmpChainElementCall);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

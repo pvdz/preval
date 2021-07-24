@@ -52,18 +52,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { c: $ };
 const a = { a: 999, b: 1000 };
 const obj = {};
-let tmpCompProp = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpCompProp = tmpChainElementCall;
-}
-obj[tmpCompProp];
+const b = { c: $ };
+const tmpChainElementCall = $dotCall($, b, 1);
+obj[tmpChainElementCall];
 $(a);
 `````
 

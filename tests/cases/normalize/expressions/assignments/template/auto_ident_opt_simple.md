@@ -54,19 +54,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-  $(`before  undefined  after`);
-} else {
-  const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementObject, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
-}
-$(a);
+$(`before  1  after`);
+$(1);
 `````
 
 ## Globals

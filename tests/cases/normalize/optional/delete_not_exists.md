@@ -45,11 +45,7 @@ $(o);
 `````js filename=intro
 const o = {};
 $(o);
-const tmpIfTest = o == null;
-if (tmpIfTest) {
-} else {
-  delete o.x;
-}
+delete o.x;
 $(o);
 `````
 

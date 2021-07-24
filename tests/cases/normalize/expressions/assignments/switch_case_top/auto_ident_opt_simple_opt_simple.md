@@ -77,28 +77,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  a = undefined;
-  const b = { x: tmpObjLitVal };
-  const tmpIfTest$3 = b == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainElementObject = b.x;
-    const tmpIfTest$5 = tmpChainElementObject == null;
-    if (tmpIfTest$5) {
-    } else {
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      a = tmpChainElementObject$1;
-    }
-  }
+  $(1);
 } else {
+  const a = { a: 999, b: 1000 };
+  $(a);
 }
-$(a);
 `````
 
 ## Globals

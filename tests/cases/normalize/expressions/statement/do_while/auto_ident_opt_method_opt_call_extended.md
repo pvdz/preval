@@ -77,18 +77,14 @@ let tmpDoWhileFlag = true;
 while (tmpDoWhileFlag) {
   $(100);
   tmpDoWhileFlag = undefined;
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
+  const tmpChainElementObject = b.c;
+  const tmpChainElementObject$1 = tmpChainElementObject.d;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  const tmpIfTest$1 = tmpChainElementObject$3 == null;
+  if (tmpIfTest$1) {
   } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpIfTest$1 = tmpChainElementObject$3 == null;
-    if (tmpIfTest$1) {
-    } else {
-      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-      tmpDoWhileFlag = tmpChainElementCall;
-    }
+    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+    tmpDoWhileFlag = tmpChainElementCall;
   }
 }
 $(a);

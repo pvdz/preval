@@ -49,18 +49,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const tmpIfTest = b == null;
-let tmpAnonDefaultExport = undefined;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
-  tmpAnonDefaultExport = tmpChainElementObject;
-}
+const tmpAnonDefaultExport = 1;
 export { tmpAnonDefaultExport as default };
-$(a);
+$(1);
 `````
 
 ## Globals

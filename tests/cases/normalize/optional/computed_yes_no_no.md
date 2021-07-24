@@ -55,18 +55,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { d: 10 };
-const tmpObjLitVal = { c: tmpObjLitVal$1 };
-const a = { b: tmpObjLitVal };
-const tmpIfTest = a == null;
-if (tmpIfTest) {
-  $(undefined);
-} else {
-  const tmpChainElementObject = a.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.d;
-  $(tmpChainElementObject$3);
-}
+$(10);
 `````
 
 ## Globals

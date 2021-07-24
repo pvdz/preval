@@ -51,17 +51,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
-const b = { x: 1 };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
-}
-const tmpCalleeParam = [...a];
-$(tmpCalleeParam);
-$(a);
+[...1];
+throw `[Preval]: Array spread must crash before this line`;
 `````
 
 ## Globals

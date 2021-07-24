@@ -63,14 +63,10 @@ const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
 while (tmpIfTest) {
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-  }
+  const tmpChainElementObject = b.c;
+  const tmpChainElementObject$1 = tmpChainElementObject.d;
+  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+  $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
   tmpIfTest = $(1);
 }
 $(a);

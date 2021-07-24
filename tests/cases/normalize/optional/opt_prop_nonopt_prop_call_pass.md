@@ -41,14 +41,7 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpObjLitVal = { c: $ };
-const a = { b: tmpObjLitVal };
-const tmpIfTest = a == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = a.b;
-  const tmpChainElementObject$1 = tmpChainElementObject.c;
-  $dotCall(tmpChainElementObject$1, tmpChainElementObject, 1);
-}
+$dotCall($, tmpObjLitVal, 1);
 `````
 
 ## Globals

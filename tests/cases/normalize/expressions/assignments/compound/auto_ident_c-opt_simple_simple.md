@@ -52,19 +52,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = b == null;
-let tmpClusterSSA_a = NaN;
-if (tmpIfTest) {
-  a ** 0;
-  $(NaN);
-} else {
-  const tmpChainElementObject = b.x;
-  tmpClusterSSA_a = a * tmpChainElementObject;
-  $(tmpClusterSSA_a);
-}
-$(tmpClusterSSA_a);
+const tmpClusterSSA_tmpClusterSSA_a = a * 1;
+$(tmpClusterSSA_tmpClusterSSA_a);
+$(tmpClusterSSA_tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -58,25 +58,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
-  let tmpNestedComplexRhs = undefined;
-  const b = { x: tmpObjLitVal };
-  const tmpIfTest = b == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementObject = b.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-    tmpNestedComplexRhs = tmpChainElementObject$3;
-  }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
+  a = 100;
+  $(100);
 }
 $(a);
 `````

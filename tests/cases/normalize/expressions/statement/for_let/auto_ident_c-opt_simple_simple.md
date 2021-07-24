@@ -57,19 +57,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
-let xyz = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  xyz = tmpChainElementObject;
-}
 while (true) {
-  $(xyz);
+  $(1);
   $(1);
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

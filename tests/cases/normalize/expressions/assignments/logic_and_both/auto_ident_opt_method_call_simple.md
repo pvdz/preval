@@ -64,32 +64,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = undefined;
 const b = { c: $ };
-const tmpIfTest = b == null;
-let tmpCalleeParam = undefined;
-if (tmpIfTest) {
+const tmpChainElementCall = $dotCall($, b, 1);
+let tmpClusterSSA_a = tmpChainElementCall;
+if (tmpChainElementCall) {
+  const tmpChainElementObject$1 = b.c;
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
+  tmpClusterSSA_a = tmpChainElementCall$1;
+  $(tmpChainElementCall$1);
 } else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  a = tmpChainElementCall;
-  tmpCalleeParam = tmpChainElementCall;
+  $(tmpChainElementCall);
 }
-if (a) {
-  let tmpNestedComplexRhs = undefined;
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject$1 = b.c;
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
-    tmpNestedComplexRhs = tmpChainElementCall$1;
-  }
-  a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
-} else {
-  $(tmpCalleeParam);
-}
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -74,22 +74,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 const tmpBinLhs = $(1);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  const b = { c: tmpObjLitVal };
-  const tmpIfTest$3 = b == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainElementObject = b.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-  }
+  const tmpObjLitVal$1 = { e: $ };
+  $dotCall($, tmpObjLitVal$1, 1);
 } else {
 }
 $(a);

@@ -56,25 +56,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
-const tmpIfTest$1 = b == null;
-if (tmpIfTest$1) {
-} else {
-  const tmpChainElementObject = b.x;
-  const tmpIfTest$3 = tmpChainElementObject == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpIfTest = tmpChainElementObject$1;
-  }
-}
-if (tmpIfTest) {
-} else {
-  $(100);
-}
 $(a);
 `````
 

@@ -65,14 +65,9 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
-const a = { a: 999, b: 1000 };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.c;
-  $dotCall(tmpChainElementObject, b, 1);
-}
+$dotCall($, b, 1);
 $(100);
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

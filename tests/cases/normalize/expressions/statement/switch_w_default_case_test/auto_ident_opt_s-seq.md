@@ -99,18 +99,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpIfTest$1 = b == null;
-let tmpIfTest = undefined;
-if (tmpIfTest$1) {
-  tmpIfTest = undefined === tmpSwitchValue;
-} else {
-  const tmpChainElementObject = b.x;
-  tmpIfTest = tmpChainElementObject === tmpSwitchValue;
-}
+const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -133,6 +124,7 @@ tmpSwitchBreak: {
     $(`fail2`);
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -52,12 +52,7 @@ $(a);
 const tmpIfTest = $(100);
 if (tmpIfTest) {
   const b = { c: $ };
-  const tmpIfTest$1 = b == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject = b.c;
-    $dotCall(tmpChainElementObject, b, 1);
-  }
+  $dotCall($, b, 1);
 } else {
 }
 const a = { a: 999, b: 1000 };

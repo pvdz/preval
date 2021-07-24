@@ -47,15 +47,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-let tmpThrowArg = undefined;
-const b = { x: 1 };
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  tmpThrowArg = tmpChainElementObject;
-}
-throw tmpThrowArg;
+throw 1;
 `````
 
 ## Globals

@@ -48,17 +48,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
-let tmpBinBothLhs = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  tmpBinBothLhs = tmpChainElementObject;
-}
 const tmpBinBothRhs = $(100);
-tmpBinBothLhs + tmpBinBothRhs;
+tmpBinBothRhs + 0;
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

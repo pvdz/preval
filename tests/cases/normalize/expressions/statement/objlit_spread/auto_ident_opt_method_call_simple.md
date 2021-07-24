@@ -49,16 +49,9 @@ $(a);
 
 `````js filename=intro
 const b = { c: $ };
+const tmpChainElementCall = $dotCall($, b, 1);
+({ ...tmpChainElementCall });
 const a = { a: 999, b: 1000 };
-let tmpObjSpreadArg = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpObjSpreadArg = tmpChainElementCall;
-}
-({ ...tmpObjSpreadArg });
 $(a);
 `````
 

@@ -52,24 +52,14 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const b = { c: tmpObjLitVal };
-let a = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
+const tmpIfTest$1 = $ == null;
+if (tmpIfTest$1) {
+  $(undefined);
 } else {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpIfTest$1 = tmpChainElementObject$3 == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-    a = tmpChainElementCall;
-  }
+  const tmpObjLitVal$1 = { e: $ };
+  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
+  $(tmpChainElementCall);
 }
-$(a);
 `````
 
 ## Globals

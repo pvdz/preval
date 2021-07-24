@@ -57,22 +57,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let tmpBinBothRhs = undefined;
-const tmpIfTest = b == null;
-if (tmpIfTest) {
-} else {
-  const tmpChainElementObject = b.x;
-  const tmpIfTest$1 = tmpChainElementObject == null;
-  if (tmpIfTest$1) {
-  } else {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpBinBothRhs = tmpChainElementObject$1;
-  }
-}
-const tmpClusterSSA_a = a * tmpBinBothRhs;
+const tmpClusterSSA_a = a * 1;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````

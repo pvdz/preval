@@ -77,14 +77,10 @@ if (tmpIfTest) {
   x = !tmpUnaryArg$1;
 }
 if (x) {
-  x = 10;
   $(`a`);
-} else {
-  $(`b`);
-}
-if (x) {
   $(`d`);
 } else {
+  $(`b`);
   $(`c`);
 }
 `````

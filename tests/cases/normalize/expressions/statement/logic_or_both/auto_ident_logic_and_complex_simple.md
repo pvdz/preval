@@ -48,11 +48,7 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-let tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
-  tmpIfTest = 2;
-} else {
-}
+const tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$1 = $(1);

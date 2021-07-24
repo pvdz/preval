@@ -54,9 +54,6 @@ const tmpCalleeParam$1 = $(1);
 let a = $(tmpCalleeParam$1);
 if (a) {
   a = 2;
-} else {
-}
-if (a) {
   const tmpClusterSSA_tmpCalleeParam = $(100);
   $(tmpClusterSSA_tmpCalleeParam);
 } else {

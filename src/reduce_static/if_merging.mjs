@@ -19,6 +19,7 @@ import {
   after,
   findBodyOffset,
 } from '../utils.mjs';
+import * as AST from '../ast.mjs';
 
 export function ifMerging(fdata) {
   group('\n\n\nSearching for back2back ifs to merge\n');
@@ -35,7 +36,11 @@ function _ifMerging(fdata) {
     if (!meta.isConstant && !meta.singleScopeWrites) return; // Cant reliably predict write order. TODO: we only care about multi-scope _writes_...
     if (meta.reads.length < 2) return; // We want to merge two ifs that test on the same constant, so we need at least two reads
 
+    vgroup('- `' + name + '`');
+
     meta.rwOrder.forEach((ref) => {
+      vlog('loop start...', ref.action, ref.kind, ref.node.$p.pid);
+
       if (ref.action !== 'read') return;
       const read = ref;
       const ifNode = read.parentNode;
@@ -47,10 +52,72 @@ function _ifMerging(fdata) {
         // So for each write, confirm that the write does not occur inside this first `if`
 
         const thenFirstPid = +ifNode.consequent.$p.pid;
+        const elseFirstPid = +ifNode.alternate.$p.pid;
         const elseLastPid = +ifNode.alternate.$p.lastPid;
 
-        if (meta.writes.some(write => +write.node.$p.pid >= thenFirstPid && +write.node.$p.pid <= elseLastPid)) {
-          return vlog('  - There is a write inside the first `if`');
+        if (
+          meta.writes.some((write) => {
+            if (write.kind === 'var') {
+              vlog('  - skip the var', write.kind);
+              return;
+            }
+            if (write.kind !== 'assign') {
+              vlog("  - non-assignment. there are a few cases, although here I think it's just `for-lhs`?", write.kind);
+              return true;
+            }
+
+            // If we know that the write in the `then` assigns a truthy value, or the write in the `else` assigns a falsy value
+            // then we can still accept this, since we can still safely predict the branch test regardless...
+
+            const rhs = write.parentNode.right;
+            const pid = +write.node.$p.pid;
+            if (pid >= thenFirstPid && pid <= elseFirstPid) {
+              // Write in the `then`
+              if (AST.isPrimitive(rhs)) {
+                // If the assignment is truthy, return false ("allow"), if it is falsy return true ("disallow")
+                const r = !AST.getPrimitiveValue(rhs);
+                if (r) vlog('  - assigning a falsy primitive in `then`');
+                return r;
+              }
+              if (rhs.type !== 'Identifier') {
+                // TODO: there's probably a few expressions that are guaranteed truthy?
+                vlog('  - assigning a non-ident');
+                return true;
+              }
+              // Confirm that the assigned ident is truthy
+              const meta = fdata.globallyUniqueNamingRegistry.get(rhs.name);
+              if (!meta.typing.mustBeTruthy) {
+                vlog('  - Either it is falsy or we do not know. This property should reflect all other known states.');
+                return true;
+              }
+
+              // Looks like this write was a truthy so we can still proceed
+              return;
+            } else if (pid >= elseFirstPid && pid <= elseLastPid) {
+              // Write in the `else`
+              if (AST.isPrimitive(rhs)) {
+                // If the assignment is falsy, return false ("allow"), if it is truthy return true ("disallow")
+                const r = !!AST.getPrimitiveValue(rhs);
+                if (r) vlog('  - assigning a truthy primitive in `else`');
+                return r;
+              }
+              if (rhs.type !== 'Identifier') {
+                // TODO: there's probably a few expressions that are guaranteed truthy?
+                vlog('  - assigning a non-ident');
+                return true;
+              }
+              // Confirm that the assigned ident is truthy
+              const meta = fdata.globallyUniqueNamingRegistry.get(rhs.name);
+              if (!meta.typing.mustBeFalsy) {
+                vlog('  - Either it is truthy or we do not know. This property should reflect all other known states.');
+                return true;
+              }
+
+              // Looks like this write was a falsy so we can still proceed
+            }
+          })
+        ) {
+          return vlog('  - There is a write inside the first `if`. See previous log line for details');
         }
       }
 
@@ -78,6 +145,8 @@ function _ifMerging(fdata) {
         },
       });
     });
+
+    vgroupEnd();
   });
 
   if (queue.length) {

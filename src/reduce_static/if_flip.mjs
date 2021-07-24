@@ -53,6 +53,16 @@ function _ifFlipping(fdata) {
       ASSERT(write.blockBody[write.blockIndex].type === 'VariableDeclaration');
 
       if (write.parentNode.init.type === 'UnaryExpression' && write.parentNode.init.operator === '!') {
+
+        const arg = write.parentNode.init.argument;
+        if (arg.type === 'Identifier' && !AST.isPrimitive(arg)) {
+          const argMeta = fdata.globallyUniqueNamingRegistry.get(arg.name);
+          if (argMeta.isImplicitGlobal) {
+            vlog('Not applying this to an implicit binding');
+            return;
+          }
+        }
+
         // This is the trivial target we are aiming for. Flip it.
         // If the argument is an identifier, use that instead. The `!` cannot be observed, nor can the if-test.
         // All reads will do the same and we don't need to update the init to eliminate the `!`.
@@ -75,6 +85,15 @@ function _ifFlipping(fdata) {
         write.parentNode.init.callee.type === 'Identifier' &&
         write.parentNode.init.callee.name === 'Boolean'
       ) {
+        const arg = write.parentNode.init['arguments'].length && write.parentNode.init['arguments'][0];
+        if (arg?.type === 'Identifier' && !AST.isPrimitive(arg)) {
+          const argMeta = fdata.globallyUniqueNamingRegistry.get(arg.name);
+          if (argMeta.isImplicitGlobal) {
+            vlog('Not applying this to an implicit binding');
+            return;
+          }
+        }
+
         // This is the trivial target we are aiming for. Unwrap it.
         // If the argument is an identifier, use that instead. The `Booelan()` cannot be observed, nor can the if-test.
         // All reads will do the same and we don't need to update the init to eliminate the `Boolean()`.

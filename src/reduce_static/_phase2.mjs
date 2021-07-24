@@ -111,26 +111,27 @@ function _phase2(program, fdata, resolve, req) {
 
     // We can also settle this in phase1...
     let lastScope = undefined;
-    //let lastScopeRead = undefined;
-    //let lastScopeWrite = undefined;
+    let lastScopeRead = undefined;
+    let lastScopeWrite = undefined;
     meta.singleScoped = true;
-    //meta.singleScopeReads = true;
-    //meta.singleScopeWrites = true;
+    meta.singleScopeReads = true;
+    meta.singleScopeWrites = true;
     rwOrder.some((ref) => {
       if (lastScope === undefined) lastScope = ref.scope;
       else if (lastScope !== ref.scope) meta.singleScoped = false;
 
-      //if (ref.type === 'read') {
-      //  if (lastScopeRead === undefined) lastScopeRead = ref.scope;
-      //  else if (lastScopeRead !== ref.scope) meta.singleScopeReads = false;
-      //}
-      //if (ref.type === 'write') {
-      //  if (lastScopeWrite === undefined) lastScopeWrite = ref.scope;
-      //  else if (lastScopeWrite !== ref.scope) meta.singleScopeWrites = false;
-      //}
-      //return +meta.singleScopeReads + +meta.singleScopeWrites === 0;
+      if (ref.type === 'read') {
+        if (lastScopeRead === undefined) lastScopeRead = ref.scope;
+        else if (lastScopeRead !== ref.scope) meta.singleScopeReads = false;
+      }
+      if (ref.type === 'write') {
+        if (lastScopeWrite === undefined) lastScopeWrite = ref.scope;
+        else if (lastScopeWrite !== ref.scope) meta.singleScopeWrites = false;
+      }
 
-      return !meta.singleScoped;
+      if (!meta.singleScopeReads && !meta.singleScopeWrites) {
+        return true;
+      }
     });
   });
 

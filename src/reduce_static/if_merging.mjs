@@ -32,7 +32,7 @@ function _ifMerging(fdata) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isImplicitGlobal) return;
     if (meta.isBuiltin) return;
-    if (!meta.isConstant && !meta.singleScoped) return; // Cant reliably predict write order. TODO: we only care about multi-scope _writes_...
+    if (!meta.isConstant && !meta.singleScopeWrites) return; // Cant reliably predict write order. TODO: we only care about multi-scope _writes_...
     if (meta.reads.length < 2) return; // We want to merge two ifs that test on the same constant, so we need at least two reads
 
     meta.rwOrder.forEach((ref) => {

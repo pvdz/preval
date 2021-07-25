@@ -42,10 +42,10 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  label: while ($) {
+  while ($) {
     $(1);
     if ($) {
-      continue label;
+      continue;
     } else {
     }
   }
@@ -59,10 +59,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-label: while ($) {
+while ($) {
   $(1);
   if ($) {
-    continue label;
+    continue;
   } else {
   }
 }

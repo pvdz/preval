@@ -29,6 +29,7 @@ export function $p() {
     // - isBlockFuncDecl // bool. Is the node that is a FunctionDeclaration nested in a block (but not a func body)?
     // - doesBreak // bool. Does this loop/switch have any break statement?
     // - doesContinue // bool. Does this loop have any continue statement?
+    // - redundantLabel // bool. For break/continue statements. Should the label be droppable?
 
     // reduce/phase2 (these props should exist after phas1... even on new nodes)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations

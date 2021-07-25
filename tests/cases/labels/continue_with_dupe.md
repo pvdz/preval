@@ -37,18 +37,16 @@ a$3: {
 ## Normalized
 
 `````js filename=intro
-a$1: while (true) {
+while (true) {
   $(1);
-  continue a$1;
 }
 `````
 
 ## Output
 
 `````js filename=intro
-a$1: while (true) {
+while (true) {
   $(1);
-  continue a$1;
 }
 `````
 

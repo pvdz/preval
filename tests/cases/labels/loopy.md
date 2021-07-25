@@ -31,18 +31,16 @@ woop: while (true) {
 ## Normalized
 
 `````js filename=intro
-woop: while (true) {
+while (true) {
   $(1);
-  continue woop;
 }
 `````
 
 ## Output
 
 `````js filename=intro
-woop: while (true) {
+while (true) {
   $(1);
-  continue woop;
 }
 `````
 

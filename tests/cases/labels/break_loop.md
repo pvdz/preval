@@ -31,9 +31,9 @@ $(2);
 ## Normalized
 
 `````js filename=intro
-foo: while (true) {
+while (true) {
   $(1);
-  break foo;
+  break;
 }
 $(2);
 `````
@@ -41,9 +41,9 @@ $(2);
 ## Output
 
 `````js filename=intro
-foo: while (true) {
+while (true) {
   $(1);
-  break foo;
+  break;
 }
 $(2);
 `````

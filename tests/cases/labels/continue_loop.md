@@ -36,10 +36,9 @@ $(2);
 
 `````js filename=intro
 let fail = false;
-foo: while (true) {
+while (true) {
   $(1);
   fail = true;
-  continue foo;
 }
 $(2);
 `````
@@ -47,9 +46,8 @@ $(2);
 ## Output
 
 `````js filename=intro
-foo: while (true) {
+while (true) {
   $(1);
-  continue foo;
 }
 $(2);
 `````

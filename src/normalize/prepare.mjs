@@ -494,21 +494,50 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
         // Find labeled break or continue statements and make sure that they keep pointing to the "same" label
         // Find the first label ancestor where the original name matches the label of this node
         // Note: continue/break state is verified by the parser so we should be able to assume this continue/break has a valid target
+
+        // A label is redundant when;
+        // - continue: it targets the inner-most loop
+        // - break: it targets the inner-most loop or switch
+
         if (node.label) {
           const name = node.label.name;
           vlog('Label:', name, ', now searching for definition... Label stack depth:', labelStack.length);
           let i = labelStack.length;
           while (--i >= 0) {
-            vlog('->', labelStack[i].$p.originalLabelName);
-            if (labelStack[i].$p.originalLabelName === name) {
-              const newName = labelStack[i].label.name;
+            const labelNode = labelStack[i];
+            vlog('->', labelNode.$p.originalLabelName);
+            if (labelNode.$p.originalLabelName === name) {
+              const newName = labelNode.label.name;
               if (newName !== name) {
-                vlog('- Label was renamed to', newName);
+                vlog('- Found it. Label was renamed to', newName);
                 node.label.name = newName;
-                break;
               } else {
-                vlog('- Label not renamed');
+                vlog('- Found it. Label not renamed');
               }
+
+              let n = breakableStack.length - 1;
+              let innerMostBranchNode = breakableStack[n];
+              if (node.type === 'ContinueStatement') {
+                while (innerMostBranchNode?.type === 'SwitchStatement') {
+                  innerMostBranchNode = breakableStack[n];
+                  --n;
+                }
+              }
+              ASSERT(
+                node.type === 'BreakStatement' || innerMostBranchNode.type !== 'SwitchStatement',
+                'continue cannot have switch as target here',
+              );
+
+              if (node.type === 'BreakStatement' && !innerMostBranchNode) {
+                vlog('The label is necessary because it does not break a loop or switch', innerMostBranchNode?.type, breakableStack.length);
+              } else if (labelNode.body === innerMostBranchNode) {
+                vlog('The label was redundant because', labelNode.body.type, 'is', innerMostBranchNode.type);
+                node.$p.redundantLabel = true;
+              } else {
+                vlog('The label was useful because', labelNode.body.type, 'is not', innerMostBranchNode.type);
+                node.$p.redundantLabel = false;
+              }
+              break;
             }
           }
 
@@ -538,17 +567,18 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
             }
           }
           fenceNode.$p.unqualifiedLabelUsages.push(node);
+          node.$p.redundantLabel = false;
         }
 
-        for (let i=breakableStack.length-1; i>=0; --i) {
+        for (let i = breakableStack.length - 1; i >= 0; --i) {
           const breakableNode = breakableStack[i];
           if (key === 'ContinueStatement:before') {
             if (breakableNode.type === 'SwitchStatement') continue;
             breakableNode.$p.doesContinue = true;
-            vlog('Setting doesContinue', breakableNode.$p.pid)
+            vlog('Setting doesContinue', breakableNode.$p.pid);
           } else {
             breakableNode.$p.doesBreak = true;
-            vlog('Setting doesBreak on', breakableNode.$p.pid)
+            vlog('Setting doesBreak on', breakableNode.$p.pid);
           }
           break;
         }

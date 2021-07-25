@@ -1016,12 +1016,25 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     vlog(BLUE + 'Marking parent (' + parent.type + ') as breaking early' + RESET);
     parent.$p.returnBreakContinueThrow = 'break';
     if (node.label) {
+      if (node.$p.redundantLabel) {
+        rule('If a labeled break would behave the same without the label then the label should be dropped');
+        example('foo: { while (x) if (f()) break foo; }', 'foo: { while (x) if (f()) break; }');
+        before(node);
+
+        node.label = null;
+
+        after(node);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
       fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap.set(node.$p.pid, {
         node,
         body,
         index: i,
       });
     }
+
     if (body.length > i + 1) {
       if (dce(body, i, 'after break')) {
         return true;
@@ -1034,6 +1047,18 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     vlog(BLUE + 'Marking parent (' + parent.type + ') as continuing early' + RESET);
     parent.$p.returnBreakContinueThrow = 'continue';
     if (node.label) {
+      if (node.$p.redundantLabel) {
+        rule('If a labeled break would behave the same without the label then the label should be dropped');
+        example('foo: { while (x) if (f()) break foo; }', 'foo: { while (x) if (f()) break; }');
+        before(node);
+
+        node.label = null;
+
+        after(node);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+        return true;
+      }
+
       fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap.set(node.$p.pid, {
         node,
         body,

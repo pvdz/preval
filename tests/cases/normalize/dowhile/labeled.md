@@ -38,7 +38,7 @@ dropme: {
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-foo: while (true) {
+while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpIfTest) {
   } else {
@@ -47,7 +47,7 @@ foo: while (true) {
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
     $(1);
-    continue foo;
+    continue;
   } else {
     break;
   }
@@ -58,7 +58,7 @@ foo: while (true) {
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-foo: while (true) {
+while (true) {
   let tmpIfTest = tmpDoWhileFlag;
   if (tmpDoWhileFlag) {
   } else {
@@ -67,7 +67,7 @@ foo: while (true) {
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
     $(1);
-    continue foo;
+    continue;
   } else {
     break;
   }

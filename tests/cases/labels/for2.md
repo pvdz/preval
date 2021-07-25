@@ -38,10 +38,10 @@ $(2);
 
 `````js filename=intro
 $(0);
-foo: while (true) {
+while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    continue foo;
+    continue;
   } else {
     break;
   }
@@ -53,10 +53,10 @@ $(2);
 
 `````js filename=intro
 $(0);
-foo: while (true) {
+while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    continue foo;
+    continue;
   } else {
     break;
   }

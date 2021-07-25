@@ -53,7 +53,12 @@ if (a) {
 } else {
   const tmpCalleeParam$1 = $(2);
   a = $(tmpCalleeParam$1);
-  $(...a);
+  const tmpIfTest = a === ``;
+  if (tmpIfTest) {
+    $();
+  } else {
+    throw `Preval: Attempting to spread primitive that is not an empty string`;
+  }
 }
 $(a);
 `````

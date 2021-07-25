@@ -444,6 +444,7 @@ function runTestCase(
         .replace(/Cannot read property .*? of .*/g, 'Cannot read property <ref> of <ref2>')
         .replace(/(?:Preval: )?Cannot access ['`][\w$]+['`] before initialization/, "Cannot access '<ref>' before initialization")
         .replace(/Preval: Cannot write to const binding .*/, 'Assignment to constant variable.')
+        .replace(/Preval: Attempting to spread primitive that is not an empty string.*/, 'Found non-callable @@iterator')
 
         // All arrows are transformed to function expressions
         .replace(/\(\) => \{\}/g, 'function() {}')

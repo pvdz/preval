@@ -52,12 +52,9 @@ $(2);
 `````js filename=intro
 const x = $(100);
 $(0);
-foo: {
-  if (x) {
-    $(1);
-    break foo;
-  } else {
-  }
+if (x) {
+  $(1);
+} else {
 }
 $(2);
 `````

@@ -96,17 +96,13 @@ if (tmpIfTest) {
   } else {
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    break tmpSwitchBreak;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+} else {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $(`f`);
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      $(`f`);
-      break tmpSwitchBreak;
-    } else {
-    }
   }
 }
 `````

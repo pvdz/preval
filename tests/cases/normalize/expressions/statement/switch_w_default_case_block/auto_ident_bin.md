@@ -111,21 +111,18 @@ if (tmpIfTest) {
   } else {
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    const tmpBinBothLhs = $(1);
-    const tmpBinBothRhs = $(2);
-    tmpBinBothLhs + tmpBinBothRhs;
-    break tmpSwitchBreak;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  const tmpBinBothLhs = $(1);
+  const tmpBinBothRhs = $(2);
+  tmpBinBothLhs + tmpBinBothRhs;
+} else {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $(`fail1`);
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      $(`fail1`);
-    } else {
-    }
-    $(`fail2`);
   }
+  $(`fail2`);
 }
 $(a);
 `````

@@ -52,14 +52,10 @@ $(`after, wont eval due to infinite loop`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    $(1);
-    continue;
-  } else {
-    break;
-  }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  $(1);
+  tmpIfTest = $(true);
 }
 $(`after, wont eval due to infinite loop`);
 `````

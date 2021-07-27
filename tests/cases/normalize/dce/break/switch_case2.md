@@ -74,21 +74,8 @@ $(`after, do not evaluate (infinite loop)`);
 `````js filename=intro
 let tmpIfTest = $(true);
 while (tmpIfTest) {
-  const tmpSwitchValue = $(1, `disc`);
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(1, `case`);
-  const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$3) {
-      break tmpSwitchBreak;
-    } else {
-    }
-  }
+  $(1, `disc`);
+  $(1, `case`);
   $(`keep`);
   tmpIfTest = $(true);
 }

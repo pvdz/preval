@@ -76,24 +76,18 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = 10;
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
+let tmpIfTest$1 = true;
 const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 1;
+  tmpIfTest$1 = false;
 } else {
 }
-tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    break tmpSwitchBreak;
-  } else {
-    x = 20;
-    break tmpSwitchBreak;
-  }
+if (tmpIfTest$1) {
+  $(10);
+} else {
+  $(20);
 }
-$(x);
 `````
 
 ## Globals

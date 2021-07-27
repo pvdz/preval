@@ -68,17 +68,11 @@ considerMutated(x);
 
 `````js filename=intro
 let x = 0;
-foo: {
-  try {
-    fail_early;
-    if ($) {
-      break foo;
-    } else {
-    }
-  } catch {
-    x = 1;
-  } finally {
-  }
+try {
+  fail_early;
+} catch {
+  x = 1;
+} finally {
 }
 considerMutated(x);
 `````

@@ -94,11 +94,8 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-tmpSwitchBreak: {
-  $(3);
-  $(4);
-  break tmpSwitchBreak;
-}
+$(3);
+$(4);
 `````
 
 ## Globals

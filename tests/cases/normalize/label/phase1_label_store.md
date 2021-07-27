@@ -75,9 +75,6 @@ const f = function () {
   debugger;
   while (true) {
     s;
-    stop: {
-      break stop;
-    }
   }
   return undefined;
 };

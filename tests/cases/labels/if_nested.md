@@ -88,32 +88,16 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  $(0);
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    label2: {
-      const tmpIfTest$1 = $(2);
-      if (tmpIfTest$1) {
-        label3: {
-          const tmpIfTest$3 = $(3);
-          if (tmpIfTest$3) {
-            break label2;
-          } else {
-            break label3;
-          }
-        }
-      } else {
-        return undefined;
-      }
-    }
-    return undefined;
+$(0);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const tmpIfTest$1 = $(2);
+  if (tmpIfTest$1) {
+    $(3);
   } else {
-    return undefined;
   }
-};
-f();
+} else {
+}
 `````
 
 ## Globals

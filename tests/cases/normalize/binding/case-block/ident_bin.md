@@ -67,21 +67,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(`a`);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    break tmpSwitchBreak;
-  } else {
-  }
-}
+$(`a`);
+$(`a`);
 $(1, 2, 3);
 `````
 

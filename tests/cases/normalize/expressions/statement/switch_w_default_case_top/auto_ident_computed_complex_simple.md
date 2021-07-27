@@ -111,20 +111,17 @@ if (tmpIfTest) {
   } else {
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    const tmpCompObj = $(b);
-    tmpCompObj.c;
-    break tmpSwitchBreak;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  const tmpCompObj = $(b);
+  tmpCompObj.c;
+} else {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $(`fail1`);
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      $(`fail1`);
-    } else {
-    }
-    $(`fail2`);
   }
+  $(`fail2`);
 }
 $(a, b);
 `````

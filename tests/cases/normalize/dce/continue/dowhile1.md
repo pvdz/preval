@@ -136,7 +136,6 @@ while (tmpIfTest) {
     if (tmpIfTest$1) {
       tmpDoWhileFlag = false;
       $(`loop`);
-      continue;
     } else {
       break;
     }

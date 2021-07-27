@@ -73,28 +73,18 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
 const z = [10, 20, 30];
 const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
+  const arrPatternSplat = [...z];
+  const tmpClusterSSA_x = arrPatternSplat[0];
+  const tmpClusterSSA_y = arrPatternSplat[1];
+  $(1, tmpClusterSSA_x, tmpClusterSSA_y, z);
 } else {
+  $(1, 1, 2, z);
 }
-tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const arrPatternSplat = [...z];
-    x = arrPatternSplat[0];
-    y = arrPatternSplat[1];
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(1, x, y, z);
 `````
 
 ## Globals

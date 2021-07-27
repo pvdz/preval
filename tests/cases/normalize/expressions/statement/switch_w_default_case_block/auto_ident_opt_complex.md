@@ -105,7 +105,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -120,24 +119,22 @@ if (tmpIfTest) {
   } else {
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    const tmpChainElementCall = $(b);
-    const tmpIfTest$5 = tmpChainElementCall == null;
-    if (tmpIfTest$5) {
-    } else {
-      tmpChainElementCall.x;
-    }
-    break tmpSwitchBreak;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  const b = { x: 1 };
+  const tmpChainElementCall = $(b);
+  const tmpIfTest$5 = tmpChainElementCall == null;
+  if (tmpIfTest$5) {
   } else {
-    const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$7) {
-      $(`fail1`);
-    } else {
-    }
-    $(`fail2`);
+    tmpChainElementCall.x;
   }
+} else {
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$7) {
+    $(`fail1`);
+  } else {
+  }
+  $(`fail2`);
 }
 $(a);
 `````

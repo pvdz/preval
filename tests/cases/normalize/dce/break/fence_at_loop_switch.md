@@ -103,22 +103,12 @@ let tmpIfTest = $(true);
 while (tmpIfTest) {
   $(`loop`);
   const tmpSwitchValue = $(true, `dis`);
-  let tmpSwitchCaseToStart = 1;
   const tmpBinLhs = $(true, `case`);
   const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
   if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 0;
+    $(`case`);
   } else {
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$3) {
-      $(`case`);
-      break tmpSwitchBreak;
-    } else {
-      $(`do not visit, default`);
-      break tmpSwitchBreak;
-    }
+    $(`do not visit, default`);
   }
   $(`infiloop, do not eliminate`);
   tmpIfTest = $(true);

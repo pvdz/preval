@@ -116,23 +116,20 @@ if (tmpIfTest) {
   } else {
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    const tmpCalleeParam = $(b);
-    const tmpAssignMemLhsObj = $(tmpCalleeParam);
-    const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-    const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
-    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-    break tmpSwitchBreak;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  const tmpCalleeParam = $(b);
+  const tmpAssignMemLhsObj = $(tmpCalleeParam);
+  const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+  const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
+  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+} else {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $(`fail1`);
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      $(`fail1`);
-    } else {
-    }
-    $(`fail2`);
   }
+  $(`fail2`);
 }
 $(a, b);
 `````

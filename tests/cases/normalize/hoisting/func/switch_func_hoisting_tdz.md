@@ -98,13 +98,10 @@ if (tmpIfTest) {
   } else {
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    $(`pass`);
-    break tmpSwitchBreak;
-  } else {
-  }
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  $(`pass`);
+} else {
 }
 `````
 

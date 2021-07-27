@@ -83,22 +83,13 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 2 };
 const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
+  const tmpNestedAssignComMemberObj = $(b);
+  const tmpNestedAssignComMemberProp = $(`x`);
+  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 } else {
-}
-tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpNestedAssignComMemberObj = $(b);
-    const tmpNestedAssignComMemberProp = $(`x`);
-    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
-    break tmpSwitchBreak;
-  } else {
-  }
 }
 $(1, b, 3);
 `````

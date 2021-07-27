@@ -60,7 +60,6 @@ while (tmpIfTest) {
   let x = undefined;
   const tmpForOfDeclRhs = [10, 20];
   for (x of tmpForOfDeclRhs) {
-    continue;
   }
   $(`keep`);
   tmpIfTest = $(true);

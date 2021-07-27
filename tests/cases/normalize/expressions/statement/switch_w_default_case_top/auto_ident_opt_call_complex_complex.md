@@ -115,25 +115,22 @@ if (tmpIfTest) {
   } else {
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    const tmpChainElementCall = $($);
-    const tmpIfTest$5 = tmpChainElementCall == null;
-    if (tmpIfTest$5) {
-    } else {
-      const tmpCalleeParam$3 = $(1);
-      $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
-    }
-    break tmpSwitchBreak;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  const tmpChainElementCall = $($);
+  const tmpIfTest$5 = tmpChainElementCall == null;
+  if (tmpIfTest$5) {
   } else {
-    const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$7) {
-      $(`fail1`);
-    } else {
-    }
-    $(`fail2`);
+    const tmpCalleeParam$3 = $(1);
+    $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   }
+} else {
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$7) {
+    $(`fail1`);
+  } else {
+  }
+  $(`fail2`);
 }
 $(a);
 `````

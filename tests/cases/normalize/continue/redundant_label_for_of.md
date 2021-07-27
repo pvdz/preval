@@ -84,7 +84,6 @@ for (key of tmpForOfDeclRhs) {
   } else {
   }
   if (x) {
-    continue;
   } else {
     x = $(4);
   }

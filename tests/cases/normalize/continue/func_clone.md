@@ -61,10 +61,6 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 while ($) {
   $(1);
-  if ($) {
-    continue;
-  } else {
-  }
 }
 $(undefined);
 `````

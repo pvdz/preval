@@ -106,10 +106,7 @@ while (run) {
 let run = true;
 while (run) {
   $(1);
-  tmpSwitchBreak: {
-    run = false;
-    break tmpSwitchBreak;
-  }
+  run = false;
 }
 `````
 

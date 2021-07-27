@@ -710,40 +710,25 @@ try {
 }
 considerMutated(1);
 let x$13 = 0;
-foo: {
-  try {
-    if ($) {
-      break foo;
-    } else {
-    }
-  } catch {
-    x$13 = 1;
-  } finally {
-  }
+try {
+} catch {
+  x$13 = 1;
+} finally {
 }
 considerMutated(x$13);
-foo$1: {
-  try {
-    break foo$1;
-  } catch {
-  } finally {
-  }
+try {
+} catch {
+} finally {
 }
 considerMutated(1);
-foo$3: {
-  try {
-    break foo$3;
-  } catch {
-  } finally {
-  }
+try {
+} catch {
+} finally {
 }
 considerMutated(1);
-foo$5: {
-  try {
-    break foo$5;
-  } catch {
-  } finally {
-  }
+try {
+} catch {
+} finally {
 }
 considerMutated(1);
 const f = function () {

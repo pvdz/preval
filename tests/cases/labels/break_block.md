@@ -35,9 +35,7 @@ foo: {
 ## Output
 
 `````js filename=intro
-foo: {
-  break foo;
-}
+
 `````
 
 ## Globals

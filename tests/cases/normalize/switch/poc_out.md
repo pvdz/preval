@@ -130,35 +130,30 @@ exit: {
 
 `````js filename=intro
 let fallthrough = false;
-exit: {
-  const tmpBinBothRhs = $(1);
-  let tmpIfTest$1 = true;
-  const tmpIfTest = undefined === tmpBinBothRhs;
-  if (tmpIfTest) {
-    $(`A`);
-    fallthrough = true;
-  } else {
-    tmpIfTest$1 = fallthrough;
-  }
-  if (fallthrough) {
-  } else {
-    const tmpBinBothRhs$1 = $(2);
-    tmpIfTest$1 = undefined === tmpBinBothRhs$1;
-  }
-  if (tmpIfTest$1) {
+const tmpBinBothRhs = $(1);
+const tmpIfTest = undefined === tmpBinBothRhs;
+if (tmpIfTest) {
+  $(`A`);
+  fallthrough = true;
+} else {
+}
+if (fallthrough) {
+  $(`B`);
+} else {
+  const tmpBinBothRhs$1 = $(2);
+  const tmpClusterSSA_tmpIfTest$1 = undefined === tmpBinBothRhs$1;
+  if (tmpClusterSSA_tmpIfTest$1) {
     $(`B`);
-    break exit;
   } else {
-    let tmpIfTest$3 = fallthrough;
     if (fallthrough) {
+      $(`C`);
     } else {
       const tmpBinBothRhs$3 = $(3);
-      tmpIfTest$3 = undefined === tmpBinBothRhs$3;
-    }
-    if (tmpIfTest$3) {
-      $(`C`);
-      break exit;
-    } else {
+      const tmpClusterSSA_tmpIfTest$3 = undefined === tmpBinBothRhs$3;
+      if (tmpClusterSSA_tmpIfTest$3) {
+        $(`C`);
+      } else {
+      }
     }
   }
 }

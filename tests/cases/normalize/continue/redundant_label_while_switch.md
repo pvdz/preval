@@ -158,7 +158,6 @@ while (x) {
     const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
     if (tmpIfTest$9) {
       $(1);
-      continue;
     } else {
       const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
       if (tmpIfTest$11) {

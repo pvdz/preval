@@ -111,7 +111,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
@@ -126,31 +125,29 @@ if (tmpIfTest) {
   } else {
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    const tmpChainElementCall = $(b);
-    const tmpIfTest$5 = tmpChainElementCall == null;
-    if (tmpIfTest$5) {
-    } else {
-      const tmpChainRootComputed = $(`\$`);
-      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-      const tmpIfTest$7 = tmpChainElementObject == null;
-      if (tmpIfTest$7) {
-      } else {
-        const tmpCalleeParam$3 = $(1);
-        $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
-      }
-    }
-    break tmpSwitchBreak;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  const b = { $: $ };
+  const tmpChainElementCall = $(b);
+  const tmpIfTest$5 = tmpChainElementCall == null;
+  if (tmpIfTest$5) {
   } else {
-    const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$9) {
-      $(`fail1`);
+    const tmpChainRootComputed = $(`\$`);
+    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+    const tmpIfTest$7 = tmpChainElementObject == null;
+    if (tmpIfTest$7) {
     } else {
+      const tmpCalleeParam$3 = $(1);
+      $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
     }
-    $(`fail2`);
   }
+} else {
+  const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$9) {
+    $(`fail1`);
+  } else {
+  }
+  $(`fail2`);
 }
 $(a);
 `````

@@ -94,10 +94,8 @@ while (tmpIfTest) {
     const tmpIfTest$1 = $(1);
     if (tmpIfTest$1) {
       $(`pass`);
-      continue;
     } else {
       $(`do not visit`);
-      continue;
     }
   }
   $(`infiloop, do not eliminate`);

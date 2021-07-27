@@ -74,7 +74,6 @@ while (x) {
   } else {
   }
   if (x) {
-    continue;
   } else {
     x = $(4);
   }

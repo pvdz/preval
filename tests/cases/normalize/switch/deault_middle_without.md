@@ -192,33 +192,28 @@ if (tmpIfTest) {
     }
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$9 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$9) {
-    $(1);
-    break tmpSwitchBreak;
+const tmpIfTest$9 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$9) {
+  $(1);
+} else {
+  const tmpIfTest$11 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$11) {
+    $(2);
   } else {
-    const tmpIfTest$11 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$11) {
-      $(2);
+  }
+  const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$13) {
+    $(3);
+  } else {
+  }
+  const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
+  if (tmpIfTest$15) {
+    $(4);
+  } else {
+    const tmpIfTest$17 = tmpSwitchCaseToStart <= 4;
+    if (tmpIfTest$17) {
+      $(5);
     } else {
-    }
-    const tmpIfTest$13 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$13) {
-      $(3);
-    } else {
-    }
-    const tmpIfTest$15 = tmpSwitchCaseToStart <= 3;
-    if (tmpIfTest$15) {
-      $(4);
-      break tmpSwitchBreak;
-    } else {
-      const tmpIfTest$17 = tmpSwitchCaseToStart <= 4;
-      if (tmpIfTest$17) {
-        $(5);
-        break tmpSwitchBreak;
-      } else {
-      }
     }
   }
 }

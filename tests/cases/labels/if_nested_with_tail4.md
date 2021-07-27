@@ -121,24 +121,18 @@ const f = function () {
   $(100);
   const tmpIfTest$5 = $(0);
   if (tmpIfTest$5) {
-    label2$1: {
-      const tmpIfTest$7 = $(0);
-      if (tmpIfTest$7) {
-        label3$1: {
-          const tmpIfTest$9 = $(0);
-          if (tmpIfTest$9) {
-            break label2$1;
-          } else {
-            break label3$1;
-          }
-        }
-        $(`tail3`);
+    const tmpIfTest$7 = $(0);
+    if (tmpIfTest$7) {
+      const tmpIfTest$9 = $(0);
+      if (tmpIfTest$9) {
       } else {
-        tmpAfterLabel();
-        return undefined;
+        $(`tail3`);
       }
+      $(`tail2`);
+    } else {
+      tmpAfterLabel();
+      return undefined;
     }
-    $(`tail2`);
   } else {
   }
   tmpAfterLabel();

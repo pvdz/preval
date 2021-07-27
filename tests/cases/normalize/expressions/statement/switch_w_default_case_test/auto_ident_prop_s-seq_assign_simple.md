@@ -98,21 +98,12 @@ $(a, b);
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 b.c = 2;
 const tmpIfTest = 2 === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
 } else {
-}
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    break tmpSwitchBreak;
-  } else {
-    $(`fail1`);
-    $(`fail2`);
-  }
+  $(`fail1`);
+  $(`fail2`);
 }
 $(a, b);
 `````

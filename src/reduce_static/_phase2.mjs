@@ -61,6 +61,7 @@ import { restParams } from './rest_params.mjs';
 import { andIfAndIf } from './and_if_and_if.mjs';
 import { ifMerging } from './if_merging.mjs';
 import { ifFalsySpread } from './if_falsy_spread.mjs';
+import { tailBreaking } from './tail_breaking.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -318,6 +319,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const ifs = ifFalsySpread(fdata);
   if (ifs) return ifs;
+
+  const tb = tailBreaking(fdata);
+  if (tb) return tb;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

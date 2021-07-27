@@ -70,19 +70,11 @@ $(`after, do not evaluate (infinite loop)`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpSwitchValue = $(1, `disc`);
-    const tmpBinLhs = $(1, `case`);
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      continue;
-    } else {
-    }
-  } else {
-    break;
-  }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  $(1, `disc`);
+  $(1, `case`);
+  tmpIfTest = $(true);
 }
 $(`after, do not evaluate (infinite loop)`);
 `````

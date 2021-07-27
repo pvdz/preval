@@ -31,9 +31,7 @@ a: {
 ## Output
 
 `````js filename=intro
-a: {
-  break a;
-}
+
 `````
 
 ## Globals

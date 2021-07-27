@@ -108,25 +108,16 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 2 };
 const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
+  const tmpNestedAssignComMemberProp = $(`x`);
+  const varInitAssignLhsComputedObj = $(3);
+  const varInitAssignLhsComputedProp = $(`y`);
+  const varInitAssignLhsComputedRhs = $(4);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  b[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
 } else {
-}
-tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const tmpNestedAssignComMemberProp = $(`x`);
-    const varInitAssignLhsComputedObj = $(3);
-    const varInitAssignLhsComputedProp = $(`y`);
-    const varInitAssignLhsComputedRhs = $(4);
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    b[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-    break tmpSwitchBreak;
-  } else {
-  }
 }
 $(1, b, 3);
 `````

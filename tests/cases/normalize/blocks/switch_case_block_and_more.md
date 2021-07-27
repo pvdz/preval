@@ -63,20 +63,11 @@ tmpSwitchBreak: {
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(2);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
+  $(3);
 } else {
-}
-tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    $(3);
-    break tmpSwitchBreak;
-  } else {
-  }
 }
 `````
 

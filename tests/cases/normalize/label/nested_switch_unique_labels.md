@@ -79,13 +79,7 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = 3 === $;
-if (tmpIfTest) {
-  tmpSwitchBreak$1: {
-    break tmpSwitchBreak$1;
-  }
-} else {
-}
+
 `````
 
 ## Globals

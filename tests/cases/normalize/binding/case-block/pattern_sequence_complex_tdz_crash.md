@@ -86,25 +86,16 @@ $(x, y, z);
 `````js filename=intro
 const z = [10, 20, 30];
 const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
+  $(undefined);
+  $(undefined);
+  const arrAssignPatternRhs = $(z);
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  arrPatternSplat[0];
+  arrPatternSplat[1];
 } else {
-}
-tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    $(undefined);
-    $(undefined);
-    const arrAssignPatternRhs = $(z);
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    arrPatternSplat[0];
-    arrPatternSplat[1];
-    break tmpSwitchBreak;
-  } else {
-  }
 }
 $(1, 2, z);
 `````

@@ -58,17 +58,13 @@ $(2);
 
 `````js filename=intro
 $(0);
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpIfTest$1 = $();
-    if (tmpIfTest$1) {
-      break;
-    } else {
-      continue;
-    }
-  } else {
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  const tmpIfTest$1 = $();
+  if (tmpIfTest$1) {
     break;
+  } else {
+    tmpIfTest = $(true);
   }
 }
 $(2);

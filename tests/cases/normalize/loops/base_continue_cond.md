@@ -71,11 +71,6 @@ let n = 0;
 while (true) {
   n = n + 1;
   $(n);
-  const tmpIfTest = n < 8;
-  if (tmpIfTest) {
-    continue;
-  } else {
-  }
 }
 $(`afterwards`);
 $(100);

@@ -84,21 +84,16 @@ $(`after, do not evaluate (infinite loop)`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpSwitchValue = $(1, `disc`);
-    const tmpBinLhs = $(0);
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      $(`keep, do not eval`);
-      continue;
-    } else {
-      continue;
-    }
+let tmpIfTest = $(true);
+while (tmpIfTest) {
+  const tmpSwitchValue = $(1, `disc`);
+  const tmpBinLhs = $(0);
+  const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest$1) {
+    $(`keep, do not eval`);
   } else {
-    break;
   }
+  tmpIfTest = $(true);
 }
 $(`after, do not evaluate (infinite loop)`);
 `````

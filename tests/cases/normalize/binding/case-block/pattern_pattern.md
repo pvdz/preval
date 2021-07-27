@@ -85,25 +85,16 @@ let x = 1;
 let y = 2;
 const z = [10, 20, 30];
 const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
+  const arrPatternSplat$1 = [...z];
+  x = arrPatternSplat$1[1];
+  y = arrPatternSplat$1[2];
+  const arrPatternSplat = [...z];
+  arrPatternSplat[0];
+  arrPatternSplat[1];
 } else {
-}
-tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const arrPatternSplat$1 = [...z];
-    x = arrPatternSplat$1[1];
-    y = arrPatternSplat$1[2];
-    const arrPatternSplat = [...z];
-    arrPatternSplat[0];
-    arrPatternSplat[1];
-    break tmpSwitchBreak;
-  } else {
-  }
 }
 $(1, 2, x, y, z);
 `````

@@ -144,23 +144,19 @@ if (tmpIfTest) {
     }
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$5) {
-    $(`A`);
+const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$5) {
+  $(`A`);
+} else {
+}
+const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
+if (tmpIfTest$7) {
+  $(`B`);
+} else {
+  const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
+  if (tmpIfTest$9) {
+    $(`C`);
   } else {
-  }
-  const tmpIfTest$7 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$7) {
-    $(`B`);
-    break tmpSwitchBreak;
-  } else {
-    const tmpIfTest$9 = tmpSwitchCaseToStart <= 2;
-    if (tmpIfTest$9) {
-      $(`C`);
-      break tmpSwitchBreak;
-    } else {
-    }
   }
 }
 `````

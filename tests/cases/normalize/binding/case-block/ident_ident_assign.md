@@ -74,27 +74,17 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let b = 2;
 const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
+  const varInitAssignLhsComputedObj = $(3);
+  const varInitAssignLhsComputedRhs = $(4);
+  varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
+  $(1, varInitAssignLhsComputedRhs, 3);
 } else {
+  $(1, 2, 3);
 }
-tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
-    const varInitAssignLhsComputedObj = $(3);
-    const varInitAssignLhsComputedRhs = $(4);
-    varInitAssignLhsComputedObj.y = varInitAssignLhsComputedRhs;
-    b = varInitAssignLhsComputedRhs;
-    break tmpSwitchBreak;
-  } else {
-  }
-}
-$(1, b, 3);
 `````
 
 ## Globals

@@ -55,10 +55,7 @@ tmpSwitchBreak: {
 
 `````js filename=intro
 $(1);
-tmpSwitchBreak: {
-  $(3);
-  break tmpSwitchBreak;
-}
+$(3);
 `````
 
 ## Globals

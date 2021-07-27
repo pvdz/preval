@@ -115,23 +115,20 @@ if (tmpIfTest) {
   } else {
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    const tmpArrElement = $(2);
-    const tmpCalleeParam = [tmpArrElement];
-    const arrAssignPatternRhs = $(tmpCalleeParam);
-    const arrPatternSplat = [...arrAssignPatternRhs];
-    b = arrPatternSplat[0];
-    break tmpSwitchBreak;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  const tmpArrElement = $(2);
+  const tmpCalleeParam = [tmpArrElement];
+  const arrAssignPatternRhs = $(tmpCalleeParam);
+  const arrPatternSplat = [...arrAssignPatternRhs];
+  b = arrPatternSplat[0];
+} else {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $(`fail1`);
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      $(`fail1`);
-    } else {
-    }
-    $(`fail2`);
   }
+  $(`fail2`);
 }
 $(a, b);
 `````

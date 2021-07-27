@@ -130,25 +130,22 @@ if (tmpIfTest) {
   } else {
   }
 }
-tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
-    const tmpAssignComMemLhsObj = $(b);
-    const tmpAssignComMemLhsProp = $(`x`);
-    const varInitAssignLhsComputedObj = $(c);
-    const varInitAssignLhsComputedProp = $(`y`);
-    const varInitAssignLhsComputedRhs = $(3);
-    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-    tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
-    break tmpSwitchBreak;
+const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+if (tmpIfTest$3) {
+  const tmpAssignComMemLhsObj = $(b);
+  const tmpAssignComMemLhsProp = $(`x`);
+  const varInitAssignLhsComputedObj = $(c);
+  const varInitAssignLhsComputedProp = $(`y`);
+  const varInitAssignLhsComputedRhs = $(3);
+  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+  tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = varInitAssignLhsComputedRhs;
+} else {
+  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+  if (tmpIfTest$5) {
+    $(`fail1`);
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
-      $(`fail1`);
-    } else {
-    }
-    $(`fail2`);
   }
+  $(`fail2`);
 }
 $(a, b, c, 3);
 `````

@@ -63,7 +63,6 @@ f();
 while (x) {
   $(1);
   if ($) {
-    continue;
   } else {
     $(2);
   }

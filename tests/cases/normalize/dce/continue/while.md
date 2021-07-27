@@ -57,13 +57,9 @@ $(`after, do not evaluate (infinite loop)`);
 `````js filename=intro
 let tmpIfTest = $(true);
 while (tmpIfTest) {
-  while (true) {
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      continue;
-    } else {
-      break;
-    }
+  let tmpIfTest$1 = $(true);
+  while (tmpIfTest$1) {
+    tmpIfTest$1 = $(true);
   }
   tmpIfTest = $(true);
 }

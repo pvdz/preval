@@ -67,7 +67,6 @@ while (true) {
   if (tmpIfTest) {
     tmpDoWhileFlag = false;
     $(1);
-    continue;
   } else {
     break;
   }

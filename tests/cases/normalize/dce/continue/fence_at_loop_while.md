@@ -67,14 +67,10 @@ $(`after (not invoked)`);
 let tmpIfTest = $(true);
 while (tmpIfTest) {
   $(`loop`);
-  while (true) {
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(`loop`);
-      continue;
-    } else {
-      break;
-    }
+  let tmpIfTest$1 = $(true);
+  while (tmpIfTest$1) {
+    $(`loop`);
+    tmpIfTest$1 = $(true);
   }
   $(`infiloop, do not eliminate`);
   tmpIfTest = $(true);

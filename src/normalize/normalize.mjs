@@ -5905,6 +5905,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
         // TODO: edge case; primitive values that are spread can be safely unrolled here
 
+        const known = new Set();
+        const toOutline = [];
         let hasSpread = 0;
         let spreadComplex = false;
         let hasNonSpread = false;
@@ -5970,8 +5972,45 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               after(parentNode);
               changes = true;
             }
+
+            // This prop deduping becomes more relevant as the normalization process folds up spreads
+            if (pnode.kind === 'init') { // Ignore getters/setters/static stuff.
+              if (pnode.key.type === 'Identifier') {
+                if (known.has(pnode.key.name)) {
+                  rule('Object literals with duplicate ident keys should not have those dupes');
+                  example('const x = {a: 1, a: 2};', 'const x = {a: 2};');
+                  before(parentNode);
+
+                  node.properties.splice(pi, 1);
+                  toOutline.unshift(AST.expressionStatement(pnode.value));
+
+                  after(parentNode);
+                  changes = true;
+                } else {
+                  known.add(pnode.key.name);
+                }
+              } else if (AST.isPrimitive(pnode.key)) {
+                const pv = AST.getPrimitiveValue(pnode.key);
+                if (known.has(pv)) {
+                  rule('Object literals with duplicate string or number keys should not have those dupes');
+                  example('const x = {"hello world": 1, "hello world": 2};', 'const x = {"hello world": 2};');
+                  example('const x = {500: 1, 500: 2};', 'const x = {500: 2};');
+                  before(parentNode);
+
+                  node.properties.splice(pi, 1);
+                  toOutline.unshift(AST.expressionStatement(pnode.value));
+
+                  after(parentNode);
+                  changes = true;
+                } else {
+                  known.add(pv);
+                }
+              }
+            }
           }
         }
+
+        body.splice(i, 0, ...toOutline);
 
         if (changes) return true;
 

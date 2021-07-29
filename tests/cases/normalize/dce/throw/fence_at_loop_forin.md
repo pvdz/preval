@@ -80,14 +80,20 @@ let tmpIfTest = $(true);
 while (tmpIfTest) {
   $(`loop`);
   let x = undefined;
+  let tmpForEntered = false;
   const tmpForInDeclRhs = { a: 1, b: 2 };
   for (x in tmpForInDeclRhs) {
+    tmpForEntered = true;
+    break;
+  }
+  if (tmpForEntered) {
     $(`loop`, x);
     const tmpThrowArg = $(7, `throw`);
     throw tmpThrowArg;
+  } else {
+    $(`fail`);
+    tmpIfTest = $(true);
   }
-  $(`fail`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked but should not be eliminated)`);
 $(undefined);

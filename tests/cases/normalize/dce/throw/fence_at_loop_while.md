@@ -80,15 +80,13 @@ while (tmpIfTest) {
   $(`loop`);
   const tmpIfTest$1 = $(true);
   if (tmpIfTest$1) {
-    while (true) {
-      $(`loop`);
-      const tmpThrowArg = $(7, `throw`);
-      throw tmpThrowArg;
-    }
+    $(`loop`);
+    const tmpThrowArg = $(7, `throw`);
+    throw tmpThrowArg;
   } else {
+    $(`do not visit, do not eliminate`);
+    tmpIfTest = $(true);
   }
-  $(`do not visit, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 $(undefined);

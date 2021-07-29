@@ -44,11 +44,8 @@ while (true) {
 ## Output
 
 `````js filename=intro
-while (true) {
-  const a = $(1);
-  $(a);
-  break;
-}
+const a = $(1);
+$(a);
 `````
 
 ## Globals

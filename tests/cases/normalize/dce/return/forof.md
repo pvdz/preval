@@ -59,12 +59,18 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   let x = undefined;
+  let tmpForEntered = false;
   const tmpForOfDeclRhs = [10, 20];
   for (x of tmpForOfDeclRhs) {
+    tmpForEntered = true;
+    break;
+  }
+  if (tmpForEntered) {
     const tmpReturnArg = $(1, `return`);
     return tmpReturnArg;
+  } else {
+    return undefined;
   }
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

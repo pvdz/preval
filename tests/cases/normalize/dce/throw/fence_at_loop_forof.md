@@ -80,14 +80,20 @@ let tmpIfTest = $(true);
 while (tmpIfTest) {
   $(`loop`);
   let x = undefined;
+  let tmpForEntered = false;
   const tmpForOfDeclRhs = [1, 2];
   for (x of tmpForOfDeclRhs) {
+    tmpForEntered = true;
+    break;
+  }
+  if (tmpForEntered) {
     $(`loop`, x);
     const tmpThrowArg = $(7, `throw`);
     throw tmpThrowArg;
+  } else {
+    $(`do not visit, do not eliminate`);
+    tmpIfTest = $(true);
   }
-  $(`do not visit, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 $(undefined);

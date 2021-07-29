@@ -82,15 +82,13 @@ const f = function () {
     $(`loop`);
     const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
-      while (true) {
-        $(`loop`);
-        const tmpReturnArg = $(100, `return`);
-        return tmpReturnArg;
-      }
+      $(`loop`);
+      const tmpReturnArg = $(100, `return`);
+      return tmpReturnArg;
     } else {
+      $(`do not visit, do not eliminate`);
+      tmpIfTest = $(true);
     }
-    $(`do not visit, do not eliminate`);
-    tmpIfTest = $(true);
   }
   $(`after (not invoked)`);
   return undefined;

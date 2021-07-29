@@ -53,10 +53,7 @@ $(2);
 
 `````js filename=intro
 $(0);
-while (true) {
-  $(true);
-  break;
-}
+$(true);
 $(2);
 `````
 

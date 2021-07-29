@@ -58,13 +58,19 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let x = undefined;
+let tmpForEntered = false;
 const tmpForInDeclRhs = { a: 1, b: 2 };
 for (x in tmpForInDeclRhs) {
+  tmpForEntered = true;
+  break;
+}
+if (tmpForEntered) {
   const tmpThrowArg = $(1, `return`);
   throw tmpThrowArg;
+} else {
+  $(`keep, do not eval`);
+  $(undefined);
 }
-$(`keep, do not eval`);
-$(undefined);
 `````
 
 ## Globals

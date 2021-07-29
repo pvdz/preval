@@ -59,11 +59,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpThrowArg = $(1, `throw`);
-  throw tmpThrowArg;
-}
-$(undefined);
+const tmpThrowArg = $(1, `throw`);
+throw tmpThrowArg;
 `````
 
 ## Globals

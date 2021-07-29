@@ -51,12 +51,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  a = undefined;
-  break;
-}
-$(a, 1);
+$(undefined, 1);
 `````
 
 ## Globals

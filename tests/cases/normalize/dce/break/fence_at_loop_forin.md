@@ -65,10 +65,15 @@ let tmpIfTest = $(true);
 while (tmpIfTest) {
   $(`loop`);
   let x = undefined;
+  let tmpForEntered = false;
   const tmpForInDeclRhs = { a: 1, b: 2 };
   for (x in tmpForInDeclRhs) {
-    $(`loop`, x);
+    tmpForEntered = true;
     break;
+  }
+  if (tmpForEntered) {
+    $(`loop`, x);
+  } else {
   }
   $(`infiloop, do not eliminate`);
   tmpIfTest = $(true);

@@ -65,10 +65,7 @@ while (tmpIfTest) {
   $(`loop`);
   const tmpIfTest$1 = $(true);
   if (tmpIfTest$1) {
-    while (true) {
-      $(`loop`);
-      break;
-    }
+    $(`loop`);
   } else {
   }
   $(`infiloop, do not eliminate`);

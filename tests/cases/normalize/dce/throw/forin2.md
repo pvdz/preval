@@ -60,13 +60,19 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let x = undefined;
+let tmpForEntered = false;
 const tmpForOfDeclRhs = [10, 20];
 for (x of tmpForOfDeclRhs) {
+  tmpForEntered = true;
+  break;
+}
+if (tmpForEntered) {
   const tmpThrowArg = $(1, `throw`);
   throw tmpThrowArg;
+} else {
+  $(`keep, do not eval`);
+  $(undefined);
 }
-$(`keep, do not eval`);
-$(undefined);
 `````
 
 ## Globals

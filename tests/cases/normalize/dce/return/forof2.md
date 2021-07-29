@@ -62,13 +62,19 @@ tmpCallCallee(tmpCalleeParam);
 const f = function () {
   debugger;
   let x = undefined;
+  let tmpForEntered = false;
   const tmpForInDeclRhs = { a: 1, b: 2 };
   for (x in tmpForInDeclRhs) {
+    tmpForEntered = true;
+    break;
+  }
+  if (tmpForEntered) {
     const tmpReturnArg = $(1, `return`);
     return tmpReturnArg;
+  } else {
+    $(`keep, do not eval`);
+    return undefined;
   }
-  $(`keep, do not eval`);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

@@ -59,15 +59,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  while (true) {
-    const tmpReturnArg = $(1, `return`);
-    return tmpReturnArg;
-  }
-  return undefined;
-};
-const tmpCalleeParam = f();
+const tmpCalleeParam = $(1, `return`);
 $(tmpCalleeParam);
 `````
 

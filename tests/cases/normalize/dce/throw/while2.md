@@ -60,14 +60,12 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  while (true) {
-    const tmpThrowArg = $(1, `throw`);
-    throw tmpThrowArg;
-  }
+  const tmpThrowArg = $(1, `throw`);
+  throw tmpThrowArg;
 } else {
+  $(`keep, do not eval`);
+  $(undefined);
 }
-$(`keep, do not eval`);
-$(undefined);
 `````
 
 ## Globals

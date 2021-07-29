@@ -62,14 +62,12 @@ const f = function () {
   debugger;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    while (true) {
-      const tmpReturnArg = $(1, `return`);
-      return tmpReturnArg;
-    }
+    const tmpReturnArg = $(1, `return`);
+    return tmpReturnArg;
   } else {
+    $(`keep, do not eval`);
+    return undefined;
   }
-  $(`keep, do not eval`);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

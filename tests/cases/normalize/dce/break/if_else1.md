@@ -61,10 +61,7 @@ $(`after`);
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  while (true) {
-    $(1);
-    break;
-  }
+  $(1);
 } else {
 }
 $(`after`);

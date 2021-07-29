@@ -83,19 +83,16 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  let tmpIfTest = $(true);
-  while (tmpIfTest) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
     $(`loop`);
-    while (true) {
-      $(`loop`);
-      const tmpReturnArg = $(100, `return`);
-      return tmpReturnArg;
-    }
-    $(`do not visit, do not eliminate`);
-    tmpIfTest = $(true);
+    $(`loop`);
+    const tmpReturnArg = $(100, `return`);
+    return tmpReturnArg;
+  } else {
+    $(`after (not invoked)`);
+    return undefined;
   }
-  $(`after (not invoked)`);
-  return undefined;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

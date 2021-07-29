@@ -58,9 +58,7 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(false);
   if (tmpIfTest$1) {
-    while (true) {
-      throw `Preval: Cannot access \`x\` before initialization`;
-    }
+    throw `Preval: Cannot access \`x\` before initialization`;
   } else {
   }
 } else {

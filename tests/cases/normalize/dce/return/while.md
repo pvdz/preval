@@ -59,11 +59,8 @@ const f = function () {
   debugger;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    while (true) {
-      const tmpReturnArg = $(1, `return`);
-      return tmpReturnArg;
-    }
-    return undefined;
+    const tmpReturnArg = $(1, `return`);
+    return tmpReturnArg;
   } else {
     return undefined;
   }

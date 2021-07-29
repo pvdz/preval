@@ -43,10 +43,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
-  $(100);
-  break;
-}
+$(100);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

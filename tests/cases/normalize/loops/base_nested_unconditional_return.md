@@ -64,20 +64,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  $(`outer`);
-  while (true) {
-    $(`middle`);
-    while (true) {
-      $(`inner`);
-      return 100;
-    }
-  }
-  return undefined;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(`outer`);
+$(`middle`);
+$(`inner`);
+$(100);
 `````
 
 ## Globals

@@ -93,19 +93,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  let n = 0;
-  while (true) {
-    n = n + 1;
-    $(n);
-    return n;
-  }
-  $(`afterwards`);
-  return 100;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+$(1);
+$(1);
 `````
 
 ## Globals

@@ -81,19 +81,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
-while (tmpIfTest) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
   $(`loop`);
-  while (true) {
-    $(`loop`);
-    const tmpThrowArg = $(7, `throw`);
-    throw tmpThrowArg;
-  }
-  $(`do not visit, do not eliminate`);
-  tmpIfTest = $(true);
+  $(`loop`);
+  const tmpThrowArg = $(7, `throw`);
+  throw tmpThrowArg;
+} else {
+  $(`after (not invoked)`);
+  $(undefined);
 }
-$(`after (not invoked)`);
-$(undefined);
 `````
 
 ## Globals

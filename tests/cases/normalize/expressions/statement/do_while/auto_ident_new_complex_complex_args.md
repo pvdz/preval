@@ -56,13 +56,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   const tmpNewCallee = $($);
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
-  tmpDoWhileFlag = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+  new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
 }
 const a = { a: 999, b: 1000 };
 $(a);

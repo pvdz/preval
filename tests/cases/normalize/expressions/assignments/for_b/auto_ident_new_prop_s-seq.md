@@ -58,11 +58,7 @@ const b = { $: $ };
 while (true) {
   const tmpNewCallee = b.$;
   a = new tmpNewCallee(1);
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a);
 `````

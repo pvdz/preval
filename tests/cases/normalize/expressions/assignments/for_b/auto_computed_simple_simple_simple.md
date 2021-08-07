@@ -55,11 +55,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 a.b = 2;
 $(a);

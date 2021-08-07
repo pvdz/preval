@@ -55,11 +55,7 @@ while (true) {
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
   a = new $(tmpCalleeParam, tmpCalleeParam$1);
-  if (a) {
-    $(100);
-  } else {
-    break;
-  }
+  $(100);
 }
 $(a);
 `````

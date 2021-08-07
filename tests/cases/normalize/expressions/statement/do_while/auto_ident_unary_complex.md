@@ -54,11 +54,9 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
-  const tmpUnaryArg = $(1);
-  tmpDoWhileFlag = typeof tmpUnaryArg;
+  $(1);
 }
 const a = { a: 999, b: 1000 };
 $(a, 1);

@@ -57,11 +57,7 @@ while (true) {
     debugger;
     return undefined;
   };
-  if (a) {
-    $(100);
-  } else {
-    break;
-  }
+  $(100);
 }
 $(a);
 `````

@@ -75,8 +75,7 @@ $(a, b, c, d, e);
 const b = { x: 1 };
 const c = { y: 2 };
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`x`);
@@ -85,7 +84,6 @@ while (tmpDoWhileFlag) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 7;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 7;
   a = 7;
-  tmpDoWhileFlag = 7;
 }
 $(a, b, c, 3, 4);
 `````

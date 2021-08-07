@@ -51,11 +51,7 @@ while (true) {
   const tmpArrElement = $(1);
   const tmpArrElement$3 = $(3);
   a = [tmpArrElement, 2, tmpArrElement$3];
-  if (a) {
-    $(100);
-  } else {
-    break;
-  }
+  $(100);
 }
 $(a);
 `````

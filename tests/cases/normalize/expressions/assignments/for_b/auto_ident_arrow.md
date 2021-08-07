@@ -60,11 +60,7 @@ while (true) {
     debugger;
     return undefined;
   };
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a);
 `````

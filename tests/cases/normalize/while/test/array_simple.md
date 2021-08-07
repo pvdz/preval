@@ -40,10 +40,8 @@ $(`after`);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = [1, 2, 3];
-while (tmpIfTest) {
+while (true) {
   $(`loop`);
-  tmpIfTest = [1, 2, 3];
 }
 $(`after`);
 `````

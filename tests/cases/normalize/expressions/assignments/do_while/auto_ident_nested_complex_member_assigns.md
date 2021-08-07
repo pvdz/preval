@@ -87,9 +87,8 @@ $(a, b, c);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 const b = { x: 1 };
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`x`);
@@ -110,7 +109,6 @@ while (tmpDoWhileFlag) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   a = 3;
-  tmpDoWhileFlag = 3;
 }
 $(a, b, 3);
 `````

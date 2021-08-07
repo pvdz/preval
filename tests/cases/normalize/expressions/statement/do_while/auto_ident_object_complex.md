@@ -52,12 +52,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$3 = $(3);
-  tmpDoWhileFlag = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+  $(1);
+  $(3);
 }
 const a = { a: 999, b: 1000 };
 $(a);

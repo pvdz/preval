@@ -55,11 +55,7 @@ while (true) {
   const tmpCompObj = $(b);
   const tmpNewCallee = tmpCompObj.$;
   a = new tmpNewCallee(1);
-  if (a) {
-    $(100);
-  } else {
-    break;
-  }
+  $(100);
 }
 $(a);
 `````

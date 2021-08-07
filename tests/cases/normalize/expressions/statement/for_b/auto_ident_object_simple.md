@@ -43,10 +43,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = { x: 1, y: 2, z: 3 };
-while (tmpIfTest) {
+while (true) {
   $(1);
-  tmpIfTest = { x: 1, y: 2, z: 3 };
 }
 const a = { a: 999, b: 1000 };
 $(a);

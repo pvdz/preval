@@ -56,11 +56,7 @@ while (true) {
   const tmpCompProp = $(`\$`);
   const tmpNewCallee = b[tmpCompProp];
   a = new tmpNewCallee(1);
-  if (a) {
-    $(100);
-  } else {
-    break;
-  }
+  $(100);
 }
 $(a);
 `````

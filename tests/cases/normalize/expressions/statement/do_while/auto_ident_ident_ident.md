@@ -58,11 +58,9 @@ $(a, b, c);
 
 `````js filename=intro
 let b = 1;
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   b = 2;
-  tmpDoWhileFlag = 2;
 }
 const a = { a: 999, b: 1000 };
 $(a, b, 2);

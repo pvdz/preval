@@ -59,13 +59,11 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
 const b = { c: 1 };
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   b.c = 2;
   a = 2;
-  tmpDoWhileFlag = 2;
 }
 $(a, b);
 `````

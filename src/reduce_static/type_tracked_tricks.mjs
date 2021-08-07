@@ -49,13 +49,14 @@ function _typeTrackedTricks(fdata) {
     const blockIndex = path.blockIndexes[path.blockIndexes.length - 1];
 
     switch (node.type) {
-      case 'IfStatement': {
-        // Other rules should pick up on primitive nodes in if tests.
+      case 'IfStatement':
+      case 'WhileStatement': {
+        // Other rules should pick up on primitive nodes in if/while tests.
         // But what if we know the type just not the actual value? Often we do know the falsy value.
         // Unfortunately, most of the time that value is discarded. But still. It may not be :)
         if (node.test.type === 'Identifier') {
           const testMeta = fdata.globallyUniqueNamingRegistry.get(node.test.name);
-          if (testMeta.isConstant || testMeta.isBuiltin) {
+          if (!testMeta.isImplicitGlobal) {
             if (testMeta.typing.mustBeFalsy) {
               //TODO: test;
               // undefined/null will lead to a literal. boolean must be false. string must be empty. number is unknown but also unhandled at the moment. so I'm not sure this case can be reached right now.
@@ -63,6 +64,7 @@ function _typeTrackedTricks(fdata) {
               example('if (1) {}', 'if (true) {}');
               before(node.test, node);
 
+              // TODO: fix implicit global errors by compiling the test as a statement
               node.test = AST.fals();
 
               after(node.test, node);
@@ -73,33 +75,17 @@ function _typeTrackedTricks(fdata) {
               example('if (0) {}', 'if (false) {}');
               before(node.test, node);
 
+              // TODO: fix implicit global errors by compiling the test as a statement
               node.test = AST.tru();
 
               after(node.test, node);
               ++changes;
-            } else if (testMeta.typing.mustBeType) {
+            } else if (node.type !== 'WhileStatement' && (testMeta.isConstant || testMeta.isBuiltin) && testMeta.typing.mustBeType) {
               const ttm = testMeta.typing.mustBeType;
               vlog('Found an `if` testing constant `' + node.test.name + '` with mustBeType:', ttm);
+              // Cases in this switch will inline the test value if they appear in either branch of an `if`
 
               switch (ttm) {
-                case 'array':
-                case 'object':
-                case 'function':
-                case 'class':
-                case 'regex': {
-                  // There is no else branch ... we should be able to wipe it..?
-                  // Covered by tests/cases/type_tracked/if/base_arr.md (and base_obj base_func base_regex)
-                  rule('If the `if` test is known to be an object-ish type, drop the `else` branch entirely');
-                  example('const x = [...x].slice(0); if (x) a(); else b();', 'const x = [...x].slice(0); a();');
-                  before(node.test, node);
-
-                  parentNode[parentProp].splice(parentIndex, 1, ...node.consequent.body);
-
-                  after(parentNode);
-                  ++changes;
-                  break;
-                }
-
                 case 'undefined':
                 case 'null': {
                   vlog('A value that is `undefined` or `null` should be handled by normalization');
@@ -219,13 +205,17 @@ function _typeTrackedTricks(fdata) {
                   // We have to bail on this prediction.
                   break;
                 }
+
+                case 'array':
+                case 'object':
+                case 'function':
+                case 'class':
+                case 'regex': {
+                  throw ASSERT(false, 'in case case testMeta.typing.mustBeTruthy must be true so this case should not be reachable...?');
+                }
                 default:
                   ASSERT(false, 'support me', ttm);
               }
-
-              // You could inject an assignment to this variable inside the else branch...
-              // It might lead to making a few values no longer `let`, though
-              // The better way is probably to walk the branch and replace all occurrences
             }
           }
         }

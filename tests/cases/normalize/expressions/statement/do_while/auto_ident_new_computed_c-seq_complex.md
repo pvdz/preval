@@ -58,13 +58,12 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   const tmpCompObj = $(b);
   const tmpCompProp = $(`\$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
-  tmpDoWhileFlag = new tmpNewCallee(1);
+  new tmpNewCallee(1);
 }
 $(a);
 `````

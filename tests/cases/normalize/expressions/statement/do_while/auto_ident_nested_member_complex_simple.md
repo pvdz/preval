@@ -71,8 +71,7 @@ $(a, b, c, d);
 const b = { x: 1 };
 const c = { y: 2 };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
@@ -80,7 +79,6 @@ while (tmpDoWhileFlag) {
   const varInitAssignLhsComputedProp = $(`y`);
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-  tmpDoWhileFlag = 3;
 }
 $(a, b, c, 3);
 `````

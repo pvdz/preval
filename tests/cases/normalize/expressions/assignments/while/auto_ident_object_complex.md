@@ -51,11 +51,7 @@ while (true) {
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$3 = $(3);
   a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-  if (a) {
-    $(100);
-  } else {
-    break;
-  }
+  $(100);
 }
 $(a);
 `````

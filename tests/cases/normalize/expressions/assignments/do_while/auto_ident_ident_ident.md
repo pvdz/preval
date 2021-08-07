@@ -61,12 +61,10 @@ $(a, b, c);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   b = 2;
   a = 2;
-  tmpDoWhileFlag = 2;
 }
 $(a, b, 2);
 `````

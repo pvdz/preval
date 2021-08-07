@@ -56,12 +56,10 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   $(10);
   $(20);
-  tmpDoWhileFlag = [1, 2];
 }
 $(a);
 `````

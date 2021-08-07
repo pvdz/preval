@@ -46,10 +46,8 @@ while (tmpDoWhileFlag) {
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(1);
-  tmpDoWhileFlag = 7;
 }
 `````
 

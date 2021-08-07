@@ -60,14 +60,12 @@ $(p, q);
 `````js filename=intro
 let p = undefined;
 let q = undefined;
-let tmpDoWhileFlag = true;
 const b = [10, 20];
-while (tmpDoWhileFlag) {
+while (true) {
   const arrAssignPatternRhs = $(b);
   const arrPatternSplat = [...arrAssignPatternRhs];
   p = arrPatternSplat[0];
   q = arrPatternSplat[1];
-  tmpDoWhileFlag = 7;
 }
 $(p, q);
 `````

@@ -49,10 +49,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
-  tmpDoWhileFlag = new $(1);
+  new $(1);
 }
 const a = { a: 999, b: 1000 };
 $(a);

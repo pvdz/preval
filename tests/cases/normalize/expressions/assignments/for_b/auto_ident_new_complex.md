@@ -52,11 +52,7 @@ let a = { a: 999, b: 1000 };
 while (true) {
   const tmpNewCallee = $($);
   a = new tmpNewCallee(1);
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 $(a);
 `````

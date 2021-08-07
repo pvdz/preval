@@ -3273,6 +3273,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             example('undefined[foo]', 'undefined.eliminatedComputedProp');
             before(node, parentNode);
 
+            body.splice(i, 0, AST.expressionStatement(node.property))
             node.computed = false;
             node.property = AST.identifier('eliminatedComputedProp'); // This does change the error message slightly...
 

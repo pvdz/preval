@@ -28,6 +28,7 @@ $(`fail, DCE me`);
 
 `````js filename=intro
 const tmpCallCallee = $;
+$(`keep me`);
 const tmpCalleeParam = undefined.eliminatedComputedProp;
 throw `[Preval]: Can not reach here`;
 `````
@@ -35,6 +36,7 @@ throw `[Preval]: Can not reach here`;
 ## Output
 
 `````js filename=intro
+$(`keep me`);
 undefined.eliminatedComputedProp;
 throw `[Preval]: Can not reach here`;
 `````
@@ -51,8 +53,6 @@ Should call `$` with:
 
 Pre normalization calls: Same
 
-Normalized calls: BAD?!
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ('<crash[ Cannot read property <ref> of <ref2> ]>')
+Final output calls: Same

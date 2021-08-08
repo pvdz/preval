@@ -41,7 +41,7 @@ function _fakeLoops(fdata) {
     // If the loop loops then all bets are off
     // If the loop does not loop and there is no try or continue, remove the loop and if the break has no label also the break
 
-    vlog('Walking:', nodeType, loopStack.length);
+    //vlog('Walking:', nodeType, loopStack.length);
 
     if (nodeType === 'WhileStatement') {
       if (beforeWalk) {
@@ -169,7 +169,7 @@ function _fakeLoops(fdata) {
         }
       }
     } else if (beforeWalk && loopStack.length) {
-      vlog('Inside a loop, node:', nodeType);
+      //vlog('Inside a loop, node:', nodeType);
       if (nodeType === 'BlockStatement') {
         // This is also the block for each branch of the `if` and the loop itself
         if (!node.body.length || !['ReturnStatement', 'ThrowStatement', 'BreakStatement'].includes(node.body[node.body.length - 1].type)) {

@@ -647,12 +647,22 @@ $(r);
 ## Output
 
 `````js filename=intro
-let i = 0;
-let tmpIfTest = true;
-while (tmpIfTest) {
-  $(i);
-  i = i + 1;
-  tmpIfTest = i < 10;
+$(0);
+$(1);
+$(2);
+$(3);
+$(4);
+$(5);
+$(6);
+$(7);
+$(8);
+$(9);
+let tmpClusterSSA_i$17 = 10;
+let tmpClusterSSA_tmpIfTest$17 = false;
+while (tmpClusterSSA_tmpIfTest$17) {
+  $(tmpClusterSSA_i$17);
+  tmpClusterSSA_i$17 = tmpClusterSSA_i$17 + 1;
+  tmpClusterSSA_tmpIfTest$17 = tmpClusterSSA_i$17 < 10;
 }
 $(100);
 `````

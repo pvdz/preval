@@ -347,3 +347,8 @@ export function coerce(v, kind) {
     ASSERT(false);
   }
 }
+
+export function isSameNodeByPrintingExpensive(A, B) {
+  // We could try to prettier it but the same node should really just print the same so I don't think we need to
+  return tmat(A, true) === tmat(B, true);
+}

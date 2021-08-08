@@ -1,0 +1,12 @@
+
+
+ranges: 0, 1, 5, 10
+offsets: -1000, -5, 0, 5, 1000
+steps: 0, 1, 5
+counter ops: +, -, *
+range ops: <, <=, >, >=
+range order: l-r, r-l
+inits: true, number, counter
+bodies: expr, const+expr, const+const+expr, if, while
+
+21600 cases. Not gonna happen.

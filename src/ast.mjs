@@ -752,21 +752,27 @@ export function zero() {
 }
 
 export function isUndefined(node) {
+  ASSERT(typeof node === 'object');
   return node.type === 'Identifier' && node.name === 'undefined';
 }
 export function isNull(node) {
+  ASSERT(typeof node === 'object');
   return node.type === 'Literal' && node.raw === 'null';
 }
 export function isBoolean(node) {
+  ASSERT(typeof node === 'object');
   return node.type === 'Literal' && typeof node.value === 'boolean';
 }
 export function isTrue(node) {
+  ASSERT(typeof node === 'object');
   return node.type === 'Literal' && node.value === true;
 }
 export function isFalse(node) {
+  ASSERT(typeof node === 'object');
   return node.type === 'Literal' && node.value === false;
 }
 export function isNumber(node) {
+  ASSERT(typeof node === 'object');
   return node.type === 'Literal' && typeof node.value === 'number';
 }
 export function isStringLiteral(node, allowLiteral = false) {

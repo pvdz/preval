@@ -143,8 +143,8 @@ export function example(from, to, condition) {
   }
 }
 
-export function before(node, parentNode, returnOnly) {
-  if (VERBOSE_TRACING) {
+export function before(node, parentNode, returnOnly, force = false) {
+  if (VERBOSE_TRACING || force) {
     if (Array.isArray(node)) {
       return node.map((n, i) => before(n, i ? undefined : parentNode, returnOnly)).join('\n');
     }
@@ -155,11 +155,11 @@ export function before(node, parentNode, returnOnly) {
     const parentCode =
       parentNode &&
       (Array.isArray(parentNode)
-        ? '\n  ' + parentNode.map((node) => (typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' '))).join('\n  ')
+        ? '\n  ' + parentNode.map((node) => (typeof node === 'string' ? node : tmat(node, true).replace(/\n/g, ' '))).join('\n  ')
         : typeof node === 'string'
         ? node
         : tmat(parentNode).replace(/\n/g, ' '));
-    const nodeCode = typeof node === 'string' ? node : tmat(node).replace(/\n/g, ' ');
+    const nodeCode = typeof node === 'string' ? node : tmat(node, true).replace(/\n/g, ' ');
 
     let output = YELLOW + 'Before: ' + RESET + nodeCode;
 

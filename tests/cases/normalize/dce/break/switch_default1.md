@@ -28,19 +28,14 @@ $('after, do not evaluate (infinite loop)');
 
 `````js filename=intro
 while ($(true)) {
-  {
-    const tmpSwitchValue = $(1, `disc`);
-    let tmpSwitchCaseToStart = 1;
-    if ($(0) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-    else;
-    tmpSwitchBreak: {
-      if (tmpSwitchCaseToStart <= 0) {
-        $(`keep, do not eval`);
-        break tmpSwitchBreak;
-      }
-      if (tmpSwitchCaseToStart <= 1) {
-        break tmpSwitchBreak;
-      }
+  tmpSwitchBreak: {
+    const tmpSwitchDisc = $(1, `disc`);
+    if (tmpSwitchDisc === $(0)) {
+      $(`keep, do not eval`);
+      break tmpSwitchBreak;
+    } else if (true) {
+      break tmpSwitchBreak;
+    } else {
     }
   }
   $(`keep`);
@@ -53,25 +48,16 @@ $(`after, do not evaluate (infinite loop)`);
 `````js filename=intro
 let tmpIfTest = $(true);
 while (tmpIfTest) {
-  const tmpSwitchValue = $(1, `disc`);
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(0);
-  const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-  }
   tmpSwitchBreak: {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$3) {
+    const tmpSwitchDisc = $(1, `disc`);
+    const tmpBinBothLhs = tmpSwitchDisc;
+    const tmpBinBothRhs = $(0);
+    const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
+    if (tmpIfTest$1) {
       $(`keep, do not eval`);
       break tmpSwitchBreak;
     } else {
-      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$5) {
-        break tmpSwitchBreak;
-      } else {
-      }
+      break tmpSwitchBreak;
     }
   }
   $(`keep`);
@@ -85,9 +71,9 @@ $(`after, do not evaluate (infinite loop)`);
 `````js filename=intro
 let tmpIfTest = $(true);
 while (tmpIfTest) {
-  const tmpSwitchValue = $(1, `disc`);
-  const tmpBinLhs = $(0);
-  const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+  const tmpSwitchDisc = $(1, `disc`);
+  const tmpBinBothRhs = $(0);
+  const tmpIfTest$1 = tmpSwitchDisc === tmpBinBothRhs;
   if (tmpIfTest$1) {
     $(`keep, do not eval`);
   } else {

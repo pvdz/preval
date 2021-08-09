@@ -23,13 +23,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      ($($(1)) && $($(1))) || $($(2));
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    ($($(1)) && $($(1))) || $($(2));
+  } else {
   }
 }
 $(a);
@@ -39,26 +37,21 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
+const tmpSwitchDisc = $(1);
+const tmpCallCallee = $;
+const tmpCalleeParam = $(1);
+let tmpIfTest = tmpCallCallee(tmpCalleeParam);
 if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  let tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
-  if (tmpIfTest$1) {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(1);
-    tmpIfTest$1 = tmpCallCallee$1(tmpCalleeParam$1);
-  } else {
-  }
-  if (tmpIfTest$1) {
-  } else {
-    const tmpCallCallee$3 = $;
-    const tmpCalleeParam$3 = $(2);
-    tmpCallCallee$3(tmpCalleeParam$3);
-  }
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(1);
+  tmpIfTest = tmpCallCallee$1(tmpCalleeParam$1);
 } else {
+}
+if (tmpIfTest) {
+} else {
+  const tmpCallCallee$3 = $;
+  const tmpCalleeParam$3 = $(2);
+  tmpCallCallee$3(tmpCalleeParam$3);
 }
 $(a);
 `````
@@ -68,13 +61,13 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpCalleeParam = $(1);
-let tmpIfTest$1 = $(tmpCalleeParam);
-if (tmpIfTest$1) {
+let tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
-  tmpIfTest$1 = $(tmpCalleeParam$1);
+  tmpIfTest = $(tmpCalleeParam$1);
 } else {
 }
-if (tmpIfTest$1) {
+if (tmpIfTest) {
 } else {
   const tmpCalleeParam$3 = $(2);
   $(tmpCalleeParam$3);

@@ -25,14 +25,10 @@ $(a);
 `````js filename=intro
 let b = { x: { y: 1 } };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 1;
-  if ((a = $(b)?.[$(`x`)]?.[$(`y`)]) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (tmpSwitchDisc === (a = $(b)?.[$(`x`)]?.[$(`y`)])) {
+  } else {
   }
 }
 $(a);
@@ -44,8 +40,8 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
+const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = tmpSwitchDisc;
 a = undefined;
 const tmpChainRootCall = $;
 const tmpChainElementCall = tmpChainRootCall(b);
@@ -62,13 +58,8 @@ if (tmpIfTest$1) {
   }
 } else {
 }
-let tmpBinLhs = a;
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$5 = tmpSwitchCaseToStart <= 0;
+let tmpBinBothRhs = a;
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 $(a);
 `````
 

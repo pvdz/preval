@@ -22,14 +22,10 @@ $(a);
 
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 1;
-  if (({ a: a } = $({ a: 1, b: 2 })) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (tmpSwitchDisc === ({ a: a } = $({ a: 1, b: 2 }))) {
+  } else {
   }
 }
 $(a);
@@ -40,20 +36,15 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
+const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = tmpSwitchDisc;
+let tmpBinBothRhs = undefined;
 const tmpCallCallee = $;
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
 a = tmpNestedAssignObjPatternRhs.a;
-tmpBinLhs = tmpNestedAssignObjPatternRhs;
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+tmpBinBothRhs = tmpNestedAssignObjPatternRhs;
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 $(a);
 `````
 

@@ -25,15 +25,11 @@ $('after, do not evaluate (infinite loop)');
 
 `````js filename=intro
 while ($(true)) {
-  {
-    const tmpSwitchValue = $(1, `disc`);
-    let tmpSwitchCaseToStart = 1;
-    if ($(1, `case`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-    else;
-    tmpSwitchBreak: {
-      if (tmpSwitchCaseToStart <= 0) {
-        continue;
-      }
+  tmpSwitchBreak: {
+    const tmpSwitchDisc = $(1, `disc`);
+    if (tmpSwitchDisc === $(1, `case`)) {
+      continue;
+    } else {
     }
   }
   $(`keep`);
@@ -47,16 +43,11 @@ $(`after, do not evaluate (infinite loop)`);
 while (true) {
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    const tmpSwitchValue = $(1, `disc`);
-    let tmpSwitchCaseToStart = 1;
-    const tmpBinLhs = $(1, `case`);
-    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    const tmpSwitchDisc = $(1, `disc`);
+    const tmpBinBothLhs = tmpSwitchDisc;
+    const tmpBinBothRhs = $(1, `case`);
+    const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
     if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 0;
-    } else {
-    }
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$3) {
       continue;
     } else {
       $(`keep`);
@@ -73,9 +64,9 @@ $(`after, do not evaluate (infinite loop)`);
 `````js filename=intro
 let tmpIfTest = $(true);
 while (tmpIfTest) {
-  const tmpSwitchValue = $(1, `disc`);
-  const tmpBinLhs = $(1, `case`);
-  const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+  const tmpSwitchDisc = $(1, `disc`);
+  const tmpBinBothRhs = $(1, `case`);
+  const tmpIfTest$1 = tmpSwitchDisc === tmpBinBothRhs;
   if (tmpIfTest$1) {
   } else {
     $(`keep`);

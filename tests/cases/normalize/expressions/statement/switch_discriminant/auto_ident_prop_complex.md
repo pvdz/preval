@@ -26,13 +26,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(b).c;
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(100);
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(b).c;
+  if (true) {
+    $(100);
+  } else {
   }
 }
 $(a, b);
@@ -44,13 +42,8 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
-const tmpSwitchValue = tmpCompObj.c;
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  $(100);
-} else {
-}
+const tmpSwitchDisc = tmpCompObj.c;
+$(100);
 $(a, b);
 `````
 

@@ -26,13 +26,11 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = --$($(b)).x;
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(100);
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = --$($(b)).x;
+  if (true) {
+    $(100);
+  } else {
   }
 }
 $(a, b);
@@ -49,13 +47,8 @@ const varInitAssignLhsComputedObj = tmpCallCallee(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-const tmpSwitchValue = varInitAssignLhsComputedRhs;
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  $(100);
-} else {
-}
+const tmpSwitchDisc = varInitAssignLhsComputedRhs;
+$(100);
 $(a, b);
 `````
 

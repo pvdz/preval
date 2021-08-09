@@ -22,16 +22,14 @@ switch ($(1)) {
 ## Pre Normal
 
 `````js filename=intro
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      {
-        $(3);
-      }
-      break tmpSwitchBreak;
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    {
+      $(3);
     }
+    break tmpSwitchBreak;
+  } else {
   }
 }
 `````
@@ -39,15 +37,10 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
 tmpSwitchBreak: {
-  const tmpIfTest = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest) {
-    $(3);
-    break tmpSwitchBreak;
-  } else {
-  }
+  const tmpSwitchDisc = $(1);
+  $(3);
+  break tmpSwitchBreak;
 }
 `````
 

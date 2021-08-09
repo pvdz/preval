@@ -26,13 +26,11 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = (1, 2, b)?.x;
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(100);
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = (1, 2, b)?.x;
+  if (true) {
+    $(100);
+  } else {
   }
 }
 $(a);
@@ -43,20 +41,15 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-let tmpSwitchValue = undefined;
+let tmpSwitchDisc = undefined;
 const tmpChainRootProp = b;
 const tmpIfTest = tmpChainRootProp != null;
 if (tmpIfTest) {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpSwitchValue = tmpChainElementObject;
+  tmpSwitchDisc = tmpChainElementObject;
 } else {
 }
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  $(100);
-} else {
-}
+$(100);
 $(a);
 `````
 

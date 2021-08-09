@@ -26,13 +26,11 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      delete $(arg)[$(`y`)];
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    delete $(arg)[$(`y`)];
+  } else {
   }
 }
 $(a, arg);
@@ -43,15 +41,10 @@ $(a, arg);
 `````js filename=intro
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $(`y`);
-  delete tmpDeleteCompObj[tmpDeleteCompProp];
-} else {
-}
+const tmpSwitchDisc = $(1);
+const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompProp = $(`y`);
+delete tmpDeleteCompObj[tmpDeleteCompProp];
 $(a, arg);
 `````
 

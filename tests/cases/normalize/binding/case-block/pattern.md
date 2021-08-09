@@ -22,18 +22,14 @@ $(x, y, z);
 let x = 1,
   y = 2,
   z = [10, 20, 30];
-{
+tmpSwitchBreak: {
   let x$1;
   let y$1;
-  const tmpSwitchValue = $(`a`);
-  let tmpSwitchCaseToStart = 1;
-  if ($(`a`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      [x$1, y$1] = z;
-      break tmpSwitchBreak;
-    }
+  const tmpSwitchDisc = $(`a`);
+  if (tmpSwitchDisc === $(`a`)) {
+    [x$1, y$1] = z;
+    break tmpSwitchBreak;
+  } else {
   }
 }
 $(x, y, z);
@@ -45,19 +41,14 @@ $(x, y, z);
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-let x$1 = undefined;
-let y$1 = undefined;
-const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(`a`);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
 tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
+  let x$1 = undefined;
+  let y$1 = undefined;
+  const tmpSwitchDisc = $(`a`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(`a`);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  if (tmpIfTest) {
     const arrAssignPatternRhs = z;
     const arrPatternSplat = [...arrAssignPatternRhs];
     x$1 = arrPatternSplat[0];
@@ -73,9 +64,9 @@ $(x, y, z);
 
 `````js filename=intro
 const z = [10, 20, 30];
-const tmpSwitchValue = $(`a`);
-const tmpBinLhs = $(`a`);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpSwitchDisc = $(`a`);
+const tmpBinBothRhs = $(`a`);
+const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const arrPatternSplat = [...z];
   arrPatternSplat[0];

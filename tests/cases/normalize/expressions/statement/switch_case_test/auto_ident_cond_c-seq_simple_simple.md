@@ -22,14 +22,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 1;
-  if (((10, 20, $(30)) ? $(2) : $($(100))) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (tmpSwitchDisc === ((10, 20, $(30)) ? $(2) : $($(100)))) {
+  } else {
   }
 }
 $(a);
@@ -39,23 +35,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-let tmpBinLhs = undefined;
+const tmpSwitchDisc = $(1);
+const tmpBinBothLhs = tmpSwitchDisc;
+let tmpBinBothRhs = undefined;
 const tmpIfTest$1 = $(30);
 if (tmpIfTest$1) {
-  tmpBinLhs = $(2);
+  tmpBinBothRhs = $(2);
 } else {
   const tmpCallCallee = $;
   const tmpCalleeParam = $(100);
-  tmpBinLhs = tmpCallCallee(tmpCalleeParam);
+  tmpBinBothRhs = tmpCallCallee(tmpCalleeParam);
 }
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 $(a);
 `````
 

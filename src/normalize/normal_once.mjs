@@ -321,10 +321,7 @@ export function phaseNormalOnce(fdata) {
             AST.variableDeclaration(tmpName, AST.tru(), 'let'),
             AST.whileStatement(
               AST.identifier(tmpName),
-              AST.blockStatement(
-                node.body,
-                AST.expressionStatement(AST.assignmentExpression(tmpName, node.test)),
-              ),
+              AST.blockStatement(node.body, AST.expressionStatement(AST.assignmentExpression(tmpName, node.test))),
             ),
           ]);
 
@@ -588,10 +585,17 @@ export function phaseNormalOnce(fdata) {
         break;
       }
       case 'SwitchStatement:before': {
-        // This block will be wrapped in a fresh label if there are any unqualified breaks in the switch
-        const wrapper = AST.blockStatement();
+        vlog('Eliminating switch...');
 
-        //hoistingOnce(node.body, 'switch');
+        // We can take a simple path if and only if
+        // - the case explicitly stops at the end
+        // - the case does not explicitly stop anywhere else
+        // - the switch does not contain a default that is not the last case
+        // Either way we must still do the variable hoisting step first
+
+        const newLabelIdentNode = createFreshLabel('tmpSwitchBreak', fdata);
+        const wrapper = AST.blockStatement();
+        const newLabelNode = AST.labeledStatement(newLabelIdentNode, wrapper);
 
         // Variables declared on the toplevel of a switch case have to be hoisted to before the switch case, and const
         // converted to let, to ensure that all cases still have access to that binding after the transformations.
@@ -668,6 +672,55 @@ export function phaseNormalOnce(fdata) {
           after(wrapper);
         }
 
+        // These are the cases to consider when doing abrupt completion analysis. The last case is irrelevant since we
+        // only have to do this to cover fall-through (etc) situations.
+        const casesForAbruptAnalysis = node.cases.slice(0, -1);
+
+        if (
+          !node.$p.hasMiddleDefaultCase &&
+          casesForAbruptAnalysis.every((c) => {
+            // If the c completes, that's fine because it means one of its children completes directly
+            if (c.$p.completesAbrupt) return true; // There's at least one statement of the consequent that explicitly breaks the code flow.
+            return c.consequent.some((c) => simpleAbruptCheck(c));
+          })
+        ) {
+          // Verify that the case is guaranteed to complete abrupt, and not conditionally (if/loop/try).
+          rule('Simple switch transform');
+          example(
+            'switch (x) { case 1: f(); break; case 2: g(); break; }',
+            'const tmp = x; if (x === 1) { f(); } else { if (x === 2) { g(); } }',
+          );
+          before(node);
+
+          const tmpName = createFreshVar('tmpSwitchDisc', fdata);
+          const varNode = AST.variableDeclaration(tmpName, node.discriminant, 'const');
+          node.$p.regularBreaks.forEach(({ parentNode, parentProp, parentIndex }) => {
+            // Explicitly point all breaks to the label that replaces the root switch node
+            // This preserves the abrupt completion semantics in cases where it matters since
+            // we are not yet in normalized state and DCE has not happened yet.
+            // There are other normalization steps that will eliminate redundant label usages.
+            parentNode[parentProp][parentIndex].label = AST.identifier(newLabelIdentNode.name);
+          });
+          const ifRoot = node.cases
+            .slice(0)
+            .reverse()
+            .reduce((other, c) => {
+              // Have to drop the unlabeled breaks in the same scope. Keep anything else.
+
+              return AST.ifStatement(
+                c.test === null ? AST.tru() : AST.binaryExpression('===', tmpName, c.test),
+                AST.blockStatement(c.consequent),
+                other,
+              );
+            }, AST.blockStatement());
+          wrapper.body.push(varNode, ifRoot);
+
+          parentNode[parentProp][parentIndex] = newLabelNode;
+
+          after(wrapper);
+          break;
+        }
+
         // The idea is to pull out all cases tests in order, compare the discriminant against it, and
         // remember the index of the first case that matches. If none match, remember test case count.
         // The next step is taking all the case/default bodies, in order, and wrapping them in `if index <= x`
@@ -682,8 +735,6 @@ export function phaseNormalOnce(fdata) {
         );
         before(node);
 
-        const newLabelNode = createFreshLabel('tmpSwitchBreak', fdata);
-
         const tmpNameValue = createFreshVar('tmpSwitchValue', fdata);
         const tmpNameCase = createFreshVar('tmpSwitchCaseToStart', fdata);
         const defaultIndex = node.cases.findIndex((n) => !n.test);
@@ -691,7 +742,7 @@ export function phaseNormalOnce(fdata) {
         // All breaks without an explicit label should point to the fresh label that will be injected as the root of the switch-transform
         node.$p.unqualifiedLabelUsages.forEach((n) => {
           ASSERT(!n.label, 'prepare should collect all and only unqualified break/continues');
-          n.label = AST.identifier(newLabelNode.name);
+          n.label = AST.identifier(newLabelIdentNode.name);
         });
         node.$p.unqualifiedLabelUsages.length = 0;
 
@@ -710,7 +761,7 @@ export function phaseNormalOnce(fdata) {
               );
             }, AST.emptyStatement()),
           AST.labeledStatement(
-            newLabelNode,
+            newLabelIdentNode,
             AST.blockStatement(
               ...node.cases.map((cnode, i) => {
                 return AST.ifStatement(AST.binaryExpression('<=', tmpNameCase, AST.literal(i)), AST.blockStatement(cnode.consequent));
@@ -1272,4 +1323,19 @@ function transformFunctionParams(node, fdata) {
     .filter((e) => !!e);
 
   return [headLogic, bodyLogic];
+}
+
+function simpleAbruptCheck(node) {
+  // This is for a switch case pre-check
+  if (node.type === 'BlockStatement') return node.$p.completesAbrupt;
+  if (node.type === 'IfStatement') {
+    return (
+      node.alternate && // Code is not yet normalized so the `else` may not exist. In that case the `if` does not always complete.
+      (node.$p.completesAbruptConsequent || simpleAbruptCheck(node.consequent)) &&
+      (node.$p.completesAbruptAlternate || simpleAbruptCheck(node.alternate))
+    );
+  }
+  // Try, loops, nested switches, etc are unsafe.
+  // TODO: if we'd distinct between throw/return and break/continue then loops would work too. try is much harder tho.
+  return false;
 }

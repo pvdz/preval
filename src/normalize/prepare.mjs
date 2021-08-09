@@ -38,7 +38,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
   const funcScopeStack = [];
   const thisStack = [];
   const fenceStack = []; // switch, loops. To determine where unqualified break/continue jumps to.
-  const breakableStack = []; // for, while, do, and also switch
+  const breakableStack = []; // for, while, do, and also switch. Not labels, no function-nulls.
 
   fdata.globalNameCounter = 0;
   const globallyUniqueNamingRegistry = new Map();
@@ -136,6 +136,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
           node.$p.readsArgumentsAny = false;
           thisStack.push(node);
         }
+
         break;
       }
       case 'FunctionDeclaration:after':
@@ -499,6 +500,21 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
         // - continue: it targets the inner-most loop
         // - break: it targets the inner-most loop or switch
 
+        const parentNode = path.nodes[path.nodes.length - 2];
+        const parentProp = path.props[path.props.length - 1];
+
+        parentNode.$p.completesAbrupt = true;
+        if (parentNode.type === 'IfStatement') {
+          if (parentProp === 'consequent') parentNode.$p.completesAbruptConsequent = true;
+          else if (parentProp === 'alternate') parentNode.$p.completesAbruptAlternate = true;
+          else ASSERT(false);
+        }
+
+        if (node.type === 'BreakStatement' && !node.label && breakableStack.length) {
+          const parentIndex = path.indexes[path.indexes.length - 1];
+          breakableStack[breakableStack.length - 1].$p.regularBreaks.push({ parentNode, parentProp, parentIndex });
+        }
+
         if (node.label) {
           const name = node.label.name;
           vlog('Label:', name, ', now searching for definition... Label stack depth:', labelStack.length);
@@ -515,6 +531,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
                 vlog('- Found it. Label not renamed');
               }
 
+              // Note: since parse enforces validity of breaks and continues and since those can't cross functions, we don't need to worry about the null case here
               let n = breakableStack.length - 1;
               let innerMostBranchNode = breakableStack[n];
               if (node.type === 'ContinueStatement') {
@@ -610,6 +627,8 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
       case 'DoWhileStatement:before':
       case 'SwitchStatement:before': {
         node.$p.unqualifiedLabelUsages = [];
+        node.$p.regularBreaks = [];
+        if (node.type === 'SwitchStatement') node.$p.hasMiddleDefaultCase = false;
         fenceStack.push(node);
         breakableStack.push(node);
         break;
@@ -622,6 +641,32 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
       case 'SwitchStatement:after': {
         fenceStack.pop();
         breakableStack.pop();
+        break;
+      }
+
+      case 'SwitchCase:before': {
+        const parentNode = path.nodes[path.nodes.length - 2];
+        const parentIndex = path.indexes[path.indexes.length - 1];
+
+        if (node.test === null && parentIndex !== parentNode.cases.length - 1) {
+          parentNode.$p.hasMiddleDefaultCase = true;
+        }
+
+        break;
+      }
+
+      case 'ReturnStatement':
+      case 'ThrowStatement': {
+        const parentNode = path.nodes[path.nodes.length - 2];
+        const parentProp = path.props[path.props.length - 1];
+
+        parentNode.$p.completesAbrupt = true;
+        if (parentNode.type === 'IfStatement') {
+          if (parentProp === 'consequent') parentNode.$p.completesAbruptConsequent = true;
+          else if (parentProp === 'alternate') parentNode.$p.completesAbruptAlternate = true;
+          else ASSERT(false);
+        }
+
         break;
       }
     }

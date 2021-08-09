@@ -23,20 +23,16 @@ switch (0) {
 ## Pre Normal
 
 `````js filename=intro
-{
+tmpSwitchBreak: {
   let a;
   let b;
-  const tmpSwitchValue = 0;
-  let tmpSwitchCaseToStart = 1;
-  if (0 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      a = 10;
-      b = 20;
-      [a, b] = [30, 40];
-      $(a, b);
-    }
+  const tmpSwitchDisc = 0;
+  if (tmpSwitchDisc === 0) {
+    a = 10;
+    b = 20;
+    [a, b] = [30, 40];
+    $(a, b);
+  } else {
   }
 }
 `````
@@ -46,15 +42,9 @@ switch (0) {
 `````js filename=intro
 let a = undefined;
 let b = undefined;
-const tmpSwitchValue = 0;
-let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 0 === tmpSwitchValue;
+const tmpSwitchDisc = 0;
+const tmpIfTest = tmpSwitchDisc === 0;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   a = 10;
   b = 20;
   const arrAssignPatternRhs = [30, 40];

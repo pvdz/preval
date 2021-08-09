@@ -23,15 +23,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = () => {
+tmpSwitchBreak: {
+  const tmpSwitchDisc = () => {
     debugger;
   };
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(100);
-    }
+  if (true) {
+    $(100);
+  } else {
   }
 }
 $(a);
@@ -41,16 +39,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = function () {
+const tmpSwitchDisc = function () {
   debugger;
   return undefined;
 };
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  $(100);
-} else {
-}
+$(100);
 $(a);
 `````
 

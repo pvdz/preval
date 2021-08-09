@@ -23,13 +23,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      a = { x: $(1), y: 2, z: $(3) };
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    a = { x: $(1), y: 2, z: $(3) };
+  } else {
   }
 }
 $(a);
@@ -39,16 +37,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$1 = 2;
-  const tmpObjLitVal$3 = $(3);
-  a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
-} else {
-}
+const tmpSwitchDisc = $(1);
+const tmpObjLitVal = $(1);
+const tmpObjLitVal$1 = 2;
+const tmpObjLitVal$3 = $(3);
+a = { x: tmpObjLitVal, y: tmpObjLitVal$1, z: tmpObjLitVal$3 };
 $(a);
 `````
 
@@ -58,8 +51,8 @@ $(a);
 $(1);
 const tmpObjLitVal = $(1);
 const tmpObjLitVal$3 = $(3);
-const tmpClusterSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-$(tmpClusterSSA_a);
+const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+$(a);
 `````
 
 ## Globals

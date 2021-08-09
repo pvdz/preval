@@ -28,13 +28,11 @@ $(a, b, c);
 let b = { x: 1 },
   c = 3;
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      b.x = b.x = b.x = b.x = b.x = b.x = c;
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    b.x = b.x = b.x = b.x = b.x = b.x = c;
+  } else {
   }
 }
 $(a, b, c);
@@ -46,25 +44,20 @@ $(a, b, c);
 let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  const tmpAssignMemLhsObj = b;
-  const varInitAssignLhsComputedRhs$7 = c;
-  b.x = varInitAssignLhsComputedRhs$7;
-  const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-  b.x = varInitAssignLhsComputedRhs$5;
-  const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-  b.x = varInitAssignLhsComputedRhs$3;
-  const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-  b.x = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  b.x = varInitAssignLhsComputedRhs;
-  const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-} else {
-}
+const tmpSwitchDisc = $(1);
+const tmpAssignMemLhsObj = b;
+const varInitAssignLhsComputedRhs$7 = c;
+b.x = varInitAssignLhsComputedRhs$7;
+const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
+b.x = varInitAssignLhsComputedRhs$5;
+const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
+b.x = varInitAssignLhsComputedRhs$3;
+const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
+b.x = varInitAssignLhsComputedRhs$1;
+const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+b.x = varInitAssignLhsComputedRhs;
+const tmpAssignMemRhs = varInitAssignLhsComputedRhs;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 $(a, b, c);
 `````
 

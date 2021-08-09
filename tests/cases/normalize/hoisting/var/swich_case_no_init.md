@@ -26,21 +26,15 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 2;
-  if (0 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 1;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      undefined;
-      break tmpSwitchBreak;
-    }
-    if (tmpSwitchCaseToStart <= 1) {
-      x = 20;
-      break tmpSwitchBreak;
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (tmpSwitchDisc === 0) {
+    undefined;
+    break tmpSwitchBreak;
+  } else if (tmpSwitchDisc === 1) {
+    x = 20;
+    break tmpSwitchBreak;
+  } else {
   }
 }
 $(x);
@@ -50,25 +44,14 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 2;
-const tmpIfTest = 0 === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 = 1 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
-  } else {
-  }
-}
 tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
+  const tmpSwitchDisc = $(1);
+  const tmpIfTest = tmpSwitchDisc === 0;
+  if (tmpIfTest) {
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
+    const tmpIfTest$1 = tmpSwitchDisc === 1;
+    if (tmpIfTest$1) {
       x = 20;
       break tmpSwitchBreak;
     } else {
@@ -82,23 +65,12 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 2;
-const tmpIfTest = 0 === tmpSwitchValue;
+const tmpSwitchDisc = $(1);
+const tmpIfTest = tmpSwitchDisc === 0;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
 } else {
-  const tmpIfTest$1 = 1 === tmpSwitchValue;
+  const tmpIfTest$1 = tmpSwitchDisc === 1;
   if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
-  } else {
-  }
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
-} else {
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
     x = 20;
   } else {
   }

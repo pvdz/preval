@@ -26,13 +26,11 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $($(b)).x++;
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    $($(b)).x++;
+  } else {
   }
 }
 $(a, b);
@@ -43,19 +41,14 @@ $(a, b);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-  const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-} else {
-}
+const tmpSwitchDisc = $(1);
+const tmpCallCallee = $;
+const tmpCalleeParam = $(b);
+const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+const tmpAssignMemLhsObj = tmpPostUpdArgObj;
+const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 $(a, b);
 `````
 

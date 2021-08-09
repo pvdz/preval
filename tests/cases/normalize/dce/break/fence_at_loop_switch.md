@@ -39,22 +39,17 @@ $('after (not invoked)');
 `````js filename=intro
 while ($(true)) {
   $(`loop`);
-  {
-    const tmpSwitchValue = $(true, `dis`);
-    let tmpSwitchCaseToStart = 1;
-    if ($(true, `case`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-    else;
-    tmpSwitchBreak: {
-      if (tmpSwitchCaseToStart <= 0) {
-        $(`case`);
-        break tmpSwitchBreak;
-        $(`fail`);
-      }
-      if (tmpSwitchCaseToStart <= 1) {
-        $(`do not visit, default`);
-        break tmpSwitchBreak;
-        $(`fail`);
-      }
+  tmpSwitchBreak: {
+    const tmpSwitchDisc = $(true, `dis`);
+    if (tmpSwitchDisc === $(true, `case`)) {
+      $(`case`);
+      break tmpSwitchBreak;
+      $(`fail`);
+    } else if (true) {
+      $(`do not visit, default`);
+      break tmpSwitchBreak;
+      $(`fail`);
+    } else {
     }
   }
   $(`infiloop, do not eliminate`);
@@ -68,26 +63,17 @@ $(`after (not invoked)`);
 let tmpIfTest = $(true);
 while (tmpIfTest) {
   $(`loop`);
-  const tmpSwitchValue = $(true, `dis`);
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(true, `case`);
-  const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-  }
   tmpSwitchBreak: {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$3) {
+    const tmpSwitchDisc = $(true, `dis`);
+    const tmpBinBothLhs = tmpSwitchDisc;
+    const tmpBinBothRhs = $(true, `case`);
+    const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
+    if (tmpIfTest$1) {
       $(`case`);
       break tmpSwitchBreak;
     } else {
-      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$5) {
-        $(`do not visit, default`);
-        break tmpSwitchBreak;
-      } else {
-      }
+      $(`do not visit, default`);
+      break tmpSwitchBreak;
     }
   }
   $(`infiloop, do not eliminate`);
@@ -102,9 +88,9 @@ $(`after (not invoked)`);
 let tmpIfTest = $(true);
 while (tmpIfTest) {
   $(`loop`);
-  const tmpSwitchValue = $(true, `dis`);
-  const tmpBinLhs = $(true, `case`);
-  const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+  const tmpSwitchDisc = $(true, `dis`);
+  const tmpBinBothRhs = $(true, `case`);
+  const tmpIfTest$1 = tmpSwitchDisc === tmpBinBothRhs;
   if (tmpIfTest$1) {
     $(`case`);
   } else {

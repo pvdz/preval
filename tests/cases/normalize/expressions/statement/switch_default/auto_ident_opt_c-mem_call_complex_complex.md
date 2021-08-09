@@ -26,13 +26,11 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(b)?.[$(`\$`)]?.($(1));
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    $(b)?.[$(`\$`)]?.($(1));
+  } else {
   }
 }
 $(a);
@@ -43,25 +41,20 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
+const tmpSwitchDisc = $(1);
+const tmpChainRootCall = $;
+const tmpChainElementCall = tmpChainRootCall(b);
+const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
+  const tmpChainRootComputed = $(`\$`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$1 = tmpChainElementObject != null;
   if (tmpIfTest$1) {
-    const tmpChainRootComputed = $(`\$`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$3 = tmpChainElementObject != null;
-    if (tmpIfTest$3) {
-      const tmpCallCallee = $dotCall;
-      const tmpCalleeParam = tmpChainElementObject;
-      const tmpCalleeParam$1 = tmpChainElementCall;
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-    } else {
-    }
+    const tmpCallCallee = $dotCall;
+    const tmpCalleeParam = tmpChainElementObject;
+    const tmpCalleeParam$1 = tmpChainElementCall;
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
   } else {
   }
 } else {
@@ -72,22 +65,22 @@ $(a);
 ## Output
 
 `````js filename=intro
-$(1);
 const b = { $: $ };
+const a = { a: 999, b: 1000 };
+$(1);
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall == null;
-if (tmpIfTest$1) {
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`\$`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$3 = tmpChainElementObject == null;
-  if (tmpIfTest$3) {
+  const tmpIfTest$1 = tmpChainElementObject == null;
+  if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$3 = $(1);
     $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
   }
 }
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 

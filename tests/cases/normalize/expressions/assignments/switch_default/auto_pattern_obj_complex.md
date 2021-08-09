@@ -23,13 +23,11 @@ $(a);
 
 `````js filename=intro
 let { a: a } = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      ({ a: a } = $({ a: 1, b: 2 }));
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    ({ a: a } = $({ a: 1, b: 2 }));
+  } else {
   }
 }
 $(a);
@@ -40,16 +38,11 @@ $(a);
 `````js filename=intro
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-  a = tmpAssignObjPatternRhs.a;
-} else {
-}
+const tmpSwitchDisc = $(1);
+const tmpCallCallee = $;
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+a = tmpAssignObjPatternRhs.a;
 $(a);
 `````
 

@@ -28,13 +28,11 @@ $(a, x, y);
 let x = 1,
   y = 2;
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = (a = { x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) }));
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(100);
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = (a = { x: x, y: y } = ($(x), $(y), { x: $(3), y: $(4) }));
+  if (true) {
+    $(100);
+  } else {
   }
 }
 $(a, x, y);
@@ -54,13 +52,8 @@ const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpNestedAssignObjPatternRhs.x;
 y = tmpNestedAssignObjPatternRhs.y;
 a = tmpNestedAssignObjPatternRhs;
-let tmpSwitchValue = a;
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  $(100);
-} else {
-}
+let tmpSwitchDisc = a;
+$(100);
 $(a, x, y);
 `````
 

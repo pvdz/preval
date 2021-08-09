@@ -23,13 +23,11 @@ $(a);
 
 `````js filename=intro
 let [a] = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = ([a] = ($(10), $(20), $([1, 2])));
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(100);
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = ([a] = ($(10), $(20), $([1, 2])));
+  if (true) {
+    $(100);
+  } else {
   }
 }
 $(a);
@@ -41,7 +39,7 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-let tmpSwitchValue = undefined;
+let tmpSwitchDisc = undefined;
 $(10);
 $(20);
 const tmpCallCallee = $;
@@ -49,13 +47,8 @@ const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 a = arrPatternSplat$1[0];
-tmpSwitchValue = tmpNestedAssignArrPatternRhs;
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  $(100);
-} else {
-}
+tmpSwitchDisc = tmpNestedAssignArrPatternRhs;
+$(100);
 $(a);
 `````
 

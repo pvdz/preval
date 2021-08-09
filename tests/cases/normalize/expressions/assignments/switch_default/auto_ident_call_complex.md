@@ -23,13 +23,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      a = $($)(1);
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    a = $($)(1);
+  } else {
   }
 }
 $(a);
@@ -39,14 +37,9 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  const tmpCallComplexCallee = $($);
-  a = tmpCallComplexCallee(1);
-} else {
-}
+const tmpSwitchDisc = $(1);
+const tmpCallComplexCallee = $($);
+a = tmpCallComplexCallee(1);
 $(a);
 `````
 
@@ -55,8 +48,8 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpCallComplexCallee = $($);
-const tmpClusterSSA_a = tmpCallComplexCallee(1);
-$(tmpClusterSSA_a);
+const a = tmpCallComplexCallee(1);
+$(a);
 `````
 
 ## Globals

@@ -23,19 +23,15 @@ switch (1) {
 ## Pre Normal
 
 `````js filename=intro
-{
+tmpSwitchBreak: {
   let b;
   let a;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      b = { x: { y: { z: 100 } } };
-      a = b?.x.y.z;
-      $(a);
-    }
+  const tmpSwitchDisc = 1;
+  if (tmpSwitchDisc === 1) {
+    b = { x: { y: { z: 100 } } };
+    a = b?.x.y.z;
+    $(a);
+  } else {
   }
 }
 `````
@@ -45,22 +41,16 @@ switch (1) {
 `````js filename=intro
 let b = undefined;
 let a = undefined;
-const tmpSwitchValue = 1;
-let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpSwitchDisc = 1;
+const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   const tmpObjLitVal$1 = { z: 100 };
   const tmpObjLitVal = { y: tmpObjLitVal$1 };
   b = { x: tmpObjLitVal };
   a = undefined;
   const tmpChainRootProp = b;
-  const tmpIfTest$3 = tmpChainRootProp != null;
-  if (tmpIfTest$3) {
+  const tmpIfTest$1 = tmpChainRootProp != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainRootProp.x;
     const tmpChainElementObject$1 = tmpChainElementObject.y;
     const tmpChainElementObject$3 = tmpChainElementObject$1.z;

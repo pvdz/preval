@@ -23,19 +23,15 @@ switch (1) {
 ## Pre Normal
 
 `````js filename=intro
-{
+tmpSwitchBreak: {
   let b;
   let a;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      b = { x: { y: 1 } };
-      a = $(b)?.[$(`x`)]?.[$(`y`)];
-      $(a);
-    }
+  const tmpSwitchDisc = 1;
+  if (tmpSwitchDisc === 1) {
+    b = { x: { y: 1 } };
+    a = $(b)?.[$(`x`)]?.[$(`y`)];
+    $(a);
+  } else {
   }
 }
 `````
@@ -45,26 +41,20 @@ switch (1) {
 `````js filename=intro
 let b = undefined;
 let a = undefined;
-const tmpSwitchValue = 1;
-let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpSwitchDisc = 1;
+const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   const tmpObjLitVal = { y: 1 };
   b = { x: tmpObjLitVal };
   a = undefined;
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest$3 = tmpChainElementCall != null;
-  if (tmpIfTest$3) {
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
     const tmpChainRootComputed = $(`x`);
     const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$5 = tmpChainElementObject != null;
-    if (tmpIfTest$5) {
+    const tmpIfTest$3 = tmpChainElementObject != null;
+    if (tmpIfTest$3) {
       const tmpChainRootComputed$1 = $(`y`);
       const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
       a = tmpChainElementObject$1;
@@ -84,13 +74,13 @@ const tmpObjLitVal = { y: 1 };
 const tmpClusterSSA_b = { x: tmpObjLitVal };
 let tmpClusterSSA_a = undefined;
 const tmpChainElementCall = $(tmpClusterSSA_b);
-const tmpIfTest$3 = tmpChainElementCall == null;
-if (tmpIfTest$3) {
+const tmpIfTest$1 = tmpChainElementCall == null;
+if (tmpIfTest$1) {
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  const tmpIfTest$5 = tmpChainElementObject == null;
-  if (tmpIfTest$5) {
+  const tmpIfTest$3 = tmpChainElementObject == null;
+  if (tmpIfTest$3) {
   } else {
     const tmpChainRootComputed$1 = $(`y`);
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];

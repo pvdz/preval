@@ -26,13 +26,11 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(b)?.[$(`x`)];
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    $(b)?.[$(`x`)];
+  } else {
   }
 }
 $(a);
@@ -43,18 +41,13 @@ $(a);
 `````js filename=intro
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
+const tmpSwitchDisc = $(1);
+const tmpChainRootCall = $;
+const tmpChainElementCall = tmpChainRootCall(b);
+const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed = $(`x`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-  } else {
-  }
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
 } else {
 }
 $(a);
@@ -63,16 +56,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-$(1);
 const b = { x: 1 };
+const a = { a: 999, b: 1000 };
+$(1);
 const tmpChainElementCall = $(b);
-const tmpIfTest$1 = tmpChainElementCall == null;
-if (tmpIfTest$1) {
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
 } else {
   const tmpChainRootComputed = $(`x`);
   tmpChainElementCall[tmpChainRootComputed];
 }
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 

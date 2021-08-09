@@ -23,13 +23,11 @@ $(a);
 
 `````js filename=intro
 let [a] = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(10), $(20), [1, 2];
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    $(10), $(20), [1, 2];
+  } else {
   }
 }
 $(a);
@@ -41,14 +39,9 @@ $(a);
 let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  $(10);
-  $(20);
-} else {
-}
+const tmpSwitchDisc = $(1);
+$(10);
+$(20);
 $(a);
 `````
 

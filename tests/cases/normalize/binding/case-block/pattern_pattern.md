@@ -24,18 +24,14 @@ let a = 1,
   x = 1,
   y = 2,
   z = [10, 20, 30];
-{
+tmpSwitchBreak: {
   let a$1;
   let b$1;
-  const tmpSwitchValue = $(`a`);
-  let tmpSwitchCaseToStart = 1;
-  if ($(`a`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      [a$1, b$1] = [, x, y] = z;
-      break tmpSwitchBreak;
-    }
+  const tmpSwitchDisc = $(`a`);
+  if (tmpSwitchDisc === $(`a`)) {
+    [a$1, b$1] = [, x, y] = z;
+    break tmpSwitchBreak;
+  } else {
   }
 }
 $(a, b, x, y, z);
@@ -49,19 +45,14 @@ let b = 2;
 let x = 1;
 let y = 2;
 let z = [10, 20, 30];
-let a$1 = undefined;
-let b$1 = undefined;
-const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(`a`);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
 tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
+  let a$1 = undefined;
+  let b$1 = undefined;
+  const tmpSwitchDisc = $(`a`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(`a`);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  if (tmpIfTest) {
     let arrAssignPatternRhs = undefined;
     const tmpNestedAssignArrPatternRhs = z;
     const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
@@ -84,9 +75,9 @@ $(a, b, x, y, z);
 let x = 1;
 let y = 2;
 const z = [10, 20, 30];
-const tmpSwitchValue = $(`a`);
-const tmpBinLhs = $(`a`);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpSwitchDisc = $(`a`);
+const tmpBinBothRhs = $(`a`);
+const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const arrPatternSplat$1 = [...z];
   x = arrPatternSplat$1[1];

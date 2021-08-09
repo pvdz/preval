@@ -23,13 +23,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      a = $($)?.($(1));
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    a = $($)?.($(1));
+  } else {
   }
 }
 $(a);
@@ -39,23 +37,18 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
+const tmpSwitchDisc = $(1);
+a = undefined;
+const tmpChainRootCall = $;
+const tmpChainElementCall = tmpChainRootCall($);
+const tmpIfTest = tmpChainElementCall != null;
 if (tmpIfTest) {
-  a = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
-  const tmpIfTest$1 = tmpChainElementCall != null;
-  if (tmpIfTest$1) {
-    const tmpCallCallee = $dotCall;
-    const tmpCalleeParam = tmpChainElementCall;
-    const tmpCalleeParam$1 = tmpChainRootCall;
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-    a = tmpChainElementCall$1;
-  } else {
-  }
+  const tmpCallCallee = $dotCall;
+  const tmpCalleeParam = tmpChainElementCall;
+  const tmpCalleeParam$1 = tmpChainRootCall;
+  const tmpCalleeParam$3 = $(1);
+  const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+  a = tmpChainElementCall$1;
 } else {
 }
 $(a);
@@ -66,8 +59,8 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpChainElementCall = $($);
-const tmpIfTest$1 = tmpChainElementCall == null;
-if (tmpIfTest$1) {
+const tmpIfTest = tmpChainElementCall == null;
+if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpCalleeParam$3 = $(1);

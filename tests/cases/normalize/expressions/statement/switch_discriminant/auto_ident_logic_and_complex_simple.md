@@ -23,13 +23,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $($(1)) && 2;
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(100);
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $($(1)) && 2;
+  if (true) {
+    $(100);
+  } else {
   }
 }
 $(a);
@@ -41,17 +39,12 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpCallCallee = $;
 const tmpCalleeParam = $(1);
-let tmpSwitchValue = tmpCallCallee(tmpCalleeParam);
-if (tmpSwitchValue) {
-  tmpSwitchValue = 2;
+let tmpSwitchDisc = tmpCallCallee(tmpCalleeParam);
+if (tmpSwitchDisc) {
+  tmpSwitchDisc = 2;
 } else {
 }
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  $(100);
-} else {
-}
+$(100);
 $(a);
 `````
 

@@ -25,25 +25,19 @@ switch ($(2)) {
 ## Pre Normal
 
 `````js filename=intro
-{
+tmpSwitchBreak: {
   let f = function () {
     debugger;
     $(`pass`);
   };
-  const tmpSwitchValue = $(2);
-  let tmpSwitchCaseToStart = 2;
-  if ($(1) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else if ($(2) === tmpSwitchValue) tmpSwitchCaseToStart = 1;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      f();
-      break tmpSwitchBreak;
-    }
-    if (tmpSwitchCaseToStart <= 1) {
-      f();
-      f();
-    }
+  const tmpSwitchDisc = $(2);
+  if (tmpSwitchDisc === $(1)) {
+    f();
+    break tmpSwitchBreak;
+  } else if (tmpSwitchDisc === $(2)) {
+    f();
+    f();
+  } else {
   }
 }
 `````
@@ -51,33 +45,24 @@ switch ($(2)) {
 ## Normalized
 
 `````js filename=intro
-let f = function () {
-  debugger;
-  $(`pass`);
-  return undefined;
-};
-const tmpSwitchValue = $(2);
-let tmpSwitchCaseToStart = 2;
-const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpBinLhs$1 = $(2);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
-  } else {
-  }
-}
 tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
+  let f = function () {
+    debugger;
+    $(`pass`);
+    return undefined;
+  };
+  const tmpSwitchDisc = $(2);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(1);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  if (tmpIfTest) {
     f();
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
+    const tmpBinBothLhs$1 = tmpSwitchDisc;
+    const tmpBinBothRhs$1 = $(2);
+    const tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
+    if (tmpIfTest$1) {
       f();
       f();
     } else {
@@ -89,26 +74,15 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(2);
-let tmpSwitchCaseToStart = 2;
-const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpSwitchDisc = $(2);
+const tmpBinBothRhs = $(1);
+const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpBinLhs$1 = $(2);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
-  } else {
-  }
-}
-const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$3) {
   $(`pass`);
 } else {
-  const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-  if (tmpIfTest$5) {
+  const tmpBinBothRhs$1 = $(2);
+  const tmpIfTest$1 = tmpSwitchDisc === tmpBinBothRhs$1;
+  if (tmpIfTest$1) {
     $(`pass`);
     $(`pass`);
   } else {

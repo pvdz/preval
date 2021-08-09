@@ -26,13 +26,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      (1, 2, $(b))[$(`c`)] = $(b)[$(`d`)];
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    (1, 2, $(b))[$(`c`)] = $(b)[$(`d`)];
+  } else {
   }
 }
 $(a, b);
@@ -43,20 +41,15 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  const tmpAssignComMemLhsObj = $(b);
-  const tmpAssignComMemLhsProp = $(`c`);
-  const tmpAssignComputedObj = tmpAssignComMemLhsObj;
-  const tmpAssignComputedProp = tmpAssignComMemLhsProp;
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-} else {
-}
+const tmpSwitchDisc = $(1);
+const tmpAssignComMemLhsObj = $(b);
+const tmpAssignComMemLhsProp = $(`c`);
+const tmpAssignComputedObj = tmpAssignComMemLhsObj;
+const tmpAssignComputedProp = tmpAssignComMemLhsProp;
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
+tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
 $(a, b);
 `````
 

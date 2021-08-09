@@ -23,13 +23,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $($(1)) && $($(2));
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    $($(1)) && $($(2));
+  } else {
   }
 }
 $(a);
@@ -39,19 +37,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
+const tmpSwitchDisc = $(1);
+const tmpCallCallee = $;
+const tmpCalleeParam = $(1);
+const tmpIfTest = tmpCallCallee(tmpCalleeParam);
 if (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  const tmpIfTest$1 = tmpCallCallee(tmpCalleeParam);
-  if (tmpIfTest$1) {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(2);
-    tmpCallCallee$1(tmpCalleeParam$1);
-  } else {
-  }
+  const tmpCallCallee$1 = $;
+  const tmpCalleeParam$1 = $(2);
+  tmpCallCallee$1(tmpCalleeParam$1);
 } else {
 }
 $(a);
@@ -62,8 +55,8 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpCalleeParam = $(1);
-const tmpIfTest$1 = $(tmpCalleeParam);
-if (tmpIfTest$1) {
+const tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
   const tmpCalleeParam$1 = $(2);
   $(tmpCalleeParam$1);
 } else {

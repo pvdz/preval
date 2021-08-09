@@ -28,15 +28,13 @@ switch (1) { default: let x = x; $('fail'); }
 ## Pre Normal
 
 `````js filename=intro
-{
+tmpSwitchBreak: {
   let x;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      x = x;
-      $(`fail`);
-    }
+  const tmpSwitchDisc = 1;
+  if (true) {
+    x = x;
+    $(`fail`);
+  } else {
   }
 }
 `````
@@ -45,13 +43,8 @@ switch (1) { default: let x = x; $('fail'); }
 
 `````js filename=intro
 let x = undefined;
-const tmpSwitchValue = 1;
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  $(`fail`);
-} else {
-}
+const tmpSwitchDisc = 1;
+$(`fail`);
 `````
 
 ## Output

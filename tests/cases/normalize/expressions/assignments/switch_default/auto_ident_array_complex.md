@@ -23,13 +23,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      a = [$(1), 2, $(3)];
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    a = [$(1), 2, $(3)];
+  } else {
   }
 }
 $(a);
@@ -39,16 +37,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  const tmpArrElement = $(1);
-  const tmpArrElement$1 = 2;
-  const tmpArrElement$3 = $(3);
-  a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
-} else {
-}
+const tmpSwitchDisc = $(1);
+const tmpArrElement = $(1);
+const tmpArrElement$1 = 2;
+const tmpArrElement$3 = $(3);
+a = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
 $(a);
 `````
 
@@ -58,8 +51,8 @@ $(a);
 $(1);
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
-const tmpClusterSSA_a = [tmpArrElement, 2, tmpArrElement$3];
-$(tmpClusterSSA_a);
+const a = [tmpArrElement, 2, tmpArrElement$3];
+$(a);
 `````
 
 ## Globals

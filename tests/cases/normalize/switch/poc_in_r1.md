@@ -24,15 +24,11 @@ switch (x) {
 
 `````js filename=intro
 let x = 1;
-{
-  const tmpSwitchValue = x;
-  let tmpSwitchCaseToStart = 1;
-  if ($(1) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(`A`);
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = x;
+  if (tmpSwitchDisc === $(1)) {
+    $(`A`);
+  } else {
   }
 }
 `````
@@ -41,16 +37,11 @@ let x = 1;
 
 `````js filename=intro
 let x = 1;
-const tmpSwitchValue = x;
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpSwitchDisc = x;
+const tmpBinBothLhs = tmpSwitchDisc;
+const tmpBinBothRhs = $(1);
+const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   $(`A`);
 } else {
 }
@@ -59,8 +50,8 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpBinLhs = $(1);
-const tmpIfTest = tmpBinLhs === 1;
+const tmpBinBothRhs = $(1);
+const tmpIfTest = 1 === tmpBinBothRhs;
 if (tmpIfTest) {
   $(`A`);
 } else {

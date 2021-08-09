@@ -37,25 +37,19 @@ if (1 === 1) {
 ## Pre Normal
 
 `````js filename=intro
-{
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 2;
-  if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else if (`no` === tmpSwitchValue) tmpSwitchCaseToStart = 1;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      {
-        if (2) {
-          $(3);
-        }
-        $(4);
-        break tmpSwitchBreak;
+tmpSwitchBreak: {
+  const tmpSwitchDisc = 1;
+  if (tmpSwitchDisc === 1) {
+    {
+      if (2) {
+        $(3);
       }
-    }
-    if (tmpSwitchCaseToStart <= 1) {
+      $(4);
       break tmpSwitchBreak;
     }
+  } else if (tmpSwitchDisc === `no`) {
+    break tmpSwitchBreak;
+  } else {
   }
 }
 `````
@@ -63,27 +57,16 @@ if (1 === 1) {
 ## Normalized
 
 `````js filename=intro
-const tmpSwitchValue = 1;
-let tmpSwitchCaseToStart = 2;
-const tmpIfTest = 1 === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpIfTest$1 = `no` === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
-  } else {
-  }
-}
 tmpSwitchBreak: {
-  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$3) {
+  const tmpSwitchDisc = 1;
+  const tmpIfTest = tmpSwitchDisc === 1;
+  if (tmpIfTest) {
     $(3);
     $(4);
     break tmpSwitchBreak;
   } else {
-    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$5) {
+    const tmpIfTest$1 = tmpSwitchDisc === `no`;
+    if (tmpIfTest$1) {
       break tmpSwitchBreak;
     } else {
     }

@@ -26,13 +26,11 @@ $(a);
 `````js filename=intro
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = new $($(1), $(2));
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(100);
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = new $($(1), $(2));
+  if (true) {
+    $(100);
+  } else {
   }
 }
 $(a);
@@ -46,13 +44,8 @@ let a = { a: 999, b: 1000 };
 const tmpNewCallee = $;
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpSwitchValue = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  $(100);
-} else {
-}
+const tmpSwitchDisc = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+$(100);
 $(a);
 `````
 

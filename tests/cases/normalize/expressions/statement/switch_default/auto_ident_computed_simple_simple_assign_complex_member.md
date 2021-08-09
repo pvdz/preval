@@ -26,13 +26,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      b[`c`] = $(b)[$(`d`)];
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (true) {
+    b[`c`] = $(b)[$(`d`)];
+  } else {
   }
 }
 $(a, b);
@@ -43,17 +41,12 @@ $(a, b);
 `````js filename=intro
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  const tmpAssignMemLhsObj = b;
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
-  tmpAssignMemLhsObj.c = tmpAssignMemRhs;
-} else {
-}
+const tmpSwitchDisc = $(1);
+const tmpAssignMemLhsObj = b;
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const tmpAssignMemRhs = tmpCompObj[tmpCompProp];
+tmpAssignMemLhsObj.c = tmpAssignMemRhs;
 $(a, b);
 `````
 

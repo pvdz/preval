@@ -21,17 +21,13 @@ switch (1) {
 ## Pre Normal
 
 `````js filename=intro
-{
+tmpSwitchBreak: {
   let a;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      a = (10, 20, $(30)) ? (40, 50, 60) : $($(100));
-      $(a);
-    }
+  const tmpSwitchDisc = 1;
+  if (tmpSwitchDisc === 1) {
+    a = (10, 20, $(30)) ? (40, 50, 60) : $($(100));
+    $(a);
+  } else {
   }
 }
 `````
@@ -40,17 +36,11 @@ switch (1) {
 
 `````js filename=intro
 let a = undefined;
-const tmpSwitchValue = 1;
-let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpSwitchDisc = 1;
+const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
-  const tmpIfTest$3 = $(30);
-  if (tmpIfTest$3) {
+  const tmpIfTest$1 = $(30);
+  if (tmpIfTest$1) {
     a = 60;
   } else {
     const tmpCallCallee = $;
@@ -65,8 +55,8 @@ if (tmpIfTest$1) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest$3 = $(30);
-if (tmpIfTest$3) {
+const tmpIfTest$1 = $(30);
+if (tmpIfTest$1) {
   $(60);
 } else {
   const tmpCalleeParam = $(100);

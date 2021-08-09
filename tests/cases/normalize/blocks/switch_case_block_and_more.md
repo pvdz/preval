@@ -22,18 +22,14 @@ switch ($(1)) {
 ## Pre Normal
 
 `````js filename=intro
-{
-  const tmpSwitchValue = $(1);
-  let tmpSwitchCaseToStart = 1;
-  if ($(2) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      {
-        $(3);
-      }
-      break tmpSwitchBreak;
+tmpSwitchBreak: {
+  const tmpSwitchDisc = $(1);
+  if (tmpSwitchDisc === $(2)) {
+    {
+      $(3);
     }
+    break tmpSwitchBreak;
+  } else {
   }
 }
 `````
@@ -41,17 +37,12 @@ switch ($(1)) {
 ## Normalized
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(2);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
 tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
+  const tmpSwitchDisc = $(1);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(2);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  if (tmpIfTest) {
     $(3);
     break tmpSwitchBreak;
   } else {
@@ -62,9 +53,9 @@ tmpSwitchBreak: {
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1);
-const tmpBinLhs = $(2);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpSwitchDisc = $(1);
+const tmpBinBothRhs = $(2);
+const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(3);
 } else {

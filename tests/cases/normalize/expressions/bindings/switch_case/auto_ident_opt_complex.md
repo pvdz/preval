@@ -23,19 +23,15 @@ switch (1) {
 ## Pre Normal
 
 `````js filename=intro
-{
+tmpSwitchBreak: {
   let b;
   let a;
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  if (1 === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      b = { x: 1 };
-      a = $(b)?.x;
-      $(a);
-    }
+  const tmpSwitchDisc = 1;
+  if (tmpSwitchDisc === 1) {
+    b = { x: 1 };
+    a = $(b)?.x;
+    $(a);
+  } else {
   }
 }
 `````
@@ -45,21 +41,15 @@ switch (1) {
 `````js filename=intro
 let b = undefined;
 let a = undefined;
-const tmpSwitchValue = 1;
-let tmpSwitchCaseToStart = 1;
-const tmpIfTest = 1 === tmpSwitchValue;
+const tmpSwitchDisc = 1;
+const tmpIfTest = tmpSwitchDisc === 1;
 if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest$1) {
   b = { x: 1 };
   a = undefined;
   const tmpChainRootCall = $;
   const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest$3 = tmpChainElementCall != null;
-  if (tmpIfTest$3) {
+  const tmpIfTest$1 = tmpChainElementCall != null;
+  if (tmpIfTest$1) {
     const tmpChainElementObject = tmpChainElementCall.x;
     a = tmpChainElementObject;
   } else {
@@ -74,8 +64,8 @@ if (tmpIfTest$1) {
 `````js filename=intro
 const tmpClusterSSA_b = { x: 1 };
 const tmpChainElementCall = $(tmpClusterSSA_b);
-const tmpIfTest$3 = tmpChainElementCall == null;
-if (tmpIfTest$3) {
+const tmpIfTest$1 = tmpChainElementCall == null;
+if (tmpIfTest$1) {
   $(undefined);
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;

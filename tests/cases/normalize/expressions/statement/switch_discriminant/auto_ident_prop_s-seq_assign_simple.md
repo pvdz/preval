@@ -26,13 +26,11 @@ $(a, b);
 `````js filename=intro
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = ((1, 2, b).c = 2);
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(100);
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = ((1, 2, b).c = 2);
+  if (true) {
+    $(100);
+  } else {
   }
 }
 $(a, b);
@@ -46,13 +44,8 @@ let a = { a: 999, b: 1000 };
 const varInitAssignLhsComputedObj = b;
 const varInitAssignLhsComputedRhs = 2;
 varInitAssignLhsComputedObj.c = varInitAssignLhsComputedRhs;
-const tmpSwitchValue = varInitAssignLhsComputedRhs;
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  $(100);
-} else {
-}
+const tmpSwitchDisc = varInitAssignLhsComputedRhs;
+$(100);
 $(a, b);
 `````
 

@@ -26,16 +26,12 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  {
-    const tmpSwitchValue = $(1, `disc`);
-    let tmpSwitchCaseToStart = 1;
-    if ($(1, `case`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-    else;
-    tmpSwitchBreak: {
-      if (tmpSwitchCaseToStart <= 0) {
-        return $(2, `ret`);
-        $(`fail`);
-      }
+  tmpSwitchBreak: {
+    const tmpSwitchDisc = $(1, `disc`);
+    if (tmpSwitchDisc === $(1, `case`)) {
+      return $(2, `ret`);
+      $(`fail`);
+    } else {
     }
   }
 };
@@ -47,16 +43,11 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSwitchValue = $(1, `disc`);
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(1, `case`);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpSwitchDisc = $(1, `disc`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(1, `case`);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
   if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-  }
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
     const tmpReturnArg = $(2, `ret`);
     return tmpReturnArg;
   } else {
@@ -73,9 +64,9 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
-  const tmpSwitchValue = $(1, `disc`);
-  const tmpBinLhs = $(1, `case`);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  const tmpSwitchDisc = $(1, `disc`);
+  const tmpBinBothRhs = $(1, `case`);
+  const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
   if (tmpIfTest) {
     const tmpReturnArg = $(2, `ret`);
     return tmpReturnArg;

@@ -26,13 +26,11 @@ $(a, x);
 `````js filename=intro
 let x = 1;
 let a = { a: 999, b: 1000 };
-{
-  const tmpSwitchValue = (a = typeof $(x));
-  let tmpSwitchCaseToStart = 0;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      $(100);
-    }
+tmpSwitchBreak: {
+  const tmpSwitchDisc = (a = typeof $(x));
+  if (true) {
+    $(100);
+  } else {
   }
 }
 $(a, x);
@@ -45,13 +43,8 @@ let x = 1;
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(x);
 a = typeof tmpUnaryArg;
-let tmpSwitchValue = a;
-let tmpSwitchCaseToStart = 0;
-const tmpIfTest = tmpSwitchCaseToStart <= 0;
-if (tmpIfTest) {
-  $(100);
-} else {
-}
+let tmpSwitchDisc = a;
+$(100);
 $(a, x);
 `````
 

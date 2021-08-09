@@ -22,17 +22,13 @@ $(a, b, c);
 let a = 1,
   b = { x: 2 },
   c = 3;
-{
+tmpSwitchBreak: {
   let a$1;
-  const tmpSwitchValue = $(`a`);
-  let tmpSwitchCaseToStart = 1;
-  if ($(`a`) === tmpSwitchValue) tmpSwitchCaseToStart = 0;
-  else;
-  tmpSwitchBreak: {
-    if (tmpSwitchCaseToStart <= 0) {
-      a$1 = $(b).x = c;
-      break tmpSwitchBreak;
-    }
+  const tmpSwitchDisc = $(`a`);
+  if (tmpSwitchDisc === $(`a`)) {
+    a$1 = $(b).x = c;
+    break tmpSwitchBreak;
+  } else {
   }
 }
 $(a, b, c);
@@ -44,18 +40,13 @@ $(a, b, c);
 let a = 1;
 let b = { x: 2 };
 let c = 3;
-let a$1 = undefined;
-const tmpSwitchValue = $(`a`);
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(`a`);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
 tmpSwitchBreak: {
-  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
-  if (tmpIfTest$1) {
+  let a$1 = undefined;
+  const tmpSwitchDisc = $(`a`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(`a`);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  if (tmpIfTest) {
     const tmpNestedAssignObj = $(b);
     const tmpNestedPropAssignRhs = c;
     tmpNestedAssignObj.x = tmpNestedPropAssignRhs;
@@ -71,9 +62,9 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 2 };
-const tmpSwitchValue = $(`a`);
-const tmpBinLhs = $(`a`);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+const tmpSwitchDisc = $(`a`);
+const tmpBinBothRhs = $(`a`);
+const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpNestedAssignObj = $(b);
   tmpNestedAssignObj.x = 3;

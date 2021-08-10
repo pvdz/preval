@@ -64,6 +64,7 @@ import { ifFalsySpread } from './if_falsy_spread.mjs';
 import { tailBreaking } from './tail_breaking.mjs';
 import { fakeLoops } from './fake_loops.mjs';
 import { unwindWhile } from './unwind_loop.mjs';
+import { staticArgOpOutlining } from './static_arg_op_outlining.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -330,6 +331,9 @@ function _phase2(program, fdata, resolve, req) {
 
   const uw = unwindWhile(fdata);
   if (uw) return uw;
+
+  const sao = staticArgOpOutlining(fdata);
+  if (sao) return sao;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

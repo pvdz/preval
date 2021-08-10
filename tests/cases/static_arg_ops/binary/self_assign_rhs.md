@@ -1,50 +1,50 @@
 # Preval test case
 
-# returned_and_used.md
+# self_assign_rhs.md
 
-> Return param > Returned and used
+> Static arg ops > Binary > Self assign rhs
 >
-> Returning a static param mutation but also reading it so we can't just eliminate it
+> When a function uses a param in the first statement and it is only called then we may be able to outline the first statement
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-function f(x) {
-  let y = x + 1;
-  $(y);
-  return y;
+function f(a) {
+  a = 1 + a;
+  return a;
 }
+
 $(f(1));
 $(f(2));
-$(f('three'));
+$(f('a'));
+$(f(true));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
 let f = function ($$0) {
-  let x = $$0;
+  let a = $$0;
   debugger;
-  let y = x + 1;
-  $(y);
-  return y;
+  a = 1 + a;
+  return a;
 };
 $(f(1));
 $(f(2));
-$(f(`three`));
+$(f(`a`));
+$(f(true));
 `````
 
 ## Normalized
 
 `````js filename=intro
 let f = function ($$0) {
-  let x = $$0;
+  let a = $$0;
   debugger;
-  let y = x + 1;
-  $(y);
-  return y;
+  a = 1 + a;
+  return a;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f(1);
@@ -53,19 +53,20 @@ const tmpCallCallee$1 = $;
 const tmpCalleeParam$1 = f(2);
 tmpCallCallee$1(tmpCalleeParam$1);
 const tmpCallCallee$3 = $;
-const tmpCalleeParam$3 = f(`three`);
+const tmpCalleeParam$3 = f(`a`);
 tmpCallCallee$3(tmpCalleeParam$3);
+const tmpCallCallee$5 = $;
+const tmpCalleeParam$5 = f(true);
+tmpCallCallee$5(tmpCalleeParam$5);
 `````
 
 ## Output
 
 `````js filename=intro
 $(2);
+$(3);
+$(`1a`);
 $(2);
-$(3);
-$(3);
-$(`three1`);
-$(`three1`);
 `````
 
 ## Globals
@@ -76,11 +77,9 @@ None
 
 Should call `$` with:
  - 1: 2
- - 2: 2
- - 3: 3
- - 4: 3
- - 5: 'three1'
- - 6: 'three1'
+ - 2: 3
+ - 3: '1a'
+ - 4: 2
  - eval returned: undefined
 
 Pre normalization calls: Same

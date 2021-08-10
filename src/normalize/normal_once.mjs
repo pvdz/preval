@@ -676,11 +676,18 @@ export function phaseNormalOnce(fdata) {
         // only have to do this to cover fall-through (etc) situations.
         const casesForAbruptAnalysis = node.cases.slice(0, -1);
 
+        // The case tests do not spy, just like if/while tests. So order is not very relevant.
+        // If there is a fall-through case that has no body then the simple transform becomes `a === x || b === x`. That's okay.
+
         if (
           !node.$p.hasMiddleDefaultCase &&
           casesForAbruptAnalysis.every((c) => {
             // If the c completes, that's fine because it means one of its children completes directly
-            if (c.$p.completesAbrupt) return true; // There's at least one statement of the consequent that explicitly breaks the code flow.
+            // There's at least one statement of the consequent that explicitly breaks the code flow.
+            if (c.$p.completesAbrupt) return true;
+            // If the consequent is empty, then that's a case we can work with
+            if (!c.consequent.length) return true;
+            // Lastly, if there is any statement that is _guaranteed_ to complete abruptly then we are good to go
             return c.consequent.some((c) => simpleAbruptCheck(c));
           })
         ) {
@@ -704,15 +711,30 @@ export function phaseNormalOnce(fdata) {
           const ifRoot = node.cases
             .slice(0)
             .reverse()
-            .reduce((other, c) => {
-              // Have to drop the unlabeled breaks in the same scope. Keep anything else.
-
-              return AST.ifStatement(
-                c.test === null ? AST.tru() : AST.binaryExpression('===', tmpName, c.test),
-                AST.blockStatement(c.consequent),
-                other,
-              );
-            }, AST.blockStatement());
+            .reduce(
+              (prev, c) => {
+                const caseTestNode = c.test === null ? AST.tru() : AST.binaryExpression('===', tmpName, c.test);
+                if (c.consequent.length === 0) {
+                  if (prev.type === 'BlockStatement') {
+                    // This means the last case/default was empty. Make sure the prev was an `if`.
+                    prev = AST.ifStatement(AST.tru(), AST.blockStatement(), AST.blockStatement());
+                  }
+                  // This is a fall-through case with empty body. `switch (x) { case a: case b: f(); }`
+                  // Amend the test of the previous `if` with an `|| x === b` and let normalization deal with the rest
+                  if (prev.test.type === 'Literal' && prev.test.value === true) {
+                    // Most likely the second-to-last case where the last is a default. The previous node has an
+                    // if-test that is just `true`. We should be able to replace it rather than amend it.
+                    // (It's less noisy, although I think we should just let other rules clean it up...)
+                    prev.test = caseTestNode;
+                  } else {
+                    prev.test = AST.binaryExpression('||', caseTestNode, prev.test);
+                  }
+                  return prev;
+                }
+                return AST.ifStatement(caseTestNode, AST.blockStatement(c.consequent), prev);
+              },
+              AST.blockStatement(),
+            );
           wrapper.body.push(varNode, ifRoot);
 
           parentNode[parentProp][parentIndex] = newLabelNode;

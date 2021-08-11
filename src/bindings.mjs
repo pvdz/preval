@@ -1591,6 +1591,10 @@ function _inferNodeTyping(fdata, valueNode) {
             });
           }
 
+          case BUILTIN_ARRAY_PROTOTYPE + '.push':
+          case BUILTIN_ARRAY_PROTOTYPE + '.pop':
+          case BUILTIN_ARRAY_PROTOTYPE + '.shift':
+          case BUILTIN_ARRAY_PROTOTYPE + '.unshift':
           case BUILTIN_ARRAY_PROTOTYPE + '.filter':
           case BUILTIN_ARRAY_PROTOTYPE + '.flat':
           case BUILTIN_ARRAY_PROTOTYPE + '.concat': {

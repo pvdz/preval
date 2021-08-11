@@ -637,7 +637,7 @@ function _typeTrackedTricks(fdata) {
                 switch (meta.typing.builtinTag) {
                   case 'Array#filter': {
                     // This is a one-of example which serves to unravel the jsf*ck code (which uses Array#filter)
-                    rule('Doing `+` on a builtin function always returns a string; Array#flat');
+                    rule('Doing `+` on a builtin function always returns a string; Array#filter');
                     example('f(Array.prototype.filter + "x")', 'f("function flat() { [native code] }x")');
                     before(node, parentNode);
 
@@ -656,6 +656,62 @@ function _typeTrackedTricks(fdata) {
                     before(node, parentNode);
 
                     const finalNode = AST.primitive('function flat() { [native code] }');
+                    if (pl) node.right = finalNode;
+                    else node.left = finalNode;
+
+                    after(node, parentNode);
+                    ++changes;
+                    return;
+                  }
+                  case 'Array#push': {
+                    // This is a one-of example which serves to unravel the jsf*ck code (which uses Array#push)
+                    rule('Doing `+` on a builtin function always returns a string; Array#push');
+                    example('f(Array.prototype.push + "x")', 'f("function push() { [native code] }x")');
+                    before(node, parentNode);
+
+                    const finalNode = AST.primitive('function push() { [native code] }');
+                    if (pl) node.right = finalNode;
+                    else node.left = finalNode;
+
+                    after(node, parentNode);
+                    ++changes;
+                    return;
+                  }
+                  case 'Array#pop': {
+                    // This is a one-of example which serves to unravel the jsf*ck code (which uses Array#pop)
+                    rule('Doing `+` on a builtin function always returns a string; Array#pop');
+                    example('f(Array.prototype.pop + "x")', 'f("function pop() { [native code] }x")');
+                    before(node, parentNode);
+
+                    const finalNode = AST.primitive('function pop() { [native code] }');
+                    if (pl) node.right = finalNode;
+                    else node.left = finalNode;
+
+                    after(node, parentNode);
+                    ++changes;
+                    return;
+                  }
+                  case 'Array#shift': {
+                    // This is a one-of example which serves to unravel the jsf*ck code (which uses Array#shift)
+                    rule('Doing `+` on a builtin function always returns a string; Array#shift');
+                    example('f(Array.prototype.shift + "x")', 'f("function shift() { [native code] }x")');
+                    before(node, parentNode);
+
+                    const finalNode = AST.primitive('function shift() { [native code] }');
+                    if (pl) node.right = finalNode;
+                    else node.left = finalNode;
+
+                    after(node, parentNode);
+                    ++changes;
+                    return;
+                  }
+                  case 'Array#unshift': {
+                    // This is a one-of example which serves to unravel the jsf*ck code (which uses Array#unshift)
+                    rule('Doing `+` on a builtin function always returns a string; Array#unshift');
+                    example('f(Array.prototype.unshift + "x")', 'f("function unshift() { [native code] }x")');
+                    before(node, parentNode);
+
+                    const finalNode = AST.primitive('function unshift() { [native code] }');
                     if (pl) node.right = finalNode;
                     else node.left = finalNode;
 
@@ -704,7 +760,7 @@ function _typeTrackedTricks(fdata) {
               break;
             }
             case BUILTIN_FUNC_CALL_NAME: {
-              // '$dotCall'
+              // '$dotCall' -- folding builtins
               // Resolve .call in some cases ($dotCall)
 
               ASSERT(node.arguments.length >= 2, 'should at least have the function to call and context, and then any number of args');
@@ -787,6 +843,29 @@ function _typeTrackedTricks(fdata) {
                 // Resolve builtin functions when we somehow know they're being cached
                 const refMeta = fdata.globallyUniqueNamingRegistry.get(funcRefNode.name);
                 switch (refMeta.typing.builtinTag) {
+                  case 'Array#push':
+                  case 'Array#pop':
+                  case 'Array#shift':
+                  case 'Array#unshift': {
+                    // Fold the call, make a regular array call. This lets another rule deal with the semantics, which we'll need anyways.
+                    // `$dotCall(func, context, arg1, arg2, arg3);`
+                    // -> `context.tag(arg1, arg2, arg3);`
+                    // The $dotCall asserts for us that the method was called before as well so it should be safe to do
+                    // (Additionally, we could verify that the value is an array, but I believe we don't need to?)
+
+                    rule('A $dotCall with builtin methods can be a regular method call');
+                    example('$dotCall($ArrayPush, arr, arg1, arg2, arg3);', 'arr.push(arg1, arg2, arg3);');
+                    before(node, blockBody[blockIndex]);
+
+                    const methodName = refMeta.typing.builtinTag.slice(refMeta.typing.builtinTag.indexOf('#') + 1);
+
+                    node.callee = AST.memberExpression(node['arguments'][1], methodName);
+                    node.arguments.shift(); // Array#<methodName>
+                    node.arguments.shift(); // the arr context
+
+                    after(node, blockBody[blockIndex]);
+                    return true;
+                  }
                   case 'Number#toString': {
                     // The radix is a vital arg so we can't resolve this unless we can resolve the arg
                     // This could even support something like `Number.prototype.toString.call("foo")` because why not

@@ -66,8 +66,8 @@ function _propertyLookups(fdata) {
       if (meta.typing.mustBeType === 'array') {
         ASSERT(node.property.type === 'Identifier');
         const prop = node.property.name;
-        if (['filter', 'flat', 'concat'].includes(prop)) {
-          // Add to the list here: Array#filter, Array#flat, Array#concat
+        if (['filter', 'flat', 'concat', 'push', 'pop', 'shift', 'unshift'].includes(prop)) {
+          // Add to the list here: Array#filter, Array#flat, Array#concat, Array#push, Array#pop, Array#shift, Array#unshift
           if (true) {
             // jsf*ck specific support
             // This is Function#flat ...

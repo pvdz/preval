@@ -189,6 +189,54 @@ function _coercials(fdata) {
         ++changes;
         return;
       }
+      case 'Array#pop': {
+        rule('Having `Array#pop` in $coerce can be resolved');
+        example('f($coerce(Array.prototype.pop. "plustr"))', 'f("function pop() { [native code] }")');
+        before(read.node, read.blockBody[read.blockIndex]);
+
+        const finalNode = AST.primitive('function pop() { [native code] }');
+        read.parentNode['arguments'][0] = finalNode;
+
+        after(finalNode, read.blockBody[read.blockIndex]);
+        ++changes;
+        return;
+      }
+      case 'Array#push': {
+        rule('Having `Array#push` in $coerce can be resolved');
+        example('f($coerce(Array.prototype.push. "plustr"))', 'f("function push() { [native code] }")');
+        before(read.node, read.blockBody[read.blockIndex]);
+
+        const finalNode = AST.primitive('function push() { [native code] }');
+        read.parentNode['arguments'][0] = finalNode;
+
+        after(finalNode, read.blockBody[read.blockIndex]);
+        ++changes;
+        return;
+      }
+      case 'Array#shift': {
+        rule('Having `Array#shift` in $coerce can be resolved');
+        example('f($coerce(Array.prototype.shift. "plustr"))', 'f("function shift() { [native code] }")');
+        before(read.node, read.blockBody[read.blockIndex]);
+
+        const finalNode = AST.primitive('function shift() { [native code] }');
+        read.parentNode['arguments'][0] = finalNode;
+
+        after(finalNode, read.blockBody[read.blockIndex]);
+        ++changes;
+        return;
+      }
+      case 'Array#unshift': {
+        rule('Having `Array#unshift` in $coerce can be resolved');
+        example('f($coerce(Array.prototype.unshift. "plustr"))', 'f("function unshift() { [native code] }")');
+        before(read.node, read.blockBody[read.blockIndex]);
+
+        const finalNode = AST.primitive('function unshift() { [native code] }');
+        read.parentNode['arguments'][0] = finalNode;
+
+        after(finalNode, read.blockBody[read.blockIndex]);
+        ++changes;
+        return;
+      }
     }
   });
 

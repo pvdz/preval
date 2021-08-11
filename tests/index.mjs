@@ -187,11 +187,13 @@ function runTestCase(
   let isExpectingAnError = mdHead.includes('\n### THROWS');
   if (withOutput) {
     console.log('Test case:', isExpectingAnError ? 'Expecting to throw an error' : 'Not expecting an error');
+    console.log('mdOptions:', mdOptions)
   }
 
   let expectedError = false;
   try {
     if (CONFIG.verbose === false && CONFIG.targetFile) console.log('\nNow running Preval without output...\n');
+    else if (withOutput) console.log('\n--- Actual call now ---\n');
     output = preval({
       entryPointFile: 'intro',
       stdio: CONFIG.verbose === true || (CONFIG.verbose === undefined && withOutput) ? undefined : () => {}, // handler receives all console calls, first arg is handler string. cant prevent the overhead but does suppress the output
@@ -221,6 +223,7 @@ function runTestCase(
         logPasses: CONFIG.logPasses,
         logDir: CONFIG.logDir,
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
+        unrollLimit: CONFIG.unroll ?? mdOptions?.unroll ?? 10,
       },
     });
   } catch (e) {

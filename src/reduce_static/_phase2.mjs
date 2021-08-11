@@ -77,16 +77,17 @@ import { staticArgOpOutlining } from './static_arg_op_outlining.mjs';
 // - Const binding folding (const a = $(); const b = a; -> redundant)
 // - Unary negative/positive should look at argument
 
-export function phase2(program, fdata, resolve, req) {
+export function phase2(program, fdata, resolve, req, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
   vlog('\nCurrent state (before phase2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   vlog('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
-  const r = _phase2(program, fdata, resolve, req);
+  vlog('Phase 2 options:', options);
+  const r = _phase2(program, fdata, resolve, req, options);
   groupEnd();
   return r;
 }
-function _phase2(program, fdata, resolve, req) {
+function _phase2(program, fdata, resolve, req, options = {}) {
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
   // Due to normalization, the assignments will be a statement. The var decl can not contain an assignment as init.
   // Elimination of var decls or assignments will be deferred. This way we can preserve parent/node
@@ -330,10 +331,10 @@ function _phase2(program, fdata, resolve, req) {
   const fl = fakeLoops(fdata);
   if (fl) return fl;
 
-  const uwt = unwindWhileWithTest(fdata);
+  const uwt = unwindWhileWithTest(fdata, options.unrollLimit);
   if (uwt) return uwt;
 
-  const uwc = unwindWhileWithCounter(fdata);
+  const uwc = unwindWhileWithCounter(fdata, options.unrollLimit);
   if (uwc) return uwc;
 
   const sao = staticArgOpOutlining(fdata);

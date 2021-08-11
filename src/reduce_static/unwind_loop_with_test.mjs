@@ -8,34 +8,19 @@
 // - actual body is one statement (?) and not an if or while or some others (should at most blow up code by one step per transform)
 // - probably some other factors... tbd :)
 
-import {
-  ASSERT,
-  log,
-  group,
-  groupEnd,
-  vlog,
-  vgroup,
-  vgroupEnd,
-  rule,
-  example,
-  before,
-  source,
-  after,
-  fmat,
-  tmat,
-} from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
-export function unwindWhileWithTest(fdata) {
+export function unwindWhileWithTest(fdata, unrollLimit = 10) {
   group('\n\n\nChecking for while loops with counter and test that we can unwind');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
-  const r = _unwindWhileWithTest(fdata);
+  const r = _unwindWhileWithTest(fdata, unrollLimit);
   groupEnd();
   return r;
 }
-function _unwindWhileWithTest(fdata) {
-  let updated = processAttempt(fdata);
+function _unwindWhileWithTest(fdata, unrollLimit) {
+  let updated = processAttempt(fdata, unrollLimit);
 
   log('');
   if (updated) {
@@ -45,7 +30,7 @@ function _unwindWhileWithTest(fdata) {
   log('Loops unrolled: 0.');
 }
 
-function processAttempt(fdata) {
+function processAttempt(fdata, unrollLimit) {
   let updated = 0;
 
   // The test should be initialized to some kind of truthy value or the "range check"
@@ -311,14 +296,14 @@ function processAttempt(fdata) {
       vlog('- There are no steps. No need to do anything, this while should fold up.');
       return;
     }
-    if (counterOffset !== 0 && steps > 10) {
+    if (counterOffset !== 0 && steps > unrollLimit) {
       // TODO: we can also include a heuristic for the size of the parent function or something? tricky business.
-      vlog('- Total steps exceeds 10 and offset is not zero, bailing', counterOffset, steps);
+      vlog('- Total steps exceeds the unrollLimit and offset is not zero, bailing', counterOffset, steps, unrollLimit);
       return;
     }
 
-    // If the total steps exceeds 10, cap the transform at 10 unrolls
-    const transformSteps = Math.min(steps, 10);
+    // If the total steps exceeds unrollLimit, cap the transform at unrollLimit unrolls
+    const transformSteps = Math.min(steps, unrollLimit);
 
     // We should confirm that the counter and test updates are the last in the main body of
     // the loop. Also confirm that the loop does not contain a `continue` or `break`.
@@ -397,9 +382,10 @@ function processAttempt(fdata) {
     const freshNames = loopBody.filter((n) => n.type === 'VariableDeclaration').map((n) => n.declarations[0].id.name);
 
     ASSERT(
-      transformSteps > 0 && transformSteps <= 10,
-      'the transform step count should be bound between zero and up-to-and-including 10',
+      transformSteps > 0 && transformSteps <= unrollLimit,
+      'the transform step count should be bound between zero and up-to-and-including the unrollLimit',
       transformSteps,
+      unrollLimit,
     );
     let outer = loopNode;
     // (This is a .reduce)

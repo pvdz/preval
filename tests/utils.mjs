@@ -96,6 +96,10 @@ export function fromMarkdownCase(md, fname, config) {
           case 'skipEvalOutput':
             value = true;
             break;
+          case 'unroll':
+            value = parseInt(value.trim());
+            if (isNaN(value)) throw new Error('Test case contained invalid value for `' + name + '` (' + value + ')');
+            break;
           default:
             throw new Error('Test case contained unsupported option: `' + name + '` (with value `' + value + '`)');
         }

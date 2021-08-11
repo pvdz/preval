@@ -52,15 +52,11 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = 1;
 const b = { c: 1 };
-while (true) {
+while (a) {
+  $(1);
   a = b.c;
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
 }
 $(a, b);
 `````

@@ -50,14 +50,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
+let a = $(60);
+while (a) {
+  $(100);
   a = $(60);
-  if (a) {
-    $(100);
-  } else {
-    break;
-  }
 }
 $(a);
 `````

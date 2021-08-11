@@ -1,0 +1,86 @@
+# Preval test case
+
+# base_break.md
+
+> Unwind loops > Counter test > Base break
+>
+> todo
+
+#TODO
+
+## Input
+
+`````js filename=intro
+let counter = 5;
+while (true) {
+  counter = counter - 1;
+  if (counter) {
+    $('x')
+  } else {
+    break;
+  }
+}
+$('finished');
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let counter = 5;
+while (true) {
+  counter = counter - 1;
+  if (counter) {
+    $(`x`);
+  } else {
+    break;
+  }
+}
+$(`finished`);
+`````
+
+## Normalized
+
+`````js filename=intro
+let counter = 5;
+counter = counter - 1;
+while (counter) {
+  $(`x`);
+  counter = counter - 1;
+}
+$(`finished`);
+`````
+
+## Output
+
+`````js filename=intro
+$(`x`);
+$(`x`);
+$(`x`);
+$(`x`);
+let tmpClusterSSA_counter$5 = 0;
+while (tmpClusterSSA_counter$5) {
+  $(`x`);
+  tmpClusterSSA_counter$5 = tmpClusterSSA_counter$5 - 1;
+}
+$(`finished`);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 'x'
+ - 2: 'x'
+ - 3: 'x'
+ - 4: 'x'
+ - 5: 'finished'
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

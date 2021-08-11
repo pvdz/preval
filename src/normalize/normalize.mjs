@@ -3273,7 +3273,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             example('undefined[foo]', 'undefined.eliminatedComputedProp');
             before(node, parentNode);
 
-            body.splice(i, 0, AST.expressionStatement(node.property))
+            body.splice(i, 0, AST.expressionStatement(node.property));
             node.computed = false;
             node.property = AST.identifier('eliminatedComputedProp'); // This does change the error message slightly...
 
@@ -5975,7 +5975,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             }
 
             // This prop deduping becomes more relevant as the normalization process folds up spreads
-            if (pnode.kind === 'init') { // Ignore getters/setters/static stuff.
+            if (pnode.kind === 'init') {
+              // Ignore getters/setters/static stuff.
               if (pnode.key.type === 'Identifier') {
                 if (known.has(pnode.key.name)) {
                   rule('Object literals with duplicate ident keys should not have those dupes');
@@ -8848,16 +8849,19 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           // Does the `while` test on `true`?
           node.test.type === 'Literal' &&
           node.test.value === true &&
-          // Is the first a var and is the if testing on this var?
+          // Is the first a var or assignment and is the if testing on this var/lhs?
           last.test.type === 'Identifier' &&
-          first.type === 'VariableDeclaration' &&
-          first.declarations[0].id.name === last.test.name
+          ((first.type === 'VariableDeclaration' && first.declarations[0].id.name === last.test.name) ||
+            (first.type === 'ExpressionStatement' &&
+              first.expression.type === 'AssignmentExpression' &&
+              first.expression.left.type === 'Identifier' &&
+              first.expression.left.name === last.test.name))
         ) {
-          // This is a while with a var decl and an `if`. The `if` tests the ident declared by that decl.
+          // This is a while with a var-decl or assign and an `if`. The `if` tests the ident declared by that decl, or assigned ot in the assign.
           // Confirm that either branch is only a `break`, then simplify them
 
           const whileTestName = last.test.name;
-          const whileTestExpr = first.declarations[0].init;
+          const whileTestExpr = first.type === 'VariableDeclaration' ? first.declarations[0].init : first.expression.right;
           ASSERT(whileTestExpr);
 
           if (last.consequent.body.length === 1 && last.consequent.body[0].type === 'BreakStatement' && !last.consequent.body[0].label) {
@@ -8866,6 +8870,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               'while (true) { const a = f(); if (a) { break; } else { x(); y(); }',
               'let a = !f(); while (a) { x(); y(); a = !f(); }',
             );
+            example('while (true) { a = f(); if (a) { break; } else { x(); y(); }', 'let a = !f(); while (a) { x(); y(); a = !f(); }');
             before(node);
 
             const fail = {};
@@ -8876,18 +8881,23 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               whileTestExpr,
             );
 
-            // Move the var node to appear before the if.
+            // Move the var/assign node to appear before the if.
             // We can't change order so we wrap it in a block so we can replace the whole `while`
             // We asserted the while not to be labeled so this should be safe.
             const newBlock = AST.blockStatement(first, node);
-            // Move the var node to appear before the if. Must do so without changing body index order so wrap in a block.
+            // Move the var/assign node to appear before the if. Must do so without changing body index order so wrap in a block.
             body.splice(i, 1, newBlock);
-            // Make it `let` (if it wasn't already, but it should be const).
-            first.kind = 'let';
             // Clear its old position.
             whileBody[0] = AST.emptyStatement();
-            // Wrap the init in an excl
-            first.declarations[0].init = AST.unaryExpression('!', whileTestExpr);
+            if (first.type === 'VariableDeclaration') {
+              // It should be a const but either way, make sure it's a let
+              first.kind = 'let';
+              // Wrap the init in an excl.
+              first.declarations[0].init = AST.unaryExpression('!', whileTestExpr);
+            } else {
+              // Wrap the rhs in an excl.
+              first.expression.right = AST.unaryExpression('!', whileTestExpr);
+            }
             // Replace the `if` with the branch that was not just the `break`. Keep its block.
             ASSERT(whileBody[1] === last);
             whileBody[1] = last.alternate;

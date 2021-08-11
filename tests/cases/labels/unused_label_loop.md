@@ -40,14 +40,11 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let x = 2;
-while (true) {
-  x = x - 1;
-  if (x) {
-    $(x);
-  } else {
-    break;
-  }
+$(1);
+let tmpClusterSSA_x = 0;
+while (tmpClusterSSA_x) {
+  $(tmpClusterSSA_x);
+  tmpClusterSSA_x = tmpClusterSSA_x - 1;
 }
 `````
 

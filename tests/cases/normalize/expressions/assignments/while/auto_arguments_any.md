@@ -43,14 +43,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
+let a = arguments;
+while (a) {
+  $(100);
   a = arguments;
-  if (a) {
-    $(100);
-  } else {
-    break;
-  }
 }
 $(a);
 `````

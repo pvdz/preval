@@ -51,15 +51,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
 const arg = { y: 1 };
-while (true) {
+let a = delete arg.y;
+while (a) {
+  $(1);
   a = delete arg.y;
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
 }
 $(a, arg);
 `````

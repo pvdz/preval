@@ -51,14 +51,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-while (true) {
+let b = $(2);
+while (b) {
+  $(1);
   b = $(2);
-  if (b) {
-    $(1);
-  } else {
-    break;
-  }
 }
 const a = { a: 999, b: 1000 };
 $(a, b);

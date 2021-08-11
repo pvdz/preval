@@ -1,6 +1,7 @@
-// Find trivial while loops that we can unwind a bit
-// `let x = 0; while (x < 10) $(x);`
-// -> `$(0); $(1); $(2); let x = 3; while (x < 10) $(x);`
+// Find trivial while loops with counter and separate test that we can unwind a bit
+// `let x = 0; while (x < 10) $(--x);`
+// -> `$(0); $(1); $(2); let x = 3; while (x < 10) $(--x);`
+
 // The pattern can be somewhat generic as long as
 // - we can reliably detect the offset and limit
 // - proof that the counter only goes one way
@@ -26,14 +27,14 @@ import {
 import * as AST from '../ast.mjs';
 import { createFreshVar } from '../bindings.mjs';
 
-export function unwindWhile(fdata) {
-  group('\n\n\nChecking for while loops that we can unwind');
+export function unwindWhileWithTest(fdata) {
+  group('\n\n\nChecking for while loops with counter and test that we can unwind');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
-  const r = _unwindWhile(fdata);
+  const r = _unwindWhileWithTest(fdata);
   groupEnd();
   return r;
 }
-function _unwindWhile(fdata) {
+function _unwindWhileWithTest(fdata) {
   let updated = processAttempt(fdata);
 
   log('');
@@ -52,8 +53,10 @@ function processAttempt(fdata) {
   // The "range check" should be a constant on one side and a "counter" on the other side
   // The "counter" should be initialized with a constant value
   // The "counter" should be updated inside the loop, once, and with a partial constant binary expression of sorts
-  // In short: `let counter = 0; let test = true; while (test) { $(); counter = counter + 1; test = counter < 10; }`
-  // - the test ---------------------^^^^                ^^^^                                ^^^^^^^^^^^^^^^^^^^
+
+  // In short:
+  //            `let counter = 0; let test = true; while (test) { $(); counter = counter + 1; test = counter < 10; }`
+  // - the test ----------------------^^^^                ^^^^                                ^^^^^^^^^^^^^^^^^^^
   // - counter  ----^^^^^^^                                           ^^^^^^^^^^^^^^^^^^^^^
 
   new Map(fdata.globallyUniqueNamingRegistry).forEach(function (meta, name) {
@@ -281,7 +284,7 @@ function processAttempt(fdata) {
     }
 
     ASSERT(
-      counterOffset !== undefined && isFinite(counterStep) && counterOp && rangeValueB !== undefined,
+      isFinite(counterOffset) && isFinite(counterStep) && counterOp && rangeValueB !== undefined,
       'wut',
       counterOffset,
       counterStep,

@@ -63,7 +63,8 @@ import { ifMerging } from './if_merging.mjs';
 import { ifFalsySpread } from './if_falsy_spread.mjs';
 import { tailBreaking } from './tail_breaking.mjs';
 import { fakeLoops } from './fake_loops.mjs';
-import { unwindWhile } from './unwind_loop.mjs';
+import { unwindWhileWithTest } from './unwind_loop_with_test.mjs';
+import { unwindWhileWithCounter } from './unwind_loop_with_counter.mjs';
 import { staticArgOpOutlining } from './static_arg_op_outlining.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
@@ -329,8 +330,11 @@ function _phase2(program, fdata, resolve, req) {
   const fl = fakeLoops(fdata);
   if (fl) return fl;
 
-  const uw = unwindWhile(fdata);
-  if (uw) return uw;
+  const uwt = unwindWhileWithTest(fdata);
+  if (uwt) return uwt;
+
+  const uwc = unwindWhileWithCounter(fdata);
+  if (uwc) return uwc;
 
   const sao = staticArgOpOutlining(fdata);
   if (sao) return sao;

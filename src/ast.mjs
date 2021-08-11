@@ -1726,7 +1726,7 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
     case 'TemplateLiteral': {
       return templateLiteral(
         node.quasis.map((te) => te.value.cooked),
-        node.expressions,
+        node.expressions.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)),
       );
     }
     case 'TemplateElement': {

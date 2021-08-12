@@ -292,5 +292,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
   log('Preval end');
 
+  vlog('\nCurrent state, final\n--------------\n' + fmat(contents.files.intro) + '\n--------------\n');
+
+
   return contents;
 }

@@ -48,14 +48,7 @@ while (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-let i = 0;
-let tmpIfTest = false;
-while (tmpIfTest) {
-  $(i);
-  i = i + 1;
-  i = i + 1;
-  tmpIfTest = i < 0;
-}
+
 `````
 
 ## Globals

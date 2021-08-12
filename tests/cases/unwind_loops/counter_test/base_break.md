@@ -57,11 +57,6 @@ $(`x`);
 $(`x`);
 $(`x`);
 $(`x`);
-let tmpClusterSSA_counter$5 = 0;
-while (tmpClusterSSA_counter$5) {
-  $(`x`);
-  tmpClusterSSA_counter$5 = tmpClusterSSA_counter$5 - 1;
-}
 $(`finished`);
 `````
 

@@ -47,13 +47,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 0;
-while (b) {
-  $(100);
-  b = b - 1;
-}
 const a = { a: 999, b: 1000 };
-$(a, b);
+$(a, 0);
 `````
 
 ## Globals

@@ -52,13 +52,6 @@ $(`x4`);
 $(`x3`);
 $(`x2`);
 $(`x1`);
-let tmpClusterSSA_counter$7 = 0;
-while (tmpClusterSSA_counter$7) {
-  const tmpStringConcatL = $coerce(tmpClusterSSA_counter$7, `string`);
-  const tmpCalleeParam = `x${tmpStringConcatL}`;
-  $(tmpCalleeParam);
-  tmpClusterSSA_counter$7 = tmpClusterSSA_counter$7 - 1;
-}
 $(`finished`);
 `````
 

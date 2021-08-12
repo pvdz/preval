@@ -63,13 +63,6 @@ $(r);
 $(0);
 $(1);
 $(2);
-let tmpClusterSSA_i$3 = 3;
-let tmpClusterSSA_tmpIfTest$3 = false;
-while (tmpClusterSSA_tmpIfTest$3) {
-  $(tmpClusterSSA_i$3);
-  tmpClusterSSA_i$3 = tmpClusterSSA_i$3 + 1;
-  tmpClusterSSA_tmpIfTest$3 = tmpClusterSSA_i$3 < 3;
-}
 $(100);
 `````
 

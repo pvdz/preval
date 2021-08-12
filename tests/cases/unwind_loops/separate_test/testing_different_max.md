@@ -67,13 +67,6 @@ $(`yolo`);
 $(`yolo`);
 $(`yolo`);
 $(`yolo`);
-let tmpClusterSSA_tmpClusterSSA_counter$18 = 20;
-let tmpClusterSSA_tmpClusterSSA_test$18 = false;
-while (tmpClusterSSA_tmpClusterSSA_test$18) {
-  $(`yolo`);
-  tmpClusterSSA_tmpClusterSSA_counter$18 = tmpClusterSSA_tmpClusterSSA_counter$18 + 1;
-  tmpClusterSSA_tmpClusterSSA_test$18 = tmpClusterSSA_tmpClusterSSA_counter$18 < 20;
-}
 `````
 
 ## Globals

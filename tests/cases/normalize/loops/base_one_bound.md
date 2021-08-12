@@ -61,13 +61,6 @@ $(r);
 
 `````js filename=intro
 $(0);
-let tmpClusterSSA_i = 1;
-let tmpClusterSSA_tmpIfTest = false;
-while (tmpClusterSSA_tmpIfTest) {
-  $(tmpClusterSSA_i);
-  tmpClusterSSA_i = tmpClusterSSA_i + 1;
-  tmpClusterSSA_tmpIfTest = tmpClusterSSA_i < 1;
-}
 $(100);
 `````
 

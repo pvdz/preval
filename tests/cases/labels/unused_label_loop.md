@@ -41,11 +41,6 @@ while (true) {
 
 `````js filename=intro
 $(1);
-let tmpClusterSSA_x = 0;
-while (tmpClusterSSA_x) {
-  $(tmpClusterSSA_x);
-  tmpClusterSSA_x = tmpClusterSSA_x - 1;
-}
 `````
 
 ## Globals

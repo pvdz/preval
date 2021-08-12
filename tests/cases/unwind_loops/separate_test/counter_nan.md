@@ -47,13 +47,7 @@ while (test) {
 ## Output
 
 `````js filename=intro
-let counter = NaN;
-let test = false;
-while (test) {
-  $(`yolo`);
-  counter = counter + 1;
-  test = counter < 10;
-}
+
 `````
 
 ## Globals

@@ -51,13 +51,6 @@ $(6);
 $(7);
 $(8);
 $(9);
-let tmpClusterSSA_i$17 = 10;
-let tmpClusterSSA_tmpIfTest$17 = false;
-while (tmpClusterSSA_tmpIfTest$17) {
-  $(tmpClusterSSA_i$17);
-  tmpClusterSSA_i$17 = tmpClusterSSA_i$17 + 1;
-  tmpClusterSSA_tmpIfTest$17 = tmpClusterSSA_i$17 < 10;
-}
 `````
 
 ## Globals

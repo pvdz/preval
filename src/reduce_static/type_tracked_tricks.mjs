@@ -57,7 +57,17 @@ function _typeTrackedTricks(fdata) {
         if (node.test.type === 'Identifier') {
           const testMeta = fdata.globallyUniqueNamingRegistry.get(node.test.name);
           if (!testMeta.isImplicitGlobal) {
-            if (testMeta.typing.mustBeFalsy) {
+            const truthy = testMeta.typing.mustBeTruthy; // Only true when the binding can only have truthy values. Otherwise we must keep the test as is.
+            const falsy =
+              !truthy &&
+              (testMeta.typing.mustBeFalsy ||
+                // One shot for low hanging fruit: verify that the previous statement defined the test to a false primitive (IR state can cause this)
+                (testMeta.writes.length &&
+                  testMeta.writes[0].kind === 'var' &&
+                  AST.isFalsy(testMeta.writes[0].parentNode.init) &&
+                  testMeta.writes[0].blockBody[testMeta.writes[0].blockIndex + 1] === node));
+
+            if (falsy) {
               //TODO: test;
               // undefined/null will lead to a literal. boolean must be false. string must be empty. number is unknown but also unhandled at the moment. so I'm not sure this case can be reached right now.
               rule('An `if` test with a truthy value should be replaced with `true`');
@@ -69,11 +79,11 @@ function _typeTrackedTricks(fdata) {
 
               after(node.test, node);
               ++changes;
-            } else if (testMeta.typing.mustBeTruthy) {
+            } else if (truthy) {
               // Covered by tests/cases/excl/regex.md tests/cases/ifelse/harder/if_new.md
               rule('An `if` test with a truthy value should be replaced with `false`');
               example('if (0) {}', 'if (false) {}');
-              before(node.test, node);
+              before(node.test, parentNode);
 
               // TODO: fix implicit global errors by compiling the test as a statement
               node.test = AST.tru();
@@ -792,7 +802,6 @@ function _typeTrackedTricks(fdata) {
                       }
                     });
                     node.arguments.splice(0, 2); // Drop `Function`, the context ref, and the prop name
-                    node.callee = funcNode;
 
                     // Mark all args as tainted, just in case.
                     // We should not need to taint Function and $dotCall metas for this.

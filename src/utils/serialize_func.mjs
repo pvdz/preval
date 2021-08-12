@@ -145,6 +145,7 @@ export function createNormalizedFunctionFromString(funcString, clonedName = 'non
   const preFdata = parseCode(funcString, '');
   prepareNormalization(preFdata, /*resolve*/ undefined, /*req*/ undefined, true); // I want a phase1 because I want the scope tracking set up for normalizing bindings
   source(preFdata.tenkoOutput.ast);
+  preFdata.globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
   phaseNormalOnce(preFdata);
 
   vlog('Now processing...');

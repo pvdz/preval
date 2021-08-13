@@ -55,7 +55,8 @@ function _inlineOneTimeFunctions(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
-    ASSERT(meta.writes.length === 1, 'fix me if we somehow allow this. This transform would probably break it.');
+
+    ASSERT(meta.writes.length === 1, 'fix me if we somehow allow constants to be written to more than once. This transform would probably break it.', name); // We drop the decl so if this is not the case, we break stuff.
 
     vgroup(
       '- `' + meta.uniqueName + '`:',
@@ -68,7 +69,6 @@ function _inlineOneTimeFunctions(fdata) {
       meta.reads[0]?.node?.type,
     );
 
-    ASSERT(meta.writes.length === 1, 'because isConstant=true'); // We drop the decl so if this is not the case, we break stuff.
     if (meta.reads.length !== 1) {
       vlog('Not a single read, bailing');
       vgroupEnd();

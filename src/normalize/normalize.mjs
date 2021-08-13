@@ -1809,6 +1809,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 // This is dangerous since we renamed many variables, possibly already eliminated some of them, and the
                 // eval would want to try and reference them as they were in the original input. So we can certainly
                 // try this, but there's a very good chance it will just fail hard.
+                // Luckily for us, the obfuscation family of things just do superficial stuffs here.
                 if (allowEval) {
                   if (args.every((anode) => AST.isPrimitive(anode))) {
                     // TODO: we could try to find the original point of this call and replace the arg but I'm sure there are plenty of cases where this is not feasible (like conditionals etc)
@@ -1824,7 +1825,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                           .map((anode) => String(AST.getPrimitiveValue(anode)))
                           .join(',') +
                         ') { ' +
-                        AST.getPrimitiveValue(args[args.length - 1]) +
+                        (args.length ? AST.getPrimitiveValue(args[args.length - 1]) : '') +
                         '}',
                       undefined,
                       fdata,

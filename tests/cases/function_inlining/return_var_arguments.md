@@ -28,7 +28,7 @@ $(f());
 
 `````js filename=intro
 let f = function ($$0) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   let a = $$0;
   debugger;
   let g = function () {
@@ -36,7 +36,7 @@ let f = function ($$0) {
     const y = x;
     return y;
   };
-  const x = tmpArgumentsAny;
+  const x = tmpPrevalAliasArgumentsAny;
   return g();
 };
 $(f());
@@ -46,14 +46,14 @@ $(f());
 
 `````js filename=intro
 let f = function ($$0) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   let a = $$0;
   debugger;
   let g = function () {
     debugger;
     return x;
   };
-  const x = tmpArgumentsAny;
+  const x = tmpPrevalAliasArgumentsAny;
   const tmpReturnArg = g();
   return tmpReturnArg;
 };
@@ -66,9 +66,9 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function ($$0) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   debugger;
-  return tmpArgumentsAny;
+  return tmpPrevalAliasArgumentsAny;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

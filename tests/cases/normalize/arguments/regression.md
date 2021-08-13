@@ -35,9 +35,9 @@ const f = function ($$0) {
     x = {};
   }
   const g = function () {
-    const tmpArgumentsLen = arguments.length;
+    const tmpPrevalAliasArgumentsLen = arguments.length;
     debugger;
-    $(tmpArgumentsLen);
+    $(tmpPrevalAliasArgumentsLen);
   };
   return g();
 };
@@ -56,9 +56,9 @@ const f = function ($$0) {
   } else {
   }
   const g = function () {
-    const tmpArgumentsLen = arguments.length;
+    const tmpPrevalAliasArgumentsLen = arguments.length;
     debugger;
-    $(tmpArgumentsLen);
+    $(tmpPrevalAliasArgumentsLen);
     return undefined;
   };
   const tmpReturnArg = g();

@@ -36,11 +36,11 @@ $(f(1, 2, 3, 4));
 
 `````js filename=intro
 let f = function () {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   debugger;
   const g = () => {
     debugger;
-    return tmpArgumentsLen;
+    return tmpPrevalAliasArgumentsLen;
   };
   return g(5, 6);
 };
@@ -51,11 +51,11 @@ $(f(1, 2, 3, 4));
 
 `````js filename=intro
 let f = function () {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   debugger;
   const g = function () {
     debugger;
-    return tmpArgumentsLen;
+    return tmpPrevalAliasArgumentsLen;
   };
   const tmpReturnArg = g(5, 6);
   return tmpReturnArg;
@@ -68,7 +68,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$(4);
+const tmpPrevalAliasArgumentsLen = 4;
+$(tmpPrevalAliasArgumentsLen);
 `````
 
 ## Globals

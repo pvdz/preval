@@ -21,14 +21,14 @@ f(1, 2, 3, 4, 5); // The use of `this` should prevent inlining this call, for no
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   let a = $$0;
   let b = $$1;
   let c = $$2;
   let d = $$3;
   let e = $$4;
   debugger;
-  $(tmpthis);
+  $(tmpPrevalAliasThis);
 };
 f(1, 2, 3, 4, 5);
 `````
@@ -37,14 +37,14 @@ f(1, 2, 3, 4, 5);
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   let a = $$0;
   let b = $$1;
   let c = $$2;
   let d = $$3;
   let e = $$4;
   debugger;
-  $(tmpthis);
+  $(tmpPrevalAliasThis);
   return undefined;
 };
 f(1, 2, 3, 4, 5);
@@ -54,9 +54,9 @@ f(1, 2, 3, 4, 5);
 
 `````js filename=intro
 const f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
-  $(tmpthis);
+  $(tmpPrevalAliasThis);
   return undefined;
 };
 f();

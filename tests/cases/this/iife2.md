@@ -26,12 +26,12 @@ f();
 
 `````js filename=intro
 const f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
   let g = undefined;
   if ($(1)) {
     if (typeof window !== `undefined`) {
-      g = tmpthis;
+      g = tmpPrevalAliasThis;
     }
   }
 };
@@ -42,7 +42,7 @@ f();
 
 `````js filename=intro
 const f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
   let g = undefined;
   const tmpIfTest = $(1);
@@ -50,7 +50,7 @@ const f = function () {
     const tmpBinLhs = `undefined`;
     const tmpIfTest$1 = tmpBinLhs !== `undefined`;
     if (tmpIfTest$1) {
-      g = tmpthis;
+      g = tmpPrevalAliasThis;
       return undefined;
     } else {
       return undefined;

@@ -25,9 +25,9 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
-  return (a = tmpthis);
+  return (a = tmpPrevalAliasThis);
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -38,9 +38,9 @@ $(a);
 
 `````js filename=intro
 let f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
-  a = tmpthis;
+  a = tmpPrevalAliasThis;
   return a;
 };
 let a = { a: 999, b: 1000 };
@@ -55,10 +55,10 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
-  a = tmpthis;
-  return tmpthis;
+  a = tmpPrevalAliasThis;
+  return tmpPrevalAliasThis;
 };
 const tmpCalleeParam = f();
 $(tmpCalleeParam);

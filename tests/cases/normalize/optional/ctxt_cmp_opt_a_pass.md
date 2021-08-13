@@ -21,10 +21,10 @@ $($(a)?.[$('b')][$('c')](100));
 const a = {
   b: {
     c: function (...$$0) {
-      const tmpthis = this;
+      const tmpPrevalAliasThis = this;
       let a$1 = $$0;
       debugger;
-      $($(a$1), tmpthis);
+      $($(a$1), tmpPrevalAliasThis);
       return a$1[0];
     },
   },
@@ -36,12 +36,12 @@ $($(a)?.[$(`b`)][$(`c`)](100));
 
 `````js filename=intro
 const tmpObjLitVal$1 = function (...$$0) {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   let a$1 = $$0;
   debugger;
   const tmpCallCallee = $;
   const tmpCalleeParam = $(a$1);
-  const tmpCalleeParam$1 = tmpthis;
+  const tmpCalleeParam$1 = tmpPrevalAliasThis;
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
@@ -69,11 +69,11 @@ tmpCallCallee$1(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpObjLitVal$1 = function (...$$0) {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   const a$1 = $$0;
   debugger;
   const tmpCalleeParam = $(a$1);
-  $(tmpCalleeParam, tmpthis);
+  $(tmpCalleeParam, tmpPrevalAliasThis);
   const tmpReturnArg = a$1[0];
   return tmpReturnArg;
 };

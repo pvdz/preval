@@ -21,12 +21,12 @@ f();
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   let x = $$0;
   let y = $$1;
   let z = $$2;
   debugger;
-  return $(!!tmpArgumentsAny, x, z);
+  return $(!!tmpPrevalAliasArgumentsAny, x, z);
 };
 f();
 `````
@@ -35,13 +35,13 @@ f();
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   let x = $$0;
   let y = $$1;
   let z = $$2;
   debugger;
   const tmpCallCallee = $;
-  const tmpUnaryArg = !tmpArgumentsAny;
+  const tmpUnaryArg = !tmpPrevalAliasArgumentsAny;
   const tmpCalleeParam = !tmpUnaryArg;
   const tmpCalleeParam$1 = x;
   const tmpCalleeParam$3 = z;
@@ -55,11 +55,11 @@ f();
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   const x = $$0;
   const z = $$2;
   debugger;
-  const tmpCalleeParam = Boolean(tmpArgumentsAny);
+  const tmpCalleeParam = Boolean(tmpPrevalAliasArgumentsAny);
   $(tmpCalleeParam, x, z);
   return undefined;
 };

@@ -28,14 +28,14 @@ f(8, 2, 9);
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2, $$3) {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   let a = $$0;
   let b = $$1;
   let c = $$2;
   let d = $$3;
   debugger;
   if ($) {
-    $(a, b, c, d, tmpArgumentsLen, `hopefully b is a literal afterwards`);
+    $(a, b, c, d, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
   }
 };
 f(1, 2, 3, `oops`);
@@ -48,14 +48,14 @@ f(8, 2, 9);
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2, $$3) {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   let a = $$0;
   let b = $$1;
   let c = $$2;
   let d = $$3;
   debugger;
   if ($) {
-    $(a, b, c, d, tmpArgumentsLen, `hopefully b is a literal afterwards`);
+    $(a, b, c, d, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
     return undefined;
   } else {
     return undefined;
@@ -71,14 +71,14 @@ f(8, 2, 9);
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3) {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   const a = $$0;
   const b = $$1;
   const c = $$2;
   const d = $$3;
   debugger;
   if ($) {
-    $(a, b, c, d, tmpArgumentsLen, `hopefully b is a literal afterwards`);
+    $(a, b, c, d, tmpPrevalAliasArgumentsLen, `hopefully b is a literal afterwards`);
     return undefined;
   } else {
     return undefined;

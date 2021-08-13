@@ -21,9 +21,9 @@ f();
 
 `````js filename=intro
 let f = function () {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   debugger;
-  $(tmpArgumentsLen);
+  $(tmpPrevalAliasArgumentsLen);
 };
 f();
 `````
@@ -32,9 +32,9 @@ f();
 
 `````js filename=intro
 let f = function () {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   debugger;
-  $(tmpArgumentsLen);
+  $(tmpPrevalAliasArgumentsLen);
   return undefined;
 };
 f();

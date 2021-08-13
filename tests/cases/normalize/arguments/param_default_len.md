@@ -21,10 +21,10 @@ $(f());
 
 `````js filename=intro
 let f = function ($$0) {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   const tmpParamBare = $$0;
   debugger;
-  let a = tmpParamBare === undefined ? tmpArgumentsLen : tmpParamBare;
+  let a = tmpParamBare === undefined ? tmpPrevalAliasArgumentsLen : tmpParamBare;
   return a;
 };
 $(f());
@@ -34,13 +34,13 @@ $(f());
 
 `````js filename=intro
 let f = function ($$0) {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   const tmpParamBare = $$0;
   debugger;
   let a = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    a = tmpArgumentsLen;
+    a = tmpPrevalAliasArgumentsLen;
     return a;
   } else {
     a = tmpParamBare;

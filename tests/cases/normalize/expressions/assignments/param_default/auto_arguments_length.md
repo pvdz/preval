@@ -21,10 +21,10 @@ $(a);
 
 `````js filename=intro
 let f = function ($$0) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   const tmpParamBare = $$0;
   debugger;
-  let p = tmpParamBare === undefined ? (a = tmpArgumentsAny) : tmpParamBare;
+  let p = tmpParamBare === undefined ? (a = tmpPrevalAliasArgumentsAny) : tmpParamBare;
 };
 let a = { a: 999, b: 1000 };
 $(f());
@@ -35,14 +35,14 @@ $(a);
 
 `````js filename=intro
 let f = function ($$0) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   const tmpParamBare = $$0;
   debugger;
   let p = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    a = tmpArgumentsAny;
-    p = tmpArgumentsAny;
+    a = tmpPrevalAliasArgumentsAny;
+    p = tmpPrevalAliasArgumentsAny;
     return undefined;
   } else {
     p = tmpParamBare;
@@ -61,12 +61,12 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 const f = function ($$0) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   const tmpParamBare = $$0;
   debugger;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    a = tmpArgumentsAny;
+    a = tmpPrevalAliasArgumentsAny;
     return undefined;
   } else {
     return undefined;

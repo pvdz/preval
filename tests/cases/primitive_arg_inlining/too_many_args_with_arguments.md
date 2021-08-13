@@ -24,10 +24,10 @@ $(f($(1), $(2), $(3), $(4)));
 
 `````js filename=intro
 let f = function ($$0) {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   let a = $$0;
   debugger;
-  $(tmpArgumentsLen);
+  $(tmpPrevalAliasArgumentsLen);
   return a;
 };
 $(f($(1), $(2), $(3), $(4)));
@@ -37,10 +37,10 @@ $(f($(1), $(2), $(3), $(4)));
 
 `````js filename=intro
 let f = function ($$0) {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   let a = $$0;
   debugger;
-  $(tmpArgumentsLen);
+  $(tmpPrevalAliasArgumentsLen);
   return a;
 };
 const tmpCallCallee = $;

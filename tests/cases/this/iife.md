@@ -25,14 +25,14 @@ f();
 
 `````js filename=intro
 const f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
   let t = $(1);
   if (t) {
     t = $(2);
   }
   if (t) {
-    const g = tmpthis;
+    const g = tmpPrevalAliasThis;
   }
 };
 f();
@@ -42,13 +42,13 @@ f();
 
 `````js filename=intro
 const f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
   let t = $(1);
   if (t) {
     t = $(2);
     if (t) {
-      const g = tmpthis;
+      const g = tmpPrevalAliasThis;
       return undefined;
     } else {
       return undefined;

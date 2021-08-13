@@ -21,14 +21,14 @@ f(1, 2, 3, 4, 5); // The use of `arguments.length` should prevent inlining this 
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   let a = $$0;
   let b = $$1;
   let c = $$2;
   let d = $$3;
   let e = $$4;
   debugger;
-  $(tmpArgumentsLen);
+  $(tmpPrevalAliasArgumentsLen);
 };
 f(1, 2, 3, 4, 5);
 `````
@@ -37,14 +37,14 @@ f(1, 2, 3, 4, 5);
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   let a = $$0;
   let b = $$1;
   let c = $$2;
   let d = $$3;
   let e = $$4;
   debugger;
-  $(tmpArgumentsLen);
+  $(tmpPrevalAliasArgumentsLen);
   return undefined;
 };
 f(1, 2, 3, 4, 5);

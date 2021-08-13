@@ -21,12 +21,12 @@ f();
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   let x = $$0;
   let y = $$1;
   let z = $$2;
   debugger;
-  return $(tmpArgumentsLen, x, z);
+  return $(tmpPrevalAliasArgumentsLen, x, z);
 };
 f();
 `````
@@ -35,12 +35,12 @@ f();
 
 `````js filename=intro
 let f = function ($$0, $$1, $$2) {
-  const tmpArgumentsLen = arguments.length;
+  const tmpPrevalAliasArgumentsLen = arguments.length;
   let x = $$0;
   let y = $$1;
   let z = $$2;
   debugger;
-  const tmpReturnArg = $(tmpArgumentsLen, x, z);
+  const tmpReturnArg = $(tmpPrevalAliasArgumentsLen, x, z);
   return tmpReturnArg;
 };
 f();

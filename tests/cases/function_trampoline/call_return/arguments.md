@@ -23,14 +23,14 @@ $(q);
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   let a = $$0;
   let b = $$1;
   let c = $$2;
   let d = $$3;
   let e = $$4;
   debugger;
-  const r = $(tmpArgumentsAny);
+  const r = $(tmpPrevalAliasArgumentsAny);
   return r;
 };
 const q = f(1, 2, 3, 4, 5);
@@ -41,14 +41,14 @@ $(q);
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   let a = $$0;
   let b = $$1;
   let c = $$2;
   let d = $$3;
   let e = $$4;
   debugger;
-  const r = $(tmpArgumentsAny);
+  const r = $(tmpPrevalAliasArgumentsAny);
   return r;
 };
 const q = f(1, 2, 3, 4, 5);
@@ -59,9 +59,9 @@ $(q);
 
 `````js filename=intro
 const f = function ($$0, $$1, $$2, $$3, $$4) {
-  const tmpArgumentsAny = arguments;
+  const tmpPrevalAliasArgumentsAny = arguments;
   debugger;
-  const r = $(tmpArgumentsAny);
+  const r = $(tmpPrevalAliasArgumentsAny);
   return r;
 };
 const q = f(1, 2, 3, 4, 5);

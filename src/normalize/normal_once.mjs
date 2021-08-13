@@ -10,7 +10,7 @@
 
 import walk from '../../lib/walk.mjs';
 
-import { BLUE, RESET } from '../constants.mjs';
+import { BLUE, RESET , THIS_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, ARGLENGTH_ALIAS_BASE_NAME} from '../constants.mjs';
 import {
   ASSERT,
   log,
@@ -436,7 +436,7 @@ export function phaseNormalOnce(fdata) {
         const aliases = [];
 
         if (node.$p.thisAccess) {
-          const tmpName = createFreshVar('$$this', fdata);
+          const tmpName = createFreshVar(THIS_ALIAS_BASE_NAME, fdata);
           const thisNode = AST.thisExpression();
           thisNode.$p.forAlias = true;
           const newNode = AST.variableDeclaration(tmpName, thisNode, 'const');
@@ -444,7 +444,7 @@ export function phaseNormalOnce(fdata) {
           node.$p.thisAliasName = tmpName;
         }
         if (node.$p.readsArgumentsAny) {
-          const tmpName = createFreshVar('tmpArgumentsAny', fdata);
+          const tmpName = createFreshVar(ARGUMENTS_ALIAS_BASE_NAME, fdata);
           const argNode = AST.identifier('arguments');
           argNode.$p.forAlias = true;
           const newNode = AST.variableDeclaration(tmpName, argNode, 'const');
@@ -452,7 +452,7 @@ export function phaseNormalOnce(fdata) {
           node.$p.argumentsAliasName = tmpName;
         }
         if (node.$p.readsArgumentsLen) {
-          const tmpName = createFreshVar('tmpArgumentsLen', fdata);
+          const tmpName = createFreshVar(ARGLENGTH_ALIAS_BASE_NAME, fdata);
           const argNode = AST.memberExpression('arguments', 'length');
           argNode.$p.forAlias = true;
           argNode.object.$p.forAlias = true;

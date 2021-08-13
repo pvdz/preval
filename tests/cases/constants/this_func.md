@@ -24,9 +24,9 @@ f.call({pass: 1});
 
 `````js filename=intro
 let f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
-  const x = tmpthis;
+  const x = tmpPrevalAliasThis;
   $(x);
 };
 f.call({ pass: 1 });
@@ -36,9 +36,9 @@ f.call({ pass: 1 });
 
 `````js filename=intro
 let f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
-  const x = tmpthis;
+  const x = tmpPrevalAliasThis;
   $(x);
   return undefined;
 };
@@ -52,9 +52,9 @@ $dotCall(tmpCallVal, tmpCallObj, tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
-  $(tmpthis);
+  $(tmpPrevalAliasThis);
   return undefined;
 };
 const tmpCallVal = f.call;

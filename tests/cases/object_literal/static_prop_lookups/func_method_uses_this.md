@@ -30,12 +30,12 @@ $(o.f());
 
 `````js filename=intro
 const f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
   $(`piss`);
   $(`pass`);
   $(`poss`);
-  return tmpthis.foo;
+  return tmpPrevalAliasThis.foo;
 };
 const o = { f: f, foo: `You got it!` };
 $(o.f());
@@ -45,12 +45,12 @@ $(o.f());
 
 `````js filename=intro
 const f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
   $(`piss`);
   $(`pass`);
   $(`poss`);
-  const tmpReturnArg = tmpthis.foo;
+  const tmpReturnArg = tmpPrevalAliasThis.foo;
   return tmpReturnArg;
 };
 const o = { f: f, foo: `You got it!` };
@@ -63,12 +63,12 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const f = function () {
-  const tmpthis = this;
+  const tmpPrevalAliasThis = this;
   debugger;
   $(`piss`);
   $(`pass`);
   $(`poss`);
-  const tmpReturnArg = tmpthis.foo;
+  const tmpReturnArg = tmpPrevalAliasThis.foo;
   return tmpReturnArg;
 };
 const o = { f: f, foo: `You got it!` };

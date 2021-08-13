@@ -445,6 +445,7 @@ export function literal(value, yesnull = false) {
 }
 
 export function regex(pattern, flags, raw) {
+  ASSERT(raw instanceof RegExp, 'the raw value should be an actual regex value');
   return {
     type: 'Literal',
     value: null,
@@ -860,7 +861,7 @@ export function isTruthy(node) {
 }
 
 export function getPrimitiveValue(node) {
-  ASSERT(node && node.$p, 'node exists yea bossman?', node);
+  ASSERT(node && node.$p, 'node exists yea bossman?', node, node.$p);
   ASSERT(isPrimitive(node) || node.$p.isPrimitive, 'should assert a node is a primitive value before calling getPrimitive on it', node);
 
   if (node.$p.isPrimitive) {

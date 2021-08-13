@@ -2073,11 +2073,9 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   example('RegExp("foo". "g")', '/foo/g', () => !!args[1]);
                   before(node, body[i]);
 
-                  const finalNode = AST.regex(
-                    AST.getPrimitiveValue(args[0]),
-                    args[1] ? AST.getPrimitiveValue(args[1]) : '',
-                    String(RegExp(AST.getPrimitiveValue(args[0]), args[1] && AST.getPrimitiveValue(args[1]))),
-                  );
+                  const pattern = AST.getPrimitiveValue(args[0]);
+                  const flags = args[1] ? AST.getPrimitiveValue(args[1]) : '';
+                  const finalNode = AST.regex(pattern, flags, String(RegExp(pattern, flags)));
                   const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                   body.splice(i, 1, ...args.slice(1).map((enode) => AST.expressionStatement(enode)), finalParent);
 
@@ -2909,6 +2907,35 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           after(finalNode, finalParent);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;
+        }
+
+        if (node.callee.type === 'Identifier' && ASSUME_BUILTINS) {
+          switch (node.callee.name) {
+            case 'RegExp': {
+              if (node.arguments.length > 0) {
+                if (AST.isPrimitive(node.arguments[0]) && (node.arguments.length === 1 || AST.isPrimitive(node.arguments[1]))) {
+                  rule('new RegExp with primitives can be changed to a literal');
+                  example('new RegExp("foo", "g")', '/foo/g');
+                  before(node, parentNode);
+
+                  const pattern = AST.getPrimitiveValue(node.arguments[0]);
+                  vlog('pattern:', pattern);
+                  const flags = node.arguments.length > 1 ? AST.getPrimitiveValue(node.arguments[1]) : '';
+                  vlog('flags:', flags);
+                  const r = new RegExp(pattern, flags);
+                  const finalNode = AST.regex(pattern, flags, String(r));
+                  const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                  body.splice(i, 1, finalParent);
+
+                  after(finalNode, parentNode);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+              }
+
+              break;
+            }
+          }
         }
 
         // Assert normalized form

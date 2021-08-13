@@ -445,7 +445,7 @@ export function literal(value, yesnull = false) {
 }
 
 export function regex(pattern, flags, raw) {
-  ASSERT(raw instanceof RegExp, 'the raw value should be an actual regex value');
+  ASSERT(typeof raw === 'string', 'the raw value should be a string');
   return {
     type: 'Literal',
     value: null,

@@ -72,9 +72,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 3: 
@@ -86,9 +89,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - eval returned: undefined

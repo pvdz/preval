@@ -72,9 +72,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 2: 1
@@ -87,9 +90,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 4: 1
@@ -102,9 +108,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 6: 1
@@ -117,9 +126,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 8: 1
@@ -132,9 +144,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 10: 1
@@ -147,9 +162,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 12: 1
@@ -162,9 +180,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 14: 1
@@ -177,9 +198,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 16: 1
@@ -192,9 +216,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 18: 1
@@ -207,9 +234,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 20: 1
@@ -222,9 +252,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 22: 1
@@ -237,9 +270,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 24: 1
@@ -252,9 +288,12 @@ Should call `$` with:
     4: '"<function>"',
     5: '[]',
     6: '"<function>"',
-    7: '{}',
-    8: '{}',
+    7: '"<function>"',
+    8: '"<function>"',
     9: '{}',
+    10: '{}',
+    11: '"<function>"',
+    12: '{}',
   },
 
  - 26: 1

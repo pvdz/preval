@@ -407,8 +407,11 @@ function runTestCase(
         '$coerce',
         BUILTIN_ARRAY_PROTOTYPE,
         BUILTIN_FUNCTION_PROTOTYPE,
+        '$FunctionApply',
+        '$FunctionCall',
         BUILTIN_NUMBER_PROTOTYPE,
         BUILTIN_OBJECT_PROTOTYPE,
+        '$RegExpTest',
         BUILTIN_STRING_PROTOTYPE,
         '"use strict"; ' + fdata.intro,
       )(
@@ -419,8 +422,11 @@ function runTestCase(
         $coerce,
         Array.prototype,
         Function.prototype,
+        Function.prototype.apply,
+        Function.prototype.call,
         Number.prototype,
         Object.prototype,
+        RegExp.prototype.test,
         String.prototype,
       );
       before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways

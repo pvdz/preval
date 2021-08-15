@@ -43,6 +43,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         specialCode: '',
         outputCode: '',
         fdata: undefined,
+        reports: [],
       },
     ],
   ]);
@@ -96,6 +97,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     mod.preCode = preCode;
     mod.normalizedCode = tmat(fdata.tenkoOutput.ast, true);
     mod.specialCode = 'unused';
+    mod.reports.push(...preFdata.reports, ...fdata.reports);
 
     contents.normalized[nextFname] = mod.normalizedCode;
     contents.pre[nextFname] = mod.preCode;
@@ -122,6 +124,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           specialCode: '',
           outputCode: '',
           fdata: undefined,
+          reports: [],
         });
 
         normalizeQueue.push(rfname);
@@ -237,6 +240,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         } while (changed === 'phase1');
 
         mod.fdata = fdata;
+        mod.reports.push(...fdata.reports)
 
         const outCode = tmat(fdata.tenkoOutput.ast, true);
 
@@ -261,6 +265,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           phaseNormalize(fdata, fname, { allowEval: options.allowEval });
 
           inputCode = tmat(fdata.tenkoOutput.ast, true);
+          mod.reports.push(...fdata.reports)
 
           //if (options.logPasses) {
           //  log('Logging current normalized state to disk...');
@@ -294,6 +299,12 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
   vlog('\nCurrent state, final\n--------------\n' + fmat(contents.files.intro) + '\n--------------\n');
 
+
+  const reports = [];
+  modules.forEach( mod => reports.push(...mod.reports));
+  if (reports.length) {
+    log('Reports:\n' + reports.map(s => ' - ' + s + '\n') + '\n\n');
+  }
 
   return contents;
 }

@@ -37,6 +37,10 @@ function _staticArgOpOutlining(fdata) {
   let changes = 0;
   const queue = [];
 
+  // PASS is >=0 and means the index of the param
+  const FAIL = -1;
+  const SKIP = -2;
+
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
@@ -47,10 +51,6 @@ function _staticArgOpOutlining(fdata) {
     process(meta, name);
     vgroupEnd();
   });
-
-  const FAIL = 0;
-  const PASS = 1;
-  const SKIP = 2;
 
   function actionableValue(node, names) {
     // This should be the init of the var or rhs of the assign (or unary/binary as statement...)
@@ -65,6 +65,8 @@ function _staticArgOpOutlining(fdata) {
       // Good if at least left or right is a param and the other is a param or primitive
       // Skippable if the expression is a primitive, function expression, or class/array/object with all internals skippable too
 
+      let index;
+
       let params = 0;
       if (AST.isPrimitive(node.left)) {
       } else if (node.left.type === 'Identifier') {
@@ -73,7 +75,8 @@ function _staticArgOpOutlining(fdata) {
           vlog('- The lhs was not a param, bailing');
           return FAIL;
         }
-        params = PASS;
+        ++params;
+        index = paramIndex;
       } else {
         vlog('- Left is neither primitive nor param, bailing');
       }
@@ -85,7 +88,8 @@ function _staticArgOpOutlining(fdata) {
           vlog('- The rhs was not a param, bailing');
           return FAIL;
         }
-        params = true;
+        ++params;
+        index = paramIndex;
       } else {
         vlog('- Right is neither primitive nor param, bailing');
         return FAIL;
@@ -100,11 +104,12 @@ function _staticArgOpOutlining(fdata) {
         return FAIL;
       }
       // So this must (currently) be ident + primitive, or primitive + ident.
-      return PASS;
+      vlog('- Accepting this binary');
+      return index;
     } else if (node.type === 'UnaryExpression') {
       if (AST.isPrimitive(node.argument)) {
         // `x = ~1` is skippable
-        return PASS;
+        return SKIP;
       }
       if (node.argument.type !== 'Identifier') {
         // Normalized code so I'm not even sure what it may still be if not primitive or ident, but whatever.
@@ -117,37 +122,40 @@ function _staticArgOpOutlining(fdata) {
         vlog('- The arg was not a param, bailing');
         return FAIL;
       }
-      return PASS;
+      return paramIndex;
     } else if (node.type === 'Identifier') {
-      const paramIndex = names.indexOf(node.name);
-      if (paramIndex < 0) {
-        // Let's say the value concerns a spy
-        // The problematic case would be this:
-        // `function f(a) { x = spy; y = a + 1; } f(spy);` ->
-        // `function f(a) { x = spy; y = a + 1; } let y = spy + 1; f(spy, y);`
-        // So either way, the value of the original param is the spy itself and the alias to y does not change this. So we're good to skip.
-        return SKIP;
-      }
-      return PASS;
+      // Either this is an assignment or init of an ident, or a noop ident.
+      vlog('skip ident');
+      return SKIP;
     } else if (['FunctionExpression', 'ArrayExpression', 'ObjectExpression', 'ClassExpression'].includes(node.type)) {
       // `x = function(){};` is not observable
       // Same for class/array/object but only if the same applies to any of their internal bits.
       // Since they are normalized, they should not contain bits that can be observable when read...
       return SKIP;
+    } else if (node.type === 'CallExpression') {
+      // TODO: we can ignore some builtin calls
+      return FAIL;
+    } else if (node.type === 'NewExpression') {
+      // TODO: we can ignore some builtin calls
+      return FAIL;
+    } else if (node.type === 'MemberExpression') {
+      // tODO: we can skip stuff like Math.PI
+      return FAIL;
     } else {
       return FAIL;
     }
   }
   function actionable(node, names) {
-    let expr;
+    // Returns the param index, or FAIL or SKIP (which are negative)
+
     switch (node.type) {
       case 'VariableDeclaration': {
         return actionableValue(node.declarations[0].init, names);
       }
       case 'ExpressionStatement': {
         const r = actionableValue(node.expression, names);
-        if (node.expression.type === 'AssignmentExpression' && r) {
-          // The assignment may be dangerious if the result is SKIP
+        if (node.expression.type === 'AssignmentExpression' && r < 0) {
+          // The assignment may be dangerous if the result is SKIP
           return FAIL;
         }
         return r;
@@ -179,6 +187,21 @@ function _staticArgOpOutlining(fdata) {
 
     if (
       meta.reads.some((read) => {
+        if (
+          read.parentNode.type === 'MemberExpression' &&
+          !read.parentNode.computed &&
+          read.parentNode.property.name !== 'call' &&
+          read.parentNode.property.name !== 'apply' &&
+          read.parentNode.property.name !== 'bind'
+        ) {
+          // I think bind is actually irrelevant here.
+          // I hope I'm not wrong but I think only .call and .apply could observe this change. And maybe .toString, but that's ok. Any other property can't reflect?
+          vlog(
+            '- The function is used in a member expression but it was not computed, nor any of .call, .apply, or .bind so this should not be a big deal',
+          );
+          return;
+        }
+
         if (read.parentNode.type !== 'CallExpression' || read.parentProp !== 'callee') {
           vlog('- The function escapes (at least one read was not a call), bailing');
           return true;
@@ -202,397 +225,125 @@ function _staticArgOpOutlining(fdata) {
     // Find the first statement of the function and check if it uses an arg.
     // TODO: in certain cases we can skip statements (ones that can't possibly spy) to try the next statement.
 
-    ASSERT(funcNode.body.body[funcNode.$p.bodyOffset - 1]?.type === 'DebuggerStatement', 'The body offset should not be stale');
-    const stmt = funcNode.body.body[funcNode.$p.bodyOffset];
+    let max = funcNode.body.body.length - 1;
+    let stmtOffset = funcNode.$p.bodyOffset;
+    ASSERT(funcNode.body.body[stmtOffset - 1]?.type === 'DebuggerStatement', 'The body offset should not be stale');
+    let stmt = funcNode.body.body[stmtOffset];
     ASSERT(stmt, 'normalized funcs must at least have a return statement...');
-    // Interesting stuff to check: unary expression, binary expression, call expression, new expression, more?
-    // These can appear as one of the three expression forms; var, statement, or assignment.
 
-    const action = actionable(stmt, funcNode.$p.paramNames);
+    const names = funcNode.$p.paramNames;
+    let paramIndex = SKIP;
+    while (paramIndex === SKIP && stmtOffset < max) {
+      stmt = funcNode.body.body[stmtOffset];
+      ASSERT(stmt, 'pointer should not be beyond the last statement yet...', stmtOffset, max);
+      vlog('-', stmt.type, stmt.type === 'VariableDeclaration' ? stmt.declarations[0].init.type : stmt.expression?.type ?? stmt.type);
+      paramIndex = actionable(stmt, names);
+      vlog('  -', paramIndex === FAIL ? 'FAIL' : paramIndex === SKIP ? 'SKIP' : paramIndex);
+      if (paramIndex === FAIL) {
+        vlog('  - Found a blocking statement before finding a target, bailing');
+        return;
+      }
+      ++stmtOffset;
+    }
+    if (paramIndex < 0) {
+      vlog('- Was unable to find a target statement, bailing');
+      return;
+    }
 
+    let oldParamName = names[paramIndex];
+    vlog('- Target param name: `' + oldParamName + '` at index:', paramIndex);
+
+    rule('Part 1: Function that is only called and uses a param in a position where we can outline it');
+    example(
+      'function f(a) { const x = a + 1; g(a); return x; } f(1); f("a");',
+      'function f(a, b) { const x = b; g(a); return x; } f(1, 1 + 1); f("a" + 1);',
+    );
+    before(meta.constValueRef.containerNode);
+    meta.reads.forEach((read) => before(read.parentNode));
+
+    // We create a fresh param name and add it to the end
+    // We replace the binary expression with the new param name
+    // For all calls we create a local var with the binary expression of the arg at that position and the binary expression
+    // To each call we append a new arg which is the new binding name
+    // Must be careful with spreads, rest, and missing arguments (or do we guarantee those in normalized state? I don't think we can?)
+    // But we've already verified that spreads did not occur, we ignore rest for now, and assume missing args always exist.
+    // TODO: if the param concerns a rest we should bail
+    // TODO: not sure if we should do it here but if it reaches here with a rest param then we can eliminate this rest statically
+
+    const paramName = '$$' + paramCount;
+    const paramNode = AST.param('$$' + paramCount, false);
+    funcNode.params.push(paramNode);
+    const localParamName = createFreshVar('tmpOutlinedParam', fdata);
+    const localParamNode = AST.variableDeclaration(localParamName, paramName, 'const');
+    funcNode.body.body.splice(funcNode.$p.bodyOffset - 1, 0, localParamNode);
+    // Not sure if this needs anything else tbh.
+
+    // Replace the expression that we're outlining... The target can only be one of three;
+    // `var x = y`, `x = y`, or `y`. We replace the expression y with the new var because we'll outline it.
     let expr;
     if (stmt.type === 'VariableDeclaration') {
       expr = stmt.declarations[0].init;
-    } else if (stmt.type === 'ExpressionStatement') {
-      if (stmt.expression.type === 'AssignmentExpression') {
-        expr = stmt.expression.right;
-      } else {
-        expr = stmt.expression;
-      }
+      stmt.declarations[0].init = AST.identifier(localParamName);
+    } else if (stmt.expression.type === 'AssignmentExpression') {
+      expr = stmt.expression.right;
+      stmt.expression.right = AST.identifier(localParamName);
+    } else if (stmt.expression.type === 'UnaryExpression' || stmt.expression.type === 'BinaryExpression') {
+      expr = stmt.expression;
+      stmt.expression = AST.identifier(localParamName);
     } else {
-      vlog('- The statement was not in an expression form (', stmt.type, 'is not a var or expr stmt), bailing');
-      return;
+      ASSERT(false, 'implement me', stmt);
     }
 
-    const names = funcNode.$p.paramNames;
+    // Update all the call sites
+    meta.reads.forEach((read) => {
+      queue.push({
+        index: read.blockIndex,
+        func: () => {
+          rule('Part 2: add a new arg in calls to the function');
+          example('f(a);', 'let tmp = a + 1; f(a, tmp);');
+          before(read.blockBody[read.blockIndex]);
 
-    if (expr.type === 'BinaryExpression') {
-      // Determine whether one side is using an arg
-      // `function f(a) { const x = a + 1; }`
-      // `function f(a) { const x = 1 + a; }`
+          // Must first cache the expression in case it's a string... (otherwise we may accidentally break normalized form)
+          // Other rules will reconcile this temporary alias, or melt the string concat, when necessary.
+          const tmpNameA = createFreshVar('tmpSaooA', fdata);
+          const tmpNameB = createFreshVar('tmpSaooB', fdata);
 
-      if (expr.left.type === 'Identifier') {
-        const paramIndex = names.indexOf(expr.left.name);
-        if (paramIndex < 0) {
-          vlog('- The lhs was not a param, bailing');
-          return;
-        }
-
-        if (funcNode.params[paramIndex].rest) {
-          vlog('- The target param is a rest param, bailing');
-          return;
-        }
-
-        if (!AST.isPrimitive(expr.right)) {
-          vlog('- The lhs was a param but the rhs was not a primitive, bailing (for now)');
-          return;
-        }
-
-        // The param should only have one read (for now, TODO: we can probably support a few more cases but we have to make sure all the usages are okay with the updated value)
-        const pmeta = fdata.globallyUniqueNamingRegistry.get(expr.left.name);
-        // If the param is read more than once we'll need to create a new param for it instead
-        const multi = pmeta.reads.length > 1;
-
-        // So this function is called in all reads, uses a param in a binary expression in its first statement, and this
-        // binary expression also has a primitive to the other side. Looks like we can outline it.
-
-        if (multi) {
-          // Since the param is used more than once, we'll need to add a fresh param to cover this
-          // That should be safe. The function doesn't currently use `arguments` so the only risk is
-          // code bloat. If that does become a problem then we can curb that by limiting the param
-          // count for this trick.
-
-          rule(
-            'Part 1: When a function is only called and uses a param in its first statement then we can outline this expression; binary rhs multi-use',
-          );
-          example(
-            'function f(a) { const x = a + 1; g(a); return x; } f(1); f("a");',
-            'function f(a, b) { const x = b; g(a); return x; } f(1, 1 + 1); f("a" + 1);',
-          );
-          before(meta.constValueRef.containerNode);
-          meta.reads.forEach((read) => before(read.parentNode));
-
-          // We create a fresh param name and add it to the end
-          // We replace the binary expression with the new param name
-          // For all calls we create a local var with the binary expression of the arg at that position and the binary expression
-          // To each call we append a new arg which is the new binding name
-          // Must be careful with spreads, rest, and missing arguments (or do we guarantee those in normalized state? I don't think we can?)
-          // But we've already verified that spreads did not occur, we ignore rest for now, and assume missing args always exist.
-          // TODO: if the param concerns a rest we should bail
-          // TODO: not sure if we should do it here but if it reaches here with a rest param then we can eliminate this rest statically
-
-          const paramName = '$$' + paramCount;
-          const paramNode = AST.param('$$' + paramCount, false);
-          funcNode.params.push(paramNode);
-          const localParamName = createFreshVar('tmpOutlinedParam', fdata);
-          const localParamNode = AST.variableDeclaration(localParamName, paramName, 'const');
-          funcNode.body.body.splice(funcNode.$p.bodyOffset - 1, 0, localParamNode);
-          // Not sure if this needs anything else tbh.
-
-          // Replace the expression that we're outlining...
-          if (stmt.type === 'VariableDeclaration') {
-            stmt.declarations[0].init = AST.identifier(localParamName);
-          } else if (stmt.expression === expr) {
-            stmt.expression = AST.identifier(localParamName);
-          } else if (stmt.expression.type === 'AssignmentExpression') {
-            stmt.expression.right = AST.identifier(localParamName);
-          } else {
-            ASSERT(false);
+          const args = read.parentNode['arguments'];
+          // Make sure there are enough params right now otherwise our new arg will become an earlier one and map to the wrong param (-> tests/cases/normalize/defaults/one.md)
+          while (paramCount > args.length) {
+            args.push(AST.identifier('undefined'));
           }
-
-          // Update all the call sites
-          meta.reads.forEach((read) => {
-            queue.push({
-              index: read.blockIndex,
-              func: () => {
-                rule('Part 2: add a new arg in calls to the function');
-                example('f(a);', 'let tmp = a + 1; f(a, tmp);');
-                before(read.blockBody[read.blockIndex]);
-
-                // Must first cache the expression in case it's a string... (otherwise we may accidentally break normalized form)
-                // Other rules will reconcile this temporary alias, or melt the string concat, when necessary.
-                const tmpNameA = createFreshVar('tmpSaooA', fdata);
-                const tmpNameB = createFreshVar('tmpSaooB', fdata);
-
-                const args = read.parentNode['arguments'];
-                // Make sure there are enough params right now otherwise our new arg will become an earlier one and map to the wrong param (-> tests/cases/normalize/defaults/one.md)
-                while (paramCount > args.length) {
-                  args.push(AST.identifier('undefined'));
-                }
-                read.blockBody.splice(
-                  read.blockIndex,
-                  0,
-                  AST.variableDeclaration(
-                    tmpNameA,
-                    AST.cloneSimple(read.parentNode['arguments'][paramIndex] || AST.identifier('undefined')),
-                    'const',
-                  ),
-                  AST.variableDeclaration(tmpNameB, AST.binaryExpression(expr.operator, tmpNameA, AST.cloneSimple(expr.right)), 'const'),
-                );
-                read.parentNode['arguments'].push(AST.identifier(tmpNameB));
-
-                after(read.blockBody[read.blockIndex]);
-                after(read.blockBody[read.blockIndex + 1]);
-              },
-            });
-          });
-
-          after(meta.constValueRef.containerNode);
-          ++changes;
-        } else {
-          rule(
-            'Part 1: When a function is only called and uses a param in its first statement then we can outline this expression; binary rhs single-use',
-          );
-          example(
-            'function f(a) { const x = a + 1; return x; } f(1); f("a");',
-            'function f(a) { const x = a; return x; } f(1 + 1); f("a" + 1);',
-          );
-          before(meta.constValueRef.containerNode);
-          meta.reads.forEach((read) => before(read.parentNode));
-
-          // We replace the binary expression with just the param name
-          // We replace the argument at this position with the same binary expression for all calls to this function
-          // Must be careful with spreads, rest, and missing arguments (or do we guarantee those in normalized state? I don't think we can?)
-          // But we've already verified that spreads did not occur, we ignore rest for now, and assume missing args always exist.
-          // TODO: if the param concerns a rest we should bail
-          // TODO: not sure if we should do it here but if it reaches here with a rest param then we can eliminate this rest statically
-
-          if (stmt.type === 'VariableDeclaration') {
-            stmt.declarations[0].init = expr.left;
-          } else if (stmt.expression === expr) {
-            stmt.expression = expr.left;
-          } else if (stmt.expression.type === 'AssignmentExpression') {
-            stmt.expression.right = expr.left;
+          let clone;
+          if (expr.type === 'UnaryExpression') {
+            ASSERT(expr.argument.type === 'Identifier' && expr.argument.name === oldParamName);
+            clone = AST.unaryExpression(expr.operator, tmpNameA);
+          } else if (expr.type === 'BinaryExpression') {
+            if (expr.left.type === 'Identifier' && expr.left.name === oldParamName) {
+              clone = AST.binaryExpression(expr.operator, tmpNameA, AST.cloneSimple(expr.right));
+            } else if (expr.right.type === 'Identifier' && expr.right.name === oldParamName) {
+              clone = AST.binaryExpression(expr.operator, AST.cloneSimple(expr.left), tmpNameA);
+            } else {
+              ASSERT(false);
+            }
           } else {
-            ASSERT(false);
+            ASSERT(false, 'implement me', expr.type);
           }
+          read.blockBody.splice(
+            read.blockIndex,
+            0,
+            AST.variableDeclaration(tmpNameA, AST.cloneSimple(read.parentNode['arguments'][paramIndex]), 'const'),
+            AST.variableDeclaration(tmpNameB, clone, 'const'),
+          );
+          read.parentNode['arguments'].push(AST.identifier(tmpNameB));
 
-          meta.reads.forEach((read) => {
-            queue.push({
-              index: read.blockIndex,
-              func: () => {
-                rule('Part 2: transform the args in calls to the function');
-                example('f(a);', 'var tmp = a + 1; f(tmp);');
-                before(read.blockBody[read.blockIndex]);
-
-                // Must first cache the expression in case it's a string... (otherwise we may accidentally break normalized form)
-                // Other rules will reconcile this temporary alias, or melt the string concat, when necessary.
-                const tmpNameA = createFreshVar('tmpSaooA', fdata);
-                const tmpNameB = createFreshVar('tmpSaooB', fdata);
-                read.blockBody.splice(
-                  read.blockIndex,
-                  0,
-                  AST.variableDeclaration(tmpNameA, read.parentNode['arguments'][paramIndex] || AST.identifier('undefined'), 'const'),
-                  AST.variableDeclaration(tmpNameB, AST.binaryExpression(expr.operator, tmpNameA, AST.cloneSimple(expr.right)), 'const'),
-                );
-                read.parentNode['arguments'][paramIndex] = AST.identifier(tmpNameB);
-
-                after(read.blockBody[read.blockIndex]);
-                after(read.blockBody[read.blockIndex + 1]);
-              },
-            });
-          });
-
-          after(meta.constValueRef.containerNode);
-          ++changes;
-        }
-
-        return;
-      } else if (expr.right.type === 'Identifier') {
-        const paramIndex = names.indexOf(expr.right.name);
-        if (paramIndex < 0) {
-          vlog('- The lhs was not a param, bailing');
-          return;
-        }
-
-        if (funcNode.params[paramIndex].rest) {
-          vlog('- The target param is a rest param, bailing');
-          return;
-        }
-
-        // The param should only have one read (for now, TODO: we can probably support a few more cases but we have to make sure all the usages are okay with the updated value)
-        const pmeta = fdata.globallyUniqueNamingRegistry.get(expr.right.name);
-        const multi = pmeta.reads.length > 1;
-        // TODO: support the multi
-
-        if (pmeta.reads.length > 1) {
-          vlog('- The param has more than one reads so we cannot safely do this, bailing');
-          return;
-        }
-        // I think writes are not irrelevant here
-
-        // Right side uses it. Woohoo
-
-        if (!AST.isPrimitive(expr.left)) {
-          vlog('- The lhs was a param but the rhs was not a primitive, bailing (for now)');
-          return;
-        }
-
-        // So this function is called in all reads, uses a param in a binary expression in its first statement, and this
-        // binary expression also has a primitive to the other side. Looks like we can outline it.
-
-        rule(
-          'Part 1: When a function is only called and uses a param in its first statement then we can outline this expression; binary lhs',
-        );
-        example(
-          'function f(a) { const x = a + 1; return x; } f(1); f("a");',
-          'function f(a) { const x = a; return x; } f(1 + 1); f("a" + 1);',
-        );
-        before(meta.constValueRef.containerNode);
-        meta.reads.forEach((read) => before(read.parentNode));
-
-        // We replace the binary expression with just the param name
-        // We replace the argument at this position with the same binary expression for all calls to this function
-        // Must be careful with spreads, rest, and missing arguments (or do we guarantee those in normalized state? I don't think we can?)
-        // But we've already verified that spreads did not occur, we ignore rest for now, and assume missing args always exist.
-        // TODO: if the param concerns a rest we should bail
-        // TODO: not sure if we should do it here but if it reaches here with a rest param then we can eliminate this rest statically
-
-        if (stmt.type === 'VariableDeclaration') {
-          stmt.declarations[0].init = expr.right;
-        } else if (stmt.expression === expr) {
-          stmt.expression = expr.right;
-        } else if (stmt.expression.type === 'AssignmentExpression') {
-          stmt.expression.right = expr.right;
-        } else {
-          ASSERT(false);
-        }
-
-        meta.reads.forEach((read) => {
-          queue.push({
-            index: read.blockIndex,
-            func: () => {
-              rule('Part 2: transform the args in calls to the function');
-              example('f(a);', 'var tmp = a + 1; f(tmp);');
-              before(read.blockBody[read.blockIndex]);
-
-              // Must first cache the expression in case it's a string... (otherwise we may accidentally break normalized form)
-              // Other rules will reconcile this temporary alias, or melt the string concat, when necessary.
-              const tmpNameA = createFreshVar('tmpSaooA', fdata);
-              const tmpNameB = createFreshVar('tmpSaooB', fdata);
-              read.blockBody.splice(
-                read.blockIndex,
-                0,
-                AST.variableDeclaration(tmpNameA, read.parentNode['arguments'][paramIndex] || AST.identifier('undefined'), 'const'),
-                AST.variableDeclaration(tmpNameB, AST.binaryExpression(expr.operator, AST.cloneSimple(expr.left), tmpNameA), 'const'),
-              );
-              read.parentNode['arguments'][paramIndex] = AST.identifier(tmpNameB);
-
-              after(read.blockBody[read.blockIndex]);
-              after(read.blockBody[read.blockIndex + 1]);
-            },
-          });
-        });
-
-        after(meta.constValueRef.containerNode);
-        ++changes;
-
-        return;
-      } else {
-        vlog('- Neither side of the binary expression uses a param, bailing');
-        return;
-      }
-    } else if (expr.type === 'UnaryExpression') {
-      // `function f(a) { const x = ~a; }`
-
-      if (expr.argument.type !== 'Identifier') {
-        vlog('- The argument is not an ident, bailing');
-        return;
-      }
-
-      const paramIndex = names.indexOf(expr.argument.name);
-      if (paramIndex < 0) {
-        vlog('- The lhs was not a param, bailing');
-        return;
-      }
-
-      if (funcNode.params[paramIndex].rest) {
-        vlog('- The target param is a rest param, bailing');
-        return;
-      }
-
-      // The param should only have one read (for now, TODO: we can probably support a few more cases but we have to make sure all the usages are okay with the updated value)
-      const pmeta = fdata.globallyUniqueNamingRegistry.get(expr.argument.name);
-      if (pmeta.reads.length > 1) {
-        vlog('- The param has more than one reads so we cannot safely do this, bailing');
-        return;
-      }
-      // I think writes are not irrelevant here
-
-      // Argument side uses it. Woohoo
-
-      // So this function is called in all reads, uses a param in a binary expression in its first statement, and this
-      // binary expression also has a primitive to the other side. Looks like we can outline it.
-
-      rule(
-        'Part 1: When a function is only called and uses a param in its first statement then we can outline this expression; binary rhs',
-      );
-      example(
-        'function f(a) { const x = a + 1; return x; } f(1); f("a");',
-        'function f(a) { const x = a; return x; } f(1 + 1); f("a" + 1);',
-      );
-      before(meta.constValueRef.containerNode);
-      meta.reads.forEach((read) => before(read.parentNode));
-
-      // We replace the binary expression with just the param name
-      // We replace the argument at this position with the same binary expression for all calls to this function
-      // Must be careful with spreads, rest, and missing arguments (or do we guarantee those in normalized state? I don't think we can?)
-      // But we've already verified that spreads did not occur, we ignore rest for now, and assume missing args always exist.
-      // TODO: if the param concerns a rest we should bail
-      // TODO: not sure if we should do it here but if it reaches here with a rest param then we can eliminate this rest statically
-
-      if (stmt.type === 'VariableDeclaration') {
-        stmt.declarations[0].init = expr.argument;
-      } else if (stmt.expression === expr) {
-        stmt.expression = expr.argument;
-      } else if (stmt.expression.type === 'AssignmentExpression') {
-        stmt.expression.right = expr.argument;
-      } else {
-        ASSERT(false);
-      }
-
-      meta.reads.forEach((read) => {
-        queue.push({
-          index: read.blockIndex,
-          func: () => {
-            rule('Part 2: transform the args in calls to the function');
-            example('f(a);', 'var tmp = a + 1; f(tmp);');
-            before(read.blockBody[read.blockIndex]);
-
-            // Must first cache the expression in case it's a string... (otherwise we may accidentally break normalized form)
-            // Other rules will reconcile this temporary alias, or melt the string concat, when necessary.
-            const tmpNameA = createFreshVar('tmpSaooA', fdata);
-            const tmpNameB = createFreshVar('tmpSaooB', fdata);
-            read.blockBody.splice(
-              read.blockIndex,
-              0,
-              AST.variableDeclaration(tmpNameA, read.parentNode['arguments'][paramIndex] || AST.identifier('undefined'), 'const'),
-              AST.variableDeclaration(tmpNameB, AST.unaryExpression(expr.operator, tmpNameA), 'const'),
-            );
-            read.parentNode['arguments'][paramIndex] = AST.identifier(tmpNameB);
-
-            after(read.blockBody[read.blockIndex]);
-            after(read.blockBody[read.blockIndex + 1]);
-          },
-        });
+          after(read.blockBody[read.blockIndex]);
+          after(read.blockBody[read.blockIndex + 1]);
+        },
       });
+    });
 
-      after(meta.constValueRef.containerNode);
-      ++changes;
-
-      return;
-    } else if (expr.type === 'CallExpression') {
-      // `function f(a) { const x = g(a); }`
-      vlog('- For now we skip the call case');
-      return;
-    } else if (expr.type === 'NewExpression') {
-      // `function f(a) { const x = new g(a); }`
-      vlog('- For now we skip the new case');
-      return;
-    } else {
-      vlog('- The expression was not one of the expected types:', expr.type);
-      return;
-    }
+    after(meta.constValueRef.containerNode);
+    ++changes;
   }
 
   if (changes) {

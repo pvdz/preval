@@ -70,23 +70,12 @@ $(y);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const a = $$0;
-  debugger;
-  y = a;
-  const tmpReturnArg = $(100);
-  return tmpReturnArg;
-};
-let y = undefined;
-const tmpCalleeParam = f(-2);
-$(tmpCalleeParam);
-const tmpCalleeParam$1 = f(-3);
-$(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(-1);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(-2);
-$(tmpCalleeParam$5);
-$(y);
+$(100);
+$(100);
+$(100);
+const x = $(100);
+$(x);
+$(x);
 `````
 
 ## Globals

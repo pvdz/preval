@@ -47,8 +47,12 @@ const globalNames = new Map([
 
   ['$ArrayPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$FunctionPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ['$FunctionApply', { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ['$FunctionCall', { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$NumberPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$ObjectPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ['$RegExpTest', { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ['$RegExpPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$StringPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
 ]);
 

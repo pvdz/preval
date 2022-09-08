@@ -337,7 +337,10 @@ export function functionExpression(params, body, { id, generator, async, normali
 
 export function identifier(name, nonComputedProperty = false) {
   ASSERT(typeof name === 'string' && name, 'ident names must be valid nonempty strings', name);
-  ASSERT(nonComputedProperty || (typeof nonComputedProperty === 'boolean' && !['true', 'false', 'null'].includes(name)), 'these are literals.');
+  ASSERT(
+    nonComputedProperty || (typeof nonComputedProperty === 'boolean' && !['true', 'false', 'null'].includes(name)),
+    'these are literals.',
+  );
   return {
     type: 'Identifier',
     name,
@@ -449,7 +452,7 @@ export function regex(pattern, flags, raw) {
   return {
     type: 'Literal',
     value: null,
-    regex: { pattern, flags},
+    regex: { pattern, flags },
     raw: raw,
     $p: $p(),
   };
@@ -688,6 +691,33 @@ export function tru() {
   return literal(true);
 }
 
+export function tryStatement(block, param, handler, finalizer) {
+  ASSERT(block && block.type === 'BlockStatement', 'the block should be an actual BlockStatement node', block);
+  ASSERT(!handler || handler.type === 'BlockStatement', 'the handler, if present, should be an actual BlockStatement node', handler);
+  ASSERT(
+    !finalizer || finalizer.type === 'BlockStatement',
+    'the finalizer, if present, should be an actual BlockStatement node',
+    finalizer,
+  );
+  ASSERT(
+    param === null || typeof param === 'string' || param?.type === 'Identifier',
+    'the param (catch var) should be null, a string, or an ident. more exotic cases should be supported first but not likely needed',
+    param,
+  );
+
+  return {
+    type: 'TryStatement',
+    block,
+    handler: {
+      type: 'CatchClause',
+      param,
+      body: handler,
+    },
+    finalizer,
+    $p: $p(),
+  };
+}
+
 export function unaryExpression(operator, argument) {
   ASSERT(typeof operator === 'string');
   if (typeof argument === 'string') argument = identifier(argument);
@@ -832,20 +862,31 @@ export function isPrimitive(node) {
 
 export function isFalsy(node) {
   // If this function does not return true, it does not automatically mean it's a truthy. Just that we can't determine it to be falsy.
-  if (node.type === 'Literal' && (node.raw === 'null' || node.value === '' || node.value === false || node.value === 0)) return true;
-  if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return node.quasis[0].value.cooked === '';
-  if (node.type === 'Identifier' && (node.name === 'undefined' || node.name === 'NaN')) return true;
+  if (node.type === 'Literal') {
+    if (node.raw === 'null') return true;
+    if (node.type === 'Literal' && (node.raw === 'null' || node.value === '' || node.value === false || node.value === 0)) return true;
+    if (node.type === 'TemplateLiteral' && node.expressions.length === 0) return node.quasis[0].value.cooked === '';
+    if (node.type === 'Identifier' && (node.name === 'undefined' || node.name === 'NaN')) return true;
+    if (node.regex) return false;
+    return false;
+  }
 
-  // TODO: expand on this
+  if (node.type === 'TemplateLiteral') return node.expressions.length === 0 && node.quasis[0].value.cooked === '';
+
+  if (node.type === 'Identifier') {
+    return node.name === 'undefined' || node.name === 'NaN';
+  }
 
   return false;
 }
 export function isTruthy(node) {
   // If this function does not return true, it does not automatically mean it's a falsy. Just that we can't determine it to be truthy.
   if (node.type === 'Literal') {
+    if (node.raw === 'null') return false;
     if (typeof node.value === 'string') return node.value !== '';
     if (typeof node.value === 'boolean') return node.value === true;
     if (typeof node.value === 'number') return node.value !== 0;
+    if (node.regex) return true;
     // All other literals are auto truthy I think? What about 0 big int?
     return true;
   }
@@ -855,9 +896,7 @@ export function isTruthy(node) {
     return node.name === 'Infinity';
   }
 
-  // TODO: expand on this
-
-  return false;
+  return ['ThisExpression', 'ArrayExpression', 'ObjectExpression', 'FunctionExpression', 'ClassExpression'].includes(node.type);
 }
 
 export function getPrimitiveValue(node) {

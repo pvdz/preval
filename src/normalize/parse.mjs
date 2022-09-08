@@ -32,5 +32,6 @@ export function parseCode(code, fname) {
     imports: undefined, // phase1
     exports: undefined, // phase1
     globallyUniqueNamingRegistry: undefined, // phase1. every binding is assigned a (module) globally unique name and meta data for this binding is stored here by that name
+    reports: [],
   };
 }

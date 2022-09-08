@@ -19,7 +19,15 @@ import {
   findBodyOffset,
   assertNoDupeNodes,
 } from '../utils.mjs';
-import { BUILTIN_FUNC_CALL_NAME, BUILTIN_REST_HANDLER_NAME } from '../constants.mjs';
+import {
+  ARGUMENTS_ALIAS_BASE_NAME,
+  BUILTIN_FUNC_CALL_NAME,
+  BUILTIN_REST_HANDLER_NAME,
+  BUILTIN_FUNCTION_PROTOTYPE,
+  BUILTIN_FUNCTION_APPLY,
+  BUILTIN_FUNCTION_CALL,
+  BUILTIN_REGEXP_TEST,
+} from '../constants.mjs';
 import * as AST from '../ast.mjs';
 
 export function typeTrackedTricks(fdata) {
@@ -49,6 +57,22 @@ function _typeTrackedTricks(fdata) {
     const blockIndex = path.blockIndexes[path.blockIndexes.length - 1];
 
     switch (node.type) {
+      case 'ExpressionStatement': {
+        if (node.expression.type === 'ArrayExpression') {
+          const arrNode = node.expression;
+          for (let i = arrNode.elements.length - 1; i >= 0; --i) {
+            const enode = arrNode.elements[i];
+            if (enode && enode.type === 'SpreadElement') {
+              // TODO: technically this could still eliminate a different var. We should either verify here or tag in general the `arguments` aliases
+              if (enode.argument.type === 'Identifier' && enode.argument.name.startsWith(ARGUMENTS_ALIAS_BASE_NAME)) {
+                vlog('This is spreading the `arguments` alias. We can drop this.');
+                arrNode.elements.splice(i, 1);
+              }
+            }
+          }
+        }
+        break;
+      }
       case 'IfStatement':
       case 'WhileStatement': {
         // Other rules should pick up on primitive nodes in if/while tests.
@@ -774,11 +798,17 @@ function _typeTrackedTricks(fdata) {
               // Resolve .call in some cases ($dotCall)
 
               ASSERT(node.arguments.length >= 2, 'should at least have the function to call and context, and then any number of args');
+              ASSERT(
+                node.arguments[1].type !== 'Identifier' || node.arguments[1].name !== 'arguments',
+                'in normalized code this can never be `arguments` (the only exception to meta fetching)',
+              );
+
               const [
                 funcRefNode, // This is the (potentially cached) function value passed on as first arg
                 contextNode, // This is the original object that must be the context of this call (until we can determine the context is unused/eliminable)
                 ...argNodes // These are the actual args of the original call
               ] = node.arguments;
+
               if (funcRefNode.type === 'Identifier') {
                 // Let's see if we can eliminate some cases here :D
                 switch (funcRefNode.name) {
@@ -845,6 +875,70 @@ function _typeTrackedTricks(fdata) {
 
                     after(node);
                     ++changes;
+                    break;
+                  }
+                  case '$FunctionApply': {
+                    // If the context is known to be a function, reconstruct it into a regular method call
+                    if (contextNode.type === 'Identifier') {
+                      const meta = fdata.globallyUniqueNamingRegistry.get(contextNode.name);
+                      if (meta.typing.mustBeType === 'function') {
+                        // The dotCall always converts dotCall(A, B, C, D, E) to B.apply(C, D, E)
+                        rule('Calling function.apply on a function can be a regular method call');
+                        example('dotcall($apply, func, A, B, C)', 'func.apply(A, B, C)');
+                        before(node, blockBody[blockIndex]);
+
+                        // Reconstruct the method call
+                        const finalNode = AST.callExpression(AST.memberExpression(contextNode, 'apply'), argNodes);
+                        if (parentIndex < 0) parentNode[parentProp] = finalNode;
+                        else parentNode[parentProp][parentIndex] = finalNode;
+
+                        after(finalNode, blockBody[blockIndex]);
+                        ++changes;
+                        break;
+                      }
+                    }
+                    break;
+                  }
+                  case '$FunctionCall': {
+                    // If the context is known to be a function, reconstruct it into a regular method call
+                    if (node.arguments[1].type === 'Identifier') {
+                      const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[1].name);
+                      if (meta.typing.mustBeType === 'function') {
+                        rule('Calling function.call on a function can be a regular method call');
+                        example('Regexp.prototype.test.call(/foo/, x, y, z)', '/foo/.test(x, y, z)');
+                        before(node, blockBody[blockIndex]);
+
+                        // Reconstruct the method call
+                        const finalNode = AST.callExpression(AST.memberExpression(contextNode, 'apply'), argNodes);
+                        if (parentIndex < 0) parentNode[parentProp] = finalNode;
+                        else parentNode[parentProp][parentIndex] = finalNode;
+
+                        after(node, blockBody[blockIndex]);
+                        ++changes;
+                        break;
+                      }
+                    }
+                    break;
+                  }
+                  case '$RegExpTest': {
+                    // If the context is known to be a regex, reconstruct it into a regular method call
+                    if (node.arguments[1].type === 'Identifier') {
+                      const meta = fdata.globallyUniqueNamingRegistry.get(node.arguments[1].name);
+                      if (meta.typing.mustBeType === 'regex') {
+                        rule('Calling regexp.test on a regex can be a regular method call');
+                        example('Regexp.prototype.test.call(/foo/, x)', '/foo/.test(x)');
+                        before(node, blockBody[blockIndex]);
+
+                        // Reconstruct the method call
+                        const finalNode = AST.callExpression(AST.memberExpression(contextNode, 'test'), argNodes);
+                        if (parentIndex < 0) parentNode[parentProp] = finalNode;
+                        else parentNode[parentProp][parentIndex] = finalNode;
+
+                        after(node, blockBody[blockIndex]);
+                        ++changes;
+                        break;
+                      }
+                    }
                     break;
                   }
                 }
@@ -941,6 +1035,189 @@ function _typeTrackedTricks(fdata) {
                 after(node, parentNode);
                 ++changes;
                 break;
+              }
+              case 'function.constructor': {
+                // `(function(){}).constructor('x')` is equal to calling `Function('x')`
+                // Rather than mimicking that logic here, we'll just transform it to `Function` instead and let another rule pick that up
+
+                rule('Calling `.constructor` on a value that must be a function is essentially a call to `Function`');
+                example('(function(){}).constructor("x")', 'Function("x")');
+                before(node, parentNode);
+
+                node.callee = AST.identifier('Function');
+
+                after(node, parentNode);
+                ++changes;
+                break;
+              }
+              case 'function.apply': {
+                if (objMeta.isConstant && !objMeta.constValueRef.node.$p.thisAccess) {
+                  vlog('Queued transform to eliminate .apply');
+                  ++changes;
+                  // The transform is a little more subtle since excessive args should also be placed as statements
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rule('When a function does not use `this`, an `.apply` can be a regular call');
+                      example('function f(){} f.apply(ctxt, arr);', 'function f(){} ctxt; f(...arr);');
+                      before(node, blockBody[blockIndex]);
+
+                      const ctxt = node.arguments[0];
+                      const arr = node.arguments[1];
+                      const rest = node.arguments.slice(2);
+
+                      const finalNode = AST.callExpression(node.callee.object, arr ? [AST.spreadElement(arr)] : []);
+                      if (parentIndex < 0) parentNode[parentProp] = finalNode;
+                      else parentNode[parentProp][parentIndex] = finalNode;
+
+                      blockBody.splice(
+                        blockIndex,
+                        0,
+                        AST.expressionStatement(ctxt || AST.identifier('undefined')),
+                        ...rest.map((n) => AST.expressionStatement(n)),
+                      );
+
+                      after(blockBody.slice(blockIndex, blockIndex + rest.length + 2));
+                    },
+                  });
+
+                  break;
+                }
+                break;
+              }
+              case 'function.call': {
+                if (objMeta.isConstant && !objMeta.constValueRef.node.$p.thisAccess) {
+                  vlog('Queued transform to eliminate .call');
+                  ++changes;
+                  queue.push({
+                    index: blockIndex,
+                    func: () => {
+                      rule('When a function does not use `this`, a `.call` can be a regular call');
+                      example('function f(){} f.call(ctxt, A, B, C);', 'function f(){} ctxt; f(A, B, C);');
+                      before(node, blockBody[blockIndex]);
+
+                      const ctxt = node.arguments[0];
+                      const rest = node.arguments.slice(1);
+
+                      const finalNode = AST.callExpression(node.callee.object, rest);
+                      if (parentIndex < 0) parentNode[parentProp] = finalNode;
+                      else parentNode[parentProp][parentIndex] = finalNode;
+
+                      if (ctxt) {
+                        blockBody.splice(blockIndex, 0, AST.expressionStatement(ctxt || AST.identifier('undefined')));
+                      }
+
+                      after(blockBody.slice(blockIndex, blockIndex + rest.length + 2));
+                    },
+                  });
+
+                  break;
+                }
+                break;
+              }
+              case 'regex.test': {
+                if (
+                  objMeta.isConstant &&
+                  objMeta.typing.mustBeType === 'regex' &&
+                  node['arguments'].length &&
+                  AST.isPrimitive(node['arguments'][0])
+                ) {
+                  rule('regex.test when the regex and the arg is known can be resolved');
+                  example('/foo/.test("brafoody")', 'true');
+                  before(parentNode);
+
+                  const regex = new RegExp(objMeta.constValueRef.node.regex.pattern, objMeta.constValueRef.node.regex.flags);
+                  const v = regex.test(AST.getPrimitiveValue(node['arguments'][0]));
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(v);
+                  else parentNode[parentProp][parentIndex] = AST.primitive(v);
+
+                  after(parentNode);
+                  ++changes;
+                  break;
+                }
+
+                break;
+              }
+            }
+          }
+        }
+
+        break;
+      }
+      case 'MemberExpression': {
+        // Try to resolve builtin methods when they are assigned to a binding
+
+        if (
+          !node.computed &&
+          node.object.type === 'Identifier' &&
+          node.object.name !== 'arguments' &&
+          ((parentNode.type === 'AssignmentExpression' && parentProp === 'right') ||
+            (parentNode.type === 'VariableDeclarator' && parentProp === 'init')) // The init check is redundant
+        ) {
+          const meta = fdata.globallyUniqueNamingRegistry.get(node.object.name);
+          if (meta.isConstant) {
+            if (meta.typing.mustBeType) {
+              switch (meta.typing.mustBeType + '.' + node.property.name) {
+                // This is incorrect: function.prototype will return that function's prototype, not Function.prototype (unless it actually is Function, of course)
+                //case 'function.prototype': {
+                //  rule('Reading .prototype from something that must be a function should yield $FunctionPrototype');
+                //  example('const x = parseInt.prototype;', 'const x = $FunctionPrototype;');
+                //  before(node, blockBody[blockIndex]);
+                //  if (parentNode.type === 'AssignmentExpression') {
+                //    parentNode.right = AST.identifier(BUILTIN_FUNCTION_PROTOTYPE);
+                //  } else {
+                //    parentNode.init = AST.identifier(BUILTIN_FUNCTION_PROTOTYPE);
+                //  }
+                //
+                //  after(node, blockBody[blockIndex]);
+                //  ++changes;
+                //  break;
+                //}
+                case 'function.apply': {
+                  rule('Reading .apply from something that must be a function should yield $FunctionApply');
+                  example('const x = parseInt.apply;', 'const x = $FunctionApply;');
+                  before(node, blockBody[blockIndex]);
+                  if (parentNode.type === 'AssignmentExpression') {
+                    parentNode.right = AST.identifier(BUILTIN_FUNCTION_APPLY);
+                  } else {
+                    parentNode.init = AST.identifier(BUILTIN_FUNCTION_APPLY);
+                  }
+
+                  after(node, blockBody[blockIndex]);
+                  ++changes;
+                  break;
+                }
+                case 'function.call': {
+                  rule('Reading .call from something that must be a function should yield $FunctionCall');
+                  example('const x = parseInt.call;', 'const x = $FunctionCall;');
+                  before(node, blockBody[blockIndex]);
+
+                  if (parentNode.type === 'AssignmentExpression') {
+                    parentNode.right = AST.identifier(BUILTIN_FUNCTION_CALL);
+                  } else {
+                    parentNode.init = AST.identifier(BUILTIN_FUNCTION_CALL);
+                  }
+
+                  after(node, blockBody[blockIndex]);
+                  ++changes;
+                  break;
+                }
+                case 'regex.test': {
+                  rule('Reading .test from something that must be a regex should yield $RegExpTest');
+                  example('const x = /foo/.test;', 'const x = $RegExpTest;');
+                  before(node, blockBody[blockIndex]);
+
+                  if (parentNode.type === 'AssignmentExpression') {
+                    parentNode.right = AST.identifier(BUILTIN_REGEXP_TEST);
+                  } else {
+                    parentNode.init = AST.identifier(BUILTIN_REGEXP_TEST);
+                  }
+
+                  after(node, blockBody[blockIndex]);
+                  ++changes;
+                  break;
+                }
               }
             }
           }

@@ -19,7 +19,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   setVerboseTracing(!!verbose && verboseTracing !== false);
 
   {
-    const { logDir, logPasses, maxPass, cloneLimit, allowEval, unrollLimit, ...rest } = options;
+    const { logDir, logPasses, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, ...rest } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error('Preval: Unsupported options received:', rest);
   }
 
@@ -236,7 +236,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           phase1(fdata, resolve, req, firstAfterParse); // I want a phase1 because I want the scope tracking set up for normalizing bindings
           firstAfterParse = false;
 
-          changed = phase2(program, fdata, resolve, req, {unrollLimit: options.unrollLimit});
+          changed = phase2(program, fdata, resolve, req, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent});
         } while (changed === 'phase1');
 
         mod.fdata = fdata;

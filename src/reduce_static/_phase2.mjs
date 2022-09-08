@@ -3,6 +3,7 @@ import { mergeTyping } from '../bindings.mjs';
 import { pruneEmptyFunctions } from './empty_func.mjs';
 import { pruneTrampolineFunctions } from './trampoline.mjs';
 import { pruneExcessiveParams } from './exparam.mjs';
+import { excessiveArgs } from './excessive_args.mjs';
 import { inlineConstants } from './inline_constants.mjs';
 import { multiScopeSSA } from './multi_scope_ssa.mjs';
 import { singleScopeSSA } from './single_scope_ssa.mjs';
@@ -66,6 +67,14 @@ import { fakeLoops } from './fake_loops.mjs';
 import { unwindWhileWithTest } from './unwind_loop_with_test.mjs';
 import { unwindWhileWithCounter } from './unwind_loop_with_counter.mjs';
 import { staticArgOpOutlining } from './static_arg_op_outlining.mjs';
+import { arr_mutation } from './arr_mutation.mjs';
+import { functionLocks } from './function_locks.mjs';
+import { readOnce } from './read_once.mjs';
+import { testing_only } from './testing_only.mjs';
+import { functionSplitting } from './function_splitting.mjs';
+import { noopTry } from './noop_try.mjs';
+import { implicitThis } from './implicit_this.mjs';
+import { expandoSplitting } from './expando_splitting.mjs';
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -192,6 +201,9 @@ function _phase2(program, fdata, resolve, req, options = {}) {
 
   const prunedParams = pruneExcessiveParams(fdata);
   if (prunedParams) return prunedParams;
+
+  const ea = excessiveArgs(fdata);
+  if (ea) return ea;
 
   const singled = inlineOneTimeFunctions(fdata);
   if (singled) return singled;
@@ -339,6 +351,30 @@ function _phase2(program, fdata, resolve, req, options = {}) {
 
   const sao = staticArgOpOutlining(fdata);
   if (sao) return sao;
+
+  const am = arr_mutation(fdata);
+  if (am) return am;
+
+  const ful = functionLocks(fdata);
+  if (ful) return ful;
+
+  const ro = readOnce(fdata);
+  if (ro) return ro;
+
+  const to = testing_only(fdata);
+  if (to) return to;
+
+  const fp = functionSplitting(fdata);
+  if (fp) return fp;
+
+  const nt = noopTry(fdata);
+  if (nt) return nt;
+
+  const it = implicitThis(fdata, options.implicitThisIdent);
+  if (it) return it;
+
+  const ep = expandoSplitting(fdata);
+  if (ep) return ep;
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

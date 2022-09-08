@@ -161,6 +161,36 @@ function _coercials(fdata) {
       }
     }
 
+    if (at === 'function') {
+      if (kind === 'number') {
+        rule('A regex as arg to $coerce with number is always NaN');
+        example('$coerce(function(){}, "number")', 'NaN');
+        before(read.node, read.blockBody);
+
+        const finalNode = AST.primitive(NaN);
+        read.parentNode['arguments'][0] = finalNode;
+
+        after(finalNode, read.blockBody);
+        ++changes;
+        return;
+      } else {
+        vlog('Serializing a function. This will probably only work in fringe cases.');
+        fdata.reports.push('Serialized a function to a string, this string was unlikely to be the accurate and may lead to bad results');
+
+        rule('A function as arg to $coerce with string or plustr can be yolod');
+        example('$coerce(function(){}, "string")', 'function () {}');
+        example('$coerce(function(a,b){}, "plustr")', '"function (a, b) {}"');
+        before(read.node, read.blockBody);
+
+        const finalNode = AST.primitive('function(){}');
+        read.parentNode['arguments'][0] = finalNode;
+
+        after(finalNode, read.blockBody);
+        ++changes;
+        return;
+      }
+    }
+
     // tbf these are mostly for jsf*ck cases :)
     switch (argMeta.typing.builtinTag) {
       case 'Array#filter': {

@@ -833,13 +833,18 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               // This is the write(s) this write can reach. Can be multiple, for example after two writes in a branch.
               currentLastWriteSetForName.forEach((prevWrite) => {
                 // Point to each other
-                vlog(
-                  '  - Pointing two writes to each other',
-                  write.action + ':' + write.kind + ':' + write.node.$p.pid + '.reachesWrites <->',
-                  prevWrite.action + ':' + prevWrite.kind + ':' + prevWrite.node.$p.pid + '.reachedByWrites',
-                );
-                write.reachesWrites.add(prevWrite);
-                prevWrite.reachedByWrites.add(write);
+                if (prevWrite !== write) {
+                  vlog('  - Pointing two writes to each other (reachesWrites, reachedByWrites)');
+                  vlog('    From:  ', prevWrite.action + ':' + prevWrite.kind + ':' + prevWrite.node.$p.pid);
+                  vlog('    To:    ', write.action + ':' + write.kind + ':' + write.node.$p.pid);
+                  // "A write is reachable when a future write can change it"
+                  // "A write can reach another write when it might possibly change a binding set by that other write"
+                  // Eg. `x = 1; x = 2;` The first x is "reachedBy" the second write, the second write "reaches" the first.
+                  prevWrite.reachedByWrites.add(write);
+                  write.reachesWrites.add(prevWrite);
+                } else {
+                  vlog('  - Not pointing the write to itself');
+                }
               });
               // Now check whether this read crosses any loop boundary (must check all, in case nested, until we encounter
               // the block containing the binding, which we must invariably encounter at some point in normalized code).
@@ -879,7 +884,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
             vlog(
               'Last write analysis: this binding had',
               currentLastWriteSetForName?.size ?? 0,
-              'reachable writes before this one. Replacing the reachable writes for this binding with this one.',
+              'reachable writes before this one. Replacing the reachable writes for `' + name + '` with this ' + write.kind + '.',
             );
             currentLastWriteMapForName.set(name, new Set([write]));
 
@@ -1326,8 +1331,16 @@ function lastWrites_closeTheLoop(lastWritesAtLoopStart, currentLastWriteMapForNa
     let currentLastWriteSetForName = currentLastWriteMapForName.get(outWrite.name);
     if (currentLastWriteSetForName) {
       currentLastWriteSetForName.forEach((write) => {
-        write.reachedByWrites.add(outWrite);
-        outWrite.reachesWrites.add(write);
+        if (outWrite !== write) {
+          vlog('  - Closing loop. Pointing two writes to each other (reachesWrites, reachedByWrites)');
+          vlog('    Loop end:      ', outWrite.action + ':' + outWrite.kind + ':' + outWrite.node.$p.pid);
+          vlog('    Loop begin:    ', write.action + ':' + write.kind + ':' + write.node.$p.pid);
+          // "A write is reachable when a future write can change it"
+          // "A write can reach another write when it might possibly change a binding set by that other write"
+          // Eg. `x = 1; while(true) x = 2;` The outer x is "reachedBy" the inner write, the inner write "reaches" the outer.
+          outWrite.reachedByWrites.add(write);
+          write.reachesWrites.add(outWrite);
+        }
       });
     }
   });

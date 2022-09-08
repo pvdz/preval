@@ -81,15 +81,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let bindingPatternArrRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpCalleeParam = [`fail3`];
-    bindingPatternArrRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternArrRoot = tmpParamBare;
-  }
-  const arrPatternSplat = [...bindingPatternArrRoot];
+  const arrPatternSplat = [...tmpParamBare];
   const arrPatternBeforeDefault = arrPatternSplat[0];
   let arrPatternStep = undefined;
   const tmpIfTest$1 = arrPatternBeforeDefault === undefined;

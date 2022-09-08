@@ -22,8 +22,11 @@ export const BUILTIN_FUNC_CALL_NAME = '$dotCall'; // syntactic clue that this wa
 
 export const BUILTIN_ARRAY_PROTOTYPE = '$ArrayPrototype';
 export const BUILTIN_FUNCTION_PROTOTYPE = '$FunctionPrototype';
+export const BUILTIN_FUNCTION_APPLY = '$FunctionApply';
+export const BUILTIN_FUNCTION_CALL = '$FunctionCall';
 export const BUILTIN_NUMBER_PROTOTYPE = '$NumberPrototype';
 export const BUILTIN_OBJECT_PROTOTYPE = '$ObjectPrototype';
+export const BUILTIN_REGEXP_TEST = '$RegExpTest';
 export const BUILTIN_STRING_PROTOTYPE = '$StringPrototype';
 
 export const FRESH = true;

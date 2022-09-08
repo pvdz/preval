@@ -73,18 +73,18 @@ $(y);
 const f = function ($$0) {
   const a = $$0;
   debugger;
-  y = a;
+  y = a + 1;
   const tmpReturnArg = $(100);
   return tmpReturnArg;
 };
 let y = undefined;
-const tmpCalleeParam = f(2);
+const tmpCalleeParam = f(1);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(3);
+const tmpCalleeParam$1 = f(2);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(`a1`);
+const tmpCalleeParam$3 = f(`a`);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(2);
+const tmpCalleeParam$5 = f(true);
 $(tmpCalleeParam$5);
 $(y);
 `````

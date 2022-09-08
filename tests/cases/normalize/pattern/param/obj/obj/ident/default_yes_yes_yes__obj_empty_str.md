@@ -80,16 +80,7 @@ tmpCallCallee$3(tmpCalleeParam$3);
 const f = function ($$0) {
   const tmpParamBare = $$0;
   debugger;
-  let bindingPatternObjRoot = undefined;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
-    const tmpObjLitVal = { y: `fail3` };
-    const tmpCalleeParam = { x: tmpObjLitVal };
-    bindingPatternObjRoot = $(tmpCalleeParam);
-  } else {
-    bindingPatternObjRoot = tmpParamBare;
-  }
-  const objPatternBeforeDefault = bindingPatternObjRoot.x;
+  const objPatternBeforeDefault = tmpParamBare.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {

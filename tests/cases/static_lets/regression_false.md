@@ -83,7 +83,7 @@ const oops = function (...$$0) {
   x = `fail`;
   return undefined;
 };
-let x = 0;
+let x = 5;
 $(5);
 const tmpIfTest = $(false);
 if (tmpIfTest) {

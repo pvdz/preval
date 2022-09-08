@@ -29,15 +29,12 @@ try {
 
 `````js filename=intro
 let x = undefined;
-try {
-} catch {}
 `````
 
 ## Output
 
 `````js filename=intro
-try {
-} catch {}
+
 `````
 
 ## Globals

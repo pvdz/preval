@@ -64,13 +64,11 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   const tmpObjLitVal = $(1);
   const tmpNestedComplexRhs = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(1);
 const tmpAssignComMemLhsObj = $(a);

@@ -104,7 +104,7 @@ if (a) {
   a = $(tmpCalleeParam$1);
 } else {
 }
-let tmpIfTest = undefined;
+let tmpIfTest = false;
 if (a) {
   tmpIfTest = a === tmpSwitchValue;
 } else {

@@ -40,9 +40,7 @@ $(arr);
 ## Output
 
 `````js filename=intro
-const arr = [];
-arr.push(1);
-arr.push(2);
+const arr = [1, 2];
 $(arr);
 `````
 

@@ -57,7 +57,7 @@ let tmpDoWhileFlag = true;
 while (tmpDoWhileFlag) {
   $(100);
   a = undefined;
-  tmpDoWhileFlag = undefined;
+  tmpDoWhileFlag = false;
 }
 $(a);
 `````

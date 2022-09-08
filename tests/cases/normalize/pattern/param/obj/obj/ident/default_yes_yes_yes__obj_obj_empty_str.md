@@ -110,7 +110,7 @@ const f = function ($$0) {
 };
 const tmpObjLitVal$1 = { x: 1, y: ``, z: 3 };
 const tmpCalleeParam$5 = { x: tmpObjLitVal$1, b: 11, c: 12 };
-const tmpCalleeParam$3 = f(tmpCalleeParam$5, 10);
+const tmpCalleeParam$3 = f(tmpCalleeParam$5);
 $(tmpCalleeParam$3);
 `````
 

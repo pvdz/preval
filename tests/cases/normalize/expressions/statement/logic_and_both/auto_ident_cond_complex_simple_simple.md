@@ -53,7 +53,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = 2;
+let tmpIfTest = true;
 const tmpIfTest$1 = $(1);
 if (tmpIfTest$1) {
 } else {

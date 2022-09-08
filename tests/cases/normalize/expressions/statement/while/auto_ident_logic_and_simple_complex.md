@@ -46,12 +46,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = 1;
+let tmpIfTest = true;
 while (tmpIfTest) {
   const tmpCalleeParam = $(1);
   tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
     $(100);
+    tmpIfTest = true;
   } else {
     break;
   }

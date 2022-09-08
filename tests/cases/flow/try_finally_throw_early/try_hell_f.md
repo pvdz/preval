@@ -39,26 +39,15 @@ considerMutated(x);
 
 `````js filename=intro
 let x = 0;
-try {
-} catch {
-  x = 1;
-} finally {
-  throw_early;
-}
+throw_early;
 considerMutated(x);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = 0;
-try {
-} catch {
-  x = 1;
-} finally {
-  throw_early;
-}
-considerMutated(x);
+throw_early;
+considerMutated(0);
 `````
 
 ## Globals

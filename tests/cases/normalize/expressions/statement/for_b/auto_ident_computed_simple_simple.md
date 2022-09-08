@@ -49,7 +49,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = 1;
+let tmpIfTest = true;
 while (tmpIfTest) {
   $(1);
   tmpIfTest = b.c;

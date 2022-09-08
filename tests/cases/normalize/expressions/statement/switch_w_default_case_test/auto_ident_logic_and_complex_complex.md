@@ -100,7 +100,7 @@ const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpCalleeParam = $(1);
 const tmpBinLhs = $(tmpCalleeParam);
-let tmpIfTest = undefined;
+let tmpIfTest = false;
 if (tmpBinLhs) {
   const tmpCalleeParam$1 = $(2);
   const tmpClusterSSA_tmpBinLhs = $(tmpCalleeParam$1);

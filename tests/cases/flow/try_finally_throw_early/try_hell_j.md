@@ -63,11 +63,7 @@ considerMutated(x);
 ## Output
 
 `````js filename=intro
-try {
-} catch {
-} finally {
-  throw_early;
-}
+throw_early;
 considerMutated(2);
 `````
 

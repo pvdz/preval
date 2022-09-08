@@ -104,7 +104,7 @@ $(a);
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 let a = undefined;
-let tmpIfTest = undefined;
+let tmpIfTest = false;
 const tmpIfTest$3 = $ == null;
 if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;

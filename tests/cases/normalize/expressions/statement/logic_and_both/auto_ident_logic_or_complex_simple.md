@@ -51,7 +51,7 @@ const tmpCalleeParam = $(0);
 let tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
 } else {
-  tmpIfTest = 2;
+  tmpIfTest = true;
 }
 if (tmpIfTest) {
   const tmpCalleeParam$1 = $(0);

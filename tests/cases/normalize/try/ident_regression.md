@@ -52,8 +52,7 @@ try {
 ## Output
 
 `````js filename=intro
-try {
-} catch {}
+
 `````
 
 ## Globals

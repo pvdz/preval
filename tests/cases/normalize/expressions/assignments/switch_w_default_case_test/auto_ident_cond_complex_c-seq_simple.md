@@ -92,7 +92,7 @@ let a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpIfTest$1 = $(1);
-let tmpIfTest = undefined;
+let tmpIfTest = false;
 if (tmpIfTest$1) {
   a = $(60);
   tmpIfTest = a === tmpSwitchValue;

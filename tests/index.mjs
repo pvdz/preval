@@ -23,8 +23,11 @@ import {
 import {
   BUILTIN_ARRAY_PROTOTYPE,
   BUILTIN_FUNCTION_PROTOTYPE,
+  BUILTIN_FUNCTION_APPLY,
+  BUILTIN_FUNCTION_CALL,
   BUILTIN_NUMBER_PROTOTYPE,
   BUILTIN_OBJECT_PROTOTYPE,
+  BUILTIN_REGEXP_TEST,
   BUILTIN_STRING_PROTOTYPE,
 } from '../src/constants.mjs';
 import { coerce } from '../src/utils.mjs';
@@ -187,7 +190,7 @@ function runTestCase(
   let isExpectingAnError = mdHead.includes('\n### THROWS');
   if (withOutput) {
     console.log('Test case:', isExpectingAnError ? 'Expecting to throw an error' : 'Not expecting an error');
-    console.log('mdOptions:', mdOptions)
+    console.log('mdOptions:', mdOptions);
   }
 
   let expectedError = false;
@@ -220,6 +223,7 @@ function runTestCase(
       stopAfterNormalize: !!CONFIG.onlyNormalized,
       options: {
         cloneLimit: CONFIG.cloneLimit ?? mdOptions?.cloneLimit ?? 10,
+        implicitThisIdent: CONFIG.implicitThisIdent ?? mdOptions?.implicitThis ?? 'undefined',
         logPasses: CONFIG.logPasses,
         logDir: CONFIG.logDir,
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
@@ -407,11 +411,11 @@ function runTestCase(
         '$coerce',
         BUILTIN_ARRAY_PROTOTYPE,
         BUILTIN_FUNCTION_PROTOTYPE,
-        '$FunctionApply',
-        '$FunctionCall',
+        BUILTIN_FUNCTION_APPLY,
+        BUILTIN_FUNCTION_CALL,
         BUILTIN_NUMBER_PROTOTYPE,
         BUILTIN_OBJECT_PROTOTYPE,
-        '$RegExpTest',
+        BUILTIN_REGEXP_TEST,
         BUILTIN_STRING_PROTOTYPE,
         '"use strict"; ' + fdata.intro,
       )(
@@ -557,9 +561,9 @@ function runTestCase(
 
     if (!CONFIG.fileVerbatim && (snapshotChanged || normalizationDesync || outputDesync)) {
       const data = [
-        snapshotChanged ? BOLD + 'Snapshot changed' + RESET : '',
-        normalizationDesync ? 'Eval changes for normalization' : '',
-        !normalizationDesync && outputDesync ? 'Eval changes for result' : '',
+        snapshotChanged ? BOLD + (!normalizationDesync && !outputDesync ? GREEN : '') + 'Snapshot changed' + RESET : '',
+        normalizationDesync ? (snapshotChanged ? ORANGE : BOLD + RED) + 'Eval changes for normalization' + RESET : '',
+        !normalizationDesync && outputDesync ? (snapshotChanged ? ORANGE : BOLD + RED) + 'Eval changes for result' + RESET : '',
         ' --> ',
         fname,
       ];

@@ -66,18 +66,14 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   $(x);
   $(y);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+  x = tmpArrElement;
+  y = tmpArrElement$1;
 }
 const a = { a: 999, b: 1000 };
 $(a, x, y);

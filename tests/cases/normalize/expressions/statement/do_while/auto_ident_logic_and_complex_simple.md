@@ -61,7 +61,7 @@ while (tmpDoWhileFlag) {
   const tmpCalleeParam = $(1);
   tmpDoWhileFlag = $(tmpCalleeParam);
   if (tmpDoWhileFlag) {
-    tmpDoWhileFlag = 2;
+    tmpDoWhileFlag = true;
   } else {
   }
 }

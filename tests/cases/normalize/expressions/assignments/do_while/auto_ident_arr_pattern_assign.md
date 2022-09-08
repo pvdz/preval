@@ -68,8 +68,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
@@ -78,7 +77,6 @@ while (tmpDoWhileFlag) {
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
-  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
 }
 $(a, x, y);
 `````

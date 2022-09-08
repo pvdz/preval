@@ -62,7 +62,7 @@ while (tmpDoWhileFlag) {
   tmpDoWhileFlag = $(tmpCalleeParam);
   if (tmpDoWhileFlag) {
   } else {
-    tmpDoWhileFlag = 2;
+    tmpDoWhileFlag = true;
   }
 }
 const a = { a: 999, b: 1000 };

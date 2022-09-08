@@ -59,9 +59,7 @@ const a = function () {
   debugger;
   return undefined;
 };
-const tmpBinBothRhs = $coerce(a, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
+$(`before  function(){}  after`);
 $(a);
 `````
 

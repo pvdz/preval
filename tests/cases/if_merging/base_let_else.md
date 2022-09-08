@@ -73,7 +73,7 @@ if (x) {
 ## Output
 
 `````js filename=intro
-let x = 0;
+let x = true;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpUnaryArg = $(true);
@@ -86,7 +86,7 @@ if (x) {
   $(`a`);
 } else {
   $(`b`);
-  x = 10;
+  x = true;
 }
 if (x) {
   $(`d`);

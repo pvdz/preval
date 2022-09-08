@@ -70,8 +70,8 @@ considerMutated(x);
 `````js filename=intro
 const f = function () {
   debugger;
+  x = 1;
   try {
-    x = 1;
     throw `one`;
   } catch {
     throw `two`;

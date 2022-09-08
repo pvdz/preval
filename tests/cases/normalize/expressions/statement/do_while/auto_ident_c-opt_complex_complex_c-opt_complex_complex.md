@@ -75,7 +75,7 @@ const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (tmpDoWhileFlag) {
   $(100);
-  tmpDoWhileFlag = undefined;
+  tmpDoWhileFlag = false;
   const tmpChainElementCall = $(b);
   const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {

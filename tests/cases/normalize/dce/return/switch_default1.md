@@ -111,11 +111,11 @@ if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
 }
-const tmpLabeledBlockFunc = function ($$0) {
+const tmpLabeledBlockFunc = function ($$0, $$1) {
   const tmpSwitchCaseToStart$3 = $$0;
+  const tmpOutlinedParam = $$1;
   debugger;
-  const tmpIfTest$9 = tmpSwitchCaseToStart$3 <= 0;
-  if (tmpIfTest$9) {
+  if (tmpOutlinedParam) {
     $(`keep, do not eval`);
     return undefined;
   } else {
@@ -129,7 +129,8 @@ const tmpLabeledBlockFunc = function ($$0) {
     }
   }
 };
-const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchCaseToStart);
+const tmpSaooB = tmpSwitchCaseToStart <= 0;
+const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchCaseToStart, tmpSaooB);
 $(tmpReturnArg$5);
 `````
 

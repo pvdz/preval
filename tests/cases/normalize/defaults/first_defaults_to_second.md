@@ -85,12 +85,12 @@ tmpCallCallee$5(tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const f = function ($$0, $$1) {
+const f = function ($$0, $$1, $$2) {
   const tmpParamBare = $$0;
   const tmpParamBare$1 = $$1;
+  const tmpOutlinedParam = $$2;
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
+  if (tmpOutlinedParam) {
     throw `Preval: Cannot access \`b\` before initialization`;
   } else {
     let b = `bar`;
@@ -103,13 +103,13 @@ const f = function ($$0, $$1) {
     return tmpReturnArg;
   }
 };
-const tmpCalleeParam = f();
+const tmpCalleeParam = f(undefined, undefined, true);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(`x`);
+const tmpCalleeParam$1 = f(`x`, undefined, false);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(undefined, `y`);
+const tmpCalleeParam$3 = f(undefined, `y`, true);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(`x`, `y`);
+const tmpCalleeParam$5 = f(`x`, `y`, false);
 $(tmpCalleeParam$5);
 `````
 

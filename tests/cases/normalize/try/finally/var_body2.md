@@ -33,19 +33,13 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-try {
-} finally {
-  x = 10;
-}
+x = 10;
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-try {
-} finally {
-}
 $(10);
 `````
 

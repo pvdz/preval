@@ -55,14 +55,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
-  const f = function () {
-    debugger;
-    return undefined;
-  };
-  tmpDoWhileFlag = f;
 }
 const a = { a: 999, b: 1000 };
 $(a);

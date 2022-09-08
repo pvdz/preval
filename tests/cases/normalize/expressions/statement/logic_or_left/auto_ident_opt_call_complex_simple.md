@@ -47,7 +47,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = undefined;
+let tmpIfTest = false;
 const tmpChainElementCall = $($);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {

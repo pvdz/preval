@@ -66,7 +66,7 @@ const f = function () {
     return objPatternBeforeDefault;
   }
 };
-const tmpCalleeParam = f(10);
+const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 

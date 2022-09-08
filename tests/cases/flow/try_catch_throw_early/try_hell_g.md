@@ -39,31 +39,21 @@ considerMutated(x);
 
 `````js filename=intro
 let x = 0;
-try {
-} catch {
-  throw_early;
-} finally {
-  x = 1;
-}
+x = 1;
 considerMutated(x);
 `````
 
 ## Output
 
 `````js filename=intro
-try {
-} catch {
-  throw_early;
-} finally {
-}
 considerMutated(1);
 `````
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 1 implicit global bindings:
 
-throw_early, considerMutated
+considerMutated
 
 ## Result
 

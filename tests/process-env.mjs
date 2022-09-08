@@ -14,6 +14,7 @@ export function parseTestArgs() {
     fastTest: false,
     fileVerbatim: false,
     logPasses: false,
+    implicitThisIdent: undefined,
     noTrace: undefined, // Force set VERBOSE_TRACING=false regardless of input size? If undefined, defaults to verbose.
     maxPass: undefined,
     onlyNormalized: false,
@@ -78,6 +79,11 @@ export function parseTestArgs() {
         // Skip most of the cases/normalization/expression variations
         config.fastTest = true;
         console.log('WARNING: Skipping many tests in cases/normalization/expression !');
+        break;
+      }
+
+      case '--implicit-this': {
+        config.implicitThisIdent = argv.shift();
         break;
       }
 

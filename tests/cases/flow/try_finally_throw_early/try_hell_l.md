@@ -93,9 +93,9 @@ considerMutated(x);
 `````js filename=intro
 const f = function () {
   debugger;
+  x = 1;
+  x = `fail`;
   try {
-    x = 1;
-    x = `fail`;
     return undefined;
   } finally {
     throw_early;

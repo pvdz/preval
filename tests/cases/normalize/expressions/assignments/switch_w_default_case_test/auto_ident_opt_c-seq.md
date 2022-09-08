@@ -98,7 +98,7 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp == null;
-let tmpIfTest = undefined;
+let tmpIfTest = false;
 if (tmpIfTest$1) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {

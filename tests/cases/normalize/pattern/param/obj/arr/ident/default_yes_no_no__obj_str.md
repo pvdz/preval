@@ -76,7 +76,7 @@ const f = function ($$0) {
   }
 };
 const tmpCalleeParam$1 = { x: `abc`, a: 11, b: 12 };
-const tmpCalleeParam = f(tmpCalleeParam$1, 10);
+const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

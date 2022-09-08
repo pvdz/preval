@@ -53,16 +53,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  a = tmpPrevalAliasThis;
-  return tmpPrevalAliasThis;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
-$(a);
+const tmpPrevalAliasThis = undefined;
+$(tmpPrevalAliasThis);
+$(tmpPrevalAliasThis);
 `````
 
 ## Globals

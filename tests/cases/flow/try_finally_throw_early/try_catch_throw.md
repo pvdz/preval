@@ -62,14 +62,12 @@ f();
 ## Output
 
 `````js filename=intro
-let x = `fail`;
 try {
-  x = `pass`;
   throw `yes`;
 } catch {
   $(`caught`);
 }
-$(x);
+$(`pass`);
 `````
 
 ## Globals

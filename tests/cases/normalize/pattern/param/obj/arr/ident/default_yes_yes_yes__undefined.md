@@ -98,7 +98,7 @@ const f = function () {
     return arrPatternBeforeDefault;
   }
 };
-const tmpCalleeParam$3 = f(10);
+const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 

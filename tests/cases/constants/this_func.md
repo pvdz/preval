@@ -57,9 +57,8 @@ const f = function () {
   $(tmpPrevalAliasThis);
   return undefined;
 };
-const tmpCallVal = f.call;
 const tmpCalleeParam = { pass: 1 };
-$dotCall(tmpCallVal, f, tmpCalleeParam);
+f.apply(tmpCalleeParam);
 `````
 
 ## Globals

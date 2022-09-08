@@ -92,7 +92,7 @@ let a = 2;
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpIfTest$1 = $(1);
-let tmpIfTest = undefined;
+let tmpIfTest = false;
 if (tmpIfTest$1) {
   tmpIfTest = 2 === tmpSwitchValue;
 } else {

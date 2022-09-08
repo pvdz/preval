@@ -35,19 +35,13 @@ considerMutated(x);
 
 `````js filename=intro
 let x = 0;
-try {
-} finally {
-  x = 1;
-}
+x = 1;
 considerMutated(x);
 `````
 
 ## Output
 
 `````js filename=intro
-try {
-} finally {
-}
 considerMutated(1);
 `````
 

@@ -60,7 +60,7 @@ $(a);
 let tmpDoWhileFlag = true;
 while (tmpDoWhileFlag) {
   $(100);
-  tmpDoWhileFlag = undefined;
+  tmpDoWhileFlag = false;
   const tmpChainElementCall = $($);
   const tmpIfTest = tmpChainElementCall == null;
   if (tmpIfTest) {

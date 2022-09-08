@@ -33,22 +33,13 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-try {
-} catch {
-  x = 10;
-}
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-let x = undefined;
-try {
-} catch {
-  x = 10;
-}
-$(x);
+$(undefined);
 `````
 
 ## Globals

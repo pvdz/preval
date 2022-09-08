@@ -63,7 +63,7 @@ if (x) {
 ## Output
 
 `````js filename=intro
-let x = undefined;
+let x = false;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpUnaryArg = $(true);

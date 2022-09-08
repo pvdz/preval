@@ -74,7 +74,7 @@ const f = function () {
     return objPatternBeforeDefault;
   }
 };
-const tmpCalleeParam$1 = f(10);
+const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 

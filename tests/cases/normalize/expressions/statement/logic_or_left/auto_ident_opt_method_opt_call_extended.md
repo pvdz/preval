@@ -60,7 +60,7 @@ $(a);
 
 `````js filename=intro
 const a = { a: 999, b: 1000 };
-let tmpIfTest = undefined;
+let tmpIfTest = false;
 const tmpIfTest$3 = $ == null;
 if (tmpIfTest$3) {
 } else {

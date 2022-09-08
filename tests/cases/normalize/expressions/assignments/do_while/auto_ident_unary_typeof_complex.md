@@ -57,13 +57,11 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   const tmpUnaryArg = $(1);
   const tmpNestedComplexRhs = typeof tmpUnaryArg;
   a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a, 1);
 `````

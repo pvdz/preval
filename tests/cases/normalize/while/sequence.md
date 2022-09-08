@@ -55,7 +55,7 @@ let x = 1;
 while (true) {
   x ** 0;
   x = NaN.x;
-  let tmpIfTest = undefined;
+  let tmpIfTest = false;
   const tmpChainRootProp = x;
   const tmpIfTest$1 = tmpChainRootProp == null;
   if (tmpIfTest$1) {

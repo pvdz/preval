@@ -48,7 +48,7 @@ let tmpDoWhileFlag = true;
 while (tmpDoWhileFlag) {
   const tmpCalleeParam = $(2);
   $(tmpCalleeParam);
-  tmpDoWhileFlag = 0;
+  tmpDoWhileFlag = false;
 }
 `````
 

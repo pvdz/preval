@@ -53,13 +53,7 @@ f(1, 2, 3, 4, 5);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  $(tmpPrevalAliasThis);
-  return undefined;
-};
-f();
+$(undefined);
 `````
 
 ## Globals

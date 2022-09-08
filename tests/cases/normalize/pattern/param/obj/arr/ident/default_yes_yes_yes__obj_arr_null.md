@@ -111,7 +111,7 @@ const f = function ($$0) {
 };
 const tmpObjLitVal$1 = [null];
 const tmpCalleeParam$5 = { x: tmpObjLitVal$1, a: 11, b: 12 };
-const tmpCalleeParam$3 = f(tmpCalleeParam$5, 10);
+const tmpCalleeParam$3 = f(tmpCalleeParam$5);
 $(tmpCalleeParam$3);
 `````
 

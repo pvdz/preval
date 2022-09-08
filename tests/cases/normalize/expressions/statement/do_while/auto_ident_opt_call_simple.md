@@ -59,7 +59,7 @@ $(a);
 let tmpDoWhileFlag = true;
 while (tmpDoWhileFlag) {
   $(100);
-  tmpDoWhileFlag = undefined;
+  tmpDoWhileFlag = false;
   const tmpIfTest = $ == null;
   if (tmpIfTest) {
   } else {

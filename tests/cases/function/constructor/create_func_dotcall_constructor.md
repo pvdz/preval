@@ -42,20 +42,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCallObj = function () {
-  debugger;
-  return undefined;
-};
-const f = tmpCallObj.constructor(a, b, c, d);
+const f = Function(a, b, c, d);
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
 ## Globals
 
-BAD@! Found 4 implicit global bindings:
+BAD@! Found 5 implicit global bindings:
 
-a, b, c, d
+Function, a, b, c, d
 
 ## Result
 

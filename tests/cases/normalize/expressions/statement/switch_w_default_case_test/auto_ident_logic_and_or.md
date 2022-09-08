@@ -111,7 +111,7 @@ if (tmpBinLhs) {
   tmpBinLhs = $(tmpCalleeParam$1);
 } else {
 }
-let tmpIfTest = undefined;
+let tmpIfTest = false;
 if (tmpBinLhs) {
   tmpIfTest = tmpBinLhs === tmpSwitchValue;
 } else {

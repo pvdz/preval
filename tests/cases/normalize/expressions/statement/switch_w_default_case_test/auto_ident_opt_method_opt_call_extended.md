@@ -112,7 +112,7 @@ const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
 const tmpIfTest$3 = $ == null;
-let tmpIfTest = undefined;
+let tmpIfTest = false;
 if (tmpIfTest$3) {
   tmpIfTest = undefined === tmpSwitchValue;
 } else {

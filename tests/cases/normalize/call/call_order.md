@@ -1,0 +1,62 @@
+# Preval test case
+
+# call_order.md
+
+> Normalize > Call > Call order
+>
+> A builtin with too many args that is a statement...
+
+#TODO
+
+## Input
+
+`````js filename=intro
+$spy(isNaN)($spy('a'), $spy('b'), $spy('c'));
+`````
+
+## Pre Normal
+
+`````js filename=intro
+$spy(isNaN)($spy(`a`), $spy(`b`), $spy(`c`));
+`````
+
+## Normalized
+
+`````js filename=intro
+const tmpCallCallee = $spy(isNaN);
+const tmpCalleeParam = $spy(`a`);
+const tmpCalleeParam$1 = $spy(`b`);
+const tmpCalleeParam$3 = $spy(`c`);
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+`````
+
+## Output
+
+`````js filename=intro
+const tmpCallCallee = $spy(isNaN);
+const tmpCalleeParam = $spy(`a`);
+const tmpCalleeParam$1 = $spy(`b`);
+const tmpCalleeParam$3 = $spy(`c`);
+tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+`````
+
+## Globals
+
+BAD@! Found 1 implicit global bindings:
+
+isNaN
+
+## Result
+
+Should call `$` with:
+ - 1: 'Creating spy', 1, 1, ['<function>', '<function>']
+ - 2: 'Creating spy', 2, 1, ['a', 'a']
+ - 3: 'Creating spy', 3, 1, ['b', 'b']
+ - 4: 'Creating spy', 4, 1, ['c', 'c']
+ - eval returned: ('<crash[ <ref> is not function/iterable ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

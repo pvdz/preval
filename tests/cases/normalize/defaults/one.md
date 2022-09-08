@@ -57,19 +57,19 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
+const f = function ($$0, $$1) {
   const tmpParamBare = $$0;
+  const tmpOutlinedParam = $$1;
   debugger;
-  const tmpIfTest = tmpParamBare === undefined;
-  if (tmpIfTest) {
+  if (tmpOutlinedParam) {
     return `foo`;
   } else {
     return tmpParamBare;
   }
 };
-const tmpCalleeParam = f(`x`);
+const tmpCalleeParam = f(`x`, false);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f();
+const tmpCalleeParam$1 = f(undefined, true);
 $(tmpCalleeParam$1);
 `````
 

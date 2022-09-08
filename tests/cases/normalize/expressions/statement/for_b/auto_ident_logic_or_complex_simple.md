@@ -57,7 +57,7 @@ while (true) {
   let tmpIfTest = $(tmpCalleeParam);
   if (tmpIfTest) {
   } else {
-    tmpIfTest = 2;
+    tmpIfTest = true;
   }
   if (tmpIfTest) {
     $(1);

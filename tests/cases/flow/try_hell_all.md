@@ -464,16 +464,9 @@ try {
 } catch {}
 considerMutated(x);
 let x$1 = 0;
-try {
-} catch {
-  x$1 = 1;
-}
 considerMutated(x$1);
 let x$3 = 0;
-try {
-} finally {
-  x$3 = 1;
-}
+x$3 = 1;
 considerMutated(x$3);
 let x$5 = 0;
 try {
@@ -490,18 +483,9 @@ try {
 }
 considerMutated(x$7);
 let x$9 = 0;
-try {
-} catch {
-  x$9 = 1;
-} finally {
-}
 considerMutated(x$9);
 let x$11 = 0;
-try {
-} catch {
-} finally {
-  x$11 = 1;
-}
+x$11 = 1;
 considerMutated(x$11);
 let x$13 = 0;
 foo: {
@@ -668,78 +652,26 @@ considerMutated(x$31);
 ## Output
 
 `````js filename=intro
-let x = 0;
-try {
-  x = 1;
-} catch {}
-considerMutated(x);
-let x$1 = 0;
-try {
-} catch {
-  x$1 = 1;
-}
-considerMutated(x$1);
-try {
-} finally {
-}
 considerMutated(1);
-let x$5 = 0;
-try {
-  x$5 = 1;
-} catch {
-} finally {
-}
-considerMutated(x$5);
-let x$7 = 0;
-try {
-  x$7 = 1;
-} catch {
-} finally {
-}
-considerMutated(x$7);
-let x$9 = 0;
-try {
-} catch {
-  x$9 = 1;
-} finally {
-}
-considerMutated(x$9);
-try {
-} catch {
-} finally {
-}
+considerMutated(0);
 considerMutated(1);
-let x$13 = 0;
-try {
-} catch {
-  x$13 = 1;
-} finally {
-}
-considerMutated(x$13);
-try {
-} catch {
-} finally {
-}
 considerMutated(1);
-try {
-} catch {
-} finally {
-}
 considerMutated(1);
-try {
-} catch {
-} finally {
-}
+considerMutated(0);
+considerMutated(1);
+considerMutated(0);
+considerMutated(1);
+considerMutated(1);
 considerMutated(1);
 const f = function () {
   debugger;
+  x$21 = `fail`;
   try {
-    x$21 = `fail`;
     return undefined;
   } finally {
     return undefined;
   }
-  console.log(x$21);
+  console.log(`fail`);
   x$21 = `fail`;
   return undefined;
 };
@@ -789,8 +721,8 @@ f$5();
 considerMutated(x$27);
 const f$7 = function () {
   debugger;
+  x$29 = 1;
   try {
-    x$29 = 1;
     throw `one`;
   } catch {
     throw `two`;

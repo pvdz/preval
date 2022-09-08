@@ -55,13 +55,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  return tmpPrevalAliasThis;
-};
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+$(undefined);
 `````
 
 ## Globals

@@ -73,11 +73,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
+const f = function ($$0, $$1) {
   const a = $$0;
+  const tmpOutlinedParam = $$1;
   debugger;
-  const x = a & 1;
-  if (x) {
+  if (tmpOutlinedParam) {
     const y = a & 4;
     if (y) {
       $(`pass`);
@@ -89,9 +89,9 @@ const f = function ($$0) {
     return undefined;
   }
 };
-f(1);
+f(1, 1);
 $(undefined);
-f(2);
+f(2, 0);
 $(undefined);
 `````
 

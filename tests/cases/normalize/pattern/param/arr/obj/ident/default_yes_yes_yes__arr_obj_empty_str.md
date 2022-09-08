@@ -112,7 +112,7 @@ const f = function ($$0) {
 };
 const tmpArrElement$1 = { x: ``, y: 2, z: 3 };
 const tmpCalleeParam$5 = [tmpArrElement$1, 20, 30];
-const tmpCalleeParam$3 = f(tmpCalleeParam$5, 200);
+const tmpCalleeParam$3 = f(tmpCalleeParam$5);
 $(tmpCalleeParam$3);
 `````
 

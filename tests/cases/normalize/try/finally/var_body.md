@@ -30,17 +30,12 @@ try {
 
 `````js filename=intro
 let x = undefined;
-try {
-} finally {
-}
 `````
 
 ## Output
 
 `````js filename=intro
-try {
-} finally {
-}
+
 `````
 
 ## Globals

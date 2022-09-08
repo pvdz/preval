@@ -79,16 +79,8 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let a = { a: 999, b: 1000 };
-  const f = function () {
-    const tmpPrevalAliasThis = this;
-    debugger;
-    a = tmpPrevalAliasThis;
-    return undefined;
-  };
-  f();
   $(undefined);
-  $(a);
+  $(undefined);
   $(undefined);
 } else {
 }

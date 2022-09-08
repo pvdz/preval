@@ -55,14 +55,12 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$3 = $(3);
   const tmpNestedComplexRhs = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
   a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````

@@ -56,7 +56,7 @@ $(a, arg);
 let tmpDoWhileFlag = true;
 while (tmpDoWhileFlag) {
   $(100);
-  tmpDoWhileFlag = undefined;
+  tmpDoWhileFlag = false;
 }
 const a = { a: 999, b: 1000 };
 $(a, 1);

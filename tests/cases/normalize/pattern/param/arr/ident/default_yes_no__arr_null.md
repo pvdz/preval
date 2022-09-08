@@ -73,7 +73,7 @@ const f = function ($$0) {
   }
 };
 const tmpCalleeParam$1 = [null, 201];
-const tmpCalleeParam = f(tmpCalleeParam$1, 200);
+const tmpCalleeParam = f(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

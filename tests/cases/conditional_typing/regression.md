@@ -109,6 +109,7 @@ const f = function () {
   debugger;
   const tmpIfTest = curtype === 16472;
   if (tmpIfTest) {
+    lexerFlags;
     curtype = $(`random`);
     const tmpIfTest$1 = curtype === 16473;
     if (tmpIfTest$1) {
@@ -129,7 +130,9 @@ f();
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+lexerFlags
 
 ## Result
 

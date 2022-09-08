@@ -87,14 +87,14 @@ considerMutated(x);
 `````js filename=intro
 const f = function () {
   debugger;
+  x = `fail`;
   try {
-    x = `fail`;
     return undefined;
   } finally {
     throw_early;
     return undefined;
   }
-  console.log(x);
+  console.log(`fail`);
   x = `fail`;
   return undefined;
 };

@@ -51,14 +51,8 @@ $(a);
 ## Output
 
 `````js filename=intro
+$(`before  function(){}  after`);
 const a = { a: 999, b: 1000 };
-const tmpCallCallee$1 = function () {
-  debugger;
-  return undefined;
-};
-const tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
-$(tmpCalleeParam);
 $(a);
 `````
 

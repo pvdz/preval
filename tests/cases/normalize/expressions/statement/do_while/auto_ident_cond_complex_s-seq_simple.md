@@ -61,7 +61,7 @@ while (tmpDoWhileFlag) {
   $(100);
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    tmpDoWhileFlag = 60;
+    tmpDoWhileFlag = true;
   } else {
     const tmpCalleeParam = $(100);
     tmpDoWhileFlag = $(tmpCalleeParam);

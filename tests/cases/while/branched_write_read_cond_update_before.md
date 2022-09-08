@@ -66,7 +66,7 @@ while (true) {
 let x = $(1);
 while (true) {
   const tmpIfTest = x % 3;
-  let tmpIfTest$1 = undefined;
+  let tmpIfTest$1 = false;
   if (tmpIfTest) {
     x = $(10, `ten`);
     tmpIfTest$1 = x % 2;

@@ -1,0 +1,77 @@
+# Preval test case
+
+# assign_implicit2.md
+
+> Try > Noop > Assign implicit2
+>
+> Certain statements probably never benefit from running inside a try
+
+#TODO
+
+## Input
+
+`````js filename=intro
+function f(x) {
+  let y = 100;
+  try {
+    y = $;
+  } catch {}
+  return y;
+}
+$(f(x));
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let f = function ($$0) {
+  let x$1 = $$0;
+  debugger;
+  let y = 100;
+  try {
+    y = $;
+  } catch {}
+  return y;
+};
+$(f(x));
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = function ($$0) {
+  let x$1 = $$0;
+  debugger;
+  let y = 100;
+  try {
+    y = $;
+  } catch {}
+  return y;
+};
+const tmpCallCallee = $;
+const tmpCalleeParam = f(x);
+tmpCallCallee(tmpCalleeParam);
+`````
+
+## Output
+
+`````js filename=intro
+$($);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - eval returned: ('<crash[ <ref> is not defined ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: BAD!!
+ - 1: '<$>'
+ - eval returned: undefined

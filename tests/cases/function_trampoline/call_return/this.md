@@ -58,14 +58,8 @@ $(q);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  const tmpPrevalAliasThis = this;
-  debugger;
-  const r = $(tmpPrevalAliasThis);
-  return r;
-};
-const q = f();
-$(q);
+const r = $(undefined);
+$(r);
 `````
 
 ## Globals

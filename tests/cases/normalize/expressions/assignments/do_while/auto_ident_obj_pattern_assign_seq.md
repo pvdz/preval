@@ -69,8 +69,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+while (true) {
   $(100);
   $(x);
   $(y);
@@ -80,7 +79,6 @@ while (tmpDoWhileFlag) {
   y = tmpObjLitVal$1;
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   a = tmpNestedAssignObjPatternRhs;
-  tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
 }
 $(a, x, y);
 `````

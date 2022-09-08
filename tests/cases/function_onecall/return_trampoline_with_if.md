@@ -100,6 +100,7 @@ $(parseIdentifierRest);
 `````js filename=intro
 const parseIdentifierRest = function () {
   debugger;
+  c$53;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     const tmpIfTest$1 = $(1);
@@ -121,7 +122,9 @@ $(parseIdentifierRest);
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+c$53
 
 ## Result
 

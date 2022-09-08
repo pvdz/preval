@@ -72,7 +72,7 @@ const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (tmpDoWhileFlag) {
   $(100);
-  tmpDoWhileFlag = undefined;
+  tmpDoWhileFlag = false;
   const tmpChainElementObject = b.x;
   const tmpIfTest$1 = tmpChainElementObject == null;
   if (tmpIfTest$1) {

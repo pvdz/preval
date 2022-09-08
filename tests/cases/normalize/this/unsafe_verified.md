@@ -79,9 +79,8 @@ const f = function () {
   const tmpReturnArg = tmpPrevalAliasThis.y;
   return tmpReturnArg;
 };
-const tmpCallVal = f.call;
 const tmpCalleeParam$1 = { y: 1 };
-const tmpCalleeParam = $dotCall(tmpCallVal, f, tmpCalleeParam$1);
+const tmpCalleeParam = f.apply(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

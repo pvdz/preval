@@ -51,7 +51,7 @@ $(c);
 const b = $(2);
 const tmpIfTest = b == null;
 let c = undefined;
-let tmpIfTest$1 = undefined;
+let tmpIfTest$1 = false;
 if (tmpIfTest) {
   c = toString;
   tmpIfTest$1 = c == null;

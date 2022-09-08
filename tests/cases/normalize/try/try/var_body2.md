@@ -42,11 +42,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-let x = undefined;
-try {
-  x = 10;
-} catch {}
-$(x);
+$(10);
 `````
 
 ## Globals

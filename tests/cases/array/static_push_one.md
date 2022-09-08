@@ -37,8 +37,7 @@ $(arr);
 ## Output
 
 `````js filename=intro
-const arr = [];
-arr.push(1);
+const arr = [1];
 $(arr);
 `````
 

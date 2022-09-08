@@ -65,7 +65,7 @@ const a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
 while (tmpDoWhileFlag) {
   $(100);
-  tmpDoWhileFlag = undefined;
+  tmpDoWhileFlag = false;
   const tmpChainRootProp = $(b);
   const tmpIfTest = tmpChainRootProp == null;
   if (tmpIfTest) {

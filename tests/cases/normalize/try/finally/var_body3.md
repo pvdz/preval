@@ -32,18 +32,12 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-try {
-} finally {
-}
 $(x);
 `````
 
 ## Output
 
 `````js filename=intro
-try {
-} finally {
-}
 $(undefined);
 `````
 

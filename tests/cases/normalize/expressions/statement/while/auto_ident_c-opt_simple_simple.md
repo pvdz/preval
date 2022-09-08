@@ -56,7 +56,7 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpChainElementObject = 1;
+let tmpChainElementObject = true;
 while (tmpChainElementObject) {
   $(100);
   tmpChainElementObject = b.x;

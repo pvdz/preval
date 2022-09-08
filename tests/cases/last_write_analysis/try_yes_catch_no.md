@@ -12,6 +12,7 @@
 
 `````js filename=intro
 // Can rename this write since only the next read can observe it
+const oops = function(){ if ($) throw "oops"; };
 let x = $('a');
 $(x);
 // Can not SSA this
@@ -27,6 +28,10 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
+const oops = function () {
+  debugger;
+  if ($) throw `oops`;
+};
 let x = $(`a`);
 $(x);
 x = $(`b`);
@@ -41,6 +46,14 @@ $(x);
 ## Normalized
 
 `````js filename=intro
+const oops = function () {
+  debugger;
+  if ($) {
+    throw `oops`;
+  } else {
+    return undefined;
+  }
+};
 let x = $(`a`);
 $(x);
 x = $(`b`);

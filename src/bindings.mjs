@@ -128,14 +128,14 @@ export function getIdentUsageKind(parentNode, parentProp) {
       ASSERT(parentProp === 'label', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'label';
     case 'DebuggerStatement':
-      throw ASSERT(false);
+      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
     case 'Directive':
-      throw ASSERT(false);
+      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
     case 'DoWhileStatement':
       ASSERT(parentProp === 'body' || parentProp === 'test', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'read';
     case 'EmptyStatement':
-      throw ASSERT(false);
+      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
     case 'ExportAllDeclaration':
       ASSERT(parentProp === 'exported', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'none';
@@ -193,12 +193,12 @@ export function getIdentUsageKind(parentNode, parentProp) {
       ASSERT(parentProp === 'id' || parentProp === 'params', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'write';
     case 'Identifier':
-      throw ASSERT(false);
+      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
     case 'IfStatement':
       ASSERT(parentProp === 'test' || parentProp === 'body', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'read';
     case 'ImportDeclaration':
-      throw ASSERT(false);
+      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
     case 'ImportDefaultSpecifier':
       ASSERT(parentProp === 'local', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'write';
@@ -278,7 +278,7 @@ export function getIdentUsageKind(parentNode, parentProp) {
       ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'read';
     case 'Super':
-      throw ASSERT(false);
+      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
     case 'SwitchCase':
       ASSERT(
         parentProp === 'test',
@@ -295,17 +295,17 @@ export function getIdentUsageKind(parentNode, parentProp) {
       ASSERT(parentProp === 'tag', 'the expressions are wrapped in a TemplateElement', parentNode.type, '.', parentProp);
       return 'read';
     case 'TemplateElement':
-      throw ASSERT(false);
+      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
     case 'TemplateLiteral':
       ASSERT(parentProp === 'expressions', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'read';
     case 'ThisExpression':
-      throw ASSERT(false);
+      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
     case 'ThrowStatement':
       ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'read';
     case 'TryStatement':
-      throw ASSERT(false);
+      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
     case 'UnaryExpression':
       ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       // Note: none of the unary operators currently mutate. (++/-- are update expressions)
@@ -314,7 +314,7 @@ export function getIdentUsageKind(parentNode, parentProp) {
       ASSERT(parentProp === 'argument', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       return 'readwrite';
     case 'VariableDeclaration':
-      throw ASSERT(false);
+      throw ASSERT(false, 'normalized code does not have this node: ' + parentNode.type);
     case 'VariableDeclarator':
       ASSERT(parentProp === 'id' || parentProp === 'init', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
       if (parentProp === 'id') return 'write';
@@ -335,6 +335,9 @@ export function getIdentUsageKind(parentNode, parentProp) {
 export function generateUniqueGlobalName(name, fdata, assumeDoubleDollar = false) {
   ASSERT(!assumeDoubleDollar || name.startsWith('$$'), 'if assuming double dollar, we should receive one');
   if (!assumeDoubleDollar && name.startsWith('$$')) {
+    if (/^\$\$\d/.test(name)) {
+      return generateUniqueGlobalName('$dlr_' + name, fdata);
+    }
     ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place');
     // TODO: assert this is the normal_once step and make sure it never happens elsewhere
     return generateUniqueGlobalName('tmp' + name.slice(2), fdata);
@@ -523,6 +526,10 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
+    innerTry,
+    innerTrap,
+    innerCatch,
+    innerFinally,
     ...rest
   } = obj;
   ASSERT(typeof kind === 'string');
@@ -560,6 +567,10 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
+    innerTry,
+    innerTrap,
+    innerCatch,
+    innerFinally,
     reachesWrites: new Set(), // Set<Write>. All writes this read can "reach" (might "observe", syntactically speaking)
   };
 }
@@ -586,6 +597,10 @@ export function createWriteRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
+    innerTry,
+    innerTrap,
+    innerCatch,
+    innerFinally,
     ...rest
   } = obj;
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
@@ -622,6 +637,10 @@ export function createWriteRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
+    innerTry,
+    innerTrap,
+    innerCatch,
+    innerFinally,
     reachedByReads: new Set(), // Set<Read>. All reads that can "reach" this write (might "observe", syntactically speaking)
     reachedByWrites: new Set(), // Set<Read>. All writes that can "reach" this write (this write shadows theirs)
     reachesWrites: new Set(), // Set<Write>. The previous writes to this binding this write can reach. Used for redundant let write detection.
@@ -1011,7 +1030,7 @@ function _inferNodeTyping(fdata, valueNode) {
   // Given a node `init`, determine the initial typing for this meta.
   // .worstCaseValueSet is overridden if already set and the value is a primitive. If let, future assignments will amend or clear the set.
 
-  ASSERT(valueNode, 'should receive value node');
+  ASSERT(valueNode, 'should receive value node', valueNode);
   ASSERT(valueNode.$p, 'nodes should be processed at this point so .$p should exist', valueNode);
 
   if (AST.isPrimitive(valueNode)) {
@@ -1091,9 +1110,12 @@ function _inferNodeTyping(fdata, valueNode) {
           });
         }
         default:
-          ASSERT(false);
+          ASSERT(false, 'normalized code does not have this unary operator: ' + valueNode.operator);
       }
       return;
+    }
+    case 'AwaitExpression': {
+      return inferNodeTyping(fdata, valueNode.argument);
     }
     case 'BinaryExpression': {
       switch (valueNode.operator) {
@@ -1209,7 +1231,7 @@ function _inferNodeTyping(fdata, valueNode) {
 
           if (ipl && ipr) {
             // This case should be resolved by normalization
-            const prl = pr + pl;
+            const prl = pl + pr;
             vlog('- both are primitives, result is a:', prl);
 
             return createTypingObject({
@@ -1657,40 +1679,40 @@ function _inferNodeTyping(fdata, valueNode) {
       return createTypingObject({});
     }
     case 'ChainExpression': {
-      ASSERT(false);
+      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
       return;
     }
     case 'SequenceExpression': {
-      ASSERT(false);
+      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
       return;
     }
     case 'AssignmentExpression': {
-      ASSERT(false);
+      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
       return;
     }
     case 'LogicalExpression': {
-      ASSERT(false);
+      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
       return;
     }
     case 'ConditionalExpression': {
-      ASSERT(false);
+      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
       return;
     }
     case 'UpdateExpression': {
-      ASSERT(false);
+      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
       return;
     }
     case 'ArrowFunctionExpression': {
-      ASSERT(false);
+      ASSERT(false, 'normalized code does not have this node: ' + valueNode.type);
       return;
     }
     default: {
       // Do I want to assert false here? At this point there can't be that many legit unchecked nodes left
-      throw ASSERT(false, 'what expression did I miss here?', valueNode.type, valueNode);
+      throw ASSERT(false, `what expression did I miss here? ${valueNode.type} ${JSON.stringify(valueNode)}`);
     }
   }
 
-  ASSERT(false);
+  ASSERT(false, 'unexpected node type which should have been caught in the default but ok: ', valueNode.type);
 }
 export function mergeTyping(from, into) {
   // First confirm that we properly deal with all the typing props. If we add a new one, it should be added here as well.

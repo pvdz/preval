@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-
 import { setVerboseTracing, VERBOSE_TRACING, MARK_NONE, MARK_TEMP, MARK_PERM } from './constants.mjs';
 import { clearStdio, setStdio, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from './utils.mjs';
 import globals from './globals.mjs';
@@ -72,8 +69,10 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   const normalizeQueue = [entryPoint]; // Order is not relevant in this phase
   const allFileNames = [entryPoint]; // unordered but there's no point in a set
 
+  let queueFileCounter = -1;
   while (normalizeQueue.length) {
     const nextFname = normalizeQueue.pop(); // Order should not matter for normalization purposes
+    ++queueFileCounter;
     const mod = modules.get(nextFname);
     log('\nNext fname in queue: "' + nextFname + '"');
 
@@ -81,11 +80,14 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     // Scope tracking by parser not looking so hot now, eh.
     const inputCode = req(nextFname);
     if (verboseTracing === undefined && inputCode.length > 10 * 1024) setVerboseTracing(false); // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
-
     const preFdata = parseCode(inputCode, nextFname);
+
+    options.onAfterFirstParse?.(preFdata);
     prepareNormalization(preFdata, resolve, req, true); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalOnce(preFdata);
     const preCode = tmat(preFdata.tenkoOutput.ast, true);
+
+    options.onAfterNormalizeOnce?.(preCode, preFdata, nextFname, queueFileCounter, options);
 
     const fdata = parseCode(preCode, nextFname);
     prepareNormalization(fdata, resolve, req, false); // I want a phase1 because I want the scope tracking set up for normalizing bindings
@@ -170,14 +172,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   );
   log();
 
-  if (options.logPasses) {
-    console.log('--out: Logging first normalized state to disk...');
-    allFileNames.forEach((fname, i) => {
-      const f = path.join(options.logDir, 'preval.pass001.f' + i + '.normalized.log.js');
-      console.log('-', f, '(', contents.normalized[fname].length, 'bytes)');
-      fs.writeFileSync(f, '// Normalized output after one pass [' + fname + ']\n' + contents.normalized[fname]);
-    });
-  }
+  options.onFirstPassEnd?.(contents, allFileNames, options);
 
   group('Resolving correct import order of dependency tree (total ' + allFileNames.length + ' files)');
   // https://en.wikipedia.org/wiki/Topological_sorting#Depth-first_search
@@ -224,6 +219,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
       const mod = modules.get(fname);
       let inputCode = mod.normalizedCode;
       let passes = 0;
+      let phase1s = 0;
       const maxPasses = options.maxPass > 0 ? options.maxPass : 0;
       while (changed) {
         ++passes;
@@ -233,7 +229,8 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           // Slow; serialize and parse to verify each cycle
           //parseCode(tmat(fdata.tenkoOutput.ast, true), fname);
 
-          phase1(fdata, resolve, req, firstAfterParse); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          ++phase1s;
+          phase1(fdata, resolve, req, firstAfterParse, passes, phase1s); // I want a phase1 because I want the scope tracking set up for normalizing bindings
           firstAfterParse = false;
 
           changed = phase2(program, fdata, resolve, req, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent});
@@ -244,11 +241,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
         const outCode = tmat(fdata.tenkoOutput.ast, true);
 
-        if (options.logPasses) {
-          const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(3, '0') + '.f' + fi + '.result.log.js');
-          console.log('--out: Logging current result to disk:', f, '(', outCode.length, 'bytes)');
-          fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n' + outCode);
-        }
+        options.onPassEnd?.(outCode, passes, fi, options);
 
         changed = outCode !== inputCode;
         if (changed && (!maxPasses || passes < maxPasses)) {
@@ -266,14 +259,6 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           inputCode = tmat(fdata.tenkoOutput.ast, true);
           mod.reports.push(...fdata.reports)
-
-          //if (options.logPasses) {
-          //  log('Logging current normalized state to disk...');
-          //  fs.writeFileSync(
-          //    path.join(options.logDir, 'preval.pass' + String(passes + 1).padStart(3, '0') + '.f' + String(fi) + '.normalized.log.js'),
-          //    '// Resulting output after ' + (passes + 1) + ' passes [' + fname + ']\n' + outCode,
-          //  );
-          //}
         } else {
           // Report the implicit globals. Tests should explicitly declare the implicit globals so we can automatically verify
           // that none are accidentally left behind / partially eliminated.
@@ -310,3 +295,5 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
   return contents;
 }
+
+export const helpers = {fmat, tmat};

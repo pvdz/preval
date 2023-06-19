@@ -31,7 +31,7 @@ import {
   BUILTIN_REGEXP_TEST,
   BUILTIN_STRING_PROTOTYPE,
 } from '../src/constants.mjs';
-import { coerce } from '../src/utils.mjs';
+import { coerce, log, vlog } from '../src/utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
 import { parseTestArgs } from './process-env.mjs';
 // Note: worker_threads are node 10.15. I'd make them optional if import syntax allowed this, but I'm not gonna taint the whole test suite with async for the sake of it.
@@ -229,21 +229,35 @@ function runTestCase(
         logDir: CONFIG.logDir,
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
         unrollLimit: CONFIG.unroll ?? mdOptions?.unroll ?? 10,
-        onPassEnd(contents, pass, options) {
+        onAfterFirstParse(preFdata) {
+          // No action applied. I dont think we need to do anything here
+        },
+        onAfterNormalizeOnce(preCode, preFdata, nextFname, queueFileCounter, options) {
+          // Not much to see here. This set up scope tracking, renamed labels, and some analysis
+          // It then did a first one-time normalization pass to remove anything that we should
+          // never see again, like `var`, patterns, param defaults, etc.
           if (options.logPasses) {
-            console.log('--out: Logging normalized state to disk after pass', pass, '...');
-            if (pass === -1) {
-              Object.keys(contents.files).forEach((fname, i) => {
-                const f = path.join(options.logDir, 'preval.pass--0.f' + i + '.normalized.log.js');
-                console.log('-', f, '(', contents.files[fname].length, 'bytes)');
-                fs.writeFileSync(f, '// Normalized output after one pass [' + fname + ']\n' + contents.files[fname]);
-              });
-            } else {
-              console.log(Object.keys(contents))
-              const f = path.join(options.logDir, 'preval.pass' + String(pass).padStart(3, '0') + '.f' + pass + '.result.log.js');
-              console.log('--out: Logging current result to disk:', f, '(', contents.length, 'bytes)');
-              fs.writeFileSync(f, '// Resulting output after pass [' + pass + '][' + fname + ']\n' + contents);
-            }
+            log('--out: Logging one-time-normalized state to disk for', nextFname);
+            const f = path.join(options.logDir, 'preval.a.f' + queueFileCounter + '.onetime.normalized.log.js');
+            log('-', f, '(', preCode.length, 'bytes) ->', nextFname);
+            fs.writeFileSync(f, '// Normalized output after one pass [' + nextFname + ']\n' + preCode);
+          }
+        },
+        onFirstPassEnd(contents, allFileNames, options) {
+          if (options.logPasses) {
+            log('--out: Logging first normalized state to disk...');
+            allFileNames.forEach((fname, i) => {
+              const f = path.join(options.logDir, 'preval.b.f' + i + '.firstpass.normalized.log.js');
+              log('-', f, '(', contents.normalized[fname].length, 'bytes) ->', fname);
+              fs.writeFileSync(f, '// Normalized output after one pass [' + fname + ']\n' + contents.normalized[fname]);
+            });
+          }
+        },
+        onPassEnd(outCode, passes, fi, options) {
+          if (options.logPasses) {
+            const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.log.js');
+            log('--out: Logging current result to disk:', f, '(', outCode.length, 'bytes)');
+            fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n' + outCode);
           }
         }
       },

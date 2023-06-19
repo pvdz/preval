@@ -1,6 +1,7 @@
 // ran on node 14+ (only real requirement is esm)
 
 import fs from 'fs';
+import path from 'path';
 import { preval } from '../src/index.mjs';
 import {
   RED,
@@ -228,6 +229,23 @@ function runTestCase(
         logDir: CONFIG.logDir,
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
         unrollLimit: CONFIG.unroll ?? mdOptions?.unroll ?? 10,
+        onPassEnd(contents, pass, options) {
+          if (options.logPasses) {
+            console.log('--out: Logging normalized state to disk after pass', pass, '...');
+            if (pass === -1) {
+              Object.keys(contents.files).forEach((fname, i) => {
+                const f = path.join(options.logDir, 'preval.pass--0.f' + i + '.normalized.log.js');
+                console.log('-', f, '(', contents.files[fname].length, 'bytes)');
+                fs.writeFileSync(f, '// Normalized output after one pass [' + fname + ']\n' + contents.files[fname]);
+              });
+            } else {
+              console.log(Object.keys(contents))
+              const f = path.join(options.logDir, 'preval.pass' + String(pass).padStart(3, '0') + '.f' + pass + '.result.log.js');
+              console.log('--out: Logging current result to disk:', f, '(', contents.length, 'bytes)');
+              fs.writeFileSync(f, '// Resulting output after pass [' + pass + '][' + fname + ']\n' + contents);
+            }
+          }
+        }
       },
     });
   } catch (e) {
@@ -401,37 +419,34 @@ function runTestCase(
       function $coerce(x, to) {
         return coerce(x, to);
       }
+
+      const frameworkInjectedGlobals = {
+        '$': $,
+        'objPatternRest': objPatternRest,
+        '$dotCall': $dotCall,
+        '$spy': $spy,
+        '$coerce': $coerce,
+        '$LOOP_DONE_UNROLLING_ALWAYS_TRUE_5': true, // TODO: this would need to be configurable and then this value is update
+        [BUILTIN_ARRAY_PROTOTYPE]: Array.prototype,
+        [BUILTIN_FUNCTION_PROTOTYPE]: Function.prototype,
+        [BUILTIN_FUNCTION_APPLY]: Function.prototype.apply,
+        [BUILTIN_FUNCTION_CALL]: Function.prototype.call,
+        [BUILTIN_NUMBER_PROTOTYPE]: Number.prototype,
+        [BUILTIN_OBJECT_PROTOTYPE]: Object.prototype,
+        [BUILTIN_REGEXP_TEST]: RegExp.prototype.test,
+        [BUILTIN_STRING_PROTOTYPE]: String.prototype,
+      };
+
       // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
       //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
       const returns = new Function(
-        '$',
-        'objPatternRest',
-        '$dotCall',
-        '$spy',
-        '$coerce',
-        BUILTIN_ARRAY_PROTOTYPE,
-        BUILTIN_FUNCTION_PROTOTYPE,
-        BUILTIN_FUNCTION_APPLY,
-        BUILTIN_FUNCTION_CALL,
-        BUILTIN_NUMBER_PROTOTYPE,
-        BUILTIN_OBJECT_PROTOTYPE,
-        BUILTIN_REGEXP_TEST,
-        BUILTIN_STRING_PROTOTYPE,
+        // Globals to inject
+        ...Object.keys(frameworkInjectedGlobals),
+        // test code to execute/eval
         '"use strict"; ' + fdata.intro,
       )(
-        $,
-        objPatternRest,
-        $dotCall,
-        $spy,
-        $coerce,
-        Array.prototype,
-        Function.prototype,
-        Function.prototype.apply,
-        Function.prototype.call,
-        Number.prototype,
-        Object.prototype,
-        RegExp.prototype.test,
-        String.prototype,
+        // The values of the injected globals
+        ...Object.values(frameworkInjectedGlobals),
       );
       before = false; // Allow printing the trace to trigger getters/setters that call $ because we'll ignore it anyways
       stack.push(
@@ -550,7 +565,11 @@ function runTestCase(
       ++snap;
 
       if (CONFIG.fileVerbatim) {
-        console.log('Not writing result');
+        console.log('Not writing result. Dumping now...');
+        if (!CONFIG.logPasses) console.log('Use `--out` or `--outto` to dump intermediate logs');
+        console.log('-----------------------');
+        console.log(md2);
+        console.log('-----------------------');
       } else {
         fs.writeFileSync(fname, md2, 'utf8');
       }

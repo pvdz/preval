@@ -297,8 +297,10 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
   log('Preval end');
 
-  vlog('\nCurrent state, final\n--------------\n' + fmat(contents.files.intro) + '\n--------------\n');
-
+  if (VERBOSE_TRACING) {
+    // Conditional to prevent the fmat call here
+    vlog('\nCurrent state, final\n--------------\n' + fmat(contents.files.intro) + '\n--------------\n');
+  }
 
   const reports = [];
   modules.forEach( mod => reports.push(...mod.reports));

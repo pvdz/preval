@@ -146,7 +146,7 @@ export function example(from, to, condition) {
   }
 }
 
-export function before(node, parentNode, returnOnly, force = false) {
+export function before(node, parentNode, returnOnly = false, force = false) {
   if (VERBOSE_TRACING || force) {
     if (Array.isArray(node)) {
       return node.map((n, i) => before(n, i ? undefined : parentNode, returnOnly)).join('\n');
@@ -354,4 +354,52 @@ export function coerce(v, kind) {
 export function isSameNodeByPrintingExpensive(A, B) {
   // We could try to prettier it but the same node should really just print the same so I don't think we need to
   return tmat(A, true) === tmat(B, true);
+}
+
+export function allReadsAreCallsOrAliasing(fdata, meta) {
+  // Given a binding, determine if all reads from this binding are regular calls.
+  // Allow for aliases, only as constants (so only as var decls, not assignments)
+  // and in that case also do the same check for the alias.
+  if (meta.reads.some((rw, i) => {
+    ASSERT(rw.kind === 'read', 'a read is a read'); // If this fails just return false here
+
+    if (rw.parentNode.type === 'CallExpression') {
+      if (rw.parentProp !== 'callee') {
+        vlog('   - bail: function was used as an arg');
+        return true;
+      }
+      return false;
+    }
+
+    if (rw.parentNode.type === 'VariableDeclarator' && rw.parentProp === 'init') {
+      ASSERT(rw.parentProp === 'init', 'if not right then it would not be a read');
+      ASSERT(rw.parentNode.id.type === 'Identifier', 'no big deal if it isnt, we can just return true here, but i think normalized code has ids for all var decls');
+
+      // Verify that left is only assigned to once and only called otherwise
+      const aliasMeta = fdata.globallyUniqueNamingRegistry.get(rw.parentNode.id.name);
+
+      if (aliasMeta.writes.length !== 1) {
+        vlog('   - bail: alias is written more than once');
+        return true;
+      }
+
+      if (aliasMeta.reads.some(rw => {
+        // All reads are regular func calls to this name
+        return !(rw.parentNode.type === 'CallExpression' && rw.parentProp === 'callee');
+      })) {
+        vlog('   - bail: alias was not only called');
+        return true;
+      }
+
+      return false;
+    }
+    // Not called, not assigned, not var decl init. Not our target.
+    vlog('   - bail: func ref was used in observable ways');
+    return true;
+  })) {
+    vlog('   - bail: at least one usage of the binding was not a func call');
+    return false;
+  }
+
+  return true;
 }

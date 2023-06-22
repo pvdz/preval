@@ -1,4 +1,5 @@
-import { ASSERT } from './utils.mjs';
+import walk from '../lib/walk.mjs';
+import {ASSERT, source, tmat, vlog} from './utils.mjs';
 import { $p } from './$p.mjs';
 
 export function cloneSimple(node) {
@@ -59,6 +60,17 @@ export function arrayExpression(...elements) {
   return {
     type: 'ArrayExpression',
     elements,
+    $p: $p(),
+  };
+}
+
+export function awaitExpression(argument) {
+  ASSERT(argument, 'await argument must be given');
+  if (typeof argument === 'string') argument = identifier(argument);
+
+  return {
+    type: 'AwaitExpression',
+    argument,
     $p: $p(),
   };
 }
@@ -730,6 +742,20 @@ export function unaryExpression(operator, argument) {
   };
 }
 
+export function updateExpression(operator, argument, prefix, yesNotTransforming) {
+  ASSERT(yesNotTransforming, 'This is not considered normalized. Do not use this func during transforms. Confirm by passing the arg.');
+  ASSERT(operator === '--' || operator === '++');
+  if (typeof argument === 'string') argument = identifier(argument);
+
+  return {
+    type: 'UpdateExpression',
+    operator,
+    argument,
+    prefix,
+    $p: $p(),
+  };
+}
+
 export function variableDeclaration(names, inits = null, kind = 'let') {
   if (typeof names === 'string') names = identifier(names);
   if (!Array.isArray(names)) names = [names];
@@ -834,6 +860,7 @@ export function getStringValue(node, allowLiteral = false) {
 }
 
 export function isPrimitive(node) {
+  // isValue, isLiteral
   // A primitive is a literal boolean, number, string, or null, or an identifier NaN, Infinity, or undefined.
   // It's different from a literal since, for example, `undefined` is not a Literal node.
 
@@ -899,9 +926,42 @@ export function isTruthy(node) {
   return ['ThisExpression', 'ArrayExpression', 'ObjectExpression', 'FunctionExpression', 'ClassExpression'].includes(node.type);
 }
 
+export function getPrimitiveType(node) {
+  ASSERT(node && node.$p, 'node exists yea bossman?', node, node.$p);
+  ASSERT(isPrimitive(node) || node.$p.isPrimitive, 'should assert a node is a primitive value before calling getPrimitiveType on it', node);
+
+  if (node.$p.isPrimitive) {
+    return typeof node.$p.primitiveValue;
+  }
+
+  if (node.type === 'Literal') {
+    if (node.raw === 'null') return null;
+    if (['number', 'string', 'boolean'].includes(typeof node.value)) return typeof node.value;
+    ASSERT(false);
+  }
+
+  if (node.type === 'TemplateLiteral') {
+    ASSERT(node.expressions.length === 0, 'caller should have checked isPrimitive', node);
+    return 'string';
+  }
+
+  if (node.type === 'Identifier') {
+    if (node.name === 'undefined') return 'undefined';
+    if (node.name === 'NaN') return 'number';
+    if (node.name === 'Infinity') return 'number';
+  }
+
+  if (node.type === 'UnaryExpression' && (node.operator === '-' || node.operator === '+') && node.argument.type !== 'UnaryExpression') {
+    // Negative literals. Maybe we should only consider numbers here, not -null etc?
+    return 'number';
+  }
+
+  ASSERT(false, 'probably need to support this node', node);
+}
+
 export function getPrimitiveValue(node) {
   ASSERT(node && node.$p, 'node exists yea bossman?', node, node.$p);
-  ASSERT(isPrimitive(node) || node.$p.isPrimitive, 'should assert a node is a primitive value before calling getPrimitive on it', node);
+  ASSERT(isPrimitive(node) || node.$p.isPrimitive, 'should assert a node is a primitive value before calling getPrimitiveValue on it', node);
 
   if (node.$p.isPrimitive) {
     return node.$p.primitiveValue;
@@ -1018,8 +1078,8 @@ export function isComplexNode(node, incNested = true, preNormalization = false) 
   ASSERT([1, 2, 3].includes(arguments.length), 'arg count');
   // A node is simple if it is
   // - an identifier
-  // - a literal (but not regex)
-  // - a unary expression `-` or `+` with a number arg, NaN, or Infinity
+  // - a literal (but not regex, object, array)
+  // - a unary expression `-` or `+` with a number literal arg, NaN, or Infinity
   // - a sequence expression ending in a simple node
   // Most of the time these nodes are not reduced any further
   // The sequence expression sounds complex but that's what we normalize into most of the time
@@ -1103,6 +1163,7 @@ export function nodeHasNoObservableSideEffectNorStatements(node, noDelete) {
   return false; // Do not pass other statements
 }
 export function nodeHasNoObservableSideEffectIncStatements(node, noDelete) {
+  ASSERT(node, 'should receive a node');
   // This function assumes normalized code (!)
   // This function DOES assume to be visiting statements
 
@@ -1252,6 +1313,8 @@ export function expressionHasNoObservableSideEffect(node, noDelete) {
     return true;
   }
   if (node.type === 'VariableDeclaration') {
+    ASSERT(node.declarations.length === 1, 'in normalized code all binding decls have on decl');
+    ASSERT(node.declarations[0].init, 'in normalized code all binding decls have inits', node)
     return expressionHasNoObservableSideEffect(node.declarations[0].init, noDelete);
   }
   if (node.type === 'VariableDeclarator') {
@@ -1286,6 +1349,14 @@ export function expressionHasNoObservableSideEffect(node, noDelete) {
     }
     // In all other cases the op may coerce
     return isPrimitive(node.left) && isPrimitive(node.right);
+  }
+  if (node.type === 'AwaitExpression') {
+    // The await triggers a pause
+    return false;
+  }
+  if (node.type === 'YieldExpression') {
+    // The yield triggers a pause
+    return false;
   }
 
   // Don't know about this node
@@ -1684,6 +1755,36 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
     case 'BlockStatement': {
       return blockStatement(node.body.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)));
     }
+    case 'VariableDeclaration': {
+      return variableDeclaration(node.declarations[0].id.name, node.declarations[0].init, 'const');
+    }
+    case 'BreakStatement': {
+      if (node.label) throw TODO;
+      return breakStatement();
+    }
+    case 'ContinueStatement': {
+      if (node.label) throw TODO;
+      return continueStatement();
+    }
+    case 'TryStatement': {
+      //  type: 'TryStatement',
+      //    block,
+      //    handler: {
+      //    type: 'CatchClause',
+      //      param,
+      //      body: handler,
+      //  },
+      //  finalizer,
+      //    $p: $p(),
+      //  }
+      return tryStatement(
+        deepCloneForFuncInlining(node.block, paramArgMapper, fail),
+        node.handler.param && deepCloneForFuncInlining(node.handler.param, paramArgMapper, fail),
+        node.handler && deepCloneForFuncInlining(node.handler.body, paramArgMapper, fail),
+        node.finalizer && deepCloneForFuncInlining(node.finalizer, paramArgMapper, fail),
+      );
+    }
+
 
     case 'Identifier': {
       // This is the money maker!
@@ -1777,6 +1878,10 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
         deepCloneForFuncInlining(node.cooked, paramArgMapper, fail),
       );
     }
+    case 'AwaitExpression': {
+      throw new Error('can only inline an await into an async function or syntax erorrs happen');
+      return awaitExpression(deepCloneForFuncInlining(node.argument, paramArgMapper, fail));
+    }
 
     case 'ClassExpression': {
       throw TODO;
@@ -1784,25 +1889,15 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
     case 'Param': {
       throw TODO;
     }
-    case 'TryStatement': {
-      // ;(
-      throw TODO;
-    }
     case 'LabeledStatement': {
       // tricky because labels are unique and if we change this one we must change it for the whole structure
       throw TODO;
     }
-    case 'BreakStatement': {
-      throw TODO;
-    }
-    case 'ContinueStatement': {
-      throw TODO;
-    }
     case 'ThrowStatement': {
-      throw TODO;
+      return throwStatement(deepCloneForFuncInlining(node.argument, paramArgMapper, fail));
     }
     case 'ReturnStatement': {
-      throw TODO;
+      return returnStatement(deepCloneForFuncInlining(node.argument, paramArgMapper, fail));
     }
     case 'FunctionExpression': {
       // We do not want to deep clone function expressions because it leads to difficult binding duplication issues.
@@ -1812,6 +1907,7 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       return identifier('undefined');
     }
     default: {
+      console.log('node:', node);
       ASSERT(false, 'deep clone missing type', node);
     }
   }
@@ -1972,4 +2068,118 @@ function simpleNodeMightSpy(node, fdata) {
 
   // If this is a primitive then the user cannot observe this action
   return !['undefined', 'null', 'boolean', 'number', 'string'].includes(meta.typing.mustBeType);
+}
+
+export function hasObservableSideEffectsBetween(ast, fromNode, toNode, mayMiss = false, dbg) {
+  let fail = false;
+  let found = false;
+  let pass = false;
+  //const DEBUG_STR = 'X = Y, V$3 = Y';
+  const DEBUG_STR = '';
+
+  //const X = Y;
+  //const l$5 = o;
+  //const g$3 = Q;
+  //const V$3 = Y;
+
+  walk(confirm, ast, 'ast');
+
+  if (!mayMiss && !found) {
+    //source(ast, true);
+    //console.log(fromNode);
+    //console.log(toNode);
+    //source(fromNode, true);
+    //source(toNode, true);
+  }
+  ASSERT(mayMiss || found, 'the node should exist in the given ast');
+  ASSERT(mayMiss || fail || pass, 'either the search fails or the target node is found');
+
+  return !pass;
+
+  function confirm(node, beforeWalk, nodeType, path) {
+    if (!beforeWalk) return found;
+    if (node !== toNode) return found;
+    found = true;
+    if (fail) return;
+    if (pass) return;
+
+    let currentPathBodyIndex = path.blockBodies.length - 1;
+    let currentPathIndexIndex = path.blockIndexes.length - 1;
+
+    const parentNode = path.nodes[path.nodes.length - 2];
+    const parentProp = path.props[path.props.length - 1];
+    const parentIndex = path.indexes[path.indexes.length - 1];
+    const grandNode = path.nodes[path.nodes.length - 3];
+    const grandProp = path.props[path.props.length - 2];
+    const grandIndex = path.indexes[path.indexes.length - 2];
+    const blockBody = path.blockBodies[currentPathBodyIndex];
+    const blockIndex = path.blockIndexes[currentPathIndexIndex];
+
+    if (dbg === DEBUG_STR) console.log(' - Found read node... currentPathBodyIndex=', currentPathBodyIndex, ', currentPathIndexIndex=', currentPathIndexIndex, ', starting at index', blockIndex, 'of that body');
+    if (dbg === DEBUG_STR) console.log('from ->', tmat(blockBody[blockIndex], true));
+    if (dbg === DEBUG_STR) console.log('to   ->', tmat(fromNode, true));
+
+    vlog(' - Verifying that statements between', fromNode.$p.pid, 'and', toNode.$p.pid, 'have no observable side effects (assigning values etc)');
+
+    let currentBody = blockBody;
+    let currentIndex = blockIndex; // This starts at the write
+    if (dbg === DEBUG_STR) console.log('   - The read starts at', currentIndex, 'of body path index', currentPathBodyIndex);
+    while (!fail && !pass) {
+      if (dbg === DEBUG_STR) console.log('   - Going backwards in statements starting before', currentIndex, 'of body', currentPathBodyIndex);
+      while (currentIndex > 0) {
+        // In the current block, keep walking backwards until either the target or start is found
+        // If start is found without seeing the targte, we'll move to the parent block and repeat.
+        --currentIndex;
+        if (dbg === DEBUG_STR) console.log('   - next check:', currentIndex, '/', currentPathBodyIndex, ':', currentBody[currentIndex].type);
+        if (dbg === DEBUG_STR) console.log('->', tmat(currentBody[currentIndex], true));
+        if (currentBody[currentIndex] === fromNode) {
+          vlog('   - found target. end of search. there are no observable side effects between the nodes.');
+          pass = true;
+          return true;
+        }
+        ASSERT(currentBody[currentIndex], 'every element of a body should be present, right?', currentIndex);
+        if (!nodeHasNoObservableSideEffectIncStatements(currentBody[currentIndex])) {
+          vlog('     - observable. oh well.', currentBody[currentIndex]);
+          //source(currentBody[currentIndex], true);
+          fail = true;
+          return true;
+        }
+      }
+
+      if (currentPathBodyIndex <= 0 && currentPathIndexIndex <= 0) {
+        if (mayMiss) {
+          vlog('- bail: Not found?')
+          fail = true;
+          return;
+        }
+        // We're at the start of Program without finding target. I think something error happened at this point.
+        source(ast, true);
+        source(fromNode, true);
+        source(toNode, true);
+        console.log(fromNode);
+        console.log(toNode);
+        ASSERT(false, 'The fromNode should always exist in the given ast');
+        //throw new Error('fail');
+        fail = true;
+      }
+      if (currentIndex === 0) {
+        const nextBody = path.blockBodies[--currentPathBodyIndex];
+        const nextIndex = path.blockIndexes[--currentPathIndexIndex];
+        if (dbg === DEBUG_STR) console.log('   - went up a level. body:', currentPathBodyIndex, ', index:', currentPathIndexIndex, ', body[i=]:', nextIndex, '/', currentBody.length, '::', nextBody[nextIndex]?.type);
+        if (dbg === DEBUG_STR) console.log('->', tmat(currentBody[currentIndex], true));
+        if (nextBody[nextIndex]?.type === 'TryStatement') {
+          // confirm this was the body and not the handler/finalizer
+          if (nextBody[nextIndex].handler?.body.body === currentBody || nextBody[nextIndex].finalizer?.body === currentBody) {
+            vlog('   - was from catch/finally, bailing');
+            fail = true;
+            return true;
+          }
+        }
+        currentBody = nextBody;
+        currentIndex = nextIndex;
+      }
+    }
+
+    return true;
+  }
 }

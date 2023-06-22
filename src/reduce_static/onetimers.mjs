@@ -361,9 +361,16 @@ function _inlineOneTimeFunctions(fdata) {
       vlog('After replacing params with args:');
       source(funcNode);
 
+      if (read.grandNode.type === 'AwaitExpression' || read.grandNode.type === 'YieldExpression') {
+        // The read should be the object of a call so we check whether that's the arg of an await or yield, which would be the grand
+        console.log('Going to blow up now...');
+        source(fdata.tenkoOutput.ast, true);
+      }
+      ASSERT(read.grandNode.type !== 'AwaitExpression', 'normalized await expression are not yet supported here...');
+      ASSERT(read.grandNode.type !== 'YieldExpression', 'normalized yield expression are not yet supported here...');
       ASSERT(
         ['ExpressionStatement', 'AssignmentExpression', 'VariableDeclarator'].includes(read.grandNode.type),
-        'normalized calls can only appear in three ways',
+        `normalized calls can only appear in three ways but this was a ${read.grandNode.type}`,
         read.parentNode,
       );
       ASSERT(read.parentIndex < 0, 'in all three cases the parent should not be an array');

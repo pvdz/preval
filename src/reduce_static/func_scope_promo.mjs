@@ -168,7 +168,7 @@ function _oneFunc(meta, funcName, queue) {
   return true;
 }
 
-function findClosureRefs(funcNode) {
+export function findClosureRefs(funcNode) {
   // List of references and the blockReference stack. We need this to distinguish a local from a closure ref.
   const referenced = [];
 

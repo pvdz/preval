@@ -1217,6 +1217,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     // - assignment
     // - member expression (because getters)
     // - tagged template
+    // - await <noop>
+    // - yield <noop>
     // - anything else that has observable side effects that I can't think off right now
     // Anything else can be dropped.
     // All statements will make sure their expression bits are simple nodes, and abstract complex nodes to temporary / fresh
@@ -5466,6 +5468,30 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         return false;
       }
 
+      case 'AwaitExpression': {
+        // Ensure argument is a noop in itself
+        // `await x()` -> `(tmp = x(), await tmp)`
+
+        if (AST.isComplexNode(node.argument)) {
+          rule('Await argument cannot be complex');
+          example('await f()', '(tmp = f(), await tmp)');
+          before(node, parentNode);
+
+          const tmpName = createFreshVar('tmpAwaitArg', fdata);
+          const newNodes = [AST.variableDeclaration(tmpName, node.argument, 'const')];
+          const finalNode = AST.awaitExpression(tmpName);
+          const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+          body.splice(i, 1, ...newNodes, finalParent);
+
+          after(newNodes);
+          after(finalNode, finalParent);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
+        return false;
+      }
+
       case 'LogicalExpression': {
         // This will need some special branching per type of `kind`.
         // By the time this point is reached, the expression should only exist in three forms;
@@ -6674,7 +6700,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         return;
       }
 
-      case 'AwaitExpression':
       case 'Directive':
       case 'MetaProperty':
       case 'MethodDefinition':

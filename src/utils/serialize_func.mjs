@@ -31,13 +31,21 @@ import { phaseNormalOnce } from '../normalize/normal_once.mjs';
 // - Return AST node of the new function
 
 export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, fdata) {
+  if (funcNode.async) {
+    console.log('TODO: fix cloning async functions');
+    TODO;
+  }
+  if (funcNode.generator) {
+    console.log('TODO: fix cloning generator functions');
+    TODO;
+  }
   group(
     '\n\n\n##################################\n## cloning function slowly  ::  ' +
       funcNode.id?.name +
       '\n##################################\n\n',
   );
   vlog('Input node:');
-  source(funcNode);
+  source(funcNode, true);
 
   ASSERT(
     funcNode.type === 'FunctionExpression' || funcNode.type === 'ArrowFunctionExpression',

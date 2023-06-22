@@ -15,6 +15,7 @@ export function phase0(code, fname, subCall) {
     collectTokens: Tenko.COLLECT_TOKENS_NONE,
     goalMode: Tenko.GOAL_MODULE,
     locationTracking: false,
+    toplevelAwait: true,
 
     astUids: false, // For debugging
   });

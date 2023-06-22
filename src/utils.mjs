@@ -1,4 +1,5 @@
-import Prettier from 'prettier';
+//import Prettier from 'prettier';
+import Prettier from '../lib/prettier.mjs';
 import { printer } from '../lib/printer.mjs';
 import walk from '../lib/walk.mjs';
 
@@ -31,7 +32,7 @@ export function ASSERT(b, m = '', ...rest) {
       console.log(...(rest.length ? rest : ['<assert had no further args>']));
     }
     console.trace(n + '; ' + rest.join(', '));
-    throw new Error(n);
+    throw new Error(`${n}; args: ${JSON.stringify(rest)}`);
   }
 }
 export function ASSERT_LOC(loc) {
@@ -127,7 +128,9 @@ export function fmat(code, shouldPrint = VERBOSE_TRACING) {
     }).trim();
   } catch (e) {
     // Prettier error implies invalid transformation. Uups.
-    throw new Error('Prettier error. Implies the resulting transform is invalid.\n' + e);
+    console.error('prettier error:', e);
+    console.log(code);
+    return `// Prettier threw an error on this code. Implies the resulting transform is invalid (or not supported).\n//${e}\n${code}`;
   }
 }
 

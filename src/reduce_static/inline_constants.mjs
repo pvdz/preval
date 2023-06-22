@@ -295,6 +295,10 @@ function attemptConstantInlining(meta, fdata) {
             ifChain: oldRead.ifChain,
             funcChain: oldRead.funcChain,
             innerLoop: oldRead.innerLoop,
+            innerTry: oldRead.innerTry,
+            innerTrap: oldRead.innerTrap,
+            innerCatch: oldRead.innerCatch,
+            innerFinally: oldRead.innerFinally,
           }),
         );
         // We removed an element from the current loop so retry the current index

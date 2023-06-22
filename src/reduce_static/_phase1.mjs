@@ -21,7 +21,7 @@ import globals from '../globals.mjs';
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
-export function phase1(fdata, resolve, req, firstAfterParse) {
+export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
   const ast = fdata.tenkoOutput.ast;
 
   const start = Date.now();
@@ -33,7 +33,11 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
   const blockBodies = []; // Stack of blocks. Arrays of statements that is block.body or program.body
   const blockIndexes = []; // Stack of block indexes to match blockIds
   const ifIds = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Used by SSA.
-  const loopStack = []; // Stack of loop nodes (while, for-in, for-of). `null` means function (or program).
+  const loopStack = []; // Stack of loop node $pids (while, for-in, for-of). `null` means function (or program).
+  const tryNodeStack = []; // Stack of try nodes (not pid) (try/catch)
+  const trapStack = [0]; // Stack of try-block node $pids (try/catch), to detect being inside a try {} block (opposed to catch/finally)
+  const catchStack = [0]; // Stack of catch node $pids (try/catch)
+  const finallyStack = [0]; // Stack of finally node $pids (try/finally)
   let readWriteCounter = 0;
 
   // For each block,branch,loop,func; track the last writes, which decls were generated in this block, and whether it is a loop/func (?)
@@ -73,7 +77,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       firstAfterParse +
       ') ::  ' +
       fdata.fname +
-      '\n##################################\n\n\n',
+      ', pass=' + passes + ', phase1s=', phase1s, ', len:', fdata.len, '\n##################################\n\n\n',
   );
   try {
     vlog('\nCurrent state (start of phase1)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
@@ -212,6 +216,12 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
       case 'BlockStatement:before': {
         node.$p.promoParent = blockStack[blockStack.length - 1];
         blockStack.push(node); // Do we assign node or node.body?
+        if (tryNodeStack.length) {
+          if (parentProp === 'finalizer') finallyStack.push(node.$p.pid);
+          else if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.push(node.$p.pid);
+          else catchStack.push(node.$p.pid);
+          //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack, finallyStack);
+        }
         // Loops push their block id from the statement node, not the body node.
         const specialType = ['FunctionExpression', 'Program'].includes(parentNode.type)
           ? 'func'
@@ -267,7 +277,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           //      any of the three blocks so they must be merged after the block.
           //      Since the (first) block may break at any point while having any partial step of it observable after
           //      we must consider the writes potentially reachable after the try. So we merge, like we do in the `if`.
-          //      The catch clause may be executed or not, so same deal. However, the finally block, if it exists, must
+          //      The catch clause may be executed or not, so same deal. However, the finallly block, if it exists, must
           //      always be executed and is not trapped any further. So for the purpose of last write tracking, we can
           //      consider it a regularly nested block. Do the merges for try/catch and do not treat this block special.
 
@@ -344,6 +354,13 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         blockStack.pop();
         blockBodies.pop();
         blockIds.pop();
+
+        if (tryNodeStack.length) {
+          if (parentProp === 'finalizer') finallyStack.pop();
+          else if (tryNodeStack[tryNodeStack.length - 1].block === node) trapStack.pop();
+          else catchStack.pop();
+          //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack, finallyStack);
+        }
 
         // A block has no early / explicit completion if it contains no statements
         node.body.forEach((cnode) => {
@@ -622,7 +639,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         const kind = getIdentUsageKind(parentNode, parentProp);
         vlog('- Ident kind:', kind);
 
-        ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment and we eliminated those? prove me wrong', node);
+        ASSERT(kind !== 'readwrite', 'I think readwrite is compound assignment (or unary inc/dec) and we eliminated those? prove me wrong', node);
         ASSERT(
           name !== '$coerce' ||
             (parentNode.type === 'CallExpression' &&
@@ -715,7 +732,11 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           }
 
           const innerLoop = loopStack[loopStack.length - 1];
-          vlog('innerLoop:', innerLoop);
+          const innerTry = tryNodeStack[tryNodeStack.length - 1]?.$p.pid || 0;
+          const innerTrap = trapStack[trapStack.length - 1];
+          const innerCatch = catchStack[catchStack.length - 1];
+          const innerFinally = finallyStack[finallyStack.length - 1];
+          vlog('innerLoop:', innerLoop, ', innerTry:', innerTry, ', innerTrap:', innerTrap, ', innerCatch:', innerCatch, ', innerFinally:', innerFinally);
 
           const grandNode = pathNodes[pathNodes.length - 3];
           const grandProp = pathProps[pathProps.length - 2];
@@ -749,6 +770,10 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               ifChain: ifIds.slice(0),
               funcChain: funcStack.map((n) => n.$p.pid).join(','),
               innerLoop,
+              innerTry,
+              innerTrap,
+              innerCatch,
+              innerFinally,
             });
             meta.reads.push(read);
 
@@ -827,6 +852,10 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
               ifChain: ifIds.slice(0),
               funcChain: funcStack.map((n) => n.$p.pid).join(','),
               innerLoop,
+              innerTry,
+              innerTrap,
+              innerCatch,
+              innerFinally,
             });
 
             if (currentLastWriteSetForName) {
@@ -1176,6 +1205,10 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
         break;
       }
 
+      case 'TryStatement:before': {
+        tryNodeStack.push(node);
+        break;
+      }
       case 'TryStatement:after': {
         if (node.block.$p.earlyComplete || node.handler?.body.$p.earlyComplete || node.finalizer?.$p.earlyComplete) {
           vlog('At least one block of the try has an early completion');
@@ -1189,6 +1222,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
           node.$p.alwaysReturn = node.block.$p.alwaysReturn && node.handler?.body.$p.alwaysReturn && node.finalizer?.$p.alwaysReturn;
           node.$p.alwaysThrow = node.block.$p.alwaysThrow && node.handler?.body.$p.alwaysThrow && node.finalizer?.$p.alwaysThrow;
         }
+        tryNodeStack.pop();
         break;
       }
 
@@ -1307,6 +1341,7 @@ export function phase1(fdata, resolve, req, firstAfterParse) {
     //vlog('\nCurrent state (after phase1)\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   }
 
+  fdata.phase1nodes = called / 2;
   log('End of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');
   groupEnd();
 }

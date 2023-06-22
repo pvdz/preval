@@ -13,6 +13,7 @@ import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source } from '.
 import globals from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import * as AST from './ast.mjs';
+import {MAX_UNROLL_COUNT} from "./reduce_static/unroll_loop_with_true.mjs"
 
 const NONE = 'NONE';
 const MUTATES = 'MUTATES';
@@ -770,6 +771,16 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
   if (node.type === 'Program') {
     // global scope
     node.$p.nameMapping = new Map([...globals.keys()].map((k) => [k, k]));
+
+    for (let i=0; i<=MAX_UNROLL_COUNT; ++i) {
+      // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc
+      // Special symbols whose number suffix has semantic meaning
+      node.$p.nameMapping.set(`$LOOP_UNROLL_${i}`, `$LOOP_UNROLL_${i}`);
+    }
+    // $LOOP_DONE_UNROLLING_ALWAYS_TRUE_5
+    // "signals not to unroll any further, but to treat this as "true" anyways"
+    node.$p.nameMapping.set(`$LOOP_DONE_UNROLLING_ALWAYS_TRUE`, `$LOOP_DONE_UNROLLING_ALWAYS_TRUE`);
+
   } else {
     // non-global scope
     node.$p.nameMapping = new Map([

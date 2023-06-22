@@ -251,6 +251,10 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
                   });
                 } else if (cloneLimit && count > cloneLimit) {
                   vlog('Reached max of', cloneLimit, 'clones for function `' + cloneDetails.name + '`. Not cloning it again.');
+                } else if (funcNode.async) {
+                  vlog('TODO: cloning async functions is currently not supported');
+                } else if (funcNode.generator) {
+                  vlog('TODO: cloning generator functions is currently not supported');
                 } else {
                   vlog('Cloning...');
                   // Make sure to register the name (and that its unique) in case of a cache-hit that was eliminated.

@@ -80,11 +80,12 @@ const globalNames = new Map([
 for (let i=0; i<=MAX_UNROLL_COUNT; ++i) {
   // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc
   // Special symbols whose number suffix has semantic meaning. Ultimately they boil down to an alias for "true",
-  // where the name implies that we can still unroll this infinite `while(true)` that many times, before bailing
-  globalNames.set(`$LOOP_UNROLL_${i}`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true });
+  // where the name implies that we can still unroll this infinite `while(true)` that many times, before bailing.
+  // We can't set it to actual `true` though because then loop unrolling goes infinite.
+  globalNames.set(`$LOOP_UNROLL_${i}`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
 }
 // $LOOP_DONE_UNROLLING_ALWAYS_TRUE_5
-// "signals not to unroll any further, but to treat this as "true" anyways"
-globalNames.set(`$LOOP_DONE_UNROLLING_ALWAYS_TRUE`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true });
+// "signals not to unroll any further. Cannot set this as "true" because that'll cause infinite loops when transforming.
+globalNames.set(`$LOOP_DONE_UNROLLING_ALWAYS_TRUE`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: false, mustBePrimitive: true });
 
 export default globalNames;

@@ -1,5 +1,13 @@
 // Built-in symbol names and their `typeof` result
 
+import {
+  BUILTIN_ARRAY_METHODS_SYMBOLS,
+  BUILTIN_FUNCTION_METHODS_SYMBOLS,
+  BUILTIN_NUMBER_METHODS_SYMBOLS,
+  BUILTIN_REGEXP_METHODS_SYMBOLS, BUILTIN_STRING_METHODS_SYMBOLS
+} from "./constants.mjs"
+import {MAX_UNROLL_COUNT} from "./reduce_static/unroll_loop_with_true.mjs"
+
 const globalNames = new Map([
   ['clearInterval', 'function'],
   ['clearTimeout', 'function'],
@@ -45,15 +53,38 @@ const globalNames = new Map([
   ['$dotCall', 'function'], // Should we tell Preval this is a function?
   ['$coerce', '$coerce'], // dito
 
+  // Preval special aliases for builtins
   ['$ArrayPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  ['$FunctionPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  ['$FunctionApply', { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  ['$FunctionCall', { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ['$FunctionPrototype', { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$NumberPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$ObjectPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
-  ['$RegExpTest', { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$RegExpPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$StringPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ...BUILTIN_ARRAY_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_FUNCTION_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_NUMBER_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_REGEXP_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_STRING_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
 ]);
+
+for (let i=0; i<=MAX_UNROLL_COUNT; ++i) {
+  // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc
+  // Special symbols whose number suffix has semantic meaning. Ultimately they boil down to an alias for "true",
+  // where the name implies that we can still unroll this infinite `while(true)` that many times, before bailing
+  globalNames.set(`$LOOP_UNROLL_${i}`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true });
+}
+// $LOOP_DONE_UNROLLING_ALWAYS_TRUE_5
+// "signals not to unroll any further, but to treat this as "true" anyways"
+globalNames.set(`$LOOP_DONE_UNROLLING_ALWAYS_TRUE`, { mustBeType: 'boolean', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: true });
 
 export default globalNames;

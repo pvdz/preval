@@ -21,13 +21,59 @@ export const BUILTIN_REST_HANDLER_NAME = 'objPatternRest'; // should be in globa
 export const BUILTIN_FUNC_CALL_NAME = '$dotCall'; // syntactic clue that this was an actual method call before, not arbitrary .call method
 
 export const BUILTIN_ARRAY_PROTOTYPE = '$ArrayPrototype';
+export const BUILTIN_ARRAY_METHOD_LOOKUP = {
+  filter: '$Array_filter',
+  flat: '$Array_flat',
+  concat: '$Array_concat',
+  push: '$Array_push',
+  pop: '$Array_pop',
+  shift: '$Array_shift',
+  unshift: '$Array_unshift',
+};
+export const BUILTIN_ARRAY_METHOD_LOOKUP_REV = Object.keys(BUILTIN_ARRAY_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_ARRAY_METHOD_LOOKUP[key]] = key; return obj; }, {})
+export const BUILTIN_ARRAY_METHODS_SUPPORTED = Object.keys(BUILTIN_ARRAY_METHOD_LOOKUP);
+export const BUILTIN_ARRAY_METHODS_SYMBOLS = Object.values(BUILTIN_ARRAY_METHOD_LOOKUP);
 export const BUILTIN_FUNCTION_PROTOTYPE = '$FunctionPrototype';
-export const BUILTIN_FUNCTION_APPLY = '$FunctionApply';
-export const BUILTIN_FUNCTION_CALL = '$FunctionCall';
+export const BUILTIN_FUNCTION_METHOD_LOOKUP = {
+  apply: '$Function_apply',
+  call: '$Function_call',
+};
+export const BUILTIN_FUNCTION_METHOD_LOOKUP_REV = Object.keys(BUILTIN_FUNCTION_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_FUNCTION_METHOD_LOOKUP[key]] = key; return obj; }, {})
+export const BUILTIN_FUNCTION_METHODS_SUPPORTED = Object.keys(BUILTIN_FUNCTION_METHOD_LOOKUP);
+export const BUILTIN_FUNCTION_METHODS_SYMBOLS = Object.values(BUILTIN_FUNCTION_METHOD_LOOKUP);
 export const BUILTIN_NUMBER_PROTOTYPE = '$NumberPrototype';
+export const BUILTIN_NUMBER_METHOD_LOOKUP = {
+  'toString': '$Number_toString',
+};
+export const BUILTIN_NUMBER_METHOD_LOOKUP_REV = Object.keys(BUILTIN_NUMBER_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_NUMBER_METHOD_LOOKUP[key]] = key; return obj; }, {})
+export const BUILTIN_NUMBER_METHODS_SUPPORTED = Object.keys(BUILTIN_NUMBER_METHOD_LOOKUP);
+export const BUILTIN_NUMBER_METHODS_SYMBOLS = Object.values(BUILTIN_NUMBER_METHOD_LOOKUP);
 export const BUILTIN_OBJECT_PROTOTYPE = '$ObjectPrototype';
-export const BUILTIN_REGEXP_TEST = '$RegExpTest';
+export const BUILTIN_REGEXP_METHOD_LOOKUP = {
+  'test': '$RegExp_test',
+};
+export const BUILTIN_REGEXP_METHOD_LOOKUP_REV = Object.keys(BUILTIN_REGEXP_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_REGEXP_METHOD_LOOKUP[key]] = key; return obj; }, {})
+export const BUILTIN_REGEXP_METHODS_SUPPORTED = Object.keys(BUILTIN_REGEXP_METHOD_LOOKUP);
+export const BUILTIN_REGEXP_METHODS_SYMBOLS = Object.values(BUILTIN_REGEXP_METHOD_LOOKUP);
 export const BUILTIN_STRING_PROTOTYPE = '$StringPrototype';
+export const BUILTIN_STRING_METHOD_LOOKUP = {
+  concat: '$String_concat',
+  replace: '$String_replace',
+  slice: '$String_slice',
+  toString: '$String_toString',
+};
+export const BUILTIN_STRING_METHOD_LOOKUP_REV = Object.keys(BUILTIN_STRING_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_STRING_METHOD_LOOKUP[key]] = key; return obj; }, {})
+export const BUILTIN_STRING_METHODS_SUPPORTED = Object.keys(BUILTIN_STRING_METHOD_LOOKUP);
+export const BUILTIN_STRING_METHODS_SYMBOLS = Object.values(BUILTIN_STRING_METHOD_LOOKUP);
+
+export const KNOWN_IMPLICIT_GLOBALS = [
+  BUILTIN_FUNCTION_PROTOTYPE,
+  BUILTIN_FUNCTION_METHODS_SYMBOLS,
+  BUILTIN_NUMBER_PROTOTYPE,
+  BUILTIN_NUMBER_METHODS_SYMBOLS,
+  BUILTIN_REGEXP_METHODS_SYMBOLS,
+  BUILTIN_STRING_METHODS_SYMBOLS,
+].flat(Infinity);
 
 export const FRESH = true;
 export const OLD = false;

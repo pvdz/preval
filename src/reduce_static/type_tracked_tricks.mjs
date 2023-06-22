@@ -24,11 +24,11 @@ import {
   BUILTIN_FUNC_CALL_NAME,
   BUILTIN_REST_HANDLER_NAME,
   BUILTIN_FUNCTION_PROTOTYPE,
-  BUILTIN_FUNCTION_APPLY,
-  BUILTIN_FUNCTION_CALL,
-  BUILTIN_REGEXP_TEST,
+  BUILTIN_FUNCTION_METHOD_LOOKUP,
+  BUILTIN_REGEXP_METHOD_LOOKUP,
 } from '../constants.mjs';
 import * as AST from '../ast.mjs';
+import {nodeHasNoObservableSideEffectIncStatements} from "../ast.mjs"
 
 export function typeTrackedTricks(fdata) {
   group('\n\n\nFinding type tracking based tricks\n');
@@ -42,7 +42,7 @@ function _typeTrackedTricks(fdata) {
   let changes = 0;
   let queue = []; // Changes that invalidate index caches
 
-  // TODO: is the walking of individual if statements here more efficient than the gc pressure of collecting all if-statements and their parent etc in phase1 (often redundantly so)?
+  // TODO: is the walking of individual if-statements here more efficient than the gc pressure of collecting all if-statements and their parent etc in phase1 (often redundantly so)?
   walk(_walker, ast, 'ast');
   function _walker(node, beforeWalk, nodeType, path) {
     if (beforeWalk) return;
@@ -1019,7 +1019,8 @@ function _typeTrackedTricks(fdata) {
               break;
             }
           }
-        } else if (node.callee.type === 'MemberExpression') {
+        }
+        else if (node.callee.type === 'MemberExpression') {
           if (node.callee.object.type === 'Identifier' && !node.callee.computed) {
             const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
             switch (objMeta.typing.mustBeType + '.' + node.callee.property.name) {
@@ -1122,7 +1123,7 @@ function _typeTrackedTricks(fdata) {
                   node['arguments'].length &&
                   AST.isPrimitive(node['arguments'][0])
                 ) {
-                  rule('regex.test when the regex and the arg is known can be resolved');
+                  rule('regex.test when the object is a regex and the arg is known can be resolved');
                   example('/foo/.test("brafoody")', 'true');
                   before(parentNode);
 
@@ -1137,6 +1138,10 @@ function _typeTrackedTricks(fdata) {
                   break;
                 }
 
+                break;
+              }
+              case 'array.shift': {
+                // This is done in another rule
                 break;
               }
             }
@@ -1179,9 +1184,9 @@ function _typeTrackedTricks(fdata) {
                   example('const x = parseInt.apply;', 'const x = $FunctionApply;');
                   before(node, blockBody[blockIndex]);
                   if (parentNode.type === 'AssignmentExpression') {
-                    parentNode.right = AST.identifier(BUILTIN_FUNCTION_APPLY);
+                    parentNode.right = AST.identifier(BUILTIN_FUNCTION_METHOD_LOOKUP.apply);
                   } else {
-                    parentNode.init = AST.identifier(BUILTIN_FUNCTION_APPLY);
+                    parentNode.init = AST.identifier(BUILTIN_FUNCTION_METHOD_LOOKUP.apply);
                   }
 
                   after(node, blockBody[blockIndex]);
@@ -1194,9 +1199,9 @@ function _typeTrackedTricks(fdata) {
                   before(node, blockBody[blockIndex]);
 
                   if (parentNode.type === 'AssignmentExpression') {
-                    parentNode.right = AST.identifier(BUILTIN_FUNCTION_CALL);
+                    parentNode.right = AST.identifier(BUILTIN_FUNCTION_METHOD_LOOKUP.call);
                   } else {
-                    parentNode.init = AST.identifier(BUILTIN_FUNCTION_CALL);
+                    parentNode.init = AST.identifier(BUILTIN_FUNCTION_METHOD_LOOKUP.call);
                   }
 
                   after(node, blockBody[blockIndex]);
@@ -1209,9 +1214,9 @@ function _typeTrackedTricks(fdata) {
                   before(node, blockBody[blockIndex]);
 
                   if (parentNode.type === 'AssignmentExpression') {
-                    parentNode.right = AST.identifier(BUILTIN_REGEXP_TEST);
+                    parentNode.right = AST.identifier(BUILTIN_REGEXP_METHOD_LOOKUP.test);
                   } else {
-                    parentNode.init = AST.identifier(BUILTIN_REGEXP_TEST);
+                    parentNode.init = AST.identifier(BUILTIN_REGEXP_METHOD_LOOKUP.test);
                   }
 
                   after(node, blockBody[blockIndex]);

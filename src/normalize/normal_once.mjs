@@ -800,7 +800,7 @@ export function phaseNormalOnce(fdata) {
         break;
       }
       case 'TemplateLiteral:after': {
-        if (parentNode.type !== 'TaggedTemplateExpression') {
+        if (parentNode.type !== 'TaggedTemplateExpression' && node.expressions.length > 0) {
           // See next case
           // Convert the template to a string concat
           // `a${b}c${d}e`

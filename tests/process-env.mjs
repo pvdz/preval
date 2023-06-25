@@ -22,7 +22,7 @@ export function parseTestArgs() {
     skipEval: false, // Do not run the eval checks afterwards
     targetFile: undefined,
     threadIndex: 0, // ... and this will be that thread
-    threads: 1, // By default, only run one thread
+    threads: 1, // By default, only run one thread (only useful for multiple files)
     trace: undefined, // Force set VERBOSE_TRACING=true regardless of input size? If undefined, defaults to verbose.
     trimDollar: false, // Remove trailing $12 from outputs? Reduces noise when diffing when new vars shuffle the incremental suffix
     unroll: undefined, // Cap of the loop unroll transform. The cap is arbitrary. Higher caps are riskier but sometimes exactly what you want.
@@ -90,12 +90,14 @@ export function parseTestArgs() {
       case '--log': {
         config.logPasses = true;
         config.logDir = '';
+        config.skipEval = true;
         break;
       }
 
       case '--logto': {
         config.logPasses = true;
         config.logDir = argv.shift();
+        config.skipEval = true;
         break;
       }
 

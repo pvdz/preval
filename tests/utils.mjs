@@ -232,7 +232,7 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
   );
 }
 
-export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError }, CONFIG) {
+export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols }, CONFIG) {
   if (lastError) {
     return mdHead + '\n\n' + mdChunks.join('\n\n').trim() + '\n\n## Output\n\nThrew expected error:' + '\n\n' + lastError.message + '\n';
   }
@@ -256,6 +256,9 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
   );
 
   const mdInput = CONFIG.logPasses ? '<trimmed, see logs>' : mdChunks.join('\n\n').trim();
+
+  // Drop the symbols that preval defines from the list of implicit globals
+  leGlobalSymbols.forEach(name => output.implicitGlobals.delete(name));
 
   let mdBody =
     (CONFIG.logPasses ? '<trimmed, see logs>' : CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +

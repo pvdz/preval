@@ -459,6 +459,9 @@ export function literal(value, yesnull = false) {
   }
 }
 
+export function isRegexLiteral(node) {
+  return node.type === 'Literal' && Boolean(node.regex);
+}
 export function regex(pattern, flags, raw) {
   ASSERT(typeof raw === 'string', 'the raw value should be a string');
   return {
@@ -706,6 +709,7 @@ export function tru() {
 export function tryStatement(block, param, handler, finalizer) {
   ASSERT(block && block.type === 'BlockStatement', 'the block should be an actual BlockStatement node', block);
   ASSERT(!handler || handler.type === 'BlockStatement', 'the handler, if present, should be an actual BlockStatement node', handler);
+  ASSERT(param ? handler : true, 'if theres a param then there must be a param');
   ASSERT(
     !finalizer || finalizer.type === 'BlockStatement',
     'the finalizer, if present, should be an actual BlockStatement node',
@@ -716,15 +720,16 @@ export function tryStatement(block, param, handler, finalizer) {
     'the param (catch var) should be null, a string, or an ident. more exotic cases should be supported first but not likely needed',
     param,
   );
+  ASSERT(handler || finalizer, 'must have at least a handler or a finalizer');
 
   return {
     type: 'TryStatement',
     block,
-    handler: {
+    handler: handler ? {
       type: 'CatchClause',
       param,
       body: handler,
-    },
+    } : null,
     finalizer,
     $p: $p(),
   };
@@ -1021,7 +1026,7 @@ export function primitive(value) {
 
 export function isNoob(node, v) {
   const r = _isNoob(node, v);
-  if (v) console.log('  - Node:', node.type, ', noob?', r);
+  if (v) vlog('  - Node:', node.type, ', noob?', r);
   return r;
 }
 function _isNoob(node, v) {
@@ -1756,7 +1761,7 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       return blockStatement(node.body.map((n) => deepCloneForFuncInlining(n, paramArgMapper, fail)));
     }
     case 'VariableDeclaration': {
-      return variableDeclaration(node.declarations[0].id.name, node.declarations[0].init, 'const');
+      return variableDeclaration(node.declarations[0].id.name, node.declarations[0].init, node.kind);
     }
     case 'BreakStatement': {
       if (node.label) throw TODO;
@@ -1779,7 +1784,7 @@ export function deepCloneForFuncInlining(node, paramArgMapper, fail) {
       //  }
       return tryStatement(
         deepCloneForFuncInlining(node.block, paramArgMapper, fail),
-        node.handler.param && deepCloneForFuncInlining(node.handler.param, paramArgMapper, fail),
+        node.handler && node.handler.param && deepCloneForFuncInlining(node.handler.param, paramArgMapper, fail),
         node.handler && deepCloneForFuncInlining(node.handler.body, paramArgMapper, fail),
         node.finalizer && deepCloneForFuncInlining(node.finalizer, paramArgMapper, fail),
       );

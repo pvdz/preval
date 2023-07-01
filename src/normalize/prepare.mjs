@@ -27,7 +27,7 @@ import {
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
 // It runs twice; once for actual input code and once on normalized code.
 
-export function prepareNormalization(fdata, resolve, req, oncePass) {
+export function prepareNormalization(fdata, resolve, req, oncePass, options = {}) {
   const ast = fdata.tenkoOutput.ast;
   const fname = fdata.fname;
 
@@ -94,6 +94,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
         funcScopeStack[funcScopeStack.length - 1],
         ++lexScopeCounter,
         oncePass,
+        options.unrollTrueLimit
       );
     }
 
@@ -314,6 +315,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
 
         vlog('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
         if (kind === 'read' && node.name === 'arguments') {
+          // Note: this could be a property write, but it's not a binding mutation.
           // Ignore occurrences in global space (or in global nested arrows)
           if (thisStack.length && !node.$p.isForAlias) {
             const thisFunc = thisStack[thisStack.length - 1];
@@ -340,6 +342,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass) {
             }
           }
         } else if (!oncePass && kind === 'read' && node.name.startsWith('$$')) {
+          // Note: this could be a property write, but it's not a binding mutation.
           // Ignore: Preval special parameter name
           vlog('This is a special param "keyword" by Preval. Ignoring.');
         } else if (kind !== 'none' && kind !== 'label') {

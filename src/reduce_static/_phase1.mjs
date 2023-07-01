@@ -80,7 +80,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
       ', pass=' + passes + ', phase1s=', phase1s, ', len:', fdata.len, '\n##################################\n\n\n',
   );
   try {
-    vlog('\nCurrent state (start of phase1)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+    if (VERBOSE_TRACING) vlog('\nCurrent state (start of phase1)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   } catch (e) {
     vlog('printing ast failed');
     console.dir(ast, { depth: null });
@@ -92,7 +92,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
   resetUid();
 
   let called = 0;
+  const now = Date.now();
+  log('Walking AST...');
   walk(_walker, ast, 'ast');
+  log('Walked AST in', Date.now() - now, 'ms');
   function _walker(node, before, nodeType, path) {
     ASSERT(node, 'node should be truthy', node);
     ASSERT(nodeType === node.type);
@@ -655,6 +658,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         );
 
         if (kind === 'read' && name === 'arguments' && thisStack.length) {
+          // Note: this could be a property write, but it's not a binding mutation.
           // Make a distinction between arguments.length, arguments[], and maybe the slice paradigm?
           // For now we only care whether the function might detect the call arg count. Without arguemnts, it cannot.
           // Do not count cases like where the arguments have no observable side effect or our own alias
@@ -709,10 +713,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
 
           // This is normalized code so there must be a block parent for any read ref
+          // Find the nearest block/program node
           let blockNode;
           let blockIndex;
           if (kind === 'read' || kind === 'write') {
-            // Start with the parent, not grandParent (!)
+            // Find the nearest block/program node. Start with the parent, not grandParent (!)
             let pathIndex = pathNodes.length - 1;
             do {
               blockNode = pathNodes[pathIndex];
@@ -747,6 +752,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
           vlog('Last write analysis; this ref can reach', currentLastWriteSetForName?.size ?? 0, 'writes...');
 
           if (kind === 'read') {
+            // Note: this could be a property write, but it's not a binding mutation.
+            // Note: this includes the write to a property, which does not read the property first, but which does not mutate the binding
             const blockBody = blockNode.body;
             const read = createReadRef({
               name,

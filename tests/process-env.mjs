@@ -26,6 +26,7 @@ export function parseTestArgs() {
     trace: undefined, // Force set VERBOSE_TRACING=true regardless of input size? If undefined, defaults to verbose.
     trimDollar: false, // Remove trailing $12 from outputs? Reduces noise when diffing when new vars shuffle the incremental suffix
     unroll: undefined, // Cap of the loop unroll transform. The cap is arbitrary. Higher caps are riskier but sometimes exactly what you want.
+    unrollTrue: undefined, // Max number of attempts to unroll infinite loops. The cap is arbitrary. Higher caps may lead to longer processing times without changing anything but sometimes a loop takes that many times to unroll.
     updateSnapshots: false,
     verboseTracing: undefined, // Overridden by general verbose state. If undefined, governed by input size.
     verbose: undefined, // Suppress all output
@@ -143,6 +144,11 @@ export function parseTestArgs() {
 
       case '--unroll': {
         config.unroll = +argv.shift();
+        break;
+      }
+
+      case '--unrollTrue': {
+        config.unrollTrue = +argv.shift();
         break;
       }
 

@@ -24,7 +24,7 @@ import {
 import * as AST from '../ast.mjs';
 import { mayBindingMutateBetweenRefs } from '../bindings.mjs';
 import {
-  hasObservableSideEffectsBetween,
+  hasObservableSideEffectsBetweenRefs,
   isComplexNode,
   isPrimitive,
   isSimpleNodeOrSimpleMember,
@@ -70,10 +70,25 @@ function processAttempt(fdata, queue) {
 
 
   const ast = fdata.tenkoOutput.ast;
+  let nodes = 0;
+  let counter = 0;
+  let time = Date.now();
+  let sum = 0;
+  let backing = 0;
   walk(walker, ast, 'ast');
+  log('- Analyzed', counter, 'arrays out of', nodes, 'nodes, spent', Date.now() - time, 'ms, and for arrays', sum);
+
   function walker(arrayLiteralNode, beforeWalk, nodeType, path) {
     if (beforeWalk) return;
+    ++nodes;
     if (arrayLiteralNode.type !== 'ArrayExpression') return;
+    ++counter;
+    let start = Date.now();
+    const r = _walker(arrayLiteralNode, beforeWalk, nodeType, path);
+    sum += Date.now() - start;
+    return r;
+  }
+  function _walker(arrayLiteralNode, beforeWalk, nodeType, path) {
 
     // In normalized code the array should be the rhs of an assignment or the init of a var decl
 
@@ -87,6 +102,7 @@ function processAttempt(fdata, queue) {
     const blockIndex = path.blockIndexes[path.blockIndexes.length - 1];
 
     if (parentNode.type === 'AssignmentExpression' && parentProp === 'right') {
+      vlog('- bail: array is being assigned');
       return; // TODO: we can support a subset of cases on assignments
 
       if (parentNode.left.type !== 'Identifier') return; // Skip for prop assignment. Not sure if we allow that for array but whatever.
@@ -108,19 +124,19 @@ function processAttempt(fdata, queue) {
       return;
     }
 
-    const lhsName = parentNode.id.name;
-    const lhsMeta = fdata.globallyUniqueNamingRegistry.get(lhsName);
-    let orderIndex = lhsMeta.rwOrder.findIndex(n => n.node === parentNode.id);
-    const write = lhsMeta.rwOrder[orderIndex];
+    const arrayName = parentNode.id.name;
+    const arrayMeta = fdata.globallyUniqueNamingRegistry.get(arrayName);
+    let orderIndex = arrayMeta.rwOrder.findIndex(n => n.node === parentNode.id);
+    const write = arrayMeta.rwOrder[orderIndex];
     ASSERT(write.action === 'write', 'the var decl was a write, this check should be kind of silly');
 
     // Keep searching until you find a rw that is in the same func. Must appear after the binding.
     // Then verify if that's a read in same loop/catch/finally that can reach this without side effects
-    let nextRead = lhsMeta.rwOrder[orderIndex + 1];
+    let nextRead = arrayMeta.rwOrder[orderIndex + 1];
     while (nextRead && nextRead.pfuncNode !== write.pfuncNode) {
       //console.log('- read/write not in same function scope, trying next rw', nextRead.pfuncNode.$p.pid, write.pfuncNode.$p.pid)
       ++orderIndex;
-      nextRead = lhsMeta.rwOrder[orderIndex + 1];
+      nextRead = arrayMeta.rwOrder[orderIndex + 1];
     }
     if (!nextRead) return vlog('bail: there is no next read in same scope');
     if (nextRead?.action !== 'read') return vlog('bail: next ref in same scope is a write'); // Okay, next reference to this binding is not a read so we don't care
@@ -128,275 +144,368 @@ function processAttempt(fdata, queue) {
     // Confirm that both nodes are in the same loop, catch, and finally "scope" because
     // otherwise we can't guarantee that the read even happens sequentially
 
-    if (nextRead.innerLoop !== write.innerLoop) return vlog('- read/write not in same loop scope', nextRead.innerLoop, write.innerLoop);
-    if (nextRead.innerCatch !== write.innerCatch) return vlog('- read/write not in same catch scope', nextRead.innerCatch, write.innerCatch);
-    if (nextRead.innerFinally !== write.innerFinally) return vlog('- read/write not in same finally scope', nextRead.innerFinally, write.innerFinally);
+    //if (nextRead.blockChain !== write.blockChain) {
+    //  // Kinda have to be because `const arr = []; if (false) arr[0] = 1` should not inline the write unconditionally
+    //  return vlog('- read/write not in same block', nextRead.blockChain, write.blockChain);
+    //}
+    if (nextRead.innerLoop !== write.innerLoop) {
+      // Refs in the header of a loop are considered to be inside that loop so must check this separately
+      return vlog('- read/write not in same loop', nextRead.innerLoop, write.innerLoop);
+    }
+    if (nextRead.innerIf !== write.innerIf) {
+      // Can't guarantee the write if one ref is inside an if-block while the other is not in the same if-block
+      return vlog('- read/write not in same if', nextRead.innerIf, write.innerIf);
+    }
+    if (nextRead.innerElse !== write.innerElse) {
+      // Can't guarantee the write if one ref is inside an else-block while the other is not in the same else-block
+      return vlog('- read/write not in same else', nextRead.innerElse, write.innerElse);
+    }
+    if (nextRead.innerCatch !== write.innerCatch) {
+      // Can't guarantee the write if one ref is inside a catch while the other is not
+      return vlog('- read/write not in same catch', nextRead.innerCatch, write.innerCatch);
+    }
+    if (nextRead.innerFinally !== write.innerFinally) {
+      // Can't guarantee the write if one ref is inside a finally while the other is not
+      // TODO: or can we?
+      return vlog('- read/write not in same finally', nextRead.innerFinally, write.innerFinally);
+    }
 
-    vlog('Have an array decl init', arrayLiteralNode.$p.pid, 'and a read of that binding:', lhsName);
+    // Must still verify that we're not in different branching
+
+    vlog('Have an array decl init', arrayLiteralNode.$p.pid, 'and a read of that binding:', arrayName, ', or is it a property write?', nextRead.isPropWrite);
 
     // Now confirm there are no observable side effects between read and write
 
     vlog('Walking sub-node for scan:');
     source(blockBody);
+    source(nextRead.blockBody[nextRead.blockIndex]);
 
-    if (hasObservableSideEffectsBetween(ast, grandNode, nextRead.blockBody[nextRead.blockIndex])) {
-      vlog('- bail: found at least one observable statement between read and write');
+    let bstart = Date.now();
+    let has = hasObservableSideEffectsBetweenRefs(write, nextRead);
+    backing += Date.now() - bstart;
+    if (has) {
+      vlog('  - bail: found at least one observable statement between read and write');
       return;
     }
 
-    vlog('Determine how the array is being read and try to inline it');
+    vlog(' - ok. Determine how the array is being used and try to inline it');
 
     switch (nextRead.parentNode.type) {
       case 'MemberExpression': {
         if (nextRead.parentNode.object === nextRead.node) {
-          vlog('Property read on the array:', nextRead.parentNode.property.name);
-          vlog(nextRead.parentNode);
-          if (nextRead.parentNode.computed) {
-            // `arr[foo]`
-            vlog('Computed property read on the array. We can inline certain literals');
-            //TODO
+          if (nextRead.isPropWrite) {
+            vlog(' - Property write on the array:', nextRead.parentNode.property.name);
+            if (nextRead.parentNode.computed) {
+              // `arr[foo] = x`
+              vlog(' - Computed property write on the array. We can inline certain literals');
+              if (AST.isPrimitive(nextRead.parentNode.property)) {
+                const value = AST.getPrimitiveValue(nextRead.parentNode.property);
+                vlog(' - The property is a primitive:', value);
+                if (typeof value === 'number' && value >= 0 && value <= arrayLiteralNode.elements.length) {
+                  vlog(' - It is a number that is either in the current range of the array or one bigger:', value, arrayLiteralNode.elements.length);
+
+                  rule('Assignment to index properties of array literals can be inlined');
+                  example('const arr = []; arr[0] = 100', 'const arr = [100]');
+                  before(blockBody[blockIndex]);
+                  before(nextRead.blockBody[nextRead.blockIndex]);
+
+
+                  arrayLiteralNode.elements[value] = nextRead.grandNode.right;
+                  nextRead.blockBody[nextRead.blockIndex] = AST.emptyStatement();
+
+                  after(blockBody[blockIndex]);
+                  after(nextRead.blockBody[nextRead.blockIndex]);
+
+                  updated += 1;
+                  break;
+                }
+
+              }
+              //TODO
+            } else {
+              // `arr.foo = x`
+              ASSERT(nextRead.parentNode.property.type === 'Identifier', 'non-computed must have ident, yes?');
+              switch (nextRead.parentNode.property.name) {
+                case 'length': {
+                  // I think this is unsafe? What if code gets moved. TODO
+                  vlog(' - bail: not sure if array.length is safe to inline');
+                  return;
+                }
+              }
+            }
           } else {
-            // `arr.foo`
-            ASSERT(nextRead.parentNode.property.type === 'Identifier', 'non-computed must have ident, yes?');
-            switch (nextRead.parentNode.property.name) {
-              case 'length': {
-                // I think this is unsafe? What if code gets moved. TODO
-                vlog('- bail: not sure if array.length is safe to inline');
-                return;
-              }
-              case 'pop': {
-                if (nextRead.grandNode.type === 'CallExpression') {
-                  // These are a bit annoying because we need to reach to the grand-grand parent
-                  // node to replace the call and we don't store that by default.
-                  // Instead, for now, we'll check some cases on the statement level.
-
-                  const arrNode = write.parentNode.init;
-                  if (arrNode.elements.length === 0) {
-                    rule('Calling .pop on an empty array literal resolves to undefined');
-                    example('const arr = []; arr.pop();', 'const arr = [1, 2, 3]; undefined;');
-                    before(write.blockBody[write.blockIndex]);
-                    before(nextRead.blockBody[nextRead.blockIndex]);
-
-                    const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([AST.identifier('undefined')])) : AST.identifier('undefined');
-                    if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-                      if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                        // Call was a statement
-                        nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-                      } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-                        // Call was assigned
-                        nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
-                      } else {
-                        // what normalized cases are left?
-                        TODO
-                      }
-                    } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
-                      // Call was init of a binding decl
-                      ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
-                    } else {
-                      TODO
-                    }
-
-                    after(write.blockBody[write.blockIndex]);
-                    after(nextRead.blockBody[nextRead.blockIndex]);
-                    updated = true;
-                    if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
-                    return;
-                  } else {
-                    rule('Calling .pop on an array literal we can fully track can be resolved');
-                    example('const arr = [1, 2, 3]; arr.pop();', 'const arr = [1, 2]; 3;');
-                    before(write.blockBody[write.blockIndex]);
-                    before(nextRead.blockBody[nextRead.blockIndex]);
-
-                    const firstArrNode = arrNode.elements.pop();
-
-                    const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([firstArrNode])) : firstArrNode;
-                    if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-                      if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                        // Call was a statement
-                        nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-                      } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-                        // Call was assigned
-                        nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
-                      } else {
-                        // what normalized cases are left?
-                        TODO
-                      }
-                    } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
-                      // Call was init of a binding decl
-                      vlog(nextRead.blockBody[nextRead.blockIndex].declarations[0].init )
-                      ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
-                    } else {
-                      TODO
-                    }
-
-                    after(write.blockBody[write.blockIndex]);
-                    after(nextRead.blockBody[nextRead.blockIndex]);
-                    updated = true;
-                    if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
-                    return;
-                  }
-                } else {
-                  vlog('- bail: Read .pop but did not call it');
-                  // TODO: replace it with $Array_pop
+            vlog(' - Property read on the array:', nextRead.parentNode.property.name);
+            if (nextRead.parentNode.computed) {
+              // `arr[foo]`
+              vlog(' - Computed property read on the array. We can inline certain literals');
+              //TODO
+            } else {
+              // `arr.foo`
+              ASSERT(nextRead.parentNode.property.type === 'Identifier', 'non-computed must have ident, yes?');
+              switch (nextRead.parentNode.property.name) {
+                case 'length': {
+                  // I think this is unsafe? What if code gets moved. TODO
+                  vlog('- bail: not sure if array.length is safe to inline');
                   return;
                 }
-              }
-              case 'shift': {
-                if (nextRead.grandNode.type === 'CallExpression') {
-                  // These are a bit annoying because we need to reach to the grand-grand parent
-                  // node to replace the call and we don't store that by default.
-                  // Instead, for now, we'll check some cases on the statement level.
+                case 'pop': {
+                  if (nextRead.grandNode.type === 'CallExpression') {
+                    // These are a bit annoying because we need to reach to the grand-grand parent
+                    // node to replace the call and we don't store that by default.
+                    // Instead, for now, we'll check some cases on the statement level.
 
-                  const arrNode = write.parentNode.init;
-                  if (arrNode.elements.length === 0) {
-                    rule('Calling .shift on an empty array literal resolves to undefined');
-                    example('const arr = []; arr.shift();', 'const arr = []; undefined;');
-                    before(write.blockBody[write.blockIndex]);
-                    before(nextRead.blockBody[nextRead.blockIndex]);
+                    const arrNode = write.parentNode.init;
+                    if (arrNode.elements.length === 0) {
+                      rule('Calling .pop on an empty array literal resolves to undefined');
+                      example('const arr = []; arr.pop();', 'const arr = [1, 2, 3]; undefined;');
+                      before(write.blockBody[write.blockIndex]);
+                      before(nextRead.blockBody[nextRead.blockIndex]);
 
-                    const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([AST.identifier('undefined')])) : AST.identifier('undefined');
-                    if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-                      if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                        // Call was a statement
-                        nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-                      } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-                        // Call was assigned
-                        nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
+                      const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([AST.identifier('undefined')])) : AST.identifier('undefined');
+                      if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+                        if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
+                          // Call was a statement
+                          nextRead.blockBody[nextRead.blockIndex].expression = newNode;
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                          // Call was assigned
+                          nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
+                        } else {
+                          // what normalized cases are left?
+                          TODO
+                        }
+                      } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+                        // Call was init of a binding decl
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
                       } else {
-                        // what normalized cases are left?
                         TODO
                       }
-                    } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
-                      // Call was init of a binding decl
-                      ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
-                    } else {
-                      TODO
-                    }
 
-                    after(write.blockBody[write.blockIndex]);
-                    after(nextRead.blockBody[nextRead.blockIndex]);
-                    updated = true;
-                    if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .shift() args
-                    return;
+                      after(write.blockBody[write.blockIndex]);
+                      after(nextRead.blockBody[nextRead.blockIndex]);
+                      updated = true;
+                      if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
+                      return;
+                    } else {
+                      rule('Calling .pop on an array literal we can fully track can be resolved');
+                      example('const arr = [1, 2, 3]; arr.pop();', 'const arr = [1, 2]; 3;');
+                      before(write.blockBody[write.blockIndex]);
+                      before(nextRead.blockBody[nextRead.blockIndex]);
+
+                      const firstArrNode = arrNode.elements.pop();
+
+                      const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([firstArrNode])) : firstArrNode;
+                      if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+                        if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
+                          // Call was a statement
+                          nextRead.blockBody[nextRead.blockIndex].expression = newNode;
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                          // Call was assigned
+                          nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
+                        } else {
+                          // what normalized cases are left?
+                          TODO
+                        }
+                      } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+                        // Call was init of a binding decl
+                        vlog(nextRead.blockBody[nextRead.blockIndex].declarations[0].init )
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
+                      } else {
+                        TODO
+                      }
+
+                      after(write.blockBody[write.blockIndex]);
+                      after(nextRead.blockBody[nextRead.blockIndex]);
+                      updated = true;
+                      if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .pop() args
+                      return;
+                    }
                   } else {
-                    rule('Calling .shift on an array literal we can fully track can be resolved');
-                    example('const arr = [1, 2, 3]; f(arr.shift()); f(arr);', 'const arr = [2, 3]; f(1); f(arr);');
-                    before(write.blockBody[write.blockIndex]);
-                    before(nextRead.blockBody[nextRead.blockIndex]);
-
-                    const firstArrNode = arrNode.elements.shift();
-
-                    const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([firstArrNode])) : firstArrNode;
-                    if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-                      if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                        // Call was a statement
-                        nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-                      } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-                        // Call was assigned
-                        nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
-                      } else {
-                        // what normalized cases are left?
-                        TODO
-                      }
-                    } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
-                      // Call was init of a binding decl
-                      ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
-                    } else {
-                      TODO
-                    }
-
-                    after(write.blockBody[write.blockIndex]);
-                    after(nextRead.blockBody[nextRead.blockIndex]);
-                    updated = true;
-                    if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .shift() args
+                    vlog('- bail: Read .pop but did not call it');
+                    // TODO: replace it with $Array_pop
                     return;
                   }
-                } else {
-                  vlog('- bail: Read .shift but did not call it');
-                  // TODO: replace it with $Array_shift
-                  return;
                 }
-              }
-              case 'push': {
-                if (nextRead.grandNode.type === 'CallExpression') {
-                  // These are a bit annoying because we need to reach to the grand-grand parent
-                  // node to replace the call and we don't store that by default.
-                  // Instead, for now, we'll check some cases on the statement level.
+                case 'shift': {
+                  if (nextRead.grandNode.type === 'CallExpression') {
+                    // These are a bit annoying because we need to reach to the grand-grand parent
+                    // node to replace the call and we don't store that by default.
+                    // Instead, for now, we'll check some cases on the statement level.
 
-                  // Keep in mind array.push returns the length of the array afterwards, which is
-                  // always (?) arr.length + the number of arguments. So we should always replace the
-                  // actual call with a sequence ending with that number. Other parts will eliminate it.
+                    const arrNode = write.parentNode.init;
+                    if (arrNode.elements.length === 0) {
+                      rule('Calling .shift on an empty array literal resolves to undefined');
+                      example('const arr = []; arr.shift();', 'const arr = []; undefined;');
+                      before(write.blockBody[write.blockIndex]);
+                      before(nextRead.blockBody[nextRead.blockIndex]);
 
-                  let argList = nextRead.grandNode.arguments;
-
-                  while (argList.length && isPrimitive(argList[0])) {
-                    // Remove the first param from the call and append it to the array literal
-
-                    rule('Push on an array literal with first element simple should move the node');
-                    example('const arr = [1, 2]; arr.push("a", "b");', 'const arr = [1, 2, "a"]; f(arr.push("b"));');
-                    before(arrayLiteralNode);
-                    before(nextRead.grandNode);
-
-                    arrayLiteralNode.elements.push(argList.shift());
-
-                    after(arrayLiteralNode);
-                    after(nextRead.grandNode);
-                    ++updated;
-                  }
-
-                  if (nextRead.grandNode.arguments.length === 0) {
-                    // noop, eliminate call and replace wiht
-
-                    rule('Array push without arguments can be replaced with the (final) arg count');
-                    example('const arr = [1, 2, 3]; count = arr.push();', 'const arr = [1, 2, 3]; count = 3;');
-                    before(arrayLiteralNode);
-                    before(nextRead.blockBody[nextRead.blockIndex]);
-
-                    if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-                      if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                        // Call was a statement. Just drop it.
-                        nextRead.blockBody[nextRead.blockIndex].expression = AST.emptyStatement();
-                      } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-                        // Call was assigned
-                        nextRead.blockBody[nextRead.blockIndex].expression.right = AST.literal(arrayLiteralNode.elements.length);
+                      const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([AST.identifier('undefined')])) : AST.identifier('undefined');
+                      if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+                        if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
+                          // Call was a statement
+                          nextRead.blockBody[nextRead.blockIndex].expression = newNode;
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                          // Call was assigned
+                          nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
+                        } else {
+                          // what normalized cases are left?
+                          TODO
+                        }
+                      } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+                        // Call was init of a binding decl
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
                       } else {
-                        // what normalized cases are left?
                         TODO
                       }
-                    } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
-                      // Call was init of a binding decl
-                      ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.literal(arrayLiteralNode.elements.length);
+
+                      after(write.blockBody[write.blockIndex]);
+                      after(nextRead.blockBody[nextRead.blockIndex]);
+                      updated = true;
+                      if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .shift() args
+                      return;
                     } else {
-                      TODO
+                      rule('Calling .shift on an array literal we can fully track can be resolved');
+                      example('const arr = [1, 2, 3]; f(arr.shift()); f(arr);', 'const arr = [2, 3]; f(1); f(arr);');
+                      before(write.blockBody[write.blockIndex]);
+                      before(nextRead.blockBody[nextRead.blockIndex]);
+
+                      const firstArrNode = arrNode.elements.shift();
+
+                      const newNode = nextRead.grandNode.arguments.length ? AST.sequenceExpression(nextRead.grandNode.arguments.concat([firstArrNode])) : firstArrNode;
+                      if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+                        if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
+                          // Call was a statement
+                          nextRead.blockBody[nextRead.blockIndex].expression = newNode;
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                          // Call was assigned
+                          nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
+                        } else {
+                          // what normalized cases are left?
+                          TODO
+                        }
+                      } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+                        // Call was init of a binding decl
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
+                      } else {
+                        TODO
+                      }
+
+                      after(write.blockBody[write.blockIndex]);
+                      after(nextRead.blockBody[nextRead.blockIndex]);
+                      updated = true;
+                      if (nextRead.grandNode.arguments.length) addedSequence = true; // Eliminated useless .shift() args
+                      return;
+                    }
+                  } else {
+                    vlog('- bail: Read .shift but did not call it');
+                    // TODO: replace it with $Array_shift
+                    return;
+                  }
+                }
+                case 'push': {
+                  if (nextRead.grandNode.type === 'CallExpression') {
+                    // These are a bit annoying because we need to reach to the grand-grand parent
+                    // node to replace the call and we don't store that by default.
+                    // Instead, for now, we'll check some cases on the statement level.
+
+                    // Keep in mind array.push returns the length of the array afterwards, which is
+                    // always (?) arr.length + the number of arguments. So we should always replace the
+                    // actual call with a sequence ending with that number. Other parts will eliminate it.
+
+                    let argList = nextRead.grandNode.arguments;
+
+                    while (argList.length && isPrimitive(argList[0])) {
+                      // Remove the first param from the call and append it to the array literal
+
+                      rule('Push on an array literal with first element simple should move the node');
+                      example('const arr = [1, 2]; arr.push("a", "b");', 'const arr = [1, 2, "a"]; f(arr.push("b"));');
+                      before(arrayLiteralNode);
+                      before(nextRead.grandNode);
+
+                      arrayLiteralNode.elements.push(argList.shift());
+
+                      after(arrayLiteralNode);
+                      after(nextRead.grandNode);
+                      ++updated;
                     }
 
-                    after(arrayLiteralNode);
-                    after(nextRead.blockBody[nextRead.blockIndex]);
-                    ++updated;
-                  } else {
-                    // There are args left so the push cannot be eliminated
+                    if (nextRead.grandNode.arguments.length === 0) {
+                      // noop, eliminate call and replace wiht
 
-                    if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-                      if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                        // Call was a statement. Noop
+                      rule('Array push without arguments can be replaced with the (final) arg count');
+                      example('const arr = [1, 2, 3]; count = arr.push();', 'const arr = [1, 2, 3]; count = 3;');
+                      before(arrayLiteralNode);
+                      before(nextRead.blockBody[nextRead.blockIndex]);
 
+                      if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+                        if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
+                          // Call was a statement. Just drop it.
+                          nextRead.blockBody[nextRead.blockIndex].expression = AST.emptyStatement();
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                          // Call was assigned
+                          nextRead.blockBody[nextRead.blockIndex].expression.right = AST.literal(arrayLiteralNode.elements.length);
+                        } else {
+                          // what normalized cases are left?
+                          TODO
+                        }
+                      } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+                        // Call was init of a binding decl
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.literal(arrayLiteralNode.elements.length);
+                      } else {
+                        TODO
+                      }
+
+                      after(arrayLiteralNode);
+                      after(nextRead.blockBody[nextRead.blockIndex]);
+                      ++updated;
+                    } else {
+                      // There are args left so the push cannot be eliminated
+
+                      if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+                        if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
+                          // Call was a statement. Noop
+
+                        } else if (
+                          nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' &&
+                          nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
+                        ) {
+                          // Call was assigned
+                          rule('Array push with arguments can be replaced with the (final) arg count');
+                          example('const arr = [1, 2, 3]; count = arr.push(5, $);', 'const arr = [1, 2, 3, 5]; count = (arr.push($), 5);');
+                          before(arrayLiteralNode);
+                          before(nextRead.blockBody[nextRead.blockIndex]);
+
+                          nextRead.blockBody[nextRead.blockIndex].expression.right = AST.sequenceExpression([
+                            nextRead.blockBody[nextRead.blockIndex].expression.right,
+                            AST.literal(arrayLiteralNode.elements.length + argList.length),
+                          ]);
+
+                          after(arrayLiteralNode);
+                          after(nextRead.blockBody[nextRead.blockIndex]);
+                          ++updated;
+                          addedSequence = true;
+                          return;
+                        } else {
+                          // already transformed sequence? ignore
+                        }
                       } else if (
-                        nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' &&
-                        nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
+                        nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration' &&
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode
                       ) {
-                        // Call was assigned
-                        rule('Array push with arguments can be replaced with the (final) arg count');
-                        example('const arr = [1, 2, 3]; count = arr.push(5, $);', 'const arr = [1, 2, 3, 5]; count = (arr.push($), 5);');
+                        // Call was init of a binding decl
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+
+                        rule('Array push with arguments can be replaced with the (initial) arg count');
+                        example('const arr = [1, 2, 3]; const count = arr.push(5, $);', 'const arr = [1, 2, 3, 5]; const count = (arr.push($), 5);');
                         before(arrayLiteralNode);
                         before(nextRead.blockBody[nextRead.blockIndex]);
 
-                        nextRead.blockBody[nextRead.blockIndex].expression.right = AST.sequenceExpression([
-                          nextRead.blockBody[nextRead.blockIndex].expression.right,
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.sequenceExpression([
+                          nextRead.blockBody[nextRead.blockIndex].declarations[0].init,
                           AST.literal(arrayLiteralNode.elements.length + argList.length),
                         ]);
 
@@ -406,118 +515,117 @@ function processAttempt(fdata, queue) {
                         addedSequence = true;
                         return;
                       } else {
-                        // already transformed sequence? ignore
+                        TODO
                       }
-                    } else if (
-                      nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration' &&
-                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode
-                    ) {
-                      // Call was init of a binding decl
-                      ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+                    }
+                  } else {
+                    vlog('- bail: Read .push but did not call it');
+                    // TODO: replace it with $Array_push
+                    return;
+                  }
 
-                      rule('Array push with arguments can be replaced with the (initial) arg count');
-                      example('const arr = [1, 2, 3]; const count = arr.push(5, $);', 'const arr = [1, 2, 3, 5]; const count = (arr.push($), 5);');
+                  break;
+                }
+                case 'unshift': {
+                  if (nextRead.grandNode.type === 'CallExpression') {
+                    // These are a bit annoying because we need to reach to the grand-grand parent
+                    // node to replace the call and we don't store that by default.
+                    // Instead, for now, we'll check some cases on the statement level.
+
+                    // Keep in mind array.unshift returns the length of the array afterwards, which is
+                    // always (?) arr.length + the number of arguments. So we should always replace the
+                    // actual call with a sequence ending with that number. Other parts will eliminate it.
+
+                    let argList = nextRead.grandNode.arguments;
+
+                    while (argList.length && isPrimitive(argList[argList.length - 1])) {
+                      // Remove the first param from the call and append it to the array literal
+
+                      rule('Unshift on an array literal with first element simple should move the node');
+                      example('const arr = [100]; arr.unshift(1, 2));', 'const arr = [3, 100]; arr.unshift(1, 2)');
+                      before(arrayLiteralNode);
+                      before(nextRead.grandNode);
+
+                      arrayLiteralNode.elements.unshift(argList.pop());
+
+                      after(arrayLiteralNode);
+                      after(nextRead.grandNode);
+                      ++updated;
+                    }
+
+                    if (nextRead.grandNode.arguments.length === 0) {
+                      // noop, eliminate call and replace wiht
+
+                      rule('Array unshift without arguments can be replaced with the (final) arg count');
+                      example('const arr = [1, 2, 3]; const count = arr.unshift();', 'const arr = [1, 2, 3]; const count = 3;');
                       before(arrayLiteralNode);
                       before(nextRead.blockBody[nextRead.blockIndex]);
 
-                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.sequenceExpression([
-                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init,
-                        AST.literal(arrayLiteralNode.elements.length + argList.length),
-                      ]);
+                      if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+                        if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
+                          // Call was a statement. Just drop it.
+                          nextRead.blockBody[nextRead.blockIndex].expression = AST.emptyStatement();
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                          // Call was assigned
+                          nextRead.blockBody[nextRead.blockIndex].expression.right = AST.literal(arrayLiteralNode.elements.length);
+                        } else {
+                          // what normalized cases are left?
+                          TODO
+                        }
+                      } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
+                        // Call was init of a binding decl
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.literal(arrayLiteralNode.elements.length);
+                      } else {
+                        TODO
+                      }
 
                       after(arrayLiteralNode);
                       after(nextRead.blockBody[nextRead.blockIndex]);
                       ++updated;
-                      addedSequence = true;
-                      return;
                     } else {
-                      TODO
-                    }
-                  }
-                } else {
-                  vlog('- bail: Read .push but did not call it');
-                  // TODO: replace it with $Array_push
-                  return;
-                }
+                      // There are args left so the unshift cannot be eliminated
 
-                break;
-              }
-              case 'unshift': {
-                if (nextRead.grandNode.type === 'CallExpression') {
-                  // These are a bit annoying because we need to reach to the grand-grand parent
-                  // node to replace the call and we don't store that by default.
-                  // Instead, for now, we'll check some cases on the statement level.
+                      if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
+                        if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
+                          // Call was a statement. Noop
 
-                  // Keep in mind array.unshift returns the length of the array afterwards, which is
-                  // always (?) arr.length + the number of arguments. So we should always replace the
-                  // actual call with a sequence ending with that number. Other parts will eliminate it.
+                        } else if (
+                          nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' &&
+                          nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
+                        ) {
+                          // Call was assigned
+                          rule('Array unshift with arguments can be replaced with the (final) arg count');
+                          example('const arr = [1, 2, 3]; count = arr.unshift($, 5);', 'const arr = [5, 1, 2, 3]; count = (arr.unshift($), 5);');
+                          before(arrayLiteralNode);
+                          before(nextRead.blockBody[nextRead.blockIndex]);
 
-                  let argList = nextRead.grandNode.arguments;
+                          nextRead.blockBody[nextRead.blockIndex].expression.right = AST.sequenceExpression([
+                            nextRead.blockBody[nextRead.blockIndex].expression.right,
+                            AST.literal(arrayLiteralNode.elements.length + argList.length),
+                          ]);
 
-                  while (argList.length && isPrimitive(argList[argList.length - 1])) {
-                    // Remove the first param from the call and append it to the array literal
-
-                    rule('Unshift on an array literal with first element simple should move the node');
-                    example('const arr = [100]; arr.unshift(1, 2));', 'const arr = [3, 100]; arr.unshift(1, 2)');
-                    before(arrayLiteralNode);
-                    before(nextRead.grandNode);
-
-                    arrayLiteralNode.elements.unshift(argList.pop());
-
-                    after(arrayLiteralNode);
-                    after(nextRead.grandNode);
-                    ++updated;
-                  }
-
-                  if (nextRead.grandNode.arguments.length === 0) {
-                    // noop, eliminate call and replace wiht
-
-                    rule('Array unshift without arguments can be replaced with the (final) arg count');
-                    example('const arr = [1, 2, 3]; const count = arr.unshift();', 'const arr = [1, 2, 3]; const count = 3;');
-                    before(arrayLiteralNode);
-                    before(nextRead.blockBody[nextRead.blockIndex]);
-
-                    if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-                      if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                        // Call was a statement. Just drop it.
-                        nextRead.blockBody[nextRead.blockIndex].expression = AST.emptyStatement();
-                      } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
-                        // Call was assigned
-                        nextRead.blockBody[nextRead.blockIndex].expression.right = AST.literal(arrayLiteralNode.elements.length);
-                      } else {
-                        // what normalized cases are left?
-                        TODO
-                      }
-                    } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
-                      // Call was init of a binding decl
-                      ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.literal(arrayLiteralNode.elements.length);
-                    } else {
-                      TODO
-                    }
-
-                    after(arrayLiteralNode);
-                    after(nextRead.blockBody[nextRead.blockIndex]);
-                    ++updated;
-                  } else {
-                    // There are args left so the unshift cannot be eliminated
-
-                    if (nextRead.blockBody[nextRead.blockIndex].type === 'ExpressionStatement') {
-                      if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
-                        // Call was a statement. Noop
-
+                          after(arrayLiteralNode);
+                          after(nextRead.blockBody[nextRead.blockIndex]);
+                          ++updated;
+                          addedSequence = true;
+                        } else {
+                          // already transformed sequence? ignore
+                        }
                       } else if (
-                        nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' &&
-                        nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
+                        nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration' &&
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode
                       ) {
-                        // Call was assigned
+                        // Call was init of a binding decl
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+
                         rule('Array unshift with arguments can be replaced with the (final) arg count');
-                        example('const arr = [1, 2, 3]; count = arr.unshift($, 5);', 'const arr = [5, 1, 2, 3]; count = (arr.unshift($), 5);');
+                        example('const arr = [1, 2, 3]; const count = arr.unshift($, 5);', 'const arr = [5, 1, 2, 3]; const count = (arr.unshift($), 5);');
                         before(arrayLiteralNode);
                         before(nextRead.blockBody[nextRead.blockIndex]);
 
-                        nextRead.blockBody[nextRead.blockIndex].expression.right = AST.sequenceExpression([
-                          nextRead.blockBody[nextRead.blockIndex].expression.right,
+                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.sequenceExpression([
+                          nextRead.blockBody[nextRead.blockIndex].declarations[0].init,
                           AST.literal(arrayLiteralNode.elements.length + argList.length),
                         ]);
 
@@ -526,42 +634,18 @@ function processAttempt(fdata, queue) {
                         ++updated;
                         addedSequence = true;
                       } else {
-                        // already transformed sequence? ignore
+                        TODO
                       }
-                    } else if (
-                      nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration' &&
-                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode
-                    ) {
-                      // Call was init of a binding decl
-                      ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
-
-                      rule('Array unshift with arguments can be replaced with the (final) arg count');
-                      example('const arr = [1, 2, 3]; const count = arr.unshift($, 5);', 'const arr = [5, 1, 2, 3]; const count = (arr.unshift($), 5);');
-                      before(arrayLiteralNode);
-                      before(nextRead.blockBody[nextRead.blockIndex]);
-
-                      nextRead.blockBody[nextRead.blockIndex].declarations[0].init = AST.sequenceExpression([
-                        nextRead.blockBody[nextRead.blockIndex].declarations[0].init,
-                        AST.literal(arrayLiteralNode.elements.length + argList.length),
-                      ]);
-
-                      after(arrayLiteralNode);
-                      after(nextRead.blockBody[nextRead.blockIndex]);
-                      ++updated;
-                      addedSequence = true;
-                    } else {
-                      TODO
                     }
+                  } else {
+                    vlog('- bail: Read .unshift but did not call it');
+                    // TODO: replace it with $Array_unshift
+                    return;
                   }
-                } else {
-                  vlog('- bail: Read .unshift but did not call it');
-                  // TODO: replace it with $Array_unshift
-                  return;
                 }
               }
             }
           }
-
         }
         else if (nextRead.parentNode.property === nextRead.node) {
           // This is `arr[ [1,2,3] ]` (or `const a = [1,2,3]; arr[a];`)

@@ -229,6 +229,7 @@ function runTestCase(
         logDir: CONFIG.logDir,
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
         unrollLimit: CONFIG.unroll ?? mdOptions?.unroll ?? 10,
+        unrollTrueLimit: CONFIG.unrollTrue ?? mdOptions?.unrollTrue ?? 10,
         onAfterFirstParse(preFdata) {
           // No action applied. I dont think we need to do anything here
         },
@@ -237,18 +238,18 @@ function runTestCase(
           // It then did a first one-time normalization pass to remove anything that we should
           // never see again, like `var`, patterns, param defaults, etc.
           if (options.logPasses) {
-            log('--out: Logging one-time-normalized state to disk for', nextFname);
+            console.log('--out: Logging one-time-normalized state to disk for', nextFname);
             const f = path.join(options.logDir, 'preval.a.f' + queueFileCounter + '.onetime.normalized.log.js');
-            log('-', f, '(', preCode.length, 'bytes) ->', nextFname);
+            console.log('-', f, '(', preCode.length, 'bytes) ->', nextFname);
             fs.writeFileSync(f, '// Normalized output after one pass [' + nextFname + ']\n' + preCode);
           }
         },
         onFirstPassEnd(contents, allFileNames, options) {
           if (options.logPasses) {
-            log('--out: Logging first normalized state to disk...');
+            console.log('--out: Logging first normalized state to disk...');
             allFileNames.forEach((fname, i) => {
               const f = path.join(options.logDir, 'preval.b.f' + i + '.firstpass.normalized.log.js');
-              log('-', f, '(', contents.normalized[fname].length, 'bytes) ->', fname);
+              console.log('-', f, '(', contents.normalized[fname].length, 'bytes) ->', fname);
               fs.writeFileSync(f, '// Normalized output after one pass [' + fname + ']\n' + contents.normalized[fname]);
             });
           }
@@ -256,8 +257,28 @@ function runTestCase(
         onPassEnd(outCode, passes, fi, options) {
           if (options.logPasses) {
             const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.log.js');
-            log('--out: Logging current result to disk:', f, '(', outCode.length, 'bytes)');
+            console.log('--out: Logging current result to disk:', f, '(', outCode.length, 'bytes)');
             fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n' + outCode);
+          }
+        },
+        onFinal(outCode, passes, fi, options) {
+          if (options.logPasses) {
+            const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.final.log.js');
+            console.log('--out: Logging final result after',passes,' passes to disk:', f, '(', outCode.length, 'bytes)');
+            fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n' + outCode);
+          }
+        },
+        onError(kind, error, ast, options) {
+          if (options.logPasses) {
+            const f = path.join(options.logDir, 'preval.error.log.js');
+            console.log('--out: Logging error to disk:', f);
+            let json;
+            try {
+              json = JSON.stringify(ast, null, 2);
+            } catch (e) {
+              json = '// JSON.stringify had an error: ' + e.message;
+            }
+            fs.writeFileSync(f, '// Error when trying to print: ' + error.message + '\n' + error.stack + '\n\nAST:\n' + json);
           }
         }
       },
@@ -293,6 +314,7 @@ function runTestCase(
 
     try {
       let before = true;
+
       function safeCloneString(a) {
         if (typeof a === 'number') {
           return String(a);
@@ -473,6 +495,7 @@ function runTestCase(
         console.log('\n\nEvaluated $ calls for ' + desc + ':', stack);
       }
     } catch (e) {
+      if (VERBOSE_TRACING) console.log('test case err:', e);
       const msg = String(e?.message ?? e)
         .replace(/^.*is not a constructor.*$/, '<ref> is not a constructor')
         .replace(/^.*is not iterable.*$/, '<ref> is not iterable')
@@ -569,7 +592,7 @@ function runTestCase(
       console.log(toEvaluationResult(evalled, output.implicitGlobals, true));
     }
   } else {
-    let md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError }, CONFIG);
+    let md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols }, CONFIG);
 
     let snapshotChanged = md2 !== md;
     let normalizationDesync = md2.includes('BAD?!');

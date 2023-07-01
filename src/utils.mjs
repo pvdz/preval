@@ -107,7 +107,7 @@ export function tmat(ast, shouldPrint = VERBOSE_TRACING) {
   if (shouldPrint) return printer(ast);
   return '<verbose=false>';
 }
-export function fmat(code, shouldPrint = VERBOSE_TRACING) {
+export function fmat(code, shouldPrint = VERBOSE_TRACING, silentError = true, ignoreErrorInSilence = false) {
   if (!shouldPrint) return code; // '<verbose=false>';
   try {
     return Prettier.format(code, {
@@ -128,8 +128,11 @@ export function fmat(code, shouldPrint = VERBOSE_TRACING) {
     }).trim();
   } catch (e) {
     // Prettier error implies invalid transformation. Uups.
-    console.error('prettier error:', e);
-    console.log(code);
+    if (!silentError) {
+      console.error('prettier error:', e.message);
+      console.log(code);
+    }
+    if (ignoreErrorInSilence) return code;
     return `// Prettier threw an error on this code. Implies the resulting transform is invalid (or not supported).\n//${e}\n${code}`;
   }
 }
@@ -185,7 +188,7 @@ export function source(node, force, callCount = 0) {
       if (anon) node.id = { type: 'Identifier', name: '$anon$' };
       let code = tmat(node, force);
       try {
-        code = fmat(code, force); // May fail.
+        code = fmat(code, force, true, true); // May fail.
       } catch {}
       if (code.includes('\n')) {
         if (callCount === 0) log(ORANGE_DIM + 'Source:' + RESET);
@@ -195,9 +198,9 @@ export function source(node, force, callCount = 0) {
       } else {
         if (callCount === 0) {
           // Print the Source thing only for the first line
-          log(ORANGE_DIM + 'Source:' + RESET, DIM + code + RESET);
+          log(ORANGE_DIM + 'Source:\n' + RESET + DIM + '| ' + code + RESET);
         } else {
-          log(DIM + code + RESET);
+          log(DIM + '| ' + code + RESET);
         }
       }
       if (anon) node.id = null;

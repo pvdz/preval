@@ -89,7 +89,7 @@ import { expandoSplitting } from './expando_splitting.mjs';
 export function phase2(program, fdata, resolve, req, options) {
   const ast = fdata.tenkoOutput.ast;
   group('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
-  vlog('\nCurrent state (before phase2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  if (VERBOSE_TRACING) vlog('\nCurrent state (before phase2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   vlog('\n\n\n##################################\n## phase2  ::  ' + fdata.fname + '\n##################################\n\n\n');
   vlog('Phase 2 options:', options);
   const r = _phase2(program, fdata, resolve, req, options);
@@ -129,12 +129,26 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     let lastScope = undefined;
     let lastScopeRead = undefined;
     let lastScopeWrite = undefined;
+    let lastInnerLoop = undefined;
+    let lastInnerCatch = undefined;
+    let lastInnerFinally = undefined;
     meta.singleScoped = true;
+    meta.singleInner = true;
     meta.singleScopeReads = true;
     meta.singleScopeWrites = true;
     rwOrder.some((ref) => {
-      if (lastScope === undefined) lastScope = ref.scope;
-      else if (lastScope !== ref.scope) meta.singleScoped = false;
+      if (lastScope === undefined) {
+        lastScope = ref.scope;
+        lastInnerLoop = ref.innerLoop;
+        lastInnerCatch = ref.innerCatch;
+        lastInnerFinally = ref.innerCatch;
+      }
+      if (lastScope !== ref.scope) {
+        meta.singleScoped = false;
+      }
+      if (lastScope !== ref.scope || lastInnerLoop !== ref.innerLoop || lastInnerCatch !== ref.innerCatch || lastInnerFinally !== ref.innerFinally) {
+        meta.singleInner = false;
+      }
 
       if (ref.type === 'read') {
         if (lastScopeRead === undefined) lastScopeRead = ref.scope;

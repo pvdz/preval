@@ -16,7 +16,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   setVerboseTracing(!!verbose && verboseTracing !== false);
 
   {
-    const { logDir, logPasses, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, ...rest } = options;
+    const { logDir, logPasses, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, unrollTrueLimit, ...rest } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error('Preval: Unsupported options received:', rest);
   }
 
@@ -83,14 +83,14 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     const preFdata = parseCode(inputCode, nextFname);
 
     options.onAfterFirstParse?.(preFdata);
-    prepareNormalization(preFdata, resolve, req, true); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+    prepareNormalization(preFdata, resolve, req, true, {unrollTrueLimit: options.unrollTrueLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalOnce(preFdata);
     const preCode = tmat(preFdata.tenkoOutput.ast, true);
 
     options.onAfterNormalizeOnce?.(preCode, preFdata, nextFname, queueFileCounter, options);
 
     const fdata = parseCode(preCode, nextFname);
-    prepareNormalization(fdata, resolve, req, false); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+    prepareNormalization(fdata, resolve, req, false, {unrollTrueLimit: options.unrollTrueLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalize(fdata, nextFname, { allowEval: options.allowEval });
 
     mod.children = new Set(fdata.imports.values());
@@ -233,13 +233,20 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           phase1(fdata, resolve, req, firstAfterParse, passes, phase1s); // I want a phase1 because I want the scope tracking set up for normalizing bindings
           firstAfterParse = false;
 
-          changed = phase2(program, fdata, resolve, req, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent});
+          changed = phase2(program, fdata, resolve, req, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent, unrollTrueLimit: options.unrollTrueLimit});
         } while (changed === 'phase1');
 
         mod.fdata = fdata;
         mod.reports.push(...fdata.reports)
 
-        const outCode = tmat(fdata.tenkoOutput.ast, true);
+        let outCode;
+        try {
+          outCode = tmat(fdata.tenkoOutput.ast, true);
+        } catch (e) {
+          console.log('Printer threw up on AST, message:', e.message);
+          options.onError?.('printer', e, fdata.tenkoOutput.ast, options);
+          throw e;
+        }
 
         options.onPassEnd?.(outCode, passes, fi, options);
 
@@ -254,7 +261,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           vlog('\nCurrent state before restart\n--------------\n' + fmat(inputCode) + '\n--------------\n');
 
           const fdata = parseCode(inputCode, fname);
-          prepareNormalization(fdata, resolve, req, false); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          prepareNormalization(fdata, resolve, req, false, {unrollTrueLimit: options.unrollTrueLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
           phaseNormalize(fdata, fname, { allowEval: options.allowEval });
 
           inputCode = tmat(fdata.tenkoOutput.ast, true);
@@ -269,6 +276,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           contents.implicitGlobals = set;
 
           contents.files[fname] = outCode;
+          options.onFinal?.(outCode, passes, fi, options);
         }
 
         if (changed && maxPasses && passes >= maxPasses) {

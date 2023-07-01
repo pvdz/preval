@@ -66,15 +66,15 @@ function _redundantWrites(fdata) {
         }
         if (AST.isPrimitive(shadowWrite.parentNode.right)) {
           rule('When the init of a binding cannot be observed it can be replaced with the primitive rhs of an assignment');
-          example('let x = 0; if (a) x = 1; else x = 2;', 'let x = 1; if (a) ; else x = 2;');
+          example('let x = $(); if (a) x = 1; else x = 2;', '$(); let x = 1; if (a) ; else x = 2;');
           before(varWrite.blockBody[varWrite.blockIndex]);
           before(shadowWrite.blockBody[shadowWrite.blockIndex]);
 
+          shadowWrite.blockBody[shadowWrite.blockIndex] = AST.expressionStatement(varWrite.parentNode.init);
           varWrite.parentNode.init = shadowWrite.parentNode.right;
-          shadowWrite.blockBody[shadowWrite.blockIndex] = AST.emptyStatement();
 
-          before(varWrite.blockBody[varWrite.blockIndex]);
-          before(AST.emptyStatement());
+          after(varWrite.blockBody[varWrite.blockIndex]);
+          after(shadowWrite.blockBody[shadowWrite.blockIndex]);
           ++changes;
           hasNoPrimitives = false; // We found at least one
           replacedWith = shadowWrite;
@@ -153,7 +153,7 @@ function _redundantWrites(fdata) {
 
           write.blockBody[write.blockIndex] = AST.emptyStatement();
 
-          before(write.blockBody[write.blockIndex]);
+          after(write.blockBody[write.blockIndex]);
           ++changes;
         } else {
           vlog('  - At least one write that reaches this write had a different init');

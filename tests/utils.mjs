@@ -142,7 +142,7 @@ export function fromMarkdownCase(md, fname, config) {
 
     return testCase;
   } else {
-    throw new Error('Invalid test case? Does not start with `//` nor `#`');
+    throw new Error('Invalid test case? Does not start with `//` nor `#`: ' + fname);
   }
 }
 
@@ -166,7 +166,7 @@ export function fmat(code) {
     });
   } catch (e) {
     // Prettier error implies invalid transformation. Uups.
-    throw new Error('Prettier error. Implies the resulting transform is invalid.\n' + e);
+    throw new Error('Prettier error. Implies the resulting transform is invalid.\n' + e.message);
   }
 }
 

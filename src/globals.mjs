@@ -6,7 +6,10 @@ import {
   BUILTIN_NUMBER_METHODS_SYMBOLS,
   BUILTIN_REGEXP_METHODS_SYMBOLS, BUILTIN_STRING_METHODS_SYMBOLS
 } from "./constants.mjs"
-import {MAX_UNROLL_COUNT} from "./reduce_static/unroll_loop_with_true.mjs"
+
+// We have to set a max of unrolling infinite loops because we have to predefine their global constant value here.
+// It's fine to up but would have to be upped in code. Can't pass this as an argument. Well. Not without changing smoe logic around first.
+export const MAX_UNROLL_TRUE_COUNT = 1000;
 
 const globalNames = new Map([
   ['clearInterval', 'function'],
@@ -77,7 +80,7 @@ const globalNames = new Map([
   }),
 ]);
 
-for (let i=0; i<=MAX_UNROLL_COUNT; ++i) {
+for (let i=0; i<=MAX_UNROLL_TRUE_COUNT; ++i) {
   // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc
   // Special symbols whose number suffix has semantic meaning. Ultimately they boil down to an alias for "true",
   // where the name implies that we can still unroll this infinite `while(true)` that many times, before bailing.

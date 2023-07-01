@@ -83,6 +83,13 @@ export function parseTestArgs() {
         break;
       }
 
+      case '-fast': {
+        // Skip anything but the cases/normalization/expression variations (opposite of using fast)
+        config.fastTest = 'only';
+        console.log('WARNING: Skipping many tests in cases !');
+        break;
+      }
+
       case '--implicit-this': {
         config.implicitThisIdent = argv.shift();
         break;

@@ -207,6 +207,11 @@ Preval CLI Toolkit help:
       PARAM_FAST='fast'
       ;;
 
+    -fast)
+      # Only run the tests that would be skipped with the "fast" option
+      PARAM_FAST='-fast'
+      ;;
+
     *)
       echo "p: Unsupported action or option... \`$1\` Use --help for options"
       exit 1

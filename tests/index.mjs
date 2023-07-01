@@ -127,13 +127,14 @@ if (isMainThread && CONFIG.threads > 1) {
 
 const allFileNames = CONFIG.targetFile ? [CONFIG.targetFile] : getTestFileNames(CONFIG.targetDir);
 const fastFileNames = allFileNames.filter(
-  (fname) =>
-    !(
-      CONFIG.fastTest &&
-      (fname.includes('normalize/expressions/bindings') ||
-        fname.includes('normalize/expressions/assignment') ||
-        (fname.includes('normalize/expressions/statement') && !fname.includes('normalize/expressions/statement/statement')))
-    ),
+  (fname) => {
+    if (!CONFIG.fastTest) return true;
+    const isSlowTest = (fname.includes('normalize/expressions/bindings') ||
+      fname.includes('normalize/expressions/assignment') ||
+      (fname.includes('normalize/expressions/statement') && !fname.includes('normalize/expressions/statement/statement')));
+    if (CONFIG.fastTest === 'only') return isSlowTest; // _Only_ include the slow tests because "-fast" was passed in
+    return !isSlowTest; // Do not include the slow tests because fast is enabled
+  }
 );
 const workerStep = Math.ceil(fastFileNames.length / CONFIG.threads);
 const workerOffset = CONFIG.threadIndex * workerStep;

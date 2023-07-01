@@ -276,6 +276,7 @@ function attemptConstantInlining(meta, fdata) {
           createReadRef({
             name: oldRead.name,
             kind: oldRead.kind,
+            isPropWrite: parentNode.type === 'MemberExpression' && grandNode.type === 'AssignmentExpression' && parentProp === 'object' && grandProp === 'left',
             parentNode,
             parentProp,
             parentIndex,
@@ -295,6 +296,8 @@ function attemptConstantInlining(meta, fdata) {
             ifChain: oldRead.ifChain,
             funcChain: oldRead.funcChain,
             innerLoop: oldRead.innerLoop,
+            innerIf: oldRead.innerIf,
+            innerElse: oldRead.innerElse,
             innerTry: oldRead.innerTry,
             innerTrap: oldRead.innerTrap,
             innerCatch: oldRead.innerCatch,

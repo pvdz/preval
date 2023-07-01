@@ -24,12 +24,25 @@ import {
 import {
   BUILTIN_ARRAY_PROTOTYPE,
   BUILTIN_FUNCTION_PROTOTYPE,
-  BUILTIN_FUNCTION_APPLY,
-  BUILTIN_FUNCTION_CALL,
   BUILTIN_NUMBER_PROTOTYPE,
   BUILTIN_OBJECT_PROTOTYPE,
-  BUILTIN_REGEXP_TEST,
   BUILTIN_STRING_PROTOTYPE,
+  BUILTIN_STRING_METHOD_LOOKUP,
+  BUILTIN_ARRAY_METHOD_LOOKUP,
+  BUILTIN_STRING_METHODS_SUPPORTED,
+  BUILTIN_ARRAY_METHODS_SUPPORTED,
+  BUILTIN_ARRAY_METHODS_SYMBOLS,
+  BUILTIN_STRING_METHODS_SYMBOLS,
+  BUILTIN_FUNCTION_METHODS_SYMBOLS,
+  BUILTIN_NUMBER_METHODS_SYMBOLS,
+  BUILTIN_REGEXP_METHODS_SYMBOLS,
+  VERBOSE_TRACING,
+  BUILTIN_FUNCTION_METHODS_SUPPORTED,
+  BUILTIN_FUNCTION_METHOD_LOOKUP,
+  BUILTIN_REGEXP_METHODS_SUPPORTED,
+  BUILTIN_NUMBER_METHODS_SUPPORTED,
+  BUILTIN_REGEXP_METHOD_LOOKUP,
+  BUILTIN_NUMBER_METHOD_LOOKUP,
 } from '../src/constants.mjs';
 import { coerce, log, vlog } from '../src/utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
@@ -306,7 +319,68 @@ function runTestCase(
     }
   }
 
-  //hoe kunnen we tests/cases/templates/nested_multi.md weer lijmen?
+  // TODO: hoe kunnen we tests/cases/templates/nested_multi.md weer lijmen?
+
+  function createGlobalPrevalSymbols(stack, $, $spy) {
+
+    function objPatternRest(obj, withoutTheseProps, propName) {
+      // Ugly hack that will work. Rest is a shallow clone.
+      if (obj === null || obj === undefined) {
+        // This is what would happen at runtime.
+        if (propName) {
+          const {
+            [propName]: {},
+          } = obj;
+        } else {
+          const {} = obj;
+        }
+      }
+      const clone = { ...obj };
+      withoutTheseProps.forEach((name) => delete clone[name]); // delete is huge deopt so this needs to be handled differently for a prod release.
+      return clone;
+    }
+
+    function $dotCall(func, obj, ...args) {
+      // The input started with a member expression as callee that we separated.
+      // This function serves as a syntactic clue telling us that the .call must be the built-in Function#call and
+      // not a userland .call method that happens to have the same name. This way we can undo some of this "damage" safely.
+      return func.call(obj, ...args);
+    }
+
+    function $coerce(x, to) {
+      return coerce(x, to);
+    }
+
+    const frameworkInjectedGlobals = {
+      '$': $,
+      'objPatternRest': objPatternRest,
+      '$dotCall': $dotCall,
+      '$spy': $spy,
+      '$coerce': $coerce,
+      '$LOOP_DONE_UNROLLING_ALWAYS_TRUE': true, // TODO: this would need to be configurable and then this value is update
+      [BUILTIN_ARRAY_PROTOTYPE]: Array.prototype,
+      ...BUILTIN_ARRAY_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_ARRAY_METHOD_LOOKUP[key]] = Array.prototype[key], obj), {}),
+      [BUILTIN_FUNCTION_PROTOTYPE]: Function.prototype,
+      ...BUILTIN_FUNCTION_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_FUNCTION_METHOD_LOOKUP[key]] = Function.prototype[key], obj), {}),
+      [BUILTIN_NUMBER_PROTOTYPE]: Number.prototype,
+      ...BUILTIN_NUMBER_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_NUMBER_METHOD_LOOKUP[key]] = Number.prototype[key], obj), {}),
+      [BUILTIN_OBJECT_PROTOTYPE]: Object.prototype,
+      ...BUILTIN_REGEXP_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_REGEXP_METHOD_LOOKUP[key]] = RegExp.prototype[key], obj), {}),
+      [BUILTIN_STRING_PROTOTYPE]: String.prototype,
+      ...BUILTIN_STRING_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_STRING_METHOD_LOOKUP[key]] = String.prototype[key], obj), {}),
+    };
+
+    const max = CONFIG.unrollTrue ?? mdOptions?.unrollTrue ?? 10;
+    for (let i=0; i<=max; ++i) {
+      // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc. Alias as `true` for the eval, but not in preval cause it'll go infinite.
+      frameworkInjectedGlobals[`$LOOP_UNROLL_${i}`] = `$LOOP_UNROLL_${i}`; // Special symbols whose number suffix has semantic meaning
+    }
+    // $LOOP_DONE_UNROLLING_ALWAYS_TRUE_5. Alias as `true` for the eval, but not in preval cause it'll go infinite.
+    frameworkInjectedGlobals[`$LOOP_DONE_UNROLLING_ALWAYS_TRUE`] = `$LOOP_DONE_UNROLLING_ALWAYS_TRUE`; // "signals not to unroll any further, but to treat this as "true" anyways"
+
+    return frameworkInjectedGlobals;
+  }
+  let leGlobalSymbols = Object.keys(createGlobalPrevalSymbols([], () => {}, () => {}));
 
   const evalled = { $in: [], $pre: [], $norm: [], $out: [] };
   function ev(desc, fdata, stack) {
@@ -409,28 +483,6 @@ function runTestCase(
 
         return tmp;
       }
-      function objPatternRest(obj, withoutTheseProps, propName) {
-        // Ugly hack that will work. Rest is a shallow clone.
-        if (obj === null || obj === undefined) {
-          // This is what would happen at runtime.
-          if (propName) {
-            const {
-              [propName]: {},
-            } = obj;
-          } else {
-            const {} = obj;
-          }
-        }
-        const clone = { ...obj };
-        withoutTheseProps.forEach((name) => delete clone[name]); // delete is huge deopt so this needs to be handled differently for a prod release.
-        return clone;
-      }
-      function $dotCall(func, obj, ...args) {
-        // The input started with a member expression as callee that we separated.
-        // This function serves as a syntactic clue telling us that the .call must be the built-in Function#call and
-        // not a userland .call method that happens to have the same name. This way we can undo some of this "damage" safely.
-        return func.call(obj, ...args);
-      }
       const spies = new Set();
       function $spy(str, val = str) {
         const id = spies.size + 1;
@@ -452,26 +504,8 @@ function runTestCase(
         spies.add(spy);
         return spy;
       }
-      function $coerce(x, to) {
-        return coerce(x, to);
-      }
 
-      const frameworkInjectedGlobals = {
-        '$': $,
-        'objPatternRest': objPatternRest,
-        '$dotCall': $dotCall,
-        '$spy': $spy,
-        '$coerce': $coerce,
-        '$LOOP_DONE_UNROLLING_ALWAYS_TRUE_5': true, // TODO: this would need to be configurable and then this value is update
-        [BUILTIN_ARRAY_PROTOTYPE]: Array.prototype,
-        [BUILTIN_FUNCTION_PROTOTYPE]: Function.prototype,
-        [BUILTIN_FUNCTION_APPLY]: Function.prototype.apply,
-        [BUILTIN_FUNCTION_CALL]: Function.prototype.call,
-        [BUILTIN_NUMBER_PROTOTYPE]: Number.prototype,
-        [BUILTIN_OBJECT_PROTOTYPE]: Object.prototype,
-        [BUILTIN_REGEXP_TEST]: RegExp.prototype.test,
-        [BUILTIN_STRING_PROTOTYPE]: String.prototype,
-      };
+      const frameworkInjectedGlobals = createGlobalPrevalSymbols(stack, $, $spy);
 
       // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
       //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results

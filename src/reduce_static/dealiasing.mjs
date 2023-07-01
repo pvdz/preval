@@ -99,12 +99,12 @@ function _dealiasing(fdata) {
     rule(
       'If a constant binding was an alias for an ident that could not have changed between the write and the read then the constant is redundant and should be eliminated',
     );
-    example('const x = y; f(x);', 'f(y);');
+    example('const x = y; f(x);', 'y; f(y);');
     before(write.blockBody[write.blockIndex]);
     before(read.blockBody[read.blockIndex]);
 
     read.node.name = realName;
-    write.blockBody[write.blockIndex] = AST.emptyStatement();
+    write.blockBody[write.blockIndex] = AST.expressionStatement(AST.identifier(realName));
 
     after(write.blockBody[write.blockIndex]);
     after(read.blockBody[read.blockIndex]);

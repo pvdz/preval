@@ -10,10 +10,9 @@ import {
   BUILTIN_STRING_PROTOTYPE,
 } from './constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source } from './utils.mjs';
-import globals from './globals.mjs';
+import globals, {MAX_UNROLL_TRUE_COUNT} from './globals.mjs';
 import * as Tenko from '../lib/tenko.prod.mjs'; // This way it works in browsers and nodejs and github pages ... :/
 import * as AST from './ast.mjs';
-import {MAX_UNROLL_COUNT} from "./reduce_static/unroll_loop_with_true.mjs"
 
 const NONE = 'NONE';
 const MUTATES = 'MUTATES';
@@ -233,8 +232,13 @@ export function getIdentUsageKind(parentNode, parentProp) {
         '.',
         parentProp,
       );
-      // Even in assignments to properties it will read the object first
-      if (parentProp === 'object' || parentNode.computed) return 'read';
+      // While assignment to property doesn't necessarily read the binding, it's also not a mutation of the binding.
+      // Therefor for all intentions and purposes we consider this case a read, even if it's a write to the object.
+      // If the grandNode is not an assignment then it's a read either way
+      if (parentProp === 'object') return 'read';
+      if (parentNode.computed) return 'read';
+      if (parentProp !== 'property') source(parentNode, true);
+      ASSERT(parentProp === 'property', 'is there any other way for this ident to be the object or property? ' + parentNode.type + ', ' + parentProp);
       return 'none';
     case 'MetaProperty':
       ASSERT(parentProp === 'meta' || parentProp === 'property', 'unexpected parent prop that has ident', parentNode.type, '.', parentProp);
@@ -509,6 +513,7 @@ export function createReadRef(obj) {
   const {
     name, // The var name, unique in this scope. Owner meta should have the same name.
     kind,
+    isPropWrite,
     parentNode, // parent of the node
     parentProp,
     parentIndex,
@@ -545,11 +550,13 @@ export function createReadRef(obj) {
   ASSERT(blockBodies.length === blockIndexes.length, 'each block body should have an index', blockBodies, blockIndexes);
   ASSERT(ifChain);
   ASSERT(funcChain);
+  ASSERT(typeof isPropWrite === 'boolean', 'newer prop isPropWrite, should be set');
 
   return {
     name,
     action: 'read',
     kind, // "export" | "read"
+    isPropWrite, // If kind=read, is this actually a property write on this object?
     parentNode, // parent of the node
     parentProp,
     parentIndex,
@@ -620,6 +627,7 @@ export function createWriteRef(obj) {
     name,
     action: 'write',
     kind,
+    isPropWrite: false, // A binding mutation is not a property write
     parentNode,
     parentProp,
     parentIndex,
@@ -720,10 +728,15 @@ export function findUniqueNameForBindingIdent(node, isFuncDeclId = false, fdata,
   ASSERT(meta, 'the meta should exist for all declared variables at this point');
   return uniqueName;
 }
-export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeCounter, oncePass) {
-  ASSERT(arguments.length === preprocessScopeNode.length, 'arg count');
+export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeCounter, oncePass, unrollTrueLimit = 10) {
+  ASSERT(arguments.length === preprocessScopeNode.length || arguments.length === preprocessScopeNode.length + 1, 'arg count', arguments.length, preprocessScopeNode.length);
   // This function attempts to find all binding names defined in this scope and create unique name mappings for them
   // (This doesn't update any read/write nodes with their new name! Only prepares their new name to be used and unique.)
+
+  ASSERT(typeof unrollTrueLimit === 'number' && unrollTrueLimit > 0, 'should receive a unrollTrueLimit', unrollTrueLimit);
+  if (unrollTrueLimit > MAX_UNROLL_TRUE_COUNT) {
+    throw new Error('unrollLoopWithTrue; The unrollTrueLimit (' + unrollTrueLimit + ') is bigger than the hardcoded max MAX_UNROLL_TRUE_COUNT of ' + MAX_UNROLL_TRUE_COUNT);
+  }
 
   ASSERT(node.$scope);
   ASSERT(
@@ -773,7 +786,7 @@ export function preprocessScopeNode(node, parentNode, fdata, funcNode, lexScopeC
     // global scope
     node.$p.nameMapping = new Map([...globals.keys()].map((k) => [k, k]));
 
-    for (let i=0; i<=MAX_UNROLL_COUNT; ++i) {
+    for (let i=0; i<=unrollTrueLimit; ++i) {
       // $LOOP_UNROLL_1 $LOOP_UNROLL_2 $LOOP_UNROLL_3 etc
       // Special symbols whose number suffix has semantic meaning
       node.$p.nameMapping.set(`$LOOP_UNROLL_${i}`, `$LOOP_UNROLL_${i}`);

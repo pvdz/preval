@@ -29,7 +29,7 @@ import {
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 import { createFreshVar, mayBindingMutateBetweenRefs } from '../bindings.mjs';
-import { RESET, GREEN } from '../constants.mjs';
+import {RESET, GREEN, VERBOSE_TRACING} from '../constants.mjs';
 
 export function letHoisting(fdata) {
   group('\n\n\nChecking for let decls to move up');
@@ -391,7 +391,7 @@ function processAttempt2multiScopeWriteReadOnly(fdata) {
     rwOrder.forEach((ref) => after(ref.blockBody[ref.blockIndex]));
 
     const ast = fdata.tenkoOutput.ast;
-    vlog('\nCurrent state (after let hoisting 2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+    if (VERBOSE_TRACING) vlog('\nCurrent state (after let hoisting 2)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   }
 
   if (toInject.size) {

@@ -23,6 +23,7 @@ import {
 import * as AST from '../ast.mjs';
 import { cloneFunctionNode } from '../utils/serialize_func.mjs';
 import { createFreshVar } from '../bindings.mjs';
+import {VERBOSE_TRACING} from "../constants.mjs"
 
 // Things to do
 // - Inline local constants, numbers, literal idents
@@ -40,7 +41,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
   );
 
   const ast = fdata.tenkoOutput.ast;
-  vlog('\nCurrent state (before primitive arg inlining)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  if (VERBOSE_TRACING) vlog('\nCurrent state (before primitive arg inlining)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   // Initially we only care about bindings whose writes have one var decl and only assignments otherwise
   // Due to normalization, the assignments will be a statement. The var decl can not contain an assignment as init.
@@ -302,7 +303,7 @@ export function phasePrimitiveArgInlining(program, fdata, resolve, req, cloneLim
   });
   log('End of primitive arg inlining. Cloned', newFuncs.length, 'functions, checked', truncableCallArgs.length, 'funcs for excessive args');
 
-  vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  if (VERBOSE_TRACING) vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
   groupEnd();
 }
 

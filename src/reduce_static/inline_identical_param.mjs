@@ -1,4 +1,7 @@
 // Find functions for which a certain param is always called with a specific primitive
+// `function f(a) { $(a); } f(1); f(1);`
+// -> `function f() { $(1); } f(); f();`
+// (the opposite is "static arg op outlining")
 
 import {
   ASSERT,
@@ -172,8 +175,8 @@ function process(meta, name) {
   const varWrite = meta.writes.find((write) => write.kind === 'var');
   ASSERT(varWrite);
 
-  rule('A function using `arguments.length` that is always called with the same arg count can replace the reference');
-  example('function f() { f(arguments.length); } f(1, 2); f(3, 4);', 'function f() { f(2); } f(1, 2); f(3, 4);');
+  rule('A function that is always called with the same primitive value can inline that value');
+  example('function f(a, b) { } f(1, 2); f(1, 4);', 'function f(b) { const a = 1; } f(2); f(4);');
   before(funcNode, varWrite.blockBody);
 
   vlog('Dropping args from calls now...');

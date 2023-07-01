@@ -10,7 +10,7 @@
 
 import walk from '../../lib/walk.mjs';
 
-import { BLUE, RESET , THIS_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, ARGLENGTH_ALIAS_BASE_NAME} from '../constants.mjs';
+import { BLUE, RESET, THIS_ALIAS_BASE_NAME, ARGUMENTS_ALIAS_BASE_NAME, ARGLENGTH_ALIAS_BASE_NAME, VERBOSE_TRACING } from '../constants.mjs';
 import {
   ASSERT,
   log,
@@ -148,7 +148,7 @@ export function phaseNormalOnce(fdata) {
     }
   }
 
-  vlog('\nState after export normalization\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  if (VERBOSE_TRACING) vlog('\nState after export normalization\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 
   // All other transforms in this file can be wrapped in a block, so they shouldn't need to change the parent child count/order.
 
@@ -547,6 +547,7 @@ export function phaseNormalOnce(fdata) {
 
           vlog('- Parent node: `' + parentNode.type + '`, prop: `' + parentProp + '`');
           if (kind === 'read') {
+            // Note: this could be a property write, but it's not a binding mutation.
             // Ignore occurrences in global space (or in global nested arrows)
             const thisFunc = thisStack[thisStack.length - 1];
             // Do not count cases like where the arguments have no observable side effect or our own alias
@@ -867,7 +868,7 @@ export function phaseNormalOnce(fdata) {
     vgroupEnd();
   }
 
-  vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+  if (VERBOSE_TRACING) vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
 }
 function hoistingOnce(hoistingRoot, from) {
   ASSERT(

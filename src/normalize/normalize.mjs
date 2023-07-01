@@ -513,7 +513,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     fdata.globallyUniqueNamingRegistry.forEach((meta) => ((meta.writes = []), (meta.reads = [])));
     transformProgram(ast);
     //stmt(null, 'ast', -1, ast, false, false);
-    vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+    if (VERBOSE_TRACING) vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
     if (changed) {
       somethingChanged = true;
       log('Something changed. Running another normalization pass (' + ++passes + ')\n');

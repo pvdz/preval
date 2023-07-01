@@ -20,7 +20,6 @@ import {
   findBodyOffset,
 } from '../utils.mjs';
 import * as AST from '../ast.mjs';
-import { createFreshVar, getIdentUsageKind } from '../bindings.mjs';
 
 export function constWhileTest(fdata) {
   group('\n\n\nFinding `while` tests that are constants\n');

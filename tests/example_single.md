@@ -12,6 +12,13 @@
 
 If you want to indicate that the test is expected to throw inside Preval then you can use this header to tell the test runner to be wanting an error containing that substring to be thrown.
 
+## Options
+
+Test-specific options go here.
+
+- implicitThis=window
+- skipEval=true
+
 ## Input
 
 Each code fence uses quintuple ticks, has `js` as the first word, and is followed by the virtual path of that code block.

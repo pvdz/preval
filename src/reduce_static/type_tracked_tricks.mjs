@@ -1021,9 +1021,77 @@ function _typeTrackedTricks(fdata) {
           }
         }
         else if (node.callee.type === 'MemberExpression') {
-          if (node.callee.object.type === 'Identifier' && !node.callee.computed) {
-            const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
-            switch (objMeta.typing.mustBeType + '.' + node.callee.property.name) {
+          const isPrim = AST.isPrimitive(node.callee.object);
+          const objMetaRegex = !isPrim && node.callee.object.type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
+          const isRegex = objMetaRegex?.typing?.mustBeType === 'regex' && objMetaRegex.isConstant && AST.isRegexLiteral(objMetaRegex.constValueRef);
+          if ((isPrim || isRegex || node.callee.object.type === 'Identifier') && !node.callee.computed) {
+            let mustBe = isRegex ? 'regex' : isPrim ? AST.getPrimitiveType(node.callee.object) : fdata.globallyUniqueNamingRegistry.get(node.callee.object.name).typing.mustBeType;
+
+            switch (mustBe + '.' + node.callee.property.name) {
+              case 'boolean.toString': {
+                // `true.toString()`
+                // `false.toString()`
+                // `x.toString()` with x an unknown boolean
+
+                if (isPrim) {
+                  const primValue = AST.getPrimitiveValue(node.callee.object)
+
+                  rule('Calling bool.toString() on a primitive should inline the call');
+                  example('true.toString()', '"true"');
+                  before(node, parentNode);
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(primValue.toString());
+                  else parentNode[parentProp][parentIndex] = AST.primitive(primValue.toString());
+
+                  if (node.arguments.length > 0) {
+                    const rest = node.arguments.slice(0);
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rest.forEach(arg => {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        })
+                      },
+                    });
+                  }
+
+                  after(node, parentNode);
+                  ++changes;
+                }
+                break;
+              }
+              case 'number.toString': {
+                // `true.toString()`
+                // `false.toString()`
+                // `x.toString()` with x an unknown boolean
+
+                if (isPrim && (node.arguments.length === 0 || AST.isPrimitive(node.arguments[0]))) {
+                  const primValue = AST.getPrimitiveValue(node.callee.object)
+
+                  rule('Calling number.toString() on a primitive should inline the call');
+                  example('NaN.toString()', '"NaN"');
+                  before(node, parentNode);
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(primValue.toString(...node.arguments.length === 0 ? [] : [AST.getPrimitiveValue(node.arguments[0])]));
+                  else parentNode[parentProp][parentIndex] = AST.primitive(primValue.toString(...node.arguments.length === 0 ? [] : [AST.getPrimitiveValue(node.arguments[0])]));
+
+                  if (node.arguments.length > 1) {
+                    const rest = node.arguments.slice(1);
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rest.forEach(arg => {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        })
+                      },
+                    });
+                  }
+
+                  after(node, parentNode);
+                  ++changes;
+                }
+                break;
+              }
               case 'regex.constructor': {
                 // `/foo/.constructor("bar", "g")` silliness, originated from jsf*ck
 
@@ -1052,6 +1120,7 @@ function _typeTrackedTricks(fdata) {
                 break;
               }
               case 'function.apply': {
+                const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
                 if (objMeta.isConstant && !objMeta.constValueRef.node.$p.thisAccess) {
                   vlog('Queued transform to eliminate .apply');
                   ++changes;
@@ -1087,6 +1156,7 @@ function _typeTrackedTricks(fdata) {
                 break;
               }
               case 'function.call': {
+                const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
                 if (objMeta.isConstant && !objMeta.constValueRef.node.$p.thisAccess) {
                   vlog('Queued transform to eliminate .call');
                   ++changes;
@@ -1117,21 +1187,33 @@ function _typeTrackedTricks(fdata) {
                 break;
               }
               case 'regex.test': {
+                const objMeta = fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
                 if (
                   objMeta.isConstant &&
                   objMeta.typing.mustBeType === 'regex' &&
-                  node['arguments'].length &&
-                  AST.isPrimitive(node['arguments'][0])
+                  (node.arguments.length === 0 || AST.isPrimitive(node['arguments'][0]))
                 ) {
                   rule('regex.test when the object is a regex and the arg is known can be resolved');
                   example('/foo/.test("brafoody")', 'true');
                   before(parentNode);
 
                   const regex = new RegExp(objMeta.constValueRef.node.regex.pattern, objMeta.constValueRef.node.regex.flags);
-                  const v = regex.test(AST.getPrimitiveValue(node['arguments'][0]));
+                  const v = node.arguments.length ? regex.test(AST.getPrimitiveValue(node.arguments[0])) : regex.test();
 
                   if (parentIndex < 0) parentNode[parentProp] = AST.primitive(v);
                   else parentNode[parentProp][parentIndex] = AST.primitive(v);
+
+                  if (node.arguments.length > 1) {
+                    const rest = node.arguments.slice(1);
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rest.forEach(arg => {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        })
+                      },
+                    });
+                  }
 
                   after(parentNode);
                   ++changes;
@@ -1144,41 +1226,62 @@ function _typeTrackedTricks(fdata) {
                 // This is done in another rule
                 break;
               }
-            }
-          }
-          else if (node.computed) {
-            // Nope.
-            break;
-          }
-          else {
-            const isPrimitive = AST.isPrimitive(node.callee.object);
-            const objMetaRegex = !isPrimitive && node.callee.object.type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(node.callee.object.name);
-            const isRegex = !!objMetaRegex && objMetaRegex.typing.mustBeType === 'regex' && objMetaRegex.isConstant && AST.isRegexLiteral(objMetaRegex.constValueRef.parentNode.init);
+              case 'string.replace': {
+                if (
+                  node.arguments.length > 1 &&
+                  AST.isPrimitive(node.arguments[0]) && AST.getPrimitiveType(node.arguments[0]) === 'string' &&
+                  AST.isPrimitive(node.arguments[1]) && AST.getPrimitiveType(node.arguments[1]) === 'string'
+                ) {
+                  // 'foo'.replace('bar', 'baz')
 
-            if (isPrimitive || isRegex) {
-              // Note: member expression non-call reads go below
-              const type = AST.getPrimitiveType(node.callee.object);
-              switch (type + '.' + node.callee.property.name) {
-                case 'string.replace': {
+                  rule('Calling `replace` on a string with string args should resolve the call');
+                  example('"foo".replace("o", "a". x, y ,z)', 'x; y; z; "fao"');
+                  before(parentNode);
+
+                  const ctxString = AST.getPrimitiveValue(node.callee.object);
+                  const rexString = AST.getPrimitiveValue(node.arguments[0]);
+                  const rplString = AST.getPrimitiveValue(node.arguments[1]);
+                  const rest = node.arguments.slice(2);
+                  const result = ctxString.replace(rexString, rplString);
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                  if (rest.length > 0) {
+                    // Inject excessive args as statements
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rest.forEach(arg => {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        })
+                      },
+                    });
+                  }
+
+                  after(parentNode);
+                  ++changes;
+                  break;
+                }
+                else {
+                  const metaArg1 = node.arguments.length > 1 && node.arguments[0].type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
+
                   if (
-                    node.arguments.length > 1 &&
-                    AST.isPrimitive(node.arguments[0]) && AST.getPrimitiveType(node.arguments[0]) === 'string' &&
+                    metaArg1 &&
+                    metaArg1.typing.mustBeType === 'regex' && metaArg1.isConstant && AST.isRegexLiteral(metaArg1.constValueRef.node) &&
                     AST.isPrimitive(node.arguments[1]) && AST.getPrimitiveType(node.arguments[1]) === 'string'
                   ) {
-                    // 'foo'.replace('bar', 'baz')
+                    // 'foo'.replace(/bar/, 'baz')
 
-                    rule('Calling `replace` on a string with string args should resolve the call');
-                    example('"foo".replace("o", "a". x, y ,z)', 'x; y; z; "fao"');
+                    rule('Calling `replace` on a string with regex and string args should resolve the call');
+                    example('"foo".replace(/a/g, "a")', '"faa"');
                     before(parentNode);
 
                     const ctxString = AST.getPrimitiveValue(node.callee.object);
-                    const rexString = AST.getPrimitiveValue(node.arguments[0]);
+                    const regex = new RegExp(metaArg1.constValueRef.node.regex.pattern, metaArg1.constValueRef.node.regex.flags);
                     const rplString = AST.getPrimitiveValue(node.arguments[1]);
                     const rest = node.arguments.slice(2);
-                    const result = ctxString.replace(rexString, rplString);
-
-                    if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                    else parentNode[parentProp][parentIndex] = AST.primitive(result);
+                    const result = ctxString.replace(regex, rplString);
 
                     if (rest.length > 0) {
                       // Inject excessive args as statements
@@ -1192,114 +1295,87 @@ function _typeTrackedTricks(fdata) {
                       });
                     }
 
-                    after(parentNode);
-                    ++changes;
-                    break;
-                  }
-                  else {
-                    const metaArg1 = node.arguments.length > 1 && node.arguments[0].type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
-
-                    if (
-                      metaArg1 &&
-                      metaArg1.typing.mustBeType === 'regex' && metaArg1.isConstant && AST.isRegexLiteral(metaArg1.constValueRef.node) &&
-                      AST.isPrimitive(node.arguments[1]) && AST.getPrimitiveType(node.arguments[1]) === 'string'
-                    ) {
-                      // 'foo'.replace(/bar/, 'baz')
-
-                      rule('Calling `replace` on a string with regex and string args should resolve the call');
-                      example('"foo".replace(/a/g, "a")', '"faa"');
-                      before(parentNode);
-
-                      const ctxString = AST.getPrimitiveValue(node.callee.object);
-                      const regex = new RegExp(metaArg1.constValueRef.node.regex.pattern, metaArg1.constValueRef.node.regex.flags);
-                      const rplString = AST.getPrimitiveValue(node.arguments[1]);
-                      const rest = node.arguments.slice(2);
-                      const result = ctxString.replace(regex, rplString);
-
-                      if (rest.length > 0) {
-                        // Inject excessive args as statements
-                        queue.push({
-                          index: blockIndex,
-                          func: () => {
-                            rest.forEach(arg => {
-                              blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                            })
-                          },
-                        });
-                      }
-
-                      if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                      else parentNode[parentProp][parentIndex] = AST.primitive(result);
-
-                      after(parentNode);
-                      ++changes;
-                      break;
-
-                    }
-                  }
-                  break;
-                }
-                case 'string.slice': {
-                  const arglen = node.arguments.length;
-                  if (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1])))) {
-                    // 'foo'.slice(0)
-
-                    rule('Calling `slice` on a string with primitive args should resolve the call');
-                    example('"hello, world".slice(7, 20, $)', '$, "world"');
-                    before(parentNode);
-
-                    const ctxString = AST.getPrimitiveValue(node.callee.object);
-                    const args = [];
-                    if (node.arguments[0]) args.push(AST.getPrimitiveValue(node.arguments[0]));
-                    if (node.arguments[1]) args.push(AST.getPrimitiveValue(node.arguments[1])); // I don't think arg 3+ are used?
-                    const rest = node.arguments.slice(2);
-                    const result = ctxString.slice(...args);
-
-                    if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
-                    else parentNode[parentProp][parentIndex] = AST.primitive(result);
-
-                    if (rest.length > 0) {
-                      // Inject excessive args as statements to preserve reference errors
-                      queue.push({
-                        index: blockIndex,
-                        func: () => {
-                          rest.forEach(arg => {
-                            blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
-                          })
-                        },
-                      });
-                    }
-
-                    after(parentNode);
-                    ++changes;
-                    break;
-                  }
-                  break;
-                }
-                case 'string.concat': {
-                  if (node.arguments.every(a => AST.isPrimitive(a))) {
-                    // 'foo'.slice(0)
-
-                    rule('Calling `concat` on a string with primitive args should resolve the call');
-                    example('"hello, world".concat("!")', '"hello, world!"');
-                    before(parentNode);
-
-                    const ctxString = AST.getPrimitiveValue(node.callee.object);
-                    const args = node.arguments.map(e => AST.getPrimitiveValue(e));
-
-                    const result = ctxString.concat(...args);
-
                     if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
                     else parentNode[parentProp][parentIndex] = AST.primitive(result);
 
                     after(parentNode);
                     ++changes;
                     break;
+
                   }
-                  break;
                 }
+                break;
               }
+              case 'string.slice': {
+                const arglen = node.arguments.length;
+                if (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1])))) {
+                  // 'foo'.slice(0)
+
+                  rule('Calling `slice` on a string with primitive args should resolve the call');
+                  example('"hello, world".slice(7, 20, $)', '$, "world"');
+                  before(parentNode);
+
+                  const ctxString = AST.getPrimitiveValue(node.callee.object);
+                  const args = [];
+                  if (node.arguments[0]) args.push(AST.getPrimitiveValue(node.arguments[0]));
+                  if (node.arguments[1]) args.push(AST.getPrimitiveValue(node.arguments[1])); // I don't think arg 3+ are used?
+                  const rest = node.arguments.slice(2);
+                  const result = ctxString.slice(...args);
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                  if (rest.length > 0) {
+                    // Inject excessive args as statements to preserve reference errors
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rest.forEach(arg => {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        })
+                      },
+                    });
+                  }
+
+                  after(parentNode);
+                  ++changes;
+                  break;
+                }
+                break;
+              }
+              case 'string.concat': {
+                if (node.arguments.every(a => AST.isPrimitive(a))) {
+                  // 'foo'.slice(0)
+
+                  rule('Calling `concat` on a string with primitive args should resolve the call');
+                  example('"hello, world".concat("!")', '"hello, world!"');
+                  before(parentNode);
+
+                  const ctxString = AST.getPrimitiveValue(node.callee.object);
+                  const args = node.arguments.map(e => AST.getPrimitiveValue(e));
+
+                  const result = ctxString.concat(...args);
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                  after(parentNode);
+                  ++changes;
+                  break;
+                }
+                break;
+              }
+
             }
+          }
+          else if (node.computed) {
+            // Nope.
+            break;
+          }
+          else {
+            // Can't predict value of object so can't do anything here
+
+            break;
           }
         }
 

@@ -160,8 +160,9 @@ function process(fdata, meta, name, queue, dupes) {
       targetBody[targetIndexToContainRef + 1]?.type,
       ')',
     );
-    if (!targetBody[targetIndexToContainRef + 1])
+    if (!targetBody[targetIndexToContainRef + 1]) {
       vlog('  (there is no after so ref must be inside next node, using Infinity as after pid)');
+    }
     if (afterPid < firstRefPid) {
       // The node after the next node has a lower pid than the first ref. This means the first ref must occur later.
       ++targetIndexToContainRef;

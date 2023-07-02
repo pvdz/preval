@@ -1248,6 +1248,80 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
+              case 'string.indexOf': {
+                const arglen = node.arguments.length;
+                if (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1])))) {
+                  // 'foo'.indexOf('o', 15)
+
+                  rule('Calling `indexOf` on a string with primitive args should resolve the call');
+                  example('"hello, world".indexOf("w", 4, $)', '$, 7');
+                  before(parentNode);
+
+                  const ctxString = AST.getPrimitiveValue(node.callee.object);
+                  const args = [];
+                  if (node.arguments[0]) args.push(AST.getPrimitiveValue(node.arguments[0]));
+                  if (node.arguments[1]) args.push(AST.getPrimitiveValue(node.arguments[1])); // I don't think arg 3+ are used?
+                  const rest = node.arguments.slice(2);
+                  const result = ctxString.indexOf(...args);
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                  if (rest.length > 0) {
+                    // Inject excessive args as statements to preserve reference errors
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rest.forEach(arg => {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        })
+                      },
+                    });
+                  }
+
+                  after(parentNode);
+                  ++changes;
+                  break;
+                }
+                break;
+              }
+              case 'string.lastIndexOf': {
+                const arglen = node.arguments.length;
+                if (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1])))) {
+                  // 'foo'.lastIndexOf('o', 15)
+
+                  rule('Calling `lastIndexOf` on a string with primitive args should resolve the call');
+                  example('"hello, world".lastIndexOf("w", 4, $)', '$, 7');
+                  before(parentNode);
+
+                  const ctxString = AST.getPrimitiveValue(node.callee.object);
+                  const args = [];
+                  if (node.arguments[0]) args.push(AST.getPrimitiveValue(node.arguments[0]));
+                  if (node.arguments[1]) args.push(AST.getPrimitiveValue(node.arguments[1])); // I don't think arg 3+ are used?
+                  const rest = node.arguments.slice(2);
+                  const result = ctxString.lastIndexOf(...args);
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.primitive(result);
+                  else parentNode[parentProp][parentIndex] = AST.primitive(result);
+
+                  if (rest.length > 0) {
+                    // Inject excessive args as statements to preserve reference errors
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rest.forEach(arg => {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        })
+                      },
+                    });
+                  }
+
+                  after(parentNode);
+                  ++changes;
+                  break;
+                }
+                break;
+              }
               case 'string.replace': {
                 if (
                   node.arguments.length > 1 &&

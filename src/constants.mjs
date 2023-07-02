@@ -66,6 +66,8 @@ export const BUILTIN_REGEXP_METHODS_SYMBOLS = Object.values(BUILTIN_REGEXP_METHO
 export const BUILTIN_STRING_PROTOTYPE = '$StringPrototype';
 export const BUILTIN_STRING_METHOD_LOOKUP = {
   concat: '$String_concat',
+  indexOf: '$String_indexOf',
+  lastIndexOf: '$String_lastIndexOf',
   replace: '$String_replace',
   slice: '$String_slice',
   split: '$String_split',

@@ -1,0 +1,56 @@
+# Preval test case
+
+# neg_tostring.md
+
+> Dot call > Neg tostring
+>
+> Inlining $dotCall cases when we know what they are actually doing
+
+## Input
+
+`````js filename=intro
+const num = -500;
+const tmpCallVal = num.toString;
+const x = $dotCall(tmpCallVal, num);
+$(x);
+`````
+
+## Pre Normal
+
+`````js filename=intro
+const num = -500;
+const tmpCallVal = num.toString;
+const x = $dotCall(tmpCallVal, num);
+$(x);
+`````
+
+## Normalized
+
+`````js filename=intro
+const num = -500;
+const tmpCallVal = num.toString;
+const x = $dotCall(tmpCallVal, num);
+$(x);
+`````
+
+## Output
+
+`````js filename=intro
+$(`-500`);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: '-500'
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

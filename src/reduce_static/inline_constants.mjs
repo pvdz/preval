@@ -398,7 +398,8 @@ function nodeToDrop(init) {
   if (init.type === 'Identifier') {
     // Can't just drop idents because it may hide implicit global access, or out of scope access, or TDZ errors.
     // This check can be improved but I think another rule will clean up leftovers anyways.
-    return ['undefined', 'NaN', 'Infinity'].includes(init.name);
+    // A global `arguments` will slip through here. Acceptable risk.
+    return ['undefined', 'NaN', 'Infinity', 'arguments'].includes(init.name);
   }
   return (
     init.type === 'FunctionExpression' ||

@@ -75,6 +75,13 @@ import { functionSplitting } from './function_splitting.mjs';
 import { noopTry } from './noop_try.mjs';
 import { implicitThis } from './implicit_this.mjs';
 import { expandoSplitting } from './expando_splitting.mjs';
+import { selfAssignClosure } from './self_assign_closure.mjs';
+import { selfAssignNoop } from './self_assign_noop.mjs';
+import { unrollLoopWithTrue } from './unroll_loop_with_true.mjs';
+import {letAliasing} from "./let_aliase.mjs"
+import {aliasedGlobals} from "./aliasing_globals.mjs"
+import {dotCall} from "./dotcall.mjs"
+import {VERBOSE_TRACING} from "../constants.mjs"
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -175,6 +182,9 @@ function _phase2(program, fdata, resolve, req, options = {}) {
   const bounds = resolveBoundValueSet(fdata);
   if (bounds) return bounds;
 
+  const am = arr_mutation(fdata); // Do early because it can be expensive with many writes
+  if (am) return am;
+
   const throwers = findThrowers(fdata);
   if (throwers) return throwers;
 
@@ -183,6 +193,12 @@ function _phase2(program, fdata, resolve, req, options = {}) {
 
   const consts = constAssigns(fdata);
   if (consts) return consts;
+
+  const ag = aliasedGlobals(fdata);
+  if (ag) return ag;
+
+  const dc = dotCall(fdata);
+  if (dc) return dc;
 
   const moved = letHoisting(fdata);
   if (moved) return moved;
@@ -370,9 +386,6 @@ function _phase2(program, fdata, resolve, req, options = {}) {
   const sao = staticArgOpOutlining(fdata);
   if (sao) return sao;
 
-  const am = arr_mutation(fdata);
-  if (am) return am;
-
   const ful = functionLocks(fdata);
   if (ful) return ful;
 
@@ -393,6 +406,20 @@ function _phase2(program, fdata, resolve, req, options = {}) {
 
   const ep = expandoSplitting(fdata);
   if (ep) return ep;
+
+  const sac = selfAssignClosure(fdata);
+  if (sac) return sac;
+
+  const san = selfAssignNoop(fdata);
+  if (san) return san;
+
+  const la = letAliasing(fdata);
+  if (la) return la;
+
+  // This one should probably be lowest priority as it might blow up code...
+  const ulwt = unrollLoopWithTrue(fdata, options.unrollTrueLimit);
+  if (ulwt) return ulwt;
+
 
   // This one is very invasive and expands the code. Needs more work.
   // const duped = phasePrimitiveArgInlining(program, fdata, resolve, req, options.cloneLimit);

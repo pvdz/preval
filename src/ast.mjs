@@ -1,5 +1,6 @@
 import walk from '../lib/walk.mjs';
-import {ASSERT, source, tmat, vlog} from './utils.mjs';
+import {walkStmt, WALK_NO_FURTHER, HARD_STOP} from '../lib/walk_stmt_norm.mjs';
+import {ASSERT, source, tmat, vlog, log} from './utils.mjs';
 import { $p } from './$p.mjs';
 
 export function cloneSimple(node) {
@@ -2075,26 +2076,25 @@ function simpleNodeMightSpy(node, fdata) {
   return !['undefined', 'null', 'boolean', 'number', 'string'].includes(meta.typing.mustBeType);
 }
 
-export function hasObservableSideEffectsBetween(ast, fromNode, toNode, mayMiss = false, dbg) {
+export function hasObservableSideEffectsBetweenRefs(fromRef, toRef, mayMiss = false, dbg) {
+  return hasObservableSideEffectsBetween(fromRef.blockBody, fromRef.blockBody[fromRef.blockIndex], toRef.blockBody[toRef.blockIndex], mayMiss);
+}
+function hasObservableSideEffectsBetween(startBody, fromNode, toNode, mayMiss = false, dbg) {
   let fail = false;
   let found = false;
   let pass = false;
-  //const DEBUG_STR = 'X = Y, V$3 = Y';
-  const DEBUG_STR = '';
 
-  //const X = Y;
-  //const l$5 = o;
-  //const g$3 = Q;
-  //const V$3 = Y;
-
-  walk(confirm, ast, 'ast');
+  walkStmt(confirm, startBody);
 
   if (!mayMiss && !found) {
-    //source(ast, true);
+    log('start block:');
+    source(startBody, true);
     //console.log(fromNode);
     //console.log(toNode);
-    //source(fromNode, true);
-    //source(toNode, true);
+    log('fromNode:');
+    source(fromNode, true);
+    log('toNode:');
+    source(toNode, true);
   }
   ASSERT(mayMiss || found, 'the node should exist in the given ast');
   ASSERT(mayMiss || fail || pass, 'either the search fails or the target node is found');
@@ -2103,10 +2103,11 @@ export function hasObservableSideEffectsBetween(ast, fromNode, toNode, mayMiss =
 
   function confirm(node, beforeWalk, nodeType, path) {
     if (!beforeWalk) return found;
+    vlog('~>', nodeType);
     if (node !== toNode) return found;
-    found = true;
-    if (fail) return;
-    if (pass) return;
+    found = WALK_NO_FURTHER;
+    if (fail) return HARD_STOP;
+    if (pass) return HARD_STOP;
 
     let currentPathBodyIndex = path.blockBodies.length - 1;
     let currentPathIndexIndex = path.blockIndexes.length - 1;
@@ -2120,34 +2121,26 @@ export function hasObservableSideEffectsBetween(ast, fromNode, toNode, mayMiss =
     const blockBody = path.blockBodies[currentPathBodyIndex];
     const blockIndex = path.blockIndexes[currentPathIndexIndex];
 
-    if (dbg === DEBUG_STR) console.log(' - Found read node... currentPathBodyIndex=', currentPathBodyIndex, ', currentPathIndexIndex=', currentPathIndexIndex, ', starting at index', blockIndex, 'of that body');
-    if (dbg === DEBUG_STR) console.log('from ->', tmat(blockBody[blockIndex], true));
-    if (dbg === DEBUG_STR) console.log('to   ->', tmat(fromNode, true));
-
     vlog(' - Verifying that statements between', fromNode.$p.pid, 'and', toNode.$p.pid, 'have no observable side effects (assigning values etc)');
 
     let currentBody = blockBody;
     let currentIndex = blockIndex; // This starts at the write
-    if (dbg === DEBUG_STR) console.log('   - The read starts at', currentIndex, 'of body path index', currentPathBodyIndex);
     while (!fail && !pass) {
-      if (dbg === DEBUG_STR) console.log('   - Going backwards in statements starting before', currentIndex, 'of body', currentPathBodyIndex);
       while (currentIndex > 0) {
         // In the current block, keep walking backwards until either the target or start is found
         // If start is found without seeing the targte, we'll move to the parent block and repeat.
         --currentIndex;
-        if (dbg === DEBUG_STR) console.log('   - next check:', currentIndex, '/', currentPathBodyIndex, ':', currentBody[currentIndex].type);
-        if (dbg === DEBUG_STR) console.log('->', tmat(currentBody[currentIndex], true));
         if (currentBody[currentIndex] === fromNode) {
           vlog('   - found target. end of search. there are no observable side effects between the nodes.');
           pass = true;
-          return true;
+          return HARD_STOP;
         }
         ASSERT(currentBody[currentIndex], 'every element of a body should be present, right?', currentIndex);
         if (!nodeHasNoObservableSideEffectIncStatements(currentBody[currentIndex])) {
           vlog('     - observable. oh well.', currentBody[currentIndex]);
           //source(currentBody[currentIndex], true);
           fail = true;
-          return true;
+          return HARD_STOP;
         }
       }
 
@@ -2155,10 +2148,11 @@ export function hasObservableSideEffectsBetween(ast, fromNode, toNode, mayMiss =
         if (mayMiss) {
           vlog('- bail: Not found?')
           fail = true;
-          return;
+          return HARD_STOP;
         }
         // We're at the start of Program without finding target. I think something error happened at this point.
-        source(ast, true);
+        source(startBody, true);
+        source(node, true);
         source(fromNode, true);
         source(toNode, true);
         console.log(fromNode);
@@ -2170,14 +2164,12 @@ export function hasObservableSideEffectsBetween(ast, fromNode, toNode, mayMiss =
       if (currentIndex === 0) {
         const nextBody = path.blockBodies[--currentPathBodyIndex];
         const nextIndex = path.blockIndexes[--currentPathIndexIndex];
-        if (dbg === DEBUG_STR) console.log('   - went up a level. body:', currentPathBodyIndex, ', index:', currentPathIndexIndex, ', body[i=]:', nextIndex, '/', currentBody.length, '::', nextBody[nextIndex]?.type);
-        if (dbg === DEBUG_STR) console.log('->', tmat(currentBody[currentIndex], true));
         if (nextBody[nextIndex]?.type === 'TryStatement') {
           // confirm this was the body and not the handler/finalizer
           if (nextBody[nextIndex].handler?.body.body === currentBody || nextBody[nextIndex].finalizer?.body === currentBody) {
             vlog('   - was from catch/finally, bailing');
             fail = true;
-            return true;
+            return HARD_STOP;
           }
         }
         currentBody = nextBody;
@@ -2185,6 +2177,6 @@ export function hasObservableSideEffectsBetween(ast, fromNode, toNode, mayMiss =
       }
     }
 
-    return true;
+    return HARD_STOP;
   }
 }

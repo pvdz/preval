@@ -463,6 +463,10 @@ export function literal(value, yesnull = false) {
 export function isRegexLiteral(node) {
   return node.type === 'Literal' && Boolean(node.regex);
 }
+export function getRegexFromLiteralNode(node) {
+  ASSERT(isRegexLiteral(node), 'given node should be regex literal', node);
+  return new RegExp(node.regex.pattern, node.regex.flags)
+}
 export function regex(pattern, flags, raw) {
   ASSERT(typeof raw === 'string', 'the raw value should be a string');
   return {

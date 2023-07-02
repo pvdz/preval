@@ -68,6 +68,7 @@ export const BUILTIN_STRING_METHOD_LOOKUP = {
   concat: '$String_concat',
   replace: '$String_replace',
   slice: '$String_slice',
+  split: '$String_split',
   toString: '$String_toString',
 };
 export const BUILTIN_STRING_METHOD_LOOKUP_REV = Object.keys(BUILTIN_STRING_METHOD_LOOKUP).reduce((obj, key) => { obj[BUILTIN_STRING_METHOD_LOOKUP[key]] = key; return obj; }, {})

@@ -28,7 +28,7 @@ import {
   BUILTIN_REGEXP_METHOD_LOOKUP,
 } from '../constants.mjs';
 import * as AST from '../ast.mjs';
-import {isRegexLiteral, nodeHasNoObservableSideEffectIncStatements} from "../ast.mjs"
+import {getRegexFromLiteralNode, isRegexLiteral, nodeHasNoObservableSideEffectIncStatements} from "../ast.mjs"
 
 export function typeTrackedTricks(fdata) {
   group('\n\n\nFinding type tracking based tricks\n');
@@ -1300,7 +1300,7 @@ function _typeTrackedTricks(fdata) {
                     before(parentNode);
 
                     const ctxString = AST.getPrimitiveValue(node.callee.object);
-                    const regex = new RegExp(metaArg1.constValueRef.node.regex.pattern, metaArg1.constValueRef.node.regex.flags);
+                    const regex = getRegexFromLiteralNode(metaArg1.constValueRef.node);
                     const rplString = AST.getPrimitiveValue(node.arguments[1]);
                     const rest = node.arguments.slice(2);
                     const result = ctxString.replace(regex, rplString);
@@ -1362,6 +1362,78 @@ function _typeTrackedTricks(fdata) {
                   after(parentNode);
                   ++changes;
                   break;
+                }
+                break;
+              }
+              case 'string.split': {
+                const arglen = node.arguments.length;
+                if (arglen === 0 || AST.isPrimitive(node.arguments[0])) {
+                  // 'foo'.split()
+                  // 'foo'.split('o')
+
+                  rule('Calling `split` on a string with none or a primitive arg should resolve the call');
+                  example('"hello, world".split(",", $)', '$, ["hello", " world"]');
+                  before(parentNode);
+
+                  const ctxString = AST.getPrimitiveValue(node.callee.object);
+                  const args = [];
+                  if (arglen > 0) {
+                    args.push(AST.getPrimitiveValue(node.arguments[0]));
+                  }
+                  const rest = node.arguments.slice(1);
+                  const result = ctxString.split(...args);
+
+                  if (parentIndex < 0) parentNode[parentProp] = AST.arrayExpression(result.map(str => AST.primitive(str)));
+                  else parentNode[parentProp][parentIndex] = AST.arrayExpression(result.map(str => AST.primitive(str)));
+
+                  if (rest.length > 0) {
+                    // Inject excessive args as statements to preserve reference errors
+                    queue.push({
+                      index: blockIndex,
+                      func: () => {
+                        rest.forEach(arg => {
+                          blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                        })
+                      },
+                    });
+                  }
+
+                  after(parentNode);
+                  ++changes;
+                  break;
+                } else if (arglen > 0 && node.arguments[0].type === 'Identifier') {
+                  const metaArg1 = fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
+                  if (metaArg1 && metaArg1.typing.mustBeType === 'regex' && metaArg1.isConstant && AST.isRegexLiteral(metaArg1.constValueRef.node)) {
+                    // 'foo'.split(/o/)
+
+                    rule('Calling `split` on a string with a regex should resolve the call');
+                    example('"hello, world".split(/o/g, $)', '$, ["hell", ", w", "rld"]');
+                    before(parentNode);
+
+                    const ctxString = AST.getPrimitiveValue(node.callee.object);
+                    const regex = getRegexFromLiteralNode(metaArg1.constValueRef.node);
+                    const rest = node.arguments.slice(1);
+                    const result = ctxString.split(regex);
+
+                    if (parentIndex < 0) parentNode[parentProp] = AST.arrayExpression(result.map(str => AST.primitive(str)));
+                    else parentNode[parentProp][parentIndex] = AST.arrayExpression(result.map(str => AST.primitive(str)));
+
+                    if (rest.length > 0) {
+                      // Inject excessive args as statements to preserve reference errors
+                      queue.push({
+                        index: blockIndex,
+                        func: () => {
+                          rest.forEach(arg => {
+                            blockBody.splice(blockIndex, 0, AST.expressionStatement(arg));
+                          })
+                        },
+                      });
+                    }
+
+                    after(parentNode);
+                    ++changes;
+                    break;
+                  }
                 }
                 break;
               }

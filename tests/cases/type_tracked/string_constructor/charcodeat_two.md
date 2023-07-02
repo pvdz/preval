@@ -1,42 +1,37 @@
 # Preval test case
 
-# func_constrctor.md
+# charcodeat_two.md
 
-> Property lookup > Func constrctor
+> Type tracked > String constructor > Charcodeat two
 >
-> Getting the constructor from a known function, whatever it is, should yield `Function`
+> Should try to inline the charCodeAt call 
 
 #TODO
 
 ## Input
 
 `````js filename=intro
-const x = [].flat;
-const f = x.constructor;
-$(f);
+$(String.fromCharCode(80, 70));
 `````
 
 ## Pre Normal
 
 `````js filename=intro
-const x = [].flat;
-const f = x.constructor;
-$(f);
+$(String.fromCharCode(80, 70));
 `````
 
 ## Normalized
 
 `````js filename=intro
-const tmpCompObj = [];
-const x = tmpCompObj.flat;
-const f = x.constructor;
-$(f);
+const tmpCallCallee = $;
+const tmpCalleeParam = String.fromCharCode(80, 70);
+tmpCallCallee(tmpCalleeParam);
 `````
 
 ## Output
 
 `````js filename=intro
-$(Function);
+$(`PF`);
 `````
 
 ## Globals
@@ -46,7 +41,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: '<function>'
+ - 1: 'PF'
  - eval returned: undefined
 
 Pre normalization calls: Same

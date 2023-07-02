@@ -1511,9 +1511,34 @@ function _typeTrackedTricks(fdata) {
                 }
                 break;
               }
+              default: {
+                if (node.callee.object.type === 'Identifier') {
+                  switch (node.callee.object.name + '.' + node.callee.property.name) {
+                    case 'String.fromCharCode': {
+                      const arglen = node.arguments.length;
+                      if (node.arguments.every(arg => AST.isPrimitive(arg))) {
+                        // String.fromCharCode(15, 33, 32)
+
+                        rule('Calling `String.fromCharCode` on primitive args should resolve the call');
+                        example('String.fromCharCode(104,101,108,108,111)', '"hello"');
+                        before(parentNode);
+
+                        if (parentIndex < 0) parentNode[parentProp] = AST.primitive(String.fromCharCode(...node.arguments.map(n => AST.getPrimitiveValue(n))));
+                        else parentNode[parentProp][parentIndex] = AST.primitive(String.fromCharCode(...node.arguments.map(n => AST.getPrimitiveValue(n))));
+
+                        after(parentNode);
+                        ++changes;
+                        break;
+                      }
+                      break;
+                    }
+                  }
+                }
+              }
             }
+
           }
-          else if (node.computed) {
+          else if (node.callee.computed) {
             // Nope.
             break;
           }

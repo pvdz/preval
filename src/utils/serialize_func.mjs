@@ -147,8 +147,8 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
   return ast.body[0];
 }
 
-export function createNormalizedFunctionFromString(funcString, clonedName = 'noname', fdata) {
-  log('Size of function string:', funcString.length);
+export function createNormalizedFunctionFromString(funcString, bodyString, clonedName = 'noname', fdata) {
+  log('createNormalizedFunctionFromString: Size of function string:', funcString.length);
 
   const preFdata = parseCode(funcString, '');
   prepareNormalization(preFdata, /*resolve*/ undefined, /*req*/ undefined, true); // I want a phase1 because I want the scope tracking set up for normalizing bindings

@@ -49,9 +49,9 @@ $(tmpCalleeParam);
 
 ## Globals
 
-BAD@! Found 5 implicit global bindings:
+BAD@! Found 4 implicit global bindings:
 
-Function, a, b, c, d
+a, b, c, d
 
 ## Result
 

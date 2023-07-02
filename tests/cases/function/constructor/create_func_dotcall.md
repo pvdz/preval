@@ -39,17 +39,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const obj = { Function: Function };
-const f = obj.Function(a, b, c, d);
+const f = Function(a, b, c, d);
 const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
 ## Globals
 
-BAD@! Found 5 implicit global bindings:
+BAD@! Found 4 implicit global bindings:
 
-Function, a, b, c, d
+a, b, c, d
 
 ## Result
 

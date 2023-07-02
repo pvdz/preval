@@ -1867,15 +1867,22 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                     example('const x = Function("return 10;"', 'const x = function(){ return 10; };');
                     before(node, body[i]);
 
-                    const finalNode = createNormalizedFunctionFromString(
+                    const argString =
+                      args
+                      .slice(0, -1)
+                      .map((anode) => String(AST.getPrimitiveValue(anode)))
+                      .join(',');
+                    const bodyString = (args.length ? AST.getPrimitiveValue(args[args.length - 1]) : '');
+                    const funcString =
                       'function anon(' +
-                        args
-                          .slice(0, -1)
-                          .map((anode) => String(AST.getPrimitiveValue(anode)))
-                          .join(',') +
-                        ') { ' +
-                        (args.length ? AST.getPrimitiveValue(args[args.length - 1]) : '') +
-                        '}',
+                        argString +
+                      ') { ' +
+                        // Hack for returning this. It wont work in nodejs and in browsers it will return window. So return window.
+                        (bodyString === 'return this' || bodyString === 'return this;' ? 'return window' : bodyString) +
+                      '}';
+                    const finalNode = createNormalizedFunctionFromString(
+                      funcString,
+                      bodyString,
                       undefined,
                       fdata,
                     );

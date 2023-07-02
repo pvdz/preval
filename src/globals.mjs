@@ -34,6 +34,7 @@ const globalNames = new Map([
   ['RegExp', 'function'],
   ['Set', 'function'],
   ['String', 'function'],
+  ['Function', 'function'],
 
   // nodejs
   ['module', 'object'],

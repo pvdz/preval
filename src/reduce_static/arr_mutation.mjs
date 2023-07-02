@@ -68,7 +68,6 @@ function processAttempt(fdata, queue) {
   let updated = 0;
   let addedSequence = false; // Have to restart if we added a sequence. Otherwise we won't.
 
-
   const ast = fdata.tenkoOutput.ast;
   let nodes = 0;
   let counter = 0;
@@ -144,10 +143,6 @@ function processAttempt(fdata, queue) {
     // Confirm that both nodes are in the same loop, catch, and finally "scope" because
     // otherwise we can't guarantee that the read even happens sequentially
 
-    //if (nextRead.blockChain !== write.blockChain) {
-    //  // Kinda have to be because `const arr = []; if (false) arr[0] = 1` should not inline the write unconditionally
-    //  return vlog('- read/write not in same block', nextRead.blockChain, write.blockChain);
-    //}
     if (nextRead.innerLoop !== write.innerLoop) {
       // Refs in the header of a loop are considered to be inside that loop so must check this separately
       return vlog('- read/write not in same loop', nextRead.innerLoop, write.innerLoop);

@@ -38,6 +38,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+unknown1;
+unknown2;
+unknown3;
 $(unknown1, unknown2, unknown3);
 `````
 

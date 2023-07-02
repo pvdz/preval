@@ -1,7 +1,7 @@
 // Built-in symbol names and their `typeof` result
 
 import {
-  BUILTIN_ARRAY_METHODS_SYMBOLS,
+  BUILTIN_ARRAY_METHODS_SYMBOLS, BUILTIN_BOOLEAN_METHODS_SYMBOLS,
   BUILTIN_FUNCTION_METHODS_SYMBOLS,
   BUILTIN_NUMBER_METHODS_SYMBOLS,
   BUILTIN_REGEXP_METHODS_SYMBOLS, BUILTIN_STRING_METHODS_SYMBOLS
@@ -58,12 +58,16 @@ const globalNames = new Map([
 
   // Preval special aliases for builtins
   ['$ArrayPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
+  ['$BooleanPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$FunctionPrototype', { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$NumberPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$ObjectPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$RegExpPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ['$StringPrototype', { mustBeType: 'object', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }],
   ...BUILTIN_ARRAY_METHODS_SYMBOLS.map(name => {
+    return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
+  }),
+  ...BUILTIN_BOOLEAN_METHODS_SYMBOLS.map(name => {
     return [name, { mustBeType: 'function', mustBeFalsy: false, mustBeTruthy: true, mustBePrimitive: false }];
   }),
   ...BUILTIN_FUNCTION_METHODS_SYMBOLS.map(name => {

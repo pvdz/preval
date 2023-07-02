@@ -3148,7 +3148,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 after(body[i]);
                 return true;
               }
-            } else if (typeof node.object.value === 'boolean') {
+            }
+            else if (typeof node.object.value === 'boolean') {
               if (node.property.name === 'constructor') {
                 // Found this in jsf*ck code... So why not.
                 rule('`bool.constructor should resolve to `Boolean`');
@@ -3156,6 +3157,18 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 before(node, body[i]);
 
                 const finalNode = AST.identifier('Boolean');
+                const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
+                body.splice(i, 1, finalParent);
+
+                after(body[i]);
+                return true;
+              }
+              else if (node.property.name === 'toString') {
+                rule('`bool.toString should resolve to `$Boolean_toString`');
+                example('true.toString("bar")', '$Boolean_toString("bar")');
+                before(node, body[i]);
+
+                const finalNode = AST.identifier('$Boolean_toString');
                 const finalParent = wrapExpressionAs(wrapKind, varInitAssignKind, varInitAssignId, wrapLhs, varOrAssignKind, finalNode);
                 body.splice(i, 1, finalParent);
 

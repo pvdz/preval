@@ -4,9 +4,11 @@ import {
   BLUE,
   RESET,
   BUILTIN_ARRAY_PROTOTYPE,
+  BUILTIN_BOOLEAN_PROTOTYPE,
   BUILTIN_FUNCTION_PROTOTYPE,
   BUILTIN_NUMBER_PROTOTYPE,
   BUILTIN_OBJECT_PROTOTYPE,
+  BUILTIN_REGEXP_PROTOTYPE,
   BUILTIN_STRING_PROTOTYPE,
 } from './constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, source } from './utils.mjs';
@@ -1680,6 +1682,15 @@ function _inferNodeTyping(fdata, valueNode) {
               mustBeTruthy: true,
 
               builtinTag: 'String#' + valueNode.property.name,
+            });
+          }
+
+          case BUILTIN_BOOLEAN_PROTOTYPE + '.toString': {
+            return createTypingObject({
+              mustBeType: 'function',
+              mustBeTruthy: true,
+
+              builtinTag: 'Boolean#' + valueNode.property.name,
             });
           }
         }

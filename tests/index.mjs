@@ -26,6 +26,7 @@ import {
   BUILTIN_FUNCTION_PROTOTYPE,
   BUILTIN_NUMBER_PROTOTYPE,
   BUILTIN_OBJECT_PROTOTYPE,
+  BUILTIN_REGEXP_PROTOTYPE,
   BUILTIN_STRING_PROTOTYPE,
   BUILTIN_STRING_METHOD_LOOKUP,
   BUILTIN_ARRAY_METHOD_LOOKUP,
@@ -42,7 +43,7 @@ import {
   BUILTIN_REGEXP_METHODS_SUPPORTED,
   BUILTIN_NUMBER_METHODS_SUPPORTED,
   BUILTIN_REGEXP_METHOD_LOOKUP,
-  BUILTIN_NUMBER_METHOD_LOOKUP,
+  BUILTIN_NUMBER_METHOD_LOOKUP, BUILTIN_BOOLEAN_PROTOTYPE, BUILTIN_BOOLEAN_METHODS_SUPPORTED, BUILTIN_BOOLEAN_METHOD_LOOKUP,
 } from '../src/constants.mjs';
 import { coerce, log, vlog } from '../src/utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
@@ -212,6 +213,7 @@ function runTestCase(
   try {
     if (CONFIG.verbose === false && CONFIG.targetFile) console.log('\nNow running Preval without output...\n');
     else if (withOutput) console.log('\n--- Actual call now ---\n');
+
     output = preval({
       entryPointFile: 'intro',
       stdio: CONFIG.verbose === true || (CONFIG.verbose === undefined && withOutput) ? undefined : () => {}, // handler receives all console calls, first arg is handler string. cant prevent the overhead but does suppress the output
@@ -366,9 +368,12 @@ function runTestCase(
       [BUILTIN_NUMBER_PROTOTYPE]: Number.prototype,
       ...BUILTIN_NUMBER_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_NUMBER_METHOD_LOOKUP[key]] = Number.prototype[key], obj), {}),
       [BUILTIN_OBJECT_PROTOTYPE]: Object.prototype,
+      [BUILTIN_REGEXP_PROTOTYPE]: RegExp.prototype,
       ...BUILTIN_REGEXP_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_REGEXP_METHOD_LOOKUP[key]] = RegExp.prototype[key], obj), {}),
       [BUILTIN_STRING_PROTOTYPE]: String.prototype,
       ...BUILTIN_STRING_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_STRING_METHOD_LOOKUP[key]] = String.prototype[key], obj), {}),
+      [BUILTIN_BOOLEAN_PROTOTYPE]: Boolean.prototype,
+      ...BUILTIN_BOOLEAN_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_BOOLEAN_METHOD_LOOKUP[key]] = String.prototype[key], obj), {}),
     };
 
     const max = CONFIG.unrollTrue ?? mdOptions?.unrollTrue ?? 10;

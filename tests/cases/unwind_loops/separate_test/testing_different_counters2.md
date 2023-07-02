@@ -50,7 +50,18 @@ while (test) {
 ## Output
 
 `````js filename=intro
-while (true) {
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`yolo`);
 }
 `````

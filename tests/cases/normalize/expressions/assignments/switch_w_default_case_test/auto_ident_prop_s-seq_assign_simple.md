@@ -89,10 +89,9 @@ $(a, b);
 
 `````js filename=intro
 $(1);
-const b = { c: 1 };
-b.c = 2;
 $(`fail1`);
 $(`fail2`);
+const b = { c: 2 };
 $(2, b);
 `````
 

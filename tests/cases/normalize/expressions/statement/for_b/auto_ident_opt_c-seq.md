@@ -59,19 +59,35 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpChainRootProp = $(b);
-  const tmpIfTest$1 = tmpChainRootProp == null;
-  if (tmpIfTest$1) {
+let $tmpLoopUnrollCheck = true;
+const tmpChainRootProp = $(b);
+const tmpIfTest$1 = tmpChainRootProp == null;
+if (tmpIfTest$1) {
+  $(1);
+} else {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  if (tmpChainElementObject) {
     $(1);
   } else {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    if (tmpChainElementObject) {
+    $tmpLoopUnrollCheck = false;
+  }
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpChainRootProp$1 = $(b);
+    const tmpIfTest$4 = tmpChainRootProp$1 == null;
+    if (tmpIfTest$4) {
       $(1);
     } else {
-      break;
+      const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+      if (tmpChainElementObject$1) {
+        $(1);
+      } else {
+        break;
+      }
     }
   }
+} else {
 }
 $(a);
 `````

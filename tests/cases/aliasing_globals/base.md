@@ -2,7 +2,7 @@
 
 # base.md
 
-> Dealiasing > Base
+> Aliasing globals > Base
 >
 > Common artifact for normalization is to put all idents in a temp constant to make sure they don't mutate.
 

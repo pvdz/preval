@@ -60,16 +60,10 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
 const tmpBinBothRhs = $(100);
 const tmpCalleeParam = 3 + tmpBinBothRhs;
 $(tmpCalleeParam);
+const b = { x: 3 };
 $(3, b, 3);
 `````
 

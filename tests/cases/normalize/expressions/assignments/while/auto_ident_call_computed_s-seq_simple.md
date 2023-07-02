@@ -48,11 +48,24 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 const b = { $: $ };
 let a = b.$(1);
-while (a) {
+if (a) {
   $(100);
-  a = b.$(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    a = b.$(1);
+    if (a) {
+      $(100);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

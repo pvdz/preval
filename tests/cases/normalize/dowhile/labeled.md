@@ -57,19 +57,24 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    tmpIfTest = $(2);
+$(1);
+let $tmpLoopUnrollCheck = true;
+const tmpIfTest$1 = $(2);
+if (tmpIfTest$1) {
+  $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    const tmpIfTest$2 = $(2);
+    if (tmpIfTest$2) {
+      $(1);
+    } else {
+      break;
+    }
   }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(1);
-  } else {
-    break;
-  }
+} else {
 }
 `````
 

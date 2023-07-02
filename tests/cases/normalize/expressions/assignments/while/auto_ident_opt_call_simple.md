@@ -50,21 +50,37 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  a = undefined;
-  const tmpIfTest$1 = $ == null;
-  if (tmpIfTest$1) {
+let a = undefined;
+let $tmpLoopUnrollCheck = true;
+const tmpIfTest$1 = $ == null;
+if (tmpIfTest$1) {
+  $(100);
+} else {
+  const tmpChainElementCall = $(1);
+  a = tmpChainElementCall;
+  if (tmpChainElementCall) {
     $(100);
   } else {
-    const tmpChainElementCall = $(1);
-    a = tmpChainElementCall;
-    if (tmpChainElementCall) {
+    $tmpLoopUnrollCheck = false;
+  }
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    a = undefined;
+    const tmpIfTest$2 = $ == null;
+    if (tmpIfTest$2) {
       $(100);
     } else {
-      break;
+      const tmpChainElementCall$1 = $(1);
+      a = tmpChainElementCall$1;
+      if (tmpChainElementCall$1) {
+        $(100);
+      } else {
+        break;
+      }
     }
   }
+} else {
 }
 $(a);
 `````

@@ -61,14 +61,47 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-while (true) {
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+const tmpObjLitVal$2 = $(3);
+const tmpObjLitVal$4 = $(4);
+let x = tmpObjLitVal$2;
+let y = tmpObjLitVal$4;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
+  const tmpObjLitVal$3 = $(3);
+  const tmpObjLitVal$5 = $(4);
+  x = tmpObjLitVal$3;
+  y = tmpObjLitVal$5;
 }
 const a = { a: 999, b: 1000 };
 $(a, x, y);

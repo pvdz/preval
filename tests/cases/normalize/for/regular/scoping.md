@@ -40,7 +40,18 @@ while (true) {
 ## Output
 
 `````js filename=intro
-while (true) {
+$(2);
+$(2);
+$(2);
+$(2);
+$(2);
+$(2);
+$(2);
+$(2);
+$(2);
+$(2);
+$(2);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(2);
 }
 `````

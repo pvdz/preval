@@ -59,9 +59,9 @@ $(a);
 const tmpObjLitVal$1 = { e: $ };
 const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-const tmpClusterSSA_tmpClusterSSA_a = a * tmpChainElementCall;
-$(tmpClusterSSA_tmpClusterSSA_a);
-$(tmpClusterSSA_tmpClusterSSA_a);
+const tmpClusterSSA_a$1 = a * tmpChainElementCall;
+$(tmpClusterSSA_a$1);
+$(tmpClusterSSA_a$1);
 `````
 
 ## Globals

@@ -56,14 +56,46 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-while (true) {
+$(10);
+$(20);
+arrPatternSplat[0];
+$(1);
+$(10);
+$(20);
+$(1);
+$(10);
+$(20);
+$(1);
+$(10);
+$(20);
+$(1);
+$(10);
+$(20);
+$(1);
+$(10);
+$(20);
+$(1);
+$(10);
+$(20);
+$(1);
+$(10);
+$(20);
+$(1);
+$(10);
+$(20);
+$(1);
+$(10);
+$(20);
+$(1);
+$(10);
+$(20);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(10);
   $(20);
-  a = 1;
   $(1);
 }
-$(a);
+$(1);
 `````
 
 ## Globals

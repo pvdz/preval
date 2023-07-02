@@ -32,8 +32,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpArrSpread = true.toString();
-const tmpCalleeParam = [...tmpArrSpread];
+const tmpCalleeParam = [`t`, `r`, `u`, `e`];
 $(tmpCalleeParam);
 `````
 

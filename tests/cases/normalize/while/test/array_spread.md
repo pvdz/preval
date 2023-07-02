@@ -46,10 +46,54 @@ $(`after`);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpCalleeParam = [1, 2, 3];
-  const tmpArrSpread = $(tmpCalleeParam);
-  [...tmpArrSpread];
+const tmpCalleeParam = [1, 2, 3];
+const tmpArrSpread = $(tmpCalleeParam);
+[...tmpArrSpread];
+$(`loop`);
+const tmpCalleeParam$1 = [1, 2, 3];
+const tmpArrSpread$1 = $(tmpCalleeParam$1);
+[...tmpArrSpread$1];
+$(`loop`);
+const tmpCalleeParam$2 = [1, 2, 3];
+const tmpArrSpread$2 = $(tmpCalleeParam$2);
+[...tmpArrSpread$2];
+$(`loop`);
+const tmpCalleeParam$3 = [1, 2, 3];
+const tmpArrSpread$3 = $(tmpCalleeParam$3);
+[...tmpArrSpread$3];
+$(`loop`);
+const tmpCalleeParam$4 = [1, 2, 3];
+const tmpArrSpread$4 = $(tmpCalleeParam$4);
+[...tmpArrSpread$4];
+$(`loop`);
+const tmpCalleeParam$5 = [1, 2, 3];
+const tmpArrSpread$5 = $(tmpCalleeParam$5);
+[...tmpArrSpread$5];
+$(`loop`);
+const tmpCalleeParam$6 = [1, 2, 3];
+const tmpArrSpread$6 = $(tmpCalleeParam$6);
+[...tmpArrSpread$6];
+$(`loop`);
+const tmpCalleeParam$7 = [1, 2, 3];
+const tmpArrSpread$7 = $(tmpCalleeParam$7);
+[...tmpArrSpread$7];
+$(`loop`);
+const tmpCalleeParam$8 = [1, 2, 3];
+const tmpArrSpread$8 = $(tmpCalleeParam$8);
+[...tmpArrSpread$8];
+$(`loop`);
+const tmpCalleeParam$9 = [1, 2, 3];
+const tmpArrSpread$9 = $(tmpCalleeParam$9);
+[...tmpArrSpread$9];
+$(`loop`);
+const tmpCalleeParam$10 = [1, 2, 3];
+const tmpArrSpread$10 = $(tmpCalleeParam$10);
+[...tmpArrSpread$10];
+$(`loop`);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCalleeParam$11 = [1, 2, 3];
+  const tmpArrSpread$11 = $(tmpCalleeParam$11);
+  [...tmpArrSpread$11];
   $(`loop`);
 }
 $(`after`);

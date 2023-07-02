@@ -56,7 +56,29 @@ const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 const tmpCompProp = $(`c`);
 const xyz = tmpCompObj[tmpCompProp];
-while (true) {
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }

@@ -61,7 +61,29 @@ $(a, x, y);
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
 const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-while (true) {
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignObjPatternRhs);
   $(1);
 }

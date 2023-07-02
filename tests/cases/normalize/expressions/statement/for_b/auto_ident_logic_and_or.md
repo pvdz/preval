@@ -60,24 +60,45 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpCalleeParam = $(1);
-  let tmpIfTest = $(tmpCalleeParam);
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = $(1);
-    tmpIfTest = $(tmpCalleeParam$1);
-  } else {
+let $tmpLoopUnrollCheck = true;
+const tmpCalleeParam = $(1);
+let tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
+  const tmpCalleeParam$1 = $(1);
+  tmpIfTest = $(tmpCalleeParam$1);
+} else {
+}
+if (tmpIfTest) {
+} else {
+  const tmpCalleeParam$3 = $(2);
+  tmpIfTest = $(tmpCalleeParam$3);
+}
+if (tmpIfTest) {
+  $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCalleeParam$2 = $(1);
+    let tmpIfTest$1 = $(tmpCalleeParam$2);
+    if (tmpIfTest$1) {
+      const tmpCalleeParam$4 = $(1);
+      tmpIfTest$1 = $(tmpCalleeParam$4);
+    } else {
+    }
+    if (tmpIfTest$1) {
+    } else {
+      const tmpCalleeParam$6 = $(2);
+      tmpIfTest$1 = $(tmpCalleeParam$6);
+    }
+    if (tmpIfTest$1) {
+      $(1);
+    } else {
+      break;
+    }
   }
-  if (tmpIfTest) {
-  } else {
-    const tmpCalleeParam$3 = $(2);
-    tmpIfTest = $(tmpCalleeParam$3);
-  }
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
-  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

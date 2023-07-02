@@ -49,14 +49,25 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpIfTest = $(tmpCalleeParam);
-  if (tmpIfTest) {
-    $(1);
-  } else {
-    break;
+let $tmpLoopUnrollCheck = true;
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
+  $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCalleeParam$1 = { a: 1, b: 2 };
+    const tmpIfTest$1 = $(tmpCalleeParam$1);
+    if (tmpIfTest$1) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(999);
 `````

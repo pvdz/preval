@@ -51,9 +51,8 @@ $(a);
 
 `````js filename=intro
 $(1);
-const tmpObjLitVal = $(1);
-const a = { b: tmpObjLitVal };
-a.b = 2;
+$(1);
+const a = { b: 2 };
 $(a);
 `````
 

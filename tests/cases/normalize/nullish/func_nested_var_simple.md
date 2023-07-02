@@ -74,6 +74,7 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
+  implicitB;
   const tmpClusterSSA_tmpReturnArg = $(implicitB);
   $(tmpClusterSSA_tmpReturnArg);
 } else {

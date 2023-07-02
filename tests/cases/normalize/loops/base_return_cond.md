@@ -50,7 +50,7 @@ f();
 function f() {
   let n = 0;
   while (true) {
-    $(++n);
+    $('n:', ++n);
     if (n > 10) {
       return n;
     }
@@ -58,7 +58,7 @@ function f() {
   $('afterwards');
   return 100;
 }
-$(f());
+$('f():', f());
 `````
 
 ## Pre Normal
@@ -68,7 +68,7 @@ let f = function () {
   debugger;
   let n = 0;
   while (true) {
-    $(++n);
+    $(`n:`, ++n);
     if (n > 10) {
       return n;
     }
@@ -76,7 +76,7 @@ let f = function () {
   $(`afterwards`);
   return 100;
 };
-$(f());
+$(`f():`, f());
 `````
 
 ## Normalized
@@ -87,9 +87,10 @@ let f = function () {
   let n = 0;
   while (true) {
     const tmpCallCallee = $;
+    const tmpCalleeParam = `n:`;
     n = n + 1;
-    let tmpCalleeParam = n;
-    tmpCallCallee(tmpCalleeParam);
+    let tmpCalleeParam$1 = n;
+    tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
     const tmpIfTest = n > 10;
     if (tmpIfTest) {
       return n;
@@ -100,30 +101,26 @@ let f = function () {
   return 100;
 };
 const tmpCallCallee$1 = $;
-const tmpCalleeParam$1 = f();
-tmpCallCallee$1(tmpCalleeParam$1);
+const tmpCalleeParam$3 = `f():`;
+const tmpCalleeParam$5 = f();
+tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 `````
 
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  let n = 0;
-  while (true) {
-    n = n + 1;
-    $(n);
-    const tmpIfTest = n > 10;
-    if (tmpIfTest) {
-      return n;
-    } else {
-    }
-  }
-  $(`afterwards`);
-  return 100;
-};
-const tmpCalleeParam$1 = f();
-$(tmpCalleeParam$1);
+$(`n:`, 1);
+$(`n:`, 2);
+$(`n:`, 3);
+$(`n:`, 4);
+$(`n:`, 5);
+$(`n:`, 6);
+$(`n:`, 7);
+$(`n:`, 8);
+$(`n:`, 9);
+$(`n:`, 10);
+$(`n:`, 11);
+$(`f():`, 11);
 `````
 
 ## Globals
@@ -133,18 +130,18 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 1
- - 2: 2
- - 3: 3
- - 4: 4
- - 5: 5
- - 6: 6
- - 7: 7
- - 8: 8
- - 9: 9
- - 10: 10
- - 11: 11
- - 12: 11
+ - 1: 'n:', 1
+ - 2: 'n:', 2
+ - 3: 'n:', 3
+ - 4: 'n:', 4
+ - 5: 'n:', 5
+ - 6: 'n:', 6
+ - 7: 'n:', 7
+ - 8: 'n:', 8
+ - 9: 'n:', 9
+ - 10: 'n:', 10
+ - 11: 'n:', 11
+ - 12: 'f():', 11
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -49,14 +49,25 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpCallObj = $(b);
-  const tmpIfTest = tmpCallObj.$(1);
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
+let $tmpLoopUnrollCheck = true;
+const tmpCallObj = $(b);
+const tmpIfTest = tmpCallObj.$(1);
+if (tmpIfTest) {
+  $(100);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCallObj$1 = $(b);
+    const tmpIfTest$1 = tmpCallObj$1.$(1);
+    if (tmpIfTest$1) {
+      $(100);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(a);
 `````

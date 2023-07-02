@@ -50,7 +50,18 @@ $(a);
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_a = tmpAssignObjPatternRhs.a;
-while (true) {
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 $(tmpClusterSSA_a);

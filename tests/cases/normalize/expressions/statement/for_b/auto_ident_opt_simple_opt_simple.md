@@ -64,22 +64,33 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
 const b = { x: tmpObjLitVal };
-const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpChainElementObject = b.x;
-  const tmpIfTest$3 = tmpChainElementObject == null;
-  if (tmpIfTest$3) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpChainElementObject$2 = b.x;
+  const tmpIfTest$2 = tmpChainElementObject$2 == null;
+  if (tmpIfTest$2) {
     $(1);
   } else {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    if (tmpChainElementObject$1) {
+    const tmpChainElementObject$4 = tmpChainElementObject$2.y;
+    if (tmpChainElementObject$4) {
       $(1);
     } else {
       break;
     }
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

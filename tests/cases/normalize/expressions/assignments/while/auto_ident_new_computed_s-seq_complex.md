@@ -50,15 +50,58 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+const tmpCompProp = $(`\$`);
 const b = { $: $ };
-while (true) {
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = b[tmpCompProp];
-  a = new tmpNewCallee(1);
+const tmpNewCallee = b[tmpCompProp];
+new tmpNewCallee(1);
+$(100);
+const tmpCompProp$1 = $(`\$`);
+const tmpNewCallee$1 = b[tmpCompProp$1];
+new tmpNewCallee$1(1);
+$(100);
+const tmpCompProp$2 = $(`\$`);
+const tmpNewCallee$2 = b[tmpCompProp$2];
+new tmpNewCallee$2(1);
+$(100);
+const tmpCompProp$3 = $(`\$`);
+const tmpNewCallee$3 = b[tmpCompProp$3];
+new tmpNewCallee$3(1);
+$(100);
+const tmpCompProp$4 = $(`\$`);
+const tmpNewCallee$4 = b[tmpCompProp$4];
+new tmpNewCallee$4(1);
+$(100);
+const tmpCompProp$5 = $(`\$`);
+const tmpNewCallee$5 = b[tmpCompProp$5];
+new tmpNewCallee$5(1);
+$(100);
+const tmpCompProp$6 = $(`\$`);
+const tmpNewCallee$6 = b[tmpCompProp$6];
+new tmpNewCallee$6(1);
+$(100);
+const tmpCompProp$7 = $(`\$`);
+const tmpNewCallee$7 = b[tmpCompProp$7];
+new tmpNewCallee$7(1);
+$(100);
+const tmpCompProp$8 = $(`\$`);
+const tmpNewCallee$8 = b[tmpCompProp$8];
+new tmpNewCallee$8(1);
+$(100);
+const tmpCompProp$9 = $(`\$`);
+const tmpNewCallee$9 = b[tmpCompProp$9];
+new tmpNewCallee$9(1);
+$(100);
+const tmpCompProp$10 = $(`\$`);
+const tmpNewCallee$10 = b[tmpCompProp$10];
+let tmpClusterSSA_a$2 = new tmpNewCallee$10(1);
+$(100);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCompProp$11 = $(`\$`);
+  const tmpNewCallee$11 = b[tmpCompProp$11];
+  tmpClusterSSA_a$2 = new tmpNewCallee$11(1);
   $(100);
 }
-$(a);
+$(tmpClusterSSA_a$2);
 `````
 
 ## Globals

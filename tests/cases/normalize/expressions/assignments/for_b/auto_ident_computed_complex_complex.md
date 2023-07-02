@@ -53,19 +53,30 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 const b = { c: 1 };
-while (true) {
-  const tmpAssignRhsCompObj = $(b);
-  const tmpAssignRhsCompProp = $(`c`);
-  a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
+const tmpAssignRhsCompObj = $(b);
+const tmpAssignRhsCompProp = $(`c`);
+let tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+if (tmpClusterSSA_a) {
+  $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
 }
-$(a, b);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpAssignRhsCompObj$1 = $(b);
+    const tmpAssignRhsCompProp$1 = $(`c`);
+    tmpClusterSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
+    if (tmpClusterSSA_a) {
+      $(1);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

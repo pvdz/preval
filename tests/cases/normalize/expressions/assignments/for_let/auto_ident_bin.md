@@ -51,7 +51,29 @@ $(a);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const a = tmpBinBothLhs + tmpBinBothRhs;
-while (true) {
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);
 }

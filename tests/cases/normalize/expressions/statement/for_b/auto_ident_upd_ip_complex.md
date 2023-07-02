@@ -59,17 +59,31 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-while (true) {
-  const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = $(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-  tmpPostUpdArgObj.x = tmpAssignMemRhs;
-  if (tmpPostUpdArgVal) {
-    $(1);
-  } else {
-    break;
+let $tmpLoopUnrollCheck = true;
+const tmpCalleeParam = $(b);
+const tmpPostUpdArgObj = $(tmpCalleeParam);
+const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+tmpPostUpdArgObj.x = tmpAssignMemRhs;
+if (tmpPostUpdArgVal) {
+  $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCalleeParam$1 = $(b);
+    const tmpPostUpdArgObj$1 = $(tmpCalleeParam$1);
+    const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
+    const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
+    tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
+    if (tmpPostUpdArgVal$1) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(a, b);
 `````

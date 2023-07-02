@@ -62,7 +62,29 @@ const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs + 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
-while (true) {
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(varInitAssignLhsComputedRhs);
   $(1);
 }

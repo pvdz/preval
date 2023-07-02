@@ -57,14 +57,15 @@ $(100);
 $(100);
 $(100);
 $(100);
+let b = 12;
 $(100);
-$(100);
-$(100);
-$(100);
-let b = 16;
-while (b) {
-  $(100);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   b = b + 1;
+  if (b) {
+    $(100);
+  } else {
+    break;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a, b);

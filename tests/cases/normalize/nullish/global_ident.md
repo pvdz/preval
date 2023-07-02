@@ -38,6 +38,7 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpIfTest = parseInt == null;
 if (tmpIfTest) {
+  foo;
   $(foo);
 } else {
   $(parseInt);

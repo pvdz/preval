@@ -67,11 +67,34 @@ if (xyz) {
 } else {
 }
 if (xyz) {
+  $(xyz);
 } else {
   const tmpCalleeParam$3 = $(2);
   xyz = $(tmpCalleeParam$3);
+  $(xyz);
 }
-while (true) {
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }

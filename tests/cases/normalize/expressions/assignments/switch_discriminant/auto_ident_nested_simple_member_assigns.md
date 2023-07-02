@@ -66,14 +66,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
 $(100);
+const b = { x: 3 };
 $(3, b, 3);
 `````
 

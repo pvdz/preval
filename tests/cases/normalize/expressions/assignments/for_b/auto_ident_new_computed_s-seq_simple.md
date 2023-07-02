@@ -53,14 +53,35 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+new $(1);
+$(1);
+new $(1);
+$(1);
+new $(1);
+$(1);
+new $(1);
+$(1);
+new $(1);
+$(1);
+new $(1);
+$(1);
+new $(1);
+$(1);
+new $(1);
+$(1);
+new $(1);
+$(1);
+new $(1);
+$(1);
+let tmpClusterSSA_a$1 = new $(1);
+$(1);
 const b = { $: $ };
-while (true) {
-  const tmpNewCallee = b.$;
-  a = new tmpNewCallee(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpNewCallee$1 = b.$;
+  tmpClusterSSA_a$1 = new tmpNewCallee$1(1);
   $(1);
 }
-$(a);
+$(tmpClusterSSA_a$1);
 `````
 
 ## Globals

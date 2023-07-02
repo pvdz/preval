@@ -55,7 +55,29 @@ const a = arrPatternSplat[0];
 $(10);
 $(20);
 const xyz = [1, 2];
-while (true) {
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }

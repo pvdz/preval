@@ -60,7 +60,29 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const tmpChainElementCall = $dotCall($, b, 1);
-while (true) {
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpChainElementCall);
   $(1);
 }

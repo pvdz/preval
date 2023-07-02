@@ -52,10 +52,32 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpObjLitVal = $(1);
-  a = { b: tmpObjLitVal };
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+const tmpObjLitVal$1 = $(1);
+let a = { b: tmpObjLitVal$1 };
+$(100);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpObjLitVal$2 = $(1);
+  a = { b: tmpObjLitVal$2 };
   $(100);
 }
 const tmpAssignComMemLhsObj = a;

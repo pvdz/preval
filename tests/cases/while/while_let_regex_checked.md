@@ -64,12 +64,56 @@ while (x) {
 ## Output
 
 `````js filename=intro
-let x = /foo/;
-while (true) {
-  const tmpCalleeParam = x.foo;
-  $(tmpCalleeParam);
-  x = /foo/;
-  x.foo = `object`;
+const x = /foo/;
+const tmpCalleeParam = x.foo;
+$(tmpCalleeParam);
+const tmpClusterSSA_x = /foo/;
+tmpClusterSSA_x.foo = `object`;
+const tmpCalleeParam$1 = tmpClusterSSA_x.foo;
+$(tmpCalleeParam$1);
+const tmpClusterSSA_x$1 = /foo/;
+tmpClusterSSA_x$1.foo = `object`;
+const tmpCalleeParam$2 = tmpClusterSSA_x$1.foo;
+$(tmpCalleeParam$2);
+const tmpClusterSSA_x$2 = /foo/;
+tmpClusterSSA_x$2.foo = `object`;
+const tmpCalleeParam$3 = tmpClusterSSA_x$2.foo;
+$(tmpCalleeParam$3);
+const tmpClusterSSA_x$3 = /foo/;
+tmpClusterSSA_x$3.foo = `object`;
+const tmpCalleeParam$4 = tmpClusterSSA_x$3.foo;
+$(tmpCalleeParam$4);
+const tmpClusterSSA_x$4 = /foo/;
+tmpClusterSSA_x$4.foo = `object`;
+const tmpCalleeParam$5 = tmpClusterSSA_x$4.foo;
+$(tmpCalleeParam$5);
+const tmpClusterSSA_x$5 = /foo/;
+tmpClusterSSA_x$5.foo = `object`;
+const tmpCalleeParam$6 = tmpClusterSSA_x$5.foo;
+$(tmpCalleeParam$6);
+const tmpClusterSSA_x$6 = /foo/;
+tmpClusterSSA_x$6.foo = `object`;
+const tmpCalleeParam$7 = tmpClusterSSA_x$6.foo;
+$(tmpCalleeParam$7);
+const tmpClusterSSA_x$7 = /foo/;
+tmpClusterSSA_x$7.foo = `object`;
+const tmpCalleeParam$8 = tmpClusterSSA_x$7.foo;
+$(tmpCalleeParam$8);
+const tmpClusterSSA_x$8 = /foo/;
+tmpClusterSSA_x$8.foo = `object`;
+const tmpCalleeParam$9 = tmpClusterSSA_x$8.foo;
+$(tmpCalleeParam$9);
+const tmpClusterSSA_x$9 = /foo/;
+tmpClusterSSA_x$9.foo = `object`;
+const tmpCalleeParam$10 = tmpClusterSSA_x$9.foo;
+$(tmpCalleeParam$10);
+let tmpClusterSSA_x$10 = /foo/;
+tmpClusterSSA_x$10.foo = `object`;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpCalleeParam$11 = tmpClusterSSA_x$10.foo;
+  $(tmpCalleeParam$11);
+  tmpClusterSSA_x$10 = /foo/;
+  tmpClusterSSA_x$10.foo = `object`;
 }
 `````
 

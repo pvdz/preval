@@ -55,7 +55,29 @@ $(a, b);
 const tmpAssignRhsCompProp = $(`c`);
 const b = { c: 1 };
 const a = b[tmpAssignRhsCompProp];
-while (true) {
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);
 }

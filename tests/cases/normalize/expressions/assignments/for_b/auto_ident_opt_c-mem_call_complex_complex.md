@@ -69,31 +69,56 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let a = undefined;
+let $tmpLoopUnrollCheck = true;
 const b = { $: $ };
-while (true) {
-  a = undefined;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest$1 = tmpChainElementCall == null;
-  if (tmpIfTest$1) {
+const tmpChainElementCall = $(b);
+const tmpIfTest$1 = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+  $(1);
+} else {
+  const tmpChainRootComputed = $(`\$`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  const tmpIfTest$3 = tmpChainElementObject == null;
+  if (tmpIfTest$3) {
     $(1);
   } else {
-    const tmpChainRootComputed = $(`\$`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$3 = tmpChainElementObject == null;
-    if (tmpIfTest$3) {
+    const tmpCalleeParam$3 = $(1);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
+    a = tmpChainElementCall$1;
+    if (tmpChainElementCall$1) {
       $(1);
     } else {
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
-      a = tmpChainElementCall$1;
-      if (tmpChainElementCall$1) {
+      $tmpLoopUnrollCheck = false;
+    }
+  }
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    a = undefined;
+    const tmpChainElementCall$2 = $(b);
+    const tmpIfTest$2 = tmpChainElementCall$2 == null;
+    if (tmpIfTest$2) {
+      $(1);
+    } else {
+      const tmpChainRootComputed$1 = $(`\$`);
+      const tmpChainElementObject$1 = tmpChainElementCall$2[tmpChainRootComputed$1];
+      const tmpIfTest$4 = tmpChainElementObject$1 == null;
+      if (tmpIfTest$4) {
         $(1);
       } else {
-        break;
+        const tmpCalleeParam$1 = $(1);
+        const tmpChainElementCall$4 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$1);
+        a = tmpChainElementCall$4;
+        if (tmpChainElementCall$4) {
+          $(1);
+        } else {
+          break;
+        }
       }
     }
   }
+} else {
 }
 $(a);
 `````

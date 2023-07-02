@@ -42,10 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const obj = { x: 0 };
-obj.x = 5;
-const tmpCalleeParam = obj.x;
-$(tmpCalleeParam);
+$(5);
 `````
 
 ## Globals

@@ -48,18 +48,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-while (true) {
-  const tmpPostUpdArgIdent = b;
-  b = b - 1;
-  if (tmpPostUpdArgIdent) {
-    $(100);
-  } else {
-    break;
-  }
-}
+$(100);
 const a = { a: 999, b: 1000 };
-$(a, b);
+$(a, -1);
 `````
 
 ## Globals

@@ -51,7 +51,29 @@ $(a, b);
 
 `````js filename=intro
 const b = $(2);
-while (true) {
+$(b);
+$(1);
+$(b);
+$(1);
+$(b);
+$(1);
+$(b);
+$(1);
+$(b);
+$(1);
+$(b);
+$(1);
+$(b);
+$(1);
+$(b);
+$(1);
+$(b);
+$(1);
+$(b);
+$(1);
+$(b);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(b);
   $(1);
 }

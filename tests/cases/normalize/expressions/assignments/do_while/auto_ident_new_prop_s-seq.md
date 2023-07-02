@@ -57,15 +57,37 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+const tmpNestedComplexRhs$1 = new $(1);
+let tmpClusterSSA_a$2 = tmpNestedComplexRhs$1;
 const b = { $: $ };
-while (true) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNewCallee = b.$;
-  const tmpNestedComplexRhs = new tmpNewCallee(1);
-  a = tmpNestedComplexRhs;
+  const tmpNewCallee$1 = b.$;
+  const tmpNestedComplexRhs$2 = new tmpNewCallee$1(1);
+  tmpClusterSSA_a$2 = tmpNestedComplexRhs$2;
 }
-$(a);
+$(tmpClusterSSA_a$2);
 `````
 
 ## Globals

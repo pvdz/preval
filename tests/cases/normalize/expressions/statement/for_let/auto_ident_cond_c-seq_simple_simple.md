@@ -57,11 +57,34 @@ let xyz = undefined;
 const tmpIfTest = $(30);
 if (tmpIfTest) {
   xyz = $(2);
+  $(xyz);
 } else {
   const tmpCalleeParam = $(100);
   xyz = $(tmpCalleeParam);
+  $(xyz);
 }
-while (true) {
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }

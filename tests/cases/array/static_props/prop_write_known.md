@@ -41,10 +41,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const arr = [1, 2, 3];
-arr[2] = 10;
-const tmpCalleeParam = arr.length;
-$(tmpCalleeParam);
+$(3);
 `````
 
 ## Globals

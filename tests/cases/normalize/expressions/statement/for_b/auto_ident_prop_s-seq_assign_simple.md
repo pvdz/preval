@@ -53,9 +53,20 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
+const b = { c: 2 };
 const a = { a: 999, b: 1000 };
-while (true) {
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   b.c = 2;
   $(1);
 }

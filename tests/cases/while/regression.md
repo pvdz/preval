@@ -62,18 +62,15 @@ $(cTmp);
 ## Output
 
 `````js filename=intro
-let cTmp = $;
-let cTail = c;
-while (true) {
-  if ($) {
-    cTail = $(`keep`);
-    cTmp = $(cTmp);
-  } else {
-    cTmp = cTail;
-  }
-  break;
+c;
+if ($) {
+  $(`keep`);
+  const tmpClusterSSA_cTmp = $($);
+  $(tmpClusterSSA_cTmp);
+} else {
+  c;
+  $(c);
 }
-$(cTmp);
 `````
 
 ## Globals

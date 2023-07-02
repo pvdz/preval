@@ -59,14 +59,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
+const b = { x: 3 };
 const a = { a: 999, b: 1000 };
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
 const tmpClusterSSA_a = a * 3;
 $(tmpClusterSSA_a);
 $(tmpClusterSSA_a, b, 3);

@@ -45,9 +45,42 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const xyz = /foo/;
-  $(xyz);
+const xyz = /foo/;
+$(xyz);
+$(1);
+const xyz$1 = /foo/;
+$(xyz$1);
+$(1);
+const xyz$2 = /foo/;
+$(xyz$2);
+$(1);
+const xyz$3 = /foo/;
+$(xyz$3);
+$(1);
+const xyz$4 = /foo/;
+$(xyz$4);
+$(1);
+const xyz$5 = /foo/;
+$(xyz$5);
+$(1);
+const xyz$6 = /foo/;
+$(xyz$6);
+$(1);
+const xyz$7 = /foo/;
+$(xyz$7);
+$(1);
+const xyz$8 = /foo/;
+$(xyz$8);
+$(1);
+const xyz$9 = /foo/;
+$(xyz$9);
+$(1);
+const xyz$10 = /foo/;
+$(xyz$10);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const xyz$11 = /foo/;
+  $(xyz$11);
   $(1);
 }
 const a = { a: 999, b: 1000 };

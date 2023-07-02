@@ -64,19 +64,74 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-while (true) {
+$(100);
+$(1);
+$(2);
+const tmpArrElement = $(3);
+const tmpArrElement$1 = $(4);
+$(100);
+$(tmpArrElement);
+$(tmpArrElement$1);
+const tmpArrElement$2 = $(3);
+const tmpArrElement$4 = $(4);
+$(100);
+$(tmpArrElement$2);
+$(tmpArrElement$4);
+const tmpArrElement$3 = $(3);
+const tmpArrElement$5 = $(4);
+$(100);
+$(tmpArrElement$3);
+$(tmpArrElement$5);
+const tmpArrElement$6 = $(3);
+const tmpArrElement$8 = $(4);
+$(100);
+$(tmpArrElement$6);
+$(tmpArrElement$8);
+const tmpArrElement$7 = $(3);
+const tmpArrElement$9 = $(4);
+$(100);
+$(tmpArrElement$7);
+$(tmpArrElement$9);
+const tmpArrElement$10 = $(3);
+const tmpArrElement$12 = $(4);
+$(100);
+$(tmpArrElement$10);
+$(tmpArrElement$12);
+const tmpArrElement$11 = $(3);
+const tmpArrElement$13 = $(4);
+$(100);
+$(tmpArrElement$11);
+$(tmpArrElement$13);
+const tmpArrElement$14 = $(3);
+const tmpArrElement$16 = $(4);
+$(100);
+$(tmpArrElement$14);
+$(tmpArrElement$16);
+const tmpArrElement$15 = $(3);
+const tmpArrElement$17 = $(4);
+$(100);
+$(tmpArrElement$15);
+$(tmpArrElement$17);
+const tmpArrElement$18 = $(3);
+const tmpArrElement$20 = $(4);
+$(100);
+$(tmpArrElement$18);
+$(tmpArrElement$20);
+const tmpArrElement$19 = $(3);
+const tmpArrElement$21 = $(4);
+let tmpClusterSSA_x$2 = tmpArrElement$19;
+let tmpClusterSSA_y$2 = tmpArrElement$21;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  $(x);
-  $(y);
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  x = tmpArrElement;
-  y = tmpArrElement$1;
+  $(tmpClusterSSA_x$2);
+  $(tmpClusterSSA_y$2);
+  const tmpArrElement$22 = $(3);
+  const tmpArrElement$24 = $(4);
+  tmpClusterSSA_x$2 = tmpArrElement$22;
+  tmpClusterSSA_y$2 = tmpArrElement$24;
 }
 const a = { a: 999, b: 1000 };
-$(a, x, y);
+$(a, tmpClusterSSA_x$2, tmpClusterSSA_y$2);
 `````
 
 ## Globals

@@ -68,16 +68,168 @@ while (true) {
 
 `````js filename=intro
 let x = $(1);
-while (true) {
-  const tmpIfTest = x % 2;
-  if (tmpIfTest) {
+const tmpIfTest = x % 2;
+if (tmpIfTest) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$1 = x % 3;
+let tmpIfTest$2 = false;
+if (tmpIfTest$1) {
+  x = $(10, `ten`);
+  tmpIfTest$2 = x % 2;
+} else {
+  tmpIfTest$2 = x % 2;
+}
+if (tmpIfTest$2) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$4 = x % 3;
+let tmpIfTest$3 = false;
+if (tmpIfTest$4) {
+  x = $(10, `ten`);
+  tmpIfTest$3 = x % 2;
+} else {
+  tmpIfTest$3 = x % 2;
+}
+if (tmpIfTest$3) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$5 = x % 3;
+let tmpIfTest$6 = false;
+if (tmpIfTest$5) {
+  x = $(10, `ten`);
+  tmpIfTest$6 = x % 2;
+} else {
+  tmpIfTest$6 = x % 2;
+}
+if (tmpIfTest$6) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$8 = x % 3;
+let tmpIfTest$7 = false;
+if (tmpIfTest$8) {
+  x = $(10, `ten`);
+  tmpIfTest$7 = x % 2;
+} else {
+  tmpIfTest$7 = x % 2;
+}
+if (tmpIfTest$7) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$9 = x % 3;
+let tmpIfTest$10 = false;
+if (tmpIfTest$9) {
+  x = $(10, `ten`);
+  tmpIfTest$10 = x % 2;
+} else {
+  tmpIfTest$10 = x % 2;
+}
+if (tmpIfTest$10) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$12 = x % 3;
+let tmpIfTest$11 = false;
+if (tmpIfTest$12) {
+  x = $(10, `ten`);
+  tmpIfTest$11 = x % 2;
+} else {
+  tmpIfTest$11 = x % 2;
+}
+if (tmpIfTest$11) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$13 = x % 3;
+let tmpIfTest$14 = false;
+if (tmpIfTest$13) {
+  x = $(10, `ten`);
+  tmpIfTest$14 = x % 2;
+} else {
+  tmpIfTest$14 = x % 2;
+}
+if (tmpIfTest$14) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$16 = x % 3;
+let tmpIfTest$15 = false;
+if (tmpIfTest$16) {
+  x = $(10, `ten`);
+  tmpIfTest$15 = x % 2;
+} else {
+  tmpIfTest$15 = x % 2;
+}
+if (tmpIfTest$15) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$17 = x % 3;
+let tmpIfTest$18 = false;
+if (tmpIfTest$17) {
+  x = $(10, `ten`);
+  tmpIfTest$18 = x % 2;
+} else {
+  tmpIfTest$18 = x % 2;
+}
+if (tmpIfTest$18) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$20 = x % 3;
+let tmpIfTest$19 = false;
+if (tmpIfTest$20) {
+  x = $(10, `ten`);
+  tmpIfTest$19 = x % 2;
+} else {
+  tmpIfTest$19 = x % 2;
+}
+if (tmpIfTest$19) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$21 = x % 3;
+if (tmpIfTest$21) {
+  x = $(10, `ten`);
+} else {
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest$22 = x % 2;
+  if (tmpIfTest$22) {
     x = x + 1;
     $(x, `write`);
   } else {
     $(x, `read`);
   }
-  const tmpIfTest$1 = x % 3;
-  if (tmpIfTest$1) {
+  const tmpIfTest$24 = x % 3;
+  if (tmpIfTest$24) {
     x = $(10, `ten`);
   } else {
   }

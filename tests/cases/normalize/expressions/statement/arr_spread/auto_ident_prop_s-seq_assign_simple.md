@@ -43,8 +43,6 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
-b.c = 2;
 [...2];
 throw `[Preval]: Array spread must crash before this line`;
 `````

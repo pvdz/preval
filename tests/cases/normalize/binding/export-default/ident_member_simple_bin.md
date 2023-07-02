@@ -43,8 +43,7 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const b = { x: 2 };
-b.x = 7;
+const b = { x: 7 };
 const a = 7;
 export { a };
 $(7, b, 3);

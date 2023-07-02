@@ -55,19 +55,29 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 const b = { c: $ };
-while (true) {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  a = tmpChainElementCall;
-  if (tmpChainElementCall) {
-    $(100);
-  } else {
-    break;
-  }
+const tmpChainElementCall = $dotCall($, b, 1);
+let tmpClusterSSA_a = tmpChainElementCall;
+if (tmpChainElementCall) {
+  $(100);
+} else {
+  $tmpLoopUnrollCheck = false;
 }
-$(a);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpChainElementObject$1 = b.c;
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
+    tmpClusterSSA_a = tmpChainElementCall$1;
+    if (tmpChainElementCall$1) {
+      $(100);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -53,9 +53,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpPrevalAliasThis = undefined;
-$(tmpPrevalAliasThis);
-$(tmpPrevalAliasThis);
+$(undefined);
+$(undefined);
 `````
 
 ## Globals

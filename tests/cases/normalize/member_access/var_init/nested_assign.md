@@ -44,12 +44,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = $();
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-tmpObjLitVal.b = 15;
+$();
 $(15);
-const tmpCalleeParam = tmpObjLitVal.b;
-$(tmpCalleeParam);
+$(15);
 `````
 
 ## Globals

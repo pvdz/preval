@@ -68,14 +68,24 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = $(1);
-  while (true) {
-    x = $(2);
-    $(x);
-    if ($) {
-      break;
-    } else {
+  $(1);
+  let $tmpLoopUnrollCheck = true;
+  let x = $(2);
+  $(x);
+  if ($) {
+    $tmpLoopUnrollCheck = false;
+  } else {
+  }
+  if ($tmpLoopUnrollCheck) {
+    while ($LOOP_UNROLL_10) {
+      x = $(2);
+      $(x);
+      if ($) {
+        break;
+      } else {
+      }
     }
+  } else {
   }
 } else {
 }

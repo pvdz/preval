@@ -101,15 +101,14 @@ rule(`You have to listen to me`);
 
 `````js filename=intro
 const rule = function ($$0) {
-  const desc = $$0;
+  const tmpOutlinedParam = $$0;
   debugger;
-  const tmpStringConcatL = $coerce(desc, `plustr`);
-  const e = `purpleRule:reset "${tmpStringConcatL}"`;
+  const e = `${tmpOutlinedParam}"`;
   $(e);
   return undefined;
 };
-rule(`I want it my way`);
-rule(`You have to listen to me`);
+rule(`purpleRule:reset "I want it my way`);
+rule(`purpleRule:reset "You have to listen to me`);
 `````
 
 ## Globals

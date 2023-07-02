@@ -36,6 +36,7 @@ $(a);
 
 `````js filename=intro
 a = 5;
+a;
 $(a);
 $(a);
 `````

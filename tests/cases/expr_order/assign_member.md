@@ -8,13 +8,12 @@
 
 Must take into account that the simple node i will still change value if we move the complex node to appear before it.
 
-#TODO
-
 ## Input
 
 `````js filename=intro
 let a = {};
 a.foo = a = $();
+$(a);
 `````
 
 ## Pre Normal
@@ -22,6 +21,7 @@ a.foo = a = $();
 `````js filename=intro
 let a = {};
 a.foo = a = $();
+$(a);
 `````
 
 ## Normalized
@@ -32,6 +32,7 @@ const tmpAssignMemLhsObj = a;
 a = $();
 let tmpAssignMemRhs = a;
 tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
+$(a);
 `````
 
 ## Output
@@ -40,6 +41,7 @@ tmpAssignMemLhsObj.foo = tmpAssignMemRhs;
 const tmpClusterSSA_a = $();
 const a = {};
 a.foo = tmpClusterSSA_a;
+$(tmpClusterSSA_a);
 `````
 
 ## Globals
@@ -50,6 +52,7 @@ None
 
 Should call `$` with:
  - 1: 
+ - 2: undefined
  - eval returned: undefined
 
 Pre normalization calls: Same

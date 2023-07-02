@@ -60,6 +60,7 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
+  length;
   $(length);
 } else {
   $(c);

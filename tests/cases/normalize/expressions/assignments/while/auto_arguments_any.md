@@ -43,10 +43,23 @@ $(a);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 let a = arguments;
-while (a) {
+if (arguments) {
   $(100);
-  a = arguments;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    a = arguments;
+    if (a) {
+      $(100);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

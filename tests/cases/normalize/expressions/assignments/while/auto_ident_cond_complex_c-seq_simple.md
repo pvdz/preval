@@ -51,19 +51,35 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpIfTest$1 = $(1);
-  if (tmpIfTest$1) {
-    a = $(60);
-  } else {
-    const tmpCalleeParam = $(100);
-    a = $(tmpCalleeParam);
+let $tmpLoopUnrollCheck = true;
+const tmpIfTest$1 = $(1);
+if (tmpIfTest$1) {
+  a = $(60);
+} else {
+  const tmpCalleeParam = $(100);
+  a = $(tmpCalleeParam);
+}
+if (a) {
+  $(100);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$2 = $(1);
+    if (tmpIfTest$2) {
+      a = $(60);
+    } else {
+      const tmpCalleeParam$1 = $(100);
+      a = $(tmpCalleeParam$1);
+    }
+    if (a) {
+      $(100);
+    } else {
+      break;
+    }
   }
-  if (a) {
-    $(100);
-  } else {
-    break;
-  }
+} else {
 }
 $(a);
 `````

@@ -36,6 +36,7 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
+arguments;
 throw arguments;
 `````
 

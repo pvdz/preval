@@ -4,7 +4,7 @@
 
 > Normalize > Dce > Continue > Base
 >
-> Any statements that follow a return in the same parent should be eliminated.
+> Infinite loop just doing continue
 
 #TODO
 
@@ -39,9 +39,21 @@ $(`after, wont eval due to infinite loop`);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
-while (tmpIfTest) {
-  tmpIfTest = $(true);
+let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(true);
+if (tmpIfTest) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(`after, wont eval due to infinite loop`);
 `````

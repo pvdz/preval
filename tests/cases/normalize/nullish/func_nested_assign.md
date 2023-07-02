@@ -62,9 +62,8 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = $();
-const tmpObjLitVal = { b: tmpObjLitVal$1 };
-tmpObjLitVal.b = 15;
+$();
+const tmpObjLitVal = { b: 15 };
 const obj = { a: tmpObjLitVal };
 const tmpClusterSSA_tmpReturnArg$1 = $(obj);
 $(tmpClusterSSA_tmpReturnArg$1);

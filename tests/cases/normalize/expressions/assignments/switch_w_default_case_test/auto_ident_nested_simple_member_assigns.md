@@ -101,15 +101,9 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
+const b = { x: 3 };
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
 const tmpIfTest = 3 === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;

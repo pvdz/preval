@@ -51,21 +51,34 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
+$(1);
+$(2);
 const arg = { y: 1 };
-while (true) {
-  $(1);
-  $(2);
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $(`y`);
-  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  if (a) {
-    $(100);
-  } else {
-    break;
-  }
+const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompProp = $(`y`);
+let tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+if (tmpClusterSSA_a) {
+  $(100);
+} else {
+  $tmpLoopUnrollCheck = false;
 }
-$(a, arg);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    $(2);
+    const tmpDeleteCompObj$1 = $(arg);
+    const tmpDeleteCompProp$1 = $(`y`);
+    tmpClusterSSA_a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+    if (tmpClusterSSA_a) {
+      $(100);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

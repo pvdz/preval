@@ -41,10 +41,31 @@ while (x) {
 ## Output
 
 `````js filename=intro
-let x = /foo/;
-while (true) {
-  x = /foo/;
-  $(x);
+const x = /foo/;
+$(x);
+const tmpClusterSSA_x = /foo/;
+$(tmpClusterSSA_x);
+const tmpClusterSSA_x$1 = /foo/;
+$(tmpClusterSSA_x$1);
+const tmpClusterSSA_x$2 = /foo/;
+$(tmpClusterSSA_x$2);
+const tmpClusterSSA_x$3 = /foo/;
+$(tmpClusterSSA_x$3);
+const tmpClusterSSA_x$4 = /foo/;
+$(tmpClusterSSA_x$4);
+const tmpClusterSSA_x$5 = /foo/;
+$(tmpClusterSSA_x$5);
+const tmpClusterSSA_x$6 = /foo/;
+$(tmpClusterSSA_x$6);
+const tmpClusterSSA_x$7 = /foo/;
+$(tmpClusterSSA_x$7);
+const tmpClusterSSA_x$8 = /foo/;
+$(tmpClusterSSA_x$8);
+let tmpClusterSSA_x$9 = /foo/;
+$(tmpClusterSSA_x$9);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  tmpClusterSSA_x$9 = /foo/;
+  $(tmpClusterSSA_x$9);
 }
 `````
 

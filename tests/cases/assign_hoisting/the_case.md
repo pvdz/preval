@@ -133,30 +133,32 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const func = $$0;
+const f = function ($$0, $$1, $$2) {
+  const tmpOutlinedParam = $$0;
+  const tmpOutlinedParam$1 = $$1;
+  const tmpOutlinedParam$2 = $$2;
   debugger;
-  const a = func(1);
-  const b = func(2);
-  const c = func(3);
   if ($) {
-    $(a);
+    $(tmpOutlinedParam);
     if ($) {
-      $(b);
+      $(tmpOutlinedParam$1);
       if ($) {
-        $(c);
+        $(tmpOutlinedParam$2);
       } else {
       }
     } else {
     }
-    const tmpReturnArg = [a, b, c];
+    const tmpReturnArg = [tmpOutlinedParam, tmpOutlinedParam$1, tmpOutlinedParam$2];
     return tmpReturnArg;
   } else {
     return undefined;
   }
 };
 if ($) {
-  const tmpCalleeParam = f($);
+  const tmpSaooB = $(1);
+  const tmpSaooB$1 = $(2);
+  const tmpSaooB$2 = $(3);
+  const tmpCalleeParam = f(tmpSaooB, tmpSaooB$1, tmpSaooB$2);
   $(tmpCalleeParam);
 } else {
 }

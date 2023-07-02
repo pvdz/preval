@@ -1,0 +1,63 @@
+# Preval test case
+
+# base_simple.md
+
+> Await > Base simple
+>
+> The arguments to await should be ok when simple
+
+## Input
+
+`````js filename=intro
+async function f() {
+  await $;
+}
+f();
+`````
+
+## Pre Normal
+
+`````js filename=intro
+let f = async function () {
+  debugger;
+  await $;
+};
+f();
+`````
+
+## Normalized
+
+`````js filename=intro
+let f = async function () {
+  debugger;
+  await $;
+  return undefined;
+};
+f();
+`````
+
+## Output
+
+`````js filename=intro
+const f = async function () {
+  debugger;
+  await $;
+  return undefined;
+};
+f();
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

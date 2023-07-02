@@ -45,8 +45,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
-b.c = 2;
+const b = { c: 2 };
 const tmpAnonDefaultExport = 2;
 export { tmpAnonDefaultExport as default };
 $(2, b);

@@ -33,8 +33,7 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = $NumberPrototype.toString;
-$(x);
+$($Number_toString);
 `````
 
 ## Globals

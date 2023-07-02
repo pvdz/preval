@@ -64,7 +64,29 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-while (true) {
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+$(tmpChainElementCall);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpChainElementCall);
   $(1);
 }

@@ -53,20 +53,7 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (true) {
-  let tmpIfTest = tmpDoWhileFlag;
-  if (tmpDoWhileFlag) {
-  } else {
-    tmpIfTest = false;
-  }
-  if (tmpIfTest) {
-    tmpDoWhileFlag = false;
-    $(1);
-  } else {
-    break;
-  }
-}
+$(1);
 `````
 
 ## Globals

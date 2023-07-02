@@ -52,16 +52,29 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-while (true) {
-  $(1);
-  $(2);
-  const tmpDeleteCompProp = $(`y`);
-  const tmpIfTest = delete arg[tmpDeleteCompProp];
-  if (tmpIfTest) {
-    $(100);
-  } else {
-    break;
+let $tmpLoopUnrollCheck = true;
+$(1);
+$(2);
+const tmpDeleteCompProp = $(`y`);
+const tmpIfTest = delete arg[tmpDeleteCompProp];
+if (tmpIfTest) {
+  $(100);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    $(1);
+    $(2);
+    const tmpDeleteCompProp$1 = $(`y`);
+    const tmpIfTest$1 = delete arg[tmpDeleteCompProp$1];
+    if (tmpIfTest$1) {
+      $(100);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(a, arg);
 `````

@@ -41,10 +41,32 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let x = $(10);
-while (true) {
-  x = $(20, `set`);
-  $(x, `loop`);
+$(10);
+const x = $(20, `set`);
+$(x, `loop`);
+const tmpClusterSSA_x = $(20, `set`);
+$(tmpClusterSSA_x, `loop`);
+const tmpClusterSSA_x$1 = $(20, `set`);
+$(tmpClusterSSA_x$1, `loop`);
+const tmpClusterSSA_x$2 = $(20, `set`);
+$(tmpClusterSSA_x$2, `loop`);
+const tmpClusterSSA_x$3 = $(20, `set`);
+$(tmpClusterSSA_x$3, `loop`);
+const tmpClusterSSA_x$4 = $(20, `set`);
+$(tmpClusterSSA_x$4, `loop`);
+const tmpClusterSSA_x$5 = $(20, `set`);
+$(tmpClusterSSA_x$5, `loop`);
+const tmpClusterSSA_x$6 = $(20, `set`);
+$(tmpClusterSSA_x$6, `loop`);
+const tmpClusterSSA_x$7 = $(20, `set`);
+$(tmpClusterSSA_x$7, `loop`);
+const tmpClusterSSA_x$8 = $(20, `set`);
+$(tmpClusterSSA_x$8, `loop`);
+let tmpClusterSSA_x$9 = $(20, `set`);
+$(tmpClusterSSA_x$9, `loop`);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  tmpClusterSSA_x$9 = $(20, `set`);
+  $(tmpClusterSSA_x$9, `loop`);
 }
 `````
 

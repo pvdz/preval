@@ -51,11 +51,24 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 const arg = { y: 1 };
 let a = delete arg.y;
-while (a) {
+if (a) {
   $(1);
-  a = delete arg.y;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    a = delete arg.y;
+    if (a) {
+      $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, arg);
 `````

@@ -53,21 +53,34 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 const b = { c: 10, d: 20 };
-while (true) {
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  b.c = tmpNestedAssignPropRhs;
-  a = tmpNestedAssignPropRhs;
-  if (tmpNestedAssignPropRhs) {
-    $(100);
-  } else {
-    break;
-  }
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+b.c = tmpNestedAssignPropRhs;
+let tmpClusterSSA_a = tmpNestedAssignPropRhs;
+if (tmpNestedAssignPropRhs) {
+  $(100);
+} else {
+  $tmpLoopUnrollCheck = false;
 }
-$(a, b);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCompObj$1 = $(b);
+    const tmpCompProp$1 = $(`d`);
+    const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+    b.c = tmpNestedAssignPropRhs$1;
+    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+    if (tmpNestedAssignPropRhs$1) {
+      $(100);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

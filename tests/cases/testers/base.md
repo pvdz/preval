@@ -54,14 +54,19 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let x = true;
-while (true) {
-  if (x) {
-    x = false;
-    $(`first`);
-  } else {
-    $(`nexts`);
-  }
+$(`first`);
+$(`nexts`);
+$(`nexts`);
+$(`nexts`);
+$(`nexts`);
+$(`nexts`);
+$(`nexts`);
+$(`nexts`);
+$(`nexts`);
+$(`nexts`);
+$(`nexts`);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $(`nexts`);
 }
 `````
 

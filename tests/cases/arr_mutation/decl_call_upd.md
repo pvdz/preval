@@ -1,20 +1,16 @@
 # Preval test case
 
-# static_push_one.md
+# decl_call_upd.md
 
-> Array > Static push one
+> Arr mutation > Decl call upd
 >
-> Pushing a few static values to an array
-
-In this particular case the array could be initialized with the number immediately.
-
-#TODO
+> Testing the inlining of array mutations
 
 ## Input
 
 `````js filename=intro
 const arr = [];
-arr.push(1);
+arr[0] = 1;
 $(arr);
 `````
 
@@ -22,7 +18,7 @@ $(arr);
 
 `````js filename=intro
 const arr = [];
-arr.push(1);
+arr[0] = 1;
 $(arr);
 `````
 
@@ -30,7 +26,7 @@ $(arr);
 
 `````js filename=intro
 const arr = [];
-arr.push(1);
+arr[0] = 1;
 $(arr);
 `````
 

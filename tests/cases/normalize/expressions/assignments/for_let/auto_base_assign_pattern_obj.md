@@ -59,7 +59,29 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-while (true) {
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+$(tmpNestedAssignObjPatternRhs);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignObjPatternRhs);
   $(1);
 }

@@ -60,19 +60,30 @@ $(a);
 ## Output
 
 `````js filename=intro
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
 const tmpObjLitVal = { y: 1 };
+let a = 1;
+$(100);
 const b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-while (true) {
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a = undefined;
-  const tmpChainElementObject = b.x;
-  const tmpIfTest$3 = tmpChainElementObject == null;
-  if (tmpIfTest$3) {
+  const tmpChainElementObject$2 = b.x;
+  const tmpIfTest$1 = tmpChainElementObject$2 == null;
+  if (tmpIfTest$1) {
     $(100);
   } else {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    a = tmpChainElementObject$1;
-    if (tmpChainElementObject$1) {
+    const tmpChainElementObject$4 = tmpChainElementObject$2.y;
+    a = tmpChainElementObject$4;
+    if (tmpChainElementObject$4) {
       $(100);
     } else {
       break;

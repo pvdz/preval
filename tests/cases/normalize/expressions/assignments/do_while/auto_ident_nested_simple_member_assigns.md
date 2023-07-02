@@ -70,9 +70,19 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const b = { x: 1 };
-while (true) {
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+const b = { x: 3 };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   b.x = 3;
   b.x = 3;
@@ -80,9 +90,8 @@ while (true) {
   b.x = 3;
   b.x = 3;
   b.x = 3;
-  a = 3;
 }
-$(a, b, 3);
+$(3, b, 3);
 `````
 
 ## Globals

@@ -74,7 +74,29 @@ const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
-while (true) {
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+$(varInitAssignLhsComputedRhs);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(varInitAssignLhsComputedRhs);
   $(1);
 }

@@ -43,7 +43,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 const a = { x: 1, y: 2, z: 3 };

@@ -45,7 +45,40 @@ $(`after`);
 ## Output
 
 `````js filename=intro
-while (true) {
+$(1);
+$(2);
+$(`loop`);
+$(1);
+$(2);
+$(`loop`);
+$(1);
+$(2);
+$(`loop`);
+$(1);
+$(2);
+$(`loop`);
+$(1);
+$(2);
+$(`loop`);
+$(1);
+$(2);
+$(`loop`);
+$(1);
+$(2);
+$(`loop`);
+$(1);
+$(2);
+$(`loop`);
+$(1);
+$(2);
+$(`loop`);
+$(1);
+$(2);
+$(`loop`);
+$(1);
+$(2);
+$(`loop`);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
   $(2);
   $(`loop`);

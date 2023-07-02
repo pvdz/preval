@@ -63,7 +63,29 @@ const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-while (true) {
+$(tmpPostUpdArgVal);
+$(1);
+$(tmpPostUpdArgVal);
+$(1);
+$(tmpPostUpdArgVal);
+$(1);
+$(tmpPostUpdArgVal);
+$(1);
+$(tmpPostUpdArgVal);
+$(1);
+$(tmpPostUpdArgVal);
+$(1);
+$(tmpPostUpdArgVal);
+$(1);
+$(tmpPostUpdArgVal);
+$(1);
+$(tmpPostUpdArgVal);
+$(1);
+$(tmpPostUpdArgVal);
+$(1);
+$(tmpPostUpdArgVal);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpPostUpdArgVal);
   $(1);
 }

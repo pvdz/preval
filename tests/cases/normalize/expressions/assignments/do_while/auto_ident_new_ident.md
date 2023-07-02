@@ -51,11 +51,33 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+const tmpNestedComplexRhs$1 = new $(1);
+let a = tmpNestedComplexRhs$1;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNestedComplexRhs = new $(1);
-  a = tmpNestedComplexRhs;
+  const tmpNestedComplexRhs$2 = new $(1);
+  a = tmpNestedComplexRhs$2;
 }
 $(a);
 `````

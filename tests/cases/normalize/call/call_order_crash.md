@@ -33,6 +33,7 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
+crash;
 const tmpCalleeParam = $spy(`a`);
 const tmpCalleeParam$1 = $spy(`b`);
 const tmpCalleeParam$3 = $spy(`c`);
@@ -54,8 +55,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 'Creating spy', 1, 1, ['a', 'a']
- - 2: 'Creating spy', 2, 1, ['b', 'b']
- - 3: 'Creating spy', 3, 1, ['c', 'c']
- - eval returned: ('<crash[ <ref> is not defined ]>')
+Final output calls: Same

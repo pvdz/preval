@@ -46,11 +46,44 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpArrElement = $(1);
-  const tmpArrElement$3 = $(3);
-  a = [tmpArrElement, 2, tmpArrElement$3];
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+const tmpArrElement$1 = $(1);
+const tmpArrElement$4 = $(3);
+let a = [tmpArrElement$1, 2, tmpArrElement$4];
+$(100);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpArrElement$2 = $(1);
+  const tmpArrElement$5 = $(3);
+  a = [tmpArrElement$2, 2, tmpArrElement$5];
   $(100);
 }
 $(a);

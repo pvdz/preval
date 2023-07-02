@@ -57,8 +57,8 @@ const tmpClusterSSA_x = $(`b`);
 if ($) {
   $(tmpClusterSSA_x);
 } else {
-  const tmpClusterSSA_tmpClusterSSA_x = $(`c`);
-  $(tmpClusterSSA_tmpClusterSSA_x);
+  const tmpClusterSSA_x$1 = $(`c`);
+  $(tmpClusterSSA_x$1);
 }
 `````
 

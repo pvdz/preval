@@ -104,7 +104,29 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-while (true) {
+$(3);
+$(1);
+$(3);
+$(1);
+$(3);
+$(1);
+$(3);
+$(1);
+$(3);
+$(1);
+$(3);
+$(1);
+$(3);
+$(1);
+$(3);
+$(1);
+$(3);
+$(1);
+$(3);
+$(1);
+$(3);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(3);
   $(1);
 }

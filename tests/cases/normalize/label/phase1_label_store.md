@@ -73,7 +73,8 @@ f();
 `````js filename=intro
 const f = function () {
   debugger;
-  while (true) {
+  s;
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
     s;
   }
   return undefined;

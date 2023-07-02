@@ -54,13 +54,24 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpNestedComplexRhs = b + 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-  if (tmpNestedComplexRhs) {
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+let b = 12;
+let a = 12;
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpNestedComplexRhs$1 = b + 1;
+  b = tmpNestedComplexRhs$1;
+  a = tmpNestedComplexRhs$1;
+  if (tmpNestedComplexRhs$1) {
     $(1);
   } else {
     break;

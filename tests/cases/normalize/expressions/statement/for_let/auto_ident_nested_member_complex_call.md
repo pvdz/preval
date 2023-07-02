@@ -73,7 +73,29 @@ const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-while (true) {
+$(varInitAssignLhsComputedRhs$1);
+$(1);
+$(varInitAssignLhsComputedRhs$1);
+$(1);
+$(varInitAssignLhsComputedRhs$1);
+$(1);
+$(varInitAssignLhsComputedRhs$1);
+$(1);
+$(varInitAssignLhsComputedRhs$1);
+$(1);
+$(varInitAssignLhsComputedRhs$1);
+$(1);
+$(varInitAssignLhsComputedRhs$1);
+$(1);
+$(varInitAssignLhsComputedRhs$1);
+$(1);
+$(varInitAssignLhsComputedRhs$1);
+$(1);
+$(varInitAssignLhsComputedRhs$1);
+$(1);
+$(varInitAssignLhsComputedRhs$1);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(varInitAssignLhsComputedRhs$1);
   $(1);
 }

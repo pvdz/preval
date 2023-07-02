@@ -55,8 +55,8 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-const tmpClusterSSA_tmpClusterSSA_a = $(tmpCalleeParam);
-$(tmpClusterSSA_tmpClusterSSA_a);
+const tmpClusterSSA_a$1 = $(tmpCalleeParam);
+$(tmpClusterSSA_a$1);
 `````
 
 ## Globals

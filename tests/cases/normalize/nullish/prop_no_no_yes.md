@@ -44,6 +44,7 @@ const tmpCompObj = $ObjectPrototype.b;
 const tmpCalleeParam = tmpCompObj.c;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
+  d;
   $(d);
 } else {
   $(tmpCalleeParam);

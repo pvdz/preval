@@ -43,8 +43,29 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+new $(1);
+$(100);
+let a = new $(1);
+$(100);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a = new $(1);
   $(100);
 }

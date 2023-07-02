@@ -53,19 +53,30 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 const b = { $: $ };
-while (true) {
-  const tmpCallCompObj = $(b);
-  const tmpCallCompProp = $(`\$`);
-  a = tmpCallCompObj[tmpCallCompProp](1);
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
+const tmpCallCompObj = $(b);
+const tmpCallCompProp = $(`\$`);
+let tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
+if (tmpClusterSSA_a) {
+  $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
 }
-$(a);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCallCompObj$1 = $(b);
+    const tmpCallCompProp$1 = $(`\$`);
+    tmpClusterSSA_a = tmpCallCompObj$1[tmpCallCompProp$1](1);
+    if (tmpClusterSSA_a) {
+      $(1);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

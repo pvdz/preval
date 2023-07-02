@@ -24,7 +24,7 @@ $([...true.toString.name]);
 
 `````js filename=intro
 const tmpCallCallee = $;
-const tmpCompObj = true.toString;
+const tmpCompObj = $Boolean_toString;
 const tmpArrSpread = tmpCompObj.name;
 const tmpCalleeParam = [...tmpArrSpread];
 tmpCallCallee(tmpCalleeParam);
@@ -33,8 +33,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCompObj = true.toString;
-const tmpArrSpread = tmpCompObj.name;
+const tmpArrSpread = $Boolean_toString.name;
 const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
 `````

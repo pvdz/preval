@@ -58,16 +58,58 @@ $(p, q);
 ## Output
 
 `````js filename=intro
-let p = undefined;
-let q = undefined;
 const b = [10, 20];
-while (true) {
-  const arrAssignPatternRhs = $(b);
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  p = arrPatternSplat[0];
-  q = arrPatternSplat[1];
+const arrAssignPatternRhs = $(b);
+const arrPatternSplat = [...arrAssignPatternRhs];
+arrPatternSplat[0];
+arrPatternSplat[1];
+const arrAssignPatternRhs$1 = $(b);
+const arrPatternSplat$1 = [...arrAssignPatternRhs$1];
+arrPatternSplat$1[0];
+arrPatternSplat$1[1];
+const arrAssignPatternRhs$2 = $(b);
+const arrPatternSplat$2 = [...arrAssignPatternRhs$2];
+arrPatternSplat$2[0];
+arrPatternSplat$2[1];
+const arrAssignPatternRhs$3 = $(b);
+const arrPatternSplat$3 = [...arrAssignPatternRhs$3];
+arrPatternSplat$3[0];
+arrPatternSplat$3[1];
+const arrAssignPatternRhs$4 = $(b);
+const arrPatternSplat$4 = [...arrAssignPatternRhs$4];
+arrPatternSplat$4[0];
+arrPatternSplat$4[1];
+const arrAssignPatternRhs$5 = $(b);
+const arrPatternSplat$5 = [...arrAssignPatternRhs$5];
+arrPatternSplat$5[0];
+arrPatternSplat$5[1];
+const arrAssignPatternRhs$6 = $(b);
+const arrPatternSplat$6 = [...arrAssignPatternRhs$6];
+arrPatternSplat$6[0];
+arrPatternSplat$6[1];
+const arrAssignPatternRhs$7 = $(b);
+const arrPatternSplat$7 = [...arrAssignPatternRhs$7];
+arrPatternSplat$7[0];
+arrPatternSplat$7[1];
+const arrAssignPatternRhs$8 = $(b);
+const arrPatternSplat$8 = [...arrAssignPatternRhs$8];
+arrPatternSplat$8[0];
+arrPatternSplat$8[1];
+const arrAssignPatternRhs$9 = $(b);
+const arrPatternSplat$9 = [...arrAssignPatternRhs$9];
+arrPatternSplat$9[0];
+arrPatternSplat$9[1];
+const arrAssignPatternRhs$10 = $(b);
+const arrPatternSplat$10 = [...arrAssignPatternRhs$10];
+let tmpClusterSSA_p$2 = arrPatternSplat$10[0];
+let tmpClusterSSA_q$2 = arrPatternSplat$10[1];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const arrAssignPatternRhs$11 = $(b);
+  const arrPatternSplat$11 = [...arrAssignPatternRhs$11];
+  tmpClusterSSA_p$2 = arrPatternSplat$11[0];
+  tmpClusterSSA_q$2 = arrPatternSplat$11[1];
 }
-$(p, q);
+$(tmpClusterSSA_p$2, tmpClusterSSA_q$2);
 `````
 
 ## Globals

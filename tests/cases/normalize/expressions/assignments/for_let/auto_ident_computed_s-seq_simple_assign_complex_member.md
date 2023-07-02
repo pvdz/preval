@@ -63,7 +63,29 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
-while (true) {
+$(tmpNestedAssignPropRhs);
+$(1);
+$(tmpNestedAssignPropRhs);
+$(1);
+$(tmpNestedAssignPropRhs);
+$(1);
+$(tmpNestedAssignPropRhs);
+$(1);
+$(tmpNestedAssignPropRhs);
+$(1);
+$(tmpNestedAssignPropRhs);
+$(1);
+$(tmpNestedAssignPropRhs);
+$(1);
+$(tmpNestedAssignPropRhs);
+$(1);
+$(tmpNestedAssignPropRhs);
+$(1);
+$(tmpNestedAssignPropRhs);
+$(1);
+$(tmpNestedAssignPropRhs);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignPropRhs);
   $(1);
 }

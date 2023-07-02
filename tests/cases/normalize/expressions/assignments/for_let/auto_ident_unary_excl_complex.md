@@ -49,7 +49,29 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg = $(100);
 const a = !tmpUnaryArg;
-while (true) {
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+$(a);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(a);
   $(1);
 }

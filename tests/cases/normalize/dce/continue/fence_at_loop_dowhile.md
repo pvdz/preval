@@ -79,19 +79,24 @@ $(`after (not invoked)`);
 let tmpIfTest = $(true);
 while (tmpIfTest) {
   $(`loop`);
-  let tmpDoWhileFlag = true;
-  while (true) {
-    let tmpIfTest$1 = tmpDoWhileFlag;
-    if (tmpDoWhileFlag) {
-    } else {
-      tmpIfTest$1 = $(true);
+  $(`loop`);
+  let $tmpLoopUnrollCheck = true;
+  const tmpIfTest$2 = $(true);
+  if (tmpIfTest$2) {
+    $(`loop`);
+  } else {
+    $tmpLoopUnrollCheck = false;
+  }
+  if ($tmpLoopUnrollCheck) {
+    while ($LOOP_UNROLL_9) {
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+        $(`loop`);
+      } else {
+        break;
+      }
     }
-    if (tmpIfTest$1) {
-      tmpDoWhileFlag = false;
-      $(`loop`);
-    } else {
-      break;
-    }
+  } else {
   }
   $(`infiloop, do not eliminate`);
   tmpIfTest = $(true);

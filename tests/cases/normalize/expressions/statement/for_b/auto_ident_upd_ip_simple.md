@@ -52,11 +52,22 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-while (true) {
-  const tmpPostUpdArgIdent = b;
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+let b = 12;
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpPostUpdArgIdent$1 = b;
   b = b + 1;
-  if (tmpPostUpdArgIdent) {
+  if (tmpPostUpdArgIdent$1) {
     $(1);
   } else {
     break;

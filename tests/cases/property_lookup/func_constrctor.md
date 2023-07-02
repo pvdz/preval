@@ -36,6 +36,7 @@ $(f);
 ## Output
 
 `````js filename=intro
+Function;
 $(Function);
 `````
 

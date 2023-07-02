@@ -71,13 +71,7 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_b = { x: 1 };
-tmpClusterSSA_b.x = 3;
-tmpClusterSSA_b.x = 3;
-tmpClusterSSA_b.x = 3;
-tmpClusterSSA_b.x = 3;
-tmpClusterSSA_b.x = 3;
-tmpClusterSSA_b.x = 3;
+const tmpClusterSSA_b = { x: 3 };
 $(3, tmpClusterSSA_b, 3);
 `````
 

@@ -60,13 +60,46 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-while (true) {
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  x = tmpArrElement;
-  y = tmpArrElement$1;
+$(3);
+$(4);
+$(1);
+$(3);
+$(4);
+$(1);
+$(3);
+$(4);
+$(1);
+$(3);
+$(4);
+$(1);
+$(3);
+$(4);
+$(1);
+$(3);
+$(4);
+$(1);
+$(3);
+$(4);
+$(1);
+$(3);
+$(4);
+$(1);
+$(3);
+$(4);
+$(1);
+$(3);
+$(4);
+$(1);
+const tmpArrElement$2 = $(3);
+const tmpArrElement$4 = $(4);
+let x = tmpArrElement$2;
+let y = tmpArrElement$4;
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpArrElement$3 = $(3);
+  const tmpArrElement$5 = $(4);
+  x = tmpArrElement$3;
+  y = tmpArrElement$5;
   $(1);
 }
 const a = { a: 999, b: 1000 };

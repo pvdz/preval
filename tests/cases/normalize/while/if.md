@@ -70,28 +70,24 @@ if ($) {
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  let i = 0;
-  while (true) {
-    i = i + 1;
-    const tmpIfTest = i < 10;
-    if (tmpIfTest) {
-      const tmpIfTest$1 = i < 5;
-      if (tmpIfTest$1) {
-        $(i, `sub`);
+if ($) {
+  $(1, `sub`);
+  let i$1 = 1;
+  while ($LOOP_UNROLL_10) {
+    i$1 = i$1 + 1;
+    const tmpIfTest$6 = i$1 < 10;
+    if (tmpIfTest$6) {
+      const tmpIfTest$8 = i$1 < 5;
+      if (tmpIfTest$8) {
+        $(i$1, `sub`);
       } else {
-        $(i, `sup`);
+        $(i$1, `sup`);
       }
     } else {
       break;
     }
   }
-  $(i);
-  return undefined;
-};
-if ($) {
-  f();
+  $(i$1);
 } else {
 }
 `````

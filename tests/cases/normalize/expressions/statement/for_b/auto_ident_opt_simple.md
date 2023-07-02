@@ -57,13 +57,27 @@ $(a);
 ## Output
 
 `````js filename=intro
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
-let tmpChainElementObject = true;
-while (tmpChainElementObject) {
-  $(1);
-  tmpChainElementObject = b.x;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpChainElementObject$1 = b.x;
+  if (tmpChainElementObject$1) {
+    $(1);
+  } else {
+    break;
+  }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

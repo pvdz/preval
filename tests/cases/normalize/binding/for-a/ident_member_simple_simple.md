@@ -43,8 +43,7 @@ let a$1 = varInitAssignLhsComputedRhs;
 ## Output
 
 `````js filename=intro
-const b = { x: 2 };
-b.x = 3;
+
 `````
 
 ## Globals

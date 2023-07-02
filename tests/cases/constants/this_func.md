@@ -58,7 +58,7 @@ const f = function () {
   return undefined;
 };
 const tmpCalleeParam = { pass: 1 };
-f.apply(tmpCalleeParam);
+f.call(tmpCalleeParam);
 `````
 
 ## Globals

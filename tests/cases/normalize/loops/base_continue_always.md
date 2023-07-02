@@ -62,8 +62,19 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-let n = 0;
-while (true) {
+$(1);
+$(2);
+$(3);
+$(4);
+$(5);
+$(6);
+$(7);
+$(8);
+$(9);
+$(10);
+let n = 11;
+$(11);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   n = n + 1;
   $(n);
 }

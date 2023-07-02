@@ -54,13 +54,47 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+$(1);
+$(3);
+$(100);
+const tmpArrElement$2 = $(1);
+const tmpArrElement$5 = $(3);
+const tmpNestedComplexRhs$1 = [tmpArrElement$2, 2, tmpArrElement$5];
+let a = tmpNestedComplexRhs$1;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpArrElement = $(1);
-  const tmpArrElement$3 = $(3);
-  const tmpNestedComplexRhs = [tmpArrElement, 2, tmpArrElement$3];
-  a = tmpNestedComplexRhs;
+  const tmpArrElement$6 = $(1);
+  const tmpArrElement$8 = $(3);
+  const tmpNestedComplexRhs$2 = [tmpArrElement$6, 2, tmpArrElement$8];
+  a = tmpNestedComplexRhs$2;
 }
 $(a);
 `````

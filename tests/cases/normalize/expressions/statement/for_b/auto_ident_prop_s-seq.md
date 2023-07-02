@@ -53,10 +53,24 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = true;
-while (tmpIfTest) {
-  $(1);
-  tmpIfTest = b.c;
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest$1 = b.c;
+  if (tmpIfTest$1) {
+    $(1);
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````

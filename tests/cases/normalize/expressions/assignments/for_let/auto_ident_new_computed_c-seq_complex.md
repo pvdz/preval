@@ -58,7 +58,29 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = tmpCompObj[tmpCompProp];
 const tmpClusterSSA_a = new tmpNewCallee(1);
-while (true) {
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);
 }

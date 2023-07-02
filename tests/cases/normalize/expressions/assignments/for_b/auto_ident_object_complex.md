@@ -50,11 +50,44 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpObjLitVal = $(1);
-  const tmpObjLitVal$3 = $(3);
-  a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
+$(1);
+$(3);
+$(1);
+$(1);
+$(3);
+$(1);
+$(1);
+$(3);
+$(1);
+$(1);
+$(3);
+$(1);
+$(1);
+$(3);
+$(1);
+$(1);
+$(3);
+$(1);
+$(1);
+$(3);
+$(1);
+$(1);
+$(3);
+$(1);
+$(1);
+$(3);
+$(1);
+$(1);
+$(3);
+$(1);
+const tmpObjLitVal$1 = $(1);
+const tmpObjLitVal$4 = $(3);
+let a = { x: tmpObjLitVal$1, y: 2, z: tmpObjLitVal$4 };
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpObjLitVal$2 = $(1);
+  const tmpObjLitVal$5 = $(3);
+  a = { x: tmpObjLitVal$2, y: 2, z: tmpObjLitVal$5 };
   $(1);
 }
 $(a);

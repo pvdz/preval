@@ -59,23 +59,41 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  a = undefined;
-  const tmpChainElementCall = $($);
-  const tmpIfTest$1 = tmpChainElementCall == null;
-  if (tmpIfTest$1) {
+let a = undefined;
+let $tmpLoopUnrollCheck = true;
+const tmpChainElementCall = $($);
+const tmpIfTest$1 = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+  $(1);
+} else {
+  const tmpCalleeParam$3 = $(1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  a = tmpChainElementCall$1;
+  if (tmpChainElementCall$1) {
     $(1);
   } else {
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
-    a = tmpChainElementCall$1;
-    if (tmpChainElementCall$1) {
+    $tmpLoopUnrollCheck = false;
+  }
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    a = undefined;
+    const tmpChainElementCall$2 = $($);
+    const tmpIfTest$2 = tmpChainElementCall$2 == null;
+    if (tmpIfTest$2) {
       $(1);
     } else {
-      break;
+      const tmpCalleeParam$1 = $(1);
+      const tmpChainElementCall$4 = $dotCall(tmpChainElementCall$2, $, tmpCalleeParam$1);
+      a = tmpChainElementCall$4;
+      if (tmpChainElementCall$4) {
+        $(1);
+      } else {
+        break;
+      }
     }
   }
+} else {
 }
 $(a);
 `````

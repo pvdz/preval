@@ -1,21 +1,20 @@
 # Preval test case
 
-# static_push_one_two.md
+# decl_if_upd_else_upd.md
 
-> Array > Static push one two
+> Arr mutation > Decl if upd else upd
 >
-> Pushing a few static values to an array
-
-In this particular case the array could be initialized with the numbers immediately.
-
-#TODO
+> Testing the inlining of array mutations
 
 ## Input
 
 `````js filename=intro
 const arr = [];
-arr.push(1);
-arr.push(2);
+if ($) {
+  arr[0] = 1;
+} else {
+  arr[0] = 2;
+}
 $(arr);
 `````
 
@@ -23,8 +22,11 @@ $(arr);
 
 `````js filename=intro
 const arr = [];
-arr.push(1);
-arr.push(2);
+if ($) {
+  arr[0] = 1;
+} else {
+  arr[0] = 2;
+}
 $(arr);
 `````
 
@@ -32,15 +34,23 @@ $(arr);
 
 `````js filename=intro
 const arr = [];
-arr.push(1);
-arr.push(2);
+if ($) {
+  arr[0] = 1;
+} else {
+  arr[0] = 2;
+}
 $(arr);
 `````
 
 ## Output
 
 `````js filename=intro
-const arr = [1, 2];
+const arr = [];
+if ($) {
+  arr[0] = 1;
+} else {
+  arr[0] = 2;
+}
 $(arr);
 `````
 
@@ -51,7 +61,7 @@ None
 ## Result
 
 Should call `$` with:
- - 1: [1, 2]
+ - 1: [1]
  - eval returned: undefined
 
 Pre normalization calls: Same

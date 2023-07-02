@@ -48,18 +48,29 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 999;
-while (true) {
-  const tmpCalleeParam = { a: 1, b: 2 };
-  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-  a = tmpNestedAssignObjPatternRhs.a;
-  if (tmpNestedAssignObjPatternRhs) {
-    $(100);
-  } else {
-    break;
-  }
+let $tmpLoopUnrollCheck = true;
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+if (tmpNestedAssignObjPatternRhs) {
+  $(100);
+} else {
+  $tmpLoopUnrollCheck = false;
 }
-$(a);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCalleeParam$1 = { a: 1, b: 2 };
+    const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+    tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+    if (tmpNestedAssignObjPatternRhs$1) {
+      $(100);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

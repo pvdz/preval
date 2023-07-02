@@ -38,6 +38,7 @@ $(y);
 const y = $();
 const tmpIfTest = y == null;
 if (tmpIfTest) {
+  foo;
   $(foo);
 } else {
   $(y);

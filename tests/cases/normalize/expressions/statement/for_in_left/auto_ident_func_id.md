@@ -53,11 +53,6 @@ const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
-  const f = function () {
-    debugger;
-    return undefined;
-  };
-  f.x = tmpForInLhsNode;
 }
 $(a);
 `````

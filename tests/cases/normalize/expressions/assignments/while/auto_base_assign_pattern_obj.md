@@ -52,21 +52,33 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
-  if (tmpNestedAssignObjPatternRhs) {
-    $(100);
-  } else {
-    break;
-  }
+let $tmpLoopUnrollCheck = true;
+const tmpObjLitVal = $(2);
+const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
+if (tmpNestedAssignObjPatternRhs) {
+  $(100);
+} else {
+  $tmpLoopUnrollCheck = false;
 }
-$(a, b);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpObjLitVal$1 = $(2);
+    const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
+    const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+    tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+    tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
+    if (tmpNestedAssignObjPatternRhs$1) {
+      $(100);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a, tmpClusterSSA_b);
 `````
 
 ## Globals

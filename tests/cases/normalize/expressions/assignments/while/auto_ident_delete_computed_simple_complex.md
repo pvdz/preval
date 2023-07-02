@@ -49,16 +49,26 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
+const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
-while (true) {
-  const tmpDeleteCompProp = $(`y`);
-  a = delete arg[tmpDeleteCompProp];
-  if (a) {
-    $(100);
-  } else {
-    break;
+let a = delete arg[tmpDeleteCompProp];
+if (a) {
+  $(100);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpDeleteCompProp$1 = $(`y`);
+    a = delete arg[tmpDeleteCompProp$1];
+    if (a) {
+      $(100);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(a, arg);
 `````

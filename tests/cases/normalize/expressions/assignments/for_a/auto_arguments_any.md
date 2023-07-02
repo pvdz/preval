@@ -43,7 +43,19 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
+arguments;
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 $(arguments);

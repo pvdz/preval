@@ -68,8 +68,8 @@ if (tmpNestedAssignArrPatternRhs) {
   const tmpCalleeParam$1 = [tmpArrElement$1];
   const arrAssignPatternRhs = $(tmpCalleeParam$1);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
-  const tmpClusterSSA_tmpClusterSSA_b = arrPatternSplat$1[0];
-  $(a, tmpClusterSSA_tmpClusterSSA_b);
+  const tmpClusterSSA_b$1 = arrPatternSplat$1[0];
+  $(a, tmpClusterSSA_b$1);
 }
 `````
 

@@ -56,14 +56,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
+const b = { x: 3 };
 const a = { a: 999, b: 1000 };
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
 const tmpAnonDefaultExport = 3;
 export { tmpAnonDefaultExport as default };
 $(a, b, 3);

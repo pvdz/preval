@@ -99,37 +99,15 @@ tmpCallCallee$7(tmpCalleeParam$7);
 ## Output
 
 `````js filename=intro
-const f = function ($$0) {
-  const g = $$0;
-  debugger;
-  const y = g(1);
-  $(y);
-  return y;
-};
-const tmpCalleeParam$1 = function ($$0) {
-  const a = $$0;
-  debugger;
-  $(a, `first`);
-  return undefined;
-};
-const tmpCalleeParam = f(tmpCalleeParam$1);
-$(tmpCalleeParam);
-const tmpCalleeParam$5 = function ($$0) {
-  const a$1 = $$0;
-  debugger;
-  $(a$1, `second`);
-  return undefined;
-};
-const tmpCalleeParam$3 = f(tmpCalleeParam$5);
-$(tmpCalleeParam$3);
-const tmpCalleeParam$9 = function ($$0) {
-  const a$3 = $$0;
-  debugger;
-  $(a$3, `third`);
-  return undefined;
-};
-const tmpCalleeParam$7 = f(tmpCalleeParam$9);
-$(tmpCalleeParam$7);
+$(1, `first`);
+$(undefined);
+$(undefined);
+$(1, `second`);
+$(undefined);
+$(undefined);
+$(1, `third`);
+$(undefined);
+$(undefined);
 `````
 
 ## Globals

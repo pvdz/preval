@@ -53,7 +53,29 @@ $(a, b);
 
 `````js filename=intro
 const tmpNestedComplexRhs = $(2);
-while (true) {
+$(tmpNestedComplexRhs);
+$(1);
+$(tmpNestedComplexRhs);
+$(1);
+$(tmpNestedComplexRhs);
+$(1);
+$(tmpNestedComplexRhs);
+$(1);
+$(tmpNestedComplexRhs);
+$(1);
+$(tmpNestedComplexRhs);
+$(1);
+$(tmpNestedComplexRhs);
+$(1);
+$(tmpNestedComplexRhs);
+$(1);
+$(tmpNestedComplexRhs);
+$(1);
+$(tmpNestedComplexRhs);
+$(1);
+$(tmpNestedComplexRhs);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedComplexRhs);
   $(1);
 }

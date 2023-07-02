@@ -50,10 +50,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+$(1);
 $(100);
-const a = { b: tmpObjLitVal };
-a.b = 2;
+const a = { b: 2 };
 $(a);
 `````
 

@@ -50,8 +50,19 @@ while (test) {
 ## Output
 
 `````js filename=intro
-let counter1 = 0;
-while (true) {
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+$(`yolo`);
+let counter1 = 11;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(`yolo`);
   counter1 = counter1 + 1;
 }

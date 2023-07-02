@@ -77,8 +77,8 @@ if (tmpIfTest) {
   if (tmpIfTest$1) {
     $(tmpClusterSSA_x);
   } else {
-    const tmpClusterSSA_tmpClusterSSA_x = $(`d`);
-    $(tmpClusterSSA_tmpClusterSSA_x);
+    const tmpClusterSSA_x$1 = $(`d`);
+    $(tmpClusterSSA_x$1);
   }
 }
 `````

@@ -1,24 +1,12 @@
 # Preval test case
 
-# member_expr_call_complex_arg.md
+# member_expr_call_complex_arg_undef.md
 
-> Expr order > Member expr call complex arg
+> Expr order > Member expr call complex arg undef
 >
-> Spread should normalize itself
+> calling method with property arg should resolve in correct order (and throw when obj is undefined)
 
 This should throw. There was a regression where `x.y` was read before `a.b` (but the evaluation order ought to read `a.b` first)
-
-```js
-a.b(x.y)
-
-tmp = a
-tmp = tmp.b
-tmp2 = x.y
-tmp.call(a, tmp2)
-
-```
-
-#TODO
 
 ## Input
 

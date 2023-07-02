@@ -49,10 +49,25 @@ $(a, b);
 
 `````js filename=intro
 let a = 1;
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
 const b = { c: 1 };
-while (a) {
-  $(100);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   a = b.c;
+  if (a) {
+    $(100);
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````

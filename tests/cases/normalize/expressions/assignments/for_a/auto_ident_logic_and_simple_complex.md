@@ -51,7 +51,18 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $(1);
 const a = $(tmpCalleeParam);
-while (true) {
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
 $(a);

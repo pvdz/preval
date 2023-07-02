@@ -47,12 +47,22 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-while (true) {
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-const a = { b: tmpObjLitVal };
-a.b = 2;
+const a = { b: 2 };
 $(a);
 `````
 

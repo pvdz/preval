@@ -55,19 +55,53 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  a = tmpNestedAssignObjPatternRhs;
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+const tmpObjLitVal$2 = $(3);
+const tmpObjLitVal$4 = $(4);
+let tmpClusterSSA_x$1 = tmpObjLitVal$2;
+let tmpClusterSSA_y$1 = tmpObjLitVal$4;
+const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
+let tmpClusterSSA_a$2 = tmpNestedAssignObjPatternRhs$1;
+$(100);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpObjLitVal$3 = $(3);
+  const tmpObjLitVal$5 = $(4);
+  tmpClusterSSA_x$1 = tmpObjLitVal$3;
+  tmpClusterSSA_y$1 = tmpObjLitVal$5;
+  const tmpNestedAssignObjPatternRhs$2 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
+  tmpClusterSSA_a$2 = tmpNestedAssignObjPatternRhs$2;
   $(100);
 }
-$(a, x, y);
+$(tmpClusterSSA_a$2, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
 
 ## Globals

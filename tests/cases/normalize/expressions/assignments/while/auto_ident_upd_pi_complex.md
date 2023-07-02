@@ -53,22 +53,36 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 const b = { x: 1 };
-while (true) {
-  const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  a = tmpNestedPropCompoundComplexRhs;
-  if (tmpNestedPropCompoundComplexRhs) {
-    $(100);
-  } else {
-    break;
-  }
+const tmpCalleeParam = $(b);
+const tmpNestedAssignObj = $(tmpCalleeParam);
+const tmpBinLhs = tmpNestedAssignObj.x;
+const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+let tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs;
+if (tmpNestedPropCompoundComplexRhs) {
+  $(100);
+} else {
+  $tmpLoopUnrollCheck = false;
 }
-$(a, b);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCalleeParam$1 = $(b);
+    const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
+    const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
+    const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 + 1;
+    tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
+    tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs$1;
+    if (tmpNestedPropCompoundComplexRhs$1) {
+      $(100);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

@@ -53,17 +53,27 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpNestedComplexRhs = $(2);
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-  if (tmpNestedComplexRhs) {
-    $(1);
-  } else {
-    break;
+let $tmpLoopUnrollCheck = true;
+const tmpNestedComplexRhs = $(2);
+let b = tmpNestedComplexRhs;
+let a = tmpNestedComplexRhs;
+if (tmpNestedComplexRhs) {
+  $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpNestedComplexRhs$1 = $(2);
+    b = tmpNestedComplexRhs$1;
+    a = tmpNestedComplexRhs$1;
+    if (tmpNestedComplexRhs$1) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(a, b);
 `````

@@ -56,16 +56,39 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+const tmpObjLitVal$1 = $(1);
+const tmpNestedComplexRhs$1 = { b: tmpObjLitVal$1 };
+let tmpClusterSSA_a$2 = tmpNestedComplexRhs$1;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpObjLitVal = $(1);
-  const tmpNestedComplexRhs = { b: tmpObjLitVal };
-  a = tmpNestedComplexRhs;
+  const tmpObjLitVal$2 = $(1);
+  const tmpNestedComplexRhs$2 = { b: tmpObjLitVal$2 };
+  tmpClusterSSA_a$2 = tmpNestedComplexRhs$2;
 }
-const tmpAssignMemLhsObj = $(a);
+const tmpAssignMemLhsObj = $(tmpClusterSSA_a$2);
 tmpAssignMemLhsObj.b = 2;
-$(a);
+$(tmpClusterSSA_a$2);
 `````
 
 ## Globals

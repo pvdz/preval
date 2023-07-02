@@ -55,20 +55,37 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpCalleeParam = $(1);
-  const tmpIfTest = $(tmpCalleeParam);
-  if (tmpIfTest) {
-    const tmpCalleeParam$1 = $(2);
-    const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
-    if (tmpClusterSSA_tmpIfTest) {
-      $(1);
+let $tmpLoopUnrollCheck = true;
+const tmpCalleeParam = $(1);
+const tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
+  const tmpCalleeParam$1 = $(2);
+  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
+  if (tmpClusterSSA_tmpIfTest) {
+    $(1);
+  } else {
+    $tmpLoopUnrollCheck = false;
+  }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCalleeParam$2 = $(1);
+    const tmpIfTest$1 = $(tmpCalleeParam$2);
+    if (tmpIfTest$1) {
+      const tmpCalleeParam$4 = $(2);
+      const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$4);
+      if (tmpClusterSSA_tmpIfTest$1) {
+        $(1);
+      } else {
+        break;
+      }
     } else {
       break;
     }
-  } else {
-    break;
   }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

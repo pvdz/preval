@@ -43,7 +43,8 @@ $(`after`);
 `````js filename=intro
 const x = $(false);
 if (x) {
-  while (true) {
+  $(`body`);
+  while ($LOOP_UNROLL_10) {
     $(`body`);
   }
 } else {

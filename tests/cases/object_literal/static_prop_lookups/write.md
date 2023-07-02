@@ -37,9 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
-const o = { x: tmpObjLitVal };
-o.x = 2;
+$(1);
 $(2);
 `````
 

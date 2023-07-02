@@ -62,7 +62,29 @@ const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs - 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-while (true) {
+$(tmpNestedPropCompoundComplexRhs);
+$(1);
+$(tmpNestedPropCompoundComplexRhs);
+$(1);
+$(tmpNestedPropCompoundComplexRhs);
+$(1);
+$(tmpNestedPropCompoundComplexRhs);
+$(1);
+$(tmpNestedPropCompoundComplexRhs);
+$(1);
+$(tmpNestedPropCompoundComplexRhs);
+$(1);
+$(tmpNestedPropCompoundComplexRhs);
+$(1);
+$(tmpNestedPropCompoundComplexRhs);
+$(1);
+$(tmpNestedPropCompoundComplexRhs);
+$(1);
+$(tmpNestedPropCompoundComplexRhs);
+$(1);
+$(tmpNestedPropCompoundComplexRhs);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedPropCompoundComplexRhs);
   $(1);
 }

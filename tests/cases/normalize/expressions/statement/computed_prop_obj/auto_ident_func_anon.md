@@ -44,11 +44,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpCompObj = function () {
-  debugger;
-  return undefined;
-};
-tmpCompObj.a;
 const a = { a: 999, b: 1000 };
 $(a);
 `````

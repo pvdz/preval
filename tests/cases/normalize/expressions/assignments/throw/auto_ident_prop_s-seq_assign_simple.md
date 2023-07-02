@@ -43,8 +43,6 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
-b.c = 2;
 throw 2;
 `````
 

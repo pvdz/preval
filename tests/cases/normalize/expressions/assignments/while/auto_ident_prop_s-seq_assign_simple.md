@@ -50,14 +50,23 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-const b = { c: 1 };
-while (true) {
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+const b = { c: 2 };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   b.c = 2;
-  a = 2;
   $(100);
 }
-$(a, b);
+$(2, b);
 `````
 
 ## Globals

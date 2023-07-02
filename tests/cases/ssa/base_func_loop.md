@@ -72,18 +72,29 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  let x = $(3);
+  const x = $(3);
   $(x);
-  while (true) {
-    x = x + 1;
-    $(x);
-    const tmpIfTest = x > 5;
-    if (tmpIfTest) {
-      break;
-    } else {
-    }
+  let $tmpLoopUnrollCheck = true;
+  let tmpClusterSSA_x = x + 1;
+  $(tmpClusterSSA_x);
+  const tmpIfTest = tmpClusterSSA_x > 5;
+  if (tmpIfTest) {
+    $tmpLoopUnrollCheck = false;
+  } else {
   }
-  $(x);
+  if ($tmpLoopUnrollCheck) {
+    while ($LOOP_UNROLL_10) {
+      tmpClusterSSA_x = tmpClusterSSA_x + 1;
+      $(tmpClusterSSA_x);
+      const tmpIfTest$1 = tmpClusterSSA_x > 5;
+      if (tmpIfTest$1) {
+        break;
+      } else {
+      }
+    }
+  } else {
+  }
+  $(tmpClusterSSA_x);
   $(undefined);
 } else {
 }

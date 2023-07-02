@@ -58,9 +58,86 @@ while (true) {
 
 `````js filename=intro
 let x = $(1);
-while (true) {
-  const tmpIfTest = x % 2;
-  if (tmpIfTest) {
+const tmpIfTest = x % 2;
+if (tmpIfTest) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$1 = x % 2;
+if (tmpIfTest$1) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$2 = x % 2;
+if (tmpIfTest$2) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$3 = x % 2;
+if (tmpIfTest$3) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$4 = x % 2;
+if (tmpIfTest$4) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$5 = x % 2;
+if (tmpIfTest$5) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$6 = x % 2;
+if (tmpIfTest$6) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$7 = x % 2;
+if (tmpIfTest$7) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$8 = x % 2;
+if (tmpIfTest$8) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$9 = x % 2;
+if (tmpIfTest$9) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+const tmpIfTest$10 = x % 2;
+if (tmpIfTest$10) {
+  x = x + 1;
+  $(x, `write`);
+} else {
+  $(x, `read`);
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpIfTest$11 = x % 2;
+  if (tmpIfTest$11) {
     x = x + 1;
     $(x, `write`);
   } else {

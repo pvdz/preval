@@ -39,9 +39,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpChainElementObject = false.toString;
-const tmpChainElementCall = $dotCall(tmpChainElementObject, false);
-$(tmpChainElementCall);
+$(`false`);
 `````
 
 ## Globals

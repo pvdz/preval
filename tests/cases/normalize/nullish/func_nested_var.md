@@ -74,6 +74,7 @@ if (tmpIfTest) {
   tmpIfTest$1 = b == null;
 }
 if (tmpIfTest$1) {
+  length;
   const tmpClusterSSA_tmpReturnArg = $(length);
   $(tmpClusterSSA_tmpReturnArg);
 } else {

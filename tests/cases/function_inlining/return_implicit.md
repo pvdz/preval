@@ -42,6 +42,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+foo;
 $(foo);
 `````
 

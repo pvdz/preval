@@ -80,7 +80,7 @@ const f = function () {
   return tmpReturnArg;
 };
 const tmpCalleeParam$1 = { y: 1 };
-const tmpCalleeParam = f.apply(tmpCalleeParam$1);
+const tmpCalleeParam = f.call(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 

@@ -60,7 +60,29 @@ const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-while (true) {
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+$(tmpClusterSSA_a);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_a);
   $(1);
 }

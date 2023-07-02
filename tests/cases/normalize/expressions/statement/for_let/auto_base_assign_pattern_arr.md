@@ -62,7 +62,29 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
-while (true) {
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
 }

@@ -48,18 +48,28 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 const b = { $: $ };
-while (true) {
-  const tmpCallObj = $(b);
-  a = tmpCallObj.$(1);
-  if (a) {
-    $(100);
-  } else {
-    break;
-  }
+const tmpCallObj = $(b);
+let tmpClusterSSA_a = tmpCallObj.$(1);
+if (tmpClusterSSA_a) {
+  $(100);
+} else {
+  $tmpLoopUnrollCheck = false;
 }
-$(a);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCallObj$1 = $(b);
+    tmpClusterSSA_a = tmpCallObj$1.$(1);
+    if (tmpClusterSSA_a) {
+      $(100);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

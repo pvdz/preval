@@ -48,15 +48,25 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpCallComplexCallee = $($);
-  a = tmpCallComplexCallee(1);
-  if (a) {
-    $(1);
-  } else {
-    break;
+let $tmpLoopUnrollCheck = true;
+const tmpCallComplexCallee = $($);
+let a = tmpCallComplexCallee(1);
+if (a) {
+  $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCallComplexCallee$1 = $($);
+    a = tmpCallComplexCallee$1(1);
+    if (a) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(a);
 `````

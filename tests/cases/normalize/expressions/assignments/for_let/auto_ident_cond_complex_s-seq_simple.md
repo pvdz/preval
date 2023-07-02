@@ -57,12 +57,35 @@ let a = 60;
 const tmpIfTest = $(1);
 let xyz = 60;
 if (tmpIfTest) {
+  $(60);
 } else {
   const tmpCalleeParam = $(100);
   a = $(tmpCalleeParam);
   xyz = a;
+  $(xyz);
 }
-while (true) {
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+$(xyz);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(xyz);
   $(1);
 }

@@ -49,13 +49,24 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpPostUpdArgIdent = b;
+let a = 11;
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+let b = 12;
+$(100);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpPostUpdArgIdent$1 = b;
   b = b + 1;
-  a = tmpPostUpdArgIdent;
-  if (tmpPostUpdArgIdent) {
+  a = tmpPostUpdArgIdent$1;
+  if (tmpPostUpdArgIdent$1) {
     $(100);
   } else {
     break;

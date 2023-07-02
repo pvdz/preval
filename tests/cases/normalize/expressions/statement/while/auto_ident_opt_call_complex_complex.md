@@ -54,20 +54,37 @@ $(a);
 ## Output
 
 `````js filename=intro
-while (true) {
-  const tmpChainElementCall = $($);
-  const tmpIfTest$1 = tmpChainElementCall == null;
-  if (tmpIfTest$1) {
+let $tmpLoopUnrollCheck = true;
+const tmpChainElementCall = $($);
+const tmpIfTest$1 = tmpChainElementCall == null;
+if (tmpIfTest$1) {
+  $(100);
+} else {
+  const tmpCalleeParam$3 = $(1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  if (tmpChainElementCall$1) {
     $(100);
   } else {
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
-    if (tmpChainElementCall$1) {
+    $tmpLoopUnrollCheck = false;
+  }
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpChainElementCall$2 = $($);
+    const tmpIfTest$4 = tmpChainElementCall$2 == null;
+    if (tmpIfTest$4) {
       $(100);
     } else {
-      break;
+      const tmpCalleeParam$1 = $(1);
+      const tmpChainElementCall$4 = $dotCall(tmpChainElementCall$2, $, tmpCalleeParam$1);
+      if (tmpChainElementCall$4) {
+        $(100);
+      } else {
+        break;
+      }
     }
   }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

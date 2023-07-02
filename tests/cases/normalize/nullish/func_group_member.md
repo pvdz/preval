@@ -52,6 +52,7 @@ tmpCallCallee(tmpCalleeParam);
 const y = $();
 const tmpIfTest = y == null;
 if (tmpIfTest) {
+  foo;
   const tmpClusterSSA_tmpReturnArg = $(foo);
   $(tmpClusterSSA_tmpReturnArg);
 } else {

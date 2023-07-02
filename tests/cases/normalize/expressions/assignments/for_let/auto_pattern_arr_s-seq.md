@@ -61,7 +61,29 @@ $(20);
 const tmpNestedAssignArrPatternRhs = [1, 2];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 const tmpClusterSSA_a = arrPatternSplat$1[0];
-while (true) {
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+$(tmpNestedAssignArrPatternRhs);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
 }

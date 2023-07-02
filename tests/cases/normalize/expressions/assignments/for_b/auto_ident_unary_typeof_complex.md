@@ -52,10 +52,32 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpUnaryArg = $(1);
-  a = typeof tmpUnaryArg;
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+$(1);
+const tmpUnaryArg$1 = $(1);
+let a = typeof tmpUnaryArg$1;
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const tmpUnaryArg$2 = $(1);
+  a = typeof tmpUnaryArg$2;
   $(1);
 }
 $(a, 1);

@@ -44,8 +44,19 @@ $(`unreachable`);
 ## Output
 
 `````js filename=intro
-let x = true;
-while (true) {
+$(true);
+$(2);
+$(3);
+$(4);
+$(5);
+$(6);
+$(7);
+$(8);
+$(9);
+$(10);
+$(11);
+let x = 12;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(x);
   x = x + 1;
 }

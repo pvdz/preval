@@ -38,9 +38,7 @@ $(y);
 ## Output
 
 `````js filename=intro
-const x = [1, 2, 3];
-x[1] = 5;
-const y = [`a`, ...x, `b`];
+const y = [`a`, 1, 5, 3, `b`];
 $(y);
 `````
 

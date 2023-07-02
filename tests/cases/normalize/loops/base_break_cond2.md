@@ -70,16 +70,7 @@ tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 ## Output
 
 `````js filename=intro
-let n = 0;
-while (true) {
-  n = n + 1;
-  $(n);
-  const tmpIfTest = n < 4;
-  if (tmpIfTest) {
-    break;
-  } else {
-  }
-}
+$(1);
 $(`afterwards`);
 $(100, `f`);
 `````

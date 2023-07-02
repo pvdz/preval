@@ -56,13 +56,6 @@ throw tmpThrowArg;
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
 throw 3;
 `````
 

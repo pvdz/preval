@@ -62,17 +62,50 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-while (true) {
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+$(3);
+$(4);
+$(100);
+const tmpArrElement$2 = $(3);
+const tmpArrElement$4 = $(4);
+let tmpClusterSSA_x = tmpArrElement$2;
+let tmpClusterSSA_y = tmpArrElement$4;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  x = tmpArrElement;
-  y = tmpArrElement$1;
+  const tmpArrElement$3 = $(3);
+  const tmpArrElement$5 = $(4);
+  tmpClusterSSA_x = tmpArrElement$3;
+  tmpClusterSSA_y = tmpArrElement$5;
 }
 const a = { a: 999, b: 1000 };
-$(a, x, y);
+$(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
 ## Globals

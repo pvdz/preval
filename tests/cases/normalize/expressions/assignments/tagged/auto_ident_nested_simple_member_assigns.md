@@ -59,14 +59,8 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
+const b = { x: 3 };
 const tmpCalleeParam = [`before `, ` after`];
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
-b.x = 3;
 $(tmpCalleeParam, 3);
 $(3, b, 3);
 `````

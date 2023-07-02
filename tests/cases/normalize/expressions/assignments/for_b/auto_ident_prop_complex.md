@@ -52,18 +52,28 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+let $tmpLoopUnrollCheck = true;
 const b = { c: 1 };
-while (true) {
-  const tmpAssignRhsProp = $(b);
-  a = tmpAssignRhsProp.c;
-  if (a) {
-    $(1);
-  } else {
-    break;
-  }
+const tmpAssignRhsProp = $(b);
+let tmpClusterSSA_a = tmpAssignRhsProp.c;
+if (tmpClusterSSA_a) {
+  $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
 }
-$(a, b);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpAssignRhsProp$1 = $(b);
+    tmpClusterSSA_a = tmpAssignRhsProp$1.c;
+    if (tmpClusterSSA_a) {
+      $(1);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

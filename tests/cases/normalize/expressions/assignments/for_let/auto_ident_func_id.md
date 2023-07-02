@@ -56,7 +56,29 @@ const f = function () {
   debugger;
   return undefined;
 };
-while (true) {
+$(f);
+$(1);
+$(f);
+$(1);
+$(f);
+$(1);
+$(f);
+$(1);
+$(f);
+$(1);
+$(f);
+$(1);
+$(f);
+$(1);
+$(f);
+$(1);
+$(f);
+$(1);
+$(f);
+$(1);
+$(f);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(f);
   $(1);
 }

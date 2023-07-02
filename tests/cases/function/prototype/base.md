@@ -4,9 +4,8 @@
 
 > Function > Prototype > Base
 >
-> The function prototype should resolve to a standard symbol
-
-#TODO
+> The function has its own prototype object, not to be confused
+> with func.__proto__ which would point to Function.prototype
 
 ## Input
 
@@ -39,7 +38,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-$($FunctionPrototype);
+$(undefined);
 `````
 
 ## Globals
@@ -57,5 +56,5 @@ Pre normalization calls: Same
 Normalized calls: Same
 
 Final output calls: BAD!!
- - 1: '<function>'
+ - 1: undefined
  - eval returned: undefined

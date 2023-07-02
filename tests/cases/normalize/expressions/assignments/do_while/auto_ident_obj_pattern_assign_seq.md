@@ -66,21 +66,77 @@ $(a, x, y);
 ## Output
 
 `````js filename=intro
-let x = 1;
-let y = 2;
-let a = { a: 999, b: 1000 };
-while (true) {
+$(100);
+$(1);
+$(2);
+const tmpObjLitVal = $(3);
+const tmpObjLitVal$1 = $(4);
+$(100);
+$(tmpObjLitVal);
+$(tmpObjLitVal$1);
+const tmpObjLitVal$2 = $(3);
+const tmpObjLitVal$4 = $(4);
+$(100);
+$(tmpObjLitVal$2);
+$(tmpObjLitVal$4);
+const tmpObjLitVal$3 = $(3);
+const tmpObjLitVal$5 = $(4);
+$(100);
+$(tmpObjLitVal$3);
+$(tmpObjLitVal$5);
+const tmpObjLitVal$6 = $(3);
+const tmpObjLitVal$8 = $(4);
+$(100);
+$(tmpObjLitVal$6);
+$(tmpObjLitVal$8);
+const tmpObjLitVal$7 = $(3);
+const tmpObjLitVal$9 = $(4);
+$(100);
+$(tmpObjLitVal$7);
+$(tmpObjLitVal$9);
+const tmpObjLitVal$10 = $(3);
+const tmpObjLitVal$12 = $(4);
+$(100);
+$(tmpObjLitVal$10);
+$(tmpObjLitVal$12);
+const tmpObjLitVal$11 = $(3);
+const tmpObjLitVal$13 = $(4);
+$(100);
+$(tmpObjLitVal$11);
+$(tmpObjLitVal$13);
+const tmpObjLitVal$14 = $(3);
+const tmpObjLitVal$16 = $(4);
+$(100);
+$(tmpObjLitVal$14);
+$(tmpObjLitVal$16);
+const tmpObjLitVal$15 = $(3);
+const tmpObjLitVal$17 = $(4);
+$(100);
+$(tmpObjLitVal$15);
+$(tmpObjLitVal$17);
+const tmpObjLitVal$18 = $(3);
+const tmpObjLitVal$20 = $(4);
+$(100);
+$(tmpObjLitVal$18);
+$(tmpObjLitVal$20);
+const tmpObjLitVal$19 = $(3);
+const tmpObjLitVal$21 = $(4);
+let tmpClusterSSA_x$1 = tmpObjLitVal$19;
+let tmpClusterSSA_y$1 = tmpObjLitVal$21;
+const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$19, y: tmpObjLitVal$21 };
+let tmpClusterSSA_a$2 = tmpNestedAssignObjPatternRhs$1;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  $(x);
-  $(y);
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  x = tmpObjLitVal;
-  y = tmpObjLitVal$1;
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  a = tmpNestedAssignObjPatternRhs;
+  $(tmpClusterSSA_x$1);
+  $(tmpClusterSSA_y$1);
+  const tmpObjLitVal$22 = $(3);
+  const tmpObjLitVal$24 = $(4);
+  tmpClusterSSA_x$1 = tmpObjLitVal$22;
+  tmpClusterSSA_y$1 = tmpObjLitVal$24;
+  const tmpNestedAssignObjPatternRhs$2 = { x: tmpObjLitVal$22, y: tmpObjLitVal$24 };
+  tmpClusterSSA_a$2 = tmpNestedAssignObjPatternRhs$2;
 }
-$(a, x, y);
+$(tmpClusterSSA_a$2, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
 
 ## Globals

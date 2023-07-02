@@ -67,11 +67,33 @@ if ($) {
 `````js filename=intro
 if ($) {
   while (true) {
-    let x = $(1);
+    const x = $(1);
     $(x);
-    while (true) {
-      x = $(2);
-      $(x);
+    const tmpClusterSSA_x = $(2);
+    $(tmpClusterSSA_x);
+    const tmpClusterSSA_x$1 = $(2);
+    $(tmpClusterSSA_x$1);
+    const tmpClusterSSA_x$2 = $(2);
+    $(tmpClusterSSA_x$2);
+    const tmpClusterSSA_x$3 = $(2);
+    $(tmpClusterSSA_x$3);
+    const tmpClusterSSA_x$4 = $(2);
+    $(tmpClusterSSA_x$4);
+    const tmpClusterSSA_x$5 = $(2);
+    $(tmpClusterSSA_x$5);
+    const tmpClusterSSA_x$6 = $(2);
+    $(tmpClusterSSA_x$6);
+    const tmpClusterSSA_x$7 = $(2);
+    $(tmpClusterSSA_x$7);
+    const tmpClusterSSA_x$8 = $(2);
+    $(tmpClusterSSA_x$8);
+    const tmpClusterSSA_x$9 = $(2);
+    $(tmpClusterSSA_x$9);
+    let tmpClusterSSA_x$10 = $(2);
+    $(tmpClusterSSA_x$10);
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      tmpClusterSSA_x$10 = $(2);
+      $(tmpClusterSSA_x$10);
     }
   }
 } else {

@@ -51,9 +51,42 @@ $(a, x);
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-while (true) {
-  const xyz = typeof tmpUnaryArg;
-  $(xyz);
+const xyz = typeof tmpUnaryArg;
+$(xyz);
+$(1);
+const xyz$1 = typeof tmpUnaryArg;
+$(xyz$1);
+$(1);
+const xyz$2 = typeof tmpUnaryArg;
+$(xyz$2);
+$(1);
+const xyz$3 = typeof tmpUnaryArg;
+$(xyz$3);
+$(1);
+const xyz$4 = typeof tmpUnaryArg;
+$(xyz$4);
+$(1);
+const xyz$5 = typeof tmpUnaryArg;
+$(xyz$5);
+$(1);
+const xyz$6 = typeof tmpUnaryArg;
+$(xyz$6);
+$(1);
+const xyz$7 = typeof tmpUnaryArg;
+$(xyz$7);
+$(1);
+const xyz$8 = typeof tmpUnaryArg;
+$(xyz$8);
+$(1);
+const xyz$9 = typeof tmpUnaryArg;
+$(xyz$9);
+$(1);
+const xyz$10 = typeof tmpUnaryArg;
+$(xyz$10);
+$(1);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const xyz$11 = typeof tmpUnaryArg;
+  $(xyz$11);
   $(1);
 }
 const a = { a: 999, b: 1000 };

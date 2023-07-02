@@ -56,12 +56,35 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+$(1);
+$(100);
+const tmpUnaryArg$2 = $(1);
+const tmpNestedComplexRhs$1 = typeof tmpUnaryArg$2;
+let a = tmpNestedComplexRhs$1;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpUnaryArg = $(1);
-  const tmpNestedComplexRhs = typeof tmpUnaryArg;
-  a = tmpNestedComplexRhs;
+  const tmpUnaryArg$3 = $(1);
+  const tmpNestedComplexRhs$2 = typeof tmpUnaryArg$3;
+  a = tmpNestedComplexRhs$2;
 }
 $(a, 1);
 `````

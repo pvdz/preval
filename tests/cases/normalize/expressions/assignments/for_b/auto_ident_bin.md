@@ -49,16 +49,27 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
-  const tmpBinBothLhs = $(1);
-  const tmpBinBothRhs = $(2);
-  a = tmpBinBothLhs + tmpBinBothRhs;
-  if (a) {
-    $(1);
-  } else {
-    break;
+let $tmpLoopUnrollCheck = true;
+const tmpBinBothLhs = $(1);
+const tmpBinBothRhs = $(2);
+let a = tmpBinBothLhs + tmpBinBothRhs;
+if (a) {
+  $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpBinBothLhs$1 = $(1);
+    const tmpBinBothRhs$1 = $(2);
+    a = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+    if (a) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(a);
 `````

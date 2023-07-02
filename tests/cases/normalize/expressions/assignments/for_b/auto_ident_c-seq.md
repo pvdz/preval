@@ -53,16 +53,27 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (true) {
+let $tmpLoopUnrollCheck = true;
+$(1);
+$(2);
+let a = $(1);
+if (a) {
   $(1);
-  $(2);
-  a = $(1);
-  if (a) {
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
     $(1);
-  } else {
-    break;
+    $(2);
+    a = $(1);
+    if (a) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(a, 1);
 `````

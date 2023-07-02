@@ -533,6 +533,8 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
+    innerIf,
+    innerElse,
     innerTry,
     innerTrap,
     innerCatch,
@@ -542,7 +544,9 @@ export function createReadRef(obj) {
   ASSERT(typeof kind === 'string');
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createReadRef in the func too!', rest);
   ASSERT(blockIndex >= 0);
-  ASSERT(typeof innerLoop === 'number');
+  ASSERT(typeof innerLoop === 'number', 'inner loop?', innerLoop);
+  ASSERT(typeof innerIf === 'number', 'inner if?', innerIf);
+  ASSERT(typeof innerElse === 'number', 'inner else?', innerElse);
   ASSERT(blockChain);
   ASSERT(blockIds instanceof Array);
   ASSERT(blockBodies instanceof Array && blockBodies.every((a) => Array.isArray(a)));
@@ -576,6 +580,8 @@ export function createReadRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
+    innerIf,
+    innerElse,
     innerTry,
     innerTrap,
     innerCatch,
@@ -606,6 +612,8 @@ export function createWriteRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
+    innerIf,
+    innerElse,
     innerTry,
     innerTrap,
     innerCatch,
@@ -615,6 +623,8 @@ export function createWriteRef(obj) {
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
   ASSERT(blockIndex >= 0);
   ASSERT(typeof innerLoop === 'number');
+  ASSERT(typeof innerIf === 'number');
+  ASSERT(typeof innerElse === 'number');
   ASSERT(blockChain);
   ASSERT(blockIds instanceof Array);
   ASSERT(blockBodies instanceof Array && blockBodies.every((a) => Array.isArray(a)));
@@ -647,6 +657,8 @@ export function createWriteRef(obj) {
     ifChain,
     funcChain,
     innerLoop,
+    innerIf,
+    innerElse,
     innerTry,
     innerTrap,
     innerCatch,

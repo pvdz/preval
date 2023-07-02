@@ -34,6 +34,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
   const blockIndexes = []; // Stack of block indexes to match blockIds
   const ifIds = []; // Stack of `if` pids, negative for the `else` branch, zeroes for function boundaries. Used by SSA.
   const loopStack = []; // Stack of loop node $pids (while, for-in, for-of). `null` means function (or program).
+  const ifStack = [0];
+  const elseStack = [0];
   const tryNodeStack = []; // Stack of try nodes (not pid) (try/catch)
   const trapStack = [0]; // Stack of try-block node $pids (try/catch), to detect being inside a try {} block (opposed to catch/finally)
   const catchStack = [0]; // Stack of catch node $pids (try/catch)
@@ -254,12 +256,14 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
 
           if (parentNode.consequent === node) {
             ifIds.push(+parentNode.$p.pid);
+            ifStack.push(+parentNode.$p.pid);
 
             vlog('Entering `if`. Backup the top lastWriteStack state to parentNode.$p.lastWritesBackupBefore');
             const currentLastWritesClone = lastWrites_cloneLastMap(lastWritesPerName[lastWritesPerName.length - 1]);
             parentNode.$p.lastWritesBackupBefore = currentLastWritesClone;
           } else if (parentNode.alternate === node) {
             ifIds.push(-parentNode.$p.pid);
+            elseStack.push(+parentNode.$p.pid);
 
             vlog('Entering `else`. Backup the top lastWriteStack state, then restoring it to the way it was before this `if`');
             const currentLastWritesClone = lastWrites_cloneLastMap(lastWritesPerName[lastWritesPerName.length - 1]);
@@ -395,8 +399,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
           if (node === parentNode.consequent) {
             // Ignore the `if` branch. Wait for completion of the `else` branch.
             vlog('This was the `if` branch of an `if`. Skipping until else-branch');
+            ifStack.pop();
           } else {
             vlog('This was the `else` branch of an `if`');
+            elseStack.pop();
             // Last write analysis:
             //      Ok, merge the backed up consequent end state into the current end state. The "last writes" for both
             //      branches are reachable for reads that follow the if. Early completions are handled through other rules.
@@ -737,11 +743,15 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
           }
 
           const innerLoop = loopStack[loopStack.length - 1];
+          const innerIf = ifStack[ifStack.length - 1];
+          ASSERT(typeof innerIf === 'number', 'ifstack should contain numbers', innerIf, ifStack);
+          const innerElse = elseStack[elseStack.length - 1];
+          ASSERT(typeof innerElse === 'number', 'ifstack should contain numbers', innerElse, elseStack);
           const innerTry = tryNodeStack[tryNodeStack.length - 1]?.$p.pid || 0;
           const innerTrap = trapStack[trapStack.length - 1];
           const innerCatch = catchStack[catchStack.length - 1];
           const innerFinally = finallyStack[finallyStack.length - 1];
-          vlog('innerLoop:', innerLoop, ', innerTry:', innerTry, ', innerTrap:', innerTrap, ', innerCatch:', innerCatch, ', innerFinally:', innerFinally);
+          vlog('innerLoop:', innerLoop, ', innerIf:', innerIf, ', innerElse:', innerElse, ', innerTry:', innerTry, ', innerTrap:', innerTrap, ', innerCatch:', innerCatch, ', innerFinally:', innerFinally);
 
           const grandNode = pathNodes[pathNodes.length - 3];
           const grandProp = pathProps[pathProps.length - 2];
@@ -778,6 +788,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
               ifChain: ifIds.slice(0),
               funcChain: funcStack.map((n) => n.$p.pid).join(','),
               innerLoop,
+              innerIf,
+              innerElse,
               innerTry,
               innerTrap,
               innerCatch,
@@ -860,6 +872,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
               ifChain: ifIds.slice(0),
               funcChain: funcStack.map((n) => n.$p.pid).join(','),
               innerLoop,
+              innerIf,
+              innerElse,
               innerTry,
               innerTrap,
               innerCatch,

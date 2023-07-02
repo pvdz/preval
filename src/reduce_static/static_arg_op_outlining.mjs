@@ -296,12 +296,12 @@ function _staticArgOpOutlining(fdata) {
     // TODO: if the param concerns a rest we should bail
     // TODO: not sure if we should do it here but if it reaches here with a rest param then we can eliminate this rest statically
 
-    const paramName = '$$' + paramCount;
-    const paramNode = AST.param('$$' + paramCount, false);
-    funcNode.params.push(paramNode);
-    const localParamName = createFreshVar('tmpOutlinedParam', fdata);
-    const localParamNode = AST.variableDeclaration(localParamName, paramName, 'const');
-    funcNode.body.body.splice(funcNode.$p.bodyOffset - 1, 0, localParamNode);
+    const newParamName = '$$' + paramCount;
+    const newParamNode = AST.param('$$' + paramCount, false);
+    funcNode.params.push(newParamNode);
+    const newLocalParamName = createFreshVar('tmpOutlinedParam', fdata);
+    const newLocalParamNode = AST.variableDeclaration(newLocalParamName, newParamName, 'const');
+    funcNode.body.body.splice(funcNode.$p.bodyOffset - 1, 0, newLocalParamNode);
     // Not sure if this needs anything else tbh.
 
     // Replace the expression that we're outlining... The target can only be one of three;
@@ -309,13 +309,15 @@ function _staticArgOpOutlining(fdata) {
     let expr;
     if (stmt.type === 'VariableDeclaration') {
       expr = stmt.declarations[0].init;
-      stmt.declarations[0].init = AST.identifier(localParamName);
+      stmt.declarations[0].init = AST.identifier(newLocalParamName);
     } else if (stmt.expression.type === 'AssignmentExpression') {
       expr = stmt.expression.right;
-      stmt.expression.right = AST.identifier(localParamName);
-    } else if (stmt.expression.type === 'UnaryExpression' || stmt.expression.type === 'BinaryExpression') {
+      stmt.expression.right = AST.identifier(newLocalParamName);
+    } else if (stmt.expression.type === 'UnaryExpression' || stmt.expression.type === 'BinaryExpression'
+      || stmt.expression.type === 'CallExpression'
+    ) {
       expr = stmt.expression;
-      stmt.expression = AST.identifier(localParamName);
+      stmt.expression = AST.identifier(newLocalParamName);
     } else {
       source(stmt, true);
       ASSERT(false, 'implement me', stmt);

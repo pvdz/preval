@@ -1,6 +1,7 @@
 // Partial object literal property access resolving. Just a first go at it.
 // - If we can resolve a property access to an actual value, we should replace the prop access with that value.
 // - If we can resolve it to not exist, we should replace it with a prototype if we can
+// - If we can resolve writes then we should update the associated object literal
 
 import {
   ASSERT,
@@ -105,28 +106,28 @@ function processAttempt(fdata, queue) {
 
   //moet hier alle tests nog voor toevoegen. see you never.
 
-  function verifyAfterObjectAssign(meta, rwOrder, writeRef, ri, objExprNode) {
+  function verifyAfterObjectAssign(meta, rwOrder, writeRef, wi, objExprNode) {
     // It "failed" if the object escapes or when a property was mutated. Otherwise we can consider the object immutable
     // meaning we can inline properties even as side effects or whatever.
     let failed = false;
 
-    if (ri === rwOrder.length - 1) {
+    if (wi === rwOrder.length - 1) {
       vlog('This is the last write. The assignment is probably observed by a loop or closure or smth.');
       return;
     }
 
     const lastMap = new Map(); // Map<scope, ref>
 
-    vlog('verifyAfterObjectAssign(): Checking', rwOrder.length - ri - 1, 'refs, starting at', ri);
-    for (let i = ri; i < rwOrder.length; ++i) {
-      const ref = rwOrder[i];
-      vgroup('- ref', i, ';', ref.action + ':' + ref.kind, ref.pfuncNode.$p.pid, ref.parentNode.type);
-      const r = processRef(meta, rwOrder, writeRef, objExprNode, ref, ri);
+    vlog('verifyAfterObjectAssign(): Checking', rwOrder.length - wi - 1, 'refs, starting at', wi);
+    for (let ri = wi; ri < rwOrder.length; ++ri) {
+      const ref = rwOrder[ri];
+      vgroup('- ref', ri, ';', ref.action + ':' + ref.kind + ':' + ref.isPropWrite, ref.pfuncNode.$p.pid, ref.parentNode.type);
+      const r = processRef(meta, rwOrder, writeRef, objExprNode, ref, wi, ri);
       vgroupEnd();
       if (r) break;
     }
 
-    function processRef(meta, rwOrder, writeRef, objExprNode, ref, ri) {
+    function processRef(meta, rwOrder, writeRef, objExprNode, ref, wi, ri) {
       let lastRefArr = lastMap.get(ref.pfuncNode.$p.pid);
       if (!lastRefArr) {
         lastRefArr = [];
@@ -160,14 +161,18 @@ function processAttempt(fdata, queue) {
         vlog('Previous write was not a var or assign (so, for-x?)');
         return;
       }
-      if (prevWrite.innerLoop !== readRef.innerLoop) {
-        vlog('Current read is not in the same loop as last write', readRef.innerLoop, prevWrite.innerLoop);
-        return;
+      if (readRef.innerLoop !== prevWrite.innerLoop) {
+        // Refs in the header of a loop are considered to be inside that loop so must check this separately
+        return vlog('- read/write not in same loop', readRef.innerLoop, prevWrite.innerLoop);
       }
-
-      if (!readRef.blockChain.startsWith(prevWrite.blockChain)) {
-        vlog('This read can not reach the last write', prevWrite.blockChain, readRef.blockChain);
-        return;
+      if (readRef.innerCatch !== prevWrite.innerCatch) {
+        // Can't guarantee the write if one ref is inside a catch while the other is not
+        return vlog('- read/write not in same catch', readRef.innerCatch, prevWrite.innerCatch);
+      }
+      if (readRef.innerFinally !== prevWrite.innerFinally) {
+        // Can't guarantee the write if one ref is inside a finally while the other is not
+        // TODO: or can we?
+        return vlog('- read/write not in same finally', readRef.innerFinally, prevWrite.innerFinally);
       }
 
       if (readRef.parentNode.type !== 'MemberExpression' || readRef.parentNode.computed || readRef.parentProp !== 'object') {
@@ -185,9 +190,96 @@ function processAttempt(fdata, queue) {
         return true;
       }
       if (readRef.grandNode.type === 'AssignmentExpression' && readRef.grandProp === 'left') {
-        vlog('The member expression was being assigned to. Bailing');
+        // This is property assignment, We can work with some cases.
+
+        if (
+          readRef.blockChain === prevWrite.blockChain && // Must be same block because else `if (x) { } else { x = { f: 20 } } x.f = 10;` goes bad
+          ri - wi === 1 && // Only back to back (yeah we gotta, for now)
+          meta.singleScoped &&
+          prevWrite.scope === readRef.scope &&
+          prevWrite.innerIf === readRef.innerIf &&
+          prevWrite.innerElse === readRef.innerElse &&
+          prevWrite.innerLoop === readRef.innerLoop &&
+          prevWrite.innerCatch === readRef.innerCatch &&
+          prevWrite.innerFinally === readRef.innerFinally
+        ) {
+          // Both references are in the same function scope, same loop scope, catch scope, and finally scope
+          // The binding only appears in one scope so closures can't access it.
+          // The write and read are back to back and the read is in the same-or-a-child-of block scope as the write
+
+          log('The assignment to this prop comes after assigning the object so we should be able to inline it');
+
+          const prop = readRef.parentNode.property;
+          ASSERT(prop.type === 'Identifier', 'not computed so property node must be an identifier?');
+          const propName = prop.name;
+
+          if (!AST.isPrimitive(readRef.grandNode.right)) {
+            //if (
+            //  readRef.grandNode.right.type === 'Identifier' &&
+            //  fdata.globallyUniqueNamingRegistry.get(readRef.grandNode.right.name).isConstant &&
+            //  fdata.globallyUniqueNamingRegistry.get(readRef.grandNode.right.name).rwOrder.find(ref => ref.node === readRef.grandNode.right).reachesWrites.size === 1
+            //) {
+            //  log('Assigned an ident to prop (' + readRef.grandNode.right.name + ') which is a constant and whose write is reachable from the assignment');
+            //}
+            //else {
+              // TODO: if we can prove that the binding is not TDZ'd _at the point of the object_ then we can use it
+              log('Found prop, is not assigned a primitive, bailing');
+              return true; // Move to next write
+            //}
+          }
+
+          // TODO: what does `{["x"]: 5, x: 6}` do? should we bail if object has any computed props?
+          const propNode = objExprNode.properties.find((pnode) => !pnode.computed && pnode.key.name === propName);
+          if (propNode) {
+            if (propNode.computed) {
+              log('Found prop, is computed, bailing');
+              TODO
+              return true; // Move to next write
+            }
+            if (propNode.method) {
+              log('Found prop, is method, bailing');
+              TODO
+              return true; // Move to next write
+            }
+            if (propNode.kind !== 'init') {
+              log('Found prop, is getter/setter, bailing');
+              return true; // Move to next write
+            }
+
+            log('There exists a prop node with that name. Updating it');
+            rule('Writing to a property after the object literal can be inlined');
+            example('const x = {a: 1}; x.a = 2;', 'const x = {a: 2}; ;');
+            before(writeRef.blockBody[writeRef.blockIndex]);
+            before(readRef.blockBody[readRef.blockIndex]);
+
+            propNode.value = readRef.grandNode.right;
+            readRef.blockBody[readRef.blockIndex] = AST.emptyStatement();
+
+            after(writeRef.blockBody[writeRef.blockIndex]);
+            after(readRef.blockBody[readRef.blockIndex]);
+
+            return true; // "prop mutation". Move to next write
+          } else {
+            log('Object expression currently does not have this property. Adding it');
+            rule('Writing to a new property after the object literal can be inlined');
+            example('const x = {}; x.a = 2;', 'const x = {a: 2}; ;');
+            before(writeRef.blockBody[writeRef.blockIndex]);
+            before(readRef.blockBody[readRef.blockIndex]);
+
+            objExprNode.properties.push(AST.property(propName, readRef.grandNode.right));
+            readRef.blockBody[readRef.blockIndex] = AST.emptyStatement();
+
+            after(writeRef.blockBody[writeRef.blockIndex]);
+            after(readRef.blockBody[readRef.blockIndex]);
+
+            return true; // "prop mutation". Move to next write
+          }
+        }
+
+
+        vlog('The member expression was being assigned to is not singleInner. Bailing');
         // x.y = z;
-        return true; // "prop mutation"
+        return true; // "prop mutation". Move to next write
       }
 
       if (readRef.grandNode.type === 'UnaryExpression' && readRef.grandProp === 'argument' && readRef.grandNode.operator === 'delete') {

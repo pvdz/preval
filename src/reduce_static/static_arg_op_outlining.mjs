@@ -1,6 +1,7 @@
 // If a function only gets called and the first statement mutates an arg in a static way then we can outline this operation
 // `function f(a) { const x = a + 1; return a; } f(1); f(2);`
 // -> `function f(a) { const x = a; return a; } f(1 + 1); f(2 + 1);`
+// (the opposite is "inline identical param")
 
 // TODO: Bonus points if the op regards two args rather than a literal
 // TODO: Bonus points for outlining assignments to closures in the same way
@@ -28,7 +29,7 @@ import { createFreshVar } from '../bindings.mjs';
 
 export function staticArgOpOutlining(fdata) {
   group('\n\n\nFinding static param ops to outline\n');
-  //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
+  vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   const r = _staticArgOpOutlining(fdata);
   groupEnd();
   return r;
@@ -57,11 +58,11 @@ function _staticArgOpOutlining(fdata) {
     // The return value should indicate whether this is the needle (expression that contains a param and is
     // otherwise static) or an expression that has no side effects and is safe to scan past (like an
     // assignment of primitive or function or smth).
-
     if (AST.isPrimitive(node.type)) {
       // `5` is skippable
       return SKIP;
-    } else if (node.type === 'BinaryExpression') {
+    }
+    else if (node.type === 'BinaryExpression') {
       // Good if at least left or right is a param and the other is a param or primitive
       // Skippable if the expression is a primitive, function expression, or class/array/object with all internals skippable too
 
@@ -106,7 +107,8 @@ function _staticArgOpOutlining(fdata) {
       // So this must (currently) be ident + primitive, or primitive + ident.
       vlog('- Accepting this binary');
       return index;
-    } else if (node.type === 'UnaryExpression') {
+    }
+    else if (node.type === 'UnaryExpression') {
       if (AST.isPrimitive(node.argument)) {
         // `x = ~1` is skippable
         return SKIP;
@@ -123,11 +125,13 @@ function _staticArgOpOutlining(fdata) {
         return FAIL;
       }
       return paramIndex;
-    } else if (node.type === 'Identifier') {
+    }
+    else if (node.type === 'Identifier') {
       // Either this is an assignment or init of an ident, or a noop ident.
       vlog('skip ident');
       return SKIP;
-    } else if (['FunctionExpression', 'ArrayExpression', 'ObjectExpression', 'ClassExpression'].includes(node.type)) {
+    }
+    else if (['FunctionExpression', 'ArrayExpression', 'ObjectExpression', 'ClassExpression'].includes(node.type)) {
       // `x = function(){};` is not observable
       // Same for class/array/object but only if the same applies to any of their internal bits.
       // Since they are normalized, they should not contain bits that can be observable when read...
@@ -135,13 +139,23 @@ function _staticArgOpOutlining(fdata) {
     } else if (node.type === 'CallExpression') {
       // TODO: we can ignore some builtin calls
       return FAIL;
-    } else if (node.type === 'NewExpression') {
+    }
+    else if (node.type === 'NewExpression') {
       // TODO: we can ignore some builtin calls
       return FAIL;
-    } else if (node.type === 'MemberExpression') {
+    }
+    else if (node.type === 'MemberExpression') {
       // tODO: we can skip stuff like Math.PI
       return FAIL;
-    } else {
+    }
+    else if (node.type === 'EmptyStatement') {
+      // it's a temporary artifact but we can safely skip this
+      return SKIP;
+    }
+    else if (node.type === 'AssignmentExpression') {
+      return actionableValue(node.right, names);
+    }
+    else {
       return FAIL;
     }
   }
@@ -159,6 +173,10 @@ function _staticArgOpOutlining(fdata) {
           return FAIL;
         }
         return r;
+      }
+      case 'EmptyStatement': {
+        // it's a temporary artifact but we can safely skip this
+        return SKIP;
       }
       default:
         return FAIL;
@@ -185,6 +203,13 @@ function _staticArgOpOutlining(fdata) {
       return;
     }
 
+    if (funcNode.params.find(p => p.rest)) {
+      // TODO: we can support these cases for the non-rest param. And probably one or two cases of the rest as well.
+      vlog('- The function has at least one rest param. Bailing for now.');
+      return;
+    }
+
+    // Try to validate whether function is safe to modify (does not escape, only called, etc)
     if (
       meta.reads.some((read) => {
         if (
@@ -226,16 +251,17 @@ function _staticArgOpOutlining(fdata) {
     // TODO: in certain cases we can skip statements (ones that can't possibly spy) to try the next statement.
 
     let max = funcNode.body.body.length - 1;
-    let stmtOffset = funcNode.$p.bodyOffset;
+    const stmtOffset = funcNode.$p.bodyOffset;
     ASSERT(funcNode.body.body[stmtOffset - 1]?.type === 'DebuggerStatement', 'The body offset should not be stale');
     let stmt = funcNode.body.body[stmtOffset];
+    let stmtIndex = stmtOffset;
     ASSERT(stmt, 'normalized funcs must at least have a return statement...');
 
     const names = funcNode.$p.paramNames;
     let paramIndex = SKIP;
-    while (paramIndex === SKIP && stmtOffset < max) {
-      stmt = funcNode.body.body[stmtOffset];
-      ASSERT(stmt, 'pointer should not be beyond the last statement yet...', stmtOffset, max);
+    while (paramIndex === SKIP && stmtIndex < max) {
+      stmt = funcNode.body.body[stmtIndex];
+      ASSERT(stmt, 'pointer should not be beyond the last statement yet...', stmtIndex, max);
       vlog('-', stmt.type, stmt.type === 'VariableDeclaration' ? stmt.declarations[0].init.type : stmt.expression?.type ?? stmt.type);
       paramIndex = actionable(stmt, names);
       vlog('  -', paramIndex === FAIL ? 'FAIL' : paramIndex === SKIP ? 'SKIP' : paramIndex);
@@ -243,7 +269,7 @@ function _staticArgOpOutlining(fdata) {
         vlog('  - Found a blocking statement before finding a target, bailing');
         return;
       }
-      ++stmtOffset;
+      ++stmtIndex;
     }
     if (paramIndex < 0) {
       vlog('- Was unable to find a target statement, bailing');
@@ -251,7 +277,7 @@ function _staticArgOpOutlining(fdata) {
     }
 
     let oldParamName = names[paramIndex];
-    vlog('- Target param name: `' + oldParamName + '` at index:', paramIndex);
+    vlog('- Target param name: `' + oldParamName + '` with param index:', paramIndex, ', at statement index', stmtIndex);
 
     rule('Part 1: Function that is only called and uses a param in a position where we can outline it');
     example(
@@ -279,7 +305,7 @@ function _staticArgOpOutlining(fdata) {
     // Not sure if this needs anything else tbh.
 
     // Replace the expression that we're outlining... The target can only be one of three;
-    // `var x = y`, `x = y`, or `y`. We replace the expression y with the new var because we'll outline it.
+    // `var x = <y>`, `x = <y>`, or `<y>`. We replace the expression y with the new var because we'll outline it.
     let expr;
     if (stmt.type === 'VariableDeclaration') {
       expr = stmt.declarations[0].init;
@@ -291,36 +317,48 @@ function _staticArgOpOutlining(fdata) {
       expr = stmt.expression;
       stmt.expression = AST.identifier(localParamName);
     } else {
+      source(stmt, true);
       ASSERT(false, 'implement me', stmt);
     }
 
-    // Update all the call sites
+    // Update all the call sites. They need to add a clone of the expression to their argument list.
+    // They need to replace the occurrence of the parameter with the argument that represents it (same index).
+    // `function f(a) { a + 2 } f(1)` -> `function f(a, b) { b } f(1, 1 + 2)`
     meta.reads.forEach((read) => {
       queue.push({
         index: read.blockIndex,
         func: () => {
-          rule('Part 2: add a new arg in calls to the function');
+          rule('Part 2: add a new arg in calls to the function, replacing param for arg in same index');
           example('f(a);', 'let tmp = a + 1; f(a, tmp);');
           before(read.blockBody[read.blockIndex]);
 
           // Must first cache the expression in case it's a string... (otherwise we may accidentally break normalized form)
           // Other rules will reconcile this temporary alias, or melt the string concat, when necessary.
-          const tmpNameA = createFreshVar('tmpSaooA', fdata);
-          const tmpNameB = createFreshVar('tmpSaooB', fdata);
+          const tmpNameA = createFreshVar('tmpSaooA', fdata); // Holds the arg value at param index
+          const tmpNameB = createFreshVar('tmpSaooB', fdata); // Holds the cloned expr result
 
           const args = read.parentNode['arguments'];
           // Make sure there are enough params right now otherwise our new arg will become an earlier one and map to the wrong param (-> tests/cases/normalize/defaults/one.md)
+          // `function (a,b,c) {} f(a)` -> `f(a,undefined,undefined)`
           while (paramCount > args.length) {
             args.push(AST.identifier('undefined'));
           }
+
+          // The expression that got outlined is `expr`. We need to clone it because we may copy it to multiple func calls.
+          // We must find the position of the parameter (this is `oldParamName`, at `paramIndex` of the func param list)
+          // This can have various forms. Once we find it, replace it with the arg at same index
           let clone;
           if (expr.type === 'UnaryExpression') {
             ASSERT(expr.argument.type === 'Identifier' && expr.argument.name === oldParamName);
+            // `!$$1`
             clone = AST.unaryExpression(expr.operator, tmpNameA);
-          } else if (expr.type === 'BinaryExpression') {
+          }
+          else if (expr.type === 'BinaryExpression') {
             if (expr.left.type === 'Identifier' && expr.left.name === oldParamName) {
+              // `$$1 + a`
               clone = AST.binaryExpression(expr.operator, tmpNameA, AST.cloneSimple(expr.right));
             } else if (expr.right.type === 'Identifier' && expr.right.name === oldParamName) {
+              // `a + $$1`
               clone = AST.binaryExpression(expr.operator, AST.cloneSimple(expr.left), tmpNameA);
             } else {
               ASSERT(false);
@@ -328,11 +366,13 @@ function _staticArgOpOutlining(fdata) {
           } else {
             ASSERT(false, 'implement me', expr.type);
           }
+          ASSERT(clone, 'clone must be set');
+
           read.blockBody.splice(
             read.blockIndex,
             0,
-            AST.variableDeclaration(tmpNameA, AST.cloneSimple(read.parentNode['arguments'][paramIndex]), 'const'),
-            AST.variableDeclaration(tmpNameB, clone, 'const'),
+            AST.variableDeclaration(AST.identifier(tmpNameA), AST.cloneSimple(read.parentNode['arguments'][paramIndex]), 'const'),
+            AST.variableDeclaration(AST.identifier(tmpNameB), clone, 'const'),
           );
           read.parentNode['arguments'].push(AST.identifier(tmpNameB));
 

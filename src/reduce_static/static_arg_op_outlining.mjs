@@ -136,8 +136,58 @@ function _staticArgOpOutlining(fdata) {
       // Same for class/array/object but only if the same applies to any of their internal bits.
       // Since they are normalized, they should not contain bits that can be observable when read...
       return SKIP;
-    } else if (node.type === 'CallExpression') {
-      // TODO: we can ignore some builtin calls
+    }
+    else if (node.type === 'CallExpression') {
+      // Outline calls, why not? but only if all their args (if any) are primitives
+      // - `$$0()`
+      // - `$$0.x()`
+      // - `f($$0)`
+      // - `f.g($$0)`
+
+      if (node.callee.type === 'Identifier') {
+        const paramIndex = names.indexOf(node.callee.name);
+        if (paramIndex >= 0 && node.arguments.every(a => AST.isPrimitive(a))) {
+          // This is the `'x'` or `'y`' in `function f(a) { return a(0); } f('x'); f('y');`
+          return paramIndex;
+        }
+        // TODO: we could do it for known idents (known globals) but not for closures because call sites may not have access to them
+        return FAIL;
+      }
+      else if (node.callee.type === 'MemberExpression' && !node.callee.computed && AST.isPrimitive(node.callee.object)) {
+        // ``foo'.slice($$0)`
+        // (the arg is a param)
+        let found = 0;
+        let at = 0;
+        let fail = false;
+        node.arguments.every(a => {
+          if (AST.isPrimitive(a)) return true;
+          if (a.type !== 'Identifier') {
+            fail = true;
+            return false;
+          }
+          if (found) { // multi-arg (TODO)
+            ++found;
+            fail = true;
+            return false;
+          }
+          at = names.indexOf(a.name);
+          if (at >= 0) {
+            ++found;
+          }
+        })
+        if (fail || found !== 1) {
+          return FAIL;
+        }
+        return at;
+      }
+      else if (node.callee.type === 'MemberExpression' && !node.callee.computed && node.callee.object.type === 'Identifier') {
+        const paramIndex = names.indexOf(node.callee.object.name);
+        if (paramIndex >= 0 && node.arguments.every(a => AST.isPrimitive(a))) {
+          // This is like `function f(a) { return a(0); } f('x'); f('y');`
+          return paramIndex;
+        }
+      }
+
       return FAIL;
     }
     else if (node.type === 'NewExpression') {
@@ -364,6 +414,28 @@ function _staticArgOpOutlining(fdata) {
               clone = AST.binaryExpression(expr.operator, AST.cloneSimple(expr.left), tmpNameA);
             } else {
               ASSERT(false);
+            }
+          } else if (expr.type === 'CallExpression') {
+            // Either calling the parameter directly, a method on the property, or calling a function or method with the parameter as arg
+            // At this point, the param node name is
+            if (expr.callee.type === 'Identifier') {
+              if (expr.callee.name === oldParamName) {
+                // $$0(0)
+                clone = AST.callExpression(tmpNameA, expr.arguments.map(a => AST.cloneSimple(a)));
+              } else {
+                // f($$0)     (for any one arg)
+                clone = AST.callExpression(tmpNameA, expr.arguments.map(a => AST.cloneSimple(a)));
+              }
+            } else {
+              ASSERT(expr.callee.type === 'MemberExpression' && !expr.callee.computed, 'should be non-computed member yes?', expr.type, !!expr.computed, expr);
+              if (expr.callee.object.type === 'Identifier' && expr.callee.object.name === oldParamName) {
+                // $$0.slice(0)
+                clone = AST.callExpression(AST.memberExpression(tmpNameA, expr.callee.property.name), expr.arguments.map(a => AST.cloneSimple(a)));
+              } else {
+                // xyz.foo($$0)
+                // "foo".slice($$0)
+                clone = AST.callExpression(AST.cloneSimple(expr.callee), expr.arguments.map(a => a.type === 'Identifier' && a.name === oldParamName ? AST.identifier(tmpNameA) : AST.cloneSimple(a)));
+              }
             }
           } else {
             ASSERT(false, 'implement me', expr.type);

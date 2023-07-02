@@ -71,20 +71,20 @@ $(y);
 
 `````js filename=intro
 const f = function ($$0) {
-  const a = $$0;
+  const tmpOutlinedParam = $$0;
   debugger;
-  y = 1 + a;
+  y = tmpOutlinedParam;
   const tmpReturnArg = $(100);
   return tmpReturnArg;
 };
 let y = undefined;
-const tmpCalleeParam = f(1);
+const tmpCalleeParam = f(2);
 $(tmpCalleeParam);
-const tmpCalleeParam$1 = f(2);
+const tmpCalleeParam$1 = f(3);
 $(tmpCalleeParam$1);
-const tmpCalleeParam$3 = f(`a`);
+const tmpCalleeParam$3 = f(`1a`);
 $(tmpCalleeParam$3);
-const tmpCalleeParam$5 = f(true);
+const tmpCalleeParam$5 = f(2);
 $(tmpCalleeParam$5);
 $(y);
 `````

@@ -84,7 +84,7 @@ Preval CLI Toolkit help:
  --silent        Suppress most output while running
  --skip-eval     Do not eval the result to compare runtime differences
  --unroll n      User a different cap on the number of times a loop can be unrolled. Higher increases code bloat.
- --unrollTrue n  Max number of true-loop unrolls (different trick from the one above)
+ --unroll-true n  Max number of true-loop unrolls (different trick from the one above)
  --implicit-this x User defined ident to replace \`this\` when the function is never called with a context. Defaults to \`undefined\`.
  -C              Do not print colors
  -n              Only show normalized output
@@ -178,7 +178,7 @@ Preval CLI Toolkit help:
       shift
       PARAM_UNROLL_VALUE=$1
       ;;
-    --unrollTrue)
+    --unroll-true)
       PARAM_UNROLL_TRUE='--unrollTrue'
       shift
       PARAM_UNROLL_TRUE_VALUE=$1
@@ -213,7 +213,7 @@ Preval CLI Toolkit help:
       ;;
 
     *)
-      echo "p: Unsupported action or option... \`$1\` Use --help for options"
+      echo "p: Unsupported action or option... (dont use \`=\` between option name and arg); \`$1\` Use --help for options"
       exit 1
       ;;
   esac

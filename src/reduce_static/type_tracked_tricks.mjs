@@ -1324,6 +1324,7 @@ function _typeTrackedTricks(fdata) {
               }
               case 'string.replace': {
                 if (
+                  isPrim &&
                   node.arguments.length > 1 &&
                   AST.isPrimitive(node.arguments[0]) && AST.getPrimitiveType(node.arguments[0]) === 'string' &&
                   AST.isPrimitive(node.arguments[1]) && AST.getPrimitiveType(node.arguments[1]) === 'string'
@@ -1359,7 +1360,7 @@ function _typeTrackedTricks(fdata) {
                   ++changes;
                   break;
                 }
-                else {
+                else if (isPrim) {
                   const metaArg1 = node.arguments.length > 1 && node.arguments[0].type === 'Identifier' && fdata.globallyUniqueNamingRegistry.get(node.arguments[0].name);
 
                   if (

@@ -55,6 +55,7 @@ export function parseTestArgs() {
       case '-F': {
         config.targetFile = argv.shift();
         config.fileVerbatim = true;
+        config.skipEval = true; // The eval stuff is more for tests
         break;
       }
 

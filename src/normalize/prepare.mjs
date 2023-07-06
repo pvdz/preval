@@ -750,12 +750,14 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
         .join('\n'),
     );
     vlog(
-      '\ngloballyUniqueNamingRegistry (sans builtins):\n',
-      globallyUniqueNamingRegistry.size > 50
+      '\ngloballyUniqueNamingRegistry (sans builtins):\n' +
+      (
+        (globallyUniqueNamingRegistry.size - globals.size) > 50
         ? '<too many>'
         : globallyUniqueNamingRegistry.size === globals.size
         ? '<none>'
-        : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
+        : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', ')
+      ),
     );
     vlog(
       '\ngloballyUniqueLabelRegistry:\n',

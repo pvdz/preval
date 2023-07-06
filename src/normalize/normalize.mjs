@@ -526,8 +526,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
     vlog('After normalization:');
     vlog(
       '\ngloballyUniqueNamingRegistry (sans builtins):\n',
-      fdata.globallyUniqueNamingRegistry.size > 50
-        ? '<too many>'
+      (fdata.globallyUniqueNamingRegistry.size - globals.size) > 50
+        ? '<too many (' + (fdata.globallyUniqueNamingRegistry.size - globals.size) + ')>'
         : fdata.globallyUniqueNamingRegistry.size === globals.size
         ? '<none>'
         : [...fdata.globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),

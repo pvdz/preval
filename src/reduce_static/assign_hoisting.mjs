@@ -153,8 +153,8 @@ function processAttempt(fdata) {
     block[start] = AST.expressionStatement(block[start].declarations[0].init);
     block[stop] = AST.variableDeclaration(block[stop].expression.left, block[stop].expression.right);
 
-    before(block[start]);
-    before(block[stop]);
+    after(block[start]);
+    after(block[stop]);
     ++updated;
   }
 

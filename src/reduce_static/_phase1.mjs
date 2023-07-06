@@ -714,8 +714,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
           else parentNode[parentProp][parentIndex] = paramNode;
         } else if (kind !== 'none' && kind !== 'label') {
           ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);
-          vlog('- Binding referenced in $p.pid:', currentScope.$p.pid);
           let meta = registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: 'unknown', isBuiltin: false });
+          vlog('- Binding referenced in $p.pid:', currentScope.$p.pid, ', reads so far:', meta.reads.length, ', writes so far:', meta.writes.length);
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
 
           // This is normalized code so there must be a block parent for any read ref
@@ -1352,19 +1352,23 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         .join('\n'),
     );
     vlog(
-      '\ngloballyUniqueNamingRegistry (sans builtins):\n',
-      globallyUniqueNamingRegistry.size > 50
+      '\ngloballyUniqueNamingRegistry (sans builtins):\n' +
+      ((globallyUniqueNamingRegistry.size - globals.size) > 50
         ? '<too many>'
         : globallyUniqueNamingRegistry.size === globals.size
         ? '<none>'
-        : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
+        : [...globallyUniqueNamingRegistry.entries()]
+          .filter(([name, value]) => !globals.has(name))
+          .map(([name, value]) => `- ${name}: ${value.reads.length} reads and ${value.writes.length} writes`)
+          .join('\n')
+      ),
     );
 
     //vlog('\nCurrent state (after phase1)\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
   }
 
   fdata.phase1nodes = called / 2;
-  log('End of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');
+  log('\n\nEnd of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');
   groupEnd();
 }
 

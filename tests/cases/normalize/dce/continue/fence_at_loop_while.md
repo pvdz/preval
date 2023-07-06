@@ -67,23 +67,20 @@ $(`after (not invoked)`);
 let tmpIfTest = $(true);
 while (tmpIfTest) {
   $(`loop`);
-  let $tmpLoopUnrollCheck = true;
+  let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
   const tmpIfTest$1 = $(true);
   if (tmpIfTest$1) {
     $(`loop`);
   } else {
     $tmpLoopUnrollCheck = false;
   }
-  if ($tmpLoopUnrollCheck) {
-    while ($LOOP_UNROLL_10) {
-      const tmpIfTest$2 = $(true);
-      if (tmpIfTest$2) {
-        $(`loop`);
-      } else {
-        break;
-      }
+  while ($tmpLoopUnrollCheck) {
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
+      $(`loop`);
+    } else {
+      break;
     }
-  } else {
   }
   $(`infiloop, do not eliminate`);
   tmpIfTest = $(true);

@@ -53,7 +53,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
@@ -64,20 +64,17 @@ if (tmpNestedAssignArrPatternRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpArrElement$1 = $(2);
-    const tmpCalleeParam$1 = [tmpArrElement$1];
-    const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
-    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-    tmpClusterSSA_b = arrPatternSplat$1[0];
-    if (tmpNestedAssignArrPatternRhs$1) {
-      $(100);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpArrElement$1 = $(2);
+  const tmpCalleeParam$1 = [tmpArrElement$1];
+  const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
+  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
+  tmpClusterSSA_b = arrPatternSplat$1[0];
+  if (tmpNestedAssignArrPatternRhs$1) {
+    $(100);
+  } else {
+    break;
   }
-} else {
 }
 const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);

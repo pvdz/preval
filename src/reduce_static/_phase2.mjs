@@ -82,6 +82,8 @@ import {letAliasing} from "./let_aliase.mjs"
 import {aliasedGlobals} from "./aliasing_globals.mjs"
 import {dotCall} from "./dotcall.mjs"
 import {VERBOSE_TRACING} from "../constants.mjs"
+//import {letTrueWhile} from "./let_true_while.mjs";
+//import {letIfElseFalseWhile} from "./let_if_while_x.mjs";
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -415,6 +417,13 @@ function _phase2(program, fdata, resolve, req, options = {}) {
 
   const la = letAliasing(fdata);
   if (la) return la;
+
+  // TODO: enable after rewriting the while logic
+  //const ltw = letTrueWhile(fdata);
+  //if (ltw) return ltw;
+  //
+  //const liwx = letIfElseFalseWhile(fdata);
+  //if (liwx) return liwx;
 
   // This one should probably be lowest priority as it might blow up code...
   const ulwt = unrollLoopWithTrue(fdata, options.unrollTrueLimit);

@@ -58,7 +58,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const b = { c: 10, d: 20 };
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`c`);
@@ -72,22 +72,19 @@ if (tmpNestedAssignPropRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpNestedAssignComMemberObj$1 = $(b);
-    const tmpNestedAssignComMemberProp$1 = $(`c`);
-    const tmpCompObj$1 = $(b);
-    const tmpCompProp$1 = $(`d`);
-    const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
-    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
-    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
-    if (tmpNestedAssignPropRhs$1) {
-      $(1);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpNestedAssignComMemberObj$1 = $(b);
+  const tmpNestedAssignComMemberProp$1 = $(`c`);
+  const tmpCompObj$1 = $(b);
+  const tmpCompProp$1 = $(`d`);
+  const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+  tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
+  tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+  if (tmpNestedAssignPropRhs$1) {
+    $(1);
+  } else {
+    break;
   }
-} else {
 }
 $(tmpClusterSSA_a, b);
 `````

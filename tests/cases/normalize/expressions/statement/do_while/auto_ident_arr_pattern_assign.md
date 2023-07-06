@@ -93,16 +93,16 @@ $(100);
 $(3);
 $(4);
 $(100);
-const tmpArrElement$2 = $(3);
-const tmpArrElement$4 = $(4);
-let tmpClusterSSA_x = tmpArrElement$2;
-let tmpClusterSSA_y = tmpArrElement$4;
+const tmpArrElement$3 = $(3);
+const tmpArrElement$5 = $(4);
+let tmpClusterSSA_x = tmpArrElement$3;
+let tmpClusterSSA_y = tmpArrElement$5;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpArrElement$3 = $(3);
-  const tmpArrElement$5 = $(4);
-  tmpClusterSSA_x = tmpArrElement$3;
-  tmpClusterSSA_y = tmpArrElement$5;
+  const tmpArrElement$6 = $(3);
+  const tmpArrElement$8 = $(4);
+  tmpClusterSSA_x = tmpArrElement$6;
+  tmpClusterSSA_y = tmpArrElement$8;
 }
 const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);

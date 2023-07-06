@@ -72,12 +72,12 @@ new $(1);
 $(100);
 new $(1);
 $(100);
-const tmpNestedComplexRhs$1 = new $(1);
-let a = tmpNestedComplexRhs$1;
+const tmpNestedComplexRhs$2 = new $(1);
+let a = tmpNestedComplexRhs$2;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNestedComplexRhs$2 = new $(1);
-  a = tmpNestedComplexRhs$2;
+  const tmpNestedComplexRhs$3 = new $(1);
+  a = tmpNestedComplexRhs$3;
 }
 $(a);
 `````

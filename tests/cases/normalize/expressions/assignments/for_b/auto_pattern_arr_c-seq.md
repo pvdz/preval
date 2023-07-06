@@ -59,7 +59,7 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
@@ -71,21 +71,18 @@ if (tmpNestedAssignArrPatternRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    $(10);
-    $(20);
-    const tmpCalleeParam$1 = [1, 2];
-    const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
-    const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
-    tmpClusterSSA_a = arrPatternSplat$2[0];
-    if (tmpNestedAssignArrPatternRhs$1) {
-      $(1);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  $(10);
+  $(20);
+  const tmpCalleeParam$1 = [1, 2];
+  const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
+  const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
+  tmpClusterSSA_a = arrPatternSplat$2[0];
+  if (tmpNestedAssignArrPatternRhs$1) {
+    $(1);
+  } else {
+    break;
   }
-} else {
 }
 $(tmpClusterSSA_a);
 `````

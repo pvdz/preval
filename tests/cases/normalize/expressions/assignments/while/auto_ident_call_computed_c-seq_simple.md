@@ -48,7 +48,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const b = { $: $ };
 const tmpCallObj = $(b);
 let tmpClusterSSA_a = tmpCallObj.$(1);
@@ -57,17 +57,14 @@ if (tmpClusterSSA_a) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpCallObj$1 = $(b);
-    tmpClusterSSA_a = tmpCallObj$1.$(1);
-    if (tmpClusterSSA_a) {
-      $(100);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpCallObj$1 = $(b);
+  tmpClusterSSA_a = tmpCallObj$1.$(1);
+  if (tmpClusterSSA_a) {
+    $(100);
+  } else {
+    break;
   }
-} else {
 }
 $(tmpClusterSSA_a);
 `````

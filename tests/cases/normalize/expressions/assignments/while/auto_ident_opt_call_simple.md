@@ -51,7 +51,7 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
   $(100);
@@ -64,23 +64,20 @@ if (tmpIfTest$1) {
     $tmpLoopUnrollCheck = false;
   }
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    a = undefined;
-    const tmpIfTest$2 = $ == null;
-    if (tmpIfTest$2) {
+while ($tmpLoopUnrollCheck) {
+  a = undefined;
+  const tmpIfTest$2 = $ == null;
+  if (tmpIfTest$2) {
+    $(100);
+  } else {
+    const tmpChainElementCall$1 = $(1);
+    a = tmpChainElementCall$1;
+    if (tmpChainElementCall$1) {
       $(100);
     } else {
-      const tmpChainElementCall$1 = $(1);
-      a = tmpChainElementCall$1;
-      if (tmpChainElementCall$1) {
-        $(100);
-      } else {
-        break;
-      }
+      break;
     }
   }
-} else {
 }
 $(a);
 `````

@@ -88,7 +88,7 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const b = { x: 1 };
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const g = $(b);
 const same = g == null;
 if (same) {
@@ -102,23 +102,20 @@ if (same) {
     $tmpLoopUnrollCheck = false;
   }
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const g$1 = $(b);
-    const same$1 = g$1 == null;
-    if (same$1) {
+while ($tmpLoopUnrollCheck) {
+  const g$1 = $(b);
+  const same$1 = g$1 == null;
+  if (same$1) {
+    $(1);
+  } else {
+    const x$1 = $(`x`);
+    const gx$1 = g$1[x$1];
+    if (gx$1) {
       $(1);
     } else {
-      const x$1 = $(`x`);
-      const gx$1 = g$1[x$1];
-      if (gx$1) {
-        $(1);
-      } else {
-        break;
-      }
+      break;
     }
   }
-} else {
 }
 $(a);
 `````

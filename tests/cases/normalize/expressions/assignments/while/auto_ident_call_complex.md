@@ -44,7 +44,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpCallComplexCallee = $($);
 let a = tmpCallComplexCallee(1);
 if (a) {
@@ -52,17 +52,14 @@ if (a) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpCallComplexCallee$1 = $($);
-    a = tmpCallComplexCallee$1(1);
-    if (a) {
-      $(100);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpCallComplexCallee$1 = $($);
+  a = tmpCallComplexCallee$1(1);
+  if (a) {
+    $(100);
+  } else {
+    break;
   }
-} else {
 }
 $(a);
 `````

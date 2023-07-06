@@ -69,12 +69,12 @@ $(1);
 $(100);
 $(1);
 $(100);
-const tmpObjLitVal$1 = $(1);
-let a = { b: tmpObjLitVal$1 };
+const tmpObjLitVal$2 = $(1);
+let a = { b: tmpObjLitVal$2 };
 $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpObjLitVal$2 = $(1);
-  a = { b: tmpObjLitVal$2 };
+  const tmpObjLitVal$3 = $(1);
+  a = { b: tmpObjLitVal$3 };
   $(100);
 }
 const tmpAssignMemLhsObj = a;

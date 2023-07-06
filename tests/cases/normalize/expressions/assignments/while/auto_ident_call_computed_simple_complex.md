@@ -49,7 +49,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpCallCompProp = $(`\$`);
 const b = { $: $ };
 let a = b[tmpCallCompProp](1);
@@ -58,17 +58,14 @@ if (a) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpCallCompProp$1 = $(`\$`);
-    a = b[tmpCallCompProp$1](1);
-    if (a) {
-      $(100);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpCallCompProp$1 = $(`\$`);
+  a = b[tmpCallCompProp$1](1);
+  if (a) {
+    $(100);
+  } else {
+    break;
   }
-} else {
 }
 $(a);
 `````

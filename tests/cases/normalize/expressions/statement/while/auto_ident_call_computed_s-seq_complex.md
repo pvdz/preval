@@ -50,7 +50,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpCallCompProp = $(`\$`);
 const tmpIfTest = b[tmpCallCompProp](1);
 if (tmpIfTest) {
@@ -58,17 +58,14 @@ if (tmpIfTest) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpCallCompProp$1 = $(`\$`);
-    const tmpIfTest$1 = b[tmpCallCompProp$1](1);
-    if (tmpIfTest$1) {
-      $(100);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpCallCompProp$1 = $(`\$`);
+  const tmpIfTest$1 = b[tmpCallCompProp$1](1);
+  if (tmpIfTest$1) {
+    $(100);
+  } else {
+    break;
   }
-} else {
 }
 $(a);
 `````

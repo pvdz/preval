@@ -90,22 +90,22 @@ $(3);
 $(4);
 $(1);
 const tmpObjLitVal$2 = $(3);
-const tmpObjLitVal$4 = $(4);
+const tmpObjLitVal$5 = $(4);
 let tmpClusterSSA_x$1 = tmpObjLitVal$2;
-let tmpClusterSSA_y$1 = tmpObjLitVal$4;
-const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
-let tmpClusterSSA_a$2 = tmpNestedAssignObjPatternRhs$1;
+let tmpClusterSSA_y$1 = tmpObjLitVal$5;
+const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$5 };
+let tmpClusterSSA_a$1 = tmpNestedAssignObjPatternRhs$1;
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpObjLitVal$3 = $(3);
-  const tmpObjLitVal$5 = $(4);
+  const tmpObjLitVal$6 = $(4);
   tmpClusterSSA_x$1 = tmpObjLitVal$3;
-  tmpClusterSSA_y$1 = tmpObjLitVal$5;
-  const tmpNestedAssignObjPatternRhs$2 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-  tmpClusterSSA_a$2 = tmpNestedAssignObjPatternRhs$2;
+  tmpClusterSSA_y$1 = tmpObjLitVal$6;
+  const tmpNestedAssignObjPatternRhs$2 = { x: tmpObjLitVal$3, y: tmpObjLitVal$6 };
+  tmpClusterSSA_a$1 = tmpNestedAssignObjPatternRhs$2;
   $(1);
 }
-$(tmpClusterSSA_a$2, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
+$(tmpClusterSSA_a$1, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
 
 ## Globals

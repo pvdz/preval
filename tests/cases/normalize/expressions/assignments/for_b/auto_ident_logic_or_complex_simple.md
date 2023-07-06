@@ -53,7 +53,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpCalleeParam = $(0);
 let a = $(tmpCalleeParam);
 if (a) {
@@ -65,21 +65,18 @@ if (a) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpCalleeParam$1 = $(0);
-    a = $(tmpCalleeParam$1);
-    if (a) {
-    } else {
-      a = 2;
-    }
-    if (a) {
-      $(1);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpCalleeParam$1 = $(0);
+  a = $(tmpCalleeParam$1);
+  if (a) {
+  } else {
+    a = 2;
   }
-} else {
+  if (a) {
+    $(1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````

@@ -63,21 +63,18 @@ $(x);
 const x = $(`a`);
 $(x);
 const tmpClusterSSA_x = $(`b`);
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 if ($) {
   $(`123`);
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    if ($) {
-      $(`123`);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  if ($) {
+    $(`123`);
+  } else {
+    break;
   }
-} else {
 }
 $(tmpClusterSSA_x);
 `````

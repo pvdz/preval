@@ -85,16 +85,16 @@ $(100);
 $(1);
 $(3);
 $(100);
-const tmpArrElement$2 = $(1);
-const tmpArrElement$5 = $(3);
-const tmpNestedComplexRhs$1 = [tmpArrElement$2, 2, tmpArrElement$5];
-let a = tmpNestedComplexRhs$1;
+const tmpArrElement$3 = $(1);
+const tmpArrElement$10 = $(3);
+const tmpNestedComplexRhs$2 = [tmpArrElement$3, 2, tmpArrElement$10];
+let a = tmpNestedComplexRhs$2;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpArrElement$6 = $(1);
-  const tmpArrElement$8 = $(3);
-  const tmpNestedComplexRhs$2 = [tmpArrElement$6, 2, tmpArrElement$8];
-  a = tmpNestedComplexRhs$2;
+  const tmpArrElement$1 = $(1);
+  const tmpArrElement$4 = $(3);
+  const tmpNestedComplexRhs$3 = [tmpArrElement$1, 2, tmpArrElement$4];
+  a = tmpNestedComplexRhs$3;
 }
 $(a);
 `````

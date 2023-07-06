@@ -54,7 +54,7 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpIfTest = delete tmpDeleteCompObj[tmpDeleteCompProp];
@@ -63,18 +63,15 @@ if (tmpIfTest) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpDeleteCompObj$1 = $(arg);
-    const tmpDeleteCompProp$1 = $(`y`);
-    const tmpIfTest$1 = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-    if (tmpIfTest$1) {
-      $(1);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpDeleteCompObj$1 = $(arg);
+  const tmpDeleteCompProp$1 = $(`y`);
+  const tmpIfTest$1 = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+  if (tmpIfTest$1) {
+    $(1);
+  } else {
+    break;
   }
-} else {
 }
 $(a, arg);
 `````

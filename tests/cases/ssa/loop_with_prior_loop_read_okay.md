@@ -76,21 +76,18 @@ if ($) {
 `````js filename=intro
 if ($) {
   const x = $(1);
-  let $tmpLoopUnrollCheck = true;
+  let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
   $(x);
   if ($) {
     $tmpLoopUnrollCheck = false;
   } else {
   }
-  if ($tmpLoopUnrollCheck) {
-    while ($LOOP_UNROLL_10) {
-      $(x);
-      if ($) {
-        break;
-      } else {
-      }
+  while ($tmpLoopUnrollCheck) {
+    $(x);
+    if ($) {
+      break;
+    } else {
     }
-  } else {
   }
   let tmpClusterSSA_x = $(2);
   $(tmpClusterSSA_x);

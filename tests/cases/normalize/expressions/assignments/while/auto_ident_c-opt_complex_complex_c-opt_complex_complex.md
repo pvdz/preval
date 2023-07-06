@@ -66,7 +66,7 @@ $(a);
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
 let a = undefined;
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
@@ -88,32 +88,29 @@ if (tmpIfTest$1) {
     }
   }
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    a = undefined;
-    const tmpChainElementCall$1 = $(b);
-    const tmpIfTest$2 = tmpChainElementCall$1 == null;
-    if (tmpIfTest$2) {
+while ($tmpLoopUnrollCheck) {
+  a = undefined;
+  const tmpChainElementCall$1 = $(b);
+  const tmpIfTest$2 = tmpChainElementCall$1 == null;
+  if (tmpIfTest$2) {
+    $(100);
+  } else {
+    const tmpChainRootComputed$2 = $(`x`);
+    const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
+    const tmpIfTest$4 = tmpChainElementObject$2 == null;
+    if (tmpIfTest$4) {
       $(100);
     } else {
-      const tmpChainRootComputed$2 = $(`x`);
-      const tmpChainElementObject$2 = tmpChainElementCall$1[tmpChainRootComputed$2];
-      const tmpIfTest$4 = tmpChainElementObject$2 == null;
-      if (tmpIfTest$4) {
+      const tmpChainRootComputed$4 = $(`y`);
+      const tmpChainElementObject$4 = tmpChainElementObject$2[tmpChainRootComputed$4];
+      a = tmpChainElementObject$4;
+      if (tmpChainElementObject$4) {
         $(100);
       } else {
-        const tmpChainRootComputed$4 = $(`y`);
-        const tmpChainElementObject$4 = tmpChainElementObject$2[tmpChainRootComputed$4];
-        a = tmpChainElementObject$4;
-        if (tmpChainElementObject$4) {
-          $(100);
-        } else {
-          break;
-        }
+        break;
       }
     }
   }
-} else {
 }
 $(a);
 `````

@@ -43,23 +43,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpIfTest = $(2);
 if (tmpIfTest) {
   $(100);
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(2);
-    if (tmpIfTest$1) {
-      $(100);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpIfTest$1 = $(2);
+  if (tmpIfTest$1) {
+    $(100);
+  } else {
+    break;
   }
-} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

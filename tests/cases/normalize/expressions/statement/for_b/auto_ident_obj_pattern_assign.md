@@ -89,16 +89,16 @@ $(1);
 $(3);
 $(4);
 $(1);
-const tmpObjLitVal$2 = $(3);
-const tmpObjLitVal$4 = $(4);
-let x = tmpObjLitVal$2;
-let y = tmpObjLitVal$4;
+const tmpObjLitVal$3 = $(3);
+const tmpObjLitVal$5 = $(4);
+let x = tmpObjLitVal$3;
+let y = tmpObjLitVal$5;
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpObjLitVal$3 = $(3);
-  const tmpObjLitVal$5 = $(4);
-  x = tmpObjLitVal$3;
-  y = tmpObjLitVal$5;
+  const tmpObjLitVal$6 = $(3);
+  const tmpObjLitVal$8 = $(4);
+  x = tmpObjLitVal$6;
+  y = tmpObjLitVal$8;
   $(1);
 }
 const a = { a: 999, b: 1000 };

@@ -55,7 +55,7 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp == null;
@@ -70,24 +70,21 @@ if (tmpIfTest$1) {
     $tmpLoopUnrollCheck = false;
   }
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    a = undefined;
-    const tmpChainRootProp$1 = $(b);
-    const tmpIfTest$2 = tmpChainRootProp$1 == null;
-    if (tmpIfTest$2) {
+while ($tmpLoopUnrollCheck) {
+  a = undefined;
+  const tmpChainRootProp$1 = $(b);
+  const tmpIfTest$2 = tmpChainRootProp$1 == null;
+  if (tmpIfTest$2) {
+    $(100);
+  } else {
+    const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+    a = tmpChainElementObject$1;
+    if (tmpChainElementObject$1) {
       $(100);
     } else {
-      const tmpChainElementObject$1 = tmpChainRootProp$1.x;
-      a = tmpChainElementObject$1;
-      if (tmpChainElementObject$1) {
-        $(100);
-      } else {
-        break;
-      }
+      break;
     }
   }
-} else {
 }
 $(a);
 `````

@@ -58,21 +58,18 @@ $(`after, do not evaluate (infinite loop)`);
 `````js filename=intro
 let tmpIfTest = $(true);
 while (tmpIfTest) {
-  let $tmpLoopUnrollCheck = true;
+  let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
   const tmpIfTest$1 = $(true);
   if (tmpIfTest$1) {
   } else {
     $tmpLoopUnrollCheck = false;
   }
-  if ($tmpLoopUnrollCheck) {
-    while ($LOOP_UNROLL_10) {
-      const tmpIfTest$2 = $(true);
-      if (tmpIfTest$2) {
-      } else {
-        break;
-      }
+  while ($tmpLoopUnrollCheck) {
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
+    } else {
+      break;
     }
-  } else {
   }
   $(`keep`);
   tmpIfTest = $(true);

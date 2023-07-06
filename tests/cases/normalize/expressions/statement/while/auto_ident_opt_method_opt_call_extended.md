@@ -64,39 +64,37 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
+const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = true;
-const tmpChainElementObject$3 = tmpObjLitVal$1.e;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+const tmpChainElementObject$1 = tmpObjLitVal.d;
+const tmpChainElementObject$3 = tmpChainElementObject$1.e;
 const tmpIfTest$3 = tmpChainElementObject$3 == null;
 if (tmpIfTest$3) {
   $(100);
 } else {
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, 1);
+  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
   if (tmpChainElementCall) {
     $(100);
   } else {
     $tmpLoopUnrollCheck = false;
   }
 }
-if ($tmpLoopUnrollCheck) {
-  const b = { c: tmpObjLitVal };
-  while ($LOOP_UNROLL_10) {
-    const tmpChainElementObject$2 = b.c;
-    const tmpChainElementObject$4 = tmpChainElementObject$2.d;
-    const tmpChainElementObject$6 = tmpChainElementObject$4.e;
-    const tmpIfTest$4 = tmpChainElementObject$6 == null;
-    if (tmpIfTest$4) {
+while ($tmpLoopUnrollCheck) {
+  const tmpChainElementObject$2 = b.c;
+  const tmpChainElementObject$4 = tmpChainElementObject$2.d;
+  const tmpChainElementObject$6 = tmpChainElementObject$4.e;
+  const tmpIfTest$4 = tmpChainElementObject$6 == null;
+  if (tmpIfTest$4) {
+    $(100);
+  } else {
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpChainElementObject$4, 1);
+    if (tmpChainElementCall$1) {
       $(100);
     } else {
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpChainElementObject$4, 1);
-      if (tmpChainElementCall$1) {
-        $(100);
-      } else {
-        break;
-      }
+      break;
     }
   }
-} else {
 }
 $(a);
 `````

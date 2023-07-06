@@ -56,7 +56,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
@@ -67,20 +67,17 @@ if (tmpNestedAssignObjPatternRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpObjLitVal$1 = $(2);
-    const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
-    const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
-    tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
-    tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
-    if (tmpNestedAssignObjPatternRhs$1) {
-      $(1);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpObjLitVal$1 = $(2);
+  const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
+  const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+  tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
+  if (tmpNestedAssignObjPatternRhs$1) {
+    $(1);
+  } else {
+    break;
   }
-} else {
 }
 $(tmpClusterSSA_a, tmpClusterSSA_b);
 `````

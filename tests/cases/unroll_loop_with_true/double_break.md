@@ -60,7 +60,7 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const test = $(`first`);
 $(`second`);
 if (test) {
@@ -73,22 +73,19 @@ if (test) {
     $(`third`);
   }
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const test$1 = $(`first`);
-    $(`second`);
-    if (test$1) {
+while ($tmpLoopUnrollCheck) {
+  const test$1 = $(`first`);
+  $(`second`);
+  if (test$1) {
+    break;
+  } else {
+    const tmpIfTest$1 = $(test$1);
+    if (tmpIfTest$1) {
       break;
     } else {
-      const tmpIfTest$1 = $(test$1);
-      if (tmpIfTest$1) {
-        break;
-      } else {
-        $(`third`);
-      }
+      $(`third`);
     }
   }
-} else {
 }
 `````
 

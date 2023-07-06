@@ -53,21 +53,18 @@ $(2);
 
 `````js filename=intro
 $(0);
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpIfTest$1 = $(true);
+  if (tmpIfTest$1) {
+  } else {
+    break;
   }
-} else {
 }
 $(2);
 `````

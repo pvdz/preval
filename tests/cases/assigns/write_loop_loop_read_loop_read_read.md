@@ -59,23 +59,20 @@ $(x, `outer`);
 `````js filename=intro
 const x = $(10);
 while (true) {
-  let $tmpLoopUnrollCheck = true;
+  let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
   $(x, `inner`);
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $tmpLoopUnrollCheck = false;
   } else {
   }
-  if ($tmpLoopUnrollCheck) {
-    while ($LOOP_UNROLL_10) {
-      $(x, `inner`);
-      const tmpIfTest$1 = $(true);
-      if (tmpIfTest$1) {
-        break;
-      } else {
-      }
+  while ($tmpLoopUnrollCheck) {
+    $(x, `inner`);
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+      break;
+    } else {
     }
-  } else {
   }
   $(x, `middle`);
 }

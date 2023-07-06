@@ -78,24 +78,20 @@ const f = function ($$0) {
   debugger;
   if (y) {
     let tmpClusterSSA_n = 0;
-    let $tmpLoopUnrollCheck = true;
+    let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
     if ($) {
       tmpClusterSSA_n = 1;
       $tmpLoopUnrollCheck = false;
     } else {
     }
-    if ($tmpLoopUnrollCheck) {
-      while ($LOOP_UNROLL_10) {
-        if ($) {
-          tmpClusterSSA_n = tmpClusterSSA_n + 1;
-          break;
-        } else {
-        }
+    while ($tmpLoopUnrollCheck) {
+      if ($) {
+        tmpClusterSSA_n = tmpClusterSSA_n + 1;
+        break;
+      } else {
       }
-      return undefined;
-    } else {
-      return undefined;
     }
+    return undefined;
   } else {
     return undefined;
   }

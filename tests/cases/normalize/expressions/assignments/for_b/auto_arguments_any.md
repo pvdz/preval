@@ -47,23 +47,20 @@ $(a);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 let a = arguments;
 if (arguments) {
   $(1);
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    a = arguments;
-    if (a) {
-      $(1);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  a = arguments;
+  if (a) {
+    $(1);
+  } else {
+    break;
   }
-} else {
 }
 $(a);
 `````

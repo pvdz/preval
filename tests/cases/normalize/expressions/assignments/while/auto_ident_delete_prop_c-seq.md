@@ -50,7 +50,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 $(1);
 $(2);
 const arg = { y: 1 };
@@ -61,19 +61,16 @@ if (tmpClusterSSA_a) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    $(1);
-    $(2);
-    const tmpDeleteObj$1 = $(arg);
-    tmpClusterSSA_a = delete tmpDeleteObj$1.y;
-    if (tmpClusterSSA_a) {
-      $(100);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  $(1);
+  $(2);
+  const tmpDeleteObj$1 = $(arg);
+  tmpClusterSSA_a = delete tmpDeleteObj$1.y;
+  if (tmpClusterSSA_a) {
+    $(100);
+  } else {
+    break;
   }
-} else {
 }
 $(tmpClusterSSA_a, arg);
 `````

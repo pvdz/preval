@@ -52,7 +52,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
+let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
@@ -62,19 +62,16 @@ if (tmpNestedAssignObjPatternRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    const tmpObjLitVal$1 = $(2);
-    const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
-    const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
-    tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
-    if (tmpNestedAssignObjPatternRhs$1) {
-      $(100);
-    } else {
-      break;
-    }
+while ($tmpLoopUnrollCheck) {
+  const tmpObjLitVal$1 = $(2);
+  const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
+  const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+  tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+  if (tmpNestedAssignObjPatternRhs$1) {
+    $(100);
+  } else {
+    break;
   }
-} else {
 }
 const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);

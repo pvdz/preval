@@ -77,160 +77,157 @@ function processAttempt(fdata, unrollTrueLimit) {
   function _walker(node, beforeWalk, nodeType, path) {
     if (beforeWalk) return; // Go from inner to outer...?
     if (updated) return; // TODO: allow to do this for multiple loops in the same iteration as long as they're not nested
+    if (node.type !== 'WhileStatement') return;
 
-    // Either look for `true`, or for previous cases to limit it
-    // In case of the constant, check that the parent node is not an `if` with only this `while` as its child statement.
-    // It's an attempt to not keep unrolling. And it may go off the rails.
-    if (node.type === 'WhileStatement' && (
+    // Look for `while (true)` or for a `let x = true; while (x)`
+    // Aside from `true`, also look for `$LOOP_UNROLL_` because that's how we prevent this trick from infinitely looping
+
+    // This is for the `while(true)` case
+    const isWhileTrue =
       AST.isTrue(node.test) ||
       (
         node.test.type === 'Identifier' &&
         node.test.name.startsWith('$LOOP_UNROLL_') &&
         (path.nodes[path.nodes.length - 3]?.type !== 'IfStatement')
-      )
-      // Detecting this other pattern will work but also breaks a bunch of rules so we have to be careful about it
-      //||
-      //(
-      //  node.test.type === 'Identifier' &&
-      //  //fdata.globallyUniqueNamingRegistry.get(node.test.name).typing.mustBeValue === true
-      //  node.test.name === 'tmpIfTest'
-      //)
-    )) {
-      vlog('- while @', node.$p.pid);
+      );
 
-      // Skip if parent node is a label, because we don't want to deal with that complexity right now.
-      const parentNode = path.nodes[path.nodes.length - 2];
-      const parentProp = path.props[path.props.length - 1];
-      const parentIndex = path.indexes[path.indexes.length - 1];
-      if (parentNode.type === 'LabeledStatement') {
-        vlog('  - bail: while is labeled');
-        return;
-      }
-
-      // Scan body and confirm that it does not contain labeled continue/break
-      // statements and no labeled statements.
-
-      let ok = true;
-      walk(confirmWalk, node.body, 'ast');
-      function confirmWalk(node, beforeWalk, nodeType, path) {
-        if (!beforeWalk) {
-          return;
-        }
-        if (node.type === 'LabeledStatement') {
-          ok = false;
-          vlog('  - bail: body contained a label');
-          return;
-        }
-        if ((node.type === 'ContinueStatement' || node.type === 'BreakStatement') && node.label !== null) {
-          ok = false;
-          vlog('  - bail: body contained labeled continue/break');
-          return;
-        }
-
-        // TODO: for now, ignore loops so we don't have to worry about scoping of break/continue ;)
-        if (['ForOfStatement', 'ForInStatement', 'ForStatement', 'WhileStatement'].includes(node.type)) {
-          ok = false;
-          vlog('  - bail: body contained another loop and we will deal with that another day, or never');
-          return;
-        }
-
-        // TODO: improve this. For now skip some of the gnarly bits for cloning. Our target does not contain these.
-        if (['FunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
-          ok = false;
-          vlog('  - bail: body contained function');
-          return;
-        }
-      }
-      if (!ok) {
-        vlog('  - bail: body contained something bad');
-        return;
-      }
-
-      // This should be fine. Clone it.
-      // TODO: do I actually need to clone anything if I'm just going to restart anyways?
-      const fail = {};
-      const clone = deepCloneForFuncInlining(node.body, new Map, fail);
-      if (fail.ed) {
-        vlog('  - bail: body cloning failed', fail);
-        return;
-      }
-
-      rule('while(true) should be unrolled');
-      example('while (true) { if ($()) break; }', '{ let tmp = true; stop: { if ($()) { tmp = false; break stop; } if (tmp) { while ($LOOP_COUNTER_999) { if ($()) break; } }')
-      before(node, parentNode);
-
-      const tmpName = createFreshVar('$tmpLoopUnrollCheck', fdata);
-      const tmpLabel = createFreshLabel('loopStop', fdata);
-
-      walk(replacer, clone, 'BlockStatement');
-      function replacer(node, beforeWalk, nodeType, path) {
-        if (beforeWalk) {
-          return;
-        }
-
-        if (node.type === 'BreakStatement') {
-          const parentNode = path.nodes[path.nodes.length - 2];
-          const parentProp = path.props[path.props.length - 1];
-          const parentIndex = path.indexes[path.indexes.length - 1];
-
-          const newNode = AST.blockStatement([
-            AST.expressionStatement(AST.assignmentExpression(tmpName, AST.fals(), '=')),
-            AST.breakStatement(tmpLabel.name),
-          ])
-
-          if (parentIndex < 0) parentNode[parentProp] = newNode;
-          else parentNode[parentProp][parentIndex] = newNode;
-
-          return;
-        }
-
-        if (node.type === 'ContinueStatement') {
-          const parentNode = path.nodes[path.nodes.length - 2];
-          const parentProp = path.props[path.props.length - 1];
-          const parentIndex = path.indexes[path.indexes.length - 1];
-
-          const newNode = AST.blockStatement([
-            AST.breakStatement(tmpLabel.name),
-          ])
-
-          if (parentIndex < 0) parentNode[parentProp] = newNode;
-          else parentNode[parentProp][parentIndex] = newNode;
-
-          return;
-        }
-      }
-
-      const condCount = AST.isTrue(node.test) ? unrollTrueLimit : parseInt(node.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
-      const condIdent = condCount > 0 ? '$LOOP_UNROLL_' + condCount : ('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
-      //console.log('count at', condCount, ', condIdent =', condIdent);
-
-      const newNodes = AST.blockStatement([
-        AST.variableDeclaration(tmpName, AST.tru(), 'let'),
-        AST.labeledStatement(tmpLabel.name, clone),
-        AST.ifStatement(
-          tmpName,
-          AST.whileStatement(
-            AST.identifier(condIdent),
-            AST.blockStatement([
-              node.body,
-            ]),
-          ),
-          AST.blockStatement([])
-        ),
-      ]);
-
-      if (parentIndex < 0) parentNode[parentProp] = newNodes;
-      else parentNode[parentProp][parentIndex] = newNodes;
-
-      after(newNodes, parentNode);
-
-      //console.log('Checking for while loops with true to unroll');
-      //console.log(tmat(ast, true));
-
-      //throw new Error('checm')
-
-      ++updated;
+    if (!isWhileTrue) {
+      vlog('  - bail: while test does not match expectations');
+      return;
     }
+
+    vlog('- while @', node.$p.pid);
+
+    const parentNode = path.nodes[path.nodes.length - 2];
+    const parentProp = path.props[path.props.length - 1];
+    const parentIndex = path.indexes[path.indexes.length - 1];
+    const blockBody = path.blockBodies[path.blockBodies.length - 1];
+    const blockIndex = path.blockIndexes[path.blockIndexes.length - 1];
+
+    // Skip if parent node is a label, because we don't want to deal with that complexity right now.
+    if (parentNode.type === 'LabeledStatement') {
+      vlog('  - bail: while is labeled');
+      return;
+    }
+
+    // Scan body and confirm that it does not contain labeled continue/break
+    // statements and no labeled statements.
+
+    let ok = true;
+    walk(confirmWalk, node.body, 'ast');
+    function confirmWalk(node, beforeWalk, nodeType, path) {
+      if (!beforeWalk) {
+        return;
+      }
+      if (node.type === 'LabeledStatement') {
+        ok = false;
+        vlog('  - bail: body contained a label');
+        return;
+      }
+      if ((node.type === 'ContinueStatement' || node.type === 'BreakStatement') && node.label !== null) {
+        ok = false;
+        vlog('  - bail: body contained labeled continue/break');
+        return;
+      }
+
+      // TODO: for now, ignore loops so we don't have to worry about scoping of break/continue ;)
+      if (['ForOfStatement', 'ForInStatement', 'ForStatement', 'WhileStatement'].includes(node.type)) {
+        ok = false;
+        vlog('  - bail: body contained another loop and we will deal with that another day, or never');
+        return;
+      }
+
+      // TODO: improve this. For now skip some of the gnarly bits for cloning. Our target does not contain these.
+      if (['FunctionExpression', 'FunctionDeclaration'].includes(node.type)) {
+        ok = false;
+        vlog('  - bail: body contained function');
+        return;
+      }
+    }
+    if (!ok) {
+      vlog('  - bail: body contained something bad');
+      return;
+    }
+
+    // This should be fine. First clone the while body
+
+    const fail = {};
+    const clone = deepCloneForFuncInlining(node.body, new Map, fail);
+    if (fail.ed) {
+      vlog('  - bail: body cloning failed', fail);
+      return;
+    }
+
+    // Next do preliminary work on the clone to replace the break/continue
+
+    const tmpName = createFreshVar('$tmpLoopUnrollCheck', fdata);
+    const tmpLabel = createFreshLabel('loopStop', fdata);
+
+    const condCount = AST.isTrue(node.test) ? unrollTrueLimit : parseInt(node.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
+    const condIdent = condCount > 0 ? '$LOOP_UNROLL_' + condCount : ('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
+
+    const replacer = function replacer(node, beforeWalk, nodeType, path) {
+      if (beforeWalk) {
+        return;
+      }
+      //// Inside a nested loop we don't need to do anything. In fact, we shouldn't.
+      //if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(node.type)) {
+      //  return true; // Do not enter
+      //}
+
+      if (node.type === 'BreakStatement') {
+        const parentNode = path.nodes[path.nodes.length - 2];
+        const parentProp = path.props[path.props.length - 1];
+        const parentIndex = path.indexes[path.indexes.length - 1];
+
+        const newNode = AST.blockStatement([
+          AST.expressionStatement(AST.assignmentExpression(tmpName, AST.fals(), '=')),
+          AST.breakStatement(tmpLabel.name),
+        ])
+
+        if (parentIndex < 0) parentNode[parentProp] = newNode;
+        else parentNode[parentProp][parentIndex] = newNode;
+
+        return;
+      }
+
+      if (node.type === 'ContinueStatement') {
+        const parentNode = path.nodes[path.nodes.length - 2];
+        const parentProp = path.props[path.props.length - 1];
+        const parentIndex = path.indexes[path.indexes.length - 1];
+
+        const newNode = AST.blockStatement([
+          AST.breakStatement(tmpLabel.name),
+        ])
+
+        if (parentIndex < 0) parentNode[parentProp] = newNode;
+        else parentNode[parentProp][parentIndex] = newNode;
+
+        return;
+      }
+    };
+    walk(replacer, clone, 'BlockStatement');
+
+    rule('while(true) should be unrolled');
+    example('while (true) { if ($()) break; }', '{ let tmp = $LOOP_COUNTER_1000; stop: { if ($()) { tmp = false; break stop; } } while (tmp) { if ($()) break; }')
+    before(node, parentNode);
+
+    const newNodes = AST.blockStatement([
+      AST.variableDeclaration(tmpName, AST.identifier(condIdent), 'let'),
+      AST.labeledStatement(tmpLabel.name, clone),
+      AST.whileStatement(
+        AST.identifier(tmpName),
+        AST.blockStatement([
+          node.body,
+        ]),
+      ),
+    ]);
+
+    blockBody[blockIndex] = newNodes;
+
+    after(newNodes, parentNode);
+
+    ++updated;
   }
 
   return updated;

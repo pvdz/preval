@@ -74,20 +74,20 @@ function processAttempt(fdata, unrollTrueLimit) {
   const ast = fdata.tenkoOutput.ast;
 
   walk(_walker, ast, 'ast');
-  function _walker(node, beforeWalk, nodeType, path) {
+  function _walker(whileNode, beforeWalk, nodeType, path) {
     if (beforeWalk) return; // Go from inner to outer...?
     if (updated) return; // TODO: allow to do this for multiple loops in the same iteration as long as they're not nested
-    if (node.type !== 'WhileStatement') return;
+    if (whileNode.type !== 'WhileStatement') return;
 
     // Look for `while (true)` or for a `let x = true; while (x)`
     // Aside from `true`, also look for `$LOOP_UNROLL_` because that's how we prevent this trick from infinitely looping
 
     // This is for the `while(true)` case
     const isWhileTrue =
-      AST.isTrue(node.test) ||
+      AST.isTrue(whileNode.test) ||
       (
-        node.test.type === 'Identifier' &&
-        node.test.name.startsWith('$LOOP_UNROLL_') &&
+        whileNode.test.type === 'Identifier' &&
+        whileNode.test.name.startsWith('$LOOP_UNROLL_') &&
         (path.nodes[path.nodes.length - 3]?.type !== 'IfStatement')
       );
 
@@ -96,7 +96,7 @@ function processAttempt(fdata, unrollTrueLimit) {
       return;
     }
 
-    vlog('- while @', node.$p.pid);
+    vlog('- while @', whileNode.$p.pid);
 
     const parentNode = path.nodes[path.nodes.length - 2];
     const parentProp = path.props[path.props.length - 1];
@@ -114,7 +114,7 @@ function processAttempt(fdata, unrollTrueLimit) {
     // statements and no labeled statements.
 
     let ok = true;
-    walk(confirmWalk, node.body, 'ast');
+    walk(confirmWalk, whileNode.body, 'ast');
     function confirmWalk(node, beforeWalk, nodeType, path) {
       if (!beforeWalk) {
         return;
@@ -152,7 +152,7 @@ function processAttempt(fdata, unrollTrueLimit) {
     // This should be fine. First clone the while body
 
     const fail = {};
-    const clone = deepCloneForFuncInlining(node.body, new Map, fail);
+    const clone = deepCloneForFuncInlining(whileNode.body, new Map, fail);
     if (fail.ed) {
       vlog('  - bail: body cloning failed', fail);
       return;
@@ -163,7 +163,7 @@ function processAttempt(fdata, unrollTrueLimit) {
     const tmpName = createFreshVar('$tmpLoopUnrollCheck', fdata);
     const tmpLabel = createFreshLabel('loopStop', fdata);
 
-    const condCount = AST.isTrue(node.test) ? unrollTrueLimit : parseInt(node.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
+    const condCount = AST.isTrue(whileNode.test) ? unrollTrueLimit : parseInt(whileNode.test.name.slice('$LOOP_UNROLL_'.length), 10) - 1;
     const condIdent = condCount > 0 ? '$LOOP_UNROLL_' + condCount : ('$LOOP_DONE_UNROLLING_ALWAYS_TRUE');
 
     const replacer = function replacer(node, beforeWalk, nodeType, path) {
@@ -210,7 +210,7 @@ function processAttempt(fdata, unrollTrueLimit) {
 
     rule('while(true) should be unrolled');
     example('while (true) { if ($()) break; }', '{ let tmp = $LOOP_COUNTER_1000; stop: { if ($()) { tmp = false; break stop; } } while (tmp) { if ($()) break; }')
-    before(node, parentNode);
+    before(whileNode, parentNode);
 
     const newNodes = AST.blockStatement([
       AST.variableDeclaration(tmpName, AST.identifier(condIdent), 'let'),
@@ -218,7 +218,7 @@ function processAttempt(fdata, unrollTrueLimit) {
       AST.whileStatement(
         AST.identifier(tmpName),
         AST.blockStatement([
-          node.body,
+          whileNode.body,
         ]),
       ),
     ]);

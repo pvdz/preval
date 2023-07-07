@@ -118,7 +118,7 @@ Should call `$` with:
  - 24: {}
  - 25: 1
  - 26: {}
- - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
 
 Pre normalization calls: Same
 

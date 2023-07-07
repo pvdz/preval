@@ -473,7 +473,7 @@ function runTestCase(
         //.replace(/function(?: [\w$]*)?\(\) ?\{/g, 'function() {');
       }
       function $(...a) {
-        if (stack.length > (before ? 25 : 10000)) throw new Error('Loop aborted by Preval test runner');
+        if (stack.length > (before ? 25 : 10000)) throw new Error('Loop aborted by Preval test runner (this simply curbs infinite loops in tests)');
 
         const tmp = a[0];
 

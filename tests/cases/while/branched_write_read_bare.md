@@ -179,7 +179,7 @@ Should call `$` with:
  - 24: 2, 'read'
  - 25: 2, 'read'
  - 26: 2, 'read'
- - eval returned: ('<crash[ Loop aborted by Preval test runner ]>')
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
 
 Pre normalization calls: Same
 

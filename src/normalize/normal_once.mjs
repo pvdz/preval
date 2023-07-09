@@ -875,6 +875,21 @@ export function phaseNormalOnce(fdata) {
         }
         break;
       }
+      case 'Property:after': {
+        if (node.computed) {
+          break;
+        }
+        if (node.key.type === 'Identifier') {
+          break;
+        }
+        ASSERT(node.key.type === 'Literal' || node.key.type === 'TemplateLiteral', 'obj key is ident or lit right?', node);
+        rule('Object properties must be ident or computed, no string/number');
+        example('o = {"foo.bar": x}', 'o = {["foo.bar"]: x}');
+        before(node);
+        node.computed = true;
+        after(node);
+        break;
+      }
     }
 
     vgroupEnd();

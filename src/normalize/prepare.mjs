@@ -690,7 +690,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
   //            leaving it in a dirty state was a heckuvalot easier than the alternative. Does the foot hurt much?
   let globalsShuffled = 0;
   vlog(
-    'After walking, find all aliased implicit globals and give them back their original name, renaming any explicits with the same name',
+    '\n\nAfter walking, find all aliased implicit globals and give them back their original name, renaming any explicits with the same name',
   );
   new Map(globallyUniqueNamingRegistry).forEach((meta, name) => {
     if (!meta.isImplicitGlobal) return;

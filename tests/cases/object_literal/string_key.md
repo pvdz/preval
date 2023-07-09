@@ -22,8 +22,8 @@ $(x, x['Hey, me too!']());
 
 `````js filename=intro
 const x = {
-  'hello, world!': $(1),
-  'hey, me too!'() {
+  [`hello, world!`]: $(1),
+  [`hey, me too!`]() {
     debugger;
     return $(2);
   },
@@ -34,10 +34,11 @@ $(x, x[`Hey, me too!`]());
 ## Normalized
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitPropKey = `hello, world!`;
+const tmpObjLitPropVal = $(1);
 const x = {
-  'hello, world!': tmpObjLitVal,
-  'hey, me too!'() {
+  [tmpObjLitPropKey]: tmpObjLitPropVal,
+  [`hey, me too!`]() {
     debugger;
     const tmpReturnArg = $(2);
     return tmpReturnArg;
@@ -52,10 +53,10 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = $(1);
+const tmpObjLitPropVal = $(1);
 const x = {
-  'hello, world!': tmpObjLitVal,
-  'hey, me too!'() {
+  [`hello, world!`]: tmpObjLitPropVal,
+  [`hey, me too!`]() {
     debugger;
     const tmpReturnArg = $(2);
     return tmpReturnArg;

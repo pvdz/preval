@@ -21,7 +21,7 @@ $(f?.[x]);
 `````js filename=intro
 let f = undefined;
 let x = undefined;
-f = { 10: 20 };
+f = { [10]: 20 };
 x = 10;
 $(f?.[x]);
 `````
@@ -31,7 +31,7 @@ $(f?.[x]);
 `````js filename=intro
 let f = undefined;
 let x = undefined;
-f = { 10: 20 };
+f = { [10]: 20 };
 x = 10;
 const tmpCallCallee = $;
 let tmpCalleeParam = undefined;
@@ -49,7 +49,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = { 10: 20 };
+const f = { [10]: 20 };
 const tmpChainElementObject = f[10];
 $(tmpChainElementObject);
 `````

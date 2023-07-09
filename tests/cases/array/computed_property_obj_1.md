@@ -18,14 +18,14 @@ $(x[[1]]);
 ## Pre Normal
 
 `````js filename=intro
-const x = { 1: `pass` };
+const x = { [1]: `pass` };
 $(x[[1]]);
 `````
 
 ## Normalized
 
 `````js filename=intro
-const x = { 1: `pass` };
+const x = { [1]: `pass` };
 const tmpCallCallee = $;
 const tmpCompObj = x;
 const tmpCompProp = [1];
@@ -36,7 +36,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const x = { 1: `pass` };
+const x = { [1]: `pass` };
 const tmpCalleeParam = x[`1`];
 $(tmpCalleeParam);
 `````

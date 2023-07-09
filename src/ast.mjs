@@ -320,7 +320,7 @@ export function functionExpressionNormalized(paramNames, body, { id, generator, 
 
 export function functionExpression(params, body, { id, generator, async, normalized = true } = {}) {
   if (!Array.isArray(params)) params = [params];
-  params.map((n, i) => (typeof n === 'string' ? param(n) : n));
+  params = params.map((n, i) => (typeof n === 'string' ? param(n) : n));
   ASSERT(
     !normalized || params.every((n) => n.type === 'Param'),
     'functions generated this way should be normalized, so should use special Param nodes',
@@ -1030,6 +1030,7 @@ export function primitive(value) {
 }
 
 export function isNoob(node, v) {
+  // is non-observable
   const r = _isNoob(node, v);
   if (v) vlog('  - Node:', node.type, ', noob?', r);
   return r;

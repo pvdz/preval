@@ -6294,6 +6294,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         ifelseStack.pop();
         funcStack.pop();
 
+        ASSERT(node.params.every(p => p.type === 'Param'), 'are all params Params?', node);
+
         rule('Arrows should be function expressions after this/arguments are transformed');
         example('const x = () => {};', 'const x = function(){}');
         before(node, parentNode);

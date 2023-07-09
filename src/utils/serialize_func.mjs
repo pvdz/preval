@@ -23,6 +23,7 @@ import { uniqify_idents } from './uniqify_idents.mjs';
 import { parseCode } from '../normalize/parse.mjs';
 import { prepareNormalization } from '../normalize/prepare.mjs';
 import { phaseNormalOnce } from '../normalize/normal_once.mjs';
+import {VERBOSE_TRACING} from "../constants.mjs"
 
 // - Receive a function declaration AST node
 // - Serialize it to a string
@@ -112,8 +113,12 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
       vlog('It appears that the param is unused. As such we can not find the original param name for this index. Nothing to do here.');
     }
   });
+
+  //funcNode.params.push(AST.param('$$5', true)); // to test rest
+
   const str = printer(funcNode);
   log('Serialized size of function:', str.length);
+
   funcNode.body.body = bodyBak; // Restore the original body
   const newFdata = phase0('(' + str + ')', '<function duplicator>', true);
 
@@ -130,6 +135,9 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
   );
 
   clonedFunc.id = null;
+  // The Param is a Preval custom node. Tenko won't be returning it. Convert them now.
+  // TODO: what about nested funcs?
+  clonedFunc.params = clonedFunc.params.map(p => AST.param(p.type === 'RestElement' ? p.argument.name : p.name, p.type === 'RestElement'));
 
   log('  - uniqify_idents');
   uniqify_idents(clonedFunc, fdata);
@@ -137,7 +145,7 @@ export function cloneFunctionNode(funcNode, clonedName = 'noname', staticArgs, f
   if (clonedName) clonedFunc.id = AST.identifier(clonedName);
 
   log('  - printing?');
-  vlog('\nCloned function:\n--------------\n' + fmat(tmat(clonedFunc)) + '\n--------------\n');
+  if (VERBOSE_TRACING) vlog('\nCloned function:\n--------------\n' + fmat(tmat(clonedFunc)) + '\n--------------\n');
 
   if (clonedName) clonedFunc.id = null;
 

@@ -41,7 +41,7 @@ let f = function ($$0) {
     } else {
       $(`else`);
     }
-  } catch {}
+  } catch (e) {}
 };
 f(0);
 f(`ok`);
@@ -61,7 +61,7 @@ let f = function ($$0) {
     } else {
       $(`else`);
     }
-  } catch {}
+  } catch (e) {}
   return undefined;
 };
 f(0);

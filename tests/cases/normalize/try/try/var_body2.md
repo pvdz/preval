@@ -25,7 +25,7 @@ $(x);
 let x = undefined;
 try {
   x = 10;
-} catch {}
+} catch (e) {}
 $(x);
 `````
 
@@ -35,7 +35,7 @@ $(x);
 let x = undefined;
 try {
   x = 10;
-} catch {}
+} catch (e) {}
 $(x);
 `````
 

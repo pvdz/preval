@@ -41,7 +41,7 @@ let f = function () {
     } else {
       throw `too`;
     }
-  } catch {
+  } catch (e) {
     $(x, `mutation is observable in the catch`);
   }
   $(x);
@@ -62,7 +62,7 @@ let f = function () {
     } else {
       throw `too`;
     }
-  } catch {
+  } catch (e) {
     $(x, `mutation is observable in the catch`);
   }
   $(x);
@@ -82,7 +82,7 @@ try {
   } else {
     throw `too`;
   }
-} catch {
+} catch (e) {
   $(x, `mutation is observable in the catch`);
 }
 $(x);
@@ -90,7 +90,9 @@ $(x);
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+e
 
 ## Result
 

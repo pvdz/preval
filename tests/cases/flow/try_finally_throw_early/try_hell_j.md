@@ -33,7 +33,7 @@ let x = 0;
 foo: {
   try {
     break foo;
-  } catch {
+  } catch (e) {
     x = 1;
   } finally {
     throw_early;
@@ -50,7 +50,7 @@ let x = 0;
 foo: {
   try {
     break foo;
-  } catch {
+  } catch (e) {
     x = 1;
   } finally {
     throw_early;

@@ -863,6 +863,18 @@ export function phaseNormalOnce(fdata) {
         }
         break;
       }
+      case 'TryStatement:after': {
+        if (node.handler && !node.handler.param) {
+          rule('Catch clauses must have a var');
+          example('try {} catch {}', 'try {} catch (e) {}');
+          before(node);
+
+          node.handler.param = AST.identifier(createFreshVar('e', fdata));
+
+          after(node);
+        }
+        break;
+      }
     }
 
     vgroupEnd();

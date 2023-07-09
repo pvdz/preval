@@ -30,7 +30,7 @@ let x = 0;
 try {
   fail_early;
   x = 1;
-} catch {
+} catch (e) {
 } finally {
 }
 considerMutated(x);
@@ -43,7 +43,7 @@ let x = 0;
 try {
   fail_early;
   x = 1;
-} catch {
+} catch (e) {
 } finally {
 }
 considerMutated(x);
@@ -56,7 +56,7 @@ let x = 0;
 try {
   fail_early;
   x = 1;
-} catch {
+} catch (e) {
 } finally {
 }
 considerMutated(x);
@@ -64,9 +64,9 @@ considerMutated(x);
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 3 implicit global bindings:
 
-fail_early, considerMutated
+fail_early, e, considerMutated
 
 ## Result
 

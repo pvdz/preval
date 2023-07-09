@@ -26,7 +26,7 @@ let f = function () {
   debugger;
   try {
     return xyz;
-  } catch {}
+  } catch (e) {}
 };
 $(f(50));
 `````
@@ -38,7 +38,7 @@ let f = function () {
   debugger;
   try {
     return xyz;
-  } catch {}
+  } catch (e) {}
   return undefined;
 };
 const tmpCallCallee = $;
@@ -53,7 +53,7 @@ const f = function () {
   debugger;
   try {
     return xyz;
-  } catch {}
+  } catch (e) {}
   return undefined;
 };
 const tmpCalleeParam = f();
@@ -62,9 +62,9 @@ $(tmpCalleeParam);
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-xyz
+xyz, e
 
 ## Result
 

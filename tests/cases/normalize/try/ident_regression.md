@@ -32,7 +32,7 @@ This turned out to be a Tenko bug regarding try-scope tracking.
   let AAAAAAAAAAAAAAAAAAAA;
   try {
     AAAAAAAAAAAAAAAAAAAA = false;
-  } catch {
+  } catch (e) {
     AAAAAAAAAAAAAAAAAAAA = false;
   }
 }
@@ -44,7 +44,7 @@ This turned out to be a Tenko bug regarding try-scope tracking.
 let AAAAAAAAAAAAAAAAAAAA = undefined;
 try {
   AAAAAAAAAAAAAAAAAAAA = false;
-} catch {
+} catch (e) {
   AAAAAAAAAAAAAAAAAAAA = false;
 }
 `````

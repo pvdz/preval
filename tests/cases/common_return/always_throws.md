@@ -34,19 +34,19 @@ let f = function () {
 };
 try {
   f();
-} catch {}
+} catch (e) {}
 try {
   f();
-} catch {}
+} catch (e$1) {}
 try {
   f();
-} catch {}
+} catch (e$3) {}
 try {
   f();
-} catch {}
+} catch (e$5) {}
 try {
   $(f());
-} catch {}
+} catch (e$7) {}
 `````
 
 ## Normalized
@@ -58,21 +58,21 @@ let f = function () {
 };
 try {
   f();
-} catch {}
+} catch (e) {}
 try {
   f();
-} catch {}
+} catch (e$1) {}
 try {
   f();
-} catch {}
+} catch (e$3) {}
 try {
   f();
-} catch {}
+} catch (e$5) {}
 try {
   const tmpCallCallee = $;
   const tmpCalleeParam = f();
   tmpCallCallee(tmpCalleeParam);
-} catch {}
+} catch (e$7) {}
 `````
 
 ## Output
@@ -80,24 +80,26 @@ try {
 `````js filename=intro
 try {
   throw `Some error`;
-} catch {}
+} catch (e) {}
 try {
   throw `Some error`;
-} catch {}
+} catch (e$1) {}
 try {
   throw `Some error`;
-} catch {}
+} catch (e$3) {}
 try {
   throw `Some error`;
-} catch {}
+} catch (e$5) {}
 try {
   throw `Some error`;
-} catch {}
+} catch (e$7) {}
 `````
 
 ## Globals
 
-None
+BAD@! Found 5 implicit global bindings:
+
+e, e$1, e$3, e$5, e$7
 
 ## Result
 

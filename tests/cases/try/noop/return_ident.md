@@ -27,7 +27,7 @@ let f = function ($$0) {
   debugger;
   try {
     return x;
-  } catch {}
+  } catch (e) {}
 };
 $(f(50));
 `````
@@ -40,7 +40,7 @@ let f = function ($$0) {
   debugger;
   try {
     return x;
-  } catch {}
+  } catch (e) {}
   return undefined;
 };
 const tmpCallCallee = $;

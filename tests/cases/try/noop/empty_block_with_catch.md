@@ -26,7 +26,7 @@ f();
 let f = function () {
   debugger;
   try {
-  } catch {
+  } catch (e) {
     $(`fail`);
   }
 };

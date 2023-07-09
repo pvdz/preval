@@ -38,7 +38,7 @@ while (true) {
     } else {
       $(`third`);
     }
-  } catch {
+  } catch (e) {
     $(`error`);
   } finally {
     $(`finally`);
@@ -58,7 +58,7 @@ while (true) {
     } else {
       $(`third`);
     }
-  } catch {
+  } catch (e) {
     $(`error`);
   } finally {
     $(`finally`);
@@ -78,7 +78,7 @@ try {
   } else {
     $(`third`);
   }
-} catch {
+} catch (e) {
   $(`error`);
 } finally {
   $(`finally`);
@@ -92,7 +92,7 @@ while ($tmpLoopUnrollCheck) {
     } else {
       $(`third`);
     }
-  } catch {
+  } catch (e$1) {
     $(`error`);
   } finally {
     $(`finally`);
@@ -102,7 +102,9 @@ while ($tmpLoopUnrollCheck) {
 
 ## Globals
 
-None
+BAD@! Found 2 implicit global bindings:
+
+e, e$1
 
 ## Result
 

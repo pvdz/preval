@@ -28,7 +28,7 @@ $(4);
 $(1);
 try {
   $(2);
-} catch {
+} catch (e) {
   $(`fail`);
 } finally {
   $(3);
@@ -42,7 +42,7 @@ $(4);
 $(1);
 try {
   $(2);
-} catch {
+} catch (e) {
   $(`fail`);
 } finally {
   $(3);
@@ -56,7 +56,7 @@ $(4);
 $(1);
 try {
   $(2);
-} catch {
+} catch (e) {
   $(`fail`);
 } finally {
   $(3);
@@ -66,7 +66,9 @@ $(4);
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+e
 
 ## Result
 

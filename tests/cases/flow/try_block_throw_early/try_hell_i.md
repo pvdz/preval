@@ -34,7 +34,7 @@ foo: {
   try {
     fail_early;
     break foo;
-  } catch {
+  } catch (e) {
   } finally {
     x = 1;
   }
@@ -50,7 +50,7 @@ foo: {
   try {
     fail_early;
     break foo;
-  } catch {
+  } catch (e) {
   } finally {
     x = 1;
   }
@@ -63,7 +63,7 @@ considerMutated(x);
 `````js filename=intro
 try {
   fail_early;
-} catch {
+} catch (e) {
 } finally {
 }
 considerMutated(1);
@@ -71,9 +71,9 @@ considerMutated(1);
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 3 implicit global bindings:
 
-fail_early, considerMutated
+fail_early, e, considerMutated
 
 ## Result
 

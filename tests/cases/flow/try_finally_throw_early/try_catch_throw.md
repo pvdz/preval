@@ -33,7 +33,7 @@ let f = function () {
   try {
     x = `pass`;
     throw `yes`;
-  } catch {
+  } catch (e) {
     $(`caught`);
   }
   $(x);
@@ -50,7 +50,7 @@ let f = function () {
   try {
     x = `pass`;
     throw `yes`;
-  } catch {
+  } catch (e) {
     $(`caught`);
   }
   $(x);
@@ -64,7 +64,7 @@ f();
 `````js filename=intro
 try {
   throw `yes`;
-} catch {
+} catch (e) {
   $(`caught`);
 }
 $(`pass`);
@@ -72,7 +72,9 @@ $(`pass`);
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+e
 
 ## Result
 

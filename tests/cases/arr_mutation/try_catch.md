@@ -24,7 +24,7 @@ $('after', blob)
 const blob = [1, 2, 3];
 try {
   $(`try`, blob.shift());
-} catch {
+} catch (e) {
   $(`catch`, blob.shift());
 }
 $(`after`, blob);
@@ -39,7 +39,7 @@ try {
   const tmpCalleeParam = `try`;
   const tmpCalleeParam$1 = blob.shift();
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-} catch {
+} catch (e) {
   const tmpCallCallee$1 = $;
   const tmpCalleeParam$3 = `catch`;
   const tmpCalleeParam$5 = blob.shift();
@@ -54,7 +54,7 @@ $(`after`, blob);
 const blob = [2, 3];
 try {
   $(`try`, 1);
-} catch {
+} catch (e) {
   const tmpCalleeParam$1 = blob.shift();
   $(`catch`, tmpCalleeParam$1);
 }
@@ -63,7 +63,9 @@ $(`after`, blob);
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+e
 
 ## Result
 

@@ -42,7 +42,7 @@ let x = $(1);
 const a = x;
 try {
   $();
-} catch {
+} catch (e) {
   const b$1 = x;
   $(a, b$1);
   $(f);
@@ -66,7 +66,7 @@ let x = $(1);
 const a = x;
 try {
   $();
-} catch {
+} catch (e) {
   const b$2 = x;
   $(a, b$2);
   $(f);
@@ -89,7 +89,7 @@ let f = function () {
 let x = $(1);
 try {
   $();
-} catch {
+} catch (e) {
   $(x, x);
   $(f);
 }
@@ -97,7 +97,9 @@ try {
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+e
 
 ## Result
 

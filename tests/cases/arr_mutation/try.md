@@ -23,7 +23,7 @@ $('after', blob)
 const blob = [1, 2, 3];
 try {
   $(`try`, blob.shift());
-} catch {}
+} catch (e) {}
 $(`after`, blob);
 `````
 
@@ -36,7 +36,7 @@ try {
   const tmpCalleeParam = `try`;
   const tmpCalleeParam$1 = blob.shift();
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-} catch {}
+} catch (e) {}
 $(`after`, blob);
 `````
 
@@ -45,14 +45,16 @@ $(`after`, blob);
 `````js filename=intro
 try {
   $(`try`, 1);
-} catch {}
+} catch (e) {}
 const blob = [2, 3];
 $(`after`, blob);
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+e
 
 ## Result
 

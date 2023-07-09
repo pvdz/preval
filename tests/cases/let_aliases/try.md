@@ -44,7 +44,7 @@ try {
   const b = x;
   $(a, b);
   $(f);
-} catch {
+} catch (e) {
   $();
 }
 `````
@@ -68,7 +68,7 @@ try {
   const b = x;
   $(a, b);
   $(f);
-} catch {
+} catch (e) {
   $();
 }
 `````
@@ -90,14 +90,16 @@ let x = $(1);
 try {
   $(x, x);
   $(f);
-} catch {
+} catch (e) {
   $();
 }
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+e
 
 ## Result
 

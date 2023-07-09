@@ -30,7 +30,7 @@ let f = function ($$0) {
   let y = 100;
   try {
     y = xyz;
-  } catch {}
+  } catch (e) {}
   return y;
 };
 $(f(50));
@@ -45,7 +45,7 @@ let f = function ($$0) {
   let y = 100;
   try {
     y = xyz;
-  } catch {}
+  } catch (e) {}
   return y;
 };
 const tmpCallCallee = $;
@@ -59,15 +59,15 @@ tmpCallCallee(tmpCalleeParam);
 let y = 100;
 try {
   y = xyz;
-} catch {}
+} catch (e) {}
 $(y);
 `````
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-xyz
+xyz, e
 
 ## Result
 

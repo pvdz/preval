@@ -44,7 +44,7 @@ let f = function () {
       throw `too`;
     }
     x = `fail2`;
-  } catch {
+  } catch (e) {
     throw_early;
     $(`caught`);
   }
@@ -66,7 +66,7 @@ let f = function () {
       x = `pass`;
       throw `too`;
     }
-  } catch {
+  } catch (e) {
     throw_early;
     $(`caught`);
   }
@@ -89,7 +89,7 @@ const f = function () {
       x = `pass`;
       throw `too`;
     }
-  } catch {
+  } catch (e) {
     throw_early;
     $(`caught`);
   }
@@ -101,9 +101,9 @@ f();
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-throw_early
+e, throw_early
 
 ## Result
 

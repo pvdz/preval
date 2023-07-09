@@ -43,7 +43,7 @@ let f = function () {
       throw `too`;
     }
     x = `fail2`;
-  } catch {
+  } catch (e) {
     $(`caught`);
   }
   $(x);
@@ -64,7 +64,7 @@ let f = function () {
       x = `pass`;
       throw `too`;
     }
-  } catch {
+  } catch (e) {
     $(`caught`);
   }
   $(x);
@@ -86,7 +86,7 @@ const f = function () {
       x = `pass`;
       throw `too`;
     }
-  } catch {
+  } catch (e) {
     $(`caught`);
   }
   $(x);
@@ -97,7 +97,9 @@ f();
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+e
 
 ## Result
 

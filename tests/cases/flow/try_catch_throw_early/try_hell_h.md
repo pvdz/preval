@@ -36,7 +36,7 @@ let x = 0;
 foo: {
   try {
     if ($) break foo;
-  } catch {
+  } catch (e) {
     throw_early;
     x = 1;
   } finally {
@@ -55,7 +55,7 @@ foo: {
       break foo;
     } else {
     }
-  } catch {
+  } catch (e) {
     throw_early;
     x = 1;
   } finally {

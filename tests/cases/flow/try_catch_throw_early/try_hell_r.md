@@ -34,7 +34,7 @@ let f = function () {
   debugger;
   stop: try {
     throw `one`;
-  } catch {
+  } catch (e) {
     throw_early;
     x = 2;
     throw `two`;
@@ -54,7 +54,7 @@ let f = function () {
   debugger;
   try {
     throw `one`;
-  } catch {
+  } catch (e) {
     throw_early;
     x = 2;
     throw `two`;
@@ -75,7 +75,7 @@ const f = function () {
   debugger;
   try {
     throw `one`;
-  } catch {
+  } catch (e) {
     throw_early;
     x = 2;
     throw `two`;
@@ -91,9 +91,9 @@ considerMutated(x);
 
 ## Globals
 
-BAD@! Found 2 implicit global bindings:
+BAD@! Found 3 implicit global bindings:
 
-throw_early, considerMutated
+e, throw_early, considerMutated
 
 ## Result
 

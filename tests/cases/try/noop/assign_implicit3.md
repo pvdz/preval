@@ -30,7 +30,7 @@ let f = function ($$0) {
   let y = 100;
   try {
     y = $;
-  } catch {}
+  } catch (e) {}
   return y;
 };
 $(f(50));
@@ -45,7 +45,7 @@ let f = function ($$0) {
   let y = 100;
   try {
     y = $;
-  } catch {}
+  } catch (e) {}
   return y;
 };
 const tmpCallCallee = $;

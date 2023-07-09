@@ -256,13 +256,13 @@
   let x = 0;
   try {
     x = 1;
-  } catch {}
+  } catch (e) {}
   considerMutated(x);
 }
 {
   let x$1 = 0;
   try {
-  } catch {
+  } catch (e$1) {
     x$1 = 1;
   }
   considerMutated(x$1);
@@ -279,7 +279,7 @@
   let x$5 = 0;
   try {
     x$5 = 1;
-  } catch {
+  } catch (e$3) {
   } finally {
   }
   considerMutated(x$5);
@@ -288,7 +288,7 @@
   let x$7 = 0;
   try {
     x$7 = 1;
-  } catch {
+  } catch (e$5) {
   } finally {
   }
   considerMutated(x$7);
@@ -296,7 +296,7 @@
 {
   let x$9 = 0;
   try {
-  } catch {
+  } catch (e$7) {
     x$9 = 1;
   } finally {
   }
@@ -305,7 +305,7 @@
 {
   let x$11 = 0;
   try {
-  } catch {
+  } catch (e$9) {
   } finally {
     x$11 = 1;
   }
@@ -316,7 +316,7 @@
   foo: {
     try {
       if ($) break foo;
-    } catch {
+    } catch (e$11) {
       x$13 = 1;
     } finally {
     }
@@ -328,7 +328,7 @@
   foo$1: {
     try {
       break foo$1;
-    } catch {
+    } catch (e$13) {
     } finally {
       x$15 = 1;
     }
@@ -340,7 +340,7 @@
   foo$3: {
     try {
       break foo$3;
-    } catch {
+    } catch (e$15) {
     } finally {
       x$17 = 1;
     }
@@ -352,7 +352,7 @@
   foo$5: {
     try {
       break foo$5;
-    } catch {
+    } catch (e$17) {
     } finally {
       x$19 = 1;
     }
@@ -410,7 +410,7 @@
     debugger;
     stop$1: try {
       throw `one`;
-    } catch {
+    } catch (e$19) {
       throw `two`;
     } finally {
       break stop$1;
@@ -427,7 +427,7 @@
     stop$3: try {
       x$29 = 1;
       throw `one`;
-    } catch {
+    } catch (e$21) {
       throw `two`;
     } finally {
       break stop$3;
@@ -442,7 +442,7 @@
     debugger;
     stop$5: try {
       throw `one`;
-    } catch {
+    } catch (e$23) {
       x$31 = 2;
       throw `two`;
     } finally {
@@ -461,7 +461,7 @@
 let x = 0;
 try {
   x = 1;
-} catch {}
+} catch (e) {}
 considerMutated(x);
 let x$1 = 0;
 considerMutated(x$1);
@@ -471,14 +471,14 @@ considerMutated(x$3);
 let x$5 = 0;
 try {
   x$5 = 1;
-} catch {
+} catch (e$3) {
 } finally {
 }
 considerMutated(x$5);
 let x$7 = 0;
 try {
   x$7 = 1;
-} catch {
+} catch (e$5) {
 } finally {
 }
 considerMutated(x$7);
@@ -494,7 +494,7 @@ foo: {
       break foo;
     } else {
     }
-  } catch {
+  } catch (e$11) {
     x$13 = 1;
   } finally {
   }
@@ -504,7 +504,7 @@ let x$15 = 0;
 foo$1: {
   try {
     break foo$1;
-  } catch {
+  } catch (e$13) {
   } finally {
     x$15 = 1;
   }
@@ -514,7 +514,7 @@ let x$17 = 0;
 foo$3: {
   try {
     break foo$3;
-  } catch {
+  } catch (e$15) {
   } finally {
     x$17 = 1;
   }
@@ -524,7 +524,7 @@ let x$19 = 0;
 foo$5: {
   try {
     break foo$5;
-  } catch {
+  } catch (e$17) {
   } finally {
     x$19 = 1;
   }
@@ -597,7 +597,7 @@ let f$5 = function () {
     debugger;
     try {
       throw `one`;
-    } catch {
+    } catch (e$2) {
       throw `two`;
     } finally {
       const tmpReturnArg$11 = tmpAfterLabel$3();
@@ -622,7 +622,7 @@ let f$7 = function () {
   try {
     x$29 = 1;
     throw `one`;
-  } catch {
+  } catch (e$21) {
     throw `two`;
   } finally {
     return undefined;
@@ -636,7 +636,7 @@ let f$9 = function () {
   debugger;
   try {
     throw `one`;
-  } catch {
+  } catch (e$23) {
     x$31 = 2;
     throw `two`;
   } finally {
@@ -707,7 +707,7 @@ const f$5 = function () {
   debugger;
   try {
     throw `one`;
-  } catch {
+  } catch (e$2) {
     throw `two`;
   } finally {
     x$27 = 1;
@@ -724,7 +724,7 @@ const f$7 = function () {
   x$29 = 1;
   try {
     throw `one`;
-  } catch {
+  } catch (e$21) {
     throw `two`;
   } finally {
     return undefined;
@@ -738,7 +738,7 @@ const f$9 = function () {
   debugger;
   try {
     throw `one`;
-  } catch {
+  } catch (e$23) {
     x$31 = 2;
     throw `two`;
   } finally {
@@ -753,9 +753,9 @@ considerMutated(x$31);
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
+BAD@! Found 4 implicit global bindings:
 
-considerMutated
+considerMutated, e$2, e$21, e$23
 
 ## Result
 

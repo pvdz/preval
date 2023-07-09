@@ -37,7 +37,7 @@ $(x);
 x = $(`b`);
 try {
   x = $(`c`);
-} catch {
+} catch (e) {
   $(`fail`);
 }
 $(x);
@@ -59,7 +59,7 @@ $(x);
 x = $(`b`);
 try {
   x = $(`c`);
-} catch {
+} catch (e) {
   $(`fail`);
 }
 $(x);
@@ -73,7 +73,7 @@ $(x);
 let tmpClusterSSA_x = $(`b`);
 try {
   tmpClusterSSA_x = $(`c`);
-} catch {
+} catch (e) {
   $(`fail`);
 }
 $(tmpClusterSSA_x);
@@ -81,7 +81,9 @@ $(tmpClusterSSA_x);
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+e
 
 ## Result
 

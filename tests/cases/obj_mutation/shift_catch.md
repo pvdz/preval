@@ -24,7 +24,7 @@ $('after', blob)
 `````js filename=intro
 const blob = { thing: `woop` };
 try {
-} catch {
+} catch (e) {
   blob.thing = `boing`;
 }
 $(`after`, blob);

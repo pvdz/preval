@@ -34,7 +34,7 @@ let f = function () {
   try {
     x = `pass`;
     throw `yes`;
-  } catch {
+  } catch (e) {
     throw_early;
     $(`caught`);
   }
@@ -52,7 +52,7 @@ let f = function () {
   try {
     x = `pass`;
     throw `yes`;
-  } catch {
+  } catch (e) {
     throw_early;
     $(`caught`);
   }
@@ -67,7 +67,7 @@ f();
 `````js filename=intro
 try {
   throw `yes`;
-} catch {
+} catch (e) {
   throw_early;
   $(`caught`);
 }
@@ -76,9 +76,9 @@ $(`pass`);
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-throw_early
+e, throw_early
 
 ## Result
 

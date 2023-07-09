@@ -28,7 +28,7 @@ considerMutated(x) // always true
 let x = 0;
 try {
   x = 1;
-} catch {
+} catch (e) {
 } finally {
   throw_early;
 }
@@ -41,7 +41,7 @@ considerMutated(x);
 let x = 0;
 try {
   x = 1;
-} catch {
+} catch (e) {
 } finally {
   throw_early;
 }

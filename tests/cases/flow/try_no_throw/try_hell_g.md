@@ -27,7 +27,7 @@ considerMutated(x) // always true
 `````js filename=intro
 let x = 0;
 try {
-} catch {
+} catch (e) {
 } finally {
   x = 1;
 }

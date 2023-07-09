@@ -32,7 +32,7 @@ let x = 0;
 foo: {
   try {
     break foo;
-  } catch {
+  } catch (e) {
   } finally {
     x = 1;
   }
@@ -47,7 +47,7 @@ let x = 0;
 foo: {
   try {
     break foo;
-  } catch {
+  } catch (e) {
   } finally {
     x = 1;
   }

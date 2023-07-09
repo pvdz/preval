@@ -22,7 +22,7 @@ try {
 `````js filename=intro
 let x = undefined;
 try {
-} catch {}
+} catch (e) {}
 `````
 
 ## Normalized

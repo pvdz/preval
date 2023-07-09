@@ -35,7 +35,7 @@ let f = function () {
     fail_early;
     x = `pass`;
     throw `yes`;
-  } catch {
+  } catch (e) {
     $(`caught`);
   }
   $(x);
@@ -53,7 +53,7 @@ let f = function () {
     fail_early;
     x = `pass`;
     throw `yes`;
-  } catch {
+  } catch (e) {
     $(`caught`);
   }
   $(x);
@@ -70,7 +70,7 @@ try {
   fail_early;
   x = `pass`;
   throw `yes`;
-} catch {
+} catch (e) {
   $(`caught`);
 }
 $(x);
@@ -78,9 +78,9 @@ $(x);
 
 ## Globals
 
-BAD@! Found 1 implicit global bindings:
+BAD@! Found 2 implicit global bindings:
 
-fail_early
+fail_early, e
 
 ## Result
 

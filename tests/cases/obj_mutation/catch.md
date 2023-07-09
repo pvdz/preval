@@ -25,7 +25,7 @@ $('after', blob)
 const blob = { thing: `woop` };
 try {
   $(`try`);
-} catch {
+} catch (e) {
   blob.thing = `boing`;
   $(`catch`);
 }
@@ -38,7 +38,7 @@ $(`after`, blob);
 const blob = { thing: `woop` };
 try {
   $(`try`);
-} catch {
+} catch (e) {
   blob.thing = `boing`;
   $(`catch`);
 }
@@ -51,7 +51,7 @@ $(`after`, blob);
 const blob = { thing: `woop` };
 try {
   $(`try`);
-} catch {
+} catch (e) {
   blob.thing = `boing`;
   $(`catch`);
 }
@@ -60,7 +60,9 @@ $(`after`, blob);
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+e
 
 ## Result
 

@@ -22,7 +22,7 @@ $(new x()['very stringy']());
 
 `````js filename=intro
 let x = class {
-  'very stringy'() {
+  [`very stringy`]() {
     debugger;
     return $(1);
   }
@@ -34,7 +34,7 @@ $(new x()[`very stringy`]());
 
 `````js filename=intro
 let x = class {
-  'very stringy'() {
+  [`very stringy`]() {
     debugger;
     const tmpReturnArg = $(1);
     return tmpReturnArg;
@@ -50,7 +50,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const x = class {
-  'very stringy'() {
+  [`very stringy`]() {
     debugger;
     const tmpReturnArg = $(1);
     return tmpReturnArg;

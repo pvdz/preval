@@ -890,6 +890,21 @@ export function phaseNormalOnce(fdata) {
         after(node);
         break;
       }
+      case 'MethodDefinition:after': {
+        if (node.computed) {
+          break;
+        }
+        if (node.key.type === 'Identifier') {
+          break;
+        }
+        ASSERT(node.key.type === 'Literal' || node.key.type === 'TemplateLiteral', 'obj key is ident or lit right?', node);
+        rule('Class method keys must be ident or computed, no string/number');
+        example('class c { "foo.bar"() {} }', 'class c { ["foo.bar"]() {} }');
+        before(node);
+        node.computed = true;
+        after(node);
+        break;
+      }
     }
 
     vgroupEnd();

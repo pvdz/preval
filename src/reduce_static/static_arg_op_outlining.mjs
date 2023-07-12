@@ -262,20 +262,25 @@ function _staticArgOpOutlining(fdata) {
     // Try to validate whether function is safe to modify (does not escape, only called, etc)
     if (
       meta.reads.some((read) => {
-        if (
-          read.parentNode.type === 'MemberExpression' &&
-          !read.parentNode.computed &&
-          read.parentNode.property.name !== 'call' &&
-          read.parentNode.property.name !== 'apply' &&
-          read.parentNode.property.name !== 'bind'
-        ) {
-          // I think bind is actually irrelevant here.
-          // I hope I'm not wrong but I think only .call and .apply could observe this change. And maybe .toString, but that's ok. Any other property can't reflect?
-          vlog(
-            '- The function is used in a member expression but it was not computed, nor any of .call, .apply, or .bind so this should not be a big deal',
-          );
-          return;
-        }
+        // TODO: ignore .call() etc as part of this
+        //if (
+        //  read.parentNode.type === 'MemberExpression' &&
+        //  (
+        //    !read.parentNode.computed &&
+        //    (
+        //      read.parentNode.property.name === 'call' ||
+        //      read.parentNode.property.name === 'apply' ||
+        //      read.parentNode.property.name === 'bind'
+        //    )
+        //  )
+        //) {
+        //  // I think bind is actually irrelevant here.
+        //  // I hope I'm not wrong but I think only .call and .apply could observe this change. And maybe .toString, but that's ok. Any other property can't reflect?
+        //  vlog(
+        //    '- The function is used in a member expression with a non-computed .call, .apply, or .bind. Ignoring this case.',
+        //  );
+        //  return;
+        //}
 
         if (read.parentNode.type !== 'CallExpression' || read.parentProp !== 'callee') {
           vlog('- The function escapes (at least one read was not a call), bailing');

@@ -1405,7 +1405,7 @@ function _typeTrackedTricks(fdata) {
               }
               case 'string.slice': {
                 const arglen = node.arguments.length;
-                if (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1])))) {
+                if (isPrim && (arglen === 0 || (AST.isPrimitive(node.arguments[0]) && (arglen === 1 || AST.isPrimitive(node.arguments[1]))))) {
                   // 'foo'.slice(0)
 
                   rule('Calling `slice` on a string with primitive args should resolve the call');

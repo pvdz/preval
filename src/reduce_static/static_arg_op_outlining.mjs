@@ -282,7 +282,7 @@ function _staticArgOpOutlining(fdata) {
           return true;
         }
 
-        if (read.parentNode['arguments'].some((anode) => anode.type === 'SpreadElement')) {
+        if (read.parentNode.arguments.some((anode) => anode.type === 'SpreadElement')) {
           // TODO: we can still do this for any params that occur before any spread in all calls
           vlog('- The function was called with a spread at least once, bailing');
           return true;
@@ -389,7 +389,7 @@ function _staticArgOpOutlining(fdata) {
           const tmpNameA = createFreshVar('tmpSaooA', fdata); // Holds the arg value at param index
           const tmpNameB = createFreshVar('tmpSaooB', fdata); // Holds the cloned expr result
 
-          const args = read.parentNode['arguments'];
+          const args = read.parentNode.arguments;
           // Make sure there are enough params right now otherwise our new arg will become an earlier one and map to the wrong param (-> tests/cases/normalize/defaults/one.md)
           // `function (a,b,c) {} f(a)` -> `f(a,undefined,undefined)`
           while (paramCount > args.length) {
@@ -445,10 +445,10 @@ function _staticArgOpOutlining(fdata) {
           read.blockBody.splice(
             read.blockIndex,
             0,
-            AST.variableDeclaration(AST.identifier(tmpNameA), AST.cloneSimple(read.parentNode['arguments'][paramIndex]), 'const'),
+            AST.variableDeclaration(AST.identifier(tmpNameA), AST.cloneSimple(read.parentNode.arguments[paramIndex]), 'const'),
             AST.variableDeclaration(AST.identifier(tmpNameB), clone, 'const'),
           );
-          read.parentNode['arguments'].push(AST.identifier(tmpNameB));
+          read.parentNode.arguments.push(AST.identifier(tmpNameB));
 
           after(read.blockBody[read.blockIndex]);
           after(read.blockBody[read.blockIndex + 1]);

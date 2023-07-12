@@ -139,8 +139,25 @@ const fastFileNames = allFileNames.filter(
 );
 const workerStep = Math.ceil(fastFileNames.length / CONFIG.threads);
 const workerOffset = CONFIG.threadIndex * workerStep;
-console.log('Slicing test cases from', workerOffset, 'to', workerOffset + workerStep);
+if (isMainThread) {
+  console.log('Slicing test cases from', workerOffset, 'to', workerOffset + workerStep);
+} else {
+  parentPort.postMessage(['Slicing test cases from', workerOffset, 'to', workerOffset + workerStep]);
+}
 const fileNames = fastFileNames.filter((fn, fi) => fi % CONFIG.threads === CONFIG.threadIndex);
+
+// Bad idea? Use --randomized to process tests in random order. Helps when incrementally trying
+// to fix something. All tests will be visited but at some point you will have fixed all the
+// earlier ones and a random order helps surface other tests sooner.
+if (CONFIG.randomizedOrder) {
+  if (isMainThread) {
+    console.log('Shuffling tests...');
+  } else {
+    parentPort.postMessage(['Shuffling tests...']);
+  }
+  fileNames.sort(Math.random);
+}
+
 const testCases = fileNames
   .map((fname) => ({ fname, md: fs.readFileSync(fname, 'utf8') }))
   .map(({ md, fname }) => fromMarkdownCase(md, fname, CONFIG));

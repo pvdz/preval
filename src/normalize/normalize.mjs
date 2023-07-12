@@ -3448,8 +3448,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           vlog('- Name: `' + str + '`');
 
           node.computed = false;
-          const val = str;
-          node.property = val === 'true' ? AST.tru() : val === 'false' ? AST.fals() : val === 'null' ? AST.nul() : AST.identifier(str);
+          node.property = AST.identifier(str, true);
           after(node, parentNode);
           assertNoDupeNodes(AST.blockStatement(body), 'body');
           return true;

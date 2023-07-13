@@ -43,12 +43,16 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpObjLitVal = $(1);
-  const tmpNestedComplexRhs = { b: tmpObjLitVal };
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpObjLitVal = $(1);
+    const tmpNestedComplexRhs = { b: tmpObjLitVal };
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(1);
 const tmpAssignComMemLhsObj = $(a);
@@ -84,13 +88,13 @@ $(1);
 $(100);
 $(1);
 $(100);
-const tmpObjLitVal$2 = $(1);
-const tmpNestedComplexRhs$1 = { b: tmpObjLitVal$2 };
+const tmpObjLitVal$1 = $(1);
+const tmpNestedComplexRhs$1 = { b: tmpObjLitVal$1 };
 let tmpClusterSSA_a$2 = tmpNestedComplexRhs$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpObjLitVal$3 = $(1);
-  const tmpNestedComplexRhs$2 = { b: tmpObjLitVal$3 };
+  const tmpObjLitVal$2 = $(1);
+  const tmpNestedComplexRhs$2 = { b: tmpObjLitVal$2 };
   tmpClusterSSA_a$2 = tmpNestedComplexRhs$2;
 }
 $(1);

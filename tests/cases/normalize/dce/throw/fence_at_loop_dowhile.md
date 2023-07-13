@@ -59,16 +59,24 @@ $(f());
 let f = function () {
   debugger;
   let tmpIfTest = $(true);
-  while (tmpIfTest) {
-    $(`loop`);
-    let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag) {
+  while (true) {
+    if (tmpIfTest) {
       $(`loop`);
-      const tmpThrowArg = $(7, `throw`);
-      throw tmpThrowArg;
+      let tmpDoWhileFlag = true;
+      while (true) {
+        if (tmpDoWhileFlag) {
+          $(`loop`);
+          const tmpThrowArg = $(7, `throw`);
+          throw tmpThrowArg;
+        } else {
+          break;
+        }
+      }
+      $(`do not visit, do not eliminate`);
+      tmpIfTest = $(true);
+    } else {
+      break;
     }
-    $(`do not visit, do not eliminate`);
-    tmpIfTest = $(true);
   }
   $(`after (not invoked)`);
   return undefined;

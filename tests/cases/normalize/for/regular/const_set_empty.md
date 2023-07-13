@@ -37,8 +37,12 @@ let b = 2;
 let c = 3;
 let d = 4;
 const a = 1;
-while (b) {
-  $(d);
+while (true) {
+  if (b) {
+    $(d);
+  } else {
+    break;
+  }
 }
 `````
 

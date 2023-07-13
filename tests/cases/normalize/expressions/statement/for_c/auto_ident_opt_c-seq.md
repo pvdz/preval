@@ -37,14 +37,18 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpChainRootProp = $(b);
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.x;
+while (true) {
+  if (tmpIfTest) {
+    const tmpChainRootProp = $(b);
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+    } else {
+    }
+    tmpIfTest = $(1);
   } else {
+    break;
   }
-  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -52,18 +56,32 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const b = { x: 1 };
   const tmpChainRootProp = $(b);
   const tmpIfTest$1 = tmpChainRootProp == null;
   if (tmpIfTest$1) {
   } else {
     tmpChainRootProp.x;
   }
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpChainRootProp$1 = $(b);
+      const tmpIfTest$2 = tmpChainRootProp$1 == null;
+      if (tmpIfTest$2) {
+      } else {
+        tmpChainRootProp$1.x;
+      }
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

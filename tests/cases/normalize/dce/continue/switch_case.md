@@ -61,7 +61,7 @@ $(`after, do not evaluate (infinite loop)`);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(1, `disc`);
@@ -69,14 +69,17 @@ if (tmpIfTest) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpIfTest$2 = $(true);
-  if (tmpIfTest$2) {
-    $(1, `disc`);
-    $(1, `case`);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$2 = $(true);
+    if (tmpIfTest$2) {
+      $(1, `disc`);
+      $(1, `case`);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(`after, do not evaluate (infinite loop)`);
 `````

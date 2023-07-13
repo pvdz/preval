@@ -90,16 +90,16 @@ $(1);
 $(3);
 $(4);
 $(1);
-const tmpArrElement$3 = $(3);
-const tmpArrElement$5 = $(4);
-let x = tmpArrElement$3;
-let y = tmpArrElement$5;
+const tmpArrElement$2 = $(3);
+const tmpArrElement$4 = $(4);
+let x = tmpArrElement$2;
+let y = tmpArrElement$4;
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpArrElement$6 = $(3);
-  const tmpArrElement$8 = $(4);
-  x = tmpArrElement$6;
-  y = tmpArrElement$8;
+  const tmpArrElement$3 = $(3);
+  const tmpArrElement$5 = $(4);
+  x = tmpArrElement$3;
+  y = tmpArrElement$5;
   $(1);
 }
 const a = { a: 999, b: 1000 };

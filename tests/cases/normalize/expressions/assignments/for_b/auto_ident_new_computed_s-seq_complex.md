@@ -97,15 +97,15 @@ new tmpNewCallee$9(1);
 $(1);
 const tmpCompProp$10 = $(`\$`);
 const tmpNewCallee$10 = b[tmpCompProp$10];
-let tmpClusterSSA_a$1 = new tmpNewCallee$10(1);
+let tmpClusterSSA_a$2 = new tmpNewCallee$10(1);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCompProp$11 = $(`\$`);
   const tmpNewCallee$11 = b[tmpCompProp$11];
-  tmpClusterSSA_a$1 = new tmpNewCallee$11(1);
+  tmpClusterSSA_a$2 = new tmpNewCallee$11(1);
   $(1);
 }
-$(tmpClusterSSA_a$1);
+$(tmpClusterSSA_a$2);
 `````
 
 ## Globals

@@ -37,9 +37,13 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  a = typeof x;
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    a = typeof x;
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a, x);
 `````
@@ -48,10 +52,18 @@ $(a, x);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   a = `number`;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, 1);
 `````

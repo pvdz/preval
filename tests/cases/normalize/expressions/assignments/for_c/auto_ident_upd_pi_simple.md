@@ -37,12 +37,16 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpNestedCompoundLhs = b;
-  const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpNestedCompoundLhs = b;
+    const tmpNestedComplexRhs = tmpNestedCompoundLhs + 1;
+    b = tmpNestedComplexRhs;
+    a = tmpNestedComplexRhs;
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -52,12 +56,22 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpNestedComplexRhs = b + 1;
-  b = tmpNestedComplexRhs;
-  a = tmpNestedComplexRhs;
-  tmpIfTest = $(1);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  b = 2;
+  a = 2;
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpNestedComplexRhs$1 = b + 1;
+      b = tmpNestedComplexRhs$1;
+      a = tmpNestedComplexRhs$1;
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

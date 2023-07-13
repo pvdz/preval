@@ -40,13 +40,17 @@ while (tmp) {
 
 `````js filename=intro
 let tmp = true;
-while (tmp) {
-  const test = $(`first`);
-  $(`second`);
-  if (test) {
-    tmp = false;
+while (true) {
+  if (tmp) {
+    const test = $(`first`);
+    $(`second`);
+    if (test) {
+      tmp = false;
+    } else {
+      $(`third`);
+    }
   } else {
-    $(`third`);
+    break;
   }
 }
 `````
@@ -55,14 +59,35 @@ while (tmp) {
 
 `````js filename=intro
 let tmp = true;
-while (tmp) {
-  const test = $(`first`);
+const test = $(`first`);
+$(`second`);
+if (test) {
+  tmp = false;
+} else {
+  $(`third`);
+}
+if (tmp) {
+  const test$1 = $(`first`);
   $(`second`);
-  if (test) {
+  if (test$1) {
     tmp = false;
   } else {
     $(`third`);
   }
+  while ($LOOP_UNROLL_9) {
+    if (tmp) {
+      const test$2 = $(`first`);
+      $(`second`);
+      if (test$2) {
+        tmp = false;
+      } else {
+        $(`third`);
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

@@ -39,10 +39,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpUnaryArg = $(100);
-  tmpDoWhileFlag = !tmpUnaryArg;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpUnaryArg = $(100);
+    tmpDoWhileFlag = !tmpUnaryArg;
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -50,11 +54,28 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpUnaryArg = $(100);
+let tmpDoWhileFlag = tmpUnaryArg;
+let $tmpLoopUnrollCheck = true;
+if (tmpUnaryArg) {
+  $tmpLoopUnrollCheck = false;
+} else {
   $(100);
-  const tmpUnaryArg = $(100);
-  tmpDoWhileFlag = !tmpUnaryArg;
+  const tmpUnaryArg$1 = $(100);
+  tmpDoWhileFlag = tmpUnaryArg$1;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpDoWhileFlag) {
+      break;
+    } else {
+      $(100);
+      const tmpUnaryArg$2 = $(100);
+      tmpDoWhileFlag = tmpUnaryArg$2;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

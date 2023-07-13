@@ -39,19 +39,23 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpIfTest = 30;
-  if (tmpIfTest) {
-    tmpNestedComplexRhs = 60;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs = undefined;
+    const tmpIfTest = 30;
+    if (tmpIfTest) {
+      tmpNestedComplexRhs = 60;
+    } else {
+      const tmpCallCallee = $;
+      const tmpCalleeParam = $(100);
+      tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    }
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
   } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````

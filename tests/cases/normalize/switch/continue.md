@@ -64,38 +64,42 @@ while (run) {
 
 `````js filename=intro
 let run = true;
-while (run) {
-  $(1);
-  const tmpSwitchValue = 1;
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = 1 === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = 2 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 2;
+while (true) {
+  if (run) {
+    $(1);
+    const tmpSwitchValue = 1;
+    let tmpSwitchCaseToStart = 1;
+    const tmpIfTest = 1 === tmpSwitchValue;
+    if (tmpIfTest) {
+      tmpSwitchCaseToStart = 0;
     } else {
-    }
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$3) {
-      run = false;
-      break tmpSwitchBreak;
-    } else {
-      const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$5) {
-        continue;
+      const tmpIfTest$1 = 2 === tmpSwitchValue;
+      if (tmpIfTest$1) {
+        tmpSwitchCaseToStart = 2;
       } else {
-        const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
-        if (tmpIfTest$7) {
-          run = false;
-          break tmpSwitchBreak;
+      }
+    }
+    tmpSwitchBreak: {
+      const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+      if (tmpIfTest$3) {
+        run = false;
+        break tmpSwitchBreak;
+      } else {
+        const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$5) {
+          continue;
         } else {
+          const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+          if (tmpIfTest$7) {
+            run = false;
+            break tmpSwitchBreak;
+          } else {
+          }
         }
       }
     }
+  } else {
+    break;
   }
 }
 `````
@@ -103,11 +107,7 @@ while (run) {
 ## Output
 
 `````js filename=intro
-let run = true;
-while (run) {
-  $(1);
-  run = false;
-}
+$(1);
 `````
 
 ## Globals

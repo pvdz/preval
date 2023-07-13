@@ -37,12 +37,16 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = tmpCompObj[tmpCompProp];
-  new tmpNewCallee(1);
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpCompObj = $(b);
+    const tmpCompProp = $(`\$`);
+    const tmpNewCallee = tmpCompObj[tmpCompProp];
+    new tmpNewCallee(1);
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -50,16 +54,28 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const b = { $: $ };
   const tmpCompObj = $(b);
   const tmpCompProp = $(`\$`);
   const tmpNewCallee = tmpCompObj[tmpCompProp];
   new tmpNewCallee(1);
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpCompObj$1 = $(b);
+      const tmpCompProp$1 = $(`\$`);
+      const tmpNewCallee$1 = tmpCompObj$1[tmpCompProp$1];
+      new tmpNewCallee$1(1);
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

@@ -33,19 +33,23 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
-  const tmpIfTest$1 = tmpChainElementCall != null;
-  if (tmpIfTest$1) {
-    const tmpCallCallee = $dotCall;
-    const tmpCalleeParam = tmpChainElementCall;
-    const tmpCalleeParam$1 = tmpChainRootCall;
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+while (true) {
+  if (tmpIfTest) {
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall($);
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
+      const tmpCallCallee = $dotCall;
+      const tmpCalleeParam = tmpChainElementCall;
+      const tmpCalleeParam$1 = tmpChainRootCall;
+      const tmpCalleeParam$3 = $(1);
+      const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+    } else {
+    }
+    tmpIfTest = $(1);
   } else {
+    break;
   }
-  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -53,8 +57,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   const tmpChainElementCall = $($);
   const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
@@ -62,7 +66,22 @@ while (tmpIfTest) {
     const tmpCalleeParam$3 = $(1);
     $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   }
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpChainElementCall$1 = $($);
+      const tmpIfTest$2 = tmpChainElementCall$1 == null;
+      if (tmpIfTest$2) {
+      } else {
+        const tmpCalleeParam$1 = $(1);
+        $dotCall(tmpChainElementCall$1, $, tmpCalleeParam$1);
+      }
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

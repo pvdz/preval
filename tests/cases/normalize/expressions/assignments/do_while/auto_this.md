@@ -41,10 +41,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  a = undefined;
-  tmpDoWhileFlag = undefined;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    a = undefined;
+    tmpDoWhileFlag = undefined;
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -52,14 +56,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  a = undefined;
-  tmpDoWhileFlag = false;
-}
-$(a);
+$(100);
+$(undefined);
 `````
 
 ## Globals

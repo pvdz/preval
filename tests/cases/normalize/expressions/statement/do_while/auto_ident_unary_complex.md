@@ -43,10 +43,14 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpUnaryArg = $(x);
-  tmpDoWhileFlag = typeof tmpUnaryArg;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpUnaryArg = $(x);
+    tmpDoWhileFlag = typeof tmpUnaryArg;
+  } else {
+    break;
+  }
 }
 $(a, x);
 `````

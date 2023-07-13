@@ -49,7 +49,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const b = { $: $ };
 const tmpCallCompObj = $(b);
 const tmpCallCompProp = $(`\$`);
@@ -59,15 +59,18 @@ if (tmpClusterSSA_a) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpCallCompObj$1 = $(b);
-  const tmpCallCompProp$1 = $(`\$`);
-  tmpClusterSSA_a = tmpCallCompObj$1[tmpCallCompProp$1](1);
-  if (tmpClusterSSA_a) {
-    $(100);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCallCompObj$1 = $(b);
+    const tmpCallCompProp$1 = $(`\$`);
+    tmpClusterSSA_a = tmpCallCompObj$1[tmpCallCompProp$1](1);
+    if (tmpClusterSSA_a) {
+      $(100);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(tmpClusterSSA_a);
 `````

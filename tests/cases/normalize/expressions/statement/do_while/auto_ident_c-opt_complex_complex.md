@@ -43,17 +43,21 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainRootComputed = $(`x`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    tmpDoWhileFlag = tmpChainElementObject;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = undefined;
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall(b);
+    const tmpIfTest = tmpChainElementCall != null;
+    if (tmpIfTest) {
+      const tmpChainRootComputed = $(`x`);
+      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      tmpDoWhileFlag = tmpChainElementObject;
+    } else {
+    }
   } else {
+    break;
   }
 }
 $(a);
@@ -64,18 +68,49 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+let tmpDoWhileFlag = false;
+const tmpChainElementCall = $(b);
+const tmpIfTest = tmpChainElementCall == null;
+let $tmpLoopUnrollCheck = false;
+if (tmpIfTest) {
+} else {
+  const tmpChainRootComputed = $(`x`);
+  const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+  tmpDoWhileFlag = tmpChainElementObject;
+  $tmpLoopUnrollCheck = tmpChainElementObject;
+}
+if (tmpDoWhileFlag) {
   $(100);
   tmpDoWhileFlag = false;
-  const tmpChainElementCall = $(b);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
+  const tmpChainElementCall$1 = $(b);
+  const tmpIfTest$1 = tmpChainElementCall$1 == null;
+  if (tmpIfTest$1) {
   } else {
-    const tmpChainRootComputed = $(`x`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    tmpDoWhileFlag = tmpChainElementObject;
+    const tmpChainRootComputed$1 = $(`x`);
+    const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$1];
+    tmpDoWhileFlag = tmpChainElementObject$1;
   }
+} else {
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpDoWhileFlag) {
+      $(100);
+      tmpDoWhileFlag = false;
+      const tmpChainElementCall$2 = $(b);
+      const tmpIfTest$2 = tmpChainElementCall$2 == null;
+      if (tmpIfTest$2) {
+      } else {
+        const tmpChainRootComputed$2 = $(`x`);
+        const tmpChainElementObject$2 = tmpChainElementCall$2[tmpChainRootComputed$2];
+        tmpDoWhileFlag = tmpChainElementObject$2;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

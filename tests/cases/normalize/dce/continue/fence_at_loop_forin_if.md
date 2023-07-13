@@ -60,23 +60,27 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(`loop`);
-  const tmpForInDeclRhs = { a: 1, b: 2 };
-  let x = undefined;
-  for (x in tmpForInDeclRhs) {
-    $(`loop`, x);
-    const tmpIfTest$1 = $(1);
-    if (tmpIfTest$1) {
-      $(`pass`);
-      continue;
-    } else {
-      $(`do not visit`);
-      continue;
+while (true) {
+  if (tmpIfTest) {
+    $(`loop`);
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    let x = undefined;
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+      const tmpIfTest$1 = $(1);
+      if (tmpIfTest$1) {
+        $(`pass`);
+        continue;
+      } else {
+        $(`do not visit`);
+        continue;
+      }
     }
+    $(`infiloop, do not eliminate`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````
@@ -85,21 +89,25 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(`loop`);
-  let x = undefined;
-  const tmpForInDeclRhs = { a: 1, b: 2 };
-  for (x in tmpForInDeclRhs) {
-    $(`loop`, x);
-    const tmpIfTest$1 = $(1);
-    if (tmpIfTest$1) {
-      $(`pass`);
-    } else {
-      $(`do not visit`);
+while (true) {
+  if (tmpIfTest) {
+    $(`loop`);
+    let x = undefined;
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+      const tmpIfTest$1 = $(1);
+      if (tmpIfTest$1) {
+        $(`pass`);
+      } else {
+        $(`do not visit`);
+      }
     }
+    $(`infiloop, do not eliminate`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````

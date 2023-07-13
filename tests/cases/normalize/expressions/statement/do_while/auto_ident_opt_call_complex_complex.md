@@ -39,20 +39,24 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpCallCallee = $dotCall;
-    const tmpCalleeParam = tmpChainElementCall;
-    const tmpCalleeParam$1 = tmpChainRootCall;
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-    tmpDoWhileFlag = tmpChainElementCall$1;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = undefined;
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall($);
+    const tmpIfTest = tmpChainElementCall != null;
+    if (tmpIfTest) {
+      const tmpCallCallee = $dotCall;
+      const tmpCalleeParam = tmpChainElementCall;
+      const tmpCalleeParam$1 = tmpChainRootCall;
+      const tmpCalleeParam$3 = $(1);
+      const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+      tmpDoWhileFlag = tmpChainElementCall$1;
+    } else {
+    }
   } else {
+    break;
   }
 }
 $(a);
@@ -61,18 +65,49 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+let tmpDoWhileFlag = false;
+const tmpChainElementCall = $($);
+const tmpIfTest = tmpChainElementCall == null;
+let $tmpLoopUnrollCheck = false;
+if (tmpIfTest) {
+} else {
+  const tmpCalleeParam$3 = $(1);
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
+  tmpDoWhileFlag = tmpChainElementCall$1;
+  $tmpLoopUnrollCheck = tmpChainElementCall$1;
+}
+if (tmpDoWhileFlag) {
   $(100);
   tmpDoWhileFlag = false;
-  const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
+  const tmpChainElementCall$2 = $($);
+  const tmpIfTest$1 = tmpChainElementCall$2 == null;
+  if (tmpIfTest$1) {
   } else {
-    const tmpCalleeParam$3 = $(1);
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
-    tmpDoWhileFlag = tmpChainElementCall$1;
+    const tmpCalleeParam$1 = $(1);
+    const tmpChainElementCall$4 = $dotCall(tmpChainElementCall$2, $, tmpCalleeParam$1);
+    tmpDoWhileFlag = tmpChainElementCall$4;
   }
+} else {
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpDoWhileFlag) {
+      $(100);
+      tmpDoWhileFlag = false;
+      const tmpChainElementCall$3 = $($);
+      const tmpIfTest$2 = tmpChainElementCall$3 == null;
+      if (tmpIfTest$2) {
+      } else {
+        const tmpCalleeParam$2 = $(1);
+        const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, tmpCalleeParam$2);
+        tmpDoWhileFlag = tmpChainElementCall$5;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

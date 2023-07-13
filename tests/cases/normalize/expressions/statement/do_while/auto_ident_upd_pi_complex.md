@@ -43,15 +43,19 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(b);
+    const tmpNestedAssignObj = tmpCallCallee(tmpCalleeParam);
+    const tmpBinLhs = tmpNestedAssignObj.x;
+    const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+    tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+    tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -61,15 +65,34 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpCalleeParam = $(b);
+const tmpNestedAssignObj = $(tmpCalleeParam);
+const tmpBinLhs = tmpNestedAssignObj.x;
+const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
+tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+if (tmpNestedPropCompoundComplexRhs) {
   $(100);
-  const tmpCalleeParam = $(b);
-  const tmpNestedAssignObj = $(tmpCalleeParam);
-  const tmpBinLhs = tmpNestedAssignObj.x;
-  const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
-  tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
-  tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs;
+  const tmpCalleeParam$1 = $(b);
+  const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
+  const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
+  const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 + 1;
+  tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedPropCompoundComplexRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpCalleeParam$2 = $(b);
+      const tmpNestedAssignObj$2 = $(tmpCalleeParam$2);
+      const tmpBinLhs$2 = tmpNestedAssignObj$2.x;
+      const tmpNestedPropCompoundComplexRhs$2 = tmpBinLhs$2 + 1;
+      tmpNestedAssignObj$2.x = tmpNestedPropCompoundComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedPropCompoundComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

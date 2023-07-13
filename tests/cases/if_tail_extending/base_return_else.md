@@ -46,12 +46,16 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  while (x) {
-    $(1);
-    if ($) {
-      $(2);
+  while (true) {
+    if (x) {
+      $(1);
+      if ($) {
+        $(2);
+      } else {
+        return undefined;
+      }
     } else {
-      return undefined;
+      break;
     }
   }
   return undefined;
@@ -62,19 +66,111 @@ f();
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  while (x) {
-    $(1);
-    if ($) {
-      $(2);
+if (x) {
+  $(1);
+  if ($) {
+    $(2);
+    if (x) {
+      $(1);
+      if ($) {
+        $(2);
+        if (x) {
+          $(1);
+          if ($) {
+            $(2);
+            if (x) {
+              $(1);
+              if ($) {
+                $(2);
+                if (x) {
+                  $(1);
+                  if ($) {
+                    $(2);
+                    if (x) {
+                      $(1);
+                      if ($) {
+                        $(2);
+                        if (x) {
+                          $(1);
+                          if ($) {
+                            $(2);
+                            if (x) {
+                              $(1);
+                              if ($) {
+                                $(2);
+                                if (x) {
+                                  $(1);
+                                  if ($) {
+                                    $(2);
+                                    if (x) {
+                                      $(1);
+                                      if ($) {
+                                        $(2);
+                                        const tmpSplitTruthy = function () {
+                                          debugger;
+                                          while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                                            if (x) {
+                                              $(1);
+                                              if ($) {
+                                                $(2);
+                                              } else {
+                                                return undefined;
+                                              }
+                                            } else {
+                                              break;
+                                            }
+                                          }
+                                          return undefined;
+                                        };
+                                        if (x) {
+                                          $(1);
+                                          if ($) {
+                                            $(2);
+                                            tmpSplitTruthy();
+                                          } else {
+                                          }
+                                        } else {
+                                        }
+                                      } else {
+                                      }
+                                    } else {
+                                    }
+                                  } else {
+                                  }
+                                } else {
+                                }
+                              } else {
+                              }
+                            } else {
+                            }
+                          } else {
+                          }
+                        } else {
+                        }
+                      } else {
+                      }
+                    } else {
+                    }
+                  } else {
+                  }
+                } else {
+                }
+              } else {
+              }
+            } else {
+            }
+          } else {
+          }
+        } else {
+        }
+      } else {
+      }
     } else {
-      return undefined;
     }
+  } else {
   }
-  return undefined;
-};
-f();
+} else {
+}
 `````
 
 ## Globals

@@ -43,14 +43,18 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCallee = $;
+    const tmpObjLitVal = $(2);
+    const tmpCalleeParam = { b: tmpObjLitVal };
+    const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+    b = tmpNestedAssignObjPatternRhs.b;
+    tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -58,18 +62,34 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = {};
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpObjLitVal = $(2);
+const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+if (tmpNestedAssignObjPatternRhs) {
   $(100);
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
+  const tmpObjLitVal$1 = $(2);
+  const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
+  const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+  tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpObjLitVal$2 = $(2);
+      const tmpCalleeParam$2 = { b: tmpObjLitVal$2 };
+      const tmpNestedAssignObjPatternRhs$2 = $(tmpCalleeParam$2);
+      tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$2.b;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
-$(a, b);
+$(a, tmpClusterSSA_b);
 `````
 
 ## Globals

@@ -33,15 +33,19 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
-  const tmpIfTest$1 = tmpChainElementCall != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall($);
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
+    } else {
+    }
+    tmpIfTest = $(1);
   } else {
+    break;
   }
-  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -49,15 +53,29 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   const tmpChainElementCall = $($);
   const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
   } else {
     $dotCall(tmpChainElementCall, $, 1);
   }
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpChainElementCall$1 = $($);
+      const tmpIfTest$2 = tmpChainElementCall$1 == null;
+      if (tmpIfTest$2) {
+      } else {
+        $dotCall(tmpChainElementCall$1, $, 1);
+      }
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

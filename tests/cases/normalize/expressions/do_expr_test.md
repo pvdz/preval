@@ -37,9 +37,13 @@ let a = 1;
 let x = 3;
 let y = 4;
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(a);
-  tmpDoWhileFlag = x + y;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(a);
+    tmpDoWhileFlag = x + y;
+  } else {
+    break;
+  }
 }
 `````
 

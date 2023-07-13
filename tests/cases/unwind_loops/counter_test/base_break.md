@@ -43,9 +43,13 @@ $(`finished`);
 `````js filename=intro
 let counter = 5;
 counter = counter - 1;
-while (counter) {
-  $(`x`);
-  counter = counter - 1;
+while (true) {
+  if (counter) {
+    $(`x`);
+    counter = counter - 1;
+  } else {
+    break;
+  }
 }
 $(`finished`);
 `````

@@ -67,13 +67,17 @@ if (x) {
 } else {
   flag = false;
 }
-while (flag) {
-  $(`inner`, n);
-  n = n + 1;
-  const tmpIfTest = n >= 5;
-  if (tmpIfTest) {
-    flag = false;
+while (true) {
+  if (flag) {
+    $(`inner`, n);
+    n = n + 1;
+    const tmpIfTest = n >= 5;
+    if (tmpIfTest) {
+      flag = false;
+    } else {
+    }
   } else {
+    break;
   }
 }
 $(`after`);
@@ -82,19 +86,27 @@ $(`after`);
 ## Output
 
 `````js filename=intro
-let n = 0;
 $(`before`);
 const tmpBinBothRhs = $(5);
 const x = 0 < tmpBinBothRhs;
 let tmpClusterSSA_flag = x;
-while (tmpClusterSSA_flag) {
-  $(`inner`, n);
-  n = n + 1;
-  const tmpIfTest = n >= 5;
-  if (tmpIfTest) {
-    tmpClusterSSA_flag = false;
-  } else {
+if (x) {
+  $(`inner`, 0);
+  let tmpClusterSSA_n = 1;
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_flag) {
+      $(`inner`, tmpClusterSSA_n);
+      tmpClusterSSA_n = tmpClusterSSA_n + 1;
+      const tmpIfTest$1 = tmpClusterSSA_n >= 5;
+      if (tmpIfTest$1) {
+        tmpClusterSSA_flag = false;
+      } else {
+      }
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(`after`);
 `````

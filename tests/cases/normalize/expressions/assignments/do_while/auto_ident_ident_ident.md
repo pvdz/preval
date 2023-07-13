@@ -46,12 +46,16 @@ let b = 1;
 let c = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  b = 2;
-  let tmpNestedComplexRhs = b;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    b = 2;
+    let tmpNestedComplexRhs = b;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, b, c);
 `````

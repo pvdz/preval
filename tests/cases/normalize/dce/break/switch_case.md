@@ -41,18 +41,22 @@ $(`after, do not evaluate (infinite loop)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  tmpSwitchBreak: {
-    const tmpSwitchDisc = $(1, `disc`);
-    const tmpBinBothLhs = tmpSwitchDisc;
-    const tmpBinBothRhs = $(1, `case`);
-    const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
-    if (tmpIfTest$1) {
-      break tmpSwitchBreak;
-    } else {
+while (true) {
+  if (tmpIfTest) {
+    tmpSwitchBreak: {
+      const tmpSwitchDisc = $(1, `disc`);
+      const tmpBinBothLhs = tmpSwitchDisc;
+      const tmpBinBothRhs = $(1, `case`);
+      const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
+      if (tmpIfTest$1) {
+        break tmpSwitchBreak;
+      } else {
+      }
     }
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  tmpIfTest = $(true);
 }
 $(`after, do not evaluate (infinite loop)`);
 `````
@@ -60,11 +64,21 @@ $(`after, do not evaluate (infinite loop)`);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
-while (tmpIfTest) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
   $(1, `disc`);
   $(1, `case`);
-  tmpIfTest = $(true);
+  let tmpClusterSSA_tmpIfTest = $(true);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      $(1, `disc`);
+      $(1, `case`);
+      tmpClusterSSA_tmpIfTest = $(true);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(`after, do not evaluate (infinite loop)`);
 `````

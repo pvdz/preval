@@ -109,9 +109,13 @@ let f = function () {
   if (tmpIfTest$7) {
     $(`one`);
     let tmpIfTest$9 = $(1);
-    while (tmpIfTest$9) {
-      $(2);
-      break;
+    while (true) {
+      if (tmpIfTest$9) {
+        $(2);
+        break;
+      } else {
+        break;
+      }
     }
   } else {
   }

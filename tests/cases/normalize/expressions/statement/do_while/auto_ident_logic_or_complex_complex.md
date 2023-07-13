@@ -39,16 +39,20 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(0);
-  tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+while (true) {
   if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(0);
+    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+    if (tmpDoWhileFlag) {
+    } else {
+      const tmpCallCallee$1 = $;
+      const tmpCalleeParam$1 = $(2);
+      tmpDoWhileFlag = tmpCallCallee$1(tmpCalleeParam$1);
+    }
   } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(2);
-    tmpDoWhileFlag = tmpCallCallee$1(tmpCalleeParam$1);
+    break;
   }
 }
 $(a);
@@ -57,16 +61,44 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpCalleeParam = $(0);
+let tmpDoWhileFlag = $(tmpCalleeParam);
+let $tmpLoopUnrollCheck = false;
+if (tmpDoWhileFlag) {
+  $tmpLoopUnrollCheck = tmpDoWhileFlag;
+} else {
+  const tmpCalleeParam$1 = $(2);
+  tmpDoWhileFlag = $(tmpCalleeParam$1);
+  $tmpLoopUnrollCheck = tmpDoWhileFlag;
+}
+if (tmpDoWhileFlag) {
   $(100);
-  const tmpCalleeParam = $(0);
-  tmpDoWhileFlag = $(tmpCalleeParam);
+  const tmpCalleeParam$2 = $(0);
+  tmpDoWhileFlag = $(tmpCalleeParam$2);
   if (tmpDoWhileFlag) {
   } else {
-    const tmpCalleeParam$1 = $(2);
-    tmpDoWhileFlag = $(tmpCalleeParam$1);
+    const tmpCalleeParam$4 = $(2);
+    tmpDoWhileFlag = $(tmpCalleeParam$4);
   }
+} else {
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpDoWhileFlag) {
+      $(100);
+      const tmpCalleeParam$3 = $(0);
+      tmpDoWhileFlag = $(tmpCalleeParam$3);
+      if (tmpDoWhileFlag) {
+      } else {
+        const tmpCalleeParam$5 = $(2);
+        tmpDoWhileFlag = $(tmpCalleeParam$5);
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

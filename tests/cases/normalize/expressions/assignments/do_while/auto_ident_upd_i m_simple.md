@@ -43,13 +43,17 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpPostUpdArgIdent = b;
-  b = b - 1;
-  const tmpNestedComplexRhs = tmpPostUpdArgIdent;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpPostUpdArgIdent = b;
+    b = b - 1;
+    const tmpNestedComplexRhs = tmpPostUpdArgIdent;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -57,17 +61,9 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpPostUpdArgIdent = b;
-  b = b - 1;
-  a = tmpPostUpdArgIdent;
-  tmpDoWhileFlag = tmpPostUpdArgIdent;
-}
-$(a, b);
+$(100);
+$(100);
+$(0, -1);
 `````
 
 ## Globals

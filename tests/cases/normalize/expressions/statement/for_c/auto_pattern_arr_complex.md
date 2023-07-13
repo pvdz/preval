@@ -35,11 +35,15 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = [1, 2];
-  tmpCallCallee(tmpCalleeParam);
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = [1, 2];
+    tmpCallCallee(tmpCalleeParam);
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -50,11 +54,21 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   const tmpCalleeParam = [1, 2];
   $(tmpCalleeParam);
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpCalleeParam$1 = [1, 2];
+      $(tmpCalleeParam$1);
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

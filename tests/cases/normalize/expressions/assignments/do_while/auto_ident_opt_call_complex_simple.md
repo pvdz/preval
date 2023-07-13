@@ -39,19 +39,23 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall($);
-  const tmpIfTest = tmpChainElementCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
-    tmpNestedComplexRhs = tmpChainElementCall$1;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall($);
+    const tmpIfTest = tmpChainElementCall != null;
+    if (tmpIfTest) {
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, tmpChainRootCall, 1);
+      tmpNestedComplexRhs = tmpChainElementCall$1;
+    } else {
+    }
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
   } else {
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -59,22 +63,49 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainElementCall = $($);
-  const tmpIfTest = tmpChainElementCall == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
-    tmpNestedComplexRhs = tmpChainElementCall$1;
-  }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+$(100);
+let tmpNestedComplexRhs = false;
+const tmpChainElementCall = $($);
+const tmpIfTest = tmpChainElementCall == null;
+let tmpClusterSSA_a = undefined;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
+  tmpNestedComplexRhs = tmpChainElementCall$1;
+  tmpClusterSSA_a = tmpChainElementCall$1;
 }
-$(a);
+if (tmpNestedComplexRhs) {
+  $(100);
+  let tmpNestedComplexRhs$1 = undefined;
+  const tmpChainElementCall$2 = $($);
+  const tmpIfTest$1 = tmpChainElementCall$2 == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpChainElementCall$4 = $dotCall(tmpChainElementCall$2, $, 1);
+    tmpNestedComplexRhs$1 = tmpChainElementCall$4;
+  }
+  tmpClusterSSA_a = tmpNestedComplexRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      let tmpNestedComplexRhs$2 = undefined;
+      const tmpChainElementCall$3 = $($);
+      const tmpIfTest$2 = tmpChainElementCall$3 == null;
+      if (tmpIfTest$2) {
+      } else {
+        const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);
+        tmpNestedComplexRhs$2 = tmpChainElementCall$5;
+      }
+      tmpClusterSSA_a = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

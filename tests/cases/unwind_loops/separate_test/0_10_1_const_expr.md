@@ -37,11 +37,15 @@ for (let i=0; i<10; ++i) {
 `````js filename=intro
 let i = 0;
 let tmpIfTest = i < 10;
-while (tmpIfTest) {
-  const x = i * 2;
-  $(x);
-  i = i + 1;
-  tmpIfTest = i < 10;
+while (true) {
+  if (tmpIfTest) {
+    const x = i * 2;
+    $(x);
+    i = i + 1;
+    tmpIfTest = i < 10;
+  } else {
+    break;
+  }
 }
 `````
 

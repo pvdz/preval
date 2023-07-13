@@ -41,11 +41,15 @@ $(x, y);
 `````js filename=intro
 let y = 5;
 let x = true;
-while (x) {
-  $(x);
-  const tmpNestedComplexRhs = y - 1;
-  y = tmpNestedComplexRhs;
-  x = tmpNestedComplexRhs;
+while (true) {
+  if (x) {
+    $(x);
+    const tmpNestedComplexRhs = y - 1;
+    y = tmpNestedComplexRhs;
+    x = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(x, y);
 `````
@@ -53,15 +57,12 @@ $(x, y);
 ## Output
 
 `````js filename=intro
-let y = 5;
-let x = true;
-while (x) {
-  $(x);
-  const tmpNestedComplexRhs = y - 1;
-  y = tmpNestedComplexRhs;
-  x = tmpNestedComplexRhs;
-}
-$(x, y);
+$(true);
+$(4);
+$(3);
+$(2);
+$(1);
+$(0, 0);
 `````
 
 ## Globals

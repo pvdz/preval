@@ -47,9 +47,13 @@ $(f());
 let f = function () {
   debugger;
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    const tmpReturnArg = $(1, `return`);
-    return tmpReturnArg;
+  while (true) {
+    if (tmpDoWhileFlag) {
+      const tmpReturnArg = $(1, `return`);
+      return tmpReturnArg;
+    } else {
+      break;
+    }
   }
   $(`keep, do not eval`);
   return undefined;
@@ -62,8 +66,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = $(1, `return`);
-$(tmpCalleeParam);
+const tmpReturnArg$7 = $(1, `return`);
+$(tmpReturnArg$7);
 `````
 
 ## Globals

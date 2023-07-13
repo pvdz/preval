@@ -39,14 +39,18 @@ $(`after`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  const tmpIfTest$1 = $(false);
-  if (tmpIfTest$1) {
-    x = $(`fail too`);
+while (true) {
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(false);
+    if (tmpIfTest$1) {
+      x = $(`fail too`);
+    } else {
+    }
+    break;
+    let x = 0;
   } else {
+    break;
   }
-  break;
-  let x = 0;
 }
 $(`after`);
 `````
@@ -55,11 +59,29 @@ $(`after`);
 
 `````js filename=intro
 const tmpIfTest = $(true);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   const tmpIfTest$1 = $(false);
   if (tmpIfTest$1) {
     throw `Preval: Cannot access \`x\` before initialization`;
   } else {
+    $tmpLoopUnrollCheck = false;
+  }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      const tmpIfTest$2 = $(false);
+      if (tmpIfTest$2) {
+        throw `Preval: Cannot access \`x\` before initialization`;
+      } else {
+        break;
+      }
+    } else {
+      break;
+    }
   }
 } else {
 }

@@ -38,22 +38,26 @@ const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed = $(`x`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$3 = tmpChainElementObject != null;
-    if (tmpIfTest$3) {
-      const tmpChainRootComputed$1 = $(`y`);
-      const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+while (true) {
+  if (tmpIfTest) {
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall(b);
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
+      const tmpChainRootComputed = $(`x`);
+      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      const tmpIfTest$3 = tmpChainElementObject != null;
+      if (tmpIfTest$3) {
+        const tmpChainRootComputed$1 = $(`y`);
+        const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
+      } else {
+      }
     } else {
     }
+    tmpIfTest = $(1);
   } else {
+    break;
   }
-  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -62,10 +66,9 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
-const a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const b = { x: tmpObjLitVal };
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
@@ -79,8 +82,30 @@ while (tmpIfTest) {
       tmpChainElementObject[tmpChainRootComputed$1];
     }
   }
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpChainElementCall$1 = $(b);
+      const tmpIfTest$2 = tmpChainElementCall$1 == null;
+      if (tmpIfTest$2) {
+      } else {
+        const tmpChainRootComputed$2 = $(`x`);
+        const tmpChainElementObject$1 = tmpChainElementCall$1[tmpChainRootComputed$2];
+        const tmpIfTest$4 = tmpChainElementObject$1 == null;
+        if (tmpIfTest$4) {
+        } else {
+          const tmpChainRootComputed$4 = $(`y`);
+          tmpChainElementObject$1[tmpChainRootComputed$4];
+        }
+      }
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

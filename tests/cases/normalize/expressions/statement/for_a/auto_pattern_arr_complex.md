@@ -37,8 +37,12 @@ const tmpCallCallee = $;
 const tmpCalleeParam = [1, 2];
 tmpCallCallee(tmpCalleeParam);
 let tmpIfTest = $(0);
-while (tmpIfTest) {
-  tmpIfTest = $(0);
+while (true) {
+  if (tmpIfTest) {
+    tmpIfTest = $(0);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -51,9 +55,17 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 const tmpCalleeParam = [1, 2];
 $(tmpCalleeParam);
-let tmpIfTest = $(0);
-while (tmpIfTest) {
-  tmpIfTest = $(0);
+const tmpIfTest = $(0);
+if (tmpIfTest) {
+  let tmpClusterSSA_tmpIfTest = $(0);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

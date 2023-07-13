@@ -39,19 +39,23 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  a = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-    a = tmpChainElementCall;
+while (true) {
+  if (tmpIfTest) {
+    a = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementObject = tmpChainRootProp.c;
+      const tmpChainElementObject$1 = tmpChainElementObject.d;
+      const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+      a = tmpChainElementCall;
+    } else {
+    }
+    tmpIfTest = $(1);
   } else {
+    break;
   }
-  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -61,16 +65,27 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpChainElementObject = b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const tmpChainElementObject$3 = tmpObjLitVal$1.e;
+  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  const b = { c: tmpObjLitVal };
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpChainElementObject$2 = b.c;
+      const tmpChainElementObject$4 = tmpChainElementObject$2.d;
+      const tmpChainElementObject$6 = tmpChainElementObject$4.e;
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpChainElementObject$4, 1);
+      a = tmpChainElementCall$1;
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

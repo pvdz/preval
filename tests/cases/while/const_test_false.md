@@ -32,8 +32,12 @@ $(`after`);
 
 `````js filename=intro
 const x = $(false);
-while (x) {
-  $(`body`);
+while (true) {
+  if (x) {
+    $(`body`);
+  } else {
+    break;
+  }
 }
 $(`after`);
 `````
@@ -45,7 +49,11 @@ const x = $(false);
 if (x) {
   $(`body`);
   while ($LOOP_UNROLL_10) {
-    $(`body`);
+    if (x) {
+      $(`body`);
+    } else {
+      break;
+    }
   }
 } else {
 }

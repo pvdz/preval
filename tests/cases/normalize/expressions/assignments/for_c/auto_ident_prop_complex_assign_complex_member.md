@@ -37,15 +37,19 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpNestedAssignObj = $(b);
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpNestedAssignObj = $(b);
+    const tmpCompObj = $(b);
+    const tmpCompProp = $(`d`);
+    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -55,8 +59,9 @@ $(a, b);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 const b = { c: 10, d: 20 };
-while (tmpIfTest) {
+if (tmpIfTest) {
   const tmpNestedAssignObj = $(b);
   const tmpCompObj = $(b);
   const tmpCompProp = $(`d`);
@@ -64,6 +69,24 @@ while (tmpIfTest) {
   tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
   a = tmpNestedAssignPropRhs;
   tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      const tmpNestedAssignObj$1 = $(b);
+      const tmpCompObj$1 = $(b);
+      const tmpCompProp$1 = $(`d`);
+      const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+      tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
+      a = tmpNestedAssignPropRhs$1;
+      tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

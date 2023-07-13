@@ -30,8 +30,12 @@ while (x) {
 
 `````js filename=intro
 const x = /foo/;
-while (x) {
-  $(x);
+while (true) {
+  if (x) {
+    $(x);
+  } else {
+    break;
+  }
 }
 `````
 

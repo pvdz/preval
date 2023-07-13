@@ -74,29 +74,18 @@ tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const tmpLabeledBlockFunc = function ($$0) {
-  const $tmpLoopUnrollCheck$3 = $$0;
-  debugger;
-  $(`n:`, 1);
-  if ($tmpLoopUnrollCheck$3) {
-    let tmpClusterSSA_n$1 = 2;
-    $(`n:`, 2);
-    while ($LOOP_UNROLL_10) {
-      tmpClusterSSA_n$1 = tmpClusterSSA_n$1 + 1;
-      $(`n:`, tmpClusterSSA_n$1);
-      const tmpIfTest$1 = tmpClusterSSA_n$1 > 10;
-      if (tmpIfTest$1) {
-        return tmpClusterSSA_n$1;
-      } else {
-      }
-    }
-  } else {
-  }
-  $(`afterwards`);
-  return 100;
-};
-const tmpReturnArg$1 = tmpLabeledBlockFunc($LOOP_UNROLL_10);
-$(`f():`, tmpReturnArg$1);
+$(`n:`, 1);
+$(`n:`, 2);
+$(`n:`, 3);
+$(`n:`, 4);
+$(`n:`, 5);
+$(`n:`, 6);
+$(`n:`, 7);
+$(`n:`, 8);
+$(`n:`, 9);
+$(`n:`, 10);
+$(`n:`, 11);
+$(`f():`, 11);
 `````
 
 ## Globals

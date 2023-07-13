@@ -33,9 +33,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = [1, 2, 3];
-while (tmpIfTest) {
-  $(1);
-  tmpIfTest = [1, 2, 3];
+while (true) {
+  if (tmpIfTest) {
+    $(1);
+    tmpIfTest = [1, 2, 3];
+  } else {
+    break;
+  }
 }
 $(a);
 `````

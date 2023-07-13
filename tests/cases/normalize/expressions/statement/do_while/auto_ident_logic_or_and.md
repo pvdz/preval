@@ -39,22 +39,26 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(0);
-  tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+while (true) {
   if (tmpDoWhileFlag) {
-  } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(1);
-    tmpDoWhileFlag = tmpCallCallee$1(tmpCalleeParam$1);
+    $(100);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(0);
+    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
     if (tmpDoWhileFlag) {
-      const tmpCallCallee$3 = $;
-      const tmpCalleeParam$3 = $(2);
-      tmpDoWhileFlag = tmpCallCallee$3(tmpCalleeParam$3);
     } else {
+      const tmpCallCallee$1 = $;
+      const tmpCalleeParam$1 = $(1);
+      tmpDoWhileFlag = tmpCallCallee$1(tmpCalleeParam$1);
+      if (tmpDoWhileFlag) {
+        const tmpCallCallee$3 = $;
+        const tmpCalleeParam$3 = $(2);
+        tmpDoWhileFlag = tmpCallCallee$3(tmpCalleeParam$3);
+      } else {
+      }
     }
+  } else {
+    break;
   }
 }
 $(a);
@@ -63,21 +67,53 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCalleeParam = $(0);
-  tmpDoWhileFlag = $(tmpCalleeParam);
+$(100);
+const tmpCalleeParam = $(0);
+let tmpDoWhileFlag = $(tmpCalleeParam);
+if (tmpDoWhileFlag) {
+} else {
+  const tmpCalleeParam$1 = $(1);
+  tmpDoWhileFlag = $(tmpCalleeParam$1);
   if (tmpDoWhileFlag) {
+    const tmpCalleeParam$3 = $(2);
+    tmpDoWhileFlag = $(tmpCalleeParam$3);
   } else {
-    const tmpCalleeParam$1 = $(1);
-    tmpDoWhileFlag = $(tmpCalleeParam$1);
-    if (tmpDoWhileFlag) {
-      const tmpCalleeParam$3 = $(2);
-      tmpDoWhileFlag = $(tmpCalleeParam$3);
+  }
+}
+if (tmpDoWhileFlag) {
+  $(100);
+  const tmpCalleeParam$2 = $(0);
+  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
+  if (tmpClusterSSA_tmpDoWhileFlag) {
+  } else {
+    const tmpCalleeParam$4 = $(1);
+    tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$4);
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      const tmpCalleeParam$6 = $(2);
+      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$6);
     } else {
     }
   }
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      const tmpCalleeParam$5 = $(0);
+      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$5);
+      if (tmpClusterSSA_tmpDoWhileFlag) {
+      } else {
+        const tmpCalleeParam$7 = $(1);
+        tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$7);
+        if (tmpClusterSSA_tmpDoWhileFlag) {
+          const tmpCalleeParam$9 = $(2);
+          tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$9);
+        } else {
+        }
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

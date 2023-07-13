@@ -44,8 +44,12 @@ const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 x = tmpAssignObjPatternRhs.x;
 y = tmpAssignObjPatternRhs.y;
 let tmpIfTest = $(0);
-while (tmpIfTest) {
-  tmpIfTest = $(0);
+while (true) {
+  if (tmpIfTest) {
+    tmpIfTest = $(0);
+  } else {
+    break;
+  }
 }
 $(a, x, y);
 `````
@@ -55,9 +59,17 @@ $(a, x, y);
 `````js filename=intro
 const tmpObjLitVal = $(3);
 const tmpObjLitVal$1 = $(4);
-let tmpIfTest = $(0);
-while (tmpIfTest) {
-  tmpIfTest = $(0);
+const tmpIfTest = $(0);
+if (tmpIfTest) {
+  let tmpClusterSSA_tmpIfTest = $(0);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a, tmpObjLitVal, tmpObjLitVal$1);

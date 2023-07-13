@@ -40,11 +40,15 @@ $(`after`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  const tmpIfTest$1 = $(1);
-  if (tmpIfTest$1) {
-    $(`keep`);
-    tmpIfTest = $(true);
+while (true) {
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
+      $(`keep`);
+      tmpIfTest = $(true);
+    } else {
+      break;
+    }
   } else {
     break;
   }
@@ -56,14 +60,33 @@ $(`after`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
+let $tmpLoopUnrollCheck = true;
+if (tmpIfTest) {
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
     $(`keep`);
     tmpIfTest = $(true);
   } else {
-    break;
+    $tmpLoopUnrollCheck = false;
   }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      const tmpIfTest$2 = $(1);
+      if (tmpIfTest$2) {
+        $(`keep`);
+        tmpIfTest = $(true);
+      } else {
+        break;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(`after`);
 `````

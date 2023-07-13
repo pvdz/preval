@@ -53,7 +53,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const b = { c: 10, d: 20 };
 const tmpNestedAssignObj = $(b);
 const tmpCompObj = $(b);
@@ -66,18 +66,21 @@ if (tmpNestedAssignPropRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpNestedAssignObj$1 = $(b);
-  const tmpCompObj$1 = $(b);
-  const tmpCompProp$1 = $(`d`);
-  const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
-  tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-  tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
-  if (tmpNestedAssignPropRhs$1) {
-    $(100);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpNestedAssignObj$1 = $(b);
+    const tmpCompObj$1 = $(b);
+    const tmpCompProp$1 = $(`d`);
+    const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+    tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
+    tmpClusterSSA_a = tmpNestedAssignPropRhs$1;
+    if (tmpNestedAssignPropRhs$1) {
+      $(100);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(tmpClusterSSA_a, b);
 `````

@@ -53,16 +53,24 @@ $(f());
 let f = function () {
   debugger;
   let tmpIfTest = $(true);
-  while (tmpIfTest) {
-    $(`loop`);
-    let tmpIfTest$1 = $(true);
-    while (tmpIfTest$1) {
+  while (true) {
+    if (tmpIfTest) {
       $(`loop`);
-      const tmpReturnArg = $(100, `return`);
-      return tmpReturnArg;
+      let tmpIfTest$1 = $(true);
+      while (true) {
+        if (tmpIfTest$1) {
+          $(`loop`);
+          const tmpReturnArg = $(100, `return`);
+          return tmpReturnArg;
+        } else {
+          break;
+        }
+      }
+      $(`do not visit, do not eliminate`);
+      tmpIfTest = $(true);
+    } else {
+      break;
     }
-    $(`do not visit, do not eliminate`);
-    tmpIfTest = $(true);
   }
   $(`after (not invoked)`);
   return undefined;
@@ -75,26 +83,52 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpIfTest = $(true);
+const tmpAfterLabel = function ($$0, $$1) {
+  let tmpIfTest$4 = $$0;
+  const $tmpLoopUnrollCheck$1 = $$1;
   debugger;
-  let tmpIfTest = $(true);
-  while (tmpIfTest) {
-    $(`loop`);
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(`loop`);
-      const tmpReturnArg = $(100, `return`);
-      return tmpReturnArg;
-    } else {
-      $(`do not visit, do not eliminate`);
-      tmpIfTest = $(true);
+  if ($tmpLoopUnrollCheck$1) {
+    while ($LOOP_UNROLL_10) {
+      if (tmpIfTest$4) {
+        $(`loop`);
+        const tmpIfTest$6 = $(true);
+        if (tmpIfTest$6) {
+          $(`loop`);
+          const tmpReturnArg$3 = $(100, `return`);
+          return tmpReturnArg$3;
+        } else {
+          $(`do not visit, do not eliminate`);
+          tmpIfTest$4 = $(true);
+        }
+      } else {
+        break;
+      }
     }
+  } else {
   }
   $(`after (not invoked)`);
   return undefined;
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+let tmpReturnArg$11 = undefined;
+if (tmpIfTest) {
+  $(`loop`);
+  const tmpIfTest$10 = $(true);
+  if (tmpIfTest$10) {
+    $(`loop`);
+    const tmpReturnArg$5 = $(100, `return`);
+    tmpReturnArg$11 = tmpReturnArg$5;
+  } else {
+    $(`do not visit, do not eliminate`);
+    const tmpClusterSSA_tmpIfTest$8 = $(true);
+    const tmpReturnArg$9 = tmpAfterLabel(tmpClusterSSA_tmpIfTest$8, true);
+    tmpReturnArg$11 = tmpReturnArg$9;
+  }
+} else {
+  const tmpReturnArg$7 = tmpAfterLabel(tmpIfTest, false);
+  tmpReturnArg$11 = tmpReturnArg$7;
+}
+$(tmpReturnArg$11);
 `````
 
 ## Globals

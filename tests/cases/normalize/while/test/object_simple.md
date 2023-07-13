@@ -30,9 +30,13 @@ $(`after`);
 
 `````js filename=intro
 let tmpIfTest = { a: 1, b: 2 };
-while (tmpIfTest) {
-  $(`loop`);
-  tmpIfTest = { a: 1, b: 2 };
+while (true) {
+  if (tmpIfTest) {
+    $(`loop`);
+    tmpIfTest = { a: 1, b: 2 };
+  } else {
+    break;
+  }
 }
 $(`after`);
 `````

@@ -65,11 +65,15 @@ $(`before`);
 let wat = s | 10;
 let chk = $(true);
 if (chk) {
-  while (count) {
-    $(`inside`);
-    wat = wat | 10;
-    chk = $(true);
-    if (chk) {
+  while (true) {
+    if (count) {
+      $(`inside`);
+      wat = wat | 10;
+      chk = $(true);
+      if (chk) {
+      } else {
+        break;
+      }
     } else {
       break;
     }
@@ -88,14 +92,33 @@ $(`before`);
 let wat = s | 10;
 let chk = $(true);
 if (chk) {
-  while ($LOOP_UNROLL_10) {
+  let $tmpLoopUnrollCheck = true;
+  if ($LOOP_UNROLL_10) {
     $(`inside`);
     wat = wat | 10;
     chk = $(true);
     if (chk) {
     } else {
-      break;
+      $tmpLoopUnrollCheck = false;
     }
+  } else {
+    $tmpLoopUnrollCheck = false;
+  }
+  if ($tmpLoopUnrollCheck) {
+    while ($LOOP_UNROLL_10) {
+      if ($LOOP_UNROLL_10) {
+        $(`inside`);
+        wat = wat | 10;
+        chk = $(true);
+        if (chk) {
+        } else {
+          break;
+        }
+      } else {
+        break;
+      }
+    }
+  } else {
   }
 } else {
 }

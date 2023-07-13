@@ -45,11 +45,15 @@ const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
 const max = $(10);
 let counter = 2;
 let test = 2 < max;
-while (test) {
-  const tmpCalleeParam$1891 = arr[counter];
-  $(tmpCalleeParam$1891);
-  counter = counter + 1;
-  test = counter < tmpArgumentsLen$9;
+while (true) {
+  if (test) {
+    const tmpCalleeParam$1891 = arr[counter];
+    $(tmpCalleeParam$1891);
+    counter = counter + 1;
+    test = counter < tmpArgumentsLen$9;
+  } else {
+    break;
+  }
 }
 `````
 
@@ -57,14 +61,23 @@ while (test) {
 
 `````js filename=intro
 const max = $(10);
-let counter = 2;
-let test = 2 < max;
-const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
-while (test) {
-  const tmpCalleeParam$1891 = arr[counter];
-  $(tmpCalleeParam$1891);
-  counter = counter + 1;
-  test = counter < tmpArgumentsLen$9;
+const test = 2 < max;
+if (test) {
+  $(103);
+  let tmpClusterSSA_counter = 3;
+  let tmpClusterSSA_test = 3 < tmpArgumentsLen$9;
+  const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_test) {
+      const tmpCalleeParam$1 = arr[tmpClusterSSA_counter];
+      $(tmpCalleeParam$1);
+      tmpClusterSSA_counter = tmpClusterSSA_counter + 1;
+      tmpClusterSSA_test = tmpClusterSSA_counter < tmpArgumentsLen$9;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

@@ -43,12 +43,16 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  b = $(2);
-  let tmpNestedComplexRhs = b;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    b = $(2);
+    let tmpNestedComplexRhs = b;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -56,15 +60,28 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = 1;
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+let b = $(2);
+const tmpNestedComplexRhs = b;
+let a = tmpNestedComplexRhs;
+if (tmpNestedComplexRhs) {
   $(100);
   b = $(2);
-  const tmpNestedComplexRhs = b;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+  const tmpNestedComplexRhs$1 = b;
+  a = tmpNestedComplexRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      b = $(2);
+      const tmpNestedComplexRhs$2 = b;
+      a = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

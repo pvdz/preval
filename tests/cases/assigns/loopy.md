@@ -32,20 +32,20 @@ while (run) {
 
 `````js filename=intro
 let run = true;
-while (run) {
-  $(1);
-  run = false;
+while (true) {
+  if (run) {
+    $(1);
+    run = false;
+  } else {
+    break;
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let run = true;
-while (run) {
-  $(1);
-  run = false;
-}
+$(1);
 `````
 
 ## Globals

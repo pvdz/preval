@@ -43,10 +43,14 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallObj = $(b);
-  tmpDoWhileFlag = tmpCallObj.$(1);
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallObj = $(b);
+    tmpDoWhileFlag = tmpCallObj.$(1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -56,11 +60,23 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpCallObj = $(b);
+const tmpClusterSSA_tmpDoWhileFlag = tmpCallObj.$(1);
+if (tmpClusterSSA_tmpDoWhileFlag) {
   $(100);
-  const tmpCallObj = $(b);
-  tmpDoWhileFlag = tmpCallObj.$(1);
+  const tmpCallObj$1 = $(b);
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpCallObj$1.$(1);
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpCallObj$2 = $(b);
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpCallObj$2.$(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

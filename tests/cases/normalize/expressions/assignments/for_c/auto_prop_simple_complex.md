@@ -35,10 +35,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpObjLitVal = $(1);
-  a = { b: tmpObjLitVal };
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpObjLitVal = $(1);
+    a = { b: tmpObjLitVal };
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);
@@ -50,11 +54,21 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   const tmpObjLitVal = $(1);
   a = { b: tmpObjLitVal };
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpObjLitVal$1 = $(1);
+      a = { b: tmpObjLitVal$1 };
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const tmpAssignMemLhsObj = a;
 const tmpAssignMemRhs = $(2);

@@ -50,10 +50,14 @@ let f = function () {
   debugger;
   let s = $(10);
   let x = true;
-  while (x) {
-    const nowAssignable$3 = parseExpression(lexerFlags$285, astProp$181);
-    s = s | 10;
-    x = $(true);
+  while (true) {
+    if (x) {
+      const nowAssignable$3 = parseExpression(lexerFlags$285, astProp$181);
+      s = s | 10;
+      x = $(true);
+    } else {
+      break;
+    }
   }
   $(s);
   return undefined;
@@ -69,17 +73,42 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
+const tmpAfterLabel = function ($$0, $$1, $$2) {
+  let s$4 = $$0;
+  let x$2 = $$1;
+  const $tmpLoopUnrollCheck$1 = $$2;
+  debugger;
+  if ($tmpLoopUnrollCheck$1) {
+    while ($LOOP_UNROLL_9) {
+      if (x$2) {
+        parseExpression(lexerFlags$285, astProp$181);
+        s$4 = s$4 | 10;
+        x$2 = $(true);
+      } else {
+        break;
+      }
+    }
+  } else {
+  }
+  $(s$4);
+  return undefined;
+};
 const f = function () {
   debugger;
-  let s = $(10);
-  let x = true;
-  while (x) {
+  const s = $(10);
+  parseExpression(lexerFlags$285, astProp$181);
+  const tmpClusterSSA_s$3 = s | 10;
+  const tmpClusterSSA_x$3 = $(true);
+  if (tmpClusterSSA_x$3) {
     parseExpression(lexerFlags$285, astProp$181);
-    s = s | 10;
-    x = $(true);
+    const tmpClusterSSA_x$1 = $(true);
+    const tmpClusterSSA_s$8 = tmpClusterSSA_s$3 | 10;
+    tmpAfterLabel(tmpClusterSSA_s$8, tmpClusterSSA_x$1, true);
+    return undefined;
+  } else {
+    tmpAfterLabel(tmpClusterSSA_s$3, tmpClusterSSA_x$3, false);
+    return undefined;
   }
-  $(s);
-  return undefined;
 };
 f();
 $(undefined);

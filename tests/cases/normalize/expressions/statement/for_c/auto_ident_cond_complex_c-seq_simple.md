@@ -33,16 +33,20 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpIfTest$1 = $(1);
-  if (tmpIfTest$1) {
-    $(60);
+while (true) {
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
+      $(60);
+    } else {
+      const tmpCallCallee = $;
+      const tmpCalleeParam = $(100);
+      tmpCallCallee(tmpCalleeParam);
+    }
+    tmpIfTest = $(1);
   } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    tmpCallCallee(tmpCalleeParam);
+    break;
   }
-  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -50,8 +54,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
     $(60);
@@ -59,7 +63,22 @@ while (tmpIfTest) {
     const tmpCalleeParam = $(100);
     $(tmpCalleeParam);
   }
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpIfTest$2 = $(1);
+      if (tmpIfTest$2) {
+        $(60);
+      } else {
+        const tmpCalleeParam$1 = $(100);
+        $(tmpCalleeParam$1);
+      }
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

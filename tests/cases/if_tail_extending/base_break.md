@@ -44,12 +44,16 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  while (x) {
-    $(1);
-    if ($) {
-      break;
+  while (true) {
+    if (x) {
+      $(1);
+      if ($) {
+        break;
+      } else {
+        $(2);
+      }
     } else {
-      $(2);
+      break;
     }
   }
   return undefined;
@@ -60,13 +64,31 @@ f();
 ## Output
 
 `````js filename=intro
-while (x) {
+let $tmpLoopUnrollCheck = true;
+if (x) {
   $(1);
   if ($) {
-    break;
+    $tmpLoopUnrollCheck = false;
   } else {
     $(2);
   }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      $(1);
+      if ($) {
+        break;
+      } else {
+        $(2);
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

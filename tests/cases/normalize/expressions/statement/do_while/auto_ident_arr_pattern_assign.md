@@ -46,15 +46,19 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpArrElement = $(3);
+    const tmpArrElement$1 = $(4);
+    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+  } else {
+    break;
+  }
 }
 $(a, x, y);
 `````
@@ -93,19 +97,19 @@ $(100);
 $(3);
 $(4);
 $(100);
-const tmpArrElement$3 = $(3);
-const tmpArrElement$5 = $(4);
-let tmpClusterSSA_x = tmpArrElement$3;
-let tmpClusterSSA_y = tmpArrElement$5;
+const tmpArrElement$2 = $(3);
+const tmpArrElement$4 = $(4);
+let x = tmpArrElement$2;
+let y = tmpArrElement$4;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpArrElement$6 = $(3);
-  const tmpArrElement$8 = $(4);
-  tmpClusterSSA_x = tmpArrElement$6;
-  tmpClusterSSA_y = tmpArrElement$8;
+  const tmpArrElement$3 = $(3);
+  const tmpArrElement$5 = $(4);
+  x = tmpArrElement$3;
+  y = tmpArrElement$5;
 }
 const a = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_x, tmpClusterSSA_y);
+$(a, x, y);
 `````
 
 ## Globals

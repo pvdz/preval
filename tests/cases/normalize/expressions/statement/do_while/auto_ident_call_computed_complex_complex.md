@@ -43,11 +43,15 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCompObj = $(b);
-  const tmpCallCompProp = $(`\$`);
-  tmpDoWhileFlag = tmpCallCompObj[tmpCallCompProp](1);
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCompObj = $(b);
+    const tmpCallCompProp = $(`\$`);
+    tmpDoWhileFlag = tmpCallCompObj[tmpCallCompProp](1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -57,12 +61,26 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpCallCompObj = $(b);
+const tmpCallCompProp = $(`\$`);
+const tmpClusterSSA_tmpDoWhileFlag = tmpCallCompObj[tmpCallCompProp](1);
+if (tmpClusterSSA_tmpDoWhileFlag) {
   $(100);
-  const tmpCallCompObj = $(b);
-  const tmpCallCompProp = $(`\$`);
-  tmpDoWhileFlag = tmpCallCompObj[tmpCallCompProp](1);
+  const tmpCallCompObj$1 = $(b);
+  const tmpCallCompProp$1 = $(`\$`);
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpCallCompObj$1[tmpCallCompProp$1](1);
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpCallCompObj$2 = $(b);
+      const tmpCallCompProp$2 = $(`\$`);
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpCallCompObj$2[tmpCallCompProp$2](1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

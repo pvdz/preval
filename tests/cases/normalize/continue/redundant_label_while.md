@@ -47,17 +47,21 @@ exit: while (x) {
 
 `````js filename=intro
 let x = $(2);
-while (x) {
-  $(1);
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    x = $(3);
-  } else {
-  }
+while (true) {
   if (x) {
-    continue;
+    $(1);
+    const tmpIfTest = $(1);
+    if (tmpIfTest) {
+      x = $(3);
+    } else {
+    }
+    if (x) {
+      continue;
+    } else {
+      x = $(4);
+    }
   } else {
-    x = $(4);
+    break;
   }
 }
 `````
@@ -66,7 +70,7 @@ while (x) {
 
 `````js filename=intro
 let x = $(2);
-while (x) {
+if (x) {
   $(1);
   const tmpIfTest = $(1);
   if (tmpIfTest) {
@@ -77,6 +81,23 @@ while (x) {
   } else {
     x = $(4);
   }
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      $(1);
+      const tmpIfTest$1 = $(1);
+      if (tmpIfTest$1) {
+        x = $(3);
+      } else {
+      }
+      if (x) {
+      } else {
+        x = $(4);
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

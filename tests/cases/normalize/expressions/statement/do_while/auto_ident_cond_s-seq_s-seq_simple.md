@@ -39,15 +39,19 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpIfTest = 30;
-  if (tmpIfTest) {
-    tmpDoWhileFlag = 60;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpIfTest = 30;
+    if (tmpIfTest) {
+      tmpDoWhileFlag = 60;
+    } else {
+      const tmpCallCallee = $;
+      const tmpCalleeParam = $(100);
+      tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+    }
   } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(100);
-    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+    break;
   }
 }
 $(a);

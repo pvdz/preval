@@ -41,15 +41,19 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const f = function () {
-    debugger;
-    return undefined;
-  };
-  const tmpNestedComplexRhs = f;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const f = function () {
+      debugger;
+      return undefined;
+    };
+    const tmpNestedComplexRhs = f;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a);
 `````

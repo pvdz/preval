@@ -38,10 +38,21 @@ $(`after, do not evaluate (infinite loop)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  const tmpUnaryArg = $(true);
-  let tmpIfTest$1 = !tmpUnaryArg;
-  tmpIfTest = $(true);
+while (true) {
+  if (tmpIfTest) {
+    const tmpUnaryArg = $(true);
+    let tmpIfTest$1 = !tmpUnaryArg;
+    while (true) {
+      if (tmpIfTest$1) {
+        break;
+      } else {
+        break;
+      }
+    }
+    tmpIfTest = $(true);
+  } else {
+    break;
+  }
 }
 $(`after, do not evaluate (infinite loop)`);
 `````
@@ -49,10 +60,19 @@ $(`after, do not evaluate (infinite loop)`);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
-while (tmpIfTest) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
   $(true);
-  tmpIfTest = $(true);
+  let tmpClusterSSA_tmpIfTest = $(true);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      $(true);
+      tmpClusterSSA_tmpIfTest = $(true);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(`after, do not evaluate (infinite loop)`);
 `````

@@ -33,9 +33,13 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpIfTest = typeof x;
-while (tmpIfTest) {
-  $(100);
-  tmpIfTest = typeof x;
+while (true) {
+  if (tmpIfTest) {
+    $(100);
+    tmpIfTest = typeof x;
+  } else {
+    break;
+  }
 }
 $(a, x);
 `````

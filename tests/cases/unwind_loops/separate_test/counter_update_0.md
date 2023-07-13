@@ -34,10 +34,14 @@ const max = $(10);
 const max = $(10);
 let i = 0;
 let tmpIfTest = i < 10;
-while (tmpIfTest) {
-  $(i);
-  i = i + 0;
-  tmpIfTest = i < 10;
+while (true) {
+  if (tmpIfTest) {
+    $(i);
+    i = i + 0;
+    tmpIfTest = i < 10;
+  } else {
+    break;
+  }
 }
 `````
 
@@ -45,12 +49,27 @@ while (tmpIfTest) {
 
 `````js filename=intro
 $(10);
+$(0);
+$(0);
+$(0);
+$(0);
+$(0);
+$(0);
+$(0);
+$(0);
+$(0);
+$(0);
+$(0);
 let i = 0;
 let tmpIfTest = true;
-while (tmpIfTest) {
-  $(i);
-  i = i + 0;
-  tmpIfTest = i < 10;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (tmpIfTest) {
+    $(i);
+    i = i + 0;
+    tmpIfTest = i < 10;
+  } else {
+    break;
+  }
 }
 `````
 

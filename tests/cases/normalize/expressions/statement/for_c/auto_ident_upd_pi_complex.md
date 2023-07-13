@@ -37,15 +37,19 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(b);
-  const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
-  const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
-  const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
-  const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
-  tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(b);
+    const tmpAssignMemLhsObj = tmpCallCallee(tmpCalleeParam);
+    const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
+    const tmpAssignMemLhsObj$1 = tmpAssignMemLhsObj;
+    const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
+    tmpAssignMemLhsObj$1.x = tmpAssignMemRhs;
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -55,14 +59,27 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpAssignMemLhsObj = $(tmpCalleeParam);
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
   const tmpAssignMemRhs = tmpCompoundAssignLhs + 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpCalleeParam$1 = $(b);
+      const tmpAssignMemLhsObj$1 = $(tmpCalleeParam$1);
+      const tmpCompoundAssignLhs$1 = tmpAssignMemLhsObj$1.x;
+      const tmpAssignMemRhs$1 = tmpCompoundAssignLhs$1 + 1;
+      tmpAssignMemLhsObj$1.x = tmpAssignMemRhs$1;
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

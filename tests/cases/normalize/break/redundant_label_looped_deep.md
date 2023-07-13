@@ -51,19 +51,23 @@ exit: while (x) {
 
 `````js filename=intro
 let x = $(2);
-exit: while (x) {
-  while (true) {
-    $(1);
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      x = $(3);
-    } else {
+exit: while (true) {
+  if (x) {
+    while (true) {
+      $(1);
+      const tmpIfTest = $(1);
+      if (tmpIfTest) {
+        x = $(3);
+      } else {
+      }
+      if (x) {
+        break exit;
+      } else {
+        x = $(4);
+      }
     }
-    if (x) {
-      break exit;
-    } else {
-      x = $(4);
-    }
+  } else {
+    break;
   }
 }
 `````
@@ -72,19 +76,23 @@ exit: while (x) {
 
 `````js filename=intro
 let x = $(2);
-exit: while (x) {
-  while (true) {
-    $(1);
-    const tmpIfTest = $(1);
-    if (tmpIfTest) {
-      x = $(3);
-    } else {
+exit: while (true) {
+  if (x) {
+    while (true) {
+      $(1);
+      const tmpIfTest = $(1);
+      if (tmpIfTest) {
+        x = $(3);
+      } else {
+      }
+      if (x) {
+        break exit;
+      } else {
+        x = $(4);
+      }
     }
-    if (x) {
-      break exit;
-    } else {
-      x = $(4);
-    }
+  } else {
+    break;
   }
 }
 `````

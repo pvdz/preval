@@ -42,11 +42,15 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  while ($) {
-    $(1);
+  while (true) {
     if ($) {
-      continue;
+      $(1);
+      if ($) {
+        continue;
+      } else {
+      }
     } else {
+      break;
     }
   }
   return undefined;
@@ -59,8 +63,19 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-while ($) {
+if ($) {
   $(1);
+  if ($) {
+    while ($LOOP_UNROLL_10) {
+      if ($) {
+        $(1);
+      } else {
+        break;
+      }
+    }
+  } else {
+  }
+} else {
 }
 $(undefined);
 `````

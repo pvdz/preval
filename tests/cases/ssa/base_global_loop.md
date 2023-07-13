@@ -56,7 +56,7 @@ $(x);
 `````js filename=intro
 const x = $(3);
 $(x);
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 let tmpClusterSSA_x = x + 1;
 $(tmpClusterSSA_x);
 const tmpIfTest = tmpClusterSSA_x > 5;
@@ -64,14 +64,17 @@ if (tmpIfTest) {
   $tmpLoopUnrollCheck = false;
 } else {
 }
-while ($tmpLoopUnrollCheck) {
-  tmpClusterSSA_x = tmpClusterSSA_x + 1;
-  $(tmpClusterSSA_x);
-  const tmpIfTest$1 = tmpClusterSSA_x > 5;
-  if (tmpIfTest$1) {
-    break;
-  } else {
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    tmpClusterSSA_x = tmpClusterSSA_x + 1;
+    $(tmpClusterSSA_x);
+    const tmpIfTest$1 = tmpClusterSSA_x > 5;
+    if (tmpIfTest$1) {
+      break;
+    } else {
+    }
   }
+} else {
 }
 $(tmpClusterSSA_x);
 `````

@@ -34,10 +34,14 @@ $(`after`);
 
 `````js filename=intro
 let tmpIfTest = $(false);
-while (tmpIfTest) {
-  const tmpIfTest$1 = $(1);
-  if (tmpIfTest$1) {
-    break;
+while (true) {
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
+      break;
+    } else {
+      break;
+    }
   } else {
     break;
   }

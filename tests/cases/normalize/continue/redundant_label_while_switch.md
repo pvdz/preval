@@ -74,49 +74,53 @@ exit: while (x) {
 
 `````js filename=intro
 let x = $(2);
-while (x) {
-  $(1);
-  const tmpIfTest = $(1);
-  if (tmpIfTest) {
-    x = $(3);
-  } else {
-  }
+while (true) {
   if (x) {
-    const tmpSwitchValue = $(1);
-    let tmpSwitchCaseToStart = 3;
-    const tmpIfTest$1 = 0 === tmpSwitchValue;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 0;
+    $(1);
+    const tmpIfTest = $(1);
+    if (tmpIfTest) {
+      x = $(3);
     } else {
-      const tmpIfTest$3 = 1 === tmpSwitchValue;
-      if (tmpIfTest$3) {
-        tmpSwitchCaseToStart = 1;
+    }
+    if (x) {
+      const tmpSwitchValue = $(1);
+      let tmpSwitchCaseToStart = 3;
+      const tmpIfTest$1 = 0 === tmpSwitchValue;
+      if (tmpIfTest$1) {
+        tmpSwitchCaseToStart = 0;
       } else {
-        const tmpIfTest$5 = 2 === tmpSwitchValue;
-        if (tmpIfTest$5) {
-          tmpSwitchCaseToStart = 2;
+        const tmpIfTest$3 = 1 === tmpSwitchValue;
+        if (tmpIfTest$3) {
+          tmpSwitchCaseToStart = 1;
+        } else {
+          const tmpIfTest$5 = 2 === tmpSwitchValue;
+          if (tmpIfTest$5) {
+            tmpSwitchCaseToStart = 2;
+          } else {
+          }
+        }
+      }
+      const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
+      if (tmpIfTest$7) {
+        $(0);
+      } else {
+      }
+      const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+      if (tmpIfTest$9) {
+        $(1);
+        continue;
+      } else {
+        const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
+        if (tmpIfTest$11) {
+          $(2);
         } else {
         }
       }
-    }
-    const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$7) {
-      $(0);
     } else {
-    }
-    const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
-    if (tmpIfTest$9) {
-      $(1);
-      continue;
-    } else {
-      const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
-      if (tmpIfTest$11) {
-        $(2);
-      } else {
-      }
+      x = $(4);
     }
   } else {
-    x = $(4);
+    break;
   }
 }
 `````
@@ -125,7 +129,7 @@ while (x) {
 
 `````js filename=intro
 let x = $(2);
-while (x) {
+if (x) {
   $(1);
   const tmpIfTest = $(1);
   if (tmpIfTest) {
@@ -168,6 +172,55 @@ while (x) {
   } else {
     x = $(4);
   }
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      $(1);
+      const tmpIfTest$2 = $(1);
+      if (tmpIfTest$2) {
+        x = $(3);
+      } else {
+      }
+      if (x) {
+        const tmpSwitchValue$1 = $(1);
+        let tmpSwitchCaseToStart$1 = 3;
+        const tmpIfTest$4 = 0 === tmpSwitchValue$1;
+        if (tmpIfTest$4) {
+          tmpSwitchCaseToStart$1 = 0;
+        } else {
+          const tmpIfTest$10 = 1 === tmpSwitchValue$1;
+          if (tmpIfTest$10) {
+            tmpSwitchCaseToStart$1 = 1;
+          } else {
+            const tmpIfTest$12 = 2 === tmpSwitchValue$1;
+            if (tmpIfTest$12) {
+              tmpSwitchCaseToStart$1 = 2;
+            } else {
+            }
+          }
+        }
+        const tmpIfTest$6 = tmpSwitchCaseToStart$1 <= 0;
+        if (tmpIfTest$6) {
+          $(0);
+        } else {
+        }
+        const tmpIfTest$8 = tmpSwitchCaseToStart$1 <= 1;
+        if (tmpIfTest$8) {
+          $(1);
+        } else {
+          const tmpIfTest$14 = tmpSwitchCaseToStart$1 <= 2;
+          if (tmpIfTest$14) {
+            $(2);
+          } else {
+          }
+        }
+      } else {
+        x = $(4);
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

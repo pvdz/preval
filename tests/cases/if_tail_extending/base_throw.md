@@ -44,12 +44,16 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  while (x) {
-    $(1);
-    if ($) {
-      throw `error`;
+  while (true) {
+    if (x) {
+      $(1);
+      if ($) {
+        throw `error`;
+      } else {
+        $(2);
+      }
     } else {
-      $(2);
+      break;
     }
   }
   return undefined;
@@ -60,13 +64,29 @@ f();
 ## Output
 
 `````js filename=intro
-while (x) {
+if (x) {
   $(1);
   if ($) {
     throw `error`;
   } else {
     $(2);
+    if (x) {
+      while ($LOOP_UNROLL_10) {
+        if (x) {
+          $(1);
+          if ($) {
+            throw `error`;
+          } else {
+            $(2);
+          }
+        } else {
+          break;
+        }
+      }
+    } else {
+    }
   }
+} else {
 }
 `````
 

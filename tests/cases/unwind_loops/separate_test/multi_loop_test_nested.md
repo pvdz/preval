@@ -41,11 +41,19 @@ while (test) {
 `````js filename=intro
 let counter = 0;
 let test = counter < 10;
-while (test) {
-  while (test) {
-    $(`yolo`);
-    counter = counter + 1;
-    test = counter < 10;
+while (true) {
+  if (test) {
+    while (true) {
+      if (test) {
+        $(`yolo`);
+        counter = counter + 1;
+        test = counter < 10;
+      } else {
+        break;
+      }
+    }
+  } else {
+    break;
   }
 }
 `````
@@ -55,11 +63,22 @@ while (test) {
 `````js filename=intro
 let counter = 0;
 let test = true;
-while (test) {
-  while (test) {
+while (true) {
+  if (test) {
     $(`yolo`);
     counter = counter + 1;
     test = counter < 10;
+    while ($LOOP_UNROLL_10) {
+      if (test) {
+        $(`yolo`);
+        counter = counter + 1;
+        test = counter < 10;
+      } else {
+        break;
+      }
+    }
+  } else {
+    break;
   }
 }
 `````

@@ -43,19 +43,23 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainRootComputed = `x`;
-    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-    tmpNestedComplexRhs = tmpChainElementObject;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
+      const tmpChainRootComputed = `x`;
+      const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+      tmpNestedComplexRhs = tmpChainElementObject;
+    } else {
+    }
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
   } else {
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -63,14 +67,29 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+let a = 1;
 let tmpDoWhileFlag = true;
 const b = { x: 1 };
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
-  tmpDoWhileFlag = tmpChainElementObject;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpChainElementObject$1 = b.x;
+    a = tmpChainElementObject$1;
+    tmpDoWhileFlag = tmpChainElementObject$1;
+  } else {
+    break;
+  }
 }
 $(a);
 `````

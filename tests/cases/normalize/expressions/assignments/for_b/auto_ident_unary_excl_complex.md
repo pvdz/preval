@@ -48,7 +48,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const tmpUnaryArg = $(100);
 let a = !tmpUnaryArg;
 if (tmpUnaryArg) {
@@ -56,14 +56,17 @@ if (tmpUnaryArg) {
 } else {
   $(1);
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpUnaryArg$1 = $(100);
-  a = !tmpUnaryArg$1;
-  if (a) {
-    $(1);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpUnaryArg$1 = $(100);
+    a = !tmpUnaryArg$1;
+    if (a) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(a);
 `````

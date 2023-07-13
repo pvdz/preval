@@ -67,13 +67,17 @@ if (x) {
 } else {
   flag = false;
 }
-while (flag) {
-  $(`inner`, n);
-  n = n + 1;
-  const tmpIfTest = n >= 5;
-  if (tmpIfTest) {
-    flag = false;
+while (true) {
+  if (flag) {
+    $(`inner`, n);
+    n = n + 1;
+    const tmpIfTest = n >= 5;
+    if (tmpIfTest) {
+      flag = false;
+    } else {
+    }
   } else {
+    break;
   }
 }
 $(`after`);
@@ -87,18 +91,32 @@ let n = 0;
 let flag = true;
 $(`before`);
 const x = $(`what`);
+let $tmpLoopUnrollCheck = true;
 if (x) {
 } else {
   flag = false;
+  $tmpLoopUnrollCheck = false;
 }
-while (flag) {
-  $(`inner`, n);
-  n = n + 1;
-  const tmpIfTest = n >= 5;
-  if (tmpIfTest) {
-    flag = false;
-  } else {
+if (flag) {
+  $(`inner`, 0);
+  n = 1;
+} else {
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (flag) {
+      $(`inner`, n);
+      n = n + 1;
+      const tmpIfTest$1 = n >= 5;
+      if (tmpIfTest$1) {
+        flag = false;
+      } else {
+      }
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(`after`);
 $(x);

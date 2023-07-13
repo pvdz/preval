@@ -43,10 +43,14 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpDeleteObj = $(arg);
-  tmpDoWhileFlag = delete tmpDeleteObj.y;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpDeleteObj = $(arg);
+    tmpDoWhileFlag = delete tmpDeleteObj.y;
+  } else {
+    break;
+  }
 }
 $(a, arg);
 `````
@@ -56,11 +60,23 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpDeleteObj = $(arg);
+const tmpClusterSSA_tmpDoWhileFlag = delete tmpDeleteObj.y;
+if (tmpClusterSSA_tmpDoWhileFlag) {
   $(100);
-  const tmpDeleteObj = $(arg);
-  tmpDoWhileFlag = delete tmpDeleteObj.y;
+  const tmpDeleteObj$1 = $(arg);
+  let tmpClusterSSA_tmpDoWhileFlag$1 = delete tmpDeleteObj$1.y;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpDeleteObj$2 = $(arg);
+      tmpClusterSSA_tmpDoWhileFlag$1 = delete tmpDeleteObj$2.y;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, arg);
 `````

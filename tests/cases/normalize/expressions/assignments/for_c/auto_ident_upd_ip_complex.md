@@ -37,16 +37,20 @@ $(a, b);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(b);
-  const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
-  const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
-  const tmpAssignMemLhsObj = tmpPostUpdArgObj;
-  const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
-  tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  a = tmpPostUpdArgVal;
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(b);
+    const tmpPostUpdArgObj = tmpCallCallee(tmpCalleeParam);
+    const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
+    const tmpAssignMemLhsObj = tmpPostUpdArgObj;
+    const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
+    tmpAssignMemLhsObj.x = tmpAssignMemRhs;
+    a = tmpPostUpdArgVal;
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -56,8 +60,9 @@ $(a, b);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 const b = { x: 1 };
-while (tmpIfTest) {
+if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpPostUpdArgObj = $(tmpCalleeParam);
   const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
@@ -65,6 +70,24 @@ while (tmpIfTest) {
   tmpPostUpdArgObj.x = tmpAssignMemRhs;
   a = tmpPostUpdArgVal;
   tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      const tmpCalleeParam$1 = $(b);
+      const tmpPostUpdArgObj$1 = $(tmpCalleeParam$1);
+      const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
+      const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
+      tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
+      a = tmpPostUpdArgVal$1;
+      tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

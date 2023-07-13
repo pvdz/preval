@@ -120,7 +120,7 @@ const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$19, tmpArrElement$21];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
 let tmpClusterSSA_x$2 = arrPatternSplat$1[0];
 let tmpClusterSSA_y$2 = arrPatternSplat$1[1];
-let tmpClusterSSA_a$1 = tmpNestedAssignArrPatternRhs$1;
+let tmpClusterSSA_a$2 = tmpNestedAssignArrPatternRhs$1;
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpClusterSSA_x$2);
@@ -131,10 +131,10 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$2];
   tmpClusterSSA_x$2 = arrPatternSplat$2[0];
   tmpClusterSSA_y$2 = arrPatternSplat$2[1];
-  tmpClusterSSA_a$1 = tmpNestedAssignArrPatternRhs$2;
+  tmpClusterSSA_a$2 = tmpNestedAssignArrPatternRhs$2;
   $(1);
 }
-$(tmpClusterSSA_a$1, tmpClusterSSA_x$2, tmpClusterSSA_y$2);
+$(tmpClusterSSA_a$2, tmpClusterSSA_x$2, tmpClusterSSA_y$2);
 `````
 
 ## Globals

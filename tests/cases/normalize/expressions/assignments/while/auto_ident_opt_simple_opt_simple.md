@@ -60,25 +60,29 @@ $(a);
 ## Output
 
 `````js filename=intro
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
 const tmpObjLitVal = { y: 1 };
+let a = 1;
+$(100);
 const b = { x: tmpObjLitVal };
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
-const tmpChainElementObject$1 = tmpObjLitVal.y;
-let tmpClusterSSA_a = tmpChainElementObject$1;
-if (tmpChainElementObject$1) {
-  $(100);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-while ($tmpLoopUnrollCheck) {
-  tmpClusterSSA_a = undefined;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  a = undefined;
   const tmpChainElementObject$2 = b.x;
   const tmpIfTest$1 = tmpChainElementObject$2 == null;
   if (tmpIfTest$1) {
     $(100);
   } else {
     const tmpChainElementObject$4 = tmpChainElementObject$2.y;
-    tmpClusterSSA_a = tmpChainElementObject$4;
+    a = tmpChainElementObject$4;
     if (tmpChainElementObject$4) {
       $(100);
     } else {
@@ -86,7 +90,7 @@ while ($tmpLoopUnrollCheck) {
     }
   }
 }
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## Globals

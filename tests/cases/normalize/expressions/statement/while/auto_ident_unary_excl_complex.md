@@ -30,10 +30,14 @@ $(a);
 let a = { a: 999, b: 1000 };
 const tmpUnaryArg = $(100);
 let tmpIfTest = !tmpUnaryArg;
-while (tmpIfTest) {
-  $(100);
-  const tmpUnaryArg$1 = $(100);
-  tmpIfTest = !tmpUnaryArg$1;
+while (true) {
+  if (tmpIfTest) {
+    $(100);
+    const tmpUnaryArg$1 = $(100);
+    tmpIfTest = !tmpUnaryArg$1;
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -42,11 +46,26 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-let tmpIfTest = !tmpUnaryArg;
-while (tmpIfTest) {
+let tmpIfTest = tmpUnaryArg;
+let $tmpLoopUnrollCheck = true;
+if (tmpUnaryArg) {
+  $tmpLoopUnrollCheck = false;
+} else {
   $(100);
   const tmpUnaryArg$1 = $(100);
-  tmpIfTest = !tmpUnaryArg$1;
+  tmpIfTest = tmpUnaryArg$1;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      break;
+    } else {
+      $(100);
+      const tmpUnaryArg$2 = $(100);
+      tmpIfTest = tmpUnaryArg$2;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

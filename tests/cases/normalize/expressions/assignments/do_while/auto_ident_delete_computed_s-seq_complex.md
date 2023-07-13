@@ -43,15 +43,19 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  $(1);
-  $(2);
-  const tmpDeleteCompObj = arg;
-  const tmpDeleteCompProp = $(`y`);
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    $(1);
+    $(2);
+    const tmpDeleteCompObj = arg;
+    const tmpDeleteCompProp = $(`y`);
+    const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, arg);
 `````
@@ -59,17 +63,35 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
+$(100);
+$(1);
+$(2);
+const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
-while (tmpDoWhileFlag) {
+const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp];
+let a = tmpNestedComplexRhs;
+if (tmpNestedComplexRhs) {
   $(100);
   $(1);
   $(2);
-  const tmpDeleteCompProp = $(`y`);
-  const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+  const tmpDeleteCompProp$1 = $(`y`);
+  const tmpNestedComplexRhs$1 = delete arg[tmpDeleteCompProp$1];
+  a = tmpNestedComplexRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      $(1);
+      $(2);
+      const tmpDeleteCompProp$2 = $(`y`);
+      const tmpNestedComplexRhs$2 = delete arg[tmpDeleteCompProp$2];
+      a = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, arg);
 `````

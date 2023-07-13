@@ -48,7 +48,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
 let tmpClusterSSA_a = tmpAssignRhsProp.c;
@@ -57,14 +57,17 @@ if (tmpClusterSSA_a) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpAssignRhsProp$1 = $(b);
-  tmpClusterSSA_a = tmpAssignRhsProp$1.c;
-  if (tmpClusterSSA_a) {
-    $(100);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpAssignRhsProp$1 = $(b);
+    tmpClusterSSA_a = tmpAssignRhsProp$1.c;
+    if (tmpClusterSSA_a) {
+      $(100);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(tmpClusterSSA_a, b);
 `````

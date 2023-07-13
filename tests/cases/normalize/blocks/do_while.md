@@ -29,19 +29,33 @@ while ($(2));
 
 `````js filename=intro
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(1);
-  tmpDoWhileFlag = $(2);
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(1);
+    tmpDoWhileFlag = $(2);
+  } else {
+    break;
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(1);
+const tmpDoWhileFlag = $(2);
+if (tmpDoWhileFlag) {
   $(1);
-  tmpDoWhileFlag = $(2);
+  let tmpClusterSSA_tmpDoWhileFlag = $(2);
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(1);
+      tmpClusterSSA_tmpDoWhileFlag = $(2);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

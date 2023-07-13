@@ -64,7 +64,7 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
@@ -78,20 +78,23 @@ if (varInitAssignLhsComputedRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpNestedAssignComMemberObj$1 = $(b);
-  const tmpNestedAssignComMemberProp$1 = $(`x`);
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedProp$1 = $(`y`);
-  const varInitAssignLhsComputedRhs$1 = $(3);
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
-  tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
-  if (varInitAssignLhsComputedRhs$1) {
-    $(100);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpNestedAssignComMemberObj$1 = $(b);
+    const tmpNestedAssignComMemberProp$1 = $(`x`);
+    const varInitAssignLhsComputedObj$1 = $(c);
+    const varInitAssignLhsComputedProp$1 = $(`y`);
+    const varInitAssignLhsComputedRhs$1 = $(3);
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+    tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
+    tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
+    if (varInitAssignLhsComputedRhs$1) {
+      $(100);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(tmpClusterSSA_a, b, c, 3);
 `````

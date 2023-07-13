@@ -44,16 +44,20 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(`loop`);
-  const tmpForInDeclRhs = { a: 1, b: 2 };
-  let x = undefined;
-  for (x in tmpForInDeclRhs) {
-    $(`loop`, x);
-    continue;
+while (true) {
+  if (tmpIfTest) {
+    $(`loop`);
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    let x = undefined;
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+      continue;
+    }
+    $(`infiloop, do not eliminate`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````
@@ -62,15 +66,19 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(`loop`);
-  let x = undefined;
-  const tmpForInDeclRhs = { a: 1, b: 2 };
-  for (x in tmpForInDeclRhs) {
-    $(`loop`, x);
+while (true) {
+  if (tmpIfTest) {
+    $(`loop`);
+    let x = undefined;
+    const tmpForInDeclRhs = { a: 1, b: 2 };
+    for (x in tmpForInDeclRhs) {
+      $(`loop`, x);
+    }
+    $(`infiloop, do not eliminate`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````

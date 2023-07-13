@@ -50,7 +50,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 let tmpIfTest = false;
 const tmpIfTest$1 = $(30);
 if (tmpIfTest$1) {
@@ -64,20 +64,23 @@ if (tmpIfTest) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  let tmpIfTest$2 = false;
-  const tmpIfTest$4 = $(30);
-  if (tmpIfTest$4) {
-    tmpIfTest$2 = $(2);
-  } else {
-    const tmpCalleeParam$1 = $(100);
-    tmpIfTest$2 = $(tmpCalleeParam$1);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    let tmpIfTest$2 = false;
+    const tmpIfTest$4 = $(30);
+    if (tmpIfTest$4) {
+      tmpIfTest$2 = $(2);
+    } else {
+      const tmpCalleeParam$1 = $(100);
+      tmpIfTest$2 = $(tmpCalleeParam$1);
+    }
+    if (tmpIfTest$2) {
+      $(100);
+    } else {
+      break;
+    }
   }
-  if (tmpIfTest$2) {
-    $(100);
-  } else {
-    break;
-  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

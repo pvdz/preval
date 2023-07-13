@@ -43,16 +43,20 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainRootComputed = `x`;
-    const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
-    tmpDoWhileFlag = tmpChainElementObject;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
+      const tmpChainRootComputed = `x`;
+      const tmpChainElementObject = tmpChainRootProp[tmpChainRootComputed];
+      tmpDoWhileFlag = tmpChainElementObject;
+    } else {
+    }
   } else {
+    break;
   }
 }
 $(a);
@@ -61,14 +65,29 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
-const a = { a: 999, b: 1000 };
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpChainElementObject = b.x;
-  tmpDoWhileFlag = tmpChainElementObject;
+const b = { x: 1 };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpChainElementObject$1 = b.x;
+    tmpDoWhileFlag = tmpChainElementObject$1;
+  } else {
+    break;
+  }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

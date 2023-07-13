@@ -59,7 +59,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const b = { c: $ };
 const tmpChainElementCall = $dotCall($, b, 1);
 let tmpClusterSSA_a = tmpChainElementCall;
@@ -68,15 +68,18 @@ if (tmpChainElementCall) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpChainElementObject$1 = b.c;
-  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
-  tmpClusterSSA_a = tmpChainElementCall$1;
-  if (tmpChainElementCall$1) {
-    $(1);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpChainElementObject$1 = b.c;
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
+    tmpClusterSSA_a = tmpChainElementCall$1;
+    if (tmpChainElementCall$1) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(tmpClusterSSA_a);
 `````

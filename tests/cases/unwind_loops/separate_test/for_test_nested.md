@@ -38,13 +38,17 @@ while (test) {
 `````js filename=intro
 let counter = 0;
 let test = counter < 10;
-while (test) {
-  $(`yolo`);
-  counter = counter + 1;
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 1 };
-  const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
-  for (test of tmpForOfRhs) {
+while (true) {
+  if (test) {
+    $(`yolo`);
+    counter = counter + 1;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 1 };
+    const tmpForOfRhs = tmpCallCallee(tmpCalleeParam);
+    for (test of tmpForOfRhs) {
+    }
+  } else {
+    break;
   }
 }
 `````
@@ -54,12 +58,16 @@ while (test) {
 `````js filename=intro
 let counter = 0;
 let test = true;
-while (test) {
-  $(`yolo`);
-  counter = counter + 1;
-  const tmpCalleeParam = { a: 1 };
-  const tmpForOfRhs = $(tmpCalleeParam);
-  for (test of tmpForOfRhs) {
+while (true) {
+  if (test) {
+    $(`yolo`);
+    counter = counter + 1;
+    const tmpCalleeParam = { a: 1 };
+    const tmpForOfRhs = $(tmpCalleeParam);
+    for (test of tmpForOfRhs) {
+    }
+  } else {
+    break;
   }
 }
 `````

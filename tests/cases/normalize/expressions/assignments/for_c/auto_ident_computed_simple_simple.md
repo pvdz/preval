@@ -37,9 +37,13 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  a = b.c;
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    a = b.c;
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -49,10 +53,23 @@ $(a, b);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-const b = { c: 1 };
-while (tmpIfTest) {
-  a = b.c;
+const $tmpLoopUnrollCheck = tmpIfTest;
+if (tmpIfTest) {
+  a = 1;
   tmpIfTest = $(1);
+} else {
+}
+const b = { c: 1 };
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      a = b.c;
+      tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

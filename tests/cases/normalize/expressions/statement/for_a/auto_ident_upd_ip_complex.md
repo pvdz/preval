@@ -43,8 +43,12 @@ const tmpAssignMemLhsObj = tmpPostUpdArgObj;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 let tmpIfTest = $(0);
-while (tmpIfTest) {
-  tmpIfTest = $(0);
+while (true) {
+  if (tmpIfTest) {
+    tmpIfTest = $(0);
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -59,9 +63,17 @@ const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-let tmpIfTest = $(0);
-while (tmpIfTest) {
-  tmpIfTest = $(0);
+const tmpIfTest = $(0);
+if (tmpIfTest) {
+  let tmpClusterSSA_tmpIfTest = $(0);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

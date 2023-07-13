@@ -50,25 +50,29 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(`loop`);
-  let tmpDoWhileFlag = true;
-  while (true) {
-    let tmpIfTest$1 = tmpDoWhileFlag;
-    if (tmpIfTest$1) {
-    } else {
-      tmpIfTest$1 = $(true);
+while (true) {
+  if (tmpIfTest) {
+    $(`loop`);
+    let tmpDoWhileFlag = true;
+    while (true) {
+      let tmpIfTest$1 = tmpDoWhileFlag;
+      if (tmpIfTest$1) {
+      } else {
+        tmpIfTest$1 = $(true);
+      }
+      if (tmpIfTest$1) {
+        tmpDoWhileFlag = false;
+        $(`loop`);
+        continue;
+      } else {
+        break;
+      }
     }
-    if (tmpIfTest$1) {
-      tmpDoWhileFlag = false;
-      $(`loop`);
-      continue;
-    } else {
-      break;
-    }
+    $(`infiloop, do not eliminate`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````
@@ -77,26 +81,23 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(`loop`);
-  $(`loop`);
-  let $tmpLoopUnrollCheck = $LOOP_UNROLL_9;
-  const tmpIfTest$2 = $(true);
-  if (tmpIfTest$2) {
+while (true) {
+  if (tmpIfTest) {
     $(`loop`);
-  } else {
-    $tmpLoopUnrollCheck = false;
-  }
-  while ($tmpLoopUnrollCheck) {
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(`loop`);
-    } else {
-      break;
+    $(`loop`);
+    while ($LOOP_UNROLL_10) {
+      const tmpIfTest$2 = $(true);
+      if (tmpIfTest$2) {
+        $(`loop`);
+      } else {
+        break;
+      }
     }
+    $(`infiloop, do not eliminate`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````

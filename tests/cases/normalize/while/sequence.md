@@ -51,7 +51,7 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 let tmpClusterSSA_x = NaN.x;
 let tmpIfTest = false;
 const tmpChainRootProp = tmpClusterSSA_x;
@@ -66,22 +66,25 @@ if (tmpIfTest) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  tmpClusterSSA_x ** 0;
-  tmpClusterSSA_x = NaN.x;
-  let tmpIfTest$2 = false;
-  const tmpChainRootProp$1 = tmpClusterSSA_x;
-  const tmpIfTest$4 = tmpChainRootProp$1 == null;
-  if (tmpIfTest$4) {
-  } else {
-    const tmpChainElementObject$1 = tmpChainRootProp$1.x;
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainRootProp$1, tmpClusterSSA_x);
-    tmpIfTest$2 = tmpChainElementCall$1;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    tmpClusterSSA_x ** 0;
+    tmpClusterSSA_x = NaN.x;
+    let tmpIfTest$2 = false;
+    const tmpChainRootProp$1 = tmpClusterSSA_x;
+    const tmpIfTest$4 = tmpChainRootProp$1 == null;
+    if (tmpIfTest$4) {
+    } else {
+      const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainRootProp$1, tmpClusterSSA_x);
+      tmpIfTest$2 = tmpChainElementCall$1;
+    }
+    if (tmpIfTest$2) {
+    } else {
+      break;
+    }
   }
-  if (tmpIfTest$2) {
-  } else {
-    break;
-  }
+} else {
 }
 `````
 

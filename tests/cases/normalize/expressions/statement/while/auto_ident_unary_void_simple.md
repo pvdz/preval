@@ -33,9 +33,13 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpIfTest = undefined;
-while (tmpIfTest) {
-  $(100);
-  tmpIfTest = undefined;
+while (true) {
+  if (tmpIfTest) {
+    $(100);
+    tmpIfTest = undefined;
+  } else {
+    break;
+  }
 }
 $(a, arg);
 `````

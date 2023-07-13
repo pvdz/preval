@@ -64,18 +64,19 @@ $(x);
 const x = $(`a`);
 $(x);
 let tmpClusterSSA_x = $(`b`);
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 if ($) {
   tmpClusterSSA_x = $(`c`);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-while ($tmpLoopUnrollCheck) {
   if ($) {
-    tmpClusterSSA_x = $(`c`);
+    while ($LOOP_UNROLL_10) {
+      if ($) {
+        tmpClusterSSA_x = $(`c`);
+      } else {
+        break;
+      }
+    }
   } else {
-    break;
   }
+} else {
 }
 $(tmpClusterSSA_x);
 `````

@@ -37,27 +37,31 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  a = undefined;
-  const tmpChainRootCall = $;
-  const tmpChainElementCall = tmpChainRootCall(b);
-  const tmpIfTest$1 = tmpChainElementCall != null;
-  if (tmpIfTest$1) {
-    const tmpChainRootComputed = $(`\$`);
-    const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
-    const tmpIfTest$3 = tmpChainElementObject != null;
-    if (tmpIfTest$3) {
-      const tmpCallCallee = $dotCall;
-      const tmpCalleeParam = tmpChainElementObject;
-      const tmpCalleeParam$1 = tmpChainElementCall;
-      const tmpCalleeParam$3 = $(1);
-      const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
-      a = tmpChainElementCall$1;
+while (true) {
+  if (tmpIfTest) {
+    a = undefined;
+    const tmpChainRootCall = $;
+    const tmpChainElementCall = tmpChainRootCall(b);
+    const tmpIfTest$1 = tmpChainElementCall != null;
+    if (tmpIfTest$1) {
+      const tmpChainRootComputed = $(`\$`);
+      const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
+      const tmpIfTest$3 = tmpChainElementObject != null;
+      if (tmpIfTest$3) {
+        const tmpCallCallee = $dotCall;
+        const tmpCalleeParam = tmpChainElementObject;
+        const tmpCalleeParam$1 = tmpChainElementCall;
+        const tmpCalleeParam$3 = $(1);
+        const tmpChainElementCall$1 = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
+        a = tmpChainElementCall$1;
+      } else {
+      }
     } else {
     }
+    tmpIfTest = $(1);
   } else {
+    break;
   }
-  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -67,8 +71,9 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 const b = { $: $ };
-while (tmpIfTest) {
+if (tmpIfTest) {
   a = undefined;
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
@@ -85,6 +90,33 @@ while (tmpIfTest) {
     }
   }
   tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      a = undefined;
+      const tmpChainElementCall$2 = $(b);
+      const tmpIfTest$2 = tmpChainElementCall$2 == null;
+      if (tmpIfTest$2) {
+      } else {
+        const tmpChainRootComputed$1 = $(`\$`);
+        const tmpChainElementObject$1 = tmpChainElementCall$2[tmpChainRootComputed$1];
+        const tmpIfTest$4 = tmpChainElementObject$1 == null;
+        if (tmpIfTest$4) {
+        } else {
+          const tmpCalleeParam$1 = $(1);
+          const tmpChainElementCall$4 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$1);
+          a = tmpChainElementCall$4;
+        }
+      }
+      tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

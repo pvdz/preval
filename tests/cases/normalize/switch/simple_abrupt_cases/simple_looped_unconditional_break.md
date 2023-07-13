@@ -70,9 +70,13 @@ tmpSwitchBreak: {
   if (tmpIfTest) {
     $(`one`);
     let tmpIfTest$1 = $(1);
-    while (tmpIfTest$1) {
-      $(2);
-      break;
+    while (true) {
+      if (tmpIfTest$1) {
+        $(2);
+        break;
+      } else {
+        break;
+      }
     }
     break tmpSwitchBreak;
   } else {

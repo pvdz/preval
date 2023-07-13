@@ -43,18 +43,22 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp = $(b);
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    tmpNestedComplexRhs = tmpChainElementObject;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainRootProp = $(b);
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      tmpNestedComplexRhs = tmpChainElementObject;
+    } else {
+    }
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
   } else {
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -62,23 +66,50 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
+$(100);
+let tmpNestedComplexRhs = false;
 const b = { x: 1 };
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp = $(b);
-  const tmpIfTest = tmpChainRootProp == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    tmpNestedComplexRhs = tmpChainElementObject;
-  }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+const tmpChainRootProp = $(b);
+const tmpIfTest = tmpChainRootProp == null;
+let tmpClusterSSA_a = undefined;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  tmpNestedComplexRhs = tmpChainElementObject;
+  tmpClusterSSA_a = tmpChainElementObject;
 }
-$(a);
+if (tmpNestedComplexRhs) {
+  $(100);
+  let tmpNestedComplexRhs$1 = undefined;
+  const tmpChainRootProp$1 = $(b);
+  const tmpIfTest$1 = tmpChainRootProp$1 == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+    tmpNestedComplexRhs$1 = tmpChainElementObject$1;
+  }
+  tmpClusterSSA_a = tmpNestedComplexRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      let tmpNestedComplexRhs$2 = undefined;
+      const tmpChainRootProp$2 = $(b);
+      const tmpIfTest$2 = tmpChainRootProp$2 == null;
+      if (tmpIfTest$2) {
+      } else {
+        const tmpChainElementObject$2 = tmpChainRootProp$2.x;
+        tmpNestedComplexRhs$2 = tmpChainElementObject$2;
+      }
+      tmpClusterSSA_a = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

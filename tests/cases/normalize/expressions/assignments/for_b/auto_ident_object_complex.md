@@ -80,14 +80,14 @@ $(1);
 $(1);
 $(3);
 $(1);
-const tmpObjLitVal$2 = $(1);
-const tmpObjLitVal$5 = $(3);
-let a = { x: tmpObjLitVal$2, y: 2, z: tmpObjLitVal$5 };
+const tmpObjLitVal$1 = $(1);
+const tmpObjLitVal$4 = $(3);
+let a = { x: tmpObjLitVal$1, y: 2, z: tmpObjLitVal$4 };
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpObjLitVal$6 = $(1);
-  const tmpObjLitVal$8 = $(3);
-  a = { x: tmpObjLitVal$6, y: 2, z: tmpObjLitVal$8 };
+  const tmpObjLitVal$2 = $(1);
+  const tmpObjLitVal$5 = $(3);
+  a = { x: tmpObjLitVal$2, y: 2, z: tmpObjLitVal$5 };
   $(1);
 }
 $(a);

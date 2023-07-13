@@ -37,15 +37,19 @@ $(a);
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpChainRootProp = b;
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementObject = tmpChainRootProp.c;
+      const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+    } else {
+    }
+    tmpIfTest = $(1);
   } else {
+    break;
   }
-  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -53,14 +57,23 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { c: $ };
-const a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpChainElementObject = b.c;
-  $dotCall(tmpChainElementObject, b, 1);
-  tmpIfTest = $(1);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  const b = { c: $ };
+  $dotCall($, b, 1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpChainElementObject$1 = b.c;
+      $dotCall(tmpChainElementObject$1, b, 1);
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

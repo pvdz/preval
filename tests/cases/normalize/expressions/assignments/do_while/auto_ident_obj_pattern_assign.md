@@ -46,17 +46,21 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpNestedAssignObjPatternRhs.x;
-  y = tmpNestedAssignObjPatternRhs.y;
-  tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs = undefined;
+    const tmpObjLitVal = $(3);
+    const tmpObjLitVal$1 = $(4);
+    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+    x = tmpNestedAssignObjPatternRhs.x;
+    y = tmpNestedAssignObjPatternRhs.y;
+    tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, x, y);
 `````
@@ -95,19 +99,19 @@ $(100);
 $(3);
 $(4);
 $(100);
-const tmpObjLitVal$3 = $(3);
-const tmpObjLitVal$5 = $(4);
-let tmpClusterSSA_x$1 = tmpObjLitVal$3;
-let tmpClusterSSA_y$1 = tmpObjLitVal$5;
-const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
+const tmpObjLitVal$2 = $(3);
+const tmpObjLitVal$4 = $(4);
+let tmpClusterSSA_x$1 = tmpObjLitVal$2;
+let tmpClusterSSA_y$1 = tmpObjLitVal$4;
+const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
 let tmpClusterSSA_a$2 = tmpNestedAssignObjPatternRhs$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpObjLitVal$6 = $(3);
-  const tmpObjLitVal$8 = $(4);
-  tmpClusterSSA_x$1 = tmpObjLitVal$6;
-  tmpClusterSSA_y$1 = tmpObjLitVal$8;
-  const tmpNestedAssignObjPatternRhs$2 = { x: tmpObjLitVal$6, y: tmpObjLitVal$8 };
+  const tmpObjLitVal$3 = $(3);
+  const tmpObjLitVal$5 = $(4);
+  tmpClusterSSA_x$1 = tmpObjLitVal$3;
+  tmpClusterSSA_y$1 = tmpObjLitVal$5;
+  const tmpNestedAssignObjPatternRhs$2 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
   tmpClusterSSA_a$2 = tmpNestedAssignObjPatternRhs$2;
 }
 $(tmpClusterSSA_a$2, tmpClusterSSA_x$1, tmpClusterSSA_y$1);

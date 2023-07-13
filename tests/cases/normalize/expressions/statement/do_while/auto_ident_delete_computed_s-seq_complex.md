@@ -43,13 +43,17 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  $(1);
-  $(2);
-  const tmpDeleteCompObj = arg;
-  const tmpDeleteCompProp = $(`y`);
-  tmpDoWhileFlag = delete tmpDeleteCompObj[tmpDeleteCompProp];
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    $(1);
+    $(2);
+    const tmpDeleteCompObj = arg;
+    const tmpDeleteCompProp = $(`y`);
+    tmpDoWhileFlag = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  } else {
+    break;
+  }
 }
 $(a, arg);
 `````
@@ -59,13 +63,29 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+$(1);
+$(2);
+const tmpDeleteCompProp = $(`y`);
+const tmpDoWhileFlag = delete arg[tmpDeleteCompProp];
+if (tmpDoWhileFlag) {
   $(100);
   $(1);
   $(2);
-  const tmpDeleteCompProp = $(`y`);
-  tmpDoWhileFlag = delete arg[tmpDeleteCompProp];
+  const tmpDeleteCompProp$1 = $(`y`);
+  let tmpClusterSSA_tmpDoWhileFlag = delete arg[tmpDeleteCompProp$1];
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      $(1);
+      $(2);
+      const tmpDeleteCompProp$2 = $(`y`);
+      tmpClusterSSA_tmpDoWhileFlag = delete arg[tmpDeleteCompProp$2];
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, arg);
 `````

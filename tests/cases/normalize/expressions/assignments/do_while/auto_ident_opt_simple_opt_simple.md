@@ -44,23 +44,27 @@ const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpIfTest$1 = tmpChainElementObject != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      tmpNestedComplexRhs = tmpChainElementObject$1;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpIfTest$1 = tmpChainElementObject != null;
+      if (tmpIfTest$1) {
+        const tmpChainElementObject$1 = tmpChainElementObject.y;
+        tmpNestedComplexRhs = tmpChainElementObject$1;
+      } else {
+      }
     } else {
     }
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
   } else {
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -68,22 +72,37 @@ $(a);
 ## Output
 
 `````js filename=intro
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
 const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
+$(100);
+let a = 1;
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainElementObject = b.x;
-  const tmpIfTest$1 = tmpChainElementObject == null;
-  if (tmpIfTest$1) {
+const b = { x: tmpObjLitVal };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs$1 = undefined;
+    const tmpChainElementObject$2 = b.x;
+    const tmpIfTest$2 = tmpChainElementObject$2 == null;
+    if (tmpIfTest$2) {
+    } else {
+      const tmpChainElementObject$4 = tmpChainElementObject$2.y;
+      tmpNestedComplexRhs$1 = tmpChainElementObject$4;
+    }
+    a = tmpNestedComplexRhs$1;
+    tmpDoWhileFlag = tmpNestedComplexRhs$1;
   } else {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpNestedComplexRhs = tmpChainElementObject$1;
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````

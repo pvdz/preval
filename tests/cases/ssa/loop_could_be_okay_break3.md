@@ -83,8 +83,12 @@ let f = function () {
       return undefined;
     }
   };
-  while (tmpLoopRetCode) {
-    tmpLoopBody();
+  while (true) {
+    if (tmpLoopRetCode) {
+      tmpLoopBody();
+    } else {
+      break;
+    }
   }
   return undefined;
 };
@@ -96,13 +100,37 @@ f();
 `````js filename=intro
 $(1);
 let tmpLoopRetCode = true;
-while (tmpLoopRetCode) {
-  const tmpssa2_x = $(2);
-  $(tmpssa2_x);
+const tmpssa2_x = $(2);
+$(tmpssa2_x);
+let $tmpLoopUnrollCheck = false;
+if ($) {
+  tmpLoopRetCode = false;
+} else {
+  $tmpLoopUnrollCheck = tmpLoopRetCode;
+}
+if (tmpLoopRetCode) {
+  const tmpssa2_x$1 = $(2);
+  $(tmpssa2_x$1);
   if ($) {
     tmpLoopRetCode = false;
   } else {
   }
+} else {
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpLoopRetCode) {
+      const tmpssa2_x$2 = $(2);
+      $(tmpssa2_x$2);
+      if ($) {
+        tmpLoopRetCode = false;
+      } else {
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

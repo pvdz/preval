@@ -39,10 +39,14 @@ $(s);
 `````js filename=intro
 let s = $(10);
 let x = true;
-while (x) {
-  const nowAssignable$3 = parseExpression(lexerFlags$285, astProp$181);
-  s = s | 10;
-  x = $(true);
+while (true) {
+  if (x) {
+    const nowAssignable$3 = parseExpression(lexerFlags$285, astProp$181);
+    s = s | 10;
+    x = $(true);
+  } else {
+    break;
+  }
 }
 $(s);
 `````
@@ -50,14 +54,26 @@ $(s);
 ## Output
 
 `````js filename=intro
-let s = $(10);
-let x = true;
-while (x) {
+const s = $(10);
+parseExpression(lexerFlags$285, astProp$181);
+let tmpClusterSSA_s = s | 10;
+const tmpClusterSSA_x = $(true);
+if (tmpClusterSSA_x) {
   parseExpression(lexerFlags$285, astProp$181);
-  s = s | 10;
-  x = $(true);
+  tmpClusterSSA_s = tmpClusterSSA_s | 10;
+  let tmpClusterSSA_x$1 = $(true);
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_x$1) {
+      parseExpression(lexerFlags$285, astProp$181);
+      tmpClusterSSA_s = tmpClusterSSA_s | 10;
+      tmpClusterSSA_x$1 = $(true);
+    } else {
+      break;
+    }
+  }
+} else {
 }
-$(s);
+$(tmpClusterSSA_s);
 `````
 
 ## Globals

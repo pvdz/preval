@@ -43,15 +43,19 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  $(1);
-  $(2);
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $(`y`);
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    $(1);
+    $(2);
+    const tmpDeleteCompObj = $(arg);
+    const tmpDeleteCompProp = $(`y`);
+    const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, arg);
 `````
@@ -59,20 +63,40 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
+$(100);
+$(1);
+$(2);
 const arg = { y: 1 };
-while (tmpDoWhileFlag) {
+const tmpDeleteCompObj = $(arg);
+const tmpDeleteCompProp = $(`y`);
+const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpClusterSSA_a = tmpNestedComplexRhs;
+if (tmpNestedComplexRhs) {
   $(100);
   $(1);
   $(2);
-  const tmpDeleteCompObj = $(arg);
-  const tmpDeleteCompProp = $(`y`);
-  const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+  const tmpDeleteCompObj$1 = $(arg);
+  const tmpDeleteCompProp$1 = $(`y`);
+  const tmpNestedComplexRhs$1 = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+  tmpClusterSSA_a = tmpNestedComplexRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      $(1);
+      $(2);
+      const tmpDeleteCompObj$2 = $(arg);
+      const tmpDeleteCompProp$2 = $(`y`);
+      const tmpNestedComplexRhs$2 = delete tmpDeleteCompObj$2[tmpDeleteCompProp$2];
+      tmpClusterSSA_a = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
-$(a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

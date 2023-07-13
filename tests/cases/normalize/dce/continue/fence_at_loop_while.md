@@ -44,19 +44,23 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(`loop`);
-  while (true) {
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(`loop`);
-      continue;
-    } else {
-      break;
+while (true) {
+  if (tmpIfTest) {
+    $(`loop`);
+    while (true) {
+      const tmpIfTest$1 = $(true);
+      if (tmpIfTest$1) {
+        $(`loop`);
+        continue;
+      } else {
+        break;
+      }
     }
+    $(`infiloop, do not eliminate`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````
@@ -65,25 +69,32 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(`loop`);
-  let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
-  const tmpIfTest$1 = $(true);
-  if (tmpIfTest$1) {
+while (true) {
+  if (tmpIfTest) {
     $(`loop`);
-  } else {
-    $tmpLoopUnrollCheck = false;
-  }
-  while ($tmpLoopUnrollCheck) {
-    const tmpIfTest$2 = $(true);
-    if (tmpIfTest$2) {
+    let $tmpLoopUnrollCheck = true;
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
       $(`loop`);
     } else {
-      break;
+      $tmpLoopUnrollCheck = false;
     }
+    if ($tmpLoopUnrollCheck) {
+      while ($LOOP_UNROLL_10) {
+        const tmpIfTest$2 = $(true);
+        if (tmpIfTest$2) {
+          $(`loop`);
+        } else {
+          break;
+        }
+      }
+    } else {
+    }
+    $(`infiloop, do not eliminate`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````

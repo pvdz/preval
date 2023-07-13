@@ -33,11 +33,18 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = 1;
-tmpIfTest = 2;
-while (tmpIfTest) {
-  $(1);
-  tmpIfTest = 1;
-  tmpIfTest = 2;
+while (true) {
+  if (tmpIfTest) {
+    tmpIfTest = 2;
+    if (tmpIfTest) {
+      $(1);
+      tmpIfTest = 1;
+    } else {
+      break;
+    }
+  } else {
+    break;
+  }
 }
 $(a);
 `````

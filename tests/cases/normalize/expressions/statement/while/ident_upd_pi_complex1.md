@@ -39,13 +39,17 @@ $(b);
 `````js filename=intro
 let b = { x: 5 };
 let t = true;
-while (t) {
-  const tmpBinLhs = b.x;
-  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-  b.x = varInitAssignLhsComputedRhs;
-  let p = varInitAssignLhsComputedRhs;
-  t = p;
-  $(100);
+while (true) {
+  if (t) {
+    const tmpBinLhs = b.x;
+    const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
+    b.x = varInitAssignLhsComputedRhs;
+    let p = varInitAssignLhsComputedRhs;
+    t = p;
+    $(100);
+  } else {
+    break;
+  }
 }
 $(b);
 `````
@@ -53,15 +57,12 @@ $(b);
 ## Output
 
 `````js filename=intro
-let t = true;
-const b = { x: 5 };
-while (t) {
-  const tmpBinLhs = b.x;
-  const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
-  b.x = varInitAssignLhsComputedRhs;
-  t = varInitAssignLhsComputedRhs;
-  $(100);
-}
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+const b = { x: 0 };
 $(b);
 `````
 

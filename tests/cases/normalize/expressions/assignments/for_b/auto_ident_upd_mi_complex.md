@@ -57,7 +57,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const b = { x: 1 };
 const tmpCalleeParam = $(b);
 const tmpNestedAssignObj = $(tmpCalleeParam);
@@ -70,18 +70,21 @@ if (tmpNestedPropCompoundComplexRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpCalleeParam$1 = $(b);
-  const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
-  const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
-  const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 - 1;
-  tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-  tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs$1;
-  if (tmpNestedPropCompoundComplexRhs$1) {
-    $(1);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCalleeParam$1 = $(b);
+    const tmpNestedAssignObj$1 = $(tmpCalleeParam$1);
+    const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
+    const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 - 1;
+    tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
+    tmpClusterSSA_a = tmpNestedPropCompoundComplexRhs$1;
+    if (tmpNestedPropCompoundComplexRhs$1) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(tmpClusterSSA_a, b);
 `````

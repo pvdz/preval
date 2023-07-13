@@ -34,9 +34,13 @@ $(1);
 
 `````js filename=intro
 let x = true;
-while (x) {
-  $(`inside`);
-  x = false;
+while (true) {
+  if (x) {
+    $(`inside`);
+    x = false;
+  } else {
+    break;
+  }
 }
 $(1);
 `````
@@ -44,11 +48,7 @@ $(1);
 ## Output
 
 `````js filename=intro
-let x = true;
-while (x) {
-  $(`inside`);
-  x = false;
-}
+$(`inside`);
 $(1);
 `````
 

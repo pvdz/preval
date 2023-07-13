@@ -34,10 +34,14 @@ const max = $(10);
 const max = $(10);
 let i = 0;
 let tmpIfTest = i < 10;
-while (tmpIfTest) {
-  $(i);
-  i = i + max;
-  tmpIfTest = i < 10;
+while (true) {
+  if (tmpIfTest) {
+    $(i);
+    i = i + max;
+    tmpIfTest = i < 10;
+  } else {
+    break;
+  }
 }
 `````
 
@@ -45,12 +49,23 @@ while (tmpIfTest) {
 
 `````js filename=intro
 const max = $(10);
-let i = 0;
-let tmpIfTest = true;
-while (tmpIfTest) {
+$(0);
+const i = 0 + max;
+const tmpClusterSSA_tmpIfTest = i < 10;
+if (tmpClusterSSA_tmpIfTest) {
   $(i);
-  i = i + max;
-  tmpIfTest = i < 10;
+  let tmpClusterSSA_i = i + max;
+  let tmpClusterSSA_tmpIfTest$1 = tmpClusterSSA_i < 10;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpIfTest$1) {
+      $(tmpClusterSSA_i);
+      tmpClusterSSA_i = tmpClusterSSA_i + max;
+      tmpClusterSSA_tmpIfTest$1 = tmpClusterSSA_i < 10;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

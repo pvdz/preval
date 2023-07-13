@@ -45,15 +45,23 @@ let test = counter < 10;
 ## Normalized
 
 `````js filename=intro
-while (test) {
-  $(`yolo`);
-  counter = counter + 1;
-  test = counter < 10;
+while (true) {
+  if (test) {
+    $(`yolo`);
+    counter = counter + 1;
+    test = counter < 10;
+  } else {
+    break;
+  }
 }
-while (test) {
-  $(`yolo`);
-  counter = counter + 1;
-  test = counter < 10;
+while (true) {
+  if (test) {
+    $(`yolo`);
+    counter = counter + 1;
+    test = counter < 10;
+  } else {
+    break;
+  }
 }
 let counter = 0;
 let test = counter < 10;

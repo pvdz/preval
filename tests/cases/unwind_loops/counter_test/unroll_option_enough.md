@@ -38,12 +38,16 @@ while (counter) {
 
 `````js filename=intro
 let counter = 20;
-while (counter) {
-  const tmpCallCallee = $;
-  const tmpStringConcatL = $coerce(counter, `plustr`);
-  const tmpCalleeParam = `test ${tmpStringConcatL}`;
-  tmpCallCallee(tmpCalleeParam);
-  counter = counter - 1;
+while (true) {
+  if (counter) {
+    const tmpCallCallee = $;
+    const tmpStringConcatL = $coerce(counter, `plustr`);
+    const tmpCalleeParam = `test ${tmpStringConcatL}`;
+    tmpCallCallee(tmpCalleeParam);
+    counter = counter - 1;
+  } else {
+    break;
+  }
 }
 `````
 
@@ -61,15 +65,17 @@ $(`test 13`);
 $(`test 12`);
 $(`test 11`);
 $(`test 10`);
-$(`test 9`);
-$(`test 8`);
-$(`test 7`);
-$(`test 6`);
-$(`test 5`);
-$(`test 4`);
-$(`test 3`);
-$(`test 2`);
-$(`test 1`);
+let tmpClusterSSA_counter$2 = 9;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (tmpClusterSSA_counter$2) {
+    const tmpStringConcatL$1 = $coerce(tmpClusterSSA_counter$2, `string`);
+    const tmpCalleeParam$1 = `test ${tmpStringConcatL$1}`;
+    $(tmpCalleeParam$1);
+    tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 - 1;
+  } else {
+    break;
+  }
+}
 `````
 
 ## Globals

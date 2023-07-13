@@ -43,14 +43,18 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
-  const tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(1);
+    const tmpCalleeParam$1 = $(2);
+    const tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -58,17 +62,33 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpCalleeParam = $(1);
+const tmpCalleeParam$1 = $(2);
+const tmpNestedComplexRhs = $(tmpCalleeParam, tmpCalleeParam$1);
+let tmpClusterSSA_a = tmpNestedComplexRhs;
+if (tmpNestedComplexRhs) {
   $(100);
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
-  const tmpNestedComplexRhs = $(tmpCalleeParam, tmpCalleeParam$1);
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+  const tmpCalleeParam$2 = $(1);
+  const tmpCalleeParam$4 = $(2);
+  const tmpNestedComplexRhs$1 = $(tmpCalleeParam$2, tmpCalleeParam$4);
+  tmpClusterSSA_a = tmpNestedComplexRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpCalleeParam$3 = $(1);
+      const tmpCalleeParam$5 = $(2);
+      const tmpNestedComplexRhs$2 = $(tmpCalleeParam$3, tmpCalleeParam$5);
+      tmpClusterSSA_a = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

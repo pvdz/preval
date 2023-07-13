@@ -99,16 +99,20 @@ if (three) {
 } else {
   loopTest = false;
 }
-while (loopTest) {
-  $(100);
-  const B$1 = $(b);
-  const X$1 = $(`x`);
-  const C = $(c);
-  const Y$1 = $(`y`);
-  const T = $(3);
-  C[Y$1] = T;
-  B$1[X$1] = T;
-  if (T) {
+while (true) {
+  if (loopTest) {
+    $(100);
+    const B$1 = $(b);
+    const X$1 = $(`x`);
+    const C = $(c);
+    const Y$1 = $(`y`);
+    const T = $(3);
+    C[Y$1] = T;
+    B$1[X$1] = T;
+    if (T) {
+    } else {
+      break;
+    }
   } else {
     break;
   }
@@ -135,7 +139,8 @@ if (three) {
 } else {
   loopTest = false;
 }
-while (loopTest) {
+let $tmpLoopUnrollCheck = true;
+if (loopTest) {
   $(100);
   const B$1 = $(b);
   const X$1 = $(`x`);
@@ -146,8 +151,31 @@ while (loopTest) {
   B$1[X$1] = T;
   if (T) {
   } else {
-    break;
+    $tmpLoopUnrollCheck = false;
   }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (loopTest) {
+      $(100);
+      const B$2 = $(b);
+      const X$2 = $(`x`);
+      const C$1 = $(c);
+      const Y$2 = $(`y`);
+      const T$1 = $(3);
+      C$1[Y$2] = T$1;
+      B$2[X$2] = T$1;
+      if (T$1) {
+      } else {
+        break;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b, c, 3);
 `````

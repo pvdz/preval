@@ -46,16 +46,20 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  $(x);
-  $(y);
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpNestedAssignObjPatternRhs.x;
-  y = tmpNestedAssignObjPatternRhs.y;
-  tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    $(x);
+    $(y);
+    const tmpObjLitVal = $(3);
+    const tmpObjLitVal$1 = $(4);
+    const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+    x = tmpNestedAssignObjPatternRhs.x;
+    y = tmpNestedAssignObjPatternRhs.y;
+    tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
+  } else {
+    break;
+  }
 }
 $(a, x, y);
 `````

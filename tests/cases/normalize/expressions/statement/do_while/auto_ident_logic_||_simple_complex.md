@@ -39,14 +39,18 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = 0;
+while (true) {
   if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = 0;
+    if (tmpDoWhileFlag) {
+    } else {
+      const tmpCallCallee = $;
+      const tmpCalleeParam = $(1);
+      tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+    }
   } else {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+    break;
   }
 }
 $(a);
@@ -55,11 +59,23 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpCalleeParam = $(1);
+const tmpDoWhileFlag = $(tmpCalleeParam);
+if (tmpDoWhileFlag) {
   $(100);
-  const tmpCalleeParam = $(1);
-  tmpDoWhileFlag = $(tmpCalleeParam);
+  const tmpCalleeParam$1 = $(1);
+  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$1);
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      const tmpCalleeParam$2 = $(1);
+      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

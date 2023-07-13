@@ -37,10 +37,14 @@ while (test) {
 `````js filename=intro
 let counter = 0;
 let test = counter < 10;
-while (test) {
-  $(`yolo`);
-  test = counter < 10;
-  counter = counter + 1;
+while (true) {
+  if (test) {
+    $(`yolo`);
+    test = counter < 10;
+    counter = counter + 1;
+  } else {
+    break;
+  }
 }
 `````
 
@@ -57,12 +61,17 @@ $(`yolo`);
 $(`yolo`);
 $(`yolo`);
 $(`yolo`);
-let tmpClusterSSA_test$17 = true;
-let tmpClusterSSA_counter$17 = 10;
-while (tmpClusterSSA_test$17) {
-  $(`yolo`);
-  tmpClusterSSA_test$17 = tmpClusterSSA_counter$17 < 10;
-  tmpClusterSSA_counter$17 = tmpClusterSSA_counter$17 + 1;
+$(`yolo`);
+let test = false;
+let counter = 11;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (test) {
+    $(`yolo`);
+    test = counter < 10;
+    counter = counter + 1;
+  } else {
+    break;
+  }
 }
 `````
 

@@ -37,6 +37,13 @@ $(`after`);
 `````js filename=intro
 const tmpUnaryArg = $(true);
 let tmpIfTest = !tmpUnaryArg;
+while (true) {
+  if (tmpIfTest) {
+    break;
+  } else {
+    break;
+  }
+}
 $(`after`);
 `````
 

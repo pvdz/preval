@@ -37,10 +37,14 @@ while (test) {
 `````js filename=intro
 let counter = 0;
 let test = counter < 10;
-while (test) {
-  $(`yolo`);
-  counter = counter + 1;
-  test = counter < 20;
+while (true) {
+  if (test) {
+    $(`yolo`);
+    counter = counter + 1;
+    test = counter < 20;
+  } else {
+    break;
+  }
 }
 `````
 
@@ -58,15 +62,17 @@ $(`yolo`);
 $(`yolo`);
 $(`yolo`);
 $(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
-$(`yolo`);
+let counter = 11;
+let test = true;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (test) {
+    $(`yolo`);
+    counter = counter + 1;
+    test = counter < 20;
+  } else {
+    break;
+  }
+}
 `````
 
 ## Globals

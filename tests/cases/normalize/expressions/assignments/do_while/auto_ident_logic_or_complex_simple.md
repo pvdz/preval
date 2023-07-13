@@ -39,17 +39,21 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(0);
-  let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-  if (tmpNestedComplexRhs) {
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(0);
+    let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    if (tmpNestedComplexRhs) {
+    } else {
+      tmpNestedComplexRhs = 2;
+    }
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
   } else {
-    tmpNestedComplexRhs = 2;
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -57,20 +61,50 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCalleeParam = $(0);
-  let tmpNestedComplexRhs = $(tmpCalleeParam);
-  if (tmpNestedComplexRhs) {
-  } else {
-    tmpNestedComplexRhs = 2;
-  }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+$(100);
+const tmpCalleeParam = $(0);
+const tmpNestedComplexRhs = $(tmpCalleeParam);
+let tmpClusterSSA_a = 2;
+let tmpClusterSSA_tmpDoWhileFlag = true;
+let $tmpLoopUnrollCheck = false;
+if (tmpNestedComplexRhs) {
+  tmpClusterSSA_a = tmpNestedComplexRhs;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
+  $tmpLoopUnrollCheck = tmpNestedComplexRhs;
+} else {
+  $tmpLoopUnrollCheck = tmpClusterSSA_tmpDoWhileFlag;
 }
-$(a);
+if (tmpClusterSSA_tmpDoWhileFlag) {
+  $(100);
+  const tmpCalleeParam$1 = $(0);
+  let tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
+  if (tmpNestedComplexRhs$1) {
+  } else {
+    tmpNestedComplexRhs$1 = 2;
+  }
+  tmpClusterSSA_a = tmpNestedComplexRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+} else {
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      const tmpCalleeParam$2 = $(0);
+      let tmpNestedComplexRhs$2 = $(tmpCalleeParam$2);
+      if (tmpNestedComplexRhs$2) {
+      } else {
+        tmpNestedComplexRhs$2 = 2;
+      }
+      tmpClusterSSA_a = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

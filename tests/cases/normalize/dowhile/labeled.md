@@ -58,20 +58,23 @@ while (true) {
 
 `````js filename=intro
 $(1);
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_9;
+let $tmpLoopUnrollCheck = true;
 const tmpIfTest$1 = $(2);
 if (tmpIfTest$1) {
   $(1);
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpIfTest$2 = $(2);
-  if (tmpIfTest$2) {
-    $(1);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    const tmpIfTest$2 = $(2);
+    if (tmpIfTest$2) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 `````
 

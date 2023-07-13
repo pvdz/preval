@@ -36,17 +36,29 @@ while (true) {
 
 `````js filename=intro
 let tmpIfTest = $(`yes`);
-while (tmpIfTest) {
-  tmpIfTest = $(`yes`);
+while (true) {
+  if (tmpIfTest) {
+    tmpIfTest = $(`yes`);
+  } else {
+    break;
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(`yes`);
-while (tmpIfTest) {
-  tmpIfTest = $(`yes`);
+const tmpIfTest = $(`yes`);
+if (tmpIfTest) {
+  let tmpClusterSSA_tmpIfTest = $(`yes`);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(`yes`);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

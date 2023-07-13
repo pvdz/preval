@@ -39,9 +39,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = { x: 1, y: 2, z: 3 };
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = { x: 1, y: 2, z: 3 };
+  } else {
+    break;
+  }
 }
 $(a);
 `````

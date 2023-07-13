@@ -37,10 +37,14 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpDeleteObj = $(arg);
-  delete tmpDeleteObj.y;
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpDeleteObj = $(arg);
+    delete tmpDeleteObj.y;
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a, arg);
 `````
@@ -50,11 +54,21 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   const tmpDeleteObj = $(arg);
   delete tmpDeleteObj.y;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpDeleteObj$1 = $(arg);
+      delete tmpDeleteObj$1.y;
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, arg);
 `````

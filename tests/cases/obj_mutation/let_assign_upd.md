@@ -41,15 +41,19 @@ $(blob);
 `````js filename=intro
 let blob = undefined;
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  blob = { thing: `woop`, xyz: 0 };
-  const tmpAssignMemLhsObj = blob;
-  const tmpBinLhs = blob.xyz;
-  const tmpAssignMemRhs = tmpBinLhs + 1;
-  tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
-  $(blob);
-  const tmpBinLhs$1 = blob.xyz;
-  tmpDoWhileFlag = tmpBinLhs$1 < 10;
+while (true) {
+  if (tmpDoWhileFlag) {
+    blob = { thing: `woop`, xyz: 0 };
+    const tmpAssignMemLhsObj = blob;
+    const tmpBinLhs = blob.xyz;
+    const tmpAssignMemRhs = tmpBinLhs + 1;
+    tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
+    $(blob);
+    const tmpBinLhs$1 = blob.xyz;
+    tmpDoWhileFlag = tmpBinLhs$1 < 10;
+  } else {
+    break;
+  }
 }
 $(blob);
 `````
@@ -57,17 +61,38 @@ $(blob);
 ## Output
 
 `````js filename=intro
-let blob = undefined;
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+let blob = { thing: `woop`, xyz: 0 };
+const tmpAssignMemLhsObj = blob;
+const tmpBinLhs = blob.xyz;
+const tmpAssignMemRhs = tmpBinLhs + 1;
+tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
+$(blob);
+const tmpBinLhs$1 = blob.xyz;
+const tmpClusterSSA_tmpDoWhileFlag = tmpBinLhs$1 < 10;
+if (tmpClusterSSA_tmpDoWhileFlag) {
   blob = { thing: `woop`, xyz: 0 };
-  const tmpAssignMemLhsObj = blob;
-  const tmpBinLhs = blob.xyz;
-  const tmpAssignMemRhs = tmpBinLhs + 1;
-  tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
+  const tmpAssignMemLhsObj$1 = blob;
+  const tmpBinLhs$2 = blob.xyz;
+  const tmpAssignMemRhs$1 = tmpBinLhs$2 + 1;
+  tmpAssignMemLhsObj$1.xyz = tmpAssignMemRhs$1;
   $(blob);
-  const tmpBinLhs$1 = blob.xyz;
-  tmpDoWhileFlag = tmpBinLhs$1 < 10;
+  const tmpBinLhs$4 = blob.xyz;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpBinLhs$4 < 10;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      blob = { thing: `woop`, xyz: 0 };
+      const tmpAssignMemLhsObj$2 = blob;
+      const tmpBinLhs$3 = blob.xyz;
+      const tmpAssignMemRhs$2 = tmpBinLhs$3 + 1;
+      tmpAssignMemLhsObj$2.xyz = tmpAssignMemRhs$2;
+      $(blob);
+      const tmpBinLhs$5 = blob.xyz;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpBinLhs$5 < 10;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(blob);
 `````

@@ -45,18 +45,22 @@ const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let b = { c: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementObject$1 = tmpChainElementObject.d;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-    tmpDoWhileFlag = tmpChainElementCall;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
+      const tmpChainElementObject = tmpChainRootProp.c;
+      const tmpChainElementObject$1 = tmpChainElementObject.d;
+      const tmpChainElementObject$3 = tmpChainElementObject$1.e;
+      const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
+      tmpDoWhileFlag = tmpChainElementCall;
+    } else {
+    }
   } else {
+    break;
   }
 }
 $(a);
@@ -67,16 +71,29 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
 const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const b = { c: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpChainElementObject$3 = tmpObjLitVal$1.e;
+const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, 1);
+if (tmpChainElementCall) {
   $(100);
-  const tmpChainElementObject = b.c;
-  const tmpChainElementObject$1 = tmpChainElementObject.d;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.e;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpChainElementObject$1, 1);
-  tmpDoWhileFlag = tmpChainElementCall;
+  const tmpChainElementObject$6 = tmpObjLitVal$1.e;
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementCall$1;
+  const b = { c: tmpObjLitVal };
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpChainElementObject$1 = b.c;
+      const tmpChainElementObject$5 = tmpChainElementObject$1.d;
+      const tmpChainElementObject$7 = tmpChainElementObject$5.e;
+      const tmpChainElementCall$2 = $dotCall(tmpChainElementObject$7, tmpChainElementObject$5, 1);
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementCall$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

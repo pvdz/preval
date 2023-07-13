@@ -39,15 +39,19 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = undefined;
-  const tmpChainRootCall = $;
-  const tmpIfTest = tmpChainRootCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementCall = tmpChainRootCall(1);
-    tmpDoWhileFlag = tmpChainElementCall;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = undefined;
+    const tmpChainRootCall = $;
+    const tmpIfTest = tmpChainRootCall != null;
+    if (tmpIfTest) {
+      const tmpChainElementCall = tmpChainRootCall(1);
+      tmpDoWhileFlag = tmpChainElementCall;
+    } else {
+    }
   } else {
+    break;
   }
 }
 $(a);
@@ -56,16 +60,43 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+let tmpDoWhileFlag = false;
+const tmpIfTest = $ == null;
+let $tmpLoopUnrollCheck = false;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementCall = $(1);
+  tmpDoWhileFlag = tmpChainElementCall;
+  $tmpLoopUnrollCheck = tmpChainElementCall;
+}
+if (tmpDoWhileFlag) {
   $(100);
   tmpDoWhileFlag = false;
-  const tmpIfTest = $ == null;
-  if (tmpIfTest) {
+  const tmpIfTest$1 = $ == null;
+  if (tmpIfTest$1) {
   } else {
-    const tmpChainElementCall = $(1);
-    tmpDoWhileFlag = tmpChainElementCall;
+    const tmpChainElementCall$1 = $(1);
+    tmpDoWhileFlag = tmpChainElementCall$1;
   }
+} else {
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpDoWhileFlag) {
+      $(100);
+      tmpDoWhileFlag = false;
+      const tmpIfTest$2 = $ == null;
+      if (tmpIfTest$2) {
+      } else {
+        const tmpChainElementCall$2 = $(1);
+        tmpDoWhileFlag = tmpChainElementCall$2;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

@@ -46,17 +46,21 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  $(x);
-  $(y);
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    $(x);
+    $(y);
+    const tmpArrElement = $(3);
+    const tmpArrElement$1 = $(4);
+    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+  } else {
+    break;
+  }
 }
 $(a, x, y);
 `````
@@ -119,19 +123,19 @@ $(tmpArrElement$18);
 $(tmpArrElement$20);
 const tmpArrElement$19 = $(3);
 const tmpArrElement$21 = $(4);
-let tmpClusterSSA_x$2 = tmpArrElement$19;
-let tmpClusterSSA_y$2 = tmpArrElement$21;
+let tmpClusterSSA_x$1 = tmpArrElement$19;
+let tmpClusterSSA_y$1 = tmpArrElement$21;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  $(tmpClusterSSA_x$2);
-  $(tmpClusterSSA_y$2);
+  $(tmpClusterSSA_x$1);
+  $(tmpClusterSSA_y$1);
   const tmpArrElement$22 = $(3);
   const tmpArrElement$24 = $(4);
-  tmpClusterSSA_x$2 = tmpArrElement$22;
-  tmpClusterSSA_y$2 = tmpArrElement$24;
+  tmpClusterSSA_x$1 = tmpArrElement$22;
+  tmpClusterSSA_y$1 = tmpArrElement$24;
 }
 const a = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_x$2, tmpClusterSSA_y$2);
+$(a, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
 
 ## Globals

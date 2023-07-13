@@ -50,27 +50,31 @@ let b = { x: 1 };
 let c = 3;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpBinLhs = b.x;
-  const tmpIfTest = tmpBinLhs === 3;
-  if (tmpIfTest) {
-    break;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpBinLhs = b.x;
+    const tmpIfTest = tmpBinLhs === 3;
+    if (tmpIfTest) {
+      break;
+    } else {
+      const varInitAssignLhsComputedRhs$7 = c;
+      b.x = varInitAssignLhsComputedRhs$7;
+      const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
+      b.x = varInitAssignLhsComputedRhs$5;
+      const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
+      b.x = varInitAssignLhsComputedRhs$3;
+      const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
+      b.x = varInitAssignLhsComputedRhs$1;
+      const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+      b.x = varInitAssignLhsComputedRhs;
+      const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+      const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+      b.x = tmpNestedPropAssignRhs;
+      tmpDoWhileFlag = tmpNestedPropAssignRhs;
+    }
   } else {
-    const varInitAssignLhsComputedRhs$7 = c;
-    b.x = varInitAssignLhsComputedRhs$7;
-    const varInitAssignLhsComputedRhs$5 = varInitAssignLhsComputedRhs$7;
-    b.x = varInitAssignLhsComputedRhs$5;
-    const varInitAssignLhsComputedRhs$3 = varInitAssignLhsComputedRhs$5;
-    b.x = varInitAssignLhsComputedRhs$3;
-    const varInitAssignLhsComputedRhs$1 = varInitAssignLhsComputedRhs$3;
-    b.x = varInitAssignLhsComputedRhs$1;
-    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-    b.x = varInitAssignLhsComputedRhs;
-    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-    b.x = tmpNestedPropAssignRhs;
-    tmpDoWhileFlag = tmpNestedPropAssignRhs;
+    break;
   }
 }
 $(a, b, c);

@@ -40,14 +40,18 @@ $(`after, wont eval due to infinite loop`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  const tmpForOfDeclRhs = [10, 20];
-  let x = undefined;
-  for (x of tmpForOfDeclRhs) {
-    continue;
+while (true) {
+  if (tmpIfTest) {
+    const tmpForOfDeclRhs = [10, 20];
+    let x = undefined;
+    for (x of tmpForOfDeclRhs) {
+      continue;
+    }
+    $(`keep`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`keep`);
-  tmpIfTest = $(true);
 }
 $(`after, wont eval due to infinite loop`);
 `````
@@ -56,13 +60,17 @@ $(`after, wont eval due to infinite loop`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  let x = undefined;
-  const tmpForOfDeclRhs = [10, 20];
-  for (x of tmpForOfDeclRhs) {
+while (true) {
+  if (tmpIfTest) {
+    let x = undefined;
+    const tmpForOfDeclRhs = [10, 20];
+    for (x of tmpForOfDeclRhs) {
+    }
+    $(`keep`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`keep`);
-  tmpIfTest = $(true);
 }
 $(`after, wont eval due to infinite loop`);
 `````

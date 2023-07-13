@@ -82,37 +82,41 @@ while (run) {
 
 `````js filename=intro
 let run = true;
-while (run) {
-  $(1);
-  let tmpSwitchCaseToStart = 1;
-  const tmpIfTest = true;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-    const tmpIfTest$1 = false;
-    if (tmpIfTest$1) {
-      tmpSwitchCaseToStart = 2;
+while (true) {
+  if (run) {
+    $(1);
+    let tmpSwitchCaseToStart = 1;
+    const tmpIfTest = true;
+    if (tmpIfTest) {
+      tmpSwitchCaseToStart = 0;
     } else {
-    }
-  }
-  tmpSwitchBreak: {
-    const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
-    if (tmpIfTest$2) {
-      run = false;
-      break tmpSwitchBreak;
-    } else {
-      const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
-      if (tmpIfTest$3) {
-        continue;
+      const tmpIfTest$1 = false;
+      if (tmpIfTest$1) {
+        tmpSwitchCaseToStart = 2;
       } else {
-        const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
-        if (tmpIfTest$4) {
-          let SSA_run = false;
-          break tmpSwitchBreak;
+      }
+    }
+    tmpSwitchBreak: {
+      const tmpIfTest$2 = tmpSwitchCaseToStart <= 0;
+      if (tmpIfTest$2) {
+        run = false;
+        break tmpSwitchBreak;
+      } else {
+        const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+        if (tmpIfTest$3) {
+          continue;
         } else {
+          const tmpIfTest$4 = tmpSwitchCaseToStart <= 2;
+          if (tmpIfTest$4) {
+            let SSA_run = false;
+            break tmpSwitchBreak;
+          } else {
+          }
         }
       }
     }
+  } else {
+    break;
   }
 }
 `````
@@ -120,11 +124,7 @@ while (run) {
 ## Output
 
 `````js filename=intro
-let run = true;
-while (run) {
-  $(1);
-  run = false;
-}
+$(1);
 `````
 
 ## Globals

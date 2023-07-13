@@ -43,15 +43,19 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  b.c = varInitAssignLhsComputedRhs;
-  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCompObj = $(b);
+    const tmpCompProp = $(`d`);
+    const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+    b.c = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -59,19 +63,37 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
+$(100);
 const b = { c: 10, d: 20 };
-while (tmpDoWhileFlag) {
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
+b.c = varInitAssignLhsComputedRhs;
+let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
+if (varInitAssignLhsComputedRhs) {
   $(100);
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
-  b.c = varInitAssignLhsComputedRhs;
-  a = varInitAssignLhsComputedRhs;
-  tmpDoWhileFlag = varInitAssignLhsComputedRhs;
+  const tmpCompObj$1 = $(b);
+  const tmpCompProp$1 = $(`d`);
+  const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
+  b.c = varInitAssignLhsComputedRhs$1;
+  tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpCompObj$2 = $(b);
+      const tmpCompProp$2 = $(`d`);
+      const varInitAssignLhsComputedRhs$2 = tmpCompObj$2[tmpCompProp$2];
+      b.c = varInitAssignLhsComputedRhs$2;
+      tmpClusterSSA_a = varInitAssignLhsComputedRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
-$(a, b);
+$(tmpClusterSSA_a, b);
 `````
 
 ## Globals

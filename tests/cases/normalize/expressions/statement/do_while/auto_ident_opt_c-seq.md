@@ -43,15 +43,19 @@ $(a);
 let b = { x: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = undefined;
-  const tmpChainRootProp = $(b);
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    tmpDoWhileFlag = tmpChainElementObject;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = undefined;
+    const tmpChainRootProp = $(b);
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      tmpDoWhileFlag = tmpChainElementObject;
+    } else {
+    }
   } else {
+    break;
   }
 }
 $(a);
@@ -62,17 +66,46 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+let tmpDoWhileFlag = false;
+const tmpChainRootProp = $(b);
+const tmpIfTest = tmpChainRootProp == null;
+let $tmpLoopUnrollCheck = false;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementObject = tmpChainRootProp.x;
+  tmpDoWhileFlag = tmpChainElementObject;
+  $tmpLoopUnrollCheck = tmpChainElementObject;
+}
+if (tmpDoWhileFlag) {
   $(100);
   tmpDoWhileFlag = false;
-  const tmpChainRootProp = $(b);
-  const tmpIfTest = tmpChainRootProp == null;
-  if (tmpIfTest) {
+  const tmpChainRootProp$1 = $(b);
+  const tmpIfTest$1 = tmpChainRootProp$1 == null;
+  if (tmpIfTest$1) {
   } else {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    tmpDoWhileFlag = tmpChainElementObject;
+    const tmpChainElementObject$1 = tmpChainRootProp$1.x;
+    tmpDoWhileFlag = tmpChainElementObject$1;
   }
+} else {
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpDoWhileFlag) {
+      $(100);
+      tmpDoWhileFlag = false;
+      const tmpChainRootProp$2 = $(b);
+      const tmpIfTest$2 = tmpChainRootProp$2 == null;
+      if (tmpIfTest$2) {
+      } else {
+        const tmpChainElementObject$2 = tmpChainRootProp$2.x;
+        tmpDoWhileFlag = tmpChainElementObject$2;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

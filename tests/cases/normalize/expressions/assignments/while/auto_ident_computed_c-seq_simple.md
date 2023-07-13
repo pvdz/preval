@@ -49,7 +49,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const b = { c: 1 };
 const tmpAssignRhsCompObj = $(b);
 const tmpAssignRhsCompProp = $(`c`);
@@ -59,15 +59,18 @@ if (tmpClusterSSA_a) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpAssignRhsCompObj$1 = $(b);
-  const tmpAssignRhsCompProp$1 = $(`c`);
-  tmpClusterSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
-  if (tmpClusterSSA_a) {
-    $(100);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpAssignRhsCompObj$1 = $(b);
+    const tmpAssignRhsCompProp$1 = $(`c`);
+    tmpClusterSSA_a = tmpAssignRhsCompObj$1[tmpAssignRhsCompProp$1];
+    if (tmpClusterSSA_a) {
+      $(100);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(tmpClusterSSA_a, b);
 `````

@@ -49,19 +49,23 @@ let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $(`x`);
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedProp$1 = $(`y`);
-  const varInitAssignLhsComputedRhs$1 = $(d);
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const varInitAssignLhsComputedObj = $(b);
+    const varInitAssignLhsComputedProp = $(`x`);
+    const varInitAssignLhsComputedObj$1 = $(c);
+    const varInitAssignLhsComputedProp$1 = $(`y`);
+    const varInitAssignLhsComputedRhs$1 = $(d);
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, b, c, d);
 `````
@@ -71,21 +75,45 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const varInitAssignLhsComputedObj = $(b);
+const varInitAssignLhsComputedProp = $(`x`);
+const varInitAssignLhsComputedObj$1 = $(c);
+const varInitAssignLhsComputedProp$1 = $(`y`);
+const varInitAssignLhsComputedRhs$1 = $(3);
+varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
+let tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
+if (varInitAssignLhsComputedRhs$1) {
   $(100);
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $(`x`);
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedProp$1 = $(`y`);
-  const varInitAssignLhsComputedRhs$1 = $(3);
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-  a = varInitAssignLhsComputedRhs$1;
-  tmpDoWhileFlag = varInitAssignLhsComputedRhs$1;
+  const varInitAssignLhsComputedObj$2 = $(b);
+  const varInitAssignLhsComputedProp$2 = $(`x`);
+  const varInitAssignLhsComputedObj$4 = $(c);
+  const varInitAssignLhsComputedProp$4 = $(`y`);
+  const varInitAssignLhsComputedRhs$2 = $(3);
+  varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$2;
+  varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
+  tmpClusterSSA_a = varInitAssignLhsComputedRhs$2;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$2;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const varInitAssignLhsComputedObj$3 = $(b);
+      const varInitAssignLhsComputedProp$3 = $(`x`);
+      const varInitAssignLhsComputedObj$5 = $(c);
+      const varInitAssignLhsComputedProp$5 = $(`y`);
+      const varInitAssignLhsComputedRhs$3 = $(3);
+      varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$3;
+      varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
+      tmpClusterSSA_a = varInitAssignLhsComputedRhs$3;
+      tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$3;
+    } else {
+      break;
+    }
+  }
+} else {
 }
-$(a, b, c, 3);
+$(tmpClusterSSA_a, b, c, 3);
 `````
 
 ## Globals

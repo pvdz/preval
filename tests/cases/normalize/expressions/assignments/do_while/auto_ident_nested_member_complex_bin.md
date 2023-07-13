@@ -52,19 +52,23 @@ let d = 3;
 let e = 4;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const varInitAssignLhsComputedObj = $(b);
-  const varInitAssignLhsComputedProp = $(`x`);
-  const varInitAssignLhsComputedObj$1 = $(c);
-  const varInitAssignLhsComputedProp$1 = $(`y`);
-  const varInitAssignLhsComputedRhs$1 = d + e;
-  varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const varInitAssignLhsComputedObj = $(b);
+    const varInitAssignLhsComputedProp = $(`x`);
+    const varInitAssignLhsComputedObj$1 = $(c);
+    const varInitAssignLhsComputedProp$1 = $(`y`);
+    const varInitAssignLhsComputedRhs$1 = d + e;
+    varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+    const varInitAssignLhsComputedRhs = varInitAssignLhsComputedRhs$1;
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpNestedComplexRhs = varInitAssignLhsComputedRhs;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, b, c, d, e);
 `````

@@ -43,18 +43,22 @@ let c = { y: 2 };
 let d = 3;
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpNestedAssignComMemberObj = $(b);
-  const tmpNestedAssignComMemberProp = $(`x`);
-  const varInitAssignLhsComputedObj = $(c);
-  const varInitAssignLhsComputedProp = $(`y`);
-  const varInitAssignLhsComputedRhs = $(d);
-  varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-  const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
-  a = tmpNestedPropAssignRhs;
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpNestedAssignComMemberObj = $(b);
+    const tmpNestedAssignComMemberProp = $(`x`);
+    const varInitAssignLhsComputedObj = $(c);
+    const varInitAssignLhsComputedProp = $(`y`);
+    const varInitAssignLhsComputedRhs = $(d);
+    varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
+    const tmpNestedAssignPropRhs = varInitAssignLhsComputedRhs;
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = tmpNestedPropAssignRhs;
+    a = tmpNestedPropAssignRhs;
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a, b, c, d);
 `````
@@ -65,8 +69,8 @@ $(a, b, c, d);
 const b = { x: 1 };
 const c = { y: 2 };
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
   const varInitAssignLhsComputedObj = $(c);
@@ -75,7 +79,23 @@ while (tmpIfTest) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
   a = varInitAssignLhsComputedRhs;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpNestedAssignComMemberObj$1 = $(b);
+      const tmpNestedAssignComMemberProp$1 = $(`x`);
+      const varInitAssignLhsComputedObj$1 = $(c);
+      const varInitAssignLhsComputedProp$1 = $(`y`);
+      const varInitAssignLhsComputedRhs$1 = $(3);
+      varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
+      tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
+      a = varInitAssignLhsComputedRhs$1;
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b, c, 3);
 `````

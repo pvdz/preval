@@ -43,11 +43,15 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpAssignRhsCompObj = b;
-  const tmpAssignRhsCompProp = $(`c`);
-  tmpDoWhileFlag = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpAssignRhsCompObj = b;
+    const tmpAssignRhsCompProp = $(`c`);
+    tmpDoWhileFlag = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -57,11 +61,23 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpAssignRhsCompProp = $(`c`);
+const tmpDoWhileFlag = b[tmpAssignRhsCompProp];
+if (tmpDoWhileFlag) {
   $(100);
-  const tmpAssignRhsCompProp = $(`c`);
-  tmpDoWhileFlag = b[tmpAssignRhsCompProp];
+  const tmpAssignRhsCompProp$1 = $(`c`);
+  let tmpClusterSSA_tmpDoWhileFlag = b[tmpAssignRhsCompProp$1];
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      const tmpAssignRhsCompProp$2 = $(`c`);
+      tmpClusterSSA_tmpDoWhileFlag = b[tmpAssignRhsCompProp$2];
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

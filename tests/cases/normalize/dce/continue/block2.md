@@ -51,18 +51,21 @@ $(`after, wont eval due to infinite loop`);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpIfTest$1 = $(true);
-  if (tmpIfTest$1) {
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(`after, wont eval due to infinite loop`);
 `````

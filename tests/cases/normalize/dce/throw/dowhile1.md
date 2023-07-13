@@ -45,9 +45,13 @@ $(f());
 let f = function () {
   debugger;
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    const tmpThrowArg = $(1, `return`);
-    throw tmpThrowArg;
+  while (true) {
+    if (tmpDoWhileFlag) {
+      const tmpThrowArg = $(1, `return`);
+      throw tmpThrowArg;
+    } else {
+      break;
+    }
   }
   $(`keep, do not eval`);
   return undefined;

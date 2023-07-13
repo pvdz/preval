@@ -39,12 +39,16 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpArrElement = $(1);
-  const tmpArrElement$1 = 2;
-  const tmpArrElement$3 = $(3);
-  tmpDoWhileFlag = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpArrElement = $(1);
+    const tmpArrElement$1 = 2;
+    const tmpArrElement$3 = $(3);
+    tmpDoWhileFlag = [tmpArrElement, tmpArrElement$1, tmpArrElement$3];
+  } else {
+    break;
+  }
 }
 $(a);
 `````

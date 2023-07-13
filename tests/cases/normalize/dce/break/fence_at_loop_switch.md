@@ -61,23 +61,27 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(`loop`);
-  tmpSwitchBreak: {
-    const tmpSwitchDisc = $(true, `dis`);
-    const tmpBinBothLhs = tmpSwitchDisc;
-    const tmpBinBothRhs = $(true, `case`);
-    const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
-    if (tmpIfTest$1) {
-      $(`case`);
-      break tmpSwitchBreak;
-    } else {
-      $(`do not visit, default`);
-      break tmpSwitchBreak;
+while (true) {
+  if (tmpIfTest) {
+    $(`loop`);
+    tmpSwitchBreak: {
+      const tmpSwitchDisc = $(true, `dis`);
+      const tmpBinBothLhs = tmpSwitchDisc;
+      const tmpBinBothRhs = $(true, `case`);
+      const tmpIfTest$1 = tmpBinBothLhs === tmpBinBothRhs;
+      if (tmpIfTest$1) {
+        $(`case`);
+        break tmpSwitchBreak;
+      } else {
+        $(`do not visit, default`);
+        break tmpSwitchBreak;
+      }
     }
+    $(`infiloop, do not eliminate`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````
@@ -85,8 +89,8 @@ $(`after (not invoked)`);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
-while (tmpIfTest) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
   $(`loop`);
   const tmpSwitchDisc = $(true, `dis`);
   const tmpBinBothRhs = $(true, `case`);
@@ -97,7 +101,25 @@ while (tmpIfTest) {
     $(`do not visit, default`);
   }
   $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
+  let tmpClusterSSA_tmpIfTest = $(true);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      $(`loop`);
+      const tmpSwitchDisc$1 = $(true, `dis`);
+      const tmpBinBothRhs$1 = $(true, `case`);
+      const tmpIfTest$2 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
+      if (tmpIfTest$2) {
+        $(`case`);
+      } else {
+        $(`do not visit, default`);
+      }
+      $(`infiloop, do not eliminate`);
+      tmpClusterSSA_tmpIfTest = $(true);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(`after (not invoked)`);
 `````

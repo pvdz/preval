@@ -72,19 +72,22 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(1, `sub`);
-  if ($LOOP_UNROLL_10) {
-    $(2, `sub`);
-    $(3, `sub`);
-    $(4, `sub`);
-    $(5, `sup`);
-    $(6, `sup`);
-    $(7, `sup`);
-    $(8, `sup`);
-    $(9, `sup`);
-    $(10);
-  } else {
-    $(1);
+  let i$1 = 1;
+  while ($LOOP_UNROLL_10) {
+    i$1 = i$1 + 1;
+    const tmpIfTest$6 = i$1 < 10;
+    if (tmpIfTest$6) {
+      const tmpIfTest$8 = i$1 < 5;
+      if (tmpIfTest$8) {
+        $(i$1, `sub`);
+      } else {
+        $(i$1, `sup`);
+      }
+    } else {
+      break;
+    }
   }
+  $(i$1);
 } else {
 }
 `````

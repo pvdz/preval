@@ -99,24 +99,28 @@ $(`after, wont eval due to infinite loop`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  let tmpDoWhileFlag = true;
-  while (true) {
-    let tmpIfTest$1 = tmpDoWhileFlag;
-    if (tmpIfTest$1) {
-    } else {
-      tmpIfTest$1 = $(true);
+while (true) {
+  if (tmpIfTest) {
+    let tmpDoWhileFlag = true;
+    while (true) {
+      let tmpIfTest$1 = tmpDoWhileFlag;
+      if (tmpIfTest$1) {
+      } else {
+        tmpIfTest$1 = $(true);
+      }
+      if (tmpIfTest$1) {
+        tmpDoWhileFlag = false;
+        $(`loop`);
+        continue;
+      } else {
+        break;
+      }
     }
-    if (tmpIfTest$1) {
-      tmpDoWhileFlag = false;
-      $(`loop`);
-      continue;
-    } else {
-      break;
-    }
+    $(`keep, wont eval due to infinite loop`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`keep, wont eval due to infinite loop`);
-  tmpIfTest = $(true);
 }
 $(`after, wont eval due to infinite loop`);
 `````
@@ -125,25 +129,22 @@ $(`after, wont eval due to infinite loop`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(`loop`);
-  let $tmpLoopUnrollCheck = $LOOP_UNROLL_9;
-  const tmpIfTest$2 = $(true);
-  if (tmpIfTest$2) {
+while (true) {
+  if (tmpIfTest) {
     $(`loop`);
-  } else {
-    $tmpLoopUnrollCheck = false;
-  }
-  while ($tmpLoopUnrollCheck) {
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(`loop`);
-    } else {
-      break;
+    while ($LOOP_UNROLL_10) {
+      const tmpIfTest$2 = $(true);
+      if (tmpIfTest$2) {
+        $(`loop`);
+      } else {
+        break;
+      }
     }
+    $(`keep, wont eval due to infinite loop`);
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  $(`keep, wont eval due to infinite loop`);
-  tmpIfTest = $(true);
 }
 $(`after, wont eval due to infinite loop`);
 `````

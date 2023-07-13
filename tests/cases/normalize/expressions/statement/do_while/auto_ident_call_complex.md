@@ -39,10 +39,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallComplexCallee = $($);
-  tmpDoWhileFlag = tmpCallComplexCallee(1);
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallComplexCallee = $($);
+    tmpDoWhileFlag = tmpCallComplexCallee(1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -50,11 +54,23 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpCallComplexCallee = $($);
+const tmpDoWhileFlag = tmpCallComplexCallee(1);
+if (tmpDoWhileFlag) {
   $(100);
-  const tmpCallComplexCallee = $($);
-  tmpDoWhileFlag = tmpCallComplexCallee(1);
+  const tmpCallComplexCallee$1 = $($);
+  let tmpClusterSSA_tmpDoWhileFlag = tmpCallComplexCallee$1(1);
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      const tmpCallComplexCallee$2 = $($);
+      tmpClusterSSA_tmpDoWhileFlag = tmpCallComplexCallee$2(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

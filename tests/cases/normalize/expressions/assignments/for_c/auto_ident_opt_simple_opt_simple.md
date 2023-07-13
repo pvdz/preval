@@ -38,21 +38,25 @@ const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  a = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpIfTest$3 = tmpChainElementObject != null;
-    if (tmpIfTest$3) {
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      a = tmpChainElementObject$1;
+while (true) {
+  if (tmpIfTest) {
+    a = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpIfTest$3 = tmpChainElementObject != null;
+      if (tmpIfTest$3) {
+        const tmpChainElementObject$1 = tmpChainElementObject.y;
+        a = tmpChainElementObject$1;
+      } else {
+      }
     } else {
     }
+    tmpIfTest = $(1);
   } else {
+    break;
   }
-  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -61,19 +65,28 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
-  a = undefined;
-  const tmpChainElementObject = b.x;
-  const tmpIfTest$3 = tmpChainElementObject == null;
-  if (tmpIfTest$3) {
-  } else {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    a = tmpChainElementObject$1;
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  a = 1;
+  let tmpClusterSSA_tmpIfTest = $(1);
+  const b = { x: tmpObjLitVal };
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      a = undefined;
+      const tmpChainElementObject$2 = b.x;
+      const tmpIfTest$1 = tmpChainElementObject$2 == null;
+      if (tmpIfTest$1) {
+      } else {
+        const tmpChainElementObject$4 = tmpChainElementObject$2.y;
+        a = tmpChainElementObject$4;
+      }
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
   }
-  tmpIfTest = $(1);
+} else {
 }
 $(a);
 `````

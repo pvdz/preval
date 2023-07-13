@@ -47,8 +47,12 @@ if (tmpIfTest) {
 } else {
 }
 let tmpIfTest$1 = $(0);
-while (tmpIfTest$1) {
-  tmpIfTest$1 = $(0);
+while (true) {
+  if (tmpIfTest$1) {
+    tmpIfTest$1 = $(0);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -59,9 +63,17 @@ $(a);
 const tmpObjLitVal$1 = { e: $ };
 const a = { a: 999, b: 1000 };
 $dotCall($, tmpObjLitVal$1, 1);
-let tmpIfTest$1 = $(0);
-while (tmpIfTest$1) {
-  tmpIfTest$1 = $(0);
+const tmpIfTest$1 = $(0);
+if (tmpIfTest$1) {
+  let tmpClusterSSA_tmpIfTest$1 = $(0);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest$1) {
+      tmpClusterSSA_tmpIfTest$1 = $(0);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

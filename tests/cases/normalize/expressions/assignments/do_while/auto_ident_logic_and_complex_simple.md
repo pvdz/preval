@@ -39,17 +39,21 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-  if (tmpNestedComplexRhs) {
-    tmpNestedComplexRhs = 2;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(1);
+    let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
+    if (tmpNestedComplexRhs) {
+      tmpNestedComplexRhs = 2;
+    } else {
+    }
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
   } else {
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -57,20 +61,49 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpCalleeParam = $(1);
+const tmpNestedComplexRhs = $(tmpCalleeParam);
+let tmpClusterSSA_a = 2;
+let tmpClusterSSA_tmpDoWhileFlag = true;
+let $tmpLoopUnrollCheck = true;
+if (tmpNestedComplexRhs) {
+} else {
+  tmpClusterSSA_a = tmpNestedComplexRhs;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
+  $tmpLoopUnrollCheck = tmpNestedComplexRhs;
+}
+if (tmpClusterSSA_tmpDoWhileFlag) {
   $(100);
-  const tmpCalleeParam = $(1);
-  let tmpNestedComplexRhs = $(tmpCalleeParam);
-  if (tmpNestedComplexRhs) {
-    tmpNestedComplexRhs = 2;
+  const tmpCalleeParam$1 = $(1);
+  let tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
+  if (tmpNestedComplexRhs$1) {
+    tmpNestedComplexRhs$1 = 2;
   } else {
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+  tmpClusterSSA_a = tmpNestedComplexRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+} else {
 }
-$(a);
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      const tmpCalleeParam$2 = $(1);
+      let tmpNestedComplexRhs$2 = $(tmpCalleeParam$2);
+      if (tmpNestedComplexRhs$2) {
+        tmpNestedComplexRhs$2 = 2;
+      } else {
+      }
+      tmpClusterSSA_a = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

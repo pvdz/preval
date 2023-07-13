@@ -50,15 +50,23 @@ $(`after (not invoked)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(`loop`);
-  let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
+while (true) {
+  if (tmpIfTest) {
     $(`loop`);
+    let tmpDoWhileFlag = true;
+    while (true) {
+      if (tmpDoWhileFlag) {
+        $(`loop`);
+        break;
+      } else {
+        break;
+      }
+    }
+    $(`infiloop, do not eliminate`);
+    tmpIfTest = $(true);
+  } else {
     break;
   }
-  $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
 }
 $(`after (not invoked)`);
 `````
@@ -66,12 +74,23 @@ $(`after (not invoked)`);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
-while (tmpIfTest) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
   $(`loop`);
   $(`loop`);
   $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
+  let tmpClusterSSA_tmpIfTest = $(true);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      $(`loop`);
+      $(`loop`);
+      $(`infiloop, do not eliminate`);
+      tmpClusterSSA_tmpIfTest = $(true);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(`after (not invoked)`);
 `````

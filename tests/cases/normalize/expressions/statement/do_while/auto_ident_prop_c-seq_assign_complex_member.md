@@ -43,15 +43,19 @@ $(a, b);
 let b = { c: 10, d: 20 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpNestedAssignObj = $(b);
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
-  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  tmpDoWhileFlag = tmpNestedPropAssignRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpNestedAssignObj = $(b);
+    const tmpCompObj = $(b);
+    const tmpCompProp = $(`d`);
+    const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+    const tmpNestedPropAssignRhs = tmpNestedAssignPropRhs;
+    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+    tmpDoWhileFlag = tmpNestedPropAssignRhs;
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -61,15 +65,34 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpNestedAssignObj = $(b);
+const tmpCompObj = $(b);
+const tmpCompProp = $(`d`);
+const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
+tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+if (tmpNestedAssignPropRhs) {
   $(100);
-  const tmpNestedAssignObj = $(b);
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`d`);
-  const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
-  tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-  tmpDoWhileFlag = tmpNestedAssignPropRhs;
+  const tmpNestedAssignObj$1 = $(b);
+  const tmpCompObj$1 = $(b);
+  const tmpCompProp$1 = $(`d`);
+  const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
+  tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignPropRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpNestedAssignObj$2 = $(b);
+      const tmpCompObj$2 = $(b);
+      const tmpCompProp$2 = $(`d`);
+      const tmpNestedAssignPropRhs$2 = tmpCompObj$2[tmpCompProp$2];
+      tmpNestedAssignObj$2.c = tmpNestedAssignPropRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignPropRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

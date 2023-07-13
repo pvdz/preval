@@ -44,10 +44,21 @@ $(`after, do not evaluate (infinite loop)`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  let tmpDoWhileFlag = true;
-  $(`keep`);
-  tmpIfTest = $(true);
+while (true) {
+  if (tmpIfTest) {
+    let tmpDoWhileFlag = true;
+    while (true) {
+      if (tmpDoWhileFlag) {
+        break;
+      } else {
+        break;
+      }
+    }
+    $(`keep`);
+    tmpIfTest = $(true);
+  } else {
+    break;
+  }
 }
 $(`after, do not evaluate (infinite loop)`);
 `````
@@ -55,10 +66,19 @@ $(`after, do not evaluate (infinite loop)`);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
-while (tmpIfTest) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
   $(`keep`);
-  tmpIfTest = $(true);
+  let tmpClusterSSA_tmpIfTest = $(true);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      $(`keep`);
+      tmpClusterSSA_tmpIfTest = $(true);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(`after, do not evaluate (infinite loop)`);
 `````

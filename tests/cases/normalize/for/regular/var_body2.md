@@ -30,18 +30,30 @@ let x = undefined;
 `````js filename=intro
 let x = undefined;
 let tmpIfTest = $(x);
-while (tmpIfTest) {
-  x = 0;
-  tmpIfTest = $(x);
+while (true) {
+  if (tmpIfTest) {
+    x = 0;
+    tmpIfTest = $(x);
+  } else {
+    break;
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(undefined);
-while (tmpIfTest) {
-  tmpIfTest = $(0);
+const tmpIfTest = $(undefined);
+if (tmpIfTest) {
+  let tmpClusterSSA_tmpIfTest = $(0);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

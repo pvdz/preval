@@ -68,11 +68,15 @@ if (tmpClusterSSA_x) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  parseExpression(lexerFlags$285, astProp$181);
-  tmpClusterSSA_s = tmpClusterSSA_s | 10;
-  tmpClusterSSA_x = $(true);
-  if (tmpClusterSSA_x) {
+while (true) {
+  if ($tmpLoopUnrollCheck) {
+    parseExpression(lexerFlags$285, astProp$181);
+    tmpClusterSSA_s = tmpClusterSSA_s | 10;
+    tmpClusterSSA_x = $(true);
+    if (tmpClusterSSA_x) {
+    } else {
+      break;
+    }
   } else {
     break;
   }
@@ -92,14 +96,33 @@ if (tmpClusterSSA_x) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
+let $tmpLoopUnrollCheck$1 = true;
+if ($tmpLoopUnrollCheck) {
   parseExpression(lexerFlags$285, astProp$181);
   tmpClusterSSA_s = tmpClusterSSA_s | 10;
   tmpClusterSSA_x = $(true);
   if (tmpClusterSSA_x) {
   } else {
-    break;
+    $tmpLoopUnrollCheck$1 = false;
   }
+} else {
+  $tmpLoopUnrollCheck$1 = false;
+}
+if ($tmpLoopUnrollCheck$1) {
+  while ($LOOP_UNROLL_10) {
+    if ($tmpLoopUnrollCheck) {
+      parseExpression(lexerFlags$285, astProp$181);
+      tmpClusterSSA_s = tmpClusterSSA_s | 10;
+      tmpClusterSSA_x = $(true);
+      if (tmpClusterSSA_x) {
+      } else {
+        break;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(tmpClusterSSA_s);
 `````

@@ -29,13 +29,17 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = 1;
-while (tmpIfTest) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  tmpIfTest = tmpCallCallee(tmpCalleeParam);
+while (true) {
   if (tmpIfTest) {
-    $(100);
-    tmpIfTest = 1;
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(1);
+    tmpIfTest = tmpCallCallee(tmpCalleeParam);
+    if (tmpIfTest) {
+      $(100);
+      tmpIfTest = 1;
+    } else {
+      break;
+    }
   } else {
     break;
   }
@@ -46,16 +50,31 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = true;
-while (tmpIfTest) {
-  const tmpCalleeParam = $(1);
-  tmpIfTest = $(tmpCalleeParam);
-  if (tmpIfTest) {
-    $(100);
-    tmpIfTest = true;
-  } else {
-    break;
+let $tmpLoopUnrollCheck = true;
+const tmpCalleeParam = $(1);
+let tmpIfTest = $(tmpCalleeParam);
+if (tmpIfTest) {
+  $(100);
+  tmpIfTest = true;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      const tmpCalleeParam$1 = $(1);
+      tmpIfTest = $(tmpCalleeParam$1);
+      if (tmpIfTest) {
+        $(100);
+        tmpIfTest = true;
+      } else {
+        break;
+      }
+    } else {
+      break;
+    }
   }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

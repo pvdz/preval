@@ -43,14 +43,18 @@ $(a, arg);
 let arg = { y: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  $(1);
-  $(2);
-  const tmpDeleteObj = $(arg);
-  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    $(1);
+    $(2);
+    const tmpDeleteObj = $(arg);
+    const tmpNestedComplexRhs = delete tmpDeleteObj.y;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, arg);
 `````
@@ -58,19 +62,37 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
+$(100);
+$(1);
+$(2);
 const arg = { y: 1 };
-while (tmpDoWhileFlag) {
+const tmpDeleteObj = $(arg);
+const tmpNestedComplexRhs = delete tmpDeleteObj.y;
+let tmpClusterSSA_a = tmpNestedComplexRhs;
+if (tmpNestedComplexRhs) {
   $(100);
   $(1);
   $(2);
-  const tmpDeleteObj = $(arg);
-  const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+  const tmpDeleteObj$1 = $(arg);
+  const tmpNestedComplexRhs$1 = delete tmpDeleteObj$1.y;
+  tmpClusterSSA_a = tmpNestedComplexRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      $(1);
+      $(2);
+      const tmpDeleteObj$2 = $(arg);
+      const tmpNestedComplexRhs$2 = delete tmpDeleteObj$2.y;
+      tmpClusterSSA_a = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
-$(a, arg);
+$(tmpClusterSSA_a, arg);
 `````
 
 ## Globals

@@ -31,17 +31,29 @@ let x = undefined;
 `````js filename=intro
 let x = undefined;
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  tmpDoWhileFlag = $(x);
+while (true) {
+  if (tmpDoWhileFlag) {
+    tmpDoWhileFlag = $(x);
+  } else {
+    break;
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  tmpDoWhileFlag = $(undefined);
+const tmpDoWhileFlag = $(undefined);
+if (tmpDoWhileFlag) {
+  let tmpClusterSSA_tmpDoWhileFlag = $(undefined);
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      tmpClusterSSA_tmpDoWhileFlag = $(undefined);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

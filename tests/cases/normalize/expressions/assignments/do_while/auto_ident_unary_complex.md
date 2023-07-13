@@ -43,12 +43,16 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpUnaryArg = $(x);
-  const tmpNestedComplexRhs = typeof tmpUnaryArg;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpUnaryArg = $(x);
+    const tmpNestedComplexRhs = typeof tmpUnaryArg;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, x);
 `````
@@ -77,14 +81,14 @@ $(1);
 $(100);
 $(1);
 $(100);
-const tmpUnaryArg$5 = $(1);
-const tmpNestedComplexRhs$2 = typeof tmpUnaryArg$5;
-let a = tmpNestedComplexRhs$2;
+const tmpUnaryArg$2 = $(1);
+const tmpNestedComplexRhs$1 = typeof tmpUnaryArg$2;
+let a = tmpNestedComplexRhs$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpUnaryArg$1 = $(1);
-  const tmpNestedComplexRhs$3 = typeof tmpUnaryArg$1;
-  a = tmpNestedComplexRhs$3;
+  const tmpUnaryArg$3 = $(1);
+  const tmpNestedComplexRhs$2 = typeof tmpUnaryArg$3;
+  a = tmpNestedComplexRhs$2;
 }
 $(a, 1);
 `````

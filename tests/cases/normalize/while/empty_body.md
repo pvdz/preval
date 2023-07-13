@@ -24,17 +24,29 @@ while ($());
 
 `````js filename=intro
 let tmpIfTest = $();
-while (tmpIfTest) {
-  tmpIfTest = $();
+while (true) {
+  if (tmpIfTest) {
+    tmpIfTest = $();
+  } else {
+    break;
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $();
-while (tmpIfTest) {
-  tmpIfTest = $();
+const tmpIfTest = $();
+if (tmpIfTest) {
+  let tmpClusterSSA_tmpIfTest = $();
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $();
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

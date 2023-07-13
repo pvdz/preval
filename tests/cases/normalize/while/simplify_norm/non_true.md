@@ -35,9 +35,13 @@ while (x) {
 ## Normalized
 
 `````js filename=intro
-while (x) {
-  const tmpIfTest = $(`yes`);
-  if (tmpIfTest) {
+while (true) {
+  if (x) {
+    const tmpIfTest = $(`yes`);
+    if (tmpIfTest) {
+    } else {
+      break;
+    }
   } else {
     break;
   }
@@ -47,12 +51,29 @@ while (x) {
 ## Output
 
 `````js filename=intro
-while (x) {
+let $tmpLoopUnrollCheck = true;
+if (x) {
   const tmpIfTest = $(`yes`);
   if (tmpIfTest) {
   } else {
-    break;
+    $tmpLoopUnrollCheck = false;
   }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      const tmpIfTest$1 = $(`yes`);
+      if (tmpIfTest$1) {
+      } else {
+        break;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

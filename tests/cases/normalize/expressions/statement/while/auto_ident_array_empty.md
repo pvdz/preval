@@ -29,9 +29,13 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = [];
-while (tmpIfTest) {
-  $(100);
-  tmpIfTest = [];
+while (true) {
+  if (tmpIfTest) {
+    $(100);
+    tmpIfTest = [];
+  } else {
+    break;
+  }
 }
 $(a);
 `````

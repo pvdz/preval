@@ -39,10 +39,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  $(100);
-  tmpDoWhileFlag = undefined;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    $(100);
+    tmpDoWhileFlag = undefined;
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -50,12 +54,8 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  $(100);
-  tmpDoWhileFlag = false;
-}
+$(100);
+$(100);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

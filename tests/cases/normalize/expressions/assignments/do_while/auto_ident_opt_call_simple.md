@@ -39,18 +39,22 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootCall = $;
-  const tmpIfTest = tmpChainRootCall != null;
-  if (tmpIfTest) {
-    const tmpChainElementCall = tmpChainRootCall(1);
-    tmpNestedComplexRhs = tmpChainElementCall;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainRootCall = $;
+    const tmpIfTest = tmpChainRootCall != null;
+    if (tmpIfTest) {
+      const tmpChainElementCall = tmpChainRootCall(1);
+      tmpNestedComplexRhs = tmpChainElementCall;
+    } else {
+    }
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
   } else {
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -58,21 +62,46 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpIfTest = $ == null;
-  if (tmpIfTest) {
-  } else {
-    const tmpChainElementCall = $(1);
-    tmpNestedComplexRhs = tmpChainElementCall;
-  }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+$(100);
+let tmpNestedComplexRhs = false;
+let tmpClusterSSA_a = undefined;
+const tmpIfTest = $ == null;
+if (tmpIfTest) {
+} else {
+  const tmpChainElementCall = $(1);
+  tmpNestedComplexRhs = tmpChainElementCall;
+  tmpClusterSSA_a = tmpChainElementCall;
 }
-$(a);
+if (tmpNestedComplexRhs) {
+  $(100);
+  let tmpNestedComplexRhs$1 = undefined;
+  const tmpIfTest$1 = $ == null;
+  if (tmpIfTest$1) {
+  } else {
+    const tmpChainElementCall$1 = $(1);
+    tmpNestedComplexRhs$1 = tmpChainElementCall$1;
+  }
+  tmpClusterSSA_a = tmpNestedComplexRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      let tmpNestedComplexRhs$2 = undefined;
+      const tmpIfTest$2 = $ == null;
+      if (tmpIfTest$2) {
+      } else {
+        const tmpChainElementCall$2 = $(1);
+        tmpNestedComplexRhs$2 = tmpChainElementCall$2;
+      }
+      tmpClusterSSA_a = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

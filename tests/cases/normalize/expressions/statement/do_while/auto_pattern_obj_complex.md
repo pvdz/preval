@@ -40,11 +40,15 @@ $(a);
 let bindingPatternObjRoot = { a: 999, b: 1000 };
 let a = bindingPatternObjRoot.a;
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = { a: 1, b: 2 };
-  tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = { a: 1, b: 2 };
+    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -52,11 +56,23 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpCalleeParam = { a: 1, b: 2 };
+const tmpDoWhileFlag = $(tmpCalleeParam);
+if (tmpDoWhileFlag) {
   $(100);
-  const tmpCalleeParam = { a: 1, b: 2 };
-  tmpDoWhileFlag = $(tmpCalleeParam);
+  const tmpCalleeParam$1 = { a: 1, b: 2 };
+  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$1);
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      const tmpCalleeParam$2 = { a: 1, b: 2 };
+      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(999);
 `````

@@ -40,16 +40,20 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  $(x);
-  $(y);
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    $(x);
+    $(y);
+    const tmpArrElement = $(3);
+    const tmpArrElement$1 = $(4);
+    const arrAssignPatternRhs = [tmpArrElement, tmpArrElement$1];
+    const arrPatternSplat = [...arrAssignPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a, x, y);
 `````
@@ -59,15 +63,29 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
-let tmpIfTest = $(1);
-while (tmpIfTest) {
-  $(x);
-  $(y);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  $(1);
+  $(2);
   const tmpArrElement = $(3);
   const tmpArrElement$1 = $(4);
   x = tmpArrElement;
   y = tmpArrElement$1;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      $(x);
+      $(y);
+      const tmpArrElement$2 = $(3);
+      const tmpArrElement$4 = $(4);
+      x = tmpArrElement$2;
+      y = tmpArrElement$4;
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a, x, y);

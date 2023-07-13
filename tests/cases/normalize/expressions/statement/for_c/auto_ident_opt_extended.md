@@ -39,16 +39,20 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpChainRootProp = b;
-  const tmpIfTest$1 = tmpChainRootProp != null;
-  if (tmpIfTest$1) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+while (true) {
+  if (tmpIfTest) {
+    const tmpChainRootProp = b;
+    const tmpIfTest$1 = tmpChainRootProp != null;
+    if (tmpIfTest$1) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpChainElementObject$1 = tmpChainElementObject.y;
+      const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+    } else {
+    }
+    tmpIfTest = $(1);
   } else {
+    break;
   }
-  tmpIfTest = $(1);
 }
 $(a);
 `````
@@ -58,14 +62,23 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpChainElementObject = b.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  tmpChainElementObject$1.z;
-  tmpIfTest = $(1);
+const tmpIfTest = $(1);
+if (tmpIfTest) {
+  tmpObjLitVal$1.z;
+  let tmpClusterSSA_tmpIfTest = $(1);
+  const b = { x: tmpObjLitVal };
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpChainElementObject$2 = b.x;
+      const tmpChainElementObject$4 = tmpChainElementObject$2.y;
+      tmpChainElementObject$4.z;
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

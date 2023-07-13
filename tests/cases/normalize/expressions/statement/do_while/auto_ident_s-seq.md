@@ -43,11 +43,15 @@ $(a, x);
 let x = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  $(1);
-  $(2);
-  tmpDoWhileFlag = x;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    $(1);
+    $(2);
+    tmpDoWhileFlag = x;
+  } else {
+    break;
+  }
 }
 $(a, x);
 `````

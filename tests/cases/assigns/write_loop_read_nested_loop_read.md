@@ -37,14 +37,22 @@ while ($(true)) {
 `````js filename=intro
 let x = $(1);
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(x, `loop1`);
-  let tmpIfTest$1 = $(true);
-  while (tmpIfTest$1) {
-    $(x, `loop2`);
-    tmpIfTest$1 = $(true);
+while (true) {
+  if (tmpIfTest) {
+    $(x, `loop1`);
+    let tmpIfTest$1 = $(true);
+    while (true) {
+      if (tmpIfTest$1) {
+        $(x, `loop2`);
+        tmpIfTest$1 = $(true);
+      } else {
+        break;
+      }
+    }
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  tmpIfTest = $(true);
 }
 `````
 
@@ -53,14 +61,27 @@ while (tmpIfTest) {
 `````js filename=intro
 const x = $(1);
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  $(x, `loop1`);
-  let tmpIfTest$1 = $(true);
-  while (tmpIfTest$1) {
-    $(x, `loop2`);
-    tmpIfTest$1 = $(true);
+while (true) {
+  if (tmpIfTest) {
+    $(x, `loop1`);
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+      $(x, `loop2`);
+      let tmpClusterSSA_tmpIfTest$1 = $(true);
+      while ($LOOP_UNROLL_10) {
+        if (tmpClusterSSA_tmpIfTest$1) {
+          $(x, `loop2`);
+          tmpClusterSSA_tmpIfTest$1 = $(true);
+        } else {
+          break;
+        }
+      }
+    } else {
+    }
+    tmpIfTest = $(true);
+  } else {
+    break;
   }
-  tmpIfTest = $(true);
 }
 `````
 

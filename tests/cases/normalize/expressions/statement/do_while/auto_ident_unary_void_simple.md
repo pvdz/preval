@@ -43,9 +43,13 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = undefined;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = undefined;
+  } else {
+    break;
+  }
 }
 $(a, arg);
 `````
@@ -53,11 +57,7 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = false;
-}
+$(100);
 const a = { a: 999, b: 1000 };
 $(a, 1);
 `````

@@ -26,19 +26,32 @@ while ($(true)) x = $(10);
 `````js filename=intro
 let x = undefined;
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  x = $(10);
-  tmpIfTest = $(true);
+while (true) {
+  if (tmpIfTest) {
+    x = $(10);
+    tmpIfTest = $(true);
+  } else {
+    break;
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
-while (tmpIfTest) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
   $(10);
-  tmpIfTest = $(true);
+  let tmpClusterSSA_tmpIfTest = $(true);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      $(10);
+      tmpClusterSSA_tmpIfTest = $(true);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

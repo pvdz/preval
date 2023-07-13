@@ -53,7 +53,7 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const tmpCompObj = $(b);
 const tmpIfTest = tmpCompObj.c;
 if (tmpIfTest) {
@@ -61,14 +61,17 @@ if (tmpIfTest) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpCompObj$1 = $(b);
-  const tmpIfTest$1 = tmpCompObj$1.c;
-  if (tmpIfTest$1) {
-    $(1);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCompObj$1 = $(b);
+    const tmpIfTest$1 = tmpCompObj$1.c;
+    if (tmpIfTest$1) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(a, b);
 `````

@@ -41,9 +41,13 @@ $(f());
 let f = function () {
   debugger;
   let tmpIfTest = $(true);
-  while (tmpIfTest) {
-    const tmpReturnArg = $(1, `return`);
-    return tmpReturnArg;
+  while (true) {
+    if (tmpIfTest) {
+      const tmpReturnArg = $(1, `return`);
+      return tmpReturnArg;
+    } else {
+      break;
+    }
   }
   $(`keep, do not eval`);
   return undefined;
@@ -56,19 +60,20 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpIfTest = $(true);
+const tmpLabeledBlockFunc = function ($$0) {
+  const tmpIfTest$3 = $$0;
   debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
-    const tmpReturnArg = $(1, `return`);
-    return tmpReturnArg;
+  if (tmpIfTest$3) {
+    const tmpReturnArg$5 = $(1, `return`);
+    return tmpReturnArg$5;
   } else {
     $(`keep, do not eval`);
     return undefined;
   }
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpReturnArg$9 = tmpLabeledBlockFunc(tmpIfTest);
+$(tmpReturnArg$9);
 `````
 
 ## Globals

@@ -38,13 +38,17 @@ $(`after`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  const tmpIfTest$1 = $(1);
-  if (tmpIfTest$1) {
-    break;
+while (true) {
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(1);
+    if (tmpIfTest$1) {
+      break;
+    } else {
+      $(`keep, do not eval`);
+      tmpIfTest = $(true);
+    }
   } else {
-    $(`keep, do not eval`);
-    tmpIfTest = $(true);
+    break;
   }
 }
 $(`after`);
@@ -54,14 +58,33 @@ $(`after`);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-while (tmpIfTest) {
+let $tmpLoopUnrollCheck = true;
+if (tmpIfTest) {
   const tmpIfTest$1 = $(1);
   if (tmpIfTest$1) {
-    break;
+    $tmpLoopUnrollCheck = false;
   } else {
     $(`keep, do not eval`);
     tmpIfTest = $(true);
   }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      const tmpIfTest$2 = $(1);
+      if (tmpIfTest$2) {
+        break;
+      } else {
+        $(`keep, do not eval`);
+        tmpIfTest = $(true);
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(`after`);
 `````

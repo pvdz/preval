@@ -41,13 +41,17 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const f = function () {
-    debugger;
-    return undefined;
-  };
-  tmpDoWhileFlag = f;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const f = function () {
+      debugger;
+      return undefined;
+    };
+    tmpDoWhileFlag = f;
+  } else {
+    break;
+  }
 }
 $(a);
 `````

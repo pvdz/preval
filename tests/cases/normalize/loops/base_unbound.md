@@ -46,10 +46,14 @@ let f = function () {
   debugger;
   let i = 0;
   let tmpIfTest = i < Infinity;
-  while (tmpIfTest) {
-    $(i);
-    i = i + 1;
-    tmpIfTest = i < Infinity;
+  while (true) {
+    if (tmpIfTest) {
+      $(i);
+      i = i + 1;
+      tmpIfTest = i < Infinity;
+    } else {
+      break;
+    }
   }
   return 100;
 };
@@ -70,12 +74,17 @@ $(6);
 $(7);
 $(8);
 $(9);
-let tmpClusterSSA_i$17 = 10;
-let tmpClusterSSA_tmpIfTest$17 = true;
-while (tmpClusterSSA_tmpIfTest$17) {
-  $(tmpClusterSSA_i$17);
-  tmpClusterSSA_i$17 = tmpClusterSSA_i$17 + 1;
-  tmpClusterSSA_tmpIfTest$17 = tmpClusterSSA_i$17 < Infinity;
+$(10);
+let i = 11;
+let tmpIfTest = true;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (tmpIfTest) {
+    $(i);
+    i = i + 1;
+    tmpIfTest = i < Infinity;
+  } else {
+    break;
+  }
 }
 $(100);
 `````

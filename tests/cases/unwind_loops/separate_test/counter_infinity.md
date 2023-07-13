@@ -37,23 +37,21 @@ while (test) {
 `````js filename=intro
 let counter = Infinity;
 let test = counter >= 0;
-while (test) {
-  $(`yolo`);
-  counter = counter + 1;
-  test = counter < 10;
+while (true) {
+  if (test) {
+    $(`yolo`);
+    counter = counter + 1;
+    test = counter < 10;
+  } else {
+    break;
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let counter = Infinity;
-let test = true;
-while (test) {
-  $(`yolo`);
-  counter = counter + 1;
-  test = counter < 10;
-}
+$(`yolo`);
 `````
 
 ## Globals

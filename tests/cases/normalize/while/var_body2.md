@@ -28,9 +28,13 @@ $(x);
 `````js filename=intro
 let x = undefined;
 let tmpIfTest = $(true);
-while (tmpIfTest) {
-  x = $(10);
-  tmpIfTest = $(true);
+while (true) {
+  if (tmpIfTest) {
+    x = $(10);
+    tmpIfTest = $(true);
+  } else {
+    break;
+  }
 }
 $(x);
 `````
@@ -39,10 +43,19 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-let tmpIfTest = $(true);
-while (tmpIfTest) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
   x = $(10);
-  tmpIfTest = $(true);
+  let tmpClusterSSA_tmpIfTest = $(true);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      x = $(10);
+      tmpClusterSSA_tmpIfTest = $(true);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(x);
 `````

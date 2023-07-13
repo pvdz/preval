@@ -91,24 +91,24 @@ $(3);
 $(4);
 $(1);
 const tmpArrElement$2 = $(3);
-const tmpArrElement$5 = $(4);
-const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$5];
+const tmpArrElement$4 = $(4);
+const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$4];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-let tmpClusterSSA_x$1 = arrPatternSplat$1[0];
-let tmpClusterSSA_y$1 = arrPatternSplat$1[1];
-let tmpClusterSSA_a$1 = tmpNestedAssignArrPatternRhs$1;
+let tmpClusterSSA_x$2 = arrPatternSplat$1[0];
+let tmpClusterSSA_y$2 = arrPatternSplat$1[1];
+let tmpClusterSSA_a$2 = tmpNestedAssignArrPatternRhs$1;
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpArrElement$3 = $(3);
-  const tmpArrElement$6 = $(4);
-  const tmpNestedAssignArrPatternRhs$2 = [tmpArrElement$3, tmpArrElement$6];
+  const tmpArrElement$5 = $(4);
+  const tmpNestedAssignArrPatternRhs$2 = [tmpArrElement$3, tmpArrElement$5];
   const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$2];
-  tmpClusterSSA_x$1 = arrPatternSplat$2[0];
-  tmpClusterSSA_y$1 = arrPatternSplat$2[1];
-  tmpClusterSSA_a$1 = tmpNestedAssignArrPatternRhs$2;
+  tmpClusterSSA_x$2 = arrPatternSplat$2[0];
+  tmpClusterSSA_y$2 = arrPatternSplat$2[1];
+  tmpClusterSSA_a$2 = tmpNestedAssignArrPatternRhs$2;
   $(1);
 }
-$(tmpClusterSSA_a$1, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
+$(tmpClusterSSA_a$2, tmpClusterSSA_x$2, tmpClusterSSA_y$2);
 `````
 
 ## Globals

@@ -43,19 +43,23 @@ $(a);
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
-    tmpNestedComplexRhs = tmpChainElementCall;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
+      const tmpChainElementObject = tmpChainRootProp.c;
+      const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+      tmpNestedComplexRhs = tmpChainElementCall;
+    } else {
+    }
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
   } else {
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -63,17 +67,30 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
+$(100);
 const b = { c: $ };
-while (tmpDoWhileFlag) {
+const tmpChainElementCall = $dotCall($, b, 1);
+let tmpClusterSSA_a = tmpChainElementCall;
+if (tmpChainElementCall) {
   $(100);
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  a = tmpChainElementCall;
-  tmpDoWhileFlag = tmpChainElementCall;
+  const tmpChainElementObject$1 = b.c;
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
+  tmpClusterSSA_a = tmpChainElementCall$1;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementCall$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpChainElementObject$2 = b.c;
+      const tmpChainElementCall$2 = $dotCall(tmpChainElementObject$2, b, 1);
+      tmpClusterSSA_a = tmpChainElementCall$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementCall$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

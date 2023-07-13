@@ -45,17 +45,21 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-    tmpDoWhileFlag = tmpChainElementObject$3;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpChainElementObject$1 = tmpChainElementObject.y;
+      const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+      tmpDoWhileFlag = tmpChainElementObject$3;
+    } else {
+    }
   } else {
+    break;
   }
 }
 $(a);
@@ -66,15 +70,26 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpChainElementObject$3 = tmpObjLitVal$1.z;
+if (tmpChainElementObject$3) {
   $(100);
-  const tmpChainElementObject = b.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  tmpDoWhileFlag = tmpChainElementObject$3;
+  const tmpChainElementObject$6 = tmpObjLitVal$1.z;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementObject$6;
+  const b = { x: tmpObjLitVal };
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpChainElementObject$1 = b.x;
+      const tmpChainElementObject$5 = tmpChainElementObject$1.y;
+      const tmpChainElementObject$7 = tmpChainElementObject$5.z;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementObject$7;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

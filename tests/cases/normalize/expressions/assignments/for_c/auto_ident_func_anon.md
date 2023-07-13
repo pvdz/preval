@@ -35,12 +35,16 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  a = function () {
-    debugger;
-    return undefined;
-  };
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    a = function () {
+      debugger;
+      return undefined;
+    };
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -50,12 +54,16 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  a = function () {
-    debugger;
-    return undefined;
-  };
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    a = function () {
+      debugger;
+      return undefined;
+    };
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````

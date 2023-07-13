@@ -68,13 +68,17 @@ if (chk) {
 } else {
   count = false;
 }
-while (count) {
-  $(`inside`);
-  wat = wat | 10;
-  const chk$1 = $(true);
-  if (chk$1) {
+while (true) {
+  if (count) {
+    $(`inside`);
+    wat = wat | 10;
+    const chk$1 = $(true);
+    if (chk$1) {
+    } else {
+      count = false;
+    }
   } else {
-    count = false;
+    break;
   }
 }
 $(wat);
@@ -88,11 +92,13 @@ let count = $LOOP_UNROLL_10;
 $(`before`);
 let wat = s | 10;
 const chk = $(true);
+let $tmpLoopUnrollCheck = false;
 if (chk) {
+  $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 } else {
   count = false;
 }
-while (count) {
+if (count) {
   $(`inside`);
   wat = wat | 10;
   const chk$1 = $(true);
@@ -100,6 +106,23 @@ while (count) {
   } else {
     count = false;
   }
+} else {
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (count) {
+      $(`inside`);
+      wat = wat | 10;
+      const chk$2 = $(true);
+      if (chk$2) {
+      } else {
+        count = false;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(wat);
 `````

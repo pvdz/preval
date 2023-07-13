@@ -38,8 +38,12 @@ let a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 tmpCompObj.c;
 let tmpIfTest = $(0);
-while (tmpIfTest) {
-  tmpIfTest = $(0);
+while (true) {
+  if (tmpIfTest) {
+    tmpIfTest = $(0);
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -51,9 +55,17 @@ const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCompObj = $(b);
 tmpCompObj.c;
-let tmpIfTest = $(0);
-while (tmpIfTest) {
-  tmpIfTest = $(0);
+const tmpIfTest = $(0);
+if (tmpIfTest) {
+  let tmpClusterSSA_tmpIfTest = $(0);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

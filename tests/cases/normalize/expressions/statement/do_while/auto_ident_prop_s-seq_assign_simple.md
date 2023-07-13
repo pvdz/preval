@@ -43,12 +43,16 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpNestedAssignObj = b;
-  const tmpNestedPropAssignRhs = 2;
-  tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
-  tmpDoWhileFlag = tmpNestedPropAssignRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpNestedAssignObj = b;
+    const tmpNestedPropAssignRhs = 2;
+    tmpNestedAssignObj.c = tmpNestedPropAssignRhs;
+    tmpDoWhileFlag = tmpNestedPropAssignRhs;
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````

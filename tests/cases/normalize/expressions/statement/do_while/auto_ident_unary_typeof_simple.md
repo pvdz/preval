@@ -43,9 +43,13 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = typeof arg;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = typeof arg;
+  } else {
+    break;
+  }
 }
 $(a, arg);
 `````

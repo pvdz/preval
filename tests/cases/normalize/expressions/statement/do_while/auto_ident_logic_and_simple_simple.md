@@ -39,12 +39,16 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = 1;
+while (true) {
   if (tmpDoWhileFlag) {
-    tmpDoWhileFlag = 2;
+    $(100);
+    tmpDoWhileFlag = 1;
+    if (tmpDoWhileFlag) {
+      tmpDoWhileFlag = 2;
+    } else {
+    }
   } else {
+    break;
   }
 }
 $(a);

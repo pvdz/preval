@@ -64,26 +64,28 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
-const tmpChainElementObject$1 = tmpObjLitVal.y;
-const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+let $tmpLoopUnrollCheck = true;
+const tmpChainElementObject$3 = tmpObjLitVal$1.z;
 let tmpClusterSSA_a = tmpChainElementObject$3;
 if (tmpChainElementObject$3) {
   $(1);
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpChainElementObject$2 = b.x;
-  const tmpChainElementObject$4 = tmpChainElementObject$2.y;
-  const tmpChainElementObject$6 = tmpChainElementObject$4.z;
-  tmpClusterSSA_a = tmpChainElementObject$6;
-  if (tmpChainElementObject$6) {
-    $(1);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  const b = { x: tmpObjLitVal };
+  while ($LOOP_UNROLL_10) {
+    const tmpChainElementObject$2 = b.x;
+    const tmpChainElementObject$4 = tmpChainElementObject$2.y;
+    const tmpChainElementObject$6 = tmpChainElementObject$4.z;
+    tmpClusterSSA_a = tmpChainElementObject$6;
+    if (tmpChainElementObject$6) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(tmpClusterSSA_a);
 `````

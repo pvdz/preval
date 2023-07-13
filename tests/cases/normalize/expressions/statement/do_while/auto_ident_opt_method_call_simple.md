@@ -43,16 +43,20 @@ $(a);
 let b = { c: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.c;
-    const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
-    tmpDoWhileFlag = tmpChainElementCall;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
+      const tmpChainElementObject = tmpChainRootProp.c;
+      const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, 1);
+      tmpDoWhileFlag = tmpChainElementCall;
+    } else {
+    }
   } else {
+    break;
   }
 }
 $(a);
@@ -63,12 +67,24 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpChainElementCall = $dotCall($, b, 1);
+if (tmpChainElementCall) {
   $(100);
-  const tmpChainElementObject = b.c;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
-  tmpDoWhileFlag = tmpChainElementCall;
+  const tmpChainElementObject$1 = b.c;
+  const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementCall$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpChainElementObject$2 = b.c;
+      const tmpChainElementCall$2 = $dotCall(tmpChainElementObject$2, b, 1);
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementCall$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

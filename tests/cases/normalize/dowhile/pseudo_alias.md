@@ -62,12 +62,16 @@ let f = function ($$0) {
   debugger;
   if (v) {
     let doWhileFlag = true;
-    while (doWhileFlag) {
-      $(`loop`);
-      const x = v._currentElement;
-      const y = x._owner;
-      v = y;
-      doWhileFlag = y;
+    while (true) {
+      if (doWhileFlag) {
+        $(`loop`);
+        const x = v._currentElement;
+        const y = x._owner;
+        v = y;
+        doWhileFlag = y;
+      } else {
+        break;
+      }
     }
     return undefined;
   } else {

@@ -39,10 +39,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  a = arguments;
-  tmpDoWhileFlag = arguments;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    a = arguments;
+    tmpDoWhileFlag = arguments;
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -50,12 +54,23 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+let a = arguments;
+arguments;
+if (arguments) {
   $(100);
   a = arguments;
-  tmpDoWhileFlag = arguments;
+  let tmpClusterSSA_tmpDoWhileFlag = arguments;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      a = arguments;
+      tmpClusterSSA_tmpDoWhileFlag = arguments;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

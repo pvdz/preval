@@ -43,14 +43,18 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCompObj = $(b);
-  const tmpCompProp = $(`\$`);
-  const tmpNewCallee = tmpCompObj[tmpCompProp];
-  const tmpNestedComplexRhs = new tmpNewCallee(1);
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCompObj = $(b);
+    const tmpCompProp = $(`\$`);
+    const tmpNewCallee = tmpCompObj[tmpCompProp];
+    const tmpNestedComplexRhs = new tmpNewCallee(1);
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a);
 `````

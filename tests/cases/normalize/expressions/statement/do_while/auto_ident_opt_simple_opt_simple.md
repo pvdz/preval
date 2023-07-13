@@ -44,20 +44,24 @@ const tmpObjLitVal = { y: 1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpIfTest$1 = tmpChainElementObject != null;
-    if (tmpIfTest$1) {
-      const tmpChainElementObject$1 = tmpChainElementObject.y;
-      tmpDoWhileFlag = tmpChainElementObject$1;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpIfTest$1 = tmpChainElementObject != null;
+      if (tmpIfTest$1) {
+        const tmpChainElementObject$1 = tmpChainElementObject.y;
+        tmpDoWhileFlag = tmpChainElementObject$1;
+      } else {
+      }
     } else {
     }
   } else {
+    break;
   }
 }
 $(a);
@@ -67,20 +71,35 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const b = { x: tmpObjLitVal };
-const a = { a: 999, b: 1000 };
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = false;
-  const tmpChainElementObject = b.x;
-  const tmpIfTest$1 = tmpChainElementObject == null;
-  if (tmpIfTest$1) {
+const b = { x: tmpObjLitVal };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = false;
+    const tmpChainElementObject$2 = b.x;
+    const tmpIfTest$2 = tmpChainElementObject$2 == null;
+    if (tmpIfTest$2) {
+    } else {
+      const tmpChainElementObject$4 = tmpChainElementObject$2.y;
+      tmpDoWhileFlag = tmpChainElementObject$4;
+    }
   } else {
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    tmpDoWhileFlag = tmpChainElementObject$1;
+    break;
   }
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

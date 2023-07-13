@@ -35,8 +35,12 @@ const tmpCallCallee = $;
 const tmpCalleeParam = $(0);
 const tmpIfTest = tmpCallCallee(tmpCalleeParam);
 let tmpIfTest$1 = $(0);
-while (tmpIfTest$1) {
-  tmpIfTest$1 = $(0);
+while (true) {
+  if (tmpIfTest$1) {
+    tmpIfTest$1 = $(0);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -46,9 +50,17 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $(0);
 $(tmpCalleeParam);
-let tmpIfTest$1 = $(0);
-while (tmpIfTest$1) {
-  tmpIfTest$1 = $(0);
+const tmpIfTest$1 = $(0);
+if (tmpIfTest$1) {
+  let tmpClusterSSA_tmpIfTest$1 = $(0);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest$1) {
+      tmpClusterSSA_tmpIfTest$1 = $(0);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

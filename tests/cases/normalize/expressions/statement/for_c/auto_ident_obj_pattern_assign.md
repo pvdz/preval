@@ -40,13 +40,17 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpObjLitVal = $(3);
-  const tmpObjLitVal$1 = $(4);
-  const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
-  x = tmpAssignObjPatternRhs.x;
-  y = tmpAssignObjPatternRhs.y;
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpObjLitVal = $(3);
+    const tmpObjLitVal$1 = $(4);
+    const tmpAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
+    x = tmpAssignObjPatternRhs.x;
+    y = tmpAssignObjPatternRhs.y;
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a, x, y);
 `````
@@ -56,13 +60,25 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
   x = tmpObjLitVal;
   y = tmpObjLitVal$1;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpObjLitVal$2 = $(3);
+      const tmpObjLitVal$4 = $(4);
+      x = tmpObjLitVal$2;
+      y = tmpObjLitVal$4;
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a, x, y);

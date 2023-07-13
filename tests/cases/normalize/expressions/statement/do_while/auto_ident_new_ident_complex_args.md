@@ -43,12 +43,16 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpNewCallee = $;
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
-  tmpDoWhileFlag = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpNewCallee = $;
+    const tmpCalleeParam = $(1);
+    const tmpCalleeParam$1 = $(2);
+    tmpDoWhileFlag = new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````

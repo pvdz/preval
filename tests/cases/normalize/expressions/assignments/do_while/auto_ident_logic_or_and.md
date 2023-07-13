@@ -39,25 +39,29 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(0);
-  let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
-  if (tmpNestedComplexRhs) {
-  } else {
-    const tmpCallCallee$1 = $;
-    const tmpCalleeParam$1 = $(1);
-    tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(0);
+    let tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam);
     if (tmpNestedComplexRhs) {
-      const tmpCallCallee$3 = $;
-      const tmpCalleeParam$3 = $(2);
-      tmpNestedComplexRhs = tmpCallCallee$3(tmpCalleeParam$3);
     } else {
+      const tmpCallCallee$1 = $;
+      const tmpCalleeParam$1 = $(1);
+      tmpNestedComplexRhs = tmpCallCallee$1(tmpCalleeParam$1);
+      if (tmpNestedComplexRhs) {
+        const tmpCallCallee$3 = $;
+        const tmpCalleeParam$3 = $(2);
+        tmpNestedComplexRhs = tmpCallCallee$3(tmpCalleeParam$3);
+      } else {
+      }
     }
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -65,26 +69,58 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCalleeParam = $(0);
-  let tmpNestedComplexRhs = $(tmpCalleeParam);
+$(100);
+const tmpCalleeParam = $(0);
+let tmpNestedComplexRhs = $(tmpCalleeParam);
+if (tmpNestedComplexRhs) {
+} else {
+  const tmpCalleeParam$1 = $(1);
+  tmpNestedComplexRhs = $(tmpCalleeParam$1);
   if (tmpNestedComplexRhs) {
+    const tmpCalleeParam$3 = $(2);
+    tmpNestedComplexRhs = $(tmpCalleeParam$3);
   } else {
-    const tmpCalleeParam$1 = $(1);
-    tmpNestedComplexRhs = $(tmpCalleeParam$1);
-    if (tmpNestedComplexRhs) {
-      const tmpCalleeParam$3 = $(2);
-      tmpNestedComplexRhs = $(tmpCalleeParam$3);
+  }
+}
+let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
+if (tmpNestedComplexRhs) {
+  $(100);
+  const tmpCalleeParam$2 = $(0);
+  let tmpNestedComplexRhs$1 = $(tmpCalleeParam$2);
+  if (tmpNestedComplexRhs$1) {
+  } else {
+    const tmpCalleeParam$4 = $(1);
+    tmpNestedComplexRhs$1 = $(tmpCalleeParam$4);
+    if (tmpNestedComplexRhs$1) {
+      const tmpCalleeParam$6 = $(2);
+      tmpNestedComplexRhs$1 = $(tmpCalleeParam$6);
     } else {
     }
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      const tmpCalleeParam$5 = $(0);
+      let tmpNestedComplexRhs$2 = $(tmpCalleeParam$5);
+      if (tmpNestedComplexRhs$2) {
+      } else {
+        const tmpCalleeParam$7 = $(1);
+        tmpNestedComplexRhs$2 = $(tmpCalleeParam$7);
+        if (tmpNestedComplexRhs$2) {
+          const tmpCalleeParam$9 = $(2);
+          tmpNestedComplexRhs$2 = $(tmpCalleeParam$9);
+        } else {
+        }
+      }
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
-$(a);
+$(tmpClusterSSA_tmpDoWhileFlag);
 `````
 
 ## Globals

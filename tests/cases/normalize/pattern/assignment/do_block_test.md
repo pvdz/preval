@@ -45,12 +45,16 @@ let y = 4;
 let p = undefined;
 let q = undefined;
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  const arrAssignPatternRhs = $(b);
-  const arrPatternSplat = [...arrAssignPatternRhs];
-  p = arrPatternSplat[0];
-  q = arrPatternSplat[1];
-  tmpDoWhileFlag = x + y;
+while (true) {
+  if (tmpDoWhileFlag) {
+    const arrAssignPatternRhs = $(b);
+    const arrPatternSplat = [...arrAssignPatternRhs];
+    p = arrPatternSplat[0];
+    q = arrPatternSplat[1];
+    tmpDoWhileFlag = x + y;
+  } else {
+    break;
+  }
 }
 $(p, q);
 `````

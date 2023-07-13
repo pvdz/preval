@@ -46,18 +46,22 @@ let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpArrElement = $(3);
-  const tmpArrElement$1 = $(4);
-  const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
-  const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  x = arrPatternSplat[0];
-  y = arrPatternSplat[1];
-  tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs = undefined;
+    const tmpArrElement = $(3);
+    const tmpArrElement$1 = $(4);
+    const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
+    const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
+    x = arrPatternSplat[0];
+    y = arrPatternSplat[1];
+    tmpNestedComplexRhs = tmpNestedAssignArrPatternRhs;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, x, y);
 `````
@@ -96,18 +100,18 @@ $(100);
 $(3);
 $(4);
 $(100);
-const tmpArrElement$3 = $(3);
-const tmpArrElement$5 = $(4);
-const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$3, tmpArrElement$5];
+const tmpArrElement$2 = $(3);
+const tmpArrElement$4 = $(4);
+const tmpNestedAssignArrPatternRhs$1 = [tmpArrElement$2, tmpArrElement$4];
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
 let tmpClusterSSA_x$2 = arrPatternSplat$1[0];
 let tmpClusterSSA_y$2 = arrPatternSplat$1[1];
 let tmpClusterSSA_a$2 = tmpNestedAssignArrPatternRhs$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpArrElement$6 = $(3);
-  const tmpArrElement$8 = $(4);
-  const tmpNestedAssignArrPatternRhs$2 = [tmpArrElement$6, tmpArrElement$8];
+  const tmpArrElement$3 = $(3);
+  const tmpArrElement$5 = $(4);
+  const tmpNestedAssignArrPatternRhs$2 = [tmpArrElement$3, tmpArrElement$5];
   const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$2];
   tmpClusterSSA_x$2 = arrPatternSplat$2[0];
   tmpClusterSSA_y$2 = arrPatternSplat$2[1];

@@ -58,7 +58,7 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const tmpCalleeParam = $(b);
 const varInitAssignLhsComputedObj = $(tmpCalleeParam);
 const tmpBinLhs = varInitAssignLhsComputedObj.x;
@@ -69,17 +69,20 @@ if (varInitAssignLhsComputedRhs) {
 } else {
   $tmpLoopUnrollCheck = false;
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpCalleeParam$1 = $(b);
-  const varInitAssignLhsComputedObj$1 = $(tmpCalleeParam$1);
-  const tmpBinLhs$1 = varInitAssignLhsComputedObj$1.x;
-  const varInitAssignLhsComputedRhs$1 = tmpBinLhs$1 - 1;
-  varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
-  if (varInitAssignLhsComputedRhs$1) {
-    $(1);
-  } else {
-    break;
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpCalleeParam$1 = $(b);
+    const varInitAssignLhsComputedObj$1 = $(tmpCalleeParam$1);
+    const tmpBinLhs$1 = varInitAssignLhsComputedObj$1.x;
+    const varInitAssignLhsComputedRhs$1 = tmpBinLhs$1 - 1;
+    varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
+    if (varInitAssignLhsComputedRhs$1) {
+      $(1);
+    } else {
+      break;
+    }
   }
+} else {
 }
 $(a, b);
 `````

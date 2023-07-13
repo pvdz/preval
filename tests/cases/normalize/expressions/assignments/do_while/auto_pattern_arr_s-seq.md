@@ -41,14 +41,18 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  $(10);
-  $(20);
-  const tmpNestedAssignArrPatternRhs = [1, 2];
-  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-  a = arrPatternSplat$1[0];
-  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    $(10);
+    $(20);
+    const tmpNestedAssignArrPatternRhs = [1, 2];
+    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+    a = arrPatternSplat$1[0];
+    tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -58,10 +62,10 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-arrPatternSplat[0];
 $(100);
 $(10);
 $(20);
+arrPatternSplat[0];
 $(100);
 $(10);
 $(20);

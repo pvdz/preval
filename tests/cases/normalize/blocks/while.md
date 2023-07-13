@@ -24,19 +24,32 @@ while ($(1)) $(2);
 
 `````js filename=intro
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  $(2);
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    $(2);
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   $(2);
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      $(2);
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

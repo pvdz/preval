@@ -43,9 +43,13 @@ $(f());
 let f = function () {
   debugger;
   let tmpIfTest = $(true);
-  while (tmpIfTest) {
-    const tmpThrowArg = $(1, `throw`);
-    throw tmpThrowArg;
+  while (true) {
+    if (tmpIfTest) {
+      const tmpThrowArg = $(1, `throw`);
+      throw tmpThrowArg;
+    } else {
+      break;
+    }
   }
   $(`keep, do not eval`);
   return undefined;

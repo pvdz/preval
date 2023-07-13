@@ -29,10 +29,14 @@ for ($(1); $(2); $(3)) $(4);
 `````js filename=intro
 $(1);
 let tmpIfTest = $(2);
-while (tmpIfTest) {
-  $(4);
-  $(3);
-  tmpIfTest = $(2);
+while (true) {
+  if (tmpIfTest) {
+    $(4);
+    $(3);
+    tmpIfTest = $(2);
+  } else {
+    break;
+  }
 }
 `````
 
@@ -40,11 +44,21 @@ while (tmpIfTest) {
 
 `````js filename=intro
 $(1);
-let tmpIfTest = $(2);
-while (tmpIfTest) {
+const tmpIfTest = $(2);
+if (tmpIfTest) {
   $(4);
   $(3);
-  tmpIfTest = $(2);
+  let tmpClusterSSA_tmpIfTest = $(2);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      $(4);
+      $(3);
+      tmpClusterSSA_tmpIfTest = $(2);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

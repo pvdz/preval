@@ -54,10 +54,14 @@ let check = function ($$0) {
   return undefined;
 };
 let x = /foo/;
-while (x) {
-  check(x);
-  x = /foo/;
-  x.foo = `object`;
+while (true) {
+  if (x) {
+    check(x);
+    x = /foo/;
+    x.foo = `object`;
+  } else {
+    break;
+  }
 }
 `````
 

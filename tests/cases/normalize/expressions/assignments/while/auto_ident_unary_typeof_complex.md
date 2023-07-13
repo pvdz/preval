@@ -68,12 +68,12 @@ $(1);
 $(100);
 $(1);
 $(100);
-const tmpUnaryArg$2 = $(1);
-let a = typeof tmpUnaryArg$2;
+const tmpUnaryArg$1 = $(1);
+let a = typeof tmpUnaryArg$1;
 $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpUnaryArg$3 = $(1);
-  a = typeof tmpUnaryArg$3;
+  const tmpUnaryArg$2 = $(1);
+  a = typeof tmpUnaryArg$2;
   $(100);
 }
 $(a, 1);

@@ -33,10 +33,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpUnaryArg = $(100);
-  -tmpUnaryArg;
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpUnaryArg = $(100);
+    -tmpUnaryArg;
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -44,11 +48,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   const tmpUnaryArg = $(100);
   -tmpUnaryArg;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpUnaryArg$1 = $(100);
+      -tmpUnaryArg$1;
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

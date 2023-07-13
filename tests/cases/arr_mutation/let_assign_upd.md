@@ -41,16 +41,20 @@ $(arr);
 `````js filename=intro
 let arr = undefined;
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  arr = [0];
-  const tmpAssignComputedObj = arr;
-  const tmpAssignComputedProp = 0;
-  const tmpBinLhs = arr[0];
-  const tmpAssignComputedRhs = tmpBinLhs + 1;
-  tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
-  $(arr);
-  const tmpBinLhs$1 = arr[0];
-  tmpDoWhileFlag = tmpBinLhs$1 < 10;
+while (true) {
+  if (tmpDoWhileFlag) {
+    arr = [0];
+    const tmpAssignComputedObj = arr;
+    const tmpAssignComputedProp = 0;
+    const tmpBinLhs = arr[0];
+    const tmpAssignComputedRhs = tmpBinLhs + 1;
+    tmpAssignComputedObj[tmpAssignComputedProp] = tmpAssignComputedRhs;
+    $(arr);
+    const tmpBinLhs$1 = arr[0];
+    tmpDoWhileFlag = tmpBinLhs$1 < 10;
+  } else {
+    break;
+  }
 }
 $(arr);
 `````
@@ -58,17 +62,38 @@ $(arr);
 ## Output
 
 `````js filename=intro
-let arr = undefined;
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+let arr = [0];
+const tmpAssignComputedObj = arr;
+const tmpBinLhs = arr[0];
+const tmpAssignComputedRhs = tmpBinLhs + 1;
+tmpAssignComputedObj[0] = tmpAssignComputedRhs;
+$(arr);
+const tmpBinLhs$1 = arr[0];
+const tmpClusterSSA_tmpDoWhileFlag = tmpBinLhs$1 < 10;
+if (tmpClusterSSA_tmpDoWhileFlag) {
   arr = [0];
-  const tmpAssignComputedObj = arr;
-  const tmpBinLhs = arr[0];
-  const tmpAssignComputedRhs = tmpBinLhs + 1;
-  tmpAssignComputedObj[0] = tmpAssignComputedRhs;
+  const tmpAssignComputedObj$1 = arr;
+  const tmpBinLhs$2 = arr[0];
+  const tmpAssignComputedRhs$1 = tmpBinLhs$2 + 1;
+  tmpAssignComputedObj$1[0] = tmpAssignComputedRhs$1;
   $(arr);
-  const tmpBinLhs$1 = arr[0];
-  tmpDoWhileFlag = tmpBinLhs$1 < 10;
+  const tmpBinLhs$4 = arr[0];
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpBinLhs$4 < 10;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      arr = [0];
+      const tmpAssignComputedObj$2 = arr;
+      const tmpBinLhs$3 = arr[0];
+      const tmpAssignComputedRhs$2 = tmpBinLhs$3 + 1;
+      tmpAssignComputedObj$2[0] = tmpAssignComputedRhs$2;
+      $(arr);
+      const tmpBinLhs$5 = arr[0];
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpBinLhs$5 < 10;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(arr);
 `````

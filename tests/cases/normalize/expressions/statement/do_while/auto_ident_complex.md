@@ -43,9 +43,13 @@ $(a, b);
 let b = 1;
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  tmpDoWhileFlag = $(b);
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = $(b);
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -53,10 +57,20 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpDoWhileFlag = $(1);
+if (tmpDoWhileFlag) {
   $(100);
-  tmpDoWhileFlag = $(1);
+  let tmpClusterSSA_tmpDoWhileFlag = $(1);
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      tmpClusterSSA_tmpDoWhileFlag = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a, 1);

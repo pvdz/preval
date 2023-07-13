@@ -37,11 +37,15 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpCompObj = $(b);
-  const tmpNewCallee = tmpCompObj.$;
-  a = new tmpNewCallee(1);
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpCompObj = $(b);
+    const tmpNewCallee = tmpCompObj.$;
+    a = new tmpNewCallee(1);
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -51,12 +55,28 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 const b = { $: $ };
-while (tmpIfTest) {
+if (tmpIfTest) {
   const tmpCompObj = $(b);
   const tmpNewCallee = tmpCompObj.$;
   a = new tmpNewCallee(1);
   tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      const tmpCompObj$1 = $(b);
+      const tmpNewCallee$1 = tmpCompObj$1.$;
+      a = new tmpNewCallee$1(1);
+      tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a);
 `````

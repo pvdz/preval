@@ -32,19 +32,20 @@ let x = undefined;
 `````js filename=intro
 let x = undefined;
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  x = 0;
-  tmpDoWhileFlag = false;
+while (true) {
+  if (tmpDoWhileFlag) {
+    x = 0;
+    tmpDoWhileFlag = false;
+  } else {
+    break;
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  tmpDoWhileFlag = false;
-}
+
 `````
 
 ## Globals

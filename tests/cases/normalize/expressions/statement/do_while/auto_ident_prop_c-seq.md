@@ -43,10 +43,14 @@ $(a, b);
 let b = { c: 1 };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpAssignRhsProp = $(b);
-  tmpDoWhileFlag = tmpAssignRhsProp.c;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpAssignRhsProp = $(b);
+    tmpDoWhileFlag = tmpAssignRhsProp.c;
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -56,11 +60,23 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpAssignRhsProp = $(b);
+const tmpClusterSSA_tmpDoWhileFlag = tmpAssignRhsProp.c;
+if (tmpClusterSSA_tmpDoWhileFlag) {
   $(100);
-  const tmpAssignRhsProp = $(b);
-  tmpDoWhileFlag = tmpAssignRhsProp.c;
+  const tmpAssignRhsProp$1 = $(b);
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpAssignRhsProp$1.c;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpAssignRhsProp$2 = $(b);
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpAssignRhsProp$2.c;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, b);
 `````

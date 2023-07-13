@@ -46,10 +46,14 @@ let f = function () {
   debugger;
   let i = 0;
   let tmpIfTest = i < 1;
-  while (tmpIfTest) {
-    $(i);
-    i = i + 1;
-    tmpIfTest = i < 1;
+  while (true) {
+    if (tmpIfTest) {
+      $(i);
+      i = i + 1;
+      tmpIfTest = i < 1;
+    } else {
+      break;
+    }
   }
   return 100;
 };

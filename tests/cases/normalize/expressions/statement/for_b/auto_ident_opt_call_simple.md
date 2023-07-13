@@ -53,7 +53,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const tmpIfTest$1 = $ == null;
 if (tmpIfTest$1) {
   $(1);
@@ -65,18 +65,21 @@ if (tmpIfTest$1) {
     $tmpLoopUnrollCheck = false;
   }
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpIfTest$4 = $ == null;
-  if (tmpIfTest$4) {
-    $(1);
-  } else {
-    const tmpChainElementCall$1 = $(1);
-    if (tmpChainElementCall$1) {
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$4 = $ == null;
+    if (tmpIfTest$4) {
       $(1);
     } else {
-      break;
+      const tmpChainElementCall$1 = $(1);
+      if (tmpChainElementCall$1) {
+        $(1);
+      } else {
+        break;
+      }
     }
   }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

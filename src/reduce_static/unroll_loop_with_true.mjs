@@ -209,18 +209,34 @@ function processAttempt(fdata, unrollTrueLimit) {
     walk(replacer, clone, 'BlockStatement');
 
     rule('while(true) should be unrolled');
-    example('while (true) { if ($()) break; }', '{ let tmp = $LOOP_COUNTER_1000; stop: { if ($()) { tmp = false; break stop; } } while (tmp) { if ($()) break; }')
+
+    example(
+      'while (true) { if ($()) break; }',
+      //'{ let tmp = $LOOP_COUNTER_1000; stop: { if ($()) { tmp = false; break stop; } } while (tmp) { if ($()) break; }'
+      '{ let tmp = true; stop: if ($()) { tmp = false; break stop; } if (tmp) { while ($LOOP_COUNTER_999) { if ($()) break; } }'
+    );
+
+
     before(whileNode, parentNode);
 
+    vlog(whileNode.test)
+    vlog('Counter:', condCount, ', ident:', condIdent, ', tmpName:', tmpName, ', whileNode.test.name:', whileNode.test.name);
+
     const newNodes = AST.blockStatement([
-      AST.variableDeclaration(tmpName, AST.identifier(condIdent), 'let'),
+      AST.variableDeclaration(tmpName, AST.tru(), 'let'),
       AST.labeledStatement(tmpLabel.name, clone),
-      AST.whileStatement(
+      AST.ifStatement(
         AST.identifier(tmpName),
-        AST.blockStatement([
-          whileNode.body,
-        ]),
-      ),
+        AST.blockStatement(
+          AST.whileStatement(
+            AST.identifier(condIdent),
+            AST.blockStatement([
+              whileNode.body,
+            ]),
+          )
+        ),
+        AST.blockStatement()
+      )
     ]);
 
     blockBody[blockIndex] = newNodes;

@@ -37,10 +37,14 @@ $(a, arg);
 let arg = 1;
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-while (tmpIfTest) {
-  const tmpUnaryArg = $(arg);
-  a = typeof tmpUnaryArg;
-  tmpIfTest = $(1);
+while (true) {
+  if (tmpIfTest) {
+    const tmpUnaryArg = $(arg);
+    a = typeof tmpUnaryArg;
+    tmpIfTest = $(1);
+  } else {
+    break;
+  }
 }
 $(a, arg);
 `````
@@ -49,11 +53,21 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-while (tmpIfTest) {
+const tmpIfTest = $(1);
+if (tmpIfTest) {
   const tmpUnaryArg = $(1);
   a = typeof tmpUnaryArg;
-  tmpIfTest = $(1);
+  let tmpClusterSSA_tmpIfTest = $(1);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpUnaryArg$1 = $(1);
+      a = typeof tmpUnaryArg$1;
+      tmpClusterSSA_tmpIfTest = $(1);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(a, 1);
 `````

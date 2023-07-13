@@ -53,16 +53,24 @@ $(f());
 let f = function () {
   debugger;
   let tmpIfTest = $(true);
-  while (tmpIfTest) {
-    $(`loop`);
-    let tmpIfTest$1 = $(true);
-    while (tmpIfTest$1) {
+  while (true) {
+    if (tmpIfTest) {
       $(`loop`);
-      const tmpThrowArg = $(7, `throw`);
-      throw tmpThrowArg;
+      let tmpIfTest$1 = $(true);
+      while (true) {
+        if (tmpIfTest$1) {
+          $(`loop`);
+          const tmpThrowArg = $(7, `throw`);
+          throw tmpThrowArg;
+        } else {
+          break;
+        }
+      }
+      $(`do not visit, do not eliminate`);
+      tmpIfTest = $(true);
+    } else {
+      break;
     }
-    $(`do not visit, do not eliminate`);
-    tmpIfTest = $(true);
   }
   $(`after (not invoked)`);
   return undefined;
@@ -75,8 +83,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
-while (tmpIfTest) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
   $(`loop`);
   const tmpIfTest$1 = $(true);
   if (tmpIfTest$1) {
@@ -85,8 +93,25 @@ while (tmpIfTest) {
     throw tmpThrowArg;
   } else {
     $(`do not visit, do not eliminate`);
-    tmpIfTest = $(true);
+    let tmpClusterSSA_tmpIfTest = $(true);
+    while ($LOOP_UNROLL_10) {
+      if (tmpClusterSSA_tmpIfTest) {
+        $(`loop`);
+        const tmpIfTest$2 = $(true);
+        if (tmpIfTest$2) {
+          $(`loop`);
+          const tmpThrowArg$1 = $(7, `throw`);
+          throw tmpThrowArg$1;
+        } else {
+          $(`do not visit, do not eliminate`);
+          tmpClusterSSA_tmpIfTest = $(true);
+        }
+      } else {
+        break;
+      }
+    }
   }
+} else {
 }
 $(`after (not invoked)`);
 $(undefined);

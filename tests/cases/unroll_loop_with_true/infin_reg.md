@@ -49,10 +49,14 @@ $(1);
 $(2);
 let i = 3;
 let tst = true;
-while (tst) {
-  $(i);
-  i = i + 1;
-  tst = i > -5;
+while (true) {
+  if (tst) {
+    $(i);
+    i = i + 1;
+    tst = i > -5;
+  } else {
+    break;
+  }
 }
 `````
 
@@ -65,12 +69,25 @@ $(1);
 $(2);
 $(3);
 $(4);
-let tmpClusterSSA_i$1 = 5;
-let tmpClusterSSA_tst$1 = true;
-while (tmpClusterSSA_tst$1) {
-  $(tmpClusterSSA_i$1);
-  tmpClusterSSA_i$1 = tmpClusterSSA_i$1 + 1;
-  tmpClusterSSA_tst$1 = tmpClusterSSA_i$1 > -5;
+$(5);
+$(6);
+$(7);
+$(8);
+$(9);
+$(10);
+$(11);
+$(12);
+$(13);
+let i = 14;
+let tst = true;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (tst) {
+    $(i);
+    i = i + 1;
+    tst = i > -5;
+  } else {
+    break;
+  }
 }
 `````
 

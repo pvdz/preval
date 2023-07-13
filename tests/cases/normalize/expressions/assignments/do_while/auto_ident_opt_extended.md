@@ -45,20 +45,24 @@ const tmpObjLitVal = { y: tmpObjLitVal$1 };
 let b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpChainRootProp = b;
-  const tmpIfTest = tmpChainRootProp != null;
-  if (tmpIfTest) {
-    const tmpChainElementObject = tmpChainRootProp.x;
-    const tmpChainElementObject$1 = tmpChainElementObject.y;
-    const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-    tmpNestedComplexRhs = tmpChainElementObject$3;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs = undefined;
+    const tmpChainRootProp = b;
+    const tmpIfTest = tmpChainRootProp != null;
+    if (tmpIfTest) {
+      const tmpChainElementObject = tmpChainRootProp.x;
+      const tmpChainElementObject$1 = tmpChainElementObject.y;
+      const tmpChainElementObject$3 = tmpChainElementObject$1.z;
+      tmpNestedComplexRhs = tmpChainElementObject$3;
+    } else {
+    }
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
   } else {
+    break;
   }
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
 }
 $(a);
 `````
@@ -68,18 +72,30 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal$1 = { z: 100 };
 const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const b = { x: tmpObjLitVal };
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpChainElementObject$3 = tmpObjLitVal$1.z;
+let tmpClusterSSA_a = tmpChainElementObject$3;
+if (tmpChainElementObject$3) {
   $(100);
-  const tmpChainElementObject = b.x;
-  const tmpChainElementObject$1 = tmpChainElementObject.y;
-  const tmpChainElementObject$3 = tmpChainElementObject$1.z;
-  a = tmpChainElementObject$3;
-  tmpDoWhileFlag = tmpChainElementObject$3;
+  const tmpChainElementObject$6 = tmpObjLitVal$1.z;
+  tmpClusterSSA_a = tmpChainElementObject$6;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementObject$6;
+  const b = { x: tmpObjLitVal };
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpChainElementObject$1 = b.x;
+      const tmpChainElementObject$5 = tmpChainElementObject$1.y;
+      const tmpChainElementObject$7 = tmpChainElementObject$5.z;
+      tmpClusterSSA_a = tmpChainElementObject$7;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementObject$7;
+    } else {
+      break;
+    }
+  }
+} else {
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

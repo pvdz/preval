@@ -41,14 +41,18 @@ let bindingPatternArrRoot = { a: 999, b: 1000 };
 let arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = [1, 2];
-  const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
-  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-  a = arrPatternSplat$1[0];
-  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = [1, 2];
+    const tmpNestedAssignArrPatternRhs = tmpCallCallee(tmpCalleeParam);
+    const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+    a = arrPatternSplat$1[0];
+    tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -58,17 +62,34 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-let a = arrPatternSplat[0];
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+arrPatternSplat[0];
+$(100);
+const tmpCalleeParam = [1, 2];
+const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
+const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
+let tmpClusterSSA_a = arrPatternSplat$1[0];
+if (tmpNestedAssignArrPatternRhs) {
   $(100);
-  const tmpCalleeParam = [1, 2];
-  const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
-  const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-  a = arrPatternSplat$1[0];
-  tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+  const tmpCalleeParam$1 = [1, 2];
+  const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
+  const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
+  tmpClusterSSA_a = arrPatternSplat$2[0];
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpCalleeParam$2 = [1, 2];
+      const tmpNestedAssignArrPatternRhs$2 = $(tmpCalleeParam$2);
+      const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$2];
+      tmpClusterSSA_a = arrPatternSplat$3[0];
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
-$(a);
+$(tmpClusterSSA_a);
 `````
 
 ## Globals

@@ -43,12 +43,16 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
-  tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(1);
+    const tmpCalleeParam$1 = $(2);
+    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -56,12 +60,26 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpCalleeParam = $(1);
+const tmpCalleeParam$1 = $(2);
+const tmpDoWhileFlag = $(tmpCalleeParam, tmpCalleeParam$1);
+if (tmpDoWhileFlag) {
   $(100);
-  const tmpCalleeParam = $(1);
-  const tmpCalleeParam$1 = $(2);
-  tmpDoWhileFlag = $(tmpCalleeParam, tmpCalleeParam$1);
+  const tmpCalleeParam$2 = $(1);
+  const tmpCalleeParam$4 = $(2);
+  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2, tmpCalleeParam$4);
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      const tmpCalleeParam$3 = $(1);
+      const tmpCalleeParam$5 = $(2);
+      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$3, tmpCalleeParam$5);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

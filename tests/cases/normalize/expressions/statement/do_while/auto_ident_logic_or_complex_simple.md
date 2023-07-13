@@ -39,14 +39,18 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(0);
-  tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+while (true) {
   if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(0);
+    tmpDoWhileFlag = tmpCallCallee(tmpCalleeParam);
+    if (tmpDoWhileFlag) {
+    } else {
+      tmpDoWhileFlag = 2;
+    }
   } else {
-    tmpDoWhileFlag = 2;
+    break;
   }
 }
 $(a);
@@ -55,15 +59,40 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpCalleeParam = $(0);
+let tmpDoWhileFlag = $(tmpCalleeParam);
+let $tmpLoopUnrollCheck = true;
+if (tmpDoWhileFlag) {
+  $tmpLoopUnrollCheck = tmpDoWhileFlag;
+} else {
+  tmpDoWhileFlag = true;
+}
+if (tmpDoWhileFlag) {
   $(100);
-  const tmpCalleeParam = $(0);
-  tmpDoWhileFlag = $(tmpCalleeParam);
+  const tmpCalleeParam$1 = $(0);
+  tmpDoWhileFlag = $(tmpCalleeParam$1);
   if (tmpDoWhileFlag) {
   } else {
     tmpDoWhileFlag = true;
   }
+} else {
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpDoWhileFlag) {
+      $(100);
+      const tmpCalleeParam$2 = $(0);
+      tmpDoWhileFlag = $(tmpCalleeParam$2);
+      if (tmpDoWhileFlag) {
+      } else {
+        tmpDoWhileFlag = true;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

@@ -30,11 +30,15 @@ while (x) {
 
 `````js filename=intro
 let x = /foo/;
-while (x) {
-  const tmpCallCallee = $;
-  x = /foo/;
-  let tmpCalleeParam = x;
-  tmpCallCallee(tmpCalleeParam);
+while (true) {
+  if (x) {
+    const tmpCallCallee = $;
+    x = /foo/;
+    let tmpCalleeParam = x;
+    tmpCallCallee(tmpCalleeParam);
+  } else {
+    break;
+  }
 }
 `````
 

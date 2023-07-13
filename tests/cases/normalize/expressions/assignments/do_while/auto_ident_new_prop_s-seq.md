@@ -43,13 +43,17 @@ $(a);
 let b = { $: $ };
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpCompObj = b;
-  const tmpNewCallee = tmpCompObj.$;
-  const tmpNestedComplexRhs = new tmpNewCallee(1);
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpCompObj = b;
+    const tmpNewCallee = tmpCompObj.$;
+    const tmpNestedComplexRhs = new tmpNewCallee(1);
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -79,15 +83,15 @@ $(100);
 new $(1);
 $(100);
 const tmpNestedComplexRhs$1 = new $(1);
-let tmpClusterSSA_a$2 = tmpNestedComplexRhs$1;
+let tmpClusterSSA_a$1 = tmpNestedComplexRhs$1;
 const b = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpNewCallee$1 = b.$;
   const tmpNestedComplexRhs$2 = new tmpNewCallee$1(1);
-  tmpClusterSSA_a$2 = tmpNestedComplexRhs$2;
+  tmpClusterSSA_a$1 = tmpNestedComplexRhs$2;
 }
-$(tmpClusterSSA_a$2);
+$(tmpClusterSSA_a$1);
 `````
 
 ## Globals

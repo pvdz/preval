@@ -33,30 +33,48 @@ while ($(x)) {
 `````js filename=intro
 let x = $(10);
 let tmpIfTest = $(x);
-while (tmpIfTest) {
-  x = $(0);
-  const tmpIfTest$1 = $(true);
-  if (tmpIfTest$1) {
-    $(x, `branch`);
+while (true) {
+  if (tmpIfTest) {
+    x = $(0);
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+      $(x, `branch`);
+    } else {
+    }
+    tmpIfTest = $(x);
   } else {
+    break;
   }
-  tmpIfTest = $(x);
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let x = $(10);
-let tmpIfTest = $(x);
-while (tmpIfTest) {
-  x = $(0);
+const x = $(10);
+const tmpIfTest = $(x);
+if (tmpIfTest) {
+  let tmpClusterSSA_x = $(0);
   const tmpIfTest$1 = $(true);
   if (tmpIfTest$1) {
-    $(x, `branch`);
+    $(tmpClusterSSA_x, `branch`);
   } else {
   }
-  tmpIfTest = $(x);
+  let tmpClusterSSA_tmpIfTest = $(tmpClusterSSA_x);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_x = $(0);
+      const tmpIfTest$2 = $(true);
+      if (tmpIfTest$2) {
+        $(tmpClusterSSA_x, `branch`);
+      } else {
+      }
+      tmpClusterSSA_tmpIfTest = $(tmpClusterSSA_x);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 `````
 

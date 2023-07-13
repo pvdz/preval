@@ -59,16 +59,24 @@ $(f());
 let f = function () {
   debugger;
   let tmpIfTest = $(true);
-  while (tmpIfTest) {
-    $(`loop`);
-    let tmpDoWhileFlag = true;
-    while (tmpDoWhileFlag) {
+  while (true) {
+    if (tmpIfTest) {
       $(`loop`);
-      const tmpReturnArg = $(100, `return`);
-      return tmpReturnArg;
+      let tmpDoWhileFlag = true;
+      while (true) {
+        if (tmpDoWhileFlag) {
+          $(`loop`);
+          const tmpReturnArg = $(100, `return`);
+          return tmpReturnArg;
+        } else {
+          break;
+        }
+      }
+      $(`do not visit, do not eliminate`);
+      tmpIfTest = $(true);
+    } else {
+      break;
     }
-    $(`do not visit, do not eliminate`);
-    tmpIfTest = $(true);
   }
   $(`after (not invoked)`);
   return undefined;
@@ -81,21 +89,22 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const f = function () {
+const tmpIfTest = $(true);
+const tmpLabeledBlockFunc = function ($$0) {
+  const tmpIfTest$3 = $$0;
   debugger;
-  const tmpIfTest = $(true);
-  if (tmpIfTest) {
+  if (tmpIfTest$3) {
     $(`loop`);
     $(`loop`);
-    const tmpReturnArg = $(100, `return`);
-    return tmpReturnArg;
+    const tmpReturnArg$5 = $(100, `return`);
+    return tmpReturnArg$5;
   } else {
     $(`after (not invoked)`);
     return undefined;
   }
 };
-const tmpCalleeParam = f();
-$(tmpCalleeParam);
+const tmpReturnArg$9 = tmpLabeledBlockFunc(tmpIfTest);
+$(tmpReturnArg$9);
 `````
 
 ## Globals

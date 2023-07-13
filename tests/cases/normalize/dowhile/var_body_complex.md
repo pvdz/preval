@@ -33,23 +33,23 @@ let a = undefined;
 `````js filename=intro
 let a = undefined;
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  const tmpCallCallee = $;
-  const tmpCalleeParam = $(2);
-  a = tmpCallCallee(tmpCalleeParam);
-  tmpDoWhileFlag = 0;
+while (true) {
+  if (tmpDoWhileFlag) {
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $(2);
+    a = tmpCallCallee(tmpCalleeParam);
+    tmpDoWhileFlag = 0;
+  } else {
+    break;
+  }
 }
 `````
 
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  const tmpCalleeParam = $(2);
-  $(tmpCalleeParam);
-  tmpDoWhileFlag = false;
-}
+const tmpCalleeParam = $(2);
+$(tmpCalleeParam);
 `````
 
 ## Globals

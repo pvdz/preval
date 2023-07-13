@@ -41,9 +41,13 @@ $(f());
 let f = function () {
   debugger;
   let tmpIfTest = $(true);
-  while (tmpIfTest) {
-    const tmpThrowArg = $(1, `return`);
-    throw tmpThrowArg;
+  while (true) {
+    if (tmpIfTest) {
+      const tmpThrowArg = $(1, `return`);
+      throw tmpThrowArg;
+    } else {
+      break;
+    }
   }
   return undefined;
 };

@@ -47,8 +47,12 @@ if (tmpIfTest) {
   }
 }
 let tmpIfTest$3 = $(0);
-while (tmpIfTest$3) {
-  tmpIfTest$3 = $(0);
+while (true) {
+  if (tmpIfTest$3) {
+    tmpIfTest$3 = $(0);
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -68,9 +72,17 @@ if (tmpIfTest) {
   } else {
   }
 }
-let tmpIfTest$3 = $(0);
-while (tmpIfTest$3) {
-  tmpIfTest$3 = $(0);
+const tmpIfTest$3 = $(0);
+if (tmpIfTest$3) {
+  let tmpClusterSSA_tmpIfTest$3 = $(0);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest$3) {
+      tmpClusterSSA_tmpIfTest$3 = $(0);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

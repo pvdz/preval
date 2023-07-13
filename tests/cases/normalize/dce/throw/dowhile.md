@@ -45,9 +45,13 @@ $(f());
 let f = function () {
   debugger;
   let tmpDoWhileFlag = true;
-  while (tmpDoWhileFlag) {
-    const tmpThrowArg = $(1, `throw`);
-    throw tmpThrowArg;
+  while (true) {
+    if (tmpDoWhileFlag) {
+      const tmpThrowArg = $(1, `throw`);
+      throw tmpThrowArg;
+    } else {
+      break;
+    }
   }
   return undefined;
 };

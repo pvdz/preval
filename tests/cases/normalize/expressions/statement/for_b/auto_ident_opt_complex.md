@@ -60,7 +60,7 @@ $(a);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
+let $tmpLoopUnrollCheck = true;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
 if (tmpIfTest$1) {
@@ -73,19 +73,22 @@ if (tmpIfTest$1) {
     $tmpLoopUnrollCheck = false;
   }
 }
-while ($tmpLoopUnrollCheck) {
-  const tmpChainElementCall$1 = $(b);
-  const tmpIfTest$4 = tmpChainElementCall$1 == null;
-  if (tmpIfTest$4) {
-    $(1);
-  } else {
-    const tmpChainElementObject$1 = tmpChainElementCall$1.x;
-    if (tmpChainElementObject$1) {
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    const tmpChainElementCall$1 = $(b);
+    const tmpIfTest$4 = tmpChainElementCall$1 == null;
+    if (tmpIfTest$4) {
       $(1);
     } else {
-      break;
+      const tmpChainElementObject$1 = tmpChainElementCall$1.x;
+      if (tmpChainElementObject$1) {
+        $(1);
+      } else {
+        break;
+      }
     }
   }
+} else {
 }
 $(a);
 `````

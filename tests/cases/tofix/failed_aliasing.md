@@ -1,0 +1,135 @@
+# Preval test case
+
+# failed_aliasing.md
+
+> Tofix > Failed aliasing
+
+The case shoud alias the let to `x` because it's set true/false in a test and then only tested
+
+## Input
+
+`````js filename=intro
+const x = $(true);
+let $tmpLoopUnrollCheck = true;
+if (x) {
+  $(`body`);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      $(`body`);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after`);
+`````
+
+## Pre Normal
+
+`````js filename=intro
+const x = $(true);
+let $tmpLoopUnrollCheck = true;
+if (x) {
+  $(`body`);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      $(`body`);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after`);
+`````
+
+## Normalized
+
+`````js filename=intro
+const x = $(true);
+let $tmpLoopUnrollCheck = true;
+if (x) {
+  $(`body`);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      $(`body`);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after`);
+`````
+
+## Output
+
+`````js filename=intro
+const x = $(true);
+if (x) {
+  $(`body`);
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      $(`body`);
+    } else {
+      break;
+    }
+  }
+} else {
+}
+$(`after`);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: true
+ - 2: 'body'
+ - 3: 'body'
+ - 4: 'body'
+ - 5: 'body'
+ - 6: 'body'
+ - 7: 'body'
+ - 8: 'body'
+ - 9: 'body'
+ - 10: 'body'
+ - 11: 'body'
+ - 12: 'body'
+ - 13: 'body'
+ - 14: 'body'
+ - 15: 'body'
+ - 16: 'body'
+ - 17: 'body'
+ - 18: 'body'
+ - 19: 'body'
+ - 20: 'body'
+ - 21: 'body'
+ - 22: 'body'
+ - 23: 'body'
+ - 24: 'body'
+ - 25: 'body'
+ - 26: 'body'
+ - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

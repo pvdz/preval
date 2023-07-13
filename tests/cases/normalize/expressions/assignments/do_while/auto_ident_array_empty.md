@@ -39,11 +39,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpNestedComplexRhs = [];
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpNestedComplexRhs = [];
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -62,12 +66,12 @@ $(100);
 $(100);
 $(100);
 $(100);
-const tmpNestedComplexRhs$2 = [];
-let a = tmpNestedComplexRhs$2;
+const tmpNestedComplexRhs$1 = [];
+let a = tmpNestedComplexRhs$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNestedComplexRhs$3 = [];
-  a = tmpNestedComplexRhs$3;
+  const tmpNestedComplexRhs$2 = [];
+  a = tmpNestedComplexRhs$2;
 }
 $(a);
 `````

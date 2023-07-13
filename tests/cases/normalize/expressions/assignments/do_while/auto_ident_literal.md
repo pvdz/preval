@@ -39,10 +39,14 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  a = `foo`;
-  tmpDoWhileFlag = `foo`;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    a = `foo`;
+    tmpDoWhileFlag = `foo`;
+  } else {
+    break;
+  }
 }
 $(a);
 `````

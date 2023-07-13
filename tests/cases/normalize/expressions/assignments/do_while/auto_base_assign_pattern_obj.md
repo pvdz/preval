@@ -43,17 +43,21 @@ $(a, b);
 let b = {};
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  let tmpNestedComplexRhs = undefined;
-  const tmpCallCallee = $;
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
-  a = tmpNestedComplexRhs;
-  tmpDoWhileFlag = tmpNestedComplexRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    let tmpNestedComplexRhs = undefined;
+    const tmpCallCallee = $;
+    const tmpObjLitVal = $(2);
+    const tmpCalleeParam = { b: tmpObjLitVal };
+    const tmpNestedAssignObjPatternRhs = tmpCallCallee(tmpCalleeParam);
+    b = tmpNestedAssignObjPatternRhs.b;
+    tmpNestedComplexRhs = tmpNestedAssignObjPatternRhs;
+    a = tmpNestedComplexRhs;
+    tmpDoWhileFlag = tmpNestedComplexRhs;
+  } else {
+    break;
+  }
 }
 $(a, b);
 `````
@@ -61,19 +65,36 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-let b = {};
-let a = { a: 999, b: 1000 };
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpObjLitVal = $(2);
+const tmpCalleeParam = { b: tmpObjLitVal };
+const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
+let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
+if (tmpNestedAssignObjPatternRhs) {
   $(100);
-  const tmpObjLitVal = $(2);
-  const tmpCalleeParam = { b: tmpObjLitVal };
-  const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-  b = tmpNestedAssignObjPatternRhs.b;
-  a = tmpNestedAssignObjPatternRhs;
-  tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
+  const tmpObjLitVal$1 = $(2);
+  const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
+  const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
+  tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+      $(100);
+      const tmpObjLitVal$2 = $(2);
+      const tmpCalleeParam$2 = { b: tmpObjLitVal$2 };
+      const tmpNestedAssignObjPatternRhs$2 = $(tmpCalleeParam$2);
+      tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$2.b;
+      tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
-$(a, b);
+$(tmpClusterSSA_a, tmpClusterSSA_b);
 `````
 
 ## Globals

@@ -39,11 +39,15 @@ $(a);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
-  $(100);
-  const tmpBinBothLhs = $(1);
-  const tmpBinBothRhs = $(2);
-  tmpDoWhileFlag = tmpBinBothLhs + tmpBinBothRhs;
+while (true) {
+  if (tmpDoWhileFlag) {
+    $(100);
+    const tmpBinBothLhs = $(1);
+    const tmpBinBothRhs = $(2);
+    tmpDoWhileFlag = tmpBinBothLhs + tmpBinBothRhs;
+  } else {
+    break;
+  }
 }
 $(a);
 `````
@@ -51,12 +55,26 @@ $(a);
 ## Output
 
 `````js filename=intro
-let tmpDoWhileFlag = true;
-while (tmpDoWhileFlag) {
+$(100);
+const tmpBinBothLhs = $(1);
+const tmpBinBothRhs = $(2);
+const tmpDoWhileFlag = tmpBinBothLhs + tmpBinBothRhs;
+if (tmpDoWhileFlag) {
   $(100);
-  const tmpBinBothLhs = $(1);
-  const tmpBinBothRhs = $(2);
-  tmpDoWhileFlag = tmpBinBothLhs + tmpBinBothRhs;
+  const tmpBinBothLhs$1 = $(1);
+  const tmpBinBothRhs$1 = $(2);
+  let tmpClusterSSA_tmpDoWhileFlag = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+  while ($LOOP_UNROLL_9) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
+      $(100);
+      const tmpBinBothLhs$2 = $(1);
+      const tmpBinBothRhs$2 = $(2);
+      tmpClusterSSA_tmpDoWhileFlag = tmpBinBothLhs$2 + tmpBinBothRhs$2;
+    } else {
+      break;
+    }
+  }
+} else {
 }
 const a = { a: 999, b: 1000 };
 $(a);

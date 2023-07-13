@@ -35,14 +35,18 @@ $(x);
 `````js filename=intro
 let x = $(10);
 let tmpIfTest = $(x);
-while (tmpIfTest) {
-  const tmpIfTest$1 = $(true);
-  if (tmpIfTest$1) {
-    $(x);
+while (true) {
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+      $(x);
+    } else {
+    }
+    x = $(20);
+    tmpIfTest = $(x);
   } else {
+    break;
   }
-  x = $(20);
-  tmpIfTest = $(x);
 }
 $(x);
 `````
@@ -51,15 +55,29 @@ $(x);
 
 `````js filename=intro
 let x = $(10);
-let tmpIfTest = $(x);
-while (tmpIfTest) {
+const tmpIfTest = $(x);
+if (tmpIfTest) {
   const tmpIfTest$1 = $(true);
   if (tmpIfTest$1) {
     $(x);
   } else {
   }
   x = $(20);
-  tmpIfTest = $(x);
+  let tmpClusterSSA_tmpIfTest = $(x);
+  while ($LOOP_UNROLL_10) {
+    if (tmpClusterSSA_tmpIfTest) {
+      const tmpIfTest$2 = $(true);
+      if (tmpIfTest$2) {
+        $(x);
+      } else {
+      }
+      x = $(20);
+      tmpClusterSSA_tmpIfTest = $(x);
+    } else {
+      break;
+    }
+  }
+} else {
 }
 $(x);
 `````

@@ -149,7 +149,7 @@ export function example(from, to, condition) {
   }
 }
 
-export function before(node, parentNode, returnOnly = false, force = false) {
+export function before(node, parentNode = undefined, returnOnly = false, force = false) {
   if (VERBOSE_TRACING || force) {
     if (Array.isArray(node)) {
       return node.map((n, i) => before(n, i ? undefined : parentNode, returnOnly)).join('\n');

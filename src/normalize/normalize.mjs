@@ -8928,7 +8928,10 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       return true;
     }
 
-    if (node.test.type !== 'Identifier' && !AST.isTrue(node.test)) {
+    if (
+      !AST.isTrue(node.test) &&
+      !(node.test.type === 'Identifier' && node.test.name.startsWith('$LOOP_')) // TODO: what happened to the UNROLL_PREFIX UNROLL_MAX constants etc?
+    ) {
       // We do this because it makes all reads that relate to the loop be inside the block.
       // There are heuristics that want to know whether a binding is used inside a loop and if
       // we don't do this then parts of the loop may not be inside the block. And we already

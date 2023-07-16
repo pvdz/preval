@@ -72,7 +72,7 @@ if (tmpIfTest) {
   tmpDoWhileFlag = tmpChainElementCall$1;
   $tmpLoopUnrollCheck = tmpChainElementCall$1;
 }
-if (z) {
+if (tmpDoWhileFlag) {
   $(100);
   tmpDoWhileFlag = false;
   const tmpChainElementCall$2 = $($);

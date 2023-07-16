@@ -1,8 +1,8 @@
 # Preval test case
 
-# auto_ident_logic_and_simple_complex.md
+# pseudo_if_while_test.md
 
-> Normalize > Expressions > Statement > While > Auto ident logic and simple complex
+> Tofix > Pseudo if while test
 
 should restore the true/false case for alias-if-if
 
@@ -42,54 +42,89 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-while (1 && $($(1))) $(100);
+let chk = true;
+const x = $(1);
+let test = $(x);
+if (test) {
+  $(100);
+  test = true;
+} else {
+  chk = false;
+}
+if (chk) {
+  while ($LOOP_UNROLL_10) {
+    if (test) {
+      const y = $(1);
+      test = $(y);
+      if (test) {
+        $(100);
+        test = true;
+      } else {
+        break;
+      }
+    } else {
+      break;
+    }
+  }
+} else {
+}
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let a = { a: 999, b: 1000 };
-let tmpIfTest = 1;
-while (true) {
-  if (tmpIfTest) {
-    const tmpCallCallee = $;
-    const tmpCalleeParam = $(1);
-    tmpIfTest = tmpCallCallee(tmpCalleeParam);
-    if (tmpIfTest) {
-      $(100);
-      tmpIfTest = 1;
+let chk = true;
+const x = $(1);
+let test = $(x);
+if (test) {
+  $(100);
+  test = true;
+} else {
+  chk = false;
+}
+if (chk) {
+  while ($LOOP_UNROLL_10) {
+    if (test) {
+      const y = $(1);
+      test = $(y);
+      if (test) {
+        $(100);
+        test = true;
+      } else {
+        break;
+      }
     } else {
       break;
     }
-  } else {
-    break;
   }
+} else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
 ## Output
 
 `````js filename=intro
-let $tmpLoopUnrollCheck = true;
-const tmpCalleeParam = $(1);
-let tmpIfTest = $(tmpCalleeParam);
-if (tmpIfTest) {
+let chk = true;
+const x = $(1);
+let test = $(x);
+if (test) {
   $(100);
-  tmpIfTest = true;
+  test = true;
 } else {
-  $tmpLoopUnrollCheck = false;
+  chk = false;
 }
-if ($tmpLoopUnrollCheck) {
+if (chk) {
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      const tmpCalleeParam$1 = $(1);
-      tmpIfTest = $(tmpCalleeParam$1);
-      if (tmpIfTest) {
+    if (test) {
+      const y = $(1);
+      test = $(y);
+      if (test) {
         $(100);
-        tmpIfTest = true;
+        test = true;
       } else {
         break;
       }

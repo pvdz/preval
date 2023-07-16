@@ -1,8 +1,8 @@
 # Preval test case
 
-# unroll_option_enough.md
+# loop_body_fix.md
 
-> Unwind loops > Counter test > Unroll option enough
+> Tofix > Loop body fix
 
 When there is a `x = true; while (true) if (x) { ... x = y; } else { break }` sort of structure then the body of the if-consequent
 can be promoted to the parent block because the outer if inside the while is essentially the while test.
@@ -42,24 +42,25 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 ## Pre Normal
 
 `````js filename=intro
-let counter = 20;
-while (counter) {
-  $(`test ` + counter);
-  counter = counter - 1;
+let test = 9;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (test) {
+    $(`inner`);
+    test = test - 1;
+  } else {
+    break;
+  }
 }
 `````
 
 ## Normalized
 
 `````js filename=intro
-let counter = 20;
-while (true) {
-  if (counter) {
-    const tmpCallCallee = $;
-    const tmpStringConcatL = $coerce(counter, `plustr`);
-    const tmpCalleeParam = `test ${tmpStringConcatL}`;
-    tmpCallCallee(tmpCalleeParam);
-    counter = counter - 1;
+let test = 9;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (test) {
+    $(`inner`);
+    test = test - 1;
   } else {
     break;
   }
@@ -69,24 +70,11 @@ while (true) {
 ## Output
 
 `````js filename=intro
-$(`test 20`);
-$(`test 19`);
-$(`test 18`);
-$(`test 17`);
-$(`test 16`);
-$(`test 15`);
-$(`test 14`);
-$(`test 13`);
-$(`test 12`);
-$(`test 11`);
-$(`test 10`);
-let tmpClusterSSA_counter$2 = 9;
+let test = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpClusterSSA_counter$2) {
-    const tmpStringConcatL$1 = $coerce(tmpClusterSSA_counter$2, `string`);
-    const tmpCalleeParam$1 = `test ${tmpStringConcatL$1}`;
-    $(tmpCalleeParam$1);
-    tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 - 1;
+  if (test) {
+    $(`inner`);
+    test = test - 1;
   } else {
     break;
   }
@@ -100,26 +88,15 @@ None
 ## Result
 
 Should call `$` with:
- - 1: 'test 20'
- - 2: 'test 19'
- - 3: 'test 18'
- - 4: 'test 17'
- - 5: 'test 16'
- - 6: 'test 15'
- - 7: 'test 14'
- - 8: 'test 13'
- - 9: 'test 12'
- - 10: 'test 11'
- - 11: 'test 10'
- - 12: 'test 9'
- - 13: 'test 8'
- - 14: 'test 7'
- - 15: 'test 6'
- - 16: 'test 5'
- - 17: 'test 4'
- - 18: 'test 3'
- - 19: 'test 2'
- - 20: 'test 1'
+ - 1: 'inner'
+ - 2: 'inner'
+ - 3: 'inner'
+ - 4: 'inner'
+ - 5: 'inner'
+ - 6: 'inner'
+ - 7: 'inner'
+ - 8: 'inner'
+ - 9: 'inner'
  - eval returned: undefined
 
 Pre normalization calls: Same

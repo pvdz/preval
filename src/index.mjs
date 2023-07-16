@@ -64,6 +64,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     normalized: {},
     // Was used for discovering code that wasn't normalized. Currently unused.
     special: {},
+    lastAst: {todo: 'updateMe'},
   };
 
   const normalizeQueue = [entryPoint]; // Order is not relevant in this phase
@@ -265,7 +266,9 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           phaseNormalize(fdata, fname, { allowEval: options.allowEval });
 
           inputCode = tmat(fdata.tenkoOutput.ast, true);
+
           mod.reports.push(...fdata.reports)
+          contents.lastAst = fdata.tenkoOutput.ast;
         } else {
           // Report the implicit globals. Tests should explicitly declare the implicit globals so we can automatically verify
           // that none are accidentally left behind / partially eliminated.
@@ -274,6 +277,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
             if (meta.isImplicitGlobal && !globals.has(name)) set.add(name);
           });
           contents.implicitGlobals = set;
+          contents.explicitGlobals = new Set(Array.from(globals.keys()));
 
           contents.files[fname] = outCode;
           options.onFinal?.(outCode, passes, fi, options);

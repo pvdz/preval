@@ -232,7 +232,8 @@ export function toEvaluationResult(evalled, implicitGlobals, skipFinal) {
     'Normalized calls:' +
     normalizedEvalResult +
     '\n\n' +
-    finalEvalResult
+    finalEvalResult +
+    ''
   );
 }
 

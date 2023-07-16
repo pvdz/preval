@@ -261,7 +261,7 @@ function processAttempt(fdata, queue) {
                         if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
                           // Call was a statement
                           nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
                           // Call was assigned
                           nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
                         } else {
@@ -294,7 +294,7 @@ function processAttempt(fdata, queue) {
                         if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
                           // Call was a statement
                           nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
                           // Call was assigned
                           nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
                         } else {
@@ -340,7 +340,7 @@ function processAttempt(fdata, queue) {
                         if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
                           // Call was a statement
                           nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
                           // Call was assigned
                           nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
                         } else {
@@ -373,11 +373,13 @@ function processAttempt(fdata, queue) {
                         if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
                           // Call was a statement
                           nextRead.blockBody[nextRead.blockIndex].expression = newNode;
-                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
                           // Call was assigned
                           nextRead.blockBody[nextRead.blockIndex].expression.right = newNode;
                         } else {
                           // what normalized cases are left?
+                          console.log(nextRead.blockBody[nextRead.blockIndex].expression)
+                          console.log(nextRead.grandNode)
                           TODO
                         }
                       } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
@@ -439,7 +441,7 @@ function processAttempt(fdata, queue) {
                         if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
                           // Call was a statement. Just drop it.
                           nextRead.blockBody[nextRead.blockIndex].expression = AST.emptyStatement();
-                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
                           // Call was assigned
                           nextRead.blockBody[nextRead.blockIndex].expression.right = AST.literal(arrayLiteralNode.elements.length);
                         } else {
@@ -465,7 +467,7 @@ function processAttempt(fdata, queue) {
                           // Call was a statement. Noop
 
                         } else if (
-                          nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' &&
+                          nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' &&
                           nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
                         ) {
                           // Call was assigned
@@ -560,7 +562,7 @@ function processAttempt(fdata, queue) {
                         if (nextRead.blockBody[nextRead.blockIndex].expression === nextRead.grandNode) {
                           // Call was a statement. Just drop it.
                           nextRead.blockBody[nextRead.blockIndex].expression = AST.emptyStatement();
-                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
+                        } else if (nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' && nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode) {
                           // Call was assigned
                           nextRead.blockBody[nextRead.blockIndex].expression.right = AST.literal(arrayLiteralNode.elements.length);
                         } else {
@@ -586,7 +588,7 @@ function processAttempt(fdata, queue) {
                           // Call was a statement. Noop
 
                         } else if (
-                          nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssigmentExpression' &&
+                          nextRead.blockBody[nextRead.blockIndex].expression.type === 'AssignmentExpression' &&
                           nextRead.blockBody[nextRead.blockIndex].expression.right === nextRead.grandNode
                         ) {
                           // Call was assigned

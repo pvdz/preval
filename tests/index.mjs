@@ -53,7 +53,7 @@ import { Worker, isMainThread, parentPort, workerData } from 'worker_threads';
 
 Error.stackTraceLimit = Infinity;
 
-console.time('Total test time');
+console.time('Total ./p time');
 
 const CONFIG = parseTestArgs();
 if (isMainThread) {
@@ -120,7 +120,7 @@ if (isMainThread && CONFIG.threads > 1) {
     console.log('Finished, no test fataled, exiting now...');
     //if (isMainThread) {
     console.log(`Suite finished`);
-    console.timeEnd('Total test time');
+    console.timeEnd('Total ./p time');
     //}
     process.exit();
   }
@@ -169,14 +169,23 @@ let badFinal = 0; // evaluation of final output does not match input
 testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i));
 
 if (isMainThread) {
-  console.log(
-    `Suite finished, ${GREEN}${testCases.length} tests ${RESET}${snap ? `, ${ORANGE}${snap} snapshot mismatches${RESET}` : ''}${
-      fail ? `, ${RED}${fail} tests crashed${RESET}` : ''
-    }${badNorm ? `, ${RED}${badNorm} normalized cases changed observable behavior${RESET}` : ''}${
-      badFinal ? `, ${RED}${badFinal} tests ended with changed observable behavior${RESET}` : ''
-    }`,
-  );
-  console.timeEnd('Total test time');
+  if (CONFIG.fileVerbatim) {
+    if (CONFIG.logPasses) {
+      console.log('Finished. See output files.');
+    } else {
+      console.log('Finished');
+      console.log('Use `--log` or `--logto` to dump intermediate logs');
+    }
+  } else {
+    console.log(
+      `Suite finished, ${GREEN}${testCases.length} tests ${RESET}${snap ? `, ${ORANGE}${snap} snapshot mismatches${RESET}` : ''}${
+        fail ? `, ${RED}${fail} tests crashed${RESET}` : ''
+      }${badNorm ? `, ${RED}${badNorm} normalized cases changed observable behavior${RESET}` : ''}${
+        badFinal ? `, ${RED}${badFinal} tests ended with changed observable behavior${RESET}` : ''
+      }`,
+    );
+  }
+  console.timeEnd('Total ./p time');
 }
 
 function runTestCase(
@@ -271,7 +280,7 @@ function runTestCase(
           // It then did a first one-time normalization pass to remove anything that we should
           // never see again, like `var`, patterns, param defaults, etc.
           if (options.logPasses) {
-            console.log('--out: Logging one-time-normalized state to disk for', nextFname);
+            console.log('--log: Logging one-time-normalized state to disk for', nextFname);
             const f = path.join(options.logDir, 'preval.a.f' + queueFileCounter + '.onetime.normalized.log.js');
             console.log('-', f, '(', preCode.length, 'bytes) ->', nextFname);
             fs.writeFileSync(f, '// Normalized output after one pass [' + nextFname + ']\n' + preCode);
@@ -279,7 +288,7 @@ function runTestCase(
         },
         onFirstPassEnd(contents, allFileNames, options) {
           if (options.logPasses) {
-            console.log('--out: Logging first normalized state to disk...');
+            console.log('--log: Logging first normalized state to disk...');
             allFileNames.forEach((fname, i) => {
               const f = path.join(options.logDir, 'preval.b.f' + i + '.firstpass.normalized.log.js');
               console.log('-', f, '(', contents.normalized[fname].length, 'bytes) ->', fname);
@@ -290,21 +299,21 @@ function runTestCase(
         onPassEnd(outCode, passes, fi, options) {
           if (options.logPasses) {
             const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.log.js');
-            console.log('--out: Logging current result to disk:', f, '(', outCode.length, 'bytes)');
+            console.log('--log: Logging current result to disk:', f, '(', outCode.length, 'bytes)');
             fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n' + outCode);
           }
         },
         onFinal(outCode, passes, fi, options) {
           if (options.logPasses) {
             const f = path.join(options.logDir, 'preval.pass' + String(passes).padStart(4, '0') + '.f' + fi + '.result.final.log.js');
-            console.log('--out: Logging final result after',passes,' passes to disk:', f, '(', outCode.length, 'bytes)');
+            console.log('--log: Logging final result after',passes,' passes to disk:', f, '(', outCode.length, 'bytes)');
             fs.writeFileSync(f, '// Resulting output after one pass [' + fname + ']\n' + outCode);
           }
         },
         onError(kind, error, ast, options) {
           if (options.logPasses) {
             const f = path.join(options.logDir, 'preval.error.log.js');
-            console.log('--out: Logging error to disk:', f);
+            console.log('--log: Logging error to disk:', f);
             let json;
             try {
               json = JSON.stringify(ast, null, 2);
@@ -406,7 +415,7 @@ function runTestCase(
   let leGlobalSymbols = Object.keys(createGlobalPrevalSymbols([], () => {}, () => {}));
 
   const evalled = { $in: [], $pre: [], $norm: [], $out: [] };
-  function ev(desc, fdata, stack) {
+  function evaluate(desc, fdata, stack) {
     if (!fdata) return stack.slice(0);
 
     try {
@@ -532,7 +541,7 @@ function runTestCase(
 
       // Note: prepending strict mode forces the code to be strict mode which is what we want in the first place and it prevents
       //       undefined globals from being generated which prevents cross test pollution leading to inconsistent results
-      const returns = new Function(
+      const returns = new Function( // window. eval()
         // Globals to inject
         ...Object.keys(frameworkInjectedGlobals),
         // test code to execute/eval
@@ -589,13 +598,13 @@ function runTestCase(
     return stack.slice(0);
   }
   const SKIPPED = '"<skipped by option>"';
-  evalled.$in = CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput ? [SKIPPED] : ev('input', fin, evalled.$in);
-  evalled.$pre = CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre ? [SKIPPED] : ev('pre normalization', fin, evalled.$pre);
+  evalled.$in = CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput ? [SKIPPED] : evaluate('input', fin, evalled.$in);
+  evalled.$pre = CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre ? [SKIPPED] : evaluate('pre normalization', fin, evalled.$pre);
   evalled.$norm =
-    CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized ? [SKIPPED] : ev('normalized', output?.normalized, evalled.$norm);
+    CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized ? [SKIPPED] : evaluate('normalized', output?.normalized, evalled.$norm);
   if (!CONFIG.onlyNormalized) {
     evalled.$out =
-      CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput ? [SKIPPED] : ev('output', output?.files, evalled.$out);
+      CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput ? [SKIPPED] : evaluate('output', output?.files, evalled.$out);
   }
 
   if (withOutput) {
@@ -659,11 +668,15 @@ function runTestCase(
       ++snap;
 
       if (CONFIG.fileVerbatim) {
-        console.log('Not writing result. Dumping now...');
-        if (!CONFIG.logPasses) console.log('Use `--out` or `--outto` to dump intermediate logs');
-        console.log('-----------------------');
-        console.log(md2);
-        console.log('-----------------------');
+        if (CONFIG.logPasses) {
+          console.log('Not updating input file with result. See written logs.');
+        } else {
+          console.log('Not writing result. Dumping now...');
+          if (!CONFIG.logPasses) console.log('Use `--log` or `--logto` to dump intermediate logs');
+          console.log('-----------------------');
+          console.log(md2);
+          console.log('-----------------------');
+        }
       } else {
         fs.writeFileSync(fname, md2, 'utf8');
       }

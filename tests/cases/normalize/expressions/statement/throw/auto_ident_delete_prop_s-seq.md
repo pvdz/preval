@@ -44,9 +44,7 @@ throw tmpThrowArg;
 `````js filename=intro
 $(1);
 $(2);
-const arg = { y: 1 };
-const tmpThrowArg = delete arg.y;
-throw tmpThrowArg;
+throw true;
 `````
 
 ## Globals

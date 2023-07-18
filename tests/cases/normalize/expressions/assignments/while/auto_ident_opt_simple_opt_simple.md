@@ -70,27 +70,11 @@ $(100);
 $(100);
 $(100);
 $(100);
-const tmpObjLitVal = { y: 1 };
-let a = 1;
 $(100);
-const b = { x: tmpObjLitVal };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = undefined;
-  const tmpChainElementObject$2 = b.x;
-  const tmpIfTest$1 = tmpChainElementObject$2 == null;
-  if (tmpIfTest$1) {
-    $(100);
-  } else {
-    const tmpChainElementObject$4 = tmpChainElementObject$2.y;
-    a = tmpChainElementObject$4;
-    if (tmpChainElementObject$4) {
-      $(100);
-    } else {
-      break;
-    }
-  }
+  $(100);
 }
-$(a);
+$(1);
 `````
 
 ## Globals

@@ -100,24 +100,6 @@ function processAttempt(fdata, queue) {
     const blockBody = path.blockBodies[path.blockBodies.length - 1];
     const blockIndex = path.blockIndexes[path.blockIndexes.length - 1];
 
-    if (parentNode.type === 'AssignmentExpression' && parentProp === 'right') {
-      vlog('- bail: array is being assigned');
-      return; // TODO: we can support a subset of cases on assignments
-
-      if (parentNode.left.type !== 'Identifier') return; // Skip for prop assignment. Not sure if we allow that for array but whatever.
-
-      // Determine whether
-      // - next access is a read (it's irrelevant whether the binding is const or not; its contents is mutable and we must assert its contents too)
-      //   - find the "write"
-      //   - find the next read
-      // - the read is a known method call
-      // - there are no observable side effects
-      // - it's the same scope, loopLevel, catchLevel, and finallyLevel
-
-      console.log(parentNode);
-      TODO
-    }
-
     if (!(parentNode.type === 'VariableDeclarator' && parentProp === 'init')) {
       vlog('- bail: can only handle array literals that are init to a const decl');
       return;
@@ -128,6 +110,46 @@ function processAttempt(fdata, queue) {
     let orderIndex = arrayMeta.rwOrder.findIndex(n => n.node === parentNode.id);
     const write = arrayMeta.rwOrder[orderIndex];
     ASSERT(write.action === 'write', 'the var decl was a write, this check should be kind of silly');
+
+    if (arrayMeta.writes.length === 1) {
+      // Verify that the binding doesn't escape.
+      // In this case, that means all usages must be reading a property on the object
+      // Computed keys don't matter here. We ignore proto mutations and proxies.
+      // Assuming we handle getters and setters, we shouldn't need to care much here.
+      if (!arrayMeta.reads.some(read => {
+        if (read.parentNode.type !== 'MemberExpression' || read.parentProp !== 'object') {
+          vlog('bail: at least one read escaped as it was not a member', read.parentNode.type)
+          return true;
+        }
+        if (read.grandNode.type === 'UnaryExpression' && read.grandProp.op === 'delete') {
+          vlog('bail: at least one read deleted a property');
+          return true;
+        }
+        if (read.grandNode.type === 'AssignmentExpression' && read.grandProp.op === 'left') {
+          vlog('bail: at least one usage updated a property');
+          return true;
+        }
+      })) {
+        vlog('all reads are simple prop reads, process any read that can reach the write');
+
+        // All reads should be safe to resolve now
+        arrayMeta.reads.forEach((read, i) => {
+          // Only okay for the reads that can reach the write
+          if (!read.reachesWrites.size) {
+            return vlog('bail: read could not reach write');
+          }
+          vgroup('- read', i);
+          const r = haveRead(arrayName, arrayLiteralNode, arrayMeta, write, read);
+          vgroupEnd();
+          return r;
+        });
+
+        return;
+      } else {
+        // Otherwise fallback to back-to-back checks
+        vlog('falling back')
+      }
+    }
 
     // Keep searching until you find a rw that is in the same func. Must appear after the binding.
     // Then verify if that's a read in same loop/catch/finally that can reach this without side effects
@@ -143,6 +165,7 @@ function processAttempt(fdata, queue) {
     // Confirm that both nodes are in the same loop, catch, and finally "scope" because
     // otherwise we can't guarantee that the read even happens sequentially
 
+    // Multiple writes. Requirements are more strict (TODO: relax certain cases)
     if (nextRead.innerLoop !== write.innerLoop) {
       // Refs in the header of a loop are considered to be inside that loop so must check this separately
       return vlog('- read/write not in same loop', nextRead.innerLoop, write.innerLoop);
@@ -165,22 +188,33 @@ function processAttempt(fdata, queue) {
       return vlog('- read/write not in same finally', nextRead.innerFinally, write.innerFinally);
     }
 
+    return haveRead(arrayName, arrayLiteralNode, arrayMeta, write, nextRead);
+  }
+
+  function haveRead(arrayName, arrayLiteralNode, arrayMeta, write, nextRead) {
+
     // Must still verify that we're not in different branching
 
-    vlog('Have an array decl init', arrayLiteralNode.$p.pid, 'and a read of that binding:', arrayName, ', or is it a property write?', nextRead.isPropWrite);
+    vlog('Have an array decl init (pid =', arrayLiteralNode.$p.pid, ') and a read of that binding:', arrayName, ', or is it a property write?', nextRead.isPropWrite);
 
     // Now confirm there are no observable side effects between read and write
 
-    vlog('Walking sub-node for scan:');
-    source(blockBody);
-    source(nextRead.blockBody[nextRead.blockIndex]);
+    //vlog('Walking sub-node for scan:');
+    //source(write.blockBody[write.blockIndex]);
+    //source(nextRead.blockBody[nextRead.blockIndex]);
 
-    let bstart = Date.now();
-    let has = hasObservableSideEffectsBetweenRefs(write, nextRead);
-    backing += Date.now() - bstart;
-    if (has) {
-      vlog('  - bail: found at least one observable statement between read and write');
-      return;
+    if (arrayMeta.writes.length === 1) {
+      // We already verified that none of the reads escape.
+      // Observable side effects are moot here.
+      vlog('Array binding only has one write. No need to scan for observable side effects.');
+    } else {
+      let bstart = Date.now();
+      let has = hasObservableSideEffectsBetweenRefs(write, nextRead);
+      backing += Date.now() - bstart;
+      if (has) {
+        vlog('  - bail: found at least one observable statement between read and write');
+        return;
+      }
     }
 
     vlog(' - ok. Determine how the array is being used and try to inline it');
@@ -201,14 +235,14 @@ function processAttempt(fdata, queue) {
 
                   rule('Assignment to index properties of array literals can be inlined');
                   example('const arr = []; arr[0] = 100', 'const arr = [100]');
-                  before(blockBody[blockIndex]);
+                  before(write.blockBody[write.blockIndex]);
                   before(nextRead.blockBody[nextRead.blockIndex]);
 
 
                   arrayLiteralNode.elements[value] = nextRead.grandNode.right;
                   nextRead.blockBody[nextRead.blockIndex] = AST.emptyStatement();
 
-                  after(blockBody[blockIndex]);
+                  after(write.blockBody[write.blockIndex]);
                   after(nextRead.blockBody[nextRead.blockIndex]);
 
                   updated += 1;
@@ -384,7 +418,7 @@ function processAttempt(fdata, queue) {
                         }
                       } else if (nextRead.blockBody[nextRead.blockIndex].type === 'VariableDeclaration') {
                         // Call was init of a binding decl
-                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init');
+                        ASSERT(nextRead.blockBody[nextRead.blockIndex].declarations.length === 1 && nextRead.blockBody[nextRead.blockIndex].declarations[0].init === nextRead.grandNode, 'in normalized code the call must be the init', nextRead.blockBody[nextRead.blockIndex]);
                         nextRead.blockBody[nextRead.blockIndex].declarations[0].init = newNode;
                       } else {
                         TODO

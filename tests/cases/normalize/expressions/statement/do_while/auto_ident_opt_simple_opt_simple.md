@@ -70,7 +70,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
 $(100);
 $(100);
 $(100);
@@ -82,22 +81,8 @@ $(100);
 $(100);
 $(100);
 $(100);
-let tmpDoWhileFlag = true;
-const b = { x: tmpObjLitVal };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    tmpDoWhileFlag = false;
-    const tmpChainElementObject$2 = b.x;
-    const tmpIfTest$2 = tmpChainElementObject$2 == null;
-    if (tmpIfTest$2) {
-    } else {
-      const tmpChainElementObject$4 = tmpChainElementObject$2.y;
-      tmpDoWhileFlag = tmpChainElementObject$4;
-    }
-  } else {
-    break;
-  }
+  $(100);
 }
 const a = { a: 999, b: 1000 };
 $(a);

@@ -47,14 +47,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpNewCallee = b.$;
-  const tmpAssignMemLhsObj = new tmpNewCallee(1);
+  const tmpAssignMemLhsObj = new $(1);
   tmpAssignMemLhsObj.x = tmpForOfLhsNode;
 }
 $(a);

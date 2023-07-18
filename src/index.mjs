@@ -91,6 +91,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     options.onAfterNormalizeOnce?.(preCode, preFdata, nextFname, queueFileCounter, options);
 
     const fdata = parseCode(preCode, nextFname);
+    contents.lastAst = fdata.tenkoOutput.ast;
     prepareNormalization(fdata, resolve, req, false, {unrollTrueLimit: options.unrollTrueLimit}); // I want a phase1 because I want the scope tracking set up for normalizing bindings
     phaseNormalize(fdata, nextFname, { allowEval: options.allowEval });
 

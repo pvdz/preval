@@ -107,10 +107,6 @@ function processAttempt(fdata, queue) {
   //moet hier alle tests nog voor toevoegen. see you never.
 
   function verifyAfterObjectAssign(meta, rwOrder, writeRef, wi, objExprNode) {
-    // It "failed" if the object escapes or when a property was mutated. Otherwise we can consider the object immutable
-    // meaning we can inline properties even as side effects or whatever.
-    let failed = false;
-
     if (wi === rwOrder.length - 1) {
       vlog('This is the last write. The assignment is probably observed by a loop or closure or smth.');
       return;
@@ -118,13 +114,46 @@ function processAttempt(fdata, queue) {
 
     const lastMap = new Map(); // Map<scope, ref>
 
-    vlog('verifyAfterObjectAssign(): Checking', rwOrder.length - wi - 1, 'refs, starting at', wi);
-    for (let ri = wi; ri < rwOrder.length; ++ri) {
-      const ref = rwOrder[ri];
-      vgroup('- ref', ri, ';', ref.action + ':' + ref.kind + ':' + ref.isPropWrite, ref.pfuncNode.$p.pid, ref.parentNode.type);
-      const r = processRef(meta, rwOrder, writeRef, objExprNode, ref, wi, ri);
-      vgroupEnd();
-      if (r) break;
+    const singleWriteSafe = meta.writes.length === 1 && !meta.reads.some(read => {
+      if (read.parentNode.type !== 'MemberExpression' || read.parentNode.computed || read.parentProp !== 'object') {
+        vlog('note: at least one read escaped as it was not a member. singleWriteSafe=false :', read.parentNode);
+        return true;
+      }
+
+      if (read.grandNode.type === 'AssignmentExpression' && read.grandProp === 'left') {
+        // x.y = z;
+        vlog('note: at least one member expression was being assigned to. singleWriteSafe=false :', read.parentNode);
+        return true;
+      }
+
+      if (read.parentNode.type === 'UnaryExpression' && read.parentNode.op === 'delete') {
+        // delete x.y;
+        vlog('note: at least one member expression was a property delete. singleWriteSafe=false :', read.parentNode);
+        return true;
+      }
+    });
+
+    if (singleWriteSafe) {
+      vlog('single write and all reads do not escape, process any read that can reach the write');
+
+      // All reads should be safe to resolve now
+      meta.reads.forEach(read => {
+        // Only okay for the reads that can reach the write
+        if (!read.reachesWrites.size) {
+          return vlog('bail: read could not reach write');
+        }
+
+        return haveRef(objExprNode, writeRef, read);
+      });
+    } else {
+      vlog('verifyAfterObjectAssign(): Checking', rwOrder.length - wi - 1, 'refs, starting at', wi);
+      for (let ri = wi; ri < rwOrder.length; ++ri) {
+        const ref = rwOrder[ri];
+        vgroup('- ref', ri, ';', ref.action + ':' + ref.kind + ':' + ref.isPropWrite, ref.pfuncNode.$p.pid, ref.parentNode.type);
+        const r = processRef(meta, rwOrder, writeRef, objExprNode, ref, wi, ri);
+        vgroupEnd();
+        if (r) break;
+      }
     }
 
     function processRef(meta, rwOrder, writeRef, objExprNode, ref, wi, ri) {
@@ -175,6 +204,12 @@ function processAttempt(fdata, queue) {
         return vlog('- read/write not in same finally', readRef.innerFinally, prevWrite.innerFinally);
       }
 
+      if (readRef.parentNode.type === 'UnaryExpression' && readRef.parentNode.op === 'delete') {
+        // delete x.y;
+        vlog('The member expression was a property delete. Bailing');
+        return;
+      }
+
       if (readRef.parentNode.type !== 'MemberExpression' || readRef.parentNode.computed || readRef.parentProp !== 'object') {
         // not used as a property. Or we can't safely determine the property. The end.
         // TODO: we could do for literals... how often does that happen?
@@ -186,9 +221,9 @@ function processAttempt(fdata, queue) {
           ', parent prop:',
           readRef.parentProp,
         );
-        failed = true; // "escapes"
         return true;
       }
+
       if (readRef.grandNode.type === 'AssignmentExpression' && readRef.grandProp === 'left') {
         // This is property assignment, We can work with some cases.
 
@@ -277,14 +312,13 @@ function processAttempt(fdata, queue) {
         }
 
 
-        vlog('The member expression was being assigned to is not singleInner. Bailing');
         // x.y = z;
+        vlog('The member expression was being assigned to is not singleInner. Bailing');
         return true; // "prop mutation". Move to next write
       }
 
       if (readRef.grandNode.type === 'UnaryExpression' && readRef.grandProp === 'argument' && readRef.grandNode.operator === 'delete') {
         vlog('This "property lookup" was actually the argument to `delete`. Must keep this.');
-        failed = true;
         return;
       }
 
@@ -306,200 +340,203 @@ function processAttempt(fdata, queue) {
         return;
       }
 
-      vlog('Found a read to an object literal while the object literal could not have been mutated!');
+      return haveRef(objExprNode, writeRef, readRef);
+    }
 
-      // We have a write ref and a read ref and they are in the same block and there are no observable side effects in between
-      // and the write is an object literal and the read is a property lookup. Game time.
+  }
 
-      ASSERT(readRef.node.type === 'Identifier', 'right?', readRef.node);
-      const propName = readRef.parentNode.property.name;
-      const pnode = objExprNode.properties.find((pnode) => !pnode.computed && pnode.key.name === propName);
-      if (!pnode) {
-        vlog('Could not find the property... bailing');
-        // TODO: can do this when we checked the property can not exist, like through computed prop or whatever
-        vlog('The object literal did not have a property `' + propName + '` so it must be undefined?');
+  function haveRef(objExprNode, writeRef, readRef) {
 
-        if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
-          // This would change `const o = {}; o.toString()` into `objectPrototype.toString()`. This would actually fine in most
-          // cases but there are some edge cases where it may still matter and it doesn't feel right to just leave it hanging.
-          // We'll convert it to a $dotCall to make sure the context value is preserved
+    vlog('Found a read to an object literal while the object literal could not have been mutated!');
 
-          queue.push({
-            pid: +readRef.node.$p.pid,
-            func: () => {
-              // The only potential problem with this rule is if the global `Object` is somehow replaced with a different
-              // value. But I believe that value is read-only in global, anyways. Beyond that, objlits should read from proto.
-              rule('An object literal method lookup when the obj has no such prop must read from the prototype');
-              example('let obj = {}; let x = obj.toString();', 'let obj = {}; let x = $dotCall(Object.prototype.toString, obj);');
-              before(writeRef.blockBody[writeRef.blockIndex]);
-              before(readRef.blockBody[readRef.blockIndex]);
+    // We have a write ref and a read ref and they are in the same block and there are no observable side effects in between
+    // and the write is an object literal and the read is a property lookup. Game time.
 
-              ASSERT(!readRef.parentNode.property.computed, 'checked before getting here, right?');
-              const tmpNameMethod = createFreshVar('tmpObjectMethod', fdata);
-              const methodNode = AST.memberExpression(BUILTIN_OBJECT_PROTOTYPE, readRef.parentNode.property.name, false);
-              const methodVarNode = AST.variableDeclaration(tmpNameMethod, methodNode, 'const');
+    ASSERT(readRef.node.type === 'Identifier', 'right?', readRef.node);
+    const propName = readRef.parentNode.property.name;
+    const pnode = objExprNode.properties.find((pnode) => !pnode.computed && pnode.key.name === propName);
+    if (!pnode) {
+      vlog('Could not find the property... bailing');
+      // TODO: can do this when we checked the property can not exist, like through computed prop or whatever
+      vlog('The object literal did not have a property `' + propName + '` so it must be undefined?');
 
-              // `$dotCall(tmpNameMethod, obj, ...args)`
-              const callNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
-                AST.identifier(tmpNameMethod),
-                readRef.parentNode.object,
-                ...readRef.grandNode.arguments,
-              ]);
+      if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
+        // This would change `const o = {}; o.toString()` into `objectPrototype.toString()`. This would actually fine in most
+        // cases but there are some edge cases where it may still matter and it doesn't feel right to just leave it hanging.
+        // We'll convert it to a $dotCall to make sure the context value is preserved
 
-              // One of those cases where the `grandNode` does not suffice and we need the greatgrand but it may still not be the block
-
-              const blockNodeAtIndex = readRef.blockBody[readRef.blockIndex];
-              ASSERT(
-                (blockNodeAtIndex.type === 'ExpressionStatement' && blockNodeAtIndex.expression === readRef.grandNode) ||
-                  (blockNodeAtIndex.type === 'ExpressionStatement' &&
-                    blockNodeAtIndex.expression.type === 'AssignmentExpression' &&
-                    blockNodeAtIndex.expression.right === readRef.grandNode) ||
-                  (blockNodeAtIndex.type === 'VariableDeclaration' && blockNodeAtIndex.declarations[0].init === readRef.grandNode),
-                'this ought to be a normalized node so the call must either be child of expr stmt, right of assignment, or init of var',
-                blockNodeAtIndex,
-              );
-
-              if (blockNodeAtIndex.type === 'VariableDeclaration') {
-                blockNodeAtIndex.declarations[0].init = callNode;
-              } else if (blockNodeAtIndex.expression === readRef.grandNode) {
-                blockNodeAtIndex.expression = callNode;
-              } else {
-                blockNodeAtIndex.expression.right = callNode;
-              }
-
-              readRef.blockBody.splice(readRef.blockIndex, 0, methodVarNode);
-
-              after(readRef.blockBody[readRef.blockIndex]);
-            },
-          });
-        } else {
-          queue.push({
-            pid: +readRef.node.$p.pid,
-            func: () => {
-              // The only potential problem with this rule is if the global `Object` is somehow replaced with a different
-              // value. But I believe that value is read-only in global, anyways. Beyond that, objlits should read from proto.
-              rule('An object literal prop lookup when the obj has no such prop must read from the prototype');
-              example('let obj = {}; let x = obj.x;', 'let obj = {}; let x = Object.prototype.x;');
-              before(writeRef.blockBody[writeRef.blockIndex]);
-              before(readRef.blockBody[readRef.blockIndex]);
-
-              ASSERT(!readRef.parentNode.property.computed, 'checked before getting here, right?');
-
-              const finalNode = AST.memberExpression(BUILTIN_OBJECT_PROTOTYPE, readRef.parentNode.property.name, false);
-              if (readRef.grandIndex < 0) readRef.grandNode[readRef.grandProp] = finalNode;
-              else readRef.grandNode[readRef.grandProp][readRef.grandIndex] = AST.identifier('undefined'); // FIXME: broken?? shouldnt this be finalNode?
-
-              after(readRef.blockBody[readRef.blockIndex]);
-            },
-          });
-        }
-      } else if (pnode.kind !== 'init') {
-        // Maybe we can still do something here but for now we're bailing
-        vlog('The property `' + propName + '` resolves to a getter or setter. Bailing');
-
-        if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
-          // TODO: allow list for certain methods, like toString or join. Maybe.
-          vlog('The member expression was the callee of a call. Bailing');
-          // x.y();
-          // This would transform into what exactly?
-          // Even `o = {a: f}; o.a()` to `f()` would be non-trivial since we would need to confirm that `f` does not access `this`.
-          // However, we probably still want to go this extra mile since it'll be a common pattern to find in the wild.
-          // TODO: This breaks `this` and while it's probably fine in many cases, we do need to confirm them first
-          failed = true; // "call may mutate object"
-          return true;
-        }
-      } else if (pnode.method) {
-        // TODO: can we do anything here?
-        vlog('The property resolves to a method. Bailing.');
-
-        if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
-          // TODO: allow list for certain methods, like toString or join. Maybe.
-          vlog('The member expression was the callee of a call. Bailing');
-          // x.y();
-          // This would transform into what exactly?
-          // Even `o = {a: f}; o.a()` to `f()` would be non-trivial since we would need to confirm that `f` does not access `this`.
-          // However, we probably still want to go this extra mile since it'll be a common pattern to find in the wild.
-          // TODO: This breaks `this` and while it's probably fine in many cases, we do need to confirm them first
-          failed = true; // "call may mutate object"
-          return true;
-        }
-      } else {
-        vlog('The object literal contained a node for `' + propName + '` (pid', pnode.$p.pid, ')');
-
-        if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
-          // Tricky case. We may be able to find the reference but we may still not be able to improve anything
-          // Consider `obj.foo(...)` versus `const tmp = obj.foo; $dotCall(tmp, obj, ...)`. The one line turned into two lines
-          // which will hurt certain optimization tricks. And what's the advantage?
-          // So for method calls we will only do this if we can resolve to a function that does not use context.
-          // For builtins that's an allow list. For constants that's resolved in phase1.
-
-          let newCallee;
-          let fail = true;
-          if (AST.isPrimitive(pnode.value)) {
-            vlog('Since the value leads to a primitive, it must lead to a runtime error. But another rule will take care of that.');
-            fail = false;
-            newCallee = AST.cloneSimple(pnode.value);
-          } else if (pnode.value.type === 'Identifier') {
-            const calleeMeta = fdata.globallyUniqueNamingRegistry.get(pnode.value.name);
-            if (calleeMeta.isConstant) {
-              if (calleeMeta.constValueRef.node.type !== 'FunctionExpression') {
-                vlog(
-                  'The callee is actually constant `' + pnode.value.name + '` which is not a function (',
-                  calleeMeta.constValueRef.node.type,
-                  '), probably a runtime error, but bailing nonetheless',
-                );
-              } else if (!calleeMeta.constValueRef.node.$p.thisAccess) {
-                vlog('The callee is actually constant `' + pnode.value.name + '` which is a function that does not access `this`');
-                fail = false;
-                newCallee = AST.identifier(pnode.value.name);
-              } else {
-                vlog('The callee is actually constant `' + pnode.value.name + '` which is a function that accesses `this`, bailing');
-              }
-            } else if (calleeMeta.isBuiltin) {
-              switch (pnode.value.name) {
-                case 'Function':
-                case 'parseInt':
-                case 'parseFloat':
-                case 'RegExp':
-                  vlog('The callee is actually builtin `' + pnode.value.name + '` and it does not use `this`');
-                  fail = false;
-                  newCallee = AST.identifier(pnode.value.name);
-                  break;
-                default:
-                  vlog('The callee is actually constant `' + pnode.value.name + '` and it does use `this`');
-              }
-            } else {
-              vlog('The callee is actually `' + pnode.value.name + '` and since it is neither a constant nor a builtin, we must bail');
-            }
-          }
-
-          if (fail) {
-            vlog('(bailing)');
-            failed = true; // "call may mutate object"
-            return true;
-          } else {
-            rule('A method call that we know does not use the context can call the function directly');
-            example('window.parseInt(x)', 'parseInt(x)');
+        queue.push({
+          pid: +readRef.node.$p.pid,
+          func: () => {
+            // The only potential problem with this rule is if the global `Object` is somehow replaced with a different
+            // value. But I believe that value is read-only in global, anyways. Beyond that, objlits should read from proto.
+            rule('An object literal method lookup when the obj has no such prop must read from the prototype');
+            example('let obj = {}; let x = obj.toString();', 'let obj = {}; let x = $dotCall(Object.prototype.toString, obj);');
+            before(writeRef.blockBody[writeRef.blockIndex]);
             before(readRef.blockBody[readRef.blockIndex]);
 
-            readRef.grandNode.callee = newCallee;
+            ASSERT(!readRef.parentNode.property.computed, 'checked before getting here, right?');
+            const tmpNameMethod = createFreshVar('tmpObjectMethod', fdata);
+            const methodNode = AST.memberExpression(BUILTIN_OBJECT_PROTOTYPE, readRef.parentNode.property.name, false);
+            const methodVarNode = AST.variableDeclaration(tmpNameMethod, methodNode, 'const');
+
+            // `$dotCall(tmpNameMethod, obj, ...args)`
+            const callNode = AST.callExpression(BUILTIN_FUNC_CALL_NAME, [
+              AST.identifier(tmpNameMethod),
+              readRef.parentNode.object,
+              ...readRef.grandNode.arguments,
+            ]);
+
+            // One of those cases where the `grandNode` does not suffice and we need the greatgrand but it may still not be the block
+
+            const blockNodeAtIndex = readRef.blockBody[readRef.blockIndex];
+            ASSERT(
+              (blockNodeAtIndex.type === 'ExpressionStatement' && blockNodeAtIndex.expression === readRef.grandNode) ||
+              (blockNodeAtIndex.type === 'ExpressionStatement' &&
+                blockNodeAtIndex.expression.type === 'AssignmentExpression' &&
+                blockNodeAtIndex.expression.right === readRef.grandNode) ||
+              (blockNodeAtIndex.type === 'VariableDeclaration' && blockNodeAtIndex.declarations[0].init === readRef.grandNode),
+              'this ought to be a normalized node so the call must either be child of expr stmt, right of assignment, or init of var',
+              blockNodeAtIndex,
+            );
+
+            if (blockNodeAtIndex.type === 'VariableDeclaration') {
+              blockNodeAtIndex.declarations[0].init = callNode;
+            } else if (blockNodeAtIndex.expression === readRef.grandNode) {
+              blockNodeAtIndex.expression = callNode;
+            } else {
+              blockNodeAtIndex.expression.right = callNode;
+            }
+
+            readRef.blockBody.splice(readRef.blockIndex, 0, methodVarNode);
 
             after(readRef.blockBody[readRef.blockIndex]);
-            ++updated
+          },
+        });
+      } else {
+        queue.push({
+          pid: +readRef.node.$p.pid,
+          func: () => {
+            // The only potential problem with this rule is if the global `Object` is somehow replaced with a different
+            // value. But I believe that value is read-only in global, anyways. Beyond that, objlits should read from proto.
+            rule('An object literal prop lookup when the obj has no such prop must read from the prototype');
+            example('let obj = {}; let x = obj.x;', 'let obj = {}; let x = Object.prototype.x;');
+            before(writeRef.blockBody[writeRef.blockIndex]);
+            before(readRef.blockBody[readRef.blockIndex]);
+
+            ASSERT(!readRef.parentNode.property.computed, 'checked before getting here, right?');
+
+            const finalNode = AST.memberExpression(BUILTIN_OBJECT_PROTOTYPE, readRef.parentNode.property.name, false);
+            if (readRef.grandIndex < 0) readRef.grandNode[readRef.grandProp] = finalNode;
+            else readRef.grandNode[readRef.grandProp][readRef.grandIndex] = AST.identifier('undefined'); // FIXME: broken?? shouldnt this be finalNode?
+
+            after(readRef.blockBody[readRef.blockIndex]);
+          },
+        });
+      }
+    } else if (pnode.kind !== 'init') {
+      // Maybe we can still do something here but for now we're bailing
+      vlog('The property `' + propName + '` resolves to a getter or setter. Bailing');
+
+      if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
+        // TODO: allow list for certain methods, like toString or join. Maybe.
+        vlog('The member expression was the callee of a call. Bailing');
+        // x.y();
+        // This would transform into what exactly?
+        // Even `o = {a: f}; o.a()` to `f()` would be non-trivial since we would need to confirm that `f` does not access `this`.
+        // However, we probably still want to go this extra mile since it'll be a common pattern to find in the wild.
+        // TODO: This breaks `this` and while it's probably fine in many cases, we do need to confirm them first
+        return true;
+      }
+    } else if (pnode.method) {
+      // TODO: can we do anything here?
+      vlog('The property resolves to a method. Bailing.');
+
+      if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
+        // TODO: allow list for certain methods, like toString or join. Maybe.
+        vlog('The member expression was the callee of a call. Bailing');
+        // x.y();
+        // This would transform into what exactly?
+        // Even `o = {a: f}; o.a()` to `f()` would be non-trivial since we would need to confirm that `f` does not access `this`.
+        // However, we probably still want to go this extra mile since it'll be a common pattern to find in the wild.
+        // TODO: This breaks `this` and while it's probably fine in many cases, we do need to confirm them first
+        return true;
+      }
+    } else {
+      vlog('The object literal contained a node for `' + propName + '` (pid', pnode.$p.pid, ')');
+
+      if (readRef.grandNode.type === 'CallExpression' && readRef.grandProp === 'callee') {
+        // Tricky case. We may be able to find the reference but we may still not be able to improve anything
+        // Consider `obj.foo(...)` versus `const tmp = obj.foo; $dotCall(tmp, obj, ...)`. The one line turned into two lines
+        // which will hurt certain optimization tricks. And what's the advantage?
+        // So for method calls we will only do this if we can resolve to a function that does not use context.
+        // For builtins that's an allow list. For constants that's resolved in phase1.
+
+        let newCallee;
+        let fail = true;
+        if (AST.isPrimitive(pnode.value)) {
+          vlog('Since the value leads to a primitive, it must lead to a runtime error. But another rule will take care of that.');
+          fail = false;
+          newCallee = AST.cloneSimple(pnode.value);
+        } else if (pnode.value.type === 'Identifier') {
+          const calleeMeta = fdata.globallyUniqueNamingRegistry.get(pnode.value.name);
+          if (calleeMeta.isConstant) {
+            if (calleeMeta.constValueRef.node.type !== 'FunctionExpression') {
+              vlog(
+                'The callee is actually constant `' + pnode.value.name + '` which is not a function (',
+                calleeMeta.constValueRef.node.type,
+                '), probably a runtime error, but bailing nonetheless',
+              );
+            } else if (!calleeMeta.constValueRef.node.$p.thisAccess) {
+              vlog('The callee is actually constant `' + pnode.value.name + '` which is a function that does not access `this`');
+              fail = false;
+              newCallee = AST.identifier(pnode.value.name);
+            } else {
+              vlog('The callee is actually constant `' + pnode.value.name + '` which is a function that accesses `this`, bailing');
+            }
+          } else if (calleeMeta.isBuiltin) {
+            switch (pnode.value.name) {
+              case 'Function':
+              case 'parseInt':
+              case 'parseFloat':
+              case 'RegExp':
+                vlog('The callee is actually builtin `' + pnode.value.name + '` and it does not use `this`');
+                fail = false;
+                newCallee = AST.identifier(pnode.value.name);
+                break;
+              default:
+                vlog('The callee is actually constant `' + pnode.value.name + '` and it does use `this`');
+            }
+          } else {
+            vlog('The callee is actually `' + pnode.value.name + '` and since it is neither a constant nor a builtin, we must bail');
           }
+        }
+
+        if (fail) {
+          vlog('(bailing)');
+          return true;
         } else {
-          rule('An object literal whose property is looked up immediately can resolve the lookup immediately');
-          before(writeRef.blockBody[writeRef.blockIndex]);
+          rule('A method call that we know does not use the context can call the function directly');
+          example('window.parseInt(x)', 'parseInt(x)');
           before(readRef.blockBody[readRef.blockIndex]);
 
-          // The readRef.parentNode was a member expression. It should be replaced into `undefined`.
-          if (readRef.grandIndex < 0) readRef.grandNode[readRef.grandProp] = AST.cloneSimple(pnode.value);
-          // This will crash for complex nodes ;(
-          else readRef.grandNode[readRef.grandProp][readRef.grandIndex] = AST.cloneSimple(pnode.value); // This will crash for complex nodes ;(
+          readRef.grandNode.callee = newCallee;
 
           after(readRef.blockBody[readRef.blockIndex]);
           ++updated
         }
+      } else {
+        rule('An object literal whose property is looked up immediately can resolve the lookup immediately');
+        before(writeRef.blockBody[writeRef.blockIndex]);
+        before(readRef.blockBody[readRef.blockIndex]);
+
+        // The readRef.parentNode was a member expression. It should be replaced into `undefined`.
+        if (readRef.grandIndex < 0) readRef.grandNode[readRef.grandProp] = AST.cloneSimple(pnode.value);
+        // This will crash for complex nodes ;(
+        else readRef.grandNode[readRef.grandProp][readRef.grandIndex] = AST.cloneSimple(pnode.value); // This will crash for complex nodes ;(
+
+        after(readRef.blockBody[readRef.blockIndex]);
+        ++updated
       }
     }
   }

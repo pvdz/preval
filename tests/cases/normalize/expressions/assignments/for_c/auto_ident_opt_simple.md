@@ -63,11 +63,8 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = 1;
   let tmpClusterSSA_tmpIfTest = $(1);
-  const b = { x: 1 };
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_tmpIfTest) {
-      const tmpChainElementObject$1 = b.x;
-      a = tmpChainElementObject$1;
       tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;

@@ -69,10 +69,8 @@ new $(1);
 $(100);
 new $(1);
 $(100);
-const b = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpNewCallee$1 = b.$;
-  new tmpNewCallee$1(1);
+  new $(1);
   $(100);
 }
 const a = { a: 999, b: 1000 };

@@ -556,6 +556,7 @@ export function param(name, rest = false) {
 export function property(key, value, shorthand = false, computed = false, kind = 'init', method = false) {
   if (typeof key === 'string') key = identifier(key);
   if (typeof value === 'string') value = identifier(value);
+  if (key.type !== 'Identifier') computed = true; // Force strings/number keys to be computed keys
 
   return {
     type: 'Property',
@@ -711,10 +712,11 @@ export function tru() {
   return literal(true);
 }
 
-export function tryStatement(block, param, handler, finalizer) {
+export function tryStatement(block, param, handler, finalizer, paramNullAck = false) {
   ASSERT(block && block.type === 'BlockStatement', 'the block should be an actual BlockStatement node', block);
   ASSERT(!handler || handler.type === 'BlockStatement', 'the handler, if present, should be an actual BlockStatement node', handler);
   ASSERT(param ? handler : true, 'if theres a param then there must be a param');
+  ASSERT(handler ? paramNullAck || param : true, 'if theres a handler but no param then must send an additional arg acknowledging that this is not normalized form');
   ASSERT(
     !finalizer || finalizer.type === 'BlockStatement',
     'the finalizer, if present, should be an actual BlockStatement node',

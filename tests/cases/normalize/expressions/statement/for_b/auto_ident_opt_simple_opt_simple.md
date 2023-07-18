@@ -63,7 +63,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
 $(1);
 $(1);
 $(1);
@@ -75,20 +74,8 @@ $(1);
 $(1);
 $(1);
 $(1);
-const b = { x: tmpObjLitVal };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpChainElementObject$2 = b.x;
-  const tmpIfTest$2 = tmpChainElementObject$2 == null;
-  if (tmpIfTest$2) {
-    $(1);
-  } else {
-    const tmpChainElementObject$4 = tmpChainElementObject$2.y;
-    if (tmpChainElementObject$4) {
-      $(1);
-    } else {
-      break;
-    }
-  }
+  $(1);
 }
 const a = { a: 999, b: 1000 };
 $(a);

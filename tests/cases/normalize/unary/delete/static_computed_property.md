@@ -32,8 +32,7 @@ delete obj.x;
 ## Output
 
 `````js filename=intro
-const obj = { x: 1 };
-delete obj.x;
+
 `````
 
 ## Globals

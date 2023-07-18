@@ -82,15 +82,13 @@ $(100);
 new $(1);
 $(100);
 const tmpNestedComplexRhs$1 = new $(1);
-let tmpClusterSSA_a$1 = tmpNestedComplexRhs$1;
-const b = { $: $ };
+let a = tmpNestedComplexRhs$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpNewCallee$1 = b.$;
-  const tmpNestedComplexRhs$2 = new tmpNewCallee$1(1);
-  tmpClusterSSA_a$1 = tmpNestedComplexRhs$2;
+  const tmpNestedComplexRhs$2 = new $(1);
+  a = tmpNestedComplexRhs$2;
 }
-$(tmpClusterSSA_a$1);
+$(a);
 `````
 
 ## Globals

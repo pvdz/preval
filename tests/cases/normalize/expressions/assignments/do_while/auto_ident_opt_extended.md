@@ -70,32 +70,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
 $(100);
-const tmpChainElementObject$3 = tmpObjLitVal$1.z;
-let tmpClusterSSA_a = tmpChainElementObject$3;
-if (tmpChainElementObject$3) {
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpChainElementObject$6 = tmpObjLitVal$1.z;
-  tmpClusterSSA_a = tmpChainElementObject$6;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementObject$6;
-  const b = { x: tmpObjLitVal };
-  while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
-      $(100);
-      const tmpChainElementObject$1 = b.x;
-      const tmpChainElementObject$5 = tmpChainElementObject$1.y;
-      const tmpChainElementObject$7 = tmpChainElementObject$5.z;
-      tmpClusterSSA_a = tmpChainElementObject$7;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementObject$7;
-    } else {
-      break;
-    }
-  }
-} else {
 }
-$(tmpClusterSSA_a);
+$(100);
 `````
 
 ## Globals

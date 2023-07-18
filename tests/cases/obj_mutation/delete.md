@@ -32,8 +32,7 @@ delete blob.thing;
 ## Output
 
 `````js filename=intro
-const blob = { thing: `bloop` };
-delete blob.thing;
+
 `````
 
 ## Globals

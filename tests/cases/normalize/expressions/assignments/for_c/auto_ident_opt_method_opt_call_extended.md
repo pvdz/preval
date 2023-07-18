@@ -67,34 +67,34 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
+const tmpObjLitVal$1 = { e: $ };
 if (tmpIfTest) {
   a = undefined;
-  const tmpChainElementObject$3 = tmpObjLitVal$1.e;
-  const tmpIfTest$3 = tmpChainElementObject$3 == null;
+  const tmpIfTest$3 = $ == null;
   if (tmpIfTest$3) {
   } else {
-    const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, 1);
+    const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
     a = tmpChainElementCall;
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
-  const b = { c: tmpObjLitVal };
+  tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       a = undefined;
-      const tmpChainElementObject$2 = b.c;
-      const tmpChainElementObject$4 = tmpChainElementObject$2.d;
-      const tmpChainElementObject$6 = tmpChainElementObject$4.e;
-      const tmpIfTest$1 = tmpChainElementObject$6 == null;
+      const tmpChainElementObject$4 = tmpObjLitVal$1.e;
+      const tmpIfTest$1 = tmpChainElementObject$4 == null;
       if (tmpIfTest$1) {
       } else {
-        const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpChainElementObject$4, 1);
+        const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
         a = tmpChainElementCall$1;
       }
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }

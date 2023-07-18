@@ -55,7 +55,6 @@ $(a);
 ## Output
 
 `````js filename=intro
-let a = 1;
 $(100);
 $(100);
 $(100);
@@ -67,17 +66,10 @@ $(100);
 $(100);
 $(100);
 $(100);
-const b = { x: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpChainElementObject$1 = b.x;
-  a = tmpChainElementObject$1;
-  if (tmpChainElementObject$1) {
-    $(100);
-  } else {
-    break;
-  }
+  $(100);
 }
-$(a);
+$(1);
 `````
 
 ## Globals

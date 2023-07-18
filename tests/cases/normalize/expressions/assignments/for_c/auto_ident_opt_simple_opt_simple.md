@@ -64,23 +64,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal = { y: 1 };
 let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = 1;
   let tmpClusterSSA_tmpIfTest = $(1);
-  const b = { x: tmpObjLitVal };
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_tmpIfTest) {
-      a = undefined;
-      const tmpChainElementObject$2 = b.x;
-      const tmpIfTest$1 = tmpChainElementObject$2 == null;
-      if (tmpIfTest$1) {
-      } else {
-        const tmpChainElementObject$4 = tmpChainElementObject$2.y;
-        a = tmpChainElementObject$4;
-      }
       tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;

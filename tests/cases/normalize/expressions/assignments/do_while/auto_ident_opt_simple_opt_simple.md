@@ -82,29 +82,11 @@ $(100);
 $(100);
 $(100);
 $(100);
-const tmpObjLitVal = { y: 1 };
 $(100);
-let a = 1;
-let tmpDoWhileFlag = true;
-const b = { x: tmpObjLitVal };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpDoWhileFlag) {
-    $(100);
-    let tmpNestedComplexRhs$1 = undefined;
-    const tmpChainElementObject$2 = b.x;
-    const tmpIfTest$2 = tmpChainElementObject$2 == null;
-    if (tmpIfTest$2) {
-    } else {
-      const tmpChainElementObject$4 = tmpChainElementObject$2.y;
-      tmpNestedComplexRhs$1 = tmpChainElementObject$4;
-    }
-    a = tmpNestedComplexRhs$1;
-    tmpDoWhileFlag = tmpNestedComplexRhs$1;
-  } else {
-    break;
-  }
+  $(100);
 }
-$(a);
+$(1);
 `````
 
 ## Globals

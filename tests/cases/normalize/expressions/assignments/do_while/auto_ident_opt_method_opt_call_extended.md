@@ -76,42 +76,37 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
 $(100);
 let tmpNestedComplexRhs = false;
-const tmpChainElementObject$3 = tmpObjLitVal$1.e;
-const tmpIfTest$1 = tmpChainElementObject$3 == null;
+const tmpIfTest$1 = $ == null;
 let tmpClusterSSA_a = undefined;
 if (tmpIfTest$1) {
 } else {
-  const tmpChainElementCall = $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, 1);
+  const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   tmpNestedComplexRhs = tmpChainElementCall;
   tmpClusterSSA_a = tmpChainElementCall;
 }
 if (tmpNestedComplexRhs) {
   $(100);
   let tmpNestedComplexRhs$1 = undefined;
-  const tmpChainElementObject$6 = tmpObjLitVal$1.e;
-  const tmpIfTest$2 = tmpChainElementObject$6 == null;
+  const tmpChainElementObject$4 = tmpObjLitVal$1.e;
+  const tmpIfTest$2 = tmpChainElementObject$4 == null;
   if (tmpIfTest$2) {
   } else {
-    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$6, tmpObjLitVal$1, 1);
+    const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
     tmpNestedComplexRhs$1 = tmpChainElementCall$1;
   }
   tmpClusterSSA_a = tmpNestedComplexRhs$1;
   let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
-  const b = { c: tmpObjLitVal };
   while ($LOOP_UNROLL_9) {
     if (tmpClusterSSA_tmpDoWhileFlag$1) {
       $(100);
       let tmpNestedComplexRhs$2 = undefined;
-      const tmpChainElementObject$1 = b.c;
-      const tmpChainElementObject$5 = tmpChainElementObject$1.d;
-      const tmpChainElementObject$7 = tmpChainElementObject$5.e;
-      const tmpIfTest$3 = tmpChainElementObject$7 == null;
+      const tmpChainElementObject$1 = tmpObjLitVal$1.e;
+      const tmpIfTest$3 = tmpChainElementObject$1 == null;
       if (tmpIfTest$3) {
       } else {
-        const tmpChainElementCall$2 = $dotCall(tmpChainElementObject$7, tmpChainElementObject$5, 1);
+        const tmpChainElementCall$2 = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, 1);
         tmpNestedComplexRhs$2 = tmpChainElementCall$2;
       }
       tmpClusterSSA_a = tmpNestedComplexRhs$2;

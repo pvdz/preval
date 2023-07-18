@@ -55,13 +55,10 @@ while (true) {
 ## Output
 
 `````js filename=intro
-let tmpClusterSSA_counter$2 = 9;
-const arr = [`c`, `a`, `b`];
+let counter = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpClusterSSA_counter$2) {
-    const e$1 = arr.shift();
-    arr.push(e$1);
-    tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 - 1;
+  if (counter) {
+    counter = counter - 1;
   } else {
     break;
   }

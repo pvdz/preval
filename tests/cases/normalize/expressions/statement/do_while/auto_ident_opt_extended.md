@@ -68,29 +68,21 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { z: 100 };
-const tmpObjLitVal = { y: tmpObjLitVal$1 };
-const a = { a: 999, b: 1000 };
 $(100);
-const tmpChainElementObject$3 = tmpObjLitVal$1.z;
-if (tmpChainElementObject$3) {
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+$(100);
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
-  const tmpChainElementObject$6 = tmpObjLitVal$1.z;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementObject$6;
-  const b = { x: tmpObjLitVal };
-  while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
-      $(100);
-      const tmpChainElementObject$1 = b.x;
-      const tmpChainElementObject$5 = tmpChainElementObject$1.y;
-      const tmpChainElementObject$7 = tmpChainElementObject$5.z;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementObject$7;
-    } else {
-      break;
-    }
-  }
-} else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

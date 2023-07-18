@@ -192,6 +192,9 @@ function _funcionSplitting(fdata) {
           before(funcNode);
           before(toReplace.map(([read]) => read.blockBody[read.blockIndex]));
 
+          const tmpNameCatchParam = createFreshVar('tmpCatchParam', fdata);
+          const tmpNameCatchParam2 = createFreshVar('tmpCatchParam', fdata);
+
           const tmpNameTruthy = createFreshVar('tmpSplitTruthy', fdata);
           const funcTruthy = AST.functionExpression(
             [],
@@ -199,7 +202,7 @@ function _funcionSplitting(fdata) {
               AST.debuggerStatement(),
               AST.tryStatement(
                 AST.blockStatement(ifNode.consequent.body),
-                null,
+                AST.identifier(tmpNameCatchParam),
                 tryNode.handler ? AST.blockStatement() : null,
                 tryNode.handler ? null : AST.blockStatement(),
               ),
@@ -219,7 +222,7 @@ function _funcionSplitting(fdata) {
               AST.debuggerStatement(),
               AST.tryStatement(
                 AST.blockStatement(ifNode.alternate.body),
-                null,
+                AST.identifier(tmpNameCatchParam2),
                 tryNode.handler ? AST.blockStatement() : null,
                 tryNode.handler ? null : AST.blockStatement(),
               ),

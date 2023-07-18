@@ -77,14 +77,14 @@ const tmpSplitTruthy = function () {
   debugger;
   try {
     $(`then`);
-  } catch {}
+  } catch (tmpCatchParam) {}
   return undefined;
 };
 const tmpSplitFalsy = function () {
   debugger;
   try {
     $(`else`);
-  } catch {}
+  } catch (tmpCatchParam$1) {}
   return undefined;
 };
 tmpSplitFalsy();
@@ -95,7 +95,9 @@ tmpSplitFalsy();
 
 ## Globals
 
-None
+BAD@! Found 2 implicit global bindings:
+
+tmpCatchParam, tmpCatchParam$1
 
 ## Result
 

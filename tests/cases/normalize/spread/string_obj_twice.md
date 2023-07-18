@@ -37,7 +37,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = { 0: `w`, 1: `o`, 2: `r`, 3: `l`, 4: `d` };
+const tmpCalleeParam = { [`0`]: `w`, [`1`]: `o`, [`2`]: `r`, [`3`]: `l`, [`4`]: `d` };
 $(tmpCalleeParam);
 `````
 

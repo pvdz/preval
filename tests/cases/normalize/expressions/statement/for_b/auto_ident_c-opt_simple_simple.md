@@ -69,14 +69,8 @@ $(1);
 $(1);
 $(1);
 $(1);
-const b = { x: 1 };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpChainElementObject$1 = b.x;
-  if (tmpChainElementObject$1) {
-    $(1);
-  } else {
-    break;
-  }
+  $(1);
 }
 const a = { a: 999, b: 1000 };
 $(a);

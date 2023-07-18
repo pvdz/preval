@@ -59,10 +59,8 @@ $(a);
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   let tmpClusterSSA_tmpIfTest = $(1);
-  const b = { x: 1 };
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_tmpIfTest) {
-      b.x;
       tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;

@@ -57,11 +57,9 @@ const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = new $(1);
   let tmpClusterSSA_tmpIfTest = $(1);
-  const b = { $: $ };
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_tmpIfTest) {
-      const tmpNewCallee$1 = b.$;
-      a = new tmpNewCallee$1(1);
+      a = new $(1);
       tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;

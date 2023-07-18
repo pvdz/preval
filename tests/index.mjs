@@ -66,7 +66,7 @@ if (isMainThread && CONFIG.threads > 1) {
   console.log('Spinning up', CONFIG.threads, 'threads');
   console.log('import.meta.url:', import.meta.url.replace('file://', ''));
 
-  let retryVerbose = '';
+  let fileToRetryVerbose = '';
   const resolvers = [];
   const promises = [];
   const threads = [];
@@ -94,7 +94,7 @@ if (isMainThread && CONFIG.threads > 1) {
           console.log('Going to kill all threads and run this test case in verbose mode... : ' + last);
           // We can't abort the workers without fataling nodejs. So instead we mute them and tell the main thread
           // that they've completed. This allows the promise.all to continue and run the failed test case in CLI.
-          retryVerbose = last;
+          fileToRetryVerbose = last;
           resolvers.forEach((r) => r());
           broke = true;
         });
@@ -113,9 +113,9 @@ if (isMainThread && CONFIG.threads > 1) {
 
   console.log('Waiting for threads to complete...');
   await Promise.all(promises);
-  if (retryVerbose) {
-    console.log('A test failed (' + retryVerbose + '). Running it in verbose mode in main thread');
-    CONFIG.targetFile = retryVerbose;
+  if (fileToRetryVerbose) {
+    console.log('Test (' + fileToRetryVerbose + ') crashed. Running it in verbose mode in main thread');
+    CONFIG.targetFile = fileToRetryVerbose;
   } else {
     console.log('Finished, no test fataled, exiting now...');
     //if (isMainThread) {
@@ -414,6 +414,8 @@ function runTestCase(
   }
   let leGlobalSymbols = Object.keys(createGlobalPrevalSymbols([], () => {}, () => {}));
 
+  if (withOutput && !lastError) console.log('Evaluating outcomes now for:', CONFIG.targetFile);
+
   const evalled = { $in: [], $pre: [], $norm: [], $out: [] };
   function evaluate(desc, fdata, stack) {
     if (!fdata) return stack.slice(0);
@@ -598,14 +600,16 @@ function runTestCase(
     return stack.slice(0);
   }
   const SKIPPED = '"<skipped by option>"';
-  evalled.$in = CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput ? [SKIPPED] : evaluate('input', fin, evalled.$in);
-  evalled.$pre = CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre ? [SKIPPED] : evaluate('pre normalization', fin, evalled.$pre);
+  evalled.$in = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput ? [SKIPPED] : evaluate('input', fin, evalled.$in);
+  evalled.$pre = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre ? [SKIPPED] : evaluate('pre normalization', fin, evalled.$pre);
   evalled.$norm =
-    CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized ? [SKIPPED] : evaluate('normalized', output?.normalized, evalled.$norm);
+    lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized ? [SKIPPED] : evaluate('normalized', output?.normalized, evalled.$norm);
   if (!CONFIG.onlyNormalized) {
     evalled.$out =
-      CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput ? [SKIPPED] : evaluate('output', output?.files, evalled.$out);
+      lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput ? [SKIPPED] : evaluate('output', output?.files, evalled.$out);
   }
+
+  if (lastError && !isExpectingAnError) console.log('\n\nPreval crashed hard on test/file, skipped evals:', CONFIG.targetFile);
 
   if (withOutput) {
     console.log('\n');
@@ -614,7 +618,7 @@ function runTestCase(
 
   if (!isExpectingAnError && lastError) {
     if (!withOutput && !CONFIG.onlyNormalized) {
-      console.log(WHITE_BLACK + 'Test crashed, re-running it with output' + RESET);
+      console.log(WHITE_BLACK + 'Test ' + caseIndex + ' (' + fname + ') crashed, re-running it with output' + RESET);
       return runTestCase(
         {
           md,

@@ -1,0 +1,86 @@
+# Preval test case
+
+# pop_unsafe.md
+
+> Tofix > Pop unsafe
+>
+> Remove element from array
+
+zorgen dat de arr.push niet werkt
+
+## Input
+
+`````js filename=intro
+const ARR = [ `a`, `b`, `c` ];
+const NOOP = function() {
+  $(ARR);
+};
+const n = ARR.pop();
+$(n);
+$(NOOP);
+ARR.push(n); // this cant be inlined now because if NOOP gets called we don't know what happens to ARR
+$(ARR);
+`````
+
+## Pre Normal
+
+`````js filename=intro
+const ARR = [`a`, `b`, `c`];
+const NOOP = function () {
+  debugger;
+  $(ARR);
+};
+const n = ARR.pop();
+$(n);
+$(NOOP);
+ARR.push(n);
+$(ARR);
+`````
+
+## Normalized
+
+`````js filename=intro
+const ARR = [`a`, `b`, `c`];
+const NOOP = function () {
+  debugger;
+  $(ARR);
+  return undefined;
+};
+const n = ARR.pop();
+$(n);
+$(NOOP);
+ARR.push(n);
+$(ARR);
+`````
+
+## Output
+
+`````js filename=intro
+const ARR = [`a`, `b`, `c`];
+const NOOP = function () {
+  debugger;
+  $(ARR);
+  return undefined;
+};
+$(`c`);
+$(NOOP);
+$(ARR);
+`````
+
+## Globals
+
+None
+
+## Result
+
+Should call `$` with:
+ - 1: 'c'
+ - 2: '<function>'
+ - 3: ['a', 'b', 'c']
+ - eval returned: undefined
+
+Pre normalization calls: Same
+
+Normalized calls: Same
+
+Final output calls: Same

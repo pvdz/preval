@@ -49,14 +49,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpNewCallee = b.$;
-  a = new tmpNewCallee(1);
+  a = new $(1);
   a.x = tmpForOfLhsNode;
 }
 $(a);

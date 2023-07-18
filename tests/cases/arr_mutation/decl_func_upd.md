@@ -53,9 +53,8 @@ const f = function () {
   arr[0] = 1;
   return undefined;
 };
-const arr = [];
+const arr = [1];
 $(f);
-arr[0] = 1;
 $(arr);
 `````
 

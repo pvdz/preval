@@ -55,15 +55,13 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 let a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
-  const tmpChainElementObject = b.x;
-  a = tmpChainElementObject;
-  tmpChainElementObject.x = tmpForOfLhsNode;
+  a = 1;
+  (1).x = tmpForOfLhsNode;
 }
 $(a);
 `````

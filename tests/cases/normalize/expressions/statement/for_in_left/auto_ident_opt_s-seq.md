@@ -53,14 +53,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = { x: 1 };
 const tmpForInRhs = $(tmpCalleeParam);
 let tmpForInLhsNode = undefined;
 for (tmpForInLhsNode in tmpForInRhs) {
-  const tmpChainElementObject = b.x;
-  tmpChainElementObject.x = tmpForInLhsNode;
+  (1).x = tmpForInLhsNode;
 }
 $(a);
 `````

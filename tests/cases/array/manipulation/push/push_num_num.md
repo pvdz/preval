@@ -52,14 +52,13 @@ $(NOOP);
 ## Output
 
 `````js filename=intro
-const ARR = [`a`, `b`, `c`, 10, 20];
+const ARR = [`a`, `b`, `c`, 10, 20, 5];
 const NOOP = function () {
   debugger;
   $(ARR);
   return undefined;
 };
 $(5);
-ARR.push(5);
 $(NOOP);
 `````
 

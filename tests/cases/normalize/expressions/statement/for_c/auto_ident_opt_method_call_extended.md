@@ -61,21 +61,15 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpObjLitVal$1 = { e: $ };
-const tmpObjLitVal = { d: tmpObjLitVal$1 };
-const a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpChainElementObject$3 = tmpObjLitVal$1.e;
-  $dotCall(tmpChainElementObject$3, tmpObjLitVal$1, 1);
+  const tmpObjLitVal$1 = { e: $ };
+  $dotCall($, tmpObjLitVal$1, 1);
   let tmpClusterSSA_tmpIfTest = $(1);
-  const b = { c: tmpObjLitVal };
   while ($LOOP_UNROLL_10) {
     if (tmpClusterSSA_tmpIfTest) {
-      const tmpChainElementObject$2 = b.c;
-      const tmpChainElementObject$4 = tmpChainElementObject$2.d;
-      const tmpChainElementObject$6 = tmpChainElementObject$4.e;
-      $dotCall(tmpChainElementObject$6, tmpChainElementObject$4, 1);
+      const tmpChainElementObject$4 = tmpObjLitVal$1.e;
+      $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
       tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
@@ -83,6 +77,7 @@ if (tmpIfTest) {
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 

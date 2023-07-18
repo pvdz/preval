@@ -68,15 +68,13 @@ new $(1);
 $(100);
 new $(1);
 $(100);
-let tmpClusterSSA_a$1 = new $(1);
+let a = new $(1);
 $(100);
-const b = { $: $ };
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpNewCallee$1 = b.$;
-  tmpClusterSSA_a$1 = new tmpNewCallee$1(1);
+  a = new $(1);
   $(100);
 }
-$(tmpClusterSSA_a$1);
+$(a);
 `````
 
 ## Globals

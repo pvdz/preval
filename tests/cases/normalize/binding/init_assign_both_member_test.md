@@ -126,6 +126,42 @@ b.x = tmpNestedAssignPropRhs;
 $(5, tmpNestedAssignPropRhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+get x() {
+    debugger;
+    $( 1 );
+    return 10;
+  },,
+set x( $$0 ) {
+    const b = c;
+    debugger;
+    $( 2, b );
+    return undefined;
+  },
+;
+const d = {
+get x() {
+    debugger;
+    $( 3 );
+    return 20;
+  },,
+set x( $$0 ) {
+    const e = c;
+    debugger;
+    $( 4, e );
+    return undefined;
+  },
+;
+const f = d.x;
+a.x = f;
+$( 5, f );
+`````
+
 ## Globals
 
 None

@@ -98,6 +98,20 @@ $(`fail1`);
 $(`fail2`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  return undefined;
+},;
+$( a );
+$( "fail1" );
+$( "fail2" );
+`````
+
 ## Globals
 
 None

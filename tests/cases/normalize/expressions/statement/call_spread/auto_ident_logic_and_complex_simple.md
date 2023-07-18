@@ -59,6 +59,32 @@ const a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( a );
+if (b) {
+  $( ... 2 );
+}
+else {
+  const c = b === "";
+  if (c) {
+    $();
+  }
+  else {
+    throw "Preval: Attempting to spread primitive that is not an empty string";
+  }
+}
+const d = {
+a: 999,
+b: 1000
+;
+$( d );
+`````
+
 ## Globals
 
 None

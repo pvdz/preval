@@ -65,6 +65,23 @@ try {
 $(tmpClusterSSA_x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "a" );
+$( a );
+const b = $( "b" );
+try {
+  $( "123" );
+}
+catch (e) {
+  $( "fail" );
+}
+$( b );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

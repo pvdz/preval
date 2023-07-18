@@ -88,6 +88,30 @@ const tmpCalleeParam$1 = f();
 $(tmpCalleeParam$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  let b = $( 1 );
+  if (b) {
+    b = g();
+    $( "a" );
+  }
+  else {
+    $( "b" );
+  }
+  const c = Boolean( b );
+  return c;
+},;
+const d = a();
+$( d );
+const e = a();
+$( e );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

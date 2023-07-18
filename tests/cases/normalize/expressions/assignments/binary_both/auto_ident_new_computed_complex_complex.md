@@ -65,6 +65,25 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = $( a );
+const c = $( "$" );
+const d = b[ c ];
+const e = new d( 1 );
+const f = $( a );
+const g = $( "$" );
+const h = f[ g ];
+const i = new h( 1 );
+const j = e + i;
+$( j );
+$( i );
+`````
+
 ## Globals
 
 None

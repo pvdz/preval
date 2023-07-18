@@ -103,6 +103,31 @@ const tmpCalleeParam$3 = tmpCompObj[1];
 $(tmpCalleeParam$3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = function() {
+  debugger;
+  const b = [ 1, 2, 3,, ];
+  a = function() {
+    debugger;
+    return b;
+  },;
+  const c = a();
+  return c;
+},;
+const d = a;
+const e = a();
+$( e );
+const f = d();
+$( f );
+const g = a();
+const h = g[ 1 ];
+$( h );
+`````
+
 ## Globals
 
 None

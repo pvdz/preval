@@ -83,6 +83,26 @@ $(undefined);
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( $ );
+const b = a == null;
+let c = undefined;
+if (b) {
+
+}
+else {
+  const d = $( 1 );
+  const e = $dotCall( a, $, d );
+  c = e;
+}
+$( undefined );
+$( c );
+`````
+
 ## Globals
 
 None

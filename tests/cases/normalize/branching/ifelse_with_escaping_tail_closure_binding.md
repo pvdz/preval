@@ -97,6 +97,27 @@ $(xyz, `g`);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( b, "g" );
+  return undefined;
+},;
+const c = [ a,, ];
+const d = $( c );
+if ($) {
+  $( 1 );
+}
+const b = $();
+d[ 0 ]()};
+$( b, "g" );
+$( undefined );
+`````
+
 ## Globals
 
 None

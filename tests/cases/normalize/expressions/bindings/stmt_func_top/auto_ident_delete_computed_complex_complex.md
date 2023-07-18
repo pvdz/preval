@@ -60,6 +60,19 @@ $(a, arg);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = $( a );
+const c = $( "y" );
+const d = deleteb[ c ];
+$( d, a );
+$( undefined );
+`````
+
 ## Globals
 
 None

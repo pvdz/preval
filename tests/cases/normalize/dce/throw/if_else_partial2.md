@@ -67,6 +67,21 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+if (a) {
+  $( "keep, do not eval" );
+  $( undefined );
+}
+else {
+  throw 2;
+}
+`````
+
 ## Globals
 
 None

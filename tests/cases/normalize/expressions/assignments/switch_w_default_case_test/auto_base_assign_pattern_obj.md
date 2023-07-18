@@ -115,6 +115,35 @@ $(`fail2`);
 $(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+let b = 1;
+const c = $( 2 );
+const d = { b: c };
+const e = $( d );
+const f = e.b;
+const g = e === a;
+if (g) {
+  b = 0;
+}
+else {
+  const h = 2 === a;
+  if (h) {
+    b = 2;
+  }
+}
+const i = b <= 1;
+if (i) {
+  $( "fail1" );
+}
+$( "fail2" );
+$( e, f );
+`````
+
 ## Globals
 
 None

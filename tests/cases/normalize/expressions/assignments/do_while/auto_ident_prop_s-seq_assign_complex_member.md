@@ -97,6 +97,47 @@ if (varInitAssignLhsComputedRhs) {
 $(tmpClusterSSA_a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+const a = {
+c: 10,
+d: 20
+;
+const b = $( a );
+const c = $( "d" );
+const d = b[ c ];
+a.c = d;
+let e = d;
+if (d) {
+  $( 100 );
+  const f = $( a );
+  const g = $( "d" );
+  const h = f[ g ];
+  a.c = h;
+  e = h;
+  let i = h;
+  while ($LOOP_UNROLL_9) {
+    if (i) {
+      $( 100 );
+      const j = $( a );
+      const k = $( "d" );
+      const l = j[ k ];
+      a.c = l;
+      e = l;
+      i = l;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( e, a );
+`````
+
 ## Globals
 
 None

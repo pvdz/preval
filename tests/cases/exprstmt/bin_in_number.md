@@ -67,6 +67,26 @@ const spy = {
 spy in 150;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+toString(  ) {
+    debugger;
+    $( "pass" );
+    return undefined;
+  },,
+valueOf(  ) {
+    debugger;
+    $( "fail" );
+    return undefined;
+  },
+;
+a in 150;
+`````
+
 ## Globals
 
 None

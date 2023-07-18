@@ -102,6 +102,36 @@ $(tmpCalleeParam);
 $(3, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100 );
+const b = { x: 1 };
+const c = $( b );
+const d = $( "x" );
+const e = $( b );
+const f = $( "x" );
+const g = $( b );
+const h = $( "x" );
+const i = $( b );
+const j = $( "x" );
+const k = $( b );
+const l = $( "x" );
+const m = $( b );
+const n = $( "x" );
+m[n] = 3;
+k[l] = 3;
+i[j] = 3;
+g[h] = 3;
+e[f] = 3;
+c[d] = 3;
+const o = a + 3;
+$( o );
+$( 3, b, 3 );
+`````
+
 ## Globals
 
 None

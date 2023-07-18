@@ -52,6 +52,20 @@ const tmpThrowArg = delete tmpDeleteCompObj[tmpDeleteCompProp];
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 2 );
+const a = { y: 1 };
+const b = $( a );
+const c = $( "y" );
+const d = deleteb[ c ];
+throw d;
+`````
+
 ## Globals
 
 None

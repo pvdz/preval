@@ -59,6 +59,22 @@ $(tmpCalleeParam, tmpNestedAssignObjPatternRhs);
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ "before ", " after",, ];
+const b = $( 3 );
+const c = $( 4 );
+const d = {
+x: b,
+y: c
+;
+$( a, d );
+$( d, b, c );
+`````
+
 ## Globals
 
 None

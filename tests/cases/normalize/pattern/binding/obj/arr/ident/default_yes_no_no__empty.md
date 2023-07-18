@@ -50,6 +50,17 @@ arrPatternSplat[0];
 $(`bad`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 1.x;
+const b = [ ... a,, ];
+b[ 0 ];
+$( "bad" );
+`````
+
 ## Globals
 
 None

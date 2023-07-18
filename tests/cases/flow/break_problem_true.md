@@ -97,6 +97,20 @@ if (tmpIfTest$3) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+if (a) {
+  $( "pass" );
+}
+else {
+  $( "fail" );
+}
+`````
+
 ## Globals
 
 None

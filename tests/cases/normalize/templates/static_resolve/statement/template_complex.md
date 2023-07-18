@@ -42,6 +42,15 @@ const tmpCallCallee$1 = $(1);
 $coerce(tmpCallCallee$1, `string`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+$coerce( a, "string" );
+`````
+
 ## Globals
 
 None

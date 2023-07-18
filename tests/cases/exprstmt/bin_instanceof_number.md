@@ -55,6 +55,14 @@ undefined instanceof 150;
 undefined instanceof 150;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+undefined instanceof 150;
+`````
+
 ## Globals
 
 None

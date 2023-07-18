@@ -71,6 +71,31 @@ if (tmpNestedAssignPropRhs) {
 $(tmpNestedAssignPropRhs, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "c" );
+const b = {
+c: 10,
+d: 20
+;
+const c = $( b );
+const d = $( "d" );
+const e = c[ d ];
+b[a] = e;
+if (e) {
+  const f = $( 100 );
+  $( f );
+}
+else {
+  const g = $( 200 );
+  $( g );
+}
+$( e, b );
+`````
+
 ## Globals
 
 None

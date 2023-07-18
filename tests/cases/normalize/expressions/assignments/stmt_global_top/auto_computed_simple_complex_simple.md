@@ -48,6 +48,18 @@ a[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( "b" );
+const c = { b: a };
+c[b] = 2;
+$( c );
+`````
+
 ## Globals
 
 None

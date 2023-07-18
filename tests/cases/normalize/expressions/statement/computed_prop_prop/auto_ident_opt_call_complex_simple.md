@@ -62,6 +62,30 @@ obj[tmpCompProp];
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = {};
+let c = undefined;
+const d = $( $ );
+const e = d == null;
+if (e) {
+
+}
+else {
+  const f = $dotCall( d, $, 1 );
+  c = f;
+}
+b[ c ];
+$( a );
+`````
+
 ## Globals
 
 None

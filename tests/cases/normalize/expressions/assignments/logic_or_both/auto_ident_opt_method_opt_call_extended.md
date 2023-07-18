@@ -104,6 +104,41 @@ if (tmpIfTest$1) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = $ == null;
+if (b) {
+  $( undefined );
+}
+else {
+  const c = { e: $ };
+  const d = $dotCall( $, c, 1 );
+  a = d;
+  if (d) {
+    $( d );
+  }
+  else {
+    let e = undefined;
+    const f = c.e;
+    const g = f == null;
+    if (g) {
+
+    }
+    else {
+      const h = $dotCall( f, c, 1 );
+      e = h;
+    }
+    a = e;
+    $( e );
+  }
+}
+$( a );
+`````
+
 ## Globals
 
 None

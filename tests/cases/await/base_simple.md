@@ -47,6 +47,19 @@ const f = async function () {
 f();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = async function() {
+  debugger;
+  (await ($);
+  return undefined;
+},;
+a();
+`````
+
 ## Globals
 
 None

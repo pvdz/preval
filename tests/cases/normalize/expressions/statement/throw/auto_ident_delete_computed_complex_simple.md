@@ -46,6 +46,17 @@ const tmpThrowArg = delete tmpDeleteObj.y;
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = $( a );
+const c = deleteb.y;
+throw c;
+`````
+
 ## Globals
 
 None

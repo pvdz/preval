@@ -40,6 +40,14 @@ let a = varInitAssignLhsComputedRhs;
 (10).x = 20;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+10.x = 20;
+`````
+
 ## Globals
 
 None

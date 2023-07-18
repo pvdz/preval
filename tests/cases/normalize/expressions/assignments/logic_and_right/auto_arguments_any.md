@@ -54,6 +54,27 @@ if (tmpCalleeParam) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = {
+a: 999,
+b: 1000
+;
+const b = $( 100 );
+if (b) {
+  a = arguments;
+  arguments;
+  $( arguments );
+}
+else {
+  $( b );
+}
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

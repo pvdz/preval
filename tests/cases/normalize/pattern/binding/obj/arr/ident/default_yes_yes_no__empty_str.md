@@ -70,6 +70,32 @@ if (tmpIfTest$1) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = "".x;
+let b = undefined;
+const c = a === undefined;
+if (c) {
+  const d = [ "pass2",, ];
+  b = $( d );
+}
+else {
+  b = a;
+}
+const e = [ ... b,, ];
+const f = e[ 0 ];
+const g = f === undefined;
+if (g) {
+  $( "fail" );
+}
+else {
+  $( f );
+}
+`````
+
 ## Globals
 
 None

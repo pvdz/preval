@@ -43,6 +43,17 @@ arrPatternSplat.slice(0);
 $(`bad`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $ObjectPrototype.x;
+const b = [ ... a,, ];
+b.slice( 0 );
+$( "bad" );
+`````
+
 ## Globals
 
 None

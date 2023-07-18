@@ -86,6 +86,42 @@ while (true) {
 $(`after, do not evaluate (infinite loop)`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( true );
+while (true) {
+  if (a) {
+    let b = true;
+    const c = $( true );
+    if (c) {
+
+    }
+    else {
+      b = false;
+    }
+    if (b) {
+      while ($LOOP_UNROLL_10) {
+        const d = $( true );
+        if (d) {
+
+        }
+        else {
+          break;
+        }
+      }
+    }
+    a = $( true );
+  }
+  else {
+    break;
+  }
+}
+$( "after, do not evaluate (infinite loop)" );
+`````
+
 ## Globals
 
 None

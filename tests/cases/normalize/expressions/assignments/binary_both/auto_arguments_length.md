@@ -48,6 +48,18 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+arguments;
+const a = arguments;
+const b = arguments + a;
+$( b );
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

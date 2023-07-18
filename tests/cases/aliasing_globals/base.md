@@ -44,6 +44,17 @@ unknown3;
 $(unknown1, unknown2, unknown3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+unknown1;
+unknown2;
+unknown3;
+$( unknown1, unknown2, unknown3 );
+`````
+
 ## Globals
 
 BAD@! Found 3 implicit global bindings:

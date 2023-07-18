@@ -159,6 +159,42 @@ if (fallthrough) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = false;
+const b = $( 1 );
+const c = undefined === b;
+if (c) {
+  $( "A" );
+  a = true;
+}
+if (a) {
+  $( "B" );
+}
+else {
+  const d = $( 2 );
+  const e = undefined === d;
+  if (e) {
+    $( "B" );
+  }
+  else {
+    if (a) {
+      $( "C" );
+    }
+    else {
+      const f = $( 3 );
+      const g = undefined === f;
+      if (g) {
+        $( "C" );
+      }
+    }
+  }
+}
+`````
+
 ## Globals
 
 None

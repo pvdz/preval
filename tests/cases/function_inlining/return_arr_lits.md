@@ -47,6 +47,15 @@ const tmpReturnArg = [10, 20, 30];
 $(tmpReturnArg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 10, 20, 30,, ];
+$( a );
+`````
+
 ## Globals
 
 None

@@ -92,6 +92,26 @@ f();
 throw `[Preval]: Call expression with illegal callee must crash before this line `;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "no" );
+  $( "inlining" );
+  $( "please" );
+  return undefined;
+},;
+a();
+$( "pass" );
+$( undefined );
+a();
+2.undefined();
+throw "[Preval]: Call expression with illegal callee must crash before this line ";
+`````
+
 ## Globals
 
 None

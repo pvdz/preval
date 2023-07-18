@@ -64,6 +64,25 @@ export { a };
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+$( 1 );
+$( 2 );
+const b = $( 3 );
+const c = $( 4 );
+const d = [ b, c,, ];
+const e = [ ... d,, ];
+const f = e[ 0 ];
+const g = e[ 1 ];
+a = d;
+export { a as a from "undefined"
+$( a, f, g );
+`````
+
 ## Globals
 
 None

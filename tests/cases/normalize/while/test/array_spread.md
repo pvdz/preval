@@ -99,6 +99,64 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`after`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 1, 2, 3,, ];
+const b = $( a );
+[ ... b,, ];
+$( "loop" );
+const c = [ 1, 2, 3,, ];
+const d = $( c );
+[ ... d,, ];
+$( "loop" );
+const e = [ 1, 2, 3,, ];
+const f = $( e );
+[ ... f,, ];
+$( "loop" );
+const g = [ 1, 2, 3,, ];
+const h = $( g );
+[ ... h,, ];
+$( "loop" );
+const i = [ 1, 2, 3,, ];
+const j = $( i );
+[ ... j,, ];
+$( "loop" );
+const k = [ 1, 2, 3,, ];
+const l = $( k );
+[ ... l,, ];
+$( "loop" );
+const m = [ 1, 2, 3,, ];
+const n = $( m );
+[ ... n,, ];
+$( "loop" );
+const o = [ 1, 2, 3,, ];
+const p = $( o );
+[ ... p,, ];
+$( "loop" );
+const q = [ 1, 2, 3,, ];
+const r = $( q );
+[ ... r,, ];
+$( "loop" );
+const s = [ 1, 2, 3,, ];
+const t = $( s );
+[ ... t,, ];
+$( "loop" );
+const u = [ 1, 2, 3,, ];
+const v = $( u );
+[ ... v,, ];
+$( "loop" );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const w = [ 1, 2, 3,, ];
+  const x = $( w );
+  [ ... x,, ];
+  $( "loop" );
+}
+$( "after" );
+`````
+
 ## Globals
 
 None

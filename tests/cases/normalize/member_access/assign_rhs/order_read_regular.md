@@ -82,6 +82,28 @@ const tmpClusterSSA_x = tmpAssignRhsProp.x;
 $(tmpClusterSSA_x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+get x() {
+    debugger;
+    const b = $( 10 );
+    return b;
+  },,
+set x( $$0 ) {
+    debugger;
+    $( 20 );
+    return undefined;
+  },
+;
+const c = $( a );
+const d = c.x;
+$( d );
+`````
+
 ## Globals
 
 None

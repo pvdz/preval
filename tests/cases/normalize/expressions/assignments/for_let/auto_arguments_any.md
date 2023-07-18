@@ -76,6 +76,41 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = arguments;
+$( a );
+$( 1 );
+$( a );
+$( 1 );
+$( a );
+$( 1 );
+$( a );
+$( 1 );
+$( a );
+$( 1 );
+$( a );
+$( 1 );
+$( a );
+$( 1 );
+$( a );
+$( 1 );
+$( a );
+$( 1 );
+$( a );
+$( 1 );
+$( a );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( a );
+  $( 1 );
+}
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

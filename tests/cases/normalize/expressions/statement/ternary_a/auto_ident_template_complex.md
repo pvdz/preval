@@ -42,6 +42,17 @@ const tmpBinLhs = `foo${tmpBinBothRhs}`;
 $(tmpBinLhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $coerce( a, "string" );
+const c = `foo${[object Object]}`;
+$( c );
+`````
+
 ## Globals
 
 None

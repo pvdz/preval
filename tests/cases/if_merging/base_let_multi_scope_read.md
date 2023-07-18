@@ -123,6 +123,42 @@ f();
 f();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "block inlinine" );
+  $( "block inlinine" );
+  $( "block inlinine" );
+  $( b );
+  return undefined;
+},;
+let b = undefined;
+const c = $( true );
+if (c) {
+  const d = $( true );
+  b = !d;
+}
+else {
+  const e = $( false );
+  b = !e;
+}
+if (b) {
+  $( "a" );
+  $( "d" );
+}
+else {
+  $( "b" );
+  $( "c" );
+}
+a();
+a();
+a();
+`````
+
 ## Globals
 
 None

@@ -120,6 +120,77 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpClusterSSA_a$2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = $( a );
+const c = $( "$" );
+const d = b[ c ];
+new d( 1 );
+$( 1 );
+const e = $( a );
+const f = $( "$" );
+const g = e[ f ];
+new g( 1 );
+$( 1 );
+const h = $( a );
+const i = $( "$" );
+const j = h[ i ];
+new j( 1 );
+$( 1 );
+const k = $( a );
+const l = $( "$" );
+const m = k[ l ];
+new m( 1 );
+$( 1 );
+const n = $( a );
+const o = $( "$" );
+const p = n[ o ];
+new p( 1 );
+$( 1 );
+const q = $( a );
+const r = $( "$" );
+const s = q[ r ];
+new s( 1 );
+$( 1 );
+const t = $( a );
+const u = $( "$" );
+const v = t[ u ];
+new v( 1 );
+$( 1 );
+const w = $( a );
+const x = $( "$" );
+const y = w[ x ];
+new y( 1 );
+$( 1 );
+const z = $( a );
+const 01 = $( "$" );
+const 11 = z[ 01 ];
+new 11( 1 );
+$( 1 );
+const 21 = $( a );
+const 31 = $( "$" );
+const 41 = 21[ 31 ];
+new 41( 1 );
+$( 1 );
+const 51 = $( a );
+const 61 = $( "$" );
+const 71 = 51[ 61 ];
+let 81 = new 71( 1 );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const 91 = $( a );
+  const a1 = $( "$" );
+  const b1 = 91[ a1 ];
+  81 = new b1( 1 );
+  $( 1 );
+}
+$( 81 );
+`````
+
 ## Globals
 
 None

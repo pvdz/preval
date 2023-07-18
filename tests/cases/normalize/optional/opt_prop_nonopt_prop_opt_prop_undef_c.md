@@ -58,6 +58,22 @@ if (tmpIfTest$1) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $ObjectPrototype.c;
+const b = a == null;
+if (b) {
+  $( undefined );
+}
+else {
+  const c = a.d;
+  $( c );
+}
+`````
+
 ## Globals
 
 None

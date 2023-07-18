@@ -73,6 +73,23 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+c;
+if ($) {
+  $( "keep" );
+  const a = $( $ );
+  $( a );
+}
+else {
+  c;
+  $( c );
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

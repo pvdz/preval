@@ -34,6 +34,15 @@ const tmpObjSpreadArg = { a: 10 };
 ({ ...tmpObjSpreadArg });
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { a: 10 };
+{ ... a };
+`````
+
 ## Globals
 
 None

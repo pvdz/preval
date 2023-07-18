@@ -68,6 +68,17 @@ const tmpNestedComplexRhs = { b: 2 };
 $(tmpNestedComplexRhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( undefined );
+const a = { b: 2 };
+$( a );
+`````
+
 ## Globals
 
 None

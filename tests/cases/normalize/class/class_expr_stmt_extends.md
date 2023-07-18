@@ -32,6 +32,14 @@ const tmpClassSuper = $(Number);
 $(Number);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( Number );
+`````
+
 ## Globals
 
 None

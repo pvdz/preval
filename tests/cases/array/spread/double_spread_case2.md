@@ -50,6 +50,16 @@ const zz = [];
 $(aa, zz, a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [];
+const b = [];
+$( a, b, a, b );
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

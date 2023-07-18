@@ -54,6 +54,15 @@ const blob = { thing: `boing` };
 $(blob);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { thing: "boing" };
+$( a );
+`````
+
 ## Globals
 
 None

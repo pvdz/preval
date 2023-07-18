@@ -49,6 +49,15 @@ $ObjectPrototype.number;
 $(`number`, 1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$ObjectPrototype.number;
+$( "number", 1 );
+`````
+
 ## Globals
 
 None

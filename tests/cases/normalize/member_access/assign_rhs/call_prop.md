@@ -39,6 +39,16 @@ const x = tmpAssignRhsProp.length;
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "foo" );
+const b = a.length;
+$( b );
+`````
+
 ## Globals
 
 None

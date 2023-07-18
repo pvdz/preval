@@ -77,6 +77,34 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpPostUpdArgVal, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = $( a );
+const c = $( b );
+const d = c.x;
+const e = d + 1;
+c.x = e;
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
+}
+$( d, a );
+`````
+
 ## Globals
 
 None

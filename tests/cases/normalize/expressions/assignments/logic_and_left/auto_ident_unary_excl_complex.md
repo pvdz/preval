@@ -54,6 +54,23 @@ if (tmpUnaryArg) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100 );
+const b = !a;
+if (a) {
+  $( b );
+}
+else {
+  const c = $( 100 );
+  $( c );
+}
+$( b );
+`````
+
 ## Globals
 
 None

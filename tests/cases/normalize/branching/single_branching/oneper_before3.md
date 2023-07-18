@@ -153,6 +153,14 @@ X(`a`, `b`, `c`, `d`, `e`);
 $(`a`, `b`, `no`, `c`, `e`, 1, false, `string`, true, 0, true);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "a", "b", "no", "c", "e", 1, false, "string", true, 0, true );
+`````
+
 ## Globals
 
 None

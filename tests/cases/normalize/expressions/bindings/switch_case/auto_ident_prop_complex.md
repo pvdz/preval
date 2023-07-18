@@ -61,6 +61,17 @@ const tmpClusterSSA_a = tmpAssignRhsProp.c;
 $(tmpClusterSSA_a, tmpClusterSSA_b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { c: 1 };
+const b = $( a );
+const c = b.c;
+$( c, a );
+`````
+
 ## Globals
 
 None

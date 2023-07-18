@@ -41,6 +41,16 @@ const tmpCalleeParam = x[`1,2,3`];
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { "1,2,3"[ "pass" ]: "pass" };
+const b = a[ "1,2,3" ];
+$( b );
+`````
+
 ## Globals
 
 None

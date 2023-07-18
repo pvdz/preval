@@ -42,6 +42,16 @@ const x = Boolean(tmpCalleeParam);
 $(`out:`, x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+const b = Boolean( a );
+$( "out:", b );
+`````
+
 ## Globals
 
 None

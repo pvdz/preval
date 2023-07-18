@@ -47,6 +47,17 @@ obj[`1,2,3`];
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {};
+const b = [ 1, 2, 3,, ];
+a[ "1,2,3" ];
+$( b );
+`````
+
 ## Globals
 
 None

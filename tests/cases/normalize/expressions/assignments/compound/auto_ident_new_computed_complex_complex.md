@@ -58,6 +58,25 @@ $(tmpClusterSSA_a);
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+const d = $( "$" );
+const e = c[ d ];
+const f = new e( 1 );
+const g = b * f;
+$( g );
+$( g );
+`````
+
 ## Globals
 
 None

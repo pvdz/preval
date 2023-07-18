@@ -53,6 +53,14 @@ let fail = `too late`;
 throw `Preval: Cannot access \`fail\` before initialization`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw "Preval: Cannot access `fail` before initialization";
+`````
+
 ## Globals
 
 None

@@ -133,6 +133,45 @@ $(`after (not invoked)`);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( true );
+while (true) {
+  if (a) {
+    $( "loop" );
+    let b = undefined;
+    const c = {
+a: 1,
+b: 2
+    ;
+    for (b in c {
+      $( "loop", b );
+      const d = $( 1, "if" );
+      if (d) {
+        $( "pass" );
+        const e = $( 7, "throw" );
+        throw e;
+      }
+      else {
+        $( "do not visit" );
+        const f = $( 8, "throw" );
+        throw f;
+      }
+    }
+    $( "after (not invoked but should not be eliminated)" );
+    a = $( true );
+  }
+  else {
+    break;
+  }
+}
+$( "after (not invoked)" );
+$( undefined );
+`````
+
 ## Globals
 
 None

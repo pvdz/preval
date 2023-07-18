@@ -81,6 +81,42 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = deletea.y;
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( b );
+  $( 1 );
+}
+$( b, a );
+`````
+
 ## Globals
 
 None

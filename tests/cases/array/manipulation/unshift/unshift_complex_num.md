@@ -64,6 +64,23 @@ ARR.push(5);
 $(NOOP);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 10, "a", "b", "c",, ];
+const b = function() {
+  debugger;
+  $( a );
+  return undefined;
+},;
+a.unshift( $ );
+$( 5 );
+a.push( 5 );
+$( b );
+`````
+
 ## Globals
 
 None

@@ -32,6 +32,14 @@ $.length;
 $.length;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$.length;
+`````
+
 ## Globals
 
 None

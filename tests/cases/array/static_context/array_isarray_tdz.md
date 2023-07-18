@@ -36,6 +36,15 @@ crash_hard;
 $(true);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+crash_hard;
+$( true );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

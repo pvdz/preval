@@ -98,6 +98,25 @@ const tmpCalleeParam$1 = `AA${tmpBinBothRhs$9}B${tmpBinBothRhs$7}CBA${tmpBinBoth
 $(tmpCalleeParam$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "x" );
+const b = $( "y" );
+const c = $coerce( a, "string" );
+const d = $coerce( b, "string" );
+const e = `A${[object Object]}B`;
+$( e );
+const f = $coerce( a, "string" );
+const g = $coerce( b, "string" );
+const h = $coerce( a, "string" );
+const i = $coerce( b, "string" );
+const j = `AA${[object Object]}B`;
+$( j );
+`````
+
 ## Globals
 
 None

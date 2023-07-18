@@ -70,6 +70,21 @@ $(a);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { e: $ };
+const b = {
+a: 999,
+b: 1000
+;
+$dotCall( $, a, 1 );
+$( b );
+$( undefined );
+`````
+
 ## Globals
 
 None

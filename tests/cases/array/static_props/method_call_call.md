@@ -48,6 +48,17 @@ tmpCallObj.call(arr, 1, 2, 10, 20);
 $(3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 1, 2, 3,, ];
+const b = a.splice;
+b.call( a, 1, 2, 10, 20 );
+$( 3 );
+`````
+
 ## Globals
 
 None

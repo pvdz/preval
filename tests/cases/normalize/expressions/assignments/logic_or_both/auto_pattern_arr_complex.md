@@ -73,6 +73,34 @@ if (tmpNestedAssignArrPatternRhs) {
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = [ ... a,, ];
+b[ 0 ];
+const c = [ 1, 2,, ];
+const d = $( c );
+const e = [ ... d,, ];
+let f = e[ 0 ];
+if (d) {
+  $( d );
+}
+else {
+  const g = [ 1, 2,, ];
+  const h = $( g );
+  const i = [ ... h,, ];
+  f = i[ 0 ];
+  $( h );
+}
+$( f );
+`````
+
 ## Globals
 
 None

@@ -70,6 +70,23 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+const c = $( a );
+const d = $( "x" );
+const e = $( b );
+const f = $( "y" );
+e[f] = 3;
+c[d] = 3;
+[ ... 3,, ];
+throw "[Preval]: Array spread must crash before this line";
+`````
+
 ## Globals
 
 None

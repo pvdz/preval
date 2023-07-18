@@ -75,6 +75,15 @@ const tmpClusterSSA_b = { x: 3 };
 $(3, tmpClusterSSA_b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 3 };
+$( 3, a, 3 );
+`````
+
 ## Globals
 
 None

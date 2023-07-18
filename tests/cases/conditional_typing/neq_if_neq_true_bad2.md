@@ -63,6 +63,22 @@ if (x) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 67636 );
+const b = a === 67636;
+if (b) {
+  f( "Preval: Cannot write to const binding `a`" );
+  $( false );
+}
+else {
+  throw "Preval: Cannot write to const binding `a`";
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

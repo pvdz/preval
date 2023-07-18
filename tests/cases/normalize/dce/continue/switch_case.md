@@ -84,6 +84,35 @@ if ($tmpLoopUnrollCheck) {
 $(`after, do not evaluate (infinite loop)`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+const b = $( true );
+if (b) {
+  $( 1, "disc" );
+  $( 1, "case" );
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    const c = $( true );
+    if (c) {
+      $( 1, "disc" );
+      $( 1, "case" );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( "after, do not evaluate (infinite loop)" );
+`````
+
 ## Globals
 
 None

@@ -160,6 +160,124 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = a % 2;
+if (b) {
+  const c = a + 1;
+  $( c, "write" );
+}
+else {
+  $( a, "read" );
+}
+const d = $( 10 );
+const e = d % 2;
+if (e) {
+  const f = d + 1;
+  $( f, "write" );
+}
+else {
+  $( d, "read" );
+}
+const g = $( 10 );
+const h = g % 2;
+if (h) {
+  const i = g + 1;
+  $( i, "write" );
+}
+else {
+  $( g, "read" );
+}
+const j = $( 10 );
+const k = j % 2;
+if (k) {
+  const l = j + 1;
+  $( l, "write" );
+}
+else {
+  $( j, "read" );
+}
+const m = $( 10 );
+const n = m % 2;
+if (n) {
+  const o = m + 1;
+  $( o, "write" );
+}
+else {
+  $( m, "read" );
+}
+const p = $( 10 );
+const q = p % 2;
+if (q) {
+  const r = p + 1;
+  $( r, "write" );
+}
+else {
+  $( p, "read" );
+}
+const s = $( 10 );
+const t = s % 2;
+if (t) {
+  const u = s + 1;
+  $( u, "write" );
+}
+else {
+  $( s, "read" );
+}
+const v = $( 10 );
+const w = v % 2;
+if (w) {
+  const x = v + 1;
+  $( x, "write" );
+}
+else {
+  $( v, "read" );
+}
+const y = $( 10 );
+const z = y % 2;
+if (z) {
+  const 01 = y + 1;
+  $( 01, "write" );
+}
+else {
+  $( y, "read" );
+}
+const 11 = $( 10 );
+const 21 = 11 % 2;
+if (21) {
+  const 31 = 11 + 1;
+  $( 31, "write" );
+}
+else {
+  $( 11, "read" );
+}
+const 41 = $( 10 );
+const 51 = 41 % 2;
+if (51) {
+  const 61 = 41 + 1;
+  $( 61, "write" );
+}
+else {
+  $( 41, "read" );
+}
+let 71 = $( 10 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const 81 = 71 % 2;
+  if (81) {
+    71 = 71 + 1;
+    $( 71, "write" );
+  }
+  else {
+    $( 71, "read" );
+  }
+  71 = $( 10 );
+}
+`````
+
 ## Globals
 
 None

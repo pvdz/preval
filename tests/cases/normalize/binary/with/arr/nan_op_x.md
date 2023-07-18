@@ -224,6 +224,61 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy();
+const b = [];
+const c = b ** a;
+const d = [];
+const e = d * a;
+const f = [];
+const g = f / a;
+const h = [];
+const i = h % a;
+const j = $coerce( a, "plustr" );
+const k = [];
+const l = k - a;
+const m = [];
+const n = m << a;
+const o = [];
+const p = o >> a;
+const q = [];
+const r = q >>> a;
+const s = [];
+const t = s < a;
+const u = [];
+const v = u > a;
+const w = [];
+const x = w <= a;
+const y = [];
+const z = y >= a;
+const 01 = [];
+const 11 = 01 === a;
+const 21 = [];
+const 31 = 21 !== a;
+const 41 = [];
+const 51 = 41 === a;
+const 61 = [];
+const 71 = 61 !== a;
+const 81 = [];
+const 91 = 81 & a;
+const a1 = [];
+const b1 = a1 ^ a;
+const c1 = [];
+const d1 = c1 | a;
+const e1 = [ c, e, g, i, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1,, ];
+$( e1 );
+const f1 = [];
+const g1 = f1 in a;
+const h1 = [];
+const i1 = h1 instanceof a;
+const j1 = [ g1, i1,, ];
+$( j1 );
+`````
+
 ## Globals
 
 None

@@ -61,6 +61,27 @@ for (x in tmpNestedAssignPropRhs) {
 $(tmpNestedAssignPropRhs, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+c: 10,
+d: 20
+;
+const b = $( a );
+const c = $( a );
+const d = $( "d" );
+const e = c[ d ];
+b.c = e;
+let f = undefined;
+for (f in e {
+
+}
+$( e, a );
+`````
+
 ## Globals
 
 None

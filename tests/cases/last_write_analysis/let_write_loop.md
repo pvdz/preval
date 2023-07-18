@@ -72,6 +72,24 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(simplifyMe);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = new $( 1 );
+let b = a;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+  const c = $( 1 );
+  b = c;
+  if (c) {
+    break;
+  }
+}
+$( b );
+`````
+
 ## Globals
 
 None

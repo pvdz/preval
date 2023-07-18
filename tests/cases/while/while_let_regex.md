@@ -73,6 +73,39 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = /foo/;
+$( a );
+const b = /foo/;
+$( b );
+const c = /foo/;
+$( c );
+const d = /foo/;
+$( d );
+const e = /foo/;
+$( e );
+const f = /foo/;
+$( f );
+const g = /foo/;
+$( g );
+const h = /foo/;
+$( h );
+const i = /foo/;
+$( i );
+const j = /foo/;
+$( j );
+let k = /foo/;
+$( k );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  k = /foo/;
+  $( k );
+}
+`````
+
 ## Globals
 
 None

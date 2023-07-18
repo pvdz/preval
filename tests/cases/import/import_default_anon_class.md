@@ -66,6 +66,24 @@ const X = class {};
 export { X };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+import { default as x from "x";
+$( x );
+const a = x.name;
+$( a );
+`````
+
+`````js filename=x
+import { default as x from "x";
+$( x );
+const a = x.name;
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

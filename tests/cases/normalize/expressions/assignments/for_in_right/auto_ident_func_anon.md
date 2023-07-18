@@ -54,6 +54,22 @@ for (x in a) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  return undefined;
+},;
+let b = undefined;
+for (b in a {
+
+}
+$( a );
+`````
+
 ## Globals
 
 None

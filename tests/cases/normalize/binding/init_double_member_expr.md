@@ -36,6 +36,14 @@ $(x);
 $($Number_toString);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( $Number_toString );
+`````
+
 ## Globals
 
 None

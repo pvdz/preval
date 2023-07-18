@@ -52,6 +52,15 @@ $(`inside`);
 $(1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "inside" );
+$( 1 );
+`````
+
 ## Globals
 
 None

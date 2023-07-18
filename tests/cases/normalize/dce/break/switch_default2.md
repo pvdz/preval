@@ -106,6 +106,40 @@ if (tmpIfTest) {
 $(`after, do not evaluate (infinite loop)`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+if (a) {
+  const b = $( 1, "disc" );
+  const c = $( 0 );
+  const d = b === c;
+  if (d) {
+    $( "keep, do not eval" );
+  }
+  $( "keep" );
+  let e = $( true );
+  while ($LOOP_UNROLL_10) {
+    if (e) {
+      const f = $( 1, "disc" );
+      const g = $( 0 );
+      const h = f === g;
+      if (h) {
+        $( "keep, do not eval" );
+      }
+      $( "keep" );
+      e = $( true );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( "after, do not evaluate (infinite loop)" );
+`````
+
 ## Globals
 
 None

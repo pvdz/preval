@@ -67,6 +67,23 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComp
 $(varInitAssignLhsComputedRhs, b, c, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+const c = $( a );
+const d = $( "x" );
+const e = $( b );
+const f = $( "y" );
+const g = $( 3 );
+e[f] = g;
+c[d] = g;
+$( g, a, b, 3 );
+`````
+
 ## Globals
 
 None

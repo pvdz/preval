@@ -66,6 +66,31 @@ if (tmpIfTest) {
 $(999);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 1,
+b: 2
+;
+$( a );
+const b = $( 0 );
+if (b) {
+  let c = $( 0 );
+  while ($LOOP_UNROLL_10) {
+    if (c) {
+      c = $( 0 );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( 999 );
+`````
+
 ## Globals
 
 None

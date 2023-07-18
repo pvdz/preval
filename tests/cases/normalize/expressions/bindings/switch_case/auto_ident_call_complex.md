@@ -54,6 +54,16 @@ const tmpClusterSSA_a = tmpCallComplexCallee(1);
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( $ );
+const b = a( 1 );
+$( b );
+`````
+
 ## Globals
 
 None

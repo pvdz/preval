@@ -39,6 +39,14 @@ $(x);
 $(`3.48`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "3.48" );
+`````
+
 ## Globals
 
 None

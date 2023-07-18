@@ -45,6 +45,16 @@ $($implicit$foo$1);
 $($implicit$foo);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+$( a );
+$( $implicit$foo );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

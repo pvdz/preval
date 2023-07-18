@@ -110,6 +110,22 @@ $(undefined);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1, "first" );
+$( undefined );
+$( undefined );
+$( 1, "second" );
+$( undefined );
+$( undefined );
+$( 1, "third" );
+$( undefined );
+$( undefined );
+`````
+
 ## Globals
 
 None

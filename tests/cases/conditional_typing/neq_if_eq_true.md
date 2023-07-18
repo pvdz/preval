@@ -51,6 +51,15 @@ $(67636);
 $(false);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 67636 );
+$( false );
+`````
+
 ## Globals
 
 None

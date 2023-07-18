@@ -63,6 +63,22 @@ if (x) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 67636 );
+const b = a === 67636;
+if (b) {
+  $( "Preval: Cannot write to const binding `a`" );
+  $( false );
+}
+else {
+  throw "Preval: Cannot write to const binding `a`";
+}
+`````
+
 ## Globals
 
 None

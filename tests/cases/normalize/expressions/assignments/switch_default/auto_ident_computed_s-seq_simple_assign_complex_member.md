@@ -66,6 +66,24 @@ b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+const a = $( "c" );
+const b = {
+c: 10,
+d: 20
+;
+const c = $( b );
+const d = $( "d" );
+const e = c[ d ];
+b[a] = e;
+$( e, b );
+`````
+
 ## Globals
 
 None

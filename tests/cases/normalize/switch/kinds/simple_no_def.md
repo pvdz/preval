@@ -127,6 +127,36 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = a === 0;
+if (b) {
+  $( "one" );
+}
+else {
+  const c = a === 2;
+  if (c) {
+    $( "two" );
+  }
+  else {
+    const d = a === 3;
+    if (d) {
+      $( "three" );
+    }
+    else {
+      const e = a === 4;
+      if (e) {
+        $( "four" );
+      }
+    }
+  }
+}
+`````
+
 ## Globals
 
 None

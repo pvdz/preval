@@ -264,6 +264,83 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+x;
+const a = /foo/g;
+const b = x ** a;
+x;
+const c = /foo/g;
+const d = x * c;
+x;
+const e = /foo/g;
+const f = x / e;
+x;
+const g = /foo/g;
+const h = x % g;
+x;
+const i = /foo/g;
+const j = x + i;
+x;
+const k = /foo/g;
+const l = x - k;
+x;
+const m = /foo/g;
+const n = x << m;
+x;
+const o = /foo/g;
+const p = x >> o;
+x;
+const q = /foo/g;
+const r = x >>> q;
+x;
+const s = /foo/g;
+const t = x < s;
+x;
+const u = /foo/g;
+const v = x > u;
+x;
+const w = /foo/g;
+const x = x <= w;
+x;
+const y = /foo/g;
+const z = x >= y;
+x;
+const 01 = /foo/g;
+const 11 = x === 01;
+x;
+const 21 = /foo/g;
+const 31 = x !== 21;
+x;
+const 41 = /foo/g;
+const 51 = x === 41;
+x;
+const 61 = /foo/g;
+const 71 = x !== 61;
+x;
+const 81 = /foo/g;
+const 91 = x & 81;
+x;
+const a1 = /foo/g;
+const b1 = x ^ a1;
+x;
+const c1 = /foo/g;
+const d1 = x | c1;
+const e1 = [ b, d, f, h, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1,, ];
+$( e1 );
+x;
+const f1 = /foo/g;
+const g1 = x in f1;
+x;
+const h1 = /foo/g;
+const i1 = x instanceof h1;
+const j1 = [ g1, i1,, ];
+$( j1 );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

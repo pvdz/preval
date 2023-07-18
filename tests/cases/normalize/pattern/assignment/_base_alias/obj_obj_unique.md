@@ -53,6 +53,16 @@ const objPatternNoDefault$1 = objPatternNoDefault.y;
 a = objPatternNoDefault$1.z;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 1.x;
+const b = a.y;
+a = b.z;
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

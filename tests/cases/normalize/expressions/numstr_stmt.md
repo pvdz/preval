@@ -36,6 +36,15 @@ const tmpBinLhs = $spy();
 $coerce(tmpBinLhs, `plustr`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy();
+$coerce( a, "plustr" );
+`````
+
 ## Globals
 
 None

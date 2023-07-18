@@ -102,6 +102,31 @@ $(`fail2`);
 $(`foo`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+let b = 1;
+const c = "foo" === a;
+if (c) {
+  b = 0;
+}
+else {
+  const d = 2 === a;
+  if (d) {
+    b = 2;
+  }
+}
+const e = b <= 1;
+if (e) {
+  $( "fail1" );
+}
+$( "fail2" );
+$( "foo" );
+`````
+
 ## Globals
 
 None

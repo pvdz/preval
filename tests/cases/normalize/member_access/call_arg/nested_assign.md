@@ -48,6 +48,16 @@ $(15);
 $(15);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$();
+$( 15 );
+$( 15 );
+`````
+
 ## Globals
 
 None

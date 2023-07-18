@@ -60,6 +60,21 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy( 3 );
+const b = a & 8;
+if (b) {
+  const c = a & 2;
+  if (c) {
+    $( "it is ten" );
+  }
+}
+`````
+
 ## Globals
 
 None

@@ -49,6 +49,23 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 1.x;
+const b = [ ... a,, ];
+const c = b[ 0 ];
+const d = c === undefined;
+if (d) {
+  y = a;
+}
+else {
+  y = c;
+}
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

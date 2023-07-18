@@ -39,6 +39,17 @@ const tmpCalleeParam = [1, tmpArrElement$1, , 2, , tmpArrElement$5, ,];
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+const b = $();
+const c = [ 1, a, , 2, , b, ,, ];
+$( c );
+`````
+
 ## Globals
 
 None

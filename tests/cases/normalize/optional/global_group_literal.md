@@ -43,6 +43,15 @@ const tmpChainElementObject = (3).foo;
 $(tmpChainElementObject);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 3.foo;
+$( a );
+`````
+
 ## Globals
 
 None

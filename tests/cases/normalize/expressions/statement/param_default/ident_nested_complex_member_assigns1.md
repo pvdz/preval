@@ -64,6 +64,19 @@ tmpAssignMemLhsObj.x = 3;
 $(100);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = $( a );
+const c = $( a );
+c.x = 3;
+b.x = 3;
+$( 100 );
+`````
+
 ## Globals
 
 None

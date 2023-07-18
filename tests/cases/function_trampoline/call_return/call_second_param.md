@@ -60,6 +60,15 @@ const q = $(3);
 $(q);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 3 );
+$( a );
+`````
+
 ## Globals
 
 None

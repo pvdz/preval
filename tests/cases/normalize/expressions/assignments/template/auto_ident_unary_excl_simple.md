@@ -51,6 +51,15 @@ $(`before  false  after`);
 $(false, 1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "before  false  after" );
+$( false, 1 );
+`````
+
 ## Globals
 
 None

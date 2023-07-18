@@ -120,6 +120,23 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = a;
+if (a) {
+  a = b;
+}
+if (a) {
+  c;
+}
+else {
+  d;
+}
+`````
+
 ## Globals
 
 BAD@! Found 4 implicit global bindings:

@@ -148,6 +148,29 @@ if (tmpIfTest$9045) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 50 );
+$( true );
+if (tmpIfTest$9045) {
+
+}
+else {
+  const a = tmpBinLhs$1687 | vh;
+  firstPart;
+  const b = a < 56320;
+  if (b) {
+
+  }
+  else {
+    $( a );
+  }
+}
+`````
+
 ## Globals
 
 BAD@! Found 4 implicit global bindings:

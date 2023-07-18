@@ -206,6 +206,73 @@ f();
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( 1 );
+  let c = 4;
+  const d = 0 === b;
+  if (d) {
+    c = 0;
+  }
+  else {
+    const e = 1 === b;
+    if (e) {
+      c = 1;
+    }
+    else {
+      const f = 2 === b;
+      if (f) {
+        c = 2;
+      }
+      else {
+        const g = 3 === b;
+        if (g) {
+          c = 3;
+        }
+      }
+    }
+  }
+  const h = c <= 0;
+  if (h) {
+    $( "one" );
+    const i = $( 1 );
+    if (i) {
+      return undefined;
+    }
+  }
+  const j = c <= 1;
+  if (j) {
+    $( "two" );
+    return undefined;
+  }
+  else {
+    const k = c <= 2;
+    if (k) {
+      $( "three" );
+      return undefined;
+    }
+    else {
+      const l = c <= 3;
+      if (l) {
+        $( "four" );
+        return undefined;
+      }
+      else {
+        $( "def" );
+        return undefined;
+      }
+    }
+  }
+},;
+a();
+$( undefined );
+`````
+
 ## Globals
 
 None

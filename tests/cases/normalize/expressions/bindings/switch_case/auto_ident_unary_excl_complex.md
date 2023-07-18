@@ -54,6 +54,16 @@ const tmpClusterSSA_a = !tmpUnaryArg;
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100 );
+const b = !a;
+$( b );
+`````
+
 ## Globals
 
 None

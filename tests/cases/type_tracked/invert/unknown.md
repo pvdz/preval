@@ -87,6 +87,28 @@ f();
 f();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( "truthy" );
+  if (b) {
+    $( false, "fail" );
+  }
+  else {
+    $( true, "pass" );
+  }
+  $( b, "after" );
+  return undefined;
+},;
+a();
+a();
+a();
+`````
+
 ## Globals
 
 None

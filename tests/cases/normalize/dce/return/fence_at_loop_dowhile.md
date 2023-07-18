@@ -107,6 +107,30 @@ const tmpReturnArg$9 = tmpLabeledBlockFunc(tmpIfTest);
 $(tmpReturnArg$9);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+const b = function($$0 ) {
+  const c = d;
+  debugger;
+  if (c) {
+    $( "loop" );
+    $( "loop" );
+    const e = $( 100, "return" );
+    return e;
+  }
+  else {
+    $( "after (not invoked)" );
+    return undefined;
+  }
+},;
+const f = b( a );
+$( f );
+`````
+
 ## Globals
 
 None

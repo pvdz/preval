@@ -39,6 +39,14 @@ let a = b;
 
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+
+`````
+
 ## Globals
 
 None

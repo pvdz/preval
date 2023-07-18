@@ -44,6 +44,21 @@ const tmpThrowArg = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( 3 );
+const c = {
+x: a,
+y: 2,
+z: b
+;
+throw c;
+`````
+
 ## Globals
 
 None

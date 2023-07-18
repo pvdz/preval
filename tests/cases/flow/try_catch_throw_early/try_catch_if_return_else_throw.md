@@ -99,6 +99,33 @@ const f = function () {
 f();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  let b = "fail";
+  try {
+    if ($) {
+      return undefined;
+    }
+    else {
+      b = "pass";
+      throw "too";
+    }
+  }
+catch (e) {
+    throw_early;
+    $( "caught" );
+  }
+  $( b );
+  return undefined;
+},;
+a();
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

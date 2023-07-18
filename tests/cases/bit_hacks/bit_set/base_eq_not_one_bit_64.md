@@ -55,6 +55,16 @@ v ** 0;
 $(`pass`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 64 );
+a ** 0;
+$( "pass" );
+`````
+
 ## Globals
 
 None

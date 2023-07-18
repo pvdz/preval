@@ -58,6 +58,14 @@ let a = b.a;
 $.a;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$.a;
+`````
+
 ## Globals
 
 None

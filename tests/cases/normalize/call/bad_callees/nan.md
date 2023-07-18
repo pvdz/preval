@@ -40,6 +40,16 @@ NaN();
 throw `[Preval]: Call expression with illegal callee must crash before this line `;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "before" );
+NaN.undefined();
+throw "[Preval]: Call expression with illegal callee must crash before this line ";
+`````
+
 ## Globals
 
 None

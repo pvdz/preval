@@ -109,6 +109,45 @@ if (tmpCalleeParam) {
 $(a, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = {
+a: 999,
+b: 1000
+;
+const b = $( 100 );
+const c = { x: 1 };
+if (b) {
+  const d = $( c );
+  const e = $( "x" );
+  const f = $( c );
+  const g = $( "x" );
+  const h = $( c );
+  const i = $( "x" );
+  const j = $( c );
+  const k = $( "x" );
+  const l = $( c );
+  const m = $( "x" );
+  const n = $( c );
+  const o = $( "x" );
+  n[o] = 3;
+  l[m] = 3;
+  j[k] = 3;
+  h[i] = 3;
+  f[g] = 3;
+  d[e] = 3;
+  a = 3;
+  $( 3 );
+}
+else {
+  $( b );
+}
+$( a, c, 3 );
+`````
+
 ## Globals
 
 None

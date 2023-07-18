@@ -77,6 +77,34 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = {
+a: 999,
+b: 1000
+;
+const b = function() {
+  debugger;
+  a = undefined;
+  const c = $( $ );
+  const d = c == null;
+  if (d) {
+    return a;
+  }
+  else {
+    const e = $dotCall( c, $, 1 );
+    a = e;
+    return e;
+  }
+},;
+const f = b();
+$( f );
+$( a );
+`````
+
 ## Globals
 
 None

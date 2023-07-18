@@ -76,6 +76,21 @@ if (tmpTernaryTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = a.x;
+const b = a === 1;
+if (b) {
+  f( 2 );
+}
+else {
+  f( 3 );
+}
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

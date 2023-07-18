@@ -51,6 +51,18 @@ $(tmpCalleeParam);
 $(`number`, 1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100 );
+const b = $coerce( a, "plustr" );
+const c = `number${[object Object]}`;
+$( c );
+$( "number", 1 );
+`````
+
 ## Globals
 
 None

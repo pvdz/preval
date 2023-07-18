@@ -38,6 +38,15 @@ implicitGlobal;
 $(`NaN`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+implicitGlobal;
+$( "NaN" );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

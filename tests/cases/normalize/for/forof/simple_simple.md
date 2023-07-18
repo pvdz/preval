@@ -44,6 +44,21 @@ for (a of b) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = {
+x: 1,
+y: 2
+;
+for (a of b {
+  $( a );
+}
+`````
+
 ## Globals
 
 None

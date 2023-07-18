@@ -64,6 +64,17 @@ const c = b & -17;
 $(c);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 116 );
+const b = a | 32;
+const c = b & -17;
+$( c );
+`````
+
 ## Globals
 
 None

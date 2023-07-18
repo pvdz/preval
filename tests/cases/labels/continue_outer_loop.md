@@ -56,6 +56,20 @@ foo: while (true) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+foo: while (true) {
+  $( 1 );
+  while (true) {
+    $( 2 );
+    break foo;
+  }
+}
+`````
+
 ## Globals
 
 None

@@ -48,6 +48,15 @@ undefined.a;
 throw `[Preval]: Can not reach here`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+undefined.a;
+throw "[Preval]: Can not reach here";
+`````
+
 ## Globals
 
 None

@@ -68,6 +68,19 @@ $(`three1`);
 $(`three1`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 2 );
+$( 2 );
+$( 3 );
+$( 3 );
+$( "three1" );
+$( "three1" );
+`````
+
 ## Globals
 
 None

@@ -63,6 +63,30 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`unreachable`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( true );
+$( 2 );
+$( 3 );
+$( 4 );
+$( 5 );
+$( 6 );
+$( 7 );
+$( 8 );
+$( 9 );
+$( 10 );
+$( 11 );
+let a = 12;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( a );
+  a = a + 1;
+}
+$( "unreachable" );
+`````
+
 ## Globals
 
 None

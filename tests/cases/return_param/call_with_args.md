@@ -149,6 +149,29 @@ $(`pass3`, 1, `two`, null, NaN, undefined);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "no" );
+  $( "inlining" );
+  $( "please" );
+  return undefined;
+},;
+a();
+$( "pass1", 1, "two", null, NaN, undefined );
+$( undefined );
+a();
+$( "pass2", 1, "two", null, NaN, undefined );
+$( undefined );
+a();
+$( "pass3", 1, "two", null, NaN, undefined );
+$( undefined );
+`````
+
 ## Globals
 
 None

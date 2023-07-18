@@ -46,6 +46,19 @@ $(x);
 $(c);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+const a = $( 2 );
+const b = $( "toString" );
+const c = a[ b ];
+$( c );
+$( c );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

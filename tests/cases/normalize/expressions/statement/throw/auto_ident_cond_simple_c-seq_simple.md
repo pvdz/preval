@@ -40,6 +40,15 @@ const tmpThrowArg = $(60);
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 60 );
+throw a;
+`````
+
 ## Globals
 
 None

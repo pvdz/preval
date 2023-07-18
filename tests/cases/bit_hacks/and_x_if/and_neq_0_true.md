@@ -46,6 +46,18 @@ const z = Boolean(y);
 $(z);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = +a;
+const c = b & 32768;
+const d = Boolean( c );
+$( d );
+`````
+
 ## Globals
 
 None

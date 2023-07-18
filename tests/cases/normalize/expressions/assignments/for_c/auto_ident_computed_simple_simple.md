@@ -74,6 +74,36 @@ if ($tmpLoopUnrollCheck) {
 $(a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = {
+a: 999,
+b: 1000
+;
+let b = $( 1 );
+const c = b;
+if (b) {
+  a = 1;
+  b = $( 1 );
+}
+const d = { c: 1 };
+if (c) {
+  while ($LOOP_UNROLL_10) {
+    if (b) {
+      a = d.c;
+      b = $( 1 );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( a, d );
+`````
+
 ## Globals
 
 None

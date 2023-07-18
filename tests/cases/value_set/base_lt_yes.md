@@ -266,6 +266,82 @@ if (t) {
 $(`pass`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+const b = 0 === a;
+if (b) {
+
+}
+else {
+  const c = 1 === a;
+  if (c) {
+
+  }
+  else {
+    const d = 2 === a;
+    if (d) {
+
+    }
+    else {
+      const e = 3 === a;
+      if (e) {
+
+      }
+      else {
+        const f = 4 === a;
+        if (f) {
+
+        }
+        else {
+          const g = 5 === a;
+          if (g) {
+
+          }
+          else {
+            const h = 6 === a;
+            if (h) {
+
+            }
+            else {
+              const i = 7 === a;
+              if (i) {
+
+              }
+              else {
+                const j = 8 === a;
+                if (j) {
+
+                }
+                else {
+                  const k = 10 === a;
+                  if (k) {
+
+                  }
+                  else {
+                    const l = 9 === a;
+                    if (l) {
+
+                    }
+                    else {
+                      $( "must be 11" );
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+$( "pass" );
+`````
+
 ## Globals
 
 None

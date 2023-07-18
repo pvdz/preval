@@ -48,6 +48,15 @@ const tmpIfTest$3265 = fromStmtOrExpr$1 !== 1;
 tmpCalleeParam$1359 = tmpIfTest$3265;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = fromStmtOrExpr$1 !== 1;
+tmpCalleeParam$1359 = a;
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

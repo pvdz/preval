@@ -220,6 +220,61 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {};
+const b = a ** x;
+const c = {};
+const d = c * x;
+const e = {};
+const f = e / x;
+const g = {};
+const h = g % x;
+const i = {};
+const j = i + x;
+const k = {};
+const l = k - x;
+const m = {};
+const n = m << x;
+const o = {};
+const p = o >> x;
+const q = {};
+const r = q >>> x;
+const s = {};
+const t = s < x;
+const u = {};
+const v = u > x;
+const w = {};
+const x = w <= x;
+const y = {};
+const z = y >= x;
+const 01 = {};
+const 11 = 01 === x;
+const 21 = {};
+const 31 = 21 !== x;
+const 41 = {};
+const 51 = 41 === x;
+const 61 = {};
+const 71 = 61 !== x;
+const 81 = {};
+const 91 = 81 & x;
+const a1 = {};
+const b1 = a1 ^ x;
+const c1 = {};
+const d1 = c1 | x;
+const e1 = [ b, d, f, h, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1,, ];
+$( e1 );
+const f1 = {};
+const g1 = f1 in x;
+const h1 = {};
+const i1 = h1 instanceof x;
+const j1 = [ g1, i1,, ];
+$( j1 );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

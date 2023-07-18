@@ -182,6 +182,40 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy( 50 );
+const b = 0 ** a;
+const c = 0 * a;
+const d = 0 / a;
+const e = 0 % a;
+const f = null + a;
+const g = 0 - a;
+const h = 0 << a;
+const i = 0 >> a;
+const j = 0 >>> a;
+const k = null < a;
+const l = null > a;
+const m = null <= a;
+const n = null >= a;
+const o = null == a;
+const p = null != a;
+const q = null === a;
+const r = null !== a;
+a ** 0;
+const s = 0 ^ a;
+const t = 0 | a;
+const u = [ b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, 0, s, t,, ];
+$( u );
+const v = null in a;
+const w = null instanceof a;
+const x = [ v, w,, ];
+$( x );
+`````
+
 ## Globals
 
 None

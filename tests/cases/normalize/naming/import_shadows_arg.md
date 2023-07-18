@@ -57,6 +57,22 @@ export { x };
 export { g };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  return b;
+},;
+const d = f();
+const e = $( d );
+export { e as x from "undefined"
+export { a as g from "undefined"
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

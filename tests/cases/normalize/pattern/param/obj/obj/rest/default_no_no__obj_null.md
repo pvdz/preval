@@ -62,6 +62,16 @@ objPatternRest(null, tmpCalleeParam$1, undefined);
 $(`bad`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [];
+objPatternRest( null, a, undefined );
+$( "bad" );
+`````
+
 ## Globals
 
 None

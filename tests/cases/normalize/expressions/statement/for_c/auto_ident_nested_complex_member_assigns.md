@@ -138,6 +138,67 @@ if (tmpIfTest) {
 $(a, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( 1 );
+if (c) {
+  const d = $( a );
+  const e = $( "x" );
+  const f = $( a );
+  const g = $( "x" );
+  const h = $( a );
+  const i = $( "x" );
+  const j = $( a );
+  const k = $( "x" );
+  const l = $( a );
+  const m = $( "x" );
+  const n = $( a );
+  const o = $( "x" );
+  n[o] = 3;
+  l[m] = 3;
+  j[k] = 3;
+  h[i] = 3;
+  f[g] = 3;
+  d[e] = 3;
+  let p = $( 1 );
+  while ($LOOP_UNROLL_10) {
+    if (p) {
+      const q = $( a );
+      const r = $( "x" );
+      const s = $( a );
+      const t = $( "x" );
+      const u = $( a );
+      const v = $( "x" );
+      const w = $( a );
+      const x = $( "x" );
+      const y = $( a );
+      const z = $( "x" );
+      const 01 = $( a );
+      const 11 = $( "x" );
+      01[11] = 3;
+      y[z] = 3;
+      w[x] = 3;
+      u[v] = 3;
+      s[t] = 3;
+      q[r] = 3;
+      p = $( 1 );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( b, a, 3 );
+`````
+
 ## Globals
 
 None

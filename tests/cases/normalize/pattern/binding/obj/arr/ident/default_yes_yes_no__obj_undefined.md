@@ -58,6 +58,18 @@ arrPatternSplat[0];
 $(`bad`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ "pass2",, ];
+const b = $( a );
+const c = [ ... b,, ];
+c[ 0 ];
+$( "bad" );
+`````
+
 ## Globals
 
 None

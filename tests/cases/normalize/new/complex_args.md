@@ -43,6 +43,18 @@ const tmpCalleeParam = new Array(10, tmpCalleeParam$3, tmpCalleeParam$5);
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+const b = Array.prototype;
+const c = b.length;
+const d = new Array( 10, a, c );
+$( d );
+`````
+
 ## Globals
 
 None

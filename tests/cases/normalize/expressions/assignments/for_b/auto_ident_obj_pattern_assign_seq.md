@@ -134,6 +134,90 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpClusterSSA_a$2, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 2 );
+const a = $( 3 );
+const b = $( 4 );
+$( 1 );
+$( a );
+$( b );
+const c = $( 3 );
+const d = $( 4 );
+$( 1 );
+$( c );
+$( d );
+const e = $( 3 );
+const f = $( 4 );
+$( 1 );
+$( e );
+$( f );
+const g = $( 3 );
+const h = $( 4 );
+$( 1 );
+$( g );
+$( h );
+const i = $( 3 );
+const j = $( 4 );
+$( 1 );
+$( i );
+$( j );
+const k = $( 3 );
+const l = $( 4 );
+$( 1 );
+$( k );
+$( l );
+const m = $( 3 );
+const n = $( 4 );
+$( 1 );
+$( m );
+$( n );
+const o = $( 3 );
+const p = $( 4 );
+$( 1 );
+$( o );
+$( p );
+const q = $( 3 );
+const r = $( 4 );
+$( 1 );
+$( q );
+$( r );
+const s = $( 3 );
+const t = $( 4 );
+$( 1 );
+$( s );
+$( t );
+const u = $( 3 );
+const v = $( 4 );
+let w = u;
+let x = v;
+const y = {
+x: u,
+y: v
+;
+let z = y;
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( w );
+  $( x );
+  const 01 = $( 3 );
+  const 11 = $( 4 );
+  w = 01;
+  x = 11;
+  const 21 = {
+x: 01,
+y: 11
+  ;
+  z = 21;
+  $( 1 );
+}
+$( z, w, x );
+`````
+
 ## Globals
 
 None

@@ -84,6 +84,16 @@ const tmpClusterSSA_tmpssa3_x = $(`oops`);
 $(tmpClusterSSA_tmpssa3_x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "something" );
+const a = $( "oops" );
+$( a );
+`````
+
 ## Globals
 
 None

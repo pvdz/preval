@@ -45,6 +45,17 @@ const x = 10;
 export { x };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( undefined );
+$( 10 );
+const a = 10;
+export { a as x from "undefined"
+`````
+
 ## Globals
 
 None

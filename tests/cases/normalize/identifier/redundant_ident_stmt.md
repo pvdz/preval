@@ -91,6 +91,26 @@ drop3;
 f(undefined, drop3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  $( ... b );
+  return undefined;
+},;
+drop1();
+keep1;
+c( keep1 );
+drop2;
+a( 1, drop2 );
+drop3;
+a( undefined, drop3 );
+`````
+
 ## Globals
 
 BAD@! Found 5 implicit global bindings:

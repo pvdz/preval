@@ -136,6 +136,89 @@ if (tmpDoWhileFlag) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = { x: a };
+const c = {
+a: 999,
+b: 1000
+;
+$( 100 );
+let d = false;
+const e = $( b );
+const f = e == null;
+if (f) {
+
+}
+else {
+  const g = $( "x" );
+  const h = e[ g ];
+  const i = h == null;
+  if (i) {
+
+  }
+  else {
+    const j = $( "y" );
+    const k = h[ j ];
+    d = k;
+  }
+}
+if (d) {
+  $( 100 );
+  let l = false;
+  const m = $( b );
+  const n = m == null;
+  if (n) {
+
+  }
+  else {
+    const o = $( "x" );
+    const p = m[ o ];
+    const q = p == null;
+    if (q) {
+
+    }
+    else {
+      const r = $( "y" );
+      const s = p[ r ];
+      l = s;
+    }
+  }
+  while ($LOOP_UNROLL_9) {
+    if (l) {
+      $( 100 );
+      l = false;
+      const t = $( b );
+      const u = t == null;
+      if (u) {
+
+      }
+      else {
+        const v = $( "x" );
+        const w = t[ v ];
+        const x = w == null;
+        if (x) {
+
+        }
+        else {
+          const y = $( "y" );
+          const z = w[ y ];
+          l = z;
+        }
+      }
+    }
+    else {
+      break;
+    }
+  }
+}
+$( c );
+`````
+
 ## Globals
 
 None

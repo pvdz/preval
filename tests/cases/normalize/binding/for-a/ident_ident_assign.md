@@ -53,6 +53,16 @@ const tmpNestedAssignPropRhs = $(4);
 tmpNestedAssignObj.y = tmpNestedAssignPropRhs;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 3 );
+const b = $( 4 );
+a.y = b;
+`````
+
 ## Globals
 
 None

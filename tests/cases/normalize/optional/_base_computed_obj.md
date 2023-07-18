@@ -54,6 +54,16 @@ const tmpChainElementObject = f[10];
 $(tmpChainElementObject);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { 10[ 20 ]: 20 };
+const b = a[ 10 ];
+$( b );
+`````
+
 ## Globals
 
 None

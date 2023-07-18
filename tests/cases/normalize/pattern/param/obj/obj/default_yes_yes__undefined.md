@@ -100,6 +100,38 @@ if (objPatternCrashTest) {
 $(`ok`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: "pass2" };
+const b = { x: a };
+const c = $( b );
+const d = c.x;
+let e = undefined;
+let f = false;
+const g = d === undefined;
+if (g) {
+  const h = { x: "fail" };
+  e = $( h );
+  f = e === undefined;
+}
+else {
+  e = d;
+}
+if (f) {
+
+}
+else {
+  f = e === null;
+}
+if (f) {
+  e.cannotDestructureThis;
+}
+$( "ok" );
+`````
+
 ## Globals
 
 None

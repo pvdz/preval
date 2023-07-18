@@ -48,6 +48,17 @@ const a = b[tmpAssignRhsCompProp];
 $(a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "c" );
+const b = { c: 1 };
+const c = b[ a ];
+$( c, b );
+`````
+
 ## Globals
 
 None

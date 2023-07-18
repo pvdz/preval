@@ -86,6 +86,42 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
 $(blob);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+thing: "woop",
+xyz: 1
+;
+$( a );
+const b = a.xyz;
+const c = b < 10;
+if (c) {
+  const d = a.xyz;
+  const e = d + 1;
+  a.xyz = e;
+  $( a );
+  const f = a.xyz;
+  let g = f < 10;
+  while ($LOOP_UNROLL_9) {
+    if (g) {
+      const h = a.xyz;
+      const i = h + 1;
+      a.xyz = i;
+      $( a );
+      const j = a.xyz;
+      g = j < 10;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( a );
+`````
+
 ## Globals
 
 None

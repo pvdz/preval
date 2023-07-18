@@ -38,6 +38,16 @@ const b = 20;
 export { a, b };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 10;
+const b = 20;
+export { a as a,b as b from "undefined"
+`````
+
 ## Globals
 
 None

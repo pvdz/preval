@@ -36,6 +36,17 @@ const a = class {};
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = class   {
+
+};
+$( a );
+`````
+
 ## Globals
 
 None

@@ -64,6 +64,19 @@ $(`before  function(){}  after`);
 $(f);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  return undefined;
+},;
+$( "before  function(){}  after" );
+$( a );
+`````
+
 ## Globals
 
 None

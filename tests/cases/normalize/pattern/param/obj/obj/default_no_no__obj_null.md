@@ -66,6 +66,15 @@ null.cannotDestructureThis;
 throw `[Preval]: Can not reach here`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+null.cannotDestructureThis;
+throw "[Preval]: Can not reach here";
+`````
+
 ## Globals
 
 None

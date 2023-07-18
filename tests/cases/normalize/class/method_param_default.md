@@ -79,6 +79,30 @@ const tmpCalleeParam = tmpCallObj.y();
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = class   {
+y( $$0 ) {
+  const b = c;
+  debugger;
+  const d = b === undefined;
+  if (d) {
+    const e = $( 10, "default" );
+    return e;
+  }
+  else {
+    return b;
+  }
+},
+};
+const f = new a();
+const g = f.y();
+$( g );
+`````
+
 ## Globals
 
 None

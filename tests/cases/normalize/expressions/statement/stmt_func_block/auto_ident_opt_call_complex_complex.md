@@ -75,6 +75,28 @@ $(a);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( $ );
+const b = a == null;
+if (b) {
+
+}
+else {
+  const c = $( 1 );
+  $dotCall( a, $, c );
+}
+const d = {
+a: 999,
+b: 1000
+;
+$( d );
+$( undefined );
+`````
+
 ## Globals
 
 None

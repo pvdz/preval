@@ -224,6 +224,52 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+toString(  ) {
+    debugger;
+    const b = $( "toString" );
+    return b;
+  },,
+valueOf(  ) {
+    debugger;
+    $( "valueOf" );
+    return 100;
+  },
+;
+a ** 0;
+a ** 0;
+a ** 0;
+a ** 0;
+const c = $coerce( a, "plustr" );
+const d = `${[object Object]}function String() { [native code] }`;
+a ** 0;
+const e = a << 0;
+const f = a >> 0;
+const g = a >>> 0;
+const h = a < "function String() { [native code] }";
+const i = a > "function String() { [native code] }";
+const j = a <= "function String() { [native code] }";
+const k = a >= "function String() { [native code] }";
+const l = a === String;
+const m = a !== String;
+const n = a === String;
+const o = a !== String;
+a ** 0;
+const p = a ^ 0;
+const q = a | 0;
+const r = [ NaN, NaN, NaN, NaN, d, NaN, e, f, g, h, i, j, k, l, m, n, o, 0, p, q,, ];
+$( r );
+const s = a in String;
+const t = a instanceof String;
+const u = [ s, t,, ];
+$( u );
+`````
+
 ## Globals
 
 None

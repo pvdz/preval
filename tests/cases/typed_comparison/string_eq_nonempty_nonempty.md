@@ -42,6 +42,17 @@ const y = x === `full`;
 $(`out:`, y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "full" );
+const b = $coerce( a, "string" );
+const c = b === "full";
+$( "out:", c );
+`````
+
 ## Globals
 
 None

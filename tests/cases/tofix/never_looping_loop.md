@@ -192,6 +192,51 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  let a = "jhayon.vercel.app";
+  let b = "jhayon.vercel.app";
+  let c = 1;
+  const d = $( "x" );
+  while ($LOOP_UNROLL_500) {
+    a = d.length;
+    const e = a[ 0 ];
+    const f = e === ".";
+    if (f) {
+      b = a.slice( 1 );
+    }
+    else {
+      b = a;
+    }
+    const g = tmpClusterSSA__0x26b289.length;
+    const h = b.length;
+    tmpClusterSSA__0x30c47e = g - h;
+    tmpClusterSSA__0x2a669d = tmpClusterSSA__0x26b289.indexOf( b, tmpClusterSSA__0x30c47e );
+    tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d !== -1;
+    if (tmpClusterSSA__0x5dc746) {
+      tmpClusterSSA__0x5dc746 = tmpClusterSSA__0x2a669d === tmpClusterSSA__0x30c47e;
+      if (tmpClusterSSA__0x5dc746) {
+        const i = tmpClusterSSA__0x26b289.length;
+        const j = a.length;
+        const k = i === j;
+        if (k) {
+
+        }
+        else {
+          a.indexOf( "." );
+        }
+      }
+    }
+    c = c + 1;
+    break;
+  }
+}
+`````
+
 ## Globals
 
 BAD@! Found 4 implicit global bindings:

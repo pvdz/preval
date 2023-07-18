@@ -40,6 +40,15 @@ const a = {};
 throw a;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {};
+throw a;
+`````
+
 ## Globals
 
 None

@@ -483,6 +483,154 @@ tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd, obje);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  const d = [ "$:", b, e, f, g, h, i, j, k, l, m, "::", ... b,, ];
+  const n = { depth: null };
+  $( d, n );
+  b[ 0 ];
+  return undefined;
+},;
+const i = {
+get a() {
+    debugger;
+    a( "a.get" );
+    return 110;
+  },,
+set a( $$0 ) {
+    const o = c;
+    debugger;
+    a( "a.set", o );
+    return 1000;
+  },
+;
+const j = {
+get b() {
+    debugger;
+    a( "b.get" );
+    p = 210;
+    return 100;
+  },,
+set b( $$0 ) {
+    const q = c;
+    debugger;
+    a( "b.set", q );
+    p = 2100;
+    return 2000;
+  },
+;
+const k = {
+get c() {
+    debugger;
+    a( "c.get" );
+    p = 310;
+    e = 320;
+    return 100;
+  },,
+set c( $$0 ) {
+    const r = c;
+    debugger;
+    a( "c.set", r );
+    p = 3100;
+    e = 3200;
+    return 3000;
+  },
+;
+const l = {
+get d() {
+    debugger;
+    a( "d.get" );
+    p = 410;
+    e = 420;
+    f = 430;
+    return 100;
+  },,
+set d( $$0 ) {
+    const s = c;
+    debugger;
+    a( "d.set", s );
+    p = 4100;
+    e = 4200;
+    f = 4300;
+    return 4000;
+  },
+;
+const m = {
+get e() {
+    debugger;
+    a( "e.get" );
+    p = 510;
+    e = 520;
+    f = 530;
+    g = 540;
+    return 100;
+  },,
+set e( $$0 ) {
+    const t = c;
+    debugger;
+    a( "e.set", t );
+    p = 5100;
+    e = 5200;
+    f = 5300;
+    g = 5400;
+    return 5000;
+  },
+;
+let p = function() {
+  debugger;
+  a( "a" );
+  return i;
+},;
+let e = function() {
+  debugger;
+  a( "b" );
+  p = 21;
+  return j;
+},;
+let f = function() {
+  debugger;
+  a( "c" );
+  p = 31;
+  e = 32;
+  return k;
+},;
+let g = function() {
+  debugger;
+  a( "d" );
+  p = 41;
+  e = 42;
+  f = 43;
+  return l;
+},;
+const h = function() {
+  debugger;
+  a( "e" );
+  p = 51;
+  e = 52;
+  f = 53;
+  g = 54;
+  return m;
+},;
+const u = p();
+const v = e();
+const w = f();
+const x = g();
+h();
+x.d = m;
+w.c = m;
+v.b = m;
+u.a = m;
+a( m );
+a( p, e, f, g, h );
+a( i, j, k, l, m );
+`````
+
 ## Globals
 
 None

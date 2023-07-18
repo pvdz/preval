@@ -44,6 +44,15 @@ $(true);
 $(`after`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( true );
+$( "after" );
+`````
+
 ## Globals
 
 None

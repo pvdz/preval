@@ -39,6 +39,17 @@ const tmpCalleeParam = tmpBinBothLhs !== tmpBinBothRhs;
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {};
+const b = {};
+const c = a !== b;
+$( c );
+`````
+
 ## Globals
 
 None

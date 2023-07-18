@@ -110,6 +110,48 @@ foo: while (true) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+foo: while (true) {
+  let b = a;
+  if (a) {
+
+  }
+  else {
+    b = $( false );
+  }
+  if (b) {
+    a = false;
+    $( 1, "outer" );
+    let c = true;
+    while (true) {
+      let d = c;
+      if (c) {
+
+      }
+      else {
+        d = $( false );
+      }
+      if (d) {
+        c = false;
+        $( 1, "inner" );
+        break foo;
+      }
+      else {
+        break;
+      }
+    }
+  }
+  else {
+    break;
+  }
+}
+`````
+
 ## Globals
 
 None

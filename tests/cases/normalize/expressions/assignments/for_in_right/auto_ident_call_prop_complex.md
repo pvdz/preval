@@ -53,6 +53,21 @@ for (x in tmpClusterSSA_a) {
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = $( a );
+const c = b.$( 1 );
+let d = undefined;
+for (d in c {
+
+}
+$( c );
+`````
+
 ## Globals
 
 None

@@ -130,6 +130,50 @@ const a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+let b = 1;
+const c = $( 1 );
+let d = false;
+if (c) {
+  d = 2 === a;
+}
+else {
+  const e = $( 100 );
+  const f = $( e );
+  d = f === a;
+}
+if (d) {
+  b = 0;
+}
+else {
+  const g = 2 === a;
+  if (g) {
+    b = 2;
+  }
+}
+const h = b <= 0;
+if (h) {
+
+}
+else {
+  const i = b <= 1;
+  if (i) {
+    $( "fail1" );
+  }
+  $( "fail2" );
+}
+const j = {
+a: 999,
+b: 1000
+;
+$( j );
+`````
+
 ## Globals
 
 None

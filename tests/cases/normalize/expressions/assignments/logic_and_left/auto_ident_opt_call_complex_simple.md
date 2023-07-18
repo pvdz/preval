@@ -69,6 +69,33 @@ if (a) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = $( $ );
+const c = b == null;
+let d = undefined;
+if (c) {
+
+}
+else {
+  const e = $dotCall( b, $, 1 );
+  a = e;
+  d = e;
+}
+if (a) {
+  const f = $( 100 );
+  $( f );
+}
+else {
+  $( d );
+}
+$( a );
+`````
+
 ## Globals
 
 None

@@ -139,6 +139,47 @@ const rest = objPatternRest(objPatternNoDefault, tmpCalleeParam$1, undefined);
 $(a, c, rest);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+get a() {
+    debugger;
+    const b = $( "a" );
+    return b;
+  },,
+get b() {
+    debugger;
+    const c = {
+get c() {
+        debugger;
+        const d = $( "b" );
+        return d;
+      },,
+get d() {
+        debugger;
+        const e = $( "c" );
+        return e;
+      },,
+get e() {
+        debugger;
+        const f = $( "d" );
+        return f;
+      },
+    ;
+    return c;
+  },
+;
+const g = a.a;
+const h = a.b;
+const i = h.c;
+const j = [ "c",, ];
+const k = objPatternRest( h, j, undefined );
+$( g, i, k );
+`````
+
 ## Globals
 
 None

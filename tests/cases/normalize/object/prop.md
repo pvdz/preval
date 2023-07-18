@@ -57,6 +57,18 @@ new Map(tmpClusterSSA_tmpArg_1);
 fdata.name;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { name: 1 };
+const b = [ 1, a,, ];
+const c = [ b,, ];
+new Map( c );
+a.name;
+`````
+
 ## Globals
 
 None

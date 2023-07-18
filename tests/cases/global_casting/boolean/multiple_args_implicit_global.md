@@ -50,6 +50,18 @@ const x = a === b;
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "a" );
+const b = $( "b" );
+fail_hard;
+const c = a === b;
+$( c );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

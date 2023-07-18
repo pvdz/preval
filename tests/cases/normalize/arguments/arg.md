@@ -51,6 +51,20 @@ const f = function () {
 };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  const b = this;
+  const c = d;
+  debugger;
+  a.apply( b, c );
+  return undefined;
+},;
+`````
+
 ## Globals
 
 None

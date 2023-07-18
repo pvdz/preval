@@ -103,6 +103,35 @@ _THROW();
 $(1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "do" );
+  $( "not" );
+  $( "inline" );
+  $( "please" );
+  if ($) {
+    return undefined;
+  }
+  else {
+    const b = new Error( "always throws" );
+    throw b;
+  }
+},;
+a();
+$( 1 );
+a();
+$( 1 );
+a();
+$( 1 );
+a();
+$( 1 );
+`````
+
 ## Globals
 
 None

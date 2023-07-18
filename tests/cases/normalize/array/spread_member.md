@@ -38,6 +38,16 @@ const tmpCalleeParam = [...tmpArrSpread];
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $Boolean_toString.name;
+const b = [ ... a,, ];
+$( b );
+`````
+
 ## Globals
 
 None

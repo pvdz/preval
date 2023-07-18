@@ -66,6 +66,32 @@ tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( 100 );
+let d = undefined;
+const e = $( a );
+const f = e == null;
+if (f) {
+
+}
+else {
+  const g = $( "x" );
+  const h = e[ g ];
+  d = h;
+}
+c + d;
+$( b );
+`````
+
 ## Globals
 
 None

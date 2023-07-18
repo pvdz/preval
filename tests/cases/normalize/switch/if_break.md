@@ -94,6 +94,14 @@ tmpSwitchBreak: {
 $(3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 3 );
+`````
+
 ## Globals
 
 None

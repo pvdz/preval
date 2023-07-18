@@ -42,6 +42,16 @@ $(f);
 $(`function(){}`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $NumberPrototype.toString;
+$( a );
+$( "function(){}" );
+`````
+
 ## Globals
 
 None

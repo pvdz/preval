@@ -38,6 +38,14 @@ $(bar);
 $(-Infinity);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( -Infinity );
+`````
+
 ## Globals
 
 None

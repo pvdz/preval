@@ -43,6 +43,17 @@ const x = objPatternRest(bindingPatternObjRoot, tmpCalleeParam$1, `x`);
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {};
+const b = [];
+const c = objPatternRest( a, b, "x" );
+$( c );
+`````
+
 ## Globals
 
 None

@@ -95,6 +95,16 @@ $(`fail1`);
 $(`fail2`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1, 1 );
+$( "fail1" );
+$( "fail2" );
+`````
+
 ## Globals
 
 None

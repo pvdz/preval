@@ -72,6 +72,27 @@ $(a);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 30 );
+if (a) {
+  $( 2 );
+}
+else {
+  const b = $( 100 );
+  $( b );
+}
+const c = {
+a: 999,
+b: 1000
+;
+$( c );
+$( undefined );
+`````
+
 ## Globals
 
 None

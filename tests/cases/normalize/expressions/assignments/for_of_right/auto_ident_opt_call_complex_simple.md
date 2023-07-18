@@ -61,6 +61,28 @@ for (x of a) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = $( $ );
+const c = b == null;
+if (c) {
+
+}
+else {
+  const d = $dotCall( b, $, 1 );
+  a = d;
+}
+let e = undefined;
+for (e of a {
+
+}
+$( a );
+`````
+
 ## Globals
 
 None

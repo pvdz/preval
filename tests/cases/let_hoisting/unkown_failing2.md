@@ -63,6 +63,18 @@ const f = function () {
 $(f);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  return 0;
+},;
+$( a );
+`````
+
 ## Globals
 
 None

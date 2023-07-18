@@ -46,6 +46,16 @@ const tmpThrowArg = $(tmpCalleeParam);
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( a );
+throw b;
+`````
+
 ## Globals
 
 None

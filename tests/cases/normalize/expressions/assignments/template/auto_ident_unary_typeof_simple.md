@@ -51,6 +51,15 @@ $(`before  number  after`);
 $(`number`, 1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "before  number  after" );
+$( "number", 1 );
+`````
+
 ## Globals
 
 None

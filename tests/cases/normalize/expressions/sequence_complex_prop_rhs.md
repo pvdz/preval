@@ -53,6 +53,18 @@ const tmpClusterSSA_a = `Identifier` === tmpBinBothRhs;
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 10 };
+const b = $( a );
+const c = b.y;
+const d = "Identifier" === c;
+$( d );
+`````
+
 ## Globals
 
 None

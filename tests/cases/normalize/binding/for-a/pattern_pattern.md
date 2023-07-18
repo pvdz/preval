@@ -56,6 +56,14 @@ let b$1 = arrPatternSplat[1];
 
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+
+`````
+
 ## Globals
 
 None

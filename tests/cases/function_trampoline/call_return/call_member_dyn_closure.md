@@ -69,6 +69,16 @@ const q = obj.$(1);
 $(q);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = a.$( 1 );
+$( b );
+`````
+
 ## Globals
 
 None

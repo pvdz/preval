@@ -67,6 +67,29 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 2 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
+}
+$( a, a );
+`````
+
 ## Globals
 
 None

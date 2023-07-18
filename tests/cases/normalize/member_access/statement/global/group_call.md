@@ -36,6 +36,17 @@ const tmpCompObj = $($);
 tmpCompObj.length;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 2 );
+const a = $( $ );
+a.length;
+`````
+
 ## Globals
 
 None

@@ -73,6 +73,33 @@ if (tmpNestedAssignArrPatternRhs) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = $( 2 );
+const c = [ b,, ];
+const d = $( c );
+const e = [ ... d,, ];
+const f = e[ 0 ];
+if (d) {
+  $( a, f );
+}
+else {
+  const g = $( 2 );
+  const h = [ g,, ];
+  const i = $( h );
+  const j = [ ... i,, ];
+  const k = j[ 0 ];
+  $( a, k );
+}
+`````
+
 ## Globals
 
 None

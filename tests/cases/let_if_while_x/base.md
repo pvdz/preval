@@ -111,6 +111,35 @@ if (x) {
 $(`after`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "before" );
+const a = $( 5 );
+const b = 0 < a;
+let c = b;
+if (b) {
+  $( "inner", 0 );
+  let d = 1;
+  while ($LOOP_UNROLL_10) {
+    if (c) {
+      $( "inner", d );
+      d = d + 1;
+      const e = d >= 5;
+      if (e) {
+        c = false;
+      }
+    }
+    else {
+      break;
+    }
+  }
+}
+$( "after" );
+`````
+
 ## Globals
 
 None

@@ -99,6 +99,20 @@ const h = function () {
 $(h);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "inner" );
+  $( "inner" );
+  return undefined;
+},;
+$( a );
+`````
+
 ## Globals
 
 None

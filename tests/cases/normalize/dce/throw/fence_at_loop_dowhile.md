@@ -101,6 +101,24 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+if (a) {
+  $( "loop" );
+  $( "loop" );
+  const b = $( 7, "throw" );
+  throw b;
+}
+else {
+  $( "after (not invoked)" );
+  $( undefined );
+}
+`````
+
 ## Globals
 
 None

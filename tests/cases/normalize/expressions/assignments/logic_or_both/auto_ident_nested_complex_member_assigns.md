@@ -133,6 +133,34 @@ $(3);
 $(3, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = $( a );
+const c = $( "x" );
+const d = $( a );
+const e = $( "x" );
+const f = $( a );
+const g = $( "x" );
+const h = $( a );
+const i = $( "x" );
+const j = $( a );
+const k = $( "x" );
+const l = $( a );
+const m = $( "x" );
+l[m] = 3;
+j[k] = 3;
+h[i] = 3;
+f[g] = 3;
+d[e] = 3;
+b[c] = 3;
+$( 3 );
+$( 3, a, 3 );
+`````
+
 ## Globals
 
 None

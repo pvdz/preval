@@ -70,6 +70,22 @@ const tmpReturnArg = $(3);
 $(tmpReturnArg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+if (a) {
+  $( 1 );
+}
+else {
+  $( 2 );
+}
+const b = $( 3 );
+$( b );
+`````
+
 ## Globals
 
 None

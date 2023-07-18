@@ -50,6 +50,21 @@ const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 2 );
+const b = $( 2 );
+a + b;
+const c = {
+a: 999,
+b: 1000
+;
+$( c, b );
+`````
+
 ## Globals
 
 None

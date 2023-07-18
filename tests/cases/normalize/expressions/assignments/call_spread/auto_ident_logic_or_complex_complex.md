@@ -63,6 +63,30 @@ if (a) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 0 );
+let b = $( a );
+if (b) {
+  $( ... b );
+}
+else {
+  const c = $( 2 );
+  b = $( c );
+  const d = b === "";
+  if (d) {
+    $();
+  }
+  else {
+    throw "Preval: Attempting to spread primitive that is not an empty string";
+  }
+}
+$( b );
+`````
+
 ## Globals
 
 None

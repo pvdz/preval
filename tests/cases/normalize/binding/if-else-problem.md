@@ -282,6 +282,28 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  $( undefined );
+  if ($) {
+    $( undefined );
+    if ($) {
+      $( undefined );
+      if ($) {
+        $( undefined );
+        if ($) {
+          $( undefined );
+        }
+      }
+    }
+  }
+}
+`````
+
 ## Globals
 
 None

@@ -44,6 +44,16 @@ $(n$1);
 $(n);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 10 );
+$( a );
+$( n );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

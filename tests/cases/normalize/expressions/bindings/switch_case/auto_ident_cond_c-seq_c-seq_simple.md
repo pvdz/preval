@@ -66,6 +66,23 @@ if (tmpIfTest$1) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 30 );
+if (a) {
+  const b = $( 60 );
+  $( b );
+}
+else {
+  const c = $( 100 );
+  const d = $( c );
+  $( d );
+}
+`````
+
 ## Globals
 
 None

@@ -108,6 +108,31 @@ if (b) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  $( b );
+  $( b );
+  $( b );
+  return undefined;
+},;
+const d = $( 1 );
+const e = d === 10;
+if (e) {
+  $( "a", true );
+  a( true );
+}
+else {
+  $( "b", false );
+  a( false );
+}
+`````
+
 ## Globals
 
 None

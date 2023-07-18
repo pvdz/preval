@@ -65,6 +65,17 @@ const tmpNestedComplexRhs = !tmpUnaryArg;
 $(tmpNestedComplexRhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100 );
+$( undefined );
+const b = !a;
+$( b );
+`````
+
 ## Globals
 
 None

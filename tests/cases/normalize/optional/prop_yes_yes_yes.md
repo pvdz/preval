@@ -67,6 +67,31 @@ if (tmpIfTest$1) {
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = $ObjectPrototype.b;
+const c = b == null;
+if (c) {
+
+}
+else {
+  const d = b.c;
+  const e = d == null;
+  if (e) {
+
+  }
+  else {
+    const f = d.d;
+    a = f;
+  }
+}
+$( a );
+`````
+
 ## Globals
 
 None

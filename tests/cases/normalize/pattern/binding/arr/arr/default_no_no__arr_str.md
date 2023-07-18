@@ -38,6 +38,14 @@ $(`ok`);
 $(`ok`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "ok" );
+`````
+
 ## Globals
 
 None

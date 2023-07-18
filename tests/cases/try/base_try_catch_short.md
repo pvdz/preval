@@ -56,6 +56,21 @@ try {
 $(3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+try {
+  $( 2 );
+}
+catch (e) {
+  $( "fail" );
+}
+$( 3 );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

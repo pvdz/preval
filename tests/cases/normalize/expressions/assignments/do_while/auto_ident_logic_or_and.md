@@ -123,6 +123,68 @@ if (tmpNestedComplexRhs) {
 $(tmpClusterSSA_tmpDoWhileFlag);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+const a = $( 0 );
+let b = $( a );
+if (b) {
+
+}
+else {
+  const c = $( 1 );
+  b = $( c );
+  if (b) {
+    const d = $( 2 );
+    b = $( d );
+  }
+}
+let e = b;
+if (b) {
+  $( 100 );
+  const f = $( 0 );
+  let g = $( f );
+  if (g) {
+
+  }
+  else {
+    const h = $( 1 );
+    g = $( h );
+    if (g) {
+      const i = $( 2 );
+      g = $( i );
+    }
+  }
+  e = g;
+  while ($LOOP_UNROLL_9) {
+    if (e) {
+      $( 100 );
+      const j = $( 0 );
+      let k = $( j );
+      if (k) {
+
+      }
+      else {
+        const l = $( 1 );
+        k = $( l );
+        if (k) {
+          const m = $( 2 );
+          k = $( m );
+        }
+      }
+      e = k;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( e );
+`````
+
 ## Globals
 
 None

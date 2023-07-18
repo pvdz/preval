@@ -48,6 +48,15 @@ $(`inline me`);
 $(`inline me`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "inline me" );
+$( "inline me" );
+`````
+
 ## Globals
 
 None

@@ -39,6 +39,17 @@ const tmpAnonDefaultExport = tmpBinBothLhs + tmpBinBothRhs;
 export { tmpAnonDefaultExport as default };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( 2 );
+const c = a + b;
+export { c as default from "undefined"
+`````
+
 ## Globals
 
 None

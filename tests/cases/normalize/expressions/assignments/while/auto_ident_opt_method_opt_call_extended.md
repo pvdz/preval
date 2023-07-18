@@ -100,6 +100,51 @@ if ($tmpLoopUnrollCheck) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { e: $ };
+let b = undefined;
+let c = true;
+const d = $ == null;
+if (d) {
+  $( 100 );
+}
+else {
+  const e = $dotCall( $, a, 1 );
+  b = e;
+  if (e) {
+    $( 100 );
+  }
+  else {
+    c = false;
+  }
+}
+if (c) {
+  while ($LOOP_UNROLL_10) {
+    b = undefined;
+    const f = a.e;
+    const g = f == null;
+    if (g) {
+      $( 100 );
+    }
+    else {
+      const h = $dotCall( f, a, 1 );
+      b = h;
+      if (h) {
+        $( 100 );
+      }
+      else {
+        break;
+      }
+    }
+  }
+}
+$( b );
+`````
+
 ## Globals
 
 None

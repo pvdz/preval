@@ -92,6 +92,51 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = 2;
+const b = $( 1 );
+let c = 2;
+if (b) {
+  $( 2 );
+}
+else {
+  const d = $( 100 );
+  a = $( d );
+  c = a;
+  $( c );
+}
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( c );
+  $( 1 );
+}
+$( a );
+`````
+
 ## Globals
 
 None

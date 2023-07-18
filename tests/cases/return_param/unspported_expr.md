@@ -114,6 +114,37 @@ const tmpCalleeParam$3 = f(`three`);
 $(tmpCalleeParam$3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  $( "no" );
+  $( "inlining" );
+  $( "please" );
+  const d = $( 1 );
+  const e = b + d;
+  const f = $( true );
+  if (f) {
+    $( "a" );
+    return e;
+  }
+  else {
+    $( "b" );
+    return e;
+  }
+},;
+const g = a( 1 );
+$( g );
+const h = a( 2 );
+$( h );
+const i = a( "three" );
+$( i );
+`````
+
 ## Globals
 
 None

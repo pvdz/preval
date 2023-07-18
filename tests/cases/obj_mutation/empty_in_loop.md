@@ -62,6 +62,30 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(blob);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+const a = { thing: "boing" };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  a.thing = "boing";
+  $( 1 );
+}
+$( a );
+`````
+
 ## Globals
 
 None

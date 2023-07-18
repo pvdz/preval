@@ -65,6 +65,26 @@ if (tmpClusterSSA_objPatternCrashTest) {
 $(`ok`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: "pass" };
+const b = $( a );
+let c = b === undefined;
+if (c) {
+
+}
+else {
+  c = b === null;
+}
+if (c) {
+  b.cannotDestructureThis;
+}
+$( "ok" );
+`````
+
 ## Globals
 
 None

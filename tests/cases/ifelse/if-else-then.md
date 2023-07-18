@@ -73,6 +73,23 @@ $(`D`);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "A" );
+const a = $( 1 );
+if (a) {
+  $( "B" );
+}
+else {
+  $( "C" );
+}
+$( "D" );
+$( undefined );
+`````
+
 ## Globals
 
 None

@@ -37,6 +37,15 @@ const x = (0).x;
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 0.x;
+$( a );
+`````
+
 ## Globals
 
 None

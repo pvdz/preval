@@ -74,6 +74,31 @@ if (tmpPostUpdArgVal) {
 $(a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+const d = $( c );
+const e = d.x;
+const f = e - 1;
+d.x = f;
+if (e) {
+  const g = $( a );
+  const h = $( g );
+  const i = h.x;
+  const j = i - 1;
+  h.x = j;
+}
+$( b, a );
+`````
+
 ## Globals
 
 None

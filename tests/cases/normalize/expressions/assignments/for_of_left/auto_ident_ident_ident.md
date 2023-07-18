@@ -64,6 +64,27 @@ for (tmpForOfLhsNode of tmpForOfRhs) {
 $(a, b, 2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = 1;
+let b = {
+a: 999,
+b: 1000
+;
+const c = { x: 1 };
+const d = $( c );
+let e = undefined;
+for (e of d {
+  a = 2;
+  b = 2;
+  2.x = e;
+}
+$( b, a, 2 );
+`````
+
 ## Globals
 
 None

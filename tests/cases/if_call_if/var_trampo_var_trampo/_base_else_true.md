@@ -115,6 +115,36 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( 1 );
+  if (b) {
+    const c = $( "inner if", b );
+    return c;
+  }
+  else {
+    const d = $( 2 );
+    if (d) {
+      const e = $( "inner if", d );
+      return e;
+    }
+    else {
+      const f = $( "inner else", d );
+      return f;
+    }
+  }
+},;
+if ($) {
+  const g = a();
+  $( g, "outer" );
+}
+`````
+
 ## Globals
 
 None

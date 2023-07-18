@@ -75,6 +75,14 @@ if (condition) {
 $(`a`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "a" );
+`````
+
 ## Globals
 
 None

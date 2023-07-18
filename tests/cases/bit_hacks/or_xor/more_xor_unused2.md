@@ -63,6 +63,18 @@ const c = tmpOrXor ^ 32;
 $(c);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+a ** 0;
+const b = a & -17;
+const c = b ^ 32;
+$( c );
+`````
+
 ## Globals
 
 None

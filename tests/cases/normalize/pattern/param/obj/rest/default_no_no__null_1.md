@@ -53,6 +53,15 @@ const tmpCalleeParam$1 = [];
 objPatternRest(null, tmpCalleeParam$1, `x`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [];
+objPatternRest( null, a, "x" );
+`````
+
 ## Globals
 
 None

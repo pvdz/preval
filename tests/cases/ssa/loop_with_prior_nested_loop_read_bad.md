@@ -100,6 +100,45 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  let a = $( 1 );
+  while (true) {
+    $( a );
+    a = $( 2 );
+    $( a );
+    a = $( 2 );
+    $( a );
+    a = $( 2 );
+    $( a );
+    a = $( 2 );
+    $( a );
+    a = $( 2 );
+    $( a );
+    a = $( 2 );
+    $( a );
+    a = $( 2 );
+    $( a );
+    a = $( 2 );
+    $( a );
+    a = $( 2 );
+    $( a );
+    a = $( 2 );
+    $( a );
+    a = $( 2 );
+    $( a );
+    while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+      a = $( 2 );
+      $( a );
+    }
+  }
+}
+`````
+
 ## Globals
 
 None

@@ -82,6 +82,16 @@ $(`oops`);
 $(100);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "something" );
+$( "oops" );
+$( 100 );
+`````
+
 ## Globals
 
 None

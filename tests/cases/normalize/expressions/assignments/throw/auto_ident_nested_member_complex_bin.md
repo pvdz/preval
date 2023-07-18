@@ -69,6 +69,22 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 7;
 throw 7;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+const c = $( a );
+const d = $( "x" );
+const e = $( b );
+const f = $( "y" );
+e[f] = 7;
+c[d] = 7;
+throw 7;
+`````
+
 ## Globals
 
 None

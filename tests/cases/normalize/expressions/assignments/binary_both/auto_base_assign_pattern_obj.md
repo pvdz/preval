@@ -68,6 +68,24 @@ $(tmpCalleeParam);
 $(tmpNestedAssignObjPatternRhs$1, tmpClusterSSA_b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 2 );
+const b = { b: a };
+const c = $( b );
+c.b;
+const d = $( 2 );
+const e = { b: d };
+const f = $( e );
+const g = f.b;
+const h = c + f;
+$( h );
+$( f, g );
+`````
+
 ## Globals
 
 None

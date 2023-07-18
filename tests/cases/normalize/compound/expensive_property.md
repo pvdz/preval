@@ -54,6 +54,17 @@ const tmpAssignMemRhs = tmpCompoundAssignLhs + 5;
 tmpAssignMemLhsObj.x = tmpAssignMemRhs;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+const b = a.x;
+const c = b + 5;
+a.x = c;
+`````
+
 ## Globals
 
 None

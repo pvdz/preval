@@ -112,6 +112,48 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  let b = $( true );
+  while (true) {
+    if (b) {
+      $( "loop" );
+      let c = undefined;
+      let d = false;
+      const e = {
+a: 1,
+b: 2
+      ;
+      for (c in e {
+        d = true;
+        break;
+      }
+      if (d) {
+        $( "loop", c );
+        const f = $( 100, "return" );
+        return f;
+      }
+      else {
+        $( "fail" );
+        b = $( true );
+      }
+    }
+    else {
+      break;
+    }
+  }
+  $( "after (not invoked but should not be eliminated)" );
+  return undefined;
+},;
+const g = a();
+$( g );
+`````
+
 ## Globals
 
 None

@@ -81,6 +81,29 @@ if (tmpBoolTrampoline) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  const d = $( b );
+  const e = !d;
+  return e;
+},;
+$( a );
+$( a );
+const f = $( 0 );
+if (f) {
+  $( "fail" );
+}
+else {
+  $( "pass" );
+}
+`````
+
 ## Globals
 
 None

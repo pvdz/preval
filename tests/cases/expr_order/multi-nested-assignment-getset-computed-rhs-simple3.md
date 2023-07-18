@@ -120,6 +120,32 @@ const objd = {
 $(objd);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "a" );
+  $( "b" );
+  return undefined;
+},;
+a();
+a();
+const b = {
+get foo() {
+    debugger;
+    return 100;
+  },,
+set foo( $$0 ) {
+    debugger;
+    return 4000;
+  },
+;
+$( b );
+`````
+
 ## Globals
 
 None

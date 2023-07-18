@@ -45,6 +45,16 @@ const x = arrPatternSplat$3.slice(0);
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 1, 2, 3,, ];
+const b = a.slice( 0 );
+$( b );
+`````
+
 ## Globals
 
 None

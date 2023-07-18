@@ -78,6 +78,36 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "test 20" );
+$( "test 19" );
+$( "test 18" );
+$( "test 17" );
+$( "test 16" );
+$( "test 15" );
+$( "test 14" );
+$( "test 13" );
+$( "test 12" );
+$( "test 11" );
+$( "test 10" );
+let a = 9;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (a) {
+    const b = $coerce( a, "string" );
+    const c = `test ${[object Object]}`;
+    $( c );
+    a = a - 1;
+  }
+  else {
+    break;
+  }
+}
+`````
+
 ## Globals
 
 None

@@ -37,6 +37,15 @@ x = (0).x;
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+x = 0.x;
+$( x );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

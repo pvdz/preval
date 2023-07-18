@@ -43,6 +43,18 @@ tmpBinBothRhs ** 0;
 $(true);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( 2 );
+a ** 0;
+b ** 0;
+$( true );
+`````
+
 ## Globals
 
 None

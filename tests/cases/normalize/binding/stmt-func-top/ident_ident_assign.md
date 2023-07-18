@@ -65,6 +65,18 @@ $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 3 );
+const b = $( 4 );
+a.y = b;
+$( b, b, 3 );
+$( undefined );
+`````
+
 ## Globals
 
 None

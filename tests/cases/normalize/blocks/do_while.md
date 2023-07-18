@@ -59,6 +59,28 @@ if (tmpDoWhileFlag) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+const a = $( 2 );
+if (a) {
+  $( 1 );
+  let b = $( 2 );
+  while ($LOOP_UNROLL_9) {
+    if (b) {
+      $( 1 );
+      b = $( 2 );
+    }
+    else {
+      break;
+    }
+  }
+}
+`````
+
 ## Globals
 
 None

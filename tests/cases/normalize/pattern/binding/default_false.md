@@ -50,6 +50,18 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "prop" );
+const b = a === undefined;
+if (b) {
+  $( "default" );
+}
+`````
+
 ## Globals
 
 None

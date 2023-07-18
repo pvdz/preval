@@ -49,6 +49,18 @@ for (x of undefined) {
 $(undefined, 1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+for (a of undefined {
+
+}
+$( undefined, 1 );
+`````
+
 ## Globals
 
 None

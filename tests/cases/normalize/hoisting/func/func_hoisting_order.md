@@ -113,6 +113,38 @@ const x = function () {
 $(a, b, d, f, h, x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  return undefined;
+},;
+const b = function() {
+  debugger;
+  return undefined;
+},;
+const c = function() {
+  debugger;
+  return undefined;
+},;
+const d = function() {
+  debugger;
+  return undefined;
+},;
+const e = function() {
+  debugger;
+  return undefined;
+},;
+const f = function() {
+  debugger;
+  return undefined;
+},;
+$( a, b, c, d, e, f );
+`````
+
 ## Globals
 
 None

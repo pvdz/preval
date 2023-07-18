@@ -101,6 +101,52 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, b, c, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+const c = {
+a: 999,
+b: 1000
+;
+const d = $( a );
+const e = $( "x" );
+const f = $( b );
+const g = $( "y" );
+f[g] = 3;
+d[e] = 3;
+$( 3 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 3 );
+$( 1 );
+$( 3 );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 3 );
+  $( 1 );
+}
+$( c, a, b, 3 );
+`````
+
 ## Globals
 
 None

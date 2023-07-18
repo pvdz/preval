@@ -113,6 +113,55 @@ if (varInitAssignLhsComputedRhs) {
 $(a, b, c, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+const c = {
+a: 999,
+b: 1000
+;
+$( 100 );
+const d = $( a );
+const e = $( "x" );
+const f = $( b );
+const g = $( "y" );
+const h = $( 3 );
+f[g] = h;
+d[e] = h;
+if (h) {
+  $( 100 );
+  const i = $( a );
+  const j = $( "x" );
+  const k = $( b );
+  const l = $( "y" );
+  const m = $( 3 );
+  k[l] = m;
+  i[j] = m;
+  let n = m;
+  while ($LOOP_UNROLL_9) {
+    if (n) {
+      $( 100 );
+      const o = $( a );
+      const p = $( "x" );
+      const q = $( b );
+      const r = $( "y" );
+      const s = $( 3 );
+      q[r] = s;
+      o[p] = s;
+      n = s;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( c, a, b, 3 );
+`````
+
 ## Globals
 
 None

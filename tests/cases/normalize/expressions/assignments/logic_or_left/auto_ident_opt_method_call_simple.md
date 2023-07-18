@@ -65,6 +65,23 @@ if (tmpChainElementCall) {
 $(tmpChainElementCall);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { c: $ };
+const b = $dotCall( $, a, 1 );
+if (b) {
+  $( b );
+}
+else {
+  const c = $( 100 );
+  $( c );
+}
+$( b );
+`````
+
 ## Globals
 
 None

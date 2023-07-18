@@ -59,6 +59,22 @@ a.b = tmpAssignMemRhs;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( 100 );
+const c = { b: a };
+const d = c + b;
+$( d );
+$( 1 );
+const e = $( 2 );
+c.b = e;
+$( c );
+`````
+
 ## Globals
 
 None

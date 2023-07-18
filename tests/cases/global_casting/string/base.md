@@ -44,6 +44,16 @@ const x = $coerce(a, `plustr`);
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "a" );
+const b = $coerce( a, "plustr" );
+$( b );
+`````
+
 ## Globals
 
 None

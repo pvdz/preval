@@ -83,6 +83,23 @@ f();
 f();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  s;
+  while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+    s;
+  }
+  return undefined;
+},;
+a();
+a();
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

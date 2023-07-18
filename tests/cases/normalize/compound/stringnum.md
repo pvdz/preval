@@ -110,6 +110,35 @@ obj.x = tmpAssignMemRhs;
 $(a, s);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = "";
+let b = 0;
+const c = $spy();
+const d = {
+get x() {
+    debugger;
+    a = `${[object Object]}read;`;
+    return b;
+  },,
+set x( $$0 ) {
+    const e = f;
+    debugger;
+    const g = a;
+    const h = $coerce( e, "plustr" );
+    const i = `write[${[object Object]}];`;
+    a = g + i;
+    b = b + e;
+    return b;
+  },
+;
+d.x = c;
+$( b, a );
+`````
+
 ## Globals
 
 None

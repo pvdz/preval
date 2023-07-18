@@ -88,6 +88,38 @@ if (x) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if (x) {
+  $( 1 );
+  if ($) {
+
+  }
+  else {
+    $( 2 );
+  }
+  if (x) {
+    while ($LOOP_UNROLL_10) {
+      if (x) {
+        $( 1 );
+        if ($) {
+
+        }
+        else {
+          $( 2 );
+        }
+      }
+      else {
+        break;
+      }
+    }
+  }
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

@@ -100,6 +100,28 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  if ($) {
+    return 1;
+  }
+  else {
+    return undefined;
+  }
+},;
+const b = a();
+$( b );
+if ($) {
+  const c = $( "do not inline me" );
+  $( c );
+}
+`````
+
 ## Globals
 
 None

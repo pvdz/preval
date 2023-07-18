@@ -92,6 +92,28 @@ try {
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = "fail";
+try {
+  if ($) {
+    a = "pass";
+    throw "yes";
+  }
+  else {
+    throw "too";
+  }
+}
+catch (e) {
+  throw_early;
+  $( a, "mutation is observable in the catch" );
+}
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

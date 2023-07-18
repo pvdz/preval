@@ -87,6 +87,39 @@ if ($tmpLoopUnrollCheck) {
 $(`after, wont eval due to infinite loop`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+const b = $( true );
+if (b) {
+  const c = $( false );
+  if (c) {
+    throw "Preval: Cannot access `x` before initialization";
+  }
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    const d = $( true );
+    if (d) {
+      const e = $( false );
+      if (e) {
+        throw "Preval: Cannot access `x` before initialization";
+      }
+    }
+    else {
+      break;
+    }
+  }
+}
+$( "after, wont eval due to infinite loop" );
+`````
+
 ## Globals
 
 None

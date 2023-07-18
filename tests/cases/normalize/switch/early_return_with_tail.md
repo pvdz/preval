@@ -196,6 +196,64 @@ if (tmpIfTest$19) {
 $(tmpReturnArg$9);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 7 );
+let b = 4;
+const c = 0 === a;
+if (c) {
+  b = 0;
+}
+else {
+  const d = $( 1 );
+  const e = d === a;
+  if (e) {
+    b = 1;
+  }
+  else {
+    const f = $( 4 );
+    const g = f === a;
+    if (g) {
+      b = 2;
+    }
+    else {
+      const h = $( 7 );
+      const i = h === a;
+      if (i) {
+        b = 3;
+      }
+    }
+  }
+}
+let j = undefined;
+const k = b;
+const l = k <= 0;
+if (l) {
+  $( 2 );
+  $( "after" );
+}
+else {
+  const m = k <= 1;
+  if (m) {
+    $( 3 );
+  }
+  const n = k <= 2;
+  if (n) {
+    $( 5 );
+    const o = $( 6 );
+    j = o;
+  }
+  else {
+    k ** 0;
+    $( "after" );
+  }
+}
+$( j );
+`````
+
 ## Globals
 
 None

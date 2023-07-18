@@ -99,6 +99,52 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+$( 1 );
+$( 2 );
+const b = $( 3 );
+const c = $( 4 );
+const d = [ b, c,, ];
+const e = [ ... d,, ];
+const f = e[ 0 ];
+const g = e[ 1 ];
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( d );
+  $( 1 );
+}
+$( a, f, g );
+`````
+
 ## Globals
 
 None

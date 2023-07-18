@@ -60,6 +60,18 @@ const tmpClusterSSA_a = function () {
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  return undefined;
+},;
+$( a );
+`````
+
 ## Globals
 
 None

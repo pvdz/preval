@@ -39,6 +39,18 @@ export { X };
 new X();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = class   {
+
+};
+export { a as X from "undefined"
+new a();
+`````
+
 ## Globals
 
 None

@@ -58,6 +58,29 @@ const a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = $( $ );
+const c = b == null;
+if (c) {
+
+}
+else {
+  const d = $dotCall( b, $, 1 );
+  a = d;
+}
+export { a as default from "undefined"
+const e = {
+a: 999,
+b: 1000
+;
+$( e );
+`````
+
 ## Globals
 
 None

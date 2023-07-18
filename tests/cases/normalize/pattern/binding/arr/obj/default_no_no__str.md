@@ -46,6 +46,14 @@ $(`bad`);
 $(`bad`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "bad" );
+`````
+
 ## Globals
 
 None

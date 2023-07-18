@@ -75,6 +75,32 @@ if (arguments) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+let a = arguments;
+arguments;
+if (arguments) {
+  $( 100 );
+  a = arguments;
+  let b = arguments;
+  while ($LOOP_UNROLL_9) {
+    if (b) {
+      $( 100 );
+      a = arguments;
+      b = arguments;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

@@ -41,6 +41,16 @@ $(2);
 $(`boolean`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 2 );
+$( "boolean" );
+`````
+
 ## Globals
 
 None

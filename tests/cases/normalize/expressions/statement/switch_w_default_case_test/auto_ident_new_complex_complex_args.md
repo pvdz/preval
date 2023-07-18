@@ -125,6 +125,45 @@ if (tmpIfTest$3) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = $( 1 );
+let c = 1;
+const d = $( $ );
+const e = $( 1 );
+const f = $( 2 );
+const g = new d( e, f );
+const h = g === b;
+if (h) {
+  c = 0;
+}
+else {
+  const i = 2 === b;
+  if (i) {
+    c = 2;
+  }
+}
+const j = c <= 0;
+if (j) {
+
+}
+else {
+  const k = c <= 1;
+  if (k) {
+    $( "fail1" );
+  }
+  $( "fail2" );
+}
+$( a );
+`````
+
 ## Globals
 
 None

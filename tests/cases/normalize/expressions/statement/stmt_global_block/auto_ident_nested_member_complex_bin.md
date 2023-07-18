@@ -73,6 +73,26 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 7;
 $(a, b, c, 3, 4);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+const c = {
+a: 999,
+b: 1000
+;
+const d = $( a );
+const e = $( "x" );
+const f = $( b );
+const g = $( "y" );
+f[g] = 7;
+d[e] = 7;
+$( c, a, b, 3, 4 );
+`````
+
 ## Globals
 
 None

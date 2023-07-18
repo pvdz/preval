@@ -55,6 +55,14 @@ undefined instanceof Number;
 undefined instanceof Number;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+undefined instanceof Number;
+`````
+
 ## Globals
 
 None

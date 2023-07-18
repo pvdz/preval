@@ -39,6 +39,14 @@ if (tmpIfTest) {
 a;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+a;
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

@@ -41,6 +41,14 @@ throw tmpThrowArg;
 throw undefined;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw undefined;
+`````
+
 ## Globals
 
 None

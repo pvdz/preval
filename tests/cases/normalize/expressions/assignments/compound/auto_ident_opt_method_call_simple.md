@@ -60,6 +60,22 @@ $(tmpClusterSSA_a$1);
 $(tmpClusterSSA_a$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = { c: $ };
+const c = $dotCall( $, b, 1 );
+const d = a * c;
+$( d );
+$( d );
+`````
+
 ## Globals
 
 None

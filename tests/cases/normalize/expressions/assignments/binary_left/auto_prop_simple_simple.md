@@ -53,6 +53,20 @@ a.b = 2;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( 100 );
+const c = { b: a };
+const d = c + b;
+$( d );
+c.b = 2;
+$( c );
+`````
+
 ## Globals
 
 None

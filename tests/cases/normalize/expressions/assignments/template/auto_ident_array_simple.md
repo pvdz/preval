@@ -48,6 +48,16 @@ const a = [1, 2, 3];
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "before  1,2,3  after" );
+const a = [ 1, 2, 3,, ];
+$( a );
+`````
+
 ## Globals
 
 None

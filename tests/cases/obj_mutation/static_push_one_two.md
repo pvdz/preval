@@ -44,6 +44,15 @@ const blob = { thing: `boom` };
 $(blob);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { thing: "boom" };
+$( a );
+`````
+
 ## Globals
 
 None

@@ -156,6 +156,50 @@ $(`fail2`);
 $(3, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = $( 1 );
+let c = 1;
+const d = $( a );
+const e = $( "x" );
+const f = $( a );
+const g = $( "x" );
+const h = $( a );
+const i = $( "x" );
+const j = $( a );
+const k = $( "x" );
+const l = $( a );
+const m = $( "x" );
+const n = $( a );
+const o = $( "x" );
+n[o] = 3;
+l[m] = 3;
+j[k] = 3;
+h[i] = 3;
+f[g] = 3;
+d[e] = 3;
+const p = 3 === b;
+if (p) {
+  c = 0;
+}
+else {
+  const q = 2 === b;
+  if (q) {
+    c = 2;
+  }
+}
+const r = c <= 1;
+if (r) {
+  $( "fail1" );
+}
+$( "fail2" );
+$( 3, a, 3 );
+`````
+
 ## Globals
 
 None

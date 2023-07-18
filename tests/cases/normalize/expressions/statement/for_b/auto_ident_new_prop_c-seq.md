@@ -107,6 +107,69 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+const d = c.$;
+new d( 1 );
+$( 1 );
+const e = $( a );
+const f = e.$;
+new f( 1 );
+$( 1 );
+const g = $( a );
+const h = g.$;
+new h( 1 );
+$( 1 );
+const i = $( a );
+const j = i.$;
+new j( 1 );
+$( 1 );
+const k = $( a );
+const l = k.$;
+new l( 1 );
+$( 1 );
+const m = $( a );
+const n = m.$;
+new n( 1 );
+$( 1 );
+const o = $( a );
+const p = o.$;
+new p( 1 );
+$( 1 );
+const q = $( a );
+const r = q.$;
+new r( 1 );
+$( 1 );
+const s = $( a );
+const t = s.$;
+new t( 1 );
+$( 1 );
+const u = $( a );
+const v = u.$;
+new v( 1 );
+$( 1 );
+const w = $( a );
+const x = w.$;
+new x( 1 );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const y = $( a );
+  const z = y.$;
+  new z( 1 );
+  $( 1 );
+}
+$( b );
+`````
+
 ## Globals
 
 None

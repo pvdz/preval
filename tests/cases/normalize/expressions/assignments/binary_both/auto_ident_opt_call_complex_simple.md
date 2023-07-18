@@ -80,6 +80,37 @@ if (tmpIfTest$1) {
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( $ );
+const b = a == null;
+let c = undefined;
+if (b) {
+
+}
+else {
+  const d = $dotCall( a, $, 1 );
+  c = d;
+}
+let e = undefined;
+const f = $( $ );
+const g = f == null;
+if (g) {
+  const h = c + undefined;
+  $( h );
+}
+else {
+  const i = $dotCall( f, $, 1 );
+  e = i;
+  const j = c + i;
+  $( j );
+}
+$( e );
+`````
+
 ## Globals
 
 None

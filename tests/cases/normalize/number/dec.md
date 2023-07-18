@@ -36,6 +36,15 @@ $(10000000000);
 $(Infinity);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 10000000000 );
+$( Infinity );
+`````
+
 ## Globals
 
 None

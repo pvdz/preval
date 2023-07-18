@@ -38,6 +38,15 @@ new Map();
 $(`object`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+new Map();
+$( "object" );
+`````
+
 ## Globals
 
 None

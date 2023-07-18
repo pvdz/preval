@@ -62,6 +62,21 @@ const tmpCalleeParam = { pass: 1 };
 f.call(tmpCalleeParam, 1, 2, 3, `yep`, $);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  const b = this;
+  debugger;
+  $( b );
+  return undefined;
+},;
+const c = { pass: 1 };
+a.call( c, 1, 2, 3, "yep", $ );
+`````
+
 ## Globals
 
 None

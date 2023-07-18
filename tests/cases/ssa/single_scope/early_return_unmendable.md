@@ -101,6 +101,34 @@ const tmpLabeledBlockFunc$3 = function ($$0) {
 $(tmpLabeledBlockFunc$3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  let b = c;
+  debugger;
+  const d = $( 1 );
+  if (d) {
+    if ($) {
+      b = $( 1 );
+      $( b );
+      return undefined;
+    }
+    else {
+      $( 2 );
+    }
+  }
+  else {
+    $( 3 );
+  }
+  $( b );
+  return undefined;
+},;
+$( a );
+`````
+
 ## Globals
 
 None

@@ -38,6 +38,17 @@ $spy(`c`);
 isNaN(tmpArgOverflow);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy( "a" );
+$spy( "b" );
+$spy( "c" );
+isNaN( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

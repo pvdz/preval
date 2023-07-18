@@ -65,6 +65,26 @@ export { X };
 X = 10;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = class   {
+
+};
+export { a as X from "undefined"
+a = 10;
+`````
+
+`````js filename=x
+let a = class   {
+
+};
+export { a as X from "undefined"
+a = 10;
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

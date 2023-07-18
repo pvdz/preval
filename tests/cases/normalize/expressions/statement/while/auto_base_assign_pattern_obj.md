@@ -80,6 +80,43 @@ const a = { a: 999, b: 1000 };
 $(a, tmpClusterSSA_b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+const b = $( 2 );
+const c = { b: b };
+const d = $( c );
+let e = d.b;
+if (d) {
+  $( 100 );
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    const f = $( 2 );
+    const g = { b: f };
+    const h = $( g );
+    e = h.b;
+    if (h) {
+      $( 100 );
+    }
+    else {
+      break;
+    }
+  }
+}
+const i = {
+a: 999,
+b: 1000
+;
+$( i, e );
+`````
+
 ## Globals
 
 None

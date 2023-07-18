@@ -75,6 +75,33 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 2 );
+const b = [ a,, ];
+const c = $( b );
+const d = [ ... c,, ];
+const e = d[ 0 ];
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
+}
+$( c, e );
+`````
+
 ## Globals
 
 None

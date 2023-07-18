@@ -36,6 +36,15 @@ crash_hard;
 $(`object`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+crash_hard;
+$( "object" );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

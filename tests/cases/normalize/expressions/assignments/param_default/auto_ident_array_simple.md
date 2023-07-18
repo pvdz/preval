@@ -63,6 +63,16 @@ const tmpNestedComplexRhs = [1, 2, 3];
 $(tmpNestedComplexRhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( undefined );
+const a = [ 1, 2, 3,, ];
+$( a );
+`````
+
 ## Globals
 
 None

@@ -134,6 +134,37 @@ const tmpCalleeParam$51 = $(`a`, `b`);
 $(tmpCalleeParam$51, `second D`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "b" );
+const b = $( "a", a );
+$( b, "first A" );
+const c = $( "a" );
+const d = $( c, "b" );
+$( d, "first B" );
+const e = $( "a" );
+const f = $( "b" );
+const g = $( e, f );
+$( g, "first C" );
+const h = $( "a", "b" );
+$( h, "first D" );
+const i = $( "b" );
+const j = $( "a", i );
+$( j, "second A" );
+const k = $( "a" );
+const l = $( k, "b" );
+$( l, "second B" );
+const m = $( "a" );
+const n = $( "b" );
+const o = $( m, n );
+$( o, "second C" );
+const p = $( "a", "b" );
+$( p, "second D" );
+`````
+
 ## Globals
 
 None

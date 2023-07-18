@@ -94,6 +94,22 @@ if (tmpIfTest$1) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+if (a) {
+  $( "pass", "not mutating, not completing" );
+  $( "pass", "should not be considered mutated" );
+  $( "pass", "after label" );
+}
+else {
+  $( "fail", "after label" );
+}
+`````
+
 ## Globals
 
 None

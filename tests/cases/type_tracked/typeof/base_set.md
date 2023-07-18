@@ -38,6 +38,15 @@ new Set();
 $(`object`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+new Set();
+$( "object" );
+`````
+
 ## Globals
 
 None

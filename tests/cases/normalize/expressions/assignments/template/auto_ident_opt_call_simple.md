@@ -64,6 +64,26 @@ if (tmpIfTest) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = $ == null;
+if (b) {
+  $( "before  undefined  after" );
+}
+else {
+  const c = $( 1 );
+  a = c;
+  const d = $coerce( c, "string" );
+  const e = `before  ${[object Object]}  after`;
+  $( e );
+}
+$( a );
+`````
+
 ## Globals
 
 None

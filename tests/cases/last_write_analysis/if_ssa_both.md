@@ -71,6 +71,24 @@ $(`break if hoisting optimization ooops`);
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( "a" );
+$( a );
+$( "b" );
+if ($) {
+  a = $( "c" );
+}
+else {
+  a = $( "d" );
+}
+$( "break if hoisting optimization ooops" );
+$( a );
+`````
+
 ## Globals
 
 None

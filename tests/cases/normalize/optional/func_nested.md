@@ -65,6 +65,16 @@ const tmpReturnArg = $(tmpObjLitVal$1);
 $(tmpReturnArg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+const b = $( a );
+$( b );
+`````
+
 ## Globals
 
 None

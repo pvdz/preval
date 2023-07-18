@@ -45,6 +45,17 @@ tmpBinBothRhs();
 $(`after`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "before" );
+const a = $coerce( $, "string" );
+a();
+$( "after" );
+`````
+
 ## Globals
 
 None

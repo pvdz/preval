@@ -45,6 +45,15 @@ $(undefined);
 $(`okay, do not DCE`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( undefined );
+$( "okay, do not DCE" );
+`````
+
 ## Globals
 
 None

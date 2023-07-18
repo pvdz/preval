@@ -36,6 +36,16 @@ $spy(`b`);
 $spy(`c`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$spy( "a" );
+$spy( "b" );
+$spy( "c" );
+`````
+
 ## Globals
 
 None

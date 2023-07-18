@@ -42,6 +42,20 @@ const tmpArrElToSpread = /foo/;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = /foo/;
+[ ... b,, ];
+$( a );
+`````
+
 ## Globals
 
 None

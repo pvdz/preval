@@ -50,6 +50,17 @@ a.a;
 $(a, arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = deletea.y;
+b.a;
+$( b, a );
+`````
+
 ## Globals
 
 None

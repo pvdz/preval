@@ -134,6 +134,47 @@ if (tmpIfTest$3) {
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = $( 1 );
+let c = 1;
+const d = $( 3 );
+const e = $( 4 );
+const f = [ d, e,, ];
+const g = [ ... f,, ];
+const h = g[ 0 ];
+const i = g[ 1 ];
+const j = f === b;
+if (j) {
+  c = 0;
+}
+else {
+  const k = 2 === b;
+  if (k) {
+    c = 2;
+  }
+}
+const l = c <= 0;
+if (l) {
+
+}
+else {
+  const m = c <= 1;
+  if (m) {
+    $( "fail1" );
+  }
+  $( "fail2" );
+}
+$( a, h, i );
+`````
+
 ## Globals
 
 None

@@ -48,6 +48,17 @@ export { tmpAnonDefaultExport as default };
 $(a, 1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = a;
+export { b as default from "undefined"
+$( a, 1 );
+`````
+
 ## Globals
 
 None

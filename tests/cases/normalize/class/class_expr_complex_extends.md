@@ -38,6 +38,18 @@ const a = class x extends tmpClassSuper {};
 $(a, x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( String );
+const b = class x  {
+
+};
+$( b, x );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

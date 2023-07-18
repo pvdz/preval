@@ -85,6 +85,38 @@ while (true) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+let b = $( true );
+while (true) {
+  if (b) {
+    $( a, "loop1" );
+    const c = $( true );
+    if (c) {
+      $( a, "loop2" );
+      let d = $( true );
+      while ($LOOP_UNROLL_10) {
+        if (d) {
+          $( a, "loop2" );
+          d = $( true );
+        }
+        else {
+          break;
+        }
+      }
+    }
+    b = $( true );
+  }
+  else {
+    break;
+  }
+}
+`````
+
 ## Globals
 
 None

@@ -55,6 +55,14 @@ const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
 $(30);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 30 );
+`````
+
 ## Globals
 
 None

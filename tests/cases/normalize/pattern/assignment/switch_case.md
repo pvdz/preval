@@ -62,6 +62,14 @@ if (tmpIfTest) {
 $(30, 40);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 30, 40 );
+`````
+
 ## Globals
 
 None

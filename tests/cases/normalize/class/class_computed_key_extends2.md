@@ -58,6 +58,21 @@ const tmpCompObj = x();
 tmpCompObj.y;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = class   {
+x(  ) {
+  debugger;
+  return undefined;
+},
+};
+const b = a();
+b.y;
+`````
+
 ## Globals
 
 None

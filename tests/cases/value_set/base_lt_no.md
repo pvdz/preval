@@ -283,6 +283,89 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+let b = 11;
+const c = 0 === a;
+if (c) {
+  b = 0;
+}
+else {
+  const d = 1 === a;
+  if (d) {
+    b = 1;
+  }
+  else {
+    const e = 2 === a;
+    if (e) {
+      b = 2;
+    }
+    else {
+      const f = 3 === a;
+      if (f) {
+        b = 3;
+      }
+      else {
+        const g = 4 === a;
+        if (g) {
+          b = 4;
+        }
+        else {
+          const h = 5 === a;
+          if (h) {
+            b = 5;
+          }
+          else {
+            const i = 6 === a;
+            if (i) {
+              b = 6;
+            }
+            else {
+              const j = 7 === a;
+              if (j) {
+                b = 7;
+              }
+              else {
+                const k = 8 === a;
+                if (k) {
+                  b = 8;
+                }
+                else {
+                  const l = 10 === a;
+                  if (l) {
+                    b = 9;
+                  }
+                  else {
+                    const m = 9 === a;
+                    if (m) {
+                      b = 10;
+                    }
+                    else {
+                      $( "must be 11" );
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+const n = b <= 10;
+if (n) {
+  $( "pass" );
+}
+else {
+  $( "fail" );
+}
+`````
+
 ## Globals
 
 None

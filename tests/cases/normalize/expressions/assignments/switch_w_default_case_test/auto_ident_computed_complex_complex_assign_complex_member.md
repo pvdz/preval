@@ -120,6 +120,41 @@ $(`fail2`);
 $(tmpNestedAssignPropRhs, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+c: 10,
+d: 20
+;
+const b = $( 1 );
+let c = 1;
+const d = $( a );
+const e = $( "c" );
+const f = $( a );
+const g = $( "d" );
+const h = f[ g ];
+d[e] = h;
+const i = h === b;
+if (i) {
+  c = 0;
+}
+else {
+  const j = 2 === b;
+  if (j) {
+    c = 2;
+  }
+}
+const k = c <= 1;
+if (k) {
+  $( "fail1" );
+}
+$( "fail2" );
+$( h, a );
+`````
+
 ## Globals
 
 None

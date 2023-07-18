@@ -105,6 +105,18 @@ $(`fail1`);
 $(`fail2`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { c: $ };
+const b = $dotCall( $, a, 1 );
+$( b );
+$( "fail1" );
+$( "fail2" );
+`````
+
 ## Globals
 
 None

@@ -60,6 +60,26 @@ tmpBinBothLhs + tmpPostUpdArgVal;
 $(a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( 100 );
+const d = $( a );
+const e = $( d );
+const f = e.x;
+const g = f + 1;
+e.x = g;
+c + f;
+$( b, a );
+`````
+
 ## Globals
 
 None

@@ -143,6 +143,47 @@ tmpCalleeParam$9(1, `two`, null, NaN);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "no" );
+  $( "inlining" );
+  $( "please" );
+  return undefined;
+},;
+const b = function($$0 ) {
+  const c = d;
+  debugger;
+  $( "pass1", c );
+  return undefined;
+},;
+a();
+b( 1, "two", null, NaN );
+$( undefined );
+const e = function($$0 ) {
+  const f = d;
+  debugger;
+  $( "pass2", f );
+  return undefined;
+},;
+a();
+e( 1, "two", null, NaN );
+$( undefined );
+const g = function($$0 ) {
+  const h = d;
+  debugger;
+  $( "pass3", h );
+  return undefined;
+},;
+a();
+g( 1, "two", null, NaN );
+$( undefined );
+`````
+
 ## Globals
 
 None

@@ -49,6 +49,15 @@ const tmpCalleeParam = String.toString();
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = String.toString();
+$( a );
+`````
+
 ## Globals
 
 None

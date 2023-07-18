@@ -123,6 +123,29 @@ $(1, `third`);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "a" );
+  $( "b" );
+  $( "c" );
+  return undefined;
+},;
+a();
+$( 1, "first" );
+$( undefined );
+a();
+$( 1, "second" );
+$( undefined );
+a();
+$( 1, "third" );
+$( undefined );
+`````
+
 ## Globals
 
 None

@@ -47,6 +47,17 @@ const tmpThrowArg = b[tmpCompProp];
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "c" );
+const b = { c: 1 };
+const c = b[ a ];
+throw c;
+`````
+
 ## Globals
 
 None

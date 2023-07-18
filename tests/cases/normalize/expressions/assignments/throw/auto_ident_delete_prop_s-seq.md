@@ -48,6 +48,16 @@ $(2);
 throw true;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 2 );
+throw true;
+`````
+
 ## Globals
 
 None

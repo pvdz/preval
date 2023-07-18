@@ -60,6 +60,19 @@ const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+const a = { $: $ };
+const b = $( a );
+const c = $( "$" );
+const d = b[ c ]( 1 )};
+$( d );
+`````
+
 ## Globals
 
 None

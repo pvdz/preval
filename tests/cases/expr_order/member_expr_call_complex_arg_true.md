@@ -43,6 +43,16 @@ const tmpCalleeParam = false.y;
 $dotCall(tmpCallVal, true, tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = true.b;
+const b = false.y;
+$dotCall( a, true, b );
+`````
+
 ## Globals
 
 None

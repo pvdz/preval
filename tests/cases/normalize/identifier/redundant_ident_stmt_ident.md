@@ -64,6 +64,19 @@ drop3;
 $(drop3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+drop1;
+drop2;
+$( drop2 );
+$();
+drop3;
+$( drop3 );
+`````
+
 ## Globals
 
 BAD@! Found 3 implicit global bindings:

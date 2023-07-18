@@ -54,6 +54,19 @@ export { a };
 $(tmpNestedAssignPropRhs, tmpNestedAssignPropRhs, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 3 );
+const b = $( 4 );
+a.y = b;
+const c = b;
+export { c as a from "undefined"
+$( b, b, 3 );
+`````
+
 ## Globals
 
 None

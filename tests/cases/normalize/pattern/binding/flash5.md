@@ -67,6 +67,14 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 throw `Preval: Cannot access \`propTDZ\` before initialization`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw "Preval: Cannot access `propTDZ` before initialization";
+`````
+
 ## Globals
 
 None

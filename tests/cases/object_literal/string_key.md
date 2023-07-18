@@ -66,6 +66,24 @@ const tmpCalleeParam$1 = x[`Hey, me too!`]();
 $(x, tmpCalleeParam$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = {
+"hello, world!"[ a ]: a,
+[ "hey, me too!" ](  ) {
+    debugger;
+    const c = $( 2 );
+    return c;
+  },
+;
+const d = b[ "Hey, me too!" ]()};
+$( b, d );
+`````
+
 ## Globals
 
 None

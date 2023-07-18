@@ -143,6 +143,45 @@ const tmpCalleeParam$15 = tmpCallComplexCallee$5();
 $(tmpCalleeParam$15, `outer`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  const d = function() {
+    debugger;
+    $( b, "inner" );
+    return b;
+  },;
+  if ($) {
+    d.foo = b;
+    const e = d.foo;
+    $( e, "init" );
+  }
+  const f = function() {
+    debugger;
+    $( b, "inner" );
+    return b;
+  },;
+  return f;
+},;
+const g = a( 1 );
+const h = g();
+$( h, "outer" );
+const i = a( 2 );
+const j = i();
+$( j, "outer" );
+const k = a( 3 );
+const l = k();
+$( l, "outer" );
+const m = a( 4 );
+const n = m();
+$( n, "outer" );
+`````
+
 ## Globals
 
 None

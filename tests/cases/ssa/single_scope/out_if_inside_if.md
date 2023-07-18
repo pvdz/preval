@@ -59,6 +59,21 @@ if (tmpUnaryArg$83) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if (tmpUnaryArg$83) {
+  const a = props$15.children;
+  const b = a == null;
+  $( b, "xyz" );
+}
+else {
+  $( true, "abc" );
+}
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

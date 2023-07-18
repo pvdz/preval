@@ -215,6 +215,49 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+toString(  ) {
+    debugger;
+    const b = $( "toString" );
+    return b;
+  },,
+valueOf(  ) {
+    debugger;
+    $( "valueOf" );
+    return 100;
+  },
+;
+const c = 0 ** a;
+const d = 0 * a;
+const e = 0 / a;
+const f = 0 % a;
+const g = false + a;
+const h = 0 - a;
+const i = 0 << a;
+const j = 0 >> a;
+const k = 0 >>> a;
+const l = false < a;
+const m = false > a;
+const n = false <= a;
+const o = false >= a;
+const p = false == a;
+const q = false != a;
+a ** 0;
+const r = 0 ^ a;
+const s = 0 | a;
+const t = [ c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, false, true, 0, r, s,, ];
+$( t );
+const u = false in a;
+const v = false instanceof a;
+const w = [ u, v,, ];
+$( w );
+`````
+
 ## Globals
 
 None

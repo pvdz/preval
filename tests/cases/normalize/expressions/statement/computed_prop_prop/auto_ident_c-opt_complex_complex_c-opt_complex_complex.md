@@ -83,6 +83,41 @@ obj[tmpCompProp];
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = { x: a };
+const c = {
+a: 999,
+b: 1000
+;
+const d = {};
+let e = undefined;
+const f = $( b );
+const g = f == null;
+if (g) {
+
+}
+else {
+  const h = $( "x" );
+  const i = f[ h ];
+  const j = i == null;
+  if (j) {
+
+  }
+  else {
+    const k = $( "y" );
+    const l = i[ k ];
+    e = l;
+  }
+}
+d[ e ];
+$( c );
+`````
+
 ## Globals
 
 None

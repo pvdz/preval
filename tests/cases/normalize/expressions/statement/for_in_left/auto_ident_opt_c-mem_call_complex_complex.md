@@ -90,6 +90,44 @@ for (tmpForInLhsNode in tmpForInRhs) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = {
+a: 999,
+b: 1000
+;
+const c = { x: 1 };
+const d = $( c );
+let e = undefined;
+for (e in d {
+  let f = undefined;
+  const g = $( a );
+  const h = g == null;
+  if (h) {
+
+  }
+  else {
+    const i = $( "$" );
+    const j = g[ i ];
+    const k = j == null;
+    if (k) {
+
+    }
+    else {
+      const l = $( 1 );
+      const m = $dotCall( j, g, l );
+      f = m;
+    }
+  }
+  f.x = e;
+}
+$( b );
+`````
+
 ## Globals
 
 None

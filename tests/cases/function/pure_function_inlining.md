@@ -111,6 +111,22 @@ rule(`purpleRule:reset "I want it my way`);
 rule(`purpleRule:reset "You have to listen to me`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  const d = `${[object Object]}\$1`;
+  $( d );
+  return undefined;
+},;
+a( "purpleRule:reset \$1I want it my way" );
+a( "purpleRule:reset \$1You have to listen to me" );
+`````
+
 ## Globals
 
 None

@@ -84,6 +84,44 @@ tmpAssignMemLhsObj.b = 2;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = { b: a };
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+$( b );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( b );
+  $( 1 );
+}
+const c = $( b );
+c.b = 2;
+$( b );
+`````
+
 ## Globals
 
 None

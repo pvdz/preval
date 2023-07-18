@@ -70,6 +70,15 @@ $ObjectPrototype.x;
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$ObjectPrototype.x;
+$( undefined );
+`````
+
 ## Globals
 
 None

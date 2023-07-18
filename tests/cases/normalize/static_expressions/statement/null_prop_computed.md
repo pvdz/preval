@@ -41,6 +41,16 @@ null.eliminatedComputedProp;
 throw `[Preval]: Can not reach here`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "keep me" );
+null.eliminatedComputedProp;
+throw "[Preval]: Can not reach here";
+`````
+
 ## Globals
 
 None

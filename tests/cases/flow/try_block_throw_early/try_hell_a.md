@@ -54,6 +54,22 @@ try {
 considerMutated(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = 0;
+try {
+  fail_early;
+  a = 1;
+}
+catch (e) {
+
+}
+considerMutated( a );
+`````
+
 ## Globals
 
 BAD@! Found 3 implicit global bindings:

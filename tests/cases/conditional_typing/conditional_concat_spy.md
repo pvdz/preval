@@ -91,6 +91,26 @@ if (tmpIfTest$1787) {
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 2097173 );
+const b = $spy();
+const c = $coerce( b, "plustr" );
+const d = a === 2097173;
+if (d) {
+  const e = `Parser error! ${[object Object]} (at EOF)`;
+  $( "-->", e );
+}
+else {
+  const f = `Parser error! ${[object Object]}`;
+  $( "-->", f );
+}
+$( undefined );
+`````
+
 ## Globals
 
 None

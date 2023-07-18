@@ -64,6 +64,26 @@ if (tmpIfTest) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = 60;
+const b = $( 30 );
+if (b) {
+  $( "before  60  after" );
+}
+else {
+  const c = $( 100 );
+  a = $( c );
+  const d = $coerce( a, "string" );
+  const e = `before  ${[object Object]}  after`;
+  $( e );
+}
+$( a );
+`````
+
 ## Globals
 
 None

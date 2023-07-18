@@ -57,6 +57,20 @@ const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 3 );
+const b = $( 4 );
+const c = {
+x: a,
+y: b
+;
+$( c, a, b );
+`````
+
 ## Globals
 
 None

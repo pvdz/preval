@@ -56,6 +56,21 @@ try {
 $(3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+try {
+  $( 2 );
+}
+finally {
+  $( 3 );
+}
+$( 3 );
+`````
+
 ## Globals
 
 None

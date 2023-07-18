@@ -104,6 +104,69 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( "$" );
+const d = a[ c ];
+new d( 1 );
+$( 100 );
+const e = $( "$" );
+const f = a[ e ];
+new f( 1 );
+$( 100 );
+const g = $( "$" );
+const h = a[ g ];
+new h( 1 );
+$( 100 );
+const i = $( "$" );
+const j = a[ i ];
+new j( 1 );
+$( 100 );
+const k = $( "$" );
+const l = a[ k ];
+new l( 1 );
+$( 100 );
+const m = $( "$" );
+const n = a[ m ];
+new n( 1 );
+$( 100 );
+const o = $( "$" );
+const p = a[ o ];
+new p( 1 );
+$( 100 );
+const q = $( "$" );
+const r = a[ q ];
+new r( 1 );
+$( 100 );
+const s = $( "$" );
+const t = a[ s ];
+new t( 1 );
+$( 100 );
+const u = $( "$" );
+const v = a[ u ];
+new v( 1 );
+$( 100 );
+const w = $( "$" );
+const x = a[ w ];
+new x( 1 );
+$( 100 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const y = $( "$" );
+  const z = a[ y ];
+  new z( 1 );
+  $( 100 );
+}
+$( b );
+`````
+
 ## Globals
 
 None

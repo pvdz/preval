@@ -38,6 +38,16 @@ const tmpCallObj = $(a);
 tmpCallObj.b(1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { b: $ };
+const b = $( a );
+b.b( 1 );
+`````
+
 ## Globals
 
 None

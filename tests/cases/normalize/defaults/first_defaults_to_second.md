@@ -113,6 +113,42 @@ const tmpCalleeParam$5 = f(`x`, `y`, false);
 $(tmpCalleeParam$5);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0,$$1,$$2 ) {
+  const b = c;
+  const d = e;
+  const f = g;
+  debugger;
+  if (f) {
+    throw "Preval: Cannot access `b` before initialization";
+  }
+  else {
+    let h = "bar";
+    const i = d === undefined;
+    if (i) {
+
+    }
+    else {
+      h = d;
+    }
+    const j = [ b, h,, ];
+    return j;
+  }
+},;
+const k = a( undefined, undefined, true );
+$( k );
+const l = a( "x", undefined, false );
+$( l );
+const m = a( undefined, "y", true );
+$( m );
+const n = a( "x", "y", false );
+$( n );
+`````
+
 ## Globals
 
 None

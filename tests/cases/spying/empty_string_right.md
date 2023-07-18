@@ -67,6 +67,23 @@ f();
 f();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $spy();
+  const c = $coerce( b, "plustr" );
+  $( c, "a" );
+  $( c, "b" );
+  return undefined;
+},;
+a();
+a();
+`````
+
 ## Globals
 
 None

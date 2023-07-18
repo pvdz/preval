@@ -74,6 +74,20 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  return b;
+},;
+const d = a();
+$( d );
+`````
+
 ## Globals
 
 None

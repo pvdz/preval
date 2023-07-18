@@ -62,6 +62,22 @@ if (set) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 64 );
+const b = a & 65;
+const c = b === 64;
+if (c) {
+  $( "pass" );
+}
+else {
+  $( "fail" );
+}
+`````
+
 ## Globals
 
 None

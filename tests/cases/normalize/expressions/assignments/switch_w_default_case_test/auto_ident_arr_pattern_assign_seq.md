@@ -125,6 +125,39 @@ $(`fail2`);
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+let b = 1;
+$( 1 );
+$( 2 );
+const c = $( 3 );
+const d = $( 4 );
+const e = [ c, d,, ];
+const f = [ ... e,, ];
+const g = f[ 0 ];
+const h = f[ 1 ];
+const i = e === a;
+if (i) {
+  b = 0;
+}
+else {
+  const j = 2 === a;
+  if (j) {
+    b = 2;
+  }
+}
+const k = b <= 1;
+if (k) {
+  $( "fail1" );
+}
+$( "fail2" );
+$( e, g, h );
+`````
+
 ## Globals
 
 None

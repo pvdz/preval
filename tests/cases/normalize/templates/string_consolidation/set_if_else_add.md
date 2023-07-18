@@ -96,6 +96,25 @@ if (t) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "s" );
+const b = $( "t" );
+const c = $coerce( a, "plustr" );
+if (b) {
+  const d = $coerce( b, "plustr" );
+  const e = `${[object Object]}abcdef`;
+  $( e );
+}
+else {
+  const f = `${[object Object]}abcghi`;
+  $( f );
+}
+`````
+
 ## Globals
 
 None

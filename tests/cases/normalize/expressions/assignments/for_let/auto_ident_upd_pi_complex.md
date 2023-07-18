@@ -91,6 +91,46 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpNestedPropCompoundComplexRhs, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = $( a );
+const c = $( b );
+const d = c.x;
+const e = d + 1;
+c.x = e;
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( e );
+  $( 1 );
+}
+$( e, a );
+`````
+
 ## Globals
 
 None

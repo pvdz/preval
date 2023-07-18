@@ -57,6 +57,25 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = $( 1 );
+const c = { b: b };
+const d = a * c;
+$( d );
+const e = $( d );
+const f = $( "b" );
+e[f] = 2;
+$( d );
+`````
+
 ## Globals
 
 None

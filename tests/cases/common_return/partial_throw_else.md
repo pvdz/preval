@@ -80,6 +80,28 @@ f();
 $(15);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( 0 );
+  if (b) {
+    throw "Some error";
+  }
+  else {
+    return undefined;
+  }
+},;
+a();
+a();
+a();
+a();
+$( 15 );
+`````
+
 ## Globals
 
 None

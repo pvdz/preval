@@ -37,6 +37,16 @@ const tmpCalleeParam = tmpBinLhs ^ 0;
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy( 3.402823669209385e+38 );
+const b = a ^ 0;
+$( b );
+`````
+
 ## Globals
 
 None

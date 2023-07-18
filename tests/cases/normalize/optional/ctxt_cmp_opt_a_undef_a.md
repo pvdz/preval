@@ -60,6 +60,26 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( undefined );
+const b = a == null;
+if (b) {
+  $( undefined );
+}
+else {
+  const c = $( "b" );
+  const d = a[ c ];
+  const e = $( "c" );
+  const f = d[ e ];
+  const g = $dotCall( f, d, 100 );
+  $( g );
+}
+`````
+
 ## Globals
 
 None

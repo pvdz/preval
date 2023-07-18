@@ -69,6 +69,24 @@ const y = [`a`, 1, tmpBinLhs, 3, `b`];
 $(y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 10 );
+const a = $( "x" );
+const b = $coerce( a, "string" );
+const c = $( "y" );
+const d = $coerce( c, "string" );
+const e = `${[object Object]} `;
+if ($) {
+  $( 20 );
+}
+const f = [ "a", 1, e, 3, "b",, ];
+$( f );
+`````
+
 ## Globals
 
 None

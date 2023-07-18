@@ -77,6 +77,42 @@ if ($tmpLoopUnrollCheck) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+if (x) {
+  const b = $( "yes" );
+  if (b) {
+
+  }
+  else {
+    a = false;
+  }
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    if (x) {
+      const c = $( "yes" );
+      if (c) {
+
+      }
+      else {
+        break;
+      }
+    }
+    else {
+      break;
+    }
+  }
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

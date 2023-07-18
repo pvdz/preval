@@ -56,6 +56,23 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+let b = undefined;
+const c = { b: a };
+for (b of c {
+
+}
+const d = $( c );
+const e = $( "b" );
+d[e] = 2;
+$( c );
+`````
+
 ## Globals
 
 None

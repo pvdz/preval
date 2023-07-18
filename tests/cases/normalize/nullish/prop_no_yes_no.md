@@ -49,6 +49,22 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $ObjectPrototype.b;
+const b = a == null;
+if (b) {
+  const c = c.d;
+  $( c );
+}
+else {
+  $( a );
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

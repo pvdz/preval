@@ -46,6 +46,18 @@ const f = function () {
 export { f };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  return undefined;
+},;
+export { a as f from "undefined"
+`````
+
 ## Globals
 
 None

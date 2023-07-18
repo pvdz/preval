@@ -97,6 +97,48 @@ if (tmpNestedPropCompoundComplexRhs) {
 $(a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = {
+a: 999,
+b: 1000
+;
+$( 100 );
+const c = $( a );
+const d = $( c );
+const e = d.x;
+const f = e - 1;
+d.x = f;
+if (f) {
+  $( 100 );
+  const g = $( a );
+  const h = $( g );
+  const i = h.x;
+  const j = i - 1;
+  h.x = j;
+  let k = j;
+  while ($LOOP_UNROLL_9) {
+    if (k) {
+      $( 100 );
+      const l = $( a );
+      const m = $( l );
+      const n = m.x;
+      const o = n - 1;
+      m.x = o;
+      k = o;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( b, a );
+`````
+
 ## Globals
 
 None

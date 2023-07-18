@@ -171,6 +171,131 @@ if (x) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if (x) {
+  $( 1 );
+  if ($) {
+
+  }
+  else {
+    $( 2 );
+    if (x) {
+      $( 1 );
+      if ($) {
+
+      }
+      else {
+        $( 2 );
+        if (x) {
+          $( 1 );
+          if ($) {
+
+          }
+          else {
+            $( 2 );
+            if (x) {
+              $( 1 );
+              if ($) {
+
+              }
+              else {
+                $( 2 );
+                if (x) {
+                  $( 1 );
+                  if ($) {
+
+                  }
+                  else {
+                    $( 2 );
+                    if (x) {
+                      $( 1 );
+                      if ($) {
+
+                      }
+                      else {
+                        $( 2 );
+                        if (x) {
+                          $( 1 );
+                          if ($) {
+
+                          }
+                          else {
+                            $( 2 );
+                            if (x) {
+                              $( 1 );
+                              if ($) {
+
+                              }
+                              else {
+                                $( 2 );
+                                if (x) {
+                                  $( 1 );
+                                  if ($) {
+
+                                  }
+                                  else {
+                                    $( 2 );
+                                    if (x) {
+                                      $( 1 );
+                                      if ($) {
+
+                                      }
+                                      else {
+                                        $( 2 );
+                                        const a = function() {
+                                          debugger;
+                                          while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+                                            if (x) {
+                                              $( 1 );
+                                              if ($) {
+                                                return undefined;
+                                              }
+                                              else {
+                                                $( 2 );
+                                              }
+                                            }
+                                            else {
+                                              break;
+                                            }
+                                          }
+                                          return undefined;
+                                        },;
+                                        if (x) {
+                                          $( 1 );
+                                          if ($) {
+
+                                          }
+                                          else {
+                                            $( 2 );
+                                            a();
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

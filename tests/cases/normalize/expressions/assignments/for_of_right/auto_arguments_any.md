@@ -46,6 +46,19 @@ for (x of a) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = arguments;
+let b = undefined;
+for (b of a {
+
+}
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

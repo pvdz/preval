@@ -61,6 +61,24 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+const b = a == null;
+if (b) {
+  foo;
+  const c = $( foo );
+  $( c );
+}
+else {
+  const d = $( a );
+  $( d );
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

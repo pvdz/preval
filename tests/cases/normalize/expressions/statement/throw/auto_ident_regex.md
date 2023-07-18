@@ -39,6 +39,15 @@ const tmpThrowArg = /foo/;
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = /foo/;
+throw a;
+`````
+
 ## Globals
 
 None

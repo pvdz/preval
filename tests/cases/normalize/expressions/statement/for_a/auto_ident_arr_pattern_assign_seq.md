@@ -80,6 +80,34 @@ const a = { a: 999, b: 1000 };
 $(a, tmpArrElement, tmpArrElement$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 2 );
+const a = $( 3 );
+const b = $( 4 );
+const c = $( 0 );
+if (c) {
+  let d = $( 0 );
+  while ($LOOP_UNROLL_10) {
+    if (d) {
+      d = $( 0 );
+    }
+    else {
+      break;
+    }
+  }
+}
+const e = {
+a: 999,
+b: 1000
+;
+$( e, a, b );
+`````
+
 ## Globals
 
 None

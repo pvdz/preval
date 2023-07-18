@@ -82,6 +82,25 @@ $(tmpClusterSSA_problem2);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = x;
+if (x) {
+
+}
+else {
+  a = {};
+}
+a.now;
+y;
+const b = {};
+$( b );
+$( undefined );
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

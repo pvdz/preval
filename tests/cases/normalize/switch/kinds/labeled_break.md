@@ -120,6 +120,25 @@ foo: {
 $(`pass`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+foo: {
+  const a = $( 1 );
+  if (a) {
+    const b = $( 1 );
+    const c = b === 0;
+    if (c) {
+      $( "one" );
+    }
+    $( "fail" );
+  }
+}
+$( "pass" );
+`````
+
 ## Globals
 
 None

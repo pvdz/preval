@@ -65,6 +65,18 @@ const tmpClusterSSA_tmpReturnArg$1 = $(obj);
 $(tmpClusterSSA_tmpReturnArg$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+const b = { b: a };
+const c = { a: b };
+const d = $( c );
+$( d );
+`````
+
 ## Globals
 
 None

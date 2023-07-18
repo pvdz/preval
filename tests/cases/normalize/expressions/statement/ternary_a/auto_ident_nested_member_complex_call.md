@@ -76,6 +76,33 @@ if (varInitAssignLhsComputedRhs$1) {
 $(a, b, c, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+const c = {
+a: 999,
+b: 1000
+;
+const d = $( a );
+const e = $( "x" );
+const f = $( b );
+const g = $( "y" );
+const h = $( 3 );
+f[g] = h;
+d[e] = h;
+if (h) {
+  $( 100 );
+}
+else {
+  $( 200 );
+}
+$( c, a, b, 3 );
+`````
+
 ## Globals
 
 None

@@ -52,6 +52,17 @@ const tmpNestedComplexRhs = tmpCompObj.length;
 $(tmpNestedComplexRhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [];
+const b = $( a );
+const c = b.length;
+$( c );
+`````
+
 ## Globals
 
 None

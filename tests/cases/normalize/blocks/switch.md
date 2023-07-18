@@ -147,6 +147,52 @@ if (tmpIfTest$9) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+let b = 5;
+const c = $( 2 );
+const d = c === a;
+if (d) {
+  b = 0;
+}
+else {
+  const e = $( 4 );
+  const f = e === a;
+  if (f) {
+    b = 1;
+  }
+  else {
+    const g = $( 5 );
+    const h = g === a;
+    if (h) {
+      b = 2;
+    }
+    else {
+      const i = $( 6 );
+      const j = i === a;
+      if (j) {
+        b = 3;
+      }
+      else {
+        const k = $( 7 );
+        const l = k === a;
+        if (l) {
+          b = 4;
+        }
+      }
+    }
+  }
+}
+const m = b <= 0;
+if (m) {
+  $( 3 );
+}
+`````
+
 ## Globals
 
 None

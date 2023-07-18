@@ -72,6 +72,24 @@ for (styleName$5 in tmpForInDeclRhs) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = { x: 100 };
+for (a in b {
+  const c = $( 1 );
+  if (c) {
+    const d = $( 2 );
+    if (d) {
+      $( 3 );
+    }
+  }
+}
+`````
+
 ## Globals
 
 None

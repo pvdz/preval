@@ -51,6 +51,17 @@ const tmpReturnArg = tmpCompObj.foo;
 $(tmpReturnArg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+const a = $( 2 );
+const b = a.foo;
+$( b );
+`````
+
 ## Globals
 
 None

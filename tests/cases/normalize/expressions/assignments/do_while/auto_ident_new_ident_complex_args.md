@@ -117,6 +117,66 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpClusterSSA_a$2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+const a = $( 1 );
+const b = $( 2 );
+new $( a, b );
+$( 100 );
+const c = $( 1 );
+const d = $( 2 );
+new $( c, d );
+$( 100 );
+const e = $( 1 );
+const f = $( 2 );
+new $( e, f );
+$( 100 );
+const g = $( 1 );
+const h = $( 2 );
+new $( g, h );
+$( 100 );
+const i = $( 1 );
+const j = $( 2 );
+new $( i, j );
+$( 100 );
+const k = $( 1 );
+const l = $( 2 );
+new $( k, l );
+$( 100 );
+const m = $( 1 );
+const n = $( 2 );
+new $( m, n );
+$( 100 );
+const o = $( 1 );
+const p = $( 2 );
+new $( o, p );
+$( 100 );
+const q = $( 1 );
+const r = $( 2 );
+new $( q, r );
+$( 100 );
+const s = $( 1 );
+const t = $( 2 );
+new $( s, t );
+$( 100 );
+const u = $( 1 );
+const v = $( 2 );
+const w = new $( u, v );
+let x = w;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+  const y = $( 1 );
+  const z = $( 2 );
+  const 01 = new $( y, z );
+  x = 01;
+}
+$( x );
+`````
+
 ## Globals
 
 None

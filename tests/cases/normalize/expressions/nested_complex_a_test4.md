@@ -52,6 +52,18 @@ varInitAssignLhsComputedObj.length = undefined;
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [];
+const b = $( a );
+const c = $( b );
+c.length = undefined;
+$( undefined );
+`````
+
 ## Globals
 
 None

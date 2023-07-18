@@ -45,6 +45,18 @@ tmpCompObj[tmpCompProp];
 $(1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+const a = $( 2 );
+const b = $( "toString" );
+a[ b ];
+$( 1 );
+`````
+
 ## Globals
 
 None

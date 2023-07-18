@@ -45,6 +45,21 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = parseInt == null;
+if (a) {
+  foo;
+  $( foo );
+}
+else {
+  $( parseInt );
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

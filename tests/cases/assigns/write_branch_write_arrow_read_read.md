@@ -74,6 +74,22 @@ const tmpClusterSSA_x$1 = $(3, `after`);
 $(tmpClusterSSA_x$1, `final`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+const a = $( 1 );
+if (a) {
+  const b = $( 2, "branch" );
+  const c = $( b, "arrow" );
+  $( c, "result" );
+}
+const d = $( 3, "after" );
+$( d, "final" );
+`````
+
 ## Globals
 
 None

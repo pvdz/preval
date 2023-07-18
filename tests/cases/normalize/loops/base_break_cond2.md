@@ -75,6 +75,16 @@ $(`afterwards`);
 $(100, `f`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( "afterwards" );
+$( 100, "f" );
+`````
+
 ## Globals
 
 None

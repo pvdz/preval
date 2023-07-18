@@ -248,6 +248,200 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( 1 );
+const b = a % 2;
+if (b) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const c = a % 3;
+let d = false;
+if (c) {
+  a = $( 10, "ten" );
+  d = a % 2;
+}
+else {
+  d = a % 2;
+}
+if (d) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const e = a % 3;
+let f = false;
+if (e) {
+  a = $( 10, "ten" );
+  f = a % 2;
+}
+else {
+  f = a % 2;
+}
+if (f) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const g = a % 3;
+let h = false;
+if (g) {
+  a = $( 10, "ten" );
+  h = a % 2;
+}
+else {
+  h = a % 2;
+}
+if (h) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const i = a % 3;
+let j = false;
+if (i) {
+  a = $( 10, "ten" );
+  j = a % 2;
+}
+else {
+  j = a % 2;
+}
+if (j) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const k = a % 3;
+let l = false;
+if (k) {
+  a = $( 10, "ten" );
+  l = a % 2;
+}
+else {
+  l = a % 2;
+}
+if (l) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const m = a % 3;
+let n = false;
+if (m) {
+  a = $( 10, "ten" );
+  n = a % 2;
+}
+else {
+  n = a % 2;
+}
+if (n) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const o = a % 3;
+let p = false;
+if (o) {
+  a = $( 10, "ten" );
+  p = a % 2;
+}
+else {
+  p = a % 2;
+}
+if (p) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const q = a % 3;
+let r = false;
+if (q) {
+  a = $( 10, "ten" );
+  r = a % 2;
+}
+else {
+  r = a % 2;
+}
+if (r) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const s = a % 3;
+let t = false;
+if (s) {
+  a = $( 10, "ten" );
+  t = a % 2;
+}
+else {
+  t = a % 2;
+}
+if (t) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const u = a % 3;
+let v = false;
+if (u) {
+  a = $( 10, "ten" );
+  v = a % 2;
+}
+else {
+  v = a % 2;
+}
+if (v) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const w = a % 3;
+if (w) {
+  a = $( 10, "ten" );
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const x = a % 2;
+  if (x) {
+    a = a + 1;
+    $( a, "write" );
+  }
+  else {
+    $( a, "read" );
+  }
+  const y = a % 3;
+  if (y) {
+    a = $( 10, "ten" );
+  }
+}
+`````
+
 ## Globals
 
 None

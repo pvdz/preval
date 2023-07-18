@@ -40,6 +40,17 @@ const tmpCalleeParam = tmpCallObj.test(tmpCalleeParam$1);
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "x" );
+const b = /x/g;
+const c = b.test( a );
+$( c );
+`````
+
 ## Globals
 
 None

@@ -123,6 +123,32 @@ $(undefined);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100 );
+$( a );
+const b = function() {
+  debugger;
+  const c = $( 1 );
+  if (c) {
+    $( "a" );
+    b();
+    return undefined;
+  }
+  else {
+    $( "b" );
+    return undefined;
+  }
+},;
+b();
+$( "c" );
+$( undefined );
+$( undefined );
+`````
+
 ## Globals
 
 None

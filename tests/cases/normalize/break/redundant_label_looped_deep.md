@@ -97,6 +97,34 @@ exit: while (true) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( 2 );
+exit: while (true) {
+  if (a) {
+    while (true) {
+      $( 1 );
+      const b = $( 1 );
+      if (b) {
+        a = $( 3 );
+      }
+      if (a) {
+        break exit;
+      }
+      else {
+        a = $( 4 );
+      }
+    }
+  }
+  else {
+    break;
+  }
+}
+`````
+
 ## Globals
 
 None

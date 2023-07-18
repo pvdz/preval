@@ -95,6 +95,43 @@ try {
 } catch (e$7) {}
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+try {
+  throw "Some error";
+}
+catch (e) {
+
+}
+try {
+  throw "Some error";
+}
+catch (e$1) {
+
+}
+try {
+  throw "Some error";
+}
+catch (e$3) {
+
+}
+try {
+  throw "Some error";
+}
+catch (e$5) {
+
+}
+try {
+  throw "Some error";
+}
+catch (e$7) {
+
+}
+`````
+
 ## Globals
 
 BAD@! Found 5 implicit global bindings:

@@ -186,6 +186,51 @@ const tmpCalleeParam$1 = h();
 $(tmpCalleeParam$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( 10 );
+  if ($) {
+    $( "prevent" );
+    $( "simple" );
+    $( "inlining" );
+    return b;
+  }
+  else {
+    return b;
+  }
+},;
+const c = function() {
+  debugger;
+  if ($) {
+    $( "prevent" );
+    $( "simple" );
+    $( "inlining" );
+    if ($) {
+      $( "prevent" );
+      $( "simple" );
+      $( "inlining" );
+      const d = a();
+      return d;
+    }
+    else {
+      const e = a();
+      return e;
+    }
+  }
+  else {
+    const f = a();
+    return f;
+  }
+},;
+const g = c();
+$( g );
+`````
+
 ## Globals
 
 None

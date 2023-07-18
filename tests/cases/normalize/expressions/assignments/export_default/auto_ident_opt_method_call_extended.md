@@ -62,6 +62,19 @@ export { tmpAnonDefaultExport as default };
 $(tmpChainElementCall);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = { e: $ };
+const c = $dotCall( $, b, 1 );
+a = c;
+export { a as default from "undefined"
+$( c );
+`````
+
 ## Globals
 
 None

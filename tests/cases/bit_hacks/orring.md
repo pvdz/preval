@@ -44,6 +44,17 @@ const z = y | 300;
 $(x, y, z);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1234 );
+const b = a | 200;
+const c = b | 300;
+$( a, b, c );
+`````
+
 ## Globals
 
 None

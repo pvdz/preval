@@ -126,6 +126,29 @@ a();
 b();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "before" );
+  b = function() {
+    debugger;
+    $( "replaced" );
+    return undefined;
+  },;
+  $( "after" );
+  return undefined;
+},;
+let b = a;
+a();
+a();
+b();
+a();
+`````
+
 ## Globals
 
 None

@@ -167,6 +167,102 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(7, b, c, 3, 4);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+$( 100 );
+const c = $( a );
+const d = $( "x" );
+const e = $( b );
+const f = $( "y" );
+e[f] = 7;
+c[d] = 7;
+$( 100 );
+const g = $( a );
+const h = $( "x" );
+const i = $( b );
+const j = $( "y" );
+i[j] = 7;
+g[h] = 7;
+$( 100 );
+const k = $( a );
+const l = $( "x" );
+const m = $( b );
+const n = $( "y" );
+m[n] = 7;
+k[l] = 7;
+$( 100 );
+const o = $( a );
+const p = $( "x" );
+const q = $( b );
+const r = $( "y" );
+q[r] = 7;
+o[p] = 7;
+$( 100 );
+const s = $( a );
+const t = $( "x" );
+const u = $( b );
+const v = $( "y" );
+u[v] = 7;
+s[t] = 7;
+$( 100 );
+const w = $( a );
+const x = $( "x" );
+const y = $( b );
+const z = $( "y" );
+y[z] = 7;
+w[x] = 7;
+$( 100 );
+const 01 = $( a );
+const 11 = $( "x" );
+const 21 = $( b );
+const 31 = $( "y" );
+21[31] = 7;
+01[11] = 7;
+$( 100 );
+const 41 = $( a );
+const 51 = $( "x" );
+const 61 = $( b );
+const 71 = $( "y" );
+61[71] = 7;
+41[51] = 7;
+$( 100 );
+const 81 = $( a );
+const 91 = $( "x" );
+const a1 = $( b );
+const b1 = $( "y" );
+a1[b1] = 7;
+81[91] = 7;
+$( 100 );
+const c1 = $( a );
+const d1 = $( "x" );
+const e1 = $( b );
+const f1 = $( "y" );
+e1[f1] = 7;
+c1[d1] = 7;
+$( 100 );
+const g1 = $( a );
+const h1 = $( "x" );
+const i1 = $( b );
+const j1 = $( "y" );
+i1[j1] = 7;
+g1[h1] = 7;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+  const k1 = $( a );
+  const l1 = $( "x" );
+  const m1 = $( b );
+  const n1 = $( "y" );
+  m1[n1] = 7;
+  k1[l1] = 7;
+}
+$( 7, a, b, 3, 4 );
+`````
+
 ## Globals
 
 None

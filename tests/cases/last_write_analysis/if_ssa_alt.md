@@ -62,6 +62,23 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "a" );
+$( a );
+const b = $( "b" );
+if ($) {
+  $( b );
+}
+else {
+  const c = $( "c" );
+  $( c );
+}
+`````
+
 ## Globals
 
 None

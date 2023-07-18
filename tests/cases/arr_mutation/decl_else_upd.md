@@ -50,6 +50,21 @@ if ($) {
 $(arr);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [];
+if ($) {
+
+}
+else {
+  a[0] = 2;
+}
+$( a );
+`````
+
 ## Globals
 
 None

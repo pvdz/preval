@@ -101,6 +101,29 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( 1, "disc" );
+  const c = $( 0 );
+  const d = c === b;
+  if (d) {
+    $( "wrong branch" );
+    return undefined;
+  }
+  else {
+    const e = $( 2, "ret" );
+    return e;
+  }
+},;
+const f = a();
+$( f );
+`````
+
 ## Globals
 
 None

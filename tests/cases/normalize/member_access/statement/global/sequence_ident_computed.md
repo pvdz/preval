@@ -46,6 +46,17 @@ const tmpCompProp = $(`length`);
 $(1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+const a = $( "length" );
+"foo"[ a ];
+$( 1 );
+`````
+
 ## Globals
 
 None

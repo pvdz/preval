@@ -107,6 +107,68 @@ const a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( 2 );
+new $( a, b );
+$( 1 );
+const c = $( 1 );
+const d = $( 2 );
+new $( c, d );
+$( 1 );
+const e = $( 1 );
+const f = $( 2 );
+new $( e, f );
+$( 1 );
+const g = $( 1 );
+const h = $( 2 );
+new $( g, h );
+$( 1 );
+const i = $( 1 );
+const j = $( 2 );
+new $( i, j );
+$( 1 );
+const k = $( 1 );
+const l = $( 2 );
+new $( k, l );
+$( 1 );
+const m = $( 1 );
+const n = $( 2 );
+new $( m, n );
+$( 1 );
+const o = $( 1 );
+const p = $( 2 );
+new $( o, p );
+$( 1 );
+const q = $( 1 );
+const r = $( 2 );
+new $( q, r );
+$( 1 );
+const s = $( 1 );
+const t = $( 2 );
+new $( s, t );
+$( 1 );
+const u = $( 1 );
+const v = $( 2 );
+new $( u, v );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const w = $( 1 );
+  const x = $( 2 );
+  new $( w, x );
+  $( 1 );
+}
+const y = {
+a: 999,
+b: 1000
+;
+$( y );
+`````
+
 ## Globals
 
 None

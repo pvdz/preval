@@ -411,6 +411,132 @@ tmp(a, b, c, d, e);
 tmp(obja, objb, objc, objd);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  const d = [ "$:", b, e, f, g, h, i, j, k, l, "::", ... b,, ];
+  $( d );
+  const m = b[ 0 ];
+  return m;
+},;
+const i = {
+get a() {
+    debugger;
+    a( "a.get" );
+    return 110;
+  },,
+set a( $$0 ) {
+    const n = c;
+    debugger;
+    a( "a.set", n );
+    h = "faila";
+    return 1000;
+  },
+;
+const j = {
+get b() {
+    debugger;
+    a( "b.get" );
+    o = 210;
+    return 100;
+  },,
+set b( $$0 ) {
+    const p = c;
+    debugger;
+    a( "b.set", p );
+    o = 2100;
+    h = "failb";
+    return 2000;
+  },
+;
+const k = {
+get c() {
+    debugger;
+    a( "c.get" );
+    o = 310;
+    e = 320;
+    return 100;
+  },,
+set c( $$0 ) {
+    const q = c;
+    debugger;
+    a( "c.set", q );
+    o = 3100;
+    e = 3200;
+    h = "failc";
+    return 3000;
+  },
+;
+const l = {
+get d() {
+    debugger;
+    a( "d.get" );
+    o = 410;
+    e = 420;
+    f = 430;
+    return 100;
+  },,
+set d( $$0 ) {
+    const r = c;
+    debugger;
+    a( "d.set", r );
+    o = 4100;
+    e = 4200;
+    f = 4300;
+    h = "faild";
+    return 4000;
+  },
+;
+let o = function() {
+  debugger;
+  a( "a" );
+  return i;
+},;
+let e = function() {
+  debugger;
+  a( "b" );
+  o = 21;
+  return j;
+},;
+let f = function() {
+  debugger;
+  a( "c" );
+  o = 31;
+  e = 32;
+  return k;
+},;
+const g = function() {
+  debugger;
+  a( "d" );
+  o = 41;
+  e = 42;
+  f = 43;
+  return l;
+},;
+let h = 12345;
+const s = o();
+const t = a( "a" );
+const u = e();
+const v = a( "b" );
+const w = f();
+const x = a( "c" );
+g();
+const y = a( "d" );
+const z = h;
+l[y] = z;
+w[x] = z;
+u[v] = z;
+s[t] = z;
+a( z );
+a( o, e, f, g, h );
+a( i, j, k, l );
+`````
+
 ## Globals
 
 None

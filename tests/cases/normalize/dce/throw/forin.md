@@ -71,6 +71,30 @@ if (tmpForEntered) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+let b = false;
+const c = {
+a: 1,
+b: 2
+;
+for (a in c {
+  b = true;
+  break;
+}
+if (b) {
+  const d = $( 1, "throw" );
+  throw d;
+}
+else {
+  $( undefined );
+}
+`````
+
 ## Globals
 
 None

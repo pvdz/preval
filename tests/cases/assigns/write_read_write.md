@@ -48,6 +48,18 @@ $(tmpClusterSSA_x);
 $(`redundant`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+$( a );
+const b = $( 2 );
+$( b );
+$( "redundant" );
+`````
+
 ## Globals
 
 None

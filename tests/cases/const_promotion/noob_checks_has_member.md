@@ -97,6 +97,29 @@ x = $(20);
 $(x, 2, b, `final`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( 10 );
+const b = {
+set x( $$0 ) {
+    debugger;
+    a = $( 30, "from set" );
+    return undefined;
+  },,
+get x() {
+    debugger;
+    const c = $( 40, "from get" );
+    return c;
+  },
+;
+b.x = a;
+a = $( 20 );
+$( a, 2, b, "final" );
+`````
+
 ## Globals
 
 None

@@ -92,6 +92,46 @@ if (tmpNestedAssignArrPatternRhs) {
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = [ ... a,, ];
+b[ 0 ];
+$( 100 );
+const c = [ 1, 2,, ];
+const d = $( c );
+const e = [ ... d,, ];
+let f = e[ 0 ];
+if (d) {
+  $( 100 );
+  const g = [ 1, 2,, ];
+  const h = $( g );
+  const i = [ ... h,, ];
+  f = i[ 0 ];
+  let j = h;
+  while ($LOOP_UNROLL_9) {
+    if (j) {
+      $( 100 );
+      const k = [ 1, 2,, ];
+      const l = $( k );
+      const m = [ ... l,, ];
+      f = m[ 0 ];
+      j = l;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( f );
+`````
+
 ## Globals
 
 None

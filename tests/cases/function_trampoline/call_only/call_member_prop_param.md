@@ -50,6 +50,15 @@ const obj = { $: $ };
 obj.$(1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+a.$( 1 );
+`````
+
 ## Globals
 
 None

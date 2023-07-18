@@ -97,6 +97,20 @@ if (bit) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = objDestructible & 1;
+if (a) {
+  $( 16 );
+}
+else {
+  $( 32 );
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

@@ -52,6 +52,19 @@ const a = { a: 999, b: 1000 };
 $(a, 2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "before  2  after" );
+const a = {
+a: 999,
+b: 1000
+;
+$( a, 2 );
+`````
+
 ## Globals
 
 None

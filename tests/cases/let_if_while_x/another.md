@@ -180,6 +180,78 @@ if ($tmpLoopUnrollCheck) {
 $(a, b, c, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+const c = {
+a: 999,
+b: 1000
+;
+let d = $LOOP_UNROLL_10;
+$( 100 );
+const e = $( a );
+const f = $( "x" );
+const g = $( b );
+const h = $( "y" );
+const i = $( 3 );
+g[h] = i;
+e[f] = i;
+if (i) {
+
+}
+else {
+  d = false;
+}
+let j = true;
+if (d) {
+  $( 100 );
+  const k = $( a );
+  const l = $( "x" );
+  const m = $( b );
+  const n = $( "y" );
+  const o = $( 3 );
+  m[n] = o;
+  k[l] = o;
+  if (o) {
+
+  }
+  else {
+    j = false;
+  }
+}
+else {
+  j = false;
+}
+if (j) {
+  while ($LOOP_UNROLL_10) {
+    if (d) {
+      $( 100 );
+      const p = $( a );
+      const q = $( "x" );
+      const r = $( b );
+      const s = $( "y" );
+      const t = $( 3 );
+      r[s] = t;
+      p[q] = t;
+      if (t) {
+
+      }
+      else {
+        break;
+      }
+    }
+    else {
+      break;
+    }
+  }
+}
+$( c, a, b, 3 );
+`````
+
 ## Globals
 
 None

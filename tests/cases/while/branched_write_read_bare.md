@@ -146,6 +146,112 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( 1 );
+const b = a % 2;
+if (b) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const c = a % 2;
+if (c) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const d = a % 2;
+if (d) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const e = a % 2;
+if (e) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const f = a % 2;
+if (f) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const g = a % 2;
+if (g) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const h = a % 2;
+if (h) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const i = a % 2;
+if (i) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const j = a % 2;
+if (j) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const k = a % 2;
+if (k) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+const l = a % 2;
+if (l) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const m = a % 2;
+  if (m) {
+    a = a + 1;
+    $( a, "write" );
+  }
+  else {
+    $( a, "read" );
+  }
+}
+`````
+
 ## Globals
 
 None

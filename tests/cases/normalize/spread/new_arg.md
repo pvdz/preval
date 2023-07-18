@@ -64,6 +64,17 @@ const tmpObjLitVal = [7];
 new String(8.5, 8, ...tmpObjLitVal);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+2.c;
+5[ 6 ];
+const a = [ 7,, ];
+new String( 8.5, 8, ... a );
+`````
+
 ## Globals
 
 None

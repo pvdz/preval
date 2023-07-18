@@ -58,6 +58,21 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = new $( 1 );
+let b = a;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+  const c = new $( 1 );
+  b = c;
+}
+$( b );
+`````
+
 ## Globals
 
 None

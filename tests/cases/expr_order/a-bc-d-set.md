@@ -79,6 +79,23 @@ b.c = 3;
 $(3, b, d);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = { set c( $$0 ) {
+  debugger;
+  $( "b.set" );
+  a = null;
+  b = null;
+  return 7;
+}, };
+let b = 3;
+a.c = 3;
+$( 3, a, b );
+`````
+
 ## Globals
 
 None

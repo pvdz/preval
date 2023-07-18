@@ -120,6 +120,34 @@ const parseIdentifierRest = function () {
 $(parseIdentifierRest);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  c$53;
+  const b = $( 1 );
+  if (b) {
+    const c = $( 1 );
+    if (c) {
+      return 10;
+    }
+  }
+  else {
+    $( 100 );
+  }
+  if ($) {
+    return 3;
+  }
+  else {
+    return 4;
+  }
+},;
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

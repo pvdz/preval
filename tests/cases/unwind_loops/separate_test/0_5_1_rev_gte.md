@@ -53,6 +53,19 @@ $(4);
 $(5);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 0 );
+$( 1 );
+$( 2 );
+$( 3 );
+$( 4 );
+$( 5 );
+`````
+
 ## Globals
 
 None

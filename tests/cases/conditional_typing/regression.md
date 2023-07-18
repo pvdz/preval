@@ -128,6 +128,37 @@ f();
 f();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = 0;
+const b = function() {
+  debugger;
+  const c = a === 16472;
+  if (c) {
+    lexerFlags;
+    a = $( "random" );
+    const d = a === 16473;
+    if (d) {
+      $( "x" );
+      return undefined;
+    }
+    else {
+      $( "y" );
+      return undefined;
+    }
+  }
+  else {
+    $( "a" );
+    return undefined;
+  }
+},;
+b();
+b();
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

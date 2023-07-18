@@ -83,6 +83,20 @@ $(undefined, `x`);
 $(undefined, `closure`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100, "init" );
+$( a, "closure" );
+if ($) {
+  $( 1, "f" );
+}
+$( undefined, "x" );
+$( undefined, "closure" );
+`````
+
 ## Globals
 
 None

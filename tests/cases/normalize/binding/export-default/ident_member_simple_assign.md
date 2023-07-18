@@ -56,6 +56,21 @@ export { a };
 $(varInitAssignLhsComputedRhs$1, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 3 );
+const b = $( 4 );
+a.y = b;
+const c = { x: 2 };
+c.x = b;
+const d = b;
+export { d as a from "undefined"
+$( b, c, 3 );
+`````
+
 ## Globals
 
 None

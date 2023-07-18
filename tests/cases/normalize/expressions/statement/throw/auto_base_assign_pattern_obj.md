@@ -52,6 +52,18 @@ tmpNestedAssignObjPatternRhs.b;
 throw tmpNestedAssignObjPatternRhs;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 2 );
+const b = { b: a };
+const c = $( b );
+c.b;
+throw c;
+`````
+
 ## Globals
 
 None

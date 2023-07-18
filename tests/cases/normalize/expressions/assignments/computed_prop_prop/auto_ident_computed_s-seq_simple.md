@@ -55,6 +55,19 @@ obj[a];
 $(a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { c: 1 };
+const b = {};
+const c = $( "c" );
+const d = a[ c ];
+b[ d ];
+$( d, a );
+`````
+
 ## Globals
 
 None

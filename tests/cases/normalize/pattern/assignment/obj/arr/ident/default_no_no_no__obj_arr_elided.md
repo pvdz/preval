@@ -42,6 +42,15 @@ y = undefined;
 $(y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+y = undefined;
+$( y );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

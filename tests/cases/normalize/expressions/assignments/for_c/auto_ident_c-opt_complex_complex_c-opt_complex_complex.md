@@ -115,6 +115,70 @@ if (tmpIfTest) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+let b = {
+a: 999,
+b: 1000
+;
+const c = $( 1 );
+if (c) {
+  b = undefined;
+  const d = { x: a };
+  const e = $( d );
+  const f = e == null;
+  if (f) {
+
+  }
+  else {
+    const g = $( "x" );
+    const h = e[ g ];
+    const i = h == null;
+    if (i) {
+
+    }
+    else {
+      const j = $( "y" );
+      const k = h[ j ];
+      b = k;
+    }
+  }
+  let l = $( 1 );
+  while ($LOOP_UNROLL_10) {
+    if (l) {
+      b = undefined;
+      const m = $( d );
+      const n = m == null;
+      if (n) {
+
+      }
+      else {
+        const o = $( "x" );
+        const p = m[ o ];
+        const q = p == null;
+        if (q) {
+
+        }
+        else {
+          const r = $( "y" );
+          const s = p[ r ];
+          b = s;
+        }
+      }
+      l = $( 1 );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( b );
+`````
+
 ## Globals
 
 None

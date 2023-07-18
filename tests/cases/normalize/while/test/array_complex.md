@@ -99,6 +99,64 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(`after`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 2 );
+$( 3 );
+$( "loop" );
+$( 1 );
+$( 2 );
+$( 3 );
+$( "loop" );
+$( 1 );
+$( 2 );
+$( 3 );
+$( "loop" );
+$( 1 );
+$( 2 );
+$( 3 );
+$( "loop" );
+$( 1 );
+$( 2 );
+$( 3 );
+$( "loop" );
+$( 1 );
+$( 2 );
+$( 3 );
+$( "loop" );
+$( 1 );
+$( 2 );
+$( 3 );
+$( "loop" );
+$( 1 );
+$( 2 );
+$( 3 );
+$( "loop" );
+$( 1 );
+$( 2 );
+$( 3 );
+$( "loop" );
+$( 1 );
+$( 2 );
+$( 3 );
+$( "loop" );
+$( 1 );
+$( 2 );
+$( 3 );
+$( "loop" );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
+  $( 2 );
+  $( 3 );
+  $( "loop" );
+}
+$( "after" );
+`````
+
 ## Globals
 
 None

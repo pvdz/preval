@@ -166,6 +166,46 @@ const tmpCalleeParam$1 = a();
 $(tmpCalleeParam$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "c" );
+  const b = $( 10 );
+  if ($) {
+    $( "d" );
+    return b;
+  }
+  else {
+    return b;
+  }
+},;
+const c = function() {
+  debugger;
+  if ($) {
+    $( "a" );
+    if ($) {
+      $( "b" );
+      const d = a();
+      return d;
+    }
+    else {
+      const e = a();
+      return e;
+    }
+  }
+  else {
+    const f = a();
+    return f;
+  }
+},;
+const g = c();
+$( g );
+`````
+
 ## Globals
 
 None

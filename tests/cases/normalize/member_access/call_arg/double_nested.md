@@ -41,6 +41,15 @@ const tmpObjLitVal$3 = $();
 $(tmpObjLitVal$3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+$( a );
+`````
+
 ## Globals
 
 None

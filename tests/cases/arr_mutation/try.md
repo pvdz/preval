@@ -50,6 +50,21 @@ const blob = [2, 3];
 $(`after`, blob);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+try {
+  $( "try", 1 );
+}
+catch (e) {
+
+}
+const a = [ 2, 3,, ];
+$( "after", a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

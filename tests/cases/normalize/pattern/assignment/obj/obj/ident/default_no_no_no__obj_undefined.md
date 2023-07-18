@@ -40,6 +40,15 @@ y = undefined.y;
 $(`bad`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+y = undefined.y;
+$( "bad" );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

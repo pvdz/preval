@@ -83,6 +83,43 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpClusterSSA_a, arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = $( a );
+const c = deleteb.y;
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+$( c );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( c );
+  $( 1 );
+}
+$( c, a );
+`````
+
 ## Globals
 
 None

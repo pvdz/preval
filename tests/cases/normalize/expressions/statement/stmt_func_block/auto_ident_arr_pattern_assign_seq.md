@@ -76,6 +76,23 @@ $(a, tmpArrElement, tmpArrElement$1);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 2 );
+const a = $( 3 );
+const b = $( 4 );
+const c = {
+a: 999,
+b: 1000
+;
+$( c, a, b );
+$( undefined );
+`````
+
 ## Globals
 
 None

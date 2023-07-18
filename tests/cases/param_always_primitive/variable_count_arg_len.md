@@ -90,6 +90,32 @@ f(6, 2, 7);
 f(8, 2, 9);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0,$$1,$$2,$$3 ) {
+  const b = c.length;
+  const d = e;
+  const f = g;
+  const h = i;
+  const j = k;
+  debugger;
+  if ($) {
+    $( d, f, h, j, b, "hopefully b is a literal afterwards" );
+    return undefined;
+  }
+  else {
+    return undefined;
+  }
+},;
+a( 1, 2, 3, "oops" );
+a( 4, 2, 5 );
+a( 6, 2, 7 );
+a( 8, 2, 9 );
+`````
+
 ## Globals
 
 None

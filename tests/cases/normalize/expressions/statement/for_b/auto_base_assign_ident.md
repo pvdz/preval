@@ -73,6 +73,37 @@ const a = { a: 999, b: 1000 };
 $(a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+let b = $( 2 );
+if (b) {
+  $( 1 );
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    b = $( 2 );
+    if (b) {
+      $( 1 );
+    }
+    else {
+      break;
+    }
+  }
+}
+const c = {
+a: 999,
+b: 1000
+;
+$( c, b );
+`````
+
 ## Globals
 
 None

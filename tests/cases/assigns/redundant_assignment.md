@@ -61,6 +61,23 @@ const tmpCalleeParam = tmpBinBothLhs + tmpBinBothRhs;
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = 1;
+if ($) {
+
+}
+else {
+  a = 2;
+}
+const b = $( "prevent inlining" );
+const c = a + b;
+$( c );
+`````
+
 ## Globals
 
 None

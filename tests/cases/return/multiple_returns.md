@@ -164,6 +164,58 @@ f();
 $(10);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( true );
+  if (b) {
+    $( 1 );
+    const c = $( true );
+    if (c) {
+      $( 2 );
+      return undefined;
+    }
+    else {
+      const d = $( true );
+      if (d) {
+        $( 3 );
+        const e = $( true );
+        if (e) {
+          $( 4 );
+          const f = $( true );
+          if (f) {
+            $( 5 );
+            return undefined;
+          }
+          else {
+            return undefined;
+          }
+        }
+        else {
+          return undefined;
+        }
+      }
+      else {
+        return undefined;
+      }
+    }
+  }
+  else {
+    return undefined;
+  }
+},;
+a();
+$( 10 );
+a();
+$( 10 );
+a();
+$( 10 );
+`````
+
 ## Globals
 
 None

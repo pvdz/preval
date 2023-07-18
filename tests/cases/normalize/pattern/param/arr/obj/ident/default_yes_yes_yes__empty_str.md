@@ -92,6 +92,29 @@ const tmpCalleeParam$3 = f();
 $(tmpCalleeParam$3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = { x: "pass2" };
+  const c = $( b );
+  const d = c.x;
+  const e = d === undefined;
+  if (e) {
+    const f = $( "pass" );
+    return f;
+  }
+  else {
+    return d;
+  }
+},;
+const g = a();
+$( g );
+`````
+
 ## Globals
 
 None

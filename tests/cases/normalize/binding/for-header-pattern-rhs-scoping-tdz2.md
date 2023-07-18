@@ -62,6 +62,14 @@ for (lhs in rhs) {
 throw `Preval: Cannot access \`firstElement\` before initialization`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw "Preval: Cannot access `firstElement` before initialization";
+`````
+
 ## Globals
 
 None

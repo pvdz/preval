@@ -69,6 +69,24 @@ const tmpCalleeParam = $coerce(arr, `string`);
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "updating" );
+  b[0] = "pass";
+  return undefined;
+},;
+const b = [ "fail", 2, 3,, ];
+a();
+a();
+const c = $coerce( b, "string" );
+$( c );
+`````
+
 ## Globals
 
 None

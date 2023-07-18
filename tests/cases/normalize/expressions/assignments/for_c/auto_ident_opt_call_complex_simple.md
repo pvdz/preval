@@ -87,6 +87,50 @@ if (tmpIfTest) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = {
+a: 999,
+b: 1000
+;
+const b = $( 1 );
+if (b) {
+  a = undefined;
+  const c = $( $ );
+  const d = c == null;
+  if (d) {
+
+  }
+  else {
+    const e = $dotCall( c, $, 1 );
+    a = e;
+  }
+  let f = $( 1 );
+  while ($LOOP_UNROLL_10) {
+    if (f) {
+      a = undefined;
+      const g = $( $ );
+      const h = g == null;
+      if (h) {
+
+      }
+      else {
+        const i = $dotCall( g, $, 1 );
+        a = i;
+      }
+      f = $( 1 );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( a );
+`````
+
 ## Globals
 
 None

@@ -36,6 +36,15 @@ const x = [`h`, `e`, `l`, `l`, `o`];
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ "h", "e", "l", "l", "o",, ];
+$( a );
+`````
+
 ## Globals
 
 None

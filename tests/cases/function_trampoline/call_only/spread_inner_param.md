@@ -50,6 +50,15 @@ const y = $(`pass`);
 $(...y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "pass" );
+$( ... a );
+`````
+
 ## Globals
 
 None

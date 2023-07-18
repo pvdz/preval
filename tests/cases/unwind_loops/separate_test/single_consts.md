@@ -81,6 +81,32 @@ if (test) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 10 );
+const b = 2 < a;
+if (b) {
+  $( 103 );
+  let c = 3;
+  let d = 3 < tmpArgumentsLen$9;
+  const e = [ 101, 102, 103, 104, 105, 106, 107, 108, 109, 1010,, ];
+  while ($LOOP_UNROLL_10) {
+    if (d) {
+      const f = e[ c ];
+      $( f );
+      c = c + 1;
+      d = c < tmpArgumentsLen$9;
+    }
+    else {
+      break;
+    }
+  }
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

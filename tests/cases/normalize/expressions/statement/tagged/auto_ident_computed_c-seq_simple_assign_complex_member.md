@@ -61,6 +61,30 @@ $(tmpCalleeParam, varInitAssignLhsComputedRhs);
 $(a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+c: 10,
+d: 20
+;
+const b = {
+a: 999,
+b: 1000
+;
+const c = [ "before ", " after",, ];
+const d = $( a );
+const e = $( "c" );
+const f = $( a );
+const g = $( "d" );
+const h = f[ g ];
+d[e] = h;
+$( c, h );
+$( b, a );
+`````
+
 ## Globals
 
 None

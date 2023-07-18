@@ -130,6 +130,40 @@ $(`fail2`);
 $(varInitAssignLhsComputedRhs, b, c, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+const c = $( 1 );
+let d = 1;
+const e = $( a );
+const f = $( "x" );
+const g = $( b );
+const h = $( "y" );
+const i = $( 3 );
+g[h] = i;
+e[f] = i;
+const j = i === c;
+if (j) {
+  d = 0;
+}
+else {
+  const k = 2 === c;
+  if (k) {
+    d = 2;
+  }
+}
+const l = d <= 1;
+if (l) {
+  $( "fail1" );
+}
+$( "fail2" );
+$( i, a, b, 3 );
+`````
+
 ## Globals
 
 None

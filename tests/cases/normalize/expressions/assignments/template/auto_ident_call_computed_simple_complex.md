@@ -58,6 +58,20 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = $( "$" );
+const c = a[ b ]( 1 )};
+const d = $coerce( c, "string" );
+const e = `before  ${[object Object]}  after`;
+$( e );
+$( c );
+`````
+
 ## Globals
 
 None

@@ -58,6 +58,16 @@ const bindingPatternArrRoot = $(`pass`);
 $(`ok`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "pass" );
+[ ... a,, ];
+$( "ok" );
+`````
+
 ## Globals
 
 None

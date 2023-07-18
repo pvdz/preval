@@ -49,6 +49,17 @@ $(tmpCalleeParam);
 $(a, 1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = { ... a };
+$( b );
+$( a, 1 );
+`````
+
 ## Globals
 
 None

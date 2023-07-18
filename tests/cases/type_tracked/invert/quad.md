@@ -40,6 +40,16 @@ const tmpUnaryArg$1 = Boolean(tmpUnaryArg$5);
 $(tmpUnaryArg$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = Boolean( a );
+$( b );
+`````
+
 ## Globals
 
 None

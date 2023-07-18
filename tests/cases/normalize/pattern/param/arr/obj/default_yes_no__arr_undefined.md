@@ -81,6 +81,25 @@ if (objPatternCrashTest) {
 $(`ok`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "fail" );
+let b = a === undefined;
+if (b) {
+
+}
+else {
+  b = a === null;
+}
+if (b) {
+  a.cannotDestructureThis;
+}
+$( "ok" );
+`````
+
 ## Globals
 
 None

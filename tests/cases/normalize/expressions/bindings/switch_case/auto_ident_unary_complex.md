@@ -60,6 +60,16 @@ const tmpClusterSSA_a = typeof tmpUnaryArg;
 $(tmpClusterSSA_a, 1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = typeofa;
+$( b, 1 );
+`````
+
 ## Globals
 
 None

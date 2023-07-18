@@ -41,6 +41,14 @@ let x$1 = 1;
 x = (1).x;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+x = 1.x;
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

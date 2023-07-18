@@ -54,6 +54,17 @@ $(`poss`);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "piss" );
+$( "pass" );
+$( "poss" );
+$( undefined );
+`````
+
 ## Globals
 
 None

@@ -39,6 +39,15 @@ const y = [`a`, undefined, undefined, undefined, `b`];
 $(y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ "a", undefined, undefined, undefined, "b",, ];
+$( a );
+`````
+
 ## Globals
 
 None

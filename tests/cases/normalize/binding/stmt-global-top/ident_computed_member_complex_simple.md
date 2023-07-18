@@ -48,6 +48,18 @@ varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 $(3, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 2 };
+const b = $( a );
+const c = $( "x" );
+b[c] = 3;
+$( 3, a, 3 );
+`````
+
 ## Globals
 
 None

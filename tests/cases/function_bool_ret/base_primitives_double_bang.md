@@ -82,6 +82,19 @@ const tmpUnaryArg$9 = Boolean($);
 $(tmpUnaryArg$9, `three`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = Boolean( $ );
+$( a, "one" );
+const b = Boolean( $ );
+$( b, "two" );
+const c = Boolean( $ );
+$( c, "three" );
+`````
+
 ## Globals
 
 None

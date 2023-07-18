@@ -47,6 +47,18 @@ const y = [`a`, ...x, `b`];
 $(y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 1, 2, 3,, ];
+const b = a.join( "" );
+$( b );
+const c = [ "a", ... a, "b",, ];
+$( c );
+`````
+
 ## Globals
 
 None

@@ -78,6 +78,26 @@ f();
 $(`three`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "stop" );
+  $( "the" );
+  $( "inlining" );
+  return undefined;
+},;
+a();
+$( 1 );
+a();
+$( 2 );
+a();
+$( "three" );
+`````
+
 ## Globals
 
 None

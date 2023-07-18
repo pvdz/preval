@@ -72,6 +72,17 @@ $(`then`);
 $(`else`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "else" );
+$( "then" );
+$( "then" );
+$( "else" );
+`````
+
 ## Globals
 
 None

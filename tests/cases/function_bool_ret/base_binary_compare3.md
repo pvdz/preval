@@ -92,6 +92,32 @@ const tmpCalleeParam$7 = !tmpUnaryArg$3;
 $(tmpCalleeParam$7, `three`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  if ($) {
+    const b = $ === $;
+    return b;
+  }
+  else {
+    return false;
+  }
+},;
+const c = a();
+const d = !c;
+$( d, "one" );
+const e = a();
+const f = !e;
+$( f, "two" );
+const g = a();
+const h = !g;
+$( h, "three" );
+`````
+
 ## Globals
 
 None

@@ -58,6 +58,23 @@ c;
 $(`inline me`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+implicitGlobalShouldCrash;
+a;
+b;
+c;
+$( "inline me" );
+implicitGlobalShouldCrash;
+a;
+b;
+c;
+$( "inline me" );
+`````
+
 ## Globals
 
 BAD@! Found 4 implicit global bindings:

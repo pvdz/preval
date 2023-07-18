@@ -112,6 +112,37 @@ f(``);
 f(`foop`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  const d = function($$0 ) {
+    const e = c;
+    debugger;
+    $( "keepme" );
+    const f = [ g, e,, ];
+    return f;
+  },;
+  const g = $coerce( b, "plustr" );
+  if (g) {
+    return undefined;
+  }
+  else {
+    const h = d( 10 );
+    $( h, "pass" );
+    const i = d( 20 );
+    $( i, "pass" );
+    return undefined;
+  }
+},;
+a( "" );
+a( "foop" );
+`````
+
 ## Globals
 
 None

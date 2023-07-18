@@ -55,6 +55,16 @@ $(a, 1);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+$( a, 1 );
+$( undefined );
+`````
+
 ## Globals
 
 None

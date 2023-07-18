@@ -99,6 +99,26 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  const a = function() {
+    debugger;
+    const b = $( "first" );
+    $( b );
+    return undefined;
+  },;
+  a();
+  a();
+  a();
+  a();
+  $( undefined );
+}
+`````
+
 ## Globals
 
 None

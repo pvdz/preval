@@ -45,6 +45,15 @@ const tmpChainElementObject = (10).length;
 $(tmpChainElementObject);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 10.length;
+$( a );
+`````
+
 ## Globals
 
 None

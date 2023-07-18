@@ -47,6 +47,18 @@ const tmpThrowArg = function () {
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  return undefined;
+},;
+throw a;
+`````
+
 ## Globals
 
 None

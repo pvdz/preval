@@ -63,6 +63,21 @@ try {
 $(y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = 100;
+try {
+  a = xyz;
+}
+catch (e) {
+
+}
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

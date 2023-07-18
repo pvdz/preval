@@ -65,6 +65,22 @@ obj[tmpNestedAssignArrPatternRhs];
 $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {};
+const b = $( 3 );
+const c = $( 4 );
+const d = [ b, c,, ];
+const e = [ ... d,, ];
+const f = e[ 0 ];
+const g = e[ 1 ];
+a[ d ];
+$( d, f, g );
+`````
+
 ## Globals
 
 None

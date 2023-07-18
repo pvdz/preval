@@ -41,6 +41,16 @@ $coerce(tmpStringFirstArg, `number`);
 $(`out:`, true);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100 );
+$coerce( a, "number" );
+$( "out:", true );
+`````
+
 ## Globals
 
 None

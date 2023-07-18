@@ -47,6 +47,15 @@ $(NaN);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( NaN );
+$( undefined );
+`````
+
 ## Globals
 
 None

@@ -59,6 +59,19 @@ $(`x1`);
 $(`finished`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "x5" );
+$( "x4" );
+$( "x3" );
+$( "x2" );
+$( "x1" );
+$( "finished" );
+`````
+
 ## Globals
 
 None

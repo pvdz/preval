@@ -233,6 +233,84 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( 1 );
+  let c = 4;
+  const d = 0 === b;
+  if (d) {
+    c = 0;
+  }
+  else {
+    const e = $( 1 );
+    const f = e === b;
+    if (f) {
+      c = 1;
+    }
+    else {
+      const g = $( 4 );
+      const h = g === b;
+      if (h) {
+        c = 2;
+      }
+      else {
+        const i = $( 7 );
+        const j = i === b;
+        if (j) {
+          c = 3;
+        }
+      }
+    }
+  }
+  const k = c <= 0;
+  if (k) {
+    $( 2 );
+    return undefined;
+  }
+  else {
+    const l = c <= 1;
+    if (l) {
+      const m = $( 8 );
+      if (m) {
+        const n = $( 9 );
+        if (n) {
+          const o = $( 10 );
+          return o;
+        }
+        else {
+          $( 11 );
+          const p = $( 2 );
+          if (p) {
+            $( 13 );
+          }
+          else {
+            const q = $( 14 );
+            return q;
+          }
+        }
+      }
+      $( 3 );
+    }
+    const r = c <= 2;
+    if (r) {
+      $( 5 );
+      const s = $( 6 );
+      return s;
+    }
+    else {
+      return undefined;
+    }
+  }
+},;
+const t = a();
+$( t );
+`````
+
 ## Globals
 
 None

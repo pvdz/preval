@@ -50,6 +50,18 @@ const tmpCalleeParam$1 = tmpCompObj.length;
 $(tmpCalleeParam$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [];
+const b = $( a );
+const c = $( b );
+const d = c.length;
+$( d );
+`````
+
 ## Globals
 
 None

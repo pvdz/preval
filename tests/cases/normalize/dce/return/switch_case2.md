@@ -92,6 +92,29 @@ const tmpReturnArg$5 = tmpLabeledBlockFunc();
 $(tmpReturnArg$5);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( 1, "disc" );
+  const c = $( 1, "case" );
+  const d = b === c;
+  if (d) {
+    const e = $( 2, "ret" );
+    return e;
+  }
+  else {
+    $( "keep, do not eval" );
+    return undefined;
+  }
+},;
+const f = a();
+$( f );
+`````
+
 ## Globals
 
 None

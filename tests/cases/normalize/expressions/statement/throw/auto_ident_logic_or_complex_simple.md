@@ -50,6 +50,22 @@ if (tmpThrowArg) {
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 0 );
+let b = $( a );
+if (b) {
+
+}
+else {
+  b = 2;
+}
+throw b;
+`````
+
 ## Globals
 
 None

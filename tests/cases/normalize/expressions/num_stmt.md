@@ -34,6 +34,15 @@ const tmpUnaryArg = $spy();
 +tmpUnaryArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy();
++a;
+`````
+
 ## Globals
 
 None

@@ -84,6 +84,36 @@ obj[a];
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = {};
+let c = undefined;
+const d = $( a );
+const e = d == null;
+if (e) {
+
+}
+else {
+  const f = $( "$" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
+
+  }
+  else {
+    const i = $( 1 );
+    const j = $dotCall( g, d, i );
+    c = j;
+  }
+}
+b[ c ];
+$( c );
+`````
+
 ## Globals
 
 None

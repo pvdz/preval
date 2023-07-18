@@ -61,6 +61,20 @@ $(`function`);
 $(findme, `function`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "function" );
+  return a;
+},;
+$( "function" );
+$( a, "function" );
+`````
+
 ## Globals
 
 None

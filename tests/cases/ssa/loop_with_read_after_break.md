@@ -92,6 +92,32 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  $( 1 );
+  let a = true;
+  let b = $( 2 );
+  $( b );
+  if ($) {
+    a = false;
+  }
+  if (a) {
+    while ($LOOP_UNROLL_10) {
+      b = $( 2 );
+      $( b );
+      if ($) {
+        break;
+      }
+    }
+  }
+  $( b );
+}
+`````
+
 ## Globals
 
 None

@@ -61,6 +61,15 @@ $(`number`);
 $(20, `function`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "number" );
+$( 20, "function" );
+`````
+
 ## Globals
 
 None

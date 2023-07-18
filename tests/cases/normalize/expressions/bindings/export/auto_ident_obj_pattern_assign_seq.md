@@ -60,6 +60,25 @@ export { a };
 $(a, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+$( 1 );
+$( 2 );
+const b = $( 3 );
+const c = $( 4 );
+const d = {
+x: b,
+y: c
+;
+a = d;
+export { a as a from "undefined"
+$( a, b, c );
+`````
+
 ## Globals
 
 None

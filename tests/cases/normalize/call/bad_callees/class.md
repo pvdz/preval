@@ -42,6 +42,19 @@ tmpCallComplexCallee();
 $(`after`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "before" );
+const a = class x  {
+
+};
+a();
+$( "after" );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

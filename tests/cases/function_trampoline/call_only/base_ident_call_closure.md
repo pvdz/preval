@@ -82,6 +82,17 @@ $(`inline`);
 $(1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "do" );
+$( "not" );
+$( "inline" );
+$( 1 );
+`````
+
 ## Globals
 
 None

@@ -61,6 +61,33 @@ const a = { x: 1, y: 2, z: 3 };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 1 );
+}
+const a = {
+x: 1,
+y: 2,
+z: 3
+;
+$( a );
+`````
+
 ## Globals
 
 None

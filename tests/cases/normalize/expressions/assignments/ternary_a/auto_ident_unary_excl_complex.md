@@ -57,6 +57,24 @@ const a = !tmpUnaryArg;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100 );
+if (a) {
+  const b = $( 200 );
+  $( b );
+}
+else {
+  const c = $( 100 );
+  $( c );
+}
+const d = !a;
+$( d );
+`````
+
 ## Globals
 
 None

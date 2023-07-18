@@ -33,6 +33,15 @@ unknown;
 $(1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+unknown;
+$( 1 );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

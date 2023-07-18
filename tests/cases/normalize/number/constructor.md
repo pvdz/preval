@@ -34,6 +34,14 @@ tmpCallCallee(tmpCalleeParam);
 $(300);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 300 );
+`````
+
 ## Globals
 
 None

@@ -78,6 +78,31 @@ if (a) {
 $(a, arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 2 );
+const a = $( "y" );
+const b = { y: 1 };
+let c = deleteb[ a ];
+const d = c;
+if (c) {
+  $( d );
+}
+else {
+  $( 1 );
+  $( 2 );
+  const e = $( "y" );
+  const f = deleteb[ e ];
+  c = f;
+  $( f );
+}
+$( c, b );
+`````
+
 ## Globals
 
 None

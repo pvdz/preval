@@ -63,6 +63,20 @@ for (x in tmpChainElementCall) {
 $(tmpChainElementCall);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { e: $ };
+const b = $dotCall( $, a, 1 );
+let c = undefined;
+for (c in b {
+
+}
+$( b );
+`````
+
 ## Globals
 
 None

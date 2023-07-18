@@ -40,6 +40,15 @@ arguments;
 throw arguments;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+arguments;
+throw arguments;
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

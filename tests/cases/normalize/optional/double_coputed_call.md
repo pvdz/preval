@@ -87,6 +87,45 @@ if (tmpIfTest$3) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { z: $ };
+const b = { y: a };
+const c = { x: b };
+let d = undefined;
+const e = $( c );
+const f = e == null;
+if (f) {
+
+}
+else {
+  const g = $( "x" );
+  const h = e[ g ];
+  const i = h == null;
+  if (i) {
+
+  }
+  else {
+    const j = $( "y" );
+    const k = h[ j ];
+    const l = $( "z" );
+    const m = k[ l ];
+    d = m;
+  }
+}
+const n = $( d );
+const o = n == null;
+if (o) {
+
+}
+else {
+  $dotCall( n, $, 100 );
+}
+`````
+
 ## Globals
 
 None

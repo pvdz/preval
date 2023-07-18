@@ -46,6 +46,19 @@ varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 $(varInitAssignLhsComputedRhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = $( a );
+const c = b.x;
+const d = c + 1;
+b.x = d;
+$( d );
+`````
+
 ## Globals
 
 None

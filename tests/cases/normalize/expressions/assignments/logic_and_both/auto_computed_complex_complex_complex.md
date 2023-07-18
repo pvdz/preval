@@ -72,6 +72,30 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+let b = { b: a };
+const c = b;
+if (b) {
+  const d = $( 1 );
+  const e = { b: d };
+  b = e;
+  $( e );
+}
+else {
+  $( c );
+}
+const f = $( b );
+const g = $( "b" );
+const h = $( 2 );
+f[g] = h;
+$( b );
+`````
+
 ## Globals
 
 None

@@ -58,6 +58,21 @@ if (tmpIfTest$1917) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "is" );
+const b = a === 67636;
+if (b) {
+  $( "it was" );
+}
+else {
+  $( "it was not" );
+}
+`````
+
 ## Globals
 
 None

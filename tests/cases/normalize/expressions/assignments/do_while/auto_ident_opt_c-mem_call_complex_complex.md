@@ -141,6 +141,87 @@ if (tmpNestedComplexRhs) {
 $(tmpClusterSSA_tmpDoWhileFlag);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+let a = undefined;
+const b = { $: $ };
+const c = $( b );
+const d = c == null;
+if (d) {
+
+}
+else {
+  const e = $( "$" );
+  const f = c[ e ];
+  const g = f == null;
+  if (g) {
+
+  }
+  else {
+    const h = $( 1 );
+    const i = $dotCall( f, c, h );
+    a = i;
+  }
+}
+let j = a;
+if (a) {
+  $( 100 );
+  let k = undefined;
+  const l = $( b );
+  const m = l == null;
+  if (m) {
+
+  }
+  else {
+    const n = $( "$" );
+    const o = l[ n ];
+    const p = o == null;
+    if (p) {
+
+    }
+    else {
+      const q = $( 1 );
+      const r = $dotCall( o, l, q );
+      k = r;
+    }
+  }
+  j = k;
+  while ($LOOP_UNROLL_9) {
+    if (j) {
+      $( 100 );
+      let s = undefined;
+      const t = $( b );
+      const u = t == null;
+      if (u) {
+
+      }
+      else {
+        const v = $( "$" );
+        const w = t[ v ];
+        const x = w == null;
+        if (x) {
+
+        }
+        else {
+          const y = $( 1 );
+          const z = $dotCall( w, t, y );
+          s = z;
+        }
+      }
+      j = s;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( j );
+`````
+
 ## Globals
 
 None

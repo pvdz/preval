@@ -74,6 +74,21 @@ try {
 $(`pass`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+try {
+  throw "yes";
+}
+finally {
+  $( "still throws" );
+  $( "pass" );
+}
+$( "pass" );
+`````
+
 ## Globals
 
 None

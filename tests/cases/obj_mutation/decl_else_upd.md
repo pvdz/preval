@@ -50,6 +50,21 @@ if ($) {
 $(blob);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { thing: "woop" };
+if ($) {
+
+}
+else {
+  a.thing = "boing";
+}
+$( a );
+`````
+
 ## Globals
 
 None

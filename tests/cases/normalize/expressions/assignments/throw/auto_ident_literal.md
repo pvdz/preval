@@ -39,6 +39,14 @@ throw tmpThrowArg;
 throw `foo`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw "foo";
+`````
+
 ## Globals
 
 None

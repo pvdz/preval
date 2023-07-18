@@ -43,6 +43,16 @@ arr.call(arr, 1);
 $(arr);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [];
+a.call( a, 1 );
+$( a );
+`````
+
 ## Globals
 
 None

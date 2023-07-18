@@ -43,6 +43,16 @@ $coerce(x, `string`);
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+$coerce( a, "string" );
+$( a );
+`````
+
 ## Globals
 
 None

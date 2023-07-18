@@ -89,6 +89,31 @@ f();
 considerMutated(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  b = 1;
+  try {
+    throw "one";
+  }
+catch (e) {
+    throw "two";
+  }
+finally {
+    throw_early;
+    return undefined;
+  }
+  return undefined;
+},;
+let b = 0;
+a();
+considerMutated( b );
+`````
+
 ## Globals
 
 BAD@! Found 3 implicit global bindings:

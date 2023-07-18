@@ -42,6 +42,16 @@ const tmpCalleeParam = o.f(`200`, 15);
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { f: $ };
+const b = a.f( "200", 15 );
+$( b );
+`````
+
 ## Globals
 
 None

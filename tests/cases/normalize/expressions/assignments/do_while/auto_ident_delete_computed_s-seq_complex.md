@@ -96,6 +96,44 @@ if (tmpNestedComplexRhs) {
 $(a, arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+$( 1 );
+$( 2 );
+const a = $( "y" );
+const b = { y: 1 };
+const c = deleteb[ a ];
+let d = c;
+if (c) {
+  $( 100 );
+  $( 1 );
+  $( 2 );
+  const e = $( "y" );
+  const f = deleteb[ e ];
+  d = f;
+  let g = f;
+  while ($LOOP_UNROLL_9) {
+    if (g) {
+      $( 100 );
+      $( 1 );
+      $( 2 );
+      const h = $( "y" );
+      const i = deleteb[ h ];
+      d = i;
+      g = i;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( d, b );
+`````
+
 ## Globals
 
 None

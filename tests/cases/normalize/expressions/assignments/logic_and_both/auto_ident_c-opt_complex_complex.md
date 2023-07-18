@@ -96,6 +96,46 @@ if (a) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+let e = undefined;
+if (d) {
+
+}
+else {
+  const f = $( "x" );
+  const g = c[ f ];
+  a = g;
+  e = g;
+}
+if (a) {
+  let h = undefined;
+  const i = $( b );
+  const j = i == null;
+  if (j) {
+
+  }
+  else {
+    const k = $( "x" );
+    const l = i[ k ];
+    h = l;
+  }
+  a = h;
+  $( h );
+}
+else {
+  $( e );
+}
+$( a );
+`````
+
 ## Globals
 
 None

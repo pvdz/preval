@@ -45,6 +45,23 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+const c = {
+a: 1,
+b: 2
+;
+for (a in c {
+  b = a.x;
+  $( b );
+}
+`````
+
 ## Globals
 
 None

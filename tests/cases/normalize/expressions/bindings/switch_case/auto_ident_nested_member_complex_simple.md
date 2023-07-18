@@ -82,6 +82,22 @@ tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
 $(3, tmpClusterSSA_b, tmpClusterSSA_c, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+const c = $( a );
+const d = $( "x" );
+const e = $( b );
+const f = $( "y" );
+e[f] = 3;
+c[d] = 3;
+$( 3, a, b, 3 );
+`````
+
 ## Globals
 
 None

@@ -47,6 +47,17 @@ const tmpClusterSSA_a = delete tmpDeleteObj.y;
 throw tmpClusterSSA_a;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = $( a );
+const c = deleteb.y;
+throw c;
+`````
+
 ## Globals
 
 None

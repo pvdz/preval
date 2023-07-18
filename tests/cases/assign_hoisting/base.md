@@ -87,6 +87,23 @@ if ($) {
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( 2 );
+if ($) {
+  $( "block inlining" );
+  $( a );
+  a = $( 3 );
+}
+else {
+  $( a );
+}
+$( a );
+`````
+
 ## Globals
 
 None

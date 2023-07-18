@@ -47,6 +47,15 @@ $(`before  60  after`);
 $(60);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "before  60  after" );
+$( 60 );
+`````
+
 ## Globals
 
 None

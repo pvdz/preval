@@ -50,6 +50,17 @@ const obj = { a: tmpObjLitVal };
 $(obj);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+const b = { b: a };
+const c = { a: b };
+$( c );
+`````
+
 ## Globals
 
 None

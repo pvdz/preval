@@ -39,6 +39,16 @@ const tmpCalleeParam = x < x;
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {};
+const b = a < a;
+$( b );
+`````
+
 ## Globals
 
 None

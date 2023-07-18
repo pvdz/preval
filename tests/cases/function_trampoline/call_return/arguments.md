@@ -68,6 +68,21 @@ const q = f(1, 2, 3, 4, 5);
 $(q);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0,$$1,$$2,$$3,$$4 ) {
+  const b = c;
+  debugger;
+  const d = $( b );
+  return d;
+},;
+const e = a( 1, 2, 3, 4, 5 );
+$( e );
+`````
+
 ## Globals
 
 None

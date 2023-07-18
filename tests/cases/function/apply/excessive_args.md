@@ -68,6 +68,21 @@ tmpCallObj(`x`);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  const b = c;
+  debugger;
+  $( ... b );
+  return undefined;
+},;
+a( "x" );
+$( undefined );
+`````
+
 ## Globals
 
 None

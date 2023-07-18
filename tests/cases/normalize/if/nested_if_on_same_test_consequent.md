@@ -50,6 +50,16 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  $( "keep me" );
+}
+`````
+
 ## Globals
 
 None

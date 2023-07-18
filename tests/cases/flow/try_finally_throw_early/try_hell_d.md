@@ -55,6 +55,15 @@ throw_early;
 considerMutated(1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw_early;
+considerMutated( 1 );
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

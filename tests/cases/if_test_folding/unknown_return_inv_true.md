@@ -69,6 +69,17 @@ const tmpCalleeParam = Boolean(tmpBoolTrampoline);
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+const a = $( 1 );
+const b = Boolean( a );
+$( b );
+`````
+
 ## Globals
 
 None

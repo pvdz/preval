@@ -60,6 +60,21 @@ for (test of tmpForOfRhs) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = 0;
+let b = true;
+const c = { a: 1 };
+const d = $( c );
+for (b of d {
+  $( "yolo" );
+  a = a + 1;
+}
+`````
+
 ## Globals
 
 None

@@ -41,6 +41,14 @@ $(x);
 $(`I am a string`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "I am a string" );
+`````
+
 ## Globals
 
 None

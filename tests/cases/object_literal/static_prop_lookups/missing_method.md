@@ -42,6 +42,17 @@ const tmpCalleeParam = $dotCall(tmpObjectMethod, o);
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $ObjectPrototype.toString;
+const b = {};
+const c = $dotCall( a, b );
+$( c );
+`````
+
 ## Globals
 
 None

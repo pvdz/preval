@@ -68,6 +68,34 @@ for (x in tmpForInDeclRhs) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = {
+a: 999,
+b: 1000
+;
+let c = undefined;
+const d = $( a );
+const e = d == null;
+if (e) {
+
+}
+else {
+  const f = $( "x" );
+  const g = d[ f ];
+  c = g;
+}
+let h = undefined;
+for (h in c {
+
+}
+$( b );
+`````
+
 ## Globals
 
 None

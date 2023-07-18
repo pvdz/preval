@@ -55,6 +55,16 @@ const tmpCalleeParam$1 = $spy();
 $(tmpCalleeParam, tmpCalleeParam$1, `fwep`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy();
+const b = $spy();
+$( a, b, "fwep" );
+`````
+
 ## Globals
 
 None

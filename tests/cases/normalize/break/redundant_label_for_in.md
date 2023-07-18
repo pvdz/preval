@@ -88,6 +88,33 @@ for (key in tmpForInDeclRhs) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( 2 );
+const b = {
+a: 1,
+b: 2
+;
+const c = $( b );
+let d = undefined;
+for (d in c {
+  $( "key:", d );
+  const e = $( 1 );
+  if (e) {
+    a = $( 3 );
+  }
+  if (a) {
+    break;
+  }
+  else {
+    a = $( 4 );
+  }
+}
+`````
+
 ## Globals
 
 None

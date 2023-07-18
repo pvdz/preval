@@ -59,6 +59,21 @@ if (a) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if (a) {
+  const a = parseExpression( "source" );
+  $( a );
+}
+else {
+  const b = parseExpression( "arguments" );
+  $( b );
+}
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

@@ -47,6 +47,21 @@ tmpCallObj.$(1);
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+c.$( 1 );
+$( b );
+`````
+
 ## Globals
 
 None

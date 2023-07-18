@@ -109,6 +109,18 @@ if (x$1) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$();
+const a = $();
+if (a) {
+  $();
+}
+`````
+
 ## Globals
 
 None

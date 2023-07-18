@@ -53,6 +53,24 @@ if (tmpIfTest) {
 $(`ok`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 1.x;
+let b = undefined;
+const c = a === undefined;
+if (c) {
+  b = [ "fail",, ];
+}
+else {
+  b = a;
+}
+[ ... b,, ];
+$( "ok" );
+`````
+
 ## Globals
 
 None

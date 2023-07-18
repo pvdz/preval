@@ -114,6 +114,57 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = { x: a };
+let c = undefined;
+const d = $( b );
+const e = d == null;
+if (e) {
+
+}
+else {
+  const f = $( "x" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
+
+  }
+  else {
+    const i = $( "y" );
+    const j = g[ i ];
+    c = j;
+  }
+}
+const k = c;
+let l = undefined;
+const m = $( b );
+const n = m == null;
+if (n) {
+
+}
+else {
+  const o = $( "x" );
+  const p = m[ o ];
+  const q = p == null;
+  if (q) {
+
+  }
+  else {
+    const r = $( "y" );
+    const s = p[ r ];
+    l = s;
+  }
+}
+const t = k + l;
+$( t );
+$( l );
+`````
+
 ## Globals
 
 None

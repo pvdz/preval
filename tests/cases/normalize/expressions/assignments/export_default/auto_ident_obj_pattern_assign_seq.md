@@ -62,6 +62,24 @@ export { tmpAnonDefaultExport as default };
 $(tmpNestedAssignObjPatternRhs, tmpObjLitVal, tmpObjLitVal$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 2 );
+const a = $( 3 );
+const b = $( 4 );
+const c = {
+x: a,
+y: b
+;
+const d = c;
+export { d as default from "undefined"
+$( c, a, b );
+`````
+
 ## Globals
 
 None

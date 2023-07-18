@@ -110,6 +110,67 @@ const a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+const b = $( 1 );
+const c = $( b );
+if (c) {
+  const d = $( 1 );
+  const e = $( d );
+  if (e) {
+    const f = $( 2 );
+    const g = $( f );
+    if (g) {
+      $( 1 );
+    }
+    else {
+      a = false;
+    }
+  }
+  else {
+    a = false;
+  }
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    const h = $( 1 );
+    const i = $( h );
+    if (i) {
+      const j = $( 1 );
+      const k = $( j );
+      if (k) {
+        const l = $( 2 );
+        const m = $( l );
+        if (m) {
+          $( 1 );
+        }
+        else {
+          break;
+        }
+      }
+      else {
+        break;
+      }
+    }
+    else {
+      break;
+    }
+  }
+}
+const n = {
+a: 999,
+b: 1000
+;
+$( n );
+`````
+
 ## Globals
 
 None

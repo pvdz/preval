@@ -111,6 +111,22 @@ $(tmpClusterSSA_x);
 $(tmpClusterSSA_x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100 );
+$( a );
+const b = $( 1 );
+if (b) {
+  $( "c" );
+}
+const c = f();
+$( c );
+$( c );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

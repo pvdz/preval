@@ -83,6 +83,33 @@ while (true) {
 $(`after (not invoked)`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( true );
+while (true) {
+  if (a) {
+    $( "loop" );
+    let b = undefined;
+    const c = {
+a: 1,
+b: 2
+    ;
+    for (b in c {
+      $( "loop", b );
+    }
+    $( "infiloop, do not eliminate" );
+    a = $( true );
+  }
+  else {
+    break;
+  }
+}
+$( "after (not invoked)" );
+`````
+
 ## Globals
 
 None

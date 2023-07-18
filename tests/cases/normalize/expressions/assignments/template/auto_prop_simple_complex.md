@@ -59,6 +59,21 @@ a.b = tmpAssignMemRhs;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = { b: a };
+const c = $coerce( b, "string" );
+const d = `before  ${[object Object]}  after`;
+$( d );
+const e = $( 2 );
+b.b = e;
+$( b );
+`````
+
 ## Globals
 
 None

@@ -51,6 +51,17 @@ $(tmpCalleeParam);
 $(tmpNestedComplexRhs, tmpNestedComplexRhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 2 );
+const b = { x: a };
+$( b );
+$( a, a );
+`````
+
 ## Globals
 
 None

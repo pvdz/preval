@@ -54,6 +54,14 @@ $(a, arg);
 $(undefined, 1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( undefined, 1 );
+`````
+
 ## Globals
 
 None

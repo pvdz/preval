@@ -42,6 +42,20 @@ tmpCallComplexCallee();
 $(`after`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "before" );
+const a = {
+a: 1,
+b: 2
+;
+a();
+$( "after" );
+`````
+
 ## Globals
 
 None

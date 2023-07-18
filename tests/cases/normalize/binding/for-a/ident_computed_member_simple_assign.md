@@ -60,6 +60,20 @@ const b = { x: 2 };
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "x" );
+const b = $( 3 );
+const c = $( "y" );
+const d = $( 4 );
+b[c] = d;
+const e = { x: 2 };
+e[a] = d;
+`````
+
 ## Globals
 
 None

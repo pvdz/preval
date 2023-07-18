@@ -93,6 +93,29 @@ g();
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+const b = function() {
+  debugger;
+  $( "call me once" );
+  if (a) {
+    a = false;
+    return undefined;
+  }
+  else {
+    return undefined;
+  }
+},;
+b();
+$( undefined );
+b();
+$( undefined );
+`````
+
 ## Globals
 
 None

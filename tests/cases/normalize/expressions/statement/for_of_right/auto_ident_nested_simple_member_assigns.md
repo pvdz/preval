@@ -65,6 +65,23 @@ for (x of 3) {
 $(a, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 3 };
+const b = {
+a: 999,
+b: 1000
+;
+let c = undefined;
+for (c of 3 {
+
+}
+$( b, a, 3 );
+`````
+
 ## Globals
 
 None

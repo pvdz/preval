@@ -50,6 +50,18 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = arguments;
+const b = $coerce( a, "string" );
+const c = `before  ${[object Object]}  after`;
+$( c );
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

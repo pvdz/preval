@@ -45,6 +45,14 @@ tmpCallCallee(tmpCalleeParam);
 throw `x`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw "x";
+`````
+
 ## Globals
 
 None

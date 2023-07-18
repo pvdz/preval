@@ -45,6 +45,17 @@ const tmpClusterSSA_a = a + tmpBinBothRhs;
 a.foo = tmpClusterSSA_a;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $();
+const b = {};
+const c = b + a;
+b.foo = c;
+`````
+
 ## Globals
 
 None

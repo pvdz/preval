@@ -73,6 +73,20 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(tmpNestedComplexRhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+$( undefined );
+const b = { b: a };
+const c = $( b );
+const d = $( "b" );
+c[d] = 2;
+$( b );
+`````
+
 ## Globals
 
 None

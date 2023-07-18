@@ -208,6 +208,41 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  let a = $( 5 );
+  $( a );
+  const b = { toString(  ) {
+    debugger;
+    a = 200;
+    if ($) {
+      $( a, "t" );
+    }
+    $( a );
+    if ($) {
+      $( 11 );
+      return "hi";
+    }
+    else {
+      return "hi";
+    }
+  }, };
+  a = $( b );
+  a = a + 1;
+  if ($) {
+    $( a );
+  }
+  $( a, "t" );
+  if ($) {
+    $( 10 );
+  }
+}
+`````
+
 ## Globals
 
 None

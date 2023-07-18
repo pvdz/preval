@@ -41,6 +41,16 @@ const tmpCalleeParam = x[`0`];
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { 0[ "pass" ]: "pass" };
+const b = a[ "0" ];
+$( b );
+`````
+
 ## Globals
 
 None

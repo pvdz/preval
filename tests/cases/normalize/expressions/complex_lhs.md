@@ -37,6 +37,16 @@ const tmpAssignMemLhsObj = $(tmpCalleeParam);
 tmpAssignMemLhsObj.foo = 10;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {};
+const b = $( a );
+b.foo = 10;
+`````
+
 ## Globals
 
 None

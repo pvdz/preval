@@ -57,6 +57,17 @@ $(y);
 $(`pass`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 32768 );
+const b = a & 32768;
+$( b );
+$( "pass" );
+`````
+
 ## Globals
 
 None

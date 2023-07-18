@@ -65,6 +65,28 @@ export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = { x: 1 };
+const c = $( b );
+const d = c == null;
+let e = undefined;
+if (d) {
+
+}
+else {
+  const f = c.x;
+  a = f;
+  e = f;
+}
+export { e as default from "undefined"
+$( a );
+`````
+
 ## Globals
 
 None

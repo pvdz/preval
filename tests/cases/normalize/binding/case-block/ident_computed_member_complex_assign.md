@@ -126,6 +126,39 @@ if (tmpIfTest) {
 $(1, b, 3, 4, obj);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+get c() {
+    debugger;
+    $( "get" );
+    return undefined;
+  },,
+set c( $$0 ) {
+    debugger;
+    $( "set" );
+    return undefined;
+  },
+;
+const b = { x: 2 };
+const c = $( "a" );
+const d = $( "a" );
+const e = c === d;
+if (e) {
+  const f = $( a );
+  const g = $( "x" );
+  const h = $( a );
+  const i = $( "y" );
+  const j = $( 4 );
+  h[i] = j;
+  f[g] = j;
+}
+$( 1, b, 3, 4, a );
+`````
+
 ## Globals
 
 None

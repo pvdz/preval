@@ -38,6 +38,14 @@ tmpCallCallee(tmpCalleeParam);
 $(`sixfive`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "sixfive" );
+`````
+
 ## Globals
 
 None

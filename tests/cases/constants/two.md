@@ -36,6 +36,14 @@ $(bar);
 $(`six`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "six" );
+`````
+
 ## Globals
 
 None

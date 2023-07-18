@@ -103,6 +103,31 @@ d();
 $(d);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+get foo() {
+    debugger;
+    return 100;
+  },,
+set foo( $$0 ) {
+    debugger;
+    return 4000;
+  },
+;
+const b = function() {
+  debugger;
+  $( "a" );
+  $( "b" );
+  return a;
+},;
+b();
+$( b );
+`````
+
 ## Globals
 
 None

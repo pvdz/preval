@@ -188,6 +188,37 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+const a = NaN + x;
+x ** 0;
+const b = 0 << x;
+const c = 0 >> x;
+const d = 0 >>> x;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+const e = 0 ^ x;
+const f = 0 | x;
+const g = [ NaN, NaN, NaN, NaN, a, NaN, b, c, d, false, false, false, false, false, true, false, true, 0, e, f,, ];
+$( g );
+const h = NaN in x;
+const i = NaN instanceof x;
+const j = [ h, i,, ];
+$( j );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

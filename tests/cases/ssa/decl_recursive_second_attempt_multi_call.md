@@ -114,6 +114,36 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "new" );
+  return undefined;
+},;
+const b = $( true );
+const c = $( false );
+if ($) {
+  let d = function($$0 ) {
+    const e = f;
+    debugger;
+    if (e) {
+      d( c );
+      $( 100 );
+      return a;
+    }
+    else {
+      return a;
+    }
+  },;
+  d = d( b );
+  d();
+}
+`````
+
 ## Globals
 
 None

@@ -35,6 +35,15 @@ const tmpCalleeParam = /foo\(x\)/gm;
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = /foo\(x\)/gm;
+$( a );
+`````
+
 ## Globals
 
 None

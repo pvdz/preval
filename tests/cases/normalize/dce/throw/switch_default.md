@@ -96,6 +96,24 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1, "disc" );
+const b = $( 0 );
+const c = b === a;
+if (c) {
+  $( "wrong branch" );
+  throw "wrong exit";
+}
+else {
+  const d = $( 2, "throw" );
+  throw d;
+}
+`````
+
 ## Globals
 
 None

@@ -84,6 +84,41 @@ const a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = $( $ );
+const c = b == null;
+if (c) {
+
+}
+else {
+  const d = $( 1 );
+  const e = $dotCall( b, $, d );
+  a = e;
+}
+let f = undefined;
+const g = $( $ );
+const h = g == null;
+if (h) {
+
+}
+else {
+  const i = $( 1 );
+  const j = $dotCall( g, $, i );
+  f = j;
+}
+a + f;
+const k = {
+a: 999,
+b: 1000
+;
+$( k );
+`````
+
 ## Globals
 
 None

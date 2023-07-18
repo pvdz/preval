@@ -87,6 +87,17 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  $( "outer" );
+  throw "Preval: Cannot access `x$1` before initialization";
+}
+`````
+
 ## Globals
 
 None

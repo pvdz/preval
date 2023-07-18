@@ -39,6 +39,15 @@ $coerce(x, `string`);
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$coerce( x, "string" );
+$( x );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

@@ -95,6 +95,35 @@ f(2, 0);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0,$$1 ) {
+  const b = c;
+  const d = e;
+  debugger;
+  if (d) {
+    const f = b & 4;
+    if (f) {
+      $( "pass" );
+      return undefined;
+    }
+    else {
+      return undefined;
+    }
+  }
+  else {
+    return undefined;
+  }
+},;
+a( 1, 1 );
+$( undefined );
+a( 2, 0 );
+$( undefined );
+`````
+
 ## Globals
 
 None

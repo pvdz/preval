@@ -76,6 +76,33 @@ if (tmpClusterSSA_x) {
 $(tmpClusterSSA_s);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 10 );
+parseExpression( lexerFlags$285, astProp$181 );
+let b = a | 10;
+const c = $( true );
+if (c) {
+  parseExpression( lexerFlags$285, astProp$181 );
+  b = b | 10;
+  let d = $( true );
+  while ($LOOP_UNROLL_9) {
+    if (d) {
+      parseExpression( lexerFlags$285, astProp$181 );
+      b = b | 10;
+      d = $( true );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( b );
+`````
+
 ## Globals
 
 BAD@! Found 3 implicit global bindings:

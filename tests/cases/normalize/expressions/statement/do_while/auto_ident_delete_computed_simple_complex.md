@@ -82,6 +82,37 @@ if (tmpDoWhileFlag) {
 $(a, arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = {
+a: 999,
+b: 1000
+;
+$( 100 );
+const c = $( "y" );
+const d = deletea[ c ];
+if (d) {
+  $( 100 );
+  const e = $( "y" );
+  let f = deletea[ e ];
+  while ($LOOP_UNROLL_9) {
+    if (f) {
+      $( 100 );
+      const g = $( "y" );
+      f = deletea[ g ];
+    }
+    else {
+      break;
+    }
+  }
+}
+$( b, a );
+`````
+
 ## Globals
 
 None

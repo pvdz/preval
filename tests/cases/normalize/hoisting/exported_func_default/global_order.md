@@ -92,6 +92,35 @@ export { h as default };
 export { g };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $();
+  return b;
+},;
+const c = function() {
+  debugger;
+  const d = $();
+  return d;
+},;
+const e = function() {
+  debugger;
+  const f = $();
+  return f;
+},;
+const g = $();
+const h = $();
+const i = $();
+$( g, h, i );
+export { a as f from "undefined"
+export { e as default from "undefined"
+export { c as g from "undefined"
+`````
+
 ## Globals
 
 None

@@ -54,6 +54,19 @@ arrPatternSplat[0];
 throw tmpNestedAssignArrPatternRhs;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 2 );
+const b = [ a,, ];
+const c = $( b );
+const d = [ ... c,, ];
+d[ 0 ];
+throw c;
+`````
+
 ## Globals
 
 None

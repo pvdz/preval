@@ -47,6 +47,17 @@ fail_hard;
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "a" );
+const b = $coerce( a, "plustr" );
+fail_hard;
+$( b );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

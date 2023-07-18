@@ -99,6 +99,33 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $spy( 0 );
+const c = a === b;
+if (c) {
+  $( "false" );
+}
+else {
+  const d = $spy( 1 );
+  const e = a === d;
+  if (e) {
+    $( "true" );
+  }
+  else {
+    const f = $spy( 2 );
+    const g = a === f;
+    if (g) {
+      $( "false" );
+    }
+  }
+}
+`````
+
 ## Globals
 
 None

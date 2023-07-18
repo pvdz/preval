@@ -65,6 +65,32 @@ if (tmpCalleeParam) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = [ ... a,, ];
+let c = b[ 0 ];
+const d = $( 100 );
+if (d) {
+  $( d );
+}
+else {
+  $( 10 );
+  $( 20 );
+  const e = [ 1, 2,, ];
+  const f = [ ... e,, ];
+  c = f[ 0 ];
+  $( e );
+}
+$( c );
+`````
+
 ## Globals
 
 None

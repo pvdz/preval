@@ -36,6 +36,15 @@ const tmpCalleeParam = [`hell`, ` w`, `rld`];
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ "hell", " w", "rld",, ];
+$( a );
+`````
+
 ## Globals
 
 None

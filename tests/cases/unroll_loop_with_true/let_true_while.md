@@ -91,6 +91,47 @@ if (tmp) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+const b = $( "first" );
+$( "second" );
+if (b) {
+  a = false;
+}
+else {
+  $( "third" );
+}
+if (a) {
+  const c = $( "first" );
+  $( "second" );
+  if (c) {
+    a = false;
+  }
+  else {
+    $( "third" );
+  }
+  while ($LOOP_UNROLL_9) {
+    if (a) {
+      const d = $( "first" );
+      $( "second" );
+      if (d) {
+        a = false;
+      }
+      else {
+        $( "third" );
+      }
+    }
+    else {
+      break;
+    }
+  }
+}
+`````
+
 ## Globals
 
 None

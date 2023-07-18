@@ -39,6 +39,19 @@ if (a) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if (a) {
+  x = 1.x;
+}
+else {
+  c;
+}
+`````
+
 ## Globals
 
 BAD@! Found 3 implicit global bindings:

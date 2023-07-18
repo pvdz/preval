@@ -68,6 +68,21 @@ const tmpReturnArg = new g(10);
 $(tmpReturnArg, `outer`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  const d = $( b, "g" );
+  return d;
+},;
+const e = new a( 10 );
+$( e, "outer" );
+`````
+
 ## Globals
 
 None

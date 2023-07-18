@@ -180,6 +180,58 @@ const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchCaseToStart, tmpSaooB);
 $(tmpReturnArg$5);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1, "disc" );
+let b = 2;
+const c = $( 0 );
+const d = c === a;
+if (d) {
+  b = 0;
+}
+else {
+  const e = $( 1 );
+  const f = e === a;
+  if (f) {
+    b = 1;
+  }
+}
+const g = function($$0,$$1 ) {
+  const h = i;
+  const j = k;
+  debugger;
+  if (j) {
+    $( "keep, do not eval" );
+    return undefined;
+  }
+  else {
+    const l = h <= 1;
+    if (l) {
+      $( "keep, eval" );
+      return undefined;
+    }
+    else {
+      const m = h <= 2;
+      if (m) {
+        $( "keep, do not eval" );
+        const n = $( 2, "ret" );
+        return n;
+      }
+      else {
+        $( "eliminate after switch" );
+        return undefined;
+      }
+    }
+  }
+},;
+const o = b <= 0;
+const p = g( b, o );
+$( p );
+`````
+
 ## Globals
 
 None

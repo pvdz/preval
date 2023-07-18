@@ -78,6 +78,17 @@ const arr = $(tmpCalleeParam);
 $(`number`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 1, 2, 3,, ];
+const b = $( a );
+[ ... b,, ];
+$( "number" );
+`````
+
 ## Globals
 
 None

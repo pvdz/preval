@@ -80,6 +80,27 @@ if ($) {
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  $( 1 );
+  if ($) {
+    while ($LOOP_UNROLL_10) {
+      if ($) {
+        $( 1 );
+      }
+      else {
+        break;
+      }
+    }
+  }
+}
+$( undefined );
+`````
+
 ## Globals
 
 None

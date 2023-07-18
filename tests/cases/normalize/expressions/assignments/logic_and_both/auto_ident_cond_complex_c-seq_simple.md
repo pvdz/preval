@@ -90,6 +90,45 @@ if (a) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = {
+a: 999,
+b: 1000
+;
+const b = $( 1 );
+let c = undefined;
+if (b) {
+  a = $( 60 );
+  c = a;
+}
+else {
+  const d = $( 100 );
+  a = $( d );
+  c = a;
+}
+if (a) {
+  let e = undefined;
+  const f = $( 1 );
+  if (f) {
+    e = $( 60 );
+  }
+  else {
+    const g = $( 100 );
+    e = $( g );
+  }
+  a = e;
+  $( e );
+}
+else {
+  $( c );
+}
+$( a );
+`````
+
 ## Globals
 
 None

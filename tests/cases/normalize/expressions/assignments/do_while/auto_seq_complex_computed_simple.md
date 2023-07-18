@@ -100,6 +100,48 @@ tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(tmpClusterSSA_a$2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+const a = $( 1 );
+const b = { b: a };
+let c = b;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+  const d = $( 1 );
+  const e = { b: d };
+  c = e;
+}
+$( 1 );
+const f = $( c );
+const g = $( 2 );
+f.b = g;
+$( c );
+`````
+
 ## Globals
 
 None

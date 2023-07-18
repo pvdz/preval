@@ -138,6 +138,50 @@ const tmpCalleeParam = f();
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  let b = $( true );
+  while (true) {
+    if (b) {
+      $( "loop" );
+      let c = undefined;
+      const d = {
+a: 1,
+b: 2
+      ;
+      for (c in d {
+        $( "loop", c );
+        const e = $( 1, "if" );
+        if (e) {
+          $( "pass" );
+          const f = $( 100, "return" );
+          return f;
+        }
+        else {
+          $( "do not visit" );
+          const g = $( 101, "return" );
+          return g;
+        }
+      }
+      $( "after (not invoked but should not be eliminated)" );
+      b = $( true );
+    }
+    else {
+      break;
+    }
+  }
+  $( "after (not invoked)" );
+  return undefined;
+},;
+const h = a();
+$( h );
+`````
+
 ## Globals
 
 None

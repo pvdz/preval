@@ -169,6 +169,39 @@ $(4);
 $(`-------- a.foo = 4`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "-------- start" );
+$( "-------- bound" );
+$( "-------- let 1" );
+const a = {
+get foo() {
+    debugger;
+    const b = $( 2 );
+    return b;
+  },,
+set foo( $$0 ) {
+    debugger;
+    const c = $( 3 );
+    return c;
+  },
+;
+a.foo = 5;
+$( 5 );
+$( "-------- test case" );
+$( 5 );
+$( "-------- a" );
+const d = a.foo;
+$( d );
+$( "-------- a.foo" );
+a.foo = 4;
+$( 4 );
+$( "-------- a.foo = 4" );
+`````
+
 ## Globals
 
 None

@@ -47,6 +47,18 @@ const a = {};
 a.foo = tmpAssignMemRhs;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $ObjectPrototype.foo;
+const b = $();
+const c = a + b;
+const d = {};
+d.foo = c;
+`````
+
 ## Globals
 
 None

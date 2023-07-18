@@ -89,6 +89,14 @@ if (alwaysFalse) {
 $(`b`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "b" );
+`````
+
 ## Globals
 
 None

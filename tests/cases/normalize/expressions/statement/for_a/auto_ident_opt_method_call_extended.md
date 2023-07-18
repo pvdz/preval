@@ -78,6 +78,32 @@ if (tmpIfTest$1) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { e: $ };
+const b = {
+a: 999,
+b: 1000
+;
+$dotCall( $, a, 1 );
+const c = $( 0 );
+if (c) {
+  let d = $( 0 );
+  while ($LOOP_UNROLL_10) {
+    if (d) {
+      d = $( 0 );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( b );
+`````
+
 ## Globals
 
 None

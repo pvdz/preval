@@ -70,6 +70,24 @@ const arr = $dotCall(map, pre, f);
 $(arr);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 1, 2, 3,, ];
+const b = a.map;
+const c = function($$0 ) {
+  const d = e;
+  debugger;
+  $( "hello", d );
+  const f = d + 1;
+  return f;
+},;
+const g = $dotCall( b, a, c );
+$( g );
+`````
+
 ## Globals
 
 None

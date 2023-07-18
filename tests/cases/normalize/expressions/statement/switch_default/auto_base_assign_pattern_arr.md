@@ -64,6 +64,24 @@ const tmpClusterSSA_b = arrPatternSplat[0];
 $(a, tmpClusterSSA_b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+$( 1 );
+const b = $( 2 );
+const c = [ b,, ];
+const d = $( c );
+const e = [ ... d,, ];
+const f = e[ 0 ];
+$( a, f );
+`````
+
 ## Globals
 
 None

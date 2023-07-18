@@ -53,6 +53,20 @@ export { tmpAnonDefaultExport as default };
 $(tmpClusterSSA_a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { c: 1 };
+const b = $( a );
+const c = $( "c" );
+const d = b[ c ];
+const e = d;
+export { e as default from "undefined"
+$( d, a );
+`````
+
 ## Globals
 
 None

@@ -47,6 +47,18 @@ const a = arrPatternSplat[0];
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 1, 2,, ];
+const b = $( a );
+const c = [ ... b,, ];
+const d = c[ 0 ];
+$( d );
+`````
+
 ## Globals
 
 None

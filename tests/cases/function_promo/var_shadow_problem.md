@@ -119,6 +119,24 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  const a = $( 1 );
+  if ($) {
+    $( a, "keep me a closure" );
+    const b = $();
+    if ($) {
+      $( b, "keep me inner local" );
+    }
+    $( a, "keep me outer local" );
+  }
+}
+`````
+
 ## Globals
 
 None

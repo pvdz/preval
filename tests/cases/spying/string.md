@@ -57,6 +57,22 @@ const tmpCalleeParam$3 = $coerce(tmpStringFirstArg$3, `string`);
 $(tmpCalleeParam$3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy();
+const b = $coerce( a, "string" );
+$( b );
+const c = $spy( 1, 2 );
+const d = $coerce( c, "string" );
+$( d );
+const e = $spy( "x", "y" );
+const f = $coerce( e, "string" );
+$( f );
+`````
+
 ## Globals
 
 None

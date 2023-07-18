@@ -40,6 +40,16 @@ delete obj.x;
 $(obj);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+deletea.x;
+$( a );
+`````
+
 ## Globals
 
 None

@@ -49,6 +49,16 @@ $(`before  undefined  after`);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+$( "before  undefined  after" );
+$( undefined );
+`````
+
 ## Globals
 
 None

@@ -102,6 +102,47 @@ if (tmpPostUpdArgVal) {
 $(tmpClusterSSA_a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+const a = { x: 1 };
+const b = $( a );
+const c = $( b );
+const d = c.x;
+const e = d - 1;
+c.x = e;
+let f = d;
+if (d) {
+  $( 100 );
+  const g = $( a );
+  const h = $( g );
+  const i = h.x;
+  const j = i - 1;
+  h.x = j;
+  f = i;
+  let k = i;
+  while ($LOOP_UNROLL_9) {
+    if (k) {
+      $( 100 );
+      const l = $( a );
+      const m = $( l );
+      const n = m.x;
+      const o = n - 1;
+      m.x = o;
+      f = n;
+      k = n;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( f, a );
+`````
+
 ## Globals
 
 None

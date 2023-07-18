@@ -55,6 +55,22 @@ if (x) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = !unknown;
+if (a) {
+  $( "a" );
+  $( "d" );
+}
+else {
+  $( "b" );
+  $( "c" );
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

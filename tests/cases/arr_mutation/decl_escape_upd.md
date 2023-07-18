@@ -42,6 +42,17 @@ arr[0] = 1;
 $(arr);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [];
+$( a );
+a[0] = 1;
+$( a );
+`````
+
 ## Globals
 
 None

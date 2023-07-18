@@ -69,6 +69,28 @@ obj[a];
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = {};
+let c = undefined;
+const d = $( a );
+const e = d == null;
+if (e) {
+
+}
+else {
+  const f = $( "x" );
+  const g = d[ f ];
+  c = g;
+}
+b[ c ];
+$( c );
+`````
+
 ## Globals
 
 None

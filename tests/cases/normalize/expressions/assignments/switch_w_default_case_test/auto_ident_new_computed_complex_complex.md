@@ -114,6 +114,36 @@ $(`fail2`);
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = $( 1 );
+let c = 1;
+const d = $( a );
+const e = $( "$" );
+const f = d[ e ];
+const g = new f( 1 );
+const h = g === b;
+if (h) {
+  c = 0;
+}
+else {
+  const i = 2 === b;
+  if (i) {
+    c = 2;
+  }
+}
+const j = c <= 1;
+if (j) {
+  $( "fail1" );
+}
+$( "fail2" );
+$( g );
+`````
+
 ## Globals
 
 None

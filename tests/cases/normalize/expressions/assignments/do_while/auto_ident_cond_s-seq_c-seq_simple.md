@@ -86,6 +86,34 @@ if (tmpNestedComplexRhs) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+const a = $( 60 );
+let b = a;
+if (a) {
+  $( 100 );
+  const c = $( 60 );
+  b = c;
+  let d = c;
+  while ($LOOP_UNROLL_9) {
+    if (d) {
+      $( 100 );
+      const e = $( 60 );
+      b = e;
+      d = e;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( b );
+`````
+
 ## Globals
 
 None

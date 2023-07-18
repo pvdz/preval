@@ -66,6 +66,24 @@ if (tmpIfTest$1) {
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = $ == null;
+if (b) {
+
+}
+else {
+  const c = { e: $ };
+  const d = $dotCall( $, c, 1 );
+  a = d;
+}
+throw a;
+`````
+
 ## Globals
 
 None

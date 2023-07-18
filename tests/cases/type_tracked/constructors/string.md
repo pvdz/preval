@@ -42,6 +42,16 @@ const x = $coerce(tmpBinBothRhs, `plustr`);
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $coerce( a, "plustr" );
+$( b );
+`````
+
 ## Globals
 
 None

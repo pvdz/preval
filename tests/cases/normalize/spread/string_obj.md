@@ -38,6 +38,21 @@ const tmpCalleeParam = { [`0`]: `h`, [`1`]: `e`, [`2`]: `l`, [`3`]: `l`, [`4`]: 
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+"0"[ "h" ]: "h",
+"1"[ "e" ]: "e",
+"2"[ "l" ]: "l",
+"3"[ "l" ]: "l",
+"4"[ "o" ]: "o"
+;
+$( a );
+`````
+
 ## Globals
 
 None

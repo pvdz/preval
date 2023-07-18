@@ -66,6 +66,22 @@ for (lhs in rhs) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+for (a in rhs {
+  if ($) {
+    throw "Preval: Cannot access `firstElement` before initialization";
+  }
+  else {
+    $( "init" );
+  }
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

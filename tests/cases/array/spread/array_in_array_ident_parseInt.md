@@ -53,6 +53,19 @@ const y = [`a`, 1, parseInt, 3, `b`];
 $(y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 10 );
+if ($) {
+  $( 20 );
+}
+const a = [ "a", 1, parseInt, 3, "b",, ];
+$( a );
+`````
+
 ## Globals
 
 None

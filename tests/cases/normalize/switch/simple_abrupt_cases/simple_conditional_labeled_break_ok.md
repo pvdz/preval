@@ -186,6 +186,65 @@ ok: {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+ok: {
+  const a = $( 1 );
+  let b = 4;
+  const c = 0 === a;
+  if (c) {
+    b = 0;
+  }
+  else {
+    const d = 1 === a;
+    if (d) {
+      b = 1;
+    }
+    else {
+      const e = 2 === a;
+      if (e) {
+        b = 2;
+      }
+      else {
+        const f = 3 === a;
+        if (f) {
+          b = 3;
+        }
+      }
+    }
+  }
+  const g = b <= 0;
+  if (g) {
+    $( "one" );
+    if (x) {
+      break ok;
+    }
+  }
+  const h = b <= 1;
+  if (h) {
+    $( "two" );
+  }
+  else {
+    const i = b <= 2;
+    if (i) {
+      $( "three" );
+    }
+    else {
+      const j = b <= 3;
+      if (j) {
+        $( "four" );
+      }
+      else {
+        $( "def" );
+      }
+    }
+  }
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

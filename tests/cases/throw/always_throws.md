@@ -82,6 +82,19 @@ const tmpThrowArg = new Error(`always throws`);
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "do" );
+$( "not" );
+$( "inline" );
+$( "please" );
+const a = new Error( "always throws" );
+throw a;
+`````
+
 ## Globals
 
 None

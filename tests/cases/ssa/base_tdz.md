@@ -47,6 +47,14 @@ $(x);
 throw `Preval: Cannot access \`x\` before initialization`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw "Preval: Cannot access `x` before initialization";
+`````
+
 ## Globals
 
 None

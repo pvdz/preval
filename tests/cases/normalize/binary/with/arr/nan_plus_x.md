@@ -45,6 +45,17 @@ const arr = [tmpArrElement];
 $(arr);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy();
+const b = $coerce( a, "plustr" );
+const c = [ b,, ];
+$( c );
+`````
+
 ## Globals
 
 None

@@ -70,6 +70,17 @@ $(`1a2`);
 $(4);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 4 );
+$( 5 );
+$( "1a2" );
+$( 4 );
+`````
+
 ## Globals
 
 None

@@ -130,6 +130,50 @@ const a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+let b = 1;
+const c = $( $ );
+const d = c == null;
+let e = false;
+if (d) {
+  e = undefined === a;
+}
+else {
+  const f = $dotCall( c, $, 1 );
+  e = f === a;
+}
+if (e) {
+  b = 0;
+}
+else {
+  const g = 2 === a;
+  if (g) {
+    b = 2;
+  }
+}
+const h = b <= 0;
+if (h) {
+
+}
+else {
+  const i = b <= 1;
+  if (i) {
+    $( "fail1" );
+  }
+  $( "fail2" );
+}
+const j = {
+a: 999,
+b: 1000
+;
+$( j );
+`````
+
 ## Globals
 
 None

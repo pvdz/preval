@@ -49,6 +49,18 @@ const tmpClusterSSA_a = tmpAssignRhsCompObj[tmpAssignRhsCompProp];
 throw tmpClusterSSA_a;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { c: 1 };
+const b = $( a );
+const c = $( "c" );
+const d = b[ c ];
+throw d;
+`````
+
 ## Globals
 
 None

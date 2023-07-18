@@ -49,6 +49,14 @@ considerMutated(x);
 considerMutated(0);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+considerMutated( 0 );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

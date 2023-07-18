@@ -57,6 +57,21 @@ const tmpClusterSSA_a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( 3 );
+const c = {
+x: a,
+y: 2,
+z: b
+;
+$( c );
+`````
+
 ## Globals
 
 None

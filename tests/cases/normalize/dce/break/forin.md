@@ -72,6 +72,31 @@ while (true) {
 $(`after`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( true );
+while (true) {
+  if (a) {
+    let b = undefined;
+    const c = {
+a: 1,
+b: 2
+    ;
+    for (b in c {
+      break;
+    }
+    a = $( true );
+  }
+  else {
+    break;
+  }
+}
+$( "after" );
+`````
+
 ## Globals
 
 None

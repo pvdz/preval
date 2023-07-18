@@ -72,6 +72,27 @@ const tmpCallCallee = [spy, spy];
 $coerce(tmpCallCallee, `string`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+valueOf(  ) {
+    debugger;
+    $( "x" );
+    return undefined;
+  },,
+toString(  ) {
+    debugger;
+    $( "y" );
+    return undefined;
+  },
+;
+const b = [ a, a,, ];
+$coerce( b, "string" );
+`````
+
 ## Globals
 
 None

@@ -40,6 +40,16 @@ const x = $.length;
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+const a = $.length;
+$( a );
+`````
+
 ## Globals
 
 None

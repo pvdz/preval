@@ -74,6 +74,20 @@ $(a, b, 3);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 3 };
+const b = {
+a: 999,
+b: 1000
+;
+$( b, a, 3 );
+$( undefined );
+`````
+
 ## Globals
 
 None

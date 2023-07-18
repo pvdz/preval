@@ -58,6 +58,15 @@ const tmpBinBothRhs = {};
 undefined instanceof tmpBinBothRhs;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {};
+undefined instanceof a;
+`````
+
 ## Globals
 
 None

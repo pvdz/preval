@@ -66,6 +66,20 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( false );
+if (a) {
+  throw "Preval: Cannot access `x` before initialization";
+}
+else {
+  throw "exit";
+}
+`````
+
 ## Globals
 
 None

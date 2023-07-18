@@ -118,6 +118,56 @@ $(tmpCalleeParam);
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = { $: $ };
+const c = $( b );
+const d = c == null;
+if (d) {
+
+}
+else {
+  const e = $( "$" );
+  const f = c[ e ];
+  const g = f == null;
+  if (g) {
+
+  }
+  else {
+    const h = $( 1 );
+    const i = $dotCall( f, c, h );
+    a = i;
+  }
+}
+const j = a;
+let k = undefined;
+const l = $( b );
+const m = l == null;
+if (m) {
+
+}
+else {
+  const n = $( "$" );
+  const o = l[ n ];
+  const p = o == null;
+  if (p) {
+
+  }
+  else {
+    const q = $( 1 );
+    const r = $dotCall( o, l, q );
+    k = r;
+  }
+}
+const s = j + k;
+$( s );
+$( k );
+`````
+
 ## Globals
 
 None

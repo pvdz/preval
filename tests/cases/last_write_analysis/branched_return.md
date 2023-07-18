@@ -46,6 +46,17 @@ const tmpClusterSSA_x = $(`b`);
 $(tmpClusterSSA_x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "a" );
+$( a );
+const b = $( "b" );
+$( b );
+`````
+
 ## Globals
 
 None

@@ -47,6 +47,17 @@ export { a };
 $(2, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { c: 2 };
+const b = 2;
+export { b as a from "undefined"
+$( 2, a );
+`````
+
 ## Globals
 
 None

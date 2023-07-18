@@ -153,6 +153,46 @@ const tmpCalleeParam$5 = tmpCallObj$5.y();
 $(tmpCalleeParam$5);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( String );
+const b = $( "f" );
+const c = class   {
+[ b ](  ) {
+  debugger;
+  const d = $( 100, "method" );
+  return d;
+},,g(  ) {
+  debugger;
+  const e = $( 200, "method" );
+  return e;
+},,x(  ) {
+  debugger;
+  const f = $( 300, "method" );
+  return f;
+},,y(  ) {
+  debugger;
+  const g = $( 400, "method" );
+  return g;
+},
+};
+const h = new c();
+const i = h.f();
+$( i );
+const j = new c();
+const k = j.g();
+$( k );
+const l = new c();
+const m = l.x();
+$( m );
+const n = new c();
+const o = n.y();
+$( o );
+`````
+
 ## Globals
 
 None

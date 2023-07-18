@@ -751,6 +751,119 @@ f$9();
 considerMutated(x$31);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+considerMutated( 1 );
+considerMutated( 0 );
+considerMutated( 1 );
+considerMutated( 1 );
+considerMutated( 1 );
+considerMutated( 0 );
+considerMutated( 1 );
+considerMutated( 0 );
+considerMutated( 1 );
+considerMutated( 1 );
+considerMutated( 1 );
+const a = function() {
+  debugger;
+  b = "fail";
+  try {
+    return undefined;
+  }
+finally {
+    return undefined;
+  }
+  console.log( "fail" );
+  b = "fail";
+  return undefined;
+},;
+let b = 0;
+a();
+considerMutated( b );
+const c = function() {
+  debugger;
+  try {
+    throw "not me";
+  }
+finally {
+    return undefined;
+  }
+  return undefined;
+},;
+c();
+considerMutated( 0 );
+const d = function() {
+  debugger;
+  try {
+    throw e;
+  }
+finally {
+    e = 1;
+    return undefined;
+  }
+  e = 1;
+  return undefined;
+},;
+let e = 0;
+d();
+considerMutated( e );
+const f = function() {
+  debugger;
+  try {
+    throw "one";
+  }
+catch (e$2) {
+    throw "two";
+  }
+finally {
+    g = 1;
+    return undefined;
+  }
+  g = 1;
+  return undefined;
+},;
+let g = 0;
+f();
+considerMutated( g );
+const h = function() {
+  debugger;
+  i = 1;
+  try {
+    throw "one";
+  }
+catch (e$21) {
+    throw "two";
+  }
+finally {
+    return undefined;
+  }
+  return undefined;
+},;
+let i = 0;
+h();
+considerMutated( i );
+const j = function() {
+  debugger;
+  try {
+    throw "one";
+  }
+catch (e$23) {
+    k = 2;
+    throw "two";
+  }
+finally {
+    return undefined;
+  }
+  return undefined;
+},;
+let k = 0;
+j();
+considerMutated( k );
+`````
+
 ## Globals
 
 BAD@! Found 4 implicit global bindings:

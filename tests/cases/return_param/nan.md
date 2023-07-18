@@ -111,6 +111,36 @@ f(`three`);
 $(NaN);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  $( "no" );
+  $( "inlining" );
+  $( "please" );
+  +b;
+  const d = $( true );
+  if (d) {
+    $( "a" );
+    return undefined;
+  }
+  else {
+    $( "b" );
+    return undefined;
+  }
+},;
+a( 1 );
+$( NaN );
+a( 2 );
+$( NaN );
+a( "three" );
+$( NaN );
+`````
+
 ## Globals
 
 None

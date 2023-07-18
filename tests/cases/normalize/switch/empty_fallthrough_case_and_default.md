@@ -48,6 +48,16 @@ $spy(0);
 $();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$spy( 0 );
+$();
+`````
+
 ## Globals
 
 None

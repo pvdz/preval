@@ -110,6 +110,20 @@ const tmpReturnArg = tmpBinLhs + r;
 $(tmpReturnArg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( false );
+const a = $( 1 );
+const b = $( 3 );
+const c = $( 5 );
+const d = a + b;
+const e = d + c;
+$( e );
+`````
+
 ## Globals
 
 None

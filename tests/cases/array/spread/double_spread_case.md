@@ -74,6 +74,22 @@ const zz = [`z`, 1, b, tmpClusterSSA_a, tmpClusterSSA_a, b, 3, a, a, a, a, 2, 3,
 $(aa, zz, tmpClusterSSA_a$1, tmpClusterSSA_b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "x" );
+$( "y" );
+const b = $( "u" );
+const c = $( "w" );
+const d = $( "o" );
+const e = $( "p" );
+const f = [ "a", a, a, a, a, 2, 3, 1, c, b, b, c, 3, "a",, ];
+const g = [ "z", 1, c, b, b, c, 3, a, a, a, a, 2, 3, "z",, ];
+$( f, g, d, e );
+`````
+
 ## Globals
 
 None

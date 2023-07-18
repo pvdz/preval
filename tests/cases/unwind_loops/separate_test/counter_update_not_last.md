@@ -90,6 +90,48 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "yolo" );
+$( "oops" );
+$( "yolo" );
+$( "oops" );
+$( "yolo" );
+$( "oops" );
+$( "yolo" );
+$( "oops" );
+$( "yolo" );
+$( "oops" );
+$( "yolo" );
+$( "oops" );
+$( "yolo" );
+$( "oops" );
+$( "yolo" );
+$( "oops" );
+$( "yolo" );
+$( "oops" );
+$( "yolo" );
+$( "oops" );
+$( "yolo" );
+let a = false;
+let b = 11;
+$( "oops" );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (a) {
+    $( "yolo" );
+    a = b < 10;
+    b = b + 1;
+    $( "oops" );
+  }
+  else {
+    break;
+  }
+}
+`````
+
 ## Globals
 
 None

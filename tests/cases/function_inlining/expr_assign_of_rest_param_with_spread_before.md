@@ -85,6 +85,24 @@ g(...arr, 10, 20, 30, 40, 50, 60);
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = 0;
+const b = function($$0,$$1 ) {
+  const c = d;
+  debugger;
+  a = c;
+  return undefined;
+},;
+const e = [ 1, 2,, ];
+const f = $( e );
+b( ... f, 10, 20, 30, 40, 50, 60 );
+$( a );
+`````
+
 ## Globals
 
 None

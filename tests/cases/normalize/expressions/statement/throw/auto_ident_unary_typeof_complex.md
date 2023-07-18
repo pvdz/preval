@@ -45,6 +45,16 @@ const tmpThrowArg = typeof tmpUnaryArg;
 throw tmpThrowArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = typeofa;
+throw b;
+`````
+
 ## Globals
 
 None

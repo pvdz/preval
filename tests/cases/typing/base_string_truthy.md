@@ -68,6 +68,21 @@ if (b) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "pass" );
+const b = $coerce( a, "plustr" );
+if (b) {
+  $( b );
+}
+else {
+  $( "" );
+}
+`````
+
 ## Globals
 
 None

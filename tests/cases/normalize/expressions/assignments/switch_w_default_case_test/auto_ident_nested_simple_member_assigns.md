@@ -123,6 +123,32 @@ $(`fail2`);
 $(3, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 3 };
+const b = $( 1 );
+let c = 1;
+const d = 3 === b;
+if (d) {
+  c = 0;
+}
+else {
+  const e = 2 === b;
+  if (e) {
+    c = 2;
+  }
+}
+const f = c <= 1;
+if (f) {
+  $( "fail1" );
+}
+$( "fail2" );
+$( 3, a, 3 );
+`````
+
 ## Globals
 
 None

@@ -40,6 +40,15 @@ const arr = [1, 2, 3];
 $(3, arr);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 1, 2, 3,, ];
+$( 3, a );
+`````
+
 ## Globals
 
 None

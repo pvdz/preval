@@ -53,6 +53,14 @@ $(`fail`);
 $(`fail`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "fail" );
+`````
+
 ## Globals
 
 None

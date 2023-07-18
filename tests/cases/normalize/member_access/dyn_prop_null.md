@@ -38,6 +38,15 @@ const tmpCalleeParam = $ObjectPrototype.null;
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $ObjectPrototype.null;
+$( a );
+`````
+
 ## Globals
 
 None

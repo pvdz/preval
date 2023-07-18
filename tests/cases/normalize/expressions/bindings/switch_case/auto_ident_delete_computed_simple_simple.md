@@ -59,6 +59,16 @@ const tmpClusterSSA_a = delete tmpClusterSSA_arg.y;
 $(tmpClusterSSA_a, tmpClusterSSA_arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = deletea.y;
+$( b, a );
+`````
+
 ## Globals
 
 None

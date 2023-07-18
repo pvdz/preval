@@ -57,6 +57,20 @@ const x = a * 2;
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "1" );
+const b = +a;
+if ($) {
+  $( "foo" );
+}
+const c = b * 2;
+$( c );
+`````
+
 ## Globals
 
 None

@@ -64,6 +64,15 @@ const r = String.toString();
 $(r);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = String.toString();
+$( a );
+`````
+
 ## Globals
 
 None

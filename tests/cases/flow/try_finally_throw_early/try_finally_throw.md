@@ -78,6 +78,22 @@ try {
 $(`pass`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+try {
+  throw "yes";
+}
+finally {
+  throw_early;
+  $( "still throws" );
+  $( "pass" );
+}
+$( "pass" );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

@@ -56,6 +56,22 @@ b.c = tmpNestedAssignPropRhs;
 $(tmpNestedAssignPropRhs, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+c: 10,
+d: 20
+;
+const b = $( a );
+const c = $( "d" );
+const d = b[ c ];
+a.c = d;
+$( d, a );
+`````
+
 ## Globals
 
 None

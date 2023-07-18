@@ -39,6 +39,16 @@ x = arrPatternSplat.slice(0);
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ "a", "b", "c",, ];
+x = a.slice( 0 );
+$( x );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

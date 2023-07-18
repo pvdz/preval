@@ -31,6 +31,14 @@ const a = bindingPatternObjRoot.x;
 (1).x;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+1.x;
+`````
+
 ## Globals
 
 None

@@ -69,6 +69,31 @@ if (tmpNestedAssignObjPatternRhs) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = $( 2 );
+const c = { b: b };
+const d = $( c );
+const e = d.b;
+if (d) {
+  const f = $( 2 );
+  const g = { b: f };
+  const h = $( g );
+  const i = h.b;
+  $( a, i );
+}
+else {
+  $( a, e );
+}
+`````
+
 ## Globals
 
 None

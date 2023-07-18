@@ -82,6 +82,33 @@ while (true) {
 $(x, `outer`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 10 );
+while (true) {
+  let b = true;
+  $( a, "inner" );
+  const c = $( true );
+  if (c) {
+    b = false;
+  }
+  if (b) {
+    while ($LOOP_UNROLL_10) {
+      $( a, "inner" );
+      const d = $( true );
+      if (d) {
+        break;
+      }
+    }
+  }
+  $( a, "middle" );
+}
+$( a, "outer" );
+`````
+
 ## Globals
 
 None

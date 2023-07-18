@@ -59,6 +59,14 @@ $(glbl);
 $(window);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( window );
+`````
+
 ## Globals
 
 None

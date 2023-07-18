@@ -67,6 +67,25 @@ $(varInitAssignLhsComputedRhs, b);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+c: 10,
+d: 20
+;
+const b = $( a );
+const c = $( "c" );
+const d = $( a );
+const e = $( "d" );
+const f = d[ e ];
+b[c] = f;
+$( f, a );
+$( undefined );
+`````
+
 ## Globals
 
 None

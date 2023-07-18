@@ -165,6 +165,15 @@ const result = mainCall();
 global.React = result;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = mainCall();
+global.React = a;
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

@@ -54,6 +54,15 @@ $(`before  2  after`);
 $(2, 2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "before  2  after" );
+$( 2, 2 );
+`````
+
 ## Globals
 
 None

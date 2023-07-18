@@ -67,6 +67,20 @@ b.c = 3;
 $(1, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = { c(  ) {
+  debugger;
+  a = undefined;
+  return undefined;
+}, };
+a.c = 3;
+$( 1, a, 3 );
+`````
+
 ## Globals
 
 None

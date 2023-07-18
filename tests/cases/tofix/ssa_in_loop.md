@@ -127,6 +127,58 @@ if ($tmpLoopUnrollCheck$1) {
 $(tmpClusterSSA_s);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 10 );
+let b = $LOOP_UNROLL_10;
+parseExpression( lexerFlags$285, astProp$181 );
+let c = a | 10;
+let d = $( true );
+if (d) {
+
+}
+else {
+  b = false;
+}
+let e = true;
+if (b) {
+  parseExpression( lexerFlags$285, astProp$181 );
+  c = c | 10;
+  d = $( true );
+  if (d) {
+
+  }
+  else {
+    e = false;
+  }
+}
+else {
+  e = false;
+}
+if (e) {
+  while ($LOOP_UNROLL_10) {
+    if (b) {
+      parseExpression( lexerFlags$285, astProp$181 );
+      c = c | 10;
+      d = $( true );
+      if (d) {
+
+      }
+      else {
+        break;
+      }
+    }
+    else {
+      break;
+    }
+  }
+}
+$( c );
+`````
+
 ## Globals
 
 BAD@! Found 3 implicit global bindings:

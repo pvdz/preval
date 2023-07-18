@@ -53,6 +53,24 @@ for (x of tmpNestedAssignObjPatternRhs) {
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 1,
+b: 2
+;
+const b = $( a );
+const c = b.a;
+let d = undefined;
+for (d of b {
+
+}
+$( c );
+`````
+
 ## Globals
 
 None

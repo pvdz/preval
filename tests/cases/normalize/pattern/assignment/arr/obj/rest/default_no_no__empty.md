@@ -49,6 +49,17 @@ const tmpClusterSSA_x = objPatternRest(tmpArrElement, tmpCalleeParam$1, undefine
 $(tmpClusterSSA_x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {};
+const b = [];
+const c = objPatternRest( a, b, undefined );
+$( c );
+`````
+
 ## Globals
 
 None

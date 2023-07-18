@@ -64,6 +64,29 @@ delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
 $(a, arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = {
+a: 999,
+b: 1000
+;
+$( 1 );
+$( 2 );
+const c = $( a );
+const d = $( "y" );
+deletec[ d ];
+$( 1 );
+$( 2 );
+const e = $( a );
+const f = $( "y" );
+deletee[ f ];
+$( b, a );
+`````
+
 ## Globals
 
 None

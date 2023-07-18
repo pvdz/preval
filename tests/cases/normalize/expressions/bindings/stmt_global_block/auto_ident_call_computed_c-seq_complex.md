@@ -49,6 +49,18 @@ const a = tmpCallCompObj[tmpCallCompProp](1);
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = $( a );
+const c = $( "$" );
+const d = b[ c ]( 1 )};
+$( d );
+`````
+
 ## Globals
 
 None

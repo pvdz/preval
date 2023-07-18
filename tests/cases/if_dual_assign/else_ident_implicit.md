@@ -78,6 +78,21 @@ if (a) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( false, "middle" );
+const a = b === c;
+if (a) {
+  $( true, "end" );
+}
+else {
+  $( false, "end" );
+}
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

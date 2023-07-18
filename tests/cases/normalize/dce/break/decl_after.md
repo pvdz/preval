@@ -88,6 +88,44 @@ if ($tmpLoopUnrollCheck) {
 $(`after`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+let b = true;
+if (a) {
+  const c = $( false );
+  if (c) {
+    throw "Preval: Cannot access `x` before initialization";
+  }
+  else {
+    b = false;
+  }
+}
+else {
+  b = false;
+}
+if (b) {
+  while ($LOOP_UNROLL_10) {
+    if (a) {
+      const d = $( false );
+      if (d) {
+        throw "Preval: Cannot access `x` before initialization";
+      }
+      else {
+        break;
+      }
+    }
+    else {
+      break;
+    }
+  }
+}
+$( "after" );
+`````
+
 ## Globals
 
 None

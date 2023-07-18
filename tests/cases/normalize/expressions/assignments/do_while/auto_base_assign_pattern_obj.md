@@ -97,6 +97,43 @@ if (tmpNestedAssignObjPatternRhs) {
 $(tmpClusterSSA_a, tmpClusterSSA_b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+const a = $( 2 );
+const b = { b: a };
+const c = $( b );
+let d = c.b;
+let e = c;
+if (c) {
+  $( 100 );
+  const f = $( 2 );
+  const g = { b: f };
+  const h = $( g );
+  d = h.b;
+  e = h;
+  let i = h;
+  while ($LOOP_UNROLL_9) {
+    if (i) {
+      $( 100 );
+      const j = $( 2 );
+      const k = { b: j };
+      const l = $( k );
+      d = l.b;
+      e = l;
+      i = l;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( e, d );
+`````
+
 ## Globals
 
 None

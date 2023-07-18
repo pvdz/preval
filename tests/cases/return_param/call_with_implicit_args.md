@@ -178,6 +178,58 @@ const tmpCalleeParam$7 = f(tmpCalleeParam$9);
 $(tmpCalleeParam$7);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  $( "no" );
+  $( "inlining" );
+  $( "please" );
+  const d = b( 1, "two", foo, NaN );
+  return d;
+},;
+const e = function($$0,$$1,$$2,$$3,$$4 ) {
+  const f = c;
+  const g = h;
+  const i = j;
+  const k = l;
+  const m = n;
+  debugger;
+  $( "pass1", f, g, i, k, m );
+  return undefined;
+},;
+const o = a( e );
+$( o );
+const p = function($$0,$$1,$$2,$$3,$$4 ) {
+  const q = c;
+  const r = h;
+  const s = j;
+  const t = l;
+  const u = n;
+  debugger;
+  $( "pass2", q, r, s, t, u );
+  return undefined;
+},;
+const v = a( p );
+$( v );
+const w = function($$0,$$1,$$2,$$3,$$4 ) {
+  const x = c;
+  const y = h;
+  const z = j;
+  const 01 = l;
+  const 11 = n;
+  debugger;
+  $( "pass3", x, y, z, 01, 11 );
+  return undefined;
+},;
+const 21 = a( w );
+$( 21 );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

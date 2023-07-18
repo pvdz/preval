@@ -93,6 +93,45 @@ tmpClusterSSA_a$2.b = 2;
 $(tmpClusterSSA_a$2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+$( 1 );
+$( 100 );
+const a = $( 1 );
+const b = { b: a };
+let c = b;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+  const d = $( 1 );
+  const e = { b: d };
+  c = e;
+}
+c.b = 2;
+$( c );
+`````
+
 ## Globals
 
 None

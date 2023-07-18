@@ -93,6 +93,37 @@ tmpSplitTruthy();
 tmpSplitFalsy();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  try {
+    $( "then" );
+  }
+catch (tmpCatchParam) {
+
+  }
+  return undefined;
+},;
+const b = function() {
+  debugger;
+  try {
+    $( "else" );
+  }
+catch (tmpCatchParam$1) {
+
+  }
+  return undefined;
+},;
+b();
+a();
+a();
+b();
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

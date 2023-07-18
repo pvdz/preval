@@ -49,6 +49,19 @@ if (tmpIfTest) {
 $(`bad`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 1.x;
+const b = a === undefined;
+if (b) {
+  $( "fail" );
+}
+$( "bad" );
+`````
+
 ## Globals
 
 None

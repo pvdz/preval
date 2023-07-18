@@ -51,6 +51,14 @@ a$1 = tmpNestedAssignArrPatternRhs;
 
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+
+`````
+
 ## Globals
 
 None

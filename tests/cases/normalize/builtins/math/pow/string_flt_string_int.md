@@ -35,6 +35,15 @@ const tmpCalleeParam = Math.pow(`3.7`, `2`);
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = Math.pow( "3.7", "2" );
+$( a );
+`````
+
 ## Globals
 
 None

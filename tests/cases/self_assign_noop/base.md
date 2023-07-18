@@ -73,6 +73,14 @@ a();
 $(`inner`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "inner" );
+`````
+
 ## Globals
 
 None

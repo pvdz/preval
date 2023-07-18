@@ -263,6 +263,82 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+x;
+const a = [];
+const b = x ** a;
+x;
+const c = [];
+const d = x * c;
+x;
+const e = [];
+const f = x / e;
+x;
+const g = [];
+const h = x % g;
+x;
+const i = $coerce( x, "plustr" );
+x;
+const j = [];
+const k = x - j;
+x;
+const l = [];
+const m = x << l;
+x;
+const n = [];
+const o = x >> n;
+x;
+const p = [];
+const q = x >>> p;
+x;
+const r = [];
+const s = x < r;
+x;
+const t = [];
+const u = x > t;
+x;
+const v = [];
+const w = x <= v;
+x;
+const x = [];
+const y = x >= x;
+x;
+const z = [];
+const 01 = x === z;
+x;
+const 11 = [];
+const 21 = x !== 11;
+x;
+const 31 = [];
+const 41 = x === 31;
+x;
+const 51 = [];
+const 61 = x !== 51;
+x;
+const 71 = [];
+const 81 = x & 71;
+x;
+const 91 = [];
+const a1 = x ^ 91;
+x;
+const b1 = [];
+const c1 = x | b1;
+const d1 = [ b, d, f, h, i, k, m, o, q, s, u, w, y, 01, 21, 41, 61, 81, a1, c1,, ];
+$( d1 );
+x;
+const e1 = [];
+const f1 = x in e1;
+x;
+const g1 = [];
+const h1 = x instanceof g1;
+const i1 = [ f1, h1,, ];
+$( i1 );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

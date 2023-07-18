@@ -61,6 +61,22 @@ try {
 $(`after`, blob);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 2, 3,, ];
+try {
+  $( "try", 1 );
+}
+catch (e) {
+  const b = a.shift();
+  $( "catch", b );
+}
+$( "after", a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

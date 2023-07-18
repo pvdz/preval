@@ -126,6 +126,30 @@ const tmpReturnArg = $(10);
 $(tmpReturnArg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  $( "prevent" );
+  $( "simple" );
+  $( "inlining" );
+  if ($) {
+    $( "prevent" );
+    $( "simple" );
+    $( "inlining" );
+    if ($) {
+      $( "prevent" );
+      $( "simple" );
+      $( "inlining" );
+    }
+  }
+}
+const a = $( 10 );
+$( a );
+`````
+
 ## Globals
 
 None

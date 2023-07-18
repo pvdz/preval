@@ -75,6 +75,31 @@ tmpNestedAssignArrPatternRhs + tmpNestedAssignArrPatternRhs$1;
 $(a, tmpClusterSSA_x, tmpClusterSSA_y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = $( 3 );
+const c = $( 4 );
+const d = [ b, c,, ];
+const e = [ ... d,, ];
+e[ 0 ];
+e[ 1 ];
+const f = $( 3 );
+const g = $( 4 );
+const h = [ f, g,, ];
+const i = [ ... h,, ];
+const j = i[ 0 ];
+const k = i[ 1 ];
+d + h;
+$( a, j, k );
+`````
+
 ## Globals
 
 None

@@ -72,6 +72,29 @@ while (true) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = 0;
+let b = true;
+while (true) {
+  if (b) {
+    $( "yolo" );
+    a = a + 1;
+    const c = { a: 1 };
+    const d = $( c );
+    for (b of d {
+
+    }
+  }
+  else {
+    break;
+  }
+}
+`````
+
 ## Globals
 
 None

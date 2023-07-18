@@ -33,6 +33,14 @@ let x = class extends tmpClassSuper {};
 $(String);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( String );
+`````
+
 ## Globals
 
 None

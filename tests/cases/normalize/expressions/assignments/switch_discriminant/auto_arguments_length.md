@@ -51,6 +51,16 @@ $(100);
 $(arguments);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+arguments;
+$( 100 );
+$( arguments );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

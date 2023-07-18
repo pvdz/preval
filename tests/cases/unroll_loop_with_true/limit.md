@@ -59,6 +59,14 @@ $(str);
 $(`xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" );
+`````
+
 ## Globals
 
 None

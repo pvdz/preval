@@ -38,6 +38,14 @@ $(tmpBinLhs);
 $(`1,,3`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "1,,3" );
+`````
+
 ## Globals
 
 None

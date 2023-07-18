@@ -40,6 +40,15 @@ $(100);
 throw undefined;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+throw undefined;
+`````
+
 ## Globals
 
 None

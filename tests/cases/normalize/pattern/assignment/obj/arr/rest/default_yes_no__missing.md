@@ -58,6 +58,26 @@ y = arrPatternSplat.slice(0);
 $(y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $ObjectPrototype.x;
+let b = undefined;
+const c = a === undefined;
+if (c) {
+  const d = [ "pass",, ];
+  b = $( d );
+}
+else {
+  b = a;
+}
+const e = [ ... b,, ];
+y = e.slice( 0 );
+$( y );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

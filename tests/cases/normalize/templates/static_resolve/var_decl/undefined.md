@@ -38,6 +38,14 @@ $(x);
 $(`undefined`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "undefined" );
+`````
+
 ## Globals
 
 None

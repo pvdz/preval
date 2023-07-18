@@ -74,6 +74,26 @@ f(6, 7, -7);
 f(8, 9, -9);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0,$$1,$$2 ) {
+  const b = c;
+  const d = e;
+  const f = g;
+  debugger;
+  $( f );
+  $( b, 2, d );
+  return undefined;
+},;
+a( 1, 3, -2 );
+a( 4, 5, -5 );
+a( 6, 7, -7 );
+a( 8, 9, -9 );
+`````
+
 ## Globals
 
 None

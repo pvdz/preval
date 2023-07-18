@@ -61,6 +61,20 @@ for (x in tmpForInRhs) {
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+$( undefined );
+const b = { y: 100 };
+for (a in b {
+  $( a, "for" );
+}
+$( a );
+`````
+
 ## Globals
 
 None

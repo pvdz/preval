@@ -63,6 +63,24 @@ tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = { b: a };
+const c = $( 1 );
+const d = { b: c };
+const e = b + d;
+$( e );
+$( 1 );
+const f = $( d );
+const g = $( 2 );
+f.b = g;
+$( d );
+`````
+
 ## Globals
 
 None

@@ -94,6 +94,52 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = $( $ );
+const c = b == null;
+let d = undefined;
+if (c) {
+  $( undefined );
+}
+else {
+  const e = $dotCall( b, $, 1 );
+  a = e;
+  d = e;
+  $( e );
+}
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+$( d );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( d );
+  $( 1 );
+}
+$( a );
+`````
+
 ## Globals
 
 None

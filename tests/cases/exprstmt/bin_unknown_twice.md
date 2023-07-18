@@ -32,6 +32,14 @@ implicit1 + implicit2;
 implicit1 + implicit2;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+implicit1 + implicit2;
+`````
+
 ## Globals
 
 BAD@! Found 2 implicit global bindings:

@@ -52,6 +52,14 @@ let i = function ($$0) {
 
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+
+`````
+
 ## Globals
 
 None

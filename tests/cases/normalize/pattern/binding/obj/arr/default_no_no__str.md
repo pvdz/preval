@@ -41,6 +41,16 @@ const objPatternNoDefault = `abc`.x;
 $(`bad`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = "abc".x;
+[ ... a,, ];
+$( "bad" );
+`````
+
 ## Globals
 
 None

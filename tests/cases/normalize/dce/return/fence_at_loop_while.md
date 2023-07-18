@@ -131,6 +131,62 @@ if (tmpIfTest) {
 $(tmpReturnArg$11);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+const b = function($$0,$$1 ) {
+  let c = d;
+  const e = f;
+  debugger;
+  if (e) {
+    while ($LOOP_UNROLL_10) {
+      if (c) {
+        $( "loop" );
+        const g = $( true );
+        if (g) {
+          $( "loop" );
+          const h = $( 100, "return" );
+          return h;
+        }
+        else {
+          $( "do not visit, do not eliminate" );
+          c = $( true );
+        }
+      }
+      else {
+        break;
+      }
+    }
+  }
+  $( "after (not invoked)" );
+  return undefined;
+},;
+let i = undefined;
+if (a) {
+  $( "loop" );
+  const j = $( true );
+  if (j) {
+    $( "loop" );
+    const k = $( 100, "return" );
+    i = k;
+  }
+  else {
+    $( "do not visit, do not eliminate" );
+    const l = $( true );
+    const m = b( l, true );
+    i = m;
+  }
+}
+else {
+  const n = b( a, false );
+  i = n;
+}
+$( i );
+`````
+
 ## Globals
 
 None

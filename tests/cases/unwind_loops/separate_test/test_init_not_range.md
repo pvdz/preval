@@ -63,6 +63,23 @@ $(`yolo`);
 $(`yolo`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "yolo" );
+$( "yolo" );
+$( "yolo" );
+$( "yolo" );
+$( "yolo" );
+$( "yolo" );
+$( "yolo" );
+$( "yolo" );
+$( "yolo" );
+$( "yolo" );
+`````
+
 ## Globals
 
 None

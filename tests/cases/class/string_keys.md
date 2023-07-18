@@ -61,6 +61,23 @@ const tmpCalleeParam = tmpCallObj[`very stringy`]();
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = class   {
+[ "very stringy" ](  ) {
+  debugger;
+  const b = $( 1 );
+  return b;
+},
+};
+const c = new a();
+const d = c[ "very stringy" ]()};
+$( d );
+`````
+
 ## Globals
 
 None

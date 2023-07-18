@@ -1,6 +1,9 @@
 import path from 'path';
 
 import Prettier from 'prettier';
+import {astToPst} from "../src/utils/ast_to_pst.mjs"
+import {verifyPst} from "../src/utils/verify_pst.mjs"
+import {printPst} from "../src/utils/print_pst.mjs"
 
 export const RED = '\x1b[31;1m';
 export const GREEN = '\x1b[32m';
@@ -131,6 +134,7 @@ export function fromMarkdownCase(md, fname, config) {
             !s.startsWith('Normalized\n') &&
             !s.startsWith('Uniformed\n') &&
             !s.startsWith('Globals\n') &&
+            !s.startsWith('PST Output\n') &&
             !s.startsWith('Result\n'),
         )
         .map((s) => '## ' + s.trim()),
@@ -266,43 +270,39 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
   leGlobalSymbols.forEach(name => output.implicitGlobals.delete(name));
 
   let mdBody =
-    (CONFIG.logPasses ? '<trimmed, see logs>' : CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +
-    (CONFIG.logPasses ? '<trimmed, see logs>' : CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
-    // TODO: use this kind of approach to detect whether code is left that still needs to be normalized
-    //'\n\n## Uniformed\n\n' +
-    //Object.keys(output.files)
-    //  .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-    //  .map(
-    //    (key) =>
-    //      '`````js filename=' +
-    //      key +
-    //      '\n' +
-    //      fmat(output.special[key])
-    //        .replace(/\$[a-zA-Z\d]+/g, 'x')
-    //        .replace(/\bx\.x\b/g, 'x')
-    //        .replace(/'str'/g, 'x')
-    //        .replace(/\bx \* x\b/g, 'x')
-    //        .replace(/\bx\(x?(?:, x)*\)/g, 'x')
-    //        .replace(/(\bx)?\[x?(?:, x)*\]/g, 'x')
-    //        .replace(/^\s*var x;\n/gm, '')
-    //        .replace(/^\s*var x = [8x];\n/gm, '')
-    //        .replace(/^\s*x;\n/gm, '')
-    //        .replace(/^\s*x = [x8];\n/gm, '')
-    //        .replace(/if \(x\) /g, '')
-    //        .replace(/while \(x\) /g, '')
-    //        .trim() +
-    //      '\n`````',
-    //  )
-    //  .join('\n\n') +
-
-    (CONFIG.logPasses
-      ? '<trimmed, see logs>'
-      : '\n\n## Output\n\n' +
+    (CONFIG.logPasses ? '<trimmed, see logs>' : (
+      (CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +
+      (CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
+      (
+        '\n\n## Output\n\n' +
         Object.keys(output.files)
           .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
           .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
-          .join('\n\n')) +
-    toEvaluationResult(evalled, output.implicitGlobals, false);
+          .join('\n\n')
+      ) +
+      (
+        '\n\n## PST Output\n\n' +
+        'With rename=true\n\n' +
+        Object.keys(output.files)
+        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+        .map((key) => {
+          const pst = astToPst(output.lastAst);
+          //console.log('PST:');
+          //console.dir(pst, {depth: null});
+          verifyPst(pst);
+
+          const code = printPst(pst, {
+            rename: true,
+            globals: new Set(Array.from(output.implicitGlobals).concat(Array.from(output.explicitGlobals))),
+          });
+
+          return '`````js filename=' + key + '\n' + code.trim() + '\n`````';
+        })
+        .join('\n\n')
+      ) +
+      toEvaluationResult(evalled, output.implicitGlobals, false)
+    )) +
+  '';
 
   if (CONFIG.trimDollar) mdBody = mdBody.replace(/\$\d+/g, '');
 

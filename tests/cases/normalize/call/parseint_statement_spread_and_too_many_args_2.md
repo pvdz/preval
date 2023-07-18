@@ -80,6 +80,40 @@ if (tmpIfTest) {
 +tmpUnaryArg;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 1, 2,, ];
+const b = $( a );
+const c = [ ... b,, ];
+const d = c.length;
+const e = $spy( "b" );
+const f = $spy( "c" );
+if (d) {
+  const g = c[ 0 ];
+  $coerce( g, "string" );
+}
+else {
+  $coerce( e, "string" );
+}
+let h = undefined;
+const i = d > 1;
+if (i) {
+  h = c[ 1 ];
+}
+else {
+  if (d) {
+    h = e;
+  }
+  else {
+    h = f;
+  }
+}
++h;
+`````
+
 ## Globals
 
 None

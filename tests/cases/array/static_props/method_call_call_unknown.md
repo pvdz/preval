@@ -54,6 +54,19 @@ $dotCall(tmpCallVal, tmpCallObj, arr, tmpCalleeParam$1, 2, 10, 20);
 $(3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 1, 2, 3,, ];
+const b = a.splice;
+const c = b.call;
+const d = $( 1 );
+$dotCall( c, b, a, d, 2, 10, 20 );
+$( 3 );
+`````
+
 ## Globals
 
 None

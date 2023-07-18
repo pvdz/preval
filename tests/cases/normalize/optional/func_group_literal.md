@@ -58,6 +58,16 @@ const tmpReturnArg = $(tmpChainElementObject);
 $(tmpReturnArg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 3.foo;
+const b = $( a );
+$( b );
+`````
+
 ## Globals
 
 None

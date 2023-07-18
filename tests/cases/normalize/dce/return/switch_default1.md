@@ -134,6 +134,43 @@ const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchCaseToStart, tmpSaooB);
 $(tmpReturnArg$5);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1, "disc" );
+let b = 1;
+const c = $( 0 );
+const d = c === a;
+if (d) {
+  b = 0;
+}
+const e = function($$0,$$1 ) {
+  const f = g;
+  const h = i;
+  debugger;
+  if (h) {
+    $( "keep, do not eval" );
+    return undefined;
+  }
+  else {
+    const j = f <= 1;
+    if (j) {
+      const k = $( 2, "ret" );
+      return k;
+    }
+    else {
+      $( "fail" );
+      return undefined;
+    }
+  }
+},;
+const l = b <= 0;
+const m = e( b, l );
+$( m );
+`````
+
 ## Globals
 
 None

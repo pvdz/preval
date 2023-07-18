@@ -116,6 +116,65 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpClusterSSA_p$2, tmpClusterSSA_q$2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 10, 20,, ];
+const b = $( a );
+const c = [ ... b,, ];
+c[ 0 ];
+c[ 1 ];
+const d = $( a );
+const e = [ ... d,, ];
+e[ 0 ];
+e[ 1 ];
+const f = $( a );
+const g = [ ... f,, ];
+g[ 0 ];
+g[ 1 ];
+const h = $( a );
+const i = [ ... h,, ];
+i[ 0 ];
+i[ 1 ];
+const j = $( a );
+const k = [ ... j,, ];
+k[ 0 ];
+k[ 1 ];
+const l = $( a );
+const m = [ ... l,, ];
+m[ 0 ];
+m[ 1 ];
+const n = $( a );
+const o = [ ... n,, ];
+o[ 0 ];
+o[ 1 ];
+const p = $( a );
+const q = [ ... p,, ];
+q[ 0 ];
+q[ 1 ];
+const r = $( a );
+const s = [ ... r,, ];
+s[ 0 ];
+s[ 1 ];
+const t = $( a );
+const u = [ ... t,, ];
+u[ 0 ];
+u[ 1 ];
+const v = $( a );
+const w = [ ... v,, ];
+let x = w[ 0 ];
+let y = w[ 1 ];
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const z = $( a );
+  const 01 = [ ... z,, ];
+  x = 01[ 0 ];
+  y = 01[ 1 ];
+}
+$( x, y );
+`````
+
 ## Globals
 
 None

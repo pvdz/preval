@@ -99,6 +99,47 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
 $(arr);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = [ 0,, ];
+const b = a;
+const c = a[ 0 ];
+const d = c + 1;
+b[0] = d;
+$( a );
+const e = a[ 0 ];
+const f = e < 10;
+if (f) {
+  a = [ 0,, ];
+  const g = a;
+  const h = a[ 0 ];
+  const i = h + 1;
+  g[0] = i;
+  $( a );
+  const j = a[ 0 ];
+  let k = j < 10;
+  while ($LOOP_UNROLL_9) {
+    if (k) {
+      a = [ 0,, ];
+      const l = a;
+      const m = a[ 0 ];
+      const n = m + 1;
+      l[0] = n;
+      $( a );
+      const o = a[ 0 ];
+      k = o < 10;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( a );
+`````
+
 ## Globals
 
 None

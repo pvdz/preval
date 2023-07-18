@@ -101,6 +101,38 @@ if (tmpIfTest) {
 $(`after, do not evaluate (infinite loop)`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+if (a) {
+  const b = $( 1, "disc" );
+  const c = $( 0 );
+  const d = b === c;
+  if (d) {
+    $( "wrong branch" );
+  }
+  let e = $( true );
+  while ($LOOP_UNROLL_10) {
+    if (e) {
+      const f = $( 1, "disc" );
+      const g = $( 0 );
+      const h = f === g;
+      if (h) {
+        $( "wrong branch" );
+      }
+      e = $( true );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( "after, do not evaluate (infinite loop)" );
+`````
+
 ## Globals
 
 None

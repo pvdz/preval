@@ -72,6 +72,15 @@ const tmpPrevalAliasArgumentsLen = 4;
 $(tmpPrevalAliasArgumentsLen);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 4;
+$( a );
+`````
+
 ## Globals
 
 None

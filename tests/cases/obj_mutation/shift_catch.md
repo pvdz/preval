@@ -44,6 +44,15 @@ const blob = { thing: `woop` };
 $(`after`, blob);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { thing: "woop" };
+$( "after", a );
+`````
+
 ## Globals
 
 None

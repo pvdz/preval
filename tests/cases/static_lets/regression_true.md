@@ -94,6 +94,31 @@ if ($) {
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  $( ... b );
+  d = "fail";
+  return undefined;
+},;
+let d = 5;
+$( 5 );
+if ($) {
+  d = 10;
+  a( 10, "a" );
+}
+else {
+  d = 20;
+  a( 20, "b" );
+}
+$( d );
+`````
+
 ## Globals
 
 None

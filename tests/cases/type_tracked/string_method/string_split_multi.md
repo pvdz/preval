@@ -34,6 +34,16 @@ const tmpCalleeParam = [`h`, `e`, `l`, `l`, `o`, ` `, `w`, `o`, `r`, `l`, `d`];
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+unknown;
+const a = [ "h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d",, ];
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

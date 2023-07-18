@@ -115,6 +115,24 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1, "disc" );
+const b = $( 0 );
+const c = b === a;
+if (c) {
+  $( "keep, do not eval" );
+  throw "wrong exig";
+}
+else {
+  const d = $( 2, "ret" );
+  throw d;
+}
+`````
+
 ## Globals
 
 None

@@ -85,6 +85,36 @@ if (tmpNestedAssignPropRhs) {
 $(tmpClusterSSA_a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "c" );
+const b = {
+c: 10,
+d: 20
+;
+const c = $( b );
+const d = $( "d" );
+const e = c[ d ];
+b[a] = e;
+let f = e;
+if (e) {
+  $( e );
+}
+else {
+  const g = $( "c" );
+  const h = $( b );
+  const i = $( "d" );
+  const j = h[ i ];
+  b[g] = j;
+  f = j;
+  $( j );
+}
+$( f, b );
+`````
+
 ## Globals
 
 None

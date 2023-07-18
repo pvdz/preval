@@ -43,6 +43,17 @@ const x = tmpBinBothLhs * tmpBinBothRhs;
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 5 );
+const b = $( "10" );
+const c = a * b;
+$( c );
+`````
+
 ## Globals
 
 None

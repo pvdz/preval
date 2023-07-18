@@ -43,6 +43,21 @@ const x = { ...tmpObjSpread, a: tmpObjLitVal };
 $(x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { a: "ignored" };
+const b = $( a );
+const c = $( "prop" );
+const d = {
+... b,
+a: c
+;
+$( d );
+`````
+
 ## Globals
 
 None

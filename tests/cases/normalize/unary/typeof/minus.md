@@ -38,6 +38,16 @@ const tmpUnaryArg = $(100);
 $(`number`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100 );
+-a;
+$( "number" );
+`````
+
 ## Globals
 
 None

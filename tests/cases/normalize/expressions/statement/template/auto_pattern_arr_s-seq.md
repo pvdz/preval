@@ -55,6 +55,23 @@ $(`before  1,2  after`);
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = [ ... a,, ];
+const c = b[ 0 ];
+$( 10 );
+$( 20 );
+$( "before  1,2  after" );
+$( c );
+`````
+
 ## Globals
 
 None

@@ -91,6 +91,40 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( -1 );
+$( 0 );
+$( 1 );
+$( 2 );
+$( 3 );
+$( 4 );
+$( 5 );
+$( 6 );
+$( 7 );
+$( 8 );
+$( 9 );
+$( 10 );
+$( 11 );
+$( 12 );
+$( 13 );
+let a = 14;
+let b = true;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (b) {
+    $( a );
+    a = a + 1;
+    b = a > -5;
+  }
+  else {
+    break;
+  }
+}
+`````
+
 ## Globals
 
 None

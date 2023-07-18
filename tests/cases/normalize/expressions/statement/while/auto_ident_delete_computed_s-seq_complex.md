@@ -79,6 +79,44 @@ if ($tmpLoopUnrollCheck) {
 $(a, arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = {
+a: 999,
+b: 1000
+;
+let c = true;
+$( 1 );
+$( 2 );
+const d = $( "y" );
+const e = deletea[ d ];
+if (e) {
+  $( 100 );
+}
+else {
+  c = false;
+}
+if (c) {
+  while ($LOOP_UNROLL_10) {
+    $( 1 );
+    $( 2 );
+    const f = $( "y" );
+    const g = deletea[ f ];
+    if (g) {
+      $( 100 );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( b, a );
+`````
+
 ## Globals
 
 None

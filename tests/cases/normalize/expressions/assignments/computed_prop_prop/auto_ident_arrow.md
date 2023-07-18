@@ -57,6 +57,20 @@ obj[a];
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  return undefined;
+},;
+const b = {};
+b[ a ];
+$( a );
+`````
+
 ## Globals
 
 None

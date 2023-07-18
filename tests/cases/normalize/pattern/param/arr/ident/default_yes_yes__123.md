@@ -66,6 +66,15 @@ tmpCallCallee(tmpCalleeParam);
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+[ ... 1,, ];
+throw "[Preval]: Array spread must crash before this line";
+`````
+
 ## Globals
 
 None

@@ -75,6 +75,17 @@ const objPatternAfterDefault = $(tmpCalleeParam$1);
 $(`ok`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ "fail",, ];
+const b = $( a );
+[ ... b,, ];
+$( "ok" );
+`````
+
 ## Globals
 
 None

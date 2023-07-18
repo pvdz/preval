@@ -76,6 +76,37 @@ tmpAssignMemLhsObj.b = tmpAssignMemRhs;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = {
+a: 999,
+b: 1000
+;
+const b = $( 1 );
+if (b) {
+  const c = $( 1 );
+  a = { b: c };
+  let d = $( 1 );
+  while ($LOOP_UNROLL_10) {
+    if (d) {
+      const e = $( 1 );
+      a = { b: e };
+      d = $( 1 );
+    }
+    else {
+      break;
+    }
+  }
+}
+const f = a;
+const g = $( 2 );
+f.b = g;
+$( a );
+`````
+
 ## Globals
 
 None

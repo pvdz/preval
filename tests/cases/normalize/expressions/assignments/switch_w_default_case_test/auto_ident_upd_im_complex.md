@@ -119,6 +119,37 @@ $(`fail2`);
 $(tmpPostUpdArgVal, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = $( 1 );
+let c = 1;
+const d = $( a );
+const e = $( d );
+const f = e.x;
+const g = f - 1;
+e.x = g;
+const h = f === b;
+if (h) {
+  c = 0;
+}
+else {
+  const i = 2 === b;
+  if (i) {
+    c = 2;
+  }
+}
+const j = c <= 1;
+if (j) {
+  $( "fail1" );
+}
+$( "fail2" );
+$( f, a );
+`````
+
 ## Globals
 
 None

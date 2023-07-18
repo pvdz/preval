@@ -84,6 +84,14 @@ tmpCallCallee(tmpCalleeParam);
 throw `Preval: Cannot access \`xyz\` before initialization`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw "Preval: Cannot access `xyz` before initialization";
+`````
+
 ## Globals
 
 None

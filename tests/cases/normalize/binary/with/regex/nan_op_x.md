@@ -252,6 +252,65 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+toString(  ) {
+    debugger;
+    const b = $( "toString" );
+    return b;
+  },,
+valueOf(  ) {
+    debugger;
+    $( "valueOf" );
+    return 100;
+  },
+;
+const c = /foo/g;
+const d = c ** a;
+const e = /foo/g;
+const f = e * a;
+const g = /foo/g;
+const h = g / a;
+const i = /foo/g;
+const j = i % a;
+const k = $coerce( a, "plustr" );
+const l = `/foo/g${[object Object]}`;
+const m = /foo/g;
+const n = m - a;
+const o = /foo/g;
+const p = o << a;
+const q = /foo/g;
+const r = q >> a;
+const s = /foo/g;
+const t = s >>> a;
+const u = /foo/g;
+const v = u < a;
+const w = /foo/g;
+const x = w > a;
+const y = /foo/g;
+const z = y <= a;
+const 01 = /foo/g;
+const 11 = 01 >= a;
+const 21 = /foo/g;
+const 31 = 21 & a;
+const 41 = /foo/g;
+const 51 = 41 ^ a;
+const 61 = /foo/g;
+const 71 = 61 | a;
+const 81 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, false, true, false, true, 31, 51, 71,, ];
+$( 81 );
+const 91 = /foo/g;
+const a1 = 91 in a;
+const b1 = /foo/g;
+const c1 = b1 instanceof a;
+const d1 = [ a1, c1,, ];
+$( d1 );
+`````
+
 ## Globals
 
 None

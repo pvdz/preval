@@ -44,6 +44,15 @@ $(a, arg);
 throw `[Preval]: Array spread must crash before this line`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+[ ... false,, ];
+throw "[Preval]: Array spread must crash before this line";
+`````
+
 ## Globals
 
 None

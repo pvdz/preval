@@ -68,6 +68,32 @@ tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = {
+a: 999,
+b: 1000
+;
+const b = $( 1 );
+if (b) {
+  const c = $( 1 );
+  const d = { b: c };
+  a = d;
+  $( d );
+}
+else {
+  const e = $( 200 );
+  $( e );
+}
+const f = $( a );
+const g = $( "b" );
+f[g] = 2;
+$( a );
+`````
+
 ## Globals
 
 None

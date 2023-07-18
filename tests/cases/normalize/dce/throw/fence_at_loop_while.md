@@ -117,6 +117,47 @@ $(`after (not invoked)`);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+if (a) {
+  $( "loop" );
+  const b = $( true );
+  if (b) {
+    $( "loop" );
+    const c = $( 7, "throw" );
+    throw c;
+  }
+  else {
+    $( "do not visit, do not eliminate" );
+    let d = $( true );
+    while ($LOOP_UNROLL_10) {
+      if (d) {
+        $( "loop" );
+        const e = $( true );
+        if (e) {
+          $( "loop" );
+          const f = $( 7, "throw" );
+          throw f;
+        }
+        else {
+          $( "do not visit, do not eliminate" );
+          d = $( true );
+        }
+      }
+      else {
+        break;
+      }
+    }
+  }
+}
+$( "after (not invoked)" );
+$( undefined );
+`````
+
 ## Globals
 
 None

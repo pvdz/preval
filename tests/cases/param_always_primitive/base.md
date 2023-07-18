@@ -83,6 +83,29 @@ f(6, 7);
 f(8, 9);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0,$$1 ) {
+  const b = c;
+  const d = e;
+  debugger;
+  if ($) {
+    $( b, 2, d, "hopefully b is a literal afterwards" );
+    return undefined;
+  }
+  else {
+    return undefined;
+  }
+},;
+a( 1, 3 );
+a( 4, 5 );
+a( 6, 7 );
+a( 8, 9 );
+`````
+
 ## Globals
 
 None

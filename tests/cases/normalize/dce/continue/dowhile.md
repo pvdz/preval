@@ -92,6 +92,33 @@ while (true) {
 $(`after, wont eval due to infinite loop`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( true );
+while (true) {
+  if (a) {
+    $( "loop" );
+    while ($LOOP_UNROLL_10) {
+      const b = $( true );
+      if (b) {
+        $( "loop" );
+      }
+      else {
+        break;
+      }
+    }
+    a = $( true );
+  }
+  else {
+    break;
+  }
+}
+$( "after, wont eval due to infinite loop" );
+`````
+
 ## Globals
 
 None

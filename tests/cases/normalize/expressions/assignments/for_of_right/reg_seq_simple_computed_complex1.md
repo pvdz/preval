@@ -41,6 +41,19 @@ for (x of tmpForOfDeclRhs) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [];
+const b = $( a );
+let c = undefined;
+for (c of b {
+
+}
+`````
+
 ## Globals
 
 None

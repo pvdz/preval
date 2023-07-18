@@ -39,6 +39,14 @@ $(x);
 $(`NaN`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "NaN" );
+`````
+
 ## Globals
 
 None

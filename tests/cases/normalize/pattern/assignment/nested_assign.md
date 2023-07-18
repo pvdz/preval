@@ -40,6 +40,16 @@ const tmpNestedAssignObjPatternRhs = { x: 1 };
 $(tmpNestedAssignObjPatternRhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+x = 1;
+const a = { x: 1 };
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

@@ -53,6 +53,14 @@ for (tmpForInPatDeclLhs in tmpForInPatDeclRhs) {
 throw `Preval: Cannot access \`x\$1\` before initialization`;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw "Preval: Cannot access `x$1` before initialization";
+`````
+
 ## Globals
 
 None

@@ -72,6 +72,17 @@ $(`-1a`);
 $(0);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( -2 );
+$( -99 );
+$( "-1a" );
+$( 0 );
+`````
+
 ## Globals
 
 None

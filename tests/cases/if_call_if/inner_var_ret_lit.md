@@ -126,6 +126,27 @@ const f = function () {
 $(f);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( 1 );
+  if (b) {
+    $( 100 );
+    return undefined;
+  }
+  else {
+    $( 2 );
+    $( 100 );
+    return undefined;
+  }
+},;
+$( a );
+`````
+
 ## Globals
 
 None

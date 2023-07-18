@@ -56,6 +56,18 @@ const a = [tmpArrElement, 2, tmpArrElement$3];
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( 3 );
+$( 100 );
+const c = [ a, 2, b,, ];
+$( c );
+`````
+
 ## Globals
 
 None

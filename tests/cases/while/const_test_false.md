@@ -60,6 +60,26 @@ if (x) {
 $(`after`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( false );
+if (a) {
+  $( "body" );
+  while ($LOOP_UNROLL_10) {
+    if (a) {
+      $( "body" );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( "after" );
+`````
+
 ## Globals
 
 None

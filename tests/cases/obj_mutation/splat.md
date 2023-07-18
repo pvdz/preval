@@ -52,6 +52,19 @@ for (a in blob) {
 $(blob);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = { thing: "woop" };
+for (a in b {
+  $( a );
+}
+$( b );
+`````
+
 ## Globals
 
 None

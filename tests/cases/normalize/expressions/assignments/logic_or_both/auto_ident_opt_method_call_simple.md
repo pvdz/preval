@@ -78,6 +78,26 @@ if (tmpChainElementCall) {
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { c: $ };
+const b = $dotCall( $, a, 1 );
+let c = b;
+if (b) {
+  $( b );
+}
+else {
+  const d = a.c;
+  const e = $dotCall( d, a, 1 );
+  c = e;
+  $( e );
+}
+$( c );
+`````
+
 ## Globals
 
 None

@@ -72,6 +72,36 @@ if (tmpIfTest) {
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { c: $ };
+const b = { b: a };
+let c = undefined;
+const d = $( b );
+const e = d == null;
+if (e) {
+
+}
+else {
+  const f = $( "b" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
+
+  }
+  else {
+    const i = $( "c" );
+    const j = g[ i ];
+    const k = $dotCall( j, g, 100 );
+    c = k;
+  }
+}
+$( c );
+`````
+
 ## Globals
 
 None

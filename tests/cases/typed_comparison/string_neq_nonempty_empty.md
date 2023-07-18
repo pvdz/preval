@@ -42,6 +42,17 @@ const y = Boolean(x);
 $(`out:`, y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "full" );
+const b = $coerce( a, "string" );
+const c = Boolean( b );
+$( "out:", c );
+`````
+
 ## Globals
 
 None

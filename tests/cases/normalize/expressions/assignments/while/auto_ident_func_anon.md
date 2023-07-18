@@ -62,6 +62,25 @@ while (true) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = {
+a: 999,
+b: 1000
+;
+while (true) {
+  a = function() {
+    debugger;
+    return undefined;
+  },;
+  $( 100 );
+}
+$( a );
+`````
+
 ## Globals
 
 None

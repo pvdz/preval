@@ -48,6 +48,23 @@ $(tmpCalleeParam);
 $(`number`, 1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+"0"[ "n" ]: "n",
+"1"[ "u" ]: "u",
+"2"[ "m" ]: "m",
+"3"[ "b" ]: "b",
+"4"[ "e" ]: "e",
+"5"[ "r" ]: "r"
+;
+$( a );
+$( "number", 1 );
+`````
+
 ## Globals
 
 None

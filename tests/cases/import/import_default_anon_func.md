@@ -80,6 +80,26 @@ const tmpAnonDefaultExport = function () {
 export { tmpAnonDefaultExport as default };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+import { default as x from "x";
+const a = x();
+$( a );
+const b = x.name;
+$( b );
+`````
+
+`````js filename=x
+import { default as x from "x";
+const a = x();
+$( a );
+const b = x.name;
+$( b );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

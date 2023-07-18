@@ -95,6 +95,32 @@ if (tmpIfTest) {
 $(`after (not invoked)`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+if (a) {
+  $( "loop" );
+  $( "loop" );
+  $( "infiloop, do not eliminate" );
+  let b = $( true );
+  while ($LOOP_UNROLL_10) {
+    if (b) {
+      $( "loop" );
+      $( "loop" );
+      $( "infiloop, do not eliminate" );
+      b = $( true );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( "after (not invoked)" );
+`````
+
 ## Globals
 
 None

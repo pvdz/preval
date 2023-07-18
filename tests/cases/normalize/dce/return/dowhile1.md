@@ -68,6 +68,15 @@ const tmpReturnArg$7 = $(1, `return`);
 $(tmpReturnArg$7);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1, "return" );
+$( a );
+`````
+
 ## Globals
 
 None

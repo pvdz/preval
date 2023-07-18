@@ -46,6 +46,14 @@ throw tmpThrowArg;
 throw 60;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw 60;
+`````
+
 ## Globals
 
 None

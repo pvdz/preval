@@ -42,6 +42,15 @@ const y = /x/g;
 $(y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = /x/g;
+$( a );
+`````
+
 ## Globals
 
 None

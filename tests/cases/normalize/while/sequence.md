@@ -88,6 +88,55 @@ if ($tmpLoopUnrollCheck) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+let b = NaN.x;
+let c = false;
+const d = b;
+const e = d == null;
+if (e) {
+
+}
+else {
+  const f = d.x;
+  const g = $dotCall( f, d, b );
+  c = g;
+}
+if (c) {
+
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    b ** 0;
+    b = NaN.x;
+    let h = false;
+    const i = b;
+    const j = i == null;
+    if (j) {
+
+    }
+    else {
+      const k = i.x;
+      const l = $dotCall( k, i, b );
+      h = l;
+    }
+    if (h) {
+
+    }
+    else {
+      break;
+    }
+  }
+}
+`````
+
 ## Globals
 
 None

@@ -48,6 +48,21 @@ $(NaN);
 $(NaN);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+const a = {
+a: 999,
+b: 1000
+;
+a ** 0;
+$( NaN );
+$( NaN );
+`````
+
 ## Globals
 
 None

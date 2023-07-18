@@ -38,6 +38,16 @@ const tmpCalleeParam = $coerce(tmpBinBothRhs, `plustr`);
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy();
+const b = $coerce( a, "plustr" );
+$( b );
+`````
+
 ## Globals
 
 None

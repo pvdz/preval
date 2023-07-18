@@ -103,6 +103,30 @@ $(tmpClusterSSA_x);
 $(tmpClusterSSA_x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $();
+  if (b) {
+    const c = $( 1 );
+    return c;
+  }
+  else {
+    const d = $( 2 );
+    return d;
+  }
+},;
+const e = $( 100 );
+$( e );
+const f = a();
+$( f );
+$( f );
+`````
+
 ## Globals
 
 None

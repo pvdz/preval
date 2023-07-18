@@ -83,6 +83,28 @@ if (tmpIfTest) {
 $(tmpClusterSSA_x);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "a" );
+$( a );
+let b = $( "b" );
+const c = $( 1 );
+if (c) {
+  $( "c" );
+  const d = $( 2 );
+  if (d) {
+    b = $( "d" );
+  }
+  else {
+    b = $( "e" );
+  }
+}
+$( b );
+`````
+
 ## Globals
 
 None

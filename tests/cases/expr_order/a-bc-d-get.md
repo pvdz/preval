@@ -85,6 +85,27 @@ b.c = 3;
 $(3, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+get c() {
+    debugger;
+    $( "should not be called" );
+    return undefined;
+  },,
+set c( $$0 ) {
+    debugger;
+    $( "set" );
+    return undefined;
+  },
+;
+a.c = 3;
+$( 3, a, 3 );
+`````
+
 ## Globals
 
 None

@@ -83,6 +83,31 @@ if (tmpIfTest) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "a" );
+$( a );
+$( "b" );
+const b = $( 1 );
+if (b) {
+
+}
+else {
+  const c = $( "c" );
+  const d = $( 2 );
+  if (d) {
+    $( c );
+  }
+  else {
+    const e = $( "d" );
+    $( e );
+  }
+}
+`````
+
 ## Globals
 
 None

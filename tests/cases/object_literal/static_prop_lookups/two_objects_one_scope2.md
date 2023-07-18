@@ -64,6 +64,16 @@ const tmpClusterSSA_problem2 = {};
 $(tmpClusterSSA_problem2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$ObjectPrototype.now;
+const a = {};
+$( a );
+`````
+
 ## Globals
 
 None

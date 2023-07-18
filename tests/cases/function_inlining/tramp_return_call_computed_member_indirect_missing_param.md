@@ -76,6 +76,16 @@ const r = String[undefined]();
 $(r);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "toString" );
+const a = String[ undefined ]()};
+$( a );
+`````
+
 ## Globals
 
 None

@@ -124,6 +124,48 @@ if (tmpIfTest) {
 $(`after (not invoked)`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+if (a) {
+  $( "loop" );
+  const b = $( true, "dis" );
+  const c = $( true, "case" );
+  const d = b === c;
+  if (d) {
+    $( "case" );
+  }
+  else {
+    $( "do not visit, default" );
+  }
+  $( "infiloop, do not eliminate" );
+  let e = $( true );
+  while ($LOOP_UNROLL_10) {
+    if (e) {
+      $( "loop" );
+      const f = $( true, "dis" );
+      const g = $( true, "case" );
+      const h = f === g;
+      if (h) {
+        $( "case" );
+      }
+      else {
+        $( "do not visit, default" );
+      }
+      $( "infiloop, do not eliminate" );
+      e = $( true );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( "after (not invoked)" );
+`````
+
 ## Globals
 
 None

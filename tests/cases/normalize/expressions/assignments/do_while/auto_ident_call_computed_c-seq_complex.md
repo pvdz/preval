@@ -91,6 +91,41 @@ if (tmpNestedComplexRhs) {
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+const a = { $: $ };
+const b = $( a );
+const c = $( "$" );
+const d = b[ c ]( 1 )};
+let e = d;
+if (d) {
+  $( 100 );
+  const f = $( a );
+  const g = $( "$" );
+  const h = f[ g ]( 1 )};
+  e = h;
+  let i = h;
+  while ($LOOP_UNROLL_9) {
+    if (i) {
+      $( 100 );
+      const j = $( a );
+      const k = $( "$" );
+      const l = j[ k ]( 1 )};
+      e = l;
+      i = l;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( e );
+`````
+
 ## Globals
 
 None

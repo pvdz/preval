@@ -53,6 +53,15 @@ const tmpChainElementObject$3 = $ObjectPrototype.d;
 $(tmpChainElementObject$3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $ObjectPrototype.d;
+$( a );
+`````
+
 ## Globals
 
 None

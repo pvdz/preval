@@ -85,6 +85,15 @@ $(`call me once`);
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "call me once" );
+$( undefined );
+`````
+
 ## Globals
 
 None

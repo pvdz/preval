@@ -65,6 +65,22 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = 9;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  if (a) {
+    a = a - 1;
+  }
+  else {
+    break;
+  }
+}
+`````
+
 ## Globals
 
 None

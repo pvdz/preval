@@ -62,6 +62,27 @@ new tmpNewCallee$1(1);
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = {
+a: 999,
+b: 1000
+;
+const c = $( a );
+const d = $( "$" );
+const e = c[ d ];
+new e( 1 );
+const f = $( a );
+const g = $( "$" );
+const h = f[ g ];
+new h( 1 );
+$( b );
+`````
+
 ## Globals
 
 None

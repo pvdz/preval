@@ -112,6 +112,39 @@ g();
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0,$$1,$$2 ) {
+  const b = this;
+  const c = d;
+  const e = f;
+  const g = h;
+  debugger;
+  $( "call me once", b, c, e, g );
+  return undefined;
+},;
+let i = true;
+const j = function() {
+  debugger;
+  if (i) {
+    const k = {};
+    a.call( k, 1, 2, 3 );
+    i = false;
+    return undefined;
+  }
+  else {
+    return undefined;
+  }
+},;
+j();
+$( undefined );
+j();
+$( undefined );
+`````
+
 ## Globals
 
 None

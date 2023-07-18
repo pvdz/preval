@@ -82,6 +82,34 @@ const a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = function() {
+  debugger;
+  const c = $( a );
+  const d = c == null;
+  if (d) {
+    return undefined;
+  }
+  else {
+    const e = $( "x" );
+    const f = c[ e ];
+    return f;
+  }
+},;
+const g = b();
+$( g );
+const h = {
+a: 999,
+b: 1000
+;
+$( h );
+`````
+
 ## Globals
 
 None

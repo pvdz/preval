@@ -53,6 +53,18 @@ a.a;
 $(a, arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "y" );
+const b = { y: 1 };
+const c = deleteb[ a ];
+c.a;
+$( c, b );
+`````
+
 ## Globals
 
 None

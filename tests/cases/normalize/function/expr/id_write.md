@@ -55,6 +55,14 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 throw `Preval: Cannot write to const binding \`funcexprname\``;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+throw "Preval: Cannot write to const binding `funcexprname`";
+`````
+
 ## Globals
 
 None

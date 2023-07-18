@@ -69,6 +69,21 @@ if ($) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+if ($) {
+  $( 1 );
+  const a = $( "ok" );
+  $( a );
+}
+else {
+  throw "$ should be defined";
+}
+`````
+
 ## Globals
 
 None

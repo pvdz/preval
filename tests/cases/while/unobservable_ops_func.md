@@ -116,6 +116,55 @@ f();
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0,$$1,$$2 ) {
+  let b = c;
+  let d = e;
+  const f = g;
+  debugger;
+  if (f) {
+    while ($LOOP_UNROLL_9) {
+      if (d) {
+        parseExpression( lexerFlags$285, astProp$181 );
+        b = b | 10;
+        d = $( true );
+      }
+      else {
+        break;
+      }
+    }
+  }
+  $( b );
+  return undefined;
+},;
+const h = function() {
+  debugger;
+  const i = $( 10 );
+  parseExpression( lexerFlags$285, astProp$181 );
+  const j = i | 10;
+  const k = $( true );
+  if (k) {
+    parseExpression( lexerFlags$285, astProp$181 );
+    const l = $( true );
+    const m = j | 10;
+    a( m, l, true );
+    return undefined;
+  }
+  else {
+    a( j, k, false );
+    return undefined;
+  }
+},;
+h();
+$( undefined );
+h();
+$( undefined );
+`````
+
 ## Globals
 
 BAD@! Found 3 implicit global bindings:

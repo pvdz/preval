@@ -99,6 +99,54 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpClusterSSA_a$2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 100 );
+const a = $( $ );
+new a( 1 );
+$( 100 );
+const b = $( $ );
+new b( 1 );
+$( 100 );
+const c = $( $ );
+new c( 1 );
+$( 100 );
+const d = $( $ );
+new d( 1 );
+$( 100 );
+const e = $( $ );
+new e( 1 );
+$( 100 );
+const f = $( $ );
+new f( 1 );
+$( 100 );
+const g = $( $ );
+new g( 1 );
+$( 100 );
+const h = $( $ );
+new h( 1 );
+$( 100 );
+const i = $( $ );
+new i( 1 );
+$( 100 );
+const j = $( $ );
+new j( 1 );
+$( 100 );
+const k = $( $ );
+const l = new k( 1 );
+let m = l;
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( 100 );
+  const n = $( $ );
+  const o = new n( 1 );
+  m = o;
+}
+$( m );
+`````
+
 ## Globals
 
 None

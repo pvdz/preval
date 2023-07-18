@@ -184,6 +184,40 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+x ** 0;
+x ** 0;
+x ** 0;
+x ** 0;
+const a = $coerce( x, "plustr" );
+const b = `function String() { [native code] }${[object Object]}`;
+x ** 0;
+const c = 0 << x;
+const d = 0 >> x;
+const e = 0 >>> x;
+const f = "function String() { [native code] }" < x;
+const g = "function String() { [native code] }" > x;
+const h = "function String() { [native code] }" <= x;
+const i = "function String() { [native code] }" >= x;
+const j = String === x;
+const k = String !== x;
+const l = String === x;
+const m = String !== x;
+x ** 0;
+const n = 0 ^ x;
+const o = 0 | x;
+const p = [ NaN, NaN, NaN, NaN, b, NaN, c, d, e, f, g, h, i, j, k, l, m, 0, n, o,, ];
+$( p );
+const q = String in x;
+const r = String instanceof x;
+const s = [ q, r,, ];
+$( s );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

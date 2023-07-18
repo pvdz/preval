@@ -40,6 +40,18 @@ const tmpCalleeParam$3 = $spy(`c`);
 tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1, tmpCalleeParam$3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy( isNaN );
+const b = $spy( "a" );
+const c = $spy( "b" );
+const d = $spy( "c" );
+a( b, c, d );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

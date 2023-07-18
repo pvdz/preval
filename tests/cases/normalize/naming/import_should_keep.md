@@ -88,6 +88,32 @@ export { f };
 export { g };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( 1 );
+  return b;
+},;
+const c = function($$0 ) {
+  const d = e;
+  debugger;
+  return d;
+},;
+const f = class   {
+
+};
+export { f as c from "undefined"
+const g = $( 1 );
+const h = $( g );
+export { h as x from "undefined"
+export { a as f from "undefined"
+export { c as g from "undefined"
+`````
+
 ## Globals
 
 None

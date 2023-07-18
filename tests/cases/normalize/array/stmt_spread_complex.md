@@ -41,6 +41,18 @@ const tmpArrElToSpread = $(tmpCalleeParam);
 [...tmpArrElToSpread];
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 10 );
+$( 2 );
+const a = [ 30, 40,, ];
+const b = $( a );
+[ ... b,, ];
+`````
+
 ## Globals
 
 None

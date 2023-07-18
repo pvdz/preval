@@ -142,6 +142,49 @@ const tmpCalleeParam$5 = tmpBinBothLhs$5 === tmpBinBothRhs$5;
 $(tmpCalleeParam$5);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = function() {
+  debugger;
+  const b = [ 1, 2, 3,, ];
+  a = function() {
+    debugger;
+    return b;
+  },;
+  const c = a();
+  return c;
+},;
+const d = function() {
+  debugger;
+  const e = [ 1, 2, 3,, ];
+  a = function() {
+    debugger;
+    return e;
+  },;
+  const f = a();
+  return f;
+},;
+const g = a();
+const h = d();
+const i = g === h;
+$( i );
+const j = a();
+const k = d();
+const l = j === k;
+$( l );
+const m = d();
+const n = a();
+const o = m === n;
+$( o );
+const p = a();
+const q = d();
+const r = p === q;
+$( r );
+`````
+
 ## Globals
 
 None

@@ -64,6 +64,17 @@ const arrPatternStep = $(tmpCalleeParam);
 $(`ok`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ "pass2",, ];
+const b = $( a );
+[ ... b,, ];
+$( "ok" );
+`````
+
 ## Globals
 
 None

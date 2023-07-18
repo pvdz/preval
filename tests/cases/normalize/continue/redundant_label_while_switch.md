@@ -224,6 +224,107 @@ if (x) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = $( 2 );
+if (a) {
+  $( 1 );
+  const b = $( 1 );
+  if (b) {
+    a = $( 3 );
+  }
+  if (a) {
+    const c = $( 1 );
+    let d = 3;
+    const e = 0 === c;
+    if (e) {
+      d = 0;
+    }
+    else {
+      const f = 1 === c;
+      if (f) {
+        d = 1;
+      }
+      else {
+        const g = 2 === c;
+        if (g) {
+          d = 2;
+        }
+      }
+    }
+    const h = d <= 0;
+    if (h) {
+      $( 0 );
+    }
+    const i = d <= 1;
+    if (i) {
+      $( 1 );
+    }
+    else {
+      const j = d <= 2;
+      if (j) {
+        $( 2 );
+      }
+    }
+  }
+  else {
+    a = $( 4 );
+  }
+  while ($LOOP_UNROLL_10) {
+    if (a) {
+      $( 1 );
+      const k = $( 1 );
+      if (k) {
+        a = $( 3 );
+      }
+      if (a) {
+        const l = $( 1 );
+        let m = 3;
+        const n = 0 === l;
+        if (n) {
+          m = 0;
+        }
+        else {
+          const o = 1 === l;
+          if (o) {
+            m = 1;
+          }
+          else {
+            const p = 2 === l;
+            if (p) {
+              m = 2;
+            }
+          }
+        }
+        const q = m <= 0;
+        if (q) {
+          $( 0 );
+        }
+        const r = m <= 1;
+        if (r) {
+          $( 1 );
+        }
+        else {
+          const s = m <= 2;
+          if (s) {
+            $( 2 );
+          }
+        }
+      }
+      else {
+        a = $( 4 );
+      }
+    }
+    else {
+      break;
+    }
+  }
+}
+`````
+
 ## Globals
 
 None

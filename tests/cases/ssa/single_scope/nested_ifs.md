@@ -103,6 +103,41 @@ const f = function ($$0) {
 $(f);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  if (b) {
+    let d = 0;
+    let e = true;
+    if ($) {
+      d = 1;
+      e = false;
+    }
+    if (e) {
+      while ($LOOP_UNROLL_10) {
+        if ($) {
+          d = d + 1;
+          break;
+        }
+      }
+      return undefined;
+    }
+    else {
+      return undefined;
+    }
+  }
+  else {
+    return undefined;
+  }
+},;
+$( a );
+`````
+
 ## Globals
 
 None

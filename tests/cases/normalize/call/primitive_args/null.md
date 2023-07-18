@@ -32,6 +32,14 @@ $(null);
 $(null);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( null );
+`````
+
 ## Globals
 
 None

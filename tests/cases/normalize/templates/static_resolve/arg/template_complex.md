@@ -46,6 +46,17 @@ const tmpCallCallee$1 = `a ${tmpBinBothRhs$1} b`;
 $(tmpCallCallee$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $coerce( a, "string" );
+const c = `a ${[object Object]} b`;
+$( c );
+`````
+
 ## Globals
 
 None

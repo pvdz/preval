@@ -72,6 +72,27 @@ export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+let b = undefined;
+const c = $ == null;
+if (c) {
+
+}
+else {
+  const d = { e: $ };
+  const e = $dotCall( $, d, 1 );
+  a = e;
+  b = e;
+}
+export { b as default from "undefined"
+$( a );
+`````
+
 ## Globals
 
 None

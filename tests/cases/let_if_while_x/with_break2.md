@@ -125,6 +125,53 @@ if (chk) {
 $(wat);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 10 );
+$( "before" );
+let b = a | 10;
+let c = $( true );
+if (c) {
+  let d = true;
+  if ($LOOP_UNROLL_10) {
+    $( "inside" );
+    b = b | 10;
+    c = $( true );
+    if (c) {
+
+    }
+    else {
+      d = false;
+    }
+  }
+  else {
+    d = false;
+  }
+  if (d) {
+    while ($LOOP_UNROLL_10) {
+      if ($LOOP_UNROLL_10) {
+        $( "inside" );
+        b = b | 10;
+        c = $( true );
+        if (c) {
+
+        }
+        else {
+          break;
+        }
+      }
+      else {
+        break;
+      }
+    }
+  }
+}
+$( b );
+`````
+
 ## Globals
 
 None

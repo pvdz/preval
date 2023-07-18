@@ -91,6 +91,35 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(3, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+$( 1 );
+const a = { x: 3 };
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  a.x = 3;
+  a.x = 3;
+  a.x = 3;
+  a.x = 3;
+  a.x = 3;
+  a.x = 3;
+  $( 1 );
+}
+$( 3, a, 3 );
+`````
+
 ## Globals
 
 None

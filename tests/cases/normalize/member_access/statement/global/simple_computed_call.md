@@ -37,6 +37,16 @@ const obj = { foo: 10 };
 obj[tmpCompProp];
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "foo" );
+const b = { foo: 10 };
+b[ a ];
+`````
+
 ## Globals
 
 None

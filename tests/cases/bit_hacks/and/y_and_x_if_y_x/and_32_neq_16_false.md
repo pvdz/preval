@@ -65,6 +65,22 @@ if (x) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy( 17 );
+const b = a & 32;
+const c = a !== 16;
+if (b) {
+  $( "fail", c );
+}
+else {
+  $( "pass", c );
+}
+`````
+
 ## Globals
 
 None

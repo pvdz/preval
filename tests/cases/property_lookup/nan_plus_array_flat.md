@@ -39,6 +39,14 @@ $(tmpCompObj$459);
 $(`NaNfunction flat() { [native code] }`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "NaNfunction flat() { [native code] }" );
+`````
+
 ## Globals
 
 None

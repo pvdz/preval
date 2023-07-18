@@ -90,6 +90,29 @@ f();
 f();
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( "" );
+  const c = $coerce( b, "plustr" );
+  if (c) {
+    $( false, "fail" );
+  }
+  else {
+    $( true, "pass" );
+  }
+  $( c, "after" );
+  return undefined;
+},;
+a();
+a();
+a();
+`````
+
 ## Globals
 
 None

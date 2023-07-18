@@ -50,6 +50,21 @@ y = objPatternRest(tmpArrElement, tmpCalleeParam$1, undefined);
 $(y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+x: 1,
+y: 2,
+c: 3
+;
+const b = [];
+y = objPatternRest( a, b, undefined );
+$( y );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

@@ -84,6 +84,33 @@ if ($tmpLoopUnrollCheck) {
 $(`after, wont eval due to infinite loop`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+const b = $( true );
+if (b) {
+  $( 1 );
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    const c = $( true );
+    if (c) {
+      $( 1 );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( "after, wont eval due to infinite loop" );
+`````
+
 ## Globals
 
 None

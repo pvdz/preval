@@ -62,6 +62,23 @@ const tmpClusterSSA_b = tmpAssignObjPatternRhs.b;
 $(a, tmpClusterSSA_b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+$( 1 );
+const b = $( 2 );
+const c = { b: b };
+const d = $( c );
+const e = d.b;
+$( a, e );
+`````
+
 ## Globals
 
 None

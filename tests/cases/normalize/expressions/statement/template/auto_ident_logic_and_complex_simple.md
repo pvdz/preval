@@ -61,6 +61,28 @@ const a = { a: 999, b: 1000 };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( a );
+if (b) {
+  $( "before  2  after" );
+}
+else {
+  const c = $coerce( b, "string" );
+  const d = `before  ${[object Object]}  after`;
+  $( d );
+}
+const e = {
+a: 999,
+b: 1000
+;
+$( e );
+`````
+
 ## Globals
 
 None

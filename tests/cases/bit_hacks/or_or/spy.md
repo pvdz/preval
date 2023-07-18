@@ -43,6 +43,16 @@ const b = a | 48;
 $(b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $spy();
+const b = a | 48;
+$( b );
+`````
+
 ## Globals
 
 None

@@ -58,6 +58,19 @@ export { a };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+const b = { e: $ };
+const c = $dotCall( $, b, 1 );
+a = c;
+export { a as a from "undefined"
+$( a );
+`````
+
 ## Globals
 
 None

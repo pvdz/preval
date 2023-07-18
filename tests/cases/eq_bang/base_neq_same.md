@@ -49,6 +49,17 @@ const same = a === b;
 $(same);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( 1 );
+const c = a === b;
+$( c );
+`````
+
 ## Globals
 
 None

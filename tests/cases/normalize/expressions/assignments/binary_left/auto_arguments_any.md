@@ -47,6 +47,18 @@ $(tmpCalleeParam);
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = arguments;
+const b = $( 100 );
+const c = a + b;
+$( c );
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

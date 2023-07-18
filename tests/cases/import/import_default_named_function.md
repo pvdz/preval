@@ -69,6 +69,20 @@ const f = 10;
 export { f as default };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 10;
+export { a as default from "undefined"
+`````
+
+`````js filename=x
+const a = 10;
+export { a as default from "undefined"
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

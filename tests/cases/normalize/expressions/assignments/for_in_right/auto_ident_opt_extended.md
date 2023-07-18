@@ -60,6 +60,18 @@ for (x in 100) {
 $(100);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = undefined;
+for (a in 100 {
+
+}
+$( 100 );
+`````
+
 ## Globals
 
 None

@@ -102,6 +102,31 @@ const tmpCalleeParam$3 = $(tmpClusterSSA_x, `closure-return`);
 $(tmpCalleeParam$3, `closure-global2`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $();
+  if (b) {
+    const c = $( 1, "f-return" );
+    return c;
+  }
+  else {
+    return undefined;
+  }
+},;
+const d = $( 100, "init" );
+const e = $( d, "closure-return" );
+$( e, "closure-global1" );
+const f = a();
+$( f, "x-global" );
+const g = $( f, "closure-return" );
+$( g, "closure-global2" );
+`````
+
 ## Globals
 
 None

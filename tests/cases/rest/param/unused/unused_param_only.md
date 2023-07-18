@@ -46,6 +46,14 @@ f();
 $(`fwep`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "fwep" );
+`````
+
 ## Globals
 
 None

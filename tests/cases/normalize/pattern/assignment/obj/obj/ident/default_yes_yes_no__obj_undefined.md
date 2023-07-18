@@ -62,6 +62,25 @@ if (tmpIfTest$1) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: "pass2" };
+const b = $( a );
+const c = b.y;
+const d = c === undefined;
+if (d) {
+  y = $( "fail" );
+  $( y );
+}
+else {
+  y = c;
+  $( y );
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

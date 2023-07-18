@@ -60,6 +60,27 @@ if (x) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = /foo/g;
+const b = $( a );
+if (b) {
+  $( "truthy", ... b );
+}
+else {
+  const c = b === "";
+  if (c) {
+    $( "falsy" );
+  }
+  else {
+    throw "Preval: Attempting to spread primitive that is not an empty string";
+  }
+}
+`````
+
 ## Globals
 
 None

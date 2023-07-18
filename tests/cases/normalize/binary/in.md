@@ -35,6 +35,15 @@ const tmpCalleeParam = 5 in Infinity;
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 5 in Infinity;
+$( a );
+`````
+
 ## Globals
 
 None

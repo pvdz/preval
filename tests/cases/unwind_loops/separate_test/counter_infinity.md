@@ -54,6 +54,14 @@ while (true) {
 $(`yolo`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "yolo" );
+`````
+
 ## Globals
 
 None

@@ -72,6 +72,23 @@ tmpChainElementCall + tmpChainElementCall$1;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { e: $ };
+const b = {
+a: 999,
+b: 1000
+;
+const c = $dotCall( $, a, 1 );
+const d = a.e;
+const e = $dotCall( d, a, 1 );
+c + e;
+$( b );
+`````
+
 ## Globals
 
 None

@@ -178,6 +178,58 @@ const tmpCalleeParam$7 = f(tmpCalleeParam$9);
 $(tmpCalleeParam$7);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0 ) {
+  const b = c;
+  debugger;
+  $( "no" );
+  $( "inlining" );
+  const d = $( "please" );
+  const e = b( 1, "two", d, NaN );
+  return e;
+},;
+const f = function($$0,$$1,$$2,$$3,$$4 ) {
+  const g = c;
+  const h = i;
+  const j = k;
+  const l = m;
+  const n = o;
+  debugger;
+  $( "pass1", g, h, j, l, n );
+  return undefined;
+},;
+const p = a( f );
+$( p );
+const q = function($$0,$$1,$$2,$$3,$$4 ) {
+  const r = c;
+  const s = i;
+  const t = k;
+  const u = m;
+  const v = o;
+  debugger;
+  $( "pass2", r, s, t, u, v );
+  return undefined;
+},;
+const w = a( q );
+$( w );
+const x = function($$0,$$1,$$2,$$3,$$4 ) {
+  const y = c;
+  const z = i;
+  const 01 = k;
+  const 11 = m;
+  const 21 = o;
+  debugger;
+  $( "pass3", y, z, 01, 11, 21 );
+  return undefined;
+},;
+const 31 = a( x );
+$( 31 );
+`````
+
 ## Globals
 
 None

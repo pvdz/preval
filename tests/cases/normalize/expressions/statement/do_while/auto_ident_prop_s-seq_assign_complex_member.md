@@ -94,6 +94,48 @@ if (tmpNestedAssignPropRhs) {
 $(a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+c: 10,
+d: 20
+;
+const b = {
+a: 999,
+b: 1000
+;
+$( 100 );
+const c = $( a );
+const d = $( "d" );
+const e = c[ d ];
+a.c = e;
+if (e) {
+  $( 100 );
+  const f = $( a );
+  const g = $( "d" );
+  const h = f[ g ];
+  a.c = h;
+  let i = h;
+  while ($LOOP_UNROLL_9) {
+    if (i) {
+      $( 100 );
+      const j = $( a );
+      const k = $( "d" );
+      const l = j[ k ];
+      a.c = l;
+      i = l;
+    }
+    else {
+      break;
+    }
+  }
+}
+$( b, a );
+`````
+
 ## Globals
 
 None

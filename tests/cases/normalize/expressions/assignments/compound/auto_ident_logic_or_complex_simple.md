@@ -60,6 +60,29 @@ if (tmpBinBothRhs) {
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 0 );
+const b = $( a );
+let c = undefined;
+const d = {
+a: 999,
+b: 1000
+;
+if (b) {
+  c = d * b;
+  $( c );
+}
+else {
+  c = d * 2;
+  $( c );
+}
+$( c );
+`````
+
 ## Globals
 
 None

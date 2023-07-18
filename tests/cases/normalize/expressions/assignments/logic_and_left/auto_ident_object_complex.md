@@ -53,6 +53,23 @@ const a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( 3 );
+const c = $( 100 );
+$( c );
+const d = {
+x: a,
+y: 2,
+z: b
+;
+$( d );
+`````
+
 ## Globals
 
 None

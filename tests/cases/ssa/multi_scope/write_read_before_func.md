@@ -90,6 +90,25 @@ if (y) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( "a" );
+const b = a === "undefined";
+if (b) {
+  const c = tmpthis$63.getInitialState;
+  const d = c._isMockFunction;
+  if (d) {
+    $( 1 );
+  }
+  else {
+    $( 2 );
+  }
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

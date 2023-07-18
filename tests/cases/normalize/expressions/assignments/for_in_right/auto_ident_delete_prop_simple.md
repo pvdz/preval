@@ -51,6 +51,20 @@ for (x in a) {
 $(a, arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = deletea.y;
+let c = undefined;
+for (c in b {
+
+}
+$( b, a );
+`````
+
 ## Globals
 
 None

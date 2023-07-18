@@ -72,6 +72,36 @@ if ($tmpLoopUnrollCheck) {
 $(tmpClusterSSA_a, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = true;
+const b = { c: 1 };
+const c = $( b );
+let d = c.c;
+if (d) {
+  $( 100 );
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    const e = $( b );
+    d = e.c;
+    if (d) {
+      $( 100 );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( d, b );
+`````
+
 ## Globals
 
 None

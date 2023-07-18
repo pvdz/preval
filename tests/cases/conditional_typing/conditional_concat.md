@@ -89,6 +89,28 @@ const f = function () {
 $(f);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $coerce( desc$1, "plustr" );
+  const c = lastType === 2097173;
+  if (c) {
+    const d = `Parser error! ${[object Object]} (at EOF)`;
+    _THROW( d, tokenStart$5, tokenStop$5, "" );
+  }
+  else {
+    const e = `Parser error! ${[object Object]}`;
+    _THROW( e, tokenStart$5, tokenStop$5, "" );
+  }
+  throw "Preval: the previous call always throws";
+},;
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 5 implicit global bindings:

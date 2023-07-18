@@ -70,6 +70,27 @@ const tmpBinBothRhs = {};
 spy in tmpBinBothRhs;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+toString(  ) {
+    debugger;
+    $( "pass" );
+    return undefined;
+  },,
+valueOf(  ) {
+    debugger;
+    $( "fail" );
+    return undefined;
+  },
+;
+const b = {};
+a in b;
+`````
+
 ## Globals
 
 None

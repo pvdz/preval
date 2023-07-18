@@ -36,6 +36,17 @@ for (x of tmpForOfRhs) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+for (x of a {
+  $( 2 );
+}
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

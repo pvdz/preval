@@ -58,6 +58,17 @@ x = arrPatternSplat[0];
 $(tmpNestedAssignArrPatternRhs);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = [ 100,, ];
+const b = [ ... a,, ];
+x = b[ 0 ];
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

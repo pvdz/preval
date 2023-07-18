@@ -61,6 +61,16 @@ obj[100];
 $(100);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {};
+a[ 100 ];
+$( 100 );
+`````
+
 ## Globals
 
 None

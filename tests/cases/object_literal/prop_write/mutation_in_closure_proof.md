@@ -137,6 +137,44 @@ $(tmpCalleeParam$5);
 $(f);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  $( "a" );
+  const b = c.y;
+  if (b) {
+    $( "yeeting" );
+    deletec.y;
+  }
+  const d = Object.defineProperty;
+  const e = {
+set( $$0 ) {
+      debugger;
+      return undefined;
+    },,
+get(  ) {
+      debugger;
+      return "intercepted";
+    },
+  ;
+  $dotCall( d, Object, c, "y", e );
+  $( "b" );
+  return undefined;
+},;
+const c = { y: 0 };
+a();
+c.y = 10;
+a();
+$( c );
+const f = c.y;
+$( f );
+$( a );
+`````
+
 ## Globals
 
 None

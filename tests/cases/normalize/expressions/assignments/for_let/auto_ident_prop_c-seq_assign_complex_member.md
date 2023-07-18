@@ -91,6 +91,49 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(tmpNestedAssignPropRhs, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+c: 10,
+d: 20
+;
+const b = $( a );
+const c = $( a );
+const d = $( "d" );
+const e = c[ d ];
+b.c = e;
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+$( e );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  $( e );
+  $( 1 );
+}
+$( e, a );
+`````
+
 ## Globals
 
 None

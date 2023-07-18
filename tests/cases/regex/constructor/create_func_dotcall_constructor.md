@@ -39,6 +39,15 @@ const f = /bar/g;
 $(f);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = /bar/g;
+$( a );
+`````
+
 ## Globals
 
 None

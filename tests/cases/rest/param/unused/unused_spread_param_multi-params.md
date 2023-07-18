@@ -71,6 +71,26 @@ const tmpCalleeParam$1 = $spy();
 f(tmpCalleeParam, tmpCalleeParam$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function($$0,$$1 ) {
+  const b = c;
+  const d = e;
+  debugger;
+  const f = [];
+  $( b, d, f );
+  return undefined;
+},;
+a( 1, 2 );
+a( "a", "b" );
+const g = $spy();
+const h = $spy();
+a( g, h );
+`````
+
 ## Globals
 
 None

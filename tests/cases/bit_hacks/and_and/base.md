@@ -43,6 +43,16 @@ const b = a & 32;
 $(b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 0 );
+const b = a & 32;
+$( b );
+`````
+
 ## Globals
 
 None

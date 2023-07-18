@@ -76,6 +76,16 @@ $(3);
 $(`pass`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 3 );
+$( "pass" );
+`````
+
 ## Globals
 
 None

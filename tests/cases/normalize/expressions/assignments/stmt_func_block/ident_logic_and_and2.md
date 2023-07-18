@@ -128,6 +128,31 @@ if (theneedle) {
 $(undefined);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 1 );
+const b = $( a );
+if (b) {
+  const c = $( 1 );
+  const d = $( c );
+  if (d) {
+    const e = $( 2 );
+    const f = $( e );
+    $( f );
+  }
+  else {
+    $( d );
+  }
+}
+else {
+  $( b );
+}
+$( undefined );
+`````
+
 ## Globals
 
 None

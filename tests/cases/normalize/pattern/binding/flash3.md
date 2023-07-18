@@ -46,6 +46,14 @@ f();
 unknown;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+unknown;
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

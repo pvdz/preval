@@ -75,6 +75,28 @@ const tmpCalleeParam = $coerce(tmpStringFirstArg, `number`);
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+valueOf(  ) {
+    debugger;
+    $( "x" );
+    return undefined;
+  },,
+toString(  ) {
+    debugger;
+    $( "y" );
+    return undefined;
+  },
+;
+const b = [ a, a,, ];
+const c = $coerce( b, "number" );
+$( c );
+`````
+
 ## Globals
 
 None

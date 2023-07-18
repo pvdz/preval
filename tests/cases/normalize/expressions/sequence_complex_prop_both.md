@@ -61,6 +61,20 @@ const tmpClusterSSA_a = tmpBinBothLhs === tmpBinBothRhs;
 $(tmpClusterSSA_a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 10 };
+const b = $( 30 );
+const c = b.y;
+const d = $( a );
+const e = d.y;
+const f = c === e;
+$( f );
+`````
+
 ## Globals
 
 None

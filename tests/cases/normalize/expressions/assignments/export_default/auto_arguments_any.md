@@ -44,6 +44,17 @@ export { tmpAnonDefaultExport as default };
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = arguments;
+const b = a;
+export { b as default from "undefined"
+$( a );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

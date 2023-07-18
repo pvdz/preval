@@ -94,6 +94,16 @@ $(`after inner`);
 $(`after outer`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "b" );
+$( "after inner" );
+$( "after outer" );
+`````
+
 ## Globals
 
 None

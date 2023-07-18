@@ -38,6 +38,16 @@ delete tmpDeleteObj.x;
 $(`boolean`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 100 );
+deletea.x;
+$( "boolean" );
+`````
+
 ## Globals
 
 None

@@ -96,6 +96,44 @@ if (tmpIfTest) {
 $(a, b, c, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { x: 1 };
+const b = { y: 2 };
+const c = {
+a: 999,
+b: 1000
+;
+const d = $( 1 );
+if (d) {
+  const e = $( a );
+  const f = $( "x" );
+  const g = $( b );
+  const h = $( "y" );
+  g[h] = 3;
+  e[f] = 3;
+  let i = $( 1 );
+  while ($LOOP_UNROLL_10) {
+    if (i) {
+      const j = $( a );
+      const k = $( "x" );
+      const l = $( b );
+      const m = $( "y" );
+      l[m] = 3;
+      j[k] = 3;
+      i = $( 1 );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( c, a, b, 3 );
+`````
+
 ## Globals
 
 None

@@ -51,6 +51,21 @@ $(tmpCalleeParam);
 export { f as default };
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  const b = $( 2 );
+  return b;
+},;
+const c = $( 2 );
+$( c );
+export { a as default from "undefined"
+`````
+
 ## Globals
 
 None

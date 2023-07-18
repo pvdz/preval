@@ -119,6 +119,76 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( $ );
+const b = $( 1 );
+const c = $( 2 );
+new a( b, c );
+$( 1 );
+const d = $( $ );
+const e = $( 1 );
+const f = $( 2 );
+new d( e, f );
+$( 1 );
+const g = $( $ );
+const h = $( 1 );
+const i = $( 2 );
+new g( h, i );
+$( 1 );
+const j = $( $ );
+const k = $( 1 );
+const l = $( 2 );
+new j( k, l );
+$( 1 );
+const m = $( $ );
+const n = $( 1 );
+const o = $( 2 );
+new m( n, o );
+$( 1 );
+const p = $( $ );
+const q = $( 1 );
+const r = $( 2 );
+new p( q, r );
+$( 1 );
+const s = $( $ );
+const t = $( 1 );
+const u = $( 2 );
+new s( t, u );
+$( 1 );
+const v = $( $ );
+const w = $( 1 );
+const x = $( 2 );
+new v( w, x );
+$( 1 );
+const y = $( $ );
+const z = $( 1 );
+const 01 = $( 2 );
+new y( z, 01 );
+$( 1 );
+const 11 = $( $ );
+const 21 = $( 1 );
+const 31 = $( 2 );
+new 11( 21, 31 );
+$( 1 );
+const 41 = $( $ );
+const 51 = $( 1 );
+const 61 = $( 2 );
+let 71 = new 41( 51, 61 );
+$( 1 );
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const 81 = $( $ );
+  const 91 = $( 1 );
+  const a1 = $( 2 );
+  71 = new 81( 91, a1 );
+  $( 1 );
+}
+$( 71 );
+`````
+
 ## Globals
 
 None

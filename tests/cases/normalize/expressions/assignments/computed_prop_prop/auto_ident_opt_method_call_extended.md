@@ -64,6 +64,18 @@ obj[tmpChainElementCall];
 $(tmpChainElementCall);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { e: $ };
+const b = {};
+const c = $dotCall( $, a, 1 );
+b[ c ];
+$( c );
+`````
+
 ## Globals
 
 None

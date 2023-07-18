@@ -2863,6 +2863,14 @@ let TP$cloneX2$cloneX1 = function ($$0, $$1, $$2, $$3, $$4) {
 
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+
+`````
+
 ## Globals
 
 None

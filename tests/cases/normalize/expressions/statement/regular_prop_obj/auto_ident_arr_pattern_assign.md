@@ -61,6 +61,22 @@ tmpNestedAssignArrPatternRhs.a;
 $(a, tmpArrElement, tmpArrElement$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+a: 999,
+b: 1000
+;
+const b = $( 3 );
+const c = $( 4 );
+const d = [ b, c,, ];
+d.a;
+$( a, b, c );
+`````
+
 ## Globals
 
 None

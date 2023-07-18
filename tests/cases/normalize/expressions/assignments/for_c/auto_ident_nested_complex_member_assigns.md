@@ -145,6 +145,75 @@ if ($tmpLoopUnrollCheck) {
 $(a, b, 3);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+let a = {
+a: 999,
+b: 1000
+;
+let b = $( 1 );
+let c = true;
+const d = { x: 1 };
+if (b) {
+  const e = $( d );
+  const f = $( "x" );
+  const g = $( d );
+  const h = $( "x" );
+  const i = $( d );
+  const j = $( "x" );
+  const k = $( d );
+  const l = $( "x" );
+  const m = $( d );
+  const n = $( "x" );
+  const o = $( d );
+  const p = $( "x" );
+  o[p] = 3;
+  m[n] = 3;
+  k[l] = 3;
+  i[j] = 3;
+  g[h] = 3;
+  e[f] = 3;
+  a = 3;
+  b = $( 1 );
+}
+else {
+  c = false;
+}
+if (c) {
+  while ($LOOP_UNROLL_10) {
+    if (b) {
+      const q = $( d );
+      const r = $( "x" );
+      const s = $( d );
+      const t = $( "x" );
+      const u = $( d );
+      const v = $( "x" );
+      const w = $( d );
+      const x = $( "x" );
+      const y = $( d );
+      const z = $( "x" );
+      const 01 = $( d );
+      const 11 = $( "x" );
+      01[11] = 3;
+      y[z] = 3;
+      w[x] = 3;
+      u[v] = 3;
+      s[t] = 3;
+      q[r] = 3;
+      a = 3;
+      b = $( 1 );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( a, d, 3 );
+`````
+
 ## Globals
 
 None

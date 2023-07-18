@@ -48,6 +48,18 @@ const a = function () {
 throw a;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = function() {
+  debugger;
+  return undefined;
+},;
+throw a;
+`````
+
 ## Globals
 
 None

@@ -113,6 +113,58 @@ tmpBinBothLhs + tmpBinBothRhs;
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = {
+a: 999,
+b: 1000
+;
+let c = undefined;
+const d = $( a );
+const e = d == null;
+if (e) {
+
+}
+else {
+  const f = $( "$" );
+  const g = d[ f ];
+  const h = g == null;
+  if (h) {
+
+  }
+  else {
+    const i = $( 1 );
+    const j = $dotCall( g, d, i );
+    c = j;
+  }
+}
+let k = undefined;
+const l = $( a );
+const m = l == null;
+if (m) {
+
+}
+else {
+  const n = $( "$" );
+  const o = l[ n ];
+  const p = o == null;
+  if (p) {
+
+  }
+  else {
+    const q = $( 1 );
+    const r = $dotCall( o, l, q );
+    k = r;
+  }
+}
+c + k;
+$( b );
+`````
+
 ## Globals
 
 None

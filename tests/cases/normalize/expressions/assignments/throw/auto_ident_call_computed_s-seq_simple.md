@@ -46,6 +46,16 @@ const a = b.$(1);
 throw a;
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { $: $ };
+const b = a.$( 1 );
+throw b;
+`````
+
 ## Globals
 
 None

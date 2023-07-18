@@ -121,6 +121,64 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
 }
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = /foo/;
+const b = a.foo;
+$( b );
+const c = /foo/;
+c.foo = "object";
+const d = c.foo;
+$( d );
+const e = /foo/;
+e.foo = "object";
+const f = e.foo;
+$( f );
+const g = /foo/;
+g.foo = "object";
+const h = g.foo;
+$( h );
+const i = /foo/;
+i.foo = "object";
+const j = i.foo;
+$( j );
+const k = /foo/;
+k.foo = "object";
+const l = k.foo;
+$( l );
+const m = /foo/;
+m.foo = "object";
+const n = m.foo;
+$( n );
+const o = /foo/;
+o.foo = "object";
+const p = o.foo;
+$( p );
+const q = /foo/;
+q.foo = "object";
+const r = q.foo;
+$( r );
+const s = /foo/;
+s.foo = "object";
+const t = s.foo;
+$( t );
+const u = /foo/;
+u.foo = "object";
+const v = u.foo;
+$( v );
+let w = /foo/;
+w.foo = "object";
+while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
+  const x = w.foo;
+  $( x );
+  w = /foo/;
+  w.foo = "object";
+}
+`````
+
 ## Globals
 
 None

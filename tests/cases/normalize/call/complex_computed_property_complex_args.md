@@ -56,6 +56,20 @@ const tmpCalleeParam$1 = $(2);
 $dotCall(tmpCallCompVal, tmpCallCompObj, tmpCalleeParam, tmpCalleeParam$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { b: $ };
+const b = $( a );
+const c = $( "b" );
+const d = b[ c ];
+const e = $( 1 );
+const f = $( 2 );
+$dotCall( d, b, e, f );
+`````
+
 ## Globals
 
 None

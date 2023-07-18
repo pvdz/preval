@@ -66,6 +66,21 @@ $dotCall($, tmpObjLitVal$1, 1);
 $(a);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { e: $ };
+const b = {
+a: 999,
+b: 1000
+;
+$( 1 );
+$dotCall( $, a, 1 );
+$( b );
+`````
+
 ## Globals
 
 None

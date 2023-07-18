@@ -46,6 +46,17 @@ const tmpCalleeParam = `abc 10 ${tmpBinBothRhs} def`;
 $(tmpCalleeParam);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( 20 );
+const b = $coerce( a, "string" );
+const c = `abc 10 ${[object Object]} def`;
+$( c );
+`````
+
 ## Globals
 
 None

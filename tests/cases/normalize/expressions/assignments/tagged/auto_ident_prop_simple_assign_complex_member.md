@@ -58,6 +58,24 @@ $(tmpCalleeParam, tmpNestedAssignPropRhs);
 $(tmpNestedAssignPropRhs, b);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = {
+c: 10,
+d: 20
+;
+const b = [ "before ", " after",, ];
+const c = $( a );
+const d = $( "d" );
+const e = c[ d ];
+a.c = e;
+$( b, e );
+$( e, a );
+`````
+
 ## Globals
 
 None

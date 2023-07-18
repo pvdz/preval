@@ -47,6 +47,16 @@ const arrPatternSplat = [...objPatternNoDefault];
 y = arrPatternSplat[0];
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 1.x;
+const b = [ ... a,, ];
+y = b[ 0 ];
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

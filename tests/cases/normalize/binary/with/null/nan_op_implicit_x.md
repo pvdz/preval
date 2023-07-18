@@ -177,6 +177,39 @@ const arr2 = [tmpArrElement$39, tmpArrElement$41];
 $(arr2);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = 0 ** x;
+const b = 0 * x;
+const c = 0 / x;
+const d = 0 % x;
+const e = null + x;
+const f = 0 - x;
+const g = 0 << x;
+const h = 0 >> x;
+const i = 0 >>> x;
+const j = null < x;
+const k = null > x;
+const l = null <= x;
+const m = null >= x;
+const n = null == x;
+const o = null != x;
+const p = null === x;
+const q = null !== x;
+x ** 0;
+const r = 0 ^ x;
+const s = 0 | x;
+const t = [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, 0, r, s,, ];
+$( t );
+const u = null in x;
+const v = null instanceof x;
+const w = [ u, v,, ];
+$( w );
+`````
+
 ## Globals
 
 BAD@! Found 1 implicit global bindings:

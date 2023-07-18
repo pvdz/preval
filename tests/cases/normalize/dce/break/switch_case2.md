@@ -88,6 +88,32 @@ if (tmpIfTest) {
 $(`after, do not evaluate (infinite loop)`);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = $( true );
+if (a) {
+  $( 1, "disc" );
+  $( 1, "case" );
+  $( "keep" );
+  let b = $( true );
+  while ($LOOP_UNROLL_10) {
+    if (b) {
+      $( 1, "disc" );
+      $( 1, "case" );
+      $( "keep" );
+      b = $( true );
+    }
+    else {
+      break;
+    }
+  }
+}
+$( "after, do not evaluate (infinite loop)" );
+`````
+
 ## Globals
 
 None

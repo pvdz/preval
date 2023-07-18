@@ -54,6 +54,24 @@ const tmpObjSpreadArg = delete arg[tmpDeleteCompProp];
 $(a, arg);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { y: 1 };
+const b = {
+a: 999,
+b: 1000
+;
+$( 1 );
+$( 2 );
+const c = $( "y" );
+const d = deletea[ c ];
+{ ... d };
+$( b, a );
+`````
+
 ## Globals
 
 None

@@ -40,6 +40,19 @@ $(5);
 $(6);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+$( 2 );
+$( 3 );
+$( 4 );
+$( 5 );
+$( 6 );
+`````
+
 ## Globals
 
 None

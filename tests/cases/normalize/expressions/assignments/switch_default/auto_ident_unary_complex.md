@@ -56,6 +56,17 @@ const a = typeof tmpUnaryArg;
 $(a, 1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( 1 );
+const a = $( 1 );
+const b = typeofa;
+$( b, 1 );
+`````
+
 ## Globals
 
 None

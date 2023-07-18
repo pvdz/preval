@@ -80,6 +80,18 @@ const y = objPatternRest(objPatternAfterDefault, tmpCalleeParam$5, undefined);
 $(y);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { a: "pass" };
+const b = $( a );
+const c = [];
+const d = objPatternRest( b, c, undefined );
+$( d );
+`````
+
 ## Globals
 
 None

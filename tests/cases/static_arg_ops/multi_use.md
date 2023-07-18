@@ -62,6 +62,15 @@ $(`abc`, 100, NaN, 230);
 $(`def`, 400, NaN, 530);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+$( "abc", 100, NaN, 230 );
+$( "def", 400, NaN, 530 );
+`````
+
 ## Globals
 
 None

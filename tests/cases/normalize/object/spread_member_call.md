@@ -61,6 +61,22 @@ const tmpCalleeParam$1 = { ...tmpObjSpread };
 $(tmpCalleeParam$1);
 `````
 
+## PST Output
+
+With rename=true
+
+`````js filename=intro
+const a = { foo(  ) {
+  debugger;
+  const b = { x: 1 };
+  const c = $( b );
+  return c;
+}, };
+const d = a.foo();
+const e = { ... d };
+$( e );
+`````
+
 ## Globals
 
 None

@@ -707,12 +707,14 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
             vlog('Marking function as accessing `arguments` in "any" way');
             thisStack[thisStack.length - 1].$p.readsArgumentsAny = true;
           }
-        } else if ((kind === 'read' || kind === 'write') && /^\$\$\d+$/.test(name)) {
+        }
+        else if ((kind === 'read' || kind === 'write') && /^\$\$\d+$/.test(name)) {
           const paramNode = AST.param(name, false);
           vlog('This is a special param "keyword" by Preval. Replacing ident with param node;', paramNode);
           if (parentIndex < 0) parentNode[parentProp] = paramNode;
           else parentNode[parentProp][parentIndex] = paramNode;
-        } else if (kind !== 'none' && kind !== 'label') {
+        }
+        else if (kind !== 'none' && kind !== 'label') {
           ASSERT(kind === 'read' || kind === 'write', 'consider what to do if this check fails', kind, node);
           let meta = registerGlobalIdent(fdata, name, name, { isExport: false, isImplicitGlobal: 'unknown', isBuiltin: false });
           vlog('- Binding referenced in $p.pid:', currentScope.$p.pid, ', reads so far:', meta.reads.length, ', writes so far:', meta.writes.length);
@@ -1005,7 +1007,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
             vlog('Marking `' + name + '` as being an export');
             meta.isExport = true;
           }
-        } else {
+        }
+        else {
           vlog(RED + '- skipping; not a binding' + RESET);
         }
 

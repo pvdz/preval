@@ -260,7 +260,7 @@ function printExpression(indent, config, node) {
       return `class ${node.name ? printRef(indent, config, node.name) : ''} ${node.extends ? printSimple(indent, config, node.extends) : ''} {\n${node.body.map(s => printClassElement(indent, config, s))}\n${indent}}`;
     }
     case 'FunctionExpression': {
-      return `${node.isAsync ? 'async ' : ''}function${node.name ? ` ${printRef(indent, config, node.name)}` : ''}${node.isGenerator ? ' *' : ''}${node.params.length === 0 ? '()' : `(${node.params.map(p => printSimpleOrSpread(indent, config, p))} )`} ${printBlock(indent, config, node.body)},`;
+      return `${node.isAsync ? 'async ' : ''}function${node.name ? ` ${printRef(indent, config, node.name)}` : ''}${node.isGenerator ? ' *' : ''}${node.params.length === 0 ? '()' : `(${node.params.map(p => printSimpleOrSpread(indent, config, p))} )`} ${printBlock(indent, config, node.body)}`;
     }
     case 'MemberComputedExpression': {
       return `${printSimple(indent, config, node.object)}[ ${printSimple(indent, config, node.prop)} ]`;

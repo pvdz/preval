@@ -83,8 +83,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
-const $tmpLoopUnrollCheck = tmpIfTest;
+const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(`loop`);
   const tmpIfTest$1 = $(true);
@@ -94,25 +93,22 @@ if (tmpIfTest) {
     throw tmpThrowArg;
   } else {
     $(`do not visit, do not eliminate`);
-    tmpIfTest = $(true);
-  }
-} else {
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      $(`loop`);
-      const tmpIfTest$2 = $(true);
-      if (tmpIfTest$2) {
+    let tmpClusterSSA_tmpIfTest = $(true);
+    while ($LOOP_UNROLL_10) {
+      if (tmpClusterSSA_tmpIfTest) {
         $(`loop`);
-        const tmpThrowArg$1 = $(7, `throw`);
-        throw tmpThrowArg$1;
+        const tmpIfTest$2 = $(true);
+        if (tmpIfTest$2) {
+          $(`loop`);
+          const tmpThrowArg$1 = $(7, `throw`);
+          throw tmpThrowArg$1;
+        } else {
+          $(`do not visit, do not eliminate`);
+          tmpClusterSSA_tmpIfTest = $(true);
+        }
       } else {
-        $(`do not visit, do not eliminate`);
-        tmpIfTest = $(true);
+        break;
       }
-    } else {
-      break;
     }
   }
 } else {
@@ -126,38 +122,35 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
-const b = a;
+const a = $( true );
 if (a) {
   $( "loop" );
-  const c = $( true );
-  if (c) {
+  const b = $( true );
+  if (b) {
     $( "loop" );
-    const d = $( 7, "throw" );
-    throw d;
+    const c = $( 7, "throw" );
+    throw c;
   }
   else {
     $( "do not visit, do not eliminate" );
-    a = $( true );
-  }
-}
-if (b) {
-  while ($LOOP_UNROLL_10) {
-    if (a) {
-      $( "loop" );
-      const e = $( true );
-      if (e) {
+    let d = $( true );
+    while ($LOOP_UNROLL_10) {
+      if (d) {
         $( "loop" );
-        const f = $( 7, "throw" );
-        throw f;
+        const e = $( true );
+        if (e) {
+          $( "loop" );
+          const f = $( 7, "throw" );
+          throw f;
+        }
+        else {
+          $( "do not visit, do not eliminate" );
+          d = $( true );
+        }
       }
       else {
-        $( "do not visit, do not eliminate" );
-        a = $( true );
+        break;
       }
-    }
-    else {
-      break;
     }
   }
 }

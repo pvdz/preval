@@ -61,23 +61,18 @@ while (true) {
 
 `````js filename=intro
 const max = $(10);
-let counter = 2;
-let test = 2 < max;
-const $tmpLoopUnrollCheck = test;
+const test = 2 < max;
 if (test) {
   $(103);
-  counter = 3;
-  test = 3 < tmpArgumentsLen$9;
-} else {
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_counter = 3;
+  let tmpClusterSSA_test = 3 < tmpArgumentsLen$9;
   const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
   while ($LOOP_UNROLL_10) {
-    if (test) {
-      const tmpCalleeParam$1 = arr[counter];
+    if (tmpClusterSSA_test) {
+      const tmpCalleeParam$1 = arr[tmpClusterSSA_counter];
       $(tmpCalleeParam$1);
-      counter = counter + 1;
-      test = counter < tmpArgumentsLen$9;
+      tmpClusterSSA_counter = tmpClusterSSA_counter + 1;
+      tmpClusterSSA_test = tmpClusterSSA_counter < tmpArgumentsLen$9;
     } else {
       break;
     }
@@ -92,22 +87,18 @@ With rename=true
 
 `````js filename=intro
 const a = $( 10 );
-let b = 2;
-let c = 2 < a;
-const d = c;
-if (c) {
+const b = 2 < a;
+if (b) {
   $( 103 );
-  b = 3;
-  c = 3 < tmpArgumentsLen$9;
-}
-if (d) {
+  let c = 3;
+  let d = 3 < tmpArgumentsLen$9;
   const e = [ 101, 102, 103, 104, 105, 106, 107, 108, 109, 1010,, ];
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      const f = e[ b ];
+    if (d) {
+      const f = e[ c ];
       $( f );
-      b = b + 1;
-      c = b < tmpArgumentsLen$9;
+      c = c + 1;
+      d = c < tmpArgumentsLen$9;
     }
     else {
       break;

@@ -74,22 +74,18 @@ $(`after (not invoked)`);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(true);
-const $tmpLoopUnrollCheck = tmpIfTest;
+const tmpIfTest = $(true);
 if (tmpIfTest) {
   $(`loop`);
   $(`loop`);
   $(`infiloop, do not eliminate`);
-  tmpIfTest = $(true);
-} else {
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(true);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       $(`loop`);
       $(`loop`);
       $(`infiloop, do not eliminate`);
-      tmpIfTest = $(true);
+      tmpClusterSSA_tmpIfTest = $(true);
     } else {
       break;
     }
@@ -104,21 +100,18 @@ $(`after (not invoked)`);
 With rename=true
 
 `````js filename=intro
-let a = $( true );
-const b = a;
+const a = $( true );
 if (a) {
   $( "loop" );
   $( "loop" );
   $( "infiloop, do not eliminate" );
-  a = $( true );
-}
-if (b) {
+  let b = $( true );
   while ($LOOP_UNROLL_10) {
-    if (a) {
+    if (b) {
       $( "loop" );
       $( "loop" );
       $( "infiloop, do not eliminate" );
-      a = $( true );
+      b = $( true );
     }
     else {
       break;

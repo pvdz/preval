@@ -64,18 +64,14 @@ let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
     $(x, `loop1`);
-    let tmpIfTest$1 = $(true);
-    const $tmpLoopUnrollCheck = tmpIfTest$1;
+    const tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
       $(x, `loop2`);
-      tmpIfTest$1 = $(true);
-    } else {
-    }
-    if ($tmpLoopUnrollCheck) {
+      let tmpClusterSSA_tmpIfTest$1 = $(true);
       while ($LOOP_UNROLL_10) {
-        if (tmpIfTest$1) {
+        if (tmpClusterSSA_tmpIfTest$1) {
           $(x, `loop2`);
-          tmpIfTest$1 = $(true);
+          tmpClusterSSA_tmpIfTest$1 = $(true);
         } else {
           break;
         }
@@ -99,17 +95,14 @@ let b = $( true );
 while (true) {
   if (b) {
     $( a, "loop1" );
-    let c = $( true );
-    const d = c;
+    const c = $( true );
     if (c) {
       $( a, "loop2" );
-      c = $( true );
-    }
-    if (d) {
+      let d = $( true );
       while ($LOOP_UNROLL_10) {
-        if (c) {
+        if (d) {
           $( a, "loop2" );
-          c = $( true );
+          d = $( true );
         }
         else {
           break;

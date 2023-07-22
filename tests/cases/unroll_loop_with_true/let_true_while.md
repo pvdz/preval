@@ -66,7 +66,6 @@ if (test) {
 } else {
   $(`third`);
 }
-const $tmpLoopUnrollCheck = tmp;
 if (tmp) {
   const test$1 = $(`first`);
   $(`second`);
@@ -75,9 +74,6 @@ if (tmp) {
   } else {
     $(`third`);
   }
-} else {
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
     if (tmp) {
       const test$2 = $(`first`);
@@ -109,23 +105,20 @@ if (b) {
 else {
   $( "third" );
 }
-const c = a;
 if (a) {
-  const d = $( "first" );
+  const c = $( "first" );
   $( "second" );
-  if (d) {
+  if (c) {
     a = false;
   }
   else {
     $( "third" );
   }
-}
-if (c) {
   while ($LOOP_UNROLL_9) {
     if (a) {
-      const e = $( "first" );
+      const d = $( "first" );
       $( "second" );
-      if (e) {
+      if (d) {
         a = false;
       }
       else {

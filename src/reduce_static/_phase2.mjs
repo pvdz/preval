@@ -81,9 +81,11 @@ import { unrollLoopWithTrue } from './unroll_loop_with_true.mjs';
 import {letAliasing} from "./let_aliase.mjs"
 import {aliasedGlobals} from "./aliasing_globals.mjs"
 import {dotCall} from "./dotcall.mjs"
-import {VERBOSE_TRACING} from "../constants.mjs"
 //import {letTrueWhile} from "./let_true_while.mjs";
 //import {letIfElseFalseWhile} from "./let_if_while_x.mjs";
+//import {testingAlias} from "./testing_alias.mjs";
+import {VERBOSE_TRACING} from "../constants.mjs"
+//import {aliasIfIf} from "./alias_if_if.mjs"
 
 //import { phasePrimitiveArgInlining } from './phase_primitive_arg_inlining.mjs';
 
@@ -424,6 +426,12 @@ function _phase2(program, fdata, resolve, req, options = {}) {
   //
   //const liwx = letIfElseFalseWhile(fdata);
   //if (liwx) return liwx;
+
+  //const ta = testingAlias(fdata);
+  //if (ta) return ta;
+
+  //const aii = aliasIfIf(fdata);
+  //if (aii) return aii;
 
   // This one should probably be lowest priority as it might blow up code...
   const ulwt = unrollLoopWithTrue(fdata, options.unrollTrueLimit);

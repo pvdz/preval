@@ -65,13 +65,12 @@ let counter = 0;
 let test = true;
 while (true) {
   if (test) {
-    let $tmpLoopUnrollCheck = true;
+    const $tmpLoopUnrollCheck = test;
     if (test) {
       $(`yolo`);
       counter = counter + 1;
       test = counter < 10;
     } else {
-      $tmpLoopUnrollCheck = false;
     }
     if ($tmpLoopUnrollCheck) {
       while ($LOOP_UNROLL_10) {
@@ -100,14 +99,11 @@ let a = 0;
 let b = true;
 while (true) {
   if (b) {
-    let c = true;
+    const c = b;
     if (b) {
       $( "yolo" );
       a = a + 1;
       b = a < 10;
-    }
-    else {
-      c = false;
     }
     if (c) {
       while ($LOOP_UNROLL_10) {

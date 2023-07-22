@@ -84,7 +84,7 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 let tmpIfTest = $(true);
-let $tmpLoopUnrollCheck = true;
+const $tmpLoopUnrollCheck = tmpIfTest;
 if (tmpIfTest) {
   $(`loop`);
   const tmpIfTest$1 = $(true);
@@ -97,7 +97,6 @@ if (tmpIfTest) {
     tmpIfTest = $(true);
   }
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
@@ -128,7 +127,7 @@ With rename=true
 
 `````js filename=intro
 let a = $( true );
-let b = true;
+const b = a;
 if (a) {
   $( "loop" );
   const c = $( true );
@@ -141,9 +140,6 @@ if (a) {
     $( "do not visit, do not eliminate" );
     a = $( true );
   }
-}
-else {
-  b = false;
 }
 if (b) {
   while ($LOOP_UNROLL_10) {

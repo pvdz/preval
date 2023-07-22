@@ -70,7 +70,7 @@ tmpAssignComputedObj[0] = tmpAssignComputedRhs;
 $(arr);
 const tmpBinLhs$1 = arr[0];
 let tmpClusterSSA_tmpDoWhileFlag = tmpBinLhs$1 < 10;
-let $tmpLoopUnrollCheck = true;
+const $tmpLoopUnrollCheck = tmpClusterSSA_tmpDoWhileFlag;
 if (tmpClusterSSA_tmpDoWhileFlag) {
   arr = [0];
   const tmpAssignComputedObj$1 = arr;
@@ -81,7 +81,6 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
   const tmpBinLhs$4 = arr[0];
   tmpClusterSSA_tmpDoWhileFlag = tmpBinLhs$4 < 10;
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -116,7 +115,7 @@ b[0] = d;
 $( a );
 const e = a[ 0 ];
 let f = e < 10;
-let g = true;
+const g = f;
 if (f) {
   a = [ 0,, ];
   const h = a;
@@ -126,9 +125,6 @@ if (f) {
   $( a );
   const k = a[ 0 ];
   f = k < 10;
-}
-else {
-  g = false;
 }
 if (g) {
   while ($LOOP_UNROLL_9) {

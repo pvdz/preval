@@ -92,11 +92,12 @@ let count = $LOOP_UNROLL_10;
 $(`before`);
 let wat = s | 10;
 const chk = $(true);
+let $tmpLoopUnrollCheck = false;
 if (chk) {
+  $tmpLoopUnrollCheck = $LOOP_UNROLL_10;
 } else {
   count = false;
 }
-let $tmpLoopUnrollCheck = true;
 if (count) {
   $(`inside`);
   wat = wat | 10;
@@ -106,7 +107,6 @@ if (count) {
     count = false;
   }
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
@@ -137,13 +137,13 @@ let b = $LOOP_UNROLL_10;
 $( "before" );
 let c = a | 10;
 const d = $( true );
+let e = false;
 if (d) {
-
+  e = $LOOP_UNROLL_10;
 }
 else {
   b = false;
 }
-let e = true;
 if (b) {
   $( "inside" );
   c = c | 10;
@@ -154,9 +154,6 @@ if (b) {
   else {
     b = false;
   }
-}
-else {
-  e = false;
 }
 if (e) {
   while ($LOOP_UNROLL_10) {

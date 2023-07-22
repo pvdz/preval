@@ -56,7 +56,7 @@ $(x);
 `````js filename=intro
 let x = $(10);
 let tmpIfTest = $(x);
-let $tmpLoopUnrollCheck = true;
+const $tmpLoopUnrollCheck = tmpIfTest;
 if (tmpIfTest) {
   const tmpIfTest$1 = $(true);
   if (tmpIfTest$1) {
@@ -66,7 +66,6 @@ if (tmpIfTest) {
   x = $(20);
   tmpIfTest = $(x);
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
@@ -94,7 +93,7 @@ With rename=true
 `````js filename=intro
 let a = $( 10 );
 let b = $( a );
-let c = true;
+const c = b;
 if (b) {
   const d = $( true );
   if (d) {
@@ -102,9 +101,6 @@ if (b) {
   }
   a = $( 20 );
   b = $( a );
-}
-else {
-  c = false;
 }
 if (c) {
   while ($LOOP_UNROLL_10) {

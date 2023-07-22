@@ -65,12 +65,11 @@ while (true) {
   if (tmpIfTest) {
     x = $(20, `set`);
     let tmpIfTest$1 = $(true);
-    let $tmpLoopUnrollCheck = true;
+    const $tmpLoopUnrollCheck = tmpIfTest$1;
     if (tmpIfTest$1) {
       $(x, `loop`);
       tmpIfTest$1 = $(true);
     } else {
-      $tmpLoopUnrollCheck = false;
     }
     if ($tmpLoopUnrollCheck) {
       while ($LOOP_UNROLL_10) {
@@ -101,13 +100,10 @@ while (true) {
   if (b) {
     a = $( 20, "set" );
     let c = $( true );
-    let d = true;
+    const d = c;
     if (c) {
       $( a, "loop" );
       c = $( true );
-    }
-    else {
-      d = false;
     }
     if (d) {
       while ($LOOP_UNROLL_10) {

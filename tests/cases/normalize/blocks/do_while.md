@@ -44,12 +44,11 @@ while (true) {
 `````js filename=intro
 $(1);
 let tmpDoWhileFlag = $(2);
-let $tmpLoopUnrollCheck = true;
+const $tmpLoopUnrollCheck = tmpDoWhileFlag;
 if (tmpDoWhileFlag) {
   $(1);
   tmpDoWhileFlag = $(2);
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -71,13 +70,10 @@ With rename=true
 `````js filename=intro
 $( 1 );
 let a = $( 2 );
-let b = true;
+const b = a;
 if (a) {
   $( 1 );
   a = $( 2 );
-}
-else {
-  b = false;
 }
 if (b) {
   while ($LOOP_UNROLL_9) {

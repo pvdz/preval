@@ -91,16 +91,16 @@ let n = 0;
 let flag = true;
 $(`before`);
 const x = $(`wat`);
+let $tmpLoopUnrollCheck = true;
 if (x) {
 } else {
   flag = false;
+  $tmpLoopUnrollCheck = false;
 }
-let $tmpLoopUnrollCheck = true;
 if (flag) {
   $(`inner`, 0);
   n = 1;
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
@@ -131,19 +131,17 @@ let a = 0;
 let b = true;
 $( "before" );
 const c = $( "wat" );
+let d = true;
 if (c) {
 
 }
 else {
   b = false;
+  d = false;
 }
-let d = true;
 if (b) {
   $( "inner", 0 );
   a = 1;
-}
-else {
-  d = false;
 }
 if (d) {
   while ($LOOP_UNROLL_10) {

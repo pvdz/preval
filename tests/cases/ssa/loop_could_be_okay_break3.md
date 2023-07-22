@@ -102,11 +102,12 @@ $(1);
 let tmpLoopRetCode = true;
 const tmpssa2_x = $(2);
 $(tmpssa2_x);
+let $tmpLoopUnrollCheck = false;
 if ($) {
   tmpLoopRetCode = false;
 } else {
+  $tmpLoopUnrollCheck = tmpLoopRetCode;
 }
-let $tmpLoopUnrollCheck = true;
 if (tmpLoopRetCode) {
   const tmpssa2_x$1 = $(2);
   $(tmpssa2_x$1);
@@ -115,7 +116,6 @@ if (tmpLoopRetCode) {
   } else {
   }
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -143,19 +143,19 @@ $( 1 );
 let a = true;
 const b = $( 2 );
 $( b );
+let c = false;
 if ($) {
   a = false;
 }
-let c = true;
+else {
+  c = a;
+}
 if (a) {
   const d = $( 2 );
   $( d );
   if ($) {
     a = false;
   }
-}
-else {
-  c = false;
 }
 if (c) {
   while ($LOOP_UNROLL_9) {

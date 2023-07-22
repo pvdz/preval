@@ -52,13 +52,12 @@ const max = $(10);
 $(0);
 let i = 0 + max;
 let tmpClusterSSA_tmpIfTest = i < 10;
-let $tmpLoopUnrollCheck = true;
+const $tmpLoopUnrollCheck = tmpClusterSSA_tmpIfTest;
 if (tmpClusterSSA_tmpIfTest) {
   $(i);
   i = i + max;
   tmpClusterSSA_tmpIfTest = i < 10;
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -83,14 +82,11 @@ const a = $( 10 );
 $( 0 );
 let b = 0 + a;
 let c = b < 10;
-let d = true;
+const d = c;
 if (c) {
   $( b );
   b = b + a;
   c = b < 10;
-}
-else {
-  d = false;
 }
 if (d) {
   while ($LOOP_UNROLL_9) {

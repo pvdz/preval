@@ -58,13 +58,12 @@ const s = $(10);
 parseExpression(lexerFlags$285, astProp$181);
 let tmpClusterSSA_s = s | 10;
 let tmpClusterSSA_x = $(true);
-let $tmpLoopUnrollCheck = true;
+const $tmpLoopUnrollCheck = tmpClusterSSA_x;
 if (tmpClusterSSA_x) {
   parseExpression(lexerFlags$285, astProp$181);
   tmpClusterSSA_s = tmpClusterSSA_s | 10;
   tmpClusterSSA_x = $(true);
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -90,14 +89,11 @@ const a = $( 10 );
 parseExpression( lexerFlags$285, astProp$181 );
 let b = a | 10;
 let c = $( true );
-let d = true;
+const d = c;
 if (c) {
   parseExpression( lexerFlags$285, astProp$181 );
   b = b | 10;
   c = $( true );
-}
-else {
-  d = false;
 }
 if (d) {
   while ($LOOP_UNROLL_9) {

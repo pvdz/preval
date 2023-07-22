@@ -83,7 +83,7 @@ import {aliasedGlobals} from "./aliasing_globals.mjs"
 import {dotCall} from "./dotcall.mjs"
 //import {letTrueWhile} from "./let_true_while.mjs";
 //import {letIfElseFalseWhile} from "./let_if_while_x.mjs";
-//import {testingAlias} from "./testing_alias.mjs";
+import {testingAlias} from "./testing_alias.mjs";
 import {VERBOSE_TRACING} from "../constants.mjs"
 //import {aliasIfIf} from "./alias_if_if.mjs"
 
@@ -420,15 +420,14 @@ function _phase2(program, fdata, resolve, req, options = {}) {
   const la = letAliasing(fdata);
   if (la) return la;
 
-  // TODO: enable after rewriting the while logic
   //const ltw = letTrueWhile(fdata);
   //if (ltw) return ltw;
-  //
+
   //const liwx = letIfElseFalseWhile(fdata);
   //if (liwx) return liwx;
 
-  //const ta = testingAlias(fdata);
-  //if (ta) return ta;
+  const ta = testingAlias(fdata);
+  if (ta) return ta;
 
   //const aii = aliasIfIf(fdata);
   //if (aii) return aii;

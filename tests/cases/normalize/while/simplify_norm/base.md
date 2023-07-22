@@ -49,11 +49,10 @@ while (true) {
 
 `````js filename=intro
 let tmpIfTest = $(`yes`);
-let $tmpLoopUnrollCheck = true;
+const $tmpLoopUnrollCheck = tmpIfTest;
 if (tmpIfTest) {
   tmpIfTest = $(`yes`);
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
@@ -73,12 +72,9 @@ With rename=true
 
 `````js filename=intro
 let a = $( "yes" );
-let b = true;
+const b = a;
 if (a) {
   a = $( "yes" );
-}
-else {
-  b = false;
 }
 if (b) {
   while ($LOOP_UNROLL_10) {

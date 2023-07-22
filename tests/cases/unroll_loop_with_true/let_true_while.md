@@ -66,7 +66,7 @@ if (test) {
 } else {
   $(`third`);
 }
-let $tmpLoopUnrollCheck = true;
+const $tmpLoopUnrollCheck = tmp;
 if (tmp) {
   const test$1 = $(`first`);
   $(`second`);
@@ -76,7 +76,6 @@ if (tmp) {
     $(`third`);
   }
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -110,7 +109,7 @@ if (b) {
 else {
   $( "third" );
 }
-let c = true;
+const c = a;
 if (a) {
   const d = $( "first" );
   $( "second" );
@@ -120,9 +119,6 @@ if (a) {
   else {
     $( "third" );
   }
-}
-else {
-  c = false;
 }
 if (c) {
   while ($LOOP_UNROLL_9) {

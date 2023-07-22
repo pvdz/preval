@@ -63,13 +63,12 @@ while (true) {
 const max = $(10);
 let counter = 2;
 let test = 2 < max;
-let $tmpLoopUnrollCheck = true;
+const $tmpLoopUnrollCheck = test;
 if (test) {
   $(103);
   counter = 3;
   test = 3 < tmpArgumentsLen$9;
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   const arr = [101, 102, 103, 104, 105, 106, 107, 108, 109, 1010];
@@ -95,14 +94,11 @@ With rename=true
 const a = $( 10 );
 let b = 2;
 let c = 2 < a;
-let d = true;
+const d = c;
 if (c) {
   $( 103 );
   b = 3;
   c = 3 < tmpArgumentsLen$9;
-}
-else {
-  d = false;
 }
 if (d) {
   const e = [ 101, 102, 103, 104, 105, 106, 107, 108, 109, 1010,, ];

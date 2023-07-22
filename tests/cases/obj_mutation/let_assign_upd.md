@@ -69,7 +69,7 @@ tmpAssignMemLhsObj.xyz = tmpAssignMemRhs;
 $(blob);
 const tmpBinLhs$1 = blob.xyz;
 let tmpClusterSSA_tmpDoWhileFlag = tmpBinLhs$1 < 10;
-let $tmpLoopUnrollCheck = true;
+const $tmpLoopUnrollCheck = tmpClusterSSA_tmpDoWhileFlag;
 if (tmpClusterSSA_tmpDoWhileFlag) {
   blob = { thing: `woop`, xyz: 0 };
   const tmpAssignMemLhsObj$1 = blob;
@@ -80,7 +80,6 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
   const tmpBinLhs$4 = blob.xyz;
   tmpClusterSSA_tmpDoWhileFlag = tmpBinLhs$4 < 10;
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -118,7 +117,7 @@ b.xyz = d;
 $( a );
 const e = a.xyz;
 let f = e < 10;
-let g = true;
+const g = f;
 if (f) {
   a = {
 thing: "woop",
@@ -131,9 +130,6 @@ xyz: 0
   $( a );
   const k = a.xyz;
   f = k < 10;
-}
-else {
-  g = false;
 }
 if (g) {
   while ($LOOP_UNROLL_9) {

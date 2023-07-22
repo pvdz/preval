@@ -53,7 +53,7 @@ while (true) {
 `````js filename=intro
 let x = $(10);
 let tmpIfTest = $(x);
-let $tmpLoopUnrollCheck = true;
+const $tmpLoopUnrollCheck = tmpIfTest;
 if (tmpIfTest) {
   x = $(0);
   const tmpIfTest$1 = $(true);
@@ -63,7 +63,6 @@ if (tmpIfTest) {
   }
   tmpIfTest = $(x);
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
@@ -90,7 +89,7 @@ With rename=true
 `````js filename=intro
 let a = $( 10 );
 let b = $( a );
-let c = true;
+const c = b;
 if (b) {
   a = $( 0 );
   const d = $( true );
@@ -98,9 +97,6 @@ if (b) {
     $( a, "branch" );
   }
   b = $( a );
-}
-else {
-  c = false;
 }
 if (c) {
   while ($LOOP_UNROLL_10) {

@@ -132,7 +132,7 @@ const a = function($$0 ) {
     $( "b" );
     return foo;
   }
-},;
+};
 const e = a( 1 );
 $( e );
 const f = a( 2 );

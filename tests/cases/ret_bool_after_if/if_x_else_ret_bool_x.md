@@ -91,7 +91,7 @@ const a = function() {
     const b = Boolean( y );
     return b;
   }
-},;
+};
 const c = a();
 $( c );
 const d = a();

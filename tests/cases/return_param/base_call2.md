@@ -103,7 +103,7 @@ const a = function() {
   $( "inlining" );
   $( "please" );
   return undefined;
-},;
+};
 a();
 $( "pass" );
 $( undefined );

@@ -125,7 +125,7 @@ const a = function() {
     const d = $( "inner else", false );
     return d;
   }
-},;
+};
 if ($) {
   const e = a();
   $( e, "outer" );

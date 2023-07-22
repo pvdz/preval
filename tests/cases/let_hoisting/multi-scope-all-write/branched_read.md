@@ -146,7 +146,7 @@ const a = function($$0 ) {
       return false;
     }
   }
-},;
+};
 if ($) {
   $( a );
 }

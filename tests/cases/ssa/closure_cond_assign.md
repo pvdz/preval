@@ -150,7 +150,7 @@ if ($) {
     }
     $();
     return undefined;
-  },;
+  };
   if ($) {
     b( true );
     b( false );

@@ -78,7 +78,7 @@ while (true) {
   a = function() {
     debugger;
     return undefined;
-  },;
+  };
   $( 1 );
 }
 $( a );

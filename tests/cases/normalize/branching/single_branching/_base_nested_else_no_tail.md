@@ -116,7 +116,7 @@ const a = function() {
       return f;
     }
   }
-},;
+};
 const g = a();
 $( g, "final" );
 `````

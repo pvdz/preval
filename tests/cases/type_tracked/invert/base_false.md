@@ -107,7 +107,7 @@ const a = function() {
   }
   $( c, "after" );
   return undefined;
-},;
+};
 a();
 a();
 a();

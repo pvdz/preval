@@ -95,7 +95,7 @@ const a = function() {
     s;
   }
   return undefined;
-},;
+};
 a();
 a();
 `````

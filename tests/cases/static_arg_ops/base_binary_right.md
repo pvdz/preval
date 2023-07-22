@@ -83,7 +83,7 @@ const a = function($$0 ) {
   const e = d + b;
   $( e );
   return undefined;
-},;
+};
 a( 1 );
 a( 4 );
 a( 6 );

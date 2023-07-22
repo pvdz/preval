@@ -142,7 +142,7 @@ const b = function() {
     $( "b" );
     return undefined;
   }
-},;
+};
 b();
 $( "c" );
 $( undefined );

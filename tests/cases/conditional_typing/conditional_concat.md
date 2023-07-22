@@ -107,7 +107,7 @@ const a = function() {
     _THROW( e, tokenStart$5, tokenStop$5, "" );
   }
   throw "Preval: the previous call always throws";
-},;
+};
 $( a );
 `````
 

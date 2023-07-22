@@ -79,7 +79,7 @@ const a = function($$0,$$1,$$2 ) {
   const h = Boolean( b );
   $( h, d, f );
   return undefined;
-},;
+};
 a();
 `````
 

@@ -124,7 +124,7 @@ const a = function($$0 ) {
   else {
     return i;
   }
-},;
+};
 const l = [ 1, 2, 3, 20, 30,, ];
 const m = a( l );
 $( m );

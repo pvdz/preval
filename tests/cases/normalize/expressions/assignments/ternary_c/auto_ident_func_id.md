@@ -89,7 +89,7 @@ else {
   const d = function() {
     debugger;
     return undefined;
-  },;
+  };
   a = d;
   $( d );
 }

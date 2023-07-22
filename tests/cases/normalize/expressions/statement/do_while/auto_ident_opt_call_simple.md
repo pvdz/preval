@@ -63,13 +63,12 @@ $(a);
 $(100);
 let tmpDoWhileFlag = false;
 const tmpIfTest = $ == null;
-let $tmpLoopUnrollCheck = false;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
   tmpDoWhileFlag = tmpChainElementCall;
-  $tmpLoopUnrollCheck = tmpChainElementCall;
 }
+let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
   tmpDoWhileFlag = false;
@@ -80,6 +79,7 @@ if (tmpDoWhileFlag) {
     tmpDoWhileFlag = tmpChainElementCall$1;
   }
 } else {
+  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -110,15 +110,14 @@ With rename=true
 $( 100 );
 let a = false;
 const b = $ == null;
-let c = false;
 if (b) {
 
 }
 else {
-  const d = $( 1 );
-  a = d;
-  c = d;
+  const c = $( 1 );
+  a = c;
 }
+let d = true;
 if (a) {
   $( 100 );
   a = false;
@@ -131,7 +130,10 @@ if (a) {
     a = f;
   }
 }
-if (c) {
+else {
+  d = false;
+}
+if (d) {
   while ($LOOP_UNROLL_9) {
     if (a) {
       $( 100 );

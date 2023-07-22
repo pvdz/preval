@@ -71,7 +71,7 @@ const a = function() {
   debugger;
   $( b );
   return undefined;
-},;
+};
 const c = { pass: 1 };
 const d = [ 1, 2, 3,, ];
 a.call( c, d, "nope", $ );

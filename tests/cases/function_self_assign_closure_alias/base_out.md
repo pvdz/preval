@@ -138,10 +138,10 @@ const a = function() {
     debugger;
     $( "replaced" );
     return undefined;
-  },;
+  };
   $( "after" );
   return undefined;
-},;
+};
 let b = a;
 a();
 a();

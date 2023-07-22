@@ -77,7 +77,7 @@ const b = function() {
   debugger;
   a = c;
   return c;
-},;
+};
 const e = b();
 $( e );
 $( a );

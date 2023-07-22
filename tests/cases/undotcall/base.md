@@ -83,7 +83,7 @@ const c = function($$0 ) {
   $( "hello", d );
   const f = d + 1;
   return f;
-},;
+};
 const g = $dotCall( b, a, c );
 $( g );
 `````

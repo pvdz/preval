@@ -106,7 +106,7 @@ const a = function() {
   else {
     return false;
   }
-},;
+};
 const c = a();
 const d = !c;
 $( d, "one" );

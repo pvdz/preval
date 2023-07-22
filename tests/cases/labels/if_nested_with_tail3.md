@@ -151,7 +151,7 @@ const a = function() {
   $( "tail1" );
   $( "end" );
   return undefined;
-},;
+};
 const b = function() {
   debugger;
   $( 0 );
@@ -175,7 +175,7 @@ const b = function() {
   }
   a();
   return undefined;
-},;
+};
 b();
 `````
 

@@ -57,12 +57,17 @@ if (tmpIfTest) {
 } else {
   $(1);
 }
-const tmpIfTest$1 = $(0);
+let tmpIfTest$1 = $(0);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest$1) {
-  let tmpClusterSSA_tmpIfTest$1 = $(0);
+  tmpIfTest$1 = $(0);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$1) {
-      tmpClusterSSA_tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
+      tmpIfTest$1 = $(0);
     } else {
       break;
     }
@@ -88,12 +93,18 @@ if (b) {
 else {
   $( 1 );
 }
-const c = $( 0 );
+let c = $( 0 );
+let d = true;
 if (c) {
-  let d = $( 0 );
+  c = $( 0 );
+}
+else {
+  d = false;
+}
+if (d) {
   while ($LOOP_UNROLL_10) {
-    if (d) {
-      d = $( 0 );
+    if (c) {
+      c = $( 0 );
     }
     else {
       break;

@@ -70,6 +70,8 @@ const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b.c = varInitAssignLhsComputedRhs;
 let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
+let tmpClusterSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs;
+let $tmpLoopUnrollCheck = true;
 if (varInitAssignLhsComputedRhs) {
   $(100);
   const tmpCompObj$1 = $(b);
@@ -77,16 +79,20 @@ if (varInitAssignLhsComputedRhs) {
   const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
   b.c = varInitAssignLhsComputedRhs$1;
   tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCompObj$2 = $(b);
       const tmpCompProp$2 = $(`d`);
       const varInitAssignLhsComputedRhs$2 = tmpCompObj$2[tmpCompProp$2];
       b.c = varInitAssignLhsComputedRhs$2;
       tmpClusterSSA_a = varInitAssignLhsComputedRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$2;
     } else {
       break;
     }
@@ -111,23 +117,30 @@ const c = $( "d" );
 const d = b[ c ];
 a.c = d;
 let e = d;
+let f = d;
+let g = true;
 if (d) {
   $( 100 );
-  const f = $( a );
-  const g = $( "d" );
-  const h = f[ g ];
-  a.c = h;
-  e = h;
-  let i = h;
+  const h = $( a );
+  const i = $( "d" );
+  const j = h[ i ];
+  a.c = j;
+  e = j;
+  f = j;
+}
+else {
+  g = false;
+}
+if (g) {
   while ($LOOP_UNROLL_9) {
-    if (i) {
+    if (f) {
       $( 100 );
-      const j = $( a );
-      const k = $( "d" );
-      const l = j[ k ];
-      a.c = l;
-      e = l;
-      i = l;
+      const k = $( a );
+      const l = $( "d" );
+      const m = k[ l ];
+      a.c = m;
+      e = m;
+      f = m;
     }
     else {
       break;

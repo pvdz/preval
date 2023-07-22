@@ -63,12 +63,17 @@ const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpIfTest = $(0);
+let tmpIfTest = $(0);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
+  tmpIfTest = $(0);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    if (tmpIfTest) {
+      tmpIfTest = $(0);
     } else {
       break;
     }
@@ -93,12 +98,18 @@ const d = $( c );
 const e = d.x;
 const f = e - 1;
 d.x = f;
-const g = $( 0 );
+let g = $( 0 );
+let h = true;
 if (g) {
-  let h = $( 0 );
+  g = $( 0 );
+}
+else {
+  h = false;
+}
+if (h) {
   while ($LOOP_UNROLL_10) {
-    if (h) {
-      h = $( 0 );
+    if (g) {
+      g = $( 0 );
     }
     else {
       break;

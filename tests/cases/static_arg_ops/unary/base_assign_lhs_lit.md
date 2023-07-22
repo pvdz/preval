@@ -100,7 +100,7 @@ const a = function($$0 ) {
   d = b;
   const e = $( 100 );
   return e;
-},;
+};
 let d = undefined;
 const f = a( -2 );
 $( f );

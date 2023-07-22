@@ -89,7 +89,7 @@ const a = function() {
   $( "poss" );
   const c = b.foo;
   return c;
-},;
+};
 const d = {
 f: a,
 foo: "You got it!"

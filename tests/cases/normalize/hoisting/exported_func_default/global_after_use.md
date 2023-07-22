@@ -60,7 +60,7 @@ const a = function() {
   debugger;
   const b = $( 2 );
   return b;
-},;
+};
 const c = $( 2 );
 $( c );
 export { a as default from "undefined"

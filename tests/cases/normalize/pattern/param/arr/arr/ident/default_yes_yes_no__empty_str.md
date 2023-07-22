@@ -104,7 +104,7 @@ const a = function() {
   else {
     return e;
   }
-},;
+};
 const h = a();
 $( h );
 `````

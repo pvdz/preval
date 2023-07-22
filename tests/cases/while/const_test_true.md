@@ -46,8 +46,13 @@ $(`after`);
 
 `````js filename=intro
 const x = $(true);
+let $tmpLoopUnrollCheck = true;
 if (x) {
   $(`body`);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     if (x) {
       $(`body`);
@@ -66,8 +71,14 @@ With rename=true
 
 `````js filename=intro
 const a = $( true );
+let b = true;
 if (a) {
   $( "body" );
+}
+else {
+  b = false;
+}
+if (b) {
   while ($LOOP_UNROLL_10) {
     if (a) {
       $( "body" );

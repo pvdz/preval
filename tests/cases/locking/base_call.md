@@ -125,7 +125,7 @@ const a = function($$0,$$1,$$2 ) {
   debugger;
   $( "call me once", b, c, e, g );
   return undefined;
-},;
+};
 let i = true;
 const j = function() {
   debugger;
@@ -138,7 +138,7 @@ const j = function() {
   else {
     return undefined;
   }
-},;
+};
 j();
 $( undefined );
 j();

@@ -105,7 +105,7 @@ const a = function() {
   else {
     return 20;
   }
-},;
+};
 a();
 a();
 a();

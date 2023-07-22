@@ -102,7 +102,7 @@ const a = function() {
     const d = b.foo;
     return d;
   }
-},;
+};
 const e = {
 foo: 10,
 f: a

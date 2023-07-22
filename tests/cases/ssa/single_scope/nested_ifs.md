@@ -134,7 +134,7 @@ const a = function($$0 ) {
   else {
     return undefined;
   }
-},;
+};
 $( a );
 `````
 

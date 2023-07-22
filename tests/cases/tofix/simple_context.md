@@ -69,7 +69,7 @@ const a = function() {
   debugger;
   $( b );
   return undefined;
-},;
+};
 const c = { pass: 1 };
 a.call( c );
 `````

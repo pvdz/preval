@@ -107,7 +107,7 @@ catch (tmpCatchParam) {
 
   }
   return undefined;
-},;
+};
 const b = function() {
   debugger;
   try {
@@ -117,7 +117,7 @@ catch (tmpCatchParam$1) {
 
   }
   return undefined;
-},;
+};
 b();
 a();
 a();

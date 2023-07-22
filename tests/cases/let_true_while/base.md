@@ -59,11 +59,16 @@ $(true);
 const tmpNestedComplexRhs = y - 1;
 let tmpClusterSSA_y = tmpNestedComplexRhs;
 let tmpClusterSSA_x = tmpNestedComplexRhs;
+let $tmpLoopUnrollCheck = true;
 if (tmpNestedComplexRhs) {
   $(tmpNestedComplexRhs);
   const tmpNestedComplexRhs$1 = tmpNestedComplexRhs - 1;
   tmpClusterSSA_y = tmpNestedComplexRhs$1;
   tmpClusterSSA_x = tmpNestedComplexRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
     if (tmpClusterSSA_x) {
       $(tmpClusterSSA_x);
@@ -89,17 +94,23 @@ $( true );
 const b = a - 1;
 let c = b;
 let d = b;
+let e = true;
 if (b) {
   $( b );
-  const e = b - 1;
-  c = e;
-  d = e;
+  const f = b - 1;
+  c = f;
+  d = f;
+}
+else {
+  e = false;
+}
+if (e) {
   while ($LOOP_UNROLL_9) {
     if (d) {
       $( d );
-      const f = c - 1;
-      c = f;
-      d = f;
+      const g = c - 1;
+      c = g;
+      d = g;
     }
     else {
       break;

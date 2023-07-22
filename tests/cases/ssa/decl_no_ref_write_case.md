@@ -100,7 +100,7 @@ if ($) {
     debugger;
     b.f();
     return undefined;
-  },;
+  };
   const b = { a: a };
   $( b );
 }

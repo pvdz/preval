@@ -96,7 +96,7 @@ if ($) {
   const a = function() {
     debugger;
     return b;
-  },;
+  };
   let b = $( 5 );
   $( b );
   b = $( 10 );

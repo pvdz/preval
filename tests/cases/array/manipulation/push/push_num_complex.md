@@ -74,7 +74,7 @@ const b = function() {
   debugger;
   $( a );
   return undefined;
-},;
+};
 a.push( $ );
 $( 5 );
 a.push( 5 );

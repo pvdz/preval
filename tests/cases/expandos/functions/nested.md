@@ -113,7 +113,7 @@ const a = function($$0 ) {
     debugger;
     $( b );
     return undefined;
-  },;
+  };
   if ($) {
     d.foo = b;
     const e = d.foo;
@@ -123,7 +123,7 @@ const a = function($$0 ) {
   else {
     return undefined;
   }
-},;
+};
 a( 1 );
 a( 2 );
 a( 3 );

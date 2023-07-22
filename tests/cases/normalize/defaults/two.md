@@ -133,7 +133,7 @@ const a = function($$0,$$1 ) {
   }
   const j = [ f, h,, ];
   return j;
-},;
+};
 const k = a();
 $( k );
 const l = a( "x" );

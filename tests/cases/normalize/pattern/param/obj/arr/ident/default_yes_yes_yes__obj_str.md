@@ -131,7 +131,7 @@ const a = function($$0 ) {
   else {
     return i;
   }
-},;
+};
 const k = {
 x: "abc",
 a: 11,

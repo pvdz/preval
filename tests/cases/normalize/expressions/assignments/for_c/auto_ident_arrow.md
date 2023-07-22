@@ -83,7 +83,7 @@ while (true) {
     a = function() {
       debugger;
       return undefined;
-    },;
+    };
     b = $( 1 );
   }
   else {

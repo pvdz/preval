@@ -72,6 +72,8 @@ const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
 let tmpClusterSSA_a = arrPatternSplat$1[0];
+let tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+let $tmpLoopUnrollCheck = true;
 if (tmpNestedAssignArrPatternRhs) {
   $(100);
   $(10);
@@ -80,9 +82,13 @@ if (tmpNestedAssignArrPatternRhs) {
   const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
   const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
   tmpClusterSSA_a = arrPatternSplat$2[0];
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       $(10);
       $(20);
@@ -90,7 +96,7 @@ if (tmpNestedAssignArrPatternRhs) {
       const tmpNestedAssignArrPatternRhs$2 = $(tmpCalleeParam$2);
       const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$2];
       tmpClusterSSA_a = arrPatternSplat$3[0];
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$2;
     } else {
       break;
     }
@@ -118,25 +124,32 @@ const c = [ 1, 2,, ];
 const d = $( c );
 const e = [ ... d,, ];
 let f = e[ 0 ];
+let g = d;
+let h = true;
 if (d) {
   $( 100 );
   $( 10 );
   $( 20 );
-  const g = [ 1, 2,, ];
-  const h = $( g );
-  const i = [ ... h,, ];
-  f = i[ 0 ];
-  let j = h;
+  const i = [ 1, 2,, ];
+  const j = $( i );
+  const k = [ ... j,, ];
+  f = k[ 0 ];
+  g = j;
+}
+else {
+  h = false;
+}
+if (h) {
   while ($LOOP_UNROLL_9) {
-    if (j) {
+    if (g) {
       $( 100 );
       $( 10 );
       $( 20 );
-      const k = [ 1, 2,, ];
-      const l = $( k );
-      const m = [ ... l,, ];
-      f = m[ 0 ];
-      j = l;
+      const l = [ 1, 2,, ];
+      const m = $( l );
+      const n = [ ... m,, ];
+      f = n[ 0 ];
+      g = m;
     }
     else {
       break;

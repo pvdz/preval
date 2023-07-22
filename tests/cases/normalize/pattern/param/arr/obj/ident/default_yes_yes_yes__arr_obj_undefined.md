@@ -135,7 +135,7 @@ const a = function($$0 ) {
   else {
     return i;
   }
-},;
+};
 const l = {
 x: undefined,
 y: 2,

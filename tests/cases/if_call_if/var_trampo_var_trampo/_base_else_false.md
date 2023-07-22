@@ -138,7 +138,7 @@ const a = function() {
       return f;
     }
   }
-},;
+};
 if ($) {
   const g = a();
   $( g, "outer" );

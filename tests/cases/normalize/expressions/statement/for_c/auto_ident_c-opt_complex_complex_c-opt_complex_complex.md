@@ -66,9 +66,11 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const tmpIfTest = $(1);
+const b = { x: tmpObjLitVal };
+const a = { a: 999, b: 1000 };
+let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
-  const b = { x: tmpObjLitVal };
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
@@ -82,9 +84,13 @@ if (tmpIfTest) {
       tmpChainElementObject[tmpChainRootComputed$1];
     }
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpChainElementCall$1 = $(b);
       const tmpIfTest$2 = tmpChainElementCall$1 == null;
       if (tmpIfTest$2) {
@@ -98,14 +104,13 @@ if (tmpIfTest) {
           tmpChainElementObject$1[tmpChainRootComputed$4];
         }
       }
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -115,58 +120,64 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = $( 1 );
-if (b) {
-  const c = { x: a };
-  const d = $( c );
-  const e = d == null;
-  if (e) {
+const b = { x: a };
+const c = {
+a: 999,
+b: 1000
+;
+let d = $( 1 );
+let e = true;
+if (d) {
+  const f = $( b );
+  const g = f == null;
+  if (g) {
 
   }
   else {
-    const f = $( "x" );
-    const g = d[ f ];
-    const h = g == null;
-    if (h) {
+    const h = $( "x" );
+    const i = f[ h ];
+    const j = i == null;
+    if (j) {
 
     }
     else {
-      const i = $( "y" );
-      g[ i ];
+      const k = $( "y" );
+      i[ k ];
     }
   }
-  let j = $( 1 );
+  d = $( 1 );
+}
+else {
+  e = false;
+}
+if (e) {
   while ($LOOP_UNROLL_10) {
-    if (j) {
-      const k = $( c );
-      const l = k == null;
-      if (l) {
+    if (d) {
+      const l = $( b );
+      const m = l == null;
+      if (m) {
 
       }
       else {
-        const m = $( "x" );
-        const n = k[ m ];
-        const o = n == null;
-        if (o) {
+        const n = $( "x" );
+        const o = l[ n ];
+        const p = o == null;
+        if (p) {
 
         }
         else {
-          const p = $( "y" );
-          n[ p ];
+          const q = $( "y" );
+          o[ q ];
         }
       }
-      j = $( 1 );
+      d = $( 1 );
     }
     else {
       break;
     }
   }
 }
-const q = {
-a: 999,
-b: 1000
-;
-$( q );
+$( c );
 `````
 
 ## Globals

@@ -68,7 +68,8 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   b.x = 3;
   b.x = 3;
@@ -76,16 +77,20 @@ if (tmpIfTest) {
   b.x = 3;
   b.x = 3;
   b.x = 3;
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       b.x = 3;
       b.x = 3;
       b.x = 3;
       b.x = 3;
       b.x = 3;
       b.x = 3;
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -105,7 +110,8 @@ const b = {
 a: 999,
 b: 1000
 ;
-const c = $( 1 );
+let c = $( 1 );
+let d = true;
 if (c) {
   a.x = 3;
   a.x = 3;
@@ -113,16 +119,21 @@ if (c) {
   a.x = 3;
   a.x = 3;
   a.x = 3;
-  let d = $( 1 );
+  c = $( 1 );
+}
+else {
+  d = false;
+}
+if (d) {
   while ($LOOP_UNROLL_10) {
-    if (d) {
+    if (c) {
       a.x = 3;
       a.x = 3;
       a.x = 3;
       a.x = 3;
       a.x = 3;
       a.x = 3;
-      d = $( 1 );
+      c = $( 1 );
     }
     else {
       break;

@@ -235,7 +235,7 @@ if (x) {
                                             }
                                           }
                                           return undefined;
-                                        },;
+                                        };
                                         if (x) {
                                           $( 1 );
                                           if ($) {

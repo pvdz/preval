@@ -115,7 +115,7 @@ const a = function() {
     b = h;
     return h;
   }
-},;
+};
 const i = { e: $ };
 const j = { d: i };
 const d = { c: j };

@@ -83,7 +83,7 @@ const a = function($$0 ) {
   const b = c;
   debugger;
   return b;
-},;
+};
 const d = a();
 $( d );
 `````

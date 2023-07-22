@@ -121,7 +121,7 @@ const a = function($$0 ) {
   else {
     return h;
   }
-},;
+};
 const k = {
 b: 11,
 c: 12

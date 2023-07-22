@@ -130,7 +130,7 @@ const a = function() {
   else {
     return i;
   }
-},;
+};
 const l = a();
 $( l );
 `````

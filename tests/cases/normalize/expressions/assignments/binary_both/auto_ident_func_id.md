@@ -77,11 +77,11 @@ With rename=true
 const a = function() {
   debugger;
   return undefined;
-},;
+};
 const b = function() {
   debugger;
   return undefined;
-},;
+};
 const c = a + b;
 $( c );
 $( b );

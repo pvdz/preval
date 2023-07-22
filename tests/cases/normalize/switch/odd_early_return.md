@@ -306,7 +306,7 @@ const a = function() {
       return undefined;
     }
   }
-},;
+};
 const t = a();
 $( t );
 `````

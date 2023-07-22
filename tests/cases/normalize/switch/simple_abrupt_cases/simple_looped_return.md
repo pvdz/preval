@@ -276,7 +276,7 @@ const a = function() {
       }
     }
   }
-},;
+};
 a();
 $( undefined );
 `````

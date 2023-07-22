@@ -61,16 +61,21 @@ $(`after, do not evaluate (infinite loop)`);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(true);
+let tmpIfTest = $(true);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   $(true);
   $(`keep`);
-  let tmpClusterSSA_tmpIfTest = $(true);
+  tmpIfTest = $(true);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       $(true);
       $(`keep`);
-      tmpClusterSSA_tmpIfTest = $(true);
+      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -85,16 +90,22 @@ $(`after, do not evaluate (infinite loop)`);
 With rename=true
 
 `````js filename=intro
-const a = $( true );
+let a = $( true );
+let b = true;
 if (a) {
   $( true );
   $( "keep" );
-  let b = $( true );
+  a = $( true );
+}
+else {
+  b = false;
+}
+if (b) {
   while ($LOOP_UNROLL_10) {
-    if (b) {
+    if (a) {
       $( true );
       $( "keep" );
-      b = $( true );
+      a = $( true );
     }
     else {
       break;

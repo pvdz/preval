@@ -153,20 +153,20 @@ let a = function() {
   a = function() {
     debugger;
     return b;
-  },;
+  };
   const c = a();
   return c;
-},;
+};
 const d = function() {
   debugger;
   const e = [ 1, 2, 3,, ];
   a = function() {
     debugger;
     return e;
-  },;
+  };
   const f = a();
   return f;
-},;
+};
 const g = a();
 const h = d();
 const i = g === h;

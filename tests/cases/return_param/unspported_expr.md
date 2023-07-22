@@ -136,7 +136,7 @@ const a = function($$0 ) {
     $( "b" );
     return e;
   }
-},;
+};
 const g = a( 1 );
 $( g );
 const h = a( 2 );

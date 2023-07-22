@@ -130,7 +130,7 @@ const a = function($$0 ) {
   else {
     return h;
   }
-},;
+};
 const k = {
 x: undefined,
 b: 11,

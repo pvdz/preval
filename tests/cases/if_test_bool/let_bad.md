@@ -120,7 +120,7 @@ const a = function() {
     $( "b", c );
     return undefined;
   }
-},;
+};
 a();
 a();
 a();

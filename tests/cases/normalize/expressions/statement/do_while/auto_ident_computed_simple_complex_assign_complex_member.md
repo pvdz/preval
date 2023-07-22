@@ -72,6 +72,8 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b[tmpNestedAssignComMemberProp] = tmpNestedAssignPropRhs;
+let tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignPropRhs;
+let $tmpLoopUnrollCheck = true;
 if (tmpNestedAssignPropRhs) {
   $(100);
   const tmpNestedAssignComMemberProp$1 = $(`c`);
@@ -79,16 +81,20 @@ if (tmpNestedAssignPropRhs) {
   const tmpCompProp$1 = $(`d`);
   const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
   b[tmpNestedAssignComMemberProp$1] = tmpNestedAssignPropRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignPropRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignPropRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpNestedAssignComMemberProp$2 = $(`c`);
       const tmpCompObj$2 = $(b);
       const tmpCompProp$2 = $(`d`);
       const tmpNestedAssignPropRhs$2 = tmpCompObj$2[tmpCompProp$2];
       b[tmpNestedAssignComMemberProp$2] = tmpNestedAssignPropRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignPropRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignPropRhs$2;
     } else {
       break;
     }
@@ -117,23 +123,30 @@ const d = $( a );
 const e = $( "d" );
 const f = d[ e ];
 a[c] = f;
+let g = f;
+let h = true;
 if (f) {
   $( 100 );
-  const g = $( "c" );
-  const h = $( a );
-  const i = $( "d" );
-  const j = h[ i ];
-  a[g] = j;
-  let k = j;
+  const i = $( "c" );
+  const j = $( a );
+  const k = $( "d" );
+  const l = j[ k ];
+  a[i] = l;
+  g = l;
+}
+else {
+  h = false;
+}
+if (h) {
   while ($LOOP_UNROLL_9) {
-    if (k) {
+    if (g) {
       $( 100 );
-      const l = $( "c" );
-      const m = $( a );
-      const n = $( "d" );
-      const o = m[ n ];
-      a[l] = o;
-      k = o;
+      const m = $( "c" );
+      const n = $( a );
+      const o = $( "d" );
+      const p = n[ o ];
+      a[m] = p;
+      g = p;
     }
     else {
       break;

@@ -78,7 +78,7 @@ for (d in c {
   a = function() {
     debugger;
     return undefined;
-  },;
+  };
   a.x = d;
 }
 $( a );

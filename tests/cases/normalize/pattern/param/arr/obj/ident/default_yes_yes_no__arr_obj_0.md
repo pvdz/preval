@@ -126,7 +126,7 @@ const a = function($$0 ) {
   else {
     return i;
   }
-},;
+};
 const l = {
 x: 0,
 y: 2,

@@ -79,7 +79,7 @@ const a = function() {
   $( "updating" );
   b[0] = "pass";
   return undefined;
-},;
+};
 const b = [ "fail", 2, 3,, ];
 a();
 a();

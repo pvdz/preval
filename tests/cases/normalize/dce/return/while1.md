@@ -93,7 +93,7 @@ const b = function($$0 ) {
     $( "keep, do not eval" );
     return undefined;
   }
-},;
+};
 const f = b( a );
 $( f );
 `````

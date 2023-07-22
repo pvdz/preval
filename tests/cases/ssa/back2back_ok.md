@@ -82,7 +82,7 @@ if ($) {
   const a = function() {
     debugger;
     return undefined;
-  },;
+  };
   $( a );
 }
 `````

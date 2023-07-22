@@ -98,7 +98,7 @@ const a = function() {
   else {
     throw "Some error";
   }
-},;
+};
 a();
 a();
 a();

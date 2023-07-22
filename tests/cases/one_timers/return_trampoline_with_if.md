@@ -144,7 +144,7 @@ const a = function() {
   else {
     return 4;
   }
-},;
+};
 $( a );
 `````
 

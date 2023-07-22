@@ -98,7 +98,7 @@ const a = function($$0 ) {
   else {
     return f;
   }
-},;
+};
 const i = [ "", 20, 30,, ];
 const j = a( i );
 $( j );

@@ -54,11 +54,12 @@ $(a, b);
 `````js filename=intro
 let a = { a: 999, b: 1000 };
 let tmpIfTest = $(1);
-const $tmpLoopUnrollCheck = tmpIfTest;
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   a = 1;
   tmpIfTest = $(1);
 } else {
+  $tmpLoopUnrollCheck = false;
 }
 const b = { c: 1 };
 if ($tmpLoopUnrollCheck) {
@@ -85,10 +86,13 @@ a: 999,
 b: 1000
 ;
 let b = $( 1 );
-const c = b;
+let c = true;
 if (b) {
   a = 1;
   b = $( 1 );
+}
+else {
+  c = false;
 }
 const d = { c: 1 };
 if (c) {

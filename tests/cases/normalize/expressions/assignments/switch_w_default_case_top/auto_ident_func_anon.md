@@ -149,7 +149,7 @@ if (g) {
   a = function() {
     debugger;
     return undefined;
-  },;
+  };
 }
 const h = c <= 1;
 if (h) {

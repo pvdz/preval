@@ -108,7 +108,7 @@ finally {
     return undefined;
   }
   return undefined;
-},;
+};
 let b = 0;
 a();
 considerMutated( b );

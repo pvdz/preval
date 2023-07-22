@@ -125,10 +125,10 @@ let a = function() {
   a = function() {
     debugger;
     return undefined;
-  },;
+  };
   $();
   return undefined;
-},;
+};
 const b = a;
 a();
 b();

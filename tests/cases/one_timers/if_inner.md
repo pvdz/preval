@@ -106,7 +106,7 @@ const a = function() {
     $( "b" );
     return undefined;
   }
-},;
+};
 a();
 $( "c" );
 `````

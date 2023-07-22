@@ -96,7 +96,7 @@ const a = function() {
   b = $( 100 );
   const c = Boolean( b );
   return c;
-},;
+};
 let b = undefined;
 $( a );
 $( a );

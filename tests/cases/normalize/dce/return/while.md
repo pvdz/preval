@@ -90,7 +90,7 @@ const b = function($$0 ) {
   else {
     return undefined;
   }
-},;
+};
 const f = b( a );
 $( f );
 `````

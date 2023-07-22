@@ -105,7 +105,7 @@ const a = function($$0 ) {
   else {
     return false;
   }
-},;
+};
 const d = $( 1 );
 const e = a( d );
 $( e );

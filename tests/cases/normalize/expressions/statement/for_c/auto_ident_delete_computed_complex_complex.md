@@ -55,18 +55,23 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $(`y`);
   delete tmpDeleteCompObj[tmpDeleteCompProp];
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpDeleteCompObj$1 = $(arg);
       const tmpDeleteCompProp$1 = $(`y`);
       delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -86,18 +91,24 @@ const b = {
 a: 999,
 b: 1000
 ;
-const c = $( 1 );
+let c = $( 1 );
+let d = true;
 if (c) {
-  const d = $( a );
-  const e = $( "y" );
-  deleted[ e ];
-  let f = $( 1 );
+  const e = $( a );
+  const f = $( "y" );
+  deletee[ f ];
+  c = $( 1 );
+}
+else {
+  d = false;
+}
+if (d) {
   while ($LOOP_UNROLL_10) {
-    if (f) {
+    if (c) {
       const g = $( a );
       const h = $( "y" );
       deleteg[ h ];
-      f = $( 1 );
+      c = $( 1 );
     }
     else {
       break;

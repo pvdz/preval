@@ -123,10 +123,10 @@ let a = function() {
   a = function() {
     debugger;
     return b;
-  },;
+  };
   const c = a();
   return c;
-},;
+};
 const d = a;
 const e = a();
 const f = d();

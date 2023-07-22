@@ -188,7 +188,7 @@ const a = function($$0,$$1,$$2 ) {
   else {
     return undefined;
   }
-},;
+};
 if ($) {
   const i = $( 1 );
   const j = $( 2 );

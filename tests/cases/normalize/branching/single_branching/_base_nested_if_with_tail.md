@@ -123,7 +123,7 @@ const a = function() {
     const e = $( 7 );
     return e;
   }
-},;
+};
 const f = a();
 $( f, "final" );
 `````

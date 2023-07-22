@@ -127,7 +127,7 @@ const a = function() {
       return j;
     }
   }
-},;
+};
 const k = { y: 1 };
 const d = { x: k };
 let b = {

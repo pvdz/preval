@@ -57,16 +57,21 @@ $(s);
 const s = $(10);
 parseExpression(lexerFlags$285, astProp$181);
 let tmpClusterSSA_s = s | 10;
-const tmpClusterSSA_x = $(true);
+let tmpClusterSSA_x = $(true);
+let $tmpLoopUnrollCheck = true;
 if (tmpClusterSSA_x) {
   parseExpression(lexerFlags$285, astProp$181);
   tmpClusterSSA_s = tmpClusterSSA_s | 10;
-  let tmpClusterSSA_x$1 = $(true);
+  tmpClusterSSA_x = $(true);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_x$1) {
+    if (tmpClusterSSA_x) {
       parseExpression(lexerFlags$285, astProp$181);
       tmpClusterSSA_s = tmpClusterSSA_s | 10;
-      tmpClusterSSA_x$1 = $(true);
+      tmpClusterSSA_x = $(true);
     } else {
       break;
     }
@@ -84,16 +89,22 @@ With rename=true
 const a = $( 10 );
 parseExpression( lexerFlags$285, astProp$181 );
 let b = a | 10;
-const c = $( true );
+let c = $( true );
+let d = true;
 if (c) {
   parseExpression( lexerFlags$285, astProp$181 );
   b = b | 10;
-  let d = $( true );
+  c = $( true );
+}
+else {
+  d = false;
+}
+if (d) {
   while ($LOOP_UNROLL_9) {
-    if (d) {
+    if (c) {
       parseExpression( lexerFlags$285, astProp$181 );
       b = b | 10;
-      d = $( true );
+      c = $( true );
     }
     else {
       break;

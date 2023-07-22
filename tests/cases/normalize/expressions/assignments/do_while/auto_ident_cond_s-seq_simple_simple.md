@@ -66,17 +66,23 @@ $(a);
 $(100);
 const tmpNestedComplexRhs = $(2);
 let a = tmpNestedComplexRhs;
+let tmpDoWhileFlag = tmpNestedComplexRhs;
+let $tmpLoopUnrollCheck = true;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpNestedComplexRhs$1 = $(2);
   a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+  tmpDoWhileFlag = tmpNestedComplexRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
       const tmpNestedComplexRhs$2 = $(2);
       a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+      tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
@@ -94,17 +100,24 @@ With rename=true
 $( 100 );
 const a = $( 2 );
 let b = a;
+let c = a;
+let d = true;
 if (a) {
   $( 100 );
-  const c = $( 2 );
-  b = c;
-  let d = c;
+  const e = $( 2 );
+  b = e;
+  c = e;
+}
+else {
+  d = false;
+}
+if (d) {
   while ($LOOP_UNROLL_9) {
-    if (d) {
+    if (c) {
       $( 100 );
-      const e = $( 2 );
-      b = e;
-      d = e;
+      const f = $( 2 );
+      b = f;
+      c = f;
     }
     else {
       break;

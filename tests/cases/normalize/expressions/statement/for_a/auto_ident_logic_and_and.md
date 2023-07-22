@@ -72,12 +72,17 @@ if (tmpIfTest) {
   }
 } else {
 }
-const tmpIfTest$1 = $(0);
+let tmpIfTest$1 = $(0);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest$1) {
-  let tmpClusterSSA_tmpIfTest$1 = $(0);
+  tmpIfTest$1 = $(0);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$1) {
-      tmpClusterSSA_tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
+      tmpIfTest$1 = $(0);
     } else {
       break;
     }
@@ -103,12 +108,18 @@ if (b) {
     $( e );
   }
 }
-const f = $( 0 );
+let f = $( 0 );
+let g = true;
 if (f) {
-  let g = $( 0 );
+  f = $( 0 );
+}
+else {
+  g = false;
+}
+if (g) {
   while ($LOOP_UNROLL_10) {
-    if (g) {
-      g = $( 0 );
+    if (f) {
+      f = $( 0 );
     }
     else {
       break;

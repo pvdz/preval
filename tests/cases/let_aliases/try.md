@@ -106,10 +106,10 @@ let a = function() {
   a = function() {
     debugger;
     return b;
-  },;
+  };
   const c = a();
   return c;
-},;
+};
 let b = $( 1 );
 try {
   $( b, b );

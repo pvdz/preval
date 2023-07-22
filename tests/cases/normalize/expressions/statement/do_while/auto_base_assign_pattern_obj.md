@@ -67,21 +67,27 @@ const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+let tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
+let $tmpLoopUnrollCheck = true;
 if (tmpNestedAssignObjPatternRhs) {
   $(100);
   const tmpObjLitVal$1 = $(2);
   const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
   tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpObjLitVal$2 = $(2);
       const tmpCalleeParam$2 = { b: tmpObjLitVal$2 };
       const tmpNestedAssignObjPatternRhs$2 = $(tmpCalleeParam$2);
       tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$2.b;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$2;
     } else {
       break;
     }
@@ -102,32 +108,39 @@ const a = $( 2 );
 const b = { b: a };
 const c = $( b );
 let d = c.b;
+let e = c;
+let f = true;
 if (c) {
   $( 100 );
-  const e = $( 2 );
-  const f = { b: e };
-  const g = $( f );
-  d = g.b;
-  let h = g;
+  const g = $( 2 );
+  const h = { b: g };
+  const i = $( h );
+  d = i.b;
+  e = i;
+}
+else {
+  f = false;
+}
+if (f) {
   while ($LOOP_UNROLL_9) {
-    if (h) {
+    if (e) {
       $( 100 );
-      const i = $( 2 );
-      const j = { b: i };
-      const k = $( j );
-      d = k.b;
-      h = k;
+      const j = $( 2 );
+      const k = { b: j };
+      const l = $( k );
+      d = l.b;
+      e = l;
     }
     else {
       break;
     }
   }
 }
-const l = {
+const m = {
 a: 999,
 b: 1000
 ;
-$( l, d );
+$( m, d );
 `````
 
 ## Globals

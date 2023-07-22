@@ -121,7 +121,7 @@ const a = function() {
     const b = new Error( "always throws" );
     throw b;
   }
-},;
+};
 a();
 $( undefined );
 a();

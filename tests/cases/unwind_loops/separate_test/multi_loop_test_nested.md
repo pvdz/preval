@@ -65,17 +65,25 @@ let counter = 0;
 let test = true;
 while (true) {
   if (test) {
-    $(`yolo`);
-    counter = counter + 1;
-    test = counter < 10;
-    while ($LOOP_UNROLL_10) {
-      if (test) {
-        $(`yolo`);
-        counter = counter + 1;
-        test = counter < 10;
-      } else {
-        break;
+    let $tmpLoopUnrollCheck = true;
+    if (test) {
+      $(`yolo`);
+      counter = counter + 1;
+      test = counter < 10;
+    } else {
+      $tmpLoopUnrollCheck = false;
+    }
+    if ($tmpLoopUnrollCheck) {
+      while ($LOOP_UNROLL_10) {
+        if (test) {
+          $(`yolo`);
+          counter = counter + 1;
+          test = counter < 10;
+        } else {
+          break;
+        }
       }
+    } else {
     }
   } else {
     break;
@@ -92,17 +100,25 @@ let a = 0;
 let b = true;
 while (true) {
   if (b) {
-    $( "yolo" );
-    a = a + 1;
-    b = a < 10;
-    while ($LOOP_UNROLL_10) {
-      if (b) {
-        $( "yolo" );
-        a = a + 1;
-        b = a < 10;
-      }
-      else {
-        break;
+    let c = true;
+    if (b) {
+      $( "yolo" );
+      a = a + 1;
+      b = a < 10;
+    }
+    else {
+      c = false;
+    }
+    if (c) {
+      while ($LOOP_UNROLL_10) {
+        if (b) {
+          $( "yolo" );
+          a = a + 1;
+          b = a < 10;
+        }
+        else {
+          break;
+        }
       }
     }
   }

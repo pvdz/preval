@@ -69,7 +69,8 @@ $(a, b, c, d);
 const b = { x: 1 };
 const c = { y: 2 };
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   const tmpNestedAssignComMemberObj = $(b);
   const tmpNestedAssignComMemberProp = $(`x`);
@@ -78,16 +79,21 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
   a = 3;
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpNestedAssignComMemberObj$1 = $(b);
       const tmpNestedAssignComMemberProp$1 = $(`x`);
       const varInitAssignLhsComputedObj$1 = $(c);
       const varInitAssignLhsComputedProp$1 = $(`y`);
       varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
       tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = 3;
-      tmpClusterSSA_tmpIfTest = $(1);
+      a = 3;
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -108,25 +114,32 @@ let c = {
 a: 999,
 b: 1000
 ;
-const d = $( 1 );
+let d = $( 1 );
+let e = true;
 if (d) {
-  const e = $( a );
-  const f = $( "x" );
-  const g = $( b );
-  const h = $( "y" );
-  g[h] = 3;
-  e[f] = 3;
+  const f = $( a );
+  const g = $( "x" );
+  const h = $( b );
+  const i = $( "y" );
+  h[i] = 3;
+  f[g] = 3;
   c = 3;
-  let i = $( 1 );
+  d = $( 1 );
+}
+else {
+  e = false;
+}
+if (e) {
   while ($LOOP_UNROLL_10) {
-    if (i) {
+    if (d) {
       const j = $( a );
       const k = $( "x" );
       const l = $( b );
       const m = $( "y" );
       l[m] = 3;
       j[k] = 3;
-      i = $( 1 );
+      c = 3;
+      d = $( 1 );
     }
     else {
       break;

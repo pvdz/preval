@@ -87,7 +87,7 @@ const a = function() {
   else {
     return c;
   }
-},;
+};
 const d = a();
 $( d );
 const e = {

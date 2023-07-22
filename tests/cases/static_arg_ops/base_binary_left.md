@@ -84,7 +84,7 @@ const a = function($$0 ) {
   const e = b + d;
   $( e );
   return undefined;
-},;
+};
 a( 1 );
 a( 4 );
 a( 6 );

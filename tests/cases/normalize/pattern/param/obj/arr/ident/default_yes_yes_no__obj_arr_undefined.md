@@ -124,7 +124,7 @@ const a = function($$0 ) {
   else {
     return i;
   }
-},;
+};
 const k = [ undefined,, ];
 const l = {
 x: k,

@@ -68,7 +68,7 @@ With rename=true
 const a = function() {
   debugger;
   return 0;
-},;
+};
 $( a );
 `````
 

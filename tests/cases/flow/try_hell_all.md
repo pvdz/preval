@@ -779,7 +779,7 @@ finally {
   console.log( "fail" );
   b = "fail";
   return undefined;
-},;
+};
 let b = 0;
 a();
 considerMutated( b );
@@ -792,7 +792,7 @@ finally {
     return undefined;
   }
   return undefined;
-},;
+};
 c();
 considerMutated( 0 );
 const d = function() {
@@ -806,7 +806,7 @@ finally {
   }
   e = 1;
   return undefined;
-},;
+};
 let e = 0;
 d();
 considerMutated( e );
@@ -824,7 +824,7 @@ finally {
   }
   g = 1;
   return undefined;
-},;
+};
 let g = 0;
 f();
 considerMutated( g );
@@ -841,7 +841,7 @@ finally {
     return undefined;
   }
   return undefined;
-},;
+};
 let i = 0;
 h();
 considerMutated( i );
@@ -858,7 +858,7 @@ finally {
     return undefined;
   }
   return undefined;
-},;
+};
 let k = 0;
 j();
 considerMutated( k );

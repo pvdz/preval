@@ -133,7 +133,7 @@ const a = function($$0 ) {
   else {
     return i;
   }
-},;
+};
 const k = [ "abc",, ];
 const l = {
 x: k,

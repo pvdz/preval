@@ -121,7 +121,7 @@ const a = function($$0 ) {
   else {
     return h;
   }
-},;
+};
 const k = {
 x: "",
 b: 11,

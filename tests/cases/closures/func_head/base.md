@@ -76,7 +76,7 @@ const a = function() {
   $( b );
   b = b + 1;
   return undefined;
-},;
+};
 let b = $( 5 );
 a();
 a();

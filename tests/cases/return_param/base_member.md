@@ -97,7 +97,7 @@ const a = function() {
   $( "inlining" );
   $( "please" );
   return undefined;
-},;
+};
 a();
 $( 3 );
 a();

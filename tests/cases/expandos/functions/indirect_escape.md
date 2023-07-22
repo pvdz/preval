@@ -155,7 +155,7 @@ const a = function($$0 ) {
     debugger;
     $( b, "inner" );
     return b;
-  },;
+  };
   if ($) {
     d.foo = b;
     const e = d.foo;
@@ -165,9 +165,9 @@ const a = function($$0 ) {
     debugger;
     $( b, "inner" );
     return b;
-  },;
+  };
   return f;
-},;
+};
 const g = a( 1 );
 const h = g();
 $( h, "outer" );

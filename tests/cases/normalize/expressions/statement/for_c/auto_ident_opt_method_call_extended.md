@@ -61,23 +61,28 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(1);
+const tmpObjLitVal$1 = { e: $ };
+const a = { a: 999, b: 1000 };
+let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
-  const tmpObjLitVal$1 = { e: $ };
   $dotCall($, tmpObjLitVal$1, 1);
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpChainElementObject$4 = tmpObjLitVal$1.e;
       $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -86,15 +91,25 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-if (a) {
-  const b = { e: $ };
-  $dotCall( $, b, 1 );
-  let c = $( 1 );
+const a = { e: $ };
+const b = {
+a: 999,
+b: 1000
+;
+let c = $( 1 );
+let d = true;
+if (c) {
+  $dotCall( $, a, 1 );
+  c = $( 1 );
+}
+else {
+  d = false;
+}
+if (d) {
   while ($LOOP_UNROLL_10) {
     if (c) {
-      const d = b.e;
-      $dotCall( d, b, 1 );
+      const e = a.e;
+      $dotCall( e, a, 1 );
       c = $( 1 );
     }
     else {
@@ -102,11 +117,7 @@ if (a) {
     }
   }
 }
-const e = {
-a: 999,
-b: 1000
-;
-$( e );
+$( b );
 `````
 
 ## Globals

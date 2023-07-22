@@ -77,7 +77,7 @@ while (true) {
   const b = function() {
     debugger;
     return undefined;
-  },;
+  };
   a = b;
   $( 100 );
 }

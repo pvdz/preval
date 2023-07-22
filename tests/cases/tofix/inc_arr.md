@@ -70,7 +70,8 @@ const tmpAssignComputedRhs = tmpBinLhs + 1;
 tmpAssignComputedObj[0] = tmpAssignComputedRhs;
 $(arr);
 const tmpBinLhs$1 = arr[0];
-const tmpClusterSSA_tmpDoWhileFlag = tmpBinLhs$1 < 10;
+let tmpClusterSSA_tmpDoWhileFlag = tmpBinLhs$1 < 10;
+let $tmpLoopUnrollCheck = true;
 if (tmpClusterSSA_tmpDoWhileFlag) {
   arr = [0];
   const tmpAssignComputedObj$1 = arr;
@@ -79,9 +80,13 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
   tmpAssignComputedObj$1[0] = tmpAssignComputedRhs$1;
   $(arr);
   const tmpBinLhs$4 = arr[0];
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpBinLhs$4 < 10;
+  tmpClusterSSA_tmpDoWhileFlag = tmpBinLhs$4 < 10;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       arr = [0];
       const tmpAssignComputedObj$2 = arr;
       const tmpBinLhs$3 = arr[0];
@@ -89,7 +94,7 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
       tmpAssignComputedObj$2[0] = tmpAssignComputedRhs$2;
       $(arr);
       const tmpBinLhs$5 = arr[0];
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpBinLhs$5 < 10;
+      tmpClusterSSA_tmpDoWhileFlag = tmpBinLhs$5 < 10;
     } else {
       break;
     }
@@ -111,18 +116,24 @@ const d = c + 1;
 b[0] = d;
 $( a );
 const e = a[ 0 ];
-const f = e < 10;
+let f = e < 10;
+let g = true;
 if (f) {
   a = [ 0,, ];
-  const g = a;
-  const h = a[ 0 ];
-  const i = h + 1;
-  g[0] = i;
+  const h = a;
+  const i = a[ 0 ];
+  const j = i + 1;
+  h[0] = j;
   $( a );
-  const j = a[ 0 ];
-  let k = j < 10;
+  const k = a[ 0 ];
+  f = k < 10;
+}
+else {
+  g = false;
+}
+if (g) {
   while ($LOOP_UNROLL_9) {
-    if (k) {
+    if (f) {
       a = [ 0,, ];
       const l = a;
       const m = a[ 0 ];
@@ -130,7 +141,7 @@ if (f) {
       l[0] = n;
       $( a );
       const o = a[ 0 ];
-      k = o < 10;
+      f = o < 10;
     }
     else {
       break;

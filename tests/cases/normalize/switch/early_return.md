@@ -226,7 +226,7 @@ const a = function() {
       return undefined;
     }
   }
-},;
+};
 const o = a();
 $( o );
 `````

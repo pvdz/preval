@@ -93,7 +93,7 @@ const a = function($$0 ) {
     const f = a( e );
     return f;
   }
-},;
+};
 const g = $( 10 );
 const h = a( g );
 $( h );

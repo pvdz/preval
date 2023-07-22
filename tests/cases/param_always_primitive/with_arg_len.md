@@ -103,7 +103,7 @@ const a = function($$0,$$1 ) {
   else {
     return undefined;
   }
-},;
+};
 a( 1, 3 );
 a( 4, 5 );
 a( 6, 7 );

@@ -107,7 +107,7 @@ if ($) {
   const a = function() {
     debugger;
     return undefined;
-  },;
+  };
   if ($) {
     $( a );
   }

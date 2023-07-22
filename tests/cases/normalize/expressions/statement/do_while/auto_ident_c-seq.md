@@ -62,18 +62,23 @@ $(a, x);
 $(100);
 $(1);
 $(2);
-const tmpDoWhileFlag = $(1);
+let tmpDoWhileFlag = $(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
   $(1);
   $(2);
-  let tmpClusterSSA_tmpDoWhileFlag = $(1);
+  tmpDoWhileFlag = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
       $(1);
       $(2);
-      tmpClusterSSA_tmpDoWhileFlag = $(1);
+      tmpDoWhileFlag = $(1);
     } else {
       break;
     }
@@ -92,18 +97,24 @@ With rename=true
 $( 100 );
 $( 1 );
 $( 2 );
-const a = $( 1 );
+let a = $( 1 );
+let b = true;
 if (a) {
   $( 100 );
   $( 1 );
   $( 2 );
-  let b = $( 1 );
+  a = $( 1 );
+}
+else {
+  b = false;
+}
+if (b) {
   while ($LOOP_UNROLL_9) {
-    if (b) {
+    if (a) {
       $( 100 );
       $( 1 );
       $( 2 );
-      b = $( 1 );
+      a = $( 1 );
     }
     else {
       break;

@@ -70,7 +70,7 @@ const a = function() {
   const b = [];
   $( b );
   return undefined;
-},;
+};
 a();
 a();
 a();

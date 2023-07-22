@@ -105,7 +105,7 @@ finally {
   }
   $( "prevent return hoisting" );
   return b;
-},;
+};
 const d = a();
 $( d );
 `````

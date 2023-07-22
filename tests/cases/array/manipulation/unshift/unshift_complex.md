@@ -74,7 +74,7 @@ const b = function() {
   debugger;
   $( a );
   return undefined;
-},;
+};
 a.unshift( $ );
 $( 4 );
 a.push( 4 );

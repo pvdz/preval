@@ -110,7 +110,7 @@ const a = function() {
   else {
     return false;
   }
-},;
+};
 const d = a();
 const e = !d;
 $( e, "one" );

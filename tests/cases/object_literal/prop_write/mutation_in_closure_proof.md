@@ -164,7 +164,7 @@ get(  ) {
   $dotCall( d, Object, c, "y", e );
   $( "b" );
   return undefined;
-},;
+};
 const c = { y: 0 };
 a();
 c.y = 10;

@@ -63,7 +63,7 @@ const a = $( 100 );
 const b = function() {
   debugger;
   return undefined;
-},;
+};
 a + b;
 const c = {
 a: 999,

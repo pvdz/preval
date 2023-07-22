@@ -177,7 +177,7 @@ b: 2
   }
   $( "after (not invoked)" );
   return undefined;
-},;
+};
 const h = a();
 $( h );
 `````

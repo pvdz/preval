@@ -117,7 +117,7 @@ const a = function() {
   else {
     return undefined;
   }
-},;
+};
 const d = $( 100, "init" );
 const e = $( d, "closure-return" );
 $( e, "closure-global1" );

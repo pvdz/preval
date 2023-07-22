@@ -106,7 +106,7 @@ const a = function() {
   debugger;
   $( b, "g" );
   return undefined;
-},;
+};
 const c = [ a,, ];
 const d = $( c );
 if ($) {

@@ -103,7 +103,7 @@ const a = function() {
   else {
     return undefined;
   }
-},;
+};
 a();
 a();
 a();

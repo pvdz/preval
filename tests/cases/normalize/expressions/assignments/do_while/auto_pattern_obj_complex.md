@@ -62,19 +62,25 @@ $(100);
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+let tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
+let $tmpLoopUnrollCheck = true;
 if (tmpNestedAssignObjPatternRhs) {
   $(100);
   const tmpCalleeParam$1 = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
   tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$2 = { a: 1, b: 2 };
       const tmpNestedAssignObjPatternRhs$2 = $(tmpCalleeParam$2);
       tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$2.a;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$2;
     } else {
       break;
     }
@@ -96,25 +102,32 @@ b: 2
 ;
 const b = $( a );
 let c = b.a;
+let d = b;
+let e = true;
 if (b) {
   $( 100 );
-  const d = {
+  const f = {
 a: 1,
 b: 2
   ;
-  const e = $( d );
-  c = e.a;
-  let f = e;
+  const g = $( f );
+  c = g.a;
+  d = g;
+}
+else {
+  e = false;
+}
+if (e) {
   while ($LOOP_UNROLL_9) {
-    if (f) {
+    if (d) {
       $( 100 );
-      const g = {
+      const h = {
 a: 1,
 b: 2
       ;
-      const h = $( g );
-      c = h.a;
-      f = h;
+      const i = $( h );
+      c = i.a;
+      d = i;
     }
     else {
       break;

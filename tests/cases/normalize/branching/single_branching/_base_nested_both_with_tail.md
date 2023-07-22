@@ -147,7 +147,7 @@ const a = function() {
     const f = $( 9 );
     return f;
   }
-},;
+};
 const g = a();
 $( g, "final" );
 `````

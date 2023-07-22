@@ -90,7 +90,7 @@ finally {
     return undefined;
   }
   return undefined;
-},;
+};
 a();
 considerMutated( 0 );
 `````

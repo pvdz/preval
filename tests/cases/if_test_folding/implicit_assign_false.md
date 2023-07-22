@@ -102,7 +102,7 @@ const a = function() {
   $( "block" );
   $( "block" );
   return b;
-},;
+};
 a();
 const c = a();
 $( c );

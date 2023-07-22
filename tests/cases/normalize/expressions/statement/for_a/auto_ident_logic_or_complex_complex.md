@@ -61,12 +61,17 @@ if (tmpIfTest) {
   const tmpCalleeParam$1 = $(2);
   $(tmpCalleeParam$1);
 }
-const tmpIfTest$1 = $(0);
+let tmpIfTest$1 = $(0);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest$1) {
-  let tmpClusterSSA_tmpIfTest$1 = $(0);
+  tmpIfTest$1 = $(0);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$1) {
-      tmpClusterSSA_tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
+      tmpIfTest$1 = $(0);
     } else {
       break;
     }
@@ -91,12 +96,18 @@ else {
   const c = $( 2 );
   $( c );
 }
-const d = $( 0 );
+let d = $( 0 );
+let e = true;
 if (d) {
-  let e = $( 0 );
+  d = $( 0 );
+}
+else {
+  e = false;
+}
+if (e) {
   while ($LOOP_UNROLL_10) {
-    if (e) {
-      e = $( 0 );
+    if (d) {
+      d = $( 0 );
     }
     else {
       break;

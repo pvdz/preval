@@ -98,7 +98,7 @@ const b = function($$0 ) {
   else {
     return undefined;
   }
-},;
+};
 b();
 $( undefined );
 $( a );

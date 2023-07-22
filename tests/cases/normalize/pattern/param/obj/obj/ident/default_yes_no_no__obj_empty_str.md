@@ -97,7 +97,7 @@ const a = function($$0 ) {
   else {
     return e;
   }
-},;
+};
 const h = {
 x: "",
 b: 11,

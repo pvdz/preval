@@ -43,14 +43,19 @@ $(x);
 
 `````js filename=intro
 let x = undefined;
-const tmpIfTest = $(true);
+let tmpIfTest = $(true);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   x = $(10);
-  let tmpClusterSSA_tmpIfTest = $(true);
+  tmpIfTest = $(true);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       x = $(10);
-      tmpClusterSSA_tmpIfTest = $(true);
+      tmpIfTest = $(true);
     } else {
       break;
     }
@@ -66,14 +71,20 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-const b = $( true );
+let b = $( true );
+let c = true;
 if (b) {
   a = $( 10 );
-  let c = $( true );
+  b = $( true );
+}
+else {
+  c = false;
+}
+if (c) {
   while ($LOOP_UNROLL_10) {
-    if (c) {
+    if (b) {
       a = $( 10 );
-      c = $( true );
+      b = $( true );
     }
     else {
       break;

@@ -66,30 +66,35 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal$1 = { e: $ };
-const tmpIfTest = $(1);
+const a = { a: 999, b: 1000 };
+let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   const tmpIfTest$3 = $ == null;
   if (tmpIfTest$3) {
   } else {
     $dotCall($, tmpObjLitVal$1, 1);
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpChainElementObject$4 = tmpObjLitVal$1.e;
       const tmpIfTest$1 = tmpChainElementObject$4 == null;
       if (tmpIfTest$1) {
       } else {
         $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
       }
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
   }
 } else {
 }
-const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -99,38 +104,44 @@ With rename=true
 
 `````js filename=intro
 const a = { e: $ };
-const b = $( 1 );
-if (b) {
-  const c = $ == null;
-  if (c) {
+const b = {
+a: 999,
+b: 1000
+;
+let c = $( 1 );
+let d = true;
+if (c) {
+  const e = $ == null;
+  if (e) {
 
   }
   else {
     $dotCall( $, a, 1 );
   }
-  let d = $( 1 );
+  c = $( 1 );
+}
+else {
+  d = false;
+}
+if (d) {
   while ($LOOP_UNROLL_10) {
-    if (d) {
-      const e = a.e;
-      const f = e == null;
-      if (f) {
+    if (c) {
+      const f = a.e;
+      const g = f == null;
+      if (g) {
 
       }
       else {
-        $dotCall( e, a, 1 );
+        $dotCall( f, a, 1 );
       }
-      d = $( 1 );
+      c = $( 1 );
     }
     else {
       break;
     }
   }
 }
-const g = {
-a: 999,
-b: 1000
-;
-$( g );
+$( b );
 `````
 
 ## Globals

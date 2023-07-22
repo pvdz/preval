@@ -111,7 +111,7 @@ With rename=true
 const a = function() {
   debugger;
   return undefined;
-},;
+};
 const b = function() {
   debugger;
   if ($) {
@@ -122,7 +122,7 @@ const b = function() {
   else {
     return undefined;
   }
-},;
+};
 if ($) {
   const c = b();
   $( c );

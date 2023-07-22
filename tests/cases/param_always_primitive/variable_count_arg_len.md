@@ -109,7 +109,7 @@ const a = function($$0,$$1,$$2,$$3 ) {
   else {
     return undefined;
   }
-},;
+};
 a( 1, 2, 3, "oops" );
 a( 4, 2, 5 );
 a( 6, 2, 7 );

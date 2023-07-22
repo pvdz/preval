@@ -49,14 +49,19 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = delete arg.y;
+let tmpIfTest = delete arg.y;
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   $(100);
-  let tmpClusterSSA_tmpIfTest = delete arg.y;
+  tmpIfTest = delete arg.y;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       $(100);
-      tmpClusterSSA_tmpIfTest = delete arg.y;
+      tmpIfTest = delete arg.y;
     } else {
       break;
     }
@@ -76,14 +81,20 @@ const b = {
 a: 999,
 b: 1000
 ;
-const c = deletea.y;
+let c = deletea.y;
+let d = true;
 if (c) {
   $( 100 );
-  let d = deletea.y;
+  c = deletea.y;
+}
+else {
+  d = false;
+}
+if (d) {
   while ($LOOP_UNROLL_10) {
-    if (d) {
+    if (c) {
       $( 100 );
-      d = deletea.y;
+      c = deletea.y;
     }
     else {
       break;

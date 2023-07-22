@@ -89,7 +89,7 @@ const a = function() {
   $( "the" );
   $( "inlining" );
   return undefined;
-},;
+};
 a();
 $( 1 );
 a();

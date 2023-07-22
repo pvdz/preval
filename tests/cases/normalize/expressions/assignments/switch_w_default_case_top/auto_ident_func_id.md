@@ -151,7 +151,7 @@ if (g) {
   const h = function() {
     debugger;
     return undefined;
-  },;
+  };
   a = h;
 }
 const i = c <= 1;

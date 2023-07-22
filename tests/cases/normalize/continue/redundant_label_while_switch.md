@@ -129,6 +129,7 @@ while (true) {
 
 `````js filename=intro
 let x = $(2);
+let $tmpLoopUnrollCheck = true;
 if (x) {
   $(1);
   const tmpIfTest = $(1);
@@ -172,6 +173,10 @@ if (x) {
   } else {
     x = $(4);
   }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     if (x) {
       $(1);
@@ -230,42 +235,43 @@ With rename=true
 
 `````js filename=intro
 let a = $( 2 );
+let b = true;
 if (a) {
   $( 1 );
-  const b = $( 1 );
-  if (b) {
+  const c = $( 1 );
+  if (c) {
     a = $( 3 );
   }
   if (a) {
-    const c = $( 1 );
-    let d = 3;
-    const e = 0 === c;
-    if (e) {
-      d = 0;
+    const d = $( 1 );
+    let e = 3;
+    const f = 0 === d;
+    if (f) {
+      e = 0;
     }
     else {
-      const f = 1 === c;
-      if (f) {
-        d = 1;
+      const g = 1 === d;
+      if (g) {
+        e = 1;
       }
       else {
-        const g = 2 === c;
-        if (g) {
-          d = 2;
+        const h = 2 === d;
+        if (h) {
+          e = 2;
         }
       }
     }
-    const h = d <= 0;
-    if (h) {
+    const i = e <= 0;
+    if (i) {
       $( 0 );
     }
-    const i = d <= 1;
-    if (i) {
+    const j = e <= 1;
+    if (j) {
       $( 1 );
     }
     else {
-      const j = d <= 2;
-      if (j) {
+      const k = e <= 2;
+      if (k) {
         $( 2 );
       }
     }
@@ -273,43 +279,48 @@ if (a) {
   else {
     a = $( 4 );
   }
+}
+else {
+  b = false;
+}
+if (b) {
   while ($LOOP_UNROLL_10) {
     if (a) {
       $( 1 );
-      const k = $( 1 );
-      if (k) {
+      const l = $( 1 );
+      if (l) {
         a = $( 3 );
       }
       if (a) {
-        const l = $( 1 );
-        let m = 3;
-        const n = 0 === l;
-        if (n) {
-          m = 0;
+        const m = $( 1 );
+        let n = 3;
+        const o = 0 === m;
+        if (o) {
+          n = 0;
         }
         else {
-          const o = 1 === l;
-          if (o) {
-            m = 1;
+          const p = 1 === m;
+          if (p) {
+            n = 1;
           }
           else {
-            const p = 2 === l;
-            if (p) {
-              m = 2;
+            const q = 2 === m;
+            if (q) {
+              n = 2;
             }
           }
         }
-        const q = m <= 0;
-        if (q) {
+        const r = n <= 0;
+        if (r) {
           $( 0 );
         }
-        const r = m <= 1;
-        if (r) {
+        const s = n <= 1;
+        if (s) {
           $( 1 );
         }
         else {
-          const s = m <= 2;
-          if (s) {
+          const t = n <= 2;
+          if (t) {
             $( 2 );
           }
         }

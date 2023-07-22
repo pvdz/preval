@@ -93,7 +93,7 @@ const a = function() {
   else {
     return c;
   }
-},;
+};
 const f = a();
 $( f );
 const g = {

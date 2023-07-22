@@ -68,6 +68,8 @@ const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 let tmpClusterSSA_a = tmpNestedComplexRhs;
+let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
+let $tmpLoopUnrollCheck = true;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpCallCallee$1 = $($);
@@ -75,16 +77,20 @@ if (tmpNestedComplexRhs) {
   const tmpCalleeParam$4 = $(2);
   const tmpNestedComplexRhs$1 = tmpCallCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
   tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCallCallee$2 = $($);
       const tmpCalleeParam$3 = $(1);
       const tmpCalleeParam$5 = $(2);
       const tmpNestedComplexRhs$2 = tmpCallCallee$2(tmpCalleeParam$3, tmpCalleeParam$5);
       tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
@@ -105,23 +111,30 @@ const b = $( 1 );
 const c = $( 2 );
 const d = a( b, c );
 let e = d;
+let f = d;
+let g = true;
 if (d) {
   $( 100 );
-  const f = $( $ );
-  const g = $( 1 );
-  const h = $( 2 );
-  const i = f( g, h );
-  e = i;
-  let j = i;
+  const h = $( $ );
+  const i = $( 1 );
+  const j = $( 2 );
+  const k = h( i, j );
+  e = k;
+  f = k;
+}
+else {
+  g = false;
+}
+if (g) {
   while ($LOOP_UNROLL_9) {
-    if (j) {
+    if (f) {
       $( 100 );
-      const k = $( $ );
-      const l = $( 1 );
-      const m = $( 2 );
-      const n = k( l, m );
-      e = n;
-      j = n;
+      const l = $( $ );
+      const m = $( 1 );
+      const n = $( 2 );
+      const o = l( m, n );
+      e = o;
+      f = o;
     }
     else {
       break;

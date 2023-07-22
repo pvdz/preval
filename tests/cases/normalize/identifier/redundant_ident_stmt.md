@@ -101,7 +101,7 @@ const a = function($$0 ) {
   debugger;
   $( ... b );
   return undefined;
-},;
+};
 drop1();
 keep1;
 c( keep1 );

@@ -83,7 +83,7 @@ const a = function() {
   $( b, "observable rhs" );
   const c = $( "end" );
   return c;
-},;
+};
 const d = a();
 $( d );
 const e = a();

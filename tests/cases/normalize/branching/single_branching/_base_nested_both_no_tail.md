@@ -143,7 +143,7 @@ const a = function() {
       return h;
     }
   }
-},;
+};
 const i = a();
 $( i, "final" );
 `````

@@ -96,7 +96,7 @@ const b = function() {
     const e = c.x;
     return e;
   }
-},;
+};
 const f = b();
 $( f );
 const g = {

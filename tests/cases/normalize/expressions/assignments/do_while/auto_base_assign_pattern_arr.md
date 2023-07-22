@@ -73,6 +73,8 @@ const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 let tmpClusterSSA_b = arrPatternSplat[0];
 let tmpClusterSSA_a = tmpNestedAssignArrPatternRhs;
+let tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+let $tmpLoopUnrollCheck = true;
 if (tmpNestedAssignArrPatternRhs) {
   $(100);
   const tmpArrElement$1 = $(2);
@@ -81,9 +83,13 @@ if (tmpNestedAssignArrPatternRhs) {
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
   tmpClusterSSA_b = arrPatternSplat$1[0];
   tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpArrElement$2 = $(2);
       const tmpCalleeParam$2 = [tmpArrElement$2];
@@ -91,7 +97,7 @@ if (tmpNestedAssignArrPatternRhs) {
       const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$2];
       tmpClusterSSA_b = arrPatternSplat$2[0];
       tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$2;
     } else {
       break;
     }
@@ -113,25 +119,32 @@ const c = $( b );
 const d = [ ... c,, ];
 let e = d[ 0 ];
 let f = c;
+let g = c;
+let h = true;
 if (c) {
   $( 100 );
-  const g = $( 2 );
-  const h = [ g,, ];
-  const i = $( h );
-  const j = [ ... i,, ];
-  e = j[ 0 ];
-  f = i;
-  let k = i;
+  const i = $( 2 );
+  const j = [ i,, ];
+  const k = $( j );
+  const l = [ ... k,, ];
+  e = l[ 0 ];
+  f = k;
+  g = k;
+}
+else {
+  h = false;
+}
+if (h) {
   while ($LOOP_UNROLL_9) {
-    if (k) {
+    if (g) {
       $( 100 );
-      const l = $( 2 );
-      const m = [ l,, ];
-      const n = $( m );
-      const o = [ ... n,, ];
-      e = o[ 0 ];
-      f = n;
-      k = n;
+      const m = $( 2 );
+      const n = [ m,, ];
+      const o = $( n );
+      const p = [ ... o,, ];
+      e = p[ 0 ];
+      f = o;
+      g = o;
     }
     else {
       break;

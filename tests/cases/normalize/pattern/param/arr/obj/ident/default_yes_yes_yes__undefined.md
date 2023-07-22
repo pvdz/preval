@@ -133,7 +133,7 @@ const a = function() {
   else {
     return j;
   }
-},;
+};
 const m = a();
 $( m );
 `````

@@ -113,7 +113,7 @@ if ($) {
     else {
       return undefined;
     }
-  },;
+  };
   const g = a;
   const h = $( true );
   a = g( h );

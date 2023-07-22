@@ -133,7 +133,7 @@ const a = function($$0 ) {
   else {
     return i;
   }
-},;
+};
 const l = [ "abc", 20, 30,, ];
 const m = a( l );
 $( m );

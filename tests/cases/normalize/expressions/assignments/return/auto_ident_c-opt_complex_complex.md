@@ -108,7 +108,7 @@ const c = function() {
     b = g;
     return g;
   }
-},;
+};
 const h = c();
 $( h );
 $( b );

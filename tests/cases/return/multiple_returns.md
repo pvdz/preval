@@ -207,7 +207,7 @@ const a = function() {
   else {
     return undefined;
   }
-},;
+};
 a();
 $( 10 );
 a();

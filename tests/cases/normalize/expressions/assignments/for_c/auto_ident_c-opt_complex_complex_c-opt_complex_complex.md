@@ -68,11 +68,12 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
+const b = { x: tmpObjLitVal };
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   a = undefined;
-  const b = { x: tmpObjLitVal };
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
@@ -87,9 +88,13 @@ if (tmpIfTest) {
       a = tmpChainElementObject$1;
     }
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       a = undefined;
       const tmpChainElementCall$1 = $(b);
       const tmpIfTest$2 = tmpChainElementCall$1 == null;
@@ -105,7 +110,7 @@ if (tmpIfTest) {
           a = tmpChainElementObject$4;
         }
       }
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -121,37 +126,43 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-let b = {
+const b = { x: a };
+let c = {
 a: 999,
 b: 1000
 ;
-const c = $( 1 );
-if (c) {
-  b = undefined;
-  const d = { x: a };
-  const e = $( d );
-  const f = e == null;
-  if (f) {
+let d = $( 1 );
+let e = true;
+if (d) {
+  c = undefined;
+  const f = $( b );
+  const g = f == null;
+  if (g) {
 
   }
   else {
-    const g = $( "x" );
-    const h = e[ g ];
-    const i = h == null;
-    if (i) {
+    const h = $( "x" );
+    const i = f[ h ];
+    const j = i == null;
+    if (j) {
 
     }
     else {
-      const j = $( "y" );
-      const k = h[ j ];
-      b = k;
+      const k = $( "y" );
+      const l = i[ k ];
+      c = l;
     }
   }
-  let l = $( 1 );
+  d = $( 1 );
+}
+else {
+  e = false;
+}
+if (e) {
   while ($LOOP_UNROLL_10) {
-    if (l) {
-      b = undefined;
-      const m = $( d );
+    if (d) {
+      c = undefined;
+      const m = $( b );
       const n = m == null;
       if (n) {
 
@@ -166,17 +177,17 @@ if (c) {
         else {
           const r = $( "y" );
           const s = p[ r ];
-          b = s;
+          c = s;
         }
       }
-      l = $( 1 );
+      d = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( b );
+$( c );
 `````
 
 ## Globals

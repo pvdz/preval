@@ -122,7 +122,7 @@ const a = function($$0 ) {
   else {
     return i;
   }
-},;
+};
 const k = {
 a: 11,
 b: 12

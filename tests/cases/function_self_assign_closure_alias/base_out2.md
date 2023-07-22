@@ -163,10 +163,10 @@ let a = function() {
     debugger;
     $( "replaced" );
     return undefined;
-  },;
+  };
   $( "after" );
   return undefined;
-},;
+};
 const b = function() {
   debugger;
   $( "before" );
@@ -174,10 +174,10 @@ const b = function() {
     debugger;
     $( "replaced" );
     return undefined;
-  },;
+  };
   $( "after" );
   return undefined;
-},;
+};
 b();
 b();
 a();

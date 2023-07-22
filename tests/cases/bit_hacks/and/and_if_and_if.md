@@ -117,7 +117,7 @@ const a = function($$0,$$1 ) {
   else {
     return undefined;
   }
-},;
+};
 a( 1, 1 );
 $( undefined );
 a( 2, 0 );

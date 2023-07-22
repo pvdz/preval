@@ -101,7 +101,7 @@ const a = function($$0 ) {
   else {
     return e;
   }
-},;
+};
 const h = [ , , 1,, ];
 const i = a( h );
 $( i );

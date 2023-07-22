@@ -45,12 +45,17 @@ while (true) {
 ## Output
 
 `````js filename=intro
-const tmpDoWhileFlag = $(0);
+let tmpDoWhileFlag = $(0);
+let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
-  let tmpClusterSSA_tmpDoWhileFlag = $(0);
+  tmpDoWhileFlag = $(0);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
-      tmpClusterSSA_tmpDoWhileFlag = $(0);
+    if (tmpDoWhileFlag) {
+      tmpDoWhileFlag = $(0);
     } else {
       break;
     }
@@ -64,12 +69,18 @@ if (tmpDoWhileFlag) {
 With rename=true
 
 `````js filename=intro
-const a = $( 0 );
+let a = $( 0 );
+let b = true;
 if (a) {
-  let b = $( 0 );
+  a = $( 0 );
+}
+else {
+  b = false;
+}
+if (b) {
   while ($LOOP_UNROLL_9) {
-    if (b) {
-      b = $( 0 );
+    if (a) {
+      a = $( 0 );
     }
     else {
       break;

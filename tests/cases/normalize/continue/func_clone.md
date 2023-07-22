@@ -63,17 +63,19 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 if ($) {
   $(1);
-  if ($) {
-    while ($LOOP_UNROLL_10) {
-      if ($) {
-        $(1);
-      } else {
-        break;
-      }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      $(1);
+    } else {
+      break;
     }
-  } else {
   }
 } else {
 }
@@ -85,16 +87,20 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
+let a = true;
 if ($) {
   $( 1 );
-  if ($) {
-    while ($LOOP_UNROLL_10) {
-      if ($) {
-        $( 1 );
-      }
-      else {
-        break;
-      }
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      $( 1 );
+    }
+    else {
+      break;
     }
   }
 }

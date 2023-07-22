@@ -83,13 +83,13 @@ With rename=true
 let a = function() {
   debugger;
   return undefined;
-},;
+};
 const b = a;
 if (a) {
   const c = function() {
     debugger;
     return undefined;
-  },;
+  };
   a = c;
   $( c );
 }

@@ -98,7 +98,7 @@ const a = function() {
   $( "inlining" );
   $( "please" );
   return undefined;
-},;
+};
 a();
 const b = [ 1, 2, 3,, ];
 const c = b.toString();

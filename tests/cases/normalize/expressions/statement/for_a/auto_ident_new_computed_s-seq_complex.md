@@ -58,12 +58,17 @@ const a = { a: 999, b: 1000 };
 const tmpCompProp = $(`\$`);
 const tmpNewCallee = b[tmpCompProp];
 new tmpNewCallee(1);
-const tmpIfTest = $(0);
+let tmpIfTest = $(0);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
+  tmpIfTest = $(0);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    if (tmpIfTest) {
+      tmpIfTest = $(0);
     } else {
       break;
     }
@@ -86,12 +91,18 @@ b: 1000
 const c = $( "$" );
 const d = a[ c ];
 new d( 1 );
-const e = $( 0 );
+let e = $( 0 );
+let f = true;
 if (e) {
-  let f = $( 0 );
+  e = $( 0 );
+}
+else {
+  f = false;
+}
+if (f) {
   while ($LOOP_UNROLL_10) {
-    if (f) {
-      f = $( 0 );
+    if (e) {
+      e = $( 0 );
     }
     else {
       break;

@@ -55,7 +55,7 @@ With rename=true
 const a = function() {
   debugger;
   return undefined;
-},;
+};
 export { a as a from "undefined"
 $( a );
 `````

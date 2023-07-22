@@ -121,7 +121,7 @@ const a = function() {
   debugger;
   const b = $( 2, "false" );
   return b;
-},;
+};
 let c = function($$0 ) {
   const d = e;
   debugger;
@@ -133,10 +133,10 @@ let c = function($$0 ) {
     c = function() {
       debugger;
       return a;
-    },;
+    };
     return c;
   }
-},;
+};
 c = c( false );
 const f = c();
 $( f );

@@ -72,7 +72,7 @@ const a = function() {
   debugger;
   $( b );
   return undefined;
-},;
+};
 const c = { pass: 1 };
 a.call( c, 1, 2, 3, "yep", $ );
 `````

@@ -133,7 +133,7 @@ if ($) {
     else {
       return undefined;
     }
-  },;
+  };
   b();
   b();
   b();

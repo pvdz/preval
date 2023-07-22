@@ -127,7 +127,7 @@ const a = function($$0 ) {
   else {
     return j;
   }
-},;
+};
 const m = [ 1, 2, 3, , 4, 5,, ];
 const n = a( m );
 $( n );

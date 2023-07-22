@@ -115,7 +115,7 @@ const a = function() {
   else {
     return f;
   }
-},;
+};
 const i = a();
 $( i );
 `````

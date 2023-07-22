@@ -93,7 +93,7 @@ const a = function() {
   debugger;
   const c = b.x;
   return c;
-},;
+};
 const d = { x: 100 };
 const e = a.call( d );
 $( e );

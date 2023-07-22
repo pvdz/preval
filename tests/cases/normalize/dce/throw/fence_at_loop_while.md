@@ -83,7 +83,8 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(true);
+let tmpIfTest = $(true);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   $(`loop`);
   const tmpIfTest$1 = $(true);
@@ -93,22 +94,26 @@ if (tmpIfTest) {
     throw tmpThrowArg;
   } else {
     $(`do not visit, do not eliminate`);
-    let tmpClusterSSA_tmpIfTest = $(true);
-    while ($LOOP_UNROLL_10) {
-      if (tmpClusterSSA_tmpIfTest) {
+    tmpIfTest = $(true);
+  }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if (tmpIfTest) {
+      $(`loop`);
+      const tmpIfTest$2 = $(true);
+      if (tmpIfTest$2) {
         $(`loop`);
-        const tmpIfTest$2 = $(true);
-        if (tmpIfTest$2) {
-          $(`loop`);
-          const tmpThrowArg$1 = $(7, `throw`);
-          throw tmpThrowArg$1;
-        } else {
-          $(`do not visit, do not eliminate`);
-          tmpClusterSSA_tmpIfTest = $(true);
-        }
+        const tmpThrowArg$1 = $(7, `throw`);
+        throw tmpThrowArg$1;
       } else {
-        break;
+        $(`do not visit, do not eliminate`);
+        tmpIfTest = $(true);
       }
+    } else {
+      break;
     }
   }
 } else {
@@ -122,35 +127,41 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-const a = $( true );
+let a = $( true );
+let b = true;
 if (a) {
   $( "loop" );
-  const b = $( true );
-  if (b) {
+  const c = $( true );
+  if (c) {
     $( "loop" );
-    const c = $( 7, "throw" );
-    throw c;
+    const d = $( 7, "throw" );
+    throw d;
   }
   else {
     $( "do not visit, do not eliminate" );
-    let d = $( true );
-    while ($LOOP_UNROLL_10) {
-      if (d) {
+    a = $( true );
+  }
+}
+else {
+  b = false;
+}
+if (b) {
+  while ($LOOP_UNROLL_10) {
+    if (a) {
+      $( "loop" );
+      const e = $( true );
+      if (e) {
         $( "loop" );
-        const e = $( true );
-        if (e) {
-          $( "loop" );
-          const f = $( 7, "throw" );
-          throw f;
-        }
-        else {
-          $( "do not visit, do not eliminate" );
-          d = $( true );
-        }
+        const f = $( 7, "throw" );
+        throw f;
       }
       else {
-        break;
+        $( "do not visit, do not eliminate" );
+        a = $( true );
       }
+    }
+    else {
+      break;
     }
   }
 }

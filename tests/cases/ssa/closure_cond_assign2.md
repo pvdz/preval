@@ -141,7 +141,7 @@ if ($) {
     }
     $();
     return undefined;
-  },;
+  };
   b( true );
   b( false );
   b( true );

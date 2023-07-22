@@ -99,7 +99,7 @@ const b = function() {
     a = e;
     return e;
   }
-},;
+};
 const f = b();
 $( f );
 $( a );

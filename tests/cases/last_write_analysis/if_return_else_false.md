@@ -101,7 +101,7 @@ const a = function() {
     $( "prevent return hoisting" );
     return d;
   }
-},;
+};
 const e = a();
 $( e );
 `````

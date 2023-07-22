@@ -78,7 +78,7 @@ const a = function($$0 ) {
   debugger;
   const d = $( b, "g" );
   return d;
-},;
+};
 const e = new a( 10 );
 $( e, "outer" );
 `````

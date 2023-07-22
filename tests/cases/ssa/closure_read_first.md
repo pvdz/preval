@@ -130,12 +130,12 @@ const a = function() {
     else {
       return undefined;
     }
-  },;
+  };
   c();
   c();
   $();
   return undefined;
-},;
+};
 if ($) {
   a();
   $( undefined );

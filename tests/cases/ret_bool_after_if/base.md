@@ -105,7 +105,7 @@ const a = function() {
   }
   const c = Boolean( b );
   return c;
-},;
+};
 const d = a();
 $( d );
 const e = a();

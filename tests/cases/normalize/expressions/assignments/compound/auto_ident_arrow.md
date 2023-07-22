@@ -65,7 +65,7 @@ With rename=true
 const a = function() {
   debugger;
   return undefined;
-},;
+};
 const b = {
 a: 999,
 b: 1000

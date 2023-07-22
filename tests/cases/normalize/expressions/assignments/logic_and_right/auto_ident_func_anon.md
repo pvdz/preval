@@ -80,7 +80,7 @@ if (b) {
   const c = function() {
     debugger;
     return undefined;
-  },;
+  };
   a = c;
   $( c );
 }

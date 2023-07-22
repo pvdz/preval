@@ -191,7 +191,7 @@ const a = function($$0 ) {
   const d = $( "please" );
   const e = b( 1, "two", d, NaN );
   return e;
-},;
+};
 const f = function($$0,$$1,$$2,$$3,$$4 ) {
   const g = c;
   const h = i;
@@ -201,7 +201,7 @@ const f = function($$0,$$1,$$2,$$3,$$4 ) {
   debugger;
   $( "pass1", g, h, j, l, n );
   return undefined;
-},;
+};
 const p = a( f );
 $( p );
 const q = function($$0,$$1,$$2,$$3,$$4 ) {
@@ -213,7 +213,7 @@ const q = function($$0,$$1,$$2,$$3,$$4 ) {
   debugger;
   $( "pass2", r, s, t, u, v );
   return undefined;
-},;
+};
 const w = a( q );
 $( w );
 const x = function($$0,$$1,$$2,$$3,$$4 ) {
@@ -225,7 +225,7 @@ const x = function($$0,$$1,$$2,$$3,$$4 ) {
   debugger;
   $( "pass3", y, z, 01, 11, 21 );
   return undefined;
-},;
+};
 const 31 = a( x );
 $( 31 );
 `````

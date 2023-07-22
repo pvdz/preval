@@ -96,7 +96,7 @@ const b = function($$0,$$1 ) {
   debugger;
   a = typeofc;
   return undefined;
-},;
+};
 const e = [ 1, 2, 3,, ];
 const f = $( e );
 b( ... f, 10, 20 );

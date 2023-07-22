@@ -123,7 +123,7 @@ const a = function() {
       return i;
     }
   }
-},;
+};
 const j = { y: 1 };
 const c = { x: j };
 const k = {

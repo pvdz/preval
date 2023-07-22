@@ -95,7 +95,7 @@ const a = function() {
   else {
     return undefined;
   }
-},;
+};
 const f = a();
 $( f );
 `````

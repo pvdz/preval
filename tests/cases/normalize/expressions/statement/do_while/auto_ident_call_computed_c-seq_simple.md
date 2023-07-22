@@ -62,16 +62,21 @@ const b = { $: $ };
 const a = { a: 999, b: 1000 };
 $(100);
 const tmpCallObj = $(b);
-const tmpClusterSSA_tmpDoWhileFlag = tmpCallObj.$(1);
+let tmpClusterSSA_tmpDoWhileFlag = tmpCallObj.$(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpClusterSSA_tmpDoWhileFlag) {
   $(100);
   const tmpCallObj$1 = $(b);
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpCallObj$1.$(1);
+  tmpClusterSSA_tmpDoWhileFlag = tmpCallObj$1.$(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCallObj$2 = $(b);
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpCallObj$2.$(1);
+      tmpClusterSSA_tmpDoWhileFlag = tmpCallObj$2.$(1);
     } else {
       break;
     }
@@ -93,16 +98,22 @@ b: 1000
 ;
 $( 100 );
 const c = $( a );
-const d = c.$( 1 );
+let d = c.$( 1 );
+let e = true;
 if (d) {
   $( 100 );
-  const e = $( a );
-  let f = e.$( 1 );
+  const f = $( a );
+  d = f.$( 1 );
+}
+else {
+  e = false;
+}
+if (e) {
   while ($LOOP_UNROLL_9) {
-    if (f) {
+    if (d) {
       $( 100 );
       const g = $( a );
-      f = g.$( 1 );
+      d = g.$( 1 );
     }
     else {
       break;

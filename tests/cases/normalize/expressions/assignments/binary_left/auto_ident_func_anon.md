@@ -65,7 +65,7 @@ With rename=true
 const a = function() {
   debugger;
   return undefined;
-},;
+};
 const b = $( 100 );
 const c = a + b;
 $( c );

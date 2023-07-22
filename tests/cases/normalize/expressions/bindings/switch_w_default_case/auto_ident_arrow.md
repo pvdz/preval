@@ -106,7 +106,7 @@ With rename=true
 const a = function() {
   debugger;
   return undefined;
-},;
+};
 $( a );
 $( "fail1" );
 $( "fail2" );

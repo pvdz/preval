@@ -99,7 +99,7 @@ const a = function() {
   $( 2 );
   $( 3 );
   return undefined;
-},;
+};
 a();
 $( undefined );
 $( a );

@@ -97,12 +97,12 @@ const a = function() {
   debugger;
   const b = $( 1 );
   return b;
-},;
+};
 const c = function($$0 ) {
   const d = e;
   debugger;
   return d;
-},;
+};
 const f = class   {
 
 };

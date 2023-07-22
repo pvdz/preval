@@ -159,7 +159,7 @@ const a = function() {
     $( 4 );
     return undefined;
   }
-},;
+};
 if ($) {
   $( a );
 }

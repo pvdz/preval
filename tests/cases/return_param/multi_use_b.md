@@ -128,7 +128,7 @@ const a = function() {
     $( "b" );
     return undefined;
   }
-},;
+};
 a();
 $( -2 );
 a();

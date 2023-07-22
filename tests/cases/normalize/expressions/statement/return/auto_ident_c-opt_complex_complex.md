@@ -100,7 +100,7 @@ const b = function() {
     const f = c[ e ];
     return f;
   }
-},;
+};
 const g = b();
 $( g );
 const h = {

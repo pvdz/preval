@@ -56,7 +56,7 @@ const a = async function() {
   debugger;
   (await ($);
   return undefined;
-},;
+};
 a();
 `````
 

@@ -68,7 +68,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-let tmpNestedComplexRhs = false;
+let tmpNestedComplexRhs = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
@@ -79,7 +79,9 @@ if (tmpIfTest) {
   tmpNestedComplexRhs = tmpChainElementObject;
   tmpClusterSSA_a = tmpChainElementObject;
 }
-if (tmpNestedComplexRhs) {
+let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
+let $tmpLoopUnrollCheck = true;
+if (tmpClusterSSA_tmpDoWhileFlag) {
   $(100);
   let tmpNestedComplexRhs$1 = undefined;
   const tmpChainElementCall$1 = $(b);
@@ -90,9 +92,13 @@ if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs$1 = tmpChainElementObject$1;
   }
   tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       let tmpNestedComplexRhs$2 = undefined;
       const tmpChainElementCall$2 = $(b);
@@ -103,7 +109,7 @@ if (tmpNestedComplexRhs) {
         tmpNestedComplexRhs$2 = tmpChainElementObject$2;
       }
       tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
@@ -119,7 +125,7 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-let a = false;
+let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
@@ -132,35 +138,42 @@ else {
   a = f;
   e = f;
 }
-if (a) {
+let g = a;
+let h = true;
+if (g) {
   $( 100 );
-  let g = undefined;
-  const h = $( b );
-  const i = h == null;
-  if (i) {
+  let i = undefined;
+  const j = $( b );
+  const k = j == null;
+  if (k) {
 
   }
   else {
-    const j = h.x;
-    g = j;
+    const l = j.x;
+    i = l;
   }
-  e = g;
-  let k = g;
+  e = i;
+  g = i;
+}
+else {
+  h = false;
+}
+if (h) {
   while ($LOOP_UNROLL_9) {
-    if (k) {
+    if (g) {
       $( 100 );
-      let l = undefined;
-      const m = $( b );
-      const n = m == null;
-      if (n) {
+      let m = undefined;
+      const n = $( b );
+      const o = n == null;
+      if (o) {
 
       }
       else {
-        const o = m.x;
-        l = o;
+        const p = n.x;
+        m = p;
       }
-      e = l;
-      k = l;
+      e = m;
+      g = m;
     }
     else {
       break;

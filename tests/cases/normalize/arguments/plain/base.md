@@ -68,7 +68,7 @@ const a = function($$0 ) {
   const d = b[ 0 ];
   $( d );
   return undefined;
-},;
+};
 a();
 `````
 

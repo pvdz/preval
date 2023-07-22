@@ -133,7 +133,7 @@ const a = function($$0 ) {
   else {
     return i;
   }
-},;
+};
 const k = [ , , , 1,, ];
 const l = {
 x: k,

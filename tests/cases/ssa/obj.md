@@ -89,7 +89,7 @@ if ($) {
     debugger;
     d.bla = b;
     return undefined;
-  },;
+  };
   const d = { selfRef: a };
   $( undefined );
 }

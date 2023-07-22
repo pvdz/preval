@@ -115,7 +115,7 @@ const a = function() {
   else {
     return undefined;
   }
-},;
+};
 const f = {
 foo: 10,
 f: a

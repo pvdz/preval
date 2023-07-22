@@ -84,7 +84,7 @@ const a = function() {
   const b = typeofg;
   $( b, undefined );
   return undefined;
-},;
+};
 a();
 a();
 `````

@@ -104,7 +104,7 @@ const a = function() {
   b = $( 100 );
   c = Boolean( b );
   return c;
-},;
+};
 let b = undefined;
 let c = undefined;
 $( a );

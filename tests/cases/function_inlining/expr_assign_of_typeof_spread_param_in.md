@@ -102,7 +102,7 @@ const b = function($$0,$$1,$$2,$$3,$$4 ) {
   debugger;
   a = typeofc;
   return undefined;
-},;
+};
 const e = [ 1, 2,, ];
 const f = $( e );
 b( 10, 20, ... f, 30, 40, 50 );

@@ -84,7 +84,7 @@ const a = function() {
   debugger;
   $( "A", "B", "AB", "C", "ABC" );
   return "ABC";
-},;
+};
 $( a );
 $( "A", "B", "AB", "C", "ABC" );
 $( "ABC" );

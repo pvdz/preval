@@ -72,6 +72,8 @@ const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
+let tmpClusterSSA_tmpDoWhileFlag = tmpPostUpdArgVal;
+let $tmpLoopUnrollCheck = true;
 if (tmpPostUpdArgVal) {
   $(100);
   const tmpCalleeParam$1 = $(b);
@@ -79,16 +81,20 @@ if (tmpPostUpdArgVal) {
   const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
   const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 + 1;
   tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpPostUpdArgVal$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpPostUpdArgVal$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$2 = $(b);
       const tmpPostUpdArgObj$2 = $(tmpCalleeParam$2);
       const tmpPostUpdArgVal$2 = tmpPostUpdArgObj$2.x;
       const tmpAssignMemRhs$2 = tmpPostUpdArgVal$2 + 1;
       tmpPostUpdArgObj$2.x = tmpAssignMemRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpPostUpdArgVal$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpPostUpdArgVal$2;
     } else {
       break;
     }
@@ -114,23 +120,30 @@ const d = $( c );
 const e = d.x;
 const f = e + 1;
 d.x = f;
+let g = e;
+let h = true;
 if (e) {
   $( 100 );
-  const g = $( a );
-  const h = $( g );
-  const i = h.x;
-  const j = i + 1;
-  h.x = j;
-  let k = i;
+  const i = $( a );
+  const j = $( i );
+  const k = j.x;
+  const l = k + 1;
+  j.x = l;
+  g = k;
+}
+else {
+  h = false;
+}
+if (h) {
   while ($LOOP_UNROLL_9) {
-    if (k) {
+    if (g) {
       $( 100 );
-      const l = $( a );
-      const m = $( l );
-      const n = m.x;
-      const o = n + 1;
-      m.x = o;
-      k = n;
+      const m = $( a );
+      const n = $( m );
+      const o = n.x;
+      const p = o + 1;
+      n.x = p;
+      g = o;
     }
     else {
       break;

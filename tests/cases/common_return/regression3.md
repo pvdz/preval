@@ -121,7 +121,7 @@ const a = function() {
   else {
     return undefined;
   }
-},;
+};
 const b = function() {
   debugger;
   $( "c" );
@@ -131,7 +131,7 @@ const b = function() {
   a();
   $( c, d );
   return undefined;
-},;
+};
 b();
 b();
 `````

@@ -88,7 +88,7 @@ const c = function() {
   const d = b.x;
   $( d );
   return undefined;
-},;
+};
 $( a );
 b = { x: 10 };
 c();

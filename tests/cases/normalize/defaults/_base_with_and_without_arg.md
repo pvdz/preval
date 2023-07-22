@@ -88,7 +88,7 @@ const a = function($$0,$$1 ) {
   else {
     return b;
   }
-},;
+};
 const f = a( "x", false );
 $( f );
 const g = a( undefined, true );

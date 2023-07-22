@@ -501,7 +501,7 @@ const a = function($$0 ) {
   $( d );
   const n = b[ 0 ];
   return n;
-},;
+};
 const i = {
 get a() {
     debugger;
@@ -591,20 +591,20 @@ let p = function() {
   debugger;
   a( "a" );
   return i;
-},;
+};
 let e = function() {
   debugger;
   a( "b" );
   p = 21;
   return j;
-},;
+};
 let f = function() {
   debugger;
   a( "c" );
   p = 31;
   e = 32;
   return k;
-},;
+};
 let g = function() {
   debugger;
   a( "d" );
@@ -612,7 +612,7 @@ let g = function() {
   e = 42;
   f = 43;
   return l;
-},;
+};
 const h = function() {
   debugger;
   a( "e" );
@@ -621,7 +621,7 @@ const h = function() {
   f = 53;
   g = 54;
   return m;
-},;
+};
 const u = p();
 const v = a( "a" );
 const w = e();

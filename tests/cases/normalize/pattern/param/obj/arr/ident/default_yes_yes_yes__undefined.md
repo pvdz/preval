@@ -131,7 +131,7 @@ const a = function() {
   else {
     return j;
   }
-},;
+};
 const l = a();
 $( l );
 `````

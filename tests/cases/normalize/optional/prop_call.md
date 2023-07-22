@@ -90,7 +90,7 @@ const a = function($$0 ) {
   const e = b.y;
   $( c, e );
   return undefined;
-},;
+};
 const f = {
 x: a,
 y: 100

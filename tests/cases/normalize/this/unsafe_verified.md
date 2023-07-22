@@ -96,7 +96,7 @@ const a = function() {
   $( b );
   const c = b.y;
   return c;
-},;
+};
 const d = { y: 1 };
 const e = a.call( d );
 $( e );

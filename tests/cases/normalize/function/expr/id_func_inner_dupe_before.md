@@ -85,7 +85,7 @@ const a = function() {
   $( "function" );
   $( 10, undefined );
   return undefined;
-},;
+};
 a();
 a();
 `````

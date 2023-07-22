@@ -125,7 +125,7 @@ const a = function($$0 ) {
   }
   $( b );
   return undefined;
-},;
+};
 $( a );
 `````
 

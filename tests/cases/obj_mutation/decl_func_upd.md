@@ -68,7 +68,7 @@ const a = function() {
   debugger;
   b.thing = "boing";
   return undefined;
-},;
+};
 const b = { thing: "woop" };
 $( a );
 b.thing = "boing";

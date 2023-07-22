@@ -121,7 +121,7 @@ finally {
   console.log( b );
   b = "fail";
   return undefined;
-},;
+};
 let b = 0;
 a();
 considerMutated( b );

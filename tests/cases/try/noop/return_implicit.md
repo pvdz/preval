@@ -74,7 +74,7 @@ catch (e) {
 
   }
   return undefined;
-},;
+};
 const b = a();
 $( b );
 `````

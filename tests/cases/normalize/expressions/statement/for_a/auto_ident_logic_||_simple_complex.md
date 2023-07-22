@@ -50,12 +50,17 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = $(1);
 $(tmpCalleeParam);
-const tmpIfTest = $(0);
+let tmpIfTest = $(0);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
+  tmpIfTest = $(0);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    if (tmpIfTest) {
+      tmpIfTest = $(0);
     } else {
       break;
     }
@@ -73,12 +78,18 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 $( a );
-const b = $( 0 );
+let b = $( 0 );
+let c = true;
 if (b) {
-  let c = $( 0 );
+  b = $( 0 );
+}
+else {
+  c = false;
+}
+if (c) {
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      c = $( 0 );
+    if (b) {
+      b = $( 0 );
     }
     else {
       break;

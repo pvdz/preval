@@ -108,7 +108,7 @@ const a = function() {
     $( "keep, do not eval" );
     return undefined;
   }
-},;
+};
 const f = a();
 $( f );
 `````

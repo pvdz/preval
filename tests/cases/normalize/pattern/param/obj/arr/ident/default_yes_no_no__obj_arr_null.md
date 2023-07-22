@@ -100,7 +100,7 @@ const a = function($$0 ) {
   else {
     return f;
   }
-},;
+};
 const h = [ null,, ];
 const i = {
 x: h,

@@ -54,14 +54,19 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpDoWhileFlag = $(60);
+let tmpDoWhileFlag = $(60);
+let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
-  let tmpClusterSSA_tmpDoWhileFlag = $(60);
+  tmpDoWhileFlag = $(60);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
-      tmpClusterSSA_tmpDoWhileFlag = $(60);
+      tmpDoWhileFlag = $(60);
     } else {
       break;
     }
@@ -78,14 +83,20 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-const a = $( 60 );
+let a = $( 60 );
+let b = true;
 if (a) {
   $( 100 );
-  let b = $( 60 );
+  a = $( 60 );
+}
+else {
+  b = false;
+}
+if (b) {
   while ($LOOP_UNROLL_9) {
-    if (b) {
+    if (a) {
       $( 100 );
-      b = $( 60 );
+      a = $( 60 );
     }
     else {
       break;

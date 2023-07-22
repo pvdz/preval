@@ -102,7 +102,7 @@ const a = function($$0 ) {
     $( "b", false );
     return undefined;
   }
-},;
+};
 const d = $( 1 );
 a( d );
 const e = $( 0 );

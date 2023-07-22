@@ -135,7 +135,7 @@ const a = function($$0 ) {
   else {
     return i;
   }
-},;
+};
 const l = {
 y: 2,
 z: 3

@@ -160,7 +160,7 @@ const a = function() {
   else {
     return undefined;
   }
-},;
+};
 const j = [ 10, 20, 30, 40,, ];
 const e = $( j );
 const k = a();

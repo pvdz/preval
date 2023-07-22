@@ -83,7 +83,7 @@ if (c) {
   const d = function() {
     debugger;
     return undefined;
-  },;
+  };
   $( d );
 }
 else {

@@ -152,7 +152,7 @@ const a = function() {
   else {
     return null;
   }
-},;
+};
 if ($) {
   $( a );
 }

@@ -140,7 +140,7 @@ const a = function($$0,$$1,$$2 ) {
   }
   $( b );
   return undefined;
-},;
+};
 const h = function() {
   debugger;
   const i = $( 10 );
@@ -158,7 +158,7 @@ const h = function() {
     a( j, k, false );
     return undefined;
   }
-},;
+};
 h();
 $( undefined );
 h();

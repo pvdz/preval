@@ -103,7 +103,7 @@ finally {
   }
   $( "prevent return hoisting" );
   return b;
-},;
+};
 const c = a();
 $( c );
 `````

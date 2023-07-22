@@ -80,7 +80,7 @@ const a = function() {
   else {
     return undefined;
   }
-},;
+};
 const d = a();
 $( d );
 `````

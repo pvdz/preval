@@ -125,7 +125,7 @@ let b = 1;
 const c = function() {
   debugger;
   return undefined;
-},;
+};
 const d = c === a;
 if (d) {
   b = 0;

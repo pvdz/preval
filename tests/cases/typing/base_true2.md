@@ -106,7 +106,7 @@ const a = function($$0 ) {
   $( b );
   $( b );
   return undefined;
-},;
+};
 const d = $( 10 );
 const e = d === 10;
 if (e) {

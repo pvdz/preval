@@ -73,7 +73,7 @@ const a = $( 100 );
 const b = function() {
   debugger;
   return undefined;
-},;
+};
 const c = a + b;
 $( c );
 $( b );

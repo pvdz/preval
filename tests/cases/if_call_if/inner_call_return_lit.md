@@ -144,7 +144,7 @@ const a = function() {
       return 1000;
     }
   }
-},;
+};
 if ($) {
   const d = a();
   $( d );

@@ -69,49 +69,54 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpCalleeParam = $(1);
-const tmpDoWhileFlag = $(tmpCalleeParam);
+let tmpDoWhileFlag = $(tmpCalleeParam);
 if (tmpDoWhileFlag) {
   const tmpCalleeParam$1 = $(1);
-  const tmpClusterSSA_tmpDoWhileFlag$1 = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_tmpDoWhileFlag$1) {
+  tmpDoWhileFlag = $(tmpCalleeParam$1);
+  if (tmpDoWhileFlag) {
     const tmpCalleeParam$3 = $(2);
-    const tmpClusterSSA_tmpDoWhileFlag$3 = $(tmpCalleeParam$3);
-    if (tmpClusterSSA_tmpDoWhileFlag$3) {
+    tmpDoWhileFlag = $(tmpCalleeParam$3);
+  } else {
+  }
+} else {
+}
+let $tmpLoopUnrollCheck = true;
+if (tmpDoWhileFlag) {
+  $(100);
+  const tmpCalleeParam$2 = $(1);
+  tmpDoWhileFlag = $(tmpCalleeParam$2);
+  if (tmpDoWhileFlag) {
+    const tmpCalleeParam$4 = $(1);
+    tmpDoWhileFlag = $(tmpCalleeParam$4);
+    if (tmpDoWhileFlag) {
+      const tmpCalleeParam$6 = $(2);
+      tmpDoWhileFlag = $(tmpCalleeParam$6);
+    } else {
+    }
+  } else {
+  }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_9) {
+    if (tmpDoWhileFlag) {
       $(100);
-      const tmpCalleeParam$2 = $(1);
-      let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
-      if (tmpClusterSSA_tmpDoWhileFlag) {
-        const tmpCalleeParam$4 = $(1);
-        tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$4);
-        if (tmpClusterSSA_tmpDoWhileFlag) {
-          const tmpCalleeParam$6 = $(2);
-          tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$6);
+      const tmpCalleeParam$5 = $(1);
+      tmpDoWhileFlag = $(tmpCalleeParam$5);
+      if (tmpDoWhileFlag) {
+        const tmpCalleeParam$7 = $(1);
+        tmpDoWhileFlag = $(tmpCalleeParam$7);
+        if (tmpDoWhileFlag) {
+          const tmpCalleeParam$9 = $(2);
+          tmpDoWhileFlag = $(tmpCalleeParam$9);
         } else {
         }
       } else {
       }
-      while ($LOOP_UNROLL_9) {
-        if (tmpClusterSSA_tmpDoWhileFlag) {
-          $(100);
-          const tmpCalleeParam$5 = $(1);
-          tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$5);
-          if (tmpClusterSSA_tmpDoWhileFlag) {
-            const tmpCalleeParam$7 = $(1);
-            tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$7);
-            if (tmpClusterSSA_tmpDoWhileFlag) {
-              const tmpCalleeParam$9 = $(2);
-              tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$9);
-            } else {
-            }
-          } else {
-          }
-        } else {
-          break;
-        }
-      }
     } else {
+      break;
     }
-  } else {
   }
 } else {
 }
@@ -126,51 +131,57 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 1 );
-const b = $( a );
+let b = $( a );
 if (b) {
   const c = $( 1 );
-  const d = $( c );
-  if (d) {
-    const e = $( 2 );
-    const f = $( e );
-    if (f) {
-      $( 100 );
-      const g = $( 1 );
-      let h = $( g );
-      if (h) {
-        const i = $( 1 );
-        h = $( i );
-        if (h) {
-          const j = $( 2 );
-          h = $( j );
-        }
-      }
-      while ($LOOP_UNROLL_9) {
-        if (h) {
-          $( 100 );
-          const k = $( 1 );
-          h = $( k );
-          if (h) {
-            const l = $( 1 );
-            h = $( l );
-            if (h) {
-              const m = $( 2 );
-              h = $( m );
-            }
-          }
-        }
-        else {
-          break;
-        }
-      }
+  b = $( c );
+  if (b) {
+    const d = $( 2 );
+    b = $( d );
+  }
+}
+let e = true;
+if (b) {
+  $( 100 );
+  const f = $( 1 );
+  b = $( f );
+  if (b) {
+    const g = $( 1 );
+    b = $( g );
+    if (b) {
+      const h = $( 2 );
+      b = $( h );
     }
   }
 }
-const n = {
+else {
+  e = false;
+}
+if (e) {
+  while ($LOOP_UNROLL_9) {
+    if (b) {
+      $( 100 );
+      const i = $( 1 );
+      b = $( i );
+      if (b) {
+        const j = $( 1 );
+        b = $( j );
+        if (b) {
+          const k = $( 2 );
+          b = $( k );
+        }
+      }
+    }
+    else {
+      break;
+    }
+  }
+}
+const l = {
 a: 999,
 b: 1000
 ;
-$( n );
+$( l );
 `````
 
 ## Globals

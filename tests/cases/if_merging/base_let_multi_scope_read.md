@@ -135,7 +135,7 @@ const a = function() {
   $( "block inlinine" );
   $( b );
   return undefined;
-},;
+};
 let b = undefined;
 const c = $( true );
 if (c) {

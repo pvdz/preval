@@ -134,7 +134,7 @@ const a = function() {
   $( "b" );
   $( "c" );
   return undefined;
-},;
+};
 a();
 $( 1, "first" );
 $( undefined );

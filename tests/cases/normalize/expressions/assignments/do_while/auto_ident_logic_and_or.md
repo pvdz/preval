@@ -85,7 +85,9 @@ if (tmpNestedComplexRhs) {
   tmpNestedComplexRhs = $(tmpCalleeParam$3);
   tmpClusterSSA_a = tmpNestedComplexRhs;
 }
-if (tmpNestedComplexRhs) {
+let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
+let $tmpLoopUnrollCheck = true;
+if (tmpClusterSSA_tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$2 = $(1);
   let tmpNestedComplexRhs$1 = $(tmpCalleeParam$2);
@@ -100,9 +102,13 @@ if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs$1 = $(tmpCalleeParam$6);
   }
   tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$5 = $(1);
       let tmpNestedComplexRhs$2 = $(tmpCalleeParam$5);
@@ -117,7 +123,7 @@ if (tmpNestedComplexRhs) {
         tmpNestedComplexRhs$2 = $(tmpCalleeParam$9);
       }
       tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
@@ -148,41 +154,48 @@ else {
   b = $( e );
   d = b;
 }
-if (b) {
+let f = b;
+let g = true;
+if (f) {
   $( 100 );
-  const f = $( 1 );
-  let g = $( f );
-  if (g) {
-    const h = $( 1 );
-    g = $( h );
+  const h = $( 1 );
+  let i = $( h );
+  if (i) {
+    const j = $( 1 );
+    i = $( j );
   }
-  if (g) {
+  if (i) {
 
   }
   else {
-    const i = $( 2 );
-    g = $( i );
+    const k = $( 2 );
+    i = $( k );
   }
-  d = g;
-  let j = g;
+  d = i;
+  f = i;
+}
+else {
+  g = false;
+}
+if (g) {
   while ($LOOP_UNROLL_9) {
-    if (j) {
+    if (f) {
       $( 100 );
-      const k = $( 1 );
-      let l = $( k );
-      if (l) {
-        const m = $( 1 );
-        l = $( m );
+      const l = $( 1 );
+      let m = $( l );
+      if (m) {
+        const n = $( 1 );
+        m = $( n );
       }
-      if (l) {
+      if (m) {
 
       }
       else {
-        const n = $( 2 );
-        l = $( n );
+        const o = $( 2 );
+        m = $( o );
       }
-      d = l;
-      j = l;
+      d = m;
+      f = m;
     }
     else {
       break;

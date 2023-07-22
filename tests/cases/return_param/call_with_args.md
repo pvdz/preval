@@ -160,7 +160,7 @@ const a = function() {
   $( "inlining" );
   $( "please" );
   return undefined;
-},;
+};
 a();
 $( "pass1", 1, "two", null, NaN, undefined );
 $( undefined );

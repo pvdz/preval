@@ -89,7 +89,7 @@ const a = function() {
     const d = $( 3 );
     return d;
   }
-},;
+};
 const e = a();
 $( e, "final" );
 `````

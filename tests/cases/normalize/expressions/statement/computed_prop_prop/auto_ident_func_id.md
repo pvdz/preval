@@ -71,7 +71,7 @@ const b = {};
 const c = function() {
   debugger;
   return undefined;
-},;
+};
 b[ c ];
 $( a );
 `````

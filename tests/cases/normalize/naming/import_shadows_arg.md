@@ -66,7 +66,7 @@ const a = function($$0 ) {
   const b = c;
   debugger;
   return b;
-},;
+};
 const d = f();
 const e = $( d );
 export { e as x from "undefined"

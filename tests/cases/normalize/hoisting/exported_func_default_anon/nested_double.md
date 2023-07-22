@@ -75,7 +75,7 @@ const a = function() {
   const b = $( 2 );
   $( b );
   return undefined;
-},;
+};
 export { a as default from "undefined"
 `````
 

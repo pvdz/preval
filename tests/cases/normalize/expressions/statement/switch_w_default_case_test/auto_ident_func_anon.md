@@ -140,7 +140,7 @@ let c = 1;
 const d = function() {
   debugger;
   return undefined;
-},;
+};
 const e = d === b;
 if (e) {
   c = 0;

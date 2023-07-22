@@ -113,7 +113,7 @@ const a = function() {
       return e;
     }
   }
-},;
+};
 const h = a();
 $( h );
 const i = {

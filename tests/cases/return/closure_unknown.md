@@ -114,7 +114,7 @@ const a = function() {
     const c = d + 1;
     d = $( c );
     return undefined;
-  },;
+  };
   let d = 0;
   b();
   $( d );
@@ -123,7 +123,7 @@ const a = function() {
   b();
   $( d );
   return undefined;
-},;
+};
 a();
 $( undefined );
 $( a );

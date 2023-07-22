@@ -138,31 +138,31 @@ With rename=true
 const a = function() {
   debugger;
   return undefined;
-},;
+};
 const b = function() {
   debugger;
   return undefined;
-},;
+};
 const c = function() {
   debugger;
   return undefined;
-},;
+};
 const d = function() {
   debugger;
   return undefined;
-},;
+};
 const e = function() {
   debugger;
   return undefined;
-},;
+};
 const f = function() {
   debugger;
   return undefined;
-},;
+};
 const g = function() {
   debugger;
   return undefined;
-},;
+};
 $( a, b, c, d, e, g );
 export { f as l from "undefined"
 export { e as h from "undefined"

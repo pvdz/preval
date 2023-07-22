@@ -85,7 +85,7 @@ while (true) {
     const c = function() {
       debugger;
       return undefined;
-    },;
+    };
     a = c;
     b = $( 1 );
   }

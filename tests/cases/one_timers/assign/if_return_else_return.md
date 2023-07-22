@@ -119,7 +119,7 @@ const a = function() {
     const d = $( 2 );
     return d;
   }
-},;
+};
 const e = $( 100 );
 $( e );
 const f = a();

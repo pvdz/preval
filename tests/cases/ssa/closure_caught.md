@@ -110,7 +110,7 @@ if ($) {
     const b = $( "first" );
     $( b );
     return undefined;
-  },;
+  };
   a();
   a();
   a();

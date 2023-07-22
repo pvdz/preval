@@ -78,7 +78,7 @@ const a = function() {
   else {
     return 3;
   }
-},;
+};
 const c = a();
 $( c );
 `````

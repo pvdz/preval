@@ -119,7 +119,7 @@ const a = function() {
     const e = $( 2, "ret" );
     return e;
   }
-},;
+};
 const f = a();
 $( f );
 `````

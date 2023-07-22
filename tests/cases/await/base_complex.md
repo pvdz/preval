@@ -59,7 +59,7 @@ const a = async function() {
   const b = $();
   (await (b);
   return undefined;
-},;
+};
 a();
 `````
 

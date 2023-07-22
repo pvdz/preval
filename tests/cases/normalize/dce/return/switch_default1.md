@@ -165,7 +165,7 @@ const e = function($$0,$$1 ) {
       return undefined;
     }
   }
-},;
+};
 const l = b <= 0;
 const m = e( b, l );
 $( m );

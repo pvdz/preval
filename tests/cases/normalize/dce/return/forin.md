@@ -100,7 +100,7 @@ b: 2
   else {
     return undefined;
   }
-},;
+};
 const f = a();
 $( f );
 `````

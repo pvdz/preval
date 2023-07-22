@@ -79,7 +79,7 @@ const a = function() {
   $( c, "a" );
   $( c, "b" );
   return undefined;
-},;
+};
 a();
 a();
 `````

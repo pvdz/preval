@@ -59,7 +59,7 @@ With rename=true
 const a = function() {
   debugger;
   return undefined;
-},;
+};
 export { a as default from "undefined"
 const b = {
 a: 999,

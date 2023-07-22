@@ -226,7 +226,7 @@ const g = function($$0,$$1 ) {
       }
     }
   }
-},;
+};
 const o = b <= 0;
 const p = g( b, o );
 $( p );

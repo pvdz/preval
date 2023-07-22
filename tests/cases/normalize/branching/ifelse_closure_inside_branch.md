@@ -93,7 +93,7 @@ if ($) {
     debugger;
     $( b );
     return undefined;
-  },;
+  };
   $( a );
 }
 const b = $();

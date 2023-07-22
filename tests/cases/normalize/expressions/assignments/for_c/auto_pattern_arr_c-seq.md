@@ -58,7 +58,8 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 let a = arrPatternSplat[0];
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   $(10);
   $(20);
@@ -66,16 +67,20 @@ if (tmpIfTest) {
   const arrAssignPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat$1 = [...arrAssignPatternRhs];
   a = arrPatternSplat$1[0];
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       $(10);
       $(20);
       const tmpCalleeParam$1 = [1, 2];
       const arrAssignPatternRhs$1 = $(tmpCalleeParam$1);
       const arrPatternSplat$2 = [...arrAssignPatternRhs$1];
       a = arrPatternSplat$2[0];
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -96,24 +101,30 @@ b: 1000
 ;
 const b = [ ... a,, ];
 let c = b[ 0 ];
-const d = $( 1 );
+let d = $( 1 );
+let e = true;
 if (d) {
   $( 10 );
   $( 20 );
-  const e = [ 1, 2,, ];
-  const f = $( e );
-  const g = [ ... f,, ];
-  c = g[ 0 ];
-  let h = $( 1 );
+  const f = [ 1, 2,, ];
+  const g = $( f );
+  const h = [ ... g,, ];
+  c = h[ 0 ];
+  d = $( 1 );
+}
+else {
+  e = false;
+}
+if (e) {
   while ($LOOP_UNROLL_10) {
-    if (h) {
+    if (d) {
       $( 10 );
       $( 20 );
       const i = [ 1, 2,, ];
       const j = $( i );
       const k = [ ... j,, ];
       c = k[ 0 ];
-      h = $( 1 );
+      d = $( 1 );
     }
     else {
       break;

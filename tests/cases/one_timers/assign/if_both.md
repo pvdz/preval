@@ -159,7 +159,7 @@ const a = function() {
     $( "b" );
     return undefined;
   }
-},;
+};
 const c = $( 100 );
 $( c );
 const d = $( 1 );

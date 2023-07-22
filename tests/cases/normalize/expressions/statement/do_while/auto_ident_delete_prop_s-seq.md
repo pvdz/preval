@@ -65,18 +65,23 @@ const a = { a: 999, b: 1000 };
 $(100);
 $(1);
 $(2);
-const tmpDoWhileFlag = delete arg.y;
+let tmpDoWhileFlag = delete arg.y;
+let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
   $(1);
   $(2);
-  let tmpClusterSSA_tmpDoWhileFlag = delete arg.y;
+  tmpDoWhileFlag = delete arg.y;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
       $(1);
       $(2);
-      tmpClusterSSA_tmpDoWhileFlag = delete arg.y;
+      tmpDoWhileFlag = delete arg.y;
     } else {
       break;
     }
@@ -99,18 +104,24 @@ b: 1000
 $( 100 );
 $( 1 );
 $( 2 );
-const c = deletea.y;
+let c = deletea.y;
+let d = true;
 if (c) {
   $( 100 );
   $( 1 );
   $( 2 );
-  let d = deletea.y;
+  c = deletea.y;
+}
+else {
+  d = false;
+}
+if (d) {
   while ($LOOP_UNROLL_9) {
-    if (d) {
+    if (c) {
       $( 100 );
       $( 1 );
       $( 2 );
-      d = deletea.y;
+      c = deletea.y;
     }
     else {
       break;

@@ -139,7 +139,7 @@ const b = function() {
     $( "a" );
     return undefined;
   }
-},;
+};
 b();
 b();
 `````

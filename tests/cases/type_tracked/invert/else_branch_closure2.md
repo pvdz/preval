@@ -126,7 +126,7 @@ const a = function($$0 ) {
     $( "keepme" );
     const f = [ g, e,, ];
     return f;
-  },;
+  };
   const g = $coerce( b, "plustr" );
   if (g) {
     return undefined;
@@ -138,7 +138,7 @@ const a = function($$0 ) {
     $( i, "pass" );
     return undefined;
   }
-},;
+};
 a( "" );
 a( "foop" );
 `````

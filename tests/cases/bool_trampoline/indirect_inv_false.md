@@ -92,7 +92,7 @@ const a = function($$0 ) {
   const d = $( b );
   const e = !d;
   return e;
-},;
+};
 $( a );
 $( a );
 const f = $( 0 );

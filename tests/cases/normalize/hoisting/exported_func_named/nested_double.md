@@ -77,7 +77,7 @@ const a = function() {
   const b = $( 2 );
   $( b );
   return undefined;
-},;
+};
 a();
 $( undefined );
 export { a as g from "undefined"

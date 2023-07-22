@@ -108,7 +108,7 @@ const a = function() {
     const d = b & 128;
     return d;
   }
-},;
+};
 const e = a();
 $( e );
 const f = a();

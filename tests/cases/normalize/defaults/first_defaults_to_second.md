@@ -138,7 +138,7 @@ const a = function($$0,$$1,$$2 ) {
     const j = [ b, h,, ];
     return j;
   }
-},;
+};
 const k = a( undefined, undefined, true );
 $( k );
 const l = a( "x", undefined, false );

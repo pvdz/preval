@@ -71,6 +71,8 @@ const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
 let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
 let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
+let tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
+let $tmpLoopUnrollCheck = true;
 if (tmpNestedAssignObjPatternRhs) {
   $(100);
   const tmpObjLitVal$1 = $(2);
@@ -78,16 +80,20 @@ if (tmpNestedAssignObjPatternRhs) {
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
   tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
   tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpObjLitVal$2 = $(2);
       const tmpCalleeParam$2 = { b: tmpObjLitVal$2 };
       const tmpNestedAssignObjPatternRhs$2 = $(tmpCalleeParam$2);
       tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$2.b;
       tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$2;
     } else {
       break;
     }
@@ -108,23 +114,30 @@ const b = { b: a };
 const c = $( b );
 let d = c.b;
 let e = c;
+let f = c;
+let g = true;
 if (c) {
   $( 100 );
-  const f = $( 2 );
-  const g = { b: f };
-  const h = $( g );
-  d = h.b;
-  e = h;
-  let i = h;
+  const h = $( 2 );
+  const i = { b: h };
+  const j = $( i );
+  d = j.b;
+  e = j;
+  f = j;
+}
+else {
+  g = false;
+}
+if (g) {
   while ($LOOP_UNROLL_9) {
-    if (i) {
+    if (f) {
       $( 100 );
-      const j = $( 2 );
-      const k = { b: j };
-      const l = $( k );
-      d = l.b;
-      e = l;
-      i = l;
+      const k = $( 2 );
+      const l = { b: k };
+      const m = $( l );
+      d = m.b;
+      e = m;
+      f = m;
     }
     else {
       break;

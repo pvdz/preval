@@ -107,7 +107,7 @@ const a = function() {
     b = f;
     return f;
   }
-},;
+};
 const g = { y: 1 };
 const d = { x: g };
 let b = {

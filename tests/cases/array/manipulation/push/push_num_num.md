@@ -72,7 +72,7 @@ const b = function() {
   debugger;
   $( a );
   return undefined;
-},;
+};
 $( 5 );
 $( b );
 `````

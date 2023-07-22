@@ -63,17 +63,19 @@ $(x);
 const x = $(`a`);
 $(x);
 const tmpClusterSSA_x = $(`b`);
+let $tmpLoopUnrollCheck = true;
 if ($) {
   $(`123`);
-  if ($) {
-    while ($LOOP_UNROLL_10) {
-      if ($) {
-        $(`123`);
-      } else {
-        break;
-      }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      $(`123`);
+    } else {
+      break;
     }
-  } else {
   }
 } else {
 }
@@ -88,16 +90,20 @@ With rename=true
 const a = $( "a" );
 $( a );
 const b = $( "b" );
+let c = true;
 if ($) {
   $( "123" );
-  if ($) {
-    while ($LOOP_UNROLL_10) {
-      if ($) {
-        $( "123" );
-      }
-      else {
-        break;
-      }
+}
+else {
+  c = false;
+}
+if (c) {
+  while ($LOOP_UNROLL_10) {
+    if ($) {
+      $( "123" );
+    }
+    else {
+      break;
     }
   }
 }

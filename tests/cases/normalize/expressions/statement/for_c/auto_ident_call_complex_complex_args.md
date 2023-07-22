@@ -54,20 +54,25 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   const tmpCallCallee = $($);
   const tmpCalleeParam = $(1);
   const tmpCalleeParam$1 = $(2);
   tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpCallCallee$1 = $($);
       const tmpCalleeParam$2 = $(1);
       const tmpCalleeParam$4 = $(2);
       tmpCallCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -83,20 +88,26 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+let a = $( 1 );
+let b = true;
 if (a) {
-  const b = $( $ );
-  const c = $( 1 );
-  const d = $( 2 );
-  b( c, d );
-  let e = $( 1 );
+  const c = $( $ );
+  const d = $( 1 );
+  const e = $( 2 );
+  c( d, e );
+  a = $( 1 );
+}
+else {
+  b = false;
+}
+if (b) {
   while ($LOOP_UNROLL_10) {
-    if (e) {
+    if (a) {
       const f = $( $ );
       const g = $( 1 );
       const h = $( 2 );
       f( g, h );
-      e = $( 1 );
+      a = $( 1 );
     }
     else {
       break;

@@ -163,7 +163,7 @@ const b = function($$0,$$1 ) {
   }
   $( "after (not invoked)" );
   return undefined;
-},;
+};
 let i = undefined;
 if (a) {
   $( "loop" );

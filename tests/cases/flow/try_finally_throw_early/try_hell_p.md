@@ -121,7 +121,7 @@ finally {
   }
   b = 1;
   return undefined;
-},;
+};
 let b = 0;
 a();
 considerMutated( b );

@@ -125,7 +125,7 @@ const a = function() {
   else {
     return g;
   }
-},;
+};
 const i = a();
 $( i );
 `````

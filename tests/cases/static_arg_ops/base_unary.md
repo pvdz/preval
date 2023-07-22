@@ -87,7 +87,7 @@ const a = function($$0,$$1,$$2 ) {
   $( f );
   $( b, 2, d );
   return undefined;
-},;
+};
 a( 1, 3, -2 );
 a( 4, 5, -5 );
 a( 6, 7, -7 );

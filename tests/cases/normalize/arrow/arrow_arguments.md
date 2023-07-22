@@ -89,7 +89,7 @@ const a = function() {
   debugger;
   const d = b[ 0 ];
   return d;
-},;
+};
 const e = a( 100 );
 $( e );
 `````

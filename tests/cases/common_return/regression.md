@@ -203,7 +203,7 @@ const a = function() {
   else {
     return b;
   }
-},;
+};
 const c = function() {
   debugger;
   if ($) {
@@ -226,7 +226,7 @@ const c = function() {
     const f = a();
     return f;
   }
-},;
+};
 const g = c();
 $( g );
 `````

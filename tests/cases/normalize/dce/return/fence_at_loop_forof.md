@@ -146,7 +146,7 @@ const a = function() {
   }
   $( "after (not invoked)" );
   return undefined;
-},;
+};
 const g = a();
 $( g );
 `````

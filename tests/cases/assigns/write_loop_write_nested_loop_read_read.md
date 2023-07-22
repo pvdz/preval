@@ -67,14 +67,19 @@ let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
     x = $(20, `set`);
-    const tmpIfTest$1 = $(true);
+    let tmpIfTest$1 = $(true);
+    let $tmpLoopUnrollCheck = true;
     if (tmpIfTest$1) {
       $(x, `loop`);
-      let tmpClusterSSA_tmpIfTest$1 = $(true);
+      tmpIfTest$1 = $(true);
+    } else {
+      $tmpLoopUnrollCheck = false;
+    }
+    if ($tmpLoopUnrollCheck) {
       while ($LOOP_UNROLL_10) {
-        if (tmpClusterSSA_tmpIfTest$1) {
+        if (tmpIfTest$1) {
           $(x, `loop`);
-          tmpClusterSSA_tmpIfTest$1 = $(true);
+          tmpIfTest$1 = $(true);
         } else {
           break;
         }
@@ -99,14 +104,20 @@ let b = $( true );
 while (true) {
   if (b) {
     a = $( 20, "set" );
-    const c = $( true );
+    let c = $( true );
+    let d = true;
     if (c) {
       $( a, "loop" );
-      let d = $( true );
+      c = $( true );
+    }
+    else {
+      d = false;
+    }
+    if (d) {
       while ($LOOP_UNROLL_10) {
-        if (d) {
+        if (c) {
           $( a, "loop" );
-          d = $( true );
+          c = $( true );
         }
         else {
           break;

@@ -69,6 +69,8 @@ const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
 let tmpClusterSSA_b = arrPatternSplat[0];
+let tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
+let $tmpLoopUnrollCheck = true;
 if (tmpNestedAssignArrPatternRhs) {
   $(100);
   const tmpArrElement$1 = $(2);
@@ -76,16 +78,20 @@ if (tmpNestedAssignArrPatternRhs) {
   const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
   tmpClusterSSA_b = arrPatternSplat$1[0];
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$1;
+  tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpArrElement$2 = $(2);
       const tmpCalleeParam$2 = [tmpArrElement$2];
       const tmpNestedAssignArrPatternRhs$2 = $(tmpCalleeParam$2);
       const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$2];
       tmpClusterSSA_b = arrPatternSplat$2[0];
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$2;
     } else {
       break;
     }
@@ -107,34 +113,41 @@ const b = [ a,, ];
 const c = $( b );
 const d = [ ... c,, ];
 let e = d[ 0 ];
+let f = c;
+let g = true;
 if (c) {
   $( 100 );
-  const f = $( 2 );
-  const g = [ f,, ];
-  const h = $( g );
-  const i = [ ... h,, ];
-  e = i[ 0 ];
-  let j = h;
+  const h = $( 2 );
+  const i = [ h,, ];
+  const j = $( i );
+  const k = [ ... j,, ];
+  e = k[ 0 ];
+  f = j;
+}
+else {
+  g = false;
+}
+if (g) {
   while ($LOOP_UNROLL_9) {
-    if (j) {
+    if (f) {
       $( 100 );
-      const k = $( 2 );
-      const l = [ k,, ];
-      const m = $( l );
-      const n = [ ... m,, ];
-      e = n[ 0 ];
-      j = m;
+      const l = $( 2 );
+      const m = [ l,, ];
+      const n = $( m );
+      const o = [ ... n,, ];
+      e = o[ 0 ];
+      f = n;
     }
     else {
       break;
     }
   }
 }
-const o = {
+const p = {
 a: 999,
 b: 1000
 ;
-$( o, e );
+$( p, e );
 `````
 
 ## Globals

@@ -109,7 +109,7 @@ const a = function() {
     const d = $( 20 );
     return d;
   }
-},;
+};
 a();
 a();
 a();

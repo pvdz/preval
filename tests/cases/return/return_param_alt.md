@@ -90,7 +90,7 @@ const a = function() {
   $( "the" );
   $( "inlining" );
   return undefined;
-},;
+};
 a();
 $( 17 );
 a();

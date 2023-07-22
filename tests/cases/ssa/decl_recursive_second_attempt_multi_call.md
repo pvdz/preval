@@ -123,7 +123,7 @@ const a = function() {
   debugger;
   $( "new" );
   return undefined;
-},;
+};
 const b = $( true );
 const c = $( false );
 if ($) {
@@ -138,7 +138,7 @@ if ($) {
     else {
       return a;
     }
-  },;
+  };
   d = d( b );
   d();
 }

@@ -64,26 +64,28 @@ f();
 ## Output
 
 `````js filename=intro
+let $tmpLoopUnrollCheck = true;
 if (x) {
   $(1);
   if ($) {
     throw `error`;
   } else {
     $(2);
+  }
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
+  while ($LOOP_UNROLL_10) {
     if (x) {
-      while ($LOOP_UNROLL_10) {
-        if (x) {
-          $(1);
-          if ($) {
-            throw `error`;
-          } else {
-            $(2);
-          }
-        } else {
-          break;
-        }
+      $(1);
+      if ($) {
+        throw `error`;
+      } else {
+        $(2);
       }
     } else {
+      break;
     }
   }
 } else {
@@ -95,6 +97,7 @@ if (x) {
 With rename=true
 
 `````js filename=intro
+let a = true;
 if (x) {
   $( 1 );
   if ($) {
@@ -102,21 +105,24 @@ if (x) {
   }
   else {
     $( 2 );
+  }
+}
+else {
+  a = false;
+}
+if (a) {
+  while ($LOOP_UNROLL_10) {
     if (x) {
-      while ($LOOP_UNROLL_10) {
-        if (x) {
-          $( 1 );
-          if ($) {
-            throw "error";
-          }
-          else {
-            $( 2 );
-          }
-        }
-        else {
-          break;
-        }
+      $( 1 );
+      if ($) {
+        throw "error";
       }
+      else {
+        $( 2 );
+      }
+    }
+    else {
+      break;
     }
   }
 }

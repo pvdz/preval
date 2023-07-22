@@ -119,10 +119,10 @@ const a = function() {
     else {
       return undefined;
     }
-  },;
+  };
   b = b( g );
   return undefined;
-},;
+};
 const g = $( true );
 const e = $( false );
 if ($) {

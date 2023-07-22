@@ -423,7 +423,7 @@ const a = function($$0 ) {
   $( d );
   const m = b[ 0 ];
   return m;
-},;
+};
 const i = {
 get a() {
     debugger;
@@ -496,20 +496,20 @@ let o = function() {
   debugger;
   a( "a" );
   return i;
-},;
+};
 let e = function() {
   debugger;
   a( "b" );
   o = 21;
   return j;
-},;
+};
 let f = function() {
   debugger;
   a( "c" );
   o = 31;
   e = 32;
   return k;
-},;
+};
 const g = function() {
   debugger;
   a( "d" );
@@ -517,7 +517,7 @@ const g = function() {
   e = 42;
   f = 43;
   return l;
-},;
+};
 let h = 12345;
 const s = o();
 const t = a( "a" );

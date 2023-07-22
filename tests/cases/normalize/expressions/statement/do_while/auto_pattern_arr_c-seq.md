@@ -66,20 +66,25 @@ $(100);
 $(10);
 $(20);
 const tmpCalleeParam = [1, 2];
-const tmpDoWhileFlag = $(tmpCalleeParam);
+let tmpDoWhileFlag = $(tmpCalleeParam);
+let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
   $(10);
   $(20);
   const tmpCalleeParam$1 = [1, 2];
-  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$1);
+  tmpDoWhileFlag = $(tmpCalleeParam$1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
       $(10);
       $(20);
       const tmpCalleeParam$2 = [1, 2];
-      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
+      tmpDoWhileFlag = $(tmpCalleeParam$2);
     } else {
       break;
     }
@@ -104,20 +109,26 @@ $( 100 );
 $( 10 );
 $( 20 );
 const d = [ 1, 2,, ];
-const e = $( d );
+let e = $( d );
+let f = true;
 if (e) {
   $( 100 );
   $( 10 );
   $( 20 );
-  const f = [ 1, 2,, ];
-  let g = $( f );
+  const g = [ 1, 2,, ];
+  e = $( g );
+}
+else {
+  f = false;
+}
+if (f) {
   while ($LOOP_UNROLL_9) {
-    if (g) {
+    if (e) {
       $( 100 );
       $( 10 );
       $( 20 );
       const h = [ 1, 2,, ];
-      g = $( h );
+      e = $( h );
     }
     else {
       break;

@@ -94,7 +94,7 @@ const a = function() {
     const d = $( 2, "b" );
     return d;
   }
-},;
+};
 const e = a();
 $( e, "result" );
 `````

@@ -95,7 +95,7 @@ const a = function() {
   else {
     return undefined;
   }
-},;
+};
 const e = {
 foo: 10,
 f: a

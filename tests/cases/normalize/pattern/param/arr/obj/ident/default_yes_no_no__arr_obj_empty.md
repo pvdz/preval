@@ -100,7 +100,7 @@ const a = function($$0 ) {
   else {
     return f;
   }
-},;
+};
 const i = {};
 const j = [ i, 20, 30,, ];
 const k = a( j );

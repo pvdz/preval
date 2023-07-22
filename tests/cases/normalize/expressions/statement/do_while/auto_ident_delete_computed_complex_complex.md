@@ -64,18 +64,23 @@ const a = { a: 999, b: 1000 };
 $(100);
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpClusterSSA_tmpDoWhileFlag = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpClusterSSA_tmpDoWhileFlag = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let $tmpLoopUnrollCheck = true;
 if (tmpClusterSSA_tmpDoWhileFlag) {
   $(100);
   const tmpDeleteCompObj$1 = $(arg);
   const tmpDeleteCompProp$1 = $(`y`);
-  let tmpClusterSSA_tmpDoWhileFlag$1 = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+  tmpClusterSSA_tmpDoWhileFlag = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpDeleteCompObj$2 = $(arg);
       const tmpDeleteCompProp$2 = $(`y`);
-      tmpClusterSSA_tmpDoWhileFlag$1 = delete tmpDeleteCompObj$2[tmpDeleteCompProp$2];
+      tmpClusterSSA_tmpDoWhileFlag = delete tmpDeleteCompObj$2[tmpDeleteCompProp$2];
     } else {
       break;
     }
@@ -98,18 +103,24 @@ b: 1000
 $( 100 );
 const c = $( a );
 const d = $( "y" );
-const e = deletec[ d ];
+let e = deletec[ d ];
+let f = true;
 if (e) {
   $( 100 );
-  const f = $( a );
-  const g = $( "y" );
-  let h = deletef[ g ];
+  const g = $( a );
+  const h = $( "y" );
+  e = deleteg[ h ];
+}
+else {
+  f = false;
+}
+if (f) {
   while ($LOOP_UNROLL_9) {
-    if (h) {
+    if (e) {
       $( 100 );
       const i = $( a );
       const j = $( "y" );
-      h = deletei[ j ];
+      e = deletei[ j ];
     }
     else {
       break;

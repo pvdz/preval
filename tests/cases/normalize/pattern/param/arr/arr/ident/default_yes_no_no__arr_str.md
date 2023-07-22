@@ -101,7 +101,7 @@ const a = function($$0 ) {
   else {
     return g;
   }
-},;
+};
 const j = [ "abc", 4, 5,, ];
 const k = a( j );
 $( k );

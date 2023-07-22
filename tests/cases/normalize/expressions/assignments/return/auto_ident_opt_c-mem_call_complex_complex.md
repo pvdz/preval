@@ -128,7 +128,7 @@ const a = function() {
       return j;
     }
   }
-},;
+};
 const d = { $: $ };
 let b = {
 a: 999,

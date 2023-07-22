@@ -102,7 +102,7 @@ const a = function($$0 ) {
   $( e, b );
   const f = c[ 0 ];
   return f;
-},;
+};
 const g = { c: a };
 const h = { b: g };
 const i = $( h );

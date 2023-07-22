@@ -95,7 +95,7 @@ const a = function($$0 ) {
   else {
     return e;
   }
-},;
+};
 const h = [];
 const i = a( h );
 $( i );

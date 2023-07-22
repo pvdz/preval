@@ -98,7 +98,7 @@ const a = function($$0 ) {
   const d = $( "please" );
   const e = b | d;
   return e;
-},;
+};
 const f = a( 1 );
 $( f );
 const g = a( 2 );

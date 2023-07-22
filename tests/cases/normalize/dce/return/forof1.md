@@ -103,7 +103,7 @@ b: 2
     $( "keep, do not eval" );
     return undefined;
   }
-},;
+};
 const f = a();
 $( f );
 `````

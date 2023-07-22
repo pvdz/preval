@@ -105,7 +105,7 @@ const a = function($$0 ) {
   $( ... b );
   d = "fail";
   return undefined;
-},;
+};
 let d = 5;
 $( 5 );
 if ($) {

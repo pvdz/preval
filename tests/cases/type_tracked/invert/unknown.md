@@ -103,7 +103,7 @@ const a = function() {
   }
   $( b, "after" );
   return undefined;
-},;
+};
 a();
 a();
 a();

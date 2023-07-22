@@ -70,7 +70,7 @@ With rename=true
 const a = function() {
   debugger;
   return undefined;
-},;
+};
 const b = { a[ 10 ]: 10 };
 $( b );
 $( a );

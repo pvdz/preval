@@ -62,7 +62,7 @@ const a = function() {
   debugger;
   a.apply( b, c );
   return undefined;
-},;
+};
 `````
 
 ## Globals

@@ -83,7 +83,8 @@ if (tmpNestedComplexRhs) {
   }
 }
 let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-if (tmpNestedComplexRhs) {
+let $tmpLoopUnrollCheck = true;
+if (tmpClusterSSA_tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$2 = $(0);
   let tmpNestedComplexRhs$1 = $(tmpCalleeParam$2);
@@ -98,6 +99,10 @@ if (tmpNestedComplexRhs) {
     }
   }
   tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
     if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
@@ -143,39 +148,45 @@ else {
   }
 }
 let e = b;
-if (b) {
+let f = true;
+if (e) {
   $( 100 );
-  const f = $( 0 );
-  let g = $( f );
-  if (g) {
+  const g = $( 0 );
+  let h = $( g );
+  if (h) {
 
   }
   else {
-    const h = $( 1 );
-    g = $( h );
-    if (g) {
-      const i = $( 2 );
-      g = $( i );
+    const i = $( 1 );
+    h = $( i );
+    if (h) {
+      const j = $( 2 );
+      h = $( j );
     }
   }
-  e = g;
+  e = h;
+}
+else {
+  f = false;
+}
+if (f) {
   while ($LOOP_UNROLL_9) {
     if (e) {
       $( 100 );
-      const j = $( 0 );
-      let k = $( j );
-      if (k) {
+      const k = $( 0 );
+      let l = $( k );
+      if (l) {
 
       }
       else {
-        const l = $( 1 );
-        k = $( l );
-        if (k) {
-          const m = $( 2 );
-          k = $( m );
+        const m = $( 1 );
+        l = $( m );
+        if (l) {
+          const n = $( 2 );
+          l = $( n );
         }
       }
-      e = k;
+      e = l;
     }
     else {
       break;

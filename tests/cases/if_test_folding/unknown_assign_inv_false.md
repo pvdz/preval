@@ -97,7 +97,7 @@ const a = function() {
   $( "block" );
   const c = Boolean( b );
   return c;
-},;
+};
 a();
 const d = a();
 $( d );

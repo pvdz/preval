@@ -109,7 +109,7 @@ const b = function() {
   else {
     return undefined;
   }
-},;
+};
 b();
 $( undefined );
 b();

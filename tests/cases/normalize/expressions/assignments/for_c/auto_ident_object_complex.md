@@ -51,18 +51,23 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   const tmpObjLitVal = $(1);
   const tmpObjLitVal$3 = $(3);
   a = { x: tmpObjLitVal, y: 2, z: tmpObjLitVal$3 };
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpObjLitVal$1 = $(1);
       const tmpObjLitVal$4 = $(3);
       a = { x: tmpObjLitVal$1, y: 2, z: tmpObjLitVal$4 };
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -81,18 +86,24 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 1 );
+let b = $( 1 );
+let c = true;
 if (b) {
-  const c = $( 1 );
-  const d = $( 3 );
+  const d = $( 1 );
+  const e = $( 3 );
   a = {
-x: c,
+x: d,
 y: 2,
-z: d
+z: e
   ;
-  let e = $( 1 );
+  b = $( 1 );
+}
+else {
+  c = false;
+}
+if (c) {
   while ($LOOP_UNROLL_10) {
-    if (e) {
+    if (b) {
       const f = $( 1 );
       const g = $( 3 );
       a = {
@@ -100,7 +111,7 @@ x: f,
 y: 2,
 z: g
       ;
-      e = $( 1 );
+      b = $( 1 );
     }
     else {
       break;

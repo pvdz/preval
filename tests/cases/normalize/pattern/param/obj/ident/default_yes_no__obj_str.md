@@ -92,7 +92,7 @@ const a = function($$0 ) {
   else {
     return d;
   }
-},;
+};
 const g = { x: "abc" };
 const h = a( g );
 $( h );

@@ -105,7 +105,7 @@ const a = function() {
   const d = $();
   $( b, c, d );
   return undefined;
-},;
+};
 a();
 $( undefined );
 export { a as default from "undefined"

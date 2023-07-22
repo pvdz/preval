@@ -141,13 +141,13 @@ const a = function() {
   else {
     return undefined;
   }
-},;
+};
 const b = function() {
   debugger;
   const c = [ undefined,, ];
   $( c );
   return undefined;
-},;
+};
 a();
 if ($) {
   a();

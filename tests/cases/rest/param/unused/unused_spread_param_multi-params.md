@@ -83,7 +83,7 @@ const a = function($$0,$$1 ) {
   const f = [];
   $( b, d, f );
   return undefined;
-},;
+};
 a( 1, 2 );
 a( "a", "b" );
 const g = $spy();

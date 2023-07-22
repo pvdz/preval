@@ -124,7 +124,7 @@ const a = function() {
     const d = $( 1 );
     return d;
   }
-},;
+};
 const e = $( 100 );
 $( e );
 const f = a();

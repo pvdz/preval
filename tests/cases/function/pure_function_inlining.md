@@ -122,7 +122,7 @@ const a = function($$0 ) {
   const d = `${[object Object]}\$1`;
   $( d );
   return undefined;
-},;
+};
 a( "purpleRule:reset \$1I want it my way" );
 a( "purpleRule:reset \$1You have to listen to me" );
 `````

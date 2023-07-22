@@ -129,7 +129,7 @@ const a = function() {
     $( "b" );
     return undefined;
   }
-},;
+};
 const c = $( 1 );
 if (c) {
   $( "c" );

@@ -98,7 +98,7 @@ const b = function($$0,$$1 ) {
   debugger;
   a = c * e;
   return undefined;
-},;
+};
 const g = [ 1, 2, 3,, ];
 const h = $( g );
 b( 10, ... h, 20 );

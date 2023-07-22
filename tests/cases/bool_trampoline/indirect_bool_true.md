@@ -95,7 +95,7 @@ const a = function($$0 ) {
   const d = $( b );
   const e = Boolean( d );
   return e;
-},;
+};
 $( a );
 $( a );
 const f = $( 100 );

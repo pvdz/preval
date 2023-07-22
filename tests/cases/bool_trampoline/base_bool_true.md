@@ -88,7 +88,7 @@ const a = function() {
   const b = $( 100 );
   const c = Boolean( b );
   return c;
-},;
+};
 $( a );
 $( a );
 const d = $( 100 );

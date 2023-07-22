@@ -98,7 +98,7 @@ const a = function() {
     $( b, "pass" );
     return undefined;
   }
-},;
+};
 a();
 a();
 a();

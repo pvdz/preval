@@ -139,7 +139,7 @@ const a = function($$0 ) {
     $( "b" );
     return d;
   }
-},;
+};
 const f = a( 1 );
 $( f );
 const g = a( 2 );

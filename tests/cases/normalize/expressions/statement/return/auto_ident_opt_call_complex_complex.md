@@ -97,7 +97,7 @@ const a = function() {
     const e = $dotCall( b, $, d );
     return e;
   }
-},;
+};
 const f = a();
 $( f );
 const g = {

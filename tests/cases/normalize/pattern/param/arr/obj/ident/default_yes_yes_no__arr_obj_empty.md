@@ -126,7 +126,7 @@ const a = function($$0 ) {
   else {
     return i;
   }
-},;
+};
 const l = {};
 const m = [ l, 20, 30,, ];
 const n = a( m );

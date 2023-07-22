@@ -103,7 +103,7 @@ const a = function() {
     const e = b.y;
     return e;
   }
-},;
+};
 const f = { y: 1 };
 const c = { x: f };
 const g = {

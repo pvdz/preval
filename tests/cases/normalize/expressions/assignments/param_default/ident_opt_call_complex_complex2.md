@@ -172,7 +172,7 @@ const b = function() {
     a = g;
     return g;
   }
-},;
+};
 const h = b();
 $( h );
 $( a );

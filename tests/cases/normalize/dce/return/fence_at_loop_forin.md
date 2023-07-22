@@ -149,7 +149,7 @@ b: 2
   }
   $( "after (not invoked but should not be eliminated)" );
   return undefined;
-},;
+};
 const g = a();
 $( g );
 `````

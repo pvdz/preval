@@ -62,7 +62,7 @@ With rename=true
 const a = function() {
   debugger;
   return undefined;
-},;
+};
 a.a;
 $( a );
 `````

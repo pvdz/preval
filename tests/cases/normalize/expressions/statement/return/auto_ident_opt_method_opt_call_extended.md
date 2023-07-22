@@ -111,7 +111,7 @@ const a = function() {
     const g = $dotCall( e, d, 1 );
     return g;
   }
-},;
+};
 const h = { e: $ };
 const i = { d: h };
 const c = { c: i };

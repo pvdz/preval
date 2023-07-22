@@ -122,7 +122,7 @@ catch (e) {
   }
   $( b );
   return undefined;
-},;
+};
 a();
 `````
 

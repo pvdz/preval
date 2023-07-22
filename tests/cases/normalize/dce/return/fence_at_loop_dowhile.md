@@ -126,7 +126,7 @@ const b = function($$0 ) {
     $( "after (not invoked)" );
     return undefined;
   }
-},;
+};
 const f = b( a );
 $( f );
 `````

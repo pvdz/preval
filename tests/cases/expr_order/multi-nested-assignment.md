@@ -237,20 +237,20 @@ let b = function() {
   debugger;
   $( "a" );
   return a;
-},;
+};
 let c = function() {
   debugger;
   $( "b" );
   b = 21;
   return a;
-},;
+};
 let d = function() {
   debugger;
   $( "c" );
   b = 31;
   c = 32;
   return a;
-},;
+};
 let e = function() {
   debugger;
   $( "d" );
@@ -258,7 +258,7 @@ let e = function() {
   c = 42;
   d = 43;
   return a;
-},;
+};
 const f = function() {
   debugger;
   $( "e" );
@@ -267,7 +267,7 @@ const f = function() {
   d = 53;
   e = 54;
   return a;
-},;
+};
 const g = b();
 const h = c();
 const i = d();

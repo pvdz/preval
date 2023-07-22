@@ -119,7 +119,7 @@ const a = function() {
   debugger;
   const b = $( 2, "from new func" );
   return b;
-},;
+};
 let c = function($$0 ) {
   const d = e;
   debugger;
@@ -131,10 +131,10 @@ let c = function($$0 ) {
     c = function() {
       debugger;
       return a;
-    },;
+    };
     return undefined;
   }
-},;
+};
 c = c( true );
 const f = c();
 $( f );

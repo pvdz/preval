@@ -100,7 +100,7 @@ const a = function($$0 ) {
   else {
     return d;
   }
-},;
+};
 const g = { x: "" };
 const h = a( g );
 $( h );

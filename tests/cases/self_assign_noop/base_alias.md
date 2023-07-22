@@ -109,7 +109,7 @@ const a = function() {
   $( "inner" );
   $( "inner" );
   return undefined;
-},;
+};
 $( a );
 `````
 

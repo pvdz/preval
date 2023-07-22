@@ -80,7 +80,7 @@ for (d in c {
   const e = function() {
     debugger;
     return undefined;
-  },;
+  };
   a = e;
   e.x = d;
 }

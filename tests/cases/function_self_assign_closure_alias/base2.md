@@ -133,10 +133,10 @@ let a = function() {
     debugger;
     $( "inner" );
     return undefined;
-  },;
+  };
   $();
   return undefined;
-},;
+};
 const b = a;
 a();
 b();

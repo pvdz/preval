@@ -64,12 +64,17 @@ $(1);
 $(2);
 const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
-const tmpIfTest = $(0);
+let tmpIfTest = $(0);
+let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
+  tmpIfTest = $(0);
+} else {
+  $tmpLoopUnrollCheck = false;
+}
+if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    if (tmpIfTest) {
+      tmpIfTest = $(0);
     } else {
       break;
     }
@@ -89,12 +94,18 @@ $( 1 );
 $( 2 );
 const a = $( 3 );
 const b = $( 4 );
-const c = $( 0 );
+let c = $( 0 );
+let d = true;
 if (c) {
-  let d = $( 0 );
+  c = $( 0 );
+}
+else {
+  d = false;
+}
+if (d) {
   while ($LOOP_UNROLL_10) {
-    if (d) {
-      d = $( 0 );
+    if (c) {
+      c = $( 0 );
     }
     else {
       break;

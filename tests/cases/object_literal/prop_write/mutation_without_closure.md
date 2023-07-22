@@ -82,7 +82,7 @@ const a = function() {
   $( "a" );
   $( "b" );
   return undefined;
-},;
+};
 a();
 a();
 const b = { y: 10 };

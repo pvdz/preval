@@ -123,7 +123,7 @@ const a = function($$0 ) {
   else {
     return h;
   }
-},;
+};
 const k = {
 x: 1,
 y: "",

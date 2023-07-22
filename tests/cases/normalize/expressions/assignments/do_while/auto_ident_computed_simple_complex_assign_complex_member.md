@@ -73,8 +73,6 @@ const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
-let tmpClusterSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs;
-let $tmpLoopUnrollCheck = true;
 if (varInitAssignLhsComputedRhs) {
   $(100);
   const varInitAssignLhsComputedProp$1 = $(`c`);
@@ -83,13 +81,9 @@ if (varInitAssignLhsComputedRhs) {
   const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
   b[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
   tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
-  tmpClusterSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$1;
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
       $(100);
       const varInitAssignLhsComputedProp$2 = $(`c`);
       const tmpCompObj$2 = $(b);
@@ -97,7 +91,7 @@ if ($tmpLoopUnrollCheck) {
       const varInitAssignLhsComputedRhs$2 = tmpCompObj$2[tmpCompProp$2];
       b[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
       tmpClusterSSA_a = varInitAssignLhsComputedRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$2;
     } else {
       break;
     }
@@ -123,32 +117,25 @@ const d = $( "d" );
 const e = c[ d ];
 b[a] = e;
 let f = e;
-let g = e;
-let h = true;
 if (e) {
   $( 100 );
-  const i = $( "c" );
-  const j = $( b );
-  const k = $( "d" );
-  const l = j[ k ];
-  b[i] = l;
-  f = l;
-  g = l;
-}
-else {
-  h = false;
-}
-if (h) {
+  const g = $( "c" );
+  const h = $( b );
+  const i = $( "d" );
+  const j = h[ i ];
+  b[g] = j;
+  f = j;
+  let k = j;
   while ($LOOP_UNROLL_9) {
-    if (g) {
+    if (k) {
       $( 100 );
-      const m = $( "c" );
-      const n = $( b );
-      const o = $( "d" );
-      const p = n[ o ];
-      b[m] = p;
-      f = p;
-      g = p;
+      const l = $( "c" );
+      const m = $( b );
+      const n = $( "d" );
+      const o = m[ n ];
+      b[l] = o;
+      f = o;
+      k = o;
     }
     else {
       break;

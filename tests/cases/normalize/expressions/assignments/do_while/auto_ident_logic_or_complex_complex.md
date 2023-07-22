@@ -74,9 +74,7 @@ if (tmpNestedComplexRhs) {
   tmpNestedComplexRhs = $(tmpCalleeParam$1);
   tmpClusterSSA_a = tmpNestedComplexRhs;
 }
-let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-let $tmpLoopUnrollCheck = true;
-if (tmpClusterSSA_tmpDoWhileFlag) {
+if (tmpNestedComplexRhs) {
   $(100);
   const tmpCalleeParam$2 = $(0);
   let tmpNestedComplexRhs$1 = $(tmpCalleeParam$2);
@@ -86,13 +84,9 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
     tmpNestedComplexRhs$1 = $(tmpCalleeParam$4);
   }
   tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
       $(100);
       const tmpCalleeParam$3 = $(0);
       let tmpNestedComplexRhs$2 = $(tmpCalleeParam$3);
@@ -102,7 +96,7 @@ if ($tmpLoopUnrollCheck) {
         tmpNestedComplexRhs$2 = $(tmpCalleeParam$5);
       }
       tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
     } else {
       break;
     }
@@ -129,40 +123,33 @@ else {
   b = $( d );
   c = b;
 }
-let e = b;
-let f = true;
-if (e) {
+if (b) {
   $( 100 );
-  const g = $( 0 );
-  let h = $( g );
-  if (h) {
+  const e = $( 0 );
+  let f = $( e );
+  if (f) {
 
   }
   else {
-    const i = $( 2 );
-    h = $( i );
+    const g = $( 2 );
+    f = $( g );
   }
-  c = h;
-  e = h;
-}
-else {
-  f = false;
-}
-if (f) {
+  c = f;
+  let h = f;
   while ($LOOP_UNROLL_9) {
-    if (e) {
+    if (h) {
       $( 100 );
-      const j = $( 0 );
-      let k = $( j );
-      if (k) {
+      const i = $( 0 );
+      let j = $( i );
+      if (j) {
 
       }
       else {
-        const l = $( 2 );
-        k = $( l );
+        const k = $( 2 );
+        j = $( k );
       }
-      c = k;
-      e = k;
+      c = j;
+      h = j;
     }
     else {
       break;

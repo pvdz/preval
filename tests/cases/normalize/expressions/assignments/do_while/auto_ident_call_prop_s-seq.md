@@ -64,23 +64,17 @@ $(100);
 const b = { $: $ };
 const tmpNestedComplexRhs = b.$(1);
 let tmpClusterSSA_a = tmpNestedComplexRhs;
-let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-let $tmpLoopUnrollCheck = true;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpNestedComplexRhs$1 = b.$(1);
   tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
       $(100);
       const tmpNestedComplexRhs$2 = b.$(1);
       tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
     } else {
       break;
     }
@@ -99,24 +93,17 @@ $( 100 );
 const a = { $: $ };
 const b = a.$( 1 );
 let c = b;
-let d = b;
-let e = true;
 if (b) {
   $( 100 );
-  const f = a.$( 1 );
-  c = f;
-  d = f;
-}
-else {
-  e = false;
-}
-if (e) {
+  const d = a.$( 1 );
+  c = d;
+  let e = d;
   while ($LOOP_UNROLL_9) {
-    if (d) {
+    if (e) {
       $( 100 );
-      const g = a.$( 1 );
-      c = g;
-      d = g;
+      const f = a.$( 1 );
+      c = f;
+      e = f;
     }
     else {
       break;

@@ -61,19 +61,14 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 $(100);
-let tmpDoWhileFlag = b.$(1);
-let $tmpLoopUnrollCheck = true;
+const tmpDoWhileFlag = b.$(1);
 if (tmpDoWhileFlag) {
   $(100);
-  tmpDoWhileFlag = b.$(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag = b.$(1);
   while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
-      tmpDoWhileFlag = b.$(1);
+      tmpClusterSSA_tmpDoWhileFlag = b.$(1);
     } else {
       break;
     }
@@ -94,20 +89,14 @@ a: 999,
 b: 1000
 ;
 $( 100 );
-let c = a.$( 1 );
-let d = true;
+const c = a.$( 1 );
 if (c) {
   $( 100 );
-  c = a.$( 1 );
-}
-else {
-  d = false;
-}
-if (d) {
+  let d = a.$( 1 );
   while ($LOOP_UNROLL_9) {
-    if (c) {
+    if (d) {
       $( 100 );
-      c = a.$( 1 );
+      d = a.$( 1 );
     }
     else {
       break;

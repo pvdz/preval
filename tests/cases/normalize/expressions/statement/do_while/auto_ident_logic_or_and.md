@@ -80,37 +80,32 @@ if (tmpDoWhileFlag) {
   } else {
   }
 }
-let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$2 = $(0);
-  tmpDoWhileFlag = $(tmpCalleeParam$2);
-  if (tmpDoWhileFlag) {
+  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
+  if (tmpClusterSSA_tmpDoWhileFlag) {
   } else {
     const tmpCalleeParam$4 = $(1);
-    tmpDoWhileFlag = $(tmpCalleeParam$4);
-    if (tmpDoWhileFlag) {
+    tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$4);
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       const tmpCalleeParam$6 = $(2);
-      tmpDoWhileFlag = $(tmpCalleeParam$6);
+      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$6);
     } else {
     }
   }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$5 = $(0);
-      tmpDoWhileFlag = $(tmpCalleeParam$5);
-      if (tmpDoWhileFlag) {
+      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$5);
+      if (tmpClusterSSA_tmpDoWhileFlag) {
       } else {
         const tmpCalleeParam$7 = $(1);
-        tmpDoWhileFlag = $(tmpCalleeParam$7);
-        if (tmpDoWhileFlag) {
+        tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$7);
+        if (tmpClusterSSA_tmpDoWhileFlag) {
           const tmpCalleeParam$9 = $(2);
-          tmpDoWhileFlag = $(tmpCalleeParam$9);
+          tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$9);
         } else {
         }
       }
@@ -143,41 +138,35 @@ else {
     b = $( d );
   }
 }
-let e = true;
 if (b) {
   $( 100 );
-  const f = $( 0 );
-  b = $( f );
-  if (b) {
+  const e = $( 0 );
+  let f = $( e );
+  if (f) {
 
   }
   else {
     const g = $( 1 );
-    b = $( g );
-    if (b) {
+    f = $( g );
+    if (f) {
       const h = $( 2 );
-      b = $( h );
+      f = $( h );
     }
   }
-}
-else {
-  e = false;
-}
-if (e) {
   while ($LOOP_UNROLL_9) {
-    if (b) {
+    if (f) {
       $( 100 );
       const i = $( 0 );
-      b = $( i );
-      if (b) {
+      f = $( i );
+      if (f) {
 
       }
       else {
         const j = $( 1 );
-        b = $( j );
-        if (b) {
+        f = $( j );
+        if (f) {
           const k = $( 2 );
-          b = $( k );
+          f = $( k );
         }
       }
     }

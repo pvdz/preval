@@ -57,17 +57,12 @@ const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-let tmpIfTest = $(0);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -87,18 +82,12 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 new a( b, c );
-let d = $( 0 );
-let e = true;
+const d = $( 0 );
 if (d) {
-  d = $( 0 );
-}
-else {
-  e = false;
-}
-if (e) {
+  let e = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (d) {
-      d = $( 0 );
+    if (e) {
+      e = $( 0 );
     }
     else {
       break;

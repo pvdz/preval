@@ -72,17 +72,12 @@ if (tmpIfTest) {
   }
 } else {
 }
-let tmpIfTest$1 = $(0);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  tmpIfTest$1 = $(0);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest$1 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest$1) {
-      tmpIfTest$1 = $(0);
+    if (tmpClusterSSA_tmpIfTest$1) {
+      tmpClusterSSA_tmpIfTest$1 = $(0);
     } else {
       break;
     }
@@ -108,18 +103,12 @@ if (b) {
     $( e );
   }
 }
-let f = $( 0 );
-let g = true;
+const f = $( 0 );
 if (f) {
-  f = $( 0 );
-}
-else {
-  g = false;
-}
-if (g) {
+  let g = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (f) {
-      f = $( 0 );
+    if (g) {
+      g = $( 0 );
     }
     else {
       break;

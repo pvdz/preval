@@ -65,17 +65,12 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-let tmpIfTest = $(0);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -104,18 +99,12 @@ const e = $( a );
 const f = $( "d" );
 const g = e[ f ];
 c[d] = g;
-let h = $( 0 );
-let i = true;
+const h = $( 0 );
 if (h) {
-  h = $( 0 );
-}
-else {
-  i = false;
-}
-if (i) {
+  let i = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (h) {
-      h = $( 0 );
+    if (i) {
+      i = $( 0 );
     }
     else {
       break;

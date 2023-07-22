@@ -60,25 +60,20 @@ $(a, x, y);
 `````js filename=intro
 let x = 1;
 let y = 2;
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
   x = tmpObjLitVal;
   y = tmpObjLitVal$1;
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpObjLitVal$2 = $(3);
       const tmpObjLitVal$4 = $(4);
       x = tmpObjLitVal$2;
       y = tmpObjLitVal$4;
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -96,26 +91,20 @@ With rename=true
 `````js filename=intro
 let a = 1;
 let b = 2;
-let c = $( 1 );
-let d = true;
+const c = $( 1 );
 if (c) {
-  const e = $( 3 );
-  const f = $( 4 );
-  a = e;
-  b = f;
-  c = $( 1 );
-}
-else {
-  d = false;
-}
-if (d) {
+  const d = $( 3 );
+  const e = $( 4 );
+  a = d;
+  b = e;
+  let f = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
+    if (f) {
       const g = $( 3 );
       const h = $( 4 );
       a = g;
       b = h;
-      c = $( 1 );
+      f = $( 1 );
     }
     else {
       break;

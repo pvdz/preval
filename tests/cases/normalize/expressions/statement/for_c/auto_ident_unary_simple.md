@@ -50,17 +50,12 @@ $(a, x);
 ## Output
 
 `````js filename=intro
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(1);
 if (tmpIfTest) {
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(1);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -76,18 +71,12 @@ $(a, 1);
 With rename=true
 
 `````js filename=intro
-let a = $( 1 );
-let b = true;
+const a = $( 1 );
 if (a) {
-  a = $( 1 );
-}
-else {
-  b = false;
-}
-if (b) {
+  let b = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (a) {
-      a = $( 1 );
+    if (b) {
+      b = $( 1 );
     }
     else {
       break;

@@ -80,17 +80,12 @@ if (tmpIfTest) {
     tmpChainElementObject[tmpChainRootComputed$1];
   }
 }
-let tmpIfTest$3 = $(0);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest$3 = $(0);
 if (tmpIfTest$3) {
-  tmpIfTest$3 = $(0);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest$3 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest$3) {
-      tmpIfTest$3 = $(0);
+    if (tmpClusterSSA_tmpIfTest$3) {
+      tmpClusterSSA_tmpIfTest$3 = $(0);
     } else {
       break;
     }
@@ -128,18 +123,12 @@ else {
     g[ i ];
   }
 }
-let j = $( 0 );
-let k = true;
+const j = $( 0 );
 if (j) {
-  j = $( 0 );
-}
-else {
-  k = false;
-}
-if (k) {
+  let k = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (j) {
-      j = $( 0 );
+    if (k) {
+      k = $( 0 );
     }
     else {
       break;

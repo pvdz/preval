@@ -73,8 +73,6 @@ const tmpBinLhs = varInitAssignLhsComputedObj.x;
 const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
 varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
 let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
-let tmpClusterSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs;
-let $tmpLoopUnrollCheck = true;
 if (varInitAssignLhsComputedRhs) {
   $(100);
   const tmpCalleeParam$1 = $(b);
@@ -83,13 +81,9 @@ if (varInitAssignLhsComputedRhs) {
   const varInitAssignLhsComputedRhs$1 = tmpBinLhs$1 - 1;
   varInitAssignLhsComputedObj$1.x = varInitAssignLhsComputedRhs$1;
   tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
-  tmpClusterSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$1;
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
       $(100);
       const tmpCalleeParam$2 = $(b);
       const varInitAssignLhsComputedObj$2 = $(tmpCalleeParam$2);
@@ -97,7 +91,7 @@ if ($tmpLoopUnrollCheck) {
       const varInitAssignLhsComputedRhs$2 = tmpBinLhs$2 - 1;
       varInitAssignLhsComputedObj$2.x = varInitAssignLhsComputedRhs$2;
       tmpClusterSSA_a = varInitAssignLhsComputedRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$2;
     } else {
       break;
     }
@@ -120,32 +114,25 @@ const d = c.x;
 const e = d - 1;
 c.x = e;
 let f = e;
-let g = e;
-let h = true;
 if (e) {
   $( 100 );
-  const i = $( a );
-  const j = $( i );
-  const k = j.x;
-  const l = k - 1;
-  j.x = l;
-  f = l;
-  g = l;
-}
-else {
-  h = false;
-}
-if (h) {
+  const g = $( a );
+  const h = $( g );
+  const i = h.x;
+  const j = i - 1;
+  h.x = j;
+  f = j;
+  let k = j;
   while ($LOOP_UNROLL_9) {
-    if (g) {
+    if (k) {
       $( 100 );
-      const m = $( a );
-      const n = $( m );
-      const o = n.x;
-      const p = o - 1;
-      n.x = p;
-      f = p;
-      g = p;
+      const l = $( a );
+      const m = $( l );
+      const n = m.x;
+      const o = n - 1;
+      m.x = o;
+      f = o;
+      k = o;
     }
     else {
       break;

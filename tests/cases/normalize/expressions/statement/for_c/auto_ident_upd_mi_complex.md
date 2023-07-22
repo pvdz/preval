@@ -59,27 +59,22 @@ $(a, b);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam = $(b);
   const tmpAssignMemLhsObj = $(tmpCalleeParam);
   const tmpCompoundAssignLhs = tmpAssignMemLhsObj.x;
   const tmpAssignMemRhs = tmpCompoundAssignLhs - 1;
   tmpAssignMemLhsObj.x = tmpAssignMemRhs;
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpCalleeParam$1 = $(b);
       const tmpAssignMemLhsObj$1 = $(tmpCalleeParam$1);
       const tmpCompoundAssignLhs$1 = tmpAssignMemLhsObj$1.x;
       const tmpAssignMemRhs$1 = tmpCompoundAssignLhs$1 - 1;
       tmpAssignMemLhsObj$1.x = tmpAssignMemRhs$1;
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -99,28 +94,22 @@ const b = {
 a: 999,
 b: 1000
 ;
-let c = $( 1 );
-let d = true;
+const c = $( 1 );
 if (c) {
-  const e = $( a );
-  const f = $( e );
-  const g = f.x;
-  const h = g - 1;
-  f.x = h;
-  c = $( 1 );
-}
-else {
-  d = false;
-}
-if (d) {
+  const d = $( a );
+  const e = $( d );
+  const f = e.x;
+  const g = f - 1;
+  e.x = g;
+  let h = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
+    if (h) {
       const i = $( a );
       const j = $( i );
       const k = j.x;
       const l = k - 1;
       j.x = l;
-      c = $( 1 );
+      h = $( 1 );
     }
     else {
       break;

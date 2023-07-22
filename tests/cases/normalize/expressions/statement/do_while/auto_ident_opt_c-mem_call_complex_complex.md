@@ -93,10 +93,9 @@ if (tmpIfTest) {
     tmpDoWhileFlag = tmpChainElementCall$1;
   }
 }
-let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
-  tmpDoWhileFlag = false;
+  let tmpClusterSSA_tmpDoWhileFlag = false;
   const tmpChainElementCall$2 = $(b);
   const tmpIfTest$2 = tmpChainElementCall$2 == null;
   if (tmpIfTest$2) {
@@ -108,17 +107,13 @@ if (tmpDoWhileFlag) {
     } else {
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$4 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$1);
-      tmpDoWhileFlag = tmpChainElementCall$4;
+      tmpClusterSSA_tmpDoWhileFlag = tmpChainElementCall$4;
     }
   }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
-      tmpDoWhileFlag = false;
+      tmpClusterSSA_tmpDoWhileFlag = false;
       const tmpChainElementCall$3 = $(b);
       const tmpIfTest$3 = tmpChainElementCall$3 == null;
       if (tmpIfTest$3) {
@@ -130,7 +125,7 @@ if ($tmpLoopUnrollCheck) {
         } else {
           const tmpCalleeParam$2 = $(1);
           const tmpChainElementCall$5 = $dotCall(tmpChainElementObject$2, tmpChainElementCall$3, tmpCalleeParam$2);
-          tmpDoWhileFlag = tmpChainElementCall$5;
+          tmpClusterSSA_tmpDoWhileFlag = tmpChainElementCall$5;
         }
       }
     } else {
@@ -172,10 +167,9 @@ else {
     c = j;
   }
 }
-let k = true;
 if (c) {
   $( 100 );
-  c = false;
+  let k = false;
   const l = $( a );
   const m = l == null;
   if (m) {
@@ -191,18 +185,13 @@ if (c) {
     else {
       const q = $( 1 );
       const r = $dotCall( o, l, q );
-      c = r;
+      k = r;
     }
   }
-}
-else {
-  k = false;
-}
-if (k) {
   while ($LOOP_UNROLL_9) {
-    if (c) {
+    if (k) {
       $( 100 );
-      c = false;
+      k = false;
       const s = $( a );
       const t = s == null;
       if (t) {
@@ -218,7 +207,7 @@ if (k) {
         else {
           const x = $( 1 );
           const y = $dotCall( v, s, x );
-          c = y;
+          k = y;
         }
       }
     }

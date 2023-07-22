@@ -104,17 +104,12 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
-let tmpIfTest = $(0);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -152,18 +147,12 @@ i[j] = 3;
 g[h] = 3;
 e[f] = 3;
 c[d] = 3;
-let o = $( 0 );
-let p = true;
+const o = $( 0 );
 if (o) {
-  o = $( 0 );
-}
-else {
-  p = false;
-}
-if (p) {
+  let p = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (o) {
-      o = $( 0 );
+    if (p) {
+      p = $( 0 );
     }
     else {
       break;

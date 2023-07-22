@@ -75,9 +75,7 @@ if (tmpIfTest) {
   tmpNestedComplexRhs = $(tmpCalleeParam);
   tmpClusterSSA_a = tmpNestedComplexRhs;
 }
-let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-let $tmpLoopUnrollCheck = true;
-if (tmpClusterSSA_tmpDoWhileFlag) {
+if (tmpNestedComplexRhs) {
   $(100);
   let tmpNestedComplexRhs$1 = undefined;
   const tmpIfTest$1 = $(30);
@@ -88,13 +86,9 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
     tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
   }
   tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
       $(100);
       let tmpNestedComplexRhs$2 = undefined;
       const tmpIfTest$2 = $(30);
@@ -105,7 +99,7 @@ if ($tmpLoopUnrollCheck) {
         tmpNestedComplexRhs$2 = $(tmpCalleeParam$2);
       }
       tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
     } else {
       break;
     }
@@ -133,40 +127,33 @@ else {
   a = $( d );
   c = a;
 }
-let e = a;
-let f = true;
-if (e) {
+if (a) {
   $( 100 );
-  let g = undefined;
-  const h = $( 30 );
-  if (h) {
-    g = $( 2 );
+  let e = undefined;
+  const f = $( 30 );
+  if (f) {
+    e = $( 2 );
   }
   else {
-    const i = $( 100 );
-    g = $( i );
+    const g = $( 100 );
+    e = $( g );
   }
-  c = g;
-  e = g;
-}
-else {
-  f = false;
-}
-if (f) {
+  c = e;
+  let h = e;
   while ($LOOP_UNROLL_9) {
-    if (e) {
+    if (h) {
       $( 100 );
-      let j = undefined;
-      const k = $( 30 );
-      if (k) {
-        j = $( 2 );
+      let i = undefined;
+      const j = $( 30 );
+      if (j) {
+        i = $( 2 );
       }
       else {
-        const l = $( 100 );
-        j = $( l );
+        const k = $( 100 );
+        i = $( k );
       }
-      c = j;
-      e = j;
+      c = i;
+      h = i;
     }
     else {
       break;

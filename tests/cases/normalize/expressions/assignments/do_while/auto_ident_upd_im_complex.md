@@ -74,8 +74,6 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 let tmpClusterSSA_a = tmpPostUpdArgVal;
-let tmpClusterSSA_tmpDoWhileFlag = tmpPostUpdArgVal;
-let $tmpLoopUnrollCheck = true;
 if (tmpPostUpdArgVal) {
   $(100);
   const tmpCalleeParam$1 = $(b);
@@ -84,13 +82,9 @@ if (tmpPostUpdArgVal) {
   const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 - 1;
   tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
   tmpClusterSSA_a = tmpPostUpdArgVal$1;
-  tmpClusterSSA_tmpDoWhileFlag = tmpPostUpdArgVal$1;
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpPostUpdArgVal$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
       $(100);
       const tmpCalleeParam$2 = $(b);
       const tmpPostUpdArgObj$2 = $(tmpCalleeParam$2);
@@ -98,7 +92,7 @@ if ($tmpLoopUnrollCheck) {
       const tmpAssignMemRhs$2 = tmpPostUpdArgVal$2 - 1;
       tmpPostUpdArgObj$2.x = tmpAssignMemRhs$2;
       tmpClusterSSA_a = tmpPostUpdArgVal$2;
-      tmpClusterSSA_tmpDoWhileFlag = tmpPostUpdArgVal$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpPostUpdArgVal$2;
     } else {
       break;
     }
@@ -121,32 +115,25 @@ const d = c.x;
 const e = d - 1;
 c.x = e;
 let f = d;
-let g = d;
-let h = true;
 if (d) {
   $( 100 );
-  const i = $( a );
-  const j = $( i );
-  const k = j.x;
-  const l = k - 1;
-  j.x = l;
-  f = k;
-  g = k;
-}
-else {
-  h = false;
-}
-if (h) {
+  const g = $( a );
+  const h = $( g );
+  const i = h.x;
+  const j = i - 1;
+  h.x = j;
+  f = i;
+  let k = i;
   while ($LOOP_UNROLL_9) {
-    if (g) {
+    if (k) {
       $( 100 );
-      const m = $( a );
-      const n = $( m );
-      const o = n.x;
-      const p = o - 1;
-      n.x = p;
-      f = o;
-      g = o;
+      const l = $( a );
+      const m = $( l );
+      const n = m.x;
+      const o = n - 1;
+      m.x = o;
+      f = n;
+      k = n;
     }
     else {
       break;

@@ -65,25 +65,19 @@ const b = { c: 1 };
 const tmpCompObj = $(b);
 const tmpNestedComplexRhs = tmpCompObj.c;
 let tmpClusterSSA_a = tmpNestedComplexRhs;
-let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-let $tmpLoopUnrollCheck = true;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpCompObj$1 = $(b);
   const tmpNestedComplexRhs$1 = tmpCompObj$1.c;
   tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
       $(100);
       const tmpCompObj$2 = $(b);
       const tmpNestedComplexRhs$2 = tmpCompObj$2.c;
       tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
     } else {
       break;
     }
@@ -103,26 +97,19 @@ const a = { c: 1 };
 const b = $( a );
 const c = b.c;
 let d = c;
-let e = c;
-let f = true;
 if (c) {
   $( 100 );
-  const g = $( a );
-  const h = g.c;
-  d = h;
-  e = h;
-}
-else {
-  f = false;
-}
-if (f) {
+  const e = $( a );
+  const f = e.c;
+  d = f;
+  let g = f;
   while ($LOOP_UNROLL_9) {
-    if (e) {
+    if (g) {
       $( 100 );
-      const i = $( a );
-      const j = i.c;
-      d = j;
-      e = j;
+      const h = $( a );
+      const i = h.c;
+      d = i;
+      g = i;
     }
     else {
       break;

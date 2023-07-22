@@ -65,12 +65,13 @@ $(100);
 let tmpDoWhileFlag = false;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let $tmpLoopUnrollCheck = false;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   tmpDoWhileFlag = tmpChainElementCall$1;
+  $tmpLoopUnrollCheck = tmpChainElementCall$1;
 }
-let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
   tmpDoWhileFlag = false;
@@ -82,7 +83,6 @@ if (tmpDoWhileFlag) {
     tmpDoWhileFlag = tmpChainElementCall$4;
   }
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -115,14 +115,15 @@ $( 100 );
 let a = false;
 const b = $( $ );
 const c = b == null;
+let d = false;
 if (c) {
 
 }
 else {
-  const d = $dotCall( b, $, 1 );
-  a = d;
+  const e = $dotCall( b, $, 1 );
+  a = e;
+  d = e;
 }
-let e = true;
 if (a) {
   $( 100 );
   a = false;
@@ -136,10 +137,7 @@ if (a) {
     a = h;
   }
 }
-else {
-  e = false;
-}
-if (e) {
+if (d) {
   while ($LOOP_UNROLL_9) {
     if (a) {
       $( 100 );

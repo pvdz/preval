@@ -55,23 +55,18 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpNestedComplexRhs = $(2);
   b = tmpNestedComplexRhs;
   a = tmpNestedComplexRhs;
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpNestedComplexRhs$1 = $(2);
       b = tmpNestedComplexRhs$1;
       a = tmpNestedComplexRhs$1;
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
@@ -91,24 +86,18 @@ let b = {
 a: 999,
 b: 1000
 ;
-let c = $( 1 );
-let d = true;
+const c = $( 1 );
 if (c) {
-  const e = $( 2 );
-  a = e;
-  b = e;
-  c = $( 1 );
-}
-else {
-  d = false;
-}
-if (d) {
+  const d = $( 2 );
+  a = d;
+  b = d;
+  let e = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
+    if (e) {
       const f = $( 2 );
       a = f;
       b = f;
-      c = $( 1 );
+      e = $( 1 );
     }
     else {
       break;

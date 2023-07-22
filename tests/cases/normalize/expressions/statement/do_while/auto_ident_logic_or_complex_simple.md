@@ -62,11 +62,12 @@ $(a);
 $(100);
 const tmpCalleeParam = $(0);
 let tmpDoWhileFlag = $(tmpCalleeParam);
+let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
+  $tmpLoopUnrollCheck = tmpDoWhileFlag;
 } else {
   tmpDoWhileFlag = true;
 }
-let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$1 = $(0);
@@ -76,7 +77,6 @@ if (tmpDoWhileFlag) {
     tmpDoWhileFlag = true;
   }
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -106,13 +106,13 @@ With rename=true
 $( 100 );
 const a = $( 0 );
 let b = $( a );
+let c = true;
 if (b) {
-
+  c = b;
 }
 else {
   b = true;
 }
-let c = true;
 if (b) {
   $( 100 );
   const d = $( 0 );
@@ -123,9 +123,6 @@ if (b) {
   else {
     b = true;
   }
-}
-else {
-  c = false;
 }
 if (c) {
   while ($LOOP_UNROLL_9) {

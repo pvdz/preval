@@ -92,10 +92,9 @@ if (tmpIfTest) {
     tmpDoWhileFlag = tmpChainElementObject$1;
   }
 }
-let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
-  tmpDoWhileFlag = false;
+  let tmpClusterSSA_tmpDoWhileFlag = false;
   const tmpChainElementCall$1 = $(b);
   const tmpIfTest$2 = tmpChainElementCall$1 == null;
   if (tmpIfTest$2) {
@@ -107,17 +106,13 @@ if (tmpDoWhileFlag) {
     } else {
       const tmpChainRootComputed$4 = $(`y`);
       const tmpChainElementObject$4 = tmpChainElementObject$2[tmpChainRootComputed$4];
-      tmpDoWhileFlag = tmpChainElementObject$4;
+      tmpClusterSSA_tmpDoWhileFlag = tmpChainElementObject$4;
     }
   }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
-      tmpDoWhileFlag = false;
+      tmpClusterSSA_tmpDoWhileFlag = false;
       const tmpChainElementCall$2 = $(b);
       const tmpIfTest$3 = tmpChainElementCall$2 == null;
       if (tmpIfTest$3) {
@@ -129,7 +124,7 @@ if ($tmpLoopUnrollCheck) {
         } else {
           const tmpChainRootComputed$5 = $(`y`);
           const tmpChainElementObject$5 = tmpChainElementObject$3[tmpChainRootComputed$5];
-          tmpDoWhileFlag = tmpChainElementObject$5;
+          tmpClusterSSA_tmpDoWhileFlag = tmpChainElementObject$5;
         }
       }
     } else {
@@ -172,10 +167,9 @@ else {
     d = k;
   }
 }
-let l = true;
 if (d) {
   $( 100 );
-  d = false;
+  let l = false;
   const m = $( b );
   const n = m == null;
   if (n) {
@@ -191,18 +185,13 @@ if (d) {
     else {
       const r = $( "y" );
       const s = p[ r ];
-      d = s;
+      l = s;
     }
   }
-}
-else {
-  l = false;
-}
-if (l) {
   while ($LOOP_UNROLL_9) {
-    if (d) {
+    if (l) {
       $( 100 );
-      d = false;
+      l = false;
       const t = $( b );
       const u = t == null;
       if (u) {
@@ -218,7 +207,7 @@ if (l) {
         else {
           const y = $( "y" );
           const z = w[ y ];
-          d = z;
+          l = z;
         }
       }
     }

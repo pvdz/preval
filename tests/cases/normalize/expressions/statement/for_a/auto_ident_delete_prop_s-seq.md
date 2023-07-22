@@ -58,17 +58,12 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 delete arg.y;
-let tmpIfTest = $(0);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -91,18 +86,12 @@ b: 1000
 $( 1 );
 $( 2 );
 deletea.y;
-let c = $( 0 );
-let d = true;
+const c = $( 0 );
 if (c) {
-  c = $( 0 );
-}
-else {
-  d = false;
-}
-if (d) {
+  let d = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      c = $( 0 );
+    if (d) {
+      d = $( 0 );
     }
     else {
       break;

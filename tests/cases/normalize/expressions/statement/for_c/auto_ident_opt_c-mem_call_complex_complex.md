@@ -67,11 +67,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
-let tmpIfTest = $(1);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(1);
 if (tmpIfTest) {
+  const b = { $: $ };
   const tmpChainElementCall = $(b);
   const tmpIfTest$1 = tmpChainElementCall == null;
   if (tmpIfTest$1) {
@@ -85,13 +83,9 @@ if (tmpIfTest) {
       $dotCall(tmpChainElementObject, tmpChainElementCall, tmpCalleeParam$3);
     }
   }
-  tmpIfTest = $(1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
+    if (tmpClusterSSA_tmpIfTest) {
       const tmpChainElementCall$1 = $(b);
       const tmpIfTest$2 = tmpChainElementCall$1 == null;
       if (tmpIfTest$2) {
@@ -105,13 +99,14 @@ if ($tmpLoopUnrollCheck) {
           $dotCall(tmpChainElementObject$1, tmpChainElementCall$1, tmpCalleeParam$1);
         }
       }
-      tmpIfTest = $(1);
+      tmpClusterSSA_tmpIfTest = $(1);
     } else {
       break;
     }
   }
 } else {
 }
+const a = { a: 999, b: 1000 };
 $(a);
 `````
 
@@ -120,64 +115,58 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = {
-a: 999,
-b: 1000
-;
-let c = $( 1 );
-let d = true;
-if (c) {
-  const e = $( a );
-  const f = e == null;
-  if (f) {
+const a = $( 1 );
+if (a) {
+  const b = { $: $ };
+  const c = $( b );
+  const d = c == null;
+  if (d) {
 
   }
   else {
-    const g = $( "$" );
-    const h = e[ g ];
-    const i = h == null;
-    if (i) {
+    const e = $( "$" );
+    const f = c[ e ];
+    const g = f == null;
+    if (g) {
 
     }
     else {
-      const j = $( 1 );
-      $dotCall( h, e, j );
+      const h = $( 1 );
+      $dotCall( f, c, h );
     }
   }
-  c = $( 1 );
-}
-else {
-  d = false;
-}
-if (d) {
+  let i = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      const k = $( a );
-      const l = k == null;
-      if (l) {
+    if (i) {
+      const j = $( b );
+      const k = j == null;
+      if (k) {
 
       }
       else {
-        const m = $( "$" );
-        const n = k[ m ];
-        const o = n == null;
-        if (o) {
+        const l = $( "$" );
+        const m = j[ l ];
+        const n = m == null;
+        if (n) {
 
         }
         else {
-          const p = $( 1 );
-          $dotCall( n, k, p );
+          const o = $( 1 );
+          $dotCall( m, j, o );
         }
       }
-      c = $( 1 );
+      i = $( 1 );
     }
     else {
       break;
     }
   }
 }
-$( b );
+const p = {
+a: 999,
+b: 1000
+;
+$( p );
 `````
 
 ## Globals

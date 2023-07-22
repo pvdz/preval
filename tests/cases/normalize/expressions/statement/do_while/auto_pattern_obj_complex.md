@@ -58,21 +58,16 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpCalleeParam = { a: 1, b: 2 };
-let tmpDoWhileFlag = $(tmpCalleeParam);
-let $tmpLoopUnrollCheck = true;
+const tmpDoWhileFlag = $(tmpCalleeParam);
 if (tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$1 = { a: 1, b: 2 };
-  tmpDoWhileFlag = $(tmpCalleeParam$1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$1);
   while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$2 = { a: 1, b: 2 };
-      tmpDoWhileFlag = $(tmpCalleeParam$2);
+      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
     } else {
       break;
     }
@@ -92,28 +87,22 @@ const a = {
 a: 1,
 b: 2
 ;
-let b = $( a );
-let c = true;
+const b = $( a );
 if (b) {
   $( 100 );
-  const d = {
+  const c = {
 a: 1,
 b: 2
   ;
-  b = $( d );
-}
-else {
-  c = false;
-}
-if (c) {
+  let d = $( c );
   while ($LOOP_UNROLL_9) {
-    if (b) {
+    if (d) {
       $( 100 );
       const e = {
 a: 1,
 b: 2
       ;
-      b = $( e );
+      d = $( e );
     }
     else {
       break;

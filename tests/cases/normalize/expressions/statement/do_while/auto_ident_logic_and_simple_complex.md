@@ -61,21 +61,16 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpCalleeParam = $(1);
-let tmpDoWhileFlag = $(tmpCalleeParam);
-let $tmpLoopUnrollCheck = true;
+const tmpDoWhileFlag = $(tmpCalleeParam);
 if (tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$1 = $(1);
-  tmpDoWhileFlag = $(tmpCalleeParam$1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$1);
   while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$2 = $(1);
-      tmpDoWhileFlag = $(tmpCalleeParam$2);
+      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
     } else {
       break;
     }
@@ -93,22 +88,16 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 1 );
-let b = $( a );
-let c = true;
+const b = $( a );
 if (b) {
   $( 100 );
-  const d = $( 1 );
-  b = $( d );
-}
-else {
-  c = false;
-}
-if (c) {
+  const c = $( 1 );
+  let d = $( c );
   while ($LOOP_UNROLL_9) {
-    if (b) {
+    if (d) {
       $( 100 );
       const e = $( 1 );
-      b = $( e );
+      d = $( e );
     }
     else {
       break;

@@ -64,12 +64,14 @@ $(a);
 $(100);
 const tmpCalleeParam = $(0);
 let tmpDoWhileFlag = $(tmpCalleeParam);
+let $tmpLoopUnrollCheck = false;
 if (tmpDoWhileFlag) {
+  $tmpLoopUnrollCheck = tmpDoWhileFlag;
 } else {
   const tmpCalleeParam$1 = $(2);
   tmpDoWhileFlag = $(tmpCalleeParam$1);
+  $tmpLoopUnrollCheck = tmpDoWhileFlag;
 }
-let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$2 = $(0);
@@ -80,7 +82,6 @@ if (tmpDoWhileFlag) {
     tmpDoWhileFlag = $(tmpCalleeParam$4);
   }
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -111,14 +112,15 @@ With rename=true
 $( 100 );
 const a = $( 0 );
 let b = $( a );
+let c = false;
 if (b) {
-
+  c = b;
 }
 else {
-  const c = $( 2 );
-  b = $( c );
+  const d = $( 2 );
+  b = $( d );
+  c = b;
 }
-let d = true;
 if (b) {
   $( 100 );
   const e = $( 0 );
@@ -131,10 +133,7 @@ if (b) {
     b = $( f );
   }
 }
-else {
-  d = false;
-}
-if (d) {
+if (c) {
   while ($LOOP_UNROLL_9) {
     if (b) {
       $( 100 );

@@ -61,17 +61,12 @@ const tmpCalleeParam = [tmpArrElement];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...arrAssignPatternRhs];
 const tmpClusterSSA_b = arrPatternSplat[0];
-let tmpIfTest = $(0);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -95,18 +90,12 @@ const c = [ b,, ];
 const d = $( c );
 const e = [ ... d,, ];
 const f = e[ 0 ];
-let g = $( 0 );
-let h = true;
+const g = $( 0 );
 if (g) {
-  g = $( 0 );
-}
-else {
-  h = false;
-}
-if (h) {
+  let h = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (g) {
-      g = $( 0 );
+    if (h) {
+      h = $( 0 );
     }
     else {
       break;

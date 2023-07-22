@@ -63,21 +63,16 @@ const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 $(100);
 const tmpAssignRhsCompProp = $(`c`);
-let tmpDoWhileFlag = b[tmpAssignRhsCompProp];
-let $tmpLoopUnrollCheck = true;
+const tmpDoWhileFlag = b[tmpAssignRhsCompProp];
 if (tmpDoWhileFlag) {
   $(100);
   const tmpAssignRhsCompProp$1 = $(`c`);
-  tmpDoWhileFlag = b[tmpAssignRhsCompProp$1];
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag = b[tmpAssignRhsCompProp$1];
   while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpAssignRhsCompProp$2 = $(`c`);
-      tmpDoWhileFlag = b[tmpAssignRhsCompProp$2];
+      tmpClusterSSA_tmpDoWhileFlag = b[tmpAssignRhsCompProp$2];
     } else {
       break;
     }
@@ -99,22 +94,16 @@ b: 1000
 ;
 $( 100 );
 const c = $( "c" );
-let d = a[ c ];
-let e = true;
+const d = a[ c ];
 if (d) {
   $( 100 );
-  const f = $( "c" );
-  d = a[ f ];
-}
-else {
-  e = false;
-}
-if (e) {
+  const e = $( "c" );
+  let f = a[ e ];
   while ($LOOP_UNROLL_9) {
-    if (d) {
+    if (f) {
       $( 100 );
       const g = $( "c" );
-      d = a[ g ];
+      f = a[ g ];
     }
     else {
       break;

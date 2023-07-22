@@ -63,7 +63,7 @@ $(a);
 
 `````js filename=intro
 $(100);
-let tmpNestedComplexRhs = undefined;
+let tmpNestedComplexRhs = false;
 let tmpClusterSSA_a = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
@@ -72,9 +72,7 @@ if (tmpIfTest) {
   tmpNestedComplexRhs = tmpChainElementCall;
   tmpClusterSSA_a = tmpChainElementCall;
 }
-let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-let $tmpLoopUnrollCheck = true;
-if (tmpClusterSSA_tmpDoWhileFlag) {
+if (tmpNestedComplexRhs) {
   $(100);
   let tmpNestedComplexRhs$1 = undefined;
   const tmpIfTest$1 = $ == null;
@@ -84,13 +82,9 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
     tmpNestedComplexRhs$1 = tmpChainElementCall$1;
   }
   tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag$1) {
       $(100);
       let tmpNestedComplexRhs$2 = undefined;
       const tmpIfTest$2 = $ == null;
@@ -100,7 +94,7 @@ if ($tmpLoopUnrollCheck) {
         tmpNestedComplexRhs$2 = tmpChainElementCall$2;
       }
       tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
     } else {
       break;
     }
@@ -116,7 +110,7 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-let a = undefined;
+let a = false;
 let b = undefined;
 const c = $ == null;
 if (c) {
@@ -127,40 +121,33 @@ else {
   a = d;
   b = d;
 }
-let e = a;
-let f = true;
-if (e) {
+if (a) {
   $( 100 );
-  let g = undefined;
-  const h = $ == null;
-  if (h) {
+  let e = undefined;
+  const f = $ == null;
+  if (f) {
 
   }
   else {
-    const i = $( 1 );
-    g = i;
+    const g = $( 1 );
+    e = g;
   }
-  b = g;
-  e = g;
-}
-else {
-  f = false;
-}
-if (f) {
+  b = e;
+  let h = e;
   while ($LOOP_UNROLL_9) {
-    if (e) {
+    if (h) {
       $( 100 );
-      let j = undefined;
-      const k = $ == null;
-      if (k) {
+      let i = undefined;
+      const j = $ == null;
+      if (j) {
 
       }
       else {
-        const l = $( 1 );
-        j = l;
+        const k = $( 1 );
+        i = k;
       }
-      b = j;
-      e = j;
+      b = i;
+      h = i;
     }
     else {
       break;

@@ -63,23 +63,18 @@ $(a);
 $(100);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-let tmpDoWhileFlag = $(tmpCalleeParam, tmpCalleeParam$1);
-let $tmpLoopUnrollCheck = true;
+const tmpDoWhileFlag = $(tmpCalleeParam, tmpCalleeParam$1);
 if (tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$2 = $(1);
   const tmpCalleeParam$4 = $(2);
-  tmpDoWhileFlag = $(tmpCalleeParam$2, tmpCalleeParam$4);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2, tmpCalleeParam$4);
   while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$3 = $(1);
       const tmpCalleeParam$5 = $(2);
-      tmpDoWhileFlag = $(tmpCalleeParam$3, tmpCalleeParam$5);
+      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$3, tmpCalleeParam$5);
     } else {
       break;
     }
@@ -98,24 +93,18 @@ With rename=true
 $( 100 );
 const a = $( 1 );
 const b = $( 2 );
-let c = $( a, b );
-let d = true;
+const c = $( a, b );
 if (c) {
   $( 100 );
-  const e = $( 1 );
-  const f = $( 2 );
-  c = $( e, f );
-}
-else {
-  d = false;
-}
-if (d) {
+  const d = $( 1 );
+  const e = $( 2 );
+  let f = $( d, e );
   while ($LOOP_UNROLL_9) {
-    if (c) {
+    if (f) {
       $( 100 );
       const g = $( 1 );
       const h = $( 2 );
-      c = $( g, h );
+      f = $( g, h );
     }
     else {
       break;

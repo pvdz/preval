@@ -62,21 +62,16 @@ const arrPatternSplat = [...bindingPatternArrRoot];
 const a = arrPatternSplat[0];
 $(100);
 const tmpCalleeParam = [1, 2];
-let tmpDoWhileFlag = $(tmpCalleeParam);
-let $tmpLoopUnrollCheck = true;
+const tmpDoWhileFlag = $(tmpCalleeParam);
 if (tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$1 = [1, 2];
-  tmpDoWhileFlag = $(tmpCalleeParam$1);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$1);
   while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$2 = [1, 2];
-      tmpDoWhileFlag = $(tmpCalleeParam$2);
+      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
     } else {
       break;
     }
@@ -99,22 +94,16 @@ const b = [ ... a,, ];
 const c = b[ 0 ];
 $( 100 );
 const d = [ 1, 2,, ];
-let e = $( d );
-let f = true;
+const e = $( d );
 if (e) {
   $( 100 );
-  const g = [ 1, 2,, ];
-  e = $( g );
-}
-else {
-  f = false;
-}
-if (f) {
+  const f = [ 1, 2,, ];
+  let g = $( f );
   while ($LOOP_UNROLL_9) {
-    if (e) {
+    if (g) {
       $( 100 );
       const h = [ 1, 2,, ];
-      e = $( h );
+      g = $( h );
     }
     else {
       break;

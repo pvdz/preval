@@ -66,12 +66,13 @@ const tmpCalleeParam = $(1);
 const tmpNestedComplexRhs = $(tmpCalleeParam);
 let tmpClusterSSA_a = 2;
 let tmpClusterSSA_tmpDoWhileFlag = true;
+let $tmpLoopUnrollCheck = true;
 if (tmpNestedComplexRhs) {
 } else {
   tmpClusterSSA_a = tmpNestedComplexRhs;
   tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
+  $tmpLoopUnrollCheck = tmpNestedComplexRhs;
 }
-let $tmpLoopUnrollCheck = true;
 if (tmpClusterSSA_tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$1 = $(1);
@@ -83,7 +84,6 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
   tmpClusterSSA_a = tmpNestedComplexRhs$1;
   tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -116,14 +116,15 @@ const a = $( 1 );
 const b = $( a );
 let c = 2;
 let d = true;
+let e = true;
 if (b) {
 
 }
 else {
   c = b;
   d = b;
+  e = b;
 }
-let e = true;
 if (d) {
   $( 100 );
   const f = $( 1 );
@@ -133,9 +134,6 @@ if (d) {
   }
   c = g;
   d = g;
-}
-else {
-  e = false;
 }
 if (e) {
   while ($LOOP_UNROLL_9) {

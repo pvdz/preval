@@ -56,21 +56,16 @@ $(a);
 `````js filename=intro
 $(100);
 let a = arguments;
-let tmpDoWhileFlag = arguments;
-let $tmpLoopUnrollCheck = true;
-if (tmpDoWhileFlag) {
+arguments;
+if (arguments) {
   $(100);
   a = arguments;
-  tmpDoWhileFlag = arguments;
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpDoWhileFlag = arguments;
   while ($LOOP_UNROLL_9) {
-    if (tmpDoWhileFlag) {
+    if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
       a = arguments;
-      tmpDoWhileFlag = arguments;
+      tmpClusterSSA_tmpDoWhileFlag = arguments;
     } else {
       break;
     }
@@ -87,17 +82,11 @@ With rename=true
 `````js filename=intro
 $( 100 );
 let a = arguments;
-let b = arguments;
-let c = true;
-if (b) {
+arguments;
+if (arguments) {
   $( 100 );
   a = arguments;
-  b = arguments;
-}
-else {
-  c = false;
-}
-if (c) {
+  let b = arguments;
   while ($LOOP_UNROLL_9) {
     if (b) {
       $( 100 );

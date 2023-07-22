@@ -75,12 +75,14 @@ if (tmpDoWhileFlag) {
   tmpDoWhileFlag = $(tmpCalleeParam$1);
 } else {
 }
+let $tmpLoopUnrollCheck = false;
 if (tmpDoWhileFlag) {
+  $tmpLoopUnrollCheck = tmpDoWhileFlag;
 } else {
   const tmpCalleeParam$3 = $(2);
   tmpDoWhileFlag = $(tmpCalleeParam$3);
+  $tmpLoopUnrollCheck = tmpDoWhileFlag;
 }
-let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$2 = $(1);
@@ -96,7 +98,6 @@ if (tmpDoWhileFlag) {
     tmpDoWhileFlag = $(tmpCalleeParam$6);
   }
 } else {
-  $tmpLoopUnrollCheck = false;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
@@ -136,14 +137,15 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
+let d = false;
 if (b) {
-
+  d = b;
 }
 else {
-  const d = $( 2 );
-  b = $( d );
+  const e = $( 2 );
+  b = $( e );
+  d = b;
 }
-let e = true;
 if (b) {
   $( 100 );
   const f = $( 1 );
@@ -160,10 +162,7 @@ if (b) {
     b = $( h );
   }
 }
-else {
-  e = false;
-}
-if (e) {
+if (d) {
   while ($LOOP_UNROLL_9) {
     if (b) {
       $( 100 );

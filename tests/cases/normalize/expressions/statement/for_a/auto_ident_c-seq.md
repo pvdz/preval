@@ -55,17 +55,12 @@ $(a, x);
 $(1);
 $(2);
 $(1);
-let tmpIfTest = $(0);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -84,18 +79,12 @@ With rename=true
 $( 1 );
 $( 2 );
 $( 1 );
-let a = $( 0 );
-let b = true;
+const a = $( 0 );
 if (a) {
-  a = $( 0 );
-}
-else {
-  b = false;
-}
-if (b) {
+  let b = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (a) {
-      a = $( 0 );
+    if (b) {
+      b = $( 0 );
     }
     else {
       break;

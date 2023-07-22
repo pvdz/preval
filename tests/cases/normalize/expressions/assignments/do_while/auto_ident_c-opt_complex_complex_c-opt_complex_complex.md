@@ -94,8 +94,7 @@ if (tmpIfTest) {
   }
 }
 let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-let $tmpLoopUnrollCheck = true;
-if (tmpClusterSSA_tmpDoWhileFlag) {
+if (tmpNestedComplexRhs) {
   $(100);
   let tmpNestedComplexRhs$1 = undefined;
   const tmpChainElementCall$1 = $(b);
@@ -113,10 +112,6 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
     }
   }
   tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
     if (tmpClusterSSA_tmpDoWhileFlag) {
       $(100);
@@ -173,57 +168,51 @@ else {
   }
 }
 let k = c;
-let l = true;
-if (k) {
+if (c) {
   $( 100 );
-  let m = undefined;
-  const n = $( b );
-  const o = n == null;
-  if (o) {
+  let l = undefined;
+  const m = $( b );
+  const n = m == null;
+  if (n) {
 
   }
   else {
-    const p = $( "x" );
-    const q = n[ p ];
-    const r = q == null;
-    if (r) {
+    const o = $( "x" );
+    const p = m[ o ];
+    const q = p == null;
+    if (q) {
 
     }
     else {
-      const s = $( "y" );
-      const t = q[ s ];
-      m = t;
+      const r = $( "y" );
+      const s = p[ r ];
+      l = s;
     }
   }
-  k = m;
-}
-else {
-  l = false;
-}
-if (l) {
+  k = l;
   while ($LOOP_UNROLL_9) {
     if (k) {
       $( 100 );
-      let u = undefined;
-      const v = $( b );
-      const w = v == null;
-      if (w) {
+      let t = undefined;
+      const u = $( b );
+      const v = u == null;
+      if (v) {
 
       }
       else {
-        const x = $( "x" );
-        const y = v[ x ];
-        const z = y == null;
-        if (z) {
+        const w = $( "x" );
+        const x = u[ w ];
+        const y = x == null;
+        if (y) {
 
         }
         else {
-          const 01 = $( "y" );
-          const 11 = y[ 01 ];
-          u = 11;
+          const z = $( "y" );
+          const 01 = x[ z ];
+          t = 01;
         }
       }
-      k = u;
+      k = t;
     }
     else {
       break;

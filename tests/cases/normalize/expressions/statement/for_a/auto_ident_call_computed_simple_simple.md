@@ -53,17 +53,12 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 b.$(1);
-let tmpIfTest = $(0);
-let $tmpLoopUnrollCheck = true;
+const tmpIfTest = $(0);
 if (tmpIfTest) {
-  tmpIfTest = $(0);
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
+  let tmpClusterSSA_tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      tmpIfTest = $(0);
+    if (tmpClusterSSA_tmpIfTest) {
+      tmpClusterSSA_tmpIfTest = $(0);
     } else {
       break;
     }
@@ -84,18 +79,12 @@ a: 999,
 b: 1000
 ;
 a.$( 1 );
-let c = $( 0 );
-let d = true;
+const c = $( 0 );
 if (c) {
-  c = $( 0 );
-}
-else {
-  d = false;
-}
-if (d) {
+  let d = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      c = $( 0 );
+    if (d) {
+      d = $( 0 );
     }
     else {
       break;

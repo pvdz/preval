@@ -750,7 +750,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
         .join('\n'),
     );
     vlog(
-      '\ngloballyUniqueNamingRegistry (sans builtins):\n' +
+      '\ngloballyUniqueNamingRegistry (sans builtins)(2):\n' +
       (
         (globallyUniqueNamingRegistry.size - globals.size) > 50
         ? '<too many>'

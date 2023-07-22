@@ -82,7 +82,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
       ', pass=' + passes + ', phase1s=', phase1s, ', len:', fdata.len, '\n##################################\n\n\n',
   );
   try {
-    if (VERBOSE_TRACING) vlog('\nCurrent state (start of phase1)\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
+    if (VERBOSE_TRACING) {
+      const code = fmat(tmat(ast));
+      vlog('\nCurrent state (start of phase1)\n--------------\n' + code + '\n--------------\n');
+    }
   } catch (e) {
     vlog('printing ast failed');
     console.dir(ast, { depth: null });
@@ -389,10 +392,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
           }
         });
 
-        vlog('Last write analysis');
+        vlog(`Last write analysis (of the block of a ${parentNode.type})`);
         vlog(
-          '  - last writes before:',
-          [...lastWritesPerName[lastWritesPerName.length - 1].entries()].map(([v, k]) => v + ':' + k.size),
+          `  - last writes before:`,
+          [...lastWritesPerName[lastWritesPerName.length - 1].entries()].map(([v, k]) => `${v}: ${k.size}x`),
         );
         const currentLastWrites = lastWritesPerName[lastWritesPerName.length - 1];
         if (parentNode.type === 'IfStatement') {
@@ -453,8 +456,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
           vlog('Last writes stack does not change because this block does not change flow.');
         }
         vlog(
-          '  - last writes after:',
-          [...currentLastWrites.entries()].map(([v, k]) => v + ':' + k.size),
+          '  - last writes after: ',
+          [...currentLastWrites.entries()].map(([v, k]) => `${v}: ${k.size}x`),
         );
 
         if (parentNode.type === 'IfStatement') {

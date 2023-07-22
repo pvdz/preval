@@ -525,7 +525,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
   if (VERBOSE_TRACING) {
     vlog('After normalization:');
     vlog(
-      '\ngloballyUniqueNamingRegistry (sans builtins):\n',
+      '\ngloballyUniqueNamingRegistry (sans builtins)(1):\n',
       (fdata.globallyUniqueNamingRegistry.size - globals.size) > 50
         ? '<too many (' + (fdata.globallyUniqueNamingRegistry.size - globals.size) + ')>'
         : fdata.globallyUniqueNamingRegistry.size === globals.size

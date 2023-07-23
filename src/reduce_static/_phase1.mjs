@@ -1230,6 +1230,27 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         break;
       }
 
+      case 'ThisExpression:after': {
+        if (thisStack.length) {
+          vlog('Marking func as having `this` access');
+          thisStack[thisStack.length - 1].$p.thisAccess = true;
+        }
+        break;
+      }
+
+      case 'ThrowStatement:before': {
+        // (similar logic to ReturnStatement)
+        const funcNode = funcStack[funcStack.length - 1];
+        markEarlyCompletion(node, funcNode, false, parentNode);
+        node.$p.alwaysComplete = true;
+        node.$p.alwaysThrow = true;
+        // TODO: unless wrapped in a try/catch. Which we don't really track right now.
+        if (funcNode.type === 'FunctionExpression') {
+          funcNode.$p.throwsExplicitly = true;
+        }
+        break;
+      }
+
       case 'TryStatement:before': {
         tryNodeStack.push(node);
         break;
@@ -1248,27 +1269,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
           node.$p.alwaysThrow = node.block.$p.alwaysThrow && node.handler?.body.$p.alwaysThrow && node.finalizer?.$p.alwaysThrow;
         }
         tryNodeStack.pop();
-        break;
-      }
-
-      case 'ThrowStatement:before': {
-        // (similar logic to ReturnStatement)
-        const funcNode = funcStack[funcStack.length - 1];
-        markEarlyCompletion(node, funcNode, false, parentNode);
-        node.$p.alwaysComplete = true;
-        node.$p.alwaysThrow = true;
-        // TODO: unless wrapped in a try/catch. Which we don't really track right now.
-        if (funcNode.type === 'FunctionExpression') {
-          funcNode.$p.throwsExplicitly = true;
-        }
-        break;
-      }
-
-      case 'ThisExpression:after': {
-        if (thisStack.length) {
-          vlog('Marking func as having `this` access');
-          thisStack[thisStack.length - 1].$p.thisAccess = true;
-        }
         break;
       }
 

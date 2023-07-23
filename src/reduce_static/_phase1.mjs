@@ -47,6 +47,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
   const lastWritesPerName = []; // Array<Map<name, Set<Write>>>. One per scope. If we leave a scope, pop this state (or maybe do something smart first)
   const lastWritesAtStartPerLoop = [];
 
+  /**
+   * @type {Map<string, Meta>}
+   */
   const globallyUniqueNamingRegistry = new Map();
   fdata.globallyUniqueNamingRegistry = globallyUniqueNamingRegistry;
   const identNameSuffixOffset = new Map(); // <name, int>
@@ -230,12 +233,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
           else catchStack.push(node.$p.pid);
           //vlog('Checked for try:', tryNodeStack.map(n => n.$p.pid), trapStack, catchStack, finallyStack);
         }
-        // Loops push their block id from the statement node, not the body node.
-        const specialType = ['FunctionExpression', 'Program'].includes(parentNode.type)
-          ? 'func'
-          : ['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)
-          ? 'func'
-          : 'other';
         blockBodies.push(node.body);
         if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
           blockIds.push(-node.$p.pid); // Mark a loop
@@ -764,7 +761,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
 
           const currentLastWriteMapForName = lastWritesPerName[lastWritesPerName.length - 1];
           let currentLastWriteSetForName = currentLastWriteMapForName.get(name);
-          vlog('Last write analysis; this ref can reach', currentLastWriteSetForName?.size ?? 0, 'writes...');
+          //vlog('Last write analysis; this ref can reach', currentLastWriteSetForName?.size ?? 0, 'writes...');
 
           if (kind === 'read') {
             // Note: this could be a property write, but it's not a binding mutation.
@@ -808,8 +805,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
                 // Point to each other
                 vlog(
                   '  - Pointing a read and a write to each other',
-                  read.type + ':' + read.kind + ':' + read.node.$p.pid + '.reachesWrites <->',
-                  write.type + ':' + write.kind + ':' + write.node.$p.pid + '.reachedByReads',
+                  read.action + ':' + read.kind + ':' + read.node.$p.pid + '.reachesWrites <->',
+                  write.action + ':' + write.kind + ':' + write.node.$p.pid + '.reachedByReads',
                 );
                 read.reachesWrites.add(write);
                 write.reachedByReads.add(read);
@@ -1358,15 +1355,36 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         .join('\n'),
     );
     vlog(
-      '\ngloballyUniqueNamingRegistry (sans builtins):\n' +
+      '\ngloballyUniqueNamingRegistry (sans builtins)(3):\n' +
       ((globallyUniqueNamingRegistry.size - globals.size) > 50
         ? '<too many>'
         : globallyUniqueNamingRegistry.size === globals.size
         ? '<none>'
         : [...globallyUniqueNamingRegistry.entries()]
           .filter(([name, value]) => !globals.has(name))
-          .map(([name, value]) => `- ${name}: ${value.reads.length} reads and ${value.writes.length} writes`)
-          .join('\n')
+          .map(([name, meta]) => {
+            return `- ${name}: ${meta.reads.length} reads and ${meta.writes.length} writes\n${
+              [
+                Array.from(meta.reads),
+                Array.from(meta.writes),
+              ]
+              .flat()
+              .sort((a, b) => a.node.$p.pid - b.node.$p.pid)
+              .map(rw => {
+                return `  - ${
+                  rw.action
+                } @ ${
+                  rw.node.$p.pid
+                }, might ${rw.action === 'write' ? 'overwrite' : 'observe'} ${
+                  reachAtString(rw.reachesWrites, 'writes')
+                }${
+                  !rw.reachedByReads ? '' : `, might be seen by ${reachAtString(rw.reachedByReads, 'reads')}`
+                }${
+                  !rw.reachedByWrites ? '' : ` and be overwritten by ${reachAtString(rw.reachedByWrites, 'writes')}`
+                }\n`
+              }).join('')
+            }`;
+          }).join('')
       ),
     );
 
@@ -1376,6 +1394,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
   fdata.phase1nodes = called / 2;
   log('\n\nEnd of phase 1. Walker called', called, 'times, took', Date.now() - start, 'ms');
   groupEnd();
+}
+
+function reachAtString(set, what) {
+  if (!set.size) {
+    return `0 ${what}`;
+  }
+  return `${set.size} ${what} (@ ${Array.from(set).map(r => r.node.$p.pid).join(',')})`;
 }
 
 function lastWrites_cloneLastMap(map) {

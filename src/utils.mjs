@@ -406,3 +406,12 @@ export function allReadsAreCallsOrAliasing(fdata, meta) {
 
   return true;
 }
+
+function isOneSetBit(v) {
+  // Bit counting is relatively expensive. ES6 added Math.clz32, which counts the number of leading bits of a 32bit number.
+  // So what we can do here, rather than bit fiddle to get the whole count, is to get the number of leading zeroes, and then
+  // check whether 2^(31-count) equals our value. If so, it's a single bit. If not, it's not.
+  // Alternative, we could create an object/Set with 32 entries and do a straight lookup. Not sure what's faster. Won't matter much here.
+
+  return 1 << (31 - Math.clz32(v)) === v;
+}

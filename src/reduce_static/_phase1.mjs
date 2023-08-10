@@ -16,6 +16,26 @@ import {
   registerGlobalLabel,
 } from '../bindings.mjs';
 import globals from '../globals.mjs';
+import {
+  OPEN_REF_TRACING,
+  openRefsProgramOnBefore,
+  openRefsBlockOnAfter,
+  openRefsContinueBreakOnBefore,
+  openRefsCatchOnBefore,
+  openRefsLoopOnBefore,
+  openRefsLoopOnAfter,
+  openRefsReadBefore,
+  openRefsWriteBefore,
+  openRefsIfOnBefore,
+  openRefsIfOnafter,
+  openRefsLabelOnBefore,
+  openRefsLabelOnAfter,
+  openRefsReturnOnBefore,
+  openRefsThrowOnBefore,
+  openRefsTryOnBefore,
+  openRefsTryOnAfter,
+  dumpOpenRefsState, openRefsRefBefore, openRefsBlockOnBefore
+} from "../utils/ref_tracking.mjs"
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
 // It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
@@ -36,8 +56,6 @@ import globals from '../globals.mjs';
 // - Labeled break: TODO
 // - Continue/break: TODO
 // - Return/Throw: end of a branch, right.
-
-const OPEN_REF_TRACING = true;
 
 export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
   const ast = fdata.tenkoOutput.ast;
@@ -193,25 +211,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         blockBodies.push(node.body);
         blockIds.push(+node.$p.pid);
         blockStack.push(node); // Do we assign node or node.body?
-        // An "open ref" is a write reference that is not 100% replaced by other writes. If/else/loop branching can cause this to be plural.
-        if (OPEN_REF_TRACING) vlog('OpenRefs: program; create root maps');
-        /**
-         * @type {
-         *  {
-         *    preWriteReads: Map<string, Set<Read>>,
-         *    firstWrites: Map<string, Set<Write>>,
-         *    lastWrites: Map<string, Set<Write>>,
-         *    wasAbrupt: undefined | 'break' | 'continue' | 'return' | 'throw',
-         *  }
-         * }
-         */
-        const openRefsN = {
-          firstWrites: new Map,
-          lastWrites: new Map,
-          preWriteReads: new Map,
-          wasAbrupt: undefined,
-        };
-        node.$p.openRefsN = openRefsN;
+
+        openRefsProgramOnBefore(node);
+
         node.$p.promoParent = null;
         node.$p.blockChain = '0';
         node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
@@ -267,33 +269,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
       case 'BlockStatement:before': {
         node.$p.promoParent = blockStack[blockStack.length - 1];
         blockStack.push(node); // Do we assign node or node.body?
-        // An "open ref" is a write reference that is not 100% replaced by other writes. If/else/loop branching can cause this to be plural.
-        // The block starts with a copy of the set of open refs in the parent block. On the way back the parent is updated depending on the
-        // kind of statement the block is part of (if/loop). But only for decls that were already open. (Decls inside a block are not
-        // visible to the parent so that wouldn't make sense).
-        if (OPEN_REF_TRACING) vlog('OpenRefs: block; create block maps');
 
-        /**
-         * @type {
-         *  {
-         *    preWriteReads: Map<string, Set<Read>>,
-         *    firstWrites: Map<string, Set<Write>>,
-         *    lastWrites: Map<string, Set<Write>>,
-         *    wasAbrupt: undefined | 'break' | 'continue' | 'return' | 'throw',
-         *  }
-         * }
-         */
-        const openRefsN = {
-          firstWrites: new Map(node.$p.promoParent.$p.openRefsN.firstWrites),
-          lastWrites: new Map(node.$p.promoParent.$p.openRefsN.lastWrites),
-          preWriteReads: new Map,
-          wasAbrupt: undefined,
-        };
-        node.$p.openRefsN = openRefsN;
-
-        // Make sure to clone the data struct
-        node.$p.promoParent.$p.openRefsN.firstWrites.forEach((refs, name) => node.$p.openRefsN.firstWrites.set(name, new Set(refs))); // After an `if` you might have two
-        node.$p.promoParent.$p.openRefsN.lastWrites.forEach((refs, name) => node.$p.openRefsN.lastWrites.set(name, new Set(refs))); // After an `if` you might have two
+        openRefsBlockOnBefore(node);
 
         if (tryNodeStack.length) {
           if (parentProp === 'finalizer') finallyStack.push(node.$p.pid);
@@ -430,98 +407,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         blockBodies.pop();
         blockIds.pop();
 
-        if (OPEN_REF_TRACING) console.group('OpenRefs: block; connecting data back upward');
-
-        // Merge the reads that happened before a write with those of the parent block. Then clear the ones
-        // for which we've seen a write. Wrong: need to track these reads and write stats separately
-        //const rbws = node.$p.openRefsPreWriteReads
-        if (node.$p.openRefsN.wasAbrupt === 'continue') {
-          if (OPEN_REF_TRACING) console.log('OpenRefs: block ended in continue');
-
-          // This must be a loop.
-          // I don't remember whether I supported labeled continue in normalized state.
-          // Either way, find the target loop to continue to and connect the reads and writes
-          // to both the start and end of that loop body.
-          const nearestLoopNode = loopStack[loopStack.length - 1];
-          if (OPEN_REF_TRACING) console.log('OpenRefs: adding to befores and afters');
-          nearestLoopNode.$p.openRefsT.firstWritesToProcessBefore.push(node.$p.openRefsN.firstWrites);
-          nearestLoopNode.$p.openRefsT.firstWritesToProcessAfter.push(node.$p.openRefsN.firstWrites);
-          nearestLoopNode.$p.openRefsT.lastWritesToProcessBefore.push(node.$p.openRefsN.lastWrites);
-          nearestLoopNode.$p.openRefsT.lastWritesToProcessAfter.push(node.$p.openRefsN.lastWrites);
-          nearestLoopNode.$p.openRefsT.preWriteReadsToProcessBefore.push(node.$p.openRefsN.preWriteReads);
-          nearestLoopNode.$p.openRefsT.preWriteReadsToProcessAfter.push(node.$p.openRefsN.preWriteReads);
-        }
-        else if (node.$p.openRefsN.wasAbrupt === 'break') {
-          if (OPEN_REF_TRACING) console.log('OpenRefs: block ended in break');
-
-          // This must be a loop or a labeled break to a labeled statement
-          // If loop, wire up reads and writes to the end of the loop. Not the start.
-          // If labeled break, wire up reads and writes to after the block that is labeled
-          const nearestLoopNode = loopStack[loopStack.length - 1];
-          if (OPEN_REF_TRACING) console.log('OpenRefs: adding to befores and afters');
-          nearestLoopNode.$p.openRefsT.firstWritesToProcessBefore.push(node.$p.openRefsN.firstWrites);
-          nearestLoopNode.$p.openRefsT.firstWritesToProcessAfter.push(node.$p.openRefsN.firstWrites);
-          // - Dont add last writes to before
-          nearestLoopNode.$p.openRefsT.lastWritesToProcessAfter.push(node.$p.openRefsN.lastWrites);
-          nearestLoopNode.$p.openRefsT.preWriteReadsToProcessBefore.push(node.$p.openRefsN.preWriteReads);
-          nearestLoopNode.$p.openRefsT.preWriteReadsToProcessAfter.push(node.$p.openRefsN.preWriteReads);
-        }
-        else if (node.$p.openRefsN.wasAbrupt === 'return') {
-          if (OPEN_REF_TRACING) console.log('OpenRefs: block ended in return. noop');
-          // Drop the reads and writes. This analysis is only for single scope and so we don't care what happens here.
-        }
-        else if (node.$p.openRefsN.wasAbrupt === 'throw') {
-          if (OPEN_REF_TRACING) console.log('OpenRefs: block ended in throw. TODO');
-          // Tricky.
-          // In theory we find the nearest catch. If that path breaks any finally blocks it gets
-          // even harder because it will go through them but there will still be an error thrown.
-          // Tempted to mark these bindings as unsupported for now.
-          // However, any bindings that are local are no longer read after this branch so that's fine to drop now.
-          ASSERT(!'TODO')
-        }
-        else if (node.$p.openRefsN.wasAbrupt) {
-          if (OPEN_REF_TRACING) console.log('OpenRefs: block ended abrupt but unknown', node.$p.openRefsN.wasAbrupt);
-
-          console.log('wat:', node.$p.openRefsN.wasAbrupt);
-          ASSERT(!'TODO') // what is this
-        }
-        else {
-          if (OPEN_REF_TRACING) console.log('OpenRefs: block did not end abrupt. parent:', parentNode.type);
-
-          // This block did not return abruptly. The parent node determines what to do next.
-          // - if-else: Only after the else. Update the openRefs for the parent block to the combination
-          //            of open refs from both branches. Ignore any branch that ends in an abrupt return.
-          // - while:   Update the open refs at the start of this loop with the open refs at the end of
-          //            this loop for any binding created before the loop. Do the same for the while
-          //            parent block. (In normalized code all whiles are infinite loops so this step
-          //            may be moot and we should let the break handle that, but eh. TODO)
-          // - for:     Both for-in and for-of have the same as loops except they may never loop and
-          //            may break even without an explicit break, so these steps are never optional.
-          // - try/etc: TODO
-          // - label:   Nothing special. The custom behavior is with labeled break/continue.
-          // - funcs:   None. End of a function is irrelevant for this analysis.
-
-          const nearestLoopNode = loopStack[loopStack.length - 1];
-
-          if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
-            if (OPEN_REF_TRACING) console.log('OpenRefs: adding to befores');
-
-            // With loops, everything that's open at the end of a body will loop to the start again
-            nearestLoopNode.$p.openRefsT.firstWritesToProcessBefore.push(node.$p.openRefsN.firstWrites);
-            parentNode.$p.openRefsT.lastWritesToProcessBefore.push(node.$p.openRefsN.lastWrites);
-            parentNode.$p.openRefsT.preWriteReadsToProcessBefore.push(node.$p.openRefsN.preWriteReads);
-          } else {
-            ASSERT(['LabeledStatement', 'BlockStatement', 'IfStatement'].includes(parentNode.type), 'TODO', parentNode.type);
-          }
-          // Everything at the end of a loop should be appended to the end of the block.
-          // TODO: normalized loops are while(true) so this would always be a useless or even sub-optimal step
-          if (OPEN_REF_TRACING) console.log('OpenRefs: adding to afters');
-          parentNode.$p.openRefsT.firstWritesToProcessAfter.push(node.$p.openRefsN.firstWrites);
-          parentNode.$p.openRefsT.lastWritesToProcessAfter.push(node.$p.openRefsN.lastWrites);
-          parentNode.$p.openRefsT.preWriteReadsToProcessAfter.push(node.$p.openRefsN.preWriteReads);
-        }
-
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsBlockOnAfter(node, parentNode, parentProp, loopStack);
 
         if (tryNodeStack.length) {
           if (parentProp === 'finalizer') finallyStack.pop();
@@ -627,9 +513,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
 
       case 'BreakStatement:before':
       case 'ContinueStatement:before': {
-        if (OPEN_REF_TRACING) console.group('OpenRefs: abrupt completion;', nodeType);
-        blockStack[blockStack.length - 1].$p.openRefsN.wasAbrupt = nodeType === 'BreakStatement' ? 'break' : 'continue';
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsContinueBreakOnBefore(node, blockStack);
 
         // Note: continue/break state is verified by the parser so we should be able to assume this continue/break has a valid target
         if (node.label) {
@@ -664,10 +548,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         break;
       }
 
-      //case 'CatchClause:before': {
-      //  // Note: the catch scope is set on node.handler of the try (parent node of the catch clause)
-      //  break;
-      //}
+      case 'CatchClause:before': {
+        // Note: the catch scope is set on node.handler of the try (parent node of the catch clause)
+
+        openRefsCatchOnBefore(node);
+
+        break;
+      }
 
       case 'DebuggerStatement:before': {
         // Must be the only one and must be our header/body divider
@@ -677,31 +564,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
       }
 
       case 'ForInStatement:before': {
-        if (OPEN_REF_TRACING) console.group('OpenRefs: for:before');
-        if (OPEN_REF_TRACING) console.group('OpenRefs: for: create data arrays');
-        /**
-         * @type {
-         *  {
-         *    preWriteReadsToProcessBefore: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    preWriteReadsToProcessAfter: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *  }
-         * }
-         */
-        const openRefsT = {
-          preWriteReadsToProcessBefore: [],
-          firstWritesToProcessBefore: [],
-          lastWritesToProcessBefore: [],
-          preWriteReadsToProcessAfter: [],
-          firstWritesToProcessAfter: [],
-          lastWritesToProcessAfter: [],
-        };
-        node.$p.openRefsT = openRefsT;
-
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsLoopOnBefore('in', node);
 
         node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
         node.$p.outWrites = new Set(); // Dito for writes
@@ -715,50 +578,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         loopStack.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-
-        if (OPEN_REF_TRACING) console.group('OpenRefs: for:after @', +node.$p.pid, 'copy everything upward and connect the loop back');
-
-        connectPreWriteReadsWithLastWritesInLoop(node);
-        connectFirstWritesWithLastWritesInLoop(node);
-        mergeFirstWrites(node, parentBlock);
-        mergeLastWrites(node, parentBlock);
-        mergePreWriteReads(node, parentBlock);
-
-        if (OPEN_REF_TRACING) console.groupEnd();
-
-        const lastWritesAtLoopStart = lastWritesAtStartPerLoop.pop();
-        const currentLastWriteMapForName = lastWritesPerName[lastWritesPerName.length - 1];
-        lastWrites_closeTheLoop(lastWritesAtLoopStart, currentLastWriteMapForName);
-
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsLoopOnAfter('in', node, parentBlock);
         break;
       }
 
       case 'ForOfStatement:before': {
-        if (OPEN_REF_TRACING) console.group('OpenRefs: for:before');
-        if (OPEN_REF_TRACING) console.group('OpenRefs: for: create data arrays');
-        /**
-         * @type {
-         *  {
-         *    preWriteReadsToProcessBefore: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    preWriteReadsToProcessAfter: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *  }
-         * }
-         */
-        const openRefsT = {
-          preWriteReadsToProcessBefore: [],
-          firstWritesToProcessBefore: [],
-          lastWritesToProcessBefore: [],
-          preWriteReadsToProcessAfter: [],
-          firstWritesToProcessAfter: [],
-          lastWritesToProcessAfter: [],
-        };
-        node.$p.openRefsT = openRefsT;
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsLoopOnBefore('of', node);
 
         node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
         node.$p.outWrites = new Set(); // Dito for writes
@@ -772,23 +597,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         loopStack.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-
-        if (OPEN_REF_TRACING) console.group('OpenRefs: for:after@', +node.$p.pid, 'copy everything upward and connect the loop back');
-
-        connectPreWriteReadsWithLastWritesInLoop(node);
-        connectFirstWritesWithLastWritesInLoop(node);
-        mergeFirstWrites(node, parentBlock);
-        mergeLastWrites(node, parentBlock);
-        mergePreWriteReads(node, parentBlock);
-
-        if (OPEN_REF_TRACING) console.groupEnd();
-
-        const lastWritesAtLoopStart = lastWritesAtStartPerLoop.pop();
-        const currentLastWriteMapForName = lastWritesPerName[lastWritesPerName.length - 1];
-        lastWrites_closeTheLoop(lastWritesAtLoopStart, currentLastWriteMapForName);
-
-        if (OPEN_REF_TRACING) console.groupEnd();
-
+        openRefsLoopOnAfter('of', node, parentBlock);
         break;
       }
 
@@ -964,7 +773,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
           vlog('- Binding referenced in $p.pid:', currentScope.$p.pid, ', reads so far:', meta.reads.length, ', writes so far:', meta.writes.length);
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
 
-          if (OPEN_REF_TRACING) console.group('OpenRefs @', +node.$p.pid, ': Ref:', [name], 'with kind', [kind], 'on a', parentNode.type + '.'+ parentProp + (parentIndex >= 0 ? '[' + parentIndex + ']' : ''), '( builtin=', meta.isBuiltin, ', implicit=', meta.isImplicitGlobal, ')');
+
+          openRefsRefBefore(kind, node, parentNode, parentProp, parentIndex, meta);
 
           // This is normalized code so there must be a block parent for any read ref
           // Find the nearest block/program node
@@ -1044,33 +854,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
               innerTrap,
               innerCatch,
               innerFinally,
-              openRefsRCanRead: [],
+              openRefsRCanRead: new Set,
             });
             meta.reads.push(read);
 
-            if (OPEN_REF_TRACING) console.log('OpenRefs: recording read reference to', [name]);
-
-            // For all intentions and purposes, right now the next read can only see this write.
-            // It's only for reconciling branching blocks where it might have multiple open writes
-            // Note: `let x = 1; while (true) { $(x) x = 2; }` is fixed by connect pre-write-reads to last-writes after a loop.
-            const openRefsLastWrites = blockNode.$p.openRefsN.lastWrites.get(name);
-            read.openRefsRCanRead = Array.from(new Set(openRefsLastWrites ?? []));
-            read.openRefsRCanRead.forEach(write => !write.openRefsRReadBy.includes(read) && write.openRefsRReadBy.push(read));
-            if (OPEN_REF_TRACING) if (read.openRefsRCanRead.length) console.log('OpenRefs: can read write @', ...read.openRefsRCanRead.map(ref => +ref.node.$p.pid));
-            if (OPEN_REF_TRACING) if (!read.openRefsRCanRead.length) console.log('OpenRefs: can not read any writes');
-            const rbwSet = blockNode.$p.openRefsN.preWriteReads.get(name);
-            if (rbwSet === undefined) {
-              if (OPEN_REF_TRACING) console.log('OpenRefs: first read in block, not yet guaranteed to be written');
-              // First read in block, not yet written in block
-              blockNode.$p.openRefsN.preWriteReads.set(name, new Set([read]));
-            } else if (rbwSet === null) {
-              if (OPEN_REF_TRACING) console.log('OpenRefs: already guaranteed to be written');
-              // Already guaranteed to have been written to
-            } else {
-              if (OPEN_REF_TRACING) console.log('OpenRefs: not first read in block, not yet guaranteed to be written');
-              // Not the first read this block, not yet seen a guaranteed write
-              rbwSet.add(read);
-            }
+            openRefsReadBefore(read, blockNode);
 
             if (currentLastWriteSetForName) {
               // This is the write(s) this read can reach. Can be multiple, for example after two writes in a branch.
@@ -1155,32 +943,15 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
               innerTrap,
               innerCatch,
               innerFinally,
-              openRefsRReadBy: [],
-              openRefsROverwrittenBy: [],
-              openRefsRCanOverwrite: [],
+              openRefsRReadBy: new Set,
+              openRefsROverwrittenBy: new Set,
+              openRefsRCanOverwrite: new Set,
             });
 
-            if (OPEN_REF_TRACING) console.log('OpenRefs: recording write reference');
+            meta.writes.push(write);
+            //meta.writes.unshift(write); // TODO: used to shift if parentNode.type === 'VariableDeclarator'. Do we assert on that? I think I'd rather have .writes ordered by occurrence
 
-            // Track the first writes to a binding in a block chain. This is used to connect end of loops to the start.
-            if (!blockNode.$p.openRefsN.firstWrites.has(name)) {
-              if (OPEN_REF_TRACING) console.log('OpenRefs: first write in this block');
-              blockNode.$p.openRefsN.firstWrites.set(name, new Set([write]));
-            } else {
-              if (OPEN_REF_TRACING) console.log('OpenRefs: not first write in this block');
-            }
-            // Record the writes that can be reached
-            const currLastWrites = blockNode.$p.openRefsN.lastWrites.get(name);
-            if (OPEN_REF_TRACING) if (currLastWrites) console.log('OpenRefs: open writes that this write may overwrite: @', ...Array.from(currLastWrites).map(write => +write.node.$p.pid));
-            if (OPEN_REF_TRACING) if (!currLastWrites) console.log('OpenRefs: open writes that this write may overwrite: none');
-            currLastWrites?.forEach(openWrite => {
-              if (OPEN_REF_TRACING) console.log('OpenRefs: noting write @', +openWrite.node.$p.pid, 'can be overwritten by @', +write.node.$p.pid);
-              if (!openWrite.openRefsROverwrittenBy.includes(write)) openWrite.openRefsROverwrittenBy.push(write);
-              if (!write.openRefsRCanOverwrite.includes(openWrite)) write.openRefsRCanOverwrite.push(openWrite);
-            });
-            // For all intentions and purposes, right now the next read can only see this write.
-            // It's only for reconciling branching blocks where it might have multiple open writes
-            blockNode.$p.openRefsN.lastWrites.set(name, [write]);
+            openRefsWriteBefore(write, blockNode);
 
             if (currentLastWriteSetForName) {
               // This is the write(s) this write can reach. Can be multiple, for example after two writes in a branch.
@@ -1241,15 +1012,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
             );
             currentLastWriteMapForName.set(name, new Set([write]));
 
-            const meta = fdata.globallyUniqueNamingRegistry.get(node.name);
-
             // Inject var decls at the top, append other writes at the end
             if (parentNode.type === 'VariableDeclarator') {
               ASSERT(parentProp === 'id', 'the read check above should cover the prop=init case');
-              vlog('- Adding decl write to meta.writes');
+              vlog('- Added decl write to meta.writes');
 
               currentScope.$p.ownBindings.add(name);
-              meta.writes.unshift(write);
             } else if (parentNode.type === 'AssignmentExpression') {
               ASSERT(parentProp === 'left', 'the read check above should cover the prop=right case');
               ASSERT(
@@ -1258,15 +1026,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
                 pathNodes[pathNodes.length - 3],
               );
               vlog('- Adding assign write to meta.writes');
-              meta.writes.push(write);
             } else if (parentNode.type === 'FunctionDeclaration') {
               ASSERT(false, 'all function declarations should have been eliminated during hoisting');
             } else if (parentProp === 'params' && parentNode.type === 'FunctionExpression') {
               ASSERT(false, 'actual params are special nodes now and original params are local bindings so this should not trigger');
             } else {
               // for-x lhs, not sure what else. not param.
-              vlog('- Adding "other" write to meta.writes');
-              meta.writes.push(write);
+              vlog('- Added "other" write to meta.writes');
             }
 
             // Update .typing for this binding
@@ -1292,8 +1058,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
             }
           }
 
-          if (OPEN_REF_TRACING) console.groupEnd();
-
           if (node.name === 'arguments') {
             //ASSERT(kind === 'write', 'so this must be a write to the identifier `arguments`', kind, parentNode.type);
             // Treat `arguments` as an unknown object. It's not an array and very special.
@@ -1318,45 +1082,14 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
       }
 
       case 'IfStatement:before': {
-        if (OPEN_REF_TRACING) console.group('OpenRefs: if:before');
-
-        if (OPEN_REF_TRACING) console.group('OpenRefs: if; creating data arrays');
-        /**
-         * @type {
-         *  {
-         *    preWriteReadsToProcessBefore: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    preWriteReadsToProcessAfter: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *  }
-         * }
-         */
-        const openRefsT = {
-          preWriteReadsToProcessBefore: [], // Unused by if
-          firstWritesToProcessBefore: [], // Unused by if
-          lastWritesToProcessBefore: [], // Unused by if
-          preWriteReadsToProcessAfter: [],
-          firstWritesToProcessAfter: [],
-          lastWritesToProcessAfter: [],
-        };
-        node.$p.openRefsT = openRefsT;
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsIfOnBefore(node);
 
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         break;
       }
       case 'IfStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-
-        if (OPEN_REF_TRACING) console.group('OpenRefs: if:after; connecting data back upward');
-
-        mergeFirstWrites(node, parentBlock);
-        mergeLastWrites(node, parentBlock);
-        mergePreWriteReads(node, parentBlock);
-
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsIfOnafter(node, parentBlock);
 
         if (node.consequent.$p.earlyComplete || node.alternate.$p.earlyComplete) {
           vlog('At least one branch had an early completion');
@@ -1371,7 +1104,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
           node.$p.alwaysThrow = node.consequent.$p.alwaysThrow && node.alternate.$p.alwaysThrow;
         }
 
-        if (OPEN_REF_TRACING) console.groupEnd();
         break;
       }
 
@@ -1428,29 +1160,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
       }
 
       case 'LabeledStatement:before': {
-        if (OPEN_REF_TRACING) console.group('OpenRefs: label; create arrays for label');
-        /**
-         * @type {
-         *  {
-         *    preWriteReadsToProcessBefore: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    preWriteReadsToProcessAfter: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *  }
-         * }
-         */
-        const openRefsT = {
-          preWriteReadsToProcessBefore: [], // Unused by label
-          firstWritesToProcessBefore: [], // Unused by label
-          lastWritesToProcessBefore: [], // Unused by label
-          preWriteReadsToProcessAfter: [],
-          firstWritesToProcessAfter: [],
-          lastWritesToProcessAfter: [],
-        };
-        node.$p.openRefsT = openRefsT;
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsLabelOnBefore(node);
 
         // TODO: with the new normalization rules, do we still have labels, break, and continue here?
         vlog('Label:', node.label.name);
@@ -1458,15 +1168,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         break;
       }
       case 'LabeledStatement:after': {
-        if (OPEN_REF_TRACING) console.group('OpenRefs: label; copy everything upward');
-
         const parentBlock = blockStack[blockStack.length - 1];
-
-        mergeFirstWrites(node, parentBlock);
-        mergeLastWrites(node, parentBlock);
-        mergePreWriteReads(node, parentBlock);
-
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsLabelOnAfter(node, parentBlock);
 
         if (node.body.$p.earlyComplete) {
           vlog('Label block/loop contained at least one early completion');
@@ -1521,9 +1224,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
 
         markEarlyCompletion(node, funcNode, true, parentNode);
 
-        if (OPEN_REF_TRACING) console.group('OpenRefs: abrupt completion; return');
-        blockStack[blockStack.length - 1].$p.openRefsN.wasAbrupt = 'return';
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsReturnOnBefore(blockStack);
 
         vgroup('[commonReturn]');
         const a = funcNode.$p.commonReturn;
@@ -1626,43 +1327,20 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         if (funcNode.type === 'FunctionExpression') {
           funcNode.$p.throwsExplicitly = true;
         }
-        if (OPEN_REF_TRACING) console.group('OpenRefs: abrupt completion; throw');
-        blockStack[blockStack.length - 1].$p.openRefsN.wasAbrupt = 'throw';
-        if (OPEN_REF_TRACING) console.groupEnd();
+
+        openRefsThrowOnBefore(blockStack);
         break;
       }
 
       case 'TryStatement:before': {
-        if (OPEN_REF_TRACING) console.group('OpenRefs: try; creating data arrays');
-        // Every step of the way may be observed by a catch or a finally. Kind of annoying.
-        /**
-         * @type {
-         *  {
-         *    preWriteReadsToProcessBefore: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    preWriteReadsToProcessAfter: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *  }
-         * }
-         */
-        const openRefsT = {
-          preWriteReadsToProcessBefore: [], // Unused by try
-          firstWritesToProcessBefore: [], // Unused by try
-          lastWritesToProcessBefore: [], // Unused by try
-          preWriteReadsToProcessAfter: [],
-          firstWritesToProcessAfter: [],
-          lastWritesToProcessAfter: [],
-        };
-        node.$p.openRefsT = openRefsT;
-
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsTryOnBefore(node);
 
         tryNodeStack.push(node);
         break;
       }
       case 'TryStatement:after': {
+        openRefsTryOnAfter(node);
+
         if (node.block.$p.earlyComplete || node.handler?.body.$p.earlyComplete || node.finalizer?.$p.earlyComplete) {
           vlog('At least one block of the try has an early completion');
           node.$p.earlyComplete = true;
@@ -1729,30 +1407,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
       }
 
       case 'WhileStatement:before': {
-        if (OPEN_REF_TRACING) console.group('OpenRefs: while');
-        if (OPEN_REF_TRACING) console.group('OpenRefs: while; create data arrays');
-        /**
-         * @type {
-         *  {
-         *    preWriteReadsToProcessBefore: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessBefore: Array<Map<string, Set<Write>>>,
-         *    preWriteReadsToProcessAfter: Array<Map<string, Set<Read>>>,
-         *    firstWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *    lastWritesToProcessAfter: Array<Map<string, Set<Write>>>,
-         *  }
-         * }
-         */
-        const openRefsT = {
-          preWriteReadsToProcessBefore: [],
-          firstWritesToProcessBefore: [],
-          lastWritesToProcessBefore: [],
-          preWriteReadsToProcessAfter: [],
-          firstWritesToProcessAfter: [],
-          lastWritesToProcessAfter: [],
-        };
-        node.$p.openRefsT = openRefsT;
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsLoopOnBefore('while', node);
+
         node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
         node.$p.outWrites = new Set(); // Dito for writes
         funcStack[funcStack.length - 1].$p.hasBranch = true;
@@ -1765,22 +1421,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         loopStack.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-
-        if (OPEN_REF_TRACING) console.group('OpenRefs: while:after @', +node.$p.pid, 'copy everything upward and connect the loop back');
-
-        connectPreWriteReadsWithLastWritesInLoop(node);
-        connectFirstWritesWithLastWritesInLoop(node);
-        mergeFirstWrites(node, parentBlock);
-        mergeLastWrites(node, parentBlock);
-        mergePreWriteReads(node, parentBlock);
-
-        if (OPEN_REF_TRACING) console.groupEnd();
+        openRefsLoopOnAfter('while', node, parentBlock);
 
         const lastWritesAtLoopStart = lastWritesAtStartPerLoop.pop();
         const currentLastWriteMapForName = lastWritesPerName[lastWritesPerName.length - 1];
         lastWrites_closeTheLoop(lastWritesAtLoopStart, currentLastWriteMapForName);
 
-        if (OPEN_REF_TRACING) console.groupEnd();
         break;
       }
     }
@@ -1792,27 +1438,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
     vgroupEnd();
   }
 
-  if (OPEN_REF_TRACING) console.log('OpenRefs: State of globallyUniqueNamingRegistry after:');
-  if (OPEN_REF_TRACING) Array.from(globallyUniqueNamingRegistry.entries()).map(([name, meta]) => {
-    if (meta.isImplicitGlobal || meta.isGlobal || meta.isBuiltin) return;
-    console.group('OpenRefs:', [name], ':');
-    // Note: meta.reOrder is created in phase2
-    (meta.reads || []).concat(meta.writes || []).sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
-      +a < +b ? -1 : +a > +b ? 1 : 0,
-    ).forEach(rw => {
-      console.log('- @', +rw.node.$p.pid, ';', rw.action, ';',
-        [
-          rw.action === 'read' ? (rw.openRefsRCanRead.length ? 'canRead: ' + rw.openRefsRCanRead.map(write => write.node.$p.pid) : 'can not read any writes (TDZ?)') : '',
-          rw.action === 'write' ? (rw.openRefsRReadBy.length ? 'readBy: ' + rw.openRefsRReadBy.map(read => read.node.$p.pid) : 'not read') : '',
-          rw.action === 'write' ? (rw.openRefsRCanOverwrite.length ? 'overwrites: ' + rw.openRefsRCanOverwrite.map(write => write.node.$p.pid) : 'does not overwrite') : '',
-          rw.action === 'write' ? (rw.openRefsROverwrittenBy.length ? 'overwrittenBy: ' + rw.openRefsROverwrittenBy.map(write => write.node.$p.pid) : 'not overwritten') : '',
-        ].filter(Boolean).join(', ')
-      );
-    });
-    console.groupEnd();
-    console.log('\n');
-  });
-
+  dumpOpenRefsState(globallyUniqueNamingRegistry);
 
   if (VERBOSE_TRACING) {
     vlog();
@@ -1830,7 +1456,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
         : globallyUniqueNamingRegistry.size === globals.size
         ? '<none>'
         : [...globallyUniqueNamingRegistry.entries()]
-          .filter(([name, value]) => !globals.has(name))
+          .filter(([name, _meta]) => !globals.has(name))
           .map(([name, meta]) => {
             return `- ${name}: ${meta.reads.length} reads and ${meta.writes.length} writes\n${
               [
@@ -2024,193 +1650,4 @@ function markEarlyCompletion(completionNode, funcNode, isReturn, parentNode) {
   funcNode.$p.earlyComplete = true;
   if (completionNode.type === 'ReturnStatement') funcNode.$p.earlyReturn = true;
   else if (completionNode.type === 'ThrowStatement') funcNode.$p.earlyThrow = true;
-}
-
-function isOneSetBit(v) {
-  // Bit counting is relatively expensive. ES6 added Math.clz32, which counts the number of leading bits of a 32bit number.
-  // So what we can do here, rather than bit fiddle to get the whole count, is to get the number of leading zeroes, and then
-  // check whether 2^(31-count) equals our value. If so, it's a single bit. If not, it's not.
-  // Alternative, we could create an object/Set with 32 entries and do a straight lookup. Not sure what's faster. Won't matter much here.
-
-  return 1 << (31 - Math.clz32(v)) === v;
-}
-
-function connectPreWriteReadsWithLastWritesInLoop(node) {
-  if (OPEN_REF_TRACING) console.group('OpenRefs: connectPreWriteReadsWithLastWritesInLoop()');
-  // Any read that (potentially) happens before a write to that binding can also observe any
-  // last write in that loop (when the loop loops). This is why we must track both the pre-reads
-  // and the last-writes.
-  // The point is to add future writes to past reads. The rest should already be connected as
-  // we were walking the AST.
-
-  node.$p.openRefsT.lastWritesToProcessBefore.forEach(map => {
-    // Note: this writes set should _not_ include abruptly completed branches
-    map.forEach((writes, name) => {
-
-      // Connect this set of last writes for this binding to all the pre-reads of that binding
-      // But only those reads that happened inside the loop... Cause reads before the loop can't
-      // observe the writes in the loop.
-      // We can do this by checking the pid. It must be higher than that of the while-node itself.
-
-      node.$p.openRefsT.preWriteReadsToProcessBefore.forEach((map) => {
-        map.get(name)?.forEach(read => {
-          // Note: this reads set can include abruptly completed branches
-          if (+read.node.$p.pid > +node.body.$p.pid) {
-            // This must mean the node appeared after the `{` of the `while`. Since we're still
-            // walking that body now, it can't be a node that appears after the while body.
-            // This means we should be good to connect them.
-            writes.forEach(write => {
-              // Write should also appear inside the loop, not before it
-              if (+write.node.$p.pid > +node.body.$p.pid) {
-                if (OPEN_REF_TRACING) console.log('OpenRefs: after looping @', +write.node.$p.pid, 'can be read by @', +read.node.$p.pid);
-                if (!read.openRefsRCanRead.includes(write)) read.openRefsRCanRead.push(write);
-                if (!write.openRefsRReadBy.includes(read)) write.openRefsRReadBy.push(read);
-              }
-            });
-          }
-        });
-      });
-    });
-  });
-  // So now all reads that read the binding inside the loop before a write will be connected
-  // to all the writes that happened at the end of a loop without another write after it.
-  // Because if it loops, that write is potentially observable by any of those reads.
-  if (OPEN_REF_TRACING) console.groupEnd();
-}
-
-function connectFirstWritesWithLastWritesInLoop(node) {
-  if (OPEN_REF_TRACING) console.group('OpenRefs: connectFirstWritesWithLastWritesInLoop()');
-  // Any write that is (potentially) the first in a loop may (also) overwrite any write that is
-  // the last in that loop (so without another write guaranteed to follow it).
-  // The point is to be able to discover which writes are (potentially) overwriting another write.
-
-  node.$p.openRefsT.lastWritesToProcessBefore.forEach(map => {
-    // Note: this writes set should _not_ include abruptly completed branches
-    map.forEach((lastWrites, name) => {
-
-      // Connect this set of last writes for this binding to all the first writes of that binding.
-      // Each while node starts with a fresh set of first-writes, since they are only relevant to
-      // that node and not outside of it. As such we don't need to do any bounds checks.
-      node.$p.openRefsT.firstWritesToProcessBefore.forEach(map => {
-        map.get(name)?.forEach(firstWrite => {
-          // Each write should appear inside the loop, not before it
-          if (+firstWrite.node.$p.pid > +node.body.$p.pid) {
-            lastWrites.forEach(lastWrite => {
-              // Each write should appear inside the loop, not before it
-              if (+lastWrite.node.$p.pid > +node.body.$p.pid) {
-                if (OPEN_REF_TRACING) console.log('OpenRefs: after looping @', +firstWrite.node.$p.pid, 'can overwrite @', +lastWrite.node.$p.pid);
-                if (!firstWrite.openRefsRCanOverwrite.includes(lastWrite)) firstWrite.openRefsRCanOverwrite.push(lastWrite);
-                if (!lastWrite.openRefsROverwrittenBy.includes(firstWrite)) lastWrite.openRefsROverwrittenBy.push(firstWrite);
-              }
-            });
-          }
-        });
-      });
-    });
-  });
-  // So now all writes at the start of a loop that may overwrite a write at the end of a loop are
-  // also connected to each other.
-  if (OPEN_REF_TRACING) console.groupEnd();
-}
-
-function mergeFirstWrites(node, parentBlock) {
-  if (OPEN_REF_TRACING) console.group('OpenRefs: mergeFirstWrites()', node.$p.openRefsT.firstWritesToProcessAfter.length);
-  // This part must merge the first-writes detected in either branch and set them on the parent block.
-  // It should only bother for bindings for which no first-write is known at this time. Else it's not
-  // a first-write (by definition).
-  // The point is to be able to fix this: `while (true) { if ($) $(x); x = 5; }` -> we must keep track
-  // of the fact that `$(x)` can observe that `x = 5` later in the loop, if it loops.
-  // If a branch obruptly stops then it shouldn't set the "after" here for first-writes. It won't set
-  // the "before" regardless.
-
-  const parentFirstWrites = parentBlock.$p.openRefsN.firstWrites; // At the time of reaching this `if`
-  const copy = new Map(parentFirstWrites); // Cache known names because we're mutating them next.
-  /**
-   * @type {Array<Map<string, Array<Write>>>}
-   */
-  const openRefsFirstWritesToProcessAfter = node.$p.openRefsT.firstWritesToProcessAfter;
-  openRefsFirstWritesToProcessAfter.forEach((mapToMerge) => {
-    mapToMerge.forEach((arrToMerge, name) => {
-      // Check on the copy because when the "if" has a first write for some name, the map will be updated by the time you reach the "else"
-      if (!copy.has(name)) {
-        if (!parentFirstWrites.has(name)) {
-          // Note: most of the time it won't have this but when two branches both merge a
-          // first-write, it will. That's the whole point of this complexity.
-          parentFirstWrites.set(name, new Set);
-        }
-        arrToMerge.forEach(write => {
-          parentFirstWrites.get(name).add(write);
-        });
-      }
-    })
-  });
-  // At this point "parentBlock.$p.openRefsFirstWrites" should be the intersection of node.consequent.$p.openRefsFirstWrites
-  // and node.alternate.$p.openRefsFirstWrites for any binding that did not already exist.
-  if (OPEN_REF_TRACING) console.groupEnd();
-}
-
-function mergeLastWrites(node, parentBlock) {
-  if (OPEN_REF_TRACING) console.group('OpenRefs: mergeLastWrites()', node.$p.openRefsT.lastWritesToProcessAfter.length);
-
-  // After the "if" statement, if at least one write for a binding was observed in
-  // _all_ branches inside the statement then replace the lastWrites of the parent
-  // with the intersection of those writes. Otherwise amend the set of the parent.
-  // The point is that we need to know all the writes a next ref after the statement
-  // might be able to read/overwrite.
-  // The writes in abrupt completed branches will not appear in this "after".
-
-  const mergeMap = new Map;
-  node.$p.openRefsT.lastWritesToProcessAfter.forEach(map => {
-    map.forEach((set, name) => {
-      const curr = mergeMap.get(name);
-      if (curr) {
-        set.forEach(write => curr.add(write));
-      } else {
-        mergeMap.set(name, new Set(set));
-      }
-    });
-  });
-  // Now for every entry in mergeMap that appears in all "after" maps, overwrite
-  // them in the parent. For anything else, amend them.
-  mergeMap.forEach((set, name) => {
-    if (node.$p.openRefsT.lastWritesToProcessAfter.every(map => map.has(name))) {
-      parentBlock.$p.openRefsN.lastWrites.set(name, set);
-    } else {
-      const s = parentBlock.$p.openRefsN.lastWrites.get(name) || new Set; // It may not exist eh.
-      set.forEach(write => s.add(write));
-      parentBlock.$p.openRefsN.lastWrites.set(name, s);
-    }
-  });
-  // Now the parent node represents the current open-write state after the "if".
-  // The next ref will be able to find all the writes it can read/overwrite in this list.
-  if (OPEN_REF_TRACING) console.groupEnd();
-}
-
-function mergePreWriteReads(node, parentBlock) {
-  if (OPEN_REF_TRACING) console.group('OpenRefs: mergePreWriteReads()', node.$p.openRefsT.preWriteReadsToProcessAfter.length);
-
-  // The point of the pre-write-reads is to know which reads at the start
-  // of a loop may read a write at the end of that loop once it loops.
-  // `while ($) { $(x); x = 1; }`
-  // We want to know every potential read here. So imbalanced branching
-  // should still result in an pre-write-read. For example, in this snippet
-  // `while ($) { if ($()) x = 1; $(x); x = 2; }` the $(x) read of x may
-  // observe 1 or 2 (or the value before the loop) so that's what we want to know.
-  // To achieve this, we must copy all the refs marked this way, from either branch,
-  // and merge it with those of the parent node.
-
-  const mergeMap = parentBlock.$p.openRefsN.preWriteReads;
-  node.$p.openRefsT.preWriteReadsToProcessAfter.forEach(map => {
-    map.forEach((set, name) => {
-      const has = mergeMap.get(name);
-      if (!has) {
-        mergeMap.set(name, new Set(set));
-      } else {
-        set.forEach(read => has.add(read));
-      }
-    });
-  });
-
-  // Now the map is updated with all the early reads after this "if".
-  if (OPEN_REF_TRACING) console.groupEnd();
 }

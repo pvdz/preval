@@ -231,8 +231,12 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           // Slow; serialize and parse to verify each cycle
           //parseCode(tmat(fdata.tenkoOutput.ast, true), fname);
 
+          console.log(tmat(fdata.tenkoOutput.ast, true));
           ++phase1s;
           phase1(fdata, resolve, req, firstAfterParse, passes, phase1s); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+
+          console.log('Note: hard exit after first pass');
+          process.exit();
           firstAfterParse = false;
 
           changed = phase2(program, fdata, resolve, req, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent, unrollTrueLimit: options.unrollTrueLimit});

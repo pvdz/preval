@@ -302,6 +302,7 @@ function attemptConstantInlining(meta, fdata) {
             innerTrap: oldRead.innerTrap,
             innerCatch: oldRead.innerCatch,
             innerFinally: oldRead.innerFinally,
+            openPropsCanRead: oldRead.openPropsCanRead,
           }),
         );
         // We removed an element from the current loop so retry the current index

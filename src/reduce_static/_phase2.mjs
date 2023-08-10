@@ -118,7 +118,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
   fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
     // Since we regenerate the pid during every phase1, we should be able to rely on it for DFS ordering.
     // Note: this is not necessarily source order. `x = y` will visit `y` before `x`.
-    const rwOrder = [...meta.reads, ...meta.writes].sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
+    const rwOrder = meta.reads.concat(meta.writes).sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
       +a < +b ? -1 : +a > +b ? 1 : 0,
     );
     meta.rwOrder = rwOrder;

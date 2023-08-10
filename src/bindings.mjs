@@ -541,6 +541,8 @@ export function createReadRef(obj) {
     innerTrap,
     innerCatch,
     innerFinally,
+    openRefsRCanRead,
+
     ...rest
   } = obj;
   ASSERT(typeof kind === 'string');
@@ -589,6 +591,8 @@ export function createReadRef(obj) {
     innerCatch,
     innerFinally,
     reachesWrites: new Set(), // Set<Write>. All writes this read can "reach" (might "observe", syntactically speaking)
+
+    openRefsRCanRead,
   };
 }
 export function createWriteRef(obj) {
@@ -620,6 +624,10 @@ export function createWriteRef(obj) {
     innerTrap,
     innerCatch,
     innerFinally,
+    openRefsRReadBy,
+    openRefsROverwrittenBy,
+    openRefsRCanOverwrite,
+
     ...rest
   } = obj;
   ASSERT(JSON.stringify(rest) === '{}', 'add new props to createWriteRef in the func too!', rest);
@@ -668,6 +676,10 @@ export function createWriteRef(obj) {
     reachedByReads: new Set(), // Set<Read>. All reads that can "reach" this write (might "observe", syntactically speaking)
     reachedByWrites: new Set(), // Set<Read>. All writes that can "reach" this write (this write shadows theirs)
     reachesWrites: new Set(), // Set<Write>. The previous writes to this binding this write can reach. Used for redundant let write detection.
+
+    openRefsRReadBy,
+    openRefsROverwrittenBy,
+    openRefsRCanOverwrite,
   };
 }
 

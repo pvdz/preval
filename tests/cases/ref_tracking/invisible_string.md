@@ -9,7 +9,7 @@
 ## Input
 
 `````js filename=intro
-let a = "abc"; // never observed, overwritten inside the loop
+let a = "abc";
 let b = "def"; // never observed, overwritten in both branches in the loop
 if ($) {
   let c = 1;

@@ -20,6 +20,7 @@ export function parseTestArgs() {
     onlyNormalized: false,
     onlyOutput: false, // When generating test cases, only add the `## Output` block (for diffing)
     randomizedOrder: false,
+    refTest: undefined, // Dump special ref tracking debug output / test formatting, instead of normal test cases?
     skipEval: false, // Do not run the eval checks afterwards
     targetFile: undefined,
     threadIndex: 0, // ... and this will be that thread
@@ -143,6 +144,11 @@ export function parseTestArgs() {
 
       case '--no-trace': {
         config.verboseTracing = false;
+        break;
+      }
+
+      case '--refTest': {
+        config.refTest = false;
         break;
       }
 

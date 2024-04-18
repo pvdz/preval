@@ -4,6 +4,9 @@ import Prettier from 'prettier';
 import {astToPst} from "../src/utils/ast_to_pst.mjs"
 import {verifyPst} from "../src/utils/verify_pst.mjs"
 import {printPst} from "../src/utils/print_pst.mjs"
+import {setPrintPids} from "../lib/printer.mjs";
+import {tmat} from "../src/utils.mjs"
+import {createOpenRefsState} from "../src/utils/ref_tracking.mjs"
 
 export const RED = '\x1b[31;1m';
 export const GREEN = '\x1b[32m';
@@ -82,7 +85,8 @@ export function fromMarkdownCase(md, fname, config) {
   } else if (md[0] === '#') {
     const [mdHead, ...chunks] = md.split('\n## ').filter((s) => !s.startsWith('Eval\n'));
     const mdInput = chunks.filter((s) => s.startsWith('Input\n'))[0];
-    const mdOptions = [...(chunks.filter((s) => s.startsWith('Options\n'))?.[0] ?? '').trim().matchAll(/^- (\w+)(?:=(.+))?$/gm)].reduce(
+    const blk = (chunks.filter((s) => s.startsWith('Options\n'))[0] ?? '').trim();
+    const mdOptions = Array.from(blk.matchAll(/^ *- *(\w+)(?:=(.+))?$/gm)).reduce(
       (options, match) => {
         let [, name, value] = match;
         name = name.trim();
@@ -91,6 +95,9 @@ export function fromMarkdownCase(md, fname, config) {
           case 'cloneLimit':
             value = parseInt(value.trim());
             if (isNaN(value)) throw new Error('Test case contained invalid value for `' + name + '` (' + value + ')');
+            break;
+          case 'refTest':
+            value = true;
             break;
           case 'skipEval':
           case 'skipEvalInput':
@@ -269,24 +276,38 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
   // Drop the symbols that preval defines from the list of implicit globals
   leGlobalSymbols.forEach(name => output.implicitGlobals.delete(name));
 
+  const wasRefTest = CONFIG.refTest || mdOptions?.refTest;
+
   let mdBody =
     (CONFIG.logPasses ? '<trimmed, see logs>' : (
-      (CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +
-      (CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
-      (
+      (wasRefTest || CONFIG.onlyOutput ? '' : toPreResult(output.pre)) +
+      (wasRefTest || CONFIG.onlyOutput ? '' : toNormalizedResult(output.normalized)) +
+      (!wasRefTest ? '' : (
+        (setPrintPids(true), '') +
+
+        '\n\n## Output\n\n' +
+        '(Annotated with pids)\n\n' +
+        Object.keys(output.files)
+        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+        .map((key) => '`````filename=' + key + '\n' + fmat(tmat(output.lastPhase1Ast, true)).trim() + '\n`````')
+        .join('\n\n') +
+
+        (setPrintPids(false), '')
+      )) +
+      (wasRefTest ? '' : (
         '\n\n## Output\n\n' +
         Object.keys(output.files)
-          .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
-          .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
-          .join('\n\n')
-      ) +
-      (
+        .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
+        .map((key) => '`````js filename=' + key + '\n' + fmat(output.files[key]).trim() + '\n`````')
+        .join('\n\n')
+      )) +
+      (wasRefTest ? '' : (
         '\n\n## PST Output\n\n' +
         'With rename=true\n\n' +
         Object.keys(output.files)
         .sort((a, b) => (a === 'intro' ? -1 : b === 'intro' ? 1 : a < b ? -1 : a > b ? 1 : 0))
         .map((key) => {
-          const pst = astToPst(output.lastAst);
+          const pst = astToPst(output.lastAst); // TODO: -> output.files[key] ?
           //console.log('PST:');
           //console.dir(pst, {depth: null});
           verifyPst(pst);
@@ -299,8 +320,8 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
           return '`````js filename=' + key + '\n' + code.trim() + '\n`````';
         })
         .join('\n\n')
-      ) +
-      toEvaluationResult(evalled, output.implicitGlobals, false)
+      )) +
+      (wasRefTest ? '\n\nRef tracking result:\n\n' + createOpenRefsState(output.globallyUniqueNamingRegistry) : toEvaluationResult(evalled, output.implicitGlobals, false))
     )) +
   '';
 

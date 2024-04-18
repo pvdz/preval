@@ -235,6 +235,8 @@ function runTestCase(
     console.log('mdOptions:', mdOptions);
   }
 
+  const isRefTest = CONFIG.refTest ?? mdOptions?.refTest;
+
   let expectedError = false;
   try {
     if (CONFIG.verbose === false && CONFIG.targetFile) console.log('\nNow running Preval without output...\n');
@@ -255,7 +257,7 @@ function runTestCase(
           if (CONFIG.fileVerbatim && importPath !== 'intro') {
             console.log('TODO: currently skipping imports from `./p F` runs');
           } else {
-            console.log('-', fin[importPath].length, 'bytes');
+            console.log('-', fin[importPath]?.length, 'bytes');
           }
         }
         if (CONFIG.fileVerbatim && importPath !== 'intro') {
@@ -270,6 +272,7 @@ function runTestCase(
         logPasses: CONFIG.logPasses,
         logDir: CONFIG.logDir,
         maxPass: CONFIG.maxPass ?? mdOptions?.maxPass,
+        refTest: isRefTest,
         unrollLimit: CONFIG.unroll ?? mdOptions?.unroll ?? 10,
         unrollTrueLimit: CONFIG.unrollTrue ?? mdOptions?.unrollTrue ?? 10,
         onAfterFirstParse(preFdata) {
@@ -414,7 +417,7 @@ function runTestCase(
   }
   let leGlobalSymbols = Object.keys(createGlobalPrevalSymbols([], () => {}, () => {}));
 
-  if (withOutput && !lastError) console.log('Evaluating outcomes now for:', CONFIG.targetFile);
+  if (withOutput && !lastError && !isRefTest) console.log('Evaluating outcomes now for:', CONFIG.targetFile);
 
   const evalled = { $in: [], $pre: [], $norm: [], $out: [] };
   function evaluate(desc, fdata, stack) {
@@ -600,13 +603,13 @@ function runTestCase(
     return stack.slice(0);
   }
   const SKIPPED = '"<skipped by option>"';
-  evalled.$in = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput ? [SKIPPED] : evaluate('input', fin, evalled.$in);
-  evalled.$pre = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre ? [SKIPPED] : evaluate('pre normalization', fin, evalled.$pre);
+  evalled.$in = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalInput || isRefTest ? [SKIPPED] : evaluate('input', fin, evalled.$in);
+  evalled.$pre = lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalPre || isRefTest ? [SKIPPED] : evaluate('pre normalization', fin, evalled.$pre);
   evalled.$norm =
-    lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized ? [SKIPPED] : evaluate('normalized', output?.normalized, evalled.$norm);
+    lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalNormalized || isRefTest ? [SKIPPED] : evaluate('normalized', output?.normalized, evalled.$norm);
   if (!CONFIG.onlyNormalized) {
     evalled.$out =
-      lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput ? [SKIPPED] : evaluate('output', output?.files, evalled.$out);
+      lastError || CONFIG.skipEval || mdOptions.skipEval || mdOptions.skipEvalOutput || isRefTest ? [SKIPPED] : evaluate('output', output?.files, evalled.$out);
   }
 
   if (lastError && !isExpectingAnError) console.log('\n\nPreval crashed hard on test/file, skipped evals:', CONFIG.targetFile);
@@ -662,7 +665,7 @@ function runTestCase(
       console.log(toEvaluationResult(evalled, output.implicitGlobals, true));
     }
   } else {
-    let md2 = toMarkdownCase({ md, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols }, CONFIG);
+    let md2 = toMarkdownCase({ md, mdOptions, mdHead, mdChunks, fname, fin, output, evalled, lastError, isExpectingAnError, leGlobalSymbols }, CONFIG);
 
     let snapshotChanged = md2 !== md;
     let normalizationDesync = md2.includes('BAD?!');

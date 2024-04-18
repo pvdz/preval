@@ -4,7 +4,7 @@ import walk from '../../lib/walk.mjs';
 
 import { RED, BLUE, RESET } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd } from '../utils.mjs';
-import { $p } from '../$p.mjs';
+import {$p, resetUid} from '../$p.mjs';
 import { getIdentUsageKind, createFreshLabel, findUniqueNameForBindingIdent, preprocessScopeNode } from '../bindings.mjs';
 
 export function uniqify_idents(funcAst, fdata) {
@@ -12,6 +12,8 @@ export function uniqify_idents(funcAst, fdata) {
   const labelStack = []; // No need to validate this or track func boundaries. That's what the parser should have done already.
   let lexScopeCounter = 0;
   const funcScopeStack = [];
+
+  resetUid();
 
   let walked = 0;
   log('    - before walk');

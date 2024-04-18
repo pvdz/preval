@@ -1,7 +1,6 @@
 import {ASSERT} from "../utils.mjs"
-import {memberRefExpression} from "./pst.mjs"
 
-export function printPst(node, config = {rename: false, indent: ''}) {
+export function printPst(node, config = {rename: false, indent: '', refPids: false}) {
   if (config.rename) {
     config.names = new Map;
     if (!config.globals) config.globals = new Set;
@@ -155,20 +154,22 @@ function printBlock(indent, config, node) {
 }
 
 function printRef(indent, config, node) {
-  if (config.rename) {
-    if (config.globals.has(node.name)) return node.name;
-    if (/^\$\d+$/.test(node.name)) return node.name; // Keep param ids
+  if (config.globals.has(node.name)) return node.name; // Keep globals
+  if (/^\$\d+$/.test(node.name)) return node.name; // Keep param ids
 
+  const suffix = config.refPids && node.$p ? '/*@' + node.$p.pid + '*/' : '';
+
+  if (config.rename) {
     const newName = config.names.get(node.name);
-    if (newName) return newName;
+    if (newName) return newName + suffix;
 
     const size = config.names.size;
     const nextName = (size + 10).toString(36).split('').reverse().join(''); // Can not start with a digit (low endian 0-9)
     config.names.set(node.name, nextName);
-    return nextName;
+    return nextName + suffix;
   }
 
-  return node.name;
+  return node.name + suffix;
 }
 
 function printSimple(indent, config, node) {

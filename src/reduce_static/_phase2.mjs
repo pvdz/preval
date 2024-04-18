@@ -96,6 +96,9 @@ import {aliasIfIf} from "./alias_if_if.mjs";
 // - Branch out
 // - Const binding folding (const a = $(); const b = a; -> redundant)
 // - Unary negative/positive should look at argument
+// - Function whose body is one if-else driven by an argument. If the func does not escape then it can be split into two functions and the arg eliminated. in react there is executeDispatchesAndRelease for example.
+// - The boolean cast in isNode$1 in react can be moved?
+// - Eliminate continue
 
 export function phase2(program, fdata, resolve, req, options) {
   const ast = fdata.tenkoOutput.ast;

@@ -16,7 +16,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
   setVerboseTracing(!!verbose && verboseTracing !== false);
 
   {
-    const { logDir, logPasses, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, unrollTrueLimit, ...rest } = options;
+    const { logDir, logPasses, maxPass, cloneLimit, allowEval, unrollLimit, implicitThisIdent, unrollTrueLimit, refTest, ...rest } = options;
     if (JSON.stringify(rest) !== '{}') throw new Error('Preval: Unsupported options received:', rest);
   }
 
@@ -233,10 +233,14 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
 
           console.log(tmat(fdata.tenkoOutput.ast, true));
           ++phase1s;
-          phase1(fdata, resolve, req, firstAfterParse, passes, phase1s); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest); // I want a phase1 because I want the scope tracking set up for normalizing bindings
+          contents.lastPhase1Ast = fdata.tenkoOutput.ast;
 
-          console.log('Note: hard exit after first pass');
-          process.exit();
+          if (options.refTest) {
+            // Test runner only cares about the first pass up to here
+            break;
+          }
+
           firstAfterParse = false;
 
           changed = phase2(program, fdata, resolve, req, {unrollLimit: options.unrollLimit, implicitThisIdent: options.implicitThisIdent, unrollTrueLimit: options.unrollTrueLimit});
@@ -257,7 +261,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         options.onPassEnd?.(outCode, passes, fi, options);
 
         changed = outCode !== inputCode;
-        if (changed && (!maxPasses || passes < maxPasses)) {
+        if (changed && (!maxPasses || passes < maxPasses) && !options.refTest) {
           log('Something changed in phase2 so we will be rerolling it again');
           inputCode = outCode;
           log(
@@ -283,6 +287,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           });
           contents.implicitGlobals = set;
           contents.explicitGlobals = new Set(Array.from(globals.keys()));
+          contents.globallyUniqueNamingRegistry = fdata.globallyUniqueNamingRegistry;
 
           contents.files[fname] = outCode;
           options.onFinal?.(outCode, passes, fi, options);
@@ -291,6 +296,9 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
         if (changed && maxPasses && passes >= maxPasses) {
           log('Reached the max number of passes requested. Bailing even though there are changes to process.');
           break;
+        }
+        if (options.refTest) {
+          log('This is a ref test. Stopping after first pass.');
         }
       }
       log('\nPreval ran for', passes, 'passes');

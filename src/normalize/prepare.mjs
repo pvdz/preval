@@ -12,7 +12,7 @@ import {
   DIM,
 } from '../constants.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after } from '../utils.mjs';
-import { $p } from '../$p.mjs';
+import {$p, resetUid} from '../$p.mjs';
 import globals from '../globals.mjs';
 import {
   createFreshLabel,
@@ -63,6 +63,8 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
   group(
     '\n\n\n##################################\n## prepare normalization  ::  ' + fdata.fname + '\n##################################\n\n\n',
   );
+
+  resetUid();
 
   walk(_walker, ast, 'ast');
   function _walker(node, beforeWalk, nodeType, path) {

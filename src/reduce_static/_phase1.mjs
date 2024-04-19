@@ -57,7 +57,7 @@ import {
 // - Continue/break: TODO
 // - Return/Throw: end of a branch, right.
 
-export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
+export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, refTest) {
   const ast = fdata.tenkoOutput.ast;
 
   const start = Date.now();
@@ -116,7 +116,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s) {
   group(
     '\n\n\n##################################\n## phase1 (first=' +
       firstAfterParse +
-      ') ::  ' +
+      ', refTest=' +
+      !!refTest +
+    ') ::  ' +
       fdata.fname +
       ', pass=' + passes + ', phase1s=', phase1s, ', len:', fdata.len, '\n##################################\n\n\n',
   );

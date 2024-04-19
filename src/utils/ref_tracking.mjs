@@ -473,7 +473,9 @@ export function openRefsReadBefore(read, blockNode) {
 }
 
 export function openRefsWriteBefore(write, blockNode) {
-  if (OPEN_REF_TRACING) console.log('OpenRefs: recording write reference');
+  const name = write.node.name;
+
+  if (name === '$') return; // Special debugging symbol. Should be global. This analysis doesn't apply to globals. Noisy in tests. So skip it.
 
   // Track the first writes to a binding in a block chain. This is used to connect end of loops to the start.
   if (!blockNode.$p.openRefsN.firstWrites.has(name)) {

@@ -447,7 +447,9 @@ export function openRefsRefAfter(kind, node, parentNode, parentProp, parentIndex
 }
 
 export function openRefsReadBefore(read, blockNode) {
-  if (OPEN_REF_TRACING) console.log('OpenRefs: recording read reference to', [name]);
+  const name = read.node.name;
+
+  if (name === '$') return; // Special debugging symbol. Should be global. This analysis doesn't apply to globals. Noisy in tests. So skip it.
 
   // For all intentions and purposes, right now the next read can only see this write.
   // It's only for reconciling branching blocks where it might have multiple open writes

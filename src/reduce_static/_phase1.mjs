@@ -270,9 +270,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
       case 'BlockStatement:before': {
         node.$p.promoParent = blockStack[blockStack.length - 1];
+
         blockStack.push(node); // Do we assign node or node.body?
 
-        openRefsBlockOnBefore(node);
+        openRefsBlockOnBefore(node, parentNode, parentProp, blockStack[blockStack.length - 1]);
 
         if (tryNodeStack.length) {
           if (parentProp === 'finalizer') finallyStack.push(node.$p.pid);
@@ -409,7 +410,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         blockBodies.pop();
         blockIds.pop();
 
-        openRefsBlockOnAfter(node, parentNode, parentProp, loopStack);
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsBlockOnAfter(node, parentNode, parentProp, loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack);
 
         if (tryNodeStack.length) {
           if (parentProp === 'finalizer') finallyStack.pop();
@@ -553,7 +555,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'CatchClause:before': {
         // Note: the catch scope is set on node.handler of the try (parent node of the catch clause)
 
-        openRefsCatchOnBefore(node);
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsCatchOnBefore(node, parentNode, parentBlock);
 
         break;
       }
@@ -566,7 +569,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'ForInStatement:before': {
-        openRefsLoopOnBefore('in', node);
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsLoopOnBefore('in', node, parentBlock);
 
         node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
         node.$p.outWrites = new Set(); // Dito for writes
@@ -580,12 +584,13 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         loopStack.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsLoopOnAfter('in', node, parentBlock);
+        openRefsLoopOnAfter('in', node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);
         break;
       }
 
       case 'ForOfStatement:before': {
-        openRefsLoopOnBefore('of', node);
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsLoopOnBefore('of', node, parentBlock);
 
         node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
         node.$p.outWrites = new Set(); // Dito for writes
@@ -599,7 +604,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         loopStack.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsLoopOnAfter('of', node, parentBlock);
+        openRefsLoopOnAfter('of', node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);
         break;
       }
 
@@ -775,7 +780,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           vlog('- Binding referenced in $p.pid:', currentScope.$p.pid, ', reads so far:', meta.reads.length, ', writes so far:', meta.writes.length);
           ASSERT(kind !== 'readwrite', 'compound assignments and update expressions should be eliminated by normalization', node);
 
-
           openRefsRefBefore(kind, node, parentNode, parentProp, parentIndex, meta);
 
           // This is normalized code so there must be a block parent for any read ref
@@ -860,7 +864,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             });
             meta.reads.push(read);
 
-            openRefsReadBefore(read, blockNode);
+            openRefsReadBefore(read, blockNode, meta);
 
             if (currentLastWriteSetForName) {
               // This is the write(s) this read can reach. Can be multiple, for example after two writes in a branch.
@@ -953,7 +957,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             meta.writes.push(write);
             //meta.writes.unshift(write); // TODO: used to shift if parentNode.type === 'VariableDeclarator'. Do we assert on that? I think I'd rather have .writes ordered by occurrence
 
-            openRefsWriteBefore(write, blockNode);
+            openRefsWriteBefore(write, blockNode, meta);
 
             if (currentLastWriteSetForName) {
               // This is the write(s) this write can reach. Can be multiple, for example after two writes in a branch.
@@ -1084,14 +1088,15 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'IfStatement:before': {
-        openRefsIfOnBefore(node);
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsIfOnBefore(node, parentBlock);
 
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         break;
       }
       case 'IfStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsIfOnafter(node, parentBlock);
+        openRefsIfOnafter(node, parentBlock, globallyUniqueLabelRegistry, loopStack, blockStack, tryNodeStack);
 
         if (node.consequent.$p.earlyComplete || node.alternate.$p.earlyComplete) {
           vlog('At least one branch had an early completion');
@@ -1162,7 +1167,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'LabeledStatement:before': {
-        openRefsLabelOnBefore(node);
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsLabelOnBefore(node, parentBlock);
 
         // TODO: with the new normalization rules, do we still have labels, break, and continue here?
         vlog('Label:', node.label.name);
@@ -1171,7 +1177,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
       case 'LabeledStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsLabelOnAfter(node, parentBlock);
+        openRefsLabelOnAfter(node, parentBlock, globallyUniqueLabelRegistry, loopStack);
 
         if (node.body.$p.earlyComplete) {
           vlog('Label block/loop contained at least one early completion');
@@ -1226,7 +1232,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
         markEarlyCompletion(node, funcNode, true, parentNode);
 
-        openRefsReturnOnBefore(blockStack);
+        openRefsReturnOnBefore(blockStack, node);
 
         vgroup('[commonReturn]');
         const a = funcNode.$p.commonReturn;
@@ -1330,18 +1336,20 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           funcNode.$p.throwsExplicitly = true;
         }
 
-        openRefsThrowOnBefore(blockStack);
+        openRefsThrowOnBefore(blockStack, node);
         break;
       }
 
       case 'TryStatement:before': {
-        openRefsTryOnBefore(node);
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsTryOnBefore(node, parentBlock);
 
         tryNodeStack.push(node);
         break;
       }
       case 'TryStatement:after': {
-        openRefsTryOnAfter(node);
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsTryOnAfter(node, parentBlock, globallyUniqueLabelRegistry, loopStack);
 
         if (node.block.$p.earlyComplete || node.handler?.body.$p.earlyComplete || node.finalizer?.$p.earlyComplete) {
           vlog('At least one block of the try has an early completion');
@@ -1409,7 +1417,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'WhileStatement:before': {
-        openRefsLoopOnBefore('while', node);
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsLoopOnBefore('while', node, parentBlock);
 
         node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
         node.$p.outWrites = new Set(); // Dito for writes
@@ -1423,7 +1432,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         loopStack.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsLoopOnAfter('while', node, parentBlock);
+        openRefsLoopOnAfter('while', node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);
 
         const lastWritesAtLoopStart = lastWritesAtStartPerLoop.pop();
         const currentLastWriteMapForName = lastWritesPerName[lastWritesPerName.length - 1];

@@ -438,7 +438,12 @@ export function openRefsCatchOnBefore(node) {
 
 
 export function openRefsRefBefore(kind, node, parentNode, parentProp, parentIndex, meta) {
-  if (OPEN_REF_TRACING) console.group('OpenRefs @', +node.$p.pid, ': Ref:', [name], 'with kind', [kind], 'on a', parentNode.type + '.'+ parentProp + (parentIndex >= 0 ? '[' + parentIndex + ']' : ''), '( builtin=', meta.isBuiltin, ', implicit=', meta.isImplicitGlobal, ')');
+  if (node.name === '$') console.group();
+  else if (OPEN_REF_TRACING) console.group('on::ref @', +node.$p.pid, ': Ref:', [node.name], 'with kind', [kind], 'on a', parentNode.type + '.'+ parentProp + (parentIndex >= 0 ? '[' + parentIndex + ']' : ''), '( builtin=', meta.isBuiltin, ', implicit=', meta.isImplicitGlobal, ')');
+}
+
+export function openRefsRefAfter(kind, node, parentNode, parentProp, parentIndex, meta) {
+  if (OPEN_REF_TRACING) console.groupEnd();
 }
 
 export function openRefsReadBefore(read, blockNode) {

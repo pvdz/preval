@@ -14,10 +14,31 @@ If you want to indicate that the test is expected to throw inside Preval then yo
 
 ## Options
 
-Test-specific options go here.
+Test-specific options go here. Just use them as specified. Some do not have an arg.
 
 - implicitThis=window
+
+Consider the implicit `this` keyword to be the `window` object in the browser.
+TODO: add same for nodejs and/or other envs.
+
 - skipEval=true
+
+Do not evaluate the result even on success.
+
+- refTest
+
+This enables a special testing mode and output that prints reference tracking details.
+
+## Ref tracking test
+
+The special ref tracking mode stops the run after the first phase1 pass.
+
+It will dump a special annotated source code and for all references it will tell you
+- which writes a read can reach
+- which writes a write can overwrite
+- by which writes a write might be overwritten
+
+To enable this, set the refTest option in the options header (see previous section) or use --refTest from cli.
 
 ## Input
 

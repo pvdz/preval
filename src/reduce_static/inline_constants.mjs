@@ -285,6 +285,7 @@ function attemptConstantInlining(meta, fdata) {
             grandIndex,
             blockBody: oldRead.blockBody,
             blockIndex: oldRead.blockIndex,
+            parentBlockNode: oldRead.parentBlockNode,
             pfuncNode: oldRead.pfuncNode,
             node: clone,
             rwCounter: oldRead.rwCounter,

@@ -524,6 +524,7 @@ export function createReadRef(obj) {
     grandIndex,
     blockBody, // nearest ancestor block to the node
     blockIndex,
+    parentBlockNode, // node containing the array blockBody
     pfuncNode, // Function/Program that is the nearest to this ref
     node,
     rwCounter,
@@ -552,6 +553,7 @@ export function createReadRef(obj) {
   ASSERT(typeof innerIf === 'number', 'inner if?', innerIf);
   ASSERT(typeof innerElse === 'number', 'inner else?', innerElse);
   ASSERT(blockChain);
+  ASSERT(parentBlockNode?.body === blockBody);
   ASSERT(blockIds instanceof Array);
   ASSERT(blockBodies instanceof Array && blockBodies.every((a) => Array.isArray(a)));
   ASSERT(blockIndexes instanceof Array);
@@ -573,6 +575,7 @@ export function createReadRef(obj) {
     grandIndex,
     blockBody, // nearest ancestor block to the node
     blockIndex,
+    parentBlockNode, // node containing the array blockBody
     pfuncNode, // Function/Program that is the nearest to this ref
     node,
     rwCounter,
@@ -607,6 +610,7 @@ export function createWriteRef(obj) {
     grandIndex,
     blockBody, // nearest ancestor block to the node
     blockIndex,
+    parentBlockNode, // node containing the array blockBody
     pfuncNode, // Function/Program that is the nearest to this ref
     node,
     rwCounter,
@@ -636,6 +640,7 @@ export function createWriteRef(obj) {
   ASSERT(typeof innerIf === 'number');
   ASSERT(typeof innerElse === 'number');
   ASSERT(blockChain);
+  ASSERT(parentBlockNode?.body === blockBody);
   ASSERT(blockIds instanceof Array);
   ASSERT(blockBodies instanceof Array && blockBodies.every((a) => Array.isArray(a)));
   ASSERT(blockIndexes instanceof Array);
@@ -656,6 +661,7 @@ export function createWriteRef(obj) {
     grandIndex,
     blockBody,
     blockIndex,
+    parentBlockNode, // node containing the array blockBody
     pfuncNode, // Function/Program that is the nearest to this ref
     node,
     rwCounter,

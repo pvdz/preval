@@ -21,8 +21,6 @@ const f = function(item) {
 const arr = $dotCall(map, pre, f); // Turn this back into `pre.map(f);`
 $(arr);
 `````
-<<<<<<< Updated upstream
-
 ## Pre Normal
 
 `````js filename=intro

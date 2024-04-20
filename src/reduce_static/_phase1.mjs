@@ -34,6 +34,10 @@ import {
   openRefsThrowOnBefore,
   openRefsTryOnBefore,
   openRefsTryOnAfter,
+  openRefsRefAfter,
+  openRefsOnBeforeCatchVar,
+  openRefsOnAfterCatchVar,
+  openRefsOnAfterCatchNode,
   dumpOpenRefsState, openRefsRefBefore, openRefsBlockOnBefore
 } from "../utils/ref_tracking.mjs"
 
@@ -561,6 +565,12 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         break;
       }
 
+      case 'CatchClause:after': {
+        const parentBlock = blockStack[blockStack.length - 1];
+        openRefsOnAfterCatchNode(node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);
+        break;
+      }
+
       case 'DebuggerStatement:before': {
         // Must be the only one and must be our header/body divider
         ASSERT(parentIndex >= 0);
@@ -701,6 +711,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'Identifier:before': {
+        if (parentNode.type === 'CatchClause') openRefsOnBeforeCatchVar();
+
         const currentScope = funcStack[funcStack.length - 1];
         const name = node.name;
         vlog('Ident:', name);
@@ -1064,6 +1076,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
             }
           }
 
+          openRefsRefAfter(kind, node, parentNode, parentProp, parentIndex, meta);
+
           if (node.name === 'arguments') {
             //ASSERT(kind === 'write', 'so this must be a write to the identifier `arguments`', kind, parentNode.type);
             // Treat `arguments` as an unknown object. It's not an array and very special.
@@ -1084,6 +1098,8 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           vlog(RED + '- skipping; not a binding' + RESET);
         }
 
+
+        if (parentNode.type === 'CatchClause') openRefsOnAfterCatchVar();
         break;
       }
 

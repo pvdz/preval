@@ -435,7 +435,12 @@ export function openRefsCatchOnBefore(node) {
   if (OPEN_REF_TRACING) console.groupEnd();
 }
 
-
+export function openRefsOnBeforeCatchVar() {
+  if (OPEN_REF_TRACING) console.group('openRefsOnBeforeCatchVar()');
+}
+export function openRefsOnAfterCatchVar(node, parentNode, parentProp, parentBlock) {
+  if (OPEN_REF_TRACING) console.groupEnd();
+}
 
 export function openRefsRefBefore(kind, node, parentNode, parentProp, parentIndex, meta) {
   if (node.name === '$') console.group();
@@ -444,6 +449,10 @@ export function openRefsRefBefore(kind, node, parentNode, parentProp, parentInde
 
 export function openRefsRefAfter(kind, node, parentNode, parentProp, parentIndex, meta) {
   if (OPEN_REF_TRACING) console.groupEnd();
+}
+
+export function openRefsOnAfterCatchNode(node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack) {
+
 }
 
 export function openRefsReadBefore(read, blockNode) {

@@ -6,7 +6,6 @@ import {verifyPst} from "../src/utils/verify_pst.mjs"
 import {printPst} from "../src/utils/print_pst.mjs"
 import {setPrintPids} from "../lib/printer.mjs";
 import {tmat} from "../src/utils.mjs"
-import {createOpenRefsState} from "../src/utils/ref_tracking.mjs"
 
 export const RED = '\x1b[31;1m';
 export const GREEN = '\x1b[32m';
@@ -328,6 +327,32 @@ export function toMarkdownCase({ md, mdHead, mdOptions, mdChunks, fname, fin, ou
   if (CONFIG.trimDollar) mdBody = mdBody.replace(/\$\d+/g, '');
 
   return '' + mdHead + '\n\n' + mdInput + mdBody;
+}
+
+function createOpenRefsState(globallyUniqueNamingRegistry) {
+  const arr = [];
+  let maxlen = 10;
+  Array.from(globallyUniqueNamingRegistry.entries()).map(([name, meta]) => {
+    if (meta.isImplicitGlobal || meta.isGlobal || meta.isBuiltin) return;
+    arr.push(`${name}:`);
+    // Note: meta.reOrder is created in phase2
+    (meta.reads || []).concat(meta.writes || []).sort(({ node: { $p: { pid: a } } }, { node: { $p: { pid: b } } }) =>
+      +a < +b ? -1 : +a > +b ? 1 : 0,
+    ).forEach(rw => {
+      maxlen = Math.max(maxlen, rw.node.name.length);
+      arr.push([
+          '  - ' + rw.action[0] + (' @' + rw.node.$p.pid).padEnd(maxlen - 2, ' ') + ' ',
+          rw.action === 'read' ? (rw.openRefsRCanRead.size ? ' | ' + Array.from(rw.openRefsRCanRead).map(write => write.node.$p.pid) : ' | none (TDZ?)').padEnd(10, ' ') : ' | '.padEnd(13, '#'),
+          rw.action === 'write' ? (rw.openRefsRReadBy.size ? ' | ' + Array.from(rw.openRefsRReadBy).map(read => read.node.$p.pid) : ' | not read').padEnd(14, ' ') : '',
+          rw.action === 'write' ? (rw.openRefsRCanOverwrite.size ? ' | ' + Array.from(rw.openRefsRCanOverwrite).map(write => write.node.$p.pid) : ' | none').padEnd(17, ' ') : '',
+          rw.action === 'write' ? (rw.openRefsROverwrittenBy.size ? ' | ' + Array.from(rw.openRefsROverwrittenBy).map(write => write.node.$p.pid) : ' | none') : '',
+        ].filter(Boolean).join('').trimEnd()
+      );
+    });
+    arr.push('');
+  });
+  arr.unshift('    ' + (' '.repeat(maxlen)) + ' | reads      | read by     | overWrites     | overwritten by');
+  return arr.join('\n');
 }
 
 async function question(msg) {

@@ -104,10 +104,10 @@ function _printStatement(indent, config, node) {
       return `${printExpression(indent, config, node.expression)};`;
     }
     case 'ForInStatement': {
-      return `for (${printRef(indent, config, node.left)} in ${printSimple(indent, config, node.right)} ${printBlock(indent, config, node.body)}`;
+      return `for (${printRef(indent, config, node.left)} in ${printSimple(indent, config, node.right)}) ${printBlock(indent, config, node.body)}`;
     }
     case 'ForOfStatement': {
-      return `for (${printRef(indent, config, node.left)} of ${printSimple(indent, config, node.right)} ${printBlock(indent, config, node.body)}`;
+      return `for (${printRef(indent, config, node.left)} of ${printSimple(indent, config, node.right)}) ${printBlock(indent, config, node.body)}`;
     }
     case 'IfStatement': {
       return `if (${printSimple(indent, config, node.test)}) ${printBlock(indent, config, node.yes)}${node.no && node.no.body.length > 0 ? `\n${indent}else ${printBlock(indent, config, node.no)}` : ''}`;

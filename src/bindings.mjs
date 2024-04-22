@@ -2385,7 +2385,7 @@ function nodeMightMutateNameUntrapped(nodes, metaName, includeProperties, single
         vlog('The `while` ends with NONE...');
       }
     } else if (node.type === 'LabeledStatement') {
-      const { state: a, labels: labels } = nodeMightMutateNameUntrapped(node.body.body, metaName, includeProperties, singleScope);
+      const { state: a, labels: labels } = nodeMightMutateNameUntrapped([node.body], metaName, includeProperties, singleScope);
       if (a === MUTATES) {
         mutates = true;
         vlog('The label body mutates so the label mutates');

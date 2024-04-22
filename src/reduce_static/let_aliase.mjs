@@ -73,29 +73,34 @@ function _letAliasing(fdata) {
         return;
       }
 
-      vlog(`    - Found a back to back read to consts (${prevRead.parentNode.id.name} = ${prevRead.parentNode.init.name}, ${rw.parentNode.id.name} = ${prevRead.parentNode.init.name}). Now checking observability.`);
+      vgroup(`    - Found a back to back read to consts (${prevRead.parentNode.id.name} = ${prevRead.parentNode.init.name}, ${rw.parentNode.id.name} = ${prevRead.parentNode.init.name}). Now checking observability.`);
 
       if (rw.innerLoop !== prevRead.innerLoop) {
+        vlog(`      - Reads were not in same loop, bailing`);
         prevRead = rw;
         return;
       }
 
       if (rw.innerIf !== prevRead.innerIf) {
+        vlog(`      - Reads were not in same if-branch, bailing`);
         prevRead = rw;
         return;
       }
 
       if (rw.innerElse !== prevRead.innerElse) {
+        vlog(`      - Reads were not in same else-branch, bailing`);
         prevRead = rw;
         return;
       }
 
       if (rw.innerCatch !== prevRead.innerCatch) {
+        vlog(`      - Reads were not in same catch, bailing`);
         prevRead = rw;
         return;
       }
 
       if (rw.innerFinally !== prevRead.innerFinally) {
+        vlog(`      - Reads were not in same finally, bailing`);
         prevRead = rw;
         return;
       }
@@ -103,19 +108,20 @@ function _letAliasing(fdata) {
       // The writes are back-to-back and same scope and of a let to a const.
       // Now need to confirm that the two nodes do not have observable side effects between them.
 
-      const ast = fdata.tenkoOutput.ast;
+      //const ast = fdata.tenkoOutput.ast;
       //vlog('about to check it for this code:');
       //source(ast, true);
 
       const MAY_MISS = true; // The reads could be nested in different scopes. This search would miss in that case.
       if (hasObservableSideEffectsBetweenRefs(prevRead, rw, MAY_MISS, `${prevRead.parentNode.id.name} = ${prevRead.parentNode.init.name}, ${rw.parentNode.id.name} = ${prevRead.parentNode.init.name}`)) {
         prevRead = rw;
-        vlog('      - bail, unsafe')
+        vlog('      - bail, hasObservableSideEffectsBetweenRefs, unsafe')
         return;
       }
+      vgroupEnd();
 
-      vlog('Confirmed that', prevRead.parentNode.id.name, 'is an alias to', rw.parentNode.id.name, 'because they are assigned the same value with no observable side effects in between');
-      matches.push([rw, prevRead]);
+      vlog('Confirmed that', rw.parentNode.id.name, 'is an alias to', prevRead.parentNode.id.name, 'because they are assigned the same value with no observable side effects in between');
+      matches.push([prevRead, rw]);
     });
   });
 
@@ -131,7 +137,7 @@ function _letAliasing(fdata) {
       vlog('Skipping', oldName, 'to', newName, 'because', oldName, 'was already updated in this call...');
       return;
     }
-    vlog('- Combining', ra.node.name, 'with', rb.node.name);
+    vlog(`- Combining \`${oldName}\` with \`${newName}\``);
     rule('Assignment of same let value to two different constants should consider those an alias');
     example('let x = $; const a = x; const b = x; $(a, b);', 'let x = $; const a = $; ; $(a, a)');
     before(ra.blockBody[ra.blockIndex]);
@@ -141,8 +147,6 @@ function _letAliasing(fdata) {
     // - rename all references
 
     // We know both refs are reads of an ident as the init of a var decl. Replace the var decl with an assignment.
-    ASSERT(ra.parentNode.id.type === 'Identifier', 'expecting the ref to be an ident assigning to a const decl1', ra);
-    ASSERT(ra.parentNode.init.type === 'Identifier', 'expecting the ref to be an ident assigning to a const decl2', ra);
     rb.blockBody[rb.blockIndex] = AST.emptyStatement();
     // Replace the name in all its refs
     meta.rwOrder.forEach(rw => rw.node.name = newName);

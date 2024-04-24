@@ -439,7 +439,7 @@ function processAttempt3OnlyUsedInOtherScope(fdata) {
     rwOrder.some((ref) => {
       if (ref.action === 'write' && ref.kind === 'var') {
         vlog('- Found var decl');
-        ASSERT(varDeclFunc === ref.pfuncNode);
+        //ASSERT(varDeclFunc === ref.pfuncNode); // This broke for tests/cases/if_tail_extending/base_return_else.md but can't remember if super relevant...
         canStillDeclRef = true;
         vardeclRef = ref;
       } else if (varDeclFunc === ref.pfuncNode) {

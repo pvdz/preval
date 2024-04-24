@@ -80,6 +80,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
     // First normalize the code. Then serialize that AST. Then parse it again (because scope tracking).
     // Scope tracking by parser not looking so hot now, eh.
     const inputCode = req(nextFname);
+
     if (verboseTracing === undefined && inputCode.length > 10 * 1024) setVerboseTracing(false); // Only care about this for tests or debugging. Limit serialization for larger payloads for the sake of speed.
     const preFdata = parseCode(inputCode, nextFname);
 
@@ -231,7 +232,7 @@ export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve
           // Slow; serialize and parse to verify each cycle
           //parseCode(tmat(fdata.tenkoOutput.ast, true), fname);
 
-          console.log(tmat(fdata.tenkoOutput.ast, true));
+          //console.log(tmat(fdata.tenkoOutput.ast, true));
           ++phase1s;
           phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, !firstAfterParse && options.refTest); // I want a phase1 because I want the scope tracking set up for normalizing bindings
           contents.lastPhase1Ast = fdata.tenkoOutput.ast;

@@ -19,8 +19,7 @@ function _resolveBoundValueSet(fdata) {
     if (meta.isBuiltin) return;
     if (meta.isImplicitGlobal) return;
     vlog(
-      '- `' + name,
-      ', is primitive?',
+      `- \`${name}\`, is primitive?`,
       meta.typing.mustBePrimitive,
       ', has',
       meta.typing.worstCaseValueSet?.size,

@@ -42,20 +42,21 @@ f(1);
 const f = function ($$0) {
   let x = $$0;
   debugger;
-  const tmpLabeledBlockFunc = function ($$0) {
+  const tmpAfterLabel$1 = function ($$0, $$1) {
     let x$3 = $$0;
+    let tmpAfterLabel$3 = $$1;
     debugger;
-    const tmpReturnArg = tmpAfterLabel(x$3);
-    return tmpReturnArg;
+    const tmpReturnArg$3 = tmpAfterLabel$3(x$3);
+    return tmpReturnArg$3;
   };
   const tmpAfterLabel = function ($$0) {
     let x$1 = $$0;
     debugger;
-    const tmpReturnArg$1 = $(x$1);
-    return tmpReturnArg$1;
+    const tmpReturnArg = $(x$1);
+    return tmpReturnArg;
   };
-  const tmpReturnArg$3 = tmpLabeledBlockFunc(x);
-  return tmpReturnArg$3;
+  const tmpReturnArg$1 = tmpAfterLabel(x);
+  return tmpReturnArg$1;
 };
 f(1);
 `````

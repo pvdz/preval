@@ -78,8 +78,8 @@ const obj = {
   },
 };
 const tmpAssignRhsProp = $(obj);
-const tmpClusterSSA_x = tmpAssignRhsProp.x;
-$(tmpClusterSSA_x);
+const tmpSSA_x = tmpAssignRhsProp.x;
+$(tmpSSA_x);
 `````
 
 ## PST Output

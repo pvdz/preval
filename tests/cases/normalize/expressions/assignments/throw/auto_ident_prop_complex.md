@@ -43,8 +43,8 @@ throw tmpThrowArg;
 `````js filename=intro
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
-const tmpClusterSSA_a = tmpAssignRhsProp.c;
-throw tmpClusterSSA_a;
+const tmpSSA_a = tmpAssignRhsProp.c;
+throw tmpSSA_a;
 `````
 
 ## PST Output

@@ -68,7 +68,7 @@ y: 2,
 z: c
 ;
 let e = undefined;
-for (e in d {
+for (e in d) {
 
 }
 $( a );

@@ -72,6 +72,7 @@ $(a, b, c);
 
 `````js filename=intro
 const b = { x: 1 };
+let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
@@ -82,9 +83,9 @@ if (tmpIfTest) {
   b.x = 3;
   b.x = 3;
   b.x = 3;
+  a = 3;
   $(3, b, 3);
 } else {
-  const a = { a: 999, b: 1000 };
   $(a, b, 3);
 }
 `````
@@ -95,24 +96,25 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = $( 1 );
+let b = {
+a: 999,
+b: 1000
+;
 const c = $( 1 );
-const d = b === c;
-if (d) {
+const d = $( 1 );
+const e = c === d;
+if (e) {
   a.x = 3;
   a.x = 3;
   a.x = 3;
   a.x = 3;
   a.x = 3;
   a.x = 3;
+  b = 3;
   $( 3, a, 3 );
 }
 else {
-  const e = {
-a: 999,
-b: 1000
-  ;
-  $( e, a, 3 );
+  $( b, a, 3 );
 }
 `````
 

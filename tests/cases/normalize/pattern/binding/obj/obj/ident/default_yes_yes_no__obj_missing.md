@@ -60,11 +60,13 @@ if (tmpIfTest) {
   objPatternAfterDefault = objPatternBeforeDefault;
 }
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+let y = undefined;
 const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_y = $(`fail`);
-  $(tmpClusterSSA_y);
+  y = $(`fail`);
+  $(y);
 } else {
+  y = objPatternBeforeDefault$1;
   $(objPatternBeforeDefault$1);
 }
 `````
@@ -85,12 +87,14 @@ else {
   b = a;
 }
 const e = b.y;
-const f = e === undefined;
-if (f) {
-  const g = $( "fail" );
-  $( g );
+let f = undefined;
+const g = e === undefined;
+if (g) {
+  f = $( "fail" );
+  $( f );
 }
 else {
+  f = e;
   $( e );
 }
 `````

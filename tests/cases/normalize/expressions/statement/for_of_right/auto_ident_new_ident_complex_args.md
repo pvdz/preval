@@ -64,7 +64,7 @@ const a = $( 1 );
 const b = $( 2 );
 const c = new $( a, b );
 let d = undefined;
-for (d of c {
+for (d of c) {
 
 }
 const e = {

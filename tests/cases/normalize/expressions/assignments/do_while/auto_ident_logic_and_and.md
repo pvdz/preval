@@ -82,7 +82,7 @@ if (tmpNestedComplexRhs) {
   }
 } else {
 }
-let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
+let tmpSSA_a = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpCalleeParam$2 = $(1);
@@ -97,9 +97,9 @@ if (tmpNestedComplexRhs) {
     }
   } else {
   }
-  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpSSA_a) {
       $(100);
       const tmpCalleeParam$5 = $(1);
       let tmpNestedComplexRhs$2 = $(tmpCalleeParam$5);
@@ -113,14 +113,15 @@ if (tmpNestedComplexRhs) {
         }
       } else {
       }
-      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_tmpDoWhileFlag);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -166,6 +167,7 @@ if (b) {
           k = $( m );
         }
       }
+      e = k;
       e = k;
     }
     else {

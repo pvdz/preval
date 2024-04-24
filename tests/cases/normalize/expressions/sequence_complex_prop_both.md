@@ -57,8 +57,8 @@ const tmpCompObj = $(30);
 const tmpBinBothLhs = tmpCompObj.y;
 const tmpCompObj$1 = $(tmpObjLitVal);
 const tmpBinBothRhs = tmpCompObj$1.y;
-const tmpClusterSSA_a = tmpBinBothLhs === tmpBinBothRhs;
-$(tmpClusterSSA_a);
+const tmpSSA_a = tmpBinBothLhs === tmpBinBothRhs;
+$(tmpSSA_a);
 `````
 
 ## PST Output

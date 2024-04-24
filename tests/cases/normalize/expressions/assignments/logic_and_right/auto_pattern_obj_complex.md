@@ -47,11 +47,12 @@ $(a);
 
 `````js filename=intro
 let a = 999;
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpCalleeParam$1 = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
   a = tmpNestedAssignObjPatternRhs.a;
+  tmpCalleeParam = tmpNestedAssignObjPatternRhs;
   $(tmpNestedAssignObjPatternRhs);
 } else {
   $(tmpCalleeParam);
@@ -65,7 +66,7 @@ With rename=true
 
 `````js filename=intro
 let a = 999;
-const b = $( 100 );
+let b = $( 100 );
 if (b) {
   const c = {
 a: 1,
@@ -73,6 +74,7 @@ b: 2
   ;
   const d = $( c );
   a = d.a;
+  b = d;
   $( d );
 }
 else {

@@ -59,7 +59,7 @@ $(20);
 const tmpCalleeParam = [1, 2];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...arrAssignPatternRhs];
-const tmpClusterSSA_a = arrPatternSplat$1[0];
+const tmpSSA_a = arrPatternSplat$1[0];
 $(1);
 $(1);
 $(1);
@@ -74,7 +74,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

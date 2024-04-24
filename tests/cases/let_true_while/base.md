@@ -54,29 +54,29 @@ $(x, y);
 ## Output
 
 `````js filename=intro
-const y = $(5);
+let y = $(5);
 $(true);
 const tmpNestedComplexRhs = y - 1;
-let tmpClusterSSA_y = tmpNestedComplexRhs;
-let tmpClusterSSA_x = tmpNestedComplexRhs;
+y = tmpNestedComplexRhs;
+let tmpSSA_x = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(tmpNestedComplexRhs);
-  const tmpNestedComplexRhs$1 = tmpNestedComplexRhs - 1;
-  tmpClusterSSA_y = tmpNestedComplexRhs$1;
-  tmpClusterSSA_x = tmpNestedComplexRhs$1;
+  const tmpNestedComplexRhs$1 = y - 1;
+  y = tmpNestedComplexRhs$1;
+  tmpSSA_x = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_x) {
-      $(tmpClusterSSA_x);
-      const tmpNestedComplexRhs$2 = tmpClusterSSA_y - 1;
-      tmpClusterSSA_y = tmpNestedComplexRhs$2;
-      tmpClusterSSA_x = tmpNestedComplexRhs$2;
+    if (tmpSSA_x) {
+      $(tmpSSA_x);
+      const tmpNestedComplexRhs$2 = y - 1;
+      y = tmpNestedComplexRhs$2;
+      tmpSSA_x = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_x, tmpClusterSSA_y);
+$(tmpSSA_x, y);
 `````
 
 ## PST Output
@@ -84,29 +84,29 @@ $(tmpClusterSSA_x, tmpClusterSSA_y);
 With rename=true
 
 `````js filename=intro
-const a = $( 5 );
+let a = $( 5 );
 $( true );
 const b = a - 1;
+a = b;
 let c = b;
-let d = b;
 if (b) {
   $( b );
-  const e = b - 1;
-  c = e;
-  d = e;
+  const d = a - 1;
+  a = d;
+  c = d;
   while ($LOOP_UNROLL_9) {
-    if (d) {
-      $( d );
-      const f = c - 1;
-      c = f;
-      d = f;
+    if (c) {
+      $( c );
+      const e = a - 1;
+      a = e;
+      c = e;
     }
     else {
       break;
     }
   }
 }
-$( d, c );
+$( c, a );
 `````
 
 ## Globals

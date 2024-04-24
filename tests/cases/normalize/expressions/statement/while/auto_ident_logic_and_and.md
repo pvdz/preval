@@ -60,14 +60,14 @@ $(a);
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;
 const tmpCalleeParam = $(1);
-const tmpIfTest = $(tmpCalleeParam);
+let tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
   const tmpCalleeParam$1 = $(1);
-  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_tmpIfTest) {
+  tmpIfTest = $(tmpCalleeParam$1);
+  if (tmpIfTest) {
     const tmpCalleeParam$3 = $(2);
-    const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$3);
-    if (tmpClusterSSA_tmpIfTest$1) {
+    tmpIfTest = $(tmpCalleeParam$3);
+    if (tmpIfTest) {
       $(100);
     } else {
       $tmpLoopUnrollCheck = false;
@@ -81,14 +81,14 @@ if (tmpIfTest) {
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpCalleeParam$2 = $(1);
-    const tmpIfTest$1 = $(tmpCalleeParam$2);
+    let tmpIfTest$1 = $(tmpCalleeParam$2);
     if (tmpIfTest$1) {
       const tmpCalleeParam$4 = $(1);
-      const tmpClusterSSA_tmpIfTest$2 = $(tmpCalleeParam$4);
-      if (tmpClusterSSA_tmpIfTest$2) {
+      tmpIfTest$1 = $(tmpCalleeParam$4);
+      if (tmpIfTest$1) {
         const tmpCalleeParam$6 = $(2);
-        const tmpClusterSSA_tmpIfTest$4 = $(tmpCalleeParam$6);
-        if (tmpClusterSSA_tmpIfTest$4) {
+        tmpIfTest$1 = $(tmpCalleeParam$6);
+        if (tmpIfTest$1) {
           $(100);
         } else {
           break;
@@ -113,14 +113,14 @@ With rename=true
 `````js filename=intro
 let a = true;
 const b = $( 1 );
-const c = $( b );
+let c = $( b );
 if (c) {
   const d = $( 1 );
-  const e = $( d );
-  if (e) {
-    const f = $( 2 );
-    const g = $( f );
-    if (g) {
+  c = $( d );
+  if (c) {
+    const e = $( 2 );
+    c = $( e );
+    if (c) {
       $( 100 );
     }
     else {
@@ -136,15 +136,15 @@ else {
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
-    const h = $( 1 );
-    const i = $( h );
-    if (i) {
-      const j = $( 1 );
-      const k = $( j );
-      if (k) {
-        const l = $( 2 );
-        const m = $( l );
-        if (m) {
+    const f = $( 1 );
+    let g = $( f );
+    if (g) {
+      const h = $( 1 );
+      g = $( h );
+      if (g) {
+        const i = $( 2 );
+        g = $( i );
+        if (g) {
           $( 100 );
         }
         else {
@@ -160,11 +160,11 @@ if (a) {
     }
   }
 }
-const n = {
+const j = {
 a: 999,
 b: 1000
 ;
-$( n );
+$( j );
 `````
 
 ## Globals

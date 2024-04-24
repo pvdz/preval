@@ -25,7 +25,7 @@ $('fail');
 ## Pre Normal
 
 `````js filename=intro
-null;
+$throwTDZError(`TDZ triggered for this read: x;`);
 let x = 10;
 $(`fail`);
 `````
@@ -33,6 +33,7 @@ $(`fail`);
 ## Normalized
 
 `````js filename=intro
+$throwTDZError(`TDZ triggered for this read: x;`);
 let x = 10;
 $(`fail`);
 `````
@@ -40,6 +41,7 @@ $(`fail`);
 ## Output
 
 `````js filename=intro
+$throwTDZError(`TDZ triggered for this read: x;`);
 $(`fail`);
 `````
 
@@ -48,6 +50,7 @@ $(`fail`);
 With rename=true
 
 `````js filename=intro
+a( "TDZ triggered for this read: x;" );
 $( "fail" );
 `````
 

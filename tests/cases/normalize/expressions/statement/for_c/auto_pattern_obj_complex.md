@@ -50,16 +50,16 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam = { a: 1, b: 2 };
   $(tmpCalleeParam);
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpCalleeParam$1 = { a: 1, b: 2 };
       $(tmpCalleeParam$1);
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -74,22 +74,22 @@ $(999);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+let a = $( 1 );
 if (a) {
   const b = {
 a: 1,
 b: 2
   ;
   $( b );
-  let c = $( 1 );
+  a = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      const d = {
+    if (a) {
+      const c = {
 a: 1,
 b: 2
       ;
-      $( d );
-      c = $( 1 );
+      $( c );
+      a = $( 1 );
     }
     else {
       break;

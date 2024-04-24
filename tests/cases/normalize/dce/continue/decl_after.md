@@ -28,7 +28,7 @@ $('after, wont eval due to infinite loop');
 
 `````js filename=intro
 while ($(true)) {
-  if ($(false)) x = $(`fail too`);
+  if ($(false)) $(`fail too`), $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
   continue;
   let x = $(`fail`);
 }
@@ -43,7 +43,8 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
-      x = $(`fail too`);
+      $(`fail too`);
+      $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
     } else {
     }
     continue;
@@ -63,7 +64,8 @@ const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(false);
   if (tmpIfTest$1) {
-    throw `Preval: Cannot access \`x\` before initialization`;
+    $(`fail too`);
+    $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
   } else {
   }
 } else {
@@ -75,7 +77,8 @@ if ($tmpLoopUnrollCheck) {
     if (tmpIfTest$2) {
       const tmpIfTest$4 = $(false);
       if (tmpIfTest$4) {
-        throw `Preval: Cannot access \`x\` before initialization`;
+        $(`fail too`);
+        $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
       } else {
       }
     } else {
@@ -97,7 +100,8 @@ const b = $( true );
 if (b) {
   const c = $( false );
   if (c) {
-    throw "Preval: Cannot access `x` before initialization";
+    $( "fail too" );
+    d( "TDZ triggered for this assignment: x = $('fail too')" );
   }
 }
 else {
@@ -105,11 +109,12 @@ else {
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
-    const d = $( true );
-    if (d) {
-      const e = $( false );
-      if (e) {
-        throw "Preval: Cannot access `x` before initialization";
+    const e = $( true );
+    if (e) {
+      const f = $( false );
+      if (f) {
+        $( "fail too" );
+        d( "TDZ triggered for this assignment: x = $('fail too')" );
       }
     }
     else {

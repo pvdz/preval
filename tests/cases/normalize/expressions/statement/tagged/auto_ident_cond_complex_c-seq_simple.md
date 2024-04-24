@@ -48,14 +48,15 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpCalleeParam = [`before `, ` after`];
+let tmpCalleeParam$1 = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(60);
-  $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam$1 = $(60);
+  $(tmpCalleeParam, tmpCalleeParam$1);
 } else {
   const tmpCalleeParam$3 = $(100);
-  const tmpClusterSSA_tmpCalleeParam$2 = $(tmpCalleeParam$3);
-  $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$2);
+  tmpCalleeParam$1 = $(tmpCalleeParam$3);
+  $(tmpCalleeParam, tmpCalleeParam$1);
 }
 $(a);
 `````
@@ -70,15 +71,16 @@ a: 999,
 b: 1000
 ;
 const b = [ "before ", " after",, ];
-const c = $( 1 );
-if (c) {
-  const d = $( 60 );
-  $( b, d );
+let c = undefined;
+const d = $( 1 );
+if (d) {
+  c = $( 60 );
+  $( b, c );
 }
 else {
   const e = $( 100 );
-  const f = $( e );
-  $( b, f );
+  c = $( e );
+  $( b, c );
 }
 $( a );
 `````

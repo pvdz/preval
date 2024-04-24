@@ -52,8 +52,8 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpClusterSSA_a = tmpBinBothLhs + tmpBinBothRhs;
-$(tmpClusterSSA_a);
+const a = tmpBinBothLhs + tmpBinBothRhs;
+$(a);
 `````
 
 ## PST Output

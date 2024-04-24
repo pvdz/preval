@@ -218,38 +218,38 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const x = $();
-const t = 0 === x;
+let t = 0 === x;
 if (t) {
 } else {
-  const tmpClusterSSA_t = 1 === x;
-  if (tmpClusterSSA_t) {
+  t = 1 === x;
+  if (t) {
   } else {
-    const tmpClusterSSA_t$1 = 2 === x;
-    if (tmpClusterSSA_t$1) {
+    t = 2 === x;
+    if (t) {
     } else {
-      const tmpClusterSSA_t$3 = 3 === x;
-      if (tmpClusterSSA_t$3) {
+      t = 3 === x;
+      if (t) {
       } else {
-        const tmpClusterSSA_t$5 = 4 === x;
-        if (tmpClusterSSA_t$5) {
+        t = 4 === x;
+        if (t) {
         } else {
-          const tmpClusterSSA_t$7 = 5 === x;
-          if (tmpClusterSSA_t$7) {
+          t = 5 === x;
+          if (t) {
           } else {
-            const tmpClusterSSA_t$9 = 6 === x;
-            if (tmpClusterSSA_t$9) {
+            t = 6 === x;
+            if (t) {
             } else {
-              const tmpClusterSSA_t$11 = 7 === x;
-              if (tmpClusterSSA_t$11) {
+              t = 7 === x;
+              if (t) {
               } else {
-                const tmpClusterSSA_t$13 = 8 === x;
-                if (tmpClusterSSA_t$13) {
+                t = 8 === x;
+                if (t) {
                 } else {
-                  const tmpClusterSSA_t$15 = 10 === x;
-                  if (tmpClusterSSA_t$15) {
+                  t = 10 === x;
+                  if (t) {
                   } else {
-                    const tmpClusterSSA_t$17 = 9 === x;
-                    if (tmpClusterSSA_t$17) {
+                    t = 9 === x;
+                    if (t) {
                     } else {
                       $(`must be 11`);
                     }
@@ -272,58 +272,58 @@ With rename=true
 
 `````js filename=intro
 const a = $();
-const b = 0 === a;
+let b = 0 === a;
 if (b) {
 
 }
 else {
-  const c = 1 === a;
-  if (c) {
+  b = 1 === a;
+  if (b) {
 
   }
   else {
-    const d = 2 === a;
-    if (d) {
+    b = 2 === a;
+    if (b) {
 
     }
     else {
-      const e = 3 === a;
-      if (e) {
+      b = 3 === a;
+      if (b) {
 
       }
       else {
-        const f = 4 === a;
-        if (f) {
+        b = 4 === a;
+        if (b) {
 
         }
         else {
-          const g = 5 === a;
-          if (g) {
+          b = 5 === a;
+          if (b) {
 
           }
           else {
-            const h = 6 === a;
-            if (h) {
+            b = 6 === a;
+            if (b) {
 
             }
             else {
-              const i = 7 === a;
-              if (i) {
+              b = 7 === a;
+              if (b) {
 
               }
               else {
-                const j = 8 === a;
-                if (j) {
+                b = 8 === a;
+                if (b) {
 
                 }
                 else {
-                  const k = 10 === a;
-                  if (k) {
+                  b = 10 === a;
+                  if (b) {
 
                   }
                   else {
-                    const l = 9 === a;
-                    if (l) {
+                    b = 9 === a;
+                    if (b) {
 
                     }
                     else {

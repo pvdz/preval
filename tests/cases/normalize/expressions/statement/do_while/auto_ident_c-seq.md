@@ -62,18 +62,18 @@ $(a, x);
 $(100);
 $(1);
 $(2);
-const tmpDoWhileFlag = $(1);
+let tmpDoWhileFlag = $(1);
 if (tmpDoWhileFlag) {
   $(100);
   $(1);
   $(2);
-  let tmpClusterSSA_tmpDoWhileFlag = $(1);
+  tmpDoWhileFlag = $(1);
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
       $(1);
       $(2);
-      tmpClusterSSA_tmpDoWhileFlag = $(1);
+      tmpDoWhileFlag = $(1);
     } else {
       break;
     }
@@ -92,29 +92,29 @@ With rename=true
 $( 100 );
 $( 1 );
 $( 2 );
-const a = $( 1 );
+let a = $( 1 );
 if (a) {
   $( 100 );
   $( 1 );
   $( 2 );
-  let b = $( 1 );
+  a = $( 1 );
   while ($LOOP_UNROLL_9) {
-    if (b) {
+    if (a) {
       $( 100 );
       $( 1 );
       $( 2 );
-      b = $( 1 );
+      a = $( 1 );
     }
     else {
       break;
     }
   }
 }
-const c = {
+const b = {
 a: 999,
 b: 1000
 ;
-$( c, 1 );
+$( b, 1 );
 `````
 
 ## Globals

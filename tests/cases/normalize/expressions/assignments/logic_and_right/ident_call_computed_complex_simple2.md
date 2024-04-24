@@ -45,11 +45,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const b = { $: $ };
   const tmpCallObj = $(b);
   const tmpNestedComplexRhs = tmpCallObj.$(1);
+  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
@@ -61,11 +62,12 @@ if (tmpCalleeParam) {
 With rename=true
 
 `````js filename=intro
-const a = $( 100 );
+let a = $( 100 );
 if (a) {
   const b = { $: $ };
   const c = $( b );
   const d = c.$( 1 );
+  a = d;
   $( d );
 }
 else {

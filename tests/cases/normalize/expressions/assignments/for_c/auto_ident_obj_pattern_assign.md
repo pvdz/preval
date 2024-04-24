@@ -62,7 +62,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
@@ -70,16 +70,16 @@ if (tmpIfTest) {
   y = tmpObjLitVal$1;
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   a = tmpNestedAssignObjPatternRhs;
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpObjLitVal$2 = $(3);
       const tmpObjLitVal$4 = $(4);
       x = tmpObjLitVal$2;
       y = tmpObjLitVal$4;
       const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
       a = tmpNestedAssignObjPatternRhs$1;
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -100,7 +100,7 @@ let c = {
 a: 999,
 b: 1000
 ;
-const d = $( 1 );
+let d = $( 1 );
 if (d) {
   const e = $( 3 );
   const f = $( 4 );
@@ -111,19 +111,19 @@ x: e,
 y: f
   ;
   c = g;
-  let h = $( 1 );
+  d = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (h) {
-      const i = $( 3 );
-      const j = $( 4 );
-      a = i;
-      b = j;
-      const k = {
-x: i,
-y: j
+    if (d) {
+      const h = $( 3 );
+      const i = $( 4 );
+      a = h;
+      b = i;
+      const j = {
+x: h,
+y: i
       ;
-      c = k;
-      h = $( 1 );
+      c = j;
+      d = $( 1 );
     }
     else {
       break;

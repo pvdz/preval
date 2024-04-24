@@ -56,7 +56,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCalleeParam = $(0);
   a = $(tmpCalleeParam);
@@ -65,9 +65,9 @@ if (tmpIfTest) {
     const tmpCalleeParam$1 = $(2);
     a = $(tmpCalleeParam$1);
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpCalleeParam$2 = $(0);
       a = $(tmpCalleeParam$2);
       if (a) {
@@ -75,7 +75,7 @@ if (tmpIfTest) {
         const tmpCalleeParam$4 = $(2);
         a = $(tmpCalleeParam$4);
       }
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -94,7 +94,7 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 1 );
+let b = $( 1 );
 if (b) {
   const c = $( 0 );
   a = $( c );
@@ -105,19 +105,19 @@ if (b) {
     const d = $( 2 );
     a = $( d );
   }
-  let e = $( 1 );
+  b = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (e) {
-      const f = $( 0 );
-      a = $( f );
+    if (b) {
+      const e = $( 0 );
+      a = $( e );
       if (a) {
 
       }
       else {
-        const g = $( 2 );
-        a = $( g );
+        const f = $( 2 );
+        a = $( f );
       }
-      e = $( 1 );
+      b = $( 1 );
     }
     else {
       break;

@@ -60,7 +60,7 @@ b: 2
 ;
 const b = $( a );
 let c = undefined;
-for (c in b {
+for (c in b) {
 
 }
 $( 999 );

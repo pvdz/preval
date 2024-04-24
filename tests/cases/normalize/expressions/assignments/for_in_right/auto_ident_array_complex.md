@@ -60,7 +60,7 @@ const a = $( 1 );
 const b = $( 3 );
 let c = undefined;
 const d = [ a, 2, b,, ];
-for (c in d {
+for (c in d) {
 
 }
 $( d );

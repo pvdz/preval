@@ -51,9 +51,9 @@ $(a);
 
 `````js filename=intro
 const tmpUnaryArg = $(100);
-const tmpClusterSSA_a = +tmpUnaryArg;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const tmpSSA_a = +tmpUnaryArg;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

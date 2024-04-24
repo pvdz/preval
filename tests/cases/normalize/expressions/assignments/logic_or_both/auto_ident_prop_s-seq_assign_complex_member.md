@@ -64,7 +64,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
-let tmpClusterSSA_a = tmpNestedAssignPropRhs;
+let tmpSSA_a = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   $(tmpNestedAssignPropRhs);
 } else {
@@ -72,10 +72,10 @@ if (tmpNestedAssignPropRhs) {
   const tmpCompProp$1 = $(`d`);
   const varInitAssignLhsComputedRhs = tmpCompObj$1[tmpCompProp$1];
   b.c = varInitAssignLhsComputedRhs;
-  tmpClusterSSA_a = varInitAssignLhsComputedRhs;
+  tmpSSA_a = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
 }
-$(tmpClusterSSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## PST Output

@@ -24,7 +24,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-if ($) $(x);
+if ($) $($throwTDZError(`TDZ triggered for this read: \$(x)`));
 let x = $(5);
 $(x);
 x = $(10);
@@ -35,7 +35,9 @@ $(x);
 
 `````js filename=intro
 if ($) {
-  $(x);
+  const tmpCallCallee = $;
+  const tmpCalleeParam = $throwTDZError(`TDZ triggered for this read: \$(x)`);
+  tmpCallCallee(tmpCalleeParam);
 } else {
 }
 let x = $(5);
@@ -48,13 +50,14 @@ $(x);
 
 `````js filename=intro
 if ($) {
-  throw `Preval: Cannot access \`x\` before initialization`;
+  const tmpCalleeParam = $throwTDZError(`TDZ triggered for this read: \$(x)`);
+  $(tmpCalleeParam);
 } else {
-  const x = $(5);
-  $(x);
-  const tmpClusterSSA_x = $(10);
-  $(tmpClusterSSA_x);
 }
+let x = $(5);
+$(x);
+x = $(10);
+$(x);
 `````
 
 ## PST Output
@@ -63,14 +66,13 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  throw "Preval: Cannot access `x` before initialization";
-}
-else {
-  const a = $( 5 );
+  const a = b( "TDZ triggered for this read: $(x)" );
   $( a );
-  const b = $( 10 );
-  $( b );
 }
+let c = $( 5 );
+$( c );
+c = $( 10 );
+$( c );
 `````
 
 ## Globals

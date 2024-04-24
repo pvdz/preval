@@ -81,7 +81,7 @@ b: 1000
 const b = { x: 1 };
 const c = $( b );
 let d = undefined;
-for (d in c {
+for (d in c) {
   1.x = d;
 }
 $( a );

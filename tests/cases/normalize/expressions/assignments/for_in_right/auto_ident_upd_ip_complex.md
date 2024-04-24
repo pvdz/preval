@@ -74,7 +74,7 @@ const d = c.x;
 const e = d + 1;
 c.x = e;
 let f = undefined;
-for (f in d {
+for (f in d) {
 
 }
 $( d, a );

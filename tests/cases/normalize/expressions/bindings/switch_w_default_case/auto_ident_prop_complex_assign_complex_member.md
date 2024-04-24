@@ -96,13 +96,13 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_b = { c: 10, d: 20 };
-const tmpNestedAssignObj = $(tmpClusterSSA_b);
-const tmpCompObj = $(tmpClusterSSA_b);
+const b = { c: 10, d: 20 };
+const tmpNestedAssignObj = $(b);
+const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
-$(tmpNestedAssignPropRhs, tmpClusterSSA_b);
+$(tmpNestedAssignPropRhs, b);
 $(`fail1`);
 $(`fail2`);
 `````

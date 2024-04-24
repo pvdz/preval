@@ -51,7 +51,7 @@ const b = {
 a: 1,
 b: 2
 ;
-for (a in b {
+for (a in b) {
 
 }
 `````

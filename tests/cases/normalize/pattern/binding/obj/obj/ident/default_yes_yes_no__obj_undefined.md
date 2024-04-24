@@ -53,11 +53,13 @@ $(y);
 const tmpCalleeParam = { y: `pass2` };
 const objPatternAfterDefault = $(tmpCalleeParam);
 const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+let y = undefined;
 const tmpIfTest$1 = objPatternBeforeDefault$1 === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_y = $(`fail`);
-  $(tmpClusterSSA_y);
+  y = $(`fail`);
+  $(y);
 } else {
+  y = objPatternBeforeDefault$1;
   $(objPatternBeforeDefault$1);
 }
 `````
@@ -70,12 +72,14 @@ With rename=true
 const a = { y: "pass2" };
 const b = $( a );
 const c = b.y;
-const d = c === undefined;
-if (d) {
-  const e = $( "fail" );
-  $( e );
+let d = undefined;
+const e = c === undefined;
+if (e) {
+  d = $( "fail" );
+  $( d );
 }
 else {
+  d = c;
   $( c );
 }
 `````

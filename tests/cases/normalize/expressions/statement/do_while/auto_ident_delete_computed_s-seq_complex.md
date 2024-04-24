@@ -67,20 +67,20 @@ $(100);
 $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
-const tmpDoWhileFlag = delete arg[tmpDeleteCompProp];
+let tmpDoWhileFlag = delete arg[tmpDeleteCompProp];
 if (tmpDoWhileFlag) {
   $(100);
   $(1);
   $(2);
   const tmpDeleteCompProp$1 = $(`y`);
-  let tmpClusterSSA_tmpDoWhileFlag = delete arg[tmpDeleteCompProp$1];
+  tmpDoWhileFlag = delete arg[tmpDeleteCompProp$1];
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
       $(1);
       $(2);
       const tmpDeleteCompProp$2 = $(`y`);
-      tmpClusterSSA_tmpDoWhileFlag = delete arg[tmpDeleteCompProp$2];
+      tmpDoWhileFlag = delete arg[tmpDeleteCompProp$2];
     } else {
       break;
     }
@@ -104,20 +104,20 @@ $( 100 );
 $( 1 );
 $( 2 );
 const c = $( "y" );
-const d = deletea[ c ];
+let d = deletea[ c ];
 if (d) {
   $( 100 );
   $( 1 );
   $( 2 );
   const e = $( "y" );
-  let f = deletea[ e ];
+  d = deletea[ e ];
   while ($LOOP_UNROLL_9) {
-    if (f) {
+    if (d) {
       $( 100 );
       $( 1 );
       $( 2 );
-      const g = $( "y" );
-      f = deletea[ g ];
+      const f = $( "y" );
+      d = deletea[ f ];
     }
     else {
       break;

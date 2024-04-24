@@ -89,7 +89,7 @@ const g = $( "y" );
 f[g] = 3;
 d[e] = 3;
 let h = undefined;
-for (h of 3 {
+for (h of 3) {
 
 }
 $( c, a, b, 3 );

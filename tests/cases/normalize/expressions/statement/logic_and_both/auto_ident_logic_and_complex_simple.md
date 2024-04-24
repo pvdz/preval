@@ -48,10 +48,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-const tmpIfTest = $(tmpCalleeParam);
+let tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
+  tmpIfTest = true;
   const tmpCalleeParam$1 = $(1);
-  $(tmpCalleeParam$1);
+  tmpIfTest = $(tmpCalleeParam$1);
 } else {
 }
 const a = { a: 999, b: 1000 };
@@ -64,10 +65,11 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = $( a );
+let b = $( a );
 if (b) {
+  b = true;
   const c = $( 1 );
-  $( c );
+  b = $( c );
 }
 const d = {
 a: 999,

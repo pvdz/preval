@@ -72,14 +72,14 @@ $(a);
 const b = { x: 1 };
 const tmpChainRootProp = $(b);
 const tmpIfTest$1 = tmpChainRootProp == null;
-let tmpClusterSSA_a = undefined;
+let tmpSSA_a = undefined;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  tmpClusterSSA_a = tmpChainElementObject;
+  tmpSSA_a = tmpChainElementObject;
 }
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

@@ -69,10 +69,11 @@ $(a, b, c, d, e);
 const b = { x: 1 };
 const c = { y: 2 };
 let a = { a: 999, b: 1000 };
+let tmpCalleeParam = 7;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`x`);
@@ -97,10 +98,11 @@ let c = {
 a: 999,
 b: 1000
 ;
-const d = $( 0 );
-if (d) {
-  const e = $( 100 );
-  $( e );
+let d = 7;
+const e = $( 0 );
+if (e) {
+  d = $( 100 );
+  $( d );
 }
 else {
   const f = $( a );

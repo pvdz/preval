@@ -94,7 +94,7 @@ if (tmpIfTest) {
 }
 if (tmpDoWhileFlag) {
   $(100);
-  let tmpClusterSSA_tmpDoWhileFlag = false;
+  tmpDoWhileFlag = false;
   const tmpChainElementCall$1 = $(b);
   const tmpIfTest$2 = tmpChainElementCall$1 == null;
   if (tmpIfTest$2) {
@@ -106,13 +106,13 @@ if (tmpDoWhileFlag) {
     } else {
       const tmpChainRootComputed$4 = $(`y`);
       const tmpChainElementObject$4 = tmpChainElementObject$2[tmpChainRootComputed$4];
-      tmpClusterSSA_tmpDoWhileFlag = tmpChainElementObject$4;
+      tmpDoWhileFlag = tmpChainElementObject$4;
     }
   }
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
-      tmpClusterSSA_tmpDoWhileFlag = false;
+      tmpDoWhileFlag = false;
       const tmpChainElementCall$2 = $(b);
       const tmpIfTest$3 = tmpChainElementCall$2 == null;
       if (tmpIfTest$3) {
@@ -124,7 +124,7 @@ if (tmpDoWhileFlag) {
         } else {
           const tmpChainRootComputed$5 = $(`y`);
           const tmpChainElementObject$5 = tmpChainElementObject$3[tmpChainRootComputed$5];
-          tmpClusterSSA_tmpDoWhileFlag = tmpChainElementObject$5;
+          tmpDoWhileFlag = tmpChainElementObject$5;
         }
       }
     } else {
@@ -169,45 +169,45 @@ else {
 }
 if (d) {
   $( 100 );
-  let l = false;
-  const m = $( b );
-  const n = m == null;
-  if (n) {
+  d = false;
+  const l = $( b );
+  const m = l == null;
+  if (m) {
 
   }
   else {
-    const o = $( "x" );
-    const p = m[ o ];
-    const q = p == null;
-    if (q) {
+    const n = $( "x" );
+    const o = l[ n ];
+    const p = o == null;
+    if (p) {
 
     }
     else {
-      const r = $( "y" );
-      const s = p[ r ];
-      l = s;
+      const q = $( "y" );
+      const r = o[ q ];
+      d = r;
     }
   }
   while ($LOOP_UNROLL_9) {
-    if (l) {
+    if (d) {
       $( 100 );
-      l = false;
-      const t = $( b );
-      const u = t == null;
-      if (u) {
+      d = false;
+      const s = $( b );
+      const t = s == null;
+      if (t) {
 
       }
       else {
-        const v = $( "x" );
-        const w = t[ v ];
-        const x = w == null;
-        if (x) {
+        const u = $( "x" );
+        const v = s[ u ];
+        const w = v == null;
+        if (w) {
 
         }
         else {
-          const y = $( "y" );
-          const z = w[ y ];
-          l = z;
+          const x = $( "y" );
+          const y = v[ x ];
+          d = y;
         }
       }
     }

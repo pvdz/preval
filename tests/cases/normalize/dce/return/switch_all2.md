@@ -43,19 +43,13 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSwitchValue = 1;
-  const tmpLabeledBlockFunc = function ($$0) {
-    let tmpSwitchValue$3 = $$0;
-    debugger;
-    return undefined;
-  };
   const tmpAfterLabel = function ($$0) {
     let tmpSwitchValue$1 = $$0;
     debugger;
     return undefined;
   };
-  const tmpReturnArg = tmpLabeledBlockFunc(tmpSwitchValue);
-  return tmpReturnArg;
+  const tmpSwitchValue = 1;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();

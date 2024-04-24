@@ -51,9 +51,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_a = $(10);
+const tmpSSA_a = $(10);
 const b = $(20);
-const tmpReturnArg = [tmpClusterSSA_a, b];
+const tmpReturnArg = [tmpSSA_a, b];
 $(tmpReturnArg);
 `````
 

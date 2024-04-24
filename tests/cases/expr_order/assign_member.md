@@ -38,10 +38,11 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_a = $();
-const a = {};
-a.foo = tmpClusterSSA_a;
-$(tmpClusterSSA_a);
+let a = {};
+const tmpAssignMemLhsObj = a;
+a = $();
+tmpAssignMemLhsObj.foo = a;
+$(a);
 `````
 
 ## PST Output
@@ -49,8 +50,9 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = $();
-const b = {};
+let a = {};
+const b = a;
+a = $();
 b.foo = a;
 $( a );
 `````

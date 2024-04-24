@@ -74,7 +74,7 @@ else {
   a = c;
 }
 let d = undefined;
-for (d in a {
+for (d in a) {
 
 }
 $( a );

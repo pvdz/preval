@@ -53,8 +53,8 @@ Ref tracking result:
 x:
   - w @4       | ########## | 12,35       | none           | 28
   - r @12      | 4
-  - w @28      | ########## | 35          | 4              | none
-  - r @35      | 4,28
+  - w @28      | ########## | not read    | 4              | none
+  - r @35      | 4
 
 tmpIfTest:
   - w @18      | ########## | 23          | none           | none

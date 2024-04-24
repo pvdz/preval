@@ -53,10 +53,11 @@ tmpCallCallee$1(tmpCalleeParam$1);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-const a = $(tmpCalleeParam);
+let a = $(tmpCalleeParam);
 if (a) {
   $(a);
 } else {
+  a = 2;
   $(2);
 }
 $(undefined);
@@ -68,11 +69,12 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-const b = $( a );
+let b = $( a );
 if (b) {
   $( b );
 }
 else {
+  b = 2;
   $( 2 );
 }
 $( undefined );

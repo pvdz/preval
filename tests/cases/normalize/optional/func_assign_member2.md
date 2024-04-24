@@ -61,13 +61,14 @@ tmpCallCallee$1(tmpCalleeParam$1);
 const tmpCalleeParam = { foo: 10 };
 const tmpChainRootProp = $(tmpCalleeParam);
 const tmpIfTest = tmpChainRootProp == null;
+let tmpReturnArg = undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpReturnArg = $(undefined);
-  $(tmpClusterSSA_tmpReturnArg);
+  tmpReturnArg = $(undefined);
+  $(tmpReturnArg);
 } else {
   const tmpChainElementObject = tmpChainRootProp.foo;
-  const tmpClusterSSA_tmpReturnArg$1 = $(tmpChainElementObject);
-  $(tmpClusterSSA_tmpReturnArg$1);
+  tmpReturnArg = $(tmpChainElementObject);
+  $(tmpReturnArg);
 }
 `````
 
@@ -79,14 +80,15 @@ With rename=true
 const a = { foo: 10 };
 const b = $( a );
 const c = b == null;
+let d = undefined;
 if (c) {
-  const d = $( undefined );
+  d = $( undefined );
   $( d );
 }
 else {
   const e = b.foo;
-  const f = $( e );
-  $( f );
+  d = $( e );
+  $( d );
 }
 `````
 

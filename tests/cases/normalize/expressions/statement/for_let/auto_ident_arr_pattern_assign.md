@@ -64,8 +64,8 @@ const tmpArrElement = $(3);
 const tmpArrElement$1 = $(4);
 const tmpNestedAssignArrPatternRhs = [tmpArrElement, tmpArrElement$1];
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_x = arrPatternSplat[0];
-const tmpClusterSSA_y = arrPatternSplat[1];
+const tmpSSA_x = arrPatternSplat[0];
+const tmpSSA_y = arrPatternSplat[1];
 $(tmpNestedAssignArrPatternRhs);
 $(1);
 $(tmpNestedAssignArrPatternRhs);
@@ -92,7 +92,7 @@ while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(tmpNestedAssignArrPatternRhs);
   $(1);
 }
-$(a, tmpClusterSSA_x, tmpClusterSSA_y);
+$(a, tmpSSA_x, tmpSSA_y);
 `````
 
 ## PST Output

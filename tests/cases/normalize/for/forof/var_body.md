@@ -48,7 +48,7 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = [ 1, 2, 3,, ];
-for (a of b {
+for (a of b) {
 
 }
 `````

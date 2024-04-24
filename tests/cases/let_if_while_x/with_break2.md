@@ -88,6 +88,7 @@ $(wat);
 
 `````js filename=intro
 const s = $(10);
+let count = $LOOP_UNROLL_10;
 $(`before`);
 let wat = s | 10;
 let chk = $(true);
@@ -106,7 +107,7 @@ if (chk) {
   }
   if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
-      if ($LOOP_UNROLL_10) {
+      if (count) {
         $(`inside`);
         wat = wat | 10;
         chk = $(true);
@@ -121,6 +122,7 @@ if (chk) {
   } else {
   }
 } else {
+  count = false;
 }
 $(wat);
 `````
@@ -131,32 +133,33 @@ With rename=true
 
 `````js filename=intro
 const a = $( 10 );
+let b = $LOOP_UNROLL_10;
 $( "before" );
-let b = a | 10;
-let c = $( true );
-if (c) {
-  let d = true;
+let c = a | 10;
+let d = $( true );
+if (d) {
+  let e = true;
   if ($LOOP_UNROLL_10) {
     $( "inside" );
-    b = b | 10;
-    c = $( true );
-    if (c) {
+    c = c | 10;
+    d = $( true );
+    if (d) {
 
     }
     else {
-      d = false;
+      e = false;
     }
   }
   else {
-    d = false;
+    e = false;
   }
-  if (d) {
+  if (e) {
     while ($LOOP_UNROLL_10) {
-      if ($LOOP_UNROLL_10) {
+      if (b) {
         $( "inside" );
-        b = b | 10;
-        c = $( true );
-        if (c) {
+        c = c | 10;
+        d = $( true );
+        if (d) {
 
         }
         else {
@@ -169,7 +172,10 @@ if (c) {
     }
   }
 }
-$( b );
+else {
+  b = false;
+}
+$( c );
 `````
 
 ## Globals

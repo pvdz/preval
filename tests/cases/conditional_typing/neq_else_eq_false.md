@@ -49,8 +49,14 @@ $(x);
 ## Output
 
 `````js filename=intro
-$(67637);
-$(true);
+const a = $(67637);
+let x = a !== 67636;
+if (x) {
+  $(x);
+} else {
+  x = a === 67636;
+  $(x);
+}
 `````
 
 ## PST Output
@@ -58,8 +64,15 @@ $(true);
 With rename=true
 
 `````js filename=intro
-$( 67637 );
-$( true );
+const a = $( 67637 );
+let b = a !== 67636;
+if (b) {
+  $( b );
+}
+else {
+  b = a === 67636;
+  $( b );
+}
 `````
 
 ## Globals

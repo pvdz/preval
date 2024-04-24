@@ -57,7 +57,7 @@ b: 1000
 ;
 const b = /foo/;
 let c = undefined;
-for (c in b {
+for (c in b) {
 
 }
 $( a );

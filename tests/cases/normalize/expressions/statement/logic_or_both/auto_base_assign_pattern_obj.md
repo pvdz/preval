@@ -57,15 +57,15 @@ const a = { a: 999, b: 1000 };
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+let tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
 if (tmpNestedAssignObjPatternRhs) {
-  $(a, tmpClusterSSA_b);
+  $(a, tmpSSA_b);
 } else {
   const tmpObjLitVal$1 = $(2);
   const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
   const tmpAssignObjPatternRhs = $(tmpCalleeParam$1);
-  const tmpClusterSSA_b$1 = tmpAssignObjPatternRhs.b;
-  $(a, tmpClusterSSA_b$1);
+  tmpSSA_b = tmpAssignObjPatternRhs.b;
+  $(a, tmpSSA_b);
 }
 `````
 
@@ -81,7 +81,7 @@ b: 1000
 const b = $( 2 );
 const c = { b: b };
 const d = $( c );
-const e = d.b;
+let e = d.b;
 if (d) {
   $( a, e );
 }
@@ -89,8 +89,8 @@ else {
   const f = $( 2 );
   const g = { b: f };
   const h = $( g );
-  const i = h.b;
-  $( a, i );
+  e = h.b;
+  $( a, e );
 }
 `````
 

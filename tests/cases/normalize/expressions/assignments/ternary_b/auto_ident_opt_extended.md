@@ -61,13 +61,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpCalleeParam = 100;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   a = 100;
   $(100);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -81,14 +82,15 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 1 );
-if (b) {
+let b = 100;
+const c = $( 1 );
+if (c) {
   a = 100;
   $( 100 );
 }
 else {
-  const c = $( 200 );
-  $( c );
+  b = $( 200 );
+  $( b );
 }
 $( a );
 `````

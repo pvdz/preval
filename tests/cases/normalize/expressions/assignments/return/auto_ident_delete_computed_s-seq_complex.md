@@ -61,9 +61,9 @@ $(1);
 $(2);
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
-const tmpClusterSSA_a = delete arg[tmpDeleteCompProp];
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a, arg);
+const tmpSSA_a = delete arg[tmpDeleteCompProp];
+$(tmpSSA_a);
+$(tmpSSA_a, arg);
 `````
 
 ## PST Output

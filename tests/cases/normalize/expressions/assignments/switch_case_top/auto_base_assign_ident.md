@@ -57,15 +57,18 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let b = 1;
+let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const tmpNestedComplexRhs = $(2);
-  $(tmpNestedComplexRhs, tmpNestedComplexRhs);
+  b = tmpNestedComplexRhs;
+  a = tmpNestedComplexRhs;
+  $(tmpNestedComplexRhs, b);
 } else {
-  const a = { a: 999, b: 1000 };
-  $(a, 1);
+  $(a, b);
 }
 `````
 
@@ -74,19 +77,22 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = $( 1 );
-const c = a === b;
-if (c) {
-  const d = $( 2 );
-  $( d, d );
-}
-else {
-  const e = {
+let a = 1;
+let b = {
 a: 999,
 b: 1000
-  ;
-  $( e, 1 );
+;
+const c = $( 1 );
+const d = $( 1 );
+const e = c === d;
+if (e) {
+  const f = $( 2 );
+  a = f;
+  b = f;
+  $( f, a );
+}
+else {
+  $( b, a );
 }
 `````
 

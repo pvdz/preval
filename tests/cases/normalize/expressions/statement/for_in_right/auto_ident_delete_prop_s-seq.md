@@ -70,7 +70,7 @@ $( 1 );
 $( 2 );
 const c = deletea.y;
 let d = undefined;
-for (d in c {
+for (d in c) {
 
 }
 $( b, a );

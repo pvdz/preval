@@ -83,7 +83,8 @@ const varInitAssignLhsComputedProp$1 = $(`y`);
 const varInitAssignLhsComputedRhs$1 = $(3);
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
-let tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
+let tmpSSA_a = varInitAssignLhsComputedRhs$1;
+let tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$1;
 if (varInitAssignLhsComputedRhs$1) {
   $(100);
   const varInitAssignLhsComputedObj$2 = $(b);
@@ -93,10 +94,10 @@ if (varInitAssignLhsComputedRhs$1) {
   const varInitAssignLhsComputedRhs$2 = $(3);
   varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = varInitAssignLhsComputedRhs$2;
   varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-  tmpClusterSSA_a = varInitAssignLhsComputedRhs$2;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$2;
+  tmpSSA_a = varInitAssignLhsComputedRhs$2;
+  tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$2;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const varInitAssignLhsComputedObj$3 = $(b);
       const varInitAssignLhsComputedProp$3 = $(`x`);
@@ -105,15 +106,15 @@ if (varInitAssignLhsComputedRhs$1) {
       const varInitAssignLhsComputedRhs$3 = $(3);
       varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = varInitAssignLhsComputedRhs$3;
       varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = varInitAssignLhsComputedRhs$3;
-      tmpClusterSSA_a = varInitAssignLhsComputedRhs$3;
-      tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$3;
+      tmpSSA_a = varInitAssignLhsComputedRhs$3;
+      tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$3;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a, b, c, 3);
+$(tmpSSA_a, b, c, 3);
 `````
 
 ## PST Output
@@ -132,19 +133,20 @@ const g = $( 3 );
 e[f] = g;
 c[d] = g;
 let h = g;
+let i = g;
 if (g) {
   $( 100 );
-  const i = $( a );
-  const j = $( "x" );
-  const k = $( b );
-  const l = $( "y" );
-  const m = $( 3 );
-  k[l] = m;
-  i[j] = m;
-  h = m;
-  let n = m;
+  const j = $( a );
+  const k = $( "x" );
+  const l = $( b );
+  const m = $( "y" );
+  const n = $( 3 );
+  l[m] = n;
+  j[k] = n;
+  h = n;
+  i = n;
   while ($LOOP_UNROLL_9) {
-    if (n) {
+    if (i) {
       $( 100 );
       const o = $( a );
       const p = $( "x" );
@@ -154,7 +156,7 @@ if (g) {
       q[r] = s;
       o[p] = s;
       h = s;
-      n = s;
+      i = s;
     }
     else {
       break;

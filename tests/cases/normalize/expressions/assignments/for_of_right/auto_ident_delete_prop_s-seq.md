@@ -66,7 +66,7 @@ $( 2 );
 const a = { y: 1 };
 const b = deletea.y;
 let c = undefined;
-for (c of b {
+for (c of b) {
 
 }
 $( b, a );

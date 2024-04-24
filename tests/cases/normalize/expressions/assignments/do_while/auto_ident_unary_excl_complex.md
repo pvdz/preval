@@ -59,8 +59,8 @@ $(a);
 $(100);
 const tmpUnaryArg = $(100);
 const tmpNestedComplexRhs = !tmpUnaryArg;
-let tmpClusterSSA_a = tmpNestedComplexRhs;
-let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
+let tmpSSA_a = tmpNestedComplexRhs;
+let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
 let $tmpLoopUnrollCheck = true;
 if (tmpUnaryArg) {
   $tmpLoopUnrollCheck = false;
@@ -68,24 +68,24 @@ if (tmpUnaryArg) {
   $(100);
   const tmpUnaryArg$1 = $(100);
   const tmpNestedComplexRhs$1 = !tmpUnaryArg$1;
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpUnaryArg$2 = $(100);
       const tmpNestedComplexRhs$2 = !tmpUnaryArg$2;
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

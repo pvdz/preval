@@ -93,14 +93,14 @@ if ($) {
 `````js filename=intro
 const outer = function () {
   debugger;
-  const x = $(1);
+  let x = $(1);
   if (x) {
-    const tmpClusterSSA_x = $(2);
-    if (tmpClusterSSA_x) {
-      const tmpReturnArg = $(`inner if`, tmpClusterSSA_x);
+    x = $(2);
+    if (x) {
+      const tmpReturnArg = $(`inner if`, x);
       return tmpReturnArg;
     } else {
-      const tmpReturnArg$1 = $(`inner else`, tmpClusterSSA_x);
+      const tmpReturnArg$1 = $(`inner else`, x);
       return tmpReturnArg$1;
     }
   } else {
@@ -122,26 +122,26 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  const b = $( 1 );
+  let b = $( 1 );
   if (b) {
-    const c = $( 2 );
-    if (c) {
-      const d = $( "inner if", c );
-      return d;
+    b = $( 2 );
+    if (b) {
+      const c = $( "inner if", b );
+      return c;
     }
     else {
-      const e = $( "inner else", c );
-      return e;
+      const d = $( "inner else", b );
+      return d;
     }
   }
   else {
-    const f = $( "inner else", b );
-    return f;
+    const e = $( "inner else", b );
+    return e;
   }
 };
 if ($) {
-  const g = a();
-  $( g, "outer" );
+  const f = a();
+  $( f, "outer" );
 }
 `````
 

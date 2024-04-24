@@ -86,7 +86,7 @@ while (true) {
   if (a) {
     let b = undefined;
     const c = [ 10, 20,, ];
-    for (b of c {
+    for (b of c) {
       break;
     }
     $( "keep" );

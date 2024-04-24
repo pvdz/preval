@@ -11,7 +11,7 @@ import {
   RESET,
   DIM,
 } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, rule, example, before, after, source, assertNoDupeNodes } from '../utils.mjs';
 import {$p, resetUid} from '../$p.mjs';
 import globals from '../globals.mjs';
 import {
@@ -359,29 +359,43 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
           node.$p.uniqueName = uniqueName;
           node.name = uniqueName;
 
-          // TODO: is this relevant for normalization? it does not use these read/write refs
           const meta = globallyUniqueNamingRegistry.get(uniqueName);
           ASSERT(meta, 'the meta should exist this this name at this point');
-          if (kind === 'read' || kind === 'readwrite') meta.reads.push(node);
-          if (kind === 'write' || kind === 'readwrite') meta.writes.push(node);
+          // These are used by the unique naming logic (bottom of this file)
+          if (kind === 'read' || kind === 'readwrite') meta.renamingReads.push(node);
+          if (kind === 'write' || kind === 'readwrite') meta.renamingWrites.push(node);
 
           // Resolve whether this was an export. If so, mark the name as such.
           // Since we process and "record" bindings in lexical scope order, the global scope goes first
           // As a side effect, the exported symbols, which can only be top-level "statements", will always
           // keep their original name. So we don't really have to worry about changing exported names.
-          const grandParent = path.nodes[path.nodes.length - 3];
+          const grandNode = path.nodes[path.nodes.length - 3];
+          const grandProp = path.props[path.props.length - 2];
+          const grandIndex = path.indexes[path.indexes.length - 2];
           if (
             ((parentNode.type === 'FunctionDeclaration' || parentNode.type === 'ClassDeclaration') &&
               parentProp === 'id' &&
-              grandParent.type === 'ExportNamedDeclaration') ||
+              grandNode.type === 'ExportNamedDeclaration') ||
             (parentNode.type === 'VariableDeclarator' &&
               parentProp === 'id' &&
-              grandParent.type === 'VariableDeclaration' &&
+              grandNode.type === 'VariableDeclaration' &&
               path.nodes[path.nodes.length - 4].type === 'ExportNamedDeclaration')
           ) {
             // TODO: unused by normalization. Remove it.
             vlog('Marking `' + uniqueName + '` as being an export');
             meta.isExport = true;
+          }
+
+          // Record a reference so we can eliminate TDZ (bottom of this file).
+          // Keep in mind, this is unnormalized code. Bindings can be introduced in many ways and forms but we only care about let/const.
+          // TODO: const/let assignment patterns
+          const isDecl =
+            (parentNode.type === 'ClassDeclaration' && parentProp === 'id') ||
+            (parentNode.type === 'VariableDeclarator' && parentProp === 'id' && grandNode.type === 'VariableDeclaration' && (grandNode.kind === 'let' || grandNode.kind === 'const'));
+          const pfunc = funcScopeStack[funcScopeStack.length - 1].$p.pid;
+          meta.preNormalizeTdzCheckList.push({node, parentNode, parentProp, parentIndex, grandNode, grandProp, grandIndex, pfunc, kind});
+          if (isDecl) {
+            meta.preNormalizeTdzCheckDecl = node;
           }
         } else {
           vlog(RED + '- skipping; not a binding' + RESET);
@@ -686,6 +700,80 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
     vgroupEnd();
   }
 
+  // Do a quick pass through all bindings to discover TDZ
+  // - Cannot be a closure
+  // - First read/write appears before the declaration (pid check)
+  vgroup('\nStarting TDZ elimination scan:');
+  let shown = 0;
+  fdata.globallyUniqueNamingRegistry.forEach((meta, name) => {
+    if (!meta.preNormalizeTdzCheckDecl) return;
+    if (shown === 10) vlog(`Omitting further output...`);
+    if (++shown < 10) vlog(`Testing \`${name}\` now...`);
+
+    let pfunc = meta.preNormalizeTdzCheckList[0]?.pfunc;
+    for (let i=1; i<meta.preNormalizeTdzCheckList.length; ++i) {
+      if (meta.preNormalizeTdzCheckList[i].pfunc !== pfunc) {
+        if (shown <= 10) vlog(`Closure, ignoring. Saw parent pid ${pfunc} and now ${meta.preNormalizeTdzCheckList[i].pfunc}`);
+        // This binding escapes because at least one parent pid was different from another ref. Bail.
+        return;
+      }
+    }
+
+    const declPid = +meta.preNormalizeTdzCheckDecl.$p.pid;
+    if (shown <= 10) vlog(`Checking for tdz cases...`);
+    for (let i=0; i<meta.preNormalizeTdzCheckList.length; ++i) {
+      const ref = meta.preNormalizeTdzCheckList[i];
+      if (shown <= 10) vlog(`pid: ${ref.node.$p.pid}, decl pid: ${declPid}`);
+      if (+ref.node.$p.pid >= declPid) continue;
+
+      vlog(`It seems \`${name}\` is in the TDZ and not a closure. Eliminating it now. Parents: ${ref.grandNode.type}.${ref.grandProp} ${ref.grandIndex} ${ref.parentNode.type}.${ref.parentProp} ${ref.parentIndex}`);
+
+      if (ref.kind === 'read' || ref.kind === 'readwrite') {
+        rule('Reference to TDZ binding should be replaced with a TDZ throw');
+        example('if (y) foo = x; let x = 1;', 'if (y) foo = $throwTDZError("`x` is TDZ"); let x = 1;');
+        before(ref.parentNode, ref.grandNode);
+
+        const stringArg = tmat(ref.parentNode, true).replace(/\n.*/g, ' ').trim();
+        const stringArgTrunced = stringArg.slice(0, 50) + (stringArg.length > 50 ? ' ...' : '');
+        const newNode = AST.callExpression('$throwTDZError', [AST.primitive(`TDZ triggered for this read: ${stringArgTrunced}`)]);
+        if (ref.parentIndex === -1) ref.parentNode[ref.parentProp] = newNode;
+        else ref.parentNode[ref.parentProp][ref.parentIndex] = newNode;
+
+        after(ref.grandNode);
+      } else {
+        switch (ref.parentNode.type) {
+          case 'AssignmentExpression': {
+            if (ref.parentNode.left === ref.node) {
+              rule('Assignment to TDZ binding should be replaced with a TDZ throw');
+              example('if (y) x = $(); let x = 1;', 'if (y) ($(), $throwTDZError("x = $()")); let x = 1;');
+              before(ref.parentNode, ref.grandNode);
+
+              const stringArg = tmat(ref.parentNode, true).replace(/\n/g, ' ')
+              const newNode = AST.sequenceExpression(
+                ref.parentNode.right,
+                AST.callExpression('$throwTDZError', [AST.primitive(`TDZ triggered for this assignment: ${stringArg}`)])
+              );
+              if (ref.grandIndex === -1) ref.grandNode[ref.grandProp] = newNode;
+              else ref.grandNode[ref.grandProp][ref.grandIndex] = newNode;
+
+              after(ref.grandNode);
+            } else {
+              console.log(ref.parentNode, ref.node);
+              ASSERT(false, 'Add support for assignment TDZ case');
+            }
+
+            break;
+          }
+          default: {
+            ASSERT(false, 'Add support for this TDZ case');
+          }
+        }
+      }
+    }
+  });
+  assertNoDupeNodes(ast, 'ast');
+  vgroupEnd();
+
   // If the next global sweep changes anything, consider all caches busted and re-run this prepare from scratch.
   // That should be a one time cost at the start as afterwards all names must be unique.
   // Future me: Sorry. This is a bit of a hack but we assume normalize_once does not use any of this stuff and so
@@ -703,23 +791,23 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
       const meta2 = globallyUniqueNamingRegistry.get(meta.originalName);
       if (meta2.isImplicitGlobal) {
         // This happens for multiple globals. The non-first one will go into this branch. Just rename them back.
-        vlog('  Original name was already recorded as implicit global. Renaming the ident with pid', meta.reads?.[0]?.node?.$p.pid);
-        meta.reads.forEach((node) => (node.name = meta.originalName));
+        vlog('  Original name was already recorded as implicit global. Renaming the ident with pid', meta.renamingReads?.[0]?.node?.$p.pid);
+        meta.renamingReads.forEach((node) => (node.name = meta.originalName));
       } else if (meta2) {
         const newName = createFreshVar(meta.originalName, fdata);
         vlog('  This name was also bound explicitly. Renaming existing occurrences to `' + newName + '`');
-        meta2.reads.forEach((node) => (node.name = newName));
-        meta2.writes.forEach((node) => (node.name = newName));
+        meta2.renamingReads.forEach((node) => (node.name = newName));
+        meta2.renamingWrites.forEach((node) => (node.name = newName));
         vlog('  Renaming the global to its original name `' + meta.originalName + '`');
-        meta.reads.forEach((node) => (node.name = meta.originalName));
-        meta.writes.forEach((node) => (node.name = meta.originalName));
+        meta.renamingReads.forEach((node) => (node.name = meta.originalName));
+        meta.renamingWrites.forEach((node) => (node.name = meta.originalName));
         ++globalsShuffled;
         meta2.isImplicitGlobal = true; // Make sure other globals just get renamed (in previous branch)
         // Poison these refs to prevent a footgun situation
-        meta.reads = null;
-        meta.writes = null;
-        meta2.reads = null;
-        meta2.writes = null;
+        meta.renamingReads = null;
+        meta.renamingWrites = null;
+        meta2.renamingReads = null;
+        meta2.renamingWrites = null;
       } else {
         ASSERT(
           false,
@@ -733,8 +821,8 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
       ASSERT(meta.originalName.startsWith(IMPLICIT_GLOBAL_PREFIX), 'was this a binding that started with our custom prefix?', meta);
       const newName = createFreshVar(meta.originalName, fdata);
       ASSERT(newName === meta.originalName, 'should be available');
-      meta.reads.forEach((node) => (node.name = newName));
-      meta.writes.forEach((node) => (node.name = newName));
+      meta.renamingReads.forEach((node) => (node.name = newName));
+      meta.renamingWrites.forEach((node) => (node.name = newName));
       vlog('  Swapping meta in the registry');
       globallyUniqueNamingRegistry.set(newName, meta);
       globallyUniqueNamingRegistry.delete(name);
@@ -752,13 +840,13 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
         .join('\n'),
     );
     vlog(
-      '\ngloballyUniqueNamingRegistry (sans builtins)(2):\n' +
+      '\ngloballyUniqueNamingRegistry (name[r/w] , omits builtins)(2):\n' +
       (
         (globallyUniqueNamingRegistry.size - globals.size) > 50
         ? '<too many>'
         : globallyUniqueNamingRegistry.size === globals.size
         ? '<none>'
-        : [...globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', ')
+            : Array.from(fdata.globallyUniqueNamingRegistry.keys()).filter((name) => !globals.has(name)).map(name => `${name}[${fdata.globallyUniqueNamingRegistry.get(name).renamingReads.length}/${globallyUniqueNamingRegistry.get(name).renamingWrites.length}]`).join(', ')
       ),
     );
     vlog(

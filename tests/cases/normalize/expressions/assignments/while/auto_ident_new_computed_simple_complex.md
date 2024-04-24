@@ -93,15 +93,15 @@ new tmpNewCallee$9(1);
 $(100);
 const tmpCompProp$10 = $(`\$`);
 const tmpNewCallee$10 = b[tmpCompProp$10];
-let tmpClusterSSA_a$2 = new tmpNewCallee$10(1);
+let tmpSSA_a$2 = new tmpNewCallee$10(1);
 $(100);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const tmpCompProp$11 = $(`\$`);
   const tmpNewCallee$11 = b[tmpCompProp$11];
-  tmpClusterSSA_a$2 = new tmpNewCallee$11(1);
+  tmpSSA_a$2 = new tmpNewCallee$11(1);
   $(100);
 }
-$(tmpClusterSSA_a$2);
+$(tmpSSA_a$2);
 `````
 
 ## PST Output

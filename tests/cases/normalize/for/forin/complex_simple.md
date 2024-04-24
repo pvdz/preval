@@ -64,7 +64,7 @@ x: 1,
 y: 2
 ;
 let c = undefined;
-for (c in b {
+for (c in b) {
   const d = $( a );
   d.x = c;
   const e = a.x;

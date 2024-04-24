@@ -78,8 +78,8 @@ const f = function () {
   debugger;
   const tmpObjLitVal = { y: `pass3` };
   const tmpCalleeParam = { x: tmpObjLitVal };
-  const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
-  const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
+  const tmpSSA_bindingPatternObjRoot = $(tmpCalleeParam);
+  const objPatternBeforeDefault = tmpSSA_bindingPatternObjRoot.x;
   let objPatternAfterDefault = undefined;
   const tmpIfTest$1 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$1) {
@@ -89,11 +89,13 @@ const f = function () {
     objPatternAfterDefault = objPatternBeforeDefault;
   }
   const objPatternBeforeDefault$1 = objPatternAfterDefault.y;
+  let y = undefined;
   const tmpIfTest$3 = objPatternBeforeDefault$1 === undefined;
   if (tmpIfTest$3) {
-    const tmpClusterSSA_y = $(`fail`);
-    return tmpClusterSSA_y;
+    y = $(`fail`);
+    return y;
   } else {
+    y = objPatternBeforeDefault$1;
     return objPatternBeforeDefault$1;
   }
 };
@@ -122,12 +124,14 @@ const a = function() {
     f = e;
   }
   const i = f.y;
-  const j = i === undefined;
-  if (j) {
-    const k = $( "fail" );
-    return k;
+  let j = undefined;
+  const k = i === undefined;
+  if (k) {
+    j = $( "fail" );
+    return j;
   }
   else {
+    j = i;
     return i;
   }
 };

@@ -82,7 +82,7 @@ const c = {
 a: 1,
 b: 2
 ;
-for (a in c {
+for (a in c) {
   b = true;
   break;
 }

@@ -57,11 +57,11 @@ $(a);
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;
 const tmpCalleeParam = $(1);
-const tmpIfTest = $(tmpCalleeParam);
+let tmpIfTest = $(tmpCalleeParam);
 if (tmpIfTest) {
   const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_tmpIfTest) {
+  tmpIfTest = $(tmpCalleeParam$1);
+  if (tmpIfTest) {
     $(1);
   } else {
     $tmpLoopUnrollCheck = false;
@@ -72,11 +72,11 @@ if (tmpIfTest) {
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpCalleeParam$2 = $(1);
-    const tmpIfTest$1 = $(tmpCalleeParam$2);
+    let tmpIfTest$1 = $(tmpCalleeParam$2);
     if (tmpIfTest$1) {
       const tmpCalleeParam$4 = $(2);
-      const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$4);
-      if (tmpClusterSSA_tmpIfTest$1) {
+      tmpIfTest$1 = $(tmpCalleeParam$4);
+      if (tmpIfTest$1) {
         $(1);
       } else {
         break;
@@ -98,11 +98,11 @@ With rename=true
 `````js filename=intro
 let a = true;
 const b = $( 1 );
-const c = $( b );
+let c = $( b );
 if (c) {
   const d = $( 2 );
-  const e = $( d );
-  if (e) {
+  c = $( d );
+  if (c) {
     $( 1 );
   }
   else {
@@ -114,12 +114,12 @@ else {
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
-    const f = $( 1 );
-    const g = $( f );
-    if (g) {
-      const h = $( 2 );
-      const i = $( h );
-      if (i) {
+    const e = $( 1 );
+    let f = $( e );
+    if (f) {
+      const g = $( 2 );
+      f = $( g );
+      if (f) {
         $( 1 );
       }
       else {
@@ -131,11 +131,11 @@ if (a) {
     }
   }
 }
-const j = {
+const h = {
 a: 999,
 b: 1000
 ;
-$( j );
+$( h );
 `````
 
 ## Globals

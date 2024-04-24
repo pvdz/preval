@@ -67,42 +67,37 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  $(0);
-  const tmpLabeledBlockFunc = function () {
-    debugger;
-    const tmpIfTest$5 = $(1);
-    if (tmpIfTest$5) {
-      label2$1: {
-        const tmpIfTest$7 = $(2);
-        if (tmpIfTest$7) {
-          label3$1: {
-            const tmpIfTest$9 = $(0);
-            if (tmpIfTest$9) {
-              break label2$1;
-            } else {
-              break label3$1;
-            }
-          }
-          $(`tail3`);
-        } else {
-          const tmpReturnArg = tmpAfterLabel();
-          return tmpReturnArg;
-        }
-      }
-      $(`tail2`);
-    } else {
-    }
-    const tmpReturnArg$1 = tmpAfterLabel();
-    return tmpReturnArg$1;
-  };
   const tmpAfterLabel = function () {
     debugger;
     $(`tail1`);
     $(`end`);
     return undefined;
   };
-  const tmpReturnArg$3 = tmpLabeledBlockFunc();
-  return tmpReturnArg$3;
+  $(0);
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    label2: {
+      const tmpIfTest$1 = $(2);
+      if (tmpIfTest$1) {
+        label3: {
+          const tmpIfTest$3 = $(0);
+          if (tmpIfTest$3) {
+            break label2;
+          } else {
+            break label3;
+          }
+        }
+        $(`tail3`);
+      } else {
+        const tmpReturnArg = tmpAfterLabel();
+        return tmpReturnArg;
+      }
+    }
+    $(`tail2`);
+  } else {
+  }
+  const tmpReturnArg$1 = tmpAfterLabel();
+  return tmpReturnArg$1;
 };
 f();
 `````
@@ -119,12 +114,12 @@ const tmpAfterLabel = function () {
 const f = function () {
   debugger;
   $(0);
-  const tmpIfTest$5 = $(1);
-  if (tmpIfTest$5) {
-    const tmpIfTest$7 = $(2);
-    if (tmpIfTest$7) {
-      const tmpIfTest$9 = $(0);
-      if (tmpIfTest$9) {
+  const tmpIfTest = $(1);
+  if (tmpIfTest) {
+    const tmpIfTest$1 = $(2);
+    if (tmpIfTest$1) {
+      const tmpIfTest$3 = $(0);
+      if (tmpIfTest$3) {
       } else {
         $(`tail3`);
       }

@@ -65,13 +65,13 @@ $(`test 13`);
 $(`test 12`);
 $(`test 11`);
 $(`test 10`);
-let tmpClusterSSA_counter$2 = 9;
+let tmpSSA_counter$2 = 9;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  if (tmpClusterSSA_counter$2) {
-    const tmpStringConcatL$1 = $coerce(tmpClusterSSA_counter$2, `string`);
+  if (tmpSSA_counter$2) {
+    const tmpStringConcatL$1 = $coerce(tmpSSA_counter$2, `string`);
     const tmpCalleeParam$1 = `test ${tmpStringConcatL$1}`;
     $(tmpCalleeParam$1);
-    tmpClusterSSA_counter$2 = tmpClusterSSA_counter$2 - 1;
+    tmpSSA_counter$2 = tmpSSA_counter$2 - 1;
   } else {
     break;
   }

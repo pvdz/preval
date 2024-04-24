@@ -28,7 +28,7 @@ $('after');
 
 `````js filename=intro
 while ($(true)) {
-  if ($(false)) x = $(`fail too`);
+  if ($(false)) $(`fail too`), $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
   break;
   let x = $(`fail`);
 }
@@ -43,7 +43,8 @@ while (true) {
   if (tmpIfTest) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
-      x = $(`fail too`);
+      $(`fail too`);
+      $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
     } else {
     }
     break;
@@ -59,29 +60,12 @@ $(`after`);
 
 `````js filename=intro
 const tmpIfTest = $(true);
-let $tmpLoopUnrollCheck = true;
 if (tmpIfTest) {
   const tmpIfTest$1 = $(false);
   if (tmpIfTest$1) {
-    throw `Preval: Cannot access \`x\` before initialization`;
+    $(`fail too`);
+    $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
   } else {
-    $tmpLoopUnrollCheck = false;
-  }
-} else {
-  $tmpLoopUnrollCheck = false;
-}
-if ($tmpLoopUnrollCheck) {
-  while ($LOOP_UNROLL_10) {
-    if (tmpIfTest) {
-      const tmpIfTest$2 = $(false);
-      if (tmpIfTest$2) {
-        throw `Preval: Cannot access \`x\` before initialization`;
-      } else {
-        break;
-      }
-    } else {
-      break;
-    }
   }
 } else {
 }
@@ -94,33 +78,11 @@ With rename=true
 
 `````js filename=intro
 const a = $( true );
-let b = true;
 if (a) {
-  const c = $( false );
-  if (c) {
-    throw "Preval: Cannot access `x` before initialization";
-  }
-  else {
-    b = false;
-  }
-}
-else {
-  b = false;
-}
-if (b) {
-  while ($LOOP_UNROLL_10) {
-    if (a) {
-      const d = $( false );
-      if (d) {
-        throw "Preval: Cannot access `x` before initialization";
-      }
-      else {
-        break;
-      }
-    }
-    else {
-      break;
-    }
+  const b = $( false );
+  if (b) {
+    $( "fail too" );
+    c( "TDZ triggered for this assignment: x = $('fail too')" );
   }
 }
 $( "after" );

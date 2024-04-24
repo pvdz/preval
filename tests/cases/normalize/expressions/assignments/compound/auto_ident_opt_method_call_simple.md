@@ -55,9 +55,9 @@ $(a);
 const a = { a: 999, b: 1000 };
 const b = { c: $ };
 const tmpChainElementCall = $dotCall($, b, 1);
-const tmpClusterSSA_a$1 = a * tmpChainElementCall;
-$(tmpClusterSSA_a$1);
-$(tmpClusterSSA_a$1);
+const tmpSSA_a = a * tmpChainElementCall;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

@@ -52,14 +52,15 @@ const tmpBinBothLhs = $(100);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = tmpBinBothLhs + undefined;
+  $(tmpCalleeParam);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
-  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementCall$1;
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = tmpBinBothLhs + tmpChainElementCall$1;
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -73,15 +74,16 @@ const a = $( 100 );
 let b = undefined;
 const c = $( $ );
 const d = c == null;
+let e = undefined;
 if (d) {
-  const e = a + undefined;
+  e = a + undefined;
   $( e );
 }
 else {
   const f = $dotCall( c, $, 1 );
   b = f;
-  const g = a + f;
-  $( g );
+  e = a + f;
+  $( e );
 }
 $( b );
 `````

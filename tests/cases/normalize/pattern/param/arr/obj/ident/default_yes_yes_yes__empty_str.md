@@ -80,11 +80,13 @@ const f = function () {
   const tmpCalleeParam$1 = { x: `pass2` };
   const arrPatternStep = $(tmpCalleeParam$1);
   const objPatternBeforeDefault = arrPatternStep.x;
+  let x = undefined;
   const tmpIfTest$3 = objPatternBeforeDefault === undefined;
   if (tmpIfTest$3) {
-    const tmpClusterSSA_x = $(`pass`);
-    return tmpClusterSSA_x;
+    x = $(`pass`);
+    return x;
   } else {
+    x = objPatternBeforeDefault;
     return objPatternBeforeDefault;
   }
 };
@@ -102,12 +104,14 @@ const a = function() {
   const b = { x: "pass2" };
   const c = $( b );
   const d = c.x;
-  const e = d === undefined;
-  if (e) {
-    const f = $( "pass" );
-    return f;
+  let e = undefined;
+  const f = d === undefined;
+  if (f) {
+    e = $( "pass" );
+    return e;
   }
   else {
+    e = d;
     return d;
   }
 };

@@ -51,29 +51,31 @@ while (true) {
 $(10);
 let x = $(1, `set`);
 $(x, `loop`);
-const tmpClusterSSA_x = $(2, `set`);
-$(tmpClusterSSA_x, `loop`);
-$(2, `set`);
-$(tmpClusterSSA_x, `loop`);
-$(2, `set`);
-$(tmpClusterSSA_x, `loop`);
-$(2, `set`);
-$(tmpClusterSSA_x, `loop`);
-$(2, `set`);
-$(tmpClusterSSA_x, `loop`);
-$(2, `set`);
-$(tmpClusterSSA_x, `loop`);
-$(2, `set`);
-$(tmpClusterSSA_x, `loop`);
-$(2, `set`);
-$(tmpClusterSSA_x, `loop`);
-$(2, `set`);
-$(tmpClusterSSA_x, `loop`);
-$(2, `set`);
-$(tmpClusterSSA_x, `loop`);
+x = $(2, `set`);
+$(x, `loop`);
+x = $(3, `set`);
+$(x, `loop`);
+x = $(4, `set`);
+$(x, `loop`);
+x = $(5, `set`);
+$(x, `loop`);
+x = $(6, `set`);
+$(x, `loop`);
+x = $(7, `set`);
+$(x, `loop`);
+x = $(8, `set`);
+$(x, `loop`);
+x = $(9, `set`);
+$(x, `loop`);
+x = $(10, `set`);
+$(x, `loop`);
+let tmpSSA_i$1 = 11;
+x = $(11, `set`);
+$(x, `loop`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  x = $(2, `set`);
-  $(tmpClusterSSA_x, `loop`);
+  tmpSSA_i$1 = tmpSSA_i$1 + 1;
+  x = $(tmpSSA_i$1, `set`);
+  $(x, `loop`);
 }
 `````
 
@@ -85,29 +87,31 @@ With rename=true
 $( 10 );
 let a = $( 1, "set" );
 $( a, "loop" );
-const b = $( 2, "set" );
-$( b, "loop" );
-$( 2, "set" );
-$( b, "loop" );
-$( 2, "set" );
-$( b, "loop" );
-$( 2, "set" );
-$( b, "loop" );
-$( 2, "set" );
-$( b, "loop" );
-$( 2, "set" );
-$( b, "loop" );
-$( 2, "set" );
-$( b, "loop" );
-$( 2, "set" );
-$( b, "loop" );
-$( 2, "set" );
-$( b, "loop" );
-$( 2, "set" );
-$( b, "loop" );
+a = $( 2, "set" );
+$( a, "loop" );
+a = $( 3, "set" );
+$( a, "loop" );
+a = $( 4, "set" );
+$( a, "loop" );
+a = $( 5, "set" );
+$( a, "loop" );
+a = $( 6, "set" );
+$( a, "loop" );
+a = $( 7, "set" );
+$( a, "loop" );
+a = $( 8, "set" );
+$( a, "loop" );
+a = $( 9, "set" );
+$( a, "loop" );
+a = $( 10, "set" );
+$( a, "loop" );
+let b = 11;
+a = $( 11, "set" );
+$( a, "loop" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = $( 2, "set" );
-  $( b, "loop" );
+  b = b + 1;
+  a = $( b, "set" );
+  $( a, "loop" );
 }
 `````
 
@@ -150,31 +154,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - 1: 10
- - 2: 1, 'set'
- - 3: 1, 'loop'
- - 4: 2, 'set'
- - 5: 2, 'loop'
- - 6: 2, 'set'
- - 7: 2, 'loop'
- - 8: 2, 'set'
- - 9: 2, 'loop'
- - 10: 2, 'set'
- - 11: 2, 'loop'
- - 12: 2, 'set'
- - 13: 2, 'loop'
- - 14: 2, 'set'
- - 15: 2, 'loop'
- - 16: 2, 'set'
- - 17: 2, 'loop'
- - 18: 2, 'set'
- - 19: 2, 'loop'
- - 20: 2, 'set'
- - 21: 2, 'loop'
- - 22: 2, 'set'
- - 23: 2, 'loop'
- - 24: 2, 'set'
- - 25: 2, 'loop'
- - 26: 2, 'set'
- - eval returned: ('<crash[ Loop aborted by Preval test runner (this simply curbs infinite loops in tests) ]>')
+Final output calls: Same

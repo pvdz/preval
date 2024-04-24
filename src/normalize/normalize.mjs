@@ -371,28 +371,6 @@ doing multiple static operations on the same value can reuse those results if st
 
  */
 
-function RETURN() {
-  // Part of the while-normalization-logic
-  // This is basically a specially crafted enum. The value is assigned to a state var which is the test
-  // value of a normalized while loop. As long as we want to continue the while loop, the value must be
-  // truthy. Hence, CONTINUE() returns a `true` node. When the body of the loop either returns or breaks
-  // the value must be falsy. To distinguish between a return and a break, we explicitly use `false` for
-  // one case (BREAK()) and `undefined` for the other case (RETURN()). This way we do not need to use a
-  // binary expression for the while test (which would otherwise be normalized again, leading to an
-  // infinite loop).
-  return AST.identifier('undefined');
-}
-
-function BREAK() {
-  // Part of the while-normalization-logic. See the RETURN func.
-  return AST.fals();
-}
-
-function CONTINUE() {
-  // Part of the while-normalization-logic. See the RETURN func.
-  return AST.tru();
-}
-
 const BUILTIN_MEMBERS = new Set([
   'Array.from',
   'Array.isArray',
@@ -509,8 +487,6 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
   let passes = 0;
   do {
     changed = false;
-    // Clear usage/update lists because mutations may have affected them
-    fdata.globallyUniqueNamingRegistry.forEach((meta) => ((meta.writes = []), (meta.reads = [])));
     transformProgram(ast);
     //stmt(null, 'ast', -1, ast, false, false);
     if (VERBOSE_TRACING) vlog('\nCurrent state\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n');
@@ -525,12 +501,14 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
   if (VERBOSE_TRACING) {
     vlog('After normalization:');
     vlog(
-      '\ngloballyUniqueNamingRegistry (sans builtins)(1):\n',
+      '\ngloballyUniqueNamingRegistry (name[r/w] but may be desynced, omits builtins)(1):\n' +
+      (
       (fdata.globallyUniqueNamingRegistry.size - globals.size) > 50
         ? '<too many (' + (fdata.globallyUniqueNamingRegistry.size - globals.size) + ')>'
         : fdata.globallyUniqueNamingRegistry.size === globals.size
         ? '<none>'
-        : [...fdata.globallyUniqueNamingRegistry.keys()].filter((name) => !globals.has(name)).join(', '),
+          : Array.from(fdata.globallyUniqueNamingRegistry.keys()).filter((name) => !globals.has(name)).map(name => `${name}[${fdata.globallyUniqueNamingRegistry.get(name).reads.length}/${fdata.globallyUniqueNamingRegistry.get(name).writes.length}]`).join(', ')
+      )
     );
     vlog(
       '\ngloballyUniqueLabelRegistry:\n',
@@ -1005,6 +983,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         body.splice(i, 1, newNode);
 
         after(newNode, parent);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       } else {
         // Parent statement (if/while/for-x) should eliminate this if possible
@@ -1243,7 +1222,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         );
 
         if (wrapKind === 'statement') {
-          // TODO: what about implicit globals or TDZ? This prevents a crash.
+          // TODO: what about implicit globals? This prevents a crash.
 
           // The `arguments` reference is special as it implies func params can not be changed. Something to improve later.
           const meta = node.name !== 'arguments' && fdata.globallyUniqueNamingRegistry.get(node.name);
@@ -1747,7 +1726,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 // Boolean cannot be observed? Whereas isNaN and isFinite might, but only if they have args
                 if (args.length && AST.isPrimitive(args[0])) {
                   rule('A statement that is a call to Boolean(), or isNaN() or isFinite() with a primitive arg can be dropped');
-                  example('Boolean(a);', ';');
+                  example('Boolean(123);', ';');
                   before(node, body);
 
                   body.splice(i, 1, AST.emptyStatement());
@@ -1758,11 +1737,11 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 }
 
                 if (callee.name === 'Boolean') {
-                  rule('A statement that is a call to Boolean() with arg can be replaced by the arg itself');
-                  example('Boolean(a);', 'a;');
+                  rule('A statement that is a call to Boolean() with arg can be replaced by the args themself');
+                  example('Boolean(a, b, c);', 'a, b, c;');
                   before(node, parentNode);
 
-                  body.splice(i, 1, AST.expressionStatement(args[0]));
+                  body.splice(i, 1, AST.expressionStatement(AST.sequenceExpression(args)));
 
                   after(AST.expressionStatement(args[0]), body);
                   assertNoDupeNodes(AST.blockStatement(body), 'body');
@@ -1789,33 +1768,38 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               case 'Number': {
                 // Note: `Number(x)` is not the same as `1 * x`
 
-                // Note: the `+` operator is effectively the specification's `ToNumber` coercion operation in syntactic form.
-                // Move all args to individual statements. Coerce the first to number.
-                rule('A statement that is `Number()` should be replaced by a call to `$coerce` on "number" with one arg');
-                example('Number(a);', '$coerce(a, "number");');
-                before(node, parentNode);
+                if (args.length === 1 && args[0].type !== 'SpreadElement') {
+                  // Note: the `+` operator is effectively the specification's `ToNumber` coercion operation in syntactic form.
+                  // Move all args to individual statements. Coerce the first to number.
+                  rule('A statement that is `Number(a)` should be replaced by a call to `$coerce` on "number" with one arg');
+                  example('Number(a);', '$coerce(a, "number");');
+                  before(node, parentNode);
 
-                ASSERT(args.length === 1 && args[0].type !== 'SpreadElement');
-                body.splice(i, 1, AST.expressionStatement(AST.callExpression('$coerce', [args[0], AST.primitive('number')])));
+                  body.splice(i, 1, AST.expressionStatement(AST.callExpression('$coerce', [args[0], AST.primitive('number')])));
 
-                after(body[i]);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
-                return true;
+                  after(body[i]);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+
+                break;
               }
               case 'String': {
                 // Note: `String(x)` is not the same as `""+x`
                 // We eliminate calls to Number and String in favor of $coerce
 
-                rule('A statement call to `String` with an arg should call `$coerce` with it');
-                example('String(a);', '$coerce(a, "string");');
-                before(node, parentNode);
+                if (args.length === 1 && args[0].type !== 'SpreadElement') {
+                  rule('A statement call to `String` with an arg should call `$coerce` with it');
+                  example('String(a);', '$coerce(a, "string");');
+                  before(node, parentNode);
 
-                ASSERT(args.length === 1 && args[0].type !== 'SpreadElement');
-                body.splice(i, 1, AST.expressionStatement(AST.callExpression('$coerce', [args[0], AST.primitive('string')])));
+                  body.splice(i, 1, AST.expressionStatement(AST.callExpression('$coerce', [args[0], AST.primitive('string')])));
 
-                after(parentNode);
-                assertNoDupeNodes(AST.blockStatement(body), 'body');
-                return true;
+                  after(parentNode);
+                  assertNoDupeNodes(AST.blockStatement(body), 'body');
+                  return true;
+                }
+                break;
               }
               case 'parseInt': {
                 if (!(firstSpread || (args.length > 1 && args[1].type === 'SpreadElement'))) {
@@ -1902,7 +1886,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 break;
               }
               case 'isNaN': {
-                if (args[0] && AST.isPrimitive(args[0])) {
+                if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isNaN` on a primitive should resolve');
                   example('isNaN("hello")', 'true'); // tests/cases/normalize/builtins/globals_with_primitives/isnan_500.md
                   before(node, parentNode);
@@ -1917,7 +1901,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 break;
               }
               case 'isFinite': {
-                if (args[0] && AST.isPrimitive(args[0])) {
+                if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `isFinite` on a primitive should resolve');
                   example('isFinite("hello")', 'false'); // tests/cases/normalize/builtins/globals_with_primitives/isfinite_500.md
                   before(node, parentNode);
@@ -1932,7 +1916,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 break;
               }
               case 'Boolean': {
-                if (args[0] && AST.isPrimitive(args[0])) {
+                if (args.length === 1 && args[0] && AST.isPrimitive(args[0])) {
                   rule('Calling `Boolean` on a primitive should resolve');
                   example('Boolean("hello")', 'true');
                   before(node, parentNode);
@@ -1947,8 +1931,8 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                 break;
               }
               case 'parseInt': {
-                if (firstArgNode && AST.isPrimitive(firstArgNode)) {
-                  if (!args[1] || AST.isPrimitive(args[1])) {
+                if (firstArgNode && AST.isPrimitive(firstArgNode) && args.length <= 2) {
+                  if (args.length === 1 || AST.isPrimitive(args[1])) {
                     const pv1 = AST.getPrimitiveValue(firstArgNode);
                     const pv2 = args[1] && AST.getPrimitiveValue(args[1]);
 
@@ -1999,7 +1983,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
                 if (node.arguments.length > 1 || node.arguments[0].type === 'SpreadElement') {
                   rule('A call to `parseFloat` with some args should call `$coerce` with one');
-                  example('f(parseFloat(a, b, c));', 'const tmp = a; b; c; f(parseFloat(a));');
+                  example('f(parseFloat(a, b, c));', 'const tmp = a; b; c; f(parseFloat(tmp));');
                   before(node, parentNode);
 
                   const newNodes = [];
@@ -2034,7 +2018,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   return true;
                 }
 
-                if (AST.isPrimitive(node.arguments[0])) {
+                if (args.length === 1 && AST.isPrimitive(args[0])) {
                   rule('A primitive value to `parseFloat` should be resolved');
                   example('f(parseFloat("50foo"))', 'f(50)');
                   before(node, body[i]);
@@ -2123,7 +2107,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
                   return true;
                 }
 
-                if (AST.isPrimitive(args[0]) && (!args[1] || AST.isPrimitive(args[1]))) {
+                if (args.length <= 2 && AST.isPrimitive(args[0]) && (!args[1] || AST.isPrimitive(args[1]))) {
                   rule('Calling `RegExp()` with primitives should construct the regex');
                   example('RegExp("foo")', '/foo/', () => !args[1]);
                   example('RegExp("foo". "g")', '/foo/g', () => !!args[1]);
@@ -2707,16 +2691,19 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               if (typeof callee.object.value === 'boolean') {
                 switch (callee.property.name) {
                   case 'constructor': {
-                    ASSERT(node.arguments.length === 1, 'meh just a silly hack, no full support');
-                    rule('A call to `true.constructor` on a bool should be inlined');
-                    example('true.constructor(1)', 'Boolean(1)');
-                    before(node, body[i]);
+                    if (args.length === 1) {
+                      ASSERT(node.arguments.length === 1, 'meh just a silly hack, no full support');
+                      rule('A call to `true.constructor` on a bool should be inlined');
+                      example('true.constructor(1)', 'Boolean(1)');
+                      before(node, body[i]);
 
-                    node.callee = AST.identifier('Boolean');
+                      node.callee = AST.identifier('Boolean');
 
-                    after(node, body[i]);
-                    assertNoDupeNodes(AST.blockStatement(body), 'body');
-                    return true;
+                      after(node, body[i]);
+                      assertNoDupeNodes(AST.blockStatement(body), 'body');
+                      return true;
+                    }
+                    break;
                   }
                   default: {
                     // TODO?
@@ -2725,17 +2712,20 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
               } else if (typeof callee.object.value === 'number') {
                 switch (callee.property.name) {
                   case 'constructor': {
-                    ASSERT(node.arguments.length === 1, 'meh just a silly hack, no full support');
-                    rule('A call to `str.constructor` on a string should be inlined');
-                    example('123..constructor("500")', '$coerce("500", "number)');
-                    before(node, body[i]);
+                    if (args.length === 1) {
+                      ASSERT(node.arguments.length === 1, 'meh just a silly hack, no full support');
+                      rule('A call to `str.constructor` on a string should be inlined');
+                      example('123..constructor("500")', '$coerce("500", "number)');
+                      before(node, body[i]);
 
-                    node.callee = AST.identifier('$coerce');
-                    node.arguments[1] = AST.primitive('number');
+                      node.callee = AST.identifier('$coerce');
+                      node.arguments[1] = AST.primitive('number');
 
-                    after(node, body[i]);
-                    assertNoDupeNodes(AST.blockStatement(body), 'body');
-                    return true;
+                      after(node, body[i]);
+                      assertNoDupeNodes(AST.blockStatement(body), 'body');
+                      return true;
+                    }
+                    break;
                   }
                   case 'toString': {
                     // The radix is a vital arg so we can't resolve this unless we can resolve the arg
@@ -2898,6 +2888,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
             return true;
           }
         }
+
 
         // Assert normalized form
         ASSERT(
@@ -7693,7 +7684,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
           rule('Nested if-else in function must be abstracted');
           example(
             'function f(){ if (x) { if (y) { g(); } else { h(); } } }',
-            'function f(){ const A() { return g(); }; const B() { return h(); } if (x) { return A(); } else { return B(); } }',
+            'function f(){ function A() { return g(); }; function B() { return h(); } if (x) { return A(); } else { return B(); } }',
           );
           before(node, funcNode);
 
@@ -8170,66 +8161,82 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       // This is a labeled statement that is the direct child of a function
       // If not, the body is a loop and we'll deal with that later.
 
-      // This is an artifact of the switch statement (and just valid code, but it's not very common in the wild)
-      rule('Labeled block as direct child of function. Eliminate it.');
-      example(
-        'function f() { before(); foo: { inside(); break foo; } after(); } f();',
-        'function f(){ function c() { after(); } before(); foo: { inside(); return c(); } return c(); } f();',
-      );
-      before(node);
+      if (i === body.length - 1) {
+        rule('Labeled break as direct child of function with no code following. Drop the label.');
+        example(
+          'function f() { before(); foo: { inside(); break foo; } } f();',
+          'function f(){ before(); foo: { inside(); } } f();',
+        );
+        before(node, body);
 
-      // Find all references to this label. They must be breaks (because continues can only target loop labels and this wasnt one).
-      // Round up all statements after the label into function c. Replace all breaks to the label with a `return c()`. Replace
-      // the statements after the label (which were put in `c`) with a `return c()` as well.
-      // Algo is same as for if-else. The only danger is `this` and `arguments` references but we have already covered those.
+        // Because the label is the direct child of a function, and because there is no code following
+        // the label block, it means the function implicitly returns, therefor we can drop the label
+        // safely and any labeled breaks to it become implicit returns.
 
-      // - Collect all bindings created before the binding
-      // - Abstract all other nodes after the label `node` into a fresh function (c)
-      // - Every `break` to the current label should be replaced with a return of calling the new function
-      // - The label should be followed by a return of the new function, replacing the other statements
-      // - If there were other `return` statements (or other abrubt completions) then DCE will take care of it
-
-      // We are on the way down the transform so the body should be normalized, meaning all decls should
-      // be let or const variable declarations now. Collect them up to the label and pass them in all calls to c.
-
-      const declaredBindings = [];
-      for (let j = 0; j < i; ++j) {
-        const snode = body[j];
-        if (snode.type === 'VariableDeclaration') {
-          ASSERT(snode.kind === 'let' || snode.kind === 'const');
-          ASSERT(snode.declarations.length === 1);
-          ASSERT(snode.declarations[0].id.type === 'Identifier');
-          declaredBindings.push(snode.declarations[0].id.name);
-        }
-      }
-
-      vlog('Local bindings found:', declaredBindings);
-      // The remainder of the function after the if-else.
-      const bodyRest = body.slice(i + 1);
-      body.length = i + 1; // Drop everything after this label node
-
-      if (bodyRest.length === 0) {
-        vlog('No code follows the labeled body so no need for a temp function to hold it');
-
+        // Remove the "labeled statement" and re-insert its body, which becomes a nested BlockStatement, which will be normalized later.
         body.splice(i, 1, node.body);
 
         // Replace all `break foo` cases pointing to this label with a return statement with `undefined`
+        // Note that there can't be any `continue` cases here since that's only legit for labeled loops
         ASSERT(fdata.globallyUniqueLabelRegistry.has(node.label.name), 'the label should be registered', node);
         const labelUsageMap = fdata.globallyUniqueLabelRegistry.get(node.label.name).labelUsageMap;
         labelUsageMap.forEach(({ node, body, index }, pid) => {
           const finalNode = AST.returnStatement(AST.identifier('undefined'));
           ASSERT(body[index] === node, 'should not be stale', parentNode);
           body[index] = finalNode;
-
           labelUsageMap.delete(pid);
         });
 
+        after(body);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
+      } else {
+        // TODO: perhaps this rule is more destructive because it turns more variables into closures, which are harder to eliminate?
+
+        // This is an artifact of the switch statement (and also just valid code, but that's not very common in the wild)
+        rule('Labeled break as direct child of function with code following. Abstract tail and replace the breaks.');
+        example(
+          'function f() { before(); foo: { inside(); break foo; } after(); } f();',
+          'function f(){ function c() { after(); } before(); foo: { inside(); return c(); } return c(); } f();',
+        );
+        before(node);
+
         if (VERBOSE_TRACING) {
           vlog(
-            '\nComplete AST after applying "Eliminated labeled statement" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n',
+            '\nCurrent state _before_ applying "Eliminated labeled statement" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n',
           );
         }
-      } else {
+
+
+        // Find all references to this label. They must be breaks (because continues can only target loop labels and this wasnt one).
+        // Round up all statements after the label into function `c`. Replace all breaks to the label with a `return c()`. Replace
+        // the statements after the label (which were put in `c`) with a `return c()` as well.
+        // Algo is same as for if-else. The only danger would be `this` and `arguments` references which we have already covered earlier.
+
+        // - Collect all bindings created before the binding (other bindings were already closures so we can ignore those in this step)
+        // - Abstract all other nodes after the label `node` into a fresh function (c)
+        // - Every `break` to the current label should be replaced with a return of calling the new function
+        // - The label should be followed by a return of the new function, replacing the other statements
+        // - If there were other `return` statements (or other abrupt completions) then DCE will take care of it
+
+        // We are on the way down the transform so the body should be normalized, meaning all decls should
+        // be let or const variable declarations now. Collect them up to the label and pass them in all calls to c.
+
+        const declaredBindings = [];
+        for (let j = 0; j < i; ++j) {
+          const snode = body[j];
+          if (snode.type === 'VariableDeclaration') {
+            ASSERT(snode.kind === 'let' || snode.kind === 'const');
+            ASSERT(snode.declarations.length === 1);
+            ASSERT(snode.declarations[0].id.type === 'Identifier');
+            declaredBindings.push(snode.declarations[0].id.name);
+          }
+        }
+        vlog('Local bindings found:', declaredBindings);
+
+        // The remainder of the function after the labeled block
+        const bodyRest = body.slice(i + 1);
+        body.length = i + 1; // Drop everything after this label node
+
         // If we took the same approach as nested if-else then the fresh function ends up being a local binding
         // which would be passed on to if-else abstractions and currently we would not be able tp eliminate it.
         // (Hopefully that changes in the future but for the time being, that's not going to change, I guess)
@@ -8247,16 +8254,13 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
 
         // Create a function for the code that follows the label. It is automatically called at the end of the block
         // and all occurrences of `break` with node.label as target are replaced with a return of calling that func
-        const tmpNameB = createFreshVar('tmpAfterLabel', fdata);
-        const primeB = AST.functionExpressionNormalized(declaredBindings.slice(0), bodyRest, {
-          id: createFreshVar('tmpPrimeLabelC', fdata),
+        const tmpNamePostLabelFunc = createFreshVar('tmpAfterLabel', fdata);
+        const postFunc = AST.functionExpressionNormalized(declaredBindings.slice(0), bodyRest, {
+          //id: createFreshVar('tmpPrimeLabelC', fdata),
+          // TODO: deal with async, generator (await/yield)
         });
-        const primeCloneB = cloneFunctionNode(primeB, undefined, [], fdata).expression;
-        {
-          primeCloneB.id = AST.identifier(tmpNameB);
-          source(primeCloneB);
-          primeCloneB.id = null;
-        }
+        // Note: cloneFunctionNode will deduplicate binding names (the slow way), which is very important here!
+        const postFuncDeduped = cloneFunctionNode(postFunc, undefined, [], fdata).expression;
 
         // Replace all `break foo` cases pointing to this label with a return statement calling the new function
         // Other rules will normalize this back and away if it's a noop but this way we can safely eliminate the label.
@@ -8265,7 +8269,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         labelUsageMap.forEach(({ node, body, index }, pid) => {
           const finalNode = AST.returnStatement(
             AST.callExpression(
-              tmpNameB,
+              tmpNamePostLabelFunc,
               declaredBindings.map((s) => AST.identifier(s)),
             ),
           );
@@ -8278,49 +8282,23 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         const funcBodyIndex = findBodyOffsetExpensive(body);
         vlog('funcBodyIndex:', funcBodyIndex);
 
-        const tmpNameA = createFreshVar('tmpLabeledBlockFunc', fdata);
-        const primeA = AST.functionExpressionNormalized(
-          declaredBindings.slice(0),
-          [
-            // Append the label-body code
-            ...node.body.body,
-            // And a call to the function that contains the code that follows the label
-            AST.returnStatement(
-              AST.callExpression(
-                tmpNameB,
-                declaredBindings.map((s) => AST.identifier(s)),
-              ),
-            ),
-          ],
-          { id: createFreshVar('tmpPrimeLabelB', fdata) },
-        );
-        const primeCloneA = cloneFunctionNode(primeA, undefined, [], fdata).expression;
-        {
-          primeCloneA.id = AST.identifier(tmpNameA);
-          source(primeCloneA);
-          primeCloneA.id = null;
-        }
-
-        body.length = i; // The whole body has been split up between B and C so clear it before we inject them
-        body.push(
-          AST.variableDeclaration(tmpNameA, primeCloneA, 'const'),
-          AST.variableDeclaration(tmpNameB, primeCloneB, 'const'),
-          AST.returnStatement(
-            AST.callExpression(
-              tmpNameA,
-              declaredBindings.map((s) => AST.identifier(s)),
-            ),
+        body.splice(funcBodyIndex, 0, AST.variableDeclaration(tmpNamePostLabelFunc, postFuncDeduped, 'const'));
+        body.push(AST.returnStatement(
+          AST.callExpression(
+            tmpNamePostLabelFunc,
+            declaredBindings.map((s) => AST.identifier(s)),
           ),
-        );
+        ));
 
         if (VERBOSE_TRACING) {
           vlog(
-            '\nComplete AST after applying "Eliminated labeled statement" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n',
+            '\nCurrent state after applying "Eliminated labeled statement" rule\n--------------\n' + fmat(tmat(ast)) + '\n--------------\n',
           );
         }
       }
 
       after(parentNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
 
       return true;
     }
@@ -8393,6 +8371,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       node.argument = AST.templateLiteral(node.argument.value);
 
       after(node.argument, parentNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -8404,6 +8383,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       node.argument = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
 
       after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -8428,7 +8408,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       body[i] = AST.emptyStatement();
 
       after(prev);
-      assertNoDupeNodes(AST.blockStatement(parentNode), 'body');
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -8488,6 +8468,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       node.argument = AST.identifier(thisStack[thisStack.length - 1].$p.argsAnyAlias);
 
       after(node);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -8847,6 +8828,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
       funcNode.id = null;
 
       after(funcNode, parentNode);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
       return true;
     }
 
@@ -9218,6 +9200,7 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         body[[i]] = AST.emptyStatement();
 
         after(body[[i]]);
+        assertNoDupeNodes(AST.blockStatement(body), 'body');
         return true;
       }
     }

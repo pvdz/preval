@@ -63,6 +63,7 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
+let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
@@ -71,10 +72,9 @@ if (tmpIfTest) {
   $(2);
   const tmpDeleteCompObj = $(arg);
   const tmpDeleteCompProp = $(`y`);
-  const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
-  $(tmpClusterSSA_a, arg);
+  a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+  $(a, arg);
 } else {
-  const a = { a: 999, b: 1000 };
   $(a, arg);
 }
 `````
@@ -85,23 +85,23 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = $( 1 );
-const c = $( 1 );
-const d = b === c;
-if (d) {
-  $( 1 );
-  $( 2 );
-  const e = $( a );
-  const f = $( "y" );
-  const g = deletee[ f ];
-  $( g, a );
-}
-else {
-  const h = {
+let b = {
 a: 999,
 b: 1000
-  ;
-  $( h, a );
+;
+const c = $( 1 );
+const d = $( 1 );
+const e = c === d;
+if (e) {
+  $( 1 );
+  $( 2 );
+  const f = $( a );
+  const g = $( "y" );
+  b = deletef[ g ];
+  $( b, a );
+}
+else {
+  $( b, a );
 }
 `````
 

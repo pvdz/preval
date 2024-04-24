@@ -117,16 +117,16 @@ const tmpNewCallee$10 = $($);
 const tmpCalleeParam$19 = $(1);
 const tmpCalleeParam$21 = $(2);
 const tmpNestedComplexRhs$1 = new tmpNewCallee$10(tmpCalleeParam$19, tmpCalleeParam$21);
-let tmpClusterSSA_a$2 = tmpNestedComplexRhs$1;
+let tmpSSA_a$2 = tmpNestedComplexRhs$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpNewCallee$11 = $($);
   const tmpCalleeParam$22 = $(1);
   const tmpCalleeParam$24 = $(2);
   const tmpNestedComplexRhs$2 = new tmpNewCallee$11(tmpCalleeParam$22, tmpCalleeParam$24);
-  tmpClusterSSA_a$2 = tmpNestedComplexRhs$2;
+  tmpSSA_a$2 = tmpNestedComplexRhs$2;
 }
-$(tmpClusterSSA_a$2);
+$(tmpSSA_a$2);
 `````
 
 ## PST Output

@@ -84,7 +84,7 @@ let c = b[ 0 ];
 const d = { x: 1 };
 const e = $( d );
 let f = undefined;
-for (f of e {
+for (f of e) {
   $( 10 );
   $( 20 );
   const g = [ 1, 2,, ];

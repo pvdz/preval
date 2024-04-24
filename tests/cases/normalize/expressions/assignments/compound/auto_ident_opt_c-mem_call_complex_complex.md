@@ -62,9 +62,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const b = { $: $ };
-const a = { a: 999, b: 1000 };
+let a = { a: 999, b: 1000 };
+const tmpBinBothLhs = a;
 let tmpBinBothRhs = undefined;
+const b = { $: $ };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
 if (tmpIfTest) {
@@ -79,9 +80,9 @@ if (tmpIfTest) {
     tmpBinBothRhs = tmpChainElementCall$1;
   }
 }
-const tmpClusterSSA_a = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+a = tmpBinBothLhs * tmpBinBothRhs;
+$(a);
+$(a);
 `````
 
 ## PST Output
@@ -89,33 +90,34 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = { $: $ };
-const b = {
+let a = {
 a: 999,
 b: 1000
 ;
+const b = a;
 let c = undefined;
-const d = $( a );
-const e = d == null;
-if (e) {
+const d = { $: $ };
+const e = $( d );
+const f = e == null;
+if (f) {
 
 }
 else {
-  const f = $( "$" );
-  const g = d[ f ];
-  const h = g == null;
-  if (h) {
+  const g = $( "$" );
+  const h = e[ g ];
+  const i = h == null;
+  if (i) {
 
   }
   else {
-    const i = $( 1 );
-    const j = $dotCall( g, d, i );
-    c = j;
+    const j = $( 1 );
+    const k = $dotCall( h, e, j );
+    c = k;
   }
 }
-const k = b * c;
-$( k );
-$( k );
+a = b * c;
+$( a );
+$( a );
 `````
 
 ## Globals

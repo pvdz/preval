@@ -49,13 +49,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
   const tmpObjLitVal = $(1);
   const tmpNestedComplexRhs = { b: tmpObjLitVal };
   a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
 const tmpAssignMemLhsObj = $(a);
@@ -72,7 +73,7 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 100 );
+let b = $( 100 );
 if (b) {
   $( b );
 }
@@ -80,6 +81,7 @@ else {
   const c = $( 1 );
   const d = { b: c };
   a = d;
+  b = d;
   $( d );
 }
 const e = $( a );

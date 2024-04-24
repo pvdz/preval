@@ -47,17 +47,17 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let b = {};
 const tmpIfTest = $(100);
 const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  const b = {};
   $(a, b);
 } else {
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-  const tmpClusterSSA_b = tmpAssignObjPatternRhs.b;
-  $(a, tmpClusterSSA_b);
+  b = tmpAssignObjPatternRhs.b;
+  $(a, b);
 }
 `````
 
@@ -66,21 +66,21 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( 100 );
-const b = {
+let a = {};
+const b = $( 100 );
+const c = {
 a: 999,
 b: 1000
 ;
-if (a) {
-  const c = {};
-  $( b, c );
+if (b) {
+  $( c, a );
 }
 else {
   const d = $( 2 );
   const e = { b: d };
   const f = $( e );
-  const g = f.b;
-  $( b, g );
+  a = f.b;
+  $( c, a );
 }
 `````
 

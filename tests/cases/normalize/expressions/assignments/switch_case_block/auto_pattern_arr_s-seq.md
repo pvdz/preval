@@ -62,13 +62,14 @@ $(a);
 `````js filename=intro
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
-const a = arrPatternSplat[0];
+let a = arrPatternSplat[0];
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   $(10);
   $(20);
+  a = 1;
   $(1);
 } else {
   $(a);
@@ -85,13 +86,14 @@ a: 999,
 b: 1000
 ;
 const b = [ ... a,, ];
-const c = b[ 0 ];
+let c = b[ 0 ];
 const d = $( 1 );
 const e = $( 1 );
 const f = d === e;
 if (f) {
   $( 10 );
   $( 20 );
+  c = 1;
   $( 1 );
 }
 else {

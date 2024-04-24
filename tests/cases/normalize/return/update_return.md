@@ -59,11 +59,13 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
+  let x = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
+    x = 10;
     return 10;
   } else {
-    return undefined;
+    return x;
   }
 };
 const tmpCalleeParam = f();
@@ -77,16 +79,18 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  const b = $( 1 );
-  if (b) {
+  let b = undefined;
+  const c = $( 1 );
+  if (c) {
+    b = 10;
     return 10;
   }
   else {
-    return undefined;
+    return b;
   }
 };
-const c = a();
-$( c );
+const d = a();
+$( d );
 `````
 
 ## Globals

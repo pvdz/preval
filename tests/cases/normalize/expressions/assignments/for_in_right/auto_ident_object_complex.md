@@ -64,7 +64,7 @@ x: a,
 y: 2,
 z: b
 ;
-for (c in d {
+for (c in d) {
 
 }
 $( d );

@@ -89,22 +89,21 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(true);
-const tmpLabeledBlockFunc = function ($$0) {
-  const tmpIfTest$3 = $$0;
+const f = function () {
   debugger;
-  if (tmpIfTest$3) {
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
     $(`loop`);
     $(`loop`);
-    const tmpReturnArg$5 = $(100, `return`);
-    return tmpReturnArg$5;
+    const tmpReturnArg = $(100, `return`);
+    return tmpReturnArg;
   } else {
     $(`after (not invoked)`);
     return undefined;
   }
 };
-const tmpReturnArg$9 = tmpLabeledBlockFunc(tmpIfTest);
-$(tmpReturnArg$9);
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## PST Output
@@ -112,23 +111,22 @@ $(tmpReturnArg$9);
 With rename=true
 
 `````js filename=intro
-const a = $( true );
-const b = function($$0 ) {
-  const c = d;
+const a = function() {
   debugger;
-  if (c) {
+  const b = $( true );
+  if (b) {
     $( "loop" );
     $( "loop" );
-    const e = $( 100, "return" );
-    return e;
+    const c = $( 100, "return" );
+    return c;
   }
   else {
     $( "after (not invoked)" );
     return undefined;
   }
 };
-const f = b( a );
-$( f );
+const d = a();
+$( d );
 `````
 
 ## Globals

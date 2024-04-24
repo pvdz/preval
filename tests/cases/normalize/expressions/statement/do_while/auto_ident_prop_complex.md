@@ -62,16 +62,16 @@ const b = { c: 1 };
 const a = { a: 999, b: 1000 };
 $(100);
 const tmpAssignRhsProp = $(b);
-const tmpClusterSSA_tmpDoWhileFlag = tmpAssignRhsProp.c;
-if (tmpClusterSSA_tmpDoWhileFlag) {
+let tmpSSA_tmpDoWhileFlag = tmpAssignRhsProp.c;
+if (tmpSSA_tmpDoWhileFlag) {
   $(100);
   const tmpAssignRhsProp$1 = $(b);
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpAssignRhsProp$1.c;
+  tmpSSA_tmpDoWhileFlag = tmpAssignRhsProp$1.c;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpAssignRhsProp$2 = $(b);
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpAssignRhsProp$2.c;
+      tmpSSA_tmpDoWhileFlag = tmpAssignRhsProp$2.c;
     } else {
       break;
     }
@@ -93,16 +93,16 @@ b: 1000
 ;
 $( 100 );
 const c = $( a );
-const d = c.c;
+let d = c.c;
 if (d) {
   $( 100 );
   const e = $( a );
-  let f = e.c;
+  d = e.c;
   while ($LOOP_UNROLL_9) {
-    if (f) {
+    if (d) {
       $( 100 );
-      const g = $( a );
-      f = g.c;
+      const f = $( a );
+      d = f.c;
     }
     else {
       break;

@@ -53,9 +53,9 @@ const obj = {};
 const tmpCompObj$1 = $(b);
 const tmpCompProp$1 = $(`\$`);
 const tmpNewCallee = tmpCompObj$1[tmpCompProp$1];
-const tmpClusterSSA_a = new tmpNewCallee(1);
-obj[tmpClusterSSA_a];
-$(tmpClusterSSA_a);
+const tmpSSA_a = new tmpNewCallee(1);
+obj[tmpSSA_a];
+$(tmpSSA_a);
 `````
 
 ## PST Output

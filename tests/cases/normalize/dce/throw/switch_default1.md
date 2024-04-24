@@ -54,35 +54,6 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSwitchValue = $(1, `disc`);
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-  }
-  const tmpLabeledBlockFunc = function ($$0, $$1, $$2, $$3) {
-    let tmpSwitchValue$3 = $$0;
-    let tmpSwitchCaseToStart$3 = $$1;
-    let tmpBinLhs$3 = $$2;
-    let tmpIfTest$7 = $$3;
-    debugger;
-    const tmpIfTest$9 = tmpSwitchCaseToStart$3 <= 0;
-    if (tmpIfTest$9) {
-      $(`keep, do not eval`);
-      throw `wrong exig`;
-    } else {
-      const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
-      if (tmpIfTest$11) {
-        const tmpThrowArg$1 = $(2, `ret`);
-        throw tmpThrowArg$1;
-      } else {
-        const tmpReturnArg = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$7);
-        return tmpReturnArg;
-      }
-    }
-  };
   const tmpAfterLabel = function ($$0, $$1, $$2, $$3) {
     let tmpSwitchValue$1 = $$0;
     let tmpSwitchCaseToStart$1 = $$1;
@@ -92,8 +63,28 @@ let f = function () {
     $(`fail`);
     return undefined;
   };
-  const tmpReturnArg$1 = tmpLabeledBlockFunc(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
-  return tmpReturnArg$1;
+  const tmpSwitchValue = $(1, `disc`);
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $(0);
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+  }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    $(`keep, do not eval`);
+    throw `wrong exig`;
+  } else {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      const tmpThrowArg = $(2, `ret`);
+      throw tmpThrowArg;
+    } else {
+      const tmpReturnArg = tmpAfterLabel(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
+      return tmpReturnArg;
+    }
+  }
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -104,14 +95,21 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpSwitchValue = $(1, `disc`);
+let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(0);
+let tmpIfTest$1 = true;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+}
+if (tmpIfTest$1) {
   $(`keep, do not eval`);
   throw `wrong exig`;
 } else {
-  const tmpThrowArg$1 = $(2, `ret`);
-  throw tmpThrowArg$1;
+  const tmpThrowArg = $(2, `ret`);
+  throw tmpThrowArg;
 }
 `````
 
@@ -121,15 +119,23 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1, "disc" );
-const b = $( 0 );
-const c = b === a;
-if (c) {
+let b = 1;
+const c = $( 0 );
+let d = true;
+const e = c === a;
+if (e) {
+  b = 0;
+}
+else {
+  d = b <= 0;
+}
+if (d) {
   $( "keep, do not eval" );
   throw "wrong exig";
 }
 else {
-  const d = $( 2, "ret" );
-  throw d;
+  const f = $( 2, "ret" );
+  throw f;
 }
 `````
 

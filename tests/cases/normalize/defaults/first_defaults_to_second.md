@@ -54,7 +54,7 @@ let f = function ($$0, $$1) {
   let a = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    a = b;
+    a = $throwTDZError(`TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`);
   } else {
     a = tmpParamBare;
   }
@@ -90,18 +90,20 @@ const f = function ($$0, $$1, $$2) {
   const tmpParamBare$1 = $$1;
   const tmpOutlinedParam = $$2;
   debugger;
+  let a = undefined;
   if (tmpOutlinedParam) {
-    throw `Preval: Cannot access \`b\` before initialization`;
+    a = $throwTDZError(`TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`);
   } else {
-    let b = `bar`;
-    const tmpIfTest$1 = tmpParamBare$1 === undefined;
-    if (tmpIfTest$1) {
-    } else {
-      b = tmpParamBare$1;
-    }
-    const tmpReturnArg = [tmpParamBare, b];
-    return tmpReturnArg;
+    a = tmpParamBare;
   }
+  let b = `bar`;
+  const tmpIfTest$1 = tmpParamBare$1 === undefined;
+  if (tmpIfTest$1) {
+  } else {
+    b = tmpParamBare$1;
+  }
+  const tmpReturnArg = [a, b];
+  return tmpReturnArg;
 };
 const tmpCalleeParam = f(undefined, undefined, true);
 $(tmpCalleeParam);
@@ -123,30 +125,32 @@ const a = function($$0,$$1,$$2 ) {
   const d = e;
   const f = g;
   debugger;
+  let h = undefined;
   if (f) {
-    throw "Preval: Cannot access `b` before initialization";
+    h = i( "TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)" );
   }
   else {
-    let h = "bar";
-    const i = d === undefined;
-    if (i) {
-
-    }
-    else {
-      h = d;
-    }
-    const j = [ b, h,, ];
-    return j;
+    h = b;
   }
+  let j = "bar";
+  const k = d === undefined;
+  if (k) {
+
+  }
+  else {
+    j = d;
+  }
+  const l = [ h, j,, ];
+  return l;
 };
-const k = a( undefined, undefined, true );
-$( k );
-const l = a( "x", undefined, false );
-$( l );
-const m = a( undefined, "y", true );
+const m = a( undefined, undefined, true );
 $( m );
-const n = a( "x", "y", false );
+const n = a( "x", undefined, false );
 $( n );
+const o = a( undefined, "y", true );
+$( o );
+const p = a( "x", "y", false );
+$( p );
 `````
 
 ## Globals

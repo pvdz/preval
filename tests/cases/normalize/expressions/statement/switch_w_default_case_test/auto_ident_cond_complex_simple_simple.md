@@ -98,14 +98,15 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
+let tmpBinLhs = 2;
 const tmpIfTest$1 = $(1);
 let tmpIfTest = false;
 if (tmpIfTest$1) {
   tmpIfTest = 2 === tmpSwitchValue;
 } else {
   const tmpCalleeParam = $(100);
-  const tmpClusterSSA_tmpBinLhs = $(tmpCalleeParam);
-  tmpIfTest = tmpClusterSSA_tmpBinLhs === tmpSwitchValue;
+  tmpBinLhs = $(tmpCalleeParam);
+  tmpIfTest = tmpBinLhs === tmpSwitchValue;
 }
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
@@ -137,17 +138,18 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = 1;
-const c = $( 1 );
-let d = false;
-if (c) {
-  d = 2 === a;
+let c = 2;
+const d = $( 1 );
+let e = false;
+if (d) {
+  e = 2 === a;
 }
 else {
-  const e = $( 100 );
-  const f = $( e );
-  d = f === a;
+  const f = $( 100 );
+  c = $( f );
+  e = c === a;
 }
-if (d) {
+if (e) {
   b = 0;
 }
 else {

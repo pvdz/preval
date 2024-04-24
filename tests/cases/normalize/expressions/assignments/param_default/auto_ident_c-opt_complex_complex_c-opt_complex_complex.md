@@ -95,9 +95,9 @@ if (tmpIfTest$1) {
     tmpNestedComplexRhs = tmpChainElementObject$1;
   }
 }
-const tmpClusterSSA_a = tmpNestedComplexRhs;
+const tmpSSA_a = tmpNestedComplexRhs;
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

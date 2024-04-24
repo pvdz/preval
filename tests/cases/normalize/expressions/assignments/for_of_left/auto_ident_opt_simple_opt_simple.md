@@ -65,6 +65,7 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
+  a = undefined;
   a = 1;
   (1).x = tmpForOfLhsNode;
 }
@@ -83,7 +84,8 @@ b: 1000
 const b = { x: 1 };
 const c = $( b );
 let d = undefined;
-for (d of c {
+for (d of c) {
+  a = undefined;
   a = 1;
   1.x = d;
 }

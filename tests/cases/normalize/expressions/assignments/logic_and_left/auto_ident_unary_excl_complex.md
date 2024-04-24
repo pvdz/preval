@@ -45,11 +45,12 @@ $(a);
 `````js filename=intro
 const tmpUnaryArg = $(100);
 const a = !tmpUnaryArg;
+let tmpCalleeParam = a;
 if (tmpUnaryArg) {
   $(a);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -61,11 +62,12 @@ With rename=true
 `````js filename=intro
 const a = $( 100 );
 const b = !a;
+let c = b;
 if (a) {
   $( b );
 }
 else {
-  const c = $( 100 );
+  c = $( 100 );
   $( c );
 }
 $( b );

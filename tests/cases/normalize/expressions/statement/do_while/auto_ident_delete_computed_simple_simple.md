@@ -60,14 +60,14 @@ $(a, arg);
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
 $(100);
-const tmpDoWhileFlag = delete arg.y;
+let tmpDoWhileFlag = delete arg.y;
 if (tmpDoWhileFlag) {
   $(100);
-  let tmpClusterSSA_tmpDoWhileFlag = delete arg.y;
+  tmpDoWhileFlag = delete arg.y;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
-      tmpClusterSSA_tmpDoWhileFlag = delete arg.y;
+      tmpDoWhileFlag = delete arg.y;
     } else {
       break;
     }
@@ -88,14 +88,14 @@ a: 999,
 b: 1000
 ;
 $( 100 );
-const c = deletea.y;
+let c = deletea.y;
 if (c) {
   $( 100 );
-  let d = deletea.y;
+  c = deletea.y;
   while ($LOOP_UNROLL_9) {
-    if (d) {
+    if (c) {
       $( 100 );
-      d = deletea.y;
+      c = deletea.y;
     }
     else {
       break;

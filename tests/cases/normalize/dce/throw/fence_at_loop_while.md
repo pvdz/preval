@@ -83,7 +83,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(true);
+let tmpIfTest = $(true);
 if (tmpIfTest) {
   $(`loop`);
   const tmpIfTest$1 = $(true);
@@ -93,9 +93,9 @@ if (tmpIfTest) {
     throw tmpThrowArg;
   } else {
     $(`do not visit, do not eliminate`);
-    let tmpClusterSSA_tmpIfTest = $(true);
+    tmpIfTest = $(true);
     while ($LOOP_UNROLL_10) {
-      if (tmpClusterSSA_tmpIfTest) {
+      if (tmpIfTest) {
         $(`loop`);
         const tmpIfTest$2 = $(true);
         if (tmpIfTest$2) {
@@ -104,7 +104,7 @@ if (tmpIfTest) {
           throw tmpThrowArg$1;
         } else {
           $(`do not visit, do not eliminate`);
-          tmpClusterSSA_tmpIfTest = $(true);
+          tmpIfTest = $(true);
         }
       } else {
         break;
@@ -122,7 +122,7 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-const a = $( true );
+let a = $( true );
 if (a) {
   $( "loop" );
   const b = $( true );
@@ -133,19 +133,19 @@ if (a) {
   }
   else {
     $( "do not visit, do not eliminate" );
-    let d = $( true );
+    a = $( true );
     while ($LOOP_UNROLL_10) {
-      if (d) {
+      if (a) {
         $( "loop" );
-        const e = $( true );
-        if (e) {
+        const d = $( true );
+        if (d) {
           $( "loop" );
-          const f = $( 7, "throw" );
-          throw f;
+          const e = $( 7, "throw" );
+          throw e;
         }
         else {
           $( "do not visit, do not eliminate" );
-          d = $( true );
+          a = $( true );
         }
       }
       else {

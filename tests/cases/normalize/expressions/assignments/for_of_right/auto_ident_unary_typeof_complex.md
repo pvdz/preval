@@ -60,7 +60,7 @@ With rename=true
 const a = $( 1 );
 let b = undefined;
 const c = typeofa;
-for (b of c {
+for (b of c) {
 
 }
 $( c, 1 );

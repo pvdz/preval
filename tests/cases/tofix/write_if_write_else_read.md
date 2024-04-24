@@ -47,11 +47,12 @@ if ($) {
 ## Output
 
 `````js filename=intro
+let x = 1;
 if ($) {
-  const tmpClusterSSA_x = $(2);
-  $(tmpClusterSSA_x);
+  x = $(2);
+  $(x);
 } else {
-  $(1);
+  $(x);
 }
 `````
 
@@ -60,12 +61,13 @@ if ($) {
 With rename=true
 
 `````js filename=intro
+let a = 1;
 if ($) {
-  const a = $( 2 );
+  a = $( 2 );
   $( a );
 }
 else {
-  $( 1 );
+  $( a );
 }
 `````
 

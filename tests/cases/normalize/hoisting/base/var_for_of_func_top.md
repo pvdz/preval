@@ -69,7 +69,7 @@ With rename=true
 let a = undefined;
 $( undefined );
 const b = [ 100,, ];
-for (a of b {
+for (a of b) {
   $( a, "for" );
 }
 $( a );

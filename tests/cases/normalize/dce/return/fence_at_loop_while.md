@@ -83,7 +83,6 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(true);
 const tmpAfterLabel = function ($$0, $$1) {
   let tmpIfTest$4 = $$0;
   const $tmpLoopUnrollCheck$1 = $$1;
@@ -110,25 +109,29 @@ const tmpAfterLabel = function ($$0, $$1) {
   $(`after (not invoked)`);
   return undefined;
 };
-let tmpReturnArg$11 = undefined;
-if (tmpIfTest) {
-  $(`loop`);
-  const tmpIfTest$10 = $(true);
-  if (tmpIfTest$10) {
+const f = function () {
+  debugger;
+  let tmpIfTest = $(true);
+  if (tmpIfTest) {
     $(`loop`);
-    const tmpReturnArg$5 = $(100, `return`);
-    tmpReturnArg$11 = tmpReturnArg$5;
+    const tmpIfTest$1 = $(true);
+    if (tmpIfTest$1) {
+      $(`loop`);
+      const tmpReturnArg = $(100, `return`);
+      return tmpReturnArg;
+    } else {
+      $(`do not visit, do not eliminate`);
+      tmpIfTest = $(true);
+      const tmpReturnArg$7 = tmpAfterLabel(tmpIfTest, true);
+      return tmpReturnArg$7;
+    }
   } else {
-    $(`do not visit, do not eliminate`);
-    const tmpClusterSSA_tmpIfTest$8 = $(true);
-    const tmpReturnArg$9 = tmpAfterLabel(tmpClusterSSA_tmpIfTest$8, true);
-    tmpReturnArg$11 = tmpReturnArg$9;
+    const tmpReturnArg$5 = tmpAfterLabel(tmpIfTest, false);
+    return tmpReturnArg$5;
   }
-} else {
-  const tmpReturnArg$7 = tmpAfterLabel(tmpIfTest, false);
-  tmpReturnArg$11 = tmpReturnArg$7;
-}
-$(tmpReturnArg$11);
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## PST Output
@@ -136,24 +139,23 @@ $(tmpReturnArg$11);
 With rename=true
 
 `````js filename=intro
-const a = $( true );
-const b = function($$0,$$1 ) {
-  let c = d;
-  const e = f;
+const a = function($$0,$$1 ) {
+  let b = c;
+  const d = e;
   debugger;
-  if (e) {
+  if (d) {
     while ($LOOP_UNROLL_10) {
-      if (c) {
+      if (b) {
         $( "loop" );
-        const g = $( true );
-        if (g) {
+        const f = $( true );
+        if (f) {
           $( "loop" );
-          const h = $( 100, "return" );
-          return h;
+          const g = $( 100, "return" );
+          return g;
         }
         else {
           $( "do not visit, do not eliminate" );
-          c = $( true );
+          b = $( true );
         }
       }
       else {
@@ -164,27 +166,31 @@ const b = function($$0,$$1 ) {
   $( "after (not invoked)" );
   return undefined;
 };
-let i = undefined;
-if (a) {
-  $( "loop" );
-  const j = $( true );
-  if (j) {
+const h = function() {
+  debugger;
+  let i = $( true );
+  if (i) {
     $( "loop" );
-    const k = $( 100, "return" );
-    i = k;
+    const j = $( true );
+    if (j) {
+      $( "loop" );
+      const k = $( 100, "return" );
+      return k;
+    }
+    else {
+      $( "do not visit, do not eliminate" );
+      i = $( true );
+      const l = a( i, true );
+      return l;
+    }
   }
   else {
-    $( "do not visit, do not eliminate" );
-    const l = $( true );
-    const m = b( l, true );
-    i = m;
+    const m = a( i, false );
+    return m;
   }
-}
-else {
-  const n = b( a, false );
-  i = n;
-}
-$( i );
+};
+const n = h();
+$( n );
 `````
 
 ## Globals

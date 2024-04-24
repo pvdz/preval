@@ -64,11 +64,13 @@ const f = function ($$0) {
   debugger;
   const arrPatternSplat = [...tmpParamBare];
   const arrPatternBeforeDefault = arrPatternSplat[0];
+  let x = undefined;
   const tmpIfTest = arrPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $(`fail`);
-    return tmpClusterSSA_x;
+    x = $(`fail`);
+    return x;
   } else {
+    x = arrPatternBeforeDefault;
     return arrPatternBeforeDefault;
   }
 };
@@ -87,12 +89,14 @@ const a = function($$0 ) {
   debugger;
   const d = [ ... b,, ];
   const e = d[ 0 ];
-  const f = e === undefined;
-  if (f) {
-    const g = $( "fail" );
-    return g;
+  let f = undefined;
+  const g = e === undefined;
+  if (g) {
+    f = $( "fail" );
+    return f;
   }
   else {
+    f = e;
     return e;
   }
 };

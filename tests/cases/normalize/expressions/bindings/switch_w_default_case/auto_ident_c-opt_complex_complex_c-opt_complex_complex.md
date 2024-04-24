@@ -106,10 +106,10 @@ if (tmpIfTest$11) {
 ## Output
 
 `````js filename=intro
+let a = undefined;
 const tmpObjLitVal = { y: 1 };
-const tmpClusterSSA_b = { x: tmpObjLitVal };
-let tmpClusterSSA_a = undefined;
-const tmpChainElementCall = $(tmpClusterSSA_b);
+const b = { x: tmpObjLitVal };
+const tmpChainElementCall = $(b);
 const tmpIfTest$5 = tmpChainElementCall == null;
 if (tmpIfTest$5) {
 } else {
@@ -120,10 +120,10 @@ if (tmpIfTest$5) {
   } else {
     const tmpChainRootComputed$1 = $(`y`);
     const tmpChainElementObject$1 = tmpChainElementObject[tmpChainRootComputed$1];
-    tmpClusterSSA_a = tmpChainElementObject$1;
+    a = tmpChainElementObject$1;
   }
 }
-$(tmpClusterSSA_a);
+$(a);
 $(`fail1`);
 $(`fail2`);
 `````
@@ -133,10 +133,10 @@ $(`fail2`);
 With rename=true
 
 `````js filename=intro
-const a = { y: 1 };
-const b = { x: a };
-let c = undefined;
-const d = $( b );
+let a = undefined;
+const b = { y: 1 };
+const c = { x: b };
+const d = $( c );
 const e = d == null;
 if (e) {
 
@@ -151,10 +151,10 @@ else {
   else {
     const i = $( "y" );
     const j = g[ i ];
-    c = j;
+    a = j;
   }
 }
-$( c );
+$( a );
 $( "fail1" );
 $( "fail2" );
 `````

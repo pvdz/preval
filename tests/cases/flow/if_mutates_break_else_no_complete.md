@@ -53,30 +53,24 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  let x = `pass`;
-  const tmpLabeledBlockFunc = function ($$0) {
-    let x$3 = $$0;
-    debugger;
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(x$3, `not mutating, not completing`);
-      $(x$3, `should not be considered mutated`);
-      const tmpReturnArg$1 = tmpAfterLabel(x$3);
-      return tmpReturnArg$1;
-    } else {
-      x$3 = `fail`;
-      const tmpReturnArg = tmpAfterLabel(x$3);
-      return tmpReturnArg;
-    }
-  };
   const tmpAfterLabel = function ($$0) {
     let x$1 = $$0;
     debugger;
     $(x$1, `after label`);
     return undefined;
   };
-  const tmpReturnArg$3 = tmpLabeledBlockFunc(x);
-  return tmpReturnArg$3;
+  let x = `pass`;
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(x, `not mutating, not completing`);
+    $(x, `should not be considered mutated`);
+    const tmpReturnArg$1 = tmpAfterLabel(x);
+    return tmpReturnArg$1;
+  } else {
+    x = `fail`;
+    const tmpReturnArg = tmpAfterLabel(x);
+    return tmpReturnArg;
+  }
 };
 f();
 `````
@@ -84,8 +78,8 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpIfTest$1 = $(true);
-if (tmpIfTest$1) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
   $(`pass`, `not mutating, not completing`);
   $(`pass`, `should not be considered mutated`);
   $(`pass`, `after label`);

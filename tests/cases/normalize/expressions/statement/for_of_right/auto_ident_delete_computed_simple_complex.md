@@ -67,7 +67,7 @@ b: 1000
 const c = $( "y" );
 const d = deletea[ c ];
 let e = undefined;
-for (e of d {
+for (e of d) {
 
 }
 $( b, a );

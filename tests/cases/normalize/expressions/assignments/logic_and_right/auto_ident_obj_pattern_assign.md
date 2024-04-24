@@ -59,7 +59,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const tmpObjLitVal = $(3);
   const tmpObjLitVal$1 = $(4);
@@ -67,6 +67,7 @@ if (tmpCalleeParam) {
   y = tmpObjLitVal$1;
   const tmpNestedAssignObjPatternRhs = { x: tmpObjLitVal, y: tmpObjLitVal$1 };
   a = tmpNestedAssignObjPatternRhs;
+  tmpCalleeParam = tmpNestedAssignObjPatternRhs;
   $(tmpNestedAssignObjPatternRhs);
 } else {
   $(tmpCalleeParam);
@@ -85,7 +86,7 @@ let c = {
 a: 999,
 b: 1000
 ;
-const d = $( 100 );
+let d = $( 100 );
 if (d) {
   const e = $( 3 );
   const f = $( 4 );
@@ -96,6 +97,7 @@ x: e,
 y: f
   ;
   c = g;
+  d = g;
   $( g );
 }
 else {

@@ -68,12 +68,12 @@ if (a) {
   } else {
   }
 }
-const tmpCalleeParam = a;
+let tmpCalleeParam = a;
 if (a) {
   $(tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -96,13 +96,13 @@ else {
     b = $( d );
   }
 }
-const e = b;
+let e = b;
 if (b) {
   $( e );
 }
 else {
-  const f = $( 100 );
-  $( f );
+  e = $( 100 );
+  $( e );
 }
 $( b );
 `````

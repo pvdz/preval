@@ -59,6 +59,7 @@ if (a) {
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
+    a = 0;
     const tmpCalleeParam$1 = $(1);
     a = $(tmpCalleeParam$1);
     if (a) {
@@ -88,6 +89,7 @@ else {
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
+    c = 0;
     const d = $( 1 );
     c = $( d );
     if (c) {

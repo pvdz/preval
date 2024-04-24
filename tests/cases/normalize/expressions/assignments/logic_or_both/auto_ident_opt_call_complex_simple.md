@@ -63,13 +63,15 @@ $(a);
 let a = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   a = tmpChainElementCall$1;
-  if (tmpChainElementCall$1) {
-    $(tmpChainElementCall$1);
+  tmpCalleeParam = tmpChainElementCall$1;
+  if (a) {
+    $(tmpCalleeParam);
   } else {
     let tmpNestedComplexRhs = undefined;
     const tmpChainElementCall$3 = $($);
@@ -80,7 +82,8 @@ if (tmpIfTest) {
       tmpNestedComplexRhs = tmpChainElementCall$5;
     }
     a = tmpNestedComplexRhs;
-    $(tmpNestedComplexRhs);
+    tmpCalleeParam = tmpNestedComplexRhs;
+    $(tmpCalleeParam);
   }
 }
 $(a);
@@ -94,28 +97,31 @@ With rename=true
 let a = undefined;
 const b = $( $ );
 const c = b == null;
+let d = undefined;
 if (c) {
   $( undefined );
 }
 else {
-  const d = $dotCall( b, $, 1 );
-  a = d;
-  if (d) {
+  const e = $dotCall( b, $, 1 );
+  a = e;
+  d = e;
+  if (a) {
     $( d );
   }
   else {
-    let e = undefined;
-    const f = $( $ );
-    const g = f == null;
-    if (g) {
+    let f = undefined;
+    const g = $( $ );
+    const h = g == null;
+    if (h) {
 
     }
     else {
-      const h = $dotCall( f, $, 1 );
-      e = h;
+      const i = $dotCall( g, $, 1 );
+      f = i;
     }
-    a = e;
-    $( e );
+    a = f;
+    d = f;
+    $( d );
   }
 }
 $( a );

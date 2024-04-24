@@ -54,14 +54,15 @@ $(a, b);
 const tmpObjLitVal = $(2);
 const tmpCalleeParam$1 = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
+let tmpCalleeParam = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  $(tmpNestedAssignObjPatternRhs);
+  $(tmpCalleeParam);
 }
-$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignObjPatternRhs, tmpSSA_b);
 `````
 
 ## PST Output
@@ -73,12 +74,13 @@ const a = $( 2 );
 const b = { b: a };
 const c = $( b );
 const d = c.b;
+let e = c;
 if (c) {
-  const e = $( 100 );
+  e = $( 100 );
   $( e );
 }
 else {
-  $( c );
+  $( e );
 }
 $( c, d );
 `````

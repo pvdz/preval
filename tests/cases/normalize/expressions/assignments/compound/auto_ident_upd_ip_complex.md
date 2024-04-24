@@ -51,16 +51,17 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpBinBothLhs = a;
 const b = { x: 1 };
-const a = { a: 999, b: 1000 };
 const tmpCalleeParam$1 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpClusterSSA_a = a * tmpPostUpdArgVal;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a, b);
+a = tmpBinBothLhs * tmpPostUpdArgVal;
+$(a);
+$(a, b);
 `````
 
 ## PST Output
@@ -68,19 +69,20 @@ $(tmpClusterSSA_a, b);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = {
+let a = {
 a: 999,
 b: 1000
 ;
-const c = $( a );
+const b = a;
+const c = { x: 1 };
 const d = $( c );
-const e = d.x;
-const f = e + 1;
-d.x = f;
-const g = b * e;
-$( g );
-$( g, a );
+const e = $( d );
+const f = e.x;
+const g = f + 1;
+e.x = g;
+a = b * f;
+$( a );
+$( a, c );
 `````
 
 ## Globals

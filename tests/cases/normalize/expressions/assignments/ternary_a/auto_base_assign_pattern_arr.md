@@ -54,19 +54,20 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let tmpCalleeParam = undefined;
 const tmpArrElement = $(2);
 const tmpCalleeParam$1 = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b = arrPatternSplat[0];
+const tmpSSA_b = arrPatternSplat[0];
 if (tmpNestedAssignArrPatternRhs) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
-$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignArrPatternRhs, tmpSSA_b);
 `````
 
 ## PST Output
@@ -74,20 +75,21 @@ $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
 With rename=true
 
 `````js filename=intro
-const a = $( 2 );
-const b = [ a,, ];
-const c = $( b );
-const d = [ ... c,, ];
-const e = d[ 0 ];
-if (c) {
-  const f = $( 100 );
-  $( f );
+let a = undefined;
+const b = $( 2 );
+const c = [ b,, ];
+const d = $( c );
+const e = [ ... d,, ];
+const f = e[ 0 ];
+if (d) {
+  a = $( 100 );
+  $( a );
 }
 else {
-  const g = $( 200 );
-  $( g );
+  a = $( 200 );
+  $( a );
 }
-$( c, e );
+$( d, f );
 `````
 
 ## Globals

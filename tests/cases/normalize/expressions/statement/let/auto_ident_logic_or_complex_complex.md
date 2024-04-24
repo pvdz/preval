@@ -47,13 +47,13 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-const xyz = $(tmpCalleeParam);
+let xyz = $(tmpCalleeParam);
 if (xyz) {
   $(xyz);
 } else {
   const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_xyz = $(tmpCalleeParam$1);
-  $(tmpClusterSSA_xyz);
+  xyz = $(tmpCalleeParam$1);
+  $(xyz);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -65,20 +65,20 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-const b = $( a );
+let b = $( a );
 if (b) {
   $( b );
 }
 else {
   const c = $( 2 );
-  const d = $( c );
-  $( d );
+  b = $( c );
+  $( b );
 }
-const e = {
+const d = {
 a: 999,
 b: 1000
 ;
-$( e );
+$( d );
 `````
 
 ## Globals

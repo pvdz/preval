@@ -61,27 +61,28 @@ $(a);
 $(100);
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+let tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
+let tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
   $(100);
   const tmpCalleeParam$1 = { a: 1, b: 2 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
-  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$1;
+  tmpSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+  tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$2 = { a: 1, b: 2 };
       const tmpNestedAssignObjPatternRhs$2 = $(tmpCalleeParam$2);
-      tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$2.a;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$2;
+      tmpSSA_a = tmpNestedAssignObjPatternRhs$2.a;
+      tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -96,17 +97,18 @@ b: 2
 ;
 const b = $( a );
 let c = b.a;
+let d = b;
 if (b) {
   $( 100 );
-  const d = {
+  const e = {
 a: 1,
 b: 2
   ;
-  const e = $( d );
-  c = e.a;
-  let f = e;
+  const f = $( e );
+  c = f.a;
+  d = f;
   while ($LOOP_UNROLL_9) {
-    if (f) {
+    if (d) {
       $( 100 );
       const g = {
 a: 1,
@@ -114,7 +116,7 @@ b: 2
       ;
       const h = $( g );
       c = h.a;
-      f = h;
+      d = h;
     }
     else {
       break;

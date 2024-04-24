@@ -78,24 +78,26 @@ $(a);
 const tmpObjLitVal$1 = { e: $ };
 let a = undefined;
 const tmpIfTest$1 = $ == null;
+let tmpBinBothLhs = undefined;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
+  tmpBinBothLhs = tmpChainElementCall;
 }
-let tmpClusterSSA_a = undefined;
 const tmpChainElementObject$9 = tmpObjLitVal$1.e;
 const tmpIfTest$5 = tmpChainElementObject$9 == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest$5) {
-  const tmpClusterSSA_tmpCalleeParam = a + undefined;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = tmpBinBothLhs + a;
+  $(tmpCalleeParam);
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$9, tmpObjLitVal$1, 1);
-  tmpClusterSSA_a = tmpChainElementCall$1;
-  const tmpClusterSSA_tmpCalleeParam$1 = a + tmpChainElementCall$1;
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  a = tmpChainElementCall$1;
+  tmpCalleeParam = tmpBinBothLhs + tmpChainElementCall$1;
+  $(tmpCalleeParam);
 }
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -106,27 +108,29 @@ With rename=true
 const a = { e: $ };
 let b = undefined;
 const c = $ == null;
+let d = undefined;
 if (c) {
 
 }
 else {
-  const d = $dotCall( $, a, 1 );
-  b = d;
+  const e = $dotCall( $, a, 1 );
+  b = e;
+  d = e;
 }
-let e = undefined;
 const f = a.e;
 const g = f == null;
+let h = undefined;
 if (g) {
-  const h = b + undefined;
+  h = d + b;
   $( h );
 }
 else {
   const i = $dotCall( f, a, 1 );
-  e = i;
-  const j = b + i;
-  $( j );
+  b = i;
+  h = d + i;
+  $( h );
 }
-$( e );
+$( b );
 `````
 
 ## Globals

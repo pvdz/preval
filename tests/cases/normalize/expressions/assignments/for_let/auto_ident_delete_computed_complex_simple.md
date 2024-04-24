@@ -53,34 +53,34 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
-$(tmpClusterSSA_a);
+const tmpSSA_a = delete tmpDeleteObj.y;
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_a);
+  $(tmpSSA_a);
   $(1);
 }
-$(tmpClusterSSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## PST Output

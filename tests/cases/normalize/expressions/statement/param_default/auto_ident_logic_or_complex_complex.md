@@ -66,11 +66,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-const tmpClusterSSA_p = $(tmpCalleeParam);
-if (tmpClusterSSA_p) {
+let p = $(tmpCalleeParam);
+if (p) {
 } else {
   const tmpCalleeParam$1 = $(2);
-  $(tmpCalleeParam$1);
+  p = $(tmpCalleeParam$1);
 }
 $(undefined);
 const a = { a: 999, b: 1000 };
@@ -83,13 +83,13 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-const b = $( a );
+let b = $( a );
 if (b) {
 
 }
 else {
   const c = $( 2 );
-  $( c );
+  b = $( c );
 }
 $( undefined );
 const d = {

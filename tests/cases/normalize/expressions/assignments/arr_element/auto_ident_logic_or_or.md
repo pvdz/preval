@@ -83,20 +83,20 @@ if (a) {
 }
 const tmpBinBothLhs = a;
 const tmpCalleeParam$7 = $(0);
-let tmpClusterSSA_a = $(tmpCalleeParam$7);
-if (tmpClusterSSA_a) {
+a = $(tmpCalleeParam$7);
+if (a) {
 } else {
   const tmpCalleeParam$9 = $(1);
-  tmpClusterSSA_a = $(tmpCalleeParam$9);
-  if (tmpClusterSSA_a) {
+  a = $(tmpCalleeParam$9);
+  if (a) {
   } else {
     const tmpCalleeParam$11 = $(2);
-    tmpClusterSSA_a = $(tmpCalleeParam$11);
+    a = $(tmpCalleeParam$11);
   }
 }
-const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
+const tmpCalleeParam = tmpBinBothLhs + a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -122,24 +122,24 @@ else {
 }
 const e = b;
 const f = $( 0 );
-let g = $( f );
-if (g) {
+b = $( f );
+if (b) {
 
 }
 else {
-  const h = $( 1 );
-  g = $( h );
-  if (g) {
+  const g = $( 1 );
+  b = $( g );
+  if (b) {
 
   }
   else {
-    const i = $( 2 );
-    g = $( i );
+    const h = $( 2 );
+    b = $( h );
   }
 }
-const j = e + g;
-$( j );
-$( g );
+const i = e + b;
+$( i );
+$( b );
 `````
 
 ## Globals

@@ -44,13 +44,13 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = $(`unknown 1`);
+let x = $(`unknown 1`);
 const z = $(`unknown 2`);
 $(x);
 x ** 0;
 z ** 0;
-const tmpClusterSSA_x = $(`unknown 3`);
-$(tmpClusterSSA_x);
+x = $(`unknown 3`);
+$(x);
 `````
 
 ## PST Output
@@ -58,13 +58,13 @@ $(tmpClusterSSA_x);
 With rename=true
 
 `````js filename=intro
-const a = $( "unknown 1" );
+let a = $( "unknown 1" );
 const b = $( "unknown 2" );
 $( a );
 a ** 0;
 b ** 0;
-const c = $( "unknown 3" );
-$( c );
+a = $( "unknown 3" );
+$( a );
 `````
 
 ## Globals

@@ -63,12 +63,12 @@ const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-const tmpIfTest = $(0);
+let tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
+  tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    if (tmpIfTest) {
+      tmpIfTest = $(0);
     } else {
       break;
     }
@@ -93,12 +93,12 @@ const d = $( c );
 const e = d.x;
 const f = e + 1;
 d.x = f;
-const g = $( 0 );
+let g = $( 0 );
 if (g) {
-  let h = $( 0 );
+  g = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (h) {
-      h = $( 0 );
+    if (g) {
+      g = $( 0 );
     }
     else {
       break;

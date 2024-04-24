@@ -147,7 +147,7 @@ while (true) {
 a: 1,
 b: 2
     ;
-    for (b in c {
+    for (b in c) {
       $( "loop", b );
       const d = $( 1, "if" );
       if (d) {

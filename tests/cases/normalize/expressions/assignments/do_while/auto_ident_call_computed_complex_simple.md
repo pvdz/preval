@@ -64,27 +64,28 @@ $(100);
 const b = { $: $ };
 const tmpCallObj = $(b);
 const tmpNestedComplexRhs = tmpCallObj.$(1);
-let tmpClusterSSA_a = tmpNestedComplexRhs;
+let tmpSSA_a = tmpNestedComplexRhs;
+let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpCallObj$1 = $(b);
   const tmpNestedComplexRhs$1 = tmpCallObj$1.$(1);
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCallObj$2 = $(b);
       const tmpNestedComplexRhs$2 = tmpCallObj$2.$(1);
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -97,19 +98,20 @@ const a = { $: $ };
 const b = $( a );
 const c = b.$( 1 );
 let d = c;
+let e = c;
 if (c) {
   $( 100 );
-  const e = $( a );
-  const f = e.$( 1 );
-  d = f;
-  let g = f;
+  const f = $( a );
+  const g = f.$( 1 );
+  d = g;
+  e = g;
   while ($LOOP_UNROLL_9) {
-    if (g) {
+    if (e) {
       $( 100 );
       const h = $( a );
       const i = h.$( 1 );
       d = i;
-      g = i;
+      e = i;
     }
     else {
       break;

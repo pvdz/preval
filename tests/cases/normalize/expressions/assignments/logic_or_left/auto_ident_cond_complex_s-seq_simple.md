@@ -51,17 +51,18 @@ $(a);
 `````js filename=intro
 let a = 60;
 const tmpIfTest = $(1);
+let tmpCalleeParam = 60;
 if (tmpIfTest) {
   $(60);
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
-  const tmpClusterSSA_tmpCalleeParam$1 = a;
+  tmpCalleeParam = a;
   if (a) {
-    $(tmpClusterSSA_tmpCalleeParam$1);
+    $(tmpCalleeParam);
   } else {
-    const tmpClusterSSA_tmpCalleeParam = $(100);
-    $(tmpClusterSSA_tmpCalleeParam);
+    tmpCalleeParam = $(100);
+    $(tmpCalleeParam);
   }
 }
 $(a);
@@ -74,19 +75,20 @@ With rename=true
 `````js filename=intro
 let a = 60;
 const b = $( 1 );
+let c = 60;
 if (b) {
   $( 60 );
 }
 else {
-  const c = $( 100 );
-  a = $( c );
-  const d = a;
+  const d = $( 100 );
+  a = $( d );
+  c = a;
   if (a) {
-    $( d );
+    $( c );
   }
   else {
-    const e = $( 100 );
-    $( e );
+    c = $( 100 );
+    $( c );
   }
 }
 $( a );

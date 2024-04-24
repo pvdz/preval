@@ -50,12 +50,13 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 const b = { c: 1 };
 if (tmpCalleeParam) {
   const tmpCompProp = $(`c`);
   const tmpNestedComplexRhs = b[tmpCompProp];
   a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
@@ -72,12 +73,13 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 100 );
+let b = $( 100 );
 const c = { c: 1 };
 if (b) {
   const d = $( "c" );
   const e = c[ d ];
   a = e;
+  b = e;
   $( e );
 }
 else {

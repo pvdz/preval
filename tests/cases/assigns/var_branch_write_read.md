@@ -46,11 +46,11 @@ $(x, `final`);
 ## Output
 
 `````js filename=intro
-const x = $(1, `before`);
+let x = $(1, `before`);
 const tmpIfTest = $(2, `if`);
 if (tmpIfTest) {
-  const tmpClusterSSA_x = $(3, `then`);
-  $(tmpClusterSSA_x, `final`);
+  x = $(3, `then`);
+  $(x, `final`);
 } else {
   $(x, `final`);
 }
@@ -61,11 +61,11 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1, "before" );
+let a = $( 1, "before" );
 const b = $( 2, "if" );
 if (b) {
-  const c = $( 3, "then" );
-  $( c, "final" );
+  a = $( 3, "then" );
+  $( a, "final" );
 }
 else {
   $( a, "final" );

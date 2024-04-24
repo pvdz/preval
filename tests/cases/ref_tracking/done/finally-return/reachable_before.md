@@ -1,8 +1,8 @@
 # Preval test case
 
-# finally_wrapping_function.md
+# reachable_before.md
 
-> Ref tracking > Done > Finally-return > Finally wrapping function
+> Ref tracking > Done > Finally-return > Reachable before
 
 ## Options
 
@@ -36,9 +36,9 @@ let f___4__ = function () {
   try /*13*/ {
     const tmpIfTest___16__ = $();
     if (tmpIfTest___20__) {
-      /*21*/ x___25__ = 2;
-      return 100;
-    } /*29*/ else {
+      /*21*/ return undefined___24__;
+    } /*25*/ else {
+      x___29__ = 2;
     }
   } finally /*30*/ {
     $(x___34__);
@@ -56,8 +56,8 @@ f:
   - r @40      | 4
 
 x:
-  - w @10      | ########## | 34          | none           | 25
-  - w @25      | ########## | not read    | 10             | none
+  - w @10      | ########## | 34          | none           | 29
+  - w @29      | ########## | not read    | 10             | none
   - r @34      | 10
 
 tmpIfTest:

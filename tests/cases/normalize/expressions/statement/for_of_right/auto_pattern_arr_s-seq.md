@@ -69,7 +69,7 @@ $( 10 );
 $( 20 );
 const d = [ 1, 2,, ];
 let e = undefined;
-for (e of d {
+for (e of d) {
 
 }
 $( c );

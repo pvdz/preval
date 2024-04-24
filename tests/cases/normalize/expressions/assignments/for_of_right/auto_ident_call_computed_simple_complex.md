@@ -63,7 +63,7 @@ const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ]( 1 )};
 let d = undefined;
-for (d of c {
+for (d of c) {
 
 }
 $( c );

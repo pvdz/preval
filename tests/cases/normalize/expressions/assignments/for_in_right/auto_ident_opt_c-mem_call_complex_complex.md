@@ -109,7 +109,7 @@ else {
   }
 }
 let j = undefined;
-for (j in a {
+for (j in a) {
 
 }
 $( a );

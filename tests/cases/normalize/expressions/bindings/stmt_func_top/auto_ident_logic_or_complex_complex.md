@@ -55,13 +55,13 @@ tmpCallCallee$3(tmpCalleeParam$3);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-const a = $(tmpCalleeParam);
+let a = $(tmpCalleeParam);
 if (a) {
   $(a);
 } else {
   const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_a = $(tmpCalleeParam$1);
-  $(tmpClusterSSA_a);
+  a = $(tmpCalleeParam$1);
+  $(a);
 }
 $(undefined);
 `````
@@ -72,14 +72,14 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-const b = $( a );
+let b = $( a );
 if (b) {
   $( b );
 }
 else {
   const c = $( 2 );
-  const d = $( c );
-  $( d );
+  b = $( c );
+  $( b );
 }
 $( undefined );
 `````

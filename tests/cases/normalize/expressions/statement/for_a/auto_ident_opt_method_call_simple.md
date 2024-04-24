@@ -58,12 +58,12 @@ $(a);
 `````js filename=intro
 const b = { c: $ };
 $dotCall($, b, 1);
-const tmpIfTest$1 = $(0);
+let tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
-  let tmpClusterSSA_tmpIfTest$1 = $(0);
+  tmpIfTest$1 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$1) {
-      tmpClusterSSA_tmpIfTest$1 = $(0);
+    if (tmpIfTest$1) {
+      tmpIfTest$1 = $(0);
     } else {
       break;
     }
@@ -81,23 +81,23 @@ With rename=true
 `````js filename=intro
 const a = { c: $ };
 $dotCall( $, a, 1 );
-const b = $( 0 );
+let b = $( 0 );
 if (b) {
-  let c = $( 0 );
+  b = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (c) {
-      c = $( 0 );
+    if (b) {
+      b = $( 0 );
     }
     else {
       break;
     }
   }
 }
-const d = {
+const c = {
 a: 999,
 b: 1000
 ;
-$( d );
+$( c );
 `````
 
 ## Globals

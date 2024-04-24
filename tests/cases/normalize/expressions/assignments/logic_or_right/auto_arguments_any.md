@@ -43,13 +43,13 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
   a = arguments;
-  arguments;
-  $(arguments);
+  tmpCalleeParam = arguments;
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -63,14 +63,14 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 100 );
+let b = $( 100 );
 if (b) {
   $( b );
 }
 else {
   a = arguments;
-  arguments;
-  $( arguments );
+  b = arguments;
+  $( b );
 }
 $( a );
 `````

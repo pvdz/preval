@@ -64,7 +64,7 @@ b: 1000
 const b = $( 1 );
 const c = typeofb;
 let d = undefined;
-for (d of c {
+for (d of c) {
 
 }
 $( a, 1 );

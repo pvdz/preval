@@ -50,12 +50,13 @@ $(y);
 ## Output
 
 `````js filename=intro
+let y = undefined;
 if (a) {
-  const tmpClusterSSA_y = parseExpression(`source`);
-  $(tmpClusterSSA_y);
+  y = parseExpression(`source`);
+  $(y);
 } else {
-  const tmpClusterSSA_y$1 = parseExpression(`arguments`);
-  $(tmpClusterSSA_y$1);
+  y = parseExpression(`arguments`);
+  $(y);
 }
 `````
 
@@ -64,13 +65,14 @@ if (a) {
 With rename=true
 
 `````js filename=intro
+let a = undefined;
 if (a) {
-  const a = parseExpression( "source" );
+  a = parseExpression( "source" );
   $( a );
 }
 else {
-  const b = parseExpression( "arguments" );
-  $( b );
+  a = parseExpression( "arguments" );
+  $( a );
 }
 `````
 

@@ -64,14 +64,14 @@ let tmpIfTest = $(true);
 while (true) {
   if (tmpIfTest) {
     $(x, `loop1`);
-    const tmpIfTest$1 = $(true);
+    let tmpIfTest$1 = $(true);
     if (tmpIfTest$1) {
       $(x, `loop2`);
-      let tmpClusterSSA_tmpIfTest$1 = $(true);
+      tmpIfTest$1 = $(true);
       while ($LOOP_UNROLL_10) {
-        if (tmpClusterSSA_tmpIfTest$1) {
+        if (tmpIfTest$1) {
           $(x, `loop2`);
-          tmpClusterSSA_tmpIfTest$1 = $(true);
+          tmpIfTest$1 = $(true);
         } else {
           break;
         }
@@ -95,14 +95,14 @@ let b = $( true );
 while (true) {
   if (b) {
     $( a, "loop1" );
-    const c = $( true );
+    let c = $( true );
     if (c) {
       $( a, "loop2" );
-      let d = $( true );
+      c = $( true );
       while ($LOOP_UNROLL_10) {
-        if (d) {
+        if (c) {
           $( a, "loop2" );
-          d = $( true );
+          c = $( true );
         }
         else {
           break;

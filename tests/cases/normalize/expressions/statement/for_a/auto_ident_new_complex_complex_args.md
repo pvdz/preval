@@ -57,12 +57,12 @@ const tmpNewCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 new tmpNewCallee(tmpCalleeParam, tmpCalleeParam$1);
-const tmpIfTest = $(0);
+let tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
+  tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    if (tmpIfTest) {
+      tmpIfTest = $(0);
     } else {
       break;
     }
@@ -82,23 +82,23 @@ const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
 new a( b, c );
-const d = $( 0 );
+let d = $( 0 );
 if (d) {
-  let e = $( 0 );
+  d = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (e) {
-      e = $( 0 );
+    if (d) {
+      d = $( 0 );
     }
     else {
       break;
     }
   }
 }
-const f = {
+const e = {
 a: 999,
 b: 1000
 ;
-$( f );
+$( e );
 `````
 
 ## Globals

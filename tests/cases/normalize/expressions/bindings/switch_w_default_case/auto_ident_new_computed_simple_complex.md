@@ -94,10 +94,10 @@ if (tmpIfTest$7) {
 
 `````js filename=intro
 const tmpCompProp = $(`\$`);
-const tmpClusterSSA_b = { $: $ };
-const tmpNewCallee = tmpClusterSSA_b[tmpCompProp];
-const tmpClusterSSA_a = new tmpNewCallee(1);
-$(tmpClusterSSA_a);
+const b = { $: $ };
+const tmpNewCallee = b[tmpCompProp];
+const tmpSSA_a = new tmpNewCallee(1);
+$(tmpSSA_a);
 $(`fail1`);
 $(`fail2`);
 `````

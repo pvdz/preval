@@ -156,7 +156,7 @@ $(8);
 ## Output
 
 `````js filename=intro
-const x = $(100);
+let x = $(100);
 $(x);
 $(1);
 $(2);
@@ -179,8 +179,9 @@ $(`b2`);
 $(7.1);
 $(7.2);
 $(7.3);
+x = undefined;
 $(undefined);
-$(undefined);
+$(x);
 $(8);
 `````
 
@@ -189,7 +190,7 @@ $(8);
 With rename=true
 
 `````js filename=intro
-const a = $( 100 );
+let a = $( 100 );
 $( a );
 $( 1 );
 $( 2 );
@@ -212,8 +213,9 @@ $( "b2" );
 $( 7.1 );
 $( 7.2 );
 $( 7.3 );
+a = undefined;
 $( undefined );
-$( undefined );
+$( a );
 $( 8 );
 `````
 

@@ -49,13 +49,17 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(0);
-const tmpCallCallee$1 = $(tmpCalleeParam$1);
+let tmpCallCallee$1 = $(tmpCalleeParam$1);
+let tmpBinBothRhs = `2`;
+let tmpCalleeParam = undefined;
 if (tmpCallCallee$1) {
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+  tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+  $(tmpCalleeParam);
 } else {
-  $(`before  2  after`);
+  tmpCallCallee$1 = 2;
+  tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+  $(tmpCalleeParam);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -67,14 +71,18 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-const b = $( a );
+let b = $( a );
+let c = "2";
+let d = undefined;
 if (b) {
-  const c = $coerce( b, "string" );
-  const d = `before  ${[object Object]}  after`;
+  c = $coerce( b, "string" );
+  d = `before  ${[object Object]}  after`;
   $( d );
 }
 else {
-  $( "before  2  after" );
+  b = 2;
+  d = `before  ${[object Object]}  after`;
+  $( d );
 }
 const e = {
 a: 999,

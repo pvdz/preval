@@ -76,18 +76,18 @@ $(f);
 const f = function ($$0) {
   const y = $$0;
   debugger;
+  let n = 0;
   if (y) {
-    let tmpClusterSSA_n = 0;
     let $tmpLoopUnrollCheck = true;
     if ($) {
-      tmpClusterSSA_n = 1;
+      n = 1;
       $tmpLoopUnrollCheck = false;
     } else {
     }
     if ($tmpLoopUnrollCheck) {
       while ($LOOP_UNROLL_10) {
         if ($) {
-          tmpClusterSSA_n = tmpClusterSSA_n + 1;
+          n = n + 1;
           break;
         } else {
         }
@@ -111,8 +111,8 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
+  let d = 0;
   if (b) {
-    let d = 0;
     let e = true;
     if ($) {
       d = 1;

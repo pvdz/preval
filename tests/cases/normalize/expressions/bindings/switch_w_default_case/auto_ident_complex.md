@@ -90,8 +90,8 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_a = $(1);
-$(tmpClusterSSA_a, 1);
+const a = $(1);
+$(a, 1);
 $(`fail1`);
 $(`fail2`);
 `````

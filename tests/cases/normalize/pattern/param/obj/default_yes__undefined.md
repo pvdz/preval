@@ -69,7 +69,7 @@ if (objPatternCrashTest) {
   objPatternCrashTest = bindingPatternObjRoot === null;
 }
 if (objPatternCrashTest) {
-  bindingPatternObjRoot.cannotDestructureThis;
+  objPatternCrashTest = bindingPatternObjRoot.cannotDestructureThis;
 } else {
 }
 $(`ok`);
@@ -89,7 +89,7 @@ else {
   b = a === null;
 }
 if (b) {
-  a.cannotDestructureThis;
+  b = a.cannotDestructureThis;
 }
 $( "ok" );
 `````

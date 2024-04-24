@@ -51,8 +51,8 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = $(1);
-const tmpClusterSSA_tmpCalleeParam = $(100);
-$(tmpClusterSSA_tmpCalleeParam);
+const tmpCalleeParam = $(100);
+$(tmpCalleeParam);
 const tmpAssignMemRhs = $(2);
 const a = { b: tmpObjLitVal };
 a.b = tmpAssignMemRhs;

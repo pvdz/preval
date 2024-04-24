@@ -72,7 +72,8 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const varInitAssignLhsComputedRhs = tmpCompObj[tmpCompProp];
 b[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
-let tmpClusterSSA_a = varInitAssignLhsComputedRhs;
+let tmpSSA_a = varInitAssignLhsComputedRhs;
+let tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   $(100);
   const varInitAssignLhsComputedProp$1 = $(`c`);
@@ -80,25 +81,25 @@ if (varInitAssignLhsComputedRhs) {
   const tmpCompProp$1 = $(`d`);
   const varInitAssignLhsComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
   b[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
-  tmpClusterSSA_a = varInitAssignLhsComputedRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$1;
+  tmpSSA_a = varInitAssignLhsComputedRhs$1;
+  tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const varInitAssignLhsComputedProp$2 = $(`c`);
       const tmpCompObj$2 = $(b);
       const tmpCompProp$2 = $(`d`);
       const varInitAssignLhsComputedRhs$2 = tmpCompObj$2[tmpCompProp$2];
       b[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
-      tmpClusterSSA_a = varInitAssignLhsComputedRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$2;
+      tmpSSA_a = varInitAssignLhsComputedRhs$2;
+      tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## PST Output
@@ -117,17 +118,18 @@ const d = $( "d" );
 const e = c[ d ];
 b[a] = e;
 let f = e;
+let g = e;
 if (e) {
   $( 100 );
-  const g = $( "c" );
-  const h = $( b );
-  const i = $( "d" );
-  const j = h[ i ];
-  b[g] = j;
-  f = j;
-  let k = j;
+  const h = $( "c" );
+  const i = $( b );
+  const j = $( "d" );
+  const k = i[ j ];
+  b[h] = k;
+  f = k;
+  g = k;
   while ($LOOP_UNROLL_9) {
-    if (k) {
+    if (g) {
       $( 100 );
       const l = $( "c" );
       const m = $( b );
@@ -135,7 +137,7 @@ if (e) {
       const o = m[ n ];
       b[l] = o;
       f = o;
-      k = o;
+      g = o;
     }
     else {
       break;

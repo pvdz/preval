@@ -84,7 +84,7 @@ b: 1000
 const c = { x: 1 };
 const d = $( c );
 let e = undefined;
-for (e in d {
+for (e in d) {
   const f = a.e;
   const g = $dotCall( f, a, 1 );
   g.x = e;

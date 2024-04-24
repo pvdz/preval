@@ -56,11 +56,12 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 b.c = tmpNestedAssignPropRhs;
+let tmpCalleeParam = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  $(tmpNestedAssignPropRhs);
+  $(tmpCalleeParam);
 }
 $(tmpNestedAssignPropRhs, b);
 `````
@@ -78,12 +79,13 @@ const b = $( a );
 const c = $( "d" );
 const d = b[ c ];
 a.c = d;
+let e = d;
 if (d) {
-  const e = $( 100 );
+  e = $( 100 );
   $( e );
 }
 else {
-  $( d );
+  $( e );
 }
 $( d, a );
 `````

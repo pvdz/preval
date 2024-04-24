@@ -21,6 +21,11 @@ const MUTATES = 'MUTATES';
 const COMPLETES = 'COMPLETES';
 const LABELS = 'LABELS';
 
+/**
+ * @param parentNode
+ * @param parentProp
+ * @returns {'read' | 'write' | 'readwrite' | 'none' | 'label'}
+ */
 export function getIdentUsageKind(parentNode, parentProp) {
   // Returns 'read', 'write', 'readwrite', 'none', or 'label'
   // Note: for each parent, answer the question "what does the appearance of an ident in each position of a node mean?"
@@ -379,7 +384,7 @@ export function registerGlobalIdent(
   { isExport = false, isImplicitGlobal = false, isBuiltin = false, ...rest } = {},
 ) {
   ASSERT(!/^\$\$\d+$/.test(name), 'param placeholders should not reach this place', name);
-  ASSERT(Object.keys(rest).length === 0, 'invalid args');
+  ASSERT(Object.keys(rest).length === 0, 'invalid args', rest);
 
   const meta = fdata.globallyUniqueNamingRegistry.get(name);
   if (meta) return meta;
@@ -441,6 +446,12 @@ export function registerGlobalIdent(
     // - [ ] for-loop lhs
     writes: [], // {parent, prop, index} indirect reference ot the node being assigned. In phase1 (only); If not implicit/builtin then the first write should be the decl. Note that reads and writes can legally appear in source/ast before decl.
     reads: [], // {parent, prop, index} indirect reference to the node that refers to this binding
+
+    // Prepare phase
+    renamingReads: [], // node. Only in prepare phase. Used after main prepare loop to uniquely name bindings
+    renamingWrites: [], // node. Only in prepare phase. Used after main prepare loop to uniquely name bindings
+    preNormalizeTdzCheckList: [], // {node, parentNode, parentProp, parentIndex, grandNode, grandProp, grandIndex} Only after main prepare loop, used to prune TDZ bindings
+    preNormalizeTdzCheckDecl: null, // node. If this is a let/const binding then this should be the (ident) node that declares it.
 
     // Phase1 collects typing information
     // Note: This should be typing information that holds for any point in the life cycle of the binding

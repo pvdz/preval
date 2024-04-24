@@ -100,7 +100,7 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-const tmpCalleeParam = a;
+let tmpCalleeParam = a;
 if (a) {
   $(tmpCalleeParam);
 } else {
@@ -120,7 +120,8 @@ if (a) {
     }
   }
   a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
+  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -150,7 +151,7 @@ else {
     a = i;
   }
 }
-const j = a;
+let j = a;
 if (a) {
   $( j );
 }
@@ -175,7 +176,8 @@ else {
     }
   }
   a = k;
-  $( k );
+  j = k;
+  $( j );
 }
 $( a );
 `````

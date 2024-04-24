@@ -69,7 +69,7 @@ let a = 0;
 let b = true;
 const c = { a: 1 };
 const d = $( c );
-for (b of d {
+for (b of d) {
   $( "yolo" );
   a = a + 1;
 }

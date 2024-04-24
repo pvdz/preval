@@ -52,9 +52,9 @@ const tmpBinBothLhs = $(100);
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
 tmpBinBothLhs + tmpNestedAssignObjPatternRhs;
-$(a, tmpClusterSSA_b);
+$(a, tmpSSA_b);
 `````
 
 ## PST Output

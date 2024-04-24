@@ -83,7 +83,7 @@ else {
   a = e;
 }
 let f = undefined;
-for (f in a {
+for (f in a) {
 
 }
 const g = {

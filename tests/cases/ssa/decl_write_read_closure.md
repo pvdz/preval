@@ -78,8 +78,23 @@ if ($) {
 ## Output
 
 `````js filename=intro
+const f = function () {
+  debugger;
+  if ($) {
+    let x = 20;
+    if ($) {
+      x = 10;
+      return 10;
+    } else {
+      return x;
+    }
+  } else {
+    return undefined;
+  }
+};
 if ($) {
-  $(10);
+  const tmpCalleeParam = f();
+  $(tmpCalleeParam);
 } else {
 }
 `````
@@ -89,8 +104,25 @@ if ($) {
 With rename=true
 
 `````js filename=intro
+const a = function() {
+  debugger;
+  if ($) {
+    let b = 20;
+    if ($) {
+      b = 10;
+      return 10;
+    }
+    else {
+      return b;
+    }
+  }
+  else {
+    return undefined;
+  }
+};
 if ($) {
-  $( 10 );
+  const c = a();
+  $( c );
 }
 `````
 

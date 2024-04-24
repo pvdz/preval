@@ -71,6 +71,7 @@ const tmpCompObj = $(b);
 const tmpCompProp = $(`d`);
 const tmpNestedAssignPropRhs = tmpCompObj[tmpCompProp];
 tmpNestedAssignObj.c = tmpNestedAssignPropRhs;
+let tmpSSA_tmpDoWhileFlag = tmpNestedAssignPropRhs;
 if (tmpNestedAssignPropRhs) {
   $(100);
   const tmpNestedAssignObj$1 = $(b);
@@ -78,16 +79,16 @@ if (tmpNestedAssignPropRhs) {
   const tmpCompProp$1 = $(`d`);
   const tmpNestedAssignPropRhs$1 = tmpCompObj$1[tmpCompProp$1];
   tmpNestedAssignObj$1.c = tmpNestedAssignPropRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignPropRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedAssignPropRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpNestedAssignObj$2 = $(b);
       const tmpCompObj$2 = $(b);
       const tmpCompProp$2 = $(`d`);
       const tmpNestedAssignPropRhs$2 = tmpCompObj$2[tmpCompProp$2];
       tmpNestedAssignObj$2.c = tmpNestedAssignPropRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignPropRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedAssignPropRhs$2;
     } else {
       break;
     }
@@ -116,23 +117,24 @@ const d = $( a );
 const e = $( "d" );
 const f = d[ e ];
 c.c = f;
+let g = f;
 if (f) {
   $( 100 );
-  const g = $( a );
   const h = $( a );
-  const i = $( "d" );
-  const j = h[ i ];
-  g.c = j;
-  let k = j;
+  const i = $( a );
+  const j = $( "d" );
+  const k = i[ j ];
+  h.c = k;
+  g = k;
   while ($LOOP_UNROLL_9) {
-    if (k) {
+    if (g) {
       $( 100 );
       const l = $( a );
       const m = $( a );
       const n = $( "d" );
       const o = m[ n ];
       l.c = o;
-      k = o;
+      g = o;
     }
     else {
       break;

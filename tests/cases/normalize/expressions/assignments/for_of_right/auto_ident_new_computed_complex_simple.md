@@ -48,11 +48,11 @@ $(a);
 const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const tmpClusterSSA_a = new tmpNewCallee(1);
+const tmpSSA_a = new tmpNewCallee(1);
 let x = undefined;
-for (x of tmpClusterSSA_a) {
+for (x of tmpSSA_a) {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -65,7 +65,7 @@ const b = $( a );
 const c = b.$;
 const d = new c( 1 );
 let e = undefined;
-for (e of d {
+for (e of d) {
 
 }
 $( d );

@@ -64,7 +64,7 @@ a: 999,
 b: 1000
 ;
 let c = undefined;
-for (c in 2 {
+for (c in 2) {
 
 }
 $( b, a );

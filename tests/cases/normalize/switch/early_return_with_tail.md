@@ -69,6 +69,14 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
+  const tmpAfterLabel = function ($$0, $$1, $$2) {
+    let tmpSwitchValue$1 = $$0;
+    let tmpSwitchCaseToStart$1 = $$1;
+    let tmpIfTest$15 = $$2;
+    debugger;
+    $(`after`);
+    return undefined;
+  };
   const tmpSwitchValue = $(7);
   let tmpSwitchCaseToStart = 4;
   const tmpIfTest = 0 === tmpSwitchValue;
@@ -94,49 +102,33 @@ let f = function () {
       }
     }
   }
-  const tmpLabeledBlockFunc = function ($$0, $$1, $$2) {
-    let tmpSwitchValue$3 = $$0;
-    let tmpSwitchCaseToStart$3 = $$1;
-    let tmpIfTest$17 = $$2;
-    debugger;
-    const tmpIfTest$19 = tmpSwitchCaseToStart$3 <= 0;
-    if (tmpIfTest$19) {
-      $(2);
-      const tmpReturnArg$3 = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpIfTest$17);
-      return tmpReturnArg$3;
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$7) {
+    $(2);
+    const tmpReturnArg$1 = tmpAfterLabel(tmpSwitchValue, tmpSwitchCaseToStart, tmpIfTest);
+    return tmpReturnArg$1;
+  } else {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$9) {
+      $(3);
     } else {
-      const tmpIfTest$21 = tmpSwitchCaseToStart$3 <= 1;
-      if (tmpIfTest$21) {
-        $(3);
+    }
+    const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$11) {
+      $(5);
+      const tmpReturnArg = $(6);
+      return tmpReturnArg;
+    } else {
+      const tmpIfTest$13 = tmpSwitchCaseToStart <= 3;
+      if (tmpIfTest$13) {
+        const tmpReturnArg$3 = tmpAfterLabel(tmpSwitchValue, tmpSwitchCaseToStart, tmpIfTest);
+        return tmpReturnArg$3;
       } else {
-      }
-      const tmpIfTest$23 = tmpSwitchCaseToStart$3 <= 2;
-      if (tmpIfTest$23) {
-        $(5);
-        const tmpReturnArg$1 = $(6);
-        return tmpReturnArg$1;
-      } else {
-        const tmpIfTest$25 = tmpSwitchCaseToStart$3 <= 3;
-        if (tmpIfTest$25) {
-          const tmpReturnArg$5 = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpIfTest$17);
-          return tmpReturnArg$5;
-        } else {
-          const tmpReturnArg$7 = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpIfTest$17);
-          return tmpReturnArg$7;
-        }
+        const tmpReturnArg$5 = tmpAfterLabel(tmpSwitchValue, tmpSwitchCaseToStart, tmpIfTest);
+        return tmpReturnArg$5;
       }
     }
-  };
-  const tmpAfterLabel = function ($$0, $$1, $$2) {
-    let tmpSwitchValue$1 = $$0;
-    let tmpSwitchCaseToStart$1 = $$1;
-    let tmpIfTest$15 = $$2;
-    debugger;
-    $(`after`);
-    return undefined;
-  };
-  const tmpReturnArg$9 = tmpLabeledBlockFunc(tmpSwitchValue, tmpSwitchCaseToStart, tmpIfTest);
-  return tmpReturnArg$9;
+  }
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -146,54 +138,57 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(7);
-let tmpSwitchCaseToStart = 4;
-const tmpIfTest = 0 === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpBinLhs = $(1);
-  const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
+const f = function () {
+  debugger;
+  const tmpSwitchValue = $(7);
+  let tmpSwitchCaseToStart = 4;
+  const tmpIfTest = 0 === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
   } else {
-    const tmpBinLhs$1 = $(4);
-    const tmpIfTest$3 = tmpBinLhs$1 === tmpSwitchValue;
-    if (tmpIfTest$3) {
-      tmpSwitchCaseToStart = 2;
+    const tmpBinLhs = $(1);
+    const tmpIfTest$1 = tmpBinLhs === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
     } else {
-      const tmpBinLhs$3 = $(7);
-      const tmpIfTest$5 = tmpBinLhs$3 === tmpSwitchValue;
-      if (tmpIfTest$5) {
-        tmpSwitchCaseToStart = 3;
+      const tmpBinLhs$1 = $(4);
+      const tmpIfTest$3 = tmpBinLhs$1 === tmpSwitchValue;
+      if (tmpIfTest$3) {
+        tmpSwitchCaseToStart = 2;
       } else {
+        const tmpBinLhs$3 = $(7);
+        const tmpIfTest$5 = tmpBinLhs$3 === tmpSwitchValue;
+        if (tmpIfTest$5) {
+          tmpSwitchCaseToStart = 3;
+        } else {
+        }
       }
     }
   }
-}
-let tmpReturnArg$9 = undefined;
-const tmpSwitchCaseToStart$3 = tmpSwitchCaseToStart;
-const tmpIfTest$19 = tmpSwitchCaseToStart$3 <= 0;
-if (tmpIfTest$19) {
-  $(2);
-  $(`after`);
-} else {
-  const tmpIfTest$21 = tmpSwitchCaseToStart$3 <= 1;
-  if (tmpIfTest$21) {
-    $(3);
-  } else {
-  }
-  const tmpIfTest$23 = tmpSwitchCaseToStart$3 <= 2;
-  if (tmpIfTest$23) {
-    $(5);
-    const tmpReturnArg$1 = $(6);
-    tmpReturnArg$9 = tmpReturnArg$1;
-  } else {
-    tmpSwitchCaseToStart$3 ** 0;
+  const tmpIfTest$7 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$7) {
+    $(2);
     $(`after`);
+    return undefined;
+  } else {
+    const tmpIfTest$9 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$9) {
+      $(3);
+    } else {
+    }
+    const tmpIfTest$11 = tmpSwitchCaseToStart <= 2;
+    if (tmpIfTest$11) {
+      $(5);
+      const tmpReturnArg = $(6);
+      return tmpReturnArg;
+    } else {
+      $(`after`);
+      return undefined;
+    }
   }
-}
-$(tmpReturnArg$9);
+};
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## PST Output
@@ -201,57 +196,60 @@ $(tmpReturnArg$9);
 With rename=true
 
 `````js filename=intro
-const a = $( 7 );
-let b = 4;
-const c = 0 === a;
-if (c) {
-  b = 0;
-}
-else {
-  const d = $( 1 );
-  const e = d === a;
-  if (e) {
-    b = 1;
+const a = function() {
+  debugger;
+  const b = $( 7 );
+  let c = 4;
+  const d = 0 === b;
+  if (d) {
+    c = 0;
   }
   else {
-    const f = $( 4 );
-    const g = f === a;
-    if (g) {
-      b = 2;
+    const e = $( 1 );
+    const f = e === b;
+    if (f) {
+      c = 1;
     }
     else {
-      const h = $( 7 );
-      const i = h === a;
-      if (i) {
-        b = 3;
+      const g = $( 4 );
+      const h = g === b;
+      if (h) {
+        c = 2;
+      }
+      else {
+        const i = $( 7 );
+        const j = i === b;
+        if (j) {
+          c = 3;
+        }
       }
     }
   }
-}
-let j = undefined;
-const k = b;
-const l = k <= 0;
-if (l) {
-  $( 2 );
-  $( "after" );
-}
-else {
-  const m = k <= 1;
-  if (m) {
-    $( 3 );
-  }
-  const n = k <= 2;
-  if (n) {
-    $( 5 );
-    const o = $( 6 );
-    j = o;
+  const k = c <= 0;
+  if (k) {
+    $( 2 );
+    $( "after" );
+    return undefined;
   }
   else {
-    k ** 0;
-    $( "after" );
+    const l = c <= 1;
+    if (l) {
+      $( 3 );
+    }
+    const m = c <= 2;
+    if (m) {
+      $( 5 );
+      const n = $( 6 );
+      return n;
+    }
+    else {
+      $( "after" );
+      return undefined;
+    }
   }
-}
-$( j );
+};
+const o = a();
+$( o );
 `````
 
 ## Globals

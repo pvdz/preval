@@ -59,10 +59,11 @@ $(a);
 const f = function () {
   debugger;
   const tmpCalleeParam = $(0);
-  const tmpReturnArg = $(tmpCalleeParam);
+  let tmpReturnArg = $(tmpCalleeParam);
   if (tmpReturnArg) {
     return tmpReturnArg;
   } else {
+    tmpReturnArg = 2;
     return 2;
   }
 };
@@ -80,11 +81,12 @@ With rename=true
 const a = function() {
   debugger;
   const b = $( 0 );
-  const c = $( b );
+  let c = $( b );
   if (c) {
     return c;
   }
   else {
+    c = 2;
     return 2;
   }
 };

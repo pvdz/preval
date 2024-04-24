@@ -44,10 +44,11 @@ $(a, arg);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
+let a = { a: 999, b: 1000 };
 a ** 0;
+a = NaN;
 $(NaN);
-$(NaN, 1);
+$(a, 1);
 `````
 
 ## PST Output
@@ -55,13 +56,14 @@ $(NaN, 1);
 With rename=true
 
 `````js filename=intro
-const a = {
+let a = {
 a: 999,
 b: 1000
 ;
 a ** 0;
+a = NaN;
 $( NaN );
-$( NaN, 1 );
+$( a, 1 );
 `````
 
 ## Globals

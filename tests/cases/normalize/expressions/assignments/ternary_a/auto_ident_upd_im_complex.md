@@ -55,6 +55,7 @@ $(a, b);
 ## Output
 
 `````js filename=intro
+let tmpCalleeParam = undefined;
 const b = { x: 1 };
 const tmpCalleeParam$1 = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam$1);
@@ -62,11 +63,11 @@ const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
 if (tmpPostUpdArgVal) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
 $(tmpPostUpdArgVal, b);
 `````
@@ -76,21 +77,22 @@ $(tmpPostUpdArgVal, b);
 With rename=true
 
 `````js filename=intro
-const a = { x: 1 };
-const b = $( a );
+let a = undefined;
+const b = { x: 1 };
 const c = $( b );
-const d = c.x;
-const e = d - 1;
-c.x = e;
-if (d) {
-  const f = $( 100 );
-  $( f );
+const d = $( c );
+const e = d.x;
+const f = e - 1;
+d.x = f;
+if (e) {
+  a = $( 100 );
+  $( a );
 }
 else {
-  const g = $( 200 );
-  $( g );
+  a = $( 200 );
+  $( a );
 }
-$( d, a );
+$( e, b );
 `````
 
 ## Globals

@@ -50,7 +50,7 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-const tmpClusterSSA_a = tmpCallObj.$(1);
+const tmpSSA_a = tmpCallObj.$(1);
 $(1);
 $(1);
 $(1);
@@ -65,7 +65,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

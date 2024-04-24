@@ -72,7 +72,7 @@ if (b) {
   b = $( c );
 }
 let d = undefined;
-for (d in b {
+for (d in b) {
 
 }
 $( b );

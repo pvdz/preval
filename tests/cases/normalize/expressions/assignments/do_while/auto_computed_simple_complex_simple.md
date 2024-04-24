@@ -84,17 +84,17 @@ $(1);
 $(100);
 const tmpObjLitVal$1 = $(1);
 const tmpNestedComplexRhs$1 = { b: tmpObjLitVal$1 };
-let tmpClusterSSA_a$2 = tmpNestedComplexRhs$1;
+let tmpSSA_a$2 = tmpNestedComplexRhs$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpObjLitVal$2 = $(1);
   const tmpNestedComplexRhs$2 = { b: tmpObjLitVal$2 };
-  tmpClusterSSA_a$2 = tmpNestedComplexRhs$2;
+  tmpSSA_a$2 = tmpNestedComplexRhs$2;
 }
-const tmpAssignComMemLhsObj = tmpClusterSSA_a$2;
+const tmpAssignComMemLhsObj = tmpSSA_a$2;
 const tmpAssignComMemLhsProp = $(`b`);
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 2;
-$(tmpClusterSSA_a$2);
+$(tmpSSA_a$2);
 `````
 
 ## PST Output

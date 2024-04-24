@@ -65,6 +65,7 @@ $(a, b, c, d);
 `````js filename=intro
 const b = { x: 1 };
 const c = { y: 2 };
+let tmpCalleeParam = undefined;
 const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
 const varInitAssignLhsComputedObj = $(c);
@@ -73,11 +74,11 @@ const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
 $(varInitAssignLhsComputedRhs, b, c, 3);
 `````
@@ -89,22 +90,23 @@ With rename=true
 `````js filename=intro
 const a = { x: 1 };
 const b = { y: 2 };
-const c = $( a );
-const d = $( "x" );
-const e = $( b );
-const f = $( "y" );
-const g = $( 3 );
-e[f] = g;
-c[d] = g;
-if (g) {
-  const h = $( 100 );
-  $( h );
+let c = undefined;
+const d = $( a );
+const e = $( "x" );
+const f = $( b );
+const g = $( "y" );
+const h = $( 3 );
+f[g] = h;
+d[e] = h;
+if (h) {
+  c = $( 100 );
+  $( c );
 }
 else {
-  const i = $( 200 );
-  $( i );
+  c = $( 200 );
+  $( c );
 }
-$( g, a, b, 3 );
+$( h, a, b, 3 );
 `````
 
 ## Globals

@@ -81,8 +81,15 @@ $(100);
 $(100);
 $(100);
 $(100);
+let tmpDoWhileFlag = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(100);
+  if (tmpDoWhileFlag) {
+    $(100);
+    tmpDoWhileFlag = false;
+    tmpDoWhileFlag = true;
+  } else {
+    break;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -104,14 +111,22 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
+let a = true;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $( 100 );
+  if (a) {
+    $( 100 );
+    a = false;
+    a = true;
+  }
+  else {
+    break;
+  }
 }
-const a = {
+const b = {
 a: 999,
 b: 1000
 ;
-$( a );
+$( b );
 `````
 
 ## Globals

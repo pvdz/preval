@@ -70,7 +70,7 @@ const a = {};
 const b = [ a,, ];
 let c = undefined;
 let d = undefined;
-for (c in b {
+for (c in b) {
   const e = [ ... c,, ];
   d = e[ 0 ];
   $( d );

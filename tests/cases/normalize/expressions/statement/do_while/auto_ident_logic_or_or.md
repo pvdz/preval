@@ -83,30 +83,30 @@ if (tmpDoWhileFlag) {
 if (tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$2 = $(0);
-  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
-  if (tmpClusterSSA_tmpDoWhileFlag) {
+  tmpDoWhileFlag = $(tmpCalleeParam$2);
+  if (tmpDoWhileFlag) {
   } else {
     const tmpCalleeParam$4 = $(1);
-    tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$4);
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    tmpDoWhileFlag = $(tmpCalleeParam$4);
+    if (tmpDoWhileFlag) {
     } else {
       const tmpCalleeParam$6 = $(2);
-      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$6);
+      tmpDoWhileFlag = $(tmpCalleeParam$6);
     }
   }
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$5 = $(0);
-      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$5);
-      if (tmpClusterSSA_tmpDoWhileFlag) {
+      tmpDoWhileFlag = $(tmpCalleeParam$5);
+      if (tmpDoWhileFlag) {
       } else {
         const tmpCalleeParam$7 = $(1);
-        tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$7);
-        if (tmpClusterSSA_tmpDoWhileFlag) {
+        tmpDoWhileFlag = $(tmpCalleeParam$7);
+        if (tmpDoWhileFlag) {
         } else {
           const tmpCalleeParam$9 = $(2);
-          tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$9);
+          tmpDoWhileFlag = $(tmpCalleeParam$9);
         }
       }
     } else {
@@ -144,38 +144,38 @@ else {
 if (b) {
   $( 100 );
   const e = $( 0 );
-  let f = $( e );
-  if (f) {
+  b = $( e );
+  if (b) {
 
   }
   else {
-    const g = $( 1 );
-    f = $( g );
-    if (f) {
+    const f = $( 1 );
+    b = $( f );
+    if (b) {
 
     }
     else {
-      const h = $( 2 );
-      f = $( h );
+      const g = $( 2 );
+      b = $( g );
     }
   }
   while ($LOOP_UNROLL_9) {
-    if (f) {
+    if (b) {
       $( 100 );
-      const i = $( 0 );
-      f = $( i );
-      if (f) {
+      const h = $( 0 );
+      b = $( h );
+      if (b) {
 
       }
       else {
-        const j = $( 1 );
-        f = $( j );
-        if (f) {
+        const i = $( 1 );
+        b = $( i );
+        if (b) {
 
         }
         else {
-          const k = $( 2 );
-          f = $( k );
+          const j = $( 2 );
+          b = $( j );
         }
       }
     }
@@ -184,11 +184,11 @@ if (b) {
     }
   }
 }
-const l = {
+const k = {
 a: 999,
 b: 1000
 ;
-$( l );
+$( k );
 `````
 
 ## Globals

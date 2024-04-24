@@ -72,7 +72,7 @@ $( 2 );
 const c = $( a );
 const d = deletec.y;
 let e = undefined;
-for (e in d {
+for (e in d) {
 
 }
 $( b, a );

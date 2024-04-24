@@ -101,20 +101,20 @@ $(4);
 $(100);
 const tmpObjLitVal$2 = $(3);
 const tmpObjLitVal$4 = $(4);
-let tmpClusterSSA_x$1 = tmpObjLitVal$2;
-let tmpClusterSSA_y$1 = tmpObjLitVal$4;
+let tmpSSA_x$1 = tmpObjLitVal$2;
+let tmpSSA_y$1 = tmpObjLitVal$4;
 const tmpNestedAssignObjPatternRhs$1 = { x: tmpObjLitVal$2, y: tmpObjLitVal$4 };
-let tmpClusterSSA_a$2 = tmpNestedAssignObjPatternRhs$1;
+let tmpSSA_a$2 = tmpNestedAssignObjPatternRhs$1;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(100);
   const tmpObjLitVal$3 = $(3);
   const tmpObjLitVal$5 = $(4);
-  tmpClusterSSA_x$1 = tmpObjLitVal$3;
-  tmpClusterSSA_y$1 = tmpObjLitVal$5;
+  tmpSSA_x$1 = tmpObjLitVal$3;
+  tmpSSA_y$1 = tmpObjLitVal$5;
   const tmpNestedAssignObjPatternRhs$2 = { x: tmpObjLitVal$3, y: tmpObjLitVal$5 };
-  tmpClusterSSA_a$2 = tmpNestedAssignObjPatternRhs$2;
+  tmpSSA_a$2 = tmpNestedAssignObjPatternRhs$2;
 }
-$(tmpClusterSSA_a$2, tmpClusterSSA_x$1, tmpClusterSSA_y$1);
+$(tmpSSA_a$2, tmpSSA_x$1, tmpSSA_y$1);
 `````
 
 ## PST Output

@@ -64,7 +64,7 @@ $(a, b, c, d);
 const b = { x: 1 };
 const c = { y: 2 };
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   const varInitAssignLhsComputedObj = $(b);
   const varInitAssignLhsComputedProp = $(`x`);
@@ -74,6 +74,7 @@ if (tmpCalleeParam) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs$1;
   a = varInitAssignLhsComputedRhs$1;
+  tmpCalleeParam = varInitAssignLhsComputedRhs$1;
   $(varInitAssignLhsComputedRhs$1);
 } else {
   $(tmpCalleeParam);
@@ -92,7 +93,7 @@ let c = {
 a: 999,
 b: 1000
 ;
-const d = $( 100 );
+let d = $( 100 );
 if (d) {
   const e = $( a );
   const f = $( "x" );
@@ -102,6 +103,7 @@ if (d) {
   g[h] = i;
   e[f] = i;
   c = i;
+  d = i;
   $( i );
 }
 else {

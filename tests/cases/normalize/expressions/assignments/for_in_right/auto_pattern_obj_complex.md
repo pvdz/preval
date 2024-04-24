@@ -46,11 +46,11 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
+const tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
 let x = undefined;
 for (x in tmpNestedAssignObjPatternRhs) {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -65,7 +65,7 @@ b: 2
 const b = $( a );
 const c = b.a;
 let d = undefined;
-for (d in b {
+for (d in b) {
 
 }
 $( c );

@@ -2,7 +2,7 @@
 
 # while7.md
 
-> Ref tracking > While7
+> Ref tracking > While-continue > While7
 >
 > if
 
@@ -33,10 +33,10 @@ $(x);
 `````filename=intro
 let x___4__ = 1;
 while (true) {
-  if ($) {
-    $(x___15__);
+  /*8*/ if ($) {
+    /*11*/ $(x___15__);
     continue;
-  } else {
+  } /*17*/ else {
     $(x___21__);
     x___25__ = 2;
   }
@@ -48,8 +48,8 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 15,21       | none           | 25
-  - r @15      | 4,25   
-  - r @21      | 4,25   
-  - w @25      | ########## | 15,21,29    | 4              | none
-  - r @29      | 25     
+  - w @4       | ########## | 15,21,29    | none           | 25
+  - r @15      | 4
+  - r @21      | 4
+  - w @25      | ########## | not read    | 4              | none
+  - r @29      | 4

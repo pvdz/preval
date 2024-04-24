@@ -73,7 +73,7 @@ if (x) {
 ## Output
 
 `````js filename=intro
-let x = false;
+let x = true;
 const tmpIfTest = $(true);
 if (tmpIfTest) {
   const tmpUnaryArg = $(true);
@@ -84,6 +84,7 @@ if (tmpIfTest) {
 }
 if (x) {
   $(`a`);
+  x = true;
   $(`d`);
 } else {
   $(`b`);
@@ -96,7 +97,7 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-let a = false;
+let a = true;
 const b = $( true );
 if (b) {
   const c = $( true );
@@ -108,6 +109,7 @@ else {
 }
 if (a) {
   $( "a" );
+  a = true;
   $( "d" );
 }
 else {

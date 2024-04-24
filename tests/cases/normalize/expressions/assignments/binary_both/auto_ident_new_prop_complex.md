@@ -52,13 +52,14 @@ $(a);
 const b = { $: $ };
 const tmpCompObj = $(b);
 const tmpNewCallee = tmpCompObj.$;
-const tmpClusterSSA_a = new tmpNewCallee(1);
+let tmpSSA_a = new tmpNewCallee(1);
+const tmpBinBothLhs = tmpSSA_a;
 const tmpCompObj$1 = $(b);
 const tmpNewCallee$1 = tmpCompObj$1.$;
-const tmpClusterSSA_a$1 = new tmpNewCallee$1(1);
-const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
+tmpSSA_a = new tmpNewCallee$1(1);
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a$1);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -69,13 +70,14 @@ With rename=true
 const a = { $: $ };
 const b = $( a );
 const c = b.$;
-const d = new c( 1 );
-const e = $( a );
-const f = e.$;
-const g = new f( 1 );
-const h = d + g;
+let d = new c( 1 );
+const e = d;
+const f = $( a );
+const g = f.$;
+d = new g( 1 );
+const h = e + d;
 $( h );
-$( g );
+$( d );
 `````
 
 ## Globals

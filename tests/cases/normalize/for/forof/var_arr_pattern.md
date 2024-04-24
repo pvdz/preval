@@ -56,7 +56,7 @@ const c = {
 a: 1,
 b: 2
 ;
-for (a of c {
+for (a of c) {
   b = a.x;
   $( b );
 }

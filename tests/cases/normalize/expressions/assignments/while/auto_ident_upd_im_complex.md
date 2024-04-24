@@ -61,7 +61,7 @@ const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-let tmpClusterSSA_a = tmpPostUpdArgVal;
+let tmpSSA_a = tmpPostUpdArgVal;
 if (tmpPostUpdArgVal) {
   $(100);
 } else {
@@ -74,7 +74,7 @@ if ($tmpLoopUnrollCheck) {
     const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
     const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 - 1;
     tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
-    tmpClusterSSA_a = tmpPostUpdArgVal$1;
+    tmpSSA_a = tmpPostUpdArgVal$1;
     if (tmpPostUpdArgVal$1) {
       $(100);
     } else {
@@ -83,7 +83,7 @@ if ($tmpLoopUnrollCheck) {
   }
 } else {
 }
-$(tmpClusterSSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## PST Output

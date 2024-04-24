@@ -97,16 +97,18 @@ const f = function () {
   debugger;
   const s = $(10);
   parseExpression(lexerFlags$285, astProp$181);
-  const tmpClusterSSA_s$3 = s | 10;
-  const tmpClusterSSA_x$3 = $(true);
-  if (tmpClusterSSA_x$3) {
+  const tmpSSA_s = s | 10;
+  const tmpSSA_x = $(true);
+  let s$1 = tmpSSA_s;
+  let x$1 = tmpSSA_x;
+  if (tmpSSA_x) {
     parseExpression(lexerFlags$285, astProp$181);
-    const tmpClusterSSA_x$1 = $(true);
-    const tmpClusterSSA_s$8 = tmpClusterSSA_s$3 | 10;
-    tmpAfterLabel(tmpClusterSSA_s$8, tmpClusterSSA_x$1, true);
+    s$1 = tmpSSA_s | 10;
+    x$1 = $(true);
+    tmpAfterLabel(s$1, x$1, true);
     return undefined;
   } else {
-    tmpAfterLabel(tmpClusterSSA_s$3, tmpClusterSSA_x$3, false);
+    tmpAfterLabel(s$1, x$1, false);
     return undefined;
   }
 };
@@ -147,15 +149,17 @@ const h = function() {
   parseExpression( lexerFlags$285, astProp$181 );
   const j = i | 10;
   const k = $( true );
+  let l = j;
+  let m = k;
   if (k) {
     parseExpression( lexerFlags$285, astProp$181 );
-    const l = $( true );
-    const m = j | 10;
-    a( m, l, true );
+    l = j | 10;
+    m = $( true );
+    a( l, m, true );
     return undefined;
   }
   else {
-    a( j, k, false );
+    a( l, m, false );
     return undefined;
   }
 };

@@ -53,9 +53,9 @@ const f = function () {
   return undefined;
 };
 const a = { a: 999, b: 1000 };
-const tmpClusterSSA_a = a * f;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a);
+const tmpSSA_a = a * f;
+$(tmpSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

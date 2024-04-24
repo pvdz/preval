@@ -67,11 +67,13 @@ const f = function ($$0) {
   debugger;
   const objPatternNoDefault = tmpParamBare.x;
   const objPatternBeforeDefault = objPatternNoDefault.y;
+  let y = undefined;
   const tmpIfTest = objPatternBeforeDefault === undefined;
   if (tmpIfTest) {
-    const tmpClusterSSA_y = $(`fail`);
-    return tmpClusterSSA_y;
+    y = $(`fail`);
+    return y;
   } else {
+    y = objPatternBeforeDefault;
     return objPatternBeforeDefault;
   }
 };
@@ -91,12 +93,14 @@ const a = function($$0 ) {
   debugger;
   const d = b.x;
   const e = d.y;
-  const f = e === undefined;
-  if (f) {
-    const g = $( "fail" );
-    return g;
+  let f = undefined;
+  const g = e === undefined;
+  if (g) {
+    f = $( "fail" );
+    return f;
   }
   else {
+    f = e;
     return e;
   }
 };

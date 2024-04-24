@@ -64,6 +64,7 @@ const tmpCalleeParam = $(1);
 let tmpDoWhileFlag = $(tmpCalleeParam);
 let $tmpLoopUnrollCheck = true;
 if (tmpDoWhileFlag) {
+  tmpDoWhileFlag = true;
   $(100);
   const tmpCalleeParam$1 = $(1);
   tmpDoWhileFlag = $(tmpCalleeParam$1);
@@ -104,6 +105,7 @@ const a = $( 1 );
 let b = $( a );
 let c = true;
 if (b) {
+  b = true;
   $( 100 );
   const d = $( 1 );
   b = $( d );

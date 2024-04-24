@@ -48,11 +48,11 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
 let x = undefined;
-for (x in tmpClusterSSA_a) {
+for (x in tmpSSA_a) {
 }
-$(tmpClusterSSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## PST Output
@@ -65,7 +65,7 @@ const b = $( a );
 const c = $( "y" );
 const d = deleteb[ c ];
 let e = undefined;
-for (e in d {
+for (e in d) {
 
 }
 $( d, a );

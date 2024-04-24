@@ -73,7 +73,7 @@ const d = c.x;
 const e = d - 1;
 c.x = e;
 let f = undefined;
-for (f of e {
+for (f of e) {
 
 }
 $( e, a );

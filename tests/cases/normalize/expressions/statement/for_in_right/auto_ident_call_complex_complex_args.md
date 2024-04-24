@@ -66,7 +66,7 @@ const b = $( 1 );
 const c = $( 2 );
 const d = a( b, c );
 let e = undefined;
-for (e in d {
+for (e in d) {
 
 }
 const f = {

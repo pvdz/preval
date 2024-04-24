@@ -54,7 +54,7 @@ const b = {
 x: 1,
 y: 2
 ;
-for (a of b {
+for (a of b) {
   $( a );
 }
 `````

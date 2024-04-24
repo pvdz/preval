@@ -55,7 +55,7 @@ $(x);
 
 `````js filename=intro
 let x = $(10);
-const tmpIfTest = $(x);
+let tmpIfTest = $(x);
 if (tmpIfTest) {
   const tmpIfTest$1 = $(true);
   if (tmpIfTest$1) {
@@ -63,16 +63,16 @@ if (tmpIfTest) {
   } else {
   }
   x = $(20);
-  let tmpClusterSSA_tmpIfTest = $(x);
+  tmpIfTest = $(x);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpIfTest$2 = $(true);
       if (tmpIfTest$2) {
         $(x);
       } else {
       }
       x = $(20);
-      tmpClusterSSA_tmpIfTest = $(x);
+      tmpIfTest = $(x);
     } else {
       break;
     }
@@ -88,22 +88,22 @@ With rename=true
 
 `````js filename=intro
 let a = $( 10 );
-const b = $( a );
+let b = $( a );
 if (b) {
   const c = $( true );
   if (c) {
     $( a );
   }
   a = $( 20 );
-  let d = $( a );
+  b = $( a );
   while ($LOOP_UNROLL_10) {
-    if (d) {
-      const e = $( true );
-      if (e) {
+    if (b) {
+      const d = $( true );
+      if (d) {
         $( a );
       }
       a = $( 20 );
-      d = $( a );
+      b = $( a );
     }
     else {
       break;

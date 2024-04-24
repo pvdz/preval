@@ -69,32 +69,33 @@ $(100);
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-let tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
-let tmpClusterSSA_a = tmpNestedAssignObjPatternRhs;
+let tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
+let tmpSSA_a = tmpNestedAssignObjPatternRhs;
+let tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs;
 if (tmpNestedAssignObjPatternRhs) {
   $(100);
   const tmpObjLitVal$1 = $(2);
   const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
   const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
-  tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$1.b;
-  tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$1;
+  tmpSSA_b = tmpNestedAssignObjPatternRhs$1.b;
+  tmpSSA_a = tmpNestedAssignObjPatternRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpObjLitVal$2 = $(2);
       const tmpCalleeParam$2 = { b: tmpObjLitVal$2 };
       const tmpNestedAssignObjPatternRhs$2 = $(tmpCalleeParam$2);
-      tmpClusterSSA_b = tmpNestedAssignObjPatternRhs$2.b;
-      tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignObjPatternRhs$2;
+      tmpSSA_b = tmpNestedAssignObjPatternRhs$2.b;
+      tmpSSA_a = tmpNestedAssignObjPatternRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedAssignObjPatternRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a, tmpClusterSSA_b);
+$(tmpSSA_a, tmpSSA_b);
 `````
 
 ## PST Output
@@ -108,23 +109,24 @@ const b = { b: a };
 const c = $( b );
 let d = c.b;
 let e = c;
+let f = c;
 if (c) {
   $( 100 );
-  const f = $( 2 );
-  const g = { b: f };
-  const h = $( g );
-  d = h.b;
-  e = h;
-  let i = h;
+  const g = $( 2 );
+  const h = { b: g };
+  const i = $( h );
+  d = i.b;
+  e = i;
+  f = i;
   while ($LOOP_UNROLL_9) {
-    if (i) {
+    if (f) {
       $( 100 );
       const j = $( 2 );
       const k = { b: j };
       const l = $( k );
       d = l.b;
       e = l;
-      i = l;
+      f = l;
     }
     else {
       break;

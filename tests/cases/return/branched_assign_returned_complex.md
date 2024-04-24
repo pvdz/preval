@@ -76,13 +76,14 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const f = function () {
   debugger;
+  let x = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
-    const tmpClusterSSA_x = $(10);
-    return tmpClusterSSA_x;
+    x = $(10);
+    return x;
   } else {
-    const tmpClusterSSA_x$1 = $(20);
-    return tmpClusterSSA_x$1;
+    x = $(20);
+    return x;
   }
 };
 f();
@@ -100,22 +101,23 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  const b = $( 1 );
-  if (b) {
-    const c = $( 10 );
-    return c;
+  let b = undefined;
+  const c = $( 1 );
+  if (c) {
+    b = $( 10 );
+    return b;
   }
   else {
-    const d = $( 20 );
-    return d;
+    b = $( 20 );
+    return b;
   }
 };
 a();
 a();
 a();
 a();
-const e = a();
-$( e );
+const d = a();
+$( d );
 `````
 
 ## Globals

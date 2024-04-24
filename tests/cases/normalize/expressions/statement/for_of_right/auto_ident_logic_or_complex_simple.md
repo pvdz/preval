@@ -71,7 +71,7 @@ else {
   b = 2;
 }
 let c = undefined;
-for (c of b {
+for (c of b) {
 
 }
 const d = {

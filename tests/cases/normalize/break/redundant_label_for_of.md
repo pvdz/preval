@@ -101,7 +101,7 @@ const b = [ "a", "b",, ];
 const c = new Set( b );
 const d = $( c );
 let e = undefined;
-for (e of d {
+for (e of d) {
   $( "key:", e );
   const f = $( 1 );
   if (f) {

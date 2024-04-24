@@ -44,12 +44,13 @@ $(y);
 ## Output
 
 `````js filename=intro
-const a = $(10);
+let a = $(10);
+const arrEl = a;
 if ($) {
-  $(20);
+  a = $(20);
 } else {
 }
-const y = [`a`, 1, a, 3, `b`];
+const y = [`a`, 1, arrEl, 3, `b`];
 $(y);
 `````
 
@@ -58,12 +59,13 @@ $(y);
 With rename=true
 
 `````js filename=intro
-const a = $( 10 );
+let a = $( 10 );
+const b = a;
 if ($) {
-  $( 20 );
+  a = $( 20 );
 }
-const b = [ "a", 1, a, 3, "b",, ];
-$( b );
+const c = [ "a", 1, b, 3, "b",, ];
+$( c );
 `````
 
 ## Globals

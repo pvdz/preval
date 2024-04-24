@@ -75,7 +75,7 @@ b: 1000
 const b = { x: 1 };
 const c = $( b );
 let d = undefined;
-for (d of c {
+for (d of c) {
   const e = $( $ );
   const f = $( 1 );
   const g = $( 2 );

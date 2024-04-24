@@ -48,19 +48,18 @@ $(a);
 ## Output
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
+const tmpBinBothLhs = a;
+let tmpBinBothRhs = 60;
 const tmpIfTest = $(30);
-let tmpClusterSSA_a = undefined;
-const a = { a: 999, b: 1000 };
 if (tmpIfTest) {
-  tmpClusterSSA_a = a * 60;
-  $(tmpClusterSSA_a);
 } else {
   const tmpCalleeParam$1 = $(100);
-  const tmpClusterSSA_tmpBinBothRhs = $(tmpCalleeParam$1);
-  tmpClusterSSA_a = a * tmpClusterSSA_tmpBinBothRhs;
-  $(tmpClusterSSA_a);
+  tmpBinBothRhs = $(tmpCalleeParam$1);
 }
-$(tmpClusterSSA_a);
+a = tmpBinBothLhs * tmpBinBothRhs;
+$(a);
+$(a);
 `````
 
 ## PST Output
@@ -68,23 +67,23 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = $( 30 );
-let b = undefined;
-const c = {
+let a = {
 a: 999,
 b: 1000
 ;
-if (a) {
-  b = c * 60;
-  $( b );
+const b = a;
+let c = 60;
+const d = $( 30 );
+if (d) {
+
 }
 else {
-  const d = $( 100 );
-  const e = $( d );
-  b = c * e;
-  $( b );
+  const e = $( 100 );
+  c = $( e );
 }
-$( b );
+a = b * c;
+$( a );
+$( a );
 `````
 
 ## Globals

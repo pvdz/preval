@@ -74,27 +74,28 @@ $(a);
 $(100);
 const tmpObjLitVal$1 = { e: $ };
 const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-let tmpClusterSSA_a = tmpChainElementCall;
+let tmpSSA_a = tmpChainElementCall;
+let tmpSSA_tmpDoWhileFlag = tmpChainElementCall;
 if (tmpChainElementCall) {
   $(100);
   const tmpChainElementObject$4 = tmpObjLitVal$1.e;
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$4, tmpObjLitVal$1, 1);
-  tmpClusterSSA_a = tmpChainElementCall$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementCall$1;
+  tmpSSA_a = tmpChainElementCall$1;
+  tmpSSA_tmpDoWhileFlag = tmpChainElementCall$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpChainElementObject$1 = tmpObjLitVal$1.e;
       const tmpChainElementCall$2 = $dotCall(tmpChainElementObject$1, tmpObjLitVal$1, 1);
-      tmpClusterSSA_a = tmpChainElementCall$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementCall$2;
+      tmpSSA_a = tmpChainElementCall$2;
+      tmpSSA_tmpDoWhileFlag = tmpChainElementCall$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -106,19 +107,20 @@ $( 100 );
 const a = { e: $ };
 const b = $dotCall( $, a, 1 );
 let c = b;
+let d = b;
 if (b) {
   $( 100 );
-  const d = a.e;
-  const e = $dotCall( d, a, 1 );
-  c = e;
-  let f = e;
+  const e = a.e;
+  const f = $dotCall( e, a, 1 );
+  c = f;
+  d = f;
   while ($LOOP_UNROLL_9) {
-    if (f) {
+    if (d) {
       $( 100 );
       const g = a.e;
       const h = $dotCall( g, a, 1 );
       c = h;
-      f = h;
+      d = h;
     }
     else {
       break;

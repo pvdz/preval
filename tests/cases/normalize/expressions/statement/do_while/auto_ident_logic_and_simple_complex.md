@@ -61,16 +61,18 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpCalleeParam = $(1);
-const tmpDoWhileFlag = $(tmpCalleeParam);
+let tmpDoWhileFlag = $(tmpCalleeParam);
 if (tmpDoWhileFlag) {
   $(100);
+  tmpDoWhileFlag = true;
   const tmpCalleeParam$1 = $(1);
-  let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$1);
+  tmpDoWhileFlag = $(tmpCalleeParam$1);
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
+      tmpDoWhileFlag = true;
       const tmpCalleeParam$2 = $(1);
-      tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
+      tmpDoWhileFlag = $(tmpCalleeParam$2);
     } else {
       break;
     }
@@ -88,27 +90,29 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 1 );
-const b = $( a );
+let b = $( a );
 if (b) {
   $( 100 );
+  b = true;
   const c = $( 1 );
-  let d = $( c );
+  b = $( c );
   while ($LOOP_UNROLL_9) {
-    if (d) {
+    if (b) {
       $( 100 );
-      const e = $( 1 );
-      d = $( e );
+      b = true;
+      const d = $( 1 );
+      b = $( d );
     }
     else {
       break;
     }
   }
 }
-const f = {
+const e = {
 a: 999,
 b: 1000
 ;
-$( f );
+$( e );
 `````
 
 ## Globals

@@ -66,20 +66,20 @@ $(100);
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_tmpDoWhileFlag = delete tmpDeleteObj.y;
-if (tmpClusterSSA_tmpDoWhileFlag) {
+let tmpSSA_tmpDoWhileFlag = delete tmpDeleteObj.y;
+if (tmpSSA_tmpDoWhileFlag) {
   $(100);
   $(1);
   $(2);
   const tmpDeleteObj$1 = $(arg);
-  let tmpClusterSSA_tmpDoWhileFlag$1 = delete tmpDeleteObj$1.y;
+  tmpSSA_tmpDoWhileFlag = delete tmpDeleteObj$1.y;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       $(1);
       $(2);
       const tmpDeleteObj$2 = $(arg);
-      tmpClusterSSA_tmpDoWhileFlag$1 = delete tmpDeleteObj$2.y;
+      tmpSSA_tmpDoWhileFlag = delete tmpDeleteObj$2.y;
     } else {
       break;
     }
@@ -103,20 +103,20 @@ $( 100 );
 $( 1 );
 $( 2 );
 const c = $( a );
-const d = deletec.y;
+let d = deletec.y;
 if (d) {
   $( 100 );
   $( 1 );
   $( 2 );
   const e = $( a );
-  let f = deletee.y;
+  d = deletee.y;
   while ($LOOP_UNROLL_9) {
-    if (f) {
+    if (d) {
       $( 100 );
       $( 1 );
       $( 2 );
-      const g = $( a );
-      f = deleteg.y;
+      const f = $( a );
+      d = deletef.y;
     }
     else {
       break;

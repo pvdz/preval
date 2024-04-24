@@ -44,8 +44,8 @@ $(y);
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_y = $(`pass`);
-$(tmpClusterSSA_y);
+const y = $(`pass`);
+$(y);
 `````
 
 ## PST Output

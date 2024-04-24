@@ -57,7 +57,7 @@ b: 1000
 ;
 const b = [ 1, 2, 3,, ];
 let c = undefined;
-for (c in b {
+for (c in b) {
 
 }
 $( a );

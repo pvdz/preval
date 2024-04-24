@@ -66,29 +66,30 @@ $(100);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpNestedComplexRhs = $(tmpCalleeParam, tmpCalleeParam$1);
-let tmpClusterSSA_a = tmpNestedComplexRhs;
+let tmpSSA_a = tmpNestedComplexRhs;
+let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpCalleeParam$2 = $(1);
   const tmpCalleeParam$4 = $(2);
   const tmpNestedComplexRhs$1 = $(tmpCalleeParam$2, tmpCalleeParam$4);
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$3 = $(1);
       const tmpCalleeParam$5 = $(2);
       const tmpNestedComplexRhs$2 = $(tmpCalleeParam$3, tmpCalleeParam$5);
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -101,21 +102,22 @@ const a = $( 1 );
 const b = $( 2 );
 const c = $( a, b );
 let d = c;
+let e = c;
 if (c) {
   $( 100 );
-  const e = $( 1 );
-  const f = $( 2 );
-  const g = $( e, f );
-  d = g;
-  let h = g;
+  const f = $( 1 );
+  const g = $( 2 );
+  const h = $( f, g );
+  d = h;
+  e = h;
   while ($LOOP_UNROLL_9) {
-    if (h) {
+    if (e) {
       $( 100 );
       const i = $( 1 );
       const j = $( 2 );
       const k = $( i, j );
       d = k;
-      h = k;
+      e = k;
     }
     else {
       break;

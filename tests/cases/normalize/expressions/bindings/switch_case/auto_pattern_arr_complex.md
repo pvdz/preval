@@ -55,8 +55,8 @@ if (tmpIfTest) {
 const tmpCalleeParam = [1, 2];
 const arrAssignPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...arrAssignPatternRhs];
-const tmpClusterSSA_a = arrPatternSplat[0];
-$(tmpClusterSSA_a);
+const tmpSSA_a = arrPatternSplat[0];
+$(tmpSSA_a);
 `````
 
 ## PST Output

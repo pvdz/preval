@@ -61,7 +61,7 @@ With rename=true
 let a = undefined;
 $( undefined );
 const b = { y: 100 };
-for (a in b {
+for (a in b) {
   $( a, "for" );
 }
 $( a );

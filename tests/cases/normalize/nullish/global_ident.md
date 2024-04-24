@@ -36,12 +36,13 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
+let tmpCalleeParam = parseInt;
 const tmpIfTest = parseInt == null;
 if (tmpIfTest) {
-  foo;
-  $(foo);
+  tmpCalleeParam = foo;
+  $(tmpCalleeParam);
 } else {
-  $(parseInt);
+  $(tmpCalleeParam);
 }
 `````
 
@@ -50,13 +51,14 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = parseInt == null;
-if (a) {
-  foo;
-  $( foo );
+let a = parseInt;
+const b = parseInt == null;
+if (b) {
+  a = foo;
+  $( a );
 }
 else {
-  $( parseInt );
+  $( a );
 }
 `````
 

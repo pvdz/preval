@@ -55,11 +55,12 @@ $(2);
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 const a = delete arg[tmpDeleteCompProp];
+let tmpCalleeParam = a;
 if (a) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  $(false);
+  $(tmpCalleeParam);
 }
 $(a, arg);
 `````
@@ -74,12 +75,13 @@ $( 2 );
 const a = $( "y" );
 const b = { y: 1 };
 const c = deleteb[ a ];
+let d = c;
 if (c) {
-  const d = $( 100 );
+  d = $( 100 );
   $( d );
 }
 else {
-  $( false );
+  $( d );
 }
 $( c, b );
 `````

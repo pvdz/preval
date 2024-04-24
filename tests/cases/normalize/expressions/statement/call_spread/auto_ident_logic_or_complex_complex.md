@@ -46,13 +46,18 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-const tmpCalleeParamSpread = $(tmpCalleeParam);
+let tmpCalleeParamSpread = $(tmpCalleeParam);
 if (tmpCalleeParamSpread) {
   $(...tmpCalleeParamSpread);
 } else {
   const tmpCalleeParam$1 = $(2);
-  const tmpClusterSSA_tmpCalleeParamSpread = $(tmpCalleeParam$1);
-  $(...tmpClusterSSA_tmpCalleeParamSpread);
+  tmpCalleeParamSpread = $(tmpCalleeParam$1);
+  const tmpIfTest = tmpCalleeParamSpread === ``;
+  if (tmpIfTest) {
+    $();
+  } else {
+    throw `Preval: Attempting to spread primitive that is not an empty string`;
+  }
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -64,14 +69,20 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-const b = $( a );
+let b = $( a );
 if (b) {
   $( ... b );
 }
 else {
   const c = $( 2 );
-  const d = $( c );
-  $( ... d );
+  b = $( c );
+  const d = b === "";
+  if (d) {
+    $();
+  }
+  else {
+    throw "Preval: Attempting to spread primitive that is not an empty string";
+  }
 }
 const e = {
 a: 999,

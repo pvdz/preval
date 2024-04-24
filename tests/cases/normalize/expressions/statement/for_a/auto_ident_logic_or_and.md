@@ -72,12 +72,12 @@ if (tmpIfTest) {
   } else {
   }
 }
-const tmpIfTest$3 = $(0);
+let tmpIfTest$3 = $(0);
 if (tmpIfTest$3) {
-  let tmpClusterSSA_tmpIfTest$3 = $(0);
+  tmpIfTest$3 = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest$3) {
-      tmpClusterSSA_tmpIfTest$3 = $(0);
+    if (tmpIfTest$3) {
+      tmpIfTest$3 = $(0);
     } else {
       break;
     }
@@ -106,23 +106,23 @@ else {
     $( e );
   }
 }
-const f = $( 0 );
+let f = $( 0 );
 if (f) {
-  let g = $( 0 );
+  f = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (g) {
-      g = $( 0 );
+    if (f) {
+      f = $( 0 );
     }
     else {
       break;
     }
   }
 }
-const h = {
+const g = {
 a: 999,
 b: 1000
 ;
-$( h );
+$( g );
 `````
 
 ## Globals

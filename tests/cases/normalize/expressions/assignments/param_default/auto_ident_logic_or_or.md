@@ -84,9 +84,9 @@ if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = $(tmpCalleeParam$3);
   }
 }
-const tmpClusterSSA_a = tmpNestedComplexRhs;
+const tmpSSA_a = tmpNestedComplexRhs;
 $(undefined);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

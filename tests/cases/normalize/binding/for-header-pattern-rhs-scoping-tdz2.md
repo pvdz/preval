@@ -31,7 +31,7 @@ for (lhs in rhs) {
 ## Pre Normal
 
 `````js filename=intro
-const rhs = [firstElement];
+const rhs = [$throwTDZError(`TDZ triggered for this read: [firstElement]`)];
 let lhs = undefined;
 let firstElement = undefined;
 for (lhs in rhs) {
@@ -45,7 +45,8 @@ for (lhs in rhs) {
 ## Normalized
 
 `````js filename=intro
-const rhs = [firstElement];
+const tmpArrElement = $throwTDZError(`TDZ triggered for this read: [firstElement]`);
+const rhs = [tmpArrElement];
 let lhs = undefined;
 let firstElement = undefined;
 for (lhs in rhs) {
@@ -59,7 +60,14 @@ for (lhs in rhs) {
 ## Output
 
 `````js filename=intro
-throw `Preval: Cannot access \`firstElement\` before initialization`;
+const tmpArrElement = $throwTDZError(`TDZ triggered for this read: [firstElement]`);
+let lhs = undefined;
+const rhs = [tmpArrElement];
+for (lhs in rhs) {
+  const patternSplat = [...lhs];
+  const firstElementSSA = patternSplat[0];
+  $(firstElementSSA);
+}
 `````
 
 ## PST Output
@@ -67,7 +75,14 @@ throw `Preval: Cannot access \`firstElement\` before initialization`;
 With rename=true
 
 `````js filename=intro
-throw "Preval: Cannot access `firstElement` before initialization";
+const a = b( "TDZ triggered for this read: [firstElement]" );
+let c = undefined;
+const d = [ a,, ];
+for (c in d) {
+  const e = [ ... c,, ];
+  const f = e[ 0 ];
+  $( f );
+}
 `````
 
 ## Globals

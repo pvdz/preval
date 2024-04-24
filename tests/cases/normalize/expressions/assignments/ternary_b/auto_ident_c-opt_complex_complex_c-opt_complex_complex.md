@@ -67,6 +67,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 let a = { a: 999, b: 1000 };
+let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   let tmpNestedComplexRhs = undefined;
@@ -86,10 +87,11 @@ if (tmpIfTest) {
     }
   }
   a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
+  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -104,34 +106,36 @@ let b = {
 a: 999,
 b: 1000
 ;
-const c = $( 1 );
-if (c) {
-  let d = undefined;
-  const e = { x: a };
-  const f = $( e );
-  const g = f == null;
-  if (g) {
+let c = undefined;
+const d = $( 1 );
+if (d) {
+  let e = undefined;
+  const f = { x: a };
+  const g = $( f );
+  const h = g == null;
+  if (h) {
 
   }
   else {
-    const h = $( "x" );
-    const i = f[ h ];
-    const j = i == null;
-    if (j) {
+    const i = $( "x" );
+    const j = g[ i ];
+    const k = j == null;
+    if (k) {
 
     }
     else {
-      const k = $( "y" );
-      const l = i[ k ];
-      d = l;
+      const l = $( "y" );
+      const m = j[ l ];
+      e = m;
     }
   }
-  b = d;
-  $( d );
+  b = e;
+  c = e;
+  $( c );
 }
 else {
-  const m = $( 200 );
-  $( m );
+  c = $( 200 );
+  $( c );
 }
 $( b );
 `````

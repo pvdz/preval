@@ -532,25 +532,20 @@ foo$5: {
 considerMutated(x$19);
 let f = function () {
   debugger;
-  const tmpLabeledBlockFunc = function () {
-    debugger;
-    try {
-      const tmpReturnArg = tmpAfterLabel();
-      return tmpReturnArg;
-    } finally {
-      return undefined;
-    }
-    console.log(x$21);
-    const tmpReturnArg$1 = tmpAfterLabel();
-    return tmpReturnArg$1;
-  };
   const tmpAfterLabel = function () {
     debugger;
     x$21 = `fail`;
     return undefined;
   };
-  const tmpReturnArg$3 = tmpLabeledBlockFunc();
-  return tmpReturnArg$3;
+  try {
+    const tmpReturnArg = tmpAfterLabel();
+    return tmpReturnArg;
+  } finally {
+    return undefined;
+  }
+  console.log(x$21);
+  const tmpReturnArg$1 = tmpAfterLabel();
+  return tmpReturnArg$1;
 };
 let x$21 = 0;
 f();
@@ -569,50 +564,40 @@ f$1();
 considerMutated(x$23);
 let f$3 = function () {
   debugger;
-  const tmpLabeledBlockFunc$1 = function () {
-    debugger;
-    try {
-      throw x$25;
-    } finally {
-      const tmpReturnArg$5 = tmpAfterLabel$1();
-      return tmpReturnArg$5;
-    }
-    const tmpReturnArg$7 = tmpAfterLabel$1();
-    return tmpReturnArg$7;
-  };
   const tmpAfterLabel$1 = function () {
     debugger;
     x$25 = 1;
     return undefined;
   };
-  const tmpReturnArg$9 = tmpLabeledBlockFunc$1();
-  return tmpReturnArg$9;
+  try {
+    throw x$25;
+  } finally {
+    const tmpReturnArg$3 = tmpAfterLabel$1();
+    return tmpReturnArg$3;
+  }
+  const tmpReturnArg$5 = tmpAfterLabel$1();
+  return tmpReturnArg$5;
 };
 let x$25 = 0;
 f$3();
 considerMutated(x$25);
 let f$5 = function () {
   debugger;
-  const tmpLabeledBlockFunc$3 = function () {
-    debugger;
-    try {
-      throw `one`;
-    } catch (e$2) {
-      throw `two`;
-    } finally {
-      const tmpReturnArg$11 = tmpAfterLabel$3();
-      return tmpReturnArg$11;
-    }
-    const tmpReturnArg$13 = tmpAfterLabel$3();
-    return tmpReturnArg$13;
-  };
   const tmpAfterLabel$3 = function () {
     debugger;
     x$27 = 1;
     return undefined;
   };
-  const tmpReturnArg$15 = tmpLabeledBlockFunc$3();
-  return tmpReturnArg$15;
+  try {
+    throw `one`;
+  } catch (e$19) {
+    throw `two`;
+  } finally {
+    const tmpReturnArg$7 = tmpAfterLabel$3();
+    return tmpReturnArg$7;
+  }
+  const tmpReturnArg$9 = tmpAfterLabel$3();
+  return tmpReturnArg$9;
 };
 let x$27 = 0;
 f$5();
@@ -707,7 +692,7 @@ const f$5 = function () {
   debugger;
   try {
     throw `one`;
-  } catch (e$2) {
+  } catch (e$19) {
     throw `two`;
   } finally {
     x$27 = 1;
@@ -815,7 +800,7 @@ const f = function() {
   try {
     throw "one";
   }
-catch (e$2) {
+catch (e$19) {
     throw "two";
   }
 finally {
@@ -868,7 +853,7 @@ considerMutated( k );
 
 BAD@! Found 4 implicit global bindings:
 
-considerMutated, e$2, e$21, e$23
+considerMutated, e$19, e$21, e$23
 
 ## Result
 

@@ -48,8 +48,8 @@ $(a);
 const tmpObjLitVal = { y: 10 };
 const tmpCompObj = $(tmpObjLitVal);
 const tmpBinLhs = tmpCompObj.y;
-const tmpClusterSSA_a = tmpBinLhs === `Identifier`;
-$(tmpClusterSSA_a);
+const tmpSSA_a = tmpBinLhs === `Identifier`;
+$(tmpSSA_a);
 `````
 
 ## PST Output

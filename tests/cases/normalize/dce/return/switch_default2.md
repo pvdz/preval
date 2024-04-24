@@ -56,35 +56,6 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpSwitchValue = $(1, `disc`);
-  let tmpSwitchCaseToStart = 1;
-  const tmpBinLhs = $(0);
-  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-  if (tmpIfTest) {
-    tmpSwitchCaseToStart = 0;
-  } else {
-  }
-  const tmpLabeledBlockFunc = function ($$0, $$1, $$2, $$3) {
-    let tmpSwitchValue$3 = $$0;
-    let tmpSwitchCaseToStart$3 = $$1;
-    let tmpBinLhs$3 = $$2;
-    let tmpIfTest$7 = $$3;
-    debugger;
-    const tmpIfTest$9 = tmpSwitchCaseToStart$3 <= 0;
-    if (tmpIfTest$9) {
-      $(`keep, do not eval`);
-      return undefined;
-    } else {
-      const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
-      if (tmpIfTest$11) {
-        const tmpReturnArg$1 = $(2, `ret`);
-        return tmpReturnArg$1;
-      } else {
-        const tmpReturnArg$3 = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$3, tmpIfTest$7);
-        return tmpReturnArg$3;
-      }
-    }
-  };
   const tmpAfterLabel = function ($$0, $$1, $$2, $$3) {
     let tmpSwitchValue$1 = $$0;
     let tmpSwitchCaseToStart$1 = $$1;
@@ -94,8 +65,28 @@ let f = function () {
     $(`fail`);
     return undefined;
   };
-  const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
-  return tmpReturnArg$5;
+  const tmpSwitchValue = $(1, `disc`);
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $(0);
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+  }
+  const tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$1) {
+    $(`keep, do not eval`);
+    return undefined;
+  } else {
+    const tmpIfTest$3 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$3) {
+      const tmpReturnArg = $(2, `ret`);
+      return tmpReturnArg;
+    } else {
+      const tmpReturnArg$1 = tmpAfterLabel(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
+      return tmpReturnArg$1;
+    }
+  }
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -105,35 +96,28 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1, `disc`);
-let tmpSwitchCaseToStart = 1;
-const tmpBinLhs = $(0);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-}
-const tmpLabeledBlockFunc = function ($$0, $$1) {
-  const tmpSwitchCaseToStart$3 = $$0;
-  const tmpOutlinedParam = $$1;
+const f = function () {
   debugger;
-  if (tmpOutlinedParam) {
+  const tmpSwitchValue = $(1, `disc`);
+  let tmpSwitchCaseToStart = 1;
+  const tmpBinLhs = $(0);
+  let tmpIfTest$1 = true;
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+  }
+  if (tmpIfTest$1) {
     $(`keep, do not eval`);
     return undefined;
   } else {
-    const tmpIfTest$11 = tmpSwitchCaseToStart$3 <= 1;
-    if (tmpIfTest$11) {
-      const tmpReturnArg$1 = $(2, `ret`);
-      return tmpReturnArg$1;
-    } else {
-      $(`fail`);
-      return undefined;
-    }
+    const tmpReturnArg = $(2, `ret`);
+    return tmpReturnArg;
   }
 };
-const tmpSaooB = tmpSwitchCaseToStart <= 0;
-const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchCaseToStart, tmpSaooB);
-$(tmpReturnArg$5);
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## PST Output
@@ -141,36 +125,30 @@ $(tmpReturnArg$5);
 With rename=true
 
 `````js filename=intro
-const a = $( 1, "disc" );
-let b = 1;
-const c = $( 0 );
-const d = c === a;
-if (d) {
-  b = 0;
-}
-const e = function($$0,$$1 ) {
-  const f = g;
-  const h = i;
+const a = function() {
   debugger;
-  if (h) {
+  const b = $( 1, "disc" );
+  let c = 1;
+  const d = $( 0 );
+  let e = true;
+  const f = d === b;
+  if (f) {
+    c = 0;
+  }
+  else {
+    e = c <= 0;
+  }
+  if (e) {
     $( "keep, do not eval" );
     return undefined;
   }
   else {
-    const j = f <= 1;
-    if (j) {
-      const k = $( 2, "ret" );
-      return k;
-    }
-    else {
-      $( "fail" );
-      return undefined;
-    }
+    const g = $( 2, "ret" );
+    return g;
   }
 };
-const l = b <= 0;
-const m = e( b, l );
-$( m );
+const h = a();
+$( h );
 `````
 
 ## Globals

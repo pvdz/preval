@@ -109,7 +109,7 @@ else {
   }
 }
 let j = undefined;
-for (j of a {
+for (j of a) {
 
 }
 $( a );

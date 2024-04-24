@@ -89,7 +89,7 @@ else {
   a = d;
 }
 let e = undefined;
-for (e in a {
+for (e in a) {
 
 }
 $( a );

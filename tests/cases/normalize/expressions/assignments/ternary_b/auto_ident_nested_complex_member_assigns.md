@@ -83,6 +83,7 @@ $(a, b, c);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpCalleeParam = 3;
 const tmpIfTest = $(1);
 const b = { x: 1 };
 if (tmpIfTest) {
@@ -107,8 +108,8 @@ if (tmpIfTest) {
   a = 3;
   $(3);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(200);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
 $(a, b, 3);
 `````
@@ -122,35 +123,36 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 1 );
-const c = { x: 1 };
-if (b) {
-  const d = $( c );
-  const e = $( "x" );
-  const f = $( c );
-  const g = $( "x" );
-  const h = $( c );
-  const i = $( "x" );
-  const j = $( c );
-  const k = $( "x" );
-  const l = $( c );
-  const m = $( "x" );
-  const n = $( c );
-  const o = $( "x" );
-  n[o] = 3;
-  l[m] = 3;
-  j[k] = 3;
-  h[i] = 3;
-  f[g] = 3;
-  d[e] = 3;
+let b = 3;
+const c = $( 1 );
+const d = { x: 1 };
+if (c) {
+  const e = $( d );
+  const f = $( "x" );
+  const g = $( d );
+  const h = $( "x" );
+  const i = $( d );
+  const j = $( "x" );
+  const k = $( d );
+  const l = $( "x" );
+  const m = $( d );
+  const n = $( "x" );
+  const o = $( d );
+  const p = $( "x" );
+  o[p] = 3;
+  m[n] = 3;
+  k[l] = 3;
+  i[j] = 3;
+  g[h] = 3;
+  e[f] = 3;
   a = 3;
   $( 3 );
 }
 else {
-  const p = $( 200 );
-  $( p );
+  b = $( 200 );
+  $( b );
 }
-$( a, c, 3 );
+$( a, d, 3 );
 `````
 
 ## Globals

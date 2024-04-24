@@ -55,7 +55,7 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-for (a in 1 {
+for (a in 1) {
 
 }
 $( 1, 1 );

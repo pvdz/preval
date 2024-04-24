@@ -46,8 +46,8 @@ throw tmpThrowArg;
 const tmpCompProp = $(`\$`);
 const b = { $: $ };
 const tmpNewCallee = b[tmpCompProp];
-const tmpClusterSSA_a = new tmpNewCallee(1);
-throw tmpClusterSSA_a;
+const tmpSSA_a = new tmpNewCallee(1);
+throw tmpSSA_a;
 `````
 
 ## PST Output

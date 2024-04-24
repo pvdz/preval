@@ -59,9 +59,9 @@ if (tmpIfTest) {
 `````js filename=intro
 $(1);
 $(2);
-const tmpClusterSSA_arg = { y: 1 };
-const tmpClusterSSA_a = delete tmpClusterSSA_arg.y;
-$(tmpClusterSSA_a, tmpClusterSSA_arg);
+const arg = { y: 1 };
+const a = delete arg.y;
+$(a, arg);
 `````
 
 ## PST Output

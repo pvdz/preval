@@ -104,7 +104,7 @@ while (true) {
 a: 1,
 b: 2
     ;
-    for (b in d {
+    for (b in d) {
       c = true;
       break;
     }

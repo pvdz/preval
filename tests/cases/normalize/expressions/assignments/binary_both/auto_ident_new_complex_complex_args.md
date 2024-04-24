@@ -54,14 +54,15 @@ $(a);
 const tmpNewCallee = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
-const a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+let a = new tmpNewCallee(tmpCalleeParam$1, tmpCalleeParam$3);
+const tmpBinBothLhs = a;
 const tmpNewCallee$1 = $($);
 const tmpCalleeParam$5 = $(1);
 const tmpCalleeParam$7 = $(2);
-const tmpClusterSSA_a = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
-const tmpCalleeParam = a + tmpClusterSSA_a;
+a = new tmpNewCallee$1(tmpCalleeParam$5, tmpCalleeParam$7);
+const tmpCalleeParam = tmpBinBothLhs + a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -72,14 +73,15 @@ With rename=true
 const a = $( $ );
 const b = $( 1 );
 const c = $( 2 );
-const d = new a( b, c );
-const e = $( $ );
-const f = $( 1 );
-const g = $( 2 );
-const h = new e( f, g );
-const i = d + h;
+let d = new a( b, c );
+const e = d;
+const f = $( $ );
+const g = $( 1 );
+const h = $( 2 );
+d = new f( g, h );
+const i = e + d;
 $( i );
-$( h );
+$( d );
 `````
 
 ## Globals

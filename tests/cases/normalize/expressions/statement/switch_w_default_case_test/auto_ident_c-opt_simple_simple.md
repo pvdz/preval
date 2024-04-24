@@ -102,8 +102,8 @@ $(a);
 `````js filename=intro
 const tmpSwitchValue = $(1);
 let tmpSwitchCaseToStart = 1;
-const tmpClusterSSA_tmpIfTest = 1 === tmpSwitchValue;
-if (tmpClusterSSA_tmpIfTest) {
+const tmpSSA_tmpIfTest = 1 === tmpSwitchValue;
+if (tmpSSA_tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
   const tmpIfTest$3 = 2 === tmpSwitchValue;

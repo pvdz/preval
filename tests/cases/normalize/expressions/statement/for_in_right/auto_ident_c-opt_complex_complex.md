@@ -90,7 +90,7 @@ else {
   c = g;
 }
 let h = undefined;
-for (h in c {
+for (h in c) {
 
 }
 $( b );

@@ -60,6 +60,7 @@ $(a);
 ## Output
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
@@ -67,10 +68,9 @@ if (tmpIfTest) {
   const b = { $: $ };
   const tmpCallCompObj = $(b);
   const tmpCallCompProp = $(`\$`);
-  const tmpClusterSSA_a = tmpCallCompObj[tmpCallCompProp](1);
-  $(tmpClusterSSA_a);
+  a = tmpCallCompObj[tmpCallCompProp](1);
+  $(a);
 } else {
-  const a = { a: 999, b: 1000 };
   $(a);
 }
 `````
@@ -80,22 +80,22 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = $( 1 );
-const c = a === b;
-if (c) {
-  const d = { $: $ };
-  const e = $( d );
-  const f = $( "$" );
-  const g = e[ f ]( 1 )};
-  $( g );
-}
-else {
-  const h = {
+let a = {
 a: 999,
 b: 1000
-  ;
-  $( h );
+;
+const b = $( 1 );
+const c = $( 1 );
+const d = b === c;
+if (d) {
+  const e = { $: $ };
+  const f = $( e );
+  const g = $( "$" );
+  a = f[ g ]( 1 )};
+  $( a );
+}
+else {
+  $( a );
 }
 `````
 

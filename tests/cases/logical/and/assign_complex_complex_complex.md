@@ -39,10 +39,10 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const x = $(1);
+let x = $(1);
 if (x) {
-  const tmpClusterSSA_x = $(2);
-  $(tmpClusterSSA_x);
+  x = $(2);
+  $(x);
 } else {
   $(x);
 }
@@ -53,10 +53,10 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+let a = $( 1 );
 if (a) {
-  const b = $( 2 );
-  $( b );
+  a = $( 2 );
+  $( a );
 }
 else {
   $( a );

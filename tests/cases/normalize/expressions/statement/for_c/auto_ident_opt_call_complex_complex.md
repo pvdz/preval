@@ -57,7 +57,7 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpChainElementCall = $($);
   const tmpIfTest$1 = tmpChainElementCall == null;
@@ -66,9 +66,9 @@ if (tmpIfTest) {
     const tmpCalleeParam$3 = $(1);
     $dotCall(tmpChainElementCall, $, tmpCalleeParam$3);
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpChainElementCall$1 = $($);
       const tmpIfTest$2 = tmpChainElementCall$1 == null;
       if (tmpIfTest$2) {
@@ -76,7 +76,7 @@ if (tmpIfTest) {
         const tmpCalleeParam$1 = $(1);
         $dotCall(tmpChainElementCall$1, $, tmpCalleeParam$1);
       }
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -92,7 +92,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+let a = $( 1 );
 if (a) {
   const b = $( $ );
   const c = b == null;
@@ -103,30 +103,30 @@ if (a) {
     const d = $( 1 );
     $dotCall( b, $, d );
   }
-  let e = $( 1 );
+  a = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (e) {
-      const f = $( $ );
-      const g = f == null;
-      if (g) {
+    if (a) {
+      const e = $( $ );
+      const f = e == null;
+      if (f) {
 
       }
       else {
-        const h = $( 1 );
-        $dotCall( f, $, h );
+        const g = $( 1 );
+        $dotCall( e, $, g );
       }
-      e = $( 1 );
+      a = $( 1 );
     }
     else {
       break;
     }
   }
 }
-const i = {
+const h = {
 a: 999,
 b: 1000
 ;
-$( i );
+$( h );
 `````
 
 ## Globals

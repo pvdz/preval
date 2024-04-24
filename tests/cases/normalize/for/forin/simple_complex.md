@@ -56,7 +56,7 @@ x: 1,
 y: 2
 ;
 const c = $( b );
-for (a in c {
+for (a in c) {
   $( a );
 }
 `````

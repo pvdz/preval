@@ -58,12 +58,12 @@ const a = { a: 999, b: 1000 };
 $(1);
 $(2);
 delete arg.y;
-const tmpIfTest = $(0);
+let tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
+  tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    if (tmpIfTest) {
+      tmpIfTest = $(0);
     } else {
       break;
     }
@@ -86,12 +86,12 @@ b: 1000
 $( 1 );
 $( 2 );
 deletea.y;
-const c = $( 0 );
+let c = $( 0 );
 if (c) {
-  let d = $( 0 );
+  c = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (d) {
-      d = $( 0 );
+    if (c) {
+      c = $( 0 );
     }
     else {
       break;

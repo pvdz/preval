@@ -53,12 +53,12 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(100);
+let tmpIfTest = $(100);
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam = $(0);
-  const tmpClusterSSA_tmpIfTest = $(tmpCalleeParam);
-  if (tmpClusterSSA_tmpIfTest) {
+  tmpIfTest = $(tmpCalleeParam);
+  if (tmpIfTest) {
   } else {
     const tmpCalleeParam$1 = $(1);
     const tmpIfTest$1 = $(tmpCalleeParam$1);
@@ -78,30 +78,30 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 100 );
+let a = $( 100 );
 if (a) {
 
 }
 else {
   const b = $( 0 );
-  const c = $( b );
-  if (c) {
+  a = $( b );
+  if (a) {
 
   }
   else {
-    const d = $( 1 );
-    const e = $( d );
-    if (e) {
-      const f = $( 2 );
-      $( f );
+    const c = $( 1 );
+    const d = $( c );
+    if (d) {
+      const e = $( 2 );
+      $( e );
     }
   }
 }
-const g = {
+const f = {
 a: 999,
 b: 1000
 ;
-$( g );
+$( f );
 `````
 
 ## Globals

@@ -44,8 +44,8 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
-const tmpClusterSSA_tmpCalleeParam = $(tmpCalleeParam$1);
-$(tmpClusterSSA_tmpCalleeParam);
+const tmpCalleeParam = $(tmpCalleeParam$1);
+$(tmpCalleeParam);
 const a = { a: 999, b: 1000 };
 $(a);
 `````

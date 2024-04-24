@@ -56,20 +56,21 @@ $(a);
 const bindingPatternArrRoot = { a: 999, b: 1000 };
 const arrPatternSplat = [...bindingPatternArrRoot];
 arrPatternSplat[0];
+let tmpCalleeParam = undefined;
 $(10);
 $(20);
 const tmpCalleeParam$1 = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam$1);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_a = arrPatternSplat$1[0];
+const tmpSSA_a = arrPatternSplat$1[0];
 if (tmpNestedAssignArrPatternRhs) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -83,21 +84,22 @@ b: 1000
 ;
 const b = [ ... a,, ];
 b[ 0 ];
+let c = undefined;
 $( 10 );
 $( 20 );
-const c = [ 1, 2,, ];
-const d = $( c );
-const e = [ ... d,, ];
-const f = e[ 0 ];
-if (d) {
-  const g = $( 100 );
-  $( g );
+const d = [ 1, 2,, ];
+const e = $( d );
+const f = [ ... e,, ];
+const g = f[ 0 ];
+if (e) {
+  c = $( 100 );
+  $( c );
 }
 else {
-  const h = $( 200 );
-  $( h );
+  c = $( 200 );
+  $( c );
 }
-$( f );
+$( g );
 `````
 
 ## Globals

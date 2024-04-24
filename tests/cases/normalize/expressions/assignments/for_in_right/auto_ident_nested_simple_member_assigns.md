@@ -72,7 +72,7 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-for (a in 3 {
+for (a in 3) {
 
 }
 const b = { x: 3 };

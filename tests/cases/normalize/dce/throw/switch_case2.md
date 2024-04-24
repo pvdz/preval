@@ -45,27 +45,22 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpLabeledBlockFunc = function () {
-    debugger;
-    const tmpSwitchDisc$1 = $(1, `disc`);
-    const tmpBinBothLhs$1 = tmpSwitchDisc$1;
-    const tmpBinBothRhs$1 = $(1, `case`);
-    const tmpIfTest$1 = tmpBinBothLhs$1 === tmpBinBothRhs$1;
-    if (tmpIfTest$1) {
-      const tmpThrowArg$1 = $(2, `ret`);
-      throw tmpThrowArg$1;
-    } else {
-      const tmpReturnArg = tmpAfterLabel();
-      return tmpReturnArg;
-    }
-  };
   const tmpAfterLabel = function () {
     debugger;
     $(`keep, do not eval`);
     return undefined;
   };
-  const tmpReturnArg$1 = tmpLabeledBlockFunc();
-  return tmpReturnArg$1;
+  const tmpSwitchDisc = $(1, `disc`);
+  const tmpBinBothLhs = tmpSwitchDisc;
+  const tmpBinBothRhs = $(1, `case`);
+  const tmpIfTest = tmpBinBothLhs === tmpBinBothRhs;
+  if (tmpIfTest) {
+    const tmpThrowArg = $(2, `ret`);
+    throw tmpThrowArg;
+  } else {
+    const tmpReturnArg = tmpAfterLabel();
+    return tmpReturnArg;
+  }
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -75,12 +70,12 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSwitchDisc$1 = $(1, `disc`);
-const tmpBinBothRhs$1 = $(1, `case`);
-const tmpIfTest$1 = tmpSwitchDisc$1 === tmpBinBothRhs$1;
-if (tmpIfTest$1) {
-  const tmpThrowArg$1 = $(2, `ret`);
-  throw tmpThrowArg$1;
+const tmpSwitchDisc = $(1, `disc`);
+const tmpBinBothRhs = $(1, `case`);
+const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
+if (tmpIfTest) {
+  const tmpThrowArg = $(2, `ret`);
+  throw tmpThrowArg;
 } else {
   $(`keep, do not eval`);
   $(undefined);

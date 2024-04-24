@@ -62,24 +62,26 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const b = $(2);
+let b = $(2);
 const tmpIfTest = b == null;
 let c = undefined;
 let tmpIfTest$1 = false;
 if (tmpIfTest) {
-  c = implicitA;
+  b = implicitA;
+  c = b;
   tmpIfTest$1 = c == null;
 } else {
   c = b;
-  tmpIfTest$1 = b == null;
+  tmpIfTest$1 = c == null;
 }
+let tmpReturnArg = undefined;
 if (tmpIfTest$1) {
-  implicitB;
-  const tmpClusterSSA_tmpReturnArg = $(implicitB);
-  $(tmpClusterSSA_tmpReturnArg);
+  c = implicitB;
+  tmpReturnArg = $(c);
+  $(tmpReturnArg);
 } else {
-  const tmpClusterSSA_tmpReturnArg$1 = $(c);
-  $(tmpClusterSSA_tmpReturnArg$1);
+  tmpReturnArg = $(c);
+  $(tmpReturnArg);
 }
 `````
 
@@ -88,26 +90,28 @@ if (tmpIfTest$1) {
 With rename=true
 
 `````js filename=intro
-const a = $( 2 );
+let a = $( 2 );
 const b = a == null;
 let c = undefined;
 let d = false;
 if (b) {
-  c = implicitA;
+  a = implicitA;
+  c = a;
   d = c == null;
 }
 else {
   c = a;
-  d = a == null;
+  d = c == null;
 }
+let e = undefined;
 if (d) {
-  implicitB;
-  const e = $( implicitB );
+  c = implicitB;
+  e = $( c );
   $( e );
 }
 else {
-  const f = $( c );
-  $( f );
+  e = $( c );
+  $( e );
 }
 `````
 

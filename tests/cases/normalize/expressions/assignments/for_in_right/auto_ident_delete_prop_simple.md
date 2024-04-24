@@ -59,7 +59,7 @@ With rename=true
 const a = { y: 1 };
 const b = deletea.y;
 let c = undefined;
-for (c in b {
+for (c in b) {
 
 }
 $( b, a );

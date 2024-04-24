@@ -1,8 +1,8 @@
 # Preval test case
 
-# invisible_string.md
+# finally_finally.md
 
-> Ref tracking > Invisible string
+> Ref tracking > Finally finally
 
 ## Input
 
@@ -30,56 +30,70 @@ $(a);
 ## Pre Normal
 
 `````js filename=intro
-let a = `abc`;
-let b = `def`;
-if ($) {
-  let c = 1;
-  const d = $(`x`);
-  if (d.length) {
-    b = a.slice(1);
-  } else {
-    b = a;
+let a = 1;
+try {
+  $(a);
+  a = 2;
+  try {
+    $();
+    a = 3;
+  } finally {
+    $(a);
+    a = 4;
   }
-  const h = b.length;
-  $(h);
+} catch (e) {
+  $(a);
+  a = 5;
+} finally {
+  $(a);
 }
+$(a);
 `````
 
 ## Normalized
 
 `````js filename=intro
-let a = `abc`;
-let b = `def`;
-if ($) {
-  let c = 1;
-  const d = $(`x`);
-  const tmpIfTest = d.length;
-  if (tmpIfTest) {
-    b = a.slice(1);
-  } else {
-    b = a;
+let a = 1;
+try {
+  $(a);
+  a = 2;
+  try {
+    $();
+    a = 3;
+  } finally {
+    $(a);
+    a = 4;
   }
-  const h = b.length;
-  $(h);
-} else {
+} catch (e) {
+  $(a);
+  a = 5;
+} finally {
+  $(a);
 }
+$(a);
 `````
 
 ## Output
 
 `````js filename=intro
-let b = `bc`;
-if ($) {
-  const d = $(`x`);
-  const tmpIfTest = d.length;
-  if (tmpIfTest) {
-  } else {
-    b = `abc`;
+let a = 1;
+try {
+  $(1);
+  a = 2;
+  try {
+    $();
+    a = 3;
+  } finally {
+    $(a);
+    a = 4;
   }
-  const h = b.length;
-  $(h);
-} else {
+} catch (e) {
+  $(a);
+  a = 5;
+} finally {
+  $(a);
 }
+$(a);
 `````
 
 ## PST Output
@@ -87,30 +101,43 @@ if ($) {
 With rename=true
 
 `````js filename=intro
-let a = "bc";
-if ($) {
-  const b = $( "x" );
-  const c = b.length;
-  if (c) {
-
+let a = 1;
+try {
+  $( 1 );
+  a = 2;
+  try {
+    $();
+    a = 3;
   }
-  else {
-    a = "abc";
+finally {
+    $( a );
+    a = 4;
   }
-  const d = a.length;
-  $( d );
 }
+catch (e) {
+  $( a );
+  a = 5;
+}
+finally {
+  $( a );
+}
+$( a );
 `````
 
 ## Globals
 
-None
+BAD@! Found 1 implicit global bindings:
+
+e
 
 ## Result
 
 Should call `$` with:
- - 1: 'x'
- - 2: 2
+ - 1: 1
+ - 2: 
+ - 3: 3
+ - 4: 4
+ - 5: 4
  - eval returned: undefined
 
 Pre normalization calls: Same

@@ -42,14 +42,14 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = $(1);
+let x = $(1);
 const tmpIfTest = $(10);
 if (tmpIfTest) {
   $(x, `branch`);
 } else {
 }
-const tmpClusterSSA_x = $(2);
-$(tmpClusterSSA_x);
+x = $(2);
+$(x);
 `````
 
 ## PST Output
@@ -57,13 +57,13 @@ $(tmpClusterSSA_x);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+let a = $( 1 );
 const b = $( 10 );
 if (b) {
   $( a, "branch" );
 }
-const c = $( 2 );
-$( c );
+a = $( 2 );
+$( a );
 `````
 
 ## Globals

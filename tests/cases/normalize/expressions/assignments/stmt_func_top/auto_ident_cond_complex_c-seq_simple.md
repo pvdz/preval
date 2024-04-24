@@ -56,14 +56,15 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
 const tmpIfTest = $(1);
 if (tmpIfTest) {
-  const tmpClusterSSA_a = $(60);
-  $(tmpClusterSSA_a);
+  a = $(60);
+  $(a);
 } else {
   const tmpCalleeParam = $(100);
-  const tmpClusterSSA_a$1 = $(tmpCalleeParam);
-  $(tmpClusterSSA_a$1);
+  a = $(tmpCalleeParam);
+  $(a);
 }
 $(undefined);
 `````
@@ -73,15 +74,19 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-if (a) {
-  const b = $( 60 );
-  $( b );
+let a = {
+a: 999,
+b: 1000
+;
+const b = $( 1 );
+if (b) {
+  a = $( 60 );
+  $( a );
 }
 else {
   const c = $( 100 );
-  const d = $( c );
-  $( d );
+  a = $( c );
+  $( a );
 }
 $( undefined );
 `````

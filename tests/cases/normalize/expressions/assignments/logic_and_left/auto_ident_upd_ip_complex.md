@@ -59,11 +59,12 @@ const tmpPostUpdArgObj = $(tmpCalleeParam$1);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal + 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
+let tmpCalleeParam = tmpPostUpdArgVal;
 if (tmpPostUpdArgVal) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  $(tmpPostUpdArgVal);
+  $(tmpCalleeParam);
 }
 $(tmpPostUpdArgVal, b);
 `````
@@ -79,12 +80,13 @@ const c = $( b );
 const d = c.x;
 const e = d + 1;
 c.x = e;
+let f = d;
 if (d) {
-  const f = $( 100 );
+  f = $( 100 );
   $( f );
 }
 else {
-  $( d );
+  $( f );
 }
 $( d, a );
 `````

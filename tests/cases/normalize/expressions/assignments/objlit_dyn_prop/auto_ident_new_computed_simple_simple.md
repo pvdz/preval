@@ -45,10 +45,10 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
-const tmpCalleeParam = { [tmpClusterSSA_a]: 10 };
+const tmpSSA_a = new $(1);
+const tmpCalleeParam = { [tmpSSA_a]: 10 };
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

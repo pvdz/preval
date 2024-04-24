@@ -44,13 +44,13 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = $(2);
+let b = $(2);
 const a = { a: 999, b: 1000 };
 if (b) {
   $(a, b);
 } else {
-  const tmpClusterSSA_b = $(2);
-  $(a, tmpClusterSSA_b);
+  b = $(2);
+  $(a, b);
 }
 `````
 
@@ -59,7 +59,7 @@ if (b) {
 With rename=true
 
 `````js filename=intro
-const a = $( 2 );
+let a = $( 2 );
 const b = {
 a: 999,
 b: 1000
@@ -68,8 +68,8 @@ if (a) {
   $( b, a );
 }
 else {
-  const c = $( 2 );
-  $( b, c );
+  a = $( 2 );
+  $( b, a );
 }
 `````
 

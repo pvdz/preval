@@ -60,22 +60,22 @@ $(a, b);
 `````js filename=intro
 const b = { c: 10, d: 20 };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpAssignComMemLhsProp = $(`c`);
   const tmpCompObj = $(b);
   const tmpCompProp = $(`d`);
   const tmpAssignComputedRhs = tmpCompObj[tmpCompProp];
   b[tmpAssignComMemLhsProp] = tmpAssignComputedRhs;
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpAssignComMemLhsProp$1 = $(`c`);
       const tmpCompObj$1 = $(b);
       const tmpCompProp$1 = $(`d`);
       const tmpAssignComputedRhs$1 = tmpCompObj$1[tmpCompProp$1];
       b[tmpAssignComMemLhsProp$1] = tmpAssignComputedRhs$1;
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -98,22 +98,22 @@ const b = {
 a: 999,
 b: 1000
 ;
-const c = $( 1 );
+let c = $( 1 );
 if (c) {
   const d = $( "c" );
   const e = $( a );
   const f = $( "d" );
   const g = e[ f ];
   a[d] = g;
-  let h = $( 1 );
+  c = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (h) {
-      const i = $( "c" );
-      const j = $( a );
-      const k = $( "d" );
-      const l = j[ k ];
-      a[i] = l;
-      h = $( 1 );
+    if (c) {
+      const h = $( "c" );
+      const i = $( a );
+      const j = $( "d" );
+      const k = i[ j ];
+      a[h] = k;
+      c = $( 1 );
     }
     else {
       break;

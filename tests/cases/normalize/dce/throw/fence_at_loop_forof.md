@@ -119,7 +119,7 @@ while (true) {
     let b = undefined;
     let c = false;
     const d = [ 1, 2,, ];
-    for (b of d {
+    for (b of d) {
       c = true;
       break;
     }

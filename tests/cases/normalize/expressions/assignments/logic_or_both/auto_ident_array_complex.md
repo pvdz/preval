@@ -53,7 +53,7 @@ $(a);
 const tmpArrElement = $(1);
 const tmpArrElement$3 = $(3);
 let a = [tmpArrElement, 2, tmpArrElement$3];
-const tmpCalleeParam = a;
+let tmpCalleeParam = a;
 if (a) {
   $(tmpCalleeParam);
 } else {
@@ -61,6 +61,7 @@ if (a) {
   const tmpArrElement$9 = $(3);
   const tmpNestedComplexRhs = [tmpArrElement$5, 2, tmpArrElement$9];
   a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
 $(a);
@@ -74,7 +75,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 3 );
 let c = [ a, 2, b,, ];
-const d = c;
+let d = c;
 if (c) {
   $( d );
 }
@@ -83,6 +84,7 @@ else {
   const f = $( 3 );
   const g = [ e, 2, f,, ];
   c = g;
+  d = g;
   $( g );
 }
 $( c );

@@ -70,7 +70,7 @@ const c = $( "$" );
 const d = a[ c ];
 const e = new d( 1 );
 let f = undefined;
-for (f of e {
+for (f of e) {
 
 }
 $( b );

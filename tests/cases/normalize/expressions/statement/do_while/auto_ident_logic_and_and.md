@@ -69,38 +69,38 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpCalleeParam = $(1);
-const tmpDoWhileFlag = $(tmpCalleeParam);
+let tmpDoWhileFlag = $(tmpCalleeParam);
 if (tmpDoWhileFlag) {
   const tmpCalleeParam$1 = $(1);
-  const tmpClusterSSA_tmpDoWhileFlag$1 = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_tmpDoWhileFlag$1) {
+  tmpDoWhileFlag = $(tmpCalleeParam$1);
+  if (tmpDoWhileFlag) {
     const tmpCalleeParam$3 = $(2);
-    const tmpClusterSSA_tmpDoWhileFlag$3 = $(tmpCalleeParam$3);
-    if (tmpClusterSSA_tmpDoWhileFlag$3) {
+    tmpDoWhileFlag = $(tmpCalleeParam$3);
+    if (tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$2 = $(1);
-      let tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$2);
-      if (tmpClusterSSA_tmpDoWhileFlag) {
+      tmpDoWhileFlag = $(tmpCalleeParam$2);
+      if (tmpDoWhileFlag) {
         const tmpCalleeParam$4 = $(1);
-        tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$4);
-        if (tmpClusterSSA_tmpDoWhileFlag) {
+        tmpDoWhileFlag = $(tmpCalleeParam$4);
+        if (tmpDoWhileFlag) {
           const tmpCalleeParam$6 = $(2);
-          tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$6);
+          tmpDoWhileFlag = $(tmpCalleeParam$6);
         } else {
         }
       } else {
       }
       while ($LOOP_UNROLL_9) {
-        if (tmpClusterSSA_tmpDoWhileFlag) {
+        if (tmpDoWhileFlag) {
           $(100);
           const tmpCalleeParam$5 = $(1);
-          tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$5);
-          if (tmpClusterSSA_tmpDoWhileFlag) {
+          tmpDoWhileFlag = $(tmpCalleeParam$5);
+          if (tmpDoWhileFlag) {
             const tmpCalleeParam$7 = $(1);
-            tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$7);
-            if (tmpClusterSSA_tmpDoWhileFlag) {
+            tmpDoWhileFlag = $(tmpCalleeParam$7);
+            if (tmpDoWhileFlag) {
               const tmpCalleeParam$9 = $(2);
-              tmpClusterSSA_tmpDoWhileFlag = $(tmpCalleeParam$9);
+              tmpDoWhileFlag = $(tmpCalleeParam$9);
             } else {
             }
           } else {
@@ -126,36 +126,36 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 1 );
-const b = $( a );
+let b = $( a );
 if (b) {
   const c = $( 1 );
-  const d = $( c );
-  if (d) {
-    const e = $( 2 );
-    const f = $( e );
-    if (f) {
+  b = $( c );
+  if (b) {
+    const d = $( 2 );
+    b = $( d );
+    if (b) {
       $( 100 );
-      const g = $( 1 );
-      let h = $( g );
-      if (h) {
-        const i = $( 1 );
-        h = $( i );
-        if (h) {
-          const j = $( 2 );
-          h = $( j );
+      const e = $( 1 );
+      b = $( e );
+      if (b) {
+        const f = $( 1 );
+        b = $( f );
+        if (b) {
+          const g = $( 2 );
+          b = $( g );
         }
       }
       while ($LOOP_UNROLL_9) {
-        if (h) {
+        if (b) {
           $( 100 );
-          const k = $( 1 );
-          h = $( k );
-          if (h) {
-            const l = $( 1 );
-            h = $( l );
-            if (h) {
-              const m = $( 2 );
-              h = $( m );
+          const h = $( 1 );
+          b = $( h );
+          if (b) {
+            const i = $( 1 );
+            b = $( i );
+            if (b) {
+              const j = $( 2 );
+              b = $( j );
             }
           }
         }
@@ -166,11 +166,11 @@ if (b) {
     }
   }
 }
-const n = {
+const k = {
 a: 999,
 b: 1000
 ;
-$( n );
+$( k );
 `````
 
 ## Globals

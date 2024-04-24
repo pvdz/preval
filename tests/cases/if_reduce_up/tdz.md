@@ -25,7 +25,7 @@ let fail = "too late";
 
 `````js filename=intro
 let x = 0;
-if (fail) {
+if ($throwTDZError(`TDZ triggered for this read: if (fail) {`)) {
   x = $(`do not reach me`);
 } else {
   x = $(`do not reach me`);
@@ -38,7 +38,8 @@ let fail = `too late`;
 
 `````js filename=intro
 let x = 0;
-if (fail) {
+const tmpIfTest = $throwTDZError(`TDZ triggered for this read: if (fail) {`);
+if (tmpIfTest) {
   x = $(`do not reach me`);
 } else {
   x = $(`do not reach me`);
@@ -50,7 +51,9 @@ let fail = `too late`;
 ## Output
 
 `````js filename=intro
-throw `Preval: Cannot access \`fail\` before initialization`;
+$throwTDZError(`TDZ triggered for this read: if (fail) {`);
+const x = $(`do not reach me`);
+$(x);
 `````
 
 ## PST Output
@@ -58,7 +61,9 @@ throw `Preval: Cannot access \`fail\` before initialization`;
 With rename=true
 
 `````js filename=intro
-throw "Preval: Cannot access `fail` before initialization";
+a( "TDZ triggered for this read: if (fail) {" );
+const b = $( "do not reach me" );
+$( b );
 `````
 
 ## Globals

@@ -104,17 +104,26 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
+let x = 1;
+let y = 2;
 const z = [10, 20, 30];
 const tmpSwitchValue = $(`a`);
+let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(`a`);
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+let tmpIfTest$1 = true;
 if (tmpIfTest) {
-  const arrPatternSplat = [...z];
-  const tmpClusterSSA_x = arrPatternSplat[0];
-  const tmpClusterSSA_y = arrPatternSplat[1];
-  $(1, tmpClusterSSA_x, tmpClusterSSA_y, z);
+  tmpSwitchCaseToStart = 0;
 } else {
-  $(1, 1, 2, z);
+  tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+}
+if (tmpIfTest$1) {
+  const arrPatternSplat = [...z];
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  $(1, x, y, z);
+} else {
+  $(1, x, y, z);
 }
 `````
 
@@ -123,18 +132,28 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = [ 10, 20, 30,, ];
-const b = $( "a" );
-const c = $( "a" );
-const d = c === b;
-if (d) {
-  const e = [ ... a,, ];
-  const f = e[ 0 ];
-  const g = e[ 1 ];
-  $( 1, f, g, a );
+let a = 1;
+let b = 2;
+const c = [ 10, 20, 30,, ];
+const d = $( "a" );
+let e = 1;
+const f = $( "a" );
+const g = f === d;
+let h = true;
+if (g) {
+  e = 0;
 }
 else {
-  $( 1, 1, 2, a );
+  h = e <= 0;
+}
+if (h) {
+  const i = [ ... c,, ];
+  a = i[ 0 ];
+  b = i[ 1 ];
+  $( 1, a, b, c );
+}
+else {
+  $( 1, a, b, c );
 }
 `````
 

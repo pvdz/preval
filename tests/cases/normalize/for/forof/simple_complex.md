@@ -56,7 +56,7 @@ x: 1,
 y: 2
 ;
 const c = $( b );
-for (a of c {
+for (a of c) {
   $( a );
 }
 `````

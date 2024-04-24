@@ -51,11 +51,12 @@ $(a, arg);
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 const a = delete arg[tmpDeleteCompProp];
+let tmpCalleeParam = a;
 if (a) {
   $(true);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 }
 $(a, arg);
 `````
@@ -68,11 +69,12 @@ With rename=true
 const a = $( "y" );
 const b = { y: 1 };
 const c = deleteb[ a ];
+let d = c;
 if (c) {
   $( true );
 }
 else {
-  const d = $( 100 );
+  d = $( 100 );
   $( d );
 }
 $( c, b );

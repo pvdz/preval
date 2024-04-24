@@ -39,11 +39,11 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpCalleeParam = $ObjectPrototype.b;
+let tmpCalleeParam = $ObjectPrototype.b;
 const tmpIfTest = tmpCalleeParam == null;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = c.d;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = c.d;
+  $(tmpCalleeParam);
 } else {
   $(tmpCalleeParam);
 }
@@ -54,11 +54,11 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $ObjectPrototype.b;
+let a = $ObjectPrototype.b;
 const b = a == null;
 if (b) {
-  const c = c.d;
-  $( c );
+  a = c.d;
+  $( a );
 }
 else {
   $( a );

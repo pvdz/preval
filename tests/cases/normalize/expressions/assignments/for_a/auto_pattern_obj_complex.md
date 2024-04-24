@@ -49,7 +49,7 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpAssignObjPatternRhs = $(tmpCalleeParam);
-const tmpClusterSSA_a = tmpAssignObjPatternRhs.a;
+const tmpSSA_a = tmpAssignObjPatternRhs.a;
 $(1);
 $(1);
 $(1);
@@ -64,7 +64,7 @@ $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $(1);
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

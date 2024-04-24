@@ -66,7 +66,7 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-for (a in 100 {
+for (a in 100) {
 
 }
 $( 100 );

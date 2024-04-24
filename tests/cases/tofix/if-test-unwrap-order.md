@@ -1,8 +1,8 @@
 # Preval test case
 
-# if_if.md
+# if-test-unwrap-order.md
 
-> Assigns > If if
+> Tofix > If-test-unwrap-order
 >
 > The `$(2)` ends up before the `$(x)`. That's incorrect.
 
@@ -87,6 +87,7 @@ if (tmpIfTest) {
 const tmpIfTest$1 = $(2);
 $(x);
 if (tmpIfTest$1) {
+  x = 40;
   $(40);
 } else {
 }
@@ -111,6 +112,7 @@ else {
 const c = $( 2 );
 $( a );
 if (c) {
+  a = 40;
   $( 40 );
 }
 `````
@@ -122,14 +124,14 @@ None
 ## Result
 
 Should call `$` with:
-- 1: 20
-- 2: 1
-- 3: 20
-- 4: 30
-- 5: 2
-- 6: 30
-- 7: 40
-- eval returned: undefined
+ - 1: 20
+ - 2: 1
+ - 3: 20
+ - 4: 30
+ - 5: 2
+ - 6: 30
+ - 7: 40
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

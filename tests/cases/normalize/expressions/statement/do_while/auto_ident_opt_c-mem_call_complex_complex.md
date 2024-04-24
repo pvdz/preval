@@ -95,7 +95,7 @@ if (tmpIfTest) {
 }
 if (tmpDoWhileFlag) {
   $(100);
-  let tmpClusterSSA_tmpDoWhileFlag = false;
+  tmpDoWhileFlag = false;
   const tmpChainElementCall$2 = $(b);
   const tmpIfTest$2 = tmpChainElementCall$2 == null;
   if (tmpIfTest$2) {
@@ -107,13 +107,13 @@ if (tmpDoWhileFlag) {
     } else {
       const tmpCalleeParam$1 = $(1);
       const tmpChainElementCall$4 = $dotCall(tmpChainElementObject$1, tmpChainElementCall$2, tmpCalleeParam$1);
-      tmpClusterSSA_tmpDoWhileFlag = tmpChainElementCall$4;
+      tmpDoWhileFlag = tmpChainElementCall$4;
     }
   }
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
-      tmpClusterSSA_tmpDoWhileFlag = false;
+      tmpDoWhileFlag = false;
       const tmpChainElementCall$3 = $(b);
       const tmpIfTest$3 = tmpChainElementCall$3 == null;
       if (tmpIfTest$3) {
@@ -125,7 +125,7 @@ if (tmpDoWhileFlag) {
         } else {
           const tmpCalleeParam$2 = $(1);
           const tmpChainElementCall$5 = $dotCall(tmpChainElementObject$2, tmpChainElementCall$3, tmpCalleeParam$2);
-          tmpClusterSSA_tmpDoWhileFlag = tmpChainElementCall$5;
+          tmpDoWhileFlag = tmpChainElementCall$5;
         }
       }
     } else {
@@ -169,45 +169,45 @@ else {
 }
 if (c) {
   $( 100 );
-  let k = false;
-  const l = $( a );
-  const m = l == null;
-  if (m) {
+  c = false;
+  const k = $( a );
+  const l = k == null;
+  if (l) {
 
   }
   else {
-    const n = $( "$" );
-    const o = l[ n ];
-    const p = o == null;
-    if (p) {
+    const m = $( "$" );
+    const n = k[ m ];
+    const o = n == null;
+    if (o) {
 
     }
     else {
-      const q = $( 1 );
-      const r = $dotCall( o, l, q );
-      k = r;
+      const p = $( 1 );
+      const q = $dotCall( n, k, p );
+      c = q;
     }
   }
   while ($LOOP_UNROLL_9) {
-    if (k) {
+    if (c) {
       $( 100 );
-      k = false;
-      const s = $( a );
-      const t = s == null;
-      if (t) {
+      c = false;
+      const r = $( a );
+      const s = r == null;
+      if (s) {
 
       }
       else {
-        const u = $( "$" );
-        const v = s[ u ];
-        const w = v == null;
-        if (w) {
+        const t = $( "$" );
+        const u = r[ t ];
+        const v = u == null;
+        if (v) {
 
         }
         else {
-          const x = $( 1 );
-          const y = $dotCall( v, s, x );
-          k = y;
+          const w = $( 1 );
+          const x = $dotCall( u, r, w );
+          c = x;
         }
       }
     }

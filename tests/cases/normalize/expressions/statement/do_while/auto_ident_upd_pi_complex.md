@@ -71,6 +71,7 @@ const tmpNestedAssignObj = $(tmpCalleeParam);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+let tmpSSA_tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs;
 if (tmpNestedPropCompoundComplexRhs) {
   $(100);
   const tmpCalleeParam$1 = $(b);
@@ -78,16 +79,16 @@ if (tmpNestedPropCompoundComplexRhs) {
   const tmpBinLhs$1 = tmpNestedAssignObj$1.x;
   const tmpNestedPropCompoundComplexRhs$1 = tmpBinLhs$1 + 1;
   tmpNestedAssignObj$1.x = tmpNestedPropCompoundComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedPropCompoundComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$2 = $(b);
       const tmpNestedAssignObj$2 = $(tmpCalleeParam$2);
       const tmpBinLhs$2 = tmpNestedAssignObj$2.x;
       const tmpNestedPropCompoundComplexRhs$2 = tmpBinLhs$2 + 1;
       tmpNestedAssignObj$2.x = tmpNestedPropCompoundComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedPropCompoundComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedPropCompoundComplexRhs$2;
     } else {
       break;
     }
@@ -113,23 +114,24 @@ const d = $( c );
 const e = d.x;
 const f = e + 1;
 d.x = f;
+let g = f;
 if (f) {
   $( 100 );
-  const g = $( a );
-  const h = $( g );
-  const i = h.x;
-  const j = i + 1;
-  h.x = j;
-  let k = j;
+  const h = $( a );
+  const i = $( h );
+  const j = i.x;
+  const k = j + 1;
+  i.x = k;
+  g = k;
   while ($LOOP_UNROLL_9) {
-    if (k) {
+    if (g) {
       $( 100 );
       const l = $( a );
       const m = $( l );
       const n = m.x;
       const o = n + 1;
       m.x = o;
-      k = o;
+      g = o;
     }
     else {
       break;

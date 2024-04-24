@@ -36,10 +36,11 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = $(1);
+let x = $(1);
 if (x) {
   $(x);
 } else {
+  x = 2;
   $(2);
 }
 `````
@@ -49,11 +50,12 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+let a = $( 1 );
 if (a) {
   $( a );
 }
 else {
+  a = 2;
   $( 2 );
 }
 `````

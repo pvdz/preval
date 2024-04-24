@@ -45,11 +45,11 @@ $(y);
 ## Output
 
 `````js filename=intro
+let y = [];
 if ($) {
-  const tmpClusterSSA_y = [`a`, 1, 2, 3, `b`];
-  $(tmpClusterSSA_y);
+  y = [`a`, 1, 2, 3, `b`];
+  $(y);
 } else {
-  const y = [];
   $(y);
 }
 `````
@@ -59,13 +59,13 @@ if ($) {
 With rename=true
 
 `````js filename=intro
+let a = [];
 if ($) {
-  const a = [ "a", 1, 2, 3, "b",, ];
+  a = [ "a", 1, 2, 3, "b",, ];
   $( a );
 }
 else {
-  const b = [];
-  $( b );
+  $( a );
 }
 `````
 

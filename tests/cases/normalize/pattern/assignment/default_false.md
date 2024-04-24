@@ -47,12 +47,14 @@ $(b);
 ## Output
 
 `````js filename=intro
+let b = undefined;
 const tmpObjLitVal = $(`prop`);
 const tmpIfTest = tmpObjLitVal === undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_b = $(`default`);
-  $(tmpClusterSSA_b);
+  b = $(`default`);
+  $(b);
 } else {
+  b = tmpObjLitVal;
   $(tmpObjLitVal);
 }
 `````
@@ -62,14 +64,16 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( "prop" );
-const b = a === undefined;
-if (b) {
-  const c = $( "default" );
-  $( c );
+let a = undefined;
+const b = $( "prop" );
+const c = b === undefined;
+if (c) {
+  a = $( "default" );
+  $( a );
 }
 else {
-  $( a );
+  a = b;
+  $( b );
 }
 `````
 

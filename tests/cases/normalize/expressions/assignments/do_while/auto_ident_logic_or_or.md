@@ -82,7 +82,7 @@ if (tmpNestedComplexRhs) {
     tmpNestedComplexRhs = $(tmpCalleeParam$3);
   }
 }
-let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
+let tmpSSA_a = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpCalleeParam$2 = $(0);
@@ -97,9 +97,9 @@ if (tmpNestedComplexRhs) {
       tmpNestedComplexRhs$1 = $(tmpCalleeParam$6);
     }
   }
-  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpSSA_a) {
       $(100);
       const tmpCalleeParam$5 = $(0);
       let tmpNestedComplexRhs$2 = $(tmpCalleeParam$5);
@@ -113,14 +113,15 @@ if (tmpNestedComplexRhs) {
           tmpNestedComplexRhs$2 = $(tmpCalleeParam$9);
         }
       }
-      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_tmpDoWhileFlag);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -184,6 +185,7 @@ if (b) {
           k = $( m );
         }
       }
+      e = k;
       e = k;
     }
     else {

@@ -63,15 +63,16 @@ $(a);
 
 `````js filename=intro
 $(100);
-let tmpNestedComplexRhs = false;
-let tmpClusterSSA_a = undefined;
+let tmpNestedComplexRhs = undefined;
+let tmpSSA_a = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
   tmpNestedComplexRhs = tmpChainElementCall;
-  tmpClusterSSA_a = tmpChainElementCall;
+  tmpSSA_a = tmpChainElementCall;
 }
+let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   let tmpNestedComplexRhs$1 = undefined;
@@ -81,10 +82,10 @@ if (tmpNestedComplexRhs) {
     const tmpChainElementCall$1 = $(1);
     tmpNestedComplexRhs$1 = tmpChainElementCall$1;
   }
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       let tmpNestedComplexRhs$2 = undefined;
       const tmpIfTest$2 = $ == null;
@@ -93,15 +94,15 @@ if (tmpNestedComplexRhs) {
         const tmpChainElementCall$2 = $(1);
         tmpNestedComplexRhs$2 = tmpChainElementCall$2;
       }
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -110,7 +111,7 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-let a = false;
+let a = undefined;
 let b = undefined;
 const c = $ == null;
 if (c) {
@@ -121,21 +122,22 @@ else {
   a = d;
   b = d;
 }
+let e = a;
 if (a) {
   $( 100 );
-  let e = undefined;
-  const f = $ == null;
-  if (f) {
+  let f = undefined;
+  const g = $ == null;
+  if (g) {
 
   }
   else {
-    const g = $( 1 );
-    e = g;
+    const h = $( 1 );
+    f = h;
   }
-  b = e;
-  let h = e;
+  b = f;
+  e = f;
   while ($LOOP_UNROLL_9) {
-    if (h) {
+    if (e) {
       $( 100 );
       let i = undefined;
       const j = $ == null;
@@ -147,7 +149,7 @@ if (a) {
         i = k;
       }
       b = i;
-      h = i;
+      e = i;
     }
     else {
       break;

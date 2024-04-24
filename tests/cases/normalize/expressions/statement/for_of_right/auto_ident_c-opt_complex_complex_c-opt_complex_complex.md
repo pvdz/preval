@@ -113,7 +113,7 @@ else {
   }
 }
 let l = undefined;
-for (l of d {
+for (l of d) {
 
 }
 $( c );

@@ -77,8 +77,8 @@ tmpCallCallee$3(tmpCalleeParam$3);
 `````js filename=intro
 const tmpObjLitVal = { y: `pass2` };
 const tmpCalleeParam = { x: tmpObjLitVal };
-const tmpClusterSSA_bindingPatternObjRoot = $(tmpCalleeParam);
-const objPatternBeforeDefault = tmpClusterSSA_bindingPatternObjRoot.x;
+const tmpSSA_bindingPatternObjRoot = $(tmpCalleeParam);
+const objPatternBeforeDefault = tmpSSA_bindingPatternObjRoot.x;
 let objPatternAfterDefault = undefined;
 let objPatternCrashTest = false;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
@@ -94,7 +94,7 @@ if (objPatternCrashTest) {
   objPatternCrashTest = objPatternAfterDefault === null;
 }
 if (objPatternCrashTest) {
-  objPatternAfterDefault.cannotDestructureThis;
+  objPatternCrashTest = objPatternAfterDefault.cannotDestructureThis;
 } else {
 }
 $(`ok`);
@@ -127,7 +127,7 @@ else {
   f = e === null;
 }
 if (f) {
-  e.cannotDestructureThis;
+  f = e.cannotDestructureThis;
 }
 $( "ok" );
 `````

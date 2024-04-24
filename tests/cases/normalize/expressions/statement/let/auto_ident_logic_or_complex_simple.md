@@ -45,10 +45,11 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-const xyz = $(tmpCalleeParam);
+let xyz = $(tmpCalleeParam);
 if (xyz) {
   $(xyz);
 } else {
+  xyz = 2;
   $(2);
 }
 const a = { a: 999, b: 1000 };
@@ -61,11 +62,12 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-const b = $( a );
+let b = $( a );
 if (b) {
   $( b );
 }
 else {
+  b = 2;
   $( 2 );
 }
 const c = {

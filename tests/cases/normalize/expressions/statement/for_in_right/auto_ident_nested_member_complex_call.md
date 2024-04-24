@@ -91,7 +91,7 @@ const h = $( 3 );
 f[g] = h;
 d[e] = h;
 let i = undefined;
-for (i in h {
+for (i in h) {
 
 }
 $( c, a, b, 3 );

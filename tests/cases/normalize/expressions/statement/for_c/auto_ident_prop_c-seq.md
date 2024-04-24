@@ -54,16 +54,16 @@ $(a, b);
 `````js filename=intro
 const b = { c: 1 };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCompObj = $(b);
   tmpCompObj.c;
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpCompObj$1 = $(b);
       tmpCompObj$1.c;
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -83,16 +83,16 @@ const b = {
 a: 999,
 b: 1000
 ;
-const c = $( 1 );
+let c = $( 1 );
 if (c) {
   const d = $( a );
   d.c;
-  let e = $( 1 );
+  c = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (e) {
-      const f = $( a );
-      f.c;
-      e = $( 1 );
+    if (c) {
+      const e = $( a );
+      e.c;
+      c = $( 1 );
     }
     else {
       break;

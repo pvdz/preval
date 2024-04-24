@@ -64,17 +64,19 @@ $(a, x, y, z);
 ## Output
 
 `````js filename=intro
+let x = 1;
+let y = 2;
 const z = [10, 20, 30];
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
   const arrPatternSplat = [...z];
-  const tmpClusterSSA_x = arrPatternSplat[0];
-  const tmpClusterSSA_y = arrPatternSplat[1];
-  $(1, tmpClusterSSA_x, tmpClusterSSA_y, z);
+  x = arrPatternSplat[0];
+  y = arrPatternSplat[1];
+  $(1, x, y, z);
 } else {
-  $(1, 1, 2, z);
+  $(1, x, y, z);
 }
 `````
 
@@ -83,18 +85,20 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = [ 10, 20, 30,, ];
-const b = $( "a" );
-const c = $( "a" );
-const d = b === c;
-if (d) {
-  const e = [ ... a,, ];
-  const f = e[ 0 ];
-  const g = e[ 1 ];
-  $( 1, f, g, a );
+let a = 1;
+let b = 2;
+const c = [ 10, 20, 30,, ];
+const d = $( "a" );
+const e = $( "a" );
+const f = d === e;
+if (f) {
+  const g = [ ... c,, ];
+  a = g[ 0 ];
+  b = g[ 1 ];
+  $( 1, a, b, c );
 }
 else {
-  $( 1, 1, 2, a );
+  $( 1, a, b, c );
 }
 `````
 

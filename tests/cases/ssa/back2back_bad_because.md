@@ -89,9 +89,9 @@ if ($) {
 `````js filename=intro
 if ($) {
   const x = $(5);
-  const tmpClusterSSA_x = $(x);
-  $(tmpClusterSSA_x);
-  $(tmpClusterSSA_x);
+  const tmpSSA_x = $(x);
+  $(tmpSSA_x);
+  $(tmpSSA_x);
 } else {
 }
 `````

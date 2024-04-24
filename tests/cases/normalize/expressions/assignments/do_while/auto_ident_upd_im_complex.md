@@ -73,7 +73,8 @@ const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-let tmpClusterSSA_a = tmpPostUpdArgVal;
+let tmpSSA_a = tmpPostUpdArgVal;
+let tmpSSA_tmpDoWhileFlag = tmpPostUpdArgVal;
 if (tmpPostUpdArgVal) {
   $(100);
   const tmpCalleeParam$1 = $(b);
@@ -81,25 +82,25 @@ if (tmpPostUpdArgVal) {
   const tmpPostUpdArgVal$1 = tmpPostUpdArgObj$1.x;
   const tmpAssignMemRhs$1 = tmpPostUpdArgVal$1 - 1;
   tmpPostUpdArgObj$1.x = tmpAssignMemRhs$1;
-  tmpClusterSSA_a = tmpPostUpdArgVal$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpPostUpdArgVal$1;
+  tmpSSA_a = tmpPostUpdArgVal$1;
+  tmpSSA_tmpDoWhileFlag = tmpPostUpdArgVal$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$2 = $(b);
       const tmpPostUpdArgObj$2 = $(tmpCalleeParam$2);
       const tmpPostUpdArgVal$2 = tmpPostUpdArgObj$2.x;
       const tmpAssignMemRhs$2 = tmpPostUpdArgVal$2 - 1;
       tmpPostUpdArgObj$2.x = tmpAssignMemRhs$2;
-      tmpClusterSSA_a = tmpPostUpdArgVal$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpPostUpdArgVal$2;
+      tmpSSA_a = tmpPostUpdArgVal$2;
+      tmpSSA_tmpDoWhileFlag = tmpPostUpdArgVal$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## PST Output
@@ -115,17 +116,18 @@ const d = c.x;
 const e = d - 1;
 c.x = e;
 let f = d;
+let g = d;
 if (d) {
   $( 100 );
-  const g = $( a );
-  const h = $( g );
-  const i = h.x;
-  const j = i - 1;
-  h.x = j;
-  f = i;
-  let k = i;
+  const h = $( a );
+  const i = $( h );
+  const j = i.x;
+  const k = j - 1;
+  i.x = k;
+  f = j;
+  g = j;
   while ($LOOP_UNROLL_9) {
-    if (k) {
+    if (g) {
       $( 100 );
       const l = $( a );
       const m = $( l );
@@ -133,7 +135,7 @@ if (d) {
       const o = n - 1;
       m.x = o;
       f = n;
-      k = n;
+      g = n;
     }
     else {
       break;

@@ -77,14 +77,15 @@ if (tmpNestedComplexRhs) {
   tmpNestedComplexRhs = $(tmpCalleeParam$1);
 } else {
 }
-let tmpClusterSSA_a = undefined;
+let tmpSSA_a = undefined;
 if (tmpNestedComplexRhs) {
-  tmpClusterSSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
 } else {
   const tmpCalleeParam$3 = $(2);
   tmpNestedComplexRhs = $(tmpCalleeParam$3);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
 }
+let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpCalleeParam$2 = $(1);
@@ -99,10 +100,10 @@ if (tmpNestedComplexRhs) {
     const tmpCalleeParam$6 = $(2);
     tmpNestedComplexRhs$1 = $(tmpCalleeParam$6);
   }
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$5 = $(1);
       let tmpNestedComplexRhs$2 = $(tmpCalleeParam$5);
@@ -116,15 +117,15 @@ if (tmpNestedComplexRhs) {
         const tmpCalleeParam$9 = $(2);
         tmpNestedComplexRhs$2 = $(tmpCalleeParam$9);
       }
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -148,25 +149,26 @@ else {
   b = $( e );
   d = b;
 }
+let f = b;
 if (b) {
   $( 100 );
-  const f = $( 1 );
-  let g = $( f );
-  if (g) {
-    const h = $( 1 );
-    g = $( h );
+  const g = $( 1 );
+  let h = $( g );
+  if (h) {
+    const i = $( 1 );
+    h = $( i );
   }
-  if (g) {
+  if (h) {
 
   }
   else {
-    const i = $( 2 );
-    g = $( i );
+    const j = $( 2 );
+    h = $( j );
   }
-  d = g;
-  let j = g;
+  d = h;
+  f = h;
   while ($LOOP_UNROLL_9) {
-    if (j) {
+    if (f) {
       $( 100 );
       const k = $( 1 );
       let l = $( k );
@@ -182,7 +184,7 @@ if (b) {
         l = $( n );
       }
       d = l;
-      j = l;
+      f = l;
     }
     else {
       break;

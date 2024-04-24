@@ -68,31 +68,32 @@ $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
 const tmpNestedComplexRhs = delete tmpDeleteObj.y;
-let tmpClusterSSA_a = tmpNestedComplexRhs;
+let tmpSSA_a = tmpNestedComplexRhs;
+let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   $(1);
   $(2);
   const tmpDeleteObj$1 = $(arg);
   const tmpNestedComplexRhs$1 = delete tmpDeleteObj$1.y;
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       $(1);
       $(2);
       const tmpDeleteObj$2 = $(arg);
       const tmpNestedComplexRhs$2 = delete tmpDeleteObj$2.y;
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## PST Output
@@ -107,23 +108,24 @@ const a = { y: 1 };
 const b = $( a );
 const c = deleteb.y;
 let d = c;
+let e = c;
 if (c) {
   $( 100 );
   $( 1 );
   $( 2 );
-  const e = $( a );
-  const f = deletee.y;
-  d = f;
-  let g = f;
+  const f = $( a );
+  const g = deletef.y;
+  d = g;
+  e = g;
   while ($LOOP_UNROLL_9) {
-    if (g) {
+    if (e) {
       $( 100 );
       $( 1 );
       $( 2 );
       const h = $( a );
       const i = deleteh.y;
       d = i;
-      g = i;
+      e = i;
     }
     else {
       break;

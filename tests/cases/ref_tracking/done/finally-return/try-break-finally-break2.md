@@ -1,8 +1,8 @@
 # Preval test case
 
-# finally_wrapping_function.md
+# try-break-finally-break2.md
 
-> Ref tracking > Done > Finally-return > Finally wrapping function
+> Ref tracking > Done > Finally-return > Try-break-finally-break2
 > Trying to come up with a case where abrupt flow distortion matters
 
 ## Options
@@ -44,36 +44,44 @@
 (Annotated with pids)
 
 `````filename=intro
-let f___4__ = function () {
-  debugger;
-  let x___10__ = 1;
-  try /*13*/ {
-    const tmpIfTest___16__ = $();
-    if (tmpIfTest___20__) {
-      /*21*/ x___25__ = 2;
-      return 100;
-    } /*29*/ else {
+let x___4__ = 1;
+a___7__: /*8*/ {
+  x___12__ = 2;
+  b___14__: /*15*/ {
+    x___19__ = 3;
+    try /*21*/ {
+      if ($) {
+        /*24*/ x___28__ = 4;
+        break a___30__;
+      } /*31*/ else {
+        x___35__ = 5;
+      }
+    } finally /*36*/ {
+      $(x___40__);
+      if ($) {
+        /*43*/ x___47__ = 6;
+        break b___49__;
+      } /*50*/ else {
+      }
     }
-  } finally /*30*/ {
-    $(x___34__);
+    $(x___54__);
   }
-  return undefined___36__;
-};
-$(f___40__);
+  $(x___58__);
+}
+$(x___62__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
-f:
-- w @4       | ########## | 40          | none           | none
-- r @40      | 4
-
 x:
-- w @10      | ########## | 34          | none           | 25
-- w @25      | ########## | not read    | 10             | none
-- r @34      | 10
-
-tmpIfTest:
-- w @16      | ########## | 20          | none           | none
-- r @20      | 16
+  - w @4       | ########## | 62          | none           | 12
+  - w @12      | ########## | 58          | 4              | 19
+  - w @19      | ########## | 40,54       | 12             | 28,35,47
+  - w @28      | ########## | not read    | 19             | none
+  - w @35      | ########## | not read    | 19             | none
+  - r @40      | 19
+  - w @47      | ########## | not read    | 19             | none
+  - r @54      | 19
+  - r @58      | 12
+  - r @62      | 4

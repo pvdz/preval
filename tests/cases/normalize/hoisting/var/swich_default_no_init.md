@@ -76,11 +76,13 @@ $(x);
 
 `````js filename=intro
 const tmpSwitchValue = $(1);
-let tmpIfTest$1 = true;
+let tmpSwitchCaseToStart = 0;
+let tmpIfTest$1 = false;
 const tmpIfTest = 1 === tmpSwitchValue;
 if (tmpIfTest) {
-  tmpIfTest$1 = false;
+  tmpSwitchCaseToStart = 1;
 } else {
+  tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
 }
 if (tmpIfTest$1) {
   $(undefined);
@@ -95,12 +97,16 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-let b = true;
-const c = 1 === a;
-if (c) {
-  b = false;
+let b = 0;
+let c = false;
+const d = 1 === a;
+if (d) {
+  b = 1;
 }
-if (b) {
+else {
+  c = b <= 0;
+}
+if (c) {
   $( undefined );
 }
 else {

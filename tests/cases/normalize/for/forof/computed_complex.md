@@ -66,7 +66,7 @@ y: 2
 ;
 const c = $( b );
 let d = undefined;
-for (d of c {
+for (d of c) {
   const e = $( a );
   const f = $( "foo" );
   e[f] = d;

@@ -54,19 +54,19 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpCompProp = $(`\$`);
   const b = { $: $ };
   const tmpNewCallee = b[tmpCompProp];
   new tmpNewCallee(1);
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpCompProp$1 = $(`\$`);
       const tmpNewCallee$1 = b[tmpCompProp$1];
       new tmpNewCallee$1(1);
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -82,30 +82,30 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+let a = $( 1 );
 if (a) {
   const b = $( "$" );
   const c = { $: $ };
   const d = c[ b ];
   new d( 1 );
-  let e = $( 1 );
+  a = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (e) {
-      const f = $( "$" );
-      const g = c[ f ];
-      new g( 1 );
-      e = $( 1 );
+    if (a) {
+      const e = $( "$" );
+      const f = c[ e ];
+      new f( 1 );
+      a = $( 1 );
     }
     else {
       break;
     }
   }
 }
-const h = {
+const g = {
 a: 999,
 b: 1000
 ;
-$( h );
+$( g );
 `````
 
 ## Globals

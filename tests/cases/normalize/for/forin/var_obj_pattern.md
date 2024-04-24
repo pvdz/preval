@@ -58,7 +58,7 @@ const c = {
 a: 1,
 b: 2
 ;
-for (a in c {
+for (a in c) {
   const d = [ ... a,, ];
   b = d[ 0 ];
   $( b );

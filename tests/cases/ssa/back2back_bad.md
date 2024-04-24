@@ -81,11 +81,13 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(5);
+  let x = $(5);
   if ($) {
     const tmpReturnArg = $(x);
+    x = tmpReturnArg;
     $(tmpReturnArg);
   } else {
+    x = undefined;
     $(undefined);
   }
 } else {
@@ -98,12 +100,14 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  const a = $( 5 );
+  let a = $( 5 );
   if ($) {
     const b = $( a );
+    a = b;
     $( b );
   }
   else {
+    a = undefined;
     $( undefined );
   }
 }

@@ -59,9 +59,9 @@ tmpCallCallee$1(tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   debugger;
-  const x = $(1);
+  let x = $(1);
   $(x, `middle`);
-  $(x, `observable rhs`);
+  x = $(x, `observable rhs`);
   const tmpReturnArg = $(`end`);
   return tmpReturnArg;
 };
@@ -78,9 +78,9 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  const b = $( 1 );
+  let b = $( 1 );
   $( b, "middle" );
-  $( b, "observable rhs" );
+  b = $( b, "observable rhs" );
   const c = $( "end" );
   return c;
 };

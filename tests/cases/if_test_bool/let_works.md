@@ -79,13 +79,15 @@ f();
 `````js filename=intro
 const f = function () {
   debugger;
-  const x = $(1);
+  let x = $(1);
+  const tmpCalleeParam$1 = !x;
   if (x) {
-    $(`a`, false);
+    $(`a`, tmpCalleeParam$1);
   } else {
-    $(`b`, true);
+    $(`b`, tmpCalleeParam$1);
   }
   if ($) {
+    x = 10;
     $(10);
     return undefined;
   } else {
@@ -105,14 +107,16 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  const b = $( 1 );
+  let b = $( 1 );
+  const c = !b;
   if (b) {
-    $( "a", false );
+    $( "a", c );
   }
   else {
-    $( "b", true );
+    $( "b", c );
   }
   if ($) {
+    b = 10;
     $( 10 );
     return undefined;
   }

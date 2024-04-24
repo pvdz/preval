@@ -82,7 +82,13 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  $(2);
+  let x = 1;
+  if ($) {
+    x = 2;
+    $(2);
+  } else {
+    $(x);
+  }
 } else {
 }
 `````
@@ -93,7 +99,14 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  $( 2 );
+  let a = 1;
+  if ($) {
+    a = 2;
+    $( 2 );
+  }
+  else {
+    $( a );
+  }
 }
 `````
 

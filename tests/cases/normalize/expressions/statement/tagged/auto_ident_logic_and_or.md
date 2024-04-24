@@ -65,8 +65,8 @@ if (tmpCalleeParam$1) {
   $(tmpCalleeParam, tmpCalleeParam$1);
 } else {
   const tmpCalleeParam$7 = $(2);
-  const tmpClusterSSA_tmpCalleeParam$1 = $(tmpCalleeParam$7);
-  $(tmpCalleeParam, tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam$1 = $(tmpCalleeParam$7);
+  $(tmpCalleeParam, tmpCalleeParam$1);
 }
 $(a);
 `````
@@ -92,8 +92,8 @@ if (d) {
 }
 else {
   const f = $( 2 );
-  const g = $( f );
-  $( b, g );
+  d = $( f );
+  $( b, d );
 }
 $( a );
 `````

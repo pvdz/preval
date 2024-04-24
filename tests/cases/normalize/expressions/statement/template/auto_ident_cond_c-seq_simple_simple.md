@@ -50,18 +50,24 @@ $(a);
 ## Output
 
 `````js filename=intro
+let tmpCallCallee$1 = undefined;
 const tmpIfTest = $(30);
+let tmpBinBothRhs = undefined;
+let tmpStringConcatL = undefined;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCallCallee$1 = $(2);
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCallCallee$1 = $(2);
+  tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+  tmpStringConcatL = $coerce(tmpBinBothRhs, `plustr`);
+  tmpCalleeParam = `before  ${tmpStringConcatL}  after`;
+  $(tmpCalleeParam);
 } else {
   const tmpCalleeParam$1 = $(100);
-  const tmpClusterSSA_tmpCallCallee$2 = $(tmpCalleeParam$1);
-  const tmpClusterSSA_tmpBinBothRhs$1 = $coerce(tmpClusterSSA_tmpCallCallee$2, `string`);
-  const tmpClusterSSA_tmpCalleeParam$1 = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCallCallee$1 = $(tmpCalleeParam$1);
+  tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+  tmpStringConcatL = $coerce(tmpBinBothRhs, `plustr`);
+  tmpCalleeParam = `before  ${tmpStringConcatL}  after`;
+  $(tmpCalleeParam);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -72,25 +78,31 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 30 );
-if (a) {
-  const b = $( 2 );
-  const c = $coerce( b, "string" );
-  const d = `before  ${[object Object]}  after`;
-  $( d );
+let a = undefined;
+const b = $( 30 );
+let c = undefined;
+let d = undefined;
+let e = undefined;
+if (b) {
+  a = $( 2 );
+  c = $coerce( a, "string" );
+  d = $coerce( c, "plustr" );
+  e = `before  ${[object Object]}  after`;
+  $( e );
 }
 else {
-  const e = $( 100 );
-  const f = $( e );
-  const g = $coerce( f, "string" );
-  const h = `before  ${[object Object]}  after`;
-  $( h );
+  const f = $( 100 );
+  a = $( f );
+  c = $coerce( a, "string" );
+  d = $coerce( c, "plustr" );
+  e = `before  ${[object Object]}  after`;
+  $( e );
 }
-const i = {
+const g = {
 a: 999,
 b: 1000
 ;
-$( i );
+$( g );
 `````
 
 ## Globals

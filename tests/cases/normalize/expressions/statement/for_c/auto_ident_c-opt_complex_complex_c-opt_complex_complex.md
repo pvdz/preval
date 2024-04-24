@@ -66,7 +66,7 @@ $(a);
 
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   const b = { x: tmpObjLitVal };
   const tmpChainElementCall = $(b);
@@ -82,9 +82,9 @@ if (tmpIfTest) {
       tmpChainElementObject[tmpChainRootComputed$1];
     }
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpChainElementCall$1 = $(b);
       const tmpIfTest$2 = tmpChainElementCall$1 == null;
       if (tmpIfTest$2) {
@@ -98,7 +98,7 @@ if (tmpIfTest) {
           tmpChainElementObject$1[tmpChainRootComputed$4];
         }
       }
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -115,7 +115,7 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = $( 1 );
+let b = $( 1 );
 if (b) {
   const c = { x: a };
   const d = $( c );
@@ -135,38 +135,38 @@ if (b) {
       g[ i ];
     }
   }
-  let j = $( 1 );
+  b = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (j) {
-      const k = $( c );
-      const l = k == null;
-      if (l) {
+    if (b) {
+      const j = $( c );
+      const k = j == null;
+      if (k) {
 
       }
       else {
-        const m = $( "x" );
-        const n = k[ m ];
-        const o = n == null;
-        if (o) {
+        const l = $( "x" );
+        const m = j[ l ];
+        const n = m == null;
+        if (n) {
 
         }
         else {
-          const p = $( "y" );
-          n[ p ];
+          const o = $( "y" );
+          m[ o ];
         }
       }
-      j = $( 1 );
+      b = $( 1 );
     }
     else {
       break;
     }
   }
 }
-const q = {
+const p = {
 a: 999,
 b: 1000
 ;
-$( q );
+$( p );
 `````
 
 ## Globals

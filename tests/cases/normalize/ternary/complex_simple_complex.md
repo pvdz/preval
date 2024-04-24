@@ -53,12 +53,13 @@ if (tmpIfTest) {
 } else {
   a = $(3);
 }
+let b = 4;
 const tmpIfTest$1 = $(0);
 if (tmpIfTest$1) {
   $(a, 4);
 } else {
-  const tmpClusterSSA_b = $(5);
-  $(a, tmpClusterSSA_b);
+  b = $(5);
+  $(a, b);
 }
 `````
 
@@ -75,13 +76,14 @@ if (b) {
 else {
   a = $( 3 );
 }
-const c = $( 0 );
-if (c) {
+let c = 4;
+const d = $( 0 );
+if (d) {
   $( a, 4 );
 }
 else {
-  const d = $( 5 );
-  $( a, d );
+  c = $( 5 );
+  $( a, c );
 }
 `````
 

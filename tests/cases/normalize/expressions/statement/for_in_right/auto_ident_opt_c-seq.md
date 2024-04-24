@@ -86,7 +86,7 @@ else {
   c = f;
 }
 let g = undefined;
-for (g in c {
+for (g in c) {
 
 }
 $( b );

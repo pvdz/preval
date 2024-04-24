@@ -53,10 +53,10 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_b = $(2);
-$(tmpClusterSSA_b);
+const tmpSSA_b = $(2);
+$(tmpSSA_b);
 const a = { a: 999, b: 1000 };
-$(a, tmpClusterSSA_b);
+$(a, tmpSSA_b);
 `````
 
 ## PST Output

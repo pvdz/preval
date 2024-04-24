@@ -55,10 +55,10 @@ const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam$1);
 tmpNestedAssignObjPatternRhs.a;
 const tmpCalleeParam$3 = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$3);
-const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs$1.a;
+const tmpSSA_a$1 = tmpNestedAssignObjPatternRhs$1.a;
 const tmpCalleeParam = tmpNestedAssignObjPatternRhs + tmpNestedAssignObjPatternRhs$1;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(tmpSSA_a$1);
 `````
 
 ## PST Output

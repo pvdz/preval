@@ -69,7 +69,7 @@ const a = $( "y" );
 const b = { y: 1 };
 const c = deleteb[ a ];
 let d = undefined;
-for (d in c {
+for (d in c) {
 
 }
 $( c, b );

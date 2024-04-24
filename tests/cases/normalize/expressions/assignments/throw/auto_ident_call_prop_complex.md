@@ -43,8 +43,8 @@ throw tmpThrowArg;
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-const tmpClusterSSA_a = tmpCallObj.$(1);
-throw tmpClusterSSA_a;
+const tmpSSA_a = tmpCallObj.$(1);
+throw tmpSSA_a;
 `````
 
 ## PST Output

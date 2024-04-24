@@ -53,11 +53,11 @@ const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-const tmpClusterSSA_b = arrPatternSplat[0];
+const tmpSSA_b = arrPatternSplat[0];
 let x = undefined;
 for (x in tmpNestedAssignArrPatternRhs) {
 }
-$(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignArrPatternRhs, tmpSSA_b);
 `````
 
 ## PST Output
@@ -71,7 +71,7 @@ const c = $( b );
 const d = [ ... c,, ];
 const e = d[ 0 ];
 let f = undefined;
-for (f in c {
+for (f in c) {
 
 }
 $( c, e );

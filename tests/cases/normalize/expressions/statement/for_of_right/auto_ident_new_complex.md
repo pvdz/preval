@@ -56,7 +56,7 @@ With rename=true
 const a = $( $ );
 const b = new a( 1 );
 let c = undefined;
-for (c of b {
+for (c of b) {
 
 }
 const d = {

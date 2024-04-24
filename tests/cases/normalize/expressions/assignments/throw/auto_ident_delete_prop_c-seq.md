@@ -47,8 +47,8 @@ $(1);
 $(2);
 const arg = { y: 1 };
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
-throw tmpClusterSSA_a;
+const tmpSSA_a = delete tmpDeleteObj.y;
+throw tmpSSA_a;
 `````
 
 ## PST Output

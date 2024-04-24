@@ -47,11 +47,12 @@ $(a);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
 const a = tmpBinBothLhs + tmpBinBothRhs;
+let tmpCalleeParam = a;
 if (a) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  $(a);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -64,12 +65,13 @@ With rename=true
 const a = $( 1 );
 const b = $( 2 );
 const c = a + b;
+let d = c;
 if (c) {
-  const d = $( 100 );
+  d = $( 100 );
   $( d );
 }
 else {
-  $( c );
+  $( d );
 }
 $( c );
 `````

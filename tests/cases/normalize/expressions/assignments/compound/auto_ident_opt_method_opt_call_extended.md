@@ -62,17 +62,17 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpIfTest$1 = $ == null;
-let tmpClusterSSA_a = NaN;
+let tmpSSA_a = NaN;
 if (tmpIfTest$1) {
   a ** 0;
   $(NaN);
 } else {
   const tmpObjLitVal$1 = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
-  tmpClusterSSA_a = a * tmpChainElementCall;
-  $(tmpClusterSSA_a);
+  tmpSSA_a = a * tmpChainElementCall;
+  $(tmpSSA_a);
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

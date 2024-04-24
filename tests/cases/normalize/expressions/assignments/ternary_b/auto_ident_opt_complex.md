@@ -58,6 +58,7 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   let tmpNestedComplexRhs = undefined;
@@ -70,10 +71,11 @@ if (tmpIfTest) {
     tmpNestedComplexRhs = tmpChainElementObject;
   }
   a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
+  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -87,25 +89,27 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 1 );
-if (b) {
-  let c = undefined;
-  const d = { x: 1 };
-  const e = $( d );
-  const f = e == null;
-  if (f) {
+let b = undefined;
+const c = $( 1 );
+if (c) {
+  let d = undefined;
+  const e = { x: 1 };
+  const f = $( e );
+  const g = f == null;
+  if (g) {
 
   }
   else {
-    const g = e.x;
-    c = g;
+    const h = f.x;
+    d = h;
   }
-  a = c;
-  $( c );
+  a = d;
+  b = d;
+  $( b );
 }
 else {
-  const h = $( 200 );
-  $( h );
+  b = $( 200 );
+  $( b );
 }
 $( a );
 `````

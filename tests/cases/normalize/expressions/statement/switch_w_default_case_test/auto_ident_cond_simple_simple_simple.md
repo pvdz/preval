@@ -91,8 +91,15 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpSwitchValue = $(1);
+let tmpSwitchCaseToStart = 1;
 const tmpIfTest = 2 === tmpSwitchValue;
+let tmpIfTest$3 = true;
 if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+}
+if (tmpIfTest$3) {
 } else {
   $(`fail1`);
   $(`fail2`);
@@ -110,8 +117,16 @@ a: 999,
 b: 1000
 ;
 const b = $( 1 );
-const c = 2 === b;
-if (c) {
+let c = 1;
+const d = 2 === b;
+let e = true;
+if (d) {
+  c = 0;
+}
+else {
+  e = c <= 0;
+}
+if (e) {
 
 }
 else {

@@ -60,7 +60,7 @@ $(x);
 let x = $(10);
 while (true) {
   let $tmpLoopUnrollCheck = true;
-  $(20);
+  x = $(20);
   const tmpIfTest = $(true);
   if (tmpIfTest) {
     $tmpLoopUnrollCheck = false;
@@ -68,7 +68,7 @@ while (true) {
   }
   if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
-      $(20);
+      x = $(20);
       const tmpIfTest$1 = $(true);
       if (tmpIfTest$1) {
         break;
@@ -90,14 +90,14 @@ With rename=true
 let a = $( 10 );
 while (true) {
   let b = true;
-  $( 20 );
+  a = $( 20 );
   const c = $( true );
   if (c) {
     b = false;
   }
   if (b) {
     while ($LOOP_UNROLL_10) {
-      $( 20 );
+      a = $( 20 );
       const d = $( true );
       if (d) {
         break;

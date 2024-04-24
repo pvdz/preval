@@ -94,8 +94,8 @@ let tmpSwitchCaseToStart = 1;
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
-const tmpIfTest = tmpClusterSSA_a === tmpSwitchValue;
+const tmpSSA_a = delete tmpDeleteObj.y;
+const tmpIfTest = tmpSSA_a === tmpSwitchValue;
 if (tmpIfTest) {
   tmpSwitchCaseToStart = 0;
 } else {
@@ -111,7 +111,7 @@ if (tmpIfTest$5) {
 } else {
 }
 $(`fail2`);
-$(tmpClusterSSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## PST Output

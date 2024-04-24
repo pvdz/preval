@@ -63,7 +63,7 @@ b: 1000
 ;
 const c = a.$( 1 );
 let d = undefined;
-for (d in c {
+for (d in c) {
 
 }
 $( b );

@@ -65,13 +65,14 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````js filename=intro
 const f = function () {
   debugger;
+  let x = undefined;
   const tmpIfTest = $(1);
   if (tmpIfTest) {
     $(100);
     return undefined;
   } else {
-    const tmpClusterSSA_x = $(2, `b`);
-    return tmpClusterSSA_x;
+    x = $(2, `b`);
+    return x;
   }
 };
 const tmpCalleeParam = f();
@@ -85,14 +86,15 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  const b = $( 1 );
-  if (b) {
+  let b = undefined;
+  const c = $( 1 );
+  if (c) {
     $( 100 );
     return undefined;
   }
   else {
-    const c = $( 2, "b" );
-    return c;
+    b = $( 2, "b" );
+    return b;
   }
 };
 const d = a();

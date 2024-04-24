@@ -51,15 +51,17 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+let tmpBinBothRhs = `undefined`;
+let tmpCalleeParam = `before  undefined  after`;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
   $(`before  undefined  after`);
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
+  tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -70,16 +72,18 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-const b = $ == null;
-if (b) {
+let b = "undefined";
+let c = "before  undefined  after";
+const d = $ == null;
+if (d) {
   $( "before  undefined  after" );
 }
 else {
-  const c = $( 1 );
-  a = c;
-  const d = $coerce( c, "string" );
-  const e = `before  ${[object Object]}  after`;
-  $( e );
+  const e = $( 1 );
+  a = e;
+  b = $coerce( e, "string" );
+  c = `before  ${[object Object]}  after`;
+  $( c );
 }
 $( a );
 `````

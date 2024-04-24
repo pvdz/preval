@@ -54,7 +54,7 @@ $(a, b);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 const b = { x: 1 };
 if (tmpCalleeParam) {
   const tmpCalleeParam$1 = $(b);
@@ -63,6 +63,7 @@ if (tmpCalleeParam) {
   const varInitAssignLhsComputedRhs = tmpBinLhs - 1;
   varInitAssignLhsComputedObj.x = varInitAssignLhsComputedRhs;
   a = varInitAssignLhsComputedRhs;
+  tmpCalleeParam = varInitAssignLhsComputedRhs;
   $(varInitAssignLhsComputedRhs);
 } else {
   $(tmpCalleeParam);
@@ -79,7 +80,7 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 100 );
+let b = $( 100 );
 const c = { x: 1 };
 if (b) {
   const d = $( c );
@@ -88,6 +89,7 @@ if (b) {
   const g = f - 1;
   e.x = g;
   a = g;
+  b = g;
   $( g );
 }
 else {

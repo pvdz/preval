@@ -39,8 +39,9 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const x = $(1);
+let x = $(1);
 if (x) {
+  x = 2;
   $(2);
 } else {
   $(x);
@@ -52,8 +53,9 @@ if (x) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+let a = $( 1 );
 if (a) {
+  a = 2;
   $( 2 );
 }
 else {

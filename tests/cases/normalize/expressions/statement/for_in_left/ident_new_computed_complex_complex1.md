@@ -68,7 +68,7 @@ a: 999,
 b: 1000
 ;
 let c = undefined;
-for (c in a {
+for (c in a) {
   const d = $( 1 );
   const e = d[ 2 ];
   const f = new e( 3 );

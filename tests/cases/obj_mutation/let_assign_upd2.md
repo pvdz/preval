@@ -61,22 +61,22 @@ $(blob);
 const blob = { thing: `woop`, xyz: 1 };
 $(blob);
 const tmpBinLhs$1 = blob.xyz;
-const tmpClusterSSA_tmpDoWhileFlag = tmpBinLhs$1 < 10;
-if (tmpClusterSSA_tmpDoWhileFlag) {
+let tmpSSA_tmpDoWhileFlag = tmpBinLhs$1 < 10;
+if (tmpSSA_tmpDoWhileFlag) {
   const tmpBinLhs$2 = blob.xyz;
   const tmpAssignMemRhs$1 = tmpBinLhs$2 + 1;
   blob.xyz = tmpAssignMemRhs$1;
   $(blob);
   const tmpBinLhs$4 = blob.xyz;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpBinLhs$4 < 10;
+  tmpSSA_tmpDoWhileFlag = tmpBinLhs$4 < 10;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       const tmpBinLhs$3 = blob.xyz;
       const tmpAssignMemRhs$2 = tmpBinLhs$3 + 1;
       blob.xyz = tmpAssignMemRhs$2;
       $(blob);
       const tmpBinLhs$5 = blob.xyz;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpBinLhs$5 < 10;
+      tmpSSA_tmpDoWhileFlag = tmpBinLhs$5 < 10;
     } else {
       break;
     }
@@ -97,22 +97,22 @@ xyz: 1
 ;
 $( a );
 const b = a.xyz;
-const c = b < 10;
+let c = b < 10;
 if (c) {
   const d = a.xyz;
   const e = d + 1;
   a.xyz = e;
   $( a );
   const f = a.xyz;
-  let g = f < 10;
+  c = f < 10;
   while ($LOOP_UNROLL_9) {
-    if (g) {
-      const h = a.xyz;
-      const i = h + 1;
-      a.xyz = i;
+    if (c) {
+      const g = a.xyz;
+      const h = g + 1;
+      a.xyz = h;
       $( a );
-      const j = a.xyz;
-      g = j < 10;
+      const i = a.xyz;
+      c = i < 10;
     }
     else {
       break;

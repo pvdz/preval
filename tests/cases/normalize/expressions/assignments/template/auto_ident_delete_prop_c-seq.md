@@ -54,11 +54,11 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
-const tmpBinBothRhs = $coerce(tmpClusterSSA_a, `string`);
+const tmpSSA_a = delete tmpDeleteObj.y;
+const tmpBinBothRhs = $coerce(tmpSSA_a, `string`);
 const tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## PST Output

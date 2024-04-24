@@ -64,6 +64,7 @@ let tmpIfTest = $(1);
 let $tmpLoopUnrollCheck = true;
 const b = { c: $ };
 if (tmpIfTest) {
+  a = undefined;
   const tmpChainElementCall = $dotCall($, b, 1);
   a = tmpChainElementCall;
   tmpIfTest = $(1);
@@ -73,6 +74,7 @@ if (tmpIfTest) {
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     if (tmpIfTest) {
+      a = undefined;
       const tmpChainElementObject$1 = b.c;
       const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
       a = tmpChainElementCall$1;
@@ -99,6 +101,7 @@ let b = $( 1 );
 let c = true;
 const d = { c: $ };
 if (b) {
+  a = undefined;
   const e = $dotCall( $, d, 1 );
   a = e;
   b = $( 1 );
@@ -109,6 +112,7 @@ else {
 if (c) {
   while ($LOOP_UNROLL_10) {
     if (b) {
+      a = undefined;
       const f = d.c;
       const g = $dotCall( f, d, 1 );
       a = g;

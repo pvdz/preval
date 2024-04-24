@@ -53,7 +53,7 @@ With rename=true
 `````js filename=intro
 const a = $( 60 );
 let b = undefined;
-for (b of a {
+for (b of a) {
 
 }
 $( a );

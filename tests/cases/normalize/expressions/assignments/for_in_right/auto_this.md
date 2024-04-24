@@ -53,7 +53,7 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-for (a in undefined {
+for (a in undefined) {
 
 }
 $( undefined );

@@ -91,11 +91,11 @@ const danger = function () {
     return undefined;
   }
 };
-const x = danger();
+let x = danger();
 $(x);
 if ($) {
-  const tmpClusterSSA_x = $(`do not inline me`);
-  $(tmpClusterSSA_x);
+  x = $(`do not inline me`);
+  $(x);
 } else {
 }
 `````
@@ -114,11 +114,11 @@ const a = function() {
     return undefined;
   }
 };
-const b = a();
+let b = a();
 $( b );
 if ($) {
-  const c = $( "do not inline me" );
-  $( c );
+  b = $( "do not inline me" );
+  $( b );
 }
 `````
 

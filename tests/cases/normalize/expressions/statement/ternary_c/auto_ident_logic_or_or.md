@@ -59,12 +59,12 @@ if (tmpIfTest) {
   $(100);
 } else {
   const tmpCalleeParam = $(0);
-  const tmpIfTest$1 = $(tmpCalleeParam);
+  let tmpIfTest$1 = $(tmpCalleeParam);
   if (tmpIfTest$1) {
   } else {
     const tmpCalleeParam$1 = $(1);
-    const tmpClusterSSA_tmpIfTest$1 = $(tmpCalleeParam$1);
-    if (tmpClusterSSA_tmpIfTest$1) {
+    tmpIfTest$1 = $(tmpCalleeParam$1);
+    if (tmpIfTest$1) {
     } else {
       const tmpCalleeParam$3 = $(2);
       $(tmpCalleeParam$3);
@@ -86,27 +86,27 @@ if (a) {
 }
 else {
   const b = $( 0 );
-  const c = $( b );
+  let c = $( b );
   if (c) {
 
   }
   else {
     const d = $( 1 );
-    const e = $( d );
-    if (e) {
+    c = $( d );
+    if (c) {
 
     }
     else {
-      const f = $( 2 );
-      $( f );
+      const e = $( 2 );
+      $( e );
     }
   }
 }
-const g = {
+const f = {
 a: 999,
 b: 1000
 ;
-$( g );
+$( f );
 `````
 
 ## Globals

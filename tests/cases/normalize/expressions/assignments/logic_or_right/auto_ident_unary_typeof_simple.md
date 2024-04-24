@@ -48,11 +48,12 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
   a = `number`;
+  tmpCalleeParam = `number`;
   $(`number`);
 }
 $(a, 1);
@@ -67,12 +68,13 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 100 );
+let b = $( 100 );
 if (b) {
   $( b );
 }
 else {
   a = "number";
+  b = "number";
   $( "number" );
 }
 $( a, 1 );

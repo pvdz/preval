@@ -61,6 +61,7 @@ const tmpCalleeParam = { x: 1 };
 const tmpForOfRhs = $(tmpCalleeParam);
 let tmpForOfLhsNode = undefined;
 for (tmpForOfLhsNode of tmpForOfRhs) {
+  a = undefined;
   const tmpChainElementObject = b.c;
   const tmpChainElementCall = $dotCall(tmpChainElementObject, b, 1);
   a = tmpChainElementCall;
@@ -82,7 +83,8 @@ b: 1000
 const c = { x: 1 };
 const d = $( c );
 let e = undefined;
-for (e of d {
+for (e of d) {
+  b = undefined;
   const f = a.c;
   const g = $dotCall( f, a, 1 );
   b = g;

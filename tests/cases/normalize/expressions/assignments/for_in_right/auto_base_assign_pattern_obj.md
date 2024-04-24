@@ -51,11 +51,11 @@ $(a, b);
 const tmpObjLitVal = $(2);
 const tmpCalleeParam = { b: tmpObjLitVal };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const tmpClusterSSA_b = tmpNestedAssignObjPatternRhs.b;
+const tmpSSA_b = tmpNestedAssignObjPatternRhs.b;
 let x = undefined;
 for (x in tmpNestedAssignObjPatternRhs) {
 }
-$(tmpNestedAssignObjPatternRhs, tmpClusterSSA_b);
+$(tmpNestedAssignObjPatternRhs, tmpSSA_b);
 `````
 
 ## PST Output
@@ -68,7 +68,7 @@ const b = { b: a };
 const c = $( b );
 const d = c.b;
 let e = undefined;
-for (e in c {
+for (e in c) {
 
 }
 $( c, d );

@@ -66,15 +66,17 @@ $(a);
 ## Output
 
 `````js filename=intro
+let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
+  a = undefined;
   const b = { c: $ };
   const tmpChainElementCall = $dotCall($, b, 1);
+  a = tmpChainElementCall;
   $(tmpChainElementCall);
 } else {
-  const a = { a: 999, b: 1000 };
   $(a);
 }
 `````
@@ -84,20 +86,22 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-const b = $( 1 );
-const c = a === b;
-if (c) {
-  const d = { c: $ };
-  const e = $dotCall( $, d, 1 );
-  $( e );
-}
-else {
-  const f = {
+let a = {
 a: 999,
 b: 1000
-  ;
+;
+const b = $( 1 );
+const c = $( 1 );
+const d = b === c;
+if (d) {
+  a = undefined;
+  const e = { c: $ };
+  const f = $dotCall( $, e, 1 );
+  a = f;
   $( f );
+}
+else {
+  $( a );
 }
 `````
 

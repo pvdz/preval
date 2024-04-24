@@ -66,29 +66,30 @@ const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
 const tmpNestedComplexRhs = delete tmpDeleteCompObj[tmpDeleteCompProp];
-let tmpClusterSSA_a = tmpNestedComplexRhs;
+let tmpSSA_a = tmpNestedComplexRhs;
+let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpDeleteCompObj$1 = $(arg);
   const tmpDeleteCompProp$1 = $(`y`);
   const tmpNestedComplexRhs$1 = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpDeleteCompObj$2 = $(arg);
       const tmpDeleteCompProp$2 = $(`y`);
       const tmpNestedComplexRhs$2 = delete tmpDeleteCompObj$2[tmpDeleteCompProp$2];
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## PST Output
@@ -102,21 +103,22 @@ const b = $( a );
 const c = $( "y" );
 const d = deleteb[ c ];
 let e = d;
+let f = d;
 if (d) {
   $( 100 );
-  const f = $( a );
-  const g = $( "y" );
-  const h = deletef[ g ];
-  e = h;
-  let i = h;
+  const g = $( a );
+  const h = $( "y" );
+  const i = deleteg[ h ];
+  e = i;
+  f = i;
   while ($LOOP_UNROLL_9) {
-    if (i) {
+    if (f) {
       $( 100 );
       const j = $( a );
       const k = $( "y" );
       const l = deletej[ k ];
       e = l;
-      i = l;
+      f = l;
     }
     else {
       break;

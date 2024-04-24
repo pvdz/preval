@@ -72,21 +72,21 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(3);
+  let x = $(3);
   $(x);
   let $tmpLoopUnrollCheck = true;
-  let tmpClusterSSA_x = x + 1;
-  $(tmpClusterSSA_x);
-  const tmpIfTest = tmpClusterSSA_x > 5;
+  x = x + 1;
+  $(x);
+  const tmpIfTest = x > 5;
   if (tmpIfTest) {
     $tmpLoopUnrollCheck = false;
   } else {
   }
   if ($tmpLoopUnrollCheck) {
     while ($LOOP_UNROLL_10) {
-      tmpClusterSSA_x = tmpClusterSSA_x + 1;
-      $(tmpClusterSSA_x);
-      const tmpIfTest$1 = tmpClusterSSA_x > 5;
+      x = x + 1;
+      $(x);
+      const tmpIfTest$1 = x > 5;
       if (tmpIfTest$1) {
         break;
       } else {
@@ -94,7 +94,7 @@ if ($) {
     }
   } else {
   }
-  $(tmpClusterSSA_x);
+  $(x);
   $(undefined);
 } else {
 }
@@ -106,26 +106,26 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  const a = $( 3 );
+  let a = $( 3 );
   $( a );
   let b = true;
-  let c = a + 1;
-  $( c );
-  const d = c > 5;
-  if (d) {
+  a = a + 1;
+  $( a );
+  const c = a > 5;
+  if (c) {
     b = false;
   }
   if (b) {
     while ($LOOP_UNROLL_10) {
-      c = c + 1;
-      $( c );
-      const e = c > 5;
-      if (e) {
+      a = a + 1;
+      $( a );
+      const d = a > 5;
+      if (d) {
         break;
       }
     }
   }
-  $( c );
+  $( a );
   $( undefined );
 }
 `````

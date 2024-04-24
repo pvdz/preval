@@ -48,12 +48,12 @@ while (true) {
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(`yes`);
+let tmpIfTest = $(`yes`);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(`yes`);
+  tmpIfTest = $(`yes`);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(`yes`);
+    if (tmpIfTest) {
+      tmpIfTest = $(`yes`);
     } else {
       break;
     }
@@ -67,12 +67,12 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( "yes" );
+let a = $( "yes" );
 if (a) {
-  let b = $( "yes" );
+  a = $( "yes" );
   while ($LOOP_UNROLL_10) {
-    if (b) {
-      b = $( "yes" );
+    if (a) {
+      a = $( "yes" );
     }
     else {
       break;

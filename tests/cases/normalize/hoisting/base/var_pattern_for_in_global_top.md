@@ -65,7 +65,7 @@ let a = undefined;
 $( undefined );
 let b = undefined;
 const c = { y: 100 };
-for (b in c {
+for (b in c) {
   const d = [ ... b,, ];
   a = d[ 0 ];
   $( a, "for" );

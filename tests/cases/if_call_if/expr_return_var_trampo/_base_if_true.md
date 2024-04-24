@@ -96,13 +96,13 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(1);
+  let x = $(1);
   if (x) {
-    const tmpClusterSSA_x = $(2);
-    if (tmpClusterSSA_x) {
-      $(`inner if`, tmpClusterSSA_x);
+    x = $(2);
+    if (x) {
+      $(`inner if`, x);
     } else {
-      $(`inner else`, tmpClusterSSA_x);
+      $(`inner else`, x);
     }
   } else {
     $(`inner else`, x);
@@ -118,14 +118,14 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  const a = $( 1 );
+  let a = $( 1 );
   if (a) {
-    const b = $( 2 );
-    if (b) {
-      $( "inner if", b );
+    a = $( 2 );
+    if (a) {
+      $( "inner if", a );
     }
     else {
-      $( "inner else", b );
+      $( "inner else", a );
     }
   }
   else {

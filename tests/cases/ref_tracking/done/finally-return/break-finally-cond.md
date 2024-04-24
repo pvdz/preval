@@ -1,8 +1,8 @@
 # Preval test case
 
-# break-finally.md
+# break-finally-cond.md
 
-> Ref tracking > Done > Finally-return > Break-finally
+> Ref tracking > Done > Finally-return > Break-finally-cond
 
 ## Options
 
@@ -40,27 +40,34 @@
 let x___4__ = 1;
 here___7__: /*8*/ {
   try /*10*/ {
-    $();
-    x___17__ = 2;
-    break here___19__;
-  } finally /*20*/ {
-    $(x___24__);
-    x___28__ = 3;
+    const tmpIfTest___13__ = $();
+    if (tmpIfTest___17__) {
+      /*18*/ x___22__ = 2;
+      break here___24__;
+    } /*25*/ else {
+      x___29__ = 3;
+    }
+  } finally /*30*/ {
+    $(x___34__);
   }
-  $(x___32__);
-  x___36__ = 4;
+  $(x___38__);
+  x___42__ = 4;
 }
-$(x___40__);
+$(x___46__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 24          | none           | 17,28
-  - w @17      | ########## | 24          | 4              | 28
-  - r @24      | 4,17
-  - w @28      | ########## | 32          | 4,17           | 36
-  - r @32      | 28
-  - w @36      | ########## | 40          | 28             | none
-  - r @40      | 36
+  - w @4       | ########## | 34,38,46    | none           | 22,29,42
+  - w @22      | ########## | not read    | 4              | none
+  - w @29      | ########## | not read    | 4              | none
+  - r @34      | 4
+  - r @38      | 4
+  - w @42      | ########## | not read    | 4              | none
+  - r @46      | 4
+
+tmpIfTest:
+  - w @13      | ########## | 17          | none           | none
+  - r @17      | 13

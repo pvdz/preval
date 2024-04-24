@@ -77,8 +77,8 @@ if ($) {
 }
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  const tmpClusterSSA_x = x & -257;
-  $(tmpClusterSSA_x);
+  x = x & -257;
+  $(x);
 } else {
 }
 `````
@@ -97,8 +97,8 @@ if ($) {
 }
 const d = $( true );
 if (d) {
-  const e = b & -257;
-  $( e );
+  b = b & -257;
+  $( b );
 }
 `````
 

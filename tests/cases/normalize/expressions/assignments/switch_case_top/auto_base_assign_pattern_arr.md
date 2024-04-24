@@ -61,8 +61,8 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = [];
-const a = { a: 999, b: 1000 };
+let b = [];
+let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
@@ -71,8 +71,9 @@ if (tmpIfTest) {
   const tmpCalleeParam = [tmpArrElement];
   const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-  const tmpClusterSSA_b = arrPatternSplat[0];
-  $(tmpNestedAssignArrPatternRhs, tmpClusterSSA_b);
+  b = arrPatternSplat[0];
+  a = tmpNestedAssignArrPatternRhs;
+  $(tmpNestedAssignArrPatternRhs, b);
 } else {
   $(a, b);
 }
@@ -83,8 +84,8 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = [];
-const b = {
+let a = [];
+let b = {
 a: 999,
 b: 1000
 ;
@@ -96,8 +97,9 @@ if (e) {
   const g = [ f,, ];
   const h = $( g );
   const i = [ ... h,, ];
-  const j = i[ 0 ];
-  $( h, j );
+  a = i[ 0 ];
+  b = h;
+  $( h, a );
 }
 else {
   $( b, a );

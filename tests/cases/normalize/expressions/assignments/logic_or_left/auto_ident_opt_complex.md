@@ -58,16 +58,18 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
   a = tmpChainElementObject;
-  if (tmpChainElementObject) {
-    $(tmpChainElementObject);
+  tmpCalleeParam = tmpChainElementObject;
+  if (a) {
+    $(tmpCalleeParam);
   } else {
-    const tmpClusterSSA_tmpCalleeParam = $(100);
-    $(tmpClusterSSA_tmpCalleeParam);
+    tmpCalleeParam = $(100);
+    $(tmpCalleeParam);
   }
 }
 $(a);
@@ -82,18 +84,20 @@ let a = undefined;
 const b = { x: 1 };
 const c = $( b );
 const d = c == null;
+let e = undefined;
 if (d) {
   $( undefined );
 }
 else {
-  const e = c.x;
-  a = e;
-  if (e) {
+  const f = c.x;
+  a = f;
+  e = f;
+  if (a) {
     $( e );
   }
   else {
-    const f = $( 100 );
-    $( f );
+    e = $( 100 );
+    $( e );
   }
 }
 $( a );

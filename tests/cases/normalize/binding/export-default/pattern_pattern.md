@@ -51,13 +51,13 @@ $(a, b, x, y, z);
 `````js filename=intro
 const z = [10, 20, 30];
 const arrPatternSplat$1 = [...z];
-const tmpClusterSSA_x = arrPatternSplat$1[1];
-const tmpClusterSSA_y = arrPatternSplat$1[2];
+const tmpSSA_x = arrPatternSplat$1[1];
+const tmpSSA_y = arrPatternSplat$1[2];
 const arrPatternSplat = [...z];
 const a = arrPatternSplat[0];
 const b = arrPatternSplat[1];
 export { a, b };
-$(a, b, tmpClusterSSA_x, tmpClusterSSA_y, z);
+$(a, b, tmpSSA_x, tmpSSA_y, z);
 `````
 
 ## PST Output

@@ -126,7 +126,7 @@ const a = function() {
       let c = undefined;
       let d = false;
       const e = [ 1, 2,, ];
-      for (c of e {
+      for (c of e) {
         d = true;
         break;
       }

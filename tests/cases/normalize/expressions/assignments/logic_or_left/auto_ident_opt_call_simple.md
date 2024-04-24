@@ -50,17 +50,19 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+let tmpCalleeParam = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
-  if (tmpChainElementCall) {
-    $(tmpChainElementCall);
+  tmpCalleeParam = tmpChainElementCall;
+  if (a) {
+    $(tmpCalleeParam);
   } else {
-    const tmpClusterSSA_tmpCalleeParam = $(100);
-    $(tmpClusterSSA_tmpCalleeParam);
+    tmpCalleeParam = $(100);
+    $(tmpCalleeParam);
   }
 }
 $(a);
@@ -72,19 +74,21 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-const b = $ == null;
-if (b) {
+let b = undefined;
+const c = $ == null;
+if (c) {
   $( undefined );
 }
 else {
-  const c = $( 1 );
-  a = c;
-  if (c) {
-    $( c );
+  const d = $( 1 );
+  a = d;
+  b = d;
+  if (a) {
+    $( b );
   }
   else {
-    const d = $( 100 );
-    $( d );
+    b = $( 100 );
+    $( b );
   }
 }
 $( a );

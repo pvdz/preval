@@ -85,7 +85,7 @@ while (true) {
     a = a + 1;
     const c = { a: 1 };
     const d = $( c );
-    for (b of d {
+    for (b of d) {
 
     }
   }

@@ -100,7 +100,7 @@ if (tmpIfTest) {
     a = tmpChainElementCall$1;
   }
 }
-const tmpCalleeParam = a;
+let tmpCalleeParam = a;
 if (a) {
   let tmpNestedComplexRhs = undefined;
   const tmpChainElementCall$3 = $(b);
@@ -118,7 +118,8 @@ if (a) {
     }
   }
   a = tmpNestedComplexRhs;
-  $(tmpNestedComplexRhs);
+  tmpCalleeParam = tmpNestedComplexRhs;
+  $(tmpCalleeParam);
 } else {
   $(tmpCalleeParam);
 }
@@ -150,7 +151,7 @@ else {
     a = i;
   }
 }
-const j = a;
+let j = a;
 if (a) {
   let k = undefined;
   const l = $( b );
@@ -172,7 +173,8 @@ if (a) {
     }
   }
   a = k;
-  $( k );
+  j = k;
+  $( j );
 }
 else {
   $( j );

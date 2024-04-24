@@ -42,31 +42,31 @@ while (true) {
 
 `````js filename=intro
 $(10);
-const x = $(20, `set`);
+let x = $(20, `set`);
 $(x, `loop`);
-const tmpClusterSSA_x = $(20, `set`);
-$(tmpClusterSSA_x, `loop`);
-const tmpClusterSSA_x$1 = $(20, `set`);
-$(tmpClusterSSA_x$1, `loop`);
-const tmpClusterSSA_x$2 = $(20, `set`);
-$(tmpClusterSSA_x$2, `loop`);
-const tmpClusterSSA_x$3 = $(20, `set`);
-$(tmpClusterSSA_x$3, `loop`);
-const tmpClusterSSA_x$4 = $(20, `set`);
-$(tmpClusterSSA_x$4, `loop`);
-const tmpClusterSSA_x$5 = $(20, `set`);
-$(tmpClusterSSA_x$5, `loop`);
-const tmpClusterSSA_x$6 = $(20, `set`);
-$(tmpClusterSSA_x$6, `loop`);
-const tmpClusterSSA_x$7 = $(20, `set`);
-$(tmpClusterSSA_x$7, `loop`);
-const tmpClusterSSA_x$8 = $(20, `set`);
-$(tmpClusterSSA_x$8, `loop`);
-let tmpClusterSSA_x$9 = $(20, `set`);
-$(tmpClusterSSA_x$9, `loop`);
+x = $(20, `set`);
+$(x, `loop`);
+x = $(20, `set`);
+$(x, `loop`);
+x = $(20, `set`);
+$(x, `loop`);
+x = $(20, `set`);
+$(x, `loop`);
+x = $(20, `set`);
+$(x, `loop`);
+x = $(20, `set`);
+$(x, `loop`);
+x = $(20, `set`);
+$(x, `loop`);
+x = $(20, `set`);
+$(x, `loop`);
+x = $(20, `set`);
+$(x, `loop`);
+x = $(20, `set`);
+$(x, `loop`);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  tmpClusterSSA_x$9 = $(20, `set`);
-  $(tmpClusterSSA_x$9, `loop`);
+  x = $(20, `set`);
+  $(x, `loop`);
 }
 `````
 
@@ -76,31 +76,31 @@ With rename=true
 
 `````js filename=intro
 $( 10 );
-const a = $( 20, "set" );
+let a = $( 20, "set" );
 $( a, "loop" );
-const b = $( 20, "set" );
-$( b, "loop" );
-const c = $( 20, "set" );
-$( c, "loop" );
-const d = $( 20, "set" );
-$( d, "loop" );
-const e = $( 20, "set" );
-$( e, "loop" );
-const f = $( 20, "set" );
-$( f, "loop" );
-const g = $( 20, "set" );
-$( g, "loop" );
-const h = $( 20, "set" );
-$( h, "loop" );
-const i = $( 20, "set" );
-$( i, "loop" );
-const j = $( 20, "set" );
-$( j, "loop" );
-let k = $( 20, "set" );
-$( k, "loop" );
+a = $( 20, "set" );
+$( a, "loop" );
+a = $( 20, "set" );
+$( a, "loop" );
+a = $( 20, "set" );
+$( a, "loop" );
+a = $( 20, "set" );
+$( a, "loop" );
+a = $( 20, "set" );
+$( a, "loop" );
+a = $( 20, "set" );
+$( a, "loop" );
+a = $( 20, "set" );
+$( a, "loop" );
+a = $( 20, "set" );
+$( a, "loop" );
+a = $( 20, "set" );
+$( a, "loop" );
+a = $( 20, "set" );
+$( a, "loop" );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  k = $( 20, "set" );
-  $( k, "loop" );
+  a = $( 20, "set" );
+  $( a, "loop" );
 }
 `````
 

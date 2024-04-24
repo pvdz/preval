@@ -60,10 +60,10 @@ for (styleName$5 in tmpForInDeclRhs) {
 let styleName$5 = undefined;
 const tmpForInDeclRhs = { x: 100 };
 for (styleName$5 in tmpForInDeclRhs) {
-  const checkme = $(1);
+  let checkme = $(1);
   if (checkme) {
-    const tmpClusterSSA_checkme = $(2);
-    if (tmpClusterSSA_checkme) {
+    checkme = $(2);
+    if (checkme) {
       $(3);
     } else {
     }
@@ -79,11 +79,11 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 const b = { x: 100 };
-for (a in b {
-  const c = $( 1 );
+for (a in b) {
+  let c = $( 1 );
   if (c) {
-    const d = $( 2 );
-    if (d) {
+    c = $( 2 );
+    if (c) {
       $( 3 );
     }
   }

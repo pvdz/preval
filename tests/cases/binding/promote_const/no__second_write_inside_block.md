@@ -49,11 +49,13 @@ $(x);
 ## Output
 
 `````js filename=intro
+let x = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
+  x = 10;
   $(10);
 } else {
-  $(undefined);
+  $(x);
 }
 `````
 
@@ -62,12 +64,14 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
-if (a) {
+let a = undefined;
+const b = $( 1 );
+if (b) {
+  a = 10;
   $( 10 );
 }
 else {
-  $( undefined );
+  $( a );
 }
 `````
 

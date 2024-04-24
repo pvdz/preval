@@ -61,13 +61,13 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_b = { x: 1 };
-const tmpCalleeParam = $(tmpClusterSSA_b);
+const b = { x: 1 };
+const tmpCalleeParam = $(b);
 const tmpPostUpdArgObj = $(tmpCalleeParam);
 const tmpPostUpdArgVal = tmpPostUpdArgObj.x;
 const tmpAssignMemRhs = tmpPostUpdArgVal - 1;
 tmpPostUpdArgObj.x = tmpAssignMemRhs;
-$(tmpPostUpdArgVal, tmpClusterSSA_b);
+$(tmpPostUpdArgVal, b);
 `````
 
 ## PST Output

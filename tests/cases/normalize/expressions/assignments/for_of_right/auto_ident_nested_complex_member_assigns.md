@@ -123,7 +123,7 @@ f[g] = 3;
 d[e] = 3;
 b[c] = 3;
 let n = undefined;
-for (n of 3 {
+for (n of 3) {
 
 }
 $( 3, a, 3 );

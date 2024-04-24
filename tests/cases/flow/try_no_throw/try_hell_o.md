@@ -46,24 +46,19 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpLabeledBlockFunc = function () {
-    debugger;
-    try {
-      throw x;
-    } finally {
-      const tmpReturnArg = tmpAfterLabel();
-      return tmpReturnArg;
-    }
-    const tmpReturnArg$1 = tmpAfterLabel();
-    return tmpReturnArg$1;
-  };
   const tmpAfterLabel = function () {
     debugger;
     x = 1;
     return undefined;
   };
-  const tmpReturnArg$3 = tmpLabeledBlockFunc();
-  return tmpReturnArg$3;
+  try {
+    throw x;
+  } finally {
+    const tmpReturnArg = tmpAfterLabel();
+    return tmpReturnArg;
+  }
+  const tmpReturnArg$1 = tmpAfterLabel();
+  return tmpReturnArg$1;
 };
 let x = 0;
 f();

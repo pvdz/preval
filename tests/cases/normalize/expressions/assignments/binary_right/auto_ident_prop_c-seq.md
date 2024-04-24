@@ -48,10 +48,10 @@ $(a, b);
 const tmpBinBothLhs = $(100);
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
-const tmpClusterSSA_a = tmpAssignRhsProp.c;
-const tmpCalleeParam = tmpBinBothLhs + tmpClusterSSA_a;
+const tmpSSA_a = tmpAssignRhsProp.c;
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## PST Output

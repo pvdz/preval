@@ -126,7 +126,7 @@ g[h] = 3;
 e[f] = 3;
 c[d] = 3;
 let o = undefined;
-for (o of 3 {
+for (o of 3) {
 
 }
 $( b, a, 3 );

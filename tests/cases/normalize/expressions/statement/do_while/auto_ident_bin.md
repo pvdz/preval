@@ -58,18 +58,18 @@ $(a);
 $(100);
 const tmpBinBothLhs = $(1);
 const tmpBinBothRhs = $(2);
-const tmpDoWhileFlag = tmpBinBothLhs + tmpBinBothRhs;
+let tmpDoWhileFlag = tmpBinBothLhs + tmpBinBothRhs;
 if (tmpDoWhileFlag) {
   $(100);
   const tmpBinBothLhs$1 = $(1);
   const tmpBinBothRhs$1 = $(2);
-  let tmpClusterSSA_tmpDoWhileFlag = tmpBinBothLhs$1 + tmpBinBothRhs$1;
+  tmpDoWhileFlag = tmpBinBothLhs$1 + tmpBinBothRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
       const tmpBinBothLhs$2 = $(1);
       const tmpBinBothRhs$2 = $(2);
-      tmpClusterSSA_tmpDoWhileFlag = tmpBinBothLhs$2 + tmpBinBothRhs$2;
+      tmpDoWhileFlag = tmpBinBothLhs$2 + tmpBinBothRhs$2;
     } else {
       break;
     }
@@ -88,29 +88,29 @@ With rename=true
 $( 100 );
 const a = $( 1 );
 const b = $( 2 );
-const c = a + b;
+let c = a + b;
 if (c) {
   $( 100 );
   const d = $( 1 );
   const e = $( 2 );
-  let f = d + e;
+  c = d + e;
   while ($LOOP_UNROLL_9) {
-    if (f) {
+    if (c) {
       $( 100 );
-      const g = $( 1 );
-      const h = $( 2 );
-      f = g + h;
+      const f = $( 1 );
+      const g = $( 2 );
+      c = f + g;
     }
     else {
       break;
     }
   }
 }
-const i = {
+const h = {
 a: 999,
 b: 1000
 ;
-$( i );
+$( h );
 `````
 
 ## Globals

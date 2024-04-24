@@ -50,9 +50,9 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
-  $(2);
+  tmpIfTest = $(2);
 } else {
 }
 `````
@@ -62,9 +62,9 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( 1 );
+let a = $( 1 );
 if (a) {
-  $( 2 );
+  a = $( 2 );
 }
 `````
 

@@ -59,7 +59,7 @@ if (tmpIfTest) {
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam$3 = $(2);
-  $(tmpCalleeParam$3);
+  tmpIfTest = $(tmpCalleeParam$3);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -81,7 +81,7 @@ if (b) {
 }
 else {
   const d = $( 2 );
-  $( d );
+  b = $( d );
 }
 const e = {
 a: 999,

@@ -45,8 +45,8 @@ $(x);
 `````js filename=intro
 const tmpArrElement = {};
 const tmpCalleeParam$1 = [];
-const tmpClusterSSA_x = objPatternRest(tmpArrElement, tmpCalleeParam$1, undefined);
-$(tmpClusterSSA_x);
+const tmpSSA_x = objPatternRest(tmpArrElement, tmpCalleeParam$1, undefined);
+$(tmpSSA_x);
 `````
 
 ## PST Output

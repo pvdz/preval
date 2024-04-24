@@ -166,6 +166,7 @@ let snap = 0; // snapshot fail
 let fail = 0; // crash
 let badNorm = 0; // evaluation of normalized code does not match input
 let badFinal = 0; // evaluation of final output does not match input
+
 testCases.forEach((tc, i) => runTestCase({ ...tc, withOutput: testCases.length === 1 && !CONFIG.onlyNormalized }, i));
 
 if (isMainThread) {
@@ -383,12 +384,17 @@ function runTestCase(
       return coerce(x, to);
     }
 
+    function $throwTDZError(desc) {
+      throw new Error('Cannot access \'<ref>\' before initialization');
+    }
+
     const frameworkInjectedGlobals = {
       '$': $,
       'objPatternRest': objPatternRest,
       '$dotCall': $dotCall,
       '$spy': $spy,
       '$coerce': $coerce,
+      '$throwTDZError': $throwTDZError,
       '$LOOP_DONE_UNROLLING_ALWAYS_TRUE': true, // TODO: this would need to be configurable and then this value is update
       [BUILTIN_ARRAY_PROTOTYPE]: Array.prototype,
       ...BUILTIN_ARRAY_METHODS_SUPPORTED.reduce((obj, key) => (obj[BUILTIN_ARRAY_METHOD_LOOKUP[key]] = Array.prototype[key], obj), {}),

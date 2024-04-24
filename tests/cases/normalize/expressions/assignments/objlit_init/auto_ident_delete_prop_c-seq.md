@@ -50,10 +50,10 @@ const arg = { y: 1 };
 $(1);
 $(2);
 const tmpDeleteObj = $(arg);
-const tmpClusterSSA_a = delete tmpDeleteObj.y;
-const tmpCalleeParam = { x: tmpClusterSSA_a };
+const tmpSSA_a = delete tmpDeleteObj.y;
+const tmpCalleeParam = { x: tmpSSA_a };
 $(tmpCalleeParam);
-$(tmpClusterSSA_a, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## PST Output

@@ -54,17 +54,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = function () {
+let a = function () {
   debugger;
   return undefined;
 };
-const tmpClusterSSA_a = function () {
+const tmpBinBothLhs = a;
+a = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam = a + tmpClusterSSA_a;
+const tmpCalleeParam = tmpBinBothLhs + a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -72,17 +73,18 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = function() {
+let a = function() {
   debugger;
   return undefined;
 };
-const b = function() {
+const b = a;
+a = function() {
   debugger;
   return undefined;
 };
-const c = a + b;
+const c = b + a;
 $( c );
-$( b );
+$( a );
 `````
 
 ## Globals

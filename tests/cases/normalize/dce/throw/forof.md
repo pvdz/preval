@@ -79,7 +79,7 @@ With rename=true
 let a = undefined;
 let b = false;
 const c = [ 10, 20,, ];
-for (a of c {
+for (a of c) {
   b = true;
   break;
 }

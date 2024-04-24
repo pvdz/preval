@@ -104,12 +104,12 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
-const tmpIfTest = $(0);
+let tmpIfTest = $(0);
 if (tmpIfTest) {
-  let tmpClusterSSA_tmpIfTest = $(0);
+  tmpIfTest = $(0);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
-      tmpClusterSSA_tmpIfTest = $(0);
+    if (tmpIfTest) {
+      tmpIfTest = $(0);
     } else {
       break;
     }
@@ -147,12 +147,12 @@ i[j] = 3;
 g[h] = 3;
 e[f] = 3;
 c[d] = 3;
-const o = $( 0 );
+let o = $( 0 );
 if (o) {
-  let p = $( 0 );
+  o = $( 0 );
   while ($LOOP_UNROLL_10) {
-    if (p) {
-      p = $( 0 );
+    if (o) {
+      o = $( 0 );
     }
     else {
       break;

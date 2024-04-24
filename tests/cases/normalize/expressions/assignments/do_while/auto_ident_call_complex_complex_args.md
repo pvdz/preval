@@ -67,31 +67,32 @@ const tmpCallCallee = $($);
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
 const tmpNestedComplexRhs = tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
-let tmpClusterSSA_a = tmpNestedComplexRhs;
+let tmpSSA_a = tmpNestedComplexRhs;
+let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpCallCallee$1 = $($);
   const tmpCalleeParam$2 = $(1);
   const tmpCalleeParam$4 = $(2);
   const tmpNestedComplexRhs$1 = tmpCallCallee$1(tmpCalleeParam$2, tmpCalleeParam$4);
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCallCallee$2 = $($);
       const tmpCalleeParam$3 = $(1);
       const tmpCalleeParam$5 = $(2);
       const tmpNestedComplexRhs$2 = tmpCallCallee$2(tmpCalleeParam$3, tmpCalleeParam$5);
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -105,23 +106,24 @@ const b = $( 1 );
 const c = $( 2 );
 const d = a( b, c );
 let e = d;
+let f = d;
 if (d) {
   $( 100 );
-  const f = $( $ );
-  const g = $( 1 );
-  const h = $( 2 );
-  const i = f( g, h );
-  e = i;
-  let j = i;
+  const g = $( $ );
+  const h = $( 1 );
+  const i = $( 2 );
+  const j = g( h, i );
+  e = j;
+  f = j;
   while ($LOOP_UNROLL_9) {
-    if (j) {
+    if (f) {
       $( 100 );
       const k = $( $ );
       const l = $( 1 );
       const m = $( 2 );
       const n = k( l, m );
       e = n;
-      j = n;
+      f = n;
     }
     else {
       break;

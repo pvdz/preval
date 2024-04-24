@@ -55,8 +55,8 @@ $(a, b);
 let $tmpLoopUnrollCheck = true;
 const b = { c: 1 };
 const tmpAssignRhsProp = $(b);
-let tmpClusterSSA_a = tmpAssignRhsProp.c;
-if (tmpClusterSSA_a) {
+let tmpSSA_a = tmpAssignRhsProp.c;
+if (tmpSSA_a) {
   $(1);
 } else {
   $tmpLoopUnrollCheck = false;
@@ -64,8 +64,8 @@ if (tmpClusterSSA_a) {
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
     const tmpAssignRhsProp$1 = $(b);
-    tmpClusterSSA_a = tmpAssignRhsProp$1.c;
-    if (tmpClusterSSA_a) {
+    tmpSSA_a = tmpAssignRhsProp$1.c;
+    if (tmpSSA_a) {
       $(1);
     } else {
       break;
@@ -73,7 +73,7 @@ if ($tmpLoopUnrollCheck) {
   }
 } else {
 }
-$(tmpClusterSSA_a, b);
+$(tmpSSA_a, b);
 `````
 
 ## PST Output

@@ -118,6 +118,7 @@ if (tmpIfTest) {
 }
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
+  a = undefined;
   const tmpObjLitVal$1 = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
@@ -156,6 +157,7 @@ else {
 }
 const g = c <= 0;
 if (g) {
+  a = undefined;
   const h = { e: $ };
   const i = $dotCall( $, h, 1 );
   a = i;

@@ -64,16 +64,17 @@ $(a);
 
 `````js filename=intro
 $(100);
-let tmpNestedComplexRhs = false;
+let tmpNestedComplexRhs = undefined;
 const tmpChainElementCall = $($);
 const tmpIfTest = tmpChainElementCall == null;
-let tmpClusterSSA_a = undefined;
+let tmpSSA_a = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall$1 = $dotCall(tmpChainElementCall, $, 1);
   tmpNestedComplexRhs = tmpChainElementCall$1;
-  tmpClusterSSA_a = tmpChainElementCall$1;
+  tmpSSA_a = tmpChainElementCall$1;
 }
+let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   let tmpNestedComplexRhs$1 = undefined;
@@ -84,10 +85,10 @@ if (tmpNestedComplexRhs) {
     const tmpChainElementCall$4 = $dotCall(tmpChainElementCall$2, $, 1);
     tmpNestedComplexRhs$1 = tmpChainElementCall$4;
   }
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       let tmpNestedComplexRhs$2 = undefined;
       const tmpChainElementCall$3 = $($);
@@ -97,15 +98,15 @@ if (tmpNestedComplexRhs) {
         const tmpChainElementCall$5 = $dotCall(tmpChainElementCall$3, $, 1);
         tmpNestedComplexRhs$2 = tmpChainElementCall$5;
       }
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -114,7 +115,7 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-let a = false;
+let a = undefined;
 const b = $( $ );
 const c = b == null;
 let d = undefined;
@@ -126,22 +127,23 @@ else {
   a = e;
   d = e;
 }
+let f = a;
 if (a) {
   $( 100 );
-  let f = undefined;
-  const g = $( $ );
-  const h = g == null;
-  if (h) {
+  let g = undefined;
+  const h = $( $ );
+  const i = h == null;
+  if (i) {
 
   }
   else {
-    const i = $dotCall( g, $, 1 );
-    f = i;
+    const j = $dotCall( h, $, 1 );
+    g = j;
   }
-  d = f;
-  let j = f;
+  d = g;
+  f = g;
   while ($LOOP_UNROLL_9) {
-    if (j) {
+    if (f) {
       $( 100 );
       let k = undefined;
       const l = $( $ );
@@ -154,7 +156,7 @@ if (a) {
         k = n;
       }
       d = k;
-      j = k;
+      f = k;
     }
     else {
       break;

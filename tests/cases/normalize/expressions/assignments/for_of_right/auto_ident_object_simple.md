@@ -57,7 +57,7 @@ x: 1,
 y: 2,
 z: 3
 ;
-for (a of b {
+for (a of b) {
 
 }
 $( b );

@@ -58,11 +58,12 @@ const tmpNestedAssignObj = $(tmpCalleeParam$1);
 const tmpBinLhs = tmpNestedAssignObj.x;
 const tmpNestedPropCompoundComplexRhs = tmpBinLhs + 1;
 tmpNestedAssignObj.x = tmpNestedPropCompoundComplexRhs;
+let tmpCalleeParam = tmpNestedPropCompoundComplexRhs;
 if (tmpNestedPropCompoundComplexRhs) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  $(tmpNestedPropCompoundComplexRhs);
+  $(tmpCalleeParam);
 }
 $(tmpNestedPropCompoundComplexRhs, b);
 `````
@@ -78,12 +79,13 @@ const c = $( b );
 const d = c.x;
 const e = d + 1;
 c.x = e;
+let f = e;
 if (e) {
-  const f = $( 100 );
+  f = $( 100 );
   $( f );
 }
 else {
-  $( e );
+  $( f );
 }
 $( e, a );
 `````

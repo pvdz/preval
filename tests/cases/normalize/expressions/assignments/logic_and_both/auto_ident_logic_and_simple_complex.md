@@ -58,14 +58,15 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 let a = $(tmpCalleeParam$1);
-const tmpClusterSSA_tmpCalleeParam = a;
+let tmpSSA_tmpCalleeParam = a;
 if (a) {
   const tmpCalleeParam$3 = $(1);
   const tmpNestedComplexRhs = $(tmpCalleeParam$3);
   a = tmpNestedComplexRhs;
+  tmpSSA_tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  $(tmpClusterSSA_tmpCalleeParam);
+  $(tmpSSA_tmpCalleeParam);
 }
 $(a);
 `````
@@ -77,11 +78,12 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = $( a );
-const c = b;
+let c = b;
 if (b) {
   const d = $( 1 );
   const e = $( d );
   b = e;
+  c = e;
   $( e );
 }
 else {

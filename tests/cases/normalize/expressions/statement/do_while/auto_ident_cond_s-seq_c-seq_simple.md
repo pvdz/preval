@@ -61,14 +61,14 @@ $(a);
 
 `````js filename=intro
 $(100);
-const tmpDoWhileFlag = $(60);
+let tmpDoWhileFlag = $(60);
 if (tmpDoWhileFlag) {
   $(100);
-  let tmpClusterSSA_tmpDoWhileFlag = $(60);
+  tmpDoWhileFlag = $(60);
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
-      tmpClusterSSA_tmpDoWhileFlag = $(60);
+      tmpDoWhileFlag = $(60);
     } else {
       break;
     }
@@ -85,25 +85,25 @@ With rename=true
 
 `````js filename=intro
 $( 100 );
-const a = $( 60 );
+let a = $( 60 );
 if (a) {
   $( 100 );
-  let b = $( 60 );
+  a = $( 60 );
   while ($LOOP_UNROLL_9) {
-    if (b) {
+    if (a) {
       $( 100 );
-      b = $( 60 );
+      a = $( 60 );
     }
     else {
       break;
     }
   }
 }
-const c = {
+const b = {
 a: 999,
 b: 1000
 ;
-$( c );
+$( b );
 `````
 
 ## Globals

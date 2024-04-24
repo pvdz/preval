@@ -76,13 +76,14 @@ if (tmpIfTest) {
   tmpChainRootProp$1 = tmpChainElementObject;
   tmpIfTest$1 = tmpChainElementObject == null;
 }
+let tmpReturnArg = undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpReturnArg = $(undefined);
-  $(tmpClusterSSA_tmpReturnArg);
+  tmpReturnArg = $(undefined);
+  $(tmpReturnArg);
 } else {
   const tmpChainElementObject$1 = tmpChainRootProp$1.length;
-  const tmpClusterSSA_tmpReturnArg$1 = $(tmpChainElementObject$1);
-  $(tmpClusterSSA_tmpReturnArg$1);
+  tmpReturnArg = $(tmpChainElementObject$1);
+  $(tmpReturnArg);
 }
 `````
 
@@ -103,14 +104,15 @@ else {
   c = e;
   d = e == null;
 }
+let f = undefined;
 if (d) {
-  const f = $( undefined );
+  f = $( undefined );
   $( f );
 }
 else {
   const g = c.length;
-  const h = $( g );
-  $( h );
+  f = $( g );
+  $( f );
 }
 `````
 

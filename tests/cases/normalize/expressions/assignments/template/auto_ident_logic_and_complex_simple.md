@@ -51,13 +51,15 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 let a = $(tmpCalleeParam$1);
+let tmpBinBothRhs = `2`;
+let tmpCalleeParam = `before  2  after`;
 if (a) {
   a = 2;
   $(`before  2  after`);
 } else {
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(a, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpBinBothRhs = $coerce(a, `string`);
+  tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -69,13 +71,15 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = $( a );
+let c = "2";
+let d = "before  2  after";
 if (b) {
   b = 2;
   $( "before  2  after" );
 }
 else {
-  const c = $coerce( b, "string" );
-  const d = `before  ${[object Object]}  after`;
+  c = $coerce( b, "string" );
+  d = `before  ${[object Object]}  after`;
   $( d );
 }
 $( b );

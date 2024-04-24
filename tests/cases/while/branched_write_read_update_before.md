@@ -60,102 +60,102 @@ while (true) {
 
 `````js filename=intro
 $(1);
-const x = $(10);
+let x = $(10);
 const tmpIfTest = x % 2;
 if (tmpIfTest) {
-  const tmpClusterSSA_x = x + 1;
-  $(tmpClusterSSA_x, `write`);
+  x = x + 1;
+  $(x, `write`);
 } else {
   $(x, `read`);
 }
-const tmpClusterSSA_x$1 = $(10);
-const tmpIfTest$1 = tmpClusterSSA_x$1 % 2;
+x = $(10);
+const tmpIfTest$1 = x % 2;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_x$2 = tmpClusterSSA_x$1 + 1;
-  $(tmpClusterSSA_x$2, `write`);
+  x = x + 1;
+  $(x, `write`);
 } else {
-  $(tmpClusterSSA_x$1, `read`);
+  $(x, `read`);
 }
-const tmpClusterSSA_x$4 = $(10);
-const tmpIfTest$2 = tmpClusterSSA_x$4 % 2;
+x = $(10);
+const tmpIfTest$2 = x % 2;
 if (tmpIfTest$2) {
-  const tmpClusterSSA_x$3 = tmpClusterSSA_x$4 + 1;
-  $(tmpClusterSSA_x$3, `write`);
+  x = x + 1;
+  $(x, `write`);
 } else {
-  $(tmpClusterSSA_x$4, `read`);
+  $(x, `read`);
 }
-const tmpClusterSSA_x$5 = $(10);
-const tmpIfTest$3 = tmpClusterSSA_x$5 % 2;
+x = $(10);
+const tmpIfTest$3 = x % 2;
 if (tmpIfTest$3) {
-  const tmpClusterSSA_x$6 = tmpClusterSSA_x$5 + 1;
-  $(tmpClusterSSA_x$6, `write`);
+  x = x + 1;
+  $(x, `write`);
 } else {
-  $(tmpClusterSSA_x$5, `read`);
+  $(x, `read`);
 }
-const tmpClusterSSA_x$8 = $(10);
-const tmpIfTest$4 = tmpClusterSSA_x$8 % 2;
+x = $(10);
+const tmpIfTest$4 = x % 2;
 if (tmpIfTest$4) {
-  const tmpClusterSSA_x$7 = tmpClusterSSA_x$8 + 1;
-  $(tmpClusterSSA_x$7, `write`);
+  x = x + 1;
+  $(x, `write`);
 } else {
-  $(tmpClusterSSA_x$8, `read`);
+  $(x, `read`);
 }
-const tmpClusterSSA_x$9 = $(10);
-const tmpIfTest$5 = tmpClusterSSA_x$9 % 2;
+x = $(10);
+const tmpIfTest$5 = x % 2;
 if (tmpIfTest$5) {
-  const tmpClusterSSA_x$10 = tmpClusterSSA_x$9 + 1;
-  $(tmpClusterSSA_x$10, `write`);
+  x = x + 1;
+  $(x, `write`);
 } else {
-  $(tmpClusterSSA_x$9, `read`);
+  $(x, `read`);
 }
-const tmpClusterSSA_x$12 = $(10);
-const tmpIfTest$6 = tmpClusterSSA_x$12 % 2;
+x = $(10);
+const tmpIfTest$6 = x % 2;
 if (tmpIfTest$6) {
-  const tmpClusterSSA_x$11 = tmpClusterSSA_x$12 + 1;
-  $(tmpClusterSSA_x$11, `write`);
+  x = x + 1;
+  $(x, `write`);
 } else {
-  $(tmpClusterSSA_x$12, `read`);
+  $(x, `read`);
 }
-const tmpClusterSSA_x$13 = $(10);
-const tmpIfTest$7 = tmpClusterSSA_x$13 % 2;
+x = $(10);
+const tmpIfTest$7 = x % 2;
 if (tmpIfTest$7) {
-  const tmpClusterSSA_x$14 = tmpClusterSSA_x$13 + 1;
-  $(tmpClusterSSA_x$14, `write`);
+  x = x + 1;
+  $(x, `write`);
 } else {
-  $(tmpClusterSSA_x$13, `read`);
+  $(x, `read`);
 }
-const tmpClusterSSA_x$16 = $(10);
-const tmpIfTest$8 = tmpClusterSSA_x$16 % 2;
+x = $(10);
+const tmpIfTest$8 = x % 2;
 if (tmpIfTest$8) {
-  const tmpClusterSSA_x$15 = tmpClusterSSA_x$16 + 1;
-  $(tmpClusterSSA_x$15, `write`);
+  x = x + 1;
+  $(x, `write`);
 } else {
-  $(tmpClusterSSA_x$16, `read`);
+  $(x, `read`);
 }
-const tmpClusterSSA_x$17 = $(10);
-const tmpIfTest$9 = tmpClusterSSA_x$17 % 2;
+x = $(10);
+const tmpIfTest$9 = x % 2;
 if (tmpIfTest$9) {
-  const tmpClusterSSA_x$18 = tmpClusterSSA_x$17 + 1;
-  $(tmpClusterSSA_x$18, `write`);
+  x = x + 1;
+  $(x, `write`);
 } else {
-  $(tmpClusterSSA_x$17, `read`);
+  $(x, `read`);
 }
-let tmpClusterSSA_x$20 = $(10);
-const tmpIfTest$10 = tmpClusterSSA_x$20 % 2;
+x = $(10);
+const tmpIfTest$10 = x % 2;
 if (tmpIfTest$10) {
-  tmpClusterSSA_x$20 = tmpClusterSSA_x$20 + 1;
-  $(tmpClusterSSA_x$20, `write`);
+  x = x + 1;
+  $(x, `write`);
 } else {
-  $(tmpClusterSSA_x$20, `read`);
+  $(x, `read`);
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  tmpClusterSSA_x$20 = $(10);
-  const tmpIfTest$11 = tmpClusterSSA_x$20 % 2;
+  x = $(10);
+  const tmpIfTest$11 = x % 2;
   if (tmpIfTest$11) {
-    tmpClusterSSA_x$20 = tmpClusterSSA_x$20 + 1;
-    $(tmpClusterSSA_x$20, `write`);
+    x = x + 1;
+    $(x, `write`);
   } else {
-    $(tmpClusterSSA_x$20, `read`);
+    $(x, `read`);
   }
 }
 `````
@@ -166,114 +166,114 @@ With rename=true
 
 `````js filename=intro
 $( 1 );
-const a = $( 10 );
+let a = $( 10 );
 const b = a % 2;
 if (b) {
-  const c = a + 1;
-  $( c, "write" );
+  a = a + 1;
+  $( a, "write" );
 }
 else {
   $( a, "read" );
 }
-const d = $( 10 );
-const e = d % 2;
+a = $( 10 );
+const c = a % 2;
+if (c) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+a = $( 10 );
+const d = a % 2;
+if (d) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+a = $( 10 );
+const e = a % 2;
 if (e) {
-  const f = d + 1;
-  $( f, "write" );
+  a = a + 1;
+  $( a, "write" );
 }
 else {
-  $( d, "read" );
+  $( a, "read" );
 }
-const g = $( 10 );
-const h = g % 2;
+a = $( 10 );
+const f = a % 2;
+if (f) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+a = $( 10 );
+const g = a % 2;
+if (g) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+a = $( 10 );
+const h = a % 2;
 if (h) {
-  const i = g + 1;
-  $( i, "write" );
+  a = a + 1;
+  $( a, "write" );
 }
 else {
-  $( g, "read" );
+  $( a, "read" );
 }
-const j = $( 10 );
-const k = j % 2;
+a = $( 10 );
+const i = a % 2;
+if (i) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+a = $( 10 );
+const j = a % 2;
+if (j) {
+  a = a + 1;
+  $( a, "write" );
+}
+else {
+  $( a, "read" );
+}
+a = $( 10 );
+const k = a % 2;
 if (k) {
-  const l = j + 1;
-  $( l, "write" );
+  a = a + 1;
+  $( a, "write" );
 }
 else {
-  $( j, "read" );
+  $( a, "read" );
 }
-const m = $( 10 );
-const n = m % 2;
-if (n) {
-  const o = m + 1;
-  $( o, "write" );
-}
-else {
-  $( m, "read" );
-}
-const p = $( 10 );
-const q = p % 2;
-if (q) {
-  const r = p + 1;
-  $( r, "write" );
+a = $( 10 );
+const l = a % 2;
+if (l) {
+  a = a + 1;
+  $( a, "write" );
 }
 else {
-  $( p, "read" );
-}
-const s = $( 10 );
-const t = s % 2;
-if (t) {
-  const u = s + 1;
-  $( u, "write" );
-}
-else {
-  $( s, "read" );
-}
-const v = $( 10 );
-const w = v % 2;
-if (w) {
-  const x = v + 1;
-  $( x, "write" );
-}
-else {
-  $( v, "read" );
-}
-const y = $( 10 );
-const z = y % 2;
-if (z) {
-  const 01 = y + 1;
-  $( 01, "write" );
-}
-else {
-  $( y, "read" );
-}
-const 11 = $( 10 );
-const 21 = 11 % 2;
-if (21) {
-  const 31 = 11 + 1;
-  $( 31, "write" );
-}
-else {
-  $( 11, "read" );
-}
-let 41 = $( 10 );
-const 51 = 41 % 2;
-if (51) {
-  41 = 41 + 1;
-  $( 41, "write" );
-}
-else {
-  $( 41, "read" );
+  $( a, "read" );
 }
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  41 = $( 10 );
-  const 61 = 41 % 2;
-  if (61) {
-    41 = 41 + 1;
-    $( 41, "write" );
+  a = $( 10 );
+  const m = a % 2;
+  if (m) {
+    a = a + 1;
+    $( a, "write" );
   }
   else {
-    $( 41, "read" );
+    $( a, "read" );
   }
 }
 `````

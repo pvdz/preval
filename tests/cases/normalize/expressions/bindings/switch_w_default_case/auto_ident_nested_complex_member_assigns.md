@@ -121,18 +121,18 @@ if (tmpIfTest$7) {
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_b = { x: 1 };
-const tmpNestedAssignComMemberObj = $(tmpClusterSSA_b);
+const b = { x: 1 };
+const tmpNestedAssignComMemberObj = $(b);
 const tmpNestedAssignComMemberProp = $(`x`);
-const varInitAssignLhsComputedObj = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedObj = $(b);
 const varInitAssignLhsComputedProp = $(`x`);
-const varInitAssignLhsComputedObj$1 = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedObj$1 = $(b);
 const varInitAssignLhsComputedProp$1 = $(`x`);
-const varInitAssignLhsComputedObj$3 = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedObj$3 = $(b);
 const varInitAssignLhsComputedProp$3 = $(`x`);
-const varInitAssignLhsComputedObj$5 = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedObj$5 = $(b);
 const varInitAssignLhsComputedProp$5 = $(`x`);
-const varInitAssignLhsComputedObj$7 = $(tmpClusterSSA_b);
+const varInitAssignLhsComputedObj$7 = $(b);
 const varInitAssignLhsComputedProp$7 = $(`x`);
 varInitAssignLhsComputedObj$7[varInitAssignLhsComputedProp$7] = 3;
 varInitAssignLhsComputedObj$5[varInitAssignLhsComputedProp$5] = 3;
@@ -140,7 +140,7 @@ varInitAssignLhsComputedObj$3[varInitAssignLhsComputedProp$3] = 3;
 varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = 3;
-$(3, tmpClusterSSA_b, 3);
+$(3, b, 3);
 $(`fail1`);
 $(`fail2`);
 `````

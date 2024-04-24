@@ -87,7 +87,7 @@ $(a, b, c);
 `````js filename=intro
 const b = { x: 1 };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpAssignComMemLhsObj = $(b);
   const tmpAssignComMemLhsProp = $(`x`);
@@ -107,9 +107,9 @@ if (tmpIfTest) {
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = 3;
   varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = 3;
   tmpAssignComMemLhsObj[tmpAssignComMemLhsProp] = 3;
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpAssignComMemLhsObj$1 = $(b);
       const tmpAssignComMemLhsProp$1 = $(`x`);
       const varInitAssignLhsComputedObj$2 = $(b);
@@ -128,7 +128,7 @@ if (tmpIfTest) {
       varInitAssignLhsComputedObj$4[varInitAssignLhsComputedProp$4] = 3;
       varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = 3;
       tmpAssignComMemLhsObj$1[tmpAssignComMemLhsProp$1] = 3;
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -148,7 +148,7 @@ const b = {
 a: 999,
 b: 1000
 ;
-const c = $( 1 );
+let c = $( 1 );
 if (c) {
   const d = $( a );
   const e = $( "x" );
@@ -168,28 +168,28 @@ if (c) {
   h[i] = 3;
   f[g] = 3;
   d[e] = 3;
-  let p = $( 1 );
+  c = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (p) {
-      const q = $( a );
-      const r = $( "x" );
-      const s = $( a );
-      const t = $( "x" );
-      const u = $( a );
-      const v = $( "x" );
-      const w = $( a );
-      const x = $( "x" );
-      const y = $( a );
-      const z = $( "x" );
-      const 01 = $( a );
-      const 11 = $( "x" );
-      01[11] = 3;
-      y[z] = 3;
-      w[x] = 3;
-      u[v] = 3;
-      s[t] = 3;
-      q[r] = 3;
-      p = $( 1 );
+    if (c) {
+      const p = $( a );
+      const q = $( "x" );
+      const r = $( a );
+      const s = $( "x" );
+      const t = $( a );
+      const u = $( "x" );
+      const v = $( a );
+      const w = $( "x" );
+      const x = $( a );
+      const y = $( "x" );
+      const z = $( a );
+      const 01 = $( "x" );
+      z[01] = 3;
+      x[y] = 3;
+      v[w] = 3;
+      t[u] = 3;
+      r[s] = 3;
+      p[q] = 3;
+      c = $( 1 );
     }
     else {
       break;

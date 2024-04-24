@@ -24,7 +24,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-$(x);
+$($throwTDZError(`TDZ triggered for this read: \$(x)`));
 let x = $(5);
 $(x);
 x = $(10);
@@ -34,7 +34,9 @@ $(x);
 ## Normalized
 
 `````js filename=intro
-$(x);
+const tmpCallCallee = $;
+const tmpCalleeParam = $throwTDZError(`TDZ triggered for this read: \$(x)`);
+tmpCallCallee(tmpCalleeParam);
 let x = $(5);
 $(x);
 x = $(10);
@@ -44,7 +46,12 @@ $(x);
 ## Output
 
 `````js filename=intro
-throw `Preval: Cannot access \`x\` before initialization`;
+const tmpCalleeParam = $throwTDZError(`TDZ triggered for this read: \$(x)`);
+$(tmpCalleeParam);
+let x = $(5);
+$(x);
+x = $(10);
+$(x);
 `````
 
 ## PST Output
@@ -52,7 +59,12 @@ throw `Preval: Cannot access \`x\` before initialization`;
 With rename=true
 
 `````js filename=intro
-throw "Preval: Cannot access `x` before initialization";
+const a = b( "TDZ triggered for this read: $(x)" );
+$( a );
+let c = $( 5 );
+$( c );
+c = $( 10 );
+$( c );
 `````
 
 ## Globals

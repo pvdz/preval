@@ -62,7 +62,7 @@ $(a, x, y);
 let x = 1;
 let y = 2;
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(1);
   $(2);
@@ -73,6 +73,7 @@ if (tmpCalleeParam) {
   x = arrPatternSplat[0];
   y = arrPatternSplat[1];
   a = tmpNestedAssignArrPatternRhs;
+  tmpCalleeParam = tmpNestedAssignArrPatternRhs;
   $(tmpNestedAssignArrPatternRhs);
 } else {
   $(tmpCalleeParam);
@@ -91,7 +92,7 @@ let c = {
 a: 999,
 b: 1000
 ;
-const d = $( 100 );
+let d = $( 100 );
 if (d) {
   $( 1 );
   $( 2 );
@@ -102,6 +103,7 @@ if (d) {
   a = h[ 0 ];
   b = h[ 1 ];
   c = g;
+  d = g;
   $( g );
 }
 else {

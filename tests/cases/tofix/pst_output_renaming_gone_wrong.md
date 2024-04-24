@@ -1,8 +1,8 @@
 # Preval test case
 
-# if_if.md
+# pst_output_renaming_gone_wrong.md
 
-> Assigns > If if
+> Tofix > Pst output renaming gone wrong
 >
 > The PST output is renaming a var to a global that was seen. It should not use `a`
 
@@ -87,6 +87,7 @@ if (tmpIfTest) {
 const tmpIfTest$1 = $(2);
 $(x);
 if (tmpIfTest$1) {
+  x = 40;
   $(40);
 } else {
 }
@@ -111,6 +112,7 @@ else {
 const c = $( 2 );
 $( a );
 if (c) {
+  a = 40;
   $( 40 );
 }
 `````

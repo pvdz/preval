@@ -136,14 +136,15 @@ tmpCallCallee(tmpCalleeParam, tmpCalleeParam$1);
 `````js filename=intro
 $(50);
 $(true);
+let secondPart = undefined;
 if (tmpIfTest$9045) {
 } else {
-  const tmpClusterSSA_secondPart = tmpBinLhs$1687 | vh;
+  secondPart = tmpBinLhs$1687 | vh;
+  const tmpIfTest$9053 = secondPart < 56320;
   firstPart;
-  const tmpIfTest$9053 = tmpClusterSSA_secondPart < 56320;
   if (tmpIfTest$9053) {
   } else {
-    $(tmpClusterSSA_secondPart);
+    $(secondPart);
   }
 }
 `````
@@ -155,13 +156,14 @@ With rename=true
 `````js filename=intro
 $( 50 );
 $( true );
+let a = undefined;
 if (tmpIfTest$9045) {
 
 }
 else {
-  const a = tmpBinLhs$1687 | vh;
-  firstPart;
+  a = tmpBinLhs$1687 | vh;
   const b = a < 56320;
+  firstPart;
   if (b) {
 
   }

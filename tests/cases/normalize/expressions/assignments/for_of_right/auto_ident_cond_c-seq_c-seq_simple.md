@@ -78,7 +78,7 @@ else {
   a = $( c );
 }
 let d = undefined;
-for (d of a {
+for (d of a) {
 
 }
 $( a );

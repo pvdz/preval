@@ -93,7 +93,7 @@ b: 1000
 const d = { x: 1 };
 const e = $( d );
 let f = undefined;
-for (f of e {
+for (f of e) {
   $( a );
   $( b );
   const g = $( 3 );

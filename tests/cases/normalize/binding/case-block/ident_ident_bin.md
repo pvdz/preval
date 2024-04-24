@@ -62,13 +62,15 @@ $(a, b, c);
 ## Output
 
 `````js filename=intro
+let b = 2;
 const tmpSwitchDisc = $(`a`);
 const tmpBinBothRhs = $(`a`);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
+  b = 7;
   $(1, 7, 3);
 } else {
-  $(1, 2, 3);
+  $(1, b, 3);
 }
 `````
 
@@ -77,14 +79,16 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $( "a" );
+let a = 2;
 const b = $( "a" );
-const c = a === b;
-if (c) {
+const c = $( "a" );
+const d = b === c;
+if (d) {
+  a = 7;
   $( 1, 7, 3 );
 }
 else {
-  $( 1, 2, 3 );
+  $( 1, a, 3 );
 }
 `````
 

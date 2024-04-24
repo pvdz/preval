@@ -67,7 +67,7 @@ b: 1000
 const c = $( "$" );
 const d = a[ c ]( 1 )};
 let e = undefined;
-for (e in d {
+for (e in d) {
 
 }
 $( b );

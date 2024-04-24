@@ -75,7 +75,7 @@ const c = $( a );
 const d = $( "y" );
 const e = deletec[ d ];
 let f = undefined;
-for (f in e {
+for (f in e) {
 
 }
 $( b, a );

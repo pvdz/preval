@@ -60,14 +60,14 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(0);
-const tmpSwitchDisc = $(tmpCalleeParam);
+let tmpSwitchDisc = $(tmpCalleeParam);
 if (tmpSwitchDisc) {
 } else {
   const tmpCalleeParam$1 = $(1);
-  const tmpClusterSSA_tmpSwitchDisc = $(tmpCalleeParam$1);
-  if (tmpClusterSSA_tmpSwitchDisc) {
+  tmpSwitchDisc = $(tmpCalleeParam$1);
+  if (tmpSwitchDisc) {
     const tmpCalleeParam$3 = $(2);
-    $(tmpCalleeParam$3);
+    tmpSwitchDisc = $(tmpCalleeParam$3);
   } else {
   }
 }
@@ -82,24 +82,24 @@ With rename=true
 
 `````js filename=intro
 const a = $( 0 );
-const b = $( a );
+let b = $( a );
 if (b) {
 
 }
 else {
   const c = $( 1 );
-  const d = $( c );
-  if (d) {
-    const e = $( 2 );
-    $( e );
+  b = $( c );
+  if (b) {
+    const d = $( 2 );
+    b = $( d );
   }
 }
 $( 100 );
-const f = {
+const e = {
 a: 999,
 b: 1000
 ;
-$( f );
+$( e );
 `````
 
 ## Globals

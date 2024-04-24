@@ -113,11 +113,11 @@ if ($) {
 `````js filename=intro
 const f = function () {
   debugger;
-  const test = $(3);
+  let test = $(3);
   if (test) {
-    const tmpClusterSSA_test = $(1);
-    if (tmpClusterSSA_test) {
-      $(2);
+    test = $(1);
+    if (test) {
+      test = $(2);
       $(4);
       return undefined;
     } else {
@@ -142,11 +142,11 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  const b = $( 3 );
+  let b = $( 3 );
   if (b) {
-    const c = $( 1 );
-    if (c) {
-      $( 2 );
+    b = $( 1 );
+    if (b) {
+      b = $( 2 );
       $( 4 );
       return undefined;
     }

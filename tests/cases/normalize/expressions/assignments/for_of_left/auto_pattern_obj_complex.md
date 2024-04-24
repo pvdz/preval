@@ -70,7 +70,7 @@ let a = 999;
 const b = { x: 1 };
 const c = $( b );
 let d = undefined;
-for (d of c {
+for (d of c) {
   const e = {
 a: 1,
 b: 2

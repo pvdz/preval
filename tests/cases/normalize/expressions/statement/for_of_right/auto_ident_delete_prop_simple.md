@@ -63,7 +63,7 @@ b: 1000
 ;
 const c = deletea.y;
 let d = undefined;
-for (d of c {
+for (d of c) {
 
 }
 $( b, a );

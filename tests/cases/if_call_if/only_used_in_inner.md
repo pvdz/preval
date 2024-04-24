@@ -103,9 +103,10 @@ if ($) {
 `````js filename=intro
 if ($) {
   const outerTest = $(0);
+  let innerTest = false;
   if (outerTest) {
-    const tmpClusterSSA_innerTest = $(3);
-    if (tmpClusterSSA_innerTest) {
+    innerTest = $(3);
+    if (innerTest) {
     } else {
       $(2);
     }
@@ -124,8 +125,9 @@ With rename=true
 `````js filename=intro
 if ($) {
   const a = $( 0 );
+  let b = false;
   if (a) {
-    const b = $( 3 );
+    b = $( 3 );
     if (b) {
 
     }

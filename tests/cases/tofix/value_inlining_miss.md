@@ -1,8 +1,8 @@
 # Preval test case
 
-# if_if.md
+# value_inlining_miss.md
 
-> Assigns > If if
+> Tofix > Value inlining miss
 >
 > The first `else $(x)` in the output should be inlined.
 > Code should know that it's 20.
@@ -88,6 +88,7 @@ if (tmpIfTest) {
 const tmpIfTest$1 = $(2);
 $(x);
 if (tmpIfTest$1) {
+  x = 40;
   $(40);
 } else {
 }
@@ -105,14 +106,14 @@ if (b) {
   $( 20 );
   a = 30;
   $( 30 );
-  $( 30 );
 }
 else {
-  $( 20 );
-  $( 20 );
+  $( a );
 }
 const c = $( 2 );
+$( a );
 if (c) {
+  a = 40;
   $( 40 );
 }
 `````
@@ -124,14 +125,14 @@ None
 ## Result
 
 Should call `$` with:
-- 1: 20
-- 2: 1
-- 3: 20
-- 4: 30
-- 5: 2
-- 6: 30
-- 7: 40
-- eval returned: undefined
+ - 1: 20
+ - 2: 1
+ - 3: 20
+ - 4: 30
+ - 5: 2
+ - 6: 30
+ - 7: 40
+ - eval returned: undefined
 
 Pre normalization calls: Same
 

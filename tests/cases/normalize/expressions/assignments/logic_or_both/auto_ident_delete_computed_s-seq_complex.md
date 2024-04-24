@@ -64,7 +64,7 @@ $(2);
 const tmpDeleteCompProp = $(`y`);
 const arg = { y: 1 };
 let a = delete arg[tmpDeleteCompProp];
-const tmpCalleeParam = a;
+let tmpCalleeParam = a;
 if (a) {
   $(tmpCalleeParam);
 } else {
@@ -73,6 +73,7 @@ if (a) {
   const tmpDeleteCompProp$1 = $(`y`);
   const tmpNestedComplexRhs = delete arg[tmpDeleteCompProp$1];
   a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 }
 $(a, arg);
@@ -88,7 +89,7 @@ $( 2 );
 const a = $( "y" );
 const b = { y: 1 };
 let c = deleteb[ a ];
-const d = c;
+let d = c;
 if (c) {
   $( d );
 }
@@ -98,6 +99,7 @@ else {
   const e = $( "y" );
   const f = deleteb[ e ];
   c = f;
+  d = f;
   $( f );
 }
 $( c, b );

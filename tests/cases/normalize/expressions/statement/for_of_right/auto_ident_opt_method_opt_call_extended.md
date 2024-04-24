@@ -93,7 +93,7 @@ else {
   b = e;
 }
 let f = undefined;
-for (f of b {
+for (f of b) {
 
 }
 $( a );

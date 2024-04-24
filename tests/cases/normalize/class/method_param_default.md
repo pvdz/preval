@@ -65,11 +65,13 @@ const x = class {
   y($$0) {
     const tmpParamBare = $$0;
     debugger;
+    let arg = undefined;
     const tmpIfTest = tmpParamBare === undefined;
     if (tmpIfTest) {
-      const tmpClusterSSA_arg = $(10, `default`);
-      return tmpClusterSSA_arg;
+      arg = $(10, `default`);
+      return arg;
     } else {
+      arg = tmpParamBare;
       return tmpParamBare;
     }
   }
@@ -88,12 +90,14 @@ const a = class   {
 y( $$0 ) {
   const b = c;
   debugger;
-  const d = b === undefined;
-  if (d) {
-    const e = $( 10, "default" );
-    return e;
+  let d = undefined;
+  const e = b === undefined;
+  if (e) {
+    d = $( 10, "default" );
+    return d;
   }
   else {
+    d = b;
     return b;
   }
 },

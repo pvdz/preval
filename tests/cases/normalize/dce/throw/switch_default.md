@@ -85,9 +85,16 @@ tmpCallCallee(tmpCalleeParam);
 
 `````js filename=intro
 const tmpSwitchValue = $(1, `disc`);
+let tmpSwitchCaseToStart = 1;
 const tmpBinLhs = $(0);
+let tmpIfTest$1 = true;
 const tmpIfTest = tmpBinLhs === tmpSwitchValue;
 if (tmpIfTest) {
+  tmpSwitchCaseToStart = 0;
+} else {
+  tmpIfTest$1 = tmpSwitchCaseToStart <= 0;
+}
+if (tmpIfTest$1) {
   $(`wrong branch`);
   throw `wrong exit`;
 } else {
@@ -102,15 +109,23 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1, "disc" );
-const b = $( 0 );
-const c = b === a;
-if (c) {
+let b = 1;
+const c = $( 0 );
+let d = true;
+const e = c === a;
+if (e) {
+  b = 0;
+}
+else {
+  d = b <= 0;
+}
+if (d) {
   $( "wrong branch" );
   throw "wrong exit";
 }
 else {
-  const d = $( 2, "throw" );
-  throw d;
+  const f = $( 2, "throw" );
+  throw f;
 }
 `````
 

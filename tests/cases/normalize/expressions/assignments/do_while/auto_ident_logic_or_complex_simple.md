@@ -63,18 +63,19 @@ $(a);
 `````js filename=intro
 $(100);
 const tmpCalleeParam = $(0);
-const tmpNestedComplexRhs = $(tmpCalleeParam);
-let tmpClusterSSA_a = 2;
-let tmpClusterSSA_tmpDoWhileFlag = true;
+let tmpNestedComplexRhs = $(tmpCalleeParam);
+let tmpSSA_a = 2;
+let tmpSSA_tmpDoWhileFlag = true;
 let $tmpLoopUnrollCheck = false;
 if (tmpNestedComplexRhs) {
-  tmpClusterSSA_a = tmpNestedComplexRhs;
-  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
-  $tmpLoopUnrollCheck = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
+  $tmpLoopUnrollCheck = tmpSSA_tmpDoWhileFlag;
 } else {
-  $tmpLoopUnrollCheck = tmpClusterSSA_tmpDoWhileFlag;
+  tmpNestedComplexRhs = 2;
+  $tmpLoopUnrollCheck = tmpSSA_tmpDoWhileFlag;
 }
-if (tmpClusterSSA_tmpDoWhileFlag) {
+if (tmpSSA_tmpDoWhileFlag) {
   $(100);
   const tmpCalleeParam$1 = $(0);
   let tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
@@ -82,13 +83,13 @@ if (tmpClusterSSA_tmpDoWhileFlag) {
   } else {
     tmpNestedComplexRhs$1 = 2;
   }
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
 } else {
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$2 = $(0);
       let tmpNestedComplexRhs$2 = $(tmpCalleeParam$2);
@@ -96,15 +97,15 @@ if ($tmpLoopUnrollCheck) {
       } else {
         tmpNestedComplexRhs$2 = 2;
       }
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -114,16 +115,17 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 0 );
-const b = $( a );
+let b = $( a );
 let c = 2;
 let d = true;
 let e = false;
 if (b) {
   c = b;
   d = b;
-  e = b;
+  e = d;
 }
 else {
+  b = 2;
   e = d;
 }
 if (d) {

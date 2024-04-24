@@ -96,10 +96,11 @@ if ($) {
 
 `````js filename=intro
 if ($) {
-  const x = $(1);
+  let x = $(1);
   if (x) {
     $(`inner if`, x);
   } else {
+    x = false;
     $(`inner else`, false);
   }
   $(undefined, `outer`);
@@ -113,11 +114,12 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  const a = $( 1 );
+  let a = $( 1 );
   if (a) {
     $( "inner if", a );
   }
   else {
+    a = false;
     $( "inner else", false );
   }
   $( undefined, "outer" );

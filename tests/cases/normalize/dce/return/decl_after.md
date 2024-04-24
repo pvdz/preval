@@ -16,7 +16,9 @@ When eliminating dead code we can scan for any declarations and either mark all 
 
 `````js filename=intro
 function f() {
-  if ($(false)) x = $('fail too');
+  if ($(false)) {
+    x = $('fail too');
+  }
   return;
   
   let x = $('fail');
@@ -29,7 +31,9 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  if ($(false)) x = $(`fail too`);
+  if ($(false)) {
+    $(`fail too`), $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
+  }
   return;
   let x = $(`fail`);
 };
@@ -43,7 +47,8 @@ let f = function () {
   debugger;
   const tmpIfTest = $(false);
   if (tmpIfTest) {
-    x = $(`fail too`);
+    $(`fail too`);
+    $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
     return undefined;
   } else {
     return undefined;
@@ -62,6 +67,7 @@ tmpCallCallee(tmpCalleeParam);
 const tmpIfTest = $(false);
 if (tmpIfTest) {
   $(`fail too`);
+  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
 } else {
 }
 $(undefined);
@@ -75,6 +81,7 @@ With rename=true
 const a = $( false );
 if (a) {
   $( "fail too" );
+  b( "TDZ triggered for this assignment: x = $('fail too')" );
 }
 $( undefined );
 `````

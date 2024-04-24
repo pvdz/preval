@@ -109,7 +109,7 @@ else {
   }
 }
 let k = undefined;
-for (k in c {
+for (k in c) {
 
 }
 $( c );

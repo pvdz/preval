@@ -58,22 +58,22 @@ $(a, b);
 `````js filename=intro
 let b = {};
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpObjLitVal = $(2);
   const tmpCalleeParam = { b: tmpObjLitVal };
   const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
   b = tmpNestedAssignObjPatternRhs.b;
   a = tmpNestedAssignObjPatternRhs;
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpObjLitVal$1 = $(2);
       const tmpCalleeParam$1 = { b: tmpObjLitVal$1 };
       const tmpNestedAssignObjPatternRhs$1 = $(tmpCalleeParam$1);
       b = tmpNestedAssignObjPatternRhs$1.b;
       a = tmpNestedAssignObjPatternRhs$1;
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -93,22 +93,22 @@ let b = {
 a: 999,
 b: 1000
 ;
-const c = $( 1 );
+let c = $( 1 );
 if (c) {
   const d = $( 2 );
   const e = { b: d };
   const f = $( e );
   a = f.b;
   b = f;
-  let g = $( 1 );
+  c = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (g) {
-      const h = $( 2 );
-      const i = { b: h };
-      const j = $( i );
-      a = j.b;
-      b = j;
-      g = $( 1 );
+    if (c) {
+      const g = $( 2 );
+      const h = { b: g };
+      const i = $( h );
+      a = i.b;
+      b = i;
+      c = $( 1 );
     }
     else {
       break;

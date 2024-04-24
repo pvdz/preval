@@ -52,34 +52,34 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_a = new $(1);
-$(tmpClusterSSA_a);
+const tmpSSA_a = new $(1);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 $(1);
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  $(tmpClusterSSA_a);
+  $(tmpSSA_a);
   $(1);
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output

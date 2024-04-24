@@ -71,34 +71,35 @@ const tmpArrElement = $(2);
 const tmpCalleeParam = [tmpArrElement];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
-let tmpClusterSSA_b = arrPatternSplat[0];
-let tmpClusterSSA_a = tmpNestedAssignArrPatternRhs;
+let tmpSSA_b = arrPatternSplat[0];
+let tmpSSA_a = tmpNestedAssignArrPatternRhs;
+let tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
 if (tmpNestedAssignArrPatternRhs) {
   $(100);
   const tmpArrElement$1 = $(2);
   const tmpCalleeParam$1 = [tmpArrElement$1];
   const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
   const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs$1];
-  tmpClusterSSA_b = arrPatternSplat$1[0];
-  tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$1;
+  tmpSSA_b = arrPatternSplat$1[0];
+  tmpSSA_a = tmpNestedAssignArrPatternRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpArrElement$2 = $(2);
       const tmpCalleeParam$2 = [tmpArrElement$2];
       const tmpNestedAssignArrPatternRhs$2 = $(tmpCalleeParam$2);
       const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$2];
-      tmpClusterSSA_b = arrPatternSplat$2[0];
-      tmpClusterSSA_a = tmpNestedAssignArrPatternRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$2;
+      tmpSSA_b = arrPatternSplat$2[0];
+      tmpSSA_a = tmpNestedAssignArrPatternRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a, tmpClusterSSA_b);
+$(tmpSSA_a, tmpSSA_b);
 `````
 
 ## PST Output
@@ -113,17 +114,18 @@ const c = $( b );
 const d = [ ... c,, ];
 let e = d[ 0 ];
 let f = c;
+let g = c;
 if (c) {
   $( 100 );
-  const g = $( 2 );
-  const h = [ g,, ];
-  const i = $( h );
-  const j = [ ... i,, ];
-  e = j[ 0 ];
-  f = i;
-  let k = i;
+  const h = $( 2 );
+  const i = [ h,, ];
+  const j = $( i );
+  const k = [ ... j,, ];
+  e = k[ 0 ];
+  f = j;
+  g = j;
   while ($LOOP_UNROLL_9) {
-    if (k) {
+    if (g) {
       $( 100 );
       const l = $( 2 );
       const m = [ l,, ];
@@ -131,7 +133,7 @@ if (c) {
       const o = [ ... n,, ];
       e = o[ 0 ];
       f = n;
-      k = n;
+      g = n;
     }
     else {
       break;

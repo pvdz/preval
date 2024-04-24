@@ -51,16 +51,17 @@ $(a);
 ## Output
 
 `````js filename=intro
+let tmpCalleeParam = undefined;
 const tmpCallCallee$1 = $($);
 const tmpCalleeParam$1 = $(1);
 const tmpCalleeParam$3 = $(2);
 const a = tmpCallCallee$1(tmpCalleeParam$1, tmpCalleeParam$3);
 if (a) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -70,19 +71,20 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( $ );
-const b = $( 1 );
-const c = $( 2 );
-const d = a( b, c );
-if (d) {
-  const e = $( 100 );
-  $( e );
+let a = undefined;
+const b = $( $ );
+const c = $( 1 );
+const d = $( 2 );
+const e = b( c, d );
+if (e) {
+  a = $( 100 );
+  $( a );
 }
 else {
-  const f = $( 200 );
-  $( f );
+  a = $( 200 );
+  $( a );
 }
-$( d );
+$( e );
 `````
 
 ## Globals

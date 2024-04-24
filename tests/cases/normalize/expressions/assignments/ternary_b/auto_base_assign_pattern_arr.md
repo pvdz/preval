@@ -58,6 +58,7 @@ $(a, b);
 `````js filename=intro
 let b = [];
 let a = { a: 999, b: 1000 };
+let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpArrElement = $(2);
@@ -66,10 +67,11 @@ if (tmpIfTest) {
   const arrPatternSplat = [...tmpNestedAssignArrPatternRhs];
   b = arrPatternSplat[0];
   a = tmpNestedAssignArrPatternRhs;
+  tmpCalleeParam = tmpNestedAssignArrPatternRhs;
   $(tmpNestedAssignArrPatternRhs);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(200);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
 $(a, b);
 `````
@@ -84,19 +86,21 @@ let b = {
 a: 999,
 b: 1000
 ;
-const c = $( 1 );
-if (c) {
-  const d = $( 2 );
-  const e = [ d,, ];
-  const f = $( e );
-  const g = [ ... f,, ];
-  a = g[ 0 ];
-  b = f;
-  $( f );
+let c = undefined;
+const d = $( 1 );
+if (d) {
+  const e = $( 2 );
+  const f = [ e,, ];
+  const g = $( f );
+  const h = [ ... g,, ];
+  a = h[ 0 ];
+  b = g;
+  c = g;
+  $( g );
 }
 else {
-  const h = $( 200 );
-  $( h );
+  c = $( 200 );
+  $( c );
 }
 $( b, a );
 `````

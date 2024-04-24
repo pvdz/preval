@@ -52,27 +52,22 @@ considerMutated(x);
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpLabeledBlockFunc = function () {
-    debugger;
-    try {
-      throw `one`;
-    } catch (e$1) {
-      throw_early;
-      throw `two`;
-    } finally {
-      const tmpReturnArg = tmpAfterLabel();
-      return tmpReturnArg;
-    }
-    const tmpReturnArg$1 = tmpAfterLabel();
-    return tmpReturnArg$1;
-  };
   const tmpAfterLabel = function () {
     debugger;
     x = 1;
     return undefined;
   };
-  const tmpReturnArg$3 = tmpLabeledBlockFunc();
-  return tmpReturnArg$3;
+  try {
+    throw `one`;
+  } catch (e) {
+    throw_early;
+    throw `two`;
+  } finally {
+    const tmpReturnArg = tmpAfterLabel();
+    return tmpReturnArg;
+  }
+  const tmpReturnArg$1 = tmpAfterLabel();
+  return tmpReturnArg$1;
 };
 let x = 0;
 f();
@@ -86,7 +81,7 @@ const f = function () {
   debugger;
   try {
     throw `one`;
-  } catch (e$1) {
+  } catch (e) {
     throw_early;
     throw `two`;
   } finally {
@@ -111,7 +106,7 @@ const a = function() {
   try {
     throw "one";
   }
-catch (e$1) {
+catch (e) {
     throw_early;
     throw "two";
   }
@@ -131,7 +126,7 @@ considerMutated( b );
 
 BAD@! Found 3 implicit global bindings:
 
-e$1, throw_early, considerMutated
+e, throw_early, considerMutated
 
 ## Result
 

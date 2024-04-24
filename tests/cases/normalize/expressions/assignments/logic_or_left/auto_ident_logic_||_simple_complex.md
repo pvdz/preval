@@ -50,11 +50,12 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam$1 = $(1);
 const a = $(tmpCalleeParam$1);
+let tmpSSA_tmpCalleeParam = a;
 if (a) {
   $(a);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpSSA_tmpCalleeParam = $(100);
+  $(tmpSSA_tmpCalleeParam);
 }
 $(a);
 `````
@@ -66,11 +67,12 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( a );
+let c = b;
 if (b) {
   $( b );
 }
 else {
-  const c = $( 100 );
+  c = $( 100 );
   $( c );
 }
 $( b );

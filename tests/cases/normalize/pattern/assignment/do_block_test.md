@@ -105,15 +105,15 @@ arrPatternSplat$9[0];
 arrPatternSplat$9[1];
 const arrAssignPatternRhs$10 = $(b);
 const arrPatternSplat$10 = [...arrAssignPatternRhs$10];
-let tmpClusterSSA_p$2 = arrPatternSplat$10[0];
-let tmpClusterSSA_q$2 = arrPatternSplat$10[1];
+let tmpSSA_p$2 = arrPatternSplat$10[0];
+let tmpSSA_q$2 = arrPatternSplat$10[1];
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const arrAssignPatternRhs$11 = $(b);
   const arrPatternSplat$11 = [...arrAssignPatternRhs$11];
-  tmpClusterSSA_p$2 = arrPatternSplat$11[0];
-  tmpClusterSSA_q$2 = arrPatternSplat$11[1];
+  tmpSSA_p$2 = arrPatternSplat$11[0];
+  tmpSSA_q$2 = arrPatternSplat$11[1];
 }
-$(tmpClusterSSA_p$2, tmpClusterSSA_q$2);
+$(tmpSSA_p$2, tmpSSA_q$2);
 `````
 
 ## PST Output

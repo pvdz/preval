@@ -61,13 +61,14 @@ let a = function () {
   debugger;
   return undefined;
 };
-const tmpCalleeParam = a;
+let tmpCalleeParam = a;
 if (a) {
   const tmpNestedComplexRhs = function () {
     debugger;
     return undefined;
   };
   a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
   $(tmpCalleeParam);
@@ -84,13 +85,14 @@ let a = function() {
   debugger;
   return undefined;
 };
-const b = a;
+let b = a;
 if (a) {
   const c = function() {
     debugger;
     return undefined;
   };
   a = c;
+  b = c;
   $( c );
 }
 else {

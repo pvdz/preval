@@ -47,18 +47,18 @@ $(a);
 ## Output
 
 `````js filename=intro
-const a = { a: 999, b: 1000 };
+let a = { a: 999, b: 1000 };
+const tmpBinBothLhs = a;
+let tmpBinBothRhs = undefined;
 const tmpIfTest = $ == null;
-let tmpClusterSSA_a = NaN;
 if (tmpIfTest) {
-  a ** 0;
-  $(NaN);
 } else {
   const tmpChainElementCall = $(1);
-  tmpClusterSSA_a = a * tmpChainElementCall;
-  $(tmpClusterSSA_a);
+  tmpBinBothRhs = tmpChainElementCall;
 }
-$(tmpClusterSSA_a);
+a = tmpBinBothLhs * tmpBinBothRhs;
+$(a);
+$(a);
 `````
 
 ## PST Output
@@ -66,22 +66,23 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = {
+let a = {
 a: 999,
 b: 1000
 ;
-const b = $ == null;
-let c = NaN;
-if (b) {
-  a ** 0;
-  $( NaN );
+const b = a;
+let c = undefined;
+const d = $ == null;
+if (d) {
+
 }
 else {
-  const d = $( 1 );
-  c = a * d;
-  $( c );
+  const e = $( 1 );
+  c = e;
 }
-$( c );
+a = b * c;
+$( a );
+$( a );
 `````
 
 ## Globals

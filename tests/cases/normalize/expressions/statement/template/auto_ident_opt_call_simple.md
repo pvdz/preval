@@ -51,13 +51,15 @@ $(a);
 `````js filename=intro
 const a = { a: 999, b: 1000 };
 const tmpIfTest = $ == null;
+let tmpBinBothRhs = `undefined`;
+let tmpCalleeParam = `before  undefined  after`;
 if (tmpIfTest) {
   $(`before  undefined  after`);
 } else {
   const tmpChainElementCall = $(1);
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpBinBothRhs = $coerce(tmpChainElementCall, `string`);
+  tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -72,14 +74,16 @@ a: 999,
 b: 1000
 ;
 const b = $ == null;
+let c = "undefined";
+let d = "before  undefined  after";
 if (b) {
   $( "before  undefined  after" );
 }
 else {
-  const c = $( 1 );
-  const d = $coerce( c, "string" );
-  const e = `before  ${[object Object]}  after`;
-  $( e );
+  const e = $( 1 );
+  c = $coerce( e, "string" );
+  d = `before  ${[object Object]}  after`;
+  $( d );
 }
 $( a );
 `````

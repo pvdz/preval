@@ -94,7 +94,7 @@ while (true) {
     $( "loop" );
     let b = undefined;
     const c = [ 1, 2,, ];
-    for (b of c {
+    for (b of c) {
       $( "loop", b );
     }
     $( "infiloop, do not eliminate" );

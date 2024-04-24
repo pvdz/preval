@@ -60,14 +60,14 @@ $(a);
 const b = { $: $ };
 const a = { a: 999, b: 1000 };
 $(100);
-const tmpDoWhileFlag = b.$(1);
+let tmpDoWhileFlag = b.$(1);
 if (tmpDoWhileFlag) {
   $(100);
-  let tmpClusterSSA_tmpDoWhileFlag = b.$(1);
+  tmpDoWhileFlag = b.$(1);
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
-      tmpClusterSSA_tmpDoWhileFlag = b.$(1);
+      tmpDoWhileFlag = b.$(1);
     } else {
       break;
     }
@@ -88,14 +88,14 @@ a: 999,
 b: 1000
 ;
 $( 100 );
-const c = a.$( 1 );
+let c = a.$( 1 );
 if (c) {
   $( 100 );
-  let d = a.$( 1 );
+  c = a.$( 1 );
   while ($LOOP_UNROLL_9) {
-    if (d) {
+    if (c) {
       $( 100 );
-      d = a.$( 1 );
+      c = a.$( 1 );
     }
     else {
       break;

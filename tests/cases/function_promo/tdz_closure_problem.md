@@ -35,7 +35,7 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    $(x$1);
+    $($throwTDZError(`TDZ triggered for this read: \$(x\$1)`));
     let x$1 = $(`inner`);
     if ($) $(`prevent premature elimination`);
   };
@@ -53,7 +53,9 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    $(x$1);
+    const tmpCallCallee = $;
+    const tmpCalleeParam = $throwTDZError(`TDZ triggered for this read: \$(x\$1)`);
+    tmpCallCallee(tmpCalleeParam);
     let x$1 = $(`inner`);
     if ($) {
       $(`prevent premature elimination`);
@@ -82,7 +84,17 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(`outer`);
-  throw `Preval: Cannot access \`x\$1\` before initialization`;
+  const tmpCalleeParam = $throwTDZError(`TDZ triggered for this read: \$(x\$1)`);
+  $(tmpCalleeParam);
+  $(`inner`);
+  if ($) {
+    $(`prevent premature elimination`);
+    if ($) {
+      $(`prevent premature elimination`);
+    } else {
+    }
+  } else {
+  }
 } else {
 }
 `````
@@ -94,7 +106,15 @@ With rename=true
 `````js filename=intro
 if ($) {
   $( "outer" );
-  throw "Preval: Cannot access `x$1` before initialization";
+  const a = b( "TDZ triggered for this read: $(x$1)" );
+  $( a );
+  $( "inner" );
+  if ($) {
+    $( "prevent premature elimination" );
+    if ($) {
+      $( "prevent premature elimination" );
+    }
+  }
 }
 `````
 

@@ -129,7 +129,7 @@ const a = function() {
 a: 1,
 b: 2
       ;
-      for (c in e {
+      for (c in e) {
         d = true;
         break;
       }

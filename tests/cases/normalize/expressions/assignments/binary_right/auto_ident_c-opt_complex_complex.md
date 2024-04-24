@@ -58,15 +58,16 @@ let a = undefined;
 const b = { x: 1 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = tmpBinBothLhs + undefined;
+  $(tmpCalleeParam);
 } else {
   const tmpChainRootComputed = $(`x`);
   const tmpChainElementObject = tmpChainElementCall[tmpChainRootComputed];
   a = tmpChainElementObject;
-  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementObject;
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = tmpBinBothLhs + tmpChainElementObject;
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -81,16 +82,17 @@ let b = undefined;
 const c = { x: 1 };
 const d = $( c );
 const e = d == null;
+let f = undefined;
 if (e) {
-  const f = a + undefined;
+  f = a + undefined;
   $( f );
 }
 else {
   const g = $( "x" );
   const h = d[ g ];
   b = h;
-  const i = a + h;
-  $( i );
+  f = a + h;
+  $( f );
 }
 $( b );
 `````

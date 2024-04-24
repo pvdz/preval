@@ -60,13 +60,14 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   $(tmpCalleeParam);
 } else {
   const tmpObjLitVal$1 = { e: $ };
   const tmpChainElementCall = $dotCall($, tmpObjLitVal$1, 1);
   a = tmpChainElementCall;
+  tmpCalleeParam = tmpChainElementCall;
   $(tmpChainElementCall);
 }
 $(a);
@@ -81,7 +82,7 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 100 );
+let b = $( 100 );
 if (b) {
   $( b );
 }
@@ -89,6 +90,7 @@ else {
   const c = { e: $ };
   const d = $dotCall( $, c, 1 );
   a = d;
+  b = d;
   $( d );
 }
 $( a );

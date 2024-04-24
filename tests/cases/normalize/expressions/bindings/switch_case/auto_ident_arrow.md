@@ -53,11 +53,11 @@ if (tmpIfTest) {
 ## Output
 
 `````js filename=intro
-const tmpClusterSSA_a = function () {
+const a = function () {
   debugger;
   return undefined;
 };
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output

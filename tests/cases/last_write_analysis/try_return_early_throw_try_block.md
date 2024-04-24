@@ -75,8 +75,8 @@ const f = function () {
   let x = 1;
   try {
     do_not_observe_assignment;
-    const tmpClusterSSA_x = $(2, `prevent optim`);
-    return tmpClusterSSA_x;
+    x = $(2, `prevent optim`);
+    return x;
   } finally {
     x = $(3, `prevent optim`);
   }
@@ -97,8 +97,8 @@ const a = function() {
   let b = 1;
   try {
     do_not_observe_assignment;
-    const c = $( 2, "prevent optim" );
-    return c;
+    b = $( 2, "prevent optim" );
+    return b;
   }
 finally {
     b = $( 3, "prevent optim" );
@@ -106,8 +106,8 @@ finally {
   $( "prevent return hoisting" );
   return b;
 };
-const d = a();
-$( d );
+const c = a();
+$( c );
 `````
 
 ## Globals

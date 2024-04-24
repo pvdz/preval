@@ -70,11 +70,12 @@ const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+let tmpCalleeParam = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   $(varInitAssignLhsComputedRhs);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 }
 $(varInitAssignLhsComputedRhs, b, c, 3);
 `````
@@ -93,11 +94,12 @@ const f = $( "y" );
 const g = $( 3 );
 e[f] = g;
 c[d] = g;
+let h = g;
 if (g) {
   $( g );
 }
 else {
-  const h = $( 100 );
+  h = $( 100 );
   $( h );
 }
 $( g, a, b, 3 );

@@ -51,11 +51,12 @@ $(a);
 const tmpCallCompProp = $(`\$`);
 const b = { $: $ };
 const a = b[tmpCallCompProp](1);
+let tmpCalleeParam = a;
 if (a) {
   $(a);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -68,11 +69,12 @@ With rename=true
 const a = $( "$" );
 const b = { $: $ };
 const c = b[ a ]( 1 )};
+let d = c;
 if (c) {
   $( c );
 }
 else {
-  const d = $( 100 );
+  d = $( 100 );
   $( d );
 }
 $( c );

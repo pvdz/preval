@@ -63,16 +63,21 @@ if (tmpCallCallee$1) {
   tmpCallCallee$1 = $(tmpCalleeParam$3);
 } else {
 }
+let tmpBinBothRhs = undefined;
+let tmpStringConcatL = undefined;
+let tmpCalleeParam = undefined;
 if (tmpCallCallee$1) {
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+  tmpStringConcatL = $coerce(tmpBinBothRhs, `plustr`);
+  tmpCalleeParam = `before  ${tmpStringConcatL}  after`;
+  $(tmpCalleeParam);
 } else {
   const tmpCalleeParam$5 = $(2);
-  const tmpClusterSSA_tmpCallCallee$1 = $(tmpCalleeParam$5);
-  const tmpClusterSSA_tmpBinBothRhs$1 = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam$1 = `before  ${tmpClusterSSA_tmpBinBothRhs$1}  after`;
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCallCallee$1 = $(tmpCalleeParam$5);
+  tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+  tmpStringConcatL = $coerce(tmpBinBothRhs, `plustr`);
+  tmpCalleeParam = `before  ${tmpStringConcatL}  after`;
+  $(tmpCalleeParam);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -89,23 +94,28 @@ if (b) {
   const c = $( 1 );
   b = $( c );
 }
+let d = undefined;
+let e = undefined;
+let f = undefined;
 if (b) {
-  const d = $coerce( b, "string" );
-  const e = `before  ${[object Object]}  after`;
-  $( e );
+  d = $coerce( b, "string" );
+  e = $coerce( d, "plustr" );
+  f = `before  ${[object Object]}  after`;
+  $( f );
 }
 else {
-  const f = $( 2 );
-  const g = $( f );
-  const h = $coerce( g, "string" );
-  const i = `before  ${[object Object]}  after`;
-  $( i );
+  const g = $( 2 );
+  b = $( g );
+  d = $coerce( b, "string" );
+  e = $coerce( d, "plustr" );
+  f = `before  ${[object Object]}  after`;
+  $( f );
 }
-const j = {
+const h = {
 a: 999,
 b: 1000
 ;
-$( j );
+$( h );
 `````
 
 ## Globals

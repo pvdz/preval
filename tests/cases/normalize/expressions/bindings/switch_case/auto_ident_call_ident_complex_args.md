@@ -59,8 +59,8 @@ if (tmpIfTest) {
 `````js filename=intro
 const tmpCalleeParam = $(1);
 const tmpCalleeParam$1 = $(2);
-const tmpClusterSSA_a = $(tmpCalleeParam, tmpCalleeParam$1);
-$(tmpClusterSSA_a);
+const a = $(tmpCalleeParam, tmpCalleeParam$1);
+$(a);
 `````
 
 ## PST Output

@@ -52,11 +52,13 @@ $(x);
 
 `````js filename=intro
 const objPatternBeforeDefault = (1).x;
+let x = undefined;
 const tmpIfTest$1 = objPatternBeforeDefault === undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_x = $(`pass`);
-  $(tmpClusterSSA_x);
+  x = $(`pass`);
+  $(x);
 } else {
+  x = objPatternBeforeDefault;
   $(objPatternBeforeDefault);
 }
 `````
@@ -67,12 +69,14 @@ With rename=true
 
 `````js filename=intro
 const a = 1.x;
-const b = a === undefined;
-if (b) {
-  const c = $( "pass" );
-  $( c );
+let b = undefined;
+const c = a === undefined;
+if (c) {
+  b = $( "pass" );
+  $( b );
 }
 else {
+  b = a;
   $( a );
 }
 `````

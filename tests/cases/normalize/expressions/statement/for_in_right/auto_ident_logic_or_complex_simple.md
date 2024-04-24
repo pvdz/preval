@@ -71,7 +71,7 @@ else {
   b = 2;
 }
 let c = undefined;
-for (c in b {
+for (c in b) {
 
 }
 const d = {

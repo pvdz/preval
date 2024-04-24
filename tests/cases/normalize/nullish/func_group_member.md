@@ -49,15 +49,16 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const y = $();
+let y = $();
 const tmpIfTest = y == null;
+let tmpReturnArg = undefined;
 if (tmpIfTest) {
-  foo;
-  const tmpClusterSSA_tmpReturnArg = $(foo);
-  $(tmpClusterSSA_tmpReturnArg);
+  y = foo;
+  tmpReturnArg = $(y);
+  $(tmpReturnArg);
 } else {
-  const tmpClusterSSA_tmpReturnArg$1 = $(y);
-  $(tmpClusterSSA_tmpReturnArg$1);
+  tmpReturnArg = $(y);
+  $(tmpReturnArg);
 }
 `````
 
@@ -66,16 +67,17 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = $();
+let a = $();
 const b = a == null;
+let c = undefined;
 if (b) {
-  foo;
-  const c = $( foo );
+  a = foo;
+  c = $( a );
   $( c );
 }
 else {
-  const d = $( a );
-  $( d );
+  c = $( a );
+  $( c );
 }
 `````
 

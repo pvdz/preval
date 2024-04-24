@@ -29,7 +29,7 @@ for (lhs in rhs) {
 let lhs = undefined;
 for (lhs in rhs) {
   if ($) {
-    const rhs$1 = [firstElement];
+    const rhs$1 = [$throwTDZError(`TDZ triggered for this read: [firstElement]`)];
     $(rhs$1);
   } else {
     $(`init`);
@@ -44,7 +44,8 @@ for (lhs in rhs) {
 let lhs = undefined;
 for (lhs in rhs) {
   if ($) {
-    const rhs$1 = [firstElement];
+    const tmpArrElement = $throwTDZError(`TDZ triggered for this read: [firstElement]`);
+    const rhs$1 = [tmpArrElement];
     $(rhs$1);
   } else {
     $(`init`);
@@ -59,7 +60,9 @@ for (lhs in rhs) {
 let lhs = undefined;
 for (lhs in rhs) {
   if ($) {
-    throw `Preval: Cannot access \`firstElement\` before initialization`;
+    const tmpArrElement = $throwTDZError(`TDZ triggered for this read: [firstElement]`);
+    const rhs$1 = [tmpArrElement];
+    $(rhs$1);
   } else {
     $(`init`);
   }
@@ -72,9 +75,11 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-for (a in rhs {
+for (a in rhs) {
   if ($) {
-    throw "Preval: Cannot access `firstElement` before initialization";
+    const b = c( "TDZ triggered for this read: [firstElement]" );
+    const d = [ b,, ];
+    $( d );
   }
   else {
     $( "init" );

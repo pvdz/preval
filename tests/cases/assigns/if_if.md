@@ -87,6 +87,7 @@ if (tmpIfTest) {
 const tmpIfTest$1 = $(2);
 $(x);
 if (tmpIfTest$1) {
+  x = 40;
   $(40);
 } else {
 }
@@ -111,6 +112,7 @@ else {
 const c = $( 2 );
 $( a );
 if (c) {
+  a = 40;
   $( 40 );
 }
 `````

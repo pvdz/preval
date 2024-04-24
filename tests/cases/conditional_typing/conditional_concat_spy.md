@@ -80,12 +80,14 @@ tmpCallCallee(tmpCalleeParam);
 const lastType = $(2097173);
 const tmpBinBothRhs = $spy();
 const tmpStringConcatL = $coerce(tmpBinBothRhs, `plustr`);
+let fullErrmsg = undefined;
 const tmpIfTest$1787 = lastType === 2097173;
 if (tmpIfTest$1787) {
-  const tmpClusterSSA_fullErrmsg = `Parser error! ${tmpStringConcatL} (at EOF)`;
-  $(`-->`, tmpClusterSSA_fullErrmsg);
+  fullErrmsg = `Parser error! ${tmpStringConcatL} (at EOF)`;
+  $(`-->`, fullErrmsg);
 } else {
   const tmpBinBothLhs$253 = `Parser error! ${tmpStringConcatL}`;
+  fullErrmsg = tmpBinBothLhs$253;
   $(`-->`, tmpBinBothLhs$253);
 }
 $(undefined);
@@ -99,13 +101,15 @@ With rename=true
 const a = $( 2097173 );
 const b = $spy();
 const c = $coerce( b, "plustr" );
-const d = a === 2097173;
-if (d) {
-  const e = `Parser error! ${[object Object]} (at EOF)`;
-  $( "-->", e );
+let d = undefined;
+const e = a === 2097173;
+if (e) {
+  d = `Parser error! ${[object Object]} (at EOF)`;
+  $( "-->", d );
 }
 else {
   const f = `Parser error! ${[object Object]}`;
+  d = f;
   $( "-->", f );
 }
 $( undefined );

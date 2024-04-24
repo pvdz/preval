@@ -55,16 +55,16 @@ $(a, arg);
 `````js filename=intro
 const arg = { y: 1 };
 const a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   const tmpDeleteCompProp = $(`y`);
   delete arg[tmpDeleteCompProp];
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       const tmpDeleteCompProp$1 = $(`y`);
       delete arg[tmpDeleteCompProp$1];
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -84,16 +84,16 @@ const b = {
 a: 999,
 b: 1000
 ;
-const c = $( 1 );
+let c = $( 1 );
 if (c) {
   const d = $( "y" );
   deletea[ d ];
-  let e = $( 1 );
+  c = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (e) {
-      const f = $( "y" );
-      deletea[ f ];
-      e = $( 1 );
+    if (c) {
+      const e = $( "y" );
+      deletea[ e ];
+      c = $( 1 );
     }
     else {
       break;

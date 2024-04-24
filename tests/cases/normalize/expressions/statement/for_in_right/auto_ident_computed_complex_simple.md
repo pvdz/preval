@@ -66,7 +66,7 @@ b: 1000
 const c = $( a );
 const d = c.c;
 let e = undefined;
-for (e in d {
+for (e in d) {
 
 }
 $( b, a );

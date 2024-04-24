@@ -50,15 +50,17 @@ $(a, arg);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
+let tmpCalleeParam = undefined;
 const tmpIfTest = $(1);
 const arg = { y: 1 };
 if (tmpIfTest) {
   const tmpNestedComplexRhs = delete arg.y;
   a = tmpNestedComplexRhs;
+  tmpCalleeParam = tmpNestedComplexRhs;
   $(tmpNestedComplexRhs);
 } else {
-  const tmpClusterSSA_tmpCalleeParam = $(200);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
 $(a, arg);
 `````
@@ -72,18 +74,20 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 1 );
-const c = { y: 1 };
-if (b) {
-  const d = deletec.y;
-  a = d;
-  $( d );
-}
-else {
-  const e = $( 200 );
+let b = undefined;
+const c = $( 1 );
+const d = { y: 1 };
+if (c) {
+  const e = deleted.y;
+  a = e;
+  b = e;
   $( e );
 }
-$( a, c );
+else {
+  b = $( 200 );
+  $( b );
+}
+$( a, d );
 `````
 
 ## Globals

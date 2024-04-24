@@ -57,9 +57,9 @@ if (tmpIfTest) {
 
 `````js filename=intro
 const tmpDeleteCompProp = $(`y`);
-const tmpClusterSSA_arg = { y: 1 };
-const tmpClusterSSA_a = delete tmpClusterSSA_arg[tmpDeleteCompProp];
-$(tmpClusterSSA_a, tmpClusterSSA_arg);
+const arg = { y: 1 };
+const a = delete arg[tmpDeleteCompProp];
+$(a, arg);
 `````
 
 ## PST Output

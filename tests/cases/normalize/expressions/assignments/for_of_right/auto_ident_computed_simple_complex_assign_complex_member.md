@@ -77,7 +77,7 @@ const d = $( "d" );
 const e = c[ d ];
 b[a] = e;
 let f = undefined;
-for (f of e {
+for (f of e) {
 
 }
 $( e, b );

@@ -59,12 +59,14 @@ $(x);
 ## Output
 
 `````js filename=intro
+let x = undefined;
 const tmpSwitchCaseToStart = $(0);
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
+  x = 10;
   $(10);
 } else {
-  $(undefined);
+  $(x);
 }
 `````
 
@@ -73,13 +75,15 @@ if (tmpIfTest$3) {
 With rename=true
 
 `````js filename=intro
-const a = $( 0 );
-const b = a <= 0;
-if (b) {
+let a = undefined;
+const b = $( 0 );
+const c = b <= 0;
+if (c) {
+  a = 10;
   $( 10 );
 }
 else {
-  $( undefined );
+  $( a );
 }
 `````
 

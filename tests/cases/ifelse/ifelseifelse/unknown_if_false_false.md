@@ -73,9 +73,10 @@ if (condition) {
 
 `````js filename=intro
 const condition = $(false);
+let tmpIfelseifelse = false;
 if (condition) {
-  const tmpClusterSSA_tmpIfelseifelse = $(false);
-  if (tmpClusterSSA_tmpIfelseifelse) {
+  tmpIfelseifelse = $(false);
+  if (tmpIfelseifelse) {
     $(`a`);
   } else {
     $(`b`);
@@ -91,8 +92,9 @@ With rename=true
 
 `````js filename=intro
 const a = $( false );
+let b = false;
 if (a) {
-  const b = $( false );
+  b = $( false );
   if (b) {
     $( "a" );
   }

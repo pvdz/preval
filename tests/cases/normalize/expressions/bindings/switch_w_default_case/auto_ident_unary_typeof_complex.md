@@ -92,8 +92,8 @@ if (tmpIfTest$7) {
 
 `````js filename=intro
 const tmpUnaryArg = $(1);
-const tmpClusterSSA_a = typeof tmpUnaryArg;
-$(tmpClusterSSA_a, 1);
+const a = typeof tmpUnaryArg;
+$(a, 1);
 $(`fail1`);
 $(`fail2`);
 `````

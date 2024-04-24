@@ -66,14 +66,15 @@ $(a);
 $(100);
 const tmpCalleeParam = $(0);
 let tmpNestedComplexRhs = $(tmpCalleeParam);
-let tmpClusterSSA_a = undefined;
+let tmpSSA_a = undefined;
 if (tmpNestedComplexRhs) {
-  tmpClusterSSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
 } else {
   const tmpCalleeParam$1 = $(2);
   tmpNestedComplexRhs = $(tmpCalleeParam$1);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
 }
+let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   const tmpCalleeParam$2 = $(0);
@@ -83,10 +84,10 @@ if (tmpNestedComplexRhs) {
     const tmpCalleeParam$4 = $(2);
     tmpNestedComplexRhs$1 = $(tmpCalleeParam$4);
   }
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$3 = $(0);
       let tmpNestedComplexRhs$2 = $(tmpCalleeParam$3);
@@ -95,15 +96,15 @@ if (tmpNestedComplexRhs) {
         const tmpCalleeParam$5 = $(2);
         tmpNestedComplexRhs$2 = $(tmpCalleeParam$5);
       }
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -123,21 +124,22 @@ else {
   b = $( d );
   c = b;
 }
+let e = b;
 if (b) {
   $( 100 );
-  const e = $( 0 );
-  let f = $( e );
-  if (f) {
+  const f = $( 0 );
+  let g = $( f );
+  if (g) {
 
   }
   else {
-    const g = $( 2 );
-    f = $( g );
+    const h = $( 2 );
+    g = $( h );
   }
-  c = f;
-  let h = f;
+  c = g;
+  e = g;
   while ($LOOP_UNROLL_9) {
-    if (h) {
+    if (e) {
       $( 100 );
       const i = $( 0 );
       let j = $( i );
@@ -149,7 +151,7 @@ if (b) {
         j = $( k );
       }
       c = j;
-      h = j;
+      e = j;
     }
     else {
       break;

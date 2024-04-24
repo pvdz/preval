@@ -67,9 +67,9 @@ while (true) {
     let tmpIfTest$1 = $(`b`);
     if (tmpIfTest$1) {
       $(x, `loop`);
-      const tmpClusterSSA_tmpIfTest$1 = $(`b`);
+      tmpIfTest$1 = $(`b`);
       while ($LOOP_UNROLL_10) {
-        if (tmpClusterSSA_tmpIfTest$1) {
+        if (tmpIfTest$1) {
           $(x, `loop`);
           tmpIfTest$1 = $(`b`);
         } else {
@@ -98,9 +98,9 @@ while (true) {
     let c = $( "b" );
     if (c) {
       $( a, "loop" );
-      const d = $( "b" );
+      c = $( "b" );
       while ($LOOP_UNROLL_10) {
-        if (d) {
+        if (c) {
           $( a, "loop" );
           c = $( "b" );
         }

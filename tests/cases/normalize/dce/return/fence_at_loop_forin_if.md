@@ -154,7 +154,7 @@ const a = function() {
 a: 1,
 b: 2
       ;
-      for (c in d {
+      for (c in d) {
         $( "loop", c );
         const e = $( 1, "if" );
         if (e) {

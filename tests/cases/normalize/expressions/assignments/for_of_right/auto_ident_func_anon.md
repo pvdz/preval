@@ -64,7 +64,7 @@ const a = function() {
   return undefined;
 };
 let b = undefined;
-for (b of a {
+for (b of a) {
 
 }
 $( a );

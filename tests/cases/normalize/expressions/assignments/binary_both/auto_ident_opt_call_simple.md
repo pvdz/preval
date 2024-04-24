@@ -55,25 +55,27 @@ $(a);
 ## Output
 
 `````js filename=intro
+let a = undefined;
 const tmpIfTest = $ == null;
 let tmpBinBothLhs = undefined;
 if (tmpIfTest) {
 } else {
   const tmpChainElementCall = $(1);
+  a = tmpChainElementCall;
   tmpBinBothLhs = tmpChainElementCall;
 }
-let tmpClusterSSA_a = undefined;
 const tmpIfTest$1 = $ == null;
+let tmpCalleeParam = undefined;
 if (tmpIfTest$1) {
-  const tmpClusterSSA_tmpCalleeParam = tmpBinBothLhs + undefined;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = tmpBinBothLhs + a;
+  $(tmpCalleeParam);
 } else {
   const tmpChainElementCall$1 = $(1);
-  tmpClusterSSA_a = tmpChainElementCall$1;
-  const tmpClusterSSA_tmpCalleeParam$1 = tmpBinBothLhs + tmpChainElementCall$1;
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  a = tmpChainElementCall$1;
+  tmpCalleeParam = tmpBinBothLhs + tmpChainElementCall$1;
+  $(tmpCalleeParam);
 }
-$(tmpClusterSSA_a);
+$(a);
 `````
 
 ## PST Output
@@ -81,28 +83,30 @@ $(tmpClusterSSA_a);
 With rename=true
 
 `````js filename=intro
-const a = $ == null;
-let b = undefined;
-if (a) {
+let a = undefined;
+const b = $ == null;
+let c = undefined;
+if (b) {
 
 }
 else {
-  const c = $( 1 );
-  b = c;
+  const d = $( 1 );
+  a = d;
+  c = d;
 }
-let d = undefined;
 const e = $ == null;
+let f = undefined;
 if (e) {
-  const f = b + undefined;
+  f = c + a;
   $( f );
 }
 else {
   const g = $( 1 );
-  d = g;
-  const h = b + g;
-  $( h );
+  a = g;
+  f = c + g;
+  $( f );
 }
-$( d );
+$( a );
 `````
 
 ## Globals

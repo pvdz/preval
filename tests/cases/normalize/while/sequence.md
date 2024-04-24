@@ -52,14 +52,14 @@ while (true) {
 
 `````js filename=intro
 let $tmpLoopUnrollCheck = true;
-let tmpClusterSSA_x = NaN.x;
+let x = NaN.x;
 let tmpIfTest = false;
-const tmpChainRootProp = tmpClusterSSA_x;
+const tmpChainRootProp = x;
 const tmpIfTest$1 = tmpChainRootProp == null;
 if (tmpIfTest$1) {
 } else {
   const tmpChainElementObject = tmpChainRootProp.x;
-  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, tmpClusterSSA_x);
+  const tmpChainElementCall = $dotCall(tmpChainElementObject, tmpChainRootProp, x);
   tmpIfTest = tmpChainElementCall;
 }
 if (tmpIfTest) {
@@ -68,15 +68,16 @@ if (tmpIfTest) {
 }
 if ($tmpLoopUnrollCheck) {
   while ($LOOP_UNROLL_10) {
-    tmpClusterSSA_x ** 0;
-    tmpClusterSSA_x = NaN.x;
+    x ** 0;
+    x = NaN;
+    x = NaN.x;
     let tmpIfTest$2 = false;
-    const tmpChainRootProp$1 = tmpClusterSSA_x;
+    const tmpChainRootProp$1 = x;
     const tmpIfTest$4 = tmpChainRootProp$1 == null;
     if (tmpIfTest$4) {
     } else {
       const tmpChainElementObject$1 = tmpChainRootProp$1.x;
-      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainRootProp$1, tmpClusterSSA_x);
+      const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, tmpChainRootProp$1, x);
       tmpIfTest$2 = tmpChainElementCall$1;
     }
     if (tmpIfTest$2) {
@@ -115,6 +116,7 @@ else {
 if (a) {
   while ($LOOP_UNROLL_10) {
     b ** 0;
+    b = NaN;
     b = NaN.x;
     let h = false;
     const i = b;

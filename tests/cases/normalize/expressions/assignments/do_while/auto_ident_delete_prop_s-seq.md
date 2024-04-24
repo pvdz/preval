@@ -68,21 +68,22 @@ $(2);
 const arg = { y: 1 };
 const tmpNestedComplexRhs = delete arg.y;
 let a = tmpNestedComplexRhs;
+let tmpDoWhileFlag = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   $(1);
   $(2);
   const tmpNestedComplexRhs$1 = delete arg.y;
   a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
+  tmpDoWhileFlag = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag) {
+    if (tmpDoWhileFlag) {
       $(100);
       $(1);
       $(2);
       const tmpNestedComplexRhs$2 = delete arg.y;
       a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
+      tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
@@ -103,21 +104,22 @@ $( 2 );
 const a = { y: 1 };
 const b = deletea.y;
 let c = b;
+let d = b;
 if (b) {
   $( 100 );
   $( 1 );
   $( 2 );
-  const d = deletea.y;
-  c = d;
-  let e = d;
+  const e = deletea.y;
+  c = e;
+  d = e;
   while ($LOOP_UNROLL_9) {
-    if (e) {
+    if (d) {
       $( 100 );
       $( 1 );
       $( 2 );
       const f = deletea.y;
       c = f;
-      e = f;
+      d = f;
     }
     else {
       break;

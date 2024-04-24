@@ -59,14 +59,16 @@ $(a);
 
 `````js filename=intro
 let a = undefined;
+let tmpCalleeParam = undefined;
 const tmpIfTest = $ == null;
 if (tmpIfTest) {
   $(undefined);
 } else {
   const tmpChainElementCall = $(1);
   a = tmpChainElementCall;
-  if (tmpChainElementCall) {
-    $(tmpChainElementCall);
+  tmpCalleeParam = tmpChainElementCall;
+  if (a) {
+    $(tmpCalleeParam);
   } else {
     let tmpNestedComplexRhs = undefined;
     const tmpIfTest$1 = $ == null;
@@ -76,7 +78,8 @@ if (tmpIfTest) {
       tmpNestedComplexRhs = tmpChainElementCall$1;
     }
     a = tmpNestedComplexRhs;
-    $(tmpNestedComplexRhs);
+    tmpCalleeParam = tmpNestedComplexRhs;
+    $(tmpCalleeParam);
   }
 }
 $(a);
@@ -88,28 +91,31 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-const b = $ == null;
-if (b) {
+let b = undefined;
+const c = $ == null;
+if (c) {
   $( undefined );
 }
 else {
-  const c = $( 1 );
-  a = c;
-  if (c) {
-    $( c );
+  const d = $( 1 );
+  a = d;
+  b = d;
+  if (a) {
+    $( b );
   }
   else {
-    let d = undefined;
-    const e = $ == null;
-    if (e) {
+    let e = undefined;
+    const f = $ == null;
+    if (f) {
 
     }
     else {
-      const f = $( 1 );
-      d = f;
+      const g = $( 1 );
+      e = g;
     }
-    a = d;
-    $( d );
+    a = e;
+    b = e;
+    $( b );
   }
 }
 $( a );

@@ -67,29 +67,30 @@ $(100);
 const tmpCalleeParam = [1, 2];
 const tmpNestedAssignArrPatternRhs = $(tmpCalleeParam);
 const arrPatternSplat$1 = [...tmpNestedAssignArrPatternRhs];
-let tmpClusterSSA_a = arrPatternSplat$1[0];
+let tmpSSA_a = arrPatternSplat$1[0];
+let tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs;
 if (tmpNestedAssignArrPatternRhs) {
   $(100);
   const tmpCalleeParam$1 = [1, 2];
   const tmpNestedAssignArrPatternRhs$1 = $(tmpCalleeParam$1);
   const arrPatternSplat$2 = [...tmpNestedAssignArrPatternRhs$1];
-  tmpClusterSSA_a = arrPatternSplat$2[0];
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$1;
+  tmpSSA_a = arrPatternSplat$2[0];
+  tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpCalleeParam$2 = [1, 2];
       const tmpNestedAssignArrPatternRhs$2 = $(tmpCalleeParam$2);
       const arrPatternSplat$3 = [...tmpNestedAssignArrPatternRhs$2];
-      tmpClusterSSA_a = arrPatternSplat$3[0];
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedAssignArrPatternRhs$2;
+      tmpSSA_a = arrPatternSplat$3[0];
+      tmpSSA_tmpDoWhileFlag = tmpNestedAssignArrPatternRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -108,21 +109,22 @@ const c = [ 1, 2,, ];
 const d = $( c );
 const e = [ ... d,, ];
 let f = e[ 0 ];
+let g = d;
 if (d) {
   $( 100 );
-  const g = [ 1, 2,, ];
-  const h = $( g );
-  const i = [ ... h,, ];
-  f = i[ 0 ];
-  let j = h;
+  const h = [ 1, 2,, ];
+  const i = $( h );
+  const j = [ ... i,, ];
+  f = j[ 0 ];
+  g = i;
   while ($LOOP_UNROLL_9) {
-    if (j) {
+    if (g) {
       $( 100 );
       const k = [ 1, 2,, ];
       const l = $( k );
       const m = [ ... l,, ];
       f = m[ 0 ];
-      j = l;
+      g = l;
     }
     else {
       break;

@@ -53,25 +53,20 @@ f();
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpLabeledBlockFunc = function () {
-    debugger;
-    const tmpIfTest$1 = $(true);
-    if (tmpIfTest$1) {
-      $(100);
-      return 20;
-    } else {
-      $(101);
-      const tmpReturnArg = tmpAfterLabel();
-      return tmpReturnArg;
-    }
-  };
   const tmpAfterLabel = function () {
     debugger;
     $(`after`);
     return undefined;
   };
-  const tmpReturnArg$1 = tmpLabeledBlockFunc();
-  return tmpReturnArg$1;
+  const tmpIfTest = $(true);
+  if (tmpIfTest) {
+    $(100);
+    return 20;
+  } else {
+    $(101);
+    const tmpReturnArg = tmpAfterLabel();
+    return tmpReturnArg;
+  }
 };
 f();
 `````
@@ -79,8 +74,8 @@ f();
 ## Output
 
 `````js filename=intro
-const tmpIfTest$1 = $(true);
-if (tmpIfTest$1) {
+const tmpIfTest = $(true);
+if (tmpIfTest) {
   $(100);
 } else {
   $(101);

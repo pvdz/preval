@@ -58,13 +58,15 @@ const b = { x: 1 };
 const a = { a: 999, b: 1000 };
 const tmpChainElementCall = $(b);
 const tmpIfTest = tmpChainElementCall == null;
+let tmpBinBothRhs = `undefined`;
+let tmpCalleeParam = `before  undefined  after`;
 if (tmpIfTest) {
   $(`before  undefined  after`);
 } else {
   const tmpChainElementObject = tmpChainElementCall.x;
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpChainElementObject, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpBinBothRhs = $coerce(tmpChainElementObject, `string`);
+  tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -81,14 +83,16 @@ b: 1000
 ;
 const c = $( a );
 const d = c == null;
+let e = "undefined";
+let f = "before  undefined  after";
 if (d) {
   $( "before  undefined  after" );
 }
 else {
-  const e = c.x;
-  const f = $coerce( e, "string" );
-  const g = `before  ${[object Object]}  after`;
-  $( g );
+  const g = c.x;
+  e = $coerce( g, "string" );
+  f = `before  ${[object Object]}  after`;
+  $( f );
 }
 $( b );
 `````

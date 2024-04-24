@@ -79,7 +79,7 @@ const e = $( "d" );
 const f = d[ e ];
 c.c = f;
 let g = undefined;
-for (g in f {
+for (g in f) {
 
 }
 $( b, a );

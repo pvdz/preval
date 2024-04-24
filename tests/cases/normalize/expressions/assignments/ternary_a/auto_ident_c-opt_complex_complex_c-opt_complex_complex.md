@@ -66,6 +66,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 const b = { x: tmpObjLitVal };
+let tmpCalleeParam = undefined;
 let a = undefined;
 const tmpChainElementCall = $(b);
 const tmpIfTest$1 = tmpChainElementCall == null;
@@ -82,11 +83,11 @@ if (tmpIfTest$1) {
   }
 }
 if (a) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -99,33 +100,34 @@ With rename=true
 const a = { y: 1 };
 const b = { x: a };
 let c = undefined;
-const d = $( b );
-const e = d == null;
-if (e) {
+let d = undefined;
+const e = $( b );
+const f = e == null;
+if (f) {
 
 }
 else {
-  const f = $( "x" );
-  const g = d[ f ];
-  const h = g == null;
-  if (h) {
+  const g = $( "x" );
+  const h = e[ g ];
+  const i = h == null;
+  if (i) {
 
   }
   else {
-    const i = $( "y" );
-    const j = g[ i ];
-    c = j;
+    const j = $( "y" );
+    const k = h[ j ];
+    d = k;
   }
 }
-if (c) {
-  const k = $( 100 );
-  $( k );
+if (d) {
+  c = $( 100 );
+  $( c );
 }
 else {
-  const l = $( 200 );
-  $( l );
+  c = $( 200 );
+  $( c );
 }
-$( c );
+$( d );
 `````
 
 ## Globals

@@ -126,12 +126,12 @@ if (tmpIfTest) {
 const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
 if (tmpIfTest$3) {
   const tmpCalleeParam = $(0);
-  const tmpIfTest$5 = $(tmpCalleeParam);
+  let tmpIfTest$5 = $(tmpCalleeParam);
   if (tmpIfTest$5) {
   } else {
     const tmpCalleeParam$1 = $(1);
-    const tmpClusterSSA_tmpIfTest$5 = $(tmpCalleeParam$1);
-    if (tmpClusterSSA_tmpIfTest$5) {
+    tmpIfTest$5 = $(tmpCalleeParam$1);
+    if (tmpIfTest$5) {
     } else {
       const tmpCalleeParam$3 = $(2);
       $(tmpCalleeParam$3);
@@ -173,25 +173,25 @@ else {
 const g = c <= 0;
 if (g) {
   const h = $( 0 );
-  const i = $( h );
+  let i = $( h );
   if (i) {
 
   }
   else {
     const j = $( 1 );
-    const k = $( j );
-    if (k) {
+    i = $( j );
+    if (i) {
 
     }
     else {
-      const l = $( 2 );
-      $( l );
+      const k = $( 2 );
+      $( k );
     }
   }
 }
 else {
-  const m = c <= 1;
-  if (m) {
+  const l = c <= 1;
+  if (l) {
     $( "fail1" );
   }
   $( "fail2" );

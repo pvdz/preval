@@ -55,8 +55,8 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 24          | none           | 17,28
-  - w @17      | ########## | 24          | 4              | 28
-  - r @24      | 4,17
-  - w @28      | ########## | 32          | 4,17           | none
-  - r @32      | 28
+  - w @4       | ########## | 24,32       | none           | 17,28
+  - w @17      | ########## | not read    | 4              | none
+  - r @24      | 4
+  - w @28      | ########## | not read    | 4              | none
+  - r @32      | 4

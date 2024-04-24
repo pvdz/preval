@@ -46,13 +46,14 @@ $(a, b);
 ## Output
 
 `````js filename=intro
-const b = { c: 1 };
-const a = { a: 999, b: 1000 };
+let a = { a: 999, b: 1000 };
+const tmpBinBothLhs = a;
 const tmpCompProp = $(`c`);
+const b = { c: 1 };
 const tmpBinBothRhs = b[tmpCompProp];
-const tmpClusterSSA_a = a * tmpBinBothRhs;
-$(tmpClusterSSA_a);
-$(tmpClusterSSA_a, b);
+a = tmpBinBothLhs * tmpBinBothRhs;
+$(a);
+$(a, b);
 `````
 
 ## PST Output
@@ -60,16 +61,17 @@ $(tmpClusterSSA_a, b);
 With rename=true
 
 `````js filename=intro
-const a = { c: 1 };
-const b = {
+let a = {
 a: 999,
 b: 1000
 ;
+const b = a;
 const c = $( "c" );
-const d = a[ c ];
-const e = b * d;
-$( e );
-$( e, a );
+const d = { c: 1 };
+const e = d[ c ];
+a = b * e;
+$( a );
+$( a, d );
 `````
 
 ## Globals

@@ -76,12 +76,14 @@ $(f);
 const f = function () {
   debugger;
   const tmpStringConcatL = $coerce(desc$1, `plustr`);
+  let fullErrmsg = undefined;
   const tmpIfTest$1787 = lastType === 2097173;
   if (tmpIfTest$1787) {
-    const tmpClusterSSA_fullErrmsg = `Parser error! ${tmpStringConcatL} (at EOF)`;
-    _THROW(tmpClusterSSA_fullErrmsg, tokenStart$5, tokenStop$5, ``);
+    fullErrmsg = `Parser error! ${tmpStringConcatL} (at EOF)`;
+    _THROW(fullErrmsg, tokenStart$5, tokenStop$5, ``);
   } else {
     const tmpBinBothLhs$253 = `Parser error! ${tmpStringConcatL}`;
+    fullErrmsg = tmpBinBothLhs$253;
     _THROW(tmpBinBothLhs$253, tokenStart$5, tokenStop$5, ``);
   }
   throw `Preval: the previous call always throws`;
@@ -97,13 +99,15 @@ With rename=true
 const a = function() {
   debugger;
   const b = $coerce( desc$1, "plustr" );
-  const c = lastType === 2097173;
-  if (c) {
-    const d = `Parser error! ${[object Object]} (at EOF)`;
-    _THROW( d, tokenStart$5, tokenStop$5, "" );
+  let c = undefined;
+  const d = lastType === 2097173;
+  if (d) {
+    c = `Parser error! ${[object Object]} (at EOF)`;
+    _THROW( c, tokenStart$5, tokenStop$5, "" );
   }
   else {
     const e = `Parser error! ${[object Object]}`;
+    c = e;
     _THROW( e, tokenStart$5, tokenStop$5, "" );
   }
   throw "Preval: the previous call always throws";

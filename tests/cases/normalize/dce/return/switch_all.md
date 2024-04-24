@@ -74,6 +74,15 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
+  const tmpAfterLabel = function ($$0, $$1, $$2, $$3) {
+    let tmpSwitchValue$1 = $$0;
+    let tmpSwitchCaseToStart$1 = $$1;
+    let tmpBinLhs$3 = $$2;
+    let tmpIfTest$9 = $$3;
+    debugger;
+    $(`eliminate after switch`);
+    return undefined;
+  };
   const tmpSwitchValue = $(1, `disc`);
   let tmpSwitchCaseToStart = 2;
   const tmpBinLhs = $(0);
@@ -88,45 +97,27 @@ let f = function () {
     } else {
     }
   }
-  const tmpLabeledBlockFunc = function ($$0, $$1, $$2, $$3) {
-    let tmpSwitchValue$3 = $$0;
-    let tmpSwitchCaseToStart$3 = $$1;
-    let tmpBinLhs$5 = $$2;
-    let tmpIfTest$11 = $$3;
-    debugger;
-    const tmpIfTest$13 = tmpSwitchCaseToStart$3 <= 0;
-    if (tmpIfTest$13) {
-      $(`keep, do not eval`);
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
+    $(`keep, do not eval`);
+    return undefined;
+  } else {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
+      $(`keep, eval`);
       return undefined;
     } else {
-      const tmpIfTest$15 = tmpSwitchCaseToStart$3 <= 1;
-      if (tmpIfTest$15) {
-        $(`keep, eval`);
-        return undefined;
+      const tmpIfTest$7 = tmpSwitchCaseToStart <= 2;
+      if (tmpIfTest$7) {
+        $(`keep, do not eval`);
+        const tmpReturnArg = $(2, `ret`);
+        return tmpReturnArg;
       } else {
-        const tmpIfTest$17 = tmpSwitchCaseToStart$3 <= 2;
-        if (tmpIfTest$17) {
-          $(`keep, do not eval`);
-          const tmpReturnArg$1 = $(2, `ret`);
-          return tmpReturnArg$1;
-        } else {
-          const tmpReturnArg$3 = tmpAfterLabel(tmpSwitchValue$3, tmpSwitchCaseToStart$3, tmpBinLhs$5, tmpIfTest$11);
-          return tmpReturnArg$3;
-        }
+        const tmpReturnArg$1 = tmpAfterLabel(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
+        return tmpReturnArg$1;
       }
     }
-  };
-  const tmpAfterLabel = function ($$0, $$1, $$2, $$3) {
-    let tmpSwitchValue$1 = $$0;
-    let tmpSwitchCaseToStart$1 = $$1;
-    let tmpBinLhs$3 = $$2;
-    let tmpIfTest$9 = $$3;
-    debugger;
-    $(`eliminate after switch`);
-    return undefined;
-  };
-  const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchValue, tmpSwitchCaseToStart, tmpBinLhs, tmpIfTest);
-  return tmpReturnArg$5;
+  }
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -136,48 +127,40 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpSwitchValue = $(1, `disc`);
-let tmpSwitchCaseToStart = 2;
-const tmpBinLhs = $(0);
-const tmpIfTest = tmpBinLhs === tmpSwitchValue;
-if (tmpIfTest) {
-  tmpSwitchCaseToStart = 0;
-} else {
-  const tmpBinLhs$1 = $(1);
-  const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
-  if (tmpIfTest$1) {
-    tmpSwitchCaseToStart = 1;
-  } else {
-  }
-}
-const tmpLabeledBlockFunc = function ($$0, $$1) {
-  const tmpSwitchCaseToStart$3 = $$0;
-  const tmpOutlinedParam = $$1;
+const f = function () {
   debugger;
-  if (tmpOutlinedParam) {
+  const tmpSwitchValue = $(1, `disc`);
+  let tmpSwitchCaseToStart = 2;
+  const tmpBinLhs = $(0);
+  const tmpIfTest = tmpBinLhs === tmpSwitchValue;
+  if (tmpIfTest) {
+    tmpSwitchCaseToStart = 0;
+  } else {
+    const tmpBinLhs$1 = $(1);
+    const tmpIfTest$1 = tmpBinLhs$1 === tmpSwitchValue;
+    if (tmpIfTest$1) {
+      tmpSwitchCaseToStart = 1;
+    } else {
+    }
+  }
+  const tmpIfTest$3 = tmpSwitchCaseToStart <= 0;
+  if (tmpIfTest$3) {
     $(`keep, do not eval`);
     return undefined;
   } else {
-    const tmpIfTest$15 = tmpSwitchCaseToStart$3 <= 1;
-    if (tmpIfTest$15) {
+    const tmpIfTest$5 = tmpSwitchCaseToStart <= 1;
+    if (tmpIfTest$5) {
       $(`keep, eval`);
       return undefined;
     } else {
-      const tmpIfTest$17 = tmpSwitchCaseToStart$3 <= 2;
-      if (tmpIfTest$17) {
-        $(`keep, do not eval`);
-        const tmpReturnArg$1 = $(2, `ret`);
-        return tmpReturnArg$1;
-      } else {
-        $(`eliminate after switch`);
-        return undefined;
-      }
+      $(`keep, do not eval`);
+      const tmpReturnArg = $(2, `ret`);
+      return tmpReturnArg;
     }
   }
 };
-const tmpSaooB = tmpSwitchCaseToStart <= 0;
-const tmpReturnArg$5 = tmpLabeledBlockFunc(tmpSwitchCaseToStart, tmpSaooB);
-$(tmpReturnArg$5);
+const tmpCalleeParam = f();
+$(tmpCalleeParam);
 `````
 
 ## PST Output
@@ -185,51 +168,42 @@ $(tmpReturnArg$5);
 With rename=true
 
 `````js filename=intro
-const a = $( 1, "disc" );
-let b = 2;
-const c = $( 0 );
-const d = c === a;
-if (d) {
-  b = 0;
-}
-else {
-  const e = $( 1 );
-  const f = e === a;
-  if (f) {
-    b = 1;
-  }
-}
-const g = function($$0,$$1 ) {
-  const h = i;
-  const j = k;
+const a = function() {
   debugger;
-  if (j) {
+  const b = $( 1, "disc" );
+  let c = 2;
+  const d = $( 0 );
+  const e = d === b;
+  if (e) {
+    c = 0;
+  }
+  else {
+    const f = $( 1 );
+    const g = f === b;
+    if (g) {
+      c = 1;
+    }
+  }
+  const h = c <= 0;
+  if (h) {
     $( "keep, do not eval" );
     return undefined;
   }
   else {
-    const l = h <= 1;
-    if (l) {
+    const i = c <= 1;
+    if (i) {
       $( "keep, eval" );
       return undefined;
     }
     else {
-      const m = h <= 2;
-      if (m) {
-        $( "keep, do not eval" );
-        const n = $( 2, "ret" );
-        return n;
-      }
-      else {
-        $( "eliminate after switch" );
-        return undefined;
-      }
+      $( "keep, do not eval" );
+      const j = $( 2, "ret" );
+      return j;
     }
   }
 };
-const o = b <= 0;
-const p = g( b, o );
-$( p );
+const k = a();
+$( k );
 `````
 
 ## Globals

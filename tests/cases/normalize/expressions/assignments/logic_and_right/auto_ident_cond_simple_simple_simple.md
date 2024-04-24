@@ -45,9 +45,10 @@ $(a);
 
 `````js filename=intro
 let a = { a: 999, b: 1000 };
-const tmpCalleeParam = $(100);
+let tmpCalleeParam = $(100);
 if (tmpCalleeParam) {
   a = 2;
+  tmpCalleeParam = 2;
   $(2);
 } else {
   $(tmpCalleeParam);
@@ -64,9 +65,10 @@ let a = {
 a: 999,
 b: 1000
 ;
-const b = $( 100 );
+let b = $( 100 );
 if (b) {
   a = 2;
+  b = 2;
   $( 2 );
 }
 else {

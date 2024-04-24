@@ -66,13 +66,14 @@ $(a);
 $(100);
 let tmpNestedComplexRhs = 2;
 const tmpIfTest = $(1);
-let tmpClusterSSA_a = 2;
+let tmpSSA_a = 2;
 if (tmpIfTest) {
 } else {
   const tmpCalleeParam = $(100);
   tmpNestedComplexRhs = $(tmpCalleeParam);
-  tmpClusterSSA_a = tmpNestedComplexRhs;
+  tmpSSA_a = tmpNestedComplexRhs;
 }
+let tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs;
 if (tmpNestedComplexRhs) {
   $(100);
   let tmpNestedComplexRhs$1 = 2;
@@ -82,10 +83,10 @@ if (tmpNestedComplexRhs) {
     const tmpCalleeParam$1 = $(100);
     tmpNestedComplexRhs$1 = $(tmpCalleeParam$1);
   }
-  tmpClusterSSA_a = tmpNestedComplexRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$1;
+  tmpSSA_a = tmpNestedComplexRhs$1;
+  tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       let tmpNestedComplexRhs$2 = 2;
       const tmpIfTest$2 = $(1);
@@ -94,15 +95,15 @@ if (tmpNestedComplexRhs) {
         const tmpCalleeParam$2 = $(100);
         tmpNestedComplexRhs$2 = $(tmpCalleeParam$2);
       }
-      tmpClusterSSA_a = tmpNestedComplexRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpNestedComplexRhs$2;
+      tmpSSA_a = tmpNestedComplexRhs$2;
+      tmpSSA_tmpDoWhileFlag = tmpNestedComplexRhs$2;
     } else {
       break;
     }
   }
 } else {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -122,21 +123,22 @@ else {
   a = $( d );
   c = a;
 }
+let e = a;
 if (a) {
   $( 100 );
-  let e = 2;
-  const f = $( 1 );
-  if (f) {
+  let f = 2;
+  const g = $( 1 );
+  if (g) {
 
   }
   else {
-    const g = $( 100 );
-    e = $( g );
+    const h = $( 100 );
+    f = $( h );
   }
-  c = e;
-  let h = e;
+  c = f;
+  e = f;
   while ($LOOP_UNROLL_9) {
-    if (h) {
+    if (e) {
       $( 100 );
       let i = 2;
       const j = $( 1 );
@@ -148,7 +150,7 @@ if (a) {
         i = $( k );
       }
       c = i;
-      h = i;
+      e = i;
     }
     else {
       break;

@@ -52,13 +52,14 @@ $(a, arg);
 const arg = { y: 1 };
 const tmpDeleteCompObj = $(arg);
 const tmpDeleteCompProp = $(`y`);
-const tmpClusterSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+let tmpSSA_a = delete tmpDeleteCompObj[tmpDeleteCompProp];
+const tmpBinBothLhs = tmpSSA_a;
 const tmpDeleteCompObj$1 = $(arg);
 const tmpDeleteCompProp$1 = $(`y`);
-const tmpClusterSSA_a$1 = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
-const tmpCalleeParam = tmpClusterSSA_a + tmpClusterSSA_a$1;
+tmpSSA_a = delete tmpDeleteCompObj$1[tmpDeleteCompProp$1];
+const tmpCalleeParam = tmpBinBothLhs + tmpSSA_a;
 $(tmpCalleeParam);
-$(tmpClusterSSA_a$1, arg);
+$(tmpSSA_a, arg);
 `````
 
 ## PST Output
@@ -69,13 +70,14 @@ With rename=true
 const a = { y: 1 };
 const b = $( a );
 const c = $( "y" );
-const d = deleteb[ c ];
-const e = $( a );
-const f = $( "y" );
-const g = deletee[ f ];
-const h = d + g;
+let d = deleteb[ c ];
+const e = d;
+const f = $( a );
+const g = $( "y" );
+d = deletef[ g ];
+const h = e + d;
 $( h );
-$( g, a );
+$( d, a );
 `````
 
 ## Globals

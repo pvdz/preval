@@ -1,8 +1,8 @@
 # Preval test case
 
-# finally_wrapping_function.md
+# break-finally2.md
 
-> Ref tracking > Done > Finally-return > Finally wrapping function
+> Ref tracking > Done > Finally-return > Break-finally2
 
 ## Options
 
@@ -40,36 +40,34 @@
 (Annotated with pids)
 
 `````filename=intro
-let f___4__ = function () {
-  debugger;
-  let x___10__ = 1;
-  try /*13*/ {
-    const tmpIfTest___16__ = $();
-    if (tmpIfTest___20__) {
-      /*21*/ x___25__ = 2;
-      return 100;
-    } /*29*/ else {
+let x___4__ = 1;
+here___7__: /*8*/ {
+  try /*10*/ {
+    $();
+    x___17__ = 2;
+    break here___19__;
+  } finally /*20*/ {
+    $(x___24__);
+    const tmpIfTest___27__ = $();
+    if (tmpIfTest___31__) {
+      /*32*/ x___36__ = 3;
+    } /*37*/ else {
     }
-  } finally /*30*/ {
-    $(x___34__);
   }
-  return undefined___36__;
-};
-$(f___40__);
+}
+$(x___41__);
 `````
 
 Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
-f:
-  - w @4       | ########## | 40          | none           | none
-  - r @40      | 4
-
 x:
-  - w @10      | ########## | 34          | none           | 25
-  - w @25      | ########## | not read    | 10             | none
-  - r @34      | 10
+  - w @4       | ########## | 24,41       | none           | 17,36
+  - w @17      | ########## | not read    | 4              | none
+  - r @24      | 4
+  - w @36      | ########## | not read    | 4              | none
+  - r @41      | 4
 
 tmpIfTest:
-  - w @16      | ########## | 20          | none           | none
-  - r @20      | 16
+  - w @27      | ########## | 31          | none           | none
+  - r @31      | 27

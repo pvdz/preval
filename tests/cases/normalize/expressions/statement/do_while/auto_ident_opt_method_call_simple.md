@@ -69,17 +69,19 @@ const b = { c: $ };
 const a = { a: 999, b: 1000 };
 $(100);
 const tmpChainElementCall = $dotCall($, b, 1);
+let tmpSSA_tmpDoWhileFlag = false;
 if (tmpChainElementCall) {
   $(100);
   const tmpChainElementObject$1 = b.c;
   const tmpChainElementCall$1 = $dotCall(tmpChainElementObject$1, b, 1);
-  let tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementCall$1;
+  tmpSSA_tmpDoWhileFlag = tmpChainElementCall$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
+      tmpSSA_tmpDoWhileFlag = false;
       const tmpChainElementObject$2 = b.c;
       const tmpChainElementCall$2 = $dotCall(tmpChainElementObject$2, b, 1);
-      tmpClusterSSA_tmpDoWhileFlag$1 = tmpChainElementCall$2;
+      tmpSSA_tmpDoWhileFlag = tmpChainElementCall$2;
     } else {
       break;
     }
@@ -101,17 +103,19 @@ b: 1000
 ;
 $( 100 );
 const c = $dotCall( $, a, 1 );
+let d = false;
 if (c) {
   $( 100 );
-  const d = a.c;
-  const e = $dotCall( d, a, 1 );
-  let f = e;
+  const e = a.c;
+  const f = $dotCall( e, a, 1 );
+  d = f;
   while ($LOOP_UNROLL_9) {
-    if (f) {
+    if (d) {
       $( 100 );
+      d = false;
       const g = a.c;
       const h = $dotCall( g, a, 1 );
-      f = h;
+      d = h;
     }
     else {
       break;

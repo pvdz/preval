@@ -83,6 +83,7 @@ const varInitAssignLhsComputedProp = $(`y`);
 const varInitAssignLhsComputedRhs = $(3);
 varInitAssignLhsComputedObj[varInitAssignLhsComputedProp] = varInitAssignLhsComputedRhs;
 tmpNestedAssignComMemberObj[tmpNestedAssignComMemberProp] = varInitAssignLhsComputedRhs;
+let tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs;
 if (varInitAssignLhsComputedRhs) {
   $(100);
   const tmpNestedAssignComMemberObj$1 = $(b);
@@ -92,9 +93,9 @@ if (varInitAssignLhsComputedRhs) {
   const varInitAssignLhsComputedRhs$1 = $(3);
   varInitAssignLhsComputedObj$1[varInitAssignLhsComputedProp$1] = varInitAssignLhsComputedRhs$1;
   tmpNestedAssignComMemberObj$1[tmpNestedAssignComMemberProp$1] = varInitAssignLhsComputedRhs$1;
-  let tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$1;
+  tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$1;
   while ($LOOP_UNROLL_9) {
-    if (tmpClusterSSA_tmpDoWhileFlag$1) {
+    if (tmpSSA_tmpDoWhileFlag) {
       $(100);
       const tmpNestedAssignComMemberObj$2 = $(b);
       const tmpNestedAssignComMemberProp$2 = $(`x`);
@@ -103,7 +104,7 @@ if (varInitAssignLhsComputedRhs) {
       const varInitAssignLhsComputedRhs$2 = $(3);
       varInitAssignLhsComputedObj$2[varInitAssignLhsComputedProp$2] = varInitAssignLhsComputedRhs$2;
       tmpNestedAssignComMemberObj$2[tmpNestedAssignComMemberProp$2] = varInitAssignLhsComputedRhs$2;
-      tmpClusterSSA_tmpDoWhileFlag$1 = varInitAssignLhsComputedRhs$2;
+      tmpSSA_tmpDoWhileFlag = varInitAssignLhsComputedRhs$2;
     } else {
       break;
     }
@@ -132,18 +133,19 @@ const g = $( "y" );
 const h = $( 3 );
 f[g] = h;
 d[e] = h;
+let i = h;
 if (h) {
   $( 100 );
-  const i = $( a );
-  const j = $( "x" );
-  const k = $( b );
-  const l = $( "y" );
-  const m = $( 3 );
-  k[l] = m;
-  i[j] = m;
-  let n = m;
+  const j = $( a );
+  const k = $( "x" );
+  const l = $( b );
+  const m = $( "y" );
+  const n = $( 3 );
+  l[m] = n;
+  j[k] = n;
+  i = n;
   while ($LOOP_UNROLL_9) {
-    if (n) {
+    if (i) {
       $( 100 );
       const o = $( a );
       const p = $( "x" );
@@ -152,7 +154,7 @@ if (h) {
       const s = $( 3 );
       q[r] = s;
       o[p] = s;
-      n = s;
+      i = s;
     }
     else {
       break;

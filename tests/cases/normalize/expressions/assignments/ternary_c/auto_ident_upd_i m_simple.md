@@ -53,10 +53,11 @@ $(a, b);
 `````js filename=intro
 let b = 1;
 let a = { a: 999, b: 1000 };
+let tmpCalleeParam = 1;
 const tmpIfTest = $(0);
 if (tmpIfTest) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
   b = 0;
   a = 1;
@@ -75,10 +76,11 @@ let b = {
 a: 999,
 b: 1000
 ;
-const c = $( 0 );
-if (c) {
-  const d = $( 100 );
-  $( d );
+let c = 1;
+const d = $( 0 );
+if (d) {
+  c = $( 100 );
+  $( c );
 }
 else {
   a = 0;

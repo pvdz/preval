@@ -29,7 +29,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  if ($(false)) x = $(`fail too`);
+  if ($(false)) $(`fail too`), $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
   throw `exit`;
   let x = $(`fail`);
 };
@@ -43,7 +43,8 @@ let f = function () {
   debugger;
   const tmpIfTest = $(false);
   if (tmpIfTest) {
-    x = $(`fail too`);
+    $(`fail too`);
+    $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
   } else {
   }
   throw `exit`;
@@ -60,10 +61,11 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpIfTest = $(false);
 if (tmpIfTest) {
-  throw `Preval: Cannot access \`x\` before initialization`;
+  $(`fail too`);
+  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
 } else {
-  throw `exit`;
 }
+throw `exit`;
 `````
 
 ## PST Output
@@ -73,11 +75,10 @@ With rename=true
 `````js filename=intro
 const a = $( false );
 if (a) {
-  throw "Preval: Cannot access `x` before initialization";
+  $( "fail too" );
+  b( "TDZ triggered for this assignment: x = $('fail too')" );
 }
-else {
-  throw "exit";
-}
+throw "exit";
 `````
 
 ## Globals

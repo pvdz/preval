@@ -69,7 +69,7 @@ $(a);
 `````js filename=intro
 const tmpObjLitVal = { y: 1 };
 let a = { a: 999, b: 1000 };
-const tmpIfTest = $(1);
+let tmpIfTest = $(1);
 if (tmpIfTest) {
   a = undefined;
   const b = { x: tmpObjLitVal };
@@ -87,9 +87,9 @@ if (tmpIfTest) {
       a = tmpChainElementObject$1;
     }
   }
-  let tmpClusterSSA_tmpIfTest = $(1);
+  tmpIfTest = $(1);
   while ($LOOP_UNROLL_10) {
-    if (tmpClusterSSA_tmpIfTest) {
+    if (tmpIfTest) {
       a = undefined;
       const tmpChainElementCall$1 = $(b);
       const tmpIfTest$2 = tmpChainElementCall$1 == null;
@@ -105,7 +105,7 @@ if (tmpIfTest) {
           a = tmpChainElementObject$4;
         }
       }
-      tmpClusterSSA_tmpIfTest = $(1);
+      tmpIfTest = $(1);
     } else {
       break;
     }
@@ -125,7 +125,7 @@ let b = {
 a: 999,
 b: 1000
 ;
-const c = $( 1 );
+let c = $( 1 );
 if (c) {
   b = undefined;
   const d = { x: a };
@@ -147,29 +147,29 @@ if (c) {
       b = k;
     }
   }
-  let l = $( 1 );
+  c = $( 1 );
   while ($LOOP_UNROLL_10) {
-    if (l) {
+    if (c) {
       b = undefined;
-      const m = $( d );
-      const n = m == null;
-      if (n) {
+      const l = $( d );
+      const m = l == null;
+      if (m) {
 
       }
       else {
-        const o = $( "x" );
-        const p = m[ o ];
-        const q = p == null;
-        if (q) {
+        const n = $( "x" );
+        const o = l[ n ];
+        const p = o == null;
+        if (p) {
 
         }
         else {
-          const r = $( "y" );
-          const s = p[ r ];
-          b = s;
+          const q = $( "y" );
+          const r = o[ q ];
+          b = r;
         }
       }
-      l = $( 1 );
+      c = $( 1 );
     }
     else {
       break;

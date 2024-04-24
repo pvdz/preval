@@ -86,7 +86,7 @@ const f = $( "y" );
 e[f] = 3;
 c[d] = 3;
 let g = undefined;
-for (g in 3 {
+for (g in 3) {
 
 }
 $( 3, a, b, 3 );

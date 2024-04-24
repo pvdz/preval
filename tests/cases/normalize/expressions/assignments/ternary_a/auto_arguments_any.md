@@ -44,13 +44,14 @@ $(a);
 ## Output
 
 `````js filename=intro
+let tmpCalleeParam = undefined;
 const a = arguments;
 if (a) {
-  const tmpClusterSSA_tmpCalleeParam = $(100);
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCalleeParam = $(100);
+  $(tmpCalleeParam);
 } else {
-  const tmpClusterSSA_tmpCalleeParam$1 = $(200);
-  $(tmpClusterSSA_tmpCalleeParam$1);
+  tmpCalleeParam = $(200);
+  $(tmpCalleeParam);
 }
 $(a);
 `````
@@ -60,16 +61,17 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = arguments;
-if (a) {
-  const b = $( 100 );
-  $( b );
+let a = undefined;
+const b = arguments;
+if (b) {
+  a = $( 100 );
+  $( a );
 }
 else {
-  const c = $( 200 );
-  $( c );
+  a = $( 200 );
+  $( a );
 }
-$( a );
+$( b );
 `````
 
 ## Globals
@@ -90,9 +92,9 @@ Should call `$` with:
     2: '"<function>"',
     3: '"<$spy>"',
     4: '"<function>"',
-    5: '"$LOOP_DONE_UNROLLING_ALWAYS_TRUE"',
-    6: '[]',
-    7: '"<function>"',
+    5: '"<function>"',
+    6: '"$LOOP_DONE_UNROLLING_ALWAYS_TRUE"',
+    7: '[]',
     8: '"<function>"',
     9: '"<function>"',
     10: '"<function>"',
@@ -102,32 +104,33 @@ Should call `$` with:
     14: '"<function>"',
     15: '"<function>"',
     16: '"<function>"',
-    17: '{}',
-    18: '"<function>"',
-    19: '{}',
+    17: '"<function>"',
+    18: '{}',
+    19: '"<function>"',
     20: '{}',
-    21: '"<function>"',
-    22: '{}',
-    23: '"<function>"',
+    21: '{}',
+    22: '"<function>"',
+    23: '{}',
     24: '"<function>"',
     25: '"<function>"',
     26: '"<function>"',
     27: '"<function>"',
     28: '"<function>"',
     29: '"<function>"',
-    30: '{}',
-    31: '"<function>"',
-    32: '"$LOOP_UNROLL_0"',
-    33: '"$LOOP_UNROLL_1"',
-    34: '"$LOOP_UNROLL_2"',
-    35: '"$LOOP_UNROLL_3"',
-    36: '"$LOOP_UNROLL_4"',
-    37: '"$LOOP_UNROLL_5"',
-    38: '"$LOOP_UNROLL_6"',
-    39: '"$LOOP_UNROLL_7"',
-    40: '"$LOOP_UNROLL_8"',
-    41: '"$LOOP_UNROLL_9"',
-    42: '"$LOOP_UNROLL_10"',
+    30: '"<function>"',
+    31: '{}',
+    32: '"<function>"',
+    33: '"$LOOP_UNROLL_0"',
+    34: '"$LOOP_UNROLL_1"',
+    35: '"$LOOP_UNROLL_2"',
+    36: '"$LOOP_UNROLL_3"',
+    37: '"$LOOP_UNROLL_4"',
+    38: '"$LOOP_UNROLL_5"',
+    39: '"$LOOP_UNROLL_6"',
+    40: '"$LOOP_UNROLL_7"',
+    41: '"$LOOP_UNROLL_8"',
+    42: '"$LOOP_UNROLL_9"',
+    43: '"$LOOP_UNROLL_10"',
   },
 
  - eval returned: undefined

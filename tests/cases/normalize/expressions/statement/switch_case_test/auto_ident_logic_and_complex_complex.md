@@ -55,10 +55,10 @@ $(a);
 `````js filename=intro
 $(1);
 const tmpCalleeParam = $(1);
-const tmpBinBothRhs = $(tmpCalleeParam);
+let tmpBinBothRhs = $(tmpCalleeParam);
 if (tmpBinBothRhs) {
   const tmpCalleeParam$1 = $(2);
-  $(tmpCalleeParam$1);
+  tmpBinBothRhs = $(tmpCalleeParam$1);
 } else {
 }
 const a = { a: 999, b: 1000 };
@@ -72,10 +72,10 @@ With rename=true
 `````js filename=intro
 $( 1 );
 const a = $( 1 );
-const b = $( a );
+let b = $( a );
 if (b) {
   const c = $( 2 );
-  $( c );
+  b = $( c );
 }
 const d = {
 a: 999,

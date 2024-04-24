@@ -2,7 +2,7 @@
 
 # loop_write_continue_read2.md
 
-> Ref tracking > Loop write continue read2
+> Ref tracking > While-continue > Loop write continue read2
 >
 > Ref tracking cases
 
@@ -22,80 +22,34 @@ while (true) {
 }
 `````
 
-## Pre Normal
-
-`````js filename=intro
-let x = 0;
-while (true) {
-  x = x + 1;
-  if (x < 400) continue;
-  $(x);
-  break;
-}
-`````
-
-## Normalized
-
-`````js filename=intro
-let x = 0;
-while (true) {
-  x = x + 1;
-  const tmpIfTest = x < 400;
-  if (tmpIfTest) {
-    continue;
-  } else {
-    $(x);
-    break;
-  }
-}
-`````
-
 ## Output
 
-`````js filename=intro
-let x = 11;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  x = x + 1;
-  const tmpIfTest$1 = x < 400;
-  if (tmpIfTest$1) {
-  } else {
-    $(x);
+(Annotated with pids)
+
+`````filename=intro
+let x___4__ = 0;
+while (true) {
+  /*8*/ x___14__ = x___12__ + 1;
+  const tmpIfTest___17__ = x___19__ < 400;
+  if (tmpIfTest___22__) {
+    /*23*/ continue;
+  } /*25*/ else {
+    $(x___29__);
     break;
   }
 }
 `````
 
-## PST Output
+Ref tracking result:
 
-With rename=true
+               | reads      | read by     | overWrites     | overwritten by
+x:
+  - w @4       | ########## | 12          | none           | 14
+  - r @12      | 4
+  - w @14      | ########## | 19,29       | 4              | none
+  - r @19      | 14
+  - r @29      | 14
 
-`````js filename=intro
-let a = 11;
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  a = a + 1;
-  const b = a < 400;
-  if (b) {
-
-  }
-  else {
-    $( a );
-    break;
-  }
-}
-`````
-
-## Globals
-
-None
-
-## Result
-
-Should call `$` with:
- - 1: 400
- - eval returned: undefined
-
-Pre normalization calls: Same
-
-Normalized calls: Same
-
-Final output calls: Same
+tmpIfTest:
+  - w @17      | ########## | 22          | none           | none
+  - r @22      | 17

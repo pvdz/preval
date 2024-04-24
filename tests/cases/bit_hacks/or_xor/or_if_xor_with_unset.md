@@ -45,11 +45,11 @@ $(x);
 ## Output
 
 `````js filename=intro
-const x = $(3);
+let x = $(3);
 const y = x | 32;
 if (y) {
-  const tmpClusterSSA_x = x ^ 32;
-  $(tmpClusterSSA_x);
+  x = x ^ 32;
+  $(x);
 } else {
   $(x);
 }
@@ -60,11 +60,11 @@ if (y) {
 With rename=true
 
 `````js filename=intro
-const a = $( 3 );
+let a = $( 3 );
 const b = a | 32;
 if (b) {
-  const c = a ^ 32;
-  $( c );
+  a = a ^ 32;
+  $( a );
 }
 else {
   $( a );

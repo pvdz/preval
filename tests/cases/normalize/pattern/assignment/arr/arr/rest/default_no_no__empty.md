@@ -41,8 +41,8 @@ $(x);
 
 `````js filename=intro
 const arrPatternSplat$1 = [];
-const tmpClusterSSA_x = arrPatternSplat$1.slice(0);
-$(tmpClusterSSA_x);
+const tmpSSA_x = arrPatternSplat$1.slice(0);
+$(tmpSSA_x);
 `````
 
 ## PST Output

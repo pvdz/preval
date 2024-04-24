@@ -49,9 +49,9 @@ $(a, b);
 const b = { c: 1 };
 const obj = {};
 const tmpAssignRhsProp = $(b);
-const tmpClusterSSA_a = tmpAssignRhsProp.c;
-obj[tmpClusterSSA_a];
-$(tmpClusterSSA_a, b);
+const tmpSSA_a = tmpAssignRhsProp.c;
+obj[tmpSSA_a];
+$(tmpSSA_a, b);
 `````
 
 ## PST Output

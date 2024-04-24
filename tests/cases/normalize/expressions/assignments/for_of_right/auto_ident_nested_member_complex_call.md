@@ -88,7 +88,7 @@ const g = $( 3 );
 e[f] = g;
 c[d] = g;
 let h = undefined;
-for (h of g {
+for (h of g) {
 
 }
 $( g, a, b, 3 );

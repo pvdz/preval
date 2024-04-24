@@ -54,12 +54,13 @@ if (x) {
 
 `````js filename=intro
 const a = $(67636);
-const x = a === 67636;
+let x = a !== 67636;
 if (x) {
-  f(`Preval: Cannot write to const binding \`a\``);
-  $(false);
-} else {
+  x = a !== 67636;
   throw `Preval: Cannot write to const binding \`a\``;
+} else {
+  f(`Preval: Cannot write to const binding \`a\``);
+  $(x);
 }
 `````
 
@@ -69,13 +70,14 @@ With rename=true
 
 `````js filename=intro
 const a = $( 67636 );
-const b = a === 67636;
+let b = a !== 67636;
 if (b) {
-  f( "Preval: Cannot write to const binding `a`" );
-  $( false );
+  b = a !== 67636;
+  throw "Preval: Cannot write to const binding `a`";
 }
 else {
-  throw "Preval: Cannot write to const binding `a`";
+  f( "Preval: Cannot write to const binding `a`" );
+  $( b );
 }
 `````
 

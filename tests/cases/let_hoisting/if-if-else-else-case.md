@@ -127,9 +127,10 @@ if ($) {
 `````js filename=intro
 if ($) {
   const test = $(1);
+  let tmpIfelseifelse = false;
   if (test) {
-    const tmpClusterSSA_tmpIfelseifelse = $(1);
-    if (tmpClusterSSA_tmpIfelseifelse) {
+    tmpIfelseifelse = $(1);
+    if (tmpIfelseifelse) {
       $(`A`);
     } else {
       $(`B`);
@@ -148,8 +149,9 @@ With rename=true
 `````js filename=intro
 if ($) {
   const a = $( 1 );
+  let b = false;
   if (a) {
-    const b = $( 1 );
+    b = $( 1 );
     if (b) {
       $( "A" );
     }

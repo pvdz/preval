@@ -45,8 +45,9 @@ $(a);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $(100);
+let tmpIfTest = $(100);
 if (tmpIfTest) {
+  tmpIfTest = true;
   const tmpCalleeParam = $(1);
   $(tmpCalleeParam);
 } else {
@@ -60,8 +61,9 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 100 );
+let a = $( 100 );
 if (a) {
+  a = true;
   const b = $( 1 );
   $( b );
 }

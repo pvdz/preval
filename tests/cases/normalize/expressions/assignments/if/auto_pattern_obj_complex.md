@@ -43,8 +43,8 @@ $(a);
 `````js filename=intro
 const tmpCalleeParam = { a: 1, b: 2 };
 const tmpNestedAssignObjPatternRhs = $(tmpCalleeParam);
-const tmpClusterSSA_a = tmpNestedAssignObjPatternRhs.a;
-$(tmpClusterSSA_a);
+const tmpSSA_a = tmpNestedAssignObjPatternRhs.a;
+$(tmpSSA_a);
 `````
 
 ## PST Output

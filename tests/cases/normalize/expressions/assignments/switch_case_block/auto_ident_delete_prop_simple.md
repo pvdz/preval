@@ -59,14 +59,14 @@ $(a, arg);
 
 `````js filename=intro
 const arg = { y: 1 };
+let a = { a: 999, b: 1000 };
 const tmpSwitchDisc = $(1);
 const tmpBinBothRhs = $(1);
 const tmpIfTest = tmpSwitchDisc === tmpBinBothRhs;
 if (tmpIfTest) {
-  const tmpClusterSSA_a = delete arg.y;
-  $(tmpClusterSSA_a, arg);
+  a = delete arg.y;
+  $(a, arg);
 } else {
-  const a = { a: 999, b: 1000 };
   $(a, arg);
 }
 `````
@@ -77,19 +77,19 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = $( 1 );
-const c = $( 1 );
-const d = b === c;
-if (d) {
-  const e = deletea.y;
-  $( e, a );
-}
-else {
-  const f = {
+let b = {
 a: 999,
 b: 1000
-  ;
-  $( f, a );
+;
+const c = $( 1 );
+const d = $( 1 );
+const e = c === d;
+if (e) {
+  b = deletea.y;
+  $( b, a );
+}
+else {
+  $( b, a );
 }
 `````
 

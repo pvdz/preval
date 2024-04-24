@@ -85,22 +85,19 @@ tmpCallCallee$1(tmpCalleeParam$1);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    const tmpReturnArg = $(1);
-    return tmpReturnArg;
-  } else {
-    const tmpReturnArg$1 = $(2);
-    return tmpReturnArg$1;
-  }
-};
-const x = $(100);
+let x = $(100);
 $(x);
-const tmpClusterSSA_x = f();
-$(tmpClusterSSA_x);
-$(tmpClusterSSA_x);
+const tmpIfTest = $();
+if (tmpIfTest) {
+  const tmpReturnArg = $(1);
+  x = tmpReturnArg;
+  $(tmpReturnArg);
+} else {
+  const tmpReturnArg$1 = $(2);
+  x = tmpReturnArg$1;
+  $(tmpReturnArg$1);
+}
+$(x);
 `````
 
 ## PST Output
@@ -108,23 +105,20 @@ $(tmpClusterSSA_x);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $();
-  if (b) {
-    const c = $( 1 );
-    return c;
-  }
-  else {
-    const d = $( 2 );
-    return d;
-  }
-};
-const e = $( 100 );
-$( e );
-const f = a();
-$( f );
-$( f );
+let a = $( 100 );
+$( a );
+const b = $();
+if (b) {
+  const c = $( 1 );
+  a = c;
+  $( c );
+}
+else {
+  const d = $( 2 );
+  a = d;
+  $( d );
+}
+$( a );
 `````
 
 ## Globals

@@ -63,14 +63,15 @@ $(a);
 `````js filename=intro
 let a = 60;
 const tmpIfTest = $(1);
+let tmpCalleeParam = 60;
 if (tmpIfTest) {
   $(60);
 } else {
   const tmpCalleeParam$1 = $(100);
   a = $(tmpCalleeParam$1);
-  const tmpClusterSSA_tmpCalleeParam = a;
+  tmpCalleeParam = a;
   if (a) {
-    $(tmpClusterSSA_tmpCalleeParam);
+    $(tmpCalleeParam);
   } else {
     let tmpNestedComplexRhs = 60;
     const tmpIfTest$1 = $(1);
@@ -80,7 +81,8 @@ if (tmpIfTest) {
       tmpNestedComplexRhs = $(tmpCalleeParam$3);
     }
     a = tmpNestedComplexRhs;
-    $(tmpNestedComplexRhs);
+    tmpCalleeParam = tmpNestedComplexRhs;
+    $(tmpCalleeParam);
   }
 }
 $(a);
@@ -93,15 +95,16 @@ With rename=true
 `````js filename=intro
 let a = 60;
 const b = $( 1 );
+let c = 60;
 if (b) {
   $( 60 );
 }
 else {
-  const c = $( 100 );
-  a = $( c );
-  const d = a;
+  const d = $( 100 );
+  a = $( d );
+  c = a;
   if (a) {
-    $( d );
+    $( c );
   }
   else {
     let e = 60;
@@ -114,7 +117,8 @@ else {
       e = $( g );
     }
     a = e;
-    $( e );
+    c = e;
+    $( c );
   }
 }
 $( a );

@@ -50,15 +50,18 @@ $(a);
 ## Output
 
 `````js filename=intro
+let tmpCallCallee$1 = 60;
 const tmpIfTest = $(30);
+let tmpBinBothRhs = `60`;
+let tmpCalleeParam = `before  60  after`;
 if (tmpIfTest) {
   $(`before  60  after`);
 } else {
   const tmpCalleeParam$1 = $(100);
-  const tmpClusterSSA_tmpCallCallee$1 = $(tmpCalleeParam$1);
-  const tmpClusterSSA_tmpBinBothRhs = $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
-  const tmpClusterSSA_tmpCalleeParam = `before  ${tmpClusterSSA_tmpBinBothRhs}  after`;
-  $(tmpClusterSSA_tmpCalleeParam);
+  tmpCallCallee$1 = $(tmpCalleeParam$1);
+  tmpBinBothRhs = $coerce(tmpCallCallee$1, `string`);
+  tmpCalleeParam = `before  ${tmpBinBothRhs}  after`;
+  $(tmpCalleeParam);
 }
 const a = { a: 999, b: 1000 };
 $(a);
@@ -69,16 +72,19 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = $( 30 );
-if (a) {
+let a = 60;
+const b = $( 30 );
+let c = "60";
+let d = "before  60  after";
+if (b) {
   $( "before  60  after" );
 }
 else {
-  const b = $( 100 );
-  const c = $( b );
-  const d = $coerce( c, "string" );
-  const e = `before  ${[object Object]}  after`;
-  $( e );
+  const e = $( 100 );
+  a = $( e );
+  c = $coerce( a, "string" );
+  d = `before  ${[object Object]}  after`;
+  $( d );
 }
 const f = {
 a: 999,

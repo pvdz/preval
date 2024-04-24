@@ -44,8 +44,9 @@ $(a);
 
 `````js filename=intro
 const tmpCalleeParam = $(1);
-const tmpCalleeParamSpread = $(tmpCalleeParam);
+let tmpCalleeParamSpread = $(tmpCalleeParam);
 if (tmpCalleeParamSpread) {
+  tmpCalleeParamSpread = 2;
   $(...2);
 } else {
   const tmpIfTest = tmpCalleeParamSpread === ``;
@@ -65,8 +66,9 @@ With rename=true
 
 `````js filename=intro
 const a = $( 1 );
-const b = $( a );
+let b = $( a );
 if (b) {
+  b = 2;
   $( ... 2 );
 }
 else {

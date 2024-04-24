@@ -60,10 +60,12 @@ const tmpArgOverflowOne = [...tmpArrSpread];
 const tmpArgOverflowLen = tmpArgOverflowOne.length;
 const tmpArgOverflowTwo = $spy(`b`);
 const tmpArgOverflowThree = $spy(`c`);
+let tmpCallCallee$1 = undefined;
 if (tmpArgOverflowLen) {
-  const tmpClusterSSA_tmpCallCallee$1 = tmpArgOverflowOne[0];
-  $coerce(tmpClusterSSA_tmpCallCallee$1, `string`);
+  tmpCallCallee$1 = tmpArgOverflowOne[0];
+  $coerce(tmpCallCallee$1, `string`);
 } else {
+  tmpCallCallee$1 = tmpArgOverflowTwo;
   $coerce(tmpArgOverflowTwo, `string`);
 }
 let tmpUnaryArg = undefined;
@@ -91,11 +93,13 @@ const c = [ ... b,, ];
 const d = c.length;
 const e = $spy( "b" );
 const f = $spy( "c" );
+let g = undefined;
 if (d) {
-  const g = c[ 0 ];
+  g = c[ 0 ];
   $coerce( g, "string" );
 }
 else {
+  g = e;
   $coerce( e, "string" );
 }
 let h = undefined;

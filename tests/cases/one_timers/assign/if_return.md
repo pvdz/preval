@@ -83,22 +83,19 @@ tmpCallCallee$1(tmpCalleeParam$3, tmpCalleeParam$5);
 ## Output
 
 `````js filename=intro
-const f = function () {
-  debugger;
-  const tmpIfTest = $();
-  if (tmpIfTest) {
-    const tmpReturnArg$1 = $(1, `f-return`);
-    return tmpReturnArg$1;
-  } else {
-    return undefined;
-  }
-};
-const x = $(100, `init`);
+let x = $(100, `init`);
 const tmpCalleeParam = $(x, `closure-return`);
 $(tmpCalleeParam, `closure-global1`);
-const tmpClusterSSA_x = f();
-$(tmpClusterSSA_x, `x-global`);
-const tmpCalleeParam$3 = $(tmpClusterSSA_x, `closure-return`);
+const tmpIfTest = $();
+if (tmpIfTest) {
+  const tmpReturnArg$1 = $(1, `f-return`);
+  x = tmpReturnArg$1;
+  $(tmpReturnArg$1, `x-global`);
+} else {
+  x = undefined;
+  $(undefined, `x-global`);
+}
+const tmpCalleeParam$3 = $(x, `closure-return`);
 $(tmpCalleeParam$3, `closure-global2`);
 `````
 
@@ -107,24 +104,21 @@ $(tmpCalleeParam$3, `closure-global2`);
 With rename=true
 
 `````js filename=intro
-const a = function() {
-  debugger;
-  const b = $();
-  if (b) {
-    const c = $( 1, "f-return" );
-    return c;
-  }
-  else {
-    return undefined;
-  }
-};
-const d = $( 100, "init" );
-const e = $( d, "closure-return" );
-$( e, "closure-global1" );
-const f = a();
-$( f, "x-global" );
-const g = $( f, "closure-return" );
-$( g, "closure-global2" );
+let a = $( 100, "init" );
+const b = $( a, "closure-return" );
+$( b, "closure-global1" );
+const c = $();
+if (c) {
+  const d = $( 1, "f-return" );
+  a = d;
+  $( d, "x-global" );
+}
+else {
+  a = undefined;
+  $( undefined, "x-global" );
+}
+const e = $( a, "closure-return" );
+$( e, "closure-global2" );
 `````
 
 ## Globals

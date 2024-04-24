@@ -46,11 +46,11 @@ $(a);
 `````js filename=intro
 const b = { $: $ };
 const tmpCallObj = $(b);
-const tmpClusterSSA_a = tmpCallObj.$(1);
+const tmpSSA_a = tmpCallObj.$(1);
 let x = undefined;
-for (x in tmpClusterSSA_a) {
+for (x in tmpSSA_a) {
 }
-$(tmpClusterSSA_a);
+$(tmpSSA_a);
 `````
 
 ## PST Output
@@ -62,7 +62,7 @@ const a = { $: $ };
 const b = $( a );
 const c = b.$( 1 );
 let d = undefined;
-for (d in c {
+for (d in c) {
 
 }
 $( c );

@@ -240,7 +240,7 @@ export function assertNoDupeNodes(node, prop, force = false) {
       if (!node || !node.$p) return;
       if (down) {
         if (map.has(node.$p.pid)) {
-          ASSERT(refset.has(node), 'et tu? make sure ids are not re-used and then trigger this');
+          ASSERT(refset.has(node), 'et tu? make sure node pids are not re-used and then trigger this');
           console.log('(assertion triggered; debug data commented out)');
           //console.dir(node, { depth: null });
           //console.log('previous parent:', map.get(node.$p.pid));

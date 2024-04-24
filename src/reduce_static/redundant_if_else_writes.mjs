@@ -46,8 +46,11 @@ function _redundantWrites(fdata) {
 
     ASSERT(
       varWrite.reachedByWrites.size > 0 || meta.writes.length === 1,
-      'when not TDZ and not multi-scope and not a constant, the var should be reachable by at least one other write if there is one',
+      'when not TDZ and not multi-scope and not a constant, the var should be reachable by at least one other write if there is one. the var:',
+      name,
+      'reached by writes == 0:',
       varWrite.reachedByWrites.size > 0,
+      'meta.writes:',
       meta.writes.length,
     );
 

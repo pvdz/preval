@@ -56,7 +56,7 @@ function _inlineOneTimeFunctions(fdata) {
     if (meta.isImplicitGlobal) return;
     if (!meta.isConstant) return;
 
-    ASSERT(meta.writes.length === 1, 'fix me if we somehow allow constants to be written to more than once. This transform would probably break it.', name); // We drop the decl so if this is not the case, we break stuff.
+    ASSERT(meta.writes.length === 1, 'fix me if we somehow allow constants to be written to more than once. This transform would probably break it.', name, 'is a constant but has', meta.writes.length, 'writes so thats odd'); // We drop the decl so if this is not the case, we break stuff.
 
     vgroup(
       '- `' + meta.uniqueName + '`:',

@@ -96,6 +96,7 @@ import {aliasIfIf} from "./alias_if_if.mjs";
 // - Branch out
 // - Const binding folding (const a = $(); const b = a; -> redundant)
 // - `let x = $(1); const y = x; x = $(2);` -> `const y = $(1); const x = $(2);`
+// - tail break, if not already done; `foo: { break foo; }` the break is redundant. same for other cases where break (and continue) are at the end. Should prefer this to the "Labeled break as direct child of function. Eliminate the break." rule.
 // - Unary negative/positive should look at argument
 // - Function whose body is one if-else driven by an argument. If the func does not escape then it can be split into two functions and the arg eliminated. in react there is executeDispatchesAndRelease for example.
 // - The boolean cast in isNode$1 in react can be moved?

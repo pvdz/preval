@@ -13,7 +13,7 @@ export function uniqify_idents(funcAst, fdata) {
   let lexScopeCounter = 0;
   const funcScopeStack = [];
 
-  resetUid();
+  //resetUid(); // This will fail func cloning, ex: tests/cases/flow/label_mutate_label_no_mutate2.md
 
   let walked = 0;
   log('    - before walk');

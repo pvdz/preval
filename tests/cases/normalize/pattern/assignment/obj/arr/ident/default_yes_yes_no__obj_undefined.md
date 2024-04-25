@@ -68,9 +68,9 @@ $(`bad`);
 With rename=true
 
 `````js filename=intro
-const a = [ "pass2",, ];
+const a = [ "pass2" ];
 const b = $( a );
-const c = [ ... b,, ];
+const c = [ ... b ];
 const d = c[ 0 ];
 const e = d === undefined;
 if (e) {

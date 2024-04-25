@@ -85,13 +85,13 @@ let b = $( 1 );
 if (b) {
   const c = $( 1 );
   const d = $( 3 );
-  a = [ c, 2, d,, ];
+  a = [ c, 2, d ];
   b = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (b) {
       const e = $( 1 );
       const f = $( 3 );
-      a = [ e, 2, f,, ];
+      a = [ e, 2, f ];
       b = $( 1 );
     }
     else {

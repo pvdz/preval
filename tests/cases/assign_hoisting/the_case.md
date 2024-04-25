@@ -182,7 +182,7 @@ const a = function($$0,$$1,$$2 ) {
         $( f );
       }
     }
-    const h = [ b, d, f,, ];
+    const h = [ b, d, f ];
     return h;
   }
   else {

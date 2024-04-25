@@ -44,7 +44,7 @@ $(y);
 With rename=true
 
 `````js filename=intro
-const a = [ "a", 1, undefined, undefined, undefined, 2, 3, "b",, ];
+const a = [ "a", 1, undefined, undefined, undefined, 2, 3, "b" ];
 $( a );
 `````
 

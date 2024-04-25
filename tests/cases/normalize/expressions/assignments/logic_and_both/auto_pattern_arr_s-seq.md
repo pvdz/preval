@@ -77,14 +77,14 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 b[ 0 ];
 $( 10 );
 $( 20 );
 $( 10 );
 $( 20 );
-const c = [ 1, 2,, ];
-const d = [ ... c,, ];
+const c = [ 1, 2 ];
+const d = [ ... c ];
 const e = d[ 0 ];
 $( c );
 $( e );

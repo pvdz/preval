@@ -92,8 +92,8 @@ let f = undefined;
 for (f in e) {
   const g = $( 3 );
   const h = $( 4 );
-  const i = [ g, h,, ];
-  const j = [ ... i,, ];
+  const i = [ g, h ];
+  const j = [ ... i ];
   a = j[ 0 ];
   b = j[ 1 ];
   c = i;

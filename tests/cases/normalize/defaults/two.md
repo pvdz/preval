@@ -131,7 +131,7 @@ const a = function($$0,$$1 ) {
   else {
     h = d;
   }
-  const j = [ f, h,, ];
+  const j = [ f, h ];
   return j;
 };
 const k = a();

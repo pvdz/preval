@@ -131,11 +131,11 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 const c = b[ 0 ];
 const d = $( 1 );
 let e = 1;
-const f = [ 1, 2,, ];
+const f = [ 1, 2 ];
 const g = $( f );
 const h = g === d;
 if (h) {

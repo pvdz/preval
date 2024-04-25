@@ -90,7 +90,7 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 let c = b[ 0 ];
 const d = $( 1 );
 const e = $( 1 );
@@ -98,9 +98,9 @@ const f = d === e;
 if (f) {
   $( 10 );
   $( 20 );
-  const g = [ 1, 2,, ];
+  const g = [ 1, 2 ];
   const h = $( g );
-  const i = [ ... h,, ];
+  const i = [ ... h ];
   c = i[ 0 ];
   $( c );
 }

@@ -97,7 +97,7 @@ const b = function($$0 ) {
   a = typeofc;
   return undefined;
 };
-const e = [ 1, 2,, ];
+const e = [ 1, 2 ];
 $( e );
 b( 20, 30, 40, 50, 60 );
 $( a );

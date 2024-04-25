@@ -92,7 +92,7 @@ toString(  ) {
     return undefined;
   },
 ;
-const b = [ a, a,, ];
+const b = [ a, a ];
 const c = $coerce( b, "number" );
 $( c );
 `````

@@ -94,9 +94,9 @@ const d = $( 1 );
 const e = c === d;
 if (e) {
   const f = $( 2 );
-  const g = [ f,, ];
+  const g = [ f ];
   const h = $( g );
-  const i = [ ... h,, ];
+  const i = [ ... h ];
   a = i[ 0 ];
   b = h;
   $( h, a );

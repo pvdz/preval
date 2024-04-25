@@ -60,8 +60,8 @@ With rename=true
 `````js filename=intro
 $( 1 );
 $( 2 );
-const a = [ 10, 20, 30,, ];
-const b = [ ... a,, ];
+const a = [ 10, 20, 30 ];
+const b = [ ... a ];
 const c = b[ 0 ];
 const d = b[ 1 ];
 $( c, d, 1, 2, a );

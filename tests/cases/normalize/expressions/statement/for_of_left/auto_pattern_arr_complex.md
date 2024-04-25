@@ -69,13 +69,13 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 const c = b[ 0 ];
 const d = { x: 1 };
 const e = $( d );
 let f = undefined;
 for (f of e) {
-  const g = [ 1, 2,, ];
+  const g = [ 1, 2 ];
   const h = $( g );
   h.x = f;
 }

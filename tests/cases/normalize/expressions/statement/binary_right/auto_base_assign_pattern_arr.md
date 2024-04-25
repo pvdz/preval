@@ -70,9 +70,9 @@ b: 1000
 ;
 const b = $( 100 );
 const c = $( 2 );
-const d = [ c,, ];
+const d = [ c ];
 const e = $( d );
-const f = [ ... e,, ];
+const f = [ ... e ];
 const g = f[ 0 ];
 b + e;
 $( a, g );

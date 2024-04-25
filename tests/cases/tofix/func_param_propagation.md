@@ -110,7 +110,7 @@ const a = function($$0 ) {
   else {
     d = b;
   }
-  const f = [ "x", d,, ];
+  const f = [ "x", d ];
   return f;
 };
 const g = a();

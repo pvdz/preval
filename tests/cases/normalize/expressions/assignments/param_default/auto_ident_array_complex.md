@@ -76,7 +76,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 3 );
 $( undefined );
-const c = [ a, 2, b,, ];
+const c = [ a, 2, b ];
 $( c );
 `````
 

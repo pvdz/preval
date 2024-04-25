@@ -99,18 +99,18 @@ b: 1000
 let c = $( 1 );
 if (c) {
   const d = $( 2 );
-  const e = [ d,, ];
+  const e = [ d ];
   const f = $( e );
-  const g = [ ... f,, ];
+  const g = [ ... f ];
   a = g[ 0 ];
   b = f;
   c = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (c) {
       const h = $( 2 );
-      const i = [ h,, ];
+      const i = [ h ];
       const j = $( i );
-      const k = [ ... j,, ];
+      const k = [ ... j ];
       a = k[ 0 ];
       b = j;
       c = $( 1 );

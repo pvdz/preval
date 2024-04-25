@@ -62,7 +62,7 @@ b: 1000
 ;
 const c = $( "y" );
 const d = deletea[ c ];
-[ ... d,, ];
+[ ... d ];
 $( b, a );
 `````
 

@@ -93,7 +93,7 @@ while (true) {
   if (a) {
     $( "loop" );
     let b = undefined;
-    const c = [ 1, 2,, ];
+    const c = [ 1, 2 ];
     for (b of c) {
       $( "loop", b );
     }

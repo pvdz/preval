@@ -327,7 +327,7 @@ const a1 = x ^ 91;
 x;
 const b1 = [];
 const c1 = x | b1;
-const d1 = [ b, d, f, h, i, k, m, o, q, s, u, w, y, 01, 21, 41, 61, 81, a1, c1,, ];
+const d1 = [ b, d, f, h, i, k, m, o, q, s, u, w, y, 01, 21, 41, 61, 81, a1, c1 ];
 $( d1 );
 x;
 const e1 = [];
@@ -335,7 +335,7 @@ const f1 = x in e1;
 x;
 const g1 = [];
 const h1 = x instanceof g1;
-const i1 = [ f1, h1,, ];
+const i1 = [ f1, h1 ];
 $( i1 );
 `````
 

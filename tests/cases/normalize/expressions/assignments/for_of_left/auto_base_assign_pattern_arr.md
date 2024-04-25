@@ -85,9 +85,9 @@ const d = $( c );
 let e = undefined;
 for (e of d) {
   const f = $( 2 );
-  const g = [ f,, ];
+  const g = [ f ];
   const h = $( g );
-  const i = [ ... h,, ];
+  const i = [ ... h ];
   a = i[ 0 ];
   b = h;
   h.x = e;

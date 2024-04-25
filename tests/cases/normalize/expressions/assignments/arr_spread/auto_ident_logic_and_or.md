@@ -88,7 +88,7 @@ else {
   const d = $( 2 );
   b = $( d );
 }
-const e = [ ... b,, ];
+const e = [ ... b ];
 $( e );
 $( b );
 `````

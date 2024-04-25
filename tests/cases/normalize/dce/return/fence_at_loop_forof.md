@@ -125,7 +125,7 @@ const a = function() {
       $( "loop" );
       let c = undefined;
       let d = false;
-      const e = [ 1, 2,, ];
+      const e = [ 1, 2 ];
       for (c of e) {
         d = true;
         break;

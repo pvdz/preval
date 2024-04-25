@@ -87,20 +87,20 @@ $(`ok`);
 With rename=true
 
 `````js filename=intro
-const a = [ "fail2",, ];
+const a = [ "fail2" ];
 const b = { x: a };
 const c = $( b );
 const d = c.x;
 let e = undefined;
 const f = d === undefined;
 if (f) {
-  const g = [ "fail",, ];
+  const g = [ "fail" ];
   e = $( g );
 }
 else {
   e = d;
 }
-[ ... e,, ];
+[ ... e ];
 $( "ok" );
 `````
 

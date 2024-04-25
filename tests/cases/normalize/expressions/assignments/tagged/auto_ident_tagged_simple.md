@@ -45,7 +45,7 @@ $(a);
 With rename=true
 
 `````js filename=intro
-const a = [ "fo", "o",, ];
+const a = [ "fo", "o" ];
 const b = $( a, 1 );
 $( b );
 `````

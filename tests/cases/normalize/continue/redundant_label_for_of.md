@@ -96,7 +96,7 @@ With rename=true
 
 `````js filename=intro
 let a = $( 2 );
-const b = [ "a", "b",, ];
+const b = [ "a", "b" ];
 const c = new Set( b );
 const d = $( c );
 let e = undefined;

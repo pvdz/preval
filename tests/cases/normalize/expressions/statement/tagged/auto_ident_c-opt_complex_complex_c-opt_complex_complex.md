@@ -92,7 +92,7 @@ const c = {
 a: 999,
 b: 1000
 ;
-const d = [ "before ", " after",, ];
+const d = [ "before ", " after" ];
 let e = undefined;
 const f = $( b );
 const g = f == null;

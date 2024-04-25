@@ -79,13 +79,13 @@ const a = 1.x;
 let b = undefined;
 const c = a === undefined;
 if (c) {
-  const d = [ "fail2",, ];
+  const d = [ "fail2" ];
   b = $( d );
 }
 else {
   b = a;
 }
-const e = [ ... b,, ];
+const e = [ ... b ];
 const f = e[ 0 ];
 const g = f === undefined;
 if (g) {

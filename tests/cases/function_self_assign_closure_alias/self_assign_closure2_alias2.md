@@ -160,7 +160,7 @@ With rename=true
 `````js filename=intro
 let a = function() {
   debugger;
-  const b = [ 1, 2, 3,, ];
+  const b = [ 1, 2, 3 ];
   a = function() {
     debugger;
     return b;
@@ -170,7 +170,7 @@ let a = function() {
 };
 const d = function() {
   debugger;
-  const e = [ 1, 2, 3,, ];
+  const e = [ 1, 2, 3 ];
   a = function() {
     debugger;
     return e;

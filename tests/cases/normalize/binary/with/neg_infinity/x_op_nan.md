@@ -250,11 +250,11 @@ const q = a != -Infinity;
 a ** 0;
 const r = a ^ 0;
 const s = a | 0;
-const t = [ c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, false, true, 0, r, s,, ];
+const t = [ c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, false, true, 0, r, s ];
 $( t );
 const u = a in -Infinity;
 const v = a instanceof -Infinity;
-const w = [ u, v,, ];
+const w = [ u, v ];
 $( w );
 `````
 

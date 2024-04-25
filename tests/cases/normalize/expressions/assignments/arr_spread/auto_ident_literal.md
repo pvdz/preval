@@ -49,7 +49,7 @@ $(`foo`);
 With rename=true
 
 `````js filename=intro
-const a = [ "f", "o", "o",, ];
+const a = [ "f", "o", "o" ];
 $( a );
 $( "foo" );
 `````

@@ -86,14 +86,14 @@ b: 1000
 ;
 const b = $( 3 );
 const c = $( 4 );
-const d = [ b, c,, ];
-const e = [ ... d,, ];
+const d = [ b, c ];
+const e = [ ... d ];
 e[ 0 ];
 e[ 1 ];
 const f = $( 3 );
 const g = $( 4 );
-const h = [ f, g,, ];
-const i = [ ... h,, ];
+const h = [ f, g ];
+const i = [ ... h ];
 const j = i[ 0 ];
 const k = i[ 1 ];
 d + h;

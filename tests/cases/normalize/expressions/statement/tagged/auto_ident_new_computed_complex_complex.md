@@ -66,7 +66,7 @@ const b = {
 a: 999,
 b: 1000
 ;
-const c = [ "before ", " after",, ];
+const c = [ "before ", " after" ];
 const d = $( a );
 const e = $( "$" );
 const f = d[ e ];

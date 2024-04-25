@@ -61,11 +61,11 @@ With rename=true
 
 `````js filename=intro
 const a = {};
-const b = [ a,, ];
+const b = [ a ];
 let c = undefined;
 let d = undefined;
 for (c in b) {
-  const e = [ ... c,, ];
+  const e = [ ... c ];
   d = e[ 0 ];
   $( d );
 }

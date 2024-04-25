@@ -109,18 +109,18 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 2 );
-const b = [ a,, ];
+const b = [ a ];
 const c = $( b );
-const d = [ ... c,, ];
+const d = [ ... c ];
 let e = d[ 0 ];
 let f = c;
 let g = c;
 if (c) {
   $( 100 );
   const h = $( 2 );
-  const i = [ h,, ];
+  const i = [ h ];
   const j = $( i );
-  const k = [ ... j,, ];
+  const k = [ ... j ];
   e = k[ 0 ];
   f = j;
   g = j;
@@ -128,9 +128,9 @@ if (c) {
     if (g) {
       $( 100 );
       const l = $( 2 );
-      const m = [ l,, ];
+      const m = [ l ];
       const n = $( m );
-      const o = [ ... n,, ];
+      const o = [ ... n ];
       e = o[ 0 ];
       f = n;
       g = n;

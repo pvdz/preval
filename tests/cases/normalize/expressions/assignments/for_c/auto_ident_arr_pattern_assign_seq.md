@@ -115,8 +115,8 @@ if (d) {
   $( 2 );
   const e = $( 3 );
   const f = $( 4 );
-  const g = [ e, f,, ];
-  const h = [ ... g,, ];
+  const g = [ e, f ];
+  const h = [ ... g ];
   a = h[ 0 ];
   b = h[ 1 ];
   c = g;
@@ -127,8 +127,8 @@ if (d) {
       $( b );
       const i = $( 3 );
       const j = $( 4 );
-      const k = [ i, j,, ];
-      const l = [ ... k,, ];
+      const k = [ i, j ];
+      const l = [ ... k ];
       a = l[ 0 ];
       b = l[ 1 ];
       c = k;

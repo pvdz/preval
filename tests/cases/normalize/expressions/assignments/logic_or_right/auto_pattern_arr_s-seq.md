@@ -75,7 +75,7 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 let c = b[ 0 ];
 let d = $( 100 );
 if (d) {
@@ -84,8 +84,8 @@ if (d) {
 else {
   $( 10 );
   $( 20 );
-  const e = [ 1, 2,, ];
-  const f = [ ... e,, ];
+  const e = [ 1, 2 ];
+  const f = [ ... e ];
   c = f[ 0 ];
   d = e;
   $( e );

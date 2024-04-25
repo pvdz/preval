@@ -76,7 +76,7 @@ else {
   const c = $( 100 );
   a = $( c );
 }
-const d = [ "before ", " after",, ];
+const d = [ "before ", " after" ];
 $( d, a );
 $( a );
 `````

@@ -237,7 +237,7 @@ function printExpression(indent, config, node) {
     case 'ArrayLiteral': {
       if (node.elements.length === 0) return '[]';
       // Must maintain elided elements.
-      return `[ ${node.elements.map(e => e === null ? ',' : `${printSimpleOrSpread(indent, config, e)},`).join(' ')}, ]`;
+      return `[ ${node.elements.map(e => e === null ? ',' : `${printSimpleOrSpread(indent, config, e)}`).join(', ')} ]`;
     }
     case 'AwaitExpression': {
       return `(await (${printSimple(indent, config, node.arg)})`;

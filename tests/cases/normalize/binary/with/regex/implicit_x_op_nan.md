@@ -329,7 +329,7 @@ const b1 = x ^ a1;
 x;
 const c1 = /foo/g;
 const d1 = x | c1;
-const e1 = [ b, d, f, h, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1,, ];
+const e1 = [ b, d, f, h, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1 ];
 $( e1 );
 x;
 const f1 = /foo/g;
@@ -337,7 +337,7 @@ const g1 = x in f1;
 x;
 const h1 = /foo/g;
 const i1 = x instanceof h1;
-const j1 = [ g1, i1,, ];
+const j1 = [ g1, i1 ];
 $( j1 );
 `````
 

@@ -89,17 +89,17 @@ With rename=true
 
 `````js filename=intro
 const a = $( 2 );
-const b = [ a,, ];
+const b = [ a ];
 const c = $( b );
-const d = [ ... c,, ];
+const d = [ ... c ];
 let e = d[ 0 ];
 let f = c;
 let g = c;
 if (c) {
   const h = $( 2 );
-  const i = [ h,, ];
+  const i = [ h ];
   const j = $( i );
-  const k = [ ... j,, ];
+  const k = [ ... j ];
   e = k[ 0 ];
   f = j;
   g = j;

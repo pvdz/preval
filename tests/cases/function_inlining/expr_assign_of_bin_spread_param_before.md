@@ -105,7 +105,7 @@ const b = function($$0,$$1,$$2,$$3,$$4 ) {
   a = c + e;
   return undefined;
 };
-const g = [ 1, 2,, ];
+const g = [ 1, 2 ];
 const h = $( g );
 b( 10, 20, ... h, 30, 40, 50 );
 $( a );

@@ -53,7 +53,7 @@ $(`number`, 1);
 With rename=true
 
 `````js filename=intro
-const a = [ "n", "u", "m", "b", "e", "r",, ];
+const a = [ "n", "u", "m", "b", "e", "r" ];
 $( a );
 $( "number", 1 );
 `````

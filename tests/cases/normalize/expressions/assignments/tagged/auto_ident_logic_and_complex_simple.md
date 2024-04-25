@@ -66,7 +66,7 @@ let b = $( a );
 if (b) {
   b = 2;
 }
-const c = [ "before ", " after",, ];
+const c = [ "before ", " after" ];
 $( c, b );
 $( b );
 `````

@@ -95,14 +95,14 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 b[ 0 ];
 let c = true;
 $( 10 );
 $( 20 );
-const d = [ 1, 2,, ];
+const d = [ 1, 2 ];
 const e = $( d );
-const f = [ ... e,, ];
+const f = [ ... e ];
 let g = f[ 0 ];
 if (e) {
   $( 100 );
@@ -114,9 +114,9 @@ if (c) {
   while ($LOOP_UNROLL_10) {
     $( 10 );
     $( 20 );
-    const h = [ 1, 2,, ];
+    const h = [ 1, 2 ];
     const i = $( h );
-    const j = [ ... i,, ];
+    const j = [ ... i ];
     g = j[ 0 ];
     if (i) {
       $( 100 );

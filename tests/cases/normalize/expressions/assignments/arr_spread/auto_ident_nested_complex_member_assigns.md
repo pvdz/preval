@@ -122,7 +122,7 @@ h[i] = 3;
 f[g] = 3;
 d[e] = 3;
 b[c] = 3;
-[ ... 3,, ];
+[ ... 3 ];
 throw "[Preval]: Array spread must crash before this line";
 `````
 

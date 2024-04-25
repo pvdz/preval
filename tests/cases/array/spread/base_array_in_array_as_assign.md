@@ -61,7 +61,7 @@ With rename=true
 `````js filename=intro
 let a = [];
 if ($) {
-  a = [ "a", 1, 2, 3, "b",, ];
+  a = [ "a", 1, 2, 3, "b" ];
   $( a );
 }
 else {

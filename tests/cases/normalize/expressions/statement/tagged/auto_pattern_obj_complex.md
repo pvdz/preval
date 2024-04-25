@@ -53,7 +53,7 @@ $(999);
 With rename=true
 
 `````js filename=intro
-const a = [ "before ", " after",, ];
+const a = [ "before ", " after" ];
 const b = {
 a: 1,
 b: 2

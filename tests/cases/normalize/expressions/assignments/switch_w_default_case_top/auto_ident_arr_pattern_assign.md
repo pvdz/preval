@@ -163,8 +163,8 @@ const i = e <= 0;
 if (i) {
   const j = $( 3 );
   const k = $( 4 );
-  const l = [ j, k,, ];
-  const m = [ ... l,, ];
+  const l = [ j, k ];
+  const m = [ ... l ];
   a = m[ 0 ];
   b = m[ 1 ];
   c = l;

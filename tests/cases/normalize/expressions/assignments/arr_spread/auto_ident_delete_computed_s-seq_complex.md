@@ -67,7 +67,7 @@ $( 1 );
 $( 2 );
 const b = $( "y" );
 const c = deletea[ b ];
-const d = [ ... c,, ];
+const d = [ ... c ];
 $( d );
 $( c, a );
 `````

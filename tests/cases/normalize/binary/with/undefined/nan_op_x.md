@@ -249,11 +249,11 @@ const j = undefined >= a;
 a ** 0;
 const k = 0 ^ a;
 const l = 0 | a;
-const m = [ NaN, NaN, NaN, NaN, c, NaN, d, e, f, g, h, i, j, false, true, false, true, 0, k, l,, ];
+const m = [ NaN, NaN, NaN, NaN, c, NaN, d, e, f, g, h, i, j, false, true, false, true, 0, k, l ];
 $( m );
 const n = undefined in a;
 const o = undefined instanceof a;
-const p = [ n, o,, ];
+const p = [ n, o ];
 $( p );
 `````
 

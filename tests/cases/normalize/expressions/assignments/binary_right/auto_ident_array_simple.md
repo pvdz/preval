@@ -57,7 +57,7 @@ const a = $( 100 );
 const b = $coerce( a, "plustr" );
 const c = `${[object Object]}1,2,3`;
 $( c );
-const d = [ 1, 2, 3,, ];
+const d = [ 1, 2, 3 ];
 $( d );
 `````
 

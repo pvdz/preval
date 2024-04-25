@@ -103,7 +103,7 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = [ "before ", " after",, ];
+const b = [ "before ", " after" ];
 const c = $( a );
 const d = $( "x" );
 const e = $( a );

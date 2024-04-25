@@ -88,20 +88,20 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 let c = b[ 0 ];
 let d = $( 1 );
 if (d) {
-  const e = [ 1, 2,, ];
+  const e = [ 1, 2 ];
   const f = $( e );
-  const g = [ ... f,, ];
+  const g = [ ... f ];
   c = g[ 0 ];
   d = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (d) {
-      const h = [ 1, 2,, ];
+      const h = [ 1, 2 ];
       const i = $( h );
-      const j = [ ... i,, ];
+      const j = [ ... i ];
       c = j[ 0 ];
       d = $( 1 );
     }

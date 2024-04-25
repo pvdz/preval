@@ -265,13 +265,13 @@ const a1 = /foo/g;
 const b1 = a1 ^ x;
 const c1 = /foo/g;
 const d1 = c1 | x;
-const e1 = [ b, d, f, h, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1,, ];
+const e1 = [ b, d, f, h, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1 ];
 $( e1 );
 const f1 = /foo/g;
 const g1 = f1 in x;
 const h1 = /foo/g;
 const i1 = h1 instanceof x;
-const j1 = [ g1, i1,, ];
+const j1 = [ g1, i1 ];
 $( j1 );
 `````
 

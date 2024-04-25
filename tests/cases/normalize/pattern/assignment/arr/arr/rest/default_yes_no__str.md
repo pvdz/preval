@@ -53,7 +53,7 @@ $(x);
 With rename=true
 
 `````js filename=intro
-const a = [ "a",, ];
+const a = [ "a" ];
 x = a.slice( 0 );
 $( x );
 `````

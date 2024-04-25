@@ -108,18 +108,18 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  const d = [ ... b,, ];
+  const d = [ ... b ];
   const e = d[ 0 ];
   let f = undefined;
   const g = e === undefined;
   if (g) {
-    const h = [ "fail2",, ];
+    const h = [ "fail2" ];
     f = $( h );
   }
   else {
     f = e;
   }
-  const i = [ ... f,, ];
+  const i = [ ... f ];
   const j = i[ 0 ];
   let k = undefined;
   const l = j === undefined;
@@ -132,7 +132,7 @@ const a = function($$0 ) {
     return j;
   }
 };
-const m = [ "", 4, 5,, ];
+const m = [ "", 4, 5 ];
 const n = a( m );
 $( n );
 `````

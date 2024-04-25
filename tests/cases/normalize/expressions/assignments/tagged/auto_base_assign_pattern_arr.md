@@ -64,11 +64,11 @@ $(tmpNestedAssignArrPatternRhs, tmpSSA_b);
 With rename=true
 
 `````js filename=intro
-const a = [ "before ", " after",, ];
+const a = [ "before ", " after" ];
 const b = $( 2 );
-const c = [ b,, ];
+const c = [ b ];
 const d = $( c );
-const e = [ ... d,, ];
+const e = [ ... d ];
 const f = e[ 0 ];
 $( a, d );
 $( d, f );

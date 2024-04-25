@@ -83,7 +83,7 @@ const e = `${[object Object]} `;
 if ($) {
   $( 20 );
 }
-const f = [ "a", 1, e, 3, "b",, ];
+const f = [ "a", 1, e, 3, "b" ];
 $( f );
 `````
 

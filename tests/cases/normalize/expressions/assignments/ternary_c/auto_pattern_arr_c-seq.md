@@ -82,7 +82,7 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 let c = b[ 0 ];
 let d = undefined;
 const e = $( 0 );
@@ -93,9 +93,9 @@ if (e) {
 else {
   $( 10 );
   $( 20 );
-  const f = [ 1, 2,, ];
+  const f = [ 1, 2 ];
   const g = $( f );
-  const h = [ ... g,, ];
+  const h = [ ... g ];
   c = h[ 0 ];
   d = g;
   $( g );

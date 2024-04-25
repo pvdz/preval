@@ -66,7 +66,7 @@ With rename=true
 
 `````js filename=intro
 const a = $ObjectPrototype.x;
-const b = [ ... a,, ];
+const b = [ ... a ];
 b.slice( 0 );
 $( "bad" );
 `````

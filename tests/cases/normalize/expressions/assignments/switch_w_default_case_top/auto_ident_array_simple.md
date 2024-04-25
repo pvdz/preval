@@ -138,7 +138,7 @@ else {
 }
 const g = c <= 0;
 if (g) {
-  a = [ 1, 2, 3,, ];
+  a = [ 1, 2, 3 ];
 }
 const h = c <= 1;
 if (h) {

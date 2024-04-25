@@ -80,13 +80,13 @@ const a = $ObjectPrototype.x;
 let b = undefined;
 const c = a === undefined;
 if (c) {
-  const d = [ "pass2",, ];
+  const d = [ "pass2" ];
   b = $( d );
 }
 else {
   b = a;
 }
-const e = [ ... b,, ];
+const e = [ ... b ];
 const f = e[ 0 ];
 const g = f === undefined;
 if (g) {

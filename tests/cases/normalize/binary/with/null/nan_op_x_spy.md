@@ -208,11 +208,11 @@ const r = null !== a;
 a ** 0;
 const s = 0 ^ a;
 const t = 0 | a;
-const u = [ b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, 0, s, t,, ];
+const u = [ b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, 0, s, t ];
 $( u );
 const v = null in a;
 const w = null instanceof a;
-const x = [ v, w,, ];
+const x = [ v, w ];
 $( x );
 `````
 

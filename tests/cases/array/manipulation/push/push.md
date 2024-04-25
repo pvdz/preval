@@ -67,7 +67,7 @@ $(NOOP);
 With rename=true
 
 `````js filename=intro
-const a = [ "a", "b", "c", 15, 4,, ];
+const a = [ "a", "b", "c", 15, 4 ];
 const b = function() {
   debugger;
   $( a );

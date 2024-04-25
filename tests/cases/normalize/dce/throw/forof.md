@@ -78,7 +78,7 @@ With rename=true
 `````js filename=intro
 let a = undefined;
 let b = false;
-const c = [ 10, 20,, ];
+const c = [ 10, 20 ];
 for (a of c) {
   b = true;
   break;

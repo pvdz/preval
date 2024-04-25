@@ -66,7 +66,7 @@ $(`after`, blob);
 With rename=true
 
 `````js filename=intro
-const a = [ 2, 3,, ];
+const a = [ 2, 3 ];
 try {
   $( "try", 1 );
 }

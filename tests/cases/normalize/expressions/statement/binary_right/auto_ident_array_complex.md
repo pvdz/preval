@@ -61,7 +61,7 @@ b: 1000
 const b = $( 100 );
 const c = $( 1 );
 const d = $( 3 );
-const e = [ c, 2, d,, ];
+const e = [ c, 2, d ];
 b + e;
 $( a );
 `````

@@ -107,7 +107,7 @@ const a = function() {
   $( b, "g" );
   return undefined;
 };
-const c = [ a,, ];
+const c = [ a ];
 const d = $( c );
 if ($) {
   $( 1 );

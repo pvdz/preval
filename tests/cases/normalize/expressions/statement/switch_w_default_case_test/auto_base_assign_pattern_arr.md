@@ -142,9 +142,9 @@ b: 1000
 const b = $( 1 );
 let c = 1;
 const d = $( 2 );
-const e = [ d,, ];
+const e = [ d ];
 const f = $( e );
-const g = [ ... f,, ];
+const g = [ ... f ];
 const h = g[ 0 ];
 const i = f === b;
 if (i) {

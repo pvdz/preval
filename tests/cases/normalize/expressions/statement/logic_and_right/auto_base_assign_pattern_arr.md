@@ -76,9 +76,9 @@ b: 1000
 ;
 if (b) {
   const d = $( 2 );
-  const e = [ d,, ];
+  const e = [ d ];
   const f = $( e );
-  const g = [ ... f,, ];
+  const g = [ ... f ];
   a = g[ 0 ];
   $( c, a );
 }

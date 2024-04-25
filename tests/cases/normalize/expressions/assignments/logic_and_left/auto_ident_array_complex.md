@@ -62,7 +62,7 @@ const a = $( 1 );
 const b = $( 3 );
 const c = $( 100 );
 $( c );
-const d = [ a, 2, b,, ];
+const d = [ a, 2, b ];
 $( d );
 `````
 

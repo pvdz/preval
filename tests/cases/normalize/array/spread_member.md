@@ -44,7 +44,7 @@ With rename=true
 
 `````js filename=intro
 const a = $Boolean_toString.name;
-const b = [ ... a,, ];
+const b = [ ... a ];
 $( b );
 `````
 

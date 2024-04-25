@@ -126,12 +126,12 @@ $( 3 );
 $( 100 );
 const a = $( 1 );
 const b = $( 3 );
-let c = [ a, 2, b,, ];
+let c = [ a, 2, b ];
 $( 100 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   const d = $( 1 );
   const e = $( 3 );
-  c = [ d, 2, e,, ];
+  c = [ d, 2, e ];
   $( 100 );
 }
 $( c );

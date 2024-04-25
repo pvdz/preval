@@ -61,7 +61,7 @@ try {
 catch (e) {
 
 }
-const a = [ 2, 3,, ];
+const a = [ 2, 3 ];
 $( "after", a );
 `````
 

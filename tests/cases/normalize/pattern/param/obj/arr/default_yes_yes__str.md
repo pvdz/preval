@@ -88,13 +88,13 @@ const a = "abc".x;
 let b = undefined;
 const c = a === undefined;
 if (c) {
-  const d = [ "fail",, ];
+  const d = [ "fail" ];
   b = $( d );
 }
 else {
   b = a;
 }
-[ ... b,, ];
+[ ... b ];
 $( "ok" );
 `````
 

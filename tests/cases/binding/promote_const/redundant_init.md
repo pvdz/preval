@@ -161,7 +161,7 @@ const a = function() {
     return undefined;
   }
 };
-const j = [ 10, 20, 30, 40,, ];
+const j = [ 10, 20, 30, 40 ];
 const e = $( j );
 const k = a();
 $( k );

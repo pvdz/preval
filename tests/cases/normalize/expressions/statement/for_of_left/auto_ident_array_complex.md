@@ -73,7 +73,7 @@ let d = undefined;
 for (d of c) {
   const e = $( 1 );
   const f = $( 3 );
-  const g = [ e, 2, f,, ];
+  const g = [ e, 2, f ];
   g.x = d;
 }
 $( a );

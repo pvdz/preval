@@ -56,7 +56,7 @@ $(a, 1);
 With rename=true
 
 `````js filename=intro
-const a = [ "before ", " after",, ];
+const a = [ "before ", " after" ];
 const b = $( 1 );
 const c = typeofb;
 $( a, c );

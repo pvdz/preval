@@ -80,14 +80,14 @@ a: 999,
 b: 1000
 ;
 const b = $( 2 );
-const c = [ b,, ];
+const c = [ b ];
 const d = $( c );
-const e = [ ... d,, ];
+const e = [ ... d ];
 e[ 0 ];
 const f = $( 2 );
-const g = [ f,, ];
+const g = [ f ];
 const h = $( g );
-const i = [ ... h,, ];
+const i = [ ... h ];
 const j = i[ 0 ];
 d + h;
 $( a, j );

@@ -78,15 +78,15 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 let c = b[ 0 ];
 let d = $( 100 );
 if (d) {
   $( 10 );
   $( 20 );
-  const e = [ 1, 2,, ];
+  const e = [ 1, 2 ];
   const f = $( e );
-  const g = [ ... f,, ];
+  const g = [ ... f ];
   c = g[ 0 ];
   d = f;
   $( f );

@@ -54,9 +54,9 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = [ 1, 2, 3,, ];
+let a = [ 1, 2, 3 ];
 const b = a;
-a = [ 1, 2, 3,, ];
+a = [ 1, 2, 3 ];
 const c = b + a;
 $( c );
 $( a );

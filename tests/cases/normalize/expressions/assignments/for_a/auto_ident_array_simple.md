@@ -80,7 +80,7 @@ $( 1 );
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 1 );
 }
-const a = [ 1, 2, 3,, ];
+const a = [ 1, 2, 3 ];
 $( a );
 `````
 

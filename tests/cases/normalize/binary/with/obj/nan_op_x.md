@@ -317,13 +317,13 @@ const c1 = {};
 const d1 = c1 ^ a;
 const e1 = {};
 const f1 = e1 | a;
-const g1 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1, f1,, ];
+const g1 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1, f1 ];
 $( g1 );
 const h1 = {};
 const i1 = h1 in a;
 const j1 = {};
 const k1 = j1 instanceof a;
-const l1 = [ i1, k1,, ];
+const l1 = [ i1, k1 ];
 $( l1 );
 `````
 

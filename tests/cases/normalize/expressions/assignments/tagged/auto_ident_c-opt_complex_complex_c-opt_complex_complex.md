@@ -88,7 +88,7 @@ With rename=true
 `````js filename=intro
 const a = { y: 1 };
 const b = { x: a };
-const c = [ "before ", " after",, ];
+const c = [ "before ", " after" ];
 let d = undefined;
 const e = $( b );
 const f = e == null;

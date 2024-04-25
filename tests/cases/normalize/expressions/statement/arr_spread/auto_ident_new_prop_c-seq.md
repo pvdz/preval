@@ -64,7 +64,7 @@ b: 1000
 const c = $( a );
 const d = c.$;
 const e = new d( 1 );
-[ ... e,, ];
+[ ... e ];
 $( b );
 `````
 

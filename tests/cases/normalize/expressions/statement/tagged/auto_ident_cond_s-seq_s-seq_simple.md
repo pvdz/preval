@@ -61,7 +61,7 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ "before ", " after",, ];
+const b = [ "before ", " after" ];
 $( b, 60 );
 $( a );
 `````

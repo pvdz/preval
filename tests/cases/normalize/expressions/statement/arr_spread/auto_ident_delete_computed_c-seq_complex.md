@@ -70,7 +70,7 @@ $( 2 );
 const c = $( a );
 const d = $( "y" );
 const e = deletec[ d ];
-[ ... e,, ];
+[ ... e ];
 $( b, a );
 `````
 

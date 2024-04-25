@@ -42,7 +42,7 @@ With rename=true
 
 `````js filename=intro
 const a = $();
-const b = [ 100, a,, ];
+const b = [ 100, a ];
 $( b );
 `````
 

@@ -60,7 +60,7 @@ c: 4
 ;
 a = 2;
 b = 3;
-const b = [ "a", "b",, ];
+const b = [ "a", "b" ];
 x = objPatternRest( a, b, "x" );
 $( x );
 `````

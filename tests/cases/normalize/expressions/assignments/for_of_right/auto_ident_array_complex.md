@@ -59,7 +59,7 @@ With rename=true
 const a = $( 1 );
 const b = $( 3 );
 let c = undefined;
-const d = [ a, 2, b,, ];
+const d = [ a, 2, b ];
 for (c of d) {
 
 }

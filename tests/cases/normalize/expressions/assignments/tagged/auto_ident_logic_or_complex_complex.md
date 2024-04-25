@@ -73,7 +73,7 @@ else {
   const c = $( 2 );
   b = $( c );
 }
-const d = [ "before ", " after",, ];
+const d = [ "before ", " after" ];
 $( d, b );
 $( b );
 `````

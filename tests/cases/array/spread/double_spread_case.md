@@ -91,8 +91,8 @@ const d = c;
 const e = a;
 a = $( "o" );
 c = $( "p" );
-const f = [ "a", b, b, b, b, 2, 3, 1, d, e, e, d, 3, "a",, ];
-const g = [ "z", 1, d, e, e, d, 3, b, b, b, b, 2, 3, "z",, ];
+const f = [ "a", b, b, b, b, 2, 3, 1, d, e, e, d, 3, "a" ];
+const g = [ "z", 1, d, e, e, d, 3, b, b, b, b, 2, 3, "z" ];
 $( f, g, a, c );
 `````
 

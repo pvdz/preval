@@ -97,15 +97,15 @@ With rename=true
 `````js filename=intro
 let a = 1;
 let b = 2;
-const c = [ 10, 20, 30,, ];
+const c = [ 10, 20, 30 ];
 const d = $( "a" );
 const e = $( "a" );
 const f = d === e;
 if (f) {
-  const g = [ ... c,, ];
+  const g = [ ... c ];
   a = g[ 1 ];
   b = g[ 2 ];
-  const h = [ ... c,, ];
+  const h = [ ... c ];
   h[ 0 ];
   h[ 1 ];
 }

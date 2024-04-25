@@ -38,7 +38,7 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = [ "hell", " w", "rld",, ];
+const a = [ "hell", " w", "rld" ];
 $( a );
 `````
 

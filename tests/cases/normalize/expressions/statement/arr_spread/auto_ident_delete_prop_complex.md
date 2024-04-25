@@ -61,7 +61,7 @@ b: 1000
 ;
 const c = $( a );
 const d = deletec.y;
-[ ... d,, ];
+[ ... d ];
 $( b, a );
 `````
 

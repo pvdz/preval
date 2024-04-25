@@ -48,7 +48,7 @@ With rename=true
 const a = $();
 const b = Array.prototype;
 const c = b.length;
-const d = [ 10, a, c,, ];
+const d = [ 10, a, c ];
 $( d );
 `````
 

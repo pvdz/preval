@@ -134,7 +134,7 @@ With rename=true
 `````js filename=intro
 let a = 1;
 let b = 2;
-const c = [ 10, 20, 30,, ];
+const c = [ 10, 20, 30 ];
 const d = $( "a" );
 let e = 1;
 const f = $( "a" );
@@ -147,7 +147,7 @@ else {
   h = e <= 0;
 }
 if (h) {
-  const i = [ ... c,, ];
+  const i = [ ... c ];
   a = i[ 0 ];
   b = i[ 1 ];
   $( 1, a, b, c );

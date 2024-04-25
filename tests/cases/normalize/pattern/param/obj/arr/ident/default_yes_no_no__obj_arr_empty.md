@@ -91,7 +91,7 @@ const a = function($$0 ) {
   const b = c;
   debugger;
   const d = b.x;
-  const e = [ ... d,, ];
+  const e = [ ... d ];
   const f = e[ 0 ];
   const g = f === undefined;
   if (g) {

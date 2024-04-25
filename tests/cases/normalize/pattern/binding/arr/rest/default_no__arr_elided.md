@@ -44,7 +44,7 @@ $(x);
 With rename=true
 
 `````js filename=intro
-const a = [ undefined, undefined, undefined, 1,, ];
+const a = [ undefined, undefined, undefined, 1 ];
 const b = a.slice( 0 );
 $( b );
 `````

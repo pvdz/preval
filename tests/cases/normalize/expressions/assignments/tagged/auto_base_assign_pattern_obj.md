@@ -62,7 +62,7 @@ $(tmpNestedAssignObjPatternRhs, tmpSSA_b);
 With rename=true
 
 `````js filename=intro
-const a = [ "before ", " after",, ];
+const a = [ "before ", " after" ];
 const b = $( 2 );
 const c = { b: b };
 const d = $( c );

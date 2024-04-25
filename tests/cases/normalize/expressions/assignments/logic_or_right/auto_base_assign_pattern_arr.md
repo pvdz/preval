@@ -88,9 +88,9 @@ if (c) {
 }
 else {
   const d = $( 2 );
-  const e = [ d,, ];
+  const e = [ d ];
   const f = $( e );
-  const g = [ ... f,, ];
+  const g = [ ... f ];
   a = g[ 0 ];
   b = f;
   c = f;

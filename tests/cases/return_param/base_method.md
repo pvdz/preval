@@ -100,7 +100,7 @@ const a = function() {
   return undefined;
 };
 a();
-const b = [ 1, 2, 3,, ];
+const b = [ 1, 2, 3 ];
 const c = b.toString();
 $( c );
 a();

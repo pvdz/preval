@@ -109,20 +109,20 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  const b = [ "pass3",, ];
+  const b = [ "pass3" ];
   const c = { x: b };
   const d = $( c );
   const e = d.x;
   let f = undefined;
   const g = e === undefined;
   if (g) {
-    const h = [ "fail2",, ];
+    const h = [ "fail2" ];
     f = $( h );
   }
   else {
     f = e;
   }
-  const i = [ ... f,, ];
+  const i = [ ... f ];
   const j = i[ 0 ];
   const k = j === undefined;
   if (k) {

@@ -85,7 +85,7 @@ const a = function() {
   debugger;
   let b = undefined;
   let c = false;
-  const d = [ 10, 20,, ];
+  const d = [ 10, 20 ];
   for (b of d) {
     c = true;
     break;

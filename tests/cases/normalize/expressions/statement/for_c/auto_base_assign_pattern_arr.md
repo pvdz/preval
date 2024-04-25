@@ -92,17 +92,17 @@ let a = [];
 let b = $( 1 );
 if (b) {
   const c = $( 2 );
-  const d = [ c,, ];
+  const d = [ c ];
   const e = $( d );
-  const f = [ ... e,, ];
+  const f = [ ... e ];
   a = f[ 0 ];
   b = $( 1 );
   while ($LOOP_UNROLL_10) {
     if (b) {
       const g = $( 2 );
-      const h = [ g,, ];
+      const h = [ g ];
       const i = $( h );
-      const j = [ ... i,, ];
+      const j = [ ... i ];
       a = j[ 0 ];
       b = $( 1 );
     }

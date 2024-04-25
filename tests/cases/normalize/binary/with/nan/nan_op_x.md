@@ -261,11 +261,11 @@ a ** 0;
 a ** 0;
 const g = 0 ^ a;
 const h = 0 | a;
-const i = [ NaN, NaN, NaN, NaN, c, NaN, d, e, f, false, false, false, false, false, true, false, true, 0, g, h,, ];
+const i = [ NaN, NaN, NaN, NaN, c, NaN, d, e, f, false, false, false, false, false, true, false, true, 0, g, h ];
 $( i );
 const j = NaN in a;
 const k = NaN instanceof a;
-const l = [ j, k,, ];
+const l = [ j, k ];
 $( l );
 `````
 

@@ -73,7 +73,7 @@ const a = function() {
   return undefined;
 };
 const c = { pass: 1 };
-const d = [ 1, 2, 3,, ];
+const d = [ 1, 2, 3 ];
 a.call( c, d, "nope", $ );
 `````
 

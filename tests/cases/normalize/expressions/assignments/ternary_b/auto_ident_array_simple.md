@@ -72,7 +72,7 @@ b: 1000
 let b = undefined;
 const c = $( 1 );
 if (c) {
-  const d = [ 1, 2, 3,, ];
+  const d = [ 1, 2, 3 ];
   a = d;
   b = d;
   $( d );

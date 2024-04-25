@@ -76,7 +76,7 @@ if (c) {
   $( b );
 }
 else {
-  const d = [ 1, 2, 3,, ];
+  const d = [ 1, 2, 3 ];
   a = d;
   b = d;
   $( d );

@@ -116,18 +116,18 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  const d = [ ... b,, ];
+  const d = [ ... b ];
   const e = d[ 0 ];
   let f = undefined;
   const g = e === undefined;
   if (g) {
-    const h = [ "pass2",, ];
+    const h = [ "pass2" ];
     f = $( h );
   }
   else {
     f = e;
   }
-  const i = [ ... f,, ];
+  const i = [ ... f ];
   const j = i[ 0 ];
   let k = undefined;
   const l = j === undefined;

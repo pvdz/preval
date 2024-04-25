@@ -88,7 +88,7 @@ else {
   const d = $( 2 );
   b = $( d );
 }
-const e = [ "before ", " after",, ];
+const e = [ "before ", " after" ];
 $( e, b );
 $( b );
 `````

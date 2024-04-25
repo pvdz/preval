@@ -117,7 +117,7 @@ const a = $( 1 );
 let b = 1;
 const c = $( 1 );
 const d = $( 3 );
-const e = [ c, 2, d,, ];
+const e = [ c, 2, d ];
 const f = e === a;
 if (f) {
   b = 0;

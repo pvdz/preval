@@ -116,13 +116,13 @@ const a = function($$0 ) {
   let e = undefined;
   const f = d === undefined;
   if (f) {
-    const g = [ "pass2",, ];
+    const g = [ "pass2" ];
     e = $( g );
   }
   else {
     e = d;
   }
-  const h = [ ... e,, ];
+  const h = [ ... e ];
   const i = h[ 0 ];
   const j = i === undefined;
   if (j) {

@@ -52,7 +52,7 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ 1, 2, 3,, ];
+const b = [ 1, 2, 3 ];
 export { b as default from "undefined"
 $( a );
 `````

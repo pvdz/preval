@@ -98,25 +98,25 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 const c = b[ 0 ];
 $( 100 );
 $( 10 );
 $( 20 );
-const d = [ 1, 2,, ];
+const d = [ 1, 2 ];
 let e = $( d );
 if (e) {
   $( 100 );
   $( 10 );
   $( 20 );
-  const f = [ 1, 2,, ];
+  const f = [ 1, 2 ];
   e = $( f );
   while ($LOOP_UNROLL_9) {
     if (e) {
       $( 100 );
       $( 10 );
       $( 20 );
-      const g = [ 1, 2,, ];
+      const g = [ 1, 2 ];
       e = $( g );
     }
     else {

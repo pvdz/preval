@@ -145,7 +145,7 @@ const g = c <= 0;
 if (g) {
   const h = $( 1 );
   const i = $( 3 );
-  a = [ h, 2, i,, ];
+  a = [ h, 2, i ];
 }
 const j = c <= 1;
 if (j) {

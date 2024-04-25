@@ -72,7 +72,7 @@ const d = $( c );
 const e = d.x;
 const f = e - 1;
 d.x = f;
-[ ... f,, ];
+[ ... f ];
 $( b, a );
 `````
 

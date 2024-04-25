@@ -62,7 +62,7 @@ $( 10 );
 if ($) {
   $( 20 );
 }
-const a = [ "a", 1, parseInt, 3, "b",, ];
+const a = [ "a", 1, parseInt, 3, "b" ];
 $( a );
 `````
 

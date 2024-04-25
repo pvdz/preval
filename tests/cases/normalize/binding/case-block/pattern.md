@@ -81,12 +81,12 @@ $(1, 2, z);
 With rename=true
 
 `````js filename=intro
-const a = [ 10, 20, 30,, ];
+const a = [ 10, 20, 30 ];
 const b = $( "a" );
 const c = $( "a" );
 const d = b === c;
 if (d) {
-  const e = [ ... a,, ];
+  const e = [ ... a ];
   e[ 0 ];
   e[ 1 ];
 }

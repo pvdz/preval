@@ -86,7 +86,7 @@ const f = $( "y" );
 const g = $( 3 );
 e[f] = g;
 c[d] = g;
-const h = [ ... g,, ];
+const h = [ ... g ];
 $( h );
 $( g, a, b, 3 );
 `````

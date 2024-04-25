@@ -77,7 +77,7 @@ $(arr);
 With rename=true
 
 `````js filename=intro
-const a = [ 10,, ];
+const a = [ 10 ];
 $( a );
 `````
 

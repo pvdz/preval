@@ -175,7 +175,7 @@ get e() {
 const g = a.a;
 const h = a.b;
 const i = h.c;
-const j = [ "c",, ];
+const j = [ "c" ];
 const k = objPatternRest( h, j, undefined );
 $( g, i, k );
 `````

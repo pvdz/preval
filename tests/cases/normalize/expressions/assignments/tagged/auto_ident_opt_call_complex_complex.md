@@ -81,7 +81,7 @@ else {
   const e = $dotCall( b, $, d );
   a = e;
 }
-const f = [ "before ", " after",, ];
+const f = [ "before ", " after" ];
 $( f, a );
 $( a );
 `````

@@ -144,7 +144,7 @@ const a = function() {
 };
 const b = function() {
   debugger;
-  const c = [ undefined,, ];
+  const c = [ undefined ];
   $( c );
   return undefined;
 };

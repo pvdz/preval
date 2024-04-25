@@ -71,7 +71,7 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 3 };
-const b = [ "before ", " after",, ];
+const b = [ "before ", " after" ];
 $( b, 3 );
 $( 3, a, 3 );
 `````

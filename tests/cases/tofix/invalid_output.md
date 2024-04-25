@@ -70,7 +70,7 @@ $(a, a, 0, 1, 1, true);
 With rename=true
 
 `````js filename=intro
-const a = [ 1,, ];
+const a = [ 1 ];
 $( a );
 $( a, a, 0, 1, 1, true );
 `````

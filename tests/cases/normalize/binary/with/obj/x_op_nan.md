@@ -339,13 +339,13 @@ const c1 = {};
 const d1 = a ^ c1;
 const e1 = {};
 const f1 = a | e1;
-const g1 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1, f1,, ];
+const g1 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, 31, 51, 71, 91, b1, d1, f1 ];
 $( g1 );
 const h1 = {};
 const i1 = a in h1;
 const j1 = {};
 const k1 = a instanceof j1;
-const l1 = [ i1, k1,, ];
+const l1 = [ i1, k1 ];
 $( l1 );
 `````
 

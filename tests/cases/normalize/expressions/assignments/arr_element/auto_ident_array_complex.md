@@ -66,11 +66,11 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 3 );
-let c = [ a, 2, b,, ];
+let c = [ a, 2, b ];
 const d = c;
 const e = $( 1 );
 const f = $( 3 );
-c = [ e, 2, f,, ];
+c = [ e, 2, f ];
 const g = d + c;
 $( g );
 $( c );

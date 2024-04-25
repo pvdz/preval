@@ -102,9 +102,9 @@ $(`fail2`);
 With rename=true
 
 `````js filename=intro
-const a = [ 1, 2,, ];
+const a = [ 1, 2 ];
 const b = $( a );
-const c = [ ... b,, ];
+const c = [ ... b ];
 const d = c[ 0 ];
 $( d );
 $( "fail1" );

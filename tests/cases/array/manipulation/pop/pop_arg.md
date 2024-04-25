@@ -70,7 +70,7 @@ $(ARR);
 With rename=true
 
 `````js filename=intro
-const a = [ "a", "b", "c",, ];
+const a = [ "a", "b", "c" ];
 const b = function() {
   debugger;
   $( a );

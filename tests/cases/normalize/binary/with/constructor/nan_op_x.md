@@ -260,11 +260,11 @@ const o = String !== a;
 a ** 0;
 const p = 0 ^ a;
 const q = 0 | a;
-const r = [ NaN, NaN, NaN, NaN, d, NaN, e, f, g, h, i, j, k, l, m, n, o, 0, p, q,, ];
+const r = [ NaN, NaN, NaN, NaN, d, NaN, e, f, g, h, i, j, k, l, m, n, o, 0, p, q ];
 $( r );
 const s = String in a;
 const t = String instanceof a;
-const u = [ s, t,, ];
+const u = [ s, t ];
 $( u );
 `````
 

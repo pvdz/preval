@@ -70,7 +70,7 @@ if (b) {
   $( b );
 }
 else {
-  const c = [ 1, 2, 3,, ];
+  const c = [ 1, 2, 3 ];
   a = c;
   b = c;
   $( c );

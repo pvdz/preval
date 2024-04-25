@@ -62,7 +62,7 @@ b: 1000
 ;
 const b = $( 1 );
 const c = $( 3 );
-const d = [ b, 2, c,, ];
+const d = [ b, 2, c ];
 let e = undefined;
 for (e in d) {
 

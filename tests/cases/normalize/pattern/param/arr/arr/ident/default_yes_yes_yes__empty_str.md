@@ -102,9 +102,9 @@ With rename=true
 `````js filename=intro
 const a = function() {
   debugger;
-  const b = [ "pass2",, ];
+  const b = [ "pass2" ];
   const c = $( b );
-  const d = [ ... c,, ];
+  const d = [ ... c ];
   const e = d[ 0 ];
   let f = undefined;
   const g = e === undefined;

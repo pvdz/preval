@@ -83,15 +83,15 @@ a: 999,
 b: 1000
 ;
 const b = $( 2 );
-const c = [ b,, ];
+const c = [ b ];
 const d = $( c );
-const e = [ ... d,, ];
+const e = [ ... d ];
 let f = e[ 0 ];
 if (d) {
   const g = $( 2 );
-  const h = [ g,, ];
+  const h = [ g ];
   const i = $( h );
-  const j = [ ... i,, ];
+  const j = [ ... i ];
   f = j[ 0 ];
   $( a, f );
 }

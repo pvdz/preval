@@ -321,13 +321,13 @@ const 31 = [];
 const 41 = a ^ 31;
 const 51 = [];
 const 61 = a | 51;
-const 71 = [ d, f, h, j, k, m, o, q, s, u, w, y, 01, false, true, false, true, 21, 41, 61,, ];
+const 71 = [ d, f, h, j, k, m, o, q, s, u, w, y, 01, false, true, false, true, 21, 41, 61 ];
 $( 71 );
 const 81 = [];
 const 91 = a in 81;
 const a1 = [];
 const b1 = a instanceof a1;
-const c1 = [ 91, b1,, ];
+const c1 = [ 91, b1 ];
 $( c1 );
 `````
 

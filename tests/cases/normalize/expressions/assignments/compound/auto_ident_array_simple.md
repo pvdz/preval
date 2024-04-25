@@ -56,7 +56,7 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ 1, 2, 3,, ];
+const b = [ 1, 2, 3 ];
 const c = a * b;
 $( c );
 $( c );

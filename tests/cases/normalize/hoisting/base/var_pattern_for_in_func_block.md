@@ -82,7 +82,7 @@ $( undefined );
 let b = undefined;
 const c = { y: 100 };
 for (b in c) {
-  const d = [ ... b,, ];
+  const d = [ ... b ];
   a = d[ 0 ];
   $( a, "for" );
 }

@@ -77,8 +77,8 @@ With rename=true
 $( 1 );
 const a = $( 3 );
 const b = $( 4 );
-const c = [ a, b,, ];
-const d = [ ... c,, ];
+const c = [ a, b ];
+const d = [ ... c ];
 const e = d[ 0 ];
 const f = d[ 1 ];
 $( c, e, f );

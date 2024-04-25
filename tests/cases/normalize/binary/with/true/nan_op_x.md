@@ -249,11 +249,11 @@ const q = true != a;
 const r = 1 & a;
 const s = 1 ^ a;
 const t = 1 | a;
-const u = [ c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, false, true, r, s, t,, ];
+const u = [ c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, false, true, r, s, t ];
 $( u );
 const v = true in a;
 const w = true instanceof a;
-const x = [ v, w,, ];
+const x = [ v, w ];
 $( x );
 `````
 

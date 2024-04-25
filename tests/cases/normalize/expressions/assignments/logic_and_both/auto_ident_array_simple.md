@@ -62,10 +62,10 @@ $(a);
 With rename=true
 
 `````js filename=intro
-let a = [ 1, 2, 3,, ];
+let a = [ 1, 2, 3 ];
 let b = a;
 if (a) {
-  const c = [ 1, 2, 3,, ];
+  const c = [ 1, 2, 3 ];
   a = c;
   b = c;
   $( c );

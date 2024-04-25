@@ -78,13 +78,13 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 const c = b[ 0 ];
 const d = $( 1 );
 const e = $( 1 );
 const f = d === e;
 if (f) {
-  const g = [ 1, 2,, ];
+  const g = [ 1, 2 ];
   $( g );
 }
 $( c );

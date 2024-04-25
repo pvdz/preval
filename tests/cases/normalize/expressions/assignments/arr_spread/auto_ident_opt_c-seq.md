@@ -80,7 +80,7 @@ else {
   const e = c.x;
   a = e;
 }
-const f = [ ... a,, ];
+const f = [ ... a ];
 $( f );
 $( a );
 `````

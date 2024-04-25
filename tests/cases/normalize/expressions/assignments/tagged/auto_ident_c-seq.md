@@ -61,7 +61,7 @@ With rename=true
 $( 1 );
 $( 2 );
 const a = $( 1 );
-const b = [ "before ", " after",, ];
+const b = [ "before ", " after" ];
 $( b, a );
 $( a, 1 );
 `````

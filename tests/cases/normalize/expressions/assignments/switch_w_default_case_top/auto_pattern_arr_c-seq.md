@@ -138,7 +138,7 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 let c = b[ 0 ];
 const d = $( 1 );
 let e = 1;
@@ -157,9 +157,9 @@ const i = e <= 0;
 if (i) {
   $( 10 );
   $( 20 );
-  const j = [ 1, 2,, ];
+  const j = [ 1, 2 ];
   const k = $( j );
-  const l = [ ... k,, ];
+  const l = [ ... k ];
   c = l[ 0 ];
 }
 const m = e <= 1;

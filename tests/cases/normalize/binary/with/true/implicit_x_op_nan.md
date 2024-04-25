@@ -201,11 +201,11 @@ const q = x !== true;
 const r = x & 1;
 const s = x ^ 1;
 const t = x | 1;
-const u = [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t,, ];
+const u = [ a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t ];
 $( u );
 const v = x in true;
 const w = x instanceof true;
-const x = [ v, w,, ];
+const x = [ v, w ];
 $( x );
 `````
 

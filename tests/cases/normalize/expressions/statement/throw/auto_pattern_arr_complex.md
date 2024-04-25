@@ -56,9 +56,9 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 b[ 0 ];
-const c = [ 1, 2,, ];
+const c = [ 1, 2 ];
 const d = $( c );
 throw d;
 `````

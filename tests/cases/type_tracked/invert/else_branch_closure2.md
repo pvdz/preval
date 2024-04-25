@@ -124,7 +124,7 @@ const a = function($$0 ) {
     const e = c;
     debugger;
     $( "keepme" );
-    const f = [ g, e,, ];
+    const f = [ g, e ];
     return f;
   };
   const g = $coerce( b, "plustr" );

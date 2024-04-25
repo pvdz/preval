@@ -64,7 +64,7 @@ With rename=true
 
 `````js filename=intro
 const a = $ObjectPrototype.x;
-[ ... a,, ];
+[ ... a ];
 $( "bad" );
 `````
 

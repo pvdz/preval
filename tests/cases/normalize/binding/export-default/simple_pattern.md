@@ -62,8 +62,8 @@ With rename=true
 
 `````js filename=intro
 let a = undefined;
-const b = [ 10, 20, 30,, ];
-const c = [ ... b,, ];
+const b = [ 10, 20, 30 ];
+const c = [ ... b ];
 const d = c[ 0 ];
 const e = c[ 1 ];
 a = b;

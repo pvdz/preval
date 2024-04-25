@@ -62,12 +62,12 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 const c = b[ 0 ];
-const d = [ "before ", " after",, ];
+const d = [ "before ", " after" ];
 $( 10 );
 $( 20 );
-const e = [ 1, 2,, ];
+const e = [ 1, 2 ];
 $( d, e );
 $( c );
 `````

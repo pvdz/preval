@@ -83,7 +83,7 @@ const d = b === c;
 if (d) {
   const e = $( 1 );
   const f = $( 3 );
-  a = [ e, 2, f,, ];
+  a = [ e, 2, f ];
   $( a );
 }
 else {

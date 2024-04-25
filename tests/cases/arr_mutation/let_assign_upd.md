@@ -103,7 +103,7 @@ $(arr);
 With rename=true
 
 `````js filename=intro
-let a = [ 0,, ];
+let a = [ 0 ];
 const b = a;
 const c = a[ 0 ];
 const d = c + 1;
@@ -112,7 +112,7 @@ $( a );
 const e = a[ 0 ];
 let f = e < 10;
 if (f) {
-  a = [ 0,, ];
+  a = [ 0 ];
   const g = a;
   const h = a[ 0 ];
   const i = h + 1;
@@ -122,7 +122,7 @@ if (f) {
   f = j < 10;
   while ($LOOP_UNROLL_9) {
     if (f) {
-      a = [ 0,, ];
+      a = [ 0 ];
       const k = a;
       const l = a[ 0 ];
       const m = l + 1;

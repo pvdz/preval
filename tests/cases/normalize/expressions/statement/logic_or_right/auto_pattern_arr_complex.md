@@ -64,14 +64,14 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 const c = b[ 0 ];
 const d = $( 100 );
 if (d) {
 
 }
 else {
-  const e = [ 1, 2,, ];
+  const e = [ 1, 2 ];
   $( e );
 }
 $( c );

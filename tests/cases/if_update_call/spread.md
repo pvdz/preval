@@ -74,7 +74,7 @@ if (tmpIfTest) {
 With rename=true
 
 `````js filename=intro
-const a = [ 100, 200,, ];
+const a = [ 100, 200 ];
 $( a );
 const b = $( true );
 if (b) {

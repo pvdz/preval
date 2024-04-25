@@ -137,7 +137,7 @@ const a = function($$0,$$1,$$2 ) {
     else {
       h = d;
     }
-    const j = [ b, h,, ];
+    const j = [ b, h ];
     return j;
   }
 };

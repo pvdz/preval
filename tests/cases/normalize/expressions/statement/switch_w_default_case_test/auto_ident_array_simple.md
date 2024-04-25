@@ -126,7 +126,7 @@ b: 1000
 ;
 const b = $( 1 );
 let c = 1;
-const d = [ 1, 2, 3,, ];
+const d = [ 1, 2, 3 ];
 const e = d === b;
 if (e) {
   c = 0;

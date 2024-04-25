@@ -211,11 +211,11 @@ x ** 0;
 x ** 0;
 const e = 0 ^ x;
 const f = 0 | x;
-const g = [ NaN, NaN, NaN, NaN, a, NaN, b, c, d, false, false, false, false, false, true, false, true, 0, e, f,, ];
+const g = [ NaN, NaN, NaN, NaN, a, NaN, b, c, d, false, false, false, false, false, true, false, true, 0, e, f ];
 $( g );
 const h = NaN in x;
 const i = NaN instanceof x;
-const j = [ h, i,, ];
+const j = [ h, i ];
 $( j );
 `````
 

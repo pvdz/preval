@@ -104,26 +104,26 @@ With rename=true
 `````js filename=intro
 $( 100 );
 const a = $( 2 );
-const b = [ a,, ];
+const b = [ a ];
 const c = $( b );
-const d = [ ... c,, ];
+const d = [ ... c ];
 let e = d[ 0 ];
 let f = c;
 if (c) {
   $( 100 );
   const g = $( 2 );
-  const h = [ g,, ];
+  const h = [ g ];
   const i = $( h );
-  const j = [ ... i,, ];
+  const j = [ ... i ];
   e = j[ 0 ];
   f = i;
   while ($LOOP_UNROLL_9) {
     if (f) {
       $( 100 );
       const k = $( 2 );
-      const l = [ k,, ];
+      const l = [ k ];
       const m = $( l );
-      const n = [ ... m,, ];
+      const n = [ ... m ];
       e = n[ 0 ];
       f = m;
     }

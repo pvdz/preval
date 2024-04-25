@@ -69,7 +69,7 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ "before ", " after",, ];
+const b = [ "before ", " after" ];
 let c = 2;
 const d = $( 1 );
 if (d) {

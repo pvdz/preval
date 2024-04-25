@@ -101,8 +101,8 @@ else {
   $( 2 );
   const e = $( 3 );
   const f = $( 4 );
-  const g = [ e, f,, ];
-  const h = [ ... g,, ];
+  const g = [ e, f ];
+  const h = [ ... g ];
   a = h[ 0 ];
   b = h[ 1 ];
   c = g;

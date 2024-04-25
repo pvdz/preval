@@ -110,7 +110,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 let b = 1;
-const c = [ 1, 2, 3,, ];
+const c = [ 1, 2, 3 ];
 const d = c === a;
 if (d) {
   b = 0;

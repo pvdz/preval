@@ -77,13 +77,13 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ "before ", " after",, ];
+const b = [ "before ", " after" ];
 $( 1 );
 $( 2 );
 const c = $( 3 );
 const d = $( 4 );
-const e = [ c, d,, ];
-const f = [ ... e,, ];
+const e = [ c, d ];
+const f = [ ... e ];
 const g = f[ 0 ];
 const h = f[ 1 ];
 $( b, e );

@@ -65,10 +65,10 @@ b: 1000
 ;
 const b = $( 1 );
 const c = $( 3 );
-const d = [ b, 2, c,, ];
+const d = [ b, 2, c ];
 const e = $( 1 );
 const f = $( 3 );
-const g = [ e, 2, f,, ];
+const g = [ e, 2, f ];
 d + g;
 $( a );
 `````

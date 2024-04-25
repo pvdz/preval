@@ -73,9 +73,9 @@ let a = [];
 const b = $( 1 );
 if (b) {
   const c = $( 2 );
-  const d = [ c,, ];
+  const d = [ c ];
   const e = $( d );
-  const f = [ ... e,, ];
+  const f = [ ... e ];
   a = f[ 0 ];
 }
 else {

@@ -67,7 +67,7 @@ const b = { x: 1 };
 const c = $( b );
 let d = undefined;
 for (d of c) {
-  a = [ 1, 2, 3,, ];
+  a = [ 1, 2, 3 ];
   a.x = d;
 }
 $( a );

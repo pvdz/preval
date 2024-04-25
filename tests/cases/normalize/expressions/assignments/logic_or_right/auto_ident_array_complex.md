@@ -77,7 +77,7 @@ if (b) {
 else {
   const c = $( 1 );
   const d = $( 3 );
-  const e = [ c, 2, d,, ];
+  const e = [ c, 2, d ];
   a = e;
   b = e;
   $( e );

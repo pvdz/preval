@@ -74,7 +74,7 @@ With rename=true
 
 `````js filename=intro
 const a = { x: 1 };
-const b = [ "before ", " after",, ];
+const b = [ "before ", " after" ];
 let c = undefined;
 const d = $( a );
 const e = d == null;

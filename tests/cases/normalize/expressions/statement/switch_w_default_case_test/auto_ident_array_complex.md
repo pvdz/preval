@@ -133,7 +133,7 @@ const b = $( 1 );
 let c = 1;
 const d = $( 1 );
 const e = $( 3 );
-const f = [ d, 2, e,, ];
+const f = [ d, 2, e ];
 const g = f === b;
 if (g) {
   c = 0;

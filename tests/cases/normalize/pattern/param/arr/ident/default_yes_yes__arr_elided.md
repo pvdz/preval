@@ -93,7 +93,7 @@ With rename=true
 const a = function($$0 ) {
   const b = c;
   debugger;
-  const d = [ ... b,, ];
+  const d = [ ... b ];
   const e = d[ 0 ];
   let f = undefined;
   const g = e === undefined;
@@ -106,7 +106,7 @@ const a = function($$0 ) {
     return e;
   }
 };
-const h = [ , , 1,, ];
+const h = [ ,, ,, 1 ];
 const i = a( h );
 $( i );
 `````

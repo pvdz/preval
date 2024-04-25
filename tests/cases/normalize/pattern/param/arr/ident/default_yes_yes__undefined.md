@@ -89,7 +89,7 @@ With rename=true
 const a = function() {
   debugger;
   const b = $( "pass2" );
-  const c = [ ... b,, ];
+  const c = [ ... b ];
   const d = c[ 0 ];
   let e = undefined;
   const f = d === undefined;

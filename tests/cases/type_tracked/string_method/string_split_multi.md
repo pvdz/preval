@@ -40,7 +40,7 @@ With rename=true
 
 `````js filename=intro
 unknown;
-const a = [ "h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d",, ];
+const a = [ "h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d" ];
 $( a );
 `````
 

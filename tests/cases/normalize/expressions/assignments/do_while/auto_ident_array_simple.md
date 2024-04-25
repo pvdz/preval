@@ -92,11 +92,11 @@ $( 100 );
 $( 100 );
 $( 100 );
 $( 100 );
-const a = [ 1, 2, 3,, ];
+const a = [ 1, 2, 3 ];
 let b = a;
 while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
   $( 100 );
-  const c = [ 1, 2, 3,, ];
+  const c = [ 1, 2, 3 ];
   b = c;
 }
 $( b );

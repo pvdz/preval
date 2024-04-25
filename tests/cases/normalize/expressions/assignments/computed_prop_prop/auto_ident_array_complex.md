@@ -60,7 +60,7 @@ With rename=true
 const a = {};
 const b = $( 1 );
 const c = $( 3 );
-const d = [ b, 2, c,, ];
+const d = [ b, 2, c ];
 a[ d ];
 $( d );
 `````

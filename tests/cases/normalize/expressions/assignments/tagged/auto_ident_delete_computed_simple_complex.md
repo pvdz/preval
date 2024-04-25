@@ -59,7 +59,7 @@ With rename=true
 
 `````js filename=intro
 const a = { y: 1 };
-const b = [ "before ", " after",, ];
+const b = [ "before ", " after" ];
 const c = $( "y" );
 const d = deletea[ c ];
 $( b, d );

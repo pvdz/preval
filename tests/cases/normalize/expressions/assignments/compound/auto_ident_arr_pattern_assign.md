@@ -79,8 +79,8 @@ b: 1000
 const b = a;
 const c = $( 3 );
 const d = $( 4 );
-const e = [ c, d,, ];
-const f = [ ... e,, ];
+const e = [ c, d ];
+const f = [ ... e ];
 const g = f[ 0 ];
 const h = f[ 1 ];
 a = b * e;

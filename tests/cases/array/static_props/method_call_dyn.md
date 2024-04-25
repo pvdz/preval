@@ -54,7 +54,7 @@ With rename=true
 
 `````js filename=intro
 const a = $( "splice" );
-const b = [ 1, 2, 3,, ];
+const b = [ 1, 2, 3 ];
 b[ a ]( 1, 2, 20 )};
 const c = b.length;
 $( c );

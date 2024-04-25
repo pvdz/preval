@@ -62,12 +62,12 @@ const a = 1.x;
 let b = undefined;
 const c = a === undefined;
 if (c) {
-  b = [ "fail",, ];
+  b = [ "fail" ];
 }
 else {
   b = a;
 }
-[ ... b,, ];
+[ ... b ];
 $( "ok" );
 `````
 

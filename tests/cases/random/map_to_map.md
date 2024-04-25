@@ -114,21 +114,21 @@ $(tmpCalleeParam);
 With rename=true
 
 `````js filename=intro
-const a = [ "clearInterval", "global.clearInterval",, ];
-const b = [ "clearTimeout", "global.clearTimeout",, ];
-const c = [ "console", "global.console",, ];
-const d = [ "false", "boolean",, ];
-const e = [ "null", "null",, ];
-const f = [ "$", "$",, ];
-const g = [ a, b, c, d, e, f,, ];
+const a = [ "clearInterval", "global.clearInterval" ];
+const b = [ "clearTimeout", "global.clearTimeout" ];
+const c = [ "console", "global.console" ];
+const d = [ "false", "boolean" ];
+const e = [ "null", "null" ];
+const f = [ "$", "$" ];
+const g = [ a, b, c, d, e, f ];
 const h = new Map( g );
 const i = h.keys();
-const j = [ ... i, "module",, ];
+const j = [ ... i, "module" ];
 const k = j.map;
 const l = function($$0 ) {
   const m = n;
   debugger;
-  const o = [ m, m,, ];
+  const o = [ m, m ];
   return o;
 };
 const p = $dotCall( k, j, l );

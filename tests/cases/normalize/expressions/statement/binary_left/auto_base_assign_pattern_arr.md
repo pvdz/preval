@@ -69,9 +69,9 @@ a: 999,
 b: 1000
 ;
 const b = $( 2 );
-const c = [ b,, ];
+const c = [ b ];
 const d = $( c );
-const e = [ ... d,, ];
+const e = [ ... d ];
 const f = e[ 0 ];
 const g = $( 100 );
 d + g;

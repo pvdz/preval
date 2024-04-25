@@ -90,9 +90,9 @@ With rename=true
 `````js filename=intro
 let a = true;
 const b = $( 2 );
-const c = [ b,, ];
+const c = [ b ];
 const d = $( c );
-const e = [ ... d,, ];
+const e = [ ... d ];
 let f = e[ 0 ];
 if (d) {
   $( 100 );
@@ -103,9 +103,9 @@ else {
 if (a) {
   while ($LOOP_UNROLL_10) {
     const g = $( 2 );
-    const h = [ g,, ];
+    const h = [ g ];
     const i = $( h );
-    const j = [ ... i,, ];
+    const j = [ ... i ];
     f = j[ 0 ];
     if (i) {
       $( 100 );

@@ -80,8 +80,8 @@ b: 1000
 ;
 const b = $( 3 );
 const c = $( 4 );
-const d = [ b, c,, ];
-const e = [ ... d,, ];
+const d = [ b, c ];
+const e = [ ... d ];
 const f = e[ 0 ];
 const g = e[ 1 ];
 const h = $coerce( d, "string" );

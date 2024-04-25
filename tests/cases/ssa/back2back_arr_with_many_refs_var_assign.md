@@ -101,7 +101,7 @@ With rename=true
 if ($) {
   $( undefined );
   const a = $( 2 );
-  const b = [ 1, a, 2, a, 3, a, 4, a,, ];
+  const b = [ 1, a, 2, a, 3, a, 4, a ];
   $( b );
   if ($) {
     $( b );

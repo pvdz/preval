@@ -83,7 +83,7 @@ if (c) {
 else {
   const d = $( 1 );
   const e = $( 3 );
-  const f = [ d, 2, e,, ];
+  const f = [ d, 2, e ];
   a = f;
   b = f;
   $( f );

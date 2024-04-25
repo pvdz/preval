@@ -72,13 +72,13 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ ... a,, ];
+const b = [ ... a ];
 b[ 0 ];
 $( 10 );
 $( 20 );
-const c = [ 1, 2,, ];
+const c = [ 1, 2 ];
 const d = $( c );
-const e = [ ... d,, ];
+const e = [ ... d ];
 const f = e[ 0 ];
 const g = { d[ 10 ]: 10 };
 $( g );

@@ -67,13 +67,13 @@ const a = 0.x;
 let b = undefined;
 const c = a === undefined;
 if (c) {
-  const d = [ "pass",, ];
+  const d = [ "pass" ];
   b = $( d );
 }
 else {
   b = a;
 }
-const e = [ ... b,, ];
+const e = [ ... b ];
 y = e.slice( 0 );
 $( y );
 `````

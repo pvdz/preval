@@ -65,7 +65,7 @@ const a = function() {
   debugger;
   return undefined;
 };
-const b = [ "before ", " after",, ];
+const b = [ "before ", " after" ];
 $( b, a );
 $( a );
 `````

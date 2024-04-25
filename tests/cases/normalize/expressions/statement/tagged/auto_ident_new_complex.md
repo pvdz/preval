@@ -56,7 +56,7 @@ const a = {
 a: 999,
 b: 1000
 ;
-const b = [ "before ", " after",, ];
+const b = [ "before ", " after" ];
 const c = $( $ );
 const d = new c( 1 );
 $( b, d );

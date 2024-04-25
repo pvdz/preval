@@ -113,9 +113,9 @@ With rename=true
 const a = function() {
   debugger;
   const b = { x: "pass3" };
-  const c = [ b,, ];
+  const c = [ b ];
   const d = $( c );
-  const e = [ ... d,, ];
+  const e = [ ... d ];
   const f = e[ 0 ];
   let g = undefined;
   const h = f === undefined;

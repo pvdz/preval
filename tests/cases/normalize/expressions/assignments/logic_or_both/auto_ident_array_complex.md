@@ -74,7 +74,7 @@ With rename=true
 `````js filename=intro
 const a = $( 1 );
 const b = $( 3 );
-let c = [ a, 2, b,, ];
+let c = [ a, 2, b ];
 let d = c;
 if (c) {
   $( d );
@@ -82,7 +82,7 @@ if (c) {
 else {
   const e = $( 1 );
   const f = $( 3 );
-  const g = [ e, 2, f,, ];
+  const g = [ e, 2, f ];
   c = g;
   d = g;
   $( g );

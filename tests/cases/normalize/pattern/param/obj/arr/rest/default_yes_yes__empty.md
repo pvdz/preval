@@ -89,20 +89,20 @@ $(y);
 With rename=true
 
 `````js filename=intro
-const a = [ "pass2",, ];
+const a = [ "pass2" ];
 const b = { x: a };
 const c = $( b );
 const d = c.x;
 let e = undefined;
 const f = d === undefined;
 if (f) {
-  const g = [ "fail",, ];
+  const g = [ "fail" ];
   e = $( g );
 }
 else {
   e = d;
 }
-const h = [ ... e,, ];
+const h = [ ... e ];
 const i = h.slice( 0 );
 $( i );
 `````

@@ -92,7 +92,7 @@ let c = 2 < a;
 if (c) {
   $( 103 );
   c = 3 < tmpArgumentsLen$9;
-  const d = [ 101, 102, 103, 104, 105, 106, 107, 108, 109, 1010,, ];
+  const d = [ 101, 102, 103, 104, 105, 106, 107, 108, 109, 1010 ];
   while ($LOOP_UNROLL_10) {
     if (c) {
       const e = d[ b ];

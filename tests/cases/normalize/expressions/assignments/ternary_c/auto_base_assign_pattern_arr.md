@@ -94,9 +94,9 @@ if (d) {
 }
 else {
   const e = $( 2 );
-  const f = [ e,, ];
+  const f = [ e ];
   const g = $( f );
-  const h = [ ... g,, ];
+  const h = [ ... g ];
   a = h[ 0 ];
   b = g;
   c = g;

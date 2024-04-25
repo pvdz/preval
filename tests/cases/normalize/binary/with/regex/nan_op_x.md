@@ -301,13 +301,13 @@ const 41 = /foo/g;
 const 51 = 41 ^ a;
 const 61 = /foo/g;
 const 71 = 61 | a;
-const 81 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, false, true, false, true, 31, 51, 71,, ];
+const 81 = [ d, f, h, j, l, n, p, r, t, v, x, z, 11, false, true, false, true, 31, 51, 71 ];
 $( 81 );
 const 91 = /foo/g;
 const a1 = 91 in a;
 const b1 = /foo/g;
 const c1 = b1 instanceof a;
-const d1 = [ a1, c1,, ];
+const d1 = [ a1, c1 ];
 $( d1 );
 `````
 

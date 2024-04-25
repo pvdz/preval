@@ -52,7 +52,7 @@ With rename=true
 `````js filename=intro
 const a = $spy();
 const b = $coerce( a, "plustr" );
-const c = [ b,, ];
+const c = [ b ];
 $( c );
 `````
 

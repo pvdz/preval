@@ -52,7 +52,7 @@ $(tmpReturnArg);
 With rename=true
 
 `````js filename=intro
-const a = [ 10, 20, 30,, ];
+const a = [ 10, 20, 30 ];
 $( a );
 `````
 

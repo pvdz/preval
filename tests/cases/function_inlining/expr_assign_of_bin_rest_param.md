@@ -99,7 +99,7 @@ const b = function($$0,$$1 ) {
   a = c + e;
   return undefined;
 };
-const g = [ 1, 2,, ];
+const g = [ 1, 2 ];
 $( g );
 b( 10, 20, 30, 40, 50, 60 );
 $( a );

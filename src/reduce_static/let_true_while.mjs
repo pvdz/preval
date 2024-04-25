@@ -2,6 +2,9 @@
 // `let x = true; while (x) x = --y > 0;`
 // -> `while (true) if (--y > 0) {} else { break; } }`
 
+// Note: This rule is legit but I think it's superseded by another rule that'll make while(true) before this hits it
+//       There's another rule idea that may fix this issue, around two let bindings that have identical assignment patterns
+
 import walk from '../../lib/walk.mjs';
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
 import * as AST from '../ast.mjs';

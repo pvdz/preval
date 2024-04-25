@@ -224,43 +224,48 @@ function processAttempt(fdata, queue) {
         if (nextRead.parentNode.object === nextRead.node) {
           if (nextRead.isPropWrite) {
             vlog(' - Property write on the array:', nextRead.parentNode.property.name);
-            if (nextRead.parentNode.computed) {
-              // `arr[foo] = x`
-              vlog(' - Computed property write on the array. We can inline certain literals');
-              if (AST.isPrimitive(nextRead.parentNode.property)) {
-                const value = AST.getPrimitiveValue(nextRead.parentNode.property);
-                vlog(' - The property is a primitive:', value);
-                if (typeof value === 'number' && value >= 0 && value <= arrayLiteralNode.elements.length) {
-                  vlog(' - It is a number that is either in the current range of the array or one bigger:', value, arrayLiteralNode.elements.length);
+            if (AST.isPrimitive(nextRead.grandNode.right)) {
+              vlog(' - RHS is a primitive');
+              if (nextRead.parentNode.computed) {
+                // `arr[foo] = x`
+                vlog(' - Computed property write on the array. We can inline certain literals');
+                if (AST.isPrimitive(nextRead.parentNode.property)) {
+                  const value = AST.getPrimitiveValue(nextRead.parentNode.property);
+                  vlog(' - The property is a primitive:', value);
+                  if (typeof value === 'number' && value >= 0 && value <= arrayLiteralNode.elements.length) {
+                    vlog(' - It is a number that is either in the current range of the array or one bigger:', value, arrayLiteralNode.elements.length);
 
-                  rule('Assignment to index properties of array literals can be inlined');
-                  example('const arr = []; arr[0] = 100', 'const arr = [100]');
-                  before(write.blockBody[write.blockIndex]);
-                  before(nextRead.blockBody[nextRead.blockIndex]);
+                    rule('Assignment to index properties of array literals can be inlined');
+                    example('const arr = []; arr[0] = 100', 'const arr = [100]');
+                    before(write.blockBody[write.blockIndex]);
+                    before(nextRead.blockBody[nextRead.blockIndex]);
 
 
-                  arrayLiteralNode.elements[value] = nextRead.grandNode.right;
-                  nextRead.blockBody[nextRead.blockIndex] = AST.emptyStatement();
+                    arrayLiteralNode.elements[value] = nextRead.grandNode.right;
+                    nextRead.blockBody[nextRead.blockIndex] = AST.emptyStatement();
 
-                  after(write.blockBody[write.blockIndex]);
-                  after(nextRead.blockBody[nextRead.blockIndex]);
+                    after(write.blockBody[write.blockIndex]);
+                    after(nextRead.blockBody[nextRead.blockIndex]);
 
-                  updated += 1;
-                  break;
+                    updated += 1;
+                    break;
+                  }
+
                 }
-
+                //TODO
+              } else {
+                // `arr.foo = x`
+                ASSERT(nextRead.parentNode.property.type === 'Identifier', 'non-computed must have ident, yes?');
+                switch (nextRead.parentNode.property.name) {
+                  case 'length': {
+                    // I think this is unsafe? What if code gets moved. TODO
+                    vlog(' - bail: not sure if array.length is safe to inline');
+                    return;
+                  }
+                }
               }
-              //TODO
             } else {
-              // `arr.foo = x`
-              ASSERT(nextRead.parentNode.property.type === 'Identifier', 'non-computed must have ident, yes?');
-              switch (nextRead.parentNode.property.name) {
-                case 'length': {
-                  // I think this is unsafe? What if code gets moved. TODO
-                  vlog(' - bail: not sure if array.length is safe to inline');
-                  return;
-                }
-              }
+              vlog(' - RHS is NOT a primitive so this is more complicated, bailing for now');
             }
           } else {
             vlog(' - Property read on the array:', nextRead.parentNode.property.name);

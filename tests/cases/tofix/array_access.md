@@ -60,7 +60,9 @@ if (f) {
 ## Output
 
 `````js filename=intro
-throw `Preval: Cannot access \`d\` before initialization`;
+const a = [1];
+$(a);
+$(a, a, 0, 1, 1, true);
 `````
 
 ## PST Output
@@ -68,7 +70,9 @@ throw `Preval: Cannot access \`d\` before initialization`;
 With rename=true
 
 `````js filename=intro
-throw "Preval: Cannot access `d` before initialization";
+const a = [ 1,, ];
+$( a );
+$( a, a, 0, 1, 1, true );
 `````
 
 ## Globals
@@ -86,5 +90,4 @@ Pre normalization calls: Same
 
 Normalized calls: Same
 
-Final output calls: BAD!!
- - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
+Final output calls: Same

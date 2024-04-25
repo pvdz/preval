@@ -8,11 +8,7 @@
 
 ## Options
 
-TDZ errors are not properly emulated so a n eval mismatch is expected
-
 Note that the implicit global `propTDZ` is caused by TDZ access of x. It's the ternary that leaves it behind, since the actual binding is unused and eliminated.
-
-- skipEval
 
 ## Input
 
@@ -82,7 +78,7 @@ None
 ## Result
 
 Should call `$` with:
- - eval returned: ('<skipped by option>')
+ - eval returned: ("<crash[ Cannot access '<ref>' before initialization ]>")
 
 Pre normalization calls: Same
 

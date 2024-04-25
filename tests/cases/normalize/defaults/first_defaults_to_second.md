@@ -95,14 +95,14 @@ const f = function ($$0, $$1, $$2) {
   if (tmpOutlinedParam) {
     throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
   } else {
+    let b = `bar`;
     const tmpIfTest$1 = tmpParamBare$1 === undefined;
     if (tmpIfTest$1) {
-      const tmpReturnArg = [tmpParamBare, 'bar'];
-      return tmpReturnArg;
     } else {
-      const tmpReturnArg = [tmpParamBare, tmpParamBare$1];
-      return tmpReturnArg;
+      b = tmpParamBare$1;
     }
+    const tmpReturnArg = [tmpParamBare, b];
+    return tmpReturnArg;
   }
 };
 const tmpCalleeParam = f(undefined, undefined, true);

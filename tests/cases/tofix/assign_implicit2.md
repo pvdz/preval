@@ -2,7 +2,7 @@
 
 # assign_implicit2.md
 
-> Try > Noop > Assign implicit2
+> Tofix > Assign implicit2
 >
 > Certain statements probably never benefit from running inside a try
 

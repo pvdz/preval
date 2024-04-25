@@ -82,7 +82,7 @@ import {letAliasing} from "./let_aliase.mjs"
 import {aliasedGlobals} from "./aliasing_globals.mjs"
 import {dotCall} from "./dotcall.mjs"
 //import {letTrueWhile} from "./let_true_while.mjs";
-//import {letIfElseFalseWhile} from "./let_if_while_x.mjs";
+//import {letIfWhileX} from "./let_if_while_x.mjs";
 import {testingAlias} from "./testing_alias.mjs";
 import {VERBOSE_TRACING} from "../constants.mjs";
 import {aliasIfIf} from "./alias_if_if.mjs";
@@ -100,6 +100,7 @@ import {aliasIfIf} from "./alias_if_if.mjs";
 // - Unary negative/positive should look at argument
 // - Function whose body is one if-else driven by an argument. If the func does not escape then it can be split into two functions and the arg eliminated. in react there is executeDispatchesAndRelease for example.
 // - The boolean cast in isNode$1 in react can be moved?
+// - If two let bindings are updated in tandom (with same value) then they could be combined (`let x; let y; x = z; y = z; $(x,y); x = zz; y = zz; $(x, y)`, etc)
 // - Eliminate continue
 
 export function phase2(program, fdata, resolve, req, options) {
@@ -267,8 +268,8 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     selfAssignClosure(fdata) ||
     selfAssignNoop(fdata) ||
     letAliasing(fdata) ||
-    // letTrueWhile(fdata) ||
-    // letIfElseFalseWhile(fdata) ||
+    //letTrueWhile(fdata) || // Currently superseded by other rules so not worth enabling
+    //letIfWhileX(fdata) || // Not sure this one does anything. Or if it's just superseded by other rules.
     testingAlias(fdata) ||
     aliasIfIf(fdata) ||
     // This one should probably be lowest priority as it might blow up code...

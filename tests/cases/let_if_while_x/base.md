@@ -5,8 +5,7 @@
 > Let if while x > Base
 >
 > An abstracted way of doing a boolean check
-> 
->
+> The idea is that the `flag` var is eliminated and replaced by x.
 
 ## Input
 

@@ -28,22 +28,22 @@ import {createFreshLabel, createFreshVar, mayBindingMutateBetweenRefs} from '../
 import {RESET, GREEN, VERBOSE_TRACING} from '../constants.mjs';
 import {deepCloneForFuncInlining} from "../ast.mjs"
 
-export function letIfElseFalseWhile(fdata) {
-  group('\n\n\nChecking for let-if-while');
+export function letIfWhileX(fdata) {
+  group('\n\n\nChecking for let-if-while-x');
   //vlog('\nCurrent state\n--------------\n' + fmat(tmat(fdata.tenkoOutput.ast)) + '\n--------------\n');
-  const r = _letIfElseFalseWhile(fdata);
+  const r = _letIfWhileX(fdata);
   groupEnd();
   return r;
 }
-function _letIfElseFalseWhile(fdata) {
+function _letIfWhileX(fdata) {
   let updated = processAttempt(fdata);
 
   log('');
   if (updated) {
-    log('Total let-if-else-false-while unrolled:', updated, '. Restarting from phase1 to fix up read/write registry');
+    log('Total let-if-while-x unrolled:', updated, '. Restarting from phase1 to fix up read/write registry');
     return 'restart';
   }
-  log('Total let-if-else-false-while unrolled: 0.');
+  log('Total let-if-while-x unrolled: 0.');
 }
 
 function processAttempt(fdata, unrollTrueLimit) {
@@ -118,7 +118,7 @@ function processAttempt(fdata, unrollTrueLimit) {
     // }
     // ```
 
-    rule('A let-if-else-false-while case can be simplified');
+    rule('A let-if-while-x case can be simplified');
     example(
       'let x = $(1); let y = true; if (x) {} else y = false; while (y) { if ($()) y = false; }',
       'let x = $(1); let y = true; y = x; while (y) { if ($()) y = false; }',

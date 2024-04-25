@@ -32,7 +32,7 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  if ($throwTDZError(`TDZ triggered for this read: if (x) {`)) {
+  if ($throwTDZError(`Preval: TDZ triggered for this read: if (x) {`)) {
     $(`ded`);
   }
   return;
@@ -46,15 +46,9 @@ $(f());
 `````js filename=intro
 let f = function () {
   debugger;
-  const tmpIfTest = $throwTDZError(`TDZ triggered for this read: if (x) {`);
-  if (tmpIfTest) {
-    $(`ded`);
-    return undefined;
-  } else {
-    return undefined;
-    let x = $(`fail`);
-    return undefined;
-  }
+  throw `Preval: TDZ triggered for this read: if (x) {`;
+  let x = 0;
+  return undefined;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -64,12 +58,7 @@ tmpCallCallee(tmpCalleeParam);
 ## Output
 
 `````js filename=intro
-const tmpIfTest = $throwTDZError(`TDZ triggered for this read: if (x) {`);
-if (tmpIfTest) {
-  $(`ded`);
-} else {
-}
-$(undefined);
+throw `Preval: TDZ triggered for this read: if (x) {`;
 `````
 
 ## PST Output
@@ -77,11 +66,7 @@ $(undefined);
 With rename=true
 
 `````js filename=intro
-const a = b( "TDZ triggered for this read: if (x) {" );
-if (a) {
-  $( "ded" );
-}
-$( undefined );
+throw "Preval: TDZ triggered for this read: if (x) {";
 `````
 
 ## Globals

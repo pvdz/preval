@@ -31,7 +31,7 @@ for (lhs in rhs) {
 ## Pre Normal
 
 `````js filename=intro
-const rhs = [$throwTDZError(`TDZ triggered for this read: [firstElement]`)];
+const rhs = [$throwTDZError(`Preval: TDZ triggered for this read: [firstElement]`)];
 let lhs = undefined;
 let firstElement = undefined;
 for (lhs in rhs) {
@@ -45,29 +45,16 @@ for (lhs in rhs) {
 ## Normalized
 
 `````js filename=intro
-const tmpArrElement = $throwTDZError(`TDZ triggered for this read: [firstElement]`);
-const rhs = [tmpArrElement];
-let lhs = undefined;
-let firstElement = undefined;
-for (lhs in rhs) {
-  const pattern = lhs;
-  const patternSplat = [...pattern];
-  let firstElementSSA = patternSplat[0];
-  $(firstElementSSA);
-}
+throw `Preval: TDZ triggered for this read: [firstElement]`;
+const rhs = 0;
+let lhs = 0;
+let firstElement = 0;
 `````
 
 ## Output
 
 `````js filename=intro
-const tmpArrElement = $throwTDZError(`TDZ triggered for this read: [firstElement]`);
-let lhs = undefined;
-const rhs = [tmpArrElement];
-for (lhs in rhs) {
-  const patternSplat = [...lhs];
-  const firstElementSSA = patternSplat[0];
-  $(firstElementSSA);
-}
+throw `Preval: TDZ triggered for this read: [firstElement]`;
 `````
 
 ## PST Output
@@ -75,14 +62,7 @@ for (lhs in rhs) {
 With rename=true
 
 `````js filename=intro
-const a = b( "TDZ triggered for this read: [firstElement]" );
-let c = undefined;
-const d = [ a,, ];
-for (c in d) {
-  const e = [ ... c,, ];
-  const f = e[ 0 ];
-  $( f );
-}
+throw "Preval: TDZ triggered for this read: [firstElement]";
 `````
 
 ## Globals

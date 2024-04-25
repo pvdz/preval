@@ -1387,6 +1387,19 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
         const args = node.arguments;
         const firstSpread = args.length > 0 && args[0].type === 'SpreadElement';
 
+        if (callee.type === 'Identifier' && callee.name === '$throwTDZError') {
+          // Special case that we inject for a variable that was detected to throw an error if it were ever referenced
+          rule('A statement that is calling $throwTDZError should become an explicit throw of the arg');
+          example('$throwTDZError("something bad")', 'throw "something bad"');
+          before(node);
+
+          body[i] = AST.throwStatement(node.arguments[0]);
+
+          after(body[i]);
+          assertNoDupeNodes(AST.blockStatement(body), 'body');
+          return true;
+        }
+
         if (callee.type === 'MemberExpression' && callee.computed) {
           if (AST.isProperIdent(callee.property, true)) {
             const str = AST.getStringValue(callee.property, true);

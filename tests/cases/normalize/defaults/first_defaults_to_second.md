@@ -5,6 +5,8 @@
 > Normalize > Defaults > First defaults to second
 >
 > Rewrite function param defaults to equivalent body code
+> In this case a=b triggers a TDZ error if the passed on value for a is `undefined`
+> because in this case the params are let bindings and so TDZ triggers.
 
 TDZ case
 
@@ -54,19 +56,19 @@ let f = function ($$0, $$1) {
   let a = undefined;
   const tmpIfTest = tmpParamBare === undefined;
   if (tmpIfTest) {
-    a = $throwTDZError(`TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`);
+    throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
   } else {
     a = tmpParamBare;
+    let b = undefined;
+    const tmpIfTest$1 = tmpParamBare$1 === undefined;
+    if (tmpIfTest$1) {
+      b = `bar`;
+    } else {
+      b = tmpParamBare$1;
+    }
+    const tmpReturnArg = [a, b];
+    return tmpReturnArg;
   }
-  let b = undefined;
-  const tmpIfTest$1 = tmpParamBare$1 === undefined;
-  if (tmpIfTest$1) {
-    b = `bar`;
-  } else {
-    b = tmpParamBare$1;
-  }
-  const tmpReturnArg = [a, b];
-  return tmpReturnArg;
 };
 const tmpCallCallee = $;
 const tmpCalleeParam = f();
@@ -90,20 +92,18 @@ const f = function ($$0, $$1, $$2) {
   const tmpParamBare$1 = $$1;
   const tmpOutlinedParam = $$2;
   debugger;
-  let a = undefined;
   if (tmpOutlinedParam) {
-    a = $throwTDZError(`TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`);
+    throw `Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)`;
   } else {
-    a = tmpParamBare;
+    const tmpIfTest$1 = tmpParamBare$1 === undefined;
+    if (tmpIfTest$1) {
+      const tmpReturnArg = [tmpParamBare, 'bar'];
+      return tmpReturnArg;
+    } else {
+      const tmpReturnArg = [tmpParamBare, tmpParamBare$1];
+      return tmpReturnArg;
+    }
   }
-  let b = `bar`;
-  const tmpIfTest$1 = tmpParamBare$1 === undefined;
-  if (tmpIfTest$1) {
-  } else {
-    b = tmpParamBare$1;
-  }
-  const tmpReturnArg = [a, b];
-  return tmpReturnArg;
 };
 const tmpCalleeParam = f(undefined, undefined, true);
 $(tmpCalleeParam);
@@ -125,32 +125,30 @@ const a = function($$0,$$1,$$2 ) {
   const d = e;
   const f = g;
   debugger;
-  let h = undefined;
   if (f) {
-    h = i( "TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)" );
+    throw "Preval: TDZ triggered for this read: ((tmpParamBare === undefined)? b : tmpParamBare)";
   }
   else {
-    h = b;
-  }
-  let j = "bar";
-  const k = d === undefined;
-  if (k) {
+    let h = "bar";
+    const i = d === undefined;
+    if (i) {
 
+    }
+    else {
+      h = d;
+    }
+    const j = [ b, h,, ];
+    return j;
   }
-  else {
-    j = d;
-  }
-  const l = [ h, j,, ];
-  return l;
 };
-const m = a( undefined, undefined, true );
+const k = a( undefined, undefined, true );
+$( k );
+const l = a( "x", undefined, false );
+$( l );
+const m = a( undefined, "y", true );
 $( m );
-const n = a( "x", undefined, false );
+const n = a( "x", "y", false );
 $( n );
-const o = a( undefined, "y", true );
-$( o );
-const p = a( "x", "y", false );
-$( p );
 `````
 
 ## Globals

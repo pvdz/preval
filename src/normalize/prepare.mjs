@@ -735,7 +735,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
 
         const stringArg = tmat(ref.parentNode, true).replace(/\n.*/g, ' ').trim();
         const stringArgTrunced = stringArg.slice(0, 50) + (stringArg.length > 50 ? ' ...' : '');
-        const newNode = AST.callExpression('$throwTDZError', [AST.primitive(`TDZ triggered for this read: ${stringArgTrunced}`)]);
+        const newNode = AST.callExpression('$throwTDZError', [AST.primitive(`Preval: TDZ triggered for this read: ${stringArgTrunced}`)]);
         if (ref.parentIndex === -1) ref.parentNode[ref.parentProp] = newNode;
         else ref.parentNode[ref.parentProp][ref.parentIndex] = newNode;
 
@@ -751,7 +751,7 @@ export function prepareNormalization(fdata, resolve, req, oncePass, options = {}
               const stringArg = tmat(ref.parentNode, true).replace(/\n/g, ' ')
               const newNode = AST.sequenceExpression(
                 ref.parentNode.right,
-                AST.callExpression('$throwTDZError', [AST.primitive(`TDZ triggered for this assignment: ${stringArg}`)])
+                AST.callExpression('$throwTDZError', [AST.primitive(`Preval: TDZ triggered for this assignment: ${stringArg}`)])
               );
               if (ref.grandIndex === -1) ref.grandNode[ref.grandProp] = newNode;
               else ref.grandNode[ref.grandProp][ref.grandIndex] = newNode;

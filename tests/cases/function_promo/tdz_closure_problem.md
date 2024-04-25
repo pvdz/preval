@@ -35,7 +35,7 @@ let f = function () {
   debugger;
   let g = function () {
     debugger;
-    $($throwTDZError(`TDZ triggered for this read: \$(x\$1)`));
+    $($throwTDZError(`Preval: TDZ triggered for this read: \$(x\$1)`));
     let x$1 = $(`inner`);
     if ($) $(`prevent premature elimination`);
   };
@@ -54,15 +54,9 @@ let f = function () {
   let g = function () {
     debugger;
     const tmpCallCallee = $;
-    const tmpCalleeParam = $throwTDZError(`TDZ triggered for this read: \$(x\$1)`);
-    tmpCallCallee(tmpCalleeParam);
-    let x$1 = $(`inner`);
-    if ($) {
-      $(`prevent premature elimination`);
-      return undefined;
-    } else {
-      return undefined;
-    }
+    throw `Preval: TDZ triggered for this read: \$(x\$1)`;
+    let x$1 = 0;
+    return undefined;
   };
   let x = $(`outer`);
   g();
@@ -84,17 +78,7 @@ if ($) {
 `````js filename=intro
 if ($) {
   $(`outer`);
-  const tmpCalleeParam = $throwTDZError(`TDZ triggered for this read: \$(x\$1)`);
-  $(tmpCalleeParam);
-  $(`inner`);
-  if ($) {
-    $(`prevent premature elimination`);
-    if ($) {
-      $(`prevent premature elimination`);
-    } else {
-    }
-  } else {
-  }
+  throw `Preval: TDZ triggered for this read: \$(x\$1)`;
 } else {
 }
 `````
@@ -106,15 +90,7 @@ With rename=true
 `````js filename=intro
 if ($) {
   $( "outer" );
-  const a = b( "TDZ triggered for this read: $(x$1)" );
-  $( a );
-  $( "inner" );
-  if ($) {
-    $( "prevent premature elimination" );
-    if ($) {
-      $( "prevent premature elimination" );
-    }
-  }
+  throw "Preval: TDZ triggered for this read: $(x$1)";
 }
 `````
 

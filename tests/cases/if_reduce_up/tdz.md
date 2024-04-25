@@ -25,7 +25,7 @@ let fail = "too late";
 
 `````js filename=intro
 let x = 0;
-if ($throwTDZError(`TDZ triggered for this read: if (fail) {`)) {
+if ($throwTDZError(`Preval: TDZ triggered for this read: if (fail) {`)) {
   x = $(`do not reach me`);
 } else {
   x = $(`do not reach me`);
@@ -38,22 +38,14 @@ let fail = `too late`;
 
 `````js filename=intro
 let x = 0;
-const tmpIfTest = $throwTDZError(`TDZ triggered for this read: if (fail) {`);
-if (tmpIfTest) {
-  x = $(`do not reach me`);
-} else {
-  x = $(`do not reach me`);
-}
-$(x);
-let fail = `too late`;
+throw `Preval: TDZ triggered for this read: if (fail) {`;
+let fail = 0;
 `````
 
 ## Output
 
 `````js filename=intro
-$throwTDZError(`TDZ triggered for this read: if (fail) {`);
-const x = $(`do not reach me`);
-$(x);
+throw `Preval: TDZ triggered for this read: if (fail) {`;
 `````
 
 ## PST Output
@@ -61,9 +53,7 @@ $(x);
 With rename=true
 
 `````js filename=intro
-a( "TDZ triggered for this read: if (fail) {" );
-const b = $( "do not reach me" );
-$( b );
+throw "Preval: TDZ triggered for this read: if (fail) {";
 `````
 
 ## Globals

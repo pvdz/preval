@@ -32,7 +32,7 @@ $(f());
 let f = function () {
   debugger;
   if ($(false)) {
-    $(`fail too`), $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
+    $(`fail too`), $throwTDZError(`Preval: TDZ triggered for this assignment: x = \$('fail too')`);
   }
   return;
   let x = $(`fail`);
@@ -48,8 +48,7 @@ let f = function () {
   const tmpIfTest = $(false);
   if (tmpIfTest) {
     $(`fail too`);
-    $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-    return undefined;
+    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
   } else {
     return undefined;
     let x = $(`fail`);
@@ -67,10 +66,10 @@ tmpCallCallee(tmpCalleeParam);
 const tmpIfTest = $(false);
 if (tmpIfTest) {
   $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
+  throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
 } else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## PST Output
@@ -81,9 +80,11 @@ With rename=true
 const a = $( false );
 if (a) {
   $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
+  throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
 }
-$( undefined );
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

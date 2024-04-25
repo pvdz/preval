@@ -28,7 +28,7 @@ $('after, wont eval due to infinite loop');
 
 `````js filename=intro
 while ($(true)) {
-  if ($(false)) $(`fail too`), $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
+  if ($(false)) $(`fail too`), $throwTDZError(`Preval: TDZ triggered for this assignment: x = \$('fail too')`);
   continue;
   let x = $(`fail`);
 }
@@ -44,11 +44,11 @@ while (true) {
     const tmpIfTest$1 = $(false);
     if (tmpIfTest$1) {
       $(`fail too`);
-      $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
+      throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
     } else {
+      continue;
+      let x = $(`fail`);
     }
-    continue;
-    let x = $(`fail`);
   } else {
     break;
   }
@@ -65,7 +65,7 @@ if (tmpIfTest) {
   const tmpIfTest$1 = $(false);
   if (tmpIfTest$1) {
     $(`fail too`);
-    $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
+    throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
   } else {
   }
 } else {
@@ -78,7 +78,7 @@ if ($tmpLoopUnrollCheck) {
       const tmpIfTest$4 = $(false);
       if (tmpIfTest$4) {
         $(`fail too`);
-        $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
+        throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
       } else {
       }
     } else {
@@ -101,7 +101,7 @@ if (b) {
   const c = $( false );
   if (c) {
     $( "fail too" );
-    d( "TDZ triggered for this assignment: x = $('fail too')" );
+    throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
   }
 }
 else {
@@ -109,12 +109,12 @@ else {
 }
 if (a) {
   while ($LOOP_UNROLL_10) {
-    const e = $( true );
-    if (e) {
-      const f = $( false );
-      if (f) {
+    const d = $( true );
+    if (d) {
+      const e = $( false );
+      if (e) {
         $( "fail too" );
-        d( "TDZ triggered for this assignment: x = $('fail too')" );
+        throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
       }
     }
     else {

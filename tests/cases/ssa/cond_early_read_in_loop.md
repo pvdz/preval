@@ -29,7 +29,7 @@ for (lhs in rhs) {
 let lhs = undefined;
 for (lhs in rhs) {
   if ($) {
-    const rhs$1 = [$throwTDZError(`TDZ triggered for this read: [firstElement]`)];
+    const rhs$1 = [$throwTDZError(`Preval: TDZ triggered for this read: [firstElement]`)];
     $(rhs$1);
   } else {
     $(`init`);
@@ -44,13 +44,12 @@ for (lhs in rhs) {
 let lhs = undefined;
 for (lhs in rhs) {
   if ($) {
-    const tmpArrElement = $throwTDZError(`TDZ triggered for this read: [firstElement]`);
-    const rhs$1 = [tmpArrElement];
-    $(rhs$1);
+    throw `Preval: TDZ triggered for this read: [firstElement]`;
+    const rhs$1 = 0;
   } else {
     $(`init`);
+    let firstElement = undefined;
   }
-  let firstElement = undefined;
 }
 `````
 
@@ -60,9 +59,7 @@ for (lhs in rhs) {
 let lhs = undefined;
 for (lhs in rhs) {
   if ($) {
-    const tmpArrElement = $throwTDZError(`TDZ triggered for this read: [firstElement]`);
-    const rhs$1 = [tmpArrElement];
-    $(rhs$1);
+    throw `Preval: TDZ triggered for this read: [firstElement]`;
   } else {
     $(`init`);
   }
@@ -77,9 +74,7 @@ With rename=true
 let a = undefined;
 for (a in rhs) {
   if ($) {
-    const b = c( "TDZ triggered for this read: [firstElement]" );
-    const d = [ b,, ];
-    $( d );
+    throw "Preval: TDZ triggered for this read: [firstElement]";
   }
   else {
     $( "init" );

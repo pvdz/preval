@@ -24,7 +24,7 @@ $(x);
 ## Pre Normal
 
 `````js filename=intro
-if ($) $($throwTDZError(`TDZ triggered for this read: \$(x)`));
+if ($) $($throwTDZError(`Preval: TDZ triggered for this read: \$(x)`));
 let x = $(5);
 $(x);
 x = $(10);
@@ -36,28 +36,26 @@ $(x);
 `````js filename=intro
 if ($) {
   const tmpCallCallee = $;
-  const tmpCalleeParam = $throwTDZError(`TDZ triggered for this read: \$(x)`);
-  tmpCallCallee(tmpCalleeParam);
+  throw `Preval: TDZ triggered for this read: \$(x)`;
 } else {
+  let x = $(5);
+  $(x);
+  x = $(10);
+  $(x);
 }
-let x = $(5);
-$(x);
-x = $(10);
-$(x);
 `````
 
 ## Output
 
 `````js filename=intro
 if ($) {
-  const tmpCalleeParam = $throwTDZError(`TDZ triggered for this read: \$(x)`);
-  $(tmpCalleeParam);
+  throw `Preval: TDZ triggered for this read: \$(x)`;
 } else {
+  let x = $(5);
+  $(x);
+  x = $(10);
+  $(x);
 }
-let x = $(5);
-$(x);
-x = $(10);
-$(x);
 `````
 
 ## PST Output
@@ -66,13 +64,14 @@ With rename=true
 
 `````js filename=intro
 if ($) {
-  const a = b( "TDZ triggered for this read: $(x)" );
+  throw "Preval: TDZ triggered for this read: $(x)";
+}
+else {
+  let a = $( 5 );
+  $( a );
+  a = $( 10 );
   $( a );
 }
-let c = $( 5 );
-$( c );
-c = $( 10 );
-$( c );
 `````
 
 ## Globals

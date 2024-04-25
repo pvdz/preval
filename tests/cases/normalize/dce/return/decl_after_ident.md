@@ -33,7 +33,7 @@ $(f());
 let f = function () {
   debugger;
   if ($(true)) {
-    $throwTDZError(`TDZ triggered for this read: x;`);
+    $throwTDZError(`Preval: TDZ triggered for this read: x;`);
   }
   return;
   let x = $(`fail`);
@@ -48,8 +48,7 @@ let f = function () {
   debugger;
   const tmpIfTest = $(true);
   if (tmpIfTest) {
-    $throwTDZError(`TDZ triggered for this read: x;`);
-    return undefined;
+    throw `Preval: TDZ triggered for this read: x;`;
   } else {
     return undefined;
     let x = $(`fail`);
@@ -66,10 +65,10 @@ tmpCallCallee(tmpCalleeParam);
 `````js filename=intro
 const tmpIfTest = $(true);
 if (tmpIfTest) {
-  $throwTDZError(`TDZ triggered for this read: x;`);
+  throw `Preval: TDZ triggered for this read: x;`;
 } else {
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## PST Output
@@ -79,9 +78,11 @@ With rename=true
 `````js filename=intro
 const a = $( true );
 if (a) {
-  b( "TDZ triggered for this read: x;" );
+  throw "Preval: TDZ triggered for this read: x;";
 }
-$( undefined );
+else {
+  $( undefined );
+}
 `````
 
 ## Globals

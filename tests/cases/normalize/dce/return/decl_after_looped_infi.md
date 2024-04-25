@@ -35,7 +35,7 @@ let f = function () {
   debugger;
   while (true) {
     if ($(false)) {
-      $(`fail too`), $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
+      $(`fail too`), $throwTDZError(`Preval: TDZ triggered for this assignment: x = \$('fail too')`);
     }
     continue;
     let x = $(`fail`);
@@ -53,11 +53,11 @@ let f = function () {
     const tmpIfTest = $(false);
     if (tmpIfTest) {
       $(`fail too`);
-      $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
+      throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
     } else {
+      continue;
+      let x = $(`fail`);
     }
-    continue;
-    let x = $(`fail`);
   }
   return undefined;
 };
@@ -72,78 +72,18 @@ tmpCallCallee(tmpCalleeParam);
 const tmpIfTest = $(false);
 if (tmpIfTest) {
   $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
+  throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
 } else {
-}
-const tmpIfTest$1 = $(false);
-if (tmpIfTest$1) {
-  $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-} else {
-}
-const tmpIfTest$2 = $(false);
-if (tmpIfTest$2) {
-  $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-} else {
-}
-const tmpIfTest$3 = $(false);
-if (tmpIfTest$3) {
-  $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-} else {
-}
-const tmpIfTest$4 = $(false);
-if (tmpIfTest$4) {
-  $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-} else {
-}
-const tmpIfTest$5 = $(false);
-if (tmpIfTest$5) {
-  $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-} else {
-}
-const tmpIfTest$6 = $(false);
-if (tmpIfTest$6) {
-  $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-} else {
-}
-const tmpIfTest$7 = $(false);
-if (tmpIfTest$7) {
-  $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-} else {
-}
-const tmpIfTest$8 = $(false);
-if (tmpIfTest$8) {
-  $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-} else {
-}
-const tmpIfTest$9 = $(false);
-if (tmpIfTest$9) {
-  $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-} else {
-}
-const tmpIfTest$10 = $(false);
-if (tmpIfTest$10) {
-  $(`fail too`);
-  $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-} else {
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const tmpIfTest$11 = $(false);
-  if (tmpIfTest$11) {
-    $(`fail too`);
-    $throwTDZError(`TDZ triggered for this assignment: x = \$('fail too')`);
-  } else {
+  while ($LOOP_UNROLL_10) {
+    const tmpIfTest$1 = $(false);
+    if (tmpIfTest$1) {
+      $(`fail too`);
+      throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
+    } else {
+    }
   }
+  $(undefined);
 }
-$(undefined);
 `````
 
 ## PST Output
@@ -154,66 +94,18 @@ With rename=true
 const a = $( false );
 if (a) {
   $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
+  throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
 }
-const c = $( false );
-if (c) {
-  $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
-}
-const d = $( false );
-if (d) {
-  $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
-}
-const e = $( false );
-if (e) {
-  $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
-}
-const f = $( false );
-if (f) {
-  $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
-}
-const g = $( false );
-if (g) {
-  $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
-}
-const h = $( false );
-if (h) {
-  $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
-}
-const i = $( false );
-if (i) {
-  $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
-}
-const j = $( false );
-if (j) {
-  $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
-}
-const k = $( false );
-if (k) {
-  $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
-}
-const l = $( false );
-if (l) {
-  $( "fail too" );
-  b( "TDZ triggered for this assignment: x = $('fail too')" );
-}
-while ($LOOP_DONE_UNROLLING_ALWAYS_TRUE) {
-  const m = $( false );
-  if (m) {
-    $( "fail too" );
-    b( "TDZ triggered for this assignment: x = $('fail too')" );
+else {
+  while ($LOOP_UNROLL_10) {
+    const b = $( false );
+    if (b) {
+      $( "fail too" );
+      throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
+    }
   }
+  $( undefined );
 }
-$( undefined );
 `````
 
 ## Globals

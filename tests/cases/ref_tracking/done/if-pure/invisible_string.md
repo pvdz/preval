@@ -55,15 +55,15 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 39,46       | none           | none
-  - r @39      | 4
-  - r @46      | 4
+  - w @4       | ########## | not read    | none           | none
+  - r @39      | none (TDZ?)
+  - r @46      | none (TDZ?)
 
 b:
-  - w @9       | ########## | 52          | none           | 42,47
-  - w @42      | ########## | not read    | 9              | none
-  - w @47      | ########## | not read    | 9              | none
-  - r @52      | 9
+  - w @9       | ########## | not read    | none           | none
+  - w @42      | ########## | not read    | none           | none
+  - w @47      | ########## | not read    | none           | none
+  - r @52      | none (TDZ?)
 
 c:
   - w @17      | ########## | not read    | none           | none

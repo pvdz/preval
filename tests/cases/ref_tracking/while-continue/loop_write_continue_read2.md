@@ -44,11 +44,11 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 12          | none           | 14
-  - r @12      | 4
-  - w @14      | ########## | 19,29       | 4              | none
+  - w @4       | ########## | not read    | none           | none
+  - r @12      | none (TDZ?)
+  - w @14      | ########## | 19          | none           | none
   - r @19      | 14
-  - r @29      | 14
+  - r @29      | none (TDZ?)
 
 tmpIfTest:
   - w @17      | ########## | 22          | none           | none

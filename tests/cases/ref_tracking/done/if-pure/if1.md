@@ -42,8 +42,8 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 12,18       | none           | 23
-  - r @12      | 4
-  - r @18      | 4
-  - w @23      | ########## | 27          | 4              | none
+  - w @4       | ########## | not read    | none           | none
+  - r @12      | none (TDZ?)
+  - r @18      | none (TDZ?)
+  - w @23      | ########## | 27          | none           | none
   - r @27      | 23

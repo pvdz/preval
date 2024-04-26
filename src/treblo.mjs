@@ -113,7 +113,7 @@ export function createTreblo(alreadyDefined, currentParentExitWrites, beforePare
     /**
      * All read and write refs inside this node in source order
      */
-    rwOrder: [],
+    rwOrder: new Map,
   };
 
   return Treblo;

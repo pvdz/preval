@@ -75,13 +75,13 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 62          | none           | 12
-  - w @12      | ########## | 58          | 4              | 19
-  - w @19      | ########## | 40,54       | 12             | 28,35,47
-  - w @28      | ########## | not read    | 19             | none
-  - w @35      | ########## | not read    | 19             | none
-  - r @40      | 19
-  - w @47      | ########## | not read    | 19             | none
+  - w @4       | ########## | 62          | none           | none
+  - w @12      | ########## | 58          | none           | none
+  - w @19      | ########## | 54          | none           | none
+  - w @28      | ########## | not read    | none           | none
+  - w @35      | ########## | not read    | none           | none
+  - r @40      | none (TDZ?)
+  - w @47      | ########## | not read    | none           | none
   - r @54      | 19
   - r @58      | 12
   - r @62      | 4

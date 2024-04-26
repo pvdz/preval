@@ -77,14 +77,14 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 66          | none           | 12
-  - w @12      | ########## | 62          | 4              | 19
-  - w @19      | ########## | 40,58       | 12             | 28,35,47,54
-  - w @28      | ########## | not read    | 19             | none
-  - w @35      | ########## | not read    | 19             | none
-  - r @40      | 19
-  - w @47      | ########## | not read    | 19             | none
-  - w @54      | ########## | not read    | 19             | none
+  - w @4       | ########## | 66          | none           | none
+  - w @12      | ########## | 62          | none           | none
+  - w @19      | ########## | 58          | none           | none
+  - w @28      | ########## | not read    | none           | none
+  - w @35      | ########## | not read    | none           | none
+  - r @40      | none (TDZ?)
+  - w @47      | ########## | not read    | none           | none
+  - w @54      | ########## | not read    | none           | none
   - r @58      | 19
   - r @62      | 12
   - r @66      | 4

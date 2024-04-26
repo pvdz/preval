@@ -36,8 +36,8 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 dathing:
-  - w @4       | ########## | not read    | none           | 20
-  - w @20      | ########## | 24          | 4              | none
+  - w @4       | ########## | not read    | none           | none
+  - w @20      | ########## | 24          | none           | none
   - r @24      | 20
 
 d:

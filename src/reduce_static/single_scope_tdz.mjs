@@ -1,6 +1,9 @@
 import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, rule, example, before, source, after, fmat, tmat } from '../utils.mjs';
 import * as AST from '../ast.mjs';
 
+// TODO: we should be able to remove this in favor of the prepare phase. But the prepare phase must be more generic and catch more cases.
+
+
 export function singleScopeTdz(fdata) {
   group('\n\n\nChecking for TDZ cases in single scope\n');
   const r = _singleScopeTdz(fdata);

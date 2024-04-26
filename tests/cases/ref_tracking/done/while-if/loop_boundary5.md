@@ -51,9 +51,9 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 12,35       | none           | 28
-  - r @12      | 4
-  - w @28      | ########## | not read    | 4              | none
+  - w @4       | ########## | 35          | none           | none
+  - r @12      | none (TDZ?)
+  - w @28      | ########## | not read    | none           | none
   - r @35      | 4
 
 tmpIfTest:

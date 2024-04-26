@@ -47,8 +47,8 @@ Ref tracking result:
 
                 | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 33          | none           | 27
-  - w @27      | ########## | not read    | 4              | none
+  - w @4       | ########## | 33          | none           | none
+  - w @27      | ########## | not read    | none           | none
   - r @33      | 4
 
 tmpIfTest:

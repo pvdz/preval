@@ -60,13 +60,13 @@ Ref tracking result:
 
                 | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 11,22,40,57 | none           | 15,34,52
-  - r @11      | 4
-  - w @15      | ########## | 22          | 4              | 34
-  - r @22      | 4,15
-  - w @34      | ########## | not read    | 4,15           | none
-  - r @40      | 4
-  - w @52      | ########## | not read    | 4              | none
+  - w @4       | ########## | 57          | none           | none
+  - r @11      | none (TDZ?)
+  - w @15      | ########## | not read    | none           | none
+  - r @22      | none (TDZ?)
+  - w @34      | ########## | not read    | none           | none
+  - r @40      | none (TDZ?)
+  - w @52      | ########## | not read    | none           | none
   - r @57      | 4
 
 tmpIfTest:

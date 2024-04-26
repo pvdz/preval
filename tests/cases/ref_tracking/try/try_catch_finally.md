@@ -48,11 +48,11 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 11,22,31,39 | none           | 15,26,35
-  - r @11      | 4
-  - w @15      | ########## | 22          | 4              | 26
-  - r @22      | 4,15
-  - w @26      | ########## | not read    | 4,15           | none
-  - r @31      | 4
-  - w @35      | ########## | not read    | 4              | none
+  - w @4       | ########## | 39          | none           | none
+  - r @11      | none (TDZ?)
+  - w @15      | ########## | not read    | none           | none
+  - r @22      | none (TDZ?)
+  - w @26      | ########## | not read    | none           | none
+  - r @31      | none (TDZ?)
+  - w @35      | ########## | not read    | none           | none
   - r @39      | 4

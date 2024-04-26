@@ -81,19 +81,19 @@ Ref tracking result:
 
                 | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 11,61,70,87 | none           | 15,65,82
-  - r @11      | 4
-  - w @15      | ########## | 21,32,41,61 | 4              | 25,36,53,65
-  - r @21      | 15
-  - w @25      | ########## | 32          | 15             | 36
-  - r @32      | 15,25
-  - w @36      | ########## | not read    | 15,25          | none
-  - r @41      | 15
-  - w @53      | ########## | not read    | 15             | none
-  - r @61      | 4,15
-  - w @65      | ########## | not read    | 4,15           | none
-  - r @70      | 4
-  - w @82      | ########## | not read    | 4              | none
+  - w @4       | ########## | 87          | none           | none
+  - r @11      | none (TDZ?)
+  - w @15      | ########## | not read    | none           | none
+  - r @21      | none (TDZ?)
+  - w @25      | ########## | not read    | none           | none
+  - r @32      | none (TDZ?)
+  - w @36      | ########## | not read    | none           | none
+  - r @41      | none (TDZ?)
+  - w @53      | ########## | not read    | none           | none
+  - r @61      | none (TDZ?)
+  - w @65      | ########## | not read    | none           | none
+  - r @70      | none (TDZ?)
+  - w @82      | ########## | not read    | none           | none
   - r @87      | 4
 
 tmpIfTest:

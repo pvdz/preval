@@ -56,9 +56,9 @@ f:
   - r @40      | 4
 
 x:
-  - w @10      | ########## | 34          | none           | 25
-  - w @25      | ########## | not read    | 10             | none
-  - r @34      | 10
+  - w @10      | ########## | not read    | none           | none
+  - w @25      | ########## | not read    | none           | none
+  - r @34      | none (TDZ?)
 
 tmpIfTest:
   - w @16      | ########## | 20          | none           | none

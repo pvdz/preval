@@ -35,6 +35,7 @@ export function $p() {
     // - completesAbrupt // bool. For any node that can contain other nodes. This is true if that node has a child node that is continue/break/return/throw. The IfStatement has two specific properties for each branch. Other multi-child-block capable nodes like `try` should not look at this or be fixed to support it.
     // - completesAbruptConsequent // bool. For IfStatement nodes. Need this to distinguish between consequent and alternate.
     // - completesAbruptAlternate // bool. For IfStatement nodes. Need this to distinguish between consequent and alternate.
+    // - nodesThatContinueHere // Array<{src: Node, dst: Node}>, only on Catch and Finally _blocks_, only available after the start of the Try block; it is the set of nodes that could go through this catch or finally block while code execution moves from the src node to the dst block (=scope), so we can wire exitWrites with entryReads/entryWrites, and propagate them
 
     // reduce/phase2 (these props should exist after phas1... even on new nodes)
     // - hasFuncDecl // bool. Prevent elimination of blocks containing function declarations
@@ -59,15 +60,8 @@ export function $p() {
     // - bodyOffset // number. First body statement after the function header (after the debugger statement). Discovered while walking a function, not maintained
     // - promoParent // node|null. The parent node of this block. Used for function scope promotion.
     // - ownBindings // Set<string>. Set of all local bindings in a function scope (may be defined in a block). Excludes the custom $$1 params names.
-    // - referencedNames // Set<string>. All bindings referenced in this or nested functions that were not local bindings to any of those funcs. This set includes implicits, built-ins, closures, and local bindings. Excludes `arguments` and the custom $$1 param names.
     // - blockChain // string. For functions, the block chain of this function, including the trailing zero for this function. Same as for refs.
     // - funcChain // string. For functions, the ids of parent functions (and global) up to and including this function. Same as for refs.
-    // - outReads // Set<Read>. For loops. All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
-    // - outWrites // Set<Read>. For loops. All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
-    // - lastWritesBackupBefore // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map is stored and depicts the state before an `if` or `try`). For each relevant binding, a set of writes that are currently "observable" when finding a read.
-    // - lastWriteStackAfterIf // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map depicts the state after the consequent.) For each relevant binding, a set of writes that are currently "observable" when finding a read.
-    // - lastWritesBackupTry // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map depicts the state after the `try-block`.) For each relevant binding, a set of writes that are currently "observable" when finding a read.
-    // - lastWritesBackupCatch // Map<name, Set<Write>>. After phase1 this is undefined|string. (This map depicts the state after the `catch` block.) For each relevant binding, a set of writes that are currently "observable" when finding a read.
     // - paramNames // Array<string>. Original param names for the function. Those will be $$0 mapped in the same order.
     // - isPrimitive // bool. For binary expression operand nodes
     // - primitiveValue // any. When isPrimitive is true, this should be the value. otherwise ignore.

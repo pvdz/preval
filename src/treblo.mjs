@@ -1,6 +1,6 @@
 // Treblo: Track Ref Block (unique string)
 
-import {REF_TRACK_TRACING} from "./utils/ref_tracking.mjs"
+import { REF_TRACK_TRACING } from './utils.mjs';
 
 /**
  * All blocks have this
@@ -10,7 +10,7 @@ import {REF_TRACK_TRACING} from "./utils/ref_tracking.mjs"
  * @typedef {
  *  {
  *    defined: Set<string>,
- *    overwritten: Map<string, boolean>,
+ *    overwritten: Set<string>, // More like "alwaysOverwritten"
  *    entryReads: Map<string, Set<Read>>,
  *    entryWrites: Map<string, Set<Write>>,
  *    exitWrites: Map<string, Set<Write>>,
@@ -26,31 +26,17 @@ import {REF_TRACK_TRACING} from "./utils/ref_tracking.mjs"
 /**
  * @param {Set<string>} alreadyDefined
  * @param {Map<string, Set<Write>>} currentParentExitWrites
- * @param {Map<string, Set<Write>>} beforeParentExitWrites
- * @param {Map<string, boolean>} parentOverwritten
  */
-export function createTreblo(alreadyDefined, currentParentExitWrites, beforeParentExitWrites, parentOverwritten) {
+export function createTreblo(
+  alreadyDefined,
+  currentParentExitWrites,
+) {
   // TODO: do we need to track which bindings were already available in parent node?
 
   if (REF_TRACK_TRACING) console.log('RTT: createTreblo()');
 
-
-  // The exitWrites before the current node are the combination of the exitWrites
-  // in that node so far plus, provided the parentNode does not have overwritten
-  // set for a binding, also the combined exitWrites of ancestor block(s) so far
-  const exitWritesBefore = new Map;
-  alreadyDefined.forEach(name => {
-    const e1 = currentParentExitWrites.get(name);
-    const e2 = !parentOverwritten.has(name) && beforeParentExitWrites.get(name);
-
-    if (e1 || e2) {
-      const set = new Set(e1 || e2);
-      if (e1 && e2) {
-        e2.forEach(write => set.add(write));
-      }
-      exitWritesBefore.set(name, set);
-    }
-  })
+  const exitWritesClone = new Map;
+  currentParentExitWrites.forEach((set, name) => exitWritesClone.set(name, new Set(set)));
 
   /**
    * @type Treblo
@@ -59,14 +45,39 @@ export function createTreblo(alreadyDefined, currentParentExitWrites, beforePare
     _type: 'Treblo',
 
     /**
+     * These are queued nodes whose code flow continues here. They are somewhere
+     * inside the currently traversed descendant of this Block. When the walker
+     * exits the direct child, it will process these pending nodes and connect
+     * their exitWrites and overwritten status to this treblo.
+     * The overwrittens are the bindings that, at the time of abrupt completing,
+     * were completely overwritten somewhere between the dst block and the src node.
+     *
+     * @type {Array<{src: Node, dst: Node, overwrittens: Set<string>}>}
+     */
+    pendingNext: [],
+    /**
+     * Similar to pendingNext except only nodes that continue a loops.
+     * This list is processed after each loop that the walker exits.
+     * We need it to connect exitWrites to the entryReads/entryWrites of the loop.
+     *
+     * @type {Array<{src: Node, dst: Node, overwrittens: Set<string>}>}
+     **/
+    pendingLoop: [],
+
+    /**
      * List of bindings that were declared inside this node
      */
     defined: new Set(alreadyDefined),
     /**
-     * For each binding for which a read or write was encountered, this map tells you
-     * whether there was at least one branch that did not mutate the binding.
+     * If a name was written to in this block then this set should hold the name.
+     * However, it should only be set if _all_ branches leading here overwrite it.
+     * Put differently; this determines whether a read can still be an entryRead.
+     * Set is "live", meaning it gets updated as the AST is walked. At the end
+     * of each block the overwritten set is merged upward depending on the branching.
+     * (Consider; if a var is overwritten in each branch of an `if` then the parent
+     * block should consider it overwritten regardless after that `if`.)
      */
-    overwritten: new Map,
+    overwritten: new Set,
     /**
      * For each binding a list of reads inside this node that might read the value of
      * the binding as it was at the start of this node.
@@ -84,19 +95,22 @@ export function createTreblo(alreadyDefined, currentParentExitWrites, beforePare
      * Note: do not consider the sets to be ordered.
      */
     entryWrites: new Map,
-    /**
-     * These are the aggregate parent exitWrites so far.
-     * Basically tells you which writes may be affected by an entryWrite or entryWrite
-     */
-    exitWritesBefore,
+    ///**
+    // * These are the aggregate parent exitWrites so far.
+    // * Basically tells you which writes may be affected by an entryWrite or entryWrite
+    // * @deprecated do we really need this?
+    // */
+    //exitWritesBefore,
     /**
      * For each binding a list of writes inside this node that can be the last write to
      * the binding in this node in at least one scenario.
      * Need this to connect these writes back to the entryReads of a loop
      * Note: do not consider the sets to be ordered.
      * Note: this map is stored by reference. Do not replace it.
+     * Note: this is a "live" map, meaning that it gets updated and replaced as we walk
+     *       and it starts with the parent exitWrites. This is also known as "lastWrites".
      */
-    exitWrites: new Map,
+    exitWrites: exitWritesClone,
     /**
      * Did the node abruptly change flow (break,continue,return,throw)? Implies things for exitWrites
      * If it did then the abrupt completion node is direct a child of this node, not nested.

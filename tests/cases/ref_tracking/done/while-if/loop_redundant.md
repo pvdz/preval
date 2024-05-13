@@ -72,27 +72,27 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @7       | ########## | not read    | none           | none
-  - w @36      | ########## | 41          | none           | none
+  - w @7       | ########## | not read    | none           | 36
+  - w @36      | ########## | 41,57,64    | 7,36           | 36
   - r @41      | 36
-  - r @57      | none (TDZ?)
-  - r @64      | none (TDZ?)
+  - r @57      | 36
+  - r @64      | 36
 
 b:
-  - w @12      | ########## | not read    | none           | none
-  - w @60      | ########## | not read    | none           | none
-  - w @65      | ########## | not read    | none           | none
-  - r @70      | none (TDZ?)
+  - w @12      | ########## | not read    | none           | 60,65
+  - w @60      | ########## | 70          | 12,60,65       | 60,65
+  - w @65      | ########## | 70          | 12,60,65       | 60,65
+  - r @70      | 60,65
 
 c:
-  - w @17      | ########## | not read    | none           | none
-  - r @79      | none (TDZ?)
-  - w @81      | ########## | 86          | none           | none
+  - w @17      | ########## | 79          | none           | 81
+  - r @79      | 17,81
+  - w @81      | ########## | 86,79       | 17,81          | 81
   - r @86      | 81
 
 d:
-  - w @21      | ########## | not read    | none           | none
-  - r @33      | none (TDZ?)
+  - w @21      | ########## | 33          | none           | none
+  - r @33      | 21
 
 e:
   - w @39      | ########## | 47          | none           | none

@@ -57,14 +57,14 @@ Ref tracking result:
 
                 | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 55          | none           | none
-  - r @27      | none (TDZ?)
-  - w @32      | ########## | 36          | none           | none
+  - w @4       | ########## | 27,41,55    | none           | 32,46
+  - r @27      | 4
+  - w @32      | ########## | 36          | 4              | 46
   - r @36      | 32
-  - r @41      | none (TDZ?)
-  - w @46      | ########## | 50          | none           | none
+  - r @41      | 4
+  - w @46      | ########## | 50,55       | 4,32           | none
   - r @50      | 46
-  - r @55      | 4
+  - r @55      | 4,46
 
 tmpIfTest:
   - w @8       | ########## | 13          | none           | none

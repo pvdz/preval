@@ -1,7 +1,7 @@
 import walk from '../../lib/walk.mjs';
 
 import { VERBOSE_TRACING, RED, BLUE, DIM, RESET } from '../constants.mjs';
-import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source } from '../utils.mjs';
+import { ASSERT, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, source, REF_TRACK_TRACING } from '../utils.mjs';
 import { $p, resetUid, getUid } from '../$p.mjs';
 import * as AST from '../ast.mjs';
 import {
@@ -17,7 +17,6 @@ import {
 } from '../bindings.mjs';
 import globals from '../globals.mjs';
 import {
-  REF_TRACK_TRACING,
   openRefsOnBeforeProgram,
   openRefsOnAfterBlock,
   openRefsCatchOnBefore,
@@ -27,8 +26,6 @@ import {
   openRefsOnBeforeWrite,
   openRefsOnBeforeIf,
   openRefsOnafterIf,
-  openRefsLabelOnBefore,
-  openRefsLabelOnAfter,
   openRefsOnBeforeReturn,
   openRefsOnBeforeThrow,
   openRefsOnBeforeTryNode,
@@ -47,7 +44,8 @@ import {
 } from "../utils/ref_tracking.mjs"
 
 // This phase is fairly mechanical and should only do discovery, no AST changes.
-// It sets up scope tracking, imports/exports tracking, return value analysis. That sort of thing.
+// It sets up scope tracking, imports/exports tracking, return value analysis, ref tracking (which binding can see which binding). That sort of thing.
+// It does replace Identifier nodes in the AST that are $$123 param names with a special custom Param node
 // It runs twice; once for actual input code and once on normalized code.
 
 // Single scope read/write tracking:
@@ -83,14 +81,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
   const elseStack = [0];
   const tryNodeStack = []; // Stack of try nodes (not pid) (try/catch)
   const trapStack = [0]; // Stack of try-block node $pids (try/catch), to detect being inside a try {} block (opposed to catch/finally)
-  const catchStack = [0]; // Stack of catch node $pids (try/catch)
-  const finallyStack = [0]; // Stack of finally node $pids (try/finally)
+  const catchStack = [0]; // Stack of catch _block_ node $pids (try/catch)
+  const finallyStack = [0]; // Stack of finally _block_ node $pids (try/finally)
   let readWriteCounter = 0;
-
-  // For each block,branch,loop,func; track the last writes, which decls were generated in this block, and whether it is a loop/func (?)
-  // When going back up, drop all decls from the open set of writes. When going up a function, pop the writes entirely.
-  const lastWritesPerName = []; // Array<Map<name, Set<Write>>>. One per scope. If we leave a scope, pop this state (or maybe do something smart first)
-  const lastWritesAtStartPerLoop = [];
 
   /**
    * @type {Map<string, Meta>}
@@ -132,9 +125,9 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       ', pass=' + passes + ', phase1s=', phase1s, ', len:', fdata.len, '\n##################################\n\n\n',
   );
   try {
-    if (VERBOSE_TRACING) {
-      const code = fmat(tmat(ast));
-      vlog('\nCurrent state (start of phase1)\n--------------\n' + code + '\n--------------\n');
+    if (VERBOSE_TRACING || REF_TRACK_TRACING) {
+      const code = fmat(tmat(ast, true), true);
+      console.log('\nCurrent state (start of phase1)\n--------------\n' + code + '\n--------------\n');
     }
   } catch (e) {
     vlog('printing ast failed');
@@ -148,12 +141,14 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
   let called = 0;
   const now = Date.now();
-  if (REF_TRACK_TRACING) console.group(`RTT: phase1 (REF_TRACK_TRACING=${REF_TRACK_TRACING}, this is hardcoded)\n`);
+  vlog(`RTT: phase1 (REF_TRACK_TRACING=${REF_TRACK_TRACING}, enable with --ref-tracing)\n`);
+  if (REF_TRACK_TRACING) console.group();
   log('Walking AST...');
   walk(_walker, ast, 'ast');
   log('Walked AST in', Date.now() - now, 'ms');
   if (REF_TRACK_TRACING) console.groupEnd();
-  if (REF_TRACK_TRACING) console.log('End of phase1\n');
+  vlog('End of phase1\n');
+
   function _walker(node, before, nodeType, path) {
     ASSERT(node, 'node should be truthy', node);
     ASSERT(nodeType === node.type);
@@ -217,7 +212,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
 
       case 'Program:before': {
         funcStack.push(node);
-        lastWritesPerName.push(new Map());
         ifIds.push(0);
         blockBodies.push(node.body);
         blockIds.push(+node.$p.pid);
@@ -229,7 +223,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.blockChain = '0';
         node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
         node.$p.ownBindings = new Set();
-        node.$p.referencedNames = new Set();
         node.$p.paramNames = [];
         loopStack.push(null);
 
@@ -238,8 +231,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'Program:after': {
         funcStack.pop();
         ASSERT(funcStack.length === 0, 'stack should be empty now');
-        lastWritesPerName.pop(); // Do we want to do something with this?
-        ASSERT(lastWritesPerName.length === 0, 'stack should be empty now');
         blockBodies.pop();
         ASSERT(blockBodies.length === 0, 'stack should be empty now');
         blockIds.pop();
@@ -283,7 +274,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       case 'BlockStatement:before': {
         node.$p.promoParent = blockStack[blockStack.length - 1];
 
-        blockStack.push(node); // Do we assign node or node.body?
+        blockStack.push(node);
 
         openRefsOnBeforeBlock(node, parentNode, parentProp, blockStack[blockStack.length - 2]);
 
@@ -299,120 +290,18 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         } else {
           blockIds.push(+node.$p.pid);
         }
-        node.$p.blockChain = blockIds.join(',');
-        if (parentNode.type === 'IfStatement') {
-          // Last write analysis:
-          //      Tricky ;) we need to store the last writes for the consequent first, then when entering
-          //      the alternate branch replace it with the last writes as they were at the start of the
-          //      consequent branch and store the end state after the consequent branch. Then after the
-          //      alternate branch, replace the state with a union of the two branches, except without
-          //      the state for branches that completed early (return/throw/continue/break). The break
-          //      and continue case is far more complex since their state does need to be merged after
-          //      the jump target (so to speak). Return and throw just forfeit the state since it must
-          //      cross a function boundary at that point.
-          //      If we are about to enter the consequent branch, backup the current last write state.
-          //      Otherwise, backup the current last write state, replace it with the backed up state.
-          //      The "after" handler should merge the two when returning from this node.
 
+        node.$p.blockChain = blockIds.join(',');
+
+        if (parentNode.type === 'IfStatement') {
           if (parentNode.consequent === node) {
             ifIds.push(+parentNode.$p.pid);
             ifStack.push(+parentNode.$p.pid);
-
-            vlog('Entering `if`. Backup the top lastWriteStack state to parentNode.$p.lastWritesBackupBefore');
-            const currentLastWritesClone = lastWrites_cloneLastMap(lastWritesPerName[lastWritesPerName.length - 1]);
-            parentNode.$p.lastWritesBackupBefore = currentLastWritesClone;
           } else if (parentNode.alternate === node) {
             ifIds.push(-parentNode.$p.pid);
             elseStack.push(+parentNode.$p.pid);
-
-            vlog('Entering `else`. Backup the top lastWriteStack state, then restoring it to the way it was before this `if`');
-            const currentLastWritesClone = lastWrites_cloneLastMap(lastWritesPerName[lastWritesPerName.length - 1]);
-            parentNode.$p.lastWriteStackAfterIf = currentLastWritesClone;
-            ASSERT(
-              parentNode.$p.lastWritesBackupBefore,
-              'where is parentNode.$p.lastWritesBackupBefore?',
-              parentNode.$p.lastWritesBackupBefore,
-            );
-            lastWritesPerName[lastWritesPerName.length - 1] = parentNode.$p.lastWritesBackupBefore;
-            parentNode.$p.lastWritesBackupBefore = 'used'; // delete reference. prevent dupe references etc.
-          } else {
-            ASSERT(false);
           }
-        } else if (parentNode.type === 'TryStatement') {
-          // Last write analysis:
-          //      This is roughly the same as the `if`. Worst case we have to assume a binding might be manipulated by
-          //      any of the three blocks so they must be merged after the block.
-          //      Since the (first) block may break at any point while having any partial step of it observable after
-          //      we must consider the writes potentially reachable after the try. So we merge, like we do in the `if`.
-          //      The catch clause may be executed or not, so same deal. However, the finallly block, if it exists, must
-          //      always be executed and is not trapped any further. So for the purpose of last write tracking, we can
-          //      consider it a regularly nested block. Do the merges for try/catch and do not treat this block special.
-
-          // Note: this must be the block (first one) or the finalizer. The catch will be child of a CatchClause.
-          if (parentProp === 'block') {
-            vlog('Before the try-block. Backup the top lastWriteStack state to parentNode.$p.lastWritesBackupBefore');
-            const currentLastWritesClone = lastWrites_cloneLastMap(lastWritesPerName[lastWritesPerName.length - 1]);
-            parentNode.$p.lastWritesBackupBefore = currentLastWritesClone;
-          } else if (parentProp === 'finalizer') {
-            if (parentProp.handler) {
-              // Wost case, the finally block runs when either the try block runs completely, or the catch
-              // block runs completely (or almost both). It's also possible that both blocks crash immediately
-              // which means the before state may still be relevant as well. So merge all three states here.
-              vlog('Before the final block. There was a catch. Merge the before, try, and catch states.');
-              // Merge the catch state with the try state and before state. Use that for the rest.
-              const lastWritesBefore = parentNode.$p.lastWritesBackupBefore;
-              const lastWritesTry = parentNode.$p.lastWritesBackupTry;
-              const lastWritesCatch = lastWritesPerName[lastWritesPerName.length - 1];
-
-              ASSERT(lastWritesBefore && lastWritesTry && lastWritesCatch, 'should have three states');
-
-              // Now merge the before and try state into lastWritesCatch (current) and leave it there
-              lastWrite_mergeLastWriteMapsByRef(lastWritesBefore, lastWritesCatch);
-              lastWrite_mergeLastWriteMapsByRef(lastWritesTry, lastWritesCatch);
-
-              parentNode.$p.lastWritesBackupBefore = 'used';
-              parentNode.$p.lastWritesBackupTry = 'used';
-            } else {
-              // Worst case the try block crashed immediately (making the before state relevant). Best case
-              // it ran to completion (making the try block relevant). So merge them both here.
-              vlog('Before the final block. This `try` has no catch. Merge the try state with the before state.');
-
-              // Current is try state. Merge the before state into it. Use that for the rest.
-              const lastWritesBefore = parentNode.$p.lastWritesBackupBefore;
-              const lastWritesTry = lastWritesPerName[lastWritesPerName.length - 1];
-
-              ASSERT(lastWritesBefore && lastWritesTry, 'should have two states');
-
-              // Now merge the before and try state into lastWritesCatch (current) and leave it there
-              lastWrite_mergeLastWriteMapsByRef(lastWritesBefore, lastWritesTry);
-
-              parentNode.$p.lastWritesBackupBefore = 'used';
-            }
-          } else {
-            ASSERT(false);
-          }
-        } else if (parentNode.type === 'CatchClause') {
-          // Worst case the try block crashed immediately (making the before state relevant). Best case
-          // it ran to completion (making the try block relevant). So merge them both here.
-          vlog('Before the catch block. Merge the try state with the before state.');
-
-          const grandNode = pathNodes[pathNodes.length - 3];
-
-          // Current is try state. Merge the before state into it. Use that for the rest.
-          const lastWritesBefore = grandNode.$p.lastWritesBackupBefore;
-          const lastWritesTry = lastWritesPerName[lastWritesPerName.length - 1];
-          grandNode.$p.lastWritesBackupTry = lastWrites_cloneLastMap(lastWritesTry);
-
-          ASSERT(lastWritesBefore && lastWritesTry, 'should have two states');
-
-          // Now merge the before and try state into lastWritesCatch (current) and leave it there
-          lastWrite_mergeLastWriteMapsByRef(lastWritesBefore, lastWritesTry);
         }
-
-        vlog(
-          'last writes:',
-          [...lastWritesPerName[lastWritesPerName.length - 1].entries()].map(([v, k]) => v + ':' + k.size),
-        );
 
         break;
       }
@@ -423,7 +312,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         blockIds.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterBlock(node, parentNode, parentProp, loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack);
+        openRefsOnAfterBlock(node, parentNode, parentProp, loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchStack, finallyStack);
 
         if (tryNodeStack.length) {
           if (parentProp === 'finalizer') finallyStack.pop();
@@ -452,77 +341,15 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           }
         });
 
-        vlog(`Last write analysis (of the block of a ${parentNode.type})`);
-        vlog(
-          `  - last writes before:`,
-          [...lastWritesPerName[lastWritesPerName.length - 1].entries()].map(([v, k]) => `${v}: ${k.size}x`),
-        );
-        const currentLastWrites = lastWritesPerName[lastWritesPerName.length - 1];
-        if (parentNode.type === 'IfStatement') {
-          if (node === parentNode.consequent) {
-            // Ignore the `if` branch. Wait for completion of the `else` branch.
-            vlog('This was the `if` branch of an `if`. Skipping until else-branch');
-            ifStack.pop();
-          } else {
-            vlog('This was the `else` branch of an `if`');
-            elseStack.pop();
-            // Last write analysis:
-            //      Ok, merge the backed up consequent end state into the current end state. The "last writes" for both
-            //      branches are reachable for reads that follow the if. Early completions are handled through other rules.
-            lastWrite_mergeLastWriteMapsByRef(parentNode.$p.lastWriteStackAfterIf, currentLastWrites);
-            parentNode.$p.lastWriteStackAfterIf = 'used';
-          }
-        } else if (['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(parentNode.type)) {
-          // Last write analysis:
-          //      Merge the lastWriteStack with the backup at the start of the loop, stored in lastWritesAtStartPerLoop.
-          //      Semantically speaking, the writes reachable at the start of the loop are always reachable after the loop
-          //      if the loop condition was always false. That is our worst case so that's why we must merge.
-          //      I believe I should not do early completion analysis here because it would mess with try/catch/finally
-          //      and it's implicitly handled in if-else through other rules. :shrug:
-          const before = lastWritesAtStartPerLoop[lastWritesAtStartPerLoop.length - 1];
-          lastWrite_mergeLastWriteMapsByRef(before.allWrites, currentLastWrites);
-        } else if (parentNode.type === 'TryStatement') {
-          // Skip the try, and skip the catch if there's a finalizer
-          // Otherwise don't do anything here (for last writes). It is handled in the block:before.
-          if (parentProp === 'finalizer') {
-            vlog('Exiting the try. Replacing the last writes with that of the `finally` block');
-            // Eh. So we don't need to do anything.
-          } else {
-            vlog('Not the last block of the try. Noop');
-          }
-        } else if (parentNode.type === 'CatchClause') {
-          if (parentNode.finalizer) {
-            vlog('This was a catch block and there is a finalizer so we dont do anything (the before visitor will fix it)');
-          } else {
-            vlog('This was a catch block and there was no catch block. Merge the current last writes set with the try block state');
-            // Make the current last writes set be the result of the catch and the try
-
-            // The CatchClause has an extra layer in the AST :(
-            const grandNode = pathNodes[pathNodes.length - 3];
-
-            const lastWritesCatch = currentLastWrites;
-            const lastWritesTry = grandNode.$p.lastWritesBackupTry;
-
-            ASSERT(lastWritesTry && lastWritesCatch, 'should have two states');
-
-            // Now merge the before and try state into lastWritesCatch (current) and leave it there
-            lastWrite_mergeLastWriteMapsByRef(lastWritesTry, lastWritesCatch);
-
-            grandNode.$p.lastWritesBackupTry = 'used';
-          }
-        } else {
-          // This Block was a function or label or something. But not an if or loop or try. Assuming linear flow
-          // which means the reachable writes are all reachable after this block, verbatim.
-          vlog('Last writes stack does not change because this block does not change flow.');
-        }
-        vlog(
-          '  - last writes after: ',
-          [...currentLastWrites.entries()].map(([v, k]) => `${v}: ${k.size}x`),
-        );
-
         if (parentNode.type === 'IfStatement') {
           ifIds.pop();
+          if (node === parentNode.consequent) {
+            ifStack.pop();
+          } else {
+            elseStack.pop();
+          }
         }
+
         ASSERT(blockIds.length, 'meh?');
         break;
       }
@@ -622,19 +449,15 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnBeforeLoop('in', node, parentBlock);
 
-        node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
-        node.$p.outWrites = new Set(); // Dito for writes
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         loopStack.push(node);
-        const currentLastWritesClone = lastWrites_cloneLastMap(lastWritesPerName[lastWritesPerName.length - 1]);
-        lastWritesAtStartPerLoop.push({ loopNode: node, allWrites: currentLastWritesClone });
         break;
       }
       case 'ForInStatement:after': {
         loopStack.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterLoop('in', node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);
+        openRefsOnAfterLoop('in', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack);
         break;
       }
 
@@ -642,26 +465,21 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnBeforeLoop('of', node, parentBlock);
 
-        node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
-        node.$p.outWrites = new Set(); // Dito for writes
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         loopStack.push(node);
-        const currentLastWritesClone = lastWrites_cloneLastMap(lastWritesPerName[lastWritesPerName.length - 1]);
-        lastWritesAtStartPerLoop.push({ loopNode: node, allWrites: currentLastWritesClone });
         break;
       }
       case 'ForOfStatement:after': {
         loopStack.pop();
 
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterLoop('of', node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);
+        openRefsOnAfterLoop('of', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack);
         break;
       }
 
       case 'FunctionExpression:before': {
         node.$p.blockChain = blockIds.join(',');
         node.$p.ownBindings = new Set();
-        node.$p.referencedNames = new Set();
         node.$p.paramNames = [];
         node.$p.readsArgumentsAny = false;
         node.$p.readsArgumentsLen = false;
@@ -676,7 +494,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         blockIds.push(0); // Inject a zero to mark function boundaries
         ifIds.push(0);
         loopStack.push(null);
-        lastWritesAtStartPerLoop.push(null); // Mark function boundary
 
         if (firstAfterParse) {
           vlog('Converting parameter nodes to special Param nodes');
@@ -699,7 +516,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         node.$p.returnNodes = [];
 
         funcStack.push(node);
-        lastWritesPerName.push(new Map());
         thisStack.push(node);
 
         node.$p.funcChain = funcStack.map((n) => n.$p.pid).join(',');
@@ -707,13 +523,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
       case 'FunctionExpression:after': {
         funcStack.pop();
-        lastWritesPerName.pop(); // Do we want to do something smart here?
         blockIds.pop(); // the zero
         ifIds.pop(); // the zero
         loopStack.pop();
         ASSERT(blockIds.length, 'meh3?');
         thisStack.pop();
-        lastWritesAtStartPerLoop.pop(); // null
 
         if (funcStack.length > 1) {
           // This is relevant for determining whether this function can be cloned when it is called with a primitive
@@ -822,7 +636,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         }
         else if ((kind === 'read' || kind === 'write') && /^\$\$\d+$/.test(name)) {
           const paramNode = AST.param(name, false);
-          vlog('This is a special param "keyword" by Preval. Replacing ident with param node;', paramNode);
+          vlog('This is a special $$123 param "keyword" by Preval. Replacing ident with param node;', paramNode);
           if (parentIndex < 0) parentNode[parentProp] = paramNode;
           else parentNode[parentProp][parentIndex] = paramNode;
         }
@@ -873,10 +687,6 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
           const grandProp = pathProps[pathProps.length - 2];
           const grandIndex = pathIndexes[pathIndexes.length - 2];
 
-          const currentLastWriteMapForName = lastWritesPerName[lastWritesPerName.length - 1];
-          let currentLastWriteSetForName = currentLastWriteMapForName.get(name);
-          //vlog('Last write analysis; this ref can reach', currentLastWriteSetForName?.size ?? 0, 'writes...');
-
           if (kind === 'read') {
             const blockNode = blockStack[blockStack.length - 1];
             // Note: this could be a property write, but it's not a binding mutation.
@@ -913,60 +723,10 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               innerTrap,
               innerCatch,
               innerFinally,
-              openRefsRCanRead: new Set,
             });
             meta.reads.push(read);
 
             openRefsOnBeforeRead(read, blockNode, meta);
-
-            if (currentLastWriteSetForName) {
-              // This is the write(s) this read can reach. Can be multiple, for example after two writes in a branch.
-              currentLastWriteSetForName.forEach((write) => {
-                // Point to each other
-                vlog(
-                  '  - Pointing a read and a write to each other',
-                  read.action + ':' + read.kind + ':' + read.node.$p.pid + '.reachesWrites <->',
-                  write.action + ':' + write.kind + ':' + write.node.$p.pid + '.reachedByReads',
-                );
-                read.reachesWrites.add(write);
-                write.reachedByReads.add(read);
-              });
-              // Now check whether this read crosses any loop boundary (must check all, in case nested, until we encounter
-              // the block containing the binding, which we must invariably encounter at some point in normalized code).
-
-              // No matter how nested the read is, it should be added to the outReads for any block up to the block with decl
-              // let a, b, c, d, e;
-              // f(d); // 0x
-              // while (true) {
-              //   f(a); // 1x
-              //   c = 1;
-              //   if ($) e = 1;
-              //   while (true) {
-              //     f(b); // 2x
-              //     while (true) {
-              //       f(c); // 2x (!)
-              //       f(e); // 2x (but none of the parents will have a blockchain match!)
-              //     }
-              //   }
-              // }
-
-              // Walk the stack backwards. Stop at function boundaries (element is null) or end.
-              // We walk all the loops in current function because we don't really know when to stop, but in the real
-              // world the worst case should not be morse than a handful of loops, so I think it's fine.
-              for (let i = lastWritesAtStartPerLoop.length - 1; i >= 0; --i) {
-                const lastWritesAtLoopStart = lastWritesAtStartPerLoop[i];
-                if (lastWritesAtLoopStart === null) break; // Function boundary
-
-                const lastWrites = lastWritesAtLoopStart.allWrites.get(name);
-                if (lastWrites) {
-                  // At the end of this loop, connect all outReads reads to the bindings still open at that point.
-                  // The idea here is if the loop loops, these last writes are now going to be read by these reads.
-                  lastWritesAtLoopStart.loopNode.$p.outReads.add(read);
-                }
-              }
-            }
-
-            currentScope.$p.referencedNames.add(name);
           }
           if (kind === 'write') {
             const blockNode = blockStack[blockStack.length - 1];
@@ -1003,74 +763,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
               innerTrap,
               innerCatch,
               innerFinally,
-              openRefsRReadBy: new Set,
-              openRefsROverwrittenBy: new Set,
-              openRefsRCanOverwrite: new Set,
             });
 
             meta.writes.push(write);
-            //meta.writes.unshift(write); // TODO: used to shift if parentNode.type === 'VariableDeclarator'. Do we assert on that? I think I'd rather have .writes ordered by occurrence
 
             openRefsOnBeforeWrite(write, blockNode, meta);
-
-            if (currentLastWriteSetForName) {
-              // This is the write(s) this write can reach. Can be multiple, for example after two writes in a branch.
-              currentLastWriteSetForName.forEach((prevWrite) => {
-                // Point to each other
-                if (prevWrite !== write) {
-                  vlog('  - Pointing two writes to each other (reachesWrites, reachedByWrites)');
-                  vlog('    From:  ', prevWrite.action + ':' + prevWrite.kind + ':' + prevWrite.node.$p.pid);
-                  vlog('    To:    ', write.action + ':' + write.kind + ':' + write.node.$p.pid);
-                  // "A write is reachable when a future write can change it"
-                  // "A write can reach another write when it might possibly change a binding set by that other write"
-                  // Eg. `x = 1; x = 2;` The first x is "reachedBy" the second write, the second write "reaches" the first.
-                  prevWrite.reachedByWrites.add(write);
-                  write.reachesWrites.add(prevWrite);
-                } else {
-                  vlog('  - Not pointing the write to itself');
-                }
-              });
-              // Now check whether this read crosses any loop boundary (must check all, in case nested, until we encounter
-              // the block containing the binding, which we must invariably encounter at some point in normalized code).
-
-              // No matter how nested the read is, it should be added to the outReads for any block up to the block with decl
-              // let a, b, c, d, e;
-              // f(d); // 0x
-              // while (true) {
-              //   f(a); // 1x
-              //   c = 1;
-              //   if ($) e = 1;
-              //   while (true) {
-              //     f(b); // 2x
-              //     while (true) {
-              //       f(c); // 2x (!)
-              //       f(e); // 2x (but none of the parents will have a blockchain match!)
-              //     }
-              //   }
-              // }
-
-              // Walk the stack backwards. Stop at function boundaries (element is null) or end.
-              // We walk all the loops in current function because we don't really know when to stop, but in the real
-              // world the worst case should not be morse than a handful of loops, so I think it's fine.
-              for (let i = lastWritesAtStartPerLoop.length - 1; i >= 0; --i) {
-                const lastWritesAtLoopStart = lastWritesAtStartPerLoop[i];
-                if (lastWritesAtLoopStart === null) break; // Function boundary
-
-                const lastWrites = lastWritesAtLoopStart.allWrites.get(name);
-                if (lastWrites) {
-                  // At the end of this loop, connect all outWrites writes to the bindings still open at that point.
-                  // The idea here is if the loop loops, these last writes are now going to be reachable by these writes.
-                  lastWritesAtLoopStart.loopNode.$p.outWrites.add(write);
-                }
-              }
-            }
-
-            vlog(
-              'Last write analysis: this binding had',
-              currentLastWriteSetForName?.size ?? 0,
-              'reachable writes before this one. Replacing the reachable writes for `' + name + '` with this ' + write.kind + '.',
-            );
-            currentLastWriteMapForName.set(name, new Set([write]));
 
             // Inject var decls at the top, append other writes at the end
             if (parentNode.type === 'VariableDeclarator') {
@@ -1154,7 +851,7 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
       case 'IfStatement:after': {
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnafterIf(node, parentBlock, globallyUniqueLabelRegistry, loopStack, blockStack, tryNodeStack);
+        openRefsOnafterIf(node, parentBlock, path, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, blockStack, catchStack, finallyStack);
 
         if (node.consequent.$p.earlyComplete || node.alternate.$p.earlyComplete) {
           vlog('At least one branch had an early completion');
@@ -1225,18 +922,11 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
       }
 
       case 'LabeledStatement:before': {
-        const parentBlock = blockStack[blockStack.length - 1];
-        openRefsLabelOnBefore(node, parentBlock);
-
-        // TODO: with the new normalization rules, do we still have labels, break, and continue here?
         vlog(`Label: \`${node.label.name}\``);
         registerGlobalLabel(fdata, node.label.name, node.label.name, node);
         break;
       }
       case 'LabeledStatement:after': {
-        const parentBlock = blockStack[blockStack.length - 1];
-        openRefsLabelOnAfter(node, parentBlock, globallyUniqueLabelRegistry, loopStack);
-
         if (node.body.$p.earlyComplete) {
           vlog('Label block/loop contained at least one early completion');
           node.$p.earlyComplete = true;
@@ -1488,24 +1178,16 @@ export function phase1(fdata, resolve, req, firstAfterParse, passes, phase1s, re
         const parentBlock = blockStack[blockStack.length - 1];
         openRefsOnBeforeLoop('while', node, parentBlock);
 
-        node.$p.outReads = new Set(); // All reads inside this loop that reach a write outside of this loop (they also reach "last writes" at the end of this loop)
-        node.$p.outWrites = new Set(); // Dito for writes
         funcStack[funcStack.length - 1].$p.hasBranch = true;
         loopStack.push(node);
-        const currentLastWritesClone = lastWrites_cloneLastMap(lastWritesPerName[lastWritesPerName.length - 1]);
-        lastWritesAtStartPerLoop.push({ loopNode: node, allWrites: currentLastWritesClone });
         break;
       }
       case 'WhileStatement:after': {
-        loopStack.pop();
-
         const parentBlock = blockStack[blockStack.length - 1];
-        openRefsOnAfterLoop('while', node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);
+        openRefsOnAfterLoop('while', node, parentBlock, path, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack);
 
-        const lastWritesAtLoopStart = lastWritesAtStartPerLoop.pop();
-        const currentLastWriteMapForName = lastWritesPerName[lastWritesPerName.length - 1];
-        lastWrites_closeTheLoop(lastWritesAtLoopStart, currentLastWriteMapForName);
-
+        // Pop after the callback because it needs to find the current loop
+        loopStack.pop();
         break;
       }
     }
@@ -1575,56 +1257,6 @@ function reachAtString(set, what) {
     return `0 ${what}`;
   }
   return `${set.size} ${what} (@ ${Array.from(set).map(r => r.node.$p.pid).join(',')})`;
-}
-
-function lastWrites_cloneLastMap(map) {
-  // The map should be a Map of Sets of Writes. We want to clone the map and set, not the writes themselves.
-  const clone = new Map(map);
-  map.forEach((set, name) => clone.set(name, new Set(set)));
-  return clone;
-}
-function lastWrites_closeTheLoop(lastWritesAtLoopStart, currentLastWriteMapForName) {
-  lastWritesAtLoopStart.loopNode.$p.outReads.forEach((read) => {
-    let currentLastWriteSetForName = currentLastWriteMapForName.get(read.name);
-    if (currentLastWriteSetForName) {
-      currentLastWriteSetForName.forEach((write) => {
-        write.reachedByReads.add(read);
-        read.reachesWrites.add(write);
-      });
-    }
-  });
-  lastWritesAtLoopStart.loopNode.$p.outWrites.forEach((outWrite) => {
-    let currentLastWriteSetForName = currentLastWriteMapForName.get(outWrite.name);
-    if (currentLastWriteSetForName) {
-      currentLastWriteSetForName.forEach((write) => {
-        if (outWrite !== write) {
-          vlog('  - Closing loop. Pointing two writes to each other (reachesWrites, reachedByWrites)');
-          vlog('    Loop end:      ', outWrite.action + ':' + outWrite.kind + ':' + outWrite.node.$p.pid);
-          vlog('    Loop begin:    ', write.action + ':' + write.kind + ':' + write.node.$p.pid);
-          // "A write is reachable when a future write can change it"
-          // "A write can reach another write when it might possibly change a binding set by that other write"
-          // Eg. `x = 1; while(true) x = 2;` The outer x is "reachedBy" the inner write, the inner write "reaches" the outer.
-          outWrite.reachedByWrites.add(write);
-          write.reachesWrites.add(outWrite);
-        }
-      });
-    }
-  });
-}
-function lastWrite_mergeLastWriteMapsByRef(from, to) {
-  ASSERT(from instanceof Map, 'from must be map');
-  ASSERT(to instanceof Map, 'to must be map');
-  // Add all refs in `from` sets to the sets of `to`. For each name, if the set exists in `to`,
-  // copy all refs in the `from` set, into the `to` set. If the `to` map does not have a certain
-  // name then copy the reset (by reference(!)) into the `to` map.
-  from.forEach((oldSet, name) => {
-    const set = to.get(name);
-    if (set) {
-      oldSet.forEach((write) => set.add(write));
-    } else {
-      to.set(name, oldSet);
-    }
-  });
 }
 
 function isTailNode(completionNode, tailNode) {

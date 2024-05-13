@@ -61,7 +61,7 @@ function _redundantWrites(fdata) {
     if (varWrite.reachedByReads.size === 0) {
       hasNoPrimitives = true;
       vlog('Going to try and find a write with primitive to replace the init (1)');
-      [...varWrite.reachedByWrites].some((shadowWrite) => {
+      Array.from(varWrite.reachedByWrites).some((shadowWrite) => {
         vlog('-', shadowWrite.action + ':' + shadowWrite.kind, shadowWrite.parentNode.right.type);
         if (shadowWrite.kind !== 'assign') {
           // for
@@ -121,7 +121,7 @@ function _redundantWrites(fdata) {
 
         vgroup('  - Scanning all writes that reach this writes (', write.reachesWrites.size, ')');
         if (
-          [...write.reachesWrites].every((prevWrite) => {
+          Array.from(write.reachesWrites).every((prevWrite) => {
             vlog('  -', prevWrite.action + ':' + prevWrite.kind, prevWrite.parentNode.right?.type, prevWrite.parentNode.init?.type);
             if (prevWrite === replacedWith) {
               vlog('   - Skip. This one was deleted in previous block.');

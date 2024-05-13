@@ -21,7 +21,7 @@
 
 `````js filename=intro
 let x = 5;
-while (true) { 
+while (true) {
   if ($(false)) {
     x = 6;
   } else {
@@ -32,6 +32,79 @@ while (true) {
   }
 }
 $(x); // x=5 or x=6
+
+
+
+
+
+//// SSA
+//{
+//  let x = 5;
+//  loopBody(x);
+//  
+//  function loopBody($$1) {
+//    let x = $$1;
+//    if ($(false)) {
+//      let y = 6;
+//      if ($(true)) {
+//        $(y);
+//      } else {
+//        loopBody(y);
+//      }
+//    } else {
+//      $(x); // x=5 or x=6
+//      if ($(true)) {
+//        $(x);
+//      } else {
+//        loopBody(x);
+//      }
+//    }
+//  }
+//}
+//
+//
+//// SSA v2
+//{
+//  function $continue(x) {
+//    if ($(false)) {
+//      x = 6;
+//    } else {
+//      $(x); // x=5 or x=6
+//    }
+//    if ($(true)) {
+//      $break(x);
+//      return;
+//    }
+//    $continue(x);
+//    return;
+//  }
+//  function $break(x) {
+//    $(x); // x=5 or x=6
+//  }
+//  
+//  let x = 5;
+//  $continue(x);
+//}
+//
+//
+//{
+//  function $continue(x) {
+//    if ($(false)) {
+//      x = 6;
+//    } else {
+//      $(x); // x=5 or x=6
+//    }
+//    if ($(true)) {
+//      $(x); // x=5 or x=6
+//      return;
+//    }
+//    $continue(x);
+//    return;
+//  }
+//  
+//  let x = 5;
+//  $continue(x);
+//}
 `````
 
 ## Output
@@ -60,10 +133,10 @@ Ref tracking result:
 
                 | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 41          | none           | none
-  - w @21      | ########## | not read    | none           | none
-  - r @26      | none (TDZ?)
-  - r @41      | 4
+  - w @4       | ########## | 26,41       | none           | 21
+  - w @21      | ########## | 26,41       | 4,21           | 21
+  - r @26      | 4,21
+  - r @41      | 4,21
 
 tmpIfTest:
   - w @11      | ########## | 16          | none           | none

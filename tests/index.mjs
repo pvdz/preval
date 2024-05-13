@@ -45,7 +45,7 @@ import {
   BUILTIN_REGEXP_METHOD_LOOKUP,
   BUILTIN_NUMBER_METHOD_LOOKUP, BUILTIN_BOOLEAN_PROTOTYPE, BUILTIN_BOOLEAN_METHODS_SUPPORTED, BUILTIN_BOOLEAN_METHOD_LOOKUP,
 } from '../src/constants.mjs';
-import { coerce, log, vlog } from '../src/utils.mjs';
+import { coerce, log, setRefTracing, vlog } from '../src/utils.mjs';
 import { getTestFileNames, PROJECT_ROOT_DIR } from './cases.mjs';
 import { parseTestArgs } from './process-env.mjs';
 // Note: worker_threads are node 10.15. I'd make them optional if import syntax allowed this, but I'm not gonna taint the whole test suite with async for the sake of it.
@@ -59,6 +59,7 @@ const CONFIG = parseTestArgs();
 if (isMainThread) {
   console.log(CONFIG);
 }
+if (CONFIG.refTracing) setRefTracing(true);
 
 if (isMainThread && CONFIG.threads > 1) {
   // Spin off multiple threads and have them do the work in chunks. This thread will do the reporting.

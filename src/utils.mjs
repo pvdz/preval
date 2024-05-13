@@ -5,6 +5,11 @@ import walk from '../lib/walk.mjs';
 
 import { VERBOSE_TRACING, setVerboseTracing, YELLOW, ORANGE_DIM, PURPLE, RESET, DIM } from './constants.mjs';
 
+export let REF_TRACK_TRACING = false;
+export function setRefTracing(bool) {
+  REF_TRACK_TRACING = bool;
+}
+
 export function ASSERT(b, m = '', ...rest) {
   if (!b) {
     groupEnd(true);

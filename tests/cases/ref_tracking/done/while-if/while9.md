@@ -25,7 +25,71 @@ while (true) {
     }
   }
 }
-$(x);
+$(x); // 2, not one (always overwritten before break)
+
+
+
+
+/*
+
+// SSA
+{
+  let x = 1;
+  function $continue1(x) {
+    function $continue2(x) {
+      if ($) {
+        $(x); // Can still see 2 due to outer loop
+      } else {
+        $(x);
+        x = 2;
+        $break2(x);
+        return;
+      }
+      $continue2(x);
+      return;
+    }
+    function $break2(x) {
+      $continue1(x);
+      return;
+    }
+    $continue2(x);
+    return;
+  }
+  function $break1() {
+    $(x);
+  }
+  $continue1(x);
+}
+
+
+// Reduction
+{
+  function $continue2(x) {
+    if ($) {
+      $(x); // Can still see 2 due to outer loop
+      $continue2(x);
+    } else {
+      $(x);
+      $continue2(2);
+    }
+  }
+  $continue2(1);
+}
+
+// Recompile
+{
+  let x = 1;
+  while (true) {
+    if ($) {
+      $(x); // Can still see 2 due to outer loop
+    } else {
+      $(x);
+      x = 2;
+    }
+  }
+}
+
+*/
 `````
 
 ## Output
@@ -52,8 +116,8 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 32          | none           | none
-  - r @18      | none (TDZ?)
-  - r @23      | none (TDZ?)
-  - w @27      | ########## | not read    | none           | none
-  - r @32      | 4
+  - w @4       | ########## | 18,23       | none           | 27
+  - r @18      | 4,27
+  - r @23      | 4,27
+  - w @27      | ########## | 18,23,32    | 4,27           | 27
+  - r @32      | 27

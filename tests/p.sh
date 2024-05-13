@@ -39,6 +39,7 @@ PARAM_IMPTHIS=''
 PARAM_IMPTHIS_VALUE=''
 PARAM_RANDOMIZED=''
 PARAM_REFTEST=''
+PARAM_REF_TRACING=''
 
 BOLD="\e[;1;1m";
 BOLD_RED="\e[1;31m";
@@ -90,6 +91,7 @@ Preval CLI Toolkit help:
  --implicit-this x User defined ident to replace \`this\` when the function is never called with a context. Defaults to \`undefined\`.
  --randomized    Shuffle the test order. All tests will be visited but in .sort(Math.random) order.
  --refTest       Special mode to test ref tracking. Output will be different, dumping ref tracking state after first phase1 pass.
+ --ref-tracing   Print ref tracking trace logs
  -C              Do not print colors
  -n              Only show normalized output
  -t <count>      Run tests in this many threads (default=1; no threads)
@@ -198,6 +200,9 @@ Preval CLI Toolkit help:
     --refTest)
       PARAM_REFTEST='--refTest'
       ;;
+    --ref-tracing)
+      PARAM_REF_TRACING='--refTracing'
+      ;;
     -C)
       shift
       PARAM_NO_COLOR="-C"
@@ -249,7 +254,7 @@ set -x
 case "${ACTION}" in
 
     *)
-      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_7TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_UNROLL_TRUE}" "${PARAM_UNROLL_TRUE_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}"
+      ${NODE_BIN} --max-old-space-size=8192 tests/index.mjs ${ACTION} "${ACTION_ARG}" "${PARAM_NO_COLOR}" "${PARAM_NORM}" "${PARAM_FAST}" -t "${PARAM_THREADS}" "${PARAM_LOG}" "${PARAM_LOGTO}" "${PARAM_MAXPASS}" "${PARAM_MAXPASS_COUNT}" "${PARAM_CLONELIMIT}" "${PARAM_CLONELIMIT_COUNT}" "${PARAM_TRIM_DOLLAR}" "${PARAM_ONLY_OUTPUT}" "${PARAM_7TRACE}" "${PARAM_NO_TRACE}" "${PARAM_SILENT}" "${PARAM_SKIP_EVAL}" "${PARAM_UNROLL}" "${PARAM_UNROLL_VALUE}" "${PARAM_UNROLL_TRUE}" "${PARAM_UNROLL_TRUE_VALUE}" "${PARAM_IMPTHIS}" "${PARAM_IMPTHIS_VALUE}" "${PARAM_RANDOMIZED}" "${PARAM_REFTEST}" "${PARAM_REF_TRACING}"
     ;;
 esac
 set +x

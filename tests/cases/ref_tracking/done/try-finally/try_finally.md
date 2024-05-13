@@ -13,15 +13,16 @@
 `````js filename=intro
 let a = 1;
 try {
-  $(a); // can observe 1
+  $(a); // can only observe 1
   a = 2;
 } finally {
   $(a); // can observe 1 2 
   a = 3;
 }
-$(a); // can observe 3
-      // (finally is always entered. if it succeeds it will overwrite a
-      // and otherwise it won't execute the read at all)
+$(a);   // can only observe 3
+        // (finally is always entered. if it succeeds it will overwrite a
+        // and otherwise it won't execute the read at all. if it gets here
+        // then a will always be 3)
 `````
 
 ## Output
@@ -44,9 +45,9 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 28          | none           | none
-  - r @11      | none (TDZ?)
-  - w @15      | ########## | not read    | none           | none
-  - r @20      | none (TDZ?)
-  - w @24      | ########## | not read    | none           | none
-  - r @28      | 4
+  - w @4       | ########## | 11,20       | none           | 15,24
+  - r @11      | 4
+  - w @15      | ########## | 20          | 4              | 24
+  - r @20      | 4,15
+  - w @24      | ########## | 28          | 4,15           | none
+  - r @28      | 24

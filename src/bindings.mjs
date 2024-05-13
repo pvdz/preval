@@ -509,7 +509,7 @@ export function registerGlobalLabel(fdata, name, originalName, labelNode) {
     uid: ++fdata.globalNameCounter,
     originalName,
     uniqueName: name,
-    labelNode, // All referenced labels must exist (syntax error), labels must appear before their usage when traversing
+    node: labelNode, // All referenced labels must exist (syntax error), labels must appear before their usage when traversing
     usages: [], // {parent, prop, index} of the break/continue statement referring to the label
     labelUsageMap: new Map(), // Map<labelName, {node, body, index}>. References to a label
   });
@@ -553,7 +553,6 @@ export function createReadRef(obj) {
     innerTrap,
     innerCatch,
     innerFinally,
-    openRefsRCanRead,
 
     ...rest
   } = obj;
@@ -604,9 +603,8 @@ export function createReadRef(obj) {
     innerTrap,
     innerCatch,
     innerFinally,
-    reachesWrites: new Set(), // Set<Write>. All writes this read can "reach" (might "observe", syntactically speaking)
 
-    openRefsRCanRead,
+    reachesWrites: new Set(), // Set<Write>. All writes this read can "reach" (might "observe", syntactically speaking)
   };
 }
 export function createWriteRef(obj) {
@@ -639,9 +637,6 @@ export function createWriteRef(obj) {
     innerTrap,
     innerCatch,
     innerFinally,
-    openRefsRReadBy,
-    openRefsROverwrittenBy,
-    openRefsRCanOverwrite,
 
     ...rest
   } = obj;
@@ -690,13 +685,11 @@ export function createWriteRef(obj) {
     innerTrap,
     innerCatch,
     innerFinally,
+
+
     reachedByReads: new Set(), // Set<Read>. All reads that can "reach" this write (might "observe", syntactically speaking)
     reachedByWrites: new Set(), // Set<Read>. All writes that can "reach" this write (this write shadows theirs)
     reachesWrites: new Set(), // Set<Write>. The previous writes to this binding this write can reach. Used for redundant let write detection.
-
-    openRefsRReadBy,
-    openRefsROverwrittenBy,
-    openRefsRCanOverwrite,
   };
 }
 

@@ -49,5 +49,5 @@ f:
   - r @30      | 4
 
 x:
-  - w @10      | ########## | not read    | none           | none
-  - r @24      | none (TDZ?)
+  - w @10      | ########## | 24          | none           | none
+  - r @24      | 10

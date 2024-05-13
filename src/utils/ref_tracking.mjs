@@ -1,4 +1,4 @@
-import {ASSERT, vlog} from "../utils.mjs"
+import {ASSERT, vlog, vgroup, vgroupEnd, REF_TRACK_TRACING} from "../utils.mjs"
 import {createTrebra} from "../trebra.mjs"
 import {createTreblo} from "../treblo.mjs"
 
@@ -15,13 +15,11 @@ import {createTreblo} from "../treblo.mjs"
 // - all bindings that have been written to in all branches, necessary to track firstReads properly without making it ephemeral. boolean? or as pid of first statement after?
 
 
-export const REF_TRACK_TRACING = false;
-
 export function openRefsOnBeforeProgram(node) {
   if (REF_TRACK_TRACING) console.group('RTT: PROGRAM');
   if (REF_TRACK_TRACING) console.group('RTT: PROGRAM:before');
 
-  node.$p.treblo = createTreblo(new Set, new Map, new Map, new Set);
+  node.$p.treblo = createTreblo(new Set, new Map);
 
   if (REF_TRACK_TRACING) console.groupEnd(); // PROGRAM:before
 }
@@ -35,21 +33,27 @@ export function openRefsOnAfterProgram(node) {
 
 export function openRefsOnBeforeBlock(node, parentNode, parentProp, parentBlock) {
   if (REF_TRACK_TRACING) console.group('RTT: BLOCK');
-  if (REF_TRACK_TRACING) console.group('RTT: BLOCK:before', parentNode.type);
+  if (REF_TRACK_TRACING) console.group('RTT: BLOCK:before', parentNode.type, '.', parentProp);
 
-  node.$p.treblo = createTreblo(parentBlock.$p.treblo.defined, parentBlock.$p.treblo.exitWrites, parentBlock.$p.treblo.exitWritesBefore, parentBlock.$p.treblo.overwritten);
+  node.$p.treblo = createTreblo(
+    parentBlock.$p.treblo.defined,
+    parentBlock.$p.treblo.exitWrites,
+    //parentBlock.$p.treblo.exitWritesBefore,
+    //parentBlock.$p.treblo.overwritten
+  );
 
   // Special case nodes with multiple block children that depend on each
   // other but where the walker does not visit another node in between
   switch (parentNode.type) {
     case 'TryStatement': {
       if (parentProp === 'block') {
+        // Must set the Treblo on the handler and finalizer blocks now. Can't wait.
         openRefsOnBeforeTryBody(node, parentNode, parentProp, parentBlock);
       } else if (parentProp === 'finalizer') {
         openRefsOnBeforeFinallyBody(node, parentNode, parentProp, parentBlock);
       } else {
         console.log('prop:', parentProp)
-        TODO // ??
+        ASSERT(false, 'what is this', parentNode.type, parentProp) // ??
       }
       break;
     }
@@ -80,7 +84,7 @@ export function openRefsOnBeforeBlock(node, parentNode, parentProp, parentBlock)
     }
 
     default: {
-      if (REF_TRACK_TRACING) console.log('RTT: block:enter unknown node,', parentNode.type);
+      if (REF_TRACK_TRACING) console.log('RTT: block:enter,', parentNode.type, 'block @', +node.$p.pid);
       ASSERT(['IfStatement', 'WhileStatement', 'ForInStatement', 'ForOfStatement', 'LabeledStatement', 'FunctionExpression'].includes(parentNode.type), 'expecting normalized code but found an unexpected node', parentNode.type);
     }
   }
@@ -88,24 +92,24 @@ export function openRefsOnBeforeBlock(node, parentNode, parentProp, parentBlock)
   if (REF_TRACK_TRACING) console.groupEnd(); // BLOCK:before
 }
 
-export function openRefsOnAfterBlock(node, parentNode, parentProp, loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack) {
+export function openRefsOnAfterBlock(node, parentNode, parentProp, loopStack, parentBlock, globallyUniqueLabelRegistry, tryNodeStack, catchStack, finallyStack) {
   if (REF_TRACK_TRACING) console.group('RTT: BLOCK:after', parentNode.type);
 
   switch (parentNode.type) {
     case 'TryStatement': {
       if (parentProp === 'block') {
-        openRefsOnAfterTryBody(node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack);
+        openRefsOnAfterTryBody(node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack);
       } else if (parentProp === 'finalizer') {
-        openRefsOnAfterFinallyBody(node, parentNode, parentProp, globallyUniqueLabelRegistry, loopStack);
+        openRefsOnAfterFinallyBody(node, parentNode, parentProp, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
       } else {
         console.log('prop:', parentProp)
-        TODO // ??
+        ASSERT(false, 'what is this', parentNode.type, parentProp) // ??
       }
       break;
     }
 
     case 'CatchClause': {
-      openRefsOnAfterCatchBody(node, parentNode, parentProp);
+      openRefsOnAfterCatchBody(node, parentNode, parentProp, loopStack, tryNodeStack, catchStack, finallyStack);
       break;
     }
   }
@@ -119,146 +123,101 @@ export function openRefsOnBeforeIf(node, parentBlock) {
   if (REF_TRACK_TRACING) console.group('RTT: IF,', parentBlock.$p.treblo.defined.size, 'known bindings');
   if (REF_TRACK_TRACING) console.group('RTT: IF:before');
 
-  node.$p.openRefsT = createTrebra();
+  node.$p.trebra = createTrebra();
 
   if (REF_TRACK_TRACING) console.groupEnd(); // IF:before
 }
 
-export function openRefsOnafterIf(node, parentBlock, globallyUniqueLabelRegistry, loopStack, blockStack, tryNodeStack) {
+export function openRefsOnafterIf(node, parentBlock, walkerPath, globallyUniqueNamingRegistry, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack) {
   if (REF_TRACK_TRACING) console.group('RTT: IF:after');
 
-  const continuationNodeTrueBranch = findContinuationNode(node.consequent.$p.treblo.wasAbrupt, globallyUniqueLabelRegistry, loopStack);
+  const trebloTrue = node.consequent.$p.treblo;
+  const trebloFalse = node.alternate.$p.treblo;
 
-  // Check for breaking through a finally barrier
-  // We need to confirm whether there's a `try` node with a pid between the target node and the current node
-  // If there is, we need to confirm whether this node has a `finally` block
-  // If so, we need to special case that because the finally is a forced path, that's its job
+  if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(consequent)');
+  const [continuationBlockTrue, nearestCatchBlockTrue, nearestFinallyBlockTrue] = findAndQueueContinuationBlock(node.consequent, trebloTrue.wasAbrupt, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+  if (REF_TRACK_TRACING) console.groupEnd();
+  if (REF_TRACK_TRACING) console.group('RTT: findAndQueueContinuationBlock(alternate)');
+  const [continuationBlockFalse, nearestCatchBlockFalse, nearestFinallyBlockFalse] = findAndQueueContinuationBlock(node.alternate, trebloFalse.wasAbrupt, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+  if (REF_TRACK_TRACING) console.groupEnd();
 
-  //const nearestFinallyTryNode = tryNodeStack[tryNodeStack.length - 1];
-  //if (
-  //  // If the flow continues inside this function but breaks through a finally barrier, we have to hit the finally first
-  //  (continuationNodeTrueBranch && +continuationNodeTrueBranch.$p.pid < +nearestFinallyTryNode?.$p.pid) ||
-  //  // If the flow does not continue in this function, but does cross a finally barrier before leaving the function, then we have to hit that finally
-  //  (!continuationNodeTrueBranch && nearestFinallyTryNode && node.$p.funcDepth === nearestFinallyTryNode?.$p.funcDepth)
-  //) {
-  //  if (REF_TRACK_TRACING) console.log('  `yes`, through finally, abrupt:', node.consequent.$p.treblo.wasAbrupt?.type, ', continues after node @:', continuationNodeTrueBranch?.$p.pid, ', has', node.consequent.$p.treblo.entryReads.size, ' entryReads,', node.consequent.$p.treblo.entryWrites.size, 'entryWrites, and', node.consequent.$p.treblo.exitWrites.size, 'exitWrites');
-  //  nearestFinallyTryNode.$p.openRefsT.finallyCaught.push([node.consequent, node.consequent.$p.treblo.exitWrites, continuationNodeTrueBranch]);
-  //} else if (continuationNodeTrueBranch) {
-  //  const treblo = node.consequent.$p.treblo;
-  //  // continuationNodeA is now the node _after_ which code flow continues
-  //  // This may be null, in case of early return/throw. This may be the last statement of the block.
-  //  // Without abrupt completions it'll just be the `if` statement itself.
-  //  if (REF_TRACK_TRACING) console.log('  `yes`, abrupt:', treblo.wasAbrupt?.type, ', continues after node @:', continuationNodeTrueBranch?.$p.pid, ', has', treblo.entryReads.size, ' entryReads,', treblo.entryWrites.size, 'entryWrites, and', treblo.exitWrites.size, 'exitWrites');
-  //  // Now add the exitWrites to the parent block for each continuation
-  //  // node for each binding that already existed before that node
-  //  continuationNodeTrueBranch?.$p.openRefsT.exitWritesAfter.push(treblo);
-  //}
+  const wasAbruptTrue = trebloTrue.wasAbrupt?.type;
+  const wasAbruptFalse = trebloFalse.wasAbrupt?.type;
 
-  // Repeat for `else` branch
+  // Now resolve the parent pending. There can't be any loop pending to process after an `if`.
 
-  //const continuationNodeFalseBranch = findContinuationNode(node.alternate.$p.treblo.wasAbrupt, globallyUniqueLabelRegistry, loopStack);
-  //if (
-  //  // If the flow continues inside this function but breaks through a finally barrier, we have to hit the finally first
-  //  (continuationNodeFalseBranch && +continuationNodeFalseBranch.$p.pid < +nearestFinallyTryNode?.$p.pid) ||
-  //  // If the flow does not continue in this function, but does cross a finally barrier before leaving the function, then we have to hit that finally
-  //  (!continuationNodeFalseBranch && nearestFinallyTryNode && node.$p.funcDepth === nearestFinallyTryNode?.$p.funcDepth)
-  //) {
-  //  if (REF_TRACK_TRACING) console.log('  `yes`, through finally, abrupt:', node.alternate.$p.treblo.wasAbrupt?.type, ', continues after node @:', continuationNodeFalseBranch?.$p.pid, ', has', node.alternate.$p.treblo.entryReads.size, ' entryReads,', node.alternate.$p.treblo.entryWrites.size, 'entryWrites, and', node.alternate.$p.treblo.exitWrites.size, 'exitWrites');
-  //  nearestFinallyTryNode.$p.openRefsT.finallyCaught.push([node.alternate, node.alternate.$p.treblo.exitWrites, continuationNodeFalseBranch]);
-  //} else if (continuationNodeFalseBranch) {
-  //  const treblo = node.alternate.$p.treblo;
-  //  // continuationNodeA is now the node _after_ which code flow continues
-  //  // This may be null, in case of early return/throw. This may be the last statement of the block.
-  //  // Without abrupt completions it'll just be the `if` statement itself.
-  //  if (REF_TRACK_TRACING) console.log('  `yes`, abrupt:', treblo.wasAbrupt?.type, ', continues after node @:', continuationNodeFalseBranch?.$p.pid, ', has', treblo.entryReads.size, ' entryReads,', treblo.entryWrites.size, 'entryWrites, and', treblo.exitWrites.size, 'exitWrites');
-  //  // Now add the exitWrites to the parent block for each continuation
-  //  // node for each binding that already existed before that node
-  //  continuationNodeFalseBranch?.$p.openRefsT.exitWritesAfter.push(treblo);
-  //}
+  // Propagate all current exitWrites to the parent.
+  // If either branch completed abruptly then exitWrites of the other branch replaces the parent.
+  // If both branches overwrote the binding, then the union of both branches replaces the parent.
+  // In all other cases the sets are merged with the parent.
+  // Since the parent set is only changes if there was an overwrite at all, we just have to look at the
+  // union of overwrites. But for that reason we do have to propagate it back to the parent now.
 
-  // Now process all these afters for this node because
-  // there can be no further things jumping to this node.
+  const parentExitWrites = parentBlock.$p.treblo.exitWrites;
+  const parentDefined = parentBlock.$p.treblo.defined;
+  if (wasAbruptTrue) {
+    // Replace up, regardless
+    if (REF_TRACK_TRACING) console.log('RTT: replacing the false branch exitWrites into the parent');
 
-  // Note: for an `if`, only the "consequent" and "alternate" blocks might use
-  // the `if` as their continuation node. And only if they don't complete abruptly.
-  // For each branch, apply current outer set of exitWrites (as right before the `if`) to all entryReads and entryWrites
-  // Then, for each block that uses this `if` as its continuationNode, replace or merge their exitWrites with the parent exitWrites.
+    parentDefined.forEach(name => {
+      const set = trebloFalse.exitWrites.get(name);
+      if (set?.size) {
+        parentExitWrites.set(name, new Set(set));
+        parentBlock.$p.treblo.overwritten.add(name);
+      }
+    });
+  } else if (wasAbruptFalse) {
+    // Replace up, regardless
+    if (REF_TRACK_TRACING) console.log('RTT: replacing the true branch exitWrites into the parent');
 
-  //const blocksThatContinueHere = [];
-  //if (!node.consequent.$p.treblo.wasAbrupt) blocksThatContinueHere.push(node.consequent);
-  //if (!node.alternate.$p.treblo.wasAbrupt) blocksThatContinueHere.push(node.alternate);
-  //
-  //const bothBlocks = [node.consequent, node.alternate];
+    parentDefined.forEach(name => {
+      const set = trebloTrue.exitWrites.get(name);
+      if (set?.size) {
+        parentExitWrites.set(name, new Set(set));
+        parentBlock.$p.treblo.overwritten.add(name);
+      }
+    });
+  } else {
+    if (REF_TRACK_TRACING) console.log('RTT: merging or replacing the exitWrites into the parent');
+    // Merge or replace depends
+    parentDefined.forEach(name => {
+      const overwrittenTrue = trebloTrue.overwritten.has(name);
+      const overwrittenFalse = !overwrittenTrue || trebloFalse.overwritten.has(name); // Must be at least one of them so only .has when the consequent branch did too
+      if (REF_TRACK_TRACING) console.log('RTT: -', name, ': overwritten?', overwrittenTrue, overwrittenFalse, ' so verdict:', (overwrittenTrue && overwrittenFalse) ? 'replace' : 'merge');
+      if (overwrittenTrue && overwrittenFalse) {
+        // Replace
+        const set = new Set(trebloTrue.exitWrites.get(name));
+        ASSERT(set?.size > 0, 'overwritten so should be set', +node.consequent.$p.pid, +node.alternate.$p.pid);
+        trebloFalse.exitWrites.get(name).forEach(write => set.add(write));
+        parentBlock.$p.treblo.exitWrites.set(name, set);
+        parentBlock.$p.treblo.overwritten.add(name);
+      } else {
+        // Merge both
+        // Note: some of these will be the same as the parent but since it's a Set that should be fine (code is complex enough as is)
+        const setTrue = trebloTrue.exitWrites.get(name);
+        if (setTrue) {
+          parentExitWrites.has(name) ? setTrue.forEach(write => parentExitWrites.get(name).add(write)) : parentExitWrites.set(name, new Set(setTrue));
+        }
+        const setFalse = trebloFalse.exitWrites.get(name);
+        if (setFalse) {
+          parentExitWrites.has(name) ? setFalse.forEach(write => parentExitWrites.get(name).add(write)) : parentExitWrites.set(name, new Set(setFalse));
+        }
+        // Note: while one branch may have overwritten the binding, it wasn't overwritten in both so we're not marking it in parent here
+      }
 
-  //if (REF_TRACK_TRACING) console.group('`if` parent block @', parentBlock.$p.pid, 'knew of', parentBlock.$p.treblo.defined.size, 'bindings. Now processing the entryReads and entryWrites of both branches, as well as', node.$p.openRefsT.exitWritesAfter.length, 'sets of writes @', +parentBlock.$p.pid);
-  //parentBlock.$p.treblo.defined.forEach(name => {
-  //  if (REF_TRACK_TRACING) console.group('- binding:', [name]);
-  //
-  //  const wasOverwrittenBeforeNode = parentBlock.$p.treblo.overwritten.has(name);
-  //  if (REF_TRACK_TRACING) console.log('- wasOverwrittenBeforeNode:', wasOverwrittenBeforeNode);
-  //
-  //  const overwrittenInBothBranches = blocksThatContinueHere.every(blockNode => !blockNode.$p.treblo.wasAbrupt && blockNode.$p.treblo.overwritten.has(name));
-  //  if (REF_TRACK_TRACING) console.log('- overwrittenInBothBranches:', overwrittenInBothBranches);
-  //
-  //  // If overwritten in all branches that continue here, the statement after this `if`
-  //  // cannot see the entry value, so we replace the set of exitWrites first.
-  //  if (overwrittenInBothBranches) {
-  //    if (REF_TRACK_TRACING) console.log('Setting parent exitWrites to empty set because this node overwrites it in all branches leading to after the node');
-  //    if (parentBlock.$p.treblo.exitWrites.get(name)) parentBlock.$p.treblo.exitWrites.set(name, new Set);
-  //    parentBlock.$p.treblo.overwritten.set(name, true);
-  //  } else {
-  //    if (REF_TRACK_TRACING) console.log('Will amend exitWrites to parent because not overwritten in all branches');
-  //  }
-  //
-  //  // Some things are done regardless (entryReads entryWrites etc)
-  //  if (REF_TRACK_TRACING) console.group('Propagating entryReads entryWrites from', bothBlocks.length, 'block nodes');
-  //  bothBlocks.forEach(blockNode => {
-  //    // When not yet overwritten, copy the entry reads/writes to the parent
-  //    if (!wasOverwrittenBeforeNode) {
-  //      const entryReadsSet = blockNode.$p.treblo.entryReads.get(name);
-  //      let parentEntryReadsSet = parentBlock.$p.treblo.entryReads.get(name);
-  //      if (!parentEntryReadsSet && entryReadsSet?.size) {
-  //        parentEntryReadsSet = new Set;
-  //        parentBlock.$p.treblo.entryReads.set(name, parentEntryReadsSet);
-  //      }
-  //      entryReadsSet?.forEach(write => parentEntryReadsSet.add(write));
-  //
-  //      const entryWritesSet = blockNode.$p.treblo.entryWrites.get(name);
-  //      let parentEntryWritesSet = parentBlock.$p.treblo.entryWrites.get(name);
-  //      if (!parentEntryWritesSet && entryWritesSet?.size) {
-  //        parentEntryWritesSet = new Set;
-  //        parentBlock.$p.treblo.entryWrites.set(name, parentEntryWritesSet);
-  //      }
-  //      entryWritesSet?.forEach(write => parentEntryWritesSet.add(write));
-  //    }
-  //  });
-  //  if (REF_TRACK_TRACING) console.groupEnd();
-  //
-  //  // Some things are done only when this if is the continuation node (exitWrites)
-  //  if (REF_TRACK_TRACING) console.log('There are', blocksThatContinueHere.length, 'block nodes that continue after this `if`-node');
-  //  blocksThatContinueHere.forEach((blockNode, i) => {
-  //    if (REF_TRACK_TRACING) console.group('- blockNode', i, blockNode === node.consequent ? '(yes-block)' : blockNode === node.alternate ? '(no-block)' : '(unknown)');
-  //
-  //    const exitWrites = blockNode.$p.treblo.exitWrites.get(name);
-  //
-  //    let set = parentBlock.$p.treblo.exitWrites.get(name);
-  //    if (exitWrites?.size && !set) {
-  //      set = new Set;
-  //      parentBlock.$p.treblo.exitWrites.set(name, set);
-  //    }
-  //    exitWrites?.forEach(write => set.add(write));
-  //
-  //    // Copy all reads and writes to the parent, regardless of abrupt.
-  //    // "if the consequent writes then a finally must know about it"
-  //    blockNode.$p.treblo.writes.get(name)?.forEach(write => parentBlock.$p.treblo.writes.get(name)?.push(write) ?? parentBlock.$p.treblo.writes.set(name, [write]));
-  //    blockNode.$p.treblo.reads.get(name)?.forEach(read => parentBlock.$p.treblo.reads.get(name)?.push(read) ?? parentBlock.$p.treblo.reads.set(name, [read]));
-  //
-  //    if (REF_TRACK_TRACING) console.groupEnd(); // /loop
-  //  });
-  //
-  //  if (REF_TRACK_TRACING) console.groupEnd(); // /binding name
-  //});
-  //if (REF_TRACK_TRACING) console.groupEnd(); // outer `defined` loop
+      if (REF_TRACK_TRACING) console.log('RTT:   - parent now has', parentExitWrites.get(name)?.size, 'exitWrites');
+    });
+  }
+
+  if (REF_TRACK_TRACING) console.log('RTT: propagate entryReads and entryWrites to parent');
+  const parentEntryReads = parentBlock.$p.treblo.entryReads;
+  const parentEntryWrites = parentBlock.$p.treblo.entryWrites;
+  parentDefined.forEach(name => {
+    trebloTrue.entryReads.get(name)?.forEach((read) => parentEntryReads.get(name)?.add(read) ?? parentEntryReads.set(name, new Set([read])));
+    trebloTrue.entryWrites.get(name)?.forEach((write) => parentEntryWrites.get(name)?.add(write) ?? parentEntryWrites.set(name, new Set([write])));
+    trebloFalse.entryReads.get(name)?.forEach((read) => parentEntryReads.get(name)?.add(read) ?? parentEntryReads.set(name, new Set([read])));
+    trebloFalse.entryWrites.get(name)?.forEach((write) => parentEntryWrites.get(name)?.add(write) ?? parentEntryWrites.set(name, new Set([write])));
+  });
 
   // The parent block should now have an updated exitWrites set for each of its bindings
 
@@ -271,109 +230,139 @@ export function openRefsOnBeforeLoop(kind /*: loop | in | of */, node, parentBlo
   if (REF_TRACK_TRACING) console.group('RTT: LOOP,', kind);
   if (REF_TRACK_TRACING) console.group('RTT: LOOP:before,', kind, ', has', parentBlock.$p.treblo.defined.size, 'known bindings');
 
-  node.$p.openRefsT = createTrebra();
+  node.$p.trebra = createTrebra();
 
   if (REF_TRACK_TRACING) console.groupEnd(); // LOOP:before
 }
 
-export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack) {
+export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock, walkerPath, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack) {
   if (REF_TRACK_TRACING) console.group('RTT: LOOP:after,', kind, 'after @', +node.$p.pid);
 
   /** @var {Treblo} */
   const treblo = node.body.$p.treblo;
-  const continuationNode = findContinuationNode(treblo.wasAbrupt, globallyUniqueLabelRegistry, loopStack);
 
-  //// Check for breaking through a finally barrier
-  //// We need to confirm whether there's a `try` node with a pid between the target node and the current node
-  //// If there is, we need to confirm whether this node has a `finally` block
-  //// If so, we need to special case that because the finally is a forced path, that's its job
-  //const nearestFinallyTryNode = tryNodeStack[tryNodeStack.length - 1];
-  //if (+continuationNode?.$p.pid < +tryNodeStack[tryNodeStack.length - 1]?.$p.pid) {
-  //  nearestFinallyTryNode.$p.openRefsT.finallyCaught.push([node.body, treblo.exitWrites, continuationNode]);
-  //} else {
-  //  // continuationNode is now the node _after_ which code flow continues
-  //  // This may be null, in case of early return/throw. This may be the last statement of the block.
-  //  // Without abrupt completions it'll just be the `while` statement itself, with the caveat that
-  //  // body may still need to connect the end to the start. But if the test fails, code logic would
-  //  // continue after the while so that's why it makes sense.
-  //  if (REF_TRACK_TRACING) console.log('  loop, abrupt:', treblo.wasAbrupt?.type, ', continues after node @:', continuationNode?.$p.pid, ', has', treblo.entryReads.size, ' entryReads,', treblo.entryWrites.size, 'entryWrites, and', treblo.exitWrites.size, 'exitWrites');
-  //  // Now add the exitWrites to the parent block for each continuation
-  //  // node for each binding that already existed before that node
-  //  continuationNode?.$p.openRefsT.exitWritesAfter.push(treblo);
-  //}
+  const [continuationBlock, nearestCatchBlock, nearestFinallyBlock] = findAndQueueContinuationBlock(node.body, treblo.wasAbrupt, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+  if (REF_TRACK_TRACING) {
+    console.log(
+      'RTT: the loop block', !treblo.wasAbrupt ? 'implicitly loops' : continuationBlock ? `continues in block @${continuationBlock.$p.pid}` : `does not naturally continue or break (abrupt=${treblo.wasAbrupt?.type})`,
+      nearestCatchBlock ? `Flow might be caught by catch block @${nearestCatchBlock.$p.pid}` : '',
+      nearestFinallyBlock ? `Flow is forced to go through @${nearestFinallyBlock.$p.pid} first, regardless` : ''
+    );
+  }
 
-  if (REF_TRACK_TRACING) console.log('end of loop body continues after node @:', continuationNode?.$p.pid, '(', continuationNode?.type ?? '<???>', ')', '(this node?', continuationNode === node, ')');
+  // Keep in mind: we assume normalized code, so all while loops are while(true) and all for-loops don't introduce a new binding
 
-  //// Now add the exitWrites to the parent block for each continuation
-  //// node for each binding that already existed before that node
-  //
-  ////continuationNode?.$p.openRefsT.entryReadsAfter.push(node.body.$p.treblo.entryReads);
-  ////continuationNode?.$p.openRefsT.entryWritesAfter.push(node.body.$p.treblo.entryWrites);
-  //continuationNode?.$p.openRefsT.exitWritesAfter.push([treblo.wasAbrupt?.type, treblo.exitWrites]);
 
-  // Now process all these afters for this node because
-  // there can be no further things jumping to this node.
+  const parentTreblo = parentBlock.$p.treblo;
+  const parentExitWrites = parentTreblo.exitWrites;
+  const parentDefined = parentTreblo.defined;
 
-  //if (REF_TRACK_TRACING) console.group('loop parent block @', parentBlock.$p.pid, 'knew of', parentBlock.$p.treblo.defined.size, 'bindings. Now processing', node.$p.openRefsT.entryReadsAfter.length, 'sets of entry reads,', node.$p.openRefsT.entryWritesAfter.length, ', sets of entry writes', node.$p.openRefsT.exitWritesAfter.length, ', and sets of exit write', +parentBlock.$p.pid);
-  //// Walk all bindings known before this node and check if they were exitWritten
-  //// in each block that ended up jumping to after this node.
-  //parentBlock.$p.treblo.defined.forEach(name => {
-  //  if (REF_TRACK_TRACING) console.log('- binding ', [name]);
-  //
-  //  if (REF_TRACK_TRACING) console.log('  - had', treblo.entryReads.get(name)?.size??0, 'entryReads and', treblo.entryWrites.get(name)?.size??0, 'entryWrites');
-  //  if (parentBlock.$p.treblo.overwritten.get(name)) {
-  //    if (REF_TRACK_TRACING) console.log('  - had its entry value overwritten in parent block so mulling those entryReads and entryWrites');
-  //  } else {
-  //    const pEntryReads = parentBlock.$p.treblo.entryReads;
-  //    const pEntryWrites = parentBlock.$p.treblo.entryWrites;
-  //    if (REF_TRACK_TRACING) console.log('  - entry value was not fully overwritten in parent block so adding those entryReads and entryWrites');
-  //    treblo.entryReads.get(name)?.forEach(read => pEntryReads.get(name)?.add(read) ?? pEntryReads.set(name, new Set([read])));
-  //    treblo.entryWrites.get(name)?.forEach(write => pEntryWrites.get(name)?.add(write) ?? pEntryWrites.set(name, new Set([write])));
-  //    if (REF_TRACK_TRACING) console.log('  - parent block binding entryReads:', Array.from(pEntryReads.get(name)??[]).map(read => +read.node.$p.pid), ', entryWriteS:', Array.from(pEntryWrites.get(name)??[]).map(write => +write.node.$p.pid));
-  //  }
-  //
-  //  // Based on the abrupt state of blocks leading to this loop we connect
-  //  // exitWrites to entryReads and entryWrites as well as the parent block
-  //
-  //  let outerWriteSet = parentBlock.$p.treblo.exitWrites.get(name);
-  //  if (REF_TRACK_TRACING) console.log('  - had', outerWriteSet?.size??0, 'exitWrites queued');
-  //  if (node.$p.openRefsT.exitWritesAfter.every(([_abrupt, map]) => map.has(name))) {
-  //    // This binding was written to in each branch that ended up jumping to this node so
-  //    // we can _replace_ the set of exitWrites with the disjunction of those branches.
-  //    if (REF_TRACK_TRACING) console.log('  - since they were written in all branches that lead here, the set is cleared');
-  //    outerWriteSet = new Set;
-  //    parentBlock.$p.treblo.exitWrites.set(name, outerWriteSet);
-  //  } else {
-  //    if (REF_TRACK_TRACING) console.log('  - was not overwritten in all branches leading here so keeping those');
-  //  }
-  //  if (REF_TRACK_TRACING) console.log('- processing exitWritesAfter now...');
-  //  // Now add all the exitWrites we found queued up after _this_ node to the parent
-  //  // exitWrites, potentially a fresh Set, but otherwise amending it. (`x = 1; if ($) x = 2;`)
-  //  node.$p.openRefsT.exitWritesAfter.forEach(([abrupt, exitWritesMap]) => {
-  //    if (REF_TRACK_TRACING) console.log('  - map has', exitWritesMap.get(name)?.size ?? 0, 'writes queued, origin abrupt state:', abrupt);
-  //    exitWritesMap.get(name)?.forEach(write => {
-  //      if (!abrupt) {
-  //        if (REF_TRACK_TRACING) console.log('    - Adding write @', +write.node.$p.pid, 'for `' + name + '` to parent block');
-  //        // Only `break` and no abrupt completion would execute the next line after the loop
-  //        outerWriteSet.add(write);
-  //      } else {
-  //        if (REF_TRACK_TRACING) console.log('    - Not adding write @', +write.node.$p.pid, 'for `' + name + '` to parent block because the block leading here was either continue or exits the block');
-  //      }
-  //      if (!abrupt) {
-  //        if (REF_TRACK_TRACING) console.log('    - Marking', treblo.entryReads.get(name)?.size ?? 0 ,'entryReads as reading exitWrite @', +write.node.$p.pid);
-  //        treblo.entryReads.get(name)?.forEach(read => {
-  //          if (REF_TRACK_TRACING) console.log('      - Read', +read.node.$p.pid, 'can read write', +write.node.$p.pid);
-  //          read.openRefsRCanRead.add(write);
-  //          write.openRefsRReadBy.add(read);
-  //        });
-  //      } else {
-  //        if (REF_TRACK_TRACING) console.log('    - Not marking any entryReads as reading exitWrite @', +write.node.$p.pid, 'because it continued, returned, or threw');
-  //      }
-  //    })
-  //  });
-  //  if (REF_TRACK_TRACING) console.log('  - queue processed for this binding. it has', parentBlock.$p.treblo.exitWrites.size, 'exitWrites');
-  //});
-  //if (REF_TRACK_TRACING) console.groupEnd(); // inner `defined` loop
+  const parentEntryReads = parentBlock.$p.treblo.entryReads;
+  const parentEntryWrites = parentBlock.$p.treblo.entryWrites;
+
+
+  // Connect the end of the loop to the start
+  // Do this first because it also updates the overwritten of nodes that break to or through this node, which is necessary info to process any that break to here.
+
+  const loopingFrom = node.body.$p.treblo.pendingLoop;
+  if (REF_TRACK_TRACING) console.group('TTR: Loop Queue has', loopingFrom.length, `blocks that jump to repeat the loop (from ${loopingFrom.map(({src, dst}) => `@${src.$p.pid}->@${dst.$p.pid}`)}). Processing`, parentDefined.size, 'bindings that were known in the parent.');
+  parentDefined.forEach(name => {
+    if (REF_TRACK_TRACING) console.log(`TTR: - \`${name}\`: Loop body has ${node.body.$p.treblo.entryReads.get(name)?.size??0} entryReads and ${node.body.$p.treblo.entryWrites.get(name)?.size??0} entryWrites`);
+
+    loopingFrom.forEach(({src: fromBlock}) => {
+      const exitWrites = fromBlock.$p.treblo.exitWrites.get(name);
+      if (REF_TRACK_TRACING) console.log('TTR:   - from @', +fromBlock.$p.pid, 'has', exitWrites?.size || 0, 'exitWrites');
+
+      // Connect exitWrites of the source node to entryReads and entryWrites of the loop body
+      exitWrites?.forEach(write => {
+        node.body.$p.treblo.entryReads.get(name)?.forEach(read => {
+          if (REF_TRACK_TRACING) console.log('TTR: Loop entryRead @', +read.node.$p.pid, 'can read the last write to the binding @', +write.node.$p.pid);
+          write.reachedByReads.add(read);
+          read.reachesWrites.add(write);
+        });
+        node.body.$p.treblo.entryWrites.get(name)?.forEach(write2 => {
+          if (REF_TRACK_TRACING) console.log('TTR: Loop entryWrite @', +write2.node.$p.pid, 'can overwrite the last write to the binding @', +write.node.$p.pid);
+          write.reachedByWrites.add(write2);
+          write2.reachesWrites.add(write);
+        });
+        if (REF_TRACK_TRACING) console.group(`TTR: Adding the ${node.body.$p.treblo.overwritten.size} overwritten names of the loop end to the ${node.$p.trebra.pendingOverwrittens.length} queued blocks`);
+        node.$p.trebra.pendingOverwrittens.forEach(fromBlock => {
+          node.body.$p.treblo.exitWrites.get(name)?.forEach(write => {
+            if (fromBlock.$p.treblo.overwritten.has(name)) {
+              if (REF_TRACK_TRACING) console.log(`TTR: - NOT adding write @${write.node.$p.pid} for "${name}" to exitWrites of @${fromBlock.$p.pid} because it was already overwritten so the current exitWrite(s) should be the correct one`);
+            } else {
+              if (REF_TRACK_TRACING) console.log(`TTR: - Adding write @${write.node.$p.pid} for "${name}" to exitWrites of @${fromBlock.$p.pid} (because of loop)`);
+              fromBlock.$p.treblo.exitWrites.get(name)?.add(write) ?? fromBlock.$p.treblo.exitWrites.set(name, new Set([write]));
+            }
+          });
+          node.body.$p.treblo.overwritten.forEach(name => {
+            if (REF_TRACK_TRACING) console.log(`TTR: - Marking "${name}" as overwritten in queued block @${fromBlock.$p.pid}`);
+            fromBlock.$p.treblo.overwritten.add(name);
+          });
+        });
+        if (REF_TRACK_TRACING) console.groupEnd();
+      });
+    })
+  });
+  if (REF_TRACK_TRACING) console.groupEnd();
+
+  if (REF_TRACK_TRACING) console.group('RTT: propagate entryReads and entryWrites from looping nodes to parent');
+  loopingFrom.forEach(({src: fromBlock}) => {
+    parentDefined.forEach(name => {
+      fromBlock.$p.treblo.entryReads.get(name)?.forEach((read) => parentEntryReads.get(name)?.add(read) ?? parentEntryReads.set(name, new Set([read])));
+      fromBlock.$p.treblo.entryWrites.get(name)?.forEach((write) => parentEntryWrites.get(name)?.add(write) ?? parentEntryWrites.set(name, new Set([write])));
+    });
+  })
+  if (REF_TRACK_TRACING) console.groupEnd();
+
+
+
+
+
+
+
+
+  // Propagate all current exitWrites to the parent.
+  // If neither branch completed abruptly and both branches overwrote the binding, then the union of both
+  // branches replaces the parent exitWrites. In all other cases the sets are merged with the parent.
+  // Since the parent set is only changes if there was an overwrite at all, we just have to look at the
+  // union of overwrites. But for that reason we do have to propagate it back to the parent now.
+
+
+  // This is for break. And any node that breaks here with a label. Not sure if there are other ways for a node to be scheduled here.
+  const pendingNext = parentTreblo.pendingNext;
+  if (REF_TRACK_TRACING) console.group('TTR: Next Queue has', pendingNext.length, `nodes that continue after the loop (from ${pendingNext.map(({src, dst}) => `@${src.$p.pid}->@${dst.$p.pid}`)}). Processing`, parentDefined.size, 'bindings that were known in the parent.');
+  if (pendingNext.length === 0) {
+    if (REF_TRACK_TRACING) console.log('TTR: is this an infinite loop?? Will pretend the loop leads to a break but should probably eliminate the tail as dead code...');
+    pendingNext.push({src: node.body, dst: node.body, overwrittens: new Set(node.body.$p.treblo.overwritten)});
+  }
+  parentDefined.forEach(name => {
+    // Note: above names are added when _any_ next node overwrites it. Here we want to know if they _all_ do it.
+    // If the loop is (probably) infinite then always replace parent exitWrites with what happens in the loop
+    // TODO: probably should consider the rest dead code...
+    const replace = pendingNext.every(({overwrittens}) => overwrittens.has(name));
+    const newSet = !replace ? parentExitWrites.get(name) || new Set : new Set;
+    pendingNext.forEach(({src: fromNode}) => {
+      //console.log('pendingNext fromNode @', fromNode.$p.pid, ' has these exitWrites for x:', Array.from(fromNode.$p.treblo.exitWrites.get('x'))?.map(w => `@${w.node.$p.pid}`));
+      fromNode.$p.treblo.exitWrites.get(name)?.forEach(write => newSet.add(write))
+    });
+    if (replace) {
+      if (REF_TRACK_TRACING) console.log('TTR: -', name, 'was overwritten in all src nodes so exitWrites get replaced, becomes:', newSet.size, Array.from(newSet).map(w => w.node.$p.pid));
+      parentExitWrites.set(name, newSet);
+      parentTreblo.overwritten.add(name);
+    } else {
+      if (REF_TRACK_TRACING) console.log('TTR: -', name, 'was not overwritten in all src nodes so exitWrites is amended, becomes:', newSet.size, Array.from(newSet).map(w => w.node.$p.pid));
+    }
+  });
+  if (REF_TRACK_TRACING) console.groupEnd();
+
+  if (REF_TRACK_TRACING) console.log('RTT: propagate entryReads and entryWrites from next nodes to parent iif the binding was known there');
+  pendingNext.forEach(({src: fromBlock}) => {
+    parentDefined.forEach(name => {
+      fromBlock.$p.treblo.entryReads.get(name)?.forEach((read) => parentEntryReads.get(name)?.add(read) ?? parentEntryReads.set(name, new Set([read])));
+      fromBlock.$p.treblo.entryWrites.get(name)?.forEach((write) => parentEntryWrites.get(name)?.add(write) ?? parentEntryWrites.set(name, new Set([write])));
+    });
+  });
 
   // The parent block should now have an updated exitWrites set for each of its bindings
 
@@ -382,148 +371,410 @@ export function openRefsOnAfterLoop(kind /* loop | in | of */, node, parentBlock
   if (REF_TRACK_TRACING) console.log('/LOOP');
 }
 
-export function openRefsLabelOnBefore(node, parentBlock) {
-  if (REF_TRACK_TRACING) console.group('RTT: LABEL');
-  if (REF_TRACK_TRACING) console.group(`RTT: LABEL:before, label[\`${node.label.name}\`], has ${parentBlock.$p.treblo.defined.size} known bindings`);
-
-  node.$p.openRefsT = createTrebra();
-
-  if (REF_TRACK_TRACING) console.groupEnd(); // LABEL:before
-}
-
-export function openRefsLabelOnAfter(node, parentBlock, globallyUniqueLabelRegistry, loopStack) {
-  if (node.body.type !== 'BlockStatement') {
-    vlog('TODO: eliminate continue'); // and then this invariant of labeled-loop cant exist anymore in normalize code
-    if (REF_TRACK_TRACING) console.groupEnd(); // LABEL
-    return;
-  }
-
-  if (REF_TRACK_TRACING) console.group('RTT: LABEL:after, label[' + node.label.name + ']');
-
-  /** @var {Treblo} */
-  const treblo = node.body.$p.treblo;
-
-  // If the child node of this label is not a block then we don't need to propagate the exitWrites here
-
-  // Find the statement that's executed _after_ this label block.
-  let continuationNode = node;
-  if (treblo.wasAbrupt) {
-    if (treblo.wasAbrupt.type === 'BreakStatement') {
-      if (treblo.wasAbrupt.label) {
-        continuationNode = globallyUniqueLabelRegistry.get(treblo.wasAbrupt.label.name).node;
-        //TODO // implement loop logic
-      } else {
-        continuationNode = loopStack[loopStack.length - 1];
-      }
-    }
-    else if (treblo.wasAbrupt.type === 'ContinueStatement') {
-      vlog('TODO: eliminate continue');
-      return;
-    }
-    else if (treblo.wasAbrupt.type === 'ReturnStatement') {
-      continuationNode = null; // We don't care about what happens after the if
-    }
-    else if (treblo.wasAbrupt.type === 'ThrowStatement') {
-      continuationNode = null; // We don't care about what happens after the if
-    }
-    else {
-      ASSERT(false, 'should be one of these cases');
-    }
-  }
-
-  // continuationNode is now the node _after_ which code flow continues
-  // This may be null, in case of early return/throw. This may be the last statement of the block.
-  // Without abrupt completions it'll just be the label statement itself.
-
-  if (REF_TRACK_TRACING) console.log('  abrupt:', treblo.wasAbrupt?.type, ', continues after node @:', continuationNode?.$p.pid, ', has', treblo.entryReads.size, ' entryReads,', treblo.entryWrites.size, 'entryWrites, and', treblo.exitWrites.size, 'exitWrites');
-
-  //// Now add the exitWrites to the parent block of the continuation
-  //// node for each binding that already existed before that node
-  //
-  //continuationNode?.$p.openRefsT.exitWritesAfter.push([treblo.wasAbrupt?.type, treblo.exitWrites]);
-
-  // Now process all the queued afters for _this_ label node because
-  // there can be no further things jumping to this node.
-
-  if (REF_TRACK_TRACING) console.group('label parent block @', parentBlock.$p.pid, 'knew of', parentBlock.$p.treblo.defined.size, 'bindings. Now processing the entryReads and entryWrites of the body, as well as', node.$p.openRefsT.exitWritesAfter.length, 'sets of writes', +parentBlock.$p.pid);
-
-  //// Walk all bindings known before this node and check if they were exitWritten
-  //// in each block that ended up jumping to after this node.
-  //parentBlock.$p.treblo.defined.forEach(name => {
-  //  if (REF_TRACK_TRACING) console.log('- binding', [name]);
-  //
-  //  if (REF_TRACK_TRACING) console.log('  - had', treblo.entryReads.get(name)?.size??0, 'entryReads and', treblo.entryWrites.get(name)?.size??0, 'entryWrites');
-  //  if (parentBlock.$p.treblo.overwritten.get(name)) {
-  //    if (REF_TRACK_TRACING) console.log('  - had its entry value overwritten in parent block so mulling those entryReads and entryWrites');
-  //  } else {
-  //    const pEntryReads = parentBlock.$p.treblo.entryReads;
-  //    const pEntryWrites = parentBlock.$p.treblo.entryWrites;
-  //    if (REF_TRACK_TRACING) console.log('  - entry value was not fully overwritten in parent block so adding those entryReads and entryWrites');
-  //    treblo.entryReads.get(name)?.forEach(read => pEntryReads.get(name)?.add(read) ?? pEntryReads.set(name, new Set([read])));
-  //    treblo.entryWrites.get(name)?.forEach(write => pEntryWrites.get(name)?.add(write) ?? pEntryWrites.set(name, new Set([write])));
-  //    if (REF_TRACK_TRACING) console.log('  - parent block binding entryReads:', Array.from(pEntryReads.get(name)??[]).map(read => +read.node.$p.pid), ', entryWriteS:', Array.from(pEntryWrites.get(name)??[]).map(write => +write.node.$p.pid));
-  //  }
-  //
-  //  let outerExitWriteSet = parentBlock.$p.treblo.exitWrites.get(name);
-  //  if (REF_TRACK_TRACING) console.log('  - had', outerExitWriteSet?.size??0, 'exitWrites queued');
-  //  if (node.$p.openRefsT.exitWritesAfter.every(([_aburupt, map]) => map.has(name))) {
-  //    // This binding was written to in each branch that ended up jumping to this node so
-  //    // we can _replace_ the set of exitWrites with the disjunction of those branches.
-  //    if (REF_TRACK_TRACING) console.log('  - since they were written in all branches that lead here, the set is cleared');
-  //    outerExitWriteSet = new Set;
-  //    parentBlock.$p.treblo.exitWrites.set(name, outerExitWriteSet);
-  //  } else {
-  //    if (REF_TRACK_TRACING) console.log('  - was not overwritten in all branches leading here so keeping those');
-  //  }
-  //  if (REF_TRACK_TRACING) console.log('- processing exitWritesAfter now...');
-  //  // Now add all the exitWrites we found queued up after _this_ node to the parent
-  //  // exitWrites, potentially a fresh Set, but otherwise amending it. (`x = 1; if ($) x = 2;`)
-  //  node.$p.openRefsT.exitWritesAfter.forEach(([abrupt, exitWritesMap]) => {
-  //    if (REF_TRACK_TRACING) console.log('  - map has', exitWritesMap.get(name)?.size ?? 0, 'writes queued');
-  //    exitWritesMap.get(name)?.forEach(write => {
-  //      if (REF_TRACK_TRACING) console.log('    - Adding write @', +write.node.$p.pid, 'for `' + name + '` to parent block');
-  //      outerExitWriteSet.add(write)
-  //    });
-  //  });
-  //  if (REF_TRACK_TRACING) console.log('  - queue processed for this binding. it has', parentBlock.$p.treblo.exitWrites.size, 'exitWrites');
-  //});
-  //if (REF_TRACK_TRACING) console.groupEnd(); // inner `defined` loop
-
-  // The parent block should now have an updated exitWrites set for each of its bindings
-
-  if (REF_TRACK_TRACING) console.groupEnd(); // LABEL:after
-  if (REF_TRACK_TRACING) console.groupEnd(); // LABEL
-  if (REF_TRACK_TRACING) console.log('/label');
-}
-
-function findContinuationNode(wasAbrupt, globallyUniqueLabelRegistry, loopStack) {
+function findAndQueueContinuationBlock(fromBlock, wasAbrupt, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack) {
   // Find the "parentBlock" of the statement that's executed _after_ each block.
   // This is the one we need to update, break, continue, or not abrupt at all.
   // Return null if there's no need to update anything due to a `return`
+  // There may be multiple, like
+  //     try { a; b } catch { x } y
+  // after `a` it can continue to `b` or throw and continue `x-into-y` (worst case).
+  // And if there's only some `finally` nodes then flow still returns back to the original.
+  // This is exacerbated by nested traps. Or like nested finally - catch - finally - aaaaaaah
+  // An edge case but an important one for ref tracking (even for non-closured vars)
 
+  // First get the original target without checking for catch/finally
+  // because regardless of anything else, that's a valid code path.
+  // The given node is the parent block where code flow continues. The index is the statement.
+  // If the index overflows then it continues in its parent, but we can ignore that here.
+  // If the node is null then the code continues in an outer scope and we can ignore it here.
+  let continuationBlock = findSimpleContinuationBlock(wasAbrupt, walkerPath, globallyUniqueLabelRegistry, loopStack);
+
+
+
+  // We first have to find the nearest catch and finally handlers because if there is a finally
+  // handler between the current node and the continuation block then it will be executed
+  // before control returns to the continuation block. So in that case we don't schedule
+  // the continuation yet. The finally leave walker event will have to do this.
+
+
+  // For finally we need to keep track of the target block node where code will continue, unless
+  // the finally overrides it (by an abrupt completion that leaves the handler block).
+  // This is not true for the Catch block, because that may or may not trigger and is an extra
+  // path to compute, rather than a forced solo path like with `finally`.
+  // The catch block, unless abrupt completed itself and/or trapped by a finally, will continue
+  // with whatever node follows the parent TryStatement node, regardless of the original target.
+  // We only need the _nearest_ catch and finally as we only want the continuation node here and
+  // code flow never skips a catch or finally "layer".
+
+  // Complexity arises from something like
+  //    let x; try { try { a } finally { x = 1 } } finally { x = 2 } x
+  // in this case the exitWrite of the outer finally can reach the inner and the final read
+  // can always and ever only see `2` (well, assuming the assignment can't fail).
+  // Alternates:
+  //    function f() { let x; try { try { a } finally { x = 1; return x; } } finally { x = 2 } x }
+  // (Now the second finally is still visited but the returned value is 1)
+  //    function f() { let x; try { try { a } finally { x = 1; return () => x; } } finally { x = 2 } x } f()();
+  // (Now the closure should return 2)
+  // But point is, the exitWrites of a connect to the first finally, not the second
+  //    let x; try { try { a } finally { $(x); x = b } } finally { $(x); x = c } x
+  // So the entryReads of the first finally will observe a, the second finally observes b, and the outer read observes c.
+  // Abrupt completions inside the finally do mean wrapper finally blocks don't get connected
+  // anymore so we can't just add them to the list. But they could be. I guess for that reason
+  // we add the continuation nodes to the finally node and once we've processed it, we propagate
+  // that forward to the next layer if it doesn't complete abruptly.
+  // But that means that we should add the continuation node to the finally now, even the first.
+  // Not so for the catch since any code hitting that block will divert to continue after the parent Try.
+  // The twist for finally is that it can connect exitWrites with entryReads and entryWrites
+  // depending on how it entered the finally.
+  //    let x; try { x = 1 } finally { } x;
+  // Now the last read can only observe the try write
+  //    let x; try { x = 1 } finally { x } x;
+  // Same, the try write is only observed more
+  //    let x; try { x = 1 } finally { x = 1 } x;
+  // Now the read can only observe the finally writes
+  //    let x; try { if ($) { x = 1 } else { x = 2 } } finally { x = 3 } x;
+  // Here, x is always 3
+  //    let x; try { if ($) { x = 1 } else { x = 2 } } finally { if ($) x = 3 } x;
+  // But here x is 1 2 or 3.
+
+  // Wires can cross. From try block break to label, from catch block break to other label.
+  //    let x; A: {  B: { try { if ($) { x = 1; break A; } else { x = 2; break B; } } finally { $(x) } } $('c', x) } $('d', x);
+  // If $ is truthy then c isn't even visited and finally and d observe 1. Else, finally and c and d observe 1.
+  //    let x; A: {  B: { try { if ($) { x = 1; break A; } else { x = 2; break B; } } finally { x = 3; } } $('c', x) } $('d', x);
+  // This just hooks up c and d to both read the finally value, regardless
+  //    let x; A: {  B: { try { if ($) { x = 1; break A; } else { x = 2; break B; } } finally { $(x) } } $('c', x); x = 4; } $('d', x);
+  // Now the c write can only overwrite the B and not the A write.
+  // This proof shows why we must remember both the origin and the target on finally nodes for the sake of connecting exit with entry.
+  // This is only relevant if exitWrites pass through the finally (not overwritten) but it is relevant.
+  //    let x; A: {  B: { try { if ($) { x = 1; break A; } else { x = 2; break B; } } finally { x = 3 } } $('c', x); x = 4; } $('d', x);
+  // Writes in the finally are only overwritten if any node that continues into it end up in c, which is not guaranteed.
+  //    let x; A: {  B: { try { try { if ($) { x = 1; break A; } else { x = 2; break B; } } finally { x = 3 } } catch { $(x) } x = 6 } $('c', x); x = 4; } $('d', x);
+  // Worse; with double finally, you have to propagate those sets of entry/exit per continuation node. But then the catch hits and
+  // you have to assume it may go there, and the set of exitWrites are all observable to x=6?
+  // And if x=6 wasn't a write then all become visible to to x=4 as well. So the catch wrapper does change that logic.
+  // If it's catch finally finally catch then we have to defer propagation of the finally
+  // and still consider catch wrappers in every finally step. Maybe even catch steps too?
+  //    let x; A: {  B: { try { try { try { if ($) { x=1; break A; } x=2; break B } catch { x } finally { x } } finally { x } catch { $(x) } x = 6 } $('c', x); x = 4; } $('d', x);
+  // The outer catch can observe 1 and 2, regardless. By extension, so does x=4.
+  // Without that catch clause, x=4 can only observe 1. Of course, the catch can "skip" over some nodes. That'll apply naturally.
+  // This is why we must queue and process nodes individually
+
+  // Every finally block must first determine its own entryReads/entryWrites/exitWrites.
+  // Every continuation node that goes through the finally will have its own final
+  // set of entryReads/entryWrites/exitWrites and propagates that forward to either the
+  // next finally, a wrapper catch, or the target continuation node.
+  // If there's a wrapper catch then that connects to all exitWrites of the finally, of all continuation nodes combined.
+
+  // If there is no continuation block (return/throw) then target the nearest function boundary instead
+
+
+
+  // Code may also loop if not abrupt and fromBlock is body of a loop (checked later)
+  let loops = wasAbrupt?.type === 'ContinueStatement';
+
+  const nodes = walkerPath.nodes;
+  const top = nodes.length - 1;
+
+  // We passed a catch if we see a TryStatement that has a catch block (so not if it only has a finally block)
+  let nearestCatchBlock = false;
+  // We passed a finally if we either see a TryStatement with a finally block or a catch block with a finally block
+  let nearestFinallyBlock = false;
+
+  // If code doesn't abrupt then it can't go through a trap and we can skip this search
   if (wasAbrupt) {
-    if (wasAbrupt.type === 'BreakStatement') {
-      if (wasAbrupt.label) {
-        return globallyUniqueLabelRegistry.get(wasAbrupt.label.name).node;
-      } else {
-        return loopStack[loopStack.length - 1];
+    if (REF_TRACK_TRACING) console.group(`TTR: Was abrupt (${wasAbrupt.type}). Searching for nearest catch and/or finally traps between fromBlock @${fromBlock.$p?.pid} and target ${continuationBlock ? `@${continuationBlock.$p?.pid}` : 'nearest function boundary'}`, 'queuing overwrites in loops');
+
+    let index = top;
+    while (continuationBlock ? nodes[index] !== continuationBlock : (nodes[index].type !== 'FunctionDeclaration' && nodes[index].type !== 'Program')) {
+      const node = nodes[index];
+      if (REF_TRACK_TRACING) console.group(`TTR: depth: ${index}, type=${node.type}, @${node.$p.pid}`);
+
+      if (node.type === 'WhileStatement' || node.type === 'ForInStatement' || node.type === 'ForOfStatement') {
+        if (REF_TRACK_TRACING) console.log('TTR: Adding the overwrittens from @', +fromBlock.$p.pid, 'to the loop of @', +node.$p.pid, 'to update later');
+        node.$p.trebra.pendingOverwrittens.push(fromBlock);
       }
+      else if (node.type === 'BlockStatement') {
+        //     TryStatement { block, handler: CatchClause { body }, finalizer }
+        // Note: being in a TryStatement block doesn't mean anything because, for example, if we
+        // just came through a finally handler block then that won't trap anything in itself. That's
+        // why we have to check the parent of the Block instead.
+
+        // If catch clause, check if it has a `finally` sibling. In that case we have now passed through a finally barrier.
+        if (!nearestFinallyBlock && nodes[index-1].type === 'CatchClause' && nodes[index-2].finalizer) {
+          // This is the catch block and it is trapped by a finally block
+          // Note that this also supersedes a catch handler, so we won't search for that one anymore either
+          nearestFinallyBlock = nodes[index-2].finalizer;
+        }
+        // Note: if we have passed through a finally handler then a catch block further away can't trap it before that. Hence the extra check.
+        else if (!nearestFinallyBlock && nodes[index-1].type === 'TryStatement' && nodes[index-1].block === node) {
+          // This is the try block and it will be trapped by a catch and/or a finally block
+          if (!nearestCatchBlock && !nearestFinallyBlock && node.handler) nearestCatchBlock = node.handler.body;
+          if (!nearestFinallyBlock && node.finalizer) nearestFinallyBlock = node.finalizer;
+        }
+      }
+      if (REF_TRACK_TRACING) console.groupEnd();
+
+      --index;
+      ASSERT(index >= 0, 'continuation block must be in the current list of parent nodes, or if there was none then a nearest function/program must be found');
     }
-    else if (wasAbrupt.type === 'ContinueStatement') {
-      vlog('TODO: eliminate continue');
-      return null;
-    }
-    else if (wasAbrupt.type === 'ReturnStatement') {
-      return null; // We don't care about what happens after the if
-    }
-    else if (wasAbrupt.type === 'ThrowStatement') {
-      // TODO: we may care?
-      return null; // We don't care about what happens after the if
-    }
-    else {
-      ASSERT(false, 'should be one of these cases');
+
+    if (REF_TRACK_TRACING) console.groupEnd();
+  } else {
+    if (REF_TRACK_TRACING) console.log(`TTR: Was not abrupt so cant go through catch/finally trap`);
+  }
+
+  if (!continuationBlock && (nearestFinallyBlock || nearestCatchBlock)) {
+    TODO
+    //   For the next section we need to target the parent of the catch or the finally, whichever is further away, because we still need to discover
+    //   whether bindings were overwritten
+  }
+
+  // If we found a finally then the continuation node must go there first so we clear it
+  if (nearestFinallyBlock) {
+    vlog('Since there was a finally handler between the current and the continuation node, code must continue in that handler first. Clearing the continuation node.');
+    TODO
+    // same todo as above; we still need to discover the next part for finally and catch
+    continuationBlock = undefined;
+  }
+
+  // For each binding we must now determine whether the binding was (fully) overwritten anywhere between the current
+  // node and the continuation Block. Same for catch and finally blocks, if any. But those must be within the
+  // range of the current and continuation nodes so it can be done in the same pass.
+
+  // The reason for this pass is that the continuation is "scheduled" to be processed when the walker leaves the target
+  // node. For a labeled break/continue and catch/finally this usually crosses multiple blocks. Each of those will
+  // have a treblo.overwritten set but that set is for that block only. So when scheduling the upward propagation
+  // of exitWrites, it's impossible to tell whether a binding was fully overwritten anywhere between the abrupt
+  // completion and its continuation block. Unless we do this here now.
+  // Consider the code example:
+  //     let x = 1; while (true) { x = 2; if ($a) if ($b) { break; } } $(x)
+  // In this case the Block containing the break does have the exitWrite of x=2 but the Block itself has an empty
+  // treblo.overwritten set. And since we're crossing an arbitrary amount of nodes, we can't really do something
+  // like "the set of all overwrittens in any parent so far" because that would only work if you went all the way
+  // back up to the Block that defined the binding. More often than not, not the case.
+
+  // The bad news: this is a bit expensive. For each binding that was known at the continuation block we must check
+  // whether it was .overwritten before reaching the first catch, finally, and the continuation block.
+
+  // We can prune bindings that are constants and bindings that are known to be closures.
+  const overwrittens = new Map;
+
+  if (!wasAbrupt && ['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(walkerPath.nodes[top].type)) {
+    loops = true;
+    if (REF_TRACK_TRACING) console.log(`TTR: special case implicit loop continue overwritten check, using this set:`, continuationBlock.$p.treblo.overwritten);
+    // This was an implicit end of a loop so it continues. This is an exception case where the walker goes back down
+    // in the AST, rather than up (which is the case for all other code flow changes). So we special case it.
+    // Since this can't break through a catch or finally trap, we can safely check the overwritten state for
+    // the same body.
+    continuationBlock.$p.treblo.defined.forEach(name => {
+      const status = {
+        dst: false, // .overwritten between node and continuation block?
+        cat: false, // .overwritten between node and nearest catch? (if any)
+        fin: false, // .overwritten between node and nearest finally? (if any)
+      };
+      overwrittens.set(name, status);
+      if (continuationBlock.$p.treblo.overwritten.has(name)) {
+        status.dst = true;
+      }
+    });
+  } else {
+    continuationBlock.$p.treblo.defined.forEach(name => {
+      // TODO: use global registry to prune constants and closures
+
+      const status = {
+        dst: false, // .overwritten between node and continuation block?
+        cat: false, // .overwritten between node and nearest catch? (if any)
+        fin: false, // .overwritten between node and nearest finally? (if any)
+      };
+      overwrittens.set(name, status);
+
+      let index = top;
+      // We passed a catch if we see a TryStatement that has a catch block (so not if it only has a finally block)
+      let passedCatch = false;
+      // We passed a finally if we either see a TryStatement with a finally block or a catch block with a finally block
+      let passedFinally = false;
+      while (nodes[index] !== continuationBlock) {
+        const node = nodes[index];
+        if (node.type === 'BlockStatement') {
+          if (node.$p.treblo.overwritten.has(name)) {
+            status.dst = true;
+            if (!passedCatch) status.cat = true;
+            if (!passedFinally) status.fin = true;
+            break; // We have all the info we need
+          }
+
+          //     TryStatement { block, handler: CatchClause { body }, finalizer }
+          // Note: being in a TryStatement block doesn't mean anything because, for example, if we
+          // just came through a finally handler block then that won't trap anything in itself. That's
+          // why we have to check the parent of the Block instead.
+
+          // If catch clause, check if it has a `finally` sibling. In that case we have now passed through a finally barrier.
+          if (!passedFinally && nodes[index-1].type === 'CatchClause' && nodes[index-2].finalizer) {
+            // This is the catch block and it is trapped by a finally block
+            passedFinally = true;
+            passedCatch = true;
+          }
+          // If we passed a finally then we don't care about catch anymore
+          else if (!passedFinally && nodes[index-1].type === 'TryStatement' && nodes[index-1].block === node) {
+            // This is the try block and it will be trapped by a catch and/or a finally block
+            if (!passedCatch && !passedFinally && node.handler) passedCatch = true;
+            if (!passedFinally && node.finalizer) {
+              passedFinally = true;
+              // Since a finally catches it first, an outer catch handler won't be able to catch it before the finally triggers.
+              passedCatch = true;
+            }
+          }
+        }
+
+        --index;
+        ASSERT(index >= 0, 'continuation block must be in the current list of parent nodes');
+      }
+    });
+  }
+
+
+
+  if (nearestCatchBlock) {
+    TODO
+    nearestCatchBlock.$p.treblo.trappedToStartHere.push({src: fromBlock, dst: continuationBlock, overwrittens});
+  }
+  if (nearestFinallyBlock) {
+    TODO
+    nearestFinallyBlock.$p.treblo.trappedToStartHere.push({src: fromBlock, dst: continuationBlock, overwrittens});
+  }
+  if (continuationBlock) {
+    if (loops) {
+      continuationBlock.$p.treblo.pendingLoop.push({src: fromBlock, dst: continuationBlock, overwrittens});
+    } else {
+      continuationBlock.$p.treblo.pendingNext.push({src: fromBlock, dst: continuationBlock, overwrittens});
     }
   }
+
+  return [continuationBlock, nearestCatchBlock, nearestFinallyBlock];
+}
+function findSimpleContinuationBlock(wasAbrupt, walkerPath, globallyUniqueLabelRegistry, loopStack) {
+  if (!wasAbrupt) {
+    // Find nearest Block
+    // If we're currently leaving a Block, then
+    // - If it's the child of a loop, that Block already is the continuation Block
+    // - If it's the child of a Function, we don't care
+    // - Anything else, the next nearest Block is the continuation Block
+    // Anything else, that's the continuation Block
+
+    let index = walkerPath.nodes.length - 1;
+
+    if (walkerPath.nodes[index].type !== 'BlockStatement') {
+      // We are starting in a Block then it depends on the parent
+      switch (walkerPath.nodes[index].type) {
+        case 'Program': {
+          TODO
+          if (REF_TRACK_TRACING) console.log(`TTR: leaving the root node, end of the line`);
+          return undefined;
+        }
+        case 'FunctionDeclaration': {
+          // This is where we stop for this analysis.
+          TODO
+          if (REF_TRACK_TRACING) console.log(`TTR: leaving a block with function as parent so continuationBlock will be undefined`);
+          return undefined;
+        }
+        case 'WhileStatement':
+        case 'ForInStatement':
+        case 'ForOfStatement': {
+          // Code logic continues with the body of the loop. So of the current Block.
+          if (REF_TRACK_TRACING) console.log(`TTR: leaving a block with loop as parent so actually continuationBlock is same block (@${walkerPath.nodes[index].body.$p.pid})`);
+          return walkerPath.nodes[index].body;
+        }
+      }
+    }
+
+    while (walkerPath.nodes[--index].type !== 'BlockStatement' && walkerPath.nodes[index].type !== 'Program') {
+      // Keep searching. It must be there. Or the loop condition will eventually crash. That'd be a bad thing.
+    }
+
+    return walkerPath.nodes[index];
+  }
+
+  // See findContinuationBlock.
+  // This func ignores the existence of catch and finally concepts.
+  if (wasAbrupt.type === 'BreakStatement') {
+    // code continues _after_ the node (next index in the parent block)
+    if (wasAbrupt.label) {
+      const labelNode = globallyUniqueLabelRegistry.get(wasAbrupt.label.name).node;
+      let index = walkerPath.nodes.length - 1;
+      while (walkerPath.nodes[index] !== labelNode) {
+        --index;
+        ASSERT(index >= 0, 'the label must be in the current node path otherwise the parser would throw up on the input code', index);
+      }
+      ASSERT(index > 0, 'the label must not be the root node because that is Program', index);
+      // Note: parent node must be a block of some kind (only valid parent of label statements)
+      const parentBlock = walkerPath.nodes[index - 1];
+      // Note: parent node index is one further than prop index and index index
+      const parentIndex = walkerPath.indexes[index];
+      // The break continues code execution _after_ the label statement so on the next index (or otherwise its parent)
+      return parentBlock;
+    } else {
+      const loopNode = loopStack[loopStack.length - 1];
+      let top = walkerPath.nodes.length - 1;
+      //console.log('loopStack:', loopStack)
+      //console.log('top is', walkerPath.nodes[top], 'node is', loopNode)
+      while (walkerPath.nodes[top] !== loopNode) {
+        --top;
+        ASSERT(top >= 0, 'the loop must be in the current node path otherwise the parser would throw up on the input code', top);
+      }
+      ASSERT(top > 0, 'the loop must not be the root node because its parent must be a block or label', top);
+      // Note: parent node must be a block of some kind or a labeled statement
+      const parentBlock = walkerPath.nodes[top - 1];
+      if (parentBlock.type === 'LabeledStatement') {
+        // In that case go one more node up the path
+        const blockParentNode = walkerPath.nodes[top - 2];
+        return blockParentNode;
+      } else {
+        // The break continues code execution _after_ the target loop statement so on the next index (or otherwise its parent)
+        return parentBlock;
+      }
+    }
+  }
+  else if (wasAbrupt.type === 'ContinueStatement') {
+    vlog('TODO: eliminate continue');
+    // code continues _with_ the node (same index in the parent block)
+    if (wasAbrupt.label) {
+      // We can return the label statement since that's essentially the same
+      // TODO: we need to parent block tho
+      const labelNode = globallyUniqueLabelRegistry.get(wasAbrupt.label.name).node;
+      ASSERT(['WhileStatement', 'ForInStatement', 'ForOfStatement'].includes(labelNode.body.type), 'if continue can syntactically target a label then it must have a while as body');
+      ASSERT(labelNode.body.body.type === 'BlockStatement', 'and this is its body');
+      return labelNode.body.body;
+    } else {
+      // Nearest loop, then that body
+      return loopStack[loopStack.length - 1].body;
+    }
+  }
+  else if (wasAbrupt.type === 'ReturnStatement') {
+    // Code does not continue but may still traverse through one or
+    // more finally blocks (which we explicitly ignore here)
+    TODO
+    return undefined;
+  }
+  else if (wasAbrupt.type === 'ThrowStatement') {
+    // Code does not continue unless caught.
+    // So worst case it is caught so we point at the nearest catch
+    // if there is one in the same function. In all other cases we
+    // consider "none" because this is only in the context of ref
+    // tracking for non-closured bindings. So we don't care if the
+    // throw ends up getting caught by an outer scope.
+    // However, in this case we explicitly ignore the existence
+    // of the `catch` mechanic, and so we defer to the fallback
+    // of "none". (The parent function will add the catch/finally
+    // nodes if there are any, and assume that worst case code
+    // actually does continue after the catch block, too).
+    TODO
+    return undefined;
+  }
+  else {
+    ASSERT(false, 'should be one of these cases');
+  }
+
+  ASSERT(false, 'unreachable');
 }
 
 export function openRefsOnBeforeBreak(node, blockStack) {
@@ -598,7 +849,7 @@ export function openRefsOnBeforeTryNode(node, parentBlock) {
 
   // Every step of the way may be observed by a catch or a finally. Kind of annoying.
 
-  node.$p.openRefsT = createTrebra();
+  //node.$p.openRefsT = createTrebra();
 
   // Note: handler/finalizer not yet visited so no $p yet
   //if (node.handler) node.handler.$p.openRefsT = createTrebra();
@@ -933,7 +1184,7 @@ export function openRefsOnAfterTryNode(node, parentBlock, globallyUniqueLabelReg
   //  if (allOverwritten) {
   //    if (REF_TRACK_TRACING) console.log('All branches overwrite or abrupt (parent:', parentBlock.$p.treblo.overwritten.has(name),', catch:', !node.handler ? 'missing' : node.finalizer ? 'ignored' : (node.handler.body.$p.treblo.overwritten.has(name)), ', finalizer:', node.finalizer ? node.finalizer.$p.treblo.overwritten.has(name) : 'missing', ' so creating new exitWrites set on parent');
   //    parentBlock.$p.treblo.exitWrites.set(name, new Set()); // Will be filled in the exitWritesAfter loop below
-  //    parentBlock.$p.treblo.overwritten.set(name, true);
+  //    parentBlock.$p.treblo.overwritten.add(name);
   //  } else {
   //    const exitWritesBefore = (node.finalizer || node.handler.body).$p.treblo.exitWritesBefore.get(name); // Lazily fetched
   //    parentExitWrites = parentBlock.$p.treblo.exitWrites.get(name);
@@ -1061,14 +1312,21 @@ export function openRefsOnBeforeTryBody(node, parentBlock) {
   if (REF_TRACK_TRACING) console.group('RTT: TRY:BODY');
   if (REF_TRACK_TRACING) console.group('RTT: TRY:BODY:before');
 
+  // For Catch and Finally _block_ nodes.
+  // This is the list of src/dst nodes that (worst case) also enter these blocks.
+  // Can't do this on Treblo's because we need to create this array before arriving to that node
+  if (node.handler) node.handler.body.$p.nodesThatContinueHere = [];
+  if (node.finalizer) node.finalizer.$p.nodesThatContinueHere = [];
+
+
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:BODY:before
 }
 
-export function openRefsOnAfterTryBody(node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack) {
+export function openRefsOnAfterTryBody(node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack, catchStack, finallyStack) {
   if (REF_TRACK_TRACING) console.group('RTT: TRY:BODY:after');
 
   //const treblo = node.$p.treblo;
-  //const continuationNode = findContinuationNode(treblo.wasAbrupt, globallyUniqueLabelRegistry, loopStack);
+  //const continuationNode = findContinuationBlock(treblo.wasAbrupt, globallyUniqueLabelRegistry, loopStack);
   //// Check for breaking through a finally barrier
   //// We need to confirm whether there's a `try` node with a pid between the target node and the current node
   //// If there is, we need to confirm whether this node has a `finally` block
@@ -1122,7 +1380,7 @@ export function openRefsOnBeforeCatchBody(node, parentNode, parentProp, parentBl
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:CATCH:before
 }
 
-export function openRefsOnAfterCatchBody(node, parentNode, parentProp) {
+export function openRefsOnAfterCatchBody(node, parentNode, parentProp, loopStack, tryNodeStack, catchStack, finallyStack) {
   if (REF_TRACK_TRACING) console.group('RTT: TRY:CATCH:after');
 
   if (REF_TRACK_TRACING) console.groupEnd(); // TRY:CATCH:after
@@ -1165,11 +1423,13 @@ export function openRefsOnBeforeFinallyBody(node, parentNode, parentProp, parent
   if (REF_TRACK_TRACING) console.group(); // TRY:FINALLY:before
 }
 
-export function openRefsOnAfterFinallyBody(node, parentNode, parentProp, globallyUniqueLabelRegistry, loopStack) {
+export function openRefsOnAfterFinallyBody(node, parentNode, parentProp, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack) {
   if (REF_TRACK_TRACING) console.group('RTT: TRY:FINALLY:after');
 
   const treblo = node.$p.treblo;
-  const continuationNode = findContinuationNode(treblo.wasAbrupt, globallyUniqueLabelRegistry, loopStack);
+  ASSERT(false, 'fixme. this works funky now. what is the parent block event.');
+  const [continuationBlock, nearestCatchBlock, nearestFinallyBlock] = findAndQueueContinuationBlock(node.body, treblo.wasAbrupt, walkerPath, globallyUniqueLabelRegistry, loopStack, catchStack, finallyStack);
+  TODO
   if (REF_TRACK_TRACING) console.log('  /try-finally, abrupt:', treblo.wasAbrupt?.type, ', continues after node @:', continuationNode?.$p.pid, ', has', treblo.entryReads.size, ' entryReads,', treblo.entryWrites.size, 'entryWrites, and', treblo.exitWrites.size, 'exitWrites');
 
   if (REF_TRACK_TRACING) console.group(); // TRY:FINALLY:after
@@ -1183,10 +1443,10 @@ export function openRefsCatchOnBefore(node, parentNode) {
   // TODO: where does this happen versus the catch body?
 
   // Create the state for the catch block
-  node.$p.openRefsT = createTrebra();
+  //node.$p.openRefsT = createTrebra();
 
   // Copy state from Try block to Catch node (because event handler won't have access to Try node so can't reach into the block node)
-  node.$p.treblo_try = parentNode.block.$p.treblo;
+  //node.$p.treblo_try = parentNode.block.$p.treblo;
 }
 
 export function openRefsOnBeforeCatchVar() {
@@ -1197,7 +1457,7 @@ export function openRefsOnAfterCatchVar(node, parentNode, parentProp, parentBloc
 }
 export function openRefsOnAfterCatchNode(node, parentBlock, globallyUniqueLabelRegistry, loopStack, tryNodeStack) {
   //const treblo = node.body.$p.treblo;
-  //const continuationNode = findContinuationNode(treblo.wasAbrupt, globallyUniqueLabelRegistry, loopStack);
+  //const continuationNode = findContinuationBlock(treblo.wasAbrupt, globallyUniqueLabelRegistry, loopStack);
   //// Check for breaking through a finally barrier
   //// We need to confirm whether there's a `try` node with a pid between the target node and the current node
   //// If there is, we need to confirm whether this node has a `finally` block
@@ -1238,31 +1498,29 @@ export function openRefsOnBeforeRead(read, blockNode) {
 
   /** @var {Treblo} */
   const treblo = blockNode.$p.treblo;
+  ASSERT(treblo, 'the treblo should be set on this block...');
 
   // For all intentions and purposes, right now the next read can only see this write.
   // It's only for reconciling branching blocks where it might have multiple open writes
   // Note: `let x = 1; while (true) { $(x) x = 2; }` is fixed by connect pre-write-reads to last-writes after a loop.
 
-  read.openRefsRCanRead = new Set(blockNode.$p.treblo.exitWrites.get(name) ?? []);
-  read.openRefsRCanRead.forEach(write => write.openRefsRReadBy.add(read));
+  if (REF_TRACK_TRACING) console.log('There are', blockNode.$p.treblo.exitWrites.get(name)?.size ?? 0, 'exitWrites this read can reach in block @', +blockNode.$p.pid);
 
-  if (REF_TRACK_TRACING) if (read.openRefsRCanRead.size) console.log('RTT: read @', +read.node.$p.pid, 'can at least read write(s) @', ...Array.from(read.openRefsRCanRead).map(ref => +ref.node.$p.pid));
-  if (REF_TRACK_TRACING) if (!read.openRefsRCanRead.size) console.log('RTT: read @', +read.node.$p.pid, 'can not read any writes (so far in this block)');
-
-  // It is an entryRead if there are no entryWrites yet since those are block specific (not pre-populated with parent state)
-  if (treblo.overwritten.has(name)) {
+  // It is an entryRead if the binding has not been written to yet in this block. The entryReads are relevant for loops, later.
+  const isEntryRead = treblo.overwritten.has(name);
+  if (isEntryRead) {
     if (REF_TRACK_TRACING) console.log('Since binding was already overwritten in this block, @', +read.node.$p.pid, 'is not an entryRead');
   } else {
-    if (REF_TRACK_TRACING) console.log('Marking @', +read.node.$p.pid, 'as an entryRead for its block');
+    if (REF_TRACK_TRACING) console.log('Marking @', +read.node.$p.pid, 'as an entryRead for its block @', +blockNode.$p.pid);
     treblo.entryReads.get(name)?.add(read) ?? treblo.entryReads.set(name, new Set([read]));
-
-    //// This entryRead can reach all exitWrites of the parent up to this point
-    //treblo.exitWritesBefore.get(name)?.forEach(write1 => {
-    //  if (REF_TRACK_TRACING) console.log('- Read', +read.node.$p.pid, 'can reach write', +write1.node.$p.pid);
-    //  write1.openRefsRReadBy.add(read);
-    //  read.openRefsRCanRead.add(write1);
-    //});
   }
+
+  // An read can reach all current exitWrites ("open writes" or "lastWrites")
+  treblo.exitWrites.get(name)?.forEach(write => {
+    if (REF_TRACK_TRACING) console.log('- Read', +read.node.$p.pid, 'can reach write', +write.node.$p.pid);
+    write.reachedByReads.add(read);
+    read.reachesWrites.add(write);
+  });
 
   treblo.reads.get(name)?.add(read) ?? treblo.reads.set(name, new Set([read]));
   treblo.rwOrder.get(name)?.push(read) ?? treblo.rwOrder.set(name, [read]);
@@ -1289,32 +1547,23 @@ export function openRefsOnBeforeWrite(write, blockNode) {
   if (treblo.overwritten.has(name)) {
     if (REF_TRACK_TRACING) console.log('Since binding was already overwritten in this block, @', +write.node.$p.pid, 'is not an entryWrite');
   } else {
-    if (REF_TRACK_TRACING) console.log('Since binding was not yet overwritten in this block, @', +write.node.$p.pid, 'is an entryWrite');
+    if (REF_TRACK_TRACING) console.log('Since binding was not yet overwritten in this block, @', +write.node.$p.pid, 'is an entryWrite, mark it as overwritten now in @', +blockNode.$p.pid);
     treblo.entryWrites.get(name)?.add(write) ?? treblo.entryWrites.set(name, new Set([write]));
-    treblo.overwritten.set(name, true);
-
-    //// This entryWrite can reach all exitWrites of the parent up to this point
-    //treblo.exitWritesBefore.get(name)?.forEach(write1 => {
-    //  if (REF_TRACK_TRACING) console.log('- Write', +write.node.$p.pid, 'overwrites write', +write1.node.$p.pid, '(propagating from loop-end)');
-    //  write1.openRefsROverwrittenBy.add(write);
-    //  write.openRefsRCanOverwrite.add(write1);
-    //});
+    treblo.overwritten.add(name);
   }
 
-  //// Record the writes that can be reached
-  //const currExitWrites = treblo.exitWrites.get(name);
-  //if (REF_TRACK_TRACING) if (currExitWrites) console.log('RTT: open writes that this write may overwrite: @', ...Array.from(currExitWrites).map(write => +write.node.$p.pid));
-  //if (REF_TRACK_TRACING) if (!currExitWrites) console.log('RTT: open writes that this write may overwrite: none');
-  //currExitWrites?.forEach(openWrite => {
-  //  if (REF_TRACK_TRACING) console.log('RTT: noting write @', +openWrite.node.$p.pid, 'can be overwritten by @', +write.node.$p.pid);
-  //  openWrite.openRefsROverwrittenBy.add(write);
-  //  write.openRefsRCanOverwrite.add(openWrite);
-  //});
+  // This write can reach all exitWrites ("open writes" or "lastWrites")
+  treblo.exitWrites.get(name)?.forEach(write1 => {
+    if (REF_TRACK_TRACING) console.log('- Write', +write.node.$p.pid, 'overwrites write', +write1.node.$p.pid);
+    write1.reachedByWrites.add(write);
+    write.reachesWrites.add(write1);
+  });
 
   // For all intentions and purposes, right now the next read can only see this write.
-  // It's only for reconciling branching blocks where it might have multiple open writes
+  // It shadows all previous writes for any statements in that follow in the same block. So replace the list.
+  // It's only for reconciling branching blocks where the set might have multiple open writes
   if (REF_TRACK_TRACING) console.log('Setting exitWrites of block @', +blockNode.$p.pid, 'to only the write @', +write.node.$p.pid);
-  treblo.exitWrites.set(name, new Set([write]));
+  treblo.exitWrites.set(name, new Set([write])); // Is clearing it and reusing the set faster/better? :shrug:
 
   treblo.writes.get(name)?.push(write) ?? treblo.writes.set(name, [write]);
   treblo.rwOrder.get(name)?.push(write) ?? treblo.rwOrder.set(name, [write]);
@@ -1334,10 +1583,10 @@ export function dumpOpenRefsState(globallyUniqueNamingRegistry) {
     ).forEach(rw => {
       console.log('- @', +rw.node.$p.pid, ';', rw.action, ';',
         [
-          rw.action === 'read' ? (rw.openRefsRCanRead.size ? 'canRead: ' + Array.from(rw.openRefsRCanRead).map(write => write.node.$p.pid) : 'can not read any writes (TDZ?)') : '',
-          rw.action === 'write' ? (rw.openRefsRReadBy.size ? 'readBy: ' + Array.from(rw.openRefsRReadBy).map(read => read.node.$p.pid) : 'not read') : '',
-          rw.action === 'write' ? (rw.openRefsRCanOverwrite.size ? 'overwrites: ' + Array.from(rw.openRefsRCanOverwrite).map(write => write.node.$p.pid) : 'does not overwrite') : '',
-          rw.action === 'write' ? (rw.openRefsROverwrittenBy.size ? 'overwrittenBy: ' + Array.from(rw.openRefsROverwrittenBy).map(write => write.node.$p.pid) : 'not overwritten') : '',
+          rw.action === 'read' ? (rw.reachesWrites.size ? 'canRead: ' + Array.from(rw.reachesWrites).map(write => write.node.$p.pid) : 'can not read any writes (TDZ?)') : '',
+          rw.action === 'write' ? (rw.reachedByReads.size ? 'readBy: ' + Array.from(rw.reachedByReads).map(read => read.node.$p.pid) : 'not read') : '',
+          rw.action === 'write' ? (rw.reachesWrites.size ? 'overwrites: ' + Array.from(rw.reachesWrites).map(write => write.node.$p.pid) : 'does not overwrite') : '',
+          rw.action === 'write' ? (rw.reachedByWrites.size ? 'overwrittenBy: ' + Array.from(rw.reachedByWrites).map(write => write.node.$p.pid) : 'not overwritten') : '',
         ].filter(Boolean).join(', ')
       );
     });

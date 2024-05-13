@@ -50,12 +50,12 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 a:
-  - w @4       | ########## | 37          | none           | none
-  - r @11      | none (TDZ?)
-  - w @15      | ########## | not read    | none           | none
-  - r @20      | none (TDZ?)
-  - w @32      | ########## | not read    | none           | none
-  - r @37      | 4
+  - w @4       | ########## | 11,20,37    | none           | 15,32
+  - r @11      | 4
+  - w @15      | ########## | 20,37       | 4              | 32
+  - r @20      | 4,15
+  - w @32      | ########## | 37          | 4,15           | none
+  - r @37      | 15,4,32
 
 tmpIfTest:
   - w @23      | ########## | 27          | none           | none

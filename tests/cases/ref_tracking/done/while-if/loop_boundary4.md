@@ -21,7 +21,7 @@ while (true) {
     break;
   }
 }
-$(x); // 5 or 6
+$(x); // 6
 `````
 
 ## Output
@@ -45,7 +45,7 @@ Ref tracking result:
 
                | reads      | read by     | overWrites     | overwritten by
 x:
-  - w @4       | ########## | 25          | none           | none
-  - w @12      | ########## | 16          | none           | none
+  - w @4       | ########## | not read    | none           | 12
+  - w @12      | ########## | 16,25       | 4,12           | 12
   - r @16      | 12
-  - r @25      | 4
+  - r @25      | 12

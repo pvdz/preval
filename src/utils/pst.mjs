@@ -1,5 +1,9 @@
 import {ASSERT} from "../utils.mjs"
 
+// continue is printed as break?
+// idents may flow over into numbers and print invalid code...
+// finally keyword position?
+
 export function arrayLiteral(elements) {
   return {
     type: 'ArrayLiteral',

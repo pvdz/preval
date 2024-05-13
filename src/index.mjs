@@ -1,5 +1,5 @@
 import { setVerboseTracing, VERBOSE_TRACING, MARK_NONE, MARK_TEMP, MARK_PERM } from './constants.mjs';
-import { clearStdio, setStdio, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat } from './utils.mjs';
+import { clearStdio, setStdio, log, group, groupEnd, vlog, vgroup, vgroupEnd, tmat, fmat, setRefTracing } from './utils.mjs';
 import globals from './globals.mjs';
 
 import { parseCode } from './normalize/parse.mjs';
@@ -10,7 +10,7 @@ import { phase0 } from './reduce_static/_phase0.mjs';
 import { phase1 } from './reduce_static/_phase1.mjs';
 import { phase2 } from './reduce_static/_phase2.mjs';
 
-export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve, req, stopAfterNormalize, options = {} }) {
+export function preval({ entryPointFile, stdio, verbose, verboseTracing, resolve, req, stopAfterNormalize, refTracing, options = {} }) {
   if (stdio) setStdio(stdio, verbose);
   else clearStdio();
   setVerboseTracing(!!verbose && verboseTracing !== false);

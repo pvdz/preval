@@ -55,7 +55,7 @@ export function fromMarkdownCase(md, fname, config) {
         intro: md,
       },
     };
-  } else if (md[0] === '/' && md[1] === '/' && md[2] === ' ') {
+  } else if (md[0] === '/' && md[1] === '/') {
     console.log('Converting new case in', fname, 'to an actual test case');
     // Assume new test case
     return {
@@ -342,10 +342,10 @@ function createOpenRefsState(globallyUniqueNamingRegistry) {
       maxlen = Math.max(maxlen, rw.node.name.length);
       arr.push([
           '  - ' + rw.action[0] + (' @' + rw.node.$p.pid).padEnd(maxlen - 2, ' ') + ' ',
-          rw.action === 'read' ? (rw.openRefsRCanRead.size ? ' | ' + Array.from(rw.openRefsRCanRead).map(write => write.node.$p.pid) : ' | none (TDZ?)').padEnd(10, ' ') : ' | '.padEnd(13, '#'),
-          rw.action === 'write' ? (rw.openRefsRReadBy.size ? ' | ' + Array.from(rw.openRefsRReadBy).map(read => read.node.$p.pid) : ' | not read').padEnd(14, ' ') : '',
-          rw.action === 'write' ? (rw.openRefsRCanOverwrite.size ? ' | ' + Array.from(rw.openRefsRCanOverwrite).map(write => write.node.$p.pid) : ' | none').padEnd(17, ' ') : '',
-          rw.action === 'write' ? (rw.openRefsROverwrittenBy.size ? ' | ' + Array.from(rw.openRefsROverwrittenBy).map(write => write.node.$p.pid) : ' | none') : '',
+          rw.action === 'read' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => write.node.$p.pid) : ' | none (TDZ?)').padEnd(10, ' ') : ' | '.padEnd(13, '#'),
+          rw.action === 'write' ? (rw.reachedByReads.size ? ' | ' + Array.from(rw.reachedByReads).map(read => read.node.$p.pid) : ' | not read').padEnd(14, ' ') : '',
+          rw.action === 'write' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => write.node.$p.pid) : ' | none').padEnd(17, ' ') : '',
+          rw.action === 'write' ? (rw.reachedByWrites.size ? ' | ' + Array.from(rw.reachedByWrites).map(write => write.node.$p.pid) : ' | none') : '',
         ].filter(Boolean).join('').trimEnd()
       );
     });

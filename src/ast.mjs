@@ -712,10 +712,10 @@ export function tru() {
   return literal(true);
 }
 
-export function tryStatement(block, param, handler, finalizer, paramNullAck = false) {
+export function tryStatement(block, param, handler, finalizer, paramNullAck = false, yesNotTransforming = !handler || !finalizer) {
   ASSERT(block && block.type === 'BlockStatement', 'the block should be an actual BlockStatement node', block);
   ASSERT(!handler || handler.type === 'BlockStatement', 'the handler, if present, should be an actual BlockStatement node', handler);
-  ASSERT(param ? handler : true, 'if theres a param then there must be a param');
+  ASSERT(param ? handler : true, 'if theres a param then there must be a handler');
   ASSERT(handler ? paramNullAck || param : true, 'if theres a handler but no param then must send an additional arg acknowledging that this is not normalized form');
   ASSERT(
     !finalizer || finalizer.type === 'BlockStatement',
@@ -726,8 +726,11 @@ export function tryStatement(block, param, handler, finalizer, paramNullAck = fa
     param === null || typeof param === 'string' || param?.type === 'Identifier',
     'the param (catch var) should be null, a string, or an ident. more exotic cases should be supported first but not likely needed',
     param,
+    typeof param,
+    param?.type
   );
   ASSERT(handler || finalizer, 'must have at least a handler or a finalizer');
+  ASSERT(yesNotTransforming || !(handler && finalizer), 'normalized code should not contain a try with both catch and finally handlers');
 
   return {
     type: 'TryStatement',
@@ -737,6 +740,42 @@ export function tryStatement(block, param, handler, finalizer, paramNullAck = fa
       param,
       body: handler,
     } : null,
+    finalizer,
+    $p: $p(),
+  };
+}
+
+export function tryCatchStatement(block, param, handler, paramNullAck = false) {
+  ASSERT(block && block.type === 'BlockStatement', 'the block should be an actual BlockStatement node', block);
+  ASSERT(handler && handler.type === 'BlockStatement', 'the handler should be an actual BlockStatement node', handler);
+  ASSERT(paramNullAck || param, 'if theres no param then must send an additional arg acknowledging that this is not normalized form');
+  ASSERT(
+    param === null || typeof param === 'string' || param?.type === 'Identifier',
+    'the param (catch var) should be null, a string, or an ident. more exotic cases should be supported first but not likely needed',
+    param, typeof param, param?.type
+  );
+
+  return {
+    type: 'TryStatement',
+    block,
+    handler: handler ? {
+      type: 'CatchClause',
+      param,
+      body: handler,
+    } : null,
+    finalizer: null,
+    $p: $p(),
+  };
+}
+
+export function tryFinallyStatement(block, finalizer) {
+  ASSERT(block && block.type === 'BlockStatement', 'the block should be an actual BlockStatement node', block);
+  ASSERT(finalizer && finalizer.type === 'BlockStatement', 'the finalizer should be an actual BlockStatement node', finalizer?.type);
+
+  return {
+    type: 'TryStatement',
+    block,
+    handler: null,
     finalizer,
     $p: $p(),
   };

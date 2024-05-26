@@ -420,3 +420,25 @@ function isOneSetBit(v) {
 
   return 1 << (31 - Math.clz32(v)) === v;
 }
+
+/**
+ * @param {Map<string, Set<Write>>} map
+ * @returns {string}
+ */
+export function debugStringMapOfSetOfReadOrWrites(map) {
+  const entries = Array.from(map.entries());
+  return entries.map(([name, set]) => {
+    return `${name}:${debugStringListOfReadOrWrites(set)}`;
+  }).join(', ')
+}
+
+/**
+ * @param {Set<Write> | Array<Write> | undefined}set
+ * @returns {string}
+ */
+export function debugStringListOfReadOrWrites(set) {
+  ASSERT(!set || set instanceof Array || set instanceof Set, 'set array or undefined');
+  return (set && Array.from(set).map((write) => {
+    return `@${write.node.$p.pid}`;
+  }).join(',')) || '(none)';
+}

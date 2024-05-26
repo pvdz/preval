@@ -102,6 +102,8 @@ import {aliasIfIf} from "./alias_if_if.mjs";
 // - The boolean cast in isNode$1 in react can be moved?
 // - If two let bindings are updated in tandom (with same value) then they could be combined (`let x; let y; x = z; y = z; $(x,y); x = zz; y = zz; $(x, y)`, etc)
 // - Eliminate continue
+// - should Program always have a block just to eliminate the Program? That's not going to fix function boundaries though but maybe it is more consistent anyways?
+// - should loops always explicitly end with a continue statement? does that matter?
 
 export function phase2(program, fdata, resolve, req, options) {
   const ast = fdata.tenkoOutput.ast;

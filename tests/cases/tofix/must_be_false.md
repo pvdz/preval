@@ -72,19 +72,16 @@ $(t);
 
 `````js filename=intro
 const tmpIfTest = $(true);
-let t = true;
 if (tmpIfTest) {
   const tmpIfTest$1 = $(false);
   if (tmpIfTest$1) {
     $(`fail too`);
     throw `Preval: TDZ triggered for this assignment: x = \$('fail too')`;
   } else {
-    t = false;
   }
 } else {
-  t = false;
 }
-$(t);
+$(false);
 `````
 
 ## PST Output
@@ -93,21 +90,14 @@ With rename=true
 
 `````js filename=intro
 const a = $( true );
-let b = true;
 if (a) {
-  const c = $( false );
-  if (c) {
+  const b = $( false );
+  if (b) {
     $( "fail too" );
     throw "Preval: TDZ triggered for this assignment: x = $('fail too')";
   }
-  else {
-    b = false;
-  }
 }
-else {
-  b = false;
-}
-$( b );
+$( false );
 `````
 
 ## Globals

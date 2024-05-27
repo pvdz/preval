@@ -39,6 +39,7 @@ import { BUILTIN_FUNC_CALL_NAME } from '../constants.mjs';
 import { createFreshVar, findBoundNamesInVarDeclaration, findBoundNamesInUnnormalizedVarDeclaration } from '../bindings.mjs';
 import globals from '../globals.mjs';
 import { cloneFunctionNode, createNormalizedFunctionFromString } from '../utils/serialize_func.mjs';
+import { tryCatchStatement, tryFinallyStatement } from '../ast.mjs';
 
 // pattern: tests/cases/ssa/back2back_bad.md (the call should be moved into the branches, replacing the var assigns)
 
@@ -8500,6 +8501,23 @@ export function phaseNormalize(fdata, fname, { allowEval = true }) {
   function transformTryStatement(node, body, i, parent) {
     transformBlock(node.block, undefined, -1, node, false);
     anyBlock(node.block);
+
+    if (node.handler && node.finalizer) {
+      // It's easier to reason about Try if we can assume it either has a Catch or a Finally and ignore the "both" case. The double dipping Finally can be a nuisance.
+      rule('A Try must have a Catch or a Finally but not both');
+      example('try { a } catch { b } finally { c }', 'try { try { a } catch { b } } finally { c }');
+      before(node);
+
+      const wrapped = AST.tryFinallyStatement(
+        AST.blockStatement(AST.tryCatchStatement(node.block, node.handler.param ?? null, node.handler.body, true)),
+        node.finalizer
+      );
+      body.splice(i, 1, wrapped);
+
+      after(wrapped);
+      assertNoDupeNodes(AST.blockStatement(body), 'body');
+      return true;
+    }
 
     if (node.block.body.length === 0) {
       if (node.finalizer?.body.length) {

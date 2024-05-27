@@ -342,10 +342,10 @@ function createOpenRefsState(globallyUniqueNamingRegistry) {
       maxlen = Math.max(maxlen, rw.node.name.length);
       arr.push([
           '  - ' + rw.action[0] + (' @' + rw.node.$p.pid).padEnd(maxlen - 2, ' ') + ' ',
-          rw.action === 'read' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => write.node.$p.pid) : ' | none (TDZ?)').padEnd(10, ' ') : ' | '.padEnd(13, '#'),
-          rw.action === 'write' ? (rw.reachedByReads.size ? ' | ' + Array.from(rw.reachedByReads).map(read => read.node.$p.pid) : ' | not read').padEnd(14, ' ') : '',
-          rw.action === 'write' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => write.node.$p.pid) : ' | none').padEnd(17, ' ') : '',
-          rw.action === 'write' ? (rw.reachedByWrites.size ? ' | ' + Array.from(rw.reachedByWrites).map(write => write.node.$p.pid) : ' | none') : '',
+          rw.action === 'read' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => +write.node.$p.pid).sort((a,b)=>a-b) : ' | none (TDZ?)').padEnd(10, ' ') : ' | '.padEnd(13, '#'),
+          rw.action === 'write' ? (rw.reachedByReads.size ? ' | ' + Array.from(rw.reachedByReads).map(read => +read.node.$p.pid).sort((a,b)=>a-b) : ' | not read').padEnd(14, ' ') : '',
+          rw.action === 'write' ? (rw.reachesWrites.size ? ' | ' + Array.from(rw.reachesWrites).map(write => +write.node.$p.pid).sort((a,b)=>a-b) : ' | none').padEnd(17, ' ') : '',
+          rw.action === 'write' ? (rw.reachedByWrites.size ? ' | ' + Array.from(rw.reachedByWrites).map(write => +write.node.$p.pid).sort((a,b)=>a-b) : ' | none') : '',
         ].filter(Boolean).join('').trimEnd()
       );
     });

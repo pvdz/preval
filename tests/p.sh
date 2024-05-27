@@ -92,6 +92,7 @@ Preval CLI Toolkit help:
  --randomized    Shuffle the test order. All tests will be visited but in .sort(Math.random) order.
  --refTest       Special mode to test ref tracking. Output will be different, dumping ref tracking state after first phase1 pass.
  --ref-tracing   Print ref tracking trace logs
+ --ref           Alias for --no-trace --ref-tracing :shrug:
  -C              Do not print colors
  -n              Only show normalized output
  -t <count>      Run tests in this many threads (default=1; no threads)
@@ -201,6 +202,10 @@ Preval CLI Toolkit help:
       PARAM_REFTEST='--refTest'
       ;;
     --ref-tracing)
+      PARAM_REF_TRACING='--refTracing'
+      ;;
+    --ref)
+      PARAM_NO_TRACE='--no-trace'
       PARAM_REF_TRACING='--refTracing'
       ;;
     -C)

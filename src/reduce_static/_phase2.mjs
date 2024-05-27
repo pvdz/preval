@@ -256,7 +256,7 @@ function _phase2(program, fdata, resolve, req, options = {}) {
     ifMerging(fdata) ||
     ifFalsySpread(fdata) ||
     tailBreaking(fdata) ||
-    fakeLoops(fdata) ||
+    //fakeLoops(fdata) || // TODO: verify this one. I think it's broken and/or outdated to be rewritten
     unwindWhileWithTest(fdata, options.unrollLimit) ||
     unwindWhileWithCounter(fdata, options.unrollLimit) ||
     staticArgOpOutlining(fdata) ||

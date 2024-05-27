@@ -88,7 +88,8 @@ function _fakeLoops(fdata) {
           ++changed;
         }
       }
-    } else if (nodeType === 'ForInStatement' || nodeType === 'ForOfStatement') {
+    }
+    else if (nodeType === 'ForInStatement' || nodeType === 'ForOfStatement') {
       // Note: a for-x statement can't be eliminated because the loop might trigger getters and we can't predict which one
       // So even if we can collapse a loop, we can at best simplify it to `for (x in y) { break }` ("minimal form")
       if (beforeWalk) {
@@ -106,59 +107,10 @@ function _fakeLoops(fdata) {
               node.body.body[1].type === 'BreakStatement'),
         });
       } else {
-        const obj = loopStack.pop();
-        if (!obj.bail) {
-          // Do the same as for a `while`, except instead of the test-as-a-statement, compile a "minimal form" `for`
-          // The minimal for seems worse but because it's not a loop, it's simpler to reason about. Or should be, anyways
-          rule('A for-x loop that never loops can be trimmed');
-          example(
-            'for (a in b) { f(); break; }',
-            'oldLoop: { let ran = false; for (a in b) { ran = true; break; }; if (ran) { f(); break oldLoop; } }',
-          );
-          before(node);
-
-          // We keep the original node but split it up. The body will be replaced with a `{ ran = true; break; }`
-          // and the old block will become the body of the new `if`
-
-          const forBlock = node.body;
-          ASSERT(forBlock.type === 'BlockStatement', 'body is a block', forBlock, node);
-
-          // Create the label and assign the label to all the breaks we collected
-          const tmpLabelIdentNode = createFreshLabel('tmpFor', fdata);
-          // Create var that tracks whether the loop was entered at all
-          const tmpName = createFreshVar('tmpForEntered', fdata);
-
-          obj.breaks.forEach((node) => {
-            // If the loop had a labeled statement then it would bail based on that. But we're here, so no label.
-            // If the break has a label then it must break past the current loop so don't change the label
-            if (node.label) {
-              vlog('Break has label so not changing it...');
-            } else {
-              node.label = AST.identifier(tmpLabelIdentNode.name);
-            }
-          });
-          // tmp: { let ran = false; oldForNode; if (ran) forBody }
-          const finalNode = AST.labeledStatement(
-            tmpLabelIdentNode,
-            AST.blockStatement(
-              AST.variableDeclaration(tmpName, AST.fals(), 'let'),
-              node,
-              AST.ifStatement(tmpName, forBlock, AST.blockStatement()),
-            ),
-          );
-          // Make the body of the `for` be: `{ tmpName = true; break; }`
-          node.body = AST.blockStatement(AST.expressionStatement(AST.assignmentExpression(tmpName, AST.tru())), AST.breakStatement());
-          // Swap out the loop statement. No need to revisit it. Even in a nested loop.
-          const parentNode = path.nodes[path.nodes.length - 2];
-          const parentProp = path.props[path.props.length - 1];
-          const parentIndex = path.indexes[path.indexes.length - 1];
-          parentNode[parentProp][parentIndex] = finalNode;
-
-          after(parentNode[parentProp][parentIndex]);
-          ++changed;
-        }
+        loopStack.pop();
       }
-    } else if (nodeType === 'FunctionExpression') {
+    }
+    else if (nodeType === 'FunctionExpression') {
       // Add a layer that we won't use
       if (loopStack.length) {
         if (beforeWalk) {
@@ -168,7 +120,7 @@ function _fakeLoops(fdata) {
           loopStack.pop();
         }
       }
-    } else if (beforeWalk && loopStack.length) {
+    } else if (beforeWalk && loopStack.length && loopStack[loopStack.length - 1]?.type === 'WhileStatement') {
       //vlog('Inside a loop, node:', nodeType);
       if (nodeType === 'BlockStatement') {
         // This is also the block for each branch of the `if` and the loop itself
